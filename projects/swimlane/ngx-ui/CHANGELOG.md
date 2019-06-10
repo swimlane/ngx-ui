@@ -6,6 +6,11 @@ _(none)_
 
 ---
 
+## 26.0.0 (2019-06-10)
+
+- Breaking: Upgrade to angular 8 (#288)
+- Enhancement: Support allowIn in hotkeys (#291)
+
 ## 25.11.0 (2019-05-29)
 
 - Enhancement: Add radar chart icon (#289)

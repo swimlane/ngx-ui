@@ -1,8 +1,8 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "25.11.0",
+  "version": "26.0.0",
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=10.0.0"
   },
   "repository": {
     "type": "git",
