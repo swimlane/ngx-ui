@@ -6,6 +6,10 @@ _(none)_
 
 ---
 
+## 26.0.1 (2019-06-12)
+
+- Fix: Fix tree templates (#292)
+
 ## 26.0.0 (2019-06-10)
 
 - Breaking: Upgrade to angular 8 (#288)
