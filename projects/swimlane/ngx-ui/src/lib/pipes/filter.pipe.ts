@@ -13,7 +13,9 @@ import { Pipe, Injectable, PipeTransform } from '@angular/core';
  *
  *    <input type="text" [(ngModel)]="stringFilter">
  *    <ul>
- *      <li *ngFor="let item of array | filterBy: stringFilter"></li>
+ *      <li *ngFor="let item of array | filterBy: stringFilter">
+ *        {{ item }}
+ *      </li>
  *    </ul>
  *
  */

@@ -1,0 +1,51 @@
+<h3 class="style-header">Pipes</h3>
+
+<ngx-section class="shadow" sectionTitle="DecamelizePipe">
+  {{ 'DecamelizePipe' | decamelize }}
+
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      { { 'DecamelizePipe' | decamelize } }
+    ]]>
+  </ngx-codemirror>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="TimeZonePipe">
+  {{ date | amTimeZone: 'America/Los_Angeles' }}
+
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      { { date | amTimeZone: 'America/Los_Angeles' } }
+    ]]>
+  </ngx-codemirror>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="FilterPipe">
+  <ngx-input type="text" [(ngModel)]="stringFilter"></ngx-input>
+  <ul>
+    <li *ngFor="let item of array | filterBy: stringFilter">
+      {{ item }}
+    </li>
+  </ul>
+  
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+    <ngx-input type="text" [(ngModel)]="stringFilter"></ngx-input>
+    <ul>
+      <li *ngFor="let item of array | filterBy: stringFilter">
+        {{ item }}
+      </li>
+    </ul>
+    ]]>
+  </ngx-codemirror>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="JSONTreePipe">
+  <code><pre>{{ jsonObject | jsonTree | json }}</pre></code>
+
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <code><pre>{ { jsonObject | jsonTree | json } }</pre></code>
+    ]]>
+  </ngx-codemirror>
+</ngx-section>

@@ -40,6 +40,11 @@ export class AppComponent {
       icon: 'stars'
     },
     {
+      name: 'Pipes',
+      route: 'pipes',
+      icon: 'code'
+    },
+    {
       name: 'Forms',
       icon: 'application',
       children: [
