@@ -33,7 +33,7 @@
     <ngx-input type="text" [(ngModel)]="stringFilter"></ngx-input>
     <ul>
       <li *ngFor="let item of array | filterBy: stringFilter">
-        {{ item }}
+        { { item } }
       </li>
     </ul>
     ]]>
