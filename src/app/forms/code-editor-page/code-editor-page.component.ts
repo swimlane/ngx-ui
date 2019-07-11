@@ -6,19 +6,22 @@ import { Component } from '@angular/core';
 })
 export class CodeEditorPageComponent {
   editorResult: any;
-  code = `var foo = true;
-  var bar = false;
-  
-  function moo() {
-    console.log(foo);
-  }`;
+  code = `
+var foo = true;
+var bar = false;
 
-  editorConfig = {
-    lineNumbers: true,
-    theme: 'dracula',
-    mode: {
-      name: 'javascript',
-      json: true
-    }
-  };
+function moo() {
+  console.log(foo);
+}`;
+
+  code2 = '';
+
+  autocompleteTokens = [
+    { text: '{{~title}}', displayText: 'title' },
+    { text: '{{first_name}}', displayText: 'First Name' },
+    { text: '{{last_name}}', displayText: 'Last Name' },
+    { text: '{{#each [array] }}', displayText: 'each' },
+    { text: '{{#with [object]}}', displayText: 'with' },
+    { text: '{{#if [expression]}}', displayText: 'if' }
+  ];
 }

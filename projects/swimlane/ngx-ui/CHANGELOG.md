@@ -1,8 +1,7 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-
-_(none)_
+- Feature: Add token hints to `ngx-codemirror`
 
 ---
 

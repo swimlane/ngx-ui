@@ -1,0 +1,39 @@
+@import 'colors/variables';
+
+$dropdown-bg: $color-blue-grey-700;
+$dropdown-bg-hover: darken($color-blue-grey-700, 5%);
+$dropdown-color: $color-grey-100;
+
+.CodeMirror-hints {
+  position: absolute;
+  z-index: 10;
+  overflow: hidden;
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+
+  font-size: 90%;
+  font-family: monospace;
+
+  background: $dropdown-bg;
+  box-shadow: $shadow-3;
+
+  max-height: 20em;
+  overflow-y: auto;
+}
+
+.CodeMirror-hint {
+  margin: 0;
+  padding: 5px 20px;
+  white-space: pre;
+  background: transparent;
+  box-shadow: none;
+  color: $dropdown-color;
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+li.CodeMirror-hint-active {
+  background: $dropdown-bg-hover;
+}
