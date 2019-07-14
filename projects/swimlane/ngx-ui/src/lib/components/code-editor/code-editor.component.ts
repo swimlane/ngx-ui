@@ -2,7 +2,6 @@ import {
   Component,
   Input,
   Output,
-  ElementRef,
   ViewChild,
   OnInit,
   Renderer,
@@ -10,7 +9,8 @@ import {
   forwardRef,
   AfterViewInit,
   ViewEncapsulation,
-  OnDestroy
+  OnDestroy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -59,7 +59,8 @@ const CODEMIRROR_VALUE_ACCESSOR = {
     './foldgutter.css',
     './dracula.css',
     './code-editor.component.scss'
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
   @Input()

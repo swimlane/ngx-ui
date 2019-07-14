@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation, OnInit, OnChanges, HostBinding, HostListener } from '@angular/core';
+import { Component, Input, ViewEncapsulation, OnInit, OnChanges, HostBinding, HostListener, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'ngx-button',
@@ -13,7 +13,8 @@ import { Component, Input, ViewEncapsulation, OnInit, OnChanges, HostBinding, Ho
         <span *ngIf="success" class="icon icon-check"></span> <span *ngIf="fail" class="icon icon-x"></span>
       </span>
     </button>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent implements OnInit, OnChanges {
   @Input() disabled: boolean = false;

@@ -8,7 +8,9 @@ import {
   ViewChild,
   TemplateRef,
   OnDestroy,
-  ElementRef
+  ElementRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -160,7 +162,8 @@ type Datelike = string | Date | moment.Moment;
         class="calendar-dialog-btn"
       ></button>
     </div>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() id: string = `datetime-${++nextId}`;
@@ -195,12 +198,15 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input()
   get format(): string {
     if (!this._format) {
-      if (this.inputType === DateTimeType.date) {
-        return 'L';
-      } else if (this.inputType === DateTimeType.datetime) {
-        return 'L LT';
-      } else if (this.inputType === DateTimeType.time) {
-        return 'LT';
+      switch (this.inputType) {
+        case DateTimeType.date:
+          return 'L';
+        case DateTimeType.datetime:
+          return 'L LT';
+        case DateTimeType.time:
+          return 'LT';
+        default:
+          break;
       }
     }
     return this._format;
@@ -215,7 +221,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
   set value(val: Date | string) {
     let date: moment.Moment;
-    let isSame;
+    let isSame: boolean;
 
     if (val) {
       date = this.parseDate(val);
@@ -243,6 +249,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
       this.onChangeCallback(val);
       this.change.emit(val);
     }
+    this.cd.markForCheck();
   }
 
   @Output() change = new EventEmitter<any>();
@@ -263,15 +270,26 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   private _format: string;
   private _inputType: string;
 
-  constructor(private dialogService: DialogService) {}
+  constructor(private cd: ChangeDetectorRef, private dialogService: DialogService) {}
 
   ngOnDestroy(): void {
     this.close();
   }
 
-  writeValue(val: any): void {
-    this.value = val;
+  writeValue(val: string | Date): void {
+    // Set the value if it is not undefined.
+    if (val !== undefined) {
+      this.value = val;
+    }
     this.displayValue = this.getDisplayValue();
+  }
+
+  registerOnChange(fn: any): void {
+    this.onChangeCallback = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouchedCallback = fn;
   }
 
   onBlur() {
@@ -286,6 +304,10 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     }
   }
 
+  /**
+   * Calls the `dialogService` class to display the calendar component within the `calendarTpl` template.
+   * It uses the moment library to properly parse and set the dialog date.
+   */
   open(): void {
     const value = moment(this._value);
     const isValid = value.isValid();
@@ -299,12 +321,20 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     });
   }
 
+  /**
+   * Get the selected date of the calendar into our `date-time` component,
+   * updating the `displayValue` property on the process.
+   */
   apply(): void {
     this.value = this.dialogModel.toDate();
     this.displayValue = this.getDisplayValue();
     this.close();
   }
 
+  /**
+   * Set dialog date for the dialog component by formatting the passed date.
+   * @param date The date to be formatted.
+   */
   setDialogDate(date: Datelike) {
     this.dialogModel = this.createMoment(date);
     this.hour = +this.dialogModel.format('hh');
@@ -372,6 +402,9 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this.value = date.isValid() ? date.toDate() : val;
   }
 
+  /**
+   * Close the `dialog` component and validates the date.
+   */
   close(): void {
     if (!this.dialog) return;
 
@@ -380,14 +413,6 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
     const date = this.parseDate(this.value);
     this.validate(date);
-  }
-
-  registerOnChange(fn: any): void {
-    this.onChangeCallback = fn;
-  }
-
-  registerOnTouched(fn: any): void {
-    this.onTouchedCallback = fn;
   }
 
   private roundTo(val: moment.Moment, key: string): moment.Moment {
@@ -419,13 +444,11 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     return isValid && !outOfRange;
   }
 
-  private onTouchedCallback: () => void = () => {
-    // placeholder
-  };
+  // tslint:disable-next-line: no-empty
+  private onTouchedCallback: () => void = () => {};
 
-  private onChangeCallback: (_: any) => void = () => {
-    // placeholder
-  };
+  // tslint:disable-next-line: no-empty
+  private onChangeCallback: (_: any) => void = () => {};
 
   private getDisplayValue(): string {
     // note same as {{ value | amTimeZone: timezone | amDateFormat: format }}

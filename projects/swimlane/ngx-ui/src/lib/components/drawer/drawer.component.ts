@@ -6,7 +6,8 @@ import {
   HostBinding,
   HostListener,
   ViewEncapsulation,
-  OnDestroy
+  OnDestroy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { trigger } from '@angular/animations';
 import { drawerTransition } from '../../animations/animations';
@@ -25,7 +26,8 @@ import { drawerTransition } from '../../animations/animations';
   },
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./drawer.component.scss'],
-  animations: [trigger('drawerTransition', drawerTransition)]
+  animations: [trigger('drawerTransition', drawerTransition)],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DrawerComponent implements OnDestroy {
   /**

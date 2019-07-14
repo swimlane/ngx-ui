@@ -10,7 +10,8 @@ import {
   Output,
   Renderer,
   ViewEncapsulation,
-  Renderer2
+  Renderer2,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 @Component({
@@ -72,7 +73,8 @@ import {
   ],
   host: {
     tabindex: '-1'
-  }
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogComponent implements OnInit, OnDestroy {
   @Input() id: string;
@@ -145,7 +147,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   /**
    * On destroy callback
    *
-   * @memberOf DrawerComponent
+   * @memberOf DialogComponent
    */
   ngOnDestroy() {
     this.close.emit(true);

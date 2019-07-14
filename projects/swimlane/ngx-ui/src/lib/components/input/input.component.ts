@@ -11,7 +11,9 @@ import {
   Output,
   ViewChild,
   ViewEncapsulation,
-  forwardRef
+  forwardRef,
+  ChangeDetectionStrategy,
+  SimpleChanges
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -187,7 +189,8 @@ const INPUT_VALIDATORS = {
       transition('collapsed => expanded', animate('150ms ease-out')),
       transition('expanded => collapsed', animate('150ms ease-out'))
     ])
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputComponent implements OnInit, AfterViewInit, ControlValueAccessor, Validator {
   @Input() id: string = `input-${++nextId}`;
@@ -309,23 +312,23 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     setTimeout(() => this.cd.markForCheck());
   }
 
-  ngOnChanges(changes) {
+  ngOnChanges(changes: SimpleChanges) {
     if ('max' in changes || 'min' in changes) {
       this.onChangeCallback(this._value);
     }
   }
 
-  onChange(event): void {
+  onChange(event: Event): void {
     event.stopPropagation();
     this.change.emit(this.value);
   }
 
-  onKeyUp(event): void {
+  onKeyUp(event: Event): void {
     event.stopPropagation();
     this.keyup.emit(event);
   }
 
-  onFocus(event): void {
+  onFocus(event: Event): void {
     event.stopPropagation();
 
     if (this.autoSelect) {
@@ -339,8 +342,8 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     this.onTouchedCallback();
   }
 
-  onBlur(event): void {
-    event.stopPropagation();
+  onBlur(event: Event): void {
+    event.stopPropagation;
 
     this.focused = false;
     this.blur.emit(event);
@@ -350,6 +353,7 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     if (val !== this._value) {
       this._value = val;
     }
+    this.cd.markForCheck();
   }
 
   registerOnChange(fn: any): void {
@@ -376,11 +380,9 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     this.disabled = isDisabled;
   }
 
-  private onTouchedCallback: () => void = () => {
-    // placeholder
-  };
+  // tslint:disable-next-line: no-empty
+  private onTouchedCallback: () => void = () => {};
 
-  private onChangeCallback: (_: any) => void = () => {
-    // placeholder
-  };
+  // tslint:disable-next-line: no-empty
+  private onChangeCallback: (_: any) => void = () => {};
 }

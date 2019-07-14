@@ -4,4 +4,10 @@ import { Component } from '@angular/core';
   selector: 'app-checkbox-page',
   templateUrl: './checkbox-page.component.html'
 })
-export class CheckboxPageComponent {}
+export class CheckboxPageComponent {
+  checkOne: boolean = true;
+
+  onChange(event: any) {
+    console.log('Checkbox changed');
+  }
+}

@@ -2,7 +2,7 @@
 
 <ngx-section class="shadow" [sectionTitle]="'Demo'">
   <h3>Simple</h3>
-  <ngx-checkbox name="chk1" [ngModel]="true">
+  <ngx-checkbox name="chk1" [ngModel]="checkOne" (change)="onChange($event)">
     Alert the SOC
   </ngx-checkbox>
 
@@ -10,7 +10,8 @@
     <![CDATA[
       <ngx-checkbox
         name="chk1"
-        [ngModel]="true">
+        [ngModel]="checkOne"
+        (change)="onChange($event)">
         Alert the SOC
       </ngx-checkbox>
     ]]>

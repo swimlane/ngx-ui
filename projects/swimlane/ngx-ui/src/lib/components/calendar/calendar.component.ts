@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, forwardRef, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import moment from 'moment-timezone';
 import { getMonth, CalenderDay, Month, getDecadeStartYear } from './calendar-utils';
@@ -132,7 +132,8 @@ type View = 'year' | 'month' | 'date';
     class: 'ngx-calendar',
     tabindex: '1',
     '(blur)': 'onTouchedCallback()'
-  }
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarComponent implements OnInit, ControlValueAccessor {
   @Input() minDate: Date | string;
@@ -192,6 +193,8 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   startYear: number;
   _minView: View;
   _defaultView: View;
+
+  constructor(private cd: ChangeDetectorRef) {}
 
   changeViews(): void {
     if (this.currentView === 'date') {
@@ -352,6 +355,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
       this._value = val;
       this.startYear = getDecadeStartYear(this.activeDate.year());
     }
+    this.cd.markForCheck();
   }
 
   registerOnChange(fn: any): void {
@@ -362,13 +366,11 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     this.onTouchedCallback = fn;
   }
 
-  onTouchedCallback: () => void = () => {
-    // placeholder
-  };
+  // tslint:disable-next-line: no-empty
+  private onTouchedCallback: () => void = () => {};
 
-  private onChangeCallback: (_: any) => void = () => {
-    // placeholder
-  };
+  // tslint:disable-next-line: no-empty
+  private onChangeCallback: (_: any) => void = () => {};
 
   private parseDate(date: string | Date) {
     date = date instanceof Date ? date.toISOString() : date;

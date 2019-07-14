@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { DialogComponent } from '../dialog.component';
 
 // Disable lint until codelyzer supports class inheritance
@@ -90,7 +90,8 @@ import { DialogComponent } from '../dialog.component';
   ],
   host: {
     tabindex: '-1'
-  }
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlertComponent extends DialogComponent {
   defaults: any = {

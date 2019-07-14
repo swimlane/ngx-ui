@@ -5,11 +5,10 @@ import {
   HostBinding,
   OnDestroy,
   AfterContentInit,
-  HostListener,
-  ElementRef,
   Renderer2,
   ViewEncapsulation,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { DropdownMenuDirective } from './dropdown-menu.directive';
@@ -35,7 +34,8 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
     <ng-content></ng-content>
   `,
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./dropdown.component.scss']
+  styleUrls: ['./dropdown.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent implements AfterContentInit, OnDestroy {
   @Input()

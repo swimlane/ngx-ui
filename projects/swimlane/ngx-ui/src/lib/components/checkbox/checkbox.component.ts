@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, forwardRef, HostBinding, ViewEncapsulation } from '@angular/core';
+import { Component, Input, EventEmitter, Output, forwardRef, HostBinding, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 const CHKBOX_VALUE_ACCESSOR = {
@@ -22,9 +22,9 @@ let nextId = 0;
         [disabled]="disabled"
         [name]="name + '-chk'"
         [tabIndex]="tabindex"
-        (focus)="focus.emit($event)"
-        (blur)="blur.emit($event)"
-        (change)="change.emit($event)"
+        (focus)="onFocus($event)"
+        (blur)="onBlur($event)"
+        (change)="onChange($event)"
       />
       <ng-content></ng-content>
     </label>
@@ -33,7 +33,8 @@ let nextId = 0;
   styleUrls: ['./checkbox.component.scss'],
   host: {
     class: 'ngx-checkbox'
-  }
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent implements ControlValueAccessor {
   @Input() id: string = `checkbox-${++nextId}`;
@@ -44,9 +45,9 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Input()
   disabled: boolean = false;
 
-  @Output() change = new EventEmitter();
-  @Output() blur = new EventEmitter();
-  @Output() focus = new EventEmitter();
+  @Output() change = new EventEmitter<any>();
+  @Output() blur = new EventEmitter<any>();
+  @Output() focus = new EventEmitter<any>();
 
   get value(): boolean {
     return this._value;
@@ -57,16 +58,25 @@ export class CheckboxComponent implements ControlValueAccessor {
       this._value = value;
       this.onChangeCallback(this._value);
     }
+    this.cd.markForCheck();
   }
 
   private _value: boolean = false;
 
-  onBlur(event): void {
-    this.onTouchedCallback();
+  constructor(private cd: ChangeDetectorRef) {}
+
+  onFocus(event: Event): void {
+    this.focus.emit(event);
   }
 
-  onChange(event): void {
-    this.toggle();
+  onBlur(event: Event): void {
+    this.onTouchedCallback();
+    this.blur.emit(event);
+  }
+
+  onChange(event: Event): void {
+    this.onChangeCallback(this.value);
+    this.change.emit(event);
   }
 
   toggle() {
@@ -85,11 +95,9 @@ export class CheckboxComponent implements ControlValueAccessor {
     this.onTouchedCallback = fn;
   }
 
-  private onTouchedCallback = () => {
-    // placeholder
-  };
+  // tslint:disable-next-line: no-empty
+  private onTouchedCallback = () => {};
 
-  private onChangeCallback = (_: any) => {
-    // placeholder
-  };
+  // tslint:disable-next-line: no-empty
+  private onChangeCallback = (_: any) => {};
 }
