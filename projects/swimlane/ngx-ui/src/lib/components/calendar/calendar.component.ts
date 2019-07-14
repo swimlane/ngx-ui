@@ -49,8 +49,7 @@ type View = 'year' | 'month' | 'date';
                   [class.active]="isDayActive(day.date)"
                   [ngClass]="day.classes"
                   [disabled]="isDisabled(day.date, 'day')"
-                  (click)="onDayClick(day)"
-                >
+                  (click)="onDayClick(day)">
                   {{ day.num }}
                 </button>
               </div>
@@ -367,7 +366,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   // tslint:disable-next-line: no-empty
-  private onTouchedCallback: () => void = () => {};
+  onTouchedCallback: () => void = () => {};
 
   // tslint:disable-next-line: no-empty
   private onChangeCallback: (_: any) => void = () => {};
