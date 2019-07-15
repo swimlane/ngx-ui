@@ -34,11 +34,12 @@
 
 <ngx-section class="shadow" [sectionTitle]="'Autocomplete'">
   <ngx-codemirror
+    [class]="'tokens'"
     [(ngModel)]="code2"
     [config]="{
       lineNumbers: false,
       theme: 'dracula',
-      mode: 'handlebars'
+      mode: 'mustache'
     }"
     [autocompleteTokens]="autocompleteTokens">
   </ngx-codemirror>
@@ -49,7 +50,7 @@
       [config]="{
         lineNumbers: false,
         theme: 'dracula',
-        mode: 'handlebars'
+        mode: 'mustache'
       }"
       [autocompleteTokens]="autocompleteTokens">
     </ngx-codemirror>

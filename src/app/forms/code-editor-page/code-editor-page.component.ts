@@ -1,27 +1,47 @@
 import { Component } from '@angular/core';
+import * as CodeMirror from 'codemirror';
 
 @Component({
   selector: 'app-code-editor-page',
+  styleUrls: ['./code-editor-page.component.scss'],
   templateUrl: './code-editor-page.component.html'
 })
 export class CodeEditorPageComponent {
   editorResult: any;
-  code = `
-var foo = true;
+  code = `var foo = true;
 var bar = false;
 
 function moo() {
   console.log(foo);
-}`;
+}
+`;
 
-  code2 = '';
+  code2 = `<h1>{{header}}</h1>
+{{#bug}}
+{{/bug}}
+
+{{#items}}
+  {{#first}}
+    <li><strong>{{name}}</strong></li>
+  {{/first}}
+  {{#link}}
+    <li><a href="{{url}}">{{name}}</a></li>
+  {{/link}}
+{{/items}}
+
+{{#empty}}
+  <p>The list is empty.</p>
+{{/empty}}
+`;
 
   autocompleteTokens = [
-    { text: '{{~title}}', displayText: 'title' },
-    { text: '{{first_name}}', displayText: 'First Name' },
-    { text: '{{last_name}}', displayText: 'Last Name' },
-    { text: '{{#each [array] }}', displayText: 'each' },
-    { text: '{{#with [object]}}', displayText: 'with' },
-    { text: '{{#if [expression]}}', displayText: 'if' }
+    { text: '{{header}}', displayText: 'Header' },
+    { text: '{{help}}', displayText: 'Help' },
+    { text: '{{name}}', displayText: 'Name' },
+    { text: '{{url}}', displayText: 'Url' },
+    { text: '{{#link}} {{/link}}', displayText: 'Link' },
+    { text: '{{#items}} {{/items}}', displayText: 'Items' },
+    { text: '{{#first}} {{/first}}', displayText: 'First' },
+    { text: '{{#bug}} {{/bug}}', displayText: 'Bug' }
   ];
 }
