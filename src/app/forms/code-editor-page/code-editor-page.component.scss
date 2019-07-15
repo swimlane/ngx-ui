@@ -1,0 +1,10 @@
+ngx-codemirror.tokens /deep/ .cm-s-dracula.CodeMirror {
+  span {
+    &.cm-mustache {
+      border-radius: 5px;
+      color: #cdd3dd;
+      background-color: #455066;
+      padding: 0px 2px 2px 2px;
+    }
+  }
+}

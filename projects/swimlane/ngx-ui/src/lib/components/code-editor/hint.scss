@@ -1,8 +1,9 @@
 @import 'colors/variables';
 
-$dropdown-bg: $color-blue-grey-700;
-$dropdown-bg-hover: darken($color-blue-grey-700, 5%);
-$dropdown-color: $color-grey-100;
+$dropdown-bg: #323846;
+$dropdown-bg-active: #262c38;
+$dropdown-bg-hover: #1c2029;
+$dropdown-color: #c0c0c2;
 
 .CodeMirror-hints {
   position: absolute;
@@ -35,5 +36,9 @@ $dropdown-color: $color-grey-100;
 }
 
 li.CodeMirror-hint-active {
+  background: $dropdown-bg-active;
+}
+
+li.CodeMirror-hint:hover {
   background: $dropdown-bg-hover;
 }
