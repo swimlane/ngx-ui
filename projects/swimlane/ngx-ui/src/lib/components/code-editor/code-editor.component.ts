@@ -23,6 +23,7 @@ import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/mode/htmlmixed/htmlmixed.js';
 import 'codemirror/mode/spreadsheet/spreadsheet.js';
 import 'codemirror/mode/handlebars/handlebars.js';
+import './mustache';
 
 // add-ons
 import 'codemirror/addon/lint/lint.js';
@@ -35,26 +36,6 @@ import 'codemirror/addon/fold/foldgutter.js';
 import 'codemirror/addon/fold/indent-fold.js';
 import 'codemirror/addon/hint/show-hint.js';
 import 'codemirror/addon/mode/overlay.js';
-
-// Adds mustache as an overlay to text/html
-CodeMirror.defineMode('mustache', function(config: any, parserConfig: any) {
-  const mustacheOverlay = {
-    token(stream: any, state: any) {
-      let ch: any;
-      if (stream.match('{{')) {
-        // tslint:disable-next-line:no-conditional-assignment
-        while ((ch = stream.next()) != null)
-          if (ch === '}' && stream.next() === '}') {
-            stream.eat('}');
-            return 'mustache';
-          }
-      }
-      while (stream.next() != null && !stream.match("{{", false)) {}
-      return null;
-    }
-  };
-  return CodeMirror.overlayMode(CodeMirror.getMode(config, parserConfig.backdrop || "text/html"), mustacheOverlay);
-});
 
 interface HintCompletion {
   text: string;

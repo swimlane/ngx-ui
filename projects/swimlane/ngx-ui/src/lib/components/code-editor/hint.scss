@@ -1,9 +1,9 @@
 @import 'colors/variables';
 
-$dropdown-bg: #323846;
-$dropdown-bg-active: #262c38;
-$dropdown-bg-hover: #1c2029;
-$dropdown-color: #c0c0c2;
+$dropdown-bg: $color-blue-grey-700;
+$dropdown-bg-active: $color-blue-grey-750;
+$dropdown-bg-hover: $color-blue-grey-800;
+$dropdown-color: $color-blue-grey-150;
 
 .CodeMirror-hints {
   position: absolute;

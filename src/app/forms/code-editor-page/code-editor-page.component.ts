@@ -3,7 +3,6 @@ import * as CodeMirror from 'codemirror';
 
 @Component({
   selector: 'app-code-editor-page',
-  styleUrls: ['./code-editor-page.component.scss'],
   templateUrl: './code-editor-page.component.html'
 })
 export class CodeEditorPageComponent {
