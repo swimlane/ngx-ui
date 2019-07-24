@@ -18,7 +18,7 @@ const MOON_LANDING = '1969-07-20T20:17:43Z';
 const MOON_LANDING_DATE = new Date(MOON_LANDING);
 
 const LOCAL_DATE = MOON_LANDING_DATE.toLocaleDateString('en-US', { day: '2-digit', year: 'numeric', month: '2-digit' });
-const LOCAL_TIME = MOON_LANDING_DATE.toLocaleTimeString('en-US', { hour: '2-digit', minute: 'numeric' });
+const LOCAL_TIME = MOON_LANDING_DATE.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' });
 
 const LOCAL_MONTH = MOON_LANDING_DATE.toLocaleDateString('en-US', { month: '2-digit' });
 const LOCAL_DAY = MOON_LANDING_DATE.toLocaleDateString('en-US', { day: '2-digit' });

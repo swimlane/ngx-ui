@@ -1,17 +1,17 @@
 import { TestBed } from '@angular/core/testing';
-import { DecamalizePipe } from './decamelize.pipe';
-describe('DecamalizePipe', () => {
-  let pipe: DecamalizePipe;
+import { DecamelizePipe } from './decamelize.pipe';
+describe('DecamelizePipe', () => {
+  let pipe: DecamelizePipe;
   beforeEach(() => {
-    TestBed.configureTestingModule({ providers: [DecamalizePipe] });
-    pipe = TestBed.get(DecamalizePipe);
+    TestBed.configureTestingModule({ providers: [DecamelizePipe] });
+    pipe = TestBed.get(DecamelizePipe);
   });
   it('can load instance', () => {
     expect(pipe).toBeTruthy();
   });
-  it('transforms DecamalizePipe to Decamalize Pipe', () => {
-    const value: any = 'DecamalizePipe';
+  it('transforms DecamelizePipe to Decamelize Pipe', () => {
+    const value: any = 'DecamelizePipe';
     const args: string[] = [];
-    expect(pipe.transform(value)).toEqual('Decamalize Pipe');
+    expect(pipe.transform(value)).toEqual('Decamelize Pipe');
   });
 });
