@@ -9,6 +9,11 @@ cache:
     - ~/.cache
     - node_modules
 
+addons:
+  apt:
+    packages:
+    - libgconf-2-4
+
 before_install:
   - export NG_CLI_ANALYTICS=ci
 
