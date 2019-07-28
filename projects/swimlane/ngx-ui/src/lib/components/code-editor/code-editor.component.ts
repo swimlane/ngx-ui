@@ -1,16 +1,17 @@
 import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
-  Input,
-  Output,
-  ViewChild,
-  OnInit,
-  Renderer,
   EventEmitter,
   forwardRef,
-  AfterViewInit,
-  ViewEncapsulation,
+  Input,
   OnDestroy,
-  ChangeDetectionStrategy
+  OnInit,
+  Output,
+  Renderer,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -96,6 +97,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
       this.onChangeCallback(val);
       this.change.emit(this._value);
     }
+    this.cd.markForCheck();
   }
 
   get value(): string {
@@ -112,7 +114,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
   instance: any;
   _value: string;
 
-  constructor(private renderer: Renderer) {}
+  constructor(private cd: ChangeDetectorRef, private renderer: Renderer) {}
 
   ngOnInit(): void {
     this.config = {
@@ -228,13 +230,11 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     this.onTouchedCallback = fn;
   }
 
-  private onTouchedCallback: () => void = () => {
-    // placeholder
-  };
+  // tslint:disable-next-line: no-empty
+  private onTouchedCallback: () => void = () => {};
 
-  private onChangeCallback: (_: any) => void = () => {
-    // placeholder
-  };
+  // tslint:disable-next-line: no-empty
+  private onChangeCallback: (_: any) => void = () => {};
 
   private autocomplete(editor: any) {
     const word = /[\S$]+/;
@@ -250,7 +250,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
         s = typeof s === 'string' ? s : s.text;
         return s ? s.startsWith(curWord) : false;
       });
-    return { 
+    return {
       list,
       from: CodeMirror.Pos(cur.line, start),
       to: CodeMirror.Pos(cur.line, end)

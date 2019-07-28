@@ -78,6 +78,12 @@ export class LoadingService {
     }
   }
 
+  show(): void {
+    if (this.instance) {
+      this.instance.visible = true;
+    }
+  }
+
   private create(): ComponentRef<LoadingComponent> {
     if (!this.component) {
       this.component = this.injectionService.appendComponent(LoadingComponent);
