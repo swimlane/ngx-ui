@@ -23,6 +23,8 @@ import 'codemirror/mode/powershell/powershell.js';
 import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/mode/htmlmixed/htmlmixed.js';
 import 'codemirror/mode/spreadsheet/spreadsheet.js';
+import 'codemirror/mode/handlebars/handlebars.js';
+import './mustache';
 
 // add-ons
 import 'codemirror/addon/lint/lint.js';
@@ -33,6 +35,14 @@ import 'codemirror/addon/dialog/dialog.js';
 import 'codemirror/addon/fold/foldcode.js';
 import 'codemirror/addon/fold/foldgutter.js';
 import 'codemirror/addon/fold/indent-fold.js';
+import 'codemirror/addon/hint/show-hint.js';
+import 'codemirror/addon/mode/overlay.js';
+
+interface HintCompletion {
+  text: string;
+  displayText: string;
+  className: string;
+}
 
 const CODEMIRROR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -58,6 +68,7 @@ const CODEMIRROR_VALUE_ACCESSOR = {
     './dialog.css',
     './foldgutter.css',
     './dracula.css',
+    './hint.scss',
     './code-editor.component.scss'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -75,6 +86,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
   @Input() allowDropFileTypes: any[] = [];
   @Input() lineNumbers: any;
   @Input() gutters: any[] = [];
+
+  @Input()
+  autocompleteTokens: Array<string | HintCompletion>;
 
   set value(val: string) {
     if (val !== this._value) {
@@ -110,8 +124,16 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
       allowDropFileTypes: this.allowDropFileTypes,
       lineNumbers: this.lineNumbers,
       gutters: this.gutters,
+      extraKeys: {
+        'Ctrl-Space': 'autocomplete'
+      },
       ...this.config
     };
+
+    if (this.autocompleteTokens) {
+      this.config.hintOptions = this.config.hintOptions || {};
+      this.config.hintOptions.hint = this.autocomplete.bind(this);
+    }
   }
 
   ngAfterViewInit(): void {
@@ -126,6 +148,14 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     this.instance.on('change', () => {
       this.updateValue(this.instance.getValue());
     });
+
+    if (this.autocompleteTokens) {
+      this.instance.on('keyup', (cm: any, event: KeyboardEvent) => {
+        if (!cm.state.completionActive && (event.keyCode > 64 && event.keyCode < 91) || event.keyCode ===  219) {
+          CodeMirror.commands.autocomplete(cm, null, {completeSingle: false});
+        }
+      });
+    }
 
     this.instance.on('blur', () => {
       this.blur.emit(this.instance.getValue());
@@ -176,14 +206,14 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     this.instance.refresh();
   }
 
-  updateValue(value): void {
+  updateValue(value: string): void {
     this.value = value;
     this.onTouchedCallback();
     this.onChangeCallback(value);
     this.change.emit(value);
   }
 
-  writeValue(val: any): void {
+  writeValue(val: string): void {
     if (val !== this.value && this.instance) {
       this._value = val;
       this.instance.setValue(this._value);
@@ -204,5 +234,26 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
 
   private onChangeCallback: (_: any) => void = () => {
     // placeholder
+  };
+
+  private autocomplete(editor: any) {
+    const word = /[\S$]+/;
+    const cur = editor.getCursor();
+    const curLine = editor.getLine(cur.line);
+    const end = cur.ch;
+    let start = end;
+    while (start && word.test(curLine.charAt(start - 1))) --start;
+    const curWord = start !== end && curLine.slice(start, end);
+    const list = this
+      .autocompleteTokens
+      .filter((s: string | HintCompletion) => {
+        s = typeof s === 'string' ? s : s.text;
+        return s ? s.startsWith(curWord) : false;
+      });
+    return { 
+      list,
+      from: CodeMirror.Pos(cur.line, start),
+      to: CodeMirror.Pos(cur.line, end)
+    };
   };
 }

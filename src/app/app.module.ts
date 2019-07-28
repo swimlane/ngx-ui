@@ -55,6 +55,7 @@ import { SplitPageComponent } from './components/split-page/split-page.component
 import { OverlayPageComponent } from './components/overlay-page/overlay-page.component';
 import { HotkeysPageComponent } from './components/hotkeys-page/hotkeys-page.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { PipesPageComponent } from './pipes-page/pipes-page.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -95,7 +96,8 @@ const routes: Routes = [
   { path: 'ngx-icon', component: NgxIconPageComponent },
   { path: 'split', component: SplitPageComponent },
   { path: 'overlay', component: OverlayPageComponent },
-  { path: 'hotkeys', component: HotkeysPageComponent }
+  { path: 'hotkeys', component: HotkeysPageComponent },
+  { path: 'pipes', component: PipesPageComponent },
 ];
 
 @NgModule({
@@ -140,7 +142,8 @@ const routes: Routes = [
     SplitPageComponent,
     OverlayPageComponent,
     HotkeysPageComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    PipesPageComponent
   ],
   imports: [
     BrowserModule,
