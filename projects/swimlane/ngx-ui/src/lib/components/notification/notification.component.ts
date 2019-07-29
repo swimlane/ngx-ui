@@ -1,4 +1,13 @@
-import { Component, Input, Output, EventEmitter, HostListener, HostBinding, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  HostBinding,
+  HostListener,
+  Input,
+  Output,
+  ViewEncapsulation
+} from '@angular/core';
 import { NotificationStyleType } from './notification-style.type';
 
 @Component({
@@ -23,7 +32,8 @@ import { NotificationStyleType } from './notification-style.type';
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./notification.component.scss']
+  styleUrls: ['./notification.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationComponent {
   @Input() cssClass: string = '';

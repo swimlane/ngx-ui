@@ -5,14 +5,14 @@ import { Directive, Input, Output, EventEmitter, HostListener } from '@angular/c
 export class LongPressDirective {
   @Input() duration: number = 3000;
   @Input() disabled: boolean = false;
-  @Output() longPressStart: EventEmitter<any> = new EventEmitter<any>();
-  @Output() longPressFinish: EventEmitter<any> = new EventEmitter<any>();
-  @Output() longPressCancel: EventEmitter<any> = new EventEmitter<any>();
+  @Output() longPressStart: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() longPressFinish: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() longPressCancel: EventEmitter<boolean> = new EventEmitter<boolean>();
   pressed: boolean = false;
   pressTimeout: any;
 
   @HostListener('mousedown', ['$event'])
-  onPress(event): void {
+  onPress(event: Event): void {
     if (this.disabled) {
       event.stopPropagation();
       event.preventDefault();
@@ -30,7 +30,7 @@ export class LongPressDirective {
 
   @HostListener('mouseout', ['$event'])
   @HostListener('mouseup', ['$event'])
-  onRelease(event): void {
+  onRelease(event: Event): void {
     this.pressed = false;
     clearTimeout(this.pressTimeout);
     this.longPressCancel.emit(true);

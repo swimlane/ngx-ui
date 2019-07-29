@@ -21,10 +21,10 @@
 
 <ngx-section class="shadow" sectionTitle="Browser size">
 
-  Resize your browser to be less than 600px to to see the overlay.
+  Resize your browser to be less than 600px to see the overlay.
 
   <div [fxHide.gt-sm]="true">
-    <ngx-overlay visible="true">
+    <ngx-overlay [visible]="true">
       <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
         <h1>
           <i class="ngx-icon ngx-hand icon-fx-dbl-sized"></i>
@@ -38,7 +38,7 @@
   <ngx-codemirror mode="htmlmixed" readOnly="true">
     <![CDATA[
       <div [fxHide.gt-sm]="true">
-        <ngx-overlay visible="true">
+        <ngx-overlay [visible]="true">
           <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
             <h1><i class="ngx-icon ngx-hand icon-fx-dbl-sized"></i></h1>
             <h3>Your browser is too small</h3>

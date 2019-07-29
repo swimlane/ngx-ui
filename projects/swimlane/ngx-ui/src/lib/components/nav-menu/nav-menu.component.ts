@@ -1,13 +1,9 @@
 import {
-  Component,
-  ViewEncapsulation,
-  ViewChild,
   ChangeDetectionStrategy,
-  TemplateRef,
-  Input,
+  Component,
   HostBinding,
-  EventEmitter,
-  Output
+  Input,
+  ViewEncapsulation
 } from '@angular/core';
 
 @Component({

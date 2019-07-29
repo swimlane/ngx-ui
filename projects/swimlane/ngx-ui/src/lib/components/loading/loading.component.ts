@@ -15,10 +15,10 @@ export class LoadingComponent {
   private _visible: boolean = false;
   private _progress: number = 0;
 
-  constructor(private cdRef: ChangeDetectorRef) {}
+  constructor(private cd: ChangeDetectorRef) {}
 
   set progress(val: number) {
-    this.cdRef.markForCheck();
+    this.cd.markForCheck();
     this._progress = val;
   }
 
@@ -27,7 +27,7 @@ export class LoadingComponent {
   }
 
   set visible(val: boolean) {
-    this.cdRef.markForCheck();
+    this.cd.markForCheck();
     this._visible = val;
   }
 

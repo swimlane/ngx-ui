@@ -1,5 +1,13 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation
+} from '@angular/core';
 
 /**
  * Overlay Component for Drawer/Dialogs
@@ -40,15 +48,36 @@ import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angu
         animate('100ms ease-out')
       ])
     ])
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OverlayComponent {
-  @Input() visible: boolean = false;
-  @Input() zIndex: number = 990;
+  @Output() click: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @Output() click = new EventEmitter();
+  private _zIndex: number = 990;
+  private _visible: boolean = false;
+
+  constructor(private cd: ChangeDetectorRef) {}
 
   get animationState(): string {
     return this.visible ? 'active' : 'inactive';
+  }
+
+  get visible(): boolean {
+    return this._visible;
+  }
+
+  @Input() set visible(val: boolean) {
+    this._visible = val;
+    this.cd.markForCheck();
+  }
+
+  get zIndex(): number {
+    return this._zIndex;
+  }
+
+  set zIndex(val: number) {
+    this.cd.markForCheck();
+    this._zIndex = val;
   }
 }

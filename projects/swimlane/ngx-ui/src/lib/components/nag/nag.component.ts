@@ -1,15 +1,16 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  Input,
-  Output,
   EventEmitter,
   HostBinding,
-  ViewEncapsulation,
-  OnDestroy,
+  Input,
   OnChanges,
-  SimpleChanges
+  OnDestroy,
+  Output,
+  SimpleChanges,
+  ViewEncapsulation
 } from '@angular/core';
-import { trigger, transition, animate, style, state, keyframes } from '@angular/animations';
+import { trigger } from '@angular/animations';
 import { nagDrawerTransition } from '../../animations/animations';
 
 @Component({
@@ -29,7 +30,8 @@ import { nagDrawerTransition } from '../../animations/animations';
   },
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./nag.component.scss'],
-  animations: [trigger('drawerTransition', nagDrawerTransition)]
+  animations: [trigger('drawerTransition', nagDrawerTransition)],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NagComponent implements OnDestroy, OnChanges {
   @Input() cssClass: string = '';

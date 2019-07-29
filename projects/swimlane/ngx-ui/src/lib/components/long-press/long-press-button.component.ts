@@ -1,12 +1,13 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  Input,
-  Output,
   EventEmitter,
-  ViewEncapsulation,
-  OnInit,
+  HostBinding,
+  Input,
   OnChanges,
-  HostBinding
+  OnInit,
+  Output,
+  ViewEncapsulation
 } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
@@ -58,7 +59,8 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
       ),
       transition('inactive => active', animate(`{{ duration }}ms ease-out`), { params: { duration: 1000 } })
     ])
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LongPressButtonComponent implements OnInit, OnChanges {
   @Input() disabled: boolean = false;
@@ -121,13 +123,13 @@ export class LongPressButtonComponent implements OnInit, OnChanges {
     }
   }
 
-  onLongPressStart(event): void {
+  onLongPressStart(event: boolean): void {
     if (!this._disabled) {
       this.pressed = true;
     }
   }
 
-  onLongPressFinish(event): void {
+  onLongPressFinish(event: boolean): void {
     if (!this._disabled) {
       this.pressed = false;
       this.longPress.emit(event);
@@ -136,7 +138,7 @@ export class LongPressButtonComponent implements OnInit, OnChanges {
     }
   }
 
-  onLongPressCancel(event): void {
+  onLongPressCancel(event: boolean): void {
     this.pressed = false;
   }
 }

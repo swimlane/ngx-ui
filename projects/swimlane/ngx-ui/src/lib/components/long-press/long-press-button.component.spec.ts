@@ -63,7 +63,7 @@ describe('LongPressButtonComponent', () => {
   describe('onLongPressFinish', () => {
     it('makes expected calls', () => {
       spyOn(component, 'updateState');
-      component.onLongPressFinish({});
+      component.onLongPressFinish(true);
       expect(component.updateState).toHaveBeenCalled();
     });
   });
