@@ -8,9 +8,8 @@
         <ngx-icon *ngIf="!navExpanded" svgSrc="slide-right" (click)="navExpanded = true" class="expand-icon"></ngx-icon>
         <ngx-icon *ngIf="navExpanded" svgSrc="slide-left" (click)="navExpanded = false" class="expand-icon"></ngx-icon>
       </div>
-      <div class="search-box">
+      <div class="search-box" *ngIf="navExpanded">
         <ngx-input
-          *ngIf="navExpanded"
           #searchInput
           type="text"
           [autofocus]="true"
