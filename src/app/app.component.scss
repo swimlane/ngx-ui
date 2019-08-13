@@ -25,6 +25,52 @@
     left: 0;
     overflow: auto;
 
+    .search-box {
+      border: 1px solid transparent;
+      color: $color-blue-grey-400;
+      background: $color-blue-grey-700;
+      height: 40px;
+      padding: 8px;
+      line-height: 1em;
+      margin: 0;
+
+      ngx-input-suffix .btn {
+        color: $color-blue-grey-400;
+
+        &:hover {
+          color: #ffffff;
+        }
+      }
+
+      ngx-input {
+        margin-top: -3px;
+        padding-top: 0;
+
+        .ngx-input-underline {
+          display: none;
+        }
+
+        .ngx-input-flex-wrap {
+          align-items: center;
+
+          ngx-input-prefix {
+            margin-top: 1px;
+          }
+
+          ngx-input-suffix {
+            height: 25px;
+            margin-top: -4px;
+          }
+        }
+
+        .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {
+          &::placeholder {
+            font-size: 14px !important;
+          }
+        }
+      }
+    }
+
     .logo-text svg {
       height: 1.5rem;
     }
