@@ -13,9 +13,12 @@ CodeMirror.defineMode('mustache', function(config: any, parserConfig: any) {
             return 'mustache';
           }
       }
-      while (stream.next() != null && !stream.match("{{", false)) {}
+      while (stream.next() != null && !stream.match('{{', false)) {
+        continue;
+      }
+
       return null;
     }
   };
-  return CodeMirror.overlayMode(CodeMirror.getMode(config, parserConfig.backdrop || "text/html"), mustacheOverlay);
+  return CodeMirror.overlayMode(CodeMirror.getMode(config, parserConfig.backdrop || 'text/html'), mustacheOverlay);
 });
