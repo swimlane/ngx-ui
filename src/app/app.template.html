@@ -8,7 +8,7 @@
         <ngx-icon *ngIf="!navExpanded" svgSrc="slide-right" (click)="navExpanded = true" class="expand-icon"></ngx-icon>
         <ngx-icon *ngIf="navExpanded" svgSrc="slide-left" (click)="navExpanded = false" class="expand-icon"></ngx-icon>
       </div>
-      <ul class="nav-items nav-main vertical-list">
+      <ul class="nav-items nav-main vertical-list ngx-scroll-muted">
         <li *ngFor="let item of navigationTree" class="nav-item-container">
           <a *ngIf="!item.children" class="nav-item" ngx-tooltip tooltipPlacement="right" [tooltipTitle]="item.name"
           routerLink="{{item.route}}" routerLinkActive="active">
@@ -25,7 +25,7 @@
 
           <ng-template #childrenTemplate let-model="model">
             <div class="title">{{item.name}}</div>
-            <ul *ngIf="item.children" class="sub-nav">
+            <ul *ngIf="item.children" class="sub-nav ngx-scroll-muted">
               <a *ngFor="let child of item.children" class="sub-nav-item" routerLink="{{child.route}}" routerLinkActive="active">
                 <span class="subnav-label">{{child.name}}</span>
                 <ngx-icon fontIcon="check" class="active-indicator"></ngx-icon>
@@ -33,7 +33,7 @@
             </ul>
           </ng-template>
 
-          <ul *ngIf="item.children && navExpanded" class="sub-nav">
+          <ul *ngIf="item.children && navExpanded" class="sub-nav  ngx-scroll-muted">
             <a *ngFor="let child of item.children" class="sub-nav-item" routerLink="{{child.route}}" routerLinkActive="active">
               <span class="subnav-label">{{child.name}}</span>
               <ngx-icon fontIcon="check" class="active-indicator"></ngx-icon>
