@@ -1,4 +1,4 @@
-@import "colors/variables";
+@import 'colors/variables';
 
 /**
  * Toggle button
@@ -28,7 +28,7 @@
 
       &:after {
         left: 15px;
-        background:  $color-blue;
+        background: $color-blue;
       }
     }
   }

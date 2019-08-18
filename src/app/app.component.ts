@@ -40,6 +40,11 @@ export class AppComponent {
       icon: 'stars'
     },
     {
+      name: 'Pipes',
+      route: 'pipes',
+      icon: 'code'
+    },
+    {
       name: 'Forms',
       icon: 'application',
       children: [
@@ -196,7 +201,7 @@ export class AppComponent {
       ]
     }
   ];
-/* end of naviation tree */
+  /* end of naviation tree */
 
   navExpanded: boolean = true;
 
@@ -218,8 +223,6 @@ export class AppComponent {
         loadingService.complete();
         drawerMngr.destroyAll();
       }
-    })
-
+    });
   }
-  
 }

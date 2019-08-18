@@ -11,10 +11,10 @@ $tag-color: white;
   background: $tag-background;
   color: $tag-color;
   font-size: 14px;
-  padding: 0 .3rem;
+  padding: 0 0.3rem;
 
   &.tag-small {
-    font-size: .7rem;
+    font-size: 0.7rem;
   }
 
   &.tag-large {

@@ -18,41 +18,23 @@ import {
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./dialog.component.scss'],
   template: `
-    <div
-      [class]="class"
-      [class.ngx-dialog]="true"
-      [style.zIndex]="zIndex">
+    <div [class]="class" [class.ngx-dialog]="true" [style.zIndex]="zIndex">
       <div
-        class="ngx-dialog-content {{cssClass}}"
+        class="ngx-dialog-content {{ cssClass }}"
         [@visibilityTransition]="visibleState"
         [style.zIndex]="contentzIndex"
         tabindex="-1"
-        role="dialog">
-        <button
-          *ngIf="closeButton"
-          type="button"
-          class="close"
-          (click)="hide()">
+        role="dialog"
+      >
+        <button *ngIf="closeButton" type="button" class="close" (click)="hide()">
           <span class="icon-x"></span>
         </button>
-        <div
-          class="ngx-dialog-header"
-          *ngIf="dialogTitle">
-          <h2
-            *ngIf="dialogTitle"
-            class="ngx-dialog-title"
-            [innerHTML]="dialogTitle">
-          </h2>
+        <div class="ngx-dialog-header" *ngIf="dialogTitle">
+          <h2 *ngIf="dialogTitle" class="ngx-dialog-title" [innerHTML]="dialogTitle"></h2>
         </div>
-        <ng-template
-          *ngIf="template"
-          [ngTemplateOutlet]="template"
-          [ngTemplateOutletContext]="{ context: context }">
+        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ context: context }">
         </ng-template>
-        <div
-          *ngIf="content"
-          [innerHTML]="content">
-        </div>
+        <div *ngIf="content" [innerHTML]="content"></div>
         <ng-content></ng-content>
       </div>
     </div>
@@ -127,7 +109,6 @@ export class DialogComponent implements OnInit, OnDestroy {
       this.dialogTitle = this.title;
       this.renderer2.removeAttribute(this.element.nativeElement, 'title');
     }
-
   }
 
   show(): void {

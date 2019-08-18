@@ -20,55 +20,27 @@ type View = 'year' | 'month' | 'date';
     <div class="ngx-calendar-wrap">
       <div fxFlex="100%" class="text-center" [ngSwitch]="currentView">
         <div *ngSwitchCase="'date'">
-          <div 
-            class="title-row" 
-            fxLayout="row" 
-            fxLayoutWrap="nowrap" 
-            fxLayoutAlign="center center">
-            <button
-              type="button"
-              class="prev-month"
-              [disabled]="disabled"
-              title="Previous Month"
-              (click)="prevMonth()">
+          <div class="title-row" fxLayout="row" fxLayoutWrap="nowrap" fxLayoutAlign="center center">
+            <button type="button" class="prev-month" [disabled]="disabled" title="Previous Month" (click)="prevMonth()">
               <span class="icon-arrow-left"></span>
             </button>
             <span class="title" (click)="changeViews()">
               {{ activeDate | amTimeZone: timezone | amDateFormat: 'MMMM YYYY' }}
             </span>
-            <button
-              type="button"
-              class="next-month"
-              title="Next Month"
-              [disabled]="disabled"
-              (click)="nextMonth()">
+            <button type="button" class="next-month" title="Next Month" [disabled]="disabled" (click)="nextMonth()">
               <span class="icon-arrow-right"></span>
             </button>
           </div>
           <div class="day-name-row">
-            <div 
-              fxLayout="row" 
-              fxLayoutWrap="nowrap" 
-              fxFill>
-              <div
-                class="day-name text-center"
-                fxFlex="30px"
-                *ngFor="let d of daysOfWeek">
-                {{d}}
+            <div fxLayout="row" fxLayoutWrap="nowrap" fxFill>
+              <div class="day-name text-center" fxFlex="30px" *ngFor="let d of daysOfWeek">
+                {{ d }}
               </div>
             </div>
           </div>
           <div class="day-container">
-            <div
-              *ngFor="let week of weeks"
-              class="day-row"
-              fxLayout="row" 
-              fxLayoutWrap="nowrap" 
-              fxFill>
-              <div
-                *ngFor="let day of week"
-                class="day-cell text-center"
-                fxFlex="30px">
+            <div *ngFor="let week of weeks" class="day-row" fxLayout="row" fxLayoutWrap="nowrap" fxFill>
+              <div *ngFor="let day of week" class="day-cell text-center" fxFlex="30px">
                 <button
                   *ngIf="day.num"
                   class="day"
@@ -77,8 +49,9 @@ type View = 'year' | 'month' | 'date';
                   [class.active]="isDayActive(day.date)"
                   [ngClass]="day.classes"
                   [disabled]="isDisabled(day.date, 'day')"
-                  (click)="onDayClick(day)">
-                  {{day.num}}
+                  (click)="onDayClick(day)"
+                >
+                  {{ day.num }}
                 </button>
               </div>
             </div>
@@ -86,84 +59,68 @@ type View = 'year' | 'month' | 'date';
         </div>
 
         <div *ngSwitchCase="'month'">
-          <div 
-            class="title-row" 
-            fxLayout="row" 
-            fxLayoutWrap="nowrap" 
-            fxLayoutAlign="center center">
-            <button
-              type="button"
-              class="prev-month"
-              [disabled]="disabled"
-              title="Previous Year"
-              (click)="prevYear()">
+          <div class="title-row" fxLayout="row" fxLayoutWrap="nowrap" fxLayoutAlign="center center">
+            <button type="button" class="prev-month" [disabled]="disabled" title="Previous Year" (click)="prevYear()">
               <span class="icon-arrow-left"></span>
             </button>
             <span class="title" (click)="changeViews()">
               {{ activeDate | amTimeZone: timezone | amDateFormat: 'YYYY' }}
             </span>
-            <button
-              type="button"
-              class="next-month"
-              title="Next Year"
-              [disabled]="disabled"
-              (click)="nextYear()">
+            <button type="button" class="next-month" title="Next Year" [disabled]="disabled" (click)="nextYear()">
               <span class="icon-arrow-right"></span>
             </button>
           </div>
           <div class="months-container">
             <div class="months-row">
-              <button 
-                class="month" 
+              <button
+                class="month"
                 type="button"
-                [class.active]="isMonthActive(month)" 
+                [class.active]="isMonthActive(month)"
                 [class.current]="isCurrentMonth(month)"
-                *ngFor="let month of monthsList" 
-                (click)="onMonthClick(month)" 
-                [disabled]="isDisabled(month, 'month')">
-                {{month}}
+                *ngFor="let month of monthsList"
+                (click)="onMonthClick(month)"
+                [disabled]="isDisabled(month, 'month')"
+              >
+                {{ month }}
               </button>
             </div>
           </div>
         </div>
 
         <div *ngSwitchCase="'year'">
-          <div 
-            class="title-row" 
-            fxLayout="row" 
-            fxLayoutWrap="nowrap" 
-            fxLayoutAlign="center center">
+          <div class="title-row" fxLayout="row" fxLayoutWrap="nowrap" fxLayoutAlign="center center">
             <button
               type="button"
               class="prev-month"
               [disabled]="disabled"
               title="Previous Two Decades"
-              (click)="prevTwoDecades()">
+              (click)="prevTwoDecades()"
+            >
               <span class="icon-arrow-left"></span>
             </button>
-            <span class="title" (click)="changeViews()">
-              {{ startYear }} - {{startYear + 20}}
-            </span>
+            <span class="title" (click)="changeViews()"> {{ startYear }} - {{ startYear + 20 }} </span>
             <button
               type="button"
               class="next-month"
               title="Next Two Decades"
               [disabled]="disabled"
-              (click)="nextTwoDecades()">
+              (click)="nextTwoDecades()"
+            >
               <span class="icon-arrow-right"></span>
             </button>
           </div>
           <div class="years-container">
             <div class="years-row">
-              <button 
-                class="year" 
+              <button
+                class="year"
                 type="button"
-                *ngFor="let dummy of ' '.repeat(20).split(''), let x = index"
-                [class.active]="isYearActive(x+startYear)" 
-                [class.current]="isCurrentYear(x+startYear)"
-                (click)="onYearClick(x+startYear)" 
-                [disabled]="isDisabled(x+startYear, 'year')">
-                {{x + startYear}}
+                *ngFor="let dummy of ' '.repeat(20).split(''); let x = index"
+                [class.active]="isYearActive(x + startYear)"
+                [class.current]="isCurrentYear(x + startYear)"
+                (click)="onYearClick(x + startYear)"
+                [disabled]="isDisabled(x + startYear, 'year')"
+              >
+                {{ x + startYear }}
               </button>
             </div>
           </div>
@@ -183,12 +140,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   @Input() maxDate: Date | string;
   @Input() daysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   @Input() timezone: string;
-  @Input() inputFormats: any[] = [
-    'L',
-    `LT`,
-    'L LT',
-    moment.ISO_8601
-  ];
+  @Input() inputFormats: any[] = ['L', `LT`, 'L LT', moment.ISO_8601];
 
   @Input('minView')
   set minView(val: View) {
@@ -219,9 +171,12 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
 
   set value(val: Date) {
     const date = this.createMoment(val);
-    if (date.isValid() && !date.isSame(this._value, 'day')) {
-      this._value = val;
-      this.onChangeCallback(this._value);
+    if (date.isValid()) {
+      if (!date.isSame(this._value, 'day')) {
+        this._value = val;
+        this.onChangeCallback(this._value);
+      }
+
       this.change.emit(this._value);
     }
   }
@@ -237,7 +192,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   startYear: number;
   _minView: View;
   _defaultView: View;
-  
+
   changeViews(): void {
     if (this.currentView === 'date') {
       this.currentView = 'month';
@@ -284,7 +239,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   isMonthActive(month: string): boolean {
     const date = this.createMoment(this.value).month(month);
     return date.isSame(this.value, 'month') && date.isSame(this.activeDate, 'year');
-  };
+  }
 
   /**
    * Checks if `month` and year matches current
@@ -315,7 +270,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     if (!value) return false;
 
     let date;
-    switch(type) {
+    switch (type) {
       case 'day':
         date = value;
         break;
@@ -393,7 +348,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     const activeDate = this.createMoment(val);
     if (activeDate.isValid() && !activeDate.isSame(this.value, 'day')) {
       this.activeDate = activeDate;
-      this.weeks = getMonth(this.activeDate);      
+      this.weeks = getMonth(this.activeDate);
       this._value = val;
       this.startYear = getDecadeStartYear(this.activeDate.year());
     }
@@ -417,15 +372,11 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
 
   private parseDate(date: string | Date) {
     date = date instanceof Date ? date.toISOString() : date;
-    return this.timezone ?
-      moment.tz(date, this.inputFormats, this.timezone) :
-      moment(date, this.inputFormats);
+    return this.timezone ? moment.tz(date, this.inputFormats, this.timezone) : moment(date, this.inputFormats);
   }
 
   private createMoment(date: string | Date | moment.Moment): moment.Moment {
     const m = moment(date).clone();
-    return this.timezone ?
-      m.tz(this.timezone) :
-      m;
+    return this.timezone ? m.tz(this.timezone) : m;
   }
 }

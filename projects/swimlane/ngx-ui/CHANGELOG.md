@@ -1,10 +1,27 @@
 # CHANGELOG
 
 ## HEAD (Unreleased)
-
-_(none)_
+- Feature: Add token hints to `ngx-codemirror`
 
 ---
+
+## 26.0.1 (2019-06-12)
+
+- Fix: Fix tree templates (#292)
+
+## 26.0.0 (2019-06-10)
+
+- Breaking: Upgrade to angular 8 (#288)
+- Enhancement: Support allowIn in hotkeys (#291)
+
+## 25.11.0 (2019-05-29)
+
+- Enhancement: Add radar chart icon (#289)
+
+## 25.10.0 (2019-05-23)
+
+- Enhancement: Add pattern validtor (#286)
+- Enhancement: Add back filled and forward arrows (#285)
 
 ## 25.9.0 (2019-05-16)
 

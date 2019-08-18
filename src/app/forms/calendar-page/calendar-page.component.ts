@@ -16,5 +16,4 @@ export class CalendarPageComponent {
   dateChanged(val) {
     console.log('date changed!', val);
   }
-
 }

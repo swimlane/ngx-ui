@@ -1,11 +1,11 @@
 .ngx-radiobutton {
   display: block;
-  
+
   .radio-label {
     display: block;
     position: relative;
     padding-left: 1.5em;
-    margin: 0 .8rem 0 0;
+    margin: 0 0.8rem 0 0;
     cursor: pointer;
     user-select: none;
   }
@@ -24,23 +24,22 @@
     width: 1em;
     background-color: transparent;
     border-radius: 50%;
-    border: 1px solid #6F809E;
+    border: 1px solid #6f809e;
     opacity: 1;
     transition: background-color 0.3s ease, opacity 0.3s ease;
   }
 
   /* On hover */
   .radio-label:hover input ~ .checkmark {
-    background-color: #2196F3;
-    border: 1px solid #2196F3;
+    background-color: #2196f3;
+    border: 1px solid #2196f3;
     opacity: 0.3;
   }
 
   /* Indicator */
   .radio-label:hover .checkmark:after,
-  .radio-label .checkmark:after,
-  {
-    content: "";
+  .radio-label .checkmark:after {
+    content: '';
     position: absolute;
     display: block;
     opacity: 0;
@@ -65,7 +64,7 @@
 
     .radio-label:hover input ~ .checkmark {
       background-color: transparent;
-      border: 1px solid #6F809E;
+      border: 1px solid #6f809e;
       opacity: 1;
     }
 
@@ -77,8 +76,8 @@
   /* Radio button when checked */
   &.disabled .radio-label input:checked ~ .checkmark,
   .radio-label input:checked ~ .checkmark {
-    background-color: #2196F3;
-    border: 1px solid #2196F3;
+    background-color: #2196f3;
+    border: 1px solid #2196f3;
     opacity: 1;
   }
 

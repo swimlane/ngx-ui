@@ -90,10 +90,22 @@ type Datelike = string | Date | moment.Moment;
               </ngx-input>
             </div>
             <div fxFlex>
-              <button class="ampm" type="button" [class.selected]="amPmVal === 'AM'" (click)="onAmPmChange('AM')" [disabled]="isTimeDisabled('hour')">
+              <button
+                class="ampm"
+                type="button"
+                [class.selected]="amPmVal === 'AM'"
+                (click)="onAmPmChange('AM')"
+                [disabled]="isTimeDisabled('hour')"
+              >
                 AM
               </button>
-              <button class="ampm" type="button" [class.selected]="amPmVal === 'PM'" (click)="onAmPmChange('PM')" [disabled]="isTimeDisabled('hour')">
+              <button
+                class="ampm"
+                type="button"
+                [class.selected]="amPmVal === 'PM'"
+                (click)="onAmPmChange('PM')"
+                [disabled]="isTimeDisabled('hour')"
+              >
                 PM
               </button>
             </div>
@@ -102,7 +114,9 @@ type Datelike = string | Date | moment.Moment;
         <nav role="navigation" class="ngx-dialog-footer">
           <div fxLayout="row" fxLayoutWrap="nowrap">
             <div class="text-left" fxFlex="1 1 50%">
-              <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()" [hidden]="isCurrent()">Current</button>
+              <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()" [hidden]="isCurrent()">
+                Current
+              </button>
             </div>
             <div class="text-right" fxFlex="1 1 50%">
               <button type="button" class="btn btn-link clear-btn" (click)="clear()">Clear</button>
@@ -166,7 +180,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() timezone: string;
   @Input() inputFormats: any[] = ['L', `LT`, 'L LT', moment.ISO_8601];
 
-  @Input() 
+  @Input()
   get inputType(): string {
     if (!this._inputType) {
       return DateTimeType.date;
@@ -178,7 +192,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this.displayValue = this.getDisplayValue();
   }
 
-  @Input() 
+  @Input()
   get format(): string {
     if (!this._format) {
       if (this.inputType === DateTimeType.date) {
@@ -210,8 +224,8 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
       if (this.precision) {
         sameDiff = this.precision;
       } else {
-        sameDiff = this.inputType === DateTimeType.date ? 'day' : 'second' 
-      };
+        sameDiff = this.inputType === DateTimeType.date ? 'day' : 'second';
+      }
 
       isSame = this._value && date.isSame(this._value, sameDiff);
     } else {
@@ -223,7 +237,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     if (val && date) {
       this.validate(date);
     }
-    this._value = (date && date.isValid()) ? date.toDate() : val;
+    this._value = date && date.isValid() ? date.toDate() : val;
 
     if (!isSame) {
       this.onChangeCallback(val);
@@ -233,8 +247,8 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
   @Output() change = new EventEmitter<any>();
 
-  @ViewChild('dialogTpl') calendarTpl: TemplateRef<ElementRef>;
-  @ViewChild('input') input: any;
+  @ViewChild('dialogTpl', { static: true }) calendarTpl: TemplateRef<ElementRef>;
+  @ViewChild('input', { static: true }) input: any;
 
   errorMsg: string;
   dialog: any;
@@ -304,7 +318,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
 
   hourChanged(newVal: number): void {
-    newVal = (+newVal) % 12;
+    newVal = +newVal % 12;
     if (this.amPmVal === 'PM') {
       newVal = 12 + newVal;
     }
@@ -348,7 +362,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
     return isBeforeMin || isAfterMax;
   }
-  
+
   isTimeDisabled(mode: string): boolean {
     return this.modes.indexOf(`${this.precision}`) > this.modes.indexOf(mode);
   }
@@ -381,7 +395,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
       return val;
     }
     val = val.clone();
-    
+
     const idx = this.modes.indexOf(key);
     if (idx > 0) {
       this.modes.forEach((mode, index) => {

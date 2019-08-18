@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './tooltip-page.component.html'
 })
 export class TooltipPageComponent {
-
   tooltipModel = {
     text: 'foo'
   };

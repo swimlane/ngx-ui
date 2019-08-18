@@ -1,8 +1,8 @@
-@import "colors/variables";
-@import "forms/inputs";
+@import 'colors/variables';
+@import 'forms/inputs';
 
 $calendar-bg: $color-blue-grey-800;
-$calender-border: #2D3544;
+$calender-border: #2d3544;
 $animation-timing: 200ms;
 
 .ngx-date-time {
@@ -93,7 +93,7 @@ $animation-timing: 200ms;
       margin: 0;
       padding: 0;
     }
-    
+
     .today-btn {
       margin-left: 15px;
       opacity: 1;

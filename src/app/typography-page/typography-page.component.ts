@@ -1,13 +1,11 @@
-import { Component, Input, Output} from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-@Component ({
+@Component({
   selector: 'app-typography-page',
   templateUrl: './typography-page.component.html'
 })
-
 export class TypographyPageComponent {
-
   fontStyles = {
     Light: 'font-weight: 300; font-style: normal',
     'Light Italic': 'font-weight: 300; font-style: italic',
@@ -45,5 +43,4 @@ export class TypographyPageComponent {
       this.fontStyles[key] = sanitizer.bypassSecurityTrustStyle(this.fontStyles[key]);
     });
   }
-
 }

@@ -1,7 +1,17 @@
 <h3 class="style-header">Code Editor</h3>
 
 <ngx-section class="shadow" [sectionTitle]="'Demo'">
-  <ngx-codemirror [(ngModel)]="code" [config]="editorConfig" (change)="editorResult = $event">
+  <ngx-codemirror
+    [(ngModel)]="code"
+    [config]="{
+      lineNumbers: true,
+      theme: 'dracula',
+      mode: {
+        name: 'javascript',
+        json: true
+      }
+    }"
+    (change)="editorResult = $event">
   </ngx-codemirror>
 
   <br />
@@ -9,8 +19,42 @@
     <![CDATA[
       <ngx-codemirror
         [(ngModel)]="code"
-        [config]="editorConfig">
+        [config]="{
+          lineNumbers: true,
+          theme: 'dracula',
+          mode: {
+            name: 'javascript',
+            json: true
+          }
+        }">
       </ngx-codemirror>
     ]]>
   </ngx-codemirror>
 </ngx-section>
+
+<ngx-section class="shadow" [sectionTitle]="'Autocomplete'">
+  <ngx-codemirror
+    [class]="'tokens'"
+    [(ngModel)]="code2"
+    [config]="{
+      lineNumbers: false,
+      theme: 'dracula',
+      mode: 'mustache'
+    }"
+    [autocompleteTokens]="autocompleteTokens">
+  </ngx-codemirror>
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+    <ngx-codemirror
+      [(ngModel)]="code2"
+      [config]="{
+        lineNumbers: false,
+        theme: 'dracula',
+        mode: 'mustache'
+      }"
+      [autocompleteTokens]="autocompleteTokens">
+    </ngx-codemirror>
+    ]]>
+  </ngx-codemirror>
+</ngx-section>
+

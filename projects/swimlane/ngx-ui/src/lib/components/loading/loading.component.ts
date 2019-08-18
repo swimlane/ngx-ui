@@ -4,10 +4,7 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
   selector: 'ngx-loading-bar',
   template: `
     <div class="ngx-loading-bar" [hidden]="!visible">
-      <div 
-        class="ngx-loading-bar-bar"
-        [style.width.%]="progress">
-      </div>
+      <div class="ngx-loading-bar-bar" [style.width.%]="progress"></div>
     </div>
   `,
   encapsulation: ViewEncapsulation.None,

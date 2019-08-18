@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './inputs-page.component.html'
 })
 export class InputsPageComponent {
-  
   searchInputValue: string = '';
   inputValue: any = 'A Value';
   inputValue1: any;
@@ -17,5 +16,5 @@ export class InputsPageComponent {
   usernameValue: any;
   passwordValue: any;
   output: any;
+  patternValue: string = 'Has space';
 }
-

@@ -28,17 +28,11 @@ const edge = window.navigator.userAgent.indexOf('Edge') > -1;
   template: `
     <div class="slider-inner">
       <div class="ticks-container" *ngIf="showTicks">
-        <div class="tick" *ngFor="let s of _ticks" [ngStyle]="s">
-        </div>
+        <div class="tick" *ngFor="let s of _ticks" [ngStyle]="s"></div>
       </div>
       <div class="inputs">
-        <div class="slider-track">
-        </div>
-        <span
-          *ngIf="filled"
-          [ngStyle]="_fill"
-          class="fill-bar">
-        </span>
+        <div class="slider-track"></div>
+        <span *ngIf="filled" [ngStyle]="_fill" class="fill-bar"> </span>
         <ng-container *ngFor="let value of _values; let i = index; let odd = odd; trackBy: trackIndex">
           <input
             type="range"
@@ -58,8 +52,7 @@ const edge = window.navigator.userAgent.indexOf('Edge') > -1;
             (mouseenter)="setActive(i, true)"
             (mouseleave)="setActive(i, false)"
           />
-          <div class="slider-thumb" [class.active]="_active[i]" [ngStyle]="_thumbs[i]" >
-          </div>
+          <div class="slider-thumb" [class.active]="_active[i]" [ngStyle]="_thumbs[i]"></div>
         </ng-container>
       </div>
     </div>

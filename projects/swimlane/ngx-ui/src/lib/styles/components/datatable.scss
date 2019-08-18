@@ -1,4 +1,4 @@
-@import "colors/variables";
+@import 'colors/variables';
 
 $datatable-bg: $color-blue-grey-800;
 $datatable-border: $color-blue-grey-700;
@@ -18,7 +18,7 @@ $datatable-row-hover: darken($datatable-bg, 2%);
 
     .datatable-header-cell {
       text-align: left;
-      padding: .5rem 1.2rem;
+      padding: 0.5rem 1.2rem;
       font-weight: bold;
 
       .datatable-header-cell-label {
@@ -35,14 +35,14 @@ $datatable-row-hover: darken($datatable-bg, 2%);
 
       .datatable-body-cell {
         text-align: left;
-        padding: .5rem 1.2rem;
+        padding: 0.5rem 1.2rem;
         vertical-align: top;
       }
 
       &:hover {
         background: $datatable-row-hover;
         transition-property: background;
-        transition-duration: .3s;
+        transition-duration: 0.3s;
         transition-timing-function: linear;
       }
 
@@ -69,7 +69,7 @@ $datatable-row-hover: darken($datatable-bg, 2%);
     }
 
     .datatable-pager {
-			margin: 0 10px;
+      margin: 0 10px;
       vertical-align: top;
 
       ul {
@@ -84,30 +84,30 @@ $datatable-row-hover: darken($datatable-bg, 2%);
             }
           }
         }
-			}
+      }
 
-			a {
-				height: 22px;
-				min-width: 24px;
-				line-height: 22px;
-				padding: 0;
-				border-radius: 3px;
-				margin: 0 3px;
-				text-align: center;
-				vertical-align: top;
-				text-decoration: none;
-		    vertical-align: bottom;
+      a {
+        height: 22px;
+        min-width: 24px;
+        line-height: 22px;
+        padding: 0;
+        border-radius: 3px;
+        margin: 0 3px;
+        text-align: center;
+        vertical-align: top;
+        text-decoration: none;
+        vertical-align: bottom;
         color: $color-grey-300;
-			}
+      }
 
-			.icon-left,
-			.icon-skip,
-			.icon-right,
-			.icon-prev {
+      .icon-left,
+      .icon-skip,
+      .icon-right,
+      .icon-prev {
         font-size: 18px;
         line-height: 27px;
-				padding:0 3px;
-			}
-		}
+        padding: 0 3px;
+      }
+    }
   }
 }

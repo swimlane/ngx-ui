@@ -55,6 +55,7 @@ import { SplitPageComponent } from './components/split-page/split-page.component
 import { OverlayPageComponent } from './components/overlay-page/overlay-page.component';
 import { HotkeysPageComponent } from './components/hotkeys-page/hotkeys-page.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
+import { PipesPageComponent } from './pipes-page/pipes-page.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -65,13 +66,13 @@ const routes: Routes = [
   { path: 'inputs', component: InputsPageComponent },
   { path: 'buttons', component: ButtonsPageComponent },
   { path: 'selects', component: SelectsPageComponent },
-  { path: 'datetime', component: DatetimePageComponent},
+  { path: 'datetime', component: DatetimePageComponent },
   { path: 'slider', component: SliderPageComponent },
   { path: 'toggle', component: TogglePageComponent },
   { path: 'checkbox', component: CheckboxPageComponent },
   { path: 'radio', component: RadioPageComponent },
   { path: 'calendar', component: CalendarPageComponent },
-  { path: 'code-editor', component: CodeEditorPageComponent},
+  { path: 'code-editor', component: CodeEditorPageComponent },
   { path: 'table', component: TablePageComponent },
   { path: 'tags', component: TagsPageComponent },
   { path: 'lists', component: ListsPageComponent },
@@ -80,7 +81,7 @@ const routes: Routes = [
   { path: 'nag', component: NagPageComponent },
   { path: 'dialog', component: DialogPageComponent },
   { path: 'alert', component: AlertPageComponent },
-  { path: 'tooltip', component: TooltipPageComponent},
+  { path: 'tooltip', component: TooltipPageComponent },
   { path: 'notification', component: NotificationPageComponent },
   { path: 'controls', component: ControlsPageComponent },
   { path: 'sections', component: SectionsPageComponent },
@@ -95,13 +96,14 @@ const routes: Routes = [
   { path: 'ngx-icon', component: NgxIconPageComponent },
   { path: 'split', component: SplitPageComponent },
   { path: 'overlay', component: OverlayPageComponent },
-  { path: 'hotkeys', component: HotkeysPageComponent }
+  { path: 'hotkeys', component: HotkeysPageComponent },
+  { path: 'pipes', component: PipesPageComponent },
 ];
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    CounterComponent, 
+    AppComponent,
+    CounterComponent,
     ColorsPageComponent,
     TypographyPageComponent,
     IconsPageComponent,
@@ -140,7 +142,8 @@ const routes: Routes = [
     SplitPageComponent,
     OverlayPageComponent,
     HotkeysPageComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    PipesPageComponent
   ],
   imports: [
     BrowserModule,
@@ -152,11 +155,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     FileUploadModule,
     FlexLayoutModule,
-    RouterModule.forRoot(
-      routes
-    )
+    RouterModule.forRoot(routes)
   ],
   bootstrap: [AppComponent]
 })
-
 export class AppModule {}

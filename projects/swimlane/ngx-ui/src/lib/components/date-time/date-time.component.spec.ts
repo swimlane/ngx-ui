@@ -18,7 +18,7 @@ const MOON_LANDING = '1969-07-20T20:17:43Z';
 const MOON_LANDING_DATE = new Date(MOON_LANDING);
 
 const LOCAL_DATE = MOON_LANDING_DATE.toLocaleDateString('en-US', { day: '2-digit', year: 'numeric', month: '2-digit' });
-const LOCAL_TIME = MOON_LANDING_DATE.toLocaleTimeString('en-US', { hour: '2-digit', minute: 'numeric' });
+const LOCAL_TIME = MOON_LANDING_DATE.toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric' });
 
 const LOCAL_MONTH = MOON_LANDING_DATE.toLocaleDateString('en-US', { month: '2-digit' });
 const LOCAL_DAY = MOON_LANDING_DATE.toLocaleDateString('en-US', { day: '2-digit' });
@@ -351,7 +351,7 @@ describe('DateTimeComponent', () => {
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
 
       component.hourChanged(11);
- 
+
       expect(component.hour).toBe(11);
       expect(component.minute).toBe(LOCAL_MIN);
       expect(component.amPmVal).toBe(LOCAL_AMPM);
@@ -368,7 +368,7 @@ describe('DateTimeComponent', () => {
       const newLocalAMPM = LOCAL_AMPM === 'PM' ? 'AM' : 'PM';
 
       component.onAmPmChange(newLocalAMPM);
- 
+
       expect(component.hour).toBe(+LOCAL_HOUR);
       expect(component.minute).toBe(LOCAL_MIN);
       expect(component.amPmVal).toBe(newLocalAMPM);
@@ -378,12 +378,12 @@ describe('DateTimeComponent', () => {
       expect(component.displayValue).toEqual(`${LOCAL_DATE} ${LOCAL_HOUR}:${LOCAL_MIN} ${newLocalAMPM}`);
     });
 
-    it('should update hours, set 12 PM doesn\'t change day', () => {
+    it("should update hours, set 12 PM doesn't change day", () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
 
       component.hourChanged(12);
- 
+
       expect(component.hour).toBe(12);
       expect(component.minute).toBe(LOCAL_MIN);
       expect(component.amPmVal).toBe(LOCAL_AMPM);
@@ -393,7 +393,7 @@ describe('DateTimeComponent', () => {
       expect(component.displayValue).toEqual(`${LOCAL_DATE} 12:${LOCAL_MIN} ${LOCAL_AMPM}`);
     });
 
-    it('should update hours, set 12 AM doesn\'t change AM/PM', () => {
+    it("should update hours, set 12 AM doesn't change AM/PM", () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
 
@@ -401,7 +401,7 @@ describe('DateTimeComponent', () => {
 
       component.onAmPmChange('AM');
       component.hourChanged(12);
- 
+
       expect(component.hour).toBe(12);
       expect(component.minute).toBe(LOCAL_MIN);
       expect(component.amPmVal).toBe('AM');

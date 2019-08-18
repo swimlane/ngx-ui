@@ -16,7 +16,7 @@ import { TreeNodeComponent } from './tree-node.component';
   template: `
     <div class="ngx-tree" [class.one-leaf]="hasOneLeaf">
       <ul class="vertical-list">
-        <ngx-tree-node 
+        <ngx-tree-node
           *ngFor="let node of nodes"
           [expandable]="node.expandable"
           [expanded]="node.expanded"
@@ -26,16 +26,14 @@ import { TreeNodeComponent } from './tree-node.component';
           [template]="template"
           (expand)="expand.emit($event)"
           (collapse)="collapse.emit($event)"
-          (activate)="activate.emit($event)" 
+          (activate)="activate.emit($event)"
           (deactivate)="deactivate.emit($event)"
-          (selectNode)="selectNode.emit($event)">
+          (selectNode)="selectNode.emit($event)"
+        >
         </ngx-tree-node>
         <ng-content *ngIf="!nodes"></ng-content>
       </ul>
-      <div 
-        class="ngx-tree-vr" 
-        *ngIf="nodes?.length || nodeElms?.length">
-      </div>
+      <div class="ngx-tree-vr" *ngIf="nodes?.length || nodeElms?.length"></div>
     </div>
   `,
   encapsulation: ViewEncapsulation.None,
@@ -45,7 +43,7 @@ export class TreeComponent {
   @Input() nodes: any[];
 
   @Input()
-  @ContentChild(TemplateRef)
+  @ContentChild(TemplateRef, { static: true })
   template: TemplateRef<any>;
 
   @ContentChildren(TreeNodeComponent) nodeElms: QueryList<TreeNodeComponent>;

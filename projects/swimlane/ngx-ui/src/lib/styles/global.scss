@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
   font-family: $source-sans-stack;
   font-size: $font-size;
   line-height: $line-height;
@@ -14,7 +15,7 @@ html, body {
 [disabled],
 :disabled,
 .disabled {
-  opacity: .5;
+  opacity: 0.5;
   cursor: not-allowed !important;
 }
 
@@ -38,7 +39,7 @@ html {
  * This prevents an unwanted focus outline from appearing around elements that
  * might still respond to pointer events.
  */
-[tabindex="-1"]:focus {
+[tabindex='-1']:focus {
   outline: none !important;
 }
 

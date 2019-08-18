@@ -21,7 +21,7 @@ import { containsFilter } from './select-helper';
           #filterInput
           type="search"
           tabindex=""
-          autocomplete="off" 
+          autocomplete="off"
           autocorrect="off"
           spellcheck="off"
           class="ngx-select-filter-input"
@@ -31,56 +31,49 @@ import { containsFilter } from './select-helper';
       </div>
       <ul class="vertical-list ngx-select-dropdown-options">
         <li *ngFor="let group of groups" class="ngx-select-option-group">
-          <span 
-            class="ngx-select-option-group-name" 
-            *ngIf="group.name" 
-            [innerHTML]="group.name">
-          </span>
+          <span class="ngx-select-option-group-name" *ngIf="group.name" [innerHTML]="group.name"> </span>
           <ul class="vertical-list ngx-select-dropdown-options">
-            <li 
-              *ngFor="let kv of group.options" 
+            <li
+              *ngFor="let kv of group.options"
               class="ngx-select-dropdown-option"
               [class.disabled]="kv.option.disabled"
               [class.active]="kv.index === focusIndex"
               [class.selected]="isSelected(kv.option)"
-              [hidden] = "kv.option.hidden"
-              tabindex="-1" 
+              [hidden]="kv.option.hidden"
+              tabindex="-1"
               (click)="selection.emit(kv.option)"
-              (keydown)="onOptionKeyDown($event)">
+              (keydown)="onOptionKeyDown($event)"
+            >
               <ng-template
                 *ngIf="kv.option.optionTemplate"
                 [ngTemplateOutlet]="kv.option.optionTemplate"
-                [ngTemplateOutletContext]="{ option: kv.option }">
+                [ngTemplateOutletContext]="{ option: kv.option }"
+              >
               </ng-template>
-              <span
-                *ngIf="!kv.option.optionTemplate"
-                [innerHTML]="kv.option.name">
-              </span>
+              <span *ngIf="!kv.option.optionTemplate" [innerHTML]="kv.option.name"> </span>
             </li>
-            <li 
+            <li
               *ngIf="filterQuery && filterEmptyPlaceholder && !group.options?.length"
-              class="ngx-select-empty-placeholder">
-              <span 
-                class="ngx-select-empty-placeholder-text"
-                [innerHTML]="filterEmptyPlaceholder">
-              </span>
-              <a 
+              class="ngx-select-empty-placeholder"
+            >
+              <span class="ngx-select-empty-placeholder-text" [innerHTML]="filterEmptyPlaceholder"> </span>
+              <a
                 *ngIf="allowAdditions"
                 href="#"
                 class="ngx-select-empty-placeholder-add"
-                (click)="onAddClicked($event, filterQuery)">
-                <span *ngIf="isNotTemplate(allowAdditionsText); else tpl" [innerHTML]="allowAdditionsText">
-                </span>
+                (click)="onAddClicked($event, filterQuery)"
+              >
+                <span *ngIf="isNotTemplate(allowAdditionsText); else tpl" [innerHTML]="allowAdditionsText"> </span>
                 <ng-template #tpl>
                   <ng-container *ngTemplateOutlet="allowAdditionsText"></ng-container>
-                </ng-template>                  
+                </ng-template>
               </a>
             </li>
-            <li 
+            <li
               *ngIf="!filterQuery && emptyPlaceholder && !group.options?.length"
               class="ngx-select-empty-placeholder"
-              [innerHTML]="emptyPlaceholder">
-            </li>
+              [innerHTML]="emptyPlaceholder"
+            ></li>
           </ul>
         </li>
       </ul>
@@ -147,7 +140,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Output() selection: EventEmitter<any> = new EventEmitter();
   @Output() close: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('filterInput') filterInput: any;
+  @ViewChild('filterInput', { static: false }) filterInput: any;
 
   groups: any[];
   element: any;

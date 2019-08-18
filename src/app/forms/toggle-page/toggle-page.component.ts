@@ -4,11 +4,10 @@ import { Component } from '@angular/core';
   selector: 'app-toggle-page',
   templateUrl: './toggle-page.component.html'
 })
-export class TogglePageComponent{
+export class TogglePageComponent {
   toggleChk = true;
 
   onToggleChange(event) {
     console.log('check?', event);
   }
-
 }

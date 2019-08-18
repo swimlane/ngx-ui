@@ -11,63 +11,44 @@ import { DialogComponent } from '../dialog.component';
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['../dialog.component.scss', './alert.component.scss'],
   template: `
-    <div
-      class="ngx-dialog ngx-alert-dialog {{type}}"
-      [style.zIndex]="zIndex">
+    <div class="ngx-dialog ngx-alert-dialog {{ type }}" [style.zIndex]="zIndex">
       <div
-        class="ngx-dialog-content {{cssClass}}"
+        class="ngx-dialog-content {{ cssClass }}"
         [@visibilityTransition]="visibleState"
         [style.zIndex]="contentzIndex"
         #dialogContent
         (keydown.escape)="onCancelClick()"
         (keydown.enter)="onKeydown()"
         tabindex="-1"
-        role="dialog">
-        <div
-          class="ngx-dialog-header"
-          *ngIf="title || closeButton">
-          <button
-            *ngIf="closeButton"
-            type="button"
-            class="close"
-            (click)="hide()">
+        role="dialog"
+      >
+        <div class="ngx-dialog-header" *ngIf="title || closeButton">
+          <button *ngIf="closeButton" type="button" class="close" (click)="hide()">
             <span class="icon-x"></span>
           </button>
-          <button *ngIf="type === 'alert'"
+          <button
+            *ngIf="type === 'alert'"
             type="button"
             class="btn close-button"
             [class.btn-warning]=""
-            (click)="onOkClick()">
+            (click)="onOkClick()"
+          >
             Ok
           </button>
-          <h1
-            *ngIf="title"
-            [innerHTML]="title">
-          </h1>
+          <h1 *ngIf="title" [innerHTML]="title"></h1>
         </div>
         <div *ngIf="content" class="ngx-dialog-body" [innerHTML]="content"></div>
 
         <div class="ngx-dialog-body" *ngIf="type === 'prompt'">
-          <ngx-input
-            type="text"
-            autofocus="true"
-            name="confirm_input"
-            [(ngModel)]="data">
-          </ngx-input>
+          <ngx-input type="text" autofocus="true" name="confirm_input" [(ngModel)]="data"> </ngx-input>
         </div>
 
         <div class="ngx-dialog-footer" *ngIf="type !== 'alert'">
           <ng-container *ngIf="!longPress">
-            <button
-              type="button"
-              class="btn btn-primary"
-              (click)="onOkClick()">
+            <button type="button" class="btn btn-primary" (click)="onOkClick()">
               Ok
             </button>
-            <button
-              type="button"
-              class="btn"
-              (click)="onCancelClick()">
+            <button type="button" class="btn" (click)="onCancelClick()">
               Cancel
             </button>
           </ng-container>
@@ -126,11 +107,11 @@ export class AlertComponent extends DialogComponent {
 
   @Input() type: any;
   @Input() data: any = '';
-  @Input() longPress?: boolean = false;;
+  @Input() longPress?: boolean = false;
   @Output() ok = new EventEmitter();
   @Output() cancel = new EventEmitter();
 
-  @ViewChild('dialogContent') dialogElm;
+  @ViewChild('dialogContent', { static: true }) dialogElm;
 
   ngOnInit(): void {
     if (this.type !== 'prompt') {
