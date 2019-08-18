@@ -13,6 +13,7 @@ CodeMirror.defineMode('mustache', function(config: any, parserConfig: any) {
             return 'mustache';
           }
       }
+      // tslint:disable-next-line: no-empty
       while (stream.next() != null && !stream.match("{{", false)) {}
       return null;
     }

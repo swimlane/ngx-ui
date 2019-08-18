@@ -106,7 +106,6 @@ export * from './lib/services/injection-registery.service';
 export * from './lib/services/injection.service';
 export * from './lib/pipes/decamelize.pipe';
 export * from './lib/pipes/filter.pipe';
-export * from './lib/pipes/iterable-map.pipe';
 export * from './lib/pipes/json-tree.pipe';
 export * from './lib/pipes/timezone.pipe';
 export * from './lib/utils/throttle';
