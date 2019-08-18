@@ -196,12 +196,16 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   constructor(private cd: ChangeDetectorRef) {}
 
   changeViews(): void {
-    if (this.currentView === 'date') {
-      this.currentView = 'month';
-    } else if (this.currentView === 'month') {
-      this.currentView = 'year';
-    } else if (this.currentView === 'year') {
-      this.currentView = this.minView;
+    switch (this.currentView) {
+      case 'date':
+        this.currentView = 'month';
+        break;
+      case 'month':
+        this.currentView = 'year';
+        break;
+      case 'year':
+        this.currentView = this.minView;
+        break;
     }
     this.weeks = getMonth(this.activeDate);
   }
@@ -267,26 +271,26 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     return date.isSame(this.current, 'year');
   }
 
-  isDisabled(value: any, type: string): boolean {
+  isDisabled(value: moment.Moment | string | number, type: string): boolean {
     if (this.disabled) return true;
     if (!value) return false;
 
-    let date;
+    let date: moment.Moment;
     switch (type) {
       case 'day':
-        date = value;
+        date = value as moment.Moment;
         break;
       case 'month':
-        date = this.activeDate.clone().month(value);
+        date = this.activeDate.clone().month(String(value));
         break;
       case 'year':
-        date = this.activeDate.clone().year(value);
+        date = this.activeDate.clone().year(Number(value));
         break;
       default:
         return false;
     }
-    const isBeforeMin = this.minDate && date.isBefore(this.parseDate(this.minDate), type);
-    const isAfterMax = this.maxDate && date.isAfter(this.parseDate(this.maxDate), type);
+    const isBeforeMin: boolean = this.minDate && date.isBefore(this.parseDate(this.minDate), type);
+    const isAfterMax: boolean = this.maxDate && date.isAfter(this.parseDate(this.maxDate), type);
     return isBeforeMin || isAfterMax;
   }
 

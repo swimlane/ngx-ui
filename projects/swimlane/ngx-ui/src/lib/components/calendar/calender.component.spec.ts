@@ -102,10 +102,12 @@ describe('CalendarComponent', () => {
       expect(component.minDate).toBeTruthy();
       expect(component.maxDate).toBeTruthy();
       component.prevMonth();
-      fixture.detectChanges();
+      // @ts-ignore: for testing we need to access the private cd to detect changes
+      component.cd.detectChanges();
       expect(fixture.nativeElement.querySelector('.day.first-day-of-month').disabled).toBe(true);
       component.nextMonth();
-      fixture.detectChanges();
+      // @ts-ignore: for testing we need to access the private cd to detect changes
+      component.cd.detectChanges();
       expect(fixture.nativeElement.querySelector('.day.first-day-of-month').disabled).toBe(false);
     });
 
@@ -163,7 +165,8 @@ describe('CalendarComponent', () => {
 
     it('should mark current month', () => {
       component.currentView = 'month';
-      fixture.detectChanges();
+      // @ts-ignore: for testing we need to access the private cd to detect changes
+      component.cd.detectChanges();
       expect(fixture.nativeElement.querySelector('.month.current').innerHTML.trim()).toEqual(getMonth(new Date()));
     });
 
@@ -179,14 +182,16 @@ describe('CalendarComponent', () => {
 
     it('should mark current year', () => {
       component.currentView = 'year';
-      fixture.detectChanges();
+      // @ts-ignore: for testing we need to access the private cd to detect changes
+      component.cd.detectChanges();
       expect(fixture.nativeElement.querySelector('.year.current').innerHTML.trim()).toEqual(getYear(new Date()));
     });
 
     it('should highlight selected year', () => {
       component.writeValue(MOON_LANDING);
       component.currentView = 'year';
-      fixture.detectChanges();
+      // @ts-ignore: for testing we need to access the private cd to detect changes
+      component.cd.detectChanges();
       expect(fixture.nativeElement.querySelector('.year.active').innerHTML.trim()).toEqual(
         getYear(new Date(MOON_LANDING))
       );
