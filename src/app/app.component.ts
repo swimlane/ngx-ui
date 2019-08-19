@@ -17,6 +17,8 @@ import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 })
 export class AppComponent {
   version = version;
+  searchValue: string = '';
+  filteredNavigationTree: any[];
 
   navigationTree: any[] = [
     {
@@ -224,5 +226,28 @@ export class AppComponent {
         drawerMngr.destroyAll();
       }
     });
+
+    this.filteredNavigationTree = this.deepCloneTree();
+  }
+
+  updateSearchValue(updatedVal: string) {
+    const tree = this.deepCloneTree();
+
+    if (!updatedVal) {
+      this.filteredNavigationTree = tree;
+    }
+
+    updatedVal = updatedVal.toLowerCase();
+    this.filteredNavigationTree = tree.map(nav => {
+      if (nav.children) {
+        nav.children = nav.children.filter(child => child.name.toLowerCase().includes(updatedVal));
+      }
+
+      return nav;
+    });
+  }
+
+  private deepCloneTree() {
+    return JSON.parse(JSON.stringify(this.navigationTree));
   }
 }
