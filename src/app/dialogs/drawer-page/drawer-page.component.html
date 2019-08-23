@@ -58,7 +58,7 @@
         <![CDATA[
           @Component({ selector: 'app' })
           class MyComponent {
-            @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
+            @ViewChild('editTmpl', { static: false }) editTmpl: TemplateRef<any>;
 
             constructor(private drawerMngr: DrawerService) { }
 
@@ -141,7 +141,7 @@
           <![CDATA[
             @Component({ selector: 'app' })
             class MyComponent {
-              @ViewChild('editTmpl') editTmpl: TemplateRef<any>;
+              @ViewChild('editTmpl', { static: false }) editTmpl: TemplateRef<any>;
   
               constructor(private drawerMngr: DrawerService) { }
   

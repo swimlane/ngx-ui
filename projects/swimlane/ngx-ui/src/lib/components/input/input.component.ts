@@ -317,6 +317,9 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
 
   onChange(event): void {
     event.stopPropagation();
+    if (this.type === 'number') {
+      console.log(typeof this.value, this.value)
+    }
     this.change.emit(this.value);
   }
 
