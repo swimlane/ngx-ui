@@ -6,7 +6,8 @@
 <p>The
   <code style="display: inline">.ngx-scroll</code> class can be applied per element or globally to all scrollable
   elements on a page. Note that the
-  <code style="display: inline">overflow</code> property must be defined per element.</p>
+  <code style="display: inline">overflow</code> property must be defined per element.
+</p>
 
 <ngx-tabs>
   <ngx-tab label="Element">
@@ -39,17 +40,30 @@
 </div>
 
 <p>The
-  <code style="display: inline">.ngx-scroll-overlay</code> is applied per element to only show scrollbars on
-  hover.</p>
+  <code style="display: inline">.ngx-scroll-overlay</code> is applied per element to only show scrollbars on hover.
+</p>
 
-<ngx-tabs>
-  <ngx-tab label="Per Element">
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <div class="ngx-scroll-overlay" style="height: 300px; width: 300px; border: 1px solid grey;">
-          <ngx-icon svgSrc="graph"></ngx-icon>
-        </div>
-      ]]>
-    </ngx-codemirror>
-  </ngx-tab>
-</ngx-tabs>
+<ngx-codemirror mode="htmlmixed" readOnly="true">
+  <![CDATA[
+    <div class="ngx-scroll-overlay" style="height: 300px; width: 300px; border: 1px solid grey;">
+      <ngx-icon svgSrc="graph"></ngx-icon>
+    </div>
+  ]]>
+</ngx-codemirror>
+
+<h3 class="style-header">ngx-scroll-muted</h3>
+<div class="ngx-scroll-muted" style="height: 300px; width: 300px; border: 1px solid grey;">
+  <ngx-icon svgSrc="graph"></ngx-icon>
+</div>
+
+<p>The
+  <code style="display: inline">.ngx-scroll-muted</code> is applied per element to show muted scrollbars that increase opacity on hover
+</p>
+
+<ngx-codemirror mode="htmlmixed" readOnly="true">
+  <![CDATA[
+    <div class="ngx-scroll-muted" style="height: 300px; width: 300px; border: 1px solid grey;">
+      <ngx-icon svgSrc="graph"></ngx-icon>
+    </div>
+  ]]>
+</ngx-codemirror>
