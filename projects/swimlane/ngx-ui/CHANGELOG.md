@@ -5,6 +5,10 @@
 
 ---
 
+## 26.0.2 (2019-09-09)
+
+- Enhancement: Add support for templates in tab headers (#302)
+
 ## 26.0.1 (2019-06-12)
 
 - Fix: Fix tree templates (#292)

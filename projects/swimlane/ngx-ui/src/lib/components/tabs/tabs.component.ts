@@ -6,27 +6,15 @@ import {
   QueryList,
   EventEmitter,
   ViewEncapsulation,
-  AfterContentInit
+  AfterContentInit,
+  TemplateRef
 } from '@angular/core';
 
 import { TabComponent } from './tab.component';
 
 @Component({
   selector: 'ngx-tabs',
-  template: `
-    <section>
-      <ul class="ngx-tabs-list list-reset" [class.tabs-vertical]="vertical" [class.tabs-horizontal]="!vertical">
-        <li *ngFor="let tab of tabs" class="ngx-tab" [class.disabled]="tab.disabled" [class.active]="tab.active">
-          <button (click)="tabClicked(tab)" [disabled]="tab.disabled">
-            {{ tab.label }}
-          </button>
-        </li>
-      </ul>
-      <div class="ngx-tab-content">
-        <ng-content></ng-content>
-      </div>
-    </section>
-  `,
+  templateUrl: './tabs.component.html',
   host: {
     class: 'ngx-tabs'
   },
@@ -57,6 +45,10 @@ export class TabsComponent implements AfterContentInit {
     } else if (!actives.length && tabs.length) {
       tabs[0].active = true;
     }
+  }
+
+  labelIsString(label: string | TemplateRef<any>) {
+    return !label || typeof label === 'string';
   }
 
   tabClicked(activeTab): void {
