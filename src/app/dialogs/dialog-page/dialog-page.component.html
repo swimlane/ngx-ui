@@ -123,7 +123,7 @@
             templateUrl: './app.template.html'
           })
           export class AppComponent {
-            @ViewChild('dialogTmpl') dialogTpl: TemplateRef<any>;
+            @ViewChild('dialogTmpl', { static: false }) dialogTpl: TemplateRef<any>;
 
             constructor(public dialogMngr: DialogService) { }
 
@@ -238,7 +238,7 @@
             templateUrl: './app.template.html'
           })
           export class AppComponent {
-            @ViewChild('dialogTmpl') dialogTpl: TemplateRef<any>;
+            @ViewChild('dialogTmpl', { static: false }) dialogTpl: TemplateRef<any>;
 
             constructor(public dialogMngr: DialogService) { }
 
