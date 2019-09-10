@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { MomentModule } from 'ngx-moment';
-import { NgxUIModule } from '../../projects/swimlane/ngx-ui/src/public_api';
+import { NgxUIModule } from '@swimlane/ngx-ui';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'ng2-file-upload';

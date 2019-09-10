@@ -6,6 +6,7 @@
   },
   "exclude": ["test.ts", "**/*.spec.ts"],
   "angularCompilerOptions": {
-    "preserveWhitespaces": true
+    "preserveWhitespaces": true,
+    "enableIvy": true
   }
 }
