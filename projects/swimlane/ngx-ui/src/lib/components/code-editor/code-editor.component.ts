@@ -138,7 +138,6 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     if (typeof this.value !== 'string') {
       const elm = this.content.nativeElement;
       const code = elm.innerHTML;
-      console.log(elm);
       this.renderer.removeChild(this.host.nativeElement, elm);
       this.host.nativeElement.value = this.cleanCode(code);
     }
@@ -170,7 +169,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
 
   cleanCode(code: string): string {
     let lines = code.split('\n');
-    console.log(lines);
+
     // Remove empty lines
     lines = lines.filter(function (line) {
       return line.trim().length > 0;
