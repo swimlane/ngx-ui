@@ -7,4 +7,10 @@ import { bounce } from '../../../projects/swimlane/ngx-ui/src/public_api';
   templateUrl: './animations-page.component.html',
   animations: [trigger('bounce', bounce)]
 })
-export class AnimationsPageComponent {}
+export class AnimationsPageComponent {
+  count: number = 0;
+
+  increaseCount() {
+    this.count += 1;
+  }
+}

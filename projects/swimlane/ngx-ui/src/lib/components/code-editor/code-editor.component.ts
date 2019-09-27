@@ -4,7 +4,7 @@ import {
   Output,
   ViewChild,
   OnInit,
-  Renderer,
+  Renderer2,
   EventEmitter,
   forwardRef,
   AfterViewInit,
@@ -110,7 +110,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
   instance: any;
   _value: string;
 
-  constructor(private renderer: Renderer) {}
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.config = {
@@ -138,7 +138,8 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     if (typeof this.value !== 'string') {
       const elm = this.content.nativeElement;
       const code = elm.innerHTML;
-      this.renderer.detachView([].slice.call(elm.childNodes));
+      console.log(elm);
+      this.renderer.removeChild(this.host.nativeElement, elm);
       this.host.nativeElement.value = this.cleanCode(code);
     }
 
@@ -149,8 +150,8 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
 
     if (this.autocompleteTokens) {
       this.instance.on('keyup', (cm: any, event: KeyboardEvent) => {
-        if (!cm.state.completionActive && (event.keyCode > 64 && event.keyCode < 91) || event.keyCode ===  219) {
-          CodeMirror.commands.autocomplete(cm, null, {completeSingle: false});
+        if ((!cm.state.completionActive && (event.keyCode > 64 && event.keyCode < 91)) || event.keyCode === 219) {
+          CodeMirror.commands.autocomplete(cm, null, { completeSingle: false });
         }
       });
     }
@@ -169,9 +170,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
 
   cleanCode(code: string): string {
     let lines = code.split('\n');
-
+    console.log(lines);
     // Remove empty lines
-    lines = lines.filter(function(line) {
+    lines = lines.filter(function (line) {
       return line.trim().length > 0;
     });
 
@@ -181,7 +182,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     // Make it so each line starts at 0 whitespace
     const firstLineWhitespace = lines[0].match(/^\s*/)[0];
     const startingWhitespaceRegex = new RegExp('^' + firstLineWhitespace);
-    lines = lines.map(function(line) {
+    lines = lines.map(function (line) {
       return line
         .replace('=""', '') // remove empty values
         .replace(startingWhitespaceRegex, '')
@@ -240,18 +241,16 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     const curLine = editor.getLine(cur.line);
     const end = cur.ch;
     let start = end;
-    while (start && word.test(curLine.charAt(start - 1))) --start;
+    while (start && word.test(curLine.charAt(start - 1)))--start;
     const curWord = start !== end && curLine.slice(start, end);
-    const list = this
-      .autocompleteTokens
-      .filter((s: string | HintCompletion) => {
-        s = typeof s === 'string' ? s : s.text;
-        return s ? s.startsWith(curWord) : false;
-      });
-    return { 
+    const list = this.autocompleteTokens.filter((s: string | HintCompletion) => {
+      s = typeof s === 'string' ? s : s.text;
+      return s ? s.startsWith(curWord) : false;
+    });
+    return {
       list,
       from: CodeMirror.Pos(cur.line, start),
       to: CodeMirror.Pos(cur.line, end)
     };
-  };
+  }
 }

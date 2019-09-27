@@ -45,9 +45,9 @@
     "json-schema": "*"
   },
   "dependencies": {
-    "@angular/flex-layout": "8.0.0-beta.26",
+    "@angular/flex-layout": "8.0.0-beta.27",
     "mousetrap": "^1.6.2",
-    "ng2-file-upload": "^1.3.0",
+    "@swimlane/ng2-file-upload": "^1.0.1",
     "normalize.css": "^5.0.0"
   },
   "devDependencies": {

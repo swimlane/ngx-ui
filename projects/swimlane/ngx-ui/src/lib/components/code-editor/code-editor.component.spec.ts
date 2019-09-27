@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, Renderer } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { CodeEditorComponent } from './code-editor.component';
 describe('CodeEditorComponent', () => {
   let component: CodeEditorComponent;

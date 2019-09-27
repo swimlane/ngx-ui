@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload';
+import { FileUploader } from '@swimlane/ng2-file-upload';
 
 @Component({
   selector: 'app-buttons-page',
@@ -7,6 +7,8 @@ import { FileUploader } from 'ng2-file-upload';
 })
 export class ButtonsPageComponent {
   buttonPromise: any = undefined;
+
+  promises: any = {};
 
   uploadOptions = {
     url: 'https://evening-anchorage-3159.herokuapp.com/api/',
@@ -18,7 +20,7 @@ export class ButtonsPageComponent {
     autoUpload: false
   });
 
-  onClick(msg: string, target?: any) {
+  onClick(msg: string, targetId?: string) {
     console.log('Demo app click: ', msg);
 
     const buttonPromise = new Promise((resolve, reject) => {
@@ -39,8 +41,8 @@ export class ButtonsPageComponent {
         console.log('fail');
       });
 
-    if (target) {
-      target.buttonPromise = buttonPromise;
+    if (targetId) {
+      this.promises[targetId] = buttonPromise;
     } else {
       this.buttonPromise = buttonPromise;
     }
