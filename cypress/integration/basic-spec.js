@@ -199,7 +199,7 @@ describe('ngx-ui demo', () => {
         it('has a label with asterisk', () => {
           cy.get('@CUT')
             .find('.ngx-input-label')
-            .contains('Required Input Example Of The Day *');
+            .contains('Required Input Example Of The Day*');
         });
 
         it('has no placeholder', () => {
@@ -251,7 +251,7 @@ describe('ngx-ui demo', () => {
         it('has a label', () => {
           cy.get('@CUT')
             .find('.ngx-input-label')
-            .contains('Password *');
+            .contains('Password*');
         });
 
         it('has no placeholder', () => {
