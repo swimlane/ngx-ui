@@ -5,6 +5,16 @@
 
 ---
 
+
+## 27.0.0 (2019-09-30)
+
+- Breaking: Update to be compatible with Ivy (#304)
+- Feature: Codemirror hint (#298)
+- Fix: Update scrollbars (#300) 
+- Chore Remove iterable-map, fix decamelize typo, add pipes demo page (#293) 
+- Demo: Add ability to search for specific components from the sidebar. (#299) 
+- Demo: Update codemirror code for drawer and dialog to reflect view child static setting needed (#301)
+
 ## 26.0.1 (2019-06-12)
 
 - Fix: Fix tree templates (#292)
