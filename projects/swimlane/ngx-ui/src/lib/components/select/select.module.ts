@@ -20,4 +20,4 @@ import { SelectOptionInputTemplateDirective } from './select-option-input-templa
   exports: [SelectComponent, SelectOptionDirective, SelectOptionTemplateDirective, SelectOptionInputTemplateDirective],
   imports: [CommonModule]
 })
-export class SelectModule {}
+export class SelectModule { }
