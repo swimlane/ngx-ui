@@ -138,7 +138,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     if (typeof this.value !== 'string') {
       const elm = this.content.nativeElement;
       const code = elm.innerHTML;
-      this.renderer.removeChild(this.host.nativeElement, elm);
+      for (const childNode of elm.childNodes) {
+        this.renderer.removeChild(elm, childNode);
+      }
       this.host.nativeElement.value = this.cleanCode(code);
     }
 
