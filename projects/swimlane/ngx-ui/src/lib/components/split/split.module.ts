@@ -11,4 +11,4 @@ import { SplitHandleComponent } from './split-handle.component';
   exports: [SplitDirective, SplitAreaDirective, SplitHandleComponent],
   imports: [CommonModule, FlexLayoutModule]
 })
-export class SplitModule {}
+export class SplitModule { }

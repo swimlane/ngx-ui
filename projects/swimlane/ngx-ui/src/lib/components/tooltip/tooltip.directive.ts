@@ -5,10 +5,8 @@ import {
   EventEmitter,
   HostListener,
   ViewContainerRef,
-  ReflectiveInjector,
-  ComponentRef,
   ElementRef,
-  Renderer,
+  Renderer2,
   OnDestroy,
   NgZone
 } from '@angular/core';
@@ -62,7 +60,7 @@ export class TooltipDirective implements OnDestroy {
     private ngZone: NgZone,
     private tooltipService: TooltipService,
     private viewContainerRef: ViewContainerRef,
-    private renderer: Renderer,
+    private renderer: Renderer2,
     private element: ElementRef
   ) {}
 

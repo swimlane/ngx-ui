@@ -12,11 +12,23 @@ export class SelectOptionDirective {
   @Input() disabled: boolean = false;
   @Input() hidden: boolean = false;
 
-  @Input()
-  @ContentChild(SelectOptionTemplateDirective, { read: TemplateRef, static: false })
-  optionTemplate: TemplateRef<any>;
+  @Input('optionTemplate')
+  _optionTemplateInput: TemplateRef<any>;
 
-  @Input()
-  @ContentChild(SelectOptionInputTemplateDirective, { read: TemplateRef, static: false })
-  inputTemplate: TemplateRef<any>;
+  @ContentChild(SelectOptionTemplateDirective, { read: TemplateRef, static: true })
+  _optionTemplateQuery: TemplateRef<any>;
+
+  get optionTemplate(): TemplateRef<any> {
+    return this._optionTemplateInput || this._optionTemplateQuery;
+  }
+
+  @Input('inputTemplate')
+  _inputTemplateInput: TemplateRef<any>;
+
+  @ContentChild(SelectOptionInputTemplateDirective, { read: TemplateRef, static: true })
+  _inputTemplateQuery: TemplateRef<any>;
+
+  get inputTemplate(): TemplateRef<any> {
+    return this._inputTemplateInput || this._inputTemplateQuery;
+  }
 }

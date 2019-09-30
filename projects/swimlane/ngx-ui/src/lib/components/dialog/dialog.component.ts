@@ -8,7 +8,6 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  Renderer,
   ViewEncapsulation,
   Renderer2
 } from '@angular/core';
@@ -100,7 +99,7 @@ export class DialogComponent implements OnInit, OnDestroy {
     return this.visible ? 'active' : 'inactive';
   }
 
-  constructor(private element: ElementRef, private renderer: Renderer, private renderer2: Renderer2) {}
+  constructor(private element: ElementRef, private renderer2: Renderer2) {}
 
   ngOnInit(): void {
     if (this.visible) this.show();
@@ -115,7 +114,7 @@ export class DialogComponent implements OnInit, OnDestroy {
     this.visible = true;
 
     setTimeout(() => {
-      this.renderer.invokeElementMethod(this.element.nativeElement, 'focus', []);
+      this.renderer2.selectRootElement(this.element.nativeElement).focus();
     }, 10);
 
     this.open.emit();

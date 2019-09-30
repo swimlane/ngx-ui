@@ -20,12 +20,21 @@
     "suppressImplicitAnyIndexErrors": true,
     "outDir": "release",
     "declarationDir": "release",
-    "lib": ["es2016", "dom"],
+    "lib": [
+      "es2016",
+      "dom"
+    ],
     "skipLibCheck": true,
     "types": []
   },
-  "files": ["build/declarations.d.ts", "build/index.ts"],
-  "exclude": ["node_modules", "demo"],
+  "files": [
+    "build/declarations.d.ts",
+    "build/index.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "demo"
+  ],
   "compileOnSave": false,
   "buildOnSave": false,
   "awesomeTypescriptLoaderOptions": {
@@ -34,6 +43,7 @@
   "angularCompilerOptions": {
     "strictMetadataEmit": true,
     "skipTemplateCodegen": true,
-    "annotationsAs": "decorators"
+    "annotationsAs": "decorators",
+    "preserveWhitespaces": true,
   }
 }

@@ -1,7 +1,7 @@
 <h3 class="style-header">Split</h3>
 
 <ngx-section class="shadow" [sectionTitle]="'Split Areas'">
-  <div fxLayout="row" style="height:500px" ngxSplit="row">
+  <div fxLayout="row" style="height:500px" ngxSplit ngxSplit="row">
     <div fxFlex fxFlexFill ngxSplitArea>
       <div fxLayout="column" fxFlexFill ngxSplit="column">
         <div fxFlex="0 0 50px" style="background: #3B4457; padding:10px">Fixed header</div>
@@ -25,14 +25,8 @@
       </div>
     </div>
     <div fxFlex="15px" ngxSplitHandle [fxShow]="!hideAlertArea"></div>
-    <div
-      fxFlex="1 1 300px"
-      maxBasis="600px"
-      minBasis="200px"
-      style="background: #2f3646; padding:10px"
-      ngxSplitArea
-      *ngIf="!hideAlertArea"
-    >
+    <div fxFlex="1 1 300px" maxBasis="600px" minBasis="200px" style="background: #2f3646; padding:10px" ngxSplitArea
+      *ngIf="!hideAlertArea">
       <ul>
         <li>Alerts</li>
         <li>Search</li>
@@ -56,7 +50,7 @@
   <ngx-button class="btn btn-primary" (click)="toggleDirection()">Toggle Direction</ngx-button>
   <br />
   <br />
-  <div [fxLayout]="direction" [ngxSplit]="direction" style="height:500px">
+  <div [fxLayout]="direction" ngxSplit [ngxSplit]="direction" style="height:500px">
     <div fxFlex fxFlexFill ngxSplitArea style="background: #3B4457; padding:10px">
       <h1>Security Dashboard</h1>
       <p>

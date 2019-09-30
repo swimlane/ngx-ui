@@ -21,7 +21,8 @@
     "strictMetadataEmit": true,
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
-    "enableResourceInlining": true
+    "enableResourceInlining": true,
+    "preserveWhitespaces": true
   },
   "exclude": ["src/test.ts", "**/*.spec.ts"]
 }

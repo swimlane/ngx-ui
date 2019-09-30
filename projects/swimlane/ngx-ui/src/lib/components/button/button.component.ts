@@ -39,7 +39,7 @@ export class ButtonComponent implements OnInit, OnChanges {
   }
 
   updatePromise() {
-    if (this.promise !== undefined) {
+    if (this.promise) {
       this.state = 'inProgress';
       this.updateState();
       this.promise
