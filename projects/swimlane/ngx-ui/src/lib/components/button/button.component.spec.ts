@@ -1,9 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 import { ButtonComponent } from './button.component';
+import { ButtonState } from './button-state.enum';
+
 describe('ButtonComponent', () => {
   let component: ButtonComponent;
   let fixture: ComponentFixture<ButtonComponent>;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
@@ -12,29 +16,17 @@ describe('ButtonComponent', () => {
     fixture = TestBed.createComponent(ButtonComponent);
     component = fixture.componentInstance;
   });
+
   it('can load instance', () => {
     expect(component).toBeTruthy();
   });
+
   it('disabled defaults to: false', () => {
     expect(component.disabled).toEqual(false);
   });
+
   it('state defaults to: active', () => {
     expect(component.state).toEqual('active');
-  });
-  it('inProgress defaults to: false', () => {
-    expect(component.inProgress).toEqual(false);
-  });
-  it('active defaults to: true', () => {
-    expect(component.active).toEqual(true);
-  });
-  it('success defaults to: false', () => {
-    expect(component.success).toEqual(false);
-  });
-  it('fail defaults to: false', () => {
-    expect(component.fail).toEqual(false);
-  });
-  it('_disabled defaults to: false', () => {
-    expect(component._disabled).toEqual(false);
   });
 
   describe('ngOnInit', () => {
@@ -72,15 +64,17 @@ describe('ButtonComponent', () => {
     });
 
     it('should apply class based on state attribute', () => {
-      component.state = 'inProgress';
+      component.state = ButtonState.InProgress;
       component.ngOnChanges();
       fixture.detectChanges();
       expect(fixture.debugElement.classes['in-progress']).toBeTruthy();
-      component.state = 'success';
+
+      component.state = ButtonState.Success;
       component.ngOnChanges();
       fixture.detectChanges();
       expect(fixture.debugElement.classes['success']).toBeTruthy();
-      component.state = 'fail';
+
+      component.state = ButtonState.Fail;
       component.ngOnChanges();
       fixture.detectChanges();
       expect(fixture.debugElement.classes['fail']).toBeTruthy();

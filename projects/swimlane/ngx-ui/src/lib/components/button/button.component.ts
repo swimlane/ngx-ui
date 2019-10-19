@@ -1,54 +1,84 @@
-import { Component, Input, ViewEncapsulation, OnInit, OnChanges, HostBinding, HostListener } from '@angular/core';
+import { Component, Input, ViewEncapsulation, OnInit, OnChanges, HostListener, ChangeDetectionStrategy } from '@angular/core';
+import { BehaviorSubject, of } from 'rxjs';
+import { delay, tap, take } from 'rxjs/operators';
+
+import { coerceBoolean } from '../../utils';
+import { ButtonState } from './button-state.enum';
 
 @Component({
   selector: 'ngx-button',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./button.component.scss'],
-  host: { class: 'ngx-button' },
+  host: {
+    class: 'ngx-button',
+    '[class.in-progress]': 'inProgress$.value',
+    '[class.active]': 'active$.value',
+    '[class.success]': 'success$.value',
+    '[class.fail]': 'fail$.value',
+    '[class.disabled-button]': 'disabled'
+  },
   template: `
-    <button [disabled]="_disabled">
+    <button [disabled]="disabled">
       <span class="content"><ng-content></ng-content></span>
       <span class="state-icon">
-        <span *ngIf="inProgress" class="icon icon-loading"></span>
-        <span *ngIf="success" class="icon icon-check"></span> <span *ngIf="fail" class="icon icon-x"></span>
+        <span *ngIf="inProgress$ | async" class="icon icon-loading"></span>
+        <span *ngIf="success$ | async" class="icon icon-check"></span>
+        <span *ngIf="fail$ | async" class="icon icon-x"></span>
       </span>
     </button>
   `
 })
 export class ButtonComponent implements OnInit, OnChanges {
-  @Input() disabled: boolean = false;
-  @Input() state: string = 'active'; // active, inProgress, success, fail
-  @Input() promise: any;
+  @Input() promise?: Promise<any>;
 
-  @HostBinding('class.in-progress') inProgress: boolean = false;
-  @HostBinding('class.active') active: boolean = true;
-  @HostBinding('class.success') success: boolean = false;
-  @HostBinding('class.fail') fail: boolean = false;
-  @HostBinding('class.disabled-button') _disabled: boolean = false;
+  @Input()
+  get disabled() { return this._disabled; }
+  set disabled(v: boolean) {
+    this._disabled = coerceBoolean(v);
+  }
 
-  lastTimeout: any;
+  @Input()
+  get state() { return this._state; }
+  set state(v: ButtonState) {
+    this._state = v;
 
-  ngOnInit(): void {
+    if (!this.disabled)
+    this.inProgress$.next(v === ButtonState.InProgress);
+    this.active$.next(v === ButtonState.Active);
+    this.success$.next(v === ButtonState.Success);
+    this.fail$.next(v === ButtonState.Fail);
+  }
+
+  readonly inProgress$ = new BehaviorSubject(false);
+  readonly active$ = new BehaviorSubject(false);
+  readonly success$ = new BehaviorSubject(false);
+  readonly fail$ = new BehaviorSubject(false);
+
+  private _state = ButtonState.Active;
+  private _disabled = false;
+  private _timer: any;
+
+  ngOnInit() {
     this.updateState();
   }
 
-  ngOnChanges(): void {
-    this._disabled = this.disabled;
+  ngOnChanges() {
     this.updateState();
     this.updatePromise();
   }
 
   updatePromise() {
     if (this.promise) {
-      this.state = 'inProgress';
+      this.state = ButtonState.InProgress;
       this.updateState();
       this.promise
         .then(() => {
-          this.state = 'success';
+          this.state = ButtonState.Success;
           this.updateState();
         })
-        .catch(error => {
-          this.state = 'fail';
+        .catch(() => {
+          this.state = ButtonState.Fail;
           this.updateState();
         });
     }
@@ -56,50 +86,29 @@ export class ButtonComponent implements OnInit, OnChanges {
 
   updateState() {
     if (!this.state) {
-      this.state = 'active';
+      this.state = ButtonState.Active;
     }
 
-    this.inProgress = false;
-    this.active = false;
-    this.success = false;
-    this.fail = false;
-
-    switch (this.state) {
-      case 'inProgress':
-        this.inProgress = true;
-        break;
-      case 'success':
-        this.success = true;
-        break;
-      case 'fail':
-        this.fail = true;
-        break;
-      default:
-        this.active = true;
-        break;
-    }
-
-    if (this.success || this.fail || this.inProgress) {
-      this._disabled = true;
-    }
-
-    if (this.success || this.fail) {
-      clearTimeout(this.lastTimeout);
-      this.lastTimeout = setTimeout(() => {
-        this.state = 'active';
-        this._disabled = this.disabled;
+    if (this.state === ButtonState.Success ||
+        this.state === ButtonState.Fail ||
+        this.state === ButtonState.InProgress) {
+      clearTimeout(this._timer);
+      this._timer = setTimeout(() => {
+        this.state = ButtonState.Active;
         this.updateState();
       }, 3000);
     }
   }
 
   @HostListener('click', ['$event'])
-  onClick(event): boolean {
-    if (this._disabled) {
+  onClick(event: Event) {
+    if (this.disabled) {
       event.stopPropagation();
       event.preventDefault();
+
       return false;
     }
+
     return true;
   }
 }
