@@ -11,9 +11,9 @@ import {
   ComponentRef
 } from '@angular/core';
 
-import { createValueForSchema, jsonSchemaDataTypes, inferType } from './json-editor.helper';
-import { DialogComponent } from '../dialog/dialog.component';
-import { DialogService } from '../dialog/dialog.service';
+import { createValueForSchema, jsonSchemaDataTypes, inferType } from '../json-editor.helper';
+import { DialogComponent } from '../../dialog/dialog.component';
+import { DialogService } from '../../dialog/dialog.service';
 
 @Component({
   selector: 'ngx-json-editor-node',
@@ -93,7 +93,7 @@ export class JsonEditorNodeComponent implements OnInit, OnChanges {
     }
   ];
 
-  constructor(public dialogMngr: DialogService) {}
+  constructor(public dialogMngr: DialogService) { }
 
   ngOnInit() {
     if (!this.schema) {

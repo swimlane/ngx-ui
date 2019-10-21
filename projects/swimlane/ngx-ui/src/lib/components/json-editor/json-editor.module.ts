@@ -2,10 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { JsonEditorComponent } from './json-editor.component';
-import { JsonEditorNodeComponent } from './json-editor-node.component';
-import { ObjectNodeComponent } from './node-types/object-node.component';
-import { ArrayNodeComponent } from './node-types/array-node.component';
+import { JsonEditorNodeComponent } from './json-editor-node/json-editor-node.component';
+import { ObjectNodeComponent } from './node-types/object-node/object-node.component';
+import { ArrayNodeComponent } from './node-types/array-node/array-node.component';
 import { PipesModule } from '../../pipes/pipes.module';
 import { InputModule } from '../input/input.module';
 import { ButtonModule } from '../button/button.module';
@@ -17,9 +16,11 @@ import { ToggleModule } from '../toggle/toggle.module';
 import { SelectModule } from '../select/select.module';
 import { SchemaValidatorService } from './schema-validator.service';
 
+import { JsonEditorComponent } from './v1/json-editor/json-editor.component';
+
 @NgModule({
-  declarations: [JsonEditorComponent, JsonEditorNodeComponent, ObjectNodeComponent, ArrayNodeComponent],
-  exports: [JsonEditorComponent, JsonEditorNodeComponent, ObjectNodeComponent, ArrayNodeComponent],
+  declarations: [JsonEditorNodeComponent, ObjectNodeComponent, ArrayNodeComponent, JsonEditorComponent],
+  exports: [JsonEditorNodeComponent, ObjectNodeComponent, ArrayNodeComponent, JsonEditorComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -35,4 +36,4 @@ import { SchemaValidatorService } from './schema-validator.service';
   ],
   providers: [SchemaValidatorService]
 })
-export class JsonEditorModule {}
+export class JsonEditorModule { }

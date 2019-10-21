@@ -1,7 +1,5 @@
 import {
-  Component,
   Input,
-  ViewEncapsulation,
   ContentChildren,
   QueryList,
   Output,
@@ -9,16 +7,10 @@ import {
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { JsonEditorNodeComponent } from './json-editor-node.component';
+import { JsonEditorNodeComponent } from './json-editor-node/json-editor-node.component';
 import { SchemaValidatorService } from './schema-validator.service';
 
-@Component({
-  selector: 'ngx-json-editor',
-  templateUrl: 'json-editor.component.html',
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./json-editor.component.scss']
-})
-export class JsonEditorComponent implements OnChanges {
+export class JsonEditor implements OnChanges {
   @Input()
   model: any;
 
@@ -42,7 +34,9 @@ export class JsonEditorComponent implements OnChanges {
   @ContentChildren(JsonEditorNodeComponent)
   nodeElms: QueryList<JsonEditorNodeComponent>;
 
-  constructor(private schemaValidatorService: SchemaValidatorService) {}
+  constructor(private schemaValidatorService: SchemaValidatorService) {
+    console.log('test');
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.schema) {

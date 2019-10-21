@@ -16,7 +16,7 @@ import {
   dataTypeMap,
   getIcon,
   getCurrentType
-} from '../json-editor.helper';
+} from '../../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-object-node',
