@@ -13,71 +13,110 @@ describe('ButtonComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ButtonComponent]
     });
-    fixture = TestBed.createComponent(ButtonComponent);
-    component = fixture.componentInstance;
   });
 
-  it('can load instance', () => {
+  beforeEach(() => {
+    fixture = TestBed.createComponent(ButtonComponent);
+    component = fixture.componentInstance;
+    component.disabled = false;
+    fixture.detectChanges();
+  });
+
+  it('should be defined', () => {
     expect(component).toBeTruthy();
   });
 
-  it('disabled defaults to: false', () => {
-    expect(component.disabled).toEqual(false);
+  it('should update state and promise on change', () => {
+    const stateSpy = spyOn(component, 'updateState');
+    const promiseSpy = spyOn(component, 'updatePromise');
+
+    component.ngOnChanges();
+
+    expect(stateSpy).toHaveBeenCalled();
+    expect(promiseSpy).toHaveBeenCalled();
   });
 
-  it('state defaults to: active', () => {
-    expect(component.state).toEqual('active');
-  });
+  describe('state', () => {
+    it('should set state', () => {
+      const spy = spyOn(component.fail$, 'next');
+      component.state = ButtonState.Fail;
+      expect(spy).toHaveBeenCalledWith(true);
+    });
 
-  describe('ngOnInit', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'updateState');
-      component.ngOnInit();
-      expect(component.updateState).toHaveBeenCalled();
+    it('should not set state when disabled', () => {
+      const spy = spyOn(component.success$, 'next');
+      component.disabled = true;
+      fixture.detectChanges();
+      component.state = ButtonState.Success;
+      expect(spy).not.toHaveBeenCalled();
     });
   });
 
-  describe('ngOnChanges', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'updateState');
-      spyOn(component, 'updatePromise');
-      component.ngOnChanges();
-      expect(component.updateState).toHaveBeenCalled();
-      expect(component.updatePromise).toHaveBeenCalled();
+  describe('updatePromise', () => {
+    it('should not update when undefined', () => {
+      const spy = spyOn(component, 'updateState');
+      component.updatePromise();
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('should update and resolve', (done) => {
+      const spy = spyOn(component, 'updateState');
+      component.promise = new Promise((resolve) => {
+        resolve();
+      });
+
+      component.updatePromise().finally(() => {
+        expect(component.state).toBe(ButtonState.Success);
+        expect(spy).toHaveBeenCalledTimes(2);
+        done();
+      });
+    });
+
+    it('should update and reject', (done) => {
+      const spy = spyOn(component, 'updateState');
+      component.promise = new Promise(() => {
+        throw new Error();
+      });
+
+      component.updatePromise().finally(() => {
+        expect(component.state).toBe(ButtonState.Fail);
+        expect(spy).toHaveBeenCalledTimes(2);
+        done();
+      });
     });
   });
 
   describe('updateState', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'updateState');
+    it('should update state when undefined', () => {
+      component.state = undefined;
       component.updateState();
-      expect(component.updateState).toHaveBeenCalled();
+      expect(component.state).toBe(ButtonState.Active);
+    });
+
+    it('should reset state when not active', () => {
+      const spy = spyOn(window, 'setTimeout').and.callThrough();
+      component.state = ButtonState.InProgress;
+      component.updateState();
+      expect(spy).toHaveBeenCalled();
     });
   });
 
-  describe('General button tests', () => {
-    it('should disable button', () => {
+  describe('onClick', () => {
+    it('should prevent event when disabled', () => {
       component.disabled = true;
-      component.ngOnChanges();
       fixture.detectChanges();
-      expect(fixture.debugElement.classes['disabled-button']).toBeTruthy();
+      const res = component.onClick({
+        stopPropagation: () => null,
+        preventDefault: () => null
+      } as any);
+      expect(res).toBe(false);
     });
 
-    it('should apply class based on state attribute', () => {
-      component.state = ButtonState.InProgress;
-      component.ngOnChanges();
+    it('should allow event when not disabled', () => {
+      component.disabled = false;
       fixture.detectChanges();
-      expect(fixture.debugElement.classes['in-progress']).toBeTruthy();
-
-      component.state = ButtonState.Success;
-      component.ngOnChanges();
-      fixture.detectChanges();
-      expect(fixture.debugElement.classes['success']).toBeTruthy();
-
-      component.state = ButtonState.Fail;
-      component.ngOnChanges();
-      fixture.detectChanges();
-      expect(fixture.debugElement.classes['fail']).toBeTruthy();
+      const res = component.onClick({ } as any);
+      expect(res).toBe(true);
     });
   });
 });

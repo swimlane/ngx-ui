@@ -7,6 +7,7 @@ import { ButtonState } from './button-state.enum';
 
 @Component({
   selector: 'ngx-button',
+  exportAs: 'ngxButton',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./button.component.scss'],
@@ -43,11 +44,12 @@ export class ButtonComponent implements OnInit, OnChanges {
   set state(v: ButtonState) {
     this._state = v;
 
-    if (!this.disabled)
-    this.inProgress$.next(v === ButtonState.InProgress);
-    this.active$.next(v === ButtonState.Active);
-    this.success$.next(v === ButtonState.Success);
-    this.fail$.next(v === ButtonState.Fail);
+    if (!this.disabled) {
+      this.inProgress$.next(v === ButtonState.InProgress);
+      this.active$.next(v === ButtonState.Active);
+      this.success$.next(v === ButtonState.Success);
+      this.fail$.next(v === ButtonState.Fail);
+    }
   }
 
   readonly inProgress$ = new BehaviorSubject(false);
@@ -72,7 +74,7 @@ export class ButtonComponent implements OnInit, OnChanges {
     if (this.promise) {
       this.state = ButtonState.InProgress;
       this.updateState();
-      this.promise
+      return this.promise
         .then(() => {
           this.state = ButtonState.Success;
           this.updateState();
