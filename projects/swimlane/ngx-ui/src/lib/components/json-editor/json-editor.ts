@@ -1,13 +1,10 @@
 import {
   Input,
-  ContentChildren,
-  QueryList,
   Output,
   EventEmitter,
   OnChanges,
   SimpleChanges
 } from '@angular/core';
-import { JsonEditorNodeComponent } from './json-editor-node/json-editor-node.component';
 import { SchemaValidatorService } from './schema-validator.service';
 
 export class JsonEditor implements OnChanges {
@@ -31,12 +28,7 @@ export class JsonEditor implements OnChanges {
 
   errors: any[];
 
-  @ContentChildren(JsonEditorNodeComponent)
-  nodeElms: QueryList<JsonEditorNodeComponent>;
-
-  constructor(private schemaValidatorService: SchemaValidatorService) {
-    console.log('test');
-  }
+  constructor(protected schemaValidatorService: SchemaValidatorService) { }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.schema) {

@@ -1,12 +1,10 @@
 import {
-  Component,
   Input,
   EventEmitter,
   Output,
   OnInit,
   OnChanges,
-  SimpleChanges,
-  ViewEncapsulation
+  SimpleChanges
 } from '@angular/core';
 
 import {
@@ -16,14 +14,9 @@ import {
   dataTypeMap,
   getIcon,
   getCurrentType
-} from '../../json-editor.helper';
+} from '../json-editor.helper';
 
-@Component({
-  selector: 'ngx-json-object-node',
-  templateUrl: 'object-node.component.html',
-  encapsulation: ViewEncapsulation.None
-})
-export class ObjectNodeComponent implements OnInit, OnChanges {
+export class ObjectNode implements OnInit, OnChanges {
   @Input()
   schema: any;
 

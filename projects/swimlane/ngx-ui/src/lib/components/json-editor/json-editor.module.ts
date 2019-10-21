@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { JsonEditorNodeComponent } from './json-editor-node/json-editor-node.component';
-import { ObjectNodeComponent } from './node-types/object-node/object-node.component';
-import { ArrayNodeComponent } from './node-types/array-node/array-node.component';
+import { JsonEditorNodeComponent } from './v1/json-editor-node/json-editor-node.component';
+import { ObjectNodeComponent } from './v1/node-types/object-node/object-node.component';
+import { ArrayNodeComponent } from './v1/node-types/array-node/array-node.component';
 import { PipesModule } from '../../pipes/pipes.module';
 import { InputModule } from '../input/input.module';
 import { ButtonModule } from '../button/button.module';
@@ -19,8 +19,8 @@ import { SchemaValidatorService } from './schema-validator.service';
 import { JsonEditorComponent } from './v1/json-editor/json-editor.component';
 
 @NgModule({
-  declarations: [JsonEditorNodeComponent, ObjectNodeComponent, ArrayNodeComponent, JsonEditorComponent],
-  exports: [JsonEditorNodeComponent, ObjectNodeComponent, ArrayNodeComponent, JsonEditorComponent],
+  declarations: [JsonEditorComponent, JsonEditorNodeComponent, ObjectNodeComponent, ArrayNodeComponent],
+  exports: [JsonEditorComponent, JsonEditorNodeComponent, ObjectNodeComponent, ArrayNodeComponent],
   imports: [
     CommonModule,
     FormsModule,
