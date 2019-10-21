@@ -44,12 +44,10 @@ export class ButtonComponent implements OnInit, OnChanges {
   set state(v: ButtonState) {
     this._state = v;
 
-    if (!this.disabled) {
-      this.inProgress$.next(v === ButtonState.InProgress);
-      this.active$.next(v === ButtonState.Active);
-      this.success$.next(v === ButtonState.Success);
-      this.fail$.next(v === ButtonState.Fail);
-    }
+    this.inProgress$.next(v === ButtonState.InProgress);
+    this.active$.next(v === ButtonState.Active);
+    this.success$.next(v === ButtonState.Success);
+    this.fail$.next(v === ButtonState.Fail);
   }
 
   readonly inProgress$ = new BehaviorSubject(false);

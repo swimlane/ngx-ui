@@ -42,14 +42,6 @@ describe('ButtonComponent', () => {
       component.state = ButtonState.Fail;
       expect(spy).toHaveBeenCalledWith(true);
     });
-
-    it('should not set state when disabled', () => {
-      const spy = spyOn(component.success$, 'next');
-      component.disabled = true;
-      fixture.detectChanges();
-      component.state = ButtonState.Success;
-      expect(spy).not.toHaveBeenCalled();
-    });
   });
 
   describe('updatePromise', () => {
