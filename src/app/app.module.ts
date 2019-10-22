@@ -5,10 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { MomentModule } from 'ngx-moment';
-import { NgxUIModule } from '../../projects/swimlane/ngx-ui/src/public_api';
+import { NgxUIModule } from '@swimlane/ngx-ui';
 
 import { HttpClientModule } from '@angular/common/http';
-import { FileUploadModule } from 'ng2-file-upload';
+import { FileUploadModule } from '@swimlane/ng2-file-upload';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { RouterModule, Routes } from '@angular/router';
@@ -97,7 +97,7 @@ const routes: Routes = [
   { path: 'split', component: SplitPageComponent },
   { path: 'overlay', component: OverlayPageComponent },
   { path: 'hotkeys', component: HotkeysPageComponent },
-  { path: 'pipes', component: PipesPageComponent },
+  { path: 'pipes', component: PipesPageComponent }
 ];
 
 @NgModule({
