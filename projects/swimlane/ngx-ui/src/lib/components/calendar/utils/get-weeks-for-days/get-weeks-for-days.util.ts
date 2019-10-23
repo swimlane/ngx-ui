@@ -34,6 +34,7 @@ export function getWeeksForDays(days: CalenderDay[], startDay: number) {
           prevMonth: true
         };
       });
+
       wk = [...fill, ...wk];
       offset = 7;
     }
@@ -50,6 +51,7 @@ export function getWeeksForDays(days: CalenderDay[], startDay: number) {
           nextMonth: true
         };
       });
+
       wk = [...wk, ...fill];
     }
 

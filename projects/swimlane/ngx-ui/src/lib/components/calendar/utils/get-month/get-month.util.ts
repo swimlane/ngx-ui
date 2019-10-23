@@ -9,8 +9,8 @@ import { getDaysForMonth } from '../get-days-for-month';
  * @return days
  */
 export function getMonth(active: moment.Moment) {
-  active = active.clone();
-  const days = getDaysForMonth(active);
-  const offset = active.startOf('month').isoWeekday();
+  const date = active.clone();
+  const days = getDaysForMonth(date);
+  const offset = date.startOf('month').isoWeekday();
   return getWeeksForDays(days, offset);
 }

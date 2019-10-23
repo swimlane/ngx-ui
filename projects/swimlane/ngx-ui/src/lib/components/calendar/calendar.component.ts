@@ -5,7 +5,7 @@ import moment from 'moment-timezone';
 import { getMonth, getDecadeStartYear } from './utils';
 import { CalenderDay } from './calendar-day.interface';
 import { CalendarMonth } from './calendar-month.type';
-import { CalendarView } from './calendar-view.type';
+import { CalendarView } from './calendar-view.enum';
 
 const CALENDAR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -153,8 +153,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   get minView() {
-    // default: 'date'
-    return this._minView ? this._minView : 'date';
+    return this._minView ? this._minView : CalendarView.Date;
   }
 
   @Input('defaultView')
@@ -175,6 +174,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
 
   set value(val: Date) {
     const date = this.createMoment(val);
+
     if (date.isValid()) {
       if (!date.isSame(this._value, 'day')) {
         this._value = val;
@@ -183,6 +183,10 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
 
       this.change.emit(this._value);
     }
+  }
+
+  get current() {
+    return this._current;
   }
 
   activeDate: moment.Moment;
@@ -206,11 +210,11 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   changeViews() {
-    if (this.currentView === 'date') {
-      this.currentView = 'month';
-    } else if (this.currentView === 'month') {
-      this.currentView = 'year';
-    } else if (this.currentView === 'year') {
+    if (this.currentView === CalendarView.Date) {
+      this.currentView = CalendarView.Month;
+    } else if (this.currentView === CalendarView.Month) {
+      this.currentView = CalendarView.Year;
+    } else {
       this.currentView = this.minView;
     }
 
@@ -218,11 +222,11 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   validateView() {
-    const viewsList = ['date', 'month', 'year'];
+    const viewsList = [CalendarView.Date, CalendarView.Month, CalendarView.Year];
 
     // date time picker precision validation
     if (!viewsList.includes(this.minView)) {
-      this.minView = 'date';
+      this.minView = CalendarView.Date;
     }
 
     // defaultView cannot be below minView
@@ -236,14 +240,14 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   /**
    * Checks if `date` matches selected value
    */
-  isDayActive(date: moment.Moment): boolean {
+  isDayActive(date: moment.Moment) {
     return date.isSame(this.value, 'day');
   }
 
   /**
    * Checks if `month` matches selected value, in the viewed year
    */
-  isMonthActive(month: string): boolean {
+  isMonthActive(month: string) {
     const date = this.createMoment(this.value).month(month);
     return date.isSame(this.value, 'month') && date.isSame(this.activeDate, 'year');
   }
@@ -251,7 +255,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   /**
    * Checks if `month` and year matches current
    */
-  isCurrentMonth(month: string): boolean {
+  isCurrentMonth(month: string) {
     const date = this.activeDate.clone().month(month);
     return date.isSame(this._current, 'month') && date.isSame(this._current, 'year');
   }
@@ -259,7 +263,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   /**
    * Checks if `year` matches selected year
    */
-  isYearActive(year: number): boolean {
+  isYearActive(year: number) {
     const date = this.createMoment(this.value).year(year);
     return date.isSame(this.value, 'year');
   }
@@ -267,12 +271,12 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   /**
    * Checks if year matches current year
    */
-  isCurrentYear(year: number): boolean {
+  isCurrentYear(year: number) {
     const date = this.createMoment(this.value).year(year);
     return date.isSame(this._current, 'year');
   }
 
-  isDisabled(value: any, type: string): boolean {
+  isDisabled(value: any, type: string) {
     if (this.disabled) return true;
     if (!value) return false;
 
@@ -311,8 +315,8 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     this.activeDate.month(month);
     this.value = this.activeDate.toDate();
 
-    if (this.minView !== 'month') {
-      this.currentView = 'date';
+    if (this.minView !== CalendarView.Month) {
+      this.currentView = CalendarView.Date;
       this.weeks = getMonth(this.activeDate);
     }
   }
@@ -321,8 +325,8 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     this.activeDate.year(year);
     this.value = this.activeDate.toDate();
 
-    if (this.minView !== 'year') {
-      this.currentView = 'month';
+    if (this.minView !== CalendarView.Year) {
+      this.currentView = CalendarView.Month;
       this.weeks = getMonth(this.activeDate);
     }
   }
