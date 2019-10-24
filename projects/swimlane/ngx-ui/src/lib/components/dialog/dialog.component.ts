@@ -113,11 +113,6 @@ export class DialogComponent implements OnInit, OnDestroy {
 
   show(): void {
     this.visible = true;
-
-    // setTimeout(() => {
-    //   this.renderer2.selectRootElement(this.element.nativeElement).focus();
-    // }, 10);
-
     this.open.emit();
   }
 
