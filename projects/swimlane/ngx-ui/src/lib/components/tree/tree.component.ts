@@ -42,9 +42,15 @@ import { TreeNodeComponent } from './tree-node.component';
 export class TreeComponent {
   @Input() nodes: any[];
 
-  @Input()
+  @Input('template')
+  _templateInput: TemplateRef<any>;
+
   @ContentChild(TemplateRef, { static: true })
-  template: TemplateRef<any>;
+  _templateQuery: TemplateRef<any>;
+
+  get template(): TemplateRef<any> {
+    return this._templateInput || this._templateQuery;
+  }
 
   @ContentChildren(TreeNodeComponent) nodeElms: QueryList<TreeNodeComponent>;
 

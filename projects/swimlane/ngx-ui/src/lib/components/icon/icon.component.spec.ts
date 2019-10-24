@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, ElementRef, Renderer } from '@angular/core';
+import { NO_ERRORS_SCHEMA, ElementRef, Renderer2 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IconRegisteryService } from '../../services/icon-registery.service';
 import { IconComponent } from './icon.component';
@@ -16,7 +16,7 @@ describe('IconComponent', () => {
       declarations: [IconComponent],
       providers: [
         { provide: ElementRef, useValue: elementRefStub },
-        { provide: Renderer, useValue: rendererStub },
+        { provide: Renderer2, useValue: rendererStub },
         { provide: HttpClient, useValue: httpClientStub },
         { provide: IconRegisteryService, useValue: iconRegisteryServiceStub }
       ]

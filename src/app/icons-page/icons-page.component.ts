@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-// tslint:disable-next-line:no-implicit-dependencies
-import { icons } from '@swimlane/ngx-ui/lib/assets/icons/json/icons.json';
+import { icons } from '../../../projects/swimlane/ngx-ui/src/lib/assets/icons/json/icons.json';
 
 @Component({
   selector: 'app-icons-page',

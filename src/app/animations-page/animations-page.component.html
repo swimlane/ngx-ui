@@ -1,11 +1,11 @@
 <div class="inputs-section">
   <h3 class="style-header">Animations</h3>
-  <ngx-button class="btn" #me (click)="me.count = (me.count || 0) + 1">Click Me</ngx-button>
-  <div class="badge" [@bounce]="me.count">Bounce #{{ me.count }}</div>
+  <ngx-button class="btn" (click)="increaseCount()">Click Me</ngx-button>
+  <div class="badge" [@bounce]="count">Bounce #{{ count }}</div>
   <ngx-codemirror mode="htmlmixed" readOnly="true">
     <![CDATA[
-      <ngx-button class="btn" #me (click)="me.count = (me.count || 0) + 1">Click Me</ngx-button>
-      <div class="badge" [@bounce]="me.count">Bounce #{{ me.count }}</div>
+      <ngx-button class="btn" (click)="increaseCount()">Click Me</ngx-button>
+      <div class="badge" [@bounce]="count">Bounce #{{ count }}</div>
     ]]>
   </ngx-codemirror>
 </div>

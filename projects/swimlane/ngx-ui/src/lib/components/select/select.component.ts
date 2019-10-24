@@ -7,7 +7,7 @@ import {
   ContentChildren,
   forwardRef,
   ElementRef,
-  Renderer,
+  Renderer2,
   OnDestroy,
   HostBinding,
   ViewChild,
@@ -209,7 +209,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   _optionTemplates: QueryList<SelectOptionDirective>;
   _value: any[] = [];
 
-  constructor(private element: ElementRef, private renderer: Renderer) {}
+  constructor(private element: ElementRef, private renderer: Renderer2) { }
 
   ngOnDestroy(): void {
     this.toggleDropdown(false);

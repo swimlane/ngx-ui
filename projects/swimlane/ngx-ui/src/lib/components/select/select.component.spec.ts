@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, ElementRef, Renderer } from '@angular/core';
+import { NO_ERRORS_SCHEMA, ElementRef, Renderer2 } from '@angular/core';
 import { SelectComponent } from './select.component';
 
 describe('SelectComponent', () => {
@@ -11,7 +11,7 @@ describe('SelectComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [SelectComponent],
-      providers: [{ provide: ElementRef, useValue: elementRefStub }, { provide: Renderer, useValue: rendererStub }]
+      providers: [{ provide: ElementRef, useValue: elementRefStub }, { provide: Renderer2, useValue: rendererStub }]
     });
     fixture = TestBed.createComponent(SelectComponent);
     component = fixture.componentInstance;

@@ -3,10 +3,10 @@ import {
   Input,
   ChangeDetectionStrategy,
   ElementRef,
-  Renderer,
   OnChanges,
   OnInit,
-  ViewEncapsulation
+  ViewEncapsulation,
+  Renderer2
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IconRegisteryService } from '../../services/icon-registery.service';
@@ -42,7 +42,7 @@ export class IconComponent implements OnChanges, OnInit {
 
   constructor(
     private http: HttpClient,
-    private renderer: Renderer,
+    private renderer: Renderer2,
     private elementRef: ElementRef,
     private iconRegisteryService: IconRegisteryService
   ) {}

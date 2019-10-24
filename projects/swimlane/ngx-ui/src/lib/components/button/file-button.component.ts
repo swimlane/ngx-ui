@@ -11,7 +11,7 @@ import {
   ViewChild,
   ElementRef
 } from '@angular/core';
-import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
+import { FileUploaderOptions, FileUploader } from '@swimlane/ng2-file-upload';
 import { FileButtonStyleType } from './file-button-style.type';
 
 let nextId = 0;
