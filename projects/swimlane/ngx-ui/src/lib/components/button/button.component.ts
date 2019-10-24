@@ -1,6 +1,5 @@
 import { Component, Input, ViewEncapsulation, OnInit, OnChanges, HostListener, ChangeDetectionStrategy } from '@angular/core';
-import { BehaviorSubject, of } from 'rxjs';
-import { delay, tap, take } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 
 import { coerceBoolean } from '../../utils';
 import { ButtonState } from './button-state.enum';
