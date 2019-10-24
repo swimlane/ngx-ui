@@ -9,7 +9,8 @@ import {
   OnInit,
   Output,
   ViewEncapsulation,
-  Renderer2
+  Renderer2,
+  TemplateRef
 } from '@angular/core';
 
 @Component({
@@ -80,7 +81,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   @Input() title: string;
   @Input() dialogTitle: string;
   @Input() content: string;
-  @Input() template: any;
+  @Input() template: TemplateRef<any>;
   @Input() cssClass: string;
   @Input() context: any;
   @Input() closeOnBlur: boolean;
@@ -113,9 +114,9 @@ export class DialogComponent implements OnInit, OnDestroy {
   show(): void {
     this.visible = true;
 
-    setTimeout(() => {
-      this.renderer2.selectRootElement(this.element.nativeElement).focus();
-    }, 10);
+    // setTimeout(() => {
+    //   this.renderer2.selectRootElement(this.element.nativeElement).focus();
+    // }, 10);
 
     this.open.emit();
   }
