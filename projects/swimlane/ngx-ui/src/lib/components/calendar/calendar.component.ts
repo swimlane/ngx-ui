@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, forwardRef, OnInit, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, forwardRef, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import moment from 'moment-timezone';
 
@@ -138,7 +138,7 @@ const CALENDAR_VALUE_ACCESSOR = {
     '(blur)': 'onTouchedCallback()'
   }
 })
-export class CalendarComponent implements OnInit, ControlValueAccessor {
+export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() minDate: Date | string;
   @Input() disabled: boolean;
   @Input() maxDate: Date | string;
@@ -200,6 +200,8 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   private _minView: CalendarView;
   private _defaultView: CalendarView;
 
+  constructor(private readonly cdr: ChangeDetectorRef) { }
+
   ngOnInit() {
     this.activeDate = this.createMoment(this.value);
     this.weeks = getMonth(this.activeDate);
@@ -207,6 +209,10 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     this._current = this.activeDate;
     this.startYear = getDecadeStartYear(this._current.year());
     this.validateView();
+  }
+
+  ngAfterViewInit() {
+    this.cdr.markForCheck();
   }
 
   changeViews() {
