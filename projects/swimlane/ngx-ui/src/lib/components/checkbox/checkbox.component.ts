@@ -11,6 +11,7 @@ let nextId = 0;
 
 @Component({
   selector: 'ngx-checkbox',
+  exportAs: 'ngxCheckbox',
   providers: [CHKBOX_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
