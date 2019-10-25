@@ -1,4 +1,15 @@
-import { Component, Input, Output, EventEmitter, forwardRef, OnInit, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  forwardRef,
+  OnInit,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  AfterViewInit
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import moment from 'moment-timezone';
 
@@ -152,7 +163,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     this.validateView();
   }
 
-  get minView() {
+  get minView(): CalendarView {
     return this._minView ? this._minView : CalendarView.Date;
   }
 
@@ -162,7 +173,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     this.validateView();
   }
 
-  get defaultView() {
+  get defaultView(): CalendarView {
     return this._defaultView ? this._defaultView : this.minView;
   }
 
@@ -185,7 +196,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     }
   }
 
-  get current() {
+  get current(): moment.Moment {
     return this._current;
   }
 
@@ -200,7 +211,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   private _minView: CalendarView;
   private _defaultView: CalendarView;
 
-  constructor(private readonly cdr: ChangeDetectorRef) { }
+  constructor(private readonly cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.activeDate = this.createMoment(this.value);
@@ -246,14 +257,14 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   /**
    * Checks if `date` matches selected value
    */
-  isDayActive(date: moment.Moment) {
+  isDayActive(date: moment.Moment): boolean {
     return date.isSame(this.value, 'day');
   }
 
   /**
    * Checks if `month` matches selected value, in the viewed year
    */
-  isMonthActive(month: string) {
+  isMonthActive(month: string): boolean {
     const date = this.createMoment(this.value).month(month);
     return date.isSame(this.value, 'month') && date.isSame(this.activeDate, 'year');
   }
@@ -261,7 +272,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   /**
    * Checks if `month` and year matches current
    */
-  isCurrentMonth(month: string) {
+  isCurrentMonth(month: string): boolean {
     const date = this.activeDate.clone().month(month);
     return date.isSame(this._current, 'month') && date.isSame(this._current, 'year');
   }
@@ -269,7 +280,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   /**
    * Checks if `year` matches selected year
    */
-  isYearActive(year: number) {
+  isYearActive(year: number): boolean {
     const date = this.createMoment(this.value).year(year);
     return date.isSame(this.value, 'year');
   }
@@ -277,12 +288,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   /**
    * Checks if year matches current year
    */
-  isCurrentYear(year: number) {
+  isCurrentYear(year: number): boolean {
     const date = this.createMoment(this.value).year(year);
     return date.isSame(this._current, 'year');
   }
 
-  isDisabled(value: any, type: string) {
+  isDisabled(value: any, type: string): boolean {
     if (this.disabled) return true;
     if (!value) return false;
 
@@ -394,7 +405,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     // placeholder
   };
 
-  private parseDate(date: string | Date) {
+  private parseDate(date: string | Date): moment.Moment {
     date = date instanceof Date ? date.toISOString() : date;
     return this.timezone ? moment.tz(date, this.inputFormats, this.timezone) : moment(date, this.inputFormats);
   }
