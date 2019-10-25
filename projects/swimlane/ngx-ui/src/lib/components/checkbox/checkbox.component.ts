@@ -1,4 +1,13 @@
-import { Component, Input, EventEmitter, Output, forwardRef, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  forwardRef,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 const CHKBOX_VALUE_ACCESSOR = {
@@ -49,7 +58,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Output() blur = new EventEmitter();
   @Output() focus = new EventEmitter();
 
-  set value(value) {
+  set value(value: boolean) {
     if (this._value !== value) {
       this._value = value;
       this.cdr.markForCheck();
@@ -57,13 +66,13 @@ export class CheckboxComponent implements ControlValueAccessor {
     }
   }
 
-  get value() {
+  get value(): boolean {
     return this._value;
   }
 
   private _value = false;
 
-  constructor(private readonly cdr: ChangeDetectorRef) { }
+  constructor(private readonly cdr: ChangeDetectorRef) {}
 
   onBlur(_: any) {
     this.onTouchedCallback();
