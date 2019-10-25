@@ -8,6 +8,7 @@ import {
   EmbeddedViewRef,
   Type
 } from '@angular/core';
+import { DomPortalHost, ComponentPortal } from '@angular/cdk/portal';
 
 /**
  * Injection service is a helper to append components
@@ -129,26 +130,20 @@ export class InjectionService {
    * @memberOf InjectionService
    */
   appendComponent<T>(componentClass: Type<T>, bindings: any = {}, location?: any): ComponentRef<any> {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass);
-    const componentRef = componentFactory.create(this.injector);
-    const appRef: any = this.applicationRef;
-    const componentRootNode = this.getComponentRootNode(componentRef);
-
-    // project the options passed to the component instance
-    this.projectComponentBindings(componentRef, bindings);
-
-    appRef.attachView(componentRef.hostView);
-
-    componentRef.onDestroy(() => {
-      appRef.detachView(componentRef.hostView);
-    });
-
-    // location override not passed, get `this._container`
     if (!location) location = this.getRootViewContainer();
-
     const appendLocation = this.getComponentRootNode(location);
-    appendLocation.appendChild(componentRootNode);
 
+    const portalHost = new DomPortalHost(
+      appendLocation,
+      this.componentFactoryResolver,
+      this.applicationRef,
+      this.injector
+    );
+
+    const portal = new ComponentPortal(componentClass);
+
+    const componentRef = portalHost.attach(portal);
+    this.projectComponentBindings(componentRef, bindings);
     return componentRef;
   }
 }

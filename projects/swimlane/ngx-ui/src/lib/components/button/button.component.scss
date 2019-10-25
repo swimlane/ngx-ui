@@ -1,5 +1,5 @@
-@import 'colors/variables';
-@import 'components/buttons';
+@import '../../styles/colors/variables.scss';
+@import '../../styles/components/buttons.scss';
 
 .ngx-button {
   transition: background-color 0.25s ease-out !important;

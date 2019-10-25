@@ -29,7 +29,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.3",
-    "@angular/cdk": "^8.1.4",
+    "@angular/cdk": "^8.2.3",
     "@angular/common": "~8.2.3",
     "@angular/compiler": "~8.2.3",
     "@angular/core": "~8.2.3",
@@ -37,12 +37,12 @@
     "@angular/forms": "~8.2.3",
     "@angular/platform-browser": "~8.2.3",
     "@angular/router": "~8.2.3",
+    "@swimlane/ng2-file-upload": "^1.0.1",
     "@swimlane/ngx-datatable": "^16.0.2",
     "ajv": "^6.5.5",
     "d3-color": "^1.2.3",
     "moment-timezone": "^0.5.23",
     "mousetrap": "^1.6.2",
-    "@swimlane/ng2-file-upload": "^1.0.1",
     "normalize.css": "^8.0.0",
     "rxjs": "~6.5.2"
   },
