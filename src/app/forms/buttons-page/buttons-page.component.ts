@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { FileUploader } from '@swimlane/ng2-file-upload';
 
 @Component({
   selector: 'app-buttons-page',
-  templateUrl: './buttons-page.component.html'
+  templateUrl: './buttons-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonsPageComponent {
   buttonPromise: any = undefined;
