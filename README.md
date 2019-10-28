@@ -23,6 +23,7 @@ Run `ng serve` to serve the demo at `http://localhost:4200/`. The app will autom
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running end-to-end tests
+## Running tests
 
-Run `ng cypress` to execute the end-to-end tests via Cypress.
+- Run `npm run test` to execute unit tests
+- Run `ng cypress` to execute the end-to-end tests via Cypress.
