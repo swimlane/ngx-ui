@@ -2,9 +2,9 @@
 <ngx-section class="shadow" [sectionTitle]="'JSON Editor'">
   <ngx-tabs>
     <ngx-tab label="Editor">
-      <ngx-json-editor [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
+      <ngx-json-editor-v2 [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
         [typeCheckOverrides]="typeOverrides">
-      </ngx-json-editor>
+      </ngx-json-editor-v2>
       <hr />
       <h3>Model</h3>
       <pre>{{ jsonEditorModel | json }}</pre>
