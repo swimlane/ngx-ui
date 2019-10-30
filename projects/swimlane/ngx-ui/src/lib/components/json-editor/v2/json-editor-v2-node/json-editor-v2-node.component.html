@@ -70,17 +70,28 @@
     <!-- String -->
     <ng-container *ngIf="schema?.type === 'string'">
       <!-- No format -->
-      <div *ngIf="!schema.format" class="node default-node-layout">
-        <span class="asterisk">*</span>
-        <ngx-icon class="handle-icon" fontIcon="handle"></ngx-icon>
-        <span class="name">{{ schema?.propertyName | decamelize }}</span>
-        <div class="additional-info">
-          <span class="type">{{ schema?.type | titlecase }}</span> &nbsp;
-          <ngx-icon class="circle-icon" fontIcon="circle-filled"></ngx-icon> &nbsp;
-          <span class="json-name">{{ schema?.propertyName | lowercase }}</span>
+      <div *ngIf="!schema.format" class="node">
+        <div class="node-left-border">
+          <span class="asterisk">*</span>
         </div>
 
-        <span class="description">{{ schema?.description }}</span>
+        <div class="node-info">
+          <div>
+            <div>
+              <span class="name">{{ schema?.propertyName | decamelize }}</span> &nbsp;
+              <ngx-icon class="info-icon" fontIcon="info-filled"></ngx-icon>
+            </div>
+
+            <span class="type">{{ schema?.type | titlecase }}</span> &nbsp;
+            <ngx-icon class="circle-icon" fontIcon="circle-filled"></ngx-icon> &nbsp;
+            <span class="json-name">{{ schema?.propertyName | cammeltosnake }}</span>
+          </div>
+
+          <span class="description">{{ schema?.description }}</span>
+        </div>
+
+        <span class="spacer"></span>
+
         <!-- <input
           *ngIf="!schema?.enum"
           class="value-input gen-input"
