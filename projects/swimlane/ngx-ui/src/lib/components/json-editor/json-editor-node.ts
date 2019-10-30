@@ -35,7 +35,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
   errors: any[];
 
   @Input()
-  typeCheckOverrides?: any;
+  typeCheckOverrides?: any;  
 
   @Output()
   modelChange: EventEmitter<any> = new EventEmitter();
@@ -89,7 +89,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
     }
   ];
 
-  constructor(public dialogMngr: DialogService) { }
+  constructor(public dialogMngr: DialogService) {}
 
   ngOnInit() {
     if (!this.schema) {

@@ -2,9 +2,86 @@
 
 .json-tree-node-v2 {
   .node {
-    background-color: $color-blue-grey-650;
+    background-color: $color-blue-grey-700;
     box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
     border-radius: 2px;
     height: 120px;
+  }
+
+  .default-node-layout {
+    display: grid;
+    grid-template:
+      ' asterisk          .                    .               .                              .             .       ' 1fr
+      '     .            name                 name             .                           gen-input        .       ' 1fr
+      ' handle-icon  additional-info     additional-info       .                           gen-input   options-icon ' 1fr 
+      '     .         description          description     description                     gen-input        .       ' 1fr
+      '     .         description          description     description                        .             .       ' 1fr   
+      / auto 1fr 1fr 1fr 2fr auto;
+
+    column-gap: 0.7rem;
+    padding: 0.7rem;
+  }
+
+  .asterisk {
+    grid-area: asterisk;
+    color: $color-red-500;
+    place-self: center;
+  }
+
+  .node-icon {
+    place-self: center;
+    font-size: 0.8em;
+    color: $color-blue-grey-300;
+    mix-blend-mode: normal;
+    opacity: 0.15;
+  }
+
+  .handle-icon {
+    @extend .node-icon;
+    grid-area: handle-icon;
+  }
+
+  .options-icon {
+    @extend .node-icon;
+    grid-area: options-icon;
+  }
+
+  .name {
+    grid-area: name;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 23px;
+    color: #f0f1f6;
+  }
+
+  .additional-info {
+    grid-area: additional-info;
+  }
+
+  .json-name {
+  }
+
+  .circle-icon {
+    font-size: 0.2em;
+    vertical-align: middle;
+  }
+
+  .type {
+  }
+
+  .description {
+    grid-area: description;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .gen-input {
+    grid-area: gen-input;
+    align-self: center;
+    padding: 0;
+    margin: 0;
   }
 }

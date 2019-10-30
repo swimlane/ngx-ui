@@ -9,8 +9,7 @@ import { DialogService } from '../../../dialog/dialog.service';
   styleUrls: ['./json-editor-v2-node.component.scss']
 })
 export class JsonEditorV2NodeComponent extends JsonEditorNode {
-
   constructor(public dialogMngr: DialogService) {
-    super(dialogMngr)
+    super(dialogMngr);
   }
 }
