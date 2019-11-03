@@ -10,26 +10,25 @@
     padding: 0.7rem;
   }
 
-  .node-left-border {
+  .required-indicator {
+    font-size: 1.7em;
+    width: 30px;
     display: flex;
-    flex-direction: column;
-    padding: 0 0.5rem;
+    justify-content: center;
   }
 
-  .asterisk {
-    color: $color-red-500;
-    font-size: 1.7em;
+  .node-content {
+
   }
 
   .node-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    max-width: 40%;
+
+  
 
     .name {
-      // grid-area: name;
-      font-family: Source Sans Pro;
       font-style: normal;
       font-weight: 600;
       font-size: 18px;

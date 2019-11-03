@@ -1,9 +1,5 @@
-<div
-  class="json-tree-node-v2"
-  [class.inline]="schema?.type !== 'object' && schema?.type !== 'array'"
-  [class.invalid]="!valid"
-  [class.children-invalid]="!childrenValid"
->
+<div class="json-tree-node-v2" [class.inline]="schema?.type !== 'object' && schema?.type !== 'array'"
+  [class.invalid]="!valid" [class.children-invalid]="!childrenValid">
   <!-- <span *ngIf="schema?.type === 'object' || schema?.type === 'array'" class="ngx-expander" (click)="onExpandClick()"
     [class.invalid]="!childrenValid" [ngClass]="{
       'icon-tree-collapse': expanded,
@@ -26,39 +22,22 @@
   <div *ngIf="model !== undefined" [class.invalid]="!valid">
     <!-- Object -->
     <div *ngIf="schema?.type === 'object'">
-      <ngx-json-object-node-v2
-        [schema]="schema"
-        [model]="model"
-        [expanded]="expanded"
-        (modelChange)="updateModel($event)"
-        [path]="path"
-        [errors]="childrenErrors"
-        [typeCheckOverrides]="typeCheckOverrides"
-      ></ngx-json-object-node-v2>
+      <ngx-json-object-node-v2 [schema]="schema" [model]="model" [expanded]="expanded"
+        (modelChange)="updateModel($event)" [path]="path" [errors]="childrenErrors"
+        [typeCheckOverrides]="typeCheckOverrides"></ngx-json-object-node-v2>
     </div>
 
     <!-- Array -->
     <div *ngIf="schema?.type === 'array'">
-      <ngx-json-array-node-v2
-        [schema]="schema"
-        [model]="model"
-        [expanded]="expanded"
-        (modelChange)="updateModel($event)"
-        [path]="path"
-        [errors]="childrenErrors"
-        [typeCheckOverrides]="typeCheckOverrides"
-      ></ngx-json-array-node-v2>
+      <ngx-json-array-node-v2 [schema]="schema" [model]="model" [expanded]="expanded"
+        (modelChange)="updateModel($event)" [path]="path" [errors]="childrenErrors"
+        [typeCheckOverrides]="typeCheckOverrides"></ngx-json-array-node-v2>
     </div>
 
     <!-- Number | Integer -->
     <div *ngIf="schema?.type === 'number' || schema?.type === 'integer'" class="node">
-      <input
-        class="value-input gen-input"
-        type="number"
-        [ngModel]="model"
-        (ngModelChange)="updateModel($event)"
-        [required]="required"
-      />
+      <input class="value-input gen-input" type="number" [ngModel]="model" (ngModelChange)="updateModel($event)"
+        [required]="required" />
     </div>
 
     <!-- Boolean -->
@@ -70,118 +49,81 @@
     <!-- String -->
     <ng-container *ngIf="schema?.type === 'string'">
       <!-- No format -->
-      <div *ngIf="!schema.format" class="node">
-        <div class="node-left-border">
-          <span class="asterisk">*</span>
-        </div>
+      <div *ngIf="!schema.form at" class="node">
+        <div class="required-indicator">*</div>
 
-        <div class="node-info">
-          <div>
-            <div>
+        <div class="node-content">
+          <div class="node-info">
+            <div class="info-name">
               <span class="name">{{ schema?.propertyName | decamelize }}</span> &nbsp;
               <ngx-icon class="info-icon" fontIcon="info-filled"></ngx-icon>
             </div>
 
-            <span class="type">{{ schema?.type | titlecase }}</span> &nbsp;
-            <ngx-icon class="circle-icon" fontIcon="circle-filled"></ngx-icon> &nbsp;
-            <span class="json-name">{{ schema?.propertyName | cammeltosnake }}</span>
+            <div class="info-type">
+              <span class="type">{{ schema?.type | titlecase }}</span> &nbsp;
+              <ngx-icon class="circle-icon" fontIcon="circle-filled"></ngx-icon> &nbsp;
+              <span class="json-name">{{ schema?.propertyName | cammeltosnake }}</span>
+            </div>
+
+            <div class="description">{{ schema?.description }}</div>
           </div>
 
-          <span class="description">{{ schema?.description }}</span>
+          <div class="node-input">
+            <ngx-input *ngIf="!schema?.enum" class="gen-input" type="text" [ngModel]="model"
+              (change)="updateModel($event)">
+            </ngx-input>
+
+            <select *ngIf="schema?.enum" class="value-input select" [ngModel]="model"
+              (ngModelChange)="updateModel($event)">
+              <option *ngFor="let option of schema.enum" [value]="option">{{ option }}</option>
+            </select>
+          </div>
         </div>
 
-        <span class="spacer"></span>
-
-        <!-- <input
-          *ngIf="!schema?.enum"
-          class="value-input gen-input"
-          type="text"
-          [ngModel]="model"
-          (ngModelChange)="updateModel($event)"
-          [required]="required"
-        /> -->
-        <ngx-input *ngIf="!schema?.enum" class="gen-input" type="text" [ngModel]="model" (change)="updateModel($event)">
-        </ngx-input>
-
-        <select *ngIf="schema?.enum" class="value-input select" [ngModel]="model" (ngModelChange)="updateModel($event)">
-          <option *ngFor="let option of schema.enum" [value]="option">{{ option }}</option>
-        </select>
-        <ngx-icon class="options-icon" fontIcon="dots-vert"></ngx-icon>
-      </div>
-
-      <!-- Password -->
-      <div *ngIf="schema.format === 'password'">
-        <input
-          class="value-input"
-          type="password"
-          [ngModel]="model"
-          (ngModelChange)="updateModel($event)"
-          [required]="required"
-        />
-      </div>
-
-      <!-- Date -->
-      <div *ngIf="schema.format === 'date'">
-        <input
-          class="value-input"
-          type="date"
-          [ngModel]="model"
-          (ngModelChange)="updateModel($event)"
-          [required]="required"
-        />
-      </div>
-
-      <!-- DateTime -->
-      <div *ngIf="schema.format === 'date-time'">
-        <input
-          class="value-input"
-          type="datetime-local"
-          [ngModel]="model"
-          (ngModelChange)="updateModel($event)"
-          [required]="required"
-        />
-      </div>
-
-      <!-- Code -->
-      <div *ngIf="schema.format === 'code'">
-        <div class="value-input code">
-          <ngx-icon
-            fontIcon="edit"
-            class="edit-code-icon"
-            ngx-tooltip
-            tooltipTitle="Edit Code"
-            (click)="openCodeEditor()"
-          ></ngx-icon>
-          <div class="code-display">{{ model }}</div>
+        <!-- Password -->
+        <div *ngIf="schema.format === 'password'">
+          <input class="value-input" type="password" [ngModel]="model" (ngModelChange)="updateModel($event)"
+            [required]="required" />
         </div>
-      </div>
 
-      <ng-template #codeEditorTpl>
-        <div class="code-editor">
-          <ngx-select
-            class="mode-select"
-            label="Language Mode"
-            [ngModel]="[editorConfig.mode.name]"
-            (ngModelChange)="selectEditorMode($event[0])"
-          >
-            <ngx-select-option *ngFor="let mode of editorModes" [name]="mode.label" [value]="mode.name">
-            </ngx-select-option>
-          </ngx-select>
-
-          <ngx-button class="btn btn-primary save-code-button" (click)="updateModel(editorModel); closeCodeEditor()">
-            Save</ngx-button
-          >
-
-          <ngx-codemirror
-            *ngIf="editorVisible"
-            [ngModel]="editorModel"
-            (ngModelChange)="editorModel = $event"
-            [config]="editorConfig"
-            class="code-editor"
-          >
-          </ngx-codemirror>
+        <!-- Date -->
+        <div *ngIf="schema.format === 'date'">
+          <input class="value-input" type="date" [ngModel]="model" (ngModelChange)="updateModel($event)"
+            [required]="required" />
         </div>
-      </ng-template>
+
+        <!-- DateTime -->
+        <div *ngIf="schema.format === 'date-time'">
+          <input class="value-input" type="datetime-local" [ngModel]="model" (ngModelChange)="updateModel($event)"
+            [required]="required" />
+        </div>
+
+        <!-- Code -->
+        <div *ngIf="schema.format === 'code'">
+          <div class="value-input code">
+            <ngx-icon fontIcon="edit" class="edit-code-icon" ngx-tooltip tooltipTitle="Edit Code"
+              (click)="openCodeEditor()">
+            </ngx-icon>
+            <div class="code-display">{{ model }}</div>
+          </div>
+        </div>
+
+        <ng-template #codeEditorTpl>
+          <div class="code-editor">
+            <ngx-select class="mode-select" label="Language Mode" [ngModel]="[editorConfig.mode.name]"
+              (ngModelChange)="selectEditorMode($event[0])">
+              <ngx-select-option *ngFor="let mode of editorModes" [name]="mode.label" [value]="mode.name">
+              </ngx-select-option>
+            </ngx-select>
+
+            <ngx-button class="btn btn-primary save-code-button" (click)="updateModel(editorModel); closeCodeEditor()">
+              Save</ngx-button>
+
+            <ngx-codemirror *ngIf="editorVisible" [ngModel]="editorModel" (ngModelChange)="editorModel = $event"
+              [config]="editorConfig" class="code-editor">
+            </ngx-codemirror>
+          </div>
+        </ng-template>
     </ng-container>
   </div>
 
