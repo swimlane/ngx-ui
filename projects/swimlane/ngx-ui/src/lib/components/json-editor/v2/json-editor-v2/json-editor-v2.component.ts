@@ -1,5 +1,5 @@
 import { Component, ContentChildren, QueryList } from '@angular/core';
-import { JsonEditorV2NodeComponent } from '../json-editor-v2-node/json-editor-v2-node.component';
+import { JsonEditorNodeV2Component } from '../json-editor-node-v2/json-editor-node-v2.component';
 import { SchemaValidatorService } from '../../schema-validator.service';
 import { JsonEditor } from '../../json-editor';
 
@@ -9,12 +9,10 @@ import { JsonEditor } from '../../json-editor';
   styleUrls: ['./json-editor-v2.component.scss']
 })
 export class JsonEditorV2Component extends JsonEditor {
-
-  @ContentChildren(JsonEditorV2NodeComponent)
-  nodeElms: QueryList<JsonEditorV2NodeComponent>;
+  @ContentChildren(JsonEditorNodeV2Component)
+  nodeElms: QueryList<JsonEditorNodeV2Component>;
 
   constructor(protected schemaValidatorService: SchemaValidatorService) {
     super(schemaValidatorService);
   }
-
 }

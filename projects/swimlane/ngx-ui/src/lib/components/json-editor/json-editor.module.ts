@@ -19,7 +19,7 @@ import { ObjectNodeComponent } from './v1/node-types/object-node/object-node.com
 import { ArrayNodeComponent } from './v1/node-types/array-node/array-node.component';
 
 import { JsonEditorV2Component } from './v2/json-editor-v2/json-editor-v2.component';
-import { JsonEditorV2NodeComponent } from './v2/json-editor-v2-node/json-editor-v2-node.component';
+import { JsonEditorNodeV2Component } from './v2/json-editor-node-v2/json-editor-node-v2.component';
 import { ArrayNodeV2Component } from './v2/node-types/array-node-v2/array-node-v2.component';
 import { ObjectNodeV2Component } from './v2/node-types/object-node-v2/object-node-v2.component';
 
@@ -30,7 +30,7 @@ import { ObjectNodeV2Component } from './v2/node-types/object-node-v2/object-nod
     ObjectNodeComponent,
     ArrayNodeComponent,
     JsonEditorV2Component,
-    JsonEditorV2NodeComponent,
+    JsonEditorNodeV2Component,
     ArrayNodeV2Component,
     ObjectNodeV2Component
   ],
@@ -40,7 +40,7 @@ import { ObjectNodeV2Component } from './v2/node-types/object-node-v2/object-nod
     ObjectNodeComponent,
     ArrayNodeComponent,
     JsonEditorV2Component,
-    JsonEditorV2NodeComponent,
+    JsonEditorNodeV2Component,
     ArrayNodeV2Component,
     ObjectNodeV2Component
   ],

@@ -1,0 +1,12 @@
+@import 'colors/variables';
+@import '../node-types.extensions.scss';
+
+.array-node-v2 {
+  .array-node-content {
+    @extend %node-type;
+  }
+
+  .add-button {
+    @extend %add-button;
+  }
+}

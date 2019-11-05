@@ -98,10 +98,6 @@ export class JsonEditorPageComponent {
     }
   };
 
-  constructor() {
-    console.log('JsonEditorPageComponent');
-  }
-
   updateJsonEditorSchema(schema: string) {
     this.jsonEditorSchema = JSON.parse(schema);
     this.jsonEditorModel = {};

@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { JsonEditorV2NodeComponent } from './json-editor-v2-node.component';
+import { JsonEditorNodeV2Component } from './json-editor-node-v2.component';
 
-describe('JsonEditorV2NodeComponent', () => {
-  let component: JsonEditorV2NodeComponent;
-  let fixture: ComponentFixture<JsonEditorV2NodeComponent>;
+describe('JsonEditorNodeV2Component', () => {
+  let component: JsonEditorNodeV2Component;
+  let fixture: ComponentFixture<JsonEditorNodeV2Component>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ JsonEditorV2NodeComponent ]
+      declarations: [JsonEditorNodeV2Component]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(JsonEditorV2NodeComponent);
+    fixture = TestBed.createComponent(JsonEditorNodeV2Component);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
