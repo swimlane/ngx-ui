@@ -33,8 +33,14 @@
     padding: 25px 10px 25px 30px;
     position: relative;
 
-    &.invalid {
-      border: 2px solid $color-red-500;
+    .error-box {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 11px;
+      top: 0;
+      left: 0;
+      border: 2px solid $color-red-500
     }
 
     .required-indicator {
@@ -97,6 +103,23 @@
 
           .ngx-input-hint {
             min-height: 0;
+          }
+        }
+
+        .code {
+          &:hover {
+            button {
+              display: inline;
+            }
+          }
+
+          input {
+            color: $color-blue-grey-100;
+          }
+
+          button {
+            display: none;
+            color: $color-blue-grey-400;
           }
         }
 

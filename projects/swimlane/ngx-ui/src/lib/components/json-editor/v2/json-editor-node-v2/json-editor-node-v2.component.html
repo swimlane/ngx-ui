@@ -7,6 +7,8 @@
         <span class="separator" *ngFor="let separator of indentationArray"></span>
       </div>
 
+      <div class="error-box" *ngIf="!valid"></div>
+
       <span class="required-indicator" *ngIf="required" [class.invalid]="!childrenValid">*</span>
 
       <div class="node-content">
@@ -46,8 +48,6 @@
                 [requiredIndicator]="false" [required]="required">
               </ngx-input>
 
-              <div>{{model}}</div>
-
               <!-- TODO: Convert to ngx-select-->
               <ngx-select [filterable]="false" *ngIf="schema?.enum" [ngModel]="[model]"
                 (ngModelChange)="updateModel($event)" [required]="required">
@@ -75,13 +75,17 @@
             </div>
 
             <!-- Code -->
-            <div *ngIf="schema.format === 'code'">
-              <div class="value-input code">
-                <ngx-icon fontIcon="edit" class="edit-code-icon" ngx-tooltip tooltipTitle="Edit Code"
-                  (click)="openCodeEditor()">
-                </ngx-icon>
-                <div class="code-display">{{ model }}</div>
-              </div>
+            <div *ngIf="schema.format === 'code'" class="code">
+              <ngx-input type="text" [ngModel]="model" [requiredIndicator]="false" [required]="required"
+                [disabled]="true">
+                <ngx-input-suffix>
+                  <button>
+                    <ngx-icon fontIcon="edit" class="edit-code-icon" ngx-tooltip tooltipTitle="Edit Code"
+                      (click)="openCodeEditor()">
+                    </ngx-icon>
+                  </button>
+                </ngx-input-suffix>
+              </ngx-input>
             </div>
 
             <ng-template #codeEditorTpl>
