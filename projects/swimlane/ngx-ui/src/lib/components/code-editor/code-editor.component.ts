@@ -9,7 +9,8 @@ import {
   forwardRef,
   AfterViewInit,
   ViewEncapsulation,
-  OnDestroy
+  OnDestroy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
@@ -60,6 +61,7 @@ const CODEMIRROR_VALUE_ACCESSOR = {
       </div>
     </div>
   `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
     './codemirror.css',
