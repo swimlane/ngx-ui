@@ -24,4 +24,8 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
       this.indentationArray = Array(this.level - 1).fill(this.level);
     }
   }
+
+  parseInt(value: string): number | null {
+    return value ? parseInt(value) : null;
+  }
 }
