@@ -1,7 +1,8 @@
-<div class="object-node-v2" [hidden]="!expanded">
+<div class="object-node-flat" [hidden]="!expanded">
   <div class="object-node-content" *ngFor="let prop of propertyIndex | keyvalue; trackBy: trackBy">
-    <ngx-json-editor-node-v2 [model]="model[prop.value.propertyName]" (modelChange)="updateProp(prop.value.id, $event)"
-      [schema]="prop.value" [required]="!!requiredCache[prop.value.propertyName]"
+    <ngx-json-editor-node-flat [model]="model[prop.value.propertyName]"
+      (modelChange)="updateProp(prop.value.id, $event)" [schema]="prop.value"
+      [required]="!!requiredCache[prop.value.propertyName]"
       [inline]="prop.value.type !== 'array' && prop.value.type !== 'object'"
       [path]="path + getPath(prop.value.propertyName)" [errors]="errors" [typeCheckOverrides]="typeCheckOverrides"
       [level]="level">
@@ -30,7 +31,7 @@
           </ul>
         </ngx-dropdown-menu>
       </ngx-dropdown>
-    </ngx-json-editor-node-v2>
+    </ngx-json-editor-node-flat>
   </div>
 
   <div class="add-button" [class.background]="level" [style.left]="-1 *level * 20 + 'px'"

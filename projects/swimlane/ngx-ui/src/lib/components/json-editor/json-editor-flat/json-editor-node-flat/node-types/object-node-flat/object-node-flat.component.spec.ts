@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { ObjectNodeV2Component } from './object-node-v2.component';
+import { ObjectNodeFlatComponent } from './object-node-flat.component';
 
-describe('ObjectNodeV2Component', () => {
-  let component: ObjectNodeV2Component;
-  let fixture: ComponentFixture<ObjectNodeV2Component>;
+describe('ObjectNodeFlatComponent', () => {
+  let component: ObjectNodeFlatComponent;
+  let fixture: ComponentFixture<ObjectNodeFlatComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ObjectNodeV2Component ]
+      declarations: [ObjectNodeFlatComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ObjectNodeV2Component);
+    fixture = TestBed.createComponent(ObjectNodeFlatComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

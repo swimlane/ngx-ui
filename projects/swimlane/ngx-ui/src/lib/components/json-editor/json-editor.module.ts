@@ -18,10 +18,10 @@ import { JsonEditorNodeComponent } from './json-editor/json-editor-node/json-edi
 import { ObjectNodeComponent } from './json-editor/json-editor-node/node-types/object-node/object-node.component';
 import { ArrayNodeComponent } from './json-editor/json-editor-node/node-types/array-node/array-node.component';
 
-import { JsonEditorV2Component } from './json-editor-v2/json-editor-v2.component';
-import { JsonEditorNodeV2Component } from './json-editor-v2/json-editor-node-v2/json-editor-node-v2.component';
-import { ArrayNodeV2Component } from './json-editor-v2/json-editor-node-v2/node-types/array-node-v2/array-node-v2.component';
-import { ObjectNodeV2Component } from './json-editor-v2/json-editor-node-v2/node-types/object-node-v2/object-node-v2.component';
+import { JsonEditorFlatComponent } from './json-editor-flat/json-editor-flat.component';
+import { JsonEditorNodeFlatComponent } from './json-editor-flat/json-editor-node-flat/json-editor-node-flat.component';
+import { ArrayNodeFlatComponent } from './json-editor-flat/json-editor-node-flat/node-types/array-node-flat/array-node-flat.component';
+import { ObjectNodeFlatComponent } from './json-editor-flat/json-editor-node-flat/node-types/object-node-flat/object-node-flat.component';
 
 @NgModule({
   declarations: [
@@ -29,20 +29,20 @@ import { ObjectNodeV2Component } from './json-editor-v2/json-editor-node-v2/node
     JsonEditorNodeComponent,
     ObjectNodeComponent,
     ArrayNodeComponent,
-    JsonEditorV2Component,
-    JsonEditorNodeV2Component,
-    ArrayNodeV2Component,
-    ObjectNodeV2Component
+    JsonEditorFlatComponent,
+    JsonEditorNodeFlatComponent,
+    ArrayNodeFlatComponent,
+    ObjectNodeFlatComponent
   ],
   exports: [
     JsonEditorComponent,
     JsonEditorNodeComponent,
     ObjectNodeComponent,
     ArrayNodeComponent,
-    JsonEditorV2Component,
-    JsonEditorNodeV2Component,
-    ArrayNodeV2Component,
-    ObjectNodeV2Component
+    JsonEditorFlatComponent,
+    JsonEditorNodeFlatComponent,
+    ArrayNodeFlatComponent,
+    ObjectNodeFlatComponent
   ],
   imports: [
     CommonModule,

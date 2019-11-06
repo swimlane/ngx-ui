@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { ArrayNodeV2Component } from './array-node-v2.component';
+import { ArrayNodeFlatComponent } from './array-node-flat.component';
 
-describe('ArrayNodeV2Component', () => {
-  let component: ArrayNodeV2Component;
-  let fixture: ComponentFixture<ArrayNodeV2Component>;
+describe('ArrayNodeFlatComponent', () => {
+  let component: ArrayNodeFlatComponent;
+  let fixture: ComponentFixture<ArrayNodeFlatComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ArrayNodeV2Component ]
+      declarations: [ArrayNodeFlatComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ArrayNodeV2Component);
+    fixture = TestBed.createComponent(ArrayNodeFlatComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

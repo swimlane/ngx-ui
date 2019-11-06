@@ -1,4 +1,4 @@
-<div class="json-tree-node-v2" [class.invalid]="!valid">
+<div class="json-tree-node-flat" [class.invalid]="!valid">
 
   <div *ngIf="model !== undefined" [class.invalid]="!valid">
 
@@ -29,7 +29,7 @@
         <div class="node-input">
           <!-- Number | Integer -->
           <div *ngIf="schema?.type === 'number' || schema?.type === 'integer'">
-            <ngx-input type="number" [ngModel]="model" (ngModelChange)="updateModel(ParseInt($event))"
+            <ngx-input type="number" [ngModel]="model" (ngModelChange)="updateModel(+$event)"
               [requiredIndicator]="false" [required]="required"></ngx-input>
           </div>
 
@@ -114,16 +114,16 @@
 
     <!-- Object -->
     <div *ngIf="schema?.type === 'object'">
-      <ngx-json-object-node-v2 [schema]="schema" [model]="model" [expanded]="expanded"
+      <ngx-json-object-node-flat [schema]="schema" [model]="model" [expanded]="expanded"
         (modelChange)="updateModel($event)" [path]="path" [errors]="childrenErrors"
-        [typeCheckOverrides]="typeCheckOverrides" [level]="level"></ngx-json-object-node-v2>
+        [typeCheckOverrides]="typeCheckOverrides" [level]="level"></ngx-json-object-node-flat>
     </div>
 
     <!-- Array -->
     <div *ngIf="schema?.type === 'array'">
-      <ngx-json-array-node-v2 [schema]="schema" [model]="model" [expanded]="expanded"
+      <ngx-json-array-node-flat [schema]="schema" [model]="model" [expanded]="expanded"
         (modelChange)="updateModel($event)" [path]="path" [errors]="childrenErrors"
-        [typeCheckOverrides]="typeCheckOverrides" [level]="level"></ngx-json-array-node-v2>
+        [typeCheckOverrides]="typeCheckOverrides" [level]="level"></ngx-json-array-node-flat>
     </div>
   </div>
 </div>

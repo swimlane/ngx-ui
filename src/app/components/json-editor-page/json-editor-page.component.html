@@ -2,12 +2,17 @@
 <ngx-section class="shadow" [sectionTitle]="'JSON Editor'">
   <ngx-tabs>
     <ngx-tab label="Editor">
-      <ngx-json-editor-v2 [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
-        [typeCheckOverrides]="typeOverrides">
-      </ngx-json-editor-v2>
-      <ngx-json-editor [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
-        [typeCheckOverrides]="typeOverrides">
-      </ngx-json-editor>
+      <ngx-section [sectionTitle]="'ngx-json-editor'">
+        <ngx-json-editor [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
+          [typeCheckOverrides]="typeOverrides">
+        </ngx-json-editor>
+      </ngx-section>
+
+      <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat'">
+        <ngx-json-editor-flat [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
+          [typeCheckOverrides]="typeOverrides">
+        </ngx-json-editor-flat>
+      </ngx-section>
       <hr />
       <h3>Model</h3>
       <pre>{{ jsonEditorModel | json }}</pre>
@@ -25,6 +30,11 @@
         <![CDATA[ 
         <ngx-json-editor [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
         [typeCheckOverrides]="typeOverrides"> </ngx-json-editor> ]]>
+      </ngx-codemirror>
+      <ngx-codemirror mode="htmlmixed" readOnly="true">
+        <![CDATA[ 
+          <ngx-json-editor-flat [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
+          [typeCheckOverrides]="typeOverrides"> </ngx-json-editor-flat> ]]>
       </ngx-codemirror>
     </ngx-tab>
     <ngx-tab label="Typescript">

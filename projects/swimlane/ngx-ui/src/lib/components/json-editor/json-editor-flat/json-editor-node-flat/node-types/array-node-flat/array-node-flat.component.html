@@ -1,6 +1,6 @@
-<div class="array-node-v2" [hidden]="!expanded">
+<div class="array-node-flat" [hidden]="!expanded">
   <div class="array-node-content" *ngFor="let value of model; let i = index; trackBy: arrayTrackBy">
-    <ngx-json-editor-node-v2 [model]="value" (modelChange)="updateArrayItem(i, $event)" [schema]="schemas[i]"
+    <ngx-json-editor-node-flat [model]="value" (modelChange)="updateArrayItem(i, $event)" [schema]="schemas[i]"
       [path]="path + '[' + i + ']'" [errors]="errors" [typeCheckOverrides]="typeCheckOverrides" [level]="level">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
@@ -22,7 +22,7 @@
           </ul>
         </ngx-dropdown-menu>
       </ngx-dropdown>
-    </ngx-json-editor-node-v2>
+    </ngx-json-editor-node-flat>
   </div>
 
   <div class="add-button" [class.background]="level" [style.left]="-1 *level * 20 + 'px'"

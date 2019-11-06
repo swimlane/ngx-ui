@@ -4,12 +4,12 @@ import { JsonEditorNode } from '../../json-editor-node';
 import { DialogService } from '../../../dialog/dialog.service';
 
 @Component({
-  selector: 'ngx-json-editor-node-v2',
-  templateUrl: './json-editor-node-v2.component.html',
-  styleUrls: ['./json-editor-node-v2.component.scss'],
+  selector: 'ngx-json-editor-node-flat',
+  templateUrl: './json-editor-node-flat.component.html',
+  styleUrls: ['./json-editor-node-flat.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class JsonEditorNodeV2Component extends JsonEditorNode implements OnInit {
+export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnInit {
   @Input() level: number = -1;
 
   indentationArray: number[] = [];

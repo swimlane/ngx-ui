@@ -1,7 +1,7 @@
 @import 'colors/variables';
 @import '../node-types.extensions.scss';
 
-.object-node-v2 {
+.object-node-flat {
   .object-node-content {
     @extend %node-type;
   }
