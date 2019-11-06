@@ -7,9 +7,6 @@
     }">
   </span>
 
-  {{valid}}
-  {{childrenValid}}
-
   <ngx-icon fontIcon="warning-filled" *ngIf="ownErrors.length > 0" class="error-icon" ngx-tooltip
     [tooltipTemplate]="errorsTemplate" tooltipPlacement="top"></ngx-icon>
   <ng-template #errorsTemplate>
