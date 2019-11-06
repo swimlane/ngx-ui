@@ -43,7 +43,9 @@ export class TabsComponent implements AfterContentInit {
     if (actives.length > 1) {
       console.error(`Multiple active tabs set 'active'`);
     } else if (!actives.length && tabs.length) {
-      tabs[0].active = true;
+      setTimeout(() => {
+        tabs[0].active = true;
+      });
     }
   }
 
