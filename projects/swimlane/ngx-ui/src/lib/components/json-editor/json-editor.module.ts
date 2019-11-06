@@ -13,15 +13,15 @@ import { ToggleModule } from '../toggle/toggle.module';
 import { SelectModule } from '../select/select.module';
 import { SchemaValidatorService } from './schema-validator.service';
 
-import { JsonEditorComponent } from './v1/json-editor/json-editor.component';
-import { JsonEditorNodeComponent } from './v1/json-editor-node/json-editor-node.component';
-import { ObjectNodeComponent } from './v1/node-types/object-node/object-node.component';
-import { ArrayNodeComponent } from './v1/node-types/array-node/array-node.component';
+import { JsonEditorComponent } from './json-editor/json-editor.component';
+import { JsonEditorNodeComponent } from './json-editor/json-editor-node/json-editor-node.component';
+import { ObjectNodeComponent } from './json-editor/json-editor-node/node-types/object-node/object-node.component';
+import { ArrayNodeComponent } from './json-editor/json-editor-node/node-types/array-node/array-node.component';
 
-import { JsonEditorV2Component } from './v2/json-editor-v2/json-editor-v2.component';
-import { JsonEditorNodeV2Component } from './v2/json-editor-node-v2/json-editor-node-v2.component';
-import { ArrayNodeV2Component } from './v2/node-types/array-node-v2/array-node-v2.component';
-import { ObjectNodeV2Component } from './v2/node-types/object-node-v2/object-node-v2.component';
+import { JsonEditorV2Component } from './json-editor-v2/json-editor-v2.component';
+import { JsonEditorNodeV2Component } from './json-editor-v2/json-editor-node-v2/json-editor-node-v2.component';
+import { ArrayNodeV2Component } from './json-editor-v2/json-editor-node-v2/node-types/array-node-v2/array-node-v2.component';
+import { ObjectNodeV2Component } from './json-editor-v2/json-editor-node-v2/node-types/object-node-v2/object-node-v2.component';
 
 @NgModule({
   declarations: [

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ObjectNode } from '../../../node-types/object-node.component';
+import { ObjectNode } from '../../../../node-types/object-node.component';
 
 @Component({
   selector: 'ngx-json-object-node',

@@ -29,8 +29,8 @@
         <div class="node-input">
           <!-- Number | Integer -->
           <div *ngIf="schema?.type === 'number' || schema?.type === 'integer'">
-            <ngx-input type="number" [ngModel]="model" (ngModelChange)="updateModel($event)" [requiredIndicator]="false"
-              [required]="required"></ngx-input>
+            <ngx-input type="number" [ngModel]="model" (ngModelChange)="updateModel(ParseInt($event))"
+              [requiredIndicator]="false" [required]="required"></ngx-input>
           </div>
 
           <!-- Boolean -->
@@ -48,9 +48,8 @@
                 [requiredIndicator]="false" [required]="required">
               </ngx-input>
 
-              <!-- TODO: Convert to ngx-select-->
               <ngx-select [filterable]="false" *ngIf="schema?.enum" [ngModel]="[model]"
-                (ngModelChange)="updateModel($event)" [required]="required">
+                (ngModelChange)="updateModel($event[0])" [required]="required">
                 <ngx-select-option *ngFor="let option of schema.enum" [name]="option" [value]="option">
                 </ngx-select-option>
               </ngx-select>

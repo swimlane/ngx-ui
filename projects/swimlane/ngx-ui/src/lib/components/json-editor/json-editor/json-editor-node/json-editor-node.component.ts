@@ -14,6 +14,4 @@ export class JsonEditorNodeComponent extends JsonEditorNode {
   constructor(public dialogMngr: DialogService) {
     super(dialogMngr)
   }
-
-
 }

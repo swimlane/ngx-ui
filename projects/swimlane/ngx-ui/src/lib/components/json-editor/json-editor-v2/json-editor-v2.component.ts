@@ -1,7 +1,7 @@
 import { Component, ContentChildren, QueryList } from '@angular/core';
-import { JsonEditorNodeV2Component } from '../json-editor-node-v2/json-editor-node-v2.component';
-import { SchemaValidatorService } from '../../schema-validator.service';
-import { JsonEditor } from '../../json-editor';
+import { JsonEditorNodeV2Component } from './json-editor-node-v2/json-editor-node-v2.component';
+import { SchemaValidatorService } from '../schema-validator.service';
+import { JsonEditor } from '../json-editor';
 
 @Component({
   selector: 'ngx-json-editor-v2',
