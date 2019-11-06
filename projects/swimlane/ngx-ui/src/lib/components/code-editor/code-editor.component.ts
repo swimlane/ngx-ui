@@ -9,7 +9,6 @@ import {
   forwardRef,
   AfterViewInit,
   ViewEncapsulation,
-  OnDestroy,
   ChangeDetectionStrategy
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
@@ -73,34 +72,17 @@ const CODEMIRROR_VALUE_ACCESSOR = {
     './code-editor.component.scss'
   ]
 })
-export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
-  @Input()
-  config: any = {
-    lineWrapping: true
-  };
+export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+  @Input() config: any = { lineWrapping: true };
   @Input() theme: string = 'dracula';
   @Input() readOnly: any = false;
-  @Input() mode: any;
   @Input() autofocus: boolean = false;
-  @Input() lint: any;
   @Input() allowDropFileTypes: any[] = [];
-  @Input() lineNumbers: any;
   @Input() gutters: any[] = [];
-
-  @Input()
-  autocompleteTokens: Array<string | HintCompletion>;
-
-  set value(val: string) {
-    if (val !== this._value) {
-      this._value = val;
-      this.onChangeCallback(val);
-      this.change.emit(this._value);
-    }
-  }
-
-  get value(): string {
-    return this._value;
-  }
+  @Input() mode?: any;
+  @Input() lint?: any;
+  @Input() lineNumbers?: any;
+  @Input() autocompleteTokens?: Array<string | HintCompletion>;
 
   @Output() change: EventEmitter<any> = new EventEmitter();
   @Output() blur: EventEmitter<any> = new EventEmitter();
@@ -111,7 +93,16 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
   instance: CodeMirror.EditorFromTextArea;
   _value: string;
 
-  constructor(private renderer: Renderer2) { }
+  get value(): string { return this._value; }
+  set value(val: string) {
+    if (val !== this._value) {
+      this._value = val;
+      this.onChangeCallback(val);
+      this.change.emit(this._value);
+    }
+  }
+
+  constructor(private readonly renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.config = {
@@ -148,27 +139,11 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     }
 
     this.instance = CodeMirror.fromTextArea(this.host.nativeElement, this.config);
-    this.instance.on('change', () => {
-      this.updateValue(this.instance.getValue());
-    });
+    this.instance.on('change', this.onChange.bind(this));
+    this.instance.on('blur', this.onBlur.bind(this));
 
     if (this.autocompleteTokens) {
-      this.instance.on('keyup', (cm: any, event: KeyboardEvent) => {
-        if ((!cm.state.completionActive && (event.keyCode > 64 && event.keyCode < 91)) || event.keyCode === 219) {
-          (CodeMirror.commands as any).autocomplete(cm, null, { completeSingle: false });
-        }
-      });
-    }
-
-    this.instance.on('blur', () => {
-      this.blur.emit(this.instance.getValue());
-    });
-  }
-
-  ngOnDestroy(): void {
-    if (this.instance) {
-      this.instance.off('change', undefined);
-      this.instance.off('blur', undefined);
+      this.instance.on('keyup', this.onKeyUp.bind(this));
     }
   }
 
@@ -209,6 +184,20 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     this.instance.refresh();
   }
 
+  onKeyUp(cm: CodeMirror.EditorFromTextArea, event: KeyboardEvent) {
+    if ((!cm.state.completionActive && (event.keyCode > 64 && event.keyCode < 91)) || event.keyCode === 219) {
+      (CodeMirror.commands as any).autocomplete(cm, null, { completeSingle: false });
+    }
+  }
+
+  onChange() {
+    this.updateValue(this.instance.getValue());
+  }
+
+  onBlur() {
+    this.blur.emit(this.instance.getValue());
+  }
+
   updateValue(value: string): void {
     this.value = value;
     this.onTouchedCallback();
@@ -239,7 +228,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     // placeholder
   };
 
-  private autocomplete(editor: any) {
+  private autocomplete(editor: CodeMirror.EditorFromTextArea) {
     const word = /[\S$]+/;
     const cur = editor.getCursor();
     const curLine = editor.getLine(cur.line);
