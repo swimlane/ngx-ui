@@ -3,12 +3,14 @@
 ## HEAD (Unreleased)
 
 - Feature: Add token hints to `ngx-codemirror`
-
----
-
-## 27.1.0 (2019-10-22)
-
 - Enhancement: Add support for templates in tab headers (#302)
+
+## 27.1.0 (2019-10-28)
+
+- Enhancement: Change InjectionService to use portals (#309)
+- Enhancement: Aacebo/button on push (#306)
+- Fix: Fix changed after check error (#310)
+- Chore; Remove codeclimate config file. Update readme (#311)
 
 ## 27.0.0 (2019-09-30)
 

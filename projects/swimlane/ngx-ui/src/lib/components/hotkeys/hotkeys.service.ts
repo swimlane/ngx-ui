@@ -143,10 +143,10 @@ export function _deregister(comp) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
-    for (const hotkey of hotkeyList) {
-      if (hotkey.component === comp) {
-        hotkeys[comb].status = 'disabled';
-        hotkeys[comb].splice(hotkeys[comb].indexOf(hotkey), 1);
+    for (let i = 0; i < hotkeyList.length; i++) {
+      if (hotkeyList[i].component === comp) {
+        hotkeyList[i].status = 'disabled';
+        hotkeyList.splice(hotkeyList.indexOf(hotkeyList[i]), 1);
       }
     }
 

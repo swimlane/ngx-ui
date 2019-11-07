@@ -111,6 +111,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/swimlane/ngx-ui/src/test.ts",
+            "codeCoverage": true,
             "tsConfig": "projects/swimlane/ngx-ui/tsconfig.spec.json",
             "karmaConfig": "projects/swimlane/ngx-ui/karma.conf.js",
             "stylePreprocessorOptions": {
