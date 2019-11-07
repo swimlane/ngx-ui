@@ -1,4 +1,4 @@
-import { Component, Input, TemplateRef, ContentChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, Input, TemplateRef, ContentChild, ElementRef, Renderer2, OnInit, ViewChild } from '@angular/core';
 import { IfTabActiveDirective } from './if-tab-active.directive';
 
 /**
@@ -6,31 +6,19 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
  */
 @Component({
   selector: 'ngx-tab',
-  template: `
-    <div *ngIf="template; then template_container; else content_container"></div>
-    <ng-template #template_container>
-      <div *ngIf="active">
-        <ng-container [ngTemplateOutlet]="template.templateRef"></ng-container>
-      </div>
-    </ng-template>
-    <ng-template #content_container>
-      <div [hidden]="!active">
-        <ng-content></ng-content>
-      </div>
-    </ng-template>
-  `,
+  templateUrl: './tab.component.html',
   host: {
     class: 'ngx-tab'
   }
 })
-export class TabComponent {
-  @Input() title = '';
-  @Input() label = '';
+export class TabComponent implements OnInit {
+  @Input() title: string = '';
+  @Input() label: string | TemplateRef<any> = '';
   @Input() active = false;
-
   @Input() disabled = false;
-
+  @ViewChild('labelIsStringTmpl', { static: true }) labelStringTemplate;
   @ContentChild(IfTabActiveDirective, { static: false }) template: IfTabActiveDirective;
+  labelTemplate: TemplateRef<any>;
 
   constructor(private renderer: Renderer2, private elRef: ElementRef) {}
 
@@ -40,5 +28,7 @@ export class TabComponent {
       this.label = this.title;
       this.renderer.removeAttribute(this.elRef.nativeElement, 'title');
     }
+
+    this.labelTemplate = typeof this.label === 'string' ? this.labelStringTemplate : this.label;
   }
 }
