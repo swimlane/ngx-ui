@@ -2,10 +2,7 @@
   <ul class="ngx-tabs-list list-reset" [class.tabs-vertical]="vertical" [class.tabs-horizontal]="!vertical">
     <li *ngFor="let tab of tabs" class="ngx-tab" [class.disabled]="tab.disabled" [class.active]="tab.active">
       <button (click)="tabClicked(tab)" [disabled]="tab.disabled">
-        <ng-container
-          *ngTemplateOutlet="labelIsString(tab.label) ? labelIsStringTmpl : tab.label; context: { $implicit: tab }"
-        >
-        </ng-container>
+        <ng-container *ngTemplateOutlet="tab.labelTemplate; context: { $implicit: tab }"> </ng-container>
       </button>
     </li>
   </ul>
@@ -13,5 +10,3 @@
     <ng-content></ng-content>
   </div>
 </section>
-
-<ng-template #labelIsStringTmpl let-tab>{{ tab.label }}</ng-template>

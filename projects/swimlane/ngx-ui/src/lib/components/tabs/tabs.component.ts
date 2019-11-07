@@ -49,10 +49,6 @@ export class TabsComponent implements AfterContentInit {
     }
   }
 
-  labelIsString(label: string | TemplateRef<any>) {
-    return !label || typeof label === 'string';
-  }
-
   tabClicked(activeTab): void {
     const tabs = this.tabs.toArray();
 
