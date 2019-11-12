@@ -7,7 +7,9 @@ import {
   EventEmitter,
   ViewEncapsulation,
   AfterContentInit,
-  TemplateRef
+  TemplateRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 
 import { TabComponent } from './tab.component';
@@ -19,7 +21,8 @@ import { TabComponent } from './tab.component';
     class: 'ngx-tabs'
   },
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./tabs.component.scss']
+  styleUrls: ['./tabs.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsComponent implements AfterContentInit {
   @Input() vertical: boolean;
@@ -36,6 +39,8 @@ export class TabsComponent implements AfterContentInit {
     return tabs.findIndex(tab => tab.active);
   }
 
+  constructor(private cdr: ChangeDetectorRef) {}
+
   ngAfterContentInit(): void {
     const tabs = this.tabs.toArray();
     const actives = this.tabs.filter(t => t.active);
@@ -45,15 +50,18 @@ export class TabsComponent implements AfterContentInit {
     } else if (!actives.length && tabs.length) {
       setTimeout(() => {
         tabs[0].active = true;
+        tabs[0].detectChanges();
+        this.cdr.detectChanges();
       });
     }
   }
 
-  tabClicked(activeTab): void {
-    const tabs = this.tabs.toArray();
+  tabClicked(activeTab: TabComponent): void {
+    this.tabs.forEach(tab => (tab.active = false));
 
-    tabs.forEach(tab => (tab.active = false));
     activeTab.active = true;
+    this.tabs.forEach(tab => tab.detectChanges());
+    this.cdr.detectChanges();
 
     this.selectTab.emit(activeTab);
   }
