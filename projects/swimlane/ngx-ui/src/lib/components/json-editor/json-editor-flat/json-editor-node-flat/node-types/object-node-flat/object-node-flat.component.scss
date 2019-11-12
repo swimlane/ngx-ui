@@ -10,3 +10,10 @@
     @extend %add-button;
   }
 }
+
+.property-config-dialog {
+  .ngx-dialog-content {
+    padding: 0 !important;
+    min-width: 500px !important;
+  }
+}

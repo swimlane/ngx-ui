@@ -7,12 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class PropertyConfigComponent implements OnInit {
   @Input() property: unknown;
+  @Input() propertyIndex: Array<unknown>;
   @Input() schema: any;
 
   constructor() { }
 
   ngOnInit() {
     console.log(this.property);
+    console.log(this.propertyIndex);
   }
 
 }

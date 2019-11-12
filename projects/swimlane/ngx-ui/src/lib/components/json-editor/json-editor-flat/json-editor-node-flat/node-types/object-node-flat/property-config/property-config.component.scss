@@ -1,3 +1,23 @@
+@import 'colors/variables';
+
 .property-config {
-  height: 200px;
+
+  .header {
+    background: linear-gradient(180deg, $color-blue-grey-650 0%, $color-blue-grey-750 100%);
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+
+    span {
+      font-size: 19px;
+      color: white;
+    }
+
+    button {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
 }

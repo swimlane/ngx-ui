@@ -1,4 +1,4 @@
-import { Component, ContentChildren, QueryList, Input } from '@angular/core';
+import { Component, ContentChildren, QueryList, Input, ViewEncapsulation } from '@angular/core';
 import { JsonEditorNodeFlatComponent } from './json-editor-node-flat/json-editor-node-flat.component';
 import { SchemaValidatorService } from '../schema-validator.service';
 import { JsonEditor } from '../json-editor';
@@ -6,7 +6,8 @@ import { JsonEditor } from '../json-editor';
 @Component({
   selector: 'ngx-json-editor-flat',
   templateUrl: './json-editor-flat.component.html',
-  styleUrls: ['./json-editor-flat.component.scss']
+  styleUrls: ['./json-editor-flat.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class JsonEditorFlatComponent extends JsonEditor {
   @Input() schemaBuilderMode?: boolean = false;

@@ -9,7 +9,7 @@ import { DialogService } from '../../../../../dialog/dialog.service';
   encapsulation: ViewEncapsulation.None
 })
 export class ObjectNodeFlatComponent extends ObjectNode {
-  @ViewChild('propertyConfigTmpl', { static: true }) propertyConfigTmpl: TemplateRef<any>;
+  @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<any>;
 
   @Input() level: number;
   @Input() schemaBuilderMode: boolean;
@@ -23,8 +23,10 @@ export class ObjectNodeFlatComponent extends ObjectNode {
       template: this.propertyConfigTmpl,
       context: {
         property,
-        schema: this.schema
-      }
+        propertyIndex: this.propertyIndex,
+        schema: this.schema,
+      },
+      class: 'property-config-dialog'
     });
   }
 
