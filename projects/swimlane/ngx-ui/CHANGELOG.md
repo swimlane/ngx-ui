@@ -2,6 +2,9 @@
 
 ## HEAD (Unreleased)
 
+- Feature: Add token hints to `ngx-codemirror`
+- Enhancement: Add support for templates in tab headers (#302)
+
 ## 27.1.0 (2019-10-28)
 
 - Enhancement: Change InjectionService to use portals (#309)
