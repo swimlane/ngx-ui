@@ -11,6 +11,7 @@ import { DialogService } from '../../../dialog/dialog.service';
 })
 export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnInit {
   @Input() level: number = -1;
+  @Input() schemaBuilderMode?: boolean;
 
   indentationArray: number[] = [];
 

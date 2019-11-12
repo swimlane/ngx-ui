@@ -22,6 +22,7 @@ import { JsonEditorFlatComponent } from './json-editor-flat/json-editor-flat.com
 import { JsonEditorNodeFlatComponent } from './json-editor-flat/json-editor-node-flat/json-editor-node-flat.component';
 import { ArrayNodeFlatComponent } from './json-editor-flat/json-editor-node-flat/node-types/array-node-flat/array-node-flat.component';
 import { ObjectNodeFlatComponent } from './json-editor-flat/json-editor-node-flat/node-types/object-node-flat/object-node-flat.component';
+import { PropertyConfigComponent } from './json-editor-flat/json-editor-node-flat/node-types/object-node-flat/property-config/property-config.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ObjectNodeFlatComponent } from './json-editor-flat/json-editor-node-fla
     JsonEditorFlatComponent,
     JsonEditorNodeFlatComponent,
     ArrayNodeFlatComponent,
-    ObjectNodeFlatComponent
+    ObjectNodeFlatComponent,
+    PropertyConfigComponent,
   ],
   exports: [
     JsonEditorComponent,
@@ -42,7 +44,8 @@ import { ObjectNodeFlatComponent } from './json-editor-flat/json-editor-node-fla
     JsonEditorFlatComponent,
     JsonEditorNodeFlatComponent,
     ArrayNodeFlatComponent,
-    ObjectNodeFlatComponent
+    ObjectNodeFlatComponent,
+    PropertyConfigComponent,
   ],
   imports: [
     CommonModule,

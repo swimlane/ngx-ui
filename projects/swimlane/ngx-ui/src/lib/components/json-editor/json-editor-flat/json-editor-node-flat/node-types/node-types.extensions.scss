@@ -13,11 +13,14 @@
     flex: 1;
     margin-left: 20px;
 
-    .ngx-dropdown {
-      margin-left: 10px;
-
-      .node-options {
+    .node-options {
+      .node-options-btn {
         color: $color-blue-grey-400;
+        padding: 1px 3px 2px;
+      }
+
+      .ngx-dropdown {
+        margin-left: 10px;
       }
     }
   }

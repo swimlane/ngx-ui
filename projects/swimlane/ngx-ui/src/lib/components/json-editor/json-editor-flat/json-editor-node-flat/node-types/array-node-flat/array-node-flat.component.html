@@ -1,27 +1,33 @@
 <div class="array-node-flat" [hidden]="!expanded">
   <div class="array-node-content" *ngFor="let value of model; let i = index; trackBy: arrayTrackBy">
     <ngx-json-editor-node-flat [model]="value" (modelChange)="updateArrayItem(i, $event)" [schema]="schemas[i]"
-      [path]="path + '[' + i + ']'" [errors]="errors" [typeCheckOverrides]="typeCheckOverrides" [level]="level">
-      <ngx-dropdown [showCaret]="true">
-        <ngx-dropdown-toggle>
-          <button type="button" class="node-options">
-            <i class="ngx-icon ngx-dots-vert-round"></i>
-          </button>
-        </ngx-dropdown-toggle>
-        <ngx-dropdown-menu class="ngx-dropdown-dark-outline align-right">
-          <ul class="vertical-list">
-            <li><button type="button" (click)="deleteArrayItem(i)">Delete</button></li>
+      [path]="path + '[' + i + ']'" [errors]="errors" [typeCheckOverrides]="typeCheckOverrides" [level]="level"
+      [schemaBuilderMode]="schemaBuilderMode">
+      <div class="node-options">
+        <button type="button" class="node-options-btn">
+          <i class="ngx-icon ngx-cog"></i>
+        </button>
+        <ngx-dropdown [showCaret]="true">
+          <ngx-dropdown-toggle>
+            <button type="button" class="node-options-btn">
+              <i class="ngx-icon ngx-dots-vert-round"></i>
+            </button>
+          </ngx-dropdown-toggle>
+          <ngx-dropdown-menu class="ngx-dropdown-dark-outline align-right">
+            <ul class="vertical-list">
+              <li><button type="button" (click)="deleteArrayItem(i)">Delete</button></li>
 
-            <ng-container *ngIf="schemas[i]?.$meta?.type">
-              <li *ngFor="let type of schemas[i]?.$meta?.type">
-                <button type="button" (click)="changeItemType(i, type)" [disabled]="schemas[i].currentType === type">
-                  Change type to {{ dataTypeMap[type].name }}
-                </button>
-              </li>
-            </ng-container>
-          </ul>
-        </ngx-dropdown-menu>
-      </ngx-dropdown>
+              <ng-container *ngIf="schemas[i]?.$meta?.type">
+                <li *ngFor="let type of schemas[i]?.$meta?.type">
+                  <button type="button" (click)="changeItemType(i, type)" [disabled]="schemas[i].currentType === type">
+                    Change type to {{ dataTypeMap[type].name }}
+                  </button>
+                </li>
+              </ng-container>
+            </ul>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
+      </div>
     </ngx-json-editor-node-flat>
   </div>
 

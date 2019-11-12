@@ -9,4 +9,5 @@ import { ArrayNode } from '../../../../node-types/array-node.component';
 })
 export class ArrayNodeFlatComponent extends ArrayNode {
   @Input() level: number;
+  @Input() schemaBuilderMode: boolean;
 }

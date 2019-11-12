@@ -2,15 +2,15 @@
 <ngx-section class="shadow" [sectionTitle]="'JSON Editor'">
   <ngx-tabs>
     <ngx-tab label="Editor">
-      <ngx-section [sectionTitle]="'ngx-json-editor'">
+      <!-- <ngx-section [sectionTitle]="'ngx-json-editor'">
         <ngx-json-editor [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
           [typeCheckOverrides]="typeOverrides">
         </ngx-json-editor>
-      </ngx-section>
+      </ngx-section> -->
 
       <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat'">
         <ngx-json-editor-flat [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
-          [typeCheckOverrides]="typeOverrides">
+          [typeCheckOverrides]="typeOverrides" [schemaBuilderMode]="true">
         </ngx-json-editor-flat>
       </ngx-section>
       <hr />

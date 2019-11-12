@@ -12,7 +12,7 @@ export abstract class InjectionRegisteryService<T = any> {
   protected defaults: PartialBindings = {};
   protected components: Map<any, Array<ComponentRef<T>>> = new Map();
 
-  constructor(protected injectionService: InjectionService) {}
+  constructor(protected injectionService: InjectionService) { }
 
   getByType(type: Type<T> = this.type) {
     return this.components.get(type);

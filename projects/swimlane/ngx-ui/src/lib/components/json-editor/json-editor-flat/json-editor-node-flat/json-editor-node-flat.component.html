@@ -23,7 +23,7 @@
         <span class="description">{{ schema?.description }}</span>
       </div>
 
-      <div class="node-input">
+      <div *ngIf="!schemaBuilderMode" class="node-input">
         <!-- Number | Integer -->
         <div *ngIf="schema?.type === 'number' || schema?.type === 'integer'">
           <ngx-input type="number" [ngModel]="model" (ngModelChange)="updateModel(parseInt($event))"
@@ -113,13 +113,15 @@
   <div *ngIf="schema?.type === 'object'">
     <ngx-json-object-node-flat [schema]="schema" [model]="model" [expanded]="expanded"
       (modelChange)="updateModel($event)" [path]="path" [errors]="childrenErrors"
-      [typeCheckOverrides]="typeCheckOverrides" [level]="level"></ngx-json-object-node-flat>
+      [typeCheckOverrides]="typeCheckOverrides" [level]="level" [schemaBuilderMode]="schemaBuilderMode">
+    </ngx-json-object-node-flat>
   </div>
 
   <!-- Array -->
   <div *ngIf="schema?.type === 'array'">
     <ngx-json-array-node-flat [schema]="schema" [model]="model" [expanded]="expanded"
       (modelChange)="updateModel($event)" [path]="path" [errors]="childrenErrors"
-      [typeCheckOverrides]="typeCheckOverrides" [level]="level"></ngx-json-array-node-flat>
+      [typeCheckOverrides]="typeCheckOverrides" [level]="level" [schemaBuilderMode]="schemaBuilderMode">
+    </ngx-json-array-node-flat>
   </div>
 </div>
