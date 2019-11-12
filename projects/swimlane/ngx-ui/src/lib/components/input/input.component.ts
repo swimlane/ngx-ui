@@ -1,7 +1,6 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
   AfterViewInit,
-  ChangeDetectorRef,
   Component,
   ElementRef,
   EventEmitter,
@@ -11,7 +10,9 @@ import {
   Output,
   ViewChild,
   ViewEncapsulation,
-  forwardRef
+  forwardRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -20,10 +21,12 @@ import {
   NG_VALIDATORS,
   NgModel,
   FormControl,
-  Validators,
-  ValidationErrors
+  Validators
 } from '@angular/forms';
-import { InputTypes } from './input-types';
+import { BehaviorSubject } from 'rxjs';
+
+import { coerceBoolean } from '@swimlane/ngx-ui/utils';
+import { InputTypes } from './input-types.enum';
 
 let nextId = 0;
 
@@ -40,118 +43,14 @@ const INPUT_VALIDATORS = {
 };
 
 @Component({
+  exportAs: 'ngxInput',
   selector: 'ngx-input',
+  templateUrl: './input.component.html',
+  styleUrls: ['./input.component.scss'],
+  host: { class: 'ngx-input' },
   providers: [INPUT_VALUE_ACCESSOR, INPUT_VALIDATORS],
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./input.component.scss'],
-  template: `
-    <div class="ngx-input-wrap">
-      <div class="ngx-input-flex-wrap">
-        <ng-content select="ngx-input-prefix"></ng-content>
-        <div class="ngx-input-flex-wrap-inner">
-          <div class="ngx-input-box-wrap">
-            <textarea
-              *ngIf="type === 'textarea'"
-              class="ngx-input-textarea"
-              rows="1"
-              autosize
-              [(ngModel)]="value"
-              [id]="id"
-              [name]="name"
-              [placeholder]="placeholder"
-              [disabled]="disabled"
-              [attr.tabindex]="tabindex"
-              [attr.autocomplete]="autocomplete"
-              [attr.autocorrect]="autocorrect"
-              [attr.spellcheck]="spellcheck"
-              [minlength]="minlength"
-              [maxlength]="maxlength"
-              [required]="required"
-              (change)="onChange($event)"
-              (keyup)="onKeyUp($event)"
-              (focus)="onFocus($event)"
-              (blur)="onBlur($event)"
-              (click)="click.emit($event)"
-              #inputModel="ngModel"
-              #textareaControl
-            >
-            </textarea>
-            <input
-              *ngIf="type !== 'textarea'"
-              class="ngx-input-box"
-              [(ngModel)]="value"
-              [hidden]="passwordTextVisible"
-              [id]="id"
-              [name]="name"
-              [placeholder]="placeholder"
-              [disabled]="disabled"
-              [type]="type"
-              [min]="'' + min"
-              [max]="'' + max"
-              [minlength]="minlength"
-              [maxlength]="maxlength"
-              [attr.tabindex]="tabindex"
-              [attr.autocomplete]="autocomplete"
-              [attr.autocorrect]="autocorrect"
-              [attr.spellcheck]="spellcheck"
-              (change)="onChange($event)"
-              (keyup)="onKeyUp($event)"
-              (focus)="onFocus($event)"
-              (blur)="onBlur($event)"
-              (click)="click.emit($event)"
-              [required]="required"
-              #inputModel="ngModel"
-              #inputControl
-            />
-            <input
-              *ngIf="passwordToggleEnabled"
-              [hidden]="!passwordTextVisible"
-              type="text"
-              class="ngx-input-box"
-              type="text"
-              [id]="id + '-password'"
-              [placeholder]="placeholder"
-              [name]="name"
-              [disabled]="disabled"
-              [minlength]="minlength"
-              [maxlength]="maxlength"
-              [attr.autocomplete]="autocomplete"
-              [attr.autocorrect]="autocorrect"
-              [attr.spellcheck]="spellcheck"
-              [attr.tabindex]="tabindex"
-              [(ngModel)]="value"
-              (change)="onChange($event)"
-              (keyup)="onKeyUp($event)"
-              (focus)="onFocus($event)"
-              (blur)="onBlur($event)"
-              (click)="click.emit($event)"
-              [required]="required"
-              #inputTextModel="ngModel"
-              #passwordControl
-            />
-            <span
-              *ngIf="type === 'password' && passwordToggleEnabled"
-              class="icon-eye"
-              title="Toggle Text Visibility"
-              (click)="togglePassword()"
-            >
-            </span>
-          </div>
-          <span class="ngx-input-label" [@labelState]="labelState">
-            <span [innerHTML]="label"></span> <span [innerHTML]="requiredIndicatorView"></span>
-          </span>
-        </div>
-        <ng-content select="ngx-input-suffix"></ng-content>
-      </div>
-      <div class="ngx-input-underline">
-        <div class="underline-fill" [@underlineState]="underlineState"></div>
-      </div>
-      <div class="ngx-input-hint">
-        <ng-content select="ngx-input-hint"></ng-content>
-        <span *ngIf="hint" [innerHTML]="hint"></span>
-      </div>
-    </div>
-  `,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('labelState', [
       state(
@@ -193,11 +92,14 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Input() id: string = `input-${++nextId}`;
   @Input() name: string;
   @Input() label: string = '';
-  @Input() type: InputTypes = InputTypes.text;
   @Input() hint: string;
   @Input() placeholder: string = '';
-  @Input() disabled: boolean = false;
   @Input() tabindex: number;
+  @Input()
+  get disabled() { return this._disabled; }
+  set disabled(disabled: boolean) {
+    this._disabled = coerceBoolean(disabled);
+  }
 
   @Input() min: number;
   @Input() max: number;
@@ -209,7 +111,12 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Input() requiredIndicator: string | boolean = '*';
 
   @Input() passwordToggleEnabled: boolean = false;
-  @Input() passwordTextVisible: boolean = false;
+  @Input()
+  get passwordTextVisible() { return this._passwordTextVisible }
+  set passwordTextVisible(p: boolean) {
+    this._passwordTextVisible = coerceBoolean(p);
+    this.updateInputType();
+  }
 
   @Input() autoSelect: boolean = false;
   @Input() autofocus: boolean = false;
@@ -217,16 +124,24 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   @Input() autocorrect: boolean = false;
   @Input() spellcheck: boolean = false;
 
+  @Input()
+  get type() { return this._type; }
+  set type(type: InputTypes) {
+    this._type = type;
+    this.updateInputType();
+  }
+
   @Output() change = new EventEmitter();
   @Output() blur = new EventEmitter();
   @Output() focus = new EventEmitter();
   @Output() keyup = new EventEmitter();
   @Output() click = new EventEmitter();
 
-  get value(): string {
-    return this._value;
-  }
+  @ViewChild('inputControl', { static: false }) readonly inputControl: ElementRef<HTMLInputElement>;
+  @ViewChild('inputModel', { static: false }) readonly inputModel: NgModel;
+  @ViewChild('textareaControl', { static: false }) readonly textareaControl: ElementRef<HTMLTextAreaElement>;
 
+  get value(): string { return this._value; }
   set value(val: string) {
     if (val !== this._value) {
       this._value = val;
@@ -234,17 +149,16 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     }
   }
 
-  @HostBinding('class')
-  readonly getHostCssClasses = 'ngx-input';
-
   @HostBinding('class.ng-dirty')
   get focusedOrDirty(): any {
     if (this.focused) {
       return true;
     }
+
     if (typeof this.value === 'string') {
       return this.value && this.value.length;
     }
+
     return typeof this.value !== 'undefined' && this.value !== null;
   }
 
@@ -254,37 +168,80 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   }
 
   get labelState(): string {
-    if (this.placeholder) return 'outside';
-    if (this.focusedOrDirty) return 'outside';
-    return 'inside';
+    return this.placeholder || this.focusedOrDirty ? 'outside' : 'inside';
   }
 
   get underlineState(): string {
-    if (this.focused) return 'expanded';
-    return 'collapsed';
+    return this.focused ? 'expanded' : 'collapsed';
   }
 
   get requiredIndicatorView(): string {
-    if (!this.requiredIndicator || !this.required) return '';
-    return this.requiredIndicator as string;
+    return (!this.requiredIndicator || !this.required) ? '' : this.requiredIndicator as string;
   }
 
-  get element(): any {
-    if (this.type === InputTypes.textarea) return this.textareaControl;
-    return this.inputControl;
+  get element() {
+    return this.type === InputTypes.textarea ? this.textareaControl : this.inputControl;
   }
 
   focused: boolean = false;
+  readonly type$ = new BehaviorSubject<InputTypes>(undefined);
+
   private _value: string;
+  private _type: InputTypes = InputTypes.text;
+  private _passwordTextVisible: boolean = false;
+  private _disabled: boolean = false;
 
-  @ViewChild('inputControl', { static: false }) private inputControl: ElementRef;
-  @ViewChild('inputModel', { static: false }) private inputModel: NgModel;
-  @ViewChild('textareaControl', { static: false }) private textareaControl: ElementRef;
-  @ViewChild('passwordControl', { static: false }) private passwordControl: ElementRef;
+  constructor(private readonly cdr: ChangeDetectorRef) { }
 
-  constructor(private cd: ChangeDetectorRef) {}
+  ngOnInit(): void {
+    if (!this.value) this.value = '';
+  }
 
-  public validate(c: FormControl) {
+  ngAfterViewInit(): void {
+    if (this.autofocus) {
+      setTimeout(() => this.element.nativeElement.focus());
+    }
+
+    // sometimes the label doesn't update on load
+    setTimeout(() => this.cdr.markForCheck());
+  }
+
+  ngOnChanges(changes: any) {
+    if ('max' in changes || 'min' in changes) {
+      this.onChangeCallback(this._value);
+    }
+  }
+
+  onChange(event: Event): void {
+    event.stopPropagation();
+    this.change.emit(this.value);
+  }
+
+  onKeyUp(event: KeyboardEvent): void {
+    event.stopPropagation();
+    this.keyup.emit(event);
+  }
+
+  onFocus(event: FocusEvent): void {
+    event.stopPropagation();
+
+    if (this.autoSelect) {
+      setTimeout(() => this.element.nativeElement.select());
+    }
+
+    this.focused = true;
+    this.focus.emit(event);
+    this.onTouchedCallback();
+  }
+
+  onBlur(event: Event): void {
+    event.stopPropagation();
+
+    this.focused = false;
+    this.blur.emit(event);
+  }
+
+  validate(c: FormControl) {
     if (this.type !== 'number') {
       return null;
     }
@@ -294,62 +251,12 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     };
   }
 
-  ngOnInit(): void {
-    if (!this.value) this.value = '';
-  }
-
-  ngAfterViewInit(): void {
-    if (this.autofocus) {
-      setTimeout(() => {
-        this.element.nativeElement.focus();
-      });
-    }
-
-    // sometimes the label doesn't update on load
-    setTimeout(() => this.cd.markForCheck());
-  }
-
-  ngOnChanges(changes) {
-    if ('max' in changes || 'min' in changes) {
-      this.onChangeCallback(this._value);
-    }
-  }
-
-  onChange(event): void {
-    event.stopPropagation();
-    this.change.emit(this.value);
-  }
-
-  onKeyUp(event): void {
-    event.stopPropagation();
-    this.keyup.emit(event);
-  }
-
-  onFocus(event): void {
-    event.stopPropagation();
-
-    if (this.autoSelect) {
-      setTimeout(() => {
-        this.element.nativeElement.select();
-      });
-    }
-
-    this.focused = true;
-    this.focus.emit(event);
-    this.onTouchedCallback();
-  }
-
-  onBlur(event): void {
-    event.stopPropagation();
-
-    this.focused = false;
-    this.blur.emit(event);
-  }
-
   writeValue(val: string): void {
     if (val !== this._value) {
       this._value = val;
     }
+
+    this.cdr.markForCheck();
   }
 
   registerOnChange(fn: any): void {
@@ -362,14 +269,7 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
 
   togglePassword(): void {
     this.passwordTextVisible = !this.passwordTextVisible;
-
-    setTimeout(() => {
-      if (this.passwordTextVisible) {
-        this.passwordControl.nativeElement.focus();
-      } else {
-        this.element.nativeElement.focus();
-      }
-    });
+    this.element.nativeElement.focus();
   }
 
   setDisabledState(isDisabled: boolean): void {
@@ -383,4 +283,8 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   private onChangeCallback: (_: any) => void = () => {
     // placeholder
   };
+
+  private updateInputType() {
+    this.type$.next(this.passwordTextVisible && this.type === InputTypes.password ? InputTypes.text : this.type);
+  }
 }
