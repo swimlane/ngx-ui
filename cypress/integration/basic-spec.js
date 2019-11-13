@@ -267,11 +267,6 @@ describe('ngx-ui demo', () => {
             .find('input')
             .first()
             .should('have.attr', 'type', 'password');
-
-          cy.get('@CUT')
-            .find('input')
-            .last()
-            .should('have.attr', 'type', 'text');
         });
 
         it('should allow input', () => {
@@ -309,12 +304,7 @@ describe('ngx-ui demo', () => {
           cy.get('@CUT')
             .find('input')
             .first()
-            .should('not.be.hidden');
-
-          cy.get('@CUT')
-            .find('input')
-            .last()
-            .should('be.hidden');
+            .should('have.attr', 'type', 'password');
 
           cy.get('@CUT')
             .find('.icon-eye')
@@ -323,12 +313,7 @@ describe('ngx-ui demo', () => {
           cy.get('@CUT')
             .find('input')
             .first()
-            .should('be.hidden');
-
-          cy.get('@CUT')
-            .find('input')
-            .last()
-            .should('not.be.hidden');
+            .should('have.attr', 'type', 'text');
         });
       });
     });
