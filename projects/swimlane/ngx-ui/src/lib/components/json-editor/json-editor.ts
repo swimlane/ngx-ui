@@ -8,9 +8,9 @@ import {
 import { SchemaValidatorService } from './schema-validator.service';
 
 export class JsonEditor implements OnChanges {
-  @Input() model!: any;
+  @Input() model: any;
 
-  @Input() schema!: any;
+  @Input() schema: any;
 
   @Input() label: string;
 
