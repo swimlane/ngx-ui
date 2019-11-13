@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { JsonEditorNode } from '../../json-editor-node';
 
 import { DialogService } from '../../../dialog/dialog.service';
@@ -10,6 +10,13 @@ import { DialogService } from '../../../dialog/dialog.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class JsonEditorNodeComponent extends JsonEditorNode {
+  @Input() model: any;
+
+  @Input() schema: any;
+
+  @Input() typeCheckOverrides?: any;
+
+  @Input() errors: any[];
 
   constructor(public dialogMngr: DialogService) {
     super(dialogMngr)

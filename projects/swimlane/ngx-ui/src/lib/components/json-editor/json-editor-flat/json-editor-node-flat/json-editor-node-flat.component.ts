@@ -10,6 +10,14 @@ import { DialogService } from '../../../dialog/dialog.service';
   encapsulation: ViewEncapsulation.None
 })
 export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnInit {
+  @Input() model: any;
+
+  @Input() schema: any;
+
+  @Input() typeCheckOverrides?: any;
+
+  @Input() errors: any[];
+
   @Input() level: number = -1;
   @Input() schemaBuilderMode?: boolean;
 

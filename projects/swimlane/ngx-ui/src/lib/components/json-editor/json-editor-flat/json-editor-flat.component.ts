@@ -10,7 +10,11 @@ import { JsonEditor } from '../json-editor';
   encapsulation: ViewEncapsulation.None
 })
 export class JsonEditorFlatComponent extends JsonEditor {
-  @Input() schemaBuilderMode?: boolean = false;
+  @Input() model: any;
+
+  @Input() schema: any;
+
+  @Input() typeCheckOverrides?: any;
 
   @ContentChildren(JsonEditorNodeFlatComponent)
   nodeElms: QueryList<JsonEditorNodeFlatComponent>;
