@@ -8,23 +8,17 @@ import {
 import { SchemaValidatorService } from './schema-validator.service';
 
 export class JsonEditor implements OnChanges {
-  @Input()
-  model: any;
+  @Input() model!: any;
 
-  @Input()
-  schema: any;
+  @Input() schema!: any;
 
-  @Input()
-  label: string;
+  @Input() label: string;
 
-  @Input()
-  typeCheckOverrides?: any;
+  @Input() typeCheckOverrides?: any;
 
-  @Output()
-  modelChange: EventEmitter<any> = new EventEmitter();
+  @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
-  @Output()
-  schemaChange: EventEmitter<any> = new EventEmitter();
+  @Output() schemaChange: EventEmitter<any> = new EventEmitter();
 
   errors: any[];
 

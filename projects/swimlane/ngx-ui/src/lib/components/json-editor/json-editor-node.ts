@@ -16,29 +16,21 @@ import { DialogComponent } from '../dialog/dialog.component';
 import { DialogService } from '../dialog/dialog.service';
 
 export class JsonEditorNode implements OnInit, OnChanges {
-  @Input()
-  schema: any;
+  @Input() schema: any;
 
-  @Input()
-  model: any;
+  @Input() model: any;
 
-  @Input()
-  required: boolean = false;
+  @Input() required: boolean = false;
 
-  @Input()
-  inline: boolean = false;
+  @Input() inline: boolean = false;
 
-  @Input()
-  path: string = '';
+  @Input() path: string = '';
 
-  @Input()
-  errors: any[];
+  @Input() errors: any[];
 
-  @Input()
-  typeCheckOverrides?: any;
+  @Input() typeCheckOverrides?: any;
 
-  @Output()
-  modelChange: EventEmitter<any> = new EventEmitter();
+  @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
   @ViewChild('codeEditorTpl', { static: false }) codeEditorTpl: TemplateRef<any>;
 
@@ -135,7 +127,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
   /**
    * Inits the model if it is not defined
    */
-  initModel() {
+  initModel(): void {
     if (this.model !== undefined) {
       return;
     }
@@ -154,7 +146,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
   /**
    * Process the errors input to figure out whether it or any of its children are invalid
    */
-  processErrors() {
+  processErrors(): void {
     this.ownErrors = [];
     this.childrenErrors = [];
 
@@ -175,7 +167,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
    * Updates the whole model and emits the change event
    * @param value
    */
-  updateModel(value: unknown) {
+  updateModel(value: unknown): void {
     this.model = value;
     this.modelChange.emit(this.model);
   }
@@ -183,14 +175,14 @@ export class JsonEditorNode implements OnInit, OnChanges {
   /**
    * Expand click event
    */
-  onExpandClick() {
+  onExpandClick(): void {
     this.expanded = !this.expanded;
   }
 
   /**
    * Opens the code editor dialog
    */
-  openCodeEditor() {
+  openCodeEditor(): void {
     this.editorModel = this.model;
     this.editorDialog = this.dialogMngr.create({ template: this.codeEditorTpl, class: 'code-editor-dialog' });
   }
@@ -198,17 +190,18 @@ export class JsonEditorNode implements OnInit, OnChanges {
   /**
    * Closes the code editor dialog
    */
-  closeCodeEditor() {
+  closeCodeEditor(): void {
     this.dialogMngr.destroy(this.editorDialog);
   }
 
   /**
    * Sets the editor mode and refreshes the editor
    */
-  selectEditorMode(modeName) {
+  selectEditorMode(modeName: string): void {
     this.editorConfig.mode.name = modeName;
     this.editorConfig = { ...this.editorConfig };
     this.editorVisible = false;
+
     setTimeout(() => {
       this.editorVisible = true;
     });
