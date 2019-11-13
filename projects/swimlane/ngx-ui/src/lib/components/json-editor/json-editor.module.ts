@@ -36,7 +36,13 @@ import { ObjectNodeFlatComponent } from './json-editor-flat/json-editor-node-fla
   ],
   exports: [
     JsonEditorComponent,
+    JsonEditorNodeComponent,
+    ObjectNodeComponent,
+    ArrayNodeComponent,
     JsonEditorFlatComponent,
+    JsonEditorNodeFlatComponent,
+    ArrayNodeFlatComponent,
+    ObjectNodeFlatComponent
   ],
   imports: [
     CommonModule,
