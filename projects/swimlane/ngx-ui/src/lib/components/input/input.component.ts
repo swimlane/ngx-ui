@@ -6,7 +6,6 @@ import {
   EventEmitter,
   HostBinding,
   Input,
-  OnInit,
   Output,
   ViewChild,
   ViewEncapsulation,
@@ -88,27 +87,30 @@ const INPUT_VALIDATORS = {
     ])
   ]
 })
-export class InputComponent implements OnInit, AfterViewInit, ControlValueAccessor, Validator {
+export class InputComponent implements AfterViewInit, ControlValueAccessor, Validator {
   @Input() id: string = `input-${++nextId}`;
   @Input() name: string;
   @Input() label: string = '';
   @Input() hint: string;
   @Input() placeholder: string = '';
   @Input() tabindex: number;
+  @Input() min: number;
+  @Input() max: number;
+  @Input() minlength: number;
+  @Input() maxlength: number;
+
   @Input()
   get disabled() { return this._disabled; }
   set disabled(disabled: boolean) {
     this._disabled = coerceBoolean(disabled);
   }
 
-  @Input() min: number;
-  @Input() max: number;
-
-  @Input() minlength: number;
-  @Input() maxlength: number;
-
-  @Input() required: boolean = false;
   @Input() requiredIndicator: string | boolean = '*';
+  @Input()
+  get required() { return this._required; }
+  set required(required: boolean) {
+    this._required = coerceBoolean(required);
+  }
 
   @Input() passwordToggleEnabled: boolean = false;
   @Input()
@@ -118,11 +120,35 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     this.updateInputType();
   }
 
-  @Input() autoSelect: boolean = false;
-  @Input() autofocus: boolean = false;
-  @Input() autocomplete: boolean = false;
-  @Input() autocorrect: boolean = false;
-  @Input() spellcheck: boolean = false;
+  @Input()
+  get autoSelect() { return this._autoSelect; }
+  set autoSelect(autoSelect: boolean) {
+    this._autoSelect = coerceBoolean(autoSelect);
+  }
+
+  @Input()
+  get autofocus() { return this._autofocus; }
+  set autofocus(autofocus: boolean) {
+    this._autofocus = coerceBoolean(autofocus);
+  }
+
+  @Input()
+  get autocomplete() { return this._autocomplete; }
+  set autocomplete(autocomplete: boolean) {
+    this._autocomplete = coerceBoolean(autocomplete);
+  }
+
+  @Input()
+  get autocorrect() { return this._autocorrect; }
+  set autocorrect(autocorrect: boolean) {
+    this._autocorrect = coerceBoolean(autocorrect);
+  }
+
+  @Input()
+  get spellcheck() { return this._spellcheck; }
+  set spellcheck(spellcheck: boolean) {
+    this._spellcheck = coerceBoolean(spellcheck);
+  }
 
   @Input()
   get type() { return this._type; }
@@ -131,11 +157,12 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
     this.updateInputType();
   }
 
-  @Output() change = new EventEmitter();
-  @Output() blur = new EventEmitter();
-  @Output() focus = new EventEmitter();
-  @Output() keyup = new EventEmitter();
-  @Output() click = new EventEmitter();
+  @Output() change = new EventEmitter<string>();
+  @Output() blur = new EventEmitter<Event>();
+  @Output() focus = new EventEmitter<FocusEvent>();
+  @Output() keyup = new EventEmitter<KeyboardEvent>();
+  @Output() click = new EventEmitter<Event>();
+  @Output() select = new EventEmitter<FocusEvent>();
 
   @ViewChild('inputControl', { static: false }) readonly inputControl: ElementRef<HTMLInputElement>;
   @ViewChild('inputModel', { static: false }) readonly inputModel: NgModel;
@@ -186,16 +213,18 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   focused: boolean = false;
   readonly type$ = new BehaviorSubject<InputTypes>(undefined);
 
-  private _value: string;
+  private _value: string = '';
   private _type: InputTypes = InputTypes.text;
   private _passwordTextVisible: boolean = false;
   private _disabled: boolean = false;
+  private _required: boolean = false;
+  private _autoSelect: boolean = false;
+  private _autofocus: boolean = false;
+  private _autocomplete: boolean = false;
+  private _autocorrect: boolean = false;
+  private _spellcheck: boolean = false;
 
   constructor(private readonly cdr: ChangeDetectorRef) { }
-
-  ngOnInit(): void {
-    if (!this.value) this.value = '';
-  }
 
   ngAfterViewInit(): void {
     if (this.autofocus) {
@@ -224,12 +253,13 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
 
   onFocus(event: FocusEvent): void {
     event.stopPropagation();
+    this.focused = true;
 
     if (this.autoSelect) {
       setTimeout(() => this.element.nativeElement.select());
+      this.select.emit(event);
     }
 
-    this.focused = true;
     this.focus.emit(event);
     this.onTouchedCallback();
   }
@@ -242,9 +272,10 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   }
 
   validate(c: FormControl) {
-    if (this.type !== 'number') {
+    if (this.type !== InputTypes.number) {
       return null;
     }
+
     return {
       ...Validators.max(this.max)(c),
       ...Validators.min(this.min)(c)
@@ -273,7 +304,7 @@ export class InputComponent implements OnInit, AfterViewInit, ControlValueAccess
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
+    this.disabled = coerceBoolean(isDisabled);
   }
 
   private onTouchedCallback: () => void = () => {

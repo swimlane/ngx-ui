@@ -13,7 +13,7 @@ export class AutosizeDirective implements AfterContentChecked {
   }
 
   @HostListener('input', ['$event.target'])
-  onInput(textArea: HTMLTextAreaElement): void {
+  onInput(_?: HTMLTextAreaElement): void {
     this.adjust();
   }
 
