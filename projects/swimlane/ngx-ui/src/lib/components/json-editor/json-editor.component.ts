@@ -10,11 +10,8 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { JsonEditorNodeComponent } from './json-editor-node.component';
-import { SchemaValidatorService } from './schema-validator.service';
-
-interface SchemaValidator {
-  validate: (schema: any, model: any) => any[];
-}
+import { SchemaValidator } from './schema-validator';
+import * as Ajv from 'ajv';
 
 @Component({
   selector: 'ngx-json-editor',
@@ -35,8 +32,7 @@ export class JsonEditorComponent implements OnChanges {
   @Input()
   typeCheckOverrides?: any;
 
-  @Input()
-  schemaValidator?: SchemaValidator;
+  @Input() customAjv: Ajv.Ajv;
 
   @Output()
   modelChange: EventEmitter<any> = new EventEmitter();
@@ -49,7 +45,11 @@ export class JsonEditorComponent implements OnChanges {
   @ContentChildren(JsonEditorNodeComponent)
   nodeElms: QueryList<JsonEditorNodeComponent>;
 
-  constructor(private schemaValidatorService: SchemaValidatorService) { }
+  schemaValidator: SchemaValidator;
+
+  constructor() {
+    this.schemaValidator = new SchemaValidator(this.customAjv);
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.schema) {
@@ -81,7 +81,7 @@ export class JsonEditorComponent implements OnChanges {
    * @param model
    */
   validate(schema: any, model: any): boolean {
-    this.errors = (this.schemaValidator || this.schemaValidatorService).validate(schema, model);
+    this.errors = this.schemaValidator.validate(schema, model);
     return this.errors && this.errors.length > 0;
   }
 }
