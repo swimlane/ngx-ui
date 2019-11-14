@@ -2,7 +2,7 @@
   <div class="object-node-content" *ngFor="let prop of propertyIndex | keyvalue; trackBy: trackBy">
     <ngx-json-editor-node-flat [model]="model[prop.value.propertyName]"
       (modelChange)="updateProp(prop.value.id, $event)" [schema]="prop.value"
-      [required]="!!requiredCache[prop.value.propertyName]"
+      [schemaRef]="schemaRef.properties[prop.value.propertyName]" [required]="!!requiredCache[prop.value.propertyName]"
       [inline]="prop.value.type !== 'array' && prop.value.type !== 'object'"
       [path]="path + getPath(prop.value.propertyName)" [errors]="errors" [typeCheckOverrides]="typeCheckOverrides"
       [level]="level" [schemaBuilderMode]="schemaBuilderMode">
@@ -76,6 +76,7 @@
 
 <!-- Property Config Dialog -->
 <ng-template #propertyConfigTmpl let-context="context">
-  <ngx-property-config [property]="context.property" [propertyIndex]="propertyIndex" [schema]="context.schema">
+  <ngx-property-config [property]="context.property" [propertyIndex]="propertyIndex" [schema]="context.schema"
+    (updateSchema)="updateSchema($event)">
   </ngx-property-config>
 </ng-template>

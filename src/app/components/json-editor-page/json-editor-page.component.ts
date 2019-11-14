@@ -79,7 +79,7 @@ export class JsonEditorPageComponent {
         }
       }
     },
-    required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions', 'warehouseLocation']
+    required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions']
   };
 
   _jsonEditorSchema: any = {};

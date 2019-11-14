@@ -38,6 +38,8 @@ export class ObjectNode implements OnInit, OnChanges {
   @Input()
   typeCheckOverrides?: any;
 
+  @Input() schemaBuilderMode: boolean;
+
   @Output()
   modelChange: EventEmitter<any> = new EventEmitter();
 
@@ -302,7 +304,7 @@ export class ObjectNode implements OnInit, OnChanges {
         if (this.model[propName] !== undefined) {
           continue;
         }
-        if (this.requiredCache[propName]) {
+        if (this.requiredCache[propName] || this.schemaBuilderMode) { // List all properties not only required if we are in schema builder mode
           this.addSchemaProperty(propName);
         }
       }

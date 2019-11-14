@@ -16,6 +16,8 @@ export class JsonEditorFlatComponent extends JsonEditor {
 
   @Input() typeCheckOverrides?: any;
 
+  @Input() schemaBuilderMode?: boolean;
+
   @ContentChildren(JsonEditorNodeFlatComponent)
   nodeElms: QueryList<JsonEditorNodeFlatComponent>;
 

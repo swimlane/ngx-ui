@@ -19,7 +19,10 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
   @Input() errors: any[];
 
   @Input() level: number = -1;
+
   @Input() schemaBuilderMode?: boolean;
+
+  @Input() schemaRef?: any;
 
   indentationArray: number[] = [];
 

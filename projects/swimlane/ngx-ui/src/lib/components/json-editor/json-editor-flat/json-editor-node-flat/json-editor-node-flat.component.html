@@ -111,7 +111,7 @@
 
   <!-- Object -->
   <div *ngIf="schema?.type === 'object'">
-    <ngx-json-object-node-flat [schema]="schema" [model]="model" [expanded]="expanded"
+    <ngx-json-object-node-flat [schema]="schema" [schemaRef]="schemaRef" [model]="model" [expanded]="expanded"
       (modelChange)="updateModel($event)" [path]="path" [errors]="childrenErrors"
       [typeCheckOverrides]="typeCheckOverrides" [level]="level" [schemaBuilderMode]="schemaBuilderMode">
     </ngx-json-object-node-flat>

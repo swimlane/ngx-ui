@@ -9,6 +9,7 @@ import { TooltipModule } from '../tooltip/tooltip.module';
 import { DropdownModule } from '../dropdown/dropdown.module';
 import { CodeEditorModule } from '../code-editor/code-editor.module';
 import { IconModule } from '../icon/icon.module';
+import { TabsModule } from '../tabs/tabs.module';
 import { ToggleModule } from '../toggle/toggle.module';
 import { SelectModule } from '../select/select.module';
 import { SchemaValidatorService } from './schema-validator.service';
@@ -58,7 +59,8 @@ import { PropertyConfigComponent } from './json-editor-flat/json-editor-node-fla
     DropdownModule,
     IconModule,
     ToggleModule,
-    SelectModule
+    SelectModule,
+    TabsModule
   ],
   providers: [SchemaValidatorService]
 })
