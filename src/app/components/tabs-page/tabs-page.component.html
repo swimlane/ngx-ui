@@ -132,3 +132,53 @@
     ]]>
   </ngx-codemirror>
 </ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Custom Label Tabs">
+  <ngx-tabs>
+    <ngx-tab #tab1 [label]="tabLabel1">
+      Tab 1 custom label
+    </ngx-tab>
+    <ngx-tab #tab2 [label]="tabLabel2">
+      Tab 2 custom label
+    </ngx-tab>
+    <ngx-tab #tab3 [label]="tabLabel3" [disabled]="true">
+      Tab 3 custom label, Disabled
+    </ngx-tab>
+  </ngx-tabs>
+
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-tabs>
+        <ngx-tab #tab1 [label]="tabLabel1">
+          Tab 1 custom label
+        </ngx-tab>
+        <ngx-tab #tab2 [label]="tabLabel2">
+          Tab 2 custom label
+        </ngx-tab>
+        <ngx-tab #tab3 [label]="tabLabel3" [disabled]="true">
+          Tab 3 custom label, Disabled
+        </ngx-tab>
+      </ngx-tabs>
+
+      <ng-template #tabLabel1>
+        <ngx-icon fontIcon="hand"></ngx-icon> Tab 1
+      </ng-template>
+      <ng-template #tabLabel2>
+        <ngx-icon fontIcon="user-groups"></ngx-icon> Tab 2
+      </ng-template>
+      <ng-template #tabLabel3>
+        <ngx-icon fontIcon="plane"></ngx-icon> Tab 3
+      </ng-template>
+    ]]>
+  </ngx-codemirror>
+
+  <ng-template #tabLabel1>
+    <ngx-icon fontIcon="hand"></ngx-icon> Tab 1
+  </ng-template>
+  <ng-template #tabLabel2>
+    <ngx-icon fontIcon="user-groups"></ngx-icon> Tab 2
+  </ng-template>
+  <ng-template #tabLabel3>
+    <ngx-icon fontIcon="plane"></ngx-icon> Tab 3
+  </ng-template>
+</ngx-section>
