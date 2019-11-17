@@ -2,6 +2,8 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 import { JsonEditorNode } from '../../json-editor-node';
 
 import { DialogService } from '../../../dialog/dialog.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { requiredIndicatorIcon } from '../../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-editor-node-flat',
@@ -24,10 +26,13 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() schemaRef?: any;
 
+  requiredIndicator: SafeHtml;
+
   indentationArray: number[] = [];
 
-  constructor(public dialogMngr: DialogService) {
+  constructor(public dialogMngr: DialogService, private domSanitizer: DomSanitizer) {
     super(dialogMngr);
+    this.requiredIndicator = this.domSanitizer.bypassSecurityTrustHtml(requiredIndicatorIcon);
   }
 
   ngOnInit() {

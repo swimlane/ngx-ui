@@ -32,6 +32,8 @@ export class JsonEditorNode implements OnInit, OnChanges {
 
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
+  @Output() schemaChange: EventEmitter<any> = new EventEmitter();
+
   @ViewChild('codeEditorTpl', { static: false }) codeEditorTpl: TemplateRef<any>;
 
   requiredCache: any = {};

@@ -11,6 +11,7 @@ import { CodeEditorModule } from '../code-editor/code-editor.module';
 import { IconModule } from '../icon/icon.module';
 import { TabsModule } from '../tabs/tabs.module';
 import { ToggleModule } from '../toggle/toggle.module';
+import { CheckboxModule } from '../checkbox/checkbox.module';
 import { SelectModule } from '../select/select.module';
 import { SchemaValidatorService } from './schema-validator.service';
 
@@ -49,6 +50,7 @@ import { PropertyConfigComponent } from './json-editor-flat/json-editor-node-fla
     PropertyConfigComponent,
   ],
   imports: [
+    CheckboxModule,
     CommonModule,
     FormsModule,
     PipesModule,

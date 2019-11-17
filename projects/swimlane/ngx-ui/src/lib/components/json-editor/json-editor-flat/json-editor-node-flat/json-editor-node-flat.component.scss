@@ -44,14 +44,30 @@
     }
 
     .required-indicator {
-      font-size: 1.7em;
       position: absolute;
-      top: 3px;
-      left: 13px;
-      color: $color-blue-grey-550;
+      top: 12px;
+      left: 12px;
 
-      &.invalid {
-        color: $color-red-500;
+      span {
+        display: flex;
+
+        svg path {
+          fill: $color-blue-grey-400;
+          stroke: $color-blue-grey-400;
+        }
+
+        &.not-required {
+          svg path {
+            fill: transparent;
+          }
+        }
+
+        &.invalid {
+          svg path {
+            fill: $color-red-500;
+            stroke: $color-red-500;
+          }
+        }
       }
     }
 

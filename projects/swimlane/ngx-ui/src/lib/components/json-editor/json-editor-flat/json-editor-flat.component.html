@@ -1,6 +1,6 @@
 <div class="ngx-json-editor-flat">
   <ngx-json-editor-node-flat [(model)]="model" [schema]="schema" [schemaRef]="schema"
     (modelChange)="modelChangedCallback($event)" [errors]="errors" [typeCheckOverrides]="typeCheckOverrides"
-    [schemaBuilderMode]="schemaBuilderMode">
+    [schemaBuilderMode]="schemaBuilderMode" (schemaChange)="schemaChange.emit($event)">
   </ngx-json-editor-node-flat>
 </div>

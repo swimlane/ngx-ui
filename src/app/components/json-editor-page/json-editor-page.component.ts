@@ -102,4 +102,8 @@ export class JsonEditorPageComponent {
     this.jsonEditorSchema = JSON.parse(schema);
     this.jsonEditorModel = {};
   }
+
+  schemaChange(event): void {
+    console.log(event);
+  }
 }

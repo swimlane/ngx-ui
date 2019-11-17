@@ -1,17 +1,26 @@
 <div class="property-config">
   <div class="header">
     <span>Property Configuration</span>
-    <button type="button" class="btn btn-primary" (click)="applyChanges()"><i class="ngx-icon ngx-check has-text"></i> Apply</button>
+    <button type="button" class="btn btn-primary" (click)="applyChanges()"><i class="ngx-icon ngx-check has-text"></i>
+      Apply</button>
   </div>
   <ngx-tabs *ngIf="property">
     <ngx-tab label="General">
-      <ngx-input type="text" name="propertyName" [(ngModel)]="editableProperty.value.propertyName" [label]="'PROPERTY NAME'" [required]="true"
-        [hint]="'Must only contain A-Z, a-z, 0-9 or _'">
+      <ngx-input type="text" name="propertyName" [(ngModel)]="editableProperty.value.propertyName"
+        [label]="'PROPERTY NAME'" [required]="true" [hint]="'Must only contain A-Z, a-z, 0-9 or _'">
+      </ngx-input>
+
+      <ngx-input type="text" [(ngModel)]="editableProperty.value.title" [label]="'PROPERTY TITLE'"
+        [hint]="'A human-readable name for this property'">
       </ngx-input>
 
       <ngx-input type="text" [(ngModel)]="editableProperty.value.description" [label]="'PROPERTY DESCRIPTION'"
-        [hint]="'A human-readable name for this property'">
+        [hint]="'A description for the property'">
       </ngx-input>
+
+      <ngx-checkbox [(ngModel)]="required">
+        Required
+      </ngx-checkbox>
     </ngx-tab>
   </ngx-tabs>
 </div>

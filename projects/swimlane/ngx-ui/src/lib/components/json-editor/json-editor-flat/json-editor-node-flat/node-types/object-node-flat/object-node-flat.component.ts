@@ -34,31 +34,56 @@ export class ObjectNodeFlatComponent extends ObjectNode {
   }
 
   updateSchema(options: any): void {
-    // this.schema = options.schema;
-    if (options.oldProperty.value.propertyName !== options.newProperty.value.propertyName) {
-      console.log('different');
-      // this.updateSchemaPropertyName(this.schema, options.newProperty.value.propertyName, options.oldProperty.value.propertyName);
-      this.updateSchemaPropertyName(this.schemaRef, options.newProperty.value.propertyName, options.oldProperty.value.propertyName);
+    const newName = options.newProperty.value.propertyName;
+    const oldName = options.oldProperty.value.propertyName;
+
+    if (newName !== options.oldProperty.value.propertyName) {
+      if (this.level > 0) {
+        this.updateSchemaPropertyName(this.schemaRef, newName, oldName);
+        this.schemaRef.properties[newName] = options.newProperty.value;
+      }
+
+      this.updateSchemaPropertyName(this.schema, newName, oldName);
+      this.updatePropertyName(options.newProperty.key, newName);
     }
 
-    this.updatePropertyName(options.newProperty.key, options.newProperty.value.propertyName);
+    this.toggleRequiredValue(options.required, newName);
+
+    this.schema.properties[newName] = options.newProperty.value;
+    this.updateProp(options.newProperty.key, options.newProperty.value);
+    this.propertyIndex[options.newProperty.key] = options.newProperty.value;
+
 
     console.log(this.schemaRef);
     console.log(this.schema);
     console.log(this.model);
+
+    this.schemaChange.emit();
   }
 
   private updateSchemaPropertyName(schema: any, newName: string, oldName: string): void {
     this.updateRequiredProperties(schema, newName, oldName);
 
-    schema.properties[oldName] = schema.properties[newName];
-    delete schema.properties[newName];
+    schema.properties[newName] = schema.properties[oldName];
+    delete schema.properties[oldName];
+  }
+
+  private toggleRequiredValue(required: boolean, propertyName: string): void {
+    const requiredIndex = this.schema.required.indexOf(propertyName);
+    if (requiredIndex >= 0 && !required) {
+      this.schema.required.splice(requiredIndex, 1);
+    } else if (requiredIndex < 0 && required) {
+      this.schema.required.push(propertyName);
+    }
+
+    this.schemaRef.required = [...this.schema.required];
+    this.updateRequiredCache();
   }
 
   private updateRequiredProperties(schema: any, newName: string, oldName: string): void {
-    const requiredIndex = schema.required.indexOf(newName);
+    const requiredIndex = schema.required.indexOf(oldName);
     if (requiredIndex >= 0) {
-      schema.required[requiredIndex] = oldName;
+      schema.required[requiredIndex] = newName;
     }
   }
 }

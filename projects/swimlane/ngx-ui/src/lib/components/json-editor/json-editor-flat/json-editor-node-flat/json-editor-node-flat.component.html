@@ -4,20 +4,24 @@
       <span class="separator" *ngFor="let separator of indentationArray"></span>
     </div>
 
-    <div class="error-box" *ngIf="!valid"></div>
+    <div class="error-box" *ngIf="!valid && !schemaBuilderMode"></div>
 
-    <span class="required-indicator" *ngIf="required" [class.invalid]="!childrenValid">*</span>
+    <div class="required-indicator" (click)="toggleRequired()">
+      <span *ngIf="required" [class.invalid]="!childrenValid && !schemaBuilderMode"
+        [innerHtml]="requiredIndicator"></span>
+      <span *ngIf="!required && schemaBuilderMode" class="not-required" [innerHtml]="requiredIndicator"></span>
+    </div>
 
     <div class="node-content">
       <div class="node-info">
         <div class="info-name" *ngIf="schema?.propertyName">
-          <span class="name">{{ schema?.propertyName | decamelize }}</span>
+          <span class="name">{{ schema?.title ? schema?.title : (schema?.propertyName | decamelize) }}</span>
         </div>
 
         <div class="info-type">
           <span class="type">{{ schema?.type | titlecase }}</span>
           <ngx-icon *ngIf="schema?.propertyName" class="dot-separator" fontIcon="circle-filled"></ngx-icon>
-          <span class="property-name">{{ schema?.propertyName | cammeltosnake }}</span>
+          <span class="property-name">{{ schema?.propertyName }}</span>
         </div>
 
         <span class="description">{{ schema?.description }}</span>
@@ -113,12 +117,13 @@
   <div *ngIf="schema?.type === 'object'">
     <ngx-json-object-node-flat [schema]="schema" [schemaRef]="schemaRef" [model]="model" [expanded]="expanded"
       (modelChange)="updateModel($event)" [path]="path" [errors]="childrenErrors"
-      [typeCheckOverrides]="typeCheckOverrides" [level]="level" [schemaBuilderMode]="schemaBuilderMode">
+      [typeCheckOverrides]="typeCheckOverrides" [level]="level" [schemaBuilderMode]="schemaBuilderMode"
+      (schemaChange)="schemaChange.emit(schemaRef)">
     </ngx-json-object-node-flat>
   </div>
 
   <!-- Array -->
-  <div *ngIf="schema?.type === 'array'">
+  <div *ngIf="schema?.type === 'array' && !schemaBuilderMode">
     <ngx-json-array-node-flat [schema]="schema" [model]="model" [expanded]="expanded"
       (modelChange)="updateModel($event)" [path]="path" [errors]="childrenErrors"
       [typeCheckOverrides]="typeCheckOverrides" [level]="level" [schemaBuilderMode]="schemaBuilderMode">

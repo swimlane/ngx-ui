@@ -17,31 +17,25 @@ import {
 } from '../json-editor.helper';
 
 export class ObjectNode implements OnInit, OnChanges {
-  @Input()
-  schema: any;
+  @Input() schema: any;
 
-  @Input()
-  model: any;
+  @Input() model: any;
 
-  @Input()
-  required: boolean = false;
+  @Input() required: boolean = false;
 
-  @Input()
-  expanded: boolean;
+  @Input() expanded: boolean;
 
-  @Input()
-  path: string;
+  @Input() path: string;
 
-  @Input()
-  errors: any[];
+  @Input() errors: any[];
 
-  @Input()
-  typeCheckOverrides?: any;
+  @Input() typeCheckOverrides?: any;
 
   @Input() schemaBuilderMode: boolean;
 
-  @Output()
-  modelChange: EventEmitter<any> = new EventEmitter();
+  @Output() modelChange: EventEmitter<any> = new EventEmitter();
+
+  @Output() schemaChange: EventEmitter<any> = new EventEmitter();
 
   requiredCache: any = {};
 

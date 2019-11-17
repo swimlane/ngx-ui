@@ -5,7 +5,7 @@
       [schemaRef]="schemaRef.properties[prop.value.propertyName]" [required]="!!requiredCache[prop.value.propertyName]"
       [inline]="prop.value.type !== 'array' && prop.value.type !== 'object'"
       [path]="path + getPath(prop.value.propertyName)" [errors]="errors" [typeCheckOverrides]="typeCheckOverrides"
-      [level]="level" [schemaBuilderMode]="schemaBuilderMode">
+      [level]="level" [schemaBuilderMode]="schemaBuilderMode" (schemaChange)="schemaChange.emit(schemaRef)">
       <div class="node-options">
         <button type="button" class="node-options-btn" (click)="onPropertyConfig(prop, $event)">
           <i class="ngx-icon ngx-cog"></i>

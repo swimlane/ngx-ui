@@ -26,6 +26,7 @@ export class JsonEditor implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.schema) {
+      console.log(this.schema);
       this.schema = JSON.parse(JSON.stringify(this.schema));
     }
 
