@@ -14,7 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import moment from 'moment-timezone';
 
 import { getMonth, getDecadeStartYear } from './utils';
-import { CalenderDay } from './calendar-day.interface';
+import { CalendarDay } from './calendar-day.interface';
 import { CalendarMonth } from './calendar-month.type';
 import { CalendarView } from './calendar-view.enum';
 
@@ -47,14 +47,18 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() inputFormats: Array<string | moment.MomentBuiltinFormat> = ['L', `LT`, 'L LT', moment.ISO_8601];
 
   @Input('minView')
-  get minView() { return this._minView ? this._minView : CalendarView.Date; }
+  get minView() {
+    return this._minView ? this._minView : CalendarView.Date;
+  }
   set minView(val: CalendarView) {
     this._minView = val;
     this.validateView();
   }
 
   @Input('defaultView')
-  get defaultView() { return this._defaultView ? this._defaultView : this.minView; }
+  get defaultView() {
+    return this._defaultView ? this._defaultView : this.minView;
+  }
   set defaultView(val: CalendarView) {
     this._defaultView = val;
     this.validateView();
@@ -62,7 +66,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
 
   @Output() change = new EventEmitter<Date>();
 
-  get value() { return this._value; }
+  get value() {
+    return this._value;
+  }
   set value(val: Date) {
     const date = this.createMoment(val);
 
@@ -199,7 +205,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     return isBeforeMin || isAfterMax;
   }
 
-  onDayClick(day: CalenderDay) {
+  onDayClick(day: CalendarDay) {
     this.activeDate = day.date.clone();
     this.value = this.activeDate.toDate();
 
