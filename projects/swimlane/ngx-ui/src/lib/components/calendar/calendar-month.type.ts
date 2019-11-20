@@ -1,3 +1,3 @@
-import { CalenderDay } from './calendar-day.interface';
+import { CalendarDay } from './calendar-day.interface';
 
-export type CalendarMonth = CalenderDay[][];
+export type CalendarMonth = CalendarDay[][];

@@ -1,5 +1,5 @@
 import { CalendarMonth } from '../../calendar-month.type';
-import { CalenderDay } from '../../calendar-day.interface';
+import { CalendarDay } from '../../calendar-day.interface';
 
 import { getNumberRange } from '../get-number-range';
 
@@ -9,7 +9,7 @@ import { getNumberRange } from '../get-number-range';
  * @param offset
  * @return days by week
  */
-export function getWeeksForDays(days: CalenderDay[], startDay: number) {
+export function getWeeksForDays(days: CalendarDay[], startDay: number) {
   const weeks: CalendarMonth = [];
   let offset = 7;
 
