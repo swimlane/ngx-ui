@@ -34,6 +34,6 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
   }
 
   parseInt(value: string): number | null {
-    return value ? parseInt(value) : null;
+    return value ? parseInt(value, 10) : null;
   }
 }
