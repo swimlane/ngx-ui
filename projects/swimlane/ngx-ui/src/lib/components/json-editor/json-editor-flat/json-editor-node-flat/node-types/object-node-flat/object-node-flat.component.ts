@@ -38,11 +38,7 @@ export class ObjectNodeFlatComponent extends ObjectNode {
     const oldName = options.oldProperty.value.propertyName;
 
     if (newName !== options.oldProperty.value.propertyName) {
-      if (this.level > 0) {
-        this.updateSchemaPropertyName(this.schemaRef, newName, oldName);
-        this.schemaRef.properties[newName] = options.newProperty.value;
-      }
-
+      this.updateSchemaPropertyName(this.schemaRef, newName, oldName);
       this.updateSchemaPropertyName(this.schema, newName, oldName);
       this.updatePropertyName(options.newProperty.key, newName);
     }
@@ -50,15 +46,28 @@ export class ObjectNodeFlatComponent extends ObjectNode {
     this.toggleRequiredValue(options.required, newName);
 
     this.schema.properties[newName] = options.newProperty.value;
-    this.updateProp(options.newProperty.key, options.newProperty.value);
     this.propertyIndex[options.newProperty.key] = options.newProperty.value;
-
+    this.updateSchemaRefProperty(options.newProperty.value);
 
     console.log(this.schemaRef);
     console.log(this.schema);
     console.log(this.model);
 
     this.schemaChange.emit();
+  }
+
+  deleteProperty(propName: string): void {
+    delete this.schema.properties[propName];
+    delete this.schemaRef.properties[propName];
+    this.toggleRequiredValue(false, propName);
+    super.deleteProperty(propName);
+    this.schemaChange.emit();
+  }
+
+  private updateSchemaRefProperty(prop: any): void {
+    // TODO: add missing properties if any of the
+    const schemaProp = this.schemaRef.properties[prop.propertyName];
+    schemaProp['description'] = prop['description'];
   }
 
   private updateSchemaPropertyName(schema: any, newName: string, oldName: string): void {

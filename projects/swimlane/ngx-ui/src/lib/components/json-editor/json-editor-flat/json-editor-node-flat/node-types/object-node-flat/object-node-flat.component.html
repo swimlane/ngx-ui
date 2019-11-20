@@ -20,11 +20,11 @@
             <ul class="vertical-list">
               <li>
                 <button type="button" (click)="deleteProperty(prop.value.propertyName)"
-                  [disabled]="requiredCache[prop.value.propertyName]">
+                  [disabled]="requiredCache[prop.value.propertyName] && !schemaBuilderMode">
                   Delete
                 </button>
               </li>
-              <ng-container *ngIf="prop.value?.$meta?.type">
+              <ng-container *ngIf="prop.value?.$meta?.type && !schemaBuilderMode">
                 <li *ngFor="let type of prop.value?.$meta?.type">
                   <button type="button" (click)="changePropertyType(prop.value, type)"
                     [disabled]="prop.value.$meta.currentType === type">

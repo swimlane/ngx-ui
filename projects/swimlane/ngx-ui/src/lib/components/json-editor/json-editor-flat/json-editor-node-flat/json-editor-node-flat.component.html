@@ -6,10 +6,18 @@
 
     <div class="error-box" *ngIf="!valid && !schemaBuilderMode"></div>
 
-    <div class="required-indicator" (click)="toggleRequired()">
-      <span *ngIf="required" [class.invalid]="!childrenValid && !schemaBuilderMode"
-        [innerHtml]="requiredIndicator"></span>
-      <span *ngIf="!required && schemaBuilderMode" class="not-required" [innerHtml]="requiredIndicator"></span>
+    <div class="left-options">
+      <ng-container *ngIf="level > 0">
+        <div class="required-indicator" (click)="toggleRequired()">
+          <span *ngIf="required" [class.invalid]="!childrenValid && !schemaBuilderMode"
+            [innerHtml]="requiredIndicator"></span>
+          <span *ngIf="!required && schemaBuilderMode" class="not-required" [innerHtml]="requiredIndicator"></span>
+        </div>
+        <div *ngIf="schemaBuilderMode" class="drag-drop-handle">
+          <!-- TODO -->
+          <i class="ngx-icon ngx-handle"></i>
+        </div>
+      </ng-container>
     </div>
 
     <div class="node-content">
