@@ -18,6 +18,8 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() errors: any[];
 
+  @Input() label: string;
+
   @Input() level: number = -1;
 
   indentationArray: number[] = [];
