@@ -26,7 +26,7 @@
       <div class="node-input">
         <!-- Number | Integer -->
         <div *ngIf="schema?.type === 'number' || schema?.type === 'integer'">
-          <ngx-input type="number" [ngModel]="model" (ngModelChange)="updateModel(Number($event))"
+          <ngx-input type="number" [ngModel]="model" (ngModelChange)="updateModel(parseInt($event))"
             [requiredIndicator]="false" [required]="required"></ngx-input>
         </div>
 
