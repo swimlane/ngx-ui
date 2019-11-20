@@ -20,6 +20,8 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() errors: any[];
 
+  @Input() label: string;
+
   @Input() level: number = -1;
 
   @Input() schemaBuilderMode?: boolean;
@@ -43,6 +45,6 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
   }
 
   parseInt(value: string): number | null {
-    return value ? parseInt(value) : null;
+    return value ? parseInt(value, 10) : null;
   }
 }
