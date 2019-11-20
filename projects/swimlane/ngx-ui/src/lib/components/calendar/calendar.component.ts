@@ -14,7 +14,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import moment from 'moment-timezone';
 
 import { getMonth, getDecadeStartYear } from './utils';
-import { CalenderDay } from './calendar-day.interface';
+import { CalendarDay } from './calendar-day.interface';
 import { CalendarMonth } from './calendar-month.type';
 import { CalendarView } from './calendar-view.enum';
 
@@ -199,7 +199,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     return isBeforeMin || isAfterMax;
   }
 
-  onDayClick(day: CalenderDay) {
+  onDayClick(day: CalendarDay) {
     this.activeDate = day.date.clone();
     this.value = this.activeDate.toDate();
 

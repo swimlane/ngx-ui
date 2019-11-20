@@ -1,6 +1,6 @@
-import * as moment from 'moment';
+import moment from 'moment';
 
-export interface CalenderDay {
+export interface CalendarDay {
   num: number;
   dayOfWeek: number;
   date: moment.Moment;
