@@ -37,11 +37,8 @@ import 'codemirror/addon/fold/indent-fold.js';
 import 'codemirror/addon/hint/show-hint.js';
 import 'codemirror/addon/mode/overlay.js';
 
-interface HintCompletion {
-  text: string;
-  displayText: string;
-  className: string;
-}
+import { coerceBoolean } from '@swimlane/ngx-ui/utils';
+import { HintCompletion } from './hint-completion.interface';
 
 const CODEMIRROR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -50,6 +47,7 @@ const CODEMIRROR_VALUE_ACCESSOR = {
 };
 
 @Component({
+  exportAs: 'ngxCodemirror',
   selector: 'ngx-codemirror',
   providers: [CODEMIRROR_VALUE_ACCESSOR],
   template: `
@@ -60,6 +58,7 @@ const CODEMIRROR_VALUE_ACCESSOR = {
       </div>
     </div>
   `,
+  host: { class: 'ngx-codemirror' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
@@ -75,14 +74,24 @@ const CODEMIRROR_VALUE_ACCESSOR = {
 export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() config: any = { lineWrapping: true };
   @Input() theme: string = 'dracula';
-  @Input() readOnly: any = false;
-  @Input() autofocus: boolean = false;
+  @Input() readOnly: string | boolean = false;
   @Input() allowDropFileTypes: any[] = [];
   @Input() gutters: any[] = [];
   @Input() mode?: any;
   @Input() lint?: any;
-  @Input() lineNumbers?: any;
   @Input() autocompleteTokens?: Array<string | HintCompletion>;
+
+  @Input()
+  get autofocus() { return this._autofocus; }
+  set autofocus(autofocus: boolean) {
+    this._autofocus = coerceBoolean(autofocus);
+  }
+
+  @Input()
+  get lineNumbers() { return this._lineNumbers; }
+  set lineNumbers(lineNumbers: boolean) {
+    this._lineNumbers = coerceBoolean(lineNumbers);
+  }
 
   @Output() change: EventEmitter<any> = new EventEmitter();
   @Output() blur: EventEmitter<any> = new EventEmitter();
@@ -101,6 +110,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
       this.change.emit(this._value);
     }
   }
+
+  private _autofocus: boolean = false;
+  private _lineNumbers: boolean = false;
 
   constructor(private readonly renderer: Renderer2) { }
 
