@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { MomentModule } from 'ngx-moment';
-import * as moment from 'moment';
+import moment from 'moment';
 import momentTimezone from 'moment-timezone';
 
 import { PipesModule } from '../../pipes/pipes.module';

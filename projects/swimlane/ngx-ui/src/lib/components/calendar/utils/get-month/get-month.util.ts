@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import moment from 'moment';
 
 import { getWeeksForDays } from '../get-weeks-for-days';
 import { getDaysForMonth } from '../get-days-for-month';
