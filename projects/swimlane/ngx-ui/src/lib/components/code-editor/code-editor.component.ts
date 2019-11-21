@@ -75,8 +75,8 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
   @Input() config: any = { lineWrapping: true };
   @Input() theme: string = 'dracula';
   @Input() readOnly: string | boolean = false;
-  @Input() allowDropFileTypes: any[] = [];
-  @Input() gutters: any[] = [];
+  @Input() allowDropFileTypes: string[] = [];
+  @Input() gutters: Array<string | { className: string; style?: string }> = [];
   @Input() mode?: any;
   @Input() lint?: any;
   @Input() autocompleteTokens?: Array<string | HintCompletion>;
