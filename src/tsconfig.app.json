@@ -6,7 +6,8 @@
   },
   "angularCompilerOptions": {
     "preserveWhitespaces": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "enableIvy": false
   },
   "files": ["main.ts", "polyfills.ts"]
 }

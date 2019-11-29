@@ -6,7 +6,7 @@
     "start": "ng serve --port 4201",
     "build": "npm run build:lib && ng build --prod",
     "build:demo": "npm run build:lib && cross-env NODE_ENV=production ng build --prod --base-href=\"/ngx-ui/\"",
-    "build:lib": "ng build @swimlane/ngx-ui && node scripts/prep-global-styles.js",
+    "build:lib": "ng build @swimlane/ngx-ui --prod && node scripts/prep-global-styles.js",
     "package": "npm run build:lib",
     "test:unit": "ng test @swimlane/ngx-ui",
     "test:watch": "ng test @swimlane/ngx-ui --watch",
