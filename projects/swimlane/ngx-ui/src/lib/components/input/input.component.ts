@@ -164,9 +164,9 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   @Output() click = new EventEmitter<Event>();
   @Output() select = new EventEmitter<FocusEvent>();
 
-  @ViewChild('inputControl', { static: false }) readonly inputControl: ElementRef<HTMLInputElement>;
-  @ViewChild('inputModel', { static: false }) readonly inputModel: NgModel;
-  @ViewChild('textareaControl', { static: false }) readonly textareaControl: ElementRef<HTMLTextAreaElement>;
+  @ViewChild('inputControl') readonly inputControl: ElementRef<HTMLInputElement>;
+  @ViewChild('inputModel') readonly inputModel: NgModel;
+  @ViewChild('textareaControl') readonly textareaControl: ElementRef<HTMLTextAreaElement>;
 
   get value(): string { return this._value; }
   set value(val: string) {

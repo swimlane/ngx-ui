@@ -46,7 +46,7 @@ class TestHostComponent {
   readonly min$ = new BehaviorSubject<number>(undefined);
   readonly max$ = new BehaviorSubject<number>(undefined);
 
-  @ViewChild(InputComponent, { static: false })
+  @ViewChild(InputComponent)
   readonly input: InputComponent;
 }
 

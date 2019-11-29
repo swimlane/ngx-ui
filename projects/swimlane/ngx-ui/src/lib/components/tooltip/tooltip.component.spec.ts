@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, ElementRef, Renderer } from '@angular/core';
+import { NO_ERRORS_SCHEMA, ElementRef, Renderer2 } from '@angular/core';
 import { TooltipContentComponent } from './tooltip.component';
 describe('TooltipContentComponent', () => {
   let component: TooltipContentComponent;

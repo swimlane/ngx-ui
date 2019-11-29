@@ -1,12 +1,8 @@
 import { Component, ViewContainerRef, ViewEncapsulation } from '@angular/core';
-import {
-  InjectionService,
-  DrawerService,
-  LoadingService
-  // } from '@swimlane/ngx-ui';
-} from '../../projects/swimlane/ngx-ui/src/public_api';
+
 import { version } from '../../projects/swimlane/ngx-ui/package.json';
 import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
+import { DrawerService, InjectionService, LoadingService } from '@swimlane/ngx-ui';
 
 @Component({
   // tslint:disable-next-line:component-selector

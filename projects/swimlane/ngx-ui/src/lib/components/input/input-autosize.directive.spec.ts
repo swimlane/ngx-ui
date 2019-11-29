@@ -18,7 +18,7 @@ import { AutosizeDirective } from './input-autosize.directive';
 class TestHostComponent {
   value = 'test';
 
-  @ViewChild(AutosizeDirective, { static: false })
+  @ViewChild(AutosizeDirective)
   readonly autosize: AutosizeDirective;
 }
 

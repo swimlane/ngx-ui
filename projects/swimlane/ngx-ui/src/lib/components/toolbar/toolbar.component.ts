@@ -67,8 +67,8 @@ export class ToolbarComponent {
 
   @Output() menuClick = new EventEmitter();
 
-  @ViewChild(ToolbarTitleDirective, { static: false }) toolbarTitle: ToolbarTitleDirective;
-  @ViewChild(ToolbarContentDirective, { static: false }) toolbarContent: ToolbarContentDirective;
+  @ViewChild(ToolbarTitleDirective) toolbarTitle: ToolbarTitleDirective;
+  @ViewChild(ToolbarContentDirective) toolbarContent: ToolbarContentDirective;
 
   get toolbarItems() {
     return this.menu.filter(m => {

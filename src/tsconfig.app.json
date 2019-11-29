@@ -4,12 +4,9 @@
     "outDir": "../out-tsc/app",
     "types": []
   },
-  "exclude": [
-    "test.ts",
-    "**/*.spec.ts"
-  ],
   "angularCompilerOptions": {
     "preserveWhitespaces": true,
-    "enableIvy": true
-  }
+    "resolveJsonModule": true
+  },
+  "files": ["main.ts", "polyfills.ts"]
 }

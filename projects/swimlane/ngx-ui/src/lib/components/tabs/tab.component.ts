@@ -17,7 +17,7 @@ export class TabComponent implements OnInit {
   @Input() active = false;
   @Input() disabled = false;
   @ViewChild('labelIsStringTmpl', { static: true }) labelStringTemplate;
-  @ContentChild(IfTabActiveDirective, { static: false }) template: IfTabActiveDirective;
+  @ContentChild(IfTabActiveDirective) template: IfTabActiveDirective;
   labelTemplate: TemplateRef<any>;
 
   constructor(private renderer: Renderer2, private elRef: ElementRef) {}

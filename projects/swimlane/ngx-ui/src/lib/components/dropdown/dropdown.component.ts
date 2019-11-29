@@ -50,9 +50,9 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   @Input() closeOnOutsideClick: boolean = true;
   @Input() trigger: string = 'click';
 
-  @ContentChild(DropdownToggleDirective, { static: false }) dropdownToggle: DropdownToggleDirective;
+  @ContentChild(DropdownToggleDirective) dropdownToggle: DropdownToggleDirective;
 
-  @ContentChild(DropdownMenuDirective, { static: false }) dropdownMenu: DropdownMenuDirective;
+  @ContentChild(DropdownMenuDirective) dropdownMenu: DropdownMenuDirective;
 
   private documentListener: any;
 
