@@ -2,6 +2,10 @@
 
 ## HEAD (Unreleased)
 
+## 28.0.0-rc.1 (2019-12-02)
+
+- Fix: Properly import coerce-boolean
+
 ## 28.0.0-rc.1 (2019-11-29)
 
 - Breaking: Update angular to 9.0.0-rc.4

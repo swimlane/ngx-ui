@@ -24,7 +24,7 @@ import {
 } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 
-import { coerceBoolean } from '@swimlane/ngx-ui/utils';
+import { coerceBoolean } from '../../utils/coerce-boolean/coerce-boolean';
 import { InputTypes } from './input-types.enum';
 
 let nextId = 0;
@@ -100,58 +100,76 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   @Input() maxlength: number;
 
   @Input()
-  get disabled() { return this._disabled; }
+  get disabled() {
+    return this._disabled;
+  }
   set disabled(disabled: boolean) {
     this._disabled = coerceBoolean(disabled);
   }
 
   @Input() requiredIndicator: string | boolean = '*';
   @Input()
-  get required() { return this._required; }
+  get required() {
+    return this._required;
+  }
   set required(required: boolean) {
     this._required = coerceBoolean(required);
   }
 
   @Input() passwordToggleEnabled: boolean = false;
   @Input()
-  get passwordTextVisible() { return this._passwordTextVisible }
+  get passwordTextVisible() {
+    return this._passwordTextVisible;
+  }
   set passwordTextVisible(p: boolean) {
     this._passwordTextVisible = coerceBoolean(p);
     this.updateInputType();
   }
 
   @Input()
-  get autoSelect() { return this._autoSelect; }
+  get autoSelect() {
+    return this._autoSelect;
+  }
   set autoSelect(autoSelect: boolean) {
     this._autoSelect = coerceBoolean(autoSelect);
   }
 
   @Input()
-  get autofocus() { return this._autofocus; }
+  get autofocus() {
+    return this._autofocus;
+  }
   set autofocus(autofocus: boolean) {
     this._autofocus = coerceBoolean(autofocus);
   }
 
   @Input()
-  get autocomplete() { return this._autocomplete; }
+  get autocomplete() {
+    return this._autocomplete;
+  }
   set autocomplete(autocomplete: boolean) {
     this._autocomplete = coerceBoolean(autocomplete);
   }
 
   @Input()
-  get autocorrect() { return this._autocorrect; }
+  get autocorrect() {
+    return this._autocorrect;
+  }
   set autocorrect(autocorrect: boolean) {
     this._autocorrect = coerceBoolean(autocorrect);
   }
 
   @Input()
-  get spellcheck() { return this._spellcheck; }
+  get spellcheck() {
+    return this._spellcheck;
+  }
   set spellcheck(spellcheck: boolean) {
     this._spellcheck = coerceBoolean(spellcheck);
   }
 
   @Input()
-  get type() { return this._type; }
+  get type() {
+    return this._type;
+  }
   set type(type: InputTypes) {
     this._type = type;
     this.updateInputType();
@@ -168,7 +186,9 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   @ViewChild('inputModel') readonly inputModel: NgModel;
   @ViewChild('textareaControl') readonly textareaControl: ElementRef<HTMLTextAreaElement>;
 
-  get value(): string { return this._value; }
+  get value(): string {
+    return this._value;
+  }
   set value(val: string) {
     if (val !== this._value) {
       this._value = val;
@@ -203,7 +223,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   }
 
   get requiredIndicatorView(): string {
-    return (!this.requiredIndicator || !this.required) ? '' : this.requiredIndicator as string;
+    return !this.requiredIndicator || !this.required ? '' : (this.requiredIndicator as string);
   }
 
   get element() {
@@ -224,7 +244,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   private _autocorrect: boolean = false;
   private _spellcheck: boolean = false;
 
-  constructor(private readonly cdr: ChangeDetectorRef) { }
+  constructor(private readonly cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     if (this.autofocus) {
