@@ -2,7 +2,11 @@
 
 ## HEAD (Unreleased)
 
-## 28.0.0-rc.1 (2019-12-02)
+## 28.0.0-rc.3 (2019-12-02)
+
+- Fix: Extract template into separate file
+
+## 28.0.0-rc.2 (2019-12-02)
 
 - Fix: Properly import coerce-boolean
 
