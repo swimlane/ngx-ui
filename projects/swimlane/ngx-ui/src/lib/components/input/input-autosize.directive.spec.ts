@@ -8,12 +8,9 @@ import { AutosizeDirective } from './input-autosize.directive';
 @Component({
   selector: `ngx-test-host-component`,
   template: `
-    <textarea
-      [(ngModel)]="value"
-      autosize
-    ></textarea>
+    <textarea [(ngModel)]="value" autosize></textarea>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 class TestHostComponent {
   value = 'test';
@@ -30,7 +27,7 @@ describe('AutosizeDirective', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [TestHostComponent, AutosizeDirective],
-      imports: [FormsModule, BrowserAnimationsModule],
+      imports: [FormsModule, BrowserAnimationsModule]
     });
   });
 
@@ -51,4 +48,3 @@ describe('AutosizeDirective', () => {
     expect(spy).toHaveBeenCalled();
   });
 });
-

@@ -51,7 +51,7 @@ export class SplitDirective implements AfterContentInit, OnChanges {
   @ContentChildren(SplitHandleComponent, { descendants: false }) handles: QueryList<SplitHandleComponent>;
   @ContentChildren(SplitAreaDirective, { descendants: false }) areas: QueryList<SplitAreaDirective>;
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef) {}
 
   ngAfterContentInit(): void {
     this.handles.forEach(d => d.drag.subscribe(ev => this.onDrag(ev)));

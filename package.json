@@ -24,7 +24,7 @@
     "publish:lib": "npm publish ./dist/swimlane/ngx-ui",
     "prepack": "npm run package",
     "pack": "npm pack ./dist/swimlane/ngx-ui",
-    "prettier": "prettier --write \"**/*.{js,ts,html,scss,css,md,json}\""
+    "prettier": "prettier --write \"{src,projects}/**/*.{js,ts,scss,css,md,json}\""
   },
   "private": true,
   "dependencies": {
