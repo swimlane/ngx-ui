@@ -7,7 +7,8 @@
       [path]="path + getPath(prop.value.propertyName)" [errors]="errors" [typeCheckOverrides]="typeCheckOverrides"
       [level]="level" [schemaBuilderMode]="schemaBuilderMode" (schemaChange)="schemaChange.emit(schemaRef)">
       <div class="node-options">
-        <button type="button" class="node-options-btn" (click)="onPropertyConfig(prop, $event)">
+        <button *ngIf="schemaBuilderMode" type="button" class="node-options-btn"
+          (click)="onPropertyConfig(prop, $event)">
           <i class="ngx-icon ngx-cog"></i>
         </button>
         <ngx-dropdown [showCaret]="true">

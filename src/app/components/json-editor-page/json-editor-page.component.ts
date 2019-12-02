@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { JSONSchema7 } from 'json-schema';
 
 @Component({
   selector: 'app-json-editor-page',
@@ -20,7 +21,8 @@ export class JsonEditorPageComponent {
       },
       productName: {
         description: 'Name of the product',
-        type: 'string'
+        type: 'string',
+        format: 'password'
       },
       price: {
         description: 'The price of the product',
@@ -88,6 +90,8 @@ export class JsonEditorPageComponent {
     metaData: "<< console.log('this should be of type code') >>"
   };
 
+  schemaRef: JSONSchema7;
+
   typeOverrides: any = {
     'string=code': (value: any) => {
       if (typeof value !== 'string') {
@@ -103,7 +107,8 @@ export class JsonEditorPageComponent {
     this.jsonEditorModel = {};
   }
 
-  schemaChange(event): void {
+  schemaChange(schema: JSONSchema7): void {
     console.log(event);
+    this.schemaRef = schema;
   }
 }

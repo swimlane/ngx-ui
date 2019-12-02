@@ -16,6 +16,8 @@
       <hr />
       <h3>Model</h3>
       <pre>{{ jsonEditorModel | json }}</pre>
+      <h3>Schema</h3>
+      <pre>{{ schemaRef | json }}</pre>
     </ngx-tab>
     <ngx-tab label="Schema">
       <ngx-button class="btn btn-primary" (click)="updateJsonEditorSchema(_jsonEditorSchema)">Update Schema</ngx-button>

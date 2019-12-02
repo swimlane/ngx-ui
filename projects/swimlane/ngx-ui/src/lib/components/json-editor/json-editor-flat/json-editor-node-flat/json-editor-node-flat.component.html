@@ -27,7 +27,7 @@
         </div>
 
         <div class="info-type">
-          <span class="type">{{ schema?.type | titlecase }}</span>
+          <span class="type">{{ inferTypeName(schema) | titlecase }}</span>
           <ngx-icon *ngIf="schema?.propertyName" class="dot-separator" fontIcon="circle-filled"></ngx-icon>
           <span class="property-name">{{ schema?.propertyName }}</span>
         </div>
@@ -116,6 +116,16 @@
         </ng-container>
 
         <div class="input-error" *ngFor="let error of ownErrors">{{ error.message }}</div>
+      </div>
+
+      <div *ngIf="schemaBuilderMode" class="node-constrains">
+        <div class="tag" *ngIf="schema.minItems"> Min Items: {{ schema.minItems }}</div>
+        <div class="tag" *ngIf="schema.maxItems"> Max Items: {{ schema.maxItems }}</div>
+        <div class="tag" *ngIf="schema.minimum"> Minimum: {{ schema.minimum }}</div>
+        <div class="tag" *ngIf="schema.maximum"> Maximum: {{ schema.maximum }}</div>
+        <div class="tag" *ngIf="schema.minLength"> Min Length: {{ schema.minLength }}</div>
+        <div class="tag" *ngIf="schema.maxLength"> Max Length: {{ schema.maxLength }}</div>
+        <div class="tag" *ngIf="schema.pattern"> Pattern: Yes</div>
       </div>
       <ng-content></ng-content>
     </div>

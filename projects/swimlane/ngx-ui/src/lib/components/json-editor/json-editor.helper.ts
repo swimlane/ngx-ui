@@ -5,7 +5,18 @@ export const requiredIndicatorIcon = `
     <path d="M3.38411 10L2.19205 9.10616L3.89073 6.2089L1 4.97603L1.44702 3.55822L4.48676 4.32877L4.75497 1H6.21523L6.48344 4.29795L9.55298 3.55822L10 4.97603L7.10927 6.2089L8.77815 9.10616L7.61589 10L5.5 7.34931L3.38411 10Z" fill="#72819F" stroke="#72819F" stroke-width="0.5"/>
   </svg>`;
 
-export const jsonSchemaDataTypes: any[] = [
+export interface JsonSchemaDataType {
+  name: string;
+  defaultValue: () => any;
+  schema: {
+    type: string,
+    format?: string
+  };
+  icon: string;
+  matchType: (value: string) => boolean;
+}
+
+export const jsonSchemaDataTypes: JsonSchemaDataType[] = [
   {
     name: 'String',
     defaultValue: () => '',
@@ -206,5 +217,20 @@ export function getCurrentType(schema: JSONSchema7): string {
     return `string=${schema.format}`;
   } else {
     return 'string';
+  }
+}
+
+export function inferTypeName(schema: JSONSchema7): unknown {
+  switch (schema.format) {
+    case 'date':
+      return 'Date';
+    case 'date-time':
+      return 'Date & Time';
+    case 'password':
+      return 'Password';
+    case 'code':
+      return 'Code';
+    default:
+      return schema.type;
   }
 }

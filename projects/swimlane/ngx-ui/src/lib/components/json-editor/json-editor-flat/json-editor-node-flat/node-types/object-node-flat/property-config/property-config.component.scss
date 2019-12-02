@@ -21,6 +21,18 @@
     }
   }
 
+  .constrain-row {
+    display: flex;
+
+    ngx-input {
+      flex-basis: 50%;
+
+      &:first-child {
+        margin-right: 30px;
+      }
+    }
+  }
+
   ngx-checkbox {
     label {
       display: flex;

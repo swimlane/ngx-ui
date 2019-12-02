@@ -11,7 +11,7 @@ import {
   ComponentRef
 } from '@angular/core';
 
-import { createValueForSchema, jsonSchemaDataTypes, inferType } from './json-editor.helper';
+import { createValueForSchema, jsonSchemaDataTypes, inferType, JsonSchemaDataType } from './json-editor.helper';
 import { DialogComponent } from '../dialog/dialog.component';
 import { DialogService } from '../dialog/dialog.service';
 
@@ -37,7 +37,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
   @ViewChild('codeEditorTpl', { static: false }) codeEditorTpl: TemplateRef<any>;
 
   requiredCache: any = {};
-  dataTypes: any[] = jsonSchemaDataTypes;
+  dataTypes: JsonSchemaDataType[] = jsonSchemaDataTypes;
   expanded: boolean = true;
 
   ownErrors: any[];

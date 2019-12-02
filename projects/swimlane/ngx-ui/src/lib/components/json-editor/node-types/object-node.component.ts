@@ -13,8 +13,10 @@ import {
   inferType,
   dataTypeMap,
   getIcon,
-  getCurrentType
+  getCurrentType,
+  JsonSchemaDataType
 } from '../json-editor.helper';
+import { JSONSchema7 } from 'json-schema';
 
 export class ObjectNode implements OnInit, OnChanges {
   @Input() schema: any;
@@ -37,9 +39,9 @@ export class ObjectNode implements OnInit, OnChanges {
 
   @Output() schemaChange: EventEmitter<any> = new EventEmitter();
 
-  requiredCache: any = {};
+  requiredCache: { [key: string]: boolean } = {};
 
-  dataTypes: any[] = jsonSchemaDataTypes;
+  dataTypes: JsonSchemaDataType[] = jsonSchemaDataTypes;
   propertyCounter: number = 1;
   propertyId: number = 1;
   propertyIndex: any = {};
@@ -56,7 +58,7 @@ export class ObjectNode implements OnInit, OnChanges {
     }
   }
 
-  update() {
+  update(): void {
     setTimeout(() => {
       for (const prop in this.schema.properties) {
         if (Array.isArray(this.schema.properties[prop].type) && this.schema.properties[prop].type.length > 0) {
@@ -89,7 +91,7 @@ export class ObjectNode implements OnInit, OnChanges {
    * @param propName
    * @param value
    */
-  updateProp(id: any, value: any) {
+  updateProp(id: any, value: any): void {
     const propName = this.propertyIndex[id].propertyName;
     this.model[propName] = value;
     this.modelChange.emit(this.model);
@@ -124,12 +126,12 @@ export class ObjectNode implements OnInit, OnChanges {
   /**
    * Adds a new property to the model
    */
-  addProperty(dataType: any) {
+  addProperty(dataType: JsonSchemaDataType): void {
     const propName = `${dataType.name} ${this.propertyCounter}`;
     this.propertyCounter++;
     const schema = JSON.parse(JSON.stringify(dataType.schema));
 
-    this.model[propName] = createValueForSchema(dataType.schema);
+    this.model[propName] = createValueForSchema(dataType.schema as JSONSchema7);
     schema.nameEditable = true;
     schema.propertyName = propName;
     schema.id = this.propertyId++;
@@ -143,7 +145,7 @@ export class ObjectNode implements OnInit, OnChanges {
   /**
    * Adds a new property as defined in the schema
    */
-  addSchemaProperty(propName: string) {
+  addSchemaProperty(propName: string): void {
     if (this.model[propName] !== undefined) {
       return;
     }
@@ -169,7 +171,7 @@ export class ObjectNode implements OnInit, OnChanges {
   /**
    * Adds a new patternProperty as defined in the schema
    */
-  addSchemaPatternProperty(propName: string) {
+  addSchemaPatternProperty(propName: string): void {
     const newPropName = `new ${this.schema.patternProperties[propName].title} ${this.propertyCounter}`;
     this.propertyCounter++;
 
@@ -231,7 +233,7 @@ export class ObjectNode implements OnInit, OnChanges {
   /**
    * Updates the required cache
    */
-  updateRequiredCache() {
+  updateRequiredCache(): void {
     this.requiredCache = {};
     if (this.schema && this.schema.required) {
       for (const prop of this.schema.required) {
@@ -243,12 +245,16 @@ export class ObjectNode implements OnInit, OnChanges {
   /**
    * Creates an index out of all the properties in the model
    */
-  indexProperties() {
-    for (const prop in this.model) {
+  indexProperties(): void {
+    const props = this.schemaBuilderMode ? this.schema.properties : this.model;
+
+    for (const prop in props) {
       if (this.isIndexed(prop)) {
         continue;
       }
+
       let schema: any;
+
       if (this.schema.properties && this.schema.properties[prop]) {
         schema = JSON.parse(JSON.stringify(this.schema.properties[prop]));
       } else {
@@ -292,12 +298,13 @@ export class ObjectNode implements OnInit, OnChanges {
   /**
    * Inits the required properties on the model
    */
-  addRequiredProperties() {
+  addRequiredProperties(): void {
     if (this.schema && this.schema.properties) {
       for (const propName in this.schema.properties) {
         if (this.model[propName] !== undefined) {
           continue;
         }
+
         if (this.requiredCache[propName] || this.schemaBuilderMode) { // List all properties not only required if we are in schema builder mode
           this.addSchemaProperty(propName);
         }
@@ -341,7 +348,7 @@ export class ObjectNode implements OnInit, OnChanges {
   /**
    * Updates the icons in the schemas
    */
-  private updateIcons() {
+  protected updateIcons(): void {
     for (const id in this.propertyIndex) {
       const schema = this.propertyIndex[id];
       if (!schema.$meta) {

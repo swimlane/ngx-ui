@@ -6,7 +6,8 @@ import {
   dataTypeMap,
   inferType,
   getIcon,
-  getCurrentType
+  getCurrentType,
+  JsonSchemaDataType
 } from '../json-editor.helper';
 
 export class ArrayNode implements OnChanges {
@@ -36,7 +37,7 @@ export class ArrayNode implements OnChanges {
 
   requiredCache: any = {};
   schemas: any[] = [];
-  dataTypes: any[] = jsonSchemaDataTypes;
+  dataTypes: JsonSchemaDataType[] = jsonSchemaDataTypes;
   dataTypeMap = dataTypeMap;
 
   _array = Array;

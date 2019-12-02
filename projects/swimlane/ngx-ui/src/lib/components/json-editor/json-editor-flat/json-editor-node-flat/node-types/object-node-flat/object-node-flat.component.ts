@@ -1,6 +1,8 @@
 import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef } from '@angular/core';
 import { ObjectNode } from '../../../../node-types/object-node.component';
 import { DialogService } from '../../../../../dialog/dialog.service';
+import { JSONSchema7 } from 'json-schema';
+import { JsonSchemaDataType } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
 
 @Component({
   selector: 'ngx-json-object-node-flat',
@@ -15,7 +17,7 @@ export class ObjectNodeFlatComponent extends ObjectNode {
 
   @Input() schemaBuilderMode: boolean;
 
-  @Input() schemaRef: any;
+  @Input() schemaRef: JSONSchema7;
 
   constructor(private dialogService: DialogService) {
     super();
@@ -56,6 +58,15 @@ export class ObjectNodeFlatComponent extends ObjectNode {
     this.schemaChange.emit();
   }
 
+  addProperty(dataType: JsonSchemaDataType): void {
+    super.addProperty(dataType);
+
+    if (this.schemaBuilderMode) {
+      this.updateSchemaRefProperty(this.propertyIndex[this.propertyId - 1]);
+      this.schemaChange.emit();
+    }
+  }
+
   deleteProperty(propName: string): void {
     delete this.schema.properties[propName];
     delete this.schemaRef.properties[propName];
@@ -65,9 +76,19 @@ export class ObjectNodeFlatComponent extends ObjectNode {
   }
 
   private updateSchemaRefProperty(prop: any): void {
-    // TODO: add missing properties if any of the
-    const schemaProp = this.schemaRef.properties[prop.propertyName];
-    schemaProp['description'] = prop['description'];
+    // TODO: add missing properties
+    this.schemaRef.properties[prop.propertyName] = {
+      type: prop.type,
+      ...prop['description'] && { description: prop['description'] },
+      ...prop['nameEditable'] && { nameEditable: prop['nameEditable'] },
+      ...prop['minimum'] && { minimum: prop['minimum'] },
+      ...prop['maximum'] && { maximum: prop['maximum'] },
+      ...prop['minLength'] && { minLength: prop['minLength'] },
+      ...prop['minLength'] && { minLength: prop['minLength'] },
+      ...prop['minItems'] && { minItems: prop['minItems'] },
+      ...prop['maxItems'] && { maxItems: prop['maxItems'] },
+      ...prop['pattern'] && { pattern: prop['pattern'] }
+    };
   }
 
   private updateSchemaPropertyName(schema: any, newName: string, oldName: string): void {

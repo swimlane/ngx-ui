@@ -18,6 +18,30 @@
         [hint]="'A description for the property'">
       </ngx-input>
 
+      <ngx-select [filterable]="false" [ngModel]="[inferTypeName(editableProperty.value)]"
+        (ngModelChange)="updateTypeAndFormat($event[0])" [required]="required">
+        <ngx-select-option *ngFor="let dataType of dataTypes" [name]="dataType.name"
+          [value]="inferTypeName(dataType.schema)">
+        </ngx-select-option>
+      </ngx-select>
+
+      <div class="constrain-row"
+        *ngIf="editableProperty.value.type === 'number' || editableProperty.value.type === 'integer'">
+        <ngx-input type="number" [(ngModel)]="editableProperty.value.minimum" [label]="'MINIMUM'"></ngx-input>
+
+        <ngx-input type="number" [(ngModel)]="editableProperty.value.maximum" [label]="'MAXIMUM'"></ngx-input>
+      </div>
+
+      <div class="constrain-row" *ngIf="editableProperty.value.type === 'string'">
+        <ngx-input type="number" [(ngModel)]="editableProperty.value.minLength" [label]="'MINIMUM LENGTH'"></ngx-input>
+
+        <ngx-input type="number" [(ngModel)]="editableProperty.value.maxLength" [label]="'MAXIMUM LENGTH'"></ngx-input>
+      </div>
+
+      <!-- TODO: Validate -->
+      <ngx-input type="text" [(ngModel)]="editableProperty.value.pattern" [label]="'PATTERN TO MATCH'">
+      </ngx-input>
+
       <ngx-checkbox [(ngModel)]="required">
         Required
       </ngx-checkbox>

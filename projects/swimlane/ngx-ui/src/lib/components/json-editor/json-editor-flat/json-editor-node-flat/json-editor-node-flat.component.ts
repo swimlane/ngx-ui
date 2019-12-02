@@ -3,7 +3,8 @@ import { JsonEditorNode } from '../../json-editor-node';
 
 import { DialogService } from '../../../dialog/dialog.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { requiredIndicatorIcon } from '../../json-editor.helper';
+import { requiredIndicatorIcon, inferTypeName } from '../../json-editor.helper';
+import { JSONSchema7 } from 'json-schema';
 
 @Component({
   selector: 'ngx-json-editor-node-flat',
@@ -14,7 +15,7 @@ import { requiredIndicatorIcon } from '../../json-editor.helper';
 export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnInit {
   @Input() model: any;
 
-  @Input() schema: any;
+  @Input() schema: JSONSchema7;
 
   @Input() typeCheckOverrides?: any;
 
@@ -31,6 +32,8 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
   requiredIndicator: SafeHtml;
 
   indentationArray: number[] = [];
+
+  inferTypeName = inferTypeName;
 
   constructor(public dialogMngr: DialogService, private domSanitizer: DomSanitizer) {
     super(dialogMngr);
