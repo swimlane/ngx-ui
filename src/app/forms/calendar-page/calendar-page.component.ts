@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-calendar-page',
-  templateUrl: './calendar-page.component.html'
+  templateUrl: './calendar-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarPageComponent {
   curDate: any = new Date();

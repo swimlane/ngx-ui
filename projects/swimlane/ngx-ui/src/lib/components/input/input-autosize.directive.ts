@@ -2,6 +2,7 @@ import { ElementRef, HostListener, Directive, AfterContentChecked, Renderer2 } f
 
 @Directive({
   // tslint:disable-next-line:directive-selector
+  exportAs: 'ngxAutosize',
   selector: 'textarea[autosize]'
 })
 export class AutosizeDirective implements AfterContentChecked {
@@ -12,7 +13,7 @@ export class AutosizeDirective implements AfterContentChecked {
   }
 
   @HostListener('input', ['$event.target'])
-  onInput(textArea: HTMLTextAreaElement): void {
+  onInput(_?: HTMLTextAreaElement): void {
     this.adjust();
   }
 

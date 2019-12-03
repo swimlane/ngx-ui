@@ -1,9 +1,9 @@
-import * as CodeMirror from 'codemirror';
+import CodeMirror from 'codemirror';
 
 // Adds mustache as an overlay to text/html
-CodeMirror.defineMode('mustache', function(config: any, parserConfig: any) {
+CodeMirror.defineMode('mustache', /* istanbul ignore next */ function(config: any, parserConfig: any) {
   const mustacheOverlay = {
-    token(stream: any, state: any) {
+    token(stream: any, _: any) {
       let ch: any;
       if (stream.match('{{')) {
         // tslint:disable-next-line:no-conditional-assignment
