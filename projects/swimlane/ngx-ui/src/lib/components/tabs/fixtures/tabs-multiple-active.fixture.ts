@@ -3,10 +3,10 @@ import { TabsComponent } from '../tabs.component';
 
 @Component({
   // tslint:disable-next-line: component-selector
-  selector: 'tabs-fixture',
-  templateUrl: 'tabs.fixture.html',
+  selector: 'tabs-multiple-active-fixture',
+  templateUrl: 'tabs-multiple-active.fixture.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabsFixtureComponent {
+export class TabsMultipleActiveFixtureComponent {
   @ViewChild('tabs', { static: true }) tabsComponent: TabsComponent;
 }
