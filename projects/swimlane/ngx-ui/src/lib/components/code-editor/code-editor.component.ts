@@ -12,6 +12,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import CodeMirror from 'codemirror';
 
@@ -37,7 +38,6 @@ import 'codemirror/addon/fold/indent-fold.js';
 import 'codemirror/addon/hint/show-hint.js';
 import 'codemirror/addon/mode/overlay.js';
 
-import { coerceBoolean } from '@swimlane/ngx-ui/utils';
 import { HintCompletion } from './hint-completion.interface';
 
 const CODEMIRROR_VALUE_ACCESSOR = {
@@ -84,13 +84,13 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
   @Input()
   get autofocus() { return this._autofocus; }
   set autofocus(autofocus: boolean) {
-    this._autofocus = coerceBoolean(autofocus);
+    this._autofocus = coerceBooleanProperty(autofocus);
   }
 
   @Input()
   get lineNumbers() { return this._lineNumbers; }
   set lineNumbers(lineNumbers: boolean) {
-    this._lineNumbers = coerceBoolean(lineNumbers);
+    this._lineNumbers = coerceBooleanProperty(lineNumbers);
   }
 
   @Output() change: EventEmitter<any> = new EventEmitter();

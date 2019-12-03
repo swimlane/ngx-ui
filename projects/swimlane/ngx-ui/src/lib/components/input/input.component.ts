@@ -22,9 +22,9 @@ import {
   FormControl,
   Validators
 } from '@angular/forms';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BehaviorSubject } from 'rxjs';
 
-import { coerceBoolean } from '@swimlane/ngx-ui/utils';
 import { InputTypes } from './input-types.enum';
 
 let nextId = 0;
@@ -102,52 +102,52 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   @Input()
   get disabled() { return this._disabled; }
   set disabled(disabled: boolean) {
-    this._disabled = coerceBoolean(disabled);
+    this._disabled = coerceBooleanProperty(disabled);
   }
 
   @Input() requiredIndicator: string | boolean = '*';
   @Input()
   get required() { return this._required; }
   set required(required: boolean) {
-    this._required = coerceBoolean(required);
+    this._required = coerceBooleanProperty(required);
   }
 
   @Input() passwordToggleEnabled: boolean = false;
   @Input()
   get passwordTextVisible() { return this._passwordTextVisible }
   set passwordTextVisible(p: boolean) {
-    this._passwordTextVisible = coerceBoolean(p);
+    this._passwordTextVisible = coerceBooleanProperty(p);
     this.updateInputType();
   }
 
   @Input()
   get autoSelect() { return this._autoSelect; }
   set autoSelect(autoSelect: boolean) {
-    this._autoSelect = coerceBoolean(autoSelect);
+    this._autoSelect = coerceBooleanProperty(autoSelect);
   }
 
   @Input()
   get autofocus() { return this._autofocus; }
   set autofocus(autofocus: boolean) {
-    this._autofocus = coerceBoolean(autofocus);
+    this._autofocus = coerceBooleanProperty(autofocus);
   }
 
   @Input()
   get autocomplete() { return this._autocomplete; }
   set autocomplete(autocomplete: boolean) {
-    this._autocomplete = coerceBoolean(autocomplete);
+    this._autocomplete = coerceBooleanProperty(autocomplete);
   }
 
   @Input()
   get autocorrect() { return this._autocorrect; }
   set autocorrect(autocorrect: boolean) {
-    this._autocorrect = coerceBoolean(autocorrect);
+    this._autocorrect = coerceBooleanProperty(autocorrect);
   }
 
   @Input()
   get spellcheck() { return this._spellcheck; }
   set spellcheck(spellcheck: boolean) {
-    this._spellcheck = coerceBoolean(spellcheck);
+    this._spellcheck = coerceBooleanProperty(spellcheck);
   }
 
   @Input()
@@ -304,7 +304,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this.disabled = coerceBoolean(isDisabled);
+    this.disabled = coerceBooleanProperty(isDisabled);
   }
 
   private onTouchedCallback: () => void = () => {
