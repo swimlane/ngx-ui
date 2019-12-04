@@ -157,7 +157,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
     this.updateInputType();
   }
 
-  @Output() change = new EventEmitter<string>();
+  @Output() change = new EventEmitter<string | number>();
   @Output() blur = new EventEmitter<Event>();
   @Output() focus = new EventEmitter<FocusEvent>();
   @Output() keyup = new EventEmitter<KeyboardEvent>();
@@ -168,10 +168,11 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   @ViewChild('inputModel', { static: false }) readonly inputModel: NgModel;
   @ViewChild('textareaControl', { static: false }) readonly textareaControl: ElementRef<HTMLTextAreaElement>;
 
-  get value(): string { return this._value; }
-  set value(val: string) {
+  get value(): string | number { return this._value; }
+  set value(val: string | number) {
     if (val !== this._value) {
       this._value = this.type === InputTypes.number ? coerceNumberProperty(val) : val;
+      console.log(typeof this._value)
       this.onChangeCallback(this._value);
     }
   }
@@ -213,7 +214,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   focused: boolean = false;
   readonly type$ = new BehaviorSubject<InputTypes>(undefined);
 
-  private _value: any = '';
+  private _value: string | number = '';
   private _type: InputTypes = InputTypes.text;
   private _passwordTextVisible: boolean = false;
   private _disabled: boolean = false;
