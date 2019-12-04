@@ -118,6 +118,7 @@ describe('InputComponent', () => {
     const spy = spyOn(component.input.blur, 'emit');
     component.input.element.nativeElement.focus();
     component.input.element.nativeElement.blur();
+    fixture.detectChanges();
     expect(spy).toHaveBeenCalled()
   });
 
