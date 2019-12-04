@@ -113,7 +113,7 @@ export class LoadingService {
     } else if (stat >= 0.65 && stat < 0.9) {
       // increment between 0 - 2%
       rnd = (Math.random() * 2) / 100;
-    } else if (stat >= 0.9 && stat < 0.99) {
+    } else {
       // finally, increment it .5 %
       // after 99%, don't increment:
       rnd = 0.005;
