@@ -14,6 +14,7 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 import { LongPressButtonState } from './long-press-button-state.enum';
 
 @Component({
+  exportAs: 'ngxLongPressButton',
   selector: 'ngx-long-press-button',
   templateUrl: './long-press-button.component.html',
   styleUrls: ['./long-press-button.component.scss'],

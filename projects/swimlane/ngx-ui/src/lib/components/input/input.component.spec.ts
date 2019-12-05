@@ -79,9 +79,10 @@ describe('InputComponent', () => {
   });
 
   it('should focus input', () => {
-    component.input.element.nativeElement.focus();
-    fixture.detectChanges();
-    expect(component.input.focusedOrDirty).toEqual(true);
+    const spy = spyOn(component.input.focus, 'emit');
+    component.input.autoSelect = true;
+    component.input.onFocus(MOCK_EVENT);
+    expect(spy).toHaveBeenCalled();
   });
 
   it('should be required', () => {
@@ -116,9 +117,7 @@ describe('InputComponent', () => {
 
   it('should blur', () => {
     const spy = spyOn(component.input.blur, 'emit');
-    component.input.element.nativeElement.focus();
-    component.input.element.nativeElement.blur();
-    fixture.detectChanges();
+    component.input.onBlur(MOCK_EVENT);
     expect(spy).toHaveBeenCalled()
   });
 
@@ -137,46 +136,13 @@ describe('InputComponent', () => {
     });
   });
 
-  describe('autofocus', () => {
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestHostComponent);
-      component = fixture.componentInstance;
-      component.autofocus$.next(true);
-      fixture.detectChanges();
-    });
-
-    it('should be focused on init', (done) => {
-      component.input.focus.pipe(take(1)).subscribe(() => {
-        expect(component.input.focused).toEqual(true);
-        done();
-      });
-    });
-  });
-
-  describe('autoSelect', () => {
-    beforeEach(() => {
-      fixture = TestBed.createComponent(TestHostComponent);
-      component = fixture.componentInstance;
-      component.autoSelect$.next(true);
-      fixture.detectChanges();
-    });
-
-    it('should be selected on init', (done) => {
-      component.input.select.pipe(take(1)).subscribe(() => {
-        expect(component.input.focused).toEqual(true);
-        done();
-      });
-
-      component.input.element.nativeElement.focus();
-    });
-  });
-
   describe('validate', () => {
     let control: FormControl;
 
     beforeEach(() => {
       fixture = TestBed.createComponent(TestHostComponent);
       component = fixture.componentInstance;
+      component.autoSelect$.next(true);
       component.min$.next(2);
       component.max$.next(10);
       control = new FormControl('testing');
@@ -205,6 +171,7 @@ describe('InputComponent', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(TestHostComponent);
       component = fixture.componentInstance;
+      component.autofocus$.next(true);
       component.value = '';
       fixture.detectChanges();
     });

@@ -2,6 +2,7 @@ import { Component, Input, ViewEncapsulation, ChangeDetectionStrategy, ChangeDet
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 @Component({
+  exportAs: 'ngxLoadingBar',
   selector: 'ngx-loading-bar',
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss'],
