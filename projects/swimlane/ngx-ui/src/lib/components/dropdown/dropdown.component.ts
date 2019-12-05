@@ -14,17 +14,6 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
 
-/**
- * Dropdown control
- *
- *  <ngx-dropdown>
- *    <ngx-dropdown-toggle>Button</dropdown-toggle>
- *    <ngx-dropdown-menu class="pull-right">
- *      <ul><li><a>...</a></li></ul>
- *    </ngx-dropdown-menu>
- *  </ngx-dropdown>
- *
- */
 @Component({
   exportAs: 'ngxDropdown',
   selector: 'ngx-dropdown',
@@ -82,7 +71,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
 
   ngAfterContentInit(): void {
     if (this.dropdownToggle) {
-      this.dropdownToggle.toggle.subscribe(ev => this.onToggleClick(ev));
+      this.dropdownToggle.toggle.subscribe((ev: Event) => this.onToggleClick(ev));
     }
   }
 
@@ -90,10 +79,10 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     if (this._documentListener) this._documentListener();
   }
 
-  onDocumentClick({ target }): void {
+  onDocumentClick(e: Event): void {
     if (this.open && this.closeOnOutsideClick) {
-      const isToggling = this.dropdownToggle.element.contains(target);
-      const isMenuClick = !this.closeOnClick && this.dropdownMenu.element.contains(target);
+      const isToggling = this.dropdownToggle.element.contains(e.target as Node);
+      const isMenuClick = !this.closeOnClick && this.dropdownMenu.element.contains(e.target as Node);
 
       if (!isToggling && !isMenuClick) {
         this.open = false;
@@ -104,14 +93,12 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   }
 
   onToggleClick(_: Event): void {
-    if (!this.dropdownToggle.disabled) {
-      this.open = !this.open;
+    this.open = !this.open;
 
-      if (this.open) {
-        this._documentListener = this.renderer.listen(document, 'click', $event => this.onDocumentClick($event));
-      } else if (this._documentListener) {
-        this._documentListener();
-      }
+    if (this.open) {
+      this._documentListener = this.renderer.listen(document, 'click', this.onDocumentClick.bind(this));
+    } else {
+      this._documentListener();
     }
   }
 }

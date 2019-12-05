@@ -28,7 +28,9 @@ export class DropdownToggleDirective {
 
   @HostListener('click', ['$event'])
   onClick(event: Event) {
-    event.preventDefault();
-    this.toggle.emit(event);
+    if (!this.disabled) {
+      event.preventDefault();
+      this.toggle.emit(event);
+    }
   }
 }

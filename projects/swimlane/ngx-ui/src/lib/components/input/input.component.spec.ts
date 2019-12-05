@@ -6,7 +6,6 @@ import { BehaviorSubject } from 'rxjs';
 
 import { InputComponent } from './input.component';
 import { InputTypes } from './input-types.enum';
-import { take } from 'rxjs/operators';
 
 const MOCK_EVENT: any = {
   stopPropagation: () => ({}),
@@ -32,7 +31,7 @@ const MOCK_EVENT: any = {
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-class TestHostComponent {
+export class TestHostComponent {
   value = 'test';
   readonly type$ = new BehaviorSubject(InputTypes.text);
   readonly disabled$ = new BehaviorSubject(false);
