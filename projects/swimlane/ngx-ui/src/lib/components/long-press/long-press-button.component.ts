@@ -6,7 +6,8 @@ import {
   ViewEncapsulation,
   OnInit,
   OnChanges,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -69,6 +70,8 @@ export class LongPressButtonComponent implements OnInit, OnChanges {
   private _duration: number = 3000;
   private _disabled: boolean = false;
 
+  constructor(private readonly cdr: ChangeDetectorRef) { }
+
   ngOnInit(): void {
     this.updateState();
   }
@@ -92,6 +95,8 @@ export class LongPressButtonComponent implements OnInit, OnChanges {
         this.updateState();
       }, 3000);
     }
+
+    this.cdr.markForCheck();
   }
 
   onLongPressStart(): void {
