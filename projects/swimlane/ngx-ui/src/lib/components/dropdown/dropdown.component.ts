@@ -2,15 +2,14 @@ import {
   Component,
   Input,
   ContentChild,
-  HostBinding,
   OnDestroy,
   AfterContentInit,
-  HostListener,
-  ElementRef,
   Renderer2,
   ViewEncapsulation,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
@@ -27,36 +26,59 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
  *
  */
 @Component({
+  exportAs: 'ngxDropdown',
   selector: 'ngx-dropdown',
+  template: `<ng-content></ng-content>`,
+  styleUrls: ['./dropdown.component.scss'],
   host: {
-    class: 'ngx-dropdown'
+    class: 'ngx-dropdown',
+    '[class.open]': 'open',
+    '[class.has-caret]': 'showCaret'
   },
-  template: `
-    <ng-content></ng-content>
-  `,
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./dropdown.component.scss']
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent implements AfterContentInit, OnDestroy {
   @Input()
-  @HostBinding('class.open')
-  open: boolean = false;
+  get open() { return this._open; }
+  set open(open: boolean) {
+    this._open = coerceBooleanProperty(open);
+  }
 
   @Input()
-  @HostBinding('class.has-caret')
-  showCaret: boolean = false;
+  get showCaret() { return this._showCaret; }
+  set showCaret(showCaret: boolean) {
+    this._showCaret = coerceBooleanProperty(showCaret);
+  }
 
-  @Input() closeOnClick: boolean = true;
-  @Input() closeOnOutsideClick: boolean = true;
-  @Input() trigger: string = 'click';
+  @Input()
+  get closeOnClick() { return this._closeOnClick; }
+  set closeOnClick(closeOnClick: boolean) {
+    this._closeOnClick = coerceBooleanProperty(closeOnClick);
+  }
 
-  @ContentChild(DropdownToggleDirective, { static: false }) dropdownToggle: DropdownToggleDirective;
+  @Input()
+  get closeOnOutsideClick() { return this._closeOnOutsideClick; }
+  set closeOnOutsideClick(closeOnOutsideClick: boolean) {
+    this._closeOnOutsideClick = coerceBooleanProperty(closeOnOutsideClick);
+  }
 
-  @ContentChild(DropdownMenuDirective, { static: false }) dropdownMenu: DropdownMenuDirective;
+  @ContentChild(DropdownToggleDirective, { static: false })
+  readonly dropdownToggle: DropdownToggleDirective;
 
-  private documentListener: any;
+  @ContentChild(DropdownMenuDirective, { static: false })
+  readonly dropdownMenu: DropdownMenuDirective;
 
-  constructor(private renderer: Renderer2, private cd: ChangeDetectorRef) {}
+  private _documentListener?: () => void;
+  private _open: boolean = false;
+  private _showCaret: boolean = false;
+  private _closeOnClick: boolean = true;
+  private _closeOnOutsideClick: boolean = true;
+
+  constructor(
+    private readonly renderer: Renderer2,
+    private readonly cd: ChangeDetectorRef
+  ) {}
 
   ngAfterContentInit(): void {
     if (this.dropdownToggle) {
@@ -65,7 +87,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.documentListener) this.documentListener();
+    if (this._documentListener) this._documentListener();
   }
 
   onDocumentClick({ target }): void {
@@ -75,20 +97,20 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
 
       if (!isToggling && !isMenuClick) {
         this.open = false;
-        if (this.documentListener) this.documentListener();
+        if (this._documentListener) this._documentListener();
         this.cd.markForCheck();
       }
     }
   }
 
-  onToggleClick(ev): void {
+  onToggleClick(_: Event): void {
     if (!this.dropdownToggle.disabled) {
       this.open = !this.open;
 
       if (this.open) {
-        this.documentListener = this.renderer.listen(document, 'click', $event => this.onDocumentClick($event));
-      } else if (this.documentListener) {
-        this.documentListener();
+        this._documentListener = this.renderer.listen(document, 'click', $event => this.onDocumentClick($event));
+      } else if (this._documentListener) {
+        this._documentListener();
       }
     }
   }
