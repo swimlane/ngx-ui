@@ -6,43 +6,14 @@ import {
   OnChanges,
   ViewEncapsulation,
   TemplateRef,
-  ContentChild
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 @Component({
   selector: 'ngx-tree-node',
-  template: `
-    <li
-      class="ngx-tree-node"
-      [class.selectable]="selectable"
-      (click)="onClick($event)"
-      (focus)="activate.emit(this.data)"
-      (blur)="deactivate.emit(this.data)"
-      tabindex="-1"
-    >
-      <span
-        *ngIf="expandable"
-        class="ngx-expander"
-        (click)="onExpandClick()"
-        [ngClass]="{
-          'icon-tree-collapse': expanded,
-          'icon-tree-expand': !expanded,
-          disabled: disabled
-        }"
-      >
-      </span>
-      <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="ngx-node-label"> </span>
-      <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="data"> </ng-template>
-      <ng-content *ngIf="expanded"></ng-content>
-      <ngx-tree
-        *ngIf="children?.length && expandable && expanded"
-        class="ngx-sub-tree"
-        [nodes]="children"
-        [template]="template"
-      >
-      </ngx-tree>
-    </li>
-  `
+  templateUrl: './tree-node.component.html',
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeNodeComponent implements OnChanges {
   @Input() label: string;

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TreeNodeComponent } from './tree-node.component';
-describe('TreeNodeComponent', () => {
+fdescribe('TreeNodeComponent', () => {
   let component: TreeNodeComponent;
   let fixture: ComponentFixture<TreeNodeComponent>;
   beforeEach(() => {
