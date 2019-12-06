@@ -5,6 +5,10 @@ import { NotificationStyleType } from './notification-style.type';
   selector: 'ngx-notification',
   template: `
     <div>
+      <div class="notification-bar" [class.animated]="timeout">
+        <div class="bar" [ngStyle]="{'animation-duration': animationDuration }"></div>
+      </div>
+
       <div *ngIf="styleType !== 'none' && !icon" class="icon-container">
         <span *ngIf="styleType === 'info'" class="icon icon-info-fulled"></span>
         <span *ngIf="styleType === 'warning'" class="icon icon-warning-filled"></span>
@@ -35,12 +39,18 @@ export class NotificationComponent {
   @Input() showClose: boolean;
   @Input() timestamp: any;
   @Input() icon: string;
+  @Input() timeout: false | number;
 
   @Output() close = new EventEmitter();
   @Output() pause = new EventEmitter();
   @Output() resume = new EventEmitter();
 
-  timeout: any;
+  get animationDuration() {
+    if (this.timeout === false) {
+      return '1000s';
+    }
+    return `${(this.timeout as number) / 1000}s`;
+  }
 
   @HostBinding('class')
   get cssClasses(): string {
