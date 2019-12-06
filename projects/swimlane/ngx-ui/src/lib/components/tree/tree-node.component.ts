@@ -44,13 +44,13 @@ export class TreeNodeComponent implements OnChanges {
   }
 
   onExpandClick(): void {
-    if (this.disabled) return;
+    if (this.disabled || !this.expandable) return;
 
     this.expanded = !this.expanded;
 
     if (this.expanded) {
       this.expand.emit(this.data);
-    } else if (!this.expand) {
+    } else {
       this.collapse.emit(this.data);
     }
   }
