@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-tree-page',
-  templateUrl: './tree-page.component.html'
+  templateUrl: './tree-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreePageComponent {
   nodes: any[] = [
