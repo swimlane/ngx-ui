@@ -108,7 +108,7 @@ export class JsonEditorPageComponent {
   }
 
   schemaChange(schema: JSONSchema7): void {
-    console.log(event);
+    console.log(schema);
     this.schemaRef = schema;
   }
 }

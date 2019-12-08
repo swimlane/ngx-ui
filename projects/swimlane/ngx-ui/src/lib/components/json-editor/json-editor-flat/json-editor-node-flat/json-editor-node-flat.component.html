@@ -13,10 +13,7 @@
             [innerHtml]="requiredIndicator"></span>
           <span *ngIf="!required && schemaBuilderMode" class="not-required" [innerHtml]="requiredIndicator"></span>
         </div>
-        <div *ngIf="schemaBuilderMode" class="drag-drop-handle">
-          <!-- TODO -->
-          <i class="ngx-icon ngx-handle"></i>
-        </div>
+        <ng-content select="[cdkDragHandle]"></ng-content>
       </ng-container>
     </div>
 
@@ -127,7 +124,7 @@
         <div class="tag" *ngIf="schema.maxLength"> Max Length: {{ schema.maxLength }}</div>
         <div class="tag" *ngIf="schema.pattern"> Pattern: Yes</div>
       </div>
-      <ng-content></ng-content>
+      <ng-content select="[node-options]"></ng-content>
     </div>
   </div>
 

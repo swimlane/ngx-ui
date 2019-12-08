@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { PipesModule } from '../../pipes/pipes.module';
 import { InputModule } from '../input/input.module';
@@ -52,6 +53,7 @@ import { PropertyConfigComponent } from './json-editor-flat/json-editor-node-fla
   imports: [
     CheckboxModule,
     CommonModule,
+    DragDropModule,
     FormsModule,
     PipesModule,
     InputModule,

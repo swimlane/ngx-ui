@@ -3,6 +3,7 @@ import { ObjectNode } from '../../../../node-types/object-node.component';
 import { DialogService } from '../../../../../dialog/dialog.service';
 import { JSONSchema7 } from 'json-schema';
 import { JsonSchemaDataType } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'ngx-json-object-node-flat',
@@ -72,6 +73,36 @@ export class ObjectNodeFlatComponent extends ObjectNode {
     delete this.schemaRef.properties[propName];
     this.toggleRequiredValue(false, propName);
     super.deleteProperty(propName);
+    this.schemaChange.emit();
+  }
+
+  drop(event: CdkDragDrop<string[]>): void {
+    const propertyIndexArray = Object.keys(this.propertyIndex);
+
+    const currentIndexId = propertyIndexArray[event.currentIndex];
+    const previousIndexId = propertyIndexArray[event.previousIndex];
+
+    const tempProperty = this.propertyIndex[currentIndexId];
+    this.propertyIndex[currentIndexId] = this.propertyIndex[previousIndexId];
+    this.propertyIndex[currentIndexId].id = currentIndexId;
+
+    this.propertyIndex[previousIndexId] = tempProperty;
+    this.propertyIndex[previousIndexId].id = previousIndexId;
+
+
+    this.swapSchemaProperties(event.previousIndex, event.currentIndex);
+  }
+
+  private swapSchemaProperties(previousIndex: number, currentIndex: number): void {
+    const propertiesIds = Object.keys(this.schemaRef.properties)
+
+    moveItemInArray(propertiesIds, previousIndex, currentIndex);
+
+    this.schemaRef.properties = propertiesIds.reduce((result, prop) => {
+      result[prop] = this.schemaRef.properties[prop];
+      return result;
+    }, {});
+
     this.schemaChange.emit();
   }
 

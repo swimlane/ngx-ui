@@ -1,12 +1,14 @@
-<div class="object-node-flat" [hidden]="!expanded">
-  <div class="object-node-content" *ngFor="let prop of propertyIndex | keyvalue; trackBy: trackBy">
+<div class="object-node-flat" [hidden]="!expanded" cdkDropList [id]="level > 0 ? (schema.id  + '.' + level) : 'root'"
+  (cdkDropListDropped)="drop($event)">
+  <div cdkDrag cdkDragLockAxis="y" class="object-node-content"
+    *ngFor="let prop of propertyIndex | keyvalue; trackBy: trackBy">
     <ngx-json-editor-node-flat [model]="model[prop.value.propertyName]"
       (modelChange)="updateProp(prop.value.id, $event)" [schema]="prop.value"
       [schemaRef]="schemaRef.properties[prop.value.propertyName]" [required]="!!requiredCache[prop.value.propertyName]"
       [inline]="prop.value.type !== 'array' && prop.value.type !== 'object'"
       [path]="path + getPath(prop.value.propertyName)" [errors]="errors" [typeCheckOverrides]="typeCheckOverrides"
       [level]="level" [schemaBuilderMode]="schemaBuilderMode" (schemaChange)="schemaChange.emit(schemaRef)">
-      <div class="node-options">
+      <div class="node-options" node-options>
         <button *ngIf="schemaBuilderMode" type="button" class="node-options-btn"
           (click)="onPropertyConfig(prop, $event)">
           <i class="ngx-icon ngx-cog"></i>
@@ -36,6 +38,9 @@
             </ul>
           </ngx-dropdown-menu>
         </ngx-dropdown>
+      </div>
+      <div *ngIf="schemaBuilderMode" class="drag-drop-handle" cdkDragHandle>
+        <i class="ngx-icon ngx-handle"></i>
       </div>
     </ngx-json-editor-node-flat>
   </div>
