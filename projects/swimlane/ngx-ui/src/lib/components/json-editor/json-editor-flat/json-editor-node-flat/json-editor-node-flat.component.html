@@ -1,6 +1,6 @@
 <div *ngIf="model !== undefined" class="json-tree-node-flat">
   <div class="node">
-    <div class="indention" *ngIf="level > 0" [style.left]="-1 * (level* 20) + 'px'">
+    <div class="indentation" *ngIf="level > 0" [style.left]="-1 * (level * 20) + 'px'">
       <span class="separator" *ngFor="let separator of indentationArray"></span>
     </div>
 

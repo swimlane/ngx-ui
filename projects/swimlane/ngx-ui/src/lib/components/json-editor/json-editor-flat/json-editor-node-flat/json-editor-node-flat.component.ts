@@ -27,11 +27,11 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() schemaBuilderMode?: boolean;
 
-  @Input() schemaRef?: any;
+  @Input() schemaRef?: JSONSchema7;
+
+  @Input() indentationArray: number[] = [];
 
   requiredIndicator: SafeHtml;
-
-  indentationArray: number[] = [];
 
   inferTypeName = inferTypeName;
 
@@ -43,7 +43,7 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
   ngOnInit() {
     this.level += 1;
     if (this.level > 1) {
-      this.indentationArray = Array(this.level - 1).fill(this.level);
+      this.indentationArray.push(this.level);
     }
   }
 

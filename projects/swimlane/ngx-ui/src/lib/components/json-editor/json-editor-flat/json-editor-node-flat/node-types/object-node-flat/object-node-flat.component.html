@@ -43,6 +43,10 @@
         <i class="ngx-icon ngx-handle"></i>
       </div>
     </ngx-json-editor-node-flat>
+    <div *cdkDragPlaceholder class="indentation-placeholder"
+      [ngStyle]="{'width': 'calc(100% + ' + (level * 20) + 'px)', 'left': -1 * (level * 20) + 'px'}">
+      <span class="separator" *ngFor="let separator of indentationArray"></span>
+    </div>
   </div>
 
   <div class="add-button" [class.background]="level" [style.left]="-1 *level * 20 + 'px'"

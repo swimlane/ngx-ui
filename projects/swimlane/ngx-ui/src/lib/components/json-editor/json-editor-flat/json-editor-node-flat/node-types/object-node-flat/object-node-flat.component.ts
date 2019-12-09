@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef } from '@angular/core';
+import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef, OnInit } from '@angular/core';
 import { ObjectNode } from '../../../../node-types/object-node.component';
 import { DialogService } from '../../../../../dialog/dialog.service';
 import { JSONSchema7 } from 'json-schema';
@@ -11,7 +11,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
   styleUrls: ['./object-node-flat.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class ObjectNodeFlatComponent extends ObjectNode {
+export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<any>;
 
   @Input() level: number;
@@ -20,8 +20,16 @@ export class ObjectNodeFlatComponent extends ObjectNode {
 
   @Input() schemaRef: JSONSchema7;
 
+  indentationArray: number[] = [];
+
   constructor(private dialogService: DialogService) {
     super();
+  }
+
+  ngOnInit() {
+    if (this.level > 0) {
+      this.indentationArray = Array(this.level).fill(this.level);
+    }
   }
 
   onPropertyConfig(property: unknown): void {
