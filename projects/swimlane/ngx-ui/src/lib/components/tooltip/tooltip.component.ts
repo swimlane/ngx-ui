@@ -19,7 +19,6 @@ import { AlignmentTypes } from './alignment.type';
 
 @Component({
   selector: 'ngx-tooltip-content',
-  exportAs: 'tooltipContent',
   templateUrl: './tooltip.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
