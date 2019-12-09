@@ -1,41 +1,25 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AutosizeDirective } from './input-autosize.directive';
-
-@Component({
-  selector: `ngx-test-host-component`,
-  template: `
-    <textarea
-      [(ngModel)]="value"
-      autosize
-    ></textarea>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-class TestHostComponent {
-  value = 'test';
-
-  @ViewChild(AutosizeDirective, { static: false })
-  readonly autosize: AutosizeDirective;
-}
+import { AutosizeDirectiveFixture } from './input-autosave.directive.fixture';
 
 describe('AutosizeDirective', () => {
-  let component: TestHostComponent;
-  let fixture: ComponentFixture<TestHostComponent>;
+  let component: AutosizeDirectiveFixture;
+  let fixture: ComponentFixture<AutosizeDirectiveFixture>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [TestHostComponent, AutosizeDirective],
+      declarations: [AutosizeDirectiveFixture, AutosizeDirective],
       imports: [FormsModule, BrowserAnimationsModule],
     });
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestHostComponent);
+    fixture = TestBed.createComponent(AutosizeDirectiveFixture);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
