@@ -1,25 +1,29 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, ElementRef, Renderer } from '@angular/core';
+
 import { TooltipContentComponent } from './tooltip.component';
-describe('TooltipContentComponent', () => {
-  let component: TooltipContentComponent;
-  let fixture: ComponentFixture<TooltipContentComponent>;
-  beforeEach(() => {
+import { ToolTipFixtureComponent } from './fixtures/tooltip.fixture';
+import { TooltipModule } from './tooltip.module';
+import { TooltipDirective } from './tooltip.directive';
+
+fdescribe('TooltipContentComponent', () => {
+  let directive: TooltipDirective;
+  let fixture: ComponentFixture<ToolTipFixtureComponent>;
+
+  beforeEach(done => {
     TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-      declarations: [TooltipContentComponent]
-    });
-    fixture = TestBed.createComponent(TooltipContentComponent);
-    component = fixture.componentInstance;
+      declarations: [ToolTipFixtureComponent],
+      imports: [TooltipModule]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ToolTipFixtureComponent);
+    directive = fixture.componentInstance.tooltipDirective;
+    fixture.autoDetectChanges();
+    fixture.whenStable().then(() => done());
   });
+
   it('can load instance', () => {
-    expect(component).toBeTruthy();
-  });
-  describe('onWindowResize', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'position');
-      component.onWindowResize();
-      expect(component.position).toHaveBeenCalled();
-    });
+    console.log(directive);
+
+    expect(directive).toBeTruthy();
   });
 });
