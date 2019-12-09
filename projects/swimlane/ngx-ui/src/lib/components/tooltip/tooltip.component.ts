@@ -7,7 +7,8 @@ import {
   HostListener,
   ViewChild,
   HostBinding,
-  Renderer2
+  Renderer2,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { throttleable } from '../../utils/throttle';
@@ -18,44 +19,25 @@ import { AlignmentTypes } from './alignment.type';
 
 @Component({
   selector: 'ngx-tooltip-content',
-  template: `
-    <div>
-      <span #caretElm [hidden]="!showCaret" class="tooltip-caret position-{{ this.placement }}"> </span>
-      <div class="tooltip-content">
-        <span *ngIf="!title">
-          <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ model: context }"> </ng-template>
-        </span>
-        <span *ngIf="title" [innerHTML]="title"> </span>
-      </div>
-    </div>
-  `,
+  exportAs: 'tooltipContent',
+  templateUrl: './tooltip.component.html',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./tooltip.component.scss']
 })
 export class TooltipContentComponent implements AfterViewInit {
-  @Input()
-  host: any;
-  @Input()
-  showCaret: boolean;
-  @Input()
-  type: StyleTypes;
-  @Input()
-  placement: PlacementTypes;
-  @Input()
-  alignment: AlignmentTypes;
-  @Input()
-  spacing: number;
-  @Input()
-  cssClass: string;
-  @Input()
-  title: string;
-  @Input()
-  template: any;
-  @Input()
-  context: any;
+  @Input() host: any;
+  @Input() showCaret: boolean;
+  @Input() type: StyleTypes;
+  @Input() placement: PlacementTypes;
+  @Input() alignment: AlignmentTypes;
+  @Input() spacing: number;
+  @Input() cssClass: string;
+  @Input() title: string;
+  @Input() template: any;
+  @Input() context: any;
 
-  @ViewChild('caretElm', { static: true })
-  caretElm;
+  @ViewChild('caretElm', { static: true }) caretElm;
 
   @HostBinding('class')
   get cssClasses(): string {
