@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToolbarComponent } from './toolbar.component';
 import { ToolbarFixtureComponent } from './fixtures/toolbar.fixture';
 import { ToolbarModule } from './toolbar.module';
+import { not } from '@angular/compiler/src/output/output_ast';
 
 describe('ToolbarComponent', () => {
   let component1: ToolbarComponent;
@@ -53,6 +54,18 @@ describe('ToolbarComponent', () => {
     const menuItemEl: HTMLButtonElement = document.querySelector('.ngx-toolbar-menu > li > button');
     menuItemEl.click();
     expect(menuItem.click).toHaveBeenCalled();
+  });
+
+  it('clicking on a menu item that has no click function is handled gracefully', () => {
+    const menuItem = component1.toolbarItems[2];
+    expect(menuItem.click).toBeUndefined();
+
+    spyOn(component1, 'onMenuClicked').and.callThrough();
+
+    const menuItemEl: HTMLButtonElement = document.querySelector('.ngx-toolbar-menu > li:nth-child(2) > button');
+    menuItemEl.click();
+
+    expect(component1.onMenuClicked).toHaveBeenCalled();
   });
 
   it('item with disabled property in menu config is rendered as disabled', () => {

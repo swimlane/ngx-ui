@@ -46,10 +46,10 @@ export class ToolbarComponent {
       return m.dropdown;
     });
   }
+
   constructor(private renderer: Renderer2, private elRef: ElementRef) {}
 
-  onMenuClicked(item: ToolbarMenuItem, $event: any) {
-    /* istanbul ignore else */
+  onMenuClicked(item: ToolbarMenuItem, $event: Event) {
     if (item.click) {
       item.click($event);
     }
