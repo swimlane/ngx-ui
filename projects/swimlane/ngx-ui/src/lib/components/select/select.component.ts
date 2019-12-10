@@ -9,14 +9,15 @@ import {
   ElementRef,
   Renderer2,
   OnDestroy,
-  HostBinding,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 import { SelectOptionDirective } from './select-option.directive';
 import { SelectInputComponent } from './select-input.component';
+import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { KeyboardKeys } from '../../utils/keys';
 
 let nextId = 0;
@@ -28,100 +29,148 @@ const SELECT_VALUE_ACCESSOR = {
 };
 
 @Component({
+  exportAs: 'ngxSelect',
   selector: 'ngx-select',
-  providers: [SELECT_VALUE_ACCESSOR],
-  encapsulation: ViewEncapsulation.None,
+  templateUrl: './select.component.html',
   styleUrls: ['./select.component.scss'],
-  template: `
-    <div class="ngx-select-wrap">
-      <div class="ngx-select-flex-wrap">
-        <div class="ngx-select-flex-wrap-inner">
-          <ngx-select-input
-            [autofocus]="autofocus"
-            [options]="options"
-            [allowClear]="allowClear"
-            [label]="label"
-            [requiredIndicator]="requiredIndicatorView"
-            [placeholder]="placeholder"
-            [multiple]="multiple"
-            [identifier]="identifier"
-            [tagging]="tagging"
-            [allowAdditions]="allowAdditions"
-            [selectCaret]="selectCaret"
-            [selected]="value"
-            [hint]="hint"
-            [disableDropdown]="disableDropdown"
-            (keyup)="onKeyUp($event)"
-            (toggle)="onToggle()"
-            (activate)="onFocus()"
-            (selection)="onInputSelection($event)"
-          >
-          </ngx-select-input>
-        </div>
-      </div>
-      <ngx-select-dropdown
-        *ngIf="dropdownVisible"
-        [focusIndex]="focusIndex"
-        [filterQuery]="filterQuery"
-        [filterPlaceholder]="filterPlaceholder"
-        [filterCaseSensitive]="filterCaseSensitive"
-        [allowAdditions]="allowAdditions"
-        [allowAdditionsText]="allowAdditionsText"
-        [selected]="value"
-        [groupBy]="groupBy"
-        [emptyPlaceholder]="emptyPlaceholder"
-        [tagging]="tagging"
-        [filterEmptyPlaceholder]="filterEmptyPlaceholder"
-        [filterable]="filterable"
-        [identifier]="identifier"
-        [options]="options"
-        (keyup)="keyup.emit($event)"
-        (close)="onClose()"
-        (selection)="onDropdownSelection($event)"
-      >
-      </ngx-select-dropdown>
-    </div>
-  `,
   host: {
-    class: 'ngx-select'
-  }
+    class: 'ngx-select',
+    '[id]': 'id',
+    '[attr.name]': 'name',
+    '[class.invalid]': 'invalid',
+    '[class.tagging-selection]': 'tagging',
+    '[class.multi-selection]': 'multiple',
+    '[class.single-selection]': 'isSingleSelect',
+    '[class.disabled]': 'disabled',
+    '[class.active]': 'dropdownActive',
+    '[class.active-selections]': 'hasSelections',
+    '[class.has-placeholder]': 'hasPlaceholder'
+  },
+  providers: [SELECT_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.None
 })
 export class SelectComponent implements ControlValueAccessor, OnDestroy {
-  @HostBinding('id')
-  @Input()
-  id: string = `select-${++nextId}`;
-
-  @HostBinding('attr.name')
-  @Input()
-  name: string;
-
+  @Input() id: string = `select-${++nextId}`;
+  @Input() name: string;
   @Input() label: string;
   @Input() hint: string;
-  @Input() autofocus: boolean = false;
-  @Input() allowClear: boolean = true;
-  @Input() allowAdditions: boolean = false;
-  @Input() allowAdditionsText: string = 'Add Value';
-  @Input() disableDropdown: boolean = false;
-  @Input() closeOnSelect: boolean;
-  @Input() closeOnBodyClick: boolean = true;
-  @Input() options: any[] = [];
-  @Input() identifier: any;
-  @Input() minSelections: number;
-  @Input() maxSelections: number;
-  @Input() groupBy: string;
-  @Input() filterable: boolean = true;
-  @Input() selectCaret: string;
-  @Input() requiredIndicator: string | boolean = '*';
-  @Input() required: boolean;
-  @Input() filterCaseSensitive = false;
-
   @Input() placeholder: string = '';
   @Input() emptyPlaceholder: string = 'No options available';
-
   @Input() filterEmptyPlaceholder: string = 'No matches...';
   @Input() filterPlaceholder: string = 'Filter options...';
+  @Input() allowAdditionsText: string = 'Add Value';
+  @Input() groupBy: string;
+  @Input() selectCaret: string;
+  @Input() requiredIndicator: string | boolean = '*';
 
-  @HostBinding('class.invalid')
+  @Input() options: any[] = [];
+  @Input() identifier: any;
+
+  @Input()
+  get minSelections() { return this._minSelections; }
+  set minSelections(minSelections) {
+    this._minSelections = coerceNumberProperty(minSelections);
+  }
+
+  @Input()
+  get maxSelections() { return this._maxSelections; };
+  set maxSelections(maxSelections) {
+    this._maxSelections = coerceNumberProperty(maxSelections);
+  }
+
+  @Input()
+  get autofocus() { return this._autofocus; };
+  set autofocus(autofocus) {
+    this._autofocus = coerceBooleanProperty(autofocus);
+  }
+
+  @Input()
+  get allowClear() { return this._allowClear; }
+  set allowClear(allowClear) {
+    this._allowClear = coerceBooleanProperty(allowClear);
+  }
+
+  @Input()
+  get allowAdditions() { return this._allowAdditions; }
+  set allowAdditions(allowAdditions) {
+    this._allowAdditions = coerceBooleanProperty(allowAdditions);
+  }
+
+  @Input()
+  get disableDropdown() { return this._disableDropdown; }
+  set disableDropdown(disableDropdown) {
+    this._disableDropdown = coerceBooleanProperty(disableDropdown);
+  }
+
+  @Input()
+  get closeOnSelect() { return this._closeOnSelect; }
+  set closeOnSelect(closeOnSelect) {
+    this._closeOnSelect = coerceBooleanProperty(closeOnSelect);
+  }
+
+  @Input()
+  get closeOnBodyClick() { return this._closeOnBodyClick; };
+  set closeOnBodyClick(closeOnBodyClick) {
+    this._closeOnBodyClick = coerceBooleanProperty(closeOnBodyClick);
+  }
+
+  @Input()
+  get filterable() { return this._filterable; }
+  set filterable(filterable) {
+    this._filterable = coerceBooleanProperty(filterable);
+  }
+
+  @Input()
+  get required() { return this._required; }
+  set required(required) {
+    this._required = coerceBooleanProperty(required);
+  }
+
+  @Input()
+  get filterCaseSensitive() { return this._filterCaseSensitive; }
+  set filterCaseSensitive(filterCaseSensitive) {
+    this._filterCaseSensitive = coerceBooleanProperty(filterCaseSensitive);
+  }
+
+  @Input()
+  get tagging() { return this._tagging; }
+  set tagging(tagging) {
+    this._tagging = coerceBooleanProperty(tagging);
+  }
+
+  @Input()
+  get multiple() { return this._multiple; }
+  set multiple(multiple) {
+    this._multiple = coerceBooleanProperty(multiple);
+  }
+
+  @Input()
+  get disabled() { return this._disabled; }
+  set disabled(disabled) {
+    this._disabled = coerceBooleanProperty(disabled);
+  }
+
+  @Output() change = new EventEmitter<any[]>();
+  @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value: string }>();
+  @Output() toggle = new EventEmitter<boolean>();
+
+  @ViewChild(SelectInputComponent, { static: true })
+  readonly inputComponent: SelectInputComponent;
+
+  @ContentChildren(SelectOptionDirective)
+  get optionTemplates() { return this._optionTemplates; }
+  set optionTemplates(val: QueryList<SelectOptionDirective>) {
+    this._optionTemplates = val;
+
+    if (val) {
+      const arr = val.toArray();
+
+      if (arr.length) {
+        this.options = arr;
+      }
+    }
+  }
+
   get invalid() {
     if (this.required && this.checkInvalidValue(this.value)) return true;
     if (this.maxSelections !== undefined && (this.value && this.value.length > this.maxSelections)) return true;
@@ -129,65 +178,29 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     return false;
   }
 
-  get requiredIndicatorView(): string {
+  get requiredIndicatorView() {
     const required = this.required || (this.minSelections !== undefined && this.minSelections > 0);
-    if (!this.requiredIndicator || !required) return '';
+
+    if (!this.requiredIndicator || !required) {
+      return '';
+    }
+
     return this.requiredIndicator as string;
   }
 
-  @HostBinding('class.tagging-selection')
-  @Input()
-  tagging: boolean = false;
-
-  @HostBinding('class.multi-selection')
-  @Input()
-  multiple: boolean = false;
-
-  @HostBinding('class.single-selection')
-  get isSingleSelect(): boolean {
+  get isSingleSelect() {
     return !this.multiple && !this.tagging;
   }
 
-  @HostBinding('class.disabled')
-  @Input()
-  disabled: boolean = false;
-
-  @Output() change: EventEmitter<any> = new EventEmitter();
-  @Output() keyup: EventEmitter<any> = new EventEmitter();
-  @Output() toggle: EventEmitter<any> = new EventEmitter();
-
-  @ContentChildren(SelectOptionDirective)
-  set optionTemplates(val: QueryList<SelectOptionDirective>) {
-    this._optionTemplates = val;
-
-    if (val) {
-      const arr = val.toArray();
-      if (arr.length) this.options = arr;
-    }
-  }
-
-  get optionTemplates(): QueryList<SelectOptionDirective> {
-    return this._optionTemplates;
-  }
-
-  @HostBinding('class.active') dropdownActive: boolean = false;
-
-  @HostBinding('class.active-selections')
-  get hasSelections(): any {
+  get hasSelections() {
     return this.value && this.value.length > 0 && typeof this.value[0] !== 'undefined';
   }
 
-  @HostBinding('class.has-placeholder')
-  get hasPlaceholder(): any {
-    return this.placeholder && this.placeholder.length;
+  get hasPlaceholder() {
+    return this.placeholder && this.placeholder.length > 0;
   }
 
-  @ViewChild(SelectInputComponent, { static: true }) inputComponent: SelectInputComponent;
-
-  get value(): any[] {
-    return this._value;
-  }
-
+  get value() { return this._value; }
   set value(val: any[]) {
     if (val !== this._value) {
       this._value = val;
@@ -196,26 +209,46 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     }
   }
 
-  get dropdownVisible(): boolean {
+  get dropdownVisible() {
     if (this.disableDropdown) return false;
     if (this.tagging && (!this.options || !this.options.length)) return false;
     return this.dropdownActive;
   }
 
-  toggleListener: any;
+  toggleListener?: () => void;
   filterQuery: string;
   focusIndex: number = -1;
+  dropdownActive: boolean = false;
 
-  _optionTemplates: QueryList<SelectOptionDirective>;
-  _value: any[] = [];
+  private _optionTemplates: QueryList<SelectOptionDirective>;
+  private _value: any[] = [];
 
-  constructor(private element: ElementRef, private renderer: Renderer2) { }
+  private _minSelections?: number;
+  private _maxSelections?: number;
+
+  private _autofocus: boolean = false;
+  private _allowClear: boolean = true;
+  private _allowAdditions: boolean = false;
+  private _disableDropdown: boolean = false;
+  private _closeOnSelect: boolean;
+  private _closeOnBodyClick: boolean = true;
+  private _filterable: boolean = true;
+  private _required: boolean;
+  private _filterCaseSensitive = false;
+  private _tagging: boolean = false;
+  private _multiple: boolean = false;
+  private _disabled: boolean = false;
+
+  constructor(
+    private readonly _element: ElementRef,
+    private readonly _renderer: Renderer2
+  ) { }
 
   ngOnDestroy(): void {
     this.toggleDropdown(false);
   }
 
-  onDropdownSelection(selection): void {
+  onDropdownSelection(selection: SelectDropdownOption): void {
     if (selection.disabled) return;
     if (this.value.length === this.maxSelections) return;
 
@@ -258,10 +291,13 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     this.value = [];
   }
 
-  onBodyClick(event): void {
+  onBodyClick(event: Event): void {
     if (this.dropdownActive) {
-      const contains = this.element.nativeElement.contains(event.target);
-      if (!contains) this.toggleDropdown(false);
+      const contains = this._element.nativeElement.contains(event.target);
+
+      if (!contains) {
+        this.toggleDropdown(false);
+      }
     }
   }
 
@@ -271,24 +307,26 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   onToggle(): void {
     if (this.disabled) return;
+
     this.toggleDropdown(!this.dropdownActive);
     this.onTouchedCallback();
   }
 
   toggleDropdown(state: boolean): void {
     if (this.dropdownActive === state) return;
+
     this.dropdownActive = state;
 
     if (this.toggleListener) this.toggleListener();
     this.toggle.emit(this.dropdownActive);
 
     if (state && this.closeOnBodyClick) {
-      this.toggleListener = this.renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
+      this.toggleListener = this._renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
     }
   }
 
-  onKeyUp({ event, value }): void {
-    if (event && event.key === KeyboardKeys.ARROW_DOWN) {
+  onKeyUp({ event, value }: { event: KeyboardEvent; value: string; }): void {
+    if (event && event.key === KeyboardKeys.ARROW_DOWN as any) {
       ++this.focusIndex;
     } else {
       this.filterQuery = value;
@@ -314,14 +352,16 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   private checkInvalidValue(value: any): boolean {
     if (Array.isArray(value)) {
       return !this.value.length || this.checkInvalidValue(value[0]);
-    } else return value === undefined;
+    }
+
+    return value === undefined;
   }
 
-  private onTouchedCallback: () => void = () => {
+  private onTouchedCallback() {
     // placeholder
   };
 
-  private onChangeCallback: (_: any) => void = () => {
+  private onChangeCallback(_: any) {
     // placeholder
   };
 }
