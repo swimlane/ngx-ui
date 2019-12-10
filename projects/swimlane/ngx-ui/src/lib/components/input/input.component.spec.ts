@@ -1,68 +1,30 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, FormControl } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BehaviorSubject } from 'rxjs';
 
 import { InputComponent } from './input.component';
 import { InputTypes } from './input-types.enum';
+import { InputComponentFixture } from './input.component.fixture';
 
 const MOCK_EVENT: any = {
   stopPropagation: () => ({}),
 };
 
-@Component({
-  selector: `ngx-test-host-component`,
-  template: `
-    <ngx-input
-      [(ngModel)]="value"
-      [type]="type$ | async"
-      [disabled]="disabled$ | async"
-      [required]="required$ | async"
-      [passwordTextVisible]="passwordTextVisible$ | async"
-      [autofocus]="autofocus$ | async"
-      [autoSelect]="autoSelect$ | async"
-      [autocomplete]="autocomplete$ | async"
-      [autocorrect]="autocorrect$ | async"
-      [spellcheck]="spellcheck$ | async"
-      [min]="min$ | async"
-      [max]="max$ | async"
-    ></ngx-input>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class TestHostComponent {
-  value = 'test';
-  readonly type$ = new BehaviorSubject(InputTypes.text);
-  readonly disabled$ = new BehaviorSubject(false);
-  readonly passwordTextVisible$ = new BehaviorSubject(false);
-  readonly required$ = new BehaviorSubject(false);
-  readonly autofocus$ = new BehaviorSubject(false);
-  readonly autoSelect$ = new BehaviorSubject(false);
-  readonly autocomplete$ = new BehaviorSubject(true);
-  readonly autocorrect$ = new BehaviorSubject(true);
-  readonly spellcheck$ = new BehaviorSubject(true);
-  readonly min$ = new BehaviorSubject<number>(undefined);
-  readonly max$ = new BehaviorSubject<number>(undefined);
-
-  @ViewChild(InputComponent, { static: false })
-  readonly input: InputComponent;
-}
-
 describe('InputComponent', () => {
-  let component: TestHostComponent;
-  let fixture: ComponentFixture<TestHostComponent>;
+  let component: InputComponentFixture;
+  let fixture: ComponentFixture<InputComponentFixture>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [TestHostComponent, InputComponent],
+      declarations: [InputComponentFixture, InputComponent],
       imports: [FormsModule, BrowserAnimationsModule],
     });
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestHostComponent);
+    fixture = TestBed.createComponent(InputComponentFixture);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -122,7 +84,7 @@ describe('InputComponent', () => {
 
   describe('password', () => {
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestHostComponent);
+      fixture = TestBed.createComponent(InputComponentFixture);
       component = fixture.componentInstance;
       component.type$.next(InputTypes.password);
       fixture.detectChanges();
@@ -139,7 +101,7 @@ describe('InputComponent', () => {
     let control: FormControl;
 
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestHostComponent);
+      fixture = TestBed.createComponent(InputComponentFixture);
       component = fixture.componentInstance;
       component.autoSelect$.next(true);
       component.min$.next(2);
@@ -168,7 +130,7 @@ describe('InputComponent', () => {
 
   describe('value', () => {
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestHostComponent);
+      fixture = TestBed.createComponent(InputComponentFixture);
       component = fixture.componentInstance;
       component.autofocus$.next(true);
       component.value = '';

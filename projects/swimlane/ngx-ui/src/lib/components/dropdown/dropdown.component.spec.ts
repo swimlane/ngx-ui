@@ -1,33 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 import { DropdownComponent } from './dropdown.component';
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
-
-@Component({
-  selector: `ngx-test-host-component`,
-  template: `
-    <ngx-dropdown showCaret>
-      <ngx-dropdown-toggle *ngIf="hasToggler$ | async">Button</ngx-dropdown-toggle>
-      <ngx-dropdown-menu class="pull-right">
-        <ul><li><a>...</a></li></ul>
-      </ngx-dropdown-menu>
-    </ngx-dropdown>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-})
-export class TestHostComponent {
-  @ViewChild(DropdownComponent, { static: false })
-  readonly dropdown: DropdownComponent;
-
-  readonly hasToggler$ = new BehaviorSubject(true);
-}
+import { DropdownComponentFixture } from './dropdown.component.fixture';
 
 describe('DropdownComponent', () => {
-  let component: TestHostComponent;
-  let fixture: ComponentFixture<TestHostComponent>;
+  let component: DropdownComponentFixture;
+  let fixture: ComponentFixture<DropdownComponentFixture>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -35,13 +15,13 @@ describe('DropdownComponent', () => {
         DropdownComponent,
         DropdownMenuDirective,
         DropdownToggleDirective,
-        TestHostComponent,
+        DropdownComponentFixture
       ]
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TestHostComponent);
+    fixture = TestBed.createComponent(DropdownComponentFixture);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -113,7 +93,7 @@ describe('DropdownComponent', () => {
 
   describe('DropdownToggleDirective', () => {
     beforeEach(() => {
-      fixture = TestBed.createComponent(TestHostComponent);
+      fixture = TestBed.createComponent(DropdownComponentFixture);
       component = fixture.componentInstance;
       component.hasToggler$.next(false);
       fixture.detectChanges();
