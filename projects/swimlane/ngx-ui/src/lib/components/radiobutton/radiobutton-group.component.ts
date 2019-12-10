@@ -12,7 +12,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
@@ -45,12 +45,6 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   @Input() id: string = this.UNIQUE_ID;
 
   @Input()
-  get tabindex() { return this._tabindex; }
-  set tabindex(tabindex: number) {
-    this._tabindex = coerceNumberProperty(tabindex);
-  }
-
-  @Input()
   get disabled() { return this._disabled; }
   set disabled(disabled: boolean) {
     this._disabled = coerceBooleanProperty(disabled);
@@ -69,8 +63,9 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
 
   @Input()
   get name() { return this._name; }
-  set name(value: string) {
-    if (this._name !== value) {
+  set name(name: string) {
+    if (this._name !== name) {
+      this._name = name;
       this._updateRadioButtonNames();
     }
   }
@@ -90,12 +85,12 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   private _value: boolean = false;
   private _selected: RadioButtonComponent;
   private _disabled: boolean = false;
-  private _tabindex: number = 0;
   private _destroy = new Subject<void>();
 
   ngAfterContentInit() {
     this.subscribeToRadios();
 
+    /* istanbul ignore else */
     if (this._radios) {
       this._radios.changes.subscribe(this.subscribeToRadios.bind(this));
     }
@@ -113,6 +108,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   subscribeToRadios(): void {
     this._destroy.next();
 
+    /* istanbul ignore else */
     if (this._radios) {
       this._radios.map(radio => {
         radio.change.pipe(takeUntil(this._destroy))
@@ -141,11 +137,12 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
     this.onTouchedCallback = fn;
   }
 
-  private onChangeCallback = (_: any) => {
+  private onChangeCallback(_: any) {
     // placeholder
   };
 
-  private onTouchedCallback = () => {
+  /* istanbul ignore next */
+  private onTouchedCallback() {
     // placeholder
   };
 
@@ -158,9 +155,11 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   }
 
   private _updateSelectedRadioFromValue(): void {
+    /* istanbul ignore else */
     if (this._radios) {
       this._radios.forEach(radio => {
         radio.checked = this.value === radio.value;
+
         if (radio.checked) {
           this._selected = radio;
         }
@@ -169,6 +168,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   }
 
   private _updateRadioDisabledState(): void {
+    /* istanbul ignore else */
     if (this._radios) {
       this._radios.forEach(radio => {
         radio.groupDisabled = this.disabled;
