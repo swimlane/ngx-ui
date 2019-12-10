@@ -1,9 +1,10 @@
-import { Directive, Input, Output, EventEmitter, TemplateRef, ContentChild } from '@angular/core';
+import { Directive, Input, TemplateRef, ContentChild } from '@angular/core';
 import { SelectOptionTemplateDirective } from './select-option-template.directive';
 import { SelectOptionInputTemplateDirective } from './select-option-input-template.directive';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
+  exportAs: 'ngxSelectOption',
   selector: 'ngx-select-option'
 })
 export class SelectOptionDirective {
