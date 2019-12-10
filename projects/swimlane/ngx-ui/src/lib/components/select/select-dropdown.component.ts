@@ -10,7 +10,7 @@ import {
   TemplateRef
 } from '@angular/core';
 import { KeyboardKeys } from '../../utils/keys';
-import { containsFilter } from './select-helper';
+import { containsFilter } from './contains-filter.util';
 
 @Component({
   selector: 'ngx-select-dropdown',
