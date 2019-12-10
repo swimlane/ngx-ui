@@ -9,7 +9,8 @@ import {
   forwardRef,
   ViewEncapsulation,
   ViewChild,
-  ElementRef
+  ElementRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -25,43 +26,14 @@ const edge = window.navigator.userAgent.indexOf('Edge') > -1;
 
 @Component({
   selector: 'ngx-slider',
-  template: `
-    <div class="slider-inner">
-      <div class="ticks-container" *ngIf="showTicks">
-        <div class="tick" *ngFor="let s of _ticks" [ngStyle]="s"></div>
-      </div>
-      <div class="inputs">
-        <div class="slider-track"></div>
-        <span *ngIf="filled" [ngStyle]="_fill" class="fill-bar"> </span>
-        <ng-container *ngFor="let value of _values; let i = index; let odd = odd; trackBy: trackIndex">
-          <input
-            type="range"
-            [id]="id + '-' + i"
-            [attr.list]="id + '-list'"
-            [attr.orientation]="orientation"
-            [class.odd]="odd"
-            [class.active]="_active[i]"
-            [ngModel]="value"
-            (ngModelChange)="setValue($event, i)"
-            [min]="min"
-            [max]="max"
-            [step]="step"
-            [disabled]="disabled"
-            (input)="onChange($event)"
-            (change)="onChange($event)"
-            (mouseenter)="setActive(i, true)"
-            (mouseleave)="setActive(i, false)"
-          />
-          <div class="slider-thumb" [class.active]="_active[i]" [ngStyle]="_thumbs[i]"></div>
-        </ng-container>
-      </div>
-    </div>
-  `,
+  templateUrl: './slider.component.html',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./slider.component.scss'],
   providers: [SLIDER_VALUE_ACCESSOR],
   host: {
-    class: 'ngx-slider'
+    class: 'ngx-slider',
+    '[class.filled]': 'filled'
   }
 })
 export class SliderComponent implements ControlValueAccessor, OnInit {
