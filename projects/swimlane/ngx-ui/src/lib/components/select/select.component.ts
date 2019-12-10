@@ -63,7 +63,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() selectCaret: string;
   @Input() requiredIndicator: string | boolean = '*';
 
-  @Input() options: any[] = [];
+  @Input() options: SelectDropdownOption[] = [];
   @Input() identifier: any;
 
   @Input()
@@ -151,7 +151,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   @Output() change = new EventEmitter<any[]>();
-  @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value: string }>();
+  @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
   @Output() toggle = new EventEmitter<boolean>();
 
   @ViewChild(SelectInputComponent, { static: true })
@@ -325,7 +325,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     }
   }
 
-  onKeyUp({ event, value }: { event: KeyboardEvent; value: string; }): void {
+  onKeyUp({ event, value }: { event: KeyboardEvent; value?: string; }): void {
     if (event && event.key === KeyboardKeys.ARROW_DOWN as any) {
       ++this.focusIndex;
     } else {
