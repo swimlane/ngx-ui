@@ -29,9 +29,33 @@ describe('RadioButtonComponent', () => {
 
   describe('value', () => {
     it('should change value', () => {
-      component.model = true;
+      component.two.value = true;
       fixture.detectChanges();
-      expect(component.radioButton.value).toBe(component.model);
+      expect(component.value).toBe(true);
+    });
+
+    it('should emit if checked', () => {
+      component.checked$.next(true);
+      fixture.detectChanges();
+      const spy = spyOn(component.one.change, 'emit');
+      component.one.value = !component.one.value;
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('onFocus', () => {
+    it('should focus', () => {
+      const spy = spyOn(component.one.focus, 'emit');
+      component.one.onFocus(undefined);
+      expect(spy).toHaveBeenCalled();
+    });
+  });
+
+  describe('_onInputChange', () => {
+    it('should be checked', () => {
+      component.one.checked = false;
+      component.one._onInputChange({ stopPropagation: () => undefined } as any);
+      expect(component.one.checked).toBe(true);
     });
   });
 });

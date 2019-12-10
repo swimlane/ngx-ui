@@ -60,7 +60,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
   @Input()
   get value() { return this._value; }
   set value(value: boolean) {
-    if (this.value !== value) {
+    if (this._value !== value) {
       this._value = value;
       this.onChangeCallback(this._value);
     }
@@ -94,6 +94,11 @@ export class RadioButtonComponent implements ControlValueAccessor {
     this.value = value;
   }
 
+  onFocus(e: FocusEvent) {
+    this.focus.emit(e);
+    this.onTouchedCallback();
+  }
+
   registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
@@ -102,13 +107,13 @@ export class RadioButtonComponent implements ControlValueAccessor {
     this.onTouchedCallback = fn;
   }
 
-  private onChangeCallback = (value: boolean) => {
+  private onChangeCallback(value: boolean) {
     if (this.checked) {
       this.change.emit(value);
     }
   };
 
-  private onTouchedCallback = () => {
+  private onTouchedCallback() {
     // placeholder
   };
 }
