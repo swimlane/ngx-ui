@@ -4,7 +4,7 @@ import { SectionComponent } from './section.component';
 import { SectionFixtureComponent } from './fixtures/section.fixture';
 import { SectionModule } from './section.module';
 
-fdescribe('SectionComponent', () => {
+describe('SectionComponent', () => {
   let component: SectionComponent;
   let fixture: ComponentFixture<SectionFixtureComponent>;
 
