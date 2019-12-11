@@ -24,6 +24,7 @@ const edge = window.navigator.userAgent.indexOf('Edge') > -1;
 
 @Component({
   selector: 'ngx-slider',
+  exportAs: 'ngxSlider',
   templateUrl: './slider.component.html',
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
