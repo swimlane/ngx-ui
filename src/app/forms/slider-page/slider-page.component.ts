@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-slider-page',
-  templateUrl: './slider-page.component.html'
+  templateUrl: './slider-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SliderPageComponent {
   sliderEvent1: any;
