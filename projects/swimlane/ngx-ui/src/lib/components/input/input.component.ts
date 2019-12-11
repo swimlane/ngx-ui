@@ -172,7 +172,6 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   set value(val: string | number) {
     if (val !== this._value) {
       this._value = this.type === InputTypes.number ? coerceNumberProperty(val) : val;
-      console.log(typeof this._value)
       this.onChangeCallback(this._value);
     }
   }
