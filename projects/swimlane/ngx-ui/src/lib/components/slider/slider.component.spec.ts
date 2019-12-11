@@ -1,57 +1,176 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 import { SliderComponent } from './slider.component';
-describe('SliderComponent', () => {
-  let component: SliderComponent;
-  let fixture: ComponentFixture<SliderComponent>;
-  beforeEach(() => {
+import { SliderFixtureComponent } from './fixtures/slider.fixture';
+import { SliderModule } from './slider.module';
+
+fdescribe('SliderComponent', () => {
+  let defaultSlider: SliderComponent;
+  let multiSlider: SliderComponent;
+  let fixture: ComponentFixture<SliderFixtureComponent>;
+
+  beforeEach(done => {
     TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-      declarations: [SliderComponent]
+      declarations: [SliderFixtureComponent],
+      imports: [SliderModule, FormsModule]
     });
-    fixture = TestBed.createComponent(SliderComponent);
-    component = fixture.componentInstance;
+
+    fixture = TestBed.createComponent(SliderFixtureComponent);
+    defaultSlider = fixture.componentInstance.defaultSlider;
+    multiSlider = fixture.componentInstance.multiSlider;
+    fixture.autoDetectChanges();
+    fixture.whenStable().then(() => done());
   });
+
   it('can load instance', () => {
-    expect(component).toBeTruthy();
+    expect(defaultSlider).toBeTruthy();
   });
+
   it('min defaults to: 0', () => {
-    expect(component.min).toEqual(0);
+    expect(defaultSlider.min).toEqual(0);
   });
+
   it('max defaults to: 100', () => {
-    expect(component.max).toEqual(100);
+    expect(defaultSlider.max).toEqual(100);
   });
+
   it('step defaults to: 1', () => {
-    expect(component.step).toEqual(1);
+    expect(defaultSlider.step).toEqual(1);
   });
+
   it('orientation defaults to: horizontal', () => {
-    expect(component.orientation).toEqual('horizontal');
+    expect(defaultSlider.orientation).toEqual('horizontal');
   });
+
   it('filled defaults to: false', () => {
-    expect(component.filled).toEqual(false);
+    expect(defaultSlider.filled).toEqual(false);
   });
+
   it('multiple defaults to: false', () => {
-    expect(component.multiple).toEqual(false);
+    expect(defaultSlider.multiple).toEqual(false);
   });
+
   it('disabled defaults to: false', () => {
-    expect(component.disabled).toEqual(false);
+    expect(defaultSlider.disabled).toEqual(false);
   });
+
   it('showTicks defaults to: false', () => {
-    expect(component.showTicks).toEqual(false);
+    expect(defaultSlider.showTicks).toEqual(false);
   });
+
   it('_values defaults to: [0]', () => {
-    expect(component._values).toEqual([0]);
+    expect(defaultSlider._values).toEqual([0]);
   });
+
   it('_percents defaults to: [0]', () => {
-    expect(component._percents).toEqual([0]);
+    expect(defaultSlider._percents).toEqual([0]);
   });
+
   it('_thumbs defaults to: []', () => {
-    expect(component._thumbs).toEqual([]);
+    expect(defaultSlider._thumbs).toEqual([]);
   });
+
   it('_ticks defaults to: []', () => {
-    expect(component._ticks).toEqual([]);
+    expect(defaultSlider._ticks).toEqual([]);
   });
+
   it('_active defaults to: []', () => {
-    expect(component._active).toEqual([]);
+    expect(defaultSlider._active).toEqual([]);
+  });
+
+  it('value defaults to: 0', () => {
+    expect(defaultSlider.value).toEqual(0);
+  });
+
+  it('clearing _values defaults the value to 0', () => {
+    defaultSlider._values = undefined;
+    expect(defaultSlider.value).toEqual(0);
+  });
+
+  it('when multiple values are set, value returns then as a comma separated string', () => {
+    defaultSlider.multiple = true;
+    defaultSlider._values = [1, 2, 3];
+    expect(defaultSlider.value).toEqual('1,2,3');
+  });
+
+  it("setting values to what's already in _values doesnt trigger a change emit", () => {
+    spyOn(defaultSlider.change, 'emit');
+    spyOn(defaultSlider, 'setValues');
+    defaultSlider.value = 0;
+
+    expect(defaultSlider.change.emit).not.toHaveBeenCalled();
+    expect(defaultSlider.setValues).not.toHaveBeenCalled();
+  });
+
+  it('setting a specific value in multislider updates that value', () => {
+    spyOn(multiSlider.change, 'emit');
+    spyOn(multiSlider, 'setValues');
+    multiSlider.setValue(1, 0);
+
+    expect(multiSlider.change.emit).toHaveBeenCalled();
+    expect(multiSlider.setValues).toHaveBeenCalled();
+    expect(multiSlider._values[0]).toEqual(1);
+  });
+
+  it('setting a specific value in multislider to already set value doesnt trigger a change emit', () => {
+    spyOn(multiSlider.change, 'emit');
+    spyOn(multiSlider, 'setValues');
+    multiSlider.setValue(45, 0);
+
+    expect(multiSlider.change.emit).not.toHaveBeenCalled();
+    expect(multiSlider.setValues).not.toHaveBeenCalled();
+  });
+
+  it("writing a value to what's already in _values doesnt call setvalues", () => {
+    spyOn(defaultSlider, 'setValues');
+    defaultSlider.writeValue(0);
+
+    expect(defaultSlider.setValues).not.toHaveBeenCalled();
+  });
+
+  it('setting a value to a new value triggers a change emit', () => {
+    spyOn(defaultSlider.change, 'emit');
+    defaultSlider.value = 1;
+
+    expect(defaultSlider.change.emit).toHaveBeenCalled();
+    expect(defaultSlider.value).toEqual('1');
+  });
+
+  it('percentage for a multi slider returned as a comma delimited list', () => {
+    expect(multiSlider.percent).toEqual('18,39');
+  });
+
+  it('setting specific value active', () => {
+    multiSlider.setActive(0, true);
+    expect(multiSlider._active[0]).toEqual(true);
+  });
+
+  it('onMouseDown event sets active to true', () => {
+    multiSlider.onMouseDown(new Event('mousedown'));
+    expect(multiSlider.active).toEqual(true);
+  });
+
+  it('onMouseUp event sets active to false', () => {
+    multiSlider.onMouseUp(new Event('mouseup'));
+    expect(multiSlider.active).toEqual(false);
+  });
+
+  it('onChange method triggers change emitter', () => {
+    spyOn(multiSlider.change, 'emit');
+    multiSlider.onChange(new Event('change'));
+
+    expect(multiSlider.change.emit).toHaveBeenCalled();
+  });
+
+  it('getFill returns undefined when fill is not enabled', () => {
+    expect(defaultSlider.getFill()).toEqual(undefined);
+  });
+
+  it('getFill returns undefined when fill is not enabled', () => {
+    defaultSlider.filled = true;
+    const fill = defaultSlider.getFill();
+    expect(fill.left).toEqual('0%');
+    expect(fill['background-size']).toEqual('0% 100%');
   });
 });
