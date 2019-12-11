@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { SectionHeaderComponent } from './section-header.component';
-describe('SectionHeaderComponent', () => {
+fdescribe('SectionHeaderComponent', () => {
   let component: SectionHeaderComponent;
   let fixture: ComponentFixture<SectionHeaderComponent>;
   beforeEach(() => {
