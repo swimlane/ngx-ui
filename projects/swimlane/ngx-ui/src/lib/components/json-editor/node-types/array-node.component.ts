@@ -7,12 +7,13 @@ import {
   inferType,
   getIcon,
   getCurrentType,
-  JsonSchemaDataType
+  JsonSchemaDataType,
+  JSONEditorSchema
 } from '../json-editor.helper';
 
 export class ArrayNode implements OnChanges {
   @Input()
-  schema: any;
+  schema: JSONEditorSchema;
 
   @Input()
   model: any[];
@@ -71,7 +72,7 @@ export class ArrayNode implements OnChanges {
   addArrayItem(dataType?: any): void {
     let schema;
     if (dataType) {
-      schema = JSON.parse(JSON.stringify({ ...this.schema.items, ...dataType.schema }));
+      schema = JSON.parse(JSON.stringify({ ...this.schema.items as object, ...dataType.schema }));
     } else {
       schema = JSON.parse(JSON.stringify(this.schema.items));
     }
@@ -168,7 +169,7 @@ export class ArrayNode implements OnChanges {
       let schema = inferType(value, this.typeCheckOverrides);
 
       if (this.schema.items) {
-        schema = JSON.parse(JSON.stringify({ ...this.schema.items, ...schema }));
+        schema = JSON.parse(JSON.stringify({ ...this.schema.items as object, ...schema }));
       }
 
       this.schemas.push(schema);

@@ -14,7 +14,8 @@ import {
   dataTypeMap,
   getIcon,
   getCurrentType,
-  JsonSchemaDataType
+  JsonSchemaDataType,
+  JSONEditorSchema
 } from '../json-editor.helper';
 import { JSONSchema7 } from 'json-schema';
 
@@ -37,7 +38,9 @@ export class ObjectNode implements OnInit, OnChanges {
 
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
-  @Output() schemaChange: EventEmitter<any> = new EventEmitter();
+  @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();
+
+  @Input() schemaRef: JSONEditorSchema;
 
   requiredCache: { [key: string]: boolean } = {};
 
@@ -246,7 +249,7 @@ export class ObjectNode implements OnInit, OnChanges {
    * Creates an index out of all the properties in the model
    */
   indexProperties(): void {
-    const props = this.schemaBuilderMode ? this.schema.properties : this.model;
+    const props = this.schemaBuilderMode ? this.schemaRef.properties : this.model;
 
     for (const prop in props) {
       if (this.isIndexed(prop)) {

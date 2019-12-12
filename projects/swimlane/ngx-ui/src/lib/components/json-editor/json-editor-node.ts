@@ -11,12 +11,12 @@ import {
   ComponentRef
 } from '@angular/core';
 
-import { createValueForSchema, jsonSchemaDataTypes, inferType, JsonSchemaDataType } from './json-editor.helper';
+import { createValueForSchema, jsonSchemaDataTypes, inferType, JsonSchemaDataType, JSONEditorSchema } from './json-editor.helper';
 import { DialogComponent } from '../dialog/dialog.component';
 import { DialogService } from '../dialog/dialog.service';
 
 export class JsonEditorNode implements OnInit, OnChanges {
-  @Input() schema: any;
+  @Input() schema: JSONEditorSchema;
 
   @Input() model: any;
 

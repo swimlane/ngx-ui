@@ -2,7 +2,7 @@ import { Component, ContentChildren, QueryList, Input, ViewEncapsulation } from 
 import { JsonEditorNodeFlatComponent } from './json-editor-node-flat/json-editor-node-flat.component';
 import { SchemaValidatorService } from '../schema-validator.service';
 import { JsonEditor } from '../json-editor';
-import { JSONSchema7 } from 'json-schema';
+import { JSONEditorSchema } from '../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-editor-flat',
@@ -13,16 +13,16 @@ import { JSONSchema7 } from 'json-schema';
 export class JsonEditorFlatComponent extends JsonEditor {
   @Input() model: any;
 
-  @Input() schema: JSONSchema7;
+  @Input() schema: JSONEditorSchema;
 
   @Input() typeCheckOverrides?: any;
 
-  @Input() schemaBuilderMode?: boolean;
+  @Input() schemaBuilderMode?: boolean = false;
 
   @ContentChildren(JsonEditorNodeFlatComponent)
   nodeElms: QueryList<JsonEditorNodeFlatComponent>;
 
-  schemaRef: JSONSchema7;
+  schemaRef: JSONEditorSchema;
 
   constructor(protected schemaValidatorService: SchemaValidatorService) {
     super(schemaValidatorService);

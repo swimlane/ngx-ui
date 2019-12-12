@@ -6,11 +6,12 @@ import {
   SimpleChanges
 } from '@angular/core';
 import { SchemaValidatorService } from './schema-validator.service';
+import { JSONEditorSchema } from './json-editor.helper';
 
 export class JsonEditor implements OnChanges {
   @Input() model: any;
 
-  @Input() schema: any;
+  @Input() schema: JSONEditorSchema;
 
   @Input() label: string;
 
@@ -26,7 +27,6 @@ export class JsonEditor implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.schema) {
-      console.log(this.schema);
       this.schema = JSON.parse(JSON.stringify(this.schema));
     }
 
@@ -54,7 +54,7 @@ export class JsonEditor implements OnChanges {
    * @param schema
    * @param model
    */
-  validate(schema: any, model: any): boolean {
+  validate(schema: JSONEditorSchema, model: any): boolean {
     this.errors = this.schemaValidatorService.validate(schema, model);
     return this.errors && this.errors.length > 0;
   }

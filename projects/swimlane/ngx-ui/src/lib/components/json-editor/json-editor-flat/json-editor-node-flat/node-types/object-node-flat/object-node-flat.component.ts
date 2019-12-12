@@ -1,8 +1,7 @@
-import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ObjectNode } from '../../../../node-types/object-node.component';
 import { DialogService } from '../../../../../dialog/dialog.service';
-import { JSONSchema7 } from 'json-schema';
-import { JsonSchemaDataType } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
+import { JsonSchemaDataType, JSONEditorSchema } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -18,18 +17,13 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
   @Input() schemaBuilderMode: boolean;
 
-  @Input() schemaRef: JSONSchema7;
-
-  indentationArray: number[] = [];
-
   constructor(private dialogService: DialogService) {
     super();
   }
 
   ngOnInit() {
-    if (this.level > 0) {
-      this.indentationArray = Array(this.level).fill(this.level);
-    }
+    this.initSchemaProperties(this.schema);
+    this.initSchemaProperties(this.schemaRef);
   }
 
   onPropertyConfig(property: unknown): void {
@@ -49,8 +43,11 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     const oldName = options.oldProperty.value.propertyName;
 
     if (newName !== options.oldProperty.value.propertyName) {
+      if (oldName in this.schema.properties) {
+        this.updateSchemaPropertyName(this.schema, newName, oldName);
+      }
+
       this.updateSchemaPropertyName(this.schemaRef, newName, oldName);
-      this.updateSchemaPropertyName(this.schema, newName, oldName);
       this.updatePropertyName(options.newProperty.key, newName);
     }
 
@@ -69,9 +66,9 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
   addProperty(dataType: JsonSchemaDataType): void {
     super.addProperty(dataType);
+    this.updateSchemaRefProperty(this.propertyIndex[this.propertyId - 1]);
 
     if (this.schemaBuilderMode) {
-      this.updateSchemaRefProperty(this.propertyIndex[this.propertyId - 1]);
       this.schemaChange.emit();
     }
   }
@@ -97,7 +94,6 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     this.propertyIndex[previousIndexId] = tempProperty;
     this.propertyIndex[previousIndexId].id = previousIndexId;
 
-
     this.swapSchemaProperties(event.previousIndex, event.currentIndex);
   }
 
@@ -114,8 +110,14 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     this.schemaChange.emit();
   }
 
+  private initSchemaProperties(schema: JSONEditorSchema): void {
+    schema.required = schema.required || [];
+    schema.properties = schema.properties || {};
+  }
+
   private updateSchemaRefProperty(prop: any): void {
     // TODO: add missing properties
+    console.log(this.schemaRef);
     this.schemaRef.properties[prop.propertyName] = {
       type: prop.type,
       ...prop['description'] && { description: prop['description'] },
@@ -130,9 +132,10 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     };
   }
 
-  private updateSchemaPropertyName(schema: any, newName: string, oldName: string): void {
+  private updateSchemaPropertyName(schema: JSONEditorSchema, newName: string, oldName: string): void {
+    console.log(newName);
+    console.log(oldName);
     this.updateRequiredProperties(schema, newName, oldName);
-
     schema.properties[newName] = schema.properties[oldName];
     delete schema.properties[oldName];
   }
@@ -149,7 +152,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     this.updateRequiredCache();
   }
 
-  private updateRequiredProperties(schema: any, newName: string, oldName: string): void {
+  private updateRequiredProperties(schema: JSONEditorSchema, newName: string, oldName: string): void {
     const requiredIndex = schema.required.indexOf(oldName);
     if (requiredIndex >= 0) {
       schema.required[requiredIndex] = newName;

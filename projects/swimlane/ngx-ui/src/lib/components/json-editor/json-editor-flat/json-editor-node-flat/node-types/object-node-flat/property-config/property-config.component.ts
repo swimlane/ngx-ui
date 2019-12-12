@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
-import { JSONSchema7 } from 'json-schema';
 import { DialogService } from '../../../../../../dialog/dialog.service';
-import { JsonSchemaDataType, jsonSchemaDataTypes, inferTypeName } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
+import { JsonSchemaDataType, jsonSchemaDataTypes, inferTypeName, JSONEditorSchema } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 interface ObjectProperty {
   key: number;
@@ -20,7 +20,7 @@ interface ObjectProperty {
 export class PropertyConfigComponent implements OnInit {
   @Input() property: ObjectProperty;
   @Input() propertyIndex: any[];
-  @Input() schema: JSONSchema7;
+  @Input() schema: JSONEditorSchema;
 
   @Output() updateSchema = new EventEmitter()
 
@@ -31,6 +31,8 @@ export class PropertyConfigComponent implements OnInit {
   editableProperty: ObjectProperty;
 
   required = false;
+
+  coerceNumberProperty = coerceNumberProperty;
 
   constructor(private dialogService: DialogService) { }
 
@@ -44,8 +46,6 @@ export class PropertyConfigComponent implements OnInit {
   }
 
   applyChanges(): void {
-    // TODO update the rest
-    console.log(this.editableProperty);
     this.dialogService.destroyAll();
     this.updateSchema.emit({ schema: this.schema, required: this.required, newProperty: this.editableProperty, oldProperty: this.property });
   }

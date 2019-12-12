@@ -5,6 +5,10 @@ export const requiredIndicatorIcon = `
     <path d="M3.38411 10L2.19205 9.10616L3.89073 6.2089L1 4.97603L1.44702 3.55822L4.48676 4.32877L4.75497 1H6.21523L6.48344 4.29795L9.55298 3.55822L10 4.97603L7.10927 6.2089L8.77815 9.10616L7.61589 10L5.5 7.34931L3.38411 10Z" fill="#72819F" stroke="#72819F" stroke-width="0.5"/>
   </svg>`;
 
+export interface JSONEditorSchema extends JSONSchema7 {
+  $meta?: any;
+}
+
 export interface JsonSchemaDataType {
   name: string;
   defaultValue: () => any;
@@ -143,7 +147,7 @@ for (const dType of jsonSchemaDataTypes) {
   dataTypeMap[key] = dType;
 }
 
-export function createValueForSchema(schema: JSONSchema7): any {
+export function createValueForSchema(schema: JSONEditorSchema): any {
   if (schema.default) {
     return schema.default;
   }
@@ -191,7 +195,7 @@ export function inferType(value: any, overrides?: any, allowedTypes?: string[]):
 /**
  * Returns the icon for the schema
  */
-export function getIcon(schema: JSONSchema7): string {
+export function getIcon(schema: JSONEditorSchema): string {
   let key = schema.type as string;
   if (schema.format) {
     key = `${key}=${schema.format}`;
@@ -208,7 +212,7 @@ export function getIcon(schema: JSONSchema7): string {
  * string, string=code, object, etc.
  * @param schema
  */
-export function getCurrentType(schema: JSONSchema7): string {
+export function getCurrentType(schema: JSONEditorSchema): string {
   if (schema.type !== 'string') {
     return schema.type as string;
   }
@@ -220,7 +224,7 @@ export function getCurrentType(schema: JSONSchema7): string {
   }
 }
 
-export function inferTypeName(schema: JSONSchema7): unknown {
+export function inferTypeName(schema: JSONEditorSchema): unknown {
   switch (schema.format) {
     case 'date':
       return 'Date';

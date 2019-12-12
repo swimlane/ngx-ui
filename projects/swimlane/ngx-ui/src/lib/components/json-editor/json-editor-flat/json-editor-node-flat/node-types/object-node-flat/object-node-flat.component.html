@@ -1,5 +1,4 @@
-<div class="object-node-flat" [hidden]="!expanded" cdkDropList [id]="level > 0 ? (schema.id  + '.' + level) : 'root'"
-  (cdkDropListDropped)="drop($event)">
+<div class="object-node-flat" [hidden]="!expanded" cdkDropList (cdkDropListDropped)="drop($event)">
   <div cdkDrag cdkDragLockAxis="y" class="object-node-content"
     *ngFor="let prop of propertyIndex | keyvalue; trackBy: trackBy">
     <ngx-json-editor-node-flat [model]="model[prop.value.propertyName]"
@@ -45,7 +44,6 @@
     </ngx-json-editor-node-flat>
     <div *cdkDragPlaceholder class="indentation-placeholder"
       [ngStyle]="{'width': 'calc(100% + ' + (level * 20) + 'px)', 'left': -1 * (level * 20) + 'px'}">
-      <span class="separator" *ngFor="let separator of indentationArray"></span>
     </div>
   </div>
 

@@ -3,8 +3,7 @@ import { JsonEditorNode } from '../../json-editor-node';
 
 import { DialogService } from '../../../dialog/dialog.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { requiredIndicatorIcon, inferTypeName } from '../../json-editor.helper';
-import { JSONSchema7 } from 'json-schema';
+import { requiredIndicatorIcon, inferTypeName, JSONEditorSchema } from '../../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-editor-node-flat',
@@ -15,7 +14,7 @@ import { JSONSchema7 } from 'json-schema';
 export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnInit {
   @Input() model: any;
 
-  @Input() schema: JSONSchema7;
+  @Input() schema: JSONEditorSchema;
 
   @Input() typeCheckOverrides?: any;
 
@@ -27,7 +26,7 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() schemaBuilderMode?: boolean;
 
-  @Input() schemaRef?: JSONSchema7;
+  @Input() schemaRef?: JSONEditorSchema;
 
   @Input() indentationArray: number[] = [];
 
@@ -43,7 +42,7 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
   ngOnInit() {
     this.level += 1;
     if (this.level > 1) {
-      this.indentationArray.push(this.level);
+      this.indentationArray = Array(this.level - 1).fill(this.level);
     }
   }
 

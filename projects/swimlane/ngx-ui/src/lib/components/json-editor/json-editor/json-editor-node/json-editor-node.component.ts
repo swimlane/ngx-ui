@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, Input } from '@angular/core';
 import { JsonEditorNode } from '../../json-editor-node';
 
 import { DialogService } from '../../../dialog/dialog.service';
+import { JSONEditorSchema } from '../../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-editor-node',
@@ -12,7 +13,7 @@ import { DialogService } from '../../../dialog/dialog.service';
 export class JsonEditorNodeComponent extends JsonEditorNode {
   @Input() model: any;
 
-  @Input() schema: any;
+  @Input() schema: JSONEditorSchema;
 
   @Input() typeCheckOverrides?: any;
 

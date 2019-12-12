@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation, ContentChildren, QueryList, Input } from 
 import { JsonEditor } from '../json-editor';
 import { SchemaValidatorService } from '../schema-validator.service';
 import { JsonEditorNodeComponent } from './json-editor-node/json-editor-node.component';
+import { JSONEditorSchema } from '../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-editor',
@@ -12,7 +13,7 @@ import { JsonEditorNodeComponent } from './json-editor-node/json-editor-node.com
 export class JsonEditorComponent extends JsonEditor {
   @Input() model: any;
 
-  @Input() schema: any;
+  @Input() schema: JSONEditorSchema;
 
   @Input() typeCheckOverrides?: any;
 
