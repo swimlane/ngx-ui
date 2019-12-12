@@ -55,6 +55,7 @@
     "@angular/platform-browser-dynamic": "^8.2.3",
     "@netbasal/spectator": "^3.9.1",
     "@swimlane/prettier-config-swimlane": "^0.1.1",
+    "@types/codemirror": "0.0.80",
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/json-schema": "^7.0.3",

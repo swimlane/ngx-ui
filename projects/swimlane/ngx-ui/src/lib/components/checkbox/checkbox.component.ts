@@ -1,4 +1,13 @@
-import { Component, Input, EventEmitter, Output, forwardRef, HostBinding, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  Input,
+  EventEmitter,
+  Output,
+  forwardRef,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
+} from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 const CHKBOX_VALUE_ACCESSOR = {
@@ -11,7 +20,11 @@ let nextId = 0;
 
 @Component({
   selector: 'ngx-checkbox',
+  exportAs: 'ngxCheckbox',
   providers: [CHKBOX_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./checkbox.component.scss'],
   template: `
     <label class="checkbox-label">
       <input
@@ -29,60 +42,60 @@ let nextId = 0;
       <ng-content></ng-content>
     </label>
   `,
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./checkbox.component.scss'],
   host: {
-    class: 'ngx-checkbox'
+    class: 'ngx-checkbox',
+    '[class.disabled]': 'disabled',
+    '(blur)': 'onBlur($event)'
   }
 })
 export class CheckboxComponent implements ControlValueAccessor {
-  @Input() id: string = `checkbox-${++nextId}`;
-  @Input() name: string = null;
-  @Input() tabindex: number = 0;
-
-  @HostBinding('class.disabled')
-  @Input()
-  disabled: boolean = false;
+  @Input() id = `checkbox-${++nextId}`;
+  @Input() name?: string;
+  @Input() tabindex = 0;
+  @Input() disabled = false;
 
   @Output() change = new EventEmitter();
   @Output() blur = new EventEmitter();
   @Output() focus = new EventEmitter();
 
-  get value(): boolean {
-    return this._value;
-  }
-
-  set value(value) {
-    if (this.value !== value) {
+  set value(value: boolean) {
+    if (this._value !== value) {
       this._value = value;
+      this.cdr.markForCheck();
       this.onChangeCallback(this._value);
     }
   }
 
-  private _value: boolean = false;
-
-  onBlur(event): void {
-    this.onTouchedCallback();
+  get value(): boolean {
+    return this._value;
   }
 
-  onChange(event): void {
-    this.toggle();
+  private _value = false;
+
+  constructor(private readonly cdr: ChangeDetectorRef) {}
+
+  onBlur(_: any) {
+    this.onTouchedCallback();
   }
 
   toggle() {
     this.value = !this.value;
   }
 
-  writeValue(value: any): void {
+  writeValue(value: boolean) {
     this.value = value;
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: any) {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: any) {
     this.onTouchedCallback = fn;
+  }
+
+  setDisabledState(disabled: boolean) {
+    this.disabled = disabled;
   }
 
   private onTouchedCallback = () => {

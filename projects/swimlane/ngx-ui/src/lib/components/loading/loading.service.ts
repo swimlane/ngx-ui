@@ -1,4 +1,5 @@
-import { Injectable, ComponentRef, EventEmitter } from '@angular/core';
+import { Injectable, ComponentRef } from '@angular/core';
+
 import { InjectionService } from '../../services/injection.service';
 import { LoadingComponent } from './loading.component';
 
@@ -10,6 +11,7 @@ export class LoadingService {
     if (this.instance) {
       this.instance.progress = val;
     }
+
     this._progress = val;
   }
 
@@ -17,20 +19,24 @@ export class LoadingService {
     return this._progress;
   }
 
+  get count(): number {
+    return this._count;
+  }
+
   private get instance() {
     if (this.component) return this.component.instance;
   }
 
-  private count: number = 0;
+  private _count: number = 0;
   private timeout: any;
   private component: ComponentRef<LoadingComponent>;
   private _progress: number = 0;
 
-  constructor(private injectionService: InjectionService) {}
+  constructor(private readonly injectionService: InjectionService) {}
 
   start(autoIncrement: boolean = true): void {
     this.create();
-    this.count++;
+    this._count++;
 
     if (autoIncrement) {
       clearTimeout(this.timeout);
@@ -49,7 +55,7 @@ export class LoadingService {
   }
 
   stop(): void {
-    this.count--;
+    this._count--;
     clearTimeout(this.timeout);
   }
 
@@ -58,11 +64,11 @@ export class LoadingService {
   }
 
   complete(all: boolean = false): void {
-    this.count--;
+    this._count--;
 
     if (this.count <= 0 || all) {
       this.progress = 100;
-      this.count = 0;
+      this._count = 0;
 
       setTimeout(() => {
         this.hide();
@@ -73,6 +79,7 @@ export class LoadingService {
 
   hide(): void {
     this.stop();
+
     if (this.instance) {
       this.instance.visible = false;
     }
@@ -106,7 +113,7 @@ export class LoadingService {
     } else if (stat >= 0.65 && stat < 0.9) {
       // increment between 0 - 2%
       rnd = (Math.random() * 2) / 100;
-    } else if (stat >= 0.9 && stat < 0.99) {
+    } else {
       // finally, increment it .5 %
       // after 99%, don't increment:
       rnd = 0.005;

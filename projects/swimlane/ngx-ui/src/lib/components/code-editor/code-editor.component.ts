@@ -9,11 +9,12 @@ import {
   forwardRef,
   AfterViewInit,
   ViewEncapsulation,
-  OnDestroy
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
-import * as CodeMirror from 'codemirror';
+import CodeMirror from 'codemirror';
 
 // code extensions
 import 'codemirror/mode/yaml/yaml.js';
@@ -37,11 +38,7 @@ import 'codemirror/addon/fold/indent-fold.js';
 import 'codemirror/addon/hint/show-hint.js';
 import 'codemirror/addon/mode/overlay.js';
 
-interface HintCompletion {
-  text: string;
-  displayText: string;
-  className: string;
-}
+import { HintCompletion } from './hint-completion.interface';
 
 const CODEMIRROR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -50,6 +47,7 @@ const CODEMIRROR_VALUE_ACCESSOR = {
 };
 
 @Component({
+  exportAs: 'ngxCodemirror',
   selector: 'ngx-codemirror',
   providers: [CODEMIRROR_VALUE_ACCESSOR],
   template: `
@@ -60,6 +58,8 @@ const CODEMIRROR_VALUE_ACCESSOR = {
       </div>
     </div>
   `,
+  host: { class: 'ngx-codemirror' },
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
     './codemirror.css',
@@ -71,33 +71,26 @@ const CODEMIRROR_VALUE_ACCESSOR = {
     './code-editor.component.scss'
   ]
 })
-export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, ControlValueAccessor {
-  @Input()
-  config: any = {
-    lineWrapping: true
-  };
+export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueAccessor {
+  @Input() config: any = { lineWrapping: true };
   @Input() theme: string = 'dracula';
-  @Input() readOnly: any = false;
-  @Input() mode: any;
-  @Input() autofocus: boolean = false;
-  @Input() lint: any;
-  @Input() allowDropFileTypes: any[] = [];
-  @Input() lineNumbers: any;
-  @Input() gutters: any[] = [];
+  @Input() readOnly: string | boolean = false;
+  @Input() allowDropFileTypes: string[] = [];
+  @Input() gutters: Array<string | { className: string; style?: string }> = [];
+  @Input() mode?: any;
+  @Input() lint?: any;
+  @Input() autocompleteTokens?: Array<string | HintCompletion>;
 
   @Input()
-  autocompleteTokens: Array<string | HintCompletion>;
-
-  set value(val: string) {
-    if (val !== this._value) {
-      this._value = val;
-      this.onChangeCallback(val);
-      this.change.emit(this._value);
-    }
+  get autofocus() { return this._autofocus; }
+  set autofocus(autofocus: boolean) {
+    this._autofocus = coerceBooleanProperty(autofocus);
   }
 
-  get value(): string {
-    return this._value;
+  @Input()
+  get lineNumbers() { return this._lineNumbers; }
+  set lineNumbers(lineNumbers: boolean) {
+    this._lineNumbers = coerceBooleanProperty(lineNumbers);
   }
 
   @Output() change: EventEmitter<any> = new EventEmitter();
@@ -106,11 +99,22 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
   @ViewChild('host', { static: true }) host: any;
   @ViewChild('content', { static: true }) content: any;
 
-  editor: any;
-  instance: any;
+  instance: CodeMirror.EditorFromTextArea;
   _value: string;
 
-  constructor(private renderer: Renderer2) { }
+  get value(): string { return this._value; }
+  set value(val: string) {
+    if (val !== this._value) {
+      this._value = val;
+      this.onChangeCallback(val);
+      this.change.emit(this._value);
+    }
+  }
+
+  private _autofocus: boolean = false;
+  private _lineNumbers: boolean = false;
+
+  constructor(private readonly renderer: Renderer2) { }
 
   ngOnInit(): void {
     this.config = {
@@ -138,34 +142,20 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     if (typeof this.value !== 'string') {
       const elm = this.content.nativeElement;
       const code = elm.innerHTML;
+
       for (const childNode of elm.childNodes) {
         this.renderer.removeChild(elm, childNode);
       }
+
       this.host.nativeElement.value = this.cleanCode(code);
     }
 
     this.instance = CodeMirror.fromTextArea(this.host.nativeElement, this.config);
-    this.instance.on('change', () => {
-      this.updateValue(this.instance.getValue());
-    });
+    this.instance.on('change', this.onChange.bind(this));
+    this.instance.on('blur', this.onBlur.bind(this));
 
     if (this.autocompleteTokens) {
-      this.instance.on('keyup', (cm: any, event: KeyboardEvent) => {
-        if ((!cm.state.completionActive && (event.keyCode > 64 && event.keyCode < 91)) || event.keyCode === 219) {
-          CodeMirror.commands.autocomplete(cm, null, { completeSingle: false });
-        }
-      });
-    }
-
-    this.instance.on('blur', () => {
-      this.blur.emit(this.instance.getValue());
-    });
-  }
-
-  ngOnDestroy(): void {
-    if (this.instance) {
-      this.instance.off('change');
-      this.instance.off('blur');
+      this.instance.on('keyup', this.onKeyUp.bind(this));
     }
   }
 
@@ -206,6 +196,20 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     this.instance.refresh();
   }
 
+  onKeyUp(cm: CodeMirror.EditorFromTextArea, event: KeyboardEvent) {
+    if ((!cm.state.completionActive && (event.keyCode > 64 && event.keyCode < 91)) || event.keyCode === 219) {
+      (CodeMirror.commands as any).autocomplete(cm, null, { completeSingle: false });
+    }
+  }
+
+  onChange() {
+    this.updateValue(this.instance.getValue());
+  }
+
+  onBlur() {
+    this.blur.emit(this.instance.getValue());
+  }
+
   updateValue(value: string): void {
     this.value = value;
     this.onTouchedCallback();
@@ -236,18 +240,23 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, OnDestroy, Co
     // placeholder
   };
 
-  private autocomplete(editor: any) {
+  private autocomplete(editor: CodeMirror.EditorFromTextArea) {
     const word = /[\S$]+/;
     const cur = editor.getCursor();
     const curLine = editor.getLine(cur.line);
     const end = cur.ch;
     let start = end;
-    while (start && word.test(curLine.charAt(start - 1)))--start;
+
+    while (start && word.test(curLine.charAt(start - 1))) {
+      --start;
+    }
+
     const curWord = start !== end && curLine.slice(start, end);
     const list = this.autocompleteTokens.filter((s: string | HintCompletion) => {
       s = typeof s === 'string' ? s : s.text;
       return s ? s.startsWith(curWord) : false;
     });
+
     return {
       list,
       from: CodeMirror.Pos(cur.line, start),
