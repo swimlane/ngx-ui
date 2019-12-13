@@ -17,7 +17,12 @@ import { SelectOptionInputTemplateDirective } from './select-option-input-templa
     SelectDropdownComponent,
     SelectOptionInputTemplateDirective
   ],
-  exports: [SelectComponent, SelectOptionDirective, SelectOptionTemplateDirective, SelectOptionInputTemplateDirective],
+  exports: [
+    SelectComponent,
+    SelectOptionDirective,
+    SelectOptionTemplateDirective,
+    SelectOptionInputTemplateDirective
+  ],
   imports: [CommonModule]
 })
 export class SelectModule { }
