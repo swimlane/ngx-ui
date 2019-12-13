@@ -22,9 +22,9 @@ import {
   FormControl,
   Validators
 } from '@angular/forms';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BehaviorSubject } from 'rxjs';
 
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { InputTypes } from './input-types.enum';
 
 let nextId = 0;
@@ -157,7 +157,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
     this.updateInputType();
   }
 
-  @Output() change = new EventEmitter<string>();
+  @Output() change = new EventEmitter<string | number>();
   @Output() blur = new EventEmitter<Event>();
   @Output() focus = new EventEmitter<FocusEvent>();
   @Output() keyup = new EventEmitter<KeyboardEvent>();
@@ -168,10 +168,10 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   @ViewChild('inputModel', { static: false }) readonly inputModel: NgModel;
   @ViewChild('textareaControl', { static: false }) readonly textareaControl: ElementRef<HTMLTextAreaElement>;
 
-  get value(): string { return this._value; }
-  set value(val: string) {
+  get value(): string | number { return this._value; }
+  set value(val: string | number) {
     if (val !== this._value) {
-      this._value = val;
+      this._value = this.type === InputTypes.number ? coerceNumberProperty(val) : val;
       this.onChangeCallback(this._value);
     }
   }
@@ -213,7 +213,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   focused: boolean = false;
   readonly type$ = new BehaviorSubject<InputTypes>(undefined);
 
-  private _value: string = '';
+  private _value: string | number = '';
   private _type: InputTypes = InputTypes.text;
   private _passwordTextVisible: boolean = false;
   private _disabled: boolean = false;
