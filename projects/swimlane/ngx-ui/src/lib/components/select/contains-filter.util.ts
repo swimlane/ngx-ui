@@ -4,6 +4,8 @@ export function containsFilter(
   options?: { filterCaseSensitive: boolean },
   depth = 0
 ): boolean {
+  console.log(value);
+
   if (value === undefined || value === null || depth > 2) {
     return false;
   }
@@ -16,7 +18,7 @@ export function containsFilter(
     const idx = options.filterCaseSensitive ? value.indexOf(keyword) : value.search(new RegExp(keyword, 'i'));
     return idx > -1;
   } else if (typeof value === 'object') {
-    const keys = Object.keys(value);
+    const keys = Object.getOwnPropertyNames(value);
 
     for (const k of keys) {
       if (containsFilter(value[k], keyword, options, depth + 1)) {

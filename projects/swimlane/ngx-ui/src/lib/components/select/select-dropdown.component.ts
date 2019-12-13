@@ -187,7 +187,7 @@ export class SelectDropdownComponent implements AfterViewInit {
       if (filter) {
         // filter options
         options = options.filter(o => {
-          return containsFilter(o, filter, filterOptions);
+          return containsFilter({ name: o.name, value: o.value }, filter, filterOptions);
         });
       }
 
@@ -204,7 +204,7 @@ export class SelectDropdownComponent implements AfterViewInit {
 
     for (const option of options) {
       // only show items in filter criteria
-      if (filter && !containsFilter(option, filter, filterOptions)) {
+      if (filter && !containsFilter({ name: option.name, value: option.value }, filter, filterOptions)) {
         continue;
       }
 
