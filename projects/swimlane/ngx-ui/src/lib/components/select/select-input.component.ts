@@ -68,7 +68,7 @@ export class SelectInputComponent implements AfterViewInit {
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
 
   @ViewChild('tagInput', { static: false })
-  readonly inputElement: ElementRef<HTMLInputElement>;
+  readonly inputElement?: ElementRef<HTMLInputElement>;
 
   get caretVisible(): boolean {
     if (this.disableDropdown) return false;
@@ -116,6 +116,7 @@ export class SelectInputComponent implements AfterViewInit {
           (event.target as any).value = '';
         }
       }
+
       event.preventDefault();
     } else if (key === KeyboardKeys.ESCAPE as any) {
       this.toggle.emit();
@@ -151,6 +152,7 @@ export class SelectInputComponent implements AfterViewInit {
       if (this.identifier !== undefined) {
         return option.value[this.identifier] !== selection[this.identifier];
       }
+
       return option.value !== selection;
     });
 

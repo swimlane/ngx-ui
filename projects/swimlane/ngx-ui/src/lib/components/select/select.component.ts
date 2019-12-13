@@ -276,7 +276,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     }
   }
 
-  onInputSelection(selections): void {
+  onInputSelection(selections: any[]): void {
     this.value = selections;
   }
 

@@ -3,157 +3,111 @@ import {
   Input,
   Output,
   EventEmitter,
-  HostBinding,
   ViewChild,
   AfterViewInit,
   ElementRef,
   TemplateRef
 } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+
 import { KeyboardKeys } from '../../utils/keys';
 import { containsFilter } from './contains-filter.util';
+import { SelectDropdownOption } from './select-dropdown-option.interface';
 
 @Component({
+  exportAs: 'ngxSelectDropdown',
   selector: 'ngx-select-dropdown',
-  template: `
-    <div>
-      <div class="ngx-select-filter" *ngIf="filterable && !tagging">
-        <input
-          #filterInput
-          type="search"
-          tabindex=""
-          autocomplete="off"
-          autocorrect="off"
-          spellcheck="off"
-          class="ngx-select-filter-input"
-          [placeholder]="filterPlaceholder"
-          (keyup)="onInputKeyUp($event)"
-        />
-      </div>
-      <ul class="vertical-list ngx-select-dropdown-options">
-        <li *ngFor="let group of groups" class="ngx-select-option-group">
-          <span class="ngx-select-option-group-name" *ngIf="group.name" [innerHTML]="group.name"> </span>
-          <ul class="vertical-list ngx-select-dropdown-options">
-            <li
-              *ngFor="let kv of group.options"
-              class="ngx-select-dropdown-option"
-              [class.disabled]="kv.option.disabled"
-              [class.active]="kv.index === focusIndex"
-              [class.selected]="isSelected(kv.option)"
-              [hidden]="kv.option.hidden"
-              tabindex="-1"
-              (click)="selection.emit(kv.option)"
-              (keydown)="onOptionKeyDown($event)"
-            >
-              <ng-template
-                *ngIf="kv.option.optionTemplate"
-                [ngTemplateOutlet]="kv.option.optionTemplate"
-                [ngTemplateOutletContext]="{ option: kv.option }"
-              >
-              </ng-template>
-              <span *ngIf="!kv.option.optionTemplate" [innerHTML]="kv.option.name"> </span>
-            </li>
-            <li
-              *ngIf="filterQuery && filterEmptyPlaceholder && !group.options?.length"
-              class="ngx-select-empty-placeholder"
-            >
-              <span class="ngx-select-empty-placeholder-text" [innerHTML]="filterEmptyPlaceholder"> </span>
-              <a
-                *ngIf="allowAdditions"
-                href="#"
-                class="ngx-select-empty-placeholder-add"
-                (click)="onAddClicked($event, filterQuery)"
-              >
-                <span *ngIf="isNotTemplate(allowAdditionsText); else tpl" [innerHTML]="allowAdditionsText"> </span>
-                <ng-template #tpl>
-                  <ng-container *ngTemplateOutlet="allowAdditionsText"></ng-container>
-                </ng-template>
-              </a>
-            </li>
-            <li
-              *ngIf="!filterQuery && emptyPlaceholder && !group.options?.length"
-              class="ngx-select-empty-placeholder"
-              [innerHTML]="emptyPlaceholder"
-            ></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  `,
+  templateUrl: './select-dropdown.component.html',
   host: {
-    class: 'ngx-select-dropdown'
+    class: 'ngx-select-dropdown',
+    '[class.groupings]': 'groupBy'
   }
 })
 export class SelectDropdownComponent implements AfterViewInit {
   @Input() selected: any[];
   @Input() identifier: any;
-  @Input() filterable: boolean;
   @Input() filterPlaceholder: string;
   @Input() filterEmptyPlaceholder: string;
   @Input() emptyPlaceholder: string;
-  @Input() tagging: boolean;
-  @Input() allowAdditions: boolean;
   @Input() allowAdditionsText: string = 'Add Value';
-  @Input() filterCaseSensitive = false;
 
   @Input()
+  get tagging() { return this._tagging; }
+  set tagging(tagging) {
+    this._tagging = coerceBooleanProperty(tagging);
+  }
+
+  @Input()
+  get allowAdditions() { return this._allowAdditions; }
+  set allowAdditions(allowAdditions) {
+    this._allowAdditions = coerceBooleanProperty(allowAdditions);
+  }
+
+  @Input()
+  get filterable() { return this._filterable; }
+  set filterable(filterable) {
+    this._filterable = coerceBooleanProperty(filterable);
+  }
+
+  @Input()
+  get filterCaseSensitive() { return this._filterCaseSensitive; }
+  set filterCaseSensitive(filterCaseSensitive) {
+    this._filterCaseSensitive = coerceBooleanProperty(filterCaseSensitive);
+  }
+
+  @Input()
+  get focusIndex() { return this._focusIndex; }
   set focusIndex(val: number) {
     this._focusIndex = val;
     this.focusElement(val);
   }
 
-  get focusIndex(): number {
-    return this._focusIndex;
-  }
-
   @Input()
+  get filterQuery() { return this._filterQuery; }
   set filterQuery(val: string) {
     this._filterQuery = val;
     this.groups = this.calculateGroups(this.groupBy, this.options, val);
   }
 
-  get filterQuery(): string {
-    return this._filterQuery;
-  }
-
-  @HostBinding('class.groupings')
   @Input()
+  get groupBy() { return this._groupBy; }
   set groupBy(val: string) {
     this._groupBy = val;
     this.groups = this.calculateGroups(val, this.options);
   }
 
-  get groupBy(): string {
-    return this._groupBy;
-  }
-
   @Input()
-  set options(val: any[]) {
+  get options() { return this._options; }
+  set options(val) {
     this.groups = this.calculateGroups(this.groupBy, val);
     this._options = val;
   }
 
-  get options(): any[] {
-    return this._options;
+  @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
+  @Output() selection = new EventEmitter<SelectDropdownOption>();
+  @Output() close = new EventEmitter<boolean | undefined>();
+
+  @ViewChild('filterInput', { static: false })
+  readonly filterInput?: ElementRef<HTMLInputElement>;
+
+  get element() {
+    return this.elementRef.nativeElement;
   }
-
-  @Output() keyup: EventEmitter<any> = new EventEmitter();
-  @Output() selection: EventEmitter<any> = new EventEmitter();
-  @Output() close: EventEmitter<any> = new EventEmitter();
-
-  @ViewChild('filterInput', { static: false }) filterInput: any;
 
   groups: any[];
-  element: any;
-  _options: any[];
-  _groupBy: string;
-  _filterQuery: string;
-  _focusIndex: number;
 
-  constructor(elementRef: ElementRef) {
-    this.element = elementRef.nativeElement;
-  }
+  private _options: SelectDropdownOption[];
+  private _groupBy: string;
+  private _filterQuery: string;
+  private _focusIndex: number;
+  private _tagging: boolean;
+  private _allowAdditions: boolean;
+  private _filterable: boolean;
+  private _filterCaseSensitive = false;
 
-  isNotTemplate(val) {
+  constructor(private readonly elementRef: ElementRef) { }
+
+  isNotTemplate(val: any) {
     return !(typeof val === 'object' && val instanceof TemplateRef);
   }
 
@@ -165,7 +119,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     }
   }
 
-  isSelected(option): boolean {
+  isSelected(option: SelectDropdownOption): boolean {
     if (!this.selected || !this.selected.length) return false;
 
     const idx = this.selected.findIndex(o => {
@@ -176,7 +130,61 @@ export class SelectDropdownComponent implements AfterViewInit {
     return idx > -1;
   }
 
-  calculateGroups(groupBy: string, options: any[], filter?: string): any[] {
+  onInputKeyUp(event: KeyboardEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const key = event.key;
+    const value = (event.target as any).value;
+
+    if (key === KeyboardKeys.ESCAPE as any) {
+      this.close.emit(true);
+    } else if (event.key === KeyboardKeys.ARROW_DOWN as any) {
+      ++this.focusIndex;
+    }
+
+    if (this.filterQuery !== value) {
+      this.filterQuery = value;
+    }
+
+    this.keyup.emit({ event, value });
+  }
+
+  onOptionKeyDown(event: KeyboardEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const key = event.key;
+
+    if (key === KeyboardKeys.ARROW_DOWN as any) {
+      if (this.focusIndex < this.options.length - 1) ++this.focusIndex;
+    } else if (key === KeyboardKeys.ARROW_UP as any) {
+      if (this.focusIndex > 0) --this.focusIndex;
+    } else if (key === KeyboardKeys.ENTER as any) {
+      this.selection.emit(this.options[this.focusIndex]);
+    }
+  }
+
+  onAddClicked(event: Event, value: any): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.selection.emit({ value, name: value });
+    (event.target as any).value = '';
+
+    this.close.emit();
+  }
+
+  private focusElement(index: number): void {
+    const elements = this.element.getElementsByClassName('ngx-select-dropdown-option');
+    const element = elements[index];
+
+    if (element) {
+      setTimeout(() => element.focus(), 5);
+    }
+  }
+
+  private calculateGroups(groupBy: string, options: any[], filter?: string): any[] {
     if (!options) return [];
 
     const filterOptions = { filterCaseSensitive: this.filterCaseSensitive };
@@ -227,58 +235,5 @@ export class SelectDropdownComponent implements AfterViewInit {
     });
 
     return result;
-  }
-
-  onInputKeyUp(event): void {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const key = event.key;
-    const value = event.target.value;
-
-    if (key === KeyboardKeys.ESCAPE) {
-      this.close.emit(true);
-    } else if (event.key === KeyboardKeys.ARROW_DOWN) {
-      ++this.focusIndex;
-    }
-
-    if (this.filterQuery !== value) {
-      this.filterQuery = value;
-    }
-
-    this.keyup.emit({ event, value });
-  }
-
-  onOptionKeyDown(event): void {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const key = event.key;
-    if (key === KeyboardKeys.ARROW_DOWN) {
-      if (this.focusIndex < this.options.length - 1) ++this.focusIndex;
-    } else if (key === KeyboardKeys.ARROW_UP) {
-      if (this.focusIndex > 0) --this.focusIndex;
-    } else if (key === KeyboardKeys.ENTER) {
-      this.selection.emit(this.options[this.focusIndex]);
-    }
-  }
-
-  focusElement(index: number): void {
-    const elements = this.element.getElementsByClassName('ngx-select-dropdown-option');
-    const element = elements[index];
-
-    if (element) {
-      setTimeout(() => element.focus(), 5);
-    }
-  }
-
-  onAddClicked(event, value): void {
-    event.preventDefault();
-    event.stopPropagation();
-
-    this.selection.emit({ value, name: value });
-    event.target.value = '';
-
-    this.close.emit();
   }
 }
