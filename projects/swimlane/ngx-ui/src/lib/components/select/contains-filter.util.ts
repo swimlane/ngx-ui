@@ -4,8 +4,6 @@ export function containsFilter(
   options?: { filterCaseSensitive: boolean },
   depth = 0
 ): boolean {
-  console.log(value);
-
   if (value === undefined || value === null || depth > 2) {
     return false;
   }
