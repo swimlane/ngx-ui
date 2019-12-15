@@ -1,0 +1,21 @@
+<ngx-tabs #tabs>
+  <ngx-tab #tab1 [title]="'Tab 1'">
+    Tab 1 Contents
+  </ngx-tab>
+  <ngx-tab #tab2 [label]="'Tab 2'">
+    Tab 2 Content
+  </ngx-tab>
+  <ngx-tab #tab3 [label]="'Tab 3'" [disabled]="true">
+    Tab 3 Content, Disabled
+  </ngx-tab>
+  <ngx-tab #tab4 [label]="labelTmpl" [active]="true">
+    <div *ngxIfTabActive>
+      Tab 4 Content
+    </div>
+  </ngx-tab>
+</ngx-tabs>
+
+
+<ng-template #labelTmpl>
+templated label
+</ng-template>

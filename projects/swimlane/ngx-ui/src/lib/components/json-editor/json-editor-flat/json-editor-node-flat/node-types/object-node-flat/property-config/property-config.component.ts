@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { DialogService } from '../../../../../../dialog/dialog.service';
 import { JsonSchemaDataType, jsonSchemaDataTypes, inferTypeName, JSONEditorSchema } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
-import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 interface ObjectProperty {
   key: number;
@@ -32,15 +31,11 @@ export class PropertyConfigComponent implements OnInit {
 
   required = false;
 
-  coerceNumberProperty = coerceNumberProperty;
+  newEnumValue = '';
 
   constructor(private dialogService: DialogService) { }
 
   ngOnInit() {
-    console.log(this.property);
-    console.log(this.propertyIndex);
-    console.log(this.schema);
-
     this.editableProperty = JSON.parse(JSON.stringify(this.property));
     this.setRequired();
   }
@@ -77,6 +72,29 @@ export class PropertyConfigComponent implements OnInit {
     }
 
     // TODO: Delete minimum, maximum, etc...
+  }
+
+  addEnumValue(): void {
+    const enumValues = this.editableProperty.value['enum'] = this.editableProperty.value['enum'] || [];
+
+    if (!enumValues.includes(this.newEnumValue)) {
+      enumValues.push(this.newEnumValue);
+      this.newEnumValue = '';
+    }
+  }
+
+  removeEnumValue(val: string): void {
+    const enumValues = this.editableProperty.value['enum'];
+    const index = enumValues.indexOf(val);
+
+    if (index > -1) {
+      enumValues.splice(index, 1);
+    }
+
+    if (!enumValues.length) {
+      // Remove enum property if empty
+      delete this.editableProperty.value['enum'];
+    }
   }
 
   private setRequired(): void {

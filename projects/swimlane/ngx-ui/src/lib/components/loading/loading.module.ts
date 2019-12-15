@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { InjectionService } from '../../services/injection.service';
 import { LoadingComponent } from './loading.component';
 import { LoadingService } from './loading.service';

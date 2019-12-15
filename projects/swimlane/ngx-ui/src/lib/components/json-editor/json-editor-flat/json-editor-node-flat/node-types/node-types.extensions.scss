@@ -7,7 +7,6 @@
 
   ngx-json-editor-node-flat {
     flex: 1;
-    margin-left: 20px;
 
     .node-options {
       .node-options-btn {
@@ -42,14 +41,14 @@
     color: $color-blue-grey-300;
 
     button {
+      display: flex;
+      
       i {
         font-size: 18px;
-        vertical-align: middle;
       }
 
       span {
         font-size: 14px;
-        line-height: 18px;
         margin-left: 10px;
       }
     }

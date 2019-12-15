@@ -4,10 +4,11 @@
 .json-tree-node-flat {
   .indentation {
     @extend %indentation;
-    position: absolute;
-    top: 0;
-    height: 100%;
     min-width: 25px;
+  }
+
+  .node-container {
+    display: flex
   }
 
   .node {
@@ -17,6 +18,7 @@
     display: flex;
     padding: 25px 10px;
     position: relative;
+    flex: 1;
 
     .error-box {
       position: absolute;

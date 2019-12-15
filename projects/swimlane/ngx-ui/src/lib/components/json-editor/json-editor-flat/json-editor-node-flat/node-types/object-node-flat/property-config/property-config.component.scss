@@ -21,6 +21,23 @@
     }
   }
 
+  .new-enum-input {
+    button {
+      color: $color-grey-500;
+    }
+
+    .ngx-input-hint {
+      display: none;
+    }
+  }
+
+  .enum-edit {
+    button {
+      font-size: 9px;
+      padding-right: 0;
+    }
+  }
+
   .constrain-row {
     display: flex;
 

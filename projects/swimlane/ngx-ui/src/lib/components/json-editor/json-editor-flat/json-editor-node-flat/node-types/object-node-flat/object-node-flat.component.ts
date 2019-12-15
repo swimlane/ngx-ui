@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef, OnInit } from '@angular/core';
 import { ObjectNode } from '../../../../node-types/object-node.component';
 import { DialogService } from '../../../../../dialog/dialog.service';
 import { JsonSchemaDataType, JSONEditorSchema } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
@@ -22,8 +22,10 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   }
 
   ngOnInit() {
-    this.initSchemaProperties(this.schema);
-    this.initSchemaProperties(this.schemaRef);
+    setTimeout(() => {
+      this.initSchemaProperties(this.schema);
+      this.initSchemaProperties(this.schemaRef);
+    })
   }
 
   onPropertyConfig(property: unknown): void {
@@ -67,6 +69,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   addProperty(dataType: JsonSchemaDataType): void {
     super.addProperty(dataType);
     this.updateSchemaRefProperty(this.propertyIndex[this.propertyId - 1]);
+
 
     if (this.schemaBuilderMode) {
       this.schemaChange.emit();
@@ -117,9 +120,11 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
   private updateSchemaRefProperty(prop: any): void {
     // TODO: add missing properties
-    console.log(this.schemaRef);
     this.schemaRef.properties[prop.propertyName] = {
       type: prop.type,
+      ...prop['required'] && { required: prop['required'] },
+      ...prop['properties'] && { properties: prop['properties'] },
+      ...prop['enum'] && { enum: prop['enum'] },
       ...prop['description'] && { description: prop['description'] },
       ...prop['nameEditable'] && { nameEditable: prop['nameEditable'] },
       ...prop['minimum'] && { minimum: prop['minimum'] },
@@ -133,8 +138,6 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   }
 
   private updateSchemaPropertyName(schema: JSONEditorSchema, newName: string, oldName: string): void {
-    console.log(newName);
-    console.log(oldName);
     this.updateRequiredProperties(schema, newName, oldName);
     schema.properties[newName] = schema.properties[oldName];
     delete schema.properties[oldName];

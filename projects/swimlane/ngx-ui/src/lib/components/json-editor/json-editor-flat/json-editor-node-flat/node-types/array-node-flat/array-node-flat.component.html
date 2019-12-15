@@ -31,8 +31,7 @@
     </ngx-json-editor-node-flat>
   </div>
 
-  <div class="add-button" [class.background]="level" [style.left]="-1 *level * 20 + 'px'"
-    [ngStyle]="{'width': 'calc(100% + ' + level * 20 + 'px)'}">
+  <div class="add-button" [class.background]="level">
     <div class="indented-content" [style.marginLeft]="level * 20 - (level ? 7 : 0) + 'px'">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>

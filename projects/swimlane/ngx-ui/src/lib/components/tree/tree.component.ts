@@ -7,37 +7,18 @@ import {
   ViewEncapsulation,
   ContentChildren,
   TemplateRef,
-  QueryList
+  QueryList,
+  ChangeDetectionStrategy
 } from '@angular/core';
+
 import { TreeNodeComponent } from './tree-node.component';
 
 @Component({
   selector: 'ngx-tree',
-  template: `
-    <div class="ngx-tree" [class.one-leaf]="hasOneLeaf">
-      <ul class="vertical-list">
-        <ngx-tree-node
-          *ngFor="let node of nodes"
-          [expandable]="node.expandable"
-          [expanded]="node.expanded"
-          [label]="node.label"
-          [model]="node.model"
-          [children]="node.children"
-          [template]="template"
-          (expand)="expand.emit($event)"
-          (collapse)="collapse.emit($event)"
-          (activate)="activate.emit($event)"
-          (deactivate)="deactivate.emit($event)"
-          (selectNode)="selectNode.emit($event)"
-        >
-        </ngx-tree-node>
-        <ng-content *ngIf="!nodes"></ng-content>
-      </ul>
-      <div class="ngx-tree-vr" *ngIf="nodes?.length || nodeElms?.length"></div>
-    </div>
-  `,
+  templateUrl: './tree.component.html',
+  styleUrls: ['./tree.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./tree.component.scss']
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeComponent {
   @Input() nodes: any[];

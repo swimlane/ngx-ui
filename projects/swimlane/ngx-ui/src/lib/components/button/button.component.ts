@@ -1,7 +1,7 @@
 import { Component, Input, ViewEncapsulation, OnInit, OnChanges, HostListener, ChangeDetectionStrategy } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BehaviorSubject } from 'rxjs';
 
-import { coerceBoolean } from '../../utils';
 import { ButtonState } from './button-state.enum';
 
 @Component({
@@ -35,7 +35,7 @@ export class ButtonComponent implements OnInit, OnChanges {
   @Input()
   get disabled() { return this._disabled; }
   set disabled(v: boolean) {
-    this._disabled = coerceBoolean(v);
+    this._disabled = coerceBooleanProperty(v);
   }
 
   @Input()

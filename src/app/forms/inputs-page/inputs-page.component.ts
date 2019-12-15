@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-inputs-page',
-  templateUrl: './inputs-page.component.html'
+  templateUrl: './inputs-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputsPageComponent {
   searchInputValue: string = '';

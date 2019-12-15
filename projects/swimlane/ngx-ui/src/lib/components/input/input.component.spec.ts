@@ -1,200 +1,149 @@
-import { NO_ERRORS_SCHEMA, ChangeDetectorRef } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, FormControl } from '@angular/forms';
-import { InputComponent } from './input.component';
-import { InputTypes } from './input-types';
-import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { createHostComponentFactory, SpectatorWithHost } from '@netbasal/spectator';
+
+import { InputComponent } from './input.component';
+import { InputTypes } from './input-types.enum';
+import { InputComponentFixture } from './input.component.fixture';
+
+const MOCK_EVENT: any = {
+  stopPropagation: () => ({}),
+};
 
 describe('InputComponent', () => {
-  let host: SpectatorWithHost<InputComponent>;
-  const changeDetectorRefStub = { markForCheck: () => ({}) };
-  const formControlStub = {};
-  const createHost = createHostComponentFactory({
-    component: InputComponent,
-    schemas: [NO_ERRORS_SCHEMA],
-    declarations: [InputComponent],
-    imports: [CommonModule, FormsModule, BrowserAnimationsModule],
-    providers: [
-      { provide: ChangeDetectorRef, useValue: changeDetectorRefStub },
-      { provide: FormControl, useValue: formControlStub }
-    ]
-  });
+  let component: InputComponentFixture;
+  let fixture: ComponentFixture<InputComponentFixture>;
 
-  describe('Defaults', () => {
-    beforeEach(async () => {
-      host = createHost(`<ngx-input></ngx-input>`);
-      await host.hostFixture.detectChanges();
-    });
-    it('can load instance', () => {
-      expect(host).toBeTruthy();
-    });
-    it('should add id', () => {
-      expect(host.component.id).toEqual('input-2');
-    });
-    it('type defaults to: InputTypes.text', () => {
-      expect(host.component).toHaveAttr({ attr: 'type', val: InputTypes.text });
-    });
-    it('disabled defaults to: false', () => {
-      expect(host.component.disabled).toEqual(false);
-    });
-    it('required defaults to: false', () => {
-      expect(host.component.required).toEqual(false);
-    });
-    it('requiredIndicator defaults to: *', () => {
-      expect(host.component.requiredIndicator).toEqual('*');
-    });
-    it('passwordToggleEnabled defaults to: false', () => {
-      expect(host.component.passwordToggleEnabled).toEqual(false);
-    });
-    it('passwordTextVisible defaults to: false', () => {
-      expect(host.component.passwordTextVisible).toEqual(false);
-    });
-    it('autoSelect defaults to: false', () => {
-      expect(host.component.autoSelect).toEqual(false);
-    });
-    it('autofocus defaults to: false', () => {
-      expect(host.component.autofocus).toEqual(false);
-    });
-    it('autocomplete defaults to: false', () => {
-      expect(host.component.autocomplete).toEqual(false);
-    });
-    it('autocorrect defaults to: false', () => {
-      expect(host.component.autocorrect).toEqual(false);
-    });
-    it('spellcheck defaults to: false', () => {
-      expect(host.component.spellcheck).toEqual(false);
-    });
-    it('getHostCssClasses defaults to: ngx-input', () => {
-      expect(host.component.getHostCssClasses).toEqual('ngx-input');
-    });
-    it('focused defaults to: false', () => {
-      expect(host.component.focused).toEqual(false);
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [InputComponentFixture, InputComponent],
+      imports: [FormsModule, BrowserAnimationsModule],
     });
   });
 
-  describe('Write values', () => {
-    afterEach(() => {
-      host.hostFixture.destroy();
-    });
-
-    it('should not be empty after input entered', () => {
-      host = createHost(`<ngx-input></ngx-input>`);
-      expect(host.element.value).not.toBeDefined;
-      host.component.writeValue('hello');
-      host.hostFixture.whenStable().then(() => {
-        host.hostFixture.detectChanges();
-        expect(host.element.value).toBeTruthy();
-        expect(host.element.value).toEqual('hello');
-      });
-    });
-
-    it('should not be empty when the value set before view init', () => {
-      host = createHost(`<ngx-input [ngModel]="'hello'"></ngx-input>`);
-      host.hostFixture.whenStable().then(() => {
-        host.hostFixture.detectChanges();
-        expect(host.element.value).toBeTruthy();
-        expect(host.element.value).toEqual('hello');
-      });
-    });
+  beforeEach(() => {
+    fixture = TestBed.createComponent(InputComponentFixture);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  describe('Min / max', () => {
-    afterEach(() => {
-      host.hostFixture.destroy();
-    });
-
-    it('should warn if value is shorter than min length', () => {
-      host = createHost(`<ngx-input [ngModel]="'hi'" [minlength]="5"></ngx-input>`);
-      host.hostFixture.whenStable().then(() => {
-        host.hostFixture.detectChanges();
-        expect(host.element.classList).toContain('ng-invalid');
-      });
-    });
-
-    it('should warn if value is longer than max length', () => {
-      host = createHost(`<ngx-input [ngModel]="'hello'" [maxlength]="3"></ngx-input>`);
-      host.hostFixture.whenStable().then(() => {
-        host.hostFixture.detectChanges();
-        expect(host.element.classList).toContain('ng-invalid');
-      });
-    });
-
-    it('should warn if numeric value is less than min', () => {
-      host = createHost(`<ngx-input type="number" [ngModel]="0" [min]="5"></ngx-input>`);
-      host.hostFixture.whenStable().then(() => {
-        host.hostFixture.detectChanges();
-        expect(host.element.classList).toContain('ng-invalid');
-      });
-    });
-
-    it('should warn if numeric value is greater than max', () => {
-      host = createHost(`<ngx-input type="number" [ngModel]="100" [max]="99"></ngx-input>`);
-      host.hostFixture.whenStable().then(() => {
-        host.hostFixture.detectChanges();
-        expect(host.element.classList).toContain('ng-invalid');
-      });
-    });
+  it('should be defined', () => {
+    expect(component.input).toBeTruthy();
   });
 
-  describe('Input types', () => {
-    afterEach(() => {
-      host.hostFixture.destroy();
-    });
+  it('should change model value', () => {
+    component.input.value = 'testing123';
+    fixture.detectChanges();
+    expect(component.value).toEqual(component.input.value);
+  });
 
-    it('should use textarea', () => {
-      host = createHost(`<ngx-input type="textarea"></ngx-input>`);
-      host.hostFixture.whenStable().then(() => {
-        host.hostFixture.detectChanges();
-        expect(host.query('input')).toBeFalsy();
-      });
+  it('should focus input', () => {
+    const spy = spyOn(component.input.focus, 'emit');
+    component.input.autoSelect = true;
+    component.input.onFocus(MOCK_EVENT);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should be required', () => {
+    component.required$.next(true);
+    fixture.detectChanges();
+    expect(component.input.requiredIndicatorView).toEqual(component.input.requiredIndicator as string);
+  });
+
+  it('should be textarea', () => {
+    component.type$.next(InputTypes.textarea);
+    fixture.detectChanges();
+    expect(component.input.element.nativeElement.type).toEqual(InputTypes.textarea);
+  });
+
+  it('should be disabled', () => {
+    component.disabled$.next(true);
+    fixture.detectChanges();
+    expect(component.input.disabled).toEqual(true);
+  });
+
+  it('should emit changes', () => {
+    const spy = spyOn(component.input.change, 'emit');
+    component.input.onChange(MOCK_EVENT);
+    expect(spy).toHaveBeenCalledWith(component.input.value);
+  });
+
+  it('should emit keyup', () => {
+    const spy = spyOn(component.input.keyup, 'emit');
+    component.input.onKeyUp(MOCK_EVENT);
+    expect(spy).toHaveBeenCalledWith(MOCK_EVENT);
+  });
+
+  it('should blur', () => {
+    const spy = spyOn(component.input.blur, 'emit');
+    component.input.onBlur(MOCK_EVENT);
+    expect(spy).toHaveBeenCalled()
+  });
+
+  describe('password', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(InputComponentFixture);
+      component = fixture.componentInstance;
+      component.type$.next(InputTypes.password);
+      fixture.detectChanges();
     });
 
     it('should toggle password visibility', () => {
-      host = createHost(`<ngx-input type="password" [ngModel]="'1234'" [passwordToggleEnabled]="true"></ngx-input>`);
-      host.hostFixture.whenStable().then(() => {
-        host.hostFixture.detectChanges();
-        expect(host.query('.icon-eye')).toBeTruthy();
-        spyOn(host.component, 'togglePassword');
-        host.element.querySelector('.icon-eye').click();
-        expect(host.component.togglePassword).toHaveBeenCalled();
-      });
+      expect(component.input.type$.value).toEqual(InputTypes.password);
+      component.input.togglePassword()
+      expect(component.input.type$.value).toEqual(InputTypes.text);
+    });
+  });
+
+  describe('validate', () => {
+    let control: FormControl;
+
+    beforeEach(() => {
+      fixture = TestBed.createComponent(InputComponentFixture);
+      component = fixture.componentInstance;
+      component.autoSelect$.next(true);
+      component.min$.next(2);
+      component.max$.next(10);
+      control = new FormControl('testing');
+      fixture.detectChanges();
     });
 
-    it('should disable', () => {
-      host = createHost(`<ngx-input [disabled]="true"></ngx-input>`);
-      host.hostFixture.whenStable().then(() => {
-        host.hostFixture.detectChanges();
-        expect(host.query('input').classList).toContain('disabled');
-      });
+    it('should not validate if input is not a number', () => {
+      expect(component.input.validate(control)).toEqual(null);
     });
 
-    it('should ignore requiredIndicator when required is false', () => {
-      // required is false, so requiredIndicator doesn't have effect
-      host = createHost(`<ngx-input [requiredIndicator]="'***'"></ngx-input>`);
-      expect(host.component.required).toBeFalsy();
-      host.hostFixture.whenStable().then(() => {
-        host.hostFixture.detectChanges();
-        expect(host.element.querySelectorAll('.ngx-input-label span')[1].innerHTML).not.toEqual('***');
-      });
+    it('should be valid number input', () => {
+      component.type$.next(InputTypes.number);
+      fixture.detectChanges();
+      expect(component.input.validate(control)).toBeDefined();
     });
 
-    it('should set requiredIndicator', () => {
-      host = createHost(`<ngx-input [required]="true" [requiredIndicator]="'***'"></ngx-input>`);
-      host.hostFixture.whenStable().then(() => {
-        host.hostFixture.detectChanges();
-        expect(host.element.querySelectorAll('.ngx-input-label span')[1].innerHTML).toEqual('***');
-      });
+    it('should be invalid number input', () => {
+      control.setValue('ttttttttttttttttttttttttttttttt');
+      component.type$.next(InputTypes.number);
+      fixture.detectChanges();
+      expect(component.input.validate(control)).toEqual({ });
+    });
+  });
+
+  describe('value', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(InputComponentFixture);
+      component = fixture.componentInstance;
+      component.autofocus$.next(true);
+      component.value = '';
+      fixture.detectChanges();
     });
 
-    it('should autoselect', () => {
-      host = createHost(`<ngx-input [autoSelect]="true" [ngModel]="'hello'"></ngx-input>`);
-      expect(host.component.focused).toBeFalsy();
-      host.element.querySelector('input').dispatchEvent(new Event('focus'));
-      host.hostFixture.whenStable().then(() => {
-        host.hostFixture.detectChanges();
-        expect(host.component.focused).toBeTruthy();
-      });
+    it('should not change model if value is identical', () => {
+      const cbs = { onChange: () => ({ }) };
+      component.input.registerOnChange(cbs.onChange);
+      const spy = spyOn(cbs, 'onChange');
+      component.input.value = '';
+      fixture.detectChanges();
+      expect(spy).not.toHaveBeenCalled();
     });
   });
 });

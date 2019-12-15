@@ -17,7 +17,10 @@ export class JsonEditor implements OnChanges {
 
   @Input() typeCheckOverrides?: any;
 
+  @Input() schemaValidator?: (schema: any, ...args: any[]) => any[];
+
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
+
 
   @Output() schemaChange: EventEmitter<any> = new EventEmitter();
 
@@ -54,8 +57,8 @@ export class JsonEditor implements OnChanges {
    * @param schema
    * @param model
    */
-  validate(schema: JSONEditorSchema, model: any): boolean {
-    this.errors = this.schemaValidatorService.validate(schema, model);
+  validate(schema: any, model: any): boolean {
+    this.errors = this.schemaValidator ? this.schemaValidator(schema, model) : this.schemaValidatorService.validate(schema, model);
     return this.errors && this.errors.length > 0;
   }
 }

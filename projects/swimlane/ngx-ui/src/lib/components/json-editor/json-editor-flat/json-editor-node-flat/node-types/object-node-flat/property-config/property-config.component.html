@@ -19,11 +19,29 @@
       </ngx-input>
 
       <ngx-select [filterable]="false" [ngModel]="[inferTypeName(editableProperty.value)]"
-        (ngModelChange)="updateTypeAndFormat($event[0])" [required]="required">
+        (ngModelChange)="updateTypeAndFormat($event[0])" [required]="true" [label]="'TYPE'">
         <ngx-select-option *ngFor="let dataType of dataTypes" [name]="dataType.name"
           [value]="inferTypeName(dataType.schema)">
         </ngx-select-option>
       </ngx-select>
+
+      <ngx-input *ngIf="inferTypeName(editableProperty.value) === 'string'" type=" text" class="new-enum-input"
+        [(ngModel)]="newEnumValue" [label]="'ADD ENUM VALUE'">
+        <ngx-input-suffix>
+          <button (click)="addEnumValue()" [disabled]="!newEnumValue.length">
+            <i class="ngx-icon ngx-ngx-icon ngx-check"></i>
+          </button>
+        </ngx-input-suffix>
+      </ngx-input>
+
+      <div *ngIf="editableProperty.value.enum?.length" class="enum-edit">
+        <div class="tag" *ngFor="let value of editableProperty.value.enum">
+          <span>{{ value }}</span>
+          <button type="button" (click)="removeEnumValue(value)">
+            <i class="ngx-icon ngx-x"></i>
+          </button>
+        </div>
+      </div>
 
       <div class="constrain-row"
         *ngIf="editableProperty.value.type === 'number' || editableProperty.value.type === 'integer'">
@@ -36,6 +54,10 @@
         <ngx-input type="number" [(ngModel)]="editableProperty.value.minLength" [label]="'MINIMUM LENGTH'"></ngx-input>
 
         <ngx-input type="number" [(ngModel)]="editableProperty.value.maxLength" [label]="'MAXIMUM LENGTH'"></ngx-input>
+      </div>
+
+      <div class="constrain-row" *ngIf="editableProperty.value.type === 'array'">
+        <ngx-input type="number" [(ngModel)]="editableProperty.value.minItems" [label]="'MIN ITEMS'"></ngx-input>
       </div>
 
       <!-- TODO: Validate -->

@@ -9,7 +9,7 @@
       </ngx-section> -->
 
       <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat'">
-        <ngx-json-editor-flat [(model)]="jsonEditorModel" [schema]="{}" label="Model"
+        <ngx-json-editor-flat [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
           [typeCheckOverrides]="typeOverrides" [schemaBuilderMode]="true" (schemaChange)="schemaChange($event)">
         </ngx-json-editor-flat>
       </ngx-section>
