@@ -1,4 +1,4 @@
-import { JSONSchema7 } from 'json-schema';
+import { JSONSchema7, JSONSchema7TypeName } from 'json-schema';
 
 export const requiredIndicatorIcon = `
   <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -7,6 +7,24 @@ export const requiredIndicatorIcon = `
 
 export interface JSONEditorSchema extends JSONSchema7 {
   $meta?: any;
+  properties?: {
+    [key: string]: JSONEditorSchema;
+  };
+  patternProperties?: {
+    [key: string]: JSONEditorSchema;
+  };
+  items?: JSONEditorSchema;
+  nameEditable?: boolean;
+  propertyName?: string;
+  id?: number;
+}
+
+export interface PropertyIndex extends JSONEditorSchema {
+  [id: number]: JSONEditorSchema
+}
+export interface ObjectProperty {
+  key: number;
+  value: JSONEditorSchema
 }
 
 export interface JsonSchemaDataType {
@@ -224,7 +242,7 @@ export function getCurrentType(schema: JSONEditorSchema): string {
   }
 }
 
-export function inferTypeName(schema: JSONEditorSchema): unknown {
+export function inferTypeName(schema: JSONEditorSchema): any {
   switch (schema.format) {
     case 'date':
       return 'Date';

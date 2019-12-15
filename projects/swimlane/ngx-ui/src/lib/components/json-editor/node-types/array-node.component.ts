@@ -115,19 +115,6 @@ export class ArrayNode implements OnChanges {
   }
 
   /**
-   *
-   * @param value Updates the whole model and emits the change event
-   */
-  updateModel(value: any, parseAsJson: boolean = false): void {
-    if (parseAsJson) {
-      this.model = JSON.parse(value);
-    } else {
-      this.model = value;
-    }
-    this.modelChange.emit(this.model);
-  }
-
-  /**
    * Track By function for the array ittierator
    * @param index
    * @param value

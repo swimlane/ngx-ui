@@ -10,7 +10,7 @@
 
       <div class="left-options">
         <ng-container *ngIf="level > 0">
-          <div class="required-indicator" (click)="toggleRequired()">
+          <div class="required-indicator">
             <span *ngIf="required" [class.invalid]="!childrenValid && !schemaBuilderMode"
               [innerHtml]="requiredIndicator"></span>
             <span *ngIf="!required && schemaBuilderMode" class="not-required" [innerHtml]="requiredIndicator"></span>

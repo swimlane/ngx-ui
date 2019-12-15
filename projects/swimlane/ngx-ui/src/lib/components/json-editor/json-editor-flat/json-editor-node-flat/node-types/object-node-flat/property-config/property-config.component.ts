@@ -1,18 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
-import {
-  coerceNumberProperty
-} from '@angular/cdk/coercion';
-
 import { DialogService } from '../../../../../../dialog/dialog.service';
-import { JsonSchemaDataType, jsonSchemaDataTypes, inferTypeName, JSONEditorSchema } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
-
-interface ObjectProperty {
-  key: number;
-  value: {
-    propertyName: string;
-    description: string;
-  }
-}
+import { JsonSchemaDataType, jsonSchemaDataTypes, inferTypeName, JSONEditorSchema, ObjectProperty } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
+import { JSONSchema7TypeName } from 'json-schema';
 
 @Component({
   selector: 'ngx-property-config',
@@ -22,7 +11,7 @@ interface ObjectProperty {
 })
 export class PropertyConfigComponent implements OnInit {
   @Input() property: ObjectProperty;
-  @Input() propertyIndex: any[];
+  @Input() index: number;
   @Input() schema: JSONEditorSchema;
 
   @Output() updateSchema = new EventEmitter()
@@ -46,7 +35,7 @@ export class PropertyConfigComponent implements OnInit {
 
   applyChanges(): void {
     this.dialogService.destroyAll();
-    this.updateSchema.emit({ schema: this.schema, required: this.required, newProperty: this.editableProperty, oldProperty: this.property });
+    this.updateSchema.emit({ schema: this.schema, required: this.required, index: this.index, newProperty: this.editableProperty, oldProperty: this.property });
   }
 
   updateTypeAndFormat(event: string): void {
@@ -71,7 +60,7 @@ export class PropertyConfigComponent implements OnInit {
       this.editableProperty.value['type'] = 'string';
       this.editableProperty.value['format'] = format;
     } else {
-      this.editableProperty.value['type'] = event;
+      this.editableProperty.value['type'] = event as JSONSchema7TypeName;
       delete this.editableProperty.value['format'];
     }
 

@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef, OnInit } from '@angular/core';
 import { ObjectNode } from '../../../../node-types/object-node.component';
 import { DialogService } from '../../../../../dialog/dialog.service';
-import { JsonSchemaDataType, JSONEditorSchema } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
+import { JsonSchemaDataType, JSONEditorSchema, ObjectProperty } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -28,12 +28,12 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     })
   }
 
-  onPropertyConfig(property: unknown): void {
+  onPropertyConfig(property: ObjectProperty, index: number): void {
     this.dialogService.create({
       template: this.propertyConfigTmpl,
       context: {
         property,
-        propertyIndex: this.propertyIndex,
+        index,
         schema: this.schema
       },
       class: 'property-config-dialog'
@@ -59,6 +59,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     this.propertyIndex[options.newProperty.key] = options.newProperty.value;
     this.updateSchemaRefProperty(options.newProperty.value);
 
+    this.swapSchemaProperties(options.index);
     this.schemaChange.emit();
   }
 
@@ -96,8 +97,15 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     this.swapSchemaProperties(event.previousIndex, event.currentIndex);
   }
 
-  private swapSchemaProperties(previousIndex: number, currentIndex: number): void {
-    const propertiesIds = Object.keys(this.schemaRef.properties)
+  private swapSchemaProperties(currentIndex: number, previousIndex?: number): void {
+    console.log(currentIndex);
+    const propertiesIds = Object.keys(this.schemaRef.properties);
+
+    if (previousIndex === undefined) {
+      previousIndex = propertiesIds.length - 1;
+    }
+
+    console.log(previousIndex);
 
     moveItemInArray(propertiesIds, previousIndex, currentIndex);
 
@@ -115,7 +123,6 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   }
 
   private updateSchemaRefProperty(prop: any): void {
-    // TODO: add missing properties
     this.schemaRef.properties[prop.propertyName] = {
       type: prop.type,
       ...prop['required'] && { required: prop['required'] },

@@ -1,6 +1,6 @@
 <div class="object-node-flat" [hidden]="!expanded" cdkDropList (cdkDropListDropped)="drop($event)">
   <div cdkDrag cdkDragLockAxis="y" class="object-node-content"
-    *ngFor="let prop of propertyIndex | keyvalue; trackBy: trackBy">
+    *ngFor="let prop of propertyIndex | keyvalue; let index = index; trackBy: trackBy">
     <ngx-json-editor-node-flat [model]="model[prop.value.propertyName]"
       (modelChange)="updateProp(prop.value.id, $event)" [schema]="prop.value"
       [schemaRef]="schemaRef.properties[prop.value.propertyName]" [required]="!!requiredCache[prop.value.propertyName]"
@@ -9,7 +9,7 @@
       [level]="level" [schemaBuilderMode]="schemaBuilderMode" (schemaChange)="schemaChange.emit(schemaRef)">
       <div class="node-options" node-options>
         <button *ngIf="schemaBuilderMode" type="button" class="node-options-btn"
-          (click)="onPropertyConfig(prop, $event)">
+          (click)="onPropertyConfig(prop, index)">
           <i class="ngx-icon ngx-cog"></i>
         </button>
         <ngx-dropdown [showCaret]="true">
@@ -83,7 +83,7 @@
 
 <!-- Property Config Dialog -->
 <ng-template #propertyConfigTmpl let-context="context">
-  <ngx-property-config [property]="context.property" [propertyIndex]="propertyIndex" [schema]="context.schema"
+  <ngx-property-config [property]="context.property" [index]="context.index" [schema]="context.schema"
     (updateSchema)="updateSchema($event)">
   </ngx-property-config>
 </ng-template>

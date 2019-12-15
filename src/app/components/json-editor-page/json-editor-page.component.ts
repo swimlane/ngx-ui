@@ -90,7 +90,7 @@ export class JsonEditorPageComponent {
     metaData: "<< console.log('this should be of type code') >>"
   };
 
-  schemaRef: JSONSchema7;
+  schemaRef: JSONSchema7 = {};
 
   typeOverrides: any = {
     'string=code': (value: any) => {

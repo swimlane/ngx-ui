@@ -15,12 +15,13 @@ import {
   getIcon,
   getCurrentType,
   JsonSchemaDataType,
-  JSONEditorSchema
+  JSONEditorSchema,
+  PropertyIndex
 } from '../json-editor.helper';
-import { JSONSchema7 } from 'json-schema';
+import { JSONSchema7, JSONSchema7TypeName } from 'json-schema';
 
 export class ObjectNode implements OnInit, OnChanges {
-  @Input() schema: any;
+  @Input() schema: JSONEditorSchema;
 
   @Input() model: any;
 
@@ -47,7 +48,7 @@ export class ObjectNode implements OnInit, OnChanges {
   dataTypes: JsonSchemaDataType[] = jsonSchemaDataTypes;
   propertyCounter: number = 1;
   propertyId: number = 1;
-  propertyIndex: any = {};
+  propertyIndex: PropertyIndex = {};
 
   dataTypeMap = dataTypeMap;
 
@@ -65,7 +66,7 @@ export class ObjectNode implements OnInit, OnChanges {
     setTimeout(() => {
       for (const prop in this.schema.properties) {
         if (Array.isArray(this.schema.properties[prop].type) && this.schema.properties[prop].type.length > 0) {
-          if (!this.schema.properties[prop].$meta) {
+          if (!this.schema.properties[prop]) {
             this.schema.properties[prop].$meta = {};
           }
           this.schema.properties[prop].$meta.type = [...this.schema.properties[prop].type];
@@ -76,7 +77,7 @@ export class ObjectNode implements OnInit, OnChanges {
               ...inferType(this.model[prop], this.typeCheckOverrides, this.schema.properties[prop].$meta.type)
             };
           } else {
-            this.schema.properties[prop].type = this.schema.properties[prop].type[0];
+            this.schema.properties[prop].type = this.schema.properties[prop].type[0] as JSONSchema7TypeName;
             this.schema.properties[prop].$meta.currentType = getCurrentType(this.schema.properties[prop]);
           }
         }
@@ -94,7 +95,7 @@ export class ObjectNode implements OnInit, OnChanges {
    * @param propName
    * @param value
    */
-  updateProp(id: any, value: any): void {
+  updateProp(id: number | string, value: any): void {
     const propName = this.propertyIndex[id].propertyName;
     this.model[propName] = value;
     this.modelChange.emit(this.model);
@@ -105,24 +106,12 @@ export class ObjectNode implements OnInit, OnChanges {
    * @param id
    * @param name
    */
-  updatePropertyName(id: any, name: string) {
+  updatePropertyName(id: number | string, name: string) {
     const oldName = this.propertyIndex[id].propertyName;
     this.model[name] = this.model[oldName];
     this.propertyIndex[id].propertyName = name;
     delete this.model[oldName];
     this.propertyIndex = { ...this.propertyIndex };
-    this.modelChange.emit(this.model);
-  }
-
-  /**
-   * Updates the whole model and emits the change event
-   */
-  updateModel(value: any, parseAsJson: boolean = false) {
-    if (parseAsJson) {
-      this.model = JSON.parse(value);
-    } else {
-      this.model = value;
-    }
     this.modelChange.emit(this.model);
   }
 
@@ -134,7 +123,7 @@ export class ObjectNode implements OnInit, OnChanges {
     this.propertyCounter++;
     const schema = JSON.parse(JSON.stringify(dataType.schema));
 
-    this.model[propName] = createValueForSchema(dataType.schema as JSONSchema7);
+    this.model[propName] = createValueForSchema(dataType.schema as JSONEditorSchema);
     schema.nameEditable = true;
     schema.propertyName = propName;
     schema.id = this.propertyId++;
@@ -256,7 +245,7 @@ export class ObjectNode implements OnInit, OnChanges {
         continue;
       }
 
-      let schema: any;
+      let schema: JSONEditorSchema;
 
       if (this.schema.properties && this.schema.properties[prop]) {
         schema = JSON.parse(JSON.stringify(this.schema.properties[prop]));
@@ -295,7 +284,7 @@ export class ObjectNode implements OnInit, OnChanges {
   }
 
   isIndexed(propertyName: string): boolean {
-    return Object.values(this.propertyIndex).findIndex((s: any) => s.propertyName === propertyName) !== -1;
+    return Object.values(this.propertyIndex).findIndex((s: JSONEditorSchema) => s.propertyName === propertyName) !== -1;
   }
 
   /**
@@ -320,7 +309,7 @@ export class ObjectNode implements OnInit, OnChanges {
    * @param property
    * @param type
    */
-  changePropertyType(property: any, type: string) {
+  changePropertyType(property: JSONEditorSchema, type: string) {
     const dataType = this.dataTypeMap[type];
     if (dataType) {
       delete property.format;
