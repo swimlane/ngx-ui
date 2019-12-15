@@ -5,7 +5,7 @@ import { SliderComponent } from './slider.component';
 import { SliderFixtureComponent } from './fixtures/slider.fixture';
 import { SliderModule } from './slider.module';
 
-fdescribe('SliderComponent', () => {
+describe('SliderComponent', () => {
   let defaultSlider: SliderComponent;
   let multiSlider: SliderComponent;
   let fixture: ComponentFixture<SliderFixtureComponent>;

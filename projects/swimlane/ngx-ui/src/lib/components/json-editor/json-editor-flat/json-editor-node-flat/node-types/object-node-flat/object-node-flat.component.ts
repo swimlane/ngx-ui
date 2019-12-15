@@ -59,10 +59,6 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     this.propertyIndex[options.newProperty.key] = options.newProperty.value;
     this.updateSchemaRefProperty(options.newProperty.value);
 
-    console.log(this.schemaRef);
-    console.log(this.schema);
-    console.log(this.model);
-
     this.schemaChange.emit();
   }
 

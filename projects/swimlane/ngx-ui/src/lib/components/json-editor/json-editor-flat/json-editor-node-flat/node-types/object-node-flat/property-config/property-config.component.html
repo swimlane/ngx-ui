@@ -53,7 +53,7 @@
 
       <div class="constrain-row"
         *ngIf="editableProperty.value.type === 'number' || editableProperty.value.type === 'integer'">
-        <ngx-input type="number" [ngModel]="editableProperty.value.minimum" [label]="'MINIMUM'"></ngx-input>
+        <ngx-input type="number" [(ngModel)]="editableProperty.value.minimum" [label]="'MINIMUM'"></ngx-input>
 
         <ngx-input type="number" [(ngModel)]="editableProperty.value.maximum" [label]="'MAXIMUM'"></ngx-input>
       </div>
