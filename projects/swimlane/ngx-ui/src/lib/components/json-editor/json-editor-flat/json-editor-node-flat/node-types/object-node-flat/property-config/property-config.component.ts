@@ -1,4 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
+import {
+  coerceNumberProperty
+} from '@angular/cdk/coercion';
+
 import { DialogService } from '../../../../../../dialog/dialog.service';
 import { JsonSchemaDataType, jsonSchemaDataTypes, inferTypeName, JSONEditorSchema } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
 
@@ -80,6 +84,14 @@ export class PropertyConfigComponent implements OnInit {
     if (!enumValues.includes(this.newEnumValue)) {
       enumValues.push(this.newEnumValue);
       this.newEnumValue = '';
+    }
+  }
+
+  updateDefault(enumValue: string): void {
+    if (!enumValue) {
+      delete this.editableProperty.value['default']
+    } else {
+      this.editableProperty.value['default'] = enumValue;
     }
   }
 

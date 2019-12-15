@@ -34,18 +34,26 @@
         </ngx-input-suffix>
       </ngx-input>
 
-      <div *ngIf="editableProperty.value.enum?.length" class="enum-edit">
-        <div class="tag" *ngFor="let value of editableProperty.value.enum">
-          <span>{{ value }}</span>
-          <button type="button" (click)="removeEnumValue(value)">
-            <i class="ngx-icon ngx-x"></i>
-          </button>
+      <ng-container *ngIf="editableProperty.value.enum?.length">
+        <div *ngIf="editableProperty.value.enum?.length" class="enum-edit">
+          <div class="tag" *ngFor="let value of editableProperty.value.enum">
+            <span>{{ value }}</span>
+            <button type="button" (click)="removeEnumValue(value)">
+              <i class="ngx-icon ngx-x"></i>
+            </button>
+          </div>
         </div>
-      </div>
+
+        <ngx-select [filterable]="false" [ngModel]="[editableProperty.value.default]"
+          (ngModelChange)="updateDefault($event[0])" [label]="'DEFAULT'">
+          <ngx-select-option *ngFor="let value of editableProperty.value.enum" [name]="value" [value]="value">
+          </ngx-select-option>
+        </ngx-select>
+      </ng-container>
 
       <div class="constrain-row"
         *ngIf="editableProperty.value.type === 'number' || editableProperty.value.type === 'integer'">
-        <ngx-input type="number" [(ngModel)]="editableProperty.value.minimum" [label]="'MINIMUM'"></ngx-input>
+        <ngx-input type="number" [ngModel]="editableProperty.value.minimum" [label]="'MINIMUM'"></ngx-input>
 
         <ngx-input type="number" [(ngModel)]="editableProperty.value.maximum" [label]="'MAXIMUM'"></ngx-input>
       </div>

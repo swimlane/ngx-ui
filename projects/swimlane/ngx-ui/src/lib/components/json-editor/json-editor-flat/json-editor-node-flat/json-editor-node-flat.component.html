@@ -27,7 +27,7 @@
           </div>
 
           <div class="info-type">
-            <span class="type">{{ inferTypeName(schema) | titlecase }}</span>
+            <span class="type">{{ inferTypeName(schema) | titlecase }}{{ schema?.enum?.length ? ' + Enum' : '' }}</span>
             <ngx-icon *ngIf="schema?.propertyName" class="dot-separator" fontIcon="circle-filled"></ngx-icon>
             <span class="property-name">{{ schema?.propertyName }}</span>
           </div>

@@ -125,6 +125,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
       ...prop['required'] && { required: prop['required'] },
       ...prop['properties'] && { properties: prop['properties'] },
       ...prop['enum'] && { enum: prop['enum'] },
+      ...prop['default'] && { default: prop['default'] },
       ...prop['description'] && { description: prop['description'] },
       ...prop['nameEditable'] && { nameEditable: prop['nameEditable'] },
       ...prop['minimum'] && { minimum: prop['minimum'] },
