@@ -71,7 +71,7 @@ describe('SelectComponent', () => {
     expect(component.dropdownActive).toEqual(false);
   });
   it('_value defaults to: []', () => {
-    expect(component._value).toEqual([]);
+    expect(component.value).toEqual([]);
   });
   describe('ngOnDestroy', () => {
     it('makes expected calls', () => {
