@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, TemplateRef, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, TemplateRef, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 
 import { KeyboardKeys } from '../../utils/keys';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
@@ -8,7 +8,8 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
   exportAs: 'ngxSelectInput',
   selector: 'ngx-select-input',
   templateUrl: './select-input.component.html',
-  host: { class: 'ngx-select-input' }
+  host: { class: 'ngx-select-input' },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectInputComponent implements AfterViewInit {
   @Input() placeholder: string;
@@ -77,8 +78,8 @@ export class SelectInputComponent implements AfterViewInit {
   }
 
   selectedOptions: SelectDropdownOption[] = [];
-  _selected: any[];
 
+  private _selected: any[];
   private _autofocus: boolean;
   private _allowClear: boolean;
   private _multiple: boolean;

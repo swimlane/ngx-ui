@@ -10,7 +10,9 @@ import {
   Renderer2,
   OnDestroy,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -47,7 +49,8 @@ const SELECT_VALUE_ACCESSOR = {
     '[class.has-placeholder]': 'hasPlaceholder'
   },
   providers: [SELECT_VALUE_ACCESSOR],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() id: string = `select-${++nextId}`;
@@ -206,6 +209,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
       this._value = val;
       this.onChangeCallback(this._value);
       this.change.emit(this._value);
+      this._cdr.markForCheck();
     }
   }
 
@@ -241,7 +245,8 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   constructor(
     private readonly _element: ElementRef,
-    private readonly _renderer: Renderer2
+    private readonly _renderer: Renderer2,
+    private readonly _cdr: ChangeDetectorRef
   ) { }
 
   ngOnDestroy(): void {
@@ -338,6 +343,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   writeValue(val: any[]): void {
     if (val !== this._value) {
       this._value = val;
+      this._cdr.markForCheck();
     }
   }
 

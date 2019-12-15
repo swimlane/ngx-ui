@@ -6,7 +6,8 @@ import {
   ViewChild,
   AfterViewInit,
   ElementRef,
-  TemplateRef
+  TemplateRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
@@ -21,7 +22,8 @@ import { SelectDropdownOption } from './select-dropdown-option.interface';
   host: {
     class: 'ngx-select-dropdown',
     '[class.groupings]': 'groupBy'
-  }
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectDropdownComponent implements AfterViewInit {
   @Input() selected: any[];
