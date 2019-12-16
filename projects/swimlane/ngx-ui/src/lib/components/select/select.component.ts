@@ -328,6 +328,8 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     if (state && this.closeOnBodyClick) {
       this.toggleListener = this._renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
     }
+
+    this._cdr.markForCheck();
   }
 
   onKeyUp({ event, value }: { event: KeyboardEvent; value?: string; }): void {
