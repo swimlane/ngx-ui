@@ -1,7 +1,6 @@
 import {
   Component,
   EventEmitter,
-  HostBinding,
   Input,
   Output,
   ViewEncapsulation,
@@ -10,6 +9,7 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 const TOGGLE_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -33,10 +33,26 @@ let nextId = 0;
   }
 })
 export class ToggleComponent implements ControlValueAccessor {
+  @Output() change = new EventEmitter();
   @Input() id: string = `toggle-${++nextId}`;
   @Input() name: string = null;
-  @Input() disabled: boolean = false;
-  @Input() required: boolean = false;
+
+  @Input()
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(disabled) {
+    this._disabled = coerceBooleanProperty(disabled);
+  }
+
+  @Input()
+  get required() {
+    return this._required;
+  }
+  set required(required) {
+    this._required = coerceBooleanProperty(required);
+  }
+
   @Input() tabIndex: number = 0;
   @Input() label: string;
 
@@ -52,8 +68,6 @@ export class ToggleComponent implements ControlValueAccessor {
     }
   }
 
-  @Output() change = new EventEmitter();
-
   get getHostCssClasses(): string {
     return 'ngx-toggle';
   }
@@ -63,6 +77,8 @@ export class ToggleComponent implements ControlValueAccessor {
   }
 
   private _value: boolean = false;
+  private _disabled: boolean = false;
+  private _required: boolean = false;
 
   constructor(private cdr: ChangeDetectorRef) {}
 

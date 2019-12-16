@@ -34,6 +34,11 @@ describe('ToggleComponent', () => {
     expect(component.tabIndex).toEqual(0);
   });
 
+  it('required property can be set', () => {
+    component.required = true;
+    expect(component.required).toEqual(true);
+  });
+
   it('getHostCssClasses returns ngx-toggle', () => {
     expect(component.getHostCssClasses).toEqual('ngx-toggle');
   });
