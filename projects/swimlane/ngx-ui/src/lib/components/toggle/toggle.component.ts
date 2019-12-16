@@ -9,7 +9,7 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 const TOGGLE_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -36,6 +36,7 @@ export class ToggleComponent implements ControlValueAccessor {
   @Output() change = new EventEmitter();
   @Input() id: string = `toggle-${++nextId}`;
   @Input() name: string = null;
+  @Input() label: string;
 
   @Input()
   get disabled() {
@@ -53,8 +54,13 @@ export class ToggleComponent implements ControlValueAccessor {
     this._required = coerceBooleanProperty(required);
   }
 
-  @Input() tabIndex: number = 0;
-  @Input() label: string;
+  @Input()
+  get tabIndex() {
+    return this._tabIndex;
+  }
+  set tabIndex(tabIndex) {
+    this._tabIndex = coerceNumberProperty(tabIndex);
+  }
 
   get value(): boolean {
     return this._value;
@@ -79,6 +85,7 @@ export class ToggleComponent implements ControlValueAccessor {
   private _value: boolean = false;
   private _disabled: boolean = false;
   private _required: boolean = false;
+  private _tabIndex: number = 0;
 
   constructor(private cdr: ChangeDetectorRef) {}
 
