@@ -9,7 +9,7 @@ import {
   TemplateRef,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 import { KeyboardKeys } from '../../utils/keys';
 import { containsFilter } from './contains-filter.util';
@@ -31,7 +31,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Input() filterPlaceholder: string;
   @Input() filterEmptyPlaceholder: string;
   @Input() emptyPlaceholder: string;
-  @Input() allowAdditionsText: string = 'Add Value';
+  @Input() allowAdditionsText: any = 'Add Value';
 
   @Input()
   get tagging() { return this._tagging; }
@@ -60,8 +60,8 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Input()
   get focusIndex() { return this._focusIndex; }
   set focusIndex(val: number) {
-    this._focusIndex = val;
-    this.focusElement(val);
+    this._focusIndex = coerceNumberProperty(val);
+    this.focusElement(this._focusIndex);
   }
 
   @Input()
@@ -96,6 +96,10 @@ export class SelectDropdownComponent implements AfterViewInit {
     return this.elementRef.nativeElement;
   }
 
+  get isNotTemplate() {
+    return !(typeof this.allowAdditionsText === 'object' && this.allowAdditionsText instanceof TemplateRef);
+  }
+
   groups: any[];
 
   private _options: SelectDropdownOption[];
@@ -108,10 +112,6 @@ export class SelectDropdownComponent implements AfterViewInit {
   private _filterCaseSensitive = false;
 
   constructor(private readonly elementRef: ElementRef) { }
-
-  isNotTemplate(val: any) {
-    return !(typeof val === 'object' && val instanceof TemplateRef);
-  }
 
   ngAfterViewInit(): void {
     if (this.filterable && !this.tagging) {
@@ -192,7 +192,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     const filterOptions = { filterCaseSensitive: this.filterCaseSensitive };
 
     // no group by defined, skip and just return
-    // emptry group object...
+    // empty group object...
     if (!groupBy) {
       if (filter) {
         // filter options
