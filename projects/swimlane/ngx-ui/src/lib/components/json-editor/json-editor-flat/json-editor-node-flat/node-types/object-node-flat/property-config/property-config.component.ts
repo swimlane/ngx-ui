@@ -64,7 +64,7 @@ export class PropertyConfigComponent implements OnInit {
       delete this.editableProperty.value['format'];
     }
 
-    // TODO: Delete minimum, maximum, etc...
+    this.cleanUpPropertyConstrains();
   }
 
   addEnumValue(): void {
@@ -96,6 +96,17 @@ export class PropertyConfigComponent implements OnInit {
       // Remove enum property if empty
       delete this.editableProperty.value['enum'];
     }
+  }
+
+  private cleanUpPropertyConstrains(): void {
+    delete this.editableProperty.value['enum'];
+    delete this.editableProperty.value['minimum'];
+    delete this.editableProperty.value['maximum'];
+    delete this.editableProperty.value['default'];
+    delete this.editableProperty.value['minLength'];
+    delete this.editableProperty.value['maxLength'];
+    delete this.editableProperty.value['minItems'];
+    delete this.editableProperty.value['maxItems'];
   }
 
   private setRequired(): void {

@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef, OnInit } from '@angular/core';
 import { ObjectNode } from '../../../../node-types/object-node.component';
 import { DialogService } from '../../../../../dialog/dialog.service';
-import { JsonSchemaDataType, JSONEditorSchema, ObjectProperty } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
+import { JsonSchemaDataType, JSONEditorSchema, ObjectProperty, createValueForSchema } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -41,10 +41,13 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   }
 
   updateSchema(options: any): void {
-    const newName = options.newProperty.value.propertyName;
-    const oldName = options.oldProperty.value.propertyName;
+    const oldProperty = options.oldProperty.value;
+    const newProperty = options.newProperty.value;
 
-    if (newName !== options.oldProperty.value.propertyName) {
+    const oldName = oldProperty.propertyName;
+    const newName = newProperty.propertyName;
+
+    if (newName !== oldName) {
       if (oldName in this.schema.properties) {
         this.updateSchemaPropertyName(this.schema, newName, oldName);
       }
@@ -55,11 +58,17 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
     this.toggleRequiredValue(options.required, newName);
 
-    this.schema.properties[newName] = options.newProperty.value;
-    this.propertyIndex[options.newProperty.key] = options.newProperty.value;
-    this.updateSchemaRefProperty(options.newProperty.value);
+    this.schema.properties[newName] = newProperty;
+    this.propertyIndex[options.newProperty.key] = newProperty
+    this.updateSchemaRefProperty(newProperty);
 
     this.swapSchemaProperties(options.index);
+
+    if (oldProperty.type !== newProperty.type) {
+      const value: any = createValueForSchema(newProperty);
+      this.model[newProperty.propertyName] = value;
+    }
+
     this.schemaChange.emit();
   }
 
@@ -98,14 +107,11 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   }
 
   private swapSchemaProperties(currentIndex: number, previousIndex?: number): void {
-    console.log(currentIndex);
     const propertiesIds = Object.keys(this.schemaRef.properties);
 
     if (previousIndex === undefined) {
       previousIndex = propertiesIds.length - 1;
     }
-
-    console.log(previousIndex);
 
     moveItemInArray(propertiesIds, previousIndex, currentIndex);
 
@@ -134,7 +140,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
       ...prop['minimum'] && { minimum: prop['minimum'] },
       ...prop['maximum'] && { maximum: prop['maximum'] },
       ...prop['minLength'] && { minLength: prop['minLength'] },
-      ...prop['minLength'] && { minLength: prop['minLength'] },
+      ...prop['maxLength'] && { maxLength: prop['maxLength'] },
       ...prop['minItems'] && { minItems: prop['minItems'] },
       ...prop['maxItems'] && { maxItems: prop['maxItems'] },
       ...prop['pattern'] && { pattern: prop['pattern'] }
