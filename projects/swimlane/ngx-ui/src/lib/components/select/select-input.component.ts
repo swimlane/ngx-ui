@@ -17,7 +17,7 @@ export class SelectInputComponent implements AfterViewInit {
   @Input() options: SelectDropdownOption[];
   @Input() label: string;
   @Input() hint: string;
-  @Input() selectCaret: any;
+  @Input() selectCaret: string | TemplateRef<any>;
   @Input() requiredIndicator: string | boolean;
 
   @Input()

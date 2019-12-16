@@ -56,7 +56,7 @@ describe('SelectDropdownComponent', () => {
     });
 
     it('should not be template if object', () => {
-      component.allowAdditionsText = { };
+      component.allowAdditionsText = { } as any;
       expect(component.isNotTemplate).toBeTruthy();
     });
   });

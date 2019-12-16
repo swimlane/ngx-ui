@@ -269,7 +269,7 @@ describe('SelectInputComponent', () => {
     });
 
     it('should be true if object', () => {
-      component.selectCaret = { };
+      component.selectCaret = { } as any;
       expect(component.isNotTemplate).toBeTruthy();
     });
   });

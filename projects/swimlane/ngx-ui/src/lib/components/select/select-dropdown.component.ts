@@ -31,7 +31,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Input() filterPlaceholder: string;
   @Input() filterEmptyPlaceholder: string;
   @Input() emptyPlaceholder: string;
-  @Input() allowAdditionsText: any = 'Add Value';
+  @Input() allowAdditionsText: string | TemplateRef<any> = 'Add Value';
 
   @Input()
   get tagging() { return this._tagging; }
