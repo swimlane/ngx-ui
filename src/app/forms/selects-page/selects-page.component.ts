@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-selects-page',
-  templateUrl: './selects-page.component.html'
+  templateUrl: './selects-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectsPageComponent {
   selects = (function() {

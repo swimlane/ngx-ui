@@ -1,14 +1,15 @@
-import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, TemplateRef, ElementRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, TemplateRef, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { KeyboardKeys } from '../../utils/keys';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
   exportAs: 'ngxSelectInput',
   selector: 'ngx-select-input',
   templateUrl: './select-input.component.html',
-  host: { class: 'ngx-select-input' }
+  host: { class: 'ngx-select-input' },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectInputComponent implements AfterViewInit {
   @Input() placeholder: string;
@@ -16,7 +17,7 @@ export class SelectInputComponent implements AfterViewInit {
   @Input() options: SelectDropdownOption[];
   @Input() label: string;
   @Input() hint: string;
-  @Input() selectCaret: string;
+  @Input() selectCaret: string | TemplateRef<any>;
   @Input() requiredIndicator: string | boolean;
 
   @Input()
@@ -76,19 +77,19 @@ export class SelectInputComponent implements AfterViewInit {
     return true;
   }
 
-  selectedOptions: SelectDropdownOption[] = [];
-  _selected: any[];
+  get isNotTemplate() {
+    return !(typeof this.selectCaret === 'object' && this.selectCaret instanceof TemplateRef);
+  }
 
+  selectedOptions: SelectDropdownOption[] = [];
+
+  private _selected: any[];
   private _autofocus: boolean;
   private _allowClear: boolean;
   private _multiple: boolean;
   private _tagging: boolean;
   private _allowAdditions: boolean;
   private _disableDropdown: boolean;
-
-  isNotTemplate(val: any) {
-    return !(typeof val === 'object' && val instanceof TemplateRef);
-  }
 
   ngAfterViewInit(): void {
     if (this.tagging && this.autofocus) {

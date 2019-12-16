@@ -10,7 +10,9 @@ import {
   Renderer2,
   OnDestroy,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -47,7 +49,8 @@ const SELECT_VALUE_ACCESSOR = {
     '[class.has-placeholder]': 'hasPlaceholder'
   },
   providers: [SELECT_VALUE_ACCESSOR],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() id: string = `select-${++nextId}`;
@@ -64,7 +67,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() requiredIndicator: string | boolean = '*';
 
   @Input() options: SelectDropdownOption[] = [];
-  @Input() identifier: any;
+  @Input() identifier: string;
 
   @Input()
   get minSelections() { return this._minSelections; }
@@ -206,6 +209,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
       this._value = val;
       this.onChangeCallback(this._value);
       this.change.emit(this._value);
+      this._cdr.markForCheck();
     }
   }
 
@@ -241,7 +245,8 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   constructor(
     private readonly _element: ElementRef,
-    private readonly _renderer: Renderer2
+    private readonly _renderer: Renderer2,
+    private readonly _cdr: ChangeDetectorRef
   ) { }
 
   ngOnDestroy(): void {
@@ -269,7 +274,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
       this.inputComponent.inputElement.nativeElement.value = '';
     }
 
-    const shouldClose = this.closeOnSelect || (this.closeOnSelect === undefined && !this.multiple);
+    const shouldClose = this.closeOnSelect || !this.multiple;
 
     if (shouldClose) {
       this.toggleDropdown(false);
@@ -295,6 +300,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     if (this.dropdownActive) {
       const contains = this._element.nativeElement.contains(event.target);
 
+      /* istanbul ignore else */
       if (!contains) {
         this.toggleDropdown(false);
       }
@@ -323,6 +329,8 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     if (state && this.closeOnBodyClick) {
       this.toggleListener = this._renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
     }
+
+    this._cdr.markForCheck();
   }
 
   onKeyUp({ event, value }: { event: KeyboardEvent; value?: string; }): void {
@@ -336,8 +344,10 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   writeValue(val: any[]): void {
+    /* istanbul ignore else */
     if (val !== this._value) {
       this._value = val;
+      this._cdr.markForCheck();
     }
   }
 
@@ -357,10 +367,12 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     return value === undefined;
   }
 
+  /* istanbul ignore next */
   private onTouchedCallback() {
     // placeholder
   };
 
+  /* istanbul ignore next */
   private onChangeCallback(_: any) {
     // placeholder
   };
