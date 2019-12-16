@@ -67,7 +67,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() requiredIndicator: string | boolean = '*';
 
   @Input() options: SelectDropdownOption[] = [];
-  @Input() identifier: any;
+  @Input() identifier: string;
 
   @Input()
   get minSelections() { return this._minSelections; }
@@ -274,7 +274,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
       this.inputComponent.inputElement.nativeElement.value = '';
     }
 
-    const shouldClose = this.closeOnSelect || (this.closeOnSelect === undefined && !this.multiple);
+    const shouldClose = this.closeOnSelect || !this.multiple;
 
     if (shouldClose) {
       this.toggleDropdown(false);
@@ -300,6 +300,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     if (this.dropdownActive) {
       const contains = this._element.nativeElement.contains(event.target);
 
+      /* istanbul ignore else */
       if (!contains) {
         this.toggleDropdown(false);
       }
@@ -343,6 +344,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   writeValue(val: any[]): void {
+    /* istanbul ignore else */
     if (val !== this._value) {
       this._value = val;
       this._cdr.markForCheck();
@@ -365,10 +367,12 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     return value === undefined;
   }
 
+  /* istanbul ignore next */
   private onTouchedCallback() {
     // placeholder
   };
 
+  /* istanbul ignore next */
   private onChangeCallback(_: any) {
     // placeholder
   };

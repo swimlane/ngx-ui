@@ -18,4 +18,14 @@ describe('SelectOptionDirective', () => {
   it('should get input template', () => {
     expect(directive.inputTemplate).toBeUndefined();
   });
+
+  it('should set and get disabled', () => {
+    directive.disabled = 'true' as any;
+    expect(directive.disabled).toBeTruthy();
+  });
+
+  it('should set and get hidden', () => {
+    directive.hidden = 'true' as any;
+    expect(directive.hidden).toBeTruthy();
+  });
 });
