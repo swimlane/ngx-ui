@@ -10,10 +10,10 @@ import {
   ChangeDetectionStrategy,
   TemplateRef
 } from '@angular/core';
+import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { trigger } from '@angular/animations';
 
 import { drawerTransition } from '../../animations/animations';
-import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'ngx-drawer',
@@ -133,14 +133,14 @@ export class DrawerComponent implements OnDestroy {
    *
    * @memberOf DrawerComponent
    */
-  widthSize: any;
+  widthSize: string | number;
 
   /**
    * Drawer height calculation
    *
    * @memberOf DrawerComponent
    */
-  heightSize: any;
+  heightSize: string | number;
 
   /**
    * Is the drawer a left opening drawer
