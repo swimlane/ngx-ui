@@ -26,7 +26,7 @@
     "prepack": "npm run package",
     "pack": "npm pack ./dist/swimlane/ngx-ui",
     "prettier": "prettier --write \"{src,projects}/**/*.{js,ts,scss,css,md,json}\"",
-    "prettier:ci": "prettier --check  \"{src,projects}/**/*.{js,ts,html,scss,css,md,json}\""
+    "prettier:ci": "prettier --check  \"{src,projects}/**/*.{js,ts,scss,css,md,json}\""
   },
   "private": true,
   "dependencies": {
