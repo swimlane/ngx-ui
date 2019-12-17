@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 4201",
+    "start": "ng serve --port 4200",
     "build": "npm run build:lib && ng build --prod",
     "build:demo": "npm run build:lib && cross-env NODE_ENV=production ng build --prod --base-href=\"/ngx-ui/\"",
     "build:lib": "ng build @swimlane/ngx-ui --prod && node scripts/prep-global-styles.js && npm run copy-files",
@@ -13,7 +13,7 @@
     "test:watch": "ng test @swimlane/ngx-ui --watch",
     "test:ci": "ng test @swimlane/ngx-ui --watch=false --progress=false --browsers=ChromeHeadlessCI",
     "test": "concurrently \"npm run lint\" \"npm run test:unit\" \"npm run cypress:run\"",
-    "ci": "concurrently \"npm run lint\" \"npm run test:ci\" \"npm run prettier:ci\" \"npm run cypress:ci\"",
+    "ci": "concurrently \"npm run lint\" \"npm run test:ci\" \"npm run prettier:ci\"",
     "cypress:run": "cypress run",
     "cypress:open": "cypress open",
     "cypress:ci": "start-server-and-test start http-get://localhost:4200 cypress:run",
