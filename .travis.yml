@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - 12
+  - 'node'
 
 cache:
   directories:
@@ -10,16 +10,21 @@ cache:
     - node_modules
 
 addons:
+  chrome: stable
   apt:
     packages:
-    - libgconf-2-4
+      - libgconf-2-4
+
+services:
+  - xvfb
 
 before_install:
   - export NG_CLI_ANALYTICS=ci
 
 install:
-  - npm ci
+  - npm install
   - npm run build
+  - npm run build:lib
 
 script:
   - npm run ci

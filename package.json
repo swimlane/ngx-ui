@@ -6,13 +6,14 @@
     "start": "ng serve --port 4201",
     "build": "npm run build:lib && ng build --prod",
     "build:demo": "npm run build:lib && cross-env NODE_ENV=production ng build --prod --base-href=\"/ngx-ui/\"",
-    "build:lib": "ng build @swimlane/ngx-ui --prod && node scripts/prep-global-styles.js",
+    "build:lib": "ng build @swimlane/ngx-ui --prod && node scripts/prep-global-styles.js && npm run copy-files",
+    "copy-files": "cp README.md dist/swimlane/ngx-ui/README.md && cp LICENSE dist/swimlane/ngx-ui/LICENSE",
     "package": "npm run build:lib",
     "test:unit": "ng test @swimlane/ngx-ui",
     "test:watch": "ng test @swimlane/ngx-ui --watch",
     "test:ci": "ng test @swimlane/ngx-ui --watch=false --progress=false --browsers=ChromeHeadlessCI",
     "test": "concurrently \"npm run lint\" \"npm run test:unit\" \"npm run cypress:run\"",
-    "ci": "concurrently \"npm run lint\" \"npm run test:ci\" \"npm run cypress:ci\"",
+    "ci": "concurrently \"npm run lint\" \"npm run test:ci\" \"npm run prettier:ci\" \"npm run cypress:ci\"",
     "cypress:run": "cypress run",
     "cypress:open": "cypress open",
     "cypress:ci": "start-server-and-test start http-get://localhost:4200 cypress:run",
@@ -24,7 +25,8 @@
     "publish:lib": "npm publish ./dist/swimlane/ngx-ui",
     "prepack": "npm run package",
     "pack": "npm pack ./dist/swimlane/ngx-ui",
-    "prettier": "prettier --write \"{src,projects}/**/*.{js,ts,scss,css,md,json}\""
+    "prettier": "prettier --write \"{src,projects}/**/*.{js,ts,scss,css,md,json}\"",
+    "prettier:ci": "prettier --check  \"{src,projects}/**/*.{js,ts,html,scss,css,md,json}\""
   },
   "private": true,
   "dependencies": {
