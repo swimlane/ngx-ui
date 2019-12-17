@@ -50,15 +50,8 @@ const CODEMIRROR_VALUE_ACCESSOR = {
   exportAs: 'ngxCodemirror',
   selector: 'ngx-codemirror',
   providers: [CODEMIRROR_VALUE_ACCESSOR],
-  template: `
-    <div visibilityObserver (visible)="onVisible()">
-      <textarea #host></textarea>
-      <div #content>
-        <ng-content></ng-content>
-      </div>
-    </div>
-  `,
   host: { class: 'ngx-codemirror' },
+  templateUrl: './code-editor.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   styleUrls: [
