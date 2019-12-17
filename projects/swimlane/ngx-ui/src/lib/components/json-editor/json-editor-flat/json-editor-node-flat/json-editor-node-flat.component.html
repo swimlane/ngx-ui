@@ -46,7 +46,7 @@
             </ngx-input>
 
             <ngx-select [filterable]="false" *ngIf="schema?.enum" [ngModel]="[model]"
-              (ngModelChange)="updateModel($event[0])" [required]="required">
+              (ngModelChange)="updateModel($event[0])" [required]="required" [allowClear]="false">
               <ngx-select-option *ngFor="let option of schema.enum" [name]="option" [value]="option">
               </ngx-select-option>
             </ngx-select>
