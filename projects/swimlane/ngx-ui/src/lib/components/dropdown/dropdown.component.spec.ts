@@ -11,12 +11,7 @@ describe('DropdownComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        DropdownComponent,
-        DropdownMenuDirective,
-        DropdownToggleDirective,
-        DropdownComponentFixture
-      ]
+      declarations: [DropdownComponent, DropdownMenuDirective, DropdownToggleDirective, DropdownComponentFixture]
     }).compileComponents();
   }));
 

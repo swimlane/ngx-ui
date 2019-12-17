@@ -75,13 +75,17 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
   @Input() autocompleteTokens?: Array<string | HintCompletion>;
 
   @Input()
-  get autofocus() { return this._autofocus; }
+  get autofocus() {
+    return this._autofocus;
+  }
   set autofocus(autofocus: boolean) {
     this._autofocus = coerceBooleanProperty(autofocus);
   }
 
   @Input()
-  get lineNumbers() { return this._lineNumbers; }
+  get lineNumbers() {
+    return this._lineNumbers;
+  }
   set lineNumbers(lineNumbers: boolean) {
     this._lineNumbers = coerceBooleanProperty(lineNumbers);
   }
@@ -95,7 +99,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
   instance: CodeMirror.EditorFromTextArea;
   _value: string;
 
-  get value(): string { return this._value; }
+  get value(): string {
+    return this._value;
+  }
   set value(val: string) {
     if (val !== this._value) {
       this._value = val;
@@ -107,7 +113,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
   private _autofocus: boolean = false;
   private _lineNumbers: boolean = false;
 
-  constructor(private readonly renderer: Renderer2) { }
+  constructor(private readonly renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.config = {
@@ -156,7 +162,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
     let lines = code.split('\n');
 
     // Remove empty lines
-    lines = lines.filter(function (line) {
+    lines = lines.filter(function(line) {
       return line.trim().length > 0;
     });
 
@@ -166,7 +172,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
     // Make it so each line starts at 0 whitespace
     const firstLineWhitespace = lines[0].match(/^\s*/)[0];
     const startingWhitespaceRegex = new RegExp('^' + firstLineWhitespace);
-    lines = lines.map(function (line) {
+    lines = lines.map(function(line) {
       return line
         .replace('=""', '') // remove empty values
         .replace(startingWhitespaceRegex, '')

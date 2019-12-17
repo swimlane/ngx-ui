@@ -5,11 +5,7 @@
   [uploader]="uploader"
   (fileOver)="fileOverBase($event)"
 >
-  <ng-template
-    ng2FileDrop
-    [ngTemplateOutlet]="dropzoneTemplate"
-    [ngTemplateOutletContext]="{ $implicit: uploader }"
-  >
+  <ng-template ng2FileDrop [ngTemplateOutlet]="dropzoneTemplate" [ngTemplateOutletContext]="{ $implicit: uploader }">
   </ng-template>
 </div>
 

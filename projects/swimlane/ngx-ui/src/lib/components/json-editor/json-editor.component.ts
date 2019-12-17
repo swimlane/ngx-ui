@@ -45,7 +45,7 @@ export class JsonEditorComponent implements OnChanges {
   @ContentChildren(JsonEditorNodeComponent)
   nodeElms: QueryList<JsonEditorNodeComponent>;
 
-  constructor(private schemaValidatorService: SchemaValidatorService) { }
+  constructor(private schemaValidatorService: SchemaValidatorService) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.schema) {
@@ -77,7 +77,9 @@ export class JsonEditorComponent implements OnChanges {
    * @param model
    */
   validate(schema: any, model: any): boolean {
-    this.errors = this.schemaValidator ? this.schemaValidator(schema, model) : this.schemaValidatorService.validate(schema, model);
+    this.errors = this.schemaValidator
+      ? this.schemaValidator(schema, model)
+      : this.schemaValidatorService.validate(schema, model);
     return this.errors && this.errors.length > 0;
   }
 }

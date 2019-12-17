@@ -34,4 +34,4 @@ import { SchemaValidatorService } from './schema-validator.service';
   ],
   providers: [SchemaValidatorService]
 })
-export class JsonEditorModule { }
+export class JsonEditorModule {}

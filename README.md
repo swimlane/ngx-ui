@@ -1,4 +1,4 @@
-# ngx-ui [![Code Climate](https://codeclimate.com/github/swimlane/ngx-ui/badges/gpa.svg)](https://codeclimate.com/github/swimlane/ngx-ui)
+# ngx-ui
 
 Component & Style Library for Angular by Swimlane.
 
@@ -17,11 +17,11 @@ Run `npm run build:lib` to build ngx-ui. This must be done prior to building the
 
 ## Development server
 
-Run `ng serve` to serve the demo at `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm run start` to serve the demo at `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Build
+## Building
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Running tests
 

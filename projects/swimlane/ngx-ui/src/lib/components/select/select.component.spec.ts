@@ -100,7 +100,7 @@ describe('SelectComponent', () => {
         component.select.multiple = false;
         component.select.value = [];
         fixture.detectChanges();
-      })
+      });
 
       it('should close dropdown', () => {
         const spy = spyOn(component.select, 'toggleDropdown');
@@ -158,7 +158,7 @@ describe('SelectComponent', () => {
       });
 
       it('should not set value if already selected', () => {
-        component.select.value = ['test']
+        component.select.value = ['test'];
         component.select.onDropdownSelection({ name: 'test', value: 'test' });
         fixture.detectChanges();
         expect(component.selected.length).toBe(1);

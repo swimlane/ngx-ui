@@ -14,7 +14,7 @@ describe('AutosizeDirective', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [AutosizeDirectiveFixture, AutosizeDirective],
-      imports: [FormsModule, BrowserAnimationsModule],
+      imports: [FormsModule, BrowserAnimationsModule]
     });
   });
 
@@ -35,4 +35,3 @@ describe('AutosizeDirective', () => {
     expect(spy).toHaveBeenCalled();
   });
 });
-
