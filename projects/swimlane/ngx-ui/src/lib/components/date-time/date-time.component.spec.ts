@@ -393,7 +393,7 @@ describe('DateTimeComponent', () => {
       expect(component.displayValue).toEqual(`${LOCAL_DATE} ${LOCAL_HOUR}:${LOCAL_MIN} ${newLocalAMPM}`);
     });
 
-    it('should update hours, set 12 PM doesn\'t change day', () => {
+    it("should update hours, set 12 PM doesn't change day", () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
 
@@ -408,7 +408,7 @@ describe('DateTimeComponent', () => {
       expect(component.displayValue).toEqual(`${LOCAL_DATE} 12:${LOCAL_MIN} ${LOCAL_AMPM}`);
     });
 
-    it('should update hours, set 12 AM doesn\'t change AM/PM', () => {
+    it("should update hours, set 12 AM doesn't change AM/PM", () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
 
@@ -550,14 +550,14 @@ describe('DateTimeComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register onchange callback', (done) => {
+    it('should register onchange callback', done => {
       component.registerOnChange(() => done());
       component.value = new Date();
     });
   });
 
   describe('registryOnTouched', () => {
-    it('should register ontouched callback', (done) => {
+    it('should register ontouched callback', done => {
       component.registerOnTouched(() => done());
       component.onBlur();
     });

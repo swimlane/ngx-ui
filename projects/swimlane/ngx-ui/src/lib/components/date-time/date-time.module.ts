@@ -27,4 +27,4 @@ import { DateTimeComponent } from './date-time.component';
     PipesModule
   ]
 })
-export class DateTimeModule { }
+export class DateTimeModule {}

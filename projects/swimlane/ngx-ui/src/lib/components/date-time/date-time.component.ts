@@ -53,19 +53,25 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() inputFormats: any[] = ['L', `LT`, 'L LT', moment.ISO_8601];
 
   @Input()
-  get disabled() { return this._disabled; }
+  get disabled() {
+    return this._disabled;
+  }
   set disabled(disabled) {
     this._disabled = coerceBooleanProperty(disabled);
   }
 
   @Input()
-  get tabindex() { return this._tabindex; }
+  get tabindex() {
+    return this._tabindex;
+  }
   set tabindex(tabindex) {
     this._tabindex = coerceNumberProperty(tabindex);
   }
 
   @Input()
-  get autofocus() { return this._autofocus; }
+  get autofocus() {
+    return this._autofocus;
+  }
   set autofocus(autofocus) {
     this._autofocus = coerceBooleanProperty(autofocus);
   }
@@ -101,7 +107,9 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this.displayValue = this.getDisplayValue();
   }
 
-  get value() { return this._value; }
+  get value() {
+    return this._value;
+  }
   set value(val: Date | string) {
     let date: moment.Moment;
     let isSame: boolean;
