@@ -53,7 +53,7 @@ describe('ToggleComponent', () => {
     expect(component.getDisabled).toEqual('disabled');
   });
 
-  it('can register on change callback', (done) => {
+  it('can register on change callback', done => {
     const changeCallback = () => {
       done();
     };
@@ -70,7 +70,7 @@ describe('ToggleComponent', () => {
     expect(component.value).toEqual(false);
   });
 
-  it('onBlur calls registered touch callback', (done) => {
+  it('onBlur calls registered touch callback', done => {
     const touchCallback = () => {
       done();
     };

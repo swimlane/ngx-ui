@@ -18,7 +18,7 @@ describe('FileButtonComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FileButtonComponent);
     component = fixture.componentInstance;
-    component.uploader = new FileUploader({ });
+    component.uploader = new FileUploader({});
     component.disabled = false;
     component.multiple = false;
     fixture.detectChanges();
@@ -38,7 +38,7 @@ describe('FileButtonComponent', () => {
       let err: Error;
 
       try {
-        fixture.detectChanges()
+        fixture.detectChanges();
       } catch (ex) {
         err = ex;
       }
@@ -47,7 +47,7 @@ describe('FileButtonComponent', () => {
     });
 
     it('should create new uploader if !uploader and options', () => {
-      component.options = { };
+      component.options = {};
       fixture.detectChanges();
       expect(component.uploader).toBeDefined();
     });
@@ -64,7 +64,7 @@ describe('FileButtonComponent', () => {
   describe('onBeforeUploadItem', () => {
     it('should emit event', () => {
       const spy = spyOn(component.beforeUploadItem, 'emit');
-      component.onBeforeUploadItem({  } as any);
+      component.onBeforeUploadItem({} as any);
       expect(spy).toHaveBeenCalled();
     });
   });
@@ -72,7 +72,7 @@ describe('FileButtonComponent', () => {
   describe('onErrorItem', () => {
     it('should emit event', () => {
       const spy = spyOn(component.errorItem, 'emit');
-      component.onErrorItem('test', 500, { });
+      component.onErrorItem('test', 500, {});
       expect(spy).toHaveBeenCalled();
     });
   });
@@ -89,7 +89,7 @@ describe('FileButtonComponent', () => {
   describe('onSuccessItem', () => {
     it('should emit event', () => {
       const spy = spyOn(component.successItem, 'emit');
-      component.onSuccessItem({ }, 'test', 200, { });
+      component.onSuccessItem({}, 'test', 200, {});
       expect(spy).toHaveBeenCalled();
     });
   });
