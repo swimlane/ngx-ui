@@ -11,11 +11,13 @@ import {
   ElementRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 import moment from 'moment-timezone';
 
 import { DialogService } from '../dialog/dialog.service';
 import { DateTimeType } from './date-time.type';
+import { InputComponent } from '../input';
 
 let nextId = 0;
 
@@ -28,147 +30,16 @@ const DATE_TIME_VALUE_ACCESSOR = {
 type Datelike = string | Date | moment.Moment;
 
 @Component({
+  exportAs: 'ngxDateTime',
   selector: 'ngx-date-time',
-  providers: [DATE_TIME_VALUE_ACCESSOR],
-  encapsulation: ViewEncapsulation.None,
+  templateUrl: './date-time.component.html',
   styleUrls: ['./date-time.component.scss'],
-  template: `
-    <div class="ngx-date-time">
-      <ng-template #dialogTpl>
-        <div class="selected-header text-center">
-          <h1>
-            <span *ngIf="dialogModel && (inputType === 'datetime' || inputType === 'date')">
-              {{ dialogModel | amTimeZone: timezone | amDateFormat: 'ddd, MMM D YYYY' }}
-              <small *ngIf="inputType === 'datetime'">
-                {{ dialogModel | amTimeZone: timezone | amDateFormat: 'h:mm a' }}
-              </small>
-            </span>
-            <span *ngIf="dialogModel && inputType === 'time'">
-              {{ dialogModel | amTimeZone: timezone | amDateFormat: 'h:mm a' }}
-            </span>
-            <span *ngIf="!dialogModel">No value</span>
-          </h1>
-        </div>
-        <ngx-calendar
-          [id]="id + '-cal'"
-          *ngIf="inputType === 'date' || inputType === 'datetime'"
-          (change)="setDialogDate($event)"
-          [minDate]="minDate"
-          [maxDate]="maxDate"
-          [ngModel]="dialogModel"
-          [timezone]="timezone"
-          [minView]="precision"
-          name="calendar"
-        >
-        </ngx-calendar>
-        <div class="time-row" *ngIf="inputType === 'time' || inputType === 'datetime'">
-          <div fxLayout="row" fxLayoutGap="10px" fxLayoutWrap="nowrap" fxLayoutAlign="center baseline">
-            <div fxFlex>
-              <ngx-input
-                type="number"
-                hint="Hour"
-                [id]="id + '-hour'"
-                [ngModel]="hour"
-                min="1"
-                max="12"
-                (change)="hourChanged($event)"
-                [disabled]="isTimeDisabled('hour')"
-              >
-              </ngx-input>
-            </div>
-            <div fxFlex>
-              <ngx-input
-                type="number"
-                hint="Minute"
-                [id]="id + '-minute'"
-                [ngModel]="minute"
-                min="0"
-                max="59"
-                (change)="minuteChanged($event)"
-                [disabled]="isTimeDisabled('minute')"
-              >
-              </ngx-input>
-            </div>
-            <div fxFlex>
-              <button
-                class="ampm"
-                type="button"
-                [class.selected]="amPmVal === 'AM'"
-                (click)="onAmPmChange('AM')"
-                [disabled]="isTimeDisabled('hour')"
-              >
-                AM
-              </button>
-              <button
-                class="ampm"
-                type="button"
-                [class.selected]="amPmVal === 'PM'"
-                (click)="onAmPmChange('PM')"
-                [disabled]="isTimeDisabled('hour')"
-              >
-                PM
-              </button>
-            </div>
-          </div>
-        </div>
-        <nav role="navigation" class="ngx-dialog-footer">
-          <div fxLayout="row" fxLayoutWrap="nowrap">
-            <div class="text-left" fxFlex="1 1 50%">
-              <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()" [hidden]="isCurrent()">
-                Current
-              </button>
-            </div>
-            <div class="text-right" fxFlex="1 1 50%">
-              <button type="button" class="btn btn-link clear-btn" (click)="clear()">Clear</button>
-              <button type="button" class="btn btn-link apply-btn" (click)="apply()">Apply</button>
-            </div>
-          </div>
-        </nav>
-      </ng-template>
-      <ngx-input
-        #input
-        [id]="id + '-input'"
-        [autocorrect]="false"
-        [autocomplete]="false"
-        [spellcheck]="false"
-        [disabled]="disabled"
-        [placeholder]="placeholder"
-        [autofocus]="autofocus"
-        [tabindex]="tabindex"
-        [label]="label"
-        [ngModel]="displayValue"
-        (ngModelChange)="inputChanged($event)"
-        (blur)="onBlur()"
-      >
-        <ngx-input-hint>
-          <div fxLayout="row" fxLayoutGap="10px" fxLayoutWrap="nowrap">
-            <div fxFlex *ngIf="hint" class="text-left">{{ hint }}</div>
-            <div *ngIf="errorMsg" fxFlex class="text-right input-error">{{ errorMsg }}</div>
-          </div>
-        </ngx-input-hint>
-      </ngx-input>
-      <button
-        title="Show date/time selector"
-        type="button"
-        [disabled]="disabled"
-        (click)="open()"
-        [ngClass]="{
-          'icon-calendar': inputType === 'date',
-          'icon-calendar-clock': inputType === 'datetime',
-          'icon-clock': inputType === 'time'
-        }"
-        class="calendar-dialog-btn"
-      ></button>
-    </div>
-  `
+  providers: [DATE_TIME_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.None
 })
 export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() id: string = `datetime-${++nextId}`;
   @Input() name: string;
-  @Input() disabled: boolean;
-  @Input() tabindex: number;
-  @Input() autofocus: boolean = false;
-
   @Input() label: string;
   @Input() hint: string;
   @Input() placeholder: string = '';
@@ -179,6 +50,24 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
   @Input() timezone: string;
   @Input() inputFormats: any[] = ['L', `LT`, 'L LT', moment.ISO_8601];
+
+  @Input()
+  get disabled() { return this._disabled; }
+  set disabled(disabled) {
+    this._disabled = coerceBooleanProperty(disabled);
+  }
+
+  @Input()
+  get tabindex() { return this._tabindex; }
+  set tabindex(tabindex) {
+    this._tabindex = coerceNumberProperty(tabindex);
+  }
+
+  @Input()
+  get autofocus() { return this._autofocus; }
+  set autofocus(autofocus) {
+    this._autofocus = coerceBooleanProperty(autofocus);
+  }
 
   @Input()
   get inputType(): string {
@@ -210,12 +99,10 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this.displayValue = this.getDisplayValue();
   }
 
-  get value(): Date | string {
-    return this._value;
-  }
+  get value() { return this._value; }
   set value(val: Date | string) {
     let date: moment.Moment;
-    let isSame;
+    let isSame: boolean;
 
     if (val) {
       date = this.parseDate(val);
@@ -245,10 +132,13 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     }
   }
 
-  @Output() change = new EventEmitter<any>();
+  @Output() change = new EventEmitter<string | Date>();
 
-  @ViewChild('dialogTpl', { static: true }) calendarTpl: TemplateRef<ElementRef>;
-  @ViewChild('input', { static: true }) input: any;
+  @ViewChild('dialogTpl', { static: true })
+  readonly calendarTpl: TemplateRef<ElementRef>;
+
+  @ViewChild('input', { static: true })
+  readonly input: InputComponent;
 
   errorMsg: string;
   dialog: any;
@@ -262,8 +152,11 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   private _value: Date | string;
   private _format: string;
   private _inputType: string;
+  private _disabled: boolean = false;
+  private _autofocus: boolean = false;
+  private _tabindex: number;
 
-  constructor(private dialogService: DialogService) {}
+  constructor(private readonly dialogService: DialogService) {}
 
   ngOnDestroy(): void {
     this.close();
