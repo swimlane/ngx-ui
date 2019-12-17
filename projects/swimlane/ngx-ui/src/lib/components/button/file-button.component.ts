@@ -9,53 +9,58 @@ import {
   ContentChild,
   TemplateRef,
   ViewChild,
-  ElementRef
+  ElementRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
-import { FileUploaderOptions, FileUploader } from '@swimlane/ng2-file-upload';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { FileUploaderOptions, FileUploader, FileItem } from '@swimlane/ng2-file-upload';
+
 import { FileButtonStyleType } from './file-button-style.type';
 
 let nextId = 0;
 
 @Component({
+  exportAs: 'ngxFileButton',
   selector: 'ngx-file-button',
-  encapsulation: ViewEncapsulation.None,
+  templateUrl: './file-button.component.html',
   styleUrls: ['./file-button.component.scss'],
-  templateUrl: './file-button.component.html'
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FileButtonComponent implements OnInit {
-  @Input()
-  id: string = `input-${++nextId}`;
-  @Input()
-  name: string;
-  @Input()
-  disabled: boolean;
-  @Input()
-  multiple: boolean;
-  @Input()
-  styleType: FileButtonStyleType = FileButtonStyleType.standard;
+  @Input() id: string = `input-${++nextId}`;
+  @Input() name: string;
+  @Input() styleType = FileButtonStyleType.standard;
+  @Input() uploader: FileUploader;
+  @Input() options: FileUploaderOptions;
 
-  // you can pass either options
-  // or a instance of the uploader
   @Input()
-  uploader: FileUploader;
-  @Input()
-  options: FileUploaderOptions;
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(disabled) {
+    this._disabled = coerceBooleanProperty(disabled);
+  }
 
-  @Output()
-  afterAddingFile = new EventEmitter();
-  @Output()
-  beforeUploadItem = new EventEmitter();
-  @Output()
-  successItem = new EventEmitter();
-  @Output()
-  errorItem = new EventEmitter();
-  @Output()
-  progressAll = new EventEmitter();
+  @Input()
+  get multiple() {
+    return this._multiple;
+  }
+  set multiple(multiple) {
+    this._multiple = coerceBooleanProperty(multiple);
+  }
+
+  @Output() afterAddingFile = new EventEmitter<{ fileItem: FileItem }>();
+  @Output() beforeUploadItem = new EventEmitter<{ fileItem: FileItem }>();
+  @Output() successItem = new EventEmitter<{ item: any; response: string; status: number; headers: any }>();
+  @Output() errorItem = new EventEmitter<{ response: string; status: number; headers: any }>();
+  @Output() progressAll = new EventEmitter<{ progress: number }>();
 
   @ContentChild('dropzoneTemplate')
-  dropzoneTemplate: TemplateRef<any>;
+  readonly dropzoneTemplate: TemplateRef<any>;
+
   @ViewChild('fileInput')
-  fileInput: ElementRef;
+  readonly fileInput?: ElementRef<HTMLInputElement>;
 
   get isDisabled(): boolean {
     return this.disabled || this.uploader.isUploading;
@@ -67,20 +72,24 @@ export class FileButtonComponent implements OnInit {
       'standard-style': this.styleType === FileButtonStyleType.standard,
       'progress-style': this.styleType === FileButtonStyleType.progress,
       'show-progress': this.uploader && this.uploader.options.isHTML5,
-      success: this.isItemSuccessful,
+      success: this._isItemSuccessful,
       active: this.uploader && this.uploader.isUploading
     };
   }
 
-  isItemSuccessful: boolean = false;
-  progress: string = '0%';
+  readonly FileButtonStyleType = FileButtonStyleType;
+  progress: number = 0;
   fileName: string = '';
   fileOverDropzone: boolean = false;
 
-  constructor(private ngZone: NgZone) {}
+  private _isItemSuccessful: boolean = false;
+  private _disabled: boolean = false;
+  private _multiple: boolean = false;
+
+  constructor(private readonly _ngZone: NgZone) {}
 
   ngOnInit(): void {
-    this.ngZone.run(() => {
+    this._ngZone.run(() => {
       if (!this.uploader && !this.options) {
         throw new Error('You must pass either an uploader instance or options.');
       }
@@ -101,15 +110,15 @@ export class FileButtonComponent implements OnInit {
     });
   }
 
-  onAfterAddingFile(fileItem): void {
-    this.ngZone.run(() => {
+  onAfterAddingFile(fileItem: FileItem): void {
+    this._ngZone.run(() => {
       this.fileName = fileItem.file.name;
       this.afterAddingFile.emit({ fileItem });
     });
   }
 
-  onBeforeUploadItem(fileItem) {
-    this.ngZone.run(() => {
+  onBeforeUploadItem(fileItem: FileItem) {
+    this._ngZone.run(() => {
       this.beforeUploadItem.emit({ fileItem });
     });
   }
@@ -118,27 +127,27 @@ export class FileButtonComponent implements OnInit {
     this.errorItem.emit({ response, status, headers });
   }
 
-  onProgressAll(progress): void {
-    this.ngZone.run(() => {
-      this.progress = progress + '%';
+  onProgressAll(progress: number): void {
+    this._ngZone.run(() => {
+      this.progress = progress;
       this.progressAll.emit({ progress });
     });
   }
 
-  onSuccessItem(item, response, status, headers): void {
-    this.ngZone.run(() => {
-      this.isItemSuccessful = true;
+  onSuccessItem(item: any, response: string, status: number, headers: any): void {
+    this._ngZone.run(() => {
+      this._isItemSuccessful = true;
 
       setTimeout(() => {
         this.fileName = '';
-        this.isItemSuccessful = false;
+        this._isItemSuccessful = false;
       }, 2500);
 
       this.successItem.emit({ item, response, status, headers });
     });
   }
 
-  fileOverBase(event) {
+  fileOverBase(event: boolean) {
     this.fileOverDropzone = event;
   }
 

@@ -15,8 +15,7 @@ import { ButtonState } from './button-state.enum';
 @Component({
   selector: 'ngx-button',
   exportAs: 'ngxButton',
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   host: {
     class: 'ngx-button',
@@ -26,16 +25,8 @@ import { ButtonState } from './button-state.enum';
     '[class.fail]': 'fail$.value',
     '[class.disabled-button]': 'disabled'
   },
-  template: `
-    <button [disabled]="disabled">
-      <span class="content"><ng-content></ng-content></span>
-      <span class="state-icon">
-        <span *ngIf="inProgress$ | async" class="icon icon-loading"></span>
-        <span *ngIf="success$ | async" class="icon icon-check"></span>
-        <span *ngIf="fail$ | async" class="icon icon-x"></span>
-      </span>
-    </button>
-  `
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent implements OnInit, OnChanges {
   @Input() promise?: Promise<any>;
