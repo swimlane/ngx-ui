@@ -1,27 +1,50 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 import { SectionComponent } from './section.component';
+import { SectionFixtureComponent } from './fixtures/section.fixture';
+import { SectionModule } from './section.module';
+
 describe('SectionComponent', () => {
   let component: SectionComponent;
-  let fixture: ComponentFixture<SectionComponent>;
-  beforeEach(() => {
+  let fixture: ComponentFixture<SectionFixtureComponent>;
+
+  beforeEach(done => {
     TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-      declarations: [SectionComponent]
+      declarations: [SectionFixtureComponent],
+      imports: [SectionModule]
     });
-    fixture = TestBed.createComponent(SectionComponent);
-    component = fixture.componentInstance;
+
+    fixture = TestBed.createComponent(SectionFixtureComponent);
+    component = fixture.componentInstance.section;
+    fixture.autoDetectChanges();
+    fixture.whenStable().then(() => done());
   });
+
   it('can load instance', () => {
     expect(component).toBeTruthy();
   });
+
   it('sectionCollapsed defaults to: false', () => {
     expect(component.sectionCollapsed).toEqual(false);
   });
+
   it('sectionCollapsible defaults to: true', () => {
     expect(component.sectionCollapsible).toEqual(true);
   });
+
   it('padding defaults to: 1.8em', () => {
     expect(component.padding).toEqual('1.8em');
+  });
+
+  it('Section title set by input', () => {
+    expect(component.sectionTitle).toEqual('test title');
+  });
+
+  it('onSectionClicked collapses section and triggers toggle emit', () => {
+    spyOn(component.toggle, 'emit');
+    component.onSectionClicked();
+
+    expect(component.sectionCollapsed).toEqual(true);
+    expect(component.toggle.emit).toHaveBeenCalled();
   });
 });

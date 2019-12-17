@@ -1,4 +1,15 @@
-import { Component, Input, TemplateRef, ContentChild, ElementRef, Renderer2, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  TemplateRef,
+  ContentChild,
+  ElementRef,
+  Renderer2,
+  OnInit,
+  ViewChild,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
+} from '@angular/core';
 import { IfTabActiveDirective } from './if-tab-active.directive';
 
 /**
@@ -9,7 +20,8 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
   templateUrl: './tab.component.html',
   host: {
     class: 'ngx-tab'
-  }
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabComponent implements OnInit {
   @Input() title: string = '';
@@ -20,7 +32,7 @@ export class TabComponent implements OnInit {
   @ContentChild(IfTabActiveDirective) template: IfTabActiveDirective;
   labelTemplate: TemplateRef<any>;
 
-  constructor(private renderer: Renderer2, private elRef: ElementRef) {}
+  constructor(private cdr: ChangeDetectorRef, private renderer: Renderer2, private elRef: ElementRef) {}
 
   ngOnInit() {
     // backwards compatibility
@@ -30,5 +42,9 @@ export class TabComponent implements OnInit {
     }
 
     this.labelTemplate = typeof this.label === 'string' ? this.labelStringTemplate : this.label;
+  }
+
+  detectChanges() {
+    this.cdr.detectChanges();
   }
 }

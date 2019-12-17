@@ -6,42 +6,25 @@ import {
   ViewEncapsulation,
   OnInit,
   OnChanges,
-  HostBinding
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+
+import { LongPressButtonState } from './long-press-button-state.enum';
 
 @Component({
+  exportAs: 'ngxLongPressButton',
   selector: 'ngx-long-press-button',
-  encapsulation: ViewEncapsulation.None,
+  templateUrl: './long-press-button.component.html',
   styleUrls: ['./long-press-button.component.scss'],
-  host: { class: 'ngx-long-press' },
-  template: `
-    <div
-      long-press
-      [duration]="duration"
-      [disabled]="_disabled"
-      (longPressStart)="onLongPressStart($event)"
-      (longPressFinish)="onLongPressFinish($event)"
-      (longPressCancel)="onLongPressCancel($event)"
-    >
-      <span class="inner-background"></span>
-      <svg viewBox="-170 -170 340 340">
-        <g transform="rotate(-90)">
-          <circle
-            class="loading-circle"
-            *ngIf="getState() !== 'submitted'"
-            r="160"
-            [@circleAnimation]="{ value: pressed ? 'active' : 'inactive', params: { duration: duration } }"
-          />
-          <circle class="full-circle" *ngIf="getState() === 'submitted'" r="160" />
-        </g>
-      </svg>
-      <button [disabled]="_disabled">
-        <ngx-icon *ngIf="getState() === 'active'" class="icon" [fontIcon]="icon"></ngx-icon>
-        <ngx-icon *ngIf="getState() === 'submitted'" class="icon" fontIcon="check"></ngx-icon>
-      </button>
-    </div>
-  `,
+  host: {
+    class: 'ngx-long-press',
+    '[class.disabled-button]': 'disabled',
+    '[class.active]': 'state === LongPressButtonState.Active',
+    '[class.submitted]': 'state === LongPressButtonState.Submitted'
+  },
   animations: [
     trigger('circleAnimation', [
       state(
@@ -58,85 +41,84 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
       ),
       transition('inactive => active', animate(`{{ duration }}ms ease-out`), { params: { duration: 1000 } })
     ])
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LongPressButtonComponent implements OnInit, OnChanges {
-  @Input() disabled: boolean = false;
-  @Input() state: string; // active, submitted - overrides default state
-  @Input() duration: number = 3000;
+  @Input() state = LongPressButtonState.Active;
   @Input() icon: string = 'mouse-hold';
 
-  @HostBinding('class.submitted') submitted: boolean = false;
-  @HostBinding('class.active') active: boolean = true;
-  @HostBinding('class.disabled-button') _disabled: boolean = false;
-
-  @Output() longPress: EventEmitter<any> = new EventEmitter<any>();
-
-  lastTimeout: any;
-  pressed: boolean = false;
-  _state: string = 'active';
-
-  getState(): string {
-    if (this.state) {
-      return this.state;
-    }
-    return this._state;
+  @Input()
+  get duration() {
+    return this._duration;
   }
+  set duration(duration: number) {
+    this._duration = coerceNumberProperty(duration);
+  }
+
+  @Input()
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(disabled: boolean) {
+    this._disabled = coerceBooleanProperty(disabled);
+  }
+
+  @Output() longPress: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  readonly LongPressButtonState = LongPressButtonState;
+  pressed: boolean = false;
+
+  private _lastTimeout: any;
+  private _duration: number = 3000;
+  private _disabled: boolean = false;
+
+  constructor(private readonly cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.updateState();
   }
 
   ngOnChanges(): void {
-    this._disabled = this.disabled;
     this.updateState();
   }
 
   updateState() {
-    const currentState = this.getState();
-    if (!currentState) {
-      this._state = 'active';
+    if (!this.state) {
+      this.state = LongPressButtonState.Active;
     }
 
-    this.submitted = false;
-    this.active = false;
+    if (this.state === LongPressButtonState.Submitted) {
+      this.disabled = true;
+      clearTimeout(this._lastTimeout);
 
-    switch (currentState) {
-      case 'submitted':
-        this.submitted = true;
-        break;
-      default:
-        this.active = true;
-        break;
-    }
-
-    if (this.submitted) {
-      this._disabled = true;
-      clearTimeout(this.lastTimeout);
-      this.lastTimeout = setTimeout(() => {
-        this._state = 'active';
-        this._disabled = this.disabled;
+      this._lastTimeout = setTimeout(() => {
+        this.state = LongPressButtonState.Active;
+        this.disabled = false;
         this.updateState();
       }, 3000);
     }
+
+    this.cdr.markForCheck();
   }
 
-  onLongPressStart(event): void {
-    if (!this._disabled) {
+  onLongPressStart(): void {
+    if (!this.disabled) {
       this.pressed = true;
     }
   }
 
-  onLongPressFinish(event): void {
-    if (!this._disabled) {
+  onLongPressFinish(e: boolean): void {
+    if (!this.disabled) {
       this.pressed = false;
-      this.longPress.emit(event);
-      this._state = 'submitted';
+      this.state = LongPressButtonState.Submitted;
+      this.longPress.emit(e);
       this.updateState();
     }
   }
 
-  onLongPressCancel(event): void {
+  onLongPressCancel(): void {
     this.pressed = false;
   }
 }

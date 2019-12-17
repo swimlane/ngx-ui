@@ -2,94 +2,108 @@ import {
   Component,
   Input,
   ContentChild,
-  HostBinding,
   OnDestroy,
   AfterContentInit,
-  HostListener,
-  ElementRef,
   Renderer2,
   ViewEncapsulation,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
 
-/**
- * Dropdown control
- *
- *  <ngx-dropdown>
- *    <ngx-dropdown-toggle>Button</dropdown-toggle>
- *    <ngx-dropdown-menu class="pull-right">
- *      <ul><li><a>...</a></li></ul>
- *    </ngx-dropdown-menu>
- *  </ngx-dropdown>
- *
- */
 @Component({
+  exportAs: 'ngxDropdown',
   selector: 'ngx-dropdown',
-  host: {
-    class: 'ngx-dropdown'
-  },
   template: `
     <ng-content></ng-content>
   `,
+  styleUrls: ['./dropdown.component.scss'],
+  host: {
+    class: 'ngx-dropdown',
+    '[class.open]': 'open',
+    '[class.has-caret]': 'showCaret'
+  },
   encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./dropdown.component.scss']
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent implements AfterContentInit, OnDestroy {
   @Input()
-  @HostBinding('class.open')
-  open: boolean = false;
+  get open() {
+    return this._open;
+  }
+  set open(open: boolean) {
+    this._open = coerceBooleanProperty(open);
+  }
 
   @Input()
-  @HostBinding('class.has-caret')
-  showCaret: boolean = false;
+  get showCaret() {
+    return this._showCaret;
+  }
+  set showCaret(showCaret: boolean) {
+    this._showCaret = coerceBooleanProperty(showCaret);
+  }
 
-  @Input() closeOnClick: boolean = true;
-  @Input() closeOnOutsideClick: boolean = true;
-  @Input() trigger: string = 'click';
+  @Input()
+  get closeOnClick() {
+    return this._closeOnClick;
+  }
+  set closeOnClick(closeOnClick: boolean) {
+    this._closeOnClick = coerceBooleanProperty(closeOnClick);
+  }
 
-  @ContentChild(DropdownToggleDirective) dropdownToggle: DropdownToggleDirective;
+  @Input()
+  get closeOnOutsideClick() {
+    return this._closeOnOutsideClick;
+  }
+  set closeOnOutsideClick(closeOnOutsideClick: boolean) {
+    this._closeOnOutsideClick = coerceBooleanProperty(closeOnOutsideClick);
+  }
 
-  @ContentChild(DropdownMenuDirective) dropdownMenu: DropdownMenuDirective;
+  @ContentChild(DropdownToggleDirective) readonly dropdownToggle: DropdownToggleDirective;
 
-  private documentListener: any;
+  @ContentChild(DropdownMenuDirective) readonly dropdownMenu: DropdownMenuDirective;
 
-  constructor(private renderer: Renderer2, private cd: ChangeDetectorRef) {}
+  private _documentListener?: () => void;
+  private _open: boolean = false;
+  private _showCaret: boolean = false;
+  private _closeOnClick: boolean = true;
+  private _closeOnOutsideClick: boolean = true;
+
+  constructor(private readonly renderer: Renderer2, private readonly cd: ChangeDetectorRef) {}
 
   ngAfterContentInit(): void {
     if (this.dropdownToggle) {
-      this.dropdownToggle.toggle.subscribe(ev => this.onToggleClick(ev));
+      this.dropdownToggle.toggle.subscribe((ev: Event) => this.onToggleClick(ev));
     }
   }
 
   ngOnDestroy(): void {
-    if (this.documentListener) this.documentListener();
+    if (this._documentListener) this._documentListener();
   }
 
-  onDocumentClick({ target }): void {
+  onDocumentClick(e: Event): void {
     if (this.open && this.closeOnOutsideClick) {
-      const isToggling = this.dropdownToggle.element.contains(target);
-      const isMenuClick = !this.closeOnClick && this.dropdownMenu.element.contains(target);
+      const isToggling = this.dropdownToggle.element.contains(e.target as Node);
+      const isMenuClick = !this.closeOnClick && this.dropdownMenu.element.contains(e.target as Node);
 
       if (!isToggling && !isMenuClick) {
         this.open = false;
-        if (this.documentListener) this.documentListener();
+        if (this._documentListener) this._documentListener();
         this.cd.markForCheck();
       }
     }
   }
 
-  onToggleClick(ev): void {
-    if (!this.dropdownToggle.disabled) {
-      this.open = !this.open;
+  onToggleClick(_: Event): void {
+    this.open = !this.open;
 
-      if (this.open) {
-        this.documentListener = this.renderer.listen(document, 'click', $event => this.onDocumentClick($event));
-      } else if (this.documentListener) {
-        this.documentListener();
-      }
+    if (this.open) {
+      this._documentListener = this.renderer.listen(document, 'click', this.onDocumentClick.bind(this));
+    } else {
+      this._documentListener();
     }
   }
 }

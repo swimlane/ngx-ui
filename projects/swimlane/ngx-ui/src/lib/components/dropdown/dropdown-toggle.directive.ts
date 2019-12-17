@@ -1,28 +1,38 @@
-import { Directive, Input, ElementRef, HostListener, EventEmitter, Output, HostBinding } from '@angular/core';
+import { Directive, Input, ElementRef, HostListener, EventEmitter, Output } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
+  exportAs: 'ngxDropdownToggle',
   selector: 'ngx-dropdown-toggle',
   host: {
-    class: 'ngx-dropdown-toggle'
+    class: 'ngx-dropdown-toggle',
+    '[class.disabled]': 'disabled'
   }
 })
 export class DropdownToggleDirective {
-  @HostBinding('class.disabled')
   @Input()
-  disabled = false;
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(disabled: boolean) {
+    this._disabled = coerceBooleanProperty(disabled);
+  }
 
-  @Output() toggle = new EventEmitter();
+  @Output() toggle = new EventEmitter<Event>();
 
-  element: any;
+  readonly element: HTMLElement;
+  private _disabled = false;
 
-  constructor(element: ElementRef) {
-    this.element = element.nativeElement;
+  constructor(private readonly el: ElementRef<HTMLElement>) {
+    this.element = this.el.nativeElement;
   }
 
   @HostListener('click', ['$event'])
-  onClick(event) {
-    event.preventDefault();
-    this.toggle.emit(event);
+  onClick(event: Event) {
+    if (!this.disabled) {
+      event.preventDefault();
+      this.toggle.emit(event);
+    }
   }
 }

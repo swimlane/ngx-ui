@@ -134,8 +134,10 @@ export class AlertComponent extends DialogComponent {
   }
 
   onKeydown(): void {
-    this.ok.emit({ data: this.data });
-    this.hide();
+    if (!this.longPress) {
+      this.ok.emit({ data: this.data });
+      this.hide();
+    }
   }
 }
 /* tslint:enable */

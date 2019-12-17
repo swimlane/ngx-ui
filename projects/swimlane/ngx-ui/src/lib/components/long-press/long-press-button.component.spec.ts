@@ -1,70 +1,108 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+
 import { LongPressButtonComponent } from './long-press-button.component';
+import { LongPressButtonState } from './long-press-button-state.enum';
+
 describe('LongPressButtonComponent', () => {
   let component: LongPressButtonComponent;
   let fixture: ComponentFixture<LongPressButtonComponent>;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
+      imports: [BrowserAnimationsModule],
       declarations: [LongPressButtonComponent]
     });
+  });
+
+  beforeEach(() => {
     fixture = TestBed.createComponent(LongPressButtonComponent);
     component = fixture.componentInstance;
+    component.duration = 0;
+    fixture.detectChanges();
   });
-  it('can load instance', () => {
+
+  it('should be defined', () => {
     expect(component).toBeTruthy();
   });
-  it('disabled defaults to: false', () => {
-    expect(component.disabled).toEqual(false);
+
+  it('should call updateState on change', () => {
+    const spy = spyOn(component, 'updateState');
+    component.ngOnChanges();
+    expect(spy).toHaveBeenCalled();
   });
-  it('duration defaults to: 3000', () => {
-    expect(component.duration).toEqual(3000);
-  });
-  it('icon defaults to: mouse-hold', () => {
-    expect(component.icon).toEqual('mouse-hold');
-  });
-  it('submitted defaults to: false', () => {
-    expect(component.submitted).toEqual(false);
-  });
-  it('active defaults to: true', () => {
-    expect(component.active).toEqual(true);
-  });
-  it('_disabled defaults to: false', () => {
-    expect(component._disabled).toEqual(false);
-  });
-  it('pressed defaults to: false', () => {
-    expect(component.pressed).toEqual(false);
-  });
-  it('_state defaults to: active', () => {
-    expect(component._state).toEqual('active');
-  });
-  describe('ngOnInit', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'updateState');
-      component.ngOnInit();
-      expect(component.updateState).toHaveBeenCalled();
-    });
-  });
-  describe('ngOnChanges', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'updateState');
-      component.ngOnChanges();
-      expect(component.updateState).toHaveBeenCalled();
-    });
-  });
+
   describe('updateState', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'getState');
+    it('should update state when state undefined', () => {
+      component.state = undefined;
       component.updateState();
-      expect(component.getState).toHaveBeenCalled();
+      expect(component.state).toBe(LongPressButtonState.Active);
+    });
+
+    it('should update state when state is submitted', done => {
+      component.state = LongPressButtonState.Submitted;
+      component.updateState();
+      expect(component.disabled).toBe(true);
+
+      setTimeout(() => {
+        expect(component.state).toBe(LongPressButtonState.Active);
+        expect(component.disabled).toBe(false);
+        done();
+      }, 3000);
     });
   });
+
+  describe('onLongPressStart', () => {
+    afterEach(() => {
+      component.pressed = false;
+    });
+
+    it('should be pressed', () => {
+      component.onLongPressStart();
+      expect(component.pressed).toBe(true);
+    });
+
+    it('should not press if disabled', () => {
+      component.disabled = true;
+      component.onLongPressStart();
+      expect(component.pressed).toBe(false);
+    });
+  });
+
   describe('onLongPressFinish', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'updateState');
-      component.onLongPressFinish({});
-      expect(component.updateState).toHaveBeenCalled();
+    beforeEach(() => {
+      component.pressed = true;
+      component.state = LongPressButtonState.Active;
+    });
+
+    it('should stop pressing and submit', () => {
+      const spy = spyOn(component.longPress, 'emit');
+      component.onLongPressFinish(true);
+      expect(component.pressed).toBe(false);
+      expect(component.state).toBe(LongPressButtonState.Submitted);
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('should not stop pressing or submit if disabled', () => {
+      component.disabled = true;
+      const spy = spyOn(component.longPress, 'emit');
+      component.onLongPressFinish(true);
+      expect(component.pressed).toBe(true);
+      expect(component.state).toBe(LongPressButtonState.Active);
+      expect(spy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('onLongPressCancel', () => {
+    beforeEach(() => {
+      component.pressed = true;
+    });
+
+    it('should cancel press', () => {
+      component.onLongPressCancel();
+      expect(component.pressed).toBe(false);
     });
   });
 });

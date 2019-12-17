@@ -1,14 +1,15 @@
 import {
   Component,
   EventEmitter,
-  HostBinding,
   Input,
-  Optional,
   Output,
   ViewEncapsulation,
-  forwardRef
+  forwardRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 const RADIO_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -19,82 +20,78 @@ const RADIO_VALUE_ACCESSOR = {
 let nextId = 0;
 
 @Component({
+  exportAs: 'ngxRadiobutton',
   selector: 'ngx-radiobutton',
-  providers: [RADIO_VALUE_ACCESSOR],
-  template: `
-    <label class="radio-label">
-      <input
-        type="radio"
-        class="radio-input"
-        [id]="id"
-        [checked]="checked"
-        [disabled]="disabled"
-        [name]="name"
-        [tabIndex]="tabindex"
-        (focus)="focus.emit($event)"
-        (blur)="blur.emit($event)"
-        (change)="_onInputChange($event)"
-      />
-      <span class="checkmark"></span>
-      <ng-content></ng-content>
-    </label>
-  `,
-  encapsulation: ViewEncapsulation.None,
+  templateUrl: './radiobutton.component.html',
   styleUrls: ['./radiobutton.component.scss'],
   host: {
-    class: 'ngx-radiobutton'
-  }
+    class: 'ngx-radiobutton',
+    '[class.disabled]': 'disabled'
+  },
+  providers: [RADIO_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioButtonComponent implements ControlValueAccessor {
-  _uniqueId: string = `ngx-radio-${++nextId}`;
+  readonly UNIQUE_ID = `ngx-radio-${++nextId}`;
 
-  @Input() id: string = this._uniqueId;
-  @Input() name: string = this._uniqueId;
-  @Input() tabindex: number = 0;
-
-  @Output() change = new EventEmitter();
-  @Output() blur = new EventEmitter();
-  @Output() focus = new EventEmitter();
+  @Input() id: string = this.UNIQUE_ID;
+  @Input() name: string = this.UNIQUE_ID;
 
   @Input()
-  get checked(): boolean {
+  get tabindex() {
+    return this._tabindex;
+  }
+  set tabindex(tabindex: number) {
+    this._tabindex = coerceNumberProperty(tabindex);
+  }
+
+  @Input()
+  get checked() {
     return this._checked;
   }
+  set checked(checked: boolean) {
+    checked = coerceBooleanProperty(checked);
 
-  set checked(value: boolean) {
-    value = !!value;
-    if (this._checked !== value) {
-      this._checked = value;
+    if (this._checked !== checked) {
+      this._checked = checked;
       this.onChangeCallback(this._value);
     }
+
+    this.cdr.markForCheck();
   }
 
   @Input()
-  get value(): boolean {
+  get value() {
     return this._value;
   }
-
-  set value(value) {
-    if (this.value !== value) {
+  set value(value: boolean) {
+    if (this._value !== value) {
       this._value = value;
       this.onChangeCallback(this._value);
     }
   }
 
   @Input()
-  @HostBinding('class.disabled')
-  get disabled(): boolean {
+  get disabled() {
     return this._disabled || this.groupDisabled;
   }
-  set disabled(value: boolean) {
-    this._disabled = !!value;
+  set disabled(disabled: boolean) {
+    this._disabled = coerceBooleanProperty(disabled);
   }
+
+  @Output() change = new EventEmitter<boolean>();
+  @Output() blur = new EventEmitter<Event>();
+  @Output() focus = new EventEmitter<FocusEvent>();
 
   public groupDisabled: boolean = false;
 
   private _checked: boolean = false;
   private _value: boolean = false;
   private _disabled: boolean = false;
+  private _tabindex: number = 0;
+
+  constructor(private readonly cdr: ChangeDetectorRef) {}
 
   _onInputChange(event: Event) {
     event.stopPropagation();
@@ -105,6 +102,11 @@ export class RadioButtonComponent implements ControlValueAccessor {
     this.value = value;
   }
 
+  onFocus(e: FocusEvent) {
+    this.focus.emit(e);
+    this.onTouchedCallback();
+  }
+
   registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
@@ -113,13 +115,13 @@ export class RadioButtonComponent implements ControlValueAccessor {
     this.onTouchedCallback = fn;
   }
 
-  private onChangeCallback = (value: boolean) => {
+  private onChangeCallback(value: boolean) {
     if (this.checked) {
       this.change.emit(value);
     }
-  };
+  }
 
-  private onTouchedCallback = () => {
+  private onTouchedCallback() {
     // placeholder
-  };
+  }
 }

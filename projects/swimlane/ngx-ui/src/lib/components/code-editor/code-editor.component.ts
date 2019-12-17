@@ -12,7 +12,8 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { coerceBoolean } from '../../utils/coerce-boolean/coerce-boolean';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+
 import CodeMirror from 'codemirror';
 
 // code extensions
@@ -85,7 +86,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
     return this._autofocus;
   }
   set autofocus(autofocus: boolean) {
-    this._autofocus = coerceBoolean(autofocus);
+    this._autofocus = coerceBooleanProperty(autofocus);
   }
 
   @Input()
@@ -93,7 +94,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
     return this._lineNumbers;
   }
   set lineNumbers(lineNumbers: boolean) {
-    this._lineNumbers = coerceBoolean(lineNumbers);
+    this._lineNumbers = coerceBooleanProperty(lineNumbers);
   }
 
   @Output() change: EventEmitter<any> = new EventEmitter();

@@ -248,7 +248,7 @@ describe('CalendarComponent', () => {
         it('should set value to next month', () => {
           const month = component.activeDate.get('month');
           component.nextMonth();
-          expect(component.activeDate.get('month')).toBe(month + 1);
+          expect(component.activeDate.get('month')).toBe(month < 11 ? month + 1 : 0);
           expect(component.weeks.length).toBeGreaterThan(0);
         });
       });

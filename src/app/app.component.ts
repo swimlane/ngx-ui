@@ -1,8 +1,7 @@
-import { Component, ViewContainerRef, ViewEncapsulation } from '@angular/core';
-
-import { version } from '../../projects/swimlane/ngx-ui/package.json';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
-import { DrawerService, InjectionService, LoadingService } from '@swimlane/ngx-ui';
+import { DrawerService, LoadingService } from '@swimlane/ngx-ui';
+import { version } from '../../projects/swimlane/ngx-ui/package.json';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -203,23 +202,14 @@ export class AppComponent {
 
   navExpanded: boolean = true;
 
-  constructor(
-    public viewContainerRef: ViewContainerRef,
-    public drawerMngr: DrawerService,
-    public injectionService: InjectionService,
-    public loadingService: LoadingService,
-    public router: Router
-  ) {
-    // uncomment for testing
-    // this.injectionService.setRootViewContainer(this.viewContainerRef);
-
+  constructor(private drawerMngr: DrawerService, private loadingService: LoadingService, private router: Router) {
     // Adding loading component in router
-    router.events.subscribe((event: Event) => {
+    this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
-        loadingService.start();
+        this.loadingService.start();
       } else if (event instanceof NavigationEnd) {
-        loadingService.complete();
-        drawerMngr.destroyAll();
+        this.loadingService.complete();
+        this.drawerMngr.destroyAll();
       }
     });
 

@@ -1,113 +1,99 @@
-import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, TemplateRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  AfterViewInit,
+  TemplateRef,
+  ElementRef,
+  ChangeDetectionStrategy
+} from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+
 import { KeyboardKeys } from '../../utils/keys';
+import { SelectDropdownOption } from './select-dropdown-option.interface';
 
 @Component({
+  exportAs: 'ngxSelectInput',
   selector: 'ngx-select-input',
-  template: `
-    <div tabindex="-1" (keydown)="onKeyDown($event)" class="ngx-select-input-box" (click)="onClick($event)">
-      <span *ngIf="label !== undefined" class="ngx-select-label">
-        <span [innerHTML]="label"></span>
-        <span [innerHTML]="requiredIndicator"></span>
-      </span>
-      <span
-        *ngIf="!selected?.length && placeholder !== undefined"
-        class="ngx-select-placeholder"
-        [innerHTML]="placeholder"
-      >
-      </span>
-      <ul class="horizontal-list ngx-select-input-list">
-        <li *ngFor="let option of selectedOptions" class="ngx-select-input-option" [class.disabled]="option.disabled">
-          <ng-template
-            *ngIf="option.inputTemplate"
-            [ngTemplateOutlet]="option.inputTemplate"
-            [ngTemplateOutletContext]="{ option: option }"
-          >
-          </ng-template>
-          <span *ngIf="!option.inputTemplate" class="ngx-select-input-name" [innerHTML]="option.name || option.value">
-          </span>
-          <span
-            *ngIf="allowClear && (multiple || tagging) && !option.disabled"
-            title="Remove Selection"
-            class="ngx-select-clear icon-x"
-            (click)="onOptionRemove($event, option)"
-          >
-          </span>
-        </li>
-        <li *ngIf="tagging" class="ngx-select-input-box-wrapper">
-          <input
-            #tagInput
-            type="search"
-            class="ng-select-text-box"
-            tabindex=""
-            autocomplete="off"
-            autocorrect="off"
-            spellcheck="off"
-            (keyup)="onKeyUp($event)"
-          />
-        </li>
-      </ul>
-    </div>
-    <div class="ngx-select-input-underline">
-      <div class="underline-fill"></div>
-    </div>
-    <div class="ngx-select-hint">
-      <span *ngIf="hint !== undefined" [innerHTML]="hint"></span>
-      <ng-content select="ngx-input-hint"></ng-content>
-    </div>
-    <span
-      *ngIf="allowClear && !multiple && !tagging && selectedOptions?.length"
-      title="Clear Selections"
-      class="ngx-select-clear icon-x"
-      (click)="selection.emit([])"
-    >
-    </span>
-    <span
-      *ngIf="caretVisible"
-      class="ngx-select-caret icon-arrow-down"
-      [class.icon-arrow-down]="!selectCaret"
-      (click)="toggle.emit()"
-    >
-      <span *ngIf="isNotTemplate(selectCaret); else tpl" [innerHTML]="selectCaret"> </span>
-      <ng-template #tpl>
-        <ng-container *ngTemplateOutlet="selectCaret"></ng-container>
-      </ng-template>
-    </span>
-  `,
-  host: {
-    class: 'ngx-select-input'
-  }
+  templateUrl: './select-input.component.html',
+  host: { class: 'ngx-select-input' },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectInputComponent implements AfterViewInit {
   @Input() placeholder: string;
-  @Input() autofocus: boolean;
-  @Input() allowClear: boolean;
-  @Input() multiple: boolean;
-  @Input() tagging: boolean;
   @Input() identifier: string;
-  @Input() options: any[];
+  @Input() options: SelectDropdownOption[];
   @Input() label: string;
   @Input() hint: string;
-  @Input() allowAdditions: boolean;
-  @Input() disableDropdown: boolean;
-  @Input() selectCaret: string;
+  @Input() selectCaret: string | TemplateRef<any>;
   @Input() requiredIndicator: string | boolean;
 
   @Input()
+  get autofocus() {
+    return this._autofocus;
+  }
+  set autofocus(autofocus) {
+    this._autofocus = coerceBooleanProperty(autofocus);
+  }
+
+  @Input()
+  get allowClear() {
+    return this._allowClear;
+  }
+  set allowClear(allowClear) {
+    this._allowClear = coerceBooleanProperty(allowClear);
+  }
+
+  @Input()
+  get multiple() {
+    return this._multiple;
+  }
+  set multiple(multiple) {
+    this._multiple = coerceBooleanProperty(multiple);
+  }
+
+  @Input()
+  get tagging() {
+    return this._tagging;
+  }
+  set tagging(tagging) {
+    this._tagging = coerceBooleanProperty(tagging);
+  }
+
+  @Input()
+  get allowAdditions() {
+    return this._allowAdditions;
+  }
+  set allowAdditions(allowAdditions) {
+    this._allowAdditions = coerceBooleanProperty(allowAdditions);
+  }
+
+  @Input()
+  get disableDropdown() {
+    return this._disableDropdown;
+  }
+  set disableDropdown(disableDropdown) {
+    this._disableDropdown = coerceBooleanProperty(disableDropdown);
+  }
+
+  @Input()
+  get selected() {
+    return this._selected;
+  }
   set selected(val: any[]) {
     this._selected = val;
     this.selectedOptions = this.calcSelectedOptions(val);
   }
 
-  get selected(): any[] {
-    return this._selected;
-  }
+  @Output() toggle = new EventEmitter<void>();
+  @Output() selection = new EventEmitter<any[]>();
+  @Output() activate = new EventEmitter<Event>();
+  @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
 
-  @Output() toggle: EventEmitter<any> = new EventEmitter();
-  @Output() selection: EventEmitter<any> = new EventEmitter();
-  @Output() activate: EventEmitter<any> = new EventEmitter();
-  @Output() keyup: EventEmitter<any> = new EventEmitter();
-
-  @ViewChild('tagInput') inputElement: any;
+  @ViewChild('tagInput')
+  readonly inputElement?: ElementRef<HTMLInputElement>;
 
   get caretVisible(): boolean {
     if (this.disableDropdown) return false;
@@ -115,12 +101,19 @@ export class SelectInputComponent implements AfterViewInit {
     return true;
   }
 
-  selectedOptions: any[] = [];
-  _selected: any[];
-
-  isNotTemplate(val) {
-    return !(typeof val === 'object' && val instanceof TemplateRef);
+  get isNotTemplate() {
+    return !(typeof this.selectCaret === 'object' && this.selectCaret instanceof TemplateRef);
   }
+
+  selectedOptions: SelectDropdownOption[] = [];
+
+  private _selected: any[];
+  private _autofocus: boolean;
+  private _allowClear: boolean;
+  private _multiple: boolean;
+  private _tagging: boolean;
+  private _allowAdditions: boolean;
+  private _disableDropdown: boolean;
 
   ngAfterViewInit(): void {
     if (this.tagging && this.autofocus) {
@@ -130,13 +123,13 @@ export class SelectInputComponent implements AfterViewInit {
     }
   }
 
-  onKeyUp(event): void {
+  onKeyUp(event: KeyboardEvent): void {
     event.stopPropagation();
 
     const key = event.key;
-    const value = event.target.value;
+    const value = (event.target as any).value;
 
-    if (key === KeyboardKeys.ENTER) {
+    if (key === (KeyboardKeys.ENTER as any)) {
       if (value !== '') {
         const hasSelection = this.selected.find(selection => {
           return value === selection;
@@ -145,18 +138,19 @@ export class SelectInputComponent implements AfterViewInit {
         if (!hasSelection) {
           const newSelections = [...this.selected, value];
           this.selection.emit(newSelections);
-          event.target.value = '';
+          (event.target as any).value = '';
         }
       }
+
       event.preventDefault();
-    } else if (key === KeyboardKeys.ESCAPE) {
+    } else if (key === (KeyboardKeys.ESCAPE as any)) {
       this.toggle.emit();
     }
 
     this.keyup.emit({ event, value });
   }
 
-  onKeyDown(event): void {
+  onKeyDown(event: KeyboardEvent): void {
     if (this.disableDropdown) return;
     event.stopPropagation();
 
@@ -165,7 +159,7 @@ export class SelectInputComponent implements AfterViewInit {
     }
   }
 
-  onClick(event): void {
+  onClick(event: Event): void {
     if (this.disableDropdown) return;
     this.activate.emit(event);
 
@@ -176,31 +170,35 @@ export class SelectInputComponent implements AfterViewInit {
     }
   }
 
-  onOptionRemove(event, option): void {
+  onOptionRemove(event: Event, option: SelectDropdownOption): void {
     event.stopPropagation();
 
     const newSelections = this.selected.filter(selection => {
       if (this.identifier !== undefined) {
         return option.value[this.identifier] !== selection[this.identifier];
       }
+
       return option.value !== selection;
     });
 
     this.selection.emit(newSelections);
   }
 
-  calcSelectedOptions(selected: any[]): any[] {
-    const results = [];
+  private calcSelectedOptions(selected: any[]) {
+    const results: SelectDropdownOption[] = [];
 
     // result out if nothing here
     if (!selected) return results;
 
     for (const selection of selected) {
-      let match;
+      let match: SelectDropdownOption;
 
       if (this.options) {
         match = this.options.find(option => {
-          if (this.identifier) return selection[this.identifier] === option.value[this.identifier];
+          if (this.identifier) {
+            return selection[this.identifier] === option.value[this.identifier];
+          }
+
           return selection === option.value;
         });
       }

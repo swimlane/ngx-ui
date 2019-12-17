@@ -4,16 +4,19 @@ import {
   EventEmitter,
   Output,
   forwardRef,
-  HostBinding,
   ViewEncapsulation,
   ContentChildren,
   QueryList,
   OnDestroy,
-  AfterContentInit
+  AfterContentInit,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 import { RadioButtonComponent } from './radiobutton.component';
-import { Subscription } from 'rxjs';
 
 const RADIOGROUP_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -24,40 +27,37 @@ const RADIOGROUP_VALUE_ACCESSOR = {
 let nextId = 0;
 
 @Component({
+  exportAs: 'ngxRadiobuttonGroup',
   selector: 'ngx-radiobutton-group',
   providers: [RADIOGROUP_VALUE_ACCESSOR],
   template: `
     <ng-content></ng-content>
   `,
-  encapsulation: ViewEncapsulation.None,
   styleUrls: ['./radiobutton.component.scss'],
   host: {
-    class: 'ngx-radiobutton-group'
-  }
+    class: 'ngx-radiobutton-group',
+    '[class.disabled]': 'disabled'
+  },
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestroy, AfterContentInit {
-  _uniqueId: string = `ngx-radio-group-${++nextId}`;
+  readonly UNIQUE_ID = `ngx-radio-group-${++nextId}`;
 
-  @Input() id: string = this._uniqueId;
+  @Input() id: string = this.UNIQUE_ID;
 
-  @Input() tabindex: number = 0;
-
-  @HostBinding('class.disabled')
   @Input()
-  disabled: boolean = false;
-
-  @Output() change = new EventEmitter();
-  @Output() blur = new EventEmitter();
-  @Output() focus = new EventEmitter();
-
-  @ContentChildren(forwardRef(() => RadioButtonComponent), { descendants: true })
-  _radios: QueryList<RadioButtonComponent>;
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(disabled: boolean) {
+    this._disabled = coerceBooleanProperty(disabled);
+  }
 
   @Input()
   get value(): any {
     return this._value;
   }
-
   set value(value) {
     if (this._value !== value) {
       this._value = value;
@@ -68,37 +68,45 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   }
 
   @Input()
-  get name(): string {
+  get name() {
     return this._name;
   }
-  set name(value: string) {
-    if (this._name !== value) {
+  set name(name: string) {
+    if (this._name !== name) {
+      this._name = name;
       this._updateRadioButtonNames();
     }
   }
+
+  @Output() change = new EventEmitter<boolean>();
+  @Output() blur = new EventEmitter<Event>();
+  @Output() focus = new EventEmitter<FocusEvent>();
+
+  @ContentChildren(forwardRef(() => RadioButtonComponent), { descendants: true })
+  readonly _radios: QueryList<RadioButtonComponent>;
 
   get selected(): RadioButtonComponent {
     return this._selected;
   }
 
-  private _name: string = this._uniqueId;
+  private _name: string = this.UNIQUE_ID;
   private _value: boolean = false;
   private _selected: RadioButtonComponent;
-
-  private subscriptions: Subscription[] = [];
+  private _disabled: boolean = false;
+  private _destroy = new Subject<void>();
 
   ngAfterContentInit() {
     this.subscribeToRadios();
 
+    /* istanbul ignore else */
     if (this._radios) {
-      this._radios.changes.subscribe(change => {
-        this.subscribeToRadios();
-      });
+      this._radios.changes.subscribe(this.subscribeToRadios.bind(this));
     }
   }
 
   ngOnDestroy() {
-    this.deleteSubscriptions();
+    this._destroy.next();
+    this._destroy.complete();
   }
 
   ngOnChanges() {
@@ -106,19 +114,14 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   }
 
   subscribeToRadios(): void {
-    this.deleteSubscriptions();
+    this._destroy.next();
+
+    /* istanbul ignore else */
     if (this._radios) {
       this._radios.map(radio => {
-        radio.change.subscribe(this.onRadioSelected.bind(this));
+        radio.change.pipe(takeUntil(this._destroy)).subscribe(this.onRadioSelected.bind(this));
       });
     }
-  }
-
-  deleteSubscriptions(): void {
-    for (const sub of this.subscriptions) {
-      sub.unsubscribe();
-    }
-    this.subscriptions = [];
   }
 
   onRadioSelected(value: string) {
@@ -141,13 +144,14 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
     this.onTouchedCallback = fn;
   }
 
-  private onChangeCallback = (_: any) => {
+  private onChangeCallback(_: any) {
     // placeholder
-  };
+  }
 
-  private onTouchedCallback = () => {
+  /* istanbul ignore next */
+  private onTouchedCallback() {
     // placeholder
-  };
+  }
 
   private _updateRadioButtonNames(): void {
     if (this._radios) {
@@ -158,9 +162,11 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   }
 
   private _updateSelectedRadioFromValue(): void {
+    /* istanbul ignore else */
     if (this._radios) {
       this._radios.forEach(radio => {
         radio.checked = this.value === radio.value;
+
         if (radio.checked) {
           this._selected = radio;
         }
@@ -169,6 +175,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   }
 
   private _updateRadioDisabledState(): void {
+    /* istanbul ignore else */
     if (this._radios) {
       this._radios.forEach(radio => {
         radio.groupDisabled = this.disabled;
