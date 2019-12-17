@@ -6,24 +6,23 @@ import {
   HostBinding,
   HostListener,
   ViewEncapsulation,
-  OnDestroy
+  OnDestroy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { trigger } from '@angular/animations';
+
 import { drawerTransition } from '../../animations/animations';
 
 @Component({
   selector: 'ngx-drawer',
-  template: `
-    <div class="ngx-drawer-content">
-      <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ context: context, close: close }">
-      </ng-template>
-    </div>
-  `,
+  exportAs: 'ngxDrawer',
+  templateUrl: 'drawer.component.html',
   host: {
     role: 'dialog',
     tabindex: '-1'
   },
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./drawer.component.scss'],
   animations: [trigger('drawerTransition', drawerTransition)]
 })
@@ -162,7 +161,6 @@ export class DrawerComponent implements OnDestroy {
    * @readonly
    * @memberOf DrawerComponent
    */
-  // @HostBinding('class.bottom-drawer')
   get isBottom(): boolean {
     return this.direction === 'bottom';
   }
