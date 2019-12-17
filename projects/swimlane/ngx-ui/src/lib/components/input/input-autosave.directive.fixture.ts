@@ -5,10 +5,7 @@ import { AutosizeDirective } from './input-autosize.directive';
 @Component({
   selector: `ngx-input-autosize-fixture`,
   template: `
-    <textarea
-      [(ngModel)]="value"
-      autosize
-    ></textarea>
+    <textarea [(ngModel)]="value" autosize></textarea>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

@@ -2,8 +2,23 @@
 
 ## HEAD (Unreleased)
 
+## 28.0.0-rc.3 (2019-12-02)
+
+- Fix: Extract template into separate file
+
+## 28.0.0-rc.2 (2019-12-02)
+
+- Fix: Properly import coerce-boolean
+
+## 28.0.0-rc.1 (2019-11-29)
+
+- Breaking: Update angular to 9.0.0-rc.4
+- Breaking: Change Input component to ChangeDetectionStrategy.OnPush (#317)
+- Breaking: Change Checkbox component to ChangeDetectionStrategy.OnPush (#308)
+- Breaking: Change Code editor component to ChangeDetectionStrategy.OnPush (#316)
 - Feature: Add token hints to `ngx-codemirror`
-- Enhancement: Add support for templates in tab headers (#302)
+- Feature: Add ability to define custom template for tab header (#303)
+- Bug: Fix bugg for look that failed to manipulate array properly (#313)
 
 ## 27.1.0 (2019-10-28)
 

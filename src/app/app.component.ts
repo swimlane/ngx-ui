@@ -202,11 +202,7 @@ export class AppComponent {
 
   navExpanded: boolean = true;
 
-  constructor(
-    private drawerMngr: DrawerService,
-    private loadingService: LoadingService,
-    private router: Router
-  ) {
+  constructor(private drawerMngr: DrawerService, private loadingService: LoadingService, private router: Router) {
     // Adding loading component in router
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {

@@ -52,7 +52,7 @@ describe('SelectInputComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should focus input', (done) => {
+    it('should focus input', done => {
       const spy = spyOn(component.inputElement.nativeElement, 'focus');
       component.ngAfterViewInit();
 
@@ -126,7 +126,7 @@ describe('SelectInputComponent', () => {
 
     beforeEach(() => {
       event = {
-        stopPropagation: () => undefined,
+        stopPropagation: () => undefined
       };
     });
 
@@ -153,7 +153,7 @@ describe('SelectInputComponent', () => {
   });
 
   describe('onClick', () => {
-    const event: any = { };
+    const event: any = {};
 
     beforeEach(() => {
       fixture = TestBed.createComponent(SelectInputComponent);
@@ -176,7 +176,7 @@ describe('SelectInputComponent', () => {
       expect(spy).not.toHaveBeenCalled();
     });
 
-    it('should focus input if tagging', (done) => {
+    it('should focus input if tagging', done => {
       const spy = spyOn(component.inputElement.nativeElement, 'focus');
       component.onClick(event);
 
@@ -186,7 +186,7 @@ describe('SelectInputComponent', () => {
       }, 5);
     });
 
-    it('should emit activate but not focus is !tagging', (done) => {
+    it('should emit activate but not focus is !tagging', done => {
       const spy = spyOn(component.inputElement.nativeElement, 'focus');
       component.tagging = false;
       component.onClick(event);
@@ -203,7 +203,7 @@ describe('SelectInputComponent', () => {
 
     beforeEach(() => {
       event = {
-        stopPropagation: () => undefined,
+        stopPropagation: () => undefined
       };
     });
 
@@ -217,16 +217,9 @@ describe('SelectInputComponent', () => {
     it('should remove value from selection with identifier', () => {
       const spy = spyOn(component.selection, 'emit');
       component.identifier = 'value';
-      component.selected = [
-        { value: 'test' },
-        { value: 'test1' },
-        { value: 'test2' }
-      ];
+      component.selected = [{ value: 'test' }, { value: 'test1' }, { value: 'test2' }];
       component.onOptionRemove(event, { name: 'test', value: { value: 'test' } });
-      expect(spy).toHaveBeenCalledWith([
-        { value: 'test1' },
-        { value: 'test2' }
-      ]);
+      expect(spy).toHaveBeenCalledWith([{ value: 'test1' }, { value: 'test2' }]);
     });
   });
 
@@ -234,11 +227,7 @@ describe('SelectInputComponent', () => {
     beforeEach(() => {
       component.disableDropdown = false;
       component.tagging = false;
-      component.options = [
-        selectDropdownOptionMock(),
-        selectDropdownOptionMock(),
-        selectDropdownOptionMock()
-      ];
+      component.options = [selectDropdownOptionMock(), selectDropdownOptionMock(), selectDropdownOptionMock()];
     });
 
     it('should be false when disableDropdown', () => {
@@ -269,7 +258,7 @@ describe('SelectInputComponent', () => {
     });
 
     it('should be true if object', () => {
-      component.selectCaret = { } as any;
+      component.selectCaret = {} as any;
       expect(component.isNotTemplate).toBeTruthy();
     });
   });
@@ -277,11 +266,7 @@ describe('SelectInputComponent', () => {
   describe('selected', () => {
     beforeEach(() => {
       component.tagging = false;
-      component.options = [
-        selectDropdownOptionMock(),
-        selectDropdownOptionMock(),
-        selectDropdownOptionMock()
-      ];
+      component.options = [selectDropdownOptionMock(), selectDropdownOptionMock(), selectDropdownOptionMock()];
     });
 
     it('should return empty when no selected values', () => {
@@ -302,9 +287,7 @@ describe('SelectInputComponent', () => {
         selectDropdownOptionMock({ value: { value: 'test2' } })
       ];
 
-      component.selected = [
-        { value: 'test' }
-      ];
+      component.selected = [{ value: 'test' }];
 
       expect(component.selectedOptions.length).toBe(1);
     });

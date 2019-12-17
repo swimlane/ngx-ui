@@ -22,11 +22,7 @@ describe('SelectDropdownComponent', () => {
     fixture = TestBed.createComponent(SelectDropdownComponent);
     component = fixture.componentInstance;
 
-    component.options = [
-      selectDropdownOptionMock(),
-      selectDropdownOptionMock(),
-      selectDropdownOptionMock()
-    ];
+    component.options = [selectDropdownOptionMock(), selectDropdownOptionMock(), selectDropdownOptionMock()];
 
     component.tagging = false;
     component.allowAdditions = false;
@@ -56,7 +52,7 @@ describe('SelectDropdownComponent', () => {
     });
 
     it('should not be template if object', () => {
-      component.allowAdditionsText = { } as any;
+      component.allowAdditionsText = {} as any;
       expect(component.isNotTemplate).toBeTruthy();
     });
   });
@@ -66,11 +62,7 @@ describe('SelectDropdownComponent', () => {
       fixture = TestBed.createComponent(SelectDropdownComponent);
       component = fixture.componentInstance;
 
-      component.options = [
-        selectDropdownOptionMock(),
-        selectDropdownOptionMock(),
-        selectDropdownOptionMock()
-      ];
+      component.options = [selectDropdownOptionMock(), selectDropdownOptionMock(), selectDropdownOptionMock()];
 
       component.tagging = false;
       component.allowAdditions = false;
@@ -81,7 +73,7 @@ describe('SelectDropdownComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should focus filter input', (done) => {
+    it('should focus filter input', done => {
       const spy = spyOn(component.filterInput.nativeElement, 'focus');
       component.ngAfterViewInit();
       setTimeout(() => {

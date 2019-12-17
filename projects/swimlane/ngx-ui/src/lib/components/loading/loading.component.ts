@@ -12,14 +12,18 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 })
 export class LoadingComponent {
   @Input()
-  get visible() { return this._visible; }
+  get visible() {
+    return this._visible;
+  }
   set visible(visible: boolean) {
     this._visible = coerceBooleanProperty(visible);
     this.cdr.markForCheck();
   }
 
   @Input()
-  get progress() { return this._progress; }
+  get progress() {
+    return this._progress;
+  }
   set progress(progress: number) {
     this._progress = coerceNumberProperty(progress);
     this.cdr.markForCheck();
@@ -28,5 +32,5 @@ export class LoadingComponent {
   private _visible: boolean = false;
   private _progress: number = 0;
 
-  constructor(private cdr: ChangeDetectorRef) { }
+  constructor(private cdr: ChangeDetectorRef) {}
 }

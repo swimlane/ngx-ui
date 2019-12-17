@@ -55,7 +55,7 @@ describe('RadioButtonGroupComponent', () => {
   });
 
   describe('onRadioSelected', () => {
-    it('should select radio button', (done) => {
+    it('should select radio button', done => {
       component.radioButtonGroup.onRadioSelected('one');
 
       setTimeout(() => {

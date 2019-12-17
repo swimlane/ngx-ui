@@ -35,13 +35,17 @@ export class FileButtonComponent implements OnInit {
   @Input() options: FileUploaderOptions;
 
   @Input()
-  get disabled() { return this._disabled; }
+  get disabled() {
+    return this._disabled;
+  }
   set disabled(disabled) {
     this._disabled = coerceBooleanProperty(disabled);
   }
 
   @Input()
-  get multiple() { return this._multiple; }
+  get multiple() {
+    return this._multiple;
+  }
   set multiple(multiple) {
     this._multiple = coerceBooleanProperty(multiple);
   }
@@ -52,10 +56,10 @@ export class FileButtonComponent implements OnInit {
   @Output() errorItem = new EventEmitter<{ response: string; status: number; headers: any }>();
   @Output() progressAll = new EventEmitter<{ progress: number }>();
 
-  @ContentChild('dropzoneTemplate', { static: false })
+  @ContentChild('dropzoneTemplate')
   readonly dropzoneTemplate: TemplateRef<any>;
 
-  @ViewChild('fileInput', { static: false })
+  @ViewChild('fileInput')
   readonly fileInput?: ElementRef<HTMLInputElement>;
 
   get isDisabled(): boolean {
@@ -82,7 +86,7 @@ export class FileButtonComponent implements OnInit {
   private _disabled: boolean = false;
   private _multiple: boolean = false;
 
-  constructor(private readonly _ngZone: NgZone) { }
+  constructor(private readonly _ngZone: NgZone) {}
 
   ngOnInit(): void {
     this._ngZone.run(() => {

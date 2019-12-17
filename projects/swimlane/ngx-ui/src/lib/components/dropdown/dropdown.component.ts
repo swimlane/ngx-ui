@@ -17,7 +17,9 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
 @Component({
   exportAs: 'ngxDropdown',
   selector: 'ngx-dropdown',
-  template: `<ng-content></ng-content>`,
+  template: `
+    <ng-content></ng-content>
+  `,
   styleUrls: ['./dropdown.component.scss'],
   host: {
     class: 'ngx-dropdown',
@@ -29,34 +31,40 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
 })
 export class DropdownComponent implements AfterContentInit, OnDestroy {
   @Input()
-  get open() { return this._open; }
+  get open() {
+    return this._open;
+  }
   set open(open: boolean) {
     this._open = coerceBooleanProperty(open);
   }
 
   @Input()
-  get showCaret() { return this._showCaret; }
+  get showCaret() {
+    return this._showCaret;
+  }
   set showCaret(showCaret: boolean) {
     this._showCaret = coerceBooleanProperty(showCaret);
   }
 
   @Input()
-  get closeOnClick() { return this._closeOnClick; }
+  get closeOnClick() {
+    return this._closeOnClick;
+  }
   set closeOnClick(closeOnClick: boolean) {
     this._closeOnClick = coerceBooleanProperty(closeOnClick);
   }
 
   @Input()
-  get closeOnOutsideClick() { return this._closeOnOutsideClick; }
+  get closeOnOutsideClick() {
+    return this._closeOnOutsideClick;
+  }
   set closeOnOutsideClick(closeOnOutsideClick: boolean) {
     this._closeOnOutsideClick = coerceBooleanProperty(closeOnOutsideClick);
   }
 
-  @ContentChild(DropdownToggleDirective, { static: false })
-  readonly dropdownToggle: DropdownToggleDirective;
+  @ContentChild(DropdownToggleDirective) readonly dropdownToggle: DropdownToggleDirective;
 
-  @ContentChild(DropdownMenuDirective, { static: false })
-  readonly dropdownMenu: DropdownMenuDirective;
+  @ContentChild(DropdownMenuDirective) readonly dropdownMenu: DropdownMenuDirective;
 
   private _documentListener?: () => void;
   private _open: boolean = false;
@@ -64,10 +72,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   private _closeOnClick: boolean = true;
   private _closeOnOutsideClick: boolean = true;
 
-  constructor(
-    private readonly renderer: Renderer2,
-    private readonly cd: ChangeDetectorRef
-  ) {}
+  constructor(private readonly renderer: Renderer2, private readonly cd: ChangeDetectorRef) {}
 
   ngAfterContentInit(): void {
     if (this.dropdownToggle) {

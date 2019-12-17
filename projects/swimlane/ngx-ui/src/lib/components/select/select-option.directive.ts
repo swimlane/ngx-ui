@@ -15,13 +15,17 @@ export class SelectOptionDirective implements SelectDropdownOption {
   @Input() value: any;
 
   @Input()
-  get disabled() { return this._disabled; }
+  get disabled() {
+    return this._disabled;
+  }
   set disabled(disabled) {
     this._disabled = coerceBooleanProperty(disabled);
   }
 
   @Input()
-  get hidden() { return this._hidden; }
+  get hidden() {
+    return this._hidden;
+  }
   set hidden(hidden) {
     this._hidden = coerceBooleanProperty(hidden);
   }

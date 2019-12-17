@@ -33,19 +33,23 @@ let nextId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioButtonComponent implements ControlValueAccessor {
-  readonly UNIQUE_ID =  `ngx-radio-${++nextId}`;
+  readonly UNIQUE_ID = `ngx-radio-${++nextId}`;
 
   @Input() id: string = this.UNIQUE_ID;
   @Input() name: string = this.UNIQUE_ID;
 
   @Input()
-  get tabindex() { return this._tabindex; }
+  get tabindex() {
+    return this._tabindex;
+  }
   set tabindex(tabindex: number) {
     this._tabindex = coerceNumberProperty(tabindex);
   }
 
   @Input()
-  get checked() { return this._checked; }
+  get checked() {
+    return this._checked;
+  }
   set checked(checked: boolean) {
     checked = coerceBooleanProperty(checked);
 
@@ -58,7 +62,9 @@ export class RadioButtonComponent implements ControlValueAccessor {
   }
 
   @Input()
-  get value() { return this._value; }
+  get value() {
+    return this._value;
+  }
   set value(value: boolean) {
     if (this._value !== value) {
       this._value = value;
@@ -67,7 +73,9 @@ export class RadioButtonComponent implements ControlValueAccessor {
   }
 
   @Input()
-  get disabled() { return this._disabled || this.groupDisabled; }
+  get disabled() {
+    return this._disabled || this.groupDisabled;
+  }
   set disabled(disabled: boolean) {
     this._disabled = coerceBooleanProperty(disabled);
   }
@@ -83,7 +91,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
   private _disabled: boolean = false;
   private _tabindex: number = 0;
 
-  constructor(private readonly cdr: ChangeDetectorRef) { }
+  constructor(private readonly cdr: ChangeDetectorRef) {}
 
   _onInputChange(event: Event) {
     event.stopPropagation();
@@ -111,9 +119,9 @@ export class RadioButtonComponent implements ControlValueAccessor {
     if (this.checked) {
       this.change.emit(value);
     }
-  };
+  }
 
   private onTouchedCallback() {
     // placeholder
-  };
+  }
 }

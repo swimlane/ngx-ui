@@ -1,4 +1,12 @@
-import { Component, Input, ViewEncapsulation, OnInit, OnChanges, HostListener, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+  OnInit,
+  OnChanges,
+  HostListener,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BehaviorSubject } from 'rxjs';
 
@@ -24,13 +32,17 @@ export class ButtonComponent implements OnInit, OnChanges {
   @Input() promise?: Promise<any>;
 
   @Input()
-  get disabled() { return this._disabled; }
+  get disabled() {
+    return this._disabled;
+  }
   set disabled(v: boolean) {
     this._disabled = coerceBooleanProperty(v);
   }
 
   @Input()
-  get state() { return this._state; }
+  get state() {
+    return this._state;
+  }
   set state(v: ButtonState) {
     this._state = v;
 
@@ -79,9 +91,11 @@ export class ButtonComponent implements OnInit, OnChanges {
       this.state = ButtonState.Active;
     }
 
-    if (this.state === ButtonState.Success ||
-        this.state === ButtonState.Fail ||
-        this.state === ButtonState.InProgress) {
+    if (
+      this.state === ButtonState.Success ||
+      this.state === ButtonState.Fail ||
+      this.state === ButtonState.InProgress
+    ) {
       clearTimeout(this._timer);
       this._timer = setTimeout(() => {
         this.state = ButtonState.Active;
