@@ -9,7 +9,9 @@ import {
   ContentChild,
   TemplateRef,
   ViewChild,
-  ElementRef
+  ElementRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { FileUploaderOptions, FileUploader, FileItem } from '@swimlane/ng2-file-upload';
@@ -23,7 +25,8 @@ let nextId = 0;
   selector: 'ngx-file-button',
   templateUrl: './file-button.component.html',
   styleUrls: ['./file-button.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FileButtonComponent implements OnInit {
   @Input() id: string = `input-${++nextId}`;
@@ -80,10 +83,10 @@ export class FileButtonComponent implements OnInit {
   private _disabled: boolean = false;
   private _multiple: boolean = false;
 
-  constructor(private ngZone: NgZone) { }
+  constructor(private readonly _ngZone: NgZone) { }
 
   ngOnInit(): void {
-    this.ngZone.run(() => {
+    this._ngZone.run(() => {
       if (!this.uploader && !this.options) {
         throw new Error('You must pass either an uploader instance or options.');
       }
@@ -105,14 +108,14 @@ export class FileButtonComponent implements OnInit {
   }
 
   onAfterAddingFile(fileItem: FileItem): void {
-    this.ngZone.run(() => {
+    this._ngZone.run(() => {
       this.fileName = fileItem.file.name;
       this.afterAddingFile.emit({ fileItem });
     });
   }
 
   onBeforeUploadItem(fileItem: FileItem) {
-    this.ngZone.run(() => {
+    this._ngZone.run(() => {
       this.beforeUploadItem.emit({ fileItem });
     });
   }
@@ -122,14 +125,14 @@ export class FileButtonComponent implements OnInit {
   }
 
   onProgressAll(progress: number): void {
-    this.ngZone.run(() => {
+    this._ngZone.run(() => {
       this.progress = progress;
       this.progressAll.emit({ progress });
     });
   }
 
   onSuccessItem(item: any, response: string, status: number, headers: any): void {
-    this.ngZone.run(() => {
+    this._ngZone.run(() => {
       this._isItemSuccessful = true;
 
       setTimeout(() => {
