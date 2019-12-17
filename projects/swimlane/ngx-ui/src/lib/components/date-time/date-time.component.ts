@@ -8,7 +8,8 @@ import {
   ViewChild,
   TemplateRef,
   OnDestroy,
-  ElementRef
+  ElementRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -16,7 +17,8 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 import moment from 'moment-timezone';
 
 import { DialogService } from '../dialog/dialog.service';
-import { DateTimeType } from './date-time.type';
+import { DateTimeType } from './date-time-type.enum';
+import { Datelike } from './date-like.type';
 import { InputComponent } from '../input';
 
 let nextId = 0;
@@ -27,15 +29,14 @@ const DATE_TIME_VALUE_ACCESSOR = {
   multi: true
 };
 
-type Datelike = string | Date | moment.Moment;
-
 @Component({
   exportAs: 'ngxDateTime',
   selector: 'ngx-date-time',
   templateUrl: './date-time.component.html',
   styleUrls: ['./date-time.component.scss'],
   providers: [DATE_TIME_VALUE_ACCESSOR],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() id: string = `datetime-${++nextId}`;
