@@ -2,13 +2,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import moment from 'moment-timezone';
+import { MomentModule } from 'ngx-moment';
 
 import { DateTimeComponent } from './date-time.component';
-
-import { MomentModule } from 'ngx-moment';
 import { DialogModule } from '../dialog/dialog.module';
 import { PipesModule } from '../../pipes/pipes.module';
-
 import { InjectionService } from '../../services/injection.service';
 
 (moment as any).suppressDeprecationWarnings = true;
@@ -46,6 +44,9 @@ describe('DateTimeComponent', () => {
     fixture = TestBed.createComponent(DateTimeComponent);
     injectionService.setRootViewContainer(fixture.componentRef);
     component = fixture.componentInstance;
+    component.disabled = false;
+    component.tabindex = 0;
+    component.autofocus = false;
     fixture.detectChanges();
   });
 
@@ -318,6 +319,14 @@ describe('DateTimeComponent', () => {
       component.close();
     });
 
+    it('should open with now date if value invalid', () => {
+      const spy = spyOn(component, 'setDialogDate').and.callThrough();
+      component.close();
+      component.value = 'test';
+      component.open();
+      expect(spy).toHaveBeenCalled();
+    });
+
     it('sets dialog value', () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
@@ -329,6 +338,12 @@ describe('DateTimeComponent', () => {
 
       component.apply();
       expect(component.displayValue).toEqual(`${LOCAL_DATE} ${LOCAL_TIME}`);
+    });
+
+    it('should get input type time', () => {
+      component.inputType = 'time';
+      component.dialogModel = moment(new Date());
+      expect(component.isCurrent()).toBeTruthy();
     });
 
     it('should update minutes', () => {
@@ -378,7 +393,7 @@ describe('DateTimeComponent', () => {
       expect(component.displayValue).toEqual(`${LOCAL_DATE} ${LOCAL_HOUR}:${LOCAL_MIN} ${newLocalAMPM}`);
     });
 
-    it("should update hours, set 12 PM doesn't change day", () => {
+    it('should update hours, set 12 PM doesn\'t change day', () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
 
@@ -393,7 +408,7 @@ describe('DateTimeComponent', () => {
       expect(component.displayValue).toEqual(`${LOCAL_DATE} 12:${LOCAL_MIN} ${LOCAL_AMPM}`);
     });
 
-    it("should update hours, set 12 AM doesn't change AM/PM", () => {
+    it('should update hours, set 12 AM doesn\'t change AM/PM', () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
 
@@ -440,6 +455,111 @@ describe('DateTimeComponent', () => {
 
       component.clear();
       expect(component.displayValue).toEqual('');
+    });
+  });
+
+  describe('onBlur', () => {
+    it('should validate and set value', () => {
+      component.value = new Date();
+      component.onBlur();
+      expect(component.input.value).toBeDefined();
+    });
+
+    it('should invalidate and not set value', () => {
+      component.value = 'test';
+      component.onBlur();
+      expect(component.input.value).toBeUndefined();
+    });
+
+    it('should validate value but not set if hasnt changed', () => {
+      component.value = new Date();
+      component.onBlur();
+      component.onBlur();
+      expect(component.input.value).toBeDefined();
+    });
+
+    it('should invalidate when value out of range', () => {
+      component.minDate = new Date();
+      component.minDate.setDate(new Date().getDate() + 2);
+
+      component.maxDate = new Date();
+      component.maxDate.setDate(new Date().getDate() - 2);
+
+      component.value = new Date();
+      component.onBlur();
+      expect(component.input.value).toBeUndefined();
+    });
+
+    it('should route to precision', () => {
+      component.precision = 'seconds';
+      component.value = new Date().toLocaleString();
+      component.onBlur();
+      expect(component.input.value).not.toEqual(component.value);
+    });
+  });
+
+  describe('onAmPmChange', () => {
+    beforeEach(() => {
+      component.dialogModel = moment(new Date());
+    });
+
+    it('should chnage from AM -> PM', () => {
+      component.onAmPmChange('AM');
+      component.onAmPmChange('PM');
+      component.onAmPmChange('AM');
+      component.onAmPmChange('PM');
+      expect(component.amPmVal).toEqual('PM');
+    });
+  });
+
+  describe('getDayDisabled', () => {
+    it('should be false if date undefined', () => {
+      expect(component.getDayDisabled(null)).toBeFalsy();
+    });
+
+    it('should be true when before min or after max', () => {
+      component.minDate = new Date();
+      component.minDate.setDate(new Date().getDate() + 2);
+
+      component.maxDate = new Date();
+      component.maxDate.setDate(new Date().getDate() - 2);
+
+      expect(component.getDayDisabled(moment(new Date()))).toBeTruthy();
+    });
+  });
+
+  describe('isTimeDisabled', () => {
+    it('should be false', () => {
+      component.precision = 'hours';
+      expect(component.isTimeDisabled('hours')).toBeFalsy();
+    });
+  });
+
+  describe('inputChanged', () => {
+    it('should set valid value', () => {
+      const date = new Date().toUTCString();
+      component.inputChanged(date);
+      expect(component.value).not.toEqual(date);
+    });
+
+    it('should not set invalid value', () => {
+      const date = 'test';
+      component.inputChanged(date);
+      expect(component.value).toEqual(date);
+    });
+  });
+
+  describe('registerOnChange', () => {
+    it('should register onchange callback', (done) => {
+      component.registerOnChange(() => done());
+      component.value = new Date();
+    });
+  });
+
+  describe('registryOnTouched', () => {
+    it('should register ontouched callback', (done) => {
+      component.registerOnTouched(() => done());
+      component.onBlur();
     });
   });
 });

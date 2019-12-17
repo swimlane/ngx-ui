@@ -89,10 +89,11 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
         return 'L';
       } else if (this.inputType === DateTimeType.datetime) {
         return 'L LT';
-      } else if (this.inputType === DateTimeType.time) {
+      } else {
         return 'LT';
       }
     }
+
     return this._format;
   }
   set format(val: string) {
@@ -257,8 +258,8 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     return isBeforeMin || isAfterMax;
   }
 
-  isTimeDisabled(mode: string): boolean {
-    return this.modes.indexOf(`${this.precision}`) > this.modes.indexOf(mode);
+  isTimeDisabled(mode: moment.unitOfTime.StartOf): boolean {
+    return this.modes.indexOf(`${this.precision}`) > this.modes.indexOf(`${mode}`);
   }
 
   inputChanged(val: string): void {
@@ -285,6 +286,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
 
   private roundTo(val: moment.Moment, key: string): moment.Moment {
+    /* istanbul ignore if */
     if (!key || !val) {
       return val;
     }
@@ -332,6 +334,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
   private parseDate(date: string | Date): moment.Moment {
     if (date instanceof Date) {
+      /* istanbul ignore next */
       date = isNaN(date.getTime()) ? date.toString() : date.toISOString();
     }
     const inputFormats = [...this.inputFormats];
