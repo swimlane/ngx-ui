@@ -53,10 +53,9 @@ describe('ToggleComponent', () => {
     expect(component.getDisabled).toEqual('disabled');
   });
 
-  it('can register on change callback', () => {
-    spyOn(console, 'log').and.callThrough();
+  it('can register on change callback', (done) => {
     const changeCallback = () => {
-      console.log('changed');
+      done();
     };
 
     component.registerOnChange(changeCallback);
@@ -71,15 +70,13 @@ describe('ToggleComponent', () => {
     expect(component.value).toEqual(false);
   });
 
-  it('onBlur calls registered touch callback', () => {
-    spyOn(console, 'log').and.callThrough();
+  it('onBlur calls registered touch callback', (done) => {
     const touchCallback = () => {
-      console.log('changed');
+      done();
     };
 
     component.registerOnTouched(touchCallback);
     component.onBlur();
-    expect(console.log).toHaveBeenCalled();
   });
 
   it('toggle flips the toggle value', () => {
