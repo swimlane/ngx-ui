@@ -8,11 +8,14 @@
 
     <span class="required-indicator" *ngIf="required" [class.invalid]="!childrenValid">*</span>
 
-    <div class="node-content">
+    <div class="node-content" [class.extra-margin]="schema.nameEditable">
       <div class="node-info">
-        <div class="info-name" *ngIf="schema?.propertyName || label">
+        <div class="info-name" *ngIf="!schema.nameEditable && (schema?.propertyName || label)">
           <span class="name">{{ label || (schema?.propertyName | decamelize) }}</span>
         </div>
+
+        <ngx-input class="editable-name" type="text" *ngIf="schema.nameEditable" [ngModel]="schema?.propertyName"
+          (ngModelChange)="updatePropertyName(schema.id, $event)"></ngx-input>
 
         <div class="info-type">
           <span class="type">{{ schema?.type | titlecase }}</span>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { JsonEditorNode } from '../../json-editor-node';
 
 import { DialogService } from '../../../dialog/dialog.service';
@@ -22,6 +22,8 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() level: number = -1;
 
+  @Output() updatePropertyNameEvent = new EventEmitter<{ id: string; name: string }>();
+
   indentationArray: number[] = [];
 
   constructor(public dialogMngr: DialogService) {
@@ -33,5 +35,9 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
     if (this.level > 1) {
       this.indentationArray = Array(this.level - 1).fill(this.level);
     }
+  }
+
+  updatePropertyName(id: string, name: string): void {
+    this.updatePropertyNameEvent.emit({ id, name });
   }
 }

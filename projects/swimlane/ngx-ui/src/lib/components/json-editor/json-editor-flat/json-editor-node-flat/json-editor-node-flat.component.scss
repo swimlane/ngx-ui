@@ -60,18 +60,23 @@
       justify-content: space-between;
       flex: 1;
       align-items: center;
+
+      &.extra-margin {
+        margin-top: -15px;
+      }
   
       .node-info {
         display: flex;
         flex-direction: column;
         justify-content: center;
         flex-basis: 30%;
-    
-        .name {
+        padding-right: 25px;
+
+        .name, .editable-name input {
           font-weight: 600;
           font-size: 18px;
           line-height: 23px;
-          color: #f0f1f6; // TODO: fix color
+          color: #f0f1f6;
         }
     
         .info-icon {
@@ -91,6 +96,15 @@
     
         .type {
           color: #f0f1f6;
+        }
+
+        .editable-name {
+          margin: 0;
+          padding-top: 15px;
+
+          .ngx-input-hint {
+            display: none;
+          }
         }
       }
     

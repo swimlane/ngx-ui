@@ -5,7 +5,7 @@
       [required]="!!requiredCache[prop.value.propertyName]"
       [inline]="prop.value.type !== 'array' && prop.value.type !== 'object'"
       [path]="path + getPath(prop.value.propertyName)" [errors]="errors" [typeCheckOverrides]="typeCheckOverrides"
-      [level]="level">
+      [level]="level" (updatePropertyNameEvent)="updatePropertyName($event)">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
           <button type="button" class="node-options">
