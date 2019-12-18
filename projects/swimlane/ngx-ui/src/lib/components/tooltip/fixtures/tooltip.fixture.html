@@ -1,0 +1,17 @@
+<ng-template #popoverTemplate let-model="model">
+  <h3>Tool tip custom content defined inside a template</h3>
+  <p>With context binding: {{tooltipModel.text}}</p>
+  <p *ngIf="model">Outside Context {{model.foo}}</p>
+</ng-template>
+
+<a
+  href="/"
+  ngx-tooltip
+  [tooltipContext]="{ foo: 'YAZ' }"
+  [tooltipType]="'popover'"
+  [tooltipPlacement]="'top'"
+  [tooltipTemplate]="popoverTemplate"
+  #tooltip="ngxTooltip"
+>
+  Top
+</a>
