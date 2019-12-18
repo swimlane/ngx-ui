@@ -1,28 +1,25 @@
-import {
-  Component,
-  ViewEncapsulation,
-  ViewChild,
-  ChangeDetectionStrategy,
-  TemplateRef,
-  Input,
-  HostBinding,
-  EventEmitter,
-  Output
-} from '@angular/core';
+import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
+  exportAs: 'ngxNavMenu',
   selector: 'ngx-nav-menu',
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.scss'],
-  template: `
-    <div class="nav-menu">
-      <ng-content></ng-content>
-    </div>
-  `
+  host: {
+    class: 'ngx-nav-menu',
+    '[class.expanded]': 'expanded'
+  },
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavMenuComponent {
-  @HostBinding('class.expanded')
   @Input()
-  expanded: boolean = false;
+  get expanded() {
+    return this._expanded;
+  }
+  set expanded(expanded) {
+    this._expanded = coerceBooleanProperty(expanded);
+  }
+  private _expanded: boolean = false;
 }
