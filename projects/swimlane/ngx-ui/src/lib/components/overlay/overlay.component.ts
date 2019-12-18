@@ -1,5 +1,13 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, Output, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
+} from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 /**
@@ -48,6 +56,7 @@ export class OverlayComponent {
   @Input()
   set visible(val: boolean) {
     this._visible = coerceBooleanProperty(val);
+    this.cdr.markForCheck();
   }
 
   get zIndex() {
@@ -60,10 +69,12 @@ export class OverlayComponent {
 
   @Output() click = new EventEmitter();
 
-  private _visible: boolean = false;
-  private _zIndex: number = 990;
-
   get animationState(): string {
     return this.visible ? 'active' : 'inactive';
   }
+
+  private _visible: boolean = false;
+  private _zIndex: number = 990;
+
+  constructor(private cdr: ChangeDetectorRef) {}
 }
