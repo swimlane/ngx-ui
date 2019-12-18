@@ -5,6 +5,4 @@ import { ObjectNode } from '../../../../node-types/object-node.component';
   selector: 'ngx-json-object-node',
   templateUrl: 'object-node.component.html'
 })
-export class ObjectNodeComponent extends ObjectNode {
-
-}
+export class ObjectNodeComponent extends ObjectNode {}

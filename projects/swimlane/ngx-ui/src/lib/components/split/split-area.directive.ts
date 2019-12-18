@@ -44,7 +44,7 @@ export class SplitAreaDirective implements OnChanges {
     @Optional()
     @Self()
     public flexDirective: DefaultFlexDirective
-  ) { }
+  ) {}
 
   ngOnChanges() {
     this.currentFlexBasis = this.initialFlexBasis = this.getCurrentFlexParts();
@@ -52,7 +52,6 @@ export class SplitAreaDirective implements OnChanges {
 
   updateStyle(flexBasis?: string | number) {
     const flex = this.flexDirective;
-    console.log(flex);
     if (typeof flexBasis === 'undefined') {
       flexBasis = flex.activatedValue || '';
     }
@@ -83,7 +82,6 @@ export class SplitAreaDirective implements OnChanges {
 
   private getCurrentFlexParts() {
     const flex = this.flexDirective;
-    console.log(flex);
     const basis = (flex && flex.activatedValue) || '1 1 1e-9px';
     return validateBasis(String(basis).replace(';', ''), flex.grow, flex.shrink);
   }

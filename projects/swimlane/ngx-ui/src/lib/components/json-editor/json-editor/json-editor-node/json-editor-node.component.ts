@@ -7,7 +7,7 @@ import { DialogService } from '../../../dialog/dialog.service';
   selector: 'ngx-json-editor-node',
   templateUrl: 'json-editor-node.component.html',
   styleUrls: ['./json-editor-node.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class JsonEditorNodeComponent extends JsonEditorNode {
   @Input() model: any;
@@ -19,6 +19,6 @@ export class JsonEditorNodeComponent extends JsonEditorNode {
   @Input() errors: any[];
 
   constructor(public dialogMngr: DialogService) {
-    super(dialogMngr)
+    super(dialogMngr);
   }
 }

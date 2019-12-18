@@ -1,5 +1,4 @@
 import {
-  Component,
   Input,
   EventEmitter,
   Output,
@@ -81,7 +80,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
     }
   ];
 
-  constructor(public dialogMngr: DialogService) { }
+  constructor(public dialogMngr: DialogService) {}
 
   ngOnInit() {
     if (!this.schema) {

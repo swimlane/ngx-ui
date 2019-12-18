@@ -10,7 +10,7 @@ import { ObjectNode } from '../../../../node-types/object-node.component';
 export class ObjectNodeFlatComponent extends ObjectNode {
   @Input() level: number;
 
-  onUpdatePropertyName(options: { id: string, name: string }): void {
+  onUpdatePropertyName(options: { id: string; name: string }): void {
     this.updatePropertyName(options.id, options.name);
   }
 }

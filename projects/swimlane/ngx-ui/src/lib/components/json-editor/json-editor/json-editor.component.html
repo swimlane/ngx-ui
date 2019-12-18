@@ -9,7 +9,12 @@
     </div>
   </div>
 
-  <ngx-json-editor-node [(model)]="model" [schema]="schema" (modelChange)="modelChangedCallback($event)"
-    [errors]="errors" [typeCheckOverrides]="typeCheckOverrides">
+  <ngx-json-editor-node
+    [(model)]="model"
+    [schema]="schema"
+    (modelChange)="modelChangedCallback($event)"
+    [errors]="errors"
+    [typeCheckOverrides]="typeCheckOverrides"
+  >
   </ngx-json-editor-node>
 </div>

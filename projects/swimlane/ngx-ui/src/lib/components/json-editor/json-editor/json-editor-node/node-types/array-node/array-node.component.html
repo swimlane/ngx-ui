@@ -23,8 +23,14 @@
       </ngx-dropdown>
     </div>
 
-    <ngx-json-editor-node [model]="value" (modelChange)="updateArrayItem(i, $event)" [schema]="schemas[i]"
-      [path]="path + '[' + i + ']'" [errors]="errors" [typeCheckOverrides]="typeCheckOverrides">
+    <ngx-json-editor-node
+      [model]="value"
+      (modelChange)="updateArrayItem(i, $event)"
+      [schema]="schemas[i]"
+      [path]="path + '[' + i + ']'"
+      [errors]="errors"
+      [typeCheckOverrides]="typeCheckOverrides"
+    >
     </ngx-json-editor-node>
   </div>
 

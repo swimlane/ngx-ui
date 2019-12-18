@@ -1,11 +1,4 @@
-import {
-  Input,
-  EventEmitter,
-  Output,
-  OnInit,
-  OnChanges,
-  SimpleChanges
-} from '@angular/core';
+import { Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 import {
   createValueForSchema,
