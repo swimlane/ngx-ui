@@ -1,21 +1,24 @@
 import {
-  Input,
+  AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
-  AfterViewInit,
-  ViewEncapsulation,
-  HostListener,
-  ViewChild,
   HostBinding,
+  HostListener,
+  Input,
   Renderer2,
-  ChangeDetectionStrategy
+  TemplateRef,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
-import { throttleable } from '../../utils/throttle';
-import { PlacementTypes } from '../../utils/position/placement.type';
-import { PositionHelper } from '../../utils/position/position';
-import { StyleTypes } from './style.type';
 import { AlignmentTypes } from './alignment.type';
+import { PlacementTypes } from '../../utils/position/placement.type';
+import { StyleTypes } from './style.type';
+
+import { PositionHelper } from '../../utils/position/position';
+import { throttleable } from '../../utils/throttle';
 
 @Component({
   selector: 'ngx-tooltip-content',
@@ -25,18 +28,34 @@ import { AlignmentTypes } from './alignment.type';
   styleUrls: ['./tooltip.component.scss']
 })
 export class TooltipContentComponent implements AfterViewInit {
-  @Input() host: any;
-  @Input() showCaret: boolean;
+  @ViewChild('caretElm', { static: true }) caretElm: ElementRef<HTMLSpanElement>;
+  @Input() host: ElementRef<any>;
   @Input() type: StyleTypes;
   @Input() placement: PlacementTypes;
   @Input() alignment: AlignmentTypes;
-  @Input() spacing: number;
   @Input() cssClass: string;
   @Input() title: string;
-  @Input() template: any;
+  @Input() template: TemplateRef<any>;
   @Input() context: any;
 
-  @ViewChild('caretElm', { static: true }) caretElm;
+  get showCaret() {
+    return this._showCaret;
+  }
+  @Input()
+  set showCaret(val: boolean) {
+    this._showCaret = coerceBooleanProperty(val);
+  }
+
+  get spacing() {
+    return this._spacing;
+  }
+  @Input()
+  set spacing(val: number) {
+    this._spacing = coerceNumberProperty(val);
+  }
+
+  private _spacing: number;
+  private _showCaret: boolean;
 
   @HostBinding('class')
   get cssClasses(): string {

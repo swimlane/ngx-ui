@@ -1,22 +1,23 @@
 import {
   Directive,
-  Input,
-  Output,
+  ElementRef,
   EventEmitter,
   HostListener,
-  ViewContainerRef,
-  ElementRef,
-  Renderer2,
+  Input,
+  NgZone,
   OnDestroy,
-  NgZone
+  Output,
+  Renderer2,
+  TemplateRef,
+  ViewContainerRef
 } from '@angular/core';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
-import { PlacementTypes } from '../../utils/position/placement.type';
-import { StyleTypes } from './style.type';
 import { AlignmentTypes } from './alignment.type';
+import { PlacementTypes } from '../../utils/position/placement.type';
 import { ShowTypes } from './show.type';
+import { StyleTypes } from './style.type';
 
-import { TooltipContentComponent } from './tooltip.component';
 import { TooltipService } from './tooltip.service';
 
 // tslint:disable-next-line:directive-selector
@@ -24,23 +25,88 @@ import { TooltipService } from './tooltip.service';
 export class TooltipDirective implements OnDestroy {
   @Input() tooltipCssClass: string = '';
   @Input() tooltipTitle: string = '';
-  @Input() tooltipAppendToBody: boolean = true;
-  @Input() tooltipSpacing: number = 10;
-  @Input() tooltipDisabled: boolean = false;
-  @Input() tooltipShowCaret: boolean = true;
   @Input() tooltipPlacement: PlacementTypes = PlacementTypes.top;
   @Input() tooltipAlignment: AlignmentTypes = AlignmentTypes.center;
   @Input() tooltipType: StyleTypes = StyleTypes.popover;
-  @Input() tooltipCloseOnClickOutside: boolean = true;
-  @Input() tooltipCloseOnMouseLeave: boolean = true;
-  @Input() tooltipHideTimeout: number = 300;
-  @Input() tooltipShowTimeout: number = 100;
-  @Input() tooltipTemplate: any;
+  @Input() tooltipTemplate: TemplateRef<any>;
   @Input() tooltipShowEvent: ShowTypes = ShowTypes.all;
   @Input() tooltipContext: any;
 
+  get tooltipAppendToBody() {
+    return this._tooltipAppendToBody;
+  }
+  @Input()
+  set tooltipAppendToBody(val: boolean) {
+    this._tooltipAppendToBody = coerceBooleanProperty(val);
+  }
+
+  get tooltipSpacing() {
+    return this._tooltipSpacing;
+  }
+  @Input()
+  set tooltipSpacing(val: number) {
+    this._tooltipSpacing = coerceNumberProperty(val);
+  }
+
+  get tooltipDisabled() {
+    return this._tooltipDisabled;
+  }
+  @Input()
+  set tooltipDisabled(val: boolean) {
+    this._tooltipDisabled = coerceBooleanProperty(val);
+  }
+
+  get tooltipShowCaret() {
+    return this._tooltipShowCaret;
+  }
+  @Input()
+  set tooltipShowCaret(val: boolean) {
+    this._tooltipShowCaret = coerceBooleanProperty(val);
+  }
+
+  get tooltipCloseOnClickOutside() {
+    return this._tooltipCloseOnClickOutside;
+  }
+  @Input()
+  set tooltipCloseOnClickOutside(val: boolean) {
+    this._tooltipCloseOnClickOutside = coerceBooleanProperty(val);
+  }
+
+  get tooltipCloseOnMouseLeave() {
+    return this._tooltipCloseOnMouseLeave;
+  }
+  @Input()
+  set tooltipCloseOnMouseLeave(val: boolean) {
+    this._tooltipCloseOnMouseLeave = coerceBooleanProperty(val);
+  }
+
+  get tooltipHideTimeout() {
+    return this._tooltipHideTimeout;
+  }
+  @Input()
+  set tooltipHideTimeout(val: number) {
+    this._tooltipHideTimeout = coerceNumberProperty(val);
+  }
+
+  get tooltipShowTimeout() {
+    return this._tooltipShowTimeout;
+  }
+  @Input()
+  set tooltipShowTimeout(val: number) {
+    this._tooltipShowTimeout = coerceNumberProperty(val);
+  }
+
   @Output() show = new EventEmitter();
   @Output() hide = new EventEmitter();
+
+  private _tooltipAppendToBody: boolean = true;
+  private _tooltipSpacing: number = 10;
+  private _tooltipDisabled: boolean = false;
+  private _tooltipShowCaret: boolean = true;
+  private _tooltipCloseOnClickOutside: boolean = true;
+  private _tooltipCloseOnMouseLeave: boolean = true;
+  private _tooltipHideTimeout: number = 300;
+  private _tooltipShowTimeout: number = 100;
 
   private get listensForFocus(): boolean {
     return this.tooltipShowEvent === ShowTypes.all || this.tooltipShowEvent === ShowTypes.focus;
