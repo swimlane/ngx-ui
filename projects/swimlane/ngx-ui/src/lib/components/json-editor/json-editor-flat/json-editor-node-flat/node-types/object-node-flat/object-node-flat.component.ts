@@ -33,6 +33,10 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     });
   }
 
+  onUpdatePropertyName(options: { id: string; name: string }): void {
+    this.updatePropertyName(options.id, options.name);
+  }
+
   onPropertyConfig(property: ObjectProperty, index: number): void {
     this.dialogService.create({
       template: this.propertyConfigTmpl,

@@ -10,7 +10,9 @@ import {
   Renderer2,
   OnDestroy,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -47,7 +49,8 @@ const SELECT_VALUE_ACCESSOR = {
     '[class.has-placeholder]': 'hasPlaceholder'
   },
   providers: [SELECT_VALUE_ACCESSOR],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() id: string = `select-${++nextId}`;
@@ -64,88 +67,116 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() requiredIndicator: string | boolean = '*';
 
   @Input() options: SelectDropdownOption[] = [];
-  @Input() identifier: any;
+  @Input() identifier: string;
 
   @Input()
-  get minSelections() { return this._minSelections; }
+  get minSelections() {
+    return this._minSelections;
+  }
   set minSelections(minSelections) {
     this._minSelections = coerceNumberProperty(minSelections);
   }
 
   @Input()
-  get maxSelections() { return this._maxSelections; };
+  get maxSelections() {
+    return this._maxSelections;
+  }
   set maxSelections(maxSelections) {
     this._maxSelections = coerceNumberProperty(maxSelections);
   }
 
   @Input()
-  get autofocus() { return this._autofocus; };
+  get autofocus() {
+    return this._autofocus;
+  }
   set autofocus(autofocus) {
     this._autofocus = coerceBooleanProperty(autofocus);
   }
 
   @Input()
-  get allowClear() { return this._allowClear; }
+  get allowClear() {
+    return this._allowClear;
+  }
   set allowClear(allowClear) {
     this._allowClear = coerceBooleanProperty(allowClear);
   }
 
   @Input()
-  get allowAdditions() { return this._allowAdditions; }
+  get allowAdditions() {
+    return this._allowAdditions;
+  }
   set allowAdditions(allowAdditions) {
     this._allowAdditions = coerceBooleanProperty(allowAdditions);
   }
 
   @Input()
-  get disableDropdown() { return this._disableDropdown; }
+  get disableDropdown() {
+    return this._disableDropdown;
+  }
   set disableDropdown(disableDropdown) {
     this._disableDropdown = coerceBooleanProperty(disableDropdown);
   }
 
   @Input()
-  get closeOnSelect() { return this._closeOnSelect; }
+  get closeOnSelect() {
+    return this._closeOnSelect;
+  }
   set closeOnSelect(closeOnSelect) {
     this._closeOnSelect = coerceBooleanProperty(closeOnSelect);
   }
 
   @Input()
-  get closeOnBodyClick() { return this._closeOnBodyClick; };
+  get closeOnBodyClick() {
+    return this._closeOnBodyClick;
+  }
   set closeOnBodyClick(closeOnBodyClick) {
     this._closeOnBodyClick = coerceBooleanProperty(closeOnBodyClick);
   }
 
   @Input()
-  get filterable() { return this._filterable; }
+  get filterable() {
+    return this._filterable;
+  }
   set filterable(filterable) {
     this._filterable = coerceBooleanProperty(filterable);
   }
 
   @Input()
-  get required() { return this._required; }
+  get required() {
+    return this._required;
+  }
   set required(required) {
     this._required = coerceBooleanProperty(required);
   }
 
   @Input()
-  get filterCaseSensitive() { return this._filterCaseSensitive; }
+  get filterCaseSensitive() {
+    return this._filterCaseSensitive;
+  }
   set filterCaseSensitive(filterCaseSensitive) {
     this._filterCaseSensitive = coerceBooleanProperty(filterCaseSensitive);
   }
 
   @Input()
-  get tagging() { return this._tagging; }
+  get tagging() {
+    return this._tagging;
+  }
   set tagging(tagging) {
     this._tagging = coerceBooleanProperty(tagging);
   }
 
   @Input()
-  get multiple() { return this._multiple; }
+  get multiple() {
+    return this._multiple;
+  }
   set multiple(multiple) {
     this._multiple = coerceBooleanProperty(multiple);
   }
 
   @Input()
-  get disabled() { return this._disabled; }
+  get disabled() {
+    return this._disabled;
+  }
   set disabled(disabled) {
     this._disabled = coerceBooleanProperty(disabled);
   }
@@ -158,7 +189,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   readonly inputComponent: SelectInputComponent;
 
   @ContentChildren(SelectOptionDirective)
-  get optionTemplates() { return this._optionTemplates; }
+  get optionTemplates() {
+    return this._optionTemplates;
+  }
   set optionTemplates(val: QueryList<SelectOptionDirective>) {
     this._optionTemplates = val;
 
@@ -200,12 +233,15 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     return this.placeholder && this.placeholder.length > 0;
   }
 
-  get value() { return this._value; }
+  get value() {
+    return this._value;
+  }
   set value(val: any[]) {
     if (val !== this._value) {
       this._value = val;
       this.onChangeCallback(this._value);
       this.change.emit(this._value);
+      this._cdr.markForCheck();
     }
   }
 
@@ -241,8 +277,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   constructor(
     private readonly _element: ElementRef,
-    private readonly _renderer: Renderer2
-  ) { }
+    private readonly _renderer: Renderer2,
+    private readonly _cdr: ChangeDetectorRef
+  ) {}
 
   ngOnDestroy(): void {
     this.toggleDropdown(false);
@@ -269,7 +306,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
       this.inputComponent.inputElement.nativeElement.value = '';
     }
 
-    const shouldClose = this.closeOnSelect || (this.closeOnSelect === undefined && !this.multiple);
+    const shouldClose = this.closeOnSelect || !this.multiple;
 
     if (shouldClose) {
       this.toggleDropdown(false);
@@ -295,6 +332,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     if (this.dropdownActive) {
       const contains = this._element.nativeElement.contains(event.target);
 
+      /* istanbul ignore else */
       if (!contains) {
         this.toggleDropdown(false);
       }
@@ -323,10 +361,12 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     if (state && this.closeOnBodyClick) {
       this.toggleListener = this._renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
     }
+
+    this._cdr.markForCheck();
   }
 
-  onKeyUp({ event, value }: { event: KeyboardEvent; value?: string; }): void {
-    if (event && event.key === KeyboardKeys.ARROW_DOWN as any) {
+  onKeyUp({ event, value }: { event: KeyboardEvent; value?: string }): void {
+    if (event && event.key === (KeyboardKeys.ARROW_DOWN as any)) {
       ++this.focusIndex;
     } else {
       this.filterQuery = value;
@@ -336,8 +376,10 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   writeValue(val: any[]): void {
+    /* istanbul ignore else */
     if (val !== this._value) {
       this._value = val;
+      this._cdr.markForCheck();
     }
   }
 
@@ -357,11 +399,13 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     return value === undefined;
   }
 
+  /* istanbul ignore next */
   private onTouchedCallback() {
     // placeholder
-  };
+  }
 
+  /* istanbul ignore next */
   private onChangeCallback(_: any) {
     // placeholder
-  };
+  }
 }

@@ -18,6 +18,7 @@
       [level]="level"
       [schemaBuilderMode]="schemaBuilderMode"
       (schemaChange)="schemaChange.emit(schemaRef)"
+      (updatePropertyNameEvent)="onUpdatePropertyName($event)"
     >
       <div class="node-options" node-options>
         <button

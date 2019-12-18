@@ -61,7 +61,7 @@
   [class.icon-arrow-down]="!selectCaret"
   (click)="toggle.emit()"
 >
-  <span *ngIf="isNotTemplate(selectCaret); else tpl" [innerHTML]="selectCaret"> </span>
+  <span *ngIf="isNotTemplate; else tpl" [innerHTML]="selectCaret"> </span>
   <ng-template #tpl>
     <ng-container *ngTemplateOutlet="selectCaret"></ng-container>
   </ng-template>

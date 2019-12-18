@@ -20,13 +20,21 @@
         </ng-container>
       </div>
 
-      <div class="node-content">
+      <div class="node-content" [class.extra-margin]="schema.nameEditable && !schemaBuilderMode">
         <div class="node-info">
-          <div class="info-name" *ngIf="label || schema?.propertyName">
-            <span class="name">{{
-              label || (schema?.title ? schema?.title : (schema?.propertyName | decamelize))
-            }}</span>
+          <div class="info-name" *ngIf="(!schema.nameEditable || schemaBuilderMode) && (schema?.propertyName || label)">
+            <span class="name">
+              {{ label || (schema?.title ? schema?.title : (schema?.propertyName | decamelize)) }}
+            </span>
           </div>
+
+          <ngx-input
+            class="editable-name"
+            type="text"
+            *ngIf="schema.nameEditable && !schemaBuilderMode"
+            [ngModel]="schema?.propertyName"
+            (ngModelChange)="updatePropertyName(schema.id, $event)"
+          ></ngx-input>
 
           <div class="info-type">
             <span class="type">{{ inferTypeName(schema) | titlecase }}{{ schema?.enum?.length ? ' + Enum' : '' }}</span>

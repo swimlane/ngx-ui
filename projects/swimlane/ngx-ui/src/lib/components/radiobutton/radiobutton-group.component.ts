@@ -30,7 +30,9 @@ let nextId = 0;
   exportAs: 'ngxRadiobuttonGroup',
   selector: 'ngx-radiobutton-group',
   providers: [RADIOGROUP_VALUE_ACCESSOR],
-  template: `<ng-content></ng-content>`,
+  template: `
+    <ng-content></ng-content>
+  `,
   styleUrls: ['./radiobutton.component.scss'],
   host: {
     class: 'ngx-radiobutton-group',
@@ -45,13 +47,17 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   @Input() id: string = this.UNIQUE_ID;
 
   @Input()
-  get disabled() { return this._disabled; }
+  get disabled() {
+    return this._disabled;
+  }
   set disabled(disabled: boolean) {
     this._disabled = coerceBooleanProperty(disabled);
   }
 
   @Input()
-  get value(): any { return this._value; }
+  get value(): any {
+    return this._value;
+  }
   set value(value) {
     if (this._value !== value) {
       this._value = value;
@@ -62,7 +68,9 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   }
 
   @Input()
-  get name() { return this._name; }
+  get name() {
+    return this._name;
+  }
   set name(name: string) {
     if (this._name !== name) {
       this._name = name;
@@ -111,8 +119,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
     /* istanbul ignore else */
     if (this._radios) {
       this._radios.map(radio => {
-        radio.change.pipe(takeUntil(this._destroy))
-                    .subscribe(this.onRadioSelected.bind(this));
+        radio.change.pipe(takeUntil(this._destroy)).subscribe(this.onRadioSelected.bind(this));
       });
     }
   }
@@ -139,12 +146,12 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
 
   private onChangeCallback(_: any) {
     // placeholder
-  };
+  }
 
   /* istanbul ignore next */
   private onTouchedCallback() {
     // placeholder
-  };
+  }
 
   private _updateRadioButtonNames(): void {
     if (this._radios) {

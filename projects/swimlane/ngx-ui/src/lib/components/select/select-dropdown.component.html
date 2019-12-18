@@ -46,7 +46,7 @@
             class="ngx-select-empty-placeholder-add"
             (click)="onAddClicked($event, filterQuery)"
           >
-            <span *ngIf="isNotTemplate(allowAdditionsText); else tpl" [innerHTML]="allowAdditionsText"> </span>
+            <span *ngIf="isNotTemplate; else tpl" [innerHTML]="allowAdditionsText"> </span>
             <ng-template #tpl>
               <ng-container *ngTemplateOutlet="allowAdditionsText"></ng-container>
             </ng-template>

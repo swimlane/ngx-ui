@@ -1,5 +1,4 @@
 import {
-  Component,
   Input,
   EventEmitter,
   Output,
@@ -40,7 +39,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
 
   @Output() schemaChange: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('codeEditorTpl', { static: false }) codeEditorTpl: TemplateRef<any>;
+  @ViewChild('codeEditorTpl') codeEditorTpl: TemplateRef<any>;
 
   requiredCache: any = {};
   dataTypes: JsonSchemaDataType[] = jsonSchemaDataTypes;

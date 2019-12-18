@@ -3,12 +3,14 @@ import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from '@angular/forms';
 import { MomentModule } from 'ngx-moment';
+
 import { CalendarModule } from '../calendar/calendar.module';
 import { DialogModule } from '../dialog/dialog.module';
 import { InputModule } from '../input/input.module';
 import { ToggleModule } from '../toggle/toggle.module';
-import { DateTimeComponent } from './date-time.component';
 import { PipesModule } from '../../pipes/pipes.module';
+
+import { DateTimeComponent } from './date-time.component';
 
 @NgModule({
   declarations: [DateTimeComponent],

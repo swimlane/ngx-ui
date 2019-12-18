@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { JsonEditorNode } from '../../json-editor-node';
 
 import { DialogService } from '../../../dialog/dialog.service';
@@ -28,11 +28,13 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() schemaRef?: JSONEditorSchema;
 
-  @Input() indentationArray: number[] = [];
+  @Output() updatePropertyNameEvent = new EventEmitter<{ id: string; name: string }>();
 
   requiredIndicator: SafeHtml;
 
   inferTypeName = inferTypeName;
+
+  indentationArray: number[] = [];
 
   constructor(public dialogMngr: DialogService, private domSanitizer: DomSanitizer) {
     super(dialogMngr);
@@ -44,5 +46,9 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
     if (this.level > 1) {
       this.indentationArray = Array(this.level - 1).fill(this.level);
     }
+  }
+
+  updatePropertyName(id: string, name: string): void {
+    this.updatePropertyNameEvent.emit({ id, name });
   }
 }

@@ -3,6 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { DialogService } from '../../../dialog/dialog.service';
 import { jsonSchemaDataTypes } from '../../json-editor.helper';
 import { JsonEditorNodeComponent } from './json-editor-node.component';
+
 describe('JsonEditorNodeComponent', () => {
   let component: JsonEditorNodeComponent;
   let fixture: ComponentFixture<JsonEditorNodeComponent>;

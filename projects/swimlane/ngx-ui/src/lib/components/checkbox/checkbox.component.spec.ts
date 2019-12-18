@@ -37,7 +37,7 @@ describe('CheckboxComponent', () => {
   });
 
   describe('onBlur', () => {
-    it('should call touched callback on blur', (done) => {
+    it('should call touched callback on blur', done => {
       component.registerOnTouched(() => {
         done();
       });
@@ -61,7 +61,7 @@ describe('CheckboxComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register new callback and call when value changes', (done) => {
+    it('should register new callback and call when value changes', done => {
       component.registerOnChange((v: boolean) => {
         expect(v).toBe(false);
         done();

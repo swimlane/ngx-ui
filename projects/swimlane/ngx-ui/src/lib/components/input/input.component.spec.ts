@@ -8,7 +8,7 @@ import { InputTypes } from './input-types.enum';
 import { InputComponentFixture } from './input.component.fixture';
 
 const MOCK_EVENT: any = {
-  stopPropagation: () => ({}),
+  stopPropagation: () => ({})
 };
 
 describe('InputComponent', () => {
@@ -19,7 +19,7 @@ describe('InputComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [InputComponentFixture, InputComponent],
-      imports: [FormsModule, BrowserAnimationsModule],
+      imports: [FormsModule, BrowserAnimationsModule]
     });
   });
 
@@ -79,7 +79,7 @@ describe('InputComponent', () => {
   it('should blur', () => {
     const spy = spyOn(component.input.blur, 'emit');
     component.input.onBlur(MOCK_EVENT);
-    expect(spy).toHaveBeenCalled()
+    expect(spy).toHaveBeenCalled();
   });
 
   describe('password', () => {
@@ -92,7 +92,7 @@ describe('InputComponent', () => {
 
     it('should toggle password visibility', () => {
       expect(component.input.type$.value).toEqual(InputTypes.password);
-      component.input.togglePassword()
+      component.input.togglePassword();
       expect(component.input.type$.value).toEqual(InputTypes.text);
     });
   });
@@ -124,7 +124,7 @@ describe('InputComponent', () => {
       control.setValue('ttttttttttttttttttttttttttttttt');
       component.type$.next(InputTypes.number);
       fixture.detectChanges();
-      expect(component.input.validate(control)).toEqual({ });
+      expect(component.input.validate(control)).toEqual({});
     });
   });
 
@@ -138,7 +138,7 @@ describe('InputComponent', () => {
     });
 
     it('should not change model if value is identical', () => {
-      const cbs = { onChange: () => ({ }) };
+      const cbs = { onChange: () => ({}) };
       component.input.registerOnChange(cbs.onChange);
       const spy = spyOn(cbs, 'onChange');
       component.input.value = '';

@@ -6,12 +6,7 @@ import { RadioButtonGroupComponent } from './radiobutton-group.component';
 @Component({
   selector: `ngx-radiobutton-group-fixture`,
   template: `
-    <ngx-radiobutton-group
-      tabindex="0"
-      [name]="name$ | async"
-      [(ngModel)]="value"
-      [disabled]="disabled$ | async"
-    >
+    <ngx-radiobutton-group tabindex="0" [name]="name$ | async" [(ngModel)]="value" [disabled]="disabled$ | async">
       <ngx-radiobutton *ngFor="let option of options" [value]="option">
         {{ option }}
       </ngx-radiobutton>
@@ -23,7 +18,7 @@ export class RadioButtonGroupComponentFixture {
   value = 'one';
   readonly name$ = new BehaviorSubject('test');
   readonly disabled$ = new BehaviorSubject(false);
-  readonly options = ['one', 'two', 'three']
+  readonly options = ['one', 'two', 'three'];
 
   @ViewChild(RadioButtonGroupComponent, { static: false })
   readonly radioButtonGroup: RadioButtonGroupComponent;

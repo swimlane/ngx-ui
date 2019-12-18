@@ -1,4 +1,12 @@
-import { Component, Input, ViewEncapsulation, OnInit, OnChanges, HostListener, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+  OnInit,
+  OnChanges,
+  HostListener,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BehaviorSubject } from 'rxjs';
 
@@ -7,8 +15,7 @@ import { ButtonState } from './button-state.enum';
 @Component({
   selector: 'ngx-button',
   exportAs: 'ngxButton',
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   host: {
     class: 'ngx-button',
@@ -18,28 +25,24 @@ import { ButtonState } from './button-state.enum';
     '[class.fail]': 'fail$.value',
     '[class.disabled-button]': 'disabled'
   },
-  template: `
-    <button [disabled]="disabled">
-      <span class="content"><ng-content></ng-content></span>
-      <span class="state-icon">
-        <span *ngIf="inProgress$ | async" class="icon icon-loading"></span>
-        <span *ngIf="success$ | async" class="icon icon-check"></span>
-        <span *ngIf="fail$ | async" class="icon icon-x"></span>
-      </span>
-    </button>
-  `
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent implements OnInit, OnChanges {
   @Input() promise?: Promise<any>;
 
   @Input()
-  get disabled() { return this._disabled; }
+  get disabled() {
+    return this._disabled;
+  }
   set disabled(v: boolean) {
     this._disabled = coerceBooleanProperty(v);
   }
 
   @Input()
-  get state() { return this._state; }
+  get state() {
+    return this._state;
+  }
   set state(v: ButtonState) {
     this._state = v;
 
@@ -88,9 +91,11 @@ export class ButtonComponent implements OnInit, OnChanges {
       this.state = ButtonState.Active;
     }
 
-    if (this.state === ButtonState.Success ||
-        this.state === ButtonState.Fail ||
-        this.state === ButtonState.InProgress) {
+    if (
+      this.state === ButtonState.Success ||
+      this.state === ButtonState.Fail ||
+      this.state === ButtonState.InProgress
+    ) {
       clearTimeout(this._timer);
       this._timer = setTimeout(() => {
         this.state = ButtonState.Active;

@@ -1,14 +1,25 @@
-import { Component, Input, Output, EventEmitter, ViewChild, AfterViewInit, TemplateRef, ElementRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild,
+  AfterViewInit,
+  TemplateRef,
+  ElementRef,
+  ChangeDetectionStrategy
+} from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { KeyboardKeys } from '../../utils/keys';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
   exportAs: 'ngxSelectInput',
   selector: 'ngx-select-input',
   templateUrl: './select-input.component.html',
-  host: { class: 'ngx-select-input' }
+  host: { class: 'ngx-select-input' },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectInputComponent implements AfterViewInit {
   @Input() placeholder: string;
@@ -16,47 +27,61 @@ export class SelectInputComponent implements AfterViewInit {
   @Input() options: SelectDropdownOption[];
   @Input() label: string;
   @Input() hint: string;
-  @Input() selectCaret: string;
+  @Input() selectCaret: string | TemplateRef<any>;
   @Input() requiredIndicator: string | boolean;
 
   @Input()
-  get autofocus() { return this._autofocus; }
+  get autofocus() {
+    return this._autofocus;
+  }
   set autofocus(autofocus) {
     this._autofocus = coerceBooleanProperty(autofocus);
   }
 
   @Input()
-  get allowClear() { return this._allowClear; }
+  get allowClear() {
+    return this._allowClear;
+  }
   set allowClear(allowClear) {
     this._allowClear = coerceBooleanProperty(allowClear);
   }
 
   @Input()
-  get multiple() { return this._multiple; }
+  get multiple() {
+    return this._multiple;
+  }
   set multiple(multiple) {
     this._multiple = coerceBooleanProperty(multiple);
   }
 
   @Input()
-  get tagging() { return this._tagging; }
+  get tagging() {
+    return this._tagging;
+  }
   set tagging(tagging) {
     this._tagging = coerceBooleanProperty(tagging);
   }
 
   @Input()
-  get allowAdditions() { return this._allowAdditions };
+  get allowAdditions() {
+    return this._allowAdditions;
+  }
   set allowAdditions(allowAdditions) {
     this._allowAdditions = coerceBooleanProperty(allowAdditions);
   }
 
   @Input()
-  get disableDropdown() { return this._disableDropdown; }
+  get disableDropdown() {
+    return this._disableDropdown;
+  }
   set disableDropdown(disableDropdown) {
     this._disableDropdown = coerceBooleanProperty(disableDropdown);
   }
 
   @Input()
-  get selected() { return this._selected; }
+  get selected() {
+    return this._selected;
+  }
   set selected(val: any[]) {
     this._selected = val;
     this.selectedOptions = this.calcSelectedOptions(val);
@@ -67,7 +92,7 @@ export class SelectInputComponent implements AfterViewInit {
   @Output() activate = new EventEmitter<Event>();
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
 
-  @ViewChild('tagInput', { static: false })
+  @ViewChild('tagInput')
   readonly inputElement?: ElementRef<HTMLInputElement>;
 
   get caretVisible(): boolean {
@@ -76,19 +101,19 @@ export class SelectInputComponent implements AfterViewInit {
     return true;
   }
 
-  selectedOptions: SelectDropdownOption[] = [];
-  _selected: any[];
+  get isNotTemplate() {
+    return !(typeof this.selectCaret === 'object' && this.selectCaret instanceof TemplateRef);
+  }
 
+  selectedOptions: SelectDropdownOption[] = [];
+
+  private _selected: any[];
   private _autofocus: boolean;
   private _allowClear: boolean;
   private _multiple: boolean;
   private _tagging: boolean;
   private _allowAdditions: boolean;
   private _disableDropdown: boolean;
-
-  isNotTemplate(val: any) {
-    return !(typeof val === 'object' && val instanceof TemplateRef);
-  }
 
   ngAfterViewInit(): void {
     if (this.tagging && this.autofocus) {
@@ -104,7 +129,7 @@ export class SelectInputComponent implements AfterViewInit {
     const key = event.key;
     const value = (event.target as any).value;
 
-    if (key === KeyboardKeys.ENTER as any) {
+    if (key === (KeyboardKeys.ENTER as any)) {
       if (value !== '') {
         const hasSelection = this.selected.find(selection => {
           return value === selection;
@@ -118,7 +143,7 @@ export class SelectInputComponent implements AfterViewInit {
       }
 
       event.preventDefault();
-    } else if (key === KeyboardKeys.ESCAPE as any) {
+    } else if (key === (KeyboardKeys.ESCAPE as any)) {
       this.toggle.emit();
     }
 
@@ -170,7 +195,7 @@ export class SelectInputComponent implements AfterViewInit {
 
       if (this.options) {
         match = this.options.find(option => {
-          if (this.identifier){
+          if (this.identifier) {
             return selection[this.identifier] === option.value[this.identifier];
           }
 
