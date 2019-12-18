@@ -3,7 +3,7 @@ import { ToolTipFixtureComponent } from './fixtures/tooltip.fixture';
 import { TooltipModule } from './tooltip.module';
 import { TooltipDirective } from './tooltip.directive';
 
-fdescribe('TooltipContentComponent', () => {
+describe('TooltipContentComponent', () => {
   let directive: TooltipDirective;
   let fixture: ComponentFixture<ToolTipFixtureComponent>;
 
