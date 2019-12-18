@@ -37,7 +37,7 @@ import { PropertyConfigComponent } from './json-editor-flat/json-editor-node-fla
     JsonEditorNodeFlatComponent,
     ArrayNodeFlatComponent,
     ObjectNodeFlatComponent,
-    PropertyConfigComponent,
+    PropertyConfigComponent
   ],
   exports: [
     JsonEditorComponent,
@@ -48,7 +48,7 @@ import { PropertyConfigComponent } from './json-editor-flat/json-editor-node-fla
     JsonEditorNodeFlatComponent,
     ArrayNodeFlatComponent,
     ObjectNodeFlatComponent,
-    PropertyConfigComponent,
+    PropertyConfigComponent
   ],
   imports: [
     CheckboxModule,
@@ -68,4 +68,4 @@ import { PropertyConfigComponent } from './json-editor-flat/json-editor-node-fla
   ],
   providers: [SchemaValidatorService]
 })
-export class JsonEditorModule { }
+export class JsonEditorModule {}

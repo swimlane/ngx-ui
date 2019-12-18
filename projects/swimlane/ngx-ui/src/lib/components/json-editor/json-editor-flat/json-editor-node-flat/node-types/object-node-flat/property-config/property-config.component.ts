@@ -1,6 +1,12 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { DialogService } from '../../../../../../dialog/dialog.service';
-import { JsonSchemaDataType, jsonSchemaDataTypes, inferTypeName, JSONEditorSchema, ObjectProperty } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
+import {
+  JsonSchemaDataType,
+  jsonSchemaDataTypes,
+  inferTypeName,
+  JSONEditorSchema,
+  ObjectProperty
+} from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
 import { JSONSchema7TypeName } from 'json-schema';
 
 @Component({
@@ -14,7 +20,7 @@ export class PropertyConfigComponent implements OnInit {
   @Input() index: number;
   @Input() schema: JSONEditorSchema;
 
-  @Output() updateSchema = new EventEmitter()
+  @Output() updateSchema = new EventEmitter();
 
   inferTypeName = inferTypeName;
 
@@ -26,7 +32,7 @@ export class PropertyConfigComponent implements OnInit {
 
   newEnumValue = '';
 
-  constructor(private dialogService: DialogService) { }
+  constructor(private dialogService: DialogService) {}
 
   ngOnInit() {
     this.editableProperty = JSON.parse(JSON.stringify(this.property));
@@ -35,7 +41,13 @@ export class PropertyConfigComponent implements OnInit {
 
   applyChanges(): void {
     this.dialogService.destroyAll();
-    this.updateSchema.emit({ schema: this.schema, required: this.required, index: this.index, newProperty: this.editableProperty, oldProperty: this.property });
+    this.updateSchema.emit({
+      schema: this.schema,
+      required: this.required,
+      index: this.index,
+      newProperty: this.editableProperty,
+      oldProperty: this.property
+    });
   }
 
   updateTypeAndFormat(event: string): void {
@@ -68,7 +80,7 @@ export class PropertyConfigComponent implements OnInit {
   }
 
   addEnumValue(): void {
-    const enumValues = this.editableProperty.value['enum'] = this.editableProperty.value['enum'] || [];
+    const enumValues = (this.editableProperty.value['enum'] = this.editableProperty.value['enum'] || []);
 
     if (!enumValues.includes(this.newEnumValue)) {
       enumValues.push(this.newEnumValue);
@@ -78,7 +90,7 @@ export class PropertyConfigComponent implements OnInit {
 
   updateDefault(enumValue: string): void {
     if (!enumValue) {
-      delete this.editableProperty.value['default']
+      delete this.editableProperty.value['default'];
     } else {
       this.editableProperty.value['default'] = enumValue;
     }

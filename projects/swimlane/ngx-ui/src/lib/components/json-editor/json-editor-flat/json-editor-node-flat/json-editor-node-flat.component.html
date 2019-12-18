@@ -4,15 +4,16 @@
       <span class="separator" *ngFor="let separator of indentationArray"></span>
     </div>
     <div class="node">
-
-
       <div class="error-box" *ngIf="!valid && !schemaBuilderMode"></div>
 
       <div class="left-options">
         <ng-container *ngIf="level > 0">
           <div class="required-indicator">
-            <span *ngIf="required" [class.invalid]="!childrenValid && !schemaBuilderMode"
-              [innerHtml]="requiredIndicator"></span>
+            <span
+              *ngIf="required"
+              [class.invalid]="!childrenValid && !schemaBuilderMode"
+              [innerHtml]="requiredIndicator"
+            ></span>
             <span *ngIf="!required && schemaBuilderMode" class="not-required" [innerHtml]="requiredIndicator"></span>
           </div>
           <ng-content select="[cdkDragHandle]"></ng-content>
@@ -22,8 +23,9 @@
       <div class="node-content">
         <div class="node-info">
           <div class="info-name" *ngIf="label || schema?.propertyName">
-            <span
-              class="name">{{ label || (schema?.title ? schema?.title : (schema?.propertyName | decamelize)) }}</span>
+            <span class="name">{{
+              label || (schema?.title ? schema?.title : (schema?.propertyName | decamelize))
+            }}</span>
           </div>
 
           <div class="info-type">
@@ -38,14 +40,23 @@
         <div *ngIf="!schemaBuilderMode" class="node-input">
           <!-- Number | Integer -->
           <div *ngIf="schema?.type === 'number' || schema?.type === 'integer'">
-            <ngx-input type="number" [ngModel]="model" (ngModelChange)="updateModel($event)" [requiredIndicator]="false"
-              [required]="required"></ngx-input>
+            <ngx-input
+              type="number"
+              [ngModel]="model"
+              (ngModelChange)="updateModel($event)"
+              [requiredIndicator]="false"
+              [required]="required"
+            ></ngx-input>
           </div>
 
           <!-- Boolean -->
           <div *ngIf="schema?.type === 'boolean'">
-            <ngx-toggle class="toggle-input" [ngModel]="model" (ngModelChange)="updateModel($event)"
-              [label]="model | json">
+            <ngx-toggle
+              class="toggle-input"
+              [ngModel]="model"
+              (ngModelChange)="updateModel($event)"
+              [label]="model | json"
+            >
             </ngx-toggle>
           </div>
 
@@ -53,12 +64,23 @@
           <ng-container *ngIf="schema?.type === 'string'">
             <!-- No format -->
             <div *ngIf="!schema.format">
-              <ngx-input *ngIf="!schema?.enum" type="text" [ngModel]="model" (change)="updateModel($event)"
-                [requiredIndicator]="false" [required]="required">
+              <ngx-input
+                *ngIf="!schema?.enum"
+                type="text"
+                [ngModel]="model"
+                (change)="updateModel($event)"
+                [requiredIndicator]="false"
+                [required]="required"
+              >
               </ngx-input>
 
-              <ngx-select [filterable]="false" *ngIf="schema?.enum" [ngModel]="[model]"
-                (ngModelChange)="updateModel($event[0])" [required]="required">
+              <ngx-select
+                [filterable]="false"
+                *ngIf="schema?.enum"
+                [ngModel]="[model]"
+                (ngModelChange)="updateModel($event[0])"
+                [required]="required"
+              >
                 <ngx-select-option *ngFor="let option of schema.enum" [name]="option" [value]="option">
                 </ngx-select-option>
               </ngx-select>
@@ -66,30 +88,55 @@
 
             <!-- Password -->
             <div *ngIf="schema.format === 'password'">
-              <ngx-input type="password" [ngModel]="model" (ngModelChange)="updateModel($event)"
-                [requiredIndicator]="false" [required]="required"></ngx-input>
+              <ngx-input
+                type="password"
+                [ngModel]="model"
+                (ngModelChange)="updateModel($event)"
+                [requiredIndicator]="false"
+                [required]="required"
+              ></ngx-input>
             </div>
 
             <!-- Date -->
             <div *ngIf="schema.format === 'date'">
-              <ngx-input type="date" [ngModel]="model" (ngModelChange)="updateModel($event)" [requiredIndicator]="false"
-                [required]="required"></ngx-input>
+              <ngx-input
+                type="date"
+                [ngModel]="model"
+                (ngModelChange)="updateModel($event)"
+                [requiredIndicator]="false"
+                [required]="required"
+              ></ngx-input>
             </div>
 
             <!-- DateTime -->
             <div *ngIf="schema.format === 'date-time'">
-              <ngx-input type="datetime-local" [ngModel]="model" (ngModelChange)="updateModel($event)"
-                [requiredIndicator]="false" [required]="required"></ngx-input>
+              <ngx-input
+                type="datetime-local"
+                [ngModel]="model"
+                (ngModelChange)="updateModel($event)"
+                [requiredIndicator]="false"
+                [required]="required"
+              ></ngx-input>
             </div>
 
             <!-- Code -->
             <div *ngIf="schema.format === 'code'" class="code">
-              <ngx-input type="text" [ngModel]="model" [requiredIndicator]="false" [required]="required"
-                [disabled]="true">
+              <ngx-input
+                type="text"
+                [ngModel]="model"
+                [requiredIndicator]="false"
+                [required]="required"
+                [disabled]="true"
+              >
                 <ngx-input-suffix>
                   <button>
-                    <ngx-icon fontIcon="edit" class="edit-code-icon" ngx-tooltip tooltipTitle="Edit Code"
-                      (click)="openCodeEditor()">
+                    <ngx-icon
+                      fontIcon="edit"
+                      class="edit-code-icon"
+                      ngx-tooltip
+                      tooltipTitle="Edit Code"
+                      (click)="openCodeEditor()"
+                    >
                     </ngx-icon>
                   </button>
                 </ngx-input-suffix>
@@ -98,18 +145,29 @@
 
             <ng-template #codeEditorTpl>
               <div class="code-editor">
-                <ngx-select label="Language Mode" [ngModel]="[editorConfig.mode.name]"
-                  (ngModelChange)="selectEditorMode($event[0])">
+                <ngx-select
+                  label="Language Mode"
+                  [ngModel]="[editorConfig.mode.name]"
+                  (ngModelChange)="selectEditorMode($event[0])"
+                >
                   <ngx-select-option *ngFor="let mode of editorModes" [name]="mode.label" [value]="mode.name">
                   </ngx-select-option>
                 </ngx-select>
 
-                <ngx-button class="btn btn-primary save-code-button"
-                  (click)="updateModel(editorModel); closeCodeEditor()">
-                  Save</ngx-button>
+                <ngx-button
+                  class="btn btn-primary save-code-button"
+                  (click)="updateModel(editorModel); closeCodeEditor()"
+                >
+                  Save</ngx-button
+                >
 
-                <ngx-codemirror *ngIf="editorVisible" [ngModel]="editorModel" (ngModelChange)="editorModel = $event"
-                  [config]="editorConfig" class="code-editor">
+                <ngx-codemirror
+                  *ngIf="editorVisible"
+                  [ngModel]="editorModel"
+                  (ngModelChange)="editorModel = $event"
+                  [config]="editorConfig"
+                  class="code-editor"
+                >
                 </ngx-codemirror>
               </div>
             </ng-template>
@@ -119,13 +177,13 @@
         </div>
 
         <div *ngIf="schemaBuilderMode" class="node-constrains">
-          <div class="tag" *ngIf="schema.minItems"> Min Items: {{ schema.minItems }}</div>
-          <div class="tag" *ngIf="schema.maxItems"> Max Items: {{ schema.maxItems }}</div>
-          <div class="tag" *ngIf="schema.minimum"> Minimum: {{ schema.minimum }}</div>
-          <div class="tag" *ngIf="schema.maximum"> Maximum: {{ schema.maximum }}</div>
-          <div class="tag" *ngIf="schema.minLength"> Min Length: {{ schema.minLength }}</div>
-          <div class="tag" *ngIf="schema.maxLength"> Max Length: {{ schema.maxLength }}</div>
-          <div class="tag" *ngIf="schema.pattern"> Pattern: Yes</div>
+          <div class="tag" *ngIf="schema.minItems">Min Items: {{ schema.minItems }}</div>
+          <div class="tag" *ngIf="schema.maxItems">Max Items: {{ schema.maxItems }}</div>
+          <div class="tag" *ngIf="schema.minimum">Minimum: {{ schema.minimum }}</div>
+          <div class="tag" *ngIf="schema.maximum">Maximum: {{ schema.maximum }}</div>
+          <div class="tag" *ngIf="schema.minLength">Min Length: {{ schema.minLength }}</div>
+          <div class="tag" *ngIf="schema.maxLength">Max Length: {{ schema.maxLength }}</div>
+          <div class="tag" *ngIf="schema.pattern">Pattern: Yes</div>
         </div>
         <ng-content select="[node-options]"></ng-content>
       </div>
@@ -134,18 +192,35 @@
 
   <!-- Object -->
   <div *ngIf="schema?.type === 'object'">
-    <ngx-json-object-node-flat [schema]="schema" [schemaRef]="schemaRef" [model]="model" [expanded]="expanded"
-      (modelChange)="updateModel($event)" [path]="path" [errors]="childrenErrors"
-      [typeCheckOverrides]="typeCheckOverrides" [level]="level" [schemaBuilderMode]="schemaBuilderMode"
-      (schemaChange)="schemaChange.emit(schemaRef)">
+    <ngx-json-object-node-flat
+      [schema]="schema"
+      [schemaRef]="schemaRef"
+      [model]="model"
+      [expanded]="expanded"
+      (modelChange)="updateModel($event)"
+      [path]="path"
+      [errors]="childrenErrors"
+      [typeCheckOverrides]="typeCheckOverrides"
+      [level]="level"
+      [schemaBuilderMode]="schemaBuilderMode"
+      (schemaChange)="schemaChange.emit(schemaRef)"
+    >
     </ngx-json-object-node-flat>
   </div>
 
   <!-- Array -->
   <div *ngIf="schema?.type === 'array' && !schemaBuilderMode">
-    <ngx-json-array-node-flat [schema]="schema" [model]="model" [expanded]="expanded"
-      (modelChange)="updateModel($event)" [path]="path" [errors]="childrenErrors"
-      [typeCheckOverrides]="typeCheckOverrides" [level]="level" [schemaBuilderMode]="schemaBuilderMode">
+    <ngx-json-array-node-flat
+      [schema]="schema"
+      [model]="model"
+      [expanded]="expanded"
+      (modelChange)="updateModel($event)"
+      [path]="path"
+      [errors]="childrenErrors"
+      [typeCheckOverrides]="typeCheckOverrides"
+      [level]="level"
+      [schemaBuilderMode]="schemaBuilderMode"
+    >
     </ngx-json-array-node-flat>
   </div>
 </div>

@@ -1,7 +1,12 @@
 import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef, OnInit } from '@angular/core';
 import { ObjectNode } from '../../../../node-types/object-node.component';
 import { DialogService } from '../../../../../dialog/dialog.service';
-import { JsonSchemaDataType, JSONEditorSchema, ObjectProperty, createValueForSchema } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
+import {
+  JsonSchemaDataType,
+  JSONEditorSchema,
+  ObjectProperty,
+  createValueForSchema
+} from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -25,7 +30,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     setTimeout(() => {
       this.initSchemaProperties(this.schema);
       this.initSchemaProperties(this.schemaRef);
-    })
+    });
   }
 
   onPropertyConfig(property: ObjectProperty, index: number): void {
@@ -59,7 +64,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     this.toggleRequiredValue(options.required, newName);
 
     this.schema.properties[newName] = newProperty;
-    this.propertyIndex[options.newProperty.key] = newProperty
+    this.propertyIndex[options.newProperty.key] = newProperty;
     this.updateSchemaRefProperty(newProperty);
 
     this.swapSchemaProperties(options.index);
@@ -75,7 +80,6 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   addProperty(dataType: JsonSchemaDataType): void {
     super.addProperty(dataType);
     this.updateSchemaRefProperty(this.propertyIndex[this.propertyId - 1]);
-
 
     if (this.schemaBuilderMode) {
       this.schemaChange.emit();
@@ -131,19 +135,19 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   private updateSchemaRefProperty(prop: any): void {
     this.schemaRef.properties[prop.propertyName] = {
       type: prop.type,
-      ...prop['required'] && { required: prop['required'] },
-      ...prop['properties'] && { properties: prop['properties'] },
-      ...prop['enum'] && { enum: prop['enum'] },
-      ...prop['default'] && { default: prop['default'] },
-      ...prop['description'] && { description: prop['description'] },
-      ...prop['nameEditable'] && { nameEditable: prop['nameEditable'] },
-      ...prop['minimum'] && { minimum: prop['minimum'] },
-      ...prop['maximum'] && { maximum: prop['maximum'] },
-      ...prop['minLength'] && { minLength: prop['minLength'] },
-      ...prop['maxLength'] && { maxLength: prop['maxLength'] },
-      ...prop['minItems'] && { minItems: prop['minItems'] },
-      ...prop['maxItems'] && { maxItems: prop['maxItems'] },
-      ...prop['pattern'] && { pattern: prop['pattern'] }
+      ...(prop['required'] && { required: prop['required'] }),
+      ...(prop['properties'] && { properties: prop['properties'] }),
+      ...(prop['enum'] && { enum: prop['enum'] }),
+      ...(prop['default'] && { default: prop['default'] }),
+      ...(prop['description'] && { description: prop['description'] }),
+      ...(prop['nameEditable'] && { nameEditable: prop['nameEditable'] }),
+      ...(prop['minimum'] && { minimum: prop['minimum'] }),
+      ...(prop['maximum'] && { maximum: prop['maximum'] }),
+      ...(prop['minLength'] && { minLength: prop['minLength'] }),
+      ...(prop['maxLength'] && { maxLength: prop['maxLength'] }),
+      ...(prop['minItems'] && { minItems: prop['minItems'] }),
+      ...(prop['maxItems'] && { maxItems: prop['maxItems'] }),
+      ...(prop['pattern'] && { pattern: prop['pattern'] })
     };
   }
 

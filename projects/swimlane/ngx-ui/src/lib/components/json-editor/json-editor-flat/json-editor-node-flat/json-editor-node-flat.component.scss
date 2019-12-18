@@ -8,7 +8,7 @@
   }
 
   .node-container {
-    display: flex
+    display: flex;
   }
 
   .node {
@@ -27,7 +27,7 @@
       border-radius: 11px;
       top: 0;
       left: 0;
-      border: 2px solid $color-red-500
+      border: 2px solid $color-red-500;
     }
 
     .left-options {
@@ -42,21 +42,21 @@
         position: absolute;
         top: 12px;
         left: 12px;
-  
+
         span {
           display: flex;
-  
+
           svg path {
             fill: $color-blue-grey-400;
             stroke: $color-blue-grey-400;
           }
-  
+
           &.not-required {
             svg path {
               fill: transparent;
             }
           }
-  
+
           &.invalid {
             svg path {
               fill: $color-red-500;
@@ -76,40 +76,42 @@
       justify-content: space-between;
       flex: 1;
       align-items: center;
-  
+
       .node-info {
         display: flex;
         flex-direction: column;
         justify-content: center;
         flex-basis: 30%;
-    
+
         .name {
           font-weight: 600;
           font-size: 18px;
           line-height: 23px;
           color: #f0f1f6; // TODO: fix color
         }
-    
+
         .info-icon {
           color: $color-blue-grey-400;
           font-size: 12px;
         }
-    
-        .property-name, .dot-separator, .description {
+
+        .property-name,
+        .dot-separator,
+        .description {
           color: $color-blue-grey-250;
         }
-    
+
         .dot-separator {
           font-size: 0.2em;
           margin: 0 5px;
           vertical-align: middle;
         }
-    
+
         .type {
           color: #f0f1f6;
         }
       }
-    
+
       .node-input {
         flex: 1;
 

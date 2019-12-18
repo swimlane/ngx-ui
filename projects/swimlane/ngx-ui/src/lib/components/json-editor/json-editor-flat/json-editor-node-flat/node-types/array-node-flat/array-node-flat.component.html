@@ -1,8 +1,15 @@
 <div class="array-node-flat" [hidden]="!expanded">
   <div class="array-node-content" *ngFor="let value of model; let i = index; trackBy: arrayTrackBy">
-    <ngx-json-editor-node-flat [model]="value" (modelChange)="updateArrayItem(i, $event)" [schema]="schemas[i]"
-      [path]="path + '[' + i + ']'" [errors]="errors" [typeCheckOverrides]="typeCheckOverrides" [level]="level"
-      [schemaBuilderMode]="schemaBuilderMode">
+    <ngx-json-editor-node-flat
+      [model]="value"
+      (modelChange)="updateArrayItem(i, $event)"
+      [schema]="schemas[i]"
+      [path]="path + '[' + i + ']'"
+      [errors]="errors"
+      [typeCheckOverrides]="typeCheckOverrides"
+      [level]="level"
+      [schemaBuilderMode]="schemaBuilderMode"
+    >
       <div class="node-options">
         <button type="button" class="node-options-btn">
           <i class="ngx-icon ngx-cog"></i>
@@ -53,8 +60,9 @@
               </li>
               <ng-container *ngIf="_array.isArray(schema.items.type)">
                 <li *ngFor="let type of schema.items.type">
-                  <button type="button" (click)="addArrayItem(dataTypeMap[type])">Add
-                    {{ dataTypeMap[type].name }}</button>
+                  <button type="button" (click)="addArrayItem(dataTypeMap[type])">
+                    Add {{ dataTypeMap[type].name }}
+                  </button>
                 </li>
               </ng-container>
             </ng-container>

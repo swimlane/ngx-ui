@@ -1,11 +1,4 @@
-import {
-  Input,
-  EventEmitter,
-  Output,
-  OnInit,
-  OnChanges,
-  SimpleChanges
-} from '@angular/core';
+import { Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 import {
   createValueForSchema,
@@ -18,7 +11,7 @@ import {
   JSONEditorSchema,
   PropertyIndex
 } from '../json-editor.helper';
-import { JSONSchema7, JSONSchema7TypeName } from 'json-schema';
+import { JSONSchema7TypeName } from 'json-schema';
 
 export class ObjectNode implements OnInit, OnChanges {
   @Input() schema: JSONEditorSchema;
@@ -298,7 +291,8 @@ export class ObjectNode implements OnInit, OnChanges {
           continue;
         }
 
-        if (this.requiredCache[propName] || this.schemaBuilderMode) { // List all properties not only required if we are in schema builder mode
+        if (this.requiredCache[propName] || this.schemaBuilderMode) {
+          // List all properties not only required if we are in schema builder mode
           this.addSchemaProperty(propName);
         }
       }

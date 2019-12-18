@@ -72,7 +72,7 @@ export class ArrayNode implements OnChanges {
   addArrayItem(dataType?: any): void {
     let schema;
     if (dataType) {
-      schema = JSON.parse(JSON.stringify({ ...this.schema.items as object, ...dataType.schema }));
+      schema = JSON.parse(JSON.stringify({ ...(this.schema.items as object), ...dataType.schema }));
     } else {
       schema = JSON.parse(JSON.stringify(this.schema.items));
     }
@@ -156,7 +156,7 @@ export class ArrayNode implements OnChanges {
       let schema = inferType(value, this.typeCheckOverrides);
 
       if (this.schema.items) {
-        schema = JSON.parse(JSON.stringify({ ...this.schema.items as object, ...schema }));
+        schema = JSON.parse(JSON.stringify({ ...(this.schema.items as object), ...schema }));
       }
 
       this.schemas.push(schema);

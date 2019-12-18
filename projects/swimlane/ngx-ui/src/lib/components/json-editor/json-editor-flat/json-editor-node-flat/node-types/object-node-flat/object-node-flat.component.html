@@ -1,15 +1,31 @@
 <div class="object-node-flat" [hidden]="!expanded" cdkDropList (cdkDropListDropped)="drop($event)">
-  <div cdkDrag cdkDragLockAxis="y" class="object-node-content"
-    *ngFor="let prop of propertyIndex | keyvalue; let index = index; trackBy: trackBy">
-    <ngx-json-editor-node-flat [model]="model[prop.value.propertyName]"
-      (modelChange)="updateProp(prop.value.id, $event)" [schema]="prop.value"
-      [schemaRef]="schemaRef.properties[prop.value.propertyName]" [required]="!!requiredCache[prop.value.propertyName]"
+  <div
+    cdkDrag
+    cdkDragLockAxis="y"
+    class="object-node-content"
+    *ngFor="let prop of propertyIndex | keyvalue; let index = index; trackBy: trackBy"
+  >
+    <ngx-json-editor-node-flat
+      [model]="model[prop.value.propertyName]"
+      (modelChange)="updateProp(prop.value.id, $event)"
+      [schema]="prop.value"
+      [schemaRef]="schemaRef.properties[prop.value.propertyName]"
+      [required]="!!requiredCache[prop.value.propertyName]"
       [inline]="prop.value.type !== 'array' && prop.value.type !== 'object'"
-      [path]="path + getPath(prop.value.propertyName)" [errors]="errors" [typeCheckOverrides]="typeCheckOverrides"
-      [level]="level" [schemaBuilderMode]="schemaBuilderMode" (schemaChange)="schemaChange.emit(schemaRef)">
+      [path]="path + getPath(prop.value.propertyName)"
+      [errors]="errors"
+      [typeCheckOverrides]="typeCheckOverrides"
+      [level]="level"
+      [schemaBuilderMode]="schemaBuilderMode"
+      (schemaChange)="schemaChange.emit(schemaRef)"
+    >
       <div class="node-options" node-options>
-        <button *ngIf="schemaBuilderMode" type="button" class="node-options-btn"
-          (click)="onPropertyConfig(prop, index)">
+        <button
+          *ngIf="schemaBuilderMode"
+          type="button"
+          class="node-options-btn"
+          (click)="onPropertyConfig(prop, index)"
+        >
           <i class="ngx-icon ngx-cog"></i>
         </button>
         <ngx-dropdown [showCaret]="true">
@@ -21,15 +37,21 @@
           <ngx-dropdown-menu class="ngx-dropdown-dark-outline align-right">
             <ul class="vertical-list">
               <li>
-                <button type="button" (click)="deleteProperty(prop.value.propertyName)"
-                  [disabled]="requiredCache[prop.value.propertyName] && !schemaBuilderMode">
+                <button
+                  type="button"
+                  (click)="deleteProperty(prop.value.propertyName)"
+                  [disabled]="requiredCache[prop.value.propertyName] && !schemaBuilderMode"
+                >
                   Delete
                 </button>
               </li>
               <ng-container *ngIf="prop.value?.$meta?.type && !schemaBuilderMode">
                 <li *ngFor="let type of prop.value?.$meta?.type">
-                  <button type="button" (click)="changePropertyType(prop.value, type)"
-                    [disabled]="prop.value.$meta.currentType === type">
+                  <button
+                    type="button"
+                    (click)="changePropertyType(prop.value, type)"
+                    [disabled]="prop.value.$meta.currentType === type"
+                  >
                     Change type to {{ dataTypeMap[type].name }}
                   </button>
                 </li>
@@ -42,9 +64,11 @@
         <i class="ngx-icon ngx-handle"></i>
       </div>
     </ngx-json-editor-node-flat>
-    <div *cdkDragPlaceholder class="indentation-placeholder"
-      [ngStyle]="{'width': 'calc(100% + ' + (level * 20) + 'px)'}">
-    </div>
+    <div
+      *cdkDragPlaceholder
+      class="indentation-placeholder"
+      [ngStyle]="{ width: 'calc(100% + ' + level * 20 + 'px)' }"
+    ></div>
   </div>
 
   <div class="add-button" [class.background]="level">
@@ -64,8 +88,10 @@
               </button>
             </li>
           </ul>
-          <ul class="vertical-list dropdown-column"
-            *ngIf="!schema || schema.patternProperties || schema.additionalProperties !== false">
+          <ul
+            class="vertical-list dropdown-column"
+            *ngIf="!schema || schema.patternProperties || schema.additionalProperties !== false"
+          >
             <li *ngFor="let prop of schema.patternProperties | keyvalue" (click)="addSchemaPatternProperty(prop.key)">
               <button type="button">{{ prop.value.title ? prop.value.title : prop.key }}</button>
             </li>
@@ -83,7 +109,11 @@
 
 <!-- Property Config Dialog -->
 <ng-template #propertyConfigTmpl let-context="context">
-  <ngx-property-config [property]="context.property" [index]="context.index" [schema]="context.schema"
-    (updateSchema)="updateSchema($event)">
+  <ngx-property-config
+    [property]="context.property"
+    [index]="context.index"
+    [schema]="context.schema"
+    (updateSchema)="updateSchema($event)"
+  >
   </ngx-property-config>
 </ng-template>

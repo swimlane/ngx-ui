@@ -8,7 +8,7 @@ import { JSONEditorSchema } from '../json-editor.helper';
   selector: 'ngx-json-editor',
   templateUrl: './json-editor.component.html',
   styleUrls: ['./json-editor.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class JsonEditorComponent extends JsonEditor {
   @Input() model: any;

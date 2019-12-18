@@ -1,5 +1,5 @@
 <div [hidden]="!expanded">
-  <div *ngFor="let prop of (propertyIndex | keyvalue); trackBy: trackBy">
+  <div *ngFor="let prop of propertyIndex | keyvalue; trackBy: trackBy">
     <div class="property-def">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
@@ -10,15 +10,21 @@
         <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
           <ul class="vertical-list">
             <li>
-              <button type="button" (click)="deleteProperty(prop.value.propertyName)"
-                [disabled]="requiredCache[prop.value.propertyName]">
+              <button
+                type="button"
+                (click)="deleteProperty(prop.value.propertyName)"
+                [disabled]="requiredCache[prop.value.propertyName]"
+              >
                 Delete
               </button>
             </li>
             <ng-container *ngIf="prop.value?.$meta?.type">
               <li *ngFor="let type of prop.value?.$meta?.type">
-                <button type="button" (click)="changePropertyType(prop.value, type)"
-                  [disabled]="prop.value.$meta.currentType === type">
+                <button
+                  type="button"
+                  (click)="changePropertyType(prop.value, type)"
+                  [disabled]="prop.value.$meta.currentType === type"
+                >
                   Change type to {{ dataTypeMap[type].name }}
                 </button>
               </li>
@@ -28,12 +34,19 @@
       </ngx-dropdown>
 
       <div class="property-name">
-        <input type="text" *ngIf="prop.value.nameEditable" [ngModel]="prop.value.propertyName"
-          (ngModelChange)="updatePropertyName(prop.value.id, $event)" />
+        <input
+          type="text"
+          *ngIf="prop.value.nameEditable"
+          [ngModel]="prop.value.propertyName"
+          (ngModelChange)="updatePropertyName(prop.value.id, $event)"
+        />
 
         <ng-container *ngIf="!prop.value?.nameEditable">
-          <div class="title" ngx-tooltip
-            [tooltipTitle]="prop?.value?.description ? prop?.value?.description : prop?.value?.propertyName">
+          <div
+            class="title"
+            ngx-tooltip
+            [tooltipTitle]="prop?.value?.description ? prop?.value?.description : prop?.value?.propertyName"
+          >
             {{ prop.value?.title ? prop.value?.title : prop.value?.propertyName }}
             <span *ngIf="requiredCache[prop.value.propertyName]">*</span>
           </div>
@@ -41,10 +54,16 @@
       </div>
     </div>
 
-    <ngx-json-editor-node [model]="model[prop.value.propertyName]" (modelChange)="updateProp(prop.value.id, $event)"
-      [schema]="prop.value" [required]="!!requiredCache[prop.value.propertyName]"
+    <ngx-json-editor-node
+      [model]="model[prop.value.propertyName]"
+      (modelChange)="updateProp(prop.value.id, $event)"
+      [schema]="prop.value"
+      [required]="!!requiredCache[prop.value.propertyName]"
       [inline]="prop.value.type !== 'array' && prop.value.type !== 'object'"
-      [path]="path + getPath(prop.value.propertyName)" [errors]="errors" [typeCheckOverrides]="typeCheckOverrides">
+      [path]="path + getPath(prop.value.propertyName)"
+      [errors]="errors"
+      [typeCheckOverrides]="typeCheckOverrides"
+    >
     </ngx-json-editor-node>
   </div>
 
@@ -56,15 +75,17 @@
     </ngx-dropdown-toggle>
     <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
       <ul class="vertical-list dropdown-column" *ngIf="schema.properties">
-        <li *ngFor="let prop of (schema.properties | keyvalue)" (click)="addSchemaProperty(prop.key)">
+        <li *ngFor="let prop of schema.properties | keyvalue" (click)="addSchemaProperty(prop.key)">
           <button [disabled]="model[prop.key] !== undefined" type="button">
             {{ prop.value.title ? prop.value.title : prop.key }}
           </button>
         </li>
       </ul>
-      <ul class="vertical-list dropdown-column"
-        *ngIf="!schema || schema.patternProperties || schema.additionalProperties !== false">
-        <li *ngFor="let prop of (schema.patternProperties | keyvalue)" (click)="addSchemaPatternProperty(prop.key)">
+      <ul
+        class="vertical-list dropdown-column"
+        *ngIf="!schema || schema.patternProperties || schema.additionalProperties !== false"
+      >
+        <li *ngFor="let prop of schema.patternProperties | keyvalue" (click)="addSchemaPatternProperty(prop.key)">
           <button type="button">{{ prop.value.title ? prop.value.title : prop.key }}</button>
         </li>
         <ng-template [ngIf]="!schema || schema.additionalProperties !== false">

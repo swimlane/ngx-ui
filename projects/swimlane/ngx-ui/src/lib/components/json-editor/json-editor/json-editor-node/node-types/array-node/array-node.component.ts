@@ -5,4 +5,4 @@ import { ArrayNode } from '../../../../node-types/array-node.component';
   selector: 'ngx-json-array-node',
   templateUrl: 'array-node.component.html'
 })
-export class ArrayNodeComponent extends ArrayNode { }
+export class ArrayNodeComponent extends ArrayNode {}
