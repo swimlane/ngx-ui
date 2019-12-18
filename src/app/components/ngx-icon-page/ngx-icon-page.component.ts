@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { IconRegisteryService } from '../../../../projects/swimlane/ngx-ui/src/public_api';
 
 @Component({
   selector: 'app-ngx-icon-page',
-  templateUrl: './ngx-icon-page.component.html'
+  templateUrl: './ngx-icon-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxIconPageComponent {
   constructor(public iconRegisteryService: IconRegisteryService) {
