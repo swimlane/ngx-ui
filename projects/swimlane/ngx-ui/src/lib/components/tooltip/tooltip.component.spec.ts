@@ -1,6 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { TooltipContentComponent } from './tooltip.component';
 import { ToolTipFixtureComponent } from './fixtures/tooltip.fixture';
 import { TooltipModule } from './tooltip.module';
 import { TooltipDirective } from './tooltip.directive';

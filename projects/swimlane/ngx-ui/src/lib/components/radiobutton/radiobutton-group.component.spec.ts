@@ -1,48 +1,67 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 import { RadioButtonGroupComponent } from './radiobutton-group.component';
+import { RadioButtonComponent } from './radiobutton.component';
+import { RadioButtonGroupComponentFixture } from './radiobutton-group.component.fixture';
+
 describe('RadioButtonGroupComponent', () => {
-  let component: RadioButtonGroupComponent;
-  let fixture: ComponentFixture<RadioButtonGroupComponent>;
+  let component: RadioButtonGroupComponentFixture;
+  let fixture: ComponentFixture<RadioButtonGroupComponentFixture>;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [RadioButtonGroupComponent]
+      imports: [FormsModule],
+      declarations: [RadioButtonGroupComponentFixture, RadioButtonGroupComponent, RadioButtonComponent]
     });
-    fixture = TestBed.createComponent(RadioButtonGroupComponent);
-    component = fixture.componentInstance;
   });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(RadioButtonGroupComponentFixture);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
   it('can load instance', () => {
     expect(component).toBeTruthy();
   });
-  it('id defaults to: _uniqueId', () => {
-    expect(component.id).toEqual(component._uniqueId);
-  });
-  it('tabindex defaults to: 0', () => {
-    expect(component.tabindex).toEqual(0);
-  });
-  it('disabled defaults to: false', () => {
-    expect(component.disabled).toEqual(false);
-  });
-  describe('ngAfterContentInit', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'subscribeToRadios');
-      component.ngAfterContentInit();
-      expect(component.subscribeToRadios).toHaveBeenCalled();
+
+  describe('name', () => {
+    it('should get name', () => {
+      expect(component.radioButtonGroup.name).toBe(component.name$.value);
+    });
+
+    it('should not set name if not changed', () => {
+      const spy = spyOn(component.radioButtonGroup._radios, 'forEach');
+      component.radioButtonGroup.name = component.name$.value;
+      expect(spy).not.toHaveBeenCalled();
+    });
+
+    it('should set name', () => {
+      component.radioButtonGroup.name = 'test2';
+      component.radioButtonGroup.value = 'two';
+      expect(component.radioButtonGroup.selected.name).toEqual(component.radioButtonGroup.name);
     });
   });
-  describe('ngOnDestroy', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'deleteSubscriptions');
-      component.ngOnDestroy();
-      expect(component.deleteSubscriptions).toHaveBeenCalled();
+
+  describe('value', () => {
+    it('should should not set value if unchanged', () => {
+      const spy = spyOn(component.radioButtonGroup.change, 'emit');
+      component.radioButtonGroup.value = component.value;
+      expect(spy).not.toHaveBeenCalled();
     });
   });
-  describe('subscribeToRadios', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'deleteSubscriptions');
-      component.subscribeToRadios();
-      expect(component.deleteSubscriptions).toHaveBeenCalled();
+
+  describe('onRadioSelected', () => {
+    it('should select radio button', done => {
+      component.radioButtonGroup.onRadioSelected('one');
+
+      setTimeout(() => {
+        expect(component.radioButtonGroup.selected.value).toEqual(component.value as any);
+        done();
+      });
     });
   });
 });

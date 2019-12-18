@@ -1,5 +1,15 @@
-import { Component, EventEmitter, HostBinding, Input, Output, ViewEncapsulation, forwardRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation,
+  forwardRef,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
+} from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 const TOGGLE_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -11,45 +21,46 @@ let nextId = 0;
 
 @Component({
   selector: 'ngx-toggle',
-  template: `
-    <div>
-      <input
-        #input
-        class="ngx-toggle-input"
-        type="checkbox"
-        [id]="id"
-        [(ngModel)]="value"
-        [required]="required"
-        [tabIndex]="tabIndex"
-        [disabled]="disabled"
-        [name]="name"
-        (blur)="onBlur()"
-        (change)="onChange()"
-      />
-      <label [attr.for]="id" class="ngx-toggle-label"> </label>
-      <label [attr.for]="id" class="ngx-toggle-text">
-        <span *ngIf="label" [innerHTML]="label"></span>
-        <ng-content></ng-content>
-      </label>
-    </div>
-  `,
+  exportAs: 'ngxToggle',
+  templateUrl: './toggle.component.html',
   styleUrls: ['./toggle.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  providers: [TOGGLE_VALUE_ACCESSOR]
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [TOGGLE_VALUE_ACCESSOR],
+  host: {
+    class: 'ngx-toggle',
+    '[class.disabled]': 'getDisabled'
+  }
 })
 export class ToggleComponent implements ControlValueAccessor {
+  @Output() change = new EventEmitter();
+  @Input() id: string = `toggle-${++nextId}`;
+  @Input() name: string = null;
+  @Input() label: string;
+
   @Input()
-  id: string = `toggle-${++nextId}`;
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(disabled) {
+    this._disabled = coerceBooleanProperty(disabled);
+  }
+
   @Input()
-  name: string = null;
+  get required() {
+    return this._required;
+  }
+  set required(required) {
+    this._required = coerceBooleanProperty(required);
+  }
+
   @Input()
-  disabled: boolean = false;
-  @Input()
-  required: boolean = false;
-  @Input()
-  tabIndex: number = 0;
-  @Input()
-  label: string;
+  get tabIndex() {
+    return this._tabIndex;
+  }
+  set tabIndex(tabIndex) {
+    this._tabIndex = coerceNumberProperty(tabIndex);
+  }
 
   get value(): boolean {
     return this._value;
@@ -58,24 +69,25 @@ export class ToggleComponent implements ControlValueAccessor {
   set value(value) {
     if (this.value !== value) {
       this._value = value;
-      this.onChangeCallback(this._value);
+      this.onChange();
+      this.cdr.markForCheck();
     }
   }
 
-  @Output()
-  change = new EventEmitter();
-
-  @HostBinding('class')
   get getHostCssClasses(): string {
     return 'ngx-toggle';
   }
 
-  @HostBinding('class.disabled')
   get getDisabled(): string {
     return this.disabled ? 'disabled' : '';
   }
 
-  private _value: boolean;
+  private _value: boolean = false;
+  private _disabled: boolean = false;
+  private _required: boolean = false;
+  private _tabIndex: number = 0;
+
+  constructor(private cdr: ChangeDetectorRef) {}
 
   toggle(): void {
     this.value = !this.value;
@@ -86,6 +98,8 @@ export class ToggleComponent implements ControlValueAccessor {
   }
 
   onChange(): void {
+    this.change.emit(this.value);
+
     setTimeout(() => {
       this.onChangeCallback(this._value);
     });
@@ -94,10 +108,12 @@ export class ToggleComponent implements ControlValueAccessor {
   writeValue(val: any): void {
     if (val === null || val === undefined) {
       val = false;
-      this.onChange();
     }
+
     if (val !== this._value) {
       this._value = val;
+      this.onChange();
+      this.cdr.markForCheck();
     }
   }
 
