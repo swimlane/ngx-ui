@@ -18,7 +18,7 @@
       <pre>{{ jsonEditorModel | json }}</pre>
 
       <ngx-section class="shadow" [sectionTitle]="'Schema Builder Mode'">
-        <ngx-json-editor-flat [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Schema"
+        <ngx-json-editor-flat [(model)]="jsonEditorSchemaBuilderModel" [schema]="jsonEditorSchema" label="Schema"
           [typeCheckOverrides]="typeOverrides" [schemaBuilderMode]="true" (schemaChange)="schemaChange($event)">
         </ngx-json-editor-flat>
         <hr />
