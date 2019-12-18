@@ -10,16 +10,14 @@ describe('ngx-ui demo', () => {
 
   const visitSection = str => {
     return () => {
-      cy.get('ul.nav-items')
-        .contains('a', str)
-        .click();
-      cy.contains('h3', str).should('to.exist');
+      cy.visit('/inputs');
+      cy.get('.page-loader').should('not.be.visible', { timeout: 20000 });
     };
   };
 
   describe('Forms', () => {
     describe('Inputs', () => {
-      beforeEach(visitSection('Inputs'));
+      beforeEach(visitSection('/inputs'));
 
       describe('Text Input', () => {
         beforeEach(() => {

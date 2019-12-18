@@ -50,13 +50,17 @@ export class LongPressButtonComponent implements OnInit, OnChanges {
   @Input() icon: string = 'mouse-hold';
 
   @Input()
-  get duration() { return this._duration; }
+  get duration() {
+    return this._duration;
+  }
   set duration(duration: number) {
     this._duration = coerceNumberProperty(duration);
   }
 
   @Input()
-  get disabled() { return this._disabled; }
+  get disabled() {
+    return this._disabled;
+  }
   set disabled(disabled: boolean) {
     this._disabled = coerceBooleanProperty(disabled);
   }
@@ -70,7 +74,7 @@ export class LongPressButtonComponent implements OnInit, OnChanges {
   private _duration: number = 3000;
   private _disabled: boolean = false;
 
-  constructor(private readonly cdr: ChangeDetectorRef) { }
+  constructor(private readonly cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.updateState();

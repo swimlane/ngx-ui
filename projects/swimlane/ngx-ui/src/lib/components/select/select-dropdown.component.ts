@@ -6,9 +6,10 @@ import {
   ViewChild,
   AfterViewInit,
   ElementRef,
-  TemplateRef
+  TemplateRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 import { KeyboardKeys } from '../../utils/keys';
 import { containsFilter } from './contains-filter.util';
@@ -21,7 +22,8 @@ import { SelectDropdownOption } from './select-dropdown-option.interface';
   host: {
     class: 'ngx-select-dropdown',
     '[class.groupings]': 'groupBy'
-  }
+  },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectDropdownComponent implements AfterViewInit {
   @Input() selected: any[];
@@ -29,55 +31,71 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Input() filterPlaceholder: string;
   @Input() filterEmptyPlaceholder: string;
   @Input() emptyPlaceholder: string;
-  @Input() allowAdditionsText: string = 'Add Value';
+  @Input() allowAdditionsText: string | TemplateRef<any> = 'Add Value';
 
   @Input()
-  get tagging() { return this._tagging; }
+  get tagging() {
+    return this._tagging;
+  }
   set tagging(tagging) {
     this._tagging = coerceBooleanProperty(tagging);
   }
 
   @Input()
-  get allowAdditions() { return this._allowAdditions; }
+  get allowAdditions() {
+    return this._allowAdditions;
+  }
   set allowAdditions(allowAdditions) {
     this._allowAdditions = coerceBooleanProperty(allowAdditions);
   }
 
   @Input()
-  get filterable() { return this._filterable; }
+  get filterable() {
+    return this._filterable;
+  }
   set filterable(filterable) {
     this._filterable = coerceBooleanProperty(filterable);
   }
 
   @Input()
-  get filterCaseSensitive() { return this._filterCaseSensitive; }
+  get filterCaseSensitive() {
+    return this._filterCaseSensitive;
+  }
   set filterCaseSensitive(filterCaseSensitive) {
     this._filterCaseSensitive = coerceBooleanProperty(filterCaseSensitive);
   }
 
   @Input()
-  get focusIndex() { return this._focusIndex; }
+  get focusIndex() {
+    return this._focusIndex;
+  }
   set focusIndex(val: number) {
-    this._focusIndex = val;
-    this.focusElement(val);
+    this._focusIndex = coerceNumberProperty(val);
+    this.focusElement(this._focusIndex);
   }
 
   @Input()
-  get filterQuery() { return this._filterQuery; }
+  get filterQuery() {
+    return this._filterQuery;
+  }
   set filterQuery(val: string) {
     this._filterQuery = val;
     this.groups = this.calculateGroups(this.groupBy, this.options, val);
   }
 
   @Input()
-  get groupBy() { return this._groupBy; }
+  get groupBy() {
+    return this._groupBy;
+  }
   set groupBy(val: string) {
     this._groupBy = val;
     this.groups = this.calculateGroups(val, this.options);
   }
 
   @Input()
-  get options() { return this._options; }
+  get options() {
+    return this._options;
+  }
   set options(val) {
     this.groups = this.calculateGroups(this.groupBy, val);
     this._options = val;
@@ -87,11 +105,15 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Output() selection = new EventEmitter<SelectDropdownOption>();
   @Output() close = new EventEmitter<boolean | undefined>();
 
-  @ViewChild('filterInput', { static: false })
+  @ViewChild('filterInput')
   readonly filterInput?: ElementRef<HTMLInputElement>;
 
   get element() {
     return this.elementRef.nativeElement;
+  }
+
+  get isNotTemplate() {
+    return !(typeof this.allowAdditionsText === 'object' && this.allowAdditionsText instanceof TemplateRef);
   }
 
   groups: any[];
@@ -105,11 +127,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   private _filterable: boolean;
   private _filterCaseSensitive = false;
 
-  constructor(private readonly elementRef: ElementRef) { }
-
-  isNotTemplate(val: any) {
-    return !(typeof val === 'object' && val instanceof TemplateRef);
-  }
+  constructor(private readonly elementRef: ElementRef) {}
 
   ngAfterViewInit(): void {
     if (this.filterable && !this.tagging) {
@@ -137,9 +155,9 @@ export class SelectDropdownComponent implements AfterViewInit {
     const key = event.key;
     const value = (event.target as any).value;
 
-    if (key === KeyboardKeys.ESCAPE as any) {
+    if (key === (KeyboardKeys.ESCAPE as any)) {
       this.close.emit(true);
-    } else if (event.key === KeyboardKeys.ARROW_DOWN as any) {
+    } else if (event.key === (KeyboardKeys.ARROW_DOWN as any)) {
       ++this.focusIndex;
     }
 
@@ -156,11 +174,11 @@ export class SelectDropdownComponent implements AfterViewInit {
 
     const key = event.key;
 
-    if (key === KeyboardKeys.ARROW_DOWN as any) {
+    if (key === (KeyboardKeys.ARROW_DOWN as any)) {
       if (this.focusIndex < this.options.length - 1) ++this.focusIndex;
-    } else if (key === KeyboardKeys.ARROW_UP as any) {
+    } else if (key === (KeyboardKeys.ARROW_UP as any)) {
       if (this.focusIndex > 0) --this.focusIndex;
-    } else if (key === KeyboardKeys.ENTER as any) {
+    } else if (key === (KeyboardKeys.ENTER as any)) {
       this.selection.emit(this.options[this.focusIndex]);
     }
   }
@@ -190,7 +208,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     const filterOptions = { filterCaseSensitive: this.filterCaseSensitive };
 
     // no group by defined, skip and just return
-    // emptry group object...
+    // empty group object...
     if (!groupBy) {
       if (filter) {
         // filter options

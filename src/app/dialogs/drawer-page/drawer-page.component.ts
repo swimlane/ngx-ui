@@ -1,9 +1,11 @@
-import { Component, ViewChild, TemplateRef } from '@angular/core';
+import { Component, ViewChild, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
+
 import { DrawerService } from '../../../../projects/swimlane/ngx-ui/src/public_api';
 
 @Component({
   selector: 'app-drawer-page',
-  templateUrl: './drawer-page.component.html'
+  templateUrl: './drawer-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DrawerPageComponent {
   @ViewChild('editTmpl', { static: true })

@@ -9,11 +9,13 @@ import { DropdownComponent } from './dropdown.component';
     <ngx-dropdown showCaret>
       <ngx-dropdown-toggle *ngIf="hasToggler$ | async">Button</ngx-dropdown-toggle>
       <ngx-dropdown-menu class="pull-right">
-        <ul><li><a>...</a></li></ul>
+        <ul>
+          <li><a>...</a></li>
+        </ul>
       </ngx-dropdown-menu>
     </ngx-dropdown>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponentFixture {
   @ViewChild(DropdownComponent, { static: false })

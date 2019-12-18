@@ -59,4 +59,4 @@ import { ObjectNodeFlatComponent } from './json-editor-flat/json-editor-node-fla
   ],
   providers: [SchemaValidatorService]
 })
-export class JsonEditorModule { }
+export class JsonEditorModule {}

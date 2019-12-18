@@ -21,32 +21,16 @@ let nextId = 0;
 @Component({
   selector: 'ngx-checkbox',
   exportAs: 'ngxCheckbox',
-  providers: [CHKBOX_VALUE_ACCESSOR],
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './checkbox.component.html',
   styleUrls: ['./checkbox.component.scss'],
-  template: `
-    <label class="checkbox-label">
-      <input
-        type="checkbox"
-        class="checkbox-input"
-        [id]="id + '-chk'"
-        [(ngModel)]="value"
-        [disabled]="disabled"
-        [name]="name + '-chk'"
-        [tabIndex]="tabindex"
-        (focus)="focus.emit($event)"
-        (blur)="blur.emit($event)"
-        (change)="change.emit($event)"
-      />
-      <ng-content></ng-content>
-    </label>
-  `,
   host: {
     class: 'ngx-checkbox',
     '[class.disabled]': 'disabled',
     '(blur)': 'onBlur($event)'
-  }
+  },
+  providers: [CHKBOX_VALUE_ACCESSOR],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent implements ControlValueAccessor {
   @Input() id = `checkbox-${++nextId}`;

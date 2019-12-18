@@ -35,7 +35,7 @@ describe('LoadingService', () => {
   describe('start', () => {
     afterEach(() => {
       service.complete();
-    })
+    });
 
     it('should start progress', () => {
       service.start(false);
@@ -96,7 +96,7 @@ describe('LoadingService', () => {
   });
 
   describe('Auto Increment', () => {
-    it('should increment progress threshold', (done) => {
+    it('should increment progress threshold', done => {
       service.start();
 
       setTimeout(() => {

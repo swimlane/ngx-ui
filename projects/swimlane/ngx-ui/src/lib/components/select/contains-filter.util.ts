@@ -1,7 +1,7 @@
 export function containsFilter(
   value: any,
   keyword: string,
-  options?: { filterCaseSensitive: boolean },
+  options: { filterCaseSensitive?: boolean },
   depth = 0
 ): boolean {
   if (value === undefined || value === null || depth > 2) {
