@@ -58,7 +58,7 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
   }
 
   createSubscriptions(component): any {
-    const overlay = this.overlayService.show({
+    this.overlayService.show({
       triggerComponent: component,
       zIndex: this.zIndex
     });

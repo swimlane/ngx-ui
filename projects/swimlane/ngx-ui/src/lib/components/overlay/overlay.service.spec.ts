@@ -1,4 +1,4 @@
-import { TestBed, ComponentFixture, inject } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { InjectionService } from '@swimlane/ngx-ui/services';
 
 import { OverlayModule } from './overlay.module';

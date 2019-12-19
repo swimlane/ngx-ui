@@ -216,14 +216,18 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   }
 
   registerOnTouched(fn: any): void {
-    // placeholder
+    this.onTouchedCallback = fn;
   }
 
   trackIndex(index) {
     return index;
   }
 
-  private onChangeCallback: (_: any) => void = () => {
+  onChangeCallback: (_: any) => void = () => {
+    // placeholder
+  };
+
+  onTouchedCallback: (_: any) => void = () => {
     // placeholder
   };
 }
