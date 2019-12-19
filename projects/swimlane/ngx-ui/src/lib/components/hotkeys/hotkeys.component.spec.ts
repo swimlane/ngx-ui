@@ -2,16 +2,30 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HotkeysComponent } from './hotkeys.component';
 import { HotkeysService } from './hotkeys.service';
+import { HotkeyStatus } from './hotkey-status.enum';
+import { Hotkey } from './hotkey.interface';
 
 describe('HotkeysComponent', () => {
   let component: HotkeysComponent;
   let fixture: ComponentFixture<HotkeysComponent>;
+  const hotkeys: Hotkey[] = [{
+    callback: () => ({}),
+    component: {},
+    description: 'test',
+    status: HotkeyStatus.Active,
+    visible: true
+  },
+  {
+    callback: () => ({}),
+    component: {},
+    description: 'test2',
+    status: HotkeyStatus.Disabled
+  }];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [HotkeysComponent],
-      providers: [HotkeysService],
-      imports: []
+      providers: [HotkeysService]
     }).compileComponents();
   }));
 
@@ -23,5 +37,23 @@ describe('HotkeysComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should update hotkey array from map', () => {
+    component.updateHotkeys({
+      'ctrl+c': hotkeys
+    });
+
+    expect(component.hotkeys$.value).toEqual([hotkeys[0]]);
+  });
+
+  it('should show', () => {
+    component.show();
+    expect(component.visible).toBeTruthy();
+  });
+
+  it('should hide', () => {
+    component.hide();
+    expect(component.visible).toBeFalsy();
   });
 });

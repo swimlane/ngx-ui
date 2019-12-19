@@ -20,8 +20,6 @@ describe('TooltipContentComponent', () => {
   });
 
   it('can load instance', () => {
-    console.log(directive);
-
     expect(directive).toBeTruthy();
   });
 });
