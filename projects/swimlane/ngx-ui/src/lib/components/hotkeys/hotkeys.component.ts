@@ -1,6 +1,6 @@
 import { trigger } from '@angular/animations';
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Subject, BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { fadeIn, slideDown } from '../../animations/animations';
@@ -16,10 +16,11 @@ import { HotkeyStatus } from './hotkey-status.enum';
   animations: [
     trigger('containerAnimationState', slideDown),
     trigger('iconAnimationState', fadeIn)
-  ]
+  ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HotkeysComponent implements OnInit, OnDestroy {
-  hotkeys: Hotkey[] = [];
+  readonly hotkeys$ = new BehaviorSubject<Hotkey[]>([]);
   visible: boolean = false;
 
   private readonly _destroy = new Subject<void>();
@@ -37,15 +38,17 @@ export class HotkeysComponent implements OnInit, OnDestroy {
   }
 
   updateHotkeys(hotkeys: { [combo: string]: Hotkey[] }) {
-    this.hotkeys = [];
+    const hks: Hotkey[] = [];
 
     for (const comb in hotkeys) {
       for (const hotkey of hotkeys[comb]) {
         if (hotkey.status === HotkeyStatus.Active && hotkey.visible) {
-          this.hotkeys.push(hotkey);
+          hks.push(hotkey);
         }
       }
     }
+
+    this.hotkeys$.next(hks);
   }
 
   show() {

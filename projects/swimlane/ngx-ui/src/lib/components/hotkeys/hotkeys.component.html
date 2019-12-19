@@ -1,6 +1,6 @@
-<div class="hotkeys-container" *ngIf="hotkeys.length > 0">
+<div class="hotkeys-container" *ngIf="(hotkeys$ | async).length > 0">
   <div class="hotkeys" *ngIf="visible" [@containerAnimationState]="'active'">
-    <div *ngFor="let hotkey of hotkeys" class="hotkey-row">
+    <div *ngFor="let hotkey of hotkeys$ | async" class="hotkey-row">
       {{ hotkey.description }}
       <div class="combination">
         <span *ngFor="let key of hotkey.keys; let i = index">

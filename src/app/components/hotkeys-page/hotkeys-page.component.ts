@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { Hotkey, HotkeysService, DialogService } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-hotkeys-page',
-  templateUrl: './hotkeys-page.component.html'
+  templateUrl: './hotkeys-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HotkeysPageComponent implements OnInit, OnDestroy {
   currentTheme = 'night';
