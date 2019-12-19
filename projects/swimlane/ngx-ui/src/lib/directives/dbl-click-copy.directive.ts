@@ -12,8 +12,8 @@ export class DblClickCopyDirective {
 
   constructor(private element: ElementRef) {}
 
-  @HostListener('dblclick', ['$event'])
-  onDblClick(event): void {
+  @HostListener('dblclick')
+  onDblClick(): void {
     const selection = getSelection();
     const range = document.createRange();
 

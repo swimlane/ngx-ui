@@ -1,68 +1,51 @@
 import { trigger } from '@angular/animations';
-import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Subject, BehaviorSubject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
 import { fadeIn, slideDown } from '../../animations/animations';
 import { HotkeysService } from './hotkeys.service';
+import { Hotkey } from './hotkey.interface';
+import { HotkeyStatus } from './hotkey-status.enum';
 
 @Component({
-  // tslint:disable-next-line:component-selector
-  selector: 'hotkeys',
-  template: `
-    <div class="hotkeys-container" *ngIf="hotkeys.length > 0">
-      <div class="hotkeys" *ngIf="visible" [@containerAnimationState]="'active'">
-        <div *ngFor="let hotkey of hotkeys" class="hotkey-row">
-          {{ hotkey.description }}
-          <div class="combination">
-            <span *ngFor="let key of hotkey.keys; let i = index">
-              <span class="key">{{ key }}</span> <span *ngIf="i < hotkey.keys.length - 1"> + </span>
-            </span>
-          </div>
-        </div>
-      </div>
-      <div
-        class="close-icon icon icon-x-filled"
-        *ngIf="visible"
-        (click)="hide()"
-        [@iconAnimationState]="'active'"
-      ></div>
-      <div
-        class="hotkeys-icon icon icon-keyboard"
-        *ngIf="!visible"
-        (click)="show()"
-        [@iconAnimationState]="'active'"
-      ></div>
-    </div>
-  `,
+  exportAs: 'ngxHotkeys',
+  selector: 'ngx-hotkeys',
+  templateUrl: './hotkeys.component.html',
   styleUrls: ['./hotkeys.component.scss'],
-  animations: [trigger('containerAnimationState', slideDown), trigger('iconAnimationState', fadeIn)]
+  animations: [trigger('containerAnimationState', slideDown), trigger('iconAnimationState', fadeIn)],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HotkeysComponent implements OnInit, OnDestroy {
-  listener: Subscription;
-  hotkeys: any[] = [];
+  readonly hotkeys$ = new BehaviorSubject<Hotkey[]>([]);
   visible: boolean = false;
 
-  constructor(private elementRef: ElementRef, private hotkeysService: HotkeysService) {}
+  private readonly _destroy = new Subject<void>();
+
+  constructor(private readonly _hotkeysService: HotkeysService) {}
 
   ngOnInit(): void {
-    this.listener = this.hotkeysService.changeEvent.subscribe(this.updateHotkeys.bind(this));
-
-    this.updateHotkeys(this.hotkeysService.hotkeys);
+    this._hotkeysService.changeEvent.pipe(takeUntil(this._destroy)).subscribe(this.updateHotkeys.bind(this));
+    this.updateHotkeys(this._hotkeysService.hotkeys);
   }
 
   ngOnDestroy(): void {
-    this.listener.unsubscribe();
+    this._destroy.next();
+    this._destroy.complete();
   }
 
-  updateHotkeys(hotkeys) {
-    this.hotkeys = [];
+  updateHotkeys(hotkeys: { [combo: string]: Hotkey[] }) {
+    const hks: Hotkey[] = [];
 
     for (const comb in hotkeys) {
       for (const hotkey of hotkeys[comb]) {
-        if (hotkey.status === 'active' && hotkey.visible) {
-          this.hotkeys.push(hotkey);
+        if (hotkey.status === HotkeyStatus.Active && hotkey.visible) {
+          hks.push(hotkey);
         }
       }
     }
+
+    this.hotkeys$.next(hks);
   }
 
   show() {
