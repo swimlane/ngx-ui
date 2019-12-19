@@ -66,7 +66,7 @@ describe('HotkeysService', () => {
   });
 
   describe('Hotkey.callback', () => {
-    it('should call hotkey callback', (done) => {
+    it('should call hotkey callback', done => {
       service.add('ctrl+h', {
         callback: () => {
           done();
@@ -206,7 +206,7 @@ describe('HotkeysService', () => {
 
     beforeEach(() => {
       fn = hk.Hotkey('ctrl+c', 'test');
-      target = { };
+      target = {};
     });
 
     it('should add hotkey on init and remove on destroy', () => {
@@ -218,7 +218,7 @@ describe('HotkeysService', () => {
     });
 
     it('should call original oninit and ondestroy of component', () => {
-      target.ngOnInit = () => ({ });
+      target.ngOnInit = () => ({});
       target.ngOnDestroy = () => {
         expect(service.hotkeys['ctrl+c'].length).toBe(1);
       };

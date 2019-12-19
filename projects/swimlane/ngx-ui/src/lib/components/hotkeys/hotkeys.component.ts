@@ -13,10 +13,7 @@ import { HotkeyStatus } from './hotkey-status.enum';
   selector: 'ngx-hotkeys',
   templateUrl: './hotkeys.component.html',
   styleUrls: ['./hotkeys.component.scss'],
-  animations: [
-    trigger('containerAnimationState', slideDown),
-    trigger('iconAnimationState', fadeIn)
-  ],
+  animations: [trigger('containerAnimationState', slideDown), trigger('iconAnimationState', fadeIn)],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HotkeysComponent implements OnInit, OnDestroy {

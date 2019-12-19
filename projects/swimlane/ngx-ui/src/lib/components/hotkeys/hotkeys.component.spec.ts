@@ -8,19 +8,21 @@ import { Hotkey } from './hotkey.interface';
 describe('HotkeysComponent', () => {
   let component: HotkeysComponent;
   let fixture: ComponentFixture<HotkeysComponent>;
-  const hotkeys: Hotkey[] = [{
-    callback: () => ({}),
-    component: {},
-    description: 'test',
-    status: HotkeyStatus.Active,
-    visible: true
-  },
-  {
-    callback: () => ({}),
-    component: {},
-    description: 'test2',
-    status: HotkeyStatus.Disabled
-  }];
+  const hotkeys: Hotkey[] = [
+    {
+      callback: () => ({}),
+      component: {},
+      description: 'test',
+      status: HotkeyStatus.Active,
+      visible: true
+    },
+    {
+      callback: () => ({}),
+      component: {},
+      description: 'test2',
+      status: HotkeyStatus.Disabled
+    }
+  ];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
