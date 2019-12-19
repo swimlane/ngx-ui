@@ -46,15 +46,16 @@ describe('OverlayService', () => {
     expect(service.instance.visible).not.toEqual(false);
   });
 
-  it('calling destroy sets component to undefined', () => {
+  it('calling destroy sets component to undefined', done => {
     service.destroy();
 
     setTimeout(() => {
       expect(service.component).toBeUndefined();
+      done();
     }, 101);
   });
 
-  it('calling destroy while triggered components exist will not destroy component ref', () => {
+  it('calling destroy while triggered components exist will not destroy component ref', done => {
     service.show({ triggerComponent: component.componentInstance });
     expect(service.triggerComponents.length).toEqual(1);
 
@@ -62,6 +63,7 @@ describe('OverlayService', () => {
 
     setTimeout(() => {
       expect(service.component).toBeTruthy();
+      done();
     }, 101);
   });
 
@@ -114,11 +116,12 @@ describe('OverlayService', () => {
     expect(service.triggerComponents.length).toEqual(1);
   });
 
-  it('removeTriggerComponent when no components have been triggered calls destroy and clears component', () => {
+  it('removeTriggerComponent when no components have been triggered calls destroy and clears component', done => {
     service.removeTriggerComponent(component.componentInstance);
 
     setTimeout(() => {
       expect(service.component).toBeUndefined();
+      done();
     }, 101);
   });
 
