@@ -10,7 +10,7 @@ import { DialogOptions } from './dialog-options.interface';
 
 @Injectable()
 export class DialogService<T = DialogComponent> extends InjectionRegisteryService<T> {
-  defaults = {
+  readonly defaults: DialogOptions = {
     inputs: {
       zIndex: 991,
       closeOnBlur: true,
@@ -21,10 +21,10 @@ export class DialogService<T = DialogComponent> extends InjectionRegisteryServic
     }
   };
 
-  zIndex: number = 995;
-  type: any = DialogComponent;
+  protected type: any = DialogComponent;
+  private zIndex: number = 995;
 
-  constructor(injectionService: InjectionService, private overlayService: OverlayService) {
+  constructor(readonly injectionService: InjectionService, readonly overlayService: OverlayService) {
     super(injectionService);
   }
 

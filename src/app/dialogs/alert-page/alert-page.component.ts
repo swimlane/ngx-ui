@@ -19,7 +19,7 @@ export class AlertPageComponent {
     subject.subscribe({
       next: v => console.log('Prompt next', v),
       error: err => console.log('Prompt err', err),
-      complete: v => console.log('Complete', v)
+      complete: () => console.log('Complete')
     });
   }
 }

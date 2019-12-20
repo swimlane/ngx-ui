@@ -1,7 +1,7 @@
 import { TemplateRef } from '@angular/core';
 import { PartialBindings } from '@swimlane/ngx-ui/services';
 
-import { AlertTypes } from './alert';
+import { AlertTypes, AlertStyles } from './alert';
 
 export interface DialogOptions extends PartialBindings {
   readonly title?: string;
@@ -15,8 +15,10 @@ export interface DialogOptions extends PartialBindings {
   readonly closeButton?: boolean;
   readonly visible?: boolean;
   readonly longPress?: boolean;
+  readonly showOverlay?: boolean;
   readonly zIndex?: number;
   readonly type?: AlertTypes;
+  readonly style?: AlertStyles;
   readonly inputs?: {
     title?: string;
     content?: string;
@@ -29,7 +31,9 @@ export interface DialogOptions extends PartialBindings {
     closeButton?: boolean;
     visible?: boolean;
     longPress?: boolean;
+    showOverlay?: boolean;
     zIndex?: number;
     type?: AlertTypes;
+    style?: AlertStyles;
   };
 }
