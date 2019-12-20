@@ -8,7 +8,6 @@ describe('ObjectNodeComponent', () => {
   let component: ObjectNodeComponent;
   let fixture: ComponentFixture<ObjectNodeComponent>;
   beforeEach(() => {
-    const simpleChangesStub = { model: {}, schema: {} };
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ObjectNodeComponent],

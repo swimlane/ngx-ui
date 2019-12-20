@@ -1,16 +1,34 @@
-import { Directive, Input, Output, EventEmitter, TemplateRef, ContentChild } from '@angular/core';
+import { Directive, Input, TemplateRef, ContentChild } from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+
 import { SelectOptionTemplateDirective } from './select-option-template.directive';
 import { SelectOptionInputTemplateDirective } from './select-option-input-template.directive';
+import { SelectDropdownOption } from './select-dropdown-option.interface';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
+  exportAs: 'ngxSelectOption',
   selector: 'ngx-select-option'
 })
-export class SelectOptionDirective {
+export class SelectOptionDirective implements SelectDropdownOption {
   @Input() name: string = '';
   @Input() value: any;
-  @Input() disabled: boolean = false;
-  @Input() hidden: boolean = false;
+
+  @Input()
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(disabled) {
+    this._disabled = coerceBooleanProperty(disabled);
+  }
+
+  @Input()
+  get hidden() {
+    return this._hidden;
+  }
+  set hidden(hidden) {
+    this._hidden = coerceBooleanProperty(hidden);
+  }
 
   @Input('optionTemplate')
   _optionTemplateInput: TemplateRef<any>;
@@ -31,4 +49,7 @@ export class SelectOptionDirective {
   get inputTemplate(): TemplateRef<any> {
     return this._inputTemplateInput || this._inputTemplateQuery;
   }
+
+  private _disabled: boolean = false;
+  private _hidden: boolean = false;
 }

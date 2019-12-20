@@ -1,30 +1,61 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
 import { RadioButtonComponent } from './radiobutton.component';
+import { RadioButtonComponentFixture } from './radiobutton.component.fixture';
+
 describe('RadioButtonComponent', () => {
-  let component: RadioButtonComponent;
-  let fixture: ComponentFixture<RadioButtonComponent>;
+  let component: RadioButtonComponentFixture;
+  let fixture: ComponentFixture<RadioButtonComponentFixture>;
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [RadioButtonComponent]
+      imports: [FormsModule],
+      declarations: [RadioButtonComponent, RadioButtonComponentFixture]
     });
-    fixture = TestBed.createComponent(RadioButtonComponent);
-    component = fixture.componentInstance;
   });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(RadioButtonComponentFixture);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
   it('can load instance', () => {
     expect(component).toBeTruthy();
   });
-  it('id defaults to: _uniqueId', () => {
-    expect(component.id).toEqual(component._uniqueId);
+
+  describe('value', () => {
+    it('should change value', () => {
+      component.two.value = true;
+      fixture.detectChanges();
+      expect(component.value).toBe(true);
+    });
+
+    it('should emit if checked', () => {
+      component.checked$.next(true);
+      fixture.detectChanges();
+      const spy = spyOn(component.one.change, 'emit');
+      component.one.value = !component.one.value;
+      expect(spy).toHaveBeenCalled();
+    });
   });
-  it('name defaults to: _uniqueId', () => {
-    expect(component.name).toEqual(component._uniqueId);
+
+  describe('onFocus', () => {
+    it('should focus', () => {
+      const spy = spyOn(component.one.focus, 'emit');
+      component.one.onFocus(undefined);
+      expect(spy).toHaveBeenCalled();
+    });
   });
-  it('tabindex defaults to: 0', () => {
-    expect(component.tabindex).toEqual(0);
-  });
-  it('groupDisabled defaults to: false', () => {
-    expect(component.groupDisabled).toEqual(false);
+
+  describe('_onInputChange', () => {
+    it('should be checked', () => {
+      component.one.checked = false;
+      component.one._onInputChange({ stopPropagation: () => undefined } as any);
+      expect(component.one.checked).toBe(true);
+    });
   });
 });

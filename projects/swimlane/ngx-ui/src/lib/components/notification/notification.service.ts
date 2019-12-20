@@ -1,4 +1,4 @@
-import { Injectable, ComponentRef, EventEmitter, Inject, Type } from '@angular/core';
+import { Injectable, ComponentRef, Inject, Type } from '@angular/core';
 import { DOCUMENT } from "@angular/common";
 import { Subscription } from 'rxjs';
 

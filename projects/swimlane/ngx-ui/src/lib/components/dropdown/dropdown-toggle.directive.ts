@@ -12,7 +12,9 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 })
 export class DropdownToggleDirective {
   @Input()
-  get disabled() { return this._disabled; }
+  get disabled() {
+    return this._disabled;
+  }
   set disabled(disabled: boolean) {
     this._disabled = coerceBooleanProperty(disabled);
   }

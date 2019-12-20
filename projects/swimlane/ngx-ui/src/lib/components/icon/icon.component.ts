@@ -5,27 +5,19 @@ import {
   ElementRef,
   OnChanges,
   OnInit,
-  ViewEncapsulation,
-  Renderer2
+  ViewEncapsulation
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { IconRegisteryService } from '../../services/icon-registery.service';
 
 @Component({
+  exportAs: 'ngxIcon',
   selector: 'ngx-icon',
-  template: `
-    <ng-container [ngSwitch]="cssClasses?.length">
-      <ng-content *ngSwitchCase=""></ng-content>
-      <ng-content *ngSwitchCase="0"></ng-content>
-      <i *ngSwitchCase="1" [ngClass]="cssClasses[0]"></i>
-      <span *ngSwitchDefault class="icon-fx-stacked">
-        <i *ngFor="let cssClass of cssClasses" [ngClass]="cssClass"></i>
-      </span>
-    </ng-container>
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconComponent implements OnChanges, OnInit {
   @Input() fontIcon: string | string[];
@@ -42,12 +34,11 @@ export class IconComponent implements OnChanges, OnInit {
 
   constructor(
     private http: HttpClient,
-    private renderer: Renderer2,
     private elementRef: ElementRef,
     private iconRegisteryService: IconRegisteryService
   ) {}
 
-  ngOnChanges(changes: any) {
+  ngOnChanges() {
     this.update();
   }
 
@@ -64,6 +55,7 @@ export class IconComponent implements OnChanges, OnInit {
   loadSvg(val: string): void {
     const opts: any = { responseType: 'text' };
     this.http.get<string>(`${this.defaultPath}/${val}.svg`, opts).subscribe(
+      /* istanbul ignore next */
       (response: any) => {
         // get our element and clean it out
         const element = this.elementRef.nativeElement;
@@ -76,7 +68,10 @@ export class IconComponent implements OnChanges, OnInit {
         // insert the svg result
         element.innerHTML = svg.documentElement.outerHTML;
       },
-      err => console.error(err)
+      /* istanbul ignore next */
+      err => {
+        console.error(err);
+      }
     );
   }
 }

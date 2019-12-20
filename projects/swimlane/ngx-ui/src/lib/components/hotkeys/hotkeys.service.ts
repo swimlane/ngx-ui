@@ -1,10 +1,14 @@
 import { Injectable, NgZone } from '@angular/core';
 import * as Mousetrap from 'mousetrap';
-import { Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
-const hotkeys = {};
-const hotkeyChangedSource = new Subject();
+import { Hotkey } from './hotkey.interface';
+import { HotkeyStatus } from './hotkey-status.enum';
+
+let hotkeys: { [combo: string]: Hotkey[] } = {};
+const hotkeyChangedSource = new Subject<{ [combo: string]: Hotkey[] }>();
 const isMac = /Mac|iPod|iPhone|iPad/.test(window.navigator.platform);
+const tags = ['INPUT', 'SELECT', 'TEXTAREA'];
 
 /*tslint:disable*/
 const map = {
@@ -19,13 +23,13 @@ const map = {
 };
 /*tslint:enable*/
 
-function _getDisplay(combo) {
+function _getDisplay(combo: string) {
   const keys = combo.split('+');
   const result = [];
 
   for (const k of keys) {
     if (k === 'mod') {
-      result.push(isMac ? map.command : 'ctrl');
+      result.push(isMac ? map.command : /* istanbul ignore next */ 'ctrl');
       continue;
     }
 
@@ -36,20 +40,18 @@ function _getDisplay(combo) {
   return result;
 }
 
-export function _add(combo, opts) {
-  opts.status = opts.status || 'active';
+export function _add(combo: string, opts: Hotkey) {
+  opts.status = opts.status || HotkeyStatus.Active;
   opts.keys = _getDisplay(combo);
   opts.visible = opts.visible !== undefined ? opts.visible : true;
 
-  opts.allowIn = Array.isArray(opts.allowIn) ? (opts.allowIn || []).map(tag => {
-    return typeof tag === 'string' ? tag.toUpperCase() : ''
-  }) : [];
+  opts.allowIn = Array.isArray(opts.allowIn) ? opts.allowIn.map(tag => tag.toUpperCase()) : [];
 
   const mousetrap = new Mousetrap();
 
   if (opts.allowIn.length) {
-    mousetrap.stopCallback = function (e, element, sequence) {
-      const tags = ['INPUT', 'SELECT', 'TEXTAREA'];
+    /* istanbul ignore next */
+    mousetrap.stopCallback = function(_, element) {
       if (!tags.includes(element.tagName) || opts.allowIn.includes(element.tagName)) {
         return false;
       }
@@ -67,7 +69,8 @@ export function _add(combo, opts) {
   hotkeys[combo].push(opts);
   hotkeyChangedSource.next(hotkeys);
 
-  function callback(event) {
+  /* istanbul ignore next */
+  function callback(event: Event) {
     if (event.preventDefault) {
       event.preventDefault();
     } else {
@@ -75,7 +78,7 @@ export function _add(combo, opts) {
       event.returnValue = false;
     }
 
-    if (opts && opts.status === 'active') {
+    if (opts && opts.status === HotkeyStatus.Active) {
       opts.zone.run(() => {
         opts.callback(event);
       });
@@ -83,13 +86,13 @@ export function _add(combo, opts) {
   }
 }
 
-export function _suspend(comp) {
+export function _suspend(comp: any) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
     for (const hotkey of hotkeyList) {
       if (hotkey.component === comp) {
-        hotkey.status = 'suspended';
+        hotkey.status = HotkeyStatus.Suspended;
       }
     }
   }
@@ -97,7 +100,7 @@ export function _suspend(comp) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-export function _pauseOthers(comp?) {
+export function _pauseOthers(comp?: any) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
@@ -111,7 +114,7 @@ export function _pauseOthers(comp?) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-export function _unpauseOthers(comp?) {
+export function _unpauseOthers(comp?: any) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
@@ -125,13 +128,13 @@ export function _unpauseOthers(comp?) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-export function _activate(comp) {
+export function _activate(comp: any) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
     for (const hotkey of hotkeyList) {
       if (hotkey.component === comp) {
-        hotkey.status = 'active';
+        hotkey.status = HotkeyStatus.Active;
       }
     }
   }
@@ -139,13 +142,13 @@ export function _activate(comp) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-export function _deregister(comp) {
+export function _deregister(comp: any) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
     for (let i = 0; i < hotkeyList.length; i++) {
       if (hotkeyList[i].component === comp) {
-        hotkeyList[i].status = 'disabled';
+        hotkeyList[i].status = HotkeyStatus.Disabled;
         hotkeyList.splice(hotkeyList.indexOf(hotkeyList[i]), 1);
       }
     }
@@ -158,14 +161,14 @@ export function _deregister(comp) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-export function Hotkey(key, description: string, options?: any) {
-  return (target: any, name: string, descriptor: TypedPropertyDescriptor<any>) => {
+export function Hotkey(key: string, description: string, options?: Partial<Hotkey>) {
+  return (target: any, name: string) => {
     const oldInit = target.ngOnInit;
-    target.ngOnInit = function () {
+    target.ngOnInit = function() {
       if (oldInit) oldInit.bind(this)();
 
       _add(key, {
-        callback: () => {
+        callback: /* istanbul ignore next */ () => {
           target[name].bind(this)();
         },
         description,
@@ -176,7 +179,7 @@ export function Hotkey(key, description: string, options?: any) {
     };
 
     const oldDestroy = target.ngOnDestroy;
-    target.ngOnDestroy = function () {
+    target.ngOnDestroy = function() {
       if (oldDestroy) oldDestroy.bind(this)();
       _deregister(this);
     };
@@ -185,17 +188,25 @@ export function Hotkey(key, description: string, options?: any) {
 
 @Injectable()
 export class HotkeysService {
-  hotkeys = hotkeys;
-  suspend = _suspend;
-  activate = _activate;
-  deregister = _deregister;
-  pauseOthers = _pauseOthers;
-  unpauseOthers = _unpauseOthers;
-  changeEvent: Observable<any> = hotkeyChangedSource.asObservable();
+  readonly suspend = _suspend;
+  readonly activate = _activate;
+  readonly deregister = _deregister;
+  readonly pauseOthers = _pauseOthers;
+  readonly unpauseOthers = _unpauseOthers;
+  readonly changeEvent = hotkeyChangedSource.asObservable();
 
-  constructor(private ngZone: NgZone) { }
+  get hotkeys() {
+    return hotkeys;
+  }
 
-  add(combo, opts) {
+  constructor(private readonly ngZone: NgZone) {}
+
+  add(combo: string, opts: Hotkey) {
     _add(combo, { zone: this.ngZone, ...opts });
+  }
+
+  clear() {
+    hotkeys = {};
+    Mousetrap.reset();
   }
 }

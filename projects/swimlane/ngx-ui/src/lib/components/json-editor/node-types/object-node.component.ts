@@ -345,7 +345,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
    * @param index
    * @param value
    */
-  trackBy(index, value) {
+  trackBy(_, value) {
     return value.value.id;
   }
 

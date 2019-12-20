@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';
-import { FlexDirective } from '@angular/flex-layout';
 
 const toValue = SplitAreaDirective.basisToValue;
 const isBasisPecent = SplitAreaDirective.isPercent;
@@ -51,11 +50,11 @@ export class SplitDirective implements AfterContentInit, OnChanges {
   @ContentChildren(SplitHandleComponent, { descendants: false }) handles: QueryList<SplitHandleComponent>;
   @ContentChildren(SplitAreaDirective, { descendants: false }) areas: QueryList<SplitAreaDirective>;
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef) {}
 
   ngAfterContentInit(): void {
     this.handles.forEach(d => d.drag.subscribe(ev => this.onDrag(ev)));
-    this.handles.forEach(d => d.dblclick.subscribe(ev => this.onDblClick(ev)));
+    this.handles.forEach(d => d.dblclick.subscribe(() => this.onDblClick()));
     this.updateHandles();
   }
 
@@ -69,7 +68,7 @@ export class SplitDirective implements AfterContentInit, OnChanges {
     }
   }
 
-  onDblClick(ev): void {
+  onDblClick(): void {
     const basisToPx =
       (this.direction === 'row'
         ? this.elementRef.nativeElement.clientWidth
@@ -130,8 +129,6 @@ export class SplitDirective implements AfterContentInit, OnChanges {
     return rest.forEach(area => (delta += resizeAreaBy(area, -delta)));
 
     function resizeAreaBy(area: SplitAreaDirective, _delta: number) {
-      const flex = area.flexDirective as FlexDirective;
-
       if (area.fxFlexFill) {
         // area is fxFlexFill, distribute delta right
         return _delta;
@@ -147,7 +144,6 @@ export class SplitDirective implements AfterContentInit, OnChanges {
 
       // get basis in px and %
       const basisPx = isPercent ? basisValue * basisToPx : basisValue;
-      const basisPct = basisPx / basisToPx;
 
       // determine which dir and calc the diff
       let newBasisPx = basisPx + _delta;
