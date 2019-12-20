@@ -38,7 +38,7 @@ export class NotificationComponent {
     return cls;
   }
 
-  timer: NodeJS.Timer;
+  timer: any;
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
