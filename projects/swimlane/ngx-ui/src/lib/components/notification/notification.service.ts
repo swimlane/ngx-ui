@@ -15,13 +15,15 @@ interface NotificationOptions {
   timeout: number | boolean;
   rateLimit: boolean;
   pauseOnHover: boolean;
-  type: NotificationType;
-  styleType: NotificationStyleType;
+  type: NotificationType | string;
+  styleType: NotificationStyleType | string;
   showClose: boolean;
   sound: boolean;
   title: string;
   body: string;
+  icon: string;
   timestamp: number;
+  template: any;
 };
 
 @Injectable()
@@ -52,7 +54,7 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     super(injectionService);
   }
 
-  create(bindings: NotificationOptions): ComponentRef<NotificationComponent> {
+  create(bindings: Partial<NotificationOptions>): ComponentRef<NotificationComponent> {
     // verify flood not happening
     if (bindings.rateLimit && this.isFlooded(bindings)) {
       return;
@@ -99,7 +101,7 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     }
   }
 
-  assignDefaults(options: NotificationOptions): PartialBindings {
+  assignDefaults(options: Partial<NotificationOptions>): PartialBindings {
     const bindings = super.assignDefaults(options as any);
 
     if (bindings.inputs && bindings.inputs.timeout === true) {
@@ -146,7 +148,7 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     closeSub = component.instance.close.subscribe(kill);
   }
 
-  isFlooded(options: NotificationOptions): boolean {
+  isFlooded(options: Partial<NotificationOptions>): boolean {
     const compsByType = this.getByType();
 
     for (const notification of compsByType) {
@@ -164,7 +166,7 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     return false;
   }
 
-  showNative(options: NotificationOptions): any {
+  showNative(options: Partial<NotificationOptions>): any {
     if (!this.isNativeSupported) return;
     if (!this.permission) this.requestPermissions();
     if (this.permission === NotificationPermissionType.denied) return;

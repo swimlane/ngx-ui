@@ -1,4 +1,4 @@
-export enum NotificationStyleType {
+export const enum NotificationStyleType {
   info = 'info',
   warning = 'warning',
   error = 'error',

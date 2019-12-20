@@ -13,7 +13,7 @@ export class NotificationComponent {
   @Input() body: string;
   @Input() template: any;
   @Input() pauseOnHover: boolean;
-  @Input() styleType: NotificationStyleType;
+  @Input() styleType: NotificationStyleType | string;
   @Input() showClose: boolean;
   @Input() timestamp: any;
   @Input() icon: string;
