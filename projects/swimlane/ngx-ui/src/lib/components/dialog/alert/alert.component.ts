@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation, ElementRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation, ElementRef, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { DialogComponent } from '../dialog.component';
@@ -48,7 +48,7 @@ import { AlertTypes } from './alert-types.enum';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AlertComponent extends DialogComponent {
+export class AlertComponent extends DialogComponent implements AfterViewInit {
   @Input() type: AlertTypes;
   @Input() data: any = '';
 
@@ -80,12 +80,14 @@ export class AlertComponent extends DialogComponent {
   private _longPress?: boolean;
 
   ngOnInit(): void {
-    if (this.type !== 'prompt') {
-      this.dialogElm.nativeElement.focus();
-    }
-
     if (this.longPress) {
       this.closeButton = true;
+    }
+  }
+
+  ngAfterViewInit(): void {
+    if (this.type !== AlertTypes.Prompt) {
+      this.dialogElm.nativeElement.focus();
     }
   }
 
