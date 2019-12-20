@@ -1,3 +1,3 @@
 export * from './alert.component';
 export * from './alert.service';
-export * from './alert.types';
+export * from './alert-types.enum';
