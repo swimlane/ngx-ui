@@ -30,8 +30,8 @@ describe('AlertService', () => {
     component = {
       instance: {
         ok: new EventEmitter<void>(),
-        cancel: new EventEmitter<void>(),
-      },
+        cancel: new EventEmitter<void>()
+      }
     };
     spy = spyOn(service, 'create').and.returnValue(component);
   });
@@ -40,21 +40,21 @@ describe('AlertService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should call ok', (done) => {
-    const subject = service.alert({ });
+  it('should call ok', done => {
+    const subject = service.alert({});
 
     subject.subscribe({
-      next: () => done(),
+      next: () => done()
     });
 
     component.instance.ok.emit();
   });
 
-  it('should call cancel', (done) => {
-    const subject = service.alert({ });
+  it('should call cancel', done => {
+    const subject = service.alert({});
 
     subject.subscribe({
-      next: () => done(),
+      next: () => done()
     });
 
     component.instance.cancel.emit();
@@ -62,21 +62,21 @@ describe('AlertService', () => {
 
   describe('alert', () => {
     it('should create alert dialog', () => {
-      service.alert({ });
+      service.alert({});
       expect(spy).toHaveBeenCalled();
     });
   });
 
   describe('confirm', () => {
     it('should create confirm dialog', () => {
-      service.confirm({ });
+      service.confirm({});
       expect(spy).toHaveBeenCalled();
     });
   });
 
   describe('prompt', () => {
     it('should create prompt dialog', () => {
-      service.prompt({ });
+      service.prompt({});
       expect(spy).toHaveBeenCalled();
     });
   });

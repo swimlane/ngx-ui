@@ -1,5 +1,15 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation, ElementRef, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  ViewEncapsulation,
+  ElementRef,
+  ChangeDetectionStrategy,
+  AfterViewInit
+} from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { DialogComponent } from '../dialog.component';
@@ -53,7 +63,9 @@ export class AlertComponent extends DialogComponent implements AfterViewInit {
   @Input() data: any = '';
 
   @Input()
-  get longPress() { return this._longPress; }
+  get longPress() {
+    return this._longPress;
+  }
   set longPress(longPress) {
     this._longPress = coerceBooleanProperty(longPress);
   }

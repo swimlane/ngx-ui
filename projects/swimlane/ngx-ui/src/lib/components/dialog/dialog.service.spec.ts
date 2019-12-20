@@ -19,7 +19,7 @@ describe('DialogService', () => {
     };
 
     const injectionServiceStub = {
-      appendComponent: () => undefined,
+      appendComponent: () => undefined
     };
 
     TestBed.configureTestingModule({
@@ -47,8 +47,8 @@ describe('DialogService', () => {
         instance: {
           close: new EventEmitter<void>(),
           showOverlay: true,
-          closeOnBlur: true,
-        },
+          closeOnBlur: true
+        }
       };
       const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
       const destroySpy = spyOn(service, 'destroy');
@@ -64,8 +64,8 @@ describe('DialogService', () => {
         instance: {
           close: new EventEmitter<void>(),
           showOverlay: false,
-          closeOnBlur: false,
-        },
+          closeOnBlur: false
+        }
       };
       const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
       const overlaySpy = spyOn(overlayService, 'show');
@@ -80,8 +80,8 @@ describe('DialogService', () => {
         instance: {
           close: new EventEmitter<void>(),
           showOverlay: true,
-          closeOnBlur: false,
-        },
+          closeOnBlur: false
+        }
       };
       const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
       const overlaySpy = spyOn(overlayService.click, 'subscribe');

@@ -19,13 +19,7 @@ describe('AlertComponent', () => {
     TestBed.configureTestingModule({
       declarations: [AlertComponent],
       providers: [IconRegisteryService],
-      imports: [
-        FormsModule,
-        HttpClientTestingModule,
-        NoopAnimationsModule,
-        InputModule,
-        LongPressButtonModule
-      ],
+      imports: [FormsModule, HttpClientTestingModule, NoopAnimationsModule, InputModule, LongPressButtonModule]
     }).compileComponents();
   }));
 
@@ -48,7 +42,7 @@ describe('AlertComponent', () => {
       component.longPress = false;
     });
 
-    it('should focus content if is !AlertTypes.Prompt', (done) => {
+    it('should focus content if is !AlertTypes.Prompt', done => {
       component.type = AlertTypes.Alert;
       component.dialogElm.nativeElement.onfocus = () => {
         done();

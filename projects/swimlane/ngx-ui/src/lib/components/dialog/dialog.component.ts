@@ -66,31 +66,41 @@ export class DialogComponent implements OnInit, OnDestroy {
   @Input() class: string;
 
   @Input()
-  get closeOnBlur() { return this._closeOnBlur; }
+  get closeOnBlur() {
+    return this._closeOnBlur;
+  }
   set closeOnBlur(closeOnBlur) {
     this._closeOnBlur = coerceBooleanProperty(closeOnBlur);
   }
 
   @Input()
-  get closeOnEscape() { return this._closeOnEscape; }
+  get closeOnEscape() {
+    return this._closeOnEscape;
+  }
   set closeOnEscape(closeOnEscape) {
     this._closeOnEscape = coerceBooleanProperty(closeOnEscape);
   }
 
   @Input()
-  get closeButton() { return this._closeButton; }
+  get closeButton() {
+    return this._closeButton;
+  }
   set closeButton(closeButton) {
     this._closeButton = coerceBooleanProperty(closeButton);
   }
 
   @Input()
-  get visible() { return this._visible; }
+  get visible() {
+    return this._visible;
+  }
   set visible(visible) {
     this._visible = coerceBooleanProperty(visible);
   }
 
   @Input()
-  get zIndex() { return this._zIndex; }
+  get zIndex() {
+    return this._zIndex;
+  }
   set zIndex(zIndex) {
     this._zIndex = coerceNumberProperty(zIndex);
   }
@@ -112,10 +122,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   private _visible?: boolean;
   private _zIndex?: number;
 
-  constructor(
-    private readonly element: ElementRef,
-    private readonly renderer2: Renderer2,
-  ) {}
+  constructor(private readonly element: ElementRef, private readonly renderer2: Renderer2) {}
 
   ngOnInit(): void {
     if (this.visible) this.show();
