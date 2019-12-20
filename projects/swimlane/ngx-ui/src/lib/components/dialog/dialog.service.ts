@@ -52,6 +52,7 @@ export class DialogService<T = DialogComponent> extends InjectionRegisteryServic
     let overlaySub: Subscription;
 
     const kill = (c: any) => {
+      /* istanbul ignore if */
       if (c !== triggerComponent) {
         return;
       }
@@ -80,6 +81,7 @@ export class DialogService<T = DialogComponent> extends InjectionRegisteryServic
   assignDefaults(options: DialogOptions): DialogOptions {
     options = super.assignDefaults(options);
 
+    /* istanbul ignore else */
     if (!options.zIndex) {
       this.zIndex = this.overlayService.instance ? this.overlayService.instance.zIndex + 3 : this.zIndex + 2;
 

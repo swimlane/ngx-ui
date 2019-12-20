@@ -145,7 +145,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   }
 
   @HostListener('keydown.esc')
-  onKeyDown(): void {
+  onEscapeKeyDown(): void {
     if (this.closeOnEscape) this.hide();
   }
 
