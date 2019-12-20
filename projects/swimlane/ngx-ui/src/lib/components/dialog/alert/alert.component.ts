@@ -1,5 +1,5 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation, ElementRef } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation, ElementRef, ChangeDetectionStrategy } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { DialogComponent } from '../dialog.component';
@@ -45,7 +45,8 @@ import { AlertTypes } from './alert-types.enum';
   host: {
     tabindex: '-1'
   },
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlertComponent extends DialogComponent {
   @Input() type: AlertTypes;

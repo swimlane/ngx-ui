@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
-import { AlertService, AlertStyles } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { AlertService, AlertStyles } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-alert-page',
-  templateUrl: './alert-page.component.html'
+  templateUrl: './alert-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AlertPageComponent {
   readonly AlertStyles = AlertStyles;
