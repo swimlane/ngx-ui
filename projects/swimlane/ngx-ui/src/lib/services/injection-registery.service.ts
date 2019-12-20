@@ -1,10 +1,12 @@
 import { ComponentRef, TemplateRef, Inject, Type } from '@angular/core';
 import { InjectionService } from './injection.service';
 
-export interface PartialBindings {
-  inputs?: object;
-  outputs?: object;
+export interface Bindings {
+  inputs?: { [key: string]: any};
+  outputs?: { [key: string]: any};
 }
+
+export type PartialBindings = Partial<Bindings>;
 
 export abstract class InjectionRegisteryService<T = any> {
   protected abstract type: Type<T>;
@@ -64,7 +66,7 @@ export abstract class InjectionRegisteryService<T = any> {
     return this.injectionService.appendComponent(type, bindings);
   }
 
-  protected assignDefaults(bindings: PartialBindings): PartialBindings {
+  protected assignDefaults(bindings: any): PartialBindings {
     const inputs = { ...this.defaults.inputs };
     const outputs = { ...this.defaults.outputs };
 

@@ -2,9 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ngx-notification-container',
-  template: `
-    <div class="notification-container"></div>
-  `,
+  templateUrl: './notification-container.component.html',
   host: {
     class: 'ngx-notification-container'
   }
