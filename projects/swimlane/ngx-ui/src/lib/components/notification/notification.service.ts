@@ -1,5 +1,5 @@
 import { Injectable, ComponentRef, Inject, Type } from '@angular/core';
-import { DOCUMENT } from "@angular/common";
+import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
 
 import { InjectionService } from '../../services/injection.service';
@@ -11,7 +11,7 @@ import { NotificationPermissionType } from './notification-permission.type';
 import { NotificationComponent } from './notification.component';
 import { NotificationContainerComponent } from './notification-container.component';
 
-interface NotificationOptions { 
+interface NotificationOptions {
   timeout: number | boolean;
   rateLimit: boolean;
   pauseOnHover: boolean;
@@ -24,7 +24,7 @@ interface NotificationOptions {
   icon: string;
   timestamp: number;
   template: any;
-};
+}
 
 @Injectable()
 export class NotificationService extends InjectionRegisteryService<NotificationComponent> {

@@ -2,8 +2,8 @@ import { ComponentRef, Type } from '@angular/core';
 import { InjectionService } from './injection.service';
 
 export interface Bindings {
-  inputs?: { [key: string]: any};
-  outputs?: { [key: string]: any};
+  inputs?: { [key: string]: any };
+  outputs?: { [key: string]: any };
 }
 
 export type PartialBindings = Partial<Bindings>;
