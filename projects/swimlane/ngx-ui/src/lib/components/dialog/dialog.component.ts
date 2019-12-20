@@ -10,7 +10,8 @@ import {
   Output,
   ViewEncapsulation,
   Renderer2,
-  TemplateRef
+  TemplateRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
@@ -51,7 +52,8 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
     ])
   ],
   host: { tabindex: '-1' },
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogComponent implements OnInit, OnDestroy {
   @Input() id: string;

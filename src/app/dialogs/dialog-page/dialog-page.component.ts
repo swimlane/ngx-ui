@@ -1,9 +1,10 @@
-import { Component, ViewChild, TemplateRef } from '@angular/core';
-import { DialogService } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { Component, ViewChild, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
+import { DialogService } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-dialog-page',
-  templateUrl: './dialog-page.component.html'
+  templateUrl: './dialog-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogPageComponent {
   dialogVis: any;

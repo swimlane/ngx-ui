@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { AlertService } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { AlertService, AlertStyles } from '../../../../projects/swimlane/ngx-ui/src/public_api';
 
 @Component({
   selector: 'app-alert-page',
   templateUrl: './alert-page.component.html'
 })
 export class AlertPageComponent {
+  readonly AlertStyles = AlertStyles;
+
   constructor(public alertService: AlertService) {}
 
   onPromptClick() {
