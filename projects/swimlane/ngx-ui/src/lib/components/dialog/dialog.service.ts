@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter, ComponentRef } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 import { InjectionService } from '../../services/injection.service';
 import { InjectionRegisteryService } from '../../services/injection-registery.service';

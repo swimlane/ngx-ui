@@ -1,15 +1,18 @@
-import { Component } from '@angular/core';
-import { Hotkey, HotkeysService, DialogService } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Hotkey, HotkeysService, DialogService } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-hotkeys-page',
-  templateUrl: './hotkeys-page.component.html'
+  templateUrl: './hotkeys-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HotkeysPageComponent {
+export class HotkeysPageComponent implements OnInit, OnDestroy {
   currentTheme = 'night';
   themes = ['day', 'night', 'moonlight'];
 
-  constructor(public hotkeysService: HotkeysService, public dialogMngr: DialogService) {
+  constructor(readonly hotkeysService: HotkeysService, readonly dialogMngr: DialogService) {}
+
+  ngOnInit() {
     this.hotkeysService.add('mod+h', {
       callback: () => {
         alert('Hotkey activated');
@@ -17,17 +20,13 @@ export class HotkeysPageComponent {
       description: 'Show message',
       component: this
     });
-
-    this.hotkeysService.add('mod+alt+s', {
-      callback: () => {
-        this.switchThemes();
-      },
-      description: 'Switch themes',
-      component: this,
-      visible: false
-    });
   }
-  @Hotkey('mod+s', 'Switch themes')
+
+  ngOnDestroy() {
+    this.hotkeysService.deregister('mod+h');
+  }
+
+  @Hotkey('mod+alt+s', 'Switch themes')
   switchThemes() {
     let idx = this.themes.indexOf(this.currentTheme);
     idx = (idx + 1) % 3;

@@ -185,7 +185,7 @@ describe('CalendarComponent', () => {
 
     it('should set value but not set weeks of month', () => {
       component.onDayClick({
-        date: moment(),
+        date: moment()
       } as any);
       expect(component.weeks.length).toBe(0);
     });
@@ -310,7 +310,7 @@ describe('CalendarComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register new on change callback fn', (done) => {
+    it('should register new on change callback fn', done => {
       component.value = new Date();
       component.registerOnChange((v: Date) => {
         expect(v).toEqual(now);

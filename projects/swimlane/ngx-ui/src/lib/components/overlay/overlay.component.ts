@@ -1,17 +1,24 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation
+} from '@angular/core';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 /**
  * Overlay Component for Drawer/Dialogs
  */
 @Component({
   selector: 'ngx-overlay',
-  template: `
-    <div (click)="click.emit(true)" [style.zIndex]="zIndex" [@overlayTransition]="animationState" class="ngx-overlay">
-      <ng-content></ng-content>
-    </div>
-  `,
+  exportAs: 'ngxOverlay',
+  templateUrl: './overlay.component.html',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./overlay.component.scss'],
   animations: [
     trigger('overlayTransition', [
@@ -43,12 +50,31 @@ import { Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angu
   ]
 })
 export class OverlayComponent {
-  @Input() visible: boolean = false;
-  @Input() zIndex: number = 990;
+  get visible() {
+    return this._visible;
+  }
+  @Input()
+  set visible(val: boolean) {
+    this._visible = coerceBooleanProperty(val);
+    this.cdr.markForCheck();
+  }
+
+  get zIndex() {
+    return this._zIndex;
+  }
+  @Input()
+  set zIndex(val: number) {
+    this._zIndex = coerceNumberProperty(val);
+  }
 
   @Output() click = new EventEmitter();
 
   get animationState(): string {
     return this.visible ? 'active' : 'inactive';
   }
+
+  private _visible: boolean = false;
+  private _zIndex: number = 990;
+
+  constructor(private cdr: ChangeDetectorRef) {}
 }

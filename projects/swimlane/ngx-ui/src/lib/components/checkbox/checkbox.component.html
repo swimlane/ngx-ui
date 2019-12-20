@@ -1,0 +1,15 @@
+<label class="checkbox-label">
+  <input
+    type="checkbox"
+    class="checkbox-input"
+    [id]="id + '-chk'"
+    [(ngModel)]="value"
+    [disabled]="disabled"
+    [name]="name + '-chk'"
+    [tabIndex]="tabindex"
+    (focus)="focus.emit($event)"
+    (blur)="blur.emit($event)"
+    (change)="change.emit($event)"
+  />
+  <ng-content></ng-content>
+</label>

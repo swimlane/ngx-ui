@@ -6,24 +6,29 @@ import {
   HostBinding,
   HostListener,
   ViewEncapsulation,
-  OnDestroy
+  OnDestroy,
+  ChangeDetectionStrategy,
+  TemplateRef
 } from '@angular/core';
+import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { trigger } from '@angular/animations';
+
 import { drawerTransition } from '../../animations/animations';
 
 @Component({
   selector: 'ngx-drawer',
-  template: `
-    <div class="ngx-drawer-content">
-      <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ context: context, close: close }">
-      </ng-template>
-    </div>
-  `,
+  exportAs: 'ngxDrawer',
+  templateUrl: 'drawer.component.html',
   host: {
     role: 'dialog',
-    tabindex: '-1'
+    tabindex: '-1',
+    '[style.width]': 'widthSize',
+    '[style.height]': 'heightSize',
+    '[style.zIndez]': 'zIndex',
+    '[style.transform]': 'transform'
   },
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./drawer.component.scss'],
   animations: [trigger('drawerTransition', drawerTransition)]
 })
@@ -51,7 +56,7 @@ export class DrawerComponent implements OnDestroy {
    * @memberOf DrawerComponent
    */
   @Input()
-  template: any;
+  template: TemplateRef<any>;
 
   /**
    * Size of the drawer. A percentage.
@@ -60,8 +65,8 @@ export class DrawerComponent implements OnDestroy {
    */
   @Input()
   set size(val: number) {
-    this._size = val;
-    this.setDimensions(val);
+    this._size = coerceNumberProperty(val);
+    this.setDimensions(this._size);
   }
 
   /**
@@ -79,9 +84,13 @@ export class DrawerComponent implements OnDestroy {
    *
    * @memberOf DrawerComponent
    */
-  @HostBinding('style.zIndex')
+  get zIndex() {
+    return this._zIndex;
+  }
   @Input()
-  zIndex: number;
+  set zIndex(val: number) {
+    this._zIndex = coerceNumberProperty(val);
+  }
 
   /**
    * Context to passed to the drawer instance
@@ -96,8 +105,13 @@ export class DrawerComponent implements OnDestroy {
    *
    * @memberOf DrawerComponent
    */
+  get closeOnOutsideClick() {
+    return this._closeOnOutsideClick;
+  }
   @Input()
-  closeOnOutsideClick: boolean;
+  set closeOnOutsideClick(val: boolean) {
+    this._closeOnOutsideClick = coerceBooleanProperty(val);
+  }
 
   /**
    * Drawer close event
@@ -112,7 +126,6 @@ export class DrawerComponent implements OnDestroy {
    *
    * @memberOf DrawerComponent
    */
-  @HostBinding('style.transform')
   transform: string;
 
   /**
@@ -120,16 +133,14 @@ export class DrawerComponent implements OnDestroy {
    *
    * @memberOf DrawerComponent
    */
-  @HostBinding('style.width')
-  widthSize: any;
+  widthSize: string | number;
 
   /**
    * Drawer height calculation
    *
    * @memberOf DrawerComponent
    */
-  @HostBinding('style.height')
-  heightSize: any;
+  heightSize: string | number;
 
   /**
    * Is the drawer a left opening drawer
@@ -162,12 +173,13 @@ export class DrawerComponent implements OnDestroy {
    * @readonly
    * @memberOf DrawerComponent
    */
-  // @HostBinding('class.bottom-drawer')
   get isBottom(): boolean {
     return this.direction === 'bottom';
   }
 
   private _size: number;
+  private _zIndex: number;
+  private _closeOnOutsideClick: boolean;
 
   /**
    * Sets the dimensions

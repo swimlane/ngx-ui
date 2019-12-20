@@ -5,11 +5,10 @@ import {
   EventEmitter,
   OnInit,
   HostListener,
-  HostBinding,
   forwardRef,
   ViewEncapsulation,
-  ViewChild,
-  ElementRef
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -25,73 +24,34 @@ const edge = window.navigator.userAgent.indexOf('Edge') > -1;
 
 @Component({
   selector: 'ngx-slider',
-  template: `
-    <div class="slider-inner">
-      <div class="ticks-container" *ngIf="showTicks">
-        <div class="tick" *ngFor="let s of _ticks" [ngStyle]="s"></div>
-      </div>
-      <div class="inputs">
-        <div class="slider-track"></div>
-        <span *ngIf="filled" [ngStyle]="_fill" class="fill-bar"> </span>
-        <ng-container *ngFor="let value of _values; let i = index; let odd = odd; trackBy: trackIndex">
-          <input
-            type="range"
-            [id]="id + '-' + i"
-            [attr.list]="id + '-list'"
-            [attr.orientation]="orientation"
-            [class.odd]="odd"
-            [class.active]="_active[i]"
-            [ngModel]="value"
-            (ngModelChange)="setValue($event, i)"
-            [min]="min"
-            [max]="max"
-            [step]="step"
-            [disabled]="disabled"
-            (input)="onChange($event)"
-            (change)="onChange($event)"
-            (mouseenter)="setActive(i, true)"
-            (mouseleave)="setActive(i, false)"
-          />
-          <div class="slider-thumb" [class.active]="_active[i]" [ngStyle]="_thumbs[i]"></div>
-        </ng-container>
-      </div>
-    </div>
-  `,
+  exportAs: 'ngxSlider',
+  templateUrl: './slider.component.html',
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./slider.component.scss'],
   providers: [SLIDER_VALUE_ACCESSOR],
   host: {
-    class: 'ngx-slider'
+    class: 'ngx-slider',
+    '[class.filled]': 'filled',
+    '[class.multiple]': 'multiple',
+    '[class.disabled]': 'disabled',
+    '[class.active]': 'active',
+    '[class.vertical]': 'isVertical',
+    '[class.horizontal]': 'isHorizontal'
   }
 })
 export class SliderComponent implements ControlValueAccessor, OnInit {
-  @Input()
-  id: string = `range-${++nextId}`;
-  @Input()
-  min: number = 0;
-  @Input()
-  max: number = 100;
-  @Input()
-  step: number = 1;
-  @Input()
-  orientation: string = 'horizontal';
-
-  @HostBinding('class.filled')
-  @Input()
-  filled: boolean = false;
-
-  @HostBinding('class.multiple')
-  @Input()
-  multiple: boolean = false;
-
-  @HostBinding('class.disabled')
-  @Input()
-  disabled: boolean = false;
-
-  @Input()
-  showTicks: boolean = false;
-  @Input()
-  tickStep: number;
+  @Input() id: string = `range-${++nextId}`;
+  @Input() min: number = 0;
+  @Input() max: number = 100;
+  @Input() step: number = 1;
+  @Input() orientation: string = 'horizontal';
+  @Input() filled: boolean = false;
+  @Input() multiple: boolean = false;
+  @Input() disabled: boolean = false;
+  @Input() showTicks: boolean = false;
+  @Input() tickStep: number;
+  @Output() change = new EventEmitter();
 
   _values = [0];
   _percents = [0];
@@ -99,8 +59,6 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   _fill: any;
   _ticks = [];
   _active = [];
-
-  @HostBinding('class.active')
   active: boolean;
 
   get value() {
@@ -119,6 +77,8 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
         value: this._values,
         percent: this.percent
       });
+
+      this.cdr.markForCheck();
     }
   }
 
@@ -128,17 +88,20 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
     return '' + pct[0];
   }
 
-  @Output()
-  change = new EventEmitter();
-
-  @HostBinding('class.horizontal')
   get isHorizontal(): boolean {
     return this.orientation === 'horizontal';
   }
 
-  @HostBinding('class.vertical')
   get isVertical(): boolean {
     return this.orientation === 'vertical';
+  }
+
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    if (this.showTicks) {
+      this._ticks = this.getTicks();
+    }
   }
 
   setValues(values: number[]) {
@@ -164,12 +127,6 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
 
   setActive(index: number, active: boolean) {
     this._active[index] = active;
-  }
-
-  ngOnInit(): void {
-    if (this.showTicks) {
-      this._ticks = this.getTicks();
-    }
   }
 
   setValue(val: number, index: number) {
@@ -247,9 +204,10 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   }
 
   writeValue(val): void {
-    val = String(val).split(',');
+    val = val ? String(val).split(',') : ['0'];
     if (String(val) !== String(this._values)) {
-      this.setValues(val);
+      this.setValues(val.map(v => +v));
+      this.cdr.markForCheck();
     }
   }
 
@@ -265,11 +223,11 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
     return index;
   }
 
-  private onTouchedCallback: () => void = () => {
+  onChangeCallback: (_: any) => void = () => {
     // placeholder
   };
 
-  private onChangeCallback: (_: any) => void = () => {
+  onTouchedCallback: (_: any) => void = () => {
     // placeholder
   };
 }

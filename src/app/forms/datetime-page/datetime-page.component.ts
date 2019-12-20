@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-datetime-page',
-  templateUrl: './datetime-page.component.html'
+  templateUrl: './datetime-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DatetimePageComponent {
   curDate: any = new Date();

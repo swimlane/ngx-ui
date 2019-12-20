@@ -53,7 +53,7 @@ export const jsonSchemaDataTypes: any[] = [
       format: 'date'
     },
     icon: 'field-date',
-    matchType: (value: any): boolean => {
+    matchType: (): boolean => {
       return false; // needs to be overriden
     }
   },
@@ -65,7 +65,7 @@ export const jsonSchemaDataTypes: any[] = [
       format: 'date-time'
     },
     icon: 'field-date',
-    matchType: (value: any): boolean => {
+    matchType: (): boolean => {
       return false; // needs to be overriden
     }
   },
@@ -77,7 +77,7 @@ export const jsonSchemaDataTypes: any[] = [
       format: 'password'
     },
     icon: 'lock',
-    matchType: (value: any): boolean => {
+    matchType: (): boolean => {
       return false; // needs to be overriden
     }
   },
@@ -89,7 +89,7 @@ export const jsonSchemaDataTypes: any[] = [
       format: 'code'
     },
     icon: 'code',
-    matchType: (value: any): boolean => {
+    matchType: (): boolean => {
       return false; // needs to be overriden
     }
   },
