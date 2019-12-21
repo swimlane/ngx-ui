@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 
 import { InjectionService } from '../../services/injection.service';
 import { OverlayService } from '../overlay/overlay.service';
-import { DrawerComponent } from './drawer.component';
 import { DrawerService } from './drawer.service';
 
 describe('DrawerService', () => {
@@ -28,17 +27,5 @@ describe('DrawerService', () => {
 
   it('can load instance', () => {
     expect(service).toBeTruthy();
-  });
-
-  it('type defaults to: DrawerComponent', () => {
-    expect(service.type).toEqual(DrawerComponent);
-  });
-
-  it('zIndex defaults to: 995', () => {
-    expect(service.zIndex).toEqual(995);
-  });
-
-  it('size defaults to: 80', () => {
-    expect(service.size).toEqual(80);
   });
 });

@@ -1,33 +1,37 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ComponentRef } from '@angular/core';
+import { Subscription } from 'rxjs';
+
 import { InjectionService } from '../../services/injection.service';
 import { InjectionRegisteryService } from '../../services/injection-registery.service';
 import { DrawerComponent } from './drawer.component';
 import { OverlayService } from '../overlay/overlay.service';
+import { DrawerDirection } from './drawer-direction.enum';
+import { DrawerOptions } from './drawer-options.interface';
 
 @Injectable()
 export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
   type: any = DrawerComponent;
 
-  defaults: any = {
+  readonly defaults: DrawerOptions = {
     inputs: {
-      direction: 'left'
+      direction: DrawerDirection.Left
     }
   };
 
-  zIndex: number = 995;
-  size: number = 80;
+  private zIndex: number = 995;
+  private size: number = 80;
 
-  constructor(injectionService: InjectionService, private overlayService: OverlayService) {
+  constructor(readonly injectionService: InjectionService, private readonly overlayService: OverlayService) {
     super(injectionService);
   }
 
-  create(bindings): any {
-    const component = super.create(bindings);
+  create(options: DrawerOptions) {
+    const component = super.create(options);
     this.createSubscriptions(component);
     return component;
   }
 
-  destroy(component): void {
+  destroy(component: ComponentRef<DrawerComponent>): void {
     // race case clicking fast errors here
     if (component && component.instance) {
       component.instance.size = 0;
@@ -41,30 +45,31 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
     }, 10);
   }
 
-  assignDefaults(bindings): any {
-    bindings = super.assignDefaults(bindings);
+  assignDefaults(options: DrawerOptions): any {
+    options = super.assignDefaults(options);
 
-    if (!bindings.inputs.zIndex) {
+    if (!options.inputs.zIndex) {
       this.zIndex = this.overlayService.instance ? this.overlayService.instance.zIndex + 3 : this.zIndex + 2;
-      bindings.inputs.zIndex = this.zIndex;
+      options.inputs.zIndex = this.zIndex;
     }
 
     this.size = this.size - 10;
-    if (!bindings.inputs.size) {
-      bindings.inputs.size = this.size;
+    if (!options.inputs.size) {
+      options.inputs.size = this.size;
     }
 
-    return bindings;
+    return options;
   }
 
-  createSubscriptions(component): any {
+  createSubscriptions(component: ComponentRef<DrawerComponent>) {
     this.overlayService.show({
       triggerComponent: component,
       zIndex: this.zIndex
     });
 
-    let closeSub;
-    let overlaySub;
+    let closeSub: Subscription;
+    let overlaySub: Subscription;
+
     const kill = c => {
       if (component !== c) {
         return;
