@@ -103,7 +103,7 @@ export class DrawerComponent implements OnDestroy {
 
     if (this.isLeft) {
       if (size) {
-        const innerWidth = size || winWidth;
+        const innerWidth = size;
         const widthPercent = (innerWidth / 100) * winWidth;
         const newWidth = Math.ceil(widthPercent);
 
@@ -115,7 +115,7 @@ export class DrawerComponent implements OnDestroy {
       }
     } else if (this.isBottom) {
       if (size) {
-        const innerHeight = size || winHeight;
+        const innerHeight = size;
         const heightPercent = (innerHeight / 100) * winHeight;
         const newHeight = Math.ceil(heightPercent);
 
@@ -131,7 +131,7 @@ export class DrawerComponent implements OnDestroy {
       this.heightSize = height;
       this.widthSize = width;
       this.transform = transform;
-    }, 10);
+    });
   }
 
   @HostListener('keyup.esc')

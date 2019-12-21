@@ -49,7 +49,7 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
     options = super.assignDefaults(options);
 
     if (!options.inputs.zIndex) {
-      this.zIndex = this.overlayService.instance ? this.overlayService.instance.zIndex + 3 : this.zIndex + 2;
+      this.zIndex = this.overlayService.instance ? this.overlayService.instance.zIndex + 3 : /* istanbul ignore next */ this.zIndex + 2;
       options.inputs.zIndex = this.zIndex;
     }
 
@@ -70,7 +70,8 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
     let closeSub: Subscription;
     let overlaySub: Subscription;
 
-    const kill = c => {
+    const kill = (c: ComponentRef<DrawerComponent>) => {
+      /* istanbul ignore if */
       if (component !== c) {
         return;
       }
