@@ -54,7 +54,7 @@ describe('DrawerComponent', () => {
   });
 
   describe('setDimensions', () => {
-    it('should set size when direction left', (done) => {
+    it('should set size when direction left', done => {
       component.direction = DrawerDirection.Left;
       component.setDimensions(10);
 
@@ -64,7 +64,7 @@ describe('DrawerComponent', () => {
       });
     });
 
-    it('should direction left', (done) => {
+    it('should direction left', done => {
       component.direction = DrawerDirection.Left;
       component.setDimensions(0);
 
@@ -74,7 +74,7 @@ describe('DrawerComponent', () => {
       });
     });
 
-    it('should set size when direction bottom', (done) => {
+    it('should set size when direction bottom', done => {
       component.direction = DrawerDirection.Bottom;
       component.setDimensions(10);
 
@@ -84,7 +84,7 @@ describe('DrawerComponent', () => {
       });
     });
 
-    it('should direction bottom', (done) => {
+    it('should direction bottom', done => {
       component.direction = DrawerDirection.Bottom;
       component.setDimensions(0);
 

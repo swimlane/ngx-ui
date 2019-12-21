@@ -49,7 +49,9 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
     options = super.assignDefaults(options);
 
     if (!options.inputs.zIndex) {
-      this.zIndex = this.overlayService.instance ? this.overlayService.instance.zIndex + 3 : /* istanbul ignore next */ this.zIndex + 2;
+      this.zIndex = this.overlayService.instance
+        ? this.overlayService.instance.zIndex + 3
+        : /* istanbul ignore next */ this.zIndex + 2;
       options.inputs.zIndex = this.zIndex;
     }
 

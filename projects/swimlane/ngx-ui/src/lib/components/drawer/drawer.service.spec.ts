@@ -47,13 +47,13 @@ describe('DrawerService', () => {
         instance: {
           close: new EventEmitter<boolean>(),
           zIndex: 10,
-          size: 10,
+          size: 10
         }
       };
       const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
       const destroySpy = spyOn(service, 'destroy');
 
-      service.create({ });
+      service.create({});
       expect(spy).toHaveBeenCalled();
       component.instance.close.emit();
       expect(destroySpy).toHaveBeenCalled();
@@ -65,7 +65,7 @@ describe('DrawerService', () => {
           close: new EventEmitter<boolean>(),
           zIndex: 10,
           size: 10,
-          closeOnOutsideClick: true,
+          closeOnOutsideClick: true
         }
       };
       const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
@@ -74,7 +74,7 @@ describe('DrawerService', () => {
       service.create({
         zIndex: 10,
         size: 10,
-        closeOnOutsideClick: true,
+        closeOnOutsideClick: true
       });
       expect(spy).toHaveBeenCalled();
       component.instance.close.emit();
@@ -83,9 +83,9 @@ describe('DrawerService', () => {
   });
 
   describe('destroy', () => {
-    it('should destroy with overlay', (done) => {
+    it('should destroy with overlay', done => {
       const spy = spyOn(overlayService, 'removeTriggerComponent');
-      const component: any =  { instance: { size: 10 } };
+      const component: any = { instance: { size: 10 } };
       service.destroy(component);
 
       setTimeout(() => {
@@ -95,9 +95,9 @@ describe('DrawerService', () => {
       }, 10);
     });
 
-    it('should not set size to 0 if !component', (done) => {
+    it('should not set size to 0 if !component', done => {
       const spy = spyOn(overlayService, 'removeTriggerComponent');
-      const component: any =  {  };
+      const component: any = {};
       service.destroy(component);
 
       setTimeout(() => {
