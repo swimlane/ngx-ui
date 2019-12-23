@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { NotificationService, NotificationStyleType, NotificationType } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-notification-page',
-  templateUrl: './notification-page.component.html'
+  templateUrl: './notification-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationPageComponent {
   readonly NotificationType = NotificationType;

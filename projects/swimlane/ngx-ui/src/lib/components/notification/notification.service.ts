@@ -1,5 +1,7 @@
 import { Injectable, ComponentRef, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Subscription } from 'rxjs';
+
 import { InjectionService } from '../../services/injection.service';
 import { InjectionRegisteryService } from '../../services/injection-registery.service';
 
@@ -9,7 +11,6 @@ import { NotificationPermissionType } from './notification-permission-type.enum'
 import { NotificationComponent } from './notification.component';
 import { NotificationContainerComponent } from './notification-container.component';
 import { NotificationOptions } from './notification-options.interface';
-import { Subscription } from 'rxjs';
 
 /** adding dynamic to suppress `Document` type metadata error  */
 /** @dynamic */
@@ -73,7 +74,7 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
 
       component.instance.timer = setTimeout(() => {
         this.destroy(component);
-      }, component.instance.timeout);
+      }, component.instance.timeout as number);
     }
   }
 
@@ -159,8 +160,8 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     };
 
     // manually do this
-    if (options && options.timeout) {
-      setTimeout(note.close.bind(note), options.timeout);
+    if (options && options.timeout !== false) {
+      setTimeout(note.close.bind(note), options.timeout as number);
     }
 
     return note;

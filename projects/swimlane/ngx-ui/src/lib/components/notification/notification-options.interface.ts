@@ -14,7 +14,7 @@ export interface NotificationOptions {
   readonly showClose?: boolean;
   readonly timestamp?: number;
   readonly icon?: string;
-  readonly timeout?: number;
+  readonly timeout?: number | boolean;
   readonly rateLimit?: boolean;
   readonly sound?: boolean;
   readonly inputs?: {
@@ -28,7 +28,7 @@ export interface NotificationOptions {
     showClose?: boolean;
     timestamp?: number;
     icon?: string;
-    timeout?: number;
+    timeout?: number | boolean;
     rateLimit?: boolean;
     sound?: boolean;
   };

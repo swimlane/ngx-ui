@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, HostListener, HostBinding, ViewEncapsulation, TemplateRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, HostListener, HostBinding, ViewEncapsulation, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 import { NotificationStyleType } from './notification-style-type.enum';
@@ -8,7 +8,8 @@ import { NotificationStyleType } from './notification-style-type.enum';
   selector: 'ngx-notification',
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationComponent {
   @Input() cssClass: string = '';
@@ -41,7 +42,7 @@ export class NotificationComponent {
   @Output() resume = new EventEmitter<void>();
 
   readonly NotificationStyleType = NotificationStyleType;
-  timeout: any;
+  timeout: number | boolean;
   timer: any;
 
   private _showClose?: boolean;
