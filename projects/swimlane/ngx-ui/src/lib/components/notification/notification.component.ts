@@ -1,4 +1,14 @@
-import { Component, Input, Output, EventEmitter, HostListener, HostBinding, ViewEncapsulation, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  HostListener,
+  HostBinding,
+  ViewEncapsulation,
+  TemplateRef,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 import { NotificationStyleType } from './notification-style-type.enum';
@@ -20,19 +30,25 @@ export class NotificationComponent {
   @Input() icon: string;
 
   @Input()
-  get showClose() { return this._showClose; }
+  get showClose() {
+    return this._showClose;
+  }
   set showClose(showClose) {
     this._showClose = coerceBooleanProperty(showClose);
   }
 
   @Input()
-  get pauseOnHover() { return this._pauseOnHover; }
+  get pauseOnHover() {
+    return this._pauseOnHover;
+  }
   set pauseOnHover(pauseOnHover) {
     this._pauseOnHover = coerceBooleanProperty(pauseOnHover);
   }
 
   @Input()
-  get timestamp() { return this._timestamp; }
+  get timestamp() {
+    return this._timestamp;
+  }
   set timestamp(timestamp) {
     this._timestamp = coerceNumberProperty(timestamp);
   }

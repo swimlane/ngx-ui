@@ -17,10 +17,7 @@ describe('NotificationService', () => {
     };
 
     TestBed.configureTestingModule({
-      providers: [
-        NotificationService,
-        { provide: InjectionService, useValue: injectionServiceStub },
-      ]
+      providers: [NotificationService, { provide: InjectionService, useValue: injectionServiceStub }]
     });
   });
 
@@ -49,11 +46,11 @@ describe('NotificationService', () => {
           resume: new EventEmitter<void>()
         }
       };
-      spy = spyOn(injectionService, 'appendComponent').and.returnValue(component)
+      spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
     });
 
     it('should create notification', () => {
-      const ref = service.create({ });
+      const ref = service.create({});
       expect(ref).toBeDefined();
       expect(spy).toHaveBeenCalled();
     });
@@ -67,7 +64,7 @@ describe('NotificationService', () => {
     it('should remove first item if limit reached', () => {
       const destroySpy = spyOn(service, 'destroy');
       spyOn(service, 'getByType').and.returnValue([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
-      const ref = service.create({ });
+      const ref = service.create({});
       expect(ref).toBeDefined();
       expect(destroySpy).toHaveBeenCalled();
     });
@@ -86,7 +83,7 @@ describe('NotificationService', () => {
       spy = spyOn(service, 'destroy');
     });
 
-    it('should set destroy timeout', (done) => {
+    it('should set destroy timeout', done => {
       service.startTimer({ instance: { timeout: 0 } } as any);
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();
@@ -94,7 +91,7 @@ describe('NotificationService', () => {
       }, 0);
     });
 
-    it('should not set destroy timeout if !timeout', (done) => {
+    it('should not set destroy timeout if !timeout', done => {
       service.startTimer({ instance: { timeout: false } } as any);
       setTimeout(() => {
         expect(spy).not.toHaveBeenCalled();
@@ -134,7 +131,7 @@ describe('NotificationService', () => {
   describe('assignDefaults', () => {
     it('should assign default options to component', () => {
       const ts = new Date().getTime();
-      const options = service.assignDefaults({ });
+      const options = service.assignDefaults({});
       expect(options.inputs.timestamp).toBeGreaterThanOrEqual(ts);
     });
   });
@@ -154,7 +151,7 @@ describe('NotificationService', () => {
 
     it('should not create container if exists', () => {
       spyOn(document, 'contains').and.returnValue(true);
-      service.container = { location: { nativeElement: { } } } as any;
+      service.container = { location: { nativeElement: {} } } as any;
       service.injectComponent({}, {});
       expect(spy).toHaveBeenCalledTimes(1);
     });
@@ -205,46 +202,44 @@ describe('NotificationService', () => {
     let notifications: Array<ComponentRef<NotificationComponent>>;
 
     beforeEach(() => {
-      notifications = [
-        notificationMock() as any,
-        notificationMock() as any,
-        notificationMock() as any
-      ];
+      notifications = [notificationMock() as any, notificationMock() as any, notificationMock() as any];
 
       spyOn(service, 'getByType').and.returnValue(notifications);
     });
 
     it('should be false', () => {
-      expect(service.isFlooded({  })).toBeFalsy();
+      expect(service.isFlooded({})).toBeFalsy();
     });
 
     it('should be true', () => {
-      expect(service.isFlooded({
-        title: notifications[0].instance.title,
-        body: notifications[0].instance.body,
-        timestamp: notifications[0].instance.timestamp - 2000
-      })).toBeTruthy();
+      expect(
+        service.isFlooded({
+          title: notifications[0].instance.title,
+          body: notifications[0].instance.body,
+          timestamp: notifications[0].instance.timestamp - 2000
+        })
+      ).toBeTruthy();
     });
   });
 
   describe('showNative', () => {
     it('should do nothing if native not supported', () => {
       spyOnProperty(service, 'isNativeSupported').and.returnValue(false);
-      const notification = service.showNative({  });
+      const notification = service.showNative({});
       expect(notification).toBeUndefined();
     });
 
     it('should request permissions', () => {
       spyOnProperty(service, 'isNativeSupported').and.returnValue(true);
       const spy = spyOn(service, 'requestPermissions');
-      service.showNative({ });
+      service.showNative({});
       expect(spy).toHaveBeenCalled();
     });
 
     it('should do nothing if permissions denied', () => {
       spyOnProperty(service, 'isNativeSupported').and.returnValue(true);
       service.permission = 'denied';
-      expect(service.showNative({ })).toBeUndefined();
+      expect(service.showNative({})).toBeUndefined();
     });
 
     it('should not set timeout', () => {
