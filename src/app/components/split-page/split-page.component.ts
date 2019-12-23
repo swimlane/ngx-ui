@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-split-page',
-  templateUrl: './split-page.component.html'
+  templateUrl: './split-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SplitPageComponent {
   hideAlertArea = false;

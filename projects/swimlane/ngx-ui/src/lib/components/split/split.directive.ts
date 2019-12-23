@@ -4,56 +4,47 @@ import {
   AfterContentInit,
   QueryList,
   ElementRef,
-  HostBinding,
   Directive,
   OnChanges
 } from '@angular/core';
+
 import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';
-
-const toValue = SplitAreaDirective.basisToValue;
-const isBasisPecent = SplitAreaDirective.isPercent;
-
-function getMinMaxPct(minBasis, maxBasis, grow, shrink, baseBasisPct, basisToPx) {
-  // minimum and maximum basis determined by max/min inputs
-  let minBasisPct = toValue(minBasis) / (isBasisPecent(minBasis) ? 1 : basisToPx);
-  let maxBasisPct = toValue(maxBasis) / (isBasisPecent(maxBasis) ? 1 : basisToPx);
-
-  // minimum and maximum basis determined by flex inputs
-  minBasisPct = Math.max(minBasisPct || 0, shrink === '0' ? baseBasisPct : 0);
-  maxBasisPct = Math.min(maxBasisPct || 100, grow === '0' ? baseBasisPct : 100);
-
-  return [minBasisPct, maxBasisPct];
-}
+import { SplitDirection } from './split-direction.enum';
+import { getMinMaxPct } from './get-min-max-pct.util';
+import { basisToValue } from './basis-to-value.util';
+import { isPercent } from './is-percent.util';
 
 @Directive({
-  selector: '[ngxSplit]'
+  exportAs: 'ngxSplit',
+  selector: '[ngxSplit]',
+  host: {
+    class: 'ngx-split',
+    '[class.row-split]': 'rowCss',
+    '[class.column-split]': 'columnCss'
+  }
 })
 export class SplitDirective implements AfterContentInit, OnChanges {
-  @Input('ngxSplit') direction: string = 'row';
+  @Input('ngxSplit') direction = SplitDirection.Row;
 
-  @HostBinding('class.ngx-split')
-  get mainCss() {
-    return true;
-  }
-
-  @HostBinding('class.row-split')
   get rowCss() {
-    return this.direction === 'row';
+    return this.direction === SplitDirection.Row;
   }
 
-  @HostBinding('class.column-split')
   get columnCss() {
-    return this.direction === 'column';
+    return this.direction === SplitDirection.Column;
   }
 
-  @ContentChildren(SplitHandleComponent, { descendants: false }) handles: QueryList<SplitHandleComponent>;
-  @ContentChildren(SplitAreaDirective, { descendants: false }) areas: QueryList<SplitAreaDirective>;
+  @ContentChildren(SplitHandleComponent, { descendants: false })
+  readonly handles: QueryList<SplitHandleComponent>;
 
-  constructor(private elementRef: ElementRef) {}
+  @ContentChildren(SplitAreaDirective, { descendants: false })
+  readonly areas: QueryList<SplitAreaDirective>;
+
+  constructor(private readonly elementRef: ElementRef) {}
 
   ngAfterContentInit(): void {
-    this.handles.forEach(d => d.drag.subscribe(ev => this.onDrag(ev)));
+    this.handles.forEach(d => d.drag.subscribe((ev: MouseEvent) => this.onDrag(ev)));
     this.handles.forEach(d => d.dblclick.subscribe(() => this.onDblClick()));
     this.updateHandles();
   }
@@ -78,16 +69,16 @@ export class SplitDirective implements AfterContentInit, OnChanges {
     if (!area) return;
 
     const [grow, shrink, basis] = area.currentFlexBasis;
-    const isPercent = isBasisPecent(basis);
-    const basisValue = toValue(basis);
+    const isPct = isPercent(basis);
+    const basisValue = basisToValue(basis);
 
     // get basis in px and %
-    const basisPx = isPercent ? basisValue * basisToPx : basisValue;
+    const basisPx = isPct ? basisValue * basisToPx : basisValue;
     const basisPct = basisPx / basisToPx;
 
     // get baseBasis in percent
     const baseBasis = area.initialFlexBasis[2];
-    const baseBasisPct = toValue(baseBasis) / (isBasisPecent(baseBasis) ? basisToPx : 1);
+    const baseBasisPct = basisToValue(baseBasis) / (isPercent(baseBasis) ? basisToPx : 1);
 
     const [minBasisPct, maxBasisPct] = getMinMaxPct(
       area.minBasis,
@@ -108,14 +99,14 @@ export class SplitDirective implements AfterContentInit, OnChanges {
     this.resize(deltaPx);
   }
 
-  onDrag({ movementX, movementY }): void {
-    const deltaPx = this.direction === 'row' ? movementX : movementY;
+  onDrag({ movementX, movementY }: MouseEvent): void {
+    const deltaPx = this.direction === SplitDirection.Row ? movementX : movementY;
     this.resize(deltaPx);
   }
 
   resize(delta: number): void {
     const basisToPx =
-      (this.direction === 'row'
+      (this.direction === SplitDirection.Row
         ? this.elementRef.nativeElement.clientWidth
         : this.elementRef.nativeElement.clientHeight) / 100;
 
@@ -135,15 +126,15 @@ export class SplitDirective implements AfterContentInit, OnChanges {
       }
 
       const [grow, shrink, basis] = area.currentFlexBasis;
-      const isPercent = isBasisPecent(basis);
-      const basisValue = toValue(basis);
+      const isPct = isPercent(basis);
+      const basisValue = basisToValue(basis);
 
       // get baseBasis in percent
       const baseBasis = area.initialFlexBasis[2];
-      const baseBasisPct = toValue(baseBasis) / (isBasisPecent(baseBasis) ? basisToPx : 1);
+      const baseBasisPct = basisToValue(baseBasis) / (isPercent(baseBasis) ? basisToPx : 1);
 
       // get basis in px and %
-      const basisPx = isPercent ? basisValue * basisToPx : basisValue;
+      const basisPx = isPct ? basisValue * basisToPx : basisValue;
 
       // determine which dir and calc the diff
       let newBasisPx = basisPx + _delta;
@@ -166,7 +157,7 @@ export class SplitDirective implements AfterContentInit, OnChanges {
       newBasisPx = newBasisPct * basisToPx;
 
       // update flexlayout
-      area.updateStyle(isPercent ? newBasisPct : newBasisPx);
+      area.updateStyle(isPct ? newBasisPct : newBasisPx);
 
       // return actual change in px
       return newBasisPx - basisPx;
