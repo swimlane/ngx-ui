@@ -1,46 +1,52 @@
-import { Component, Input, Output, EventEmitter, HostListener, HostBinding, ViewEncapsulation } from '@angular/core';
-import { NotificationStyleType } from './notification-style.type';
+import { Component, Input, Output, EventEmitter, HostListener, HostBinding, ViewEncapsulation, TemplateRef } from '@angular/core';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+
+import { NotificationStyleType } from './notification-style-type.enum';
 
 @Component({
+  exportAs: 'ngxNotification',
   selector: 'ngx-notification',
-  template: `
-    <div>
-      <div *ngIf="styleType !== 'none' && !icon" class="icon-container">
-        <span *ngIf="styleType === 'info'" class="icon icon-info-fulled"></span>
-        <span *ngIf="styleType === 'warning'" class="icon icon-warning-filled"></span>
-        <span *ngIf="styleType === 'error'" class="icon icon-x-filled"></span>
-        <span *ngIf="styleType === 'success'" class="icon icon-check-filled"></span>
-      </div>
-
-      <div *ngIf="styleType === 'none' && icon" class="icon-container"><span [class]="'icon ' + icon"></span></div>
-
-      <div class="notification-content" [class.has-icon]="styleType !== 'none' || icon">
-        <h2 class="ngx-notification-title" [innerHTML]="title"></h2>
-        <p class="ngx-notification-body" [innerHTML]="body"></p>
-        <ng-template *ngIf="template" [ngTemplateOutlet]="template"> </ng-template>
-        <button *ngIf="showClose" type="button" (click)="close.emit()" class="icon-x ngx-notification-close"></button>
-      </div>
-    </div>
-  `,
-  encapsulation: ViewEncapsulation.None,
-  styleUrls: ['./notification.component.scss']
+  templateUrl: './notification.component.html',
+  styleUrls: ['./notification.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class NotificationComponent {
   @Input() cssClass: string = '';
   @Input() title: string;
   @Input() body: string;
-  @Input() template: any;
-  @Input() pauseOnHover: boolean;
+  @Input() template: TemplateRef<any>;
   @Input() styleType: NotificationStyleType;
-  @Input() showClose: boolean;
-  @Input() timestamp: any;
   @Input() icon: string;
 
-  @Output() close = new EventEmitter();
-  @Output() pause = new EventEmitter();
-  @Output() resume = new EventEmitter();
+  @Input()
+  get showClose() { return this._showClose; }
+  set showClose(showClose) {
+    this._showClose = coerceBooleanProperty(showClose);
+  }
 
+  @Input()
+  get pauseOnHover() { return this._pauseOnHover; }
+  set pauseOnHover(pauseOnHover) {
+    this._pauseOnHover = coerceBooleanProperty(pauseOnHover);
+  }
+
+  @Input()
+  get timestamp() { return this._timestamp; }
+  set timestamp(timestamp) {
+    this._timestamp = coerceNumberProperty(timestamp);
+  }
+
+  @Output() close = new EventEmitter<void>();
+  @Output() pause = new EventEmitter<void>();
+  @Output() resume = new EventEmitter<void>();
+
+  readonly NotificationStyleType = NotificationStyleType;
   timeout: any;
+  timer: any;
+
+  private _showClose?: boolean;
+  private _pauseOnHover?: boolean;
+  private _timestamp?: number;
 
   @HostBinding('class')
   get cssClasses(): string {
