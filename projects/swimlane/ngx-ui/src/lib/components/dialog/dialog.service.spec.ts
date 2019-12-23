@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
+import { EventEmitter } from '@angular/core';
 
 import { InjectionService } from '../../services/injection.service';
 import { OverlayService } from '../overlay/overlay.service';
 import { DialogService } from './dialog.service';
-import { EventEmitter } from '@angular/core';
 
 describe('DialogService', () => {
   let service: DialogService;

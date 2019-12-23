@@ -42,13 +42,11 @@ describe('AlertComponent', () => {
       component.longPress = false;
     });
 
-    it('should focus content if is !AlertTypes.Prompt', done => {
+    it('should focus content if is !AlertTypes.Prompt', () => {
+      const spy = spyOn(component.dialogElm.nativeElement, 'focus');
       component.type = AlertTypes.Alert;
-      component.dialogElm.nativeElement.onfocus = () => {
-        done();
-      };
-
       fixture.detectChanges();
+      expect(spy).toHaveBeenCalled();
     });
 
     it('should enable closeButton when longPress', () => {

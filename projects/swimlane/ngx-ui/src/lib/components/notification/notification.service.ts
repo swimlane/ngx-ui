@@ -84,11 +84,11 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
 
   requestPermissions(): void {
     if (this.isNativeSupported) {
-      Notification.requestPermission(status => (this.permission = status));
+      Notification.requestPermission(/* istanbul ignore next */ status => (this.permission = status));
     }
   }
 
-  assignDefaults(bindings: NotificationOptions): any {
+  assignDefaults(bindings: NotificationOptions) {
     bindings = super.assignDefaults(bindings);
 
     // add a timestamp for flood checks
@@ -110,9 +110,9 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     let closeSub: Subscription;
 
     const kill = () => {
-      if (closeSub) closeSub.unsubscribe();
-      if (resumeSub) resumeSub.unsubscribe();
-      if (pauseSub) pauseSub.unsubscribe();
+      closeSub.unsubscribe();
+      resumeSub.unsubscribe();
+      pauseSub.unsubscribe();
 
       this.destroy(component);
     };

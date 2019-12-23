@@ -41,14 +41,6 @@ export class NotificationComponent {
   @Output() pause = new EventEmitter<void>();
   @Output() resume = new EventEmitter<void>();
 
-  readonly NotificationStyleType = NotificationStyleType;
-  timeout: number | boolean;
-  timer: any;
-
-  private _showClose?: boolean;
-  private _pauseOnHover?: boolean;
-  private _timestamp?: number;
-
   @HostBinding('class')
   get cssClasses(): string {
     let cls = `ngx-notification ngx-notification-${this.styleType}`;
@@ -56,6 +48,14 @@ export class NotificationComponent {
     if (this.showClose) cls += ' notification-closeable';
     return cls;
   }
+
+  readonly NotificationStyleType = NotificationStyleType;
+  timeout: number | boolean;
+  timer: any;
+
+  private _showClose?: boolean;
+  private _pauseOnHover?: boolean;
+  private _timestamp?: number;
 
   @HostListener('mouseenter')
   onMouseEnter(): void {
