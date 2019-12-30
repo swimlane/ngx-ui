@@ -16,12 +16,7 @@ describe('SplitDirective', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       imports: [FlexLayoutModule],
-      declarations: [
-        SplitDirectiveFixture,
-        SplitDirective,
-        SplitAreaDirective,
-        SplitHandleComponent
-      ]
+      declarations: [SplitDirectiveFixture, SplitDirective, SplitAreaDirective, SplitHandleComponent]
     });
   });
 
@@ -37,7 +32,7 @@ describe('SplitDirective', () => {
 
   it('should drag on handle drag', () => {
     const spy = spyOn(component.split, 'onDrag');
-    component.splitHandle.onMouseMove({ } as any);
+    component.splitHandle.onMouseMove({} as any);
     expect(spy).toHaveBeenCalled();
   });
 

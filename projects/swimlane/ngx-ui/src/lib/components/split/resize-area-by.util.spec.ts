@@ -35,9 +35,13 @@ describe('resizeAreaBy', () => {
   });
 
   it('should do nothing if fxFlexFill provided', () => {
-    const size = resizeAreaBy({
-      fxFlexFill: true
-    } as any, 10, 50);
+    const size = resizeAreaBy(
+      {
+        fxFlexFill: true
+      } as any,
+      10,
+      50
+    );
 
     expect(size).toEqual(10);
   });

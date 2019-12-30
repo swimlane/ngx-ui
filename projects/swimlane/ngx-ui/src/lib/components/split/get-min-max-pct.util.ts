@@ -1,7 +1,14 @@
 import { basisToValue } from './basis-to-value.util';
 import { isPercent } from './is-percent.util';
 
-export function getMinMaxPct(minBasis: string, maxBasis: string, grow: string, shrink: string, baseBasisPct: number, basisToPx: number) {
+export function getMinMaxPct(
+  minBasis: string,
+  maxBasis: string,
+  grow: string,
+  shrink: string,
+  baseBasisPct: number,
+  basisToPx: number
+) {
   // minimum and maximum basis determined by max/min inputs
   let minBasisPct = basisToValue(minBasis) / (isPercent(minBasis) ? 1 : basisToPx);
   let maxBasisPct = basisToValue(maxBasis) / (isPercent(maxBasis) ? 1 : basisToPx);

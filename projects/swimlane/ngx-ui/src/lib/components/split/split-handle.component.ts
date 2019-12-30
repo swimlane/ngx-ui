@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Output,
-  ViewEncapsulation
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 

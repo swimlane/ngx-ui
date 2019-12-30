@@ -1,12 +1,4 @@
-import {
-  Input,
-  ContentChildren,
-  AfterContentInit,
-  QueryList,
-  ElementRef,
-  Directive,
-  OnChanges
-} from '@angular/core';
+import { Input, ContentChildren, AfterContentInit, QueryList, ElementRef, Directive, OnChanges } from '@angular/core';
 
 import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';
@@ -62,9 +54,7 @@ export class SplitDirective implements AfterContentInit, OnChanges {
 
   onDblClick(): void {
     const basisToPx =
-      (this.rowCss
-        ? this.elementRef.nativeElement.clientWidth
-        : this.elementRef.nativeElement.clientHeight) / 100;
+      (this.rowCss ? this.elementRef.nativeElement.clientWidth : this.elementRef.nativeElement.clientHeight) / 100;
 
     const area = this.areas.first;
 
@@ -109,9 +99,7 @@ export class SplitDirective implements AfterContentInit, OnChanges {
 
   resize(delta: number): void {
     const basisToPx =
-      (this.rowCss
-        ? this.elementRef.nativeElement.clientWidth
-        : this.elementRef.nativeElement.clientHeight) / 100;
+      (this.rowCss ? this.elementRef.nativeElement.clientWidth : this.elementRef.nativeElement.clientHeight) / 100;
 
     const areas = this.areas.toArray();
 

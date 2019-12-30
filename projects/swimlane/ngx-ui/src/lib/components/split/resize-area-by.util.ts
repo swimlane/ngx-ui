@@ -1,4 +1,4 @@
-import { SplitAreaDirective } from "./split-area.directive";
+import { SplitAreaDirective } from './split-area.directive';
 import { isPercent } from './is-percent.util';
 import { basisToValue } from './basis-to-value.util';
 import { getMinMaxPct } from './get-min-max-pct.util';
@@ -24,14 +24,7 @@ export function resizeAreaBy(area: SplitAreaDirective, _delta: number, basisToPx
   let newBasisPx = basisPx + _delta;
   let newBasisPct = newBasisPx / basisToPx;
 
-  const [minBasisPct, maxBasisPct] = getMinMaxPct(
-    area.minBasis,
-    area.maxBasis,
-    grow,
-    shrink,
-    baseBasisPct,
-    basisToPx
-  );
+  const [minBasisPct, maxBasisPct] = getMinMaxPct(area.minBasis, area.maxBasis, grow, shrink, baseBasisPct, basisToPx);
 
   // obey max and min
   newBasisPct = Math.max(newBasisPct, minBasisPct);
