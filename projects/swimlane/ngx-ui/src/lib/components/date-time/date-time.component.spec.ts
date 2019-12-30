@@ -539,7 +539,7 @@ describe('DateTimeComponent', () => {
     it('should set valid value', () => {
       const date = new Date().toUTCString();
       component.inputChanged(date);
-      expect(component.value).not.toEqual(date);
+      expect(component.value).toEqual(date);
     });
 
     it('should not set invalid value', () => {

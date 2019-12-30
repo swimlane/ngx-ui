@@ -14,6 +14,7 @@ import { SplitDirection } from './split-direction.enum';
 import { getMinMaxPct } from './get-min-max-pct.util';
 import { basisToValue } from './basis-to-value.util';
 import { isPercent } from './is-percent.util';
+import { resizeAreaBy } from './resize-area-by.util';
 
 @Directive({
   exportAs: 'ngxSplit',
@@ -61,11 +62,13 @@ export class SplitDirective implements AfterContentInit, OnChanges {
 
   onDblClick(): void {
     const basisToPx =
-      (this.direction === 'row'
+      (this.rowCss
         ? this.elementRef.nativeElement.clientWidth
         : this.elementRef.nativeElement.clientHeight) / 100;
 
     const area = this.areas.first;
+
+    /* istanbul ignore if */
     if (!area) return;
 
     const [grow, shrink, basis] = area.currentFlexBasis;
@@ -106,7 +109,7 @@ export class SplitDirective implements AfterContentInit, OnChanges {
 
   resize(delta: number): void {
     const basisToPx =
-      (this.direction === SplitDirection.Row
+      (this.rowCss
         ? this.elementRef.nativeElement.clientWidth
         : this.elementRef.nativeElement.clientHeight) / 100;
 
@@ -114,53 +117,9 @@ export class SplitDirective implements AfterContentInit, OnChanges {
 
     // for now assuming splitter is after first area
     const [first, ...rest] = areas;
-    [first].forEach(area => (delta = resizeAreaBy(area, delta)));
+    [first].forEach(area => (delta = resizeAreaBy(area, delta, basisToPx)));
 
     // delta is distributed left to right
-    return rest.forEach(area => (delta += resizeAreaBy(area, -delta)));
-
-    function resizeAreaBy(area: SplitAreaDirective, _delta: number) {
-      if (area.fxFlexFill) {
-        // area is fxFlexFill, distribute delta right
-        return _delta;
-      }
-
-      const [grow, shrink, basis] = area.currentFlexBasis;
-      const isPct = isPercent(basis);
-      const basisValue = basisToValue(basis);
-
-      // get baseBasis in percent
-      const baseBasis = area.initialFlexBasis[2];
-      const baseBasisPct = basisToValue(baseBasis) / (isPercent(baseBasis) ? basisToPx : 1);
-
-      // get basis in px and %
-      const basisPx = isPct ? basisValue * basisToPx : basisValue;
-
-      // determine which dir and calc the diff
-      let newBasisPx = basisPx + _delta;
-      let newBasisPct = newBasisPx / basisToPx;
-
-      const [minBasisPct, maxBasisPct] = getMinMaxPct(
-        area.minBasis,
-        area.maxBasis,
-        grow,
-        shrink,
-        baseBasisPct,
-        basisToPx
-      );
-
-      // obey max and min
-      newBasisPct = Math.max(newBasisPct, minBasisPct);
-      newBasisPct = Math.min(newBasisPct, maxBasisPct);
-
-      // calculate new basis on px
-      newBasisPx = newBasisPct * basisToPx;
-
-      // update flexlayout
-      area.updateStyle(isPct ? newBasisPct : newBasisPx);
-
-      // return actual change in px
-      return newBasisPx - basisPx;
-    }
+    rest.forEach(area => (delta += resizeAreaBy(area, -delta, basisToPx)));
   }
 }

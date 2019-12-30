@@ -6,7 +6,8 @@ export * from './split-direction.enum';
 export * from './split.directive';
 export * from './split-area.directive';
 
-// uitls
+// utils
 export * from './basis-to-value.util';
 export * from './is-percent.util';
 export * from './get-min-max-pct.util';
+export * from './resize-area-by.util';

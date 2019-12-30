@@ -43,11 +43,11 @@ export class SplitHandleComponent {
 
   onMousedown(ev: MouseEvent): void {
     const mouseup$ = fromEvent(document, 'mouseup');
-    this.subscription = mouseup$.subscribe((e: MouseEvent) => this.onMouseup(e));
+    this.subscription = mouseup$.subscribe(/* istanbul ignore next */ (e: MouseEvent) => this.onMouseup(e));
 
     const mousemove$ = fromEvent(document, 'mousemove')
       .pipe(takeUntil(mouseup$))
-      .subscribe((e: MouseEvent) => this.onMouseMove(e));
+      .subscribe(/* istanbul ignore next */ (e: MouseEvent) => this.onMouseMove(e));
 
     this.subscription.add(mousemove$);
     this.dragStart.emit(ev);
