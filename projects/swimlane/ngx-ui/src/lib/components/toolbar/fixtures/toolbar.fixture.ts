@@ -18,7 +18,7 @@ export class ToolbarFixtureComponent {
   toolbarMenu = [
     {
       label: 'File',
-      click: () => undefined,
+      click: () => undefined
     },
     {
       label: 'Image'
@@ -29,7 +29,7 @@ export class ToolbarFixtureComponent {
     },
     {
       label: 'Edit',
-      dropdown: true,
+      dropdown: true
     }
   ];
 

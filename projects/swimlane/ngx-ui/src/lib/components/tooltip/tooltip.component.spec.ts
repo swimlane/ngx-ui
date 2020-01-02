@@ -27,10 +27,11 @@ describe('TooltipContentComponent', () => {
     component.spacing = 0;
     component.host = {
       nativeElement: {
-        getBoundingClientRect: () => ({
-          height: 10,
-          width: 10
-        }) as any
+        getBoundingClientRect: () =>
+          ({
+            height: 10,
+            width: 10
+          } as any)
       } as any
     };
 

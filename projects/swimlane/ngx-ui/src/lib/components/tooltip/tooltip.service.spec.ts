@@ -4,7 +4,7 @@ describe('TooltipService', () => {
   let service: TooltipService;
 
   beforeEach(() => {
-    service = new TooltipService({ } as any);
+    service = new TooltipService({} as any);
   });
 
   it('should be defined', () => {

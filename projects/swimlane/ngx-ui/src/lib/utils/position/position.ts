@@ -71,7 +71,12 @@ export class PositionHelper {
    *
    * @memberOf PositionHelper
    */
-  static calculateVerticalCaret(elDimensions: Dimensions, popoverDimensions: Dimensions, caretDimensions: Dimensions, alignment: AlignmentTypes): number {
+  static calculateVerticalCaret(
+    elDimensions: Dimensions,
+    popoverDimensions: Dimensions,
+    caretDimensions: Dimensions,
+    alignment: AlignmentTypes
+  ): number {
     let result: number;
 
     if (alignment === AlignmentTypes.top) {
@@ -201,7 +206,13 @@ export class PositionHelper {
    *
    * @memberOf PositionHelper
    */
-  static positionCaret(placement: PlacementTypes, elmDim: Dimensions, hostDim: Dimensions, caretDimensions: Dimensions, alignment: AlignmentTypes): any {
+  static positionCaret(
+    placement: PlacementTypes,
+    elmDim: Dimensions,
+    hostDim: Dimensions,
+    caretDimensions: Dimensions,
+    alignment: AlignmentTypes
+  ): any {
     let top = 0;
     let left = 0;
 
