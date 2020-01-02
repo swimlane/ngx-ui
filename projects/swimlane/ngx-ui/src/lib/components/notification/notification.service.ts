@@ -1,19 +1,23 @@
 import { Injectable, ComponentRef, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { Subscription } from 'rxjs';
+
 import { InjectionService } from '../../services/injection.service';
 import { InjectionRegisteryService } from '../../services/injection-registery.service';
 
-import { NotificationType } from './notification.type';
-import { NotificationStyleType } from './notification-style.type';
-import { NotificationPermissionType } from './notification-permission.type';
+import { NotificationType } from './notification-type.enum';
+import { NotificationStyleType } from './notification-style-type.enum';
+import { NotificationPermissionType } from './notification-permission-type.enum';
 import { NotificationComponent } from './notification.component';
 import { NotificationContainerComponent } from './notification-container.component';
+import { NotificationOptions } from './notification-options.interface';
 
+/** adding dynamic to suppress `Document` type metadata error  */
+/** @dynamic */
 @Injectable()
 export class NotificationService extends InjectionRegisteryService<NotificationComponent> {
-  static limit: number | boolean = 10;
-
-  defaults: any = {
+  static readonly limit: number | boolean = 10;
+  readonly defaults: NotificationOptions = {
     inputs: {
       timeout: 2000,
       rateLimit: true,
@@ -25,75 +29,77 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     }
   };
 
-  permission: NotificationPermissionType | string;
-  type: any = NotificationComponent;
-  container: any;
+  permission: NotificationPermission;
+  container?: ComponentRef<NotificationContainerComponent>;
+  type = NotificationComponent;
 
   get isNativeSupported(): boolean {
     return 'Notification' in window;
   }
 
-  constructor(injectionService: InjectionService, @Inject(DOCUMENT) private document: any) {
+  constructor(readonly injectionService: InjectionService, @Inject(DOCUMENT) private readonly document: Document) {
     super(injectionService);
   }
 
-  create(bindings): any {
+  create(bindings: NotificationOptions) {
     // verify flood not happening
     if (bindings.rateLimit && this.isFlooded(bindings)) {
-      return false;
+      return;
     }
 
     // if limit reached, remove the first one
     const compsByType = this.getByType();
+
     if (compsByType && compsByType.length >= NotificationService.limit) {
       this.destroy(compsByType[0]);
     }
 
     // native notifications need to be invoked
-    let component;
+    let component: ComponentRef<NotificationComponent> | Notification;
+
     if (bindings.type === NotificationType.native) {
       component = this.showNative(bindings);
     } else {
       component = super.create(bindings);
       this.createSubscriptions(component);
+      this.startTimer(component);
     }
 
-    // start timer for notification
-    this.startTimer(component);
-
-    return component;
+    return component as any;
   }
 
-  startTimer(component): void {
+  startTimer(component: ComponentRef<NotificationComponent>): void {
     if (component.instance.timeout !== false) {
       clearTimeout(component.instance.timer);
 
-      component.instance.timer = setTimeout(() => {
-        this.destroy(component);
-      }, component.instance.timeout);
+      component.instance.timer = setTimeout(
+        () => {
+          this.destroy(component);
+        },
+        component.instance.timeout as number
+      );
     }
   }
 
-  pauseTimer(component): void {
+  pauseTimer(component: ComponentRef<NotificationComponent>): void {
     clearTimeout(component.instance.timer);
   }
 
   requestPermissions(): void {
     if (this.isNativeSupported) {
-      Notification.requestPermission(status => (this.permission = status));
+      Notification.requestPermission(/* istanbul ignore next */ status => (this.permission = status));
     }
   }
 
-  assignDefaults(bindings): any {
+  assignDefaults(bindings: NotificationOptions) {
     bindings = super.assignDefaults(bindings);
 
     // add a timestamp for flood checks
     bindings.inputs.timestamp = +new Date();
-
     return bindings;
   }
 
-  injectComponent(type, bindings): ComponentRef<any> {
+  injectComponent(type: any, bindings: NotificationOptions): ComponentRef<any> {
     if (!this.container || !this.document.contains(this.container.location.nativeElement)) {
       this.container = this.injectionService.appendComponent(NotificationContainerComponent);
     }
@@ -101,15 +107,15 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     return this.injectionService.appendComponent(type, bindings, this.container);
   }
 
-  createSubscriptions(component): any {
-    let pauseSub;
-    let resumeSub;
-    let closeSub;
+  createSubscriptions(component: ComponentRef<NotificationComponent>) {
+    let pauseSub: Subscription;
+    let resumeSub: Subscription;
+    let closeSub: Subscription;
 
     const kill = () => {
-      if (closeSub) closeSub.unsubscribe();
-      if (resumeSub) resumeSub.unsubscribe();
-      if (pauseSub) pauseSub.unsubscribe();
+      closeSub.unsubscribe();
+      resumeSub.unsubscribe();
+      pauseSub.unsubscribe();
 
       this.destroy(component);
     };
@@ -127,16 +133,16 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     closeSub = component.instance.close.subscribe(kill);
   }
 
-  isFlooded(newNotification): boolean {
+  isFlooded(bindings: NotificationOptions): boolean {
     const compsByType = this.getByType();
 
     for (const notification of compsByType) {
       const instance = notification.instance;
 
       if (
-        instance.title === newNotification.title &&
-        instance.body === newNotification.body &&
-        instance.timestamp + 1000 > newNotification.timestamp
+        instance.title === bindings.title &&
+        instance.body === bindings.body &&
+        instance.timestamp + 1000 > bindings.timestamp
       ) {
         return true;
       }
@@ -145,7 +151,7 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     return false;
   }
 
-  showNative(options): any {
+  showNative(options: NotificationOptions) {
     if (!this.isNativeSupported) return;
     if (!this.permission) this.requestPermissions();
     if (this.permission === NotificationPermissionType.denied) return;
@@ -158,7 +164,7 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
 
     // manually do this
     if (options && options.timeout !== false) {
-      setTimeout(note.close.bind(note), options.timeout);
+      setTimeout(note.close.bind(note), options.timeout as number);
     }
 
     return note;
