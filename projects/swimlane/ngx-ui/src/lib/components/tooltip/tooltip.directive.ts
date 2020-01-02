@@ -9,19 +9,23 @@ import {
   Output,
   Renderer2,
   TemplateRef,
-  ViewContainerRef
+  ViewContainerRef,
+  ComponentRef
 } from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
-import { AlignmentTypes } from './alignment.type';
-import { PlacementTypes } from '../../utils/position/placement.type';
-import { ShowTypes } from './show.type';
-import { StyleTypes } from './style.type';
+import { PlacementTypes, AlignmentTypes } from '../../utils/position';
 
+import { ShowTypes } from './show-types.enum';
+import { StyleTypes } from './style-types.enum';
 import { TooltipService } from './tooltip.service';
+import { TooltipContentComponent } from './tooltip.component';
 
 // tslint:disable-next-line:directive-selector
-@Directive({ selector: '[ngx-tooltip]', exportAs: 'ngxTooltip' })
+@Directive({
+  selector: '[ngx-tooltip]',
+  exportAs: 'ngxTooltip'
+})
 export class TooltipDirective implements OnDestroy {
   @Input() tooltipCssClass: string = '';
   @Input() tooltipTitle: string = '';
@@ -96,8 +100,8 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipShowTimeout = coerceNumberProperty(val);
   }
 
-  @Output() show = new EventEmitter();
-  @Output() hide = new EventEmitter();
+  @Output() show = new EventEmitter<boolean>();
+  @Output() hide = new EventEmitter<boolean>();
 
   private _tooltipAppendToBody: boolean = true;
   private _tooltipSpacing: number = 10;
@@ -116,18 +120,18 @@ export class TooltipDirective implements OnDestroy {
     return this.tooltipShowEvent === ShowTypes.all || this.tooltipShowEvent === ShowTypes.mouseover;
   }
 
-  private component: any;
+  private component: ComponentRef<TooltipContentComponent>;
   private timeout: any;
-  private mouseLeaveContentEvent: any;
-  private mouseEnterContentEvent: any;
-  private documentClickEvent: any;
+  private mouseLeaveContentEvent: () => void;
+  private mouseEnterContentEvent: () => void;
+  private documentClickEvent: () => void;
 
   constructor(
-    private ngZone: NgZone,
-    private tooltipService: TooltipService,
-    private viewContainerRef: ViewContainerRef,
-    private renderer: Renderer2,
-    private element: ElementRef
+    private readonly ngZone: NgZone,
+    private readonly tooltipService: TooltipService,
+    private readonly viewContainerRef: ViewContainerRef,
+    private readonly renderer: Renderer2,
+    private readonly element: ElementRef<HTMLElement>
   ) {}
 
   ngOnDestroy(): void {
@@ -156,7 +160,7 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('mouseleave', ['$event.target'])
-  onMouseLeave(target): void {
+  onMouseLeave(target: HTMLElement): void {
     if (this.listensForHover && this.tooltipCloseOnMouseLeave) {
       clearTimeout(this.timeout);
 
@@ -204,7 +208,7 @@ export class TooltipDirective implements OnDestroy {
     });
   }
 
-  addHideListeners(tooltip): void {
+  addHideListeners(tooltip: HTMLElement): void {
     // on mouse enter, cancel the hide triggered by the leave
     this.mouseEnterContentEvent = this.renderer.listen(tooltip, 'mouseenter', () => {
       clearTimeout(this.timeout);

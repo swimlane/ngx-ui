@@ -7,11 +7,10 @@
 <a
   href="/"
   ngx-tooltip
+  tooltipType="popover"
+  tooltipPlacement="top"
   [tooltipContext]="{ foo: 'YAZ' }"
-  [tooltipType]="'popover'"
-  [tooltipPlacement]="'top'"
   [tooltipTemplate]="popoverTemplate"
-  #tooltip="ngxTooltip"
 >
   Top
 </a>

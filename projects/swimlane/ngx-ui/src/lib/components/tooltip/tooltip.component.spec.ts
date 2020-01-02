@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { ToolTipFixtureComponent } from './fixtures/tooltip.fixture';
 import { TooltipModule } from './tooltip.module';
 import { TooltipDirective } from './tooltip.directive';
@@ -7,16 +8,17 @@ describe('TooltipContentComponent', () => {
   let directive: TooltipDirective;
   let fixture: ComponentFixture<ToolTipFixtureComponent>;
 
-  beforeEach(done => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ToolTipFixtureComponent],
       imports: [TooltipModule]
     }).compileComponents();
+  });
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(ToolTipFixtureComponent);
     directive = fixture.componentInstance.tooltipDirective;
     fixture.autoDetectChanges();
-    fixture.whenStable().then(() => done());
   });
 
   it('can load instance', () => {
