@@ -1,4 +1,5 @@
 import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+
 import { ToolbarComponent } from '../toolbar.component';
 
 @Component({
@@ -8,15 +9,16 @@ import { ToolbarComponent } from '../toolbar.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToolbarFixtureComponent {
-  @ViewChild('toolbar1', { static: true }) toolbar1: ToolbarComponent;
-  @ViewChild('toolbar2', { static: true }) toolbar2: ToolbarComponent;
+  @ViewChild('toolbar1', { static: true })
+  readonly toolbar1: ToolbarComponent;
+
+  @ViewChild('toolbar2', { static: true })
+  readonly toolbar2: ToolbarComponent;
 
   toolbarMenu = [
     {
       label: 'File',
-      click: () => {
-        console.log('File clicked');
-      }
+      click: () => undefined,
     },
     {
       label: 'Image'
@@ -28,13 +30,10 @@ export class ToolbarFixtureComponent {
     {
       label: 'Edit',
       dropdown: true,
-      click: () => {
-        console.log('Edit clicked');
-      }
     }
   ];
 
-  menuClicked(event) {
-    console.log('Menu clicked', event);
+  menuClicked(e: Event) {
+    return e;
   }
 }

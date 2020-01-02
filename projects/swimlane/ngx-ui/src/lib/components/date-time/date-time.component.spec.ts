@@ -537,9 +537,9 @@ describe('DateTimeComponent', () => {
 
   describe('inputChanged', () => {
     it('should set valid value', () => {
-      const date = new Date().toUTCString();
+      const date = new Date().toLocaleDateString();
       component.inputChanged(date);
-      expect(component.value).toEqual(date);
+      expect((component.value as Date).toLocaleDateString()).toEqual(date);
     });
 
     it('should not set invalid value', () => {
