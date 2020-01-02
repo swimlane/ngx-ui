@@ -1,5 +1,10 @@
 <div>
-  <span #caretElm [hidden]="!showCaret" class="tooltip-caret position-{{ this.placement }}"> </span>
+  <span
+    #caretElm
+    class="tooltip-caret"
+    [ngClass]="'position-' + placement"
+    [hidden]="!showCaret"
+  ></span>
   <div class="tooltip-content">
     <span *ngIf="!title">
       <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ model: context }"> </ng-template>

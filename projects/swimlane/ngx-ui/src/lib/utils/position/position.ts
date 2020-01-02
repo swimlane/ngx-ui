@@ -1,35 +1,37 @@
 import { PlacementTypes } from './placement.type';
+import { AlignmentTypes } from './alignment-types.enum';
+import { Dimensions } from './dimensions.interface';
 
 const caretOffset = 7;
 
-function verticalPosition(elDimensions, popoverDimensions, alignment) {
-  let result;
+function verticalPosition(elDimensions: Dimensions, popoverDimensions: Dimensions, alignment: AlignmentTypes) {
+  let result: number;
 
-  if (alignment === 'top') {
+  if (alignment === AlignmentTypes.top) {
     result = elDimensions.top - caretOffset;
   }
 
-  if (alignment === 'bottom') {
+  if (alignment === AlignmentTypes.bottom) {
     result = elDimensions.top + elDimensions.height - popoverDimensions.height + caretOffset;
   }
 
-  if (alignment === 'center') {
+  if (alignment === AlignmentTypes.center) {
     result = elDimensions.top + elDimensions.height / 2 - popoverDimensions.height / 2;
   }
 
   return result;
 }
 
-function horizontalPosition(elDimensions, popoverDimensions, alignment) {
-  if (alignment === 'left') {
+function horizontalPosition(elDimensions: Dimensions, popoverDimensions: Dimensions, alignment: AlignmentTypes) {
+  if (alignment === AlignmentTypes.left) {
     return elDimensions.left - caretOffset;
   }
 
-  if (alignment === 'right') {
+  if (alignment === AlignmentTypes.right) {
     return elDimensions.left + elDimensions.width - popoverDimensions.width + caretOffset;
   }
 
-  if (alignment === 'center') {
+  if (alignment === AlignmentTypes.center) {
     return elDimensions.left + elDimensions.width / 2 - popoverDimensions.width / 2;
   }
 }
@@ -69,18 +71,23 @@ export class PositionHelper {
    *
    * @memberOf PositionHelper
    */
-  static calculateVerticalCaret(elDimensions, popoverDimensions, caretDimensions, alignment): number {
-    let result;
+  static calculateVerticalCaret(
+    elDimensions: Dimensions,
+    popoverDimensions: Dimensions,
+    caretDimensions: Dimensions,
+    alignment: AlignmentTypes
+  ): number {
+    let result: number;
 
-    if (alignment === 'top') {
+    if (alignment === AlignmentTypes.top) {
       result = elDimensions.height / 2 - caretDimensions.height / 2 + caretOffset;
     }
 
-    if (alignment === 'bottom') {
+    if (alignment === AlignmentTypes.bottom) {
       result = popoverDimensions.height - elDimensions.height / 2 - caretDimensions.height / 2 - caretOffset;
     }
 
-    if (alignment === 'center') {
+    if (alignment === AlignmentTypes.center) {
       result = popoverDimensions.height / 2 - caretDimensions.height / 2;
     }
 
@@ -199,7 +206,13 @@ export class PositionHelper {
    *
    * @memberOf PositionHelper
    */
-  static positionCaret(placement, elmDim, hostDim, caretDimensions, alignment): any {
+  static positionCaret(
+    placement: PlacementTypes,
+    elmDim: Dimensions,
+    hostDim: Dimensions,
+    caretDimensions: Dimensions,
+    alignment: AlignmentTypes
+  ): any {
     let top = 0;
     let left = 0;
 
