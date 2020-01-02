@@ -152,7 +152,7 @@ describe('CalendarComponent', () => {
       expect(component.isDisabled(undefined, undefined)).toBe(false);
     });
 
-    it('should return true is date is before min', () => {
+    it('should return true if date is before min', () => {
       component.minDate = new Date();
       component.minDate.setMonth(2);
       expect(component.isDisabled('January', 'month')).toBe(true);
