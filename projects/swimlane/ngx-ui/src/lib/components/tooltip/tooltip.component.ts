@@ -73,6 +73,12 @@ export class TooltipContentComponent implements AfterViewInit {
     setTimeout(this.position.bind(this));
   }
 
+  @HostListener('window:resize')
+  @throttleable(100)
+  onWindowResize(): void {
+    this.position();
+  }
+
   position(): void {
     const nativeElm = this.element.nativeElement;
     const hostDim = this.host.nativeElement.getBoundingClientRect();
@@ -92,14 +98,14 @@ export class TooltipContentComponent implements AfterViewInit {
     setTimeout(() => this.renderer.addClass(nativeElm, 'animate'), 1);
   }
 
-  positionContent(nativeElm: HTMLElement, hostDim: Dimensions, elmDim: Dimensions): void {
+  private positionContent(nativeElm: HTMLElement, hostDim: Dimensions, elmDim: Dimensions): void {
     const { top, left } = PositionHelper.positionContent(this.placement, elmDim, hostDim, this.spacing, this.alignment);
 
     this.renderer.setStyle(nativeElm, 'top', `${top}px`);
     this.renderer.setStyle(nativeElm, 'left', `${left}px`);
   }
 
-  positionCaret(hostDim: Dimensions, elmDim: Dimensions): void {
+  private positionCaret(hostDim: Dimensions, elmDim: Dimensions): void {
     const caretElm = this.caretElm.nativeElement;
     const caretDimensions = caretElm.getBoundingClientRect();
     const { top, left } = PositionHelper.positionCaret(
@@ -114,13 +120,7 @@ export class TooltipContentComponent implements AfterViewInit {
     this.renderer.setStyle(caretElm, 'left', `${left}px`);
   }
 
-  checkFlip(hostDim, elmDim): void {
+  private checkFlip(hostDim: Dimensions, elmDim: Dimensions): void {
     this.placement = PositionHelper.determinePlacement(this.placement, elmDim, hostDim, this.spacing, this.alignment);
-  }
-
-  @HostListener('window:resize')
-  @throttleable(100)
-  onWindowResize(): void {
-    this.position();
   }
 }
