@@ -1,11 +1,11 @@
 <h3 class="style-header">Drawer</h3>
 
 <ngx-section class="shadow" [sectionTitle]="'Default'">
-  <button type="button" class="btn" (click)="openDrawer('left', 70)">
+  <button type="button" class="btn" (click)="openDrawer(DrawerDirection.Left, 70)">
     Open Left Drawer
   </button>
 
-  <button type="button" class="btn" (click)="openDrawer('bottom')">
+  <button type="button" class="btn" (click)="openDrawer(DrawerDirection.Bottom)">
     Open Bottom Drawer
   </button>
 
@@ -78,14 +78,14 @@
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Disabling close on outside click'">
-    <button type="button" class="btn" (click)="openDrawer('left', 70, false, editTmpl2)">
+    <button type="button" class="btn" (click)="openDrawer(DrawerDirection.Left, 70, false, editTmpl2)">
       Open Left Drawer
     </button>
-  
-    <button type="button" class="btn" (click)="openDrawer('bottom', undefined, false, editTmpl2)">
+
+    <button type="button" class="btn" (click)="openDrawer(DrawerDirection.Bottom, undefined, false, editTmpl2)">
       Open Bottom Drawer
     </button>
-  
+
     <ng-template #editTmpl2 let-context="context" let-close="close">
       <ngx-toolbar [mainTitle]="context">
       </ngx-toolbar>
@@ -94,7 +94,7 @@
         <button type="button" class="btn" (click)="openDrawer(undefined, undefined, false, editTmpl2)">
           Open Details
         </button>
-  
+
         <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
         </ngx-date-time>
         <button type="button" class="btn" (click)="close.emit(true)">
@@ -102,7 +102,7 @@
         </button>
       </section>
     </ng-template>
-  
+
     <br />
     <br />
     <br />
@@ -115,7 +115,7 @@
               (click)="openDrawer('bottom', undefined, false, editTmpl2)">
               Open Bottom Drawer
             </button>
-  
+
             <ng-template #editTmpl2 let-context="context" let-close="close">
               <ngx-toolbar
                 [mainTitle]="'Attack Alert!'">
@@ -142,9 +142,9 @@
             @Component({ selector: 'app' })
             class MyComponent {
               @ViewChild('editTmpl', { static: false }) editTmpl: TemplateRef<any>;
-  
+
               constructor(private drawerMngr: DrawerService) { }
-  
+
               openDrawer(direction = 'left', size?, closeOnOutsideClick = true, template = this.editTmpl) {
                 this.drawerMngr.create({
                   direction,
