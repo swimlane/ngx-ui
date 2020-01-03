@@ -13,7 +13,12 @@ import { horizontalPosition } from '../horizontal-position';
  *
  * @returns number
  */
-export function calculateHorizontalCaret(elDimensions: Dimensions, popoverDimensions: Dimensions, caretDimensions: Dimensions, alignment: AlignmentTypes): number {
+export function calculateHorizontalCaret(
+  elDimensions: Dimensions,
+  popoverDimensions: Dimensions,
+  caretDimensions: Dimensions,
+  alignment: AlignmentTypes
+): number {
   let result: number;
 
   if (alignment === AlignmentTypes.left) {

@@ -13,7 +13,14 @@ import {
 } from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
-import { AlignmentTypes, PlacementTypes, Dimensions, positionContent, positionCaret, determinePlacement } from '../../utils/position';
+import {
+  AlignmentTypes,
+  PlacementTypes,
+  Dimensions,
+  positionContent,
+  positionCaret,
+  determinePlacement
+} from '../../utils/position';
 import { throttleable } from '../../utils/throttle';
 
 import { StyleTypes } from './style-types.enum';
@@ -108,13 +115,7 @@ export class TooltipContentComponent implements AfterViewInit {
   private positionCaret(hostDim: Dimensions, elmDim: Dimensions): void {
     const caretElm = this.caretElm.nativeElement;
     const caretDimensions = caretElm.getBoundingClientRect();
-    const { top, left } = positionCaret(
-      this.placement,
-      elmDim,
-      hostDim,
-      caretDimensions,
-      this.alignment
-    );
+    const { top, left } = positionCaret(this.placement, elmDim, hostDim, caretDimensions, this.alignment);
 
     this.renderer.setStyle(caretElm, 'top', `${top}px`);
     this.renderer.setStyle(caretElm, 'left', `${left}px`);

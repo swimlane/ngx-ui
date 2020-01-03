@@ -15,7 +15,13 @@ import { calculateHorizontalAlignment } from '../calculate-horizontal-alignment'
  *
  * @returns ({ top: number; left: number; })
  */
-export function positionContent(placement: PlacementTypes, elmDim: Dimensions, hostDim: Dimensions, spacing: number, alignment: AlignmentTypes) {
+export function positionContent(
+  placement: PlacementTypes,
+  elmDim: Dimensions,
+  hostDim: Dimensions,
+  spacing: number,
+  alignment: AlignmentTypes
+) {
   let top = 0;
   let left = 0;
 
