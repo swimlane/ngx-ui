@@ -11,7 +11,7 @@ import { horizontalPosition } from '../horizontal-position';
  * @param caretDimensions
  * @param alignment
  *
- * @memberOf PositionHelper
+ * @returns number
  */
 export function calculateHorizontalCaret(elDimensions: Dimensions, popoverDimensions: Dimensions, caretDimensions: Dimensions, alignment: AlignmentTypes): number {
   let result: number;

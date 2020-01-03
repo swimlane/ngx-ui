@@ -9,7 +9,7 @@ import { horizontalPosition } from '../horizontal-position';
  * @param popoverDimensions
  * @param alignment
  *
- * @memberOf PositionHelper
+ * @returns number
  */
 export function calculateHorizontalAlignment(elDimensions: Dimensions, popoverDimensions: Dimensions, alignment: AlignmentTypes): number {
   let result = horizontalPosition(elDimensions, popoverDimensions, alignment);

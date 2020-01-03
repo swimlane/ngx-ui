@@ -3,7 +3,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TooltipModule } from './tooltip.module';
 import { TooltipContentComponent } from './tooltip.component';
 import { StyleTypes } from './style-types.enum';
-import { PlacementTypes, AlignmentTypes, PositionHelper } from '../../utils';
+import { PlacementTypes, AlignmentTypes, positionCaret, positionContent } from '../../utils';
+
+const position = {
+  positionCaret,
+  positionContent
+};
 
 describe('TooltipContentComponent', () => {
   let component: TooltipContentComponent;
@@ -57,14 +62,14 @@ describe('TooltipContentComponent', () => {
 
   describe('position', () => {
     it('should do nothing if no bounding box', () => {
-      const spy = spyOn(PositionHelper, 'positionContent');
+      const spy = spyOn(position, 'positionContent');
       component.host = { nativeElement: document.createElement('div') };
       component.position();
       expect(spy).not.toHaveBeenCalled();
     });
 
     it('should not position caret', () => {
-      const spy = spyOn(PositionHelper, 'positionCaret');
+      const spy = spyOn(position, 'positionCaret');
       component.showCaret = false;
       component.position();
       expect(spy).not.toHaveBeenCalled();

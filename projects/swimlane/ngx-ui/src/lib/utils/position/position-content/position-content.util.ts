@@ -13,7 +13,7 @@ import { calculateHorizontalAlignment } from '../calculate-horizontal-alignment'
  * @param spacing
  * @param alignment
  *
- * @memberOf PositionHelper
+ * @returns ({ top: number; left: number; })
  */
 export function positionContent(placement: PlacementTypes, elmDim: Dimensions, hostDim: Dimensions, spacing: number, alignment: AlignmentTypes) {
   let top = 0;
@@ -28,7 +28,7 @@ export function positionContent(placement: PlacementTypes, elmDim: Dimensions, h
   } else if (placement === PlacementTypes.top) {
     top = hostDim.top - elmDim.height - spacing;
     left = calculateHorizontalAlignment(hostDim, elmDim, alignment);
-  } else if (placement === PlacementTypes.bottom) {
+  } else {
     top = hostDim.top + hostDim.height + spacing;
     left = calculateHorizontalAlignment(hostDim, elmDim, alignment);
   }

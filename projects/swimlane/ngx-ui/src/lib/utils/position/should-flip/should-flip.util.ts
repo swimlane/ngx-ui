@@ -13,7 +13,7 @@ import { verticalPosition } from '../vertical-position';
  * @param alignment
  * @param spacing
  *
- * @memberOf PositionHelper
+ * @returns boolean
  */
 export function shouldFlip(elDimensions: Dimensions, popoverDimensions: Dimensions, placement: PlacementTypes, alignment: AlignmentTypes, spacing: number): boolean {
   let flip = false;

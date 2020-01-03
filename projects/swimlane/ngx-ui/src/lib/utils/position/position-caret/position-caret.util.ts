@@ -3,6 +3,7 @@ import { Dimensions } from '../dimensions.interface';
 import { AlignmentTypes } from '../alignment-types.enum';
 import { calculateVerticalCaret } from '../calculate-vertical-caret';
 import { calculateHorizontalCaret } from '../calculate-horizontal-caret';
+import { CARET_OFFSET } from '../caret-offset.constant';
 
 /**
  * Position caret
@@ -13,7 +14,7 @@ import { calculateHorizontalCaret } from '../calculate-horizontal-caret';
  * @param caretDimensions
  * @param alignment
  *
- * @memberOf PositionHelper
+ * @returns ({ top: number; left: number; })
  */
 export function positionCaret(
   placement: PlacementTypes,
@@ -26,7 +27,7 @@ export function positionCaret(
   let left = 0;
 
   if (placement === PlacementTypes.right) {
-    left = -7;
+    left = -1 * CARET_OFFSET;
     top = calculateVerticalCaret(hostDim, elmDim, caretDimensions, alignment);
   } else if (placement === PlacementTypes.left) {
     left = elmDim.width;
@@ -34,8 +35,8 @@ export function positionCaret(
   } else if (placement === PlacementTypes.top) {
     top = elmDim.height;
     left = calculateHorizontalCaret(hostDim, elmDim, caretDimensions, alignment);
-  } else if (placement === PlacementTypes.bottom) {
-    top = -7;
+  } else {
+    top = -1 * CARET_OFFSET;
     left = calculateHorizontalCaret(hostDim, elmDim, caretDimensions, alignment);
   }
 
