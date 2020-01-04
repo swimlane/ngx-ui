@@ -24,6 +24,7 @@
           label="Schema"
           [typeCheckOverrides]="typeOverrides"
           [schemaBuilderMode]="true"
+          [formats]="customFormats"
           (schemaChange)="schemaChange($event)"
         >
         </ngx-json-editor-flat>

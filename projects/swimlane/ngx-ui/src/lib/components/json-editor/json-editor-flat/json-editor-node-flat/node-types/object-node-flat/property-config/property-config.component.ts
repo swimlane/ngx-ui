@@ -1,11 +1,9 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { DialogService } from '../../../../../../dialog/dialog.service';
 import {
-  JsonSchemaDataType,
-  jsonSchemaDataTypes,
-  inferTypeName,
   JSONEditorSchema,
-  ObjectProperty
+  ObjectProperty,
+  propTypes
 } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
 import { JSONSchema7TypeName } from 'json-schema';
 
@@ -17,14 +15,16 @@ import { JSONSchema7TypeName } from 'json-schema';
 })
 export class PropertyConfigComponent implements OnInit {
   @Input() property: ObjectProperty;
+
   @Input() index: number;
+
   @Input() schema: JSONEditorSchema;
+
+  @Input() formats: string[] = [];
 
   @Output() updateSchema = new EventEmitter();
 
-  inferTypeName = inferTypeName;
-
-  dataTypes: JsonSchemaDataType[] = jsonSchemaDataTypes;
+  propTypes: string[] = propTypes;
 
   editableProperty: ObjectProperty;
 
@@ -50,33 +50,20 @@ export class PropertyConfigComponent implements OnInit {
     });
   }
 
-  updateTypeAndFormat(event: string): void {
-    let format = '';
-
-    switch (event) {
-      case 'Date':
-        format = 'date';
-        break;
-      case 'Date & Time':
-        format = 'date-time';
-        break;
-      case 'Password':
-        format = 'password';
-        break;
-      case 'Code':
-        format = 'code';
-        break;
+  updateType(type: string): void {
+    if (this.editableProperty.value['type'] !== type) {
+      this.editableProperty.value['type'] = type as JSONSchema7TypeName;
+      delete this.editableProperty.value['format'];
+      this.cleanUpPropertyConstrains();
     }
+  }
 
-    if (format) {
+  updateFormat(format: string): void {
+    if (this.editableProperty.value['format'] !== format) {
       this.editableProperty.value['type'] = 'string';
       this.editableProperty.value['format'] = format;
-    } else {
-      this.editableProperty.value['type'] = event as JSONSchema7TypeName;
-      delete this.editableProperty.value['format'];
+      this.cleanUpPropertyConstrains();
     }
-
-    this.cleanUpPropertyConstrains();
   }
 
   addEnumValue(): void {

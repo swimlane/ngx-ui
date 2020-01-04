@@ -19,6 +19,8 @@ export class JsonEditorFlatComponent extends JsonEditor {
 
   @Input() schemaBuilderMode?: boolean = false;
 
+  @Input() formats?: string[] = [];
+
   @ContentChildren(JsonEditorNodeFlatComponent)
   nodeElms: QueryList<JsonEditorNodeFlatComponent>;
 

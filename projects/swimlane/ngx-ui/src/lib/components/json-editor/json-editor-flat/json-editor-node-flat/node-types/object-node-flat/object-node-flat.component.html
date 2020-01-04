@@ -17,6 +17,7 @@
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="level"
       [schemaBuilderMode]="schemaBuilderMode"
+      [formats]="formats"
       (schemaChange)="schemaChange.emit(schemaRef)"
       (updatePropertyNameEvent)="onUpdatePropertyName($event)"
     >
@@ -114,6 +115,7 @@
     [property]="context.property"
     [index]="context.index"
     [schema]="context.schema"
+    [formats]="context.formats"
     (updateSchema)="updateSchema($event)"
   >
   </ngx-property-config>

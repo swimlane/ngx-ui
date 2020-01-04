@@ -56,4 +56,11 @@
       margin: 1.2rem 1.2rem 1.2rem 0 !important;
     }
   }
+
+  .prop-types-formats {
+    .ngx-select-input-name,
+    .ngx-select-dropdown-option {
+      text-transform: capitalize;
+    }
+  }
 }

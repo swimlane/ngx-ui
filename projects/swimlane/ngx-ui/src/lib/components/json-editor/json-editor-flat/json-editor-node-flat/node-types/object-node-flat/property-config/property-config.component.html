@@ -34,22 +34,30 @@
       </ngx-input>
 
       <ngx-select
+        class="prop-types-formats"
         [filterable]="false"
-        [ngModel]="[inferTypeName(editableProperty.value)]"
-        (ngModelChange)="updateTypeAndFormat($event[0])"
+        [ngModel]="[editableProperty.value.type]"
+        (ngModelChange)="updateType($event[0])"
         [required]="true"
         [label]="'TYPE'"
       >
-        <ngx-select-option
-          *ngFor="let dataType of dataTypes"
-          [name]="dataType.name"
-          [value]="inferTypeName(dataType.schema)"
-        >
+        <ngx-select-option *ngFor="let propType of propTypes" [name]="propType" [value]="propType"> </ngx-select-option>
+      </ngx-select>
+
+      <ngx-select
+        class="prop-types-formats"
+        *ngIf="editableProperty.value.type === 'string' && formats?.length"
+        [filterable]="false"
+        [ngModel]="[editableProperty.value.format]"
+        (ngModelChange)="updateFormat($event[0])"
+        [label]="'FORMAT'"
+      >
+        <ngx-select-option *ngFor="let propFormat of formats" [name]="propFormat" [value]="propFormat">
         </ngx-select-option>
       </ngx-select>
 
       <ngx-input
-        *ngIf="inferTypeName(editableProperty.value) === 'string'"
+        *ngIf="editableProperty.value.type === 'string'"
         type=" text"
         class="new-enum-input"
         [(ngModel)]="newEnumValue"

@@ -94,6 +94,8 @@ export class JsonEditorPageComponent {
 
   schemaRef: JSONSchema7 = {};
 
+  customFormats = ['password', 'code', 'date', 'date-time', 'custom'];
+
   typeOverrides: any = {
     'string=code': (value: any) => {
       if (typeof value !== 'string') {

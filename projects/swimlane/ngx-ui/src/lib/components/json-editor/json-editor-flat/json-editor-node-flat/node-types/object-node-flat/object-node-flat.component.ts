@@ -22,6 +22,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
   @Input() schemaBuilderMode: boolean;
 
+  @Input() formats: string[];
+
   constructor(private dialogService: DialogService) {
     super();
   }
@@ -43,7 +45,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
       context: {
         property,
         index,
-        schema: this.schema
+        schema: this.schema,
+        formats: this.formats
       },
       class: 'property-config-dialog'
     });

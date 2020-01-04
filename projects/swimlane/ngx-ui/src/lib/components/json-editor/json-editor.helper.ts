@@ -38,6 +38,8 @@ export interface JsonSchemaDataType {
   matchType: (value: string) => boolean;
 }
 
+export const propTypes: string[] = ['string', 'number', 'integer', 'boolean', 'object', 'array'];
+
 export const jsonSchemaDataTypes: JsonSchemaDataType[] = [
   {
     name: 'String',
@@ -239,20 +241,5 @@ export function getCurrentType(schema: JSONEditorSchema): string {
     return `string=${schema.format}`;
   } else {
     return 'string';
-  }
-}
-
-export function inferTypeName(schema: JSONEditorSchema): any {
-  switch (schema.format) {
-    case 'date':
-      return 'Date';
-    case 'date-time':
-      return 'Date & Time';
-    case 'password':
-      return 'Password';
-    case 'code':
-      return 'Code';
-    default:
-      return schema.type;
   }
 }
