@@ -12,7 +12,6 @@ describe('CammelToSnakePipe', () => {
   });
   it('transforms cammelToSnakePipe to cammel_to_snake_pipe', () => {
     const value: any = 'cammelToSnakePipe';
-    const args: string[] = [];
     expect(pipe.transform(value)).toEqual('cammel_to_snake_pipe');
   });
 });
