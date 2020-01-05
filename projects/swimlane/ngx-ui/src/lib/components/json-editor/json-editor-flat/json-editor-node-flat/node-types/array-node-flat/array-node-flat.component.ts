@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef, OnInit } from '@angular/core';
 import { ArrayNode } from '../../../../node-types/array-node.component';
-import { JSONEditorSchema } from 'dist/swimlane/ngx-ui/lib/components/json-editor/json-editor.helper';
+import { JSONEditorSchema } from '../../../../json-editor.helper';
 import { DialogService } from '../../../../../dialog/dialog.service';
 import { PropertyConfigOptions } from '../property-config/property-config.component';
 

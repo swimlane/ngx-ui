@@ -6,7 +6,7 @@ import {
   JSONEditorSchema,
   ObjectProperty,
   createValueForSchema
-} from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
+} from '../../../../json-editor.helper';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { PropertyConfigOptions } from '../property-config/property-config.component';
 
