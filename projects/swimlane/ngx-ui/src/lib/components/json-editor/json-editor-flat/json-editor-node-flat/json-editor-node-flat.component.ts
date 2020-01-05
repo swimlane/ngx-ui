@@ -32,7 +32,7 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() arrayItem = false;
 
-  @Output() updatePropertyNameEvent = new EventEmitter<{ id: string; name: string }>();
+  @Output() updatePropertyNameEvent = new EventEmitter<{ id: string | number; name: string }>();
 
   requiredIndicator: SafeHtml;
 
@@ -50,7 +50,7 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
     }
   }
 
-  updatePropertyName(id: string, name: string): void {
+  updatePropertyName(id: string | number, name: string): void {
     this.updatePropertyNameEvent.emit({ id, name });
   }
 }

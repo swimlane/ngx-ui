@@ -114,10 +114,9 @@
         <ngx-input type="number" [(ngModel)]="editableProperty.value.maxItems" [label]="'MAX ITEMS'"></ngx-input>
       </div>
 
-      <!-- TODO: Validate -->
       <ngx-input
         type="text"
-        *ngIf="['string', 'number', 'integer'].includes(editableProperty.value.type)"
+        *ngIf="['string', 'number', 'integer'].includes($any(editableProperty.value.type))"
         [(ngModel)]="editableProperty.value.pattern"
         [label]="'PATTERN TO MATCH'"
       >
