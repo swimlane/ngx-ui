@@ -1,6 +1,6 @@
 export enum PlacementTypes {
-  top = 'top' as any,
-  bottom = 'bottom' as any,
-  left = 'left' as any,
-  right = 'right' as any
+  top = 'top',
+  bottom = 'bottom',
+  left = 'left',
+  right = 'right'
 }

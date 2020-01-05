@@ -7,7 +7,6 @@ import {
   EventEmitter,
   ViewEncapsulation,
   AfterContentInit,
-  TemplateRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef
 } from '@angular/core';

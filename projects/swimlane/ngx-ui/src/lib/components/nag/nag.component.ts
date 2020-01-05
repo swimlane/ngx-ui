@@ -1,33 +1,31 @@
 import {
+  ChangeDetectionStrategy,
   Component,
-  Input,
-  Output,
   EventEmitter,
   HostBinding,
-  ViewEncapsulation,
-  OnDestroy,
+  Input,
   OnChanges,
-  SimpleChanges
+  OnDestroy,
+  Output,
+  SimpleChanges,
+  ViewEncapsulation
 } from '@angular/core';
-import { trigger, transition, animate, style, state, keyframes } from '@angular/animations';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { trigger } from '@angular/animations';
+
 import { nagDrawerTransition } from '../../animations/animations';
 
 @Component({
   selector: 'ngx-nag',
-  template: `
-    <div class="ngx-nag-content">
-      <ngx-toolbar class="ngx-nag-toolbar" (click)="toggle()" [mainTitle]="nagTitle">
-        <ngx-toolbar-title *ngIf="!nagTitle"> <ng-content select="[ngx-nag-title]"></ng-content> </ngx-toolbar-title>
-        <ngx-toolbar-content> <ngx-icon class="ngx-nag-icon" fontIcon="arrow-down"></ngx-icon> </ngx-toolbar-content>
-      </ngx-toolbar>
-      <section class="ngx-nag-body ngx-section-content"><ng-content></ng-content></section>
-    </div>
-  `,
+  exportAs: 'ngxNag',
+  templateUrl: './nag.component.html',
   host: {
     role: 'dialog',
-    tabindex: '-1'
+    tabindex: '-1',
+    '[style.zIndex]': 'zIndex'
   },
   encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./nag.component.scss'],
   animations: [trigger('drawerTransition', nagDrawerTransition)]
 })
@@ -40,9 +38,13 @@ export class NagComponent implements OnDestroy, OnChanges {
 
   @Output() stateChanged = new EventEmitter<string>();
 
-  @HostBinding('style.zIndex')
+  get zIndex() {
+    return this._zIndex;
+  }
   @Input()
-  zIndex: number;
+  set zIndex(val: number) {
+    this._zIndex = coerceNumberProperty(val);
+  }
 
   @Input() nagTitle: string = '';
   @Input() watch: any;
@@ -51,6 +53,8 @@ export class NagComponent implements OnDestroy, OnChanges {
   get klass() {
     return `ngx-nag ngx-nag-bottom ngx-nag-${this.state} ${this.cssClass}`;
   }
+
+  private _zIndex: number;
 
   toggle() {
     this.state = this.state !== 'open' ? 'open' : 'closed';

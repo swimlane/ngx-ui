@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+
 import { InjectionService } from '../../../services/injection.service';
 import { OverlayService } from '../../overlay/overlay.service';
 import { DialogService } from '../dialog.service';
 import { AlertComponent } from './alert.component';
-import { AlertTypes } from './alert.types';
+import { AlertTypes } from './alert-types.enum';
+import { AlertStyles } from './alert-styles.enum';
+import { DialogOptions } from '../dialog-options.interface';
 
 @Injectable()
 export class AlertService extends DialogService<AlertComponent> {
-  defaults: any = {
+  readonly defaults: DialogOptions = {
     inputs: {
       zIndex: 991,
       closeOnBlur: false,
@@ -19,34 +22,33 @@ export class AlertService extends DialogService<AlertComponent> {
     }
   };
 
-  type: any = AlertComponent;
-
-  clsMap: any = {
-    danger: 'ngx-alert-danger',
-    warning: 'ngx-alert-warning',
-    info: 'ngx-alert-info'
+  protected type: any = AlertComponent;
+  private readonly clsMap = {
+    [AlertStyles.Danger]: 'ngx-alert-danger',
+    [AlertStyles.Warning]: 'ngx-alert-warning',
+    [AlertStyles.Info]: 'ngx-alert-info'
   };
 
-  constructor(injectionService: InjectionService, overlayService: OverlayService) {
+  constructor(readonly injectionService: InjectionService, readonly overlayService: OverlayService) {
     super(injectionService, overlayService);
   }
 
-  alert(props): any {
-    return this.createDialog(props, AlertTypes.alert);
+  alert(options: DialogOptions) {
+    return this.createDialog(options, AlertTypes.Alert);
   }
 
-  confirm(props): any {
-    return this.createDialog(props, AlertTypes.confirm);
+  confirm(options: DialogOptions) {
+    return this.createDialog(options, AlertTypes.Confirm);
   }
 
-  prompt(props): any {
-    return this.createDialog(props, AlertTypes.prompt);
+  prompt(options: DialogOptions) {
+    return this.createDialog(options, AlertTypes.Prompt);
   }
 
-  private createDialog(props: any, type: AlertTypes): any {
-    const subject = new Subject();
-    const { title, content, longPress } = props;
-    const cssClass = 'ngx-alert-dialog ' + this.clsMap[props.style];
+  private createDialog(options: DialogOptions, type: AlertTypes) {
+    const subject = new Subject<{ type: string; data: any }>();
+    const { title, content, longPress } = options;
+    const cssClass = 'ngx-alert-dialog ' + this.clsMap[options.style];
 
     const component = this.create({
       title,
@@ -56,7 +58,7 @@ export class AlertService extends DialogService<AlertComponent> {
       cssClass
     });
 
-    const list = component.instance.ok.subscribe(data => {
+    const list = component.instance.ok.subscribe((data: { data: any }) => {
       subject.next({
         type: 'ok',
         data
@@ -67,7 +69,7 @@ export class AlertService extends DialogService<AlertComponent> {
       list2.unsubscribe();
     });
 
-    const list2 = component.instance.cancel.subscribe(data => {
+    const list2 = component.instance.cancel.subscribe((data: { data: any }) => {
       subject.next({
         type: 'cancel',
         data

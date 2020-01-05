@@ -152,10 +152,10 @@ describe('CalendarComponent', () => {
       expect(component.isDisabled(undefined, undefined)).toBe(false);
     });
 
-    it('should return true is date is before min', () => {
-      const date = moment().subtract(1, 'months');
+    it('should return true if date is before min', () => {
       component.minDate = new Date();
-      expect(component.isDisabled(date.format('MMMM'), 'month')).toBe(true);
+      component.minDate.setMonth(2);
+      expect(component.isDisabled('January', 'month')).toBe(true);
     });
 
     it('should return true if date is after max', () => {
@@ -229,7 +229,7 @@ describe('CalendarComponent', () => {
 
   describe('pagination', () => {
     beforeEach(() => {
-      component.activeDate = moment();
+      component.activeDate = moment('5/1/1975');
       component.startYear = new Date().getFullYear();
       component.weeks = [];
     });

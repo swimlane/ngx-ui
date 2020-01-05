@@ -1,62 +1,26 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  ViewChild,
+  ViewEncapsulation,
+  ElementRef,
+  ChangeDetectionStrategy,
+  AfterViewInit
+} from '@angular/core';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+
 import { DialogComponent } from '../dialog.component';
+import { DialogOptions } from '../dialog-options.interface';
+import { AlertTypes } from './alert-types.enum';
 
-// Disable lint until codelyzer supports class inheritance
-// https://github.com/mgechev/codelyzer/issues/191
-
-/* tslint:disable */
 @Component({
+  exportAs: 'ngxAlertDialog',
   selector: 'ngx-alert-dialog',
-  encapsulation: ViewEncapsulation.None,
+  templateUrl: './alert.component.html',
   styleUrls: ['../dialog.component.scss', './alert.component.scss'],
-  template: `
-    <div class="ngx-dialog ngx-alert-dialog {{ type }}" [style.zIndex]="zIndex">
-      <div
-        class="ngx-dialog-content {{ cssClass }}"
-        [@visibilityTransition]="visibleState"
-        [style.zIndex]="contentzIndex"
-        #dialogContent
-        (keydown.escape)="onCancelClick()"
-        (keydown.enter)="onKeydown()"
-        tabindex="-1"
-        role="dialog"
-      >
-        <div class="ngx-dialog-header" *ngIf="title || closeButton">
-          <button *ngIf="closeButton" type="button" class="close" (click)="hide()">
-            <span class="icon-x"></span>
-          </button>
-          <button
-            *ngIf="type === 'alert'"
-            type="button"
-            class="btn close-button"
-            [class.btn-warning]=""
-            (click)="onOkClick()"
-          >
-            Ok
-          </button>
-          <h1 *ngIf="title" [innerHTML]="title"></h1>
-        </div>
-        <div *ngIf="content" class="ngx-dialog-body" [innerHTML]="content"></div>
-
-        <div class="ngx-dialog-body" *ngIf="type === 'prompt'">
-          <ngx-input type="text" autofocus="true" name="confirm_input" [(ngModel)]="data"> </ngx-input>
-        </div>
-
-        <div class="ngx-dialog-footer" *ngIf="type !== 'alert'">
-          <ng-container *ngIf="!longPress">
-            <button type="button" class="btn btn-primary" (click)="onOkClick()">
-              Ok
-            </button>
-            <button type="button" class="btn" (click)="onCancelClick()">
-              Cancel
-            </button>
-          </ng-container>
-          <ngx-long-press-button *ngIf="longPress" (longPress)="onOkClick()" duration="1000"></ngx-long-press-button>
-        </div>
-      </div>
-    </div>
-  `,
   animations: [
     trigger('visibilityTransition', [
       state(
@@ -90,10 +54,30 @@ import { DialogComponent } from '../dialog.component';
   ],
   host: {
     tabindex: '-1'
-  }
+  },
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AlertComponent extends DialogComponent {
-  defaults: any = {
+export class AlertComponent extends DialogComponent implements AfterViewInit {
+  @Input() type: AlertTypes;
+  @Input() data: any = '';
+
+  @Input()
+  get longPress() {
+    return this._longPress;
+  }
+  set longPress(longPress) {
+    this._longPress = coerceBooleanProperty(longPress);
+  }
+
+  @Output() ok = new EventEmitter<{ data: any }>();
+  @Output() cancel = new EventEmitter<{ data: any }>();
+
+  @ViewChild('dialogContent', { static: true })
+  readonly dialogElm: ElementRef<HTMLDivElement>;
+
+  readonly AlertTypes = AlertTypes;
+  readonly defaults: DialogOptions = {
     inputs: {
       zIndex: 991,
       closeOnBlur: false,
@@ -105,21 +89,17 @@ export class AlertComponent extends DialogComponent {
     }
   };
 
-  @Input() type: any;
-  @Input() data: any = '';
-  @Input() longPress?: boolean = false;
-  @Output() ok = new EventEmitter();
-  @Output() cancel = new EventEmitter();
-
-  @ViewChild('dialogContent', { static: true }) dialogElm;
+  private _longPress?: boolean;
 
   ngOnInit(): void {
-    if (this.type !== 'prompt') {
-      this.dialogElm.nativeElement.focus();
-    }
-
     if (this.longPress) {
       this.closeButton = true;
+    }
+  }
+
+  ngAfterViewInit(): void {
+    if (this.type !== AlertTypes.Prompt) {
+      this.dialogElm.nativeElement.focus();
     }
   }
 
@@ -140,4 +120,3 @@ export class AlertComponent extends DialogComponent {
     }
   }
 }
-/* tslint:enable */

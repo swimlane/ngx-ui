@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-nag-page',
-  templateUrl: './nag-page.component.html'
+  templateUrl: './nag-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NagPageComponent {
   nags = [];

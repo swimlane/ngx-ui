@@ -130,7 +130,7 @@ export class ArrayNode implements OnChanges {
    * @param index
    * @param value
    */
-  arrayTrackBy(index: number, value: any): number {
+  arrayTrackBy(index: number): number {
     return index;
   }
 

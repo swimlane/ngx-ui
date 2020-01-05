@@ -10,35 +10,16 @@ import {
   Output,
   ViewEncapsulation,
   Renderer2,
-  TemplateRef
+  TemplateRef,
+  ChangeDetectionStrategy
 } from '@angular/core';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 @Component({
+  exportAs: 'ngxDialog',
   selector: 'ngx-dialog',
-  encapsulation: ViewEncapsulation.None,
+  templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
-  template: `
-    <div [class]="class" [class.ngx-dialog]="true" [style.zIndex]="zIndex">
-      <div
-        class="ngx-dialog-content {{ cssClass }}"
-        [@visibilityTransition]="visibleState"
-        [style.zIndex]="contentzIndex"
-        tabindex="-1"
-        role="dialog"
-      >
-        <button *ngIf="closeButton" type="button" class="close" (click)="hide()">
-          <span class="icon-x"></span>
-        </button>
-        <div class="ngx-dialog-header" *ngIf="dialogTitle">
-          <h2 *ngIf="dialogTitle" class="ngx-dialog-title" [innerHTML]="dialogTitle"></h2>
-        </div>
-        <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="{ context: context }">
-        </ng-template>
-        <div *ngIf="content" [innerHTML]="content"></div>
-        <ng-content></ng-content>
-      </div>
-    </div>
-  `,
   animations: [
     trigger('visibilityTransition', [
       state(
@@ -70,37 +51,78 @@ import {
       ])
     ])
   ],
-  host: {
-    tabindex: '-1'
-  }
+  host: { tabindex: '-1' },
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogComponent implements OnInit, OnDestroy {
   @Input() id: string;
-  @Input() visible: boolean;
-  @Input() zIndex: number;
   @Input() title: string;
   @Input() dialogTitle: string;
   @Input() content: string;
   @Input() template: TemplateRef<any>;
   @Input() cssClass: string;
   @Input() context: any;
-  @Input() closeOnBlur: boolean;
-  @Input() closeOnEscape: boolean;
-  @Input() closeButton: boolean;
   @Input() class: string;
 
-  @Output() open = new EventEmitter();
-  @Output() close = new EventEmitter();
+  @Input()
+  get closeOnBlur() {
+    return this._closeOnBlur;
+  }
+  set closeOnBlur(closeOnBlur) {
+    this._closeOnBlur = coerceBooleanProperty(closeOnBlur);
+  }
+
+  @Input()
+  get closeOnEscape() {
+    return this._closeOnEscape;
+  }
+  set closeOnEscape(closeOnEscape) {
+    this._closeOnEscape = coerceBooleanProperty(closeOnEscape);
+  }
+
+  @Input()
+  get closeButton() {
+    return this._closeButton;
+  }
+  set closeButton(closeButton) {
+    this._closeButton = coerceBooleanProperty(closeButton);
+  }
+
+  @Input()
+  get visible() {
+    return this._visible;
+  }
+  set visible(visible) {
+    this._visible = coerceBooleanProperty(visible);
+  }
+
+  @Input()
+  get zIndex() {
+    return this._zIndex;
+  }
+  set zIndex(zIndex) {
+    this._zIndex = coerceNumberProperty(zIndex);
+  }
+
+  @Output() open = new EventEmitter<boolean | void>();
+  @Output() close = new EventEmitter<boolean | void>();
 
   get contentzIndex(): number {
     return this.zIndex + 1;
   }
 
-  get visibleState(): string {
+  get visibleState() {
     return this.visible ? 'active' : 'inactive';
   }
 
-  constructor(private element: ElementRef, private renderer2: Renderer2) {}
+  private _closeOnBlur?: boolean;
+  private _closeOnEscape?: boolean;
+  private _closeButton?: boolean;
+  private _visible?: boolean;
+  private _zIndex?: number;
+
+  constructor(private readonly element: ElementRef, private readonly renderer2: Renderer2) {}
 
   ngOnInit(): void {
     if (this.visible) this.show();
@@ -111,14 +133,13 @@ export class DialogComponent implements OnInit, OnDestroy {
     }
   }
 
+  ngOnDestroy() {
+    this.close.emit(true);
+  }
+
   show(): void {
     this.visible = true;
     this.open.emit();
-  }
-
-  @HostListener('keydown.esc')
-  onKeyDown(): void {
-    if (this.closeOnEscape) this.hide();
   }
 
   hide(): void {
@@ -126,23 +147,19 @@ export class DialogComponent implements OnInit, OnDestroy {
     this.close.emit();
   }
 
-  @HostListener('document:click', ['$event.target'])
-  onDocumentClick(target): void {
-    if (this.containsTarget(target)) {
-      this.hide();
-    }
-  }
-
-  containsTarget(target): boolean {
+  containsTarget(target: any): boolean {
     return this.closeOnBlur && target.classList.contains('dialog');
   }
 
-  /**
-   * On destroy callback
-   *
-   * @memberOf DrawerComponent
-   */
-  ngOnDestroy() {
-    this.close.emit(true);
+  @HostListener('keydown.esc')
+  onEscapeKeyDown(): void {
+    if (this.closeOnEscape) this.hide();
+  }
+
+  @HostListener('document:click', ['$event.target'])
+  onDocumentClick(target: any): void {
+    if (this.containsTarget(target)) {
+      this.hide();
+    }
   }
 }

@@ -64,6 +64,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/json-schema": "^7.0.3",
     "@types/moment-timezone": "^0.5.10",
+    "@types/mousetrap": "^1.6.3",
     "@types/node": "^12.11.1",
     "angular-cli-ghpages": "^0.5.3",
     "autoprefixer": "^9.3.1",
