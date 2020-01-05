@@ -1,11 +1,18 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
-import { DialogService } from '../../../../../../dialog/dialog.service';
+import { DialogService } from '../../../../../dialog/dialog.service';
 import {
   JSONEditorSchema,
   ObjectProperty,
   propTypes
 } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
 import { JSONSchema7TypeName } from 'json-schema';
+
+export interface PropertyConfigOptions {
+  required: boolean;
+  index: number;
+  newProperty: ObjectProperty;
+  oldProperty: ObjectProperty;
+}
 
 @Component({
   selector: 'ngx-property-config',
@@ -22,7 +29,9 @@ export class PropertyConfigComponent implements OnInit {
 
   @Input() formats: string[] = [];
 
-  @Output() updateSchema = new EventEmitter();
+  @Input() arrayItem = false;
+
+  @Output() updateSchema = new EventEmitter<PropertyConfigOptions>();
 
   propTypes: string[] = propTypes;
 
@@ -36,13 +45,15 @@ export class PropertyConfigComponent implements OnInit {
 
   ngOnInit() {
     this.editableProperty = JSON.parse(JSON.stringify(this.property));
-    this.setRequired();
+
+    if (!this.arrayItem) {
+      this.setRequired();
+    }
   }
 
   applyChanges(): void {
     this.dialogService.destroyAll();
     this.updateSchema.emit({
-      schema: this.schema,
       required: this.required,
       index: this.index,
       newProperty: this.editableProperty,
@@ -54,7 +65,14 @@ export class PropertyConfigComponent implements OnInit {
     if (this.editableProperty.value['type'] !== type) {
       this.editableProperty.value['type'] = type as JSONSchema7TypeName;
       delete this.editableProperty.value['format'];
+
       this.cleanUpPropertyConstrains();
+
+      if (type === 'array') {
+        this.editableProperty.value['items'] = {
+          type: 'string'
+        };
+      }
     }
   }
 
@@ -72,6 +90,7 @@ export class PropertyConfigComponent implements OnInit {
     if (!enumValues.includes(this.newEnumValue)) {
       enumValues.push(this.newEnumValue);
       this.newEnumValue = '';
+      delete this.editableProperty.value['format'];
     }
   }
 
@@ -99,6 +118,9 @@ export class PropertyConfigComponent implements OnInit {
 
   private cleanUpPropertyConstrains(): void {
     delete this.editableProperty.value['enum'];
+    delete this.editableProperty.value['properties'];
+    delete this.editableProperty.value['required'];
+    delete this.editableProperty.value['items'];
     delete this.editableProperty.value['minimum'];
     delete this.editableProperty.value['maximum'];
     delete this.editableProperty.value['default'];

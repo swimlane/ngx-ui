@@ -15,26 +15,23 @@ export class ArrayNode implements OnChanges {
   @Input()
   schema: JSONEditorSchema;
 
-  @Input()
-  model: any[];
+  @Input() model: any[];
 
-  @Input()
-  required: boolean = false;
+  @Input() required: boolean = false;
 
-  @Input()
-  expanded: boolean;
+  @Input() expanded: boolean;
 
-  @Input()
-  path: string;
+  @Input() path: string;
 
-  @Input()
-  errors: any[];
+  @Input() errors: any[];
 
-  @Input()
-  typeCheckOverrides?: any;
+  @Input() typeCheckOverrides?: any;
 
-  @Output()
-  modelChange: EventEmitter<any[]> = new EventEmitter();
+  @Input() schemaRef: JSONEditorSchema;
+
+  @Output() modelChange: EventEmitter<any[]> = new EventEmitter();
+
+  @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();
 
   requiredCache: any = {};
   schemas: any[] = [];

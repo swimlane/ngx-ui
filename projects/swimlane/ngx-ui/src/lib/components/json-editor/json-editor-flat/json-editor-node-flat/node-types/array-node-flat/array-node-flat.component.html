@@ -1,22 +1,33 @@
 <div class="array-node-flat" [hidden]="!expanded">
-  <div class="array-node-content" *ngFor="let value of model; let i = index; trackBy: arrayTrackBy">
+  <div
+    class="array-node-content"
+    [class.no-margin]="schemaBuilderMode"
+    *ngFor="let value of model; let i = index; trackBy: arrayTrackBy"
+  >
     <ngx-json-editor-node-flat
       [model]="value"
       (modelChange)="updateArrayItem(i, $event)"
-      [schema]="schemas[i]"
+      [schema]="schemaBuilderMode ? schemaRef.items : schemas[i]"
       [path]="path + '[' + i + ']'"
       [errors]="errors"
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="level"
+      [schemaRef]="schemaRef.items"
       [schemaBuilderMode]="schemaBuilderMode"
+      [arrayItem]="schemaBuilderMode"
     >
-      <div class="node-options">
-        <button type="button" class="node-options-btn">
+      <div class="node-options" node-options>
+        <button
+          *ngIf="schemaBuilderMode"
+          type="button"
+          class="node-options-btn"
+          (click)="onPropertyConfig(schemaRef.items, i)"
+        >
           <i class="ngx-icon ngx-cog"></i>
         </button>
         <ngx-dropdown [showCaret]="true">
           <ngx-dropdown-toggle>
-            <button type="button" class="node-options-btn">
+            <button type="button" class="node-options-btn" [disabled]="schemaBuilderMode">
               <i class="ngx-icon ngx-dots-vert-round"></i>
             </button>
           </ngx-dropdown-toggle>
@@ -38,7 +49,7 @@
     </ngx-json-editor-node-flat>
   </div>
 
-  <div class="add-button" [class.background]="level">
+  <div class="add-button" [class.background]="level" *ngIf="!schemaBuilderMode">
     <div class="indented-content" [style.marginLeft]="level * 20 - (level ? 7 : 0) + 'px'">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
@@ -72,3 +83,16 @@
     </div>
   </div>
 </div>
+
+<!-- Property Config Dialog -->
+<ng-template #propertyConfigTmpl let-context="context">
+  <ngx-property-config
+    [property]="context.property"
+    [index]="context.index"
+    [schema]="context.schema"
+    [formats]="context.formats"
+    [arrayItem]="true"
+    (updateSchema)="updateSchema($event)"
+  >
+  </ngx-property-config>
+</ng-template>

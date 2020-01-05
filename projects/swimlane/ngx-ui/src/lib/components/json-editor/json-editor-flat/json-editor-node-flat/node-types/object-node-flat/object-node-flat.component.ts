@@ -8,6 +8,7 @@ import {
   createValueForSchema
 } from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { PropertyConfigOptions } from '../property-config/property-config.component';
 
 @Component({
   selector: 'ngx-json-object-node-flat',
@@ -52,7 +53,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     });
   }
 
-  updateSchema(options: any): void {
+  updateSchema(options: PropertyConfigOptions): void {
     const oldProperty = options.oldProperty.value;
     const newProperty = options.newProperty.value;
 
@@ -88,10 +89,20 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
   addProperty(dataType: JsonSchemaDataType): void {
     super.addProperty(dataType);
-    this.updateSchemaRefProperty(this.propertyIndex[this.propertyId - 1]);
 
     if (this.schemaBuilderMode) {
+      if (dataType.name === 'Array') {
+        this.propertyIndex[this.propertyId - 1] = {
+          ...this.propertyIndex[this.propertyId - 1],
+          items: {
+            type: 'string'
+          }
+        };
+      }
+
+      this.updateSchemaRefProperty(this.propertyIndex[this.propertyId - 1]);
       this.schemaChange.emit();
+      this.update();
     }
   }
 
@@ -144,6 +155,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   private updateSchemaRefProperty(prop: any): void {
     this.schemaRef.properties[prop.propertyName] = {
       type: prop.type,
+      ...(prop['format'] && { format: prop['format'] }),
+      ...(prop['items'] && { items: prop['items'] }),
       ...(prop['required'] && { required: prop['required'] }),
       ...(prop['properties'] && { properties: prop['properties'] }),
       ...(prop['enum'] && { enum: prop['enum'] }),

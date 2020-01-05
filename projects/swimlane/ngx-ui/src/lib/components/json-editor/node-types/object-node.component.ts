@@ -30,11 +30,11 @@ export class ObjectNode implements OnInit, OnChanges {
 
   @Input() schemaBuilderMode: boolean;
 
+  @Input() schemaRef: JSONEditorSchema;
+
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
   @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();
-
-  @Input() schemaRef: JSONEditorSchema;
 
   requiredCache: { [key: string]: boolean } = {};
 
@@ -118,7 +118,7 @@ export class ObjectNode implements OnInit, OnChanges {
     const schema = JSON.parse(JSON.stringify(dataType.schema));
 
     this.model[propName] = createValueForSchema(dataType.schema as JSONEditorSchema);
-    schema.nameEditable = true;
+    schema.nameEditable = !this.schemaBuilderMode;
     schema.propertyName = propName;
     schema.id = this.propertyId++;
     this.propertyIndex[schema.id] = schema;

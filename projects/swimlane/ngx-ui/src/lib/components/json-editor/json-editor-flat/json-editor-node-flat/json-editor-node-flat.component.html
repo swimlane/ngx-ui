@@ -7,7 +7,7 @@
       <div class="error-box" *ngIf="!valid && !schemaBuilderMode"></div>
 
       <div class="left-options">
-        <ng-container *ngIf="level > 0">
+        <ng-container *ngIf="level > 0 && !arrayItem">
           <div class="required-indicator">
             <span
               *ngIf="required"
@@ -22,9 +22,12 @@
 
       <div class="node-content" [class.extra-margin]="schema.nameEditable && !schemaBuilderMode">
         <div class="node-info">
-          <div class="info-name" *ngIf="(!schema.nameEditable || schemaBuilderMode) && (schema?.propertyName || label)">
+          <div
+            class="info-name"
+            *ngIf="(!schema.nameEditable || schemaBuilderMode) && (schema?.propertyName || label || arrayItem)"
+          >
             <span class="name">
-              {{ label || (schema?.title ? schema?.title : (schema?.propertyName | decamelize)) }}
+              {{ label || (arrayItem ? 'Items' : schema?.title ? schema?.title : (schema?.propertyName | decamelize)) }}
             </span>
           </div>
 
@@ -220,9 +223,10 @@
   </div>
 
   <!-- Array -->
-  <div *ngIf="schema?.type === 'array' && !schemaBuilderMode">
+  <div *ngIf="schema?.type === 'array'">
     <ngx-json-array-node-flat
       [schema]="schema"
+      [schemaRef]="schemaRef"
       [model]="model"
       [expanded]="expanded"
       (modelChange)="updateModel($event)"
@@ -231,6 +235,7 @@
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="level"
       [schemaBuilderMode]="schemaBuilderMode"
+      (schemaChange)="schemaChange.emit(schemaRef)"
     >
     </ngx-json-array-node-flat>
   </div>
