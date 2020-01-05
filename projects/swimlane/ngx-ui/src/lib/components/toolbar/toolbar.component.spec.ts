@@ -3,19 +3,20 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ToolbarComponent } from './toolbar.component';
 import { ToolbarFixtureComponent } from './fixtures/toolbar.fixture';
 import { ToolbarModule } from './toolbar.module';
-import { not } from '@angular/compiler/src/output/output_ast';
 
 describe('ToolbarComponent', () => {
   let component1: ToolbarComponent;
   let component2: ToolbarComponent;
   let fixture: ComponentFixture<ToolbarFixtureComponent>;
 
-  beforeEach(done => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ToolbarFixtureComponent],
       imports: [ToolbarModule]
     }).compileComponents();
+  });
 
+  beforeEach(done => {
     fixture = TestBed.createComponent(ToolbarFixtureComponent);
     component1 = fixture.componentInstance.toolbar1;
     component2 = fixture.componentInstance.toolbar2;
@@ -48,12 +49,11 @@ describe('ToolbarComponent', () => {
   });
 
   it('clicking on a menu item that has a click function triggers it', () => {
-    const menuItem = component1.toolbarItems[0];
-    spyOn(menuItem, 'click');
-
+    const spy = spyOn(component1.toolbarItems[0], 'click');
     const menuItemEl: HTMLButtonElement = document.querySelector('.ngx-toolbar-menu > li > button');
+
     menuItemEl.click();
-    expect(menuItem.click).toHaveBeenCalled();
+    expect(spy).toHaveBeenCalled();
   });
 
   it('clicking on a menu item that has no click function is handled gracefully', () => {

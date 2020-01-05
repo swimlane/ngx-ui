@@ -1,6 +1,6 @@
 import { Component, ViewChild, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 
-import { DrawerService } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { DrawerService, DrawerDirection } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-drawer-page',
@@ -13,13 +13,15 @@ export class DrawerPageComponent {
 
   curDate2: any = new Date('10/10/2016');
 
+  readonly DrawerDirection = DrawerDirection;
+
   constructor(public drawerMngr: DrawerService) {}
 
   dateChanged(val) {
     console.log('date changed!', val);
   }
 
-  openDrawer(direction = 'left', size?, closeOnOutsideClick = true, template = this.editTmpl) {
+  openDrawer(direction = DrawerDirection.Left, size?, closeOnOutsideClick = true, template = this.editTmpl) {
     this.drawerMngr.create({
       direction,
       template,

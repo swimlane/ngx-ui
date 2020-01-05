@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-tooltip-page',
-  templateUrl: './tooltip-page.component.html'
+  templateUrl: './tooltip-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TooltipPageComponent {
   tooltipModel = {

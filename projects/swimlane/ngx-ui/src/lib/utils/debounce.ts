@@ -51,7 +51,7 @@ export function debounce(func: any, wait: number, immediate?: boolean) {
  *  }
  */
 export function debounceable(duration: number, immediate?: boolean) {
-  return function innerDecorator(target, key, descriptor) {
+  return function innerDecorator(_, key, descriptor) {
     return {
       configurable: true,
       enumerable: descriptor.enumerable,

@@ -1,43 +1,58 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA, ElementRef, Renderer2 } from '@angular/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
+
 import { IconRegisteryService } from '../../services/icon-registery.service';
 import { IconComponent } from './icon.component';
+
 describe('IconComponent', () => {
   let component: IconComponent;
   let fixture: ComponentFixture<IconComponent>;
+  let httpClient: HttpClient;
+
   beforeEach(() => {
-    const elementRefStub = { nativeElement: { innerHTML: {} } };
-    const rendererStub = {};
-    const httpClientStub = { get: () => ({ subscribe: () => ({}) }) };
-    const iconRegisteryServiceStub = { get: () => ({}) };
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [IconComponent],
-      providers: [
-        { provide: ElementRef, useValue: elementRefStub },
-        { provide: Renderer2, useValue: rendererStub },
-        { provide: HttpClient, useValue: httpClientStub },
-        { provide: IconRegisteryService, useValue: iconRegisteryServiceStub }
-      ]
+      imports: [HttpClientTestingModule],
+      providers: [{ provide: IconRegisteryService, useValue: { get: () => ['test'] } }]
     });
+  });
+
+  beforeEach(() => {
+    httpClient = TestBed.get<HttpClient>(HttpClient);
     fixture = TestBed.createComponent(IconComponent);
     component = fixture.componentInstance;
+    fixture.detectChanges();
   });
+
   it('can load instance', () => {
     expect(component).toBeTruthy();
   });
-  it('defaultPath defaults to: assets/svgs', () => {
-    expect(component.defaultPath).toEqual('assets/svgs');
+
+  it('should call update on change', () => {
+    const spy = spyOn(component, 'update');
+    component.ngOnChanges();
+    expect(spy).toHaveBeenCalled();
   });
-  it('fontSet defaults to: ngx', () => {
-    expect(component.fontSet).toEqual('ngx');
+
+  it('should update if fontIcon set', () => {
+    component.fontIcon = 'test';
+    component.cssClasses = [];
+    component.update();
+    expect(component.cssClasses.length).toBeGreaterThan(0);
   });
-  describe('ngOnInit', () => {
-    it('makes expected calls', () => {
-      spyOn(component, 'update');
-      component.ngOnInit();
-      expect(component.update).toHaveBeenCalled();
-    });
+
+  it('should load svg src', () => {
+    const spy = spyOn(component, 'loadSvg');
+    component.svgSrc = 'test';
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should svg', () => {
+    const spy = spyOn(httpClient, 'get').and.callThrough();
+    component.loadSvg('test');
+    expect(spy).toHaveBeenCalled();
   });
 });

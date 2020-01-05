@@ -51,7 +51,7 @@ export function throttle(func: any, wait: number, options?: any) {
  *  }
  */
 export function throttleable(duration: number, options?: any) {
-  return function innerDecorator(target, key, descriptor) {
+  return function innerDecorator(_, key, descriptor) {
     return {
       configurable: true,
       enumerable: descriptor.enumerable,

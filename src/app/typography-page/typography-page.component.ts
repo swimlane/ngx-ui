@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
@@ -40,7 +40,7 @@ export class TypographyPageComponent {
 
   constructor(private sanitizer: DomSanitizer) {
     this.fontKeys.forEach(key => {
-      this.fontStyles[key] = sanitizer.bypassSecurityTrustStyle(this.fontStyles[key]);
+      this.fontStyles[key] = this.sanitizer.bypassSecurityTrustStyle(this.fontStyles[key]);
     });
   }
 }

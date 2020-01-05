@@ -38,7 +38,7 @@ export class ButtonsPageComponent {
       .then(() => {
         console.log('success');
       })
-      .catch(error => {
+      .catch(() => {
         console.log('fail');
       });
 

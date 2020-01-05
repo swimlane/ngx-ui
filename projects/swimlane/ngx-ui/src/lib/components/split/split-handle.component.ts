@@ -1,69 +1,57 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Output,
-  ViewEncapsulation,
-  HostBinding
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
+import { SplitDirection } from './split-direction.enum';
+
 @Component({
+  exportAs: 'ngxSplitHandle',
   // tslint:disable-next-line:component-selector
   selector: '[ngxSplitHandle]',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <button
-      #splitHandle
-      (mousedown)="onMousedown($event)"
-      (dblclick)="dblclick.emit($event)"
-      class="icon-split-handle ngx-split-button"
-    ></button>
-  `,
-  host: {
-    class: 'ngx-split-handle'
-  },
+  templateUrl: './split-handle.component.html',
   styleUrls: ['./split-handle.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  host: {
+    class: 'ngx-split-handle',
+    '[class.direction-row]': 'isRow',
+    '[class.direction-column]': 'isColumn'
+  },
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SplitHandleComponent {
-  @Output() drag: EventEmitter<{ x: number; y: number }> = new EventEmitter();
-  @Output() dragStart: EventEmitter<any> = new EventEmitter();
-  @Output() dragEnd: EventEmitter<any> = new EventEmitter();
-  @Output() dblclick: EventEmitter<any> = new EventEmitter();
+  @Output() drag = new EventEmitter<{ x: number; y: number }>();
+  @Output() dragStart = new EventEmitter<MouseEvent>();
+  @Output() dragEnd = new EventEmitter<MouseEvent>();
+  @Output() dblclick = new EventEmitter<MouseEvent>();
 
   subscription: Subscription;
+  direction = SplitDirection.Row;
 
-  direction: string = 'row';
-
-  @HostBinding('class.direction-row')
   get isRow() {
-    return this.direction === 'row';
+    return this.direction === SplitDirection.Row;
   }
 
-  @HostBinding('class.direction-column')
   get isColumn() {
-    return this.direction === 'column';
+    return this.direction === SplitDirection.Column;
   }
 
-  onMousedown(ev): void {
+  onMousedown(ev: MouseEvent): void {
     const mouseup$ = fromEvent(document, 'mouseup');
-    this.subscription = mouseup$.subscribe((e: MouseEvent) => this.onMouseup(e));
+    this.subscription = mouseup$.subscribe(/* istanbul ignore next */ (e: MouseEvent) => this.onMouseup(e));
 
     const mousemove$ = fromEvent(document, 'mousemove')
       .pipe(takeUntil(mouseup$))
-      .subscribe((e: MouseEvent) => this.onMouseMove(e));
+      .subscribe(/* istanbul ignore next */ (e: MouseEvent) => this.onMouseMove(e));
 
     this.subscription.add(mousemove$);
     this.dragStart.emit(ev);
   }
 
-  onMouseMove(ev): void {
+  onMouseMove(ev: MouseEvent): void {
     this.drag.emit(ev);
   }
 
-  onMouseup(ev): void {
+  onMouseup(ev: MouseEvent): void {
     if (this.subscription) {
       this.dragEnd.emit(ev);
       this.subscription.unsubscribe();

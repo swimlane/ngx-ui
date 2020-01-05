@@ -144,12 +144,12 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
     this.onTouchedCallback = fn;
   }
 
-  private onChangeCallback(_: any) {
+  onChangeCallback(_: any) {
     // placeholder
   }
 
   /* istanbul ignore next */
-  private onTouchedCallback() {
+  onTouchedCallback() {
     // placeholder
   }
 
