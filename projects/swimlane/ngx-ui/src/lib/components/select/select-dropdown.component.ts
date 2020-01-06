@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
-import { KeyboardKeys } from '../../utils/keys';
+import { KeyboardKeys } from '../../enums';
 import { containsFilter } from './contains-filter.util';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
 
