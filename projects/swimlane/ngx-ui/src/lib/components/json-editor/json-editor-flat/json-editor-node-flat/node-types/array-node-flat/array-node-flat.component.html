@@ -12,7 +12,7 @@
       [errors]="errors"
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="level"
-      [schemaRef]="schemaRef.items"
+      [schemaRef]="schemaRef?.items || null"
       [schemaBuilderMode]="schemaBuilderMode"
       [arrayItem]="schemaBuilderMode"
     >
