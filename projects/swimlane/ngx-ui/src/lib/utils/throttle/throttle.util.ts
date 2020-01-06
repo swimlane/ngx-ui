@@ -1,14 +1,17 @@
+import { ThrottleOptions } from './throttle-options.interface';
+
 /**
  * Throttle a function
  * @param func    function to execute
  * @param wait    duration to wait
  * @param options options
  */
-export function throttle(func: any, wait: number, options?: any) {
+export function throttle(func: () => void, wait: number, options?: ThrottleOptions) {
   options = options || {};
-  let context;
-  let args;
-  let result;
+
+  let context: any;
+  let args: IArguments;
+  let result: any;
   let timeout = null;
   let previous = 0;
 
@@ -39,31 +42,5 @@ export function throttle(func: any, wait: number, options?: any) {
     }
 
     return result;
-  };
-}
-
-/**
- * Throttle decorator
- *
- *  class MyClass {
- *    throttleable(10)
- *    myFn() { ... }
- *  }
- */
-export function throttleable(duration: number, options?: any) {
-  return function innerDecorator(_, key, descriptor) {
-    return {
-      configurable: true,
-      enumerable: descriptor.enumerable,
-      get: function getter() {
-        Object.defineProperty(this, key, {
-          configurable: true,
-          enumerable: descriptor.enumerable,
-          value: throttle(descriptor.value, duration, options)
-        });
-
-        return this[key];
-      }
-    };
   };
 }
