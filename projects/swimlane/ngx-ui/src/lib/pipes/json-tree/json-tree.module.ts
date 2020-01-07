@@ -8,4 +8,4 @@ import { JSONTreePipe } from './json-tree.pipe';
   exports: [JSONTreePipe],
   imports: [CommonModule]
 })
-export class JSONTreeModule { }
+export class JSONTreeModule {}

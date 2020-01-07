@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { TimeZonePipe } from './time-zone.pipe';
@@ -8,4 +8,4 @@ import { TimeZonePipe } from './time-zone.pipe';
   exports: [TimeZonePipe],
   imports: [CommonModule]
 })
-export class TimeZoneModule { }
+export class TimeZoneModule {}

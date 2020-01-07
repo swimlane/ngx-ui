@@ -8,4 +8,4 @@ import { DecamelizePipe } from './decamelize.pipe';
   exports: [DecamelizePipe],
   imports: [CommonModule]
 })
-export class DecamelizeModule { }
+export class DecamelizeModule {}

@@ -14,7 +14,7 @@ describe('TimeZonePipe', () => {
   });
 
   it('should get invalid timezone value', () => {
-    expect(pipe.transform('test', 'America/Los_Angeles')).toEqual('test')
+    expect(pipe.transform('test', 'America/Los_Angeles')).toEqual('test');
   });
 
   it('should get date without timezone', () => {

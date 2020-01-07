@@ -20,6 +20,6 @@ describe('FilterPipe', () => {
   });
 
   it('should filter by object', () => {
-    expect(pipe.transform([{ }, { test: 'test' }], { test: 'test' }).length).toEqual(1);
+    expect(pipe.transform([{}, { test: 'test' }], { test: 'test' }).length).toEqual(1);
   });
 });

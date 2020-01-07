@@ -8,4 +8,4 @@ import { FilterPipe } from './filter.pipe';
   exports: [FilterPipe],
   imports: [CommonModule]
 })
-export class FilterModule { }
+export class FilterModule {}
