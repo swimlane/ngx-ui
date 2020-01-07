@@ -4,11 +4,10 @@ import { CommonModule } from '@angular/common';
 import { FilterModule } from './filter/filter.module';
 import { DecamelizeModule } from './decamelize/decamelize.module';
 import { JSONTreeModule } from './json-tree/json-tree.module';
-import { TimeZonePipe } from './timezone.pipe';
+import { TimeZoneModule } from './time-zone/time-zone.module';
 
 @NgModule({
-  declarations: [TimeZonePipe],
-  exports: [TimeZonePipe, DecamelizeModule, FilterModule, JSONTreeModule],
-  imports: [CommonModule, DecamelizeModule, FilterModule, JSONTreeModule]
+  exports: [TimeZoneModule, DecamelizeModule, FilterModule, JSONTreeModule],
+  imports: [CommonModule, TimeZoneModule, DecamelizeModule, FilterModule, JSONTreeModule]
 })
 export class PipesModule {}
