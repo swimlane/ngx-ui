@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { FilterModule } from './filter/filter.module';
 import { DecamelizeModule } from './decamelize/decamelize.module';
-import { JSONTreePipe } from './json-tree.pipe';
+import { JSONTreeModule } from './json-tree/json-tree.module';
 import { TimeZonePipe } from './timezone.pipe';
 
 @NgModule({
-  declarations: [JSONTreePipe, TimeZonePipe],
-  exports: [JSONTreePipe, TimeZonePipe, DecamelizeModule, FilterModule],
-  imports: [CommonModule, DecamelizeModule, FilterModule]
+  declarations: [TimeZonePipe],
+  exports: [TimeZonePipe, DecamelizeModule, FilterModule, JSONTreeModule],
+  imports: [CommonModule, DecamelizeModule, FilterModule, JSONTreeModule]
 })
 export class PipesModule {}

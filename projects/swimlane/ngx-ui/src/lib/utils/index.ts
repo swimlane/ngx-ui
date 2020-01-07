@@ -4,3 +4,4 @@ export * from './id';
 export * from './position';
 export * from './is-number';
 export * from './filter';
+export * from './get-type';
