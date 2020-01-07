@@ -8,7 +8,7 @@ import { TimeZonePipe } from './timezone.pipe';
 
 @NgModule({
   declarations: [JSONTreePipe, TimeZonePipe],
-  exports: [JSONTreePipe, TimeZonePipe],
+  exports: [JSONTreePipe, TimeZonePipe, DecamelizeModule, FilterModule],
   imports: [CommonModule, DecamelizeModule, FilterModule]
 })
 export class PipesModule {}
