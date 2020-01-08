@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { IconRegisteryService } from '../../services/icon-registery.service';
+import { IconRegistryService } from '../../services';
 
 @Component({
   exportAs: 'ngxIcon',
@@ -35,7 +35,7 @@ export class IconComponent implements OnChanges, OnInit {
   constructor(
     private http: HttpClient,
     private elementRef: ElementRef,
-    private iconRegisteryService: IconRegisteryService
+    private iconRegisteryService: IconRegistryService
   ) {}
 
   ngOnChanges() {

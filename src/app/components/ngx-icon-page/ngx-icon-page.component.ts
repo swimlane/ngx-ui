@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { IconRegisteryService } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { IconRegistryService } from '../../../../projects/swimlane/ngx-ui/src/public_api';
 
 @Component({
   selector: 'app-ngx-icon-page',
@@ -7,14 +7,14 @@ import { IconRegisteryService } from '../../../../projects/swimlane/ngx-ui/src/p
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxIconPageComponent {
-  constructor(public iconRegisteryService: IconRegisteryService) {
-    iconRegisteryService.add('frown-upside-down', 'smiley-frown :icon-fx-flip-y');
-    iconRegisteryService.add('x-spinning', 'x :icon-fx-spinning');
-    iconRegisteryService.add('x-spinning-red', 'x-spinning :text-red');
-    iconRegisteryService.add('turbine', ['square-filled', 'x-spinning-red']);
+  constructor(public iconRegistryService: IconRegistryService) {
+    iconRegistryService.add('frown-upside-down', 'smiley-frown :icon-fx-flip-y');
+    iconRegistryService.add('x-spinning', 'x :icon-fx-spinning');
+    iconRegistryService.add('x-spinning-red', 'x-spinning :text-red');
+    iconRegistryService.add('turbine', ['square-filled', 'x-spinning-red']);
 
-    iconRegisteryService.add('app:create', 'new-app');
-    iconRegisteryService.add('app:edit', 'edit-app');
-    iconRegisteryService.add('app:copy', 'copy-app');
+    iconRegistryService.add('app:create', 'new-app');
+    iconRegistryService.add('app:edit', 'edit-app');
+    iconRegistryService.add('app:copy', 'copy-app');
   }
 }

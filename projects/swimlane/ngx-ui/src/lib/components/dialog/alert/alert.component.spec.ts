@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { IconRegisteryService } from '@swimlane/ngx-ui/services';
+import { IconRegistryService } from '../../../services';
 
 import { InputModule } from '../../input';
 import { LongPressButtonModule } from '../../long-press';
@@ -18,7 +18,7 @@ describe('AlertComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [AlertComponent],
-      providers: [IconRegisteryService],
+      providers: [IconRegistryService],
       imports: [FormsModule, HttpClientTestingModule, NoopAnimationsModule, InputModule, LongPressButtonModule]
     }).compileComponents();
   }));

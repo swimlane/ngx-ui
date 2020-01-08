@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { DirectivesModule } from './directives/directives.module';
 import { PipesModule } from './pipes/pipes.module';
 import { InjectionService } from './services/injection.service';
-import { IconRegisteryService } from './services/icon-registery.service';
+import { IconRegistryService } from './services/icon-registry/icon-registry.service';
 import { TooltipService } from './components/tooltip/tooltip.service';
 import { LoadingService } from './components/loading/loading.service';
 import { OverlayService } from './components/overlay/overlay.service';
@@ -83,7 +83,7 @@ const modules = [
 const services = [
   DrawerService,
   InjectionService,
-  IconRegisteryService,
+  IconRegistryService,
   TooltipService,
   LoadingService,
   DialogService,
