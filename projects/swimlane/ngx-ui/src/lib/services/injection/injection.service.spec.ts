@@ -23,7 +23,7 @@ describe('InjectionService', () => {
     const viewContainerRefStub = {};
     const typeStub = {};
 
-    appRef = { components: [{ }] };
+    appRef = { components: [{}] };
     componentRef = { instance: {} };
 
     TestBed.configureTestingModule({
@@ -61,7 +61,7 @@ describe('InjectionService', () => {
 
     it('should get root component', () => {
       InjectionService.setGlobalRootViewContainer(undefined);
-      expect(service.getRootViewContainer() as any).toEqual({ });
+      expect(service.getRootViewContainer() as any).toEqual({});
     });
 
     it('should throw error when no container found', () => {
@@ -81,17 +81,22 @@ describe('InjectionService', () => {
 
   describe('projectComponentBindings', () => {
     it('should project bindings onto component instance', () => {
-      expect(service.projectComponentBindings({
-        instance: { }
-      } as any, {
-        inputs: {
-          test: 'test',
-        },
-        outputs: {
-          test1: 'test1',
-          test2: 'test2'
-        }
-      }).instance).toEqual({
+      expect(
+        service.projectComponentBindings(
+          {
+            instance: {}
+          } as any,
+          {
+            inputs: {
+              test: 'test'
+            },
+            outputs: {
+              test1: 'test1',
+              test2: 'test2'
+            }
+          }
+        ).instance
+      ).toEqual({
         test: 'test',
         test1: 'test1',
         test2: 'test2'
@@ -99,8 +104,8 @@ describe('InjectionService', () => {
     });
 
     it('should do nothing when no bindings', () => {
-      expect(service.projectComponentBindings({ instance: { } } as any, undefined)).toEqual({
-        instance: { }
+      expect(service.projectComponentBindings({ instance: {} } as any, undefined)).toEqual({
+        instance: {}
       } as any);
     });
   });

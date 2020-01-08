@@ -9,4 +9,3 @@ describe('convertClass', () => {
     expect(convertClass(':test')).toEqual('ngx-icon test');
   });
 });
-
