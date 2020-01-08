@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { InjectionService } from '../../services/injection.service';
+import { InjectionService } from '../../services';
 import { LoadingService } from './loading.service';
 
 describe('LoadingService', () => {

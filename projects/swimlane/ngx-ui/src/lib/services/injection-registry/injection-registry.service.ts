@@ -1,6 +1,6 @@
 import { ComponentRef, Type } from '@angular/core';
 
-import { InjectionService } from '../injection.service';
+import { InjectionService } from '../injection';
 import { PartialBindings } from './partial-bindings.interface';
 
 /* istanbul ignore next */

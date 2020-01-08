@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { DirectivesModule } from './directives/directives.module';
 import { PipesModule } from './pipes/pipes.module';
-import { InjectionService } from './services/injection.service';
+import { InjectionService } from './services/injection/injection.service';
 import { IconRegistryService } from './services/icon-registry/icon-registry.service';
 import { TooltipService } from './components/tooltip/tooltip.service';
 import { LoadingService } from './components/loading/loading.service';

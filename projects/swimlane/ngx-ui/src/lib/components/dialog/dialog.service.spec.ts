@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { EventEmitter } from '@angular/core';
 
-import { InjectionService } from '../../services/injection.service';
+import { InjectionService } from '../../services';
 import { OverlayService } from '../overlay/overlay.service';
 import { DialogService } from './dialog.service';
 

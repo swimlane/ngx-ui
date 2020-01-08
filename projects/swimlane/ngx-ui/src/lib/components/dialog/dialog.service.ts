@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { InjectionService } from '../../services/injection.service';
-import { InjectionRegistryService } from '../../services';
+import { InjectionRegistryService, InjectionService } from '../../services';
 
 import { OverlayService } from '../overlay/overlay.service';
 import { DialogComponent } from './dialog.component';
