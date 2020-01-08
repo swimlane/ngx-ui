@@ -4,11 +4,11 @@ import { DblClickCopyDirective } from './dbl-click-copy.directive';
 
 describe('DblClickCopyDirective', () => {
   let directive: DblClickCopyDirective;
-  let element: ElementRef<HTMLElement>;
+  let elementRef: ElementRef<HTMLElement>;
 
   beforeEach(() => {
-    element = { nativeElement: document.createElement('div') };
-    directive = new DblClickCopyDirective(element);
+    elementRef = { nativeElement: document.createElement('div') };
+    directive = new DblClickCopyDirective(elementRef);
   });
 
   it('should be defined', () => {
