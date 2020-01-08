@@ -1,4 +1,3 @@
-import { TestBed } from '@angular/core/testing';
 import {
   ApplicationRef,
   ComponentFactoryResolver,
@@ -7,7 +6,10 @@ import {
   ViewContainerRef,
   Type
 } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+
 import { InjectionService } from './injection.service';
+
 describe('InjectionService', () => {
   let service: InjectionService;
   beforeEach(() => {

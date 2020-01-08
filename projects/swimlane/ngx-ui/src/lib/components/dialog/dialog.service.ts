@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { InjectionService } from '../../services/injection.service';
-import { InjectionRegisteryService } from '../../services/injection-registery.service';
+import { InjectionRegistryService } from '../../services';
 
 import { OverlayService } from '../overlay/overlay.service';
 import { DialogComponent } from './dialog.component';
 import { DialogOptions } from './dialog-options.interface';
 
 @Injectable()
-export class DialogService<T = DialogComponent> extends InjectionRegisteryService<T> {
+export class DialogService<T = DialogComponent> extends InjectionRegistryService<T> {
   readonly defaults: DialogOptions = {
     inputs: {
       zIndex: 991,
