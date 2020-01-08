@@ -7,13 +7,17 @@ import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coerci
 })
 export class LongPressDirective {
   @Input()
-  get duration() { return this._duration; }
+  get duration() {
+    return this._duration;
+  }
   set duration(duration: number) {
     this._duration = coerceNumberProperty(duration);
   }
 
   @Input()
-  get disabled() { return this._disabled; }
+  get disabled() {
+    return this._disabled;
+  }
   set disabled(disabled: boolean) {
     this._disabled = coerceBooleanProperty(disabled);
   }

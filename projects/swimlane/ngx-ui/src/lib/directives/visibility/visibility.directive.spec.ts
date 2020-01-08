@@ -14,10 +14,7 @@ describe('VisibilityDirective', () => {
       }
     };
 
-    directive = new VisibilityDirective(
-      elementRef,
-      new NgZone({ })
-    );
+    directive = new VisibilityDirective(elementRef, new NgZone({}));
   });
 
   it('should be defined', () => {
@@ -36,7 +33,7 @@ describe('VisibilityDirective', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should set visible', (done) => {
+  it('should set visible', done => {
     const spy = spyOn(directive.visible, 'emit');
     directive.onVisibilityChange();
     setTimeout(() => {
@@ -52,7 +49,7 @@ describe('VisibilityDirective', () => {
       spy = spyOn(directive, 'onVisibilityChange');
     });
 
-    it('should check if visible and be false', (done) => {
+    it('should check if visible and be false', done => {
       directive.runCheck();
 
       setTimeout(() => {
@@ -61,7 +58,7 @@ describe('VisibilityDirective', () => {
       });
     });
 
-    it('should check if visible and be true', (done) => {
+    it('should check if visible and be true', done => {
       elementRef.nativeElement.offsetHeight = 10;
       elementRef.nativeElement.offsetWidth = 10;
       directive.runCheck();

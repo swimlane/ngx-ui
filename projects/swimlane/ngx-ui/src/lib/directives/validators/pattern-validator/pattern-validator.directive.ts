@@ -5,11 +5,13 @@ import { patternValidator } from './pattern.validator';
 
 @Directive({
   selector: '[pattern]',
-  providers: [{
-    provide: NG_VALIDATORS,
-    useExisting: PatternValidatorDirective,
-    multi: true
-  }]
+  providers: [
+    {
+      provide: NG_VALIDATORS,
+      useExisting: PatternValidatorDirective,
+      multi: true
+    }
+  ]
 })
 export class PatternValidatorDirective implements Validator {
   @Input('pattern') pattern: string;

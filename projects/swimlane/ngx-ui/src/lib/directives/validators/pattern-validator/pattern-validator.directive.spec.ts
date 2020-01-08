@@ -12,7 +12,7 @@ describe('PatternValidatorDirective', () => {
   });
 
   it('should call validator', () => {
-    directive.pattern = 'test'
+    directive.pattern = 'test';
     expect(directive.validate(control)).toBeDefined();
   });
 
