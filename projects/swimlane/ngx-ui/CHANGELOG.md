@@ -2,6 +2,10 @@
 
 ## HEAD (Unreleased)
 
+## 28.0.0-rc.4 (2020-01-09)
+
+- Breaking: Change components to ChangeDetectionStrategy.OnPush
+
 ## 28.0.0-rc.3 (2019-12-02)
 
 - Fix: Extract template into separate file
