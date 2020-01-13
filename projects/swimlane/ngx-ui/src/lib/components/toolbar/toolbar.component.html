@@ -7,8 +7,8 @@
     </h2>
   </div>
   <div class="ngx-toolbar-content-col" fxFlex>
-    <ng-content *ngIf="!menu" select="ngx-toolbar-content"></ng-content>
-    <ul class="horizontal-list ngx-toolbar-menu" *ngIf="menu">
+    <ng-content *ngIf="!menu.length" select="ngx-toolbar-content"></ng-content>
+    <ul class="horizontal-list ngx-toolbar-menu" *ngIf="menu.length">
       <li *ngFor="let item of toolbarItems">
         <button type="button" [disabled]="item.disabled" (click)="onMenuClicked(item, $event)">
           {{ item.label }}

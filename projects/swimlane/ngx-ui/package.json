@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "28.0.0-rc.3",
+  "version": "28.0.0-rc.5",
   "engines": {
     "node": ">=10.0.0"
   },
@@ -31,6 +31,7 @@
   "peerDependencies": {
     "@angular/common": "^7.0.0 || ^8.0.0 || ^9.0.0",
     "@angular/core": "^7.0.0 || ^8.0.0 || ^9.0.0",
+    "@angular/flex-layout": "8.0.0-beta.27",
     "rxjs": "^6.5.0",
     "@angular/cdk": "^7.0.0 || ^8.0.0 || ^9.0.0",
     "@angular/animations": "^7.0.0 || ^8.0.0 || ^9.0.0",
@@ -45,7 +46,6 @@
     "json-schema": "*"
   },
   "dependencies": {
-    "@angular/flex-layout": "8.0.0-beta.27",
     "mousetrap": "^1.6.2",
     "@swimlane/ng2-file-upload": "^1.0.1",
     "normalize.css": "^5.0.0"

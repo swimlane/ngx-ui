@@ -1,5 +1,6 @@
 import { TemplateRef } from '@angular/core';
-import { PartialBindings } from '@swimlane/ngx-ui/services';
+
+import { PartialBindings } from '../../services/injection-registery.service';
 
 import { AlertTypes, AlertStyles } from './alert';
 

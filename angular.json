@@ -123,6 +123,7 @@
             "main": "projects/swimlane/ngx-ui/src/test.ts",
             "tsConfig": "projects/swimlane/ngx-ui/tsconfig.spec.json",
             "karmaConfig": "projects/swimlane/ngx-ui/karma.conf.js",
+            "codeCoverage": true,
             "codeCoverageExclude": [
               "projects/swimlane/ngx-ui/src/lib/**/*.fixture.ts"
             ],
