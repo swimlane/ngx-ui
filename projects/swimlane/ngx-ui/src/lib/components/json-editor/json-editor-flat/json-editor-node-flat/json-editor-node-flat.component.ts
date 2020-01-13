@@ -32,11 +32,11 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() arrayItem = false;
 
+  @Input() indentationArray: number[];
+
   @Output() updatePropertyNameEvent = new EventEmitter<{ id: string | number; name: string }>();
 
   requiredIndicator: SafeHtml;
-
-  indentationArray: number[] = [];
 
   constructor(public dialogMngr: DialogService, private domSanitizer: DomSanitizer) {
     super(dialogMngr);
@@ -45,9 +45,6 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   ngOnInit() {
     this.level += 1;
-    if (this.level > 1) {
-      this.indentationArray = Array(this.level - 1).fill(this.level);
-    }
   }
 
   updatePropertyName(id: string | number, name: string): void {

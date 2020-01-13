@@ -17,17 +17,17 @@
   display: flex;
   align-items: center;
   background-color: rgba(red($color-blue-grey-700), green($color-blue-grey-700), blue($color-blue-grey-700), 0.4);
+}
 
-  .separator {
-    background-color: $color-blue-grey-650;
-    opacity: 0.5;
-    border-radius: 2px;
-    width: 1px;
-    height: calc(100% - 4px);
-    margin-right: 20px;
+.separator {
+  background-color: $color-blue-grey-650;
+  opacity: 0.5;
+  border-radius: 2px;
+  width: 1px;
+  height: calc(100% - 4px);
+  margin-right: 20px;
 
-    &:first-child {
-      margin-left: 20px;
-    }
+  &:first-child {
+    margin-left: 20px;
   }
 }

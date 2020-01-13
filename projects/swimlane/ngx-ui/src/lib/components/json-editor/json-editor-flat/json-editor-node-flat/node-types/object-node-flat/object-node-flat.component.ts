@@ -25,6 +25,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
   @Input() formats: string[];
 
+  indentationArray: number[] = [];
+
   constructor(private dialogService: DialogService) {
     super();
   }
@@ -34,6 +36,10 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
       this.initSchemaProperties(this.schema);
       this.initSchemaProperties(this.schemaRef);
     });
+
+    if (this.level > 0) {
+      this.indentationArray = Array(this.level).fill(this.level);
+    }
   }
 
   onUpdatePropertyName(options: { id: string; name: string }): void {

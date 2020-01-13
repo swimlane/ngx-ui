@@ -19,6 +19,8 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
 
   @Input() formats: string[];
 
+  indentationArray: number[] = [];
+
   constructor(private dialogService: DialogService) {
     super();
   }
@@ -26,6 +28,10 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
   ngOnInit() {
     if (this.schemaBuilderMode && !this.model.length) {
       this.model.push(this.schemaRef.items);
+    }
+
+    if (this.level > 0) {
+      this.indentationArray = Array(this.level).fill(this.level);
     }
   }
 

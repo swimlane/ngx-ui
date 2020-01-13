@@ -15,6 +15,7 @@
       [schemaRef]="schemaRef?.items || null"
       [schemaBuilderMode]="schemaBuilderMode"
       [arrayItem]="schemaBuilderMode"
+      [indentationArray]="indentationArray"
     >
       <div class="node-options" node-options>
         <button
@@ -50,7 +51,8 @@
   </div>
 
   <div class="add-button" [class.background]="level" *ngIf="!schemaBuilderMode">
-    <div class="indented-content" [style.marginLeft]="level * 20 - (level ? 7 : 0) + 'px'">
+    <span class="separator" *ngFor="let separator of indentationArray"></span>
+    <div class="indented-content">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
           <button type="button">

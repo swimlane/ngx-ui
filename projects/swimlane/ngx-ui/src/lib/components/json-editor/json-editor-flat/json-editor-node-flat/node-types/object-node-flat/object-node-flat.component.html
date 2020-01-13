@@ -9,7 +9,7 @@
       [model]="model[prop.value.propertyName]"
       (modelChange)="updateProp(prop.value.id, $event)"
       [schema]="prop.value"
-      [schemaRef]="schemaRef.properties[prop.value.propertyName]"
+      [schemaRef]="schemaRef ? schemaRef.properties[prop.value.propertyName] : null"
       [required]="!!requiredCache[prop.value.propertyName]"
       [inline]="prop.value.type !== 'array' && prop.value.type !== 'object'"
       [path]="path + getPath(prop.value.propertyName)"
@@ -18,6 +18,7 @@
       [level]="level"
       [schemaBuilderMode]="schemaBuilderMode"
       [formats]="formats"
+      [indentationArray]="indentationArray"
       (schemaChange)="schemaChange.emit(schemaRef)"
       (updatePropertyNameEvent)="onUpdatePropertyName($event)"
     >
@@ -74,7 +75,8 @@
   </div>
 
   <div class="add-button" [class.background]="level">
-    <div class="indented-content" [style.marginLeft]="level * 20 - (level ? 7 : 0) + 'px'">
+    <span class="separator" *ngFor="let separator of indentationArray"></span>
+    <div class="indented-content">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
           <button type="button">
