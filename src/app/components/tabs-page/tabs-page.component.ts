@@ -6,5 +6,5 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsPageComponent {
-  tabList = [1,2,3];
+  tabList = [1, 2, 3];
 }

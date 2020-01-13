@@ -125,8 +125,9 @@
 
   <ngx-codemirror mode="htmlmixed" readOnly="true">
     <![CDATA[
+      <button (click)="tabList.push(tabList.length + 1)">Add Tab</button>
       <ngx-tabs>
-        <ngx-tab *ngFor="let i of [1,2,3]" [label]="'Tab ' + i" [active]="i === 1">
+        <ngx-tab *ngFor="let i of tabList" [label]="'Tab ' + i" [active]="i === 1">
           { {'Tab ' + i} }
         </ngx-tab>
       </ngx-tabs>
