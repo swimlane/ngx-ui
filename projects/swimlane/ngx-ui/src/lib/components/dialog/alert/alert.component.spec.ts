@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { IconRegisteryService } from '@swimlane/ngx-ui/services';
+import { IconRegisteryService } from '../../../services/icon-registery.service';
 
 import { InputModule } from '../../input';
 import { LongPressButtonModule } from '../../long-press';

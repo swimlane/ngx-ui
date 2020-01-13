@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { DblClickCopyDirective } from './dbl-click-copy.directive';
-import { VisibilityDirective } from './visibility.directive';
-import { LongPressDirective } from './long-press.directive';
-import { PatternValidatorDirective } from './validators/pattern-validator.directive';
+import { DblClickCopyModule } from './dbl-click-copy/dbl-click-copy.module';
+import { VisibilityModule } from './visibility/visibility.module';
+import { LongPressModule } from './long-press/long-press.module';
+
+import { PatternValidatorModule } from './validators/pattern-validator/pattern-validator.module';
 
 @NgModule({
-  declarations: [VisibilityDirective, DblClickCopyDirective, LongPressDirective, PatternValidatorDirective],
-  exports: [VisibilityDirective, DblClickCopyDirective, LongPressDirective],
-  imports: [CommonModule]
+  exports: [VisibilityModule, DblClickCopyModule, LongPressModule, PatternValidatorModule],
+  imports: [CommonModule, VisibilityModule, DblClickCopyModule, LongPressModule, PatternValidatorModule]
 })
 export class DirectivesModule {}
