@@ -5,10 +5,10 @@ import { DblClickCopyModule } from './dbl-click-copy/dbl-click-copy.module';
 import { VisibilityModule } from './visibility/visibility.module';
 import { LongPressModule } from './long-press/long-press.module';
 
-import * as validators from './validators';
+import { PatternValidatorModule } from './validators/pattern-validator/pattern-validator.module';
 
 @NgModule({
-  exports: [VisibilityModule, DblClickCopyModule, LongPressModule, validators.PatternValidatorModule],
-  imports: [CommonModule, VisibilityModule, DblClickCopyModule, LongPressModule, validators.PatternValidatorModule]
+  exports: [VisibilityModule, DblClickCopyModule, LongPressModule, PatternValidatorModule],
+  imports: [CommonModule, VisibilityModule, DblClickCopyModule, LongPressModule, PatternValidatorModule]
 })
 export class DirectivesModule {}
