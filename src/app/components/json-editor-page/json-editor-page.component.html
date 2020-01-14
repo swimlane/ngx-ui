@@ -43,11 +43,8 @@
     </ngx-tab>
     <ngx-tab label="Schema">
       <ngx-button class="btn btn-primary" (click)="updateJsonEditorSchema(_jsonEditorSchema)">Update Schema</ngx-button>
-      <ngx-codemirror
-        mode="javascript"
-        [ngModel]="jsonEditorSchema | json"
-        (ngModelChange)="_jsonEditorSchema = $event"
-      ></ngx-codemirror>
+      <ngx-codemirror mode="javascript" [ngModel]="jsonEditorSchema | json"
+        (ngModelChange)="_jsonEditorSchema = $event"></ngx-codemirror>
     </ngx-tab>
   </ngx-tabs>
 
