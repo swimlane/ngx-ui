@@ -68,12 +68,8 @@
 
     <!-- Boolean -->
     <div *ngIf="schema?.type === 'boolean'">
-      <ngx-toggle
-        class="toggle-input"
-        [ngModel]="model"
-        (ngModelChange)="updateModel($event)"
-        [label]="model | json"
-      ></ngx-toggle>
+      <ngx-toggle class="toggle-input" [ngModel]="model" (ngModelChange)="updateModel($event)" [label]="model | json">
+      </ngx-toggle>
     </div>
 
     <!-- String -->
@@ -148,15 +144,12 @@
             [ngModel]="[editorConfig.mode.name]"
             (ngModelChange)="selectEditorMode($event[0])"
           >
-            <ngx-select-option
-              *ngFor="let mode of editorModes"
-              [name]="mode.label"
-              [value]="mode.name"
-            ></ngx-select-option>
+            <ngx-select-option *ngFor="let mode of editorModes" [name]="mode.label" [value]="mode.name">
+            </ngx-select-option>
           </ngx-select>
 
-          <ngx-button class="btn btn-primary save-code-button" (click)="updateModel(editorModel); closeCodeEditor()"
-            >Save</ngx-button
+          <ngx-button class="btn btn-primary save-code-button" (click)="updateModel(editorModel); closeCodeEditor()">
+            Save</ngx-button
           >
 
           <ngx-codemirror
