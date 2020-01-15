@@ -1,0 +1,88 @@
+<div class="object-node-flat" [hidden]="!expanded">
+  <div class="object-node-content" *ngFor="let prop of propertyIndex | keyvalue; trackBy: trackBy">
+    <ngx-json-editor-node-flat
+      [model]="model[prop.value.propertyName]"
+      (modelChange)="updateProp(prop.value.id, $event)"
+      [schema]="prop.value"
+      [required]="!!requiredCache[prop.value.propertyName]"
+      [inline]="prop.value.type !== 'array' && prop.value.type !== 'object'"
+      [path]="path + getPath(prop.value.propertyName)"
+      [errors]="errors"
+      [typeCheckOverrides]="typeCheckOverrides"
+      [level]="level"
+      (updatePropertyNameEvent)="onUpdatePropertyName($event)"
+    >
+      <ngx-dropdown [showCaret]="true">
+        <ngx-dropdown-toggle>
+          <button type="button" class="node-options">
+            <i class="ngx-icon ngx-dots-vert-round"></i>
+          </button>
+        </ngx-dropdown-toggle>
+        <ngx-dropdown-menu class="ngx-dropdown-dark-outline align-right">
+          <ul class="vertical-list">
+            <li>
+              <button
+                type="button"
+                (click)="deleteProperty(prop.value.propertyName)"
+                [disabled]="requiredCache[prop.value.propertyName]"
+              >
+                Delete
+              </button>
+            </li>
+            <ng-container *ngIf="prop.value?.$meta?.type">
+              <li *ngFor="let type of prop.value?.$meta?.type">
+                <button
+                  type="button"
+                  (click)="changePropertyType(prop.value, type)"
+                  [disabled]="prop.value.$meta.currentType === type"
+                >
+                  Change type to {{ dataTypeMap[type].name }}
+                </button>
+              </li>
+            </ng-container>
+          </ul>
+        </ngx-dropdown-menu>
+      </ngx-dropdown>
+    </ngx-json-editor-node-flat>
+  </div>
+
+  <div
+    class="add-button"
+    [class.background]="level"
+    [style.left]="-1 * level * 20 + 'px'"
+    [ngStyle]="{ width: 'calc(100% + ' + level * 20 + 'px)' }"
+  >
+    <div class="indented-content" [style.marginLeft]="level * 20 - (level ? 7 : 0) + 'px'">
+      <ngx-dropdown [showCaret]="true">
+        <ngx-dropdown-toggle>
+          <button type="button">
+            <i class="ngx-icon ngx-tree-expand"></i>
+            <span>Add a property</span>
+          </button>
+        </ngx-dropdown-toggle>
+        <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+          <ul class="vertical-list dropdown-column" *ngIf="schema.properties">
+            <li *ngFor="let prop of schema.properties | keyvalue" (click)="addSchemaProperty(prop.key)">
+              <button [disabled]="model[prop.key] !== undefined" type="button">
+                {{ prop.value.title ? prop.value.title : prop.key }}
+              </button>
+            </li>
+          </ul>
+          <ul
+            class="vertical-list dropdown-column"
+            *ngIf="!schema || schema.patternProperties || schema.additionalProperties !== false"
+          >
+            <li *ngFor="let prop of schema.patternProperties | keyvalue" (click)="addSchemaPatternProperty(prop.key)">
+              <button type="button">{{ prop.value.title ? prop.value.title : prop.key }}</button>
+            </li>
+            <ng-template [ngIf]="!schema || schema.additionalProperties !== false">
+              <li *ngFor="let dataType of dataTypes" (click)="addProperty(dataType)">
+                <button type="button">{{ dataType.name }}</button>
+              </li>
+            </ng-template>
+          </ul>
+        </ngx-dropdown-menu>
+      </ngx-dropdown>
+    </div>
+  </div>
+</div>
