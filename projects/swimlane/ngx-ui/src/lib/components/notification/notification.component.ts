@@ -28,6 +28,7 @@ export class NotificationComponent {
   @Input() template: TemplateRef<any>;
   @Input() styleType: NotificationStyleType;
   @Input() icon: string;
+  @Input() timeout: false | number;
 
   @Input()
   get showClose() {
@@ -65,8 +66,14 @@ export class NotificationComponent {
     return cls;
   }
 
+  get animationDuration() {
+    if (typeof this.timeout !== 'number') {
+      return '3000s';
+    }
+    return `${this.timeout}ms`;
+  }
+
   readonly NotificationStyleType = NotificationStyleType;
-  timeout: number | boolean;
   timer: any;
 
   private _showClose?: boolean;

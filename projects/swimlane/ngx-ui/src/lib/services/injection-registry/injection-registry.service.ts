@@ -62,7 +62,7 @@ export abstract class InjectionRegistryService<T = any> {
     return this.injectionService.appendComponent(type, bindings);
   }
 
-  protected assignDefaults(bindings: PartialBindings): PartialBindings {
+  protected assignDefaults(bindings: any): PartialBindings {
     const inputs = { ...this.defaults.inputs };
     const outputs = { ...this.defaults.outputs };
 

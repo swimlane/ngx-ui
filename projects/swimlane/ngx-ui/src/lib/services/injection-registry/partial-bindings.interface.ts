@@ -1,4 +1,4 @@
 export interface PartialBindings {
-  inputs?: object;
-  outputs?: object;
+  inputs?: { [key: string]: any };
+  outputs?: { [key: string]: any };
 }
