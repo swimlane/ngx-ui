@@ -8,16 +8,11 @@ describe('ngx-ui demo', () => {
     cy.contains('Angular Style and Component Library');
   });
 
-  const visitSection = str => {
-    return () => {
-      cy.visit('/inputs');
-      cy.get('.page-loader').should('not.be.visible', { timeout: 20000 });
-    };
-  };
-
   describe('Forms', () => {
     describe('Inputs', () => {
-      beforeEach(visitSection('/inputs'));
+      before(() => {
+        cy.navigate('/inputs');
+      });
 
       describe('Text Input', () => {
         beforeEach(() => {
@@ -197,7 +192,7 @@ describe('ngx-ui demo', () => {
         it('has a label with asterisk', () => {
           cy.get('@CUT')
             .find('.ngx-input-label')
-            .contains('Required Input Example Of The Day*');
+            .contains('Required Input Example Of The Day *');
         });
 
         it('has no placeholder', () => {
@@ -249,7 +244,7 @@ describe('ngx-ui demo', () => {
         it('has a label', () => {
           cy.get('@CUT')
             .find('.ngx-input-label')
-            .contains('Password*');
+            .contains('Password *');
         });
 
         it('has no placeholder', () => {
@@ -318,7 +313,9 @@ describe('ngx-ui demo', () => {
   });
 
   context('Components', () => {
-    beforeEach(visitSection('Overlay'));
+    before(() => {
+      cy.navigate('/overlay');
+    });
 
     describe('Overlay', () => {
       const overlayMessage = 'Click anywhere to return';
