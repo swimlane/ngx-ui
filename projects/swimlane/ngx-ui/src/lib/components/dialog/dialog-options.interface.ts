@@ -1,6 +1,6 @@
 import { TemplateRef } from '@angular/core';
 
-import { PartialBindings } from '../../services/injection-registery.service';
+import { PartialBindings } from '../../services';
 
 import { AlertTypes, AlertStyles } from './alert';
 
