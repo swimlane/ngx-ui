@@ -82,6 +82,7 @@ export class InjectionService {
     if (isViewContainerRef(component)) {
       return component.element.nativeElement;
     }
+
     if (component.hostView && (component.hostView as EmbeddedViewRef<any>).rootNodes.length > 0) {
       return (component.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
     }
@@ -137,6 +138,7 @@ export class InjectionService {
    * @memberOf InjectionService
    */
   appendComponent<T>(componentClass: Type<T>, bindings: any = {}, location?: any): ComponentRef<any> {
+    /* istanbul ignore else */
     if (!location) location = this.getRootViewContainer();
     const appendLocation = this.getComponentRootNode(location);
 

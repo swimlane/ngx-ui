@@ -1,15 +1,14 @@
 import { Injectable, ComponentRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { InjectionService } from '../../services/injection.service';
-import { InjectionRegisteryService } from '../../services/injection-registery.service';
+import { InjectionRegistryService, InjectionService } from '../../services';
 import { DrawerComponent } from './drawer.component';
 import { OverlayService } from '../overlay/overlay.service';
 import { DrawerDirection } from './drawer-direction.enum';
 import { DrawerOptions } from './drawer-options.interface';
 
 @Injectable()
-export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
+export class DrawerService extends InjectionRegistryService<DrawerComponent> {
   type: any = DrawerComponent;
 
   readonly defaults: DrawerOptions = {

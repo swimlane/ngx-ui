@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 
-import { IconRegisteryService } from '../../services/icon-registery.service';
+import { IconRegistryService } from '../../services';
 import { IconComponent } from './icon.component';
 
 describe('IconComponent', () => {
@@ -16,7 +16,7 @@ describe('IconComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [IconComponent],
       imports: [HttpClientTestingModule],
-      providers: [{ provide: IconRegisteryService, useValue: { get: () => ['test'] } }]
+      providers: [{ provide: IconRegistryService, useValue: { get: () => ['test'] } }]
     });
   });
 

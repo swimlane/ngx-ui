@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { InjectionService } from '../../services/injection.service';
+import { InjectionService } from '../../services';
 import { OverlayModule } from '../overlay/overlay.module';
 import { InputModule } from '../input/input.module';
 

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { EventEmitter, ComponentRef } from '@angular/core';
 
-import { InjectionService } from '../../services/injection.service';
+import { InjectionService } from '../../services';
 import { NotificationService } from './notification.service';
 import { NotificationType } from './notification-type.enum';
 import { notificationMock } from './notification.mock';

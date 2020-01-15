@@ -2,8 +2,8 @@ import { Injectable, ComponentRef, Inject, Type } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
 
-import { InjectionService } from '../../services/injection.service';
-import { InjectionRegisteryService, PartialBindings } from '../../services/injection-registery.service';
+import { InjectionRegistryService, InjectionService } from '../../services';
+import { PartialBindings } from '../../services/injection-registry/partial-bindings.interface';
 
 import { NotificationType } from './notification-type.enum';
 import { NotificationStyleType } from './notification-style-type.enum';
@@ -15,7 +15,7 @@ import { NotificationOptions } from './notification-options.interface';
 /** adding dynamic to suppress `Document` type metadata error  */
 /** @dynamic */
 @Injectable()
-export class NotificationService extends InjectionRegisteryService<NotificationComponent> {
+export class NotificationService extends InjectionRegistryService<NotificationComponent> {
   static readonly limit: number | boolean = 10;
   readonly defaults: NotificationOptions = {
     inputs: {
