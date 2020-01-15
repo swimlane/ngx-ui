@@ -2,8 +2,7 @@ import { Injectable, ComponentRef, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
 
-import { InjectionService } from '../../services/injection.service';
-import { InjectionRegisteryService } from '../../services/injection-registery.service';
+import { InjectionRegistryService, InjectionService } from '../../services';
 
 import { NotificationType } from './notification-type.enum';
 import { NotificationStyleType } from './notification-style-type.enum';
@@ -15,7 +14,7 @@ import { NotificationOptions } from './notification-options.interface';
 /** adding dynamic to suppress `Document` type metadata error  */
 /** @dynamic */
 @Injectable()
-export class NotificationService extends InjectionRegisteryService<NotificationComponent> {
+export class NotificationService extends InjectionRegistryService<NotificationComponent> {
   static readonly limit: number | boolean = 10;
   readonly defaults: NotificationOptions = {
     inputs: {

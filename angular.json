@@ -125,7 +125,8 @@
             "karmaConfig": "projects/swimlane/ngx-ui/karma.conf.js",
             "codeCoverage": true,
             "codeCoverageExclude": [
-              "projects/swimlane/ngx-ui/src/lib/**/*.fixture.ts"
+              "projects/swimlane/ngx-ui/src/lib/**/*.fixture.ts",
+              "projects/swimlane/ngx-ui/src/lib/services/injection-registry/**/*.ts"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
