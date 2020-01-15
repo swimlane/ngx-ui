@@ -5,32 +5,19 @@ import { Subscription } from 'rxjs';
 import { InjectionService } from '../../services/injection.service';
 import { InjectionRegisteryService, PartialBindings } from '../../services/injection-registery.service';
 
-import { NotificationType } from './notification.type';
-import { NotificationStyleType } from './notification-style.type';
-import { NotificationPermissionType } from './notification-permission.type';
+import { NotificationType } from './notification-type.enum';
+import { NotificationStyleType } from './notification-style-type.enum';
+import { NotificationPermissionType } from './notification-permission-type.enum';
 import { NotificationComponent } from './notification.component';
 import { NotificationContainerComponent } from './notification-container.component';
+import { NotificationOptions } from './notification-options.interface';
 
-interface NotificationOptions {
-  timeout: number | boolean;
-  rateLimit: boolean;
-  pauseOnHover: boolean;
-  type: NotificationType | string;
-  styleType: NotificationStyleType | string;
-  showClose: boolean;
-  sound: boolean;
-  title: string;
-  body: string;
-  icon: string;
-  timestamp: number;
-  template: any;
-}
-
+/** adding dynamic to suppress `Document` type metadata error  */
+/** @dynamic */
 @Injectable()
 export class NotificationService extends InjectionRegisteryService<NotificationComponent> {
-  static limit: number | boolean = 10;
-
-  defaults: any = {
+  static readonly limit: number | boolean = 10;
+  readonly defaults: NotificationOptions = {
     inputs: {
       timeout: 3000,
       rateLimit: true,
@@ -42,15 +29,15 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     }
   };
 
-  permission: NotificationPermissionType | string;
-  type: any = NotificationComponent;
-  container: any;
+  permission: NotificationPermission;
+  container?: ComponentRef<NotificationContainerComponent>;
+  type = NotificationComponent;
 
   get isNativeSupported(): boolean {
     return 'Notification' in window;
   }
 
-  constructor(injectionService: InjectionService, @Inject(DOCUMENT) private document: any) {
+  constructor(readonly injectionService: InjectionService, @Inject(DOCUMENT) private readonly document: Document) {
     super(injectionService);
   }
 
@@ -62,32 +49,35 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
 
     // if limit reached, remove the first one
     const compsByType = this.getByType();
+
     if (compsByType && compsByType.length >= NotificationService.limit) {
       this.destroy(compsByType[0]);
     }
 
     // native notifications need to be invoked
-    let component: ComponentRef<NotificationComponent>;
+    let component: ComponentRef<NotificationComponent> | Notification;
+
     if (bindings.type === NotificationType.native) {
       component = this.showNative(bindings);
     } else {
       component = super.create(bindings);
       this.createSubscriptions(component);
+      this.startTimer(component);
     }
 
-    // start timer for notification
-    this.startTimer(component);
-
-    return component;
+    return component as any;
   }
 
   startTimer(component: ComponentRef<NotificationComponent>): void {
     if (component.instance && component.instance.timeout !== false) {
       clearTimeout(component.instance.timer);
 
-      component.instance.timer = setTimeout(() => {
-        this.destroy(component);
-      }, component.instance.timeout);
+      component.instance.timer = setTimeout(
+        () => {
+          this.destroy(component);
+        },
+        component.instance.timeout as number
+      );
     }
   }
 
@@ -97,7 +87,7 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
 
   requestPermissions(): void {
     if (this.isNativeSupported) {
-      Notification.requestPermission(status => (this.permission = status));
+      Notification.requestPermission(/* istanbul ignore next */ status => (this.permission = status));
     }
   }
 
@@ -110,7 +100,6 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
 
     // add a timestamp for flood checks
     bindings.inputs.timestamp = +new Date();
-
     return bindings;
   }
 
@@ -128,9 +117,9 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     let closeSub: Subscription;
 
     const kill = () => {
-      if (closeSub) closeSub.unsubscribe();
-      if (resumeSub) resumeSub.unsubscribe();
-      if (pauseSub) pauseSub.unsubscribe();
+      closeSub.unsubscribe();
+      resumeSub.unsubscribe();
+      pauseSub.unsubscribe();
 
       this.destroy(component);
     };

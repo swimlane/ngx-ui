@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
+  exportAs: 'ngxNotificationContainer',
   selector: 'ngx-notification-container',
-  templateUrl: './notification-container.component.html',
-  host: {
-    class: 'ngx-notification-container'
-  }
+  template: `
+    <div class="notification-container"></div>
+  `,
+  host: { class: 'ngx-notification-container' },
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationContainerComponent {}

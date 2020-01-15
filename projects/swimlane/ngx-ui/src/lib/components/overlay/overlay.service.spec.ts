@@ -1,5 +1,5 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { InjectionService } from '@swimlane/ngx-ui/services';
+import { InjectionService } from '../../services/injection.service';
 
 import { OverlayModule } from './overlay.module';
 import { OverlayService } from './overlay.service';

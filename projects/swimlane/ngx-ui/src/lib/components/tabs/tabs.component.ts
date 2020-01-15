@@ -53,6 +53,8 @@ export class TabsComponent implements AfterContentInit {
         this.cdr.detectChanges();
       });
     }
+
+    this.tabs.changes.subscribe(() => this.cdr.detectChanges());
   }
 
   tabClicked(activeTab: TabComponent): void {

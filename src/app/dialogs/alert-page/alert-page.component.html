@@ -6,12 +6,12 @@
     Info
   </button>
 
-  <button type="button" class="btn" (click)="alertService.alert({ title: 'Alert SOC', style: 'danger' })">
+  <button type="button" class="btn" (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Danger })">
     Danger
   </button>
 
   <button type="button" class="btn"
-    (click)="alertService.alert({ title: 'Alert SOC', style: 'warning', content: 'Intrusion Happened!!!' })">
+    (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Warning, content: 'Intrusion Happened!!!' })">
     Warning
   </button>
 
@@ -30,13 +30,13 @@
 
           <button
             type="button"
-            (click)="alertService.alert({ title: 'Alert SOC', style: 'danger' })">
+            (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Danger })">
             Danger
           </button>
 
           <button
             type="button"
-            (click)="alertService.alert({ title: 'Alert SOC', style: 'warning', content: 'Intrusion Happened!!!' })">
+            (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Warning, content: 'Intrusion Happened!!!' })">
             Warning
           </button>
         ]]>

@@ -5,4 +5,6 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   templateUrl: './tabs-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabsPageComponent {}
+export class TabsPageComponent {
+  tabList = [1, 2, 3];
+}
