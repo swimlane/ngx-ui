@@ -1,10 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { DialogService } from '../../../../../dialog/dialog.service';
-import {
-  JSONEditorSchema,
-  ObjectProperty,
-  propTypes
-} from '@swimlane/ngx-ui/components/json-editor/json-editor.helper';
+import { JSONEditorSchema, ObjectProperty, propTypes } from '../../../../json-editor.helper';
 import { JSONSchema7TypeName } from 'json-schema';
 
 export interface PropertyConfigOptions {
