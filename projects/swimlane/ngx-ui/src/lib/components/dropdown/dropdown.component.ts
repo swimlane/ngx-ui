@@ -63,7 +63,6 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   }
 
   @ContentChild(DropdownToggleDirective) readonly dropdownToggle: DropdownToggleDirective;
-
   @ContentChild(DropdownMenuDirective) readonly dropdownMenu: DropdownMenuDirective;
 
   private _documentListener?: () => void;
