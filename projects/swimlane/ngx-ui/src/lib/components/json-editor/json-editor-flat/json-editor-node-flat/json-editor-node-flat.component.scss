@@ -4,7 +4,7 @@
 .json-tree-node-flat {
   .indentation {
     @extend %indentation;
-    min-width: 25px;
+    min-width: 20px;
   }
 
   .node-container {
