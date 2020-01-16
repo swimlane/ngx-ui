@@ -145,14 +145,14 @@ describe('NotificationService', () => {
 
     it('should create container if doesnt exist', () => {
       spyOn(document, 'contains').and.returnValue(false);
-      service.injectComponent({}, {});
+      service.injectComponent({} as any, {});
       expect(spy).toHaveBeenCalledTimes(2);
     });
 
     it('should not create container if exists', () => {
       spyOn(document, 'contains').and.returnValue(true);
       service.container = { location: { nativeElement: {} } } as any;
-      service.injectComponent({}, {});
+      service.injectComponent({} as any, {});
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });
