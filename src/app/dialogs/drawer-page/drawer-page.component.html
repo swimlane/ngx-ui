@@ -164,6 +164,6 @@
   <ngx-section class="shadow" sectionTitle="Adding drawer to parent component instead of root">
     <button type="button" (click)="openDrawer('left', undefined, true, editTmpl2, false, parentContainer)">open drawer time</button>
       <div [style.width.%]="100" [style.height.px]="500" [style.background-color]="'red'">
-        <div [style.height.%]="100" [style.position]="'relative'" #parentContainer></div>
+        <div [style.height.%]="100" drawerContainer #parentContainer></div>
       </div>
   </ngx-section>
