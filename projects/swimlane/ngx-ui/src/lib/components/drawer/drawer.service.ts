@@ -105,9 +105,11 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
       } else {
         const components = this.components.get(this.type);
 
-        this.parentListenerFunc = this.renderer.listen(parentContainer, 'click', () =>
-          kill(components[components.length - 1])
-        );
+        this.parentListenerFunc = this.renderer.listen(parentContainer, 'click', evt => {
+          if (evt.target === parentContainer) {
+            kill(components[components.length - 1]);
+          }
+        });
       }
     }
   }
