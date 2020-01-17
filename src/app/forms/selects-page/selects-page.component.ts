@@ -31,9 +31,7 @@ export class SelectsPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.asyncOptions$ = timer(0, 5000).pipe(
-      map(() => this._results),
-    );
+    this.asyncOptions$ = timer(0, 5000).pipe(map(() => this._results));
   }
 
   onSelectKeyUp(event: KeyboardEvent) {

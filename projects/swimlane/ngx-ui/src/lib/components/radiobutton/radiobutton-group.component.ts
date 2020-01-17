@@ -96,7 +96,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   private _disabled: boolean = false;
   private _destroy$ = new Subject<void>();
 
-  constructor(private readonly _cdr: ChangeDetectorRef) { }
+  constructor(private readonly _cdr: ChangeDetectorRef) {}
 
   ngAfterContentInit() {
     this.subscribeToRadios();
