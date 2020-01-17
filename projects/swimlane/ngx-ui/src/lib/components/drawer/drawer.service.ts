@@ -27,7 +27,7 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
 
   create(options: DrawerOptions) {
     const component = super.create(options);
-    this.createSubscriptions(component);
+    this.createSubscriptions(component, options.isRoot);
     return component;
   }
 
@@ -63,11 +63,14 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
     return options;
   }
 
-  createSubscriptions(component: ComponentRef<DrawerComponent>) {
-    this.overlayService.show({
-      triggerComponent: component,
-      zIndex: this.zIndex
-    });
+  createSubscriptions(component: ComponentRef<DrawerComponent>, isRoot = true) {
+    if (isRoot) {
+      this.overlayService.show({
+        triggerComponent: component,
+        zIndex: this.zIndex
+      });
+
+    }
 
     let closeSub: Subscription;
     let overlaySub: Subscription;

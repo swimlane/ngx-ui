@@ -23,9 +23,10 @@ export abstract class InjectionRegisteryService<T = any> {
   }
 
   createByType(type: Type<T>, bindings: PartialBindings): ComponentRef<T> {
+    const location = (bindings as any).parentContainer;
     bindings = this.assignDefaults(bindings);
 
-    const component = this.injectComponent(type, bindings);
+    const component = this.injectComponent(type, bindings, location);
     this.register(type, component);
 
     return component;
@@ -60,8 +61,8 @@ export abstract class InjectionRegisteryService<T = any> {
     }
   }
 
-  protected injectComponent(type: Type<T>, bindings: PartialBindings): ComponentRef<T> {
-    return this.injectionService.appendComponent(type, bindings);
+  protected injectComponent(type: Type<T>, bindings: PartialBindings, location?): ComponentRef<T> {
+    return this.injectionService.appendComponent(type, bindings, location);
   }
 
   protected assignDefaults(bindings: PartialBindings): PartialBindings {

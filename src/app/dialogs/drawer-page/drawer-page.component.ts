@@ -1,4 +1,4 @@
-import { Component, ViewChild, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewChild, TemplateRef, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 
 import { DrawerService, DrawerDirection } from '@swimlane/ngx-ui';
 
@@ -21,13 +21,22 @@ export class DrawerPageComponent {
     console.log('date changed!', val);
   }
 
-  openDrawer(direction = DrawerDirection.Left, size?, closeOnOutsideClick = true, template = this.editTmpl) {
+  openDrawer(
+    direction = DrawerDirection.Left,
+    size?,
+    closeOnOutsideClick = true,
+    template = this.editTmpl,
+    isRoot = true,
+    parentContainer?: ElementRef
+  ) {
     this.drawerMngr.create({
       direction,
       template,
       size,
       context: 'Alert Everyone!',
-      closeOnOutsideClick
+      closeOnOutsideClick,
+      parentContainer,
+      isRoot
     });
   }
 }
