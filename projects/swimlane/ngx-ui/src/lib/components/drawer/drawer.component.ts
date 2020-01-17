@@ -50,7 +50,6 @@ export class DrawerComponent implements OnInit, OnDestroy {
   }
   set size(val: number) {
     this._size = coerceNumberProperty(val);
-    this.setDimensions(this._size);
   }
 
   @Input()
@@ -81,7 +80,7 @@ export class DrawerComponent implements OnInit, OnDestroy {
   transform: string;
   widthSize: string | number;
   heightSize: string | number;
-  position: 'fixed' | 'initial' = 'fixed';
+  position: 'fixed' | 'absolute' = 'absolute';
 
   private get isLeft(): boolean {
     return this.direction === DrawerDirection.Left;
@@ -96,7 +95,8 @@ export class DrawerComponent implements OnInit, OnDestroy {
   private _closeOnOutsideClick: boolean;
 
   ngOnInit() {
-    this.position = this.isRoot ? 'fixed' : 'initial';
+    this.position = this.isRoot ? 'fixed' : 'absolute';
+    this.setDimensions(this.size);
   }
 
   ngOnDestroy() {
@@ -104,49 +104,8 @@ export class DrawerComponent implements OnInit, OnDestroy {
   }
 
   setDimensions(size: number): void {
-    const winWidth = window.innerWidth;
-    const winHeight = window.innerHeight;
-    let height: string;
-    let width: string;
-    let transform: string;
-
-    if (this.isRoot) {
-      height = `${this.isBottom && size ? size : 100}%`;
-      width = `${this.isLeft && size ? size : 100}%`;
-      transform = this.isLeft ? `translateX(-${size || 100})` : `translateY(-${size || 100}%)`;
-    } else {
-      if (this.isLeft) {
-        if (size) {
-          const innerWidth = size;
-          const widthPercent = (innerWidth / 100) * winWidth;
-          const newWidth = Math.ceil(widthPercent);
-
-          height = '100%';
-          width = `${newWidth}px`;
-          transform = `translate(-${width}, 0px)`;
-        } else {
-          transform = 'translate(100%, 0)';
-        }
-      } else if (this.isBottom) {
-        if (size) {
-          const innerHeight = size;
-          const heightPercent = (innerHeight / 100) * winHeight;
-          const newHeight = Math.ceil(heightPercent);
-
-          width = '100%';
-          height = `${newHeight}px`;
-          transform = `translate(0px, -${height})`;
-        } else {
-          transform = 'translate(0, 100%)';
-        }
-      }
-    }
-
-    setTimeout(() => {
-      this.heightSize = height;
-      this.widthSize = width;
-      this.transform = transform;
-    });
+    this.heightSize = `${this.isBottom && size ? size : 100}%`;
+    this.widthSize = `${this.isLeft && size ? size : 100}%`;
   }
 
   @HostListener('keyup.esc')
