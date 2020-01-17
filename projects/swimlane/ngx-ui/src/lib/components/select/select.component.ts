@@ -202,6 +202,8 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
         this.options = arr;
       }
     }
+
+    this._cdr.markForCheck();
   }
 
   get invalid() {
