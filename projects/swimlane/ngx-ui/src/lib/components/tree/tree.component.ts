@@ -9,9 +9,9 @@ import {
   TemplateRef,
   QueryList,
   ChangeDetectionStrategy,
-  OnInit,
   ChangeDetectorRef,
-  OnDestroy
+  OnDestroy,
+  AfterContentInit
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -25,7 +25,7 @@ import { TreeNodeComponent } from './tree-node.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TreeComponent implements OnInit, OnDestroy {
+export class TreeComponent implements AfterContentInit, OnDestroy {
   @Input() nodes: any[];
 
   @Input('template')
@@ -54,7 +54,7 @@ export class TreeComponent implements OnInit, OnDestroy {
 
   constructor(private readonly _cdr: ChangeDetectorRef) { }
 
-  ngOnInit() {
+  ngAfterContentInit() {
     this.nodeElms.changes.pipe(takeUntil(this._destroy$)).subscribe(() => this._cdr.markForCheck());
   }
 
