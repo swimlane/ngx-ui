@@ -79,7 +79,7 @@ export class DrawerComponent implements OnInit, OnDestroy {
   transform: string;
   widthSize: string | number;
   heightSize: string | number;
-  position: 'fixed' | 'absolute' = 'absolute';
+  position: 'fixed' | 'absolute' = 'fixed';
 
   private get isLeft(): boolean {
     return this.direction === DrawerDirection.Left;

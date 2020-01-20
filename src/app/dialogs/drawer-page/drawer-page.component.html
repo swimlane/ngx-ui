@@ -49,7 +49,7 @@
                 Open Details
               </button>
             </section>
-        </ng-template>
+          </ng-template>
         ]]>
       </ngx-codemirror>
     </ngx-tab>
@@ -62,12 +62,15 @@
 
             constructor(private drawerMngr: DrawerService) { }
 
-            openDrawer(direction = 'left', size = 80) {
+            openDrawer(direction = 'left', size?, closeOnOutsideClick = true, template = this.editTmpl, isRoot = true, parentContainer?: any) {
               this.drawerMngr.create({
                 direction,
-                template: this.editTmpl,
+                template,
                 size,
-                context: 'Alert Everyone!'
+                context: 'Alert Everyone!',
+                closeOnOutsideClick,
+                parentContainer,
+                isRoot
               });
             }
           }
@@ -132,7 +135,7 @@
                   Close
                 </button>
               </section>
-          </ng-template>
+            </ng-template>
           ]]>
         </ngx-codemirror>
       </ngx-tab>
@@ -145,13 +148,15 @@
 
               constructor(private drawerMngr: DrawerService) { }
 
-              openDrawer(direction = 'left', size?, closeOnOutsideClick = true, template = this.editTmpl) {
+              openDrawer(direction = 'left', size?, closeOnOutsideClick = true, template = this.editTmpl, isRoot = true, parentContainer?: any) {
                 this.drawerMngr.create({
                   direction,
                   template,
                   size,
                   context: 'Alert Everyone!',
-                  closeOnOutsideClick
+                  closeOnOutsideClick,
+                  parentContainer,
+                  isRoot
                 });
               }
             }
@@ -162,8 +167,68 @@
   </ngx-section>
 
   <ngx-section class="shadow" sectionTitle="Adding drawer to parent component instead of root">
-    <button type="button" (click)="openDrawer('left', undefined, true, editTmpl2, false, parentContainer)">open drawer time</button>
-      <div [style.width.%]="100" [style.height.px]="500" [style.background-color]="'red'">
-        <div [style.height.%]="100" drawerContainer #parentContainer></div>
-      </div>
+    <button type="button" class="btn" (click)="openDrawer(undefined, undefined, true, editTmpl2, false, parentContainer)">Open Drawer Inside Parent</button>
+    <br />
+    <br />
+    <div [style.width.%]="100" [style.height.px]="500" [style.background-color]="'#272936'">
+      <div [style.height.%]="100" drawerContainer #parentContainer></div>
+    </div>
+
+    <br />
+    <br />
+    <br />
+    <ngx-tabs>
+      <ngx-tab label="Markup">
+        <ngx-codemirror mode="htmlmixed" readOnly="true">
+          <![CDATA[
+            <button type="button" class="btn" (click)="openDrawer(undefined, undefined, true, editTmpl2, false, parentContainer)">Open Drawer Inside Parent</button>
+            <div [style.width.%]="100" [style.height.px]="500" [style.background-color]="'#272936'">
+              <div [style.height.%]="100" drawerContainer #parentContainer></div>
+            </div>
+
+            <ng-template #editTmpl2 let-context="context" let-close="close">
+              <ngx-toolbar
+                [mainTitle]="'Attack Alert!'">
+              </ngx-toolbar>
+              <section class="section">
+                <h1>Attack Type: Malware</h1>
+                <button
+                  type="button"
+                  class="btn"
+                  (click)="openDrawer(undefined, undefined, false, editTmpl2)">
+                  Open Details
+                </button>
+                <button type="button" class="btn" (click)="close.emit(true)">
+                  Close
+                </button>
+              </section>
+            </ng-template>
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+      <ngx-tab label="TypeScript">
+        <ngx-codemirror mode="javascript" readOnly="true">
+          <![CDATA[
+            @Component({ selector: 'app' })
+            class MyComponent {
+              @ViewChild('editTmpl', { static: false }) editTmpl: TemplateRef<any>;
+
+              constructor(private drawerMngr: DrawerService) { }
+
+              openDrawer(direction = 'left', size?, closeOnOutsideClick = true, template = this.editTmpl, isRoot = true, parentContainer?: any) {
+                this.drawerMngr.create({
+                  direction,
+                  template,
+                  size,
+                  context: 'Alert Everyone!',
+                  closeOnOutsideClick,
+                  parentContainer,
+                  isRoot
+                });
+              }
+            }
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+    </ngx-tabs>
   </ngx-section>

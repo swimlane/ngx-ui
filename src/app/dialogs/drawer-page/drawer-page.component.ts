@@ -1,4 +1,4 @@
-import { Component, ViewChild, TemplateRef, ChangeDetectionStrategy, ElementRef } from '@angular/core';
+import { Component, ViewChild, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
 
 import { DrawerService, DrawerDirection } from '@swimlane/ngx-ui';
 
@@ -27,7 +27,7 @@ export class DrawerPageComponent {
     closeOnOutsideClick = true,
     template = this.editTmpl,
     isRoot = true,
-    parentContainer?: ElementRef
+    parentContainer?: any
   ) {
     this.drawerMngr.create({
       direction,
