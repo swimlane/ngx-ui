@@ -26,7 +26,7 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
   constructor(
     readonly injectionService: InjectionService,
     private readonly overlayService: OverlayService,
-    private rendererFactory: RendererFactory2
+    private readonly rendererFactory: RendererFactory2
   ) {
     super(injectionService);
     this.renderer = this.rendererFactory.createRenderer(null, null);
@@ -93,7 +93,6 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
       }
       if (this.parentListenerFunc && this.components.get(this.type).length === 1) {
         this.parentListenerFunc();
-        this.parentListenerFunc = undefined;
       }
       this.destroy(component);
     };
@@ -106,6 +105,7 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
         const components = this.components.get(this.type);
 
         this.parentListenerFunc = this.renderer.listen(parentContainer, 'click', evt => {
+          /* istanbul ignore else */
           if (evt.target === parentContainer) {
             kill(components[components.length - 1]);
           }

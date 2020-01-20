@@ -31,7 +31,6 @@ import { DrawerDirection } from './drawer-direction.enum';
     '[style.zIndez]': 'zIndex',
     '[style.transform]': 'transform',
     '[style.position]': 'position',
-    '[style.display]': 'display',
     '[@drawerTransition]': 'direction'
   },
   encapsulation: ViewEncapsulation.None,

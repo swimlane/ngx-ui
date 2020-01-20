@@ -1,4 +1,4 @@
-import { TemplateRef, ElementRef } from '@angular/core';
+import { TemplateRef } from '@angular/core';
 
 import { DrawerDirection } from './drawer-direction.enum';
 
@@ -21,5 +21,5 @@ export interface DrawerOptions {
     closeOnOutsideClick?: boolean;
     isRoot?: boolean;
   };
-  readonly parentContainer?: ElementRef;
+  readonly parentContainer?: any;
 }
