@@ -1,13 +1,4 @@
-import {
-  Component,
-  Input,
-  EventEmitter,
-  Output,
-  OnInit,
-  OnChanges,
-  SimpleChanges,
-  ViewEncapsulation
-} from '@angular/core';
+import { Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 import {
   createValueForSchema,
@@ -18,12 +9,7 @@ import {
   getCurrentType
 } from '../json-editor.helper';
 
-@Component({
-  selector: 'ngx-json-object-node',
-  templateUrl: 'object-node.component.html',
-  encapsulation: ViewEncapsulation.None
-})
-export class ObjectNodeComponent implements OnInit, OnChanges {
+export class ObjectNode implements OnInit, OnChanges {
   @Input()
   schema: any;
 

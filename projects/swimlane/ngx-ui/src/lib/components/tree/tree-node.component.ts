@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 @Component({
+  exportAs: 'ngxTreeNode',
   selector: 'ngx-tree-node',
   templateUrl: './tree-node.component.html',
   encapsulation: ViewEncapsulation.None,

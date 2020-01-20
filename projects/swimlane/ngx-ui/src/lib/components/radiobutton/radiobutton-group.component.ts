@@ -9,7 +9,8 @@ import {
   QueryList,
   OnDestroy,
   AfterContentInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -93,7 +94,9 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   private _value: boolean = false;
   private _selected: RadioButtonComponent;
   private _disabled: boolean = false;
-  private _destroy = new Subject<void>();
+  private _destroy$ = new Subject<void>();
+
+  constructor(private readonly _cdr: ChangeDetectorRef) {}
 
   ngAfterContentInit() {
     this.subscribeToRadios();
@@ -105,8 +108,8 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   }
 
   ngOnDestroy() {
-    this._destroy.next();
-    this._destroy.complete();
+    this._destroy$.next();
+    this._destroy$.complete();
   }
 
   ngOnChanges() {
@@ -114,14 +117,16 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   }
 
   subscribeToRadios(): void {
-    this._destroy.next();
+    this._destroy$.next();
 
     /* istanbul ignore else */
     if (this._radios) {
       this._radios.map(radio => {
-        radio.change.pipe(takeUntil(this._destroy)).subscribe(this.onRadioSelected.bind(this));
+        radio.change.pipe(takeUntil(this._destroy$)).subscribe(this.onRadioSelected.bind(this));
       });
     }
+
+    this._cdr.markForCheck();
   }
 
   onRadioSelected(value: string) {

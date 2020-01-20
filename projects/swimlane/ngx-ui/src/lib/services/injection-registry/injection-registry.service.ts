@@ -1,18 +1,16 @@
 import { ComponentRef, Type } from '@angular/core';
-import { InjectionService } from './injection.service';
 
-export interface PartialBindings {
-  inputs?: object;
-  outputs?: object;
-}
+import { InjectionService } from '../injection';
+import { PartialBindings } from './partial-bindings.interface';
 
-export abstract class InjectionRegisteryService<T = any> {
+/* istanbul ignore next */
+export abstract class InjectionRegistryService<T = any> {
   protected abstract type: Type<T>;
 
   protected defaults: PartialBindings = {};
-  protected components: Map<any, Array<ComponentRef<T>>> = new Map();
+  protected components = new Map<any, Array<ComponentRef<T>>>();
 
-  constructor(protected injectionService: InjectionService) {}
+  constructor(protected readonly injectionService: InjectionService) {}
 
   getByType(type: Type<T> = this.type) {
     return this.components.get(type);
@@ -65,7 +63,7 @@ export abstract class InjectionRegisteryService<T = any> {
     return this.injectionService.appendComponent(type, bindings, location);
   }
 
-  protected assignDefaults(bindings: PartialBindings): PartialBindings {
+  protected assignDefaults(bindings: any): PartialBindings {
     const inputs = { ...this.defaults.inputs };
     const outputs = { ...this.defaults.outputs };
 

@@ -1,9 +1,11 @@
 <div [hidden]="!expanded">
-  <div *ngFor="let prop of (propertyIndex | keyvalue); trackBy: trackBy">
+  <div *ngFor="let prop of propertyIndex | keyvalue; trackBy: trackBy">
     <div class="property-def">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
-          <div class="type-icon"><ngx-icon [fontIcon]="prop.value.$meta.icon"></ngx-icon></div>
+          <div class="type-icon">
+            <ngx-icon [fontIcon]="prop.value.$meta.icon"></ngx-icon>
+          </div>
         </ngx-dropdown-toggle>
         <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
           <ul class="vertical-list">
@@ -67,11 +69,13 @@
 
   <ngx-dropdown [showCaret]="true">
     <ngx-dropdown-toggle>
-      <div class="add-button"><ngx-icon fontIcon="plus-bold"></ngx-icon></div>
+      <div class="add-button">
+        <ngx-icon fontIcon="plus-bold"></ngx-icon>
+      </div>
     </ngx-dropdown-toggle>
     <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
       <ul class="vertical-list dropdown-column" *ngIf="schema.properties">
-        <li *ngFor="let prop of (schema.properties | keyvalue)" (click)="addSchemaProperty(prop.key)">
+        <li *ngFor="let prop of schema.properties | keyvalue" (click)="addSchemaProperty(prop.key)">
           <button [disabled]="model[prop.key] !== undefined" type="button">
             {{ prop.value.title ? prop.value.title : prop.key }}
           </button>
@@ -81,7 +85,7 @@
         class="vertical-list dropdown-column"
         *ngIf="!schema || schema.patternProperties || schema.additionalProperties !== false"
       >
-        <li *ngFor="let prop of (schema.patternProperties | keyvalue)" (click)="addSchemaPatternProperty(prop.key)">
+        <li *ngFor="let prop of schema.patternProperties | keyvalue" (click)="addSchemaPatternProperty(prop.key)">
           <button type="button">{{ prop.value.title ? prop.value.title : prop.key }}</button>
         </li>
         <ng-template [ngIf]="!schema || schema.additionalProperties !== false">

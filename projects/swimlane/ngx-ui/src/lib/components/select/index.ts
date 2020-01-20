@@ -5,3 +5,4 @@ export * from './select-input.component';
 export * from './select-option.directive';
 export * from './select-option-template.directive';
 export * from './select-option-input-template.directive';
+export * from './select-dropdown-option.interface';

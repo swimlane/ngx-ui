@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { SchemaValidatorService } from './schema-validator.service';
+import { SchemaValidatorService } from '../schema-validator.service';
 import { JsonEditorComponent } from './json-editor.component';
 
 describe('JsonEditorComponent', () => {

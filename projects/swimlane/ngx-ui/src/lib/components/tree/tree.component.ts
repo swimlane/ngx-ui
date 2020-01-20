@@ -8,8 +8,13 @@ import {
   ContentChildren,
   TemplateRef,
   QueryList,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  OnDestroy,
+  AfterContentInit
 } from '@angular/core';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { TreeNodeComponent } from './tree-node.component';
 
@@ -20,7 +25,7 @@ import { TreeNodeComponent } from './tree-node.component';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TreeComponent {
+export class TreeComponent implements AfterContentInit, OnDestroy {
   @Input() nodes: any[];
 
   @Input('template')
@@ -29,19 +34,32 @@ export class TreeComponent {
   @ContentChild(TemplateRef, { static: true })
   _templateQuery: TemplateRef<any>;
 
-  get template(): TemplateRef<any> {
-    return this._templateInput || this._templateQuery;
-  }
-
-  @ContentChildren(TreeNodeComponent) nodeElms: QueryList<TreeNodeComponent>;
-
-  get hasOneLeaf(): boolean {
-    return (this.nodes && this.nodes.length === 1) || this.nodeElms.length === 1;
-  }
+  @ContentChildren(TreeNodeComponent) readonly nodeElms: QueryList<TreeNodeComponent>;
 
   @Output() expand = new EventEmitter();
   @Output() collapse = new EventEmitter();
   @Output() activate = new EventEmitter();
   @Output() deactivate = new EventEmitter();
   @Output() selectNode = new EventEmitter();
+
+  get hasOneLeaf(): boolean {
+    return (this.nodes && this.nodes.length === 1) || this.nodeElms.length === 1;
+  }
+
+  get template(): TemplateRef<any> {
+    return this._templateInput || this._templateQuery;
+  }
+
+  private readonly _destroy$ = new Subject<void>();
+
+  constructor(private readonly _cdr: ChangeDetectorRef) {}
+
+  ngAfterContentInit() {
+    this.nodeElms.changes.pipe(takeUntil(this._destroy$)).subscribe(() => this._cdr.markForCheck());
+  }
+
+  ngOnDestroy() {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
 }
