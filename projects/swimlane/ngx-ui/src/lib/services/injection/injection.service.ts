@@ -138,12 +138,10 @@ export class InjectionService {
    * @memberOf InjectionService
    */
   appendComponent<T>(componentClass: Type<T>, bindings: any = {}, location?: any): ComponentRef<any> {
-    let appendLocation = location;
+    if (!location) location = this.getRootViewContainer();
 
-    if (!location) {
-      location = this.getRootViewContainer();
-      appendLocation = this.getComponentRootNode(location);
-    }
+    const appendLocation =
+      bindings.inputs && bindings.inputs.isRoot === false ? location : this.getComponentRootNode(location);
 
     const portalHost = new DomPortalHost(
       appendLocation,
