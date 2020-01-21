@@ -15,6 +15,7 @@ import { trigger } from '@angular/animations';
 
 import { drawerTransition } from '../../animations/animations';
 import { DrawerDirection } from './drawer-direction.enum';
+import { DrawerPosition } from './drawer-position.enum';
 
 @Component({
   exportAs: 'ngxDrawer',
@@ -28,8 +29,7 @@ import { DrawerDirection } from './drawer-direction.enum';
     '[class]': 'cssClasses',
     '[style.width]': 'widthSize',
     '[style.height]': 'heightSize',
-    '[style.zIndez]': 'zIndex',
-    '[style.transform]': 'transform',
+    '[style.zIndex]': 'zIndex',
     '[style.position]': 'position',
     '[@drawerTransition]': 'direction'
   },
@@ -76,10 +76,9 @@ export class DrawerComponent implements OnInit, OnDestroy {
     return clz;
   }
 
-  transform: string;
   widthSize: string | number;
   heightSize: string | number;
-  position: 'fixed' | 'absolute' = 'fixed';
+  position: DrawerPosition = DrawerPosition.fixed;
 
   private get isLeft(): boolean {
     return this.direction === DrawerDirection.Left;
@@ -94,7 +93,7 @@ export class DrawerComponent implements OnInit, OnDestroy {
   private _closeOnOutsideClick: boolean;
 
   ngOnInit() {
-    this.position = this.isRoot ? 'fixed' : 'absolute';
+    this.position = this.isRoot ? DrawerPosition.fixed : DrawerPosition.absolute;
     this.setDimensions(this.size);
   }
 

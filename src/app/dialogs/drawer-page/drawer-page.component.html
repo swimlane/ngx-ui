@@ -170,8 +170,8 @@
     <button type="button" class="btn" (click)="openDrawer(undefined, undefined, true, editTmpl2, false, parentContainer)">Open Drawer Inside Parent</button>
     <br />
     <br />
-    <div [style.width.%]="100" [style.height.px]="500" [style.background-color]="'#272936'">
-      <div [style.height.%]="100" drawerContainer #parentContainer></div>
+    <div class ="drawer-page--parent-container">
+      <div drawerContainer #parentContainer></div>
     </div>
 
     <br />
@@ -182,8 +182,8 @@
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
             <button type="button" class="btn" (click)="openDrawer(undefined, undefined, true, editTmpl2, false, parentContainer)">Open Drawer Inside Parent</button>
-            <div [style.width.%]="100" [style.height.px]="500" [style.background-color]="'#272936'">
-              <div [style.height.%]="100" drawerContainer #parentContainer></div>
+            <div>
+              <div drawerContainer #parentContainer></div>
             </div>
 
             <ng-template #editTmpl2 let-context="context" let-close="close">
