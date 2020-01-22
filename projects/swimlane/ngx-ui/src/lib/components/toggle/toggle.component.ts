@@ -1,8 +1,6 @@
 import {
   Component,
-  EventEmitter,
   Input,
-  Output,
   ViewEncapsulation,
   forwardRef,
   ChangeDetectionStrategy,
@@ -33,7 +31,6 @@ let nextId = 0;
   }
 })
 export class ToggleComponent implements ControlValueAccessor {
-  @Output() change = new EventEmitter();
   @Input() id: string = `toggle-${++nextId}`;
   @Input() name: string = null;
   @Input() label: string;
@@ -69,7 +66,7 @@ export class ToggleComponent implements ControlValueAccessor {
   set value(value) {
     if (this.value !== value) {
       this._value = value;
-      this.onChange();
+      this.onChangeCallback(value);
       this.cdr.markForCheck();
     }
   }
@@ -97,22 +94,13 @@ export class ToggleComponent implements ControlValueAccessor {
     this.onTouchedCallback();
   }
 
-  onChange(): void {
-    this.change.emit(this.value);
-
-    setTimeout(() => {
-      this.onChangeCallback(this._value);
-    });
-  }
-
   writeValue(val: any): void {
     if (val === null || val === undefined) {
       val = false;
     }
 
     if (val !== this._value) {
-      this._value = val;
-      this.onChange();
+      this.value = val;
       this.cdr.markForCheck();
     }
   }
