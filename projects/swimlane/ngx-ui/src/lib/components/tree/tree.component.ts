@@ -31,6 +31,11 @@ export class TreeComponent implements AfterContentInit, OnDestroy {
   @Input('template')
   _templateInput: TemplateRef<any>;
 
+  @Input() icons = {
+    collapse: 'icon-tree-collapse',
+    expand: 'icon-tree-expand'
+  };
+
   @ContentChild(TemplateRef, { static: true })
   _templateQuery: TemplateRef<any>;
 

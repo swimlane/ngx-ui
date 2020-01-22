@@ -1,9 +1,7 @@
 export interface JsonTreeNode {
   label: string;
   model: {
-    type: string;
-    value: any;
-    expandable: boolean;
+    [key: string]: any
   };
   expandable?: boolean;
   expanded?: boolean;

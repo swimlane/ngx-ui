@@ -21,7 +21,7 @@ export function jsonToTree(value: any, label?: string): JsonTreeNode {
         label,
         expandable,
         expanded: true,
-        model: { type, value, expandable },
+        model: { type, value },
         children
       };
     case 'array':
@@ -32,14 +32,14 @@ export function jsonToTree(value: any, label?: string): JsonTreeNode {
         label,
         expandable,
         expanded: true,
-        model: { type, value, expandable },
+        model: { type, value },
         children
       };
     default:
       return {
         label,
         expandable,
-        model: { type, value, expandable }
+        model: { type, value }
       };
   }
 }
