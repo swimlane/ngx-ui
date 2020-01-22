@@ -63,7 +63,7 @@ describe('ToggleComponent', () => {
   it('can register on change callback', () => {
     component.writeValue(true);
     expect(component.value).toEqual(true);
-    expect(changeSpy).toHaveBeenCalled();
+    expect(changeSpy).toHaveBeenCalledTimes(1);
   });
 
   it('onBlur calls default callback if none have been registered', () => {
@@ -94,7 +94,7 @@ describe('ToggleComponent', () => {
     component.value = true;
 
     expect(component.value).toEqual(true);
-    expect(changeSpy).toHaveBeenCalled();
+    expect(changeSpy).toHaveBeenCalledTimes(1);
   });
 
   it('setting value to existing value does not trigger change', () => {
@@ -107,7 +107,7 @@ describe('ToggleComponent', () => {
     component.writeValue(true);
 
     expect(component.value).toEqual(true);
-    expect(changeSpy).toHaveBeenCalled();
+    expect(changeSpy).toHaveBeenCalledTimes(1);
   });
 
   it('writing value to existing value does not trigger change', () => {
