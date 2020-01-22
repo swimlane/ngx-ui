@@ -6,6 +6,7 @@ import { ToggleComponent } from './toggle.component';
 describe('ToggleComponent', () => {
   let component: ToggleComponent;
   let fixture: ComponentFixture<ToggleComponent>;
+  let changeSpy: jasmine.Spy;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -15,6 +16,12 @@ describe('ToggleComponent', () => {
 
     fixture = TestBed.createComponent(ToggleComponent);
     component = fixture.componentInstance;
+  });
+
+  beforeEach(() => {
+    const change = { onChange: () => undefined };
+    changeSpy = spyOn(change, 'onChange').and.callThrough();
+    component.registerOnChange(change.onChange);
   });
 
   it('can load instance', () => {
@@ -53,14 +60,10 @@ describe('ToggleComponent', () => {
     expect(component.getDisabled).toEqual('disabled');
   });
 
-  it('can register on change callback', done => {
-    const changeCallback = () => {
-      done();
-    };
-
-    component.registerOnChange(changeCallback);
+  it('can register on change callback', () => {
     component.writeValue(true);
     expect(component.value).toEqual(true);
+    expect(changeSpy).toHaveBeenCalled();
   });
 
   it('onBlur calls default callback if none have been registered', () => {
@@ -87,38 +90,30 @@ describe('ToggleComponent', () => {
     expect(component.value).toEqual(false);
   });
 
-  it('changing value triggers change emitter and callback to be called', () => {
-    spyOn(component.change, 'emit');
-
+  it('changing value triggers change callback to be called', () => {
     component.value = true;
 
     expect(component.value).toEqual(true);
-    expect(component.change.emit).toHaveBeenCalled();
+    expect(changeSpy).toHaveBeenCalled();
   });
 
-  it('setting value to existing value does not trigger change emit', () => {
-    spyOn(component.change, 'emit');
-
+  it('setting value to existing value does not trigger change', () => {
     component.value = false;
 
-    expect(component.change.emit).not.toHaveBeenCalled();
+    expect(changeSpy).not.toHaveBeenCalled();
   });
 
-  it('writing value triggers change emitter and callback to be called', () => {
-    spyOn(component.change, 'emit');
-
+  it('writing value triggers change callback to be called', () => {
     component.writeValue(true);
 
     expect(component.value).toEqual(true);
-    expect(component.change.emit).toHaveBeenCalled();
+    expect(changeSpy).toHaveBeenCalled();
   });
 
-  it('writing value to existing value does not trigger change emit', () => {
-    spyOn(component.change, 'emit');
-
+  it('writing value to existing value does not trigger change', () => {
     component.writeValue(false);
 
-    expect(component.change.emit).not.toHaveBeenCalled();
+    expect(changeSpy).not.toHaveBeenCalled();
   });
 
   it('writing null or undefined value defaults it to false', () => {

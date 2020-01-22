@@ -84,7 +84,7 @@ export class ToggleComponent implements ControlValueAccessor {
   private _required: boolean = false;
   private _tabIndex: number = 0;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private readonly cdr: ChangeDetectorRef) {}
 
   toggle(): void {
     this.value = !this.value;
