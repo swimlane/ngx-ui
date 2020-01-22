@@ -43,6 +43,12 @@ describe('DrawerComponent', () => {
       component.direction = DrawerDirection.Bottom;
       expect(component.cssClasses).toContain('bottom-drawer');
     });
+
+    it('should set position to absolute when isRoot is set to false', () => {
+      component.isRoot = false;
+      component.ngOnInit();
+      expect(component.position).toEqual('absolute');
+    });
   });
 
   describe('onEscapeKey', () => {
@@ -54,44 +60,28 @@ describe('DrawerComponent', () => {
   });
 
   describe('setDimensions', () => {
-    it('should set size when direction left', done => {
+    it('should set width and size to 100% when component size isnt defined', () => {
       component.direction = DrawerDirection.Left;
-      component.setDimensions(10);
+      component.setDimensions(undefined);
 
-      setTimeout(() => {
-        expect(component.transform).toContain(`translate(-`);
-        done();
-      });
+      expect(component.heightSize).toEqual('100%');
+      expect(component.widthSize).toEqual('100%');
     });
 
-    it('should direction left', done => {
+    it('should set width to size and height to 100% when drawer direction is left', () => {
       component.direction = DrawerDirection.Left;
-      component.setDimensions(0);
+      component.setDimensions(50);
 
-      setTimeout(() => {
-        expect(component.transform).toEqual(`translate(100%, 0)`);
-        done();
-      });
+      expect(component.heightSize).toEqual('100%');
+      expect(component.widthSize).toEqual('50%');
     });
 
-    it('should set size when direction bottom', done => {
+    it('should set height to size and width to 100% when drawer direction is bottom', () => {
       component.direction = DrawerDirection.Bottom;
-      component.setDimensions(10);
+      component.setDimensions(50);
 
-      setTimeout(() => {
-        expect(component.transform).toContain(`translate(0px`);
-        done();
-      });
-    });
-
-    it('should direction bottom', done => {
-      component.direction = DrawerDirection.Bottom;
-      component.setDimensions(0);
-
-      setTimeout(() => {
-        expect(component.transform).toEqual(`translate(0, 100%)`);
-        done();
-      });
+      expect(component.heightSize).toEqual('50%');
+      expect(component.widthSize).toEqual('100%');
     });
   });
 });

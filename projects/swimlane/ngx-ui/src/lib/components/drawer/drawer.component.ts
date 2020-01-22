@@ -7,13 +7,15 @@ import {
   ViewEncapsulation,
   OnDestroy,
   ChangeDetectionStrategy,
-  TemplateRef
+  TemplateRef,
+  OnInit
 } from '@angular/core';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { trigger } from '@angular/animations';
 
 import { drawerTransition } from '../../animations/animations';
 import { DrawerDirection } from './drawer-direction.enum';
+import { DrawerPosition } from './drawer-position.enum';
 
 @Component({
   exportAs: 'ngxDrawer',
@@ -27,18 +29,19 @@ import { DrawerDirection } from './drawer-direction.enum';
     '[class]': 'cssClasses',
     '[style.width]': 'widthSize',
     '[style.height]': 'heightSize',
-    '[style.zIndez]': 'zIndex',
-    '[style.transform]': 'transform',
+    '[style.zIndex]': 'zIndex',
+    '[style.position]': 'position',
     '[@drawerTransition]': 'direction'
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DrawerComponent implements OnDestroy {
+export class DrawerComponent implements OnInit, OnDestroy {
   @Input() cssClass: string = '';
   @Input() direction: DrawerDirection;
   @Input() template: TemplateRef<any>;
   @Input() context: any;
+  @Input() isRoot: boolean = true;
 
   @Input()
   get size() {
@@ -46,7 +49,6 @@ export class DrawerComponent implements OnDestroy {
   }
   set size(val: number) {
     this._size = coerceNumberProperty(val);
-    this.setDimensions(this._size);
   }
 
   @Input()
@@ -74,9 +76,9 @@ export class DrawerComponent implements OnDestroy {
     return clz;
   }
 
-  transform: string;
   widthSize: string | number;
   heightSize: string | number;
+  position: DrawerPosition = DrawerPosition.fixed;
 
   private get isLeft(): boolean {
     return this.direction === DrawerDirection.Left;
@@ -90,48 +92,18 @@ export class DrawerComponent implements OnDestroy {
   private _zIndex: number;
   private _closeOnOutsideClick: boolean;
 
+  ngOnInit() {
+    this.position = this.isRoot ? DrawerPosition.fixed : DrawerPosition.absolute;
+    this.setDimensions(this.size);
+  }
+
   ngOnDestroy() {
     this.close.emit(true);
   }
 
   setDimensions(size: number): void {
-    const winWidth = window.innerWidth;
-    const winHeight = window.innerHeight;
-    let height: string;
-    let width: string;
-    let transform: string;
-
-    if (this.isLeft) {
-      if (size) {
-        const innerWidth = size;
-        const widthPercent = (innerWidth / 100) * winWidth;
-        const newWidth = Math.ceil(widthPercent);
-
-        height = '100%';
-        width = `${newWidth}px`;
-        transform = `translate(-${width}, 0px)`;
-      } else {
-        transform = 'translate(100%, 0)';
-      }
-    } else if (this.isBottom) {
-      if (size) {
-        const innerHeight = size;
-        const heightPercent = (innerHeight / 100) * winHeight;
-        const newHeight = Math.ceil(heightPercent);
-
-        width = '100%';
-        height = `${newHeight}px`;
-        transform = `translate(0px, -${height})`;
-      } else {
-        transform = 'translate(0, 100%)';
-      }
-    }
-
-    setTimeout(() => {
-      this.heightSize = height;
-      this.widthSize = width;
-      this.transform = transform;
-    });
+    this.heightSize = `${this.isBottom && size ? size : 100}%`;
+    this.widthSize = `${this.isLeft && size ? size : 100}%`;
   }
 
   @HostListener('keyup.esc')

@@ -59,6 +59,24 @@ describe('DrawerService', () => {
       expect(destroySpy).toHaveBeenCalled();
     });
 
+    it('should kill subscriptions when component closes and is not a root component', () => {
+      const component = {
+        instance: {
+          close: new EventEmitter<boolean>(),
+          zIndex: 10,
+          size: 10,
+          isRoot: false
+        }
+      };
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
+      const destroySpy = spyOn(service, 'destroy');
+
+      service.create({ isRoot: false });
+      expect(spy).toHaveBeenCalled();
+      component.instance.close.emit();
+      expect(destroySpy).toHaveBeenCalled();
+    });
+
     it('should create with options and closeOnOutsideClick', () => {
       const component = {
         instance: {
@@ -78,6 +96,62 @@ describe('DrawerService', () => {
       });
       expect(spy).toHaveBeenCalled();
       component.instance.close.emit();
+      expect(destroySpy).toHaveBeenCalled();
+    });
+
+    it('should create with isRoot set to false and a parent container supplied', () => {
+      const component = {
+        instance: {
+          close: new EventEmitter<boolean>(),
+          zIndex: 10,
+          size: 10,
+          closeOnOutsideClick: true,
+          isRoot: false
+        }
+      };
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
+      const destroySpy = spyOn(service, 'destroy');
+
+      const parentElement = document.createElement('div');
+
+      service.create({
+        zIndex: 10,
+        size: 10,
+        closeOnOutsideClick: true,
+        isRoot: false,
+        parentContainer: parentElement
+      });
+
+      expect(spy).toHaveBeenCalled();
+      component.instance.close.emit();
+      expect(destroySpy).toHaveBeenCalled();
+    });
+
+    it('Clicking on parent element destroys component when closeOnOutsideClick is true', () => {
+      const component = {
+        instance: {
+          close: new EventEmitter<boolean>(),
+          zIndex: 10,
+          size: 10,
+          closeOnOutsideClick: true,
+          isRoot: false
+        }
+      };
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
+      const destroySpy = spyOn(service, 'destroy');
+
+      const parentElement = document.createElement('div');
+
+      service.create({
+        zIndex: 10,
+        size: 10,
+        closeOnOutsideClick: true,
+        isRoot: false,
+        parentContainer: parentElement
+      });
+
+      expect(spy).toHaveBeenCalled();
+      parentElement.dispatchEvent(new Event('click'));
       expect(destroySpy).toHaveBeenCalled();
     });
   });
