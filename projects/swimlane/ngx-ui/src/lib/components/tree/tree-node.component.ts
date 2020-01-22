@@ -9,6 +9,8 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 
+import { TreeNode } from './tree-node.model';
+
 @Component({
   exportAs: 'ngxTreeNode',
   selector: 'ngx-tree-node',
@@ -19,7 +21,7 @@ import {
 export class TreeNodeComponent implements OnChanges {
   @Input() label: string;
   @Input() model: any;
-  @Input() node: any;
+  @Input() node: TreeNode;
   @Input() children: any[];
   @Input() disabled: boolean;
   @Input() expandable: boolean;
