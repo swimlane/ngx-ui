@@ -15,6 +15,7 @@
       [schemaRef]="schemaRef?.items || null"
       [schemaBuilderMode]="schemaBuilderMode"
       [arrayItem]="schemaBuilderMode"
+      [arrayName]="(schema.title ? schema.title : schema.propertyName) + '[' + (schemaBuilderMode ? '' : i) + ']'"
       [indentationArray]="indentationArray"
     >
       <div class="node-options" node-options>

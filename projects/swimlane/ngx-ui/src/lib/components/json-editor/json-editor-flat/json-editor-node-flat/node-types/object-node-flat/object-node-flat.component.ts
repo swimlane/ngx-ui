@@ -8,7 +8,7 @@ import {
   createValueForSchema
 } from '../../../../json-editor.helper';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { PropertyConfigOptions } from '../property-config/property-config.component';
+import { PropertyConfigOptions, PropertyConfigComponent } from '../property-config/property-config.component';
 
 @Component({
   selector: 'ngx-json-object-node-flat',
@@ -17,7 +17,7 @@ import { PropertyConfigOptions } from '../property-config/property-config.compon
   encapsulation: ViewEncapsulation.None
 })
 export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
-  @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<any>;
+  @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;
 
   @Input() level: number;
 
@@ -162,6 +162,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     this.schemaRef.properties[prop.propertyName] = {
       type: prop.type,
       ...(prop['format'] && { format: prop['format'] }),
+      ...(prop['title'] && { title: prop['title'] }),
       ...(prop['items'] && { items: prop['items'] }),
       ...(prop['required'] && { required: prop['required'] }),
       ...(prop['properties'] && { properties: prop['properties'] }),

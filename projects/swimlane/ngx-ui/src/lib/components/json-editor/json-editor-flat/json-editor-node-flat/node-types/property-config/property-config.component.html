@@ -7,6 +7,7 @@
   </div>
   <ngx-tabs *ngIf="property">
     <ngx-tab label="General">
+      <!-- PROPERTY NAME -->
       <ngx-input
         *ngIf="!arrayItem"
         type="text"
@@ -18,6 +19,7 @@
       >
       </ngx-input>
 
+      <!-- TITLE -->
       <ngx-input
         *ngIf="!arrayItem"
         type="text"
@@ -27,6 +29,7 @@
       >
       </ngx-input>
 
+      <!-- DESCRIPTION -->
       <ngx-input
         *ngIf="!arrayItem"
         type="text"
@@ -36,6 +39,7 @@
       >
       </ngx-input>
 
+      <!-- TYPE -->
       <ngx-select
         class="prop-types-formats"
         [filterable]="false"
@@ -47,6 +51,7 @@
         <ngx-select-option *ngFor="let propType of propTypes" [name]="propType" [value]="propType"> </ngx-select-option>
       </ngx-select>
 
+      <!-- FORMAT -->
       <ngx-select
         class="prop-types-formats"
         *ngIf="editableProperty.value.type === 'string' && formats?.length && !editableProperty.value.enum?.length"
@@ -59,6 +64,7 @@
         </ngx-select-option>
       </ngx-select>
 
+      <!-- ENUM -->
       <ngx-input
         *ngIf="editableProperty.value.type === 'string' && !editableProperty.value.format"
         type=" text"
@@ -94,6 +100,7 @@
         </ngx-select>
       </ng-container>
 
+      <!-- CONSTRAINS -->
       <div
         class="constrain-row"
         *ngIf="editableProperty.value.type === 'number' || editableProperty.value.type === 'integer'"
@@ -114,6 +121,7 @@
         <ngx-input type="number" [(ngModel)]="editableProperty.value.maxItems" [label]="'MAX ITEMS'"></ngx-input>
       </div>
 
+      <!-- PATTERN -->
       <ngx-input
         type="text"
         *ngIf="['string', 'number', 'integer'].includes($any(editableProperty.value.type))"
@@ -122,6 +130,7 @@
       >
       </ngx-input>
 
+      <!-- REQUIRED -->
       <ngx-checkbox *ngIf="!arrayItem" [(ngModel)]="required">
         Required
       </ngx-checkbox>

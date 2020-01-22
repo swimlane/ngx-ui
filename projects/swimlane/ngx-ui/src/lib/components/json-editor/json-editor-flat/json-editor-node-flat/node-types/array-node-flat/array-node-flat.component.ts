@@ -1,8 +1,8 @@
 import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef, OnInit } from '@angular/core';
 import { ArrayNode } from '../../../../node-types/array-node.component';
-import { JSONEditorSchema } from '../../../../json-editor.helper';
+import { JSONEditorSchema, JsonSchemaDataType } from '../../../../json-editor.helper';
 import { DialogService } from '../../../../../dialog/dialog.service';
-import { PropertyConfigOptions } from '../property-config/property-config.component';
+import { PropertyConfigOptions, PropertyConfigComponent } from '../property-config/property-config.component';
 
 @Component({
   selector: 'ngx-json-array-node-flat',
@@ -11,7 +11,7 @@ import { PropertyConfigOptions } from '../property-config/property-config.compon
   encapsulation: ViewEncapsulation.None
 })
 export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
-  @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<any>;
+  @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;
 
   @Input() level: number;
 
@@ -52,5 +52,9 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
     this.schema.items = options.newProperty.value;
     this.schemaRef.items = options.newProperty.value;
     this.schemaChange.emit();
+  }
+
+  addArrayItem(dataType?: JsonSchemaDataType) {
+    super.addArrayItem(dataType);
   }
 }

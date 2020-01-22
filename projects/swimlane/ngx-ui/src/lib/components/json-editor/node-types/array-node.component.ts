@@ -34,7 +34,7 @@ export class ArrayNode implements OnChanges {
   @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();
 
   requiredCache: any = {};
-  schemas: any[] = [];
+  schemas: JSONEditorSchema[] = [];
   dataTypes: JsonSchemaDataType[] = jsonSchemaDataTypes;
   dataTypeMap = dataTypeMap;
 
@@ -66,7 +66,7 @@ export class ArrayNode implements OnChanges {
   /**
    * Adds a new item to the model
    */
-  addArrayItem(dataType?: any): void {
+  addArrayItem(dataType?: JsonSchemaDataType): void {
     let schema;
     if (dataType) {
       schema = JSON.parse(JSON.stringify({ ...(this.schema.items as object), ...dataType.schema }));
@@ -163,7 +163,7 @@ export class ArrayNode implements OnChanges {
   /**
    * Updates the icons in the schemas
    */
-  private updateIcons() {
+  private updateIcons(): void {
     for (const schema of this.schemas) {
       if (!schema.$meta) {
         schema.$meta = {};
