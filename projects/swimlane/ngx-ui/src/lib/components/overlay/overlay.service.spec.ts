@@ -1,6 +1,6 @@
 import { TestBed, ComponentFixture } from '@angular/core/testing';
-import { InjectionService } from '../../services';
 
+import { InjectionService } from '../../services/injection/injection.service';
 import { OverlayModule } from './overlay.module';
 import { OverlayService } from './overlay.service';
 import { OverlayComponent } from './overlay.component';
