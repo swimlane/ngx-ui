@@ -5,6 +5,7 @@ import { DrawerService, DrawerDirection } from '@swimlane/ngx-ui';
 @Component({
   selector: 'app-drawer-page',
   templateUrl: './drawer-page.component.html',
+  styleUrls: ['./drawer-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DrawerPageComponent {
@@ -21,13 +22,22 @@ export class DrawerPageComponent {
     console.log('date changed!', val);
   }
 
-  openDrawer(direction = DrawerDirection.Left, size?, closeOnOutsideClick = true, template = this.editTmpl) {
+  openDrawer(
+    direction = DrawerDirection.Left,
+    size?,
+    closeOnOutsideClick = true,
+    template = this.editTmpl,
+    isRoot = true,
+    parentContainer?: any
+  ) {
     this.drawerMngr.create({
       direction,
       template,
       size,
       context: 'Alert Everyone!',
-      closeOnOutsideClick
+      closeOnOutsideClick,
+      parentContainer,
+      isRoot
     });
   }
 }

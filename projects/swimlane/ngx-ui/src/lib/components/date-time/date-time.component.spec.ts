@@ -7,7 +7,7 @@ import { MomentModule } from 'ngx-moment';
 import { DateTimeComponent } from './date-time.component';
 import { DialogModule } from '../dialog/dialog.module';
 import { PipesModule } from '../../pipes/pipes.module';
-import { InjectionService } from '../../services/injection.service';
+import { InjectionService } from '../../services';
 
 (moment as any).suppressDeprecationWarnings = true;
 

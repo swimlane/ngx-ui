@@ -1,15 +1,14 @@
-import { Injectable, ComponentRef } from '@angular/core';
+import { Injectable, ComponentRef, Renderer2, RendererFactory2 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { InjectionService } from '../../services/injection.service';
-import { InjectionRegisteryService } from '../../services/injection-registery.service';
+import { InjectionRegistryService, InjectionService } from '../../services';
 import { DrawerComponent } from './drawer.component';
 import { OverlayService } from '../overlay/overlay.service';
 import { DrawerDirection } from './drawer-direction.enum';
 import { DrawerOptions } from './drawer-options.interface';
 
 @Injectable()
-export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
+export class DrawerService extends InjectionRegistryService<DrawerComponent> {
   type: any = DrawerComponent;
 
   readonly defaults: DrawerOptions = {
@@ -18,16 +17,23 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
     }
   };
 
+  readonly renderer: Renderer2;
   private zIndex: number = 995;
   private size: number = 80;
+  private parentListenerFunc: () => void;
 
-  constructor(readonly injectionService: InjectionService, private readonly overlayService: OverlayService) {
+  constructor(
+    readonly injectionService: InjectionService,
+    private readonly overlayService: OverlayService,
+    private readonly rendererFactory: RendererFactory2
+  ) {
     super(injectionService);
+    this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
   create(options: DrawerOptions) {
     const component = super.create(options);
-    this.createSubscriptions(component);
+    this.createSubscriptions(component, options.isRoot, options.parentContainer);
     return component;
   }
 
@@ -63,11 +69,13 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
     return options;
   }
 
-  createSubscriptions(component: ComponentRef<DrawerComponent>) {
-    this.overlayService.show({
-      triggerComponent: component,
-      zIndex: this.zIndex
-    });
+  createSubscriptions(component: ComponentRef<DrawerComponent>, isRoot = true, parentContainer?) {
+    if (isRoot) {
+      this.overlayService.show({
+        triggerComponent: component,
+        zIndex: this.zIndex
+      });
+    }
 
     let closeSub: Subscription;
     let overlaySub: Subscription;
@@ -82,12 +90,26 @@ export class DrawerService extends InjectionRegisteryService<DrawerComponent> {
       if (overlaySub) {
         overlaySub.unsubscribe();
       }
+      if (this.parentListenerFunc && this.components.get(this.type).length === 1) {
+        this.parentListenerFunc();
+      }
       this.destroy(component);
     };
 
     closeSub = component.instance.close.subscribe(kill.bind(this, component));
     if (component.instance.closeOnOutsideClick) {
-      overlaySub = this.overlayService.click.subscribe(kill);
+      if (isRoot) {
+        overlaySub = this.overlayService.click.subscribe(kill);
+      } else {
+        const components = this.components.get(this.type);
+
+        this.parentListenerFunc = this.renderer.listen(parentContainer, 'click', evt => {
+          /* istanbul ignore else */
+          if (evt.target === parentContainer) {
+            kill(components[components.length - 1]);
+          }
+        });
+      }
     }
   }
 }

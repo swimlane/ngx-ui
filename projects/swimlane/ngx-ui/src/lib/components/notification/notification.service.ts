@@ -1,9 +1,9 @@
-import { Injectable, ComponentRef, Inject } from '@angular/core';
+import { Injectable, ComponentRef, Inject, Type } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
 
-import { InjectionService } from '../../services/injection.service';
-import { InjectionRegisteryService } from '../../services/injection-registery.service';
+import { InjectionRegistryService, InjectionService } from '../../services';
+import { PartialBindings } from '../../services/injection-registry/partial-bindings.interface';
 
 import { NotificationType } from './notification-type.enum';
 import { NotificationStyleType } from './notification-style-type.enum';
@@ -15,11 +15,11 @@ import { NotificationOptions } from './notification-options.interface';
 /** adding dynamic to suppress `Document` type metadata error  */
 /** @dynamic */
 @Injectable()
-export class NotificationService extends InjectionRegisteryService<NotificationComponent> {
+export class NotificationService extends InjectionRegistryService<NotificationComponent> {
   static readonly limit: number | boolean = 10;
   readonly defaults: NotificationOptions = {
     inputs: {
-      timeout: 2000,
+      timeout: 3000,
       rateLimit: true,
       pauseOnHover: true,
       type: NotificationType.html,
@@ -41,7 +41,7 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     super(injectionService);
   }
 
-  create(bindings: NotificationOptions) {
+  create(bindings: Partial<NotificationOptions>): ComponentRef<NotificationComponent> {
     // verify flood not happening
     if (bindings.rateLimit && this.isFlooded(bindings)) {
       return;
@@ -69,7 +69,7 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
   }
 
   startTimer(component: ComponentRef<NotificationComponent>): void {
-    if (component.instance.timeout !== false) {
+    if (component.instance && component.instance.timeout !== false) {
       clearTimeout(component.instance.timer);
 
       component.instance.timer = setTimeout(
@@ -91,23 +91,27 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     }
   }
 
-  assignDefaults(bindings: NotificationOptions) {
-    bindings = super.assignDefaults(bindings);
+  assignDefaults(options: Partial<NotificationOptions>): PartialBindings {
+    const bindings = super.assignDefaults(options as any);
+
+    if (bindings.inputs && bindings.inputs.timeout === true) {
+      bindings.inputs.timeout = this.defaults.inputs.timeout;
+    }
 
     // add a timestamp for flood checks
     bindings.inputs.timestamp = +new Date();
     return bindings;
   }
 
-  injectComponent(type: any, bindings: NotificationOptions): ComponentRef<any> {
+  injectComponent(type: Type<NotificationContainerComponent>, options: PartialBindings): ComponentRef<any> {
     if (!this.container || !this.document.contains(this.container.location.nativeElement)) {
       this.container = this.injectionService.appendComponent(NotificationContainerComponent);
     }
 
-    return this.injectionService.appendComponent(type, bindings, this.container);
+    return this.injectionService.appendComponent(type, options, this.container);
   }
 
-  createSubscriptions(component: ComponentRef<NotificationComponent>) {
+  createSubscriptions(component: ComponentRef<NotificationComponent>): any {
     let pauseSub: Subscription;
     let resumeSub: Subscription;
     let closeSub: Subscription;
@@ -133,16 +137,16 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     closeSub = component.instance.close.subscribe(kill);
   }
 
-  isFlooded(bindings: NotificationOptions): boolean {
+  isFlooded(options: Partial<NotificationOptions>): boolean {
     const compsByType = this.getByType();
 
     for (const notification of compsByType) {
       const instance = notification.instance;
 
       if (
-        instance.title === bindings.title &&
-        instance.body === bindings.body &&
-        instance.timestamp + 1000 > bindings.timestamp
+        instance.title === options.title &&
+        instance.body === options.body &&
+        instance.timestamp + 1000 > options.timestamp
       ) {
         return true;
       }
@@ -151,7 +155,7 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     return false;
   }
 
-  showNative(options: NotificationOptions) {
+  showNative(options: Partial<NotificationOptions>): any {
     if (!this.isNativeSupported) return;
     if (!this.permission) this.requestPermissions();
     if (this.permission === NotificationPermissionType.denied) return;
@@ -163,8 +167,8 @@ export class NotificationService extends InjectionRegisteryService<NotificationC
     };
 
     // manually do this
-    if (options && options.timeout !== false) {
-      setTimeout(note.close.bind(note), options.timeout as number);
+    if (options && typeof options.timeout === 'number') {
+      setTimeout(note.close.bind(note), options.timeout);
     }
 
     return note;
