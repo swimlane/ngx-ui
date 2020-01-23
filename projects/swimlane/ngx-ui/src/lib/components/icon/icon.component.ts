@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { IconRegistryService } from '../../services';
+import { IconRegistryService } from '../../services/icon-registry/icon-registry.service';
 
 @Component({
   exportAs: 'ngxIcon',

@@ -3,6 +3,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'app-tree-page',
   templateUrl: './tree-page.component.html',
+  styleUrls: ['./tree-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreePageComponent {

@@ -1,8 +1,8 @@
 import { getType } from '../../utils';
 
-import { JsonTreeNode } from './json-tree-node.interface';
+import { TreeNode } from '../../components/tree/tree-node.model';
 
-export function jsonToTree(value: any, label?: string): JsonTreeNode {
+export function jsonToTree(value: any, label?: string): TreeNode {
   const type = getType(value);
 
   let children: any[];
@@ -21,7 +21,7 @@ export function jsonToTree(value: any, label?: string): JsonTreeNode {
         label,
         expandable,
         expanded: true,
-        model: { type, value, expandable },
+        model: { type, value },
         children
       };
     case 'array':
@@ -32,14 +32,14 @@ export function jsonToTree(value: any, label?: string): JsonTreeNode {
         label,
         expandable,
         expanded: true,
-        model: { type, value, expandable },
+        model: { type, value },
         children
       };
     default:
       return {
         label,
         expandable,
-        model: { type, value, expandable }
+        model: { type, value }
       };
   }
 }

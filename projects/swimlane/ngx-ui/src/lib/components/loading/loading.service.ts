@@ -1,6 +1,6 @@
 import { Injectable, ComponentRef } from '@angular/core';
 
-import { InjectionService } from '../../services';
+import { InjectionService } from '../../services/injection/injection.service';
 import { LoadingComponent } from './loading.component';
 
 @Injectable()

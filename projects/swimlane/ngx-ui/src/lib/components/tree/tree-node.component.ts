@@ -9,6 +9,8 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 
+import { TreeNode } from './tree-node.model';
+
 @Component({
   exportAs: 'ngxTreeNode',
   selector: 'ngx-tree-node',
@@ -19,12 +21,17 @@ import {
 export class TreeNodeComponent implements OnChanges {
   @Input() label: string;
   @Input() model: any;
+  @Input() node: TreeNode;
   @Input() children: any[];
   @Input() disabled: boolean;
   @Input() expandable: boolean;
   @Input() expanded: boolean;
   @Input() selectable: boolean;
   @Input() template: TemplateRef<any>;
+  @Input() icons = {
+    collapse: 'icon-tree-collapse',
+    expand: 'icon-tree-expand'
+  };
 
   @Output() activate = new EventEmitter();
   @Output() deactivate = new EventEmitter();
@@ -38,6 +45,7 @@ export class TreeNodeComponent implements OnChanges {
 
   ngOnChanges() {
     this.data = {
+      $implicit: this.node,
       label: this.label,
       children: this.children,
       model: this.model
