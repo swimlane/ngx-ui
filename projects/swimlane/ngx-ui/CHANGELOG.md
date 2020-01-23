@@ -2,7 +2,7 @@
 
 ## HEAD (Unreleased)
 
-## 28.0.0-rc.7 (2020-01-23)
+## 28.0.0-rc.8 (2020-01-23)
 
 - Enhancement: Allow setting of tree component icons (#370)
 - Enhancement: Allow passing tree node to node template in  tree component (#370)
