@@ -29,6 +29,29 @@
             <span class="name">
               {{ label || (arrayItem ? 'Items' : schema?.title ? schema?.title : (schema?.propertyName | decamelize)) }}
             </span>
+            <ngx-icon
+              *ngIf="schema?.description || schema?.examples"
+              class="info-btn"
+              fontIcon="info-filled"
+              ngx-tooltip
+              [tooltipContext]="schema"
+              [tooltipType]="'popover'"
+              [tooltipPlacement]="'top'"
+              [tooltipTemplate]="popoverTemplate"
+            ></ngx-icon>
+
+            <ng-template #popoverTemplate let-model="model">
+              <div class="popover-template">
+                <div *ngIf="model?.description">
+                  DESCRIPTION
+                  <div>{{ model?.description }}</div>
+                </div>
+                <div *ngIf="model?.examples">
+                  EXAMPLES
+                  <div *ngFor="let example of model?.examples">{{ example }}</div>
+                </div>
+              </div>
+            </ng-template>
           </div>
 
           <ngx-input
@@ -146,15 +169,8 @@
                 [disabled]="true"
               >
                 <ngx-input-suffix>
-                  <button>
-                    <ngx-icon
-                      fontIcon="edit"
-                      class="edit-code-icon"
-                      ngx-tooltip
-                      tooltipTitle="Edit Code"
-                      (click)="openCodeEditor()"
-                    >
-                    </ngx-icon>
+                  <button (click)="openCodeEditor()">
+                    <ngx-icon fontIcon="edit" class="edit-code-icon" ngx-tooltip tooltipTitle="Edit Code"> </ngx-icon>
                   </button>
                 </ngx-input-suffix>
               </ngx-input>

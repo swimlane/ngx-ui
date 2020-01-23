@@ -1,6 +1,13 @@
 @import 'colors/variables';
 @import '../../json-editor.extensions.scss';
 
+.popover-template {
+  color: $color-blue-grey-400;
+  font-weight: bold;
+  font-size: 10px;
+  line-height: 13px;
+}
+
 .json-tree-node-flat {
   .indentation {
     @extend %indentation;
@@ -88,17 +95,18 @@
         flex-basis: 30%;
         padding-right: 25px;
 
+        .info-name .info-btn {
+          color: $color-blue-grey-350;
+          font-size: 12px;
+          margin-left: 5px;
+        }
+
         .name,
         .editable-name input {
           font-weight: 600;
           font-size: 18px;
           line-height: 23px;
           color: #f0f1f6;
-        }
-
-        .info-icon {
-          color: $color-blue-grey-400;
-          font-size: 12px;
         }
 
         .property-name,
