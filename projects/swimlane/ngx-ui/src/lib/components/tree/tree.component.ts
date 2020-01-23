@@ -17,6 +17,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { TreeNodeComponent } from './tree-node.component';
+import { TreeNode } from './tree-node.model';
 
 @Component({
   selector: 'ngx-tree',
@@ -26,10 +27,15 @@ import { TreeNodeComponent } from './tree-node.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeComponent implements AfterContentInit, OnDestroy {
-  @Input() nodes: any[];
+  @Input() nodes: TreeNode[];
 
   @Input('template')
   _templateInput: TemplateRef<any>;
+
+  @Input() icons = {
+    collapse: 'icon-tree-collapse',
+    expand: 'icon-tree-expand'
+  };
 
   @ContentChild(TemplateRef, { static: true })
   _templateQuery: TemplateRef<any>;

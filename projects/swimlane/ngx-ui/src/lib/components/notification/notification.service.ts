@@ -2,7 +2,8 @@ import { Injectable, ComponentRef, Inject, Type } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { Subscription } from 'rxjs';
 
-import { InjectionRegistryService, InjectionService } from '../../services';
+import { InjectionService } from '../../services/injection/injection.service';
+import { InjectionRegistryService } from '../../services/injection-registry/injection-registry.service';
 import { PartialBindings } from '../../services/injection-registry/partial-bindings.interface';
 
 import { NotificationType } from './notification-type.enum';

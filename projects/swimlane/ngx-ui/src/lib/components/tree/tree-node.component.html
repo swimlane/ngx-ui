@@ -10,11 +10,8 @@
     *ngIf="expandable"
     class="ngx-expander"
     (click)="onExpandClick()"
-    [ngClass]="{
-      'icon-tree-collapse': expanded,
-      'icon-tree-expand': !expanded,
-      disabled: disabled
-    }"
+    [class.disabled]="disabled"
+    [ngClass]="expanded ? icons.expand : icons.collapse"
   >
   </span>
   <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="ngx-node-label"> </span>
@@ -25,6 +22,7 @@
     class="ngx-sub-tree"
     [nodes]="children"
     [template]="template"
+    [icons]="icons"
   >
   </ngx-tree>
 </li>

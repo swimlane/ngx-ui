@@ -2,6 +2,11 @@
 
 ## HEAD (Unreleased)
 
+## 28.0.0-rc.8 (2020-01-23)
+
+- Enhancement: Allow setting of tree component icons (#370)
+- Enhancement: Allow passing tree node to node template in  tree component (#370)
+
 ## 28.0.0-rc.5 (2020-01-13)
 
 - Enhancement: Allow view container injection (#360)

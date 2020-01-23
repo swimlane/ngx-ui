@@ -1,7 +1,8 @@
 import { Injectable, ComponentRef, Renderer2, RendererFactory2 } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { InjectionRegistryService, InjectionService } from '../../services';
+import { InjectionService } from '../../services/injection/injection.service';
+import { InjectionRegistryService } from '../../services/injection-registry/injection-registry.service';
 import { DrawerComponent } from './drawer.component';
 import { OverlayService } from '../overlay/overlay.service';
 import { DrawerDirection } from './drawer-direction.enum';

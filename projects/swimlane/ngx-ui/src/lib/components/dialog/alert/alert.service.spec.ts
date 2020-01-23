@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { EventEmitter } from '@angular/core';
 
-import { InjectionService } from '../../../services';
+import { InjectionService } from '../../../services/injection/injection.service';
 import { OverlayService } from '../../overlay/overlay.service';
 import { AlertTypes } from './alert-types.enum';
 import { AlertService } from './alert.service';

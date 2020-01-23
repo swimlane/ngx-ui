@@ -2,8 +2,10 @@
   <ul class="vertical-list">
     <ngx-tree-node
       *ngFor="let node of nodes"
+      [node]="node"
       [expandable]="node.expandable"
       [expanded]="node.expanded"
+      [icons]="icons"
       [label]="node.label"
       [model]="node.model"
       [children]="node.children"
