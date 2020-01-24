@@ -89,12 +89,12 @@ $dialog-body-color: $color-grey-300;
 
           .ngx-tab {
             background: $color-blue-grey-775;
-  
+
             button {
               padding: 0.6em 0.75em;
               text-transform: uppercase;
             }
-  
+
             &.active {
               background: $color-blue-grey-700;
             }
