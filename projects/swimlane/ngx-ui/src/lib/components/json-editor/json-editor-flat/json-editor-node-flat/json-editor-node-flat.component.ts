@@ -34,6 +34,8 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() arrayName = '';
 
+  @Input() compressed: boolean;
+
   @Input() indentationArray: number[];
 
   @Output() updatePropertyNameEvent = new EventEmitter<{ id: string | number; name: string }>();

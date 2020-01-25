@@ -2,7 +2,7 @@
 <ngx-section class="shadow" [sectionTitle]="'JSON Editor'">
   <ngx-tabs>
     <ngx-tab label="Editor">
-      <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor'">
+      <!-- <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor'">
         <ngx-json-editor
           [(model)]="jsonEditorModel"
           [schema]="jsonEditorSchema"
@@ -10,9 +10,9 @@
           [typeCheckOverrides]="typeOverrides"
         >
         </ngx-json-editor>
-      </ngx-section>
+      </ngx-section> -->
 
-      <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat'">
+      <!-- <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat'">
         <ngx-json-editor-flat
           [(model)]="jsonEditorModel"
           [schema]="jsonEditorSchema"
@@ -24,11 +24,11 @@
       <hr />
       <h3>Model</h3>
       <pre>{{ jsonEditorModel | json }}</pre>
-      <br />
+      <br /> -->
       <ngx-section class="shadow" [sectionTitle]="'Schema Builder Mode'">
         <ngx-json-editor-flat
           [(model)]="jsonEditorSchemaBuilderModel"
-          [schema]="{}"
+          [schema]="jsonEditorSchema"
           label="Schema"
           [typeCheckOverrides]="typeOverrides"
           [schemaBuilderMode]="true"
@@ -43,8 +43,11 @@
     </ngx-tab>
     <ngx-tab label="Schema">
       <ngx-button class="btn btn-primary" (click)="updateJsonEditorSchema(_jsonEditorSchema)">Update Schema</ngx-button>
-      <ngx-codemirror mode="javascript" [ngModel]="jsonEditorSchema | json"
-        (ngModelChange)="_jsonEditorSchema = $event"></ngx-codemirror>
+      <ngx-codemirror
+        mode="javascript"
+        [ngModel]="jsonEditorSchema | json"
+        (ngModelChange)="_jsonEditorSchema = $event"
+      ></ngx-codemirror>
     </ngx-tab>
   </ngx-tabs>
 

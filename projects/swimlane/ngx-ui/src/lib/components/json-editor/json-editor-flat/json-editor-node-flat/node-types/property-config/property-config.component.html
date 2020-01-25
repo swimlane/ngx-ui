@@ -6,7 +6,7 @@
     </button>
   </div>
   <ngx-tabs *ngIf="property">
-    <ngx-tab label="General">
+    <ngx-tab label="GENERAL">
       <!-- PROPERTY NAME -->
       <ngx-input
         *ngIf="!arrayItem"
@@ -134,6 +134,13 @@
       <ngx-checkbox *ngIf="!arrayItem" [(ngModel)]="required">
         Required
       </ngx-checkbox>
+    </ngx-tab>
+    <ngx-tab label="EXAMPLE VALUES">
+      <div class="examples-container">
+        <div class="add-examples">
+          Add Example
+        </div>
+      </div>
     </ngx-tab>
   </ngx-tabs>
 </div>

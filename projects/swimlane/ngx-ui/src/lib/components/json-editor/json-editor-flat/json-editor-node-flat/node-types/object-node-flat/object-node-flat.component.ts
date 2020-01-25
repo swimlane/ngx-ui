@@ -25,6 +25,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
   @Input() formats: string[];
 
+  @Input() compressed: boolean;
+
   indentationArray: number[] = [];
 
   constructor(private dialogService: DialogService) {

@@ -3,7 +3,7 @@
     <div class="indentation" *ngIf="level > 0" [style.left]="-1 * (level * 20) + 'px'">
       <span class="separator" *ngFor="let separator of indentationArray"></span>
     </div>
-    <div class="node">
+    <div class="node" [class.compressed]="compressed">
       <div class="error-box" *ngIf="!valid && !schemaBuilderMode"></div>
 
       <div class="left-options">
@@ -22,6 +22,7 @@
 
       <div class="node-content" [class.extra-margin]="schema.nameEditable && !schemaBuilderMode">
         <div class="node-info">
+          <!-- Property name/title -->
           <div
             class="info-name"
             *ngIf="(!schema.nameEditable || schemaBuilderMode) && (schema?.propertyName || label || arrayItem)"
@@ -42,18 +43,19 @@
 
             <ng-template #popoverTemplate let-model="model">
               <div class="popover-template">
-                <div *ngIf="model?.description">
-                  DESCRIPTION
+                <div class="tooltip-description" *ngIf="model?.description">
+                  <div class="label">DESCRIPTION</div>
                   <div>{{ model?.description }}</div>
                 </div>
-                <div *ngIf="model?.examples">
-                  EXAMPLES
+                <div class="tooltip-examples" *ngIf="model?.examples">
+                  <div class="label">EXAMPLES</div>
                   <div *ngFor="let example of model?.examples">{{ example }}</div>
                 </div>
               </div>
             </ng-template>
           </div>
 
+          <!-- Inline text editing-->
           <ngx-input
             class="editable-name"
             type="text"
@@ -74,7 +76,8 @@
             <span class="property-name">{{ arrayName ? arrayName : schema?.propertyName }}</span>
           </div>
 
-          <span class="description">{{ schema?.description }}</span>
+          <!-- Description -->
+          <span *ngIf="!compressed" class="description">{{ schema?.description }}</span>
         </div>
 
         <div *ngIf="!schemaBuilderMode" class="node-input">
@@ -235,6 +238,7 @@
       [errors]="childrenErrors"
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="level"
+      [compressed]="compressed"
       [schemaBuilderMode]="schemaBuilderMode"
       [formats]="formats"
       (schemaChange)="schemaChange.emit(schemaRef)"
@@ -251,6 +255,7 @@
       [expanded]="expanded"
       (modelChange)="updateModel($event)"
       [path]="path"
+      [compressed]="compressed"
       [errors]="childrenErrors"
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="level"

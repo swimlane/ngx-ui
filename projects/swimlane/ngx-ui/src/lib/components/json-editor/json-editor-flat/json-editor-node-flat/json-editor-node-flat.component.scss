@@ -2,10 +2,19 @@
 @import '../../json-editor.extensions.scss';
 
 .popover-template {
-  color: $color-blue-grey-400;
-  font-weight: bold;
-  font-size: 10px;
+  font-weight: 600;
+  font-size: 12px;
   line-height: 13px;
+
+  .label {
+    color: $color-blue-grey-400;
+    font-size: 10px;
+    font-weight: bold;
+  }
+
+  .tooltip-examples {
+    margin-top: 8px;
+  }
 }
 
 .json-tree-node-flat {
@@ -26,6 +35,10 @@
     padding: 25px 10px;
     position: relative;
     flex: 1;
+
+    &.compressed {
+      max-height: 80px;
+    }
 
     .error-box {
       position: absolute;
@@ -99,6 +112,8 @@
           color: $color-blue-grey-350;
           font-size: 12px;
           margin-left: 5px;
+          position: relative;
+          z-index: 1;
         }
 
         .name,

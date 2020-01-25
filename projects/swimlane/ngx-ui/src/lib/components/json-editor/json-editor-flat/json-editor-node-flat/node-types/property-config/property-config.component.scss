@@ -63,4 +63,19 @@
       text-transform: capitalize;
     }
   }
+
+  .examples-container {
+    border: 1px solid $color-blue-grey-550;
+    padding: 14px;
+
+    .add-examples {
+      cursor: pointer;
+      height: 45px;
+      border: 1px dashed $color-blue-400;
+      color: $color-blue-400;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
 }
