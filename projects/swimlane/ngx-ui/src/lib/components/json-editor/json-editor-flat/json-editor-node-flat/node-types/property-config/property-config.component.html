@@ -137,9 +137,10 @@
     </ngx-tab>
     <ngx-tab label="EXAMPLE VALUES">
       <div class="examples-container">
-        <div class="add-examples">
-          Add Example
-        </div>
+        <ngx-orderable-inputs-list
+          [data]="editableProperty.value.examples"
+          (onUpdate)="updateExamples($event)"
+        ></ngx-orderable-inputs-list>
       </div>
     </ngx-tab>
   </ngx-tabs>

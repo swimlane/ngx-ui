@@ -72,6 +72,14 @@ export class PropertyConfigComponent implements OnInit {
     }
   }
 
+  updateExamples(examples: string[]): void {
+    if (examples && examples.length) {
+      this.editableProperty.value['examples'] = examples;
+    } else {
+      delete this.editableProperty.value.examples;
+    }
+  }
+
   updateFormat(format: string): void {
     if (this.editableProperty.value['format'] !== format) {
       this.editableProperty.value['type'] = 'string';
