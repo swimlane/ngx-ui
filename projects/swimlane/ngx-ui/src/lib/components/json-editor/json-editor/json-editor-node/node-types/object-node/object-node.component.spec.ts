@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { jsonSchemaDataTypes, dataTypeMap } from '../../../../json-editor.helper';
+import { jsonSchemaDataTypes, dataTypeMap, jsonSchemaDataFormats } from '../../../../json-editor.helper';
 import { ObjectNodeComponent } from './object-node.component';
 import { PipesModule } from '../../../../../../pipes/pipes.module';
 
@@ -23,7 +23,7 @@ describe('ObjectNodeComponent', () => {
     expect(component.required).toEqual(false);
   });
   it('dataTypes defaults to: jsonSchemaDataTypes', () => {
-    expect(component.dataTypes).toEqual(jsonSchemaDataTypes);
+    expect(component.dataTypes).toEqual([...jsonSchemaDataTypes, ...jsonSchemaDataFormats]);
   });
   it('propertyCounter defaults to: 1', () => {
     expect(component.propertyCounter).toEqual(1);
