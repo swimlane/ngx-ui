@@ -3,6 +3,7 @@ import { ObjectNode } from '../../../../node-types/object-node.component';
 import { DialogService } from '../../../../../dialog/dialog.service';
 import {
   JsonSchemaDataType,
+  jsonSchemaDataTypes,
   JSONEditorSchema,
   ObjectProperty,
   createValueForSchema
@@ -23,7 +24,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
   @Input() schemaBuilderMode: boolean;
 
-  @Input() formats: string[];
+  @Input() formats: JsonSchemaDataType[];
 
   @Input() compressed: boolean;
 
@@ -34,6 +35,10 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   }
 
   ngOnInit() {
+    if (this.schemaBuilderMode) {
+      this.dataTypes = [...jsonSchemaDataTypes, ...this.formats];
+    }
+
     setTimeout(() => {
       this.initSchemaProperties(this.schema);
       this.initSchemaProperties(this.schemaRef);

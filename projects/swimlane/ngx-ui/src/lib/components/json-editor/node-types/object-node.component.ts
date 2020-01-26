@@ -3,6 +3,7 @@ import { Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges } from '@
 import {
   createValueForSchema,
   jsonSchemaDataTypes,
+  jsonSchemaDataFormats,
   inferType,
   dataTypeMap,
   getIcon,
@@ -38,7 +39,7 @@ export class ObjectNode implements OnInit, OnChanges {
 
   requiredCache: { [key: string]: boolean } = {};
 
-  dataTypes: JsonSchemaDataType[] = jsonSchemaDataTypes;
+  dataTypes: JsonSchemaDataType[] = [...jsonSchemaDataTypes, ...jsonSchemaDataFormats];
   propertyCounter: number = 1;
   propertyId: number = 1;
   propertyIndex: PropertyIndex = {};

@@ -43,11 +43,12 @@
 
             <ng-template #popoverTemplate let-model="model">
               <div class="popover-template">
-                <div class="tooltip-description" *ngIf="model?.description">
+                <div *ngIf="model?.description">
                   <div class="label">DESCRIPTION</div>
                   <div>{{ model?.description }}</div>
                 </div>
-                <div class="tooltip-examples" *ngIf="model?.examples">
+                <div class="separator" *ngIf="model?.description && model?.examples"></div>
+                <div *ngIf="model?.examples">
                   <div class="label">EXAMPLES</div>
                   <div *ngFor="let example of model?.examples">{{ example }}</div>
                 </div>
@@ -253,6 +254,7 @@
       [schemaRef]="schemaRef"
       [model]="model"
       [expanded]="expanded"
+      [formats]="formats"
       (modelChange)="updateModel($event)"
       [path]="path"
       [compressed]="compressed"

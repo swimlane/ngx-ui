@@ -60,7 +60,11 @@
         (ngModelChange)="updateFormat($event[0])"
         [label]="'FORMAT'"
       >
-        <ngx-select-option *ngFor="let propFormat of formats" [name]="propFormat" [value]="propFormat">
+        <ngx-select-option
+          *ngFor="let propFormat of formats"
+          [name]="propFormat.name"
+          [value]="propFormat.schema.format"
+        >
         </ngx-select-option>
       </ngx-select>
 

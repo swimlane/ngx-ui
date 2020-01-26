@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef, OnInit } from '@angular/core';
 import { ArrayNode } from '../../../../node-types/array-node.component';
-import { JSONEditorSchema, JsonSchemaDataType } from '../../../../json-editor.helper';
+import { JSONEditorSchema, JsonSchemaDataType, jsonSchemaDataTypes } from '../../../../json-editor.helper';
 import { DialogService } from '../../../../../dialog/dialog.service';
 import { PropertyConfigOptions, PropertyConfigComponent } from '../property-config/property-config.component';
 
@@ -17,7 +17,7 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
 
   @Input() schemaBuilderMode: boolean;
 
-  @Input() formats: string[];
+  @Input() formats: JsonSchemaDataType[];
 
   @Input() compressed: boolean;
 
@@ -28,6 +28,10 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
   }
 
   ngOnInit() {
+    if (this.schemaBuilderMode) {
+      this.dataTypes = [...jsonSchemaDataTypes, ...this.formats];
+    }
+
     if (this.schemaBuilderMode && !this.model.length && this.schemaRef.items && this.schemaRef.items.type) {
       this.model.push(this.schemaRef.items);
     }

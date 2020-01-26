@@ -87,6 +87,31 @@ export const jsonSchemaDataTypes: JsonSchemaDataType[] = [
     }
   },
   {
+    name: 'Object',
+    defaultValue: () => JSON.parse(JSON.stringify({})),
+    schema: {
+      type: 'object'
+    },
+    icon: 'reference-tree',
+    matchType: (value: any): boolean => {
+      return typeof value === 'object';
+    }
+  },
+  {
+    name: 'Array',
+    defaultValue: () => JSON.parse(JSON.stringify([])),
+    schema: {
+      type: 'array'
+    },
+    icon: 'integrations',
+    matchType: (value: any): boolean => {
+      return Array.isArray(value);
+    }
+  }
+];
+
+export const jsonSchemaDataFormats: JsonSchemaDataType[] = [
+  {
     name: 'Date',
     defaultValue: () => '',
     schema: {
@@ -133,33 +158,11 @@ export const jsonSchemaDataTypes: JsonSchemaDataType[] = [
     matchType: (): boolean => {
       return false; // needs to be overriden
     }
-  },
-  {
-    name: 'Object',
-    defaultValue: () => JSON.parse(JSON.stringify({})),
-    schema: {
-      type: 'object'
-    },
-    icon: 'reference-tree',
-    matchType: (value: any): boolean => {
-      return typeof value === 'object';
-    }
-  },
-  {
-    name: 'Array',
-    defaultValue: () => JSON.parse(JSON.stringify([])),
-    schema: {
-      type: 'array'
-    },
-    icon: 'integrations',
-    matchType: (value: any): boolean => {
-      return Array.isArray(value);
-    }
   }
 ];
 
 export const dataTypeMap: {} = {};
-for (const dType of jsonSchemaDataTypes) {
+for (const dType of [...jsonSchemaDataTypes, ...jsonSchemaDataFormats]) {
   let key = dType.schema.type;
   if (dType.schema.format) {
     key = `${key}=${dType.schema.format}`;

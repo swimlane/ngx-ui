@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { DialogService } from '../../../../../dialog/dialog.service';
-import { JSONEditorSchema, ObjectProperty, propTypes } from '../../../../json-editor.helper';
+import { JSONEditorSchema, ObjectProperty, propTypes, JsonSchemaDataType } from '../../../../json-editor.helper';
 import { JSONSchema7TypeName } from 'json-schema';
 
 export interface PropertyConfigOptions {
@@ -23,7 +23,7 @@ export class PropertyConfigComponent implements OnInit {
 
   @Input() schema: JSONEditorSchema;
 
-  @Input() formats: string[] = [];
+  @Input() formats: JsonSchemaDataType[] = [];
 
   @Input() arrayItem = false;
 
@@ -63,12 +63,6 @@ export class PropertyConfigComponent implements OnInit {
       delete this.editableProperty.value['format'];
 
       this.cleanUpPropertyConstrains();
-
-      if (type === 'array') {
-        this.editableProperty.value['items'] = {
-          type: 'string'
-        };
-      }
     }
   }
 
