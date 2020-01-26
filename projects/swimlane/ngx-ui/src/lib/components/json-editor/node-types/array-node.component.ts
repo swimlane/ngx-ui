@@ -8,7 +8,8 @@ import {
   getIcon,
   getCurrentType,
   JsonSchemaDataType,
-  JSONEditorSchema
+  JSONEditorSchema,
+  jsonSchemaDataFormats
 } from '../json-editor.helper';
 
 export class ArrayNode implements OnChanges {
@@ -35,7 +36,7 @@ export class ArrayNode implements OnChanges {
 
   requiredCache: any = {};
   schemas: JSONEditorSchema[] = [];
-  dataTypes: JsonSchemaDataType[] = jsonSchemaDataTypes;
+  dataTypes: JsonSchemaDataType[] = [...jsonSchemaDataTypes, ...jsonSchemaDataFormats];
   dataTypeMap = dataTypeMap;
 
   _array = Array;
