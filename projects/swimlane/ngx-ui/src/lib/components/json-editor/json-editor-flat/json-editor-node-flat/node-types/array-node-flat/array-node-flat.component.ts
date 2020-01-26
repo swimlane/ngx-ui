@@ -28,7 +28,7 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
   }
 
   ngOnInit() {
-    if (this.schemaBuilderMode && !this.model.length) {
+    if (this.schemaBuilderMode && !this.model.length && this.schemaRef.items && this.schemaRef.items.type) {
       this.model.push(this.schemaRef.items);
     }
 
@@ -57,6 +57,36 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
   }
 
   addArrayItem(dataType?: JsonSchemaDataType) {
-    super.addArrayItem(dataType);
+    if (this.schemaBuilderMode && dataType) {
+      this.addDefaultItemForSchemaBuilder(dataType);
+    } else {
+      super.addArrayItem(dataType);
+    }
+  }
+
+  deleteArrayItem(index: number): void {
+    if (this.schemaBuilderMode) {
+      this.removeDefaultItemForSchemaBuilder();
+    } else {
+      super.deleteArrayItem(index);
+    }
+  }
+
+  addDefaultItemForSchemaBuilder(dataType: JsonSchemaDataType): void {
+    this.schema.items = dataType.schema as object;
+    this.schemaRef.items = dataType.schema as object;
+
+    this.model.push(this.schemaRef.items);
+
+    this.schemaChange.emit();
+  }
+
+  private removeDefaultItemForSchemaBuilder(): void {
+    delete this.schema.items;
+    delete this.schemaRef.items;
+
+    this.model = [];
+
+    this.schemaChange.emit();
   }
 }

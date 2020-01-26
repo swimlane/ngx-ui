@@ -30,7 +30,7 @@
         </button>
         <ngx-dropdown [showCaret]="true">
           <ngx-dropdown-toggle>
-            <button type="button" class="node-options-btn" [disabled]="schemaBuilderMode">
+            <button type="button" class="node-options-btn">
               <i class="ngx-icon ngx-dots-vert-round"></i>
             </button>
           </ngx-dropdown-toggle>
@@ -52,7 +52,7 @@
     </ngx-json-editor-node-flat>
   </div>
 
-  <div class="add-button" [class.background]="level" *ngIf="!schemaBuilderMode">
+  <div class="add-button" [class.background]="level" *ngIf="!schemaBuilderMode || !model.length">
     <span class="separator" *ngFor="let separator of indentationArray"></span>
     <div class="indented-content">
       <ngx-dropdown [showCaret]="true">

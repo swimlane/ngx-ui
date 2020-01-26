@@ -86,7 +86,7 @@
           </button>
         </ngx-dropdown-toggle>
         <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
-          <ul class="vertical-list dropdown-column" *ngIf="schema.properties">
+          <ul class="vertical-list dropdown-column" *ngIf="schema.properties && !schemaBuilderMode">
             <li *ngFor="let prop of schema.properties | keyvalue" (click)="addSchemaProperty(prop.key)">
               <button [disabled]="model[prop.key] !== undefined" type="button">
                 {{ prop.value.title ? prop.value.title : prop.key }}

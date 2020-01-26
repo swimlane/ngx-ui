@@ -99,15 +99,6 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     super.addProperty(dataType);
 
     if (this.schemaBuilderMode) {
-      if (dataType.name === 'Array') {
-        this.propertyIndex[this.propertyId - 1] = {
-          ...this.propertyIndex[this.propertyId - 1],
-          items: {
-            type: 'string'
-          }
-        };
-      }
-
       this.updateSchemaRefProperty(this.propertyIndex[this.propertyId - 1]);
       this.schemaChange.emit();
       this.update();
