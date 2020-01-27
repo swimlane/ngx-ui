@@ -84,4 +84,19 @@ describe('DrawerComponent', () => {
       expect(component.widthSize).toEqual('100%');
     });
   });
+
+  describe('onWindowResize', () => {
+    it('should resize when root', () => {
+      const spy = spyOn(component, 'setDimensions');
+      component.onWindowResize();
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('should not resize when not root', () => {
+      const spy = spyOn(component, 'setDimensions');
+      component.isRoot = false;
+      component.onWindowResize();
+      expect(spy).not.toHaveBeenCalled();
+    });
+  });
 });
