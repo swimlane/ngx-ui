@@ -24,7 +24,7 @@ export class DrawerPageComponent {
 
   openDrawer(
     direction = DrawerDirection.Left,
-    size?,
+    size?: number,
     closeOnOutsideClick = true,
     template = this.editTmpl,
     isRoot = true,

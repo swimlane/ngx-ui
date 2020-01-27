@@ -110,4 +110,11 @@ export class DrawerComponent implements OnInit, OnDestroy {
   onEscapeKey(): void {
     this.close.emit(true);
   }
+
+  @HostListener('window:resize')
+  onWindowResize(): void {
+    if (this.isRoot) {
+      this.setDimensions(this.size);
+    }
+  }
 }
