@@ -20,6 +20,11 @@
     }
   }
 
+  .ngx-tab-content {
+    max-height: 65vh;
+    overflow: auto;
+  }
+
   .new-enum-input {
     button {
       color: $color-grey-500;
