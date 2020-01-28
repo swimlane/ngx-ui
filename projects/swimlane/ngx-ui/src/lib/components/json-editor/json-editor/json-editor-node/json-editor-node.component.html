@@ -60,6 +60,7 @@
       <input
         class="value-input"
         type="number"
+        [placeholder]="placeholder"
         [ngModel]="model"
         (ngModelChange)="updateModel($event)"
         [required]="required"
@@ -80,6 +81,7 @@
           *ngIf="!schema?.enum"
           class="value-input"
           type="text"
+          [placeholder]="placeholder"
           [ngModel]="model"
           (ngModelChange)="updateModel($event)"
           [required]="required"
@@ -94,6 +96,7 @@
         <input
           class="value-input"
           type="password"
+          [placeholder]="placeholder"
           [ngModel]="model"
           (ngModelChange)="updateModel($event)"
           [required]="required"
@@ -105,6 +108,7 @@
         <input
           class="value-input"
           type="date"
+          [placeholder]="placeholder"
           [ngModel]="model"
           (ngModelChange)="updateModel($event)"
           [required]="required"
@@ -116,6 +120,7 @@
         <input
           class="value-input"
           type="datetime-local"
+          [placeholder]="placeholder"
           [ngModel]="model"
           (ngModelChange)="updateModel($event)"
           [required]="required"

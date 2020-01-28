@@ -20,7 +20,11 @@ export class JsonEditorPageComponent {
       },
       productName: {
         description: 'Name of the product',
-        type: 'string'
+        type: 'string',
+        examples: [
+          'this is an example',
+          'another example'
+        ]
       },
       price: {
         description: 'The price of the product',
