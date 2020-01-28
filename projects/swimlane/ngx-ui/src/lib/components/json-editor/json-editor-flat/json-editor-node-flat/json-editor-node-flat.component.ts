@@ -25,7 +25,6 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
   @Output() updatePropertyNameEvent = new EventEmitter<{ id: string; name: string }>();
 
   indentationArray: number[] = [];
-  placeholder: string = '';
 
   constructor(public dialogMngr: DialogService) {
     super(dialogMngr);
@@ -33,13 +32,8 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   ngOnInit() {
     this.level += 1;
-
     if (this.level > 1) {
       this.indentationArray = Array(this.level - 1).fill(this.level);
-    }
-
-    if (this.schema.examples && Array.isArray(this.schema.examples)) {
-      this.placeholder = this.schema.examples.join(', ');
     }
   }
 

@@ -29,7 +29,7 @@
       <div class="node-input">
         <!-- Number | Integer -->
         <div *ngIf="schema?.type === 'number' || schema?.type === 'integer'">
-          <ngx-input type="number" [placeholder]="placeholder" [ngModel]="model" (ngModelChange)="updateModel($event)" [requiredIndicator]="false"
+          <ngx-input type="number" [ngModel]="model" (ngModelChange)="updateModel($event)" [requiredIndicator]="false"
             [required]="required"></ngx-input>
         </div>
 
@@ -44,11 +44,11 @@
         <ng-container *ngIf="schema?.type === 'string'">
           <!-- No format -->
           <div *ngIf="!schema.format">
-            <ngx-input *ngIf="!schema?.enum" type="text" [placeholder]="placeholder" [ngModel]="model" (change)="updateModel($event)"
+            <ngx-input *ngIf="!schema?.enum" type="text" [ngModel]="model" (change)="updateModel($event)"
               [requiredIndicator]="false" [required]="required">
             </ngx-input>
 
-            <ngx-select [filterable]="false" [placeholder]="placeholder" *ngIf="schema?.enum" [ngModel]="[model]"
+            <ngx-select [filterable]="false" *ngIf="schema?.enum" [ngModel]="[model]"
               (ngModelChange)="updateModel($event[0])" [required]="required" [allowClear]="false">
               <ngx-select-option *ngFor="let option of schema.enum" [name]="option" [value]="option">
               </ngx-select-option>
@@ -57,25 +57,25 @@
 
           <!-- Password -->
           <div *ngIf="schema.format === 'password'">
-            <ngx-input type="password" [placeholder]="placeholder" [ngModel]="model" (ngModelChange)="updateModel($event)"
+            <ngx-input type="password" [ngModel]="model" (ngModelChange)="updateModel($event)"
               [requiredIndicator]="false" [required]="required"></ngx-input>
           </div>
 
           <!-- Date -->
           <div *ngIf="schema.format === 'date'">
-            <ngx-input type="date" [placeholder]="placeholder" [ngModel]="model" (ngModelChange)="updateModel($event)" [requiredIndicator]="false"
+            <ngx-input type="date" [ngModel]="model" (ngModelChange)="updateModel($event)" [requiredIndicator]="false"
               [required]="required"></ngx-input>
           </div>
 
           <!-- DateTime -->
           <div *ngIf="schema.format === 'date-time'">
-            <ngx-input type="datetime-local" [placeholder]="placeholder" [ngModel]="model" (ngModelChange)="updateModel($event)"
+            <ngx-input type="datetime-local" [ngModel]="model" (ngModelChange)="updateModel($event)"
               [requiredIndicator]="false" [required]="required"></ngx-input>
           </div>
 
           <!-- Code -->
           <div *ngIf="schema.format === 'code'" class="code">
-            <ngx-input type="text" [placeholder]="placeholder" [ngModel]="model" [requiredIndicator]="false" [required]="required"
+            <ngx-input type="text" [ngModel]="model" [requiredIndicator]="false" [required]="required"
               [disabled]="true">
               <ngx-input-suffix>
                 <button>
