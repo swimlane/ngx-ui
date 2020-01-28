@@ -80,6 +80,8 @@ export class JsonEditorNode implements OnInit, OnChanges {
     }
   ];
 
+  placeholder: string = '';
+
   constructor(public dialogMngr: DialogService) {}
 
   ngOnInit() {
@@ -110,6 +112,10 @@ export class JsonEditorNode implements OnInit, OnChanges {
         this.schema.type = this.schema.type[0];
         this.schema.$meta.currentType = this.schema.type;
       }
+    }
+
+    if (this.schema.examples && Array.isArray(this.schema.examples)) {
+      this.placeholder = this.schema.examples.join(', ');
     }
 
     setTimeout(() => {
