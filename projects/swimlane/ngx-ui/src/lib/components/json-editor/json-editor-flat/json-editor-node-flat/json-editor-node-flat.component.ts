@@ -32,6 +32,7 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   ngOnInit() {
     this.level += 1;
+
     if (this.level > 1) {
       this.indentationArray = Array(this.level - 1).fill(this.level);
     }
