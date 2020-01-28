@@ -36,8 +36,6 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
     if (this.level > 1) {
       this.indentationArray = Array(this.level - 1).fill(this.level);
     }
-
-    super.ngOnInit();
   }
 
   updatePropertyName(id: string, name: string): void {
