@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/
 import { Subject, BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { FADE_IN_ANIMATION, SLIDE_DOWN_ANIMATION } from '../../animations';
+import { fadeInAnimation, slideDownFadeOutAnimation } from '../../animations';
 import { HotkeysService } from './hotkeys.service';
 import { Hotkey } from './hotkey.interface';
 import { HotkeyStatus } from './hotkey-status.enum';
@@ -14,8 +14,8 @@ import { HotkeyStatus } from './hotkey-status.enum';
   templateUrl: './hotkeys.component.html',
   styleUrls: ['./hotkeys.component.scss'],
   animations: [
-    trigger('containerAnimationState', SLIDE_DOWN_ANIMATION),
-    trigger('iconAnimationState', FADE_IN_ANIMATION)
+    trigger('containerAnimationState', slideDownFadeOutAnimation()),
+    trigger('iconAnimationState', fadeInAnimation())
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

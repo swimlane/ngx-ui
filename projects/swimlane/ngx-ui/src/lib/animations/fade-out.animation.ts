@@ -1,15 +1,15 @@
 import { animate, style, transition } from '@angular/animations';
 
-export function fadeInAnimation(ms = 250) {
+export function fadeOutAnimation(ms = 250) {
   return [
-    transition(':enter', [
+    transition(':leave', [
       style({
-        opacity: 0
+        opacity: 1
       }),
       animate(
         ms,
         style({
-          opacity: 1
+          opacity: 0
         })
       )
     ])
