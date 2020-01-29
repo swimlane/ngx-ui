@@ -4,6 +4,8 @@ export interface TreeNode {
   model: {
     [key: string]: any;
   };
+  disabled?: boolean;
   expandable?: boolean;
   expanded?: boolean;
+  selectable?: boolean;
 }
