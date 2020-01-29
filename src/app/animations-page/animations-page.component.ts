@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { trigger } from '@angular/animations';
-import { bounce } from '../../../projects/swimlane/ngx-ui/src/public_api';
+import { BOUNCE_ANIMATION } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-animations-page',
   templateUrl: './animations-page.component.html',
-  animations: [trigger('bounce', bounce)]
+  animations: [trigger('bounce', BOUNCE_ANIMATION)]
 })
 export class AnimationsPageComponent {
   count: number = 0;
