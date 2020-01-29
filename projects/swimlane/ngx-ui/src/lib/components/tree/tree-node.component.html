@@ -23,6 +23,7 @@
     [nodes]="children"
     [template]="template"
     [icons]="icons"
+    (selectNode)="selectNode.emit($event)"
   >
   </ngx-tree>
 </li>
