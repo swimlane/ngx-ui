@@ -7,4 +7,3 @@ export * from './slide-top.animation';
 export * from './slide-bottom.animation';
 export * from './slide-down-fade-out.animation';
 export * from './slide-up-fade-out.animation';
-

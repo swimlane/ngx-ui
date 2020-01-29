@@ -7,16 +7,22 @@ export function slideBottomAnimation(ms = 500) {
         opacity: 0,
         transform: 'translateY(100%)'
       }),
-      animate(ms, style({
-        transform: 'translateY(0)',
-        opacity: 1
-      }))
+      animate(
+        ms,
+        style({
+          transform: 'translateY(0)',
+          opacity: 1
+        })
+      )
     ]),
     transition(':leave', [
-      animate(ms, style({
-        transform: 'translateY(100%)',
-        opacity: 0
-      }))
-    ]),
+      animate(
+        ms,
+        style({
+          transform: 'translateY(100%)',
+          opacity: 0
+        })
+      )
+    ])
   ];
 }

@@ -7,16 +7,22 @@ export function slideRightAnimation(ms = 500) {
         opacity: 0,
         transform: 'translateX(100%)'
       }),
-      animate(ms, style({
-        transform: 'translateX(0)',
-        opacity: 1
-      }))
+      animate(
+        ms,
+        style({
+          transform: 'translateX(0)',
+          opacity: 1
+        })
+      )
     ]),
     transition(':leave', [
-      animate(ms, style({
-        transform: 'translateX(100%)',
-        opacity: 0
-      }))
+      animate(
+        ms,
+        style({
+          transform: 'translateX(100%)',
+          opacity: 0
+        })
+      )
     ])
   ];
 }
