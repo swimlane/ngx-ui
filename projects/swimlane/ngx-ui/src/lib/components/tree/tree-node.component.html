@@ -9,7 +9,7 @@
   <span
     *ngIf="expandable"
     class="ngx-expander"
-    (click)="onExpandClick()"
+    (click)="onExpandClick($event)"
     [class.disabled]="disabled"
     [ngClass]="expanded ? icons.expand : icons.collapse"
   >
