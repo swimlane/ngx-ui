@@ -5,11 +5,17 @@ import {
   ChangeDetectorRef,
   Input,
   Output,
-  EventEmitter
+  EventEmitter,
+  ContentChildren,
+  QueryList,
+  OnDestroy
 } from '@angular/core';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { StepperDirection } from './stepper-direction.enum';
+import { StepComponent } from './step.component';
 
 @Component({
   exportAs: 'ngxStepper',
@@ -24,19 +30,9 @@ import { StepperDirection } from './stepper-direction.enum';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class StepperComponent {
+export class StepperComponent implements OnDestroy {
   @Input() completeIcon = 'ngx-icon ngx-check';
   @Input() direction = StepperDirection.Horizontal;
-
-  @Input()
-  get steps() {
-    return this._steps;
-  }
-  set steps(v: number) {
-    this._steps = coerceNumberProperty(v);
-    this.stepsArr = Array.from(Array(this._steps), (_, i) => i);
-    this.cdr.markForCheck();
-  }
 
   @Input()
   get active() {
@@ -45,10 +41,17 @@ export class StepperComponent {
   set active(v: number) {
     v = coerceNumberProperty(v);
 
-    if (v !== undefined && !isNaN(v) && v >= 0 && v < this.stepsArr.length) {
+    if (v !== undefined && !isNaN(v) && v >= 0 && (!this._steps || v < this._steps.length)) {
       this._active = v;
       this.activeChange.emit(this._active);
-      this.cdr.markForCheck();
+
+      if (this._steps) {
+        for (const step of this._steps) {
+          step.active = v;
+        }
+      }
+
+      this._cdr.markForCheck();
     }
   }
 
@@ -58,18 +61,45 @@ export class StepperComponent {
   }
   set clickable(v: boolean) {
     this._clickable = coerceBooleanProperty(v);
+    this._cdr.markForCheck();
   }
 
   @Output() activeChange = new EventEmitter<number>();
 
-  stepsArr: number[] = [];
+  @ContentChildren(StepComponent)
+  get steps() { return this._steps };
+  set steps(v) {
+    this._steps = v;
+    this._destroy$.next();
+
+    for (const item of this._steps.map((step, i) => ({ step, i }))) {
+      item.step.step = item.i;
+      item.step.active = this.active;
+      item.step.total = this._steps.length;
+
+      if (!item.step.completeIcon) {
+        item.step.completeIcon = this.completeIcon;
+      }
+
+      item.step.activeChange.pipe(takeUntil(this._destroy$)).subscribe(active => this.active = active);
+    }
+
+    this._cdr.markForCheck();
+  }
+
   readonly StepperDirection = StepperDirection;
 
   private _active: number = 0;
-  private _steps: number = 0;
   private _clickable: boolean = false;
+  private _steps?: QueryList<StepComponent>;
+  private readonly _destroy$ = new Subject<void>();
 
-  constructor(private readonly cdr: ChangeDetectorRef) {}
+  constructor(private readonly _cdr: ChangeDetectorRef) {}
+
+  ngOnDestroy() {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
 
   previous() {
     if (this._active > 0) {
@@ -78,7 +108,7 @@ export class StepperComponent {
   }
 
   next() {
-    if (this.stepsArr.length && this._active < this.stepsArr.length - 1) {
+    if (this.steps.length && this._active < this._steps.length - 1) {
       this.active++;
     }
   }
@@ -88,6 +118,6 @@ export class StepperComponent {
   }
 
   last() {
-    this.active = this._steps - 1;
+    this.active = this._steps.length - 1;
   }
 }

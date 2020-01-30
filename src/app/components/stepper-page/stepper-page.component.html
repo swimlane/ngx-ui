@@ -3,11 +3,12 @@
 <ngx-section class="shadow" sectionTitle="Stepper">
   <ngx-stepper
     #stepper
-    [steps]="steps"
     [clickable]="clickable"
     [direction]="direction"
     [(active)]="index"
-  ></ngx-stepper>
+  >
+    <ngx-step *ngFor="let step of steps">{{ step.title }}</ngx-step>
+  </ngx-stepper>
 
   <br />
   <br />
@@ -45,11 +46,15 @@
   <ngx-stepper
     #stepper
     completeIcon="ngx-icon ngx-arrow-bold-right"
-    [steps]="steps"
     [clickable]="clickable"
     [direction]="direction"
     [(active)]="index"
-  ></ngx-stepper>
+  >
+    <ngx-step
+      *ngFor="let step of steps"
+      [completeIcon]="step.icon"
+    >{{ step.title }}</ngx-step>
+  </ngx-stepper>
 
   <br />
   <br />

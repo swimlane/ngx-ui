@@ -18,7 +18,6 @@ describe('StepperComponent', () => {
     fixture = TestBed.createComponent(StepperComponent);
     component = fixture.componentInstance;
 
-    component.steps = 10;
     component.active = 5;
     component.clickable = false;
 
@@ -30,11 +29,6 @@ describe('StepperComponent', () => {
     expect(component.active).toEqual(5);
     expect(component.clickable).toEqual(false);
     expect(component).toBeDefined();
-  });
-
-  it('should not set invalid steps', () => {
-    component.steps = 'a' as any;
-    expect(component.stepsArr.length).toEqual(0);
   });
 
   it('should not set invalid active index', () => {

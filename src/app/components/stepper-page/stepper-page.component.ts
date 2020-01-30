@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { StepperDirection } from '@swimlane/ngx-ui';
+import * as faker from 'faker';
 
 @Component({
   selector: 'app-stepper-page',
@@ -8,14 +9,19 @@ import { StepperDirection } from '@swimlane/ngx-ui';
 })
 export class StepperPageComponent {
   readonly StepperDirection = StepperDirection;
+  readonly steps: Array<{ readonly title: string; readonly icon?: string; }> = [
+    { title: faker.random.word() },
+    { title: faker.random.word() },
+    { title: faker.random.word() },
+    { title: faker.random.word() }
+  ];
 
-  steps = 9;
   index = 2;
   clickable = false;
   direction = StepperDirection.Horizontal;
 
   next() {
-    if (this.index < this.steps - 1) {
+    if (this.index < this.steps.length - 1) {
       this.index++;
     }
   }
@@ -36,6 +42,9 @@ export class StepperPageComponent {
   }
 
   addStep() {
-    this.steps++;
+    this.steps.push({
+      title: faker.random.word(),
+      icon: 'ngx-icon ngx-bug'
+    });
   }
 }

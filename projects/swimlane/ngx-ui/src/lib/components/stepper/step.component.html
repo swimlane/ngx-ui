@@ -1,0 +1,17 @@
+<div
+  class="ngx-step--circle"
+  [class.active]="active === step"
+  [class.completed]="active > step"
+  (click)="active = step"
+>
+  <span class="center">{{ step + 1 }}</span>
+  <i class="center" [ngClass]="completeIcon"></i>
+</div>
+
+<div
+  *ngIf="step < (total - 1)"
+  class="ngx-step--separator"
+  [class.in-progress]="active === step"
+  [class.completed-to-active]="active === step + 1"
+  [class.completed]="active > step + 1"
+></div>
