@@ -4,8 +4,9 @@
   <ngx-stepper
     #stepper
     [steps]="steps"
-    [(active)]="index"
     [clickable]="clickable"
+    [direction]="direction"
+    [(active)]="index"
   ></ngx-stepper>
 
   <br />
@@ -20,6 +21,7 @@
   <br />
 
   <button class="btn" (click)="toggleClickable()">{{ clickable ? 'Not Clickable' : 'Clickable' }}</button>
+  <button class="btn" (click)="toggleDirection()">{{ direction === StepperDirection.Vertical ? 'Horizontal' : 'Vertical' }}</button>
   <button class="btn" (click)="addStep()">Add Step</button>
 
   <br />
@@ -30,6 +32,7 @@
       <ngx-stepper
         #stepper
         [steps]="steps"
+        [direction]="direction"
         [(active)]="index"
         [clickable]="clickable"
       ></ngx-stepper>
@@ -43,8 +46,9 @@
     #stepper
     completeIcon="ngx-icon ngx-arrow-bold-right"
     [steps]="steps"
-    [(active)]="index"
     [clickable]="clickable"
+    [direction]="direction"
+    [(active)]="index"
   ></ngx-stepper>
 
   <br />
@@ -59,6 +63,7 @@
   <br />
 
   <button class="btn" (click)="toggleClickable()">{{ clickable ? 'Not Clickable' : 'Clickable' }}</button>
+  <button class="btn" (click)="toggleDirection()">{{ direction === StepperDirection.Vertical ? 'Horizontal' : 'Vertical' }}</button>
   <button class="btn" (click)="addStep()">Add Step</button>
 
   <br />
@@ -70,8 +75,9 @@
         #stepper
         completeIcon="ngx-icon ngx-arrow-bold-right"
         [steps]="steps"
-        [(active)]="index"
         [clickable]="clickable"
+        [direction]="direction"
+        [(active)]="index"
       ></ngx-stepper>
     ]]>
   </ngx-codemirror>

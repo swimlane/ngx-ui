@@ -1,8 +1,27 @@
 @import 'colors/index.scss';
 
+$stepper-size: 28px;
+$transition-speed: 0.25s;
+
 .ngx-stepper {
   display: flex;
   justify-content: space-between;
+  min-width: $stepper-size;
+
+  &.ngx-stepper--vertical {
+    flex-direction: column;
+
+    .ngx-stepper--container {
+      flex-direction: column;
+
+      .ngx-stepper--separator {
+        min-width: 1.4px;
+        height: initial;
+        min-height: $stepper-size;
+        width: 1.4px;
+      };
+    }
+  }
 
   &.ngx-stepper--clickable {
     .ngx-stepper--step {
@@ -10,14 +29,22 @@
       pointer-events: initial !important;
 
       &:hover {
+        border: 1.75px solid $color-blue-500;
+        color: $color-blue-500;
+        box-shadow: 0px 0px 9.59842px rgba(20, 131, 255, 0.8);
+
         &.completed {
           span {
-            display: initial;
+            opacity: 1;
           }
 
           i {
-            display: none;
+            opacity: 0;
           }
+        }
+
+        .marker-path {
+          fill: $color-blue-500;
         }
       }
     }
@@ -33,8 +60,8 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      width: 28px;
-      height: 28px;
+      width: $stepper-size;
+      height: $stepper-size;
       background: linear-gradient(180deg, $color-blue-grey-750 0%, $color-blue-grey-850 100%);
       border-radius: 50px;
       border: 1.75px solid $color-blue-grey-600;
@@ -42,6 +69,8 @@
       font-size: 0.875rem;
       font-weight: bold;
       pointer-events: none;
+      transition: border-color $transition-speed ease-in-out,
+                  color $transition-speed ease-in-out;
 
       &.active {
         border: 1.75px solid $color-blue-500;
@@ -67,11 +96,11 @@
         }
 
         span {
-          display: none;
+          opacity: 0;
         }
 
         i {
-          display: initial;
+          opacity: 1;
         }
       }
 
@@ -80,26 +109,37 @@
       }
 
       i {
-        display: none;
+        opacity: 0;
+      }
+
+      .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity $transition-speed ease-in-out;
       }
     }
 
     .ngx-stepper--separator {
       flex: 1 1 auto;
-      min-width: 28px;
+      min-width: $stepper-size;
       height: 1.4px;
       background-color: $color-blue-grey-600;
+      transition: background-color $transition-speed ease-in-out,
+                  background-image $transition-speed ease-in-out;
 
       &.in-progress {
-        background: linear-gradient(to right, $color-blue-500 0%, $color-blue-grey-600 75%);
+        background-image: linear-gradient(to right, $color-blue-500 0%, $color-blue-grey-600 75%);
       }
 
       &.completed-to-active {
-        background: linear-gradient(to right, #1edeb6 0%, $color-blue-500 75%);
+        background-image: linear-gradient(to right, #1edeb6 0%, $color-blue-500 75%);
       }
 
       &.completed {
-        background: #1edeb6;
+        background-color: #1edeb6;
       }
     }
   }

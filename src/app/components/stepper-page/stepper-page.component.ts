@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { StepperDirection } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-stepper-page',
@@ -6,9 +7,12 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StepperPageComponent {
+  readonly StepperDirection = StepperDirection;
+
   steps = 9;
   index = 2;
   clickable = false;
+  direction = StepperDirection.Horizontal;
 
   next() {
     if (this.index < this.steps - 1) {
@@ -24,6 +28,11 @@ export class StepperPageComponent {
 
   toggleClickable() {
     this.clickable = !this.clickable;
+  }
+
+  toggleDirection() {
+    this.direction = this.direction === StepperDirection.Horizontal ? StepperDirection.Vertical
+                                                                    : StepperDirection.Horizontal;
   }
 
   addStep() {

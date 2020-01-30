@@ -21,6 +21,7 @@ export * from './section';
 export * from './select';
 export * from './slider';
 export * from './split';
+export * from './stepper';
 export * from './tabs';
 export * from './toggle';
 export * from './toolbar';

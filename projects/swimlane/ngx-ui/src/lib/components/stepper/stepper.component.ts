@@ -1,6 +1,8 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, EventEmitter } from '@angular/core';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 
+import { StepperDirection } from './stepper-direction.enum';
+
 @Component({
   exportAs: 'ngxStepper',
   selector: 'ngx-stepper',
@@ -8,13 +10,15 @@ import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coerci
   styleUrls: ['./stepper.component.scss'],
   host: {
     class: 'ngx-stepper',
-    '[class.ngx-stepper--clickable]': 'clickable'
+    '[class.ngx-stepper--clickable]': 'clickable',
+    '[class.ngx-stepper--vertical]': 'direction === StepperDirection.Vertical'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 export class StepperComponent {
   @Input() completeIcon = 'ngx-icon ngx-check';
+  @Input() direction = StepperDirection.Horizontal;
 
   @Input()
   get steps() { return this._steps; }
@@ -49,6 +53,7 @@ export class StepperComponent {
   @Output() activeChange = new EventEmitter<number>();
 
   stepsArr: number[] = [];
+  readonly StepperDirection = StepperDirection;
 
   private _active: number = 0;
   private _steps: number = 0;
