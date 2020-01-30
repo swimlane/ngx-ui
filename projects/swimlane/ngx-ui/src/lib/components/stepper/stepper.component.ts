@@ -24,11 +24,7 @@ export class StepperComponent {
   get steps() { return this._steps; }
   set steps(v: number) {
     this._steps = coerceNumberProperty(v);
-
-    if (!isNaN(this._steps)) {
-      this.stepsArr = Array.from(Array(this._steps), (_, i) => i);
-    }
-
+    this.stepsArr = Array.from(Array(this._steps), (_, i) => i);
     this.cdr.markForCheck();
   }
 
