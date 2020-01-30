@@ -13,7 +13,7 @@ import {
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { trigger } from '@angular/animations';
 
-import { nagDrawerTransition } from '../../animations/animations';
+import { NAG_DRAWER_ANIMATION } from './nag.animation';
 
 @Component({
   selector: 'ngx-nag',
@@ -27,7 +27,7 @@ import { nagDrawerTransition } from '../../animations/animations';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./nag.component.scss'],
-  animations: [trigger('drawerTransition', nagDrawerTransition)]
+  animations: [trigger('drawerTransition', NAG_DRAWER_ANIMATION)]
 })
 export class NagComponent implements OnDestroy, OnChanges {
   @Input() cssClass: string = '';
