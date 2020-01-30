@@ -3,7 +3,7 @@
 <ngx-section class="shadow" sectionTitle="Stepper">
   <ngx-stepper
     #stepper
-    steps="9"
+    [steps]="steps"
     [(active)]="index"
     [clickable]="clickable"
   ></ngx-stepper>
@@ -20,6 +20,7 @@
   <br />
 
   <button class="btn" (click)="toggleClickable()">{{ clickable ? 'Not Clickable' : 'Clickable' }}</button>
+  <button class="btn" (click)="addStep()">Add Step</button>
 
   <br />
   <br />
@@ -28,7 +29,7 @@
     <![CDATA[
       <ngx-stepper
         #stepper
-        steps="9"
+        [steps]="steps"
         [(active)]="index"
         [clickable]="clickable"
       ></ngx-stepper>
@@ -48,8 +49,8 @@
 <ngx-section class="shadow" sectionTitle="Stepper (Custom Icon)">
   <ngx-stepper
     #stepper
-    steps="9"
     completeIcon="ngx-icon ngx-arrow-bold-right"
+    [steps]="steps"
     [(active)]="index"
     [clickable]="clickable"
   ></ngx-stepper>
@@ -66,6 +67,7 @@
   <br />
 
   <button class="btn" (click)="toggleClickable()">{{ clickable ? 'Not Clickable' : 'Clickable' }}</button>
+  <button class="btn" (click)="addStep()">Add Step</button>
 
   <br />
   <br />
@@ -74,8 +76,8 @@
     <![CDATA[
       <ngx-stepper
         #stepper
-        steps="9"
         completeIcon="ngx-icon ngx-arrow-bold-right"
+        [steps]="steps"
         [(active)]="index"
         [clickable]="clickable"
       ></ngx-stepper>

@@ -6,18 +6,27 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StepperPageComponent {
+  steps = 9;
   index = 2;
   clickable = false;
 
   next() {
-    this.index++;
+    if (this.index < this.steps - 1) {
+      this.index++;
+    }
   }
 
   previous() {
-    this.index--;
+    if (this.index > 0) {
+      this.index--;
+    }
   }
 
   toggleClickable() {
     this.clickable = !this.clickable;
+  }
+
+  addStep() {
+    this.steps++;
   }
 }
