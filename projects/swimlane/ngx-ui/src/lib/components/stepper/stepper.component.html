@@ -9,12 +9,11 @@
     <i class="center" [ngClass]="completeIcon"></i>
   </div>
 
-  <ng-container *ngIf="!last">
-    <div
-      class="ngx-stepper--separator"
-      [class.in-progress]="active === step"
-      [class.completed-to-active]="active === step + 1"
-      [class.completed]="active > step + 1"
-    ></div>
-  </ng-container>
+  <div
+    *ngIf="!last"
+    class="ngx-stepper--separator"
+    [class.in-progress]="active === step"
+    [class.completed-to-active]="active === step + 1"
+    [class.completed]="active > step + 1"
+  ></div>
 </div>
