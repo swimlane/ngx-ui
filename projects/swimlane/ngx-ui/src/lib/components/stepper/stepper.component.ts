@@ -38,14 +38,15 @@ export class StepperComponent implements OnDestroy {
     return this._completeIcon;
   }
   set completeIcon(v: string) {
-    this._completeIcon = v;
-
     if (this._steps) {
       for (const step of this._steps) {
-        step.completeIcon = v;
+        if (!step.completeIcon || step.completeIcon === this._completeIcon) {
+          step.completeIcon = v;
+        }
       }
     }
 
+    this._completeIcon = v;
     this._cdr.markForCheck();
   }
 

@@ -11,48 +11,62 @@ $stepper-size: 28px;
     flex-direction: column;
 
     .ngx-step {
-      flex-direction: column;
+      display: flex;
+      flex-direction: row;
 
-      .ngx-step--separator {
-        min-width: 1.4px;
-        height: initial;
-        min-height: $stepper-size;
-        width: 1.4px;
-
-        &.in-progress {
-          background-image: linear-gradient(to bottom, $color-blue-500 0%, $color-blue-grey-600 75%);
+      &.ngx-step--semi-complete {
+        .ngx-step--separator {
+          background-image: linear-gradient(to bottom, #1edeb6 0%, $color-blue-500 75%) !important;
         }
+      }
 
-        &.completed-to-active {
-          background-image: linear-gradient(to bottom, #1edeb6 0%, $color-blue-500 75%);
+      &.ngx-step--active {
+        .ngx-step--separator {
+          background-image: linear-gradient(to bottom, $color-blue-500 0%, $color-blue-grey-600 75%) !important;
+        }
+      }
+
+      .ngx-step--step {
+        flex-direction: column;
+
+        .ngx-step--separator {
+          min-width: 1.4px;
+          height: initial;
+          min-height: $stepper-size;
+          width: 1.4px;
         }
       }
     }
   }
 
   &.ngx-stepper--clickable {
-    .ngx-step--circle {
-      cursor: pointer;
-      pointer-events: initial !important;
+    .ngx-step {
+      &.ngx-step--complete,
+      &.ngx-step--semi-complete {
+        .ngx-step--circle {
+          &:hover {
+            border: 1.75px solid $color-blue-500;
+            color: $color-blue-500;
+            box-shadow: 0px 0px 9.59842px rgba(20, 131, 255, 0.8);
 
-      &:hover {
-        border: 1.75px solid $color-blue-500;
-        color: $color-blue-500;
-        box-shadow: 0px 0px 9.59842px rgba(20, 131, 255, 0.8);
+            span {
+              opacity: 1 !important;
+            }
 
-        &.completed {
-          span {
-            opacity: 1;
-          }
+            i {
+              opacity: 0 !important;
+            }
 
-          i {
-            opacity: 0;
+            .marker-path {
+              fill: $color-blue-500;
+            }
           }
         }
+      }
 
-        .marker-path {
-          fill: $color-blue-500;
-        }
+      .ngx-step--circle {
+        cursor: pointer;
+        pointer-events: initial !important;
       }
     }
   }

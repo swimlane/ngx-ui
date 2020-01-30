@@ -53,7 +53,9 @@
     <ngx-step
       *ngFor="let step of steps"
       [completeIcon]="step.icon"
-    >{{ step.title }}</ngx-step>
+    >
+      {{ step.title }}
+    </ngx-step>
   </ngx-stepper>
 
   <br />

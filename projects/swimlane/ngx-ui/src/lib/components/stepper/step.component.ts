@@ -8,7 +8,10 @@ import { coerceNumberProperty } from '@angular/cdk/coercion';
   styleUrls: ['./step.component.scss'],
   host: {
     class: 'ngx-step',
-    '[class.ngx-step--last]': 'last'
+    '[class.ngx-step--last]': 'last',
+    '[class.ngx-step--active]': 'step === active',
+    '[class.ngx-step--semi-complete]': 'step === active - 1',
+    '[class.ngx-step--complete]': 'step < active - 1'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None

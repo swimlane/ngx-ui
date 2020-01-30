@@ -4,97 +4,140 @@ $stepper-size: 28px;
 $transition-speed: 0.25s;
 
 .ngx-step {
-  display: flex;
   flex: 1 1 auto;
-  align-items: center;
 
   &.ngx-step--last {
     flex: initial;
   }
 
-  .ngx-step--circle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-    width: $stepper-size;
-    height: $stepper-size;
-    background: linear-gradient(180deg, $color-blue-grey-750 0%, $color-blue-grey-850 100%);
-    border-radius: 50px;
-    border: 1.75px solid $color-blue-grey-600;
-    color: $color-blue-grey-600;
-    font-size: 0.875rem;
-    font-weight: bold;
-    pointer-events: none;
-    transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
-
-    &.active {
-      border: 1.75px solid $color-blue-500;
-      color: $color-blue-500;
+  &.ngx-step--active {
+    .ngx-step--circle {
+      border: 1.75px solid $color-blue-500 !important;
+      color: $color-blue-500 !important;
       box-shadow: 0px 0px 9.59842px rgba(20, 131, 255, 0.8);
 
       .marker-path {
-        fill: $color-blue-500;
+        fill: $color-blue-500 !important;
       }
     }
 
-    &.completed {
-      border: 1.75px solid $color-green-500;
-      color: $color-green-500;
-      box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
-
-      .ngx-check {
-        font-size: 0.625rem;
-      }
-
-      .marker-path {
-        fill: $color-green-500;
-      }
-
-      span {
-        opacity: 0;
-      }
-
-      i {
-        opacity: 1;
-      }
-    }
-
-    span {
-      padding-bottom: 1px;
-    }
-
-    i {
-      opacity: 0;
-    }
-
-    .center {
-      margin: 0;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      transition: opacity $transition-speed ease-in-out;
+    .ngx-step--separator {
+      background-image: linear-gradient(to right, $color-blue-500 0%, $color-blue-grey-600 75%) !important;
     }
   }
 
-  .ngx-step--separator {
+  &.ngx-step--complete {
+    .ngx-step--circle {
+      border: 1.75px solid $color-green-500 !important;
+      color: $color-green-500 !important;
+      box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
+
+      .ngx-check {
+        font-size: 0.625rem !important;
+      }
+
+      .marker-path {
+        fill: $color-green-500 !important;
+      }
+
+      span {
+        opacity: 0 !important;
+      }
+
+      i {
+        opacity: 1 !important;
+      }
+    }
+
+    .ngx-step--separator {
+      background-color: #1edeb6 !important;
+    }
+  }
+
+  &.ngx-step--semi-complete {
+    .ngx-step--circle {
+      border: 1.75px solid $color-green-500 !important;
+      color: $color-green-500 !important;
+      box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
+
+      .ngx-check {
+        font-size: 0.625rem !important;
+      }
+
+      .marker-path {
+        fill: $color-green-500 !important;
+      }
+
+      span {
+        opacity: 0 !important;
+      }
+
+      i {
+        opacity: 1 !important;
+      }
+    }
+
+    .ngx-step--separator {
+      background-image: linear-gradient(to right, #1edeb6 0%, $color-blue-500 75%) !important;
+    }
+  }
+
+  .ngx-step--title {
+    width: 100px;
+    overflow: hidden;
+    white-space: nowrap;
+    max-width: 100px;
+    text-overflow: ellipsis;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .ngx-step--step {
+    display: flex;
     flex: 1 1 auto;
-    min-width: $stepper-size;
-    height: 1.4px;
-    background-color: $color-blue-grey-600;
-    transition: background-color $transition-speed ease-in-out, background-image $transition-speed ease-in-out;
+    align-items: center;
 
-    &.in-progress {
-      background-image: linear-gradient(to right, $color-blue-500 0%, $color-blue-grey-600 75%);
+    .ngx-step--circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: $stepper-size;
+      height: $stepper-size;
+      background: linear-gradient(180deg, $color-blue-grey-750 0%, $color-blue-grey-850 100%);
+      border-radius: 50px;
+      border: 1.75px solid $color-blue-grey-600;
+      color: $color-blue-grey-600;
+      font-size: 0.875rem;
+      font-weight: bold;
+      pointer-events: none;
+      transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+
+      span {
+        padding-bottom: 1px;
+      }
+
+      i {
+        opacity: 0;
+      }
+
+      .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity $transition-speed ease-in-out;
+      }
     }
 
-    &.completed-to-active {
-      background-image: linear-gradient(to right, #1edeb6 0%, $color-blue-500 75%);
-    }
-
-    &.completed {
-      background-color: #1edeb6;
+    .ngx-step--separator {
+      flex: 1 1 auto;
+      min-width: $stepper-size;
+      height: 1.4px;
+      background-color: $color-blue-grey-600;
+      transition: background-color $transition-speed ease-in-out, background-image $transition-speed ease-in-out;
     }
   }
 }
