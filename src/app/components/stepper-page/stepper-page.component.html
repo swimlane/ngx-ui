@@ -1,9 +1,9 @@
 <h3 class="style-header">Stepper</h3>
 
 <ngx-section class="shadow" sectionTitle="Stepper">
-  <ngx-stepper #stepper [steps]="9"></ngx-stepper>
+  <ngx-stepper #stepper steps="9"></ngx-stepper>
   <br />
   <br />
-  <button class="btn" (click)="stepper.previousStep()">Previous Step</button>
-  <button class="btn" (click)="stepper.nextStep()">Next Step</button>
+  <button class="btn" (click)="stepper.previous()">Previous Step</button>
+  <button class="btn" (click)="stepper.next()">Next Step</button>
 </ngx-section>
