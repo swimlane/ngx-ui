@@ -19,49 +19,55 @@ export class StepperComponent {
     if (!isNaN(this._steps)) {
       this.stepsArr = Array.from(Array(this._steps), (_, i) => i);
     }
+
+    this.cdr.markForCheck();
   }
 
   @Input()
-  get allowJumpTo() { return this._allowJumpTo; }
-  set allowJumpTo(v: boolean) {
-    this._allowJumpTo = coerceBooleanProperty(v);
+  get active() { return this._active; }
+  set active(v: number) {
+    v = coerceNumberProperty(v);
+
+    if (v !== undefined && !isNaN(v) && v >= 0 && v < this.stepsArr.length) {
+      this._active = v;
+      this.indexChange.emit(this._active);
+      this.cdr.markForCheck();
+    }
+  }
+
+  @Input()
+  get clickable() { return this._clickable; }
+  set clickable(v: boolean) {
+    this._clickable = coerceBooleanProperty(v);
   }
 
   @Output() indexChange = new EventEmitter<number>();
 
   stepsArr: number[] = [];
 
-  private _currentStep: number = 0;
+  private _active: number = 0;
   private _steps: number = 0;
-  private _allowJumpTo: boolean = false;
-
-  get currentStep() {
-    return this._currentStep;
-  }
+  private _clickable: boolean = false;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 
   previous() {
-    if (this._currentStep > 0) {
-      this._currentStep--;
-      this.indexChange.emit(this._currentStep);
-      this.cdr.markForCheck();
+    if (this._active > 0) {
+      this.active--;
     }
   }
 
   next() {
-    if (this.stepsArr.length && this.currentStep < this.stepsArr.length - 1) {
-      this._currentStep++;
-      this.indexChange.emit(this._currentStep);
-      this.cdr.markForCheck();
+    if (this.stepsArr.length && this._active < this.stepsArr.length - 1) {
+      this.active++;
     }
   }
 
-  at(step: number) {
-    if (step !== undefined && !isNaN(step) && step >= 0 && step < this.stepsArr.length) {
-      this._currentStep = step;
-      this.indexChange.emit(this._currentStep);
-      this.cdr.markForCheck();
-    }
+  first() {
+    this.active = 0;
+  }
+
+  last() {
+    this.active = this._steps - 1;
   }
 }

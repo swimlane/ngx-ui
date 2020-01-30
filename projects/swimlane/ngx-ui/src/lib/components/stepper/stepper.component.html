@@ -1,16 +1,18 @@
 <div class="ngx-stepper--container" *ngFor="let step of stepsArr; let last = last">
-  <div class="ngx-stepper--step" [ngClass]="{ active: currentStep === step, completed: currentStep > step }">
-    <span *ngIf="currentStep <= step">{{ step + 1 }}</span>
-    <i *ngIf="currentStep > step" class="ngx-icon ngx-check"></i>
+  <div
+    class="ngx-stepper--step"
+    [class.active]="active === step"
+    [class.completed]="active > step"
+  >
+    <span *ngIf="active <= step">{{ step + 1 }}</span>
+    <i *ngIf="active > step" class="ngx-icon ngx-check"></i>
   </div>
 
   <div
     *ngIf="!last"
     class="ngx-stepper--separator"
-    [ngClass]="{
-      'in-progress': currentStep === step,
-      'completed-to-active': currentStep === step + 1,
-      completed: currentStep > step + 1
-    }"
+    [class.in-progress]="active === step"
+    [class.completed-to-active]="active === step + 1"
+    [class.completed]="active > step + 1"
   ></div>
 </div>

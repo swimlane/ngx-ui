@@ -4,6 +4,8 @@
   <ngx-stepper #stepper steps="9"></ngx-stepper>
   <br />
   <br />
+  <button class="btn" (click)="stepper.first()">First Step</button>
   <button class="btn" (click)="stepper.previous()">Previous Step</button>
   <button class="btn" (click)="stepper.next()">Next Step</button>
+  <button class="btn" (click)="stepper.last()">Last Step</button>
 </ngx-section>
