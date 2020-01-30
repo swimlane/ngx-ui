@@ -30,7 +30,7 @@ export class StepperComponent {
 
     if (v !== undefined && !isNaN(v) && v >= 0 && v < this.stepsArr.length) {
       this._active = v;
-      this.indexChange.emit(this._active);
+      this.activeChange.emit(this._active);
       this.cdr.markForCheck();
     }
   }
@@ -41,7 +41,7 @@ export class StepperComponent {
     this._clickable = coerceBooleanProperty(v);
   }
 
-  @Output() indexChange = new EventEmitter<number>();
+  @Output() activeChange = new EventEmitter<number>();
 
   stepsArr: number[] = [];
 

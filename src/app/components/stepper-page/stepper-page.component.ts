@@ -5,4 +5,14 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   templateUrl: './stepper-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class StepperPageComponent {}
+export class StepperPageComponent {
+  index = 2;
+
+  next() {
+    this.index++;
+  }
+
+  previous() {
+    this.index--;
+  }
+}
