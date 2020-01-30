@@ -1,4 +1,12 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, ChangeDetectorRef, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+  ChangeDetectorRef,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { StepperDirection } from './stepper-direction.enum';
@@ -21,7 +29,9 @@ export class StepperComponent {
   @Input() direction = StepperDirection.Horizontal;
 
   @Input()
-  get steps() { return this._steps; }
+  get steps() {
+    return this._steps;
+  }
   set steps(v: number) {
     this._steps = coerceNumberProperty(v);
     this.stepsArr = Array.from(Array(this._steps), (_, i) => i);
@@ -29,7 +39,9 @@ export class StepperComponent {
   }
 
   @Input()
-  get active() { return this._active; }
+  get active() {
+    return this._active;
+  }
   set active(v: number) {
     v = coerceNumberProperty(v);
 
@@ -41,7 +53,9 @@ export class StepperComponent {
   }
 
   @Input()
-  get clickable() { return this._clickable; }
+  get clickable() {
+    return this._clickable;
+  }
   set clickable(v: boolean) {
     this._clickable = coerceBooleanProperty(v);
   }

@@ -31,8 +31,8 @@ export class StepperPageComponent {
   }
 
   toggleDirection() {
-    this.direction = this.direction === StepperDirection.Horizontal ? StepperDirection.Vertical
-                                                                    : StepperDirection.Horizontal;
+    this.direction =
+      this.direction === StepperDirection.Horizontal ? StepperDirection.Vertical : StepperDirection.Horizontal;
   }
 
   addStep() {

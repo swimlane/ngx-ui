@@ -19,7 +19,7 @@ $transition-speed: 0.25s;
         height: initial;
         min-height: $stepper-size;
         width: 1.4px;
-      };
+      }
     }
   }
 
@@ -69,8 +69,7 @@ $transition-speed: 0.25s;
       font-size: 0.875rem;
       font-weight: bold;
       pointer-events: none;
-      transition: border-color $transition-speed ease-in-out,
-                  color $transition-speed ease-in-out;
+      transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
 
       &.active {
         border: 1.75px solid $color-blue-500;
@@ -127,8 +126,7 @@ $transition-speed: 0.25s;
       min-width: $stepper-size;
       height: 1.4px;
       background-color: $color-blue-grey-600;
-      transition: background-color $transition-speed ease-in-out,
-                  background-image $transition-speed ease-in-out;
+      transition: background-color $transition-speed ease-in-out, background-image $transition-speed ease-in-out;
 
       &.in-progress {
         background-image: linear-gradient(to right, $color-blue-500 0%, $color-blue-grey-600 75%);
