@@ -4,7 +4,6 @@
   <ngx-stepper
     #stepper
     [clickable]="clickable"
-    [direction]="direction"
     [(active)]="index"
   >
     <ngx-step *ngFor="let step of steps">{{ step.title }}</ngx-step>
@@ -22,32 +21,14 @@
   <br />
 
   <button class="btn" (click)="toggleClickable()">{{ clickable ? 'Not Clickable' : 'Clickable' }}</button>
-  <button class="btn" (click)="toggleDirection()">{{ direction === StepperDirection.Vertical ? 'Horizontal' : 'Vertical' }}</button>
   <button class="btn" (click)="addStep()">Add Step</button>
-
-  <br />
-  <br />
-
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-stepper
-        #stepper
-        [steps]="steps"
-        [direction]="direction"
-        [(active)]="index"
-        [clickable]="clickable"
-      ></ngx-stepper>
-    ]]>
-  </ngx-codemirror>
 </ngx-section>
-
 
 <ngx-section class="shadow" sectionTitle="Stepper (Custom Icon)">
   <ngx-stepper
     #stepper
-    [completeIcon]="direction === StepperDirection.Horizontal ? 'ngx-icon ngx-arrow-bold-right' : 'ngx-icon ngx-arrow-bold-down'"
+    completeIcon="ngx-icon ngx-arrow-bold-right"
     [clickable]="clickable"
-    [direction]="direction"
     [(active)]="index"
   >
     <ngx-step
@@ -70,22 +51,42 @@
   <br />
 
   <button class="btn" (click)="toggleClickable()">{{ clickable ? 'Not Clickable' : 'Clickable' }}</button>
-  <button class="btn" (click)="toggleDirection()">{{ direction === StepperDirection.Vertical ? 'Horizontal' : 'Vertical' }}</button>
+  <button class="btn" (click)="addStep()">Add Step</button>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Stepper (Position Change)">
+  <ngx-stepper
+    #stepper
+    [position]="position"
+    [clickable]="clickable"
+    [(active)]="index"
+  >
+    <ngx-step
+      *ngFor="let step of steps"
+      [completeIcon]="step.icon"
+    >
+      {{ step.title }}
+    </ngx-step>
+  </ngx-stepper>
+
+  <br />
+  <br />
+
+  <button class="btn" (click)="stepper.first()">First Step</button>
+  <button class="btn" (click)="previous()">Previous Step</button>
+  <button class="btn" (click)="next()">Next Step</button>
+  <button class="btn" (click)="stepper.last()">Last Step</button>
+
+  <br />
+  <br />
+
+  <button class="btn" (click)="toggleClickable()">{{ clickable ? 'Not Clickable' : 'Clickable' }}</button>
   <button class="btn" (click)="addStep()">Add Step</button>
 
-  <br />
-  <br />
-
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-stepper
-        #stepper
-        completeIcon="ngx-icon ngx-arrow-bold-right"
-        [steps]="steps"
-        [clickable]="clickable"
-        [direction]="direction"
-        [(active)]="index"
-      ></ngx-stepper>
-    ]]>
-  </ngx-codemirror>
+  <ngx-select [ngModel]="[position]" (ngModelChange)="position = $event[0]" filterable="false">
+    <ngx-select-option name="Top" [value]="StepperPosition.Top"></ngx-select-option>
+    <ngx-select-option name="Bottom" [value]="StepperPosition.Bottom"></ngx-select-option>
+    <ngx-select-option name="Left" [value]="StepperPosition.Left"></ngx-select-option>
+    <ngx-select-option name="Right" [value]="StepperPosition.Right"></ngx-select-option>
+  </ngx-select>
 </ngx-section>

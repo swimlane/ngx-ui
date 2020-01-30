@@ -11,6 +11,10 @@ $transition-speed: 0.25s;
   }
 
   &.ngx-step--active {
+    .ngx-step--title {
+      color: $color-blue-500;
+    }
+
     .ngx-step--circle {
       border: 1.75px solid $color-blue-500 !important;
       color: $color-blue-500 !important;
@@ -27,6 +31,10 @@ $transition-speed: 0.25s;
   }
 
   &.ngx-step--complete {
+    .ngx-step--title {
+      color: $color-green-500;
+    }
+
     .ngx-step--circle {
       border: 1.75px solid $color-green-500 !important;
       color: $color-green-500 !important;
@@ -55,6 +63,10 @@ $transition-speed: 0.25s;
   }
 
   &.ngx-step--semi-complete {
+    .ngx-step--title {
+      color: $color-green-500;
+    }
+
     .ngx-step--circle {
       border: 1.75px solid $color-green-500 !important;
       color: $color-green-500 !important;
@@ -83,6 +95,7 @@ $transition-speed: 0.25s;
   }
 
   .ngx-step--title {
+    display: none;
     width: 100px;
     overflow: hidden;
     white-space: nowrap;
@@ -91,6 +104,9 @@ $transition-speed: 0.25s;
     font-weight: 600;
     font-size: 16px;
     line-height: 22px;
+    margin-bottom: 10px;
+    color: $color-blue-grey-600;
+    transition: color $transition-speed ease-in-out;
   }
 
   .ngx-step--step {

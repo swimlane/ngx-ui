@@ -1,4 +1,4 @@
 export * from './stepper.module';
 export * from './stepper.component';
 export * from './step.component';
-export * from './stepper-direction.enum';
+export * from './stepper-position.enum';

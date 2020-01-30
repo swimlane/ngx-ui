@@ -7,12 +7,24 @@ $stepper-size: 28px;
   justify-content: space-between;
   min-width: $stepper-size;
 
-  &.ngx-stepper--vertical {
+  &.ngx-stepper--left {
+    .ngx-step {
+      flex-direction: row;
+    }
+  }
+
+  &.ngx-stepper--right {
+    .ngx-step {
+      flex-direction: row-reverse;
+    }
+  }
+
+  &.ngx-stepper--left,
+  &.ngx-stepper--right {
     flex-direction: column;
 
     .ngx-step {
       display: flex;
-      flex-direction: row;
 
       &.ngx-step--semi-complete {
         .ngx-step--separator {
@@ -24,6 +36,12 @@ $stepper-size: 28px;
         .ngx-step--separator {
           background-image: linear-gradient(to bottom, $color-blue-500 0%, $color-blue-grey-600 75%) !important;
         }
+      }
+
+      .ngx-step--title {
+        display: block;
+        margin-bottom: 0;
+        margin-right: 10px;
       }
 
       .ngx-step--step {

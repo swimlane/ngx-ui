@@ -14,7 +14,7 @@ import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coerci
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { StepperDirection } from './stepper-direction.enum';
+import { StepperPosition } from './stepper-position.enum';
 import { StepComponent } from './step.component';
 
 @Component({
@@ -25,13 +25,16 @@ import { StepComponent } from './step.component';
   host: {
     class: 'ngx-stepper',
     '[class.ngx-stepper--clickable]': 'clickable',
-    '[class.ngx-stepper--vertical]': 'direction === StepperDirection.Vertical'
+    '[class.ngx-stepper--top]': 'position === StepperPosition.Top',
+    '[class.ngx-stepper--bottom]': 'position === StepperPosition.Bottom',
+    '[class.ngx-stepper--left]': 'position === StepperPosition.Left',
+    '[class.ngx-stepper--right]': 'position === StepperPosition.Right'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 export class StepperComponent implements OnDestroy {
-  @Input() direction = StepperDirection.Horizontal;
+  @Input() position = StepperPosition.Top;
 
   @Input()
   get completeIcon() {
@@ -105,7 +108,7 @@ export class StepperComponent implements OnDestroy {
     this._cdr.markForCheck();
   }
 
-  readonly StepperDirection = StepperDirection;
+  readonly StepperPosition = StepperPosition;
 
   private _active: number = 0;
   private _clickable: boolean = false;
