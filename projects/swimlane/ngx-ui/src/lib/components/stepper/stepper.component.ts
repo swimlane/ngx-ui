@@ -88,15 +88,17 @@ export class StepperComponent implements OnDestroy {
     this._destroy$.next();
 
     for (const item of this._steps.map((step, i) => ({ step, i }))) {
-      item.step.step = item.i;
-      item.step.active = this.active;
-      item.step.total = this._steps.length;
+      setTimeout(() => {
+        item.step.step = item.i;
+        item.step.active = this.active;
+        item.step.total = this._steps.length;
 
-      if (!item.step.completeIcon) {
-        item.step.completeIcon = this.completeIcon;
-      }
+        if (!item.step.completeIcon) {
+          item.step.completeIcon = this.completeIcon;
+        }
 
-      item.step.activeChange.pipe(takeUntil(this._destroy$)).subscribe(active => this.active = active);
+        item.step.activeChange.pipe(takeUntil(this._destroy$)).subscribe(active => this.active = active);
+      });
     }
 
     this._cdr.markForCheck();

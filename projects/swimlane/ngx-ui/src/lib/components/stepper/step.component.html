@@ -9,7 +9,7 @@
 </div>
 
 <div
-  *ngIf="step < (total - 1)"
+  *ngIf="!last"
   class="ngx-step--separator"
   [class.in-progress]="active === step"
   [class.completed-to-active]="active === step + 1"

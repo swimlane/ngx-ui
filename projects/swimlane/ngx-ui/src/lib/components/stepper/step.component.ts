@@ -8,7 +8,7 @@ import { coerceNumberProperty } from '@angular/cdk/coercion';
   styleUrls: ['./step.component.scss'],
   host: {
     class: 'ngx-step',
-    '[class.ngx-step--last]': 'step === total - 1'
+    '[class.ngx-step--last]': 'last'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
@@ -55,6 +55,10 @@ export class StepComponent implements OnInit {
   }
 
   @Output() activeChange = new EventEmitter<number>();
+
+  get last() {
+    return this.step === (this.total - 1);
+  }
 
   private _active?: number;
   private _step?: number;
