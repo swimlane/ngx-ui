@@ -6,7 +6,10 @@ import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coerci
   selector: 'ngx-stepper',
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss'],
-  host: { class: 'ngx-stepper' },
+  host: {
+    class: 'ngx-stepper',
+    '[class.ngx-stepper--clickable]': 'clickable'
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })

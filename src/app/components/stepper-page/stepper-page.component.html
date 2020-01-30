@@ -1,11 +1,23 @@
 <h3 class="style-header">Stepper</h3>
 
 <ngx-section class="shadow" sectionTitle="Stepper">
-  <ngx-stepper #stepper steps="9" [(active)]="index"></ngx-stepper>
+  <ngx-stepper
+    #stepper
+    steps="9"
+    [(active)]="index"
+    [clickable]="clickable"
+  ></ngx-stepper>
+
   <br />
   <br />
+
   <button class="btn" (click)="stepper.first()">First Step</button>
   <button class="btn" (click)="previous()">Previous Step</button>
   <button class="btn" (click)="next()">Next Step</button>
   <button class="btn" (click)="stepper.last()">Last Step</button>
+
+  <br />
+  <br />
+
+  <button class="btn" (click)="toggleClickable()">{{ clickable ? 'Not Clickable' : 'Clickable' }}</button>
 </ngx-section>

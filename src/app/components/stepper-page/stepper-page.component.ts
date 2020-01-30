@@ -7,6 +7,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 })
 export class StepperPageComponent {
   index = 2;
+  clickable = false;
 
   next() {
     this.index++;
@@ -14,5 +15,9 @@ export class StepperPageComponent {
 
   previous() {
     this.index--;
+  }
+
+  toggleClickable() {
+    this.clickable = !this.clickable;
   }
 }

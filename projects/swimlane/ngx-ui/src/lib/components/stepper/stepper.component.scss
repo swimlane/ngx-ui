@@ -4,6 +4,13 @@
   display: flex;
   justify-content: space-between;
 
+  &.ngx-stepper--clickable {
+    .ngx-stepper--step {
+      cursor: pointer;
+      pointer-events: initial !important;
+    }
+  }
+
   .ngx-stepper--container {
     display: flex;
     flex: 1 1 auto;
@@ -22,6 +29,7 @@
       color: $color-blue-grey-600;
       font-size: 0.875rem;
       font-weight: bold;
+      pointer-events: none;
 
       &.active {
         border: 1.75px solid $color-blue-500;

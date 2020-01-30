@@ -3,6 +3,7 @@
     class="ngx-stepper--step"
     [class.active]="active === step"
     [class.completed]="active > step"
+    (click)="active = step"
   >
     <span *ngIf="active <= step">{{ step + 1 }}</span>
     <i *ngIf="active > step" class="ngx-icon ngx-check"></i>
