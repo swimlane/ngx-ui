@@ -168,7 +168,7 @@
 
   <ngx-section class="shadow" sectionTitle="Adding drawer to parent component instead of root">
     <button type="button" class="btn" (click)="openDrawer(undefined, undefined, true, editTmpl2, false, parentContainer)">Open Left Drawer Inside Parent</button>
-    <button type="button" class="btn" (click)="openDrawer('bottom', undefined, true, editTmpl2, false, parentContainer)">Open Bottom Drawer Inside Parent</button>
+    <button type="button" class="btn" (click)="openDrawer(DrawerDirection.Bottom, undefined, true, editTmpl2, false, parentContainer)">Open Bottom Drawer Inside Parent</button>
     <br />
     <br />
     <div class ="drawer-page--parent-container">
