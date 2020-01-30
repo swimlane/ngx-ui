@@ -18,6 +18,14 @@ $stepper-size: 28px;
         height: initial;
         min-height: $stepper-size;
         width: 1.4px;
+
+        &.in-progress {
+          background-image: linear-gradient(to bottom, $color-blue-500 0%, $color-blue-grey-600 75%);
+        }
+
+        &.completed-to-active {
+          background-image: linear-gradient(to bottom, #1edeb6 0%, $color-blue-500 75%);
+        }
       }
     }
   }

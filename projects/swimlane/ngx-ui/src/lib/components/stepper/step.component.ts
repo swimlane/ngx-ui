@@ -20,7 +20,7 @@ export class StepComponent implements OnInit {
   }
   set completeIcon(v: string) {
     this._completeIcon = v;
-    this.cdr.markForCheck();
+    this._cdr.markForCheck();
   }
 
   @Input()
@@ -33,7 +33,7 @@ export class StepComponent implements OnInit {
       this.activeChange.emit(this._active);
     }
 
-    this.cdr.markForCheck();
+    this._cdr.markForCheck();
   }
 
   @Input()
@@ -42,7 +42,7 @@ export class StepComponent implements OnInit {
   }
   set step(v: number) {
     this._step = coerceNumberProperty(v);
-    this.cdr.markForCheck();
+    this._cdr.markForCheck();
   }
 
   @Input()
@@ -51,7 +51,7 @@ export class StepComponent implements OnInit {
   }
   set total(v: number) {
     this._total = coerceNumberProperty(v);
-    this.cdr.markForCheck();
+    this._cdr.markForCheck();
   }
 
   @Output() activeChange = new EventEmitter<number>();
@@ -61,9 +61,9 @@ export class StepComponent implements OnInit {
   private _total?: number;
   private _completeIcon?: string;
 
-  constructor(readonly cdr: ChangeDetectorRef) { }
+  constructor(private readonly _cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
-    this.cdr.markForCheck();
+    this._cdr.markForCheck();
   }
 }

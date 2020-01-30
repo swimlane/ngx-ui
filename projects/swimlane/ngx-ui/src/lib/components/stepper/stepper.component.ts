@@ -58,7 +58,6 @@ export class StepperComponent implements OnDestroy {
 
     if (v !== undefined && !isNaN(v) && v >= 0 && (!this._steps || v < this._steps.length)) {
       this._active = v;
-      this.activeChange.emit(this._active);
 
       if (this._steps) {
         for (const step of this._steps) {
@@ -66,6 +65,7 @@ export class StepperComponent implements OnDestroy {
         }
       }
 
+      this.activeChange.emit(this._active);
       this._cdr.markForCheck();
     }
   }
