@@ -8,6 +8,18 @@
     .ngx-stepper--step {
       cursor: pointer;
       pointer-events: initial !important;
+
+      &:hover {
+        &.completed {
+          span {
+            display: initial;
+          }
+
+          i {
+            display: none;
+          }
+        }
+      }
     }
   }
 
@@ -53,10 +65,22 @@
         .marker-path {
           fill: $color-green-500;
         }
+
+        span {
+          display: none;
+        }
+
+        i {
+          display: initial;
+        }
       }
 
-      > span {
+      span {
         padding-bottom: 1px;
+      }
+
+      i {
+        display: none;
       }
     }
 

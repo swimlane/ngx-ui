@@ -5,8 +5,8 @@
     [class.completed]="active > step"
     (click)="active = step"
   >
-    <span *ngIf="active <= step">{{ step + 1 }}</span>
-    <i *ngIf="active > step" [ngClass]="completeIcon"></i>
+    <span>{{ step + 1 }}</span>
+    <i [ngClass]="completeIcon"></i>
   </div>
 
   <div
