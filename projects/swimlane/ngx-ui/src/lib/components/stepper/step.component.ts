@@ -14,7 +14,14 @@ import { coerceNumberProperty } from '@angular/cdk/coercion';
   encapsulation: ViewEncapsulation.None
 })
 export class StepComponent implements OnInit {
-  @Input() completeIcon?: string;
+  @Input()
+  get completeIcon() {
+    return this._completeIcon;
+  }
+  set completeIcon(v: string) {
+    this._completeIcon = v;
+    this.cdr.markForCheck();
+  }
 
   @Input()
   get active() {
@@ -52,6 +59,7 @@ export class StepComponent implements OnInit {
   private _active?: number;
   private _step?: number;
   private _total?: number;
+  private _completeIcon?: string;
 
   constructor(readonly cdr: ChangeDetectorRef) { }
 

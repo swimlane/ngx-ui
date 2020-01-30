@@ -45,7 +45,7 @@
 <ngx-section class="shadow" sectionTitle="Stepper (Custom Icon)">
   <ngx-stepper
     #stepper
-    completeIcon="ngx-icon ngx-arrow-bold-right"
+    [completeIcon]="direction === StepperDirection.Horizontal ? 'ngx-icon ngx-arrow-bold-right' : 'ngx-icon ngx-arrow-bold-down'"
     [clickable]="clickable"
     [direction]="direction"
     [(active)]="index"

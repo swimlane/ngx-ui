@@ -31,8 +31,23 @@ import { StepComponent } from './step.component';
   encapsulation: ViewEncapsulation.None
 })
 export class StepperComponent implements OnDestroy {
-  @Input() completeIcon = 'ngx-icon ngx-check';
   @Input() direction = StepperDirection.Horizontal;
+
+  @Input()
+  get completeIcon() {
+    return this._completeIcon;
+  }
+  set completeIcon(v: string) {
+    this._completeIcon = v;
+
+    if (this._steps) {
+      for (const step of this._steps) {
+        step.completeIcon = v;
+      }
+    }
+
+    this._cdr.markForCheck();
+  }
 
   @Input()
   get active() {
@@ -91,6 +106,7 @@ export class StepperComponent implements OnDestroy {
 
   private _active: number = 0;
   private _clickable: boolean = false;
+  private _completeIcon: string = 'ngx-icon ngx-check';
   private _steps?: QueryList<StepComponent>;
   private readonly _destroy$ = new Subject<void>();
 
