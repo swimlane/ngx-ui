@@ -6,7 +6,7 @@
     (click)="active = step"
   >
     <span *ngIf="active <= step">{{ step + 1 }}</span>
-    <i *ngIf="active > step" class="ngx-icon ngx-check"></i>
+    <i *ngIf="active > step" [ngClass]="completeIcon"></i>
   </div>
 
   <div

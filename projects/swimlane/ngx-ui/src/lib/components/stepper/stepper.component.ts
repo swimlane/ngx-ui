@@ -14,6 +14,8 @@ import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coerci
   encapsulation: ViewEncapsulation.None
 })
 export class StepperComponent {
+  @Input() completeIcon = 'ngx-icon ngx-check';
+
   @Input()
   get steps() { return this._steps; }
   set steps(v: number) {
