@@ -1,1 +1,10 @@
-<ng-content select="ngx-step"></ng-content>
+<div class="ngx-stepper--steps" (resizeObserver)="onResize($event)">
+  <ng-content select="ngx-step"></ng-content>
+</div>
+
+<div class="ngx-stepper--bar-track">
+  <div
+    class="ngx-stepper--bar"
+    [style.transform]="transform"
+  ></div>
+</div>

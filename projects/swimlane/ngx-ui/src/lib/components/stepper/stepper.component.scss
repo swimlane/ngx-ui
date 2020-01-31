@@ -1,57 +1,114 @@
 @import 'colors/index.scss';
 
 $stepper-size: 28px;
+$stepper-bar-size: 2px;
 
 .ngx-stepper {
   display: flex;
-  justify-content: space-between;
-  min-width: $stepper-size;
+  flex-direction: column;
+
+  &.ngx-stepper--top {
+    .ngx-stepper--bar {
+      bottom: 0;
+      margin-top: 10px;
+      height: $stepper-bar-size;
+      width: $stepper-size;
+    }
+  }
+
+  &.ngx-stepper--bottom {
+    flex-direction: column-reverse;
+
+    .ngx-stepper--bar {
+      top: 0;
+      margin-bottom: 10px;
+      height: $stepper-bar-size;
+      width: $stepper-size;
+    }
+  }
 
   &.ngx-stepper--left {
+    flex-direction: row;
+
     .ngx-step {
       flex-direction: row;
+
+      .ngx-step--title {
+        margin-right: 10px;
+      }
+    }
+
+    .ngx-stepper--bar-track {
+      height: 100%;
+      width: 20px;
+
+      .ngx-stepper--bar {
+        right: 0;
+        margin-left: 10px;
+        height: $stepper-size;
+        width: $stepper-bar-size;
+      }
     }
   }
 
   &.ngx-stepper--right {
+    flex-direction: row-reverse;
+
     .ngx-step {
       flex-direction: row-reverse;
+
+      .ngx-step--title {
+        margin-left: 10px;
+      }
+    }
+
+    .ngx-stepper--bar-track {
+      height: 100%;
+      width: 20px;
+
+      .ngx-stepper--bar {
+        left: 0;
+        margin-right: 10px;
+        height: $stepper-size;
+        width: $stepper-bar-size;
+      }
     }
   }
 
   &.ngx-stepper--left,
   &.ngx-stepper--right {
-    flex-direction: column;
+    .ngx-stepper--steps {
+      flex-direction: column;
 
-    .ngx-step {
-      display: flex;
+      .ngx-step {
+        display: flex;
 
-      &.ngx-step--semi-complete {
-        .ngx-step--separator {
-          background-image: linear-gradient(to bottom, #1edeb6 0%, $color-blue-500 75%) !important;
+        &.ngx-step--semi-complete {
+          .ngx-step--separator {
+            background-image: linear-gradient(to bottom, #1edeb6 0%, $color-blue-500 75%) !important;
+          }
         }
-      }
 
-      &.ngx-step--active {
-        .ngx-step--separator {
-          background-image: linear-gradient(to bottom, $color-blue-500 0%, $color-blue-grey-600 75%) !important;
+        &.ngx-step--active {
+          .ngx-step--separator {
+            background-image: linear-gradient(to bottom, $color-blue-500 0%, $color-blue-grey-600 75%) !important;
+          }
         }
-      }
 
-      .ngx-step--title {
-        display: block;
-        margin-bottom: 0;
-        margin-right: 10px;
-      }
+        .ngx-step--title {
+          display: block;
+          margin-bottom: 0;
+        }
 
-      .ngx-step--step {
-        flex-direction: column;
+        .ngx-step--step {
+          flex-direction: column;
 
-        .ngx-step--separator {
-          min-width: 1.4px;
-          height: initial;
-          min-height: $stepper-size;
-          width: 1.4px;
+          .ngx-step--separator {
+            min-width: 1.4px;
+            height: initial;
+            min-height: $stepper-size;
+            width: 1.4px;
+          }
         }
       }
     }
@@ -86,6 +143,25 @@ $stepper-size: 28px;
         cursor: pointer;
         pointer-events: initial !important;
       }
+    }
+  }
+
+  .ngx-stepper--steps {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    min-width: $stepper-size;
+  }
+
+  .ngx-stepper--bar-track {
+    flex: 1;
+    min-height: 20px;
+    position: relative;
+
+    .ngx-stepper--bar {
+      position: absolute;
+      background-color: $color-blue-500;
+      transition: transform 0.5s ease-in-out;
     }
   }
 }

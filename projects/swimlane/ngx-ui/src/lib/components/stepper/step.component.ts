@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, Output, EventEmitter, OnInit, ElementRef } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 @Component({
@@ -63,12 +63,23 @@ export class StepComponent implements OnInit {
     return this.step === (this.total - 1);
   }
 
+  get height() {
+    return this._el && this._el.nativeElement ? this._el.nativeElement.clientHeight : 0;
+  }
+
+  get width() {
+    return this._el && this._el.nativeElement ? this._el.nativeElement.clientWidth : 0;
+  }
+
   private _active?: number;
   private _step?: number;
   private _total?: number;
   private _completeIcon?: string;
 
-  constructor(private readonly _cdr: ChangeDetectorRef) { }
+  constructor(
+    private readonly _cdr: ChangeDetectorRef,
+    private readonly _el: ElementRef<HTMLElement>
+  ) { }
 
   ngOnInit() {
     this._cdr.markForCheck();
