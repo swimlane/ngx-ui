@@ -109,15 +109,15 @@ export class StepperComponent implements OnDestroy {
   }
 
   get transform() {
-    const distance = (this._vertical ? this._steps.first.height : this._steps.first.width) * this._complete;
-    return `translate${ this._vertical ? 'Y' : 'X' }(${ distance }px)`;
+    const distance = (this.vertical ? this._steps.first.height : this._steps.first.width) * this.complete;
+    return `translate${ this.vertical ? 'Y' : 'X' }(${ distance }px)`;
   }
 
-  private get _complete() {
+  get complete() {
     return this._steps.filter(s => s.step < this.active).length;
   }
 
-  private get _vertical() {
+  get vertical() {
     return this.position === StepperPosition.Left ||
            this.position === StepperPosition.Right;
   }

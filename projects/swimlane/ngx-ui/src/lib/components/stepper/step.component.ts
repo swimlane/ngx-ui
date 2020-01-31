@@ -9,7 +9,7 @@ import { coerceNumberProperty } from '@angular/cdk/coercion';
   host: {
     class: 'ngx-step',
     '[class.ngx-step--last]': 'last',
-    '[class.ngx-step--active]': 'step === active',
+    '[class.ngx-step--active]': 'step === active && active !== undefined',
     '[class.ngx-step--semi-complete]': 'step === active - 1',
     '[class.ngx-step--complete]': 'step < active - 1'
   },

@@ -57,6 +57,7 @@
 <ngx-section class="shadow" sectionTitle="Stepper (Position Change)">
   <ngx-stepper
     #stepper
+    [style.width.px]="stepper.vertical ? 200 : undefined"
     [position]="position"
     [clickable]="clickable"
     [(active)]="index"
