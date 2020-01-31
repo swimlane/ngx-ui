@@ -18,7 +18,7 @@ export class StepperPageComponent {
 
   index = 2;
   clickable = false;
-  position = StepperPosition.Top;
+  position = StepperPosition.Left;
 
   next() {
     if (this.index < this.steps.length - 1) {

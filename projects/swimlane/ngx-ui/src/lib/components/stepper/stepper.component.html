@@ -8,3 +8,10 @@
     [style.transform]="transform"
   ></div>
 </div>
+
+<div
+  *ngIf="activeStep"
+  class="ngx-stepper--content"
+>
+  <ng-template [ngTemplateOutlet]="activeStep.content?.first?.template"></ng-template>
+</div>

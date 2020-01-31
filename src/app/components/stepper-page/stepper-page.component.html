@@ -6,7 +6,14 @@
     [clickable]="clickable"
     [(active)]="index"
   >
-    <ngx-step *ngFor="let step of steps">{{ step.title }}</ngx-step>
+    <ngx-step
+      #ngxStep
+      *ngFor="let step of steps"
+    >
+      <ng-template ngxStepContent>
+        Step #{{ ngxStep.step + 1 }}
+      </ng-template>
+    </ngx-step>
   </ngx-stepper>
 
   <br />
@@ -32,10 +39,13 @@
     [(active)]="index"
   >
     <ngx-step
+      #ngxStep
       *ngFor="let step of steps"
       [completeIcon]="step.icon"
     >
-      {{ step.title }}
+      <ng-template ngxStepContent>
+        Step #{{ ngxStep.step + 1 }}
+      </ng-template>
     </ngx-step>
   </ngx-stepper>
 
@@ -57,16 +67,18 @@
 <ngx-section class="shadow" sectionTitle="Stepper (Position Change)">
   <ngx-stepper
     #stepper
-    [style.width.px]="stepper.vertical ? 200 : undefined"
     [position]="position"
     [clickable]="clickable"
     [(active)]="index"
   >
     <ngx-step
+      #ngxStep
       *ngFor="let step of steps"
-      [completeIcon]="step.icon"
+      [label]="step.title"
     >
-      {{ step.title }}
+      <ng-template ngxStepContent>
+        Step #{{ ngxStep.step + 1 }}
+      </ng-template>
     </ngx-step>
   </ngx-stepper>
 

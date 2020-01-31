@@ -122,6 +122,10 @@ export class StepperComponent implements OnDestroy {
            this.position === StepperPosition.Right;
   }
 
+  get activeStep() {
+    return this._steps.toArray()[this._active];
+  }
+
   readonly StepperPosition = StepperPosition;
 
   private _active: number = 0;

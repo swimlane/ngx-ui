@@ -1,5 +1,7 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, Output, EventEmitter, OnInit, ElementRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, Output, EventEmitter, OnInit, ElementRef, ContentChildren, QueryList } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
+
+import { StepContentDirective } from './step-content.directive';
 
 @Component({
   exportAs: 'ngxStep',
@@ -17,6 +19,8 @@ import { coerceNumberProperty } from '@angular/cdk/coercion';
   encapsulation: ViewEncapsulation.None
 })
 export class StepComponent implements OnInit {
+  @Input() label?: string;
+
   @Input()
   get completeIcon() {
     return this._completeIcon;
@@ -58,6 +62,9 @@ export class StepComponent implements OnInit {
   }
 
   @Output() activeChange = new EventEmitter<number>();
+
+  @ContentChildren(StepContentDirective, { descendants: false })
+  readonly content?: QueryList<StepContentDirective>;
 
   get last() {
     return this.step === (this.total - 1);

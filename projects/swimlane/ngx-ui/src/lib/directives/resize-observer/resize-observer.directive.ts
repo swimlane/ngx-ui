@@ -32,6 +32,6 @@ export class ResizeObserverDirective implements OnInit, OnDestroy {
       clearTimeout(this._timer);
     }
 
-    this._timer = setTimeout(() => this.resize.emit(e), 200);
+    this._timer = setTimeout(() => this.resize.emit(e), 100);
   }
 }
