@@ -119,26 +119,25 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   }
 
   drop(event: CdkDragDrop<string[]>): void {
-    const propertyIndexArray = Object.keys(this.propertyIndex);
+    const propertyIndexValues = Object.values(this.propertyIndex);
 
-    const currentIndexId = propertyIndexArray[event.currentIndex];
-    const previousIndexId = propertyIndexArray[event.previousIndex];
+    moveItemInArray(propertyIndexValues, event.previousIndex, event.currentIndex);
 
-    const tempProperty = this.propertyIndex[currentIndexId];
-    this.propertyIndex[currentIndexId] = this.propertyIndex[previousIndexId];
-    this.propertyIndex[currentIndexId].id = currentIndexId;
-
-    this.propertyIndex[previousIndexId] = tempProperty;
-    this.propertyIndex[previousIndexId].id = previousIndexId;
+    let index = 0;
+    for (const prop in this.propertyIndex) {
+      this.propertyIndex[prop] = propertyIndexValues[index];
+      this.propertyIndex[prop].id = parseInt(prop, 10);
+      index += 1;
+    }
 
     this.swapSchemaProperties(event.previousIndex, event.currentIndex);
   }
 
-  private swapSchemaProperties(currentIndex: number, previousIndex?: number): void {
+  private swapSchemaProperties(previousIndex: number, currentIndex?: number): void {
     const propertiesIds = Object.keys(this.schemaRef.properties);
 
-    if (previousIndex === undefined) {
-      previousIndex = propertiesIds.length - 1;
+    if (currentIndex === undefined) {
+      currentIndex = propertiesIds.length - 1;
     }
 
     moveItemInArray(propertiesIds, previousIndex, currentIndex);
