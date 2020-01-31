@@ -19,7 +19,17 @@ export class JsonEditorNodeComponent extends JsonEditorNode {
 
   @Input() errors: any[];
 
+  placeholder: string = '';
+
   constructor(public dialogMngr: DialogService) {
     super(dialogMngr);
+  }
+
+  ngOnInit() {
+    super.ngOnInit();
+
+    if (this.schema.examples && Array.isArray(this.schema.examples)) {
+      this.placeholder = this.schema.examples.join(', ');
+    }
   }
 }

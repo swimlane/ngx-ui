@@ -13,7 +13,7 @@ import {
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { trigger } from '@angular/animations';
 
-import { drawerTransition } from '../../animations/animations';
+import { DRAWER_ANIMATION } from './drawer.animation';
 import { DrawerDirection } from './drawer-direction.enum';
 import { DrawerPosition } from './drawer-position.enum';
 
@@ -22,7 +22,7 @@ import { DrawerPosition } from './drawer-position.enum';
   selector: 'ngx-drawer',
   templateUrl: 'drawer.component.html',
   styleUrls: ['./drawer.component.scss'],
-  animations: [trigger('drawerTransition', drawerTransition)],
+  animations: [trigger('drawerTransition', DRAWER_ANIMATION)],
   host: {
     role: 'dialog',
     tabindex: '-1',
