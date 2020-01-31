@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { JSONSchema7 } from 'json-schema';
 
 @Component({
   selector: 'app-json-editor-page',
-  templateUrl: './json-editor-page.component.html'
+  templateUrl: './json-editor-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JsonEditorPageComponent {
   jsonEditorSchema = {
@@ -84,6 +85,8 @@ export class JsonEditorPageComponent {
     required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions']
   };
 
+  compressed = false;
+
   _jsonEditorSchema: any = {};
 
   jsonEditorModel: any = {
@@ -105,6 +108,10 @@ export class JsonEditorPageComponent {
       return regex.test(value);
     }
   };
+
+  toggleCompressed(): void {
+    this.compressed = !this.compressed;
+  }
 
   updateJsonEditorSchema(schema: string) {
     this.jsonEditorSchema = JSON.parse(schema);

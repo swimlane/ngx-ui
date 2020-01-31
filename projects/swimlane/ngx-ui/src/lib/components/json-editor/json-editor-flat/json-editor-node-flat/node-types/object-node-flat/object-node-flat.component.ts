@@ -130,14 +130,14 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
       index += 1;
     }
 
-    this.swapSchemaProperties(event.previousIndex, event.currentIndex);
+    this.swapSchemaProperties(event.currentIndex, event.previousIndex);
   }
 
-  private swapSchemaProperties(previousIndex: number, currentIndex?: number): void {
+  private swapSchemaProperties(currentIndex: number, previousIndex?: number): void {
     const propertiesIds = Object.keys(this.schemaRef.properties);
 
-    if (currentIndex === undefined) {
-      currentIndex = propertiesIds.length - 1;
+    if (previousIndex === undefined) {
+      previousIndex = propertiesIds.length - 1;
     }
 
     moveItemInArray(propertiesIds, previousIndex, currentIndex);
