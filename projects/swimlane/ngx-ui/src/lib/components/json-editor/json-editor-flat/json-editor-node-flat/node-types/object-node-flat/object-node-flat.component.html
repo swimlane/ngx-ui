@@ -1,4 +1,10 @@
-<div class="object-node-flat" [hidden]="!expanded" cdkDropList (cdkDropListDropped)="drop($event)">
+<div
+  class="object-node-flat"
+  [hidden]="!expanded"
+  cdkDropList
+  [cdkDropListDisabled]="!schemaBuilderMode"
+  (cdkDropListDropped)="drop($event)"
+>
   <div
     cdkDrag
     cdkDragLockAxis="y"
