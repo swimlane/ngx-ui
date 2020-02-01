@@ -1,4 +1,12 @@
-import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef, OnInit } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  Input,
+  ViewChild,
+  TemplateRef,
+  OnInit,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { ObjectNode } from '../../../../node-types/object-node.component';
 import { DialogService } from '../../../../../dialog/dialog.service';
 import {
@@ -15,7 +23,8 @@ import { PropertyConfigOptions, PropertyConfigComponent } from '../property-conf
   selector: 'ngx-json-object-node-flat',
   templateUrl: './object-node-flat.component.html',
   styleUrls: ['./object-node-flat.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;

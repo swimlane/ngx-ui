@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  EventEmitter,
+  Output,
+  ViewEncapsulation,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { DialogService } from '../../../../../dialog/dialog.service';
 import { JSONEditorSchema, ObjectProperty, propTypes, JsonSchemaDataType } from '../../../../json-editor.helper';
 import { JSONSchema7TypeName } from 'json-schema';
@@ -14,7 +22,8 @@ export interface PropertyConfigOptions {
   selector: 'ngx-property-config',
   templateUrl: './property-config.component.html',
   styleUrls: ['./property-config.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PropertyConfigComponent implements OnInit {
   @Input() property: ObjectProperty;

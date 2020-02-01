@@ -1,4 +1,12 @@
-import { Component, Input, ViewEncapsulation, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+  OnInit,
+  Output,
+  EventEmitter,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { debounceable } from '../../../../utils';
 
@@ -6,7 +14,8 @@ import { debounceable } from '../../../../utils';
   selector: 'ngx-orderable-inputs-list',
   templateUrl: './orderable-inputs-list.component.html',
   styleUrls: ['./orderable-inputs-list.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrderableInputsListComponent implements OnInit {
   @Input() data: string[];

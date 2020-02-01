@@ -2,7 +2,7 @@
 <ngx-section class="shadow" [sectionTitle]="'JSON Editor'">
   <ngx-tabs>
     <ngx-tab label="Editor">
-      <!-- <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor'">
+      <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor'">
         <ngx-json-editor
           [(model)]="jsonEditorModel"
           [schema]="jsonEditorSchema"
@@ -14,7 +14,7 @@
 
       <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat'">
         <ngx-json-editor-flat
-          [(model)]="jsonEditorModel"
+          [(model)]="jsonEditorModelFlat"
           [schema]="jsonEditorSchema"
           label="Model"
           [typeCheckOverrides]="typeOverrides"
@@ -24,14 +24,14 @@
       <hr />
       <h3>Model</h3>
       <pre>{{ jsonEditorModel | json }}</pre>
-      <br /> -->
+      <br />
       <ngx-section class="shadow" [sectionTitle]="'Schema Builder Mode'">
         <ngx-button class="btn btn-primary" [style.marginBottom]="'8px'" (click)="toggleCompressed()"
           >Toggle compressed mode</ngx-button
         >
         <ngx-json-editor-flat
           [(model)]="jsonEditorSchemaBuilderModel"
-          [schema]="{}"
+          [schema]="jsonEditorSchema"
           label="Schema"
           [compressed]="compressed"
           [typeCheckOverrides]="typeOverrides"

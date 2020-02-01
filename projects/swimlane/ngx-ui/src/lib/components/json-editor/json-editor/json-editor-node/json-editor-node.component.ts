@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@angular/core';
 import { JsonEditorNode } from '../../json-editor-node';
 
 import { DialogService } from '../../../dialog/dialog.service';
@@ -8,7 +8,8 @@ import { JSONEditorSchema } from '../../json-editor.helper';
   selector: 'ngx-json-editor-node',
   templateUrl: 'json-editor-node.component.html',
   styleUrls: ['./json-editor-node.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JsonEditorNodeComponent extends JsonEditorNode {
   @Input() model: any;

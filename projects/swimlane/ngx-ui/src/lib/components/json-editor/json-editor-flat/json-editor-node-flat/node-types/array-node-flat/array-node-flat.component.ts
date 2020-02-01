@@ -1,4 +1,12 @@
-import { Component, ViewEncapsulation, Input, ViewChild, TemplateRef, OnInit } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  Input,
+  ViewChild,
+  TemplateRef,
+  OnInit,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { ArrayNode } from '../../../../node-types/array-node.component';
 import { JSONEditorSchema, JsonSchemaDataType, jsonSchemaDataTypes } from '../../../../json-editor.helper';
 import { DialogService } from '../../../../../dialog/dialog.service';
@@ -8,7 +16,8 @@ import { PropertyConfigOptions, PropertyConfigComponent } from '../property-conf
   selector: 'ngx-json-array-node-flat',
   templateUrl: './array-node-flat.component.html',
   styleUrls: ['./array-node-flat.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
   @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;

@@ -93,6 +93,10 @@ export class JsonEditorPageComponent {
     metaData: "<< console.log('this should be of type code') >>"
   };
 
+  jsonEditorModelFlat: any = {
+    metaData: "<< console.log('this should be of type code') >>"
+  };
+
   jsonEditorSchemaBuilderModel: any = {};
 
   schemaRef: JSONSchema7 = {};

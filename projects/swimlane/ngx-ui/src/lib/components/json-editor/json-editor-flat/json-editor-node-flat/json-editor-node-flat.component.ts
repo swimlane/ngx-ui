@@ -1,4 +1,12 @@
-import { Component, Input, OnInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ViewEncapsulation,
+  EventEmitter,
+  Output,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { JsonEditorNode } from '../../json-editor-node';
 
 import { DialogService } from '../../../dialog/dialog.service';
@@ -9,7 +17,8 @@ import { requiredIndicatorIcon, JSONEditorSchema, JsonSchemaDataType } from '../
   selector: 'ngx-json-editor-node-flat',
   templateUrl: './json-editor-node-flat.component.html',
   styleUrls: ['./json-editor-node-flat.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnInit {
   @Input() model: any;
