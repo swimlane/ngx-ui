@@ -9,16 +9,16 @@
     cdkDrag
     cdkDragLockAxis="y"
     class="object-node-content"
-    *ngFor="let prop of propertyIndex | keyvalue; let index = index; trackBy: trackBy"
+    *ngFor="let prop of getProperties(); let index = index; trackBy: trackBy"
   >
     <ngx-json-editor-node-flat
-      [model]="model[prop.value.propertyName]"
-      (modelChange)="updateProp(prop.value.id, $event)"
-      [schema]="prop.value"
-      [schemaRef]="schemaRef ? schemaRef.properties[prop.value.propertyName] : null"
-      [required]="!!requiredCache[prop.value.propertyName]"
-      [inline]="prop.value.type !== 'array' && prop.value.type !== 'object'"
-      [path]="path + getPath(prop.value.propertyName)"
+      [model]="model[prop.propertyName]"
+      (modelChange)="updateProp(prop.id, $event)"
+      [schema]="prop"
+      [schemaRef]="schemaRef ? schemaRef.properties[prop.propertyName] : null"
+      [required]="!!requiredCache[prop.propertyName]"
+      [inline]="prop.type !== 'array' && prop.type !== 'object'"
+      [path]="path + getPath(prop.propertyName)"
       [errors]="errors"
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="level"
@@ -49,18 +49,18 @@
               <li>
                 <button
                   type="button"
-                  (click)="deleteProperty(prop.value.propertyName)"
-                  [disabled]="requiredCache[prop.value.propertyName] && !schemaBuilderMode"
+                  (click)="deleteProperty(prop.propertyName)"
+                  [disabled]="requiredCache[prop.propertyName] && !schemaBuilderMode"
                 >
                   Delete
                 </button>
               </li>
-              <ng-container *ngIf="prop.value?.$meta?.type && !schemaBuilderMode">
-                <li *ngFor="let type of prop.value?.$meta?.type">
+              <ng-container *ngIf="prop?.$meta?.type && !schemaBuilderMode">
+                <li *ngFor="let type of prop?.$meta?.type">
                   <button
                     type="button"
-                    (click)="changePropertyType(prop.value, type)"
-                    [disabled]="prop.value.$meta.currentType === type"
+                    (click)="changePropertyType(prop, type)"
+                    [disabled]="prop.$meta.currentType === type"
                   >
                     Change type to {{ dataTypeMap[type].name }}
                   </button>

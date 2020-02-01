@@ -10,6 +10,10 @@
           [typeCheckOverrides]="typeOverrides"
         >
         </ngx-json-editor>
+
+        <hr />
+        <h3>Model</h3>
+        <pre>{{ jsonEditorModel | json }}</pre>
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat'">
@@ -20,10 +24,12 @@
           [typeCheckOverrides]="typeOverrides"
         >
         </ngx-json-editor-flat>
+
+        <hr />
+        <h3>Model</h3>
+        <pre>{{ jsonEditorModelFlat | json }}</pre>
       </ngx-section>
-      <hr />
-      <h3>Model</h3>
-      <pre>{{ jsonEditorModel | json }}</pre>
+
       <br />
       <ngx-section class="shadow" [sectionTitle]="'Schema Builder Mode'">
         <ngx-button class="btn btn-primary" [style.marginBottom]="'8px'" (click)="toggleCompressed()"
@@ -31,7 +37,7 @@
         >
         <ngx-json-editor-flat
           [(model)]="jsonEditorSchemaBuilderModel"
-          [schema]="jsonEditorSchema"
+          [schema]="{}"
           label="Schema"
           [compressed]="compressed"
           [typeCheckOverrides]="typeOverrides"

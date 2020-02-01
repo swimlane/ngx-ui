@@ -121,6 +121,7 @@ export class ObjectNode implements OnInit, OnChanges {
     this.model[propName] = createValueForSchema(dataType.schema as JSONEditorSchema);
     schema.nameEditable = !this.schemaBuilderMode;
     schema.propertyName = propName;
+
     schema.id = this.propertyId++;
     this.propertyIndex[schema.id] = schema;
     this.propertyIndex = { ...this.propertyIndex };
@@ -324,13 +325,17 @@ export class ObjectNode implements OnInit, OnChanges {
     this.updateIcons();
   }
 
+  getProperties(): JSONEditorSchema[] {
+    return Object.values(this.propertyIndex);
+  }
+
   /**
    * Track By function for the array ittierator
    * @param index
    * @param value
    */
   trackBy(_, value) {
-    return value.value.id;
+    return value.id;
   }
 
   /**
