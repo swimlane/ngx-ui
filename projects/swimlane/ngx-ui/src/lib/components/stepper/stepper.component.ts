@@ -67,7 +67,6 @@ export class StepperComponent implements OnDestroy {
     v = coerceNumberProperty(v);
 
     if (v !== undefined && !isNaN(v) && v !== this._active && v >= 0 && (!this._steps || v < this._steps.length)) {
-      this._prev = this._active;
       this._active = v;
 
       if (this._steps) {
@@ -129,14 +128,9 @@ export class StepperComponent implements OnDestroy {
            this.position === StepperPosition.Right;
   }
 
-  get prev() {
-    return this._prev;
-  }
-
   readonly StepperPosition = StepperPosition;
 
   private _active: number = 0;
-  private _prev: number = 0;
   private _clickable: boolean = false;
   private _completeIcon: string = 'ngx-icon ngx-check';
   private _steps?: QueryList<StepComponent>;
@@ -169,11 +163,11 @@ export class StepperComponent implements OnDestroy {
     this.active = this._steps.length - 1;
   }
 
-  onResize(_: Partial<DOMRectReadOnly>) {
+  onResize() {
     this._cdr.detectChanges();
   }
 
-  protected _getStepState(i: number) {
+  getStepState(i: number) {
     const position = i - this._active;
 
     if (position < 0) {

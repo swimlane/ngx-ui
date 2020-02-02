@@ -16,7 +16,7 @@ export class ResizeObserverDirective implements OnInit, OnDestroy {
   ngOnInit() {
     this._observer = new ResizeObserver(entries => {
       for (const entry of entries) {
-        this._resize(entry.contentRect);
+        this.onResize(entry.contentRect);
       }
     });
 
@@ -27,9 +27,10 @@ export class ResizeObserverDirective implements OnInit, OnDestroy {
     this._observer.unobserve(this._el.nativeElement);
   }
 
-  private _resize(e: Partial<DOMRectReadOnly>) {
+  onResize(e: Partial<DOMRectReadOnly>) {
     if (this._timer) {
       clearTimeout(this._timer);
+      this._timer = undefined;
     }
 
     this._timer = setTimeout(() => this.resize.emit(e), 100);

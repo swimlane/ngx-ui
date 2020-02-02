@@ -1,4 +1,4 @@
-<div class="ngx-stepper--steps" (resizeObserver)="onResize($event)">
+<div class="ngx-stepper--steps" (resizeObserver)="onResize()">
   <ng-content select="ngx-step"></ng-content>
 </div>
 
@@ -16,7 +16,7 @@
     *ngFor="let step of steps; let i = index"
     class="ngx-stepper--content"
     [class.active]="active === i"
-    [@stepVerticalTransition]="_getStepState(i)"
+    [@stepVerticalTransition]="getStepState(i)"
   >
     <ng-container *ngIf="active === i">
       <ng-template
@@ -31,7 +31,7 @@
     *ngFor="let step of steps; let i = index"
     class="ngx-stepper--content"
     [class.active]="active === i"
-    [@stepHorizontalTransition]="_getStepState(i)"
+    [@stepHorizontalTransition]="getStepState(i)"
   >
     <ng-container *ngIf="active === i">
       <ng-template
