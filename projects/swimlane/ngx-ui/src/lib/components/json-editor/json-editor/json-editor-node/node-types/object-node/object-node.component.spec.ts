@@ -3,6 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { jsonSchemaDataTypes, dataTypeMap, jsonSchemaDataFormats } from '../../../../json-editor.helper';
 import { ObjectNodeComponent } from './object-node.component';
 import { PipesModule } from '../../../../../../pipes/pipes.module';
+import { ObjectValuesPipe } from '../../../../object-values.pipe';
 
 describe('ObjectNodeComponent', () => {
   let component: ObjectNodeComponent;
@@ -10,7 +11,7 @@ describe('ObjectNodeComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ObjectNodeComponent],
+      declarations: [ObjectNodeComponent, ObjectValuesPipe],
       imports: [PipesModule]
     });
     fixture = TestBed.createComponent(ObjectNodeComponent);
