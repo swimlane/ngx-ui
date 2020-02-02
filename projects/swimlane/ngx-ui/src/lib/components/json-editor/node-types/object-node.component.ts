@@ -325,10 +325,6 @@ export class ObjectNode implements OnInit, OnChanges {
     this.updateIcons();
   }
 
-  getProperties(): JSONEditorSchema[] {
-    return Object.values(this.propertyIndex);
-  }
-
   /**
    * Track By function for the array ittierator
    * @param index

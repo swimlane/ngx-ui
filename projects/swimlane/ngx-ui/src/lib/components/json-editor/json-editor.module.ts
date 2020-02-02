@@ -27,6 +27,7 @@ import { ArrayNodeFlatComponent } from './json-editor-flat/json-editor-node-flat
 import { ObjectNodeFlatComponent } from './json-editor-flat/json-editor-node-flat/node-types/object-node-flat/object-node-flat.component';
 import { PropertyConfigComponent } from './json-editor-flat/json-editor-node-flat/node-types/property-config/property-config.component';
 import { OrderableInputsListComponent } from './json-editor-flat/orderable-inputs-list/orderable-inputs-list.component';
+import { ObjectValuesPipe } from './object-values.pipe';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { OrderableInputsListComponent } from './json-editor-flat/orderable-input
     ArrayNodeFlatComponent,
     ObjectNodeFlatComponent,
     PropertyConfigComponent,
-    OrderableInputsListComponent
+    OrderableInputsListComponent,
+    ObjectValuesPipe
   ],
   exports: [
     JsonEditorComponent,

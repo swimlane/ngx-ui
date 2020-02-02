@@ -9,7 +9,7 @@
     cdkDrag
     cdkDragLockAxis="y"
     class="object-node-content"
-    *ngFor="let prop of getProperties(); let index = index; trackBy: trackBy"
+    *ngFor="let prop of propertyIndex | objectValues; let index = index; trackBy: trackBy"
   >
     <ngx-json-editor-node-flat
       [model]="model[prop.propertyName]"

@@ -1,5 +1,5 @@
 <div [hidden]="!expanded">
-  <div *ngFor="let prop of getProperties(); trackBy: trackBy">
+  <div *ngFor="let prop of propertyIndex | objectValues; trackBy: trackBy">
     <div class="property-def">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
