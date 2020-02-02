@@ -114,7 +114,7 @@
     }
   }
 
-  &.ngx-stepper--clickable {
+  &.ngx-stepper--readonly {
     .ngx-step {
       &.ngx-step--complete,
       &.ngx-step--semi-complete {

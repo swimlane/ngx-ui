@@ -3,7 +3,7 @@
 <ngx-section class="shadow" sectionTitle="Stepper">
   <ngx-stepper
     #stepper
-    [clickable]="clickable"
+    [readonly]="readonly"
     [(active)]="index"
   >
     <ngx-step
@@ -27,7 +27,7 @@
   <br />
   <br />
 
-  <button class="btn" (click)="toggleClickable()">{{ clickable ? 'Not Clickable' : 'Clickable' }}</button>
+  <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
   <button class="btn" (click)="addStep()">Add Step</button>
 
   <br />
@@ -36,7 +36,7 @@
   <ngx-codemirror mode="htmlmixed" readOnly="true">
     <![CDATA[
       <ngx-stepper
-        [clickable]="clickable"
+        [readonly]="readonly"
         [(active)]="index"
       >
         <ngx-step *ngFor="let step of steps">
@@ -52,7 +52,7 @@
   <ngx-stepper
     #stepper
     completeIcon="ngx-icon ngx-arrow-bold-right"
-    [clickable]="clickable"
+    [readonly]="readonly"
     [(active)]="index"
   >
     <ngx-step
@@ -77,7 +77,7 @@
   <br />
   <br />
 
-  <button class="btn" (click)="toggleClickable()">{{ clickable ? 'Not Clickable' : 'Clickable' }}</button>
+  <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
   <button class="btn" (click)="addStep()">Add Step</button>
 
   <br />
@@ -87,7 +87,7 @@
     <![CDATA[
       <ngx-stepper
         completeIcon="ngx-icon ngx-arrow-bold-right"
-        [clickable]="clickable"
+        [readonly]="readonly"
         [(active)]="index"
       >
         <ngx-step
@@ -106,7 +106,7 @@
   <ngx-stepper
     #stepper
     [position]="position"
-    [clickable]="clickable"
+    [readonly]="readonly"
     [(active)]="index"
   >
     <ngx-step
@@ -132,7 +132,7 @@
   <br />
   <br />
 
-  <button class="btn" (click)="toggleClickable()">{{ clickable ? 'Not Clickable' : 'Clickable' }}</button>
+  <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
   <button class="btn" (click)="addStep()">Add Step</button>
 
   <ngx-select [ngModel]="[position]" (ngModelChange)="position = $event[0]" filterable="false">
@@ -149,7 +149,7 @@
     <![CDATA[
       <ngx-stepper
         [position]="position"
-        [clickable]="clickable"
+        [readonly]="readonly"
         [(active)]="index"
       >
         <ngx-step

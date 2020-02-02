@@ -26,7 +26,7 @@ import { StepperAnimationStates } from './stepper-animation-states.enum';
   styleUrls: ['./stepper.component.scss'],
   host: {
     class: 'ngx-stepper',
-    '[class.ngx-stepper--clickable]': 'clickable',
+    '[class.ngx-stepper--readonly]': 'readonly',
     '[class.ngx-stepper--top]': 'position === StepperPosition.Top',
     '[class.ngx-stepper--bottom]': 'position === StepperPosition.Bottom',
     '[class.ngx-stepper--left]': 'position === StepperPosition.Left',
@@ -81,11 +81,11 @@ export class StepperComponent implements OnDestroy {
   }
 
   @Input()
-  get clickable() {
-    return this._clickable;
+  get readonly() {
+    return this._readonly;
   }
-  set clickable(v: boolean) {
-    this._clickable = coerceBooleanProperty(v);
+  set readonly(v: boolean) {
+    this._readonly = coerceBooleanProperty(v);
     this._cdr.markForCheck();
   }
 
@@ -131,7 +131,7 @@ export class StepperComponent implements OnDestroy {
   readonly StepperPosition = StepperPosition;
 
   private _active: number = 0;
-  private _clickable: boolean = false;
+  private _readonly: boolean = true;
   private _completeIcon: string = 'ngx-icon ngx-check';
   private _steps?: QueryList<StepComponent>;
   private readonly _destroy$ = new Subject<void>();

@@ -17,7 +17,7 @@ export class StepperPageComponent {
   ];
 
   index = 2;
-  clickable = false;
+  readonly = true;
   position = StepperPosition.Left;
 
   next() {
@@ -32,8 +32,8 @@ export class StepperPageComponent {
     }
   }
 
-  toggleClickable() {
-    this.clickable = !this.clickable;
+  toggleReadonly() {
+    this.readonly = !this.readonly;
   }
 
   addStep() {
