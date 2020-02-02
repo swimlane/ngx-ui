@@ -29,6 +29,23 @@
 
   <button class="btn" (click)="toggleClickable()">{{ clickable ? 'Not Clickable' : 'Clickable' }}</button>
   <button class="btn" (click)="addStep()">Add Step</button>
+
+  <br />
+  <br />
+
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-stepper
+        [clickable]="clickable"
+        [(active)]="index"
+      >
+        <ngx-step *ngFor="let step of steps">
+          <ng-template ngxStepContent>
+          </ng-template>
+        </ngx-step>
+      </ngx-stepper>
+    ]]>
+  </ngx-codemirror>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Stepper (Custom Icon)">
@@ -62,6 +79,27 @@
 
   <button class="btn" (click)="toggleClickable()">{{ clickable ? 'Not Clickable' : 'Clickable' }}</button>
   <button class="btn" (click)="addStep()">Add Step</button>
+
+  <br />
+  <br />
+
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-stepper
+        completeIcon="ngx-icon ngx-arrow-bold-right"
+        [clickable]="clickable"
+        [(active)]="index"
+      >
+        <ngx-step
+          *ngFor="let step of steps"
+          [completeIcon]="step.icon"
+        >
+          <ng-template ngxStepContent>
+          </ng-template>
+        </ngx-step>
+      </ngx-stepper>
+    ]]>
+  </ngx-codemirror>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Stepper (Position Change)">
@@ -103,4 +141,26 @@
     <ngx-select-option name="Left" [value]="StepperPosition.Left"></ngx-select-option>
     <ngx-select-option name="Right" [value]="StepperPosition.Right"></ngx-select-option>
   </ngx-select>
+
+  <br />
+  <br />
+
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-stepper
+        [position]="position"
+        [clickable]="clickable"
+        [(active)]="index"
+      >
+        <ngx-step
+          *ngFor="let step of steps"
+          [label]="step.title"
+          [completeIcon]="step.icon"
+        >
+          <ng-template ngxStepContent>
+          </ng-template>
+        </ngx-step>
+      </ngx-stepper>
+    ]]>
+  </ngx-codemirror>
 </ngx-section>
