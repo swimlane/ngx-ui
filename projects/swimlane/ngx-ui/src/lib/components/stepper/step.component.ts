@@ -71,11 +71,11 @@ export class StepComponent implements OnInit {
   }
 
   get height() {
-    return this._el && this._el.nativeElement ? this._el.nativeElement.clientHeight : 0;
+    return this._el.nativeElement.clientHeight;
   }
 
   get width() {
-    return this._el && this._el.nativeElement ? this._el.nativeElement.clientWidth : 0;
+    return this._el.nativeElement.clientWidth;
   }
 
   private _active?: number;
