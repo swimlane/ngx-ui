@@ -75,6 +75,7 @@
       #ngxStep
       *ngFor="let step of steps"
       [label]="step.title"
+      [completeIcon]="step.icon"
     >
       <ng-template ngxStepContent>
         Step #{{ ngxStep.step + 1 }}

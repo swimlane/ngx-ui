@@ -1,7 +1,5 @@
 @import 'colors/index.scss';
-
-$stepper-size: 28px;
-$transition-speed: 0.25s;
+@import './stepper';
 
 .ngx-step {
   flex: 1 1 auto;
@@ -150,7 +148,6 @@ $transition-speed: 0.25s;
 
     .ngx-step--separator {
       flex: 1 1 auto;
-      min-width: $stepper-size;
       height: 1.4px;
       background-color: $color-blue-grey-600;
       transition: background-color $transition-speed ease-in-out, background-image $transition-speed ease-in-out;

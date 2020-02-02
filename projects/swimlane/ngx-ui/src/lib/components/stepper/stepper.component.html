@@ -9,9 +9,34 @@
   ></div>
 </div>
 
-<div
-  *ngIf="activeStep"
-  class="ngx-stepper--content"
->
-  <ng-template [ngTemplateOutlet]="activeStep.content?.first?.template"></ng-template>
-</div>
+<ng-container *ngTemplateOutlet="vertical ? verticalTpl : horizontalTpl"></ng-container>
+
+<ng-template #verticalTpl>
+  <div
+    *ngFor="let step of steps; let i = index"
+    class="ngx-stepper--content"
+    [class.active]="active === i"
+    [@stepVerticalTransition]="_getStepState(i)"
+  >
+    <ng-container *ngIf="active === i">
+      <ng-template
+        [ngTemplateOutlet]="step.content?.first?.template"
+      ></ng-template>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #horizontalTpl>
+  <div
+    *ngFor="let step of steps; let i = index"
+    class="ngx-stepper--content"
+    [class.active]="active === i"
+    [@stepHorizontalTransition]="_getStepState(i)"
+  >
+    <ng-container *ngIf="active === i">
+      <ng-template
+        [ngTemplateOutlet]="step.content?.first?.template"
+      ></ng-template>
+    </ng-container>
+  </div>
+</ng-template>

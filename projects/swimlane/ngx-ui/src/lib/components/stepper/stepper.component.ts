@@ -16,6 +16,8 @@ import { takeUntil } from 'rxjs/operators';
 
 import { StepperPosition } from './stepper-position.enum';
 import { StepComponent } from './step.component';
+import { stepperAnimations } from './stepper.animation';
+import { StepperAnimationStates } from './stepper-animation-states.enum';
 
 @Component({
   exportAs: 'ngxStepper',
@@ -30,6 +32,10 @@ import { StepComponent } from './step.component';
     '[class.ngx-stepper--left]': 'position === StepperPosition.Left',
     '[class.ngx-stepper--right]': 'position === StepperPosition.Right'
   },
+  animations: [
+    stepperAnimations.horizontalStepTransition,
+    stepperAnimations.verticalStepTransition
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
@@ -60,7 +66,8 @@ export class StepperComponent implements OnDestroy {
   set active(v: number) {
     v = coerceNumberProperty(v);
 
-    if (v !== undefined && !isNaN(v) && v >= 0 && (!this._steps || v < this._steps.length)) {
+    if (v !== undefined && !isNaN(v) && v !== this._active && v >= 0 && (!this._steps || v < this._steps.length)) {
+      this._prev = this._active;
       this._active = v;
 
       if (this._steps) {
@@ -122,13 +129,14 @@ export class StepperComponent implements OnDestroy {
            this.position === StepperPosition.Right;
   }
 
-  get activeStep() {
-    return this._steps.toArray()[this._active];
+  get prev() {
+    return this._prev;
   }
 
   readonly StepperPosition = StepperPosition;
 
   private _active: number = 0;
+  private _prev: number = 0;
   private _clickable: boolean = false;
   private _completeIcon: string = 'ngx-icon ngx-check';
   private _steps?: QueryList<StepComponent>;
@@ -163,5 +171,17 @@ export class StepperComponent implements OnDestroy {
 
   onResize(_: Partial<DOMRectReadOnly>) {
     this._cdr.detectChanges();
+  }
+
+  protected _getStepState(i: number) {
+    const position = i - this._active;
+
+    if (position < 0) {
+      return this.vertical ? StepperAnimationStates.Up : StepperAnimationStates.Left;
+    } else if (position > 0) {
+      return this.vertical ? StepperAnimationStates.Down : StepperAnimationStates.Right;
+    }
+
+    return StepperAnimationStates.Current;
   }
 }
