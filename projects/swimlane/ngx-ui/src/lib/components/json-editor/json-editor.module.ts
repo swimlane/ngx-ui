@@ -52,7 +52,8 @@ import { ObjectValuesPipe } from './object-values.pipe';
     JsonEditorNodeFlatComponent,
     ArrayNodeFlatComponent,
     ObjectNodeFlatComponent,
-    PropertyConfigComponent
+    PropertyConfigComponent,
+    ObjectValuesPipe
   ],
   imports: [
     CheckboxModule,
