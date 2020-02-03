@@ -4,7 +4,7 @@ describe('StepContentDirective', () => {
   let directive: StepContentDirective;
 
   beforeEach(() => {
-    directive = new StepContentDirective({ } as any);
+    directive = new StepContentDirective({} as any);
   });
 
   it('should be defined', () => {

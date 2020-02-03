@@ -95,7 +95,9 @@ export class StepperComponent implements OnDestroy {
   @Output() activeChange = new EventEmitter<number>();
 
   @ContentChildren(StepComponent)
-  get steps() { return this._steps };
+  get steps() {
+    return this._steps;
+  }
   set steps(v) {
     this._steps = v;
     this._destroy$.next();
@@ -110,7 +112,7 @@ export class StepperComponent implements OnDestroy {
           item.step.completeIcon = this.completeIcon;
         }
 
-        item.step.activeChange.pipe(takeUntil(this._destroy$)).subscribe(active => this.active = active);
+        item.step.activeChange.pipe(takeUntil(this._destroy$)).subscribe(active => (this.active = active));
       });
     }
 
@@ -122,8 +124,7 @@ export class StepperComponent implements OnDestroy {
   }
 
   get vertical() {
-    return this.position === StepperPosition.Left ||
-           this.position === StepperPosition.Right;
+    return this.position === StepperPosition.Left || this.position === StepperPosition.Right;
   }
 
   get barState() {

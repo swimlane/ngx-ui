@@ -23,11 +23,11 @@ describe('ResizeObserverDirective', () => {
     expect(directive).toBeDefined();
   });
 
-  it('should throttle resize event', (done) => {
+  it('should throttle resize event', done => {
     const spy = spyOn(directive.resize, 'emit');
 
-    directive.onResize({ });
-    directive.onResize({ });
+    directive.onResize({});
+    directive.onResize({});
 
     setTimeout(() => {
       expect(spy).toHaveBeenCalledTimes(1);

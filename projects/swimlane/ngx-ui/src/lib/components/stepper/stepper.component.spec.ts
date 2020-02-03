@@ -84,7 +84,7 @@ describe('StepperComponent', () => {
   describe('getStepState', () => {
     beforeEach(() => {
       component.stepper.active = 1;
-    })
+    });
 
     it('should be up', () => {
       component.stepper.position = StepperPosition.Left;

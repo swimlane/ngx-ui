@@ -9,7 +9,7 @@ import * as faker from 'faker';
 })
 export class StepperPageComponent {
   readonly StepperPosition = StepperPosition;
-  readonly steps: Array<{ readonly title: string; readonly icon?: string; }> = [
+  readonly steps: Array<{ readonly title: string; readonly icon?: string }> = [
     { title: faker.random.word() },
     { title: faker.random.word() },
     { title: faker.random.word() },

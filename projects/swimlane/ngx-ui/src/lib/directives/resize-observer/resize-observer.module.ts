@@ -8,4 +8,4 @@ import { ResizeObserverDirective } from './resize-observer.directive';
   exports: [ResizeObserverDirective],
   imports: [CommonModule]
 })
-export class ResizeObserverModule { }
+export class ResizeObserverModule {}
