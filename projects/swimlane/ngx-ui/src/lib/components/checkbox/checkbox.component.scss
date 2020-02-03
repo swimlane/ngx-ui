@@ -9,6 +9,12 @@
     }
   }
 
+  &.round {
+    .ngx-checkbox--box {
+      border-radius: 100% !important;
+    }
+  }
+
   .ngx-checkbox--label {
     display: flex;
     cursor: pointer;
@@ -19,10 +25,6 @@
     }
 
     .ngx-checkbox--box {
-      height: 18px;
-      width: 18px;
-      min-width: 18px;
-      min-height: 18px;
       border-radius: 2px;
       background-color: transparent;
       border: 2px solid $color-blue-grey-600;
