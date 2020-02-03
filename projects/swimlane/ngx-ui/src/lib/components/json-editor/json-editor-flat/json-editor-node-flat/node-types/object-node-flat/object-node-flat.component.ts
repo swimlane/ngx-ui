@@ -5,7 +5,8 @@ import {
   ViewChild,
   TemplateRef,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ObjectNode } from '../../../../node-types/object-node.component';
 import { DialogService } from '../../../../../dialog/dialog.service';
@@ -38,8 +39,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
   indentationArray: number[] = [];
 
-  constructor(private dialogService: DialogService) {
-    super();
+  constructor(private dialogService: DialogService, protected cdr: ChangeDetectorRef) {
+    super(cdr);
   }
 
   ngOnInit() {

@@ -168,6 +168,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
    * @param value
    */
   updateModel(value: any): void {
+    console.log('updateModel');
     this.model = value;
     this.modelChange.emit(this.model);
   }
