@@ -8,14 +8,14 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { DialogService } from '../../../../../dialog/dialog.service';
-import { JSONEditorSchema, ObjectProperty, propTypes, JsonSchemaDataType } from '../../../../json-editor.helper';
+import { JSONEditorSchema, propTypes, JsonSchemaDataType } from '../../../../json-editor.helper';
 import { JSONSchema7TypeName } from 'json-schema';
 
 export interface PropertyConfigOptions {
   required: boolean;
   index: number;
-  newProperty: ObjectProperty;
-  oldProperty: ObjectProperty;
+  newProperty: JSONEditorSchema;
+  oldProperty: JSONEditorSchema;
 }
 
 @Component({
@@ -26,7 +26,7 @@ export interface PropertyConfigOptions {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PropertyConfigComponent implements OnInit {
-  @Input() property: ObjectProperty;
+  @Input() property: JSONEditorSchema;
 
   @Input() index: number;
 
@@ -40,7 +40,7 @@ export class PropertyConfigComponent implements OnInit {
 
   propTypes: string[] = propTypes;
 
-  editableProperty: ObjectProperty;
+  editableProperty: JSONEditorSchema;
 
   required = false;
 
@@ -67,9 +67,9 @@ export class PropertyConfigComponent implements OnInit {
   }
 
   updateType(type: string): void {
-    if (this.editableProperty.value['type'] !== type) {
-      this.editableProperty.value['type'] = type as JSONSchema7TypeName;
-      delete this.editableProperty.value['format'];
+    if (this.editableProperty['type'] !== type) {
+      this.editableProperty['type'] = type as JSONSchema7TypeName;
+      delete this.editableProperty['format'];
 
       this.cleanUpPropertyConstrains();
     }
@@ -77,40 +77,40 @@ export class PropertyConfigComponent implements OnInit {
 
   updateExamples(examples: string[]): void {
     if (examples && examples.length) {
-      this.editableProperty.value['examples'] = examples;
+      this.editableProperty['examples'] = examples;
     } else {
-      delete this.editableProperty.value.examples;
+      delete this.editableProperty.examples;
     }
   }
 
   updateFormat(format: string): void {
-    if (this.editableProperty.value['format'] !== format) {
-      this.editableProperty.value['type'] = 'string';
-      this.editableProperty.value['format'] = format;
+    if (this.editableProperty['format'] !== format) {
+      this.editableProperty['type'] = 'string';
+      this.editableProperty['format'] = format;
       this.cleanUpPropertyConstrains();
     }
   }
 
   addEnumValue(): void {
-    const enumValues = (this.editableProperty.value['enum'] = this.editableProperty.value['enum'] || []);
+    const enumValues = (this.editableProperty['enum'] = this.editableProperty['enum'] || []);
 
     if (!enumValues.includes(this.newEnumValue)) {
       enumValues.push(this.newEnumValue);
       this.newEnumValue = '';
-      delete this.editableProperty.value['format'];
+      delete this.editableProperty['format'];
     }
   }
 
   updateDefault(enumValue: string): void {
     if (!enumValue) {
-      delete this.editableProperty.value['default'];
+      delete this.editableProperty['default'];
     } else {
-      this.editableProperty.value['default'] = enumValue;
+      this.editableProperty['default'] = enumValue;
     }
   }
 
   removeEnumValue(val: string): void {
-    const enumValues = this.editableProperty.value['enum'];
+    const enumValues = this.editableProperty['enum'];
     const index = enumValues.indexOf(val);
 
     if (index > -1) {
@@ -119,25 +119,25 @@ export class PropertyConfigComponent implements OnInit {
 
     if (!enumValues.length) {
       // Remove enum property if empty
-      delete this.editableProperty.value['enum'];
+      delete this.editableProperty['enum'];
     }
   }
 
   private cleanUpPropertyConstrains(): void {
-    delete this.editableProperty.value['enum'];
-    delete this.editableProperty.value['properties'];
-    delete this.editableProperty.value['required'];
-    delete this.editableProperty.value['items'];
-    delete this.editableProperty.value['minimum'];
-    delete this.editableProperty.value['maximum'];
-    delete this.editableProperty.value['default'];
-    delete this.editableProperty.value['minLength'];
-    delete this.editableProperty.value['maxLength'];
-    delete this.editableProperty.value['minItems'];
-    delete this.editableProperty.value['maxItems'];
+    delete this.editableProperty['enum'];
+    delete this.editableProperty['properties'];
+    delete this.editableProperty['required'];
+    delete this.editableProperty['items'];
+    delete this.editableProperty['minimum'];
+    delete this.editableProperty['maximum'];
+    delete this.editableProperty['default'];
+    delete this.editableProperty['minLength'];
+    delete this.editableProperty['maxLength'];
+    delete this.editableProperty['minItems'];
+    delete this.editableProperty['maxItems'];
   }
 
   private setRequired(): void {
-    this.required = this.schema.required.includes(this.property.value.propertyName);
+    this.required = this.schema.required.includes(this.property.propertyName);
   }
 }

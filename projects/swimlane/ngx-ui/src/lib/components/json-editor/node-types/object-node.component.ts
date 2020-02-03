@@ -92,7 +92,9 @@ export class ObjectNode implements OnInit, OnChanges {
    */
   updateProp(id: number | string, value: any): void {
     const propName = this.propertyIndex[id].propertyName;
+    this.propertyIndex = { ...this.propertyIndex };
     this.model[propName] = value;
+    this.model = { ...this.model };
     this.modelChange.emit(this.model);
   }
 
@@ -107,6 +109,7 @@ export class ObjectNode implements OnInit, OnChanges {
     this.propertyIndex[id].propertyName = name;
     delete this.model[oldName];
     this.propertyIndex = { ...this.propertyIndex };
+    this.model = { ...this.model };
     this.modelChange.emit(this.model);
   }
 
@@ -126,6 +129,7 @@ export class ObjectNode implements OnInit, OnChanges {
     this.propertyIndex[schema.id] = schema;
     this.propertyIndex = { ...this.propertyIndex };
 
+    this.model = { ...this.model };
     this.modelChange.emit(this.model);
     this.updateIcons();
   }
@@ -152,6 +156,7 @@ export class ObjectNode implements OnInit, OnChanges {
     this.propertyIndex[schema.id] = schema;
     this.propertyIndex = { ...this.propertyIndex };
 
+    this.model = { ...this.model };
     this.modelChange.emit(this.model);
     this.updateIcons();
   }
@@ -178,6 +183,7 @@ export class ObjectNode implements OnInit, OnChanges {
     this.propertyIndex[schema.id] = schema;
     this.propertyIndex = { ...this.propertyIndex };
 
+    this.model = { ...this.model };
     this.modelChange.emit(this.model);
     this.updateIcons();
   }

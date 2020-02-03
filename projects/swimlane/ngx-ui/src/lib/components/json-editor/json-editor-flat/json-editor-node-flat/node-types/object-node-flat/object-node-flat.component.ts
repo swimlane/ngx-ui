@@ -13,7 +13,6 @@ import {
   JsonSchemaDataType,
   jsonSchemaDataTypes,
   JSONEditorSchema,
-  ObjectProperty,
   createValueForSchema
 } from '../../../../json-editor.helper';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -62,7 +61,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     this.updatePropertyName(options.id, options.name);
   }
 
-  onPropertyConfig(property: ObjectProperty, index: number): void {
+  onPropertyConfig(property: JSONEditorSchema, index: number): void {
     this.dialogService.create({
       template: this.propertyConfigTmpl,
       context: {
@@ -76,8 +75,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   }
 
   updateSchema(options: PropertyConfigOptions): void {
-    const oldProperty = options.oldProperty.value;
-    const newProperty = options.newProperty.value;
+    const oldProperty = options.oldProperty;
+    const newProperty = options.newProperty;
 
     const oldName = oldProperty.propertyName;
     const newName = newProperty.propertyName;
@@ -88,13 +87,13 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
       }
 
       this.updateSchemaPropertyName(this.schemaRef, newName, oldName);
-      this.updatePropertyName(options.newProperty.key, newName);
+      this.updatePropertyName(options.newProperty.id, newName);
     }
 
     this.toggleRequiredValue(options.required, newName);
 
     this.schema.properties[newName] = newProperty;
-    this.propertyIndex[options.newProperty.key] = newProperty;
+    this.propertyIndex[options.newProperty.id] = newProperty;
     this.updateSchemaRefProperty(newProperty);
 
     if (newName !== oldName) {
@@ -106,6 +105,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
       this.model[newProperty.propertyName] = value;
     }
 
+    this.propertyIndex = { ...this.propertyIndex };
     this.schemaChange.emit();
   }
 
@@ -160,8 +160,10 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   }
 
   private initSchemaProperties(schema: JSONEditorSchema): void {
-    schema.required = schema.required || [];
-    schema.properties = schema.properties || {};
+    if (schema) {
+      schema.required = schema.required || [];
+      schema.properties = schema.properties || {};
+    }
   }
 
   private updateSchemaRefProperty(prop: any): void {

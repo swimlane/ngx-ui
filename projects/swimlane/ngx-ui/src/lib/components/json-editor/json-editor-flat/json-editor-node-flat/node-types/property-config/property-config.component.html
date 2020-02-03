@@ -12,7 +12,7 @@
         *ngIf="!arrayItem"
         type="text"
         name="propertyName"
-        [(ngModel)]="editableProperty.value.propertyName"
+        [(ngModel)]="editableProperty.propertyName"
         [label]="'PROPERTY NAME'"
         [required]="true"
         [hint]="'Must only contain A-Z, a-z, 0-9 or _'"
@@ -23,7 +23,7 @@
       <ngx-input
         *ngIf="!arrayItem"
         type="text"
-        [(ngModel)]="editableProperty.value.title"
+        [(ngModel)]="editableProperty.title"
         [label]="'PROPERTY TITLE'"
         [hint]="'A human-readable name for this property'"
       >
@@ -33,7 +33,7 @@
       <ngx-input
         *ngIf="!arrayItem"
         type="text"
-        [(ngModel)]="editableProperty.value.description"
+        [(ngModel)]="editableProperty.description"
         [label]="'PROPERTY DESCRIPTION'"
         [hint]="'A description for the property'"
       >
@@ -43,7 +43,7 @@
       <ngx-select
         class="prop-types-formats"
         [filterable]="false"
-        [ngModel]="[editableProperty.value.type]"
+        [ngModel]="[editableProperty.type]"
         (ngModelChange)="updateType($event[0])"
         [required]="true"
         [label]="'TYPE'"
@@ -54,9 +54,9 @@
       <!-- FORMAT -->
       <ngx-select
         class="prop-types-formats"
-        *ngIf="editableProperty.value.type === 'string' && formats?.length && !editableProperty.value.enum?.length"
+        *ngIf="editableProperty.type === 'string' && formats?.length && !editableProperty.enum?.length"
         [filterable]="false"
-        [ngModel]="[editableProperty.value.format]"
+        [ngModel]="[editableProperty.format]"
         (ngModelChange)="updateFormat($event[0])"
         [label]="'FORMAT'"
       >
@@ -70,7 +70,7 @@
 
       <!-- ENUM -->
       <ngx-input
-        *ngIf="editableProperty.value.type === 'string' && !editableProperty.value.format"
+        *ngIf="editableProperty.type === 'string' && !editableProperty.format"
         type=" text"
         class="new-enum-input"
         [(ngModel)]="newEnumValue"
@@ -83,9 +83,9 @@
         </ngx-input-suffix>
       </ngx-input>
 
-      <ng-container *ngIf="editableProperty.value.enum?.length">
-        <div *ngIf="editableProperty.value.enum?.length" class="enum-edit">
-          <div class="tag" *ngFor="let value of editableProperty.value.enum">
+      <ng-container *ngIf="editableProperty.enum?.length">
+        <div *ngIf="editableProperty.enum?.length" class="enum-edit">
+          <div class="tag" *ngFor="let value of editableProperty.enum">
             <span>{{ value }}</span>
             <button type="button" (click)="removeEnumValue(value)">
               <i class="ngx-icon ngx-x"></i>
@@ -95,41 +95,38 @@
 
         <ngx-select
           [filterable]="false"
-          [ngModel]="[editableProperty.value.default]"
+          [ngModel]="[editableProperty.default]"
           (ngModelChange)="updateDefault($event[0])"
           [label]="'DEFAULT'"
         >
-          <ngx-select-option *ngFor="let value of editableProperty.value.enum" [name]="value" [value]="value">
+          <ngx-select-option *ngFor="let value of editableProperty.enum" [name]="value" [value]="value">
           </ngx-select-option>
         </ngx-select>
       </ng-container>
 
       <!-- CONSTRAINS -->
-      <div
-        class="constrain-row"
-        *ngIf="editableProperty.value.type === 'number' || editableProperty.value.type === 'integer'"
-      >
-        <ngx-input type="number" [(ngModel)]="editableProperty.value.minimum" [label]="'MINIMUM'"></ngx-input>
+      <div class="constrain-row" *ngIf="editableProperty.type === 'number' || editableProperty.type === 'integer'">
+        <ngx-input type="number" [(ngModel)]="editableProperty.minimum" [label]="'MINIMUM'"></ngx-input>
 
-        <ngx-input type="number" [(ngModel)]="editableProperty.value.maximum" [label]="'MAXIMUM'"></ngx-input>
+        <ngx-input type="number" [(ngModel)]="editableProperty.maximum" [label]="'MAXIMUM'"></ngx-input>
       </div>
 
-      <div class="constrain-row" *ngIf="editableProperty.value.type === 'string'">
-        <ngx-input type="number" [(ngModel)]="editableProperty.value.minLength" [label]="'MINIMUM LENGTH'"></ngx-input>
+      <div class="constrain-row" *ngIf="editableProperty.type === 'string'">
+        <ngx-input type="number" [(ngModel)]="editableProperty.minLength" [label]="'MINIMUM LENGTH'"></ngx-input>
 
-        <ngx-input type="number" [(ngModel)]="editableProperty.value.maxLength" [label]="'MAXIMUM LENGTH'"></ngx-input>
+        <ngx-input type="number" [(ngModel)]="editableProperty.maxLength" [label]="'MAXIMUM LENGTH'"></ngx-input>
       </div>
 
-      <div class="constrain-row" *ngIf="editableProperty.value.type === 'array'">
-        <ngx-input type="number" [(ngModel)]="editableProperty.value.minItems" [label]="'MIN ITEMS'"></ngx-input>
-        <ngx-input type="number" [(ngModel)]="editableProperty.value.maxItems" [label]="'MAX ITEMS'"></ngx-input>
+      <div class="constrain-row" *ngIf="editableProperty.type === 'array'">
+        <ngx-input type="number" [(ngModel)]="editableProperty.minItems" [label]="'MIN ITEMS'"></ngx-input>
+        <ngx-input type="number" [(ngModel)]="editableProperty.maxItems" [label]="'MAX ITEMS'"></ngx-input>
       </div>
 
       <!-- PATTERN -->
       <ngx-input
         type="text"
-        *ngIf="['string', 'number', 'integer'].includes($any(editableProperty.value.type))"
-        [(ngModel)]="editableProperty.value.pattern"
+        *ngIf="['string', 'number', 'integer'].includes($any(editableProperty.type))"
+        [(ngModel)]="editableProperty.pattern"
         [label]="'PATTERN TO MATCH'"
       >
       </ngx-input>
@@ -142,7 +139,7 @@
     <ngx-tab label="EXAMPLE VALUES">
       <div class="examples-container">
         <ngx-orderable-inputs-list
-          [data]="editableProperty.value.examples"
+          [data]="editableProperty.examples"
           (onUpdate)="updateExamples($event)"
         ></ngx-orderable-inputs-list>
       </div>

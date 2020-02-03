@@ -28,7 +28,7 @@
             *ngIf="(!schema.nameEditable || schemaBuilderMode) && (schema?.propertyName || label || arrayItem)"
           >
             <span class="name">
-              {{ label || (arrayItem ? 'Items' : schema?.title ? schema?.title : (schema?.propertyName | decamelize)) }}
+              {{ label || (arrayItem ? 'Items' : schema?.title ? schema?.title : schema?.propertyName) }}
             </span>
             <ngx-icon
               *ngIf="schema?.description || schema?.examples"

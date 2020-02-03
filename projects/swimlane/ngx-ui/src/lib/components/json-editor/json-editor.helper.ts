@@ -23,10 +23,6 @@ export interface JSONEditorSchema extends JSONSchema7 {
 export interface PropertyIndex extends JSONEditorSchema {
   [id: number]: JSONEditorSchema;
 }
-export interface ObjectProperty {
-  key: number;
-  value: JSONEditorSchema;
-}
 
 export interface JsonSchemaDataType {
   name: string;

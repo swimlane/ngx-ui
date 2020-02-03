@@ -18,7 +18,7 @@
 
       <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat'">
         <ngx-json-editor-flat
-          [(model)]="jsonEditorModelFlat"
+          [(model)]="jsonEditorModel"
           [schema]="jsonEditorSchema"
           label="Model"
           [typeCheckOverrides]="typeOverrides"
@@ -27,7 +27,7 @@
 
         <hr />
         <h3>Model</h3>
-        <pre>{{ jsonEditorModelFlat | json }}</pre>
+        <pre>{{ jsonEditorModel | json }}</pre>
       </ngx-section>
 
       <br />

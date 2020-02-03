@@ -54,7 +54,7 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
     this.dialogService.create({
       template: this.propertyConfigTmpl,
       context: {
-        property: { value: item },
+        property: item,
         index,
         schema: this.schema,
         formats: this.formats
@@ -64,8 +64,8 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
   }
 
   updateSchema(options: PropertyConfigOptions): void {
-    this.schema.items = options.newProperty.value;
-    this.schemaRef.items = options.newProperty.value;
+    this.schema.items = options.newProperty;
+    this.schemaRef.items = options.newProperty;
     this.schemaChange.emit();
   }
 
