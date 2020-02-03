@@ -6,14 +6,12 @@
   position: relative;
   flex-direction: column;
   overflow: hidden;
+  padding: 10px;
 
   &.ngx-stepper--top {
     .ngx-stepper--bar {
       bottom: 0;
       margin-top: 10px;
-      height: $stepper-bar-size;
-      width: $stepper-bar-width;
-      margin-left: $stepper-bar-margin;
     }
   }
 
@@ -23,9 +21,6 @@
     .ngx-stepper--bar {
       top: 0;
       margin-bottom: 10px;
-      height: $stepper-bar-size;
-      width: $stepper-bar-width;
-      margin-left: $stepper-bar-margin;
     }
   }
 
@@ -46,9 +41,6 @@
       .ngx-stepper--bar {
         right: 0;
         margin-left: 10px;
-        height: $stepper-bar-width;
-        width: $stepper-bar-size;
-        margin-top: $stepper-bar-margin;
       }
     }
   }
@@ -70,9 +62,6 @@
       .ngx-stepper--bar {
         left: 0;
         margin-right: 10px;
-        height: $stepper-bar-width;
-        width: $stepper-bar-size;
-        margin-top: $stepper-bar-margin;
       }
     }
   }
@@ -166,7 +155,6 @@
     .ngx-stepper--bar {
       position: absolute;
       background-color: $color-blue-500;
-      transition: transform 0.5s ease-in-out;
     }
   }
 

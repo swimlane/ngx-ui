@@ -18,6 +18,7 @@ import { StepperPosition } from './stepper-position.enum';
 import { StepComponent } from './step.component';
 import { stepperAnimations } from './stepper.animation';
 import { StepperAnimationStates } from './stepper-animation-states.enum';
+import { StepperBarAnimationStates } from './stepper-bar-animation-states.enum';
 
 @Component({
   exportAs: 'ngxStepper',
@@ -34,7 +35,8 @@ import { StepperAnimationStates } from './stepper-animation-states.enum';
   },
   animations: [
     stepperAnimations.horizontalStepTransition,
-    stepperAnimations.verticalStepTransition
+    stepperAnimations.verticalStepTransition,
+    stepperAnimations.horizontalBarTransition
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
@@ -114,9 +116,8 @@ export class StepperComponent implements OnDestroy {
     this._cdr.markForCheck();
   }
 
-  get transform() {
-    const distance = (this.vertical ? this._steps.first.height : this._steps.first.width) * this.complete;
-    return `translate${ this.vertical ? 'Y' : 'X' }(${ distance }px)`;
+  get activeStep() {
+    return this._steps.toArray()[this._active];
   }
 
   get complete() {
@@ -128,12 +129,17 @@ export class StepperComponent implements OnDestroy {
            this.position === StepperPosition.Right;
   }
 
+  get barState() {
+    return this._barState;
+  }
+
   readonly StepperPosition = StepperPosition;
 
   private _active: number = 0;
   private _readonly: boolean = true;
   private _completeIcon: string = 'ngx-icon ngx-check';
   private _steps?: QueryList<StepComponent>;
+  private _barState = StepperBarAnimationStates.Stay;
   private readonly _destroy$ = new Subject<void>();
 
   constructor(private readonly _cdr: ChangeDetectorRef) {}
@@ -165,6 +171,24 @@ export class StepperComponent implements OnDestroy {
 
   onResize() {
     this._cdr.detectChanges();
+  }
+
+  onStepAnimationStart(i: number) {
+    if (i === this._active) {
+      setTimeout(() => {
+        this._barState = StepperBarAnimationStates.Move;
+        this._cdr.markForCheck();
+      });
+    }
+  }
+
+  onStepAnimationEnd(i: number) {
+    if (i === this._active) {
+      setTimeout(() => {
+        this._barState = StepperBarAnimationStates.Stay;
+        this._cdr.markForCheck();
+      });
+    }
   }
 
   getStepState(i: number) {

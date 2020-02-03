@@ -147,6 +147,7 @@
       font-weight: bold;
       pointer-events: none;
       transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+      user-select: none;
 
       span {
         padding-bottom: 1px;

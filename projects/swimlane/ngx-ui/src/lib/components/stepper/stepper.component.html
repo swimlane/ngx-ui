@@ -5,7 +5,12 @@
 <div class="ngx-stepper--bar-track">
   <div
     class="ngx-stepper--bar"
-    [style.transform]="transform"
+    [@stepperBarHorizontalTransition]="{
+      value: barState,
+      params: {
+        width: steps.first.width * complete
+      }
+    }"
   ></div>
 </div>
 
@@ -17,6 +22,8 @@
     class="ngx-stepper--content"
     [class.active]="active === i"
     [@stepVerticalTransition]="getStepState(i)"
+    (@stepVerticalTransition.start)="onStepAnimationStart(i)"
+    (@stepVerticalTransition.done)="onStepAnimationEnd(i)"
   >
     <ng-container *ngIf="active === i">
       <ng-template
@@ -32,6 +39,8 @@
     class="ngx-stepper--content"
     [class.active]="active === i"
     [@stepHorizontalTransition]="getStepState(i)"
+    (@stepHorizontalTransition.start)="onStepAnimationStart(i)"
+    (@stepHorizontalTransition.done)="onStepAnimationEnd(i)"
   >
     <ng-container *ngIf="active === i">
       <ng-template
