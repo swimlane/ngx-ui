@@ -33,17 +33,6 @@ describe('StepperComponent', () => {
     expect(component.stepper.steps.first.completeIcon).toEqual(component.stepper.completeIcon);
   });
 
-  describe('transform', () => {
-    it('should be horizontal transform', () => {
-      expect(component.stepper.transform).toContain('translateX');
-    });
-
-    it('should be vertical transform', () => {
-      component.stepper.position = StepperPosition.Left;
-      expect(component.stepper.transform).toContain('translateY');
-    });
-  });
-
   describe('next', () => {
     beforeEach(() => {
       component.stepper.active = 0;

@@ -9,8 +9,9 @@ import {
 import { StepperAnimationStates } from './stepper-animation-states.enum';
 import { StepperBarAnimationStates } from './stepper-bar-animation-states.enum';
 
-const BAR_SIZE = 28;
+const BAR_SIZE = 40;
 const BAR_THICKNESS = 2;
+const STEP_SIZE = 28;
 
 export const stepperAnimations = {
   horizontalStepTransition: trigger('stepHorizontalTransition', [
@@ -34,7 +35,7 @@ export const stepperAnimations = {
         transform: 'translateX({{ width }}px)',
         height: `${ BAR_THICKNESS }px`,
         width: `${ BAR_SIZE }px`,
-        margin: '0'
+        margin: `0 0 0 -${ (BAR_SIZE - STEP_SIZE) / 2 }px`
       }),
       { params: { width: 0 } }
     ),
@@ -44,7 +45,7 @@ export const stepperAnimations = {
         transform: 'translateX({{ width }}px)',
         height: `${ BAR_THICKNESS }px`,
         width: `${ BAR_SIZE / 2 }px`,
-        margin: `0 ${ BAR_SIZE / 4 }px`
+        margin: `0 ${ BAR_SIZE / 4 }px 0 ${ (BAR_SIZE / 4) - ((BAR_SIZE - STEP_SIZE) / 2) }px`
       }),
       { params: { width: 0 } },
     ),
@@ -57,7 +58,7 @@ export const stepperAnimations = {
         transform: 'translateY({{ height }}px)',
         width: `${ BAR_THICKNESS }px`,
         height: `${ BAR_SIZE }px`,
-        margin: '0'
+        margin: `-${ (BAR_SIZE - STEP_SIZE) / 2 }px 0 0 0`
       }),
       { params: { height: 0 } }
     ),
@@ -67,7 +68,7 @@ export const stepperAnimations = {
         transform: 'translateY({{ height }}px)',
         width: `${ BAR_THICKNESS }px`,
         height: `${ BAR_SIZE / 2 }px`,
-        margin: `${ BAR_SIZE / 4 }px 0`
+        margin: `${ (BAR_SIZE / 4) - ((BAR_SIZE - STEP_SIZE) / 2) }px 0 ${ BAR_SIZE / 4 }px`
       }),
       { params: { height: 0 } },
     ),
