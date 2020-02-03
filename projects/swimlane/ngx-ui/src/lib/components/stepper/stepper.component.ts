@@ -117,10 +117,6 @@ export class StepperComponent implements OnDestroy {
     this._cdr.markForCheck();
   }
 
-  get activeStep() {
-    return this._steps.toArray()[this._active];
-  }
-
   get complete() {
     return this._steps.filter(s => s.step < this.active).length;
   }

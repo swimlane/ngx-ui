@@ -10,7 +10,7 @@ import { StepperPosition } from './stepper-position.enum';
       [(active)]="step"
       [completeIcon]="icon"
       [position]="position"
-      [clickable]="clickable"
+      [readonly]="readonly"
     >
       <ngx-step></ngx-step>
       <ngx-step></ngx-step>
@@ -26,5 +26,5 @@ export class StepperComponentFixture {
   step = 1;
   position = StepperPosition.Top;
   icon = 'ngx-icon ngx-check';
-  clickable = false;
+  readonly = false;
 }
