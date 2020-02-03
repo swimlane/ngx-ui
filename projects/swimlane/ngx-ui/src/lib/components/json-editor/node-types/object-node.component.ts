@@ -280,7 +280,7 @@ export class ObjectNode implements OnInit, OnChanges {
     }
 
     this.propertyIndex = { ...this.propertyIndex };
-    // this.cdr.markForCheck();
+    this.cdr.markForCheck();
   }
 
   isIndexed(propertyName: string): boolean {
