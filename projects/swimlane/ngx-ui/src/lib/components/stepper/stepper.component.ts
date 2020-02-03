@@ -36,7 +36,8 @@ import { StepperBarAnimationStates } from './stepper-bar-animation-states.enum';
   animations: [
     stepperAnimations.horizontalStepTransition,
     stepperAnimations.verticalStepTransition,
-    stepperAnimations.horizontalBarTransition
+    stepperAnimations.horizontalBarTransition,
+    stepperAnimations.verticalBarTransition
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None

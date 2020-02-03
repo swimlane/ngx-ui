@@ -48,5 +48,28 @@ export const stepperAnimations = {
       }),
       { params: { width: 0 } },
     ),
+  ]),
+
+  verticalBarTransition: trigger('stepperBarVerticalTransition', [
+    state(StepperBarAnimationStates.Stay,
+      style({
+        transition: '500ms cubic-bezier(0.35, 0, 0.25, 1)',
+        transform: 'translateY({{ height }}px)',
+        width: `${ BAR_THICKNESS }px`,
+        height: `${ BAR_SIZE }px`,
+        margin: '0'
+      }),
+      { params: { height: 0 } }
+    ),
+    state(StepperBarAnimationStates.Move,
+      style({
+        transition: '500ms cubic-bezier(0.35, 0, 0.25, 1)',
+        transform: 'translateY({{ height }}px)',
+        width: `${ BAR_THICKNESS }px`,
+        height: `${ BAR_SIZE / 2 }px`,
+        margin: `${ BAR_SIZE / 4 }px 0`
+      }),
+      { params: { height: 0 } },
+    ),
   ])
 };

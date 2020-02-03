@@ -4,12 +4,20 @@
 
 <div class="ngx-stepper--bar-track">
   <div
+    *ngIf="!vertical"
     class="ngx-stepper--bar"
     [@stepperBarHorizontalTransition]="{
       value: barState,
-      params: {
-        width: steps.first.width * complete
-      }
+      params: { width: steps.first.width * complete }
+    }"
+  ></div>
+
+  <div
+    *ngIf="vertical"
+    class="ngx-stepper--bar"
+    [@stepperBarVerticalTransition]="{
+      value: barState,
+      params: { height: steps.first.height * complete }
     }"
   ></div>
 </div>
