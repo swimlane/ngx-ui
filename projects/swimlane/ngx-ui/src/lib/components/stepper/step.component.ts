@@ -10,7 +10,6 @@ import { StepContentDirective } from './step-content.directive';
   styleUrls: ['./step.component.scss'],
   host: {
     class: 'ngx-step',
-    '[class.ngx-step--last]': 'last',
     '[class.ngx-step--active]': 'step === active && active !== undefined',
     '[class.ngx-step--semi-complete]': 'step === active - 1',
     '[class.ngx-step--complete]': 'step < active - 1'
@@ -65,10 +64,6 @@ export class StepComponent implements OnInit {
 
   @ContentChildren(StepContentDirective, { descendants: false })
   readonly content?: QueryList<StepContentDirective>;
-
-  get last() {
-    return this.step === (this.total - 1);
-  }
 
   get height() {
     return this._el.nativeElement.clientHeight;

@@ -4,8 +4,14 @@
 .ngx-step {
   flex: 1 1 auto;
 
-  &.ngx-step--last {
+  &:last-child {
     flex: initial;
+
+    .ngx-step--step {
+      &:after {
+        display: none;
+      }
+    }
   }
 
   &.ngx-step--active {
@@ -13,18 +19,20 @@
       color: $color-blue-500;
     }
 
-    .ngx-step--circle {
-      border: 1.75px solid $color-blue-500 !important;
-      color: $color-blue-500 !important;
-      box-shadow: 0px 0px 9.59842px rgba(20, 131, 255, 0.8);
-
-      .marker-path {
-        fill: $color-blue-500 !important;
+    .ngx-step--step {
+      &:after {
+        background-image: linear-gradient(to right, $color-blue-500 0%, $color-blue-grey-600 75%) !important;
       }
-    }
 
-    .ngx-step--separator {
-      background-image: linear-gradient(to right, $color-blue-500 0%, $color-blue-grey-600 75%) !important;
+      .ngx-step--circle {
+        border: 1.75px solid $color-blue-500 !important;
+        color: $color-blue-500 !important;
+        box-shadow: 0px 0px 9.59842px rgba(20, 131, 255, 0.8);
+
+        .marker-path {
+          fill: $color-blue-500 !important;
+        }
+      }
     }
   }
 
@@ -33,30 +41,32 @@
       color: $color-green-500;
     }
 
-    .ngx-step--circle {
-      border: 1.75px solid $color-green-500 !important;
-      color: $color-green-500 !important;
-      box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
-
-      .ngx-check {
-        font-size: 0.625rem !important;
+    .ngx-step--step {
+      &:after {
+        background-color: #1edeb6 !important;
       }
 
-      .marker-path {
-        fill: $color-green-500 !important;
-      }
+      .ngx-step--circle {
+        border: 1.75px solid $color-green-500 !important;
+        color: $color-green-500 !important;
+        box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
 
-      span {
-        opacity: 0 !important;
-      }
+        .ngx-check {
+          font-size: 0.625rem !important;
+        }
 
-      i {
-        opacity: 1 !important;
-      }
-    }
+        .marker-path {
+          fill: $color-green-500 !important;
+        }
 
-    .ngx-step--separator {
-      background-color: #1edeb6 !important;
+        span {
+          opacity: 0 !important;
+        }
+
+        i {
+          opacity: 1 !important;
+        }
+      }
     }
   }
 
@@ -65,30 +75,32 @@
       color: $color-green-500;
     }
 
-    .ngx-step--circle {
-      border: 1.75px solid $color-green-500 !important;
-      color: $color-green-500 !important;
-      box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
-
-      .ngx-check {
-        font-size: 0.625rem !important;
+    .ngx-step--step {
+      &:after {
+        background-image: linear-gradient(to right, #1edeb6 0%, $color-blue-500 75%) !important;
       }
 
-      .marker-path {
-        fill: $color-green-500 !important;
-      }
+      .ngx-step--circle {
+        border: 1.75px solid $color-green-500 !important;
+        color: $color-green-500 !important;
+        box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
 
-      span {
-        opacity: 0 !important;
-      }
+        .ngx-check {
+          font-size: 0.625rem !important;
+        }
 
-      i {
-        opacity: 1 !important;
-      }
-    }
+        .marker-path {
+          fill: $color-green-500 !important;
+        }
 
-    .ngx-step--separator {
-      background-image: linear-gradient(to right, #1edeb6 0%, $color-blue-500 75%) !important;
+        span {
+          opacity: 0 !important;
+        }
+
+        i {
+          opacity: 1 !important;
+        }
+      }
     }
   }
 
@@ -111,6 +123,14 @@
     display: flex;
     flex: 1 1 auto;
     align-items: center;
+
+    &:after {
+      flex: 1 1 auto;
+      height: 1.4px;
+      background-color: $color-blue-grey-600;
+      transition: background-color $transition-speed ease-in-out, background-image $transition-speed ease-in-out;
+      content: '';
+    }
 
     .ngx-step--circle {
       display: flex;
@@ -144,13 +164,6 @@
         transform: translate(-50%, -50%);
         transition: opacity $transition-speed ease-in-out;
       }
-    }
-
-    .ngx-step--separator {
-      flex: 1 1 auto;
-      height: 1.4px;
-      background-color: $color-blue-grey-600;
-      transition: background-color $transition-speed ease-in-out, background-image $transition-speed ease-in-out;
     }
   }
 }
