@@ -81,7 +81,7 @@
     ></div>
   </div>
 
-  <div class="add-button" [class.background]="level">
+  <div class="add-button" [class.compressed]="compressed" [class.background]="level">
     <span class="separator" *ngFor="let separator of indentationArray"></span>
     <div class="indented-content">
       <ngx-dropdown [showCaret]="true">

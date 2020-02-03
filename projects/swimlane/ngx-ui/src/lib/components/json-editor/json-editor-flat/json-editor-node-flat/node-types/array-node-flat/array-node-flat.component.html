@@ -52,7 +52,12 @@
     </ngx-json-editor-node-flat>
   </div>
 
-  <div class="add-button" [class.background]="level" *ngIf="!schemaBuilderMode || !model.length">
+  <div
+    *ngIf="!schemaBuilderMode || !model.length"
+    class="add-button"
+    [class.compressed]="compressed"
+    [class.background]="level"
+  >
     <span class="separator" *ngFor="let separator of indentationArray"></span>
     <div class="indented-content">
       <ngx-dropdown [showCaret]="true">
