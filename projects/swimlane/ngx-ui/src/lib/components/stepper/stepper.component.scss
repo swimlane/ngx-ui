@@ -3,7 +3,9 @@
 
 .ngx-stepper {
   display: flex;
+  position: relative;
   flex-direction: column;
+  overflow: hidden;
 
   &.ngx-stepper--top {
     .ngx-stepper--bar {
