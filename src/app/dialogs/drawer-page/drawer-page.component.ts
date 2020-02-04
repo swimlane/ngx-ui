@@ -18,13 +18,13 @@ export class DrawerPageComponent {
 
   constructor(public drawerMngr: DrawerService) {}
 
-  dateChanged(val) {
+  dateChanged(val: Date | string) {
     console.log('date changed!', val);
   }
 
   openDrawer(
     direction = DrawerDirection.Left,
-    size?,
+    size?: number,
     closeOnOutsideClick = true,
     template = this.editTmpl,
     isRoot = true,
