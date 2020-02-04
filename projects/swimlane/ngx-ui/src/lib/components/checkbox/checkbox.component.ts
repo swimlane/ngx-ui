@@ -40,21 +40,27 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Input() diameter: string = '20px';
 
   @Input()
-  get tabindex() { return this._tabindex; }
+  get tabindex() {
+    return this._tabindex;
+  }
   set tabindex(v: number) {
     this._tabindex = coerceNumberProperty(v);
     this.cdr.markForCheck();
   }
 
   @Input()
-  get disabled() { return this._disabled; }
+  get disabled() {
+    return this._disabled;
+  }
   set disabled(v: boolean) {
     this._disabled = coerceBooleanProperty(v);
     this.cdr.markForCheck();
   }
 
   @Input()
-  get round() { return this._round; }
+  get round() {
+    return this._round;
+  }
   set round(v: boolean) {
     this._round = coerceBooleanProperty(v);
     this.cdr.markForCheck();
