@@ -112,7 +112,10 @@ export class StepperComponent implements OnDestroy {
           item.step.completeIcon = this.completeIcon;
         }
 
-        item.step.activeChange.pipe(takeUntil(this._destroy$)).subscribe(active => (this.active = active));
+        item.step.activeChange.pipe(takeUntil(this._destroy$)).subscribe(
+          /* istanbul ignore next */
+          active => (this.active = active)
+        );
       });
     }
 
