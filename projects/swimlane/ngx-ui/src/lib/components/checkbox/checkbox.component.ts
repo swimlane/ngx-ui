@@ -37,7 +37,7 @@ let nextId = 0;
 export class CheckboxComponent implements ControlValueAccessor {
   @Input() id = `checkbox-${++nextId}`;
   @Input() name?: string;
-  @Input() diameter: string = '20px';
+  @Input() diameter: string = '18px';
 
   @Input()
   get tabindex() {
