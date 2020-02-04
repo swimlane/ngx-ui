@@ -1,0 +1,13 @@
+<div class="ngx-step--title">
+  {{ label }}
+</div>
+
+<div class="ngx-step--step">
+  <div
+    class="ngx-step--circle"
+    (click)="active = step"
+  >
+    <span class="center">{{ step + 1 }}</span>
+    <i class="center" [ngClass]="completeIcon"></i>
+  </div>
+</div>

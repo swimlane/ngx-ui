@@ -126,7 +126,8 @@
             "codeCoverage": true,
             "codeCoverageExclude": [
               "projects/swimlane/ngx-ui/src/lib/**/*.fixture.ts",
-              "projects/swimlane/ngx-ui/src/lib/services/injection-registry/**/*.ts"
+              "projects/swimlane/ngx-ui/src/lib/services/injection-registry/**/*.ts",
+              "projects/swimlane/ngx-ui/src/lib/animations/**/*.ts"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

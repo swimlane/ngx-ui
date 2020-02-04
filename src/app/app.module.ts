@@ -56,6 +56,7 @@ import { OverlayPageComponent } from './components/overlay-page/overlay-page.com
 import { HotkeysPageComponent } from './components/hotkeys-page/hotkeys-page.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PipesPageComponent } from './pipes-page/pipes-page.component';
+import { StepperPageComponent } from './components/stepper-page/stepper-page.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -85,6 +86,7 @@ const routes: Routes = [
   { path: 'notification', component: NotificationPageComponent },
   { path: 'controls', component: ControlsPageComponent },
   { path: 'sections', component: SectionsPageComponent },
+  { path: 'stepper', component: StepperPageComponent },
   { path: 'toolbar', component: ToolbarPageComponent },
   { path: 'tabs', component: TabsPageComponent },
   { path: 'dropdown', component: DropdownPageComponent },
@@ -143,7 +145,8 @@ const routes: Routes = [
     OverlayPageComponent,
     HotkeysPageComponent,
     LandingPageComponent,
-    PipesPageComponent
+    PipesPageComponent,
+    StepperPageComponent
   ],
   imports: [
     BrowserModule,
