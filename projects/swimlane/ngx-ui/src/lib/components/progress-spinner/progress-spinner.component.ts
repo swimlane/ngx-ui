@@ -71,7 +71,11 @@ export class ProgressSpinnerComponent {
   }
 
   get strokeDashoffset() {
-    return this._circumference - (this._percentage / 100) * this._circumference;
+    return this._circumference - (this.percentage / 100) * this._circumference;
+  }
+
+  get percentage() {
+    return (100 / this._modeTotal) * this._modeValue;
   }
 
   readonly ProgressSpinnerMode = ProgressSpinnerMode;
@@ -87,10 +91,6 @@ export class ProgressSpinnerComponent {
 
   private get _circumference() {
     return this.radius * 2 * Math.PI;
-  }
-
-  private get _percentage() {
-    return (100 / this._modeTotal) * this._modeValue;
   }
 
   private get _modeValue() {
