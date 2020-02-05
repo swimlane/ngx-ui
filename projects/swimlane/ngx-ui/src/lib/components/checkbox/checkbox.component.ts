@@ -9,6 +9,7 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 const CHKBOX_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -26,6 +27,7 @@ let nextId = 0;
   host: {
     class: 'ngx-checkbox',
     '[class.disabled]': 'disabled',
+    '[class.round]': 'round',
     '(blur)': 'onBlur($event)'
   },
   providers: [CHKBOX_VALUE_ACCESSOR],
@@ -35,12 +37,38 @@ let nextId = 0;
 export class CheckboxComponent implements ControlValueAccessor {
   @Input() id = `checkbox-${++nextId}`;
   @Input() name?: string;
-  @Input() tabindex = 0;
-  @Input() disabled = false;
+  @Input() diameter: string = '18px';
 
-  @Output() change = new EventEmitter();
-  @Output() blur = new EventEmitter();
-  @Output() focus = new EventEmitter();
+  @Input()
+  get tabindex() {
+    return this._tabindex;
+  }
+  set tabindex(v: number) {
+    this._tabindex = coerceNumberProperty(v);
+    this.cdr.markForCheck();
+  }
+
+  @Input()
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(v: boolean) {
+    this._disabled = coerceBooleanProperty(v);
+    this.cdr.markForCheck();
+  }
+
+  @Input()
+  get round() {
+    return this._round;
+  }
+  set round(v: boolean) {
+    this._round = coerceBooleanProperty(v);
+    this.cdr.markForCheck();
+  }
+
+  @Output() change = new EventEmitter<Event>();
+  @Output() blur = new EventEmitter<FocusEvent>();
+  @Output() focus = new EventEmitter<FocusEvent>();
 
   set value(value: boolean) {
     if (this._value !== value) {
@@ -54,7 +82,10 @@ export class CheckboxComponent implements ControlValueAccessor {
     return this._value;
   }
 
-  private _value = false;
+  private _value: boolean = false;
+  private _tabindex: number = 0;
+  private _disabled: boolean = false;
+  private _round: boolean = false;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 
