@@ -1,0 +1,19 @@
+<svg [style.width.px]="diameter" [style.height.px]="diameter">
+  <circle
+    [style.stroke-width.px]="strokeWidth"
+    [style.stroke-dashoffset]="strokeDashoffset"
+    [style.stroke-dasharray]="strokeDasharray"
+    [style.r.px]="radius"
+    [style.cx.px]="diameter / 2"
+    [style.cy.px]="diameter / 2"
+    [style.stroke]="color"
+  ></circle>
+
+  <ng-container *ngIf="inProgressIcon">
+    <ng-container *ngTemplateOutlet="inProgressIcon"></ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="completeIcon">
+    <ng-container *ngTemplateOutlet="completeIcon"></ng-container>
+  </ng-container>
+</svg>
