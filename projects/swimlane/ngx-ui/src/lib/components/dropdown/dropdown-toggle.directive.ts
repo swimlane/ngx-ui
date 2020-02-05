@@ -1,6 +1,12 @@
 import { Directive, Input, ElementRef, HostListener, EventEmitter, Output } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
+export enum DropdownShowTypes {
+  Click = 'click',
+  Contextmenu = 'contextmenu',
+  Dblclick = 'dblclick'
+}
+
 @Directive({
   // tslint:disable-next-line:directive-selector
   exportAs: 'ngxDropdownToggle',
@@ -11,6 +17,8 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
   }
 })
 export class DropdownToggleDirective {
+  @Input() showEvent: DropdownShowTypes = DropdownShowTypes.Click;
+
   @Input()
   get disabled() {
     return this._disabled;
@@ -30,7 +38,23 @@ export class DropdownToggleDirective {
 
   @HostListener('click', ['$event'])
   onClick(event: Event) {
-    if (!this.disabled) {
+    if (this.showEvent === DropdownShowTypes.Click && !this.disabled) {
+      event.preventDefault();
+      this.toggle.emit(event);
+    }
+  }
+
+  @HostListener('contextmenu', ['$event'])
+  onContextmenu(event: Event) {
+    if (this.showEvent === DropdownShowTypes.Contextmenu && !this.disabled) {
+      event.preventDefault();
+      this.toggle.emit(event);
+    }
+  }
+
+  @HostListener('dblclick', ['$event'])
+  onDblclick(event: Event) {
+    if (this.showEvent === DropdownShowTypes.Dblclick && !this.disabled) {
       event.preventDefault();
       this.toggle.emit(event);
     }

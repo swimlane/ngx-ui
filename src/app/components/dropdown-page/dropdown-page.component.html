@@ -248,3 +248,56 @@
       ]]>
   </ngx-codemirror>
 </ngx-section>
+
+<ngx-section class="shadow" [sectionTitle]="'Show Events'">
+  <ngx-dropdown [showCaret]="true">
+    <ngx-dropdown-toggle [showEvent]="'dblclick'">
+      <button class="btn" type="button">
+        Double Click
+      </button>
+    </ngx-dropdown-toggle>
+    <ngx-dropdown-menu class="ngx-dropdown-light-outline">
+      <h1 style="padding: 10px; text-align: center;">Hello!</h1>
+    </ngx-dropdown-menu>
+  </ngx-dropdown>
+
+  <ngx-dropdown [showCaret]="true">
+    <ngx-dropdown-toggle [showEvent]="'contextmenu'">
+      <button class="btn" type="button">
+        Right Click
+      </button>
+    </ngx-dropdown-toggle>
+    <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+      <h1 style="padding: 10px; text-align: center;">Hello!</h1>
+    </ngx-dropdown-menu>
+  </ngx-dropdown>
+
+  <br />
+  <br />
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+    <ngx-dropdown [showCaret]="true">
+      <ngx-dropdown-toggle [showEvent]="'dblclick'">
+        <button class="btn" type="button">
+          Double Click
+        </button>
+      </ngx-dropdown-toggle>
+      <ngx-dropdown-menu class="ngx-dropdown-light-outline">
+        <h1 style="padding: 10px; text-align: center;">Hello!</h1>
+      </ngx-dropdown-menu>
+    </ngx-dropdown>
+  
+    <ngx-dropdown [showCaret]="true">
+      <ngx-dropdown-toggle [showEvent]="'contextmenu'">
+        <button class="btn" type="button">
+          Right Click
+        </button>
+      </ngx-dropdown-toggle>
+      <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+        <h1 style="padding: 10px; text-align: center;">Hello!</h1>
+      </ngx-dropdown-menu>
+    </ngx-dropdown>
+    ]]>
+  </ngx-codemirror>
+</ngx-section>
