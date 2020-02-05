@@ -16,6 +16,7 @@ export * from './nag';
 export * from './nav-menu';
 export * from './notification';
 export * from './overlay';
+export * from './progress-spinner';
 export * from './radiobutton';
 export * from './section';
 export * from './select';

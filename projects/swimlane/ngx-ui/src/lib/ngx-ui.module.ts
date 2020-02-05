@@ -42,6 +42,7 @@ import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { TooltipModule } from './components/tooltip/tooltip.module';
 import { RadioButtonModule } from './components/radiobutton/radiobutton.module';
 import { StepperModule } from './components/stepper/stepper.module';
+import { ProgressSpinnerModule } from './components/progress-spinner/progress-spinner.module';
 
 /**
  * Exported Modules
@@ -79,7 +80,8 @@ const modules = [
   ToggleModule,
   ToolbarModule,
   TooltipModule,
-  TreeModule
+  TreeModule,
+  ProgressSpinnerModule
 ];
 
 const services = [
