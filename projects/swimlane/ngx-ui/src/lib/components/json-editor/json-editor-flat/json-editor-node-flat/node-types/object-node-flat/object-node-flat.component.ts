@@ -118,11 +118,18 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   }
 
   deleteProperty(propName: string): void {
-    delete this.schema.properties[propName];
-    delete this.schemaRef.properties[propName];
-    this.toggleRequiredValue(false, propName);
-    super.deleteProperty(propName);
+    console.log(propName);
+
+    if (this.schemaBuilderMode) {
+      delete this.schema.properties[propName];
+      delete this.schemaRef.properties[propName];
+      this.toggleRequiredValue(false, propName);
+    } else if (!this.schema.required.includes(propName)) {
+      delete this.schemaRef.properties[propName];
+    }
+
     this.schemaChange.emit();
+    super.deleteProperty(propName);
   }
 
   drop(event: CdkDragDrop<string[]>): void {
