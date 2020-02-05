@@ -12,7 +12,6 @@ $dropdown-color: $color-grey-100;
 .ngx-dropdown {
   position: relative;
   padding-bottom: 10px;
-  border: 2px solid red;
 
   &.open {
     .ngx-dropdown-menu {
