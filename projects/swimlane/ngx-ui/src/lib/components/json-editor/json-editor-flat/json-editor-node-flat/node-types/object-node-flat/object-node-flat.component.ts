@@ -113,11 +113,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   addProperty(dataType: JsonSchemaDataType): void {
     super.addProperty(dataType);
 
-    if (this.schemaBuilderMode) {
-      this.updateSchemaRefProperty(this.propertyIndex[this.propertyId - 1]);
-      this.schemaChange.emit();
-      this.update();
-    }
+    this.updateSchemaRefProperty(this.propertyIndex[this.propertyId - 1]);
+    this.schemaChange.emit();
   }
 
   deleteProperty(propName: string): void {
