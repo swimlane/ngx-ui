@@ -11,6 +11,8 @@ $dropdown-color: $color-grey-100;
  */
 .ngx-dropdown {
   position: relative;
+  padding-bottom: 10px;
+  border: 2px solid red;
 
   &.open {
     .ngx-dropdown-menu {
@@ -49,7 +51,7 @@ $dropdown-color: $color-grey-100;
     min-width: 180px;
     background: $dropdown-bg;
     box-shadow: $shadow-3;
-    margin-top: 10px;
+    margin-top: 0;
     opacity: 0;
     display: none;
     transition: visibility 0s, opacity 0.25s ease-out;
