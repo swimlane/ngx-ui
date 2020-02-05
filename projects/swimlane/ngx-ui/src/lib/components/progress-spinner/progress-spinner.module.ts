@@ -8,4 +8,4 @@ import { ProgressSpinnerComponent } from './progress-spinner.component';
   exports: [ProgressSpinnerComponent],
   imports: [CommonModule]
 })
-export class ProgressSpinnerModule { }
+export class ProgressSpinnerModule {}

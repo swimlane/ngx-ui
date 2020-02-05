@@ -1,4 +1,12 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ChangeDetectorRef, TemplateRef, HostBinding } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  ViewEncapsulation,
+  Input,
+  ChangeDetectorRef,
+  TemplateRef,
+  HostBinding
+} from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 import { ProgressSpinnerMode } from './progress-spinner-mode.enum';
@@ -105,5 +113,5 @@ export class ProgressSpinnerComponent {
       : this._indeterminate.total;
   }
 
-  constructor(private readonly _cdr: ChangeDetectorRef) { }
+  constructor(private readonly _cdr: ChangeDetectorRef) {}
 }
