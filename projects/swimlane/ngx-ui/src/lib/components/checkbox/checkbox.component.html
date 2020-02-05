@@ -1,7 +1,6 @@
-<label class="checkbox-label">
+<label class="ngx-checkbox--label">
   <input
     type="checkbox"
-    class="checkbox-input"
     [id]="id + '-chk'"
     [(ngModel)]="value"
     [disabled]="disabled"
@@ -11,5 +10,17 @@
     (blur)="blur.emit($event)"
     (change)="change.emit($event)"
   />
-  <ng-content></ng-content>
+
+  <div
+    class="ngx-checkbox--box"
+    [class.checked]="value"
+    [style.width]="diameter"
+    [style.height]="diameter"
+    [style.min-width]="diameter"
+    [style.min-height]="diameter"
+  ></div>
+
+  <div class="ngx-checkbox--content">
+    <ng-content></ng-content>
+  </div>
 </label>
