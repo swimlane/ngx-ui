@@ -10,12 +10,12 @@ import {
   ComponentRef
 } from '@angular/core';
 
-import { createValueForSchema, jsonSchemaDataTypes, inferType } from './json-editor.helper';
+import { createValueForSchema, inferType, JSONEditorSchema } from './json-editor.helper';
 import { DialogComponent } from '../dialog/dialog.component';
 import { DialogService } from '../dialog/dialog.service';
 
 export class JsonEditorNode implements OnInit, OnChanges {
-  @Input() schema: any;
+  @Input() schema: JSONEditorSchema;
 
   @Input() model: any;
 
@@ -31,10 +31,11 @@ export class JsonEditorNode implements OnInit, OnChanges {
 
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
+  @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();
+
   @ViewChild('codeEditorTpl') codeEditorTpl: TemplateRef<any>;
 
   requiredCache: any = {};
-  dataTypes: any[] = jsonSchemaDataTypes;
   expanded: boolean = true;
 
   ownErrors: any[];
@@ -166,7 +167,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
    * Updates the whole model and emits the change event
    * @param value
    */
-  updateModel(value: unknown): void {
+  updateModel(value: any): void {
     this.model = value;
     this.modelChange.emit(this.model);
   }

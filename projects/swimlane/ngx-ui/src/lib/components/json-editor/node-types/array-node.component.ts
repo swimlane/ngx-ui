@@ -6,37 +6,37 @@ import {
   dataTypeMap,
   inferType,
   getIcon,
-  getCurrentType
+  getCurrentType,
+  JsonSchemaDataType,
+  JSONEditorSchema,
+  jsonSchemaDataFormats
 } from '../json-editor.helper';
 
 export class ArrayNode implements OnChanges {
   @Input()
-  schema: any;
+  schema: JSONEditorSchema;
 
-  @Input()
-  model: any[];
+  @Input() model: any[];
 
-  @Input()
-  required: boolean = false;
+  @Input() required: boolean = false;
 
-  @Input()
-  expanded: boolean;
+  @Input() expanded: boolean;
 
-  @Input()
-  path: string;
+  @Input() path: string;
 
-  @Input()
-  errors: any[];
+  @Input() errors: any[];
 
-  @Input()
-  typeCheckOverrides?: any;
+  @Input() typeCheckOverrides?: any;
 
-  @Output()
-  modelChange: EventEmitter<any[]> = new EventEmitter();
+  @Input() schemaRef: JSONEditorSchema;
+
+  @Output() modelChange: EventEmitter<any[]> = new EventEmitter();
+
+  @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();
 
   requiredCache: any = {};
-  schemas: any[] = [];
-  dataTypes: any[] = jsonSchemaDataTypes;
+  schemas: JSONEditorSchema[] = [];
+  dataTypes: JsonSchemaDataType[] = [...jsonSchemaDataTypes, ...jsonSchemaDataFormats];
   dataTypeMap = dataTypeMap;
 
   _array = Array;
@@ -67,10 +67,10 @@ export class ArrayNode implements OnChanges {
   /**
    * Adds a new item to the model
    */
-  addArrayItem(dataType?: any): void {
+  addArrayItem(dataType?: JsonSchemaDataType): void {
     let schema;
     if (dataType) {
-      schema = JSON.parse(JSON.stringify({ ...this.schema.items, ...dataType.schema }));
+      schema = JSON.parse(JSON.stringify({ ...(this.schema.items as object), ...dataType.schema }));
     } else {
       schema = JSON.parse(JSON.stringify(this.schema.items));
     }
@@ -109,19 +109,6 @@ export class ArrayNode implements OnChanges {
     this.schemas.splice(index, 1);
     this.model = [...this.model];
     this.schemas = [...this.schemas];
-    this.modelChange.emit(this.model);
-  }
-
-  /**
-   *
-   * @param value Updates the whole model and emits the change event
-   */
-  updateModel(value: any, parseAsJson: boolean = false): void {
-    if (parseAsJson) {
-      this.model = JSON.parse(value);
-    } else {
-      this.model = value;
-    }
     this.modelChange.emit(this.model);
   }
 
@@ -167,7 +154,7 @@ export class ArrayNode implements OnChanges {
       let schema = inferType(value, this.typeCheckOverrides);
 
       if (this.schema.items) {
-        schema = JSON.parse(JSON.stringify({ ...this.schema.items, ...schema }));
+        schema = JSON.parse(JSON.stringify({ ...(this.schema.items as object), ...schema }));
       }
 
       this.schemas.push(schema);
@@ -177,7 +164,7 @@ export class ArrayNode implements OnChanges {
   /**
    * Updates the icons in the schemas
    */
-  private updateIcons() {
+  private updateIcons(): void {
     for (const schema of this.schemas) {
       if (!schema.$meta) {
         schema.$meta = {};

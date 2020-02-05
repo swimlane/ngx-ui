@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { JSONSchema7 } from 'json-schema';
 
 @Component({
   selector: 'app-json-editor-page',
-  templateUrl: './json-editor-page.component.html'
+  templateUrl: './json-editor-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JsonEditorPageComponent {
   jsonEditorSchema = {
@@ -21,7 +23,7 @@ export class JsonEditorPageComponent {
       productName: {
         description: 'Name of the product',
         type: 'string',
-        examples: ['this is an example', 'another example']
+        examples: ['Apples', 'Oranges']
       },
       price: {
         description: 'The price of the product',
@@ -83,11 +85,23 @@ export class JsonEditorPageComponent {
     required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions']
   };
 
+  compressed = false;
+
   _jsonEditorSchema: any = {};
 
   jsonEditorModel: any = {
     metaData: "<< console.log('this should be of type code') >>"
   };
+
+  jsonEditorModelFlat: any = {
+    metaData: "<< console.log('this should be of type code') >>"
+  };
+
+  jsonEditorSchemaBuilderModel: any = {};
+
+  schemaRef: JSONSchema7 = {};
+
+  customFormats = ['password', 'code', 'date', 'date-time', 'custom'];
 
   typeOverrides: any = {
     'string=code': (value: any) => {
@@ -99,8 +113,16 @@ export class JsonEditorPageComponent {
     }
   };
 
+  toggleCompressed(): void {
+    this.compressed = !this.compressed;
+  }
+
   updateJsonEditorSchema(schema: string) {
     this.jsonEditorSchema = JSON.parse(schema);
     this.jsonEditorModel = {};
+  }
+
+  schemaChange(schema: JSONSchema7): void {
+    this.schemaRef = schema;
   }
 }

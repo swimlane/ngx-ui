@@ -5,19 +5,17 @@
   margin-bottom: 5px;
   position: relative;
 
-  &:first-child {
-    margin-top: 5px;
-  }
-
   ngx-json-editor-node-flat {
     flex: 1;
-    margin-left: 20px;
 
-    .ngx-dropdown {
-      margin-left: 10px;
-
-      .node-options {
+    .node-options {
+      .node-options-btn {
         color: $color-blue-grey-400;
+        padding: 1px 3px 2px;
+      }
+
+      .ngx-dropdown {
+        margin-left: 10px;
       }
     }
   }
@@ -28,9 +26,13 @@
   position: relative;
   display: flex;
 
+  &.compressed {
+    max-height: 80px;
+  }
+
   &.background {
     background-color: rgba(red($color-blue-grey-700), green($color-blue-grey-700), blue($color-blue-grey-700), 0.4);
-    padding: 7px;
+    padding: 7px 7px 7px 0;
     height: 120px;
   }
 
@@ -43,14 +45,14 @@
     color: $color-blue-grey-300;
 
     button {
+      display: flex;
+
       i {
         font-size: 18px;
-        vertical-align: middle;
       }
 
       span {
         font-size: 14px;
-        line-height: 18px;
         margin-left: 10px;
       }
     }

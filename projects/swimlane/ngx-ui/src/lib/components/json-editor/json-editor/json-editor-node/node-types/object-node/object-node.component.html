@@ -1,10 +1,10 @@
 <div [hidden]="!expanded">
-  <div *ngFor="let prop of propertyIndex | keyvalue; trackBy: trackBy">
+  <div *ngFor="let prop of propertyIndex | objectValues; trackBy: trackBy">
     <div class="property-def">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
           <div class="type-icon">
-            <ngx-icon [fontIcon]="prop.value.$meta.icon"></ngx-icon>
+            <ngx-icon [fontIcon]="prop.$meta.icon"></ngx-icon>
           </div>
         </ngx-dropdown-toggle>
         <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
@@ -12,18 +12,18 @@
             <li>
               <button
                 type="button"
-                (click)="deleteProperty(prop.value.propertyName)"
-                [disabled]="requiredCache[prop.value.propertyName]"
+                (click)="deleteProperty(prop.propertyName)"
+                [disabled]="requiredCache[prop.propertyName]"
               >
                 Delete
               </button>
             </li>
-            <ng-container *ngIf="prop.value?.$meta?.type">
-              <li *ngFor="let type of prop.value?.$meta?.type">
+            <ng-container *ngIf="prop?.$meta?.type">
+              <li *ngFor="let type of prop?.$meta?.type">
                 <button
                   type="button"
-                  (click)="changePropertyType(prop.value, type)"
-                  [disabled]="prop.value.$meta.currentType === type"
+                  (click)="changePropertyType(prop, type)"
+                  [disabled]="prop.$meta.currentType === type"
                 >
                   Change type to {{ dataTypeMap[type].name }}
                 </button>
@@ -36,31 +36,27 @@
       <div class="property-name">
         <input
           type="text"
-          *ngIf="prop.value.nameEditable"
-          [ngModel]="prop.value.propertyName"
-          (ngModelChange)="updatePropertyName(prop.value.id, $event)"
+          *ngIf="prop.nameEditable"
+          [ngModel]="prop.propertyName"
+          (ngModelChange)="updatePropertyName(prop.id, $event)"
         />
 
-        <ng-container *ngIf="!prop.value?.nameEditable">
-          <div
-            class="title"
-            ngx-tooltip
-            [tooltipTitle]="prop?.value?.description ? prop?.value?.description : prop?.value?.propertyName"
-          >
-            {{ prop.value?.title ? prop.value?.title : prop.value?.propertyName }}
-            <span *ngIf="requiredCache[prop.value.propertyName]">*</span>
+        <ng-container *ngIf="!prop?.nameEditable">
+          <div class="title" ngx-tooltip [tooltipTitle]="prop?.description ? prop?.description : prop?.propertyName">
+            {{ prop?.title ? prop?.title : prop?.propertyName }}
+            <span *ngIf="requiredCache[prop.propertyName]">*</span>
           </div>
         </ng-container>
       </div>
     </div>
 
     <ngx-json-editor-node
-      [model]="model[prop.value.propertyName]"
-      (modelChange)="updateProp(prop.value.id, $event)"
-      [schema]="prop.value"
-      [required]="!!requiredCache[prop.value.propertyName]"
-      [inline]="prop.value.type !== 'array' && prop.value.type !== 'object'"
-      [path]="path + getPath(prop.value.propertyName)"
+      [model]="model[prop.propertyName]"
+      (modelChange)="updateProp(prop.id, $event)"
+      [schema]="prop"
+      [required]="!!requiredCache[prop.propertyName]"
+      [inline]="prop.type !== 'array' && prop.type !== 'object'"
+      [path]="path + getPath(prop.propertyName)"
       [errors]="errors"
       [typeCheckOverrides]="typeCheckOverrides"
     >
