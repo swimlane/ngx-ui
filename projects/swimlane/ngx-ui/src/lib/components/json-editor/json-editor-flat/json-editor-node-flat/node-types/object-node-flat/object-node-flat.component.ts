@@ -140,6 +140,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
       index += 1;
     }
 
+    this.propertyIndex = { ...this.propertyIndex };
+
     this.swapSchemaProperties(event.currentIndex, event.previousIndex);
   }
 
