@@ -3,6 +3,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TreeNodeComponent } from './tree-node.component';
 import { TreeModule } from './tree.module';
 
+const MOCK_EVENT: any = {
+  stopPropagation: () => {
+    return;
+  }
+};
+
 describe('TreeNodeComponent', () => {
   let component: TreeNodeComponent;
   let fixture: ComponentFixture<TreeNodeComponent>;
@@ -37,7 +43,7 @@ describe('TreeNodeComponent', () => {
   it('clicking expand to expand node emits expand event', () => {
     spyOn(component.expand, 'emit').and.callThrough();
     component.expandable = true;
-    component.onExpandClick();
+    component.onExpandClick(MOCK_EVENT);
 
     expect(component.expanded).toBe(true);
     expect(component.expand.emit).toHaveBeenCalled();
@@ -47,8 +53,8 @@ describe('TreeNodeComponent', () => {
     spyOn(component.collapse, 'emit').and.callThrough();
     component.expandable = true;
     // click once to expand then again to collapse
-    component.onExpandClick();
-    component.onExpandClick();
+    component.onExpandClick(MOCK_EVENT);
+    component.onExpandClick(MOCK_EVENT);
 
     expect(component.expanded).toBe(false);
     expect(component.collapse.emit).toHaveBeenCalled();
@@ -56,13 +62,8 @@ describe('TreeNodeComponent', () => {
 
   it('onClick emits select event', () => {
     spyOn(component.selectNode, 'emit').and.callThrough();
-    const event = {
-      stopPropagation: () => {
-        return;
-      }
-    };
     component.selectable = true;
-    component.onClick(event);
+    component.onClick(MOCK_EVENT);
 
     expect(component.selectNode.emit).toHaveBeenCalled();
   });
@@ -75,19 +76,14 @@ describe('TreeNodeComponent', () => {
     });
 
     it('Expand click does not expand node when disabled', () => {
-      component.onExpandClick();
+      component.onExpandClick(MOCK_EVENT);
 
       expect(component.expanded).toBeFalsy();
     });
 
     it('select click does not select node when disabled', () => {
       spyOn(component.selectNode, 'emit').and.callThrough();
-      const event = {
-        stopPropagation: () => {
-          return;
-        }
-      };
-      component.onClick(event);
+      component.onClick(MOCK_EVENT);
 
       expect(component.selectNode.emit).not.toHaveBeenCalled();
     });

@@ -118,13 +118,13 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   }
 
   deleteProperty(propName: string): void {
-    console.log(propName);
+    console.log(this.schema.properties);
 
     if (this.schemaBuilderMode) {
       delete this.schema.properties[propName];
       delete this.schemaRef.properties[propName];
       this.toggleRequiredValue(false, propName);
-    } else if (!this.schema.required.includes(propName)) {
+    } else if (!this.schema.required.includes(propName) && !(propName in this.schema.properties)) {
       delete this.schemaRef.properties[propName];
     }
 

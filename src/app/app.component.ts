@@ -188,6 +188,10 @@ export class AppComponent {
           route: 'split'
         },
         {
+          name: 'Stepper',
+          route: 'stepper'
+        },
+        {
           name: 'Overlay',
           route: 'overlay'
         },

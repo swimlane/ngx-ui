@@ -103,7 +103,13 @@
       "root": "projects/swimlane/ngx-ui",
       "sourceRoot": "projects/swimlane/ngx-ui/src",
       "projectType": "library",
-      "prefix": "lib",
+      "prefix": "ngx",
+      "schematics": {
+        "@schematics/angular:component": {
+          "changeDetection": "OnPush",
+          "style": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -126,7 +132,8 @@
             "codeCoverage": true,
             "codeCoverageExclude": [
               "projects/swimlane/ngx-ui/src/lib/**/*.fixture.ts",
-              "projects/swimlane/ngx-ui/src/lib/services/injection-registry/**/*.ts"
+              "projects/swimlane/ngx-ui/src/lib/services/injection-registry/**/*.ts",
+              "projects/swimlane/ngx-ui/src/lib/animations/**/*.ts"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [

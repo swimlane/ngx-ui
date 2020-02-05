@@ -18,6 +18,9 @@ describe('CheckboxComponent', () => {
     fixture = TestBed.createComponent(CheckboxComponent);
     component = fixture.componentInstance;
     component.value = true;
+    component.tabindex = 0;
+    component.round = false;
+    fixture.detectChanges();
   });
 
   it('can load instance', () => {
