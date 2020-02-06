@@ -60,6 +60,7 @@
     "@angular/forms": "^9.0.0",
     "@angular/platform-browser": "^9.0.0",
     "@angular/platform-browser-dynamic": "^9.0.0",
+    "resize-observer-polyfill": "^1.5.1",
     "codemirror": "^5.49.2",
     "core-js": "^2.5.7",
     "moment": "^2.22.2",
