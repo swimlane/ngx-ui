@@ -100,6 +100,7 @@ export class JsonEditorPageComponent {
   jsonEditorSchemaBuilderModel: any = {};
 
   schemaRef: JSONSchema7 = {};
+  modelSchemaRef: JSONSchema7 = {};
 
   customFormats = ['password', 'code', 'date', 'date-time', 'custom'];
 
@@ -124,5 +125,9 @@ export class JsonEditorPageComponent {
 
   schemaChange(schema: JSONSchema7): void {
     this.schemaRef = schema;
+  }
+
+  modelSchemaChange(schema: JSONSchema7): void {
+    this.modelSchemaRef = schema;
   }
 }
