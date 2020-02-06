@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ResizeObserverModule } from '../../directives';
+import { ResizeObserverModule } from '../../directives/resize-observer/resize-observer.module';
 
 import { StepperComponent } from './stepper.component';
 import { StepComponent } from './step.component';
