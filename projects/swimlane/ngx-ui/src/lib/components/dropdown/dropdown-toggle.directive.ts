@@ -1,11 +1,7 @@
 import { Directive, Input, ElementRef, HostListener, EventEmitter, Output } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
-export enum DropdownShowTypes {
-  Click = 'click',
-  Contextmenu = 'contextmenu',
-  Dblclick = 'dblclick'
-}
+import { DropdownShowTypes } from './dropdown.show-types.enum';
 
 @Directive({
   // tslint:disable-next-line:directive-selector
