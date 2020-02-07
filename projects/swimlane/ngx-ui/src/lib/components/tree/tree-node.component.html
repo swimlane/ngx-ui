@@ -11,7 +11,7 @@
     class="ngx-expander"
     (click)="onExpandClick($event)"
     [class.disabled]="disabled"
-    [ngClass]="expanded ? icons.expand : icons.collapse"
+    [ngClass]="expanded ? icons.collapse : icons.expand"
   >
   </span>
   <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="ngx-node-label"> </span>
