@@ -1,6 +1,6 @@
 <h3 class="style-header">Tree</h3>
 
-<ngx-section class="shadow" [sectionTitle]="'Tree Object'">
+<ngx-section class="shadow" sectionTitle="Tree Object">
   <ngx-tree [nodes]="nodes">
   </ngx-tree>
 
@@ -77,7 +77,7 @@
   </ngx-tabs>
 </ngx-section>
 
-<ngx-section class="shadow" [sectionTitle]="'Tree Composition'">
+<ngx-section class="shadow" sectionTitle="Tree Composition">
   <ngx-tree>
     <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
       <ngx-tree>
@@ -136,7 +136,7 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Templates and Icons">
-  <ngx-tree class="hide-vr" [nodes]="nodes1" [icons]="{ collapse: 'ngx-icon ngx-chevron-bold-right', expand: 'ngx-icon ngx-chevron-bold-down' }">
+  <ngx-tree class="hide-vr" [nodes]="nodes1" [icons]="{ collapse: 'ngx-icon ngx-chevron-bold-down', expand: 'ngx-icon ngx-chevron-bold-right' }">
     <ng-template let-label="label" let-model="model">
       <code><strong>{{label}}</strong> | {{model.type}}</code>
     </ng-template>
@@ -148,7 +148,7 @@
     <ngx-tab label="Markup">
       <ngx-codemirror mode="htmlmixed" readOnly="true">
         <![CDATA[
-        <ngx-tree class="hide-vr" [nodes]="nodes1" [icons]="{ collapse: 'ngx-icon ngx-chevron-bold-right', expand: 'ngx-icon ngx-chevron-bold-down' }">
+        <ngx-tree class="hide-vr" [nodes]="nodes1" [icons]="{ collapse: 'ngx-icon ngx-chevron-bold-down', expand: 'ngx-icon ngx-chevron-bold-right' }">
             <ng-template let-label="label" let-model="model">
               <code><strong>{ {label} }</strong> | { {model.type} }</code>
             </ng-template>
@@ -206,7 +206,7 @@
   </ngx-tabs>
 </ngx-section>
 
-<ngx-section class="shadow" [sectionTitle]="'JSON Tree'">
+<ngx-section class="shadow" sectionTitle="JSON Tree">
   <ngx-tree [nodes]="jsonObject | jsonTree">
     <ng-template let-label="label" let-node let-model="model" let-expandable="expandable">
       <div class="ngx-node-label" [ngClass]="model.type">
