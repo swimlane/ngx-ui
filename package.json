@@ -26,7 +26,8 @@
     "prepack": "npm run package",
     "pack": "npm pack ./dist/swimlane/ngx-ui",
     "prettier": "prettier --write \"{src,projects}/**/*.{js,ts,scss,css,md,json}\"",
-    "prettier:ci": "prettier --check  \"{src,projects}/**/*.{js,ts,scss,css,md,json}\""
+    "prettier:ci": "prettier --check  \"{src,projects}/**/*.{js,ts,scss,css,md,json}\"",
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "private": true,
   "dependencies": {
