@@ -3,6 +3,7 @@
 ## HEAD (Unreleased)
 
 ## 28.0.0 (2020-02-07)
+
 - Chore: Bump dependencies to angular 9.0.0
 
 ## 28.0.0-rc.9 (2020-02-06)
