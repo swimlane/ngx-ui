@@ -1,10 +1,11 @@
 import { Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { SchemaValidatorService } from './schema-validator.service';
+import { JSONEditorSchema } from './json-editor.helper';
 
 export class JsonEditor implements OnChanges {
   @Input() model: any;
 
-  @Input() schema: any;
+  @Input() schema: JSONEditorSchema;
 
   @Input() label: string;
 
@@ -14,7 +15,7 @@ export class JsonEditor implements OnChanges {
 
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
-  @Output() schemaChange: EventEmitter<any> = new EventEmitter();
+  @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();
 
   errors: any[];
 
@@ -53,6 +54,7 @@ export class JsonEditor implements OnChanges {
     this.errors = this.schemaValidator
       ? this.schemaValidator(schema, model)
       : this.schemaValidatorService.validate(schema, model);
+
     return this.errors && this.errors.length > 0;
   }
 }

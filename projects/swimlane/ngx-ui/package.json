@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "28.0.0-rc.8",
+  "version": "28.0.0",
   "engines": {
     "node": ">=10.0.0"
   },
@@ -31,12 +31,13 @@
   "peerDependencies": {
     "@angular/common": "^7.0.0 || ^8.0.0 || ^9.0.0",
     "@angular/core": "^7.0.0 || ^8.0.0 || ^9.0.0",
-    "@angular/flex-layout": "8.0.0-beta.27",
+    "@angular/flex-layout": "9.0.0-beta.29",
     "rxjs": "^6.5.0",
     "@angular/cdk": "^7.0.0 || ^8.0.0 || ^9.0.0",
     "@angular/animations": "^7.0.0 || ^8.0.0 || ^9.0.0",
     "@angular/forms": "^7.0.0 || ^8.0.0 || ^9.0.0",
     "@angular/platform-browser": "^7.0.0 || ^8.0.0 || ^9.0.0",
+    "@types/json-schema": "^7.0.3",
     "codemirror": "5.42.0",
     "core-js": "^2.5.0",
     "moment": "^2.21.0",
@@ -52,19 +53,19 @@
   },
   "devDependencies": {
     "@angular/animations": "^9.0.0",
-    "@angular/cdk": "^8.2.3",
+    "@angular/cdk": "^9.0.0",
     "@angular/common": "^9.0.0",
     "@angular/compiler": "^9.0.0",
     "@angular/core": "^9.0.0",
     "@angular/forms": "^9.0.0",
     "@angular/platform-browser": "^9.0.0",
     "@angular/platform-browser-dynamic": "^9.0.0",
-    "@types/json-schema": "^7.0.3",
+    "resize-observer-polyfill": "^1.5.1",
     "codemirror": "^5.49.2",
     "core-js": "^2.5.7",
     "moment": "^2.22.2",
     "ngx-moment": "^3.5.0",
-    "rxjs": "^6.5.2",
+    "rxjs": "^6.5.4",
     "zone.js": "^0.10.2"
   }
 }

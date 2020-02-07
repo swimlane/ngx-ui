@@ -1,0 +1,57 @@
+@import 'colors/variables';
+
+.input-item,
+.add-examples {
+  height: 45px;
+  display: flex;
+  align-items: center;
+}
+
+.input-item {
+  background: $color-blue-grey-650;
+  box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+  margin-bottom: 13px;
+
+  .drag-drop-handle,
+  .remove-item {
+    color: $color-blue-grey-350;
+  }
+
+  .drag-drop-handle {
+    margin: 0 9px;
+    height: 17px;
+    font-size: 14.5px;
+    cursor: grab;
+  }
+
+  .ngx-input {
+    flex: 1;
+    margin: 0;
+  }
+
+  .remove-item {
+    font-size: 8px;
+    margin: 0 5px;
+    height: 8px;
+  }
+}
+
+.add-examples {
+  cursor: pointer;
+  height: 45px;
+  border: 1px dashed $color-blue-400;
+  color: $color-blue-400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating,
+.orderable-inputs-list.cdk-drop-list-dragging .input-item:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

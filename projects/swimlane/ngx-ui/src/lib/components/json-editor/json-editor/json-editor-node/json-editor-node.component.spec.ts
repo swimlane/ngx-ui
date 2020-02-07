@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { DialogService } from '../../../dialog/dialog.service';
-import { jsonSchemaDataTypes } from '../../json-editor.helper';
 import { JsonEditorNodeComponent } from './json-editor-node.component';
 
 describe('JsonEditorNodeComponent', () => {
@@ -25,9 +24,6 @@ describe('JsonEditorNodeComponent', () => {
   });
   it('inline defaults to: false', () => {
     expect(component.inline).toEqual(false);
-  });
-  it('dataTypes defaults to: jsonSchemaDataTypes', () => {
-    expect(component.dataTypes).toEqual(jsonSchemaDataTypes);
   });
   it('expanded defaults to: true', () => {
     expect(component.expanded).toEqual(true);

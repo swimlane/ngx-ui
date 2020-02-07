@@ -52,8 +52,10 @@ export class TreeNodeComponent implements OnChanges {
     };
   }
 
-  onExpandClick(): void {
+  onExpandClick(event): void {
     if (this.disabled || !this.expandable) return;
+
+    event.stopPropagation();
 
     this.expanded = !this.expanded;
 

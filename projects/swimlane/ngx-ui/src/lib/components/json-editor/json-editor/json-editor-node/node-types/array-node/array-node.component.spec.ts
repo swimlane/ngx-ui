@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { jsonSchemaDataTypes, dataTypeMap } from '../../../../json-editor.helper';
+import { jsonSchemaDataTypes, dataTypeMap, jsonSchemaDataFormats } from '../../../../json-editor.helper';
 import { ArrayNodeComponent } from './array-node.component';
 describe('ArrayNodeComponent', () => {
   let component: ArrayNodeComponent;
@@ -23,7 +23,7 @@ describe('ArrayNodeComponent', () => {
     expect(component.schemas).toEqual([]);
   });
   it('dataTypes defaults to: jsonSchemaDataTypes', () => {
-    expect(component.dataTypes).toEqual(jsonSchemaDataTypes);
+    expect(component.dataTypes).toEqual([...jsonSchemaDataTypes, ...jsonSchemaDataFormats]);
   });
   it('dataTypeMap defaults to: dataTypeMap', () => {
     expect(component.dataTypeMap).toEqual(dataTypeMap);
