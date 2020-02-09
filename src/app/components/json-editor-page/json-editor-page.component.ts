@@ -118,8 +118,10 @@ export class JsonEditorPageComponent {
   }
 
   updateJsonEditorSchema(schema: string) {
+    console.log(schema);
     this.jsonEditorSchema = JSON.parse(schema);
     this.jsonEditorModel = {};
+    this.jsonEditorModelFlat = {};
   }
 
   schemaChange(schema: JSONSchema7): void {
