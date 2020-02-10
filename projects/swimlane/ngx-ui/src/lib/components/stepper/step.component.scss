@@ -104,6 +104,29 @@
     }
   }
 
+  &.ngx-step--complete,
+  &.ngx-step--semi-complete {
+    .ngx-step--circle {
+      &:hover {
+        border: 1.75px solid $color-blue-500;
+        color: $color-blue-500;
+        box-shadow: 0px 0px 9.59842px rgba(20, 131, 255, 0.8);
+
+        span {
+          opacity: 1 !important;
+        }
+
+        i {
+          opacity: 0 !important;
+        }
+
+        .marker-path {
+          fill: $color-blue-500;
+        }
+      }
+    }
+  }
+
   .ngx-step--title {
     display: none;
     width: 100px;
@@ -145,9 +168,9 @@
       color: $color-blue-grey-600;
       font-size: 0.875rem;
       font-weight: bold;
-      pointer-events: none;
       transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
       user-select: none;
+      cursor: pointer;
 
       span {
         padding-bottom: 1px;
