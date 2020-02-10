@@ -22,12 +22,15 @@
           [schema]="jsonEditorSchema"
           label="Model"
           [typeCheckOverrides]="typeOverrides"
+          (schemaChange)="modelSchemaChange($event)"
         >
         </ngx-json-editor-flat>
 
         <hr />
         <h3>Model</h3>
         <pre>{{ jsonEditorModelFlat | json }}</pre>
+        <h3>Schema</h3>
+        <pre>{{ modelSchemaRef | json }}</pre>
       </ngx-section>
 
       <br />
