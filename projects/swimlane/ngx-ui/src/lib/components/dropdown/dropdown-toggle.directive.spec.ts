@@ -40,53 +40,53 @@ describe('DropdownToggleDirective', () => {
 
     describe('onClick', () => {
       it('should toggle', () => {
-        debugElement.triggerEventHandler('click', { preventDefault: () => undefined })
+        debugElement.triggerEventHandler('click', { preventDefault: () => undefined });
         expect(spy).toHaveBeenCalled();
       });
-  
+
       it('should not toggle when disabled', () => {
         directive.disabled = true;
-        debugElement.triggerEventHandler('click', { preventDefault: () => undefined })
+        debugElement.triggerEventHandler('click', { preventDefault: () => undefined });
         expect(spy).not.toHaveBeenCalled();
       });
     });
-  
+
     describe('onDblClick', () => {
       it('should not toggle by default', () => {
-        debugElement.triggerEventHandler('dblclick', { preventDefault: () => undefined })
+        debugElement.triggerEventHandler('dblclick', { preventDefault: () => undefined });
         expect(spy).not.toHaveBeenCalled();
       });
 
       it('should toggle', () => {
         directive.showEvent = DropdownShowTypes.Dblclick;
-        debugElement.triggerEventHandler('dblclick', { preventDefault: () => undefined })
+        debugElement.triggerEventHandler('dblclick', { preventDefault: () => undefined });
         expect(spy).toHaveBeenCalled();
       });
-  
+
       it('should not toggle when disabled', () => {
         directive.showEvent = DropdownShowTypes.Dblclick;
         directive.disabled = true;
-        debugElement.triggerEventHandler('dblclick', { preventDefault: () => undefined })
+        debugElement.triggerEventHandler('dblclick', { preventDefault: () => undefined });
         expect(spy).not.toHaveBeenCalled();
       });
     });
 
     describe('onContextmenu', () => {
       it('should not toggle by default', () => {
-        debugElement.triggerEventHandler('contextmenu', { preventDefault: () => undefined })
+        debugElement.triggerEventHandler('contextmenu', { preventDefault: () => undefined });
         expect(spy).not.toHaveBeenCalled();
       });
 
       it('should toggle', () => {
         directive.showEvent = DropdownShowTypes.Contextmenu;
-        debugElement.triggerEventHandler('contextmenu', { preventDefault: () => undefined })
+        debugElement.triggerEventHandler('contextmenu', { preventDefault: () => undefined });
         expect(spy).toHaveBeenCalled();
       });
-  
+
       it('should not toggle when disabled', () => {
         directive.showEvent = DropdownShowTypes.Contextmenu;
         directive.disabled = true;
-        debugElement.triggerEventHandler('contextmenu', { preventDefault: () => undefined })
+        debugElement.triggerEventHandler('contextmenu', { preventDefault: () => undefined });
         expect(spy).not.toHaveBeenCalled();
       });
     });
