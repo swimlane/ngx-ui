@@ -4,12 +4,19 @@ import {
   QueryList,
   Input,
   ViewEncapsulation,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ViewChild,
+  TemplateRef
 } from '@angular/core';
 import { JsonEditorNodeFlatComponent } from './json-editor-node-flat/json-editor-node-flat.component';
 import { SchemaValidatorService } from '../schema-validator.service';
 import { JsonEditor } from '../json-editor';
 import { JSONEditorSchema, JsonSchemaDataType, jsonSchemaDataFormats } from '../json-editor.helper';
+import { DialogService } from '../../dialog/dialog.service';
+import {
+  PropertyConfigComponent,
+  PropertyConfigOptions
+} from './json-editor-node-flat/node-types/property-config/property-config.component';
 
 @Component({
   selector: 'ngx-json-editor-flat',
@@ -31,14 +38,15 @@ export class JsonEditorFlatComponent extends JsonEditor {
 
   @Input() compressed = false;
 
-  @ContentChildren(JsonEditorNodeFlatComponent)
-  nodeElms: QueryList<JsonEditorNodeFlatComponent>;
+  @ContentChildren(JsonEditorNodeFlatComponent) nodeElms: QueryList<JsonEditorNodeFlatComponent>;
+
+  @ViewChild('propertyConfigTmpl') propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;
 
   schemaRef: JSONEditorSchema;
 
   customFormats: JsonSchemaDataType[] = [];
 
-  constructor(protected schemaValidatorService: SchemaValidatorService) {
+  constructor(private dialogService: DialogService, protected schemaValidatorService: SchemaValidatorService) {
     super(schemaValidatorService);
   }
 
@@ -48,6 +56,43 @@ export class JsonEditorFlatComponent extends JsonEditor {
     if (this.formats.length && this.schemaBuilderMode) {
       this.buildCustomFormats();
     }
+  }
+
+  onPropertyConfig(): void {
+    this.dialogService.create({
+      template: this.propertyConfigTmpl,
+      context: {
+        property: this.schema,
+        schema: this.schema,
+        formats: this.customFormats
+      },
+      class: 'property-config-dialog'
+    });
+  }
+
+  updateSchema(options: PropertyConfigOptions): void {
+    const editedSchema = options.newProperty;
+
+    if (editedSchema.title) {
+      this.schema.title = editedSchema.title;
+      this.schemaRef.title = editedSchema.title;
+    } else {
+      delete this.schema.title;
+      delete this.schemaRef.title;
+    }
+
+    if (editedSchema.description) {
+      this.schema.description = editedSchema.description;
+      this.schemaRef.description = editedSchema.description;
+    } else {
+      delete this.schema.description;
+      delete this.schemaRef.description;
+    }
+
+    this.schema = { ...this.schema };
+    this.schemaRef = { ...this.schemaRef };
+
+    this.schemaChange.emit(this.schemaRef);
   }
 
   private buildCustomFormats(): void {

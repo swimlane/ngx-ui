@@ -28,13 +28,15 @@ export interface PropertyConfigOptions {
 export class PropertyConfigComponent implements OnInit {
   @Input() property: JSONEditorSchema;
 
-  @Input() index: number;
+  @Input() index?: number;
 
   @Input() schema: JSONEditorSchema;
 
   @Input() formats: JsonSchemaDataType[] = [];
 
-  @Input() arrayItem = false;
+  @Input() arrayItem? = false;
+
+  @Input() rootItem? = false;
 
   @Output() updateSchema = new EventEmitter<PropertyConfigOptions>();
 

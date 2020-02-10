@@ -15,7 +15,7 @@
       [model]="model[prop.propertyName]"
       (modelChange)="updateProp(prop.id, $event)"
       [schema]="prop"
-      [schemaRef]="schemaRef ? schemaRef.properties[prop.propertyName] : null"
+      [schemaRef]="schemaRef && schemaRef.properties ? schemaRef.properties[prop.propertyName] : null"
       [required]="!!requiredCache[prop.propertyName]"
       [inline]="prop.type !== 'array' && prop.type !== 'object'"
       [path]="path + getPath(prop.propertyName)"
