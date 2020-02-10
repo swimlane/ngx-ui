@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+## 28.1.0 (2020-02-10)
+
 - Enhancement: Add showEvent to dropdown component (#384)
 - Enhancement: Json Editor Schema Builder: Support edit of root object (#388)
 - Enhancement: Expose schema on property delete and update demo page (#386)
