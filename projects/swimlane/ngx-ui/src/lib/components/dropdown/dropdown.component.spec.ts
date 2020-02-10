@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { DropdownComponent } from './dropdown.component';
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
-import { DropdownComponentFixture } from './dropdown.component.fixture';
+import { DropdownComponentFixture } from './fixtures/dropdown.component.fixture';
 
 describe('DropdownComponent', () => {
   let component: DropdownComponentFixture;

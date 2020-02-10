@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-import { DropdownComponent } from './dropdown.component';
+import { DropdownComponent } from '../dropdown.component';
 
 @Component({
   selector: `ngx-dropdown-fixture`,
