@@ -115,28 +115,28 @@
       &.ngx-step--semi-complete {
         .ngx-step--circle {
           &:hover {
-            border: 1.75px solid $color-blue-500;
-            color: $color-blue-500;
-            box-shadow: 0px 0px 9.59842px rgba(20, 131, 255, 0.8);
+            border: initial;
+            color: initial;
+            box-shadow: initial;
 
             span {
-              opacity: 1 !important;
+              opacity: initial;
             }
 
             i {
-              opacity: 0 !important;
+              opacity: initial;
             }
 
             .marker-path {
-              fill: $color-blue-500;
+              fill: initial;
             }
           }
         }
       }
 
       .ngx-step--circle {
-        cursor: pointer;
-        pointer-events: initial !important;
+        cursor: default;
+        pointer-events: none !important;
       }
     }
   }
