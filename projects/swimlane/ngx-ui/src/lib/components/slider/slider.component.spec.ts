@@ -59,8 +59,8 @@ describe('SliderComponent', () => {
     expect(defaultSlider.showTicks).toEqual(false);
   });
 
-  it('_values defaults to: [0]', () => {
-    expect(defaultSlider._values).toEqual([0]);
+  it('_values defaults to: []', () => {
+    expect(defaultSlider._values).toEqual([]);
   });
 
   it('_percents defaults to: [0]', () => {
