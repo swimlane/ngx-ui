@@ -37,7 +37,11 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
   @Input() compressed: boolean;
 
+  @Input() hideRoot;
+
   indentationArray: number[] = [];
+
+  objectKeys = Object.keys;
 
   constructor(private dialogService: DialogService, protected cdr: ChangeDetectorRef) {
     super(cdr);

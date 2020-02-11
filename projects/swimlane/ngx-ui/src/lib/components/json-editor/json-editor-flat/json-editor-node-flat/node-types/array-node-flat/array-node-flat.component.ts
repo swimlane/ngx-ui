@@ -30,6 +30,8 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
 
   @Input() compressed: boolean;
 
+  @Input() hideRoot;
+
   indentationArray: number[] = [];
 
   constructor(private dialogService: DialogService) {
