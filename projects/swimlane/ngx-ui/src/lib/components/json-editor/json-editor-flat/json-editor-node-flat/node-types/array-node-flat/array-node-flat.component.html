@@ -12,6 +12,7 @@
       [errors]="errors"
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="level"
+      [hideRoot]="hideRoot"
       [compressed]="compressed"
       [schemaRef]="schemaRef?.items || null"
       [schemaBuilderMode]="schemaBuilderMode"
@@ -56,10 +57,10 @@
     *ngIf="!schemaBuilderMode || !model.length"
     class="add-button"
     [class.compressed]="compressed"
-    [class.background]="level"
+    [class.background]="hideRoot ? level > -1 : level"
   >
     <span class="separator" *ngFor="let separator of indentationArray"></span>
-    <div class="indented-content">
+    <div class="indented-content" [style.marginLeft]="hideRoot && level === 0 ? '20px' : '0'">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
           <button type="button">

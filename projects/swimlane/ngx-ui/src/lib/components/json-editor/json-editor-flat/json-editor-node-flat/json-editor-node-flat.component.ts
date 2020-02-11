@@ -31,7 +31,7 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() label: string;
 
-  @Input() level: number = -1;
+  @Input() level: number;
 
   @Input() schemaBuilderMode?: boolean;
 
@@ -40,6 +40,8 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
   @Input() formats: JsonSchemaDataType[];
 
   @Input() arrayItem = false;
+
+  @Input() hideRoot = false;
 
   @Input() arrayName = '';
 
@@ -57,7 +59,11 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
   }
 
   ngOnInit() {
-    this.level += 1;
+    if (this.level === undefined) {
+      this.level = this.hideRoot ? -1 : 0;
+    } else {
+      this.level += 1;
+    }
   }
 
   updatePropertyName(id: string | number, name: string): void {

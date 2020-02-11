@@ -1,5 +1,5 @@
 <div *ngIf="model !== undefined" class="json-tree-node-flat">
-  <div class="node-container">
+  <div class="node-container" *ngIf="!(level === -1 && hideRoot)">
     <div class="indentation" *ngIf="level > 0" [style.left]="-1 * (level * 20) + 'px'">
       <span class="separator" *ngFor="let separator of indentationArray"></span>
     </div>
@@ -234,6 +234,7 @@
       [schemaRef]="schemaRef"
       [model]="model"
       [expanded]="expanded"
+      [hideRoot]="hideRoot"
       (modelChange)="updateModel($event)"
       [path]="path"
       [errors]="childrenErrors"
@@ -255,6 +256,7 @@
       [model]="model"
       [expanded]="expanded"
       [formats]="formats"
+      [hideRoot]="hideRoot"
       (modelChange)="updateModel($event)"
       [path]="path"
       [compressed]="compressed"

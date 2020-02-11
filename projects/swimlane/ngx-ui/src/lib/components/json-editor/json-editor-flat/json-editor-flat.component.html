@@ -2,6 +2,7 @@
   <ngx-json-editor-node-flat
     [(model)]="model"
     [schema]="schema"
+    [hideRoot]="hideRoot"
     [schemaRef]="schemaRef"
     (modelChange)="modelChangedCallback($event)"
     [errors]="errors"
