@@ -68,7 +68,7 @@ describe('SliderComponent', () => {
   });
 
   it('_thumbs defaults to: [{left: "calc(0)"}]', () => {
-    expect(defaultSlider._thumbs).toEqual([{left: "calc(0% - 0em)"}]);
+    expect(defaultSlider._thumbs).toEqual([{ left: 'calc(0% - 0em)' }]);
   });
 
   it('_ticks defaults to: []', () => {
