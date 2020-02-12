@@ -53,7 +53,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   @Input() tickStep: number;
   @Output() change = new EventEmitter();
 
-  _values = [];
+  _values = [0];
   _percents = [0];
   _thumbs: any[] = [];
   _fill: any;
@@ -102,6 +102,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
     if (this.showTicks) {
       this._ticks = this.getTicks();
     }
+    this.setValues([0]);
   }
 
   setValues(values: number[]) {

@@ -59,16 +59,16 @@ describe('SliderComponent', () => {
     expect(defaultSlider.showTicks).toEqual(false);
   });
 
-  it('_values defaults to: []', () => {
-    expect(defaultSlider._values).toEqual([]);
+  it('_values defaults to: [0]', () => {
+    expect(defaultSlider._values).toEqual([0]);
   });
 
   it('_percents defaults to: [0]', () => {
     expect(defaultSlider._percents).toEqual([0]);
   });
 
-  it('_thumbs defaults to: []', () => {
-    expect(defaultSlider._thumbs).toEqual([]);
+  it('_thumbs defaults to: [{left: "calc(0)"}]', () => {
+    expect(defaultSlider._thumbs).toEqual([{left: "calc(0% - 0em)"}]);
   });
 
   it('_ticks defaults to: []', () => {
