@@ -231,7 +231,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   }
 
   focused: boolean = false;
-  readonly type$ = new BehaviorSubject<InputTypes>(undefined);
+  readonly type$ = new BehaviorSubject<InputTypes>(InputTypes.text);
 
   private _value: string | number = '';
   private _type: InputTypes = InputTypes.text;

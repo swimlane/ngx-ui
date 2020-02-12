@@ -7,7 +7,8 @@ import {
   Renderer2,
   ViewEncapsulation,
   ChangeDetectorRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  HostListener
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
@@ -62,8 +63,15 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     this._closeOnOutsideClick = coerceBooleanProperty(closeOnOutsideClick);
   }
 
-  @ContentChild(DropdownToggleDirective) readonly dropdownToggle: DropdownToggleDirective;
+  @Input()
+  get closeOnMouseLeave() {
+    return this._closeOnMouseLeave;
+  }
+  set closeOnMouseLeave(val: boolean) {
+    this._closeOnMouseLeave = coerceBooleanProperty(val);
+  }
 
+  @ContentChild(DropdownToggleDirective) readonly dropdownToggle: DropdownToggleDirective;
   @ContentChild(DropdownMenuDirective) readonly dropdownMenu: DropdownMenuDirective;
 
   private _documentListener?: () => void;
@@ -71,6 +79,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   private _showCaret: boolean = false;
   private _closeOnClick: boolean = true;
   private _closeOnOutsideClick: boolean = true;
+  private _closeOnMouseLeave: boolean = false;
 
   constructor(private readonly renderer: Renderer2, private readonly cd: ChangeDetectorRef) {}
 
@@ -90,9 +99,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
       const isMenuClick = !this.closeOnClick && this.dropdownMenu.element.contains(e.target as Node);
 
       if (!isToggling && !isMenuClick) {
-        this.open = false;
-        if (this._documentListener) this._documentListener();
-        this.cd.markForCheck();
+        this.close();
       }
     }
   }
@@ -105,5 +112,18 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     } else {
       this._documentListener();
     }
+  }
+
+  @HostListener('mouseleave')
+  onMouseLeave(): void {
+    if (this.closeOnMouseLeave) {
+      this.close();
+    }
+  }
+
+  private close() {
+    this.open = false;
+    if (this._documentListener) this._documentListener();
+    this.cd.markForCheck();
   }
 }

@@ -1,0 +1,29 @@
+@import 'colors/index.scss';
+@import './progress-spinner';
+
+.ngx-progress-spinner {
+  display: inline-flex;
+  border-radius: 100%;
+  overflow: hidden;
+
+  &.ngx-progress-spinner--indeterminate {
+    svg {
+      circle {
+        animation: ngx-progress-spinner--rotate 1s linear infinite;
+      }
+    }
+  }
+
+  svg {
+    circle {
+      fill: transparent;
+      transition: 0.1s stroke-dashoffset;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+    }
+
+    path {
+      fill: transparent;
+    }
+  }
+}

@@ -1,61 +1,52 @@
-import {
-  Component,
-  Input,
-  EventEmitter,
-  Output,
-  OnInit,
-  OnChanges,
-  SimpleChanges,
-  ViewEncapsulation
-} from '@angular/core';
+import { Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 
 import {
   createValueForSchema,
   jsonSchemaDataTypes,
+  jsonSchemaDataFormats,
   inferType,
   dataTypeMap,
   getIcon,
-  getCurrentType
+  getCurrentType,
+  JsonSchemaDataType,
+  JSONEditorSchema,
+  PropertyIndex
 } from '../json-editor.helper';
+import { JSONSchema7TypeName } from 'json-schema';
 
-@Component({
-  selector: 'ngx-json-object-node',
-  templateUrl: 'object-node.component.html',
-  encapsulation: ViewEncapsulation.None
-})
-export class ObjectNodeComponent implements OnInit, OnChanges {
-  @Input()
-  schema: any;
+export class ObjectNode implements OnInit, OnChanges {
+  @Input() schema: JSONEditorSchema;
 
-  @Input()
-  model: any;
+  @Input() model: any;
 
-  @Input()
-  required: boolean = false;
+  @Input() required: boolean = false;
 
-  @Input()
-  expanded: boolean;
+  @Input() expanded: boolean;
 
-  @Input()
-  path: string;
+  @Input() path: string;
 
-  @Input()
-  errors: any[];
+  @Input() errors: any[];
 
-  @Input()
-  typeCheckOverrides?: any;
+  @Input() typeCheckOverrides?: any;
 
-  @Output()
-  modelChange: EventEmitter<any> = new EventEmitter();
+  @Input() schemaBuilderMode: boolean;
 
-  requiredCache: any = {};
+  @Input() schemaRef: JSONEditorSchema;
 
-  dataTypes: any[] = jsonSchemaDataTypes;
+  @Output() modelChange: EventEmitter<any> = new EventEmitter();
+
+  @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();
+
+  requiredCache: { [key: string]: boolean } = {};
+
+  dataTypes: JsonSchemaDataType[] = [...jsonSchemaDataTypes, ...jsonSchemaDataFormats];
   propertyCounter: number = 1;
   propertyId: number = 1;
-  propertyIndex: any = {};
+  propertyIndex: PropertyIndex = {};
 
   dataTypeMap = dataTypeMap;
+
+  constructor(protected cdr: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.update();
@@ -67,13 +58,14 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
     }
   }
 
-  update() {
+  update(): void {
     setTimeout(() => {
       for (const prop in this.schema.properties) {
         if (Array.isArray(this.schema.properties[prop].type) && this.schema.properties[prop].type.length > 0) {
           if (!this.schema.properties[prop].$meta) {
             this.schema.properties[prop].$meta = {};
           }
+
           this.schema.properties[prop].$meta.type = [...this.schema.properties[prop].type];
 
           if (this.model[prop] !== undefined) {
@@ -82,7 +74,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
               ...inferType(this.model[prop], this.typeCheckOverrides, this.schema.properties[prop].$meta.type)
             };
           } else {
-            this.schema.properties[prop].type = this.schema.properties[prop].type[0];
+            this.schema.properties[prop].type = this.schema.properties[prop].type[0] as JSONSchema7TypeName;
             this.schema.properties[prop].$meta.currentType = getCurrentType(this.schema.properties[prop]);
           }
         }
@@ -100,7 +92,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
    * @param propName
    * @param value
    */
-  updateProp(id: any, value: any) {
+  updateProp(id: number | string, value: any): void {
     const propName = this.propertyIndex[id].propertyName;
     this.model[propName] = value;
     this.modelChange.emit(this.model);
@@ -111,7 +103,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
    * @param id
    * @param name
    */
-  updatePropertyName(id: any, name: string) {
+  updatePropertyName(id: number | string, name: string) {
     const oldName = this.propertyIndex[id].propertyName;
     this.model[name] = this.model[oldName];
     this.propertyIndex[id].propertyName = name;
@@ -121,28 +113,17 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
   }
 
   /**
-   * Updates the whole model and emits the change event
-   */
-  updateModel(value: any, parseAsJson: boolean = false) {
-    if (parseAsJson) {
-      this.model = JSON.parse(value);
-    } else {
-      this.model = value;
-    }
-    this.modelChange.emit(this.model);
-  }
-
-  /**
    * Adds a new property to the model
    */
-  addProperty(dataType: any) {
+  addProperty(dataType: JsonSchemaDataType): void {
     const propName = `${dataType.name} ${this.propertyCounter}`;
     this.propertyCounter++;
     const schema = JSON.parse(JSON.stringify(dataType.schema));
 
-    this.model[propName] = createValueForSchema(dataType.schema);
-    schema.nameEditable = true;
+    this.model[propName] = createValueForSchema(dataType.schema as JSONEditorSchema);
+    schema.nameEditable = !this.schemaBuilderMode;
     schema.propertyName = propName;
+
     schema.id = this.propertyId++;
     this.propertyIndex[schema.id] = schema;
     this.propertyIndex = { ...this.propertyIndex };
@@ -154,7 +135,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
   /**
    * Adds a new property as defined in the schema
    */
-  addSchemaProperty(propName: string) {
+  addSchemaProperty(propName: string): void {
     if (this.model[propName] !== undefined) {
       return;
     }
@@ -180,7 +161,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
   /**
    * Adds a new patternProperty as defined in the schema
    */
-  addSchemaPatternProperty(propName: string) {
+  addSchemaPatternProperty(propName: string): void {
     const newPropName = `new ${this.schema.patternProperties[propName].title} ${this.propertyCounter}`;
     this.propertyCounter++;
 
@@ -242,7 +223,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
   /**
    * Updates the required cache
    */
-  updateRequiredCache() {
+  updateRequiredCache(): void {
     this.requiredCache = {};
     if (this.schema && this.schema.required) {
       for (const prop of this.schema.required) {
@@ -254,12 +235,16 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
   /**
    * Creates an index out of all the properties in the model
    */
-  indexProperties() {
-    for (const prop in this.model) {
+  indexProperties(): void {
+    const props = this.schemaBuilderMode ? this.schemaRef.properties : this.model;
+
+    for (const prop in props) {
       if (this.isIndexed(prop)) {
         continue;
       }
-      let schema: any;
+
+      let schema: JSONEditorSchema;
+
       if (this.schema.properties && this.schema.properties[prop]) {
         schema = JSON.parse(JSON.stringify(this.schema.properties[prop]));
       } else {
@@ -293,23 +278,27 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
         delete this.propertyIndex[id];
       }
     }
+
     this.propertyIndex = { ...this.propertyIndex };
+    this.cdr.markForCheck();
   }
 
   isIndexed(propertyName: string): boolean {
-    return Object.values(this.propertyIndex).findIndex((s: any) => s.propertyName === propertyName) !== -1;
+    return Object.values(this.propertyIndex).findIndex((s: JSONEditorSchema) => s.propertyName === propertyName) !== -1;
   }
 
   /**
    * Inits the required properties on the model
    */
-  addRequiredProperties() {
+  addRequiredProperties(): void {
     if (this.schema && this.schema.properties) {
       for (const propName in this.schema.properties) {
         if (this.model[propName] !== undefined) {
           continue;
         }
-        if (this.requiredCache[propName]) {
+
+        if (this.requiredCache[propName] || this.schemaBuilderMode) {
+          // List all properties not only required if we are in schema builder mode
           this.addSchemaProperty(propName);
         }
       }
@@ -321,7 +310,7 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
    * @param property
    * @param type
    */
-  changePropertyType(property: any, type: string) {
+  changePropertyType(property: JSONEditorSchema, type: string) {
     const dataType = this.dataTypeMap[type];
     if (dataType) {
       delete property.format;
@@ -346,13 +335,13 @@ export class ObjectNodeComponent implements OnInit, OnChanges {
    * @param value
    */
   trackBy(_, value) {
-    return value.value.id;
+    return value.id;
   }
 
   /**
    * Updates the icons in the schemas
    */
-  private updateIcons() {
+  protected updateIcons(): void {
     for (const id in this.propertyIndex) {
       const schema = this.propertyIndex[id];
       if (!schema.$meta) {

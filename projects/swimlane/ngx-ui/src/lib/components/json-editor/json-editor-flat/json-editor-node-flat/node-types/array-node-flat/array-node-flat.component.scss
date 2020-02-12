@@ -1,0 +1,18 @@
+@import 'colors/variables';
+@import '../node-types.extensions.scss';
+
+.array-node-flat {
+  margin-top: 5px;
+
+  .array-node-content {
+    @extend %node-type;
+
+    &.no-margin {
+      margin-bottom: 0;
+    }
+  }
+
+  .add-button {
+    @extend %add-button;
+  }
+}

@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Subscription } from 'rxjs';
 
-import { InjectionService } from '../../services/injection.service';
-import { InjectionRegisteryService } from '../../services/injection-registery.service';
-
+import { InjectionService } from '../../services/injection/injection.service';
+import { InjectionRegistryService } from '../../services/injection-registry/injection-registry.service';
 import { OverlayService } from '../overlay/overlay.service';
 import { DialogComponent } from './dialog.component';
+import { DialogOptions } from './dialog-options.interface';
 
 @Injectable()
-export class DialogService<T = DialogComponent> extends InjectionRegisteryService<T> {
-  defaults: any = {
+export class DialogService<T = DialogComponent> extends InjectionRegistryService<T> {
+  readonly defaults: DialogOptions = {
     inputs: {
       zIndex: 991,
       closeOnBlur: true,
@@ -19,35 +20,38 @@ export class DialogService<T = DialogComponent> extends InjectionRegisteryServic
     }
   };
 
-  zIndex: number = 995;
-  type: any = DialogComponent;
+  protected type: any = DialogComponent;
+  private zIndex: number = 995;
 
-  constructor(injectionService: InjectionService, private overlayService: OverlayService) {
+  constructor(readonly injectionService: InjectionService, readonly overlayService: OverlayService) {
     super(injectionService);
   }
 
-  create(bindings) {
-    const component = super.create(bindings);
+  create(options: DialogOptions) {
+    const component = super.create(options);
     this.createSubscriptions(component);
     return component;
   }
 
-  destroy(component): void {
+  destroy(component: any): void {
     const hasOverlay = component.instance.showOverlay;
     this.zIndex = this.zIndex - 2;
+
     if (hasOverlay) {
       this.overlayService.removeTriggerComponent(component);
     }
+
     setTimeout(() => {
       super.destroy(component);
     });
   }
 
-  createSubscriptions(triggerComponent): any {
-    let closeSub;
-    let overlaySub;
+  createSubscriptions(triggerComponent: any): void {
+    let closeSub: Subscription;
+    let overlaySub: Subscription;
 
-    const kill = c => {
+    const kill = (c: any) => {
+      /* istanbul ignore if */
       if (c !== triggerComponent) {
         return;
       }
@@ -73,15 +77,16 @@ export class DialogService<T = DialogComponent> extends InjectionRegisteryServic
     }
   }
 
-  assignDefaults(bindings): any {
-    bindings = super.assignDefaults(bindings);
+  assignDefaults(options: DialogOptions): DialogOptions {
+    options = super.assignDefaults(options);
 
-    if (!bindings.zIndex) {
+    /* istanbul ignore else */
+    if (!options.zIndex) {
       this.zIndex = this.overlayService.instance ? this.overlayService.instance.zIndex + 3 : this.zIndex + 2;
 
-      bindings.inputs.zIndex = this.zIndex;
+      options.inputs.zIndex = this.zIndex;
     }
 
-    return bindings;
+    return options;
   }
 }

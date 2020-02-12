@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { DirectivesModule } from './directives/directives.module';
 import { PipesModule } from './pipes/pipes.module';
-import { InjectionService } from './services/injection.service';
-import { IconRegisteryService } from './services/icon-registery.service';
+import { InjectionService } from './services/injection/injection.service';
+import { IconRegistryService } from './services/icon-registry/icon-registry.service';
 import { TooltipService } from './components/tooltip/tooltip.service';
 import { LoadingService } from './components/loading/loading.service';
 import { OverlayService } from './components/overlay/overlay.service';
@@ -41,6 +41,8 @@ import { ToggleModule } from './components/toggle/toggle.module';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { TooltipModule } from './components/tooltip/tooltip.module';
 import { RadioButtonModule } from './components/radiobutton/radiobutton.module';
+import { StepperModule } from './components/stepper/stepper.module';
+import { ProgressSpinnerModule } from './components/progress-spinner/progress-spinner.module';
 
 /**
  * Exported Modules
@@ -73,17 +75,19 @@ const modules = [
   SelectModule,
   SliderModule,
   SplitModule,
+  StepperModule,
   TabsModule,
   ToggleModule,
   ToolbarModule,
   TooltipModule,
-  TreeModule
+  TreeModule,
+  ProgressSpinnerModule
 ];
 
 const services = [
   DrawerService,
   InjectionService,
-  IconRegisteryService,
+  IconRegistryService,
   TooltipService,
   LoadingService,
   DialogService,

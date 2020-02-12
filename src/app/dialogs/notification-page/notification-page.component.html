@@ -5,7 +5,7 @@
   <button type="button" class="btn" (click)="notificationService.create({
     title: 'Fatal Alert!',
     body: 'The system was compromised by hackers.',
-    styleType: 'info'
+    styleType: NotificationStyleType.info
   })">
     Type: Info
   </button>
@@ -13,7 +13,7 @@
   <button type="button" class="btn" (click)="notificationService.create({
     title: 'Patch Applied!',
     body: 'Hackers have been stopped!',
-    styleType: 'success',
+    styleType: NotificationStyleType.success,
     timeout: false,
     rateLimit: false
   })">
@@ -23,7 +23,7 @@
   <button type="button" class="btn" (click)="notificationService.create({
     title: 'Patch Unknown!',
     body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
-    styleType: 'warning',
+    styleType: NotificationStyleType.warning,
     timeout: false,
     rateLimit: false
   })">
@@ -32,7 +32,7 @@
 
   <button type="button" class="btn" (click)="notificationService.create({
     body: 'Patch Failed!',
-    styleType: 'error',
+    styleType: NotificationStyleType.error,
     rateLimit: false,
     timeout: false
   })">
@@ -205,7 +205,7 @@
   </button>
 
   <button type="button" class="btn" (click)="notificationService.create({
-    type: 'native',
+    type: NotificationType.native,
     title: 'Alert the SOC!',
     body: 'A security breach has been detected by DLP.'
   })">
@@ -225,7 +225,7 @@
         type="button"
         class="btn"
         (click)="notificationService.create({
-          type: 'native',
+          type: NotificationType.native,
           title: 'Alert the SOC!',
           body: 'A security breach has been detected by DLP.'
         })">

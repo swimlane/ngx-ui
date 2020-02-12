@@ -7,7 +7,7 @@ import { MomentModule } from 'ngx-moment';
 import { DateTimeComponent } from './date-time.component';
 import { DialogModule } from '../dialog/dialog.module';
 import { PipesModule } from '../../pipes/pipes.module';
-import { InjectionService } from '../../services/injection.service';
+import { InjectionService } from '../../services/injection/injection.service';
 
 (moment as any).suppressDeprecationWarnings = true;
 
@@ -537,9 +537,9 @@ describe('DateTimeComponent', () => {
 
   describe('inputChanged', () => {
     it('should set valid value', () => {
-      const date = new Date().toUTCString();
+      const date = new Date().toLocaleDateString();
       component.inputChanged(date);
-      expect(component.value).not.toEqual(date);
+      expect((component.value as Date).toLocaleDateString()).toEqual(date);
     });
 
     it('should not set invalid value', () => {

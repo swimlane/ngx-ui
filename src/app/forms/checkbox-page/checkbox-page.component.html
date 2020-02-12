@@ -1,6 +1,6 @@
 <h3 class="style-header">Checkbox</h3>
 
-<ngx-section class="shadow" [sectionTitle]="'Demo'">
+<ngx-section class="shadow" sectionTitle="Demo">
   <h3>Simple</h3>
   <ngx-checkbox name="chk1" [ngModel]="true">
     Alert the SOC
@@ -47,4 +47,18 @@
     terminal
     sudo /dev/null float.
   </ngx-checkbox>
+</ngx-section>
+
+<ngx-section sectionTitle="Round">
+  <ngx-checkbox round diameter="25px">
+    Round Checkbox
+  </ngx-checkbox>
+
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-checkbox round diameter="25px">
+        Round Checkbox
+      </ngx-checkbox>
+    ]]>
+  </ngx-codemirror>
 </ngx-section>

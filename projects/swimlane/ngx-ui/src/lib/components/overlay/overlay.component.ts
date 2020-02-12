@@ -14,11 +14,9 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
  * Overlay Component for Drawer/Dialogs
  */
 @Component({
-  selector: 'ngx-overlay',
   exportAs: 'ngxOverlay',
+  selector: 'ngx-overlay',
   templateUrl: './overlay.component.html',
-  encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./overlay.component.scss'],
   animations: [
     trigger('overlayTransition', [
@@ -47,27 +45,30 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
         animate('100ms ease-out')
       ])
     ])
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OverlayComponent {
+  @Input()
   get visible() {
     return this._visible;
   }
-  @Input()
   set visible(val: boolean) {
     this._visible = coerceBooleanProperty(val);
     this.cdr.markForCheck();
   }
 
+  @Input()
   get zIndex() {
     return this._zIndex;
   }
-  @Input()
   set zIndex(val: number) {
     this._zIndex = coerceNumberProperty(val);
+    this.cdr.markForCheck();
   }
 
-  @Output() click = new EventEmitter();
+  @Output() click = new EventEmitter<boolean>();
 
   get animationState(): string {
     return this.visible ? 'active' : 'inactive';
@@ -76,5 +77,5 @@ export class OverlayComponent {
   private _visible: boolean = false;
   private _zIndex: number = 990;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private readonly cdr: ChangeDetectorRef) {}
 }

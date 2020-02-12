@@ -1,7 +1,7 @@
 @import 'colors/variables';
 
 .ngx-drawer {
-  position: fixed;
+  display: block;
   overflow-y: auto;
   overflow-x: hidden;
   text-align: left;

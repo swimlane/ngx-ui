@@ -2,6 +2,36 @@
 
 ## HEAD (Unreleased)
 
+## 28.0.0 (2020-02-07)
+
+- Chore: Bump dependencies to angular 9.0.0
+
+## 28.0.0-rc.9 (2020-02-06)
+
+- Enhancement: Add selectable and disabled to tree node model (#377)
+- Enhancement: progress spinner (#382)
+- Enhancement: round checkbox (#381)
+- Enhancement: ngx stepper (#380)
+- Enhancement: json editor examples placeholder (#376)
+- Fix: #372 - fix button styling on .ngx-tabs (#372)
+- Chore: reorganize animations (#378)
+
+## 28.0.0-rc.8 (2020-01-23)
+
+- Enhancement: Allow setting of tree component icons (#370)
+- Enhancement: Allow passing tree node to node template in tree component (#370)
+
+## 28.0.0-rc.5 (2020-01-13)
+
+- Enhancement: Allow view container injection (#360)
+- Fix: Do length check on toolbar menu items (#362)
+- Fix: Refactor PatternValidatorModule to fix import (#363)
+- Chore: Make flex-layout a peer, not dependency (#361)
+
+## 28.0.0-rc.4 (2020-01-09)
+
+- Breaking: Change components to ChangeDetectionStrategy.OnPush
+
 ## 28.0.0-rc.3 (2019-12-02)
 
 - Fix: Extract template into separate file

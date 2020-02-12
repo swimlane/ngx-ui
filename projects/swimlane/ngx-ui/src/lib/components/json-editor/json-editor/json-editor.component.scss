@@ -1,0 +1,98 @@
+@import './json-editor.variables.scss';
+
+.ngx-json-editor {
+  .editor-title {
+    border: 1px solid $color-node-item-border;
+    height: 30px;
+    display: inline-block;
+    margin-left: 20px;
+    position: relative;
+    background: $color-node-item-bg;
+
+    &::before {
+      content: ' ';
+      width: 15px;
+      height: 1px;
+      border-radius: 5px;
+      background: none;
+      border-top: dashed 1px $color-tree-line;
+      position: absolute;
+      top: 50%;
+      left: -15px;
+    }
+
+    .type-icon {
+      width: 28px;
+      height: 28px;
+      position: relative;
+      background: $color-icon-type-bg;
+      ngx-icon {
+        color: $color-icon-type;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 16px;
+        height: 16px;
+      }
+      margin-left: 0px;
+      display: inline-block;
+    }
+
+    .name {
+      display: inline-block;
+      width: 170px;
+      padding: 0px 5px;
+      position: relative;
+      transform: translateY(-50%);
+      vertical-align: middle;
+
+      .title {
+        display: inline-block;
+        width: 100%;
+        color: $color-blue-grey-400;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        position: relative;
+        top: 5px;
+      }
+    }
+  }
+
+  .ngx-dropdown-menu {
+    white-space: nowrap;
+    left: 16px !important;
+
+    .dropdown-column {
+      vertical-align: top;
+      display: inline-block;
+      min-width: 150px;
+
+      &:nth-child(2) {
+        border-left: 1px solid $color-blue-grey-550;
+      }
+    }
+  }
+}
+
+.code-editor-dialog {
+  .code-editor {
+    width: 90vw;
+    overflow: auto;
+
+    .save-code-button {
+      position: absolute;
+      right: 22px;
+      top: 55px;
+    }
+
+    .CodeMirror {
+      height: 70vh;
+    }
+
+    .mode-select {
+      width: 300px;
+    }
+  }
+}

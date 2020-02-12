@@ -1,0 +1,38 @@
+@import 'colors/variables';
+@import '../node-types.extensions.scss';
+@import '../../../../json-editor.extensions.scss';
+
+.object-node-flat {
+  margin-top: 5px;
+
+  .object-node-content {
+    @extend %node-type;
+  }
+
+  .add-button {
+    @extend %add-button;
+  }
+}
+
+.cdk-drag-preview {
+  .indentation {
+    opacity: 0.5;
+  }
+
+  .add-button {
+    display: none;
+  }
+}
+
+.cdk-drag-animating,
+.object-node-flat.cdk-drop-list-dragging .object-node-content:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.indentation-placeholder {
+  @extend %indentation;
+  position: relative;
+  height: 117px;
+  margin-bottom: 5px;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}

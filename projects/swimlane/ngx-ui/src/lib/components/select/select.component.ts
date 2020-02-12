@@ -20,7 +20,7 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 import { SelectOptionDirective } from './select-option.directive';
 import { SelectInputComponent } from './select-input.component';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
-import { KeyboardKeys } from '../../utils/keys';
+import { KeyboardKeys } from '../../enums';
 
 let nextId = 0;
 
@@ -202,6 +202,8 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
         this.options = arr;
       }
     }
+
+    this._cdr.markForCheck();
   }
 
   get invalid() {

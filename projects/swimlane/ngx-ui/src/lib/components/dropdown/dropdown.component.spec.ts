@@ -1,13 +1,16 @@
+import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { DropdownComponent } from './dropdown.component';
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
-import { DropdownComponentFixture } from './dropdown.component.fixture';
+import { DropdownComponentFixture } from './fixtures/dropdown.component.fixture';
 
 describe('DropdownComponent', () => {
   let component: DropdownComponentFixture;
   let fixture: ComponentFixture<DropdownComponentFixture>;
+  let debugElement: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -18,6 +21,7 @@ describe('DropdownComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(DropdownComponentFixture);
     component = fixture.componentInstance;
+    debugElement = fixture.debugElement.query(By.directive(DropdownComponent));
     fixture.detectChanges();
   });
 
@@ -96,6 +100,21 @@ describe('DropdownComponent', () => {
 
     it('should not have a toggler', () => {
       expect(component.dropdown.dropdownToggle).toBeFalsy();
+    });
+  });
+
+  describe('closeOnMouseLeave', () => {
+    it('should not close on mouseleave if closeOnMouseLeave is not true', () => {
+      component.dropdown.open = true;
+      debugElement.triggerEventHandler('mouseleave', null);
+      expect(component.dropdown.open).toBe(true);
+    });
+
+    it('should close on mouseleave', () => {
+      component.dropdown.closeOnMouseLeave = true;
+      component.dropdown.open = true;
+      debugElement.triggerEventHandler('mouseleave', null);
+      expect(component.dropdown.open).toBe(false);
     });
   });
 });
