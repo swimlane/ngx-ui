@@ -15,6 +15,10 @@
   position: relative;
   display: flex;
 
+  ngx-dropdown {
+    padding-bottom: 0;
+  }
+
   &.compressed {
     max-height: 80px;
   }

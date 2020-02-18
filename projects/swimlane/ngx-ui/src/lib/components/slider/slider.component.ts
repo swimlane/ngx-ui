@@ -102,6 +102,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
     if (this.showTicks) {
       this._ticks = this.getTicks();
     }
+    this.setValues([0]);
   }
 
   setValues(values: number[]) {
