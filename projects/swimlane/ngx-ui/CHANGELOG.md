@@ -2,6 +2,13 @@
 
 ## HEAD (Unreleased)
 
+## 28.2.0 (2020-02-18)
+
+- Enhancement: Json Editor Schema Builder: hide root node (#391)
+- Enhancement: Add showEvent to dropdown component (#384)
+- Enhancement: Json Editor Schema Builder: Support edit of root object (#388)
+- Fix: fix initial value = 0 bug on slider component (#392)
+
 ## 28.1.0 (2020-02-10)
 
 - Enhancement: Add showEvent to dropdown component (#384)
