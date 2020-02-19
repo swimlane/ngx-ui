@@ -7,6 +7,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreePageComponent {
+  activeNode = null;
+
   nodes: any[] = [
     { label: 'Node 1' },
     {
@@ -88,4 +90,8 @@ export class TreePageComponent {
     "children": [],
     "spouse": null
   }`);
+
+  selectNode(e: Event) {
+    console.log({ e });
+  }
 }

@@ -86,8 +86,8 @@
         <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
       </ngx-tree>
     </ngx-tree-node>
-    <ngx-tree-node [label]="'Node 3'" [selectable]="true"></ngx-tree-node>
-    <ngx-tree-node [label]="'Node 4'" [selectable]="true" [expandable]="true" [expanded]="false">
+    <ngx-tree-node [label]="'Node 3'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
+    <ngx-tree-node [label]="'Node 4'" [selectable]="true" (selectNode)="selectNode($event)" [expandable]="true" [expanded]="false">
       <ngx-tree>
         <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
         <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
@@ -100,8 +100,8 @@
         <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
       </ngx-tree>
     </ngx-tree-node>
-    <ngx-tree-node [label]="'Node 1'" [selectable]="true"></ngx-tree-node>
-    <ngx-tree-node [label]="'Node 5'" [selectable]="true"></ngx-tree-node>
+    <ngx-tree-node [label]="'Node 1'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
+    <ngx-tree-node [label]="'Node 5'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
   </ngx-tree>
 
   <ngx-codemirror mode="htmlmixed" readOnly="true">

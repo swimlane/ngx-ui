@@ -52,7 +52,7 @@ export class TreeNodeComponent implements OnChanges {
     };
   }
 
-  onExpandClick(event): void {
+  onExpandClick(event: Event): void {
     if (this.disabled || !this.expandable) return;
 
     event.stopPropagation();
@@ -66,8 +66,7 @@ export class TreeNodeComponent implements OnChanges {
     }
   }
 
-  onClick(event): void {
-    event.stopPropagation();
+  onClick(): void {
     if (!this.selectable || this.disabled) return;
     this.selectNode.emit(this.data);
   }
