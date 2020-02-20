@@ -63,7 +63,7 @@ describe('TreeNodeComponent', () => {
   it('onClick emits select event', () => {
     spyOn(component.selectNode, 'emit').and.callThrough();
     component.selectable = true;
-    component.onClick(MOCK_EVENT);
+    component.onClick();
 
     expect(component.selectNode.emit).toHaveBeenCalled();
   });
@@ -83,7 +83,7 @@ describe('TreeNodeComponent', () => {
 
     it('select click does not select node when disabled', () => {
       spyOn(component.selectNode, 'emit').and.callThrough();
-      component.onClick(MOCK_EVENT);
+      component.onClick();
 
       expect(component.selectNode.emit).not.toHaveBeenCalled();
     });
