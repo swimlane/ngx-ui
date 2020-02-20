@@ -13,9 +13,9 @@
     [ngClass]="expanded ? icons.collapse : icons.expand"
     >
   </span>
-  <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="ngx-node-label" (click)="onClick($event)"> </span>
-  <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="data" (click)="onClick($event)"> </ng-template>  
-  <ng-content *ngIf="expanded"></ng-content> 
+  <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="ngx-node-label" (click)="onClick()"> </span>
+  <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="data"> </ng-template>  
+  <ng-content *ngIf="expanded"></ng-content>
   <ngx-tree
     *ngIf="children?.length && expandable && expanded"
     class="ngx-sub-tree"
