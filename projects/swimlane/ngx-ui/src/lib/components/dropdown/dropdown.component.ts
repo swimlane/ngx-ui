@@ -80,6 +80,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   private _closeOnClick: boolean = true;
   private _closeOnOutsideClick: boolean = true;
   private _closeOnMouseLeave: boolean = false;
+  private _leaveTimeout = null;
 
   constructor(private readonly renderer: Renderer2, private readonly cd: ChangeDetectorRef) {}
 
@@ -117,7 +118,16 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   @HostListener('mouseleave')
   onMouseLeave(): void {
     if (this.closeOnMouseLeave) {
-      this.close();
+      this._leaveTimeout = setTimeout(() => {
+        this.close();
+      }, 1000);
+    }
+  }
+
+  @HostListener('mouseenter')
+  onMouseEnter(): void {
+    if (this._leaveTimeout) {
+      clearTimeout(this._leaveTimeout);
     }
   }
 

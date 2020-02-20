@@ -1,5 +1,5 @@
 import { DebugElement } from '@angular/core';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DropdownComponent } from './dropdown.component';
@@ -110,11 +110,12 @@ describe('DropdownComponent', () => {
       expect(component.dropdown.open).toBe(true);
     });
 
-    it('should close on mouseleave', () => {
+    it('should close on mouseleave', fakeAsync(() => {
       component.dropdown.closeOnMouseLeave = true;
       component.dropdown.open = true;
       debugElement.triggerEventHandler('mouseleave', null);
+      tick(1200);
       expect(component.dropdown.open).toBe(false);
-    });
+    }));
   });
 });
