@@ -114,7 +114,7 @@ describe('DropdownComponent', () => {
       component.dropdown.closeOnMouseLeave = true;
       component.dropdown.open = true;
       debugElement.triggerEventHandler('mouseleave', null);
-      tick(1200)
+      tick(1200);
       expect(component.dropdown.open).toBe(false);
     }));
   });
