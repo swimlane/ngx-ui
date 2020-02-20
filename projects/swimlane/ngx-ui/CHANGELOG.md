@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+- Enhancement: delay closeOnMouseLeave in dropdown.
+
 ## 28.2.0 (2020-02-18)
 
 - Enhancement: Json Editor Schema Builder: hide root node (#391)
