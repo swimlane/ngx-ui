@@ -33,7 +33,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
   @Input() schemaBuilderMode: boolean;
 
-  @Input() formats: JsonSchemaDataType[];
+  @Input() formats: JsonSchemaDataType[] = [];
 
   @Input() compressed: boolean;
 
