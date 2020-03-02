@@ -39,7 +39,6 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.model);
     if (this.schemaBuilderMode) {
       this.dataTypes = [...jsonSchemaDataTypes, ...this.formats];
     }
@@ -92,8 +91,6 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
     this.schema.items = dataType.schema as object;
     this.schemaRef.items = dataType.schema as object;
 
-    console.log(dataType);
-    console.log(this.schemaRef.items);
     this.model.push(this.schemaRef.items.type === 'array' ? [] : this.schemaRef.items);
 
     this.schemaChange.emit();
