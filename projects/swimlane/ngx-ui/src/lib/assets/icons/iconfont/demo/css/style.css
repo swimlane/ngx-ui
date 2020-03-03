@@ -7,9 +7,7 @@ Generated using nucleoapp.com
 @font-face {
   font-family: 'ngx-icon';
   src: url('../../fonts/ngx-icon.eot');
-  src: url('../../fonts/ngx-icon.eot') format('embedded-opentype'), url('../../fonts/ngx-icon.woff2') format('woff2'),
-    url('../../fonts/ngx-icon.woff') format('woff'), url('../../fonts/ngx-icon.ttf') format('truetype'),
-    url('../../fonts/ngx-icon.svg') format('svg');
+  src: url('../../fonts/ngx-icon.eot') format('embedded-opentype'), url('../../fonts/ngx-icon.woff2') format('woff2'), url('../../fonts/ngx-icon.woff') format('woff'), url('../../fonts/ngx-icon.ttf') format('truetype'), url('../../fonts/ngx-icon.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -19,9 +17,7 @@ Generated using nucleoapp.com
 Primary style
 
 -------------------------------- */
-*,
-*::after,
-*::before {
+*, *::after, *::before {
   box-sizing: border-box;
 }
 
@@ -37,7 +33,7 @@ body {
 }
 
 a {
-  color: #608cee;
+  color: #608CEE;
   text-decoration: none;
 }
 
@@ -65,13 +61,13 @@ header a:hover {
 }
 
 ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 ul li {
-  border-radius: 0.25em;
+  border-radius: .25em;
   transition: background 0.2s;
   user-select: none;
   overflow: hidden;
@@ -83,12 +79,10 @@ ul li:hover {
   background: #f8f8f8;
 }
 
-ul p,
-ul em,
-ul input {
+ul p, ul em, ul input {
   display: block;
   font-size: 1.1rem;
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0,0,0,0.6);
   -webkit-user-select: auto;
   -moz-user-select: auto;
   -ms-user-select: auto;
@@ -104,15 +98,13 @@ ul p {
   padding: 10px 0;
 }
 
-ul p::selection,
-ul em::selection {
-  background: #608cee;
+ul p::selection, ul em::selection {
+  background: #608CEE;
   color: #fff;
 }
 
-ul p::-moz-selection,
-ul em::-moz-selection {
-  background: #608cee;
+ul p::-moz-selection, ul em::-moz-selection {
+  background: #608CEE;
   color: #fff;
 }
 
@@ -155,1225 +147,1390 @@ icons
 -------------------------*/
 
 .ngx-3d-rotate::before {
-  content: '\ea01';
+    content: "\ea01";
 }
 
 .ngx-action-close::before {
-  content: '\ea02';
+    content: "\ea03";
 }
 
 .ngx-action-maximize-inverse::before {
-  content: '\ea03';
+    content: "\ea02";
 }
 
 .ngx-action-maximize::before {
-  content: '\ea04';
+    content: "\ea04";
 }
 
 .ngx-action-minimize::before {
-  content: '\ea05';
+    content: "\ea06";
+}
+
+.ngx-action-outline-small::before {
+    content: "\ea05";
+}
+
+.ngx-action-outline::before {
+    content: "\ea07";
 }
 
 .ngx-action::before {
-  content: '\ea06';
+    content: "\ea08";
 }
 
 .ngx-add-circle-filled::before {
-  content: '\ea07';
+    content: "\ea09";
 }
 
 .ngx-add-circle-medium::before {
-  content: '\ea08';
+    content: "\ea0b";
 }
 
 .ngx-add-circle-thin::before {
-  content: '\ea09';
+    content: "\ea0c";
 }
 
 .ngx-add-circle::before {
-  content: '\ea0a';
+    content: "\ea0a";
 }
 
 .ngx-add-edge::before {
-  content: '\ea0b';
+    content: "\ea0d";
 }
 
 .ngx-add-new::before {
-  content: '\ea0c';
+    content: "\ea0f";
 }
 
 .ngx-add-node::before {
-  content: '\ea0d';
+    content: "\ea10";
 }
 
 .ngx-advanced-pie::before {
-  content: '\ea0e';
+    content: "\ea0e";
 }
 
 .ngx-alert::before {
-  content: '\ea0f';
+    content: "\ea11";
 }
 
 .ngx-app-store::before {
-  content: '\ea10';
+    content: "\ea12";
 }
 
 .ngx-app-workspaces::before {
-  content: '\ea11';
+    content: "\ea13";
 }
 
 .ngx-applet::before {
-  content: '\ea12';
+    content: "\ea14";
 }
 
 .ngx-applets::before {
-  content: '\ea14';
+    content: "\ea15";
 }
 
 .ngx-application::before {
-  content: '\ea13';
+    content: "\ea16";
 }
 
 .ngx-apps::before {
-  content: '\ea15';
+    content: "\ea17";
 }
 
 .ngx-area-chart::before {
-  content: '\ea16';
+    content: "\ea18";
 }
 
 .ngx-arrow-bold-circle-left::before {
-  content: '\ea17';
+    content: "\ea19";
 }
 
 .ngx-arrow-bold-circle-right::before {
-  content: '\ea18';
+    content: "\ea1a";
 }
 
 .ngx-arrow-bold-down::before {
-  content: '\ea19';
+    content: "\ea1b";
 }
 
 .ngx-arrow-bold-left::before {
-  content: '\ea1a';
+    content: "\ea1c";
 }
 
 .ngx-arrow-bold-right::before {
-  content: '\ea1b';
+    content: "\ea1d";
 }
 
 .ngx-arrow-bold-up::before {
-  content: '\ea1c';
+    content: "\ea1e";
 }
 
 .ngx-arrow-down::before {
-  content: '\ea1d';
+    content: "\ea1f";
 }
 
 .ngx-arrow-input::before {
-  content: '\ea20';
+    content: "\ea20";
 }
 
 .ngx-arrow-left::before {
-  content: '\ea1e';
+    content: "\ea21";
 }
 
 .ngx-arrow-output::before {
-  content: '\ea1f';
+    content: "\ea22";
 }
 
 .ngx-arrow-right::before {
-  content: '\ea21';
+    content: "\ea23";
 }
 
 .ngx-arrow-tail-left::before {
-  content: '\ea22';
+    content: "\ea24";
 }
 
 .ngx-arrow-tail-right::before {
-  content: '\ea23';
+    content: "\ea25";
 }
 
 .ngx-arrow-tail-solid-left::before {
-  content: '\ea24';
+    content: "\ea26";
 }
 
 .ngx-arrow-tail-solid-right::before {
-  content: '\ea25';
+    content: "\ea27";
 }
 
 .ngx-arrow-tail-subright::before {
-  content: '\ea26';
+    content: "\ea28";
 }
 
 .ngx-arrow-up::before {
-  content: '\ea27';
+    content: "\ea29";
+}
+
+.ngx-asset-outline-small::before {
+    content: "\ea2a";
+}
+
+.ngx-asset-outline::before {
+    content: "\ea2b";
 }
 
 .ngx-assets::before {
-  content: '\ea28';
+    content: "\ea2c";
 }
 
 .ngx-attachment::before {
-  content: '\ea29';
+    content: "\ea2d";
 }
 
 .ngx-back-arrow-filled::before {
-  content: '\ea2a';
+    content: "\ea2e";
 }
 
 .ngx-back-arrow::before {
-  content: '\ea2b';
+    content: "\ea2f";
 }
 
 .ngx-bars::before {
-  content: '\ea2c';
+    content: "\ea30";
+}
+
+.ngx-bell-alarm::before {
+    content: "\ea31";
 }
 
 .ngx-bell::before {
-  content: '\ea2d';
+    content: "\ea32";
 }
 
 .ngx-bold::before {
-  content: '\ea2e';
+    content: "\ea33";
 }
 
 .ngx-bolt::before {
-  content: '\ea2f';
+    content: "\ea34";
 }
 
 .ngx-branch-node-vert::before {
-  content: '\ea30';
+    content: "\ea35";
 }
 
 .ngx-branch-node::before {
-  content: '\ea31';
+    content: "\ea36";
 }
 
 .ngx-broom::before {
-  content: '\ea32';
+    content: "\ea37";
 }
 
 .ngx-browser-size::before {
-  content: '\ea33';
+    content: "\ea40";
 }
 
 .ngx-bug::before {
-  content: '\ea34';
+    content: "\ea38";
 }
 
 .ngx-builder::before {
-  content: '\ea35';
+    content: "\ea39";
 }
 
 .ngx-calendar-clock::before {
-  content: '\ea36';
+    content: "\ea3a";
 }
 
 .ngx-calendar::before {
-  content: '\ea37';
+    content: "\ea3c";
 }
 
 .ngx-calender-clock::before {
-  content: '\ea38';
+    content: "\ea3b";
 }
 
 .ngx-cards::before {
-  content: '\ea39';
+    content: "\ea3d";
 }
 
 .ngx-center-align::before {
-  content: '\ea3a';
+    content: "\ea3e";
 }
 
 .ngx-chart-area::before {
-  content: '\ea3b';
+    content: "\ea3f";
 }
 
 .ngx-chart-bar-bar::before {
-  content: '\ea3c';
+    content: "\ea41";
 }
 
 .ngx-chart-bubble::before {
-  content: '\ea3d';
+    content: "\ea42";
 }
 
 .ngx-chart-donut::before {
-  content: '\ea3e';
+    content: "\ea43";
 }
 
 .ngx-chart-full-stacked-area::before {
-  content: '\ea3f';
+    content: "\ea44";
 }
 
 .ngx-chart-heat::before {
-  content: '\ea40';
+    content: "\ea4e";
 }
 
 .ngx-chart-horz-full-stack-bar::before {
-  content: '\ea41';
+    content: "\ea4f";
 }
 
 .ngx-chart-number-card::before {
-  content: '\ea42';
+    content: "\ea45";
 }
 
 .ngx-chart-pie-grid::before {
-  content: '\ea43';
+    content: "\ea46";
 }
 
 .ngx-chart-pie::before {
-  content: '\ea44';
+    content: "\ea47";
 }
 
 .ngx-chart-scatter::before {
-  content: '\ea45';
+    content: "\ea48";
 }
 
 .ngx-chart-spider::before {
-  content: '\ea46';
+    content: "\ea49";
 }
 
 .ngx-chart-stacked-area::before {
-  content: '\ea47';
+    content: "\ea4a";
 }
 
 .ngx-chart-vert-bar::before {
-  content: '\ea48';
+    content: "\ea4b";
 }
 
 .ngx-chart-vert-bar2::before {
-  content: '\ea49';
+    content: "\ea4c";
 }
 
 .ngx-chart-vert-stacked-bar::before {
-  content: '\ea4a';
+    content: "\ea4d";
 }
 
 .ngx-check-filled-sm::before {
-  content: '\ea4b';
+    content: "\ea50";
 }
 
 .ngx-check-filled::before {
-  content: '\ea4c';
+    content: "\ea51";
 }
 
 .ngx-check-square-filled::before {
-  content: '\ea4d';
+    content: "\ea52";
 }
 
 .ngx-check::before {
-  content: '\ea4e';
+    content: "\ea53";
+}
+
+.ngx-checklist::before {
+    content: "\ea54";
 }
 
 .ngx-chevron-bold-down::before {
-  content: '\ea4f';
+    content: "\ea55";
 }
 
 .ngx-chevron-bold-left::before {
-  content: '\ea50';
+    content: "\ea56";
 }
 
 .ngx-chevron-bold-right::before {
-  content: '\ea51';
+    content: "\ea57";
 }
 
 .ngx-chevron-bold-up::before {
-  content: '\ea52';
+    content: "\ea58";
 }
 
 .ngx-circle-filled::before {
-  content: '\ea53';
+    content: "\ea59";
 }
 
 .ngx-circle::before {
-  content: '\ea54';
+    content: "\ea5a";
 }
 
 .ngx-circles::before {
-  content: '\ea55';
+    content: "\ea5b";
 }
 
 .ngx-circuit-board::before {
-  content: '\ea56';
+    content: "\ea5c";
 }
 
 .ngx-clipboard::before {
-  content: '\ea57';
+    content: "\ea5d";
 }
 
 .ngx-clock::before {
-  content: '\ea58';
+    content: "\ea5e";
 }
 
 .ngx-cloud-download::before {
-  content: '\ea59';
+    content: "\ea5f";
 }
 
 .ngx-cloud-upload::before {
-  content: '\ea5a';
+    content: "\ea60";
 }
 
 .ngx-code::before {
-  content: '\ea5b';
+    content: "\ea61";
 }
 
 .ngx-cog::before {
-  content: '\ea5d';
+    content: "\ea62";
 }
 
 .ngx-commandline::before {
-  content: '\ea5c';
+    content: "\ea63";
 }
 
 .ngx-comments::before {
-  content: '\ea5e';
+    content: "\ea64";
 }
 
 .ngx-condition::before {
-  content: '\ea5f';
+    content: "\ea65";
 }
 
 .ngx-copy-app::before {
-  content: '\ea60';
+    content: "\ea6f";
 }
 
 .ngx-copy-filled::before {
-  content: '\ea62';
+    content: "\ea66";
 }
 
 .ngx-copy::before {
-  content: '\ea61';
+    content: "\ea67";
 }
 
 .ngx-credit-card::before {
-  content: '\ea63';
+    content: "\ea68";
 }
 
 .ngx-dashboard::before {
-  content: '\ea64';
+    content: "\ea69";
 }
 
 .ngx-database::before {
-  content: '\ea65';
+    content: "\ea6a";
 }
 
 .ngx-devil::before {
-  content: '\ea66';
+    content: "\ea6b";
 }
 
 .ngx-document::before {
-  content: '\ea67';
+    content: "\ea6c";
+}
+
+.ngx-documentation::before {
+    content: "\ea6d";
 }
 
 .ngx-domain::before {
-  content: '\ea68';
+    content: "\ea6e";
 }
 
 .ngx-dots-horz::before {
-  content: '\ea69';
+    content: "\ea70";
 }
 
 .ngx-dots-vert-round::before {
-  content: '\ea6a';
+    content: "\ea71";
 }
 
 .ngx-dots-vert::before {
-  content: '\ea6b';
+    content: "\ea72";
 }
 
 .ngx-double-down::before {
-  content: '\ea6c';
+    content: "\ea73";
 }
 
 .ngx-double-left::before {
-  content: '\ea6d';
+    content: "\ea74";
 }
 
 .ngx-double-right::before {
-  content: '\ea6e';
+    content: "\ea75";
 }
 
 .ngx-double-up::before {
-  content: '\ea6f';
+    content: "\ea76";
+}
+
+.ngx-download-outline-large::before {
+    content: "\ea77";
+}
+
+.ngx-download-outline-small::before {
+    content: "\ea78";
+}
+
+.ngx-download-outline::before {
+    content: "\ea79";
 }
 
 .ngx-edit-app::before {
-  content: '\ea70';
+    content: "\ea7a";
 }
 
 .ngx-edit::before {
-  content: '\ea71';
+    content: "\ea7b";
 }
 
 .ngx-email::before {
-  content: '\ea72';
+    content: "\ea7c";
+}
+
+.ngx-escalate::before {
+    content: "\ea7d";
+}
+
+.ngx-events-outline-small::before {
+    content: "\ea7e";
+}
+
+.ngx-events-outline::before {
+    content: "\ea7f";
 }
 
 .ngx-expand::before {
-  content: '\ea73';
+    content: "\ea80";
 }
 
 .ngx-explore::before {
-  content: '\ea74';
+    content: "\ea81";
 }
 
 .ngx-export-filled::before {
-  content: '\ea75';
+    content: "\ea82";
 }
 
 .ngx-export::before {
-  content: '\ea76';
+    content: "\ea83";
 }
 
 .ngx-eye-disabled::before {
-  content: '\ea77';
+    content: "\ea84";
 }
 
 .ngx-eye-hidden::before {
-  content: '\ea78';
+    content: "\ea85";
 }
 
 .ngx-eye::before {
-  content: '\ea79';
+    content: "\ea86";
 }
 
 .ngx-field-created-by::before {
-  content: '\ea7a';
+    content: "\ea87";
 }
 
 .ngx-field-created-date::before {
-  content: '\ea7b';
+    content: "\ea88";
 }
 
 .ngx-field-date::before {
-  content: '\ea7c';
+    content: "\ea89";
+}
+
+.ngx-field-double-select::before {
+    content: "\ea8a";
 }
 
 .ngx-field-edited-by::before {
-  content: '\ea7d';
+    content: "\ea8b";
 }
 
 .ngx-field-edited-date::before {
-  content: '\ea7e';
+    content: "\ea8c";
 }
 
 .ngx-field-grid::before {
-  content: '\ea7f';
+    content: "\ea8d";
 }
 
 .ngx-field-html::before {
-  content: '\ea80';
+    content: "\ea8e";
 }
 
 .ngx-field-json::before {
-  content: '\ea81';
+    content: "\ea8f";
+}
+
+.ngx-field-list-small::before {
+    content: "\ea90";
 }
 
 .ngx-field-list::before {
-  content: '\ea82';
+    content: "\ea91";
 }
 
 .ngx-field-lists::before {
-  content: '\ea83';
+    content: "\ea92";
 }
 
 .ngx-field-multiselect::before {
-  content: '\ea84';
+    content: "\ea93";
 }
 
 .ngx-field-number::before {
-  content: '\ea85';
+    content: "\ea94";
 }
 
 .ngx-field-numeric::before {
-  content: '\ea86';
+    content: "\ea95";
 }
 
 .ngx-field-richtext::before {
-  content: '\ea87';
+    content: "\ea96";
 }
 
 .ngx-field-single-select::before {
-  content: '\ea88';
+    content: "\ea97";
 }
 
 .ngx-field-singleline::before {
-  content: '\ea89';
+    content: "\ea98";
 }
 
 .ngx-field-text::before {
-  content: '\ea8a';
+    content: "\ea99";
 }
 
 .ngx-field-textarea::before {
-  content: '\ea8b';
+    content: "\eaa0";
 }
 
 .ngx-field-textual::before {
-  content: '\ea8c';
+    content: "\ea9a";
 }
 
 .ngx-field-users::before {
-  content: '\ea8d';
+    content: "\ea9b";
 }
 
 .ngx-filter-bar::before {
-  content: '\ea8e';
+    content: "\ea9c";
 }
 
 .ngx-filter::before {
-  content: '\ea8f';
+    content: "\ea9d";
 }
 
 .ngx-find-page::before {
-  content: '\ea90';
+    content: "\ea9e";
 }
 
 .ngx-flame::before {
-  content: '\ea91';
+    content: "\ea9f";
+}
+
+.ngx-folder-closed-small::before {
+    content: "\eaa1";
+}
+
+.ngx-folder-open-small::before {
+    content: "\eaa2";
 }
 
 .ngx-folder::before {
-  content: '\ea92';
+    content: "\eaa3";
 }
 
 .ngx-folders::before {
-  content: '\ea93';
+    content: "\eaa4";
 }
 
 .ngx-font::before {
-  content: '\ea94';
+    content: "\eaa5";
 }
 
 .ngx-format-indent-decrease::before {
-  content: '\ea95';
+    content: "\eaa6";
 }
 
 .ngx-format-indent-increase::before {
-  content: '\ea96';
+    content: "\eaa7";
 }
 
 .ngx-formula::before {
-  content: '\ea97';
+    content: "\eaa8";
 }
 
 .ngx-forward-arrow-filled::before {
-  content: '\ea98';
+    content: "\eaa9";
 }
 
 .ngx-forward-arrow::before {
-  content: '\ea99';
+    content: "\eaaa";
 }
 
 .ngx-full-align::before {
-  content: '\ea9a';
+    content: "\eaab";
 }
 
 .ngx-gauge::before {
-  content: '\ea9b';
+    content: "\eaac";
 }
 
 .ngx-gear-square::before {
-  content: '\ea9c';
+    content: "\eaad";
 }
 
 .ngx-gear::before {
-  content: '\ea9d';
+    content: "\eaae";
 }
 
 .ngx-globe::before {
-  content: '\ea9e';
+    content: "\eaaf";
 }
 
 .ngx-graph-alt1::before {
-  content: '\ea9f';
+    content: "\eab0";
 }
 
 .ngx-graph::before {
-  content: '\eaa0';
+    content: "\eaba";
 }
 
 .ngx-grid-view::before {
-  content: '\eaa1';
+    content: "\eab1";
 }
 
 .ngx-hand::before {
-  content: '\eaa2';
+    content: "\eab2";
 }
 
 .ngx-handle::before {
-  content: '\eaa3';
+    content: "\eab3";
 }
 
 .ngx-heat::before {
-  content: '\eaa4';
+    content: "\eab4";
 }
 
 .ngx-helper::before {
-  content: '\eaa5';
+    content: "\eab5";
 }
 
 .ngx-history::before {
-  content: '\eaa6';
+    content: "\eab6";
 }
 
 .ngx-horz-bar-graph-grouped::before {
-  content: '\eaa7';
+    content: "\eab7";
 }
 
 .ngx-horz-stacked-bar::before {
-  content: '\eaa8';
+    content: "\eab8";
 }
 
 .ngx-html-code::before {
-  content: '\eaa9';
+    content: "\eabf";
 }
 
 .ngx-icon-chart-bar-horizontal::before {
-  content: '\eaaa';
+    content: "\eab9";
 }
 
 .ngx-icon-chart-horz-bar::before {
-  content: '\eaab';
+    content: "\eabb";
 }
 
 .ngx-info-filled::before {
-  content: '\eaac';
+    content: "\eabc";
 }
 
 .ngx-inspect::before {
-  content: '\eaad';
+    content: "\eabd";
 }
 
 .ngx-integration::before {
-  content: '\eaae';
+    content: "\eabe";
 }
 
 .ngx-integrations::before {
-  content: '\eaaf';
+    content: "\eac0";
 }
 
 .ngx-ip::before {
-  content: '\eab0';
+    content: "\eac1";
 }
 
 .ngx-italic::before {
-  content: '\eab1';
+    content: "\eac2";
 }
 
 .ngx-key::before {
-  content: '\eab2';
+    content: "\eac3";
 }
 
 .ngx-keyboard-return::before {
-  content: '\eab3';
+    content: "\eac4";
 }
 
 .ngx-keyboard::before {
-  content: '\eab4';
+    content: "\eac5";
 }
 
 .ngx-layer::before {
-  content: '\eab5';
+    content: "\eac6";
 }
 
 .ngx-left-align::before {
-  content: '\eab6';
+    content: "\eac7";
 }
 
 .ngx-line-chart::before {
-  content: '\eab7';
+    content: "\eac8";
 }
 
 .ngx-line-graph::before {
-  content: '\eab8';
+    content: "\eac9";
 }
 
 .ngx-linear-gauge::before {
-  content: '\eab9';
+    content: "\eaca";
 }
 
 .ngx-link::before {
-  content: '\eaba';
+    content: "\eacb";
 }
 
 .ngx-list-1::before {
-  content: '\eabb';
+    content: "\eacc";
 }
 
 .ngx-list-view::before {
-  content: '\eabc';
+    content: "\eacd";
 }
 
 .ngx-list::before {
-  content: '\eabd';
+    content: "\eace";
 }
 
 .ngx-loading::before {
-  content: '\eabe';
+    content: "\eacf";
 }
 
 .ngx-location::before {
-  content: '\eabf';
+    content: "\ead0";
 }
 
 .ngx-lock-sm::before {
-  content: '\eac0';
+    content: "\ead1";
 }
 
 .ngx-lock::before {
-  content: '\eac1';
+    content: "\ead2";
 }
 
 .ngx-mail-1::before {
-  content: '\eac2';
+    content: "\ead3";
 }
 
 .ngx-mail::before {
-  content: '\eac3';
+    content: "\ead4";
 }
 
 .ngx-map::before {
-  content: '\eac4';
+    content: "\ead5";
 }
 
 .ngx-menu::before {
-  content: '\eac5';
+    content: "\ead6";
 }
 
 .ngx-mfa::before {
-  content: '\eac6';
+    content: "\ead8";
 }
 
 .ngx-mic::before {
-  content: '\eac7';
+    content: "\ead7";
 }
 
 .ngx-minus::before {
-  content: '\eac8';
+    content: "\ead9";
 }
 
 .ngx-money::before {
-  content: '\eac9';
+    content: "\eada";
 }
 
 .ngx-mouse-hold::before {
-  content: '\eaca';
+    content: "\eadb";
 }
 
 .ngx-multi-line::before {
-  content: '\eacb';
+    content: "\eadc";
 }
 
 .ngx-new-app::before {
-  content: '\eacc';
+    content: "\eadd";
 }
 
 .ngx-notation-arrow-up::before {
-  content: '\eacd';
+    content: "\eade";
 }
 
 .ngx-numbered-list::before {
-  content: '\eace';
+    content: "\eadf";
 }
 
 .ngx-open::before {
-  content: '\eacf';
+    content: "\eae0";
+}
+
+.ngx-orchestration::before {
+    content: "\eae1";
 }
 
 .ngx-paragraph::before {
-  content: '\ead0';
+    content: "\eae2";
+}
+
+.ngx-pause-circle::before {
+    content: "\eae3";
 }
 
 .ngx-pause::before {
-  content: '\ead1';
+    content: "\eae4";
 }
 
 .ngx-phone::before {
-  content: '\ead2';
+    content: "\eae5";
 }
 
 .ngx-photo::before {
-  content: '\ead3';
+    content: "\eae6";
 }
 
 .ngx-pie-chart::before {
-  content: '\ead4';
+    content: "\eae7";
 }
 
 .ngx-pin::before {
-  content: '\ead5';
+    content: "\eae8";
 }
 
 .ngx-plane::before {
-  content: '\ead6';
+    content: "\eae9";
+}
+
+.ngx-play-circle::before {
+    content: "\eaea";
 }
 
 .ngx-play::before {
-  content: '\ead7';
+    content: "\eaeb";
+}
+
+.ngx-playbook-outline-small::before {
+    content: "\eaec";
+}
+
+.ngx-playbook-outline::before {
+    content: "\eaed";
+}
+
+.ngx-plugin::before {
+    content: "\eaee";
 }
 
 .ngx-plus-bold::before {
-  content: '\ead8';
+    content: "\eaef";
 }
 
 .ngx-plus::before {
-  content: '\ead9';
+    content: "\eaf0";
 }
 
 .ngx-prev::before {
-  content: '\eada';
+    content: "\eaf1";
 }
 
 .ngx-printer::before {
-  content: '\eadb';
+    content: "\eaf2";
 }
 
 .ngx-profile-filled::before {
-  content: '\eadc';
+    content: "\eaf3";
 }
 
 .ngx-profile::before {
-  content: '\eadd';
+    content: "\eaf4";
 }
 
 .ngx-question-filled-sm::before {
-  content: '\eade';
+    content: "\eaf5";
 }
 
 .ngx-question-filled::before {
-  content: '\eadf';
+    content: "\eaf6";
 }
 
 .ngx-question::before {
-  content: '\eae0';
+    content: "\eaf7";
 }
 
 .ngx-radio-button::before {
-  content: '\eae1';
+    content: "\eaf8";
 }
 
 .ngx-redo-all::before {
-  content: '\eae2';
+    content: "\eaf9";
 }
 
 .ngx-redo::before {
-  content: '\eae3';
+    content: "\eafa";
 }
 
 .ngx-reference-grid::before {
-  content: '\eae4';
+    content: "\eafb";
 }
 
 .ngx-reference-multi::before {
-  content: '\eae5';
+    content: "\eafc";
 }
 
 .ngx-reference-single::before {
-  content: '\eae6';
+    content: "\eafd";
 }
 
 .ngx-reference-tree::before {
-  content: '\eae7';
+    content: "\eafe";
 }
 
 .ngx-reference::before {
-  content: '\eae8';
+    content: "\eaff";
 }
 
 .ngx-refresh-circle::before {
-  content: '\eae9';
+    content: "\eb00";
+}
+
+.ngx-refresh-small::before {
+    content: "\eb01";
 }
 
 .ngx-refresh::before {
-  content: '\eaea';
+    content: "\eb02";
 }
 
 .ngx-remove-edge::before {
-  content: '\eaeb';
+    content: "\eb03";
 }
 
 .ngx-remove-node::before {
-  content: '\eaec';
+    content: "\eb04";
 }
 
 .ngx-remove-users::before {
-  content: '\eaed';
+    content: "\eb0d";
 }
 
 .ngx-repeat::before {
-  content: '\eaee';
+    content: "\eb05";
 }
 
 .ngx-reports::before {
-  content: '\eaef';
+    content: "\eb06";
 }
 
 .ngx-resize::before {
-  content: '\eaf0';
+    content: "\eb07";
 }
 
 .ngx-right-align::before {
-  content: '\eaf1';
+    content: "\eb08";
 }
 
 .ngx-rocket::before {
-  content: '\eaf2';
+    content: "\eb09";
 }
 
 .ngx-rotate::before {
-  content: '\eaf3';
+    content: "\eb0a";
 }
 
 .ngx-runner::before {
-  content: '\eaf4';
+    content: "\eb0b";
+}
+
+.ngx-runs-outline-small::before {
+    content: "\eb0c";
+}
+
+.ngx-runs-outline::before {
+    content: "\eb0e";
 }
 
 .ngx-save::before {
-  content: '\eaf5';
+    content: "\eb0f";
 }
 
 .ngx-screen-1::before {
-  content: '\eaf6';
+    content: "\eb10";
 }
 
 .ngx-screen::before {
-  content: '\eaf7';
+    content: "\eb11";
 }
 
 .ngx-search::before {
-  content: '\eaf8';
+    content: "\eb12";
 }
 
 .ngx-section::before {
-  content: '\eaf9';
+    content: "\eb13";
 }
 
 .ngx-select-all::before {
-  content: '\eafa';
+    content: "\eb14";
 }
 
 .ngx-select-user::before {
-  content: '\eafb';
+    content: "\eb15";
 }
 
 .ngx-select-users::before {
-  content: '\eafc';
+    content: "\eb16";
+}
+
+.ngx-sensor-outline-small::before {
+    content: "\eb17";
+}
+
+.ngx-sensor-outline::before {
+    content: "\eb18";
 }
 
 .ngx-server::before {
-  content: '\eafd';
+    content: "\eb19";
 }
 
 .ngx-shield::before {
-  content: '\eafe';
+    content: "\eb1a";
 }
 
 .ngx-shrink::before {
-  content: '\eaff';
+    content: "\eb1b";
 }
 
 .ngx-skip::before {
-  content: '\eb00';
+    content: "\eb1c";
 }
 
 .ngx-slide-left::before {
-  content: '\eb01';
+    content: "\eb1d";
 }
 
 .ngx-slide-right::before {
-  content: '\eb02';
+    content: "\eb1e";
 }
 
 .ngx-smartphone::before {
-  content: '\eb03';
+    content: "\eb1f";
 }
 
 .ngx-smiley-frown::before {
-  content: '\eb04';
+    content: "\eb20";
 }
 
 .ngx-snapshot::before {
-  content: '\eb05';
+    content: "\eb21";
+}
+
+.ngx-spaces::before {
+    content: "\eb22";
 }
 
 .ngx-speedometer::before {
-  content: '\eb06';
+    content: "\eb23";
 }
 
 .ngx-split-handle::before {
-  content: '\eb07';
+    content: "\eb24";
 }
 
 .ngx-square-filled::before {
-  content: '\eb08';
+    content: "\eb25";
 }
 
 .ngx-square::before {
-  content: '\eb09';
+    content: "\eb26";
 }
 
 .ngx-star-filled::before {
-  content: '\eb0a';
+    content: "\eb27";
 }
 
 .ngx-star::before {
-  content: '\eb0b';
+    content: "\eb28";
 }
 
 .ngx-stars::before {
-  content: '\eb0c';
+    content: "\eb29";
 }
 
 .ngx-stopwatch::before {
-  content: '\eb0d';
+    content: "\eb2a";
 }
 
 .ngx-superscript::before {
-  content: '\eb0e';
+    content: "\eb2b";
 }
 
 .ngx-switch::before {
-  content: '\eb0f';
+    content: "\eb2c";
 }
 
 .ngx-system-diagnostics-2::before {
-  content: '\eb10';
+    content: "\eb2d";
 }
 
 .ngx-system-diagnostics::before {
-  content: '\eb11';
+    content: "\eb2e";
 }
 
 .ngx-table::before {
-  content: '\eb12';
+    content: "\eb2f";
 }
 
 .ngx-tabs::before {
-  content: '\eb13';
+    content: "\eb30";
+}
+
+.ngx-tag-filled::before {
+    content: "\eb31";
+}
+
+.ngx-tags-outline::before {
+    content: "\eb32";
 }
 
 .ngx-target::before {
-  content: '\eb14';
+    content: "\eb33";
 }
 
 .ngx-tracking-id::before {
-  content: '\eb15';
+    content: "\eb34";
 }
 
 .ngx-transfer::before {
-  content: '\eb16';
+    content: "\eb35";
 }
 
 .ngx-trash::before {
-  content: '\eb17';
+    content: "\eb36";
 }
 
 .ngx-tree-collapse::before {
-  content: '\eb18';
+    content: "\eb37";
 }
 
 .ngx-tree-expand::before {
-  content: '\eb19';
+    content: "\eb38";
 }
 
 .ngx-tree::before {
-  content: '\eb1a';
+    content: "\eb39";
+}
+
+.ngx-trend-down::before {
+    content: "\eb3a";
+}
+
+.ngx-trend-level::before {
+    content: "\eb3b";
+}
+
+.ngx-trend-up::before {
+    content: "\eb3c";
 }
 
 .ngx-trending::before {
-  content: '\eb1b';
+    content: "\eb3d";
 }
 
 .ngx-underline::before {
-  content: '\eb1c';
+    content: "\eb3e";
 }
 
 .ngx-undo-all::before {
-  content: '\eb1d';
+    content: "\eb3f";
 }
 
 .ngx-undo::before {
-  content: '\eb1e';
+    content: "\eb40";
+}
+
+.ngx-upload-outline-large::before {
+    content: "\eb41";
+}
+
+.ngx-upload-outline-small::before {
+    content: "\eb42";
+}
+
+.ngx-upload-outline::before {
+    content: "\eb43";
 }
 
 .ngx-user-add::before {
-  content: '\eb1f';
+    content: "\eb44";
 }
 
 .ngx-user-circle::before {
-  content: '\eb20';
+    content: "\eb45";
 }
 
 .ngx-user-groups::before {
-  content: '\eb21';
+    content: "\eb46";
 }
 
 .ngx-user::before {
-  content: '\eb22';
+    content: "\eb47";
 }
 
 .ngx-users::before {
-  content: '\eb23';
+    content: "\eb48";
+}
+
+.ngx-version::before {
+    content: "\eb49";
 }
 
 .ngx-vert-bar-graph-grouped::before {
-  content: '\eb24';
+    content: "\eb4a";
 }
 
 .ngx-vert-full-stack-bar::before {
-  content: '\eb25';
+    content: "\eb4b";
+}
+
+.ngx-view-code::before {
+    content: "\eb4c";
+}
+
+.ngx-view-designer::before {
+    content: "\eb4d";
+}
+
+.ngx-view-split::before {
+    content: "\eb4e";
 }
 
 .ngx-wand::before {
-  content: '\eb26';
+    content: "\eb4f";
 }
 
 .ngx-warning-filled-sm::before {
-  content: '\eb27';
+    content: "\eb50";
 }
 
 .ngx-warning-filled::before {
-  content: '\eb28';
+    content: "\eb51";
 }
 
 .ngx-warning-thin::before {
-  content: '\eb29';
+    content: "\eb52";
 }
 
 .ngx-web-api::before {
-  content: '\eb2a';
+    content: "\eb53";
 }
 
 .ngx-widget::before {
-  content: '\eb2b';
+    content: "\eb54";
 }
 
 .ngx-worker::before {
-  content: '\eb2c';
+    content: "\eb55";
 }
 
 .ngx-workflow::before {
-  content: '\eb2d';
+    content: "\eb56";
 }
 
 .ngx-workspaces::before {
-  content: '\eb2e';
+    content: "\eb57";
 }
 
 .ngx-workstation::before {
-  content: '\eb2f';
+    content: "\eb58";
 }
 
 .ngx-wrench::before {
-  content: '\eb30';
+    content: "\eb59";
 }
 
 .ngx-x-filled::before {
-  content: '\eb31';
+    content: "\eb5a";
 }
 
 .ngx-x::before {
-  content: '\eb32';
+    content: "\eb5b";
 }
+
