@@ -3,7 +3,8 @@
 ## HEAD (Unreleased)
 
 ## 28.4.0 (2020-03-03)
-- Enhancement: Updates icons (#401) 
+
+- Enhancement: Updates icons (#401)
 
 ## 28.3.0 (2020-02-20)
 
