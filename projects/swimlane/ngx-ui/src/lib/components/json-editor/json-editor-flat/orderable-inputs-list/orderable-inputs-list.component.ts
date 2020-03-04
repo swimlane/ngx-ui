@@ -52,7 +52,7 @@ export class OrderableInputsListComponent implements OnInit {
   }
 
   @debounceable(500)
-  private update(): void {
+  update(): void {
     const data = this.dataValues.map(item => item.value);
     this.onUpdate.emit(data);
   }
