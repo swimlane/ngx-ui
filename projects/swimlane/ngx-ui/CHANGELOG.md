@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+- JSON editor bug fixes (#400, #402)
+
 ## 28.4.0 (2020-03-03)
 
 - Enhancement: Updates icons (#401)

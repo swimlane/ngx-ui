@@ -27,3 +27,14 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 - Run `npm run test` to execute unit tests
 - Run `ng cypress` to execute the end-to-end tests via Cypress.
+
+## Release
+
+- Run `git checkout -b release/X.Y.Z`
+- Update version in `projects/swimlane/ngx-ui/package.json`.
+- Update changelog in `projects/swimlane/ngx-ui/CHANGELOG.md`
+- Run `git commit -am "(release): X.Y.Z"`
+- Run `git tag Y.Y.Z`
+- Run `git push origin HEAD`
+- Submit PR
+- Run `npm run publish:lib`
