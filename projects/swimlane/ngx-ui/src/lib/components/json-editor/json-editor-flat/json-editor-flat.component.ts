@@ -6,7 +6,8 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ViewChild,
-  TemplateRef
+  TemplateRef,
+  SimpleChanges
 } from '@angular/core';
 import { JsonEditorNodeFlatComponent } from './json-editor-node-flat/json-editor-node-flat.component';
 import { SchemaValidatorService } from '../schema-validator.service';
@@ -53,10 +54,15 @@ export class JsonEditorFlatComponent extends JsonEditor {
   }
 
   ngOnInit() {
-    this.schemaRef = JSON.parse(JSON.stringify(this.schema));
-
     if (this.formats.length && this.schemaBuilderMode) {
       this.buildCustomFormats();
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+    if (changes.schema) {
+      this.schemaRef = JSON.parse(JSON.stringify(this.schema));
     }
   }
 
