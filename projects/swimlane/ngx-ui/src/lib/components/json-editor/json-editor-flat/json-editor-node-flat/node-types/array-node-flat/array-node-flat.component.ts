@@ -91,7 +91,7 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
     this.schema.items = dataType.schema as object;
     this.schemaRef.items = dataType.schema as object;
 
-    this.model.push(this.schemaRef.items);
+    this.model.push(this.schemaRef.items.type === 'array' ? [] : this.schemaRef.items);
 
     this.schemaChange.emit();
   }
