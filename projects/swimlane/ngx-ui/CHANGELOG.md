@@ -2,8 +2,22 @@
 
 ## HEAD (Unreleased)
 
-- Fix: move click event on tree node to avoid propagation
-- Enhancement: delay closeOnMouseLeave in dropdown.
+## 28.4.2 (2020-03-09)
+
+- JSON editor bug fixes (#404)
+
+## 28.4.1 (2020-03-05)
+
+- JSON editor bug fixes (#400, #402)
+
+## 28.4.0 (2020-03-03)
+
+- Enhancement: Updates icons (#401)
+
+## 28.3.0 (2020-02-20)
+
+- Enhancement: delay closeOnMouseLeave in dropdown. (#397)
+- Fix: move click event on tree node to avoid propagation (#398)
 
 ## 28.2.0 (2020-02-18)
 

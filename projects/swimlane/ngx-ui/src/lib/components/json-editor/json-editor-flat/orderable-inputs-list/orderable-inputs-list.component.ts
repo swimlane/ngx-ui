@@ -10,6 +10,10 @@ import {
 import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { debounceable } from '../../../../utils';
 
+interface DataValue {
+  value: string;
+}
+
 @Component({
   selector: 'ngx-orderable-inputs-list',
   templateUrl: './orderable-inputs-list.component.html',
@@ -21,26 +25,35 @@ export class OrderableInputsListComponent implements OnInit {
   @Input() data: string[];
   @Output() onUpdate = new EventEmitter<string[]>();
 
+  dataValues: DataValue[] = [];
+
   ngOnInit() {
-    this.data = this.data || [];
+    (this.data || []).forEach(item => {
+      this.dataValues.push({
+        value: item
+      });
+    });
   }
 
   addExample(): void {
-    this.data.push('');
+    this.dataValues.push({
+      value: ''
+    });
   }
 
   removeItem(index: number): void {
-    this.data.splice(index, 1);
+    this.dataValues.splice(index, 1);
     this.update();
   }
 
   drop(event: CdkDragDrop<string[]>): void {
-    moveItemInArray(this.data, event.previousIndex, event.currentIndex);
+    moveItemInArray(this.dataValues, event.previousIndex, event.currentIndex);
     this.update();
   }
 
   @debounceable(500)
   update(): void {
-    this.onUpdate.emit(this.data);
+    const data = this.dataValues.map(item => item.value);
+    this.onUpdate.emit(data);
   }
 }
