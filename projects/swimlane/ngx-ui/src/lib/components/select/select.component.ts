@@ -39,7 +39,7 @@ const SELECT_VALUE_ACCESSOR = {
     class: 'ngx-select',
     '[id]': 'id',
     '[attr.name]': 'name',
-    '[class.invalid]': 'invalid',
+    '[class.invalid]': 'invalid && touched',
     '[class.tagging-selection]': 'tagging',
     '[class.multi-selection]': 'multiple',
     '[class.single-selection]': 'isSingleSelect',
@@ -257,6 +257,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   filterQuery: string;
   focusIndex: number = -1;
   dropdownActive: boolean = false;
+  touched: boolean = false;
 
   private _optionTemplates: QueryList<SelectOptionDirective>;
   private _value: any[] = [];
@@ -403,6 +404,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   /* istanbul ignore next */
   private onTouchedCallback() {
+    this.touched = true;
     // placeholder
   }
 

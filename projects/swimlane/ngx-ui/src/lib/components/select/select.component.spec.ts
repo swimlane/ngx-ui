@@ -299,6 +299,15 @@ describe('SelectComponent', () => {
   });
 
   describe('invalid', () => {
+
+    it('should have valid class when invalid but not touched', () => {
+      component.select.required = true;
+      component.select.value = undefined;
+      expect(component.select.touched).toBeFalsy();
+      expect(fixture.elementRef.nativeElement.querySelector('ngx-select').classList.contains('ng-invalid')).toBeFalsy();
+      expect(fixture.elementRef.nativeElement.querySelector('ngx-select').classList.contains('ng-valid')).toBeTruthy();
+    });
+
     it('should be true when required and value invalid', () => {
       component.select.required = true;
       component.select.value = undefined;
