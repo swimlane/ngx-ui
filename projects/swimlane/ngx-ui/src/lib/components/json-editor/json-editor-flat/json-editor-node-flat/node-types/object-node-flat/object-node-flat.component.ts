@@ -184,6 +184,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     this.schemaRef.properties[prop.propertyName] = {
       type: prop.type,
       ...(prop['format'] && { format: prop['format'] }),
+      ...(prop['examples'] && { examples: prop['examples'] }),
       ...(prop['title'] && { title: prop['title'] }),
       ...(prop['items'] && { items: prop['items'] }),
       ...(prop['required'] && { required: prop['required'] }),
