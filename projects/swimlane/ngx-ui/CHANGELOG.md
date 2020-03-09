@@ -2,6 +2,12 @@
 
 ## HEAD (Unreleased)
 
+## 28.4.2 (2020-03-09)
+
+- JSON editor bug fixes (#404)
+
+## 28.4.1 (2020-03-05)
+
 - JSON editor bug fixes (#400, #402)
 
 ## 28.4.0 (2020-03-03)
