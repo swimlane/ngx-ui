@@ -299,7 +299,6 @@ describe('SelectComponent', () => {
   });
 
   describe('invalid', () => {
-
     it('should have valid class when invalid but not touched', () => {
       component.select.required = true;
       component.select.value = undefined;
