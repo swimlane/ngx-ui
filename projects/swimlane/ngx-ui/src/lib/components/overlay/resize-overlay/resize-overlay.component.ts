@@ -12,7 +12,7 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
   encapsulation: ViewEncapsulation.None
 })
 export class ResizeOverlayComponent implements OnInit, OnDestroy {
-  @Input() combo = 'ctrl+shift+o';
+  @Input() combo = 'mod+shift+o';
 
   @Input()
   get query(): string {
