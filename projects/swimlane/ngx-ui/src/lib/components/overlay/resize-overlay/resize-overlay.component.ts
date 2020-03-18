@@ -3,6 +3,7 @@ import { ɵMatchMedia } from '@angular/flex-layout';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { HotkeysService } from '../../hotkeys';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'ngx-resize-overlay',
@@ -11,7 +12,7 @@ import { HotkeysService } from '../../hotkeys';
   encapsulation: ViewEncapsulation.None
 })
 export class ResizeOverlayComponent implements OnInit, OnDestroy {
-  static COMBO = 'ctrl+shift+o';
+  @Input() combo = 'ctrl+shift+o';
 
   @Input()
   get query(): string {
@@ -25,7 +26,7 @@ export class ResizeOverlayComponent implements OnInit, OnDestroy {
 
   @Input()
   set disabled(value) {
-    this._disabled = value;
+    this._disabled = coerceBooleanProperty(value);
     localStorage.setItem('overlay-disabled', value.toString());
   }
 
@@ -35,12 +36,12 @@ export class ResizeOverlayComponent implements OnInit, OnDestroy {
 
   visible$: Observable<boolean>;
 
-  private _disabled: boolean = JSON.parse(localStorage.getItem('overlay-disabled')) || false;
+  private _disabled: boolean = localStorage.getItem('overlay-disabled') === 'true';
   private _query = '(min-width: 959px) and (min-height: 650px)';
 
   get keys() {
-    if (this.hotkeysService.hotkeys && this.hotkeysService.hotkeys[ResizeOverlayComponent.COMBO]) {
-      return this.hotkeysService.hotkeys[ResizeOverlayComponent.COMBO][0].keys;
+    if (this.hotkeysService.hotkeys && this.hotkeysService.hotkeys[this.combo]) {
+      return this.hotkeysService.hotkeys[this.combo][0].keys;
     }
     return [];
   }
@@ -50,7 +51,7 @@ export class ResizeOverlayComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.hotkeysService.add(ResizeOverlayComponent.COMBO, {
+    this.hotkeysService.add(this.combo, {
       callback: this.toggle.bind(this),
       description: 'Toggle browser size warning',
       visible: false,
@@ -59,7 +60,7 @@ export class ResizeOverlayComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.hotkeysService.deregister(ResizeOverlayComponent.COMBO);
+    this.hotkeysService.deregister(this.combo);
   }
 
   onClick(ev: any) {
@@ -69,7 +70,6 @@ export class ResizeOverlayComponent implements OnInit, OnDestroy {
   }
 
   toggle() {
-    console.log('Hotkey');
     this.disabled = !this.disabled;
   }
 
