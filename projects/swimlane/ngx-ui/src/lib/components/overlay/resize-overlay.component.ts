@@ -1,18 +1,27 @@
-import { Component, Input, ViewEncapsulation, OnInit, OnDestroy } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+  OnInit,
+  OnDestroy,
+  ChangeDetectorRef,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { ɵMatchMedia } from '@angular/flex-layout';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { HotkeysService } from '../../hotkeys';
+import { HotkeysService } from '../hotkeys/hotkeys.service';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'ngx-resize-overlay',
   templateUrl: './resize-overlay.component.html',
   styleUrls: ['./resize-overlay.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 export class ResizeOverlayComponent implements OnInit, OnDestroy {
-  @Input() combo = 'mod+shift+o';
+  @Input() combo = 'ctrl+shift+o';
 
   @Input()
   get query(): string {
@@ -25,12 +34,13 @@ export class ResizeOverlayComponent implements OnInit, OnDestroy {
   }
 
   @Input()
-  set disabled(value) {
+  set disabled(value: boolean) {
     this._disabled = coerceBooleanProperty(value);
+    this.cdr.markForCheck();
     localStorage.setItem('overlay-disabled', value.toString());
   }
 
-  get disabled() {
+  get disabled(): boolean {
     return this._disabled;
   }
 
@@ -46,7 +56,11 @@ export class ResizeOverlayComponent implements OnInit, OnDestroy {
     return [];
   }
 
-  constructor(private mediaWatcher: ɵMatchMedia, private hotkeysService: HotkeysService) {
+  constructor(
+    private mediaWatcher: ɵMatchMedia,
+    private hotkeysService: HotkeysService,
+    private cdr: ChangeDetectorRef
+  ) {
     this._buildObservable();
   }
 

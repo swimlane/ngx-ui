@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 import { OverlayComponent } from './overlay.component';
 import { OverlayService } from './overlay.service';
 import { InjectionService } from '../../services/injection/injection.service';
-import { ResizeOverlayComponent } from './resize-overlay/resize-overlay.component';
-import { IconModule } from '../icon';
-import { HotkeysService } from '../hotkeys';
+import { ResizeOverlayComponent } from './resize-overlay.component';
+import { IconModule } from '../icon/icon.module';
+import { HotkeysService } from '../hotkeys/hotkeys.service';
 
 @NgModule({
   declarations: [OverlayComponent, ResizeOverlayComponent],
