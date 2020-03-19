@@ -2,6 +2,10 @@
 
 ## HEAD (Unreleased)
 
+## 28.4.3 (2020-03-19)
+
+- Resize-overlay Component (#411)
+
 ## 28.4.2 (2020-03-09)
 
 - JSON editor bug fixes (#404)
