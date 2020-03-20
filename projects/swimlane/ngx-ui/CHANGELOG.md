@@ -2,6 +2,11 @@
 
 ## HEAD (Unreleased)
 
+## 28.5.0 (2020-03-20)
+
+- Added automation and automation-related icons #415
+  (#413)
+
 ## 28.4.3 (2020-03-19)
 
 - Resize-overlay Component Fixes (#413)
