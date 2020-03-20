@@ -2,6 +2,26 @@
 
 ## HEAD (Unreleased)
 
+## 28.4.3 (2020-03-19)
+
+- Resize-overlay Component Fixes (#413)
+
+## 28.4.3 (2020-03-18)
+
+- Resize-overlay Component (#411)
+
+## 28.4.2 (2020-03-09)
+
+- JSON editor bug fixes (#404)
+
+## 28.4.1 (2020-03-05)
+
+- JSON editor bug fixes (#400, #402)
+
+## 28.4.0 (2020-03-03)
+
+- Enhancement: Updates icons (#401)
+
 ## 28.3.0 (2020-02-20)
 
 - Enhancement: delay closeOnMouseLeave in dropdown. (#397)

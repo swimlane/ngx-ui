@@ -150,15 +150,17 @@ export class ArrayNode implements OnChanges {
    */
   private initSchemasTypeByModelValue(): void {
     this.schemas = [];
-    this.model.forEach(value => {
-      let schema = inferType(value, this.typeCheckOverrides);
+    if (Array.isArray(this.model)) {
+      this.model.forEach(value => {
+        let schema = inferType(value, this.typeCheckOverrides);
 
-      if (this.schema.items) {
-        schema = JSON.parse(JSON.stringify({ ...(this.schema.items as object), ...schema }));
-      }
+        if (this.schema.items) {
+          schema = JSON.parse(JSON.stringify({ ...(this.schema.items as object), ...schema }));
+        }
 
-      this.schemas.push(schema);
-    });
+        this.schemas.push(schema);
+      });
+    }
   }
 
   /**
