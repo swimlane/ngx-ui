@@ -14,6 +14,7 @@ export * from './loading';
 export * from './long-press';
 export * from './nag';
 export * from './nav-menu';
+export * from './navbar';
 export * from './notification';
 export * from './overlay';
 export * from './progress-spinner';

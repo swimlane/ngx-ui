@@ -1,0 +1,15 @@
+.ngx-navbar {
+  display: flex;
+  height: 50px;
+  min-height: 50px;
+  justify-content: center;
+  background-color: rgba(#000000, 0.25);
+
+  &.ngx-horizontal-navbar {
+    flex-direction: row;
+  }
+
+  &.ngx-vertical-navbar {
+    flex-direction: column;
+  }
+}

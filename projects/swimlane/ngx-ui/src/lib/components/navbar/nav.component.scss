@@ -1,0 +1,24 @@
+@import 'colors/index.scss';
+
+.ngx-nav {
+  display: flex;
+  font-size: 15pt;
+  margin: 0 5px;
+  border-bottom: 2px solid transparent;
+  color: $color-blue-grey-400;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &.active {
+    color: $color-blue-400;
+    border-bottom-color: $color-blue-400;
+  }
+
+  &:hover {
+    color: $color-blue-400;
+  }
+
+  ngx-icon {
+    margin: auto 10px 5px 10px;
+  }
+}
