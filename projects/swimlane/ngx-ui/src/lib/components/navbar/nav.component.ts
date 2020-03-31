@@ -1,4 +1,11 @@
-import { Component, ViewEncapsulation, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  Input,
+  ChangeDetectorRef,
+  ElementRef
+} from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Component({
@@ -24,7 +31,16 @@ export class NavComponent {
     this._active = coerceBooleanProperty(v);
     this._cdr.markForCheck();
   }
+
+  get height() {
+    return this._el.nativeElement.clientHeight;
+  }
+
+  get width() {
+    return this._el.nativeElement.clientWidth;
+  }
+
   private _active?: boolean;
 
-  constructor(private readonly _cdr: ChangeDetectorRef) {}
+  constructor(private readonly _cdr: ChangeDetectorRef, private readonly _el: ElementRef<HTMLElement>) {}
 }

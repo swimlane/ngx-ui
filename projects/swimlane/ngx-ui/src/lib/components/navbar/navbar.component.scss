@@ -1,9 +1,11 @@
 .ngx-navbar {
-  display: flex;
-  height: 50px;
   min-height: 50px;
-  justify-content: center;
   background-color: rgba(#000000, 0.25);
+
+  .ngx-navbar--nav-items {
+    display: flex;
+    justify-content: center;
+  }
 
   &.ngx-horizontal-navbar {
     flex-direction: row;

@@ -1,0 +1,23 @@
+<div class="ngx-navbar--nav-items">
+  <ng-content select="ngx-nav"></ng-content>
+</div>
+
+<div class="ngx-navbar--bar-track">
+  <div
+    *ngIf="!vertical"
+    class="ngx-navbar--bar"
+    [@stepperBarHorizontalTransition]="{
+      value: barState,
+      params: { width: navItems.first.width * complete }
+    }"
+  ></div>
+
+  <div
+    *ngIf="vertical"
+    class="ngx-navbar--bar"
+    [@stepperBarVerticalTransition]="{
+      value: barState,
+      params: { height: navItems.first.height * complete }
+    }"
+  ></div>
+</div>

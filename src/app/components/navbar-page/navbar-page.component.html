@@ -1,1 +1,10 @@
-test me
+<h3 class="style-header">Navbar</h3>
+
+<ngx-section class="shadow" sectionTitle="Horizontal Navbar">
+  <ngx-horizontal-navbar>
+    <ngx-nav [active]="active === 0" (click)="setActive(0)"><ngx-icon fontIcon="apps"></ngx-icon></ngx-nav>
+    <ngx-nav [active]="active === 1" (click)="setActive(1)"><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-nav>
+    <ngx-nav [active]="active === 2" (click)="setActive(2)"><ngx-icon fontIcon="database"></ngx-icon></ngx-nav>
+    <ngx-nav [active]="active === 3" (click)="setActive(3)"><ngx-icon fontIcon="commandline"></ngx-icon></ngx-nav>
+  </ngx-horizontal-navbar>
+</ngx-section>

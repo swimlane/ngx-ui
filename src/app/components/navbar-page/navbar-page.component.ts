@@ -5,4 +5,10 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   templateUrl: './navbar-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavbarPageComponent {}
+export class NavbarPageComponent {
+  active = 0;
+
+  setActive(act: number) {
+    this.active = act;
+  }
+}
