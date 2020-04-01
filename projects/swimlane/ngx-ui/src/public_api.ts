@@ -215,7 +215,6 @@ export * from './lib/components/tree/tree-node.model';
 
 // utils
 export * from './lib/utils/debounce/debounce.util';
-export * from './lib/utils/debounce/debounceable.util';
 
 export * from './lib/utils/filter/filter-by-object/filter-by-object.util';
 export * from './lib/utils/filter/filter-by-string/filter-by-string.util';
@@ -242,6 +241,9 @@ export * from './lib/utils/position/vertical-position/vertical-position.util';
 
 export * from './lib/utils/throttle/throttle-options.interface';
 export * from './lib/utils/throttle/throttle.util';
-export * from './lib/utils/throttle/throttleable.util';
+
+// decorators
+export * from './lib/decorators/debounceable/debounceable.decorator';
+export * from './lib/decorators/throttleable/throttleable.decorator';
 
 export * from './lib/ngx-ui.module';
