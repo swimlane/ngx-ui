@@ -19,7 +19,7 @@ import moment from 'moment-timezone';
 import { DialogService } from '../dialog/dialog.service';
 import { DateTimeType } from './date-time-type.enum';
 import { Datelike } from './date-like.type';
-import { InputComponent } from '../input';
+import { InputComponent } from '../input/input.component';
 
 let nextId = 0;
 

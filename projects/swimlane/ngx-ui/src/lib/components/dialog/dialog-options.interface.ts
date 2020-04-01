@@ -2,7 +2,8 @@ import { TemplateRef } from '@angular/core';
 
 import { PartialBindings } from '../../services/injection-registry/partial-bindings.interface';
 
-import { AlertTypes, AlertStyles } from './alert';
+import { AlertStyles } from './alert/alert-styles.enum';
+import { AlertTypes } from './alert/alert-types.enum';
 
 export interface DialogOptions extends PartialBindings {
   readonly title?: string;
