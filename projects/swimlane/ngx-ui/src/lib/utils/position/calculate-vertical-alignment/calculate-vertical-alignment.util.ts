@@ -1,6 +1,6 @@
 import { Dimensions } from '../dimensions.interface';
 import { AlignmentTypes } from '../alignment-types.enum';
-import { verticalPosition } from '../vertical-position';
+import { verticalPosition } from '../vertical-position/vertical-position.util';
 
 /**
  * Calculate vertical alignment position

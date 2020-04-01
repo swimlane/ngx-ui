@@ -1,8 +1,8 @@
 import { Dimensions } from '../dimensions.interface';
 import { AlignmentTypes } from '../alignment-types.enum';
-import { horizontalPosition } from '../horizontal-position';
+import { horizontalPosition } from '../horizontal-position/horizontal-position.util';
 import { PlacementTypes } from '../placement-type.enum';
-import { verticalPosition } from '../vertical-position';
+import { verticalPosition } from '../vertical-position/vertical-position.util';
 
 /**
  * Checks if the element's position should be flipped
