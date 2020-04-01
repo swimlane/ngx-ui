@@ -2,6 +2,11 @@
 
 ## HEAD (Unreleased)
 
+## 28.5.1 (2020-04-01)
+
+- Bugfix/remove-barrels (#416)
+- ngx-select bug: do not make it invalid when untouched (#407)
+
 ## 28.5.0 (2020-03-20)
 
 - Added automation and automation-related icons #415
