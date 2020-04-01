@@ -213,4 +213,35 @@ export * from './lib/components/tree/tree.component';
 export * from './lib/components/tree/tree-node.component';
 export * from './lib/components/tree/tree-node.model';
 
+// utils
+export * from './lib/utils/debounce/debounce.util';
+export * from './lib/utils/debounce/debounceable.util';
+
+export * from './lib/utils/filter/filter-by-object/filter-by-object.util';
+export * from './lib/utils/filter/filter-by-string/filter-by-string.util';
+export * from './lib/utils/filter/filter-default/filter-default.util';
+
+export * from './lib/utils/get-type/get-type.util';
+export * from './lib/utils/id/id.util';
+export * from './lib/utils/is-number/is-number.util';
+
+export * from './lib/utils/position/alignment-types.enum';
+export * from './lib/utils/position/caret-offset.constant';
+export * from './lib/utils/position/dimensions.interface';
+export * from './lib/utils/position/placement-type.enum';
+export * from './lib/utils/position/calculate-horizontal-alignment/calculate-horizontal-alignment.util';
+export * from './lib/utils/position/calculate-horizontal-caret/calculate-horizontal-caret.util';
+export * from './lib/utils/position/calculate-vertical-alignment/calculate-vertical-alignment.util';
+export * from './lib/utils/position/calculate-vertical-caret/calculate-vertical-caret.util';
+export * from './lib/utils/position/determine-placement/determine-placement.util';
+export * from './lib/utils/position/horizontal-position/horizontal-position.util';
+export * from './lib/utils/position/position-caret/position-caret.util';
+export * from './lib/utils/position/position-content/position-content.util';
+export * from './lib/utils/position/should-flip/should-flip.util';
+export * from './lib/utils/position/vertical-position/vertical-position.util';
+
+export * from './lib/utils/throttle/throttle-options.interface';
+export * from './lib/utils/throttle/throttle.util';
+export * from './lib/utils/throttle/throttleable.util';
+
 export * from './lib/ngx-ui.module';
