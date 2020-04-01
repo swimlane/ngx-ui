@@ -1,4 +1,4 @@
-import { getType } from '../../utils';
+import { getType } from '../../utils/get-type/get-type.util';
 
 import { TreeNode } from '../../components/tree/tree-node.model';
 

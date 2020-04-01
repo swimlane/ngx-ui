@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { KeyboardKeys } from '../../enums';
+import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { SelectComponentFixture } from './select.component.fixture';
 import { SelectComponent } from './select.component';
 import { SelectOptionDirective } from './select-option.directive';

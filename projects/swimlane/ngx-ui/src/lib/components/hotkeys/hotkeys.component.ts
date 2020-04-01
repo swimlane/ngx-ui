@@ -3,7 +3,8 @@ import { Component, OnDestroy, OnInit, ChangeDetectionStrategy } from '@angular/
 import { Subject, BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { fadeInAnimation, slideDownFadeOutAnimation } from '../../animations';
+import { fadeInAnimation } from '../../animations/fade-in.animation';
+import { slideDownFadeOutAnimation } from '../../animations/slide-down-fade-out.animation';
 import { HotkeysService } from './hotkeys.service';
 import { Hotkey } from './hotkey.interface';
 import { HotkeyStatus } from './hotkey-status.enum';

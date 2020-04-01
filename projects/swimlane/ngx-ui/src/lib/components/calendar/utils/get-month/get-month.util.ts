@@ -1,7 +1,7 @@
 import moment from 'moment';
 
-import { getWeeksForDays } from '../get-weeks-for-days';
-import { getDaysForMonth } from '../get-days-for-month';
+import { getWeeksForDays } from '../get-weeks-for-days/get-weeks-for-days.util';
+import { getDaysForMonth } from '../get-days-for-month/get-days-for-month.util';
 
 /**
  * Returns the month offset correctly

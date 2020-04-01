@@ -14,7 +14,8 @@ import {
 } from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
-import { PlacementTypes, AlignmentTypes } from '../../utils/position';
+import { PlacementTypes } from '../../utils/position/placement-type.enum';
+import { AlignmentTypes } from '../../utils/position/alignment-types.enum';
 
 import { ShowTypes } from './show-types.enum';
 import { StyleTypes } from './style-types.enum';

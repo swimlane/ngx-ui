@@ -1,6 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { isNumber, filterByString, filterDefault, filterByObject } from '../../utils';
+import { isNumber } from '../../utils/is-number/is-number.util';
+import { filterByString } from '../../utils/filter/filter-by-string/filter-by-string.util';
+import { filterByObject } from '../../utils/filter/filter-by-object/filter-by-object.util';
+import { filterDefault } from '../../utils/filter/filter-default/filter-default.util';
 
 /**
  * Filter Pipe

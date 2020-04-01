@@ -20,7 +20,7 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 import { SelectOptionDirective } from './select-option.directive';
 import { SelectInputComponent } from './select-input.component';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
-import { KeyboardKeys } from '../../enums';
+import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 
 let nextId = 0;
 
