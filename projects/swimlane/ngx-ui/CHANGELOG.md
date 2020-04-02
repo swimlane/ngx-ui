@@ -2,6 +2,10 @@
 
 ## HEAD (Unreleased)
 
+## 28.5.2 (2020-04-02)
+
+- Cxport utils (#419)
+
 ## 28.5.1 (2020-04-01)
 
 - Bugfix/remove-barrels (#416)
