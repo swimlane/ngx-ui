@@ -8,7 +8,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
-import { debounceable } from '../../../../utils/debounce/debounceable.util';
+import { debounceable } from '../../../../decorators/debounceable/debounceable.decorator';
 
 interface DataValue {
   value: string;

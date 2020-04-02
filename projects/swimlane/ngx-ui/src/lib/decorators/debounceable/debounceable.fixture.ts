@@ -1,4 +1,4 @@
-import { debounceable } from './debounceable.util';
+import { debounceable } from './debounceable.decorator';
 
 export class DebounceableFixture {
   @debounceable(10)

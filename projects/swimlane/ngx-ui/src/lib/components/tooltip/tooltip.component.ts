@@ -19,7 +19,7 @@ import { Dimensions } from '../../utils/position/dimensions.interface';
 import { positionContent } from '../../utils/position/position-content/position-content.util';
 import { positionCaret } from '../../utils/position/position-caret/position-caret.util';
 import { determinePlacement } from '../../utils/position/determine-placement/determine-placement.util';
-import { throttleable } from '../../utils/throttle/throttleable.util';
+import { throttleable } from '../../decorators/throttleable/throttleable.decorator';
 
 import { StyleTypes } from './style-types.enum';
 
