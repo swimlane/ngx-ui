@@ -12,8 +12,18 @@
   &.ngx-nag-bottom {
     left: 20%;
     right: 20%;
-    top: 100%;
+    top: calc(100% - 50px);
     width: 60%;
+    transition: transform 300ms ease-out;
+    transform: translateY(50px);
+
+    &.ngx-nag-peek {
+      transform: translateY(0);
+    }
+
+    &.ngx-nag-open {
+      transform: translateY(-100%) translateY(50px);
+    }
 
     .ngx-nag-icon {
       transform: rotateZ(180deg);

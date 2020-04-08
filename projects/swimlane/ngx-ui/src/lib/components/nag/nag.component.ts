@@ -12,8 +12,13 @@ import {
 } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { trigger } from '@angular/animations';
+import { bounceAnimation } from '@swimlane/ngx-ui/animations/bounce.animation';
 
-import { NAG_DRAWER_ANIMATION } from './nag.animation';
+const enum State {
+  open = 'open',
+  peek = 'peek',
+  closed = 'closed'
+}
 
 @Component({
   selector: 'ngx-nag',
@@ -27,14 +32,13 @@ import { NAG_DRAWER_ANIMATION } from './nag.animation';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./nag.component.scss'],
-  animations: [trigger('drawerTransition', NAG_DRAWER_ANIMATION)]
+  animations: [trigger('bounce', bounceAnimation())]
 })
 export class NagComponent implements OnDestroy, OnChanges {
   @Input() cssClass: string = '';
 
-  @HostBinding('@drawerTransition')
   @Input()
-  state: string = 'closed';
+  state: State | keyof typeof State = State.closed;
 
   @Output() stateChanged = new EventEmitter<string>();
 
@@ -47,17 +51,22 @@ export class NagComponent implements OnDestroy, OnChanges {
   }
 
   @Input() nagTitle: string = '';
-  @Input() watch: any;
+  @Input() watch: any; // changes to this value cause animation and state changes
+  @Input() hide: any; // setting this value will force the nag to close
 
   @HostBinding('class')
   get klass() {
     return `ngx-nag ngx-nag-bottom ngx-nag-${this.state} ${this.cssClass}`;
   }
 
+  // Controls the bounce animation
+  @HostBinding('@bounce')
+  private bounce: number = 0;
+
   private _zIndex: number;
 
   toggle() {
-    this.state = this.state !== 'open' ? 'open' : 'closed';
+    this.state = this.state !== State.open ? State.open : State.peek; // can't toggle if closed
     this.stateChanged.emit(this.state);
   }
 
@@ -66,11 +75,24 @@ export class NagComponent implements OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes.watch && this.state === 'closed') {
-      this.state = 'peek';
-      setTimeout(() => {
-        this.state = 'closed';
-      }, 100);
+    if (changes.hide && changes.hide.currentValue !== changes.hide.previousValue) {
+      if (changes.hide.currentValue === true) {
+        // nag is hidden external from component
+        this.state = State.closed;
+        this.stateChanged.emit(this.state);
+      }
+    }
+    if (changes.watch && !this.hide) {
+      // If watch value changes and nag is not hidden
+      switch (this.state) {
+        case State.closed: // and nag is closed
+          this.state = State.peek; // open it
+          this.stateChanged.emit(this.state);
+          break;
+        case State.peek: // and nag is peeked
+          this.bounce = (this.bounce + 1) % 1000; // bounce it
+          break;
+      }
     }
   }
 }
