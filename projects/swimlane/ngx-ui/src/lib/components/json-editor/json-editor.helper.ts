@@ -42,68 +42,68 @@ export const jsonSchemaDataTypes: JsonSchemaDataType[] = [
     name: 'String',
     defaultValue: () => '',
     schema: {
-      type: 'string'
+      type: 'string',
     },
     icon: 'field-text',
     matchType: (value: any): boolean => {
       return typeof value === 'string';
-    }
+    },
   },
   {
     name: 'Number',
     defaultValue: () => 0,
     schema: {
-      type: 'number'
+      type: 'number',
     },
     icon: 'field-numeric',
     matchType: (value: any): boolean => {
       return typeof value === 'number';
-    }
+    },
   },
   {
     name: 'Integer',
     defaultValue: () => 0,
     schema: {
-      type: 'integer'
+      type: 'integer',
     },
     icon: 'field-numeric',
     matchType: (value: any): boolean => {
       return typeof value === 'number';
-    }
+    },
   },
   {
     name: 'Boolean',
     defaultValue: () => true,
     schema: {
-      type: 'boolean'
+      type: 'boolean',
     },
     icon: 'check-square-filled',
     matchType: (value: any): boolean => {
       return typeof value === 'boolean';
-    }
+    },
   },
   {
     name: 'Object',
     defaultValue: () => JSON.parse(JSON.stringify({})),
     schema: {
-      type: 'object'
+      type: 'object',
     },
     icon: 'reference-tree',
     matchType: (value: any): boolean => {
       return typeof value === 'object';
-    }
+    },
   },
   {
     name: 'Array',
     defaultValue: () => JSON.parse(JSON.stringify([])),
     schema: {
-      type: 'array'
+      type: 'array',
     },
     icon: 'integrations',
     matchType: (value: any): boolean => {
       return Array.isArray(value);
-    }
-  }
+    },
+  },
 ];
 
 export const jsonSchemaDataFormats: JsonSchemaDataType[] = [
@@ -112,49 +112,49 @@ export const jsonSchemaDataFormats: JsonSchemaDataType[] = [
     defaultValue: () => '',
     schema: {
       type: 'string',
-      format: 'date'
+      format: 'date',
     },
     icon: 'field-date',
     matchType: (): boolean => {
       return false; // needs to be overriden
-    }
+    },
   },
   {
     name: 'Date & Time',
     defaultValue: () => '',
     schema: {
       type: 'string',
-      format: 'date-time'
+      format: 'date-time',
     },
     icon: 'field-date',
     matchType: (): boolean => {
       return false; // needs to be overriden
-    }
+    },
   },
   {
     name: 'Password',
     defaultValue: () => '',
     schema: {
       type: 'string',
-      format: 'password'
+      format: 'password',
     },
     icon: 'lock',
     matchType: (): boolean => {
       return false; // needs to be overriden
-    }
+    },
   },
   {
     name: 'Code',
     defaultValue: () => '',
     schema: {
       type: 'string',
-      format: 'code'
+      format: 'code',
     },
     icon: 'code',
     matchType: (): boolean => {
       return false; // needs to be overriden
-    }
-  }
+    },
+  },
 ];
 
 export const dataTypeMap: {} = {};
@@ -189,6 +189,7 @@ export function inferType(value: any, overrides?: any, allowedTypes?: string[]):
       if (allowedTypes !== undefined && !allowedTypes.includes(typeName)) {
         continue;
       }
+      // tslint:disable-next-line: tsr-detect-unsafe-properties-access
       if (dataTypeMap[typeName] && overrides[typeName](value)) {
         return dataTypeMap[typeName].schema;
       }
