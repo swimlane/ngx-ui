@@ -13,7 +13,7 @@ describe('StepperComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [StepperComponentFixture],
-      imports: [StepperModule, BrowserAnimationsModule]
+      imports: [StepperModule, BrowserAnimationsModule],
     });
   });
 
@@ -33,7 +33,7 @@ describe('StepperComponent', () => {
     expect(component.stepper.steps.first.completeIcon).toEqual(component.stepper.completeIcon);
   });
 
-  it('should set active when step active changed', done => {
+  it('should set active when step active changed', (done) => {
     const spy = spyOn(component.stepper.steps.first.activeChange, 'emit');
     const step: HTMLButtonElement = document.querySelector('ngx-step:first-child');
     step.click();

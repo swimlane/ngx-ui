@@ -8,7 +8,7 @@ import {
   ViewEncapsulation,
   ElementRef,
   ChangeDetectionStrategy,
-  AfterViewInit
+  AfterViewInit,
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
@@ -27,36 +27,36 @@ import { AlertTypes } from './alert-types.enum';
         'active',
         style({
           opacity: 1,
-          transform: 'scale3d(1, 1, 1)'
+          transform: 'scale3d(1, 1, 1)',
         })
       ),
       transition('void => *', [
         style({
           opacity: 0,
-          transform: 'scale3d(1.2, 1.2, 1.2)'
+          transform: 'scale3d(1.2, 1.2, 1.2)',
         }),
-        animate('0.2s ease-out')
+        animate('0.2s ease-out'),
       ]),
       transition('* => inactive', [
         style({
           opacity: 1,
-          transform: 'scale3d(1, 1, 1)'
+          transform: 'scale3d(1, 1, 1)',
         }),
         animate(
           '0.2s ease-out',
           style({
             transform: 'scale3d(0.9, 0.9, 1)',
-            opacity: 0
+            opacity: 0,
           })
-        )
-      ])
-    ])
+        ),
+      ]),
+    ]),
   ],
   host: {
-    tabindex: '-1'
+    tabindex: '-1',
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AlertComponent extends DialogComponent implements AfterViewInit {
   @Input() type: AlertTypes;
@@ -85,8 +85,8 @@ export class AlertComponent extends DialogComponent implements AfterViewInit {
       closeButton: false,
       showOverlay: true,
       visible: true,
-      class: ''
-    }
+      class: '',
+    },
   };
 
   private _longPress?: boolean;

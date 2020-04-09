@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'app-toolbar-page',
   templateUrl: './toolbar-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolbarPageComponent {
   toolbarMenu = [
@@ -11,19 +11,19 @@ export class ToolbarPageComponent {
       label: 'File',
       click: () => {
         console.log('File clicked');
-      }
+      },
     },
     {
       label: 'Run',
-      disabled: true
+      disabled: true,
     },
     {
       label: 'Edit',
       dropdown: true,
       click: () => {
         console.log('Edit clicked');
-      }
-    }
+      },
+    },
   ];
 
   menuClicked(event) {

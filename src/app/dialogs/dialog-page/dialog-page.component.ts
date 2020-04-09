@@ -4,7 +4,7 @@ import { DialogService } from '@swimlane/ngx-ui';
 @Component({
   selector: 'app-dialog-page',
   templateUrl: './dialog-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogPageComponent {
   dialogVis: any;

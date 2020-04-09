@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'app-radio-page',
   templateUrl: './radio-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioPageComponent {
   favoriteSeason: string = 'Spring';

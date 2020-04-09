@@ -7,7 +7,7 @@ describe('throttleable', () => {
     fixture = new ThrottleableFixture();
   });
 
-  it('should call throttleable fn', done => {
+  it('should call throttleable fn', (done) => {
     const spy = spyOn(fixture, 'doSomething');
     fixture.fn();
 

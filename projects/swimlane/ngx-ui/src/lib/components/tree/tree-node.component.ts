@@ -6,7 +6,7 @@ import {
   OnChanges,
   ViewEncapsulation,
   TemplateRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { TreeNode } from './tree-node.model';
@@ -16,7 +16,7 @@ import { TreeNode } from './tree-node.model';
   selector: 'ngx-tree-node',
   templateUrl: './tree-node.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TreeNodeComponent implements OnChanges {
   @Input() label: string;
@@ -30,7 +30,7 @@ export class TreeNodeComponent implements OnChanges {
   @Input() template: TemplateRef<any>;
   @Input() icons = {
     collapse: 'icon-tree-collapse',
-    expand: 'icon-tree-expand'
+    expand: 'icon-tree-expand',
   };
 
   @Output() activate = new EventEmitter();
@@ -48,7 +48,7 @@ export class TreeNodeComponent implements OnChanges {
       $implicit: this.node,
       label: this.label,
       children: this.children,
-      model: this.model
+      model: this.model,
     };
   }
 

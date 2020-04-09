@@ -7,7 +7,7 @@ import {
   AfterViewInit,
   TemplateRef,
   ElementRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
@@ -19,7 +19,7 @@ import { SelectDropdownOption } from './select-dropdown-option.interface';
   selector: 'ngx-select-input',
   templateUrl: './select-input.component.html',
   host: { class: 'ngx-select-input' },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectInputComponent implements AfterViewInit {
   @Input() placeholder: string;
@@ -131,7 +131,7 @@ export class SelectInputComponent implements AfterViewInit {
 
     if (key === (KeyboardKeys.ENTER as any)) {
       if (value !== '') {
-        const hasSelection = this.selected.find(selection => {
+        const hasSelection = this.selected.find((selection) => {
           return value === selection;
         });
 
@@ -173,7 +173,7 @@ export class SelectInputComponent implements AfterViewInit {
   onOptionRemove(event: Event, option: SelectDropdownOption): void {
     event.stopPropagation();
 
-    const newSelections = this.selected.filter(selection => {
+    const newSelections = this.selected.filter((selection) => {
       if (this.identifier !== undefined) {
         return option.value[this.identifier] !== selection[this.identifier];
       }
@@ -194,7 +194,7 @@ export class SelectInputComponent implements AfterViewInit {
       let match: SelectDropdownOption;
 
       if (this.options) {
-        match = this.options.find(option => {
+        match = this.options.find((option) => {
           if (this.identifier) {
             return selection[this.identifier] === option.value[this.identifier];
           }

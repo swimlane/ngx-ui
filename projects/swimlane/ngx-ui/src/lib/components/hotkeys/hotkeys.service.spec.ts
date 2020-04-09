@@ -8,7 +8,7 @@ describe('HotkeysService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [hk.HotkeysService]
+      providers: [hk.HotkeysService],
     });
   });
 
@@ -29,7 +29,7 @@ describe('HotkeysService', () => {
       service.add('ctrl+h', {
         callback: () => ({}),
         component: {},
-        description: 'test'
+        description: 'test',
       });
 
       expect(service.hotkeys['ctrl+h']).toBeDefined();
@@ -40,7 +40,7 @@ describe('HotkeysService', () => {
         callback: () => ({}),
         component: {},
         description: 'test',
-        allowIn: ['input']
+        allowIn: ['input'],
       });
 
       expect(service.hotkeys['mod+h']).toBeDefined();
@@ -51,14 +51,14 @@ describe('HotkeysService', () => {
         callback: () => ({}),
         component: {},
         description: 'test',
-        allowIn: ['input']
+        allowIn: ['input'],
       });
 
       service.add('ctrl+h', {
         callback: () => ({}),
         component: {},
         description: 'test2',
-        visible: true
+        visible: true,
       });
 
       expect(service.hotkeys['ctrl+h'].length).toBe(2);
@@ -66,13 +66,13 @@ describe('HotkeysService', () => {
   });
 
   describe('Hotkey.callback', () => {
-    it('should call hotkey callback', done => {
+    it('should call hotkey callback', (done) => {
       service.add('ctrl+h', {
         callback: () => {
           done();
         },
         component: {},
-        description: 'test'
+        description: 'test',
       });
 
       expect(service.hotkeys['ctrl+h'].length).toBe(1);
@@ -85,13 +85,13 @@ describe('HotkeysService', () => {
       service.add('ctrl+h', {
         callback: () => ({}),
         component: 'test',
-        description: 'test'
+        description: 'test',
       });
 
       service.add('ctrl+c', {
         callback: () => ({}),
         component: {},
-        description: 'test'
+        description: 'test',
       });
     });
 
@@ -106,13 +106,13 @@ describe('HotkeysService', () => {
       service.add('ctrl+h', {
         callback: () => ({}),
         component: 'test',
-        description: 'test'
+        description: 'test',
       });
 
       service.add('ctrl+h', {
         callback: () => ({}),
         component: 'test2',
-        description: 'test'
+        description: 'test',
       });
     });
 
@@ -127,13 +127,13 @@ describe('HotkeysService', () => {
       service.add('ctrl+h', {
         callback: () => ({}),
         component: 'test',
-        description: 'test'
+        description: 'test',
       });
 
       service.add('ctrl+h', {
         callback: () => ({}),
         component: 'test2',
-        description: 'test'
+        description: 'test',
       });
     });
 
@@ -151,13 +151,13 @@ describe('HotkeysService', () => {
         callback: () => ({}),
         component: 'test',
         description: 'test',
-        status: HotkeyStatus.Disabled
+        status: HotkeyStatus.Disabled,
       });
 
       service.add('ctrl+h', {
         callback: () => ({}),
         component: 'test2',
-        description: 'test'
+        description: 'test',
       });
     });
 
@@ -172,19 +172,19 @@ describe('HotkeysService', () => {
       service.add('ctrl+h', {
         callback: () => ({}),
         component: 'test',
-        description: 'test'
+        description: 'test',
       });
 
       service.add('ctrl+h', {
         callback: () => ({}),
         component: 'test2',
-        description: 'test'
+        description: 'test',
       });
 
       service.add('ctrl+c', {
         callback: () => ({}),
         component: 'test3',
-        description: 'test'
+        description: 'test',
       });
     });
 

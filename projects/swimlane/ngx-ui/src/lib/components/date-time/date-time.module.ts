@@ -24,7 +24,7 @@ import { DateTimeComponent } from './date-time.component';
     CalendarModule,
     ToggleModule,
     FlexLayoutModule,
-    PipesModule
-  ]
+    PipesModule,
+  ],
 })
 export class DateTimeModule {}

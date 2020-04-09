@@ -14,7 +14,7 @@ describe('SelectDropdownComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [SelectDropdownComponent],
-      providers: [{ provide: ElementRef, useValue: { nativeElement: {} } }]
+      providers: [{ provide: ElementRef, useValue: { nativeElement: {} } }],
     });
   });
 
@@ -73,7 +73,7 @@ describe('SelectDropdownComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should focus filter input', done => {
+    it('should focus filter input', (done) => {
       const spy = spyOn(component.filterInput.nativeElement, 'focus');
       component.ngAfterViewInit();
       setTimeout(() => {
@@ -101,14 +101,14 @@ describe('SelectDropdownComponent', () => {
         component.identifier = 'value';
         component.options = [
           selectDropdownOptionMock({
-            value: { value: faker.random.word() }
+            value: { value: faker.random.word() },
           }),
           selectDropdownOptionMock({
-            value: { value: faker.random.word() }
+            value: { value: faker.random.word() },
           }),
           selectDropdownOptionMock({
-            value: { value: faker.random.word() }
-          })
+            value: { value: faker.random.word() },
+          }),
         ];
 
         fixture.detectChanges();
@@ -134,7 +134,7 @@ describe('SelectDropdownComponent', () => {
         preventDefault: () => undefined,
         stopPropagation: () => undefined,
         key: '',
-        target: { value: '' }
+        target: { value: '' },
       };
     });
 
@@ -172,7 +172,7 @@ describe('SelectDropdownComponent', () => {
       event = {
         preventDefault: () => undefined,
         stopPropagation: () => undefined,
-        key: ''
+        key: '',
       };
     });
 
@@ -231,7 +231,7 @@ describe('SelectDropdownComponent', () => {
         preventDefault: () => undefined,
         stopPropagation: () => undefined,
         key: '',
-        target: { value: '' }
+        target: { value: '' },
       };
     });
 
@@ -248,14 +248,14 @@ describe('SelectDropdownComponent', () => {
     beforeEach(() => {
       component.options = [
         selectDropdownOptionMock({
-          value: { value: faker.random.word(), group: '1' }
+          value: { value: faker.random.word(), group: '1' },
         }),
         selectDropdownOptionMock({
-          value: { value: faker.random.word(), group: '1' }
+          value: { value: faker.random.word(), group: '1' },
         }),
         selectDropdownOptionMock({
-          value: { value: faker.random.word(), group: '2' }
-        })
+          value: { value: faker.random.word(), group: '2' },
+        }),
       ];
 
       fixture.detectChanges();

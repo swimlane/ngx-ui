@@ -99,7 +99,7 @@ const routes: Routes = [
   { path: 'split', component: SplitPageComponent },
   { path: 'overlay', component: OverlayPageComponent },
   { path: 'hotkeys', component: HotkeysPageComponent },
-  { path: 'pipes', component: PipesPageComponent }
+  { path: 'pipes', component: PipesPageComponent },
 ];
 
 @NgModule({
@@ -146,7 +146,7 @@ const routes: Routes = [
     HotkeysPageComponent,
     LandingPageComponent,
     PipesPageComponent,
-    StepperPageComponent
+    StepperPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -158,8 +158,8 @@ const routes: Routes = [
     BrowserAnimationsModule,
     FileUploadModule,
     FlexLayoutModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

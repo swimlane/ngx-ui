@@ -11,7 +11,7 @@ describe('FileButtonComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [FileButtonComponent]
+      declarations: [FileButtonComponent],
     });
   });
 

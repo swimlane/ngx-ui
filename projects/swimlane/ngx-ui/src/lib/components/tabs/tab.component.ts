@@ -8,7 +8,7 @@ import {
   OnInit,
   ViewChild,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
 } from '@angular/core';
 import { IfTabActiveDirective } from './if-tab-active.directive';
 
@@ -19,9 +19,9 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
   selector: 'ngx-tab',
   templateUrl: './tab.component.html',
   host: {
-    class: 'ngx-tab'
+    class: 'ngx-tab',
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TabComponent implements OnInit {
   @Input() title: string = '';

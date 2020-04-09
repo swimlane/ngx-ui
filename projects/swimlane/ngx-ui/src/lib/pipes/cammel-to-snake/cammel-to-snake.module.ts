@@ -6,6 +6,6 @@ import { CammelToSnakePipe } from './cammel-to-snake.pipe';
 @NgModule({
   declarations: [CammelToSnakePipe],
   exports: [CammelToSnakePipe],
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class CammelToSnakeModule {}

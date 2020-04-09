@@ -14,7 +14,7 @@ import { SplitHandleComponent } from './split-handle.component';
       <div [fxFlex]="flex$ | async" ngxSplitArea></div>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SplitDirectiveFixture {
   readonly flex$ = new BehaviorSubject<string>('1 1 50%');

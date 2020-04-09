@@ -9,7 +9,7 @@ describe('ProgressSpinnerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ProgressSpinnerComponent]
+      declarations: [ProgressSpinnerComponent],
     }).compileComponents();
   }));
 

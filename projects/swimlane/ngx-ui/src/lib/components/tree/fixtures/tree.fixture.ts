@@ -5,7 +5,7 @@ import { TreeNode } from '../tree-node.model';
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'tree-fixture',
-  templateUrl: 'tree.fixture.html'
+  templateUrl: 'tree.fixture.html',
 })
 export class TreeFixtureComponent {
   @ViewChild('tree1', { static: true }) treeComponent1: TreeComponent;
@@ -14,7 +14,7 @@ export class TreeFixtureComponent {
   nodes: TreeNode[] = [
     {
       label: 'Node1',
-      model: { type: 'Array', count: 1 }
+      model: { type: 'Array', count: 1 },
     },
     {
       label: 'Node2',
@@ -23,13 +23,13 @@ export class TreeFixtureComponent {
       children: [
         {
           label: 'Node1',
-          model: { type: 'Array', count: 1 }
-        }
-      ]
+          model: { type: 'Array', count: 1 },
+        },
+      ],
     },
     {
       label: 'Node3',
-      model: { type: 'Array', count: 1 }
-    }
+      model: { type: 'Array', count: 1 },
+    },
   ];
 }

@@ -7,7 +7,7 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
-  SimpleChanges
+  SimpleChanges,
 } from '@angular/core';
 import { JsonEditorNodeFlatComponent } from './json-editor-node-flat/json-editor-node-flat.component';
 import { SchemaValidatorService } from '../schema-validator.service';
@@ -16,7 +16,7 @@ import { JSONEditorSchema, JsonSchemaDataType, jsonSchemaDataFormats } from '../
 import { DialogService } from '../../dialog/dialog.service';
 import {
   PropertyConfigComponent,
-  PropertyConfigOptions
+  PropertyConfigOptions,
 } from './json-editor-node-flat/node-types/property-config/property-config.component';
 
 @Component({
@@ -24,7 +24,7 @@ import {
   templateUrl: './json-editor-flat.component.html',
   styleUrls: ['./json-editor-flat.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class JsonEditorFlatComponent extends JsonEditor {
   @Input() model: any;
@@ -72,9 +72,9 @@ export class JsonEditorFlatComponent extends JsonEditor {
       context: {
         property: this.schema,
         schema: this.schema,
-        formats: this.customFormats
+        formats: this.customFormats,
       },
-      class: 'property-config-dialog'
+      class: 'property-config-dialog',
     });
   }
 
@@ -104,7 +104,7 @@ export class JsonEditorFlatComponent extends JsonEditor {
   }
 
   private buildCustomFormats(): void {
-    this.formats.forEach(format => {
+    this.formats.forEach((format) => {
       const found = jsonSchemaDataFormats.find((dataFormat: JsonSchemaDataType) => {
         return dataFormat.schema.format === format;
       });
@@ -117,12 +117,12 @@ export class JsonEditorFlatComponent extends JsonEditor {
           defaultValue: () => '',
           schema: {
             type: 'string',
-            format
+            format,
           },
           icon: 'field-text',
           matchType: (): boolean => {
             return false;
-          }
+          },
         });
       }
     });

@@ -81,7 +81,7 @@ const modules = [
   ToolbarModule,
   TooltipModule,
   TreeModule,
-  ProgressSpinnerModule
+  ProgressSpinnerModule,
 ];
 
 const services = [
@@ -92,12 +92,12 @@ const services = [
   LoadingService,
   DialogService,
   OverlayService,
-  NotificationService
+  NotificationService,
 ];
 
 @NgModule({
   providers: [...services],
   exports: [...modules],
-  imports: [...modules]
+  imports: [...modules],
 })
 export class NgxUIModule {}

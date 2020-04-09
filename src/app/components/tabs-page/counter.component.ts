@@ -15,7 +15,7 @@ const counts = {};
         <ng-template ngPluralCase="other">times</ng-template>
       </span>
     </h2>
-  `
+  `,
 })
 export class CounterComponent implements OnInit {
   @Input()

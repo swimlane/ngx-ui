@@ -13,13 +13,13 @@ export class IconRegistryService {
   }
 
   get(keys: string | string[], set?: string): string[] {
-    return this.lookup(keys, set).map(k => convertClass(k));
+    return this.lookup(keys, set).map((k) => convertClass(k));
   }
 
   lookup(keys: string | string[], set?: string): string[] {
     return (Array.isArray(keys) ? keys : [keys]).reduce((p: string[], k: string) => {
       k = this._expandKeys(k, set)
-        .map(kk => {
+        .map((kk) => {
           const x = this._iconMap.get(kk);
           return x && x.length === 1 ? x[0] : kk;
         })
@@ -35,7 +35,7 @@ export class IconRegistryService {
   }
 
   private _expandKeys(key: string, set: string = this._defaultFontSetClass): string[] {
-    return key.split(' ').map(k => {
+    return key.split(' ').map((k) => {
       if (k.includes(':')) return k;
       return `${set}:${k}`;
     });

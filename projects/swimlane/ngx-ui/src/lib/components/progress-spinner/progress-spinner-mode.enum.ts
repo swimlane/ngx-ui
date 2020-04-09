@@ -1,4 +1,4 @@
 export enum ProgressSpinnerMode {
   Indeterminate = 'indeterminate',
-  Determinate = 'determinate'
+  Determinate = 'determinate',
 }

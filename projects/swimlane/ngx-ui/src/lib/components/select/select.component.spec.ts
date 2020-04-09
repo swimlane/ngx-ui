@@ -23,8 +23,8 @@ describe('SelectComponent', () => {
         SelectOptionDirective,
         SelectInputComponent,
         SelectDropdownComponent,
-        SelectComponentFixture
-      ]
+        SelectComponentFixture,
+      ],
     });
   });
 
@@ -89,7 +89,7 @@ describe('SelectComponent', () => {
 
     it('should do nothing if max selection reached', () => {
       const spy = spyOn(component.select, 'toggleDropdown');
-      component.select.value = component.options$.value.map(o => o.value);
+      component.select.value = component.options$.value.map((o) => o.value);
       component.select.onDropdownSelection(selectDropdownOptionMock());
       expect(spy).not.toHaveBeenCalled();
     });
@@ -149,7 +149,7 @@ describe('SelectComponent', () => {
         component.select.options = [
           selectDropdownOptionMock({ value: { value: 'test' } }),
           selectDropdownOptionMock({ value: { value: 'test1' } }),
-          selectDropdownOptionMock({ value: { value: 'test2' } })
+          selectDropdownOptionMock({ value: { value: 'test2' } }),
         ];
         fixture.detectChanges();
 
@@ -211,7 +211,7 @@ describe('SelectComponent', () => {
   describe('onBodyClick', () => {
     const event: any = {
       stopPropagation: () => undefined,
-      target: document.createElement('div')
+      target: document.createElement('div'),
     };
 
     beforeEach(() => {
@@ -278,7 +278,7 @@ describe('SelectComponent', () => {
     beforeEach(() => {
       event = {
         stopPropagation: () => undefined,
-        key: ''
+        key: '',
       };
 
       component.select.focusIndex = 0;

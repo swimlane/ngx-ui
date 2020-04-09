@@ -4,7 +4,7 @@ import {
   ContentChildren,
   QueryList,
   Input,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { JsonEditor } from '../json-editor';
 import { SchemaValidatorService } from '../schema-validator.service';
@@ -16,7 +16,7 @@ import { JSONEditorSchema } from '../json-editor.helper';
   templateUrl: './json-editor.component.html',
   styleUrls: ['./json-editor.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JsonEditorComponent extends JsonEditor {
   @Input() model: any;

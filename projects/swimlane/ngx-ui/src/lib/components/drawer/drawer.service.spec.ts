@@ -15,19 +15,19 @@ describe('DrawerService', () => {
       removeTriggerComponent: () => ({}),
       show: () => ({}),
       click: { subscribe: () => ({ unsubscribe: () => ({}) }) },
-      instance: { zIndex: {} }
+      instance: { zIndex: {} },
     };
 
     const injectionServiceStub = {
-      appendComponent: () => undefined
+      appendComponent: () => undefined,
     };
 
     TestBed.configureTestingModule({
       providers: [
         DrawerService,
         { provide: InjectionService, useValue: injectionServiceStub },
-        { provide: OverlayService, useValue: overlayServiceStub }
-      ]
+        { provide: OverlayService, useValue: overlayServiceStub },
+      ],
     });
   });
 
@@ -47,8 +47,8 @@ describe('DrawerService', () => {
         instance: {
           close: new EventEmitter<boolean>(),
           zIndex: 10,
-          size: 10
-        }
+          size: 10,
+        },
       };
       const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
       const destroySpy = spyOn(service, 'destroy');
@@ -65,8 +65,8 @@ describe('DrawerService', () => {
           close: new EventEmitter<boolean>(),
           zIndex: 10,
           size: 10,
-          isRoot: false
-        }
+          isRoot: false,
+        },
       };
       const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
       const destroySpy = spyOn(service, 'destroy');
@@ -83,8 +83,8 @@ describe('DrawerService', () => {
           close: new EventEmitter<boolean>(),
           zIndex: 10,
           size: 10,
-          closeOnOutsideClick: true
-        }
+          closeOnOutsideClick: true,
+        },
       };
       const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
       const destroySpy = spyOn(service, 'destroy');
@@ -92,7 +92,7 @@ describe('DrawerService', () => {
       service.create({
         zIndex: 10,
         size: 10,
-        closeOnOutsideClick: true
+        closeOnOutsideClick: true,
       });
       expect(spy).toHaveBeenCalled();
       component.instance.close.emit();
@@ -106,8 +106,8 @@ describe('DrawerService', () => {
           zIndex: 10,
           size: 10,
           closeOnOutsideClick: true,
-          isRoot: false
-        }
+          isRoot: false,
+        },
       };
       const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
       const destroySpy = spyOn(service, 'destroy');
@@ -119,7 +119,7 @@ describe('DrawerService', () => {
         size: 10,
         closeOnOutsideClick: true,
         isRoot: false,
-        parentContainer: parentElement
+        parentContainer: parentElement,
       });
 
       expect(spy).toHaveBeenCalled();
@@ -134,8 +134,8 @@ describe('DrawerService', () => {
           zIndex: 10,
           size: 10,
           closeOnOutsideClick: true,
-          isRoot: false
-        }
+          isRoot: false,
+        },
       };
       const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
       const destroySpy = spyOn(service, 'destroy');
@@ -147,7 +147,7 @@ describe('DrawerService', () => {
         size: 10,
         closeOnOutsideClick: true,
         isRoot: false,
-        parentContainer: parentElement
+        parentContainer: parentElement,
       });
 
       expect(spy).toHaveBeenCalled();
@@ -157,7 +157,7 @@ describe('DrawerService', () => {
   });
 
   describe('destroy', () => {
-    it('should destroy with overlay', done => {
+    it('should destroy with overlay', (done) => {
       const spy = spyOn(overlayService, 'removeTriggerComponent');
       const component: any = { instance: { size: 10 } };
       service.destroy(component);
@@ -169,7 +169,7 @@ describe('DrawerService', () => {
       }, 10);
     });
 
-    it('should not set size to 0 if !component', done => {
+    it('should not set size to 0 if !component', (done) => {
       const spy = spyOn(overlayService, 'removeTriggerComponent');
       const component: any = {};
       service.destroy(component);

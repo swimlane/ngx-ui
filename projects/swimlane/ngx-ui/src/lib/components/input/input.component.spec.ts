@@ -8,7 +8,7 @@ import { InputTypes } from './input-types.enum';
 import { InputComponentFixture } from './input.component.fixture';
 
 const MOCK_EVENT: any = {
-  stopPropagation: () => ({})
+  stopPropagation: () => ({}),
 };
 
 describe('InputComponent', () => {
@@ -19,7 +19,7 @@ describe('InputComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [InputComponentFixture, InputComponent],
-      imports: [FormsModule, BrowserAnimationsModule]
+      imports: [FormsModule, BrowserAnimationsModule],
     });
   });
 

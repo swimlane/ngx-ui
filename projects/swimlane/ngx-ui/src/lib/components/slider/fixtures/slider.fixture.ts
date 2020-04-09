@@ -4,7 +4,7 @@ import { SliderComponent } from '../slider.component';
 @Component({
   // tslint:disable-next-line: component-selector
   selector: 'slider-fixture',
-  templateUrl: 'slider.fixture.html'
+  templateUrl: 'slider.fixture.html',
 })
 export class SliderFixtureComponent {
   @ViewChild('defaultSlider', { static: true }) defaultSlider: SliderComponent;

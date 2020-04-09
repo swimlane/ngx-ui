@@ -8,6 +8,6 @@ import { HotkeysService } from './hotkeys.service';
   declarations: [HotkeysComponent],
   exports: [HotkeysComponent],
   providers: [HotkeysService],
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class HotkeysModule {}

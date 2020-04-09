@@ -13,6 +13,6 @@ import { HotkeysService } from '../hotkeys/hotkeys.service';
   providers: [OverlayService, InjectionService, OverlayService, HotkeysService],
   exports: [OverlayComponent, ResizeOverlayComponent],
   imports: [CommonModule, IconModule],
-  entryComponents: [OverlayComponent, ResizeOverlayComponent]
+  entryComponents: [OverlayComponent, ResizeOverlayComponent],
 })
 export class OverlayModule {}

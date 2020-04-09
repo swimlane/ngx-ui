@@ -4,7 +4,7 @@ import { Hotkey, HotkeysService, DialogService } from '@swimlane/ngx-ui';
 @Component({
   selector: 'app-hotkeys-page',
   templateUrl: './hotkeys-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HotkeysPageComponent implements OnInit, OnDestroy {
   currentTheme = 'night';
@@ -18,7 +18,7 @@ export class HotkeysPageComponent implements OnInit, OnDestroy {
         alert('Hotkey activated');
       },
       description: 'Show message',
-      component: this
+      component: this,
     });
   }
 
@@ -34,7 +34,7 @@ export class HotkeysPageComponent implements OnInit, OnDestroy {
   }
 
   @Hotkey('up up down down left right left right b a enter', 'Do some magic!', {
-    visible: false
+    visible: false,
   })
   onKey() {
     alert('BOSS!');

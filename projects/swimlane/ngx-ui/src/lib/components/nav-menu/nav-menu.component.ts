@@ -8,10 +8,10 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
   styleUrls: ['./nav-menu.component.scss'],
   host: {
     class: 'ngx-nav-menu',
-    '[class.expanded]': 'expanded'
+    '[class.expanded]': 'expanded',
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavMenuComponent {
   @Input()

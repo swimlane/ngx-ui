@@ -4,7 +4,7 @@ describe('LongPressDirective', () => {
   let directive: LongPressDirective;
   const mockMouseEvent: MouseEvent = {
     stopPropagation: () => undefined,
-    preventDefault: () => undefined
+    preventDefault: () => undefined,
   } as any;
 
   beforeEach(() => {
@@ -29,7 +29,7 @@ describe('LongPressDirective', () => {
       expect(spy).toHaveBeenCalled();
     });
 
-    it('should start and finish after duration', done => {
+    it('should start and finish after duration', (done) => {
       const spyStart = spyOn(directive.longPressStart, 'emit');
       const spyFinish = spyOn(directive.longPressFinish, 'emit');
 
@@ -44,7 +44,7 @@ describe('LongPressDirective', () => {
       });
     });
 
-    it('should start and cancel before duration', done => {
+    it('should start and cancel before duration', (done) => {
       const spyStart = spyOn(directive.longPressStart, 'emit');
       const spyFinish = spyOn(directive.longPressFinish, 'emit');
       const spyCancel = spyOn(directive.longPressCancel, 'emit');

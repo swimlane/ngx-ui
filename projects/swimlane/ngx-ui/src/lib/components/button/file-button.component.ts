@@ -10,7 +10,7 @@ import {
   TemplateRef,
   ViewChild,
   ElementRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { FileUploaderOptions, FileUploader, FileItem } from '@swimlane/ng2-file-upload';
@@ -25,7 +25,7 @@ let nextId = 0;
   templateUrl: './file-button.component.html',
   styleUrls: ['./file-button.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FileButtonComponent implements OnInit {
   @Input() id: string = `input-${++nextId}`;
@@ -73,7 +73,7 @@ export class FileButtonComponent implements OnInit {
       'progress-style': this.styleType === FileButtonStyleType.progress,
       'show-progress': this.uploader && this.uploader.options.isHTML5,
       success: this._isItemSuccessful,
-      active: this.uploader && this.uploader.isUploading
+      active: this.uploader && this.uploader.isUploading,
     };
   }
 

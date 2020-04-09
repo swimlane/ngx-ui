@@ -10,10 +10,10 @@ describe('TabsComponent', () => {
   let component: TabsComponent;
   let fixture: ComponentFixture<TabsFixtureComponent>;
   describe('Standard Tabs', () => {
-    beforeEach(done => {
+    beforeEach((done) => {
       TestBed.configureTestingModule({
         declarations: [TabsFixtureComponent],
-        imports: [TabsModule]
+        imports: [TabsModule],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TabsFixtureComponent);
@@ -69,10 +69,10 @@ describe('TabsComponent', () => {
   });
 
   describe('Tabs with specific tab set active', () => {
-    beforeEach(done => {
+    beforeEach((done) => {
       TestBed.configureTestingModule({
         declarations: [TabsLabeltemplateFixtureComponent],
-        imports: [TabsModule]
+        imports: [TabsModule],
       }).compileComponents();
 
       fixture = TestBed.createComponent(TabsLabeltemplateFixtureComponent);
@@ -94,10 +94,10 @@ describe('TabsComponent', () => {
   });
 
   describe('Tabs with multiple active', () => {
-    beforeEach(done => {
+    beforeEach((done) => {
       TestBed.configureTestingModule({
         declarations: [TabsMultipleActiveFixtureComponent],
-        imports: [TabsModule]
+        imports: [TabsModule],
       }).compileComponents();
 
       spyOn(console, 'error');

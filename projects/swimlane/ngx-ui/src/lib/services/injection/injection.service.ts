@@ -6,7 +6,7 @@ import {
   Injector,
   ViewContainerRef,
   EmbeddedViewRef,
-  Type
+  Type,
 } from '@angular/core';
 import { DomPortalHost, ComponentPortal } from '@angular/cdk/portal';
 

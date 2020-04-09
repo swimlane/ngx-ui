@@ -16,7 +16,7 @@ describe('SplitDirective', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       imports: [FlexLayoutModule],
-      declarations: [SplitDirectiveFixture, SplitDirective, SplitAreaDirective, SplitHandleComponent]
+      declarations: [SplitDirectiveFixture, SplitDirective, SplitAreaDirective, SplitHandleComponent],
     });
   });
 

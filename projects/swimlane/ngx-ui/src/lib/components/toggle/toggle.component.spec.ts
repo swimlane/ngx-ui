@@ -11,7 +11,7 @@ describe('ToggleComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ToggleComponent],
-      imports: [FormsModule]
+      imports: [FormsModule],
     });
 
     fixture = TestBed.createComponent(ToggleComponent);
@@ -73,7 +73,7 @@ describe('ToggleComponent', () => {
     expect(component.value).toEqual(false);
   });
 
-  it('onBlur calls registered touch callback', done => {
+  it('onBlur calls registered touch callback', (done) => {
     const touchCallback = () => {
       done();
     };

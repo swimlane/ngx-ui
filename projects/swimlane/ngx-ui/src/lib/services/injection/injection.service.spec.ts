@@ -4,7 +4,7 @@ import {
   ComponentRef,
   Injector,
   ViewContainerRef,
-  Type
+  Type,
 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
@@ -17,7 +17,7 @@ describe('InjectionService', () => {
 
   beforeEach(() => {
     const componentFactoryResolverStub = {
-      resolveComponentFactory: () => ({ create: () => ({}) })
+      resolveComponentFactory: () => ({ create: () => ({}) }),
     };
     const injectorStub = {};
     const viewContainerRefStub = {};
@@ -32,13 +32,13 @@ describe('InjectionService', () => {
         { provide: ApplicationRef, useValue: appRef },
         {
           provide: ComponentFactoryResolver,
-          useValue: componentFactoryResolverStub
+          useValue: componentFactoryResolverStub,
         },
         { provide: ComponentRef, useValue: componentRef },
         { provide: Injector, useValue: injectorStub },
         { provide: ViewContainerRef, useValue: viewContainerRefStub },
-        { provide: Type, useValue: typeStub }
-      ]
+        { provide: Type, useValue: typeStub },
+      ],
     });
 
     service = TestBed.get(InjectionService);
@@ -84,28 +84,28 @@ describe('InjectionService', () => {
       expect(
         service.projectComponentBindings(
           {
-            instance: {}
+            instance: {},
           } as any,
           {
             inputs: {
-              test: 'test'
+              test: 'test',
             },
             outputs: {
               test1: 'test1',
-              test2: 'test2'
-            }
+              test2: 'test2',
+            },
           }
         ).instance
       ).toEqual({
         test: 'test',
         test1: 'test1',
-        test2: 'test2'
+        test2: 'test2',
       });
     });
 
     it('should do nothing when no bindings', () => {
       expect(service.projectComponentBindings({ instance: {} } as any, undefined)).toEqual({
-        instance: {}
+        instance: {},
       } as any);
     });
   });

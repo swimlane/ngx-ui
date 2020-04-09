@@ -9,7 +9,7 @@ import {
   Renderer2,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation
+  ViewEncapsulation,
 } from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
@@ -29,7 +29,7 @@ import { StyleTypes } from './style-types.enum';
   templateUrl: './tooltip.component.html',
   styleUrls: ['./tooltip.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TooltipContentComponent implements AfterViewInit {
   @ViewChild('caretElm', { static: true })

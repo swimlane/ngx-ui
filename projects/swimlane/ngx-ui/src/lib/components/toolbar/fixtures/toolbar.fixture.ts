@@ -6,7 +6,7 @@ import { ToolbarComponent } from '../toolbar.component';
   // tslint:disable-next-line: component-selector
   selector: 'toolbar-fixture',
   templateUrl: 'toolbar.fixture.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ToolbarFixtureComponent {
   @ViewChild('toolbar1', { static: true })
@@ -18,19 +18,19 @@ export class ToolbarFixtureComponent {
   toolbarMenu = [
     {
       label: 'File',
-      click: () => undefined
+      click: () => undefined,
     },
     {
-      label: 'Image'
+      label: 'Image',
     },
     {
       label: 'Run',
-      disabled: true
+      disabled: true,
     },
     {
       label: 'Edit',
-      dropdown: true
-    }
+      dropdown: true,
+    },
   ];
 
   menuClicked(e: Event) {

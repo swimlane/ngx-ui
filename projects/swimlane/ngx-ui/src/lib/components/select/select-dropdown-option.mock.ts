@@ -6,6 +6,6 @@ export function selectDropdownOptionMock(option?: Partial<SelectDropdownOption>)
   return {
     name: faker.random.word(),
     value: faker.random.word(),
-    ...option
+    ...option,
   };
 }

@@ -10,7 +10,7 @@ describe('InputPrefixComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [InputPrefixComponent]
+      declarations: [InputPrefixComponent],
     });
 
     fixture = TestBed.createComponent(InputPrefixComponent);

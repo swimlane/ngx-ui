@@ -8,7 +8,7 @@ import {
   OnDestroy,
   ChangeDetectionStrategy,
   TemplateRef,
-  OnInit
+  OnInit,
 } from '@angular/core';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { trigger } from '@angular/animations';
@@ -31,10 +31,10 @@ import { DrawerPosition } from './drawer-position.enum';
     '[style.height]': 'heightSize',
     '[style.zIndex]': 'zIndex',
     '[style.position]': 'position',
-    '[@drawerTransition]': 'direction'
+    '[@drawerTransition]': 'direction',
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DrawerComponent implements OnInit, OnDestroy {
   @Input() cssClass: string = '';

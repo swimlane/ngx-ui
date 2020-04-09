@@ -13,7 +13,7 @@ describe('SelectInputComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [SelectInputComponent],
-      providers: [{ provide: ElementRef, useValue: { nativeElement: {} } }]
+      providers: [{ provide: ElementRef, useValue: { nativeElement: {} } }],
     });
   });
 
@@ -52,7 +52,7 @@ describe('SelectInputComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should focus input', done => {
+    it('should focus input', (done) => {
       const spy = spyOn(component.inputElement.nativeElement, 'focus');
       component.ngAfterViewInit();
 
@@ -71,7 +71,7 @@ describe('SelectInputComponent', () => {
         preventDefault: () => undefined,
         stopPropagation: () => undefined,
         key: '',
-        target: { value: '' }
+        target: { value: '' },
       };
     });
 
@@ -126,7 +126,7 @@ describe('SelectInputComponent', () => {
 
     beforeEach(() => {
       event = {
-        stopPropagation: () => undefined
+        stopPropagation: () => undefined,
       };
     });
 
@@ -176,7 +176,7 @@ describe('SelectInputComponent', () => {
       expect(spy).not.toHaveBeenCalled();
     });
 
-    it('should focus input if tagging', done => {
+    it('should focus input if tagging', (done) => {
       const spy = spyOn(component.inputElement.nativeElement, 'focus');
       component.onClick(event);
 
@@ -186,7 +186,7 @@ describe('SelectInputComponent', () => {
       }, 5);
     });
 
-    it('should emit activate but not focus is !tagging', done => {
+    it('should emit activate but not focus is !tagging', (done) => {
       const spy = spyOn(component.inputElement.nativeElement, 'focus');
       component.tagging = false;
       component.onClick(event);
@@ -203,7 +203,7 @@ describe('SelectInputComponent', () => {
 
     beforeEach(() => {
       event = {
-        stopPropagation: () => undefined
+        stopPropagation: () => undefined,
       };
     });
 
@@ -275,7 +275,7 @@ describe('SelectInputComponent', () => {
     });
 
     it('should get selected options from selected values', () => {
-      component.selected = component.options.map(o => o.value);
+      component.selected = component.options.map((o) => o.value);
       expect(component.selectedOptions.length).toBe(component.selected.length);
     });
 
@@ -284,7 +284,7 @@ describe('SelectInputComponent', () => {
       component.options = [
         selectDropdownOptionMock({ value: { value: 'test' } }),
         selectDropdownOptionMock({ value: { value: 'test1' } }),
-        selectDropdownOptionMock({ value: { value: 'test2' } })
+        selectDropdownOptionMock({ value: { value: 'test2' } }),
       ];
 
       component.selected = [{ value: 'test' }];

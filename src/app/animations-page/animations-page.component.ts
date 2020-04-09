@@ -9,7 +9,7 @@ import {
   slideDownFadeOutAnimation,
   slideUpFadeOutAnimation,
   slideTopAnimation,
-  slideBottomAnimation
+  slideBottomAnimation,
 } from '@swimlane/ngx-ui';
 
 @Component({
@@ -24,9 +24,9 @@ import {
     trigger('slideLeft', slideLeftAnimation()),
     trigger('slideRight', slideRightAnimation()),
     trigger('slideTop', slideTopAnimation(250)),
-    trigger('slideBottom', slideBottomAnimation(250))
+    trigger('slideBottom', slideBottomAnimation(250)),
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AnimationsPageComponent {
   count: number = 0;
@@ -38,7 +38,7 @@ export class AnimationsPageComponent {
     slideLeft: true,
     slideRight: true,
     slideTop: true,
-    slideBottom: true
+    slideBottom: true,
   };
 
   increaseCount() {

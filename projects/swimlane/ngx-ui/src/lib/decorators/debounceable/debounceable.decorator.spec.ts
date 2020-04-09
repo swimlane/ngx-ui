@@ -7,7 +7,7 @@ describe('debounceable', () => {
     fixture = new DebounceableFixture();
   });
 
-  it('should call debounceable fn', done => {
+  it('should call debounceable fn', (done) => {
     const spy = spyOn(fixture, 'doSomething');
     fixture.fn();
 

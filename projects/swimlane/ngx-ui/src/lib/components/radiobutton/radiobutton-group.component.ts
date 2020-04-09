@@ -10,7 +10,7 @@ import {
   OnDestroy,
   AfterContentInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -22,7 +22,7 @@ import { RadioButtonComponent } from './radiobutton.component';
 const RADIOGROUP_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => RadioButtonGroupComponent),
-  multi: true
+  multi: true,
 };
 
 let nextId = 0;
@@ -31,16 +31,14 @@ let nextId = 0;
   exportAs: 'ngxRadiobuttonGroup',
   selector: 'ngx-radiobutton-group',
   providers: [RADIOGROUP_VALUE_ACCESSOR],
-  template: `
-    <ng-content></ng-content>
-  `,
+  template: ` <ng-content></ng-content> `,
   styleUrls: ['./radiobutton.component.scss'],
   host: {
     class: 'ngx-radiobutton-group',
-    '[class.disabled]': 'disabled'
+    '[class.disabled]': 'disabled',
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestroy, AfterContentInit {
   readonly UNIQUE_ID = `ngx-radio-group-${++nextId}`;
@@ -121,7 +119,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
 
     /* istanbul ignore else */
     if (this._radios) {
-      this._radios.map(radio => {
+      this._radios.map((radio) => {
         radio.change.pipe(takeUntil(this._destroy$)).subscribe(this.onRadioSelected.bind(this));
       });
     }
@@ -160,7 +158,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
 
   private _updateRadioButtonNames(): void {
     if (this._radios) {
-      this._radios.forEach(radio => {
+      this._radios.forEach((radio) => {
         radio.name = this.name;
       });
     }
@@ -169,7 +167,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   private _updateSelectedRadioFromValue(): void {
     /* istanbul ignore else */
     if (this._radios) {
-      this._radios.forEach(radio => {
+      this._radios.forEach((radio) => {
         radio.checked = this.value === radio.value;
 
         if (radio.checked) {
@@ -182,7 +180,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   private _updateRadioDisabledState(): void {
     /* istanbul ignore else */
     if (this._radios) {
-      this._radios.forEach(radio => {
+      this._radios.forEach((radio) => {
         radio.groupDisabled = this.disabled;
       });
     }

@@ -12,11 +12,11 @@ describe('ToolbarComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ToolbarFixtureComponent],
-      imports: [ToolbarModule]
+      imports: [ToolbarModule],
     }).compileComponents();
   });
 
-  beforeEach(done => {
+  beforeEach((done) => {
     fixture = TestBed.createComponent(ToolbarFixtureComponent);
     component1 = fixture.componentInstance.toolbar1;
     component2 = fixture.componentInstance.toolbar2;

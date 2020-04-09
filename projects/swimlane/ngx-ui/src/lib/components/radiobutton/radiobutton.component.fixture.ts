@@ -23,7 +23,7 @@ import { RadioButtonComponent } from './radiobutton.component';
       [disabled]="disabled$ | async"
     ></ngx-radiobutton>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioButtonComponentFixture {
   value = false;

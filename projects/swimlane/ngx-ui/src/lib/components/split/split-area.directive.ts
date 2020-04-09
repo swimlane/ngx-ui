@@ -6,8 +6,8 @@ import { DefaultFlexDirective, validateBasis } from '@angular/flex-layout';
   selector: '[ngxSplitArea]',
   host: {
     class: 'ngx-split-area',
-    '[style.overflow]': 'overflow'
-  }
+    '[style.overflow]': 'overflow',
+  },
 })
 export class SplitAreaDirective implements OnChanges {
   @Input() minBasis: string;

@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import momentTimezone from 'moment-timezone';
 
 @Pipe({
-  name: 'amTimeZone'
+  name: 'amTimeZone',
 })
 export class TimeZonePipe implements PipeTransform {
   transform(value: Date | momentTimezone.Moment | string | number, timezone?: string): momentTimezone.Moment | string {

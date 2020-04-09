@@ -5,7 +5,7 @@ import {
   Input,
   ChangeDetectorRef,
   TemplateRef,
-  HostBinding
+  HostBinding,
 } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 
@@ -18,10 +18,10 @@ import { ProgressSpinnerMode } from './progress-spinner-mode.enum';
   styleUrls: ['./progress-spinner.component.scss'],
   host: {
     class: 'ngx-progress-spinner',
-    '[class.ngx-progress-spinner--indeterminate]': 'mode === ProgressSpinnerMode.Indeterminate'
+    '[class.ngx-progress-spinner--indeterminate]': 'mode === ProgressSpinnerMode.Indeterminate',
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProgressSpinnerComponent {
   @Input() mode = ProgressSpinnerMode.Indeterminate;
@@ -94,7 +94,7 @@ export class ProgressSpinnerComponent {
   private _strokeWidth = 5;
   private readonly _indeterminate = {
     value: 50,
-    total: 100
+    total: 100,
   };
 
   private get _circumference() {

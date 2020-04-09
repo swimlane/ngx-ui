@@ -9,7 +9,7 @@ import { getNumberRange } from '../get-number-range/get-number-range.util';
  * @return array of days
  */
 export function getDaysForMonth(active: moment.Moment): CalendarDay[] {
-  return getNumberRange(1, active.daysInMonth() + 1).map(i => {
+  return getNumberRange(1, active.daysInMonth() + 1).map((i) => {
     const date = active.clone().date(i);
     const today = date.isSame(new Date(), 'day');
 
@@ -17,7 +17,7 @@ export function getDaysForMonth(active: moment.Moment): CalendarDay[] {
       num: date.date(),
       dayOfWeek: date.day(),
       date,
-      today
+      today,
     };
   });
 }

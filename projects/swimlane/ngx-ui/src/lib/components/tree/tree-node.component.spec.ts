@@ -6,7 +6,7 @@ import { TreeModule } from './tree.module';
 const MOCK_EVENT: any = {
   stopPropagation: () => {
     return;
-  }
+  },
 };
 
 describe('TreeNodeComponent', () => {
@@ -14,7 +14,7 @@ describe('TreeNodeComponent', () => {
   let fixture: ComponentFixture<TreeNodeComponent>;
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TreeModule]
+      imports: [TreeModule],
     });
     fixture = TestBed.createComponent(TreeNodeComponent);
     component = fixture.componentInstance;

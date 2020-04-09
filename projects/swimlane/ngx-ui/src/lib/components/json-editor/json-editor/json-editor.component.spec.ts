@@ -14,9 +14,9 @@ describe('JsonEditorComponent', () => {
       providers: [
         {
           provide: SchemaValidatorService,
-          useValue: schemaValidatorServiceStub
-        }
-      ]
+          useValue: schemaValidatorServiceStub,
+        },
+      ],
     });
     fixture = TestBed.createComponent(JsonEditorComponent);
     component = fixture.componentInstance;

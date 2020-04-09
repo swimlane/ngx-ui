@@ -11,7 +11,7 @@ import { positionContent } from '../../utils/position/position-content/position-
 
 const position = {
   positionCaret,
-  positionContent
+  positionContent,
 };
 
 describe('TooltipContentComponent', () => {
@@ -21,7 +21,7 @@ describe('TooltipContentComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TooltipContentComponent],
-      imports: [TooltipModule]
+      imports: [TooltipModule],
     }).compileComponents();
   });
 
@@ -39,14 +39,14 @@ describe('TooltipContentComponent', () => {
         getBoundingClientRect: () =>
           ({
             height: 10,
-            width: 10
-          } as any)
-      } as any
+            width: 10,
+          } as any),
+      } as any,
     };
 
     spyOn(component.element.nativeElement, 'getBoundingClientRect').and.returnValue({
       wdith: 10,
-      height: 10
+      height: 10,
     });
 
     fixture.detectChanges();

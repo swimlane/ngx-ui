@@ -14,8 +14,8 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
 
   readonly defaults: DrawerOptions = {
     inputs: {
-      direction: DrawerDirection.Left
-    }
+      direction: DrawerDirection.Left,
+    },
   };
 
   readonly renderer: Renderer2;
@@ -74,7 +74,7 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
     if (isRoot) {
       this.overlayService.show({
         triggerComponent: component,
-        zIndex: this.zIndex
+        zIndex: this.zIndex,
       });
     }
 
@@ -104,7 +104,7 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
       } else {
         const components = this.components.get(this.type);
 
-        this.parentListenerFunc = this.renderer.listen(parentContainer, 'click', evt => {
+        this.parentListenerFunc = this.renderer.listen(parentContainer, 'click', (evt) => {
           /* istanbul ignore else */
           if (evt.target === parentContainer) {
             kill(components[components.length - 1]);

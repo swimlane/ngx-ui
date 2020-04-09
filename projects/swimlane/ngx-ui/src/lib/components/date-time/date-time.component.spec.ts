@@ -35,7 +35,7 @@ describe('DateTimeComponent', () => {
       declarations: [DateTimeComponent],
       imports: [MomentModule, PipesModule, DialogModule],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [InjectionService]
+      providers: [InjectionService],
     }).compileComponents();
   }));
 
@@ -550,14 +550,14 @@ describe('DateTimeComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register onchange callback', done => {
+    it('should register onchange callback', (done) => {
       component.registerOnChange(() => done());
       component.value = new Date();
     });
   });
 
   describe('registryOnTouched', () => {
-    it('should register ontouched callback', done => {
+    it('should register ontouched callback', (done) => {
       component.registerOnTouched(() => done());
       component.onBlur();
     });

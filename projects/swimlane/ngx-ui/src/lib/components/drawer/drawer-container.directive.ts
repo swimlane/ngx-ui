@@ -5,7 +5,7 @@ import { Directive } from '@angular/core';
   selector: '[drawerContainer]',
   host: {
     '[style.position]': '"relative"',
-    '[style.overflow]': '"hidden"'
-  }
+    '[style.overflow]': '"hidden"',
+  },
 })
 export class DrawerContainerDirective {}

@@ -14,20 +14,20 @@ describe('HotkeysComponent', () => {
       component: {},
       description: 'test',
       status: HotkeyStatus.Active,
-      visible: true
+      visible: true,
     },
     {
       callback: () => ({}),
       component: {},
       description: 'test2',
-      status: HotkeyStatus.Disabled
-    }
+      status: HotkeyStatus.Disabled,
+    },
   ];
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [HotkeysComponent],
-      providers: [HotkeysService]
+      providers: [HotkeysService],
     }).compileComponents();
   }));
 
@@ -43,7 +43,7 @@ describe('HotkeysComponent', () => {
 
   it('should update hotkey array from map', () => {
     component.updateHotkeys({
-      'ctrl+c': hotkeys
+      'ctrl+c': hotkeys,
     });
 
     expect(component.hotkeys$.value).toEqual([hotkeys[0]]);

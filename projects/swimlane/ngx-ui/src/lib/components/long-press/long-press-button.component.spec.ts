@@ -13,7 +13,7 @@ describe('LongPressButtonComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       imports: [BrowserAnimationsModule],
-      declarations: [LongPressButtonComponent]
+      declarations: [LongPressButtonComponent],
     });
   });
 
@@ -41,7 +41,7 @@ describe('LongPressButtonComponent', () => {
       expect(component.state).toBe(LongPressButtonState.Active);
     });
 
-    it('should update state when state is submitted', done => {
+    it('should update state when state is submitted', (done) => {
       component.state = LongPressButtonState.Submitted;
       component.updateState();
       expect(component.disabled).toBe(true);

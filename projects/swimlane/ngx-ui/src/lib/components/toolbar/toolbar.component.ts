@@ -7,7 +7,7 @@ import {
   ViewEncapsulation,
   Renderer2,
   ElementRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { ToolbarTitleDirective } from './toolbar-title.directive';
@@ -21,8 +21,8 @@ import { ToolbarMenuItem } from './toolbar-menu-item.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./toolbar.component.scss'],
   host: {
-    class: 'ngx-toolbar'
-  }
+    class: 'ngx-toolbar',
+  },
 })
 export class ToolbarComponent {
   @Input() title: string;
@@ -36,13 +36,13 @@ export class ToolbarComponent {
   @ViewChild(ToolbarContentDirective) toolbarContent: ToolbarContentDirective;
 
   get toolbarItems() {
-    return this.menu.filter(m => {
+    return this.menu.filter((m) => {
       return !m.dropdown;
     });
   }
 
   get dropdownItems() {
-    return this.menu.filter(m => {
+    return this.menu.filter((m) => {
       return m.dropdown;
     });
   }

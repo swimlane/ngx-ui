@@ -20,7 +20,7 @@ describe('containsFilter', () => {
     const res = containsFilter(
       {
         test: 'test',
-        nottest: '1'
+        nottest: '1',
       },
       '1',
       {}

@@ -14,7 +14,7 @@ describe('RadioButtonGroupComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       imports: [FormsModule],
-      declarations: [RadioButtonGroupComponentFixture, RadioButtonGroupComponent, RadioButtonComponent]
+      declarations: [RadioButtonGroupComponentFixture, RadioButtonGroupComponent, RadioButtonComponent],
     });
   });
 
@@ -55,7 +55,7 @@ describe('RadioButtonGroupComponent', () => {
   });
 
   describe('onRadioSelected', () => {
-    it('should select radio button', done => {
+    it('should select radio button', (done) => {
       component.radioButtonGroup.onRadioSelected('one');
 
       setTimeout(() => {

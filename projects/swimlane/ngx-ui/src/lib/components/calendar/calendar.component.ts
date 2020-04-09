@@ -8,7 +8,7 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  AfterViewInit
+  AfterViewInit,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import moment from 'moment-timezone';
@@ -22,7 +22,7 @@ import { CalendarView } from './calendar-view.enum';
 const CALENDAR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CalendarComponent),
-  multi: true
+  multi: true,
 };
 
 @Component({
@@ -33,11 +33,11 @@ const CALENDAR_VALUE_ACCESSOR = {
   host: {
     class: 'ngx-calendar',
     tabindex: '1',
-    '(blur)': 'onTouchedCallback()'
+    '(blur)': 'onTouchedCallback()',
   },
   providers: [CALENDAR_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() minDate: Date | string;

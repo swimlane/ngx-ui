@@ -6,7 +6,7 @@ import { DrawerService, DrawerDirection } from '@swimlane/ngx-ui';
   selector: 'app-drawer-page',
   templateUrl: './drawer-page.component.html',
   styleUrls: ['./drawer-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DrawerPageComponent {
   @ViewChild('editTmpl', { static: true })
@@ -37,7 +37,7 @@ export class DrawerPageComponent {
       context: 'Alert Everyone!',
       closeOnOutsideClick,
       parentContainer,
-      isRoot
+      isRoot,
     });
   }
 }

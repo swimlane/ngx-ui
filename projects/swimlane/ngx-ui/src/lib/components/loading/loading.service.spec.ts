@@ -14,11 +14,11 @@ describe('LoadingService', () => {
           provide: InjectionService,
           useValue: {
             appendComponent: () => ({
-              instance: {}
-            })
-          }
-        }
-      ]
+              instance: {},
+            }),
+          },
+        },
+      ],
     });
   });
 
@@ -96,7 +96,7 @@ describe('LoadingService', () => {
   });
 
   describe('Auto Increment', () => {
-    it('should increment progress threshold', done => {
+    it('should increment progress threshold', (done) => {
       service.start();
 
       setTimeout(() => {

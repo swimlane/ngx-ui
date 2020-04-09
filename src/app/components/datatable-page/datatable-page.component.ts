@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-datatable-page',
-  templateUrl: './datatable-page.component.html'
+  templateUrl: './datatable-page.component.html',
 })
 export class DatatablePageComponent {
-  rows: any[] = (function() {
+  rows: any[] = (function () {
     const res = [];
 
     let i = 0;
@@ -13,7 +13,7 @@ export class DatatablePageComponent {
       res.push({
         type: i % 2 ? 'DDOS' : 'Malware',
         os: 'Linux',
-        user: 'cody'
+        user: 'cody',
       });
     }
 

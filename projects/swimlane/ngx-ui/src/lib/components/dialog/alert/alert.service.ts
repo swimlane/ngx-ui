@@ -18,15 +18,15 @@ export class AlertService extends DialogService<AlertComponent> {
       closeOnEscape: false,
       closeButton: false,
       showOverlay: true,
-      visible: true
-    }
+      visible: true,
+    },
   };
 
   protected type: any = AlertComponent;
   private readonly clsMap = {
     [AlertStyles.Danger]: 'ngx-alert-danger',
     [AlertStyles.Warning]: 'ngx-alert-warning',
-    [AlertStyles.Info]: 'ngx-alert-info'
+    [AlertStyles.Info]: 'ngx-alert-info',
   };
 
   constructor(readonly injectionService: InjectionService, readonly overlayService: OverlayService) {
@@ -55,13 +55,13 @@ export class AlertService extends DialogService<AlertComponent> {
       content,
       longPress,
       type,
-      cssClass
+      cssClass,
     });
 
     const list = component.instance.ok.subscribe((data: { data: any }) => {
       subject.next({
         type: 'ok',
-        data
+        data,
       });
 
       subject.complete();
@@ -72,7 +72,7 @@ export class AlertService extends DialogService<AlertComponent> {
     const list2 = component.instance.cancel.subscribe((data: { data: any }) => {
       subject.next({
         type: 'cancel',
-        data
+        data,
       });
 
       subject.complete();

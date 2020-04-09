@@ -8,10 +8,10 @@ describe('SectionComponent', () => {
   let component: SectionComponent;
   let fixture: ComponentFixture<SectionFixtureComponent>;
 
-  beforeEach(done => {
+  beforeEach((done) => {
     TestBed.configureTestingModule({
       declarations: [SectionFixtureComponent],
-      imports: [SectionModule]
+      imports: [SectionModule],
     });
 
     fixture = TestBed.createComponent(SectionFixtureComponent);

@@ -19,7 +19,7 @@ const map = {
   up: '\u2191', // ↑
   down: '\u2193', // ↓
   return: '\u23CE', // ⏎
-  backspace: '\u232B' // ⌫
+  backspace: '\u232B', // ⌫
 };
 /*tslint:enable*/
 
@@ -45,13 +45,13 @@ export function _add(combo: string, opts: Hotkey) {
   opts.keys = _getDisplay(combo);
   opts.visible = opts.visible !== undefined ? opts.visible : true;
 
-  opts.allowIn = Array.isArray(opts.allowIn) ? opts.allowIn.map(tag => tag.toUpperCase()) : [];
+  opts.allowIn = Array.isArray(opts.allowIn) ? opts.allowIn.map((tag) => tag.toUpperCase()) : [];
 
   const mousetrap = new Mousetrap();
 
   if (opts.allowIn.length) {
     /* istanbul ignore next */
-    mousetrap.stopCallback = function(_, element) {
+    mousetrap.stopCallback = function (_, element) {
       if (!tags.includes(element.tagName) || opts.allowIn.includes(element.tagName)) {
         return false;
       }
@@ -164,7 +164,7 @@ export function _deregister(comp: any) {
 export function Hotkey(key: string, description: string, options?: Partial<Hotkey>) {
   return (target: any, name: string) => {
     const oldInit = target.ngOnInit;
-    target.ngOnInit = function() {
+    target.ngOnInit = function () {
       if (oldInit) oldInit.bind(this)();
 
       _add(key, {
@@ -174,12 +174,12 @@ export function Hotkey(key: string, description: string, options?: Partial<Hotke
         description,
         component: this,
         zone: new NgZone({ enableLongStackTrace: false }),
-        ...options
+        ...options,
       });
     };
 
     const oldDestroy = target.ngOnDestroy;
-    target.ngOnDestroy = function() {
+    target.ngOnDestroy = function () {
       if (oldDestroy) oldDestroy.bind(this)();
       _deregister(this);
     };

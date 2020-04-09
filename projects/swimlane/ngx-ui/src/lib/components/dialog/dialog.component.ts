@@ -11,7 +11,7 @@ import {
   ViewEncapsulation,
   Renderer2,
   TemplateRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
@@ -26,34 +26,34 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
         'active',
         style({
           opacity: 1,
-          transform: 'scale3d(1, 1, 1)'
+          transform: 'scale3d(1, 1, 1)',
         })
       ),
       transition('void => *', [
         style({
           opacity: 0,
-          transform: 'scale3d(1.2, 1.2, 1.2)'
+          transform: 'scale3d(1.2, 1.2, 1.2)',
         }),
-        animate('0.2s ease-out')
+        animate('0.2s ease-out'),
       ]),
       transition('* => inactive', [
         style({
           opacity: 1,
-          transform: 'scale3d(1, 1, 1)'
+          transform: 'scale3d(1, 1, 1)',
         }),
         animate(
           '0.2s ease-out',
           style({
             transform: 'scale3d(0.9, 0.9, 1)',
-            opacity: 0
+            opacity: 0,
           })
-        )
-      ])
-    ])
+        ),
+      ]),
+    ]),
   ],
   host: { tabindex: '-1' },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DialogComponent implements OnInit, OnDestroy {
   @Input() id: string;

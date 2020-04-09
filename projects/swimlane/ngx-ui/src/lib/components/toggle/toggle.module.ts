@@ -7,6 +7,6 @@ import { ToggleComponent } from './toggle.component';
 @NgModule({
   declarations: [ToggleComponent],
   exports: [ToggleComponent],
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule],
 })
 export class ToggleModule {}

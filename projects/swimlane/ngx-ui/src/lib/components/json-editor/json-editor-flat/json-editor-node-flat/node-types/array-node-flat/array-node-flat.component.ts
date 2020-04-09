@@ -5,7 +5,7 @@ import {
   ViewChild,
   TemplateRef,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ArrayNode } from '../../../../node-types/array-node.component';
 import { JSONEditorSchema, JsonSchemaDataType, jsonSchemaDataTypes } from '../../../../json-editor.helper';
@@ -17,7 +17,7 @@ import { PropertyConfigOptions, PropertyConfigComponent } from '../property-conf
   templateUrl: './array-node-flat.component.html',
   styleUrls: ['./array-node-flat.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
   @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;
@@ -59,9 +59,9 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
         property: item,
         index,
         schema: this.schema,
-        formats: this.formats
+        formats: this.formats,
       },
-      class: 'property-config-dialog'
+      class: 'property-config-dialog',
     });
   }
 

@@ -10,7 +10,7 @@ describe('InputSuffixComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [InputSuffixComponent]
+      declarations: [InputSuffixComponent],
     });
 
     fixture = TestBed.createComponent(InputSuffixComponent);

@@ -12,6 +12,6 @@ import { NotificationContainerComponent } from './notification-container.compone
   exports: [NotificationComponent, NotificationContainerComponent],
   providers: [NotificationService, InjectionService],
   imports: [CommonModule],
-  entryComponents: [NotificationComponent, NotificationContainerComponent]
+  entryComponents: [NotificationComponent, NotificationContainerComponent],
 })
 export class NotificationModule {}

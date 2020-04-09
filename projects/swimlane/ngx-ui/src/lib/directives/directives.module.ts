@@ -9,6 +9,6 @@ import { PatternValidatorModule } from './validators/pattern-validator/pattern-v
 
 @NgModule({
   exports: [VisibilityModule, DblClickCopyModule, LongPressModule, PatternValidatorModule],
-  imports: [CommonModule, VisibilityModule, DblClickCopyModule, LongPressModule, PatternValidatorModule]
+  imports: [CommonModule, VisibilityModule, DblClickCopyModule, LongPressModule, PatternValidatorModule],
 })
 export class DirectivesModule {}

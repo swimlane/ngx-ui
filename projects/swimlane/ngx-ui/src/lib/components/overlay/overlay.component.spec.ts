@@ -10,7 +10,7 @@ describe('OverlayComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [OverlayComponent],
-      imports: [NoopAnimationsModule]
+      imports: [NoopAnimationsModule],
     });
 
     fixture = TestBed.createComponent(OverlayComponent);

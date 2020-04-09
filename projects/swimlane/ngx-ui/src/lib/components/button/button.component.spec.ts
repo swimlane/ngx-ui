@@ -11,7 +11,7 @@ describe('ButtonComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ButtonComponent]
+      declarations: [ButtonComponent],
     });
   });
 
@@ -51,9 +51,9 @@ describe('ButtonComponent', () => {
       expect(spy).not.toHaveBeenCalled();
     });
 
-    it('should update and resolve', done => {
+    it('should update and resolve', (done) => {
       const spy = spyOn(component, 'updateState');
-      component.promise = new Promise(resolve => {
+      component.promise = new Promise((resolve) => {
         resolve();
       });
 
@@ -64,7 +64,7 @@ describe('ButtonComponent', () => {
       });
     });
 
-    it('should update and reject', done => {
+    it('should update and reject', (done) => {
       const spy = spyOn(component, 'updateState');
       component.promise = new Promise(() => {
         throw new Error();
@@ -99,7 +99,7 @@ describe('ButtonComponent', () => {
       fixture.detectChanges();
       const res = component.onClick({
         stopPropagation: () => null,
-        preventDefault: () => null
+        preventDefault: () => null,
       } as any);
       expect(res).toBe(false);
     });

@@ -17,8 +17,8 @@ describe('AlertService', () => {
         AlertService,
         { provide: InjectionService, useValue: {} },
         { provide: OverlayService, useValue: {} },
-        { provide: AlertTypes, useValue: {} }
-      ]
+        { provide: AlertTypes, useValue: {} },
+      ],
     });
   });
 
@@ -30,8 +30,8 @@ describe('AlertService', () => {
     component = {
       instance: {
         ok: new EventEmitter<void>(),
-        cancel: new EventEmitter<void>()
-      }
+        cancel: new EventEmitter<void>(),
+      },
     };
     spy = spyOn(service, 'create').and.returnValue(component);
   });
@@ -40,21 +40,21 @@ describe('AlertService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should call ok', done => {
+  it('should call ok', (done) => {
     const subject = service.alert({});
 
     subject.subscribe({
-      next: () => done()
+      next: () => done(),
     });
 
     component.instance.ok.emit();
   });
 
-  it('should call cancel', done => {
+  it('should call cancel', (done) => {
     const subject = service.alert({});
 
     subject.subscribe({
-      next: () => done()
+      next: () => done(),
     });
 
     component.instance.cancel.emit();

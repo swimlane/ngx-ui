@@ -5,7 +5,7 @@ import {
   Output,
   EventEmitter,
   ViewEncapsulation,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 
 import { SectionHeaderComponent } from './section-header.component';
@@ -15,11 +15,11 @@ import { SectionHeaderComponent } from './section-header.component';
   exportAs: 'ngxSection',
   templateUrl: './section.component.html',
   host: {
-    class: 'ngx-section'
+    class: 'ngx-section',
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./section.component.scss']
+  styleUrls: ['./section.component.scss'],
 })
 export class SectionComponent {
   @Input() sectionCollapsed: boolean = false;

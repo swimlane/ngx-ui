@@ -1,4 +1,4 @@
 export enum StepperBarAnimationStates {
   Move = 'move',
-  Stay = 'stay'
+  Stay = 'stay',
 }

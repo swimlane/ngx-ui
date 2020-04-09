@@ -9,7 +9,7 @@ import { JSONEditorSchema } from '../../json-editor.helper';
   templateUrl: 'json-editor-node.component.html',
   styleUrls: ['./json-editor-node.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JsonEditorNodeComponent extends JsonEditorNode {
   @Input() model: any;

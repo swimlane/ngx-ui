@@ -26,8 +26,8 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
       type: NotificationType.html,
       styleType: NotificationStyleType.none,
       showClose: true,
-      sound: false
-    }
+      sound: false,
+    },
   };
 
   permission: NotificationPermission;
@@ -73,12 +73,9 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
     if (component.instance && component.instance.timeout !== false) {
       clearTimeout(component.instance.timer);
 
-      component.instance.timer = setTimeout(
-        () => {
-          this.destroy(component);
-        },
-        component.instance.timeout as number
-      );
+      component.instance.timer = setTimeout(() => {
+        this.destroy(component);
+      }, component.instance.timeout as number);
     }
   }
 
@@ -88,7 +85,7 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
 
   requestPermissions(): void {
     if (this.isNativeSupported) {
-      Notification.requestPermission(/* istanbul ignore next */ status => (this.permission = status));
+      Notification.requestPermission(/* istanbul ignore next */ (status) => (this.permission = status));
     }
   }
 

@@ -5,7 +5,7 @@ import {
   OnInit,
   OnChanges,
   HostListener,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BehaviorSubject } from 'rxjs';
@@ -23,10 +23,10 @@ import { ButtonState } from './button-state.enum';
     '[class.active]': 'active$.value',
     '[class.success]': 'success$.value',
     '[class.fail]': 'fail$.value',
-    '[class.disabled-button]': 'disabled'
+    '[class.disabled-button]': 'disabled',
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ButtonComponent implements OnInit, OnChanges {
   @Input() promise?: Promise<any>;

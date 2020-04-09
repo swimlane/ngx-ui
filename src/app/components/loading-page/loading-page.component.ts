@@ -4,7 +4,7 @@ import { LoadingService } from '../../../../projects/swimlane/ngx-ui/src/public_
 @Component({
   selector: 'app-loading-page',
   templateUrl: './loading-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingPageComponent {
   constructor(public loadingService: LoadingService) {}

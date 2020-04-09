@@ -6,7 +6,7 @@ import {
   ViewEncapsulation,
   forwardRef,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -14,7 +14,7 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 const RADIO_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => RadioButtonComponent),
-  multi: true
+  multi: true,
 };
 
 let nextId = 0;
@@ -26,11 +26,11 @@ let nextId = 0;
   styleUrls: ['./radiobutton.component.scss'],
   host: {
     class: 'ngx-radiobutton',
-    '[class.disabled]': 'disabled'
+    '[class.disabled]': 'disabled',
   },
   providers: [RADIO_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioButtonComponent implements ControlValueAccessor {
   readonly UNIQUE_ID = `ngx-radio-${++nextId}`;

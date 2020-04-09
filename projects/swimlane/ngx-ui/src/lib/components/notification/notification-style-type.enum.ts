@@ -3,5 +3,5 @@ export enum NotificationStyleType {
   warning = 'warning',
   error = 'error',
   success = 'success',
-  none = 'none'
+  none = 'none',
 }

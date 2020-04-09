@@ -21,7 +21,7 @@ export function throttle(func: () => void, wait: number, options?: ThrottleOptio
     result = func.apply(context, args);
   }
 
-  return function() {
+  return function () {
     const now = +new Date();
 
     if (!previous && options.leading === false) {

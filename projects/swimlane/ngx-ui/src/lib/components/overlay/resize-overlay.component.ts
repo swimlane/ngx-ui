@@ -5,7 +5,7 @@ import {
   OnInit,
   OnDestroy,
   ChangeDetectorRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { ɵMatchMedia } from '@angular/flex-layout';
 import { Observable } from 'rxjs';
@@ -18,7 +18,7 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
   templateUrl: './resize-overlay.component.html',
   styleUrls: ['./resize-overlay.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 export class ResizeOverlayComponent implements OnInit, OnDestroy {
   @Input() combo = 'ctrl+shift+o';
@@ -69,7 +69,7 @@ export class ResizeOverlayComponent implements OnInit, OnDestroy {
       callback: this.toggle.bind(this),
       description: 'Toggle browser size warning',
       visible: false,
-      component: this
+      component: this,
     });
   }
 

@@ -8,7 +8,7 @@ import {
   forwardRef,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -17,7 +17,7 @@ let nextId = 0;
 const SLIDER_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => SliderComponent),
-  multi: true
+  multi: true,
 };
 
 const edge = window.navigator.userAgent.indexOf('Edge') > -1;
@@ -37,8 +37,8 @@ const edge = window.navigator.userAgent.indexOf('Edge') > -1;
     '[class.disabled]': 'disabled',
     '[class.active]': 'active',
     '[class.vertical]': 'isVertical',
-    '[class.horizontal]': 'isHorizontal'
-  }
+    '[class.horizontal]': 'isHorizontal',
+  },
 })
 export class SliderComponent implements ControlValueAccessor, OnInit {
   @Input() id: string = `range-${++nextId}`;
@@ -75,7 +75,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
 
       this.change.emit({
         value: this._values,
-        percent: this.percent
+        percent: this.percent,
       });
 
       this.cdr.markForCheck();
@@ -108,12 +108,12 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   setValues(values: number[]) {
     this._values = values;
     this._percents = values
-      .map(v => Math.max(this.min, Math.min(this.max, v)))
-      .map(v => Math.round((100 * (v - this.min)) / (this.max - this.min)));
+      .map((v) => Math.max(this.min, Math.min(this.max, v)))
+      .map((v) => Math.round((100 * (v - this.min)) / (this.max - this.min)));
 
-    this._thumbs = this._percents.map(p => {
+    this._thumbs = this._percents.map((p) => {
       return {
-        left: `calc(${p}% - ${p / 100}em)`
+        left: `calc(${p}% - ${p / 100}em)`,
       };
     });
 
@@ -138,7 +138,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
 
       this.change.emit({
         value: this.value,
-        percent: this.percent
+        percent: this.percent,
       });
     }
   }
@@ -157,9 +157,9 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   }
 
   getTicks(): any {
-    return this.getCount().map(p => {
+    return this.getCount().map((p) => {
       return {
-        left: `calc(${p}% - ${p / 100 - 0.5}em)`
+        left: `calc(${p}% - ${p / 100 - 0.5}em)`,
       };
     });
   }
@@ -173,12 +173,12 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
       if (edge && this.multiple) {
         return {
           left: `calc(${percentMin}% - ${percentMin / 100 - 0.5}em)`,
-          'background-size': `calc(${width}% - ${width / 100}em) 100%`
+          'background-size': `calc(${width}% - ${width / 100}em) 100%`,
         };
       }
       return {
         left: `${percentMin}%`,
-        'background-size': `${width}% 100%`
+        'background-size': `${width}% 100%`,
       };
     }
   }
@@ -200,14 +200,14 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
 
     this.change.emit({
       value: this.value,
-      percent: this.percent
+      percent: this.percent,
     });
   }
 
   writeValue(val): void {
     val = val ? String(val).split(',') : ['0'];
     if (String(val) !== String(this._values)) {
-      this.setValues(val.map(v => +v));
+      this.setValues(val.map((v) => +v));
       this.cdr.markForCheck();
     }
   }

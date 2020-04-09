@@ -3,7 +3,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-typography-page',
-  templateUrl: './typography-page.component.html'
+  templateUrl: './typography-page.component.html',
 })
 export class TypographyPageComponent {
   fontStyles = {
@@ -14,7 +14,7 @@ export class TypographyPageComponent {
     'Semi-Bold': 'font-weight: 600; font-style: normal',
     'Semi-Bold Italic': 'font-weight: 600; font-style: italic',
     Bold: 'font-weight: bold; font-style: normal',
-    'Bold Italic': 'font-weight: bold; font-style: italic'
+    'Bold Italic': 'font-weight: bold; font-style: italic',
   };
 
   fontKeys = Object.keys(this.fontStyles);
@@ -39,7 +39,7 @@ export class TypographyPageComponent {
   `;
 
   constructor(private sanitizer: DomSanitizer) {
-    this.fontKeys.forEach(key => {
+    this.fontKeys.forEach((key) => {
       this.fontStyles[key] = this.sanitizer.bypassSecurityTrustStyle(this.fontStyles[key]);
     });
   }

@@ -3,7 +3,7 @@ import { getComputedStyle, rgb2hex } from '../app.utils';
 
 @Component({
   selector: 'app-colors-page',
-  templateUrl: './colors-page.component.html'
+  templateUrl: './colors-page.component.html',
 })
 export class ColorsPageComponent {
   chartColorsOrdinal = [
@@ -19,8 +19,8 @@ export class ColorsPageComponent {
         '#F4E667',
         '#FF990D',
         '#FF5821',
-        '#D24018'
-      ]
+        '#D24018',
+      ],
     },
     {
       name: 'Natural',
@@ -34,8 +34,8 @@ export class ColorsPageComponent {
         '#7693B1',
         '#AFAFAF',
         '#707160',
-        '#D9D5C3'
-      ]
+        '#D9D5C3',
+      ],
     },
     {
       name: 'Cool',
@@ -49,8 +49,8 @@ export class ColorsPageComponent {
         '#A27DA7',
         '#AE6785',
         '#AA5963',
-        '#A9375C'
-      ]
+        '#A9375C',
+      ],
     },
     {
       name: 'Fire',
@@ -64,9 +64,9 @@ export class ColorsPageComponent {
         '#E75200',
         '#FFCC31',
         '#FFAC12',
-        '#FF7002'
-      ]
-    }
+        '#FF7002',
+      ],
+    },
   ];
 
   chartColorsSequential = [
@@ -82,8 +82,8 @@ export class ColorsPageComponent {
         '#FFB414',
         '#FFA10F',
         '#FF900B',
-        '#FF7002'
-      ]
+        '#FF7002',
+      ],
     },
     {
       name: 'Air',
@@ -97,8 +97,8 @@ export class ColorsPageComponent {
         '#0099E4',
         '#0086D0',
         '#0075BC',
-        '#00559A'
-      ]
+        '#00559A',
+      ],
     },
     {
       name: 'Aqua',
@@ -112,9 +112,9 @@ export class ColorsPageComponent {
         '#00ACC1',
         '#0097A7',
         '#00838F',
-        '#006064'
-      ]
-    }
+        '#006064',
+      ],
+    },
   ];
 
   gradients = [
@@ -123,7 +123,7 @@ export class ColorsPageComponent {
     'gradient-blue-red',
     'gradient-blue-purple',
     'gradient-red-orange',
-    'gradient-orange-purple'
+    'gradient-orange-purple',
   ];
 
   shadows = [];

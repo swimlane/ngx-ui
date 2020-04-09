@@ -12,7 +12,7 @@ describe('ObjectNodeComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ObjectNodeComponent, ObjectValuesPipe],
-      imports: [PipesModule]
+      imports: [PipesModule],
     });
     fixture = TestBed.createComponent(ObjectNodeComponent);
     component = fixture.componentInstance;

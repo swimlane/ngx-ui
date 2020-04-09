@@ -6,6 +6,6 @@ import { DecamelizePipe } from './decamelize.pipe';
 @NgModule({
   declarations: [DecamelizePipe],
   exports: [DecamelizePipe],
-  imports: [CommonModule]
+  imports: [CommonModule],
 })
 export class DecamelizeModule {}

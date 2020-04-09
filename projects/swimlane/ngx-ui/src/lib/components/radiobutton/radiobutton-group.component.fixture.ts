@@ -12,7 +12,7 @@ import { RadioButtonGroupComponent } from './radiobutton-group.component';
       </ngx-radiobutton>
     </ngx-radiobutton-group>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RadioButtonGroupComponentFixture {
   value = 'one';

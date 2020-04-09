@@ -3,7 +3,7 @@ import CodeMirror from 'codemirror';
 // Adds mustache as an overlay to text/html
 CodeMirror.defineMode(
   'mustache',
-  /* istanbul ignore next */ function(config: any, parserConfig: any) {
+  /* istanbul ignore next */ function (config: any, parserConfig: any) {
     const mustacheOverlay = {
       token(stream: any, _: any) {
         let ch: any;
@@ -20,7 +20,7 @@ CodeMirror.defineMode(
         }
 
         return null;
-      }
+      },
     };
     return CodeMirror.overlayMode(CodeMirror.getMode(config, parserConfig.backdrop || 'text/html'), mustacheOverlay);
   }

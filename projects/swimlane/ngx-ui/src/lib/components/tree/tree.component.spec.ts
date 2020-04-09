@@ -8,10 +8,10 @@ describe('TreeComponent', () => {
   let component2: TreeComponent;
   let fixture: ComponentFixture<TreeFixtureComponent>;
 
-  beforeEach(done => {
+  beforeEach((done) => {
     TestBed.configureTestingModule({
       imports: [TreeModule],
-      declarations: [TreeFixtureComponent]
+      declarations: [TreeFixtureComponent],
     });
     fixture = TestBed.createComponent(TreeFixtureComponent);
     component1 = fixture.componentInstance.treeComponent1;
