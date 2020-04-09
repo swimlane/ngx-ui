@@ -62,7 +62,7 @@ export class NagComponent implements OnDestroy, OnChanges {
 
   // Controls the bounce animation
   @HostBinding('@bounce')
-  private bounce: number = 0;
+  bounce: number = 0;
 
   private _zIndex: number;
 
