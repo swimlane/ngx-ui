@@ -5,7 +5,7 @@ import {
   ElementRef,
   OnChanges,
   OnInit,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -17,7 +17,7 @@ import { IconRegistryService } from '../../services/icon-registry/icon-registry.
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconComponent implements OnChanges, OnInit {
   @Input() fontIcon: string | string[];

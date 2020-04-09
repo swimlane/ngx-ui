@@ -9,6 +9,6 @@ import { IconRegistryService } from '../../services/icon-registry/icon-registry.
   declarations: [IconComponent],
   exports: [IconComponent],
   imports: [CommonModule, HttpClientModule],
-  providers: [IconRegistryService],
+  providers: [IconRegistryService]
 })
 export class IconModule {}

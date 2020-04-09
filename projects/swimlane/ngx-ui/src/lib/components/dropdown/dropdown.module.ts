@@ -8,6 +8,6 @@ import { DropdownMenuDirective } from './dropdown-menu.directive';
 @NgModule({
   declarations: [DropdownComponent, DropdownToggleDirective, DropdownMenuDirective],
   exports: [DropdownComponent, DropdownToggleDirective, DropdownMenuDirective],
-  imports: [CommonModule],
+  imports: [CommonModule]
 })
 export class DropdownModule {}

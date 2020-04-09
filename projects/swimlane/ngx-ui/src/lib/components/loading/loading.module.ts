@@ -10,6 +10,6 @@ import { LoadingService } from './loading.service';
   providers: [LoadingService, InjectionService],
   exports: [LoadingComponent],
   imports: [CommonModule],
-  entryComponents: [LoadingComponent],
+  entryComponents: [LoadingComponent]
 })
 export class LoadingModule {}

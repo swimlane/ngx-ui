@@ -8,7 +8,7 @@ describe('ArrayNodeComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ArrayNodeComponent],
+      declarations: [ArrayNodeComponent]
     });
     fixture = TestBed.createComponent(ArrayNodeComponent);
     component = fixture.componentInstance;

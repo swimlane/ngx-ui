@@ -10,8 +10,8 @@ describe('VisibilityDirective', () => {
     elementRef = {
       nativeElement: {
         offsetHeight: 0,
-        offsetWidth: 0,
-      },
+        offsetWidth: 0
+      }
     };
 
     directive = new VisibilityDirective(elementRef, new NgZone({}));

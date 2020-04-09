@@ -3,7 +3,7 @@ import ResizeObserver from 'resize-observer-polyfill';
 
 @Directive({
   exportAs: 'resizeObserver',
-  selector: '[resizeObserver]',
+  selector: '[resizeObserver]'
 })
 export class ResizeObserverDirective implements OnInit, OnDestroy {
   @Output('resizeObserver') resize = new EventEmitter<Partial<DOMRectReadOnly>>();

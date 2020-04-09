@@ -3,7 +3,7 @@ import { icons } from '../../../projects/swimlane/ngx-ui/src/lib/assets/icons/js
 
 @Component({
   selector: 'app-icons-page',
-  templateUrl: './icons-page.component.html',
+  templateUrl: './icons-page.component.html'
 })
 export class IconsPageComponent {
   icons = icons.reverse();
@@ -18,6 +18,6 @@ export class IconsPageComponent {
     'dbl-sized',
     'badge',
     'spinning',
-    'spinning-rev',
+    'spinning-rev'
   ];
 }

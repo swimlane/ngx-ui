@@ -12,7 +12,7 @@ import { StepperPosition } from './stepper-position.enum';
       <ngx-step completeIcon="ngx-icon ngx-arrow-right"></ngx-step>
     </ngx-stepper>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StepperComponentFixture {
   @ViewChild(StepperComponent, { static: false })

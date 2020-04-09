@@ -11,7 +11,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   OnDestroy,
-  AfterContentInit,
+  AfterContentInit
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -24,7 +24,7 @@ import { TreeNode } from './tree-node.model';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeComponent implements AfterContentInit, OnDestroy {
   @Input() nodes: TreeNode[];
@@ -34,7 +34,7 @@ export class TreeComponent implements AfterContentInit, OnDestroy {
 
   @Input() icons = {
     collapse: 'icon-tree-collapse',
-    expand: 'icon-tree-expand',
+    expand: 'icon-tree-expand'
   };
 
   @ContentChild(TemplateRef, { static: true })

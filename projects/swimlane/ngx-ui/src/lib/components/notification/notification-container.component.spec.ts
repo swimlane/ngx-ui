@@ -10,7 +10,7 @@ describe('NotificationContainerComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [NotificationContainerComponent],
+      declarations: [NotificationContainerComponent]
     });
   });
 

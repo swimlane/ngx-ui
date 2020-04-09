@@ -9,9 +9,9 @@ import { patternValidator } from './pattern.validator';
     {
       provide: NG_VALIDATORS,
       useExisting: PatternValidatorDirective,
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class PatternValidatorDirective implements Validator {
   @Input('pattern') pattern: string;

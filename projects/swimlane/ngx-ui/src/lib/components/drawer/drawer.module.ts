@@ -13,6 +13,6 @@ import { DrawerContainerDirective } from './drawer-container.directive';
   exports: [DrawerComponent, DrawerContainerDirective],
   providers: [DrawerService, InjectionService, OverlayService],
   imports: [CommonModule, OverlayModule],
-  entryComponents: [DrawerComponent],
+  entryComponents: [DrawerComponent]
 })
 export class DrawerModule {}

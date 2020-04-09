@@ -8,6 +8,6 @@ import { CodeEditorComponent } from './code-editor.component';
 @NgModule({
   declarations: [CodeEditorComponent],
   exports: [CodeEditorComponent],
-  imports: [CommonModule, FormsModule, DirectivesModule],
+  imports: [CommonModule, FormsModule, DirectivesModule]
 })
 export class CodeEditorModule {}

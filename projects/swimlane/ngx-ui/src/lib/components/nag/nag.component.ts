@@ -8,7 +8,7 @@ import {
   OnDestroy,
   Output,
   SimpleChanges,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { trigger } from '@angular/animations';
@@ -22,12 +22,12 @@ import { NAG_DRAWER_ANIMATION } from './nag.animation';
   host: {
     role: 'dialog',
     tabindex: '-1',
-    '[style.zIndex]': 'zIndex',
+    '[style.zIndex]': 'zIndex'
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./nag.component.scss'],
-  animations: [trigger('drawerTransition', NAG_DRAWER_ANIMATION)],
+  animations: [trigger('drawerTransition', NAG_DRAWER_ANIMATION)]
 })
 export class NagComponent implements OnDestroy, OnChanges {
   @Input() cssClass: string = '';

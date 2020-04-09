@@ -6,7 +6,7 @@ import {
   EventEmitter,
   Input,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
@@ -24,14 +24,14 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
         'active',
         style({
           opacity: 0.8,
-          visibility: 'visible',
+          visibility: 'visible'
         })
       ),
       state(
         'inactive',
         style({
           visibility: 'hidden',
-          opacity: 0,
+          opacity: 0
         })
       ),
       transition('* => active', [animate('100ms ease-in')]),
@@ -40,14 +40,14 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
         style({
           opacity: 0,
           visibility: 'hidden',
-          'pointer-events': 'none',
+          'pointer-events': 'none'
         }),
-        animate('100ms ease-out'),
-      ]),
-    ]),
+        animate('100ms ease-out')
+      ])
+    ])
   ],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OverlayComponent {
   @Input()

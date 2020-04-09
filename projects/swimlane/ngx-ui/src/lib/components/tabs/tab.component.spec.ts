@@ -12,8 +12,8 @@ describe('TabComponent', () => {
       declarations: [TabComponent],
       providers: [
         { provide: ElementRef, useValue: elementRefStub },
-        { provide: Renderer2, useValue: renderer2Stub },
-      ],
+        { provide: Renderer2, useValue: renderer2Stub }
+      ]
     });
     fixture = TestBed.createComponent(TabComponent);
     component = fixture.componentInstance;

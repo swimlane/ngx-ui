@@ -36,7 +36,7 @@ import { selectDropdownOptionMock } from './select-dropdown-option.mock';
       ></ngx-select-option>
     </ngx-select>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectComponentFixture {
   selected = [];
@@ -59,7 +59,7 @@ export class SelectComponentFixture {
   readonly options$ = new BehaviorSubject<SelectDropdownOption[]>([
     selectDropdownOptionMock(),
     selectDropdownOptionMock(),
-    selectDropdownOptionMock(),
+    selectDropdownOptionMock()
   ]);
 
   @ViewChild(SelectComponent, { static: false })

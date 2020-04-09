@@ -11,7 +11,7 @@ describe('SectionComponent', () => {
   beforeEach((done) => {
     TestBed.configureTestingModule({
       declarations: [SectionFixtureComponent],
-      imports: [SectionModule],
+      imports: [SectionModule]
     });
 
     fixture = TestBed.createComponent(SectionFixtureComponent);

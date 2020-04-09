@@ -16,8 +16,8 @@ export class DialogService<T = DialogComponent> extends InjectionRegistryService
       closeOnEscape: true,
       closeButton: true,
       showOverlay: true,
-      visible: true,
-    },
+      visible: true
+    }
   };
 
   protected type: any = DialogComponent;
@@ -68,7 +68,7 @@ export class DialogService<T = DialogComponent> extends InjectionRegistryService
       setTimeout(() => {
         this.overlayService.show({
           triggerComponent,
-          zIndex,
+          zIndex
         });
         if (triggerComponent.instance.closeOnBlur) {
           overlaySub = this.overlayService.click.subscribe(kill);

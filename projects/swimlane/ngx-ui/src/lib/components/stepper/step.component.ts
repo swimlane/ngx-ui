@@ -9,7 +9,7 @@ import {
   OnInit,
   ElementRef,
   ContentChildren,
-  QueryList,
+  QueryList
 } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 
@@ -24,10 +24,10 @@ import { StepContentDirective } from './step-content.directive';
     class: 'ngx-step',
     '[class.ngx-step--active]': 'step === active && active !== undefined',
     '[class.ngx-step--semi-complete]': 'step === active - 1',
-    '[class.ngx-step--complete]': 'step < active - 1',
+    '[class.ngx-step--complete]': 'step < active - 1'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class StepComponent implements OnInit {
   @Input() label?: string;

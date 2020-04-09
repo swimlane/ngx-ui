@@ -4,14 +4,14 @@ export function fadeInAnimation(ms = 250) {
   return [
     transition(':enter', [
       style({
-        opacity: 0,
+        opacity: 0
       }),
       animate(
         ms,
         style({
-          opacity: 1,
+          opacity: 1
         })
-      ),
-    ]),
+      )
+    ])
   ];
 }

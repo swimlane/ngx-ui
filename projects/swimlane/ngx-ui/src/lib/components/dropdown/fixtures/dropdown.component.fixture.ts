@@ -15,7 +15,7 @@ import { DropdownComponent } from '../dropdown.component';
       </ngx-dropdown-menu>
     </ngx-dropdown>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponentFixture {
   @ViewChild(DropdownComponent, { static: false })

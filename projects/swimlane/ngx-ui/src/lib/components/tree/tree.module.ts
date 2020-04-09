@@ -8,6 +8,6 @@ import { TreeNodeComponent } from './tree-node.component';
 @NgModule({
   declarations: [TreeComponent, TreeNodeComponent],
   exports: [TreeComponent, TreeNodeComponent],
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule]
 })
 export class TreeModule {}

@@ -4,8 +4,8 @@ import { Directive, Output, EventEmitter, HostListener, ElementRef } from '@angu
 @Directive({
   selector: '[dbl-click-copy]',
   host: {
-    title: 'Double click to copy to clipboard',
-  },
+    title: 'Double click to copy to clipboard'
+  }
 })
 export class DblClickCopyDirective {
   @Output() onCopy = new EventEmitter<Range>();

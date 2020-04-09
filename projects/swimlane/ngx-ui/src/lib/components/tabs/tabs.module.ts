@@ -8,6 +8,6 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
 @NgModule({
   declarations: [TabComponent, TabsComponent, IfTabActiveDirective],
   exports: [TabComponent, TabsComponent, IfTabActiveDirective],
-  imports: [CommonModule],
+  imports: [CommonModule]
 })
 export class TabsModule {}

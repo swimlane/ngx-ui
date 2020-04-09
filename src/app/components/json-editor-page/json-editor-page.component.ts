@@ -4,7 +4,7 @@ import { JSONSchema7 } from 'json-schema';
 @Component({
   selector: 'app-json-editor-page',
   templateUrl: './json-editor-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JsonEditorPageComponent {
   jsonEditorSchema = {
@@ -14,54 +14,54 @@ export class JsonEditorPageComponent {
     type: 'object',
     properties: {
       metaData: {
-        type: ['string', 'string=code', 'number', 'object'],
+        type: ['string', 'string=code', 'number', 'object']
       },
       productId: {
         description: 'The unique identifier for a product',
-        type: 'number',
+        type: 'number'
       },
       productName: {
         description: 'Name of the product',
         type: 'string',
-        examples: ['Apples', 'Oranges'],
+        examples: ['Apples', 'Oranges']
       },
       price: {
         description: 'The price of the product',
         type: 'number',
-        exclusiveMinimum: 0,
+        exclusiveMinimum: 0
       },
       tags: {
         description: 'Tags for the product',
         type: 'array',
         items: {
-          type: 'string',
+          type: 'string'
         },
         minItems: 1,
-        uniqueItems: true,
+        uniqueItems: true
       },
       availability: {
         type: 'string',
         enum: ['In Stock', 'Sold Out'],
-        default: 'In Stock',
+        default: 'In Stock'
       },
       onSale: {
         description: 'The sale status of the product',
-        type: 'boolean',
+        type: 'boolean'
       },
       dimensions: {
         type: 'object',
         properties: {
           length: {
-            type: 'integer',
+            type: 'integer'
           },
           width: {
-            type: 'number',
+            type: 'number'
           },
           height: {
-            type: 'number',
-          },
+            type: 'number'
+          }
         },
-        required: ['length', 'width', 'height'],
+        required: ['length', 'width', 'height']
       },
       warehouseLocation: {
         description: 'Coordinates of the warehouse where the product is located.',
@@ -72,17 +72,17 @@ export class JsonEditorPageComponent {
           latitude: {
             type: 'number',
             minimum: -90,
-            maximum: 90,
+            maximum: 90
           },
           longitude: {
             type: 'number',
             minimum: -180,
-            maximum: 180,
-          },
-        },
-      },
+            maximum: 180
+          }
+        }
+      }
     },
-    required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions'],
+    required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions']
   };
 
   compressed = false;
@@ -90,11 +90,11 @@ export class JsonEditorPageComponent {
   _jsonEditorSchema: any = {};
 
   jsonEditorModel: any = {
-    metaData: "<< console.log('this should be of type code') >>",
+    metaData: "<< console.log('this should be of type code') >>"
   };
 
   jsonEditorModelFlat: any = {
-    metaData: "<< console.log('this should be of type code') >>",
+    metaData: "<< console.log('this should be of type code') >>"
   };
 
   jsonEditorSchemaBuilderModel: any = {};
@@ -111,7 +111,7 @@ export class JsonEditorPageComponent {
       }
       const regex = /^<<(.*)>>$/s;
       return regex.test(value);
-    },
+    }
   };
 
   toggleCompressed(): void {

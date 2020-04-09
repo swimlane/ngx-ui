@@ -10,6 +10,6 @@ import { StepContentDirective } from './step-content.directive';
 @NgModule({
   imports: [CommonModule, ResizeObserverModule],
   declarations: [StepperComponent, StepComponent, StepContentDirective],
-  exports: [StepperComponent, StepComponent, StepContentDirective],
+  exports: [StepperComponent, StepComponent, StepContentDirective]
 })
 export class StepperModule {}

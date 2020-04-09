@@ -14,8 +14,8 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
 
   readonly defaults: DrawerOptions = {
     inputs: {
-      direction: DrawerDirection.Left,
-    },
+      direction: DrawerDirection.Left
+    }
   };
 
   readonly renderer: Renderer2;
@@ -74,7 +74,7 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
     if (isRoot) {
       this.overlayService.show({
         triggerComponent: component,
-        zIndex: this.zIndex,
+        zIndex: this.zIndex
       });
     }
 

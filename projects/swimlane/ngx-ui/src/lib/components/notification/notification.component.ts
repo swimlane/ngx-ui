@@ -7,7 +7,7 @@ import {
   HostBinding,
   ViewEncapsulation,
   TemplateRef,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
@@ -19,7 +19,7 @@ import { NotificationStyleType } from './notification-style-type.enum';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationComponent {
   @Input() cssClass: string = '';

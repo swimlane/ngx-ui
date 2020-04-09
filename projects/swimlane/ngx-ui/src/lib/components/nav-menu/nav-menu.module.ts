@@ -8,6 +8,6 @@ import { IconModule } from '../icon/icon.module';
 @NgModule({
   declarations: [NavMenuComponent],
   imports: [CommonModule, IconModule, TooltipModule],
-  exports: [NavMenuComponent],
+  exports: [NavMenuComponent]
 })
 export class NavMenuModule {}

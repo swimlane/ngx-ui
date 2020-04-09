@@ -6,6 +6,6 @@ import { PatternValidatorDirective } from './pattern-validator.directive';
 @NgModule({
   declarations: [PatternValidatorDirective],
   exports: [PatternValidatorDirective],
-  imports: [CommonModule],
+  imports: [CommonModule]
 })
 export class PatternValidatorModule {}

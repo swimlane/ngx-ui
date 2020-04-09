@@ -7,7 +7,7 @@ import {
   AfterViewInit,
   TemplateRef,
   ElementRef,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
@@ -19,7 +19,7 @@ import { SelectDropdownOption } from './select-dropdown-option.interface';
   selector: 'ngx-select-input',
   templateUrl: './select-input.component.html',
   host: { class: 'ngx-select-input' },
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectInputComponent implements AfterViewInit {
   @Input() placeholder: string;

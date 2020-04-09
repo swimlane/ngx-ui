@@ -13,10 +13,10 @@ import { SplitDirection } from './split-direction.enum';
   host: {
     class: 'ngx-split-handle',
     '[class.direction-row]': 'isRow',
-    '[class.direction-column]': 'isColumn',
+    '[class.direction-column]': 'isColumn'
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SplitHandleComponent {
   @Output() drag = new EventEmitter<{ x: number; y: number }>();

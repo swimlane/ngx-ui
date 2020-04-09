@@ -6,6 +6,6 @@ import { DblClickCopyDirective } from './dbl-click-copy.directive';
 @NgModule({
   declarations: [DblClickCopyDirective],
   exports: [DblClickCopyDirective],
-  imports: [CommonModule],
+  imports: [CommonModule]
 })
 export class DblClickCopyModule {}

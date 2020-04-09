@@ -6,7 +6,7 @@ import {
   forwardRef,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
+  ChangeDetectorRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -14,7 +14,7 @@ import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coerci
 const CHKBOX_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CheckboxComponent),
-  multi: true,
+  multi: true
 };
 
 let nextId = 0;
@@ -28,11 +28,11 @@ let nextId = 0;
     class: 'ngx-checkbox',
     '[class.disabled]': 'disabled',
     '[class.round]': 'round',
-    '(blur)': 'onBlur($event)',
+    '(blur)': 'onBlur($event)'
   },
   providers: [CHKBOX_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent implements ControlValueAccessor {
   @Input() id = `checkbox-${++nextId}`;

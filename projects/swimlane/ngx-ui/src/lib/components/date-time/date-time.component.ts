@@ -9,7 +9,7 @@ import {
   TemplateRef,
   OnDestroy,
   ElementRef,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -26,7 +26,7 @@ let nextId = 0;
 const DATE_TIME_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => DateTimeComponent),
-  multi: true,
+  multi: true
 };
 
 @Component({
@@ -36,7 +36,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
   styleUrls: ['./date-time.component.scss'],
   providers: [DATE_TIME_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() id: string = `datetime-${++nextId}`;
@@ -198,7 +198,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this.dialog = this.dialogService.create({
       cssClass: 'ngx-date-time-dialog',
       template: this.calendarTpl,
-      closeButton: false,
+      closeButton: false
     });
   }
 

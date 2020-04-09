@@ -13,7 +13,7 @@ describe('StepperComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [StepperComponentFixture],
-      imports: [StepperModule, BrowserAnimationsModule],
+      imports: [StepperModule, BrowserAnimationsModule]
     });
   });
 

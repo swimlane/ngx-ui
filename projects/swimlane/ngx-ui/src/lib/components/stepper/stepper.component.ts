@@ -8,7 +8,7 @@ import {
   EventEmitter,
   ContentChildren,
   QueryList,
-  OnDestroy,
+  OnDestroy
 } from '@angular/core';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Subject } from 'rxjs';
@@ -31,16 +31,16 @@ import { StepperBarAnimationStates } from './stepper-bar-animation-states.enum';
     '[class.ngx-stepper--top]': 'position === StepperPosition.Top',
     '[class.ngx-stepper--bottom]': 'position === StepperPosition.Bottom',
     '[class.ngx-stepper--left]': 'position === StepperPosition.Left',
-    '[class.ngx-stepper--right]': 'position === StepperPosition.Right',
+    '[class.ngx-stepper--right]': 'position === StepperPosition.Right'
   },
   animations: [
     stepperAnimations.horizontalStepTransition,
     stepperAnimations.verticalStepTransition,
     stepperAnimations.horizontalBarTransition,
-    stepperAnimations.verticalBarTransition,
+    stepperAnimations.verticalBarTransition
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class StepperComponent implements OnDestroy {
   @Input() position = StepperPosition.Top;

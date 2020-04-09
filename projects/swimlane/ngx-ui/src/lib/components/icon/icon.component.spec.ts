@@ -16,7 +16,7 @@ describe('IconComponent', () => {
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [IconComponent],
       imports: [HttpClientTestingModule],
-      providers: [{ provide: IconRegistryService, useValue: { get: () => ['test'] } }],
+      providers: [{ provide: IconRegistryService, useValue: { get: () => ['test'] } }]
     });
   });
 

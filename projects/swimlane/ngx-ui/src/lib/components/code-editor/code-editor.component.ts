@@ -9,7 +9,7 @@ import {
   forwardRef,
   AfterViewInit,
   ViewEncapsulation,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -43,7 +43,7 @@ import { HintCompletion } from './hint-completion.interface';
 const CODEMIRROR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CodeEditorComponent),
-  multi: true,
+  multi: true
 };
 
 @Component({
@@ -61,8 +61,8 @@ const CODEMIRROR_VALUE_ACCESSOR = {
     './foldgutter.css',
     './dracula.css',
     './hint.scss',
-    './code-editor.component.scss',
-  ],
+    './code-editor.component.scss'
+  ]
 })
 export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() config: any = { lineWrapping: true };
@@ -126,9 +126,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
       lineNumbers: this.lineNumbers,
       gutters: this.gutters,
       extraKeys: {
-        'Ctrl-Space': 'autocomplete',
+        'Ctrl-Space': 'autocomplete'
       },
-      ...this.config,
+      ...this.config
     };
 
     if (this.autocompleteTokens) {
@@ -260,7 +260,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
     return {
       list,
       from: CodeMirror.Pos(cur.line, start),
-      to: CodeMirror.Pos(cur.line, end),
+      to: CodeMirror.Pos(cur.line, end)
     };
   }
 }

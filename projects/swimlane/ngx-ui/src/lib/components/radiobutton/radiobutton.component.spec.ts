@@ -13,7 +13,7 @@ describe('RadioButtonComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       imports: [FormsModule],
-      declarations: [RadioButtonComponent, RadioButtonComponentFixture],
+      declarations: [RadioButtonComponent, RadioButtonComponentFixture]
     });
   });
 

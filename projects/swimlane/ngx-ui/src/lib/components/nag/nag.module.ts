@@ -9,6 +9,6 @@ import { NagComponent } from './nag.component';
   declarations: [NagComponent],
   exports: [NagComponent],
   imports: [CommonModule, ToolbarModule, IconModule],
-  entryComponents: [NagComponent],
+  entryComponents: [NagComponent]
 })
 export class NagModule {}

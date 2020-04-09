@@ -8,7 +8,7 @@ export function notificationMock(opts?: NotificationOptions): { instance: Notifi
       title: faker.random.word(),
       body: faker.random.words(10),
       timestamp: new Date().getTime(),
-      ...opts,
-    },
+      ...opts
+    }
   };
 }

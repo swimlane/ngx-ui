@@ -26,8 +26,8 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
       type: NotificationType.html,
       styleType: NotificationStyleType.none,
       showClose: true,
-      sound: false,
-    },
+      sound: false
+    }
   };
 
   permission: NotificationPermission;

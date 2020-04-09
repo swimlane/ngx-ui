@@ -11,7 +11,7 @@ describe('CodeEditorComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [CodeEditorComponent],
+      declarations: [CodeEditorComponent]
     });
   });
 

@@ -13,11 +13,11 @@ describe('NotificationService', () => {
 
   beforeEach(() => {
     const injectionServiceStub = {
-      appendComponent: () => undefined,
+      appendComponent: () => undefined
     };
 
     TestBed.configureTestingModule({
-      providers: [NotificationService, { provide: InjectionService, useValue: injectionServiceStub }],
+      providers: [NotificationService, { provide: InjectionService, useValue: injectionServiceStub }]
     });
   });
 
@@ -43,8 +43,8 @@ describe('NotificationService', () => {
         instance: {
           close: new EventEmitter<void>(),
           pause: new EventEmitter<void>(),
-          resume: new EventEmitter<void>(),
-        },
+          resume: new EventEmitter<void>()
+        }
       };
       spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
     });
@@ -171,8 +171,8 @@ describe('NotificationService', () => {
         instance: {
           close: new EventEmitter<void>(),
           pause: new EventEmitter<void>(),
-          resume: new EventEmitter<void>(),
-        },
+          resume: new EventEmitter<void>()
+        }
       };
     });
 
@@ -216,7 +216,7 @@ describe('NotificationService', () => {
         service.isFlooded({
           title: notifications[0].instance.title,
           body: notifications[0].instance.body,
-          timestamp: notifications[0].instance.timestamp - 2000,
+          timestamp: notifications[0].instance.timestamp - 2000
         })
       ).toBeTruthy();
     });

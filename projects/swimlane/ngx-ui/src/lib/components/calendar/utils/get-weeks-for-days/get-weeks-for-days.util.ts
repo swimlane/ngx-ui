@@ -31,7 +31,7 @@ export function getWeeksForDays(days: CalendarDay[], startDay: number) {
           num: date.date(),
           dayOfWeek: date.day(),
           date,
-          prevMonth: true,
+          prevMonth: true
         };
       });
 
@@ -48,7 +48,7 @@ export function getWeeksForDays(days: CalendarDay[], startDay: number) {
           num: date.date(),
           dayOfWeek: date.day(),
           date,
-          nextMonth: true,
+          nextMonth: true
         };
       });
 
@@ -61,7 +61,7 @@ export function getWeeksForDays(days: CalendarDay[], startDay: number) {
         'last-day-of-week': day.dayOfWeek === 6,
         today: day.today,
         'next-month': day.nextMonth,
-        'prev-month': day.prevMonth,
+        'prev-month': day.prevMonth
       };
     });
 

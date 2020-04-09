@@ -10,7 +10,7 @@ import {
   Renderer2,
   TemplateRef,
   ViewContainerRef,
-  ComponentRef,
+  ComponentRef
 } from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
@@ -25,7 +25,7 @@ import { TooltipContentComponent } from './tooltip.component';
 // tslint:disable-next-line:directive-selector
 @Directive({
   selector: '[ngx-tooltip]',
-  exportAs: 'ngxTooltip',
+  exportAs: 'ngxTooltip'
 })
 export class TooltipDirective implements OnDestroy {
   @Input() tooltipCssClass: string = '';
@@ -274,7 +274,7 @@ export class TooltipDirective implements OnDestroy {
       showCaret: this.tooltipShowCaret,
       cssClass: this.tooltipCssClass,
       spacing: this.tooltipSpacing,
-      context: this.tooltipContext,
+      context: this.tooltipContext
     };
   }
 }

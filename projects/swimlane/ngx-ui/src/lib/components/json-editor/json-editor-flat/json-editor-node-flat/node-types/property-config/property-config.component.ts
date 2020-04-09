@@ -5,7 +5,7 @@ import {
   EventEmitter,
   Output,
   ViewEncapsulation,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { DialogService } from '../../../../../dialog/dialog.service';
 import { JSONEditorSchema, propTypes, JsonSchemaDataType } from '../../../../json-editor.helper';
@@ -23,7 +23,7 @@ export interface PropertyConfigOptions {
   templateUrl: './property-config.component.html',
   styleUrls: ['./property-config.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PropertyConfigComponent implements OnInit {
   @Input() property: JSONEditorSchema;
@@ -64,7 +64,7 @@ export class PropertyConfigComponent implements OnInit {
       required: this.required,
       index: this.index,
       newProperty: this.editableProperty,
-      oldProperty: this.property,
+      oldProperty: this.property
     });
   }
 

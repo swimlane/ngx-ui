@@ -11,7 +11,7 @@ describe('ButtonComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [ButtonComponent],
+      declarations: [ButtonComponent]
     });
   });
 
@@ -99,7 +99,7 @@ describe('ButtonComponent', () => {
       fixture.detectChanges();
       const res = component.onClick({
         stopPropagation: () => null,
-        preventDefault: () => null,
+        preventDefault: () => null
       } as any);
       expect(res).toBe(false);
     });

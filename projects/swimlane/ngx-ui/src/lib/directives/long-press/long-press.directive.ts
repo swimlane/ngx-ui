@@ -3,7 +3,7 @@ import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coerci
 
 // tslint:disable-next-line:directive-selector
 @Directive({
-  selector: '[long-press]',
+  selector: '[long-press]'
 })
 export class LongPressDirective {
   @Input()

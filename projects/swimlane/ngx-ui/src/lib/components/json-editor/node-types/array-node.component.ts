@@ -9,7 +9,7 @@ import {
   getCurrentType,
   JsonSchemaDataType,
   JSONEditorSchema,
-  jsonSchemaDataFormats,
+  jsonSchemaDataFormats
 } from '../json-editor.helper';
 
 export class ArrayNode implements OnChanges {

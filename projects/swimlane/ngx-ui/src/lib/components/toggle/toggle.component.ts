@@ -4,7 +4,7 @@ import {
   ViewEncapsulation,
   forwardRef,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -12,7 +12,7 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 const TOGGLE_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => ToggleComponent),
-  multi: true,
+  multi: true
 };
 
 let nextId = 0;
@@ -27,8 +27,8 @@ let nextId = 0;
   providers: [TOGGLE_VALUE_ACCESSOR],
   host: {
     class: 'ngx-toggle',
-    '[class.disabled]': 'getDisabled',
-  },
+    '[class.disabled]': 'getDisabled'
+  }
 })
 export class ToggleComponent implements ControlValueAccessor {
   @Input() id: string = `toggle-${++nextId}`;

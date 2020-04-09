@@ -4,7 +4,7 @@ import { FileUploader } from '@swimlane/ng2-file-upload';
 @Component({
   selector: 'app-buttons-page',
   templateUrl: './buttons-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonsPageComponent {
   buttonPromise: any = undefined;
@@ -13,12 +13,12 @@ export class ButtonsPageComponent {
 
   uploadOptions = {
     url: 'https://evening-anchorage-3159.herokuapp.com/api/',
-    autoUpload: true,
+    autoUpload: true
   };
 
   uploaderInstance = new FileUploader({
     url: 'https://evening-anchorage-3159.herokuapp.com/api/',
-    autoUpload: false,
+    autoUpload: false
   });
 
   onClick(msg: string, targetId?: string) {

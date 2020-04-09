@@ -12,7 +12,7 @@ describe('OverlayService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [OverlayModule],
+      imports: [OverlayModule]
     }).compileComponents();
 
     component = TestBed.createComponent(OverlayComponent);

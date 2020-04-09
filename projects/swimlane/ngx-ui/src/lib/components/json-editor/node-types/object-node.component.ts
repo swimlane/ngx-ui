@@ -10,7 +10,7 @@ import {
   getCurrentType,
   JsonSchemaDataType,
   JSONEditorSchema,
-  PropertyIndex,
+  PropertyIndex
 } from '../json-editor.helper';
 import { JSONSchema7TypeName } from 'json-schema';
 
@@ -71,7 +71,7 @@ export class ObjectNode implements OnInit, OnChanges {
           if (this.model[prop] !== undefined) {
             this.schema.properties[prop] = {
               ...this.schema.properties[prop],
-              ...inferType(this.model[prop], this.typeCheckOverrides, this.schema.properties[prop].$meta.type),
+              ...inferType(this.model[prop], this.typeCheckOverrides, this.schema.properties[prop].$meta.type)
             };
           } else {
             this.schema.properties[prop].type = this.schema.properties[prop].type[0] as JSONSchema7TypeName;
@@ -262,7 +262,7 @@ export class ObjectNode implements OnInit, OnChanges {
 
         if (!matchesPattern) {
           schema = {
-            ...inferType(this.model[prop], this.typeCheckOverrides),
+            ...inferType(this.model[prop], this.typeCheckOverrides)
           };
         }
       }

@@ -22,7 +22,7 @@ export function jsonToTree(value: any, label?: string): TreeNode {
         expandable,
         expanded: true,
         model: { type, value },
-        children,
+        children
       };
     case 'array':
       children = value.map(jsonToTree);
@@ -33,13 +33,13 @@ export function jsonToTree(value: any, label?: string): TreeNode {
         expandable,
         expanded: true,
         model: { type, value },
-        children,
+        children
       };
     default:
       return {
         label,
         expandable,
-        model: { type, value },
+        model: { type, value }
       };
   }
 }

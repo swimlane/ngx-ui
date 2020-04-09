@@ -19,7 +19,7 @@ const map = {
   up: '\u2191', // ↑
   down: '\u2193', // ↓
   return: '\u23CE', // ⏎
-  backspace: '\u232B', // ⌫
+  backspace: '\u232B' // ⌫
 };
 /*tslint:enable*/
 
@@ -174,7 +174,7 @@ export function Hotkey(key: string, description: string, options?: Partial<Hotke
         description,
         component: this,
         zone: new NgZone({ enableLongStackTrace: false }),
-        ...options,
+        ...options
       });
     };
 

@@ -14,11 +14,11 @@ describe('LoadingService', () => {
           provide: InjectionService,
           useValue: {
             appendComponent: () => ({
-              instance: {},
-            }),
-          },
-        },
-      ],
+              instance: {}
+            })
+          }
+        }
+      ]
     });
   });
 

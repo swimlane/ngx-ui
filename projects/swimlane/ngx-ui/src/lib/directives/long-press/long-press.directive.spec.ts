@@ -4,7 +4,7 @@ describe('LongPressDirective', () => {
   let directive: LongPressDirective;
   const mockMouseEvent: MouseEvent = {
     stopPropagation: () => undefined,
-    preventDefault: () => undefined,
+    preventDefault: () => undefined
   } as any;
 
   beforeEach(() => {

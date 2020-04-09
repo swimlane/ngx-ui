@@ -3,5 +3,5 @@ export enum StepperAnimationStates {
   Right = 'right',
   Current = 'current',
   Up = 'up',
-  Down = 'down',
+  Down = 'down'
 }

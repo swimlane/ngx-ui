@@ -13,7 +13,7 @@ describe('LongPressButtonComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       imports: [BrowserAnimationsModule],
-      declarations: [LongPressButtonComponent],
+      declarations: [LongPressButtonComponent]
     });
   });
 

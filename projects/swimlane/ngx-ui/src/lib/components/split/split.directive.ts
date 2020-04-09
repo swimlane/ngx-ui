@@ -14,8 +14,8 @@ import { resizeAreaBy } from './resize-area-by.util';
   host: {
     class: 'ngx-split',
     '[class.row-split]': 'rowCss',
-    '[class.column-split]': 'columnCss',
-  },
+    '[class.column-split]': 'columnCss'
+  }
 })
 export class SplitDirective implements AfterContentInit, OnChanges {
   @Input('ngxSplit') direction = SplitDirection.Row;

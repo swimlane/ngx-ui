@@ -10,7 +10,7 @@
     'red': $color-red,
     'purple': $color-purple,
     'blue-grey': $color-blue-grey,
-    'grey': $color-grey,
+    'grey': $color-grey
   );
 
   $palette: (
@@ -31,7 +31,7 @@
     750: 25%,
     800: 30%,
     850: 35%,
-    900: 40%,
+    900: 40%
   );
 
   @each $name, $hex in $colors {

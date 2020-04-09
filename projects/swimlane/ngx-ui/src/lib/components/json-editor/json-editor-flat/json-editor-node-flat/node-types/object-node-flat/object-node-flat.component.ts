@@ -6,7 +6,7 @@ import {
   TemplateRef,
   OnInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ObjectNode } from '../../../../node-types/object-node.component';
 import { DialogService } from '../../../../../dialog/dialog.service';
@@ -14,7 +14,7 @@ import {
   JsonSchemaDataType,
   jsonSchemaDataTypes,
   JSONEditorSchema,
-  createValueForSchema,
+  createValueForSchema
 } from '../../../../json-editor.helper';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { PropertyConfigOptions, PropertyConfigComponent } from '../property-config/property-config.component';
@@ -24,7 +24,7 @@ import { PropertyConfigOptions, PropertyConfigComponent } from '../property-conf
   templateUrl: './object-node-flat.component.html',
   styleUrls: ['./object-node-flat.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;
@@ -78,9 +78,9 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
         property,
         index,
         schema: this.schema,
-        formats: this.formats,
+        formats: this.formats
       },
-      class: 'property-config-dialog',
+      class: 'property-config-dialog'
     });
   }
 
@@ -199,7 +199,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
       ...(prop['maxLength'] && { maxLength: prop['maxLength'] }),
       ...(prop['minItems'] && { minItems: prop['minItems'] }),
       ...(prop['maxItems'] && { maxItems: prop['maxItems'] }),
-      ...(prop['pattern'] && { pattern: prop['pattern'] }),
+      ...(prop['pattern'] && { pattern: prop['pattern'] })
     };
   }
 

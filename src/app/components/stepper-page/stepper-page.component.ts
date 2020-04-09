@@ -5,7 +5,7 @@ import * as faker from 'faker';
 @Component({
   selector: 'app-stepper-page',
   templateUrl: './stepper-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StepperPageComponent {
   readonly StepperPosition = StepperPosition;
@@ -13,7 +13,7 @@ export class StepperPageComponent {
     { title: faker.random.word() },
     { title: faker.random.word() },
     { title: faker.random.word() },
-    { title: faker.random.word() },
+    { title: faker.random.word() }
   ];
 
   index = 2;
@@ -39,7 +39,7 @@ export class StepperPageComponent {
   addStep() {
     this.steps.push({
       title: faker.random.word(),
-      icon: 'ngx-icon ngx-bug',
+      icon: 'ngx-icon ngx-bug'
     });
   }
 }

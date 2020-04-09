@@ -12,7 +12,7 @@ import {
   ViewChild,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -27,7 +27,7 @@ let nextId = 0;
 const SELECT_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => SelectComponent),
-  multi: true,
+  multi: true
 };
 
 @Component({
@@ -46,11 +46,11 @@ const SELECT_VALUE_ACCESSOR = {
     '[class.disabled]': 'disabled',
     '[class.active]': 'dropdownActive',
     '[class.active-selections]': 'hasSelections',
-    '[class.has-placeholder]': 'hasPlaceholder',
+    '[class.has-placeholder]': 'hasPlaceholder'
   },
   providers: [SELECT_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() id: string = `select-${++nextId}`;

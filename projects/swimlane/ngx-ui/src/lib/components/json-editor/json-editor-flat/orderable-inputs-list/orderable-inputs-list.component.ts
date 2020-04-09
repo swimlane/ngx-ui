@@ -5,7 +5,7 @@ import {
   OnInit,
   Output,
   EventEmitter,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop';
 import { debounceable } from '../../../../decorators/debounceable/debounceable.decorator';
@@ -19,7 +19,7 @@ interface DataValue {
   templateUrl: './orderable-inputs-list.component.html',
   styleUrls: ['./orderable-inputs-list.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrderableInputsListComponent implements OnInit {
   @Input() data: string[];
@@ -30,14 +30,14 @@ export class OrderableInputsListComponent implements OnInit {
   ngOnInit() {
     (this.data || []).forEach((item) => {
       this.dataValues.push({
-        value: item,
+        value: item
       });
     });
   }
 
   addExample(): void {
     this.dataValues.push({
-      value: '',
+      value: ''
     });
   }
 

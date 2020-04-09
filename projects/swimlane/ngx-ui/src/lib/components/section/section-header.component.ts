@@ -5,6 +5,6 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/
   exportAs: 'ngxSectionHeader',
   template: ` <ng-content></ng-content> `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class SectionHeaderComponent {}

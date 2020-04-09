@@ -10,7 +10,7 @@ import {
   OnDestroy,
   AfterContentInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
+  ChangeDetectorRef
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -22,7 +22,7 @@ import { RadioButtonComponent } from './radiobutton.component';
 const RADIOGROUP_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => RadioButtonGroupComponent),
-  multi: true,
+  multi: true
 };
 
 let nextId = 0;
@@ -35,10 +35,10 @@ let nextId = 0;
   styleUrls: ['./radiobutton.component.scss'],
   host: {
     class: 'ngx-radiobutton-group',
-    '[class.disabled]': 'disabled',
+    '[class.disabled]': 'disabled'
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestroy, AfterContentInit {
   readonly UNIQUE_ID = `ngx-radio-group-${++nextId}`;

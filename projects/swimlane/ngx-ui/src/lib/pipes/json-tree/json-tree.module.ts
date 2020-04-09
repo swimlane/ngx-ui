@@ -6,6 +6,6 @@ import { JSONTreePipe } from './json-tree.pipe';
 @NgModule({
   declarations: [JSONTreePipe],
   exports: [JSONTreePipe],
-  imports: [CommonModule],
+  imports: [CommonModule]
 })
 export class JSONTreeModule {}

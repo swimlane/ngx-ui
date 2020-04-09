@@ -4,7 +4,7 @@ import { ElementRef, Directive } from '@angular/core';
   // tslint:disable-next-line:directive-selector
   exportAs: 'ngxDropdownMenu',
   selector: 'ngx-dropdown-menu',
-  host: { class: 'ngx-dropdown-menu' },
+  host: { class: 'ngx-dropdown-menu' }
 })
 export class DropdownMenuDirective {
   readonly element: HTMLElement;

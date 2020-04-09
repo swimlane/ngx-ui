@@ -19,7 +19,7 @@ describe('CalendarComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CalendarComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [MomentModule, PipesModule],
+      imports: [MomentModule, PipesModule]
     }).compileComponents();
   }));
 
@@ -178,14 +178,14 @@ describe('CalendarComponent', () => {
       component.onDayClick({
         date: moment(),
         nextMonth: true,
-        prevMonth: true,
+        prevMonth: true
       } as any);
       expect(component.weeks.length).toBeGreaterThan(0);
     });
 
     it('should set value but not set weeks of month', () => {
       component.onDayClick({
-        date: moment(),
+        date: moment()
       } as any);
       expect(component.weeks.length).toBe(0);
     });

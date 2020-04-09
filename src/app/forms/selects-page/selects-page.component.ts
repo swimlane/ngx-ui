@@ -6,7 +6,7 @@ import * as faker from 'faker';
 @Component({
   selector: 'app-selects-page',
   templateUrl: './selects-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectsPageComponent implements OnInit {
   selects = this._results;
@@ -23,7 +23,7 @@ export class SelectsPageComponent implements OnInit {
         name: faker.random.word(),
         attr: `${i}_intrusion_breach`,
         address: `${faker.address.streetAddress(true)}`,
-        disabled: i === 48,
+        disabled: i === 48
       });
     }
 

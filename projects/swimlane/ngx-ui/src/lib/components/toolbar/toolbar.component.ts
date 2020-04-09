@@ -7,7 +7,7 @@ import {
   ViewEncapsulation,
   Renderer2,
   ElementRef,
-  ChangeDetectionStrategy,
+  ChangeDetectionStrategy
 } from '@angular/core';
 
 import { ToolbarTitleDirective } from './toolbar-title.directive';
@@ -21,8 +21,8 @@ import { ToolbarMenuItem } from './toolbar-menu-item.interface';
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./toolbar.component.scss'],
   host: {
-    class: 'ngx-toolbar',
-  },
+    class: 'ngx-toolbar'
+  }
 })
 export class ToolbarComponent {
   @Input() title: string;

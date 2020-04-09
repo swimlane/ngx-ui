@@ -10,9 +10,9 @@ export function bounceAnimation(ms = 300) {
         keyframes([
           style({ transform: 'translateY(0)', offset: 0 }),
           style({ transform: 'translateY(-15px)', offset: 0.3 }),
-          style({ transform: 'translateY(0)', offset: 1.0 }),
+          style({ transform: 'translateY(0)', offset: 1.0 })
         ])
       )
-    ),
+    )
   ];
 }

@@ -13,7 +13,7 @@ describe('NagComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [NagComponent],
-      imports: [NoopAnimationsModule],
+      imports: [NoopAnimationsModule]
     });
     fixture = TestBed.createComponent(NagComponent);
     component = fixture.componentInstance;

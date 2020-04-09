@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-pipes-page',
-  templateUrl: './pipes-page.component.html',
+  templateUrl: './pipes-page.component.html'
 })
 export class PipesPageComponent {
   jsonObject = JSON.parse(`{
@@ -29,7 +29,7 @@ export class PipesPageComponent {
     'GEORGE WEASLEY',
     'LUNA LOVEGOOD',
     'ANGELINA JOHNSON',
-    'KATIE BELL',
+    'KATIE BELL'
   ];
 
   stringFilter = '';

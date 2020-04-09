@@ -11,7 +11,7 @@ describe('ToggleComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ToggleComponent],
-      imports: [FormsModule],
+      imports: [FormsModule]
     });
 
     fixture = TestBed.createComponent(ToggleComponent);

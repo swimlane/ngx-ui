@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'app-code-editor-page',
   templateUrl: './code-editor-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CodeEditorPageComponent {
   editorResult: any;
@@ -41,6 +41,6 @@ function moo() {
     { text: '{{#link}} {{/link}}', displayText: 'Link' },
     { text: '{{#items}} {{/items}}', displayText: 'Items' },
     { text: '{{#first}} {{/first}}', displayText: 'First' },
-    { text: '{{#bug}} {{/bug}}', displayText: 'Bug' },
+    { text: '{{#bug}} {{/bug}}', displayText: 'Bug' }
   ];
 }

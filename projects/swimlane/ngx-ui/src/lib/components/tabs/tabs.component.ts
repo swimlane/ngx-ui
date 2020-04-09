@@ -9,7 +9,7 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  OnDestroy,
+  OnDestroy
 } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -21,11 +21,11 @@ import { TabComponent } from './tab.component';
   selector: 'ngx-tabs',
   templateUrl: './tabs.component.html',
   host: {
-    class: 'ngx-tabs',
+    class: 'ngx-tabs'
   },
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./tabs.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsComponent implements AfterContentInit, OnDestroy {
   @Input() vertical: boolean;

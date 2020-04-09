@@ -7,7 +7,7 @@ import {
   OnInit,
   OnChanges,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
+  ChangeDetectorRef
 } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -23,27 +23,27 @@ import { LongPressButtonState } from './long-press-button-state.enum';
     class: 'ngx-long-press',
     '[class.disabled-button]': 'disabled',
     '[class.active]': 'state === LongPressButtonState.Active',
-    '[class.submitted]': 'state === LongPressButtonState.Submitted',
+    '[class.submitted]': 'state === LongPressButtonState.Submitted'
   },
   animations: [
     trigger('circleAnimation', [
       state(
         'active',
         style({
-          strokeDasharray: '1000 1000',
+          strokeDasharray: '1000 1000'
         })
       ),
       state(
         'inactive',
         style({
-          strokeDasharray: '0 1000',
+          strokeDasharray: '0 1000'
         })
       ),
-      transition('inactive => active', animate(`{{ duration }}ms ease-out`), { params: { duration: 1000 } }),
-    ]),
+      transition('inactive => active', animate(`{{ duration }}ms ease-out`), { params: { duration: 1000 } })
+    ])
   ],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LongPressButtonComponent implements OnInit, OnChanges {
   @Input() state = LongPressButtonState.Active;

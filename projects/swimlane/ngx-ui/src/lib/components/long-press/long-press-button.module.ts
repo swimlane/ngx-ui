@@ -7,6 +7,6 @@ import { DirectivesModule } from '../../directives/directives.module';
 @NgModule({
   declarations: [LongPressButtonComponent],
   exports: [LongPressButtonComponent],
-  imports: [CommonModule, IconModule, DirectivesModule],
+  imports: [CommonModule, IconModule, DirectivesModule]
 })
 export class LongPressButtonModule {}

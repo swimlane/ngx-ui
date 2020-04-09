@@ -11,7 +11,7 @@ describe('resizeAreaBy', () => {
       initialFlexBasis: ['1', '1', '50px'],
       minBasis: '',
       maxBasis: '',
-      updateStyle: () => undefined,
+      updateStyle: () => undefined
     } as any;
   });
 
@@ -27,7 +27,7 @@ describe('resizeAreaBy', () => {
       initialFlexBasis: ['1', '1', '50%'],
       minBasis: '',
       maxBasis: '',
-      updateStyle: () => undefined,
+      updateStyle: () => undefined
     } as any;
 
     const size = resizeAreaBy(splitArea, 10, 50);
@@ -37,7 +37,7 @@ describe('resizeAreaBy', () => {
   it('should do nothing if fxFlexFill provided', () => {
     const size = resizeAreaBy(
       {
-        fxFlexFill: true,
+        fxFlexFill: true
       } as any,
       10,
       50

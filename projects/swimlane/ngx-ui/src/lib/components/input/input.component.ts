@@ -10,7 +10,7 @@ import {
   ViewEncapsulation,
   forwardRef,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
+  ChangeDetectorRef
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -19,7 +19,7 @@ import {
   NG_VALIDATORS,
   NgModel,
   FormControl,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 
@@ -32,13 +32,13 @@ let nextId = 0;
 const INPUT_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => InputComponent),
-  multi: true,
+  multi: true
 };
 
 const INPUT_VALIDATORS = {
   provide: NG_VALIDATORS,
   useExisting: forwardRef(() => InputComponent),
-  multi: true,
+  multi: true
 };
 
 @Component({
@@ -56,36 +56,36 @@ const INPUT_VALIDATORS = {
         'inside',
         style({
           'font-size': '1em',
-          top: '0',
+          top: '0'
         })
       ),
       state(
         'outside',
         style({
           'font-size': '.7rem',
-          top: '-15px',
+          top: '-15px'
         })
       ),
       transition('inside => outside', animate('150ms ease-out')),
-      transition('outside => inside', animate('150ms ease-out')),
+      transition('outside => inside', animate('150ms ease-out'))
     ]),
     trigger('underlineState', [
       state(
         'collapsed',
         style({
-          width: '0%',
+          width: '0%'
         })
       ),
       state(
         'expanded',
         style({
-          width: '100%',
+          width: '100%'
         })
       ),
       transition('collapsed => expanded', animate('150ms ease-out')),
-      transition('expanded => collapsed', animate('150ms ease-out')),
-    ]),
-  ],
+      transition('expanded => collapsed', animate('150ms ease-out'))
+    ])
+  ]
 })
 export class InputComponent implements AfterViewInit, ControlValueAccessor, Validator {
   @Input() id: string = `input-${++nextId}`;
@@ -298,7 +298,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
 
     return {
       ...Validators.max(this.max)(c),
-      ...Validators.min(this.min)(c),
+      ...Validators.min(this.min)(c)
     };
   }
 

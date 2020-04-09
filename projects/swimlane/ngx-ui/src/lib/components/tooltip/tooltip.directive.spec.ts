@@ -21,10 +21,10 @@ describe('TooltipDirective', () => {
           useValue: {
             create: () => undefined,
             destroy: () => undefined,
-            destroyAll: () => undefined,
-          },
-        },
-      ],
+            destroyAll: () => undefined
+          }
+        }
+      ]
     }).compileComponents();
   });
 
@@ -131,9 +131,9 @@ describe('TooltipDirective', () => {
       spyOn(service, 'create').and.returnValue({
         instance: {
           element: {
-            nativeElement: document.createElement('div'),
-          },
-        },
+            nativeElement: document.createElement('div')
+          }
+        }
       } as any);
 
       directive.tooltipShowTimeout = 1;
@@ -150,9 +150,9 @@ describe('TooltipDirective', () => {
       spyOn(service, 'create').and.returnValue({
         instance: {
           element: {
-            nativeElement: document.createElement('div'),
-          },
-        },
+            nativeElement: document.createElement('div')
+          }
+        }
       } as any);
 
       directive.tooltipCloseOnMouseLeave = false;
@@ -169,9 +169,9 @@ describe('TooltipDirective', () => {
       spyOn(service, 'create').and.returnValue({
         instance: {
           element: {
-            nativeElement: document.createElement('div'),
-          },
-        },
+            nativeElement: document.createElement('div')
+          }
+        }
       } as any);
 
       directive.tooltipCloseOnClickOutside = false;
@@ -197,9 +197,9 @@ describe('TooltipDirective', () => {
       spyOn(service, 'create').and.returnValue({
         instance: {
           element: {
-            nativeElement: document.createElement('div'),
-          },
-        },
+            nativeElement: document.createElement('div')
+          }
+        }
       } as any);
 
       directive.showTooltip(true);

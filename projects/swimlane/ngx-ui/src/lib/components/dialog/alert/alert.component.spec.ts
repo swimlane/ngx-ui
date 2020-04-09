@@ -19,7 +19,7 @@ describe('AlertComponent', () => {
     TestBed.configureTestingModule({
       declarations: [AlertComponent],
       providers: [IconRegistryService],
-      imports: [FormsModule, HttpClientTestingModule, NoopAnimationsModule, InputModule, LongPressButtonModule],
+      imports: [FormsModule, HttpClientTestingModule, NoopAnimationsModule, InputModule, LongPressButtonModule]
     }).compileComponents();
   }));
 

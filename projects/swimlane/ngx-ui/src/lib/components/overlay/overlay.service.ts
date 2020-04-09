@@ -28,7 +28,7 @@ export class OverlayService {
 
     this.triggerComponents.push({
       component: options.triggerComponent,
-      zIndex: options.zIndex,
+      zIndex: options.zIndex
     });
 
     this.component.instance.visible = true;

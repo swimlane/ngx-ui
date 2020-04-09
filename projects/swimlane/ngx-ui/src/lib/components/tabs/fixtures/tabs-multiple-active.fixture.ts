@@ -5,7 +5,7 @@ import { TabsComponent } from '../tabs.component';
   // tslint:disable-next-line: component-selector
   selector: 'tabs-multiple-active-fixture',
   templateUrl: 'tabs-multiple-active.fixture.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsMultipleActiveFixtureComponent {
   @ViewChild('tabs', { static: true }) tabsComponent: TabsComponent;

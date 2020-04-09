@@ -8,7 +8,7 @@ import {
   ViewEncapsulation,
   ChangeDetectorRef,
   ChangeDetectionStrategy,
-  HostListener,
+  HostListener
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
@@ -23,10 +23,10 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
   host: {
     class: 'ngx-dropdown',
     '[class.open]': 'open',
-    '[class.has-caret]': 'showCaret',
+    '[class.has-caret]': 'showCaret'
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent implements AfterContentInit, OnDestroy {
   @Input()

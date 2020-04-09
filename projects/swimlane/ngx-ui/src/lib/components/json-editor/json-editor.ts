@@ -28,7 +28,7 @@ export class JsonEditor implements OnChanges {
 
     if (!this.schema) {
       this.schema = {
-        type: 'object',
+        type: 'object'
       };
     }
     if (!this.schema.type) {

@@ -22,7 +22,7 @@ import { InputTypes } from './input-types.enum';
       [max]="max$ | async"
     ></ngx-input>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputComponentFixture {
   value = 'test';

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-controls-page',
-  templateUrl: './controls-page.component.html',
+  templateUrl: './controls-page.component.html'
 })
 export class ControlsPageComponent {
   inputValue: any = 'A Value';

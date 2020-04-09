@@ -9,6 +9,6 @@ import { CammelToSnakeModule } from './cammel-to-snake/cammel-to-snake.module';
 
 @NgModule({
   exports: [TimeZoneModule, DecamelizeModule, FilterModule, JSONTreeModule, CammelToSnakeModule],
-  imports: [CommonModule, TimeZoneModule, DecamelizeModule, FilterModule, JSONTreeModule, CammelToSnakeModule],
+  imports: [CommonModule, TimeZoneModule, DecamelizeModule, FilterModule, JSONTreeModule, CammelToSnakeModule]
 })
 export class PipesModule {}

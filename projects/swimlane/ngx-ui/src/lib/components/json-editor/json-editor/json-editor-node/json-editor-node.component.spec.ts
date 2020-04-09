@@ -11,7 +11,7 @@ describe('JsonEditorNodeComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [JsonEditorNodeComponent],
-      providers: [{ provide: DialogService, useValue: dialogServiceStub }],
+      providers: [{ provide: DialogService, useValue: dialogServiceStub }]
     });
     fixture = TestBed.createComponent(JsonEditorNodeComponent);
     component = fixture.componentInstance;

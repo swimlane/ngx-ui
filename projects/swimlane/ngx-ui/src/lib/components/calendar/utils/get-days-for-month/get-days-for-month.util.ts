@@ -17,7 +17,7 @@ export function getDaysForMonth(active: moment.Moment): CalendarDay[] {
       num: date.date(),
       dayOfWeek: date.day(),
       date,
-      today,
+      today
     };
   });
 }

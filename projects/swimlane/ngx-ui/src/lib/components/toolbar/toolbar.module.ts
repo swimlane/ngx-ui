@@ -11,6 +11,6 @@ import { ToolbarContentDirective } from './toolbar-content.directive';
 @NgModule({
   declarations: [ToolbarComponent, ToolbarTitleDirective, ToolbarContentDirective],
   exports: [ToolbarComponent, ToolbarTitleDirective, ToolbarContentDirective],
-  imports: [CommonModule, DropdownModule, FlexLayoutModule],
+  imports: [CommonModule, DropdownModule, FlexLayoutModule]
 })
 export class ToolbarModule {}

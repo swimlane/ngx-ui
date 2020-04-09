@@ -10,7 +10,7 @@ describe('LoadingComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [LoadingComponent],
+      declarations: [LoadingComponent]
     });
   });
 

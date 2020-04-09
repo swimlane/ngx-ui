@@ -41,7 +41,7 @@ import { ObjectValuesPipe } from './object-values.pipe';
     ObjectNodeFlatComponent,
     PropertyConfigComponent,
     OrderableInputsListComponent,
-    ObjectValuesPipe,
+    ObjectValuesPipe
   ],
   exports: [
     JsonEditorComponent,
@@ -52,7 +52,7 @@ import { ObjectValuesPipe } from './object-values.pipe';
     JsonEditorNodeFlatComponent,
     ArrayNodeFlatComponent,
     ObjectNodeFlatComponent,
-    PropertyConfigComponent,
+    PropertyConfigComponent
   ],
   imports: [
     CheckboxModule,
@@ -68,8 +68,8 @@ import { ObjectValuesPipe } from './object-values.pipe';
     IconModule,
     ToggleModule,
     SelectModule,
-    TabsModule,
+    TabsModule
   ],
-  providers: [SchemaValidatorService],
+  providers: [SchemaValidatorService]
 })
 export class JsonEditorModule {}

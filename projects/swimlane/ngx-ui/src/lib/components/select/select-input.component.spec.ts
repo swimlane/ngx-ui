@@ -13,7 +13,7 @@ describe('SelectInputComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [SelectInputComponent],
-      providers: [{ provide: ElementRef, useValue: { nativeElement: {} } }],
+      providers: [{ provide: ElementRef, useValue: { nativeElement: {} } }]
     });
   });
 
@@ -71,7 +71,7 @@ describe('SelectInputComponent', () => {
         preventDefault: () => undefined,
         stopPropagation: () => undefined,
         key: '',
-        target: { value: '' },
+        target: { value: '' }
       };
     });
 
@@ -126,7 +126,7 @@ describe('SelectInputComponent', () => {
 
     beforeEach(() => {
       event = {
-        stopPropagation: () => undefined,
+        stopPropagation: () => undefined
       };
     });
 
@@ -203,7 +203,7 @@ describe('SelectInputComponent', () => {
 
     beforeEach(() => {
       event = {
-        stopPropagation: () => undefined,
+        stopPropagation: () => undefined
       };
     });
 
@@ -284,7 +284,7 @@ describe('SelectInputComponent', () => {
       component.options = [
         selectDropdownOptionMock({ value: { value: 'test' } }),
         selectDropdownOptionMock({ value: { value: 'test1' } }),
-        selectDropdownOptionMock({ value: { value: 'test2' } }),
+        selectDropdownOptionMock({ value: { value: 'test2' } })
       ];
 
       component.selected = [{ value: 'test' }];

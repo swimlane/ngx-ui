@@ -8,7 +8,7 @@ import { SelectDropdownOption } from './select-dropdown-option.interface';
 @Directive({
   // tslint:disable-next-line:directive-selector
   exportAs: 'ngxSelectOption',
-  selector: 'ngx-select-option',
+  selector: 'ngx-select-option'
 })
 export class SelectOptionDirective implements SelectDropdownOption {
   @Input() name: string = '';

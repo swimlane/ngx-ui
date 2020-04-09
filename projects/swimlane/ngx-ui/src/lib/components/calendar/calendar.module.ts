@@ -10,6 +10,6 @@ import { PipesModule } from '../../pipes/pipes.module';
 @NgModule({
   declarations: [CalendarComponent],
   exports: [CalendarComponent],
-  imports: [CommonModule, FormsModule, MomentModule, FlexLayoutModule, PipesModule],
+  imports: [CommonModule, FormsModule, MomentModule, FlexLayoutModule, PipesModule]
 })
 export class CalendarModule {}

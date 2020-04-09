@@ -8,7 +8,7 @@ import { version } from '../../projects/swimlane/ngx-ui/package.json';
   selector: 'app',
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.template.html',
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   version = version;
@@ -19,27 +19,27 @@ export class AppComponent {
     {
       name: 'Colors',
       route: 'colors',
-      icon: 'formula',
+      icon: 'formula'
     },
     {
       name: 'Typography',
       route: 'typography',
-      icon: 'field-text',
+      icon: 'field-text'
     },
     {
       name: 'Icons',
       route: 'icons',
-      icon: 'field-grid',
+      icon: 'field-grid'
     },
     {
       name: 'Animations',
       route: 'animations',
-      icon: 'stars',
+      icon: 'stars'
     },
     {
       name: 'Pipes',
       route: 'pipes',
-      icon: 'code',
+      icon: 'code'
     },
     {
       name: 'Forms',
@@ -47,45 +47,45 @@ export class AppComponent {
       children: [
         {
           name: 'Inputs',
-          route: 'inputs',
+          route: 'inputs'
         },
         {
           name: 'Buttons',
-          route: 'buttons',
+          route: 'buttons'
         },
         {
           name: 'Selects',
-          route: 'selects',
+          route: 'selects'
         },
         {
           name: 'Date/Time Pickers',
-          route: 'datetime',
+          route: 'datetime'
         },
         {
           name: 'Slider',
-          route: 'slider',
+          route: 'slider'
         },
         {
           name: 'Toggle',
-          route: 'toggle',
+          route: 'toggle'
         },
         {
           name: 'Checkbox',
-          route: 'checkbox',
+          route: 'checkbox'
         },
         {
           name: 'Radio Button',
-          route: 'radio',
+          route: 'radio'
         },
         {
           name: 'Calendar',
-          route: 'calendar',
+          route: 'calendar'
         },
         {
           name: 'Code Editor',
-          route: 'code-editor',
-        },
-      ],
+          route: 'code-editor'
+        }
+      ]
     },
     {
       name: 'Elements',
@@ -93,21 +93,21 @@ export class AppComponent {
       children: [
         {
           name: 'Tables',
-          route: 'table',
+          route: 'table'
         },
         {
           name: 'Tags',
-          route: 'tags',
+          route: 'tags'
         },
         {
           name: 'Lists',
-          route: 'lists',
+          route: 'lists'
         },
         {
           name: 'Scrollbars',
-          route: 'scrollbars',
-        },
-      ],
+          route: 'scrollbars'
+        }
+      ]
     },
     {
       name: 'Dialogs',
@@ -115,29 +115,29 @@ export class AppComponent {
       children: [
         {
           name: 'Drawer',
-          route: 'drawer',
+          route: 'drawer'
         },
         {
           name: 'Nag',
-          route: 'nag',
+          route: 'nag'
         },
         {
           name: 'Dialog',
-          route: 'dialog',
+          route: 'dialog'
         },
         {
           name: 'Alert/Confirm',
-          route: 'alert',
+          route: 'alert'
         },
         {
           name: 'Tooltip',
-          route: 'tooltip',
+          route: 'tooltip'
         },
         {
           name: 'Notification',
-          route: 'notification',
-        },
-      ],
+          route: 'notification'
+        }
+      ]
     },
     {
       name: 'Components',
@@ -145,62 +145,62 @@ export class AppComponent {
       children: [
         {
           name: 'Sections',
-          route: 'sections',
+          route: 'sections'
         },
         {
           name: 'Toolbar',
-          route: 'toolbar',
+          route: 'toolbar'
         },
         {
           name: 'Tabs',
-          route: 'tabs',
+          route: 'tabs'
         },
         {
           name: 'Dropdown',
-          route: 'dropdown',
+          route: 'dropdown'
         },
         {
           name: 'Datatable',
-          route: 'datatable',
+          route: 'datatable'
         },
         {
           name: 'Loading',
-          route: 'loading',
+          route: 'loading'
         },
         {
           name: 'Progress Spinner',
-          route: 'progress-spinner',
+          route: 'progress-spinner'
         },
         {
           name: 'Tree',
-          route: 'tree',
+          route: 'tree'
         },
         {
           name: 'JSON Editor',
-          route: 'json-editor',
+          route: 'json-editor'
         },
         {
           name: 'Icon',
-          route: 'ngx-icon',
+          route: 'ngx-icon'
         },
         {
           name: 'Split',
-          route: 'split',
+          route: 'split'
         },
         {
           name: 'Stepper',
-          route: 'stepper',
+          route: 'stepper'
         },
         {
           name: 'Overlay',
-          route: 'overlay',
+          route: 'overlay'
         },
         {
           name: 'Hotkeys',
-          route: 'hotkeys',
-        },
-      ],
-    },
+          route: 'hotkeys'
+        }
+      ]
+    }
   ];
   /* end of naviation tree */
 
