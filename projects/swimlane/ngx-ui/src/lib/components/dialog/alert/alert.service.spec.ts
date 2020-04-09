@@ -33,7 +33,7 @@ describe('AlertService', () => {
         cancel: new EventEmitter<void>(),
       },
     };
-    spy = spyOn(service, 'create').and.returnValue(component);
+    spy = spyOn(service, 'create').and.returnValue(component as any);
   });
 
   it('can load instance', () => {

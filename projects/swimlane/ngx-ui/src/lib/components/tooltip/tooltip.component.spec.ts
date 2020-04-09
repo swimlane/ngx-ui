@@ -47,7 +47,7 @@ describe('TooltipContentComponent', () => {
     spyOn(component.element.nativeElement, 'getBoundingClientRect').and.returnValue({
       wdith: 10,
       height: 10,
-    });
+    } as any);
 
     fixture.detectChanges();
   });

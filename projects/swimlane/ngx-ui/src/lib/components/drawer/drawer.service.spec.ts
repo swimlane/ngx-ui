@@ -50,7 +50,7 @@ describe('DrawerService', () => {
           size: 10,
         },
       };
-      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
       const destroySpy = spyOn(service, 'destroy');
 
       service.create({});
@@ -68,7 +68,7 @@ describe('DrawerService', () => {
           isRoot: false,
         },
       };
-      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
       const destroySpy = spyOn(service, 'destroy');
 
       service.create({ isRoot: false });
@@ -86,7 +86,7 @@ describe('DrawerService', () => {
           closeOnOutsideClick: true,
         },
       };
-      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
       const destroySpy = spyOn(service, 'destroy');
 
       service.create({
@@ -109,7 +109,7 @@ describe('DrawerService', () => {
           isRoot: false,
         },
       };
-      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
       const destroySpy = spyOn(service, 'destroy');
 
       const parentElement = document.createElement('div');
@@ -137,7 +137,7 @@ describe('DrawerService', () => {
           isRoot: false,
         },
       };
-      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
       const destroySpy = spyOn(service, 'destroy');
 
       const parentElement = document.createElement('div');
