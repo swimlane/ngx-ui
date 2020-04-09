@@ -12,7 +12,8 @@ import {
 } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 import { trigger } from '@angular/animations';
-import { bounceAnimation } from '@swimlane/ngx-ui/animations/bounce.animation';
+
+import { bounceAnimation } from '../../animations/bounce.animation';
 
 const enum State {
   open = 'open',
