@@ -1,6 +1,3 @@
 'use strict';
 
-module.exports = {
-  ...require('@swimlane/prettier-config-swimlane'),
-  trailingComma: 'none'
-};
+module.exports = require('@swimlane/prettier-config-swimlane');

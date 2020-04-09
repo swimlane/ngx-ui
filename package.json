@@ -60,7 +60,7 @@
     "@angular/language-service": "~9.1.1",
     "@angular/platform-browser-dynamic": "^9.1.1",
     "@netbasal/spectator": "^3.9.1",
-    "@swimlane/prettier-config-swimlane": "^2.0.0",
+    "@swimlane/prettier-config-swimlane": "^3.0.1",
     "@types/codemirror": "0.0.80",
     "@types/faker": "^4.1.11",
     "@types/jasmine": "^3.5.10",
