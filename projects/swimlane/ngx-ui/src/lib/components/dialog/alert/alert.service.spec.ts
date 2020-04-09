@@ -44,7 +44,10 @@ describe('AlertService', () => {
     const subject = service.alert({});
 
     subject.subscribe({
-      next: () => done(),
+      next: () => {
+        expect(true).toBeTrue();
+        done();
+      },
     });
 
     component.instance.ok.emit();
@@ -54,7 +57,10 @@ describe('AlertService', () => {
     const subject = service.alert({});
 
     subject.subscribe({
-      next: () => done(),
+      next: () => {
+        expect(true).toBeTrue();
+        done();
+      },
     });
 
     component.instance.cancel.emit();

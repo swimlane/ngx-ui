@@ -41,9 +41,13 @@ describe('CheckboxComponent', () => {
 
   describe('onBlur', () => {
     it('should call touched callback on blur', (done) => {
-      component.registerOnTouched(() => {
+      const fn = () => {
+        // @ts-ignore
+        expect(component.onTouchedCallback).toBe(fn);
         done();
-      });
+      };
+
+      component.registerOnTouched(fn);
 
       component.onBlur({});
     });
