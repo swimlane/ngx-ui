@@ -36,29 +36,30 @@ describe('NagComponent', () => {
   });
 
   it('toggle changes state and triggers stateChanged emitter', () => {
+    component.state = 'peek';
     spyOn(component.stateChanged, 'emit');
-    expect(component.state).toEqual('closed');
 
     component.toggle();
     expect(component.state).toEqual('open');
 
     component.toggle();
-    expect(component.state).toEqual('closed');
+    expect(component.state).toEqual('peek');
 
     expect(component.stateChanged.emit).toHaveBeenCalledTimes(2);
   });
 
-  it('can peek into component if watch is set', () => {
-    expect(component.state).toEqual('closed');
+  it('can peek into component if hide is false', () => {
+    component.state = 'closed';
+    component.hide = false;
 
     component.ngOnChanges(simpleChangesStub);
     expect(component.state).toEqual('peek');
   });
 
-  it('nag remains closed if watch is falsy', () => {
-    expect(component.state).toEqual('closed');
+  it('nag remains closed if hide is true', () => {
+    component.state = 'closed';
+    component.hide = true;
 
-    simpleChangesStub.watch = undefined;
     component.ngOnChanges(simpleChangesStub);
     expect(component.state).toEqual('closed');
   });
