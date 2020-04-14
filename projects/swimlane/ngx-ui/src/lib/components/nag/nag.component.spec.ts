@@ -48,7 +48,7 @@ describe('NagComponent', () => {
     expect(component.stateChanged.emit).toHaveBeenCalledTimes(2);
   });
 
-  // TODO: thius test is flaky
+  // TODO: this test is flaky (updated in #423)
   xit('can peek into component if watch is set', fakeAsync(() => {
     expect(component.state).toEqual('closed');
 
