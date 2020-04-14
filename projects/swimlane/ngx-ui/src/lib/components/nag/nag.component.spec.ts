@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NO_ERRORS_SCHEMA, SimpleChanges, SimpleChange } from '@angular/core';
 
@@ -53,11 +53,8 @@ describe('NagComponent', () => {
     component.hide = false;
 
     component.ngOnChanges(simpleChangesStub);
-    tick(20);
     expect(component.state).toEqual('peek');
-    tick(90);
-    expect(component.state).toEqual('closed');
-  }));
+  });
 
   it('nag remains closed if hide is true', () => {
     component.state = 'closed';
