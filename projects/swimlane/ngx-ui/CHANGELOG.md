@@ -2,6 +2,12 @@
 
 ## HEAD (Unreleased)
 
+## 28.5.3 (2020-04-14)
+
+- Chore: Update dependecies
+- Fix nag animation (#423)
+- Allow side effects to fix JSON tree (#424)
+
 ## 28.5.2 (2020-04-02)
 
 - Export utils (#419)
