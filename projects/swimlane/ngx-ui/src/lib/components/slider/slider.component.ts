@@ -108,10 +108,10 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   setValues(values: number[]) {
     this._values = values;
     this._percents = values
-      .map((v) => Math.max(this.min, Math.min(this.max, v)))
-      .map((v) => Math.round((100 * (v - this.min)) / (this.max - this.min)));
+      .map(v => Math.max(this.min, Math.min(this.max, v)))
+      .map(v => Math.round((100 * (v - this.min)) / (this.max - this.min)));
 
-    this._thumbs = this._percents.map((p) => {
+    this._thumbs = this._percents.map(p => {
       return {
         left: `calc(${p}% - ${p / 100}em)`
       };
@@ -157,7 +157,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   }
 
   getTicks(): any {
-    return this.getCount().map((p) => {
+    return this.getCount().map(p => {
       return {
         left: `calc(${p}% - ${p / 100 - 0.5}em)`
       };
@@ -207,7 +207,7 @@ export class SliderComponent implements ControlValueAccessor, OnInit {
   writeValue(val): void {
     val = val ? String(val).split(',') : ['0'];
     if (String(val) !== String(this._values)) {
-      this.setValues(val.map((v) => +v));
+      this.setValues(val.map(v => +v));
       this.cdr.markForCheck();
     }
   }

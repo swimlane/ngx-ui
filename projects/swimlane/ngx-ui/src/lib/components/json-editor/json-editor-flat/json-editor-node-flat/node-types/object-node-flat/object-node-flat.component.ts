@@ -64,7 +64,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
   onUpdatePropertyName(options: { id: string; name: string }): void {
     const oldName = this.propertyIndex[options.id].propertyName;
-    const index = Object.keys(this.schemaRef.properties).findIndex((prop) => prop === oldName);
+    const index = Object.keys(this.schemaRef.properties).findIndex(prop => prop === oldName);
     this.updateSchemaPropertyName(this.schemaRef, options.name, this.propertyIndex[options.id].propertyName);
     this.swapSchemaProperties(index);
     this.updatePropertyName(options.id, options.name);

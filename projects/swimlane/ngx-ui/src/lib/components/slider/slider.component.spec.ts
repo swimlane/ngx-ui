@@ -10,7 +10,7 @@ describe('SliderComponent', () => {
   let multiSlider: SliderComponent;
   let fixture: ComponentFixture<SliderFixtureComponent>;
 
-  beforeEach((done) => {
+  beforeEach(done => {
     TestBed.configureTestingModule({
       declarations: [SliderFixtureComponent],
       imports: [SliderModule, FormsModule]

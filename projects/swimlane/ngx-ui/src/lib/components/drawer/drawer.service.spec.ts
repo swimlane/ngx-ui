@@ -157,7 +157,7 @@ describe('DrawerService', () => {
   });
 
   describe('destroy', () => {
-    it('should destroy with overlay', (done) => {
+    it('should destroy with overlay', done => {
       const spy = spyOn(overlayService, 'removeTriggerComponent');
       const component: any = { instance: { size: 10 } };
       service.destroy(component);
@@ -169,7 +169,7 @@ describe('DrawerService', () => {
       }, 10);
     });
 
-    it('should not set size to 0 if !component', (done) => {
+    it('should not set size to 0 if !component', done => {
       const spy = spyOn(overlayService, 'removeTriggerComponent');
       const component: any = {};
       service.destroy(component);

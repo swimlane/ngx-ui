@@ -104,7 +104,7 @@ export class JsonEditorFlatComponent extends JsonEditor {
   }
 
   private buildCustomFormats(): void {
-    this.formats.forEach((format) => {
+    this.formats.forEach(format => {
       const found = jsonSchemaDataFormats.find((dataFormat: JsonSchemaDataType) => {
         return dataFormat.schema.format === format;
       });

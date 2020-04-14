@@ -52,7 +52,7 @@ describe('SelectInputComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should focus input', (done) => {
+    it('should focus input', done => {
       const spy = spyOn(component.inputElement.nativeElement, 'focus');
       component.ngAfterViewInit();
 
@@ -176,7 +176,7 @@ describe('SelectInputComponent', () => {
       expect(spy).not.toHaveBeenCalled();
     });
 
-    it('should focus input if tagging', (done) => {
+    it('should focus input if tagging', done => {
       const spy = spyOn(component.inputElement.nativeElement, 'focus');
       component.onClick(event);
 
@@ -186,7 +186,7 @@ describe('SelectInputComponent', () => {
       }, 5);
     });
 
-    it('should emit activate but not focus is !tagging', (done) => {
+    it('should emit activate but not focus is !tagging', done => {
       const spy = spyOn(component.inputElement.nativeElement, 'focus');
       component.tagging = false;
       component.onClick(event);
@@ -275,7 +275,7 @@ describe('SelectInputComponent', () => {
     });
 
     it('should get selected options from selected values', () => {
-      component.selected = component.options.map((o) => o.value);
+      component.selected = component.options.map(o => o.value);
       expect(component.selectedOptions.length).toBe(component.selected.length);
     });
 

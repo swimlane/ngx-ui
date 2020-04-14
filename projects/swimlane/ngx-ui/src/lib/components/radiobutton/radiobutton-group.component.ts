@@ -119,7 +119,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
 
     /* istanbul ignore else */
     if (this._radios) {
-      this._radios.map((radio) => {
+      this._radios.map(radio => {
         radio.change.pipe(takeUntil(this._destroy$)).subscribe(this.onRadioSelected.bind(this));
       });
     }
@@ -158,7 +158,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
 
   private _updateRadioButtonNames(): void {
     if (this._radios) {
-      this._radios.forEach((radio) => {
+      this._radios.forEach(radio => {
         radio.name = this.name;
       });
     }
@@ -167,7 +167,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   private _updateSelectedRadioFromValue(): void {
     /* istanbul ignore else */
     if (this._radios) {
-      this._radios.forEach((radio) => {
+      this._radios.forEach(radio => {
         radio.checked = this.value === radio.value;
 
         if (radio.checked) {
@@ -180,7 +180,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   private _updateRadioDisabledState(): void {
     /* istanbul ignore else */
     if (this._radios) {
-      this._radios.forEach((radio) => {
+      this._radios.forEach(radio => {
         radio.groupDisabled = this.disabled;
       });
     }

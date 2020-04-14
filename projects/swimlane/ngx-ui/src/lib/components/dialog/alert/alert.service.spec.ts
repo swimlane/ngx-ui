@@ -40,7 +40,7 @@ describe('AlertService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should call ok', (done) => {
+  it('should call ok', done => {
     const subject = service.alert({});
 
     subject.subscribe({
@@ -53,7 +53,7 @@ describe('AlertService', () => {
     component.instance.ok.emit();
   });
 
-  it('should call cancel', (done) => {
+  it('should call cancel', done => {
     const subject = service.alert({});
 
     subject.subscribe({

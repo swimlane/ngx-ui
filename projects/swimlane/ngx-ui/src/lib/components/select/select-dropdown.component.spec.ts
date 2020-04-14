@@ -73,7 +73,7 @@ describe('SelectDropdownComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should focus filter input', (done) => {
+    it('should focus filter input', done => {
       const spy = spyOn(component.filterInput.nativeElement, 'focus');
       component.ngAfterViewInit();
       setTimeout(() => {

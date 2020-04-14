@@ -55,7 +55,7 @@ export function getWeeksForDays(days: CalendarDay[], startDay: number) {
       wk = [...wk, ...fill];
     }
 
-    wk.forEach((day) => {
+    wk.forEach(day => {
       day.classes = {
         'first-day-of-month': day.num === 1,
         'last-day-of-week': day.dayOfWeek === 6,

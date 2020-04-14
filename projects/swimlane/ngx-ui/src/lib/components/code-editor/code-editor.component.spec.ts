@@ -114,8 +114,8 @@ describe('CodeEditorComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register new change callback', (done) => {
-      component.registerOnChange((v) => {
+    it('should register new change callback', done => {
+      component.registerOnChange(v => {
         expect(v).toBe('testing123');
         done();
       });
@@ -125,7 +125,7 @@ describe('CodeEditorComponent', () => {
   });
 
   describe('registerOnTouched', () => {
-    it('should register new touched callback', (done) => {
+    it('should register new touched callback', done => {
       const fn = () => {
         // @ts-ignore
         expect(component.onTouchedCallback).toBe(fn);

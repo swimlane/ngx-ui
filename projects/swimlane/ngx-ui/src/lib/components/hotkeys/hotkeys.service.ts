@@ -45,7 +45,7 @@ export function _add(combo: string, opts: Hotkey) {
   opts.keys = _getDisplay(combo);
   opts.visible = opts.visible !== undefined ? opts.visible : true;
 
-  opts.allowIn = Array.isArray(opts.allowIn) ? opts.allowIn.map((tag) => tag.toUpperCase()) : [];
+  opts.allowIn = Array.isArray(opts.allowIn) ? opts.allowIn.map(tag => tag.toUpperCase()) : [];
 
   const mousetrap = new Mousetrap();
 

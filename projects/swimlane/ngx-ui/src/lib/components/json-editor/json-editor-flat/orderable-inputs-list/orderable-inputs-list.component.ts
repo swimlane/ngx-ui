@@ -28,7 +28,7 @@ export class OrderableInputsListComponent implements OnInit {
   dataValues: DataValue[] = [];
 
   ngOnInit() {
-    (this.data || []).forEach((item) => {
+    (this.data || []).forEach(item => {
       this.dataValues.push({
         value: item
       });
@@ -53,7 +53,7 @@ export class OrderableInputsListComponent implements OnInit {
 
   @debounceable(500)
   update(): void {
-    const data = this.dataValues.map((item) => item.value);
+    const data = this.dataValues.map(item => item.value);
     this.onUpdate.emit(data);
   }
 }

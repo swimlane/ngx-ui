@@ -12,7 +12,7 @@ describe('debounce', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should get debounce result with wait', (done) => {
+  it('should get debounce result with wait', done => {
     const dbc = debounce(() => console.log('test'), 10);
     dbc();
 

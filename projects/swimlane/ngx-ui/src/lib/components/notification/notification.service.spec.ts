@@ -83,7 +83,7 @@ describe('NotificationService', () => {
       spy = spyOn(service, 'destroy');
     });
 
-    it('should set destroy timeout', (done) => {
+    it('should set destroy timeout', done => {
       service.startTimer({ instance: { timeout: 0 } } as any);
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();
@@ -91,7 +91,7 @@ describe('NotificationService', () => {
       }, 0);
     });
 
-    it('should not set destroy timeout if !timeout', (done) => {
+    it('should not set destroy timeout if !timeout', done => {
       service.startTimer({ instance: { timeout: false } } as any);
       setTimeout(() => {
         expect(spy).not.toHaveBeenCalled();

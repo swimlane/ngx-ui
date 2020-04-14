@@ -89,7 +89,7 @@ describe('SelectComponent', () => {
 
     it('should do nothing if max selection reached', () => {
       const spy = spyOn(component.select, 'toggleDropdown');
-      component.select.value = component.options$.value.map((o) => o.value);
+      component.select.value = component.options$.value.map(o => o.value);
       component.select.onDropdownSelection(selectDropdownOptionMock());
       expect(spy).not.toHaveBeenCalled();
     });

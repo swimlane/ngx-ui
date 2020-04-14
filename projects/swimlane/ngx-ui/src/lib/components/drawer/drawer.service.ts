@@ -104,7 +104,7 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
       } else {
         const components = this.components.get(this.type);
 
-        this.parentListenerFunc = this.renderer.listen(parentContainer, 'click', (evt) => {
+        this.parentListenerFunc = this.renderer.listen(parentContainer, 'click', evt => {
           /* istanbul ignore else */
           if (evt.target === parentContainer) {
             kill(components[components.length - 1]);

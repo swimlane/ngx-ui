@@ -114,7 +114,7 @@ export class StepperComponent implements OnDestroy {
 
         item.step.activeChange.pipe(takeUntil(this._destroy$)).subscribe(
           /* istanbul ignore next */
-          (active) => (this.active = active)
+          active => (this.active = active)
         );
       });
     }
@@ -123,7 +123,7 @@ export class StepperComponent implements OnDestroy {
   }
 
   get complete() {
-    return this._steps.filter((s) => s.step < this.active).length;
+    return this._steps.filter(s => s.step < this.active).length;
   }
 
   get vertical() {

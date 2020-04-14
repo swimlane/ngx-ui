@@ -72,7 +72,7 @@ export class OverlayService {
   }
 
   removeTriggerComponent(component) {
-    const idx = this.triggerComponents.findIndex((c) => c.component === component);
+    const idx = this.triggerComponents.findIndex(c => c.component === component);
     if (idx !== -1) {
       this.triggerComponents.splice(idx, 1);
     }
@@ -88,7 +88,7 @@ export class OverlayService {
     if (this.triggerComponents.length === 0) {
       return;
     }
-    const indexes = this.triggerComponents.map((tc) => tc.zIndex);
+    const indexes = this.triggerComponents.map(tc => tc.zIndex);
     const zIndex = Math.max(...indexes) - 1;
     this.instance.zIndex = zIndex;
   }

@@ -70,7 +70,7 @@ export class IconComponent implements OnChanges, OnInit {
         element.innerHTML = svg.documentElement.outerHTML;
       },
       /* istanbul ignore next */
-      (err) => {
+      err => {
         console.error(err);
       }
     );

@@ -14,7 +14,7 @@ export function jsonToTree(value: any, label?: string): TreeNode {
 
   switch (type) {
     case 'object':
-      children = Object.keys(value).map((key) => jsonToTree(value[key], key));
+      children = Object.keys(value).map(key => jsonToTree(value[key], key));
       expandable = children.length > 0;
 
       return {

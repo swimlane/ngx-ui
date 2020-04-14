@@ -39,7 +39,7 @@ export class TypographyPageComponent {
   `;
 
   constructor(private sanitizer: DomSanitizer) {
-    this.fontKeys.forEach((key) => {
+    this.fontKeys.forEach(key => {
       this.fontStyles[key] = this.sanitizer.bypassSecurityTrustStyle(this.fontStyles[key]);
     });
   }

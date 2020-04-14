@@ -14,7 +14,7 @@ export class ResizeObserverDirective implements OnInit, OnDestroy {
   constructor(private readonly _el: ElementRef<HTMLElement>) {}
 
   ngOnInit() {
-    this._observer = new ResizeObserver((entries) => {
+    this._observer = new ResizeObserver(entries => {
       for (const entry of entries) {
         this.onResize(entry.contentRect);
       }

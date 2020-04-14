@@ -85,7 +85,7 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
 
   requestPermissions(): void {
     if (this.isNativeSupported) {
-      Notification.requestPermission(/* istanbul ignore next */ (status) => (this.permission = status));
+      Notification.requestPermission(/* istanbul ignore next */ status => (this.permission = status));
     }
   }
 

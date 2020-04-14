@@ -140,7 +140,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   isSelected(option: SelectDropdownOption): boolean {
     if (!this.selected || !this.selected.length) return false;
 
-    const idx = this.selected.findIndex((o) => {
+    const idx = this.selected.findIndex(o => {
       if (this.identifier) return o[this.identifier] === option.value[this.identifier];
       return o === option.value;
     });
@@ -212,7 +212,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     if (!groupBy) {
       if (filter) {
         // filter options
-        options = options.filter((o) => {
+        options = options.filter(o => {
           return containsFilter({ name: o.name, value: o.value }, filter, filterOptions);
         });
       }

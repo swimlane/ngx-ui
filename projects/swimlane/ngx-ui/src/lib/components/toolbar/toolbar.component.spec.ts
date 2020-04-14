@@ -16,7 +16,7 @@ describe('ToolbarComponent', () => {
     }).compileComponents();
   });
 
-  beforeEach((done) => {
+  beforeEach(done => {
     fixture = TestBed.createComponent(ToolbarFixtureComponent);
     component1 = fixture.componentInstance.toolbar1;
     component2 = fixture.componentInstance.toolbar2;

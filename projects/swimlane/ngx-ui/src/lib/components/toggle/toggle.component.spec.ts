@@ -73,7 +73,7 @@ describe('ToggleComponent', () => {
     expect(component.value).toEqual(false);
   });
 
-  it('onBlur calls registered touch callback', (done) => {
+  it('onBlur calls registered touch callback', done => {
     const touchCallback = () => {
       expect((component as any).onTouchedCallback).toBe(touchCallback);
       done();

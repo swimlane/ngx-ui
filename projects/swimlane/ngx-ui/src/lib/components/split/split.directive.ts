@@ -37,8 +37,8 @@ export class SplitDirective implements AfterContentInit, OnChanges {
   constructor(private readonly elementRef: ElementRef) {}
 
   ngAfterContentInit(): void {
-    this.handles.forEach((d) => d.drag.subscribe((ev: MouseEvent) => this.onDrag(ev)));
-    this.handles.forEach((d) => d.dblclick.subscribe(() => this.onDblClick()));
+    this.handles.forEach(d => d.drag.subscribe((ev: MouseEvent) => this.onDrag(ev)));
+    this.handles.forEach(d => d.dblclick.subscribe(() => this.onDblClick()));
     this.updateHandles();
   }
 
@@ -48,7 +48,7 @@ export class SplitDirective implements AfterContentInit, OnChanges {
 
   updateHandles() {
     if (this.handles) {
-      this.handles.forEach((d) => (d.direction = this.direction));
+      this.handles.forEach(d => (d.direction = this.direction));
     }
   }
 
@@ -105,9 +105,9 @@ export class SplitDirective implements AfterContentInit, OnChanges {
 
     // for now assuming splitter is after first area
     const [first, ...rest] = areas;
-    [first].forEach((area) => (delta = resizeAreaBy(area, delta, basisToPx)));
+    [first].forEach(area => (delta = resizeAreaBy(area, delta, basisToPx)));
 
     // delta is distributed left to right
-    rest.forEach((area) => (delta += resizeAreaBy(area, -delta, basisToPx)));
+    rest.forEach(area => (delta += resizeAreaBy(area, -delta, basisToPx)));
   }
 }

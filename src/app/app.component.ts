@@ -228,9 +228,9 @@ export class AppComponent {
     }
 
     updatedVal = updatedVal.toLowerCase();
-    this.filteredNavigationTree = tree.map((nav) => {
+    this.filteredNavigationTree = tree.map(nav => {
       if (nav.children) {
-        nav.children = nav.children.filter((child) => child.name.toLowerCase().includes(updatedVal));
+        nav.children = nav.children.filter(child => child.name.toLowerCase().includes(updatedVal));
       }
 
       return nav;

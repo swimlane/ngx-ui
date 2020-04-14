@@ -292,7 +292,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     if (selection.disabled) return;
     if (this.value.length === this.maxSelections) return;
 
-    const idx = this.value.findIndex((o) => {
+    const idx = this.value.findIndex(o => {
       if (this.identifier) {
         return o[this.identifier] === selection.value[this.identifier];
       }

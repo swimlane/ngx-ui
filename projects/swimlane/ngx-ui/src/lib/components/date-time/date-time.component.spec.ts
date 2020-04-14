@@ -550,7 +550,7 @@ describe('DateTimeComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register onchange callback', (done) => {
+    it('should register onchange callback', done => {
       const fn = () => {
         // @ts-ignore: private and only accessible within class
         expect(component.onChangeCallback).toBe(fn);
@@ -562,7 +562,7 @@ describe('DateTimeComponent', () => {
   });
 
   describe('registryOnTouched', () => {
-    it('should register ontouched callback', (done) => {
+    it('should register ontouched callback', done => {
       const fn = () => {
         expect((component as any).onTouchedCallback).toBe(fn);
         done();

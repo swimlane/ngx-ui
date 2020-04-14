@@ -116,7 +116,7 @@ describe('TooltipDirective', () => {
   });
 
   describe('showTooltip', () => {
-    it('should show tooltip', (done) => {
+    it('should show tooltip', done => {
       const spy = spyOn(directive.show, 'emit');
       directive.showTooltip(true);
 
@@ -126,7 +126,7 @@ describe('TooltipDirective', () => {
       });
     });
 
-    it('should add hide listeners to component if exists', (done) => {
+    it('should add hide listeners to component if exists', done => {
       const spy = spyOn(directive, 'addHideListeners').and.callThrough();
       spyOn(service, 'create').and.returnValue({
         instance: {
@@ -145,7 +145,7 @@ describe('TooltipDirective', () => {
       }, 20);
     });
 
-    it('should add hide listeners to component if exists without tooltipCloseOnMouseLeave', (done) => {
+    it('should add hide listeners to component if exists without tooltipCloseOnMouseLeave', done => {
       const spy = spyOn(directive, 'addHideListeners').and.callThrough();
       spyOn(service, 'create').and.returnValue({
         instance: {
@@ -164,7 +164,7 @@ describe('TooltipDirective', () => {
       }, 20);
     });
 
-    it('should add hide listeners to component if exists without tooltipCloseOnClickOutside', (done) => {
+    it('should add hide listeners to component if exists without tooltipCloseOnClickOutside', done => {
       const spy = spyOn(directive, 'addHideListeners').and.callThrough();
       spyOn(service, 'create').and.returnValue({
         instance: {
@@ -192,7 +192,7 @@ describe('TooltipDirective', () => {
   });
 
   describe('hideTooltip', () => {
-    it('should hide tooltip with timeout set', (done) => {
+    it('should hide tooltip with timeout set', done => {
       const spy = spyOn(directive.hide, 'emit');
       spyOn(service, 'create').and.returnValue({
         instance: {

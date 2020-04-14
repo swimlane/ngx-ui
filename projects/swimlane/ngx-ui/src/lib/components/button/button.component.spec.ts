@@ -51,9 +51,9 @@ describe('ButtonComponent', () => {
       expect(spy).not.toHaveBeenCalled();
     });
 
-    it('should update and resolve', (done) => {
+    it('should update and resolve', done => {
       const spy = spyOn(component, 'updateState');
-      component.promise = new Promise((resolve) => {
+      component.promise = new Promise(resolve => {
         resolve();
       });
 
@@ -64,7 +64,7 @@ describe('ButtonComponent', () => {
       });
     });
 
-    it('should update and reject', (done) => {
+    it('should update and reject', done => {
       const spy = spyOn(component, 'updateState');
       component.promise = new Promise(() => {
         throw new Error();

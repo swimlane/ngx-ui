@@ -151,11 +151,11 @@ export class JsonEditorNode implements OnInit, OnChanges {
     this.childrenErrors = [];
 
     if (this.errors && this.errors.length) {
-      this.ownErrors = this.errors.filter((e) => {
+      this.ownErrors = this.errors.filter(e => {
         return e.dataPath === this.path;
       });
 
-      this.childrenErrors = this.errors.filter((e) => {
+      this.childrenErrors = this.errors.filter(e => {
         return e.dataPath.startsWith(this.path);
       });
     }

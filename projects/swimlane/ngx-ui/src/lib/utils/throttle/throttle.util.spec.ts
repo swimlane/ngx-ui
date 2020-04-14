@@ -7,7 +7,7 @@ describe('throttle', () => {
     spy = spyOn(window.console, 'log').and.callFake(() => undefined);
   });
 
-  it('should get throttle result', (done) => {
+  it('should get throttle result', done => {
     throttle(() => console.log('test'), 0)();
 
     setTimeout(() => {
@@ -16,7 +16,7 @@ describe('throttle', () => {
     });
   });
 
-  it('should throttle multiple calls', (done) => {
+  it('should throttle multiple calls', done => {
     const fn = throttle(() => console.log('test'), 10, { leading: false });
     fn();
 
@@ -31,7 +31,7 @@ describe('throttle', () => {
     });
   });
 
-  it('should throttle multiple calls with leading call', (done) => {
+  it('should throttle multiple calls with leading call', done => {
     const fn = throttle(() => console.log('test'), 10);
     fn();
 

@@ -38,7 +38,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
   get index(): number {
     const tabs = this.tabs.toArray();
-    return tabs.findIndex((tab) => tab.active);
+    return tabs.findIndex(tab => tab.active);
   }
 
   private readonly _destroy$ = new Subject<void>();
@@ -47,7 +47,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
   ngAfterContentInit(): void {
     const tabs = this.tabs.toArray();
-    const actives = this.tabs.filter((t) => t.active);
+    const actives = this.tabs.filter(t => t.active);
 
     if (actives.length > 1) {
       console.error(`Multiple active tabs set 'active'`);
@@ -68,10 +68,10 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
   }
 
   tabClicked(activeTab: TabComponent): void {
-    this.tabs.forEach((tab) => (tab.active = false));
+    this.tabs.forEach(tab => (tab.active = false));
 
     activeTab.active = true;
-    this.tabs.forEach((tab) => tab.detectChanges());
+    this.tabs.forEach(tab => tab.detectChanges());
     this.cdr.markForCheck();
 
     this.selectTab.emit(activeTab);

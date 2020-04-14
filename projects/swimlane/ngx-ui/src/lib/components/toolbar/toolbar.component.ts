@@ -36,13 +36,13 @@ export class ToolbarComponent {
   @ViewChild(ToolbarContentDirective) toolbarContent: ToolbarContentDirective;
 
   get toolbarItems() {
-    return this.menu.filter((m) => {
+    return this.menu.filter(m => {
       return !m.dropdown;
     });
   }
 
   get dropdownItems() {
-    return this.menu.filter((m) => {
+    return this.menu.filter(m => {
       return m.dropdown;
     });
   }

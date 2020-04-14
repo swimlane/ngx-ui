@@ -252,7 +252,7 @@ export class TooltipDirective implements OnDestroy {
       this.documentClickEvent = this.renderer.listen(
         document,
         'click',
-        /* istanbul ignore next */ (event) => {
+        /* istanbul ignore next */ event => {
           const tooltipContains = tooltip.contains(event.target);
           const parentContains = this.element.nativeElement.contains(event.target);
           if (!tooltipContains && !parentContains) {
