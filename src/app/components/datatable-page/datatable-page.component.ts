@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './datatable-page.component.html'
 })
 export class DatatablePageComponent {
-  rows: any[] = (function() {
+  rows: any[] = (function () {
     const res = [];
 
     let i = 0;

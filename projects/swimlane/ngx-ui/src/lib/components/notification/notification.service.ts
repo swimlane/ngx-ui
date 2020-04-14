@@ -73,12 +73,9 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
     if (component.instance && component.instance.timeout !== false) {
       clearTimeout(component.instance.timer);
 
-      component.instance.timer = setTimeout(
-        () => {
-          this.destroy(component);
-        },
-        component.instance.timeout as number
-      );
+      component.instance.timer = setTimeout(() => {
+        this.destroy(component);
+      }, component.instance.timeout as number);
     }
   }
 

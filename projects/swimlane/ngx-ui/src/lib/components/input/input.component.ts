@@ -336,6 +336,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   };
 
   private updateInputType() {
-    this.type$.next(this.passwordTextVisible && this.type === InputTypes.password ? InputTypes.text : this.type);
+    // tslint:disable-next-line: tsr-detect-possible-timing-attacks
+    this.type$.next(this.passwordTextVisible && InputTypes.password === this.type ? InputTypes.text : this.type);
   }
 }

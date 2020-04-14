@@ -44,13 +44,13 @@ export class LoadingService {
       const fn = () => {
         this.increment();
         if (this.progress < 100) {
-          this.timeout = setTimeout(fn.bind(this), this.threshold);
+          this.timeout = setTimeout(fn, this.threshold);
         } else {
           this.complete();
         }
       };
 
-      this.timeout = setTimeout(fn.bind(this), this.threshold);
+      this.timeout = setTimeout(fn, this.threshold);
     }
   }
 

@@ -208,7 +208,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   get invalid() {
     if (this.required && this.checkInvalidValue(this.value)) return true;
-    if (this.maxSelections !== undefined && (this.value && this.value.length > this.maxSelections)) return true;
+    if (this.maxSelections !== undefined && this.value && this.value.length > this.maxSelections) return true;
     if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections)) return true;
     return false;
   }

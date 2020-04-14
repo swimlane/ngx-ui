@@ -31,9 +31,7 @@ let nextId = 0;
   exportAs: 'ngxRadiobuttonGroup',
   selector: 'ngx-radiobutton-group',
   providers: [RADIOGROUP_VALUE_ACCESSOR],
-  template: `
-    <ng-content></ng-content>
-  `,
+  template: ` <ng-content></ng-content> `,
   styleUrls: ['./radiobutton.component.scss'],
   host: {
     class: 'ngx-radiobutton-group',
