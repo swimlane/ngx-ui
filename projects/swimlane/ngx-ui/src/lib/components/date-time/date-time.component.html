@@ -27,66 +27,62 @@
     >
     </ngx-calendar>
     <div class="time-row" *ngIf="inputType === 'time' || inputType === 'datetime'">
-      <div fxLayout="row" fxLayoutGap="10px" fxLayoutWrap="nowrap" fxLayoutAlign="center baseline">
-        <div fxFlex>
-          <ngx-input
-            type="number"
-            hint="Hour"
-            [id]="id + '-hour'"
-            [ngModel]="hour"
-            min="1"
-            max="12"
-            (change)="hourChanged($event)"
-            [disabled]="isTimeDisabled('hour')"
-          >
-          </ngx-input>
-        </div>
-        <div fxFlex>
-          <ngx-input
-            type="number"
-            hint="Minute"
-            [id]="id + '-minute'"
-            [ngModel]="minute"
-            min="0"
-            max="59"
-            (change)="minuteChanged($event)"
-            [disabled]="isTimeDisabled('minute')"
-          >
-          </ngx-input>
-        </div>
-        <div fxFlex>
-          <button
-            class="ampm"
-            type="button"
-            [class.selected]="amPmVal === 'AM'"
-            (click)="onAmPmChange('AM')"
-            [disabled]="isTimeDisabled('hour')"
-          >
-            AM
-          </button>
-          <button
-            class="ampm"
-            type="button"
-            [class.selected]="amPmVal === 'PM'"
-            (click)="onAmPmChange('PM')"
-            [disabled]="isTimeDisabled('hour')"
-          >
-            PM
-          </button>
-        </div>
+      <div>
+        <ngx-input
+          type="number"
+          hint="Hour"
+          [id]="id + '-hour'"
+          [ngModel]="hour"
+          min="1"
+          max="12"
+          (change)="hourChanged($event)"
+          [disabled]="isTimeDisabled('hour')"
+        >
+        </ngx-input>
+      </div>
+      <div>
+        <ngx-input
+          type="number"
+          hint="Minute"
+          [id]="id + '-minute'"
+          [ngModel]="minute"
+          min="0"
+          max="59"
+          (change)="minuteChanged($event)"
+          [disabled]="isTimeDisabled('minute')"
+        >
+        </ngx-input>
+      </div>
+      <div>
+        <button
+          class="ampm"
+          type="button"
+          [class.selected]="amPmVal === 'AM'"
+          (click)="onAmPmChange('AM')"
+          [disabled]="isTimeDisabled('hour')"
+        >
+          AM
+        </button>
+        <button
+          class="ampm"
+          type="button"
+          [class.selected]="amPmVal === 'PM'"
+          (click)="onAmPmChange('PM')"
+          [disabled]="isTimeDisabled('hour')"
+        >
+          PM
+        </button>
       </div>
     </div>
     <nav role="navigation" class="ngx-dialog-footer">
-      <div fxLayout="row" fxLayoutWrap="nowrap">
-        <div class="text-left" fxFlex="1 1 50%">
-          <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()" [hidden]="isCurrent()">
-            Current
-          </button>
-        </div>
-        <div class="text-right" fxFlex="1 1 50%">
-          <button type="button" class="btn btn-link clear-btn" (click)="clear()">Clear</button>
-          <button type="button" class="btn btn-link apply-btn" (click)="apply()">Apply</button>
-        </div>
+      <div class="text-left">
+        <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()" [hidden]="isCurrent()">
+          Current
+        </button>
+      </div>
+      <div class="text-right">
+        <button type="button" class="btn btn-link clear-btn" (click)="clear()">Clear</button>
+        <button type="button" class="btn btn-link apply-btn" (click)="apply()">Apply</button>
       </div>
     </nav>
   </ng-template>
@@ -105,11 +101,9 @@
     (ngModelChange)="inputChanged($event)"
     (blur)="onBlur()"
   >
-    <ngx-input-hint>
-      <div fxLayout="row" fxLayoutGap="10px" fxLayoutWrap="nowrap">
-        <div fxFlex *ngIf="hint" class="text-left">{{ hint }}</div>
-        <div *ngIf="errorMsg" fxFlex class="text-right input-error">{{ errorMsg }}</div>
-      </div>
+    <ngx-input-hint class="date-time-hint">
+      <div *ngIf="hint" class="text-left">{{ hint }}</div>
+      <div *ngIf="errorMsg" class="text-right input-error">{{ errorMsg }}</div>
     </ngx-input-hint>
   </ngx-input>
   <button
