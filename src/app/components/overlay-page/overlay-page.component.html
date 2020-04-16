@@ -8,35 +8,19 @@
   <button class="btn btn-primary" (click)="overlay.visible = true">Show Overlay</button>
 
   <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-overlay #overlay (click)="overlay.visible = false">
-        <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
-          <h3>Click anywhere to return</h3>
-        </span>
-      </ngx-overlay>
-      <button class="btn btn-primary" (click)="overlay.visible = true">Show Overlay</button>
-    ]]>
+    <![CDATA[ <ngx-overlay #overlay (click)="overlay.visible = false"> <span style="display: inline-block; line-height:
+    14px; vertical-align: middle;"> <h3>Click anywhere to return</h3> </span> </ngx-overlay> <button class="btn
+    btn-primary" (click)="overlay.visible = true">Show Overlay</button> ]]>
   </ngx-codemirror>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Browser size">
   Resize your browser to be less than 600px to to see the overlay.
 
-  <div fxHide.gt-sm="true">
-    <ngx-overlay visible="true">
-      <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
-        <h1>
-          <i class="ngx-icon ngx-hand icon-fx-dbl-sized"></i>
-        </h1>
-        <h3>Your browser is too small</h3>
-        Resize your browser to be at least 600px to return to action.
-      </span>
-    </ngx-overlay>
-  </div>
+  <ngx-resize-overlay query="(min-width: 959px) and (min-height: 650px)" combo="alt+shift+o"> </ngx-resize-overlay>
 
   <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[ <div fxHide.gt-sm="true"> <ngx-overlay visible="true"> <span style="display: inline-block; line-height:
-    14px; vertical-align: middle;"> <h1><i class="ngx-icon ngx-hand icon-fx-dbl-sized"></i></h1> <h3>Your browser is too
-    small</h3> Resize your browser to be at least 600px to return to action. </span> </ngx-overlay> </div> ]]>
+    <![CDATA[ <ngx-resize-overlay query="(min-width: 959px) and (min-height: 650px)" combo="alt+shift+o">
+    </ngx-resize-overlay> ]]>
   </ngx-codemirror>
 </ngx-section>
