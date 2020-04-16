@@ -3,6 +3,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 @Component({
   selector: 'app-split-page',
   templateUrl: './split-page.component.html',
+  styleUrls: ['./split-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SplitPageComponent {

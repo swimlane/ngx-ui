@@ -31,64 +31,64 @@ describe('SplitDirective', () => {
   });
 
   it('should drag on handle drag', () => {
-    const spy = spyOn(component.split, 'onDrag');
+    const spy = spyOn(component.split as any, 'onDrag');
     component.splitHandle.onMouseMove({} as any);
     expect(spy).toHaveBeenCalled();
   });
 
   it('should double click on handle double click', () => {
-    const spy = spyOn(component.split, 'onDblClick');
+    const spy = spyOn(component.split as any, 'onDblClick');
     component.splitHandle.dblclick.emit();
     expect(spy).toHaveBeenCalled();
   });
 
   describe('onDblClick', () => {
     it('should resize row on double click', () => {
-      const spy = spyOn(component.split, 'resize');
-      component.split.onDblClick();
+      const spy = spyOn(component.split as any, 'resize');
+      (component.split as any).onDblClick();
       expect(spy).toHaveBeenCalled();
     });
 
     it('should resize column on double click', () => {
-      const spy = spyOn(component.split, 'resize');
+      const spy = spyOn(component.split as any, 'resize');
       component.split.direction = SplitDirection.Column;
-      component.split.onDblClick();
+      (component.split as any).onDblClick();
       expect(spy).toHaveBeenCalled();
     });
 
     it('should resize with px value instead of %', () => {
-      const spy = spyOn(component.split, 'resize');
+      const spy = spyOn(component.split as any, 'resize');
       component.flex$.next('10px');
       fixture.detectChanges();
-      component.split.onDblClick();
+      (component.split as any).onDblClick();
       expect(spy).toHaveBeenCalled();
     });
   });
 
   describe('onDrag', () => {
     it('should resize horizontal', () => {
-      const spy = spyOn(component.split, 'resize');
-      component.split.onDrag({ movementX: 10, movementY: 20 } as any);
+      const spy = spyOn(component.split as any, 'resize');
+      (component.split as any).onDrag({ movementX: 10, movementY: 20 } as any);
       expect(spy).toHaveBeenCalledWith(10);
     });
 
     it('should resize vertical', () => {
-      const spy = spyOn(component.split, 'resize');
+      const spy = spyOn(component.split as any, 'resize');
       component.split.direction = SplitDirection.Column;
-      component.split.onDrag({ movementX: 10, movementY: 20 } as any);
+      (component.split as any).onDrag({ movementX: 10, movementY: 20 } as any);
       expect(spy).toHaveBeenCalledWith(20);
     });
   });
 
   describe('resize', () => {
     it('should resize splitAreas as row', () => {
-      component.split.resize(10);
+      (component.split as any).resize(10);
       expect(true).toBeTrue();
     });
 
     it('should resize splitAreas as column', () => {
       component.split.direction = SplitDirection.Column;
-      component.split.resize(10);
+      (component.split as any).resize(10);
       expect(true).toBeTrue();
     });
   });
