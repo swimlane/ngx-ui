@@ -1,0 +1,24 @@
+.flex-container {
+  flex-flow: row wrap;
+  box-sizing: border-box;
+  display: flex;
+
+  > * {
+    flex: 1 1 250px;
+    box-sizing: border-box;
+    max-width: 250px;
+    min-width: 250px;
+    margin-right: 15px;
+  }
+}
+
+.flex-container-fill {
+  flex-flow: row wrap;
+  box-sizing: border-box;
+  display: flex;
+
+  > * {
+    flex: 1 1 0%;
+    box-sizing: border-box;
+  }
+}

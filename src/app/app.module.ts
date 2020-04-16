@@ -9,7 +9,6 @@ import { NgxUIModule } from '@swimlane/ngx-ui';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from '@swimlane/ng2-file-upload';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { RouterModule, Routes } from '@angular/router';
 
@@ -157,7 +156,6 @@ const routes: Routes = [
     NgxDatatableModule,
     BrowserAnimationsModule,
     FileUploadModule,
-    FlexLayoutModule,
     RouterModule.forRoot(routes)
   ],
   bootstrap: [AppComponent]

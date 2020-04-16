@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+- Remove @angular/flex-layout
+
 ## 28.5.3 (2020-04-14)
 
 - Chore: Update dependecies
