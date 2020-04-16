@@ -55,8 +55,8 @@ export class SplitDirective implements AfterContentInit, OnChanges, OnDestroy {
   constructor(private readonly elementRef: ElementRef) {}
 
   ngAfterContentInit(): void {
-    this.subscriptions.concat(this.handles.map(d => d.drag.subscribe((ev: MouseEvent) => this.onDrag(ev))));
-    this.subscriptions.concat(this.handles.map(d => d.dblclick.subscribe(() => this.onDblClick())));
+    this.subscriptions.push(...this.handles.map(d => d.drag.subscribe((ev: MouseEvent) => this.onDrag(ev))));
+    this.subscriptions.push(...this.handles.map(d => d.dblclick.subscribe(() => this.onDblClick())));
     this.updateHandles();
   }
 
