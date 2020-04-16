@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SplitDirectiveFixture } from './split.directive.fixture';
 import { SplitDirective } from './split.directive';
@@ -14,7 +13,7 @@ describe('SplitAreaDirective', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [FlexLayoutModule],
+      imports: [],
       declarations: [SplitDirectiveFixture, SplitDirective, SplitAreaDirective, SplitHandleComponent]
     });
   });
@@ -37,7 +36,6 @@ describe('SplitAreaDirective', () => {
     });
 
     it('should update using number', () => {
-      component.flex$.next('50px');
       fixture.detectChanges();
       component.splitAreas.first.updateBasis('80px');
       expect(component.splitAreas.first.currentFlexParts).toEqual(['1', '1', '80px']);

@@ -24,7 +24,6 @@ export class SplitAreaDirective implements OnChanges {
   @Input() ngxSplitArea: string = DEFAULT_BASIS;
   @Input() minBasis: string;
   @Input() maxBasis: string;
-  @Input() fxFlex: string;
 
   overflow: string = 'hidden';
   initialFlexParts: FlexParts;

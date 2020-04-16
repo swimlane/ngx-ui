@@ -6,7 +6,6 @@ describe('resizeAreaBy', () => {
 
   beforeEach(() => {
     splitArea = {
-      fxFlex: '1 1 50px',
       currentFlexParts: ['1', '1', '50px'],
       initialFlexParts: ['1', '1', '50px'],
       minBasis: '',
@@ -22,7 +21,6 @@ describe('resizeAreaBy', () => {
 
   it('should get new area size percentage', () => {
     splitArea = {
-      fxFlex: '1 1 50%',
       currentFlexParts: ['1', '1', '50%'],
       initialFlexParts: ['1', '1', '50%'],
       minBasis: '',

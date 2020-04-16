@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { SplitDirectiveFixture } from './split.directive.fixture';
 import { SplitDirective } from './split.directive';
@@ -15,7 +14,7 @@ describe('SplitDirective', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [FlexLayoutModule],
+      imports: [],
       declarations: [SplitDirectiveFixture, SplitDirective, SplitAreaDirective, SplitHandleComponent]
     });
   });
@@ -58,7 +57,6 @@ describe('SplitDirective', () => {
 
     it('should resize with px value instead of %', () => {
       const spy = spyOn(component.split as any, 'resize');
-      component.flex$.next('10px');
       fixture.detectChanges();
       (component.split as any).onDblClick();
       expect(spy).toHaveBeenCalled();
