@@ -278,6 +278,8 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   private _multiple: boolean = false;
   private _disabled: boolean = false;
 
+  private onTouchedCallback: () => void;
+
   constructor(
     private readonly _element: ElementRef,
     private readonly _renderer: Renderer2,
@@ -391,7 +393,10 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouchedCallback = fn;
+    this.onTouchedCallback = () => {
+      this.touched = true;
+      fn();
+    };
   }
 
   private checkInvalidValue(value: any): boolean {
@@ -403,13 +408,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   /* istanbul ignore next */
-  private onTouchedCallback() {
-    this.touched = true;
-    // placeholder
-  }
-
-  /* istanbul ignore next */
-  private onChangeCallback(_: any) {
+  private onChangeCallback(_: any): void {
     // placeholder
   }
 }
