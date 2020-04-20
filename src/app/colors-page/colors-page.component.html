@@ -1,6 +1,9 @@
 <h3 class="style-header">Colors: Hues</h3>
-<div class="flex-container">
-  <div *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']">
+<div class="ngx-flex--row">
+  <div
+    class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3"
+    *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']"
+  >
     <ul class="color-group shadow-2 shadow-fx list-reset">
       <li class="color main-color color-{{ color }}-500">$color-{{ color }}</li>
       <li #swatch *ngFor="let weight of [1, 2, 3, 4, 5, 6, 7, 8, 9]" class="color color-{{ color }}-{{ weight }}00">
@@ -12,8 +15,11 @@
 </div>
 
 <h3 class="style-header">Colors: Greys</h3>
-<div class="flex-container">
-  <div *ngFor="let color of ['blue-grey', 'grey']">
+<div class="ngx-flex--row start">
+  <div
+    class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3"
+    *ngFor="let color of ['blue-grey', 'grey']"
+  >
     <ul class="color-group shadow-2 shadow-fx list-reset">
       <li class="color main-color color-{{ color }}-500">$color-{{ color }}</li>
       <li
@@ -54,8 +60,8 @@
 </div>
 
 <h3 class="style-header">Colors: Gradients</h3>
-<div class="flex-container">
-  <div>
+<div class="ngx-flex--row">
+  <div class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3">
     <ul class="color-group shadow-2 shadow-fx list-reset">
       <li
         *ngFor="let gradient of gradients; let i = index"
@@ -68,7 +74,7 @@
       </li>
     </ul>
   </div>
-  <div>
+  <div class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3">
     <ul class="color-group shadow-2 shadow-fx list-reset">
       <li class="color main-color bg-linear-1">
         <span class="name u-floatLeft" style="color: white;">Bg Linear</span>
@@ -80,7 +86,7 @@
       </li>
     </ul>
   </div>
-  <div>
+  <div class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3">
     <ul class="color-group shadow-2 shadow-fx list-reset">
       <li class="color main-color bg-radial-1">
         <span class="name u-floatLeft" style="color: white;">Bg Radial</span>
@@ -95,8 +101,11 @@
 </div>
 
 <h3 class="style-header">Colors: Ordinal Charts</h3>
-<div class="flex-container">
-  <div *ngFor="let colorGroup of chartColorsOrdinal">
+<div class="ngx-flex--row">
+  <div
+    class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3"
+    *ngFor="let colorGroup of chartColorsOrdinal"
+  >
     <ul class="color-group shadow-2 shadow-fx list-reset">
       <li
         *ngFor="let color of colorGroup.colors; let idx = index"
@@ -115,8 +124,11 @@
 </div>
 
 <h3 class="style-header">Colors: Sequential Charts</h3>
-<div class="flex-container">
-  <div *ngFor="let colorGroup of chartColorsSequential">
+<div class="ngx-flex--row">
+  <div
+    class="ngx-flex--col-12 ngx-flex--col-md-6 ngx-flex--col-lg-4 ngx-flex--col-xl-3"
+    *ngFor="let colorGroup of chartColorsSequential"
+  >
     <ul class="color-group shadow-2 shadow-fx list-reset">
       <li
         *ngFor="let color of colorGroup.colors; let idx = index"
@@ -139,8 +151,8 @@ Apply the class to an element to give it a glowing border. Alternatively, you ca
 <ngx-codemirror mode="htmlmixed" readOnly="true">
   <![CDATA[ .my-class { @include glow($color); } ]]>
 </ngx-codemirror>
-<div class="flex-container-fill">
-  <div *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']">
+<div class="ngx-flex--row">
+  <div class="ngx-flex--col-2" *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']">
     <div
       *ngFor="let weight of [1, 2, 3, 4, 5, 6, 7, 8, 9]"
       class="glow-demo glow-{{ color }}-{{ weight }}00"
@@ -152,11 +164,11 @@ Apply the class to an element to give it a glowing border. Alternatively, you ca
 </div>
 
 <h3 class="style-header">Colors: Shadows</h3>
-<div class="flex-container-fill">
-  <div *ngFor="let i of shadows">
+<div class="ngx-flex--row">
+  <div class="ngx-flex--col-2 center" *ngFor="let i of shadows">
     <div class="shadow-demo shadow-{{ i }}" dbl-click-copy>$shadow-{{ i }}</div>
   </div>
-  <div class="FlexItem">
+  <div class="ngx-flex--col-2 center">
     <div class="shadow-demo shadow-10 shadow-fx">
       shadow-fx
     </div>

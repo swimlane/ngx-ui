@@ -1,24 +1,18 @@
-.flex-container {
-  flex-flow: row wrap;
-  box-sizing: border-box;
-  display: flex;
+.color-group {
+  width: 250px;
 
-  > * {
-    flex: 1 1 250px;
-    box-sizing: border-box;
-    max-width: 250px;
-    min-width: 250px;
-    margin-right: 15px;
+  .main-color {
+    height: 70px;
+  }
+
+  .color {
+    padding: 15px 10px;
   }
 }
 
-.flex-container-fill {
-  flex-flow: row wrap;
-  box-sizing: border-box;
-  display: flex;
-
-  > * {
-    flex: 1 1 0%;
-    box-sizing: border-box;
-  }
+.shadow-demo {
+  height: 120px;
+  margin: 15px;
+  text-align: center;
+  line-height: 120px;
 }
