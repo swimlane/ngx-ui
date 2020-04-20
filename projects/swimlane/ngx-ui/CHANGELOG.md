@@ -4,6 +4,10 @@
 
 - Remove @angular/flex-layout
 
+## 28.5.4 (2020-04-14)
+
+- Fix ngx-select not registering onTouched events (#427)
+
 ## 28.5.3 (2020-04-14)
 
 - Chore: Update dependecies
