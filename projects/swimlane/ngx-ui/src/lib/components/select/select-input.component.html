@@ -1,13 +1,15 @@
-<div tabindex="-1" (keydown)="onKeyDown($event)" class="ngx-select-input-box" (click)="onClick($event)">
+<div
+  [tabindex]="tabindex"
+  (keydown)="onKeyDown($event)"
+  (keyup)="onGlobalKeyUp($event)"
+  class="ngx-select-input-box"
+  (click)="onClick($event)"
+>
   <span *ngIf="label !== undefined" class="ngx-select-label">
     <span [innerHTML]="label"></span>
     <span [innerHTML]="requiredIndicator"></span>
   </span>
-  <span
-    *ngIf="!selected?.length && placeholder !== undefined"
-    class="ngx-select-placeholder"
-    [innerHTML]="placeholder"
-  >
+  <span *ngIf="!selected?.length && placeholder !== undefined" class="ngx-select-placeholder" [innerHTML]="placeholder">
   </span>
   <ul class="horizontal-list ngx-select-input-list">
     <li *ngFor="let option of selectedOptions" class="ngx-select-input-option" [class.disabled]="option.disabled">
@@ -32,7 +34,6 @@
         #tagInput
         type="search"
         class="ng-select-text-box"
-        tabindex=""
         autocomplete="off"
         autocorrect="off"
         spellcheck="off"
