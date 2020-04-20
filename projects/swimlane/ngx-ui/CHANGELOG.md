@@ -2,7 +2,8 @@
 
 ## HEAD (Unreleased)
 
-- Remove @angular/flex-layout
+- Enhancement: Remove @angular/flex-layout
+- Enhancement: Added `ngx-flex` classes for easy flex layouts
 
 ## 28.5.4 (2020-04-14)
 
