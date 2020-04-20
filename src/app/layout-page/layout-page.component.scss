@@ -1,0 +1,113 @@
+@import 'colors/variables';
+
+section {
+  margin: 40px 0;
+}
+
+code {
+  display: inline;
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: $color-blue-grey-775;
+  border-radius: 3px;
+}
+
+.ngx-flex--wrap,
+.ngx-flex--wrap-fluid,
+.ngx-flex--wrap-fixed {
+  margin: 40px 0;
+  border: 1px solid $color-blue-grey-725;
+  position: relative;
+
+  &:before {
+    content: attr(class);
+    font-size: 16px;
+    font-weight: bold;
+    position: absolute;
+    top: -20px;
+  }
+}
+
+.ngx-flex--row {
+  background-color: rgba($color-green, 0.1);
+  margin-top: 20px;
+  position: relative;
+  box-sizing: border-box;
+
+  &:before {
+    top: -14px;
+    left: 10px;
+  }
+
+  > * {
+    background-color: rgba($color-light-blue, 0.15);
+    position: relative;
+    border: 1px solid rgba($color-light-blue, 0.06);
+    box-sizing: border-box;
+
+    &:before {
+      content: attr(class);
+      font-size: 12px;
+      position: absolute;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      text-align: left;
+      top: 10px;
+      width: calc(100% - 25px);
+      left: 15px;
+    }
+  }
+}
+
+.ngx-flex--row,
+.ngx-flex--col {
+  &:before {
+    content: attr(class);
+    font-size: 12px;
+    position: absolute;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: calc(100% - 4px);
+    text-align: left;
+  }
+}
+
+.box,
+.box-first,
+.box-large,
+.box-nested,
+.box-row {
+  margin: 5px 0;
+  background: $color-blue-500;
+  border-radius: 5px;
+  overflow: hidden;
+  text-align: center;
+  color: #999;
+  font-size: 10px;
+  font-weight: bold;
+  min-height: 30px;
+  line-height: 30px;
+}
+
+.box-large {
+  height: 8rem;
+}
+
+.app-columns-24-wide-gutter,
+.app-columns-24-wide-gutter .ngx-flex--row .app-columns-24-wide-gutter .ngx-flex--col {
+  --columns: 24;
+  --column-width: calc(100% / var(--columns));
+  --gutter-width: 2rem;
+  --gutter-compensation: calc((var(--gutter-width) * 0.5) * -1);
+  --half-gutter-width: calc((var(--gutter-width) * 0.5));
+}
+
+.app-columns-10,
+.app-columns-10 .ngx-flex--row,
+.app-columns-10 .ngx-flex--col {
+  --columns: 10;
+  --column-width: calc(100% / var(--columns));
+}

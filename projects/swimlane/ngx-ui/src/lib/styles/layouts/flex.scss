@@ -1,0 +1,125 @@
+/* CSS based on flexboxgrid Copyright 2013 Kristofer Joseph */
+
+@import './_mixins.scss';
+
+/* --- SASS Config --- */
+
+$prefix: 'ngx-flex--';
+$container: 'wrap';
+$row: 'row';
+$column: 'col';
+
+$container-class: '.' + $prefix + $container;
+$row-class: '.' + $prefix + $row;
+$column-class: '.' + $prefix + $column;
+
+$max-columns: 12;
+
+// Breakpoints (follows Flex-layout)
+$breakpoints: (
+  '': 0,
+  // Default
+    '-xs': 0,
+  // Extra small screen / phone
+    '-sm': 600px,
+  // Small screen / phone
+    '-md': 960px,
+  // Medium screen / tablet
+    '-lg': 1280px,
+  // Large screen / desktop
+    '-xl': 1920px // Extra large screen / wide desktop,
+);
+
+// Container Widths (follows Flex-layout)
+$container-widths: (
+  '': 480px,
+  '-xs': 480px,
+  '-sm': 550px,
+  '-md': 920px,
+  '-lg': 1240px,
+  '-xl': 1880px
+);
+
+/* --- CSS Variables --- */
+
+:root {
+  // columns
+  --columns: 12;
+  --column-width: calc(100% / var(--columns));
+
+  // gutters
+  --gutter-width: 1rem;
+  --outer-margin: 2rem;
+  --gutter-compensation: calc((var(--gutter-width) * 0.5) * -1);
+  --half-gutter-width: calc((var(--gutter-width) * 0.5));
+
+  // containers
+  @each $modifier, $width in $container-widths {
+    --container#{$modifier}: calc(#{$width} + var(--gutter-width));
+  }
+}
+
+/* --- Containers --- */
+
+// default container is fluid
+#{$container-class},
+#{$container-class}-fluid {
+  padding-right: var(--outer-margin, 2rem);
+  padding-left: var(--outer-margin, 2rem);
+}
+
+#{$container-class},
+#{$container-class}-fluid,
+#{$container-class}-fixed {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* --- Rows --- */
+
+#{$row-class} {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: var(--gutter-compensation, -0.5rem);
+  margin-left: var(--gutter-compensation, -0.5rem);
+
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+
+  @include modifiers('');
+
+  // defualt columns
+  & > * {
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    padding-right: var(--half-gutter-width, 0.5rem);
+    padding-left: var(--half-gutter-width, 0.5rem);
+
+    @include modifiers('');
+
+    &.reverse {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+/* --- Columns --- */
+
+@each $modifier, $breakpoint in $breakpoints {
+  @media screen and (min-width: $breakpoint) {
+    #{$container-class}-fixed {
+      width: var(--container#{$modifier});
+    }
+
+    #{$row-class} > {
+      @include create-col-classes($modifier);
+    }
+  }
+}

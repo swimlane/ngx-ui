@@ -56,11 +56,13 @@ import { HotkeysPageComponent } from './components/hotkeys-page/hotkeys-page.com
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { PipesPageComponent } from './pipes-page/pipes-page.component';
 import { StepperPageComponent } from './components/stepper-page/stepper-page.component';
+import { LayoutPageComponent } from './layout-page/layout-page.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'colors', component: ColorsPageComponent },
   { path: 'typography', component: TypographyPageComponent },
+  { path: 'layout', component: LayoutPageComponent },
   { path: 'icons', component: IconsPageComponent },
   { path: 'animations', component: AnimationsPageComponent },
   { path: 'inputs', component: InputsPageComponent },
@@ -145,7 +147,8 @@ const routes: Routes = [
     HotkeysPageComponent,
     LandingPageComponent,
     PipesPageComponent,
-    StepperPageComponent
+    StepperPageComponent,
+    LayoutPageComponent
   ],
   imports: [
     BrowserModule,

@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "prestart": "npm run build:css",
     "start": "ng serve --port 4200",
     "build": "npm run build:lib && ng build --prod",
     "build:demo": "npm run build:lib && cross-env NODE_ENV=production ng build --prod --base-href=\"/ngx-ui/\"",
-    "build:lib": "ng build @swimlane/ngx-ui --prod && node scripts/prep-global-styles.js && npm run copy-files",
+    "build:lib": "ng build @swimlane/ngx-ui --prod && npm run build:css",
+    "build:css": "node scripts/prep-global-styles.js && npm run copy-files",
     "copy-files": "cp README.md dist/swimlane/ngx-ui/README.md && cp LICENSE dist/swimlane/ngx-ui/LICENSE",
     "package": "npm run build:lib",
     "test:unit": "ng test @swimlane/ngx-ui",

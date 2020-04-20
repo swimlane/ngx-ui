@@ -1,0 +1,94 @@
+/* --- Mixins -- */
+
+@mixin modifiers($modifier) {
+  &.start#{$modifier} {
+    justify-content: flex-start;
+    text-align: start;
+  }
+
+  &.center#{$modifier} {
+    justify-content: center;
+    text-align: center;
+  }
+
+  &.end#{$modifier} {
+    justify-content: flex-end;
+    text-align: end;
+  }
+
+  &.top#{$modifier} {
+    align-items: flex-start;
+  }
+
+  &.middle#{$modifier} {
+    align-items: center;
+  }
+
+  &.bottom#{$modifier} {
+    align-items: flex-end;
+  }
+
+  &.around#{$modifier} {
+    justify-content: space-around;
+  }
+
+  &.between#{$modifier} {
+    justify-content: space-between;
+  }
+
+  &.first#{$modifier} {
+    order: -1;
+  }
+
+  &.last#{$modifier} {
+    order: 1;
+  }
+}
+
+@mixin create-col-classes($modifier) {
+  #{$column-class}#{$modifier} {
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    flex: 1 1 auto;
+    padding-right: var(--half-gutter-width, 0.5rem);
+    padding-left: var(--half-gutter-width, 0.5rem);
+
+    @include modifiers($modifier);
+
+    &.reverse {
+      flex-direction: column-reverse;
+    }
+  }
+
+  @for $i from 1 through $max-columns {
+    #{$column-class}#{$modifier}-#{$i},
+    #{$column-class}#{$modifier}-offset-#{$i - 1} {
+      flex-grow: 1;
+      flex-basis: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+      flex: 0 0 auto;
+      padding-right: var(--half-gutter-width, 0.5rem);
+      padding-left: var(--half-gutter-width, 0.5rem);
+    }
+  }
+
+  @for $i from 1 through $max-columns {
+    #{$column-class}#{$modifier}-#{$i} {
+      flex-basis: calc(var(--column-width, 100% / 12) * #{$i});
+      max-width: calc(var(--column-width, 100% / 12) * #{$i});
+
+      @include modifiers($modifier);
+
+      &.reverse {
+        flex-direction: column-reverse;
+      }
+    }
+
+    #{$column-class}#{$modifier}-offset-#{$i - 1} {
+      margin-left: calc(var(--column-width, 100% / 12) * (#{$i} - 1));
+    }
+  }
+}
