@@ -324,15 +324,15 @@
   ></ngx-input>
 
   <h3 class="style-header">FlexBox - Align Baseline</h3>
-  <div style="display: flex; align-items: baseline; width: 600px;">
-    <label style="flex: 1 1 30%; margin: 0 5px;">Length Limit</label>
-    <div style="flex: 1 1 15%; margin: 0 5px;">
+  <div class="ngx-flex--row baseline">
+    <label class="ngx-flex--col-1">Length Limit</label>
+    <div class="ngx-flex--col-1">
       <ngx-input [(ngModel)]="minValue" type="text" type="number" label="Min" min="0" [max]="maxValue"> </ngx-input>
     </div>
-    <div style="flex: 1 1 15%; margin: 0 5px;">
+    <div class="ngx-flex--col-1">
       <ngx-input [(ngModel)]="maxValue" type="text" type="number" label="Max" [min]="minValue" max="10000"> </ngx-input>
     </div>
-    <div style="flex: 1 1 40%; margin: 0 5px;">
+    <div class="ngx-flex--col-1">
       <ngx-select
         #flexBoxExample
         [filterable]="false"
@@ -350,19 +350,19 @@
     </div>
   </div>
 
-  <div style="display: flex; align-items: baseline; width: 600px;">
-    <label style="flex: 1 1 30%; margin: 0 5px;">Options</label>
-    <div style="flex: 1 1 33%; margin: 0 5px;">
+  <div class="ngx-flex--row baseline">
+    <label class="ngx-flex--col-1">Options</label>
+    <div class="ngx-flex--col-1">
       <ngx-checkbox name="chk1" [ngModel]="true">
         Alert the SOC
       </ngx-checkbox>
     </div>
-    <div style="flex: 1 1 33%; margin: 0 5px;">
+    <div class="ngx-flex--col-1">
       <ngx-radiobutton [checked]="favoriteSeason === 'Winter'" (change)="favoriteSeason = 'Winter'">
         Winter
       </ngx-radiobutton>
     </div>
-    <div style="flex: 1 1 33%; margin: 0 5px;">
+    <div class="ngx-flex--col-1">
       <ngx-select
         #flexBoxExample
         [filterable]="false"
@@ -381,8 +381,8 @@
   </div>
 
   <h3 class="style-header" style="clear: both;">Stacked</h3>
-  <div style="display: flex;">
-    <div style="flex: 0 0 33%; margin: 0 5px;">
+  <div class="ngx-flex--row">
+    <div class="ngx-flex--col-12 ngx-flex--col-md-4">
       <ngx-input type="text" label="Prefix" [(ngModel)]="prefix" hint="text that appears before the value"> </ngx-input>
 
       <ngx-input type="text" label="Suffix" [(ngModel)]="suffix" hint="text that appears after the value"> </ngx-input>
@@ -394,7 +394,7 @@
       <label style="font-size: 0.7rem;">Help Text</label>
       <ngx-codemirror [config]="{ theme: 'dracula' }" [mode]="'htmlmixed'" [(ngModel)]="helptext"> </ngx-codemirror>
     </div>
-    <div style="flex: 0 0 33%; margin: 0 5px;">
+    <div class="ngx-flex--col-12 ngx-flex--col-md-4">
       <ngx-input type="text" [label]="label" ngModel="" [hint]="showHelp && helptext">
         <ngx-input-prefix>
           {{ prefix }}
@@ -442,12 +442,11 @@
         Save
       </ngx-button>
     </div>
-    <div style="flex: 0 0 33%; margin: 0 5px;"></div>
   </div>
 
   <h3 class="style-header" style="clear: both;">Stacked - Large Font</h3>
-  <div style="display: flex; font-size: 30px;">
-    <div style="flex: 1 1 33%; margin: 0 5px;">
+  <div class="ngx-flex--row">
+    <div class="ngx-flex--col-8 ngx-flex--col-md-4">
       <ngx-input type="text" label="Prefix" [(ngModel)]="prefix" hint="text that appears before the value"> </ngx-input>
 
       <ngx-input type="text" label="Suffix" [(ngModel)]="suffix" hint="text that appears after the value"> </ngx-input>
@@ -459,7 +458,7 @@
       <label style="font-size: 0.7rem;">Help Text</label>
       <ngx-codemirror [config]="{ theme: 'dracula' }" [mode]="'htmlmixed'" [(ngModel)]="helptext"> </ngx-codemirror>
     </div>
-    <div style="flex: 1 1 33%; margin: 0 5px;">
+    <div class="ngx-flex--col-8 ngx-flex--col-md-4">
       <ngx-input type="text" [label]="label" ngModel="" [hint]="showHelp && helptext">
         <ngx-input-prefix>
           {{ prefix }}
@@ -507,12 +506,11 @@
         Save
       </ngx-button>
     </div>
-    <div style="flex: 1 1 33%; margin: 0 5px;"></div>
   </div>
 
   <h3 class="style-header" style="clear: both;">Stacked - Small Font</h3>
-  <div style="display: flex; font-size: 10px;">
-    <div style="flex: 1 1 33%; margin: 0 5px;">
+  <div class="ngx-flex--row">
+    <div class="ngx-flex--col-8 ngx-flex--col-md-4">
       <ngx-input type="text" label="Prefix" [(ngModel)]="prefix" hint="text that appears before the value"> </ngx-input>
 
       <ngx-input type="text" label="Suffix" [(ngModel)]="suffix" hint="text that appears after the value"> </ngx-input>
@@ -524,7 +522,7 @@
       <label style="font-size: 0.7rem;">Help Text</label>
       <ngx-codemirror [config]="{ theme: 'dracula' }" [mode]="'htmlmixed'" [(ngModel)]="helptext"> </ngx-codemirror>
     </div>
-    <div style="flex: 1 1 33%; margin: 0 5px;">
+    <div class="ngx-flex--col-8 ngx-flex--col-md-4">
       <ngx-input type="text" [label]="label" ngModel="" [hint]="showHelp && helptext">
         <ngx-input-prefix>
           {{ prefix }}
@@ -572,6 +570,5 @@
         Save
       </ngx-button>
     </div>
-    <div style="flex: 1 1 33%; margin: 0 5px;"></div>
   </div>
 </section>

@@ -303,35 +303,35 @@ $palette: (
   }
 }
 
-table.alignment-test {
-  margin-left: 20px;
-  margin-top: 20px;
+// table.alignment-test {
+//   margin-left: 20px;
+//   margin-top: 20px;
 
-  td {
-    border: 10px solid #34282c;
-    vertical-align: baseline;
-  }
+//   td {
+//     border: 10px solid #34282c;
+//     vertical-align: baseline;
+//   }
 
-  tr td:first-child {
-    border: none;
-  }
+//   tr td:first-child {
+//     border: none;
+//   }
 
-  td > * {
-    border: 1px solid red;
-  }
+//   td > * {
+//     border: 1px solid red;
+//   }
 
-  &.align-middle td {
-    vertical-align: middle;
-  }
+//   &.align-middle td {
+//     vertical-align: middle;
+//   }
 
-  &.align-top td {
-    vertical-align: top;
-  }
+//   &.align-top td {
+//     vertical-align: top;
+//   }
 
-  &.align-bottom td {
-    vertical-align: bottom;
-  }
-}
+//   &.align-bottom td {
+//     vertical-align: bottom;
+//   }
+// }
 
 .list-unstyled {
   padding-left: 0;

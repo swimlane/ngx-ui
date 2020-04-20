@@ -28,6 +28,10 @@
     align-items: flex-end;
   }
 
+  &.baseline#{$modifier} {
+    align-items: baseline;
+  }
+
   &.around#{$modifier} {
     justify-content: space-around;
   }
