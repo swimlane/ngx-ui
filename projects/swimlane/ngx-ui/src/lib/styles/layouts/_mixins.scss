@@ -47,52 +47,57 @@
   &.last#{$modifier} {
     order: 1;
   }
+
+  &.gutless {
+    --gutter-width: 0;
+    --gutter-compensation: 0;
+    --half-gutter-width: 0;
+  }
+}
+
+@mixin col-base() {
+  flex-grow: 1;
+  flex-basis: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding-right: var(--half-gutter-width, 0.5rem);
+  padding-left: var(--half-gutter-width, 0.5rem);
+
+  &.reverse {
+    flex-direction: column-reverse;
+  }
 }
 
 @mixin create-col-classes($modifier) {
   #{$column-class}#{$modifier} {
-    flex-grow: 1;
-    flex-basis: 0;
-    max-width: 100%;
-    box-sizing: border-box;
-    flex: 1 1 auto;
-    padding-right: var(--half-gutter-width, 0.5rem);
-    padding-left: var(--half-gutter-width, 0.5rem);
-
+    @include col-base();
     @include modifiers($modifier);
 
-    &.reverse {
-      flex-direction: column-reverse;
-    }
+    flex: 1 1 auto;
   }
 
-  @for $i from 1 through $max-columns {
-    #{$column-class}#{$modifier}-#{$i},
-    #{$column-class}#{$modifier}-offset-#{$i - 1} {
-      flex-grow: 1;
-      flex-basis: 0;
-      max-width: 100%;
-      box-sizing: border-box;
-      flex: 0 0 auto;
-      padding-right: var(--half-gutter-width, 0.5rem);
-      padding-left: var(--half-gutter-width, 0.5rem);
-    }
+  #{$column-class}#{$modifier}-auto {
+    @include col-base();
+    @include modifiers($modifier);
+
+    flex: none;
   }
 
   @for $i from 1 through $max-columns {
     #{$column-class}#{$modifier}-#{$i} {
-      flex-basis: calc(var(--column-width, 100% / 12) * #{$i});
-      max-width: calc(var(--column-width, 100% / 12) * #{$i});
-
+      @include col-base();
       @include modifiers($modifier);
 
-      &.reverse {
-        flex-direction: column-reverse;
-      }
+      flex: 0 0 auto;
+      flex-basis: calc(var(--column-width, 100% / 12) * #{$i});
+      max-width: calc(var(--column-width, 100% / 12) * #{$i});
     }
 
     #{$column-class}#{$modifier}-offset-#{$i - 1} {
+      flex: 0 0 auto;
       margin-left: calc(var(--column-width, 100% / 12) * (#{$i} - 1));
+
+      @include col-base();
     }
   }
 }

@@ -75,29 +75,33 @@ code {
   }
 }
 
-.box,
-.box-first,
-.box-large,
-.box-nested,
-.box-row {
+.box {
   margin: 5px 0;
+  padding: 0 5px;
   background: $color-blue-500;
   border-radius: 5px;
   overflow: hidden;
   text-align: center;
-  color: #999;
+  color: black;
   font-size: 10px;
   font-weight: bold;
   min-height: 30px;
   line-height: 30px;
-}
+  vertical-align: middle;
 
-.box-large {
-  height: 8rem;
+  &.medium {
+    height: 4rem;
+    line-height: 65px;
+  }
+
+  &.large {
+    height: 8rem;
+  }
 }
 
 .app-columns-24-wide-gutter,
-.app-columns-24-wide-gutter .ngx-flex--row .app-columns-24-wide-gutter .ngx-flex--col {
+.app-columns-24-wide-gutter .ngx-flex--row,
+.app-columns-24-wide-gutter .ngx-flex--col {
   --columns: 24;
   --column-width: calc(100% / var(--columns));
   --gutter-width: 2rem;
@@ -107,7 +111,7 @@ code {
 
 .app-columns-10,
 .app-columns-10 .ngx-flex--row,
-.app-columns-10 .ngx-flex--col {
+.app-columns-10 .ngx-flex--row > * {
   --columns: 10;
   --column-width: calc(100% / var(--columns));
 }

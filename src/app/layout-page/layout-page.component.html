@@ -24,35 +24,35 @@ layout.
 
     <div class="ngx-flex--row">
       <div>
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div>
-        <div class="box-row"></div>
-      </div>
-    </div>
-    <div class="ngx-flex--row">
-      <div>
-        <div class="box-row"></div>
-      </div>
-      <div>
-        <div class="box-row"></div>
-      </div>
-      <div>
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
     </div>
     <div class="ngx-flex--row">
       <div>
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div>
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div>
-        <div class="box-row"></div>
+        <div class="box"></div>
+      </div>
+    </div>
+    <div class="ngx-flex--row">
+      <div>
+        <div class="box"></div>
       </div>
       <div>
-        <div class="box-row"></div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
       </div>
     </div>
   </section>
@@ -61,60 +61,88 @@ layout.
     <h2>Sizes</h2>
 
     <p>
-      Column class modifiers (e.g. <code>col-4</code>) indicate the number of columns you’d like to use out of the
-      possible 12 per row (by default). If you want three equal-width columns across, you can use
+      Column class numeric modifiers <code>--col-*</code> (e.g. <code>col-4</code>) indicate the number of columns you’d
+      like to use out of the possible 12 per row (by default). If you want three equal-width columns across, you can use
       <code>.ngx-flex--col-4</code>; <code>.ngx-flex--col-3</code> gives four columns.
     </p>
 
     <p>Default grid of 12 columns</p>
     <div class="ngx-flex--row">
       <div class="ngx-flex--col-4">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-4">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-4">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-3">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-3">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-3">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-3">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-1">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-2">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-3">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-6">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-5">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-7">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-8">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-4">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-12">
-        <div class="box-row"></div>
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <p>You don't need to size each column.</p>
+
+    <div class="ngx-flex--row">
+      <div>
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-6">
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <p>Use <code>--col-auto</code> to size a column to its content.</p>
+
+    <div class="ngx-flex--row">
+      <div>
+        <div class="box medium"></div>
+      </div>
+      <div class="ngx-flex--col-auto">
+        <div class="box medium">Some content</div>
+      </div>
+      <div>
+        <div class="box medium"></div>
       </div>
     </div>
   </section>
@@ -123,32 +151,32 @@ layout.
     <h2>Responsive</h2>
 
     <p>
-      To make the grid responsive, there are five grid breakpoint modfiers (e.g. <code>--col-sm</code>), one for each
-      responsive breakpoint: <code>xs</code>, <code>sm</code>, <code>md</code>, <code>lg</code>, and <code>xl</code>.
-      Note that <code>xs</code> is the default and optional.
+      To make the grid responsive, there are five grid breakpoint modfiers <code>--col-*-*</code> (e.g.
+      <code>--col-sm-4</code>), one for each responsive breakpoint: <code>xs</code>, <code>sm</code>, <code>md</code>,
+      <code>lg</code>, and <code>xl</code>. Note that <code>xs</code> is the default and optional.
     </p>
 
     <div class="ngx-flex--row">
       <div class="ngx-flex--col-12 ngx-flex--col-sm-3 ngx-flex--col-md-2 ngx-flex--col-lg-1">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-6 ngx-flex--col-sm-6 ngx-flex--col-md-8 ngx-flex--col-lg-10">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-6 ngx-flex--col-sm-3 ngx-flex--col-md-2 ngx-flex--col-lg-1">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-12 ngx-flex--col-sm-3 ngx-flex--col-md-2 ngx-flex--col-lg-1">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-12 ngx-flex--col-sm-9 ngx-flex--col-md-10 ngx-flex--col-lg-11">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-10 ngx-flex--col-sm-6 ngx-flex--col-md-8 ngx-flex--col-lg-10">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-2 ngx-flex--col-sm-6 ngx-flex--col-md-4 ngx-flex--col-lg-2">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
     </div>
   </section>
@@ -160,43 +188,43 @@ layout.
 
     <div class="ngx-flex--row">
       <div class="ngx-flex--col-12">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-1">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-11">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-2">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-10">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-3">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-9">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-4">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-8">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-5">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-7">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-6">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-6">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
     </div>
   </section>
@@ -208,47 +236,47 @@ layout.
 
     <div class="ngx-flex--row">
       <div class="ngx-flex--col-1 ngx-flex--col-offset-11">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
 
       <div class="ngx-flex--col-2 ngx-flex--col-offset-10">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
 
       <div class="ngx-flex--col-3 ngx-flex--col-offset-9">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
 
       <div class="ngx-flex--col-4 ngx-flex--col-offset-8">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
 
       <div class="ngx-flex--col-5 ngx-flex--col-offset-7">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
 
       <div class="ngx-flex--col-6 ngx-flex--col-offset-6">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
 
       <div class="ngx-flex--col-7 ngx-flex--col-offset-5">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
 
       <div class="ngx-flex--col-8 ngx-flex--col-offset-4">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
 
       <div class="ngx-flex--col-9 ngx-flex--col-offset-3">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
 
       <div class="ngx-flex--col-10 ngx-flex--col-offset-2">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
 
       <div class="ngx-flex--col-11 ngx-flex--col-offset-1">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
     </div>
   </section>
@@ -260,25 +288,25 @@ layout.
 
     <div class="ngx-flex--row start">
       <div class="ngx-flex--col-6">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
     </div>
 
     <div class="ngx-flex--row center">
       <div class="ngx-flex--col-6">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
     </div>
 
     <div class="ngx-flex--row end">
       <div class="ngx-flex--col-6">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
     </div>
 
     <div class="ngx-flex--row baseline">
       <div>
-        <div class="box-large"></div>
+        <div class="box large"></div>
       </div>
       <div>
         <div class="box"></div>
@@ -287,7 +315,7 @@ layout.
 
     <div class="ngx-flex--row top">
       <div>
-        <div class="box-large"></div>
+        <div class="box large"></div>
       </div>
       <div>
         <div class="box"></div>
@@ -296,7 +324,7 @@ layout.
 
     <div class="ngx-flex--row middle">
       <div>
-        <div class="box-large"></div>
+        <div class="box large"></div>
       </div>
       <div>
         <div class="box"></div>
@@ -305,7 +333,7 @@ layout.
 
     <div class="ngx-flex--row bottom">
       <div>
-        <div class="box-large"></div>
+        <div class="box large"></div>
       </div>
       <div>
         <div class="box"></div>
@@ -320,25 +348,55 @@ layout.
 
     <div class="ngx-flex--row around">
       <div class="ngx-flex--col-2">
-        <div class="box-nested"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-2">
-        <div class="box-nested"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-2">
-        <div class="box-nested"></div>
+        <div class="box"></div>
       </div>
     </div>
 
     <div class="ngx-flex--row between">
       <div class="ngx-flex--col-2">
-        <div class="box-nested"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-2">
-        <div class="box-nested"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col-2">
-        <div class="box-nested"></div>
+        <div class="box"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Gut</h2>
+
+    <p>Add <code>gutless</code> to remove gutters for a row or column.</p>
+
+    <div class="ngx-flex--row gutless">
+      <div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <div class="ngx-flex--row">
+      <div>
+        <div class="box"></div>
+      </div>
+      <div class="gutless">
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
       </div>
     </div>
   </section>
@@ -350,37 +408,37 @@ layout.
 
     <div class="ngx-flex--row">
       <div>
-        <div class="box-nested"></div>
+        <div class="box"></div>
       </div>
       <div>
-        <div class="box-nested"></div>
+        <div class="box"></div>
       </div>
       <div class="first">
-        <div class="box-nested"></div>
+        <div class="box"></div>
       </div>
     </div>
 
     <div class="ngx-flex--row">
       <div class="last">
-        <div class="box-nested"></div>
+        <div class="box"></div>
       </div>
       <div>
-        <div class="box-nested"></div>
+        <div class="box"></div>
       </div>
       <div>
-        <div class="box-nested"></div>
+        <div class="box"></div>
       </div>
     </div>
 
     <div class="ngx-flex--row reverse">
       <div>
-        <div class="box-nested">1</div>
+        <div class="box">1</div>
       </div>
       <div>
-        <div class="box-nested">2</div>
+        <div class="box">2</div>
       </div>
       <div>
-        <div class="box-nested">3</div>
+        <div class="box">3</div>
       </div>
     </div>
   </section>
@@ -392,37 +450,37 @@ layout.
 
     <div class="ngx-flex--row app-columns-24-wide-gutter">
       <div class="ngx-flex--col ngx-flex--col-1">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col ngx-flex--col-2">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col ngx-flex--col-3">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col ngx-flex--col-6">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
       <div class="ngx-flex--col ngx-flex--col-12">
-        <div class="box-row"></div>
+        <div class="box"></div>
       </div>
     </div>
 
     <div class="ngx-flex--row app-columns-10">
       <div class="ngx-flex--col-10 ngx-flex--col-md-2">
-        <div class="box-large"></div>
+        <div class="box large"></div>
       </div>
       <div class="ngx-flex--col-10 ngx-flex--col-md-2">
-        <div class="box-large"></div>
+        <div class="box large"></div>
       </div>
       <div class="ngx-flex--col-10 ngx-flex--col-md-2">
-        <div class="box-large"></div>
+        <div class="box large"></div>
       </div>
       <div class="ngx-flex--col-10 ngx-flex--col-md-2">
-        <div class="box-large"></div>
+        <div class="box large"></div>
       </div>
       <div class="ngx-flex--col-10 ngx-flex--col-md-2">
-        <div class="box-large"></div>
+        <div class="box large"></div>
       </div>
     </div>
   </section>

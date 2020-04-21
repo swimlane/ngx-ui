@@ -94,13 +94,8 @@ $container-widths: (
 
   // defualt columns
   & > * {
-    flex-grow: 1;
-    flex-basis: 0;
-    max-width: 100%;
-    box-sizing: border-box;
+    @include col-base();
     flex: 1 1 auto;
-    padding-right: var(--half-gutter-width, 0.5rem);
-    padding-left: var(--half-gutter-width, 0.5rem);
 
     @include modifiers('');
 
