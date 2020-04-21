@@ -36,6 +36,14 @@ code {
   box-sizing: border-box;
 
   &:before {
+    content: attr(class);
+    font-size: 12px;
+    position: absolute;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: calc(100% - 4px);
+    text-align: left;
     top: -14px;
     left: 10px;
   }
@@ -55,23 +63,18 @@ code {
       overflow: hidden;
       text-align: left;
       top: 10px;
-      width: calc(100% - 25px);
-      left: 15px;
+      width: calc(100% - 15px);
+      left: 10px;
+      padding: 0 5px;
+      border-radius: 3px;
     }
-  }
-}
 
-.ngx-flex--row,
-.ngx-flex--col {
-  &:before {
-    content: attr(class);
-    font-size: 12px;
-    position: absolute;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    width: calc(100% - 4px);
-    text-align: left;
+    &:hover:before {
+      background-color: $color-blue-grey-800;
+      overflow: visible;
+      z-index: 1000;
+      width: auto;
+    }
   }
 }
 
