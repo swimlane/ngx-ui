@@ -29,6 +29,7 @@ export class SelectInputComponent implements AfterViewInit {
   @Input() hint: string;
   @Input() selectCaret: string | TemplateRef<any>;
   @Input() requiredIndicator: string | boolean;
+  @Input() tabindex: number;
 
   @Input()
   get autofocus() {
@@ -148,6 +149,15 @@ export class SelectInputComponent implements AfterViewInit {
     }
 
     this.keyup.emit({ event, value });
+  }
+
+  onGlobalKeyUp(event: KeyboardEvent) {
+    event.stopPropagation();
+    const key = event.key;
+
+    if (key === KeyboardKeys.ARROW_DOWN) {
+      this.activate.emit(event);
+    }
   }
 
   onKeyDown(event: KeyboardEvent): void {
