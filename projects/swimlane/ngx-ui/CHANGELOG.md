@@ -2,7 +2,12 @@
 
 ## HEAD (Unreleased)
 
-## 28.5.4 (2020-04-14)
+## 28.5.5 (2020-04-21)
+
+- Chore: Update angular to 9.1.2 (#431)
+- Support tabindex on select inputs (#429)
+
+## 28.5.4 (2020-04-20)
 
 - Fix ngx-select not registering onTouched events (#427)
 
