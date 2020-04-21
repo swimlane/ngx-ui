@@ -151,15 +151,15 @@ export class TooltipDirective implements OnDestroy {
     }
   }
 
-  @HostListener('mouseleave', ['$event.target'])
-  onMouseLeave(target: HTMLElement): void {
+  @HostListener('mouseleave', ['$event'])
+  onMouseLeave(event: any): void {
     if (this.listensForHover && this.tooltipCloseOnMouseLeave) {
       clearTimeout(this.timeout);
 
       /* istanbul ignore if */
       if (this.component) {
         const contentDom = this.component.instance.element.nativeElement;
-        const contains = contentDom.contains(target);
+        const contains = contentDom.contains(event.toElement);
         if (contains) return;
       }
 
@@ -241,7 +241,11 @@ export class TooltipDirective implements OnDestroy {
       this.mouseLeaveContentEvent = this.renderer.listen(
         tooltip,
         'mouseleave',
-        /* istanbul ignore next */ () => {
+        /* istanbul ignore next */ (event: any) => {
+          const contentDom = this.element.nativeElement;
+          const contains = contentDom.contains(event.toElement);
+          if (contains) return;
+
           this.hideTooltip();
         }
       );
