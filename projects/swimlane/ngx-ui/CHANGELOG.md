@@ -2,6 +2,11 @@
 
 ## HEAD (Unreleased)
 
+## 28.5.5 (2020-04-23)
+
+- Fix: recursive tree expand and collpase (#434)
+- Update public_api.ts (#433)
+
 ## 28.5.5 (2020-04-21)
 
 - Chore: Update angular to 9.1.2 (#431)
