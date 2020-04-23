@@ -15,8 +15,11 @@ export * from './lib/animations/slide-up-fade-out.animation';
 
 // services
 export * from './lib/services/icon-registry/icon-registry.service';
+export * from './lib/services/injection/injection.service';
+export * from './lib/services/injection-registry/injection-registry.service';
 
 // pipes
+export * from './lib/pipes/pipes.module';
 export * from './lib/pipes/cammel-to-snake/cammel-to-snake.module';
 export * from './lib/pipes/cammel-to-snake/cammel-to-snake.pipe';
 export * from './lib/pipes/decamelize/decamelize.module';
