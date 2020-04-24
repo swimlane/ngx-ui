@@ -2,7 +2,11 @@
 
 ## HEAD (Unreleased)
 
-## 28.5.5 (2020-04-23)
+## 28.5.7 (2020-04-24)
+
+- Fix: Remove `HTTPClientModule` from `IconModule` (See angular/angular#20575 for details)
+
+## 28.5.6 (2020-04-23)
 
 - Fix: recursive tree expand and collpase (#434)
 - Update public_api.ts (#433)
@@ -314,7 +318,7 @@
 
 ## 22.0.1 (2018-11-01)
 
-- Fix: Remove `HTTPClientModule` from `IconModule` (#204)
+- Fix: Remove `HTTPClientModule` from `IconModule` (#205)
 
 ## 22.0.0 (2018-10-29)
 
