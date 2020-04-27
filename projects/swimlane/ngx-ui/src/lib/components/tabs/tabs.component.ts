@@ -43,7 +43,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
   private readonly _destroy$ = new Subject<void>();
 
-  constructor(private readonly _cdr: ChangeDetectorRef) {}
+  constructor(readonly cdr: ChangeDetectorRef) {}
 
   ngAfterContentInit(): void {
     const tabs = this.tabs.toArray();
@@ -55,11 +55,11 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
       setTimeout(() => {
         tabs[0].active = true;
         tabs[0].detectChanges();
-        this._cdr.markForCheck();
+        this.cdr.markForCheck();
       });
     }
 
-    this.tabs.changes.pipe(takeUntil(this._destroy$)).subscribe(() => this._cdr.markForCheck());
+    this.tabs.changes.pipe(takeUntil(this._destroy$)).subscribe(() => this.cdr.markForCheck());
   }
 
   ngOnDestroy() {
@@ -72,7 +72,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
     activeTab.active = true;
     this.tabs.forEach(tab => tab.detectChanges());
-    this._cdr.markForCheck();
+    this.cdr.markForCheck();
 
     this.selectTab.emit(activeTab);
   }

@@ -20,7 +20,7 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 import { SelectOptionDirective } from './select-option.directive';
 import { SelectInputComponent } from './select-input.component';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
-import { KeyboardKeys } from '../../enums';
+import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 
 let nextId = 0;
 
@@ -39,7 +39,7 @@ const SELECT_VALUE_ACCESSOR = {
     class: 'ngx-select',
     '[id]': 'id',
     '[attr.name]': 'name',
-    '[class.invalid]': 'invalid',
+    '[class.invalid]': 'invalid && touched',
     '[class.tagging-selection]': 'tagging',
     '[class.multi-selection]': 'multiple',
     '[class.single-selection]': 'isSingleSelect',
@@ -208,7 +208,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   get invalid() {
     if (this.required && this.checkInvalidValue(this.value)) return true;
-    if (this.maxSelections !== undefined && (this.value && this.value.length > this.maxSelections)) return true;
+    if (this.maxSelections !== undefined && this.value && this.value.length > this.maxSelections) return true;
     if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections)) return true;
     return false;
   }
@@ -257,6 +257,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   filterQuery: string;
   focusIndex: number = -1;
   dropdownActive: boolean = false;
+  touched: boolean = false;
 
   private _optionTemplates: QueryList<SelectOptionDirective>;
   private _value: any[] = [];
@@ -368,7 +369,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   onKeyUp({ event, value }: { event: KeyboardEvent; value?: string }): void {
-    if (event && event.key === (KeyboardKeys.ARROW_DOWN as any)) {
+    if (event && event.key === (KeyboardKeys.ARROW_DOWN as any) && this.focusIndex < this.options.length) {
       ++this.focusIndex;
     } else {
       this.filterQuery = value;
@@ -390,7 +391,10 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouchedCallback = fn;
+    this.onTouchedCallback = () => {
+      this.touched = true;
+      fn();
+    };
   }
 
   private checkInvalidValue(value: any): boolean {
@@ -402,12 +406,12 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   /* istanbul ignore next */
-  private onTouchedCallback() {
+  private onChangeCallback(_: any): void {
     // placeholder
   }
 
   /* istanbul ignore next */
-  private onChangeCallback(_: any) {
+  private onTouchedCallback(): void {
     // placeholder
   }
 }

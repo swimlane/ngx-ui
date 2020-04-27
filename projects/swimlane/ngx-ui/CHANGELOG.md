@@ -2,6 +2,39 @@
 
 ## HEAD (Unreleased)
 
+## 28.5.7 (2020-04-24)
+
+- Fix: Remove `HTTPClientModule` from `IconModule` (See angular/angular#20575 for details)
+
+## 28.5.6 (2020-04-23)
+
+- Fix: recursive tree expand and collpase (#434)
+- Update public_api.ts (#433)
+
+## 28.5.5 (2020-04-21)
+
+- Chore: Update angular to 9.1.2 (#431)
+- Support tabindex on select inputs (#429)
+
+## 28.5.4 (2020-04-20)
+
+- Fix ngx-select not registering onTouched events (#427)
+
+## 28.5.3 (2020-04-14)
+
+- Chore: Update dependecies
+- Fix nag animation (#423)
+- Allow side effects to fix JSON tree (#424)
+
+## 28.5.2 (2020-04-02)
+
+- Export utils (#419)
+
+## 28.5.1 (2020-04-01)
+
+- Bugfix/remove-barrels (#416)
+- ngx-select bug: do not make it invalid when untouched (#407)
+
 ## 28.5.0 (2020-03-20)
 
 - Added automation and automation-related icons #415
@@ -285,7 +318,7 @@
 
 ## 22.0.1 (2018-11-01)
 
-- Fix: Remove `HTTPClientModule` from `IconModule` (#204)
+- Fix: Remove `HTTPClientModule` from `IconModule` (#205)
 
 ## 22.0.0 (2018-10-29)
 

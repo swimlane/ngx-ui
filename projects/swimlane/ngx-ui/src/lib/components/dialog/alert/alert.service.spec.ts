@@ -33,7 +33,7 @@ describe('AlertService', () => {
         cancel: new EventEmitter<void>()
       }
     };
-    spy = spyOn(service, 'create').and.returnValue(component);
+    spy = spyOn(service, 'create').and.returnValue(component as any);
   });
 
   it('can load instance', () => {
@@ -44,7 +44,10 @@ describe('AlertService', () => {
     const subject = service.alert({});
 
     subject.subscribe({
-      next: () => done()
+      next: () => {
+        expect(true).toBeTrue();
+        done();
+      }
     });
 
     component.instance.ok.emit();
@@ -54,7 +57,10 @@ describe('AlertService', () => {
     const subject = service.alert({});
 
     subject.subscribe({
-      next: () => done()
+      next: () => {
+        expect(true).toBeTrue();
+        done();
+      }
     });
 
     component.instance.cancel.emit();

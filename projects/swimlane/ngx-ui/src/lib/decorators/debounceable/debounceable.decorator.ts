@@ -1,4 +1,4 @@
-import { debounce } from './debounce.util';
+import { debounce } from '../../utils/debounce/debounce.util';
 
 /**
  * Debounce decorator

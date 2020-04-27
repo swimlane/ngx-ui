@@ -109,7 +109,7 @@ export class JsonEditorPageComponent {
       if (typeof value !== 'string') {
         return false;
       }
-      const regex = new RegExp(/^<<(.*)>>$/, 's');
+      const regex = /^<<(.*)>>$/s;
       return regex.test(value);
     }
   };

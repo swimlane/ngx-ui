@@ -1,5 +1,5 @@
-import { throttle } from './throttle.util';
-import { ThrottleOptions } from './throttle-options.interface';
+import { throttle } from '../../utils/throttle/throttle.util';
+import { ThrottleOptions } from '../../utils/throttle/throttle-options.interface';
 
 /**
  * Throttle decorator

@@ -3,7 +3,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 
-import { IconRegistryService } from '../../services';
+import { IconRegistryService } from '../../services/icon-registry/icon-registry.service';
 import { IconComponent } from './icon.component';
 
 describe('IconComponent', () => {

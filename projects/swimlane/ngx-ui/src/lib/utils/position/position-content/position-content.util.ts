@@ -1,8 +1,8 @@
 import { PlacementTypes } from '../placement-type.enum';
 import { Dimensions } from '../dimensions.interface';
 import { AlignmentTypes } from '../alignment-types.enum';
-import { calculateVerticalAlignment } from '../calculate-vertical-alignment';
-import { calculateHorizontalAlignment } from '../calculate-horizontal-alignment';
+import { calculateVerticalAlignment } from '../calculate-vertical-alignment/calculate-vertical-alignment.util';
+import { calculateHorizontalAlignment } from '../calculate-horizontal-alignment/calculate-horizontal-alignment.util';
 
 /**
  * Position content

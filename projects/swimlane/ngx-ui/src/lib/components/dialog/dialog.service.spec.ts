@@ -50,7 +50,7 @@ describe('DialogService', () => {
           closeOnBlur: true
         }
       };
-      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
       const destroySpy = spyOn(service, 'destroy');
 
       service.create({ closeOnBlur: true });
@@ -67,7 +67,7 @@ describe('DialogService', () => {
           closeOnBlur: false
         }
       };
-      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
       const overlaySpy = spyOn(overlayService, 'show');
 
       service.create({ closeOnBlur: false });
@@ -83,7 +83,7 @@ describe('DialogService', () => {
           closeOnBlur: false
         }
       };
-      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
       const overlaySpy = spyOn(overlayService.click, 'subscribe');
 
       service.create({ closeOnBlur: false });

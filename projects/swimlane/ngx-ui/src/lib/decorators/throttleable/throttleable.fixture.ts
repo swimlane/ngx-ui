@@ -1,4 +1,4 @@
-import { throttleable } from './throttleable.util';
+import { throttleable } from './throttleable.decorator';
 
 export class ThrottleableFixture {
   @throttleable(10)

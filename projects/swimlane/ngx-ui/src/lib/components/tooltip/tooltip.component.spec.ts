@@ -3,7 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TooltipModule } from './tooltip.module';
 import { TooltipContentComponent } from './tooltip.component';
 import { StyleTypes } from './style-types.enum';
-import { PlacementTypes, AlignmentTypes, positionCaret, positionContent } from '../../utils';
+
+import { PlacementTypes } from '../../utils/position/placement-type.enum';
+import { AlignmentTypes } from '../../utils/position/alignment-types.enum';
+import { positionCaret } from '../../utils/position/position-caret/position-caret.util';
+import { positionContent } from '../../utils/position/position-content/position-content.util';
 
 const position = {
   positionCaret,
@@ -43,7 +47,7 @@ describe('TooltipContentComponent', () => {
     spyOn(component.element.nativeElement, 'getBoundingClientRect').and.returnValue({
       wdith: 10,
       height: 10
-    });
+    } as any);
 
     fixture.detectChanges();
   });

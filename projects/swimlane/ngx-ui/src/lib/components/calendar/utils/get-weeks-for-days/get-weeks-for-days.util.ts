@@ -1,7 +1,7 @@
 import { CalendarMonth } from '../../calendar-month.type';
 import { CalendarDay } from '../../calendar-day.interface';
 
-import { getNumberRange } from '../get-number-range';
+import { getNumberRange } from '../get-number-range/get-number-range.util';
 
 /**
  * Gets a array of days split by week

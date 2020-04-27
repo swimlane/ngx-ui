@@ -46,7 +46,7 @@ describe('NotificationService', () => {
           resume: new EventEmitter<void>()
         }
       };
-      spy = spyOn(injectionService, 'appendComponent').and.returnValue(component);
+      spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
     });
 
     it('should create notification', () => {
@@ -63,7 +63,7 @@ describe('NotificationService', () => {
 
     it('should remove first item if limit reached', () => {
       const destroySpy = spyOn(service, 'destroy');
-      spyOn(service, 'getByType').and.returnValue([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+      spyOn(service, 'getByType').and.returnValue([0, 0, 0, 0, 0, 0, 0, 0, 0, 0] as any);
       const ref = service.create({});
       expect(ref).toBeDefined();
       expect(destroySpy).toHaveBeenCalled();
