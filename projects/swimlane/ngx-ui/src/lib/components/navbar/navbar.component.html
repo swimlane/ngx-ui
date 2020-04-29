@@ -4,20 +4,14 @@
 
 <div class="ngx-navbar--bar-track">
   <div
-    *ngIf="!vertical"
     class="ngx-navbar--bar"
-    [@stepperBarHorizontalTransition]="{
+    [ngClass]="barAtTop ? 'ngx-navbar--top' : 'ngx-navbar--bottom'"
+    [@navbarBarHorizontalTransition]="{
       value: barState,
-      params: { width: navItems.first.width * complete }
-    }"
-  ></div>
-
-  <div
-    *ngIf="vertical"
-    class="ngx-navbar--bar"
-    [@stepperBarVerticalTransition]="{
-      value: barState,
-      params: { height: navItems.first.height * complete }
+      params: {
+        width: (navItems.first.width + 20) * complete,
+        barSize: navItems.first.width + 20
+      }
     }"
   ></div>
 </div>

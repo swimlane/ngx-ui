@@ -1,10 +1,22 @@
 <h3 class="style-header">Navbar</h3>
 
-<ngx-section class="shadow" sectionTitle="Horizontal Navbar">
-  <ngx-horizontal-navbar>
-    <ngx-nav [active]="active === 0" (click)="setActive(0)"><ngx-icon fontIcon="apps"></ngx-icon></ngx-nav>
-    <ngx-nav [active]="active === 1" (click)="setActive(1)"><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-nav>
-    <ngx-nav [active]="active === 2" (click)="setActive(2)"><ngx-icon fontIcon="database"></ngx-icon></ngx-nav>
-    <ngx-nav [active]="active === 3" (click)="setActive(3)"><ngx-icon fontIcon="commandline"></ngx-icon></ngx-nav>
-  </ngx-horizontal-navbar>
+<ngx-section class="shadow" sectionTitle="Navbar">
+  <h3>Active bar on bottom</h3>
+  <div class="navbar-page--container">
+    <ngx-navbar [(active)]="activeBottom">
+      <ngx-nav><ngx-icon fontIcon="apps"></ngx-icon></ngx-nav>
+      <ngx-nav><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-nav>
+      <ngx-nav><ngx-icon fontIcon="database"></ngx-icon></ngx-nav>
+      <ngx-nav><ngx-icon fontIcon="commandline"></ngx-icon></ngx-nav>
+    </ngx-navbar>
+  </div>
+  <h3>Active bar on top</h3>
+  <div class="navbar-page--container">
+    <ngx-navbar [(active)]="activeTop" [barAtTop]="true">
+      <ngx-nav><ngx-icon fontIcon="apps"></ngx-icon></ngx-nav>
+      <ngx-nav><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-nav>
+      <ngx-nav><ngx-icon fontIcon="database"></ngx-icon></ngx-nav>
+      <ngx-nav><ngx-icon fontIcon="commandline"></ngx-icon></ngx-nav>
+    </ngx-navbar>
+  </div>
 </ngx-section>

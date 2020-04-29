@@ -1,23 +1,24 @@
 import {
-  Component,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
-  Input,
   ChangeDetectorRef,
-  ElementRef
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  ViewEncapsulation
 } from '@angular/core';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 @Component({
   exportAs: 'ngxNav',
   selector: 'ngx-nav',
-  template: `
-    <ng-content></ng-content>
-  `,
+  template: ` <ng-content></ng-content> `,
   styleUrls: ['./nav.component.scss'],
   host: {
     class: 'ngx-nav',
-    '[class.active]': 'active'
+    '[class.active]': 'active === index',
+    '(click)': 'setActive()'
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -27,20 +28,46 @@ export class NavComponent {
   get active() {
     return this._active;
   }
-  set active(v: boolean) {
-    this._active = coerceBooleanProperty(v);
+  set active(v: number) {
+    if (v !== this.active) {
+      this._active = coerceNumberProperty(v);
+      this.activeChange.emit(this._active);
+    }
+
     this._cdr.markForCheck();
   }
 
-  get height() {
-    return this._el.nativeElement.clientHeight;
+  @Input()
+  get total() {
+    return this._total;
   }
+  set total(v: number) {
+    this._total = coerceNumberProperty(v);
+    this._cdr.markForCheck();
+  }
+
+  @Input()
+  get index() {
+    return this._index;
+  }
+  set index(v: number) {
+    this._index = coerceNumberProperty(v);
+    this._cdr.markForCheck();
+  }
+
+  @Output() activeChange = new EventEmitter<number>();
 
   get width() {
     return this._el.nativeElement.clientWidth;
   }
 
-  private _active?: boolean;
+  private _active?: number;
+  private _total?: number;
+  private _index?: number;
 
   constructor(private readonly _cdr: ChangeDetectorRef, private readonly _el: ElementRef<HTMLElement>) {}
+
+  setActive() {
+    this.active = this.index;
+  }
 }
