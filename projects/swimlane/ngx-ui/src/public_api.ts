@@ -140,6 +140,10 @@ export * from './lib/components/nag/nag.component';
 export * from './lib/components/nav-menu/nav-menu.module';
 export * from './lib/components/nav-menu/nav-menu.component';
 
+export * from './lib/components/navbar/nav.component';
+export * from './lib/components/navbar/navbar.component';
+export * from './lib/components/navbar/navbar.module';
+
 export * from './lib/components/notification/notification.module';
 export * from './lib/components/notification/notification.component';
 export * from './lib/components/notification/notification.service';
