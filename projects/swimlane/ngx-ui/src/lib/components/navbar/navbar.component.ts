@@ -1,15 +1,16 @@
 import {
-  Component,
-  ViewEncapsulation,
+  AfterViewInit,
   ChangeDetectionStrategy,
-  ElementRef,
-  ContentChildren,
-  QueryList,
   ChangeDetectorRef,
-  Input,
-  Output,
+  Component,
+  ContentChildren,
+  ElementRef,
   EventEmitter,
-  AfterViewInit
+  Input,
+  OnDestroy,
+  Output,
+  QueryList,
+  ViewEncapsulation
 } from '@angular/core';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Subject } from 'rxjs';
@@ -25,11 +26,11 @@ import { NavbarBarAnimationStates } from './navbar-bar-animation-states.enum';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   host: { class: 'ngx-navbar' },
-  animations: [navbarAnimations.horizontalStepTransition, navbarAnimations.horizontalBarTransition],
+  animations: [navbarAnimations.horizontalBarTransition],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavbarComponent implements AfterViewInit {
+export class NavbarComponent implements AfterViewInit, OnDestroy {
   @Input()
   get barAtTop(): boolean {
     return this._barAtTop;
@@ -76,16 +77,14 @@ export class NavbarComponent implements AfterViewInit {
     this._destroy$.next();
 
     for (const item of this._navItems.map((navItem, i) => ({ navItem, i }))) {
-      setTimeout(() => {
-        item.navItem.index = item.i;
-        item.navItem.active = this.active;
-        item.navItem.total = this._navItems.length;
+      item.navItem.index = item.i;
+      item.navItem.active = this.active;
+      item.navItem.total = this._navItems.length;
 
-        item.navItem.activeChange.pipe(takeUntil(this._destroy$)).subscribe(
-          /* istanbul ignore next */
-          active => (this.active = active)
-        );
-      });
+      item.navItem.activeChange.pipe(takeUntil(this._destroy$)).subscribe(
+        /* istanbul ignore next */
+        active => (this.active = active)
+      );
     }
 
     this._cdr.markForCheck();
@@ -102,7 +101,7 @@ export class NavbarComponent implements AfterViewInit {
   private _active: number = 0;
   private _barAtTop: boolean = false;
   private _navItems?: QueryList<NavComponent>;
-  private _barState = NavbarBarAnimationStates.Stay;
+  private _barState = NavbarBarAnimationStates.Animated;
   private readonly _destroy$ = new Subject<void>();
   private get _name() {
     return this._el.nativeElement.nodeName.toLowerCase();
@@ -114,5 +113,19 @@ export class NavbarComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     this._cdr.markForCheck();
+  }
+
+  ngOnDestroy() {
+    this._destroy$.next();
+    this._destroy$.complete();
+  }
+
+  goTo(index: number) {
+    if (index >= 0 && index < this.navItems.length && index !== this.active) {
+      const nav = this.navItems.find((_n, i) => i === index);
+      nav.setActive();
+
+      this._cdr.markForCheck();
+    }
   }
 }

@@ -12,11 +12,13 @@
   </div>
   <h3>Active bar on top</h3>
   <div class="navbar-page--container">
-    <ngx-navbar [(active)]="activeTop" [barAtTop]="true">
+    <ngx-navbar [(active)]="activeTop" [barAtTop]="true" #navbar>
       <ngx-nav><ngx-icon fontIcon="apps"></ngx-icon></ngx-nav>
       <ngx-nav><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-nav>
       <ngx-nav><ngx-icon fontIcon="database"></ngx-icon></ngx-nav>
       <ngx-nav><ngx-icon fontIcon="commandline"></ngx-icon></ngx-nav>
     </ngx-navbar>
   </div>
+
+  <button class="btn btn-default" (click)="navbar.goTo(3)">Activate 4th nav item</button>
 </ngx-section>

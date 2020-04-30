@@ -32,9 +32,8 @@ export class NavComponent {
     if (v !== this.active) {
       this._active = coerceNumberProperty(v);
       this.activeChange.emit(this._active);
+      this._cdr.markForCheck();
     }
-
-    this._cdr.markForCheck();
   }
 
   @Input()
