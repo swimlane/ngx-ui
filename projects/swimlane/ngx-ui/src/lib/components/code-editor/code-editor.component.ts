@@ -162,7 +162,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
     let lines = code.split('\n');
 
     // Remove empty lines
-    lines = lines.filter(function(line) {
+    lines = lines.filter(function (line) {
       return line.trim().length > 0;
     });
 
@@ -173,7 +173,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
     const firstLineWhitespace = lines[0].match(/^\s*/)[0];
     // tslint:disable-next-line: tsr-detect-non-literal-regexp
     const startingWhitespaceRegex = new RegExp('^' + firstLineWhitespace);
-    lines = lines.map(function(line) {
+    lines = lines.map(function (line) {
       return line
         .replace('=""', '') // remove empty values
         .replace(startingWhitespaceRegex, '')
