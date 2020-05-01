@@ -38,6 +38,7 @@ import { ListsPageComponent } from './elements/lists-page/lists-page.component';
 import { LoadingPageComponent } from './components/loading-page/loading-page.component';
 import { NagPageComponent } from './dialogs/nag-page/nag-page.component';
 import { NavbarPageComponent } from './components/navbar-page/navbar-page.component';
+import { navbarRoutes } from './components/navbar-page/navbar-page.routes';
 import { NgxIconPageComponent } from './components/ngx-icon-page/ngx-icon-page.component';
 import { NotificationPageComponent } from './dialogs/notification-page/notification-page.component';
 import { OverlayPageComponent } from './components/overlay-page/overlay-page.component';
@@ -81,7 +82,7 @@ const routes: Routes = [
   { path: 'lists', component: ListsPageComponent },
   { path: 'loading', component: LoadingPageComponent },
   { path: 'nag', component: NagPageComponent },
-  { path: 'navbar', component: NavbarPageComponent },
+  { path: 'navbar', component: NavbarPageComponent, children: navbarRoutes },
   { path: 'ngx-icon', component: NgxIconPageComponent },
   { path: 'notification', component: NotificationPageComponent },
   { path: 'overlay', component: OverlayPageComponent },

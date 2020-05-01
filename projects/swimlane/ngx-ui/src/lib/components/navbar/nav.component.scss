@@ -6,7 +6,11 @@
   color: $color-blue-grey-400;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  margin: 20px 10px;
+  padding: 20px 10px;
+
+  &:focus {
+    outline: none;
+  }
 
   &:hover,
   &.active {

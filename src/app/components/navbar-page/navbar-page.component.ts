@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar-page',
@@ -14,6 +15,12 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarPageComponent {
-  activeBottom = 0;
+  constructor(private readonly router: Router) {}
+
+  activeBottom = 1;
   activeTop = 0;
+
+  get activeRoute(): number {
+    return this.router.url === '/navbar/child-1' ? 0 : this.router.url === '/navbar/child-2' ? 1 : -1;
+  }
 }

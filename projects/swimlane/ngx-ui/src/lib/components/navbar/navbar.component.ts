@@ -98,6 +98,8 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
     return this._barState;
   }
 
+  readonly BAR_SIZE = 40;
+
   private _active: number = 0;
   private _barAtTop: boolean = false;
   private _navItems?: QueryList<NavComponent>;
@@ -121,7 +123,7 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
   }
 
   goTo(index: number) {
-    if (index >= 0 && index < this.navItems.length && index !== this.active) {
+    if (index !== this.active && index >= 0 && index < this.navItems.length) {
       const nav = this.navItems.find((_n, i) => i === index);
       nav.setActive();
 

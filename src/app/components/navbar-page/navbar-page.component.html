@@ -21,4 +21,15 @@
   </div>
 
   <button class="btn btn-default" (click)="navbar.goTo(3)">Activate 4th nav item</button>
+  <br />
+  <br />
+
+  <h3>Navbar with angular routing</h3>
+  <div class="navbar-page--container">
+    <ngx-navbar [active]="activeRoute">
+      <ngx-nav routerLink="child-1"><ngx-icon fontIcon="apps"></ngx-icon></ngx-nav>
+      <ngx-nav routerLink="child-2"><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-nav>
+    </ngx-navbar>
+  </div>
+  <router-outlet></router-outlet>
 </ngx-section>
