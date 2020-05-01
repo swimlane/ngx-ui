@@ -278,8 +278,6 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   private _multiple: boolean = false;
   private _disabled: boolean = false;
 
-  private onTouchedCallback: () => void;
-
   constructor(
     private readonly _element: ElementRef,
     private readonly _renderer: Renderer2,
@@ -371,7 +369,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   onKeyUp({ event, value }: { event: KeyboardEvent; value?: string }): void {
-    if (event && event.key === (KeyboardKeys.ARROW_DOWN as any)) {
+    if (event && event.key === (KeyboardKeys.ARROW_DOWN as any) && this.focusIndex < this.options.length) {
       ++this.focusIndex;
     } else {
       this.filterQuery = value;
@@ -409,6 +407,11 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   /* istanbul ignore next */
   private onChangeCallback(_: any): void {
+    // placeholder
+  }
+
+  /* istanbul ignore next */
+  private onTouchedCallback(): void {
     // placeholder
   }
 }
