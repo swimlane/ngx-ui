@@ -195,6 +195,10 @@ export class AppComponent {
           route: 'split'
         },
         {
+          name: 'Navbar',
+          route: 'navbar'
+        },
+        {
           name: 'Stepper',
           route: 'stepper'
         },
