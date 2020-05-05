@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+- Fix: allow null values from numeric ngx-inputs (#440)
+
 ## 28.5.7 (2020-04-24)
 
 - Fix: Remove `HTTPClientModule` from `IconModule` (See angular/angular#20575 for details)
