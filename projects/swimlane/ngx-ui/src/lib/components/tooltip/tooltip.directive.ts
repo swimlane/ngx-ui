@@ -82,7 +82,7 @@ export class TooltipDirective implements OnDestroy {
   }
   @Input()
   set tooltipHideTimeout(val: number) {
-    this._tooltipHideTimeout = coerceNumberProperty(val);
+    this._tooltipHideTimeout = coerceNumberProperty(val, 300);
   }
 
   get tooltipShowTimeout() {
@@ -90,7 +90,7 @@ export class TooltipDirective implements OnDestroy {
   }
   @Input()
   set tooltipShowTimeout(val: number) {
-    this._tooltipShowTimeout = coerceNumberProperty(val);
+    this._tooltipShowTimeout = coerceNumberProperty(val, 100);
   }
 
   @Output() show = new EventEmitter<boolean>();
