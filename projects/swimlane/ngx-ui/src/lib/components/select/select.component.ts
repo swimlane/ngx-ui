@@ -412,6 +412,6 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   /* istanbul ignore next */
   private onTouchedCallback(): void {
-    // placeholder
+    this.touched = true;
   }
 }
