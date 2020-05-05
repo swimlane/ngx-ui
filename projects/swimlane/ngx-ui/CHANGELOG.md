@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+- Fix: Update tab buttons when disabled input changes on ngx-tab (#438, fixes #436)
+
 ## 28.5.7 (2020-04-24)
 
 - Fix: Remove `HTTPClientModule` from `IconModule` (See angular/angular#20575 for details)
