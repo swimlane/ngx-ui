@@ -1,0 +1,17 @@
+<div class="ngx-navbar--nav-items">
+  <ng-content select="ngx-navbar-item"></ng-content>
+</div>
+
+<div class="ngx-navbar--bar-track">
+  <div
+    class="ngx-navbar--bar"
+    [ngClass]="barAtTop ? 'ngx-navbar--top' : 'ngx-navbar--bottom'"
+    [@navbarBarHorizontalTransition]="{
+      value: barState,
+      params: {
+        width: BAR_SIZE * complete,
+        barSize: BAR_SIZE
+      }
+    }"
+  ></div>
+</div>
