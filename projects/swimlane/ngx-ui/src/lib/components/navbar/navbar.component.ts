@@ -17,7 +17,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { navbarAnimations } from './navbar.animation';
-import { NavComponent } from './nav.component';
+import { NavbarItemComponent } from './navbar-item.component';
 import { NavbarBarAnimationStates } from './navbar-bar-animation-states.enum';
 
 @Component({
@@ -68,7 +68,7 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
 
   @Output() activeChange = new EventEmitter<number>();
 
-  @ContentChildren(NavComponent)
+  @ContentChildren(NavbarItemComponent)
   get navItems() {
     return this._navItems;
   }
@@ -102,7 +102,7 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
 
   private _active: number = 0;
   private _barAtTop: boolean = false;
-  private _navItems?: QueryList<NavComponent>;
+  private _navItems?: QueryList<NavbarItemComponent>;
   private _barState = NavbarBarAnimationStates.Animated;
   private readonly _destroy$ = new Subject<void>();
   private get _name() {

@@ -1,12 +1,12 @@
 @import 'colors/index.scss';
 
-.ngx-nav {
+.ngx-navbar-item {
   display: flex;
   font-size: 15pt;
   color: $color-blue-grey-400;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  padding: 20px 10px;
+  padding: 10px;
 
   &:focus {
     outline: none;

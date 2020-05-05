@@ -4,32 +4,57 @@
   <h3>Active bar on bottom</h3>
   <div class="navbar-page--container">
     <ngx-navbar [(active)]="activeBottom">
-      <ngx-nav><ngx-icon fontIcon="apps"></ngx-icon></ngx-nav>
-      <ngx-nav><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-nav>
-      <ngx-nav><ngx-icon fontIcon="database"></ngx-icon></ngx-nav>
-      <ngx-nav><ngx-icon fontIcon="commandline"></ngx-icon></ngx-nav>
+      <ngx-navbar-item><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
+      <ngx-navbar-item><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
+      <ngx-navbar-item><ngx-icon fontIcon="database"></ngx-icon></ngx-navbar-item>
+      <ngx-navbar-item><ngx-icon fontIcon="commandline"></ngx-icon></ngx-navbar-item>
     </ngx-navbar>
   </div>
+  <br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[ <ngx-navbar [(active)]="activeBottom"> <ngx-navbar-item><ngx-icon
+    fontIcon="apps"></ngx-icon></ngx-navbar-item> <ngx-navbar-item><ngx-icon
+    fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item> <ngx-navbar-item><ngx-icon
+    fontIcon="database"></ngx-icon></ngx-navbar-item> <ngx-navbar-item><ngx-icon
+    fontIcon="commandline"></ngx-icon></ngx-navbar-item> </ngx-navbar> ]]>
+  </ngx-codemirror>
+  <br />
+
   <h3>Active bar on top</h3>
   <div class="navbar-page--container">
     <ngx-navbar [(active)]="activeTop" [barAtTop]="true" #navbar>
-      <ngx-nav><ngx-icon fontIcon="apps"></ngx-icon></ngx-nav>
-      <ngx-nav><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-nav>
-      <ngx-nav><ngx-icon fontIcon="database"></ngx-icon></ngx-nav>
-      <ngx-nav><ngx-icon fontIcon="commandline"></ngx-icon></ngx-nav>
+      <ngx-navbar-item><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
+      <ngx-navbar-item><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
+      <ngx-navbar-item><ngx-icon fontIcon="database"></ngx-icon></ngx-navbar-item>
+      <ngx-navbar-item><ngx-icon fontIcon="commandline"></ngx-icon></ngx-navbar-item>
     </ngx-navbar>
   </div>
 
   <button class="btn btn-default" (click)="navbar.goTo(3)">Activate 4th nav item</button>
-  <br />
+  <br /><br />
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[ <ngx-navbar [(active)]="activeTop" [barAtTop]="true" #navbar> <ngx-navbar-item><ngx-icon
+    fontIcon="apps"></ngx-icon></ngx-navbar-item> <ngx-navbar-item><ngx-icon
+    fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item> <ngx-navbar-item><ngx-icon
+    fontIcon="database"></ngx-icon></ngx-navbar-item> <ngx-navbar-item><ngx-icon
+    fontIcon="commandline"></ngx-icon></ngx-navbar-item> </ngx-navbar> <button class="btn btn-default"
+    (click)="navbar.goTo(3)">Activate 4th nav item</button> ]]>
+  </ngx-codemirror>
   <br />
 
   <h3>Navbar with angular routing</h3>
   <div class="navbar-page--container">
     <ngx-navbar [active]="activeRoute">
-      <ngx-nav routerLink="child-1"><ngx-icon fontIcon="apps"></ngx-icon></ngx-nav>
-      <ngx-nav routerLink="child-2"><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-nav>
+      <ngx-navbar-item routerLink="child-1"><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
+      <ngx-navbar-item routerLink="child-2"><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
     </ngx-navbar>
   </div>
   <router-outlet></router-outlet>
+  <br />
+
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[ <ngx-navbar [active]="activeRoute"> <ngx-navbar-item routerLink="child-1"><ngx-icon
+    fontIcon="apps"></ngx-icon></ngx-navbar-item> <ngx-navbar-item routerLink="child-2"><ngx-icon
+    fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item> </ngx-navbar> <router-outlet></router-outlet> ]]>
+  </ngx-codemirror>
 </ngx-section>

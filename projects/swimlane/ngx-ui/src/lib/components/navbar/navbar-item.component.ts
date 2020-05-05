@@ -11,19 +11,19 @@ import {
 import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 @Component({
-  exportAs: 'ngxNav',
-  selector: 'ngx-nav',
+  exportAs: 'ngxNavbarItem',
+  selector: 'ngx-navbar-item',
   template: ` <ng-content></ng-content> `,
-  styleUrls: ['./nav.component.scss'],
+  styleUrls: ['./navbar-item.component.scss'],
   host: {
-    class: 'ngx-nav',
+    class: 'ngx-navbar-item',
     '[class.active]': 'active === index',
     '(click)': 'setActive()'
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class NavComponent {
+export class NavbarItemComponent {
   @Input()
   get active() {
     return this._active;
