@@ -225,9 +225,10 @@
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Numeric'">
-  <ngx-input type="number" label="Age" [ngModel]="numericValue" name="numeric-input" min="0" max="122"
-    (change)="numericValue = $event">
+  <ngx-input type="number" label="Age" [(ngModel)]="numericValue" name="numeric-input" min="0" max="122">
   </ngx-input>
+
+  Value: {{ numericValue }}
 
   <br />
   <ngx-codemirror mode="htmlmixed" readOnly="true">
