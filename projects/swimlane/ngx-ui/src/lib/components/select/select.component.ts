@@ -74,7 +74,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     return this._minSelections;
   }
   set minSelections(minSelections) {
-    this._minSelections = coerceNumberProperty(minSelections);
+    this._minSelections = coerceNumberProperty(minSelections, undefined);
   }
 
   @Input()
@@ -82,7 +82,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     return this._maxSelections;
   }
   set maxSelections(maxSelections) {
-    this._maxSelections = coerceNumberProperty(maxSelections);
+    this._maxSelections = coerceNumberProperty(maxSelections, undefined);
   }
 
   @Input()
@@ -412,6 +412,6 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   /* istanbul ignore next */
   private onTouchedCallback(): void {
-    // placeholder
+    this.touched = true;
   }
 }

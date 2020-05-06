@@ -5,6 +5,8 @@
 - Breaking: `ngxSplit` directives no longer require, nor support, @angular/flex-layout directives
 - Enhancement: Remove @angular/flex-layout
 - Enhancement: Added `ngx-flex` classes for easy flex layouts
+- Fix: allow null values from numeric ngx-inputs (#440)
+- Fix: ngx-select Set touched value inside onTouchedCallback (#441)
 
 ## 28.5.7 (2020-04-24)
 
