@@ -11,7 +11,7 @@ export class LongPressDirective {
     return this._duration;
   }
   set duration(duration: number) {
-    this._duration = coerceNumberProperty(duration);
+    this._duration = coerceNumberProperty(duration, 3000);
   }
 
   @Input()

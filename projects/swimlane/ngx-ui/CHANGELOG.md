@@ -3,6 +3,8 @@
 ## HEAD (Unreleased)
 
 - Fix: Update tab buttons when disabled input changes on ngx-tab (#438, fixes #436)
+- Fix: allow null values from numeric ngx-inputs (#440)
+- Fix: ngx-select Set touched value inside onTouchedCallback (#441)
 
 ## 28.5.7 (2020-04-24)
 

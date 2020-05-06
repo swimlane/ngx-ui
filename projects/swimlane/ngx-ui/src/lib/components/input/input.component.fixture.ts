@@ -25,7 +25,7 @@ import { InputTypes } from './input-types.enum';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputComponentFixture {
-  value = 'test';
+  value: string | number = 'test';
   readonly type$ = new BehaviorSubject(InputTypes.text);
   readonly disabled$ = new BehaviorSubject(false);
   readonly passwordTextVisible$ = new BehaviorSubject(false);
