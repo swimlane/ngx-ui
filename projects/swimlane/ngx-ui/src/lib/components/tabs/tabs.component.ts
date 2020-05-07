@@ -111,7 +111,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     });
 
     this.tabEvents = this.tabs.toArray().map(t => {
-      return t.inputChanges.subscribe(() => {
+      return t.inputChanges.pipe(takeUntil(this._destroy$)).subscribe(() => {
         this.cdr.markForCheck();
       });
     });
