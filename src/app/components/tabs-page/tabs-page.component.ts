@@ -7,4 +7,5 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 })
 export class TabsPageComponent {
   tabList = [1, 2, 3];
+  tab3Disabled = true;
 }

@@ -11,7 +11,7 @@ import {
   ChangeDetectorRef,
   OnDestroy
 } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { TabComponent } from './tab.component';
@@ -36,6 +36,8 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
   @ContentChildren(TabComponent) readonly tabs: QueryList<TabComponent>;
 
+  private tabEvents: Subscription[] = [];
+
   get index(): number {
     const tabs = this.tabs.toArray();
     return tabs.findIndex(tab => tab.active);
@@ -59,7 +61,14 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
       });
     }
 
-    this.tabs.changes.pipe(takeUntil(this._destroy$)).subscribe(() => this.cdr.markForCheck());
+    // Watches for changes to tab inputs
+    this.setupTabInputWatcher();
+
+    // Watches for change tabs themselves
+    this.tabs.changes.pipe(takeUntil(this._destroy$)).subscribe(() => {
+      this.setupTabInputWatcher();
+      this.cdr.markForCheck();
+    });
   }
 
   ngOnDestroy() {
@@ -94,5 +103,17 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
   prev(): void {
     this.move(-1);
+  }
+
+  private setupTabInputWatcher() {
+    this.tabEvents.forEach(t => {
+      t.unsubscribe();
+    });
+
+    this.tabEvents = this.tabs.toArray().map(t => {
+      return t.inputChanges.pipe(takeUntil(this._destroy$)).subscribe(() => {
+        this.cdr.markForCheck();
+      });
+    });
   }
 }
