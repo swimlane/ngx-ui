@@ -2,6 +2,9 @@
 
 ## HEAD (Unreleased)
 
+## 28.6.0 (2020-05-07)
+
+- Feature: New ngx-navbar component (#437)
 - Fix: Update tab buttons when disabled input changes on ngx-tab (#438, fixes #436)
 - Fix: allow null values from numeric ngx-inputs (#440)
 - Fix: ngx-select Set touched value inside onTouchedCallback (#441)
