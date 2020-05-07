@@ -8,7 +8,10 @@ import {
   OnInit,
   ViewChild,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  EventEmitter,
+  Output,
+  SimpleChanges
 } from '@angular/core';
 import { IfTabActiveDirective } from './if-tab-active.directive';
 
@@ -28,6 +31,9 @@ export class TabComponent implements OnInit {
   @Input() label: string | TemplateRef<any> = '';
   @Input() active = false;
   @Input() disabled = false;
+
+  @Output() inputChanges = new EventEmitter<SimpleChanges>();
+
   @ViewChild('labelIsStringTmpl', { static: true }) labelStringTemplate;
   @ContentChild(IfTabActiveDirective) template: IfTabActiveDirective;
   labelTemplate: TemplateRef<any>;
@@ -42,6 +48,10 @@ export class TabComponent implements OnInit {
     }
 
     this.labelTemplate = typeof this.label === 'string' ? this.labelStringTemplate : this.label;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.inputChanges.emit(changes);
   }
 
   detectChanges() {
