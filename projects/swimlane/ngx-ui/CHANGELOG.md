@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+- Feature: Added isNotEmpty validation to schema validator
+
 ## 28.6.0 (2020-05-07)
 
 - Feature: New ngx-navbar component (#437)
