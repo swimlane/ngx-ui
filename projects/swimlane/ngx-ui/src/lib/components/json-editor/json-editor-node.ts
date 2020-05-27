@@ -130,7 +130,6 @@ export class JsonEditorNode implements OnInit, OnChanges {
    * Inits the model if it is not defined
    */
   initModel(): void {
-    console.log('initModel', JSON.parse(JSON.stringify(this.model)));
     if (this.model !== undefined) {
       return;
     }
@@ -140,7 +139,6 @@ export class JsonEditorNode implements OnInit, OnChanges {
     }
 
     const value: any = createValueForSchema(this.schema);
-    console.log({ value });
 
     if (value !== undefined) {
       this.updateModel(value);
@@ -172,7 +170,6 @@ export class JsonEditorNode implements OnInit, OnChanges {
    * @param value
    */
   updateModel(value: any): void {
-    console.log('updateModel');
     this.model = value;
     this.modelChange.emit(this.model);
   }

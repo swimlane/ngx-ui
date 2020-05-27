@@ -23,10 +23,6 @@ export class JsonEditor implements OnChanges {
 
   constructor(protected schemaValidatorService: SchemaValidatorService) {}
 
-  ngOnInit() {
-    console.log('on init', JSON.parse(JSON.stringify(this.model)));
-  }
-
   ngOnChanges(changes: SimpleChanges) {
     if (changes.schema) {
       this.schema = JSON.parse(JSON.stringify(this.schema));
