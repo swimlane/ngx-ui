@@ -33,9 +33,15 @@ export class ObjectNode implements OnInit, OnChanges {
 
   @Input() schemaRef: JSONEditorSchema;
 
+  @Input() showAllObjectProperties = false;
+
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
   @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();
+
+  get canEdit() {
+    return this.schemaBuilderMode || this.schema.additionalProperties !== false || !this.showAllObjectProperties;
+  }
 
   requiredCache: { [key: string]: boolean } = {};
 
@@ -298,7 +304,7 @@ export class ObjectNode implements OnInit, OnChanges {
           continue;
         }
 
-        if (this.requiredCache[propName] || this.schemaBuilderMode) {
+        if (this.showAllObjectProperties || this.requiredCache[propName] || this.schemaBuilderMode) {
           // List all properties not only required if we are in schema builder mode
           this.addSchemaProperty(propName);
         }

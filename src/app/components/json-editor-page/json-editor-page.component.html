@@ -17,11 +17,16 @@
       </ngx-section>
 
       <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat'">
+        <ngx-button class="btn btn-primary" [style.marginBottom]="'8px'" (click)="toggleCompressed()"
+          >Toggle compressed mode</ngx-button
+        >
         <ngx-json-editor-flat
           [(model)]="jsonEditorModelFlat"
           [schema]="jsonEditorSchema"
           label="Model"
           [typeCheckOverrides]="typeOverrides"
+          [compressed]="compressed"
+          [showAllObjectProperties]="true"
           (schemaChange)="modelSchemaChange($event)"
         >
         </ngx-json-editor-flat>

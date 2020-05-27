@@ -59,9 +59,13 @@ export class JsonEditorPageComponent {
           },
           height: {
             type: 'number'
+          },
+          name: {
+            type: 'string'
           }
         },
-        required: ['length', 'width', 'height']
+        required: ['length', 'width', 'height'],
+        additionalProperties: false
       },
       warehouseLocation: {
         description: 'Coordinates of the warehouse where the product is located.',

@@ -13,6 +13,8 @@ export class JsonEditor implements OnChanges {
 
   @Input() schemaValidator?: (schema: any, ...args: any[]) => any[];
 
+  @Input() showAllObjectProperties = false;
+
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
   @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();
@@ -20,6 +22,10 @@ export class JsonEditor implements OnChanges {
   errors: any[];
 
   constructor(protected schemaValidatorService: SchemaValidatorService) {}
+
+  ngOnInit() {
+    console.log('on init', JSON.parse(JSON.stringify(this.model)));
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.schema) {

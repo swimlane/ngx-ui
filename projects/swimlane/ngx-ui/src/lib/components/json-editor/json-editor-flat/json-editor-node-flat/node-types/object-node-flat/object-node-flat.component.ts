@@ -37,7 +37,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
   @Input() compressed: boolean;
 
-  @Input() hideRoot;
+  @Input() hideRoot = false;
 
   indentationArray: number[] = [];
 

@@ -27,6 +27,7 @@
       [formats]="formats"
       [compressed]="compressed"
       [indentationArray]="indentationArray"
+      [showAllObjectProperties]="showAllObjectProperties"
       (schemaChange)="schemaChange.emit(schemaRef)"
       (updatePropertyNameEvent)="onUpdatePropertyName($event)"
     >
@@ -40,7 +41,7 @@
           <i class="ngx-icon ngx-cog"></i>
         </button>
         <ngx-dropdown [showCaret]="true">
-          <ngx-dropdown-toggle>
+          <ngx-dropdown-toggle *ngIf="canEdit">
             <button type="button" class="node-options-btn">
               <i class="ngx-icon ngx-dots-vert-round"></i>
             </button>
@@ -82,7 +83,7 @@
     ></div>
   </div>
 
-  <div class="add-button" [class.compressed]="compressed" [class.background]="hideRoot ? level > -1 : level">
+  <div class="add-button" [class.compressed]="compressed" [class.background]="hideRoot ? level > -1 : level" *ngIf="canEdit">
     <span class="separator" *ngFor="let separator of indentationArray"></span>
     <div class="indented-content" [style.marginLeft]="hideRoot && level === 0 ? '20px' : '0'">
       <ngx-dropdown [showCaret]="true">

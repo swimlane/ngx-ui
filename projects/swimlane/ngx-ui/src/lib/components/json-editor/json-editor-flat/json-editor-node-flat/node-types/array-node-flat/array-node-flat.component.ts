@@ -30,7 +30,7 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
 
   @Input() compressed: boolean;
 
-  @Input() hideRoot;
+  @Input() hideRoot = false;
 
   indentationArray: number[] = [];
 

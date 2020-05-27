@@ -59,11 +59,12 @@
       [path]="path + getPath(prop.propertyName)"
       [errors]="errors"
       [typeCheckOverrides]="typeCheckOverrides"
+      [showAllObjectProperties]="showAllObjectProperties"
     >
     </ngx-json-editor-node>
   </div>
 
-  <ngx-dropdown [showCaret]="true">
+  <ngx-dropdown [showCaret]="true" *ngIf="canEdit">
     <ngx-dropdown-toggle>
       <div class="add-button">
         <ngx-icon fontIcon="plus-bold"></ngx-icon>
