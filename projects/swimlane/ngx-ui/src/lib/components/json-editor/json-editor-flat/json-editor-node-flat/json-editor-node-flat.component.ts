@@ -53,17 +53,17 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   requiredIndicator: SafeHtml;
 
+  get nextLevel() {
+    if (this.level === undefined) {
+      return this.hideRoot ? -1 : 0;
+    } else {
+      return this.level + 1;
+    }
+  }
+
   constructor(public dialogMngr: DialogService, private domSanitizer: DomSanitizer) {
     super(dialogMngr);
     this.requiredIndicator = this.domSanitizer.bypassSecurityTrustHtml(requiredIndicatorIcon);
-  }
-
-  ngOnInit() {
-    if (this.level === undefined) {
-      this.level = this.hideRoot ? -1 : 0;
-    } else {
-      this.level += 1;
-    }
   }
 
   updatePropertyName(id: string | number, name: string): void {

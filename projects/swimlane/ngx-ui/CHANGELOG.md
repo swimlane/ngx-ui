@@ -2,6 +2,9 @@
 
 ## HEAD (Unreleased)
 
+- Feature: support dynamic `hideRoot` inputs
+- Fix: required icon not showing for top level when `hideRoot` is true
+
 ## 28.6.0 (2020-05-07)
 
 - Feature: New ngx-navbar component (#437)
