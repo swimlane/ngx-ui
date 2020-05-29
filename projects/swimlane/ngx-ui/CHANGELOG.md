@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+- Fix: errors in flat JSON editor not being updated on changes
+
 ## 28.6.1 (2020-05-29)
 
 - Feature: support dynamic `hideRoot` inputs
