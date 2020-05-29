@@ -39,5 +39,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 - Run `git commit -am "(release): X.Y.Z"`
 - Run `git tag X.Y.Z`
 - Run `git push origin HEAD`
-- Submit PR
+- Run `git push origin --tags`
 - Run `npm run publish:lib`
+- Submit PR
