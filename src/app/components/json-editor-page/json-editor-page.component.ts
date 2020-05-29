@@ -86,6 +86,7 @@ export class JsonEditorPageComponent {
   };
 
   compressed = false;
+  hideRoot = false;
 
   _jsonEditorSchema: any = {};
 
