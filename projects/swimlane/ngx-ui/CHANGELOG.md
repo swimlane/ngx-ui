@@ -2,7 +2,7 @@
 
 ## HEAD (Unreleased)
 
-- Fix: errrors in flat edidtor not bein updated on changes
+- Fix: errors in flat JSON editor not being updated on changes
 
 ## 28.6.1 (2020-05-29)
 
