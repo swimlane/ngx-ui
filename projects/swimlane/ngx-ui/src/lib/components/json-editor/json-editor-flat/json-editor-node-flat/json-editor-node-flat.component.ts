@@ -62,6 +62,7 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
     if ('level' in changes || 'hideRoot' in changes) {
       this.nextLevel = this.level === undefined ? (this.hideRoot ? -1 : 0) : this.level + 1;
     }

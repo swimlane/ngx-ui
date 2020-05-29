@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+- Fix: errrors in flat edidtor not bein updated on changes
+
 ## 28.6.1 (2020-05-29)
 
 - Feature: support dynamic `hideRoot` inputs
