@@ -38,6 +38,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 - Update changelog in `projects/swimlane/ngx-ui/CHANGELOG.md`
 - Run `git commit -am "(release): X.Y.Z"`
 - Run `git tag X.Y.Z`
-- Run `git push origin HEAD`
-- Submit PR
+- Run `git push origin HEAD --tags`
 - Run `npm run publish:lib`
+- Submit PR
