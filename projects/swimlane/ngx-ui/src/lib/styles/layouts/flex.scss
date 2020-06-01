@@ -15,7 +15,6 @@ $column-class: '.' + $prefix + $column;
 
 $max-columns: 12;
 
-// Breakpoints (follows Flex-layout)
 $breakpoints: (
   '': 0,
   // Default
@@ -25,19 +24,21 @@ $breakpoints: (
   // Small screen / phone
     '-md': 960px,
   // Medium screen / tablet
-    '-lg': 1280px,
+    '-lg': 1320px,
   // Large screen / desktop
-    '-xl': 1920px // Extra large screen / wide desktop,
+    '-xl': 1680px,
+  // Extra large screen / wide desktop
+    '-xxl': 1920px // XX-Large / extra wide desktop
 );
 
-// Container Widths (follows Flex-layout)
 $container-widths: (
   '': 480px,
   '-xs': 480px,
   '-sm': 550px,
   '-md': 920px,
-  '-lg': 1240px,
-  '-xl': 1880px
+  '-lg': 1270px,
+  '-xl': 1630px,
+  '-xxl': 1870px
 );
 
 /* --- CSS Variables --- */
