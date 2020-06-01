@@ -116,6 +116,10 @@ export class SelectDropdownComponent implements AfterViewInit {
     return !(typeof this.allowAdditionsText === 'object' && this.allowAdditionsText instanceof TemplateRef);
   }
 
+  get filterQueryIsInOptions() {
+    return this.options.some(o => o.name === this.filterQuery);
+  }
+
   groups: any[];
 
   private _options: SelectDropdownOption[];
