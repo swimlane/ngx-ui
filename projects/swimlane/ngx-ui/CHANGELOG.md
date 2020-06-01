@@ -6,6 +6,15 @@
 - Enhancement: Remove @angular/flex-layout
 - Enhancement: Added `ngx-flex` classes for easy flex layouts
 
+## 28.6.2 (2020-05-29)
+
+- Fix: errors in flat JSON editor not being updated on changes
+
+## 28.6.1 (2020-05-29)
+
+- Feature: support dynamic `hideRoot` inputs
+- Fix: required icon not showing for top level when `hideRoot` is true
+
 ## 28.6.0 (2020-05-07)
 
 - Feature: New ngx-navbar component (#437)

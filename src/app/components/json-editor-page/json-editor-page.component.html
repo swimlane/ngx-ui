@@ -2,57 +2,17 @@
 <ngx-section class="shadow" [sectionTitle]="'JSON Editor'">
   <ngx-tabs>
     <ngx-tab label="Editor">
-      <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor'">
-        <ngx-json-editor
-          [(model)]="jsonEditorModel"
-          [schema]="jsonEditorSchema"
-          label="Model"
-          [typeCheckOverrides]="typeOverrides"
-        >
-        </ngx-json-editor>
+      <ngx-json-editor
+        [(model)]="jsonEditorModel"
+        [schema]="jsonEditorSchema"
+        label="Model"
+        [typeCheckOverrides]="typeOverrides"
+      >
+      </ngx-json-editor>
 
-        <hr />
-        <h3>Model</h3>
-        <pre>{{ jsonEditorModel | json }}</pre>
-      </ngx-section>
-
-      <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat'">
-        <ngx-json-editor-flat
-          [(model)]="jsonEditorModelFlat"
-          [schema]="jsonEditorSchema"
-          label="Model"
-          [typeCheckOverrides]="typeOverrides"
-          (schemaChange)="modelSchemaChange($event)"
-        >
-        </ngx-json-editor-flat>
-
-        <hr />
-        <h3>Model</h3>
-        <pre>{{ jsonEditorModelFlat | json }}</pre>
-        <h3>Schema</h3>
-        <pre>{{ modelSchemaRef | json }}</pre>
-      </ngx-section>
-
-      <br />
-      <ngx-section class="shadow" [sectionTitle]="'Schema Builder Mode'">
-        <ngx-button class="btn btn-primary" [style.marginBottom]="'8px'" (click)="toggleCompressed()"
-          >Toggle compressed mode</ngx-button
-        >
-        <ngx-json-editor-flat
-          [(model)]="jsonEditorSchemaBuilderModel"
-          [schema]="{}"
-          label="Schema"
-          [compressed]="compressed"
-          [typeCheckOverrides]="typeOverrides"
-          [schemaBuilderMode]="true"
-          [formats]="customFormats"
-          (schemaChange)="schemaChange($event)"
-        >
-        </ngx-json-editor-flat>
-        <hr />
-        <h3>Schema</h3>
-        <pre>{{ schemaRef | json }}</pre>
-      </ngx-section>
+      <hr />
+      <h3>Model</h3>
+      <pre>{{ jsonEditorModel | json }}</pre>
     </ngx-tab>
     <ngx-tab label="Schema">
       <ngx-button class="btn btn-primary" (click)="updateJsonEditorSchema(_jsonEditorSchema)">Update Schema</ngx-button>
@@ -63,28 +23,76 @@
       ></ngx-codemirror>
     </ngx-tab>
   </ngx-tabs>
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
-      <ngx-codemirror mode="htmlmixed" readOnly="true">
-        <![CDATA[ <ngx-json-editor [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
-        [typeCheckOverrides]="typeOverrides"> </ngx-json-editor> ]]>
-      </ngx-codemirror>
-      <ngx-codemirror mode="htmlmixed" readOnly="true">
-        <![CDATA[ <ngx-json-editor-flat [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
-        [typeCheckOverrides]="typeOverrides"> </ngx-json-editor-flat> ]]>
-      </ngx-codemirror>
-      <ngx-codemirror mode="htmlmixed" readOnly="true">
-        <![CDATA[ <ngx-json-editor-flat [(model)]="jsonEditorModel" [schema]="{}" label="Schema"
-        [typeCheckOverrides]="typeOverrides" [formats]="customFormats" [compressed]="compressed"
-        [schemaBuilderMode]="true" (schemaChange)="schemaChange($event)"> </ngx-json-editor-flat> ]]>
-      </ngx-codemirror>
-    </ngx-tab>
-    <ngx-tab label="Typescript">
-      <ngx-codemirror mode="javascript" readOnly="true">
-        <![CDATA[ typeOverrides: any = { 'string=code': (value: any) => { if (typeof value !== 'string') { return false;
-        } const regex = new RegExp(/^<<(.*)>>$/, 's'); return regex.test(value); } }; ]]>
-      </ngx-codemirror>
-    </ngx-tab>
-  </ngx-tabs>
 </ngx-section>
+
+<ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat'">
+  <ngx-button class="btn btn-primary" [style.marginBottom]="'8px'" (click)="toggleCompressed()"
+    >Toggle compressed mode</ngx-button
+  >
+  <ngx-button class="btn btn-primary" [style.marginBottom]="'8px'" (click)="hideRoot = !hideRoot"
+    >Toggle hide root</ngx-button
+  >
+  
+  <ngx-json-editor-flat
+    [(model)]="jsonEditorModelFlat"
+    [schema]="jsonEditorSchema"
+    label="Model"
+    [typeCheckOverrides]="typeOverrides"
+    [compressed]="compressed"
+    [hideRoot]="hideRoot"
+    (schemaChange)="modelSchemaChange($event)"
+  >
+  </ngx-json-editor-flat>
+
+  <hr />
+  <h3>Model</h3>
+  <pre>{{ jsonEditorModelFlat | json }}</pre>
+  <h3>Schema</h3>
+  <pre>{{ modelSchemaRef | json }}</pre>
+</ngx-section>
+
+<br />
+
+<ngx-section class="shadow" [sectionTitle]="'Schema Builder Mode'">
+  <ngx-button class="btn btn-primary" [style.marginBottom]="'8px'" (click)="toggleCompressed()"
+    >Toggle compressed mode</ngx-button
+  >
+  <ngx-json-editor-flat
+    [(model)]="jsonEditorSchemaBuilderModel"
+    [schema]="{}"
+    label="Schema"
+    [compressed]="compressed"
+    [typeCheckOverrides]="typeOverrides"
+    [schemaBuilderMode]="true"
+    [formats]="customFormats"
+    (schemaChange)="schemaChange($event)"
+  >
+  </ngx-json-editor-flat>
+  <hr />
+  <h3>Schema</h3>
+  <pre>{{ schemaRef | json }}</pre>
+</ngx-section>
+
+<ngx-tabs>
+  <ngx-tab label="Markup">
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[ <ngx-json-editor [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
+      [typeCheckOverrides]="typeOverrides"> </ngx-json-editor> ]]>
+    </ngx-codemirror>
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[ <ngx-json-editor-flat [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
+      [typeCheckOverrides]="typeOverrides"> </ngx-json-editor-flat> ]]>
+    </ngx-codemirror>
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[ <ngx-json-editor-flat [(model)]="jsonEditorModel" [schema]="{}" label="Schema"
+      [typeCheckOverrides]="typeOverrides" [formats]="customFormats" [compressed]="compressed"
+      [schemaBuilderMode]="true" (schemaChange)="schemaChange($event)"> </ngx-json-editor-flat> ]]>
+    </ngx-codemirror>
+  </ngx-tab>
+  <ngx-tab label="Typescript">
+    <ngx-codemirror mode="javascript" readOnly="true">
+      <![CDATA[ typeOverrides: any = { 'string=code': (value: any) => { if (typeof value !== 'string') { return false;
+      } const regex = new RegExp(/^<<(.*)>>$/, 's'); return regex.test(value); } }; ]]>
+    </ngx-codemirror>
+  </ngx-tab>
+</ngx-tabs>
