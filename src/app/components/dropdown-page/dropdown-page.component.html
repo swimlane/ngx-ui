@@ -318,3 +318,23 @@
     </ngx-dropdown-menu>
   </ngx-dropdown>
 </ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Dropdown in scroll region">
+  <div class="ngx-scroll" style="height: 300px; overflow: auto; width: 300px; border: 1px solid grey;">
+    <ngx-icon svgSrc="graph"></ngx-icon>
+    <ngx-dropdown [showCaret]="true" [scrollIntoViewOnOpen]="true">
+      <ngx-dropdown-toggle>
+        <button class="btn" type="button">
+          Open
+        </button>
+      </ngx-dropdown-toggle>
+      <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+        <ul class="vertical-list">
+          <li><button type="button" class="disabled">This menu</button></li>
+          <li><button type="button">Will Close</button></li>
+          <li><a href="/">On mouseleave</a></li>
+        </ul>
+      </ngx-dropdown-menu>
+    </ngx-dropdown>    
+  </div>
+</ngx-section>

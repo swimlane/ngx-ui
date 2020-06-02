@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+- Feature: Add `scrollIntoViewOnOpen` option for dropdowns
+
 ## 28.6.2 (2020-05-29)
 
 - Fix: errors in flat JSON editor not being updated on changes

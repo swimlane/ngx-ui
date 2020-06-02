@@ -69,6 +69,14 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     this._closeOnMouseLeave = coerceBooleanProperty(val);
   }
 
+  @Input()
+  get scrollIntoViewOnOpen() {
+    return this._scrollIntoViewOnOpen;
+  }
+  set scrollIntoViewOnOpen(val: boolean) {
+    this._scrollIntoViewOnOpen = coerceBooleanProperty(val);
+  }
+
   @ContentChild(DropdownToggleDirective) readonly dropdownToggle: DropdownToggleDirective;
   @ContentChild(DropdownMenuDirective) readonly dropdownMenu: DropdownMenuDirective;
 
@@ -79,6 +87,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   private _closeOnOutsideClick: boolean = true;
   private _closeOnMouseLeave: boolean = false;
   private _leaveTimeout = null;
+  private _scrollIntoViewOnOpen = false;
 
   constructor(private readonly renderer: Renderer2, private readonly cd: ChangeDetectorRef) {}
 
@@ -108,6 +117,11 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
 
     if (this.open) {
       this._documentListener = this.renderer.listen(document, 'click', this.onDocumentClick.bind(this));
+      if (this._scrollIntoViewOnOpen) {
+        setTimeout(() => {
+          this.dropdownMenu.element.scrollIntoView({ behavior: 'smooth' });
+        }, 250); // Note: same as openAnimation CSS transition
+      }
     } else {
       this._documentListener();
     }
