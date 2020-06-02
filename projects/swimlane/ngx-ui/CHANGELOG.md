@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+- Fix: resize-overlay component css leak issues
+
 ## 28.6.2 (2020-05-29)
 
 - Fix: errors in flat JSON editor not being updated on changes
