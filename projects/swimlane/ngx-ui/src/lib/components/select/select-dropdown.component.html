@@ -36,6 +36,23 @@
           <span *ngIf="!kv.option.optionTemplate" [innerHTML]="kv.option.name"> </span>
         </li>
         <li
+          *ngIf="filterQuery && group.options?.length && !filterQueryIsInOptions"
+          class="ngx-select-empty-placeholder"
+        >
+          <a
+            *ngIf="allowAdditions"
+            href="#"
+            class="ngx-select-add-current-value"
+            (click)="onAddClicked($event, filterQuery)"
+          >
+            <span *ngIf="isNotTemplate; else tpl" [innerHTML]="allowAdditionsText"> </span>
+            <ng-template #tpl>
+              <ng-container *ngTemplateOutlet="allowAdditionsText"></ng-container>
+            </ng-template>
+          </a>
+        </li>
+
+        <li
           *ngIf="filterQuery && filterEmptyPlaceholder && !group.options?.length"
           class="ngx-select-empty-placeholder"
         >

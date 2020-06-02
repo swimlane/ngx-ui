@@ -376,6 +376,13 @@ $color-chip-text: $color-grey-100;
         font-style: normal;
         float: right;
       }
+      .ngx-select-add-current-value {
+        font-style: normal;
+        span {
+          text-align: right;
+          display: block;
+        }
+      }
     }
   }
 
