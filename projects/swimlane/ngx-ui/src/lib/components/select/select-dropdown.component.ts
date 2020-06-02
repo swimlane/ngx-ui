@@ -15,7 +15,7 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { containsFilter } from './contains-filter.util';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
-import { debounceable } from '@swimlane/ngx-ui/decorators/debounceable/debounceable.decorator';
+import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 
 @Component({
   exportAs: 'ngxSelectDropdown',
