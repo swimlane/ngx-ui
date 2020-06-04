@@ -2,7 +2,10 @@
 
 ## HEAD (Unreleased)
 
+## 28.6.3 (2020-06-04)
+
 - Fix: resize-overlay component css leak issues
+- Fix: Allow add new value on selects when filter query matches some options (#451)
 
 ## 28.6.2 (2020-05-29)
 
