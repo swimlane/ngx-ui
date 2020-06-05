@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+- Feature: Source Sans Pro fonts now defined with `font-display: swap` for better UX
+
 ## 28.6.3 (2020-06-04)
 
 - Fix: resize-overlay component css leak issues
