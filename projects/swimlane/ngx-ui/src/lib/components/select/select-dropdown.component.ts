@@ -7,13 +7,15 @@ import {
   AfterViewInit,
   ElementRef,
   TemplateRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { containsFilter } from './contains-filter.util';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
+import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 
 @Component({
   exportAs: 'ngxSelectDropdown',
@@ -126,8 +128,9 @@ export class SelectDropdownComponent implements AfterViewInit {
   private _allowAdditions: boolean;
   private _filterable: boolean;
   private _filterCaseSensitive = false;
+  filterQueryIsInOptions: boolean = false;
 
-  constructor(private readonly elementRef: ElementRef) {}
+  constructor(private readonly elementRef: ElementRef, private readonly cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     if (this.filterable && !this.tagging) {
@@ -148,6 +151,12 @@ export class SelectDropdownComponent implements AfterViewInit {
     return idx > -1;
   }
 
+  @debounceable(500)
+  updatefilterQueryIsInOptions() {
+    this.filterQueryIsInOptions = this.options.some(o => o.name === this.filterQuery);
+    this.cdr.markForCheck();
+  }
+
   onInputKeyUp(event: KeyboardEvent): void {
     event.preventDefault();
     event.stopPropagation();
@@ -165,6 +174,7 @@ export class SelectDropdownComponent implements AfterViewInit {
       this.filterQuery = value;
     }
 
+    this.updatefilterQueryIsInOptions();
     this.keyup.emit({ event, value });
   }
 

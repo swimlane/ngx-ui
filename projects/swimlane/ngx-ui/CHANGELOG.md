@@ -6,6 +6,11 @@
 - Enhancement: Remove @angular/flex-layout
 - Enhancement: Added `ngx-flex` classes for easy flex layouts
 
+## 28.6.3 (2020-06-04)
+
+- Fix: resize-overlay component css leak issues
+- Fix: Allow add new value on selects when filter query matches some options (#451)
+
 ## 28.6.2 (2020-05-29)
 
 - Fix: errors in flat JSON editor not being updated on changes
