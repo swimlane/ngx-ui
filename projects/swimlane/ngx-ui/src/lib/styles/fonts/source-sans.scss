@@ -11,12 +11,14 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
   font-family: $font-name;
   font-style: normal;
   src: url('#{$font-src}/#{$font-filename}-Regular.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
   font-family: $font-name;
   font-style: italic;
   src: url('#{$font-src}/#{$font-filename}-Italic.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
@@ -24,6 +26,7 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
   font-weight: 300;
   font-style: normal;
   src: url('#{$font-src}/#{$font-filename}-Light.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
@@ -31,6 +34,7 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
   font-weight: 300;
   font-style: italic;
   src: url('#{$font-src}/#{$font-filename}-LightItalic.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
@@ -38,6 +42,7 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
   font-weight: 600;
   font-style: normal;
   src: url('#{$font-src}/#{$font-filename}-Semibold.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
@@ -45,6 +50,7 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
   font-weight: 600;
   font-style: italic;
   src: url('#{$font-src}/#{$font-filename}-SemiboldItalic.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
@@ -52,6 +58,7 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
   font-weight: bold;
   font-style: normal;
   src: url('#{$font-src}/#{$font-filename}-Bold.ttf') format('truetype');
+  font-display: swap;
 }
 
 @font-face {
@@ -59,4 +66,5 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
   font-weight: bold;
   font-style: italic;
   src: url('#{$font-src}/#{$font-filename}-BoldItalic.ttf') format('truetype');
+  font-display: swap;
 }
