@@ -7,10 +7,10 @@ import {
   HostListener,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BehaviorSubject } from 'rxjs';
 
 import { ButtonState } from './button-state.enum';
+import { CoerceBooleanProperty } from '@swimlane/ngx-ui/utils/coerce/coerce-boolean';
 
 @Component({
   selector: 'ngx-button',
@@ -32,12 +32,8 @@ export class ButtonComponent implements OnInit, OnChanges {
   @Input() promise?: Promise<any>;
 
   @Input()
-  get disabled() {
-    return this._disabled;
-  }
-  set disabled(v: boolean) {
-    this._disabled = coerceBooleanProperty(v);
-  }
+  @CoerceBooleanProperty()
+  disabled = false;
 
   @Input()
   get state() {
@@ -58,7 +54,6 @@ export class ButtonComponent implements OnInit, OnChanges {
   readonly fail$ = new BehaviorSubject(false);
 
   private _state = ButtonState.Active;
-  private _disabled = false;
   private _timer: any;
 
   ngOnInit() {

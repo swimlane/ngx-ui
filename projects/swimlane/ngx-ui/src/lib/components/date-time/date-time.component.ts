@@ -12,7 +12,6 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 import moment from 'moment-timezone';
 
@@ -20,6 +19,8 @@ import { DialogService } from '../dialog/dialog.service';
 import { DateTimeType } from './date-time-type.enum';
 import { Datelike } from './date-like.type';
 import { InputComponent } from '../input/input.component';
+import { CoerceBooleanProperty } from '@swimlane/ngx-ui/utils/coerce/coerce-boolean';
+import { CoerceNumberProperty } from '@swimlane/ngx-ui/utils/coerce/coerce-number';
 
 let nextId = 0;
 
@@ -53,28 +54,16 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() inputFormats: any[] = ['L', `LT`, 'L LT', moment.ISO_8601];
 
   @Input()
-  get disabled() {
-    return this._disabled;
-  }
-  set disabled(disabled) {
-    this._disabled = coerceBooleanProperty(disabled);
-  }
+  @CoerceBooleanProperty()
+  disabled: boolean = false;
 
   @Input()
-  get tabindex() {
-    return this._tabindex;
-  }
-  set tabindex(tabindex) {
-    this._tabindex = coerceNumberProperty(tabindex);
-  }
+  @CoerceNumberProperty()
+  tabindex: number;
 
   @Input()
-  get autofocus() {
-    return this._autofocus;
-  }
-  set autofocus(autofocus) {
-    this._autofocus = coerceBooleanProperty(autofocus);
-  }
+  @CoerceBooleanProperty()
+  autofocus: boolean = false;
 
   @Input()
   get inputType(): string {
@@ -162,9 +151,6 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   private _value: Date | string;
   private _format: string;
   private _inputType: string;
-  private _disabled: boolean = false;
-  private _autofocus: boolean = false;
-  private _tabindex: number;
 
   constructor(private readonly dialogService: DialogService) {}
 
