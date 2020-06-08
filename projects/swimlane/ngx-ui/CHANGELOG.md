@@ -3,6 +3,21 @@
 ## HEAD (Unreleased)
 
 - Feature: allow showing all object properties by defualt
+- Feature: Source Sans Pro fonts now defined with `font-display: swap` for better UX
+
+## 28.6.3 (2020-06-04)
+
+- Fix: resize-overlay component css leak issues
+- Fix: Allow add new value on selects when filter query matches some options (#451)
+
+## 28.6.2 (2020-05-29)
+
+- Fix: errors in flat JSON editor not being updated on changes
+
+## 28.6.1 (2020-05-29)
+
+- Feature: support dynamic `hideRoot` inputs
+- Fix: required icon not showing for top level when `hideRoot` is true
 
 ## 28.6.0 (2020-05-07)
 

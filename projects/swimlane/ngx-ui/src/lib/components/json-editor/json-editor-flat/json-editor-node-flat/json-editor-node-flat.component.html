@@ -1,13 +1,13 @@
 <div *ngIf="model !== undefined" class="json-tree-node-flat">
-  <div class="node-container" *ngIf="!(level === -1 && hideRoot)">
-    <div class="indentation" *ngIf="level > 0" [style.left]="-1 * (level * 20) + 'px'">
+  <div class="node-container" *ngIf="!(nextLevel === -1 && hideRoot)">
+    <div class="indentation" *ngIf="nextLevel > 0" [style.left]="-1 * (nextLevel * 20) + 'px'">
       <span class="separator" *ngFor="let separator of indentationArray"></span>
     </div>
     <div class="node" [class.compressed]="compressed">
       <div class="error-box" *ngIf="!valid && !schemaBuilderMode"></div>
 
       <div class="left-options">
-        <ng-container *ngIf="level > 0 && !arrayItem">
+        <ng-container *ngIf="hideRoot || (nextLevel > 0 && !arrayItem)">
           <div class="required-indicator">
             <span
               *ngIf="required"
@@ -239,7 +239,7 @@
       [path]="path"
       [errors]="childrenErrors"
       [typeCheckOverrides]="typeCheckOverrides"
-      [level]="level"
+      [level]="nextLevel"
       [compressed]="compressed"
       [schemaBuilderMode]="schemaBuilderMode"
       [formats]="formats"
@@ -263,7 +263,7 @@
       [compressed]="compressed"
       [errors]="childrenErrors"
       [typeCheckOverrides]="typeCheckOverrides"
-      [level]="level"
+      [level]="nextLevel"
       [schemaBuilderMode]="schemaBuilderMode"
       [showAllObjectProperties]="showAllObjectProperties"
       (schemaChange)="schemaChange.emit(schemaRef)"
