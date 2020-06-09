@@ -1,15 +1,17 @@
 @import 'colors/variables';
 @import '../../json-editor.extensions.scss';
 
-.popover-template {
+.json-editor--popover-template {
   font-weight: 600;
   font-size: 12px;
   line-height: 13px;
+  max-width: 300px;
 
   .label {
     color: $color-blue-grey-400;
     font-size: 10px;
     font-weight: bold;
+    text-transform: uppercase;
   }
 
   .separator {
@@ -18,10 +20,14 @@
   }
 }
 
+ngx-json-editor-node-flat {
+  max-width: 100%;
+}
+
 .json-tree-node-flat {
   .indentation {
     @extend %indentation;
-    min-width: 20px;
+    flex: 1 0 20px;
   }
 
   .node-container {
@@ -35,7 +41,8 @@
     display: flex;
     padding: 25px 10px;
     position: relative;
-    flex: 1;
+    flex: 0 1 100%;
+    min-width: 0; // https://css-tricks.com/flexbox-truncated-text/#the-solution-is-min-width-0-on-the-flex-child
 
     &.compressed {
       max-height: 80px;
@@ -57,7 +64,7 @@
       justify-content: center;
       margin-right: 10px;
       color: $color-blue-grey-400;
-      width: 15px;
+      flex: 0 0 15px;
 
       .required-indicator {
         position: absolute;
@@ -95,8 +102,9 @@
     .node-content {
       display: flex;
       justify-content: space-between;
-      flex: 1;
+      flex: 0 0 100%;
       align-items: center;
+      min-width: 0;
 
       &.extra-margin {
         margin-top: -15px;
@@ -106,15 +114,22 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        flex-basis: 30%;
+        flex: 0 0 40%;
         padding-right: 25px;
+        overflow: hidden;
 
-        .info-name .info-btn {
-          color: $color-blue-grey-350;
-          font-size: 12px;
-          margin-left: 5px;
-          position: relative;
-          z-index: 1;
+        .info-name {
+          display: flex;
+          align-items: baseline;
+
+          .info-btn {
+            color: $color-blue-grey-350;
+            font-size: 12px;
+            margin-left: 5px;
+            position: relative;
+            z-index: 1;
+            white-space: nowrap;
+          }
         }
 
         .name,
@@ -123,6 +138,16 @@
           font-size: 18px;
           line-height: 23px;
           color: #f0f1f6;
+        }
+
+        .name,
+        .description,
+        .info-type {
+          display: inline-block;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          max-width: calc(100% - 30px);
+          overflow: hidden;
         }
 
         .property-name,
@@ -152,7 +177,7 @@
       }
 
       .node-input {
-        flex: 1;
+        flex: 0 1 60%;
 
         ngx-input {
           padding: 0;
