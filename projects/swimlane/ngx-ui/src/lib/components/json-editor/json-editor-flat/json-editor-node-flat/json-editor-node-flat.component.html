@@ -112,7 +112,7 @@
                 *ngIf="!schema?.enum"
                 type="text"
                 [ngModel]="model"
-                (change)="updateModel($event)"
+                (ngModelChange)="updateModel($event)"
                 [requiredIndicator]="false"
                 [required]="required"
               >
