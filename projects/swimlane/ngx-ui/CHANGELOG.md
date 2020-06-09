@@ -3,6 +3,7 @@
 ## HEAD (Unreleased)
 
 - Feature: Source Sans Pro fonts now defined with `font-display: swap` for better UX
+- Fix: various alignment issues in flat JSON editor
 
 ## 28.6.3 (2020-06-04)
 
