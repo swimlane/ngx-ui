@@ -6,7 +6,9 @@ import {
   TemplateRef,
   OnInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  SimpleChanges,
+  OnChanges
 } from '@angular/core';
 import { ObjectNode } from '../../../../node-types/object-node.component';
 import { DialogService } from '../../../../../dialog/dialog.service';
@@ -26,7 +28,7 @@ import { PropertyConfigOptions, PropertyConfigComponent } from '../property-conf
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
+export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnChanges {
   @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;
 
   @Input() level: number;
@@ -57,8 +59,13 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
       this.initSchemaProperties(this.schemaRef);
     });
 
-    if (this.level > 0) {
-      this.indentationArray = Array(this.level).fill(this.level);
+    this.indentationArray = this.level > 0 ? Array(this.level).fill(this.level) : [];
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+    if ('level' in changes) {
+      this.indentationArray = this.level > 0 ? Array(this.level).fill(this.level) : [];
     }
   }
 

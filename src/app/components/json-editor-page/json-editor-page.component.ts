@@ -58,13 +58,11 @@ export class JsonEditorPageComponent {
             type: 'number'
           },
           height: {
-            type: 'number'
-          },
-          name: {
-            type: 'string'
+            type: 'number',
+            description: 'Height if dimensions are a volume'
           }
         },
-        required: ['length', 'width', 'height'],
+        required: ['length', 'width'],
         additionalProperties: false
       },
       warehouseLocation: {
@@ -89,6 +87,32 @@ export class JsonEditorPageComponent {
     required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions']
   };
 
+  jsonEditorSchema2 = {
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    title: 'Product',
+    description: "A product from Acme's catalog",
+    type: 'object',
+    properties: {
+      given: {
+        type: 'string',
+        description: 'Given (first) name'
+      },
+      middle: {
+        type: 'string',
+        description: 'Middle name'
+      },
+      family: {
+        type: 'string',
+        description: 'Family (last) name'
+      },
+      age: {
+        type: 'integer'
+      }
+    },
+    additionalProperties: false,
+    required: ['given', 'family']
+  };
+
   compressed = false;
   hideRoot = false;
 
@@ -103,6 +127,8 @@ export class JsonEditorPageComponent {
   };
 
   jsonEditorSchemaBuilderModel: any = {};
+
+  jsonEditorModelFlat2: any = {};
 
   schemaRef: JSONSchema7 = {};
   modelSchemaRef: JSONSchema7 = {};

@@ -12,6 +12,28 @@
   .add-button {
     @extend %add-button;
   }
+
+  .add-prop-button {
+    background-color: rgba(red($color-blue-grey-700), green($color-blue-grey-700), blue($color-blue-grey-700), 0.4);
+    margin-bottom: 5px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .object-node-content {
+      margin-bottom: 0;
+    }
+
+    .indented-content {
+      background-color: rgba($color-blue-grey-700, 0.5);
+      opacity: 0.3;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .cdk-drag-preview {
