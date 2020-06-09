@@ -1,7 +1,7 @@
 <div *ngIf="model !== undefined" class="json-tree-node-flat">
   <div class="node-container" *ngIf="!(nextLevel === -1 && hideRoot)">
     <div class="indentation" *ngIf="nextLevel > 0" [style.left]="-1 * (nextLevel * 20) + 'px'">
-      <span class="json-editor--horizontal-separator" *ngFor="let separator of indentationArray"></span>
+      <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
     </div>
     <div class="node" [class.compressed]="compressed">
       <div class="error-box" *ngIf="!valid && !schemaBuilderMode"></div>
