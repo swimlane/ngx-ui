@@ -214,7 +214,10 @@
             </ng-template>
           </ng-container>
 
-          <div class="input-error" *ngFor="let error of ownErrors">{{ error.message }}</div>
+          <div class="input-error">
+            <span *ngFor="let error of ownErrors">{{ error.message }}</span>
+          </div>
+
         </div>
 
         <div *ngIf="schemaBuilderMode" class="node-constrains">

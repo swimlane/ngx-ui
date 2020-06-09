@@ -207,6 +207,7 @@ ngx-json-editor-node-flat {
 
         .input-error {
           color: $color-red-500;
+          min-height: 1.2em; // min height keeps input from shifing when error is shown
         }
       }
     }
