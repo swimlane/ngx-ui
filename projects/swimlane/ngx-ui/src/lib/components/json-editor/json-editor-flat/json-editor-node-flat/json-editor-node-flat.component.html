@@ -28,7 +28,7 @@
             *ngIf="(!schema.nameEditable || schemaBuilderMode) && (schema?.propertyName || label || arrayItem)"
           >
             <span class="name">
-              {{ schema?.title || label || (arrayItem ? 'Items' : schema?.propertyName) }}
+              {{ schema?.title || label || (arrayItem ? 'Items' : (schema?.propertyName | titlecase)) }}
             </span>
             <ngx-icon
               *ngIf="schema?.description || schema?.examples"
@@ -42,14 +42,18 @@
             ></ngx-icon>
 
             <ng-template #popoverTemplate let-model="model">
-              <div class="popover-template">
-                <div *ngIf="model?.description">
-                  <div class="label">DESCRIPTION</div>
-                  <div>{{ model?.description }}</div>
+              <div class="json-editor--popover-template">
+                <div *ngIf="schema?.title || label || (arrayItem ? 'Items' : (schema?.propertyName | titlecase)) as name">
+                  <div class="label">Name</div>
+                  <div>{{ name }}</div>
+                </div>
+                <div *ngIf="model?.description as description">
+                  <div class="label">Description</div>
+                  <div>{{ description }}</div>
                 </div>
                 <div class="separator" *ngIf="model?.description && model?.examples"></div>
                 <div *ngIf="model?.examples">
-                  <div class="label">EXAMPLES</div>
+                  <div class="label">Examples</div>
                   <div *ngFor="let example of model?.examples">{{ example }}</div>
                 </div>
               </div>
@@ -210,7 +214,10 @@
             </ng-template>
           </ng-container>
 
-          <div class="input-error" *ngFor="let error of ownErrors">{{ error.message }}</div>
+          <div class="input-error">
+            <span *ngFor="let error of ownErrors">{{ error.message }}</span>
+          </div>
+
         </div>
 
         <div *ngIf="schemaBuilderMode" class="node-constrains">
