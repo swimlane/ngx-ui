@@ -17,6 +17,7 @@ export class JsonEditorPageComponent {
         type: ['string', 'string=code', 'number', 'object']
       },
       productId: {
+        title: 'The unique identifier for a product',
         description: 'The unique identifier for a product',
         type: 'number'
       },
