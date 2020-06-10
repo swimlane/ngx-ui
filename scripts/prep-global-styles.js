@@ -23,7 +23,7 @@ const copyDir = dir =>
 
 const compileCss = () =>
   new Promise((resolve, reject) => {
-    console.log('Compliing index.css...');
+    console.log('Compiling index.css...');
     fs.readFile('dist/swimlane/ngx-ui/lib/styles/index.scss', (err, data) => {
       if (err) {
         return reject(err);

@@ -76,23 +76,50 @@
 <ngx-tabs>
   <ngx-tab label="Markup">
     <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[ <ngx-json-editor [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
-      [typeCheckOverrides]="typeOverrides"> </ngx-json-editor> ]]>
+      <![CDATA[ 
+      <ngx-json-editor
+        [(model)]="jsonEditorModel"
+        [schema]="jsonEditorSchema"
+        label="Model"
+        [typeCheckOverrides]="typeOverrides">
+      </ngx-json-editor> ]]>
     </ngx-codemirror>
     <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[ <ngx-json-editor-flat [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
-      [typeCheckOverrides]="typeOverrides"> </ngx-json-editor-flat> ]]>
+      <![CDATA[
+      <ngx-json-editor-flat
+        [(model)]="jsonEditorModel"
+        [schema]="jsonEditorSchema"
+        label="Model"
+        [typeCheckOverrides]="typeOverrides">
+      </ngx-json-editor-flat>
+      ]]>
     </ngx-codemirror>
     <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[ <ngx-json-editor-flat [(model)]="jsonEditorModel" [schema]="{}" label="Schema"
-      [typeCheckOverrides]="typeOverrides" [formats]="customFormats" [compressed]="compressed"
-      [schemaBuilderMode]="true" (schemaChange)="schemaChange($event)"> </ngx-json-editor-flat> ]]>
+      <![CDATA[
+      <ngx-json-editor-flat
+        [(model)]="jsonEditorModel"
+        [schema]="{}"
+        label="Schema"
+        [typeCheckOverrides]="typeOverrides"
+        [formats]="customFormats"
+        [compressed]="compressed"
+        [schemaBuilderMode]="true"
+        (schemaChange)="schemaChange($event)"> 
+      </ngx-json-editor-flat> ]]>
     </ngx-codemirror>
   </ngx-tab>
   <ngx-tab label="Typescript">
     <ngx-codemirror mode="javascript" readOnly="true">
-      <![CDATA[ typeOverrides: any = { 'string=code': (value: any) => { if (typeof value !== 'string') { return false;
-      } const regex = new RegExp(/^<<(.*)>>$/, 's'); return regex.test(value); } }; ]]>
+      <![CDATA[
+        typeOverrides: any = { 
+          'string=code': (value: any) => {
+            if (typeof value !== 'string') {
+              return false;
+            }
+            const regex = new RegExp(/^<<(.*)>>$/, 's');
+            return regex.test(value);
+          }
+        }; ]]>
     </ngx-codemirror>
   </ngx-tab>
 </ngx-tabs>
