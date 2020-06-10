@@ -7,7 +7,8 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
-  SimpleChanges
+  SimpleChanges,
+  ChangeDetectorRef
 } from '@angular/core';
 import { JsonEditorNodeFlatComponent } from './json-editor-node-flat/json-editor-node-flat.component';
 import { SchemaValidatorService } from '../schema-validator.service';
@@ -49,8 +50,12 @@ export class JsonEditorFlatComponent extends JsonEditor {
 
   customFormats: JsonSchemaDataType[] = [];
 
-  constructor(private dialogService: DialogService, protected schemaValidatorService: SchemaValidatorService) {
-    super(schemaValidatorService);
+  constructor(
+    private dialogService: DialogService,
+    protected schemaValidatorService: SchemaValidatorService,
+    protected cdr: ChangeDetectorRef
+  ) {
+    super(schemaValidatorService, cdr);
   }
 
   ngOnInit() {
