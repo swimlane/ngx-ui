@@ -23,15 +23,15 @@
       <div class="node-content" [class.extra-margin]="schema.nameEditable && !schemaBuilderMode">
         <div class="node-info">
           <!-- Property name/title -->
-          <div
+          <div 
             class="info-name"
             *ngIf="(!schema.nameEditable || schemaBuilderMode) && (schema?.propertyName || label || arrayItem)"
           >
             <span class="name">
               {{ schema?.title || label || (arrayItem ? 'Items' : (schema?.propertyName | titlecase)) }}
             </span>
+            
             <ngx-icon
-              *ngIf="schema?.description || schema?.examples"
               class="info-btn"
               fontIcon="info-filled"
               ngx-tooltip
@@ -51,11 +51,11 @@
                   <div class="label">Description</div>
                   <div>{{ description }}</div>
                 </div>
-                <div class="separator" *ngIf="model?.description && model?.examples"></div>
-                <div *ngIf="model?.examples">
+                <ng-container *ngIf="model?.examples">
+                  <div class="separator"></div>
                   <div class="label">Examples</div>
-                  <div *ngFor="let example of model?.examples">{{ example }}</div>
-                </div>
+                  <div *ngFor="let example of model?.examples">{{ example }}</div>          
+                </ng-container>
               </div>
             </ng-template>
           </div>

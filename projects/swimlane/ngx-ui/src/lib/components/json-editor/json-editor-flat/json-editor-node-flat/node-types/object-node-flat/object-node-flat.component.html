@@ -85,9 +85,9 @@
 
   <ng-container *ngIf="showAllObjectProperties">
     <ng-container *ngFor="let prop of schema.properties | keyvalue">
-      <div class="node-container add-button add-prop-button" *ngIf="model[prop.key] === undefined">
+      <div class="node-container add-button add-prop-button" [class.compressed]="compressed" *ngIf="model[prop.key] === undefined">
 
-        <span class="separator" *ngFor="let separator of indentationArray"></span>
+        <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
 
         <div class="node indented-content object-node-content" [class.compressed]="compressed" [style.marginLeft]="hideRoot && level === 0 ? '20px' : '0'">
 
@@ -99,11 +99,10 @@
             <div class="node-info">
               <div class="info-name">
                 <span class="name">
-                  {{ prop.value.title ? prop.value.title : prop.key }}
+                  {{ prop.value.title ? prop.value.title : (prop.key | titlecase) }}
                 </span>
 
                 <ngx-icon
-                  *ngIf="prop.value.description || prop.value.examples"
                   class="info-btn"
                   fontIcon="info-filled"
                   ngx-tooltip
@@ -140,7 +139,8 @@
                 <span class="property-name">{{ prop.key }}</span>
               </div>
 
-              <span *ngIf="!compressed" class="description">{{ schema?.description }}</span>
+               <!-- Description -->
+              <span *ngIf="!compressed" class="description">{{ prop.value?.description }}</span>
             </div>
 
             <div class="node-input">
