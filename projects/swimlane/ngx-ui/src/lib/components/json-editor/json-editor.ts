@@ -1,6 +1,7 @@
-import { Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import { SchemaValidatorService } from './schema-validator.service';
 import { JSONEditorSchema } from './json-editor.helper';
+import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 
 export class JsonEditor implements OnChanges {
   @Input() model: any;
@@ -21,7 +22,7 @@ export class JsonEditor implements OnChanges {
 
   errors: any[];
 
-  constructor(protected schemaValidatorService: SchemaValidatorService) {}
+  constructor(protected schemaValidatorService: SchemaValidatorService, protected cdr: ChangeDetectorRef) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.schema) {
@@ -52,10 +53,12 @@ export class JsonEditor implements OnChanges {
    * @param schema
    * @param model
    */
+  @debounceable(120)
   validate(schema: any, model: any): boolean {
     this.errors = this.schemaValidator
       ? this.schemaValidator(schema, model)
       : this.schemaValidatorService.validate(schema, model);
+    this.cdr.markForCheck();
 
     return this.errors && this.errors.length > 0;
   }

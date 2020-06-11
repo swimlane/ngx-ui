@@ -24,7 +24,9 @@ export class JsonEditorPageComponent {
       productName: {
         description: 'Name of the product',
         type: 'string',
-        examples: ['Apples', 'Oranges']
+        examples: ['Apples', 'Oranges'],
+        minLength: 3,
+        maxLength: 20
       },
       price: {
         description: 'The price of the product',
