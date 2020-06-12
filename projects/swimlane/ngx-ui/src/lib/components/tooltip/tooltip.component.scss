@@ -121,4 +121,8 @@ $popover-spacing: 10px;
     transition: opacity 0.3s, transform 0.3s;
     transform: translate3d(0, 0, 0);
   }
+
+  &.narrow {
+    max-width: 300px;
+  }
 }

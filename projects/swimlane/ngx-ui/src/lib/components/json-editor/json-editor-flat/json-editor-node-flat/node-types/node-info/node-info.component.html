@@ -1,10 +1,17 @@
 <!-- Property name/title -->
 <div class="info-name" *ngIf="!nameEditable && title">
-  <span class="name">
+  <span class="name"
+    ngx-tooltip
+    tooltipType="tooltip"
+    [tooltipTitle]="title"
+    [tooltipShowCaret]="false"
+    tooltipCssClass="narrow"
+    [tooltipShowTimeout]="750">
     {{ title }}
   </span>
 
   <ngx-icon
+    *ngIf="(description && compressed) || examples?.length"
     class="info-btn"
     fontIcon="info-filled"
     ngx-tooltip
@@ -15,15 +22,7 @@
 
   <ng-template #popoverTemplate>
     <div class="json-editor--popover-template">
-      <div *ngIf="title">
-        <div class="label">Title</div>
-        <div>{{ title }}</div>
-      </div>
-      <div *ngIf="propertyName">
-        <div class="label">Name</div>
-        <div>{{ propertyName }}</div>
-      </div>
-      <div *ngIf="description">
+      <div *ngIf="description && compressed">
         <div class="label">Description</div>
         <div>{{ description }}</div>
       </div>
@@ -53,8 +52,24 @@
     class="dot-separator"
     fontIcon="circle-filled"
   ></ngx-icon>
-  <span class="property-name">{{ propertyName }}</span>
+  <span class="property-name"
+    ngx-tooltip
+    tooltipType="tooltip"
+    [tooltipTitle]="propertyName"
+    [tooltipShowCaret]="false"
+    [tooltipShowTimeout]="750"
+    tooltipCssClass="narrow">
+      {{ propertyName }}
+    </span>
 </div>
 
 <!-- Description -->
-<span *ngIf="!compressed" class="description">{{ description }}</span>
+<span *ngIf="!compressed" class="description"
+  ngx-tooltip
+  tooltipType="tooltip"
+  [tooltipTitle]="description"
+  [tooltipShowCaret]="false"
+  [tooltipShowTimeout]="750"
+  tooltipCssClass="narrow">
+  {{ description }}
+</span>
