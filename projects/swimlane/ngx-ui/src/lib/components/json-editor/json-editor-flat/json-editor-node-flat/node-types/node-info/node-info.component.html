@@ -26,8 +26,8 @@
         <div class="label">Description</div>
         <div>{{ description }}</div>
       </div>
-      <ng-container *ngIf="examples">
-        <div class="separator"></div>
+      <div *ngIf="(description && compressed) && examples?.length" class="separator"></div>
+      <ng-container *ngIf="examples?.length">
         <div class="label">Examples</div>
         <div *ngFor="let example of examples">{{ example }}</div>          
       </ng-container>
