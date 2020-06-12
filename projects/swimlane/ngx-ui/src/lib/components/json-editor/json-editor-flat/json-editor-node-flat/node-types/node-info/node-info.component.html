@@ -1,0 +1,60 @@
+<!-- Property name/title -->
+<div class="info-name" *ngIf="!nameEditable && title">
+  <span class="name">
+    {{ title }}
+  </span>
+
+  <ngx-icon
+    class="info-btn"
+    fontIcon="info-filled"
+    ngx-tooltip
+    tooltipType="popover"
+    tooltipPlacement="top"
+    [tooltipTemplate]="popoverTemplate"
+  ></ngx-icon>
+
+  <ng-template #popoverTemplate>
+    <div class="json-editor--popover-template">
+      <div *ngIf="title">
+        <div class="label">Title</div>
+        <div>{{ title }}</div>
+      </div>
+      <div *ngIf="propertyName">
+        <div class="label">Name</div>
+        <div>{{ propertyName }}</div>
+      </div>
+      <div *ngIf="description">
+        <div class="label">Description</div>
+        <div>{{ description }}</div>
+      </div>
+      <ng-container *ngIf="examples">
+        <div class="separator"></div>
+        <div class="label">Examples</div>
+        <div *ngFor="let example of examples">{{ example }}</div>          
+      </ng-container>
+    </div>
+  </ng-template>
+</div>
+
+<!-- Inline text editing-->
+<ngx-input
+  class="editable-name"
+  type="text"
+  *ngIf="nameEditable"
+  [ngModel]="propertyName"
+  (ngModelChange)="propertyNameChange.emit($event)"
+></ngx-input>
+
+<!-- Type info -->
+<div class="info-type">
+  <span class="type">{{ type }}</span>
+  <ngx-icon
+    *ngIf="propertyName"
+    class="dot-separator"
+    fontIcon="circle-filled"
+  ></ngx-icon>
+  <span class="property-name">{{ propertyName }}</span>
+</div>
+
+<!-- Description -->
+<span *ngIf="!compressed" class="description">{{ description }}</span>

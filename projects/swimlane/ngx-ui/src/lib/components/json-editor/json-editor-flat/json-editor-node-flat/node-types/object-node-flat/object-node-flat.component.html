@@ -54,7 +54,7 @@
                   (click)="deleteProperty(prop.propertyName)"
                   [disabled]="requiredCache[prop.propertyName] && !schemaBuilderMode"
                 >
-                  Delete
+                  {{ !schema.properties[prop.propertyName] ? 'Delete' : 'Remove' }}
                 </button>
               </li>
               <ng-container *ngIf="prop?.$meta?.type && !schemaBuilderMode">
@@ -89,7 +89,10 @@
 
         <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
 
-        <div class="node indented-content object-node-content" [class.compressed]="compressed" [style.marginLeft]="hideRoot && level === 0 ? '20px' : '0'">
+        <div class="node"
+          [class.compressed]="compressed"
+          [style.marginLeft]="level === 0 ? '20px' : '0'"
+          (click)="addSchemaProperty(prop.key)">
 
           <div class="left-options">
           </div>
@@ -97,54 +100,19 @@
           <div class="node-content">
 
             <div class="node-info">
-              <div class="info-name">
-                <span class="name">
-                  {{ prop.value.title ? prop.value.title : (prop.key | titlecase) }}
-                </span>
-
-                <ngx-icon
-                  class="info-btn"
-                  fontIcon="info-filled"
-                  ngx-tooltip
-                  [tooltipContext]="prop.value"
-                  tooltipType="popover"
-                  tooltipPlacement="top"
-                  [tooltipTemplate]="popoverTemplate"
-                ></ngx-icon>
-
-                <ng-template #popoverTemplate let-model="model">
-                  <div class="popover-template">
-                    <div *ngIf="model?.description">
-                      <div class="label">DESCRIPTION</div>
-                      <div>{{ model?.description }}</div>
-                    </div>
-                    <div class="separator" *ngIf="model?.description && model?.examples"></div>
-                    <div *ngIf="model?.examples">
-                      <div class="label">EXAMPLES</div>
-                      <div *ngFor="let example of model?.examples">{{ example }}</div>
-                    </div>
-                  </div>
-                </ng-template>              
-              </div>
-
-              <div class="info-type">
-                <span class="type"
-                  >{{ prop.value.format || prop.value.type | titlecase }}{{ prop.value.enum?.length ? ' + Enum' : '' }}</span
-                >
-                <ngx-icon
-                  *ngIf="prop.key"
-                  class="dot-separator"
-                  fontIcon="circle-filled"
-                ></ngx-icon>
-                <span class="property-name">{{ prop.key }}</span>
-              </div>
-
-               <!-- Description -->
-              <span *ngIf="!compressed" class="description">{{ prop.value?.description }}</span>
+              <ngx-json-editor-node-info
+                [nameEditable]="false"
+                [propertyName]="prop.key"
+                [title]="prop.value.title ? prop.value.title : prop.key"
+                [type]="(prop.value.format || prop.value.type | titlecase) + (prop.value.enum?.length ? ' + Enum' : '')"
+                [description]="prop.value?.description"
+                [examples]="prop.value.examples"
+                [compressed]="compressed">
+              </ngx-json-editor-node-info>
             </div>
 
-            <div class="node-input">
-              <button type="button" (click)="addSchemaProperty(prop.key)">
+            <div class="indented-content">
+              <button type="button">
                 <i class="ngx-icon ngx-tree-expand"></i>
                 <span>Add property</span>
               </button>              
@@ -169,7 +137,7 @@
           </button>
         </ngx-dropdown-toggle>
         <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
-          <ul class="vertical-list dropdown-column" *ngIf="schema.properties && !schemaBuilderMode">
+          <ul class="vertical-list dropdown-column" *ngIf="schema.properties && !schemaBuilderMode && !showAllObjectProperties">
             <li *ngFor="let prop of schema.properties | keyvalue" (click)="addSchemaProperty(prop.key)">
               <button [disabled]="model[prop.key] !== undefined" type="button">
                 {{ prop.value.title ? prop.value.title : prop.key }}

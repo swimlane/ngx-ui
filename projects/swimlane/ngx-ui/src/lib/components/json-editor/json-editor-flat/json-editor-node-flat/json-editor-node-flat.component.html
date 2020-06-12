@@ -22,67 +22,16 @@
 
       <div class="node-content" [class.extra-margin]="schema.nameEditable && !schemaBuilderMode">
         <div class="node-info">
-          <!-- Property name/title -->
-          <div 
-            class="info-name"
-            *ngIf="(!schema.nameEditable || schemaBuilderMode) && (schema?.propertyName || label || arrayItem)"
-          >
-            <span class="name">
-              {{ schema?.title || label || (arrayItem ? 'Items' : (schema?.propertyName | titlecase)) }}
-            </span>
-            
-            <ngx-icon
-              class="info-btn"
-              fontIcon="info-filled"
-              ngx-tooltip
-              [tooltipContext]="schema"
-              [tooltipType]="'popover'"
-              [tooltipPlacement]="'top'"
-              [tooltipTemplate]="popoverTemplate"
-            ></ngx-icon>
-
-            <ng-template #popoverTemplate let-model="model">
-              <div class="json-editor--popover-template">
-                <div *ngIf="schema?.title || label || (arrayItem ? 'Items' : (schema?.propertyName | titlecase)) as name">
-                  <div class="label">Name</div>
-                  <div>{{ name }}</div>
-                </div>
-                <div *ngIf="model?.description as description">
-                  <div class="label">Description</div>
-                  <div>{{ description }}</div>
-                </div>
-                <ng-container *ngIf="model?.examples">
-                  <div class="separator"></div>
-                  <div class="label">Examples</div>
-                  <div *ngFor="let example of model?.examples">{{ example }}</div>          
-                </ng-container>
-              </div>
-            </ng-template>
-          </div>
-
-          <!-- Inline text editing-->
-          <ngx-input
-            class="editable-name"
-            type="text"
-            *ngIf="schema.nameEditable && !schemaBuilderMode"
-            [ngModel]="schema?.propertyName"
-            (ngModelChange)="updatePropertyName(schema.id, $event)"
-          ></ngx-input>
-
-          <div class="info-type">
-            <span class="type"
-              >{{ schema?.format || schema?.type | titlecase }}{{ schema?.enum?.length ? ' + Enum' : '' }}</span
-            >
-            <ngx-icon
-              *ngIf="schema?.propertyName || arrayName"
-              class="dot-separator"
-              fontIcon="circle-filled"
-            ></ngx-icon>
-            <span class="property-name">{{ arrayName ? arrayName : schema?.propertyName }}</span>
-          </div>
-
-          <!-- Description -->
-          <span *ngIf="!compressed" class="description">{{ schema?.description }}</span>
+          <ngx-json-editor-node-info
+            [nameEditable]="schema.nameEditable && !schemaBuilderMode"
+            [propertyName]="arrayName ? arrayName : schema?.propertyName"
+            (propertyNameChange)="updatePropertyName(schema.id, $event)"
+            [title]="schema?.title || label || (arrayItem ? 'Items' : schema?.propertyName)"
+            [type]="(schema?.format || schema?.type | titlecase) + (schema?.enum?.length ? ' + Enum' : '')"
+            [description]="schema?.description"
+            [examples]="schema?.examples"
+            [compressed]="compressed">
+          </ngx-json-editor-node-info>
         </div>
 
         <div *ngIf="!schemaBuilderMode" class="node-input">
