@@ -14,7 +14,7 @@ export class JsonEditor implements OnChanges {
 
   @Input() schemaValidator?: (schema: any, ...args: any[]) => any[];
 
-  @Input() showAllObjectProperties = false;
+  @Input() showKnownProperties = false;
 
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 

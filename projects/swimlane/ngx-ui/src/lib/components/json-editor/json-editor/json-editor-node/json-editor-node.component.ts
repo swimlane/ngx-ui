@@ -20,7 +20,7 @@ export class JsonEditorNodeComponent extends JsonEditorNode {
 
   @Input() errors: any[];
 
-  @Input() showAllObjectProperties = false;
+  @Input() showKnownProperties = false;
 
   placeholder: string = '';
 

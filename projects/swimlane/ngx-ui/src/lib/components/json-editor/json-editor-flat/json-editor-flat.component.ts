@@ -42,7 +42,7 @@ export class JsonEditorFlatComponent extends JsonEditor {
 
   @Input() hideRoot = false;
 
-  @Input() showAllObjectProperties = false;
+  @Input() showKnownProperties = false;
 
   @ContentChildren(JsonEditorNodeFlatComponent) nodeElms: QueryList<JsonEditorNodeFlatComponent>;
 

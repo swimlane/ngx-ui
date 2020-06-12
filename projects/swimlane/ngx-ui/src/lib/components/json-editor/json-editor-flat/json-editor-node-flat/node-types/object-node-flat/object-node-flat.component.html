@@ -27,7 +27,7 @@
       [formats]="formats"
       [compressed]="compressed"
       [indentationArray]="indentationArray"
-      [showAllObjectProperties]="showAllObjectProperties"
+      [showKnownProperties]="showKnownProperties"
       (schemaChange)="schemaChange.emit(schemaRef)"
       (updatePropertyNameEvent)="onUpdatePropertyName($event)"
     >
@@ -83,7 +83,7 @@
     ></div>
   </div>
 
-  <ng-container *ngIf="showAllObjectProperties">
+  <ng-container *ngIf="showKnownProperties">
     <ng-container *ngFor="let prop of schema.properties | keyvalue">
       <div class="node-container add-button add-prop-button" [class.compressed]="compressed" *ngIf="model[prop.key] === undefined">
 
@@ -126,7 +126,7 @@
     </ng-container>
   </ng-container>
 
-  <div class="add-button" [class.compressed]="compressed" [class.background]="hideRoot ? level > -1 : level" *ngIf="!showAllObjectProperties || schema.additionalProperties !== false">
+  <div class="add-button" [class.compressed]="compressed" [class.background]="hideRoot ? level > -1 : level" *ngIf="!showKnownProperties || schema.additionalProperties !== false">
     <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
     <div class="indented-content" [style.marginLeft]="hideRoot && level === 0 ? '20px' : '0'">
       <ngx-dropdown [showCaret]="true">
@@ -137,7 +137,7 @@
           </button>
         </ngx-dropdown-toggle>
         <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
-          <ul class="vertical-list dropdown-column" *ngIf="schema.properties && !schemaBuilderMode && !showAllObjectProperties">
+          <ul class="vertical-list dropdown-column" *ngIf="schema.properties && !schemaBuilderMode && !showKnownProperties">
             <li *ngFor="let prop of schema.properties | keyvalue" (click)="addSchemaProperty(prop.key)">
               <button [disabled]="model[prop.key] !== undefined" type="button">
                 {{ prop.value.title ? prop.value.title : prop.key }}

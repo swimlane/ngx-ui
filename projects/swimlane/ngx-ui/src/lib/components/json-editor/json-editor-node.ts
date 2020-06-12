@@ -29,7 +29,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
 
   @Input() typeCheckOverrides?: any;
 
-  @Input() showAllObjectProperties = false;
+  @Input() showKnownProperties = false;
 
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 

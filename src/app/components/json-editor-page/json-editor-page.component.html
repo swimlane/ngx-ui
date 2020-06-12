@@ -58,7 +58,7 @@
 <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat'">
   <ngx-toggle
     [(ngModel)]="compressed"
-    label="Compressed mode">
+    label="Compressed Mode">
   </ngx-toggle>
 
   <ngx-toggle
@@ -67,8 +67,8 @@
   </ngx-toggle>
 
   <ngx-toggle
-    [(ngModel)]="showAllObjectProperties"
-    label="Show All Object Properties">
+    [(ngModel)]="showKnownProperties"
+    label="Show Known Object Properties">
   </ngx-toggle>
 
   <ngx-json-editor-flat
@@ -78,7 +78,7 @@
     [typeCheckOverrides]="typeOverrides"
     [compressed]="compressed"
     [hideRoot]="hideRoot"
-    [showAllObjectProperties]="showAllObjectProperties"
+    [showKnownProperties]="showKnownProperties"
     (schemaChange)="modelSchemaChange($event)"
   >
   </ngx-json-editor-flat>
@@ -100,7 +100,7 @@
           [typeCheckOverrides]="typeOverrides"
           [compressed]="compressed"
           [hideRoot]="hideRoot"
-          [showAllObjectProperties]="showAllObjectProperties"
+          [showKnownProperties]="showKnownProperties"
           (schemaChange)="modelSchemaChange($event)">
         </ngx-json-editor-flat>
         ]]>

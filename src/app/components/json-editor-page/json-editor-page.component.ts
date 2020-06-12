@@ -92,7 +92,7 @@ export class JsonEditorPageComponent {
 
   compressed = false;
   hideRoot = false;
-  showAllObjectProperties = false;
+  showKnownProperties = false;
 
   _jsonEditorSchema: any = {};
 
