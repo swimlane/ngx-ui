@@ -42,6 +42,8 @@ export class JsonEditorFlatComponent extends JsonEditor {
 
   @Input() hideRoot = false;
 
+  @Input() showKnownProperties = false;
+
   @ContentChildren(JsonEditorNodeFlatComponent) nodeElms: QueryList<JsonEditorNodeFlatComponent>;
 
   @ViewChild('propertyConfigTmpl') propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;

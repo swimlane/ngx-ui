@@ -61,10 +61,12 @@ export class JsonEditorPageComponent {
             type: 'number'
           },
           height: {
-            type: 'number'
+            type: 'number',
+            description: 'Height if dimensions are a volume'
           }
         },
-        required: ['length', 'width', 'height']
+        required: ['length', 'width'],
+        additionalProperties: false
       },
       warehouseLocation: {
         description: 'Coordinates of the warehouse where the product is located.',
@@ -90,6 +92,7 @@ export class JsonEditorPageComponent {
 
   compressed = false;
   hideRoot = false;
+  showKnownProperties = false;
 
   _jsonEditorSchema: any = {};
 

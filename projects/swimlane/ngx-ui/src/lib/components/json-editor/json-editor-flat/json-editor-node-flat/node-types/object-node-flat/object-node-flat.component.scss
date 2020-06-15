@@ -12,6 +12,39 @@
   .add-button {
     @extend %add-button;
   }
+
+  .add-prop-button {
+    background-color: rgba(red($color-blue-grey-700), green($color-blue-grey-700), blue($color-blue-grey-700), 0.4);
+    margin-bottom: 5px;
+    height: 120px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    .node {
+      margin-bottom: 0;
+      justify-content: unset !important;
+      background-color: rgba($color-blue-grey-700, 0.5);
+      opacity: 0.2;
+      cursor: pointer;
+      outline: 2px dotted rgba(red($color-blue-grey-650), green($color-blue-grey-650), blue($color-blue-grey-650), 0.5);
+      outline-offset: -2px;
+
+      &:hover {
+        opacity: 0.6;
+      }
+
+      .indented-content {
+        border: unset;
+        justify-content: start;
+      }
+    }
+
+    .node-input {
+      padding-top: 0 !important;
+    }
+  }
 }
 
 .cdk-drag-preview {
