@@ -2,6 +2,10 @@
 
 ## HEAD (Unreleased)
 
+---
+
+## 28.7.0 (2020-06-15)
+
 - Feature: allow showing all object properties by defualt
 - Feature: Source Sans Pro fonts now defined with `font-display: swap` for better UX
 - Fix: Text inputs in flat JSON editor now trigger validation on change.
