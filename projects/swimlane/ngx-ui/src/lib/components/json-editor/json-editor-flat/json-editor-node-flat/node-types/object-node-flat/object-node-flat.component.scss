@@ -26,13 +26,13 @@
       margin-bottom: 0;
       justify-content: unset !important;
       background-color: rgba($color-blue-grey-700, 0.5);
-      opacity: 0.3;
+      opacity: 0.2;
       cursor: pointer;
       outline: 2px dotted rgba(red($color-blue-grey-650), green($color-blue-grey-650), blue($color-blue-grey-650), 0.5);
       outline-offset: -2px;
 
       &:hover {
-        opacity: 1;
+        opacity: 0.6;
       }
 
       .indented-content {
