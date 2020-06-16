@@ -2,11 +2,11 @@
 
 ## HEAD (Unreleased)
 
-- Breaking: `ngxSplit` directives no longer require, nor support, @angular/flex-layout directives
+## 29.0.0 (2020-06-15)
+
+- Breaking: `ngxSplit` directives no longer require, nor support, `@angular/flex-layout` directives
 - Enhancement: Remove @angular/flex-layout
 - Enhancement: Added `ngx-flex` classes for easy flex layouts
-
----
 
 ## 28.7.0 (2020-06-15)
 
