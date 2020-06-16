@@ -1,0 +1,38 @@
+/* --- SASS Config --- */
+
+$prefix: 'ngx-flex--';
+$container: 'wrap';
+$row: 'row';
+$column: 'col';
+
+$container-class: '.' + $prefix + $container;
+$row-class: '.' + $prefix + $row;
+$column-class: '.' + $prefix + $column;
+
+$max-columns: 12;
+
+$breakpoints: (
+  '': 0,
+  // Default
+    '-xs': 0,
+  // Extra small screen / phone
+    '-sm': 600px,
+  // Small screen / phone
+    '-md': 960px,
+  // Medium screen / tablet
+    '-lg': 1320px,
+  // Large screen / desktop
+    '-xl': 1680px,
+  // Extra large screen / wide desktop
+    '-xxl': 1920px // XX-Large / extra wide desktop
+);
+
+$container-widths: (
+  '': 480px,
+  '-xs': 480px,
+  '-sm': 550px,
+  '-md': 920px,
+  '-lg': 1270px,
+  '-xl': 1630px,
+  '-xxl': 1870px
+);

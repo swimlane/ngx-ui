@@ -9,7 +9,6 @@ import { NgxUIModule } from '@swimlane/ngx-ui';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from '@swimlane/ng2-file-upload';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { RouterModule, Routes } from '@angular/router';
 
@@ -51,6 +50,7 @@ import { SelectsPageComponent } from './forms/selects-page/selects-page.componen
 import { SliderPageComponent } from './forms/slider-page/slider-page.component';
 import { SplitPageComponent } from './components/split-page/split-page.component';
 import { StepperPageComponent } from './components/stepper-page/stepper-page.component';
+import { LayoutPageComponent } from './layout-page/layout-page.component';
 import { TablePageComponent } from './elements/table-page/table-page.component';
 import { TabsPageComponent } from './components/tabs-page/tabs-page.component';
 import { TagsPageComponent } from './elements/tags-page/tags-page.component';
@@ -81,6 +81,7 @@ const routes: Routes = [
   { path: 'json-editor', component: JsonEditorPageComponent },
   { path: 'lists', component: ListsPageComponent },
   { path: 'loading', component: LoadingPageComponent },
+  { path: 'layout', component: LayoutPageComponent },
   { path: 'nag', component: NagPageComponent },
   { path: 'navbar', component: NavbarPageComponent, children: navbarRoutes },
   { path: 'ngx-icon', component: NgxIconPageComponent },
@@ -129,6 +130,7 @@ const routes: Routes = [
     LandingPageComponent,
     ListsPageComponent,
     LoadingPageComponent,
+    LayoutPageComponent,
     NagPageComponent,
     NavbarPageComponent,
     NgxIconPageComponent,
@@ -156,11 +158,12 @@ const routes: Routes = [
     BrowserAnimationsModule,
     BrowserModule,
     FileUploadModule,
-    FlexLayoutModule,
     FormsModule,
     HttpClientModule,
     MomentModule,
     NgxDatatableModule,
+    BrowserAnimationsModule,
+    FileUploadModule,
     NgxUIModule,
     RouterModule.forRoot(routes)
   ],

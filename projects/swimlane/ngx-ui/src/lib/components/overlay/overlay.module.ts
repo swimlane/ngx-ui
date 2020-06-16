@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LayoutModule } from '@angular/cdk/layout';
 
 import { OverlayComponent } from './overlay.component';
 import { OverlayService } from './overlay.service';
@@ -12,7 +13,7 @@ import { HotkeysService } from '../hotkeys/hotkeys.service';
   declarations: [OverlayComponent, ResizeOverlayComponent],
   providers: [OverlayService, InjectionService, OverlayService, HotkeysService],
   exports: [OverlayComponent, ResizeOverlayComponent],
-  imports: [CommonModule, IconModule],
+  imports: [CommonModule, IconModule, LayoutModule],
   entryComponents: [OverlayComponent, ResizeOverlayComponent]
 })
 export class OverlayModule {}

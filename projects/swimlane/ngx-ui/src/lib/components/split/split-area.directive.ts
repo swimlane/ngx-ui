@@ -1,5 +1,16 @@
-import { Directive, Optional, Self, Input, OnChanges } from '@angular/core';
-import { DefaultFlexDirective, validateBasis } from '@angular/flex-layout';
+import { Directive, Input, OnChanges, HostBinding, ChangeDetectorRef } from '@angular/core';
+import { FlexParts, partsToStyle, basisToParts } from './utils';
+
+const DEFAULT_BASIS = '1 1 1e-9px';
+
+export function validateBasis(basis: string, grow = '1', shrink = '1'): FlexParts {
+  const parts: FlexParts = [grow, shrink, basis];
+  const matches = basis.split(' ');
+  if (matches.length === 3) {
+    return matches as FlexParts;
+  }
+  return parts;
+}
 
 @Directive({
   exportAs: 'ngxSplitArea',
@@ -10,61 +21,38 @@ import { DefaultFlexDirective, validateBasis } from '@angular/flex-layout';
   }
 })
 export class SplitAreaDirective implements OnChanges {
+  @Input() ngxSplitArea: string = DEFAULT_BASIS;
   @Input() minBasis: string;
   @Input() maxBasis: string;
-  @Input() fxFlex: string;
 
   overflow: string = 'hidden';
-  initialFlexBasis: string[];
-  currentFlexBasis: string[];
+  initialFlexParts: FlexParts;
+  currentFlexParts: FlexParts;
 
-  get fxFlexFill(): boolean {
-    return this.fxFlex === '';
+  @HostBinding('style.flex')
+  get flex() {
+    return partsToStyle(this.currentFlexParts);
   }
 
-  constructor(
-    @Optional()
-    @Self()
-    readonly flexDirective: DefaultFlexDirective
-  ) {}
+  constructor(private ref: ChangeDetectorRef) {}
 
   ngOnChanges() {
-    this.currentFlexBasis = this.initialFlexBasis = this.getCurrentFlexParts();
+    if (!this.ngxSplitArea) {
+      this.ngxSplitArea = DEFAULT_BASIS;
+    }
+    const [grow, shrink, basis] = basisToParts('1', '1', this.ngxSplitArea);
+    this.currentFlexParts = [grow, shrink, basis];
+    this.initialFlexParts = [grow, shrink, basis];
+    if (!this.minBasis && shrink === '0') {
+      this.minBasis = basis;
+    }
+    if (!this.maxBasis && grow === '0') {
+      this.maxBasis = basis;
+    }
   }
 
-  updateStyle(flexBasis?: string | number) {
-    const flex = this.flexDirective;
-    if (typeof flexBasis === 'undefined') {
-      flexBasis = flex.activatedValue || '';
-    }
-    if (typeof flexBasis === 'number') {
-      flexBasis = this.isPercent() ? `${flexBasis}%` : `${flexBasis}px`;
-    }
-
-    if (flexBasis.indexOf(' ') < 0) {
-      const grow = flex.grow;
-      const shrink = flex.shrink;
-      this.currentFlexBasis = [grow, shrink, flexBasis];
-      flexBasis = this.currentFlexBasis.join(' ');
-    } else {
-      this.currentFlexBasis = flexBasis.split(' ');
-    }
-
-    flex.activatedValue = this.currentFlexBasis[2];
-  }
-
-  isPercent(basis?: string): boolean {
-    if (!basis) {
-      const flex = this.flexDirective;
-      basis = flex.activatedValue || '1 1 1e-9px';
-    }
-    const hasCalc = String(basis).indexOf('calc') > -1;
-    return String(basis).indexOf('%') > -1 && !hasCalc;
-  }
-
-  private getCurrentFlexParts() {
-    const flex = this.flexDirective;
-    const basis = (flex && flex.activatedValue) || '1 1 1e-9px';
-    return validateBasis(String(basis).replace(';', ''), flex.grow, flex.shrink);
+  updateBasis(newBasis: string) {
+    this.currentFlexParts[2] = newBasis;
+    this.ref.markForCheck();
   }
 }

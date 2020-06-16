@@ -1,7 +1,7 @@
 <div class="ngx-calendar-wrap">
-  <div fxFlex="100%" class="text-center" [ngSwitch]="currentView">
+  <div class="text-center" [ngSwitch]="currentView">
     <div *ngSwitchCase="'date'">
-      <div class="title-row" fxLayout="row" fxLayoutWrap="nowrap" fxLayoutAlign="center center">
+      <div class="title-row">
         <button type="button" class="prev-month" [disabled]="disabled" title="Previous Month" (click)="prevMonth()">
           <span class="icon-arrow-left"></span>
         </button>
@@ -13,15 +13,13 @@
         </button>
       </div>
       <div class="day-name-row">
-        <div fxLayout="row" fxLayoutWrap="nowrap" fxFill>
-          <div class="day-name text-center" fxFlex="30px" *ngFor="let d of daysOfWeek">
-            {{ d }}
-          </div>
+        <div class="day-name text-center" *ngFor="let d of daysOfWeek">
+          {{ d }}
         </div>
       </div>
       <div class="day-container">
-        <div *ngFor="let week of weeks" class="day-row" fxLayout="row" fxLayoutWrap="nowrap" fxFill>
-          <div *ngFor="let day of week" class="day-cell text-center" fxFlex="30px">
+        <div *ngFor="let week of weeks" class="day-row">
+          <div *ngFor="let day of week" class="day-cell text-center">
             <button
               *ngIf="day.num"
               class="day"
@@ -40,7 +38,7 @@
     </div>
 
     <div *ngSwitchCase="'month'">
-      <div class="title-row" fxLayout="row" fxLayoutWrap="nowrap" fxLayoutAlign="center center">
+      <div class="title-row">
         <button type="button" class="prev-month" [disabled]="disabled" title="Previous Year" (click)="prevYear()">
           <span class="icon-arrow-left"></span>
         </button>
@@ -69,7 +67,7 @@
     </div>
 
     <div *ngSwitchCase="'year'">
-      <div class="title-row" fxLayout="row" fxLayoutWrap="nowrap" fxLayoutAlign="center center">
+      <div class="title-row">
         <button
           type="button"
           class="prev-month"

@@ -12,17 +12,14 @@
   </div>
   <br />
   <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-navbar [(active)]="activeBottom">
-        <ngx-navbar-item><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
-        <ngx-navbar-item><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
-        <ngx-navbar-item><ngx-icon fontIcon="database"></ngx-icon></ngx-navbar-item>
-        <ngx-navbar-item><ngx-icon fontIcon="commandline"></ngx-icon></ngx-navbar-item>
-      </ngx-navbar>
-    ]]>
+    <![CDATA[ <ngx-navbar [(active)]="activeBottom"> <ngx-navbar-item><ngx-icon
+    fontIcon="apps"></ngx-icon></ngx-navbar-item> <ngx-navbar-item><ngx-icon
+    fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item> <ngx-navbar-item><ngx-icon
+    fontIcon="database"></ngx-icon></ngx-navbar-item> <ngx-navbar-item><ngx-icon
+    fontIcon="commandline"></ngx-icon></ngx-navbar-item> </ngx-navbar> ]]>
   </ngx-codemirror>
   <br />
-  
+
   <h3>Active bar on top</h3>
   <div class="navbar-page--container">
     <ngx-navbar [(active)]="activeTop" [barAtTop]="true" #navbar>
@@ -36,16 +33,12 @@
   <button class="btn btn-default" (click)="navbar.goTo(3)">Activate 4th nav item</button>
   <br /><br />
   <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-navbar [(active)]="activeTop" [barAtTop]="true" #navbar>
-        <ngx-navbar-item><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
-        <ngx-navbar-item><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
-        <ngx-navbar-item><ngx-icon fontIcon="database"></ngx-icon></ngx-navbar-item>
-        <ngx-navbar-item><ngx-icon fontIcon="commandline"></ngx-icon></ngx-navbar-item>
-      </ngx-navbar>
-
-      <button class="btn btn-default" (click)="navbar.goTo(3)">Activate 4th nav item</button>
-    ]]>
+    <![CDATA[ <ngx-navbar [(active)]="activeTop" [barAtTop]="true" #navbar> <ngx-navbar-item><ngx-icon
+    fontIcon="apps"></ngx-icon></ngx-navbar-item> <ngx-navbar-item><ngx-icon
+    fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item> <ngx-navbar-item><ngx-icon
+    fontIcon="database"></ngx-icon></ngx-navbar-item> <ngx-navbar-item><ngx-icon
+    fontIcon="commandline"></ngx-icon></ngx-navbar-item> </ngx-navbar> <button class="btn btn-default"
+    (click)="navbar.goTo(3)">Activate 4th nav item</button> ]]>
   </ngx-codemirror>
   <br />
 
@@ -60,13 +53,8 @@
   <br />
 
   <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-navbar [active]="activeRoute">
-        <ngx-navbar-item routerLink="child-1"><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
-        <ngx-navbar-item routerLink="child-2"><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
-      </ngx-navbar>
-
-      <router-outlet></router-outlet>
-    ]]>
+    <![CDATA[ <ngx-navbar [active]="activeRoute"> <ngx-navbar-item routerLink="child-1"><ngx-icon
+    fontIcon="apps"></ngx-icon></ngx-navbar-item> <ngx-navbar-item routerLink="child-2"><ngx-icon
+    fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item> </ngx-navbar> <router-outlet></router-outlet> ]]>
   </ngx-codemirror>
 </ngx-section>

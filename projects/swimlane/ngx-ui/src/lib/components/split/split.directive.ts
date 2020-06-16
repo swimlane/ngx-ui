@@ -1,4 +1,14 @@
-import { Input, ContentChildren, AfterContentInit, QueryList, ElementRef, Directive, OnChanges } from '@angular/core';
+import {
+  Input,
+  ContentChildren,
+  AfterContentInit,
+  QueryList,
+  ElementRef,
+  Directive,
+  OnChanges,
+  HostBinding,
+  OnDestroy
+} from '@angular/core';
 
 import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';
@@ -7,6 +17,7 @@ import { getMinMaxPct } from './get-min-max-pct.util';
 import { basisToValue } from './basis-to-value.util';
 import { isPercent } from './is-percent.util';
 import { resizeAreaBy } from './resize-area-by.util';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 @Directive({
   exportAs: 'ngxSplit',
@@ -14,11 +25,16 @@ import { resizeAreaBy } from './resize-area-by.util';
   host: {
     class: 'ngx-split',
     '[class.row-split]': 'rowCss',
-    '[class.column-split]': 'columnCss'
+    '[class.column-split]': 'columnCss',
+    '[style.display]': '"flex"',
+    '[style.height]': '"100%"',
+    '[style.width]': '"100%"'
   }
 })
-export class SplitDirective implements AfterContentInit, OnChanges {
-  @Input('ngxSplit') direction = SplitDirection.Row;
+export class SplitDirective implements AfterContentInit, OnChanges, OnDestroy {
+  @HostBinding('style.flex-direction')
+  @Input('ngxSplit')
+  direction = SplitDirection.Row;
 
   get rowCss() {
     return this.direction === SplitDirection.Row;
@@ -34,25 +50,36 @@ export class SplitDirective implements AfterContentInit, OnChanges {
   @ContentChildren(SplitAreaDirective, { descendants: false })
   readonly areas: QueryList<SplitAreaDirective>;
 
+  private subscriptions: Subscription[] = [];
+
   constructor(private readonly elementRef: ElementRef) {}
 
   ngAfterContentInit(): void {
-    this.handles.forEach(d => d.drag.subscribe((ev: MouseEvent) => this.onDrag(ev)));
-    this.handles.forEach(d => d.dblclick.subscribe(() => this.onDblClick()));
+    this.subscriptions.push(...this.handles.map(d => d.drag.subscribe((ev: MouseEvent) => this.onDrag(ev))));
+    this.subscriptions.push(...this.handles.map(d => d.dblclick.subscribe(() => this.onDblClick())));
     this.updateHandles();
   }
 
   ngOnChanges() {
+    if (!this.direction) {
+      this.direction = SplitDirection.Row;
+    }
     this.updateHandles();
   }
 
-  updateHandles() {
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => {
+      sub.unsubscribe();
+    });
+  }
+
+  private updateHandles() {
     if (this.handles) {
       this.handles.forEach(d => (d.direction = this.direction));
     }
   }
 
-  onDblClick(): void {
+  private onDblClick(): void {
     const basisToPx =
       (this.rowCss ? this.elementRef.nativeElement.clientWidth : this.elementRef.nativeElement.clientHeight) / 100;
 
@@ -61,7 +88,7 @@ export class SplitDirective implements AfterContentInit, OnChanges {
     /* istanbul ignore if */
     if (!area) return;
 
-    const [grow, shrink, basis] = area.currentFlexBasis;
+    const [grow, shrink, basis] = area.currentFlexParts;
     const isPct = isPercent(basis);
     const basisValue = basisToValue(basis);
 
@@ -70,7 +97,7 @@ export class SplitDirective implements AfterContentInit, OnChanges {
     const basisPct = basisPx / basisToPx;
 
     // get baseBasis in percent
-    const baseBasis = area.initialFlexBasis[2];
+    const baseBasis = area.initialFlexParts[2];
     const baseBasisPct = basisToValue(baseBasis) / (isPercent(baseBasis) ? basisToPx : 1);
 
     const [minBasisPct, maxBasisPct] = getMinMaxPct(
@@ -92,12 +119,12 @@ export class SplitDirective implements AfterContentInit, OnChanges {
     this.resize(deltaPx);
   }
 
-  onDrag({ movementX, movementY }: MouseEvent): void {
+  private onDrag({ movementX, movementY }: MouseEvent): void {
     const deltaPx = this.direction === SplitDirection.Row ? movementX : movementY;
     this.resize(deltaPx);
   }
 
-  resize(delta: number): void {
+  private resize(delta: number): void {
     const basisToPx =
       (this.rowCss ? this.elementRef.nativeElement.clientWidth : this.elementRef.nativeElement.clientHeight) / 100;
 

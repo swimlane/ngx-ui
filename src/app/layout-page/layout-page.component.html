@@ -1,0 +1,499 @@
+<h3 class="style-header">Layout: Flex</h3>
+
+ngx-ui's layout system is a set of CSS classes implemeting flex-box with resonable defaults. This system uses three main
+classes: <code>.ngx-flex--wrap</code>, <code>.ngx-flex--col</code>, and <code>.ngx-flex--row</code> as well as modifiers
+as demonstrated below. Of these three classes only <code>.ngx-flex--row</code> is needed for simple flex-box layouts.
+Containers are optional wrappers that contain <code>ngx-flex--row</code>s. Use the toggle below to see each container
+layout.
+
+<ul>
+  <li><code>.ngx-flex--wrap</code>, <code>.ngx-flex--wrap-fluid</code> is width: 100% at all breakpoints</li>
+  <li><code>.ngx-flex--wrap-fixed</code> sets a max-width at each responsive breakpoint</li>
+</ul>
+
+<ngx-toggle name="toggle1" [(ngModel)]="toggleChk" label="Fixed"> </ngx-toggle>
+
+<div [class]="toggleChk ? 'ngx-flex--wrap-fixed' : 'ngx-flex--wrap'">
+  <section>
+    <h2>Simple</h2>
+
+    <p>
+      By default children of a <code>ngx-flex--row</code> are autosized. Add any number of child elements to a
+      <code>ngx-flex--row</code>. The <code>ngx-flex--col</code> class is optional for auto sized columns.
+    </p>
+
+    <div class="ngx-flex--row">
+      <div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+    </div>
+    <div class="ngx-flex--row">
+      <div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+    </div>
+    <div class="ngx-flex--row">
+      <div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Sizes</h2>
+
+    <p>
+      Column class numeric modifiers <code>--col-*</code> (e.g. <code>col-4</code>) indicate the number of columns you’d
+      like to use out of the possible 12 per row (by default). If you want three equal-width columns across, you can use
+      <code>.ngx-flex--col-4</code>; <code>.ngx-flex--col-3</code> gives four columns.
+    </p>
+
+    <p>Default grid of 12 columns</p>
+    <div class="ngx-flex--row">
+      <div class="ngx-flex--col-4">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-4">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-4">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-3">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-3">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-3">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-3">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-1">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-2">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-3">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-6">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-5">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-7">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-8">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-4">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-12">
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <p>You don't need to size each column.</p>
+
+    <div class="ngx-flex--row">
+      <div>
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-6">
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <p>Use <code>--col-auto</code> to size a column to its content.</p>
+
+    <div class="ngx-flex--row">
+      <div>
+        <div class="box medium"></div>
+      </div>
+      <div class="ngx-flex--col-auto">
+        <div class="box medium">Some content</div>
+      </div>
+      <div>
+        <div class="box medium"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Responsive</h2>
+
+    <p>
+      To make the grid responsive, there are five grid breakpoint modfiers <code>--col-*-*</code> (e.g.
+      <code>--col-sm-4</code>), one for each responsive breakpoint: <code>xs</code>, <code>sm</code>, <code>md</code>,
+      <code>lg</code>, and <code>xl</code>. Note that <code>xs</code> is the default and optional.
+    </p>
+
+    <div class="ngx-flex--row">
+      <div class="ngx-flex--col-12 ngx-flex--col-sm-3 ngx-flex--col-md-2 ngx-flex--col-lg-1">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-6 ngx-flex--col-sm-6 ngx-flex--col-md-8 ngx-flex--col-lg-10">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-6 ngx-flex--col-sm-3 ngx-flex--col-md-2 ngx-flex--col-lg-1">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-12 ngx-flex--col-sm-3 ngx-flex--col-md-2 ngx-flex--col-lg-1">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-12 ngx-flex--col-sm-9 ngx-flex--col-md-10 ngx-flex--col-lg-11">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-10 ngx-flex--col-sm-6 ngx-flex--col-md-8 ngx-flex--col-lg-10">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-2 ngx-flex--col-sm-6 ngx-flex--col-md-4 ngx-flex--col-lg-2">
+        <div class="box"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Fluid</h2>
+
+    <p>Widths allow fluid resizing of columns and rows.</p>
+
+    <div class="ngx-flex--row">
+      <div class="ngx-flex--col-12">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-1">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-11">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-2">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-10">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-3">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-9">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-4">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-8">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-5">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-7">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-6">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-6">
+        <div class="box"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Offsets</h2>
+
+    <p>Offset a column</p>
+
+    <div class="ngx-flex--row">
+      <div class="ngx-flex--col-1 ngx-flex--col-offset-11">
+        <div class="box"></div>
+      </div>
+
+      <div class="ngx-flex--col-2 ngx-flex--col-offset-10">
+        <div class="box"></div>
+      </div>
+
+      <div class="ngx-flex--col-3 ngx-flex--col-offset-9">
+        <div class="box"></div>
+      </div>
+
+      <div class="ngx-flex--col-4 ngx-flex--col-offset-8">
+        <div class="box"></div>
+      </div>
+
+      <div class="ngx-flex--col-5 ngx-flex--col-offset-7">
+        <div class="box"></div>
+      </div>
+
+      <div class="ngx-flex--col-6 ngx-flex--col-offset-6">
+        <div class="box"></div>
+      </div>
+
+      <div class="ngx-flex--col-7 ngx-flex--col-offset-5">
+        <div class="box"></div>
+      </div>
+
+      <div class="ngx-flex--col-8 ngx-flex--col-offset-4">
+        <div class="box"></div>
+      </div>
+
+      <div class="ngx-flex--col-9 ngx-flex--col-offset-3">
+        <div class="box"></div>
+      </div>
+
+      <div class="ngx-flex--col-10 ngx-flex--col-offset-2">
+        <div class="box"></div>
+      </div>
+
+      <div class="ngx-flex--col-11 ngx-flex--col-offset-1">
+        <div class="box"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Alignment</h2>
+
+    <p>Add classes to align elements to the start or end of a row as well as the top, bottom, or center of a column</p>
+
+    <div class="ngx-flex--row start">
+      <div class="ngx-flex--col-6">
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <div class="ngx-flex--row center">
+      <div class="ngx-flex--col-6">
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <div class="ngx-flex--row end">
+      <div class="ngx-flex--col-6">
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <div class="ngx-flex--row baseline">
+      <div>
+        <div class="box"><h1>Content</h1></div>
+      </div>
+      <div>
+        <div class="box">Content</div>
+      </div>
+      <div>
+        <div class="box" style="min-height: 0; line-height: 12px;"><small>Content</small></div>
+      </div>
+    </div>
+
+    <div class="ngx-flex--row top">
+      <div>
+        <div class="box large"></div>
+      </div>
+      <div>
+        <div class="box medium"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <div class="ngx-flex--row middle">
+      <div>
+        <div class="box large"></div>
+      </div>
+      <div>
+        <div class="box medium"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <div class="ngx-flex--row bottom">
+      <div>
+        <div class="box large"></div>
+      </div>
+      <div>
+        <div class="box medium"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Distribution</h2>
+
+    <p>Add classes to distribute the contents of a row or column.</p>
+
+    <div class="ngx-flex--row around">
+      <div class="ngx-flex--col-2">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-2">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-2">
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <div class="ngx-flex--row between">
+      <div class="ngx-flex--col-2">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-2">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col-2">
+        <div class="box"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Gut</h2>
+
+    <p>Add <code>gutless</code> to remove gutters for a row or column.</p>
+
+    <div class="ngx-flex--row gutless">
+      <div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <div class="ngx-flex--row">
+      <div>
+        <div class="box"></div>
+      </div>
+      <div class="gutless">
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Reordering</h2>
+
+    <p>Add classes to reorder columns.</p>
+
+    <div class="ngx-flex--row">
+      <div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+      <div class="first">
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <div class="ngx-flex--row">
+      <div class="last">
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+      <div>
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <div class="ngx-flex--row reverse">
+      <div>
+        <div class="box">1</div>
+      </div>
+      <div>
+        <div class="box">2</div>
+      </div>
+      <div>
+        <div class="box">3</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>CSS Variables</h2>
+
+    <p>CSS variables can be used to override styles</p>
+
+    <div class="ngx-flex--row app-columns-24-wide-gutter">
+      <div class="ngx-flex--col ngx-flex--col-1">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col ngx-flex--col-2">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col ngx-flex--col-3">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col ngx-flex--col-6">
+        <div class="box"></div>
+      </div>
+      <div class="ngx-flex--col ngx-flex--col-12">
+        <div class="box"></div>
+      </div>
+    </div>
+
+    <div class="ngx-flex--row app-columns-10">
+      <div class="ngx-flex--col-10 ngx-flex--col-md-2">
+        <div class="box large"></div>
+      </div>
+      <div class="ngx-flex--col-10 ngx-flex--col-md-2">
+        <div class="box large"></div>
+      </div>
+      <div class="ngx-flex--col-10 ngx-flex--col-md-2">
+        <div class="box large"></div>
+      </div>
+      <div class="ngx-flex--col-10 ngx-flex--col-md-2">
+        <div class="box large"></div>
+      </div>
+      <div class="ngx-flex--col-10 ngx-flex--col-md-2">
+        <div class="box large"></div>
+      </div>
+    </div>
+  </section>
+</div>
