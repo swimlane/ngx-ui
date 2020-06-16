@@ -29,6 +29,8 @@ export class JsonEditorNode implements OnInit, OnChanges {
 
   @Input() typeCheckOverrides?: any;
 
+  @Input() showKnownProperties = false;
+
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
   @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();

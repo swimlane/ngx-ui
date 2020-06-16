@@ -33,6 +33,8 @@ export class ObjectNode implements OnInit, OnChanges {
 
   @Input() schemaRef: JSONEditorSchema;
 
+  @Input() showKnownProperties = false;
+
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
   @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();

@@ -5,7 +5,15 @@
 - Breaking: `ngxSplit` directives no longer require, nor support, @angular/flex-layout directives
 - Enhancement: Remove @angular/flex-layout
 - Enhancement: Added `ngx-flex` classes for easy flex layouts
+
+---
+
+## 28.7.0 (2020-06-15)
+
+- Feature: allow showing all object properties by defualt
 - Feature: Source Sans Pro fonts now defined with `font-display: swap` for better UX
+- Fix: Text inputs in flat JSON editor now trigger validation on change.
+- Fix: various alignment issues in flat JSON editor
 
 ## 28.6.3 (2020-06-04)
 

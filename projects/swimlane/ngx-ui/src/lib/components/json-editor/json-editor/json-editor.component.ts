@@ -4,7 +4,8 @@ import {
   ContentChildren,
   QueryList,
   Input,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { JsonEditor } from '../json-editor';
 import { SchemaValidatorService } from '../schema-validator.service';
@@ -28,7 +29,7 @@ export class JsonEditorComponent extends JsonEditor {
   @ContentChildren(JsonEditorNodeComponent)
   nodeElms: QueryList<JsonEditorNodeComponent>;
 
-  constructor(protected schemaValidatorService: SchemaValidatorService) {
-    super(schemaValidatorService);
+  constructor(protected schemaValidatorService: SchemaValidatorService, protected cdr: ChangeDetectorRef) {
+    super(schemaValidatorService, cdr);
   }
 }

@@ -1,0 +1,64 @@
+@import 'colors/variables';
+
+ngx-json-editor-node-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .info-name {
+    display: flex;
+    align-items: baseline;
+
+    .info-btn {
+      color: $color-blue-grey-350;
+      font-size: 12px;
+      margin-left: 5px;
+      position: relative;
+      z-index: 1;
+      white-space: nowrap;
+    }
+  }
+
+  .name,
+  .editable-name input {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 23px;
+    color: #f0f1f6;
+  }
+
+  .name,
+  .description,
+  .info-type {
+    display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 30px);
+    overflow: hidden;
+  }
+
+  .property-name,
+  .dot-separator,
+  .description {
+    color: $color-blue-grey-250;
+  }
+
+  .dot-separator {
+    font-size: 0.2em;
+    margin: 0 5px;
+    vertical-align: middle;
+  }
+
+  .type {
+    color: #f0f1f6;
+  }
+
+  .editable-name {
+    margin: 0;
+    padding-top: 15px;
+
+    .ngx-input-hint {
+      display: none;
+    }
+  }
+}
