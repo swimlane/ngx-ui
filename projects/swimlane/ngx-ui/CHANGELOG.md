@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+- Feature: Show step labels in horizontal stepper
+
 ## 29.0.0 (2020-06-15)
 
 - Breaking: `ngxSplit` directives no longer require, nor support, `@angular/flex-layout` directives
