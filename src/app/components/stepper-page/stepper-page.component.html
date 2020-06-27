@@ -8,6 +8,7 @@
   >
     <ngx-step
       #ngxStep
+      [label]="step.title"
       *ngFor="let step of steps"
     >
       <ng-template ngxStepContent>
