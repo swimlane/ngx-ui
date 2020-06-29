@@ -8,10 +8,25 @@
   overflow: hidden;
   padding: 10px;
 
+  &.ngx-stepper--top,
+  &.ngx-stepper--bottom {
+    .ngx-step--title {
+      position: absolute;
+      display: inline-block;
+      transform: translateX(calc(-50% + 14px));
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+
   &.ngx-stepper--top {
     .ngx-stepper--bar {
       bottom: 0;
       margin-top: 10px;
+    }
+
+    .ngx-step--title {
+      top: 100%;
     }
   }
 
@@ -21,6 +36,10 @@
     .ngx-stepper--bar {
       top: 0;
       margin-bottom: 10px;
+    }
+
+    .ngx-step--title {
+      top: calc(-100% + 5px);
     }
   }
 
@@ -91,8 +110,13 @@
         }
 
         .ngx-step--title {
+          position: unset;
           display: block;
+          transform: unset;
           margin-bottom: 0;
+          max-width: 100px;
+          width: 100px;
+          text-align: unset;
         }
 
         .ngx-step--step {
@@ -149,7 +173,7 @@
   }
 
   .ngx-stepper--bar-track {
-    min-height: 20px;
+    min-height: 25px;
     position: relative;
 
     .ngx-stepper--bar {
