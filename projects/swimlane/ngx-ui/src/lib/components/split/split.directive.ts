@@ -73,6 +73,20 @@ export class SplitDirective implements AfterContentInit, OnChanges, OnDestroy {
     });
   }
 
+  resize(delta: number): void {
+    const basisToPx =
+      (this.rowCss ? this.elementRef.nativeElement.clientWidth : this.elementRef.nativeElement.clientHeight) / 100;
+
+    const areas = this.areas.toArray();
+
+    // for now assuming splitter is after first area
+    const [first, ...rest] = areas;
+    [first].forEach(area => (delta = resizeAreaBy(area, delta, basisToPx)));
+
+    // delta is distributed left to right
+    rest.forEach(area => (delta += resizeAreaBy(area, -delta, basisToPx)));
+  }
+
   private updateHandles() {
     if (this.handles) {
       this.handles.forEach(d => (d.direction = this.direction));
@@ -122,19 +136,5 @@ export class SplitDirective implements AfterContentInit, OnChanges, OnDestroy {
   private onDrag({ movementX, movementY }: MouseEvent): void {
     const deltaPx = this.direction === SplitDirection.Row ? movementX : movementY;
     this.resize(deltaPx);
-  }
-
-  private resize(delta: number): void {
-    const basisToPx =
-      (this.rowCss ? this.elementRef.nativeElement.clientWidth : this.elementRef.nativeElement.clientHeight) / 100;
-
-    const areas = this.areas.toArray();
-
-    // for now assuming splitter is after first area
-    const [first, ...rest] = areas;
-    [first].forEach(area => (delta = resizeAreaBy(area, delta, basisToPx)));
-
-    // delta is distributed left to right
-    rest.forEach(area => (delta += resizeAreaBy(area, -delta, basisToPx)));
   }
 }

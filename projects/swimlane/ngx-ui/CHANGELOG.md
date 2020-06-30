@@ -2,7 +2,10 @@
 
 ## HEAD (Unreleased)
 
+## 29.1.0 (2020-06-29)
+
 - Feature: Show step labels in horizontal stepper
+- Bug: Make `SplitDirective#resize` public again
 
 ## 29.0.0 (2020-06-15)
 
