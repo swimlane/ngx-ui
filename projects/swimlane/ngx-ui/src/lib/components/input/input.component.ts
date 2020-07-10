@@ -229,12 +229,6 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
     setTimeout(() => this.cdr.markForCheck());
   }
 
-  // ngOnChanges(changes: any) {
-  //   if ('max' in changes || 'min' in changes) {
-  //     this.onChangeCallback(this._value);
-  //   }
-  // }
-
   onChange(event: Event): void {
     event.stopPropagation();
     this.change.emit(this.value);
