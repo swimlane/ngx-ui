@@ -6,7 +6,7 @@ $input-invalid-color: $color-red;
 $input-active-underline-fill: $color-blue;
 $input-inactive-underline-fill: $color-blue-grey-500;
 $input-icon-color: $color-grey-300;
-$input-placeholder-color: $color-blue-grey-450;
+$input-placeholder-color: $color-blue-grey-350;
 
 .ngx-input {
   display: block;
@@ -15,6 +15,58 @@ $input-placeholder-color: $color-blue-grey-450;
   padding-top: 20px;
   padding-top: calc(0.7em + 8px);
   padding-bottom: 0;
+
+  &.fill {
+    .ngx-input-box,
+    .ngx-input-textarea {
+      background-color: $color-blue-grey-650 !important;
+      margin: 0 !important;
+      padding: 6px 10px !important;
+      mix-blend-mode: exclusion;
+    }
+  }
+
+  &.md {
+    .ngx-input-box,
+    .ngx-input-textarea {
+      font-size: 18px !important;
+    }
+  }
+
+  &.lg {
+    .ngx-input-box,
+    .ngx-input-textarea {
+      font-size: 21px !important;
+    }
+  }
+
+  &.focused {
+    &:not(.ng-invalid) {
+      .ngx-input-label {
+        color: $color-blue !important;
+      }
+    }
+  }
+
+  &.invalid.ng-touched,
+  &.ng-invalid.ng-touched,
+  &.ng-invalid.ng-dirty {
+    .ngx-input-underline {
+      background-color: $input-invalid-color !important;
+
+      .underline-fill {
+        background-color: $input-invalid-color !important;
+      }
+    }
+
+    .ngx-input-label {
+      color: $input-invalid-color;
+    }
+
+    .ngx-input-hint {
+      color: $input-invalid-color;
+    }
+  }
 
   // override chrome autofill styles
   input:-webkit-autofill,
@@ -92,7 +144,7 @@ $input-placeholder-color: $color-blue-grey-450;
           outline: none;
         }
 
-        &[disabled] {
+        &:disabled {
           color: $color-blue-grey-400;
           user-select: none;
         }
@@ -126,7 +178,9 @@ $input-placeholder-color: $color-blue-grey-450;
     .ngx-input-label {
       pointer-events: none;
       position: absolute;
-      font-size: 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: $color-blue-grey-350;
     }
 
     .ngx-input-underline {
@@ -147,23 +201,6 @@ $input-placeholder-color: $color-blue-grey-450;
       color: $input-hint-color;
       margin-top: 2px;
       min-height: 1em;
-    }
-  }
-
-  &.invalid.ng-touched,
-  &.ng-invalid.ng-touched,
-  &.ng-invalid.ng-dirty {
-    .ngx-input-underline {
-      background-color: $input-invalid-color;
-    }
-
-    .ngx-input-label {
-      font-weight: 600;
-      color: $input-invalid-color;
-    }
-
-    .ngx-input-hint {
-      color: $input-invalid-color;
     }
   }
 }

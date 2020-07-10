@@ -22,13 +22,14 @@ import {
   Validators
 } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { BehaviorSubject } from 'rxjs';
 
+import { Appearance } from '../../mixins/appearance/appearance.enum';
 import { appearanceMixin } from '../../mixins/appearance/appearance.mixin';
 import { sizeMixin } from '../../mixins/size/size.mixin';
 
 import { InputTypes } from './input-types.enum';
+import { INPUT_ANIMATIONS } from './input-animations.constant';
 
 let nextId = 0;
 
@@ -52,46 +53,15 @@ const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
   selector: 'ngx-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
-  host: { class: 'ngx-input' },
+  host: {
+    class: 'ngx-input',
+    '[class]': '[appearance, size]',
+    '[class.focused]': 'focused'
+  },
+  animations: INPUT_ANIMATIONS,
   providers: [INPUT_VALUE_ACCESSOR, INPUT_VALIDATORS],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('labelState', [
-      state(
-        'inside',
-        style({
-          'font-size': '1em',
-          top: '0'
-        })
-      ),
-      state(
-        'outside',
-        style({
-          'font-size': '.7rem',
-          top: '-15px'
-        })
-      ),
-      transition('inside => outside', animate('150ms ease-out')),
-      transition('outside => inside', animate('150ms ease-out'))
-    ]),
-    trigger('underlineState', [
-      state(
-        'collapsed',
-        style({
-          width: '0%'
-        })
-      ),
-      state(
-        'expanded',
-        style({
-          width: '100%'
-        })
-      ),
-      transition('collapsed => expanded', animate('150ms ease-out')),
-      transition('expanded => collapsed', animate('150ms ease-out'))
-    ])
-  ]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputComponent extends _InputMixinBase implements AfterViewInit, ControlValueAccessor, Validator {
   @Input() id: string = `input-${++nextId}`;
@@ -221,7 +191,7 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
   }
 
   get labelState(): string {
-    return this.placeholder || this.focusedOrDirty ? 'outside' : 'inside';
+    return this.placeholder || this.focusedOrDirty || this.appearance === Appearance.Fill ? 'outside' : 'inside';
   }
 
   get underlineState(): string {

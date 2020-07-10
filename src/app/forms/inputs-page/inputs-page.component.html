@@ -269,7 +269,7 @@
 
   <br />
   <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[ 
+    <![CDATA[
       <ngx-input
         type="text"
         label="Pattern validation"
@@ -277,7 +277,7 @@
         name="patern-input"
         [pattern]="'^\\w+$'"
         hint="Pattern: ^\\w+$">
-      </ngx-input> 
+      </ngx-input>
     ]]>
   </ngx-codemirror>
 </ngx-section>
@@ -342,4 +342,20 @@
       <input type="number" class="form-input" />
     ]]>
   </ngx-codemirror>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Sizes">
+  <ngx-input size="md" label="Medium" ngModel="Medium Input" hint="example of a medium input"></ngx-input>
+
+  <br />
+
+  <ngx-input size="lg" label="Large" ngModel="Large Input" hint="example of a large input"></ngx-input>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Appearances">
+  <ngx-input label="Legacy" ngModel="Legacy Input" placeholder="enter your text here..." hint="example of a legacy input"></ngx-input>
+
+  <br />
+
+  <ngx-input label="Fill" appearance="fill" ngModel="Fill Input" placeholder="enter your text here..." hint="example of a fill input"></ngx-input>
 </ngx-section>
