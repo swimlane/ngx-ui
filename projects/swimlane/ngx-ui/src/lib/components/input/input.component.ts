@@ -21,11 +21,14 @@ import {
   FormControl,
   Validators
 } from '@angular/forms';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { BehaviorSubject } from 'rxjs';
 
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { appearanceMixin } from '../../mixins/appearance/appearance.mixin';
+import { sizeMixin } from '../../mixins/size/size.mixin';
+
 import { InputTypes } from './input-types.enum';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 
 let nextId = 0;
 
@@ -40,6 +43,9 @@ const INPUT_VALIDATORS = {
   useExisting: forwardRef(() => InputComponent),
   multi: true
 };
+
+class InputBase {}
+const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
 
 @Component({
   exportAs: 'ngxInput',
@@ -87,7 +93,7 @@ const INPUT_VALIDATORS = {
     ])
   ]
 })
-export class InputComponent implements AfterViewInit, ControlValueAccessor, Validator {
+export class InputComponent extends _InputMixinBase implements AfterViewInit, ControlValueAccessor, Validator {
   @Input() id: string = `input-${++nextId}`;
   @Input() name: string;
   @Input() label: string = '';
@@ -244,7 +250,9 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   private _autocorrect: boolean = false;
   private _spellcheck: boolean = false;
 
-  constructor(private readonly cdr: ChangeDetectorRef) {}
+  constructor(private readonly cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngAfterViewInit(): void {
     if (this.autofocus) {
