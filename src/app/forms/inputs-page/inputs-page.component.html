@@ -236,11 +236,11 @@
       <ngx-input
         type="number"
         label="Age"
-        [ngModel]="numericValue"
+        [(ngModel)]="numericValue"
         name="numeric-input"
         min="0"
         max="122"
-        (change)="numericValue = $event">
+      >
       </ngx-input>
     ]]>
   </ngx-codemirror>
@@ -358,4 +358,8 @@
   <br />
 
   <ngx-input label="Fill" appearance="fill" ngModel="Fill Input" placeholder="enter your text here..." hint="example of a fill input"></ngx-input>
+
+  <br />
+
+  <ngx-input type="textarea" appearance="fill" label="Fill Textarea" placeholder="enter your text here..." hint="example of a fill textarea"></ngx-input>
 </ngx-section>

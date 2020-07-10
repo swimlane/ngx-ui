@@ -27,11 +27,4 @@ describe('AutosizeDirective', () => {
   it('should be defined', () => {
     expect(component).toBeDefined();
   });
-
-  it('should adjust size on input', () => {
-    const spy = spyOn(component.autosize, 'adjust');
-    component.value = 'ttttttttttttttttttttttttttttttttttt';
-    component.autosize.onInput();
-    expect(spy).toHaveBeenCalled();
-  });
 });

@@ -1,7 +1,7 @@
 @import 'colors/variables';
 @import 'forms/inputs';
 
-$input-hint-color: $color-blue-grey-300;
+$input-hint-color: $color-blue-grey-350;
 $input-invalid-color: $color-red;
 $input-active-underline-fill: $color-blue;
 $input-inactive-underline-fill: $color-blue-grey-500;
@@ -130,13 +130,15 @@ $input-placeholder-color: $color-blue-grey-350;
       .ngx-input-box,
       .ngx-input-textarea {
         flex: auto;
+        display: block;
         background: transparent;
         border: none;
         margin-bottom: 0px;
         padding-left: 0px;
         width: 100%;
         color: $color-blue-grey-100;
-        font-size: 1em;
+        font-size: 16px;
+        line-height: 20px;
         min-height: 0px;
         font-family: inherit;
         caret-color: $input-active-underline-fill;
@@ -184,8 +186,9 @@ $input-placeholder-color: $color-blue-grey-350;
     .ngx-input-label {
       pointer-events: none;
       position: absolute;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
+      line-height: 16px;
       transition: color 0.2s ease-in-out;
       color: $color-blue-grey-350;
     }
@@ -208,6 +211,8 @@ $input-placeholder-color: $color-blue-grey-350;
       color: $input-hint-color;
       margin-top: 2px;
       min-height: 1em;
+      line-height: 14px;
+      transition: color 0.2s ease-in-out;
     }
   }
 }

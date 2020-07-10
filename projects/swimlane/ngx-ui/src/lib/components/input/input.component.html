@@ -38,8 +38,8 @@
           [placeholder]="placeholder"
           [disabled]="disabled"
           [type]="type$ | async"
-          [min]="'' + min"
-          [max]="'' + max"
+          [min]="min"
+          [max]="max"
           [minlength]="minlength"
           [maxlength]="maxlength"
           [attr.tabindex]="tabindex"
@@ -64,7 +64,8 @@
         </span>
       </div>
       <span class="ngx-input-label" [@labelState]="labelState">
-        <span [innerHTML]="label"></span> <span [innerHTML]="requiredIndicatorView"></span>
+        <span [innerHTML]="label"></span>&nbsp;
+        <span *ngIf="required && requiredIndicator" [innerHTML]="requiredIndicator"></span>
       </span>
     </div>
     <ng-content select="ngx-input-suffix"></ng-content>

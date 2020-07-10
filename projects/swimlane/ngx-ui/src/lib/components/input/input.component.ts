@@ -198,10 +198,6 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
     return this.focused ? 'expanded' : 'collapsed';
   }
 
-  get requiredIndicatorView(): string {
-    return !this.requiredIndicator || !this.required ? '' : (this.requiredIndicator as string);
-  }
-
   get element() {
     return this.type === InputTypes.textarea ? this.textareaControl : this.inputControl;
   }
@@ -233,11 +229,11 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
     setTimeout(() => this.cdr.markForCheck());
   }
 
-  ngOnChanges(changes: any) {
-    if ('max' in changes || 'min' in changes) {
-      this.onChangeCallback(this._value);
-    }
-  }
+  // ngOnChanges(changes: any) {
+  //   if ('max' in changes || 'min' in changes) {
+  //     this.onChangeCallback(this._value);
+  //   }
+  // }
 
   onChange(event: Event): void {
     event.stopPropagation();
