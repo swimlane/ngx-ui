@@ -56,7 +56,8 @@ const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
   host: {
     class: 'ngx-input',
     '[class]': '[appearance, size]',
-    '[class.focused]': 'focused'
+    '[class.focused]': 'focused',
+    '[class.autosize]': 'autosize'
   },
   animations: INPUT_ANIMATIONS,
   providers: [INPUT_VALUE_ACCESSOR, INPUT_VALIDATORS],
@@ -151,6 +152,14 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
     this.updateInputType();
   }
 
+  @Input()
+  get autosize() {
+    return this._autosize;
+  }
+  set autosize(v: boolean) {
+    this._autosize = coerceBooleanProperty(v);
+  }
+
   @Output() change = new EventEmitter<string | number>();
   @Output() blur = new EventEmitter<Event>();
   @Output() focus = new EventEmitter<FocusEvent>();
@@ -215,6 +224,7 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
   private _autocomplete: boolean = false;
   private _autocorrect: boolean = false;
   private _spellcheck: boolean = false;
+  private _autosize: boolean = false;
 
   constructor(private readonly cdr: ChangeDetectorRef) {
     super();

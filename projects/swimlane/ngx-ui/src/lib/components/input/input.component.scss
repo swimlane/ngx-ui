@@ -10,6 +10,7 @@ $input-placeholder-color: $color-blue-grey-350;
 
 .ngx-input {
   display: block;
+  max-width: 100%;
   margin-top: 16px;
   margin-bottom: 8px;
   padding-top: 20px;
@@ -73,6 +74,10 @@ $input-placeholder-color: $color-blue-grey-350;
     }
   }
 
+  &.autosize {
+    display: inline-block;
+  }
+
   // override chrome autofill styles
   input:-webkit-autofill,
   input:-webkit-autofill:hover,
@@ -89,6 +94,7 @@ $input-placeholder-color: $color-blue-grey-350;
     .ngx-input-flex-wrap-inner {
       display: flex;
       flex: 1;
+      max-width: 100%;
     }
 
     ngx-input-suffix,
@@ -136,6 +142,7 @@ $input-placeholder-color: $color-blue-grey-350;
         margin-bottom: 0px;
         padding-left: 0px;
         width: 100%;
+        max-width: 100%;
         color: $color-blue-grey-100;
         font-size: 16px;
         line-height: 20px;

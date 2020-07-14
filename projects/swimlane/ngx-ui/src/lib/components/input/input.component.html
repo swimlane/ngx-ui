@@ -32,6 +32,7 @@
         <input
           *ngIf="type !== 'textarea'"
           class="ngx-input-box"
+          [autosize]="autosize"
           [(ngModel)]="value"
           [id]="id"
           [name]="name"
