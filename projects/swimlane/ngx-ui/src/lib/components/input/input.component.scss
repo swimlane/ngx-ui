@@ -27,7 +27,7 @@ $input-placeholder-color: $color-blue-grey-350;
     }
 
     .ngx-input-box-wrap {
-      &:after {
+      &::after {
         position: absolute;
         top: 0;
         right: 0;
