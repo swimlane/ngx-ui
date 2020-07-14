@@ -7,7 +7,13 @@ import { InputTypes } from './input-types.enum';
 @Component({
   selector: `ngx-input-autosize-fixture`,
   template: `
-    <input #input *ngIf="(type$ | async) === 'text'" [(ngModel)]="value" [autosize]="enabled$ | async" />
+    <input
+      #input
+      [style.max-width.px]="maxWidth$ | async"
+      *ngIf="(type$ | async) === 'text'"
+      [(ngModel)]="value"
+      [autosize]="enabled$ | async"
+    />
     <textarea
       #textarea
       *ngIf="(type$ | async) === 'textarea'"
@@ -22,6 +28,7 @@ export class AutosizeDirectiveFixture {
 
   readonly type$ = new BehaviorSubject<InputTypes>(InputTypes.text);
   readonly enabled$ = new BehaviorSubject<boolean>(true);
+  readonly maxWidth$ = new BehaviorSubject<number>(undefined);
 
   @ViewChild(AutosizeDirective)
   readonly autosize: AutosizeDirective;

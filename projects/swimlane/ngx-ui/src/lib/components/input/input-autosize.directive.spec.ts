@@ -47,6 +47,8 @@ describe('AutosizeDirective', () => {
     it('should set width on input', () => {
       component.input.nativeElement.value = faker.random.words(5);
       component.input.nativeElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+
       expect(component.input.nativeElement.scrollWidth).toEqual(component.input.nativeElement.clientWidth);
     });
 
@@ -56,8 +58,21 @@ describe('AutosizeDirective', () => {
 
       component.input.nativeElement.value = faker.random.words(5);
       component.input.nativeElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
 
       expect(component.input.nativeElement.scrollWidth).not.toEqual(component.input.nativeElement.clientWidth);
+    });
+
+    it('should not extend past max width', () => {
+      component.maxWidth$.next(100);
+      fixture.detectChanges();
+
+      component.input.nativeElement.value = faker.random.words(500);
+      component.input.nativeElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+
+      expect(component.input.nativeElement.style.maxWidth).toEqual('100px');
+      expect(component.input.nativeElement.clientWidth).toBeLessThanOrEqual(component.input.nativeElement.scrollWidth);
     });
   });
 
@@ -74,6 +89,8 @@ describe('AutosizeDirective', () => {
     it('should set height on input', () => {
       component.textarea.nativeElement.value = faker.random.words(500);
       component.textarea.nativeElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+
       expect(component.textarea.nativeElement.scrollHeight - 2).toEqual(component.textarea.nativeElement.clientHeight);
     });
 
@@ -83,6 +100,7 @@ describe('AutosizeDirective', () => {
 
       component.textarea.nativeElement.value = faker.random.words(500);
       component.textarea.nativeElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
 
       expect(component.textarea.nativeElement.scrollHeight - 2).not.toEqual(
         component.textarea.nativeElement.clientHeight
