@@ -22,21 +22,21 @@ $input-placeholder-color: $color-blue-grey-350;
     .ngx-input-textarea {
       margin: 0 !important;
       padding: 6px 10px !important;
-    }
-    input,
-    textarea {
       position: relative;
       z-index: 1;
     }
-    .ngx-input-box-wrap::after {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: $color-blue-grey-875;
-      mix-blend-mode: exclusion;
-      content: '';
+
+    .ngx-input-box-wrap {
+      &:after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: $color-blue-grey-875;
+        mix-blend-mode: exclusion;
+        content: '';
+      }
     }
   }
 
