@@ -28,13 +28,18 @@ export class AutosizeDirective {
 
   onInput() {
     if (this._enabled) {
-      const height = this.element.nativeElement.scrollHeight + 'px';
-      const width = this.element.nativeElement.scrollWidth + 'px';
-
       if (this.nodeName === 'TEXTAREA') {
-        this.element.nativeElement.style.height = height;
+        this.element.nativeElement.style.height = 'auto';
+
+        if (this.element.nativeElement.clientHeight < this.element.nativeElement.scrollHeight) {
+          this.element.nativeElement.style.height = `${this.element.nativeElement.scrollHeight}px`;
+        }
       } else {
-        this.element.nativeElement.style.width = width;
+        this.element.nativeElement.style.width = 'auto';
+
+        if (this.element.nativeElement.clientWidth < this.element.nativeElement.scrollWidth) {
+          this.element.nativeElement.style.width = `${this.element.nativeElement.scrollWidth}px`;
+        }
       }
     }
   }
