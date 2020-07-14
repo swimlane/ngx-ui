@@ -49,7 +49,7 @@ describe('AutosizeDirective', () => {
       component.input.nativeElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
 
-      expect(component.input.nativeElement.scrollWidth).toEqual(component.input.nativeElement.clientWidth);
+      expect(component.input.nativeElement.style.width).not.toEqual('auto');
     });
 
     it('should do nothing when disabled', () => {
@@ -74,6 +74,14 @@ describe('AutosizeDirective', () => {
       expect(component.input.nativeElement.style.maxWidth).toEqual('100px');
       expect(component.input.nativeElement.clientWidth).toBeLessThanOrEqual(component.input.nativeElement.scrollWidth);
     });
+
+    it('should set width auto when no scroll', () => {
+      component.input.nativeElement.value = 't';
+      component.input.nativeElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+
+      expect(component.input.nativeElement.style.width).toEqual('auto');
+    });
   });
 
   describe('textarea', () => {
@@ -91,7 +99,15 @@ describe('AutosizeDirective', () => {
       component.textarea.nativeElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
 
-      expect(component.textarea.nativeElement.scrollHeight).toEqual(component.textarea.nativeElement.offsetHeight);
+      expect(component.textarea.nativeElement.style.height).not.toEqual('auto');
+    });
+
+    it('should set height auto when no scroll', () => {
+      component.textarea.nativeElement.value = faker.random.words(3);
+      component.textarea.nativeElement.dispatchEvent(new Event('input'));
+      fixture.detectChanges();
+
+      expect(component.textarea.nativeElement.style.height).toEqual('auto');
     });
 
     it('should do nothing when disabled', () => {
