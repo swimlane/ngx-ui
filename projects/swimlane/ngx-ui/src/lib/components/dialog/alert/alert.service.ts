@@ -9,6 +9,12 @@ import { AlertTypes } from './alert-types.enum';
 import { AlertStyles } from './alert-styles.enum';
 import { DialogOptions } from '../dialog-options.interface';
 
+const ClsMap = {
+  [AlertStyles.Danger]: 'ngx-alert-danger',
+  [AlertStyles.Warning]: 'ngx-alert-warning',
+  [AlertStyles.Info]: 'ngx-alert-info'
+};
+
 @Injectable()
 export class AlertService extends DialogService<AlertComponent> {
   readonly defaults: DialogOptions = {
@@ -23,11 +29,6 @@ export class AlertService extends DialogService<AlertComponent> {
   };
 
   protected type: any = AlertComponent;
-  private readonly clsMap = {
-    [AlertStyles.Danger]: 'ngx-alert-danger',
-    [AlertStyles.Warning]: 'ngx-alert-warning',
-    [AlertStyles.Info]: 'ngx-alert-info'
-  };
 
   constructor(readonly injectionService: InjectionService, readonly overlayService: OverlayService) {
     super(injectionService, overlayService);
@@ -48,7 +49,7 @@ export class AlertService extends DialogService<AlertComponent> {
   private createDialog(options: DialogOptions, type: AlertTypes) {
     const subject = new Subject<{ type: string; data: any }>();
     const { title, content, longPress } = options;
-    const cssClass = 'ngx-alert-dialog ' + this.clsMap[options.style];
+    const cssClass = ['ngx-alert-dialog', ClsMap[options.style], options.cssClass].join(' ');
 
     const component = this.create({
       title,

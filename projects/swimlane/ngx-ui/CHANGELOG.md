@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+- Feature: support `cssClass` in alert/config options
+
 ## 29.1.0 (2020-06-29)
 
 - Feature: Show step labels in horizontal stepper
