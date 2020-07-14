@@ -4,7 +4,7 @@
 $input-hint-color: $color-blue-grey-350;
 $input-invalid-color: $color-red;
 $input-active-underline-fill: $color-blue;
-$input-inactive-underline-fill: $color-blue-grey-500;
+$input-inactive-underline-fill: $color-blue-grey-600;
 $input-icon-color: $color-grey-300;
 $input-placeholder-color: $color-blue-grey-350;
 
@@ -20,10 +20,23 @@ $input-placeholder-color: $color-blue-grey-350;
   &.fill {
     .ngx-input-box,
     .ngx-input-textarea {
-      background-color: $color-blue-grey-650 !important;
       margin: 0 !important;
       padding: 6px 10px !important;
+    }
+    input,
+    textarea {
+      position: relative;
+      z-index: 1;
+    }
+    .ngx-input-box-wrap::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: $color-blue-grey-900;
       mix-blend-mode: exclusion;
+      content: '';
     }
   }
 
