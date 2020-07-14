@@ -91,7 +91,7 @@ describe('AutosizeDirective', () => {
       component.textarea.nativeElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
 
-      expect(component.textarea.nativeElement.scrollHeight - 2).toEqual(component.textarea.nativeElement.clientHeight);
+      expect(component.textarea.nativeElement.scrollHeight).toEqual(component.textarea.nativeElement.offsetHeight);
     });
 
     it('should do nothing when disabled', () => {
@@ -102,9 +102,7 @@ describe('AutosizeDirective', () => {
       component.textarea.nativeElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
 
-      expect(component.textarea.nativeElement.scrollHeight - 2).not.toEqual(
-        component.textarea.nativeElement.clientHeight
-      );
+      expect(component.textarea.nativeElement.scrollHeight).not.toEqual(component.textarea.nativeElement.offsetHeight);
     });
   });
 });
