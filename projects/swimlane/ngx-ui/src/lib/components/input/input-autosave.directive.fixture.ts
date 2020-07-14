@@ -1,15 +1,34 @@
-import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, ElementRef } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 import { AutosizeDirective } from './input-autosize.directive';
+import { InputTypes } from './input-types.enum';
 
 @Component({
   selector: `ngx-input-autosize-fixture`,
-  template: ` <textarea [(ngModel)]="value" autosize></textarea> `,
+  template: `
+    <input #input *ngIf="(type$ | async) === 'text'" [(ngModel)]="value" [autosize]="enabled$ | async" />
+    <textarea
+      #textarea
+      *ngIf="(type$ | async) === 'textarea'"
+      [(ngModel)]="value"
+      [autosize]="enabled$ | async"
+    ></textarea>
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AutosizeDirectiveFixture {
   value = 'test';
 
-  @ViewChild(AutosizeDirective, { static: false })
+  readonly type$ = new BehaviorSubject<InputTypes>(InputTypes.text);
+  readonly enabled$ = new BehaviorSubject<boolean>(true);
+
+  @ViewChild(AutosizeDirective)
   readonly autosize: AutosizeDirective;
+
+  @ViewChild('input')
+  readonly input?: ElementRef<HTMLInputElement>;
+
+  @ViewChild('textarea')
+  readonly textarea?: ElementRef<HTMLTextAreaElement>;
 }

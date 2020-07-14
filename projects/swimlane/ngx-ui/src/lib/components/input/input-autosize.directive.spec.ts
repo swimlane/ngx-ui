@@ -2,9 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import * as faker from 'faker';
 
 import { AutosizeDirective } from './input-autosize.directive';
 import { AutosizeDirectiveFixture } from './input-autosave.directive.fixture';
+import { InputTypes } from './input-types.enum';
 
 describe('AutosizeDirective', () => {
   let component: AutosizeDirectiveFixture;
@@ -26,5 +28,65 @@ describe('AutosizeDirective', () => {
 
   it('should be defined', () => {
     expect(component).toBeDefined();
+  });
+
+  it('should be enabled', () => {
+    expect(component.autosize?.enabled).toBeTruthy();
+  });
+
+  describe('input', () => {
+    beforeEach(() => {
+      component.type$.next(InputTypes.text);
+      fixture.detectChanges();
+    });
+
+    it('should be defined', () => {
+      expect(component.input.nativeElement).toBeTruthy();
+    });
+
+    it('should set width on input', () => {
+      component.input.nativeElement.value = faker.random.words(5);
+      component.input.nativeElement.dispatchEvent(new Event('input'));
+      expect(component.input.nativeElement.scrollWidth).toEqual(component.input.nativeElement.clientWidth);
+    });
+
+    it('should do nothing when disabled', () => {
+      component.enabled$.next(false);
+      fixture.detectChanges();
+
+      component.input.nativeElement.value = faker.random.words(5);
+      component.input.nativeElement.dispatchEvent(new Event('input'));
+
+      expect(component.input.nativeElement.scrollWidth).not.toEqual(component.input.nativeElement.clientWidth);
+    });
+  });
+
+  describe('textarea', () => {
+    beforeEach(() => {
+      component.type$.next(InputTypes.textarea);
+      fixture.detectChanges();
+    });
+
+    it('should be defined', () => {
+      expect(component.textarea.nativeElement).toBeTruthy();
+    });
+
+    it('should set height on input', () => {
+      component.textarea.nativeElement.value = faker.random.words(500);
+      component.textarea.nativeElement.dispatchEvent(new Event('input'));
+      expect(component.textarea.nativeElement.scrollHeight - 2).toEqual(component.textarea.nativeElement.clientHeight);
+    });
+
+    it('should do nothing when disabled', () => {
+      component.enabled$.next(false);
+      fixture.detectChanges();
+
+      component.textarea.nativeElement.value = faker.random.words(500);
+      component.textarea.nativeElement.dispatchEvent(new Event('input'));
+
+      expect(component.textarea.nativeElement.scrollHeight - 2).not.toEqual(
+        component.textarea.nativeElement.clientHeight
+      );
+    });
   });
 });

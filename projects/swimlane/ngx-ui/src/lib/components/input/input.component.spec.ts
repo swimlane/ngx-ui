@@ -46,12 +46,6 @@ describe('InputComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should be required', () => {
-    component.required$.next(true);
-    fixture.detectChanges();
-    expect(component.input.requiredIndicatorView).toEqual(component.input.requiredIndicator as string);
-  });
-
   it('should be textarea', () => {
     component.type$.next(InputTypes.textarea);
     fixture.detectChanges();
