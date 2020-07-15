@@ -1,0 +1,45 @@
+<div class="inputs-section"> 
+  <h3 class="style-header">Tip</h3>
+
+  <ngx-section class="shadow" sectionTitle="Styles">
+    <div class="tip-example">
+      <ngx-tip [status]="TipStatus.Success">
+        {{text}}
+      </ngx-tip>
+      <ngx-tip [status]="TipStatus.Error">
+        {{text}}
+      </ngx-tip>
+      <ngx-tip [status]="TipStatus.Notice">
+        {{text}}
+      </ngx-tip>
+    </div>
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+        <ngx-tip [status]="TipStatus.Success">
+          {{text}}
+        </ngx-tip>
+        <ngx-tip [status]="TipStatus.Error">
+          {{text}}
+        </ngx-tip>
+        <ngx-tip [status]="TipStatus.Notice">
+          {{text}}
+        </ngx-tip>
+      ]]>
+    </ngx-codemirror>
+  </ngx-section>
+
+  <ngx-section class="shadow" sectionTitle="Closeable">
+    <div class="tip-example">
+      <ngx-tip *ngIf="showTip" [isCloseable]="true" (close)="showTip = false">
+        {{text}}
+      </ngx-tip>
+    </div>
+    <ngx-codemirror mode="htmlmixed" readOnly="true">
+      <![CDATA[
+      <ngx-tip *ngIf="showTip" [isCloseable]="true" (close)="showTip = false">
+        {{text}}
+      </ngx-tip>
+      ]]>
+    </ngx-codemirror>
+  </ngx-section>
+</div>
