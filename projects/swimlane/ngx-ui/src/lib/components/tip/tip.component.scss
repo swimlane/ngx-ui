@@ -79,7 +79,7 @@ $color-border: $color-blue-grey-650;
       }
 
       .tip-content {
-        &--icon ngx-icon {
+        &--icon .ngx-icon {
           color: #f56a38;
         }
       }
