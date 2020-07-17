@@ -558,3 +558,39 @@
     ></ngx-select-option>
   </ngx-select>
 </ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Appearances">
+  <ngx-select [filterable]="false" appearance="legacy">
+    <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+    <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+    <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+  </ngx-select>
+
+  <br />
+
+  <ngx-select [filterable]="false" appearance="fill" label="Fill" hint="im a hint">
+    <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+    <ngx-select-option name="a very long choice that you need to make" value="ddos"></ngx-select-option>
+    <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+  </ngx-select>
+
+  <br />
+
+  <br />
+
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+    <ngx-select [filterable]="false" appearance="legacy">
+      <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+      <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+      <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+    </ngx-select>
+
+    <ngx-select [filterable]="false" appearance="fill">
+      <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+      <ngx-select-option name="a very long choice that you need to make" value="ddos"></ngx-select-option>
+      <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+    </ngx-select>
+    ]]>
+  </ngx-codemirror>
+</ngx-section>

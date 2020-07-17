@@ -21,6 +21,8 @@ import { SelectOptionDirective } from './select-option.directive';
 import { SelectInputComponent } from './select-input.component';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
+import { appearanceMixin } from '../../mixins/appearance/appearance.mixin';
+import { sizeMixin } from '../../mixins/size/size.mixin';
 
 let nextId = 0;
 
@@ -29,6 +31,9 @@ const SELECT_VALUE_ACCESSOR = {
   useExisting: forwardRef(() => SelectComponent),
   multi: true
 };
+
+class InputBase {}
+const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
 
 @Component({
   exportAs: 'ngxSelect',
@@ -39,6 +44,7 @@ const SELECT_VALUE_ACCESSOR = {
     class: 'ngx-select',
     '[id]': 'id',
     '[attr.name]': 'name',
+    '[class]': '[appearance, size]',
     '[class.invalid]': 'invalid && touched',
     '[class.tagging-selection]': 'tagging',
     '[class.multi-selection]': 'multiple',
@@ -52,7 +58,7 @@ const SELECT_VALUE_ACCESSOR = {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectComponent implements ControlValueAccessor, OnDestroy {
+export class SelectComponent extends _InputMixinBase implements ControlValueAccessor, OnDestroy {
   @Input() id: string = `select-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
@@ -282,7 +288,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     private readonly _element: ElementRef,
     private readonly _renderer: Renderer2,
     private readonly _cdr: ChangeDetectorRef
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnDestroy(): void {
     this.toggleDropdown(false);
