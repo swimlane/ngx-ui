@@ -167,13 +167,7 @@
   </ngx-section>
 
   <ngx-section class="shadow" sectionTitle="Adding drawer to parent component instead of root">
-    <button type="button" class="btn" (click)="openDrawer(undefined, undefined, true, editTmpl2, false, parentContainer)">Open Left Drawer Inside Parent</button>
-    <button type="button" class="btn" (click)="openDrawer(DrawerDirection.Bottom, undefined, true, editTmpl2, false, parentContainer)">Open Bottom Drawer Inside Parent</button>
-    <br />
-    <br />
-    <div class ="drawer-page--parent-container">
-      <div drawerContainer #parentContainer></div>
-    </div>
+    <app-drawer-container-example [template]="editTmpl2"></app-drawer-container-example>
 
     <br />
     <br />
@@ -182,52 +176,56 @@
       <ngx-tab label="Markup">
         <ngx-codemirror mode="htmlmixed" readOnly="true">
           <![CDATA[
-            <button type="button" class="btn" (click)="openDrawer(undefined, undefined, true, editTmpl2, false, parentContainer)">Open Drawer Inside Parent</button>
-            <div>
-              <div drawerContainer #parentContainer></div>
-            </div>
-
-            <ng-template #editTmpl2 let-context="context" let-close="close">
-              <ngx-toolbar
-                [mainTitle]="'Attack Alert!'">
-              </ngx-toolbar>
-              <section class="section">
-                <h1>Attack Type: Malware</h1>
-                <button
-                  type="button"
-                  class="btn"
-                  (click)="openDrawer(undefined, undefined, false, editTmpl2)">
-                  Open Details
-                </button>
-                <button type="button" class="btn" (click)="close.emit(true)">
-                  Close
-                </button>
-              </section>
-            </ng-template>
+          <button type="button" class="btn" (click)="open(DrawerDirection.Left)">Open Left</button>
+          <button type="button" class="btn" (click)="open(DrawerDirection.Bottom)">Open Bottom</button>
           ]]>
         </ngx-codemirror>
       </ngx-tab>
       <ngx-tab label="TypeScript">
         <ngx-codemirror mode="javascript" readOnly="true">
           <![CDATA[
-            @Component({ selector: 'app' })
-            class MyComponent {
-              @ViewChild('editTmpl', { static: false }) editTmpl: TemplateRef<any>;
+          import { Component, ChangeDetectionStrategy, ElementRef, Input, TemplateRef } from '@angular/core';
+          import { DrawerService, DrawerDirection } from '@swimlane/ngx-ui';
 
-              constructor(private drawerMngr: DrawerService) { }
+          @Component({
+            selector: 'app-drawer-container-example',
+            templateUrl: './drawer-container-example.component.html',
+            styleUrls: ['./drawer-container-example.component.scss'],
+            changeDetection: ChangeDetectionStrategy.OnPush
+          })
+          export class DrawerContainerExampleComponent {
+            @Input() template: TemplateRef<any>;
 
-              openDrawer(direction = 'left', size?, closeOnOutsideClick = true, template = this.editTmpl, isRoot = true, parentContainer?: any) {
-                this.drawerMngr.create({
-                  direction,
-                  template,
-                  size,
-                  context: 'Alert Everyone!',
-                  closeOnOutsideClick,
-                  parentContainer,
-                  isRoot
-                });
-              }
+            readonly DrawerDirection = DrawerDirection;
+
+            constructor(
+              private readonly drawerService: DrawerService,
+              private readonly el: ElementRef<HTMLElement>
+            ) { }
+
+            open(direction: DrawerDirection) {
+              this.drawerService.create({
+                direction,
+                template: this.template,
+                context: 'Alert Everyone!',
+                closeOnOutsideClick: true,
+                parentContainer: this.el.nativeElement,
+                isRoot: false
+              });
             }
+          }
+          ]]>
+        </ngx-codemirror>
+      </ngx-tab>
+      <ngx-tab label="Styles">
+        <ngx-codemirror mode="css" readOnly="true">
+          <![CDATA[
+          :host {
+            display: block;
+            position: relative;
+            background-color: #272936;
+            height: 500px;
+          }
           ]]>
         </ngx-codemirror>
       </ngx-tab>

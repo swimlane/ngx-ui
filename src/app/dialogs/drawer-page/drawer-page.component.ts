@@ -1,4 +1,4 @@
-import { Component, ViewChild, TemplateRef, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewChild, TemplateRef, ChangeDetectionStrategy, ElementRef } from '@angular/core';
 
 import { DrawerService, DrawerDirection } from '@swimlane/ngx-ui';
 
@@ -16,7 +16,7 @@ export class DrawerPageComponent {
 
   readonly DrawerDirection = DrawerDirection;
 
-  constructor(public drawerMngr: DrawerService) {}
+  constructor(readonly drawerMngr: DrawerService, private readonly el: ElementRef<HTMLElement>) {}
 
   dateChanged(val: Date | string) {
     console.log('date changed!', val);
@@ -27,8 +27,7 @@ export class DrawerPageComponent {
     size?: number,
     closeOnOutsideClick = true,
     template = this.editTmpl,
-    isRoot = true,
-    parentContainer?: any
+    isRoot = true
   ) {
     this.drawerMngr.create({
       direction,
@@ -36,7 +35,7 @@ export class DrawerPageComponent {
       size,
       context: 'Alert Everyone!',
       closeOnOutsideClick,
-      parentContainer,
+      parentContainer: isRoot ? undefined : this.el.nativeElement,
       isRoot
     });
   }
