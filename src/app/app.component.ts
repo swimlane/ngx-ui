@@ -209,6 +209,10 @@ export class AppComponent {
         {
           name: 'Hotkeys',
           route: 'hotkeys'
+        },
+        {
+          name: 'Tip',
+          route: 'tip'
         }
       ]
     }

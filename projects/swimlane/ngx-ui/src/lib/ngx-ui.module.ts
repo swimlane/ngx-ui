@@ -40,6 +40,7 @@ import { SliderModule } from './components/slider/slider.module';
 import { SplitModule } from './components/split/split.module';
 import { StepperModule } from './components/stepper/stepper.module';
 import { TabsModule } from './components/tabs/tabs.module';
+import { TipModule } from './components/tip/tip.module';
 import { ToggleModule } from './components/toggle/toggle.module';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { TooltipModule } from './components/tooltip/tooltip.module';
@@ -80,6 +81,7 @@ const modules = [
   SplitModule,
   StepperModule,
   TabsModule,
+  TipModule,
   ToggleModule,
   ToolbarModule,
   TooltipModule,
