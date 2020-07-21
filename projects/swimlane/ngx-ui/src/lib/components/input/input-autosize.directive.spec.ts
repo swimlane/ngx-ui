@@ -76,7 +76,7 @@ describe('AutosizeDirective', () => {
     });
 
     it('should set width auto when no scroll', () => {
-      component.input.nativeElement.value = 't';
+      component.input.nativeElement.value = '';
       component.input.nativeElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
 
@@ -103,7 +103,7 @@ describe('AutosizeDirective', () => {
     });
 
     it('should set height auto when no scroll', () => {
-      component.textarea.nativeElement.value = faker.random.words(3);
+      component.textarea.nativeElement.value = '';
       component.textarea.nativeElement.dispatchEvent(new Event('input'));
       fixture.detectChanges();
 
