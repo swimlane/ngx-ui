@@ -21,11 +21,15 @@ import {
   FormControl,
   Validators
 } from '@angular/forms';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { BehaviorSubject } from 'rxjs';
 
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { Appearance } from '../../mixins/appearance/appearance.enum';
+import { appearanceMixin } from '../../mixins/appearance/appearance.mixin';
+import { sizeMixin } from '../../mixins/size/size.mixin';
+
 import { InputTypes } from './input-types.enum';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { INPUT_ANIMATIONS } from './input-animations.constant';
 
 let nextId = 0;
 
@@ -41,53 +45,26 @@ const INPUT_VALIDATORS = {
   multi: true
 };
 
+class InputBase {}
+const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
+
 @Component({
   exportAs: 'ngxInput',
   selector: 'ngx-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
-  host: { class: 'ngx-input' },
+  host: {
+    class: 'ngx-input',
+    '[class]': '[appearance, size]',
+    '[class.focused]': 'focused',
+    '[class.autosize]': 'autosize'
+  },
+  animations: INPUT_ANIMATIONS,
   providers: [INPUT_VALUE_ACCESSOR, INPUT_VALIDATORS],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('labelState', [
-      state(
-        'inside',
-        style({
-          'font-size': '1em',
-          top: '0'
-        })
-      ),
-      state(
-        'outside',
-        style({
-          'font-size': '.7rem',
-          top: '-15px'
-        })
-      ),
-      transition('inside => outside', animate('150ms ease-out')),
-      transition('outside => inside', animate('150ms ease-out'))
-    ]),
-    trigger('underlineState', [
-      state(
-        'collapsed',
-        style({
-          width: '0%'
-        })
-      ),
-      state(
-        'expanded',
-        style({
-          width: '100%'
-        })
-      ),
-      transition('collapsed => expanded', animate('150ms ease-out')),
-      transition('expanded => collapsed', animate('150ms ease-out'))
-    ])
-  ]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent implements AfterViewInit, ControlValueAccessor, Validator {
+export class InputComponent extends _InputMixinBase implements AfterViewInit, ControlValueAccessor, Validator {
   @Input() id: string = `input-${++nextId}`;
   @Input() name: string;
   @Input() label: string = '';
@@ -175,6 +152,14 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
     this.updateInputType();
   }
 
+  @Input()
+  get autosize() {
+    return this._autosize;
+  }
+  set autosize(v: boolean) {
+    this._autosize = coerceBooleanProperty(v);
+  }
+
   @Output() change = new EventEmitter<string | number>();
   @Output() blur = new EventEmitter<Event>();
   @Output() focus = new EventEmitter<FocusEvent>();
@@ -215,15 +200,11 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   }
 
   get labelState(): string {
-    return this.placeholder || this.focusedOrDirty ? 'outside' : 'inside';
+    return this.placeholder || this.focusedOrDirty || this.appearance === Appearance.Fill ? 'outside' : 'inside';
   }
 
   get underlineState(): string {
     return this.focused ? 'expanded' : 'collapsed';
-  }
-
-  get requiredIndicatorView(): string {
-    return !this.requiredIndicator || !this.required ? '' : (this.requiredIndicator as string);
   }
 
   get element() {
@@ -243,8 +224,11 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   private _autocomplete: boolean = false;
   private _autocorrect: boolean = false;
   private _spellcheck: boolean = false;
+  private _autosize: boolean = false;
 
-  constructor(private readonly cdr: ChangeDetectorRef) {}
+  constructor(private readonly cdr: ChangeDetectorRef) {
+    super();
+  }
 
   ngAfterViewInit(): void {
     if (this.autofocus) {
@@ -253,12 +237,6 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
 
     // sometimes the label doesn't update on load
     setTimeout(() => this.cdr.markForCheck());
-  }
-
-  ngOnChanges(changes: any) {
-    if ('max' in changes || 'min' in changes) {
-      this.onChangeCallback(this._value);
-    }
   }
 
   onChange(event: Event): void {
