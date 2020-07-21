@@ -2,6 +2,7 @@
 
 ## HEAD (Unreleased)
 
+- Feature: ngx-tip component
 - Feature: autosize input width
 - Feature: fill input style
 - Feature: sm, md, lg input sizing
