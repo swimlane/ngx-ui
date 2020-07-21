@@ -8,7 +8,7 @@ import {
   EmbeddedViewRef,
   Type
 } from '@angular/core';
-import { DomPortalHost, ComponentPortal } from '@angular/cdk/portal';
+import { DomPortalOutlet, ComponentPortal } from '@angular/cdk/portal';
 
 function isViewContainerRef(x: any): x is ViewContainerRef {
   return x.element;
@@ -143,7 +143,7 @@ export class InjectionService {
     const appendLocation =
       bindings.inputs && bindings.inputs.isRoot === false ? location : this.getComponentRootNode(location);
 
-    const portalHost = new DomPortalHost(
+    const portalHost = new DomPortalOutlet(
       appendLocation,
       this.componentFactoryResolver,
       this.applicationRef,
