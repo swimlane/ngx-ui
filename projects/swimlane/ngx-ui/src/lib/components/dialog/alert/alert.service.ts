@@ -9,7 +9,7 @@ import { AlertTypes } from './alert-types.enum';
 import { AlertStyles } from './alert-styles.enum';
 import { DialogOptions } from '../dialog-options.interface';
 
-const ClsMap = {
+const classMap = {
   [AlertStyles.Danger]: 'ngx-alert-danger',
   [AlertStyles.Warning]: 'ngx-alert-warning',
   [AlertStyles.Info]: 'ngx-alert-info'
@@ -49,7 +49,7 @@ export class AlertService extends DialogService<AlertComponent> {
   private createDialog(options: DialogOptions, type: AlertTypes) {
     const subject = new Subject<{ type: string; data: any }>();
     const { title, content, longPress } = options;
-    const cssClass = ['ngx-alert-dialog', ClsMap[options.style], options.cssClass].join(' ');
+    const cssClass = ['ngx-alert-dialog', classMap[options.style], options.cssClass].join(' ');
 
     const component = this.create({
       title,
