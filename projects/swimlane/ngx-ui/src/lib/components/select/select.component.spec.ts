@@ -348,4 +348,13 @@ describe('SelectComponent', () => {
       expect(component.select.options.length).toBe(1);
     });
   });
+
+  describe('autosize', () => {
+    it('setting autosize adds class to component', () => {
+      component.autosize$.next(true);
+      fixture.detectChanges();
+      const select = fixture.nativeElement.querySelector('.ngx-select');
+      expect(select).toHaveClass('autosize');
+    });
+  });
 });
