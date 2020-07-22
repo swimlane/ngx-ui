@@ -2,6 +2,7 @@
 
 ## HEAD (Unreleased)
 
+- Feature: support `cssClass` in alert/config options
 - Feature: ngx-tip component
 - Feature: autosize input width
 - Feature: fill input style
