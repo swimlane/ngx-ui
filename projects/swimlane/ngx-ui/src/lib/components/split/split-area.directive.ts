@@ -24,6 +24,7 @@ export class SplitAreaDirective implements OnChanges {
   @Input() ngxSplitArea: string = DEFAULT_BASIS;
   @Input() minBasis: string;
   @Input() maxBasis: string;
+  @Input() shouldAdjustMaxMin = false;
 
   overflow: string = 'hidden';
   initialFlexParts: FlexParts;
@@ -32,6 +33,17 @@ export class SplitAreaDirective implements OnChanges {
   @HostBinding('style.flex')
   get flex() {
     return partsToStyle(this.currentFlexParts);
+  }
+
+  @HostBinding('style.max-width') get maxWidth(): string {
+    if (this.shouldAdjustMaxMin) {
+      return this.currentFlexParts[2];
+    }
+  }
+  @HostBinding('style.min-width') get minWidth(): string {
+    if (this.shouldAdjustMaxMin) {
+      return this.currentFlexParts[2];
+    }
   }
 
   constructor(private ref: ChangeDetectorRef) {}
@@ -53,6 +65,11 @@ export class SplitAreaDirective implements OnChanges {
 
   updateBasis(newBasis: string) {
     this.currentFlexParts[2] = newBasis;
-    this.ref.markForCheck();
+
+    if (this.shouldAdjustMaxMin) {
+      this.ref.detectChanges();
+    } else {
+      this.ref.markForCheck();
+    }
   }
 }

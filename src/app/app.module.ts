@@ -54,11 +54,13 @@ import { LayoutPageComponent } from './layout-page/layout-page.component';
 import { TablePageComponent } from './elements/table-page/table-page.component';
 import { TabsPageComponent } from './components/tabs-page/tabs-page.component';
 import { TagsPageComponent } from './elements/tags-page/tags-page.component';
+import { TipPageComponent } from './components/tip-page/tip-page.component';
 import { TogglePageComponent } from './forms/toggle-page/toggle-page.component';
 import { ToolbarPageComponent } from './components/toolbar-page/toolbar-page.component';
 import { TooltipPageComponent } from './dialogs/tooltip-page/tooltip-page.component';
 import { TreePageComponent } from './components/tree-page/tree-page.component';
 import { TypographyPageComponent } from './typography-page/typography-page.component';
+import { DrawerContainerExampleComponent } from './dialogs/drawer-page/drawer-container-example/drawer-container-example.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -99,6 +101,7 @@ const routes: Routes = [
   { path: 'table', component: TablePageComponent },
   { path: 'tabs', component: TabsPageComponent },
   { path: 'tags', component: TagsPageComponent },
+  { path: 'tip', component: TipPageComponent },
   { path: 'toggle', component: TogglePageComponent },
   { path: 'toolbar', component: ToolbarPageComponent },
   { path: 'tooltip', component: TooltipPageComponent },
@@ -148,11 +151,13 @@ const routes: Routes = [
     TablePageComponent,
     TabsPageComponent,
     TagsPageComponent,
+    TipPageComponent,
     TogglePageComponent,
     ToolbarPageComponent,
     TooltipPageComponent,
     TreePageComponent,
-    TypographyPageComponent
+    TypographyPageComponent,
+    DrawerContainerExampleComponent
   ],
   imports: [
     BrowserAnimationsModule,

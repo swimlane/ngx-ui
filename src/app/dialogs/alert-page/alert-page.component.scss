@@ -1,0 +1,10 @@
+.ngx-alert-dialog.alert,
+.ngx-alert-dialog.confirm {
+  .ngx-dialog-content.rainbows .ngx-dialog-header {
+    background-image: linear-gradient(to top left, violet, indigo, blue, green, yellow, orange, red);
+
+    h1 {
+      color: black;
+    }
+  }
+}

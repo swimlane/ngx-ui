@@ -15,6 +15,11 @@
     Warning
   </button>
 
+  <button type="button" class="btn"
+    (click)="alertService.alert({ title: 'Rainbows!!!', cssClass: 'rainbows' })">
+    Custom CSS
+  </button>
+
   <br />
   <br />
 
@@ -38,6 +43,11 @@
             type="button"
             (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Warning, content: 'Intrusion Happened!!!' })">
             Warning
+          </button>
+
+          <button type="button" class="btn"
+            (click)="alertService.alert({ title: 'Rainbows!!!', cssClass: 'rainbows' })">
+            Custom CSS
           </button>
         ]]>
       </ngx-codemirror>

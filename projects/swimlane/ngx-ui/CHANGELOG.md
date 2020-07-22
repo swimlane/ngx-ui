@@ -2,9 +2,13 @@
 
 ## HEAD (Unreleased)
 
+- Feature: support `cssClass` in alert/config options
+- Feature: ngx-tip component
 - Feature: autosize input width
 - Feature: fill input style
 - Feature: sm, md, lg input sizing
+- Bug: make context drawer compatible with components
+- Bug: fix ngx-drawer-content scrolling scss issue
 
 ## 29.1.0 (2020-06-29)
 
