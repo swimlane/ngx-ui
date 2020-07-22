@@ -64,8 +64,7 @@ $color-chip-text: #fff;
       color: $color-blue-grey-050;
     }
 
-    .ngx-select-input-list,
-    .ngx-select-placeholder {
+    .ngx-select-input-list {
       padding-left: 10px !important;
     }
 
@@ -123,8 +122,9 @@ $color-chip-text: #fff;
       }
     }
 
-    .ngx-select-label {
-      padding-left: 10px;
+    .ngx-select-label,
+    .ngx-select-placeholder {
+      padding-left: 10px !important;
       line-height: 34px;
     }
 
@@ -422,7 +422,6 @@ $color-chip-text: #fff;
       white-space: nowrap;
       text-overflow: ellipsis;
       max-width: 100%;
-      line-height: 34px;
     }
   }
 
