@@ -36,12 +36,13 @@
       <input
         #tagInput
         type="search"
-        class="ng-select-text-box"
+        class="ngx-select-text-box"
         autocomplete="off"
         autocorrect="off"
         spellcheck="off"
         (keyup)="onKeyUp($event)"
       />
+      <i [hidden]="!tagInput.value" class="ngx-icon ngx-x" (click)="tagInput.value = ''"></i>
     </li>
   </ul>
 </div>

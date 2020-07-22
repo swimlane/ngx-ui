@@ -262,19 +262,44 @@ $color-chip-text: #fff;
         cursor: text;
       }
 
-      .ng-select-text-box {
-        background-color: transparent;
-        border: none;
-        outline: none;
-        -webkit-appearance: none;
-        color: $color-input-text;
-        line-height: 20px;
-        display: inline-block;
-        height: 20px;
-        vertical-align: bottom;
+      .ngx-select-input-box-wrapper {
+        position: relative;
 
-        &:focus {
+        .ngx-select-text-box {
+          background-color: transparent;
+          border: none;
           outline: none;
+          -webkit-appearance: none;
+          color: $color-input-text;
+          line-height: 20px;
+          display: inline-block;
+          height: 20px;
+          vertical-align: bottom;
+
+          &:focus {
+            outline: none;
+          }
+
+          &::-webkit-search-decoration,
+          &::-webkit-search-cancel-button,
+          &::-webkit-search-results-button,
+          &::-webkit-search-results-decoration {
+            -webkit-appearance: none !important;
+          }
+        }
+
+        .ngx-x {
+          font-size: 9px;
+          top: 50%;
+          margin-top: -4.5px;
+          right: 10px;
+          color: $input-active-underline-fill;
+          z-index: 500;
+          cursor: pointer;
+
+          &:hover {
+            color: $color-blue-400;
+          }
         }
       }
     }
