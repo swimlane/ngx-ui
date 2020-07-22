@@ -132,6 +132,7 @@ $color-chip-text: #fff;
 
     &.tagging-selection:not(.active) .ngx-select-input-list.no-selections {
       position: absolute;
+      bottom: 0;
     }
   }
 

@@ -278,4 +278,32 @@ describe('SelectDropdownComponent', () => {
       expect(component.groups).toBeDefined();
     });
   });
+
+  describe('clearFilter', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(SelectDropdownComponent);
+      component = fixture.componentInstance;
+
+      component.options = [selectDropdownOptionMock(), selectDropdownOptionMock(), selectDropdownOptionMock()];
+      component.filterable = true;
+      component.tagging = false;
+
+      fixture.detectChanges();
+    });
+
+    it('should clear search', () => {
+      const testVal = 'test';
+      const filter = fixture.nativeElement.querySelector('.ngx-select-filter-input') as HTMLInputElement;
+      filter.value = testVal;
+      fixture.detectChanges();
+
+      expect(filter.value).toEqual(testVal);
+
+      component.clearFilter(filter);
+      fixture.detectChanges();
+
+      expect(component.filterQuery).toEqual('');
+      expect(filter.value).toEqual('');
+    });
+  });
 });
