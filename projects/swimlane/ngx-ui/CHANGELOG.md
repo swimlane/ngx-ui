@@ -9,6 +9,8 @@
 - Feature: sm, md, lg input sizing
 - Bug: make context drawer compatible with components
 - Bug: fix ngx-drawer-content scrolling scss issue
+- Feature: fill select style
+- Enhancement: select dropdown styling
 
 ## 29.1.0 (2020-06-29)
 

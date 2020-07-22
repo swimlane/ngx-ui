@@ -162,6 +162,7 @@ export class SelectDropdownComponent implements AfterViewInit {
 
     this.filterQuery = '';
     this.updatefilterQueryIsInOptions();
+    this.cdr.markForCheck();
   }
 
   onInputKeyUp(event: KeyboardEvent): void {
