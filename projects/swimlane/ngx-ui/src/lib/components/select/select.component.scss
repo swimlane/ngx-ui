@@ -114,18 +114,18 @@ $color-chip-text: #fff;
       }
     }
 
+    .ngx-select-label,
+    .ngx-select-placeholder {
+      padding-left: 10px !important;
+      line-height: 34px;
+    }
+
     &.active-selections,
     &.has-placeholder,
     &.active {
       .ngx-select-label {
         padding: 0 !important;
       }
-    }
-
-    .ngx-select-label,
-    .ngx-select-placeholder {
-      padding-left: 10px !important;
-      line-height: 34px;
     }
 
     .ngx-select-input-box-wrapper {
