@@ -276,15 +276,15 @@ $color-chip-text: #fff;
           height: 20px;
           vertical-align: bottom;
 
-          &:focus {
-            outline: none;
-          }
-
           &::-webkit-search-decoration,
           &::-webkit-search-cancel-button,
           &::-webkit-search-results-button,
           &::-webkit-search-results-decoration {
             -webkit-appearance: none !important;
+          }
+
+          &:focus {
+            outline: none;
           }
         }
 
