@@ -52,7 +52,8 @@ const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
     '[class.disabled]': 'disabled',
     '[class.active]': 'dropdownActive',
     '[class.active-selections]': 'hasSelections',
-    '[class.has-placeholder]': 'hasPlaceholder'
+    '[class.has-placeholder]': 'hasPlaceholder',
+    '[class.autosize]': 'autosize'
   },
   providers: [SELECT_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
@@ -97,6 +98,14 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   }
   set autofocus(autofocus) {
     this._autofocus = coerceBooleanProperty(autofocus);
+  }
+
+  @Input()
+  get autosize() {
+    return this._autosize;
+  }
+  set autosize(autosize) {
+    this._autosize = coerceBooleanProperty(autosize);
   }
 
   @Input()
@@ -272,6 +281,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   private _maxSelections?: number;
 
   private _autofocus: boolean = false;
+  private _autosize: boolean = false;
   private _allowClear: boolean = true;
   private _allowAdditions: boolean = false;
   private _disableDropdown: boolean = false;
