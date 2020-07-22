@@ -42,15 +42,10 @@
           ></i>
         </li>
         <li
-          *ngIf="filterQuery && group.options?.length && !filterQueryIsInOptions"
+          *ngIf="allowAdditions && filterQuery && group.options?.length && !filterQueryIsInOptions"
           class="ngx-select-empty-placeholder"
         >
-          <a
-            *ngIf="allowAdditions"
-            href="#"
-            class="ngx-select-add-current-value"
-            (click)="onAddClicked($event, filterQuery)"
-          >
+          <a href="#" class="ngx-select-add-current-value" (click)="onAddClicked($event, filterQuery)">
             <span *ngIf="isNotTemplate; else tpl" [innerHTML]="allowAdditionsText"> </span>
             <ng-template #tpl>
               <ng-container *ngTemplateOutlet="allowAdditionsText"></ng-container>

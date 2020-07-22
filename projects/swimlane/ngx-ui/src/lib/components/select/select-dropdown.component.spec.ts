@@ -1,10 +1,11 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, flush, fakeAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, ElementRef } from '@angular/core';
 import * as faker from 'faker';
 
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { SelectDropdownComponent } from './select-dropdown.component';
 import { selectDropdownOptionMock } from './select-dropdown-option.mock';
+import { By } from '@angular/platform-browser';
 
 describe('SelectDropdownComponent', () => {
   let component: SelectDropdownComponent;
@@ -163,6 +164,85 @@ describe('SelectDropdownComponent', () => {
       component.onInputKeyUp(event);
       expect(component.filterQuery).toEqual('');
     });
+
+    it('should call updatefilterQueryIsInOptions', fakeAsync(() => {
+      const spy = spyOnProperty(component, 'updatefilterQueryIsInOptions').and.callThrough();
+      component.onInputKeyUp(event);
+      flush();
+      fixture.detectChanges();
+      expect(spy).toHaveBeenCalled();
+    }));
+
+    it('should set filterQueryIsInOptions to false if filterQuery does not equal any of the options name property', fakeAsync(() => {
+      component.onInputKeyUp(event);
+      flush();
+      fixture.detectChanges();
+      expect(component.filterQueryIsInOptions).toBeFalsy();
+    }));
+
+    it('should set filterQueryIsInOptions to true if filterQuery equals one of the options name property', fakeAsync(() => {
+      event.target.value = component.groups[0].options[0].option.name;
+      component.onInputKeyUp(event);
+      flush();
+      fixture.detectChanges();
+      expect(component.filterQueryIsInOptions).toBeTruthy();
+    }));
+
+    it('should display Add Value button when allow additions is true and there is at least still one option on dropdown', fakeAsync(() => {
+      event.target.value = component.groups[0].options[0].option.name.substring(0, 2);
+      component.allowAdditions = true;
+      component.filterable = true;
+
+      component.onInputKeyUp(event);
+      flush();
+      fixture.detectChanges();
+      const allowAdditionsButton = fixture.debugElement.queryAll(By.css('.ngx-select-empty-placeholder'));
+      expect(allowAdditionsButton[0].nativeElement).toBeDefined();
+      expect(allowAdditionsButton[0].nativeElement.innerText).toBe('Add Value');
+    }));
+
+    it('should not display Add Value button when allow additions is false', fakeAsync(() => {
+      event.target.value = component.groups[0].options[0].option.name.substring(0, 2);
+      component.allowAdditions = false;
+      component.filterable = true;
+
+      component.onInputKeyUp(event);
+      flush();
+      fixture.detectChanges();
+      const allowAdditionsButton = fixture.debugElement.queryAll(By.css('.ngx-select-empty-placeholder'));
+      expect(allowAdditionsButton.length).toEqual(0);
+    }));
+
+    it('should display the filterEmptyPlaceholder text and Add Value button when there are no options', fakeAsync(() => {
+      event.target.value = `${component.groups[0].options[0].option.name} + dummyText`;
+      component.allowAdditions = true;
+      component.filterable = true;
+      component.filterEmptyPlaceholder = 'No Matches';
+
+      component.onInputKeyUp(event);
+      flush();
+      fixture.detectChanges();
+      const allowAdditionsButton = fixture.debugElement.queryAll(By.css('.ngx-select-empty-placeholder'));
+
+      expect(allowAdditionsButton.length).toEqual(1);
+      expect(allowAdditionsButton[0].nativeElement.children[0].innerText).toEqual('No Matches');
+      expect(allowAdditionsButton[0].nativeElement.children[1].innerText).toEqual('Add Value');
+    }));
+
+    it('should only display the filterEmptyPlaceholder text when there are no options and allowAddition is false', fakeAsync(() => {
+      event.target.value = `${component.groups[0].options[0].option.name} + dummyText`;
+      component.allowAdditions = false;
+      component.filterable = true;
+      component.filterEmptyPlaceholder = 'No Matches';
+
+      component.onInputKeyUp(event);
+      flush();
+      fixture.detectChanges();
+      const allowAdditionsButton = fixture.debugElement.queryAll(By.css('.ngx-select-empty-placeholder'));
+
+      expect(allowAdditionsButton.length).toEqual(1);
+      expect(allowAdditionsButton[0].nativeElement.children.length).toEqual(1);
+    }));
   });
 
   describe('onOptionKeyDown', () => {
