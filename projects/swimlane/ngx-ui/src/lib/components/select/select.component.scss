@@ -64,6 +64,10 @@ $color-chip-text: #fff;
       color: $color-blue-grey-050;
     }
 
+    .ngx-select-input-list {
+      padding-left: 10px !important;
+    }
+
     &.tagging-selection,
     &.multi-selection {
       padding-top: 1px !important;
@@ -384,7 +388,7 @@ $color-chip-text: #fff;
     }
 
     .ngx-select-input-list {
-      padding: 1px 40px 1px 10px;
+      padding: 0 40px 0 0;
       color: $color-input-text;
       min-height: 1.4em;
       max-width: 100%;
