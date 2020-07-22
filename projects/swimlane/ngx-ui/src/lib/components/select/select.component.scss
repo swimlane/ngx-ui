@@ -64,7 +64,8 @@ $color-chip-text: #fff;
       color: $color-blue-grey-050;
     }
 
-    .ngx-select-input-list {
+    .ngx-select-input-list,
+    .ngx-select-placeholder {
       padding-left: 10px !important;
     }
 
@@ -416,7 +417,7 @@ $color-chip-text: #fff;
       display: block;
       cursor: pointer;
       color: $color-placeholder-text;
-      padding: 0 25px 0 10px;
+      padding: 0 25px 0 0;
       overflow-x: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
