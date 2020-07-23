@@ -119,6 +119,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   }
 
   groups: any[];
+  filterQueryIsInOptions: boolean = false;
 
   private _options: SelectDropdownOption[];
   private _groupBy: string;
@@ -128,7 +129,6 @@ export class SelectDropdownComponent implements AfterViewInit {
   private _allowAdditions: boolean;
   private _filterable: boolean;
   private _filterCaseSensitive = false;
-  filterQueryIsInOptions: boolean = false;
 
   constructor(private readonly elementRef: ElementRef, private readonly cdr: ChangeDetectorRef) {}
 
@@ -153,7 +153,15 @@ export class SelectDropdownComponent implements AfterViewInit {
 
   @debounceable(500)
   updatefilterQueryIsInOptions() {
-    this.filterQueryIsInOptions = this.options.some(o => o.name === this.filterQuery);
+    this.filterQueryIsInOptions = this.options.some(o => o.name.toLowerCase().includes(this.filterQuery.toLowerCase()));
+    this.cdr.markForCheck();
+  }
+
+  clearFilter(filterInput: HTMLInputElement) {
+    filterInput.value = '';
+
+    this.filterQuery = '';
+    this.updatefilterQueryIsInOptions();
     this.cdr.markForCheck();
   }
 

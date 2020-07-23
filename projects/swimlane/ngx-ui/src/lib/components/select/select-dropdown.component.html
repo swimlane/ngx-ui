@@ -1,5 +1,6 @@
 <div>
   <div class="ngx-select-filter" *ngIf="filterable && !tagging">
+    <i class="ngx-icon ngx-search"></i>
     <input
       #filterInput
       type="search"
@@ -11,6 +12,7 @@
       [placeholder]="filterPlaceholder"
       (keyup)="onInputKeyUp($event)"
     />
+    <i [hidden]="!filterInput.value" class="ngx-icon ngx-x" (click)="clearFilter(filterInput)"></i>
   </div>
   <ul class="vertical-list ngx-select-dropdown-options">
     <li *ngFor="let group of groups" class="ngx-select-option-group">
@@ -34,6 +36,10 @@
           >
           </ng-template>
           <span *ngIf="!kv.option.optionTemplate" [innerHTML]="kv.option.name"> </span>
+          <i
+            *ngIf="!kv.option.optionTemplate && isSelected(kv.option)"
+            class="ngx-icon ngx-check ngx-select-dropdown--selected-option"
+          ></i>
         </li>
         <li
           *ngIf="allowAdditions && filterQuery && group.options?.length && !filterQueryIsInOptions"
