@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+## 29.2.0 (2020-07-23)
+
 - Feature: support `cssClass` in alert/config options
 - Feature: ngx-tip component
 - Feature: autosize input width
