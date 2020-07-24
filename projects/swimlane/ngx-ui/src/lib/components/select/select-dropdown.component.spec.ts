@@ -189,6 +189,19 @@ describe('SelectDropdownComponent', () => {
       expect(component.filterQueryIsInOptions).toBeTruthy();
     }));
 
+    it('should display Add Value button when allow additions is true and there is at least still one option on dropdown', fakeAsync(() => {
+      event.target.value = component.groups[0].options[0].option.name.substring(0, 2);
+      component.allowAdditions = true;
+      component.filterable = true;
+
+      component.onInputKeyUp(event);
+      flush();
+      fixture.detectChanges();
+      const allowAdditionsButton = fixture.debugElement.queryAll(By.css('.ngx-select-empty-placeholder'));
+      expect(allowAdditionsButton[0].nativeElement).toBeDefined();
+      expect(allowAdditionsButton[0].nativeElement.innerText).toBe('Add Value');
+    }));
+
     it('should not display Add Value button when allow additions is false', fakeAsync(() => {
       event.target.value = component.groups[0].options[0].option.name.substring(0, 2);
       component.allowAdditions = false;
