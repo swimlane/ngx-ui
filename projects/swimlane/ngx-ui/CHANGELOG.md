@@ -2,6 +2,8 @@
 
 ## HEAD (Unreleased)
 
+## 29.2.1 (2020-07-24)
+
 - Bug: fix ngx-input/ngx-select host class syntax for prod builds
 
 ## 29.2.0 (2020-07-23)
