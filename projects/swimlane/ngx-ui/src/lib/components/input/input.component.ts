@@ -55,7 +55,11 @@ const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
   styleUrls: ['./input.component.scss'],
   host: {
     class: 'ngx-input',
-    '[class]': '[appearance, size]',
+    '[class.legacy]': 'appearance === "legacy"',
+    '[class.fill]': 'appearance === "fill"',
+    '[class.sm]': 'size === "sm"',
+    '[class.md]': 'size === "md"',
+    '[class.lg]': 'size === "lg"',
     '[class.focused]': 'focused',
     '[class.autosize]': 'autosize'
   },
