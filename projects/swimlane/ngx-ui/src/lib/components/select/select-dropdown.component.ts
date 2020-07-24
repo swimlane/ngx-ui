@@ -153,7 +153,7 @@ export class SelectDropdownComponent implements AfterViewInit {
 
   @debounceable(500)
   updatefilterQueryIsInOptions() {
-    this.filterQueryIsInOptions = this.options.some(o => o.name.toLowerCase().includes(this.filterQuery.toLowerCase()));
+    this.filterQueryIsInOptions = this.options.some(o => o.name.toLowerCase() === this.filterQuery.toLowerCase());
     this.cdr.markForCheck();
   }
 
