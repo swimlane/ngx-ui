@@ -13,6 +13,7 @@
 - Bug: fix ngx-drawer-content scrolling scss issue
 - Feature: fill select style
 - Enhancement: select dropdown styling
+- Bug: fix ngx-input host class syntax for prod builds
 
 ## 29.1.0 (2020-06-29)
 
