@@ -3,6 +3,7 @@
 ## HEAD (Unreleased)
 
 - Bug: fix ngx-input/ngx-select host class syntax for prod builds
+- Bug: fix navbar background color to be solid and match UX
 
 ## 29.2.0 (2020-07-23)
 
