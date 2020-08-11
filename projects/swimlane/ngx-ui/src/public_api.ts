@@ -220,6 +220,10 @@ export * from './lib/components/tree/tree.component';
 export * from './lib/components/tree/tree-node.component';
 export * from './lib/components/tree/tree-node.model';
 
+export * from './lib/components/tip/tip.module';
+export * from './lib/components/tip/tip.component';
+export * from './lib/components/tip/tip-status.enum';
+
 // utils
 export * from './lib/utils/debounce/debounce.util';
 
