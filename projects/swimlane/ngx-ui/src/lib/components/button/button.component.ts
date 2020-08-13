@@ -73,7 +73,7 @@ export class ButtonComponent implements OnInit, OnChanges {
   updatePromise() {
     if (this.promise) {
       this.state = ButtonState.InProgress;
-      this.updateState();
+
       return this.promise
         .then(() => {
           this.state = ButtonState.Success;
