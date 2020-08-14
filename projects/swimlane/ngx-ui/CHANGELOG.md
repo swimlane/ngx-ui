@@ -2,6 +2,11 @@
 
 ## HEAD (Unreleased)
 
+## 29.2.3 (2020-08-14)
+
+- Fix: refactor ngx-select fill css to use proper css ordering and not rely on important keyword
+- Bug: fix ngx-button issue related to the promise input
+
 ## 29.2.2 (2020-08-11)
 
 - Fix: Export TipComponent and TipModule
@@ -10,7 +15,6 @@
 
 - Bug: fix ngx-input/ngx-select host class syntax for prod builds
 - Bug: fix navbar background color to be solid and match UX
-- Fix: refactor ngx-select fill css to use proper css ordering and not rely on important keyword
 
 ## 29.2.0 (2020-07-23)
 
