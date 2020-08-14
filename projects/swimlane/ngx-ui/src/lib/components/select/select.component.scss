@@ -503,18 +503,6 @@ $color-chip-text: #fff;
     }
   }
 
-  &.active:not(.ng-invalid) {
-    .ngx-select-label,
-    .ngx-select-caret,
-    &.single-selection .ngx-select-clear {
-      color: $input-active-underline-fill;
-
-      &:hover {
-        color: $color-blue-400;
-      }
-    }
-  }
-
   &.autosize,
   &.fill {
     .ngx-select-label {
@@ -592,6 +580,18 @@ $color-chip-text: #fff;
     &.tagging-selection:not(.active) .ngx-select-input-list.no-selections {
       position: absolute;
       bottom: 0;
+    }
+  }
+
+  &.active:not(.ng-invalid) {
+    .ngx-select-label,
+    .ngx-select-caret,
+    &.single-selection .ngx-select-clear {
+      color: $input-active-underline-fill;
+
+      &:hover {
+        color: $color-blue-400;
+      }
     }
   }
 
