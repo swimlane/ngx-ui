@@ -45,6 +45,24 @@
       <i [hidden]="!tagInput.value" class="ngx-icon ngx-x" (click)="tagInput.value = ''"></i>
     </li>
   </ul>
+  <span
+    *ngIf="allowClear && !multiple && !tagging && selectedOptions?.length"
+    title="Clear Selections"
+    class="ngx-select-clear icon-x"
+    (click)="selection.emit([])"
+  >
+  </span>
+  <span
+    *ngIf="caretVisible"
+    class="ngx-select-caret icon-arrow-down"
+    [class.icon-arrow-down]="!selectCaret"
+    (click)="toggle.emit()"
+  >
+    <span *ngIf="isNotTemplate; else tpl" [innerHTML]="selectCaret"> </span>
+    <ng-template #tpl>
+      <ng-container *ngTemplateOutlet="selectCaret"></ng-container>
+    </ng-template>
+  </span>
 </div>
 <div class="ngx-select-input-underline">
   <div class="underline-fill"></div>
@@ -53,21 +71,3 @@
   <span *ngIf="hint" [innerHTML]="hint"></span>
   <ng-content select="ngx-input-hint"></ng-content>
 </div>
-<span
-  *ngIf="allowClear && !multiple && !tagging && selectedOptions?.length"
-  title="Clear Selections"
-  class="ngx-select-clear icon-x"
-  (click)="selection.emit([])"
->
-</span>
-<span
-  *ngIf="caretVisible"
-  class="ngx-select-caret icon-arrow-down"
-  [class.icon-arrow-down]="!selectCaret"
-  (click)="toggle.emit()"
->
-  <span *ngIf="isNotTemplate; else tpl" [innerHTML]="selectCaret"> </span>
-  <ng-template #tpl>
-    <ng-container *ngTemplateOutlet="selectCaret"></ng-container>
-  </ng-template>
-</span>
