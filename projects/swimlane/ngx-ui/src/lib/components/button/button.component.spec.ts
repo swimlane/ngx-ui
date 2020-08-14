@@ -59,7 +59,7 @@ describe('ButtonComponent', () => {
 
       component.updatePromise().finally(() => {
         expect(component.state).toBe(ButtonState.Success);
-        expect(spy).toHaveBeenCalledTimes(2);
+        expect(spy).toHaveBeenCalledTimes(1);
         done();
       });
     });
@@ -72,7 +72,7 @@ describe('ButtonComponent', () => {
 
       component.updatePromise().finally(() => {
         expect(component.state).toBe(ButtonState.Fail);
-        expect(spy).toHaveBeenCalledTimes(2);
+        expect(spy).toHaveBeenCalledTimes(1);
         done();
       });
     });
