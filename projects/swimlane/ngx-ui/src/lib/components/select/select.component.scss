@@ -564,7 +564,10 @@ $color-chip-text: #fff;
       z-index: 500;
     }
 
-    .ngx-select-label,
+    .ngx-select-label {
+      padding-left: 10px;
+    }
+
     .ngx-select-placeholder {
       padding-left: 10px;
     }
