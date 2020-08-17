@@ -240,7 +240,7 @@ $color-chip-text: #fff;
 
     .ngx-select-input-box {
       background: transparent;
-      border: none;
+      outline: none;
       margin-bottom: 0;
       padding-left: 0;
       width: 100%;
@@ -263,6 +263,12 @@ $color-chip-text: #fff;
         width: 0;
         height: 2px;
         margin: 0 auto;
+      }
+    }
+
+    .ngx-select-input-box:focus + .ngx-select-input-underline {
+      .underline-fill {
+        width: 100%;
       }
     }
 
@@ -566,6 +572,7 @@ $color-chip-text: #fff;
 
     .ngx-select-label {
       padding-left: 10px;
+      line-height: 0;
     }
 
     .ngx-select-placeholder {
@@ -577,6 +584,7 @@ $color-chip-text: #fff;
     &.active {
       .ngx-select-label {
         padding: 0;
+        line-height: 30px;
       }
     }
 

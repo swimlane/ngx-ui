@@ -180,6 +180,11 @@ export class SelectInputComponent implements AfterViewInit {
     }
   }
 
+  onToggle(event: Event): void {
+    event.stopPropagation();
+    this.toggle.emit();
+  }
+
   onOptionRemove(event: Event, option: SelectDropdownOption): void {
     event.stopPropagation();
 

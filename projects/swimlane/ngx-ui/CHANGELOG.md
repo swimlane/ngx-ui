@@ -2,6 +2,9 @@
 
 ## HEAD (Unreleased)
 
+- enhancement: update ngx-select focus underline to be clearer. clicking the input box now also toggles dropdown
+- Bug: fix ngx-select so that clicking the caret closes the dropdown
+
 ## 29.2.3 (2020-08-14)
 
 - Fix: refactor ngx-select fill css to use proper css ordering and not rely on important keyword
