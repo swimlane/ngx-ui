@@ -5,7 +5,8 @@ import {
   ViewEncapsulation,
   EventEmitter,
   Output,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  SimpleChanges
 } from '@angular/core';
 import { JsonEditorNode } from '../../json-editor-node';
 
@@ -49,20 +50,23 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() indentationArray: number[];
 
+  @Input() showKnownProperties = false;
+
   @Output() updatePropertyNameEvent = new EventEmitter<{ id: string | number; name: string }>();
 
   requiredIndicator: SafeHtml;
+
+  nextLevel: number = 0;
 
   constructor(public dialogMngr: DialogService, private domSanitizer: DomSanitizer) {
     super(dialogMngr);
     this.requiredIndicator = this.domSanitizer.bypassSecurityTrustHtml(requiredIndicatorIcon);
   }
 
-  ngOnInit() {
-    if (this.level === undefined) {
-      this.level = this.hideRoot ? -1 : 0;
-    } else {
-      this.level += 1;
+  ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+    if ('level' in changes || 'hideRoot' in changes) {
+      this.nextLevel = this.level === undefined ? (this.hideRoot ? -1 : 0) : this.level + 1;
     }
   }
 

@@ -20,9 +20,7 @@ describe('ngx-ui demo', () => {
         });
 
         it('has a label', () => {
-          cy.get('@CUT')
-            .find('.ngx-input-label')
-            .contains('Name');
+          cy.get('@CUT').find('.ngx-input-label').contains('Name');
         });
 
         it('has no placeholder', () => {
@@ -36,23 +34,15 @@ describe('ngx-ui demo', () => {
         it('enters text', () => {
           const text = ' hello world';
 
-          cy.get('@CUT')
-            .find('input')
-            .type(text)
-            .blur();
+          cy.get('@CUT').find('input').type(text).blur();
 
-          cy.get('@CUT')
-            .find('input')
-            .should('have.prop', 'value', `A Value${text}`);
+          cy.get('@CUT').find('input').should('have.prop', 'value', `A Value${text}`);
           cy.contains(`Output: "A Value${text}"`);
         });
 
         it('underlines active input', () => {
           // reset active input box
-          cy.get('@CUT')
-            .find('input')
-            .click()
-            .blur();
+          cy.get('@CUT').find('input').click().blur();
 
           cy.get('@CUT')
             .find('.ngx-input-underline .underline-fill')
@@ -63,9 +53,7 @@ describe('ngx-ui demo', () => {
 
           // when we click on the input box
           // it underlines it
-          cy.get('@CUT')
-            .find('input')
-            .click();
+          cy.get('@CUT').find('input').click();
 
           cy.get('@CUT')
             .find('.ngx-input-underline .underline-fill')
@@ -82,23 +70,16 @@ describe('ngx-ui demo', () => {
         });
 
         it('adds a placeholder', () => {
-          cy.get('@CUT')
-            .find('input')
-            .should('have.attr', 'placeholder', 'Enter your first and last name');
+          cy.get('@CUT').find('input').should('have.attr', 'placeholder', 'Enter your first and last name');
         });
 
         it('has no label', () => {
-          cy.get('@CUT')
-            .find('ngx-input-label')
-            .should('have.length', 0);
+          cy.get('@CUT').find('ngx-input-label').should('have.length', 0);
         });
 
         it('underlines active input', () => {
           // reset active input box
-          cy.get('@CUT')
-            .find('input')
-            .click()
-            .blur();
+          cy.get('@CUT').find('input').click().blur();
 
           cy.get('@CUT')
             .find('.ngx-input-underline .underline-fill')
@@ -109,9 +90,7 @@ describe('ngx-ui demo', () => {
 
           // when we click on the input box
           // it underlines it
-          cy.get('@CUT')
-            .find('input')
-            .click();
+          cy.get('@CUT').find('input').click();
 
           cy.get('@CUT')
             .find('.ngx-input-underline .underline-fill')
@@ -128,9 +107,7 @@ describe('ngx-ui demo', () => {
         });
 
         it('has a label', () => {
-          cy.get('@CUT')
-            .find('.ngx-input-label')
-            .contains('Prefix Suffix Input');
+          cy.get('@CUT').find('.ngx-input-label').contains('Prefix Suffix Input');
         });
 
         it('have no placeholder', () => {
@@ -142,9 +119,7 @@ describe('ngx-ui demo', () => {
         });
 
         it('adds a prefix', () => {
-          cy.get('@CUT')
-            .find('ngx-input-prefix i')
-            .should('have.class', 'icon-add-new');
+          cy.get('@CUT').find('ngx-input-prefix i').should('have.class', 'icon-add-new');
         });
 
         it('adds a suffix', () => {
@@ -158,9 +133,7 @@ describe('ngx-ui demo', () => {
         });
 
         it('has a label', () => {
-          cy.get('@CUT')
-            .find('.ngx-input-label')
-            .contains('Disabled Example');
+          cy.get('@CUT').find('.ngx-input-label').contains('Disabled Example');
         });
 
         it('has no placeholder', () => {
@@ -172,15 +145,11 @@ describe('ngx-ui demo', () => {
         });
 
         it('has a value', () => {
-          cy.get('@CUT')
-            .find('input')
-            .should('have.prop', 'value', 'Disabled value');
+          cy.get('@CUT').find('input').should('have.prop', 'value', 'Disabled value');
         });
 
         it('should be disabled', () => {
-          cy.get('@CUT')
-            .find('input')
-            .should('be.disabled');
+          cy.get('@CUT').find('input').should('be.disabled');
         });
       });
 
@@ -190,9 +159,7 @@ describe('ngx-ui demo', () => {
         });
 
         it('has a label with asterisk', () => {
-          cy.get('@CUT')
-            .find('.ngx-input-label')
-            .contains('Required Input Example Of The Day *');
+          cy.get('@CUT').find('.ngx-input-label').contains('Required Input Example Of The Day *');
         });
 
         it('has no placeholder', () => {
@@ -204,9 +171,7 @@ describe('ngx-ui demo', () => {
         });
 
         it('should be required', () => {
-          cy.get('@CUT')
-            .find('input')
-            .should('have.attr', 'required');
+          cy.get('@CUT').find('input').should('have.attr', 'required');
         });
       });
 
@@ -216,9 +181,7 @@ describe('ngx-ui demo', () => {
         });
 
         it('has a label', () => {
-          cy.get('@CUT')
-            .find('.ngx-input-label')
-            .contains('Default value');
+          cy.get('@CUT').find('.ngx-input-label').contains('Default value');
         });
 
         it('has no placeholder', () => {
@@ -230,9 +193,7 @@ describe('ngx-ui demo', () => {
         });
 
         it('should be required', () => {
-          cy.get('@CUT')
-            .find('input')
-            .should('have.prop', 'value', 'Defaulted!');
+          cy.get('@CUT').find('input').should('have.prop', 'value', 'Defaulted!');
         });
       });
 
@@ -242,9 +203,7 @@ describe('ngx-ui demo', () => {
         });
 
         it('has a label', () => {
-          cy.get('@CUT')
-            .find('.ngx-input-label')
-            .contains('Password *');
+          cy.get('@CUT').find('.ngx-input-label').contains('Password *');
         });
 
         it('has no placeholder', () => {
@@ -256,10 +215,7 @@ describe('ngx-ui demo', () => {
         });
 
         it('should have a password ', () => {
-          cy.get('@CUT')
-            .find('input')
-            .first()
-            .should('have.attr', 'type', 'password');
+          cy.get('@CUT').find('input').first().should('have.attr', 'type', 'password');
         });
 
         it('should allow input', () => {
@@ -269,44 +225,23 @@ describe('ngx-ui demo', () => {
               expect($el.prop('value')).to.equal('');
             });
 
-          cy.get('@CUT')
-            .find('input')
-            .last()
-            .should('be.hidden');
+          cy.get('@CUT').find('input').last().should('be.hidden');
 
           const text = '>vQ9~4W$%ag!ACe$';
 
-          cy.get('@CUT')
-            .find('input')
-            .first()
-            .type(text)
-            .blur();
+          cy.get('@CUT').find('input').first().type(text).blur();
 
-          cy.get('@CUT')
-            .find('input')
-            .first()
-            .should('have.prop', 'value', text);
+          cy.get('@CUT').find('input').first().should('have.prop', 'value', text);
 
-          cy.get('@CUT')
-            .find('input')
-            .last()
-            .should('have.prop', 'value', text);
+          cy.get('@CUT').find('input').last().should('have.prop', 'value', text);
         });
 
         it('should toggle password', () => {
-          cy.get('@CUT')
-            .find('input')
-            .first()
-            .should('have.attr', 'type', 'password');
+          cy.get('@CUT').find('input').first().should('have.attr', 'type', 'password');
 
-          cy.get('@CUT')
-            .find('.icon-eye')
-            .click();
+          cy.get('@CUT').find('.icon-eye').click();
 
-          cy.get('@CUT')
-            .find('input')
-            .first()
-            .should('have.attr', 'type', 'text');
+          cy.get('@CUT').find('input').first().should('have.attr', 'type', 'text');
         });
       });
     });
@@ -322,9 +257,7 @@ describe('ngx-ui demo', () => {
 
       it('Shows overlay', () => {
         cy.contains('Show Overlay').click();
-        cy.contains(overlayMessage)
-          .should('be.visible')
-          .click();
+        cy.contains(overlayMessage).should('be.visible').click();
         cy.contains(overlayMessage).should('not.be.visible');
       });
 
@@ -335,12 +268,10 @@ describe('ngx-ui demo', () => {
         const message = 'Your browser is too small';
         cy.contains(message).should('be.visible');
 
-        cy.viewport(1000, 600);
+        cy.viewport(1000, 800);
         cy.contains(message).should('not.be.visible');
 
-        cy.contains(overlayMessage)
-          .should('be.visible')
-          .click();
+        cy.contains(overlayMessage).should('be.visible').click();
         cy.contains(overlayMessage).should('not.be.visible');
       });
     });

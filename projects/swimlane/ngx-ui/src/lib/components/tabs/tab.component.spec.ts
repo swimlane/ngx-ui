@@ -10,7 +10,10 @@ describe('TabComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [TabComponent],
-      providers: [{ provide: ElementRef, useValue: elementRefStub }, { provide: Renderer2, useValue: renderer2Stub }]
+      providers: [
+        { provide: ElementRef, useValue: elementRefStub },
+        { provide: Renderer2, useValue: renderer2Stub }
+      ]
     });
     fixture = TestBed.createComponent(TabComponent);
     component = fixture.componentInstance;

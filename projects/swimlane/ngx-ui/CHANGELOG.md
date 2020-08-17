@@ -1,6 +1,112 @@
 # CHANGELOG
 
-## HEAD (Unreleased)
+## 29.3.0 (2020-08-17)
+
+- enhancement: update ngx-select focus underline to be clearer. clicking the input box now also toggles dropdown
+- Bug: fix ngx-select so that clicking the caret closes the dropdown
+
+## 29.2.3 (2020-08-14)
+
+- Fix: refactor ngx-select fill css to use proper css ordering and not rely on important keyword
+- Bug: fix ngx-button issue related to the promise input
+
+## 29.2.2 (2020-08-11)
+
+- Fix: Export TipComponent and TipModule
+
+## 29.2.1 (2020-07-24)
+
+- Bug: fix ngx-input/ngx-select host class syntax for prod builds
+- Bug: fix navbar background color to be solid and match UX
+
+## 29.2.0 (2020-07-23)
+
+- Feature: support `cssClass` in alert/config options
+- Feature: ngx-tip component
+- Feature: autosize input width
+- Feature: fill input style
+- Feature: sm, md, lg input sizing
+- Bug: make context drawer compatible with components
+- Bug: fix ngx-drawer-content scrolling scss issue
+- Feature: fill select style
+- Enhancement: select dropdown styling
+
+## 29.1.0 (2020-06-29)
+
+- Feature: Show step labels in horizontal stepper
+- Bug: Make `SplitDirective#resize` public again
+
+## 29.0.0 (2020-06-15)
+
+- Breaking: `ngxSplit` directives no longer require, nor support, `@angular/flex-layout` directives
+- Enhancement: Remove @angular/flex-layout
+- Enhancement: Added `ngx-flex` classes for easy flex layouts
+
+## 28.7.0 (2020-06-15)
+
+- Feature: allow showing all object properties by defualt
+- Feature: Source Sans Pro fonts now defined with `font-display: swap` for better UX
+- Fix: Text inputs in flat JSON editor now trigger validation on change.
+- Fix: various alignment issues in flat JSON editor
+
+## 28.6.3 (2020-06-04)
+
+- Fix: resize-overlay component css leak issues
+- Fix: Allow add new value on selects when filter query matches some options (#451)
+
+## 28.6.2 (2020-05-29)
+
+- Fix: errors in flat JSON editor not being updated on changes
+
+## 28.6.1 (2020-05-29)
+
+- Feature: support dynamic `hideRoot` inputs
+- Fix: required icon not showing for top level when `hideRoot` is true
+
+## 28.6.0 (2020-05-07)
+
+- Feature: New ngx-navbar component (#437)
+- Fix: Update tab buttons when disabled input changes on ngx-tab (#438, fixes #436)
+- Fix: allow null values from numeric ngx-inputs (#440)
+- Fix: ngx-select Set touched value inside onTouchedCallback (#441)
+
+## 28.5.7 (2020-04-24)
+
+- Fix: Remove `HTTPClientModule` from `IconModule` (See angular/angular#20575 for details)
+
+## 28.5.6 (2020-04-23)
+
+- Fix: recursive tree expand and collpase (#434)
+- Update public_api.ts (#433)
+
+## 28.5.5 (2020-04-21)
+
+- Chore: Update angular to 9.1.2 (#431)
+- Support tabindex on select inputs (#429)
+
+## 28.5.4 (2020-04-20)
+
+- Fix ngx-select not registering onTouched events (#427)
+
+## 28.5.3 (2020-04-14)
+
+- Chore: Update dependecies
+- Fix nag animation (#423)
+- Allow side effects to fix JSON tree (#424)
+
+## 28.5.2 (2020-04-02)
+
+- Export utils (#419)
+
+## 28.5.1 (2020-04-01)
+
+- Bugfix/remove-barrels (#416)
+- ngx-select bug: do not make it invalid when untouched (#407)
+
+## 28.5.0 (2020-03-20)
+
+- Added automation and automation-related icons #415
+  (#413)
 
 ## 28.4.3 (2020-03-19)
 
@@ -280,7 +386,7 @@
 
 ## 22.0.1 (2018-11-01)
 
-- Fix: Remove `HTTPClientModule` from `IconModule` (#204)
+- Fix: Remove `HTTPClientModule` from `IconModule` (#205)
 
 ## 22.0.0 (2018-10-29)
 

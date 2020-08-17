@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { KeyboardKeys } from '../../enums';
+import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { SelectComponentFixture } from './select.component.fixture';
 import { SelectComponent } from './select.component';
 import { SelectOptionDirective } from './select-option.directive';
@@ -299,6 +299,14 @@ describe('SelectComponent', () => {
   });
 
   describe('invalid', () => {
+    it('should have valid class when invalid but not touched', () => {
+      component.select.required = true;
+      component.select.value = undefined;
+      expect(component.select.touched).toBeFalsy();
+      expect(fixture.elementRef.nativeElement.querySelector('ngx-select').classList.contains('ng-invalid')).toBeFalsy();
+      expect(fixture.elementRef.nativeElement.querySelector('ngx-select').classList.contains('ng-valid')).toBeTruthy();
+    });
+
     it('should be true when required and value invalid', () => {
       component.select.required = true;
       component.select.value = undefined;
@@ -338,6 +346,15 @@ describe('SelectComponent', () => {
       component.select.optionTemplates = undefined;
       expect(component.select.optionTemplates).toBeUndefined();
       expect(component.select.options.length).toBe(1);
+    });
+  });
+
+  describe('autosize', () => {
+    it('setting autosize adds class to component', () => {
+      component.autosize$.next(true);
+      fixture.detectChanges();
+      const select = fixture.nativeElement.querySelector('.ngx-select');
+      expect(select).toHaveClass('autosize');
     });
   });
 });

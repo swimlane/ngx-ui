@@ -1,7 +1,7 @@
 import { Dimensions } from '../dimensions.interface';
 import { AlignmentTypes } from '../alignment-types.enum';
 import { CARET_OFFSET } from '../caret-offset.constant';
-import { verticalPosition } from '../vertical-position';
+import { verticalPosition } from '../vertical-position/vertical-position.util';
 
 /**
  * Calculate vertical caret position

@@ -1,0 +1,83 @@
+/* CSS based on flexboxgrid Copyright 2013 Kristofer Joseph */
+
+@import './_mixins.scss';
+@import './_flex-vars.scss';
+
+/* --- CSS Variables --- */
+
+:root {
+  // columns
+  --columns: 12;
+  --column-width: calc(100% / var(--columns));
+
+  // gutters
+  --gutter-width: 1rem;
+  --outer-margin: 2rem;
+  --gutter-compensation: calc((var(--gutter-width) * 0.5) * -1);
+  --half-gutter-width: calc((var(--gutter-width) * 0.5));
+
+  // containers
+  @each $modifier, $width in $container-widths {
+    --container#{$modifier}: calc(#{$width} + var(--gutter-width));
+  }
+}
+
+/* --- Containers --- */
+
+// default container is fluid
+#{$container-class},
+#{$container-class}-fluid {
+  padding-right: var(--outer-margin, 2rem);
+  padding-left: var(--outer-margin, 2rem);
+}
+
+#{$container-class},
+#{$container-class}-fluid,
+#{$container-class}-fixed {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* --- Rows --- */
+
+#{$row-class} {
+  box-sizing: border-box;
+  display: flex;
+  flex: 0 1 auto;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-right: var(--gutter-compensation, -0.5rem);
+  margin-left: var(--gutter-compensation, -0.5rem);
+
+  &.reverse {
+    flex-direction: row-reverse;
+  }
+
+  @include modifiers('');
+
+  // defualt columns
+  & > * {
+    @include col-base();
+    flex: 1 1 auto;
+
+    @include modifiers('');
+
+    &.reverse {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
+/* --- Columns --- */
+
+@each $modifier, $breakpoint in $breakpoints {
+  @media screen and (min-width: $breakpoint) {
+    #{$container-class}-fixed {
+      width: var(--container#{$modifier});
+    }
+
+    #{$row-class} > {
+      @include create-col-classes($modifier);
+    }
+  }
+}

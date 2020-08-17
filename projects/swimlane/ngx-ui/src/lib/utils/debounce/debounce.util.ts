@@ -11,7 +11,7 @@ export function debounce(func: () => void, wait: number, immediate?: boolean) {
   let timestamp: Date;
   let result: any;
 
-  return function() {
+  return function () {
     context = this;
     args = arguments;
     timestamp = new Date();

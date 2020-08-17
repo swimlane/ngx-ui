@@ -2,9 +2,6 @@
 
 Component & Style Library for Angular by Swimlane.
 
-_Note: This project is under heavy construction and is not intended for general production use yet.
-As such, we are not accepting bugs at the moment and documentation is quite lacking._
-
 ## Installing
 
 - `npm i @swimlane/ngx-ui --S`
@@ -32,12 +29,14 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 - Checkout master (`git checkout master`)
 - Pull master (`git pull`)
+- Run tests (`npm test`)
 - Examine log to determine next version (X.Y.Z)
 - Run `git checkout -b release/X.Y.Z`
 - Update version in `projects/swimlane/ngx-ui/package.json`.
 - Update changelog in `projects/swimlane/ngx-ui/CHANGELOG.md`
 - Run `git commit -am "(release): X.Y.Z"`
 - Run `git tag X.Y.Z`
-- Run `git push origin HEAD`
-- Submit PR
+- Run `git push origin HEAD --tags`
 - Run `npm run publish:lib`
+- Run `npm run deploy`
+- Submit PR

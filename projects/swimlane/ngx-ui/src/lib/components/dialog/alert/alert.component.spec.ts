@@ -3,10 +3,10 @@ import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { IconRegistryService } from '../../../services';
+import { IconRegistryService } from '../../../services/icon-registry/icon-registry.service';
 
-import { InputModule } from '../../input';
-import { LongPressButtonModule } from '../../long-press';
+import { InputModule } from '../../input/input.module';
+import { LongPressButtonModule } from '../../long-press/long-press-button.module';
 
 import { AlertComponent } from './alert.component';
 import { AlertTypes } from './alert-types.enum';

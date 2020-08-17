@@ -1,5 +1,5 @@
-import { filterByString } from '../filter-by-string';
-import { filterDefault } from '../filter-default';
+import { filterByString } from '../filter-by-string/filter-by-string.util';
+import { filterDefault } from '../filter-default/filter-default.util';
 
 export function filterByObject(filter: any) {
   return (value: any) => {

@@ -15,6 +15,7 @@ import { selectDropdownOptionMock } from './select-dropdown-option.mock';
       [minSelections]="minSelections$ | async"
       [maxSelections]="maxSelections$ | async"
       [autofocus]="autofocus$ | async"
+      [autosize]="autosize$ | async"
       [allowClear]="allowClear$ | async"
       [allowAdditions]="allowAdditions$ | async"
       [disableDropdown]="disableDropdown$ | async"
@@ -45,6 +46,7 @@ export class SelectComponentFixture {
   readonly minSelections$ = new BehaviorSubject(0);
   readonly maxSelections$ = new BehaviorSubject(3);
   readonly autofocus$ = new BehaviorSubject(false);
+  readonly autosize$ = new BehaviorSubject(false);
   readonly allowClear$ = new BehaviorSubject(false);
   readonly allowAdditions$ = new BehaviorSubject(false);
   readonly disableDropdown$ = new BehaviorSubject(false);

@@ -17,19 +17,26 @@ export class AppComponent {
 
   navigationTree: any[] = [
     {
-      name: 'Colors',
-      route: 'colors',
-      icon: 'formula'
-    },
-    {
-      name: 'Typography',
-      route: 'typography',
-      icon: 'field-text'
-    },
-    {
-      name: 'Icons',
-      route: 'icons',
-      icon: 'field-grid'
+      name: 'Style',
+      icon: 'formula',
+      children: [
+        {
+          name: 'Typography',
+          route: 'typography'
+        },
+        {
+          name: 'Colors',
+          route: 'colors'
+        },
+        {
+          name: 'Layout',
+          route: 'layout'
+        },
+        {
+          name: 'Icons',
+          route: 'icons'
+        }
+      ]
     },
     {
       name: 'Animations',
@@ -188,6 +195,10 @@ export class AppComponent {
           route: 'split'
         },
         {
+          name: 'Navbar',
+          route: 'navbar'
+        },
+        {
           name: 'Stepper',
           route: 'stepper'
         },
@@ -198,6 +209,10 @@ export class AppComponent {
         {
           name: 'Hotkeys',
           route: 'hotkeys'
+        },
+        {
+          name: 'Tip',
+          route: 'tip'
         }
       ]
     }

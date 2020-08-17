@@ -1,7 +1,7 @@
 import { PlacementTypes } from '../placement-type.enum';
 import { Dimensions } from '../dimensions.interface';
 import { AlignmentTypes } from '../alignment-types.enum';
-import { shouldFlip } from '../should-flip';
+import { shouldFlip } from '../should-flip/should-flip.util';
 
 /**
  * Determine placement based on flip

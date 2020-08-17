@@ -20,6 +20,8 @@ export class JsonEditorNodeComponent extends JsonEditorNode {
 
   @Input() errors: any[];
 
+  @Input() showKnownProperties = false;
+
   placeholder: string = '';
 
   constructor(public dialogMngr: DialogService) {

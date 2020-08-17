@@ -46,12 +46,6 @@ describe('InputComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should be required', () => {
-    component.required$.next(true);
-    fixture.detectChanges();
-    expect(component.input.requiredIndicatorView).toEqual(component.input.requiredIndicator as string);
-  });
-
   it('should be textarea', () => {
     component.type$.next(InputTypes.textarea);
     fixture.detectChanges();
@@ -144,6 +138,33 @@ describe('InputComponent', () => {
       component.input.value = '';
       fixture.detectChanges();
       expect(spy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('numeric values', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(InputComponentFixture);
+      component = fixture.componentInstance;
+      component.type$.next(InputTypes.number);
+      fixture.detectChanges();
+    });
+
+    it('should coerce inputs to number', () => {
+      component.input.value = '5';
+      fixture.detectChanges();
+      expect(component.input.value as any).toEqual(5);
+    });
+
+    it('should preserve null', () => {
+      component.input.value = null;
+      fixture.detectChanges();
+      expect(component.input.value as any).toEqual(null);
+    });
+
+    it('should coerce other inputs to null', () => {
+      component.input.value = '';
+      fixture.detectChanges();
+      expect(component.input.value as any).toEqual(null);
     });
   });
 });

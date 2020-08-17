@@ -20,7 +20,9 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 import { SelectOptionDirective } from './select-option.directive';
 import { SelectInputComponent } from './select-input.component';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
-import { KeyboardKeys } from '../../enums';
+import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
+import { appearanceMixin } from '../../mixins/appearance/appearance.mixin';
+import { sizeMixin } from '../../mixins/size/size.mixin';
 
 let nextId = 0;
 
@@ -29,6 +31,9 @@ const SELECT_VALUE_ACCESSOR = {
   useExisting: forwardRef(() => SelectComponent),
   multi: true
 };
+
+class InputBase {}
+const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
 
 @Component({
   exportAs: 'ngxSelect',
@@ -39,20 +44,26 @@ const SELECT_VALUE_ACCESSOR = {
     class: 'ngx-select',
     '[id]': 'id',
     '[attr.name]': 'name',
-    '[class.invalid]': 'invalid',
+    '[class.legacy]': 'appearance === "legacy"',
+    '[class.fill]': 'appearance === "fill"',
+    '[class.sm]': 'size === "sm"',
+    '[class.md]': 'size === "md"',
+    '[class.lg]': 'size === "lg"',
+    '[class.invalid]': 'invalid && touched',
     '[class.tagging-selection]': 'tagging',
     '[class.multi-selection]': 'multiple',
     '[class.single-selection]': 'isSingleSelect',
     '[class.disabled]': 'disabled',
     '[class.active]': 'dropdownActive',
     '[class.active-selections]': 'hasSelections',
-    '[class.has-placeholder]': 'hasPlaceholder'
+    '[class.has-placeholder]': 'hasPlaceholder',
+    '[class.autosize]': 'autosize'
   },
   providers: [SELECT_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectComponent implements ControlValueAccessor, OnDestroy {
+export class SelectComponent extends _InputMixinBase implements ControlValueAccessor, OnDestroy {
   @Input() id: string = `select-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
@@ -74,7 +85,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     return this._minSelections;
   }
   set minSelections(minSelections) {
-    this._minSelections = coerceNumberProperty(minSelections);
+    this._minSelections = coerceNumberProperty(minSelections, undefined);
   }
 
   @Input()
@@ -82,7 +93,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     return this._maxSelections;
   }
   set maxSelections(maxSelections) {
-    this._maxSelections = coerceNumberProperty(maxSelections);
+    this._maxSelections = coerceNumberProperty(maxSelections, undefined);
   }
 
   @Input()
@@ -91,6 +102,14 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
   set autofocus(autofocus) {
     this._autofocus = coerceBooleanProperty(autofocus);
+  }
+
+  @Input()
+  get autosize() {
+    return this._autosize;
+  }
+  set autosize(autosize) {
+    this._autosize = coerceBooleanProperty(autosize);
   }
 
   @Input()
@@ -208,7 +227,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   get invalid() {
     if (this.required && this.checkInvalidValue(this.value)) return true;
-    if (this.maxSelections !== undefined && (this.value && this.value.length > this.maxSelections)) return true;
+    if (this.maxSelections !== undefined && this.value && this.value.length > this.maxSelections) return true;
     if (this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections)) return true;
     return false;
   }
@@ -257,6 +276,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   filterQuery: string;
   focusIndex: number = -1;
   dropdownActive: boolean = false;
+  touched: boolean = false;
 
   private _optionTemplates: QueryList<SelectOptionDirective>;
   private _value: any[] = [];
@@ -265,6 +285,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   private _maxSelections?: number;
 
   private _autofocus: boolean = false;
+  private _autosize: boolean = false;
   private _allowClear: boolean = true;
   private _allowAdditions: boolean = false;
   private _disableDropdown: boolean = false;
@@ -281,7 +302,9 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     private readonly _element: ElementRef,
     private readonly _renderer: Renderer2,
     private readonly _cdr: ChangeDetectorRef
-  ) {}
+  ) {
+    super();
+  }
 
   ngOnDestroy(): void {
     this.toggleDropdown(false);
@@ -322,7 +345,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   onFocus(): void {
     if (this.disabled) return;
 
-    this.toggleDropdown(true);
+    this.toggleDropdown(!this.dropdownActive);
     this.onTouchedCallback();
   }
 
@@ -368,7 +391,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   onKeyUp({ event, value }: { event: KeyboardEvent; value?: string }): void {
-    if (event && event.key === (KeyboardKeys.ARROW_DOWN as any)) {
+    if (event && event.key === (KeyboardKeys.ARROW_DOWN as any) && this.focusIndex < this.options.length) {
       ++this.focusIndex;
     } else {
       this.filterQuery = value;
@@ -390,7 +413,10 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouchedCallback = fn;
+    this.onTouchedCallback = () => {
+      this.touched = true;
+      fn();
+    };
   }
 
   private checkInvalidValue(value: any): boolean {
@@ -402,12 +428,12 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   /* istanbul ignore next */
-  private onTouchedCallback() {
+  private onChangeCallback(_: any): void {
     // placeholder
   }
 
   /* istanbul ignore next */
-  private onChangeCallback(_: any) {
-    // placeholder
+  private onTouchedCallback(): void {
+    this.touched = true;
   }
 }

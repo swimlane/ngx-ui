@@ -51,7 +51,7 @@ export function _add(combo: string, opts: Hotkey) {
 
   if (opts.allowIn.length) {
     /* istanbul ignore next */
-    mousetrap.stopCallback = function(_, element) {
+    mousetrap.stopCallback = function (_, element) {
       if (!tags.includes(element.tagName) || opts.allowIn.includes(element.tagName)) {
         return false;
       }
@@ -164,7 +164,7 @@ export function _deregister(comp: any) {
 export function Hotkey(key: string, description: string, options?: Partial<Hotkey>) {
   return (target: any, name: string) => {
     const oldInit = target.ngOnInit;
-    target.ngOnInit = function() {
+    target.ngOnInit = function () {
       if (oldInit) oldInit.bind(this)();
 
       _add(key, {
@@ -179,7 +179,7 @@ export function Hotkey(key: string, description: string, options?: Partial<Hotke
     };
 
     const oldDestroy = target.ngOnDestroy;
-    target.ngOnDestroy = function() {
+    target.ngOnDestroy = function () {
       if (oldDestroy) oldDestroy.bind(this)();
       _deregister(this);
     };

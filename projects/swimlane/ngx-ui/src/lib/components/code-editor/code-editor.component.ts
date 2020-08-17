@@ -162,7 +162,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
     let lines = code.split('\n');
 
     // Remove empty lines
-    lines = lines.filter(function(line) {
+    lines = lines.filter(function (line) {
       return line.trim().length > 0;
     });
 
@@ -171,8 +171,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
 
     // Make it so each line starts at 0 whitespace
     const firstLineWhitespace = lines[0].match(/^\s*/)[0];
+    // tslint:disable-next-line: tsr-detect-non-literal-regexp
     const startingWhitespaceRegex = new RegExp('^' + firstLineWhitespace);
-    lines = lines.map(function(line) {
+    lines = lines.map(function (line) {
       return line
         .replace('=""', '') // remove empty values
         .replace(startingWhitespaceRegex, '')
@@ -196,7 +197,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
   }
 
   onKeyUp(cm: CodeMirror.EditorFromTextArea, event: KeyboardEvent) {
-    if ((!cm.state.completionActive && (event.keyCode > 64 && event.keyCode < 91)) || event.keyCode === 219) {
+    if ((!cm.state.completionActive && event.keyCode > 64 && event.keyCode < 91) || event.keyCode === 219) {
       (CodeMirror.commands as any).autocomplete(cm, null, { completeSingle: false });
     }
   }

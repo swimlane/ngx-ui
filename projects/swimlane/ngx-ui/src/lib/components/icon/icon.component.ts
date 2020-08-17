@@ -66,6 +66,7 @@ export class IconComponent implements OnChanges, OnInit {
         const svg = parser.parseFromString(response, 'image/svg+xml');
 
         // insert the svg result
+        // tslint:disable-next-line: tsr-detect-html-injection
         element.innerHTML = svg.documentElement.outerHTML;
       },
       /* istanbul ignore next */

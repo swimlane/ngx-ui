@@ -13,7 +13,8 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import moment from 'moment-timezone';
 
-import { getMonth, getDecadeStartYear } from './utils';
+import { getMonth } from './utils/get-month/get-month.util';
+import { getDecadeStartYear } from './utils/get-decade-start-year/get-decade-start-year.util';
 import { CalendarDay } from './calendar-day.interface';
 import { CalendarMonth } from './calendar-month.type';
 import { CalendarView } from './calendar-view.enum';

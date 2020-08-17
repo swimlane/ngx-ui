@@ -134,7 +134,7 @@ describe('TooltipDirective', () => {
             nativeElement: document.createElement('div')
           }
         }
-      });
+      } as any);
 
       directive.tooltipShowTimeout = 1;
       directive.showTooltip();
@@ -153,7 +153,7 @@ describe('TooltipDirective', () => {
             nativeElement: document.createElement('div')
           }
         }
-      });
+      } as any);
 
       directive.tooltipCloseOnMouseLeave = false;
       directive.showTooltip(true);
@@ -172,7 +172,7 @@ describe('TooltipDirective', () => {
             nativeElement: document.createElement('div')
           }
         }
-      });
+      } as any);
 
       directive.tooltipCloseOnClickOutside = false;
       directive.showTooltip(true);
@@ -200,7 +200,7 @@ describe('TooltipDirective', () => {
             nativeElement: document.createElement('div')
           }
         }
-      });
+      } as any);
 
       directive.showTooltip(true);
 

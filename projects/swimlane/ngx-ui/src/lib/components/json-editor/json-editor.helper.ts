@@ -189,6 +189,7 @@ export function inferType(value: any, overrides?: any, allowedTypes?: string[]):
       if (allowedTypes !== undefined && !allowedTypes.includes(typeName)) {
         continue;
       }
+      // tslint:disable-next-line: tsr-detect-unsafe-properties-access
       if (dataTypeMap[typeName] && overrides[typeName](value)) {
         return dataTypeMap[typeName].schema;
       }

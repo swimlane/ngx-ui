@@ -7,11 +7,11 @@ import {
   ChangeDetectorRef,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { ɵMatchMedia } from '@angular/flex-layout';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { HotkeysService } from '../hotkeys/hotkeys.service';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { BreakpointObserver } from '@angular/cdk/layout';
 
 @Component({
   selector: 'ngx-resize-overlay',
@@ -57,7 +57,7 @@ export class ResizeOverlayComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private mediaWatcher: ɵMatchMedia,
+    private breakpointObserver: BreakpointObserver,
     private hotkeysService: HotkeysService,
     private cdr: ChangeDetectorRef
   ) {
@@ -89,9 +89,10 @@ export class ResizeOverlayComponent implements OnInit, OnDestroy {
 
   private _buildObservable() {
     const query = Array.isArray(this.query) ? this.query : [this.query];
-    this.visible$ = this.mediaWatcher.observe(query, true).pipe(
+
+    this.visible$ = this.breakpointObserver.observe(query).pipe(
       map((v: any) => !v.matches),
-      startWith(!this.mediaWatcher.isActive(this.query))
+      startWith(!this.breakpointObserver.isMatched(this.query))
     );
   }
 }

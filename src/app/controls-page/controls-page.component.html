@@ -17,8 +17,7 @@
         <label>A label:</label>
       </td>
       <td>
-        <ngx-input type="text" [ngModel]="inputValue" (change)="inputValue = $event">
-        </ngx-input>
+        <ngx-input type="text" [ngModel]="inputValue" (change)="inputValue = $event"> </ngx-input>
       </td>
       <td>
         <ngx-select [filterable]="false" [ngModel]="[inputValue]">
@@ -125,8 +124,13 @@
         <label>A label:</label>
       </td>
       <td>
-        <ngx-input type="text" [ngModel]="inputValue" (change)="inputValue = $event" hint="Input help text<br />Second line"
-          label="Inputbox Label">
+        <ngx-input
+          type="text"
+          [ngModel]="inputValue"
+          (change)="inputValue = $event"
+          hint="Input help text<br />Second line"
+          label="Inputbox Label"
+        >
         </ngx-input>
       </td>
       <td>
@@ -198,21 +202,35 @@
         <label>A label:</label>
       </td>
       <td>
-        <ngx-input type="text" [ngModel]="inputValue" (change)="inputValue = $event" hint="Input help text<br />Second line"
-          label="Inputbox Label" placeholder="Inputbox Placeholder">
+        <ngx-input
+          type="text"
+          [ngModel]="inputValue"
+          (change)="inputValue = $event"
+          hint="Input help text<br />Second line"
+          label="Inputbox Label"
+          placeholder="Inputbox Placeholder"
+        >
         </ngx-input>
       </td>
       <td>
-        <ngx-select [filterable]="false" hint="Select help text<br />Second line<br />A third" label="Select box Label"
-          placeholder="SelectBox Placeholder">
+        <ngx-select
+          [filterable]="false"
+          hint="Select help text<br />Second line<br />A third"
+          label="Select box Label"
+          placeholder="SelectBox Placeholder"
+        >
           <ngx-select-option name="Breach" value="breach"></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
-        <ngx-select [multiple]="true" hint="Select help text<br />Second line<br />A third" label="Select box Label"
-          placeholder="SelectBox Placeholder">
+        <ngx-select
+          [multiple]="true"
+          hint="Select help text<br />Second line<br />A third"
+          label="Select box Label"
+          placeholder="SelectBox Placeholder"
+        >
           <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
           </ngx-select-option>
         </ngx-select>
@@ -237,21 +255,39 @@
         <label>A label:</label>
       </td>
       <td>
-        <ngx-input [required]="true" type="text" [minlength]="10" [ngModel]="inputValue" (change)="inputValue = $event"
-          hint="Input help text<br />Second line" label="Inputbox Label" placeholder="Inputbox Placeholder">
+        <ngx-input
+          [required]="true"
+          type="text"
+          [minlength]="10"
+          [ngModel]="inputValue"
+          (change)="inputValue = $event"
+          hint="Input help text<br />Second line"
+          label="Inputbox Label"
+          placeholder="Inputbox Placeholder"
+        >
         </ngx-input>
       </td>
       <td>
-        <ngx-select minSelections="1" [filterable]="false" hint="Select help text<br />Second line<br />A third"
-          label="Select box Label" placeholder="SelectBox Placeholder">
+        <ngx-select
+          minSelections="1"
+          [filterable]="false"
+          hint="Select help text<br />Second line<br />A third"
+          label="Select box Label"
+          placeholder="SelectBox Placeholder"
+        >
           <ngx-select-option name="Breach" value="breach"></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
-        <ngx-select minSelections="1" [multiple]="true" hint="Select help text<br />Second line<br />A third" label="Select box Label"
-          placeholder="SelectBox Placeholder">
+        <ngx-select
+          minSelections="1"
+          [multiple]="true"
+          hint="Select help text<br />Second line<br />A third"
+          label="Select box Label"
+          placeholder="SelectBox Placeholder"
+        >
           <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
           </ngx-select-option>
         </ngx-select>
@@ -278,88 +314,122 @@
   </ngx-input>
   <ngx-input [(ngModel)]="maxValue" type="text" type="number" label="Max Length" [min]="minValue" [max]="10000">
   </ngx-input>
-  <ngx-input type="text" label="String Input" [hint]="'String with length ∈ ' + [minValue, maxValue]" [(ngModel)]="inputValue"
-    [minlength]=[minValue] [maxlength]=[maxValue]></ngx-input>
+  <ngx-input
+    type="text"
+    label="String Input"
+    [hint]="'String with length ∈ ' + [minValue, maxValue]"
+    [(ngModel)]="inputValue"
+    [minlength]="[minValue]"
+    [maxlength]="[maxValue]"
+  ></ngx-input>
 
   <h3 class="style-header">FlexBox - Align Baseline</h3>
-  <div fxLayout fxLayoutAlign="start baseline" fxLayoutGap="10px" style="width: 400px">
-    <label fxFlex="1 1 30%">Length Limit</label>
-    <div fxFlex="1 1 15%">
-      <ngx-input [(ngModel)]="minValue" type="text" type="number" label="Min" min="0" [max]="maxValue">
-      </ngx-input>
+  <div class="ngx-flex--row baseline">
+    <label class="ngx-flex--col-1">Length Limit</label>
+    <div class="ngx-flex--col-1">
+      <ngx-input [(ngModel)]="minValue" type="text" type="number" label="Min" min="0" [max]="maxValue"> </ngx-input>
     </div>
-    <div fxFlex="1 1 15%">
-      <ngx-input [(ngModel)]="maxValue" type="text" type="number" label="Max" [min]="minValue" max="10000">
-      </ngx-input>
+    <div class="ngx-flex--col-1">
+      <ngx-input [(ngModel)]="maxValue" type="text" type="number" label="Max" [min]="minValue" max="10000"> </ngx-input>
     </div>
-    <div fxFlex="1 1 40%">
-      <ngx-select #flexBoxExample [filterable]="false" [allowClear]="false" [ngModel]="['none']" hint="Length Mode (none, characters, or words)">
-        <ngx-select-option *ngFor="let type of ['none', 'characters', 'words']" [name]="type | titlecase" [value]="type">
+    <div class="ngx-flex--col-1">
+      <ngx-select
+        #flexBoxExample
+        [filterable]="false"
+        [allowClear]="false"
+        [ngModel]="['none']"
+        hint="Length Mode (none, characters, or words)"
+      >
+        <ngx-select-option
+          *ngFor="let type of ['none', 'characters', 'words']"
+          [name]="type | titlecase"
+          [value]="type"
+        >
         </ngx-select-option>
       </ngx-select>
     </div>
   </div>
-  <div fxLayout fxLayoutAlign="start baseline" fxLayoutGap="10px" style="width: 600px">
-    <label fxFlex="1 1 30%">Options</label>
-    <div fxFlex="1 1 33%">
+
+  <div class="ngx-flex--row baseline">
+    <label class="ngx-flex--col-1">Options</label>
+    <div class="ngx-flex--col-1">
       <ngx-checkbox name="chk1" [ngModel]="true">
         Alert the SOC
       </ngx-checkbox>
     </div>
-    <div fxFlex="1 1 33%">
+    <div class="ngx-flex--col-1">
       <ngx-radiobutton [checked]="favoriteSeason === 'Winter'" (change)="favoriteSeason = 'Winter'">
         Winter
       </ngx-radiobutton>
     </div>
-    <div fxFlex="1 1 33%">
-      <ngx-select #flexBoxExample [filterable]="false" [allowClear]="false" [ngModel]="['none']" hint="Length Mode (none, characters, or words)">
-        <ngx-select-option *ngFor="let type of ['none', 'characters', 'words']" [name]="type | titlecase" [value]="type">
+    <div class="ngx-flex--col-1">
+      <ngx-select
+        #flexBoxExample
+        [filterable]="false"
+        [allowClear]="false"
+        [ngModel]="['none']"
+        hint="Length Mode (none, characters, or words)"
+      >
+        <ngx-select-option
+          *ngFor="let type of ['none', 'characters', 'words']"
+          [name]="type | titlecase"
+          [value]="type"
+        >
         </ngx-select-option>
       </ngx-select>
     </div>
   </div>
 
-  <h3 class="style-header" style="clear: both">Stacked</h3>
-  <div fxLayout fxLayoutAlign="start top" fxLayoutGap="10px">
-    <div fxFlex="1 1 33">
-      <ngx-input type="text" label="Prefix" [(ngModel)]="prefix" hint="text that appears before the value">
-      </ngx-input>
+  <h3 class="style-header" style="clear: both;">Stacked</h3>
+  <div class="ngx-flex--row">
+    <div class="ngx-flex--col-12 ngx-flex--col-md-4">
+      <ngx-input type="text" label="Prefix" [(ngModel)]="prefix" hint="text that appears before the value"> </ngx-input>
 
-      <ngx-input type="text" label="Suffix" [(ngModel)]="suffix" hint="text that appears after the value">
-      </ngx-input>
+      <ngx-input type="text" label="Suffix" [(ngModel)]="suffix" hint="text that appears after the value"> </ngx-input>
 
-      <ngx-input type="text" label="Label" [(ngModel)]="label" hint="text that appears above the value">
-      </ngx-input>
+      <ngx-input type="text" label="Label" [(ngModel)]="label" hint="text that appears above the value"> </ngx-input>
 
-      <ngx-toggle name="toggle1" [(ngModel)]="showHelp" label="Show help text">
-      </ngx-toggle>
+      <ngx-toggle name="toggle1" [(ngModel)]="showHelp" label="Show help text"> </ngx-toggle>
 
-      <label style="font-size: 0.7rem">Help Text</label>
-      <ngx-codemirror [config]="{ theme: 'dracula' }" [mode]="'htmlmixed'" [(ngModel)]="helptext">
-      </ngx-codemirror>
-
+      <label style="font-size: 0.7rem;">Help Text</label>
+      <ngx-codemirror [config]="{ theme: 'dracula' }" [mode]="'htmlmixed'" [(ngModel)]="helptext"> </ngx-codemirror>
     </div>
-    <div fxFlex="1 1 33">
+    <div class="ngx-flex--col-12 ngx-flex--col-md-4">
       <ngx-input type="text" [label]="label" ngModel="" [hint]="showHelp && helptext">
         <ngx-input-prefix>
-          {{prefix}}
+          {{ prefix }}
         </ngx-input-prefix>
         <ngx-input-suffix>
-          {{suffix}}
+          {{ suffix }}
         </ngx-input-suffix>
       </ngx-input>
 
-      <ngx-select [filterable]="false" label="Help Text Position" hint="Where the help text appears" [allowClear]="false"
-        [ngModel]="['Below']">
+      <ngx-select
+        [filterable]="false"
+        label="Help Text Position"
+        hint="Where the help text appears"
+        [allowClear]="false"
+        [ngModel]="['Below']"
+      >
         <ngx-select-option *ngFor="let type of ['None', 'Above', 'Below']" [name]="type | titlecase" [value]="type">
         </ngx-select-option>
       </ngx-select>
 
-      <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
+      <ngx-date-time
+        name="calendar-input1"
+        [label]="'Date of attack'"
+        [(ngModel)]="curDate2"
+        (change)="dateChanged($event)"
+      >
       </ngx-date-time>
 
-      <ngx-date-time name="time-input1" [inputType]="'datetime'" [label]="'Time of attack'" [(ngModel)]="curDate2"
-        (change)="dateChanged($event)">
+      <ngx-date-time
+        name="time-input1"
+        [inputType]="'datetime'"
+        [label]="'Time of attack'"
+        [(ngModel)]="curDate2"
+        (change)="dateChanged($event)"
+      >
       </ngx-date-time>
 
       <ngx-select [multiple]="true" [hint]="'Select help text'" label="Select box Label" [ngModel]="['Physical']">
@@ -372,50 +442,58 @@
         Save
       </ngx-button>
     </div>
-    <div fxFlex="1 1 33"></div>
   </div>
 
-  <h3 class="style-header" style="clear: both">Stacked - Large Font</h3>
-  <div fxLayout fxLayoutAlign="start top" fxLayoutGap="10px" style="font-size: 30px">
-    <div fxFlex="1 1 33">
-      <ngx-input type="text" label="Prefix" [(ngModel)]="prefix" hint="text that appears before the value">
-      </ngx-input>
+  <h3 class="style-header" style="clear: both;">Stacked - Large Font</h3>
+  <div class="ngx-flex--row">
+    <div class="ngx-flex--col-8 ngx-flex--col-md-4">
+      <ngx-input type="text" label="Prefix" [(ngModel)]="prefix" hint="text that appears before the value"> </ngx-input>
 
-      <ngx-input type="text" label="Suffix" [(ngModel)]="suffix" hint="text that appears after the value">
-      </ngx-input>
+      <ngx-input type="text" label="Suffix" [(ngModel)]="suffix" hint="text that appears after the value"> </ngx-input>
 
-      <ngx-input type="text" label="Label" [(ngModel)]="label" hint="text that appears above the value">
-      </ngx-input>
+      <ngx-input type="text" label="Label" [(ngModel)]="label" hint="text that appears above the value"> </ngx-input>
 
-      <ngx-toggle name="toggle1" [(ngModel)]="showHelp" label="Show help text">
-      </ngx-toggle>
+      <ngx-toggle name="toggle1" [(ngModel)]="showHelp" label="Show help text"> </ngx-toggle>
 
-      <label style="font-size: 0.7rem">Help Text</label>
-      <ngx-codemirror [config]="{ theme: 'dracula' }" [mode]="'htmlmixed'" [(ngModel)]="helptext">
-      </ngx-codemirror>
-
+      <label style="font-size: 0.7rem;">Help Text</label>
+      <ngx-codemirror [config]="{ theme: 'dracula' }" [mode]="'htmlmixed'" [(ngModel)]="helptext"> </ngx-codemirror>
     </div>
-    <div fxFlex="1 1 33">
+    <div class="ngx-flex--col-8 ngx-flex--col-md-4">
       <ngx-input type="text" [label]="label" ngModel="" [hint]="showHelp && helptext">
         <ngx-input-prefix>
-          {{prefix}}
+          {{ prefix }}
         </ngx-input-prefix>
         <ngx-input-suffix>
-          {{suffix}}
+          {{ suffix }}
         </ngx-input-suffix>
       </ngx-input>
 
-      <ngx-select [filterable]="false" label="Help Text Position" hint="Where the help text appears" [allowClear]="false"
-        [ngModel]="['Below']">
+      <ngx-select
+        [filterable]="false"
+        label="Help Text Position"
+        hint="Where the help text appears"
+        [allowClear]="false"
+        [ngModel]="['Below']"
+      >
         <ngx-select-option *ngFor="let type of ['None', 'Above', 'Below']" [name]="type | titlecase" [value]="type">
         </ngx-select-option>
       </ngx-select>
 
-      <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
+      <ngx-date-time
+        name="calendar-input1"
+        [label]="'Date of attack'"
+        [(ngModel)]="curDate2"
+        (change)="dateChanged($event)"
+      >
       </ngx-date-time>
 
-      <ngx-date-time name="time-input1" [inputType]="'datetime'" [label]="'Time of attack'" [(ngModel)]="curDate2"
-        (change)="dateChanged($event)">
+      <ngx-date-time
+        name="time-input1"
+        [inputType]="'datetime'"
+        [label]="'Time of attack'"
+        [(ngModel)]="curDate2"
+        (change)="dateChanged($event)"
+      >
       </ngx-date-time>
 
       <ngx-select [multiple]="true" [hint]="'Select help text'" label="Select box Label" [ngModel]="['Physical']">
@@ -428,50 +506,58 @@
         Save
       </ngx-button>
     </div>
-    <div fxFlex="1 1 33"></div>
   </div>
 
-  <h3 class="style-header" style="clear: both">Stacked - Small Font</h3>
-  <div fxLayout fxLayoutAlign="start top" fxLayoutGap="10px" style="font-size: 10px">
-    <div fxFlex="1 1 33">
-      <ngx-input type="text" label="Prefix" [(ngModel)]="prefix" hint="text that appears before the value">
-      </ngx-input>
+  <h3 class="style-header" style="clear: both;">Stacked - Small Font</h3>
+  <div class="ngx-flex--row">
+    <div class="ngx-flex--col-8 ngx-flex--col-md-4">
+      <ngx-input type="text" label="Prefix" [(ngModel)]="prefix" hint="text that appears before the value"> </ngx-input>
 
-      <ngx-input type="text" label="Suffix" [(ngModel)]="suffix" hint="text that appears after the value">
-      </ngx-input>
+      <ngx-input type="text" label="Suffix" [(ngModel)]="suffix" hint="text that appears after the value"> </ngx-input>
 
-      <ngx-input type="text" label="Label" [(ngModel)]="label" hint="text that appears above the value">
-      </ngx-input>
+      <ngx-input type="text" label="Label" [(ngModel)]="label" hint="text that appears above the value"> </ngx-input>
 
-      <ngx-toggle name="toggle1" [(ngModel)]="showHelp" label="Show help text">
-      </ngx-toggle>
+      <ngx-toggle name="toggle1" [(ngModel)]="showHelp" label="Show help text"> </ngx-toggle>
 
-      <label style="font-size: 0.7rem">Help Text</label>
-      <ngx-codemirror [config]="{ theme: 'dracula' }" [mode]="'htmlmixed'" [(ngModel)]="helptext">
-      </ngx-codemirror>
-
+      <label style="font-size: 0.7rem;">Help Text</label>
+      <ngx-codemirror [config]="{ theme: 'dracula' }" [mode]="'htmlmixed'" [(ngModel)]="helptext"> </ngx-codemirror>
     </div>
-    <div fxFlex="1 1 33">
+    <div class="ngx-flex--col-8 ngx-flex--col-md-4">
       <ngx-input type="text" [label]="label" ngModel="" [hint]="showHelp && helptext">
         <ngx-input-prefix>
-          {{prefix}}
+          {{ prefix }}
         </ngx-input-prefix>
         <ngx-input-suffix>
-          {{suffix}}
+          {{ suffix }}
         </ngx-input-suffix>
       </ngx-input>
 
-      <ngx-select [filterable]="false" label="Help Text Position" hint="Where the help text appears" [allowClear]="false"
-        [ngModel]="['Below']">
+      <ngx-select
+        [filterable]="false"
+        label="Help Text Position"
+        hint="Where the help text appears"
+        [allowClear]="false"
+        [ngModel]="['Below']"
+      >
         <ngx-select-option *ngFor="let type of ['None', 'Above', 'Below']" [name]="type | titlecase" [value]="type">
         </ngx-select-option>
       </ngx-select>
 
-      <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
+      <ngx-date-time
+        name="calendar-input1"
+        [label]="'Date of attack'"
+        [(ngModel)]="curDate2"
+        (change)="dateChanged($event)"
+      >
       </ngx-date-time>
 
-      <ngx-date-time name="time-input1" [inputType]="'datetime'" [label]="'Time of attack'" [(ngModel)]="curDate2"
-        (change)="dateChanged($event)">
+      <ngx-date-time
+        name="time-input1"
+        [inputType]="'datetime'"
+        [label]="'Time of attack'"
+        [(ngModel)]="curDate2"
+        (change)="dateChanged($event)"
+      >
       </ngx-date-time>
 
       <ngx-select [multiple]="true" [hint]="'Select help text'" label="Select box Label" [ngModel]="['Physical']">
@@ -484,6 +570,5 @@
         Save
       </ngx-button>
     </div>
-    <div fxFlex="1 1 33"></div>
   </div>
 </section>

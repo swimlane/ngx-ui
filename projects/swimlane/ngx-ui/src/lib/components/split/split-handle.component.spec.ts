@@ -18,6 +18,7 @@ describe('SplitHandleComponent', () => {
     fixture = TestBed.createComponent(SplitHandleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    component.ngOnChanges();
   });
 
   it('can load instance', () => {
@@ -35,7 +36,7 @@ describe('SplitHandleComponent', () => {
   describe('onMouseMove', () => {
     it('should emit drag', () => {
       const spy = spyOn(component.drag, 'emit');
-      component.onMouseMove({} as any);
+      (component as any).onMouseMove({} as any);
       expect(spy).toHaveBeenCalled();
     });
   });
@@ -44,13 +45,13 @@ describe('SplitHandleComponent', () => {
     it('should stop drag if subscription defined', () => {
       const spy = spyOn(component.dragEnd, 'emit');
       component.onMousedown({} as any);
-      component.onMouseup({} as any);
+      (component as any).onMouseup({} as any);
       expect(spy).toHaveBeenCalled();
     });
 
     it('should not stop drag if !subscription', () => {
       const spy = spyOn(component.dragEnd, 'emit');
-      component.onMouseup({} as any);
+      (component as any).onMouseup({} as any);
       expect(spy).not.toHaveBeenCalled();
     });
   });

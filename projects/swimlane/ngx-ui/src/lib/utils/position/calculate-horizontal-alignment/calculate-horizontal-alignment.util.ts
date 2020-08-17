@@ -1,6 +1,6 @@
 import { Dimensions } from '../dimensions.interface';
 import { AlignmentTypes } from '../alignment-types.enum';
-import { horizontalPosition } from '../horizontal-position';
+import { horizontalPosition } from '../horizontal-position/horizontal-position.util';
 
 /**
  * Calculate horz alignment position

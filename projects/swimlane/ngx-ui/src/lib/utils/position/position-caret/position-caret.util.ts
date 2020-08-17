@@ -1,8 +1,8 @@
 import { PlacementTypes } from '../placement-type.enum';
 import { Dimensions } from '../dimensions.interface';
 import { AlignmentTypes } from '../alignment-types.enum';
-import { calculateVerticalCaret } from '../calculate-vertical-caret';
-import { calculateHorizontalCaret } from '../calculate-horizontal-caret';
+import { calculateVerticalCaret } from '../calculate-vertical-caret/calculate-vertical-caret.util';
+import { calculateHorizontalCaret } from '../calculate-horizontal-caret/calculate-horizontal-caret.util';
 import { CARET_OFFSET } from '../caret-offset.constant';
 
 /**

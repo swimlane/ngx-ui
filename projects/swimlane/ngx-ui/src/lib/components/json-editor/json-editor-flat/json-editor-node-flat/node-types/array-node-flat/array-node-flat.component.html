@@ -20,6 +20,7 @@
       [arrayItem]="schemaBuilderMode"
       [arrayName]="(schema.title ? schema.title : schema.propertyName) + '[' + (schemaBuilderMode ? '' : i) + ']'"
       [indentationArray]="indentationArray"
+      [showKnownProperties]="showKnownProperties"
     >
       <div class="node-options" node-options>
         <button
@@ -60,7 +61,7 @@
     [class.compressed]="compressed"
     [class.background]="hideRoot ? level > -1 : level"
   >
-    <span class="separator" *ngFor="let separator of indentationArray"></span>
+    <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
     <div class="indented-content" [style.marginLeft]="hideRoot && level === 0 ? '20px' : '0'">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>

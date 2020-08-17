@@ -17,13 +17,16 @@ export class JsonEditorPageComponent {
         type: ['string', 'string=code', 'number', 'object']
       },
       productId: {
+        title: 'The unique identifier for a product',
         description: 'The unique identifier for a product',
         type: 'number'
       },
       productName: {
         description: 'Name of the product',
         type: 'string',
-        examples: ['Apples', 'Oranges']
+        examples: ['Apples', 'Oranges'],
+        minLength: 3,
+        maxLength: 20
       },
       price: {
         description: 'The price of the product',
@@ -58,10 +61,12 @@ export class JsonEditorPageComponent {
             type: 'number'
           },
           height: {
-            type: 'number'
+            type: 'number',
+            description: 'Height if dimensions are a volume'
           }
         },
-        required: ['length', 'width', 'height']
+        required: ['length', 'width'],
+        additionalProperties: false
       },
       warehouseLocation: {
         description: 'Coordinates of the warehouse where the product is located.',
@@ -86,6 +91,8 @@ export class JsonEditorPageComponent {
   };
 
   compressed = false;
+  hideRoot = false;
+  showKnownProperties = false;
 
   _jsonEditorSchema: any = {};
 
@@ -109,7 +116,7 @@ export class JsonEditorPageComponent {
       if (typeof value !== 'string') {
         return false;
       }
-      const regex = new RegExp(/^<<(.*)>>$/, 's');
+      const regex = /^<<(.*)>>$/s;
       return regex.test(value);
     }
   };

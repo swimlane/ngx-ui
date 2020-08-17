@@ -126,9 +126,13 @@ describe('CodeEditorComponent', () => {
 
   describe('registerOnTouched', () => {
     it('should register new touched callback', done => {
-      component.registerOnTouched(() => {
+      const fn = () => {
+        // @ts-ignore
+        expect(component.onTouchedCallback).toBe(fn);
         done();
-      });
+      };
+
+      component.registerOnTouched(fn);
 
       component.updateValue('testing123');
     });

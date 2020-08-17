@@ -22,8 +22,16 @@ $animation-timing: 200ms;
     padding-bottom: calc(0.7em + 8px);
   }
 
-  .input-error {
-    color: $color-red;
+  .date-time-hint {
+    display: flex;
+
+    > * {
+      flex: 1 1 50%;
+    }
+
+    .input-error {
+      color: $color-red;
+    }
   }
 }
 
@@ -49,8 +57,19 @@ $animation-timing: 200ms;
   .time-row {
     background: $calendar-bg;
     border: 1px solid $calender-border;
-    padding: 8px 15px;
+    padding: 8px 18px;
     margin-top: 0;
+
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    place-content: stretch center;
+    align-items: baseline;
+    justify-content: space-between;
+
+    > * {
+      flex: 0 0 calc(33% - 6px);
+    }
 
     .ngx-input {
       margin-top: 0;
@@ -86,6 +105,13 @@ $animation-timing: 200ms;
     border: 1px solid $calender-border;
     border-top: 0;
     padding: 0.5rem 0;
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+
+    > * {
+      flex: 1 1 50%;
+    }
 
     .btn {
       font-size: 1em;

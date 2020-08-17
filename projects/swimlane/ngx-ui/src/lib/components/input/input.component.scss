@@ -1,20 +1,95 @@
 @import 'colors/variables';
 @import 'forms/inputs';
 
-$input-hint-color: $color-blue-grey-300;
+$input-hint-color: $color-blue-grey-350;
 $input-invalid-color: $color-red;
 $input-active-underline-fill: $color-blue;
-$input-inactive-underline-fill: $color-blue-grey-500;
+$input-inactive-underline-fill: $color-blue-grey-600;
 $input-icon-color: $color-grey-300;
-$input-placeholder-color: $color-blue-grey-450;
+$input-placeholder-color: $color-blue-grey-350;
 
 .ngx-input {
   display: block;
+  max-width: 100%;
   margin-top: 16px;
   margin-bottom: 8px;
   padding-top: 20px;
   padding-top: calc(0.7em + 8px);
   padding-bottom: 0;
+
+  &.fill {
+    .ngx-input-box,
+    .ngx-input-textarea {
+      margin: 0 !important;
+      padding: 6px 10px !important;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ngx-input-box-wrap {
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: $color-blue-grey-875;
+        mix-blend-mode: exclusion;
+        content: '';
+      }
+    }
+  }
+
+  &.md {
+    .ngx-input-box,
+    .ngx-input-textarea {
+      font-size: 18px !important;
+    }
+  }
+
+  &.lg {
+    .ngx-input-box,
+    .ngx-input-textarea {
+      font-size: 21px !important;
+    }
+  }
+
+  &.focused {
+    &:not(.ng-invalid) {
+      .ngx-input-label {
+        color: $input-active-underline-fill !important;
+      }
+    }
+  }
+
+  &.invalid.ng-touched,
+  &.ng-invalid.ng-touched,
+  &.ng-invalid.ng-dirty {
+    .ngx-input-underline {
+      background-color: $input-invalid-color !important;
+
+      .underline-fill {
+        background-color: $input-invalid-color !important;
+      }
+    }
+
+    .ngx-input-label {
+      color: $input-invalid-color;
+    }
+
+    .ngx-input-hint {
+      color: $input-invalid-color;
+    }
+
+    .ngx-input-box,
+    .ngx-input-textarea {
+      caret-color: $input-invalid-color !important;
+    }
+  }
+
+  &.autosize {
+    display: inline-block;
+  }
 
   // override chrome autofill styles
   input:-webkit-autofill,
@@ -32,6 +107,7 @@ $input-placeholder-color: $color-blue-grey-450;
     .ngx-input-flex-wrap-inner {
       display: flex;
       flex: 1;
+      max-width: 100%;
     }
 
     ngx-input-suffix,
@@ -43,7 +119,7 @@ $input-placeholder-color: $color-blue-grey-450;
       justify-content: center;
 
       > * {
-        display: inline-fflex;
+        display: inline-flex;
       }
     }
   }
@@ -73,15 +149,19 @@ $input-placeholder-color: $color-blue-grey-450;
       .ngx-input-box,
       .ngx-input-textarea {
         flex: auto;
+        display: block;
         background: transparent;
         border: none;
         margin-bottom: 0px;
         padding-left: 0px;
         width: 100%;
+        max-width: 100%;
         color: $color-blue-grey-100;
-        font-size: 1em;
+        font-size: 16px;
+        line-height: 20px;
         min-height: 0px;
         font-family: inherit;
+        caret-color: $input-active-underline-fill;
 
         &::placeholder {
           color: $input-placeholder-color;
@@ -92,7 +172,7 @@ $input-placeholder-color: $color-blue-grey-450;
           outline: none;
         }
 
-        &[disabled] {
+        &:disabled {
           color: $color-blue-grey-400;
           user-select: none;
         }
@@ -126,7 +206,11 @@ $input-placeholder-color: $color-blue-grey-450;
     .ngx-input-label {
       pointer-events: none;
       position: absolute;
-      font-size: 16px;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 16px;
+      transition: color 0.2s ease-in-out;
+      color: $color-blue-grey-350;
     }
 
     .ngx-input-underline {
@@ -147,23 +231,8 @@ $input-placeholder-color: $color-blue-grey-450;
       color: $input-hint-color;
       margin-top: 2px;
       min-height: 1em;
-    }
-  }
-
-  &.invalid.ng-touched,
-  &.ng-invalid.ng-touched,
-  &.ng-invalid.ng-dirty {
-    .ngx-input-underline {
-      background-color: $input-invalid-color;
-    }
-
-    .ngx-input-label {
-      font-weight: 600;
-      color: $input-invalid-color;
-    }
-
-    .ngx-input-hint {
-      color: $input-invalid-color;
+      line-height: 14px;
+      transition: color 0.2s ease-in-out;
     }
   }
 }

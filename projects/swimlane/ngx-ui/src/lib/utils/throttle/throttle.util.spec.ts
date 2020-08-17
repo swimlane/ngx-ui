@@ -1,48 +1,36 @@
 import { throttle } from './throttle.util';
+import { fakeAsync, tick } from '@angular/core/testing';
 
 describe('throttle', () => {
-  let spy: jasmine.Spy;
+  let spy: any;
 
   beforeEach(() => {
-    spy = spyOn(window.console, 'log').and.callFake(() => undefined);
+    spy = jasmine.createSpy('fn');
   });
 
-  it('should get throttle result', done => {
-    throttle(() => console.log('test'), 0)();
+  it('should get throttle result', fakeAsync(() => {
+    throttle(spy, 0)();
+    tick();
+    expect(spy).toHaveBeenCalled();
+  }));
 
-    setTimeout(() => {
-      expect(spy).toHaveBeenCalled();
-      done();
-    });
-  });
-
-  it('should throttle multiple calls', done => {
-    const fn = throttle(() => console.log('test'), 10, { leading: false });
+  it('should throttle multiple calls', fakeAsync(() => {
+    const fn = throttle(spy, 10, { leading: false });
     fn();
-
-    setTimeout(() => {
-      expect(spy).not.toHaveBeenCalled();
-      fn();
-
-      setTimeout(() => {
-        expect(spy).toHaveBeenCalled();
-        done();
-      }, 10);
-    });
-  });
-
-  it('should throttle multiple calls with leading call', done => {
-    const fn = throttle(() => console.log('test'), 10);
+    tick();
+    expect(spy).not.toHaveBeenCalled();
     fn();
+    tick(10);
+    expect(spy).toHaveBeenCalled();
+  }));
 
-    setTimeout(() => {
-      expect(spy).toHaveBeenCalledTimes(1);
-      fn();
-
-      setTimeout(() => {
-        expect(spy).toHaveBeenCalledTimes(2);
-        done();
-      }, 10);
-    });
-  });
+  it('should throttle multiple calls with leading call', fakeAsync(() => {
+    const fn = throttle(spy, 10);
+    fn();
+    tick();
+    expect(spy).toHaveBeenCalledTimes(1);
+    fn();
+    tick(15);
+    expect(spy).toHaveBeenCalledTimes(2);
+  }));
 });
