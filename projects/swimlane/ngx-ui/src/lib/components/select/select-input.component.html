@@ -56,7 +56,7 @@
     *ngIf="caretVisible"
     class="ngx-select-caret icon-arrow-down"
     [class.icon-arrow-down]="!selectCaret"
-    (click)="toggle.emit()"
+    (click)="onToggle($event)"
   >
     <span *ngIf="isNotTemplate; else tpl" [innerHTML]="selectCaret"> </span>
     <ng-template #tpl>

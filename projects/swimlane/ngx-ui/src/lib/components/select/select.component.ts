@@ -345,7 +345,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   onFocus(): void {
     if (this.disabled) return;
 
-    this.toggleDropdown(true);
+    this.toggleDropdown(!this.dropdownActive);
     this.onTouchedCallback();
   }
 
