@@ -1,6 +1,9 @@
 # CHANGELOG
 
-## HEAD (Unreleased)
+## 29.3.0 (2020-08-17)
+
+- enhancement: update ngx-select focus underline to be clearer. clicking the input box now also toggles dropdown
+- Bug: fix ngx-select so that clicking the caret closes the dropdown
 
 - enhancement: update ngx-select focus underline to be clearer. clicking the input box now also toggles dropdown
 - Bug: fix ngx-select so that clicking the caret closes the dropdown
