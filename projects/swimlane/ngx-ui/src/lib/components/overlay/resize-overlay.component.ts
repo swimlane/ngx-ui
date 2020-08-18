@@ -1,19 +1,21 @@
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   Input,
-  ViewEncapsulation,
-  OnInit,
   OnDestroy,
-  ChangeDetectorRef,
-  ChangeDetectionStrategy
+  OnInit,
+  ViewEncapsulation
 } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-import { HotkeysService } from '../hotkeys/hotkeys.service';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { BreakpointObserver } from '@angular/cdk/layout';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { map, startWith } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+import { HotkeysService } from '../hotkeys/hotkeys.service';
 
 @Component({
+  exportAs: 'ngxResizeOverlay',
   selector: 'ngx-resize-overlay',
   templateUrl: './resize-overlay.component.html',
   styleUrls: ['./resize-overlay.component.scss'],
@@ -49,11 +51,12 @@ export class ResizeOverlayComponent implements OnInit, OnDestroy {
   private _disabled: boolean = localStorage.getItem('overlay-disabled') === 'true';
   private _query = '(min-width: 959px) and (min-height: 650px)';
 
-  get keys() {
+  get keys(): string[] {
     if (this.hotkeysService.hotkeys && this.hotkeysService.hotkeys[this.combo]) {
       return this.hotkeysService.hotkeys[this.combo][0].keys;
+    } else {
+      return [];
     }
-    return [];
   }
 
   constructor(
@@ -64,7 +67,7 @@ export class ResizeOverlayComponent implements OnInit, OnDestroy {
     this._buildObservable();
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.hotkeysService.add(this.combo, {
       callback: this.toggle.bind(this),
       description: 'Toggle browser size warning',
@@ -73,21 +76,21 @@ export class ResizeOverlayComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.hotkeysService.deregister(this.combo);
   }
 
-  onClick(ev: any) {
+  onClick(ev: KeyboardEvent): void {
     if (ev.metaKey && ev.shiftKey) {
       this.disabled = true;
     }
   }
 
-  toggle() {
+  toggle(): void {
     this.disabled = !this.disabled;
   }
 
-  private _buildObservable() {
+  private _buildObservable(): void {
     const query = Array.isArray(this.query) ? this.query : [this.query];
 
     this.visible$ = this.breakpointObserver.observe(query).pipe(
