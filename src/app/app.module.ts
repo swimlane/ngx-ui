@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 import { MomentModule } from 'ngx-moment';
 import { NgxUIModule } from '@swimlane/ngx-ui';
@@ -23,7 +22,6 @@ import { CodeEditorPageComponent } from './forms/code-editor-page/code-editor-pa
 import { ColorsPageComponent } from './colors-page/colors-page.component';
 import { ControlsPageComponent } from './controls-page/controls-page.component';
 import { CounterComponent } from './components/tabs-page/counter.component';
-import { DatatablePageComponent } from './components/datatable-page/datatable-page.component';
 import { DatetimePageComponent } from './forms/datetime-page/datetime-page.component';
 import { DialogPageComponent } from './dialogs/dialog-page/dialog-page.component';
 import { DrawerPageComponent } from './dialogs/drawer-page/drawer-page.component';
@@ -72,7 +70,6 @@ const routes: Routes = [
   { path: 'code-editor', component: CodeEditorPageComponent },
   { path: 'colors', component: ColorsPageComponent },
   { path: 'controls', component: ControlsPageComponent },
-  { path: 'datatable', component: DatatablePageComponent },
   { path: 'datetime', component: DatetimePageComponent },
   { path: 'dialog', component: DialogPageComponent },
   { path: 'drawer', component: DrawerPageComponent },
@@ -121,7 +118,6 @@ const routes: Routes = [
     ColorsPageComponent,
     ControlsPageComponent,
     CounterComponent,
-    DatatablePageComponent,
     DatetimePageComponent,
     DialogPageComponent,
     DrawerPageComponent,
@@ -166,7 +162,6 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     MomentModule,
-    NgxDatatableModule,
     BrowserAnimationsModule,
     FileUploadModule,
     NgxUIModule,
