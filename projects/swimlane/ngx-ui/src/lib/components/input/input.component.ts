@@ -217,6 +217,7 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
 
   focused: boolean = false;
   readonly type$ = new BehaviorSubject<InputTypes>(InputTypes.text);
+  readonly inputTypes = InputTypes;
 
   private _value: string | number = '';
   private _type: InputTypes = InputTypes.text;
@@ -307,6 +308,18 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = coerceBooleanProperty(isDisabled);
+  }
+
+  incrementValue(): void {
+    if (!this.disabled) {
+      this.value = this.value ? +this.value + 1 : 1;
+    }
+  }
+
+  decrementValue(): void {
+    if (!this.disabled) {
+      this.value = this.value ? +this.value - 1 : -1;
+    }
   }
 
   private onTouchedCallback: () => void = () => {

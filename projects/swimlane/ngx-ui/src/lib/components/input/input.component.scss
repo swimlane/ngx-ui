@@ -180,6 +180,12 @@ $input-placeholder-color: $color-blue-grey-350;
 
       .ngx-input-box {
         margin: 3px 0;
+
+        &[type='number'] {
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+          }
+        }
       }
 
       .ngx-input-textarea {
@@ -200,6 +206,37 @@ $input-placeholder-color: $color-blue-grey-350;
         &:hover {
           color: $color-grey-200;
         }
+      }
+
+      .numeric-spinner {
+        display: flex;
+        z-index: 2;
+        opacity: 0;
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        flex-direction: column;
+        transition: opacity 0.1s ease-out;
+
+        i {
+          font-size: 0.4375rem;
+          color: $color-blue-grey-300;
+          cursor: pointer;
+
+          &:hover {
+            color: $color-grey-200;
+          }
+
+          &:first-child {
+            padding-bottom: 5px;
+          }
+        }
+      }
+
+      &:hover .numeric-spinner,
+      .ngx-input-box:focus + .numeric-spinner {
+        opacity: 1;
       }
     }
 

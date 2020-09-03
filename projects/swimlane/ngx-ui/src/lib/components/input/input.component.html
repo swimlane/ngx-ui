@@ -63,6 +63,10 @@
           (click)="togglePassword()"
         >
         </span>
+        <div class="numeric-spinner" *ngIf="!disabled && (type$ | async) === inputTypes.number">
+          <i class="ngx-icon ngx-chevron-bold-up" (click)="incrementValue()"></i>
+          <i class="ngx-icon ngx-chevron-bold-down" (click)="decrementValue()"></i>
+        </div>
       </div>
       <span class="ngx-input-label" [@labelState]="labelState">
         <span [innerHTML]="label"></span>&nbsp;
