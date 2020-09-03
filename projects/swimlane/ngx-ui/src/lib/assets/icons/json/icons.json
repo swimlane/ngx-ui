@@ -5,6 +5,204 @@
             "width": 32,
             "height": 32,
             "tags": "",
+            "name": "thumb-down-outline",
+            "content": "<svg height=\"32\" viewBox=\"0 0 32 32\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\" stroke=\"none\"><path clip-rule=\"evenodd\" d=\"M18.086 26.993v-5.18l-6.302-7.138V7.602l2.207-.996.028-.015c1.191-.613 2.633-.934 4.102-.934h8.823c.777 0 1.296.587 1.296 1.154v.08l1.258 9.502c-.038.545-.546 1.09-1.294 1.09h-7.527v4.794c0 .782-.251 1.78-.73 2.71-.46.895-1.07 1.608-1.713 2.002a.352.352 0 0 1-.148.004zm-1.187 2.15c.699.372 1.552.407 2.312.1l.074-.031.07-.04c1.217-.689 2.148-1.856 2.77-3.063.624-1.21 1.002-2.592 1.002-3.832v-2.344h5.077c1.996 0 3.746-1.554 3.746-3.605v-.08l-1.261-9.526c-.05-2.007-1.779-3.515-3.745-3.515H18.12c-1.796 0-3.62.387-5.195 1.191L9.334 6.02v9.582l6.302 7.138v4.296c0 .964.534 1.718 1.263 2.107zM0 18.537h7.491V3H0zm2.45-2.45V5.45h2.591v10.637z\" fill=\"#000000\" fill-rule=\"evenodd\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "thumb-up-outline-large",
+            "content": "<svg viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\"><g class=\"nc-icon-wrapper\" stroke=\"none\" fill=\"#000000\"><path d=\"M0 29.4h6.9V13.9H0zm1.5-14h3.9v12.5H1.5zm27.1-3h-6v-3c0-1.2-.4-2.6-1-3.8s-1.6-2.4-2.7-3c-.7-.3-1.4-.2-2 .1s-1.1 1-1.1 1.8v4.8l-6.7 7.6v9.7l3.5 1.6c1.6.8 3.5 1.2 5.3 1.2h9.4c1.8 0 3.4-1.4 3.4-3.2L32 15.8c0-1.9-1.6-3.4-3.4-3.4zm.6 13.4c0 1-.8 1.8-1.9 1.8h-9.4c-1.6 0-3.3-.4-4.6-1.1l-2.7-1.2v-8.1l6.7-7.6V4.3c0-.2.1-.3.3-.4s.4-.1.7 0c.8.5 1.6 1.4 2.1 2.4.5 1.1.8 2.2.8 3.2v4.6h7.5c1.1 0 1.9.8 1.9 1.7z\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "thumb-up-filled",
+            "content": "<svg viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\"><g class=\"nc-icon-wrapper\" stroke=\"none\" fill=\"#000000\"><path d=\"M0 30.3h5.8v-16H0zm29.1-17.7h-7.3V8.3c0-2.5-1.5-5.8-3.6-7.1-1-.4-2.2.1-2.2 1.3v5.8L8.8 17v10.2l3.3 1.6c1.6.9 3.5 1.3 5.4 1.3h10.2c1.6 0 2.9-1.3 2.9-2.9L32 15.5c0-1.6-1.3-2.9-2.9-2.9z\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "thumb-up-outline",
+            "content": "<svg height=\"32\" viewBox=\"0 0 32 32\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\" stroke=\"none\"><path clip-rule=\"evenodd\" d=\"M18.086 5.457v5.18l-6.302 7.138v7.073l2.207.996.028.014c1.191.614 2.633.935 4.102.935h8.823c.777 0 1.296-.588 1.296-1.154v-.08l1.258-9.502c-.038-.546-.546-1.09-1.294-1.09h-7.527v-4.794c0-.782-.251-1.78-.73-2.71-.46-.895-1.07-1.608-1.713-2.003a.356.356 0 0 0-.148-.003zm-1.187-2.15c.699-.373 1.552-.407 2.312-.1l.074.031.07.04c1.217.688 2.148 1.856 2.77 3.062.624 1.212 1.002 2.593 1.002 3.833v2.344h5.077c1.996 0 3.746 1.554 3.746 3.604v.081l-1.261 9.526c-.05 2.007-1.779 3.515-3.745 3.515H18.12c-1.796 0-3.62-.387-5.195-1.191L9.334 26.43v-9.582l6.302-7.138V5.414c0-.964.534-1.718 1.263-2.107zM0 13.913h7.491V29.45H0zm2.45 2.45V27h2.591V16.363z\" fill=\"#000000\" fill-rule=\"evenodd\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "thumb-down-outline-large",
+            "content": "<svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" x=\"0\" y=\"0\" viewBox=\"0 0 32 32\" xml:space=\"preserve\" enable-background=\"new 0 0 32 32\" width=\"32\" height=\"32\"><g class=\"nc-icon-wrapper\" stroke=\"none\" fill=\"#000000\"><path class=\"st0\" d=\"M17.4 28.4c-.2-.1-.3-.2-.3-.4v-5.4L10.4 15V6.8l2.7-1.2c1.4-.7 3-1.1 4.6-1.1h9.4c1.1 0 1.9.8 1.9 1.8l1.3 10.2c0 .9-.9 1.7-1.9 1.7h-7.5v4.6c0 .9-.3 2.1-.8 3.2-.5 1-1.3 1.9-2.1 2.4-.1.1-.4.1-.6 0zm-.7 1.3c.6.3 1.3.4 2 .1 1.2-.7 2.1-1.8 2.7-3 .6-1.2 1-2.6 1-3.8v-3.1h6c1.9 0 3.4-1.4 3.4-3.3L30.7 6.3c0-1.8-1.6-3.2-3.4-3.2h-9.4c-1.8 0-3.7.4-5.3 1.2L8.9 5.9v9.7l6.7 7.6V28c.1.8.5 1.4 1.1 1.7zM0 18.3h6.9V2.8H0v15.5zm1.5-1.5V4.3h3.9v12.5H1.5z\" fill-rule=\"evenodd\" clip-rule=\"evenodd\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "thumb-down-filled",
+            "content": "<svg viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\"><g class=\"nc-icon-wrapper\" stroke=\"none\" fill=\"#000000\"><path d=\"M0 18h5.8V2H0zM30.5 5.2c0-1.6-1.3-2.9-2.9-2.9H17.5c-1.9 0-3.8.4-5.4 1.3L8.8 5.2v10.2L16 24v5.8c0 1.2 1.2 1.7 2.2 1.3 2.2-1.3 3.6-4.6 3.6-7.1v-4.4h7.3c1.6 0 2.9-1.3 2.9-2.9z\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "calendar-clock",
+            "content": "<svg viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\"><g class=\"nc-icon-wrapper\" stroke=\"none\" fill=\"#000000\"><path d=\"M2.7 10.7h24v-4C26.7 5.2 25.5 4 24 4h-1.3V0H20v6.7h-1.3V4H9.3V0H6.7v6.7H5.3V4H2.7C1.2 4 0 5.2 0 6.7V24c0 1.5 1.2 2.7 2.7 2.7h8V24h-8zm20 2.6c-5.1 0-9.3 4.2-9.3 9.3s4.2 9.3 9.3 9.3 9.3-4.2 9.3-9.3-4.2-9.3-9.3-9.3zm0 16a6.7 6.7 0 1 1 6.7-6.7c0 3.7-3.1 6.7-6.7 6.7zm1.3-12h-2.7V24h5.3v-2.7H24z\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "gear-small",
+            "content": "<svg height=\"32\" viewBox=\"0 0 32 32\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\" stroke=\"none\"><path d=\"M28.2 17.6c0-.48.165-1.12.165-1.6s0-1.12-.164-1.6l3.455-2.4c.33-.16.494-.64.165-1.12l-3.291-5.6c-.165-.48-.658-.64-.987-.48l-3.95 1.76c-.822-.64-1.974-1.28-2.961-1.6L20.138.8c0-.48-.329-.8-.822-.8h-6.582c-.493 0-.823.32-.823.8l-.493 4c-1.152.48-2.14.96-2.962 1.6L4.507 4.8c-.329-.16-.822 0-.987.32l-3.29 5.6c-.33.48-.33.96.164 1.12l3.455 2.56c0 .48-.164 1.12-.164 1.6s0 1.12.164 1.6L.394 20c-.33.16-.494.64-.165 1.12l3.291 5.6c.165.48.658.64.987.48l3.95-1.76c.822.64 1.974 1.28 2.96 1.6l.494 4.16c0 .48.33.8.823.8h6.582c.493 0 .822-.32.822-.8l.494-4.16c1.152-.48 2.139-.96 2.962-1.6l3.949 1.76c.329.16.822 0 .987-.32l3.29-5.6c.165-.32.165-.8-.164-1.12zm-12.175 4.8c-3.62 0-6.582-2.88-6.582-6.4s2.962-6.4 6.582-6.4 6.582 2.88 6.582 6.4-2.962 6.4-6.582 6.4z\" fill=\"#000000\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "locate-filled",
+            "content": "<svg height=\"32\" viewBox=\"0 0 32 32\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\" stroke=\"none\"><path d=\"M31.596 9.92L.76.027A.583.583 0 0 0 .028.76l9.89 30.836c.077.24.3.403.55.404h.004c.25 0 .473-.16.553-.398l5.144-15.433 15.433-5.144a.583.583 0 0 0-.006-1.106z\" fill=\"#000000\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "disable",
+            "content": "<svg height=\"32\" viewBox=\"0 0 32 32\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\" stroke=\"none\"><path clip-rule=\"evenodd\" d=\"M23.531 8.469a1.6 1.6 0 0 1 0 2.262l-12.8 12.8A1.6 1.6 0 0 1 8.47 21.27l12.8-12.8a1.6 1.6 0 0 1 2.262 0zM16 28.8c7.07 0 12.8-5.73 12.8-12.8S23.07 3.2 16 3.2 3.2 8.93 3.2 16 8.93 28.8 16 28.8zM32 16c0 8.837-7.163 16-16 16S0 24.837 0 16 7.163 0 16 0s16 7.163 16 16z\" fill=\"#000000\" fill-rule=\"evenodd\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "x-small",
+            "content": "<svg height=\"32\" viewBox=\"0 0 32 32\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\" stroke=\"none\"><path clip-rule=\"evenodd\" d=\"M16 11.272L26.47.712l4.616 4.576-10.51 10.6 10.732 10.824-4.616 4.576L16 20.504 5.308 31.288.692 26.712l10.731-10.824L.914 5.288 5.53.712z\" fill=\"#000000\" fill-rule=\"evenodd\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "unlink",
+            "content": "<svg viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\"><g class=\"nc-icon-wrapper\" stroke=\"none\" fill=\"#000000\"><path d=\"M10.6 27.3c-1.6 1.6-4.2 1.6-5.7 0l-.1-.1c-1.6-1.6-1.6-4.2 0-5.7l5-5L7.2 14l-5 5c-2.9 2.9-2.9 7.7 0 10.7l.1.1c2.9 2.9 7.7 2.9 10.7 0l5-5-2.4-2.5zM3.4 6.6l22 22 2.8-2.8-22-22zm26.4-4.3l-.1-.1C26.8-.7 22-.7 19 2.2l-5.4 5.4 2.5 2.5 5.4-5.4c1.6-1.6 4.2-1.6 5.7 0l.1.1c1.6 1.6 1.6 4.2 0 5.7l-5.4 5.4 2.5 2.5 5.4-5.4c2.9-2.9 2.9-7.7 0-10.7z\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "swap",
+            "content": "<svg viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\"><g class=\"nc-icon-wrapper\" stroke=\"none\" fill=\"#000000\"><path d=\"M10.3 14.3l-4.1-4.1 18.9-.1V6.9L6.3 7l4.1-4.1L8.1.6l-8 8 7.9 8zm12.5-1.2l-2.3 2.3 5.2 5.2-18.9.1v3.2l18.9-.1-5.3 5.2 2.3 2.3 9.2-9.2z\" fill=\"#000000\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "spaces-outline",
+            "content": "<svg viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\"><g class=\"nc-icon-wrapper\" stroke=\"none\" fill=\"#000000\"><path d=\"M22.8 29.6H2.4V9.2h2.8V6.9H0V32h25.1v-5.2h-2.4v2.8zM9.2 0v22.8H32V0zm13.6 20.4H11.6V9.2h11.2zm6.8 0h-4.5V6.9H11.6V2.4h18.1v18z\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "spaces-outline-large",
+            "content": "<svg viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\"><g class=\"nc-icon-wrapper\" stroke=\"none\" fill=\"#000000\"><path d=\"M22.9 30.5H1.5V9h3.3V7.5H0V32h24.4v-4.8h-1.5zM9.1 0v22.9H32V0zm13.8 21.4H10.6V9h12.3zm7.6 0h-6.1V7.5H10.6v-6h19.9z\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "edit-outline",
+            "content": "<svg height=\"32\" viewBox=\"0 0 32 32\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\" stroke=\"none\"><path clip-rule=\"evenodd\" d=\"M23.496.354a1.208 1.208 0 0 1 1.709 0l6.441 6.441a1.208 1.208 0 0 1 0 1.709L11.513 28.639a1.207 1.207 0 0 1-.488.297l-9.45 3.007a1.208 1.208 0 0 1-1.518-1.518l3.009-9.452c.058-.184.16-.352.297-.488zM20.955 6.31l4.88 4.587 3.249-3.248-4.734-4.734zm3.171 6.297l-4.88-4.587-13.32 13.318 4.733 4.738zM8.402 27.236l-3.636-3.639-1.698 5.336z\" fill=\"#000000\" fill-rule=\"evenodd\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "replace",
+            "content": "<svg height=\"32\" viewBox=\"0 0 32 32\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\" stroke=\"none\"><path d=\"M9.6 1a3.195 3.195 0 0 0-3.2 3.191v11.17a3.195 3.195 0 0 0 3.2 3.19h4.8v4.787c0 1.744 1.451 3.191 3.2 3.191h11.2c1.749 0 3.2-1.447 3.2-3.191V12.169c0-1.744-1.451-3.191-3.2-3.191H24V4.19A3.195 3.195 0 0 0 20.8 1zM24 12.169h4.8v11.169H17.6v-4.787h3.2c1.768 0 3.2-1.428 3.2-3.19zM0 18.551v6.383c0 1.744 1.451 3.19 3.2 3.19H8v3.192l4.8-4.787L8 21.742v3.191H3.2v-6.382z\" fill=\"#000000\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "notation-arrow-down-left",
+            "content": "<svg height=\"32\" viewBox=\"0 0 32 32\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\" stroke=\"none\"><path clip-rule=\"evenodd\" d=\"M9.655 12.829c-2.959 2.48-3.765 5.784-3.805 9.64l3.136-3.136 1.06 1.06-4.917 4.918-4.917-4.918 1.06-1.06 3.079 3.078c.047-4.037.907-7.853 4.34-10.732C12.586 8.413 19.633 6.5 32 6.5V8C19.69 8 13.118 9.925 9.655 12.829z\" fill=\"#000000\" fill-rule=\"evenodd\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "locate-outline",
+            "content": "<svg height=\"32\" viewBox=\"0 0 32 32\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\" stroke=\"none\"><path clip-rule=\"evenodd\" d=\"M9.919 31.596c.076.24.299.403.55.404h.003c.25 0 .473-.16.553-.398l5.144-15.433 15.028-5.01.405-.134a.583.583 0 0 0-.006-1.106L.76.03A.583.583 0 0 0 .028.76zm.588-6.188L3.47 3.471l21.937 7.036-11.175 3.725z\" fill=\"#000000\" fill-rule=\"evenodd\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "locate-outline-large",
+            "content": "<svg height=\"32\" viewBox=\"0 0 32 32\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\" stroke=\"none\"><path clip-rule=\"evenodd\" d=\"M.76.028L31.596 9.92a.583.583 0 0 1 .006 1.105L16.169 16.17l-5.144 15.433a.582.582 0 0 1-.553.398h-.003a.581.581 0 0 1-.55-.404L.028.76A.583.583 0 0 1 .76.028zm9.73 28.436l4.493-13.481 13.48-4.493L2.001 2.002z\" fill=\"#000000\" fill-rule=\"evenodd\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "edit-outline-large",
+            "content": "<svg height=\"32\" viewBox=\"0 0 32 32\" width=\"32\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"none\" class=\"nc-icon-wrapper\" stroke=\"none\"><path clip-rule=\"evenodd\" d=\"M24.064.223a.762.762 0 0 1 1.077 0l6.636 6.636a.762.762 0 0 1 0 1.077L11.037 28.68a.763.763 0 0 1-.309.188L.994 31.964a.762.762 0 0 1-.957-.957l3.1-9.738a.762.762 0 0 1 .187-.308zM20.41 6.03l5.731 5.387 4.019-4.02-5.559-5.558zm4.653 6.465l-5.73-5.387L4.938 21.5l5.559 5.563zm-15.99 15.3l-4.866-4.87-2.273 7.14z\" fill=\"#000000\" fill-rule=\"evenodd\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
+            "name": "calendar",
+            "content": "<svg viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\"><g class=\"nc-icon-wrapper\" stroke=\"none\" fill=\"#000000\"><path d=\"M12.8 14.4H6.4v6.4h6.4zm16-9.6h-1.6V0H24v8h-1.6V4.8H11.2V0H8v8H6.4V4.8H3.2C1.4 4.8 0 6.2 0 8v20.8C0 30.6 1.4 32 3.2 32h25.6c1.8 0 3.2-1.4 3.2-3.2V8c0-1.8-1.4-3.2-3.2-3.2zm0 24H3.2V11.2h25.6z\"></path></g></svg>",
+            "set_id": 1
+        },
+        {
+            "style": "glyph",
+            "width": 32,
+            "height": 32,
+            "tags": "",
             "name": "automation",
             "content": "<svg viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\"><g class=\"nc-icon-wrapper\" stroke=\"none\" fill=\"#000000\"><path clip-rule=\"evenodd\" d=\"M19.6 8.5l3 6 9.4-1.9-.5-2.4-7.6 1.5-2.2-4.5 2.2-4.5 7.6 1.5.4-2.2L22.5.1l-3 6h-10c-.4-2.2-2.3-3.8-4.7-3.8C2.2 2.3 0 4.4 0 7.1s2.2 4.8 4.8 4.8c.4 0 .8 0 1.1-.1l5.3 12h-8C1.4 23.8 0 25.2 0 27v5h25.7v-5c0-1.8-1.4-3.2-3.2-3.2h-8.6L8.1 10.7c.6-.6 1.1-1.3 1.4-2.2zm2.9 17.7c.4 0 .8.4.8.8v2.6H2.4V27c0-.4.4-.8.8-.8zM4.8 9.5c-1.3 0-2.4-1.1-2.4-2.4s1.1-2.4 2.4-2.4 2.4 1.1 2.4 2.4-1 2.4-2.4 2.4z\" fill-rule=\"evenodd\"></path></g></svg>",
             "set_id": 1
@@ -2959,24 +3157,6 @@
             "tags": "",
             "name": "calender-clock",
             "content": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\"><g class=\"nc-icon-wrapper\" stroke=\"none\" fill=\"#000000\"><g transform=\"translate(2369 -155)\"><path d=\"M-2358.331 179.004h-8.002V165.67h24.004v-4.001a2.67 2.67 0 0 0-2.667-2.667h-1.333V155h-2.668v6.668h-1.333V159h-9.335V155h-2.667v6.668h-1.334V159h-2.667a2.67 2.67 0 0 0-2.667 2.667v17.336a2.67 2.67 0 0 0 2.667 2.667h8.002v-2.667z\"></path><path d=\"M-2346.335 187c-5.148 0-9.335-4.187-9.335-9.335 0-5.147 4.188-9.335 9.335-9.335 5.148 0 9.335 4.187 9.335 9.335 0 5.148-4.187 9.335-9.335 9.335zm0-16.003a6.675 6.675 0 0 0-6.668 6.668 6.675 6.675 0 0 0 6.668 6.668 6.675 6.675 0 0 0 6.668-6.668 6.675 6.675 0 0 0-6.668-6.668z\"></path><path d=\"M-2342.335 179h-5.334v-6.67h2.668v4.001h2.666V179z\"></path></g></g></svg>",
-            "set_id": 1
-        },
-        {
-            "style": "glyph",
-            "width": 32,
-            "height": 32,
-            "tags": "",
-            "name": "calendar",
-            "content": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\"><g class=\"nc-icon-wrapper\" stroke=\"none\" fill=\"#000000\"><path fill-rule=\"evenodd\" d=\"M6.8 0v3.2H5.2A3.21 3.21 0 0 0 2 6.4v22.4C2 30.56 3.44 32 5.2 32h22.4c1.76 0 3.2-1.44 3.2-3.2V6.4c0-1.76-1.44-3.2-3.2-3.2H26V0h-3.2v3.2H10V0H6.8zM5.2 11.2h22.4v17.6H5.2V11.2zm11.2 6.4v8h8v-8h-8z\"></path></g></svg>",
-            "set_id": 1
-        },
-        {
-            "style": "glyph",
-            "width": 32,
-            "height": 32,
-            "tags": "",
-            "name": "calendar-clock",
-            "content": "<svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\"><g class=\"nc-icon-wrapper\" stroke=\"none\" fill=\"#000000\"><path fill-rule=\"evenodd\" d=\"M9.6 0C4.317 0 0 4.317 0 9.6c0 5.283 4.317 9.6 9.6 9.6 5.283 0 9.6-4.317 9.6-9.6 0-5.283-4.317-9.6-9.6-9.6zM24 0v3.2h-5.3c1.28 1.76 2.1 4 2.1 6.4 0 .48.01 1.12-.15 1.6h8.15v17.6H6.4v-8.5c-1.12-.32-2.24-.8-3.2-1.6v10.1c0 1.76 1.44 3.2 3.2 3.2h22.4c1.76 0 3.2-1.44 3.2-3.2V6.4c0-1.76-1.44-3.2-3.2-3.2h-1.6V0H24zM9.6 3.2c3.554 0 6.4 2.846 6.4 6.4 0 3.554-2.846 6.4-6.4 6.4a6.376 6.376 0 0 1-6.4-6.4c0-3.554 2.846-6.4 6.4-6.4zM8 4.8v5.45l.45.5 2.6 2.55 2.25-2.25-2.1-2.15V4.8H8zm9.6 12.8v8h8v-8h-8z\"></path></g></svg>",
             "set_id": 1
         },
         {
