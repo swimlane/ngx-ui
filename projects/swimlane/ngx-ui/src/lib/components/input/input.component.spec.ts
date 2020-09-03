@@ -167,4 +167,58 @@ describe('InputComponent', () => {
       expect(component.input.value as any).toEqual(null);
     });
   });
+
+  describe('incrementValue', () => {
+    it('should not increment if input disabled', () => {
+      component.input.value = 0;
+      component.input.disabled = true;
+
+      component.input.incrementValue();
+
+      expect(component.input.value).toBe(0);
+    });
+
+    it('should set to 1 if input value is falsy', () => {
+      component.input.value = undefined;
+
+      component.input.incrementValue();
+
+      expect(component.input.value).toBe(1);
+    });
+
+    it('should increment input value by 1', () => {
+      component.input.value = 41;
+
+      component.input.incrementValue();
+
+      expect(component.input.value).toBe(42);
+    });
+  });
+
+  describe('decrementValue', () => {
+    it('should not decrement if input disabled', () => {
+      component.input.value = 0;
+      component.input.disabled = true;
+
+      component.input.decrementValue();
+
+      expect(component.input.value).toBe(0);
+    });
+
+    it('should set to -1 if input value is falsy', () => {
+      component.input.value = undefined;
+
+      component.input.decrementValue();
+
+      expect(component.input.value).toBe(-1);
+    });
+
+    it('should decrement input value by 1', () => {
+      component.input.value = 41;
+
+      component.input.decrementValue();
+
+      expect(component.input.value).toBe(40);
+    });
+  });
 });
