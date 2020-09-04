@@ -17,29 +17,6 @@ $input-placeholder-color: $color-blue-grey-350;
   padding-top: calc(0.7em + 8px);
   padding-bottom: 0;
 
-  &.fill {
-    .ngx-input-box,
-    .ngx-input-textarea {
-      margin: 0 !important;
-      padding: 6px 10px !important;
-      position: relative;
-      z-index: 1;
-    }
-
-    .ngx-input-box-wrap {
-      &::after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-color: $color-blue-grey-875;
-        mix-blend-mode: exclusion;
-        content: '';
-      }
-    }
-  }
-
   &.md {
     .ngx-input-box,
     .ngx-input-textarea {
@@ -89,6 +66,7 @@ $input-placeholder-color: $color-blue-grey-350;
 
   &.autosize {
     display: inline-block;
+    width: fit-content;
   }
 
   // override chrome autofill styles
@@ -178,12 +156,43 @@ $input-placeholder-color: $color-blue-grey-350;
         }
       }
 
-      .ngx-input-box {
+      .autosizer-wrap {
+        position: relative;
+        max-width: 100%;
         margin: 3px 0;
+        overflow: hidden;
 
-        &[type='number'] {
-          &::-webkit-inner-spin-button {
-            -webkit-appearance: none;
+        &.autosize-enabled {
+          display: inline-block;
+        }
+
+        .autosize-wrap--width-adjuster {
+          opacity: 0;
+          z-index: 1;
+          white-space: nowrap;
+          display: inline-block;
+        }
+
+        .ngx-input-box {
+          position: absolute;
+          width: 100%;
+          left: 0;
+          top: 0;
+
+          &[type='number'] {
+            &::-webkit-inner-spin-button {
+              -webkit-appearance: none;
+            }
+          }
+        }
+
+        &.numeric-type {
+          .autosize-wrap--width-adjuster {
+            padding-right: 1.75rem;
+          }
+
+          .ngx-input-box[type='number'] {
+            width: calc(100% - 2.5rem);
           }
         }
       }
@@ -213,7 +222,7 @@ $input-placeholder-color: $color-blue-grey-350;
         z-index: 2;
         opacity: 0;
         position: absolute;
-        right: 16px;
+        right: 0.9375rem;
         top: 50%;
         transform: translateY(-50%);
         flex-direction: column;
@@ -248,6 +257,10 @@ $input-placeholder-color: $color-blue-grey-350;
       line-height: 16px;
       transition: color 0.2s ease-in-out;
       color: $color-blue-grey-350;
+      white-space: nowrap;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .ngx-input-underline {
@@ -270,6 +283,36 @@ $input-placeholder-color: $color-blue-grey-350;
       min-height: 1em;
       line-height: 14px;
       transition: color 0.2s ease-in-out;
+    }
+  }
+
+  &.fill {
+    .ngx-input-wrap .ngx-input-box-wrap {
+      .autosizer-wrap,
+      .ngx-input-textarea {
+        margin: 0;
+        padding: 6px 10px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .ngx-input-box {
+        top: 6px;
+        left: 10px;
+      }
+    }
+
+    .ngx-input-box-wrap {
+      &::after {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: $color-blue-grey-875;
+        mix-blend-mode: exclusion;
+        content: '';
+      }
     }
   }
 }

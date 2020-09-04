@@ -385,13 +385,26 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Auto Size">
-  <ngx-input autosize label="Resize Input" placeholder="enter your text here..." hint="example of a resize input"></ngx-input>
+  <ngx-input autosize label="Resize Input"></ngx-input>
 
   <br />
 
   <ngx-codemirror mode="htmlmixed" readOnly="true">
     <![CDATA[
       <ngx-input autosize label="Resize Input" placeholder="enter your text here..." hint="example of a resize input"></ngx-input>
+    ]]>
+  </ngx-codemirror>
+
+  <br />
+  <br />
+
+  <ngx-input autosize appearance="fill" type="number" label="Fill Resize Input"></ngx-input>
+
+  <br />
+
+  <ngx-codemirror mode="htmlmixed" readOnly="true">
+    <![CDATA[
+      <ngx-input autosize appearance="fill" type="number" label="Fill Resize Input"></ngx-input></ngx-input>
     ]]>
   </ngx-codemirror>
 </ngx-section>

@@ -79,6 +79,7 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
   @Input() max: number;
   @Input() minlength: number;
   @Input() maxlength: number;
+  @Input() minWidth: number = 60;
 
   @Input()
   get disabled() {
@@ -174,6 +175,7 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
   @ViewChild('inputControl') readonly inputControl: ElementRef<HTMLInputElement>;
   @ViewChild('inputModel') readonly inputModel: NgModel;
   @ViewChild('textareaControl') readonly textareaControl: ElementRef<HTMLTextAreaElement>;
+  @ViewChild('autosizeWidthAdjuster') readonly autosizeWidthAdjuster: ElementRef<HTMLSpanElement>;
 
   get value(): string | number {
     return this._value;
@@ -201,6 +203,11 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
   @HostBinding('class.ng-touched')
   get isTouched(): boolean {
     return this.inputModel ? this.inputModel.touched : false;
+  }
+
+  @HostBinding('style.min-width')
+  get inputMinWidth(): string {
+    return `${this.minWidth || 50}px`;
   }
 
   get labelState(): string {
@@ -237,20 +244,24 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
 
   ngAfterViewInit(): void {
     if (this.autofocus) {
-      setTimeout(() => this.element.nativeElement.focus());
-    }
+      setTimeout(() => {
+        this.element.nativeElement.focus();
 
-    // sometimes the label doesn't update on load
-    setTimeout(() => this.cdr.markForCheck());
+        // sometimes the label doesn't update on load
+        this.cdr.markForCheck();
+      });
+    }
   }
 
   onChange(event: Event): void {
     event.stopPropagation();
+
     this.change.emit(this.value);
   }
 
   onKeyUp(event: KeyboardEvent): void {
     event.stopPropagation();
+    this.updateAutoSizer((event.target as HTMLInputElement).value);
     this.keyup.emit(event);
   }
 
@@ -313,12 +324,16 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
   incrementValue(): void {
     if (!this.disabled) {
       this.value = this.value ? +this.value + 1 : 1;
+      this.inputControl.nativeElement.focus();
+      this.updateAutoSizer(this.value);
     }
   }
 
   decrementValue(): void {
     if (!this.disabled) {
       this.value = this.value ? +this.value - 1 : -1;
+      this.inputControl.nativeElement.focus();
+      this.updateAutoSizer(this.value);
     }
   }
 
@@ -333,5 +348,12 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
   private updateInputType() {
     // tslint:disable-next-line: tsr-detect-possible-timing-attacks
     this.type$.next(this.passwordTextVisible && InputTypes.password === this.type ? InputTypes.text : this.type);
+  }
+
+  private updateAutoSizer(value): void {
+    if (this.autosize && this.type !== InputTypes.textarea) {
+      // tslint:disable-next-line: tsr-detect-html-injection
+      this.autosizeWidthAdjuster.nativeElement.innerHTML = value;
+    }
   }
 }
