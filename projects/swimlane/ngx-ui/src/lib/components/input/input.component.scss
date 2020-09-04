@@ -299,7 +299,7 @@ $input-placeholder-color: $color-blue-grey-350;
       }
     }
 
-    .ngx-input-box-wrap {
+    .ngx-input-wrap .ngx-input-box-wrap {
       &::after {
         position: absolute;
         top: 0;
