@@ -46,7 +46,8 @@
   "dependencies": {
     "mousetrap": "^1.6.2",
     "@swimlane/ng2-file-upload": "^1.0.1",
-    "normalize.css": "^5.0.0"
+    "normalize.css": "^5.0.0",
+    "tslib": "^2.0.0"
   },
   "devDependencies": {
     "@angular/animations": "^9.0.0",
