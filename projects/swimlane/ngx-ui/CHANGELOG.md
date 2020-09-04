@@ -2,6 +2,12 @@
 
 - Enhancement: Added icons; update icon style for `calendar-clock` and `calendar` icons (#491)
 
+## HEAD (Unreleased)
+
+- Enhancement: replace the default chrome accessibility number spinner with a styled one for number type ngx-inputs
+- Enhancement: added a minWidth input property to ngx-input
+- Fix: rework the way autosize works on ngx-input so that it sizes to its content correctly
+
 ## 29.3.0 (2020-08-17)
 
 - enhancement: update ngx-select focus underline to be clearer. clicking the input box now also toggles dropdown
