@@ -79,7 +79,6 @@ $input-placeholder-color: $color-blue-grey-350;
   }
 
   .ngx-input-flex-wrap {
-    flex-direction: row;
     display: flex;
 
     .ngx-input-flex-wrap-inner {
@@ -162,11 +161,8 @@ $input-placeholder-color: $color-blue-grey-350;
         margin: 3px 0;
         overflow: hidden;
 
-        &.autosize-enabled {
-          display: inline-block;
-        }
-
         .autosize-wrap--width-adjuster {
+          padding-right: 0.3125rem;
           opacity: 0;
           z-index: 1;
           white-space: nowrap;
@@ -299,6 +295,7 @@ $input-placeholder-color: $color-blue-grey-350;
       .ngx-input-box {
         top: 6px;
         left: 10px;
+        width: calc(100% - 10px);
       }
     }
 

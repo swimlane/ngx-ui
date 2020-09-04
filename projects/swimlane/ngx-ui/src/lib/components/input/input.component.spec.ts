@@ -8,6 +8,7 @@ import { InputTypes } from './input-types.enum';
 import { InputComponentFixture } from './input.component.fixture';
 
 const MOCK_EVENT: any = {
+  target: {},
   stopPropagation: () => ({})
 };
 

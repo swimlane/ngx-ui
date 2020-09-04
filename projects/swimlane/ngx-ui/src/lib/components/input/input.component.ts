@@ -45,6 +45,8 @@ const INPUT_VALIDATORS = {
   multi: true
 };
 
+const MIN_WIDTH = 60;
+
 class InputBase {}
 const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
 
@@ -79,7 +81,7 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
   @Input() max: number;
   @Input() minlength: number;
   @Input() maxlength: number;
-  @Input() minWidth: number = 60;
+  @Input() minWidth: number = MIN_WIDTH;
 
   @Input()
   get disabled() {
@@ -207,7 +209,7 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
 
   @HostBinding('style.min-width')
   get inputMinWidth(): string {
-    return `${this.minWidth || 50}px`;
+    return `${this.minWidth || MIN_WIDTH}px`;
   }
 
   get labelState(): string {
