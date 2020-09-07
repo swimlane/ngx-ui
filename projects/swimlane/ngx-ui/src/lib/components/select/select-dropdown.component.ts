@@ -186,7 +186,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     this.keyup.emit({ event, value });
   }
 
-  onOptionKeyDown(event: KeyboardEvent, option: SelectDropdownOption): void {
+  onOptionKeyDown(event: KeyboardEvent, option?: SelectDropdownOption): void {
     event.preventDefault();
     event.stopPropagation();
 
