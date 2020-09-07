@@ -2,6 +2,7 @@
 
 ## HEAD (Unreleased)
 
+- Bug: Fix ngx-select issue when using the filter and arrow keys/enter to selecting a dropdown option (#494)
 - Chore: Removed ngx-datatable from demo page
 - Enhancement: Added icons; update icon style for `calendar-clock` and `calendar` icons (#491)
 
