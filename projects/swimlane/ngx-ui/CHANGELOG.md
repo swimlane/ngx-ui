@@ -4,6 +4,7 @@
 
 - Chore: Removed ngx-datatable from demo page
 - Enhancement: Added icons; update icon style for `calendar-clock` and `calendar` icons (#491)
+- Breaking: Upgrade to Angular 10
 
 ## 29.3.0 (2020-08-17)
 
