@@ -6,7 +6,7 @@
 
 - Enhancement: replace the default chrome accessibility number spinner with a styled one for number type ngx-inputs
 - Enhancement: added a minWidth input property to ngx-input
-- Fix: rework the way autosize works on ngx-input so that it sizes to its content correctly
+- Fix: rework the way autosize works on ngx-input so that it sizes to its content correctly. Now using ngx-autosize-input library.
 
 ## 29.3.0 (2020-08-17)
 
