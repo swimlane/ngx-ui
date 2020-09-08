@@ -4,7 +4,7 @@
     <div class="ngx-input-flex-wrap-inner">
       <div class="ngx-input-box-wrap">
         <textarea
-          *ngIf="type === 'textarea'"
+          *ngIf="type === inputTypes.textarea"
           class="ngx-input-textarea"
           rows="1"
           autosize
@@ -29,55 +29,24 @@
           #textareaControl
         >
         </textarea>
-        <div
-          class="autosizer-wrap"
-          [ngClass]="{ 'autosize-enabled': autosize, 'numeric-type': type === inputTypes.number }"
-          [style.min-width.px]="minWidth"
-        >
-          <span #autosizeWidthAdjuster class="autosize-wrap--width-adjuster"></span>
-          <input
-            *ngIf="type !== 'textarea'"
-            class="ngx-input-box"
-            [(ngModel)]="value"
-            [id]="id"
-            [name]="name"
-            [placeholder]="placeholder"
-            [disabled]="disabled"
-            [type]="type$ | async"
-            [min]="min"
-            [max]="max"
-            [minlength]="minlength"
-            [maxlength]="maxlength"
-            [attr.tabindex]="tabindex"
-            [attr.autocomplete]="autocomplete"
-            [attr.autocorrect]="autocorrect"
-            [attr.spellcheck]="spellcheck"
-            (change)="onChange($event)"
-            (keyup)="onKeyUp($event)"
-            (focus)="onFocus($event)"
-            (blur)="onBlur($event)"
-            (click)="click.emit($event)"
-            [required]="required"
-            #inputModel="ngModel"
-            #inputControl
-          />
-          <div class="numeric-spinner" *ngIf="!disabled && (type$ | async) === inputTypes.number">
-            <i
-              class="ngx-icon ngx-chevron-bold-up"
-              (mousedown)="incrementValue($event)"
-              (mouseup)="clearSpinnerInterval()"
-              (mouseleave)="clearSpinnerInterval()"
-            ></i>
-            <i
-              class="ngx-icon ngx-chevron-bold-down"
-              (mousedown)="decrementValue($event)"
-              (mouseup)="clearSpinnerInterval()"
-              (mouseleave)="clearSpinnerInterval()"
-            ></i>
-          </div>
+        <ng-container *ngTemplateOutlet="inputTpl"></ng-container>
+
+        <div class="numeric-spinner" *ngIf="!disabled && (type$ | async) === inputTypes.number">
+          <i
+            class="ngx-icon ngx-chevron-bold-up"
+            (mousedown)="incrementValue($event)"
+            (mouseup)="clearSpinnerInterval()"
+            (mouseleave)="clearSpinnerInterval()"
+          ></i>
+          <i
+            class="ngx-icon ngx-chevron-bold-down"
+            (mousedown)="decrementValue($event)"
+            (mouseup)="clearSpinnerInterval()"
+            (mouseleave)="clearSpinnerInterval()"
+          ></i>
         </div>
         <span
-          *ngIf="type === 'password' && passwordToggleEnabled"
+          *ngIf="type === inputTypes.password && passwordToggleEnabled"
           class="icon-eye"
           title="Toggle Text Visibility"
           (click)="togglePassword()"
@@ -99,3 +68,62 @@
     <span *ngIf="hint" [innerHTML]="hint"></span>
   </div>
 </div>
+
+<ng-template #inputTpl>
+  <input
+    *ngIf="type !== inputTypes.textarea && autosize"
+    class="ngx-input-box"
+    AutoSizeInput
+    [extraWidth]="type === inputTypes.number ? 20 : 0"
+    [minWidth]="minWidth"
+    [includePadding]="true"
+    [(ngModel)]="value"
+    [id]="id"
+    [name]="name"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [type]="type$ | async"
+    [min]="min"
+    [max]="max"
+    [minlength]="minlength"
+    [maxlength]="maxlength"
+    [attr.tabindex]="tabindex"
+    [attr.autocomplete]="autocomplete"
+    [attr.autocorrect]="autocorrect"
+    [attr.spellcheck]="spellcheck"
+    (change)="onChange($event)"
+    (keyup)="onKeyUp($event)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+    (click)="click.emit($event)"
+    [required]="required"
+    #inputModel="ngModel"
+    #inputControl
+  />
+  <input
+    *ngIf="type !== inputTypes.textarea && !autosize"
+    class="ngx-input-box"
+    [(ngModel)]="value"
+    [id]="id"
+    [name]="name"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [type]="type$ | async"
+    [min]="min"
+    [max]="max"
+    [minlength]="minlength"
+    [maxlength]="maxlength"
+    [attr.tabindex]="tabindex"
+    [attr.autocomplete]="autocomplete"
+    [attr.autocorrect]="autocorrect"
+    [attr.spellcheck]="spellcheck"
+    (change)="onChange($event)"
+    (keyup)="onKeyUp($event)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+    (click)="click.emit($event)"
+    [required]="required"
+    #inputModel="ngModel"
+    #inputControl
+  />
+</ng-template>

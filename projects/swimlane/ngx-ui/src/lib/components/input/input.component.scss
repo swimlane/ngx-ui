@@ -155,40 +155,12 @@ $input-placeholder-color: $color-blue-grey-350;
         }
       }
 
-      .autosizer-wrap {
-        position: relative;
-        max-width: 100%;
+      .ngx-input-box {
         margin: 3px 0;
-        overflow: hidden;
 
-        .autosize-wrap--width-adjuster {
-          padding-right: 0.3125rem;
-          opacity: 0;
-          z-index: 1;
-          white-space: nowrap;
-          display: inline-block;
-        }
-
-        .ngx-input-box {
-          position: absolute;
-          width: 100%;
-          left: 0;
-          top: 0;
-
-          &[type='number'] {
-            &::-webkit-inner-spin-button {
-              -webkit-appearance: none;
-            }
-          }
-        }
-
-        &.numeric-type {
-          .autosize-wrap--width-adjuster {
-            padding-right: 1.75rem;
-          }
-
-          .ngx-input-box[type='number'] {
-            width: calc(100% - 2.5rem);
+        &[type='number'] {
+          &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
           }
         }
       }
@@ -218,23 +190,19 @@ $input-placeholder-color: $color-blue-grey-350;
         z-index: 2;
         opacity: 0;
         position: absolute;
-        right: 0.9375rem;
+        right: 0;
         top: 50%;
         transform: translateY(-50%);
         flex-direction: column;
         transition: opacity 0.1s ease-out;
 
         i {
-          font-size: 0.4375rem;
+          font-size: 0.625rem;
           color: $color-blue-grey-300;
           cursor: pointer;
 
           &:hover {
             color: $color-grey-200;
-          }
-
-          &:first-child {
-            padding-bottom: 5px;
           }
         }
       }
@@ -250,7 +218,6 @@ $input-placeholder-color: $color-blue-grey-350;
       position: absolute;
       font-size: 13px;
       font-weight: 600;
-      line-height: 16px;
       transition: color 0.2s ease-in-out;
       color: $color-blue-grey-350;
       white-space: nowrap;
@@ -284,7 +251,7 @@ $input-placeholder-color: $color-blue-grey-350;
 
   &.fill {
     .ngx-input-wrap .ngx-input-box-wrap {
-      .autosizer-wrap,
+      .ngx-input-box,
       .ngx-input-textarea {
         margin: 0;
         padding: 6px 10px;
@@ -292,10 +259,8 @@ $input-placeholder-color: $color-blue-grey-350;
         z-index: 1;
       }
 
-      .ngx-input-box {
-        top: 6px;
-        left: 10px;
-        width: calc(100% - 10px);
+      .numeric-spinner {
+        right: 10px;
       }
 
       &::after {

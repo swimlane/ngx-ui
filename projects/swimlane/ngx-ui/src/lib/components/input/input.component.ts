@@ -179,7 +179,6 @@ export class InputComponent extends _InputMixinBase
   @ViewChild('inputControl') readonly inputControl: ElementRef<HTMLInputElement>;
   @ViewChild('inputModel') readonly inputModel: NgModel;
   @ViewChild('textareaControl') readonly textareaControl: ElementRef<HTMLTextAreaElement>;
-  @ViewChild('autosizeWidthAdjuster') readonly autosizeWidthAdjuster: ElementRef<HTMLSpanElement>;
 
   get value(): string | number {
     return this._value;
@@ -207,11 +206,6 @@ export class InputComponent extends _InputMixinBase
   @HostBinding('class.ng-touched')
   get isTouched(): boolean {
     return this.inputModel ? this.inputModel.touched : false;
-  }
-
-  @HostBinding('style.min-width')
-  get inputMinWidth(): string {
-    return `${this.minWidth || MIN_WIDTH}px`;
   }
 
   get labelState(): string {
@@ -272,7 +266,6 @@ export class InputComponent extends _InputMixinBase
 
   onKeyUp(event: KeyboardEvent): void {
     event.stopPropagation();
-    this.updateAutoSizer((event.target as HTMLInputElement).value);
     this.keyup.emit(event);
   }
 
@@ -375,13 +368,6 @@ export class InputComponent extends _InputMixinBase
     this.type$.next(this.passwordTextVisible && InputTypes.password === this.type ? InputTypes.text : this.type);
   }
 
-  private updateAutoSizer(value): void {
-    if (this.autosize && this.type !== InputTypes.textarea) {
-      // tslint:disable-next-line: tsr-detect-html-injection
-      this.autosizeWidthAdjuster.nativeElement.innerHTML = value;
-    }
-  }
-
   private increment(event: MouseEvent) {
     event.preventDefault();
 
@@ -390,7 +376,6 @@ export class InputComponent extends _InputMixinBase
       if ((max || max === 0) && +this.value >= max) return;
 
       this.value = this.value ? +this.value + 1 : 1;
-      this.updateAutoSizer(this.value);
       if (document.activeElement !== this.inputControl.nativeElement) {
         this.inputControl.nativeElement.focus();
       }
@@ -413,7 +398,6 @@ export class InputComponent extends _InputMixinBase
       }
 
       this.value = this.value ? +this.value - 1 : -1;
-      this.updateAutoSizer(this.value);
       if (document.activeElement !== this.inputControl.nativeElement) {
         this.inputControl.nativeElement.focus();
       }

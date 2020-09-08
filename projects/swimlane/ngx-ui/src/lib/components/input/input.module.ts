@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { AutoSizeInputModule } from 'ngx-autosize-input';
 
 import { InputComponent } from './input.component';
 import { InputHintDirective } from './input-hint.directive';
@@ -11,6 +12,6 @@ import { InputSuffixComponent } from './input-suffix.component';
 @NgModule({
   declarations: [InputComponent, InputHintDirective, AutosizeDirective, InputPrefixComponent, InputSuffixComponent],
   exports: [InputComponent, InputHintDirective, InputPrefixComponent, InputSuffixComponent],
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, AutoSizeInputModule]
 })
 export class InputModule {}

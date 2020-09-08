@@ -49,6 +49,7 @@
     "d3-color": "^1.2.3",
     "moment-timezone": "^0.5.28",
     "mousetrap": "^1.6.5",
+    "ngx-autosize-input": "^2.3.7",
     "normalize.css": "^8.0.0",
     "resize-observer-polyfill": "^1.5.1",
     "rxjs": "~6.5.5",
