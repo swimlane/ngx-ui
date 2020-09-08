@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  OnDestroy,
   Component,
   ElementRef,
   EventEmitter,
@@ -70,7 +71,8 @@ const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent extends _InputMixinBase implements AfterViewInit, ControlValueAccessor, Validator {
+export class InputComponent extends _InputMixinBase
+  implements AfterViewInit, OnDestroy, ControlValueAccessor, Validator {
   @Input() id: string = `input-${++nextId}`;
   @Input() name: string;
   @Input() label: string = '';
@@ -239,6 +241,8 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
   private _autocorrect: boolean = false;
   private _spellcheck: boolean = false;
   private _autosize: boolean = false;
+  private _spinnerInterval;
+  private _spinnerTimeout;
 
   constructor(private readonly cdr: ChangeDetectorRef) {
     super();
@@ -253,6 +257,11 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
         this.cdr.markForCheck();
       });
     }
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this._spinnerInterval);
+    this._spinnerInterval = undefined;
   }
 
   onChange(event: Event): void {
@@ -323,20 +332,34 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
     this.disabled = coerceBooleanProperty(isDisabled);
   }
 
-  incrementValue(): void {
-    if (!this.disabled) {
-      this.value = this.value ? +this.value + 1 : 1;
-      this.inputControl.nativeElement.focus();
-      this.updateAutoSizer(this.value);
+  incrementValue(event: MouseEvent): void {
+    this.increment(event);
+    if (!this._spinnerInterval) {
+      this._spinnerTimeout = setTimeout(() => {
+        this._spinnerInterval = setInterval(() => {
+          this.increment(event);
+        }, 50);
+      }, 500);
     }
   }
 
-  decrementValue(): void {
-    if (!this.disabled) {
-      this.value = this.value ? +this.value - 1 : -1;
-      this.inputControl.nativeElement.focus();
-      this.updateAutoSizer(this.value);
+  decrementValue(event: MouseEvent): void {
+    this.decrement(event);
+    if (!this._spinnerInterval) {
+      this._spinnerTimeout = setTimeout(() => {
+        this._spinnerInterval = setInterval(() => {
+          this.decrement(event);
+        }, 50);
+      }, 500);
     }
+  }
+
+  clearSpinnerInterval() {
+    clearTimeout(this._spinnerTimeout);
+    this._spinnerTimeout = undefined;
+
+    clearInterval(this._spinnerInterval);
+    this._spinnerInterval = undefined;
   }
 
   private onTouchedCallback: () => void = () => {
@@ -356,6 +379,44 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
     if (this.autosize && this.type !== InputTypes.textarea) {
       // tslint:disable-next-line: tsr-detect-html-injection
       this.autosizeWidthAdjuster.nativeElement.innerHTML = value;
+    }
+  }
+
+  private increment(event: MouseEvent) {
+    event.preventDefault();
+
+    if (!this.disabled) {
+      const max = +this.max;
+      if ((max || max === 0) && +this.value >= max) return;
+
+      this.value = this.value ? +this.value + 1 : 1;
+      this.updateAutoSizer(this.value);
+      if (document.activeElement !== this.inputControl.nativeElement) {
+        this.inputControl.nativeElement.focus();
+      }
+    }
+  }
+
+  private decrement(event: MouseEvent) {
+    event.preventDefault();
+
+    if (!this.disabled) {
+      const min = +this.min;
+      if (min || min === 0) {
+        if (min === 0 && !this.value) {
+          this.value = 0;
+          this.inputControl.nativeElement.focus();
+          return;
+        } else if (this.value <= min) {
+          return;
+        }
+      }
+
+      this.value = this.value ? +this.value - 1 : -1;
+      this.updateAutoSizer(this.value);
+      if (document.activeElement !== this.inputControl.nativeElement) {
+        this.inputControl.nativeElement.focus();
+      }
     }
   }
 }

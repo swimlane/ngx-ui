@@ -174,7 +174,7 @@ describe('InputComponent', () => {
       component.input.value = 0;
       component.input.disabled = true;
 
-      component.input.incrementValue();
+      component.input.incrementValue(new MouseEvent('mousedown'));
 
       expect(component.input.value).toBe(0);
     });
@@ -182,7 +182,7 @@ describe('InputComponent', () => {
     it('should set to 1 if input value is falsy', () => {
       component.input.value = undefined;
 
-      component.input.incrementValue();
+      component.input.incrementValue(new MouseEvent('mousedown'));
 
       expect(component.input.value).toBe(1);
     });
@@ -190,7 +190,7 @@ describe('InputComponent', () => {
     it('should increment input value by 1', () => {
       component.input.value = 41;
 
-      component.input.incrementValue();
+      component.input.incrementValue(new MouseEvent('mousedown'));
 
       expect(component.input.value).toBe(42);
     });
@@ -201,7 +201,7 @@ describe('InputComponent', () => {
       component.input.value = 0;
       component.input.disabled = true;
 
-      component.input.decrementValue();
+      component.input.decrementValue(new MouseEvent('mousedown'));
 
       expect(component.input.value).toBe(0);
     });
@@ -209,7 +209,7 @@ describe('InputComponent', () => {
     it('should set to -1 if input value is falsy', () => {
       component.input.value = undefined;
 
-      component.input.decrementValue();
+      component.input.decrementValue(new MouseEvent('mousedown'));
 
       expect(component.input.value).toBe(-1);
     });
@@ -217,7 +217,7 @@ describe('InputComponent', () => {
     it('should decrement input value by 1', () => {
       component.input.value = 41;
 
-      component.input.decrementValue();
+      component.input.decrementValue(new MouseEvent('mousedown'));
 
       expect(component.input.value).toBe(40);
     });

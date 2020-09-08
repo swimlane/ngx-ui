@@ -62,8 +62,18 @@
             #inputControl
           />
           <div class="numeric-spinner" *ngIf="!disabled && (type$ | async) === inputTypes.number">
-            <i class="ngx-icon ngx-chevron-bold-up" (click)="incrementValue()"></i>
-            <i class="ngx-icon ngx-chevron-bold-down" (click)="decrementValue()"></i>
+            <i
+              class="ngx-icon ngx-chevron-bold-up"
+              (mousedown)="incrementValue($event)"
+              (mouseup)="clearSpinnerInterval()"
+              (mouseleave)="clearSpinnerInterval()"
+            ></i>
+            <i
+              class="ngx-icon ngx-chevron-bold-down"
+              (mousedown)="decrementValue($event)"
+              (mouseup)="clearSpinnerInterval()"
+              (mouseleave)="clearSpinnerInterval()"
+            ></i>
           </div>
         </div>
         <span
