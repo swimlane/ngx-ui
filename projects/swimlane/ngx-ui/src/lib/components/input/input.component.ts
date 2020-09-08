@@ -372,10 +372,12 @@ export class InputComponent extends _InputMixinBase
     event.preventDefault();
 
     if (!this.disabled) {
+      const el = this.element.nativeElement as HTMLInputElement;
       const max = +this.max;
-      if ((max || max === 0) && +this.value >= max) return;
+      if ((max || max === 0) && +el.value >= max) return;
 
-      this.value = this.value ? +this.value + 1 : 1;
+      el.value = el.value ? (+el.value + 1).toString() : '1';
+      this.value = el.value;
       if (document.activeElement !== this.inputControl.nativeElement) {
         this.inputControl.nativeElement.focus();
       }
@@ -386,18 +388,21 @@ export class InputComponent extends _InputMixinBase
     event.preventDefault();
 
     if (!this.disabled) {
+      const el = this.element.nativeElement as HTMLInputElement;
       const min = +this.min;
       if (min || min === 0) {
-        if (min === 0 && !this.value) {
-          this.value = 0;
+        if (min === 0 && !el.value) {
+          el.value = '0';
+          this.value = el.value;
           this.inputControl.nativeElement.focus();
           return;
-        } else if (this.value <= min) {
+        } else if (+el.value <= min) {
           return;
         }
       }
 
-      this.value = this.value ? +this.value - 1 : -1;
+      el.value = el.value ? (+el.value - 1).toString() : '-1';
+      this.value = el.value;
       if (document.activeElement !== this.inputControl.nativeElement) {
         this.inputControl.nativeElement.focus();
       }
