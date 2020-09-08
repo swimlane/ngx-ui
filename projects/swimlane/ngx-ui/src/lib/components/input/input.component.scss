@@ -260,7 +260,7 @@ $input-placeholder-color: $color-blue-grey-350;
       }
 
       .numeric-spinner {
-        right: 10px;
+        right: 10px !important;
       }
 
       &::after {
