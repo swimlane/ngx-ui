@@ -170,56 +170,93 @@ describe('InputComponent', () => {
   });
 
   describe('incrementValue', () => {
-    it('should not increment if input disabled', () => {
-      component.input.value = 0;
+    beforeEach(() => {
+      component.type$.next(InputTypes.number);
+    });
+
+    it('should not increment if input disabled', done => {
       component.input.disabled = true;
+      fixture.detectChanges();
 
-      component.input.incrementValue(new MouseEvent('mousedown'));
+      fixture.whenStable().then(() => {
+        component.input.incrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
 
-      expect(component.input.value).toBe(0);
+        expect(component.input.value).toBe('test');
+        done();
+      });
     });
 
-    it('should set to 1 if input value is falsy', () => {
+    it('should set to 1 if input value is falsy', done => {
       component.input.value = undefined;
+      fixture.detectChanges();
 
-      component.input.incrementValue(new MouseEvent('mousedown'));
+      fixture.whenStable().then(() => {
+        component.input.incrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
 
-      expect(component.input.value).toBe(1);
+        expect(component.input.value).toBe(1);
+        done();
+      });
     });
 
-    it('should increment input value by 1', () => {
+    it('should increment input value by 1', done => {
       component.input.value = 41;
+      fixture.detectChanges();
 
-      component.input.incrementValue(new MouseEvent('mousedown'));
+      fixture.whenStable().then(() => {
+        component.input.incrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+        fixture.detectChanges();
 
-      expect(component.input.value).toBe(42);
+        expect(component.input.value).toBe(42);
+        done();
+      });
     });
   });
 
   describe('decrementValue', () => {
-    it('should not decrement if input disabled', () => {
-      component.input.value = 0;
+    beforeEach(() => {
+      component.type$.next(InputTypes.number);
+    });
+
+    it('should not decrement if input disabled', done => {
       component.input.disabled = true;
+      fixture.detectChanges();
 
-      component.input.decrementValue(new MouseEvent('mousedown'));
+      fixture.whenStable().then(() => {
+        component.input.decrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
 
-      expect(component.input.value).toBe(0);
+        expect(component.input.value).toBe('test');
+        done();
+      });
     });
 
-    it('should set to -1 if input value is falsy', () => {
+    it('should set to -1 if input value is falsy', done => {
       component.input.value = undefined;
+      fixture.detectChanges();
 
-      component.input.decrementValue(new MouseEvent('mousedown'));
+      fixture.whenStable().then(() => {
+        component.input.decrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
 
-      expect(component.input.value).toBe(-1);
+        expect(component.input.value).toBe(-1);
+        done();
+      });
     });
 
-    it('should decrement input value by 1', () => {
+    it('should decrement input value by 1', done => {
       component.input.value = 41;
+      fixture.detectChanges();
 
-      component.input.decrementValue(new MouseEvent('mousedown'));
+      fixture.whenStable().then(() => {
+        component.input.decrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
 
-      expect(component.input.value).toBe(40);
+        expect(component.input.value).toBe(40);
+        done();
+      });
     });
   });
 });
