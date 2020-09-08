@@ -259,8 +259,8 @@ $input-placeholder-color: $color-blue-grey-350;
         z-index: 1;
       }
 
-      .numeric-spinner {
-        right: 10px !important;
+      .ngx-input-box + .numeric-spinner {
+        right: 10px;
       }
 
       &::after {
