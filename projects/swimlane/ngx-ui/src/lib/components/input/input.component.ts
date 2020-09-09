@@ -254,10 +254,7 @@ export class InputComponent extends _InputMixinBase
   }
 
   ngOnDestroy(): void {
-    clearInterval(this._spinnerInterval);
-    clearTimeout(this._spinnerTimeout);
-    this._spinnerInterval = undefined;
-    this._spinnerTimeout = undefined;
+    this.clearSpinnerInterval();
   }
 
   onChange(event: Event): void {
