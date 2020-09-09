@@ -7,13 +7,15 @@ import {
   SimpleChanges,
   TemplateRef,
   ViewChild,
-  ComponentRef
+  ComponentRef,
+  Directive
 } from '@angular/core';
 
 import { createValueForSchema, inferType, JSONEditorSchema } from './json-editor.helper';
 import { DialogComponent } from '../dialog/dialog.component';
 import { DialogService } from '../dialog/dialog.service';
 
+@Directive()
 export class JsonEditorNode implements OnInit, OnChanges {
   @Input() schema: JSONEditorSchema;
 

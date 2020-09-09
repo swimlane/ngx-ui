@@ -1,4 +1,4 @@
-import { Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Input, EventEmitter, Output, OnChanges, SimpleChanges, Directive } from '@angular/core';
 
 import {
   createValueForSchema,
@@ -12,6 +12,7 @@ import {
   jsonSchemaDataFormats
 } from '../json-editor.helper';
 
+@Directive()
 export class ArrayNode implements OnChanges {
   @Input()
   schema: JSONEditorSchema;

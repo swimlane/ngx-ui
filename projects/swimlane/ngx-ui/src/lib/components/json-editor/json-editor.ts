@@ -1,8 +1,9 @@
-import { Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import { Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef, Directive } from '@angular/core';
 import { SchemaValidatorService } from './schema-validator.service';
 import { JSONEditorSchema } from './json-editor.helper';
 import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 
+@Directive()
 export class JsonEditor implements OnChanges {
   @Input() model: any;
 
