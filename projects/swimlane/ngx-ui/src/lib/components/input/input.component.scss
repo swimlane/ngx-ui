@@ -203,6 +203,9 @@ $input-placeholder-color: $color-blue-grey-350;
 
           &:hover {
             color: $color-blue-grey-100;
+          }
+
+          &:active {
             transform: scale(1.4);
           }
         }
