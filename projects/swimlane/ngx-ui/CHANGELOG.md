@@ -1,6 +1,10 @@
 # CHANGELOG
 
+## HEAD (Unreleased)
+
+- Chore: Removed ngx-datatable from demo page
 - Enhancement: Added icons; update icon style for `calendar-clock` and `calendar` icons (#491)
+- Breaking: Upgrade to Angular 10
 
 ## HEAD (Unreleased)
 
@@ -9,9 +13,6 @@
 - Fix: rework the way autosize works on ngx-input so that it sizes to its content correctly. Now using ngx-autosize-input library.
 
 ## 29.3.0 (2020-08-17)
-
-- enhancement: update ngx-select focus underline to be clearer. clicking the input box now also toggles dropdown
-- Bug: fix ngx-select so that clicking the caret closes the dropdown
 
 - enhancement: update ngx-select focus underline to be clearer. clicking the input box now also toggles dropdown
 - Bug: fix ngx-select so that clicking the caret closes the dropdown

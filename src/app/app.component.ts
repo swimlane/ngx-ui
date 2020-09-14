@@ -167,10 +167,6 @@ export class AppComponent {
           route: 'dropdown'
         },
         {
-          name: 'Datatable',
-          route: 'datatable'
-        },
-        {
           name: 'Loading',
           route: 'loading'
         },
