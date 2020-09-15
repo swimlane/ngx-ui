@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  OnDestroy,
   Component,
   ElementRef,
   EventEmitter,
@@ -45,6 +46,8 @@ const INPUT_VALIDATORS = {
   multi: true
 };
 
+const MIN_WIDTH = 60;
+
 class InputBase {}
 const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
 
@@ -68,7 +71,8 @@ const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent extends _InputMixinBase implements AfterViewInit, ControlValueAccessor, Validator {
+export class InputComponent extends _InputMixinBase
+  implements AfterViewInit, OnDestroy, ControlValueAccessor, Validator {
   @Input() id: string = `input-${++nextId}`;
   @Input() name: string;
   @Input() label: string = '';
@@ -79,6 +83,7 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
   @Input() max: number;
   @Input() minlength: number;
   @Input() maxlength: number;
+  @Input() minWidth: number = MIN_WIDTH;
 
   @Input()
   get disabled() {
@@ -217,6 +222,7 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
 
   focused: boolean = false;
   readonly type$ = new BehaviorSubject<InputTypes>(InputTypes.text);
+  readonly inputTypes = InputTypes;
 
   private _value: string | number = '';
   private _type: InputTypes = InputTypes.text;
@@ -229,6 +235,8 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
   private _autocorrect: boolean = false;
   private _spellcheck: boolean = false;
   private _autosize: boolean = false;
+  private _spinnerInterval;
+  private _spinnerTimeout;
 
   constructor(private readonly cdr: ChangeDetectorRef) {
     super();
@@ -236,15 +244,22 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
 
   ngAfterViewInit(): void {
     if (this.autofocus) {
-      setTimeout(() => this.element.nativeElement.focus());
-    }
+      setTimeout(() => {
+        this.element.nativeElement.focus();
 
-    // sometimes the label doesn't update on load
-    setTimeout(() => this.cdr.markForCheck());
+        // sometimes the label doesn't update on load
+        this.cdr.markForCheck();
+      });
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.clearSpinnerInterval();
   }
 
   onChange(event: Event): void {
     event.stopPropagation();
+
     this.change.emit(this.value);
   }
 
@@ -309,6 +324,36 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
     this.disabled = coerceBooleanProperty(isDisabled);
   }
 
+  incrementValue(event: MouseEvent): void {
+    this.increment(event);
+    if (!this._spinnerInterval) {
+      this._spinnerTimeout = setTimeout(() => {
+        this._spinnerInterval = setInterval(() => {
+          this.increment(event);
+        }, 50);
+      }, 500);
+    }
+  }
+
+  decrementValue(event: MouseEvent): void {
+    this.decrement(event);
+    if (!this._spinnerInterval) {
+      this._spinnerTimeout = setTimeout(() => {
+        this._spinnerInterval = setInterval(() => {
+          this.decrement(event);
+        }, 50);
+      }, 500);
+    }
+  }
+
+  clearSpinnerInterval() {
+    clearTimeout(this._spinnerTimeout);
+    this._spinnerTimeout = undefined;
+
+    clearInterval(this._spinnerInterval);
+    this._spinnerInterval = undefined;
+  }
+
   private onTouchedCallback: () => void = () => {
     // placeholder
   };
@@ -320,5 +365,46 @@ export class InputComponent extends _InputMixinBase implements AfterViewInit, Co
   private updateInputType() {
     // tslint:disable-next-line: tsr-detect-possible-timing-attacks
     this.type$.next(this.passwordTextVisible && InputTypes.password === this.type ? InputTypes.text : this.type);
+  }
+
+  private increment(event: MouseEvent) {
+    event.preventDefault();
+
+    if (!this.disabled) {
+      const el = this.element.nativeElement as HTMLInputElement;
+      const max = +this.max;
+      if ((max || max === 0) && +el.value >= max) return;
+
+      el.value = el.value ? (+el.value + 1).toString() : '1';
+      this.value = el.value;
+      if (document.activeElement !== this.inputControl.nativeElement) {
+        this.inputControl.nativeElement.focus();
+      }
+    }
+  }
+
+  private decrement(event: MouseEvent) {
+    event.preventDefault();
+
+    if (!this.disabled) {
+      const el = this.element.nativeElement as HTMLInputElement;
+      const min = +this.min;
+      if (min || min === 0) {
+        if (min === 0 && !el.value) {
+          el.value = '0';
+          this.value = el.value;
+          this.inputControl.nativeElement.focus();
+          return;
+        } else if (+el.value <= min) {
+          return;
+        }
+      }
+
+      el.value = el.value ? (+el.value - 1).toString() : '-1';
+      this.value = el.value;
+      if (document.activeElement !== this.inputControl.nativeElement) {
+        this.inputControl.nativeElement.focus();
+      }
+    }
   }
 }
