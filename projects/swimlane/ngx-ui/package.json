@@ -41,7 +41,8 @@
     "moment-timezone": "^0.5.23",
     "zone.js": "^0.10.2",
     "ajv": "^6.5.0",
-    "json-schema": "*"
+    "json-schema": "*",
+    "ngx-autosize-input": "^2.3.7"
   },
   "dependencies": {
     "mousetrap": "^1.6.2",
