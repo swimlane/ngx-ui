@@ -20,6 +20,8 @@ import { DialogService } from '../dialog/dialog.service';
 import { DateTimeType } from './date-time-type.enum';
 import { Datelike } from './date-like.type';
 import { InputComponent } from '../input/input.component';
+import { appearanceMixin } from '../../mixins/appearance/appearance.mixin';
+import { sizeMixin } from '../../mixins/size/size.mixin';
 
 let nextId = 0;
 
@@ -29,6 +31,9 @@ const DATE_TIME_VALUE_ACCESSOR = {
   multi: true
 };
 
+class InputBase {}
+const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
+
 @Component({
   exportAs: 'ngxDateTime',
   selector: 'ngx-date-time',
@@ -36,9 +41,18 @@ const DATE_TIME_VALUE_ACCESSOR = {
   styleUrls: ['./date-time.component.scss'],
   providers: [DATE_TIME_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'ngx-date-time',
+    '[class.legacy]': 'appearance === "legacy"',
+    '[class.fill]': 'appearance === "fill"',
+    '[class.sm]': 'size === "sm"',
+    '[class.md]': 'size === "md"',
+    '[class.lg]': 'size === "lg"',
+    '[class.autosize]': 'autosize'
+  }
 })
-export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
+export class DateTimeComponent extends _InputMixinBase implements OnDestroy, ControlValueAccessor {
   @Input() id: string = `datetime-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
@@ -142,6 +156,14 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     }
   }
 
+  @Input()
+  get autosize() {
+    return this._autosize;
+  }
+  set autosize(v: boolean) {
+    this._autosize = coerceBooleanProperty(v);
+  }
+
   @Output() change = new EventEmitter<string | Date>();
 
   @ViewChild('dialogTpl', { static: true })
@@ -165,8 +187,11 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   private _disabled: boolean = false;
   private _autofocus: boolean = false;
   private _tabindex: number;
+  private _autosize: boolean = false;
 
-  constructor(private readonly dialogService: DialogService) {}
+  constructor(private readonly dialogService: DialogService) {
+    super();
+  }
 
   ngOnDestroy(): void {
     this.close();

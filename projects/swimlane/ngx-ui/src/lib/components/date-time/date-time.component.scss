@@ -7,6 +7,24 @@ $animation-timing: 200ms;
 
 .ngx-date-time {
   position: relative;
+  display: block;
+  max-width: 100%;
+
+  &.md {
+    .ngx-input {
+      font-size: 18px !important;
+    }
+  }
+
+  &.lg {
+    .ngx-input {
+      font-size: 21px !important;
+    }
+  }
+
+  &.autosize {
+    display: inline-block;
+  }
 
   .calendar-dialog-btn {
     position: absolute;
@@ -20,6 +38,21 @@ $animation-timing: 200ms;
     padding-top: calc(0.7em + 8px);
     padding-bottom: 20px;
     padding-bottom: calc(0.7em + 8px);
+    z-index: 2;
+  }
+
+  &.fill {
+    .calendar-dialog-btn {
+      top: 50%;
+      right: 10px;
+      transform: translateY(-45%);
+      height: initial;
+      line-height: initial;
+    }
+
+    .ngx-input-box-wrap {
+      padding-right: 20px;
+    }
   }
 
   .date-time-hint {
