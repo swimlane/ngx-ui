@@ -26,11 +26,10 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 import { BehaviorSubject } from 'rxjs';
 
 import { Appearance } from '../../mixins/appearance/appearance.enum';
-import { appearanceMixin } from '../../mixins/appearance/appearance.mixin';
-import { sizeMixin } from '../../mixins/size/size.mixin';
 
 import { InputTypes } from './input-types.enum';
 import { INPUT_ANIMATIONS } from './input-animations.constant';
+import { Size } from '../../mixins/size/size.enum';
 
 let nextId = 0;
 
@@ -47,9 +46,6 @@ const INPUT_VALIDATORS = {
 };
 
 const MIN_WIDTH = 60;
-
-class InputBase {}
-const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
 
 @Component({
   exportAs: 'ngxInput',
@@ -71,8 +67,7 @@ const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent extends _InputMixinBase
-  implements AfterViewInit, OnDestroy, ControlValueAccessor, Validator {
+export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAccessor, Validator {
   @Input() id: string = `input-${++nextId}`;
   @Input() name: string;
   @Input() label: string = '';
@@ -83,6 +78,8 @@ export class InputComponent extends _InputMixinBase
   @Input() max: number;
   @Input() minlength: number;
   @Input() maxlength: number;
+  @Input() size: Size = Size.Small;
+  @Input() appearance: Appearance = Appearance.Legacy;
 
   @Input()
   get disabled() {
@@ -246,9 +243,7 @@ export class InputComponent extends _InputMixinBase
   private _spinnerTimeout;
   private _minWidth: number = MIN_WIDTH;
 
-  constructor(private readonly cdr: ChangeDetectorRef) {
-    super();
-  }
+  constructor(private readonly cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     if (this.autofocus) {

@@ -20,8 +20,8 @@ import { DialogService } from '../dialog/dialog.service';
 import { DateTimeType } from './date-time-type.enum';
 import { Datelike } from './date-like.type';
 import { InputComponent } from '../input/input.component';
-import { appearanceMixin } from '../../mixins/appearance/appearance.mixin';
-import { sizeMixin } from '../../mixins/size/size.mixin';
+import { Size } from '../../mixins/size/size.enum';
+import { Appearance } from '../../mixins/appearance/appearance.enum';
 
 let nextId = 0;
 
@@ -32,9 +32,6 @@ const DATE_TIME_VALUE_ACCESSOR = {
   useExisting: forwardRef(() => DateTimeComponent),
   multi: true
 };
-
-class InputBase {}
-const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
 
 @Component({
   exportAs: 'ngxDateTime',
@@ -54,12 +51,14 @@ const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
     '[class.autosize]': 'autosize'
   }
 })
-export class DateTimeComponent extends _InputMixinBase implements OnDestroy, ControlValueAccessor {
+export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() id: string = `datetime-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
   @Input() hint: string;
   @Input() placeholder: string = '';
+  @Input() size: Size = Size.Small;
+  @Input() appearance: Appearance = Appearance.Legacy;
 
   @Input() minDate: string | Date;
   @Input() maxDate: string | Date;
@@ -200,9 +199,7 @@ export class DateTimeComponent extends _InputMixinBase implements OnDestroy, Con
   private _autosize: boolean = false;
   private _minWidth: number = MIN_WIDTH;
 
-  constructor(private readonly dialogService: DialogService) {
-    super();
-  }
+  constructor(private readonly dialogService: DialogService) {}
 
   ngOnDestroy(): void {
     this.close();
