@@ -25,6 +25,8 @@ import { sizeMixin } from '../../mixins/size/size.mixin';
 
 let nextId = 0;
 
+const MIN_WIDTH = 60;
+
 const DATE_TIME_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => DateTimeComponent),
@@ -72,6 +74,14 @@ export class DateTimeComponent extends _InputMixinBase implements OnDestroy, Con
   }
   set disabled(disabled) {
     this._disabled = coerceBooleanProperty(disabled);
+  }
+
+  @Input()
+  get minWidth(): number {
+    return this._minWidth;
+  }
+  set minWidth(minWidth) {
+    this._minWidth = coerceNumberProperty(minWidth);
   }
 
   @Input()
@@ -188,6 +198,7 @@ export class DateTimeComponent extends _InputMixinBase implements OnDestroy, Con
   private _autofocus: boolean = false;
   private _tabindex: number;
   private _autosize: boolean = false;
+  private _minWidth: number = MIN_WIDTH;
 
   constructor(private readonly dialogService: DialogService) {
     super();

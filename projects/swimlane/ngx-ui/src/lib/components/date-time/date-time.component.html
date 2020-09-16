@@ -28,6 +28,7 @@
   <div class="time-row" *ngIf="inputType === 'time' || inputType === 'datetime'">
     <div>
       <ngx-input
+      [minWidth]="minWidth"
         [autosize]="autosize"
         [size]="size"
         [appearance]="appearance"
@@ -44,6 +45,7 @@
     </div>
     <div>
       <ngx-input
+      [minWidth]="minWidth"
         [autosize]="autosize"
         [size]="size"
         [appearance]="appearance"
@@ -93,6 +95,7 @@
 </ng-template>
 <ngx-input
   #input
+  [minWidth]="minWidth"
   [id]="id + '-input'"
   [autosize]="autosize"
   [size]="size"

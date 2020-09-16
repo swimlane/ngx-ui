@@ -83,7 +83,6 @@ export class InputComponent extends _InputMixinBase
   @Input() max: number;
   @Input() minlength: number;
   @Input() maxlength: number;
-  @Input() minWidth: number = MIN_WIDTH;
 
   @Input()
   get disabled() {
@@ -91,6 +90,14 @@ export class InputComponent extends _InputMixinBase
   }
   set disabled(disabled: boolean) {
     this._disabled = coerceBooleanProperty(disabled);
+  }
+
+  @Input()
+  get minWidth(): number {
+    return this._minWidth;
+  }
+  set minWidth(minWidth) {
+    this._minWidth = coerceNumberProperty(minWidth);
   }
 
   @Input() requiredIndicator: string | boolean = '*';
@@ -237,6 +244,7 @@ export class InputComponent extends _InputMixinBase
   private _autosize: boolean = false;
   private _spinnerInterval;
   private _spinnerTimeout;
+  private _minWidth: number = MIN_WIDTH;
 
   constructor(private readonly cdr: ChangeDetectorRef) {
     super();
