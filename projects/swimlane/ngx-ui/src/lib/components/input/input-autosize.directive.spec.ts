@@ -34,56 +34,6 @@ describe('AutosizeDirective', () => {
     expect(component.autosize?.enabled).toBeTruthy();
   });
 
-  describe('input', () => {
-    beforeEach(() => {
-      component.type$.next(InputTypes.text);
-      fixture.detectChanges();
-    });
-
-    it('should be defined', () => {
-      expect(component.input.nativeElement).toBeTruthy();
-    });
-
-    it('should set width on input', () => {
-      component.input.nativeElement.value = faker.random.words(5);
-      component.input.nativeElement.dispatchEvent(new Event('input'));
-      fixture.detectChanges();
-
-      expect(component.input.nativeElement.style.width).not.toEqual('auto');
-    });
-
-    it('should do nothing when disabled', () => {
-      component.enabled$.next(false);
-      fixture.detectChanges();
-
-      component.input.nativeElement.value = faker.random.words(5);
-      component.input.nativeElement.dispatchEvent(new Event('input'));
-      fixture.detectChanges();
-
-      expect(component.input.nativeElement.scrollWidth).not.toEqual(component.input.nativeElement.clientWidth);
-    });
-
-    it('should not extend past max width', () => {
-      component.maxWidth$.next(100);
-      fixture.detectChanges();
-
-      component.input.nativeElement.value = faker.random.words(500);
-      component.input.nativeElement.dispatchEvent(new Event('input'));
-      fixture.detectChanges();
-
-      expect(component.input.nativeElement.style.maxWidth).toEqual('100px');
-      expect(component.input.nativeElement.clientWidth).toBeLessThanOrEqual(component.input.nativeElement.scrollWidth);
-    });
-
-    it('should set width auto when no scroll', () => {
-      component.input.nativeElement.value = '';
-      component.input.nativeElement.dispatchEvent(new Event('input'));
-      fixture.detectChanges();
-
-      expect(component.input.nativeElement.style.width).toEqual('auto');
-    });
-  });
-
   describe('textarea', () => {
     beforeEach(() => {
       component.type$.next(InputTypes.textarea);

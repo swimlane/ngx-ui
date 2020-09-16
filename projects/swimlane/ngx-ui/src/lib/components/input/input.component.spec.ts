@@ -8,6 +8,7 @@ import { InputTypes } from './input-types.enum';
 import { InputComponentFixture } from './input.component.fixture';
 
 const MOCK_EVENT: any = {
+  target: {},
   stopPropagation: () => ({})
 };
 
@@ -165,6 +166,97 @@ describe('InputComponent', () => {
       component.input.value = '';
       fixture.detectChanges();
       expect(component.input.value as any).toEqual(null);
+    });
+  });
+
+  describe('incrementValue', () => {
+    beforeEach(() => {
+      component.type$.next(InputTypes.number);
+    });
+
+    it('should not increment if input disabled', done => {
+      component.input.disabled = true;
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        component.input.incrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+
+        expect(component.input.value).toBe('test');
+        done();
+      });
+    });
+
+    it('should set to 1 if input value is falsy', done => {
+      component.input.value = undefined;
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        component.input.incrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+
+        expect(component.input.value).toBe(1);
+        done();
+      });
+    });
+
+    it('should increment input value by 1', done => {
+      component.input.value = 41;
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        component.input.incrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+        fixture.detectChanges();
+
+        expect(component.input.value).toBe(42);
+        done();
+      });
+    });
+  });
+
+  describe('decrementValue', () => {
+    beforeEach(() => {
+      component.type$.next(InputTypes.number);
+    });
+
+    it('should not decrement if input disabled', done => {
+      component.input.disabled = true;
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        component.input.decrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+
+        expect(component.input.value).toBe('test');
+        done();
+      });
+    });
+
+    it('should set to -1 if input value is falsy', done => {
+      component.input.value = undefined;
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        component.input.decrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+
+        expect(component.input.value).toBe(-1);
+        done();
+      });
+    });
+
+    it('should decrement input value by 1', done => {
+      component.input.value = 41;
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        component.input.decrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+
+        expect(component.input.value).toBe(40);
+        done();
+      });
     });
   });
 });

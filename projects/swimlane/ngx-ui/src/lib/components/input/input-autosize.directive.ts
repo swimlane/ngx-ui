@@ -24,21 +24,23 @@ export class AutosizeDirective {
     return this.element.nativeElement.nodeName as 'TEXTAREA' | 'INPUT';
   }
 
-  constructor(readonly element: ElementRef<HTMLElement>) {}
+  constructor(readonly element: ElementRef<HTMLInputElement | HTMLTextAreaElement>) {}
 
   onInput() {
     if (this._enabled) {
-      if (this.nodeName === 'TEXTAREA') {
-        this.element.nativeElement.style.height = 'auto';
+      const nativeEl = this.element.nativeElement;
 
-        if (this.element.nativeElement.clientHeight < this.element.nativeElement.scrollHeight) {
-          this.element.nativeElement.style.height = `${this.element.nativeElement.scrollHeight}px`;
+      if (this.nodeName === 'TEXTAREA') {
+        nativeEl.style.height = 'auto';
+
+        if (nativeEl.clientHeight < nativeEl.scrollHeight) {
+          nativeEl.style.height = `${nativeEl.scrollHeight}px`;
         }
       } else {
-        this.element.nativeElement.style.width = 'auto';
+        nativeEl.style.width = 'auto';
 
-        if (this.element.nativeElement.clientWidth < this.element.nativeElement.scrollWidth) {
-          this.element.nativeElement.style.width = `${this.element.nativeElement.scrollWidth}px`;
+        if (nativeEl.clientWidth < nativeEl.scrollWidth) {
+          nativeEl.style.width = `${nativeEl.scrollWidth}px`;
         }
       }
     }
