@@ -385,6 +385,7 @@ export class InputComponent extends _InputMixinBase
 
       el.value = el.value ? (+el.value + 1).toString() : '1';
       this.value = el.value;
+      this.change.emit(this._value);
       if (document.activeElement !== this.inputControl.nativeElement) {
         this.inputControl.nativeElement.focus();
       }
@@ -401,6 +402,7 @@ export class InputComponent extends _InputMixinBase
         if (min === 0 && !el.value) {
           el.value = '0';
           this.value = el.value;
+          this.change.emit(this._value);
           this.inputControl.nativeElement.focus();
           return;
         } else if (+el.value <= min) {
@@ -410,6 +412,7 @@ export class InputComponent extends _InputMixinBase
 
       el.value = el.value ? (+el.value - 1).toString() : '-1';
       this.value = el.value;
+      this.change.emit(this._value);
       if (document.activeElement !== this.inputControl.nativeElement) {
         this.inputControl.nativeElement.focus();
       }
