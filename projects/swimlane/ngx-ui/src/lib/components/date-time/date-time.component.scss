@@ -22,36 +22,36 @@ $animation-timing: 200ms;
     }
   }
 
-  &.autosize {
-    display: inline-block;
-  }
-
   .calendar-dialog-btn {
     position: absolute;
-    right: 5px;
-    height: 30px;
-    line-height: 30px;
-    top: -5px;
-    color: $color-blue-grey-200;
     padding: 0;
-    padding-top: 20px;
-    padding-top: calc(0.7em + 8px);
-    padding-bottom: 20px;
-    padding-bottom: calc(0.7em + 8px);
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-blue-grey-200;
     z-index: 2;
+  }
+
+  .ngx-input-box-wrap {
+    padding-right: 25px;
   }
 
   &.fill {
     .calendar-dialog-btn {
-      top: 50%;
+      transform: translateY(-35%);
       right: 10px;
-      transform: translateY(-45%);
-      height: initial;
-      line-height: initial;
+    }
+  }
+
+  &.autosize {
+    display: inline-block;
+
+    .calendar-dialog-btn {
+      transform: translateY(-25%);
     }
 
-    .ngx-input-box-wrap {
-      padding-right: 20px;
+    &.fill .calendar-dialog-btn {
+      transform: translateY(-15%);
     }
   }
 
