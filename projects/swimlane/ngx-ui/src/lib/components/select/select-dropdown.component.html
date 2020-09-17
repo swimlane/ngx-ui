@@ -27,7 +27,7 @@
           [hidden]="kv.option.hidden"
           tabindex="-1"
           (click)="selection.emit(kv.option)"
-          (keydown)="onOptionKeyDown($event)"
+          (keydown)="onOptionKeyDown($event, kv.option)"
         >
           <ng-template
             *ngIf="kv.option.optionTemplate"
