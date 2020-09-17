@@ -12,7 +12,8 @@ import {
   ViewChild,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  OnInit
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -63,7 +64,7 @@ const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectComponent extends _InputMixinBase implements ControlValueAccessor, OnDestroy {
+export class SelectComponent extends _InputMixinBase implements ControlValueAccessor, OnInit, OnDestroy {
   @Input() id: string = `select-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
@@ -86,6 +87,18 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   }
   set minSelections(minSelections) {
     this._minSelections = coerceNumberProperty(minSelections, undefined);
+  }
+
+  @Input()
+  get autosizeMinWidth(): number | string {
+    return this._autosizeMinWidth;
+  }
+  set autosizeMinWidth(autosizeMinWidth) {
+    if (!isNaN(+autosizeMinWidth)) {
+      this._autosizeMinWidth = `${autosizeMinWidth}px`;
+    } else if (typeof autosizeMinWidth === 'string') {
+      this._autosizeMinWidth = autosizeMinWidth;
+    }
   }
 
   @Input()
@@ -297,6 +310,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   private _tagging: boolean = false;
   private _multiple: boolean = false;
   private _disabled: boolean = false;
+  private _autosizeMinWidth: string = '60px';
 
   constructor(
     private readonly _element: ElementRef,
@@ -304,6 +318,12 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     private readonly _cdr: ChangeDetectorRef
   ) {
     super();
+  }
+
+  ngOnInit() {
+    if (this.autosize) {
+      this._element.nativeElement.style.setProperty('--autosize-min-width', this.autosizeMinWidth);
+    }
   }
 
   ngOnDestroy(): void {
