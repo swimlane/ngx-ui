@@ -186,7 +186,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     this.keyup.emit({ event, value });
   }
 
-  onOptionKeyDown(event: KeyboardEvent): void {
+  onOptionKeyDown(event: KeyboardEvent, option?: SelectDropdownOption): void {
     event.preventDefault();
     event.stopPropagation();
 
@@ -197,7 +197,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     } else if (key === (KeyboardKeys.ARROW_UP as any)) {
       if (this.focusIndex > 0) --this.focusIndex;
     } else if (key === (KeyboardKeys.ENTER as any)) {
-      this.selection.emit(this.options[this.focusIndex]);
+      this.selection.emit(option);
     }
   }
 
