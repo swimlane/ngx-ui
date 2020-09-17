@@ -32,6 +32,8 @@ $autosize-min-width: var(--autosize-min-width);
   padding-bottom: 0;
 
   &.autosize {
+    min-width: $autosize-min-width;
+
     .ngx-select-dropdown {
       width: fit-content;
       min-width: 190px;
