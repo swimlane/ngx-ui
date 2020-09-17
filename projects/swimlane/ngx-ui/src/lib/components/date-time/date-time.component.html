@@ -105,8 +105,8 @@
   (blur)="onBlur()"
 >
   <ngx-input-hint class="date-time-hint">
-    <div *ngIf="hint" class="text-left">{{ hint }}</div>
-    <div *ngIf="errorMsg" class="text-right input-error">{{ errorMsg }}</div>
+    <div *ngIf="hint">{{ hint }}</div>
+    <div *ngIf="errorMsg" class="input-error">{{ errorMsg }}</div>
   </ngx-input-hint>
 </ngx-input>
 <button
