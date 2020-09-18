@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## HEAD (Unreleased)
+## 30.0.0 (2020-09-18)
 
 - Bug: Fix ngx-select issue when using the filter and arrow keys/enter to selecting a dropdown option (#494)
 - Chore: Removed ngx-datatable from demo page
@@ -10,8 +10,6 @@
 - Enhancement: added a minWidth input property to ngx-input
 - Fix: rework the way autosize works on ngx-input so that it sizes to its content correctly. Now using ngx-autosize-input library.
 - Enhancement: Updated ngx-date-time component to have fill variants and autosize option
-
-## HEAD (Unreleased)
 
 ## 29.3.0 (2020-08-17)
 
