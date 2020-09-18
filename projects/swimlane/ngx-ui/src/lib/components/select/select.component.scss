@@ -18,7 +18,6 @@ $color-empty-text: $color-blue-grey-150;
 $color-chip-bg: $color-blue-400;
 $color-chip-hover-bg: $color-blue;
 $color-chip-text: #fff;
-$autosize-min-width: var(--autosize-min-width);
 
 .ngx-select {
   position: relative;
@@ -32,8 +31,6 @@ $autosize-min-width: var(--autosize-min-width);
   padding-bottom: 0;
 
   &.autosize {
-    min-width: $autosize-min-width;
-
     .ngx-select-dropdown {
       width: fit-content;
       min-width: 190px;
@@ -43,7 +40,6 @@ $autosize-min-width: var(--autosize-min-width);
     .ngx-select-flex-wrap {
       max-width: 100%;
       width: fit-content;
-      min-width: $autosize-min-width;
     }
   }
 

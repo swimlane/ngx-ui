@@ -12,8 +12,7 @@ import {
   ViewChild,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  OnInit
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -58,13 +57,14 @@ const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
     '[class.active]': 'dropdownActive',
     '[class.active-selections]': 'hasSelections',
     '[class.has-placeholder]': 'hasPlaceholder',
-    '[class.autosize]': 'autosize'
+    '[class.autosize]': 'autosize',
+    '[style.min-width]': 'autosize ? autosizeMinWidth : undefined'
   },
   providers: [SELECT_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectComponent extends _InputMixinBase implements ControlValueAccessor, OnInit, OnDestroy {
+export class SelectComponent extends _InputMixinBase implements ControlValueAccessor, OnDestroy {
   @Input() id: string = `select-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
@@ -318,12 +318,6 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     private readonly _cdr: ChangeDetectorRef
   ) {
     super();
-  }
-
-  ngOnInit() {
-    if (this.autosize) {
-      this._element.nativeElement.style.setProperty('--autosize-min-width', this.autosizeMinWidth);
-    }
   }
 
   ngOnDestroy(): void {
