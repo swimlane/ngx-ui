@@ -7,30 +7,80 @@ $animation-timing: 200ms;
 
 .ngx-date-time {
   position: relative;
+  display: block;
+  max-width: 100%;
+
+  &.md {
+    .ngx-input {
+      font-size: 18px !important;
+    }
+  }
+
+  &.lg {
+    .ngx-input {
+      font-size: 21px !important;
+    }
+  }
 
   .calendar-dialog-btn {
     position: absolute;
-    right: 5px;
-    height: 30px;
-    line-height: 30px;
-    top: -5px;
-    color: $color-blue-grey-200;
     padding: 0;
-    padding-top: 20px;
-    padding-top: calc(0.7em + 8px);
-    padding-bottom: 20px;
-    padding-bottom: calc(0.7em + 8px);
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $color-blue-grey-200;
+    z-index: 2;
+  }
+
+  .ngx-input-box-wrap {
+    padding-right: 25px;
+  }
+
+  &.fill {
+    .calendar-dialog-btn {
+      transform: translateY(-35%);
+      right: 10px;
+    }
   }
 
   .date-time-hint {
     display: flex;
-
-    > * {
-      flex: 1 1 50%;
-    }
+    justify-content: space-between;
 
     .input-error {
       color: $color-red;
+      margin-left: auto;
+      padding-left: 5px;
+    }
+  }
+
+  &.autosize {
+    display: inline-block;
+
+    .calendar-dialog-btn {
+      transform: translateY(-25%);
+    }
+
+    &.fill .calendar-dialog-btn {
+      transform: translateY(-15%);
+    }
+
+    .ngx-input-hint {
+      position: relative;
+
+      .date-time-hint {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        max-width: 100%;
+        white-space: nowrap;
+
+        > * {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
     }
   }
 }

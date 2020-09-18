@@ -20,8 +20,12 @@ import { DialogService } from '../dialog/dialog.service';
 import { DateTimeType } from './date-time-type.enum';
 import { Datelike } from './date-like.type';
 import { InputComponent } from '../input/input.component';
+import { Size } from '../../mixins/size/size.enum';
+import { Appearance } from '../../mixins/appearance/appearance.enum';
 
 let nextId = 0;
+
+const MIN_WIDTH = 60;
 
 const DATE_TIME_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -36,7 +40,16 @@ const DATE_TIME_VALUE_ACCESSOR = {
   styleUrls: ['./date-time.component.scss'],
   providers: [DATE_TIME_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  host: {
+    class: 'ngx-date-time',
+    '[class.legacy]': 'appearance === "legacy"',
+    '[class.fill]': 'appearance === "fill"',
+    '[class.sm]': 'size === "sm"',
+    '[class.md]': 'size === "md"',
+    '[class.lg]': 'size === "lg"',
+    '[class.autosize]': 'autosize'
+  }
 })
 export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() id: string = `datetime-${++nextId}`;
@@ -44,6 +57,8 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() label: string;
   @Input() hint: string;
   @Input() placeholder: string = '';
+  @Input() size: Size = Size.Small;
+  @Input() appearance: Appearance = Appearance.Legacy;
 
   @Input() minDate: string | Date;
   @Input() maxDate: string | Date;
@@ -58,6 +73,14 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
   set disabled(disabled) {
     this._disabled = coerceBooleanProperty(disabled);
+  }
+
+  @Input()
+  get minWidth(): number {
+    return this._minWidth;
+  }
+  set minWidth(minWidth) {
+    this._minWidth = coerceNumberProperty(minWidth);
   }
 
   @Input()
@@ -142,6 +165,14 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     }
   }
 
+  @Input()
+  get autosize() {
+    return this._autosize;
+  }
+  set autosize(v: boolean) {
+    this._autosize = coerceBooleanProperty(v);
+  }
+
   @Output() change = new EventEmitter<string | Date>();
 
   @ViewChild('dialogTpl', { static: true })
@@ -165,6 +196,8 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   private _disabled: boolean = false;
   private _autofocus: boolean = false;
   private _tabindex: number;
+  private _autosize: boolean = false;
+  private _minWidth: number = MIN_WIDTH;
 
   constructor(private readonly dialogService: DialogService) {}
 

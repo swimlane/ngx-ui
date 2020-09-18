@@ -57,7 +57,8 @@ const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
     '[class.active]': 'dropdownActive',
     '[class.active-selections]': 'hasSelections',
     '[class.has-placeholder]': 'hasPlaceholder',
-    '[class.autosize]': 'autosize'
+    '[class.autosize]': 'autosize',
+    '[style.min-width]': 'autosize ? autosizeMinWidth : undefined'
   },
   providers: [SELECT_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
@@ -86,6 +87,18 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   }
   set minSelections(minSelections) {
     this._minSelections = coerceNumberProperty(minSelections, undefined);
+  }
+
+  @Input()
+  get autosizeMinWidth(): number | string {
+    return this._autosizeMinWidth;
+  }
+  set autosizeMinWidth(autosizeMinWidth) {
+    if (!isNaN(+autosizeMinWidth)) {
+      this._autosizeMinWidth = `${autosizeMinWidth}px`;
+    } else if (typeof autosizeMinWidth === 'string') {
+      this._autosizeMinWidth = autosizeMinWidth;
+    }
   }
 
   @Input()
@@ -297,6 +310,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   private _tagging: boolean = false;
   private _multiple: boolean = false;
   private _disabled: boolean = false;
+  private _autosizeMinWidth: string = '60px';
 
   constructor(
     private readonly _element: ElementRef,

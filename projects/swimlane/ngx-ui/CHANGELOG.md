@@ -6,12 +6,12 @@
 - Chore: Removed ngx-datatable from demo page
 - Enhancement: Added icons; update icon style for `calendar-clock` and `calendar` icons (#491)
 - Breaking: Upgrade to Angular 10
-
-## HEAD (Unreleased)
-
 - Enhancement: replace the default chrome accessibility number spinner with a styled one for number type ngx-inputs
 - Enhancement: added a minWidth input property to ngx-input
 - Fix: rework the way autosize works on ngx-input so that it sizes to its content correctly. Now using ngx-autosize-input library.
+- Enhancement: Updated ngx-date-time component to have fill variants and autosize option
+
+## HEAD (Unreleased)
 
 ## 29.3.0 (2020-08-17)
 
