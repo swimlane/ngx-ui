@@ -1,5 +1,9 @@
 # CHANGELOG
 
+#HEAD (unreleased)
+
+- Bug: Revert removal of ngx-datatable styles
+
 ## 30.0.0 (2020-09-18)
 
 - Bug: Fix ngx-select issue when using the filter and arrow keys/enter to selecting a dropdown option (#494)
