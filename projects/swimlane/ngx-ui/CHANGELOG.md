@@ -1,6 +1,6 @@
 # CHANGELOG
 
-#HEAD (unreleased)
+# 30.1.0 (2020-09-22)
 
 - Bug: Revert removal of ngx-datatable styles
 
