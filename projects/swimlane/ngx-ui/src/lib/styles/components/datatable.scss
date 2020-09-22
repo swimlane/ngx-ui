@@ -1,0 +1,112 @@
+@import 'colors/variables';
+
+$datatable-bg: $color-blue-grey-800;
+$datatable-border: $color-blue-grey-700;
+$datatable-color: $color-grey-100;
+$datatable-row-hover: darken($datatable-bg, 2%);
+
+.ngx-datatable {
+  box-shadow: none;
+  background: $datatable-bg;
+  border: 1px solid $datatable-border;
+  color: $datatable-color;
+  font-size: 13px;
+
+  .datatable-header {
+    background: #181b24;
+    color: #72809b;
+
+    .datatable-header-cell {
+      text-align: left;
+      padding: 0.5rem 1.2rem;
+      font-weight: bold;
+
+      .datatable-header-cell-label {
+        line-height: 24px;
+      }
+    }
+  }
+
+  .datatable-body {
+    background: $datatable-bg;
+
+    .datatable-body-row {
+      border-top: 1px solid $datatable-border;
+
+      .datatable-body-cell {
+        text-align: left;
+        padding: 0.5rem 1.2rem;
+        vertical-align: top;
+      }
+
+      &:hover {
+        background: $datatable-row-hover;
+        transition-property: background;
+        transition-duration: 0.3s;
+        transition-timing-function: linear;
+      }
+
+      &:focus {
+        background-color: $datatable-row-hover;
+      }
+
+      &.active {
+        background-color: $color-blue;
+        color: $color-grey-100;
+      }
+    }
+  }
+
+  .datatable-footer {
+    background: $color-blue-grey-700;
+    color: $color-grey-300;
+    margin-top: -1px;
+
+    .page-count {
+      line-height: 50px;
+      height: 50px;
+      padding: 0 1.2rem;
+    }
+
+    .datatable-pager {
+      margin: 0 10px;
+      vertical-align: top;
+
+      ul {
+        li {
+          margin: 10px 0;
+
+          a {
+            height: 22px;
+            min-width: 24px;
+            line-height: 22px;
+            padding: 0;
+            border-radius: 3px;
+            margin: 0 3px;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: bottom;
+            color: $color-grey-300;
+          }
+
+          &:not(.disabled) {
+            &.active a,
+            &:hover a {
+              background-color: $color-blue-grey-600;
+              font-weight: bold;
+            }
+          }
+        }
+      }
+
+      .icon-left,
+      .icon-skip,
+      .icon-right,
+      .icon-prev {
+        font-size: 18px;
+        line-height: 27px;
+        padding: 0 3px;
+      }
+    }
+  }
+}
