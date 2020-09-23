@@ -3,10 +3,11 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "bundle-report": "webpack-bundle-analyzer dist/ngx-ui/stats.json",
     "prestart": "npm run build:css",
     "start": "ng serve --port 4200",
     "build": "npm run build:lib && ng build --prod",
-    "build:demo": "npm run build:lib && cross-env NODE_ENV=production ng build --prod --base-href=\"/ngx-ui/\"",
+    "build:demo": "npm run build:lib && cross-env NODE_ENV=production ng build --prod --statsJson=true --base-href=\"/ngx-ui/\"",
     "build:lib": "ng build @swimlane/ngx-ui --prod && npm run build:css",
     "build:css": "node scripts/prep-global-styles.js && npm run copy-files",
     "copy-files": "cp README.md dist/swimlane/ngx-ui/README.md && cp LICENSE dist/swimlane/ngx-ui/LICENSE",
@@ -105,6 +106,7 @@
     "tslint-config-security": "^1.16.0",
     "tslint-config-swimlane": "^5.0.0",
     "typescript": "^4.0.2",
+    "webpack-bundle-analyzer": "^3.9.0",
     "zone.js": "~0.10.3"
   },
   "husky": {
