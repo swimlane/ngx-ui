@@ -5,99 +5,90 @@
     <ngx-button class="btn" (click)="increaseCount()">Click Me</ngx-button>
     <div class="badge" [@bounce]="count">Bounce</div>
 
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <ngx-button class="btn" (click)="increaseCount()">Click Me</ngx-button>
-        <div class="badge" [@bounce]="count">Bounce</div>
-      ]]>
-    </ngx-codemirror>
+    <br />
+    <app-prism>
+<![CDATA[<ngx-button class="btn" (click)="increaseCount()">Click Me</ngx-button>
+<div class="badge" [@bounce]="count">Bounce</div>]]>
+    </app-prism>
   </ngx-section>
 
   <ngx-section class="shadow" sectionTitle="Fade In">
     <ngx-button class="btn" (click)="toggle('fadeIn')">Click Me</ngx-button>
     <div class="badge" *ngIf="visible.fadeIn" @fadeIn>Fade In</div>
 
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <div class="badge" *ngIf="visible.fadeIn" @fadeIn>Fade In</div>
-      ]]>
-    </ngx-codemirror>
+    <br />
+    <code class="language-html">
+      <![CDATA[<div class="badge" *ngIf="visible.fadeIn" @fadeIn>Fade In</div>]]>
+    </code>
   </ngx-section>
 
   <ngx-section class="shadow" sectionTitle="Fade Out">
     <ngx-button class="btn" (click)="toggle('fadeOut')">Click Me</ngx-button>
     <div class="badge" *ngIf="visible.fadeOut" @fadeOut>Fade Out</div>
 
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <div class="badge" *ngIf="visible.fadeOut" @fadeOut>Fade Out</div>
-      ]]>
-    </ngx-codemirror>
+    <br />
+    <code class="language-html">
+      <![CDATA[<div class="badge" *ngIf="visible.fadeOut" @fadeOut>Fade Out</div>]]>
+    </code>
   </ngx-section>
 
   <ngx-section class="shadow" sectionTitle="Slide Down Fade Out">
     <ngx-button class="btn" (click)="toggle('slideDownFadeOut')">Click Me</ngx-button>
     <div class="badge" *ngIf="visible.slideDownFadeOut" @slideDownFadeOut>Slide Down Fade Out</div>
 
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <div class="badge" *ngIf="visible.slideDownFadeOut" @slideDownFadeOut>Slide Down Fade Out</div>
-      ]]>
-    </ngx-codemirror>
+    <br />
+    <code class="language-html">
+      <![CDATA[<div class="badge" *ngIf="visible.slideDownFadeOut" @slideDownFadeOut>Slide Down Fade Out</div>]]>
+    </code>
   </ngx-section>
 
   <ngx-section class="shadow" sectionTitle="Slide Up Fade Out">
     <ngx-button class="btn" (click)="toggle('slideUpFadeOut')">Click Me</ngx-button>
     <div class="badge" *ngIf="visible.slideUpFadeOut" @slideUpFadeOut>Slide Up Fade Out</div>
 
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <div class="badge" *ngIf="visible.slideUpFadeOut" @slideUpFadeOut>Slide Up Fade Out</div>
-      ]]>
-    </ngx-codemirror>
+    <br />
+    <code class="language-html">
+      <![CDATA[<div class="badge" *ngIf="visible.slideUpFadeOut" @slideUpFadeOut>Slide Up Fade Out</div>]]>
+    </code>
   </ngx-section>
 
   <ngx-section class="shadow" sectionTitle="Slide Left">
     <ngx-button class="btn" (click)="toggle('slideLeft')">Click Me</ngx-button>
     <div class="badge" *ngIf="visible.slideLeft" @slideLeft>Slide Left</div>
 
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <div class="badge" *ngIf="visible.slideLeft" @slideLeft>Slide Left</div>
-      ]]>
-    </ngx-codemirror>
+    <br />
+    <code class="language-html">
+      <![CDATA[<div class="badge" *ngIf="visible.slideLeft" @slideLeft>Slide Left</div>]]>
+    </code>
   </ngx-section>
 
   <ngx-section class="shadow" sectionTitle="Slide Right">
     <ngx-button class="btn" (click)="toggle('slideRight')">Click Me</ngx-button>
     <div class="badge" *ngIf="visible.slideRight" @slideRight>Slide Right</div>
 
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <div class="badge" *ngIf="visible.slideRight" @slideRight>Slide Right</div>
-      ]]>
-    </ngx-codemirror>
+    <br />
+    <code class="language-html">
+      <![CDATA[<div class="badge" *ngIf="visible.slideRight" @slideRight>Slide Right</div>]]>
+    </code>
   </ngx-section>
 
   <ngx-section class="shadow" sectionTitle="Slide Top">
     <ngx-button class="btn" (click)="toggle('slideTop')">Click Me</ngx-button>
     <div class="badge" *ngIf="visible.slideTop" @slideTop>Slide Top</div>
 
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <div class="badge" *ngIf="visible.slideTop" @slideTop>Slide Top</div>
-      ]]>
-    </ngx-codemirror>
+    <br />
+    <code class="language-html">
+      <![CDATA[<div class="badge" *ngIf="visible.slideTop" @slideTop>Slide Top</div>]]>
+    </code>
   </ngx-section>
 
   <ngx-section class="shadow" sectionTitle="Slide Bottom">
     <ngx-button class="btn" (click)="toggle('slideBottom')">Click Me</ngx-button>
     <div class="badge" *ngIf="visible.slideBottom" @slideBottom>Slide Bottom</div>
 
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <div class="badge" *ngIf="visible.slideBottom" @slideBottom>Slide Bottom</div>
-      ]]>
-    </ngx-codemirror>
+    <br />
+    <code class="language-html">
+      <![CDATA[<div class="badge" *ngIf="visible.slideBottom" @slideBottom>Slide Bottom</div>]]>
+    </code>
   </ngx-section>
 </div>
