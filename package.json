@@ -51,6 +51,7 @@
     "mousetrap": "^1.6.5",
     "ngx-autosize-input": "^2.3.7",
     "normalize.css": "^8.0.0",
+    "prismjs": "^1.21.0",
     "resize-observer-polyfill": "^1.5.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0"
@@ -71,6 +72,7 @@
     "@types/moment-timezone": "^0.5.13",
     "@types/mousetrap": "^1.6.3",
     "@types/node": "^12.11.1",
+    "@types/prismjs": "^1.16.1",
     "angular-cli-ghpages": "^0.6.2",
     "autoprefixer": "^9.3.1",
     "clean-css": "^4.2.3",

@@ -59,6 +59,7 @@ import { TooltipPageComponent } from './dialogs/tooltip-page/tooltip-page.compon
 import { TreePageComponent } from './components/tree-page/tree-page.component';
 import { TypographyPageComponent } from './typography-page/typography-page.component';
 import { DrawerContainerExampleComponent } from './dialogs/drawer-page/drawer-container-example/drawer-container-example.component';
+import { PrismComponent } from './common/prism/prism.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -153,7 +154,8 @@ const routes: Routes = [
     TooltipPageComponent,
     TreePageComponent,
     TypographyPageComponent,
-    DrawerContainerExampleComponent
+    DrawerContainerExampleComponent,
+    PrismComponent
   ],
   imports: [
     BrowserAnimationsModule,
