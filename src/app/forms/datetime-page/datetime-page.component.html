@@ -10,10 +10,18 @@
   >
   </ngx-date-time>
   <br />
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[ <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2"
-    (change)="dateChanged($event)"> </ngx-date-time> ]]>
-  </ngx-codemirror>
+
+  <app-prism>
+<![CDATA[
+<ngx-date-time
+  name="calendar-input2"
+  [disabled]="true"
+  [(ngModel)]="curDate2"
+  (change)="dateChanged($event)"
+>
+</ngx-date-time>
+]]>
+  </app-prism>
 
   <br />
   <br />
@@ -22,10 +30,17 @@
   <ngx-date-time name="calendar-input2" [disabled]="true" [(ngModel)]="curDate2" (change)="dateChanged($event)">
   </ngx-date-time>
   <br />
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[ <ngx-date-time name="calendar-input2" [disabled]="true" [(ngModel)]="curDate2"
-    (change)="dateChanged($event)"> </ngx-date-time> ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[
+<ngx-date-time
+  name="calendar-input2"
+  [disabled]="true"
+  [(ngModel)]="curDate2"
+  (change)="dateChanged($event)"
+>
+</ngx-date-time>
+]]>
+  </app-prism>
 
   <br />
   <br />
@@ -39,10 +54,17 @@
   >
   </ngx-date-time>
   <br />
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[ <ngx-date-time name="calendar-input3" [(ngModel)]="invalidDate" hint="Default is invalid"
-    (change)="dateChanged($event)"> </ngx-date-time> ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[
+<ngx-date-time
+  name="calendar-input3"
+  [(ngModel)]="invalidDate"
+  hint="Default is invalid"
+  (change)="dateChanged($event)"
+>
+</ngx-date-time>
+]]>
+  </app-prism>
 
   <br />
   <br />
@@ -51,10 +73,17 @@
   <ngx-date-time name="calendar-input3" [(ngModel)]="curDate2" [format]="'M/Y'" (change)="dateChanged($event)">
   </ngx-date-time>
   <br />
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[ <ngx-date-time name="calendar-input3" [(ngModel)]="curDate2" [format]="'M/Y'"
-    (change)="dateChanged($event)"> </ngx-date-time> ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[ 
+<ngx-date-time
+  name="calendar-input3"
+  [(ngModel)]="curDate2"
+  [format]="'M/Y'"
+  (change)="dateChanged($event)"
+>
+</ngx-date-time>
+]]>
+  </app-prism>
 
   <br />
   <br />
@@ -70,11 +99,19 @@
   >
   </ngx-date-time>
   <br />
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[ <ngx-date-time name="calendar-input4" [minDate]="minDate" [maxDate]="maxDate" [hint]="'Select date between
-    ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()" [(ngModel)]="curDate2"
-    (change)="dateChanged($event)"> </ngx-date-time> ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[
+<ngx-date-time
+  name="calendar-input4"
+  [minDate]="minDate"
+  [maxDate]="maxDate"
+  [hint]="'Select date between' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
+  [(ngModel)]="curDate2"
+  (change)="dateChanged($event)"
+>
+</ngx-date-time>
+]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Date Time Input'">
@@ -87,10 +124,18 @@
   >
   </ngx-date-time>
   <br />
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[ <ngx-date-time name="time-input1" [inputType]="'datetime'" [label]="'Time of attack'"
-    [(ngModel)]="curDate2" (change)="dateChanged($event)"> </ngx-date-time> ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[
+<ngx-date-time
+  name="time-input1"
+  [inputType]="'datetime'"
+  [label]="'Time of attack'"
+  [(ngModel)]="curDate2"
+  (change)="dateChanged($event)"
+>
+</ngx-date-time>
+]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="TimeZones">
@@ -126,14 +171,39 @@
   >
   </ngx-date-time>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[ <ngx-date-time name="time-input1" inputType="datetime" label="Local Time" format="MMM DD, YYYY hh:mm A Z"
-    [(ngModel)]="curDate" (change)="dateChanged($event)"> </ngx-date-time> <ngx-date-time name="time-input1"
-    [inputType]="'datetime'" label="UTC" timezone="utc" format="MMM DD, YYYY hh:mm A Z" [(ngModel)]="curDate"
-    (change)="dateChanged($event)"> </ngx-date-time> <ngx-date-time name="time-input1" [inputType]="'datetime'"
-    label="JST" timezone="Asia/Tokyo" format="MMM DD, YYYY hh:mm A Z" [(ngModel)]="curDate"
-    (change)="dateChanged($event)"> </ngx-date-time> ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[
+<ngx-date-time
+  name="time-input1"
+  inputType="datetime"
+  label="Local Time"
+  format="MMM DD, YYYY hh:mm A Z"
+  [(ngModel)]="curDate"
+  (change)="dateChanged($event)"
+>
+</ngx-date-time>
+<ngx-date-time
+  name="time-input1"
+  [inputType]="'datetime'"
+  label="UTC"
+  timezone="utc"
+  format="MMM DD, YYYY hh:mm A Z"
+  [(ngModel)]="curDate"
+  (change)="dateChanged($event)"
+>
+</ngx-date-time>
+<ngx-date-time
+  name="time-input1"
+  [inputType]="'datetime'"
+  label="JST"
+  timezone="Asia/Tokyo"
+  format="MMM DD, YYYY hh:mm A Z"
+  [(ngModel)]="curDate"
+  (change)="dateChanged($event)"
+>
+</ngx-date-time>
+]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Time Input'">
@@ -146,10 +216,18 @@
   >
   </ngx-date-time>
   <br />
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[ <ngx-date-time name="time-input1" [inputType]="'time'" [label]="'Time of attack'" [(ngModel)]="curDate2"
-    (change)="dateChanged($event)"> </ngx-date-time> ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[
+<ngx-date-time
+  name="time-input1"
+  [inputType]="'time'"
+  [label]="'Time of attack'"
+  [(ngModel)]="curDate2"
+  (change)="dateChanged($event)"
+>
+</ngx-date-time>
+]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Precision">
@@ -194,13 +272,37 @@
   >
   </ngx-date-time>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[ <ngx-date-time inputType="date" label="Year" precision="year" [(ngModel)]="curDate2" format="YYYY"
-    (change)="dateChanged($event)"> </ngx-date-time> <ngx-date-time inputType="date" label="Month" precision="month"
-    [(ngModel)]="curDate2" format="MMM YYYY" (change)="dateChanged($event)"> </ngx-date-time> <ngx-date-time
-    inputType="datetime" label="Hour" precision="hour" [(ngModel)]="curDate2" format="MMM DD, YYYY, hh:mm"
-    (change)="dateChanged($event)"> </ngx-date-time> ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[
+<ngx-date-time
+  inputType="date"
+  label="Year"
+  precision="year"
+  [(ngModel)]="curDate2"
+  format="YYYY"
+  (change)="dateChanged($event)"
+>
+</ngx-date-time>
+<ngx-date-time
+  inputType="date"
+  label="Month"
+  precision="month"
+  [(ngModel)]="curDate2"
+  format="MMM YYYY"
+  (change)="dateChanged($event)"
+>
+</ngx-date-time>
+<ngx-date-time
+  inputType="datetime"
+  label="Hour"
+  precision="hour"
+  [(ngModel)]="curDate2"
+  format="MMM DD, YYYY, hh:mm"
+  (change)="dateChanged($event)"
+>
+</ngx-date-time>
+]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Fill">
