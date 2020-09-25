@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, AfterViewInit } from '@angular/core';
+import Prism from 'prismjs';
 
 @Component({
   selector: 'app-prism',
@@ -12,6 +13,12 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     class: 'app-prism'
   }
 })
-export class PrismComponent {
+export class PrismComponent implements AfterViewInit {
   @Input() language = 'html';
+
+  constructor(private readonly _el: ElementRef) {}
+
+  ngAfterViewInit() {
+    Prism.highlightAllUnder(this._el.nativeElement);
+  }
 }
