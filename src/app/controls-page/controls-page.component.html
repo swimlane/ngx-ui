@@ -392,7 +392,7 @@
       <ngx-toggle name="toggle1" [(ngModel)]="showHelp" label="Show help text"> </ngx-toggle>
 
       <label style="font-size: 0.7rem;">Help Text</label>
-      <ngx-codemirror [config]="{ theme: 'dracula' }" [mode]="'htmlmixed'" [(ngModel)]="helptext"> </ngx-codemirror>
+      <app-prism>{{helptext}}</app-prism>
     </div>
     <div class="ngx-flex--col-12 ngx-flex--col-md-4">
       <ngx-input type="text" [label]="label" ngModel="" [hint]="showHelp && helptext">
@@ -456,7 +456,7 @@
       <ngx-toggle name="toggle1" [(ngModel)]="showHelp" label="Show help text"> </ngx-toggle>
 
       <label style="font-size: 0.7rem;">Help Text</label>
-      <ngx-codemirror [config]="{ theme: 'dracula' }" [mode]="'htmlmixed'" [(ngModel)]="helptext"> </ngx-codemirror>
+      <app-prism>{{helptext}}</app-prism>
     </div>
     <div class="ngx-flex--col-8 ngx-flex--col-md-4">
       <ngx-input type="text" [label]="label" ngModel="" [hint]="showHelp && helptext">
@@ -520,7 +520,7 @@
       <ngx-toggle name="toggle1" [(ngModel)]="showHelp" label="Show help text"> </ngx-toggle>
 
       <label style="font-size: 0.7rem;">Help Text</label>
-      <ngx-codemirror [config]="{ theme: 'dracula' }" [mode]="'htmlmixed'" [(ngModel)]="helptext"> </ngx-codemirror>
+      <app-prism>{{helptext}}</app-prism>
     </div>
     <div class="ngx-flex--col-8 ngx-flex--col-md-4">
       <ngx-input type="text" [label]="label" ngModel="" [hint]="showHelp && helptext">
