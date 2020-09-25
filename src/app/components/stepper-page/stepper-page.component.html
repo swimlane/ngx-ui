@@ -34,19 +34,17 @@
   <br />
   <br />
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-stepper
-        [readonly]="readonly"
-        [(active)]="index"
-      >
-        <ngx-step *ngFor="let step of steps">
-          <ng-template ngxStepContent>
-          </ng-template>
-        </ngx-step>
-      </ngx-stepper>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-stepper
+  [readonly]="readonly"
+  [(active)]="index"
+>
+  <ngx-step *ngFor="let step of steps">
+    <ng-template ngxStepContent>
+    </ng-template>
+  </ngx-step>
+</ngx-stepper>]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Stepper (Custom Icon)">
@@ -84,23 +82,21 @@
   <br />
   <br />
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-stepper
-        completeIcon="ngx-icon ngx-arrow-bold-right"
-        [readonly]="readonly"
-        [(active)]="index"
-      >
-        <ngx-step
-          *ngFor="let step of steps"
-          [completeIcon]="step.icon"
-        >
-          <ng-template ngxStepContent>
-          </ng-template>
-        </ngx-step>
-      </ngx-stepper>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-stepper
+  completeIcon="ngx-icon ngx-arrow-bold-right"
+  [readonly]="readonly"
+  [(active)]="index"
+>
+  <ngx-step
+    *ngFor="let step of steps"
+    [completeIcon]="step.icon"
+  >
+    <ng-template ngxStepContent>
+    </ng-template>
+  </ngx-step>
+</ngx-stepper>]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Stepper (Position Change)">
@@ -146,22 +142,20 @@
   <br />
   <br />
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-stepper
-        [position]="position"
-        [readonly]="readonly"
-        [(active)]="index"
-      >
-        <ngx-step
-          *ngFor="let step of steps"
-          [label]="step.title"
-          [completeIcon]="step.icon"
-        >
-          <ng-template ngxStepContent>
-          </ng-template>
-        </ngx-step>
-      </ngx-stepper>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-stepper
+  [position]="position"
+  [readonly]="readonly"
+  [(active)]="index"
+>
+  <ngx-step
+    *ngFor="let step of steps"
+    [label]="step.title"
+    [completeIcon]="step.icon"
+  >
+    <ng-template ngxStepContent>
+    </ng-template>
+  </ngx-step>
+</ngx-stepper>]]>
+  </app-prism>
 </ngx-section>
