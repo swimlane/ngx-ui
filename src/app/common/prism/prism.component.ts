@@ -4,9 +4,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   selector: 'app-prism',
   template: `
     <pre>
-      <code class="language-{{ language }}">
-        <ng-content></ng-content>
-      </code>
+      <code class="language-{{ language }}"><ng-content></ng-content></code>
     </pre>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -23,6 +23,10 @@ pre[class*='language-'] {
   hyphens: none;
 }
 
+code[class*='language-'] {
+  display: block;
+}
+
 pre[class*='language-'],
 :not(pre) > code[class*='language-'] {
   background: #272b36;
@@ -33,7 +37,7 @@ pre[class*='language-'] {
   border-radius: 0.5em;
   margin: 0.5em 0;
   overflow: auto;
-  padding: 1rem;
+  padding: 0 1rem;
 }
 
 pre[class*='language-']::-moz-selection {
@@ -65,6 +69,7 @@ code[class*='language-'] ::selection {
 
 /* Inline code */
 :not(pre) > code[class*='language-'] {
+  display: inline-block;
   border-radius: 0.3em;
   border: 0.13em solid hsl(0, 0%, 33%); /* #545454 */
   box-shadow: 1px 1px 0.3em -0.1em black inset;
@@ -82,20 +87,19 @@ code[class*='language-'] ::selection {
 .prism--token.prism--tag,
 .prism--token.prism--boolean,
 .prism--token.prism--number,
-.prism--token.prism--deleted {
-  color: #fe7ac6;
-}
-
+.prism--token.prism--deleted,
 .prism--token.prism--keyword,
 .prism--token.prism--property,
 .prism--token.prism--selector,
 .prism--token.prism--constant,
 .prism--token.prism--symbol,
 .prism--token.prism--builtin {
-  color: hsl(53, 89%, 79%); /* #F9EE98 */
+  color: #fe7ac6;
 }
 
-.prism--token.prism--attr-name {
+.prism--token.prism--attr-name,
+.prism--token.prism--function,
+.prism--token.prism--parameter {
   color: #50f77a;
 }
 
