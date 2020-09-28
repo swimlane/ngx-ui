@@ -1,97 +1,140 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ColorsPageComponent } from './colors-page/colors-page.component';
-import { DropdownPageComponent } from './components/dropdown-page/dropdown-page.component';
-import { HotkeysPageComponent } from './components/hotkeys-page/hotkeys-page.component';
-import { JsonEditorPageComponent } from './components/json-editor-page/json-editor-page.component';
-import { LoadingPageComponent } from './components/loading-page/loading-page.component';
-import { NavbarPageComponent } from './components/navbar-page/navbar-page.component';
-import { navbarRoutes } from './components/navbar-page/navbar-page.routes';
-import { NgxIconPageComponent } from './components/ngx-icon-page/ngx-icon-page.component';
-import { OverlayPageComponent } from './components/overlay-page/overlay-page.component';
-import { ProgressSpinnerPageComponent } from './components/progress-spinner-page/progress-spinner-page.component';
-import { SectionsPageComponent } from './components/sections-page/sections-page.component';
-import { SplitPageComponent } from './components/split-page/split-page.component';
-import { StepperPageComponent } from './components/stepper-page/stepper-page.component';
-import { TabsPageComponent } from './components/tabs-page/tabs-page.component';
-import { TipPageComponent } from './components/tip-page/tip-page.component';
-import { ToolbarPageComponent } from './components/toolbar-page/toolbar-page.component';
-import { TreePageComponent } from './components/tree-page/tree-page.component';
-import { ControlsPageComponent } from './controls-page/controls-page.component';
-import { AlertPageComponent } from './dialogs/alert-page/alert-page.component';
-import { DialogPageComponent } from './dialogs/dialog-page/dialog-page.component';
-import { DrawerPageComponent } from './dialogs/drawer-page/drawer-page.component';
-import { NagPageComponent } from './dialogs/nag-page/nag-page.component';
-import { NotificationPageComponent } from './dialogs/notification-page/notification-page.component';
-import { TooltipPageComponent } from './dialogs/tooltip-page/tooltip-page.component';
-import { ListsPageComponent } from './elements/lists-page/lists-page.component';
-import { ScrollbarsPageComponent } from './elements/scrollbars-page/scrollbars-page.component';
-import { TablePageComponent } from './elements/table-page/table-page.component';
-import { TagsPageComponent } from './elements/tags-page/tags-page.component';
-import { ButtonsPageComponent } from './forms/buttons-page/buttons-page.component';
-import { CalendarPageComponent } from './forms/calendar-page/calendar-page.component';
-import { CheckboxPageComponent } from './forms/checkbox-page/checkbox-page.component';
-import { CodeEditorPageComponent } from './forms/code-editor-page/code-editor-page.component';
-import { DatetimePageComponent } from './forms/datetime-page/datetime-page.component';
-import { InputsPageComponent } from './forms/inputs-page/inputs-page.component';
-import { RadioPageComponent } from './forms/radio-page/radio-page.component';
-import { SelectsPageComponent } from './forms/selects-page/selects-page.component';
-import { SliderPageComponent } from './forms/slider-page/slider-page.component';
-import { TogglePageComponent } from './forms/toggle-page/toggle-page.component';
-import { IconsPageComponent } from './icons-page/icons-page.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
-import { LayoutPageComponent } from './layout-page/layout-page.component';
-import { PipesPageComponent } from './pipes-page/pipes-page.component';
-import { TypographyPageComponent } from './typography-page/typography-page.component';
-
 const routes: Routes = [
-  { path: '', component: LandingPageComponent },
-  { path: 'alert', component: AlertPageComponent },
+  { path: '', loadChildren: () => import('./landing-page/landing-page.module').then(m => m.LandingPageModule) },
+  { path: 'alert', loadChildren: () => import('./dialogs/alert-page/alert-page.module').then(m => m.AlertPageModule) },
   {
     path: 'animations',
     loadChildren: () => import('./animations-page/animations-page.module').then(m => m.AnimationsPageModule)
   },
-  { path: 'buttons', component: ButtonsPageComponent },
-  { path: 'calendar', component: CalendarPageComponent },
-  { path: 'checkbox', component: CheckboxPageComponent },
-  { path: 'code-editor', component: CodeEditorPageComponent },
-  { path: 'colors', component: ColorsPageComponent },
-  { path: 'controls', component: ControlsPageComponent },
-  { path: 'datetime', component: DatetimePageComponent },
-  { path: 'dialog', component: DialogPageComponent },
-  { path: 'drawer', component: DrawerPageComponent },
-  { path: 'dropdown', component: DropdownPageComponent },
-  { path: 'hotkeys', component: HotkeysPageComponent },
-  { path: 'icons', component: IconsPageComponent },
-  { path: 'inputs', component: InputsPageComponent },
-  { path: 'json-editor', component: JsonEditorPageComponent },
-  { path: 'lists', component: ListsPageComponent },
-  { path: 'loading', component: LoadingPageComponent },
-  { path: 'layout', component: LayoutPageComponent },
-  { path: 'nag', component: NagPageComponent },
-  { path: 'navbar', component: NavbarPageComponent, children: navbarRoutes },
-  { path: 'ngx-icon', component: NgxIconPageComponent },
-  { path: 'notification', component: NotificationPageComponent },
-  { path: 'overlay', component: OverlayPageComponent },
-  { path: 'pipes', component: PipesPageComponent },
-  { path: 'progress-spinner', component: ProgressSpinnerPageComponent },
-  { path: 'radio', component: RadioPageComponent },
-  { path: 'scrollbars', component: ScrollbarsPageComponent },
-  { path: 'sections', component: SectionsPageComponent },
-  { path: 'selects', component: SelectsPageComponent },
-  { path: 'slider', component: SliderPageComponent },
-  { path: 'split', component: SplitPageComponent },
-  { path: 'stepper', component: StepperPageComponent },
-  { path: 'table', component: TablePageComponent },
-  { path: 'tabs', component: TabsPageComponent },
-  { path: 'tags', component: TagsPageComponent },
-  { path: 'tip', component: TipPageComponent },
-  { path: 'toggle', component: TogglePageComponent },
-  { path: 'toolbar', component: ToolbarPageComponent },
-  { path: 'tooltip', component: TooltipPageComponent },
-  { path: 'tree', component: TreePageComponent },
-  { path: 'typography', component: TypographyPageComponent }
+  {
+    path: 'buttons',
+    loadChildren: () => import('./forms/buttons-page/buttons-page.module').then(m => m.ButtonsPageModule)
+  },
+  {
+    path: 'calendar',
+    loadChildren: () => import('./forms/calendar-page/calendar-page.module').then(m => m.CalendarPageModule)
+  },
+  {
+    path: 'checkbox',
+    loadChildren: () => import('./forms/checkbox-page/checkbox-page.module').then(m => m.CheckboxPageModule)
+  },
+  {
+    path: 'code-editor',
+    loadChildren: () => import('./forms/code-editor-page/code-editor-page.module').then(m => m.CodeEditorPageModule)
+  },
+  { path: 'colors', loadChildren: () => import('./colors-page/colors-page.module').then(m => m.ColorsPageModule) },
+  {
+    path: 'controls',
+    loadChildren: () => import('./controls-page/controls-page.module').then(m => m.ControlsPageModule)
+  },
+  {
+    path: 'datetime',
+    loadChildren: () => import('./forms/datetime-page/datetime-page.module').then(m => m.DatetimePageModule)
+  },
+  {
+    path: 'dialog',
+    loadChildren: () => import('./dialogs/dialog-page/dialog-page.module').then(m => m.DialogPageModule)
+  },
+  {
+    path: 'drawer',
+    loadChildren: () => import('./dialogs/drawer-page/drawer-page.module').then(m => m.DrawerPageModule)
+  },
+  {
+    path: 'dropdown',
+    loadChildren: () => import('./components/dropdown-page/dropdown-page.module').then(m => m.DropdownPageModule)
+  },
+  {
+    path: 'hotkeys',
+    loadChildren: () => import('./components/hotkeys-page/hotkeys-page.module').then(m => m.HotkeysPageModule)
+  },
+  { path: 'icons', loadChildren: () => import('./icons-page/icons-page.module').then(m => m.IconsPageModule) },
+  {
+    path: 'inputs',
+    loadChildren: () => import('./forms/inputs-page/inputs-page.module').then(m => m.InputsPageModule)
+  },
+  {
+    path: 'json-editor',
+    loadChildren: () =>
+      import('./components/json-editor-page/json-editor-page.module').then(m => m.JsonEditorPageModule)
+  },
+  { path: 'lists', loadChildren: () => import('./elements/lists-page/lists-page.module').then(m => m.ListsPageModule) },
+  {
+    path: 'loading',
+    loadChildren: () => import('./components/loading-page/loading-page.module').then(m => m.LoadingPageModule)
+  },
+  { path: 'layout', loadChildren: () => import('./layout-page/layout-page.module').then(m => m.LayoutPageModule) },
+  { path: 'nag', loadChildren: () => import('./dialogs/nag-page/nag-page.module').then(m => m.NagPageModule) },
+  {
+    path: 'navbar',
+    loadChildren: () => import('./components/navbar-page/navbar-page.module').then(m => m.NavbarPageModule)
+  },
+  {
+    path: 'ngx-icon',
+    loadChildren: () => import('./components/ngx-icon-page/ngx-icon-page.module').then(m => m.NgxIconPageModule)
+  },
+  {
+    path: 'notification',
+    loadChildren: () =>
+      import('./dialogs/notification-page/notification-page.module').then(m => m.NotificationPageModule)
+  },
+  {
+    path: 'overlay',
+    loadChildren: () => import('./components/overlay-page/overlay-page.module').then(m => m.OverlayPageModule)
+  },
+  { path: 'pipes', loadChildren: () => import('./pipes-page/pipes-page.module').then(m => m.PipesPageModule) },
+  {
+    path: 'progress-spinner',
+    loadChildren: () =>
+      import('./components/progress-spinner-page/progress-spinner-page.module').then(m => m.ProgressSpinnerPageModule)
+  },
+  { path: 'radio', loadChildren: () => import('./forms/radio-page/radio-page.module').then(m => m.RadioPageModule) },
+  {
+    path: 'scrollbars',
+    loadChildren: () => import('./elements/scrollbars-page/scrollbars-page.module').then(m => m.ScrollbarsPageModule)
+  },
+  {
+    path: 'sections',
+    loadChildren: () => import('./components/sections-page/sections-page.module').then(m => m.SectionsPageModule)
+  },
+  {
+    path: 'selects',
+    loadChildren: () => import('./forms/selects-page/selects-page.module').then(m => m.SelectsPageModule)
+  },
+  {
+    path: 'slider',
+    loadChildren: () => import('./forms/slider-page/slider-page.module').then(m => m.SliderPageModule)
+  },
+  {
+    path: 'split',
+    loadChildren: () => import('./components/split-page/split-page.module').then(m => m.SplitPageModule)
+  },
+  {
+    path: 'stepper',
+    loadChildren: () => import('./components/stepper-page/stepper-page.module').then(m => m.StepperPageModule)
+  },
+  { path: 'table', loadChildren: () => import('./elements/table-page/table-page.module').then(m => m.TablePageModule) },
+  { path: 'tabs', loadChildren: () => import('./components/tabs-page/tabs-page.module').then(m => m.TabsPageModule) },
+  { path: 'tags', loadChildren: () => import('./elements/tags-page/tags-page.module').then(m => m.TagsPageModule) },
+  { path: 'tip', loadChildren: () => import('./components/tip-page/tip-page.module').then(m => m.TipPageModule) },
+  {
+    path: 'toggle',
+    loadChildren: () => import('./forms/toggle-page/toggle-page.module').then(m => m.TogglePageModule)
+  },
+  {
+    path: 'toolbar',
+    loadChildren: () => import('./components/toolbar-page/toolbar-page.module').then(m => m.ToolbarPageModule)
+  },
+  {
+    path: 'tooltip',
+    loadChildren: () => import('./dialogs/tooltip-page/tooltip-page.module').then(m => m.TooltipPageModule)
+  },
+  { path: 'tree', loadChildren: () => import('./components/tree-page/tree-page.module').then(m => m.TreePageModule) },
+  {
+    path: 'typography',
+    loadChildren: () => import('./typography-page/typography-page.module').then(m => m.TypographyPageModule)
+  }
 ];
 
 @NgModule({
