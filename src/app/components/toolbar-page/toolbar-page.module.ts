@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { ToolbarPageRoutingModule } from './toolbar-page-routing.module';
-import { SectionModule, ToolbarModule } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { SectionModule, ToolbarModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
+
+import { ToolbarPageRoutingModule } from './toolbar-page-routing.module';
 import { ToolbarPageComponent } from './toolbar-page.component';
 
 @NgModule({

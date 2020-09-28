@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LoadingPageRoutingModule } from './loading-page-routing.module';
-import { SectionModule, TabsModule } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { SectionModule, TabsModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
+
+import { LoadingPageRoutingModule } from './loading-page-routing.module';
 import { LoadingPageComponent } from './loading-page.component';
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SectionModule, DropdownModule } from '@swimlane/ngx-ui';
 
+import { SectionModule, DropdownModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
 
 import { DropdownPageRoutingModule } from './dropdown-page-routing.module';

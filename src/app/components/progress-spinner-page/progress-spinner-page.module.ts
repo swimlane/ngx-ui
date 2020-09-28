@@ -2,15 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { ProgressSpinnerPageRoutingModule } from './progress-spinner-page-routing.module';
-import {
-  InputModule,
-  ProgressSpinnerModule,
-  SectionModule,
-  SelectModule
-} from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { InputModule, ProgressSpinnerModule, SectionModule, SelectModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
+
 import { ProgressSpinnerPageComponent } from './progress-spinner-page.component';
+import { ProgressSpinnerPageRoutingModule } from './progress-spinner-page-routing.module';
 
 @NgModule({
   declarations: [ProgressSpinnerPageComponent],

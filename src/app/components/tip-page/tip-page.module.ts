@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TipPageRoutingModule } from './tip-page-routing.module';
-import { SectionModule, TipModule } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { SectionModule, TipModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
+
+import { TipPageRoutingModule } from './tip-page-routing.module';
 import { TipPageComponent } from './tip-page.component';
 
 @NgModule({

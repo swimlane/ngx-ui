@@ -2,13 +2,14 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { PipesPageRoutingModule } from './pipes-page-routing.module';
-import { InputModule, SectionModule } from '../../../projects/swimlane/ngx-ui/src/public_api';
+import { InputModule, PipesModule, SectionModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../common/prism/prism.module';
+
+import { PipesPageRoutingModule } from './pipes-page-routing.module';
 import { PipesPageComponent } from './pipes-page.component';
 
 @NgModule({
   declarations: [PipesPageComponent],
-  imports: [CommonModule, FormsModule, PrismModule, SectionModule, InputModule, PipesPageRoutingModule]
+  imports: [CommonModule, FormsModule, PrismModule, SectionModule, InputModule, PipesModule, PipesPageRoutingModule]
 })
 export class PipesPageModule {}

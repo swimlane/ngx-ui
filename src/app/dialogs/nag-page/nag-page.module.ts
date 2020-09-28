@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { NagPageRoutingModule } from './nag-page-routing.module';
-import { IconModule, NagModule, SectionModule } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { IconModule, NagModule, SectionModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
+
+import { NagPageRoutingModule } from './nag-page-routing.module';
 import { NagPageComponent } from './nag-page.component';
 
 @NgModule({

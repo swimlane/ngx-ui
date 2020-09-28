@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TagsPageRoutingModule } from './tags-page-routing.module';
-import { SectionModule } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { SectionModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
+
+import { TagsPageRoutingModule } from './tags-page-routing.module';
 import { TagsPageComponent } from './tags-page.component';
 
 @NgModule({

@@ -2,14 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { JsonEditorPageRoutingModule } from './json-editor-page-routing.module';
-import {
-  ButtonModule,
-  JsonEditorModule,
-  SectionModule,
-  TabsModule
-} from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { ButtonModule, JsonEditorModule, SectionModule, TabsModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
+
+import { JsonEditorPageRoutingModule } from './json-editor-page-routing.module';
 import { JsonEditorPageComponent } from './json-editor-page.component';
 
 @NgModule({

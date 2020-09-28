@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HotkeysModule, SectionModule } from '@swimlane/ngx-ui';
 
+import { HotkeysModule, SectionModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
 
 import { HotkeysPageRoutingModule } from './hotkeys-page-routing.module';

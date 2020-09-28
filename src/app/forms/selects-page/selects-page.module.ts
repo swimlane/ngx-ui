@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { SelectsPageRoutingModule } from './selects-page-routing.module';
-import { SectionModule, SelectModule } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { SectionModule, SelectModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
+
+import { SelectsPageRoutingModule } from './selects-page-routing.module';
 import { SelectsPageComponent } from './selects-page.component';
 
 @NgModule({

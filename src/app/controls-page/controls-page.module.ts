@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { ControlsPageRoutingModule } from './controls-page-routing.module';
 import {
   ButtonModule,
   DateTimeModule,
@@ -12,9 +11,11 @@ import {
   SectionModule,
   SelectModule,
   ToggleModule
-} from '../../../projects/swimlane/ngx-ui/src/public_api';
+} from '@swimlane/ngx-ui';
 import { PrismModule } from '../common/prism/prism.module';
+
 import { ControlsPageComponent } from './controls-page.component';
+import { ControlsPageRoutingModule } from './controls-page-routing.module';
 
 @NgModule({
   declarations: [ControlsPageComponent],

@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { TogglePageRoutingModule } from './toggle-page-routing.module';
-import { SectionModule, ToggleModule } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { SectionModule, ToggleModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
+
+import { TogglePageRoutingModule } from './toggle-page-routing.module';
 import { TogglePageComponent } from './toggle-page.component';
 
 @NgModule({
