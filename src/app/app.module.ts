@@ -9,11 +9,8 @@ import { NgxUIModule } from '@swimlane/ngx-ui';
 import { HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from '@swimlane/ng2-file-upload';
 
-import { RouterModule, Routes } from '@angular/router';
-
 // Components
 import { AlertPageComponent } from './dialogs/alert-page/alert-page.component';
-import { AnimationsPageComponent } from './animations-page/animations-page.component';
 import { AppComponent } from './app.component';
 import { ButtonsPageComponent } from './forms/buttons-page/buttons-page.component';
 import { CalendarPageComponent } from './forms/calendar-page/calendar-page.component';
@@ -35,7 +32,6 @@ import { ListsPageComponent } from './elements/lists-page/lists-page.component';
 import { LoadingPageComponent } from './components/loading-page/loading-page.component';
 import { NagPageComponent } from './dialogs/nag-page/nag-page.component';
 import { NavbarPageComponent } from './components/navbar-page/navbar-page.component';
-import { navbarRoutes } from './components/navbar-page/navbar-page.routes';
 import { NgxIconPageComponent } from './components/ngx-icon-page/ngx-icon-page.component';
 import { NotificationPageComponent } from './dialogs/notification-page/notification-page.component';
 import { OverlayPageComponent } from './components/overlay-page/overlay-page.component';
@@ -59,58 +55,12 @@ import { TooltipPageComponent } from './dialogs/tooltip-page/tooltip-page.compon
 import { TreePageComponent } from './components/tree-page/tree-page.component';
 import { TypographyPageComponent } from './typography-page/typography-page.component';
 import { DrawerContainerExampleComponent } from './dialogs/drawer-page/drawer-container-example/drawer-container-example.component';
-import { PrismComponent } from './common/prism/prism.component';
-
-const routes: Routes = [
-  { path: '', component: LandingPageComponent },
-  { path: 'alert', component: AlertPageComponent },
-  { path: 'animations', component: AnimationsPageComponent },
-  { path: 'buttons', component: ButtonsPageComponent },
-  { path: 'calendar', component: CalendarPageComponent },
-  { path: 'checkbox', component: CheckboxPageComponent },
-  { path: 'code-editor', component: CodeEditorPageComponent },
-  { path: 'colors', component: ColorsPageComponent },
-  { path: 'controls', component: ControlsPageComponent },
-  { path: 'datetime', component: DatetimePageComponent },
-  { path: 'dialog', component: DialogPageComponent },
-  { path: 'drawer', component: DrawerPageComponent },
-  { path: 'dropdown', component: DropdownPageComponent },
-  { path: 'hotkeys', component: HotkeysPageComponent },
-  { path: 'icons', component: IconsPageComponent },
-  { path: 'inputs', component: InputsPageComponent },
-  { path: 'json-editor', component: JsonEditorPageComponent },
-  { path: 'lists', component: ListsPageComponent },
-  { path: 'loading', component: LoadingPageComponent },
-  { path: 'layout', component: LayoutPageComponent },
-  { path: 'nag', component: NagPageComponent },
-  { path: 'navbar', component: NavbarPageComponent, children: navbarRoutes },
-  { path: 'ngx-icon', component: NgxIconPageComponent },
-  { path: 'notification', component: NotificationPageComponent },
-  { path: 'overlay', component: OverlayPageComponent },
-  { path: 'pipes', component: PipesPageComponent },
-  { path: 'progress-spinner', component: ProgressSpinnerPageComponent },
-  { path: 'radio', component: RadioPageComponent },
-  { path: 'scrollbars', component: ScrollbarsPageComponent },
-  { path: 'sections', component: SectionsPageComponent },
-  { path: 'selects', component: SelectsPageComponent },
-  { path: 'slider', component: SliderPageComponent },
-  { path: 'split', component: SplitPageComponent },
-  { path: 'stepper', component: StepperPageComponent },
-  { path: 'table', component: TablePageComponent },
-  { path: 'tabs', component: TabsPageComponent },
-  { path: 'tags', component: TagsPageComponent },
-  { path: 'tip', component: TipPageComponent },
-  { path: 'toggle', component: TogglePageComponent },
-  { path: 'toolbar', component: ToolbarPageComponent },
-  { path: 'tooltip', component: TooltipPageComponent },
-  { path: 'tree', component: TreePageComponent },
-  { path: 'typography', component: TypographyPageComponent }
-];
+import { AppRoutingModule } from './app.routing.module';
+import { PrismModule } from './common/prism/prism.module';
 
 @NgModule({
   declarations: [
     AlertPageComponent,
-    AnimationsPageComponent,
     AppComponent,
     ButtonsPageComponent,
     CalendarPageComponent,
@@ -154,8 +104,7 @@ const routes: Routes = [
     TooltipPageComponent,
     TreePageComponent,
     TypographyPageComponent,
-    DrawerContainerExampleComponent,
-    PrismComponent
+    DrawerContainerExampleComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -164,10 +113,11 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     MomentModule,
+    PrismModule,
     BrowserAnimationsModule,
     FileUploadModule,
     NgxUIModule,
-    RouterModule.forRoot(routes)
+    AppRoutingModule
   ],
   bootstrap: [AppComponent]
 })
