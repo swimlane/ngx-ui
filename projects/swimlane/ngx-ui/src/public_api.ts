@@ -98,6 +98,7 @@ export * from './lib/components/hotkeys/hotkey-status.enum';
 
 export * from './lib/components/icon/icon.module';
 export * from './lib/components/icon/icon.component';
+export * from './lib/components/icon/icons-name-map';
 
 export * from './lib/components/input/input.module';
 export * from './lib/components/input/input.component';

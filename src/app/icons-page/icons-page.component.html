@@ -2,9 +2,9 @@
 
 <h3 class="style-header">Icons</h3>
 <ul class="icons-preview">
-  <li *ngFor="let icon of icons" class="shadow-2 shadow-fx">
-    <ngx-icon [fontIcon]="icon.name"></ngx-icon>
-    <span class="icon-name" dbl-click-copy>ngx-icon ngx-{{ icon.name }}</span>
+  <li *ngFor="let iconName of icons" class="shadow-2 shadow-fx">
+    <ngx-icon [fontIcon]="iconName"></ngx-icon>
+    <span class="icon-name" dbl-click-copy>ngx-icon ngx-{{ iconName }}</span>
   </li>
 </ul>
 
@@ -60,16 +60,9 @@
 </span>
 
 <app-prism>
-<![CDATA[<span class="icon-fx-stacked">
-  <i class="ngx-icon ngx-square"></i><i class="ngx-icon ngx-x color-red"></i>
-</span>
-<span class="icon-fx-stacked">
-  <i class="ngx-icon ngx-square-filled"></i><i class="ngx-icon ngx-x text-red"></i>
-</span>
-<span class="icon-fx-stacked">
-  <i class="ngx-icon ngx-square-filled"></i><i class="ngx-icon ngx-x text-red icon-fx-spinning"></i>
-</span>
-<span class="icon-fx-stacked">
-  <i class="ngx-icon ngx-field-users"></i><i class="ngx-icon ngx-circle-filled text-red icon-fx-badge"></i>
-</span>]]>
+  <![CDATA[<span class="icon-fx-stacked"> <i class="ngx-icon ngx-square"></i><i class="ngx-icon ngx-x color-red"></i>
+  </span> <span class="icon-fx-stacked"> <i class="ngx-icon ngx-square-filled"></i><i class="ngx-icon ngx-x
+  text-red"></i> </span> <span class="icon-fx-stacked"> <i class="ngx-icon ngx-square-filled"></i><i class="ngx-icon
+  ngx-x text-red icon-fx-spinning"></i> </span> <span class="icon-fx-stacked"> <i class="ngx-icon
+  ngx-field-users"></i><i class="ngx-icon ngx-circle-filled text-red icon-fx-badge"></i> </span>]]>
 </app-prism>

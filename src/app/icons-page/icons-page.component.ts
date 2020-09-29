@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { icons } from '../../../projects/swimlane/ngx-ui/src/lib/assets/icons/json/icons.json';
+import { iconNameMap } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-icons-page',
   templateUrl: './icons-page.component.html'
 })
 export class IconsPageComponent {
-  icons = icons.reverse();
+  icons = iconNameMap.reverse();
   iconFx = [
     'inverse',
     'rotate-90',
