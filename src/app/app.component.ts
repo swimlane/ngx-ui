@@ -237,23 +237,33 @@ export class AppComponent {
   }
 
   updateSearchValue(updatedVal: string) {
-    const tree = this.deepCloneTree();
-
     if (!updatedVal) {
-      this.filteredNavigationTree = tree;
+      this.filteredNavigationTree = this.deepCloneTree();
     }
 
     updatedVal = updatedVal.toLowerCase();
-    this.filteredNavigationTree = tree.map(nav => {
-      if (nav.children) {
-        nav.children = nav.children.filter(child => child.name.toLowerCase().includes(updatedVal));
-      }
-
-      return nav;
+    this.filteredNavigationTree = this.navigationTree.map(nav => {
+      return {
+        ...nav,
+        children: nav.children?.length
+          ? nav.children.filter((child: any) => child.name.toLowerCase().includes(updatedVal))
+          : undefined
+      };
     });
   }
 
+  trackByName(_index: number, item: any): string {
+    return item.name;
+  }
+
   private deepCloneTree() {
-    return JSON.parse(JSON.stringify(this.navigationTree));
+    return [
+      ...this.navigationTree.map(nav => {
+        return {
+          ...nav,
+          children: nav.children ? [...nav.children] : undefined
+        };
+      })
+    ];
   }
 }
