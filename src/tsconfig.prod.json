@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "paths": {
+      "@swimlane/ngx-ui": ["dist/swimlane/ngx-ui"],
+      "@swimlane/ngx-ui/*": ["dist/swimlane/ngx-ui/*"],
+      "tslib": ["../node_modules/tslib"]
+    }
+  }
+}
