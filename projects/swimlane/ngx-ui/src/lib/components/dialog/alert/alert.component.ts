@@ -61,6 +61,8 @@ import { AlertTypes } from './alert-types.enum';
 export class AlertComponent extends DialogComponent implements AfterViewInit {
   @Input() type: AlertTypes;
   @Input() data: any = '';
+  @Input() confirmButtonText: string;
+  @Input() cancelButtonText: string;
 
   @Input()
   get longPress() {

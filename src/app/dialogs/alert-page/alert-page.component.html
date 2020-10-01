@@ -83,6 +83,11 @@
     Confirm with Long Press
   </button>
 
+  <button type="button" class="btn"
+    (click)="alertService.confirm({ title: 'Save your pending changes?', confirmButtonText: 'Yes!', cancelButtonText: 'Dismiss' })">
+    Custom actions text
+  </button>
+
   <br />
   <br />
 
@@ -100,6 +105,11 @@
             type="button"
             (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!',  longPress: true })">
             Confirm with Long Press
+          </button>
+
+          <button type="button" class="btn"
+            (click)="alertService.confirm({ title: 'Save your pending changes?', confirmButtonText: 'Yes!', cancelButtonText: 'Dismiss' })">
+            Custom actions text
           </button>
         ]]>
       </ngx-codemirror>

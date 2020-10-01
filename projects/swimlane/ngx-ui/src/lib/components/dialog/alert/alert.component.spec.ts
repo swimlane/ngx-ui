@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -28,11 +29,26 @@ describe('AlertComponent', () => {
     component = fixture.componentInstance;
     component.longPress = false;
     component.type = AlertTypes.Alert;
-    fixture.detectChanges();
+    // fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render correct text for actions', () => {
+    const testConfirmBtnText = 'test_confirm_text';
+    const testCancelBtnText = 'test_cancel_text';
+
+    component.type = AlertTypes.Confirm;
+    component.confirmButtonText = testConfirmBtnText;
+    component.cancelButtonText = testCancelBtnText;
+    fixture.detectChanges();
+
+    const confirmBtn = fixture.debugElement.query(By.css('.ngx-dialog-footer button:first-child')).nativeElement;
+    const cancelBtn = fixture.debugElement.query(By.css('.ngx-dialog-footer button:last-child')).nativeElement;
+    expect(confirmBtn.textContent).toContain(testConfirmBtnText);
+    expect(cancelBtn.textContent).toContain(testCancelBtnText);
   });
 
   describe('ngOnInit', () => {
