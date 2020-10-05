@@ -127,9 +127,11 @@ code[class*='language-'] ::selection {
 .prism--token.prism--bold {
   font-weight: bold;
 }
+
 .prism--token.prism--italic {
   font-style: italic;
 }
+
 .prism--token.prism--entity {
   cursor: help;
 }
