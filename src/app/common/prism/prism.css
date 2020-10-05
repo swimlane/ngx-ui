@@ -12,11 +12,9 @@ pre[class*='language-'] {
   word-break: normal;
   word-wrap: normal;
   line-height: 1.5;
-
   -moz-tab-size: 4;
   -o-tab-size: 4;
   tab-size: 4;
-
   -webkit-hyphens: none;
   -moz-hyphens: none;
   -ms-hyphens: none;
@@ -132,7 +130,6 @@ code[class*='language-'] ::selection {
 .prism--token.prism--italic {
   font-style: italic;
 }
-
 .prism--token.prism--entity {
   cursor: help;
 }
@@ -171,8 +168,8 @@ pre[data-line] {
   z-index: 0;
 }
 
-.line-highlight:before,
-.line-highlight[data-end]:after {
+.line-highlight::before,
+.line-highlight[data-end]::after {
   background-color: hsl(215, 15%, 59%); /* #8794A6 */
   border-radius: 999px;
   box-shadow: 0 1px white;
@@ -189,7 +186,7 @@ pre[data-line] {
   vertical-align: 0.3em;
 }
 
-.line-highlight[data-end]:after {
+.line-highlight[data-end]::after {
   bottom: 0.4em;
   content: attr(data-end);
   top: auto;
