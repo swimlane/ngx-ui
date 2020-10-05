@@ -1,5 +1,9 @@
 # CHANGELOG
 
+# HEAD (Unreleased)
+
+- Enhancement: add `icons-name-map` within icons component folder which exports an array containing all of our icon names.
+
 # 30.1.0 (2020-09-22)
 
 - Bug: Revert removal of ngx-datatable styles
