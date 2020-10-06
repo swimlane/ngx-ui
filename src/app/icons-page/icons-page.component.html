@@ -2,9 +2,9 @@
 
 <h3 class="style-header">Icons</h3>
 <ul class="icons-preview">
-  <li *ngFor="let iconName of icons" class="shadow-2 shadow-fx">
-    <ngx-icon [fontIcon]="iconName"></ngx-icon>
-    <span class="icon-name" dbl-click-copy>ngx-icon ngx-{{ iconName }}</span>
+  <li *ngFor="let icon of icons" class="shadow-2 shadow-fx">
+    <ngx-icon [fontIcon]="icon.name"></ngx-icon>
+    <span class="icon-name" dbl-click-copy>ngx-icon ngx-{{ icon.name }}</span>
   </li>
 </ul>
 

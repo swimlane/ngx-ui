@@ -3,7 +3,7 @@
   "compilerOptions": {
     "paths": {
       "@swimlane/ngx-ui": ["dist/swimlane/ngx-ui"],
-      "@swimlane/ngx-ui/*": ["dist/swimlane/ngx-ui/*"],
+      "@swimlane/ngx-ui/*": ["dist/swimlane/ngx-ui/lib/*"],
       "tslib": ["../node_modules/tslib"]
     }
   }
