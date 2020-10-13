@@ -29,7 +29,6 @@ describe('AlertComponent', () => {
     component = fixture.componentInstance;
     component.longPress = false;
     component.type = AlertTypes.Alert;
-    // fixture.detectChanges();
   });
 
   it('should create', () => {
