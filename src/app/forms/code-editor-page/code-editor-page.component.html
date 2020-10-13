@@ -15,21 +15,20 @@
   </ngx-codemirror>
 
   <br />
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-codemirror
-        [(ngModel)]="code"
-        [config]="{
-          lineNumbers: true,
-          theme: 'dracula',
-          mode: {
-            name: 'javascript',
-            json: true
-          }
-        }">
-      </ngx-codemirror>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-codemirror
+  [(ngModel)]="code"
+  [config]="{
+    lineNumbers: true,
+    theme: 'dracula',
+    mode: {
+      name: 'javascript',
+      json: true
+    }
+  }"
+>
+</ngx-codemirror>]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Autocomplete'">
@@ -43,18 +42,17 @@
     }"
     [autocompleteTokens]="autocompleteTokens">
   </ngx-codemirror>
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-    <ngx-codemirror
-      [(ngModel)]="code2"
-      [config]="{
-        lineNumbers: false,
-        theme: 'dracula',
-        mode: 'mustache'
-      }"
-      [autocompleteTokens]="autocompleteTokens">
-    </ngx-codemirror>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-codemirror
+  [(ngModel)]="code2"
+  [config]="{
+    lineNumbers: false,
+    theme: 'dracula',
+    mode: 'mustache'
+  }"
+  [autocompleteTokens]="autocompleteTokens"
+>
+</ngx-codemirror>]]>
+  </app-prism>
 </ngx-section>
 

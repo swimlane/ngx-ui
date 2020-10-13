@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { icons } from '../../../projects/swimlane/ngx-ui/src/lib/assets/icons/json/icons.json';
+import { icons } from '@swimlane/ngx-ui/assets/icons/json/icons.json';
 
 @Component({
   selector: 'app-icons-page',

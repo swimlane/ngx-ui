@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { IconRegistryService } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+import { IconRegistryService } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-ngx-icon-page',

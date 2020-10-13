@@ -1,6 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
 import { DrawerService, LoadingService } from '@swimlane/ngx-ui';
+import Prism from 'prismjs';
+import 'prismjs/plugins/custom-class/prism-custom-class';
+
 import { version } from '../../projects/swimlane/ngx-ui/package.json';
 
 @Component({
@@ -218,6 +221,8 @@ export class AppComponent {
   navExpanded: boolean = true;
 
   constructor(private drawerMngr: DrawerService, private loadingService: LoadingService, private router: Router) {
+    Prism.plugins.customClass.prefix('prism--');
+
     // Adding loading component in router
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
@@ -232,23 +237,33 @@ export class AppComponent {
   }
 
   updateSearchValue(updatedVal: string) {
-    const tree = this.deepCloneTree();
-
     if (!updatedVal) {
-      this.filteredNavigationTree = tree;
+      this.filteredNavigationTree = this.deepCloneTree();
     }
 
     updatedVal = updatedVal.toLowerCase();
-    this.filteredNavigationTree = tree.map(nav => {
-      if (nav.children) {
-        nav.children = nav.children.filter(child => child.name.toLowerCase().includes(updatedVal));
-      }
-
-      return nav;
+    this.filteredNavigationTree = this.navigationTree.map(nav => {
+      return {
+        ...nav,
+        children: nav.children?.length
+          ? nav.children.filter((child: any) => child.name.toLowerCase().includes(updatedVal))
+          : undefined
+      };
     });
   }
 
+  trackByName(_index: number, item: any): string {
+    return item.name;
+  }
+
   private deepCloneTree() {
-    return JSON.parse(JSON.stringify(this.navigationTree));
+    return [
+      ...this.navigationTree.map(nav => {
+        return {
+          ...nav,
+          children: nav.children ? [...nav.children] : undefined
+        };
+      })
+    ];
   }
 }

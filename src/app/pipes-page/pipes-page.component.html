@@ -3,21 +3,17 @@
 <ngx-section class="shadow" sectionTitle="DecamelizePipe">
   {{ 'DecamelizePipe' | decamelize }}
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      { { 'DecamelizePipe' | decamelize } }
-    ]]>
-  </ngx-codemirror>
+  <app-prism language="js">
+<![CDATA[{ { 'DecamelizePipe' | decamelize } }]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="TimeZonePipe">
   {{ date | amTimeZone: 'America/Los_Angeles' }}
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      { { date | amTimeZone: 'America/Los_Angeles' } }
-    ]]>
-  </ngx-codemirror>
+  <app-prism language="js">
+<![CDATA[{ { date | amTimeZone: 'America/Los_Angeles' } }]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="FilterPipe">
@@ -28,24 +24,20 @@
     </li>
   </ul>
   
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-    <ngx-input type="text" [(ngModel)]="stringFilter"></ngx-input>
-    <ul>
-      <li *ngFor="let item of array | filterBy: stringFilter">
-        { { item } }
-      </li>
-    </ul>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-input type="text" [(ngModel)]="stringFilter"></ngx-input>
+<ul>
+  <li *ngFor="let item of array | filterBy: stringFilter">
+    { { item } }
+  </li>
+</ul>]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="JSONTreePipe">
   <code><pre>{{ jsonObject | jsonTree | json }}</pre></code>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <code><pre>{ { jsonObject | jsonTree | json } }</pre></code>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<code><pre>{ { jsonObject | jsonTree | json } }</pre></code>]]>
+  </app-prism>
 </ngx-section>
