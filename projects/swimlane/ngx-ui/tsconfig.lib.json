@@ -24,5 +24,5 @@
     "preserveWhitespaces": true,
     "enableIvy": false
   },
-  "exclude": ["src/test.ts", "**/*.spec.ts", "src/lib/assets/icons/json/icons.json"]
+  "exclude": ["src/test.ts", "**/*.spec.ts"]
 }
