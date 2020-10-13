@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, flush, fakeAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, ElementRef } from '@angular/core';
-import * as faker from 'faker';
+import * as faker from 'faker/locale/en';
 
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { SelectDropdownComponent } from './select-dropdown.component';

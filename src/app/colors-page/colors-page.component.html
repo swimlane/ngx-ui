@@ -148,9 +148,10 @@
 
 <h3 class="style-header">Colors: Borders and Glows</h3>
 Apply the class to an element to give it a glowing border. Alternatively, you can use the glow mixin in any class:
-<ngx-codemirror mode="htmlmixed" readOnly="true">
-  <![CDATA[ .my-class { @include glow($color); } ]]>
-</ngx-codemirror>
+<app-prism language="css">
+<![CDATA[ .my-class { @include glow($color); }
+]]>
+</app-prism>
 <div class="ngx-flex--row">
   <div class="ngx-flex--col-2" *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']">
     <div

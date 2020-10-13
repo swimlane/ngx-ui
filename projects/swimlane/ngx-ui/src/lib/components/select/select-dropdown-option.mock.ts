@@ -1,4 +1,4 @@
-import * as faker from 'faker';
+import * as faker from 'faker/locale/en';
 
 import { SelectDropdownOption } from './select-dropdown-option.interface';
 
