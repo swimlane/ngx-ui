@@ -4,18 +4,16 @@
   <ngx-slider [(ngModel)]="sliderValue" [step]="5" [filled]="true" [min]="10" [max]="200" (change)="sliderEvent1 = $event">
   </ngx-slider>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-slider
-        [(ngModel)]="sliderValue"
-        [step]="5"
-        [filled]="true"
-        [min]="10"
-        [max]="200"
-        (change)="sliderEvent1 = $event">
-      </ngx-slider>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-slider
+  [(ngModel)]="sliderValue"
+  [step]="5"
+  [filled]="true"
+  [min]="10"
+  [max]="200"
+  (change)="sliderEvent1 = $event">
+</ngx-slider>]]>
+  </app-prism>
 
   <br />
 
@@ -23,38 +21,34 @@
     [max]="100" (change)="sliderEvent2 = $event">
   </ngx-slider>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-slider
-        [(ngModel)]="sliderValue"
-        [step]="5"
-        [showTicks]="true"
-        [tickStep]="25"
-        [filled]="true"
-        [min]="0"
-        [max]="100"
-        (change)="sliderEvent2 = $event">
-      </ngx-slider>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-slider
+  [(ngModel)]="sliderValue"
+  [step]="5"
+  [showTicks]="true"
+  [tickStep]="25"
+  [filled]="true"
+  [min]="0"
+  [max]="100"
+  (change)="sliderEvent2 = $event">
+</ngx-slider>]]>
+  </app-prism>
 
   <br />
 
   <ngx-slider [(ngModel)]="sliderValue" [step]="5" [filled]="false" [min]="0" [max]="100" (change)="sliderEvent3 = $event">
   </ngx-slider>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-slider
-        [(ngModel)]="sliderValue"
-        [step]="5"
-        [filled]="false"
-        [min]="0"
-        [max]="100"
-        (change)="sliderEvent3 = $event">
-      </ngx-slider>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-slider
+  [(ngModel)]="sliderValue"
+  [step]="5"
+  [filled]="false"
+  [min]="0"
+  [max]="100"
+  (change)="sliderEvent3 = $event">
+</ngx-slider>]]>
+  </app-prism>
 
   <br />
 
@@ -62,19 +56,17 @@
     (change)="sliderEvent4 = $event">
   </ngx-slider>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-slider
-        [(ngModel)]="sliderValue"
-        [step]="5"
-        [showTicks]="true"
-        [filled]="false"
-        [min]="0"
-        [max]="100"
-        (change)="sliderEvent4 = $event">
-      </ngx-slider>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-slider
+  [(ngModel)]="sliderValue"
+  [step]="5"
+  [showTicks]="true"
+  [filled]="false"
+  [min]="0"
+  [max]="100"
+  (change)="sliderEvent4 = $event">
+</ngx-slider>]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Vertical'">
@@ -82,19 +74,17 @@
     (change)="sliderEvent5 = $event">
   </ngx-slider>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-slider
-        [(ngModel)]="sliderValue"
-        [step]="5"
-        [filled]="true"
-        [orientation]="'vertical'"
-        [min]="10"
-        [max]="200"
-        (change)="sliderEvent5 = $event">
-      </ngx-slider>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-slider
+  [(ngModel)]="sliderValue"
+  [step]="5"
+  [filled]="true"
+  [orientation]="'vertical'"
+  [min]="10"
+  [max]="200"
+  (change)="sliderEvent5 = $event">
+</ngx-slider>]]>
+  </app-prism>
 
   <br />
 
@@ -102,21 +92,19 @@
     [filled]="true" [min]="0" [max]="100" (change)="sliderEvent6 = $event">
   </ngx-slider>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-slider
-        [(ngModel)]="sliderValue"
-        [step]="5"
-        [orientation]="'vertical'"
-        [showTicks]="true"
-        [tickStep]="25"
-        [filled]="true"
-        [min]="0"
-        [max]="100"
-        (change)="sliderEvent6 = $event">
-      </ngx-slider>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-slider
+  [(ngModel)]="sliderValue"
+  [step]="5"
+  [orientation]="'vertical'"
+  [showTicks]="true"
+  [tickStep]="25"
+  [filled]="true"
+  [min]="0"
+  [max]="100"
+  (change)="sliderEvent6 = $event">
+</ngx-slider>]]>
+  </app-prism>
 
   <br />
 
@@ -124,19 +112,17 @@
     (change)="sliderEvent7 = $event">
   </ngx-slider>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-slider
-        [(ngModel)]="sliderValue"
-        [step]="5"
-        [filled]="false"
-        [orientation]="'vertical'"
-        [min]="0"
-        [max]="100"
-        (change)="sliderEvent7 = $event">
-      </ngx-slider>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-slider
+  [(ngModel)]="sliderValue"
+  [step]="5"
+  [filled]="false"
+  [orientation]="'vertical'"
+  [min]="0"
+  [max]="100"
+  (change)="sliderEvent7 = $event">
+</ngx-slider>]]>
+  </app-prism>
 
   <br />
 
@@ -144,20 +130,18 @@
     [min]="0" [max]="100" (change)="sliderEvent8 = $event">
   </ngx-slider>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-slider
-        [(ngModel)]="sliderValue"
-        [orientation]="'vertical'"
-        [step]="5"
-        [showTicks]="true"
-        [filled]="false"
-        [min]="0"
-        [max]="100"
-        (change)="sliderEvent8 = $event">
-      </ngx-slider>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-slider
+  [(ngModel)]="sliderValue"
+  [orientation]="'vertical'"
+  [step]="5"
+  [showTicks]="true"
+  [filled]="false"
+  [min]="0"
+  [max]="100"
+  (change)="sliderEvent8 = $event">
+</ngx-slider>]]>
+  </app-prism>
 
 </ngx-section>
 
@@ -166,19 +150,17 @@
     (change)="sliderEvent1 = $event">
   </ngx-slider>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-slider
-        [(ngModel)]="sliderValues"
-        [multiple]="true"
-        [step]="5"
-        [filled]="true"
-        [min]="10"
-        [max]="200"
-        (change)="sliderEvent1 = $event">
-      </ngx-slider>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-slider
+  [(ngModel)]="sliderValues"
+  [multiple]="true"
+  [step]="5"
+  [filled]="true"
+  [min]="10"
+  [max]="200"
+  (change)="sliderEvent1 = $event">
+</ngx-slider>]]>
+  </app-prism>
 
   <br />
 
@@ -188,20 +170,18 @@
 
   <p>Slider Values: {{sliderValues}}</p>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-slider
-        [(ngModel)]="sliderValues"
-        [multiple]="true"
-        [orientation]="'vertical'"
-        [step]="5"
-        [filled]="true"
-        [min]="10"
-        [max]="200"
-        (change)="sliderEvent5 = $event">
-      </ngx-slider>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-slider
+  [(ngModel)]="sliderValues"
+  [multiple]="true"
+  [orientation]="'vertical'"
+  [step]="5"
+  [filled]="true"
+  [min]="10"
+  [max]="200"
+  (change)="sliderEvent5 = $event">
+</ngx-slider>]]>
+  </app-prism>
 
 </ngx-section>
 
@@ -210,19 +190,17 @@
     [max]="200" (change)="sliderEvent1 = $event">
   </ngx-slider>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-slider
-        [(ngModel)]="sliderValues"
-        [disabled]="true"
-        [step]="5"
-        [filled]="true"
-        [min]="10"
-        [max]="200"
-        (change)="sliderEvent1 = $event">
-      </ngx-slider>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-slider
+  [(ngModel)]="sliderValues"
+  [disabled]="true"
+  [step]="5"
+  [filled]="true"
+  [min]="10"
+  [max]="200"
+  (change)="sliderEvent1 = $event">
+</ngx-slider>]]>
+  </app-prism>
 
   <br />
 
@@ -232,19 +210,17 @@
 
   <p>Slider Values: {{sliderValues}}</p>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-slider
-        [(ngModel)]="sliderValues"
-        [disabled]="true"
-        [orientation]="'vertical'"
-        [step]="5"
-        [filled]="true"
-        [min]="10"
-        [max]="200"
-        (change)="sliderEvent5 = $event">
-      </ngx-slider>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-slider
+  [(ngModel)]="sliderValues"
+  [disabled]="true"
+  [orientation]="'vertical'"
+  [step]="5"
+  [filled]="true"
+  [min]="10"
+  [max]="200"
+  (change)="sliderEvent5 = $event">
+</ngx-slider>]]>
+  </app-prism>
 
 </ngx-section>

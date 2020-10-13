@@ -11,23 +11,21 @@
     in combination with the decorator to suspend/reactivate keys too. If you bind using the service you must
     unbind
     on ngOnDestroy</p>
-  <ngx-codemirror mode="javascript" readOnly="true">
-    <![CDATA[
-      import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
+  <app-prism language="js">
+<![CDATA[import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
 
-      ...
-      constructor(private hotkeysService: HotkeysService) {
+...
+constructor(private hotkeysService: HotkeysService) {
 
-        this.hotkeysService.add('ctrl+h', {
-          callback: () => {
-            alert('Hotkey activated');
-          },
-          description: 'Activate hotkey',
-          component: this
-        });
-      }
-    ]]>
-  </ngx-codemirror>
+  this.hotkeysService.add('ctrl+h', {
+    callback: () => {
+      alert('Hotkey activated');
+    },
+    description: 'Activate hotkey',
+    component: this
+  });
+}]]>
+  </app-prism>
 
   <br />
   <br />
@@ -36,17 +34,15 @@
     lifecycle of the component's
     ngOnInit and ngOnDestroy to create and teardown with the component</p>
 
-  <ngx-codemirror mode="javascript" readOnly="true">
-    <![CDATA[
-      import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
+  <app-prism language="js">
+<![CDATA[import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
 
-      ...
-      @Hotkey('ctrl+s', 'Do some magic!')
-      onKey() {
-        console.log('Hotkey', this);
-      }
-    ]]>
-  </ngx-codemirror>
+...
+@Hotkey('ctrl+s', 'Do some magic!')
+onKey() {
+  console.log('Hotkey', this);
+}]]>
+  </app-prism>
 
   <br />
   <br />
@@ -57,37 +53,29 @@
     your
     application
   </p>
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-hotkeys></ngx-hotkeys>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-hotkeys></ngx-hotkeys>]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Suspend all hotkeys for the component">
-  <ngx-codemirror mode="javascript" readOnly="true">
-    <![CDATA[
-      this.hotkeysService.suspend(this);
-    ]]>
-  </ngx-codemirror>
+  <app-prism language="js">
+<![CDATA[this.hotkeysService.suspend(this);]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Activate all hotkeys for the component">
-  <ngx-codemirror mode="javascript" readOnly="true">
-    <![CDATA[
-      this.hotkeysService.activate(this);
-    ]]>
-  </ngx-codemirror>
+  <app-prism language="js">
+<![CDATA[this.hotkeysService.activate(this);]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Remove all hotkeys for the component">
-  <ngx-codemirror mode="javascript" readOnly="true">
-    <![CDATA[
-      ngOnDestroy() {
-        this.hotkeysService.deregister(this);
-      }
-    ]]>
-  </ngx-codemirror>
+  <app-prism language="js">
+<![CDATA[ngOnDestroy() {
+  this.hotkeysService.deregister(this);
+}]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Pause all hotkeys">
@@ -97,44 +85,38 @@
     Open Dialog and pause hotkeys
   </button>
 
-  <ngx-codemirror mode="javascript" readOnly="true">
-    <![CDATA[
-      this.hotkeysService.pauseOthers();
-      const dlg = this.dialogMngr.create(options);
-      dlg.instance.close.subscribe(() => {
-        this.hotkeysService.unpauseOthers();
-      });
-    ]]>
-  </ngx-codemirror>
+  <app-prism language="js">
+<![CDATA[this.hotkeysService.pauseOthers();
+const dlg = this.dialogMngr.create(options);
+dlg.instance.close.subscribe(() => {
+  this.hotkeysService.unpauseOthers();
+});]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Pause all hotkeys, except a single component">
-  <ngx-codemirror mode="javascript" readOnly="true">
-    <![CDATA[
-      ngOnInit() {
-        this.hotkeysService.pauseOthers(this);
-      }
+  <app-prism language="js">
+<![CDATA[ngOnInit() {
+  this.hotkeysService.pauseOthers(this);
+}
 
-      ngOnDestroy() {
-        this.hotkeysService.unpauseOthers(this);
-      }
-    ]]>
-  </ngx-codemirror>
+ngOnDestroy() {
+  this.hotkeysService.unpauseOthers(this);
+}]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Allow hotkeys to fire on certain elements">
   <p class="hint">By default, hotkeys are disable when focus is on input, textarea or select elements. To enable them
     use the allowIn option. </p>
 
-  <ngx-codemirror mode="javascript" readOnly="true">
-    <![CDATA[
-      import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
+  <app-prism language="js">
+<![CDATA[import { Hotkey, HotkeysService } from '@swimlane/ngx-ui';
 
-      ...
-      @Hotkey('ctrl+s', 'Works on inputs and textarea!', { allowIn: ['input', 'textarea'] })
-      onKey() {
-        console.log('Hotkey', this);
-      }
-    ]]>
-  </ngx-codemirror>
+...
+@Hotkey('ctrl+s', 'Works on inputs and textarea!', { allowIn: ['input', 'textarea'] })
+onKey() {
+  console.log('Hotkey', this);
+}]]>
+  </app-prism>
 </ngx-section>

@@ -7,17 +7,15 @@
   </ngx-radiobutton>
   <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-radiobutton
-        *ngFor="let season of seasons"
-        [checked]="favoriteSeason === season"
-        (change)="favoriteSeason = season">
-        {{season}}
-      </ngx-radiobutton>
-      <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-radiobutton
+  *ngFor="let season of seasons"
+  [checked]="favoriteSeason === season"
+  (change)="favoriteSeason = season">
+  {{season}}
+</ngx-radiobutton>
+<div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>]]>
+  </app-prism>
 
   <br />
   <h3>Radio Button Group</h3>
@@ -31,20 +29,18 @@
 
   <button class="btn btn-primary" (click)="seasons.push('Holiday')">Add Season</button>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-radiobutton-group
-        [(ngModel)]="favoriteSeason"
-        [disabled]="disabled">
-        <ngx-radiobutton
-          *ngFor="let season of seasons"
-          [value]="season">
-          {{season}}
-        </ngx-radiobutton>
-      </ngx-radiobutton-group>
-      <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-radiobutton-group
+  [(ngModel)]="favoriteSeason"
+  [disabled]="disabled">
+  <ngx-radiobutton
+    *ngFor="let season of seasons"
+    [value]="season">
+    {{season}}
+  </ngx-radiobutton>
+</ngx-radiobutton-group>
+<div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>]]>
+  </app-prism>
 
   <br />
   <h3>Disabled Buttons</h3>
@@ -55,21 +51,19 @@
   </ngx-radiobutton-group>
   <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-radiobutton-group
-        [(ngModel)]="favoriteSeason"
-        [disabled]="disabled">
-        <ngx-radiobutton
-          *ngFor="let season of seasons; index as i"
-          [value]="season"
-          [disabled]="i % 2 === 0">
-          {{season}}
-        </ngx-radiobutton>
-      </ngx-radiobutton-group>
-      <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-radiobutton-group
+  [(ngModel)]="favoriteSeason"
+  [disabled]="disabled">
+  <ngx-radiobutton
+    *ngFor="let season of seasons; index as i"
+    [value]="season"
+    [disabled]="i % 2 === 0">
+    {{season}}
+  </ngx-radiobutton>
+</ngx-radiobutton-group>
+<div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>]]>
+  </app-prism>
 
   <h3>Disabled Group</h3>
   <ngx-radiobutton-group [(ngModel)]="favoriteSeason" [disabled]="true">
@@ -79,20 +73,18 @@
   </ngx-radiobutton-group>
   <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-radiobutton-group
-        [(ngModel)]="favoriteSeason"
-        [disabled]="true">
-        <ngx-radiobutton
-          *ngFor="let season of seasons; index as i"
-          [value]="season"
-          [disabled]="i % 2 === 0">
-          {{season}}
-        </ngx-radiobutton>
-      </ngx-radiobutton-group>
-      <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-radiobutton-group
+  [(ngModel)]="favoriteSeason"
+  [disabled]="true">
+  <ngx-radiobutton
+    *ngFor="let season of seasons; index as i"
+    [value]="season"
+    [disabled]="i % 2 === 0">
+    {{season}}
+  </ngx-radiobutton>
+</ngx-radiobutton-group>
+<div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>]]>
+  </app-prism>
 
 </ngx-section>

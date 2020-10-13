@@ -25,47 +25,43 @@
 
   <ngx-tabs>
     <ngx-tab label="Markup">
-      <ngx-codemirror mode="htmlmixed" readOnly="true">
-        <![CDATA[
-          <button
-            type="button"
-            (click)="alertService.alert({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
-            Info
-          </button>
+      <app-prism>
+<![CDATA[<button
+  type="button"
+  (click)="alertService.alert({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+  Info
+</button>
 
-          <button
-            type="button"
-            (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Danger })">
-            Danger
-          </button>
+<button
+  type="button"
+  (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Danger })">
+  Danger
+</button>
 
-          <button
-            type="button"
-            (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Warning, content: 'Intrusion Happened!!!' })">
-            Warning
-          </button>
+<button
+  type="button"
+  (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Warning, content: 'Intrusion Happened!!!' })">
+  Warning
+</button>
 
-          <button type="button" class="btn"
-            (click)="alertService.alert({ title: 'Rainbows!!!', cssClass: 'rainbows' })">
-            Custom CSS
-          </button>
-        ]]>
-      </ngx-codemirror>
+<button type="button" class="btn"
+  (click)="alertService.alert({ title: 'Rainbows!!!', cssClass: 'rainbows' })">
+  Custom CSS
+</button>]]>
+      </app-prism>
     </ngx-tab>
     <ngx-tab label="TypeScript">
-      <ngx-codemirror mode="javascript" readOnly="true">
-        <![CDATA[
-          import { AlertService } from '@swimlane/ngx-ui';
+      <app-prism language="js">
+<![CDATA[import { AlertService } from '@swimlane/ngx-ui';
 
-          @Component({
-            selector: 'app',
-            templateUrl: './app.template.html'
-          })
-          export class AppComponent {
-            constructor(public alertService: AlertService) { }
-          }
-        ]]>
-      </ngx-codemirror>
+@Component({
+  selector: 'app',
+  templateUrl: './app.template.html'
+})
+export class AppComponent {
+  constructor(public alertService: AlertService) { }
+}]]>
+      </app-prism>
     </ngx-tab>
   </ngx-tabs>
 
@@ -93,41 +89,37 @@
 
   <ngx-tabs>
     <ngx-tab label="Markup">
-      <ngx-codemirror mode="htmlmixed" readOnly="true">
-        <![CDATA[
-          <button
-            type="button"
-            (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
-            Confirm
-          </button>
+      <app-prism>
+<![CDATA[<button
+  type="button"
+  (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+  Confirm
+</button>
 
-          <button
-            type="button"
-            (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!',  longPress: true })">
-            Confirm with Long Press
-          </button>
+<button
+  type="button"
+  (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!',  longPress: true })">
+  Confirm with Long Press
+</button>
 
-          <button type="button" class="btn"
-            (click)="alertService.confirm({ title: 'Save your pending changes?', confirmButtonText: 'Yes!', cancelButtonText: 'Dismiss' })">
-            Custom actions text
-          </button>
-        ]]>
-      </ngx-codemirror>
+<button type="button" class="btn"
+  (click)="alertService.confirm({ title: 'Save your pending changes?', confirmButtonText: 'Yes!', cancelButtonText: 'Dismiss' })">
+  Custom actions text
+</button>]]>
+      </app-prism>
     </ngx-tab>
     <ngx-tab label="TypeScript">
-      <ngx-codemirror mode="javascript" readOnly="true">
-        <![CDATA[
-          import { AlertService } from '@swimlane/ngx-ui';
+      <app-prism language="js">
+<![CDATA[import { AlertService } from '@swimlane/ngx-ui';
 
-          @Component({
-            selector: 'app',
-            templateUrl: './app.template.html'
-          })
-          export class AppComponent {
-            constructor(public alertService: AlertService) { }
-          }
-        ]]>
-      </ngx-codemirror>
+@Component({
+  selector: 'app',
+  templateUrl: './app.template.html'
+})
+export class AppComponent {
+  constructor(public alertService: AlertService) { }
+}]]>
+      </app-prism>
     </ngx-tab>
   </ngx-tabs>
 
@@ -144,45 +136,41 @@
 
   <ngx-tabs>
     <ngx-tab label="Markup">
-      <ngx-codemirror mode="htmlmixed" readOnly="true">
-        <![CDATA[
-          <button
-            type="button"
-            (click)="onPromptClick()">
-            Prompt
-          </button>
-        ]]>
-      </ngx-codemirror>
+      <app-prism>
+<![CDATA[<button
+  type="button"
+  (click)="onPromptClick()">
+  Prompt
+</button>]]>
+      </app-prism>
     </ngx-tab>
     <ngx-tab label="TypeScript">
-      <ngx-codemirror mode="javascript" readOnly="true">
-        <![CDATA[
-          import { AlertService } from '@swimlane/ngx-ui';
+      <app-prism language="js">
+<![CDATA[import { AlertService } from '@swimlane/ngx-ui';
 
-          @Component({
-            selector: 'app',
-            templateUrl: './app.template.html'
-          })
-          export class AppComponent {
-            constructor(public alertService: AlertService) { }
+@Component({
+  selector: 'app',
+  templateUrl: './app.template.html'
+})
+export class AppComponent {
+  constructor(public alertService: AlertService) { }
 
-            onPromptClick() {
-              const subject = this.alertService.prompt({
-                title: 'Alert SOC',
-                content: 'What type of compromise?'
-              });
+  onPromptClick() {
+    const subject = this.alertService.prompt({
+      title: 'Alert SOC',
+      content: 'What type of compromise?'
+    });
 
-              console.log('Prompt subject', subject);
+    console.log('Prompt subject', subject);
 
-              subject.subscribe({
-                next: (v) => console.log('Prompt next', v),
-                error: (err) => console.log('Prompt err', err),
-                complete: (v) => console.log('Complete', v)
-              });
-            }
-          }
-        ]]>
-      </ngx-codemirror>
+    subject.subscribe({
+      next: (v) => console.log('Prompt next', v),
+      error: (err) => console.log('Prompt err', err),
+      complete: (v) => console.log('Complete', v)
+    });
+  }
+}]]>
+      </app-prism>
     </ngx-tab>
   </ngx-tabs>
 </ngx-section>

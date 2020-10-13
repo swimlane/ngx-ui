@@ -10,29 +10,25 @@
 
   <ngx-tabs>
     <ngx-tab label="Markup">
-      <ngx-codemirror mode="htmlmixed" readOnly="true">
-        <![CDATA[
-          <button type="button" (click)="loadingService.start()">Start</button>
-          <button type="button" (click)="loadingService.stop()">Stop</button>
-          <button type="button" (click)="loadingService.reset()">Reset</button>
-          <button type="button" (click)="loadingService.complete()">Complete</button>
-        ]]>
-      </ngx-codemirror>
+      <app-prism>
+<![CDATA[<button type="button" (click)="loadingService.start()">Start</button>
+<button type="button" (click)="loadingService.stop()">Stop</button>
+<button type="button" (click)="loadingService.reset()">Reset</button>
+<button type="button" (click)="loadingService.complete()">Complete</button>]]>
+      </app-prism>
     </ngx-tab>
     <ngx-tab label="TypeScript">
-      <ngx-codemirror mode="javascript" readOnly="true">
-        <![CDATA[
-          import { LoadingService } from '@swimlane/ngx-ui';
+      <app-prism language="js">
+<![CDATA[import { LoadingService } from '@swimlane/ngx-ui';
 
-          @Component({
-            selector: 'app',
-            templateUrl: './app.template.html'
-          })
-          export class AppComponent {
-            constructor(public loadingService: LoadingService) { }
-          }
-        ]]>
-      </ngx-codemirror>
+@Component({
+  selector: 'app',
+  templateUrl: './app.template.html'
+})
+export class AppComponent {
+  constructor(public loadingService: LoadingService) { }
+}]]>
+      </app-prism>
     </ngx-tab>
   </ngx-tabs>
 </ngx-section>
@@ -40,66 +36,62 @@
 <ngx-section class="shadow" [sectionTitle]="'UI Router'">
   <p>Integrate with ui-router state transitions</p>
 
-  <ngx-codemirror mode="javascript" readOnly="true">
-    <![CDATA[
-      import { Component } from '@angular/core';
-      import { TransitionService } from 'ui-router-ng2';
-      import { LoadingService } from '@swimlane/ngx-ui';
+  <app-prism language="js">
+<![CDATA[import { Component } from '@angular/core';
+import { TransitionService } from 'ui-router-ng2';
+import { LoadingService } from '@swimlane/ngx-ui';
 
-      @Component({
-        selector: 'app',
-        template: `
-          <main>
-            <ui-view></ui-view>
-          </main>
-        `
-      })
-      export class AppComponent {
+@Component({
+  selector: 'app',
+  template: `
+    <main>
+      <ui-view></ui-view>
+    </main>
+  `
+})
+export class AppComponent {
 
-        constructor(transitionService: TransitionService, loadingService: LoadingService) {
-          transitionService.onStart({ to: '*' }, () => {
-            loadingService.start();
-          });
+  constructor(transitionService: TransitionService, loadingService: LoadingService) {
+    transitionService.onStart({ to: '*' }, () => {
+      loadingService.start();
+    });
 
-          transitionService.onFinish({ to: '*' }, () => {
-            loadingService.complete();
-          });
-        }
+    transitionService.onFinish({ to: '*' }, () => {
+      loadingService.complete();
+    });
+  }
 
-      }
-    ]]>
-  </ngx-codemirror>
+}]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Angular Router'">
   <p>Integrate with Angular Router transitions</p>
 
-  <ngx-codemirror mode="javascript" readOnly="true">
-    <![CDATA[
-      import { Component } from '@angular/core';
-      import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
-      import { LoadingService } from '@swimlane/ngx-ui';
+  <app-prism language="js">
+<![CDATA[import { Component } from '@angular/core';
+import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
+import { LoadingService } from '@swimlane/ngx-ui';
 
-      @Component({
-        selector: 'app',
-        template: `
-          <main>
-            <router-outlet></router-outlet>
-          </main>
-        `
-      })
-      export class AppComponent {
-        constructor(router: Router) {
-          router.events.subscribe((event: Event) => {
-            if(event instanceof NavigationStart) {
-              loadingService.start();
-            } else if(event instanceof NavigationEnd) {
-              loadingService.complete();
-              drawerService.destroyAll();
-            }
-          });
-        }
+@Component({
+  selector: 'app',
+  template: `
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  `
+})
+export class AppComponent {
+  constructor(router: Router) {
+    router.events.subscribe((event: Event) => {
+      if(event instanceof NavigationStart) {
+        loadingService.start();
+      } else if(event instanceof NavigationEnd) {
+        loadingService.complete();
+        drawerService.destroyAll();
       }
-    ]]>
-  </ngx-codemirror>
+    });
+  }
+}]]>
+  </app-prism>
 </ngx-section>

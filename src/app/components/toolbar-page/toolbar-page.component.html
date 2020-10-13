@@ -4,16 +4,14 @@
   <ngx-toolbar [mainTitle]="'Record'" [subtitle]="'IR-344'" [menu]="toolbarMenu" (menuClick)="menuClicked($event)">
   </ngx-toolbar>
   <br />
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-toolbar
-        [mainTitle]="'Record'"
-        [subtitle]="'IR-344'"
-        [menu]="toolbarMenu"
-        (menuClick)="menuClicked($event)">
-      </ngx-toolbar>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-toolbar
+  [mainTitle]="'Record'"
+  [subtitle]="'IR-344'"
+  [menu]="toolbarMenu"
+  (menuClick)="menuClicked($event)">
+</ngx-toolbar>]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Dynamic Content'">
@@ -26,16 +24,14 @@
     </ngx-toolbar-content>
   </ngx-toolbar>
   <br />
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-toolbar>
-        <ngx-toolbar-title>
-          <span class="tag">dynamic title</span>
-        </ngx-toolbar-title>
-        <ngx-toolbar-content>
-          <i>dynamic content</i>
-        </ngx-toolbar-content>
-      </ngx-toolbar>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-toolbar>
+  <ngx-toolbar-title>
+    <span class="tag">dynamic title</span>
+  </ngx-toolbar-title>
+  <ngx-toolbar-content>
+    <i>dynamic content</i>
+  </ngx-toolbar-content>
+</ngx-toolbar>]]>
+  </app-prism>
 </ngx-section>
