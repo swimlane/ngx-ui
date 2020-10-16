@@ -21,6 +21,7 @@ import { InputTypes } from './input-types.enum';
       [min]="min$ | async"
       [max]="max$ | async"
       [autosize]="autosize$ | async"
+      [unlockable]="unlockable$ | async"
     ></ngx-input>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -40,6 +41,7 @@ export class InputComponentFixture {
   readonly min$ = new BehaviorSubject<number>(undefined);
   readonly max$ = new BehaviorSubject<number>(undefined);
   readonly autosize$ = new BehaviorSubject<boolean>(false);
+  readonly unlockable$ = new BehaviorSubject<boolean>(false);
 
   @ViewChild(InputComponent, { static: false })
   readonly input: InputComponent;
