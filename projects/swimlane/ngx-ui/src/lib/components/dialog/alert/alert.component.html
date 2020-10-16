@@ -14,13 +14,8 @@
       <button *ngIf="closeButton" type="button" class="close" (click)="hide()">
         <span class="icon-x"></span>
       </button>
-      <button
-        *ngIf="type === AlertTypes.Alert"
-        type="button"
-        class="btn close-button"
-        (click)="onOkClick()"
-      >
-        Ok
+      <button *ngIf="type === AlertTypes.Alert" type="button" class="btn close-button" (click)="onOkClick()">
+        <ng-container *ngTemplateOutlet="okBtnContentTmpl"></ng-container>
       </button>
       <h1 *ngIf="title" [innerHTML]="title"></h1>
     </div>
@@ -33,13 +28,16 @@
     <div class="ngx-dialog-footer" *ngIf="type !== AlertTypes.Alert">
       <ng-container *ngIf="!longPress">
         <button type="button" class="btn btn-primary" (click)="onOkClick()">
-          Ok
+          <ng-container *ngTemplateOutlet="okBtnContentTmpl"></ng-container>
         </button>
         <button type="button" class="btn" (click)="onCancelClick()">
-          Cancel
+          <ng-container *ngTemplateOutlet="cancelBtnContentTmpl"></ng-container>
         </button>
       </ng-container>
       <ngx-long-press-button *ngIf="longPress" (longPress)="onOkClick()" duration="1000"></ngx-long-press-button>
     </div>
   </div>
 </div>
+
+<ng-template #okBtnContentTmpl>{{ confirmButtonText || 'Ok' }}</ng-template>
+<ng-template #cancelBtnContentTmpl>{{ cancelButtonText || 'Cancel' }}</ng-template>
