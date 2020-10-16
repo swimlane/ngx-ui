@@ -11,26 +11,22 @@
 
 <ngx-tabs>
   <ngx-tab label="Element">
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <div class="ngx-scroll" style="height: 300px; overflow: auto; width: 300px; border: 1px solid grey;">
-          <ngx-icon svgSrc="graph"></ngx-icon>
-        </div>
-      ]]>
-    </ngx-codemirror>
+    <app-prism>
+<![CDATA[<div class="ngx-scroll" style="height: 300px; overflow: auto; width: 300px; border: 1px solid grey;">
+  <ngx-icon svgSrc="graph"></ngx-icon>
+</div>]]>
+    </app-prism>
   </ngx-tab>
   <ngx-tab label="Page">
-    <ngx-codemirror mode="htmlmixed" readOnly="true">
-      <![CDATA[
-        <body class="ngx-scroll">
-          ...
-          <div style="height: 300px; overflow: auto; width: 300px; border: 1px solid grey;">
-            <ngx-icon svgSrc="graph"></ngx-icon>
-          </div>
-          ...
-        </body>
-      ]]>
-    </ngx-codemirror>
+    <app-prism>
+<![CDATA[<body class="ngx-scroll">
+  ...
+  <div style="height: 300px; overflow: auto; width: 300px; border: 1px solid grey;">
+    <ngx-icon svgSrc="graph"></ngx-icon>
+  </div>
+  ...
+</body>]]>
+    </app-prism>
   </ngx-tab>
 </ngx-tabs>
 
@@ -43,13 +39,12 @@
   <code style="display: inline">.ngx-scroll-overlay</code> is applied per element to only show scrollbars on hover.
 </p>
 
-<ngx-codemirror mode="htmlmixed" readOnly="true">
-  <![CDATA[
-    <div class="ngx-scroll-overlay" style="height: 300px; width: 300px; border: 1px solid grey;">
-      <ngx-icon svgSrc="graph"></ngx-icon>
-    </div>
-  ]]>
-</ngx-codemirror>
+<app-prism>
+<![CDATA[<div class="ngx-scroll-overlay" style="height: 300px; width: 300px; border: 1px solid grey;">
+  <ngx-icon svgSrc="graph"></ngx-icon>
+</div>
+]]>
+</app-prism>
 
 <h3 class="style-header">ngx-scroll-muted</h3>
 <div class="ngx-scroll-muted" style="height: 300px; width: 300px; border: 1px solid grey;">
@@ -60,10 +55,9 @@
   <code style="display: inline">.ngx-scroll-muted</code> is applied per element to show muted scrollbars that increase opacity on hover
 </p>
 
-<ngx-codemirror mode="htmlmixed" readOnly="true">
-  <![CDATA[
-    <div class="ngx-scroll-muted" style="height: 300px; width: 300px; border: 1px solid grey;">
-      <ngx-icon svgSrc="graph"></ngx-icon>
-    </div>
-  ]]>
-</ngx-codemirror>
+<app-prism>
+<![CDATA[<div class="ngx-scroll-muted" style="height: 300px; width: 300px; border: 1px solid grey;">
+  <ngx-icon svgSrc="graph"></ngx-icon>
+</div>
+]]>
+</app-prism>

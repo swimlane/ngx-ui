@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import * as faker from 'faker';
+import * as faker from 'faker/locale/en';
 
 import { AutosizeDirective } from './input-autosize.directive';
 import { AutosizeDirectiveFixture } from './input-autosave.directive.fixture';

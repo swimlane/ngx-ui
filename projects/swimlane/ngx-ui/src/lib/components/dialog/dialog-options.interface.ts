@@ -21,6 +21,8 @@ export interface DialogOptions extends PartialBindings {
   readonly zIndex?: number;
   readonly type?: AlertTypes;
   readonly style?: AlertStyles;
+  readonly confirmButtonText?: string;
+  readonly cancelButtonText?: string;
   readonly inputs?: {
     title?: string;
     content?: string;

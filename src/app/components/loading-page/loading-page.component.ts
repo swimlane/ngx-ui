@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { LoadingService } from '../../../../projects/swimlane/ngx-ui/src/public_api';
+
+import { LoadingService } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-loading-page',

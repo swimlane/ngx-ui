@@ -6,15 +6,14 @@
     Alert the SOC
   </ngx-checkbox>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-checkbox
-        name="chk1"
-        [ngModel]="true">
-        Alert the SOC
-      </ngx-checkbox>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-checkbox
+  name="chk1"
+  [ngModel]="true"
+>
+  Alert the SOC
+</ngx-checkbox>]]>
+  </app-prism>
 
   <br />
   <br />
@@ -23,16 +22,15 @@
     Alert the SOC
   </ngx-checkbox>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-checkbox
-        name="chk2"
-        [ngModel]="true"
-        disabled>
-        Alert the SOC
-      </ngx-checkbox>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-checkbox
+  name="chk2"
+  [ngModel]="true"
+  disabled
+>
+  Alert the SOC
+</ngx-checkbox>]]>
+  </app-prism>
 
   <br />
   <br />
@@ -54,11 +52,9 @@
     Round Checkbox
   </ngx-checkbox>
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-checkbox round diameter="25px">
-        Round Checkbox
-      </ngx-checkbox>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-checkbox round diameter="25px">
+  Round Checkbox
+</ngx-checkbox>]]>
+  </app-prism>
 </ngx-section>

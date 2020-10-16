@@ -26,7 +26,7 @@
         </ngx-input>
       </div>
       <ul class="nav-items nav-main vertical-list ngx-scroll-muted">
-        <li *ngFor="let item of filteredNavigationTree" class="nav-item-container">
+        <li *ngFor="let item of filteredNavigationTree; trackBy:trackByName" class="nav-item-container">
           <a
             *ngIf="!item.children"
             class="nav-item"
@@ -74,7 +74,7 @@
             </ul>
           </ng-template>
 
-          <ul *ngIf="item.children && navExpanded" class="sub-nav  ngx-scroll-muted">
+          <ul *ngIf="item.children && navExpanded" class="sub-nav ngx-scroll-muted">
             <a
               *ngFor="let child of item.children"
               class="sub-nav-item"

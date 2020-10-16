@@ -48,7 +48,7 @@ export class AlertService extends DialogService<AlertComponent> {
 
   private createDialog(options: DialogOptions, type: AlertTypes) {
     const subject = new Subject<{ type: string; data: any }>();
-    const { title, content, longPress } = options;
+    const { title, content, longPress, confirmButtonText, cancelButtonText } = options;
     const cssClass = ['ngx-alert-dialog', classMap[options.style], options.cssClass].join(' ');
 
     const component = this.create({
@@ -56,7 +56,9 @@ export class AlertService extends DialogService<AlertComponent> {
       content,
       longPress,
       type,
-      cssClass
+      cssClass,
+      confirmButtonText,
+      cancelButtonText
     });
 
     const list = component.instance.ok.subscribe((data: { data: any }) => {

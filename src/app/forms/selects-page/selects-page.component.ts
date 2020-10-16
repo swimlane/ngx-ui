@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { Observable, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
-import * as faker from 'faker';
 
 @Component({
   selector: 'app-selects-page',
@@ -20,9 +19,9 @@ export class SelectsPageComponent implements OnInit {
 
     while (i--) {
       results.push({
-        name: faker.random.word(),
+        name: `option ${i}`,
         attr: `${i}_intrusion_breach`,
-        address: `${faker.address.streetAddress(true)}`,
+        address: `${i} rd`,
         disabled: i === 48
       });
     }
