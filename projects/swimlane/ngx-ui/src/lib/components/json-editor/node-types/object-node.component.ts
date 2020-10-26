@@ -68,6 +68,10 @@ export class ObjectNode implements OnInit, OnChanges {
     if (changes.model !== undefined || changes.schema !== undefined) {
       this.update();
     }
+
+    console.log(this.errors);
+    console.log(changes.model);
+    console.log(changes.schema);
   }
 
   update(): void {
