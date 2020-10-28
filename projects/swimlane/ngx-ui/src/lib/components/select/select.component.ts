@@ -1,18 +1,18 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  QueryList,
-  ContentChildren,
-  forwardRef,
-  ElementRef,
-  Renderer2,
-  OnDestroy,
-  ViewChild,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Component,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  forwardRef,
+  Input,
+  OnDestroy,
+  Output,
+  QueryList,
+  Renderer2,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
