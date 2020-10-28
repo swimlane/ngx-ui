@@ -52,6 +52,14 @@
           (click)="togglePassword()"
         >
         </span>
+        <span
+          *ngIf="type === inputTypes.text && unlockable && disabled"
+          class="icon-lock"
+          (click)="disabled = false"
+          ngx-tooltip
+          [tooltipTitle]="unlockableTooltip"
+        >
+        </span>
       </div>
       <span class="ngx-input-label" [@labelState]="labelState">
         <span [innerHTML]="label"></span>&nbsp;

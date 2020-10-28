@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, FormControl } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { InputComponent } from './input.component';
@@ -257,6 +258,38 @@ describe('InputComponent', () => {
         expect(component.input.value).toBe(40);
         done();
       });
+    });
+  });
+
+  describe('unlockable', () => {
+    let lockBtn: DebugElement;
+
+    beforeEach(() => {
+      component.unlockable$.next(true);
+      fixture.detectChanges();
+
+      lockBtn = fixture.debugElement.queryAll(By.css('span.icon-lock'))[0];
+    });
+
+    it('should show unlock button', () => {
+      expect(lockBtn).toBeDefined();
+    });
+
+    it('should be disabled by default', () => {
+      expect(component.input.disabled).toBeTrue();
+    });
+
+    it('should NOT be disabled when lock button clicked', () => {
+      lockBtn.triggerEventHandler('click', null);
+      expect(component.input.disabled).toBeFalse();
+    });
+
+    it('should remove lock button from DOM when unlocked', () => {
+      lockBtn.triggerEventHandler('click', null);
+      fixture.detectChanges();
+
+      const lockBtnAfter = fixture.debugElement.queryAll(By.css('span.icon-lock'))[0];
+      expect(lockBtnAfter).not.toBeDefined();
     });
   });
 });
