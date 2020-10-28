@@ -12,7 +12,7 @@
     [formats]="customFormats"
     [schemaBuilderMode]="schemaBuilderMode"
     [showKnownProperties]="showKnownProperties"
-    (schemaChange)="schemaChange.emit($event)"
+    (schemaChange)="schemaUpdate.emit($event)"
   >
     <div class="node-options" node-options>
       <button *ngIf="schemaBuilderMode" type="button" class="node-options-btn" (click)="onPropertyConfig()">

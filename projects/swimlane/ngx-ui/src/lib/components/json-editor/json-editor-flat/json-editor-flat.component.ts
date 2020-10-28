@@ -107,7 +107,7 @@ export class JsonEditorFlatComponent extends JsonEditor {
     this.schema = { ...this.schema };
     this.schemaRef = { ...this.schemaRef };
 
-    this.schemaChange.emit(this.schemaRef);
+    this.schemaUpdate.emit(this.schemaRef);
   }
 
   private buildCustomFormats(): void {
