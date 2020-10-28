@@ -4,14 +4,14 @@
       <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
     </div>
     <div class="node" [class.compressed]="compressed">
-      <div class="error-box" *ngIf="!valid && !schemaBuilderMode"></div>
+      <div class="error-box" *ngIf="(!valid && !schemaBuilderMode) || isDuplicated"></div>
 
       <div class="left-options">
         <ng-container *ngIf="hideRoot || (nextLevel > 0 && !arrayItem)">
           <div class="required-indicator">
             <span
               *ngIf="required"
-              [class.invalid]="!childrenValid && !schemaBuilderMode"
+              [class.invalid]="(!childrenValid && !schemaBuilderMode) || isDuplicated"
               [innerHtml]="requiredIndicator"
             ></span>
             <span *ngIf="!required && schemaBuilderMode" class="not-required" [innerHtml]="requiredIndicator"></span>
@@ -30,7 +30,8 @@
             [type]="(schema?.format || schema?.type | titlecase) + (schema?.enum?.length ? ' + Enum' : '')"
             [description]="schema?.description"
             [examples]="schema?.examples"
-            [compressed]="compressed">
+            [compressed]="compressed"
+          >
           </ngx-json-editor-node-info>
         </div>
 
@@ -43,6 +44,7 @@
               (ngModelChange)="updateModel($event)"
               [requiredIndicator]="false"
               [required]="required"
+              [disabled]="isDuplicated"
             ></ngx-input>
           </div>
 
@@ -53,6 +55,7 @@
               [ngModel]="model"
               (ngModelChange)="updateModel($event)"
               [label]="model | json"
+              [disabled]="isDuplicated"
             >
             </ngx-toggle>
           </div>
@@ -68,6 +71,7 @@
                 (ngModelChange)="updateModel($event)"
                 [requiredIndicator]="false"
                 [required]="required"
+                [disabled]="isDuplicated"
               >
               </ngx-input>
 
@@ -77,6 +81,7 @@
                 [ngModel]="[model]"
                 (ngModelChange)="updateModel($event[0])"
                 [required]="required"
+                [disabled]="isDuplicated"
               >
                 <ngx-select-option *ngFor="let option of schema.enum" [name]="option" [value]="option">
                 </ngx-select-option>
@@ -91,6 +96,7 @@
                 (ngModelChange)="updateModel($event)"
                 [requiredIndicator]="false"
                 [required]="required"
+                [disabled]="isDuplicated"
               ></ngx-input>
             </div>
 
@@ -102,6 +108,7 @@
                 (ngModelChange)="updateModel($event)"
                 [requiredIndicator]="false"
                 [required]="required"
+                [disabled]="isDuplicated"
               ></ngx-input>
             </div>
 
@@ -113,6 +120,7 @@
                 (ngModelChange)="updateModel($event)"
                 [requiredIndicator]="false"
                 [required]="required"
+                [disabled]="isDuplicated"
               ></ngx-input>
             </div>
 
@@ -126,7 +134,7 @@
                 [disabled]="true"
               >
                 <ngx-input-suffix>
-                  <button (click)="openCodeEditor()">
+                  <button [disabled]="isDuplicated" (click)="openCodeEditor()">
                     <ngx-icon fontIcon="edit" class="edit-code-icon" ngx-tooltip tooltipTitle="Edit Code"> </ngx-icon>
                   </button>
                 </ngx-input-suffix>
@@ -166,7 +174,6 @@
           <div class="input-error">
             <span *ngFor="let error of ownErrors">{{ error.message }}</span>
           </div>
-
         </div>
 
         <div *ngIf="schemaBuilderMode" class="node-constrains">
@@ -220,6 +227,7 @@
       [errors]="childrenErrors"
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="nextLevel"
+      [isDuplicated]="isDuplicated"
       [schemaBuilderMode]="schemaBuilderMode"
       [showKnownProperties]="showKnownProperties"
       (schemaChange)="schemaChange.emit(schemaRef)"
