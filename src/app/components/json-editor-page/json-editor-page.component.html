@@ -39,7 +39,7 @@
     </ngx-tab>
     <ngx-tab label="Typescript">
       <app-prism language="js">
-<![CDATA[typeOverrides: any = { 
+<![CDATA[typeOverrides: any = {
   'string=code': (value: any) => {
     if (typeof value !== 'string') {
       return false;
@@ -78,7 +78,7 @@
     [compressed]="compressed"
     [hideRoot]="hideRoot"
     [showKnownProperties]="showKnownProperties"
-    (schemaChange)="modelSchemaChange($event)"
+    (schemaUpdate)="modelschemaUpdate($event)"
   >
   </ngx-json-editor-flat>
 
@@ -99,13 +99,13 @@
   [compressed]="compressed"
   [hideRoot]="hideRoot"
   [showKnownProperties]="showKnownProperties"
-  (schemaChange)="modelSchemaChange($event)">
+  (schemaUpdate)="modelschemaUpdate($event)">
 </ngx-json-editor-flat>]]>
       </app-prism>
     </ngx-tab>
     <ngx-tab label="Typescript">
       <app-prism language="js">
-<![CDATA[typeOverrides: any = { 
+<![CDATA[typeOverrides: any = {
   'string=code': (value: any) => {
     if (typeof value !== 'string') {
       return false;
@@ -133,7 +133,7 @@
     [typeCheckOverrides]="typeOverrides"
     [schemaBuilderMode]="true"
     [formats]="customFormats"
-    (schemaChange)="schemaChange($event)"
+    (schemaUpdate)="schemaUpdate($event)"
   >
   </ngx-json-editor-flat>
   <hr />
@@ -151,13 +151,13 @@
   [typeCheckOverrides]="typeOverrides"
   [schemaBuilderMode]="true"
   [formats]="customFormats"
-  (schemaChange)="schemaChange($event)">
+  (schemaUpdate)="schemaUpdate($event)">
 </ngx-json-editor-flat>]]>
       </app-prism>
     </ngx-tab>
     <ngx-tab label="Typescript">
       <app-prism language="js">
-<![CDATA[typeOverrides: any = { 
+<![CDATA[typeOverrides: any = {
   'string=code': (value: any) => {
     if (typeof value !== 'string') {
       return false;

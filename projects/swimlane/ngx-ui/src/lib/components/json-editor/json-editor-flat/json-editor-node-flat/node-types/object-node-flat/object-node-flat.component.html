@@ -28,7 +28,7 @@
       [compressed]="compressed"
       [indentationArray]="indentationArray"
       [showKnownProperties]="showKnownProperties"
-      (schemaChange)="schemaChange.emit(schemaRef)"
+      (schemaUpdate)="schemaUpdate.emit(schemaRef)"
       (updatePropertyNameEvent)="onUpdatePropertyName($event)"
     >
       <div class="node-options" node-options>
@@ -115,9 +115,9 @@
               <button type="button">
                 <i class="ngx-icon ngx-tree-expand"></i>
                 <span>Include</span>
-              </button>              
+              </button>
             </div>
-          
+
           </div>
 
         </div>
