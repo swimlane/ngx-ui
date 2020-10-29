@@ -75,7 +75,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
     this.updateSchemaPropertyName(this.schemaRef, options.name, this.propertyIndex[options.id].propertyName);
     this.swapSchemaProperties(index);
     this.updatePropertyName(options.id, options.name);
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
   }
 
   onPropertyConfig(property: JSONEditorSchema, index: number): void {
@@ -123,14 +123,14 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
     }
 
     this.propertyIndex = { ...this.propertyIndex };
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
   }
 
   addProperty(dataType: JsonSchemaDataType): void {
     super.addProperty(dataType);
 
     this.updateSchemaRefProperty(this.propertyIndex[this.propertyId - 1]);
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
   }
 
   deleteProperty(propName: string): void {
@@ -142,7 +142,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
       delete this.schemaRef.properties[propName];
     }
 
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
     super.deleteProperty(propName);
   }
 
@@ -177,7 +177,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
       return result;
     }, {});
 
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
   }
 
   private initSchemaProperties(schema: JSONEditorSchema): void {

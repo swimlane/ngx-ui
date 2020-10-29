@@ -19,7 +19,7 @@ export class JsonEditor implements OnChanges {
 
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
-  @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();
+  @Output() schemaUpdate: EventEmitter<JSONEditorSchema> = new EventEmitter();
 
   errors: any[];
 

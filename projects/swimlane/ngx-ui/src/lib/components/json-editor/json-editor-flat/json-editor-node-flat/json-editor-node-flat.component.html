@@ -200,7 +200,7 @@
       [schemaBuilderMode]="schemaBuilderMode"
       [formats]="formats"
       [showKnownProperties]="showKnownProperties"
-      (schemaChange)="schemaChange.emit(schemaRef)"
+      (schemaUpdate)="schemaUpdate.emit(schemaRef)"
     >
     </ngx-json-object-node-flat>
   </div>
@@ -222,7 +222,7 @@
       [level]="nextLevel"
       [schemaBuilderMode]="schemaBuilderMode"
       [showKnownProperties]="showKnownProperties"
-      (schemaChange)="schemaChange.emit(schemaRef)"
+      (schemaUpdate)="schemaUpdate.emit(schemaRef)"
     >
     </ngx-json-array-node-flat>
   </div>

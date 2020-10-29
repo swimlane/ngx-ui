@@ -131,11 +131,11 @@ export class JsonEditorPageComponent {
     this.jsonEditorModelFlat = {};
   }
 
-  schemaChange(schema: JSONSchema7): void {
+  schemaUpdate(schema: JSONSchema7): void {
     this.schemaRef = schema;
   }
 
-  modelSchemaChange(schema: JSONSchema7): void {
+  modelschemaUpdate(schema: JSONSchema7): void {
     this.modelSchemaRef = schema;
   }
 }
