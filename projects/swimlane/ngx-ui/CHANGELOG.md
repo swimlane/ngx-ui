@@ -2,6 +2,13 @@
 
 # HEAD (unreleased)
 
+## 31.0.0 (2020-10-29)
+
+- Feature: Add `confirmButtonText` and `cancelButtonText` config options (`<ngx-alert-dialog />`).
+- Enhancement: Performance improvements.
+- Enhancement: Add `[unlockable]` option to InputComponent.
+- Fix: Select not auto-collapse when click on caret.
+- Fix: DateTimeComponent displaValue.
 - Fix: Protect against unwanted schema changes when using Two-way binding outside of schema-builder mode.
 - Breaking: `JsonEditor` components `@Output() schemaChange` was renamed to `schemaUpdate`.
 
