@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 31.0.0 (2020-10-28)
+# HEAD (unreleased)
 
 - Fix: Protect against unwanted schema changes when using Two-way binding outside of schema-builder mode.
 - Breaking: `JsonEditor` components `@Output() schemaChange` was renamed to `schemaUpdate`.
