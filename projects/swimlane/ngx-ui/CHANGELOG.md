@@ -2,6 +2,9 @@
 
 # HEAD (unreleased)
 
+- Fix: Change \* imports to a namespaces compatible version
+- Bug: Jest test of some apps are failing
+
 ## 31.0.0 (2020-10-29)
 
 - Feature: Add `confirmButtonText` and `cancelButtonText` config options (`<ngx-alert-dialog />`).
