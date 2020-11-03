@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import moment from 'moment';
 
 import { CalendarDay } from '../../calendar-day.interface';
 import { getNumberRange } from '../get-number-range/get-number-range.util';
