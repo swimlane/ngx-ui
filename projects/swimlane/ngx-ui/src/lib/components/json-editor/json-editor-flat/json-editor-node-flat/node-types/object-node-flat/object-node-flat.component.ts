@@ -41,6 +41,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
 
   @Input() hideRoot = false;
 
+  @Input() isDuplicated = false;
+
   indentationArray: number[] = [];
 
   duplicatedFields = new Map<string, string>();
