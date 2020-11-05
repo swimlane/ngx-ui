@@ -1,6 +1,10 @@
 # CHANGELOG
 
-# 30.1.0 (2020-09-22)
+# HEAD (unreleased)
+
+- Fix: Reference leak caused when duplicating field names on a object
+
+## 30.1.0 (2020-09-22)
 
 - Bug: Revert removal of ngx-datatable styles
 
