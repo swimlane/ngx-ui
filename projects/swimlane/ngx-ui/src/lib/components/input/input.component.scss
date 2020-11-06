@@ -17,6 +17,11 @@ $input-placeholder-color: $color-blue-grey-350;
   padding-top: calc(0.7em + 8px);
   padding-bottom: 0;
 
+  &.marginless {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
   &.md {
     .ngx-input-box,
     .ngx-input-textarea {

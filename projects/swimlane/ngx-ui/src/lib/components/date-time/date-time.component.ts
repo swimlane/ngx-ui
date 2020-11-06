@@ -49,7 +49,8 @@ const DATE_TIME_VALUE_ACCESSOR = {
     '[class.sm]': 'size === "sm"',
     '[class.md]': 'size === "md"',
     '[class.lg]': 'size === "lg"',
-    '[class.autosize]': 'autosize'
+    '[class.autosize]': 'autosize',
+    '[class.marginless]': '!withMargin'
   }
 })
 export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
@@ -60,6 +61,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() placeholder: string = '';
   @Input() size: Size = Size.Small;
   @Input() appearance: Appearance = Appearance.Legacy;
+  @Input() withMargin = true;
 
   @Input() minDate: string | Date;
   @Input() maxDate: string | Date;

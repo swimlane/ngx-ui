@@ -23,6 +23,7 @@ $animation-timing: 200ms;
   }
 
   .calendar-dialog-btn {
+    display: inline-flex;
     position: absolute;
     padding: 0;
     right: 5px;
@@ -63,6 +64,10 @@ $animation-timing: 200ms;
 
     &.fill .calendar-dialog-btn {
       transform: translateY(-15%);
+    }
+
+    &.marginless .calendar-dialog-btn {
+      transform: translateY(-35%);
     }
 
     .ngx-input-hint {
