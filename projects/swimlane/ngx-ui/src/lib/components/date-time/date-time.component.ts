@@ -50,7 +50,8 @@ const DATE_TIME_VALUE_ACCESSOR = {
     '[class.md]': 'size === "md"',
     '[class.lg]': 'size === "lg"',
     '[class.autosize]': 'autosize',
-    '[class.marginless]': '!withMargin'
+    '[class.marginless]': '!withMargin',
+    '[class.no-label]': '!label'
   }
 })
 export class DateTimeComponent implements OnDestroy, ControlValueAccessor {

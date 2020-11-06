@@ -3,13 +3,15 @@
 # HEAD (unreleased)
 
 - Fix: Change \* imports to a namespaces compatible version
-- Enhancement: Add `[withMargin]` option to `InputComponent`
-  - `[withMargin]` allows for consumers of `InputComponent` to remove the vertical margins that are added by the `InputComponent` itself, to take control of positioning of the `InputComponent`.
+- Enhancement: Add `[withMargin]` option to `ngx-input`
+  - `[withMargin]` allows for consumers of `ngx-input` to remove the vertical margins that are added by the `ngx-input` itself, to take control of positioning of the `ngx-input`.
   - Default is `true` to keep the current behavior intact.
-- Enhancement: Add `[withMargin]` option to `DateTimeComponent`
-  - `[withMargin]` on `DateTimeComponent` is passed down to `InputComponent` resulting the above points.
+- Enhancement: Add `[withMargin]` option to `ngx-date-time`
+  - `[withMargin]` on `ngx-date-time` is passed down to `ngx-input` resulting the above points.
   - Default is `true` to keep the current behavior intact.
   - `[withMargin]=true` adds `.marginless` CSS class to determine the `translateY` value of `calendar-dialog-btn` relative to the Host component.
+- Enhancement: Remove `padding-top` style to `ngx-input` if there's no `label` passed in.
+  - For `ngx-date-time`, **calendar toggle button** is positioned properly with no `label`.
 
 ## 31.0.0 (2020-10-29)
 

@@ -61,7 +61,8 @@ const MIN_WIDTH = 60;
     '[class.lg]': 'size === "lg"',
     '[class.focused]': 'focused',
     '[class.autosize]': 'autosize',
-    '[class.marginless]': '!withMargin'
+    '[class.marginless]': '!withMargin',
+    '[class.no-label]': '!label'
   },
   animations: INPUT_ANIMATIONS,
   providers: [INPUT_VALUE_ACCESSOR, INPUT_VALIDATORS],

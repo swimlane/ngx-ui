@@ -22,6 +22,10 @@ $input-placeholder-color: $color-blue-grey-350;
     margin-bottom: 0;
   }
 
+  &.no-label {
+    padding-top: 0;
+  }
+
   &.md {
     .ngx-input-box,
     .ngx-input-textarea {
