@@ -289,10 +289,16 @@ export class ObjectNode implements OnInit, OnChanges {
       const schema = this.propertyIndex[id];
       if (this.model[schema.propertyName] === undefined) {
         delete this.propertyIndex[id];
+      } else {
+        const model = this.model[schema.propertyName];
+        const { type } = inferType(model);
+        if (schema.type !== type) {
+          this.propertyIndex[schema.id].type = type;
+        }
       }
     }
 
-    this.propertyIndex = { ...this.propertyIndex };
+    this.propertyIndex = JSON.parse(JSON.stringify(this.propertyIndex));
     this.cdr.markForCheck();
   }
 
