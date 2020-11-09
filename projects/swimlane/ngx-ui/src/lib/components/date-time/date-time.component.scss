@@ -23,6 +23,7 @@ $animation-timing: 200ms;
   }
 
   .calendar-dialog-btn {
+    display: inline-flex;
     position: absolute;
     padding: 0;
     right: 5px;
@@ -36,10 +37,23 @@ $animation-timing: 200ms;
     padding-right: 25px;
   }
 
+  &.no-label {
+    .calendar-dialog-btn {
+      top: 0.5rem;
+      transform: translateY(0);
+    }
+  }
+
   &.fill {
     .calendar-dialog-btn {
       transform: translateY(-35%);
       right: 10px;
+    }
+
+    &.no-label {
+      .calendar-dialog-btn {
+        transform: translateY(0);
+      }
     }
   }
 
@@ -63,6 +77,16 @@ $animation-timing: 200ms;
 
     &.fill .calendar-dialog-btn {
       transform: translateY(-15%);
+    }
+
+    &.marginless .calendar-dialog-btn {
+      transform: translateY(-35%);
+    }
+
+    &.no-label {
+      .calendar-dialog-btn {
+        transform: translateY(0);
+      }
     }
 
     .ngx-input-hint {

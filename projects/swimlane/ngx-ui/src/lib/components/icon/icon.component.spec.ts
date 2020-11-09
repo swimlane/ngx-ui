@@ -21,7 +21,7 @@ describe('IconComponent', () => {
   });
 
   beforeEach(() => {
-    httpClient = TestBed.get<HttpClient>(HttpClient);
+    httpClient = TestBed.inject<HttpClient>(HttpClient);
     fixture = TestBed.createComponent(IconComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

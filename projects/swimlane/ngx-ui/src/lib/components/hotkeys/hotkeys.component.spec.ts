@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HotkeysComponent } from './hotkeys.component';
 import { HotkeysService } from './hotkeys.service';
@@ -24,12 +24,14 @@ describe('HotkeysComponent', () => {
     }
   ];
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [HotkeysComponent],
-      providers: [HotkeysService]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [HotkeysComponent],
+        providers: [HotkeysService]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HotkeysComponent);

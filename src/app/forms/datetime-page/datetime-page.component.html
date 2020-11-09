@@ -336,7 +336,7 @@
 
 <ngx-section class="shadow" sectionTitle="Autosize">
   Current Value: {{ curDate2 | json }}
-  
+
   <br />
 
   <ngx-date-time
@@ -384,6 +384,21 @@
     appearance="fill"
     inputType="datetime"
     label="Minutes"
+    precision="minute"
+    [(ngModel)]="curDate2"
+    format="MMM DD, YYYY, hh:mm:ss"
+    (change)="dateChanged($event)"
+  >
+  </ngx-date-time>
+
+  <br />
+
+  <ngx-date-time
+    autosize="true"
+    appearance="fill"
+    [withMargin]="false"
+    inputType="datetime"
+    label="Minutes without margin"
     precision="minute"
     [(ngModel)]="curDate2"
     format="MMM DD, YYYY, hh:mm:ss"
