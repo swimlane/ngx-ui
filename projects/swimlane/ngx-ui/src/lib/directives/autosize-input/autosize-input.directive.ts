@@ -9,7 +9,7 @@ import {
   Renderer2
 } from '@angular/core';
 import { NgModel } from '@angular/forms';
-import { filter, startWith, take } from 'rxjs/operators';
+import { filter, take } from 'rxjs/operators';
 
 @Directive({
   selector: '[autoSizeInput]'
@@ -41,8 +41,7 @@ export class AutoSizeInputDirective implements AfterContentChecked, AfterViewIni
     if (this.ngModel) {
       this.ngModel.valueChanges
         .pipe(
-          startWith(this.ngModel.value),
-          filter(val => val != null),
+          filter(val => !!val),
           take(1)
         )
         .subscribe(() => this.updateWidth());
