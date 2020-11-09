@@ -12,6 +12,8 @@
   - `[withMargin]=true` adds `.marginless` CSS class to determine the `translateY` value of `calendar-dialog-btn` relative to the Host component.
 - Enhancement: Remove `padding-top` style to `ngx-input` if there's no `label` passed in.
   - For `ngx-date-time`, **calendar toggle button** is positioned properly with no `label`.
+- Enhancement: Port `AutoSizeInputDirective` from `ngx-autosize-input` to `ngx-ui` because of bad implementation on first `ngModel.valueChanges` in `ngx-autosize-input`.
+- Chore: Remove `ngx-autosize-input` as a dependency.
 
 ## 31.0.0 (2020-10-29)
 
