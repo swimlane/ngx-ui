@@ -32,9 +32,9 @@ describe('DrawerService', () => {
   });
 
   beforeEach(() => {
-    service = TestBed.get(DrawerService);
-    overlayService = TestBed.get(OverlayService);
-    injectionService = TestBed.get(InjectionService);
+    service = TestBed.inject(DrawerService);
+    overlayService = TestBed.inject(OverlayService);
+    injectionService = TestBed.inject(InjectionService);
   });
 
   it('can load instance', () => {

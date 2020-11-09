@@ -126,6 +126,7 @@ $input-placeholder-color: $color-blue-grey-350;
     .ngx-input-box-wrap {
       position: relative;
       width: 100%;
+      display: flex;
 
       &:focus {
         outline: none;

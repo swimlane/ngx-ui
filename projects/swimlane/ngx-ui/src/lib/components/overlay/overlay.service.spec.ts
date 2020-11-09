@@ -1,4 +1,4 @@
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { InjectionService } from '../../services/injection/injection.service';
 import { OverlayModule } from './overlay.module';
@@ -16,9 +16,9 @@ describe('OverlayService', () => {
     }).compileComponents();
 
     component = TestBed.createComponent(OverlayComponent);
-    service = TestBed.get(OverlayService);
+    service = TestBed.inject(OverlayService);
     service.component = component.componentRef;
-    injectionService = TestBed.get(InjectionService);
+    injectionService = TestBed.inject(InjectionService);
     spyOn(injectionService, 'appendComponent').and.callFake(() => {
       return component.componentRef;
     });

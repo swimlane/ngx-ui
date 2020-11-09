@@ -23,7 +23,7 @@ describe('AlertService', () => {
   });
 
   beforeEach(() => {
-    service = TestBed.get(AlertService);
+    service = TestBed.inject(AlertService);
   });
 
   beforeEach(() => {

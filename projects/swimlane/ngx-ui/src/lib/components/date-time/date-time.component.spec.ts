@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import moment from 'moment-timezone';
@@ -30,19 +30,21 @@ describe('DateTimeComponent', () => {
   let component: DateTimeComponent;
   let fixture: ComponentFixture<DateTimeComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [DateTimeComponent],
-      imports: [MomentModule, PipesModule, DialogModule],
-      schemas: [NO_ERRORS_SCHEMA],
-      providers: [InjectionService]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [DateTimeComponent],
+        imports: [MomentModule, PipesModule, DialogModule],
+        schemas: [NO_ERRORS_SCHEMA],
+        providers: [InjectionService]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
-    const injectionService = TestBed.get(InjectionService);
+    const injectionService = TestBed.inject(InjectionService);
     fixture = TestBed.createComponent(DateTimeComponent);
-    injectionService.setRootViewContainer(fixture.componentRef);
+    injectionService.setRootViewContainer(fixture.componentRef as any);
     component = fixture.componentInstance;
     component.disabled = false;
     component.tabindex = 0;
