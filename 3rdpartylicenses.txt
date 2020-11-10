@@ -568,9 +568,6 @@ the License, but only in their entirety and only with respect to the Combined
 Software.
 
 
-ngx-autosize-input
-MIT
-
 ngx-moment
 MIT
 The MIT License (MIT)
