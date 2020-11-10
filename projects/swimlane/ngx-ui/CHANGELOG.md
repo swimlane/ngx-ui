@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+## 31.1.0 (2020-11-10)
+
 - Fix: re-infer `json-editor` node types after model change
 - Fix: Reference leak caused when duplicating field names on a object
 - Enhancement: Add `[withMargin]` option to `ngx-input`
