@@ -28,6 +28,7 @@
       [compressed]="compressed"
       [indentationArray]="indentationArray"
       [showKnownProperties]="showKnownProperties"
+      [isDuplicated]="duplicatedFields.has(prop.id)"
       (schemaUpdate)="schemaUpdate.emit(schemaRef)"
       (updatePropertyNameEvent)="onUpdatePropertyName($event)"
     >
@@ -85,20 +86,22 @@
 
   <ng-container *ngIf="showKnownProperties">
     <ng-container *ngFor="let prop of schema.properties | keyvalue">
-      <div class="node-container add-button add-prop-button" [class.compressed]="compressed" *ngIf="model[prop.key] === undefined">
-
+      <div
+        class="node-container add-button add-prop-button"
+        [class.compressed]="compressed"
+        *ngIf="model[prop.key] === undefined"
+      >
         <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
 
-        <div class="node"
+        <div
+          class="node"
           [class.compressed]="compressed"
           [style.marginLeft]="level === 0 ? '20px' : '0'"
-          (click)="addSchemaProperty(prop.key)">
-
-          <div class="left-options">
-          </div>
+          (click)="addSchemaProperty(prop.key)"
+        >
+          <div class="left-options"></div>
 
           <div class="node-content">
-
             <div class="node-info">
               <ngx-json-editor-node-info
                 [nameEditable]="false"
@@ -107,7 +110,8 @@
                 [type]="(prop.value.format || prop.value.type | titlecase) + (prop.value.enum?.length ? ' + Enum' : '')"
                 [description]="prop.value?.description"
                 [examples]="prop.value.examples"
-                [compressed]="compressed">
+                [compressed]="compressed"
+              >
               </ngx-json-editor-node-info>
             </div>
 
@@ -119,25 +123,31 @@
             </div>
 
           </div>
-
         </div>
-
       </div>
     </ng-container>
   </ng-container>
 
-  <div class="add-button" [class.compressed]="compressed" [class.background]="hideRoot ? level > -1 : level" *ngIf="!showKnownProperties || schema.additionalProperties !== false">
+  <div
+    class="add-button"
+    [class.compressed]="compressed"
+    [class.background]="hideRoot ? level > -1 : level"
+    *ngIf="!showKnownProperties || schema.additionalProperties !== false"
+  >
     <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
     <div class="indented-content" [style.marginLeft]="hideRoot && level === 0 ? '20px' : '0'">
       <ngx-dropdown [showCaret]="true">
-        <ngx-dropdown-toggle>
+        <ngx-dropdown-toggle [disabled]="isDuplicated">
           <button type="button">
             <i class="ngx-icon ngx-tree-expand"></i>
             <span>Add {{ objectKeys(propertyIndex).length ? 'a' : 'your first' }} property</span>
           </button>
         </ngx-dropdown-toggle>
         <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
-          <ul class="vertical-list dropdown-column" *ngIf="schema.properties && !schemaBuilderMode && !showKnownProperties">
+          <ul
+            class="vertical-list dropdown-column"
+            *ngIf="schema.properties && !schemaBuilderMode && !showKnownProperties"
+          >
             <li *ngFor="let prop of schema.properties | keyvalue" (click)="addSchemaProperty(prop.key)">
               <button [disabled]="model[prop.key] !== undefined" type="button">
                 {{ prop.value.title ? prop.value.title : prop.key }}

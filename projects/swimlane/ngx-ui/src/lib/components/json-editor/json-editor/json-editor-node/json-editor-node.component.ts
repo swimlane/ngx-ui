@@ -22,6 +22,8 @@ export class JsonEditorNodeComponent extends JsonEditorNode {
 
   @Input() showKnownProperties = false;
 
+  @Input() isDuplicated = false;
+
   placeholder: string = '';
 
   constructor(public dialogMngr: DialogService) {

@@ -2,6 +2,10 @@
 
 # HEAD (unreleased)
 
+- Fix: Reference leak caused when duplicating field names on a object
+
+## 31.0.1 (2020-11-03)
+
 - Fix: Change \* imports to a namespaces compatible version
 - Enhancement: Add `[withMargin]` option to `ngx-input`
   - `[withMargin]` allows for consumers of `ngx-input` to remove the vertical margins that are added by the `ngx-input` itself, to take control of positioning of the `ngx-input`.
