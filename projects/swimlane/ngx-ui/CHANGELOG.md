@@ -2,7 +2,7 @@
 
 # HEAD (unreleased)
 
-- Fix: Change \* imports to a namespaces compatible version
+- Fix: re-infer `json-editor` node types after model change
 
 ## 31.0.0 (2020-10-29)
 
