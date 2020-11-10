@@ -4,7 +4,7 @@
 
 - Fix: Reference leak caused when duplicating field names on a object
 
-## 30.1.1 (2020-11-03)
+## 31.0.1 (2020-11-03)
 
 - Fix: Change \* imports to a namespaces compatible version
 - Enhancement: Add `[withMargin]` option to `ngx-input`
