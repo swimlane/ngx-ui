@@ -85,7 +85,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
       this.updateSchemaPropertyName(this.schemaRef, options.name, this.propertyIndex[options.id].propertyName);
       this.swapSchemaProperties(index);
       this.updatePropertyName(options.id, options.name);
-      this.schemaChange.emit();
+      this.schemaUpdate.emit();
     } else if (oldName !== options.name) {
       this.duplicatedFields.set(options.id, options.name);
     }
