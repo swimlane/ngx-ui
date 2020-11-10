@@ -4,6 +4,10 @@
 
 - Fix: re-infer `json-editor` node types after model change
 
+## 31.0.1 (2020-11-03)
+
+- Fix: Change \* imports to a namespaces compatible version
+
 ## 31.0.0 (2020-10-29)
 
 - Feature: Add `confirmButtonText` and `cancelButtonText` config options (`<ngx-alert-dialog />`).
