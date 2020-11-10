@@ -23,7 +23,7 @@ describe('LoadingService', () => {
   });
 
   beforeEach(() => {
-    service = TestBed.get(LoadingService);
+    service = TestBed.inject(LoadingService);
     service.progress = 0;
     service.threshold = 0;
   });

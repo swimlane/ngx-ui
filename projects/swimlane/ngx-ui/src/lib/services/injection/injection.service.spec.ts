@@ -3,8 +3,8 @@ import {
   ComponentFactoryResolver,
   ComponentRef,
   Injector,
-  ViewContainerRef,
-  Type
+  Type,
+  ViewContainerRef
 } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
@@ -41,7 +41,7 @@ describe('InjectionService', () => {
       ]
     });
 
-    service = TestBed.get(InjectionService);
+    service = TestBed.inject(InjectionService);
   });
 
   it('can load instance', () => {

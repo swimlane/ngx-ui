@@ -32,9 +32,9 @@ describe('DialogService', () => {
   });
 
   beforeEach(() => {
-    service = TestBed.get(DialogService);
-    overlayService = TestBed.get(OverlayService);
-    injectionService = TestBed.get(InjectionService);
+    service = TestBed.inject(DialogService);
+    overlayService = TestBed.inject(OverlayService);
+    injectionService = TestBed.inject(InjectionService);
   });
 
   it('can load instance', () => {

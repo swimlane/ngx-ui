@@ -60,7 +60,9 @@ const MIN_WIDTH = 60;
     '[class.md]': 'size === "md"',
     '[class.lg]': 'size === "lg"',
     '[class.focused]': 'focused',
-    '[class.autosize]': 'autosize'
+    '[class.autosize]': 'autosize',
+    '[class.marginless]': '!withMargin',
+    '[class.no-label]': '!label'
   },
   animations: INPUT_ANIMATIONS,
   providers: [INPUT_VALUE_ACCESSOR, INPUT_VALIDATORS],
@@ -80,6 +82,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   @Input() maxlength: number;
   @Input() size: Size = Size.Small;
   @Input() appearance: Appearance = Appearance.Legacy;
+  @Input() withMargin = true;
 
   @Input()
   get disabled() {
