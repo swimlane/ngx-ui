@@ -4,6 +4,31 @@
 
 - Fix: Reference leak caused when duplicating field names on a object
 
+## 30.1.1 (2020-11-03)
+
+- Fix: Change \* imports to a namespaces compatible version
+- Enhancement: Add `[withMargin]` option to `ngx-input`
+  - `[withMargin]` allows for consumers of `ngx-input` to remove the vertical margins that are added by the `ngx-input` itself, to take control of positioning of the `ngx-input`.
+  - Default is `true` to keep the current behavior intact.
+- Enhancement: Add `[withMargin]` option to `ngx-date-time`
+  - `[withMargin]` on `ngx-date-time` is passed down to `ngx-input` resulting the above points.
+  - Default is `true` to keep the current behavior intact.
+  - `[withMargin]=true` adds `.marginless` CSS class to determine the `translateY` value of `calendar-dialog-btn` relative to the Host component.
+- Enhancement: Remove `padding-top` style to `ngx-input` if there's no `label` passed in.
+  - For `ngx-date-time`, **calendar toggle button** is positioned properly with no `label`.
+- Enhancement: Port `AutoSizeInputDirective` from `ngx-autosize-input` to `ngx-ui` because of bad implementation on first `ngModel.valueChanges` in `ngx-autosize-input`.
+- Chore: Remove `ngx-autosize-input` as a dependency.
+
+## 31.0.0 (2020-10-29)
+
+- Feature: Add `confirmButtonText` and `cancelButtonText` config options (`<ngx-alert-dialog />`).
+- Enhancement: Performance improvements.
+- Enhancement: Add `[unlockable]` option to InputComponent.
+- Fix: Select not auto-collapse when click on caret.
+- Fix: DateTimeComponent displaValue.
+- Fix: Protect against unwanted schema changes when using Two-way binding outside of schema-builder mode.
+- Breaking: `JsonEditor` components `@Output() schemaChange` was renamed to `schemaUpdate`.
+
 ## 30.1.0 (2020-09-22)
 
 - Bug: Revert removal of ngx-datatable styles

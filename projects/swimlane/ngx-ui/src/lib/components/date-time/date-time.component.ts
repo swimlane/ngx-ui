@@ -9,7 +9,8 @@ import {
   TemplateRef,
   OnDestroy,
   ElementRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -48,7 +49,9 @@ const DATE_TIME_VALUE_ACCESSOR = {
     '[class.sm]': 'size === "sm"',
     '[class.md]': 'size === "md"',
     '[class.lg]': 'size === "lg"',
-    '[class.autosize]': 'autosize'
+    '[class.autosize]': 'autosize',
+    '[class.marginless]': '!withMargin',
+    '[class.no-label]': '!label'
   }
 })
 export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
@@ -59,6 +62,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() placeholder: string = '';
   @Input() size: Size = Size.Small;
   @Input() appearance: Appearance = Appearance.Legacy;
+  @Input() withMargin = true;
 
   @Input() minDate: string | Date;
   @Input() maxDate: string | Date;
@@ -165,6 +169,15 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     }
   }
 
+  get displayValue(): string {
+    return this._displayValue;
+  }
+
+  set displayValue(value: string) {
+    this._displayValue = value;
+    this.cdr.markForCheck();
+  }
+
   @Input()
   get autosize() {
     return this._autosize;
@@ -187,10 +200,10 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   hour: number;
   minute: string;
   amPmVal: string;
-  displayValue = '';
   modes = ['millisecond', 'second', 'minute', 'hour', 'date', 'month', 'year'];
 
   private _value: Date | string;
+  private _displayValue: string = '';
   private _format: string;
   private _inputType: string;
   private _disabled: boolean = false;
@@ -199,7 +212,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   private _autosize: boolean = false;
   private _minWidth: number = MIN_WIDTH;
 
-  constructor(private readonly dialogService: DialogService) {}
+  constructor(private readonly dialogService: DialogService, private readonly cdr: ChangeDetectorRef) {}
 
   ngOnDestroy(): void {
     this.close();

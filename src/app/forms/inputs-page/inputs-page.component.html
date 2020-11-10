@@ -72,6 +72,22 @@
   </app-prism>
   <br />
 
+  <ngx-input type="text" label="Disabled With Unlock Button" [unlockable]="true" [ngModel]="'Click the button to unlock'">
+  </ngx-input>
+  <br />
+  <app-prism>
+<![CDATA[
+  <ngx-input
+    type="text"
+    label="Disabled With Unlock Button"
+    [unlockable]="true"
+    [ngModel]="'Click the button to unlock'">
+  </ngx-input>
+]]>
+  </app-prism>
+
+  <br />
+
   <ngx-input [label]="'Required Input Example Of The Day'" type="text" name="input4" [required]="true"
     (change)="inputValue3 = $event">
   </ngx-input>
@@ -351,7 +367,7 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Auto Size">
-  <ngx-input [(ngModel)]="inputValue" autosize label="Resize Input"></ngx-input>
+  <ngx-input [(ngModel)]="longInputValue" autosize label="Resize Input"></ngx-input>
 
   <br />
 
@@ -367,6 +383,6 @@
   <br />
 
   <app-prism>
-<![CDATA[<ngx-input autosize appearance="fill" type="number" label="Fill Resize Input"></ngx-input></ngx-input>]]>
+<![CDATA[<ngx-input autosize appearance="fill" type="number" label="Fill Resize Input"></ngx-input>]]>
   </app-prism>
 </ngx-section>

@@ -60,7 +60,9 @@ const MIN_WIDTH = 60;
     '[class.md]': 'size === "md"',
     '[class.lg]': 'size === "lg"',
     '[class.focused]': 'focused',
-    '[class.autosize]': 'autosize'
+    '[class.autosize]': 'autosize',
+    '[class.marginless]': '!withMargin',
+    '[class.no-label]': '!label'
   },
   animations: INPUT_ANIMATIONS,
   providers: [INPUT_VALUE_ACCESSOR, INPUT_VALIDATORS],
@@ -80,6 +82,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   @Input() maxlength: number;
   @Input() size: Size = Size.Small;
   @Input() appearance: Appearance = Appearance.Legacy;
+  @Input() withMargin = true;
 
   @Input()
   get disabled() {
@@ -173,6 +176,18 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     this._autosize = coerceBooleanProperty(v);
   }
 
+  @Input()
+  get unlockable() {
+    return this._unlockable;
+  }
+  set unlockable(v: boolean) {
+    this._unlockable = coerceBooleanProperty(v);
+    if (this._unlockable) {
+      this.disabled = true;
+    }
+  }
+  @Input() unlockableTooltip: string = 'Click to unlock';
+
   @Output() change = new EventEmitter<string | number>();
   @Output() blur = new EventEmitter<Event>();
   @Output() focus = new EventEmitter<FocusEvent>();
@@ -242,6 +257,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   private _spinnerInterval;
   private _spinnerTimeout;
   private _minWidth: number = MIN_WIDTH;
+  private _unlockable: boolean = false;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 

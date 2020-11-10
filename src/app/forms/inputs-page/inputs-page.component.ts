@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-inputs-page',
@@ -8,6 +8,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 export class InputsPageComponent {
   searchInputValue: string = '';
   inputValue: any = 'A Value';
+  longInputValue = 'A very long input value that should be autosized';
   inputValue1: any;
   inputValue2: any;
   inputValue3: any;

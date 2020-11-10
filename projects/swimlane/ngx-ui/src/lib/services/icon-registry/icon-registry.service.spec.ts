@@ -7,7 +7,7 @@ describe('IconRegistryService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({ providers: [IconRegistryService] });
-    service = TestBed.get(IconRegistryService);
+    service = TestBed.inject(IconRegistryService);
   });
 
   it('can load instance', () => {

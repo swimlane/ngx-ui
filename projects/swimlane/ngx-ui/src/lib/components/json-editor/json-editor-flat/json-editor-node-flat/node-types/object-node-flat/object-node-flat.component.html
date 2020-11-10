@@ -29,7 +29,7 @@
       [indentationArray]="indentationArray"
       [showKnownProperties]="showKnownProperties"
       [isDuplicated]="duplicatedFields.has(prop.id)"
-      (schemaChange)="schemaChange.emit(schemaRef)"
+      (schemaUpdate)="schemaUpdate.emit(schemaRef)"
       (updatePropertyNameEvent)="onUpdatePropertyName($event)"
     >
       <div class="node-options" node-options>
@@ -121,6 +121,7 @@
                 <span>Include</span>
               </button>
             </div>
+
           </div>
         </div>
       </div>

@@ -77,7 +77,7 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit, OnChang
   updateSchema(options: PropertyConfigOptions): void {
     this.schema.items = options.newProperty;
     this.schemaRef.items = options.newProperty;
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
   }
 
   addArrayItem(dataType?: JsonSchemaDataType) {
@@ -102,7 +102,7 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit, OnChang
 
     this.model.push(this.schemaRef.items.type === 'array' ? [] : this.schemaRef.items);
 
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
   }
 
   private removeDefaultItemForSchemaBuilder(): void {
@@ -111,6 +111,6 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit, OnChang
 
     this.model = [];
 
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
   }
 }

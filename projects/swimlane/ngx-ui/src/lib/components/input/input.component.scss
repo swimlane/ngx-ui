@@ -17,6 +17,15 @@ $input-placeholder-color: $color-blue-grey-350;
   padding-top: calc(0.7em + 8px);
   padding-bottom: 0;
 
+  &.marginless {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &.no-label {
+    padding-top: 0;
+  }
+
   &.md {
     .ngx-input-box,
     .ngx-input-textarea {
@@ -117,6 +126,7 @@ $input-placeholder-color: $color-blue-grey-350;
     .ngx-input-box-wrap {
       position: relative;
       width: 100%;
+      display: flex;
 
       &:focus {
         outline: none;
@@ -168,7 +178,8 @@ $input-placeholder-color: $color-blue-grey-350;
         resize: none;
       }
 
-      .icon-eye {
+      .icon-eye,
+      .icon-lock {
         line-height: 25px;
         top: 0;
         bottom: 0;

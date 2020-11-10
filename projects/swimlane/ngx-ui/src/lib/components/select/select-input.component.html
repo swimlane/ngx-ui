@@ -52,18 +52,18 @@
     (click)="selection.emit([])"
   >
   </span>
-  <span
-    *ngIf="caretVisible"
-    class="ngx-select-caret icon-arrow-down"
-    [class.icon-arrow-down]="!selectCaret"
-    (click)="onToggle($event)"
-  >
-    <span *ngIf="isNotTemplate; else tpl" [innerHTML]="selectCaret"> </span>
-    <ng-template #tpl>
-      <ng-container *ngTemplateOutlet="selectCaret"></ng-container>
-    </ng-template>
-  </span>
 </div>
+<span
+  *ngIf="caretVisible"
+  class="ngx-select-caret icon-arrow-down"
+  [class.icon-arrow-down]="!selectCaret"
+  (click)="onToggle()"
+>
+  <span *ngIf="isNotTemplate; else tpl" [innerHTML]="selectCaret"> </span>
+  <ng-template #tpl>
+    <ng-container *ngTemplateOutlet="selectCaret"></ng-container>
+  </ng-template>
+</span>
 <div class="ngx-select-input-underline">
   <div class="underline-fill"></div>
 </div>

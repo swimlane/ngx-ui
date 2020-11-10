@@ -29,7 +29,7 @@ describe('TooltipDirective', () => {
   });
 
   beforeEach(() => {
-    service = TestBed.get(TooltipService);
+    service = TestBed.inject(TooltipService);
     fixture = TestBed.createComponent(ToolTipFixtureComponent);
     directive = fixture.componentInstance.tooltipDirective;
     fixture.autoDetectChanges();

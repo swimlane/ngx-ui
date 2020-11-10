@@ -7,7 +7,7 @@ describe('CammelToSnakePipe', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({ providers: [CammelToSnakePipe] });
-    pipe = TestBed.get(CammelToSnakePipe);
+    pipe = TestBed.inject(CammelToSnakePipe);
   });
 
   it('can load instance', () => {

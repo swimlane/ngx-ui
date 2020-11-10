@@ -52,6 +52,14 @@
           (click)="togglePassword()"
         >
         </span>
+        <span
+          *ngIf="type === inputTypes.text && unlockable && disabled"
+          class="icon-lock"
+          (click)="disabled = false"
+          ngx-tooltip
+          [tooltipTitle]="unlockableTooltip"
+        >
+        </span>
       </div>
       <span class="ngx-input-label" [@labelState]="labelState">
         <span [innerHTML]="label"></span>&nbsp;
@@ -73,7 +81,7 @@
   <input
     *ngIf="type !== inputTypes.textarea && autosize"
     class="ngx-input-box"
-    AutoSizeInput
+    autoSizeInput
     [extraWidth]="type === inputTypes.number ? 20 : 0"
     [minWidth]="minWidth"
     [includePadding]="true"

@@ -47,7 +47,7 @@ export class ObjectNode implements OnInit, OnChanges {
 
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
-  @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();
+  @Output() schemaUpdate: EventEmitter<JSONEditorSchema> = new EventEmitter();
 
   requiredCache: { [key: string]: boolean } = {};
 
