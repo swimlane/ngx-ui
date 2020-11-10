@@ -52,6 +52,8 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() showKnownProperties = false;
 
+  @Input() isDuplicated = false;
+
   @Output() updatePropertyNameEvent = new EventEmitter<{ id: string | number; name: string }>();
 
   requiredIndicator: SafeHtml;

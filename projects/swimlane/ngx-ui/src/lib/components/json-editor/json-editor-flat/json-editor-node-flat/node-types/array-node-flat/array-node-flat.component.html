@@ -21,6 +21,7 @@
       [arrayName]="(schema.title ? schema.title : schema.propertyName) + '[' + (schemaBuilderMode ? '' : i) + ']'"
       [indentationArray]="indentationArray"
       [showKnownProperties]="showKnownProperties"
+      [isDuplicated]="isDuplicated"
     >
       <div class="node-options" node-options>
         <button
@@ -65,7 +66,7 @@
     <div class="indented-content" [style.marginLeft]="hideRoot && level === 0 ? '20px' : '0'">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
-          <button type="button">
+          <button [disabled]="isDuplicated" type="button">
             <i class="ngx-icon ngx-tree-expand"></i>
             <span>Add an item</span>
           </button>

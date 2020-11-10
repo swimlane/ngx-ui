@@ -29,6 +29,7 @@
       [schema]="schemas[i]"
       [path]="path + '[' + i + ']'"
       [errors]="errors"
+      [isDuplicated]="isDuplicated"
       [typeCheckOverrides]="typeCheckOverrides"
       [showKnownProperties]="showKnownProperties"
     >
@@ -36,7 +37,7 @@
   </div>
 
   <ngx-dropdown [showCaret]="true">
-    <ngx-dropdown-toggle>
+    <ngx-dropdown-toggle [disabled]="isDuplicated">
       <div class="add-button">
         <ngx-icon fontIcon="plus-bold"></ngx-icon>
       </div>
@@ -50,7 +51,7 @@
         </ng-template>
         <ng-container *ngIf="schema?.items?.type">
           <li *ngIf="!_array.isArray(schema.items.type)">
-            <button type="button" (click)="addArrayItem()">Add</button>
+            <button [disabled]="isDuplicated" type="button" (click)="addArrayItem()">Add</button>
           </li>
           <ng-container *ngIf="_array.isArray(schema.items.type)">
             <li *ngFor="let type of schema.items.type">

@@ -56,6 +56,8 @@ export class ObjectNode implements OnInit, OnChanges {
   propertyId: number = 1;
   propertyIndex: PropertyIndex = {};
 
+  duplicatedFields = new Map<string, string>();
+
   dataTypeMap = dataTypeMap;
 
   constructor(protected cdr: ChangeDetectorRef) {}
@@ -116,12 +118,20 @@ export class ObjectNode implements OnInit, OnChanges {
    * @param name
    */
   updatePropertyName(id: number | string, name: string) {
+    const existingPropertyValue = this.model[name];
     const oldName = this.propertyIndex[id].propertyName;
-    this.model[name] = this.model[oldName];
-    this.propertyIndex[id].propertyName = name;
-    delete this.model[oldName];
-    this.propertyIndex = { ...this.propertyIndex };
-    this.modelChange.emit(this.model);
+
+    this.duplicatedFields.delete(id as string);
+
+    if (existingPropertyValue === undefined) {
+      this.model[name] = this.model[oldName];
+      this.propertyIndex[id].propertyName = name;
+      delete this.model[oldName];
+      this.propertyIndex = { ...this.propertyIndex };
+      this.modelChange.emit(this.model);
+    } else if (oldName !== name) {
+      this.duplicatedFields.set(id as string, name);
+    }
   }
 
   /**

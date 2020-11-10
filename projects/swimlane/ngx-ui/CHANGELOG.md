@@ -3,10 +3,7 @@
 # HEAD (unreleased)
 
 - Fix: re-infer `json-editor` node types after model change
-
-## 31.0.1 (2020-11-03)
-
-- Fix: Change \* imports to a namespaces compatible version
+- Fix: Reference leak caused when duplicating field names on a object
 - Enhancement: Add `[withMargin]` option to `ngx-input`
   - `[withMargin]` allows for consumers of `ngx-input` to remove the vertical margins that are added by the `ngx-input` itself, to take control of positioning of the `ngx-input`.
   - Default is `true` to keep the current behavior intact.
@@ -18,6 +15,10 @@
   - For `ngx-date-time`, **calendar toggle button** is positioned properly with no `label`.
 - Enhancement: Port `AutoSizeInputDirective` from `ngx-autosize-input` to `ngx-ui` because of bad implementation on first `ngModel.valueChanges` in `ngx-autosize-input`.
 - Chore: Remove `ngx-autosize-input` as a dependency.
+
+## 31.0.1 (2020-11-03)
+
+- Fix: Change \* imports to a namespaces compatible version
 
 ## 31.0.0 (2020-10-29)
 

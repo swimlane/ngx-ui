@@ -1,6 +1,6 @@
 <div [hidden]="!expanded">
   <div *ngFor="let prop of propertyIndex | objectValues; trackBy: trackBy">
-    <div class="property-def">
+    <div class="property-def" [class.invalid]="duplicatedFields.has(prop.id)">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
           <div class="type-icon">
@@ -57,6 +57,7 @@
       [required]="!!requiredCache[prop.propertyName]"
       [inline]="prop.type !== 'array' && prop.type !== 'object'"
       [path]="path + getPath(prop.propertyName)"
+      [isDuplicated]="duplicatedFields.has(prop.id)"
       [errors]="errors"
       [typeCheckOverrides]="typeCheckOverrides"
       [showKnownProperties]="showKnownProperties"
@@ -65,7 +66,7 @@
   </div>
 
   <ngx-dropdown [showCaret]="true">
-    <ngx-dropdown-toggle>
+    <ngx-dropdown-toggle [disabled]="isDuplicated">
       <div class="add-button">
         <ngx-icon fontIcon="plus-bold"></ngx-icon>
       </div>
