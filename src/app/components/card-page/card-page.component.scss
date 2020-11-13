@@ -1,6 +1,6 @@
 @import 'colors/variables';
 
-app-card-page {
+.card-page-container {
   .ngx-card {
     margin-bottom: 20px;
 
@@ -21,7 +21,8 @@ app-card-page {
       display: flex;
       color: $color-blue-400;
       font-size: 15px;
-      ngx-icon i {
+
+      i {
         margin-top: 5px;
         margin-right: 5px;
       }
@@ -35,6 +36,7 @@ app-card-page {
       justify-content: space-between;
       padding-right: 0 !important;
       color: $color-blue-grey-350;
+
       .ellipsis {
         margin-right: 12px;
         padding: 0;
@@ -47,6 +49,7 @@ app-card-page {
       border: solid 2px #3b4457;
       border-radius: 2px;
     }
+
     .ngx-card-header {
       .ngx-card-avatar {
         &--avatar {
@@ -63,20 +66,23 @@ app-card-page {
   .plugin-card {
     .ngx-card-header {
       .ngx-card-subtitle {
-        ngx-icon i {
+        i {
           margin-right: 5px;
           margin-top: 5px;
         }
       }
+
       .ngx-card-avatar .status {
         background-color: #1483ff;
       }
     }
+
     .card-description {
       width: 200px;
       color: $color-blue-grey-350;
       font-size: 14px;
     }
+
     .card-toggle {
       color: #8f9db7;
       font-size: 14px;
@@ -86,7 +92,8 @@ app-card-page {
       width: 500px;
       flex-direction: column;
       justify-content: space-around;
-      ngx-card-placeholder {
+
+      .ngx-card-placeholder {
         margin-bottom: 10px;
         width: 100%;
       }
@@ -97,6 +104,7 @@ app-card-page {
     .ngx-card-header--label {
       color: #afe43b;
     }
+
     .ngx-card-avatar {
       width: 68px;
       height: 68px;
@@ -106,18 +114,21 @@ app-card-page {
         border-color: #afe43b;
       }
     }
+
     .ngx-card-body {
       display: flex;
       flex-direction: column;
       align-items: center;
       padding-left: 27px;
       padding-right: 27px;
+
       .card-title {
         font-weight: 600;
         font-size: 21px;
         color: #f0f1f6;
         margin-bottom: 5px;
       }
+
       .card-subtitle {
         color: $color-blue-grey-200;
         font-size: 13px;
@@ -131,24 +142,29 @@ app-card-page {
         height: 68px;
         background: linear-gradient(180deg, #2b3240 0%, #262c38 100%);
         opacity: 0.7;
-        box-shadow: 0px 2px 15px rgba(7, 8, 11, 0.2);
+        box-shadow: 0 2px 15px rgba(7, 8, 11, 0.2);
         border-radius: 2px;
+
         .card-stat {
           width: 50%;
           margin: auto 0;
           text-align: center;
-          ngx-icon {
+
+          .ngx-icon {
             color: $color-blue-grey-350;
           }
+
           .card-stat--value {
             color: $color-blue-grey-100;
             font-size: 21px;
           }
+
           .card-stat--label {
             color: $color-blue-grey-350;
             font-size: 12px;
             font-weight: 600;
           }
+
           &:first-child {
             border-right: 1px solid #313847;
           }
@@ -164,13 +180,14 @@ app-card-page {
     }
 
     .ngx-card-footer {
-      ngx-icon {
+      .ngx-icon {
         cursor: pointer;
       }
 
       .card-gutter {
         margin-left: 25px;
       }
+
       .ellipsis {
         padding: 0;
       }
