@@ -105,13 +105,16 @@
       color: #afe43b;
     }
 
-    .ngx-card-avatar {
-      width: 68px;
-      height: 68px;
-      min-width: 68px;
-      min-height: 68px;
-      &--avatar {
-        border-color: #afe43b;
+    .ngx-card-header {
+      .ngx-card-avatar {
+        width: 68px;
+        height: 68px;
+        min-width: 68px;
+        min-height: 68px;
+
+        &--avatar {
+          border-color: #afe43b;
+        }
       }
     }
 

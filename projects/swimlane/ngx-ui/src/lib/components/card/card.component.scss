@@ -302,6 +302,7 @@ $card-vertical-gutter: 20px;
       align-items: center;
       top: -15px;
       left: 0;
+
       &::before,
       &::after {
         content: '';
@@ -309,9 +310,11 @@ $card-vertical-gutter: 20px;
         background: $color-blue-grey-700;
         width: 100%;
       }
+
       &::before {
         margin-right: 20px;
       }
+
       &::after {
         margin-left: 20px;
       }
