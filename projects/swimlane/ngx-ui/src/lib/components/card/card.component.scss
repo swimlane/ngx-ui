@@ -75,6 +75,7 @@ $card-vertical-gutter: 20px;
 .ngx-card-horizontal {
   position: relative;
   width: 100%;
+  min-width: 500px;
   min-height: 80px;
   height: 80px;
   transition: all 0.2s ease-in-out;
