@@ -21,6 +21,7 @@
       display: flex;
       color: $color-blue-400;
       font-size: 15px;
+      white-space: nowrap;
 
       i {
         margin-top: 5px;
@@ -78,7 +79,6 @@
     }
 
     .card-description {
-      width: 200px;
       color: $color-blue-grey-350;
       font-size: 14px;
     }
@@ -89,13 +89,15 @@
     }
 
     .placeholder {
-      width: 500px;
-      flex-direction: column;
-      justify-content: space-around;
-
-      .ngx-card-placeholder {
-        margin-bottom: 10px;
+      width: 50%;
+      .ngx-card-section {
         width: 100%;
+        flex-direction: column;
+
+        .ngx-card-placeholder {
+          margin-bottom: 10px;
+          width: 100%;
+        }
       }
     }
   }
@@ -124,19 +126,6 @@
       align-items: center;
       padding-left: 27px;
       padding-right: 27px;
-
-      .card-title {
-        font-weight: 600;
-        font-size: 21px;
-        color: #f0f1f6;
-        margin-bottom: 5px;
-      }
-
-      .card-subtitle {
-        color: $color-blue-grey-200;
-        font-size: 13px;
-        font-weight: 600;
-      }
 
       .card-stat-container {
         margin: 20px 0;

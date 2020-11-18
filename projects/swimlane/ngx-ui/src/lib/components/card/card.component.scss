@@ -110,13 +110,22 @@ $card-vertical-gutter: 20px;
     align-items: center;
     padding: 0 $card-horizontal-header-padding;
     flex-grow: 1;
+    overflow: hidden;
 
     &--title-group {
       margin-left: $card-horizontal-header-padding;
       display: flex;
       flex-direction: column;
-      width: 100%;
-      white-space: nowrap;
+      width: calc(100% - 79px); // header padding + avatar width
+
+      .ngx-card-tag,
+      .ngx-card-title,
+      .ngx-card-subtitle {
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
 
       .ngx-card-tag {
         font-weight: bold;
@@ -131,13 +140,14 @@ $card-vertical-gutter: 20px;
       }
 
       .ngx-card-subtitle {
-        display: flex;
-        align-items: center;
+        display: inline-block;
         font-weight: 600;
         font-size: 14px;
         color: $color-blue-grey-300;
-        text-overflow: ellipsis;
-        overflow: hidden;
+
+        > span {
+          display: inline-block;
+        }
       }
     }
   }
@@ -145,7 +155,6 @@ $card-vertical-gutter: 20px;
   // horizontal body
   .ngx-card-body {
     display: flex;
-    justify-content: flex-end;
 
     .ngx-card-section {
       display: flex;
@@ -279,6 +288,28 @@ $card-vertical-gutter: 20px;
   .ngx-card-body {
     flex-grow: 1;
     padding: $card-vertical-gutter 0;
+
+    .ngx-card-title,
+    .ngx-card-subtitle {
+      font-weight: 600;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+    }
+
+    .ngx-card-title {
+      font-weight: 600;
+      font-size: 21px;
+      color: #f0f1f6;
+      margin-bottom: 5px;
+    }
+
+    .ngx-card-subtitle {
+      color: $color-blue-grey-200;
+      font-size: 13px;
+    }
   }
 
   .ngx-card-footer {
