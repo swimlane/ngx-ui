@@ -4,29 +4,8 @@
   .ngx-card {
     margin-bottom: 20px;
 
-    .dot {
-      display: block;
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background-color: $color-blue-grey-400;
-      margin: 0 5px;
-    }
-
     .date-display {
       color: $color-blue-grey-400;
-    }
-
-    .view-details {
-      display: flex;
-      color: $color-blue-400;
-      font-size: 15px;
-      white-space: nowrap;
-
-      i {
-        margin-top: 5px;
-        margin-right: 5px;
-      }
     }
 
     .card-gutter {
@@ -37,11 +16,6 @@
       justify-content: space-between;
       padding-right: 0 !important;
       color: $color-blue-grey-350;
-
-      .ellipsis {
-        margin-right: 12px;
-        padding: 0;
-      }
     }
   }
 
@@ -76,11 +50,6 @@
       .ngx-card-avatar .status {
         background-color: #1483ff;
       }
-    }
-
-    .card-description {
-      color: $color-blue-grey-350;
-      font-size: 14px;
     }
 
     .card-toggle {

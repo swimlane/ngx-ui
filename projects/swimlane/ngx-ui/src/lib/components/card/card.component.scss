@@ -148,6 +148,15 @@ $card-vertical-gutter: 20px;
         > span {
           display: inline-block;
         }
+
+        .dot {
+          display: inline-block;
+          width: 3px;
+          height: 3px;
+          border-radius: 50%;
+          background-color: $color-blue-grey-400;
+          margin: 0 5px;
+        }
       }
     }
   }
@@ -163,6 +172,29 @@ $card-vertical-gutter: 20px;
       height: 100%;
       padding: 0 $card-horizontal-gutter;
       border-left: 1px #313847 solid;
+
+      &--description {
+        color: $color-blue-grey-350;
+        font-size: 14px;
+      }
+
+      .view-details {
+        display: flex;
+        color: $color-blue-400;
+        font-size: 15px;
+        font-weight: 600;
+        white-space: nowrap;
+
+        i {
+          margin-top: 5px;
+          margin-right: 5px;
+        }
+      }
+
+      .ngx-dropdown.ellipsis {
+        margin-right: 12px;
+        padding: 0;
+      }
     }
   }
 
