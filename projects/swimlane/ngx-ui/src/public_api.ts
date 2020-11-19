@@ -42,6 +42,8 @@ export * from './lib/directives/validators/pattern-validator/pattern-validator.m
 export * from './lib/directives/validators/pattern-validator/pattern-validator.directive';
 export * from './lib/directives/visibility/visibility.module';
 export * from './lib/directives/visibility/visibility.directive';
+export * from './lib/directives/autosize-input/autosize-input.module';
+export * from './lib/directives/autosize-input/autosize-input.directive';
 
 // components
 export * from './lib/components/button/button.module';

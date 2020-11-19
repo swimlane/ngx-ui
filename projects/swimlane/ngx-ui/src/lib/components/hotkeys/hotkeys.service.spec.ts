@@ -13,7 +13,7 @@ describe('HotkeysService', () => {
   });
 
   beforeEach(() => {
-    service = TestBed.get(hk.HotkeysService);
+    service = TestBed.inject(hk.HotkeysService);
   });
 
   afterEach(() => {

@@ -41,7 +41,11 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
 
   @Input() hideRoot = false;
 
+  @Input() isDuplicated = false;
+
   indentationArray: number[] = [];
+
+  duplicatedFields = new Map<string, string>();
 
   objectKeys = Object.keys;
 
@@ -70,12 +74,21 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
   }
 
   onUpdatePropertyName(options: { id: string; name: string }): void {
+    const existingSchemaProperty = this.schemaRef.properties[options.name];
+    const existingPropertyValue = this.model[options.name];
     const oldName = this.propertyIndex[options.id].propertyName;
-    const index = Object.keys(this.schemaRef.properties).findIndex(prop => prop === oldName);
-    this.updateSchemaPropertyName(this.schemaRef, options.name, this.propertyIndex[options.id].propertyName);
-    this.swapSchemaProperties(index);
-    this.updatePropertyName(options.id, options.name);
-    this.schemaUpdate.emit();
+
+    this.duplicatedFields.delete(options.id);
+
+    if (!existingSchemaProperty && existingPropertyValue === undefined) {
+      const index = Object.keys(this.schemaRef.properties).findIndex(prop => prop === oldName);
+      this.updateSchemaPropertyName(this.schemaRef, options.name, this.propertyIndex[options.id].propertyName);
+      this.swapSchemaProperties(index);
+      this.updatePropertyName(options.id, options.name);
+      this.schemaUpdate.emit();
+    } else if (oldName !== options.name) {
+      this.duplicatedFields.set(options.id, options.name);
+    }
   }
 
   onPropertyConfig(property: JSONEditorSchema, index: number): void {

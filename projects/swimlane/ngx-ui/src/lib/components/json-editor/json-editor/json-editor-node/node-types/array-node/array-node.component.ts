@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { ArrayNode } from '../../../../node-types/array-node.component';
 
 @Component({
@@ -6,4 +6,6 @@ import { ArrayNode } from '../../../../node-types/array-node.component';
   templateUrl: 'array-node.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ArrayNodeComponent extends ArrayNode {}
+export class ArrayNodeComponent extends ArrayNode {
+  @Input() isDuplicated = false;
+}
