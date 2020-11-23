@@ -6,12 +6,14 @@ $card-accent-thickness: 4px;
 $color-background-grey: linear-gradient(180deg, $color-blue-grey-750 0%, $color-blue-grey-800 100%);
 $color-background-grey-hover: linear-gradient(180deg, $color-blue-grey-725 0%, $color-blue-grey-775 100%);
 
-$card-horizontal-header-padding: 25px;
-$card-horizontal-gutter: 30px;
-
 $card-outline-border-thickness: 3px;
 
+$card-horizontal-header-padding: 25px;
+$card-horizontal-gutter: 30px;
+$card-horizontal-description-padding: 15px;
+
 $card-vertical-header-padding: 15px;
+$card-vertical-body-padding: 27px;
 $card-vertical-gutter: 20px;
 
 @keyframes cardSlideIn {
@@ -69,6 +71,19 @@ $card-vertical-gutter: 20px;
   &--accent {
     display: block;
     background: $color-accent-grey;
+  }
+
+  .dot {
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: $color-blue-grey-400;
+    margin: 3px 5px;
+  }
+
+  .ngx-dropdown.ellipsis {
+    padding: 0;
   }
 } // end of ngx-card
 
@@ -148,53 +163,76 @@ $card-vertical-gutter: 20px;
         > span {
           display: inline-block;
         }
-
-        .dot {
-          display: inline-block;
-          width: 3px;
-          height: 3px;
-          border-radius: 50%;
-          background-color: $color-blue-grey-400;
-          margin: 0 5px;
-        }
       }
     }
   }
 
-  // horizontal body
-  .ngx-card-body {
+  .ngx-card-section {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 $card-horizontal-gutter;
+    border-left: 1px #313847 solid;
 
-    .ngx-card-section {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      padding: 0 $card-horizontal-gutter;
-      border-left: 1px #313847 solid;
+    &--description {
+      flex-basis: 28%;
+      padding-top: $card-horizontal-description-padding;
+      padding-bottom: $card-horizontal-description-padding;
 
-      &--description {
+      > p {
         color: $color-blue-grey-350;
         font-size: 14px;
+        line-height: 18px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
       }
+    }
 
-      .view-details {
-        display: flex;
-        color: $color-blue-400;
-        font-size: 15px;
-        font-weight: 600;
-        white-space: nowrap;
+    &--placeholder {
+      flex-direction: column;
+      flex-basis: 20%;
 
-        i {
-          margin-top: 5px;
-          margin-right: 5px;
+      .ngx-card-placeholder {
+        margin-bottom: 10px;
+        width: 100%; // section placeholders takes up entire width
+
+        &:last-child {
+          margin-bottom: 0;
         }
       }
 
-      .ngx-dropdown.ellipsis {
-        margin-right: 12px;
-        padding: 0;
+      // width of .ngx-card-section
+      &.large {
+        flex-basis: 50%;
       }
+
+      &.medium {
+        flex-basis: 28%;
+      }
+
+      &.small {
+        flex-basis: 20%;
+      }
+    }
+
+    .view-details {
+      display: flex;
+      color: $color-blue-400;
+      font-size: 15px;
+      font-weight: 600;
+      white-space: nowrap;
+
+      i {
+        margin-top: 5px;
+        margin-right: 5px;
+      }
+    }
+
+    .ngx-dropdown.ellipsis {
+      margin-right: 12px;
     }
   }
 
@@ -318,8 +356,13 @@ $card-vertical-gutter: 20px;
   }
 
   .ngx-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     flex-grow: 1;
     padding: $card-vertical-gutter 0;
+    padding-left: $card-vertical-body-padding;
+    padding-right: $card-vertical-body-padding;
 
     .ngx-card-title,
     .ngx-card-subtitle {
@@ -382,6 +425,12 @@ $card-vertical-gutter: 20px;
       &::after {
         margin-left: 20px;
       }
+    }
+
+    .action {
+      // footer action button
+      cursor: pointer;
+      margin-right: 25px;
     }
   }
 }
