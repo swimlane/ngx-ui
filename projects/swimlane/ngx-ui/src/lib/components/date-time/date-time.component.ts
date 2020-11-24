@@ -372,16 +372,18 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     const dateInput = date.creationData().input;
     const isEmpty = dateInput === '' || dateInput === null || dateInput === undefined; // 0 is a valid date input
 
-    const isValid = date.isValid();
+    // date can be either valid, or an empty value if not required
+    const isValid = date.isValid() || (!this.required && isEmpty);
     const isInRange = !this.getDayDisabled(date);
 
     let errorMsg = '';
-    if (!isValid) errorMsg = 'Invalid Date';
-    if (!isInRange) errorMsg = 'Date out of range';
+    if (this.required && isEmpty) {
+      /* no datetime component specific error message */
+    } else if (!isValid) errorMsg = 'Invalid Date';
+    else if (!isInRange) errorMsg = 'Date out of range';
     this.errorMsg = errorMsg;
 
-    // date can be either valid, or an empty value if not required
-    return (isValid || (!this.required && isEmpty)) && isInRange;
+    return isValid && isInRange;
   }
 
   private onTouchedCallback: () => void = () => {
