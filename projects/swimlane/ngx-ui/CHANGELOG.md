@@ -2,6 +2,9 @@
 
 # HEAD (unreleased)
 
+- Enhancement: Add `required` and `requiredIndicator` inputs to `DateTimeComponent`.
+- Breaking: An empty value will no longer cause the `DateTimeComponent` to become invalid, unless it is explicitly marked as `required`.
+
 ## 31.1.0 (2020-11-10)
 
 - Fix: re-infer `json-editor` node types after model change

@@ -467,6 +467,20 @@ describe('DateTimeComponent', () => {
       expect(component.input.value).toBeDefined();
     });
 
+    it('should allow empty value if NOT required', () => {
+      component.value = '';
+      component.required = false;
+      component.onBlur();
+      expect(component.input.value).toEqual('');
+    });
+
+    it('should NOT allow empty value if required', () => {
+      component.value = '';
+      component.required = true;
+      component.onBlur();
+      expect(component.input.value).toBeUndefined();
+    });
+
     it('should invalidate and not set value', () => {
       component.value = 'test';
       component.onBlur();

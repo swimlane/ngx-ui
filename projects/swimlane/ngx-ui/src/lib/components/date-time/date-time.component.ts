@@ -134,6 +134,15 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this.displayValue = this.getDisplayValue();
   }
 
+  @Input() requiredIndicator: string | boolean = '*';
+  @Input()
+  get required() {
+    return this._required;
+  }
+  set required(required: boolean) {
+    this._required = coerceBooleanProperty(required);
+  }
+
   get value() {
     return this._value;
   }
@@ -211,6 +220,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   private _tabindex: number;
   private _autosize: boolean = false;
   private _minWidth: number = MIN_WIDTH;
+  private _required: boolean = false;
 
   constructor(private readonly dialogService: DialogService, private readonly cdr: ChangeDetectorRef) {}
 
@@ -358,15 +368,20 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
 
   private validate(date: moment.Moment) {
+    // check if date input is empty
+    const dateInput = date.creationData().input;
+    const isEmpty = dateInput === '' || dateInput === null || dateInput === undefined; // 0 is a valid date input
+
     const isValid = date.isValid();
-    const outOfRange = this.getDayDisabled(date);
+    const isInRange = !this.getDayDisabled(date);
 
     let errorMsg = '';
     if (!isValid) errorMsg = 'Invalid Date';
-    if (outOfRange) errorMsg = 'Date out of range';
+    if (!isInRange) errorMsg = 'Date out of range';
     this.errorMsg = errorMsg;
 
-    return isValid && !outOfRange;
+    // date can be either valid, or an empty value if not required
+    return (isValid || (!this.required && isEmpty)) && isInRange;
   }
 
   private onTouchedCallback: () => void = () => {
