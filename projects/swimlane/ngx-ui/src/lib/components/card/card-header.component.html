@@ -1,0 +1,11 @@
+<ng-content select="ngx-card-avatar"></ng-content>
+
+<div class="ngx-card-header--title-group">
+  <ng-content></ng-content>
+  <ng-content select="ngx-card-tag"></ng-content>
+  <ng-content select="ngx-card-title"></ng-content>
+  <ng-content select="ngx-card-subtitle"></ng-content>
+</div>
+
+<div *ngIf="label" class="ngx-card-header--label">{{label}}</div>
+
