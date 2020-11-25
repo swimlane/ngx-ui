@@ -58,6 +58,9 @@ export * from './lib/components/calendar/calendar-day.interface';
 export * from './lib/components/calendar/calendar-month.type';
 export * from './lib/components/calendar/calendar-view.enum';
 
+export * from './lib/components/card/card.module';
+export * from './lib/components/card/card.component';
+
 export * from './lib/components/checkbox/checkbox.module';
 export * from './lib/components/checkbox/checkbox.component';
 

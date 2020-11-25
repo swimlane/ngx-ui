@@ -15,6 +15,7 @@ import { TooltipService } from './components/tooltip/tooltip.service';
 
 import { ButtonModule } from './components/button/button.module';
 import { CalendarModule } from './components/calendar/calendar.module';
+import { CardModule } from './components/card/card.module';
 import { CheckboxModule } from './components/checkbox/checkbox.module';
 import { CodeEditorModule } from './components/code-editor/code-editor.module';
 import { DateTimeModule } from './components/date-time/date-time.module';
@@ -52,6 +53,7 @@ import { TreeModule } from './components/tree/tree.module';
 const modules = [
   ButtonModule,
   CalendarModule,
+  CardModule,
   CheckboxModule,
   CodeEditorModule,
   CommonModule,
