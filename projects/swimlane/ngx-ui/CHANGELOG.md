@@ -2,6 +2,10 @@
 
 # HEAD (unreleased)
 
+## 32.0.0 (2020-11-24)
+
+- Enhancement: ngx card component
+
 ## 31.1.0 (2020-11-10)
 
 - Fix: re-infer `json-editor` node types after model change
