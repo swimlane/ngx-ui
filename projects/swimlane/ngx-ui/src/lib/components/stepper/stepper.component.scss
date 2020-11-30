@@ -93,7 +93,7 @@
       .ngx-step {
         display: flex;
 
-        &.ngx-step--semi-complete {
+        &.ngx-step--complete.ngx-step--complete-last {
           .ngx-step--step {
             &:after {
               background-image: linear-gradient(to bottom, #1edeb6 0%, $color-blue-500 75%) !important;
@@ -135,19 +135,18 @@
 
   &.ngx-stepper--readonly {
     .ngx-step {
-      &.ngx-step--complete,
-      &.ngx-step--semi-complete {
+      &.ngx-step--complete {
         .ngx-step--circle {
           &:hover {
             border: initial;
             color: initial;
             box-shadow: initial;
 
-            span {
+            .ngx-step--indicator {
               opacity: initial;
             }
 
-            i {
+            i.ngx-step--complete-icon {
               opacity: initial;
             }
 

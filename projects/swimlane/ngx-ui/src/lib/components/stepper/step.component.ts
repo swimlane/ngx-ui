@@ -23,14 +23,23 @@ import { StepContentDirective } from './step-content.directive';
   host: {
     class: 'ngx-step',
     '[class.ngx-step--active]': 'step === active && active !== undefined',
-    '[class.ngx-step--semi-complete]': 'step === active - 1',
-    '[class.ngx-step--complete]': 'step < active - 1'
+    '[class.ngx-step--complete-last]': 'step === active - 1',
+    '[class.ngx-step--complete]': 'step < active'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 export class StepComponent implements OnInit {
   @Input() label?: string;
+
+  @Input()
+  get icon() {
+    return this._icon;
+  }
+  set icon(v: string) {
+    this._icon = v;
+    this._cdr.markForCheck();
+  }
 
   @Input()
   get completeIcon() {
@@ -88,6 +97,7 @@ export class StepComponent implements OnInit {
   private _active?: number;
   private _step?: number;
   private _total?: number;
+  private _icon?: string;
   private _completeIcon?: string;
 
   constructor(private readonly _cdr: ChangeDetectorRef, private readonly _el: ElementRef<HTMLElement>) {}

@@ -24,6 +24,7 @@
   <button class="btn" (click)="previous()">Previous Step</button>
   <button class="btn" (click)="next()">Next Step</button>
   <button class="btn" (click)="stepper.last()">Last Step</button>
+  <button class="btn" (click)="stepper.complete()">Complete</button>
 
   <br />
   <br />
@@ -50,14 +51,13 @@
 <ngx-section class="shadow" sectionTitle="Stepper (Custom Icon)">
   <ngx-stepper
     #stepper
-    completeIcon="ngx-icon ngx-arrow-bold-right"
     [readonly]="readonly"
     [(active)]="index"
   >
     <ngx-step
       #ngxStep
       *ngFor="let step of steps"
-      [completeIcon]="step.icon"
+      [icon]="step.icon"
     >
       <ng-template ngxStepContent>
         Step #{{ ngxStep.step + 1 }}
@@ -72,6 +72,59 @@
   <button class="btn" (click)="previous()">Previous Step</button>
   <button class="btn" (click)="next()">Next Step</button>
   <button class="btn" (click)="stepper.last()">Last Step</button>
+  <button class="btn" (click)="stepper.complete()">Complete</button>
+
+  <br />
+  <br />
+
+  <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
+  <button class="btn" (click)="addStep()">Add Step</button>
+
+  <br />
+  <br />
+
+  <app-prism>
+<![CDATA[<ngx-stepper
+  [readonly]="readonly"
+  [(active)]="index"
+>
+  <ngx-step
+    *ngFor="let step of steps"
+    [icon]="step.icon"
+  >
+    <ng-template ngxStepContent>
+    </ng-template>
+  </ngx-step>
+</ngx-stepper>]]>
+  </app-prism>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Stepper (Custom Complete Icon)">
+  <ngx-stepper
+    #stepper
+    completeIcon="ngx-icon ngx-arrow-bold-right"
+    [readonly]="readonly"
+    [(active)]="index"
+  >
+    <ngx-step
+      #ngxStep
+      *ngFor="let step of steps"
+      [completeIcon]="step.completeIcon"
+    >
+      <ng-template ngxStepContent>
+        Step #{{ ngxStep.step + 1 }}
+      </ng-template>
+    </ngx-step>
+  </ngx-stepper>
+
+  <br />
+  <br />
+
+  <button class="btn" (click)="stepper.first()">First Step</button>
+  <button class="btn" (click)="previous()">Previous Step</button>
+  <button class="btn" (click)="next()">Next Step</button>
+  <button class="btn" (click)="stepper.last()">Last Step</button>
+  <button class="btn" (click)="stepper.complete()">Complete</button>
 
   <br />
   <br />
@@ -90,7 +143,7 @@
 >
   <ngx-step
     *ngFor="let step of steps"
-    [completeIcon]="step.icon"
+    [completeIcon]="step.completeIcon"
   >
     <ng-template ngxStepContent>
     </ng-template>
@@ -110,7 +163,7 @@
       #ngxStep
       *ngFor="let step of steps"
       [label]="step.title"
-      [completeIcon]="step.icon"
+      [completeIcon]="step.completeIcon"
     >
       <ng-template ngxStepContent>
         Step #{{ ngxStep.step + 1 }}
@@ -125,6 +178,7 @@
   <button class="btn" (click)="previous()">Previous Step</button>
   <button class="btn" (click)="next()">Next Step</button>
   <button class="btn" (click)="stepper.last()">Last Step</button>
+  <button class="btn" (click)="stepper.complete()">Complete</button>
 
   <br />
   <br />

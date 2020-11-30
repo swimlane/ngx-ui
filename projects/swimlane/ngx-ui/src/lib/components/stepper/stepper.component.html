@@ -8,7 +8,7 @@
     class="ngx-stepper--bar"
     [@stepperBarHorizontalTransition]="{
       value: barState,
-      params: { width: steps.first.width * complete }
+      params: { width: steps.first.width * completeSteps }
     }"
   ></div>
 
@@ -17,7 +17,7 @@
     class="ngx-stepper--bar"
     [@stepperBarVerticalTransition]="{
       value: barState,
-      params: { height: steps.first.height * complete }
+      params: { height: steps.first.height * completeSteps }
     }"
   ></div>
 </div>
@@ -34,9 +34,7 @@
     (@stepVerticalTransition.done)="onStepAnimationEnd(i)"
   >
     <ng-container *ngIf="active === i">
-      <ng-template
-        [ngTemplateOutlet]="step.content?.first?.template"
-      ></ng-template>
+      <ng-template [ngTemplateOutlet]="step.content?.first?.template"></ng-template>
     </ng-container>
   </div>
 </ng-template>
@@ -51,9 +49,7 @@
     (@stepHorizontalTransition.done)="onStepAnimationEnd(i)"
   >
     <ng-container *ngIf="active === i">
-      <ng-template
-        [ngTemplateOutlet]="step.content?.first?.template"
-      ></ng-template>
+      <ng-template [ngTemplateOutlet]="step.content?.first?.template"></ng-template>
     </ng-container>
   </div>
 </ng-template>
