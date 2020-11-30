@@ -1,8 +1,9 @@
-<div class="circle-container">
-  <ngx-icon class="ngx-plus-menu--circle" fontIcon="add-circle-medium" (click)="onClickOpenClose()"></ngx-icon>
+<div class="ngx-plus-menu--circle-container" (click)="onClickOpenClose()" ngx-tooltip [tooltipTitle]="menuTitle">
+  <ngx-icon class="ngx-plus-menu--circle" fontIcon="add-circle-medium"></ngx-icon>
+  <span class="ngx-plus-menu--menu-title">{{ menuTitle }}</span>
 </div>
 
-<div class="content-container">
+<div class="ngx-plus-menu--content-container">
   <svg
     width="880"
     height="836"

@@ -21,23 +21,25 @@ import { PlusMenuPosition } from './plus-menu-position.enum';
 })
 export class PlusMenuComponent {
   @Input() items = [];
-
-  @HostBinding('class')
-  @Input()
-  position = PlusMenuPosition.Right;
-
+  @Input() position = PlusMenuPosition.Right;
   @Input() menuColor = '#9fce36';
+  @Input() menuTitle = '';
 
   @Output() clickItem = new EventEmitter();
   @Output() toggleMenu = new EventEmitter<boolean>();
 
   readonly PlusMenuPosition = PlusMenuPosition;
 
+  @HostBinding('class')
+  get p() {
+    return 'position-' + this.position;
+  }
+
   @HostBinding('class.open')
   open = false;
 
   @HostBinding('class.has-three')
-  get c() {
+  get s() {
     return this.items.length > 2;
   }
 

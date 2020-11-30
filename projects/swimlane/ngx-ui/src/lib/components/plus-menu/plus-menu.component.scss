@@ -10,30 +10,24 @@
   --button-size: 30px;
   --button-radius: 15px;
 
+  --icon-size: 60px;
+  --icon-background: linear-gradient(180deg, #12141a 0%, #262c38 100%);
+
   --shadow-blur: 50px;
+
+  --animation-duration: 500ms;
 
   width: var(--button-size);
   height: var(--button-size);
 
   transition-property: height width background box-shadow border-radius translate;
-  transition-duration: 500ms;
+  transition-duration: var(--animation-duration);
 
   background: rgba(var(--background-color), 0);
   box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur) rgba(var(--background-color), 0);
   border-radius: var(--button-radius);
   overflow: hidden;
   z-index: 10;
-
-  &--circle {
-    color: var(--menu-color);
-    cursor: pointer;
-    font-size: 29px;
-
-    i {
-      transform: rotate(0deg);
-      transition: transform 500ms;
-    }
-  }
 
   &.open {
     z-index: 100;
@@ -42,7 +36,28 @@
     }
   }
 
-  .content-container > svg {
+  &--circle-container {
+    color: var(--menu-color);
+    cursor: pointer;
+    font-size: 29px;
+    user-select: none;
+  }
+
+  &--circle i {
+    transform: rotate(0deg);
+    transition: transform var(--animation-duration);
+  }
+
+  &--menu-title {
+    display: none;
+    vertical-align: top;
+    font-size: 18px;
+    color: white;
+    margin-left: 5px;
+    line-height: var(--button-size);
+  }
+
+  &--content-container > svg {
     position: absolute;
     pointer-events: none;
 
@@ -85,39 +100,37 @@
       }
     }
 
-    .ngx-plus-menu--icon {
+    .ngx-plus-menu--icon,
+    .ngx-plus-menu--icon--center {
       position: absolute;
-      width: 60px;
-      height: 60px;
       text-align: center;
       font-size: 25px;
       font-weight: bold;
-      line-height: 60px;
       border-radius: 50%;
-      background: linear-gradient(180deg, #12141a 0%, #262c38 100%);
+      background: var(--icon-background);
       border: 2px solid var(--menu-color);
       color: var(--menu-color);
+      box-shadow: 0 0 10px 0 var(--menu-color);
+    }
+
+    .ngx-plus-menu--icon {
+      width: var(--icon-size);
+      height: var(--icon-size);
+      line-height: var(--icon-size);
       cursor: pointer;
     }
 
     .ngx-plus-menu--icon--center {
       display: none;
-
-      position: absolute;
       width: 16px;
       height: 16px;
-      text-align: center;
       font-size: 16px;
       line-height: 16px;
-      border-radius: 50%;
-      background: linear-gradient(180deg, #12141a 0%, #262c38 100%);
-      border: 2px solid var(--menu-color);
-      color: var(--menu-color);
     }
   }
 
-  &.right {
-    .circle-container {
+  &.position-right {
+    .ngx-plus-menu--circle-container {
       position: absolute;
       top: 0;
       right: 0;
@@ -131,7 +144,7 @@
       border-radius: var(--button-radius) var(--button-radius) var(--button-radius) var(--radial-size);
     }
 
-    .content-container > svg {
+    .ngx-plus-menu--content-container > svg {
       position: absolute;
       top: -21px;
       right: -48px;
@@ -172,8 +185,8 @@
     }
   }
 
-  &.right.has-three {
-    .content-container > svg {
+  &.position-right.has-three {
+    .ngx-plus-menu--content-container > svg {
       top: -23px;
       right: -48px;
 
@@ -220,12 +233,12 @@
     }
   }
 
-  &.bottom {
-    width: var(--button-size);
+  &.position-bottom {
+    width: var(--size);
     height: var(--button-size);
     border-radius: var(--button-radius);
 
-    .content-container {
+    .ngx-plus-menu--content-container {
       display: flex;
       justify-content: center;
 
@@ -234,28 +247,28 @@
       height: 200px;
       text-align: center;
       bottom: 40px;
+
+      > svg {
+        left: auto;
+        right: auto;
+        bottom: 0;
+
+        .bottom.two {
+          display: unset;
+        }
+        .bottom.three {
+          display: none;
+        }
+      }
     }
 
-    .circle-container {
+    .ngx-plus-menu--circle-container {
       position: absolute;
       width: 100%;
       text-align: center;
       bottom: -10px;
       left: 0;
       right: 0;
-    }
-
-    .content-container > svg {
-      left: auto;
-      right: auto;
-      bottom: 0;
-
-      .bottom.two {
-        display: unset;
-      }
-      .bottom.three {
-        display: none;
-      }
     }
 
     .ngx-plus-menu--items-container {
@@ -277,6 +290,10 @@
         top: 157px;
         left: 242px;
       }
+    }
+
+    .ngx-plus-menu--menu-title {
+      display: unset;
     }
 
     &.open {
@@ -316,8 +333,8 @@
     }
   }
 
-  &.bottom.has-three {
-    .content-container > svg {
+  &.position-bottom.has-three {
+    .ngx-plus-menu--content-container > svg {
       .bottom.two {
         display: none;
       }
@@ -371,12 +388,12 @@
     }
   }
 
-  &.top {
-    width: var(--button-size);
+  &.position-top {
+    width: var(--size);
     height: var(--button-size);
     border-radius: var(--button-radius);
 
-    .content-container {
+    .ngx-plus-menu--content-container {
       display: flex;
       justify-content: center;
 
@@ -385,9 +402,18 @@
       height: var(--size);
       text-align: center;
       top: 40px;
+
+      > svg {
+        .top.two {
+          display: unset;
+        }
+        .top.three {
+          display: none;
+        }
+      }
     }
 
-    .circle-container {
+    .ngx-plus-menu--circle-container {
       position: absolute;
       width: 100%;
       text-align: center;
@@ -396,13 +422,8 @@
       right: 0;
     }
 
-    .content-container > svg {
-      .top.two {
-        display: unset;
-      }
-      .top.three {
-        display: none;
-      }
+    .ngx-plus-menu--menu-title {
+      display: unset;
     }
 
     .ngx-plus-menu--items-container {
@@ -459,8 +480,8 @@
     }
   }
 
-  &.top.has-three {
-    .content-container > svg {
+  &.position-top.has-three {
+    .ngx-plus-menu--content-container > svg {
       .top.two {
         display: none;
       }
