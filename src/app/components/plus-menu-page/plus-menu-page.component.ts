@@ -9,7 +9,7 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/
 })
 export class PlusMenuPageComponent {
   upload = {
-    description: 'Upload',
+    description: 'Upload a plugin',
     hotkey: 'ctrl+alt+u',
     icon: 'upload-outline'
   };

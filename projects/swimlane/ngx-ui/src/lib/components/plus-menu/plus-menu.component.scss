@@ -1,3 +1,5 @@
+@import 'colors/variables';
+
 .ngx-plus-menu {
   --menu-color: #9fce36;
   --background-color: 0, 0, 0;
@@ -32,7 +34,7 @@
   &.open {
     z-index: 100;
     .ngx-plus-menu--circle i {
-      transform: rotate(225deg);
+      transform: rotate(135deg);
     }
   }
 
@@ -89,14 +91,16 @@
       height: auto;
       text-align: right;
       font-size: 18px;
+      line-height: 19px;
       font-weight: bold;
+      cursor: pointer;
 
       .keys {
         font-style: normal;
         font-weight: 600;
         font-size: 12px;
         line-height: 30px;
-        text-transform: uppercase;
+        color: $color-blue-grey-200;
       }
     }
 
@@ -116,7 +120,7 @@
     .ngx-plus-menu--icon {
       width: var(--icon-size);
       height: var(--icon-size);
-      line-height: var(--icon-size);
+      line-height: 65px;
       cursor: pointer;
     }
 

@@ -57,7 +57,7 @@ export class PlusMenuComponent {
   }
 
   onClickItem(index: number) {
-    console.log('item', index);
+    this.open = false;
     this.clickItem.emit(index);
   }
 
