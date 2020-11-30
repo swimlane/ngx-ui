@@ -69,6 +69,8 @@ export function _add(combo: string, opts: Hotkey) {
   hotkeys[combo].push(opts);
   hotkeyChangedSource.next(hotkeys);
 
+  return opts;
+
   /* istanbul ignore next */
   function callback(event: Event) {
     if (event.preventDefault) {
@@ -202,7 +204,7 @@ export class HotkeysService {
   constructor(private readonly ngZone: NgZone) {}
 
   add(combo: string, opts: Hotkey) {
-    _add(combo, { zone: this.ngZone, ...opts });
+    return _add(combo, { zone: this.ngZone, ...opts });
   }
 
   clear() {

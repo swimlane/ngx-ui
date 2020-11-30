@@ -1,0 +1,510 @@
+.ngx-plus-menu {
+  --menu-color: #9fce36;
+  --background-color: 0, 0, 0;
+  --background-opacity: 0.7;
+
+  --size: 300px;
+  --radial-size: 500px;
+  --radial-radius: 250px;
+
+  --button-size: 30px;
+  --button-radius: 15px;
+
+  --shadow-blur: 50px;
+
+  width: var(--button-size);
+  height: var(--button-size);
+
+  transition-property: height width background box-shadow border-radius translate;
+  transition-duration: 500ms;
+
+  background: rgba(var(--background-color), 0);
+  box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur) rgba(var(--background-color), 0);
+  border-radius: var(--button-radius);
+  overflow: hidden;
+  z-index: 10;
+
+  &--circle {
+    color: var(--menu-color);
+    cursor: pointer;
+    font-size: 29px;
+
+    i {
+      transform: rotate(0deg);
+      transition: transform 500ms;
+    }
+  }
+
+  &.open {
+    z-index: 100;
+    .ngx-plus-menu--circle i {
+      transform: rotate(225deg);
+    }
+  }
+
+  .content-container > svg {
+    position: absolute;
+    pointer-events: none;
+
+    > g {
+      display: none;
+    }
+
+    .arrow {
+      fill: var(--menu-color);
+    }
+
+    .arc {
+      stroke: var(--menu-color);
+    }
+  }
+
+  &--items-container {
+    position: absolute;
+    top: var(--button-size);
+    right: var(--button-size);
+
+    height: var(--radial-size);
+    width: var(--radial-size);
+    color: white;
+
+    .ngx-plus-menu--item {
+      position: absolute;
+      width: 90px;
+      height: auto;
+      text-align: right;
+      font-size: 18px;
+      font-weight: bold;
+
+      .keys {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 30px;
+        text-transform: uppercase;
+      }
+    }
+
+    .ngx-plus-menu--icon {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      text-align: center;
+      font-size: 25px;
+      font-weight: bold;
+      line-height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #12141a 0%, #262c38 100%);
+      border: 2px solid var(--menu-color);
+      color: var(--menu-color);
+      cursor: pointer;
+    }
+
+    .ngx-plus-menu--icon--center {
+      display: none;
+
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      text-align: center;
+      font-size: 16px;
+      line-height: 16px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #12141a 0%, #262c38 100%);
+      border: 2px solid var(--menu-color);
+      color: var(--menu-color);
+    }
+  }
+
+  &.right {
+    .circle-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    &.open {
+      width: var(--radial-size);
+      height: var(--radial-size);
+      background: rgba(var(--background-color), var(--background-opacity));
+      box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur) rgba(var(--background-color), var(--background-opacity));
+      border-radius: var(--button-radius) var(--button-radius) var(--button-radius) var(--radial-size);
+    }
+
+    .content-container > svg {
+      position: absolute;
+      top: -21px;
+      right: -48px;
+
+      .right.two {
+        display: unset;
+      }
+    }
+
+    .ngx-plus-menu--items-container {
+      position: absolute;
+      top: var(--button-size);
+      right: var(--button-size);
+    }
+
+    .ngx-plus-menu--item {
+      &-0 {
+        top: 57px;
+        right: 222px;
+      }
+
+      &-1 {
+        top: 217px;
+        right: 38px;
+      }
+    }
+
+    .ngx-plus-menu--icon {
+      &-0 {
+        top: 38px;
+        right: 138px;
+      }
+
+      &-1 {
+        top: 138px;
+        right: 38px;
+      }
+    }
+  }
+
+  &.right.has-three {
+    .content-container > svg {
+      top: -23px;
+      right: -48px;
+
+      .right.three {
+        display: unset;
+      }
+      .right.two {
+        display: none;
+      }
+    }
+
+    .ngx-plus-menu--item {
+      &-0 {
+        top: 16px;
+        right: 236px;
+      }
+
+      &-1 {
+        top: 150px;
+        right: 166px;
+      }
+
+      &-2 {
+        top: 235px;
+        right: -2px;
+      }
+    }
+
+    .ngx-plus-menu--icon {
+      &-0 {
+        top: -6px;
+        right: 152px;
+      }
+
+      &-1 {
+        top: 97px;
+        right: 97px;
+      }
+
+      &-2 {
+        top: 152px;
+        right: -6px;
+      }
+    }
+  }
+
+  &.bottom {
+    width: var(--button-size);
+    height: var(--button-size);
+    border-radius: var(--button-radius);
+
+    .content-container {
+      display: flex;
+      justify-content: center;
+
+      position: absolute;
+      width: 100%;
+      height: 200px;
+      text-align: center;
+      bottom: 40px;
+    }
+
+    .circle-container {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      bottom: -10px;
+      left: 0;
+      right: 0;
+    }
+
+    .content-container > svg {
+      left: auto;
+      right: auto;
+      bottom: 0;
+
+      .bottom.two {
+        display: unset;
+      }
+      .bottom.three {
+        display: none;
+      }
+    }
+
+    .ngx-plus-menu--items-container {
+      position: absolute;
+      height: var(--size);
+      width: var(--radial-size);
+      bottom: 0;
+
+      right: unset;
+      top: unset;
+
+      .ngx-plus-menu--item {
+        text-align: center;
+        height: 50px;
+      }
+
+      .ngx-plus-menu--icon--center {
+        display: unset;
+        top: 157px;
+        left: 242px;
+      }
+    }
+
+    &.open {
+      width: var(--radial-size);
+      height: var(--size);
+      background: rgba(var(--background-color), var(--background-opacity));
+      box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur) rgba(var(--background-color), var(--background-opacity));
+      border-radius: var(--radial-radius) var(--radial-radius) var(--button-radius) var(--button-radius);
+    }
+
+    .ngx-plus-menu--item {
+      &-0 {
+        top: unset;
+        bottom: 8px;
+        left: 92px;
+      }
+
+      &-1 {
+        top: unset;
+        bottom: 8px;
+        right: 96px;
+      }
+    }
+
+    .ngx-plus-menu--icon {
+      &-0 {
+        top: unset;
+        bottom: 90px;
+        right: 329px;
+      }
+
+      &-1 {
+        top: unset;
+        bottom: 90px;
+        right: 110px;
+      }
+    }
+  }
+
+  &.bottom.has-three {
+    .content-container > svg {
+      .bottom.two {
+        display: none;
+      }
+      .bottom.three {
+        display: unset;
+      }
+    }
+
+    .ngx-plus-menu--icon--center {
+      display: none;
+    }
+
+    .ngx-plus-menu--item {
+      &-0 {
+        top: unset;
+        bottom: 8px;
+        left: 56px;
+      }
+
+      &-1 {
+        top: unset;
+        bottom: 8px;
+        right: 206px;
+      }
+
+      &-2 {
+        top: unset;
+        bottom: 8px;
+        right: 56px;
+      }
+    }
+
+    .ngx-plus-menu--icon {
+      &-0 {
+        top: unset;
+        bottom: 90px;
+        right: 366px;
+      }
+
+      &-1 {
+        top: unset;
+        bottom: 124px;
+        right: 218px;
+      }
+
+      &-2 {
+        top: unset;
+        bottom: 90px;
+        right: 70px;
+      }
+    }
+  }
+
+  &.top {
+    width: var(--button-size);
+    height: var(--button-size);
+    border-radius: var(--button-radius);
+
+    .content-container {
+      display: flex;
+      justify-content: center;
+
+      position: absolute;
+      width: 100%;
+      height: var(--size);
+      text-align: center;
+      top: 40px;
+    }
+
+    .circle-container {
+      position: absolute;
+      width: 100%;
+      text-align: center;
+      top: 0;
+      left: 0;
+      right: 0;
+    }
+
+    .content-container > svg {
+      .top.two {
+        display: unset;
+      }
+      .top.three {
+        display: none;
+      }
+    }
+
+    .ngx-plus-menu--items-container {
+      position: absolute;
+      height: var(--size);
+      width: var(--radial-size);
+      bottom: 0;
+
+      right: unset;
+      top: unset;
+
+      .ngx-plus-menu--item {
+        text-align: center;
+        height: 50px;
+      }
+
+      .ngx-plus-menu--icon--center {
+        display: unset;
+        top: 69px;
+        left: 242px;
+      }
+    }
+
+    &.open {
+      height: var(--size);
+      width: var(--radial-size);
+      background: rgba(var(--background-color), var(--background-opacity));
+      box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur) rgba(var(--background-color), var(--background-opacity));
+      border-radius: var(--button-radius) var(--button-radius) var(--radial-radius) var(--radial-radius);
+    }
+
+    .ngx-plus-menu--item {
+      &-0 {
+        top: 111px;
+        left: 95px;
+      }
+
+      &-1 {
+        top: 111px;
+        right: 96px;
+      }
+    }
+
+    .ngx-plus-menu--icon {
+      &-0 {
+        top: 29px;
+        right: 329px;
+      }
+
+      &-1 {
+        top: 29px;
+        right: 110px;
+      }
+    }
+  }
+
+  &.top.has-three {
+    .content-container > svg {
+      .top.two {
+        display: none;
+      }
+      .top.three {
+        display: unset;
+      }
+    }
+
+    .ngx-plus-menu--item {
+      &-0 {
+        top: 99px;
+        left: 55px;
+      }
+
+      &-1 {
+        top: 133px;
+        right: 206px;
+      }
+
+      &-2 {
+        top: 99px;
+        right: 59px;
+      }
+    }
+
+    .ngx-plus-menu--icon {
+      &-0 {
+        top: 17px;
+        right: 368px;
+      }
+
+      &-1 {
+        top: 50px;
+        right: 220px;
+      }
+
+      &-2 {
+        top: 17px;
+        right: 72px;
+      }
+    }
+
+    .ngx-plus-menu--icon--center {
+      display: none;
+    }
+  }
+}
