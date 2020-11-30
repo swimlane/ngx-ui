@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+- Feature: add `ngx-plus-menu`
+
 ## 31.1.0 (2020-11-10)
 
 - Fix: re-infer `json-editor` node types after model change
