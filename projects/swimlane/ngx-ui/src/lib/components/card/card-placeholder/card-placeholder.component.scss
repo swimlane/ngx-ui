@@ -1,0 +1,22 @@
+@import 'colors/index.scss';
+
+.ngx-card-placeholder {
+  display: inline-block;
+  background-color: $color-blue-grey-700;
+  border-radius: 11px;
+
+  &.small {
+    height: 10px;
+    width: 35%;
+  }
+
+  &.medium {
+    height: 12px;
+    width: 30%;
+  }
+
+  &.large {
+    height: 16px;
+    width: 50%;
+  }
+}

@@ -216,6 +216,10 @@ export class AppComponent {
         {
           name: 'Tip',
           route: 'tip'
+        },
+        {
+          name: 'Card',
+          route: 'card'
         }
       ]
     }
