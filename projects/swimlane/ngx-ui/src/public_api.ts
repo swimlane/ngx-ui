@@ -226,6 +226,10 @@ export * from './lib/components/tip/tip.module';
 export * from './lib/components/tip/tip.component';
 export * from './lib/components/tip/tip-status.enum';
 
+export * from './lib/components/plus-menu/plus-menu.module';
+export * from './lib/components/plus-menu/plus-menu.component';
+export * from './lib/components/plus-menu/plus-menu-position.enum';
+
 // utils
 export * from './lib/utils/debounce/debounce.util';
 

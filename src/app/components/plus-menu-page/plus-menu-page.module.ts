@@ -5,7 +5,7 @@ import { SectionModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
 import { PlusMenuPageRoutingModule } from './plus-menu-page-routing.module';
 import { PlusMenuPageComponent } from './plus-menu-page.component';
-import { PlusMenuModule } from '@swimlane/ngx-ui/components/plus-menu/plus-menu.module';
+import { PlusMenuModule } from '@swimlane/ngx-ui';
 
 @NgModule({
   declarations: [PlusMenuPageComponent],

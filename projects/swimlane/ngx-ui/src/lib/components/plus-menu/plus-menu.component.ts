@@ -11,6 +11,13 @@ import {
 import { HotkeysService } from '../hotkeys/hotkeys.service';
 import { PlusMenuPosition } from './plus-menu-position.enum';
 
+interface PlusMenuItem {
+  description: string;
+  icon: string;
+  hotkey?: string;
+  keys?: string[];
+}
+
 @Component({
   selector: 'ngx-plus-menu',
   templateUrl: './plus-menu.component.html',
@@ -20,7 +27,7 @@ import { PlusMenuPosition } from './plus-menu-position.enum';
   encapsulation: ViewEncapsulation.None
 })
 export class PlusMenuComponent {
-  @Input() items = [];
+  @Input() items: PlusMenuItem[] = [];
   @Input() position = PlusMenuPosition.Right;
   @Input() menuColor = '#9fce36';
   @Input() menuTitle = '';
