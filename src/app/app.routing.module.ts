@@ -16,6 +16,7 @@ const routes: Routes = [
     path: 'calendar',
     loadChildren: () => import('./forms/calendar-page/calendar-page.module').then(m => m.CalendarPageModule)
   },
+  { path: 'card', loadChildren: () => import('./components/card-page/card-page.module').then(m => m.CardPageModule) },
   {
     path: 'checkbox',
     loadChildren: () => import('./forms/checkbox-page/checkbox-page.module').then(m => m.CheckboxPageModule)
