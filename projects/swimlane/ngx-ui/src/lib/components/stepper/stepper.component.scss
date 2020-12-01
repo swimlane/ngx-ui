@@ -93,7 +93,7 @@
       .ngx-step {
         display: flex;
 
-        &.ngx-step--complete.ngx-step--complete-last {
+        &.ngx-step--complete-last {
           .ngx-step--step {
             &:after {
               background-image: linear-gradient(to bottom, #1edeb6 0%, $color-blue-500 75%) !important;
@@ -160,6 +160,40 @@
       .ngx-step--circle {
         cursor: default;
         pointer-events: none !important;
+      }
+    }
+  }
+
+  &.ngx-stepper--with-progress {
+    .ngx-step {
+      &.ngx-step--active {
+        .ngx-step--step {
+          .ngx-step--circle {
+            border: none !important;
+
+            @keyframes spinner {
+              0% {
+                transform: rotate(0deg);
+              }
+              100% {
+                transform: rotate(360deg);
+              }
+            }
+
+            &::before {
+              animation: 1.5s linear infinite spinner;
+              animation-play-state: inherit;
+              border: solid 1px transparent;
+              border-bottom-color: $color-blue-500;
+              border-right-color: $color-blue-500;
+              border-radius: 50%;
+              content: '';
+              height: 100%;
+              width: 100%;
+              will-change: transform;
+            }
+          }
+        }
       }
     }
   }

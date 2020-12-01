@@ -25,80 +25,12 @@
       }
 
       .ngx-step--circle {
-        border: 1.75px solid $color-blue-500 !important;
-        color: $color-blue-500 !important;
+        border: 1.75px solid $color-blue-500;
+        color: $color-blue-500;
         box-shadow: 0px 0px 9.59842px rgba(20, 131, 255, 0.8);
 
         .marker-path {
-          fill: $color-blue-500 !important;
-        }
-      }
-    }
-  }
-
-  &.ngx-step--complete:not(.ngx-step--complete-last) {
-    .ngx-step--title {
-      color: $color-green-500;
-    }
-
-    .ngx-step--step {
-      &:after {
-        background-color: #1edeb6 !important;
-      }
-
-      .ngx-step--circle {
-        border: 1.75px solid $color-green-500 !important;
-        color: $color-green-500 !important;
-        box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
-
-        .ngx-check {
-          font-size: 0.625rem !important;
-        }
-
-        .marker-path {
-          fill: $color-green-500 !important;
-        }
-
-        .ngx-step--indicator {
-          opacity: 0 !important;
-        }
-
-        i.ngx-step--complete-icon {
-          opacity: 1 !important;
-        }
-      }
-    }
-  }
-
-  &.ngx-step--complete.ngx-step--complete-last {
-    .ngx-step--title {
-      color: $color-green-500;
-    }
-
-    .ngx-step--step {
-      &:after {
-        background-image: linear-gradient(to right, #1edeb6 0%, $color-blue-500 75%) !important;
-      }
-
-      .ngx-step--circle {
-        border: 1.75px solid $color-green-500 !important;
-        color: $color-green-500 !important;
-        box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
-
-        .ngx-check {
-          font-size: 0.625rem !important;
-        }
-
-        .marker-path {
-          fill: $color-green-500 !important;
-        }
-
-        .ngx-step--indicator {
-          opacity: 0 !important;
-        }
-
-        i.ngx-step--complete-icon {
-          opacity: 1 !important;
+          fill: $color-blue-500;
         }
       }
     }
@@ -121,6 +53,74 @@
 
         .marker-path {
           fill: $color-blue-500;
+        }
+      }
+    }
+
+    &:not(.ngx-step--complete-last) {
+      .ngx-step--title {
+        color: $color-green-500;
+      }
+
+      .ngx-step--step {
+        &:after {
+          background-color: #1edeb6 !important;
+        }
+
+        .ngx-step--circle {
+          border: 1.75px solid $color-green-500;
+          color: $color-green-500;
+          box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
+
+          .ngx-check {
+            font-size: 0.625rem !important;
+          }
+
+          .marker-path {
+            fill: $color-green-500;
+          }
+
+          .ngx-step--indicator {
+            opacity: 0;
+          }
+
+          i.ngx-step--complete-icon {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &.ngx-step--complete-last {
+      .ngx-step--title {
+        color: $color-green-500;
+      }
+
+      .ngx-step--step {
+        &:after {
+          background-image: linear-gradient(to right, #1edeb6 0%, $color-blue-500 75%) !important;
+        }
+
+        .ngx-step--circle {
+          border: 1.75px solid $color-green-500;
+          color: $color-green-500;
+          box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
+
+          .ngx-check {
+            font-size: 0.625rem !important;
+          }
+
+          .marker-path {
+            fill: $color-green-500;
+          }
+
+          .ngx-step--indicator {
+            opacity: 0;
+          }
+
+          i.ngx-step--complete-icon {
+            opacity: 1;
+          }
         }
       }
     }

@@ -28,6 +28,7 @@ import { StepperBarAnimationStates } from './stepper-bar-animation-states.enum';
   host: {
     class: 'ngx-stepper',
     '[class.ngx-stepper--readonly]': 'readonly',
+    '[class.ngx-stepper--with-progress]': 'progress',
     '[class.ngx-stepper--top]': 'position === StepperPosition.Top',
     '[class.ngx-stepper--bottom]': 'position === StepperPosition.Bottom',
     '[class.ngx-stepper--left]': 'position === StepperPosition.Left',
@@ -92,6 +93,15 @@ export class StepperComponent implements OnDestroy {
     this._cdr.markForCheck();
   }
 
+  @Input()
+  get progress() {
+    return this._progress;
+  }
+  set progress(v: boolean) {
+    this._progress = coerceBooleanProperty(v);
+    this._cdr.markForCheck();
+  }
+
   @Output() activeChange = new EventEmitter<number>();
 
   @ContentChildren(StepComponent)
@@ -138,6 +148,7 @@ export class StepperComponent implements OnDestroy {
 
   private _active: number = 0;
   private _readonly: boolean = true;
+  private _progress: boolean = false;
   private _completeIcon: string = 'ngx-icon ngx-check';
   private _steps?: QueryList<StepComponent>;
   private _barState = StepperBarAnimationStates.Stay;
