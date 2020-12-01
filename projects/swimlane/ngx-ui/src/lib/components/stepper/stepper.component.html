@@ -4,7 +4,7 @@
 
 <div class="ngx-stepper--bar-track">
   <div
-    *ngIf="!vertical"
+    *ngIf="trackBar && !vertical"
     class="ngx-stepper--bar"
     [@stepperBarHorizontalTransition]="{
       value: barState,
@@ -13,7 +13,7 @@
   ></div>
 
   <div
-    *ngIf="vertical"
+    *ngIf="trackBar && vertical"
     class="ngx-stepper--bar"
     [@stepperBarVerticalTransition]="{
       value: barState,

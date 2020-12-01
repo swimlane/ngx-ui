@@ -102,6 +102,15 @@ export class StepperComponent implements OnDestroy {
     this._cdr.markForCheck();
   }
 
+  @Input()
+  get trackBar() {
+    return this._trackBar;
+  }
+  set trackBar(v: boolean) {
+    this._trackBar = coerceBooleanProperty(v);
+    this._cdr.markForCheck();
+  }
+
   @Output() activeChange = new EventEmitter<number>();
 
   @ContentChildren(StepComponent)
@@ -148,6 +157,7 @@ export class StepperComponent implements OnDestroy {
 
   private _active: number = 0;
   private _readonly: boolean = true;
+  private _trackBar: boolean = true;
   private _progress: boolean = false;
   private _completeIcon: string = 'ngx-icon ngx-check';
   private _steps?: QueryList<StepComponent>;
