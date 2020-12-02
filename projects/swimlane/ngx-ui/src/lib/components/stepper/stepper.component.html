@@ -8,7 +8,7 @@
     class="ngx-stepper--bar"
     [@stepperBarHorizontalTransition]="{
       value: barState,
-      params: { width: steps.first.width * completeSteps }
+      params: { xOffset: steps.first.width * completeSteps, width: steps.first.stepWidth }
     }"
   ></div>
 
@@ -17,7 +17,7 @@
     class="ngx-stepper--bar"
     [@stepperBarVerticalTransition]="{
       value: barState,
-      params: { height: steps.first.height * completeSteps }
+      params: { yOffset: steps.first.height * completeSteps, height: steps.first.stepHeight }
     }"
   ></div>
 </div>

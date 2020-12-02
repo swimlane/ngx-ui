@@ -13,7 +13,7 @@
     .ngx-step--title {
       position: absolute;
       display: inline-block;
-      transform: translateX(calc(-50% + 14px));
+      transform: translateX(calc(-50% + #{$stepper-size} / 2));
       text-align: center;
       font-size: 12px;
     }
@@ -221,6 +221,43 @@
 
     &.active {
       display: initial;
+    }
+  }
+
+  // for large icons
+  &.ngx-stepper--lg {
+    .ngx-stepper--steps {
+      min-width: $stepper-size-lg;
+
+      .ngx-step {
+        .ngx-step--step {
+          .ngx-step--circle {
+            width: $stepper-size-lg;
+            height: $stepper-size-lg;
+            font-size: $stepper-size-lg / 2;
+          }
+        }
+      }
+    }
+
+    &.ngx-stepper--top,
+    &.ngx-stepper--bottom {
+      .ngx-step--title {
+        transform: translateX(calc(-50% + #{$stepper-size-lg} / 2));
+      }
+    }
+
+    &.ngx-stepper--left,
+    &.ngx-stepper--right {
+      .ngx-stepper--steps {
+        .ngx-step {
+          .ngx-step--step {
+            &:after {
+              min-height: $stepper-size-lg;
+            }
+          }
+        }
+      }
     }
   }
 }

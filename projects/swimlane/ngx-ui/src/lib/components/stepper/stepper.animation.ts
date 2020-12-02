@@ -3,9 +3,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { StepperAnimationStates } from './stepper-animation-states.enum';
 import { StepperBarAnimationStates } from './stepper-bar-animation-states.enum';
 
-const BAR_SIZE = 40;
 const BAR_THICKNESS = 2;
-const STEP_SIZE = 28;
+const BAR_STEP_RATIO = 1.4;
 
 export const stepperAnimations = {
   horizontalStepTransition: trigger('stepHorizontalTransition', [
@@ -27,23 +26,25 @@ export const stepperAnimations = {
       StepperBarAnimationStates.Stay,
       style({
         transition: '500ms cubic-bezier(0.35, 0, 0.25, 1)',
-        transform: 'translateX({{ width }}px)',
+        transform: 'translateX({{ xOffset }}px)',
         height: `${BAR_THICKNESS}px`,
-        width: `${BAR_SIZE}px`,
-        margin: `0 0 0 -${(BAR_SIZE - STEP_SIZE) / 2}px`
+        width: `calc(${BAR_STEP_RATIO} * {{ width }}px)`,
+        margin: `0 0 0 calc(-1 * ( ${BAR_STEP_RATIO - 1} * {{ width }}px) / 2)`
       }),
-      { params: { width: 0 } }
+      { params: { xOffset: 0, width: 0 } }
     ),
     state(
       StepperBarAnimationStates.Move,
       style({
         transition: '500ms cubic-bezier(0.35, 0, 0.25, 1)',
-        transform: 'translateX({{ width }}px)',
+        transform: 'translateX({{ xOffset }}px)',
         height: `${BAR_THICKNESS}px`,
-        width: `${BAR_SIZE / 2}px`,
-        margin: `0 ${BAR_SIZE / 4}px 0 ${BAR_SIZE / 4 - (BAR_SIZE - STEP_SIZE) / 2}px`
+        width: `calc({{ width }}px * ${BAR_STEP_RATIO} / 2)`,
+        margin: `0 calc(${BAR_STEP_RATIO} * {{ width }}px / 4) 0 calc(${BAR_STEP_RATIO} * {{ width }}px / 4 - ${
+          BAR_STEP_RATIO - 1
+        } * {{ width }}px / 2)`
       }),
-      { params: { width: 0 } }
+      { params: { xOffset: 0, width: 0 } }
     )
   ]),
 
@@ -52,23 +53,25 @@ export const stepperAnimations = {
       StepperBarAnimationStates.Stay,
       style({
         transition: '500ms cubic-bezier(0.35, 0, 0.25, 1)',
-        transform: 'translateY({{ height }}px)',
+        transform: 'translateY({{ yOffset }}px)',
         width: `${BAR_THICKNESS}px`,
-        height: `${BAR_SIZE}px`,
-        margin: `-${(BAR_SIZE - STEP_SIZE) / 2}px 0 0 0`
+        height: `calc(${BAR_STEP_RATIO} * {{ height }}px)`,
+        margin: `calc(-1 * ( ${BAR_STEP_RATIO - 1} * {{ height }}px) / 2) 0 0 0`
       }),
-      { params: { height: 0 } }
+      { params: { yOffset: 0, height: 0 } }
     ),
     state(
       StepperBarAnimationStates.Move,
       style({
         transition: '500ms cubic-bezier(0.35, 0, 0.25, 1)',
-        transform: 'translateY({{ height }}px)',
+        transform: 'translateY({{ yOffset }}px)',
         width: `${BAR_THICKNESS}px`,
-        height: `${BAR_SIZE / 2}px`,
-        margin: `${BAR_SIZE / 4 - (BAR_SIZE - STEP_SIZE) / 2}px 0 ${BAR_SIZE / 4}px`
+        height: `calc({{ height }}px * ${BAR_STEP_RATIO} / 2)`,
+        margin: `calc(${BAR_STEP_RATIO} * {{ height }}px / 4 - ${
+          BAR_STEP_RATIO - 1
+        } * {{ height }}px / 2) 0 calc(${BAR_STEP_RATIO} * {{ height }}px / 4)`
       }),
-      { params: { height: 0 } }
+      { params: { yOffset: 0, height: 0 } }
     )
   ])
 };

@@ -72,10 +72,6 @@
           color: $color-green-500;
           box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
 
-          .ngx-check {
-            font-size: 0.625rem !important;
-          }
-
           .marker-path {
             fill: $color-green-500;
           }
@@ -105,10 +101,6 @@
           border: 1.75px solid $color-green-500;
           color: $color-green-500;
           box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
-
-          .ngx-check {
-            font-size: 0.625rem !important;
-          }
 
           .marker-path {
             fill: $color-green-500;
@@ -159,10 +151,10 @@
       width: $stepper-size;
       height: $stepper-size;
       background: linear-gradient(180deg, $color-blue-grey-750 0%, $color-blue-grey-850 100%);
-      border-radius: 50px;
+      border-radius: 50%;
       border: 1.75px solid $color-blue-grey-600;
       color: $color-blue-grey-600;
-      font-size: 0.875rem;
+      font-size: $stepper-size / 2;
       font-weight: bold;
       transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
       user-select: none;

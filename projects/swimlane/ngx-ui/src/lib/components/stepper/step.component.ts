@@ -94,6 +94,14 @@ export class StepComponent implements OnInit {
     return this._el.nativeElement.clientWidth;
   }
 
+  get stepHeight() {
+    return this._el.nativeElement.querySelector('.ngx-step--circle').clientHeight;
+  }
+
+  get stepWidth() {
+    return this._el.nativeElement.querySelector('.ngx-step--circle').clientWidth;
+  }
+
   private _active?: number;
   private _step?: number;
   private _total?: number;
