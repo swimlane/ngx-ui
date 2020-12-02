@@ -6,7 +6,11 @@ import {
   Output,
   EventEmitter,
   HostBinding,
-  ElementRef
+  ElementRef,
+  Renderer2,
+  ChangeDetectorRef,
+  OnInit,
+  OnDestroy
 } from '@angular/core';
 import { HotkeysService } from '../hotkeys/hotkeys.service';
 import { PlusMenuPosition } from './plus-menu-position.enum';
@@ -26,11 +30,12 @@ interface PlusMenuItem {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class PlusMenuComponent {
+export class PlusMenuComponent implements OnInit, OnDestroy {
   @Input() items: PlusMenuItem[] = [];
   @Input() position = PlusMenuPosition.Right;
   @Input() menuColor = '#9fce36';
   @Input() menuTitle = '';
+  @Input() closeOnClickOutside = true;
 
   @Output() clickItem = new EventEmitter();
   @Output() toggleMenu = new EventEmitter<boolean>();
@@ -50,22 +55,55 @@ export class PlusMenuComponent {
     return this.items.length > 2;
   }
 
-  constructor(private hotkeysService: HotkeysService, private elementRef: ElementRef) {}
+  private documentClickEvent: () => void;
 
-  ngOnInit() {
+  constructor(
+    private readonly hotkeysService: HotkeysService,
+    private readonly elementRef: ElementRef,
+    private readonly renderer: Renderer2,
+    private readonly cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
     this.initKeys();
 
     this.elementRef.nativeElement.style.setProperty('--menu-color', this.menuColor);
   }
 
-  onClickOpenClose() {
-    this.open = !this.open;
-    this.toggleMenu.emit(this.open);
+  ngOnDestroy(): void {
+    if (this.documentClickEvent) this.documentClickEvent();
   }
 
-  onClickItem(index: number) {
-    this.open = false;
+  onClickOpenClose(): void {
+    return this.open ? this.closeMenu() : this.openMenu();
+  }
+
+  onClickItem(index: number): void {
+    this.closeMenu();
     this.clickItem.emit(index);
+  }
+
+  private openMenu(): void {
+    this.open = true;
+    this.toggleMenu.emit(true);
+    this.cdr.markForCheck();
+
+    if (this.closeOnClickOutside) {
+      this.documentClickEvent = this.renderer.listen(document, 'click', event => {
+        const parentContains = this.elementRef.nativeElement.contains(event.target);
+        if (!parentContains && this.open) {
+          this.closeMenu();
+        }
+      });
+    }
+  }
+
+  private closeMenu(): void {
+    this.open = false;
+    this.toggleMenu.emit(false);
+    this.cdr.markForCheck();
+
+    if (this.documentClickEvent) this.documentClickEvent();
   }
 
   private initKeys() {

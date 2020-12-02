@@ -24,4 +24,8 @@ export class PlusMenuPageComponent {
     description: 'Search',
     icon: 'search'
   };
+
+  onClick($event) {
+    console.log($event);
+  }
 }
