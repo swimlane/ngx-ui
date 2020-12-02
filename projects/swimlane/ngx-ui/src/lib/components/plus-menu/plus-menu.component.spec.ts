@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HotkeysModule } from '../hotkeys/hotkeys.module';
+import { TooltipModule } from '../tooltip/tooltip.module';
 
 import { PlusMenuComponent } from './plus-menu.component';
 
@@ -9,7 +10,7 @@ describe('PlusMenuComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HotkeysModule],
+      imports: [HotkeysModule, TooltipModule],
       declarations: [PlusMenuComponent]
     }).compileComponents();
   });

@@ -31,8 +31,14 @@
   overflow: hidden;
   z-index: 10;
 
+  &--circle i {
+    transform: rotate(0deg);
+    transition: transform var(--animation-duration);
+  }
+
   &.open {
     z-index: 100;
+
     .ngx-plus-menu--circle i {
       transform: rotate(135deg);
     }
@@ -43,11 +49,6 @@
     cursor: pointer;
     font-size: 29px;
     user-select: none;
-  }
-
-  &--circle i {
-    transform: rotate(0deg);
-    transition: transform var(--animation-duration);
   }
 
   &--menu-title {
@@ -194,11 +195,14 @@
       top: -23px;
       right: -48px;
 
-      .right.three {
-        display: unset;
-      }
-      .right.two {
-        display: none;
+      .right {
+        &.three {
+          display: unset;
+        }
+
+        &.two {
+          display: none;
+        }
       }
     }
 
@@ -257,11 +261,14 @@
         right: auto;
         bottom: 0;
 
-        .bottom.two {
-          display: unset;
-        }
-        .bottom.three {
-          display: none;
+        .bottom {
+          &.two {
+            display: unset;
+          }
+
+          &.three {
+            display: none;
+          }
         }
       }
     }
@@ -339,11 +346,14 @@
 
   &.position-bottom.has-three {
     .ngx-plus-menu--content-container > svg {
-      .bottom.two {
-        display: none;
-      }
-      .bottom.three {
-        display: unset;
+      .bottom {
+        &.two {
+          display: none;
+        }
+
+        &.three {
+          display: unset;
+        }
       }
     }
 
@@ -408,11 +418,14 @@
       top: 40px;
 
       > svg {
-        .top.two {
-          display: unset;
-        }
-        .top.three {
-          display: none;
+        .top {
+          &.two {
+            display: unset;
+          }
+
+          &.three {
+            display: none;
+          }
         }
       }
     }
@@ -486,11 +499,14 @@
 
   &.position-top.has-three {
     .ngx-plus-menu--content-container > svg {
-      .top.two {
-        display: none;
-      }
-      .top.three {
-        display: unset;
+      .top {
+        &.two {
+          display: none;
+        }
+
+        &.three {
+          display: unset;
+        }
       }
     }
 
