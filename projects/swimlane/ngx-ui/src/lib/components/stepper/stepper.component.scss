@@ -6,10 +6,15 @@
   position: relative;
   flex-direction: column;
   overflow: hidden;
-  padding: 10px;
+  padding: $stepper-padding;
 
   &.ngx-stepper--top,
   &.ngx-stepper--bottom {
+    .ngx-stepper--steps {
+      margin-left: $stepper-trackbar-margin;
+      margin-right: $stepper-trackbar-margin;
+    }
+
     .ngx-step--title {
       position: absolute;
       display: inline-block;
@@ -22,7 +27,7 @@
   &.ngx-stepper--top {
     .ngx-stepper--bar {
       bottom: 0;
-      margin-top: 10px;
+      margin-top: $stepper-padding;
     }
 
     .ngx-step--title {
@@ -35,7 +40,7 @@
 
     .ngx-stepper--bar {
       top: 0;
-      margin-bottom: 10px;
+      margin-bottom: $stepper-padding;
     }
 
     .ngx-step--title {
@@ -50,7 +55,7 @@
       flex-direction: row;
 
       .ngx-step--title {
-        margin-right: 10px;
+        margin-right: $stepper-padding;
       }
     }
 
@@ -59,7 +64,7 @@
 
       .ngx-stepper--bar {
         right: 0;
-        margin-left: 10px;
+        margin-left: $stepper-padding;
       }
     }
   }
@@ -71,7 +76,7 @@
       flex-direction: row-reverse;
 
       .ngx-step--title {
-        margin-left: 10px;
+        margin-left: $stepper-padding;
       }
     }
 
@@ -80,7 +85,7 @@
 
       .ngx-stepper--bar {
         left: 0;
-        margin-right: 10px;
+        margin-right: $stepper-padding;
       }
     }
   }
@@ -88,6 +93,8 @@
   &.ngx-stepper--left,
   &.ngx-stepper--right {
     .ngx-stepper--steps {
+      margin-top: $stepper-trackbar-margin;
+      margin-bottom: $stepper-trackbar-margin;
       flex-direction: column;
 
       .ngx-step {
@@ -243,6 +250,11 @@
 
     &.ngx-stepper--top,
     &.ngx-stepper--bottom {
+      .ngx-stepper--steps {
+        margin-left: $stepper-trackbar-margin-lg;
+        margin-right: $stepper-trackbar-margin-lg;
+      }
+
       .ngx-step--title {
         transform: translateX(calc(-50% + #{$stepper-size-lg} / 2));
       }
@@ -251,6 +263,9 @@
     &.ngx-stepper--left,
     &.ngx-stepper--right {
       .ngx-stepper--steps {
+        margin-top: $stepper-trackbar-margin-lg;
+        margin-bottom: $stepper-trackbar-margin-lg;
+
         .ngx-step {
           .ngx-step--step {
             &:after {

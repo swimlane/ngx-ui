@@ -38,7 +38,6 @@ export class StepComponent implements OnInit {
   }
   set icon(v: string) {
     this._icon = v;
-    this._cdr.markForCheck();
   }
 
   @Input()
@@ -95,11 +94,11 @@ export class StepComponent implements OnInit {
   }
 
   get stepHeight() {
-    return this._el.nativeElement.querySelector('.ngx-step--circle').clientHeight;
+    return (this._el.nativeElement.querySelector('.ngx-step--circle') as HTMLElement).offsetHeight;
   }
 
   get stepWidth() {
-    return this._el.nativeElement.querySelector('.ngx-step--circle').clientWidth;
+    return (this._el.nativeElement.querySelector('.ngx-step--circle') as HTMLElement).offsetWidth;
   }
 
   private _active?: number;

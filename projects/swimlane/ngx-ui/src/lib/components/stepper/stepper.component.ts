@@ -61,7 +61,6 @@ export class StepperComponent implements OnDestroy {
     }
 
     this._completeIcon = v;
-    this._cdr.markForCheck();
   }
 
   @Input()
@@ -81,7 +80,6 @@ export class StepperComponent implements OnDestroy {
       }
 
       this.activeChange.emit(this._active);
-      this._cdr.markForCheck();
     }
   }
 
@@ -91,7 +89,6 @@ export class StepperComponent implements OnDestroy {
   }
   set readonly(v: boolean) {
     this._readonly = coerceBooleanProperty(v);
-    this._cdr.markForCheck();
   }
 
   @Input()
@@ -100,7 +97,6 @@ export class StepperComponent implements OnDestroy {
   }
   set progress(v: boolean) {
     this._progress = coerceBooleanProperty(v);
-    this._cdr.markForCheck();
   }
 
   @Input()
@@ -109,7 +105,6 @@ export class StepperComponent implements OnDestroy {
   }
   set large(v: boolean) {
     this._large = coerceBooleanProperty(v);
-    this._cdr.markForCheck();
   }
 
   @Input()
@@ -118,7 +113,6 @@ export class StepperComponent implements OnDestroy {
   }
   set trackBar(v: boolean) {
     this._trackBar = coerceBooleanProperty(v);
-    this._cdr.markForCheck();
   }
 
   @Output() activeChange = new EventEmitter<number>();
