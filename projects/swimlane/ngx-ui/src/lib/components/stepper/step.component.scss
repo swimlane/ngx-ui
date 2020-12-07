@@ -27,7 +27,7 @@
       .ngx-step--circle {
         border: 1.75px solid $color-blue-500;
         color: $color-blue-500;
-        box-shadow: 0px 0px 9.59842px rgba(20, 131, 255, 0.8);
+        box-shadow: none; // remove shadow when active
 
         .marker-path {
           fill: $color-blue-500;
