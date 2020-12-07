@@ -64,7 +64,7 @@
 
       .ngx-step--step {
         &:after {
-          background-color: #1edeb6 !important;
+          background-color: $color-green-500 !important;
         }
 
         .ngx-step--circle {

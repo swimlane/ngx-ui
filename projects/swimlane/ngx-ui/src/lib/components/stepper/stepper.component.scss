@@ -276,4 +276,55 @@
       }
     }
   }
+
+  // for complete steps highlight
+  &.ngx-stepper--no-highlight {
+    .ngx-stepper--steps {
+      .ngx-step {
+        &.ngx-step--complete {
+          &:not(.ngx-step--complete-last) {
+            .ngx-step--title {
+              color: $color-blue-500;
+            }
+
+            .ngx-step--step {
+              &:after {
+                background-color: $color-blue-500 !important;
+              }
+
+              .ngx-step--circle {
+                border-color: $color-blue-500;
+                color: $color-blue-500;
+
+                .marker-path {
+                  fill: $color-blue-500;
+                }
+              }
+            }
+          }
+
+          &.ngx-step--complete-last {
+            .ngx-step--title {
+              color: $color-blue-500;
+            }
+
+            .ngx-step--step {
+              &:after {
+                background-image: linear-gradient(to right, $color-blue-500 0%, $color-blue-500 75%) !important;
+              }
+
+              .ngx-step--circle {
+                border-color: $color-blue-500;
+                color: $color-blue-500;
+
+                .marker-path {
+                  fill: $color-blue-500;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -5,6 +5,7 @@
 - Feature(Stepper): Add `[large]` input to increase the default icon size.
 - Feature(Stepper): Add `[trackBar]` input to make track bar optional.
 - Feature(Stepper): Add `[progress]` input to show a progress indicator on the active step.
+- Feature(Stepper): Add `[removeHighlight]` input to remove highlight color for the completed steps.
 - Feature(Stepper): Add `[icon]` input to show an icon instead of the step number.
 - Feature(Stepper): Add `.complete()` method to complete every step (including the last one).
 

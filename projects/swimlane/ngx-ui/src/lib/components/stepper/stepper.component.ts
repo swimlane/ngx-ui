@@ -30,6 +30,7 @@ import { StepperBarAnimationStates } from './stepper-bar-animation-states.enum';
     '[class.ngx-stepper--readonly]': 'readonly',
     '[class.ngx-stepper--with-progress]': 'progress',
     '[class.ngx-stepper--lg]': 'large',
+    '[class.ngx-stepper--no-highlight]': 'removeHighlight',
     '[class.ngx-stepper--top]': 'position === StepperPosition.Top',
     '[class.ngx-stepper--bottom]': 'position === StepperPosition.Bottom',
     '[class.ngx-stepper--left]': 'position === StepperPosition.Left',
@@ -108,6 +109,14 @@ export class StepperComponent implements OnDestroy {
   }
 
   @Input()
+  get removeHighlight() {
+    return this._removeHighlight;
+  }
+  set removeHighlight(v: boolean) {
+    this._removeHighlight = coerceBooleanProperty(v);
+  }
+
+  @Input()
   get trackBar() {
     return this._trackBar;
   }
@@ -164,6 +173,7 @@ export class StepperComponent implements OnDestroy {
   private _trackBar: boolean = true;
   private _progress: boolean = false;
   private _large: boolean = false;
+  private _removeHighlight: boolean = false;
   private _completeIcon: string = 'ngx-icon ngx-check';
   private _steps?: QueryList<StepComponent>;
   private _barState = StepperBarAnimationStates.Stay;
