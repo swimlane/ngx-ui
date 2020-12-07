@@ -2,7 +2,7 @@
 
 .ngx-plus-menu {
   --menu-color: #9fce36;
-  --background-color: 0, 0, 0;
+  --background-color: 7, 8, 11; // .color-blue-grey-900
   --background-opacity: 0.7;
 
   --size: 300px;
@@ -93,13 +93,13 @@
       text-align: right;
       font-size: 18px;
       line-height: 19px;
-      font-weight: bold;
+      font-weight: 600;
       cursor: pointer;
 
       .keys {
         font-style: normal;
         font-weight: 600;
-        font-size: 12px;
+        font-size: 13px;
         line-height: 30px;
         color: $color-blue-grey-200;
       }
