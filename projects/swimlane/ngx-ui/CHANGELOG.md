@@ -2,6 +2,7 @@
 
 # HEAD (unreleased)
 
+- Feature: add `ngx-plus-menu`
 - Feature(Stepper): Add `[large]` input to increase the default icon size.
 - Feature(Stepper): Add `[trackBar]` input to make track bar optional.
 - Feature(Stepper): Add `[progress]` input to show a progress indicator on the active step.

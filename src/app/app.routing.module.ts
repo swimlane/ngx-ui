@@ -86,6 +86,10 @@ const routes: Routes = [
   },
   { path: 'pipes', loadChildren: () => import('./pipes-page/pipes-page.module').then(m => m.PipesPageModule) },
   {
+    path: 'plus-menu',
+    loadChildren: () => import('./components/plus-menu-page/plus-menu-page.module').then(m => m.PlusMenuPageModule)
+  },
+  {
     path: 'progress-spinner',
     loadChildren: () =>
       import('./components/progress-spinner-page/progress-spinner-page.module').then(m => m.ProgressSpinnerPageModule)
