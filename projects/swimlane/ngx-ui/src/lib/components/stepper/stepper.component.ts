@@ -28,6 +28,9 @@ import { StepperBarAnimationStates } from './stepper-bar-animation-states.enum';
   host: {
     class: 'ngx-stepper',
     '[class.ngx-stepper--readonly]': 'readonly',
+    '[class.ngx-stepper--with-progress]': 'progress',
+    '[class.ngx-stepper--lg]': 'large',
+    '[class.ngx-stepper--no-highlight]': 'removeHighlight',
     '[class.ngx-stepper--top]': 'position === StepperPosition.Top',
     '[class.ngx-stepper--bottom]': 'position === StepperPosition.Bottom',
     '[class.ngx-stepper--left]': 'position === StepperPosition.Left',
@@ -59,7 +62,6 @@ export class StepperComponent implements OnDestroy {
     }
 
     this._completeIcon = v;
-    this._cdr.markForCheck();
   }
 
   @Input()
@@ -69,7 +71,7 @@ export class StepperComponent implements OnDestroy {
   set active(v: number) {
     v = coerceNumberProperty(v);
 
-    if (v !== undefined && !isNaN(v) && v !== this._active && v >= 0 && (!this._steps || v < this._steps.length)) {
+    if (v !== undefined && !isNaN(v) && v !== this._active && v >= 0 && (!this._steps || v <= this._steps.length)) {
       this._active = v;
 
       if (this._steps) {
@@ -79,7 +81,6 @@ export class StepperComponent implements OnDestroy {
       }
 
       this.activeChange.emit(this._active);
-      this._cdr.markForCheck();
     }
   }
 
@@ -89,7 +90,38 @@ export class StepperComponent implements OnDestroy {
   }
   set readonly(v: boolean) {
     this._readonly = coerceBooleanProperty(v);
-    this._cdr.markForCheck();
+  }
+
+  @Input()
+  get progress() {
+    return this._progress;
+  }
+  set progress(v: boolean) {
+    this._progress = coerceBooleanProperty(v);
+  }
+
+  @Input()
+  get large() {
+    return this._large;
+  }
+  set large(v: boolean) {
+    this._large = coerceBooleanProperty(v);
+  }
+
+  @Input()
+  get removeHighlight() {
+    return this._removeHighlight;
+  }
+  set removeHighlight(v: boolean) {
+    this._removeHighlight = coerceBooleanProperty(v);
+  }
+
+  @Input()
+  get trackBar() {
+    return this._trackBar;
+  }
+  set trackBar(v: boolean) {
+    this._trackBar = coerceBooleanProperty(v);
   }
 
   @Output() activeChange = new EventEmitter<number>();
@@ -122,7 +154,7 @@ export class StepperComponent implements OnDestroy {
     this._cdr.markForCheck();
   }
 
-  get complete() {
+  get completeSteps() {
     return this._steps.filter(s => s.step < this.active).length;
   }
 
@@ -138,6 +170,10 @@ export class StepperComponent implements OnDestroy {
 
   private _active: number = 0;
   private _readonly: boolean = true;
+  private _trackBar: boolean = true;
+  private _progress: boolean = false;
+  private _large: boolean = false;
+  private _removeHighlight: boolean = false;
   private _completeIcon: string = 'ngx-icon ngx-check';
   private _steps?: QueryList<StepComponent>;
   private _barState = StepperBarAnimationStates.Stay;
@@ -168,6 +204,10 @@ export class StepperComponent implements OnDestroy {
 
   last() {
     this.active = this._steps.length - 1;
+  }
+
+  complete() {
+    this.active = this._steps.length;
   }
 
   onResize() {

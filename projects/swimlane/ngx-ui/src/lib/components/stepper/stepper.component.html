@@ -4,20 +4,20 @@
 
 <div class="ngx-stepper--bar-track">
   <div
-    *ngIf="!vertical"
+    *ngIf="trackBar && !vertical"
     class="ngx-stepper--bar"
     [@stepperBarHorizontalTransition]="{
       value: barState,
-      params: { width: steps.first.width * complete }
+      params: { xOffset: steps.first.width * completeSteps, width: steps.first.stepWidth }
     }"
   ></div>
 
   <div
-    *ngIf="vertical"
+    *ngIf="trackBar && vertical"
     class="ngx-stepper--bar"
     [@stepperBarVerticalTransition]="{
       value: barState,
-      params: { height: steps.first.height * complete }
+      params: { yOffset: steps.first.height * completeSteps, height: steps.first.stepHeight }
     }"
   ></div>
 </div>
@@ -34,9 +34,7 @@
     (@stepVerticalTransition.done)="onStepAnimationEnd(i)"
   >
     <ng-container *ngIf="active === i">
-      <ng-template
-        [ngTemplateOutlet]="step.content?.first?.template"
-      ></ng-template>
+      <ng-template [ngTemplateOutlet]="step.content?.first?.template"></ng-template>
     </ng-container>
   </div>
 </ng-template>
@@ -51,9 +49,7 @@
     (@stepHorizontalTransition.done)="onStepAnimationEnd(i)"
   >
     <ng-container *ngIf="active === i">
-      <ng-template
-        [ngTemplateOutlet]="step.content?.first?.template"
-      ></ng-template>
+      <ng-template [ngTemplateOutlet]="step.content?.first?.template"></ng-template>
     </ng-container>
   </div>
 </ng-template>
