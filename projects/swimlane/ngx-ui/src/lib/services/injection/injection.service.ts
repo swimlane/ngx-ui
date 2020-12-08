@@ -129,7 +129,7 @@ export class InjectionService {
   }
 
   /**
-   * Appends a component to a adjacent location
+   * Appends a component to an adjacent location
    *
    * @param componentClass
    * @param [options={}]

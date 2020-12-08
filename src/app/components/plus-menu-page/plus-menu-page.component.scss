@@ -1,0 +1,41 @@
+app-plus-menu-page {
+  .container-right,
+  .container-bottom,
+  .container-top {
+    position: relative;
+
+    ngx-plus-menu {
+      position: absolute;
+    }
+  }
+
+  app-prism {
+    margin-top: 30px;
+    display: block;
+  }
+
+  .container-right {
+    ngx-plus-menu {
+      top: -20px;
+      right: 0;
+    }
+  }
+
+  .container-bottom {
+    display: flex;
+    justify-content: center;
+
+    ngx-plus-menu {
+      bottom: -10px;
+    }
+  }
+
+  .container-top {
+    display: flex;
+    justify-content: center;
+
+    ngx-plus-menu {
+      top: -20px;
+    }
+  }
+}
