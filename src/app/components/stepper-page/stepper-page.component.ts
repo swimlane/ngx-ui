@@ -8,11 +8,11 @@ import { StepperPosition } from '@swimlane/ngx-ui';
 })
 export class StepperPageComponent {
   readonly StepperPosition = StepperPosition;
-  readonly steps: Array<{ readonly title: string; readonly icon?: string }> = [
-    { title: 'step 1' },
-    { title: 'step 2' },
-    { title: 'step 3' },
-    { title: 'step 4' }
+  readonly steps: Array<{ readonly title: string; readonly icon?: string; readonly completeIcon?: string }> = [
+    { title: 'step 1', icon: 'ngx-icon ngx-cloud-download' },
+    { title: 'step 2', icon: 'ngx-icon ngx-rocket' },
+    { title: 'step 3', icon: 'ngx-icon ngx-bell-alarm' },
+    { title: 'step 4', icon: 'ngx-icon ngx-cloud-upload' }
   ];
 
   index = 2;

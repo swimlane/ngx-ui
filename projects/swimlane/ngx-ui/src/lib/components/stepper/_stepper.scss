@@ -1,2 +1,7 @@
-$stepper-size: 28px;
+$stepper-padding: 0.635rem;
+$stepper-size: 1.75rem;
+$stepper-size-lg: 5.5rem;
+$stepper-trackbar-to-step-ratio: 1.4;
+$stepper-trackbar-margin: ($stepper-trackbar-to-step-ratio - 1) * $stepper-size / 2;
+$stepper-trackbar-margin-lg: ($stepper-trackbar-to-step-ratio - 1) * $stepper-size-lg / 2;
 $transition-speed: 0.25s;
