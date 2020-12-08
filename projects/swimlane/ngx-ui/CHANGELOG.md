@@ -3,6 +3,8 @@
 # HEAD (unreleased)
 
 - Feature: add `ngx-plus-menu`
+- Enhancement: Add `required` and `requiredIndicator` inputs to `DateTimeComponent`.
+- Breaking: An empty value will no longer cause the `DateTimeComponent` to become invalid, unless it is explicitly marked as `required`.
 - Feature(Stepper): Add `[large]` input to increase the default icon size.
 - Feature(Stepper): Add `[trackBar]` input to make track bar optional.
 - Feature(Stepper): Add `[progress]` input to show a progress indicator on the active step.
