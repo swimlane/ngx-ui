@@ -33,6 +33,7 @@ import { NavbarModule } from './components/navbar/navbar.module';
 import { NavMenuModule } from './components/nav-menu/nav-menu.module';
 import { NotificationModule } from './components/notification/notification.module';
 import { OverlayModule } from './components/overlay/overlay.module';
+import { PlusMenuModule } from './components/plus-menu/plus-menu.module';
 import { ProgressSpinnerModule } from './components/progress-spinner/progress-spinner.module';
 import { RadioButtonModule } from './components/radiobutton/radiobutton.module';
 import { SectionModule } from './components/section/section.module';
@@ -75,6 +76,7 @@ const modules = [
   NotificationModule,
   OverlayModule,
   PipesModule,
+  PlusMenuModule,
   ProgressSpinnerModule,
   RadioButtonModule,
   SectionModule,

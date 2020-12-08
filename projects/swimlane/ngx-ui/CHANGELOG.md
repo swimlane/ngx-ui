@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+- Feature: add `ngx-plus-menu`
+
 ## 32.0.0 (2020-11-24)
 
 - Enhancement: ngx card component
