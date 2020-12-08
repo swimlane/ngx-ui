@@ -13,6 +13,7 @@
 - Feature(Stepper): Add `[removeHighlight]` input to remove highlight color for the completed steps.
 - Feature(Stepper): Add `[icon]` input to show an icon instead of the step number.
 - Feature(Stepper): Add `.complete()` method to complete every step (including the last one).
+- Fix: remove hover state on ngx-card and fix minor style issues
 
 ## 32.0.0 (2020-11-24)
 
