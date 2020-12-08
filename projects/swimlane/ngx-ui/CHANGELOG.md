@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+## 33.0.0 (2020-12-8)
+
 - Feature: add `ngx-plus-menu`
 - Enhancement: Add `required` and `requiredIndicator` inputs to `DateTimeComponent`.
 - Breaking: An empty value will no longer cause the `DateTimeComponent` to become invalid, unless it is explicitly marked as `required`.
