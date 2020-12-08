@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HotkeysComponent } from './hotkeys.component';
 import { HotkeysService } from './hotkeys.service';
@@ -27,6 +28,7 @@ describe('HotkeysComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
+        imports: [NoopAnimationsModule],
         declarations: [HotkeysComponent],
         providers: [HotkeysService]
       }).compileComponents();
