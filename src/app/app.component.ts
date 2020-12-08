@@ -178,6 +178,10 @@ export class AppComponent {
           route: 'progress-spinner'
         },
         {
+          name: 'Plus Menu',
+          route: 'plus-menu'
+        },
+        {
           name: 'Tree',
           route: 'tree'
         },

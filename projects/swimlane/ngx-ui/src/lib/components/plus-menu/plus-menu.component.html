@@ -1,0 +1,77 @@
+<div class="ngx-plus-menu--circle-container" (click)="onClickOpenClose()" ngx-tooltip [tooltipDisabled]="position !== PlusMenuPosition.Right" [tooltipTitle]="menuTitle" tooltipPlacement="left">
+  <ngx-icon class="ngx-plus-menu--circle" fontIcon="add-circle-medium"></ngx-icon>
+  <span class="ngx-plus-menu--menu-title">{{ menuTitle }}</span>
+</div>
+
+<div class="ngx-plus-menu--content-container">
+  <svg
+    width="880"
+    height="836"
+    viewBox="0 0 880 836"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g class="right two" transform="translate(0, 0)">
+      <path class="arc" d="M633.883 119C654.069 163.463 689.972 199.275 734.5 219.343" stroke-width="2" />
+      <path class="arrow" d="M653.8 141.5C651 144.5 651.971 148.918 653.441 151.174L651.739 152.175C650.873 150.829 647.5 147.5 641.5 148L653.8 141.5Z" />
+      <path class="arrow" d="M711.863 199.563C708.863 202.363 704.445 201.392 702.189 199.922L701.188 201.624C702.534 202.49 705.863 205.863 705.363 211.863L711.863 199.563Z" />
+    </g>
+
+    <g class="right three" transform="translate(519, -25)">
+      <path class="arc" d="M260 259.219C180.273 243.543 117.457 180.727 101.781 101" stroke="#CDD2DD" stroke-width="2"/>
+      <path class="arrow" d="M117 127C113.5 129 112.5 134.5 113.5 137L111.652 137.642C111.066 136.153 108 131.5 102 131L117 127Z" />
+      <path class="arrow" d="M184 217C181.5 221.5 183.629 225.48 185.876 226.964L184.711 228.563C183.38 227.674 178 226 173.5 229L184 217Z" />
+      <path class="arrow" d="M144 177C139.5 179.5 135.52 177.371 134.036 175.124L132.437 176.289C133.326 177.62 135 183 132 187.5L144 177Z" />
+      <path class="arrow" d="M234 244C232 247.5 226.5 248.5 224 247.5L223.359 249.348C224.847 249.934 229.5 253 230 259L234 244Z" />
+    </g>
+
+    <g class="bottom two" transform="translate(210, 600)">
+      <path class="arc" d="M350 138C350 117.565 296.498 101 230.5 101C164.502 101 111 117.565 111 138" stroke-width="2"/>
+      <path class="arrow" d="M311.029 117.617C311 113 307.5 110.72 305.5 110.22L306 108.3C307.266 108.601 312.5 109 314 106L311.029 117.617Z"/>
+      <path class="arrow" d="M149.971 117.617C150 113 153.5 110.72 155.5 110.22L155 108.3C153.734 108.601 148.5 109 147 106L149.971 117.617Z"/>
+      <path class="arrow" d="M237.093 97.4119C238.5 99.5 240 100 241.945 100.18L241.917 102.15C240.335 102.15 238.5 102.5 236.956 105.254L237.093 97.4119Z"/>
+      <path class="arrow" d="M223.513 97.4119C222.106 99.5 220.606 100 218.662 100.18L218.689 102.15C220.271 102.15 222.106 102.5 223.65 105.254L223.513 97.4119Z"/>
+    </g>
+
+    <g class="bottom three" transform="translate(190, 580)">
+      <path class="arc" d="M403.5 136.194C363.292 115.721 316.144 103.158 265.5 101.253" stroke-width="2"/>
+      <path class="arc" d="M100.5 136.194C140.708 115.721 187.856 103.158 238.5 101.253" stroke-width="2"/>
+      <path class="arrow" d="M131.858 128.317C132.878 124.348 136.05 122.041 137.509 121.384L136.687 119.561C135.228 120.218 131.399 121.066 127.75 119.2L131.858 128.317Z"/>
+      <path class="arrow" d="M372.192 128.317C371.173 124.348 368 122.041 366.541 121.384L367.363 119.561C368.822 120.218 372.651 121.066 376.3 119.2L372.192 128.317Z"/>
+      <path class="arrow" d="M222.5 107.5C221.5 105.5 220 103.5 216.117 103.805L216.117 101.802C219 101.5 221.5 99.5 222.5 96.5L222.5 107.5Z"/>
+      <path class="arrow" d="M281.5 107.5C282.5 105.5 284 103.5 287.883 103.805L287.883 101.802C285 101.5 282.5 99.5 281.5 96.5L281.5 107.5Z"/>
+    </g>
+
+    <g class="top two" transform="translate(210, -60)">
+      <path class="arc" d="M350 100C350 120.435 296.498 137 230.5 137C164.502 137 111 120.435 111 100" stroke-width="2"/>
+      <path class="arrow" d="M311.029 120.383C311 125 307.5 127.28 305.5 127.78L306 129.7C307.266 129.399 312.5 129 314 132L311.029 120.383Z"/>
+      <path class="arrow" d="M149.971 120.383C150 125 153.5 127.28 155.5 127.78L155 129.7C153.734 129.399 148.5 129 147 132L149.971 120.383Z"/>
+      <path class="arrow" d="M237.093 140.588C238.5 138.5 240 138 241.944 137.82L241.917 135.85C240.335 135.85 238.5 135.5 236.956 132.746L237.093 140.588Z"/>
+      <path class="arrow" d="M223.513 140.588C222.106 138.5 220.606 138 218.662 137.82L218.689 135.85C220.271 135.85 222.106 135.5 223.65 132.746L223.513 140.588Z"/>
+    </g>
+
+    <g class="top three" transform="translate(188, -55)">
+      <path class="arc" d="M403.5 101.806C363.292 122.279 316.144 134.842 265.5 136.747" stroke-width="2"/>
+      <path class="arc" d="M100.5 101.806C140.708 122.279 187.856 134.842 238.5 136.747" stroke-width="2"/>
+      <path class="arrow" d="M131.858 109.683C132.878 113.652 136.05 115.959 137.509 116.616L136.687 118.439C135.228 117.782 131.399 116.934 127.75 118.8L131.858 109.683Z"/>
+      <path class="arrow" d="M372.192 109.683C371.173 113.652 368 115.959 366.541 116.616L367.363 118.439C368.822 117.782 372.651 116.934 376.3 118.8L372.192 109.683Z"/>
+      <path class="arrow" d="M222.5 130.5C221.5 132.5 220 134.5 216.117 134.195L216.117 136.198C219 136.5 221.5 138.5 222.5 141.5L222.5 130.5Z"/>
+      <path class="arrow" d="M281.5 130.5C282.5 132.5 284 134.5 287.883 134.195L287.883 136.198C285 136.5 282.5 138.5 281.5 141.5L281.5 130.5Z"/>
+    </g>
+  </svg>
+
+  <div class="ngx-plus-menu--items-container">
+    <div *ngFor="let item of items; index as i" (click)="onClickItem(i)">
+      <div [class]="'ngx-plus-menu--item ngx-plus-menu--item-' + i">
+        {{item.description}}
+        <div class="keys" *ngIf="item.keys">{{item.keys.join(' + ')}}</div>      
+      </div>
+      <div [class]="'ngx-plus-menu--icon ngx-plus-menu--icon-' + i">
+        <ngx-icon [fontIcon]="item.icon"></ngx-icon>
+      </div>
+    </div>
+    <div class="ngx-plus-menu--icon--center">
+    </div>
+  </div>
+</div>
+
