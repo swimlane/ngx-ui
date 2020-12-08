@@ -12,6 +12,12 @@
       margin-left: 30px;
     }
 
+    .ngx-card-section {
+      .ngx-icon {
+        cursor: pointer;
+      }
+    }
+
     .card-action {
       justify-content: space-between;
       padding-right: 0 !important;

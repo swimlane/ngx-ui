@@ -4,7 +4,6 @@ $color-accent-grey: linear-gradient(180deg, $color-blue-grey-100 0%, $color-blue
 $card-accent-thickness: 4px;
 
 $color-background-grey: linear-gradient(180deg, $color-blue-grey-750 0%, $color-blue-grey-800 100%);
-$color-background-grey-hover: linear-gradient(180deg, $color-blue-grey-725 0%, $color-blue-grey-775 100%);
 
 $card-outline-border-thickness: 3px;
 
@@ -33,11 +32,6 @@ $card-vertical-gutter: 20px;
   background: $color-background-grey;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   border-radius: 2px;
-  cursor: pointer;
-
-  &:hover {
-    background: $color-background-grey-hover;
-  }
 
   // disabled
   &.disabled {
@@ -126,6 +120,11 @@ $card-vertical-gutter: 20px;
     padding: 0 $card-horizontal-header-padding;
     flex-grow: 1;
     overflow: hidden;
+    cursor: pointer;
+
+    &.no-click {
+      cursor: default;
+    }
 
     &--title-group {
       margin-left: $card-horizontal-header-padding;
@@ -224,6 +223,7 @@ $card-vertical-gutter: 20px;
       font-size: 15px;
       font-weight: 600;
       white-space: nowrap;
+      cursor: pointer;
 
       i {
         margin-top: 5px;
