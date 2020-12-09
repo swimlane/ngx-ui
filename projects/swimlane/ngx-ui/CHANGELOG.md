@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+## 33.0.0 (2020-12-8)
+
 - Feature: add `ngx-plus-menu`
 - Enhancement: Add `required` and `requiredIndicator` inputs to `DateTimeComponent`.
 - Breaking: An empty value will no longer cause the `DateTimeComponent` to become invalid, unless it is explicitly marked as `required`.
@@ -11,6 +13,7 @@
 - Feature(Stepper): Add `[removeHighlight]` input to remove highlight color for the completed steps.
 - Feature(Stepper): Add `[icon]` input to show an icon instead of the step number.
 - Feature(Stepper): Add `.complete()` method to complete every step (including the last one).
+- Fix: remove hover state on ngx-card and fix minor style issues
 
 ## 32.0.0 (2020-11-24)
 
