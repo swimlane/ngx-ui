@@ -6,25 +6,25 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Use Node.js 10.x
+    - name: Use Node.js 12.x
       uses: actions/checkout@v1
       with:
-        node-version: 10.x
+        node-version: 12.x
 
-    - name: Install, lint, and test
-      run: |
-        npm ci
-        npm run build
-        npm run ci
-      env:
-        CI: true
+    # - name: Install, lint, and test
+    #   run: |
+    #     npm ci
+    #     npm run build
+    #     npm run ci
+    #   env:
+    #     CI: true
 
     - name: Deploy
       run: |
         git config --global user.email "swimlane-devops@swimlane.com"
         git config --global user.name "Swimlane"
         npm run deploy
-      if: ${{ github.ref == 'refs/heads/master' }}
+      # if: ${{ github.ref == 'refs/heads/master' }}
       env:
         CI: true
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
