@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  ContentChild,
   ContentChildren,
   ElementRef,
   EventEmitter,
@@ -11,6 +12,7 @@ import {
   Output,
   QueryList,
   Renderer2,
+  TemplateRef,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
@@ -33,6 +35,7 @@ const SELECT_VALUE_ACCESSOR = {
 };
 
 class InputBase {}
+
 const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
 
 @Component({
@@ -85,6 +88,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get minSelections() {
     return this._minSelections;
   }
+
   set minSelections(minSelections) {
     this._minSelections = coerceNumberProperty(minSelections, undefined);
   }
@@ -93,6 +97,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get autosizeMinWidth(): number | string {
     return this._autosizeMinWidth;
   }
+
   set autosizeMinWidth(autosizeMinWidth) {
     if (!isNaN(+autosizeMinWidth)) {
       this._autosizeMinWidth = `${autosizeMinWidth}px`;
@@ -105,6 +110,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get maxSelections() {
     return this._maxSelections;
   }
+
   set maxSelections(maxSelections) {
     this._maxSelections = coerceNumberProperty(maxSelections, undefined);
   }
@@ -113,6 +119,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get autofocus() {
     return this._autofocus;
   }
+
   set autofocus(autofocus) {
     this._autofocus = coerceBooleanProperty(autofocus);
   }
@@ -121,6 +128,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get autosize() {
     return this._autosize;
   }
+
   set autosize(autosize) {
     this._autosize = coerceBooleanProperty(autosize);
   }
@@ -129,6 +137,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get allowClear() {
     return this._allowClear;
   }
+
   set allowClear(allowClear) {
     this._allowClear = coerceBooleanProperty(allowClear);
   }
@@ -137,6 +146,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get allowAdditions() {
     return this._allowAdditions;
   }
+
   set allowAdditions(allowAdditions) {
     this._allowAdditions = coerceBooleanProperty(allowAdditions);
   }
@@ -145,6 +155,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get disableDropdown() {
     return this._disableDropdown;
   }
+
   set disableDropdown(disableDropdown) {
     this._disableDropdown = coerceBooleanProperty(disableDropdown);
   }
@@ -153,6 +164,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get closeOnSelect() {
     return this._closeOnSelect;
   }
+
   set closeOnSelect(closeOnSelect) {
     this._closeOnSelect = coerceBooleanProperty(closeOnSelect);
   }
@@ -161,6 +173,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get closeOnBodyClick() {
     return this._closeOnBodyClick;
   }
+
   set closeOnBodyClick(closeOnBodyClick) {
     this._closeOnBodyClick = coerceBooleanProperty(closeOnBodyClick);
   }
@@ -169,6 +182,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get filterable() {
     return this._filterable;
   }
+
   set filterable(filterable) {
     this._filterable = coerceBooleanProperty(filterable);
   }
@@ -177,6 +191,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get required() {
     return this._required;
   }
+
   set required(required) {
     this._required = coerceBooleanProperty(required);
   }
@@ -185,6 +200,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get filterCaseSensitive() {
     return this._filterCaseSensitive;
   }
+
   set filterCaseSensitive(filterCaseSensitive) {
     this._filterCaseSensitive = coerceBooleanProperty(filterCaseSensitive);
   }
@@ -193,6 +209,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get tagging() {
     return this._tagging;
   }
+
   set tagging(tagging) {
     this._tagging = coerceBooleanProperty(tagging);
   }
@@ -201,6 +218,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get multiple() {
     return this._multiple;
   }
+
   set multiple(multiple) {
     this._multiple = coerceBooleanProperty(multiple);
   }
@@ -209,6 +227,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get disabled() {
     return this._disabled;
   }
+
   set disabled(disabled) {
     this._disabled = coerceBooleanProperty(disabled);
   }
@@ -220,10 +239,17 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   @ViewChild(SelectInputComponent, { static: true })
   readonly inputComponent: SelectInputComponent;
 
+  /**
+   * Custom Template for groupBy
+   * Only works with groupBy on
+   */
+  @ContentChild(TemplateRef) groupNameTemplate: TemplateRef<unknown>;
+
   @ContentChildren(SelectOptionDirective)
   get optionTemplates() {
     return this._optionTemplates;
   }
+
   set optionTemplates(val: QueryList<SelectOptionDirective>) {
     this._optionTemplates = val;
 
@@ -270,6 +296,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get value() {
     return this._value;
   }
+
   set value(val: any[]) {
     if (val !== this._value) {
       this._value = val;
