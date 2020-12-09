@@ -11,13 +11,13 @@ jobs:
       with:
         node-version: 12.x
 
-    # - name: Install, lint, and test
-    #   run: |
-    #     npm ci
-    #     npm run build
-    #     npm run ci
-    #   env:
-    #     CI: true
+    - name: Install, lint, and test
+      run: |
+        npm ci
+        # npm run build
+        # npm run ci
+      env:
+        CI: true
 
     - name: Deploy
       run: |
