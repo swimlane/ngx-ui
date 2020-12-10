@@ -1,8 +1,8 @@
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ContentChild,
   ContentChildren,
   ElementRef,
   EventEmitter,
@@ -17,14 +17,13 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
-
-import { SelectOptionDirective } from './select-option.directive';
-import { SelectInputComponent } from './select-input.component';
-import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { appearanceMixin } from '../../mixins/appearance/appearance.mixin';
 import { sizeMixin } from '../../mixins/size/size.mixin';
+import { SelectDropdownOption } from './select-dropdown-option.interface';
+import { SelectInputComponent } from './select-input.component';
+
+import { SelectOptionDirective } from './select-option.directive';
 
 let nextId = 0;
 
@@ -242,10 +241,14 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   /**
    * Custom Template for groupBy
    * Only works with groupBy on
+   *
+   * TemplateContext:
+   * - groupName: the name of the group (`option.value[this.groupBy]` is the value)
+   * - index, first, last, odd, even (ngFor properties)
    */
-  @ContentChild(TemplateRef) groupNameTemplate: TemplateRef<unknown>;
+  @Input() groupByTemplate: TemplateRef<unknown>;
 
-  @ContentChildren(SelectOptionDirective)
+  @ContentChildren(SelectOptionDirective, { descendants: true })
   get optionTemplates() {
     return this._optionTemplates;
   }

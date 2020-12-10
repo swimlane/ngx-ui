@@ -223,18 +223,18 @@
   <br />
 
   <h4>Objects with Grouping - with custom template</h4>
-  <ngx-select [groupBy]="'type'">
-    <ng-template let-name="groupName">
-      {{name}}
-      <ng-container [ngSwitch]="name">
-        <ng-container *ngSwitchCase="'IOS'">🔥🔥🔥</ng-container>
-        <ng-container *ngSwitchDefault>🎄🎄🎄</ng-container>
-      </ng-container>
-    </ng-template>
+  <ngx-select [groupBy]="'type'" [groupByTemplate]='groupByTemplate'>
     <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
     <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
     <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
   </ngx-select>
+  <ng-template #groupByTemplate let-name="groupName">
+    {{name}}
+    <ng-container [ngSwitch]="name">
+      <ng-container *ngSwitchCase="'IOS'">🔥🔥🔥</ng-container>
+      <ng-container *ngSwitchDefault>🎄🎄🎄</ng-container>
+    </ng-container>
+  </ng-template>
 
   <app-prism>
 <![CDATA[<ngx-select [groupBy]="'type'">

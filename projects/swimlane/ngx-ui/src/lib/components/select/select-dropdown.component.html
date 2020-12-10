@@ -1,96 +1,96 @@
 <div>
-  <div class="ngx-select-filter" *ngIf="filterable && !tagging">
-    <i class="ngx-icon ngx-search"></i>
+  <div class='ngx-select-filter' *ngIf='filterable && !tagging'>
+    <i class='ngx-icon ngx-search'></i>
     <input
       #filterInput
-      type="search"
-      tabindex=""
-      autocomplete="off"
-      autocorrect="off"
-      spellcheck="off"
-      class="ngx-select-filter-input"
-      [placeholder]="filterPlaceholder"
-      (keyup)="onInputKeyUp($event)"
+      type='search'
+      tabindex=''
+      autocomplete='off'
+      autocorrect='off'
+      spellcheck='off'
+      class='ngx-select-filter-input'
+      [placeholder]='filterPlaceholder'
+      (keyup)='onInputKeyUp($event)'
     />
-    <i [hidden]="!filterInput.value" class="ngx-icon ngx-x" (click)="clearFilter(filterInput)"></i>
+    <i [hidden]='!filterInput.value' class='ngx-icon ngx-x' (click)='clearFilter(filterInput)'></i>
   </div>
-  <ul class="vertical-list ngx-select-dropdown-options">
+  <ul class='vertical-list ngx-select-dropdown-options'>
     <li
-      *ngFor="let group of groups; let i = index; let first = first; let last = last; let odd = odd; let even = even"
-      class="ngx-select-option-group"
+      *ngFor='let group of groups; let i = index; let first = first; let last = last; let odd = odd; let even = even'
+      class='ngx-select-option-group'
     >
-      <ng-container *ngIf="group.name">
-        <ng-container *ngIf="groupNameTemplate; else defaultGroupName">
-          <span class="ngx-select-option-group-name">
+      <ng-container *ngIf='group.name'>
+        <ng-container *ngIf='groupByTemplate; else defaultGroupName'>
+          <span class='ngx-select-option-group-name'>
             <ng-container
-              *ngTemplateOutlet="
-                groupNameTemplate;
+              *ngTemplateOutlet='
+                groupByTemplate;
                 context: { groupName: group.name, index: i, first: first, last: last, odd: odd, even: even }
-              "
+              '
             ></ng-container>
           </span>
         </ng-container>
         <ng-template #defaultGroupName>
-          <span class="ngx-select-option-group-name" [innerHTML]="group.name"> </span>
+          <span class='ngx-select-option-group-name' [innerHTML]='group.name'> </span>
         </ng-template>
       </ng-container>
-      <ul class="vertical-list ngx-select-dropdown-options">
+      <ul class='vertical-list ngx-select-dropdown-options'>
         <li
-          *ngFor="let kv of group.options"
-          class="ngx-select-dropdown-option"
-          [class.disabled]="kv.option.disabled"
-          [class.active]="kv.index === focusIndex"
-          [class.selected]="isSelected(kv.option)"
-          [hidden]="kv.option.hidden"
-          tabindex="-1"
-          (click)="selection.emit(kv.option)"
-          (keydown)="onOptionKeyDown($event, kv.option)"
+          *ngFor='let kv of group.options'
+          class='ngx-select-dropdown-option'
+          [class.disabled]='kv.option.disabled'
+          [class.active]='kv.index === focusIndex'
+          [class.selected]='isSelected(kv.option)'
+          [hidden]='kv.option.hidden'
+          tabindex='-1'
+          (click)='selection.emit(kv.option)'
+          (keydown)='onOptionKeyDown($event, kv.option)'
         >
           <ng-template
-            *ngIf="kv.option.optionTemplate"
-            [ngTemplateOutlet]="kv.option.optionTemplate"
-            [ngTemplateOutletContext]="{ option: kv.option }"
+            *ngIf='kv.option.optionTemplate'
+            [ngTemplateOutlet]='kv.option.optionTemplate'
+            [ngTemplateOutletContext]='{ option: kv.option }'
           >
           </ng-template>
-          <span *ngIf="!kv.option.optionTemplate" [innerHTML]="kv.option.name"> </span>
+          <span *ngIf='!kv.option.optionTemplate' [innerHTML]='kv.option.name'> </span>
           <i
-            *ngIf="!kv.option.optionTemplate && isSelected(kv.option)"
-            class="ngx-icon ngx-check ngx-select-dropdown--selected-option"
+            *ngIf='!kv.option.optionTemplate && isSelected(kv.option)'
+            class='ngx-icon ngx-check ngx-select-dropdown--selected-option'
           ></i>
         </li>
         <li
-          *ngIf="allowAdditions && filterQuery && group.options?.length && !filterQueryIsInOptions"
-          class="ngx-select-empty-placeholder"
+          *ngIf='allowAdditions && filterQuery && group.options?.length && !filterQueryIsInOptions'
+          class='ngx-select-empty-placeholder'
         >
-          <a href="#" class="ngx-select-add-current-value" (click)="onAddClicked($event, filterQuery)">
-            <span *ngIf="isNotTemplate; else tpl" [innerHTML]="allowAdditionsText"> </span>
+          <a href='#' class='ngx-select-add-current-value' (click)='onAddClicked($event, filterQuery)'>
+            <span *ngIf='isNotTemplate; else tpl' [innerHTML]='allowAdditionsText'> </span>
             <ng-template #tpl>
-              <ng-container *ngTemplateOutlet="allowAdditionsText"></ng-container>
+              <ng-container *ngTemplateOutlet='allowAdditionsText'></ng-container>
             </ng-template>
           </a>
         </li>
 
         <li
-          *ngIf="filterQuery && filterEmptyPlaceholder && !group.options?.length"
-          class="ngx-select-empty-placeholder"
+          *ngIf='filterQuery && filterEmptyPlaceholder && !group.options?.length'
+          class='ngx-select-empty-placeholder'
         >
-          <span class="ngx-select-empty-placeholder-text" [innerHTML]="filterEmptyPlaceholder"> </span>
+          <span class='ngx-select-empty-placeholder-text' [innerHTML]='filterEmptyPlaceholder'> </span>
           <a
-            *ngIf="allowAdditions"
-            href="#"
-            class="ngx-select-empty-placeholder-add"
-            (click)="onAddClicked($event, filterQuery)"
+            *ngIf='allowAdditions'
+            href='#'
+            class='ngx-select-empty-placeholder-add'
+            (click)='onAddClicked($event, filterQuery)'
           >
-            <span *ngIf="isNotTemplate; else tpl" [innerHTML]="allowAdditionsText"> </span>
+            <span *ngIf='isNotTemplate; else tpl' [innerHTML]='allowAdditionsText'> </span>
             <ng-template #tpl>
-              <ng-container *ngTemplateOutlet="allowAdditionsText"></ng-container>
+              <ng-container *ngTemplateOutlet='allowAdditionsText'></ng-container>
             </ng-template>
           </a>
         </li>
         <li
-          *ngIf="!filterQuery && emptyPlaceholder && !group.options?.length"
-          class="ngx-select-empty-placeholder"
-          [innerHTML]="emptyPlaceholder"
+          *ngIf='!filterQuery && emptyPlaceholder && !group.options?.length'
+          class='ngx-select-empty-placeholder'
+          [innerHTML]='emptyPlaceholder'
         ></li>
       </ul>
     </li>

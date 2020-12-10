@@ -1,3 +1,4 @@
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -10,12 +11,11 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { containsFilter } from './contains-filter.util';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
-import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 
 @Component({
   exportAs: 'ngxSelectDropdown',
@@ -101,7 +101,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     this.groups = this.calculateGroups(val, this.options);
   }
 
-  @Input() groupNameTemplate: TemplateRef<unknown>;
+  @Input() groupByTemplate: TemplateRef<unknown>;
 
   @Input()
   get options() {
@@ -274,6 +274,8 @@ export class SelectDropdownComponent implements AfterViewInit {
         opt.push(kv);
       }
     }
+
+    console.log('map', map);
 
     const result = [];
     map.forEach((value, key) => {
