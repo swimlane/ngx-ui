@@ -2,6 +2,10 @@
 
 # HEAD (unreleased)
 
+## 33.1.0 (2020-12-14)
+
+- Feature: add `groupByTemplate` Input to `ngx-select`. Check [Selects Documentation](https://swimlane.github.io/ngx-ui/selects) for usage
+
 ## 33.0.0 (2020-12-8)
 
 - Feature: add `ngx-plus-menu`
