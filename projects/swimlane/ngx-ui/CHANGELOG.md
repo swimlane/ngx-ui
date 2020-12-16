@@ -2,6 +2,9 @@
 
 # HEAD (unreleased)
 
+- Fix(DateTime): Component no longer emits a `(change)` event when input value is invalid.
+- Fix(DateTime): Display value not updated correctly.
+
 ## 33.1.0 (2020-12-14)
 
 - Feature: add `groupByTemplate` Input to `ngx-select`. Check [Selects Documentation](https://swimlane.github.io/ngx-ui/selects) for usage

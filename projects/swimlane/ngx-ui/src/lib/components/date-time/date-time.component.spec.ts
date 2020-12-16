@@ -587,4 +587,24 @@ describe('DateTimeComponent', () => {
       component.onBlur();
     });
   });
+
+  describe('set value', () => {
+    it('should emit "change" event', () => {
+      component.change.subscribe(date => expect(date).toBe(MOON_LANDING));
+      component.value = MOON_LANDING;
+    });
+
+    it('should NOT emit "change" event if value does not change', () => {
+      spyOn(component.change, 'emit');
+      component.value = MOON_LANDING;
+      component.value = MOON_LANDING_DATE;
+      expect(component.change.emit).toHaveBeenCalledTimes(1);
+    });
+
+    it('should NOT emit "change" event if invalid', () => {
+      spyOn(component.change, 'emit');
+      component.value = 'INVALID_DATE';
+      expect(component.change.emit).not.toHaveBeenCalled();
+    });
+  });
 });

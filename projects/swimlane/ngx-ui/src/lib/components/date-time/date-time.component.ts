@@ -167,10 +167,12 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
       isSame = val === this._value;
     }
 
-    this.validate(date);
+    const isValid = this.validate(date);
     this._value = date && date.isValid() ? date.toDate() : val;
 
-    if (!isSame) {
+    // notify of changes only when the component is cleared
+    // or when the set value is valid
+    if ((!val || isValid) && !isSame) {
       this.onChangeCallback(val);
       this.change.emit(val);
     }
