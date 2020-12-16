@@ -167,9 +167,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
       isSame = val === this._value;
     }
 
-    if (val && date) {
-      this.validate(date);
-    }
+    this.validate(date);
     this._value = date && date.isValid() ? date.toDate() : val;
 
     if (!isSame) {
@@ -329,6 +327,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   inputChanged(val: string): void {
     const date = this.parseDate(val);
     this.value = date.isValid() ? date.toDate() : val;
+    this.displayValue = val;
   }
 
   close(): void {
@@ -367,13 +366,13 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     return val;
   }
 
-  private validate(date: moment.Moment) {
+  private validate(date?: moment.Moment) {
     // check if date input is empty
-    const dateInput = date.creationData().input;
+    const dateInput = date?.creationData().input;
     const isEmpty = dateInput === '' || dateInput === null || dateInput === undefined; // 0 is a valid date input
 
     // date can be either valid, or an empty value if not required
-    const isValid = date.isValid() || (!this.required && isEmpty);
+    const isValid = date?.isValid() || (!this.required && isEmpty);
     const isInRange = !this.getDayDisabled(date);
 
     let errorMsg = '';
