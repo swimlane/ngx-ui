@@ -2,6 +2,9 @@
 
 # HEAD (unreleased)
 
+- Breaking: `ngx-plus-menu` takes items containing `title` and `subtitle`. Does not setup it's own hotkeys.
+- Fix: no popup us shown if `menuTitle` is not passed as an input to `ngx-plus-menu`
+
 ## 33.1.0 (2020-12-14)
 
 - Feature: add `groupByTemplate` Input to `ngx-select`. Check [Selects Documentation](https://swimlane.github.io/ngx-ui/selects) for usage

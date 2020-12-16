@@ -12,14 +12,12 @@ import {
   OnInit,
   OnDestroy
 } from '@angular/core';
-import { HotkeysService } from '../hotkeys/hotkeys.service';
 import { PlusMenuPosition } from './plus-menu-position.enum';
 
-interface PlusMenuItem {
-  description: string;
+export interface PlusMenuItem {
+  title: string;
+  subtitle?: string;
   icon: string;
-  hotkey?: string;
-  keys?: string[];
 }
 
 @Component({
@@ -58,15 +56,12 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
   private documentClickEvent: () => void;
 
   constructor(
-    private readonly hotkeysService: HotkeysService,
     private readonly elementRef: ElementRef,
     private readonly renderer: Renderer2,
     private readonly cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit(): void {
-    this.initKeys();
-
     this.elementRef.nativeElement.style.setProperty('--menu-color', this.menuColor);
   }
 
@@ -104,23 +99,5 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
     this.cdr.markForCheck();
 
     if (this.documentClickEvent) this.documentClickEvent();
-  }
-
-  private initKeys() {
-    this.hotkeysService.deregister(this);
-
-    this.items.map((item, i) => {
-      if (item.hotkey) {
-        const opt = this.hotkeysService.add(item.hotkey, {
-          callback: () => {
-            this.onClickItem(i);
-          },
-          description: item.description,
-          component: this
-        });
-
-        item.keys = opt.keys;
-      }
-    });
   }
 }
