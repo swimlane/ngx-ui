@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+## 34.0.1 (2020-12-17)
+
 - Fix(ngx-plus-menu): classes not set correctly in some cases.
 
 ## 34.0.0 (2020-12-17)
