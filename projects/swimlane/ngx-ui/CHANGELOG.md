@@ -4,6 +4,8 @@
 
 - Fix(DateTime): Component no longer emits a `(change)` event when input value is invalid.
 - Fix(DateTime): Display value not updated correctly.
+- Breaking: `ngx-plus-menu` takes items containing `title` and `subtitle`. Does not setup it's own hotkeys.
+- Fix: no popup us shown if `menuTitle` is not passed as an input to `ngx-plus-menu`
 
 ## 33.1.0 (2020-12-14)
 

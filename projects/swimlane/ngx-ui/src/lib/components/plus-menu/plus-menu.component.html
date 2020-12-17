@@ -1,4 +1,4 @@
-<div class="ngx-plus-menu--circle-container" (click)="onClickOpenClose()" ngx-tooltip [tooltipDisabled]="position !== PlusMenuPosition.Right" [tooltipTitle]="menuTitle" tooltipPlacement="left">
+<div class="ngx-plus-menu--circle-container" (click)="onClickOpenClose()" ngx-tooltip [tooltipDisabled]="!menuTitle || position !== PlusMenuPosition.Right" [tooltipTitle]="menuTitle" tooltipPlacement="left">
   <ngx-icon class="ngx-plus-menu--circle" fontIcon="add-circle-medium"></ngx-icon>
   <span class="ngx-plus-menu--menu-title">{{ menuTitle }}</span>
 </div>
@@ -63,8 +63,8 @@
   <div class="ngx-plus-menu--items-container">
     <div *ngFor="let item of items; index as i" (click)="onClickItem(i)">
       <div [class]="'ngx-plus-menu--item ngx-plus-menu--item-' + i">
-        {{item.description}}
-        <div class="keys" *ngIf="item.keys">{{item.keys.join(' + ')}}</div>      
+        {{item.title}}
+        <div class="subtitle" *ngIf="item.subtitle">{{item.subtitle}}</div>      
       </div>
       <div [class]="'ngx-plus-menu--icon ngx-plus-menu--icon-' + i">
         <ngx-icon [fontIcon]="item.icon"></ngx-icon>
