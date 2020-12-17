@@ -24,7 +24,6 @@ export interface PlusMenuItem {
   selector: 'ngx-plus-menu',
   templateUrl: './plus-menu.component.html',
   styleUrls: ['./plus-menu.component.scss'],
-  host: { class: 'ngx-plus-menu' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
@@ -42,7 +41,7 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
 
   @HostBinding('class')
   get p() {
-    return 'position-' + this.position;
+    return 'ngx-plus-menu position-' + this.position;
   }
 
   @HostBinding('class.open')

@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+- Fix(ngx-plus-menu): classes not set correctly in some cases.
+
 ## 34.0.0 (2020-12-17)
 
 - Fix(DateTime): Component no longer emits a `(change)` event when input value is invalid.
