@@ -368,7 +368,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     return val;
   }
 
-  private validate(date?: moment.Moment) {
+  private validate(date: moment.Moment | undefined) {
     // check if date input is empty
     const dateInput = date?.creationData().input;
     const isEmpty = dateInput === '' || dateInput === null || dateInput === undefined; // 0 is a valid date input
