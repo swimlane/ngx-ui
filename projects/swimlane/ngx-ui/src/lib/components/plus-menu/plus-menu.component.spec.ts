@@ -22,19 +22,19 @@ describe('PlusMenuComponent', () => {
   let shallow: Shallow<PlusMenuComponent>;
 
   const upload = {
-    description: 'Upload a plugin',
-    hotkey: 'ctrl+alt+u',
+    title: 'Upload a plugin',
+    subtitle: 'ctrl + alt + u',
     icon: 'upload-outline'
   };
 
   const create = {
-    description: 'Create',
-    hotkey: 'ctrl+alt+n',
+    title: 'Create',
+    subtitle: 'ctrl + alt + n',
     icon: 'add-circle-thin'
   };
 
   const search = {
-    description: 'Search',
+    title: 'Search',
     icon: 'search'
   };
 
@@ -86,7 +86,7 @@ describe('PlusMenuComponent', () => {
           `
           <div class="ngx-plus-menu--item ngx-plus-menu--item-0">
             Upload a plugin
-            <div class="keys">
+            <div class="subtitle">
               ctrl + alt + u
             </div>
           </div>`
@@ -97,7 +97,7 @@ describe('PlusMenuComponent', () => {
           `
           <div class="ngx-plus-menu--item ngx-plus-menu--item-1">
             Create
-            <div class="keys">
+            <div class="subtitle">
               ctrl + alt + n
             </div>
           </div>`
@@ -155,7 +155,7 @@ describe('PlusMenuComponent', () => {
           `
           <div class="ngx-plus-menu--item ngx-plus-menu--item-0">
             Upload a plugin
-            <div class="keys">
+            <div class="subtitle">
               ctrl + alt + u
             </div>
           </div>`
@@ -166,7 +166,7 @@ describe('PlusMenuComponent', () => {
           `
           <div class="ngx-plus-menu--item ngx-plus-menu--item-1">
             Create
-            <div class="keys">
+            <div class="subtitle">
               ctrl + alt + n
             </div>
           </div>`
