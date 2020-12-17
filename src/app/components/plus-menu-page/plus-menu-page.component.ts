@@ -11,7 +11,7 @@ export class PlusMenuPageComponent {
   upload = {
     title: 'Upload a plugin',
     subtitle: 'ctrl+alt+u',
-    icon: 'download-outline-small'
+    icon: 'upload-outline-small'
   };
 
   create = {
