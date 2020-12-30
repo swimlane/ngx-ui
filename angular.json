@@ -20,6 +20,12 @@
             "customWebpackConfig": {
               "path": "./extra-webpack.config.js"
             },
+            "allowedCommonJsDependencies": [
+              "moment-timezone",
+              "mousetrap",
+              "ajv",
+              "codemirror"
+            ],
             "aot": true,
             "outputPath": "dist/ngx-ui",
             "index": "src/index.html",
