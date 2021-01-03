@@ -44,7 +44,7 @@
     "@angular/forms": "~11.0.5",
     "@angular/platform-browser": "~11.0.5",
     "@angular/router": "~11.0.5",
-    "@swimlane/ng2-file-upload": "^1.0.1",
+    "@swimlane/ng2-file-upload": "1.1.0",
     "@types/json-schema": "^7.0.4",
     "ajv": "^6.5.5",
     "codemirror": "^5.49.2",
