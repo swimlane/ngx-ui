@@ -30,13 +30,13 @@ Cypress.Commands.add('navigate', (url, options = {}) => {
     if (options.forceReload || !$win.location.href.startsWith(Cypress.config('baseUrl'))) {
       cy.log('Visit');
       cy.visit(url, options);
-      return cy.get('.page-loader').should('not.be.visible', { timeout: 20000 });
+      return cy.get('.page-loader').should('not.exist', { timeout: 20000 });
     }
 
     if (!url || url === '') {
       cy.log('Reload');
       cy.reload();
-      return cy.get('.page-loader').should('not.be.visible', { timeout: 20000 });
+      return cy.get('.page-loader').should('not.exist', { timeout: 20000 });
     }
 
     // Already on this page, navigate away then back, fater than visit or reload
