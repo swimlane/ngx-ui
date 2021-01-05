@@ -105,7 +105,7 @@
   [required]="required"
   [requiredIndicator]="requiredIndicator"
   (ngModelChange)="inputChanged($event)"
-  (blur)="onBlur()"
+  (blur)="onBlur($event)"
 >
   <ngx-input-hint class="date-time-hint">
     <div *ngIf="hint">{{ hint }}</div>
