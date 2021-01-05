@@ -235,7 +235,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this.displayValue = this.getDisplayValue();
   }
 
-  onBlur(event: Event) {
+  onBlur(event?: Event) {
     this.onTouchedCallback();
 
     const value = this.parseDate(this.value);
