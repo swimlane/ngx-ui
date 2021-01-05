@@ -1,7 +1,7 @@
 describe('Overlay', () => {
   before(() => {
     cy.visit('/overlay');
-    cy.get('.page-loader').should('not.be.visible', { timeout: 20000 });
+    cy.get('.page-loader').should('not.exist', { timeout: 20000 });
   });
 
   describe('Overlay', () => {
@@ -9,8 +9,9 @@ describe('Overlay', () => {
 
     it('Shows overlay', () => {
       cy.contains('Show Overlay').click();
-      cy.contains(overlayMessage).should('be.visible').click();
-      cy.contains(overlayMessage).should('not.be.visible');
+      cy.get('.ngx-overlay').should('have.attr', 'style').should('contain', 'visibility: visible');
+      cy.contains(overlayMessage).click();
+      cy.get('.ngx-overlay').should('have.attr', 'style').should('contain', 'visibility: hidden');
     });
 
     it('Handles small screen', () => {
@@ -18,13 +19,13 @@ describe('Overlay', () => {
       cy.viewport(500, 600);
 
       const message = 'Your browser is too small';
-      cy.contains(message).should('be.visible');
+      cy.contains(message).should('have.text', message);
 
       cy.viewport(1000, 800);
-      cy.contains(message).should('not.be.visible');
+      cy.get('ngx-resize-overlay .ngx-overlay').should('have.attr', 'style').should('contain', 'visibility: hidden');
 
-      cy.contains(overlayMessage).should('be.visible').click();
-      cy.contains(overlayMessage).should('not.be.visible');
+      cy.contains(overlayMessage).click();
+      cy.get('.ngx-overlay').should('have.attr', 'style').should('contain', 'visibility: hidden');
     });
   });
 });
