@@ -196,6 +196,8 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
 
   @Output() change = new EventEmitter<string | Date>();
+  @Output() blur = new EventEmitter<Event>();
+  @Output() dateTimeSelected = new EventEmitter<Date | string>();
 
   @ViewChild('dialogTpl', { static: true })
   readonly calendarTpl: TemplateRef<ElementRef>;
@@ -233,7 +235,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this.displayValue = this.getDisplayValue();
   }
 
-  onBlur() {
+  onBlur(event: Event) {
     this.onTouchedCallback();
 
     const value = this.parseDate(this.value);
@@ -243,6 +245,8 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
         this.input.value = displayValue;
       }
     }
+
+    this.blur.emit(event);
   }
 
   open(): void {
@@ -261,6 +265,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   apply(): void {
     this.value = this.dialogModel.toDate();
     this.displayValue = this.getDisplayValue();
+    this.dateTimeSelected.emit(this.value);
     this.close();
   }
 
@@ -300,6 +305,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   clear(): void {
     this.value = undefined;
     this.displayValue = this.getDisplayValue();
+    this.dateTimeSelected.emit(this.value);
     this.close();
   }
 
