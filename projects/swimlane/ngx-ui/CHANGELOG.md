@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+- Enhancement: Add `blur` and `dateTimeSelected` outputs to `DateTimeComponent`.
+
 ## 34.0.1 (2020-12-17)
 
 - Fix(ngx-plus-menu): classes not set correctly in some cases.

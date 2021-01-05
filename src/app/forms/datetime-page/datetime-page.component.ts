@@ -16,4 +16,12 @@ export class DatetimePageComponent {
   dateChanged(val) {
     console.log('date changed!', val);
   }
+
+  onBlurEvent(val) {
+    console.log('blur event triggered', val);
+  }
+
+  dateTimeSelected(val) {
+    console.log('date time selected', val);
+  }
 }
