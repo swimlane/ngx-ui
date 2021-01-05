@@ -58,7 +58,7 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "^8.2.0",
+    "@angular-builders/custom-webpack": "^10.0.1",
     "@angular-devkit/build-angular": "~0.1001.0",
     "@angular-devkit/build-ng-packagr": "~0.1001.0",
     "@angular/cli": "~10.1.0",
