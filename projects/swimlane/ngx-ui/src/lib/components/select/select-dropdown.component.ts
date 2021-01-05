@@ -1,21 +1,21 @@
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  ElementRef,
+  EventEmitter,
   Input,
   Output,
-  EventEmitter,
-  ViewChild,
-  AfterViewInit,
-  ElementRef,
   TemplateRef,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ViewChild
 } from '@angular/core';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { containsFilter } from './contains-filter.util';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
-import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 
 @Component({
   exportAs: 'ngxSelectDropdown',
@@ -39,6 +39,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   get tagging() {
     return this._tagging;
   }
+
   set tagging(tagging) {
     this._tagging = coerceBooleanProperty(tagging);
   }
@@ -47,6 +48,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   get allowAdditions() {
     return this._allowAdditions;
   }
+
   set allowAdditions(allowAdditions) {
     this._allowAdditions = coerceBooleanProperty(allowAdditions);
   }
@@ -55,6 +57,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   get filterable() {
     return this._filterable;
   }
+
   set filterable(filterable) {
     this._filterable = coerceBooleanProperty(filterable);
   }
@@ -63,6 +66,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   get filterCaseSensitive() {
     return this._filterCaseSensitive;
   }
+
   set filterCaseSensitive(filterCaseSensitive) {
     this._filterCaseSensitive = coerceBooleanProperty(filterCaseSensitive);
   }
@@ -71,6 +75,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   get focusIndex() {
     return this._focusIndex;
   }
+
   set focusIndex(val: number) {
     this._focusIndex = coerceNumberProperty(val);
     this.focusElement(this._focusIndex);
@@ -80,6 +85,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   get filterQuery() {
     return this._filterQuery;
   }
+
   set filterQuery(val: string) {
     this._filterQuery = val;
     this.groups = this.calculateGroups(this.groupBy, this.options, val);
@@ -89,15 +95,19 @@ export class SelectDropdownComponent implements AfterViewInit {
   get groupBy() {
     return this._groupBy;
   }
+
   set groupBy(val: string) {
     this._groupBy = val;
     this.groups = this.calculateGroups(val, this.options);
   }
 
+  @Input() groupByTemplate: TemplateRef<unknown>;
+
   @Input()
   get options() {
     return this._options;
   }
+
   set options(val) {
     this.groups = this.calculateGroups(this.groupBy, val);
     this._options = val;
@@ -264,6 +274,8 @@ export class SelectDropdownComponent implements AfterViewInit {
         opt.push(kv);
       }
     }
+
+    console.log('map', map);
 
     const result = [];
     map.forEach((value, key) => {

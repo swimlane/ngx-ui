@@ -20,6 +20,12 @@
             "customWebpackConfig": {
               "path": "./extra-webpack.config.js"
             },
+            "allowedCommonJsDependencies": [
+              "moment-timezone",
+              "mousetrap",
+              "ajv",
+              "codemirror"
+            ],
             "aot": true,
             "outputPath": "dist/ngx-ui",
             "index": "src/index.html",
@@ -139,7 +145,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/swimlane/ngx-ui/tsconfig.lib.json",
             "project": "projects/swimlane/ngx-ui/ng-package.json"

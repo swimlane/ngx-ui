@@ -1,7 +1,7 @@
 describe('ngx-ui demo', () => {
   before(() => {
     cy.visit('/');
-    cy.get('.page-loader').should('not.be.visible', { timeout: 20000 });
+    cy.get('.page-loader').should('not.exist', { timeout: 20000 });
   });
 
   it('loads', () => {

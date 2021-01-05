@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const sass = require('node-sass');
+const sass = require('sass');
 const CleanCss = require('clean-css');
 const cpx = require('cpx');
 const postcss = require('postcss');

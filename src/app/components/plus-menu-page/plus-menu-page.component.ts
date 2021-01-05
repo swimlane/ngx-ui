@@ -9,19 +9,19 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/
 })
 export class PlusMenuPageComponent {
   upload = {
-    description: 'Upload a plugin',
-    hotkey: 'ctrl+alt+u',
-    icon: 'upload-outline'
+    title: 'Upload a plugin',
+    subtitle: 'ctrl+alt+u',
+    icon: 'upload-outline-small'
   };
 
   create = {
-    description: 'Create',
-    hotkey: 'ctrl+alt+n',
-    icon: 'add-circle-thin'
+    title: 'Create',
+    subtitle: 'ctrl+alt+n',
+    icon: 'add-circle-medium'
   };
 
   search = {
-    description: 'Search',
+    title: 'Search',
     icon: 'search'
   };
 

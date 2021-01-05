@@ -2,6 +2,21 @@
 
 # HEAD (unreleased)
 
+## 34.0.1 (2020-12-17)
+
+- Fix(ngx-plus-menu): classes not set correctly in some cases.
+
+## 34.0.0 (2020-12-17)
+
+- Fix(DateTime): Component no longer emits a `(change)` event when input value is invalid.
+- Fix(DateTime): Display value not updated correctly.
+- Breaking(ngx-plus-menu): items now contain `title` and `subtitle`. Does not setup it's own hotkeys.
+- Fix(ngx-plus-menu): no popup us shown if `menuTitle` is not passed as an input to `ngx-plus-menu`
+
+## 33.1.0 (2020-12-14)
+
+- Feature: add `groupByTemplate` Input to `ngx-select`. Check [Selects Documentation](https://swimlane.github.io/ngx-ui/selects) for usage
+
 ## 33.0.0 (2020-12-8)
 
 - Feature: add `ngx-plus-menu`
