@@ -8,7 +8,7 @@
     [(ngModel)]="curDate2"
     (change)="dateChanged($event)"
     (blur)="onBlurEvent($event)"
-    (dateTimeSelected)="onDateTimeSelected($event)"
+    (dateTimeSelected)="dateTimeSelected($event)"
   >
   </ngx-date-time>
   <br />
@@ -19,6 +19,8 @@
   [disabled]="true"
   [(ngModel)]="curDate2"
   (change)="dateChanged($event)"
+  (blur)="onBlurEvent($event)"
+  (dateTimeSelected)="dateTimeSelected($event)"
 >
 </ngx-date-time>]]>
   </app-prism>

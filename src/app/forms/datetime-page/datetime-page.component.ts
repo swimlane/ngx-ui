@@ -21,7 +21,7 @@ export class DatetimePageComponent {
     console.log('blur event triggered', val);
   }
 
-  onDateTimeSelected(val) {
+  dateTimeSelected(val) {
     console.log('date time selected', val);
   }
 }
