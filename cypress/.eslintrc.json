@@ -1,0 +1,10 @@
+{
+  "ignorePatterns": ["!**/*"],
+  "plugins": [
+    "cypress"
+  ],
+  "extends": [
+    "../.eslintrc.js",
+    "plugin:cypress/recommended"
+  ]
+}

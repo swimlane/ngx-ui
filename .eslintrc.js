@@ -1,9 +1,23 @@
+
 module.exports = {
   'root': true,
 
   ignorePatterns: [
-    'projects/**/*'
+    'projects/**/*',
+    'dist/**/*',
+    'cypress/**/*'
   ],
+
+  extends: [
+    '@swimlane',
+    'prettier',
+    'prettier/@typescript-eslint'
+  ],
+
+  rules: {
+    // add to @swimlane/eslint-config
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+  },
 
   overrides: [
     {
@@ -26,10 +40,22 @@ module.exports = {
         'prettier/@typescript-eslint'
       ],
       rules: {
-        'no-underscore-dangle': 'off',  // move to eslint-config?
+        // add to @swimlane/eslint-config
+        'no-underscore-dangle': 'off',
+
+        'no-unused-vars': 'off',
         '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
 
+        'no-shadow': 'off',
+        '@typescript-eslint/no-shadow': ['error'],
+
+        '@typescript-eslint/naming-convention': [
+          'error',
+          { selector: 'enumMember', format: null }
+        ],
+
         'security/detect-object-injection': 'off',  // too strict?
+        'security/detect-non-literal-fs-filename': 'off',  // many false positives
 
         // fix these
         '@angular-eslint/no-input-rename': 'off',
@@ -38,17 +64,11 @@ module.exports = {
         '@angular-eslint/use-lifecycle-interface': 'off',
         '@angular-eslint/no-host-metadata-property': 'off',
         '@angular-eslint/no-output-native': 'off',
-        '@typescript-eslint/naming-convention': 'off',
         '@angular-eslint/component-class-suffix': 'off',
         'prefer-arrow/prefer-arrow-functions': 'off',
         'guard-for-in': 'off',
         '@angular-eslint/directive-class-suffix': 'off',
-        '@angular-eslint/no-output-on-prefix': 'off',
-
-        // bugs
-        'no-shadow': 'off',
-
-        'security/detect-non-literal-fs-filename': 'off'  // many false positives
+        '@angular-eslint/no-output-on-prefix': 'off'
       }
     },
     {
