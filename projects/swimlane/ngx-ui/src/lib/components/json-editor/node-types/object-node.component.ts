@@ -51,6 +51,8 @@ export class ObjectNode implements OnInit, OnChanges {
 
   requiredCache: { [key: string]: boolean } = {};
 
+  wasInitialized = false;
+
   dataTypes: JsonSchemaDataType[] = [...jsonSchemaDataTypes, ...jsonSchemaDataFormats];
   propertyCounter: number = 1;
   propertyId: number = 1;
@@ -98,6 +100,7 @@ export class ObjectNode implements OnInit, OnChanges {
       this.indexProperties();
       this.addRequiredProperties();
       this.updateIcons();
+      this.wasInitialized = true;
     });
   }
 
@@ -176,7 +179,9 @@ export class ObjectNode implements OnInit, OnChanges {
     this.propertyIndex[schema.id] = schema;
     this.propertyIndex = { ...this.propertyIndex };
 
-    this.modelChange.emit(this.model);
+    if (this.wasInitialized) {
+      this.modelChange.emit(this.model);
+    }
     this.updateIcons();
   }
 
