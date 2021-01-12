@@ -19,19 +19,3 @@ declare module '*.html';
 declare module '*.json';
 declare module '*.css';
 declare module '*.scss';
-
-// native notifications
-// declare const Notification: any;
-
-// interface ErrorStackTraceLimit {
-//   stackTraceLimit: number;
-// }
-
-// type ErrorConstructor = ErrorStackTraceLimit;
-
-// // HACK: This is only for demo page hmr
-// interface AppWindow {
-//   state: any;
-// }
-
-// type Window = AppWindow;
