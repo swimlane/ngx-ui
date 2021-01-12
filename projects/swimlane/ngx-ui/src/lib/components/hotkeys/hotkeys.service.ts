@@ -10,7 +10,7 @@ const hotkeyChangedSource = new Subject<{ [combo: string]: Hotkey[] }>();
 const isMac = /Mac|iPod|iPhone|iPad/.test(window.navigator.platform);
 const tags = ['INPUT', 'SELECT', 'TEXTAREA'];
 
-/*tslint:disable*/
+/* eslint-disable */
 const map = {
   command: '\u2318', // ⌘
   shift: '\u21E7', // ⇧
@@ -21,7 +21,7 @@ const map = {
   return: '\u23CE', // ⏎
   backspace: '\u232B' // ⌫
 };
-/*tslint:enable*/
+/* eslint-enable */
 
 function _getDisplay(combo: string) {
   const keys = combo.split('+');
@@ -148,6 +148,7 @@ export function _deregister(comp: any) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
+    // eslint-disable-next-line @typescript-eslint/prefer-for-of
     for (let i = 0; i < hotkeyList.length; i++) {
       if (hotkeyList[i].component === comp) {
         hotkeyList[i].status = HotkeyStatus.Disabled;

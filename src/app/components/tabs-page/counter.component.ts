@@ -4,7 +4,7 @@ const counts = {};
 
 /** Counts teh number of times a counter with the given id is initialized. */
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'counter',
   template: `
     <h2>

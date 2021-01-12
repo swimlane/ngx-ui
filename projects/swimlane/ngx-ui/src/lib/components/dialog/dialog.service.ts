@@ -21,7 +21,7 @@ export class DialogService<T = DialogComponent> extends InjectionRegistryService
   };
 
   protected type: any = DialogComponent;
-  private zIndex: number = 995;
+  private zIndex = 995;
 
   constructor(readonly injectionService: InjectionService, readonly overlayService: OverlayService) {
     super(injectionService);
@@ -47,6 +47,7 @@ export class DialogService<T = DialogComponent> extends InjectionRegistryService
   }
 
   createSubscriptions(triggerComponent: any): void {
+    // eslint-disable-next-line prefer-const
     let closeSub: Subscription;
     let overlaySub: Subscription;
 

@@ -1,15 +1,15 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { trigger } from '@angular/animations';
 import {
   bounceAnimation,
   fadeInAnimation,
   fadeOutAnimation,
+  slideBottomAnimation,
+  slideDownFadeOutAnimation,
   slideLeftAnimation,
   slideRightAnimation,
-  slideDownFadeOutAnimation,
-  slideUpFadeOutAnimation,
   slideTopAnimation,
-  slideBottomAnimation
+  slideUpFadeOutAnimation
 } from '@swimlane/ngx-ui';
 
 @Component({
@@ -29,7 +29,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AnimationsPageComponent {
-  count: number = 0;
+  count = 0;
   visible = {
     fadeIn: true,
     fadeOut: true,

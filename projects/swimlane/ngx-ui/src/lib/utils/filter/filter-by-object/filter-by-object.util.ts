@@ -1,9 +1,13 @@
+/* eslint-disable guard-for-in */
+/* eslint-disable security/detect-object-injection */
 import { filterByString } from '../filter-by-string/filter-by-string.util';
 import { filterDefault } from '../filter-default/filter-default.util';
 
-export function filterByObject(filter: any) {
-  return (value: any) => {
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const filterByObject = (filter: any) => {
+  return (value: unknown): boolean => {
     for (const key in filter) {
+      // eslint-disable-next-line no-prototype-builtins
       if (!value.hasOwnProperty(key)) {
         return false;
       }
@@ -25,4 +29,4 @@ export function filterByObject(filter: any) {
 
     return true;
   };
-}
+};

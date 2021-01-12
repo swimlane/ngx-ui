@@ -1,6 +1,6 @@
 import { Directive, TemplateRef } from '@angular/core';
 
-// tslint:disable-next-line:directive-selector
+// eslint-disable-next-line @angular-eslint/directive-selector
 @Directive({
   exportAs: 'ngxSelectOptionTemplate',
   selector: '[ngx-select-option-template]'

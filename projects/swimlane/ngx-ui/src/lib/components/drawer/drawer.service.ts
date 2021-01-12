@@ -19,8 +19,8 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
   };
 
   readonly renderer: Renderer2;
-  private zIndex: number = 995;
-  private size: number = 80;
+  private zIndex = 995;
+  private size = 80;
   private parentListenerFunc: () => void;
 
   constructor(
@@ -78,6 +78,7 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
       });
     }
 
+    // eslint-disable-next-line prefer-const
     let closeSub: Subscription;
     let overlaySub: Subscription;
 

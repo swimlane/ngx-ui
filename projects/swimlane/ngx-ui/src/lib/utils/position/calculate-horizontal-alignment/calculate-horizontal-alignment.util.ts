@@ -11,11 +11,11 @@ import { horizontalPosition } from '../horizontal-position/horizontal-position.u
  *
  * @returns number
  */
-export function calculateHorizontalAlignment(
+export const calculateHorizontalAlignment = (
   elDimensions: Dimensions,
   popoverDimensions: Dimensions,
   alignment: AlignmentTypes
-): number {
+): number => {
   let result = horizontalPosition(elDimensions, popoverDimensions, alignment);
 
   if (result + popoverDimensions.width > window.innerWidth) {
@@ -23,4 +23,4 @@ export function calculateHorizontalAlignment(
   }
 
   return result;
-}
+};

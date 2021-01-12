@@ -73,11 +73,11 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   @ContentChild(DropdownMenuDirective) readonly dropdownMenu: DropdownMenuDirective;
 
   private _documentListener?: () => void;
-  private _open: boolean = false;
-  private _showCaret: boolean = false;
-  private _closeOnClick: boolean = true;
-  private _closeOnOutsideClick: boolean = true;
-  private _closeOnMouseLeave: boolean = false;
+  private _open = false;
+  private _showCaret = false;
+  private _closeOnClick = true;
+  private _closeOnOutsideClick = true;
+  private _closeOnMouseLeave = false;
   private _leaveTimeout = null;
 
   constructor(private readonly renderer: Renderer2, private readonly cd: ChangeDetectorRef) {}

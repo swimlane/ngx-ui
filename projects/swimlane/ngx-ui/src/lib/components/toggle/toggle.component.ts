@@ -31,7 +31,7 @@ let nextId = 0;
   }
 })
 export class ToggleComponent implements ControlValueAccessor {
-  @Input() id: string = `toggle-${++nextId}`;
+  @Input() id = `toggle-${++nextId}`;
   @Input() name: string = null;
   @Input() label: string;
 
@@ -79,10 +79,10 @@ export class ToggleComponent implements ControlValueAccessor {
     return this.disabled ? 'disabled' : '';
   }
 
-  private _value: boolean = false;
-  private _disabled: boolean = false;
-  private _required: boolean = false;
-  private _tabIndex: number = 0;
+  private _value = false;
+  private _disabled = false;
+  private _required = false;
+  private _tabIndex = 0;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 

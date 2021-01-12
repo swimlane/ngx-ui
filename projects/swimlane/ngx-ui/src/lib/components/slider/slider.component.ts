@@ -41,15 +41,15 @@ const edge = window.navigator.userAgent.indexOf('Edge') > -1;
   }
 })
 export class SliderComponent implements ControlValueAccessor, OnInit {
-  @Input() id: string = `range-${++nextId}`;
-  @Input() min: number = 0;
-  @Input() max: number = 100;
-  @Input() step: number = 1;
-  @Input() orientation: string = 'horizontal';
-  @Input() filled: boolean = false;
-  @Input() multiple: boolean = false;
-  @Input() disabled: boolean = false;
-  @Input() showTicks: boolean = false;
+  @Input() id = `range-${++nextId}`;
+  @Input() min = 0;
+  @Input() max = 100;
+  @Input() step = 1;
+  @Input() orientation = 'horizontal';
+  @Input() filled = false;
+  @Input() multiple = false;
+  @Input() disabled = false;
+  @Input() showTicks = false;
   @Input() tickStep: number;
   @Output() change = new EventEmitter();
 

@@ -8,7 +8,7 @@ CodeMirror.defineMode(
       token(stream: any, _: any) {
         let ch: any;
         if (stream.match('{{')) {
-          // tslint:disable-next-line:no-conditional-assignment
+          // eslint-disable-next-line no-cond-assign
           while ((ch = stream.next()) != null)
             if (ch === '}' && stream.next() === '}') {
               stream.eat('}');

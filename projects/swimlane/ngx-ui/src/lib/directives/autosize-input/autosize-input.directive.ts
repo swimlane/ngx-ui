@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+/* eslint-disable security/detect-object-injection */
 import {
   AfterContentChecked,
   AfterViewInit,
@@ -33,11 +35,11 @@ export class AutoSizeInputDirective implements AfterContentChecked, AfterViewIni
     return this.includePadding ? this._getPropertyWidth('padding-left') + this._getPropertyWidth('padding-right') : 0;
   }
 
-  ngAfterContentChecked() {
+  ngAfterContentChecked(): void {
     this.updateWidth();
   }
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     if (this.ngModel) {
       this.ngModel.valueChanges
         .pipe(
@@ -48,14 +50,16 @@ export class AutoSizeInputDirective implements AfterContentChecked, AfterViewIni
     }
   }
 
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   @HostListener('input')
-  public onInput(): void {
+  onInput(): void {
     this.updateWidth();
   }
 
   setWidth(width: number): void {
     const element = this.element.nativeElement;
     const parent = this.renderer.parentNode(element);
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
     this.setParentWidth
       ? this.renderer.setStyle(parent, 'width', width + 'px')
       : this.renderer.setStyle(element, 'width', width + 'px');

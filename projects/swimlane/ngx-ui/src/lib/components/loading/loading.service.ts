@@ -5,7 +5,7 @@ import { LoadingComponent } from './loading.component';
 
 @Injectable()
 export class LoadingService {
-  threshold: number = 250;
+  threshold = 250;
 
   set progress(val: number) {
     if (this.instance) {
@@ -27,10 +27,10 @@ export class LoadingService {
     if (this.component) return this.component.instance;
   }
 
-  private _count: number = 0;
+  private _count = 0;
   private timeout: any;
   private component: ComponentRef<LoadingComponent>;
-  private _progress: number = 0;
+  private _progress = 0;
 
   constructor(private readonly injectionService: InjectionService) {}
 

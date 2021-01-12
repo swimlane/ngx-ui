@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
 enum TipStatus {
   Success = 'success',
@@ -17,5 +17,5 @@ export class TipPageComponent {
   readonly TipStatus = TipStatus;
   status: TipStatus;
   text: string = text;
-  showTip: boolean = true;
+  showTip = true;
 }

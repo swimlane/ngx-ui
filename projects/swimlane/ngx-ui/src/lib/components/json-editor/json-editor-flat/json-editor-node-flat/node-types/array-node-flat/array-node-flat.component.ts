@@ -97,8 +97,8 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit, OnChang
   }
 
   addDefaultItemForSchemaBuilder(dataType: JsonSchemaDataType): void {
-    this.schema.items = dataType.schema as object;
-    this.schemaRef.items = dataType.schema as object;
+    this.schema.items = dataType.schema as Record<string, any>;
+    this.schemaRef.items = dataType.schema as Record<string, any>;
 
     this.model.push(this.schemaRef.items.type === 'array' ? [] : this.schemaRef.items);
 

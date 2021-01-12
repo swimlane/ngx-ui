@@ -3,7 +3,7 @@ import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { TooltipDirective } from '../tooltip.directive';
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'tooltip-fixture',
   templateUrl: 'tooltip.fixture.html',
   changeDetection: ChangeDetectionStrategy.OnPush

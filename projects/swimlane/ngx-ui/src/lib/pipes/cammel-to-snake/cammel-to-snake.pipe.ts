@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'cammeltosnake' })
 export class CammelToSnakePipe implements PipeTransform {
-  transform(input?: any): string {
+  transform(input?: unknown): string {
     if (!input) return '';
     const str = input.toString();
 

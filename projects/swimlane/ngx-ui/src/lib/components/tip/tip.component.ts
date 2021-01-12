@@ -19,7 +19,7 @@ export class TipComponent {
   @Input()
   status: TipStatus;
   @Input()
-  isCloseable: boolean = false;
+  isCloseable = false;
   @Output()
   close = new EventEmitter();
   icon: string;

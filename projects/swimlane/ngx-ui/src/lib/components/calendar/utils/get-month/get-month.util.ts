@@ -5,6 +5,7 @@ import { getDaysForMonth } from '../get-days-for-month/get-days-for-month.util';
 
 /**
  * Returns the month offset correctly
+ *
  * @param active
  * @return days
  */

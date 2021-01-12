@@ -10,6 +10,7 @@ declare const IS_PRODUCTION: boolean;
 declare const IS_DEV: boolean;
 
 // system not in types
+// eslint-disable-next-line @typescript-eslint/naming-convention
 declare const System: any;
 
 // support for `import * as myJson from './foo.json';`
@@ -22,15 +23,15 @@ declare module '*.scss';
 // native notifications
 // declare const Notification: any;
 
-interface ErrorStackTraceLimit {
-  stackTraceLimit: number;
-}
+// interface ErrorStackTraceLimit {
+//   stackTraceLimit: number;
+// }
 
-interface ErrorConstructor extends ErrorStackTraceLimit {}
+// type ErrorConstructor = ErrorStackTraceLimit;
 
-// HACK: This is only for demo page hmr
-interface AppWindow {
-  state: any;
-}
+// // HACK: This is only for demo page hmr
+// interface AppWindow {
+//   state: any;
+// }
 
-interface Window extends AppWindow {}
+// type Window = AppWindow;

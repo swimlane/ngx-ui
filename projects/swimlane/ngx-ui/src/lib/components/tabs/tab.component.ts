@@ -27,7 +27,7 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabComponent implements OnInit {
-  @Input() title: string = '';
+  @Input() title = '';
   @Input() label: string | TemplateRef<any> = '';
   @Input() active = false;
   @Input() disabled = false;

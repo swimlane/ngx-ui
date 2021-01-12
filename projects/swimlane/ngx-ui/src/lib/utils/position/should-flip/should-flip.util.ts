@@ -15,13 +15,13 @@ import { verticalPosition } from '../vertical-position/vertical-position.util';
  *
  * @returns boolean
  */
-export function shouldFlip(
+export const shouldFlip = (
   elDimensions: Dimensions,
   popoverDimensions: Dimensions,
   placement: PlacementTypes,
   alignment: AlignmentTypes,
   spacing: number
-): boolean {
+): boolean => {
   let flip = false;
 
   if (placement === PlacementTypes.right) {
@@ -52,4 +52,4 @@ export function shouldFlip(
   }
 
   return flip;
-}
+};

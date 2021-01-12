@@ -4,7 +4,7 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { DropdownShowTypes } from './dropdown.show-types.enum';
 
 @Directive({
-  // tslint:disable-next-line:directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   exportAs: 'ngxDropdownToggle',
   selector: 'ngx-dropdown-toggle',
   host: {

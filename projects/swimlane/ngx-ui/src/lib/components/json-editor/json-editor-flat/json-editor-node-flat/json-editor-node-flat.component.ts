@@ -58,7 +58,7 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   requiredIndicator: SafeHtml;
 
-  nextLevel: number = 0;
+  nextLevel = 0;
 
   constructor(public dialogMngr: DialogService, private domSanitizer: DomSanitizer) {
     super(dialogMngr);

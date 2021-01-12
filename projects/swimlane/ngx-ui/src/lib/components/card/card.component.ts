@@ -19,11 +19,11 @@ import { CardOrientation } from './card-orientation.enum';
 })
 export class CardComponent {
   @Input() orientation: CardOrientation = CardOrientation.Horizontal;
-  @Input() disabled: boolean = false;
+  @Input() disabled = false;
   @Input() status: CardStatus;
   @Input() statusTooltip: string;
-  @Input() selectable: boolean = false;
-  @Input() selected: boolean = false;
+  @Input() selectable = false;
+  @Input() selected = false;
   @Input() outlineText: string;
 
   @Output() select = new EventEmitter<boolean>();

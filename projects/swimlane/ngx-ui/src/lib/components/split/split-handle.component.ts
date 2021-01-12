@@ -17,7 +17,7 @@ const DEFAULT_BASIS = '0 0 15px';
 
 @Component({
   exportAs: 'ngxSplitHandle',
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[ngxSplitHandle]',
   templateUrl: './split-handle.component.html',
   styleUrls: ['./split-handle.component.scss'],

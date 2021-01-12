@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-card-page',
@@ -9,7 +9,7 @@ import { Component, ChangeDetectionStrategy, ChangeDetectorRef, ViewEncapsulatio
 })
 export class CardPageComponent {
   cardWidth: number;
-  isSelected: boolean = true;
+  isSelected = true;
   constructor(private readonly cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit() {

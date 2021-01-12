@@ -1,3 +1,6 @@
+/* eslint-disable security/detect-object-injection */
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/member-ordering */
 import {
   ApplicationRef,
   ComponentFactoryResolver,
@@ -10,9 +13,9 @@ import {
 } from '@angular/core';
 import { DomPortalOutlet, ComponentPortal } from '@angular/cdk/portal';
 
-function isViewContainerRef(x: any): x is ViewContainerRef {
+const isViewContainerRef = (x: any): x is ViewContainerRef => {
   return x.element;
-}
+};
 
 /**
  * Injection service is a helper to append components
@@ -25,6 +28,8 @@ function isViewContainerRef(x: any): x is ViewContainerRef {
 export class InjectionService {
   static globalRootViewContainer: ViewContainerRef = null;
 
+  private _container: ViewContainerRef;
+
   /**
    * Sets a default global root view container. This is useful for
    * things like ngUpgrade that doesn't have a ApplicationRef root.
@@ -34,8 +39,6 @@ export class InjectionService {
   static setGlobalRootViewContainer(container: ViewContainerRef): void {
     InjectionService.globalRootViewContainer = container;
   }
-
-  private _container: ViewContainerRef;
 
   constructor(
     private applicationRef: ApplicationRef,
@@ -108,7 +111,7 @@ export class InjectionService {
    *
    * @memberOf InjectionService
    */
-  projectComponentBindings(component: ComponentRef<any>, bindings: any): ComponentRef<any> {
+  projectComponentBindings(component: ComponentRef<any>, bindings: Record<string, any>): ComponentRef<any> {
     if (bindings) {
       if (bindings.inputs !== undefined) {
         const bindingKeys = Object.getOwnPropertyNames(bindings.inputs);
@@ -137,14 +140,18 @@ export class InjectionService {
    *
    * @memberOf InjectionService
    */
-  appendComponent<T>(componentClass: Type<T>, bindings: any = {}, location?: any): ComponentRef<any> {
+  appendComponent<T>(
+    componentClass: Type<T>,
+    bindings: any = {},
+    location?: ComponentRef<any> | ViewContainerRef
+  ): ComponentRef<any> {
     if (!location) location = this.getRootViewContainer();
 
     const appendLocation =
       bindings.inputs && bindings.inputs.isRoot === false ? location : this.getComponentRootNode(location);
 
     const portalHost = new DomPortalOutlet(
-      appendLocation,
+      appendLocation as Element,
       this.componentFactoryResolver,
       this.applicationRef,
       this.injector

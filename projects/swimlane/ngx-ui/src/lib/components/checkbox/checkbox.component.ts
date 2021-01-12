@@ -37,7 +37,7 @@ let nextId = 0;
 export class CheckboxComponent implements ControlValueAccessor {
   @Input() id = `checkbox-${++nextId}`;
   @Input() name?: string;
-  @Input() diameter: string = '18px';
+  @Input() diameter = '18px';
 
   @Input()
   get tabindex() {
@@ -82,10 +82,10 @@ export class CheckboxComponent implements ControlValueAccessor {
     return this._value;
   }
 
-  private _value: boolean = false;
-  private _tabindex: number = 0;
-  private _disabled: boolean = false;
-  private _round: boolean = false;
+  private _value = false;
+  private _tabindex = 0;
+  private _disabled = false;
+  private _round = false;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 

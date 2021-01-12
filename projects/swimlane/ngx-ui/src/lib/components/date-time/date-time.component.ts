@@ -55,11 +55,11 @@ const DATE_TIME_VALUE_ACCESSOR = {
   }
 })
 export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
-  @Input() id: string = `datetime-${++nextId}`;
+  @Input() id = `datetime-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
   @Input() hint: string;
-  @Input() placeholder: string = '';
+  @Input() placeholder = '';
   @Input() size: Size = Size.Small;
   @Input() appearance: Appearance = Appearance.Legacy;
   @Input() withMargin = true;
@@ -214,15 +214,15 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   modes = ['millisecond', 'second', 'minute', 'hour', 'date', 'month', 'year'];
 
   private _value: Date | string;
-  private _displayValue: string = '';
+  private _displayValue = '';
   private _format: string;
   private _inputType: string;
-  private _disabled: boolean = false;
-  private _autofocus: boolean = false;
+  private _disabled = false;
+  private _autofocus = false;
   private _tabindex: number;
-  private _autosize: boolean = false;
+  private _autosize = false;
   private _minWidth: number = MIN_WIDTH;
-  private _required: boolean = false;
+  private _required = false;
 
   constructor(private readonly dialogService: DialogService, private readonly cdr: ChangeDetectorRef) {}
 

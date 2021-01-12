@@ -203,23 +203,23 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
   private updateSchemaRefProperty(prop: any): void {
     this.schemaRef.properties[prop.propertyName] = {
       type: prop.type,
-      ...(prop['format'] && { format: prop['format'] }),
-      ...(prop['examples'] && { examples: prop['examples'] }),
-      ...(prop['title'] && { title: prop['title'] }),
-      ...(prop['items'] && { items: prop['items'] }),
-      ...(prop['required'] && { required: prop['required'] }),
-      ...(prop['properties'] && { properties: prop['properties'] }),
-      ...(prop['enum'] && { enum: prop['enum'] }),
-      ...(prop['default'] && { default: prop['default'] }),
-      ...(prop['description'] && { description: prop['description'] }),
-      ...(prop['nameEditable'] && { nameEditable: prop['nameEditable'] }),
-      ...(prop['minimum'] && { minimum: prop['minimum'] }),
-      ...(prop['maximum'] && { maximum: prop['maximum'] }),
-      ...(prop['minLength'] && { minLength: prop['minLength'] }),
-      ...(prop['maxLength'] && { maxLength: prop['maxLength'] }),
-      ...(prop['minItems'] && { minItems: prop['minItems'] }),
-      ...(prop['maxItems'] && { maxItems: prop['maxItems'] }),
-      ...(prop['pattern'] && { pattern: prop['pattern'] })
+      ...(prop.format && { format: prop.format }),
+      ...(prop.examples && { examples: prop.examples }),
+      ...(prop.title && { title: prop.title }),
+      ...(prop.items && { items: prop.items }),
+      ...(prop.required && { required: prop.required }),
+      ...(prop.properties && { properties: prop.properties }),
+      ...(prop.enum && { enum: prop.enum }),
+      ...(prop.default && { default: prop.default }),
+      ...(prop.description && { description: prop.description }),
+      ...(prop.nameEditable && { nameEditable: prop.nameEditable }),
+      ...(prop.minimum && { minimum: prop.minimum }),
+      ...(prop.maximum && { maximum: prop.maximum }),
+      ...(prop.minLength && { minLength: prop.minLength }),
+      ...(prop.maxLength && { maxLength: prop.maxLength }),
+      ...(prop.minItems && { minItems: prop.minItems }),
+      ...(prop.maxItems && { maxItems: prop.maxItems }),
+      ...(prop.pattern && { pattern: prop.pattern })
     };
   }
 

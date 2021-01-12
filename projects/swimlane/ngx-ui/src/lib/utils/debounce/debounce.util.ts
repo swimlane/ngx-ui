@@ -1,10 +1,11 @@
 /**
  * Debounce a function
+ *
  * @param func      function to executoe
  * @param wait      wait duration
  * @param immediate wait or immediate executue
  */
-export function debounce(func: () => void, wait: number, immediate?: boolean) {
+export const debounce = (func: () => void, wait: number, immediate?: boolean): (() => any) => {
   let timeout: any;
   let args: IArguments;
   let context: any;
@@ -13,9 +14,11 @@ export function debounce(func: () => void, wait: number, immediate?: boolean) {
 
   return function () {
     context = this;
+    // eslint-disable-next-line prefer-rest-params
     args = arguments;
     timestamp = new Date();
 
+    // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
     function later() {
       const now = new Date();
       const last = now.getTime() - timestamp.getTime();
@@ -41,4 +44,4 @@ export function debounce(func: () => void, wait: number, immediate?: boolean) {
 
     return result;
   };
-}
+};

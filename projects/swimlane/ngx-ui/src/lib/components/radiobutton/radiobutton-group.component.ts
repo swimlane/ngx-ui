@@ -89,9 +89,9 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   }
 
   private _name: string = this.UNIQUE_ID;
-  private _value: boolean = false;
+  private _value = false;
   private _selected: RadioButtonComponent;
-  private _disabled: boolean = false;
+  private _disabled = false;
   private _destroy$ = new Subject<void>();
 
   constructor(private readonly _cdr: ChangeDetectorRef) {}

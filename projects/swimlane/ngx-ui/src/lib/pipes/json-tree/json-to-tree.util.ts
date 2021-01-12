@@ -1,8 +1,9 @@
+/* eslint-disable security/detect-object-injection */
 import { getType } from '../../utils/get-type/get-type.util';
 
 import { TreeNode } from '../../components/tree/tree-node.model';
 
-export function jsonToTree(value: any, label?: string): TreeNode {
+export const jsonToTree = (value: any, label?: string): TreeNode => {
   const type = getType(value);
 
   let children: any[];
@@ -42,4 +43,4 @@ export function jsonToTree(value: any, label?: string): TreeNode {
         model: { type, value }
       };
   }
-}
+};

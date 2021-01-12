@@ -1,4 +1,4 @@
-export function convertClass(input: string): string {
+export const convertClass = (input: string): string => {
   const classes = input
     .trim()
     .split(' ')
@@ -9,4 +9,4 @@ export function convertClass(input: string): string {
     .join(' ');
 
   return `ngx-icon ${classes}`;
-}
+};

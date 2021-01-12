@@ -2,7 +2,7 @@ import { ElementRef, Directive, Input } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Directive({
-  // tslint:disable-next-line:directive-selector
+  // eslint-disable-next-line @angular-eslint/directive-selector
   exportAs: 'ngxAutosize',
   selector: 'textarea[autosize], input[autosize]',
   host: {

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-radio-page',
@@ -6,7 +6,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioPageComponent {
-  favoriteSeason: string = 'Spring';
+  favoriteSeason = 'Spring';
   secondFavoriteSeason: string;
   disabled = false;
   seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];

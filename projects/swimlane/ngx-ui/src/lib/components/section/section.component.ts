@@ -22,8 +22,8 @@ import { SectionHeaderComponent } from './section-header.component';
   styleUrls: ['./section.component.scss']
 })
 export class SectionComponent {
-  @Input() sectionCollapsed: boolean = false;
-  @Input() sectionCollapsible: boolean = true;
+  @Input() sectionCollapsed = false;
+  @Input() sectionCollapsible = true;
   @Input() sectionTitle: string;
   @Input() padding: any = '1.8em';
 

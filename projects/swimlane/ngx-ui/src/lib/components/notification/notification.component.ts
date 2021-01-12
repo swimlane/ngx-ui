@@ -22,7 +22,7 @@ import { NotificationStyleType } from './notification-style-type.enum';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationComponent {
-  @Input() cssClass: string = '';
+  @Input() cssClass = '';
   @Input() title: string;
   @Input() body: string;
   @Input() template: TemplateRef<any>;

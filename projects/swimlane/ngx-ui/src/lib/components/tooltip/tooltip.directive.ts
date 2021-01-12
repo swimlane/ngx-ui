@@ -22,14 +22,14 @@ import { StyleTypes } from './style-types.enum';
 import { TooltipService } from './tooltip.service';
 import { TooltipContentComponent } from './tooltip.component';
 
-// tslint:disable-next-line:directive-selector
+// eslint-disable-next-line @angular-eslint/directive-selector
 @Directive({
   selector: '[ngx-tooltip]',
   exportAs: 'ngxTooltip'
 })
 export class TooltipDirective implements OnDestroy {
-  @Input() tooltipCssClass: string = '';
-  @Input() tooltipTitle: string = '';
+  @Input() tooltipCssClass = '';
+  @Input() tooltipTitle = '';
   @Input() tooltipPlacement: PlacementTypes = PlacementTypes.top;
   @Input() tooltipAlignment: AlignmentTypes = AlignmentTypes.center;
   @Input() tooltipType: StyleTypes = StyleTypes.popover;
@@ -96,13 +96,13 @@ export class TooltipDirective implements OnDestroy {
   @Output() show = new EventEmitter<boolean>();
   @Output() hide = new EventEmitter<boolean>();
 
-  private _tooltipSpacing: number = 10;
-  private _tooltipDisabled: boolean = false;
-  private _tooltipShowCaret: boolean = true;
-  private _tooltipCloseOnClickOutside: boolean = true;
-  private _tooltipCloseOnMouseLeave: boolean = true;
-  private _tooltipHideTimeout: number = 300;
-  private _tooltipShowTimeout: number = 100;
+  private _tooltipSpacing = 10;
+  private _tooltipDisabled = false;
+  private _tooltipShowCaret = true;
+  private _tooltipCloseOnClickOutside = true;
+  private _tooltipCloseOnMouseLeave = true;
+  private _tooltipHideTimeout = 300;
+  private _tooltipShowTimeout = 100;
 
   private get listensForFocus(): boolean {
     return this.tooltipShowEvent === ShowTypes.all || this.tooltipShowEvent === ShowTypes.focus;

@@ -10,7 +10,8 @@ import { ThrottleOptions } from '../../utils/throttle/throttle-options.interface
  *  }
  */
 export function throttleable(duration: number, options?: ThrottleOptions) {
-  return function innerDecorator(_: any, key: string, descriptor: any) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  return (_: any, key: string, descriptor: any): any => {
     return {
       configurable: true,
       enumerable: descriptor.enumerable,
@@ -21,6 +22,7 @@ export function throttleable(duration: number, options?: ThrottleOptions) {
           value: throttle(descriptor.value, duration, options)
         });
 
+        // eslint-disable-next-line security/detect-object-injection
         return this[key];
       }
     };
