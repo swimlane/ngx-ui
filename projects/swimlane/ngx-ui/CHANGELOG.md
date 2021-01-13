@@ -2,6 +2,7 @@
 
 # HEAD (unreleased)
 
+- Fix(JsonEditor): Remove unnecessary `onModelChange` event emissions on init.
 - Enhancement: Add `blur` and `dateTimeSelected` outputs to `DateTimeComponent`.
 
 ## 34.0.1 (2020-12-17)
