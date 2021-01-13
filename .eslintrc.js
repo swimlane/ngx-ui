@@ -15,8 +15,6 @@ module.exports = {
   ],
 
   rules: {
-    // add to @swimlane/eslint-config
-    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
   },
 
   overrides: [
@@ -40,24 +38,18 @@ module.exports = {
         'prettier/@typescript-eslint'
       ],
       rules: {
-        // add to @swimlane/eslint-config
+        // override ng-cli-compat
         'no-underscore-dangle': 'off',
+        '@typescript-eslint/no-explicit-any': ['warn', { ignoreRestArgs: true }],
 
-        'no-unused-vars': 'off',
-        '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
-
+        // override @angular-eslint, see https://github.com/typescript-eslint/tslint-to-eslint-config/issues/856
         'no-shadow': 'off',
         '@typescript-eslint/no-shadow': ['error'],
-
-        '@typescript-eslint/naming-convention': [
-          'error',
-          { selector: 'enumMember', format: null }
-        ],
 
         'security/detect-object-injection': 'off',  // too strict?
         'security/detect-non-literal-fs-filename': 'off',  // many false positives
 
-        // fix these
+        // fix these in this repo
         '@angular-eslint/no-input-rename': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/member-ordering': 'off',

@@ -9,7 +9,6 @@
         "createDefaultProgram": true
       },
       "extends": ["prettier", "prettier/@typescript-eslint"],
-      "plugins": ["eslint-plugin-react"],
       "rules": {
         "@angular-eslint/component-selector": [
           "error",

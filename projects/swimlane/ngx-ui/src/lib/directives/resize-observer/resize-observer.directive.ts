@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { Directive, Output, EventEmitter, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import ResizeObserver from 'resize-observer-polyfill';
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { Injectable } from '@angular/core';
 
 import { convertClass } from './convert-class.util';

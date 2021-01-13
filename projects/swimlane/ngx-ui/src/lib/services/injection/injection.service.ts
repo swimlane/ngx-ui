@@ -1,5 +1,4 @@
 /* eslint-disable security/detect-object-injection */
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/member-ordering */
 import {
   ApplicationRef,
