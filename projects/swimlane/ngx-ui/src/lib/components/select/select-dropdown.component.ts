@@ -275,8 +275,6 @@ export class SelectDropdownComponent implements AfterViewInit {
       }
     }
 
-    console.log('map', map);
-
     const result = [];
     map.forEach((value, key) => {
       result.push({ name: key, options: value });
