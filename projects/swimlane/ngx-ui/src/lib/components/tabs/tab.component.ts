@@ -11,7 +11,8 @@ import {
   ChangeDetectorRef,
   EventEmitter,
   Output,
-  SimpleChanges
+  SimpleChanges,
+  OnChanges
 } from '@angular/core';
 import { IfTabActiveDirective } from './if-tab-active.directive';
 
@@ -26,7 +27,7 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
   },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabComponent implements OnInit {
+export class TabComponent implements OnInit, OnChanges {
   @Input() title = '';
   @Input() label: string | TemplateRef<any> = '';
   @Input() active = false;

@@ -440,7 +440,7 @@ describe('DateTimeComponent', () => {
       expect(component.isCurrent()).toBe(false);
 
       component.apply();
-      expect(component.displayValue).toEqual(`01/01/1990 12:39 PM`);
+      expect(component.displayValue).toEqual('01/01/1990 12:39 PM');
     });
 
     it('should set current', () => {

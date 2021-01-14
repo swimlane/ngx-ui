@@ -148,7 +148,6 @@ export function _deregister(comp: any) {
   for (const comb in hotkeys) {
     const hotkeyList = hotkeys[comb];
 
-    // eslint-disable-next-line @typescript-eslint/prefer-for-of
     for (let i = 0; i < hotkeyList.length; i++) {
       if (hotkeyList[i].component === comp) {
         hotkeyList[i].status = HotkeyStatus.Disabled;

@@ -153,6 +153,7 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
     const note = new Notification(options.title, options);
 
     note.onerror = () => {
+      // eslint-disable-next-line no-console
       console.error('Notification failed!', options);
     };
 

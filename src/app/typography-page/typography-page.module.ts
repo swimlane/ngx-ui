@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { SectionModule } from '@swimlane/ngx-ui';

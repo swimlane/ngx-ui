@@ -37,13 +37,14 @@ export class TreeNodeComponent implements OnChanges {
   @Output() deactivate = new EventEmitter();
   @Output() selectNode = new EventEmitter();
   // backwards compatibility. Use selectNode
+  // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() select = this.selectNode;
   @Output() expand = new EventEmitter();
   @Output() collapse = new EventEmitter();
 
   data: any;
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     this.data = {
       $implicit: this.node,
       label: this.label,

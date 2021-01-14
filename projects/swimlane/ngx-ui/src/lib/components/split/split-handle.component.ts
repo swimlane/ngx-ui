@@ -5,7 +5,8 @@ import {
   Output,
   ViewEncapsulation,
   Input,
-  HostBinding
+  HostBinding,
+  OnChanges
 } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -30,7 +31,7 @@ const DEFAULT_BASIS = '0 0 15px';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SplitHandleComponent {
+export class SplitHandleComponent implements OnChanges {
   @Input() ngxSplitHandle = DEFAULT_BASIS;
 
   @Output() drag = new EventEmitter<{ x: number; y: number }>();

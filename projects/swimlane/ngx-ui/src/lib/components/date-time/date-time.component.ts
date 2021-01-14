@@ -69,7 +69,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() precision: moment.unitOfTime.StartOf;
 
   @Input() timezone: string;
-  @Input() inputFormats: any[] = ['L', `LT`, 'L LT', moment.ISO_8601];
+  @Input() inputFormats: any[] = ['L', 'LT', 'L LT', moment.ISO_8601];
 
   @Input()
   get disabled() {

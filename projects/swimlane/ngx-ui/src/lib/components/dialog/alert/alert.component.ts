@@ -8,7 +8,8 @@ import {
   ViewEncapsulation,
   ElementRef,
   ChangeDetectionStrategy,
-  AfterViewInit
+  AfterViewInit,
+  OnInit
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
@@ -58,7 +59,7 @@ import { AlertTypes } from './alert-types.enum';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AlertComponent extends DialogComponent implements AfterViewInit {
+export class AlertComponent extends DialogComponent implements AfterViewInit, OnInit {
   @Input() type: AlertTypes;
   @Input() data: any = '';
   @Input() confirmButtonText: string;

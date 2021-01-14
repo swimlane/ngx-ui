@@ -7,7 +7,8 @@ import {
   ViewEncapsulation,
   Renderer2,
   ElementRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  OnInit
 } from '@angular/core';
 
 import { ToolbarTitleDirective } from './toolbar-title.directive';
@@ -24,7 +25,7 @@ import { ToolbarMenuItem } from './toolbar-menu-item.interface';
     class: 'ngx-toolbar'
   }
 })
-export class ToolbarComponent {
+export class ToolbarComponent implements OnInit {
   @Input() title: string;
   @Input() mainTitle: string;
   @Input() subtitle: string;

@@ -29,6 +29,7 @@ import { TreeNode } from './tree-node.model';
 export class TreeComponent implements AfterContentInit, OnDestroy {
   @Input() nodes: TreeNode[];
 
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('template')
   _templateInput: TemplateRef<any>;
 

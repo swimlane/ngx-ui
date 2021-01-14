@@ -6,7 +6,8 @@ import {
   EventEmitter,
   Output,
   ChangeDetectionStrategy,
-  SimpleChanges
+  SimpleChanges,
+  OnChanges
 } from '@angular/core';
 import { JsonEditorNode } from '../../json-editor-node';
 
@@ -21,7 +22,7 @@ import { requiredIndicatorIcon, JSONEditorSchema, JsonSchemaDataType } from '../
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnInit {
+export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnInit, OnChanges {
   @Input() model: any;
 
   @Input() schema: JSONEditorSchema;

@@ -8,7 +8,6 @@
         "project": ["projects/swimlane/ngx-ui/tsconfig.lib.json", "projects/swimlane/ngx-ui/tsconfig.spec.json"],
         "createDefaultProgram": true
       },
-      "extends": ["prettier", "prettier/@typescript-eslint"],
       "rules": {
         "@angular-eslint/component-selector": [
           "error",
@@ -25,7 +24,8 @@
             "prefix": "ngx",
             "style": "camelCase"
           }
-        ]
+        ],
+        "no-console": "error"
       }
     },
     {

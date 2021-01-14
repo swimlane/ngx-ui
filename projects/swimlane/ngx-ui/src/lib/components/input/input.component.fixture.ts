@@ -5,7 +5,7 @@ import { InputComponent } from './input.component';
 import { InputTypes } from './input-types.enum';
 
 @Component({
-  selector: `ngx-input-fixture`,
+  selector: 'ngx-input-fixture',
   template: `
     <ngx-input
       [(ngModel)]="value"

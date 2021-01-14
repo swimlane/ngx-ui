@@ -18,7 +18,6 @@ export const debounce = (func: () => void, wait: number, immediate?: boolean): (
     args = arguments;
     timestamp = new Date();
 
-    // eslint-disable-next-line prefer-arrow/prefer-arrow-functions
     function later() {
       const now = new Date();
       const last = now.getTime() - timestamp.getTime();

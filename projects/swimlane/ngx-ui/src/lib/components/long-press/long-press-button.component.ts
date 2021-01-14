@@ -39,7 +39,7 @@ import { LongPressButtonState } from './long-press-button-state.enum';
           strokeDasharray: '0 1000'
         })
       ),
-      transition('inactive => active', animate(`{{ duration }}ms ease-out`), { params: { duration: 1000 } })
+      transition('inactive => active', animate('{{ duration }}ms ease-out'), { params: { duration: 1000 } })
     ])
   ],
   encapsulation: ViewEncapsulation.None,

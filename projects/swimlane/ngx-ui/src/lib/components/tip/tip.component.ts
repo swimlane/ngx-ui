@@ -1,4 +1,13 @@
-import { Component, Input, Output, EventEmitter, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  OnInit,
+  OnDestroy
+} from '@angular/core';
 import { TipStatus } from './tip-status.enum';
 
 @Component({
@@ -15,13 +24,12 @@ import { TipStatus } from './tip-status.enum';
     '[class.ngx-tip--notice]': 'status === TipStatus.Notice'
   }
 })
-export class TipComponent {
-  @Input()
-  status: TipStatus;
-  @Input()
-  isCloseable = false;
-  @Output()
-  close = new EventEmitter();
+export class TipComponent implements OnInit, OnDestroy {
+  @Input() status: TipStatus;
+  @Input() isCloseable = false;
+
+  @Output() close = new EventEmitter();
+
   icon: string;
   readonly TipStatus = TipStatus;
 

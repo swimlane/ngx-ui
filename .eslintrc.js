@@ -31,36 +31,26 @@ module.exports = {
       },
       extends: [
         '@swimlane/eslint-config/typescript',
-        'plugin:@angular-eslint/ng-cli-compat',
-        'plugin:@angular-eslint/ng-cli-compat--formatting-add-on',
+        'plugin:@angular-eslint/recommended',
         'plugin:@angular-eslint/template/process-inline-templates',
         'prettier',
         'prettier/@typescript-eslint'
       ],
       rules: {
-        // override ng-cli-compat
-        'no-underscore-dangle': 'off',
-        '@typescript-eslint/no-explicit-any': ['warn', { ignoreRestArgs: true }],
+        // off for demo packages
+        'no-console': 'off',
+        
+        // override prettier
+        quotes: ['error', 'single'],
 
-        // override @angular-eslint, see https://github.com/typescript-eslint/tslint-to-eslint-config/issues/856
-        'no-shadow': 'off',
-        '@typescript-eslint/no-shadow': ['error'],
-
-        'security/detect-object-injection': 'off',  // too strict?
-        'security/detect-non-literal-fs-filename': 'off',  // many false positives
-
-        // fix these in this repo
-        '@angular-eslint/no-input-rename': 'off',
-        '@typescript-eslint/explicit-module-boundary-types': 'off',
-        '@typescript-eslint/member-ordering': 'off',
-        '@angular-eslint/use-lifecycle-interface': 'off',
-        '@angular-eslint/no-host-metadata-property': 'off',
-        '@angular-eslint/no-output-native': 'off',
-        '@angular-eslint/component-class-suffix': 'off',
-        'prefer-arrow/prefer-arrow-functions': 'off',
-        'guard-for-in': 'off',
-        '@angular-eslint/directive-class-suffix': 'off',
-        '@angular-eslint/no-output-on-prefix': 'off'
+        // fix these in this repo, warn for now
+        'guard-for-in': 'warn',
+        '@typescript-eslint/explicit-module-boundary-types': 'warn',
+        '@angular-eslint/no-host-metadata-property': 'warn',
+        '@angular-eslint/no-output-native': 'warn',
+        '@angular-eslint/component-class-suffix': ['error', { suffixes: ['Component', 'Fixture'] }],
+        '@angular-eslint/directive-class-suffix': 'warn',
+        '@angular-eslint/no-output-on-prefix': 'warn'
       }
     },
     {

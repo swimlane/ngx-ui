@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/core';
 
 @Component({

@@ -32,6 +32,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
   @Output() selectTab = new EventEmitter();
   // For backwards compat... user selectTab instead.
+  // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() select = this.selectTab;
 
   @ContentChildren(TabComponent) readonly tabs: QueryList<TabComponent>;
@@ -52,7 +53,8 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     const actives = this.tabs.filter(t => t.active);
 
     if (actives.length > 1) {
-      console.error(`Multiple active tabs set 'active'`);
+      // eslint-disable-next-line no-console
+      console.error("Multiple active tabs set 'active'");
     } else if (!actives.length && tabs.length) {
       setTimeout(() => {
         tabs[0].active = true;

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { Component, Input, OnInit } from '@angular/core';
 
 const counts = {};

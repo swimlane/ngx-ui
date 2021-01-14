@@ -30,6 +30,7 @@ export class SelectOptionDirective implements SelectDropdownOption {
     this._hidden = coerceBooleanProperty(hidden);
   }
 
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('optionTemplate')
   _optionTemplateInput: TemplateRef<any>;
 
@@ -40,6 +41,7 @@ export class SelectOptionDirective implements SelectDropdownOption {
     return this._optionTemplateInput || this._optionTemplateQuery;
   }
 
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('inputTemplate')
   _inputTemplateInput: TemplateRef<any>;
 

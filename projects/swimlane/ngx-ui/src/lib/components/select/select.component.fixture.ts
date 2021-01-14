@@ -6,7 +6,7 @@ import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { selectDropdownOptionMock } from './select-dropdown-option.mock';
 
 @Component({
-  selector: `ngx-select-fixture`,
+  selector: 'ngx-select-fixture',
   template: `
     <ngx-select
       placeholder="placeholder"
@@ -39,6 +39,7 @@ import { selectDropdownOptionMock } from './select-dropdown-option.mock';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class SelectComponentFixture {
   selected = [];
 

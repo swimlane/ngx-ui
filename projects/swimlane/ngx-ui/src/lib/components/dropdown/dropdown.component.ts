@@ -18,7 +18,7 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
 @Component({
   exportAs: 'ngxDropdown',
   selector: 'ngx-dropdown',
-  template: ` <ng-content></ng-content> `,
+  template: ' <ng-content></ng-content> ',
   styleUrls: ['./dropdown.component.scss'],
   host: {
     class: 'ngx-dropdown',

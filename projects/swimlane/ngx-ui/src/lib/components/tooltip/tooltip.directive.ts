@@ -93,6 +93,7 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipShowTimeout = coerceNumberProperty(val, 100);
   }
 
+  // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() show = new EventEmitter<boolean>();
   @Output() hide = new EventEmitter<boolean>();
 

@@ -71,6 +71,7 @@ export class IconComponent implements OnChanges, OnInit {
       },
       /* istanbul ignore next */
       err => {
+        // eslint-disable-next-line no-console
         console.error(err);
       }
     );

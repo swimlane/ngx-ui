@@ -9,6 +9,7 @@ export class TogglePageComponent {
   toggleChk = true;
 
   onToggleChange(event) {
+    // eslint-disable-next-line no-console
     console.log('check?', event);
   }
 }

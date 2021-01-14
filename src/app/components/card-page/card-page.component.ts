@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
+/* eslint-disable no-console */
+import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-card-page',
@@ -7,25 +8,25 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulatio
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class CardPageComponent {
+export class CardPageComponent implements AfterViewInit {
   cardWidth: number;
   isSelected = true;
   constructor(private readonly cdr: ChangeDetectorRef) {}
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.cdr.detectChanges();
   }
 
-  onDelete() {
+  onDelete(): void {
     console.log('Card Deleted');
   }
 
-  onResize(card) {
+  onResize(card): void {
     this.cardWidth = card.width;
     this.cdr.detectChanges();
   }
 
-  onClick() {
+  onClick(): void {
     console.log('Card clicked');
   }
 
