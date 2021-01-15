@@ -35,9 +35,20 @@ export interface JsonSchemaDataType {
   matchType: (value: string) => boolean;
 }
 
-export const propTypes: string[] = ['string', 'number', 'integer', 'boolean', 'object', 'array'];
+export const propTypes: string[] = ['null', 'string', 'number', 'integer', 'boolean', 'object', 'array'];
 
 export const jsonSchemaDataTypes: JsonSchemaDataType[] = [
+  {
+    name: 'Null',
+    defaultValue: () => null,
+    schema: {
+      type: 'null'
+    },
+    icon: 'disable', // ??
+    matchType: (value: any): boolean => {
+      return value === null; // ??
+    }
+  },
   {
     name: 'String',
     defaultValue: () => '',
