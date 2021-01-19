@@ -1,6 +1,6 @@
 <div
   class="json-tree-node"
-  [class.inline]="schema?.type !== 'object' && schema?.type !== 'array'"
+  [class.inline]="schema?.type !== 'object' && schema?.type !== 'array' && schema?.type !== 'null'"
   [class.invalid]="!valid || isDuplicated"
   [class.children-invalid]="!childrenValid || isDuplicated"
 >
