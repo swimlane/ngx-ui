@@ -3,6 +3,7 @@
 # HEAD (unreleased)
 
 - Enhancement: Add `blur` and `dateTimeSelected` outputs to `DateTimeComponent`.
+- Enhancement: Add `showIcons` input to `ToggleComponent` to display optional icons.
 
 ## 34.0.1 (2020-12-17)
 
