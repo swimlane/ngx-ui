@@ -37,8 +37,8 @@ describe('ToggleComponent', () => {
     expect(component.required).toEqual(false);
   });
 
-  it('showIcons defaults to: false', () => {
-    expect(component.showIcons).toEqual(false);
+  it('showIcons defaults to: true', () => {
+    expect(component.showIcons).toEqual(true);
   });
 
   it('tabIndex defaults to: 0', () => {
@@ -51,8 +51,8 @@ describe('ToggleComponent', () => {
   });
 
   it('showIcons property can be set', () => {
-    component.showIcons = true;
-    expect(component.showIcons).toEqual(true);
+    component.showIcons = false;
+    expect(component.showIcons).toEqual(false);
   });
 
   it('tabIndex property can be set', () => {
