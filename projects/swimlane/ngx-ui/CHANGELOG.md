@@ -2,6 +2,7 @@
 
 # HEAD (unreleased)
 
+- Fix(JsonEditor): Remove unnecessary `onModelChange` event emissions on init.
 - Enhancement: Add `blur` and `dateTimeSelected` outputs to `DateTimeComponent`.
 - Fix(json-editor): allow 'null' type in schema.
 
