@@ -35,7 +35,7 @@ export interface JsonSchemaDataType {
   matchType: (value: string) => boolean;
 }
 
-export const propTypes: string[] = ['string', 'number', 'integer', 'boolean', 'object', 'array'];
+export const propTypes: string[] = ['null', 'string', 'number', 'integer', 'boolean', 'object', 'array'];
 
 export const jsonSchemaDataTypes: JsonSchemaDataType[] = [
   {
@@ -102,6 +102,20 @@ export const jsonSchemaDataTypes: JsonSchemaDataType[] = [
     icon: 'integrations',
     matchType: (value: any): boolean => {
       return Array.isArray(value);
+    }
+  },
+  {
+    name: 'Null',
+    defaultValue: () => null,
+    schema: {
+      type: 'null'
+    },
+    icon: 'disable', // ??
+    matchType: (value: any): boolean => {
+      // NOTE: because of the way type inference is implemented, we need
+      // to check for 'null' AFTER we check for 'object', since
+      // typeof null === 'object'
+      return value === null;
     }
   }
 ];
@@ -174,7 +188,6 @@ export function createValueForSchema(schema: JSONEditorSchema): any {
   if (schema.type) {
     return dataTypeMap[schema.type as string].defaultValue();
   }
-  return null;
 }
 
 /**

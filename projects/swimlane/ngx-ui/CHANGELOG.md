@@ -3,6 +3,7 @@
 # HEAD (unreleased)
 
 - Enhancement: Add `blur` and `dateTimeSelected` outputs to `DateTimeComponent`.
+- Fix(json-editor): allow 'null' type in schema.
 
 ## 34.0.1 (2020-12-17)
 
