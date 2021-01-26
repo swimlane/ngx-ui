@@ -26,7 +26,7 @@ const LOCAL_HOUR = LOCAL_TIME.split(':')[0];
 const LOCAL_MIN = MOON_LANDING_DATE.toLocaleTimeString('en-US', { minute: 'numeric' });
 const LOCAL_AMPM = LOCAL_TIME.slice(-2);
 
-fdescribe('DateTimeComponent', () => {
+describe('DateTimeComponent', () => {
   let component: DateTimeComponent;
   let fixture: ComponentFixture<DateTimeComponent>;
 
