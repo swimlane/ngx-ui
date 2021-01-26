@@ -1,13 +1,13 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import moment from 'moment-timezone';
 import { MomentModule } from 'ngx-moment';
-
-import { DateTimeComponent } from './date-time.component';
-import { DialogModule } from '../dialog/dialog.module';
 import { PipesModule } from '../../pipes/pipes.module';
 import { InjectionService } from '../../services/injection/injection.service';
+import { DialogModule } from '../dialog/dialog.module';
+
+import { DateTimeComponent } from './date-time.component';
 
 (moment as any).suppressDeprecationWarnings = true;
 
@@ -562,6 +562,16 @@ describe('DateTimeComponent', () => {
       const date = 'test';
       component.inputChanged(date);
       expect(component.value).toEqual(date);
+    });
+
+    it('should always emit with inputChange output', () => {
+      const invalidDate = 'abc123';
+
+      component.inputChanged(invalidDate);
+      component.inputChange.subscribe(actual => {
+        expect(actual).toEqual('abc123');
+      });
+      expect(component.value).not.toEqual(invalidDate);
     });
   });
 

@@ -176,6 +176,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
       this.onChangeCallback(val);
       this.change.emit(val);
     }
+    this.inputChange.emit(val);
   }
 
   get displayValue(): string {
@@ -195,9 +196,19 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this._autosize = coerceBooleanProperty(v);
   }
 
+  /**
+   * this output will emit only when the input value is valid or cleared.
+   * @see inputChange for always emitting the value
+   */
   @Output() change = new EventEmitter<string | Date>();
   @Output() blur = new EventEmitter<Event>();
   @Output() dateTimeSelected = new EventEmitter<Date | string>();
+
+  /**
+   * this output will emit anytime the value changes regardless of validity.
+   * @see change when only emitting
+   */
+  @Output() inputChange = new EventEmitter<string | Date>();
 
   @ViewChild('dialogTpl', { static: true })
   readonly calendarTpl: TemplateRef<ElementRef>;
