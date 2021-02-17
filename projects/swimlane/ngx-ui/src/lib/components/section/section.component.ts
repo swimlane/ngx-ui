@@ -31,7 +31,7 @@ export class SectionComponent {
   @Input() sectionCollapsible: boolean = true;
   @Input() sectionTitle: string;
   @Input() padding: any = '1.8em';
-  @Input() appearance: SectionApperance.Legacy;
+  @Input() appearance: SectionApperance.Legacy = SectionApperance.Legacy;
   @Input() togglePosition: TogglePosition = TogglePosition.Left;
 
   @Output() toggle = new EventEmitter();
