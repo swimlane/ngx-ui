@@ -2,6 +2,7 @@
   <header
     [class.ngx-section-collapsible]="sectionCollapsible"
     [class.section-collapsed]="sectionCollapsed"
+    [class.toggle-right]="togglePosition === TogglePosition.Right"
     class="ngx-section-header"
     *ngIf="headerComp || sectionTitle"
     (click)="onSectionClicked()"

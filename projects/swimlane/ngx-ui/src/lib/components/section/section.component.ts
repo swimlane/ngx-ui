@@ -18,9 +18,8 @@ import { TogglePosition } from './section-toggle-position.enum';
   templateUrl: './section.component.html',
   host: {
     class: 'ngx-section',
-    '[class.legacy]': 'appearance === "legacy"',
-    '[class.outline]': 'appearance === "outline"',
-    '[class.toggle-right]': 'togglePosition === "right"'
+    '[class.legacy]': 'appearance === SectionApperance.Legacy',
+    '[class.outline]': 'appearance === SectionApperance.Outline'
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -31,12 +30,15 @@ export class SectionComponent {
   @Input() sectionCollapsible: boolean = true;
   @Input() sectionTitle: string;
   @Input() padding: any = '1.8em';
-  @Input() appearance: SectionApperance.Legacy = SectionApperance.Legacy;
+  @Input() appearance: SectionApperance = SectionApperance.Legacy;
   @Input() togglePosition: TogglePosition = TogglePosition.Left;
 
   @Output() toggle = new EventEmitter();
 
   @ContentChild(SectionHeaderComponent) headerComp: SectionHeaderComponent;
+
+  readonly SectionApperance = SectionApperance;
+  readonly TogglePosition = TogglePosition;
 
   onSectionClicked(): void {
     this.sectionCollapsed = !this.sectionCollapsed;
