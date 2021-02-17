@@ -9,13 +9,18 @@ import {
 } from '@angular/core';
 
 import { SectionHeaderComponent } from './section-header.component';
+import { SectionApperance } from './section-appearance.enum';
+import { TogglePosition } from './section-toggle-position.enum';
 
 @Component({
   selector: 'ngx-section',
   exportAs: 'ngxSection',
   templateUrl: './section.component.html',
   host: {
-    class: 'ngx-section'
+    class: 'ngx-section',
+    '[class.legacy]': 'appearance === "legacy"',
+    '[class.outline]': 'appearance === "outline"',
+    '[class.toggle-right]': 'togglePosition === "right"'
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -26,6 +31,8 @@ export class SectionComponent {
   @Input() sectionCollapsible: boolean = true;
   @Input() sectionTitle: string;
   @Input() padding: any = '1.8em';
+  @Input() appearance: SectionApperance.Legacy;
+  @Input() togglePosition: TogglePosition = TogglePosition.Left;
 
   @Output() toggle = new EventEmitter();
 

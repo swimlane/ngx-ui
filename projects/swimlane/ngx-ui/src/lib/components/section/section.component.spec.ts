@@ -36,6 +36,14 @@ describe('SectionComponent', () => {
     expect(component.padding).toEqual('1.8em');
   });
 
+  it('apperance defaults to legacy', () => {
+    expect(component.appearance).toEqual('legacy');
+  });
+
+  it('toggle position defaults to: left', () => {
+    expect(component.togglePosition).toEqual('left');
+  });
+
   it('Section title set by input', () => {
     expect(component.sectionTitle).toEqual('test title');
   });
