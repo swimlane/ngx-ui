@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEn
 
 import { CardStatus } from './card-status.enum';
 import { CardOrientation } from './card-orientation.enum';
+import { CardAppearance } from './card-appearance.enum';
 
 @Component({
   exportAs: 'ngxCard',
@@ -12,6 +13,7 @@ import { CardOrientation } from './card-orientation.enum';
     class: 'ngx-card',
     '[class.ngx-card-horizontal]': 'orientation === CardOrientation.Horizontal',
     '[class.ngx-card-vertical]': 'orientation === CardOrientation.Vertical',
+    '[class.flat]': 'appearance === CardAppearance.Flat',
     '[class.disabled]': 'disabled'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -25,11 +27,14 @@ export class CardComponent {
   @Input() selectable: boolean = false;
   @Input() selected: boolean = false;
   @Input() outlineText: string;
+  @Input() appearance: CardAppearance = CardAppearance.Normal;
+  @Input() hideAccent: boolean = false;
 
   @Output() select = new EventEmitter<boolean>();
   @Output() outlineClick = new EventEmitter<void>();
 
   readonly CardOrientation = CardOrientation;
+  readonly CardAppearance = CardAppearance;
 
   onOutlineClick($event) {
     $event.stopPropagation();

@@ -43,6 +43,7 @@ describe('Card', () => {
     expect(card).toHaveClass(`${baseClass}`);
     expect(card).not.toHaveClass('ngx-card-vertical');
     expect(card).not.toHaveClass('disabled');
+    expect(card).not.toHaveClass('flat');
     expect(card).toHaveClass('ngx-card-horizontal');
     expect(component.selectable).toBeFalse();
     expect(component.selected).toBeFalse();

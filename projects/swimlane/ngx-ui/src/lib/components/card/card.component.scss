@@ -79,6 +79,11 @@ $card-vertical-gutter: 20px;
   .ngx-dropdown.ellipsis {
     padding: 0;
   }
+
+  &.flat {
+    background: none;
+    box-shadow: none;
+  }
 } // end of ngx-card
 
 .ngx-card-horizontal {
@@ -187,6 +192,7 @@ $card-vertical-gutter: 20px;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 3;
         overflow: hidden;
+        word-break: break-word;
       }
     }
 
