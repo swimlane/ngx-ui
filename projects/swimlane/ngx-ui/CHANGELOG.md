@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+- Feature: Add `timeout` option to `ButtonComponent`
+
 ## 34.1.0 (2021-01-20)
 
 - Enhancement: Add `blur` and `dateTimeSelected` outputs to `DateTimeComponent`.
