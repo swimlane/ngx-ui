@@ -39,12 +39,11 @@ export class CardComponent {
   }
 
   @HostBinding('class.disabled')
-  get isDisabled() {
-    return this.disabled;
-  }
+  @Input()
+  disabled: boolean = false;
 
   @Input() orientation: CardOrientation = CardOrientation.Horizontal;
-  @Input() disabled: boolean = false;
+
   @Input() status: CardStatus;
   @Input() statusTooltip: string;
   @Input() selectable: boolean = false;
