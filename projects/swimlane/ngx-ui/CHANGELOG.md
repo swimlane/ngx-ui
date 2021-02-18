@@ -2,6 +2,9 @@
 
 # HEAD (unreleased)
 
+- Feature: Add `appearance` input to CardComponent
+- Enhancement: Add `hideAccent` input to CardComponent
+
 ## 34.1.0 (2021-01-20)
 
 - Enhancement: Add `blur` and `dateTimeSelected` outputs to `DateTimeComponent`.
