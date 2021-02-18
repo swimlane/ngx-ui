@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { SectionComponent } from './section.component';
 import { SectionFixtureComponent } from './fixtures/section.fixture';
@@ -11,7 +12,7 @@ describe('SectionComponent', () => {
   beforeEach(done => {
     TestBed.configureTestingModule({
       declarations: [SectionFixtureComponent],
-      imports: [SectionModule]
+      imports: [SectionModule, HttpClientTestingModule]
     });
 
     fixture = TestBed.createComponent(SectionFixtureComponent);
@@ -34,6 +35,14 @@ describe('SectionComponent', () => {
 
   it('padding defaults to: 1.8em', () => {
     expect(component.padding).toEqual('1.8em');
+  });
+
+  it('apperance defaults to legacy', () => {
+    expect(component.appearance).toEqual('legacy');
+  });
+
+  it('toggle position defaults to: left', () => {
+    expect(component.togglePosition).toEqual('left');
   });
 
   it('Section title set by input', () => {
