@@ -26,6 +26,10 @@ describe('ButtonComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should have timeout default to: 3000', () => {
+    expect(component.timeout).toEqual(3000);
+  });
+
   it('should update state and promise on change', () => {
     const stateSpy = spyOn(component, 'updateState');
     const promiseSpy = spyOn(component, 'updatePromise');
