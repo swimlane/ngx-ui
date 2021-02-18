@@ -5,7 +5,8 @@ import {
   Output,
   EventEmitter,
   ViewEncapsulation,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  HostBinding
 } from '@angular/core';
 
 import { SectionHeaderComponent } from './section-header.component';
@@ -17,15 +18,18 @@ import { TogglePosition } from './section-toggle-position.enum';
   exportAs: 'ngxSection',
   templateUrl: './section.component.html',
   host: {
-    class: 'ngx-section',
-    '[class.legacy]': 'appearance === SectionApperance.Legacy',
-    '[class.outline]': 'appearance === SectionApperance.Outline'
+    class: 'ngx-section'
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./section.component.scss']
 })
 export class SectionComponent {
+  @HostBinding('class.outline')
+  get outline() {
+    return this.appearance === SectionApperance.Outline;
+  }
+
   @Input() sectionCollapsed: boolean = false;
   @Input() sectionCollapsible: boolean = true;
   @Input() sectionTitle: string;
@@ -37,7 +41,6 @@ export class SectionComponent {
 
   @ContentChild(SectionHeaderComponent) headerComp: SectionHeaderComponent;
 
-  readonly SectionApperance = SectionApperance;
   readonly TogglePosition = TogglePosition;
 
   onSectionClicked(): void {

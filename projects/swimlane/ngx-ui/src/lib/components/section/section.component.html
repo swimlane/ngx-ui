@@ -1,11 +1,11 @@
 <section>
   <header
+    *ngIf="headerComp || sectionTitle"
     [class.ngx-section-collapsible]="sectionCollapsible"
     [class.section-collapsed]="sectionCollapsed"
     [class.toggle-right]="togglePosition === TogglePosition.Right"
     class="ngx-section-header"
-    *ngIf="headerComp || sectionTitle"
-    (click)="onSectionClicked()"
+    (click)="sectionCollapsible && onSectionClicked()"
   >
     <button
       *ngIf="sectionCollapsible"
@@ -13,7 +13,9 @@
       type="button"
       title="Toggle Content Visibility"
     >
-      <span [class.icon-arrow-down]="!sectionCollapsed" [class.icon-arrow-right]="sectionCollapsed"> </span>
+    <ngx-icon 
+      [fontIcon]="sectionCollapsed ? 'chevron-bold-right' : 'chevron-bold-down'">
+    </ngx-icon>
     </button>
     <ng-content select="ngx-section-header"></ng-content>
     <h1 *ngIf="sectionTitle" [innerHTML]="sectionTitle"></h1>

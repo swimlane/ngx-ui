@@ -2,6 +2,9 @@
 
 # HEAD (unreleased)
 
+- Enhancement: Add `appearance` and `togglePosition` to `SectionComponent`
+- Enhancement: When `sectionCollapsible` in `SectionComponent` is true, make the section header clickable to expand and collapse
+
 ## 34.1.0 (2021-01-20)
 
 - Enhancement: Add `blur` and `dateTimeSelected` outputs to `DateTimeComponent`.
