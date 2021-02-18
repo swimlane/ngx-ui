@@ -4,6 +4,7 @@
 
 - Feature: Add `appearance` input to CardComponent
 - Enhancement: Add `hideAccent` input to CardComponent
+- Feature: Add `timeout` option to `ButtonComponent`
 
 ## 34.1.0 (2021-01-20)
 
