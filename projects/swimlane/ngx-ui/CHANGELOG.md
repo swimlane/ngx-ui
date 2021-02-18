@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+- Feature: Add `appearance` input to CardComponent
+- Enhancement: Add `hideAccent` input to CardComponent
 - Feature: Add `appearance` and `togglePosition` inputs to `SectionComponent`
 - Enhancement: When `sectionCollapsible` in `SectionComponent` is true, make the section header clickable to expand and collapse
 - Feature: Add `timeout` option to `ButtonComponent`

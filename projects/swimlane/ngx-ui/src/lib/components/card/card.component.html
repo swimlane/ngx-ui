@@ -28,4 +28,4 @@
 ></ngx-checkbox>
 
 <ng-content></ng-content>
-<div class="ngx-card--accent"></div>
+<div *ngIf="!hideAccent" class="ngx-card--accent"></div>
