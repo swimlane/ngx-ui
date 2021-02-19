@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+- Fix(ngx-input): Make the lockpad button clickable when the textbox appearance is set to "Fill" and has `[unlockable] = "true"` set. Also fix vertical alignment.
+
 ## 34.1.0 (2021-01-20)
 
 - Enhancement: Add `blur` and `dateTimeSelected` outputs to `DateTimeComponent`.
