@@ -2,6 +2,7 @@
 
 # HEAD (unreleased)
 
+- Feature: Add an option to add `color` to `items` in `PlusMenuComponent`
 - Feature: Add `timeout` option to `ButtonComponent`
 
 ## 34.1.0 (2021-01-20)

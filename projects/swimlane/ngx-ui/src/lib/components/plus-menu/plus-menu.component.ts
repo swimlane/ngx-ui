@@ -13,11 +13,13 @@ import {
   OnDestroy
 } from '@angular/core';
 import { PlusMenuPosition } from './plus-menu-position.enum';
+import { id } from '../../utils/id/id.util';
 
 export interface PlusMenuItem {
   title: string;
   subtitle?: string;
   icon: string;
+  color?: string;
 }
 
 @Component({
@@ -48,9 +50,12 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
   open = false;
 
   @HostBinding('class.has-three')
-  get s() {
+  @Input()
+  get hasThree(): boolean {
     return this.items.length > 2;
   }
+
+  uid: string = '';
 
   private documentClickEvent: () => void;
 
@@ -62,6 +67,12 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.elementRef.nativeElement.style.setProperty('--menu-color', this.menuColor);
+    this.elementRef.nativeElement.style.setProperty('--item-0-color', this.items[0].color || this.menuColor);
+    this.elementRef.nativeElement.style.setProperty('--item-1-color', this.items[1].color || this.menuColor);
+    if (this.hasThree) {
+      this.elementRef.nativeElement.style.setProperty('--item-2-color', this.items[2].color || this.menuColor);
+    }
+    this.uid = id(); // for svg linear gradient ids
   }
 
   ngOnDestroy(): void {

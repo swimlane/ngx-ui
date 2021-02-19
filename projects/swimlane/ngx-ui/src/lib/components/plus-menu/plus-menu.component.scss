@@ -67,14 +67,6 @@
     > g {
       display: none;
     }
-
-    .arrow {
-      fill: var(--menu-color);
-    }
-
-    .arc {
-      stroke: var(--menu-color);
-    }
   }
 
   &--items-container {
@@ -116,6 +108,12 @@
       border: 2px solid var(--menu-color);
       color: var(--menu-color);
       box-shadow: 0 0 10px 0 var(--menu-color);
+
+      &.custom-color {
+        color: var(--itemColor);
+        border-color: var(--itemColor);
+        box-shadow: 0 0 10px 0 var(--itemColor);
+      }
     }
 
     .ngx-plus-menu--icon {
@@ -123,14 +121,6 @@
       height: var(--icon-size);
       line-height: 65px;
       cursor: pointer;
-    }
-
-    .ngx-plus-menu--icon--center {
-      display: none;
-      width: 16px;
-      height: 16px;
-      font-size: 16px;
-      line-height: 16px;
     }
   }
 
