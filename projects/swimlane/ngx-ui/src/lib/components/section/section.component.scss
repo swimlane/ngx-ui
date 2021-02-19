@@ -19,12 +19,8 @@ $section-shadow: $shadow-3;
     color: $section-header-color;
     position: relative;
 
-    &.ngx-section-collapsible {
-      padding-left: 30px;
-    }
-
     .ngx-section-toggle {
-      font-size: 14px;
+      font-size: 8px;
       vertical-align: top;
       display: inline-block;
       line-height: 40px;
@@ -33,8 +29,7 @@ $section-shadow: $shadow-3;
       border: none;
       box-shadow: none;
       padding: 0;
-      left: 10px;
-      cursor: pointer;
+      left: 15px;
     }
 
     a {
@@ -48,11 +43,47 @@ $section-shadow: $shadow-3;
       padding: 0;
       margin: 0;
     }
+
+    &.ngx-section-collapsible {
+      padding: 0 20px 0 35px;
+      cursor: pointer;
+    }
+
+    &.toggle-right {
+      &.ngx-section-collapsible {
+        padding: 0 20px 0 15px;
+      }
+
+      .ngx-section-toggle {
+        left: calc(100% - 30px);
+      }
+    }
   }
 
   &.shadow {
     > section {
       box-shadow: $section-shadow;
+    }
+  }
+
+  &.outline {
+    .ngx-section-header,
+    .ngx-section-content {
+      background: none;
+      border: 1px solid $color-blue-grey-600;
+    }
+
+    .ngx-section-header {
+      border-radius: 2px 2px 0 0;
+
+      &.section-collapsed {
+        border-radius: 2px;
+      }
+    }
+
+    .ngx-section-content {
+      border-top: 0;
+      border-radius: 0 0 2px 2px;
     }
   }
 }
