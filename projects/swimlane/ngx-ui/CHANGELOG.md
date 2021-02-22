@@ -7,6 +7,7 @@
 - Feature: Add `appearance` and `togglePosition` inputs to `SectionComponent`
 - Enhancement: When `sectionCollapsible` in `SectionComponent` is true, make the section header clickable to expand and collapse
 - Feature: Add `timeout` option to `ButtonComponent`
+- Fix(ngx-input): Make the lockpad button clickable when the textbox appearance is set to "Fill" and has `[unlockable] = "true"` set. Also fix vertical alignment.
 
 ## 34.1.0 (2021-01-20)
 
