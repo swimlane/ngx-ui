@@ -32,7 +32,7 @@ export interface PlusMenuItem {
 export class PlusMenuComponent implements OnInit, OnDestroy {
   @Input() items: PlusMenuItem[] = [];
   @Input() position = PlusMenuPosition.Right;
-  @Input() menuColor = '#9fce36';
+
   @Input() menuTitle = '';
   @Input() closeOnClickOutside = true;
 
@@ -40,6 +40,10 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
   @Output() toggleMenu = new EventEmitter<boolean>();
 
   readonly PlusMenuPosition = PlusMenuPosition;
+
+  @HostBinding('style.--menu-color')
+  @Input()
+  menuColor = '#9fce36';
 
   @HostBinding('class')
   get p() {
@@ -55,6 +59,21 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
     return this.items.length > 2;
   }
 
+  @HostBinding('style.--item-0-color')
+  get itemColor0() {
+    return this.items[0].color || this.menuColor;
+  }
+
+  @HostBinding('style.--item-1-color')
+  get itemColor1() {
+    return this.items[1].color || this.menuColor;
+  }
+
+  @HostBinding('style.--item-2-color')
+  get itemColor2() {
+    return this.items[2]?.color || this.menuColor;
+  }
+
   uid: string = '';
 
   private documentClickEvent: () => void;
@@ -66,12 +85,6 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.elementRef.nativeElement.style.setProperty('--menu-color', this.menuColor);
-    this.elementRef.nativeElement.style.setProperty('--item-0-color', this.items[0].color || this.menuColor);
-    this.elementRef.nativeElement.style.setProperty('--item-1-color', this.items[1].color || this.menuColor);
-    if (this.hasThree) {
-      this.elementRef.nativeElement.style.setProperty('--item-2-color', this.items[2].color || this.menuColor);
-    }
     this.uid = id(); // for svg linear gradient ids
   }
 

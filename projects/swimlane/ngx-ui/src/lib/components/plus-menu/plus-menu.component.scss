@@ -538,4 +538,34 @@
       display: none;
     }
   }
+
+  .arrow {
+    fill: var(--menu-color);
+
+    &-0 {
+      fill: var(--item-0-color, var(--menu-color, #9fce36));
+    }
+
+    &-1 {
+      fill: var(--item-1-color, var(--menu-color, #9fce36));
+    }
+
+    &-2 {
+      fill: var(--item-2-color, var(--menu-color, #9fce36));
+    }
+  }
+
+  .stop {
+    &-0 {
+      stop-color: var(--item-0-color, var(--menu-color, #9fce36));
+    }
+
+    &-1 {
+      stop-color: var(--item-1-color, var(--menu-color, #9fce36));
+    }
+
+    &-2 {
+      stop-color: var(--item-2-color, var(--menu-color, #9fce36));
+    }
+  }
 }
