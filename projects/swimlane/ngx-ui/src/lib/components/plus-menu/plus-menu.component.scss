@@ -67,6 +67,10 @@
     > g {
       display: none;
     }
+
+    .dot {
+      fill: rgba(var(--background-color));
+    }
   }
 
   &--items-container {
@@ -97,8 +101,7 @@
       }
     }
 
-    .ngx-plus-menu--icon,
-    .ngx-plus-menu--icon--center {
+    .ngx-plus-menu--icon {
       position: absolute;
       text-align: center;
       font-size: 25px;
@@ -285,12 +288,6 @@
         text-align: center;
         height: 50px;
       }
-
-      .ngx-plus-menu--icon--center {
-        display: unset;
-        top: 157px;
-        left: 242px;
-      }
     }
 
     .ngx-plus-menu--menu-title {
@@ -345,10 +342,6 @@
           display: unset;
         }
       }
-    }
-
-    .ngx-plus-menu--icon--center {
-      display: none;
     }
 
     .ngx-plus-menu--item {
@@ -446,12 +439,6 @@
         text-align: center;
         height: 50px;
       }
-
-      .ngx-plus-menu--icon--center {
-        display: unset;
-        top: 69px;
-        left: 242px;
-      }
     }
 
     &.open {
@@ -533,38 +520,34 @@
         right: 72px;
       }
     }
-
-    .ngx-plus-menu--icon--center {
-      display: none;
-    }
   }
 
   .arrow {
     fill: var(--menu-color);
 
-    &-0 {
+    &--color-0 {
       fill: var(--item-0-color, var(--menu-color, #9fce36));
     }
 
-    &-1 {
+    &--color-1 {
       fill: var(--item-1-color, var(--menu-color, #9fce36));
     }
 
-    &-2 {
+    &--color-2 {
       fill: var(--item-2-color, var(--menu-color, #9fce36));
     }
   }
 
   .stop {
-    &-0 {
+    &--color-0 {
       stop-color: var(--item-0-color, var(--menu-color, #9fce36));
     }
 
-    &-1 {
+    &--color-1 {
       stop-color: var(--item-1-color, var(--menu-color, #9fce36));
     }
 
-    &-2 {
+    &--color-2 {
       stop-color: var(--item-2-color, var(--menu-color, #9fce36));
     }
   }
