@@ -2,6 +2,7 @@
 
 # HEAD (unreleased)
 
+- Feature: Add an option to add `color` to `items` in `PlusMenuComponent`
 - Feature: Add `appearance` input to CardComponent
 - Enhancement: Add `hideAccent` input to CardComponent
 - Feature: Add `appearance` and `togglePosition` inputs to `SectionComponent`
