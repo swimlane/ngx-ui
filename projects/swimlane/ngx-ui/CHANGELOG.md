@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+## 35.0.0 (2021-02-22)
+
 - Feature: Add an option to add `color` to `items` in `PlusMenuComponent`
 - Feature: Add `appearance` input to CardComponent
 - Enhancement: Add `hideAccent` input to CardComponent
