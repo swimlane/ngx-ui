@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+## 35.0.1 (2021-02-24)
+
 - Fix(ngx-card/ngx-section): User supplied classes are not preserved in some cases using `HostBinding`
 
 ## 35.0.0 (2021-02-22)
