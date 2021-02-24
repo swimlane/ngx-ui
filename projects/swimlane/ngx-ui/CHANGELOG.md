@@ -2,6 +2,10 @@
 
 # HEAD (unreleased)
 
+- Feature: Add `appearance` to `ProgressSpinnerComponent` where default is no icon
+- Feature: Add failure state and failure icon to `ProgressSpinnerComponent`
+- Feature: Add an option to add label to `ProgressSpinnerComponent`
+
 ## 35.0.1 (2021-02-24)
 
 - Fix(ngx-card/ngx-section): User supplied classes are not preserved in some cases using `HostBinding`
