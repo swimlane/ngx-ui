@@ -17,12 +17,11 @@ import { CardAppearance } from './card-appearance.enum';
   selector: 'ngx-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
+  host: { class: 'ngx-card' },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 export class CardComponent {
-  @HostBinding('class') class = 'ngx-card';
-
   @HostBinding('class.ngx-card-horizontal')
   get horizontal() {
     return this.orientation === CardOrientation.Horizontal;
