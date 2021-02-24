@@ -17,13 +17,12 @@ import { TogglePosition } from './section-toggle-position.enum';
   selector: 'ngx-section',
   exportAs: 'ngxSection',
   templateUrl: './section.component.html',
+  host: { class: 'ngx-section' },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./section.component.scss']
 })
 export class SectionComponent {
-  @HostBinding('class') class = 'ngx-section';
-
   @HostBinding('class.outline')
   get outline() {
     return this.appearance === SectionApperance.Outline;

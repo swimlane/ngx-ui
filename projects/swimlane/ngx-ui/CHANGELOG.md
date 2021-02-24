@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+- Fix(ngx-card/ngx-section): User supplied classes are not preserved in some cases using `HostBinding`
+
 ## 35.0.0 (2021-02-22)
 
 - Feature: Add an option to add `color` to `items` in `PlusMenuComponent`
