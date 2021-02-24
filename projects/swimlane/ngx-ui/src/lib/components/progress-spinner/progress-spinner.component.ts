@@ -8,8 +8,19 @@ import {
   HostBinding
 } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
-
 import { ProgressSpinnerMode } from './progress-spinner-mode.enum';
+import { id } from '../../utils/id/id.util';
+
+export enum SpinnerAppearance {
+  Default = 'default',
+  Icon = 'icon'
+}
+
+export interface SpinnerLabel {
+  inProgressLabel: string;
+  completeLabel: string;
+  failLabel: string;
+}
 
 @Component({
   exportAs: 'ngxProgressSpinner',
@@ -26,8 +37,13 @@ import { ProgressSpinnerMode } from './progress-spinner-mode.enum';
 export class ProgressSpinnerComponent {
   @Input() mode = ProgressSpinnerMode.Indeterminate;
   @Input() color = '#1483FF';
+  @Input() failStatusColor = '#FF4514';
+  @Input() appearance: SpinnerAppearance = SpinnerAppearance.Default;
   @Input() inProgressIcon?: TemplateRef<any>;
   @Input() completeIcon?: TemplateRef<any>;
+  @Input() failIcon?: TemplateRef<any>;
+  @Input() isFailure: boolean;
+  @Input() spinnerLabel?: SpinnerLabel;
 
   @Input()
   get value() {
@@ -65,13 +81,8 @@ export class ProgressSpinnerComponent {
     this._cdr.markForCheck();
   }
 
-  @HostBinding('style.box-shadow')
-  get boxShadow() {
-    return `0px 0px 5px 0px ${this.color}`;
-  }
-
   get radius() {
-    return this.diameter / 2 - this.strokeWidth;
+    return this.diameter / 2;
   }
 
   get strokeDasharray() {
@@ -86,12 +97,30 @@ export class ProgressSpinnerComponent {
     return (100 / this._modeTotal) * this._modeValue;
   }
 
+  @HostBinding('class.ngx-progress-spinner--indeterminate')
+  get indeterminateClass() {
+    return this.mode === ProgressSpinnerMode.Indeterminate;
+  }
+
+  @HostBinding('style.--spinner-color')
+  @Input()
+  get spinnerColor() {
+    return this.value === this.total && this.isFailure ? this.failStatusColor : this.color;
+  }
+
+  @HostBinding('class.ngx-progress-spinner--show-icon')
+  get hideIcon() {
+    return this.appearance === SpinnerAppearance.Icon;
+  }
+
+  readonly uid: string = id();
   readonly ProgressSpinnerMode = ProgressSpinnerMode;
+  readonly SpinnerAppearance = SpinnerAppearance;
 
   private _value = 0;
   private _total = 100;
   private _diameter = 100;
-  private _strokeWidth = 5;
+  private _strokeWidth = 3;
   private readonly _indeterminate = {
     value: 50,
     total: 100
