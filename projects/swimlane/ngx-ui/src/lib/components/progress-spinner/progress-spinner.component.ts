@@ -109,7 +109,7 @@ export class ProgressSpinnerComponent {
   }
 
   @HostBinding('class.ngx-progress-spinner--show-icon')
-  get hideIcon() {
+  get showIcon() {
     return this.appearance === SpinnerAppearance.Icon;
   }
 
