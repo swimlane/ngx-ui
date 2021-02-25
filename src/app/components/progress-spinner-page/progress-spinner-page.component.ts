@@ -18,7 +18,7 @@ export class ProgressSpinnerPageComponent {
   showIcon = true;
   spinnerLabel = {
     inProgressLabel: 'Uploading...',
-    completeLabel: 'Upload Failed',
-    failLabel: 'Upload Successful'
+    failLabel: 'Upload Failed',
+    completeLabel: 'Upload Successful'
   };
 }
