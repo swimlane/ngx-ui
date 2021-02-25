@@ -115,7 +115,6 @@ export class ProgressSpinnerComponent {
 
   readonly uid: string = id();
   readonly ProgressSpinnerMode = ProgressSpinnerMode;
-  readonly SpinnerAppearance = SpinnerAppearance;
 
   private _value = 0;
   private _total = 100;
