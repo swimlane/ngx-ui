@@ -60,19 +60,8 @@
       <path d="M29.5261 13.3884L24.4102 15.8351V23.9784V31.4054L35.5318 44.7513V53.6486C35.5318 55.4281 37.3112 56.3178 38.8683 55.6505C42.2047 53.6486 44.4291 48.5327 44.4291 44.7513V38.0784H55.5507C57.9974 38.0784 59.9993 36.0765 59.9993 33.6297L57.775 15.8351C57.775 13.3884 55.7731 11.3865 53.3264 11.3865H37.7561C34.8645 11.3865 31.9729 12.0538 29.5261 13.3884Z" />
       <path d="M30.005 14.2663L29.9816 14.279L29.9576 14.2905L25.4102 16.4653V23.9784V31.0433L36.3 44.1111L36.5318 44.3893V44.7513V53.6486C36.5318 54.1688 36.7746 54.508 37.1082 54.6965C37.4499 54.8897 37.9303 54.9438 38.4159 54.7552C39.8368 53.8793 41.0918 52.3003 42.0005 50.431C42.9191 48.5414 43.4291 46.4659 43.4291 44.7513V38.0784V37.0784H44.4291H55.5507C57.4257 37.0784 58.9673 35.556 58.9988 33.688L56.7827 15.9592L56.775 15.8974V15.8351C56.775 13.9407 55.2208 12.3865 53.3264 12.3865H37.7561C35.0118 12.3865 32.2882 13.0208 30.005 14.2663Z" />
     </g>
-
-      <!-- <ng-container *ngIf="value < total && inProgressIcon">
-        <ng-container *ngTemplateOutlet="inProgressIcon"></ng-container>
-      </ng-container>
-    
-      <ng-container *ngIf="isComplete && !isFailure && completeIcon">
-        <ng-container *ngTemplateOutlet="completeIcon"></ng-container>
-      </ng-container>
-    
-      <ng-container *ngIf="isComplete && isFailure && failIcon">
-        <ng-container *ngTemplateOutlet="failIcon"></ng-container>
-      </ng-container> -->
   </svg>
+  
   <div class="in-progress-icon" *ngIf="value < total && inProgressIcon">
     <ng-container *ngTemplateOutlet="inProgressIcon"></ng-container>
   </div>
