@@ -16,8 +16,8 @@
     box-shadow: 0 0 10px 0 var(--spinner-color);
     position: relative;
 
-    svg {
-      circle.circle {
+    svg.spinner-svg {
+      .spinner-svg--circle {
         fill: transparent;
         transition: 0.1s stroke-dashoffset;
         transform: rotate(-90deg);
@@ -25,16 +25,16 @@
         stroke: var(--spinner-color);
       }
 
-      .upload-icon,
-      .thumbs-up-icon,
-      .thumbs-down-icon {
+      .spinner-svg--upload-icon,
+      .spinner-svg--thumbs-up-icon,
+      .spinner-svg--thumbs-down-icon {
         display: none;
       }
     }
 
-    .in-progress-icon,
-    .complete-icon,
-    .failure-icon {
+    .spinner-icon--in-progress-icon,
+    .spinner-icon--complete-icon,
+    .spinner-icon--failure-icon {
       position: absolute;
       top: 50%;
       left: 50%;
@@ -56,8 +56,8 @@
 
   &--indeterminate {
     .ngx-progress-spinner--spinner-container {
-      svg {
-        circle.circle {
+      svg.spinner-svg {
+        .spinner-svg--circle {
           animation: ngx-progress-spinner--rotate 1s linear infinite;
         }
       }
@@ -66,14 +66,14 @@
 
   &--show-icon {
     .ngx-progress-spinner--spinner-container {
-      svg {
-        .upload-icon {
+      svg.spinner-svg {
+        .spinner-svg--upload-icon {
           display: block;
           transform: translate(calc(50% - 18.735px), calc(50% - 26.5px));
           fill: var(--spinner-color);
         }
 
-        .thumbs-up-icon {
+        .spinner-svg--thumbs-up-icon {
           display: block;
           transform: translate(calc(50% - 35px), calc(50% - 36px));
           fill: none;
@@ -81,7 +81,7 @@
           animation: icon-progress-spinner--check 1s linear forwards;
         }
 
-        .thumbs-down-icon {
+        .spinner-svg--thumbs-down-icon {
           display: block;
           transform: translate(calc(50% - 35px), calc(50% - 28px));
           fill: none;

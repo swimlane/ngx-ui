@@ -1,5 +1,5 @@
 <div class="ngx-progress-spinner--spinner-container">
-  <svg [style.width.px]="diameter" [style.height.px]="diameter">
+  <svg class="spinner-svg" [style.width.px]="diameter" [style.height.px]="diameter">
     <defs>
       <filter [id]="'thumbs-up-filter--' + uid" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
         <feFlood flood-opacity="0" result="BackgroundImageFix"/>
@@ -21,7 +21,7 @@
     </defs>
   
     <circle
-      class="circle"
+      class="spinner-svg--circle"
       [style.stroke-width.px]="strokeWidth"
       [style.stroke-dashoffset]="strokeDashoffset"
       [style.stroke-dasharray]="strokeDasharray"
@@ -32,7 +32,7 @@
   
     <path
       *ngIf="value < total && !inProgressIcon"
-      class="upload-icon"
+      class="spinner-svg--upload-icon"
       fill-rule="evenodd"
       clip-rule="evenodd"
       d="M8.20726 10.0942L18.3406 1.22756L18.9991 0.651369L19.6576 1.22756L29.7909 10.0942L28.4739 11.5994L20.2658 4.41724L20.2658 38.9851L28 38.9851L28 40.9851L10 40.9851L10 38.9851L17.7324 38.9851L17.7324 4.41724L9.52427 11.5994L8.20726 10.0942ZM18.9991 51.6468C28.2546 51.6468 35.7324 44.2571 35.7324 35.1723C35.7324 29.5813 32.9037 24.6357 28.566 21.6542C28.1108 21.3413 27.9955 20.7188 28.3083 20.2636C28.6212 19.8085 29.2437 19.6931 29.6989 20.006C34.5495 23.34 37.7324 28.8871 37.7324 35.1723C37.7324 45.3893 29.3313 53.6468 18.9991 53.6468C8.66689 53.6468 0.265776 45.3893 0.265775 35.1724C0.265775 28.8871 3.44875 23.34 8.29933 20.006C8.75447 19.6931 9.37704 19.8085 9.68987 20.2636C10.0027 20.7188 9.88735 21.3413 9.43221 21.6542C5.09448 24.6357 2.26577 29.5813 2.26578 35.1724C2.26578 44.2571 9.74363 51.6468 18.9991 51.6468Z"
@@ -40,7 +40,7 @@
   
     <g
       *ngIf="isComplete && !isFailure && !completeIcon"
-      class="thumbs-up-icon"
+      class="spinner-svg--thumbs-up-icon"
       [attr.filter]="'url(#thumbs-up-filter--' + uid + ')'"
       >
       <path d="M19.8973 31.4043H11V55.8719H19.8973V31.4043Z" />
@@ -52,7 +52,7 @@
   
     <g 
       *ngIf="isComplete && isFailure && !failIcon"
-      class="thumbs-down-icon"
+      class="spinner-svg--thumbs-down-icon"
       [attr.filter]="'url(#thumbs-down-filter--' + uid + ')'"
     >
       <path d="M19.8973 35.4678H11V11.0002H19.8973V35.4678Z" />
@@ -62,15 +62,15 @@
     </g>
   </svg>
   
-  <div class="in-progress-icon" *ngIf="value < total && inProgressIcon">
+  <div class="spinner-icon--in-progress-icon" *ngIf="value < total && inProgressIcon">
     <ng-container *ngTemplateOutlet="inProgressIcon"></ng-container>
   </div>
 
-  <div class="complete-icon" *ngIf="isComplete && !isFailure && completeIcon">
+  <div class="spinner-icon--complete-icon" *ngIf="isComplete && !isFailure && completeIcon">
     <ng-container *ngTemplateOutlet="completeIcon"></ng-container>
   </div>
 
-  <div class="failure-icon" *ngIf="isComplete && isFailure && failIcon">
+  <div class="spinner-icon--failure-icon" *ngIf="isComplete && isFailure && failIcon">
     <ng-container *ngTemplateOutlet="failIcon"></ng-container>
   </div>
 </div>
