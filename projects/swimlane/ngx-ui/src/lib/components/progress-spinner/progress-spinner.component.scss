@@ -9,14 +9,15 @@
   justify-content: center;
   align-items: center;
 
-  &--spinner {
+  &--spinner-container {
     display: inline-flex;
     border-radius: 100%;
     overflow: hidden;
-    box-shadow: 0px 0px 10px 0px var(--spinner-color);
+    box-shadow: 0 0 10px 0 var(--spinner-color);
+    position: relative;
 
-    svg {
-      circle {
+    svg.spinner-svg {
+      .spinner-svg--circle {
         fill: transparent;
         transition: 0.1s stroke-dashoffset;
         transform: rotate(-90deg);
@@ -24,11 +25,20 @@
         stroke: var(--spinner-color);
       }
 
-      .icon-progress-spinner--icon-icon,
-      .icon-progress-spinner--thumbs-up-icon,
-      .icon-progress-spinner--thumbs-down-icon {
+      .spinner-svg--upload-icon,
+      .spinner-svg--thumbs-up-icon,
+      .spinner-svg--thumbs-down-icon {
         display: none;
       }
+    }
+
+    .spinner-icon--in-progress-icon,
+    .spinner-icon--complete-icon,
+    .spinner-icon--failure-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     }
   }
 
@@ -45,9 +55,9 @@
   }
 
   &--indeterminate {
-    .ngx-progress-spinner--spinner {
-      svg {
-        circle {
+    .ngx-progress-spinner--spinner-container {
+      svg.spinner-svg {
+        .spinner-svg--circle {
           animation: ngx-progress-spinner--rotate 1s linear infinite;
         }
       }
@@ -55,15 +65,15 @@
   }
 
   &--show-icon {
-    .ngx-progress-spinner--spinner {
-      svg {
-        .icon-progress-spinner--icon-icon {
+    .ngx-progress-spinner--spinner-container {
+      svg.spinner-svg {
+        .spinner-svg--upload-icon {
           display: block;
           transform: translate(calc(50% - 18.735px), calc(50% - 26.5px));
           fill: var(--spinner-color);
         }
 
-        .icon-progress-spinner--thumbs-up-icon {
+        .spinner-svg--thumbs-up-icon {
           display: block;
           transform: translate(calc(50% - 35px), calc(50% - 36px));
           fill: none;
@@ -71,7 +81,7 @@
           animation: icon-progress-spinner--check 1s linear forwards;
         }
 
-        .icon-progress-spinner--thumbs-down-icon {
+        .spinner-svg--thumbs-down-icon {
           display: block;
           transform: translate(calc(50% - 35px), calc(50% - 28px));
           fill: none;
