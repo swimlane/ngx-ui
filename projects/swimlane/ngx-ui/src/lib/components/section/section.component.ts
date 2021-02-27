@@ -30,6 +30,7 @@ export class SectionComponent {
 
   @Input() sectionCollapsed: boolean = false;
   @Input() sectionCollapsible: boolean = true;
+  @Input() headerToggle: boolean = false;
   @Input() sectionTitle: string;
   @Input() padding: any = '1.8em';
   @Input() appearance: SectionApperance = SectionApperance.Legacy;

@@ -1,4 +1,5 @@
 export enum TogglePosition {
   Left = 'left',
-  Right = 'right'
+  Right = 'right',
+  None = 'none'
 }
