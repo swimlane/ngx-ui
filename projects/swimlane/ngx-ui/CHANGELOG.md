@@ -2,6 +2,8 @@
 
 # HEAD (unreleased)
 
+- Bug(ngx-section): Make toggle on header click optional
+- Feature(ngx-section): Add `None` toogle position
 - Feature: Add `appearance` to `ProgressSpinnerComponent` where default is no icon
 - Feature: Add failure state and failure icon to `ProgressSpinnerComponent`
 - Feature: Add an option to add label to `ProgressSpinnerComponent`
