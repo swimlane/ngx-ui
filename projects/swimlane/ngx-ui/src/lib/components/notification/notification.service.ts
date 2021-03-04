@@ -15,7 +15,9 @@ import { NotificationOptions } from './notification-options.interface';
 
 /** adding dynamic to suppress `Document` type metadata error  */
 /** @dynamic */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NotificationService extends InjectionRegistryService<NotificationComponent> {
   static readonly limit: number | boolean = 10;
   readonly defaults: NotificationOptions = {

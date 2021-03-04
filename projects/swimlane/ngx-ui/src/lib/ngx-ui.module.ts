@@ -2,13 +2,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { DialogService } from './components/dialog/dialog.service';
 import { DirectivesModule } from './directives/directives.module';
 import { DrawerService } from './components/drawer/drawer.service';
 import { IconRegistryService } from './services/icon-registry/icon-registry.service';
 import { InjectionService } from './services/injection/injection.service';
 import { LoadingService } from './components/loading/loading.service';
-import { NotificationService } from './components/notification/notification.service';
 import { OverlayService } from './components/overlay/overlay.service';
 import { PipesModule } from './pipes/pipes.module';
 import { TooltipService } from './components/tooltip/tooltip.service';
@@ -92,16 +90,7 @@ const modules = [
   TreeModule
 ];
 
-const services = [
-  DialogService,
-  DrawerService,
-  IconRegistryService,
-  InjectionService,
-  LoadingService,
-  NotificationService,
-  OverlayService,
-  TooltipService
-];
+const services = [DrawerService, IconRegistryService, InjectionService, LoadingService, OverlayService, TooltipService];
 
 @NgModule({
   providers: [...services],

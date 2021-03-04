@@ -7,7 +7,9 @@ import { OverlayService } from '../overlay/overlay.service';
 import { DialogComponent } from './dialog.component';
 import { DialogOptions } from './dialog-options.interface';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DialogService<T = DialogComponent> extends InjectionRegistryService<T> {
   readonly defaults: DialogOptions = {
     inputs: {
