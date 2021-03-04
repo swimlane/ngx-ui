@@ -3,7 +3,9 @@ import { Injectable, ComponentRef, EventEmitter } from '@angular/core';
 import { InjectionService } from '../../services/injection/injection.service';
 import { OverlayComponent } from './overlay.component';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class OverlayService {
   component: ComponentRef<OverlayComponent>;
 

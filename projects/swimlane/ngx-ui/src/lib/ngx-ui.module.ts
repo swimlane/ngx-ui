@@ -7,7 +7,6 @@ import { DrawerService } from './components/drawer/drawer.service';
 import { IconRegistryService } from './services/icon-registry/icon-registry.service';
 import { InjectionService } from './services/injection/injection.service';
 import { LoadingService } from './components/loading/loading.service';
-import { OverlayService } from './components/overlay/overlay.service';
 import { PipesModule } from './pipes/pipes.module';
 import { TooltipService } from './components/tooltip/tooltip.service';
 
@@ -90,7 +89,7 @@ const modules = [
   TreeModule
 ];
 
-const services = [DrawerService, IconRegistryService, InjectionService, LoadingService, OverlayService, TooltipService];
+const services = [DrawerService, IconRegistryService, InjectionService, LoadingService, TooltipService];
 
 @NgModule({
   providers: [...services],

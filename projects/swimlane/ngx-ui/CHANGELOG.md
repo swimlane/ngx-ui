@@ -3,7 +3,7 @@
 ## HEAD (unreleased)
 
 - Bug(ngx-progress-spinner): Fix issue with later versions of SASS
-- Enhancement: Provide services in root injector (`DialogService`, `AlertService`, `NotificationService`)
+- Enhancement: Provide services in root injector (`DialogService`, `AlertService`, `NotificationService`, `OverlayService`)
 
 ## 35.1.0 (2021-02-26)
 
