@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.1.1 (2021-03-10)
+
 - Bug(ngx-progress-spinner): Fix issue with later versions of SASS
 
 ## 35.1.0 (2021-02-26)
