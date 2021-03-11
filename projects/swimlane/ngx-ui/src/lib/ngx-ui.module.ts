@@ -3,12 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { DirectivesModule } from './directives/directives.module';
-import { DrawerService } from './components/drawer/drawer.service';
-import { IconRegistryService } from './services/icon-registry/icon-registry.service';
 import { InjectionService } from './services/injection/injection.service';
-import { LoadingService } from './components/loading/loading.service';
 import { PipesModule } from './pipes/pipes.module';
-import { TooltipService } from './components/tooltip/tooltip.service';
 
 import { ButtonModule } from './components/button/button.module';
 import { CalendarModule } from './components/calendar/calendar.module';
@@ -89,7 +85,7 @@ const modules = [
   TreeModule
 ];
 
-const services = [DrawerService, IconRegistryService, InjectionService, LoadingService, TooltipService];
+const services = [InjectionService];
 
 @NgModule({
   providers: [...services],

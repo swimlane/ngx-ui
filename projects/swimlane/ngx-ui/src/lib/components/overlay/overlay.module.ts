@@ -6,11 +6,10 @@ import { OverlayComponent } from './overlay.component';
 import { InjectionService } from '../../services/injection/injection.service';
 import { ResizeOverlayComponent } from './resize-overlay.component';
 import { IconModule } from '../icon/icon.module';
-import { HotkeysService } from '../hotkeys/hotkeys.service';
 
 @NgModule({
   declarations: [OverlayComponent, ResizeOverlayComponent],
-  providers: [InjectionService, HotkeysService],
+  providers: [InjectionService],
   exports: [OverlayComponent, ResizeOverlayComponent],
   imports: [CommonModule, IconModule, LayoutModule],
   entryComponents: [OverlayComponent, ResizeOverlayComponent]

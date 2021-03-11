@@ -14,7 +14,6 @@ import { TabsModule } from '../tabs/tabs.module';
 import { ToggleModule } from '../toggle/toggle.module';
 import { CheckboxModule } from '../checkbox/checkbox.module';
 import { SelectModule } from '../select/select.module';
-import { SchemaValidatorService } from './schema-validator.service';
 
 import { JsonEditorComponent } from './json-editor/json-editor.component';
 import { JsonEditorNodeComponent } from './json-editor/json-editor-node/json-editor-node.component';
@@ -72,7 +71,6 @@ import { JsonEditorNodeInfoComponent } from './json-editor-flat/json-editor-node
     ToggleModule,
     SelectModule,
     TabsModule
-  ],
-  providers: [SchemaValidatorService]
+  ]
 })
 export class JsonEditorModule {}

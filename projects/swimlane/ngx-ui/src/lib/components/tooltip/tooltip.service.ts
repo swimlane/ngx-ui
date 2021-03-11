@@ -4,7 +4,9 @@ import { InjectionService } from '../../services/injection/injection.service';
 import { InjectionRegistryService } from '../../services/injection-registry/injection-registry.service';
 import { TooltipContentComponent } from './tooltip.component';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class TooltipService extends InjectionRegistryService<TooltipContentComponent> {
   type: Type<TooltipContentComponent> = TooltipContentComponent;
 
