@@ -220,6 +220,10 @@ export class AppComponent {
         {
           name: 'Card',
           route: 'card'
+        },
+        {
+          name: 'Dropzone',
+          route: 'dropzone'
         }
       ]
     }

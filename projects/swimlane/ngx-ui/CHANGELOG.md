@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: Add Dropzone component
+- Fix(FileButtonComponent): change id to be unique
+
 ## 35.1.1 (2021-03-10)
 
 - Bug(ngx-progress-spinner): Fix issue with later versions of SASS
