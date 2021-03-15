@@ -1,6 +1,11 @@
 <ngx-file-button 
   [uploader]="uploader" 
   [options]="options"
+  (afterAddingFile)="afterAddingFile.emit($event)"
+  (beforeUploadItem)="beforeUploadItem.emit($event)"
+  (successItem)="successItem.emit($event)"
+  (errorItem)="errorItem.emit($event)"
+  (progressAll)="progressAll.emit($event)"
   class="ngx-dropzone"
 >
   <ng-template #dropzoneTemplate let-uploader>

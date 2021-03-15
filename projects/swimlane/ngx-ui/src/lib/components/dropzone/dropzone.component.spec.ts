@@ -36,47 +36,4 @@ describe('DropzoneComponent', () => {
       expect(component.acceptedFileFormatsTextDisplay).toEqual('.txt and .json');
     });
   });
-
-  describe('event emitters from parent class', () => {
-    describe('onAfterAddingFile', () => {
-      it('should set filename and emit event', () => {
-        const spy = spyOn(component.afterAddingFile, 'emit');
-        component.onAfterAddingFile({ file: { name: 'test' } } as any);
-        expect(spy).toHaveBeenCalled();
-      });
-    });
-
-    describe('onBeforeUploadItem', () => {
-      it('should emit event', () => {
-        const spy = spyOn(component.beforeUploadItem, 'emit');
-        component.onBeforeUploadItem({} as any);
-        expect(spy).toHaveBeenCalled();
-      });
-    });
-
-    describe('onErrorItem', () => {
-      it('should emit event', () => {
-        const spy = spyOn(component.errorItem, 'emit');
-        component.onErrorItem('test', 500, {});
-        expect(spy).toHaveBeenCalled();
-      });
-    });
-
-    describe('onProgressAll', () => {
-      it('should change progress and emit event', () => {
-        const spy = spyOn(component.progressAll, 'emit');
-        component.onProgressAll(100);
-        expect(component.progress).toEqual(100);
-        expect(spy).toHaveBeenCalled();
-      });
-    });
-
-    describe('onSuccessItem', () => {
-      it('should emit event', () => {
-        const spy = spyOn(component.successItem, 'emit');
-        component.onSuccessItem({}, 'test', 200, {});
-        expect(spy).toHaveBeenCalled();
-      });
-    });
-  });
 });
