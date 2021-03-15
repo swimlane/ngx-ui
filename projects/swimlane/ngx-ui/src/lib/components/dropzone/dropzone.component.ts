@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { FileUploaderOptions, FileUploader, FileItem } from '@swimlane/ng2-file-upload';
+import { id } from '../../utils/id/id.util';
 
 @Component({
   selector: 'ngx-dropzone',
@@ -18,6 +19,7 @@ import { FileUploaderOptions, FileUploader, FileItem } from '@swimlane/ng2-file-
   encapsulation: ViewEncapsulation.None
 })
 export class DropzoneComponent implements OnInit {
+  @Input() id: string = `input-${id()}`;
   @Input() acceptedFileFormats: string[];
   @Input() uploader: FileUploader;
   @Input() options: FileUploaderOptions;
