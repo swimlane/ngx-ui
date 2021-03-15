@@ -87,8 +87,6 @@ export class FileButtonComponent implements OnInit {
   constructor(public readonly _ngZone: NgZone) {}
 
   ngOnInit(): void {
-    console.log('ngoninit');
-    console.log(this);
     if (!this.uploader && !this.options) {
       throw new Error('You must pass either an uploader instance or options.');
     }
@@ -112,7 +110,6 @@ export class FileButtonComponent implements OnInit {
     this._ngZone.run(() => {
       this.fileName = fileItem.file.name;
       this.afterAddingFile.emit({ fileItem });
-      console.log('after adding file', fileItem);
     });
   }
 
