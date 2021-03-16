@@ -22,7 +22,7 @@ jobs:
 
     - name: Test
       run: |
-        npm run ci --if-present
+        npm run test --if-present
       env:
         CI: true
         
