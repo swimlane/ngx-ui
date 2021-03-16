@@ -2,10 +2,13 @@
 
 ## HEAD (unreleased)
 
+=======
+
+## 35.2.0 (2021-03-16)
+
 - Enhancement: Add Dropzone component
 - Fix(FileButtonComponent): change id to be unique
-
-=======
+- Enhancement: Provide services in root injector
 
 ## 35.1.2 (2021-03-15)
 
@@ -14,7 +17,6 @@
 ## 35.1.1 (2021-03-10)
 
 - Bug(ngx-progress-spinner): Fix issue with later versions of SASS
-- Enhancement: Provide services in root injector
 
 ## 35.1.0 (2021-02-26)
 
