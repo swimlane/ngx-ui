@@ -8,7 +8,9 @@ import { OverlayService } from '../overlay/overlay.service';
 import { DrawerDirection } from './drawer-direction.enum';
 import { DrawerOptions } from './drawer-options.interface';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DrawerService extends InjectionRegistryService<DrawerComponent> {
   type: any = DrawerComponent;
 

@@ -15,7 +15,9 @@ const classMap = {
   [AlertStyles.Info]: 'ngx-alert-info'
 };
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AlertService extends DialogService<AlertComponent> {
   readonly defaults: DialogOptions = {
     inputs: {

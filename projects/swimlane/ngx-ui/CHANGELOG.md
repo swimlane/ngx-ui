@@ -14,6 +14,7 @@
 ## 35.1.1 (2021-03-10)
 
 - Bug(ngx-progress-spinner): Fix issue with later versions of SASS
+- Enhancement: Provide services in root injector
 
 ## 35.1.0 (2021-02-26)
 
