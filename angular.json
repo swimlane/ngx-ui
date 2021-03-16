@@ -46,6 +46,13 @@
             }
           }
         },
+        "publish-lib": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "npm publish",
+            "cwd": "dist/packages/ngx-ui"
+          }
+        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {

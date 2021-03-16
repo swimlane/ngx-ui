@@ -10,6 +10,7 @@
     "build": "ng build",
     "build:demo": "cross-env NODE_ENV=production ng build --prod",
     "build:lib": "ng run ngx-ui:build --prod",
+    "publish:lib": "ng run ngx-ui:publish-lib",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
