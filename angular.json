@@ -49,6 +49,13 @@
         "publish-lib": {
           "builder": "@nrwl/workspace:run-commands",
           "options": {
+            "command": "npm publish",
+            "cwd": "dist/packages/ngx-ui"
+          }
+        },
+        "publish-lib-beta": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
             "command": "npm publish --tag beta",
             "cwd": "dist/packages/ngx-ui"
           }
