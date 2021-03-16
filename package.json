@@ -1,6 +1,6 @@
 {
   "name": "swimlane",
-  "version": "36.0.0-beta.1",
+  "version": "36.0.0-beta.2",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
