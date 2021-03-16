@@ -1,0 +1,79 @@
+.ngx-tabs {
+  --ngx-ui-tabs-border-fill: var(--ngx-ui-color-blue-grey-700);
+  --ngx-ui-tabs-active-border-fill: var(--ngx-ui-color-blue);
+  --ngx-ui-tabs-text-color: var(--ngx-ui-color-blue-grey-100);
+  --ngx-ui-tabs-active-text-color: var(--ngx-ui-color-grey-100);
+
+  margin-bottom: 2em;
+  display: block;
+
+  .ngx-tabs-list {
+    display: block;
+    border-bottom: solid 2px var(--ngx-ui-tabs-border-fill);
+
+    li {
+      display: inline-block;
+
+      &.active {
+        button,
+        button:focus,
+        button:hover {
+          color: var(--ngx-ui-tabs-active-text-color);
+          border-width: 0;
+        }
+      }
+
+      &.active,
+      &:hover {
+        button:not([disabled])::after {
+          transform: scale(1);
+        }
+      }
+
+      button {
+        border: none;
+        color: var(--ngx-ui-tabs-text-color);
+        background: transparent;
+        outline: none;
+        box-shadow: none;
+        box-sizing: border-box;
+        display: inline-block;
+        margin: 0;
+        padding: 0.35em 0.75em;
+        position: relative;
+        text-align: center;
+        user-select: none;
+        font-size: 1em;
+        bottom: -1px;
+
+        &:not([disabled]) {
+          &:hover {
+            border: none;
+            color: var(--ngx-ui-tabs-active-text-color);
+            background: transparent;
+            opacity: 1;
+          }
+        }
+
+        &::after {
+          content: '';
+          background: var(--ngx-ui-tabs-active-border-fill);
+          height: 2px;
+          position: absolute;
+          width: 100%;
+          left: 0;
+          bottom: -1px;
+          transition: all 250ms ease 0s;
+          transform: scale(0);
+          background: var(--ngx-ui-tabs-active-border-fill) none repeat scroll 0
+            0;
+          color: var(--ngx-ui-tabs-active-text-color);
+        }
+      }
+    }
+  }
+
+  .ngx-tab-content {
+    padding: 10px;
+  }
+}

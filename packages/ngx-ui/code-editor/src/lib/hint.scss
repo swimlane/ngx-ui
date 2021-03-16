@@ -1,0 +1,44 @@
+:root {
+  --ngx-ui-dropdown-bg: var(--ngx-ui-color-blue-grey-700);
+  --ngx-ui-dropdown-bg-active: var(--ngx-ui-color-blue-grey-750);
+  --ngx-ui-dropdown-bg-hover: var(--ngx-ui-color-blue-grey-800);
+  --ngx-ui-dropdown-color: var(--ngx-ui-color-blue-grey-150);
+}
+
+.CodeMirror-hints {
+  position: absolute;
+  z-index: 10;
+  overflow: hidden;
+  list-style: none;
+
+  margin: 0;
+  padding: 0;
+
+  font-size: 90%;
+  font-family: monospace;
+
+  background: var(--ngx-ui-dropdown-bg);
+  box-shadow: var(--ngx-ui-shadow-3);
+
+  max-height: 20em;
+  overflow-y: auto;
+}
+
+.CodeMirror-hint {
+  margin: 0;
+  padding: 5px 20px;
+  white-space: pre;
+  background: transparent;
+  box-shadow: none;
+  color: var(--ngx-ui-dropdown-color);
+  font-size: 0.9em;
+  cursor: pointer;
+}
+
+li.CodeMirror-hint-active {
+  background: var(--ngx-ui-dropdown-bg-active);
+}
+
+li.CodeMirror-hint:hover {
+  background: var(--ngx-ui-dropdown-bg-hover);
+}

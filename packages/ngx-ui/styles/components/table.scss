@@ -1,0 +1,51 @@
+:root {
+  --ngx-ui-color-table-caption: var(--ngx-ui-color-grey-200);
+  --ngx-ui-color-table-border: var(--ngx-ui-color-blue-grey-600);
+  --ngx-ui-color-table-stripe: #161920;
+}
+
+table {
+  border-collapse: collapse;
+  background-color: transparent;
+
+  th {
+    text-align: left;
+    font-weight: bold;
+  }
+
+  caption {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    color: var(--ngx-ui-color-table-caption);
+    text-align: left;
+    caption-side: bottom;
+    font-size: 0.85rem;
+  }
+}
+
+.table {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 1rem;
+
+  th,
+  td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid var(--ngx-ui-color-table-border);
+  }
+
+  thead {
+    th {
+      vertical-align: bottom;
+      border-bottom: 0.125rem solid var(--ngx-ui-color-table-border);
+      border-top: none;
+    }
+  }
+
+  &.striped {
+    tbody tr:nth-of-type(odd) {
+      background-color: var(--ngx-ui-color-table-stripe);
+    }
+  }
+}

@@ -1,0 +1,10 @@
+:host {
+  display: block;
+}
+
+button,
+a.btn,
+.ngx-button,
+ngx-file-button {
+  @apply mr-2;
+}

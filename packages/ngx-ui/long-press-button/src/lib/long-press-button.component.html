@@ -1,0 +1,36 @@
+<div
+  ngxLongPress
+  [ngxLongPressDuration]="duration"
+  [ngxLongPressDisabled]="disabled"
+  (longPressStart)="onLongPressStart()"
+  (longPressFinish)="onLongPressFinish($event)"
+  (longPressCancel)="onLongPressCancel()"
+>
+  <span class="inner-background"></span>
+  <svg viewBox="-170 -170 340 340">
+    <g transform="rotate(-90)">
+      <circle
+        class="loading-circle"
+        *ngIf="state !== 'submitted'"
+        r="160"
+        [@circleAnimation]="{
+          value: pressed ? 'active' : 'inactive',
+          params: { duration: duration }
+        }"
+      />
+      <circle class="full-circle" *ngIf="state === 'submitted'" r="160" />
+    </g>
+  </svg>
+  <button [disabled]="disabled">
+    <ngx-icon
+      *ngIf="state === 'active'"
+      class="icon"
+      [fontIcon]="icon"
+    ></ngx-icon>
+    <ngx-icon
+      *ngIf="state === 'submitted'"
+      class="icon"
+      fontIcon="check"
+    ></ngx-icon>
+  </button>
+</div>

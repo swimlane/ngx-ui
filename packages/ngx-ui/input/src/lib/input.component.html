@@ -1,0 +1,146 @@
+<div class="ngx-input-wrap">
+  <div class="ngx-input-flex-wrap">
+    <ng-content select="ngx-input-prefix"></ng-content>
+    <div class="ngx-input-flex-wrap-inner">
+      <div class="ngx-input-box-wrap">
+        <textarea
+          *ngIf="inputType === 'textarea'"
+          class="ngx-input-textarea"
+          rows="1"
+          [autosize]="true"
+          [(ngModel)]="value"
+          [id]="id"
+          [name]="name!"
+          [placeholder]="placeholder"
+          [disabled]="disabled"
+          [attr.tabindex]="tabindex"
+          [attr.autocomplete]="autocomplete"
+          [attr.autocorrect]="autocorrect"
+          [attr.spellcheck]="spellcheck"
+          [minlength]="minlength!"
+          [maxlength]="maxlength!"
+          [required]="required"
+          (change)="onChange($event)"
+          (keyup)="onKeyUp($event)"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)"
+          (click)="click.emit($event)"
+          #inputModel="ngModel"
+          #textareaControl
+        ></textarea>
+        <ng-container *ngTemplateOutlet="inputTpl"></ng-container>
+
+        <div
+          class="numeric-spinner"
+          *ngIf="!disabled && (type$ | async) === 'number'"
+        >
+          <i
+            class="ngx-icon ngx-chevron-bold-up"
+            ngxLongPress
+            [ngxLongPressContinuous]="true"
+            [ngxLongPressDuration]="500"
+            (longPressStart)="increment($event)"
+            (longPressFinish)="increment($event)"
+          ></i>
+          <i
+            class="ngx-icon ngx-chevron-bold-down"
+            ngxLongPress
+            [ngxLongPressContinuous]="true"
+            [ngxLongPressDuration]="500"
+            (longPressStart)="decrement($event)"
+            (longPressFinish)="decrement($event)"
+          ></i>
+        </div>
+        <span
+          *ngIf="inputType === 'password' && passwordToggleEnabled"
+          class="icon-eye"
+          title="Toggle Text Visibility"
+          (click)="togglePassword()"
+        ></span>
+        <span
+          *ngIf="inputType === 'text' && unlockable && disabled"
+          class="icon-lock"
+          (click)="disabled = false"
+          ngx-tooltip
+          [tooltipTitle]="unlockableTooltip"
+        ></span>
+      </div>
+      <span class="ngx-input-label" [@labelState]="labelState">
+        <span [innerHTML]="label"></span>
+        &nbsp;
+        <span
+          *ngIf="required && requiredIndicator"
+          [innerHTML]="requiredIndicator"
+        ></span>
+      </span>
+    </div>
+    <ng-content select="ngx-input-suffix"></ng-content>
+  </div>
+  <div class="ngx-input-underline">
+    <div class="underline-fill" [@underlineState]="underlineState"></div>
+  </div>
+  <div class="ngx-input-hint">
+    <ng-content select="ngx-input-hint"></ng-content>
+    <span *ngIf="hint" [innerHTML]="hint"></span>
+  </div>
+</div>
+
+<ng-template #inputTpl>
+  <input
+    *ngIf="inputType !== 'textarea' && autosize"
+    class="ngx-input-box"
+    ngxAutosizeInput
+    [extraWidth]="inputType === 'number' ? 20 : 0"
+    [minWidth]="minWidth"
+    [includePadding]="true"
+    [(ngModel)]="value"
+    [value]="value"
+    [id]="id"
+    [name]="name!"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [type]="type$ | async"
+    [min]="min"
+    [max]="max"
+    [minlength]="minlength!"
+    [maxlength]="maxlength!"
+    [attr.tabindex]="tabindex"
+    [attr.autocomplete]="autocomplete"
+    [attr.autocorrect]="autocorrect"
+    [attr.spellcheck]="spellcheck"
+    (change)="onChange($event)"
+    (keyup)="onKeyUp($event)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+    (click)="click.emit($event)"
+    [required]="required"
+    #inputModel="ngModel"
+    #inputControl
+  />
+  <input
+    *ngIf="inputType !== 'textarea' && !autosize"
+    class="ngx-input-box"
+    [(ngModel)]="value"
+    [id]="id"
+    [name]="name!"
+    [placeholder]="placeholder"
+    [disabled]="disabled"
+    [type]="type$ | async"
+    [min]="min"
+    [max]="max"
+    [minlength]="minlength!"
+    [maxlength]="maxlength!"
+    [attr.tabindex]="tabindex"
+    [attr.autocomplete]="autocomplete"
+    [attr.autocorrect]="autocorrect"
+    [attr.spellcheck]="spellcheck"
+    (change)="onChange($event)"
+    (keyup)="onKeyUp($event)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+    (click)="click.emit($event)"
+    [required]="required"
+    #inputModel="ngModel"
+    #inputControl
+  />
+</ng-template>

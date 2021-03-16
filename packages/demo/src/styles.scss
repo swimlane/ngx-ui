@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import 'packages/ngx-ui/styles/index';
+//@import 'assets/scss/prism';
+
+h1,
+h2 {
+  @apply text-2xl;
+}
+
+h3 {
+  @apply text-xl;
+}
+
+h4 {
+  @apply text-base;
+}
+
+h5 {
+  @apply text-sm;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply mt-2 mb-1 font-normal;
+}
+
+.section-block {
+  @apply block mb-4 mt-8;
+}

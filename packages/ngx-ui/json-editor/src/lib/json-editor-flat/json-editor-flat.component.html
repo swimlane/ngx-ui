@@ -1,0 +1,39 @@
+<div class="ngx-json-editor-flat">
+  <ngx-json-editor-node-flat
+    [(model)]="model"
+    [schema]="schema"
+    [hideRoot]="hideRoot"
+    [schemaRef]="schemaRef"
+    (modelChange)="modelChangedCallback($event)"
+    [errors]="errors"
+    [typeCheckOverrides]="typeCheckOverrides"
+    [label]="label"
+    [compressed]="compressed"
+    [formats]="customFormats"
+    [schemaBuilderMode]="schemaBuilderMode"
+    [showKnownProperties]="showKnownProperties"
+    (schemaUpdate)="schemaUpdate.emit($event)"
+  >
+    <div class="node-options" node-options>
+      <button
+        *ngIf="schemaBuilderMode"
+        type="button"
+        class="node-options-btn"
+        (click)="onPropertyConfig()"
+      >
+        <i class="ngx-icon ngx-cog"></i>
+      </button>
+    </div>
+  </ngx-json-editor-node-flat>
+</div>
+
+<!-- Property Config Dialog -->
+<ng-template #propertyConfigTmpl let-context="context">
+  <ngx-property-config
+    [property]="$any(context.property)"
+    [schema]="context.schema"
+    [formats]="context.formats"
+    [rootItem]="true"
+    (updateSchema)="updateSchema($event)"
+  ></ngx-property-config>
+</ng-template>

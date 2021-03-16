@@ -1,0 +1,144 @@
+/**
+ * File upload button
+ *
+ * Styles loosely based on:
+ * - http://codepen.io/balapa/pen/VYVedm
+ * - http://codepen.io/prasanjit/pen/NxjZMO
+ *
+ */
+.ngx-file-button {
+  display: inline-block;
+  box-sizing: border-box;
+  position: relative;
+
+  .ngx-file-button-input {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .ngx-file-button-label {
+    cursor: pointer;
+  }
+
+  &.standard-style {
+    .icon-check {
+      display: none;
+    }
+
+    .ngx-file-button-text {
+      font-size: 0.9rem;
+      margin-left: 0.5rem;
+      color: var(--ngx-ui-color-grey-500);
+    }
+  }
+
+  &.progress-style {
+    min-width: 9.375rem;
+    text-align: center;
+    transition: 0.3s all ease 0.3s;
+    max-height: 3.125rem;
+    overflow: hidden;
+
+    .ngx-file-button-button {
+      width: 100%;
+      background: var(--ngx-ui-button-fill-color);
+      border: none;
+      border-radius: 3.125rem;
+      padding: 0.25rem 0;
+      transition: 0.3s all ease;
+      position: relative;
+      margin: 0;
+
+      &:hover:not([disabled]),
+      &:focus:not([disabled]),
+      &:hover:not(.disabled),
+      &:focus:not(.disabled) {
+        background: var(--ngx-ui-button-fill-active-color);
+      }
+
+      .ngx-file-button-label {
+        color: var(--ngx-ui-color-grey-100);
+        font-size: 1.125rem;
+        font-weight: 400;
+        line-height: 2.5rem;
+        max-height: 2.5rem;
+        transition: 0.3s all ease;
+        cursor: pointer;
+        display: block;
+      }
+
+      &[disabled],
+      &.disabled {
+        .ngx-file-button-label {
+          cursor: not-allowed;
+        }
+      }
+
+      .ngx-file-button-text {
+        display: none;
+      }
+    }
+
+    .ngx-file-button-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      background: var(--ngx-ui-color-blue-400);
+      border-radius: 3.125rem;
+      display: none;
+    }
+
+    .icon-check {
+      font-size: 1.5rem;
+      color: var(--ngx-ui-color-grey-100);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      line-height: 3.125rem;
+      transform: scale(0);
+    }
+
+    &.active {
+      padding: 0;
+
+      .ngx-file-button-button {
+        background: var(--ngx-ui-color-grey-500);
+        margin-top: 1.5rem;
+      }
+
+      .ngx-file-button-fill {
+        display: block;
+        margin-top: 1.5rem;
+        transition: 100ms all ease 100ms;
+      }
+
+      .ngx-file-button-label {
+        display: none;
+      }
+    }
+
+    &.success {
+      .ngx-file-button-button {
+        margin: 0;
+        padding: 1.5rem;
+        width: 3.125rem;
+        background: var(--ngx-ui-color-blue-400);
+      }
+
+      .ngx-file-button-fill,
+      .ngx-file-button-label {
+        display: none;
+      }
+
+      .icon-check {
+        transform: scale(1);
+        transition: 0.3s all ease 0.3s;
+      }
+    }
+  }
+}

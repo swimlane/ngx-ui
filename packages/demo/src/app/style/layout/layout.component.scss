@@ -1,0 +1,35 @@
+:host {
+  display: block;
+}
+
+.layout-row {
+  @apply border border-green-600 rounded p-4 mb-4;
+}
+
+.layout-col {
+  @apply border border-dashed border-blue-400 flex flex-col items-center justify-center h-8;
+  & code {
+    @apply text-xs tracking-tight;
+  }
+
+  &--auto {
+    @apply border border-dashed border-blue-400 flex flex-col items-center justify-center h-auto;
+    & code {
+      @apply text-xs tracking-tight;
+    }
+  }
+
+  &--high {
+    @apply border border-dashed border-blue-400 flex flex-col items-center justify-center h-16;
+    & code {
+      @apply text-xs tracking-tight;
+    }
+  }
+
+  &--higher {
+    @apply border border-dashed border-blue-400 flex flex-col items-center justify-center h-32;
+    & code {
+      @apply text-xs tracking-tight;
+    }
+  }
+}

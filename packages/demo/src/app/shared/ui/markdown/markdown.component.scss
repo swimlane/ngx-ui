@@ -1,0 +1,16 @@
+:host {
+  display: block;
+}
+
+:host ::ng-deep markdown {
+  & :not(pre) > code {
+    @apply inline-block px-0.5 py-px rounded-sm;
+    font-family: Menlo, Monaco, Consolas, 'Andale Mono', 'Ubuntu Mono',
+      'Courier New', monospace;
+    color: var(--ngx-ui-color-blue-200);
+  }
+
+  & li {
+    @apply mb-2;
+  }
+}

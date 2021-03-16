@@ -1,0 +1,43 @@
+{
+  "name": "@swimlane/ngx-ui",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "~11.2.1",
+    "@angular/core": "~11.2.1",
+    "@angular/cdk": "~11.2.1",
+    "@swimlane/ng2-file-upload": "~1.1.0",
+    "codemirror": "~5.59.4",
+    "mousetrap": "~1.6.5",
+    "moment": "~2.29.1",
+    "moment-timezone": "~0.5.32",
+    "ngx-moment": "~5.0.0",
+    "resize-observer-polyfill": "~1.5.1"
+  },
+  "peerDependenciesMeta": {
+    "@swimlane/ng2-file-upload": {
+      "optional": true
+    },
+    "codemirror": {
+      "optional": true
+    },
+    "moment": {
+      "optional": true
+    },
+    "moment-timezone": {
+      "optional": true
+    },
+    "ngx-moment": {
+      "optional": true
+    },
+    "mousetrap": {
+      "optional": true
+    },
+    "resize-observer-polyfill": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "tslib": "~2.1.0",
+    "normalize.css": "~8.0.1"
+  }
+}

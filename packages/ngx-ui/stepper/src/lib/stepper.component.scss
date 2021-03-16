@@ -1,0 +1,354 @@
+.ngx-stepper {
+  --ngx-ui-stepper-padding: 0.635rem;
+  --ngx-ui-stepper-size: 1.75rem;
+  --ngx-ui-stepper-size-lg: 5.5rem;
+  --ngx-ui-stepper-trackbar-to-step-ratio: 1.4;
+  --ngx-ui-stepper-trackbar-margin: (
+      var(--ngx-ui-stepper-trackbar-to-step-ratio) - 1
+    ) * var(--ngx-ui-stepper-size) / 2;
+  --ngx-ui-stepper-trackbar-margin-lg: (
+      var(--ngx-ui-stepper-trackbar-to-step-ratio) - 1
+    ) * var(--ngx-ui-stepper-size-lg) / 2;
+  --ngx-ui-transition-speed: 0.25s;
+
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  overflow: hidden;
+  padding: var(--ngx-ui-stepper-padding);
+
+  &.ngx-stepper--top,
+  &.ngx-stepper--bottom {
+    .ngx-stepper--steps {
+      margin-left: var(--ngx-ui-stepper-trackbar-margin);
+      margin-right: var(--ngx-ui-stepper-trackbar-margin);
+    }
+
+    .ngx-step--title {
+      position: absolute;
+      display: inline-block;
+      transform: translateX(-50%) translateX(var(--ngx-ui-stepper-size) / 2);
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+
+  &.ngx-stepper--top {
+    .ngx-stepper--bar {
+      bottom: 0;
+      margin-top: var(--ngx-ui-stepper-padding);
+    }
+
+    .ngx-step--title {
+      top: 100%;
+    }
+  }
+
+  &.ngx-stepper--bottom {
+    flex-direction: column-reverse;
+
+    .ngx-stepper--bar {
+      top: 0;
+      margin-bottom: var(--ngx-ui-stepper-padding);
+    }
+
+    .ngx-step--title {
+      top: calc(-100% + 5px);
+    }
+  }
+
+  &.ngx-stepper--left {
+    flex-direction: row;
+
+    .ngx-step {
+      flex-direction: row;
+
+      .ngx-step--title {
+        margin-right: var(--ngx-ui-stepper-padding);
+      }
+    }
+
+    .ngx-stepper--bar-track {
+      width: 20px;
+
+      .ngx-stepper--bar {
+        right: 0;
+        margin-left: var(--ngx-ui-stepper-padding);
+      }
+    }
+  }
+
+  &.ngx-stepper--right {
+    flex-direction: row-reverse;
+
+    .ngx-step {
+      flex-direction: row-reverse;
+
+      .ngx-step--title {
+        margin-left: var(--ngx-ui-stepper-padding);
+      }
+    }
+
+    .ngx-stepper--bar-track {
+      width: 20px;
+
+      .ngx-stepper--bar {
+        left: 0;
+        margin-right: var(--ngx-ui-stepper-padding);
+      }
+    }
+  }
+
+  &.ngx-stepper--left,
+  &.ngx-stepper--right {
+    .ngx-stepper--steps {
+      margin-top: var(--ngx-ui-stepper-trackbar-margin);
+      margin-bottom: var(--ngx-ui-stepper-trackbar-margin);
+      flex-direction: column;
+
+      .ngx-step {
+        display: flex;
+
+        &.ngx-step--complete-last {
+          .ngx-step--step {
+            &:after {
+              background-image: linear-gradient(
+                to bottom,
+                #1edeb6 0%,
+                var(--ngx-ui-color-blue-500) 75%
+              ) !important;
+            }
+          }
+        }
+
+        &.ngx-step--active {
+          .ngx-step--step {
+            &:after {
+              background-image: linear-gradient(
+                to bottom,
+                var(--ngx-ui-color-blue-500) 0%,
+                var(--ngx-ui-color-blue-grey-600) 75%
+              ) !important;
+            }
+          }
+        }
+
+        .ngx-step--title {
+          position: unset;
+          display: block;
+          transform: unset;
+          margin-bottom: 0;
+          max-width: 100px;
+          width: 100px;
+          text-align: unset;
+        }
+
+        .ngx-step--step {
+          flex-direction: column;
+
+          &:after {
+            min-width: 1.4px;
+            height: initial;
+            min-height: var(--ngx-ui-stepper-size);
+            width: 1.4px;
+          }
+        }
+      }
+    }
+  }
+
+  &.ngx-stepper--readonly {
+    .ngx-step {
+      &.ngx-step--complete {
+        .ngx-step--circle {
+          &:hover {
+            border: initial;
+            color: initial;
+            box-shadow: initial;
+
+            .ngx-step--indicator {
+              opacity: initial;
+            }
+
+            i.ngx-step--complete-icon {
+              opacity: initial;
+            }
+
+            .marker-path {
+              //noinspection CssInvalidPropertyValue
+              fill: initial;
+            }
+          }
+        }
+      }
+
+      .ngx-step--circle {
+        cursor: default;
+        pointer-events: none !important;
+      }
+    }
+  }
+
+  &.ngx-stepper--with-progress {
+    .ngx-step {
+      &.ngx-step--active {
+        .ngx-step--step {
+          .ngx-step--circle {
+            border: none !important;
+            box-shadow: none;
+
+            @keyframes spinner {
+              0% {
+                transform: rotate(0deg);
+              }
+
+              100% {
+                transform: rotate(360deg);
+              }
+            }
+
+            &::before {
+              animation: 1.5s linear infinite spinner;
+              animation-play-state: inherit;
+              border: solid 1px transparent;
+              border-bottom-color: var(--ngx-ui-color-blue-500);
+              border-right-color: var(--ngx-ui-color-blue-500);
+              border-radius: 50%;
+              content: '';
+              height: 100%;
+              width: 100%;
+              will-change: transform;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .ngx-stepper--steps {
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    min-width: var(--ngx-ui-stepper-size);
+  }
+
+  .ngx-stepper--bar-track {
+    min-height: 25px;
+    position: relative;
+
+    .ngx-stepper--bar {
+      position: absolute;
+      background-color: var(--ngx-ui-color-blue-500);
+    }
+  }
+
+  .ngx-stepper--content {
+    flex: 1;
+    display: none;
+
+    &.active {
+      display: initial;
+    }
+  }
+
+  // for large icons
+  &.ngx-stepper--lg {
+    .ngx-stepper--steps {
+      min-width: var(--ngx-ui-stepper-size-lg);
+
+      .ngx-step {
+        .ngx-step--step {
+          .ngx-step--circle {
+            width: var(--ngx-ui-stepper-size-lg);
+            height: var(--ngx-ui-stepper-size-lg);
+            font-size: var(--ngx-ui-stepper-size-lg) / 2;
+          }
+        }
+      }
+    }
+
+    &.ngx-stepper--top,
+    &.ngx-stepper--bottom {
+      .ngx-stepper--steps {
+        margin-left: var(--ngx-ui-stepper-trackbar-margin-lg);
+        margin-right: var(--ngx-ui-stepper-trackbar-margin-lg);
+      }
+
+      .ngx-step--title {
+        transform: translateX(-50%)
+          translateX(var(--ngx-ui-stepper-size-lg) / 2);
+      }
+    }
+
+    &.ngx-stepper--left,
+    &.ngx-stepper--right {
+      .ngx-stepper--steps {
+        margin-top: var(--ngx-ui-stepper-trackbar-margin-lg);
+        margin-bottom: var(--ngx-ui-stepper-trackbar-margin-lg);
+
+        .ngx-step {
+          .ngx-step--step {
+            &:after {
+              min-height: var(--ngx-ui-stepper-size-lg);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // for complete steps highlight
+  &.ngx-stepper--no-highlight {
+    .ngx-stepper--steps {
+      .ngx-step {
+        &.ngx-step--complete {
+          &:not(.ngx-step--complete-last) {
+            .ngx-step--title {
+              color: var(--ngx-ui-color-blue-500);
+            }
+
+            .ngx-step--step {
+              &:after {
+                background-color: var(--ngx-ui-color-blue-500) !important;
+              }
+
+              .ngx-step--circle {
+                border-color: var(--ngx-ui-color-blue-500);
+                color: var(--ngx-ui-color-blue-500);
+
+                .marker-path {
+                  fill: var(--ngx-ui-color-blue-500);
+                }
+              }
+            }
+          }
+
+          &.ngx-step--complete-last {
+            .ngx-step--title {
+              color: var(--ngx-ui-color-blue-500);
+            }
+
+            .ngx-step--step {
+              &:after {
+                background-image: linear-gradient(
+                  to right,
+                  var(--ngx-ui-color-blue-500) 0%,
+                  var(--ngx-ui-color-blue-500) 75%
+                ) !important;
+              }
+
+              .ngx-step--circle {
+                border-color: var(--ngx-ui-color-blue-500);
+                color: var(--ngx-ui-color-blue-500);
+
+                .marker-path {
+                  fill: var(--ngx-ui-color-blue-500);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

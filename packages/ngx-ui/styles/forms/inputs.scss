@@ -1,0 +1,58 @@
+/**
+ * Form Element Inputs
+ */
+:root {
+  --ngx-ui-color-input-bg: var(--ngx-ui-color-blue-grey-700);
+  --ngx-ui-color-input-border: var(--ngx-ui-color-blue-grey-600);
+  --ngx-ui-color-input-text: var(--ngx-ui-color-grey-200);
+  --ngx-ui-color-input-text-placeholder: var(--ngx-ui-color-blue-grey-450);
+  --ngx-ui-color-input-text-disabled: var(--ngx-ui-color-grey-700);
+  --ngx-ui-input-hint-color: var(--ngx-ui-color-blue-grey-350);
+  --ngx-ui-input-invalid-color: var(--ngx-ui-color-red);
+  --ngx-ui-input-active-underline-fill: var(--ngx-ui-color-blue);
+  --ngx-ui-input-inactive-underline-fill: var(--ngx-ui-color-blue-grey-600);
+  --ngx-ui-input-icon-color: var(--ngx-ui-color-grey-300);
+  --ngx-ui-input-placeholder-color: var(--ngx-ui-color-blue-grey-350);
+}
+
+input[type='number'],
+input[type='tel'],
+input[type='text'],
+input[type='password'],
+textarea {
+  display: inline-block;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.form-input {
+  background: var(--ngx-ui-color-input-bg);
+  border: solid 1px var(--ngx-ui-color-input-border);
+  color: var(--ngx-ui-color-input-text);
+  transition: box-shadow 200ms;
+  border-radius: 0;
+  font-size: 0.8125rem;
+  height: 2rem;
+  line-height: 2rem;
+  width: 100%;
+  padding: 0.375rem;
+  margin-bottom: 1em;
+
+  &::placeholder {
+    color: var(--ngx-ui-color-input-text-placeholder);
+  }
+
+  &:focus {
+    box-shadow: var(--ngx-ui-shadow-2);
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    color: var(--ngx-ui-color-input-text-disabled);
+  }
+}
+
+textarea.form-input {
+  min-height: 7.5rem;
+  line-height: 1.3em;
+}

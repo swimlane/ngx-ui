@@ -1,0 +1,2803 @@
+{
+  "version": 1,
+  "projects": {
+    "ngx-ui": {
+      "projectType": "library",
+      "root": "packages/ngx-ui",
+      "sourceRoot": "packages/ngx-ui/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "outputPath": "dist/packages/ngx-ui",
+            "commands": [
+              {
+                "command": "npx ng run ngx-ui:build-lib"
+              },
+              {
+                "command": "node prep-global-styles.js"
+              }
+            ],
+            "parallel": false
+          },
+          "configurations": {
+            "production": {
+              "commands": [
+                {
+                  "command": "npx ng run ngx-ui:build-lib --prod"
+                },
+                {
+                  "command": "node prep-global-styles.js"
+                }
+              ]
+            }
+          }
+        },
+        "build-lib": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/tsconfig.lib.json",
+            "project": "packages/ngx-ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/src/**/*.ts",
+              "packages/ngx-ui/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-utils-debounce": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/utils/debounce",
+      "sourceRoot": "packages/ngx-ui/utils/debounce/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/utils/debounce/tsconfig.lib.json",
+            "project": "packages/ngx-ui/utils/debounce/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/utils/debounce/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/utils/debounce/src/**/*.ts",
+              "packages/ngx-ui/utils/debounce/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/utils/debounce"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/utils/debounce/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-utils-filters": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/utils/filters",
+      "sourceRoot": "packages/ngx-ui/utils/filters/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/utils/filters/tsconfig.lib.json",
+            "project": "packages/ngx-ui/utils/filters/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/utils/filters/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/utils/filters/src/**/*.ts",
+              "packages/ngx-ui/utils/filters/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/utils/filters"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/utils/filters/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-utils-get-enum-key": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/utils/get-enum-key",
+      "sourceRoot": "packages/ngx-ui/utils/get-enum-key/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/utils/get-enum-key/tsconfig.lib.json",
+            "project": "packages/ngx-ui/utils/get-enum-key/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/utils/get-enum-key/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/utils/get-enum-key/src/**/*.ts",
+              "packages/ngx-ui/utils/get-enum-key/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/utils/get-enum-key"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/utils/get-enum-key/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-utils-get-type": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/utils/get-type",
+      "sourceRoot": "packages/ngx-ui/utils/get-type/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/utils/get-type/tsconfig.lib.json",
+            "project": "packages/ngx-ui/utils/get-type/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/utils/get-type/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/utils/get-type/src/**/*.ts",
+              "packages/ngx-ui/utils/get-type/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/utils/get-type"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/utils/get-type/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-utils-id": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/utils/id",
+      "sourceRoot": "packages/ngx-ui/utils/id/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/utils/id/tsconfig.lib.json",
+            "project": "packages/ngx-ui/utils/id/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/utils/id/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/utils/id/src/**/*.ts",
+              "packages/ngx-ui/utils/id/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/utils/id"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/utils/id/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-utils-is-number": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/utils/is-number",
+      "sourceRoot": "packages/ngx-ui/utils/is-number/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/utils/is-number/tsconfig.lib.json",
+            "project": "packages/ngx-ui/utils/is-number/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/utils/is-number/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/utils/is-number/src/**/*.ts",
+              "packages/ngx-ui/utils/is-number/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/utils/is-number"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/utils/is-number/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-utils-position": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/utils/position",
+      "sourceRoot": "packages/ngx-ui/utils/position/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/utils/position/tsconfig.lib.json",
+            "project": "packages/ngx-ui/utils/position/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/utils/position/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/utils/position/src/**/*.ts",
+              "packages/ngx-ui/utils/position/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/utils/position"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/utils/position/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-utils-throttle": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/utils/throttle",
+      "sourceRoot": "packages/ngx-ui/utils/throttle/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/utils/throttle/tsconfig.lib.json",
+            "project": "packages/ngx-ui/utils/throttle/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/utils/throttle/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/utils/throttle/src/**/*.ts",
+              "packages/ngx-ui/utils/throttle/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/utils/throttle"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/utils/throttle/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-types": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/types",
+      "sourceRoot": "packages/ngx-ui/types/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/types/tsconfig.lib.json",
+            "project": "packages/ngx-ui/types/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/types/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/types/src/**/*.ts",
+              "packages/ngx-ui/types/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/types"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/types/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-decorators-throttleable": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/decorators/throttleable",
+      "sourceRoot": "packages/ngx-ui/decorators/throttleable/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/decorators/throttleable/tsconfig.lib.json",
+            "project": "packages/ngx-ui/decorators/throttleable/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/decorators/throttleable/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/decorators/throttleable/src/**/*.ts",
+              "packages/ngx-ui/decorators/throttleable/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/decorators/throttleable"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/decorators/throttleable/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-decorators-debounceable": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/decorators/debounceable",
+      "sourceRoot": "packages/ngx-ui/decorators/debounceable/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/decorators/debounceable/tsconfig.lib.json",
+            "project": "packages/ngx-ui/decorators/debounceable/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/decorators/debounceable/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/decorators/debounceable/src/**/*.ts",
+              "packages/ngx-ui/decorators/debounceable/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/decorators/debounceable"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/decorators/debounceable/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-injection": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/injection",
+      "sourceRoot": "packages/ngx-ui/injection/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/injection/tsconfig.lib.json",
+            "project": "packages/ngx-ui/injection/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/injection/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/injection/src/**/*.ts",
+              "packages/ngx-ui/injection/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/injection"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/injection/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-pipes-camel-to-snake": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/pipes/camel-to-snake",
+      "sourceRoot": "packages/ngx-ui/pipes/camel-to-snake/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/pipes/camel-to-snake/tsconfig.lib.json",
+            "project": "packages/ngx-ui/pipes/camel-to-snake/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/pipes/camel-to-snake/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/pipes/camel-to-snake/src/**/*.ts",
+              "packages/ngx-ui/pipes/camel-to-snake/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/pipes/camel-to-snake"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/pipes/camel-to-snake/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-pipes-decamelize": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/pipes/decamelize",
+      "sourceRoot": "packages/ngx-ui/pipes/decamelize/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/pipes/decamelize/tsconfig.lib.json",
+            "project": "packages/ngx-ui/pipes/decamelize/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/pipes/decamelize/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/pipes/decamelize/src/**/*.ts",
+              "packages/ngx-ui/pipes/decamelize/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/pipes/decamelize"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/pipes/decamelize/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-pipes-time-zone": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/pipes/time-zone",
+      "sourceRoot": "packages/ngx-ui/pipes/time-zone/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/pipes/time-zone/tsconfig.lib.json",
+            "project": "packages/ngx-ui/pipes/time-zone/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/pipes/time-zone/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/pipes/time-zone/src/**/*.ts",
+              "packages/ngx-ui/pipes/time-zone/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/pipes/time-zone"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/pipes/time-zone/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-pipes-filter": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/pipes/filter",
+      "sourceRoot": "packages/ngx-ui/pipes/filter/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/pipes/filter/tsconfig.lib.json",
+            "project": "packages/ngx-ui/pipes/filter/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/pipes/filter/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/pipes/filter/src/**/*.ts",
+              "packages/ngx-ui/pipes/filter/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/pipes/filter"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/pipes/filter/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-animations": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/animations",
+      "sourceRoot": "packages/ngx-ui/animations/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/animations/tsconfig.lib.json",
+            "project": "packages/ngx-ui/animations/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/animations/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/animations/src/**/*.ts",
+              "packages/ngx-ui/animations/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/animations"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/animations/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-button": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/button",
+      "sourceRoot": "packages/ngx-ui/button/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/button/tsconfig.lib.json",
+            "project": "packages/ngx-ui/button/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/button/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/button/src/**/*.ts",
+              "packages/ngx-ui/button/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/button"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/button/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "demo": {
+      "projectType": "application",
+      "root": "packages/demo",
+      "sourceRoot": "packages/demo/src",
+      "prefix": "demo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/packages/demo",
+            "index": "packages/demo/src/index.html",
+            "main": "packages/demo/src/main.ts",
+            "polyfills": "packages/demo/src/polyfills.ts",
+            "tsConfig": "packages/demo/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "packages/demo/src/favicon.ico",
+              "packages/demo/src/assets"
+            ],
+            "styles": [
+              "packages/demo/src/styles.scss",
+              "node_modules/prism-themes/themes/prism-dracula.css"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "packages/ngx-ui/styles",
+                "packages/ngx-ui/assets"
+              ]
+            },
+            "scripts": [
+              "node_modules/marked/lib/marked.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/prismjs/components/prism-bash.min.js",
+              "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/components/prism-scss.min.js",
+              "node_modules/prismjs/components/prism-css-extras.min.js",
+              "node_modules/prismjs/components/prism-markup.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "packages/demo/src/environments/environment.ts",
+                  "with": "packages/demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "demo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "demo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "demo:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/demo/src/**/*.ts",
+              "packages/demo/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-ui-nav-menu": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/nav-menu",
+      "sourceRoot": "packages/ngx-ui/nav-menu/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/nav-menu/tsconfig.lib.json",
+            "project": "packages/ngx-ui/nav-menu/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/nav-menu/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/nav-menu/src/**/*.ts",
+              "packages/ngx-ui/nav-menu/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/nav-menu"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/nav-menu/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-hotkeys": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/hotkeys",
+      "sourceRoot": "packages/ngx-ui/hotkeys/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/hotkeys/tsconfig.lib.json",
+            "project": "packages/ngx-ui/hotkeys/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/hotkeys/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/hotkeys/src/**/*.ts",
+              "packages/ngx-ui/hotkeys/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/hotkeys"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/hotkeys/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-di": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/di",
+      "sourceRoot": "packages/ngx-ui/di/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/di/tsconfig.lib.json",
+            "project": "packages/ngx-ui/di/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/di/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/di/src/**/*.ts",
+              "packages/ngx-ui/di/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/di"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/di/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-destroyed": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/destroyed",
+      "sourceRoot": "packages/ngx-ui/destroyed/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/destroyed/tsconfig.lib.json",
+            "project": "packages/ngx-ui/destroyed/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/destroyed/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/destroyed/src/**/*.ts",
+              "packages/ngx-ui/destroyed/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/destroyed"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/destroyed/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-icon": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/icon",
+      "sourceRoot": "packages/ngx-ui/icon/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/icon/tsconfig.lib.json",
+            "project": "packages/ngx-ui/icon/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/icon/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/icon/src/**/*.ts",
+              "packages/ngx-ui/icon/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/icon"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/icon/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-tooltip": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/tooltip",
+      "sourceRoot": "packages/ngx-ui/tooltip/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/tooltip/tsconfig.lib.json",
+            "project": "packages/ngx-ui/tooltip/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/tooltip/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/tooltip/src/**/*.ts",
+              "packages/ngx-ui/tooltip/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/tooltip"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/tooltip/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-toolbar": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/toolbar",
+      "sourceRoot": "packages/ngx-ui/toolbar/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/toolbar/tsconfig.lib.json",
+            "project": "packages/ngx-ui/toolbar/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/toolbar/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/toolbar/src/**/*.ts",
+              "packages/ngx-ui/toolbar/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/toolbar"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/toolbar/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-dropdown": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/dropdown",
+      "sourceRoot": "packages/ngx-ui/dropdown/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/dropdown/tsconfig.lib.json",
+            "project": "packages/ngx-ui/dropdown/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/dropdown/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/dropdown/src/**/*.ts",
+              "packages/ngx-ui/dropdown/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/dropdown"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/dropdown/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-input": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/input",
+      "sourceRoot": "packages/ngx-ui/input/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/input/tsconfig.lib.json",
+            "project": "packages/ngx-ui/input/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/input/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/input/src/**/*.ts",
+              "packages/ngx-ui/input/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/input"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/input/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-utils-queue-for-next-render": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/utils/queue-for-next-render",
+      "sourceRoot": "packages/ngx-ui/utils/queue-for-next-render/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/utils/queue-for-next-render/tsconfig.lib.json",
+            "project": "packages/ngx-ui/utils/queue-for-next-render/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/utils/queue-for-next-render/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/utils/queue-for-next-render/src/**/*.ts",
+              "packages/ngx-ui/utils/queue-for-next-render/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/utils/queue-for-next-render"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/utils/queue-for-next-render/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-directives-long-press": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/directives/long-press",
+      "sourceRoot": "packages/ngx-ui/directives/long-press/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/directives/long-press/tsconfig.lib.json",
+            "project": "packages/ngx-ui/directives/long-press/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/directives/long-press/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/directives/long-press/src/**/*.ts",
+              "packages/ngx-ui/directives/long-press/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/directives/long-press"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/directives/long-press/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-directives-autosize-input": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/directives/autosize-input",
+      "sourceRoot": "packages/ngx-ui/directives/autosize-input/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/directives/autosize-input/tsconfig.lib.json",
+            "project": "packages/ngx-ui/directives/autosize-input/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/directives/autosize-input/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/directives/autosize-input/src/**/*.ts",
+              "packages/ngx-ui/directives/autosize-input/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/directives/autosize-input"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/directives/autosize-input/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-drawer": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/drawer",
+      "sourceRoot": "packages/ngx-ui/drawer/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/drawer/tsconfig.lib.json",
+            "project": "packages/ngx-ui/drawer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/drawer/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/drawer/src/**/*.ts",
+              "packages/ngx-ui/drawer/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/drawer"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/drawer/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-overlay": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/overlay",
+      "sourceRoot": "packages/ngx-ui/overlay/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/overlay/tsconfig.lib.json",
+            "project": "packages/ngx-ui/overlay/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/overlay/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/overlay/src/**/*.ts",
+              "packages/ngx-ui/overlay/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/overlay"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/overlay/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-loading": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/loading",
+      "sourceRoot": "packages/ngx-ui/loading/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/loading/tsconfig.lib.json",
+            "project": "packages/ngx-ui/loading/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/loading/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/loading/src/**/*.ts",
+              "packages/ngx-ui/loading/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/loading"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/loading/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-section": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/section",
+      "sourceRoot": "packages/ngx-ui/section/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/section/tsconfig.lib.json",
+            "project": "packages/ngx-ui/section/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/section/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/section/src/**/*.ts",
+              "packages/ngx-ui/section/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/section"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/section/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-utils-json-to-tree": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/utils/json-to-tree",
+      "sourceRoot": "packages/ngx-ui/utils/json-to-tree/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/utils/json-to-tree/tsconfig.lib.json",
+            "project": "packages/ngx-ui/utils/json-to-tree/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/utils/json-to-tree/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/utils/json-to-tree/src/**/*.ts",
+              "packages/ngx-ui/utils/json-to-tree/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/utils/json-to-tree"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/utils/json-to-tree/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-pipes-json-tree": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/pipes/json-tree",
+      "sourceRoot": "packages/ngx-ui/pipes/json-tree/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/pipes/json-tree/tsconfig.lib.json",
+            "project": "packages/ngx-ui/pipes/json-tree/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/pipes/json-tree/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/pipes/json-tree/src/**/*.ts",
+              "packages/ngx-ui/pipes/json-tree/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/pipes/json-tree"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/pipes/json-tree/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-tabs": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/tabs",
+      "sourceRoot": "packages/ngx-ui/tabs/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/tabs/tsconfig.lib.json",
+            "project": "packages/ngx-ui/tabs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/tabs/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/tabs/src/**/*.ts",
+              "packages/ngx-ui/tabs/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/tabs"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/tabs/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-file-button": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/file-button",
+      "sourceRoot": "packages/ngx-ui/file-button/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/file-button/tsconfig.lib.json",
+            "project": "packages/ngx-ui/file-button/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/file-button/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/file-button/src/**/*.ts",
+              "packages/ngx-ui/file-button/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/file-button"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/file-button/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-long-press-button": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/long-press-button",
+      "sourceRoot": "packages/ngx-ui/long-press-button/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/long-press-button/tsconfig.lib.json",
+            "project": "packages/ngx-ui/long-press-button/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/long-press-button/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/long-press-button/src/**/*.ts",
+              "packages/ngx-ui/long-press-button/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/long-press-button"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/long-press-button/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-calendar": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/calendar",
+      "sourceRoot": "packages/ngx-ui/calendar/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/calendar/tsconfig.lib.json",
+            "project": "packages/ngx-ui/calendar/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/calendar/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/calendar/src/**/*.ts",
+              "packages/ngx-ui/calendar/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/calendar"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/calendar/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-checkbox": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/checkbox",
+      "sourceRoot": "packages/ngx-ui/checkbox/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/checkbox/tsconfig.lib.json",
+            "project": "packages/ngx-ui/checkbox/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/checkbox/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/checkbox/src/**/*.ts",
+              "packages/ngx-ui/checkbox/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/checkbox"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/checkbox/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-card": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/card",
+      "sourceRoot": "packages/ngx-ui/card/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/card/tsconfig.lib.json",
+            "project": "packages/ngx-ui/card/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/card/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/card/src/**/*.ts",
+              "packages/ngx-ui/card/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/card"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/card/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-code-editor": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/code-editor",
+      "sourceRoot": "packages/ngx-ui/code-editor/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/code-editor/tsconfig.lib.json",
+            "project": "packages/ngx-ui/code-editor/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/code-editor/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/code-editor/src/**/*.ts",
+              "packages/ngx-ui/code-editor/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/code-editor"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/code-editor/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-directives-visibility": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/directives/visibility",
+      "sourceRoot": "packages/ngx-ui/directives/visibility/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/directives/visibility/tsconfig.lib.json",
+            "project": "packages/ngx-ui/directives/visibility/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/directives/visibility/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/directives/visibility/src/**/*.ts",
+              "packages/ngx-ui/directives/visibility/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/directives/visibility"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/directives/visibility/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-date-time": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/date-time",
+      "sourceRoot": "packages/ngx-ui/date-time/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/date-time/tsconfig.lib.json",
+            "project": "packages/ngx-ui/date-time/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/date-time/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/date-time/src/**/*.ts",
+              "packages/ngx-ui/date-time/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/date-time"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/date-time/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-dialog": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/dialog",
+      "sourceRoot": "packages/ngx-ui/dialog/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/dialog/tsconfig.lib.json",
+            "project": "packages/ngx-ui/dialog/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/dialog/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/dialog/src/**/*.ts",
+              "packages/ngx-ui/dialog/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/dialog"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/dialog/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-alert": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/alert",
+      "sourceRoot": "packages/ngx-ui/alert/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/alert/tsconfig.lib.json",
+            "project": "packages/ngx-ui/alert/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/alert/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/alert/src/**/*.ts",
+              "packages/ngx-ui/alert/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/alert"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/alert/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-select": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/select",
+      "sourceRoot": "packages/ngx-ui/select/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/select/tsconfig.lib.json",
+            "project": "packages/ngx-ui/select/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/select/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/select/src/**/*.ts",
+              "packages/ngx-ui/select/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/select"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/select/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-decorators-input-boolean": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/decorators/input-boolean",
+      "sourceRoot": "packages/ngx-ui/decorators/input-boolean/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/decorators/input-boolean/tsconfig.lib.json",
+            "project": "packages/ngx-ui/decorators/input-boolean/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/decorators/input-boolean/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/decorators/input-boolean/src/**/*.ts",
+              "packages/ngx-ui/decorators/input-boolean/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/decorators/input-boolean"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/decorators/input-boolean/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-decorators-input-numeric": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/decorators/input-numeric",
+      "sourceRoot": "packages/ngx-ui/decorators/input-numeric/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/decorators/input-numeric/tsconfig.lib.json",
+            "project": "packages/ngx-ui/decorators/input-numeric/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/decorators/input-numeric/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/decorators/input-numeric/src/**/*.ts",
+              "packages/ngx-ui/decorators/input-numeric/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/decorators/input-numeric"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/decorators/input-numeric/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-decorators-input-css-pixel": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/decorators/input-css-pixel",
+      "sourceRoot": "packages/ngx-ui/decorators/input-css-pixel/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/decorators/input-css-pixel/tsconfig.lib.json",
+            "project": "packages/ngx-ui/decorators/input-css-pixel/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/decorators/input-css-pixel/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/decorators/input-css-pixel/src/**/*.ts",
+              "packages/ngx-ui/decorators/input-css-pixel/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/decorators/input-css-pixel"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/decorators/input-css-pixel/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-decorators-input-enum": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/decorators/input-enum",
+      "sourceRoot": "packages/ngx-ui/decorators/input-enum/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/decorators/input-enum/tsconfig.lib.json",
+            "project": "packages/ngx-ui/decorators/input-enum/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/decorators/input-enum/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/decorators/input-enum/src/**/*.ts",
+              "packages/ngx-ui/decorators/input-enum/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/decorators/input-enum"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/decorators/input-enum/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-json-editor": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/json-editor",
+      "sourceRoot": "packages/ngx-ui/json-editor/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/json-editor/tsconfig.lib.json",
+            "project": "packages/ngx-ui/json-editor/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/json-editor/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/json-editor/src/**/*.ts",
+              "packages/ngx-ui/json-editor/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/json-editor"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/json-editor/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-toggle": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/toggle",
+      "sourceRoot": "packages/ngx-ui/toggle/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/toggle/tsconfig.lib.json",
+            "project": "packages/ngx-ui/toggle/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/toggle/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/toggle/src/**/*.ts",
+              "packages/ngx-ui/toggle/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/toggle"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/toggle/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-nag": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/nag",
+      "sourceRoot": "packages/ngx-ui/nag/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/nag/tsconfig.lib.json",
+            "project": "packages/ngx-ui/nag/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/nag/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/nag/src/**/*.ts",
+              "packages/ngx-ui/nag/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/nag"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/nag/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-notification": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/notification",
+      "sourceRoot": "packages/ngx-ui/notification/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/notification/tsconfig.lib.json",
+            "project": "packages/ngx-ui/notification/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/notification/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/notification/src/**/*.ts",
+              "packages/ngx-ui/notification/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/notification"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/notification/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-navbar": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/navbar",
+      "sourceRoot": "packages/ngx-ui/navbar/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/navbar/tsconfig.lib.json",
+            "project": "packages/ngx-ui/navbar/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/navbar/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/navbar/src/**/*.ts",
+              "packages/ngx-ui/navbar/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/navbar"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/navbar/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-plus-menu": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/plus-menu",
+      "sourceRoot": "packages/ngx-ui/plus-menu/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/plus-menu/tsconfig.lib.json",
+            "project": "packages/ngx-ui/plus-menu/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/plus-menu/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/plus-menu/src/**/*.ts",
+              "packages/ngx-ui/plus-menu/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/plus-menu"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/plus-menu/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-progress-spinner": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/progress-spinner",
+      "sourceRoot": "packages/ngx-ui/progress-spinner/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/progress-spinner/tsconfig.lib.json",
+            "project": "packages/ngx-ui/progress-spinner/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/progress-spinner/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/progress-spinner/src/**/*.ts",
+              "packages/ngx-ui/progress-spinner/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/progress-spinner"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/progress-spinner/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-radiobutton": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/radiobutton",
+      "sourceRoot": "packages/ngx-ui/radiobutton/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/radiobutton/tsconfig.lib.json",
+            "project": "packages/ngx-ui/radiobutton/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/radiobutton/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/radiobutton/src/**/*.ts",
+              "packages/ngx-ui/radiobutton/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/radiobutton"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/radiobutton/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-slider": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/slider",
+      "sourceRoot": "packages/ngx-ui/slider/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/slider/tsconfig.lib.json",
+            "project": "packages/ngx-ui/slider/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/slider/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/slider/src/**/*.ts",
+              "packages/ngx-ui/slider/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/slider"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/slider/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-split": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/split",
+      "sourceRoot": "packages/ngx-ui/split/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/split/tsconfig.lib.json",
+            "project": "packages/ngx-ui/split/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/split/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/split/src/**/*.ts",
+              "packages/ngx-ui/split/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/split"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/split/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-stepper": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/stepper",
+      "sourceRoot": "packages/ngx-ui/stepper/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/stepper/tsconfig.lib.json",
+            "project": "packages/ngx-ui/stepper/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/stepper/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/stepper/src/**/*.ts",
+              "packages/ngx-ui/stepper/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/stepper"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/stepper/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-directives-resize-observer": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/directives/resize-observer",
+      "sourceRoot": "packages/ngx-ui/directives/resize-observer/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/directives/resize-observer/tsconfig.lib.json",
+            "project": "packages/ngx-ui/directives/resize-observer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/directives/resize-observer/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/directives/resize-observer/src/**/*.ts",
+              "packages/ngx-ui/directives/resize-observer/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/directives/resize-observer"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/directives/resize-observer/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-tip": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/tip",
+      "sourceRoot": "packages/ngx-ui/tip/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/tip/tsconfig.lib.json",
+            "project": "packages/ngx-ui/tip/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/tip/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/tip/src/**/*.ts",
+              "packages/ngx-ui/tip/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/tip"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/tip/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-tree": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/tree",
+      "sourceRoot": "packages/ngx-ui/tree/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/tree/tsconfig.lib.json",
+            "project": "packages/ngx-ui/tree/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/tree/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/tree/src/**/*.ts",
+              "packages/ngx-ui/tree/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/tree"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/tree/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "ngx-ui-directives-copy-to-clipboard": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/directives/copy-to-clipboard",
+      "sourceRoot": "packages/ngx-ui/directives/copy-to-clipboard/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "tsConfig": "packages/ngx-ui/directives/copy-to-clipboard/tsconfig.lib.json",
+            "project": "packages/ngx-ui/directives/copy-to-clipboard/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/directives/copy-to-clipboard/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/directives/copy-to-clipboard/src/**/*.ts",
+              "packages/ngx-ui/directives/copy-to-clipboard/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/packages/ngx-ui/directives/copy-to-clipboard"
+          ],
+          "options": {
+            "jestConfig": "packages/ngx-ui/directives/copy-to-clipboard/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "schematics": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "none"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "strict": true
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "defaultProject": "demo"
+}

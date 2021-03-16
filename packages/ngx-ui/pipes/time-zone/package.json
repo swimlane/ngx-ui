@@ -1,0 +1,8 @@
+{
+  "name": "@swimlane/ngx-ui/pipes/time-zone",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "moment": "~2.29.1",
+    "moment-timezone": "~0.5.32"
+  }
+}

@@ -1,0 +1,230 @@
+@mixin track {
+  cursor: pointer;
+  color: transparent;
+  background: transparent;
+  border-color: transparent;
+  appearance: none;
+}
+
+@mixin thumb() {
+  border: none;
+  width: 1em;
+  height: 1em;
+  appearance: none;
+  position: relative;
+  background: transparent;
+  border-color: transparent;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.ngx-slider {
+  --ngx-ui-slider-bg: var(--ngx-ui-color-blue-400);
+  --ngx-ui-slider-bg-fill: var(--ngx-ui-color-blue-400-hsl);
+
+  --ngx-ui-slider-thumb: var(--ngx-ui-color-blue-400-rgb);
+  --ngx-ui-slider-focus-bg: var(--ngx-ui-color-blue-400);
+
+  --ngx-ui-slider-track-width: 2px;
+  --ngx-ui-slider-fill-width: 4px;
+  --ngx-ui-slider-thumb-width: 1em;
+
+  .slider-inner {
+    margin: 1em auto;
+    position: relative;
+    display: inline-block;
+  }
+
+  .inputs {
+    position: relative;
+    min-width: 12.5em;
+    height: var(--ngx-ui-slider-thumb-width);
+
+    input[type='range'] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 1;
+      appearance: none;
+      background-color: transparent;
+
+      &::-webkit-slider-runnable-track {
+        @include track;
+      }
+
+      &::-moz-range-track {
+        @include track;
+      }
+
+      &::-ms-track {
+        @include track;
+        cursor: pointer;
+      }
+
+      &::-webkit-slider-thumb {
+        @include thumb();
+        color: transparent;
+        z-index: 301;
+      }
+
+      &::-moz-range-thumb {
+        @include thumb();
+        transform: scale(1); // required to stack sliders in FF
+        z-index: 302;
+      }
+
+      &::-ms-thumb {
+        @include thumb();
+        transform: scale(1); // required to stack sliders in FF
+        z-index: 302;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .slider-track {
+      position: absolute;
+      background-color: var(--ngx-ui-slider-bg);
+      width: 100%;
+      height: var(--ngx-ui-slider-track-width);
+      top: calc(
+        (var(--ngx-ui-slider-thumb-width) / 2) -
+          (var(--ngx-ui-slider-track-width) / 2)
+      );
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    .slider-thumb {
+      position: absolute;
+      background-color: var(--ngx-ui-slider-thumb);
+      height: var(--ngx-ui-slider-thumb-width);
+      width: var(--ngx-ui-slider-thumb-width);
+      border-radius: var(--ngx-ui-slider-thumb-width) / 2;
+      pointer-events: none;
+      z-index: 100;
+      box-shadow: 0 0 0 0 rgba(var(--ngx-ui-slider-thumb), 0.3);
+      transition: box-shadow 0.3s ease-in-out;
+
+      &.active {
+        box-shadow: 0 0 0 5px rgba(var(--ngx-ui-slider-thumb), 0.3);
+      }
+    }
+  }
+
+  .ticks-container {
+    position: absolute;
+    display: block;
+    top: 0;
+    width: 100%;
+    height: 3px;
+    opacity: 0.3;
+
+    .tick {
+      position: absolute;
+      border: none;
+      height: 100%;
+      width: 2px;
+      background-color: var(--ngx-ui-slider-bg);
+    }
+  }
+
+  &.filled .fill-bar {
+    background-repeat: no-repeat;
+    //noinspection CssInvalidFunction
+    background-image: linear-gradient(
+      var(--ngx-ui-slider-bg-fill),
+      var(--ngx-ui-slider-bg-fill)
+    );
+    position: absolute;
+    border-radius: 0;
+    z-index: 99;
+    pointer-events: none;
+    height: var(--ngx-ui-slider-fill-width);
+    left: 0;
+    top: calc(50% - (var(--ngx-ui-slider-fill-width) / 2));
+    width: 100%;
+  }
+}
+
+.ngx-slider.vertical {
+  display: inline-block;
+  height: initial;
+  min-height: 12.5em;
+  width: var(--ngx-ui-slider-thumb-width);
+
+  .slider-inner {
+    transform: translate(0%, -100%) rotate(-90deg) translate(-100%, 0);
+    transform-origin: top left;
+  }
+}
+
+/* Fall back to two sliders for edge */
+@supports (-ms-ime-align: auto) {
+  .ngx-slider.multiple {
+    .inputs input[type='range'] {
+      position: relative;
+      display: block;
+      //noinspection CssInvalidPropertyValue
+      appearance: slider-vertical;
+
+      &::-webkit-slider-runnable-track {
+        all: initial;
+        appearance: initial;
+      }
+
+      &::-ms-track {
+        all: initial;
+        appearance: initial;
+        color: transparent;
+        background-color: transparent;
+        border: none;
+        opacity: 0;
+        height: var(--ngx-ui-slider-track-width);
+      }
+
+      &::-webkit-slider-thumb {
+        all: initial;
+        appearance: initial;
+      }
+
+      &::-ms-thumb {
+        all: initial;
+        color: transparent;
+        background-color: transparent;
+        border-color: var(--ngx-ui-slider-thumb);
+        appearance: initial;
+        border-radius: 0;
+        height: 1px;
+        width: 1px;
+        border: 0.5em solid;
+        border-top: 0.5em solid var(--ngx-ui-slider-thumb);
+      }
+
+      &.odd::-ms-thumb {
+        border: 0.5em solid transparent;
+        border-bottom: 0.5em solid var(--ngx-ui-slider-thumb);
+      }
+    }
+
+    .slider-track {
+      height: 100%;
+      left: 0.5em;
+      width: calc(100% - 1em);
+    }
+
+    .slider-thumb {
+      display: none;
+    }
+
+    .fill-bar {
+      height: 100%;
+      margin-top: 1px;
+      opacity: 0.6;
+    }
+  }
+}

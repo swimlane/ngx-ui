@@ -1,0 +1,17 @@
+.ngx-navbar-item {
+  display: flex;
+  font-size: 15pt;
+  color: var(--ngx-ui-color-blue-grey-400);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  padding: 8px 10px 0 10px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover,
+  &.active {
+    color: var(--ngx-ui-color-blue-400);
+  }
+}

@@ -1,0 +1,199 @@
+code[class*='language-'],
+pre[class*='language-'] {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-size: 0.8125rem;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+code[class*='language-'] {
+  display: block;
+}
+
+pre[class*='language-'],
+:not(pre) > code[class*='language-'] {
+  background: #272b36;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  border-radius: 0.5em;
+  margin: 0.5em 0;
+  overflow: auto;
+  padding: 0 1rem;
+}
+
+pre[class*='language-']::-moz-selection {
+  /* Firefox */
+  background: hsl(200, 4%, 16%); /* #282A2B */
+}
+
+pre[class*='language-']::selection {
+  /* Safari */
+  background: hsl(200, 4%, 16%); /* #282A2B */
+}
+
+/* Text Selection colour */
+pre[class*='language-']::-moz-selection,
+pre[class*='language-'] ::-moz-selection,
+code[class*='language-']::-moz-selection,
+code[class*='language-'] ::-moz-selection {
+  text-shadow: none;
+  background: hsla(0, 0%, 93%, 0.15); /* #EDEDED */
+}
+
+pre[class*='language-']::selection,
+pre[class*='language-'] ::selection,
+code[class*='language-']::selection,
+code[class*='language-'] ::selection {
+  text-shadow: none;
+  background: hsla(0, 0%, 93%, 0.15); /* #EDEDED */
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  display: inline-block;
+  border-radius: 0.3em;
+  border: 0.13em solid hsl(0, 0%, 33%); /* #545454 */
+  box-shadow: 1px 1px 0.3em -0.1em black inset;
+  padding: 0.15em 0.2em 0.05em;
+  white-space: normal;
+}
+
+.prism--token.prism--comment,
+.prism--token.prism--prolog,
+.prism--token.prism--doctype,
+.prism--token.prism--cdata {
+  color: #a50;
+}
+
+.prism--token.prism--tag,
+.prism--token.prism--boolean,
+.prism--token.prism--number,
+.prism--token.prism--deleted,
+.prism--token.prism--keyword,
+.prism--token.prism--property,
+.prism--token.prism--selector,
+.prism--token.prism--constant,
+.prism--token.prism--symbol,
+.prism--token.prism--builtin {
+  color: #fe7ac6;
+}
+
+.prism--token.prism--attr-name,
+.prism--token.prism--function,
+.prism--token.prism--parameter {
+  color: #50f77a;
+}
+
+.prism--token.prism--attr-value,
+.prism--token.prism--string,
+.prism--token.prism--char,
+.prism--token.prism--operator,
+.prism--token.prism--entity,
+.prism--token.prism--url,
+.language-css .prism--token.prism--string,
+.style .prism--token.prism--string,
+.prism--token.prism--variable,
+.prism--token.prism--inserted {
+  color: #f2fb8c;
+}
+
+.prism--token.prism--atrule {
+  color: hsl(218, 22%, 55%); /* #7587A6 */
+}
+
+.prism--token.prism--regex,
+.prism--token.prism--important {
+  color: hsl(42, 75%, 65%); /* #E9C062 */
+}
+
+.prism--token.prism--important,
+.prism--token.prism--bold {
+  font-weight: bold;
+}
+
+.prism--token.prism--italic {
+  font-style: italic;
+}
+
+.prism--token.prism--entity {
+  cursor: help;
+}
+
+pre[data-line] {
+  padding: 1em 0 1em 3em;
+  position: relative;
+}
+
+/* Markup */
+.language-markup .prism--token.prism--tag,
+.language-markup .prism--token.prism--attr-name,
+.language-markup .prism--token.prism--punctuation {
+  color: hsl(33, 33%, 52%); /* #AC885B */
+}
+
+/* Make the tokens sit above the line highlight so the colours don't look faded. */
+.prism--token {
+  position: relative;
+  z-index: 1;
+}
+
+.line-highlight {
+  background: hsla(0, 0%, 33%, 0.25); /* #545454 */
+  background: linear-gradient(
+    to right,
+    hsla(0, 0%, 33%, 0.1) 70%,
+    hsla(0, 0%, 33%, 0)
+  ); /* #545454 */
+  border-bottom: 1px dashed hsl(0, 0%, 33%); /* #545454 */
+  border-top: 1px dashed hsl(0, 0%, 33%); /* #545454 */
+  left: 0;
+  line-height: inherit;
+  margin-top: 0.75em; /* Same as .prism’s padding-top */
+  padding: inherit 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+  white-space: pre;
+  z-index: 0;
+}
+
+.line-highlight::before,
+.line-highlight[data-end]::after {
+  background-color: hsl(215, 15%, 59%); /* #8794A6 */
+  border-radius: 999px;
+  box-shadow: 0 1px white;
+  color: hsl(24, 20%, 95%); /* #F5F2F0 */
+  content: attr(data-start);
+  font: bold 65%/1.5 sans-serif;
+  left: 0.6em;
+  min-width: 1em;
+  padding: 0 0.5em;
+  position: absolute;
+  text-align: center;
+  text-shadow: none;
+  top: 0.4em;
+  vertical-align: 0.3em;
+}
+
+.line-highlight[data-end]::after {
+  bottom: 0.4em;
+  content: attr(data-end);
+  top: auto;
+}

@@ -1,0 +1,24 @@
+<ng-container *ngIf="nodes">
+  <ul class="vertical-list">
+    <ngx-tree-node
+      *ngFor="let node of nodes"
+      [node]="node"
+      [disabled]="node.disabled"
+      [expandable]="node.expandable"
+      [expanded]="node.expanded"
+      [selectable]="node.selectable"
+      [icons]="icons"
+      [label]="node.label"
+      [model]="node.model"
+      [children]="node.children"
+      [template]="template"
+      (expand)="expand.emit($event)"
+      (collapse)="collapse.emit($event)"
+      (activate)="activate.emit($event)"
+      (deactivate)="deactivate.emit($event)"
+      (selectNode)="selectNode.emit($event)"
+    ></ngx-tree-node>
+    <ng-content *ngIf="!nodes"></ng-content>
+  </ul>
+  <div class="ngx-tree-vr" *ngIf="nodes?.length || nodeElms?.length"></div>
+</ng-container>

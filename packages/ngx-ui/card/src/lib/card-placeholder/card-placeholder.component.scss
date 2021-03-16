@@ -1,0 +1,20 @@
+.ngx-card-placeholder {
+  display: inline-block;
+  background-color: var(--ngx-ui-color-blue-grey-700);
+  border-radius: 0.75rem;
+
+  &.small {
+    height: 0.625rem;
+    width: 35%;
+  }
+
+  &.medium {
+    height: 0.75rem;
+    width: 30%;
+  }
+
+  &.large {
+    height: 1rem;
+    width: 50%;
+  }
+}

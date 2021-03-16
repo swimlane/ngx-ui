@@ -1,0 +1,65 @@
+.ngx-toolbar {
+  --ngx-ui-toolbar-height: 50px;
+  --ngx-ui-toolbar-bg: var(--ngx-ui-color-blue-grey-800);
+  --ngx-ui-toolbar-color: var(--ngx-ui-color-blue-grey-250);
+
+  display: block;
+  height: var(--ngx-ui-toolbar-height);
+  line-height: var(--ngx-ui-toolbar-height);
+  color: var(--ngx-ui-toolbar-color);
+  background: var(--ngx-ui-toolbar-bg);
+  width: 100%;
+  font-size: 0.8rem;
+
+  .flex-container {
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+
+    > * {
+      flex: 1 1 0;
+      box-sizing: border-box;
+    }
+  }
+
+  a {
+    color: var(--ngx-ui-toolbar-color);
+  }
+
+  // grid is overriding this
+  padding: 0 20px !important;
+
+  .ngx-toolbar-title-col {
+    overflow: hidden;
+  }
+
+  .ngx-toolbar-title {
+    margin: 0;
+    font-weight: 500;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
+
+    small {
+      color: var(--ngx-ui-color-blue-grey-500);
+      font-size: 0.9rem;
+      line-height: 50px;
+      vertical-align: top;
+    }
+  }
+
+  .ngx-toolbar-menu {
+    button {
+      color: var(--ngx-ui-toolbar-color);
+    }
+  }
+
+  .ngx-toolbar-content-col {
+    text-align: right;
+  }
+
+  &.page-toolbar {
+    box-shadow: var(--ngx-ui-shadow-2);
+  }
+}

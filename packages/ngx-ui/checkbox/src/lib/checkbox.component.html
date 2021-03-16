@@ -1,0 +1,26 @@
+<label class="ngx-checkbox--label">
+  <input
+    type="checkbox"
+    [id]="id + '-chk'"
+    [(ngModel)]="value"
+    [disabled]="disabled"
+    [name]="name + '-chk'"
+    [tabIndex]="tabIndex"
+    (focus)="focus.emit($event)"
+    (blur)="blur.emit($event)"
+    (change)="change.emit($event)"
+  />
+
+  <span
+    class="ngx-checkbox--box"
+    [class.checked]="value"
+    [style.width]="diameter"
+    [style.height]="diameter"
+    [style.min-width]="diameter"
+    [style.min-height]="diameter"
+  ></span>
+
+  <span class="ngx-checkbox--content">
+    <ng-content></ng-content>
+  </span>
+</label>

@@ -1,0 +1,11 @@
+<button [disabled]="disabled">
+  <span class="content"><ng-content></ng-content></span>
+  <span class="state-icon">
+    <span
+      *ngIf="inProgress$ | async"
+      class="ngx-icon ngx-loading icon-fx-spinning"
+    ></span>
+    <span *ngIf="success$ | async" class="ngx-icon ngx-check"></span>
+    <span *ngIf="fail$ | async" class="ngx-icon ngx-x-small"></span>
+  </span>
+</button>

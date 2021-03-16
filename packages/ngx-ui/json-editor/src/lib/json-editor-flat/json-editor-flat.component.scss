@@ -1,0 +1,24 @@
+.ngx-json-editor-flat {
+  position: relative;
+  width: 100%;
+
+  .node-options {
+    flex: 0 0 80px;
+
+    .node-options-btn {
+      color: var(--ngx-ui-color-blue-grey-400);
+      padding: 1px 3px 2px;
+    }
+
+    .ngx-dropdown {
+      margin-left: 10px;
+    }
+  }
+}
+
+.property-config-dialog {
+  .ngx-dialog-content {
+    padding: 0 !important;
+    min-width: 500px !important;
+  }
+}

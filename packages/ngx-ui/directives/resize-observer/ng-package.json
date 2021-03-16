@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../../dist/packages/ngx-ui/directives/resize-observer",
+  "lib": {
+    "entryFile": "src/index.ts",
+    "umdModuleIds": {
+      "resize-observer-polyfill": "resize-observer-polyfill"
+    }
+  }
+}

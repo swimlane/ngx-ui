@@ -1,0 +1,7 @@
+{
+  "name": "@swimlane/ngx-ui/animations",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/animations": "~11.2.1"
+  }
+}

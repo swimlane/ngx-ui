@@ -1,0 +1,131 @@
+@mixin notification($color) {
+  .notification-bar {
+    background-color: rgba($color, 0.2);
+
+    .bar {
+      background-color: $color;
+    }
+  }
+
+  .icon-container .icon {
+    color: $color;
+  }
+}
+
+.ngx-notification-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  min-width: 120px;
+  max-width: 400px;
+  z-index: 9998;
+}
+
+.ngx-notification {
+  display: block;
+  margin-top: 0.5rem;
+  position: relative;
+  box-shadow: var(--ngx-ui-shadow-15);
+  color: var(--ngx-ui-color-white);
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+  background: var(--ngx-ui-color-blue-grey-700);
+
+  @include notification(#455066);
+
+  .notification-bar {
+    width: 5px;
+    height: 100%;
+    position: absolute;
+
+    .bar {
+      width: 5px;
+      height: 100%;
+      position: absolute;
+      bottom: 0;
+    }
+
+    &.animated {
+      .bar {
+        height: 0;
+        animation: 1s ease-out 0s 1 heightBar;
+      }
+    }
+
+    @keyframes heightBar {
+      0% {
+        height: 100%;
+      }
+      100% {
+        height: 0;
+      }
+    }
+  }
+
+  .icon-container {
+    float: left;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 1em;
+    height: 2.5rem;
+
+    .icon {
+      font-size: 2.5rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  .notification-content {
+    padding: 1.5rem;
+    color: var(--ngx-ui-color-blue-grey-100);
+    overflow: auto;
+    max-height: 300px;
+
+    &.has-icon {
+      margin-left: 4.5rem;
+      border-left: 1px solid var(--ngx-ui-color-blue-grey-650);
+    }
+  }
+
+  &.notification-closeable {
+    padding-right: 1rem;
+  }
+
+  &.ngx-notification-info {
+    @include notification(var(--ngx-ui-color-blue-rgb));
+  }
+
+  &.ngx-notification-error {
+    @include notification(var(--ngx-ui-color-red-rgb));
+  }
+
+  &.ngx-notification-warning {
+    @include notification(var(--ngx-ui-color-orange-rgb));
+  }
+
+  &.ngx-notification-success {
+    @include notification(var(--ngx-ui-color-green-rgb));
+  }
+
+  .ngx-notification-title {
+    margin: 0;
+    font-size: 1.2rem;
+    color: white;
+  }
+
+  .ngx-notification-body {
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1rem;
+  }
+
+  .ngx-notification-close {
+    position: absolute;
+    right: 0.5rem;
+    top: 0.5rem;
+    line-height: 1em;
+    padding: 0;
+    font-size: 16px;
+    height: 16px;
+  }
+}

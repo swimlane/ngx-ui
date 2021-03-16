@@ -1,0 +1,514 @@
+{
+  "npmScope": "swimlane",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.base.json": "*",
+    "tslint.json": "*",
+    ".eslintrc.json": "*",
+    "nx.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "ngx-ui": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:lib"
+      ]
+    },
+    "ngx-ui-utils-debounce": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:util",
+        "context:debounce"
+      ]
+    },
+    "ngx-ui-utils-filters": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:util",
+        "context:filter"
+      ]
+    },
+    "ngx-ui-utils-get-enum-key": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:util",
+        "context:get-enum-key"
+      ]
+    },
+    "ngx-ui-utils-get-type": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:util",
+        "context:get-type"
+      ]
+    },
+    "ngx-ui-utils-id": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:util",
+        "context:id"
+      ]
+    },
+    "ngx-ui-utils-is-number": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:util",
+        "context:is-number"
+      ]
+    },
+    "ngx-ui-utils-position": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:util",
+        "context:position"
+      ]
+    },
+    "ngx-ui-utils-throttle": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:util",
+        "context:throttle"
+      ]
+    },
+    "ngx-ui-types": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:type"
+      ]
+    },
+    "ngx-ui-decorators-throttleable": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:decorator",
+        "context:throttleable"
+      ]
+    },
+    "ngx-ui-decorators-debounceable": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:decorator",
+        "context:debounceable"
+      ]
+    },
+    "ngx-ui-injection": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:service",
+        "context:injection"
+      ]
+    },
+    "ngx-ui-pipes-camel-to-snake": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:pipe",
+        "context:camel-to-snake"
+      ]
+    },
+    "ngx-ui-pipes-decamelize": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:pipe",
+        "context:decamelize"
+      ]
+    },
+    "ngx-ui-pipes-time-zone": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:pipe",
+        "context:time-zone"
+      ]
+    },
+    "ngx-ui-pipes-filter": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:pipe",
+        "context:filter"
+      ]
+    },
+    "ngx-ui-animations": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:animations"
+      ]
+    },
+    "ngx-ui-button": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:button"
+      ]
+    },
+    "demo": {
+      "tags": [
+        "scope:demo",
+        "type:application"
+      ]
+    },
+    "ngx-ui-nav-menu": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:nav-menu"
+      ]
+    },
+    "ngx-ui-hotkeys": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:hotkeys"
+      ]
+    },
+    "ngx-ui-di": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:di"
+      ]
+    },
+    "ngx-ui-destroyed": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:service",
+        "context:destroyed"
+      ]
+    },
+    "ngx-ui-icon": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:icon"
+      ]
+    },
+    "ngx-ui-tooltip": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:tooltip"
+      ]
+    },
+    "ngx-ui-toolbar": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:toolbar"
+      ]
+    },
+    "ngx-ui-dropdown": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:dropdown"
+      ]
+    },
+    "ngx-ui-input": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:input"
+      ]
+    },
+    "ngx-ui-utils-queue-for-next-render": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:util",
+        "context:queue-for-next-render"
+      ]
+    },
+    "ngx-ui-directives-long-press": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:directive",
+        "context:long-press"
+      ]
+    },
+    "ngx-ui-directives-autosize-input": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:directive",
+        "context:autosize-input"
+      ]
+    },
+    "ngx-ui-drawer": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:drawer"
+      ]
+    },
+    "ngx-ui-overlay": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:overlay"
+      ]
+    },
+    "ngx-ui-loading": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:loading"
+      ]
+    },
+    "ngx-ui-section": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:section"
+      ]
+    },
+    "ngx-ui-utils-json-to-tree": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:util",
+        "context:json-to-tree"
+      ]
+    },
+    "ngx-ui-pipes-json-tree": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:pipe",
+        "context:json-tree"
+      ]
+    },
+    "ngx-ui-tabs": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:tabs"
+      ]
+    },
+    "ngx-ui-file-button": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:file-button"
+      ]
+    },
+    "ngx-ui-long-press-button": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:long-press-button"
+      ]
+    },
+    "ngx-ui-calendar": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:calendar"
+      ]
+    },
+    "ngx-ui-checkbox": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:checkbox"
+      ]
+    },
+    "ngx-ui-card": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:card"
+      ]
+    },
+    "ngx-ui-code-editor": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:code-editor"
+      ]
+    },
+    "ngx-ui-directives-visibility": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:directive",
+        "context:visibility"
+      ]
+    },
+    "ngx-ui-date-time": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:date-time"
+      ]
+    },
+    "ngx-ui-dialog": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:dialog"
+      ]
+    },
+    "ngx-ui-alert": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:alert"
+      ]
+    },
+    "ngx-ui-select": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:select"
+      ]
+    },
+    "ngx-ui-decorators-input-boolean": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:decorator",
+        "context:boolean-input"
+      ]
+    },
+    "ngx-ui-decorators-input-numeric": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:decorator",
+        "context:numeric-input"
+      ]
+    },
+    "ngx-ui-decorators-input-css-pixel": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:decorator",
+        "context:input-css-pixel"
+      ]
+    },
+    "ngx-ui-decorators-input-enum": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:decorator",
+        "context:input-enum"
+      ]
+    },
+    "ngx-ui-json-editor": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:json-editor"
+      ]
+    },
+    "ngx-ui-toggle": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:toggle"
+      ]
+    },
+    "ngx-ui-nag": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:nag"
+      ]
+    },
+    "ngx-ui-notification": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:notification"
+      ]
+    },
+    "ngx-ui-navbar": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:navbar"
+      ]
+    },
+    "ngx-ui-plus-menu": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:plus-menu"
+      ]
+    },
+    "ngx-ui-progress-spinner": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:progress-spinner"
+      ]
+    },
+    "ngx-ui-radiobutton": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:radiobutton"
+      ]
+    },
+    "ngx-ui-slider": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:slider"
+      ]
+    },
+    "ngx-ui-split": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:split"
+      ]
+    },
+    "ngx-ui-stepper": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:stepper"
+      ]
+    },
+    "ngx-ui-directives-resize-observer": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:directive",
+        "context:resize-observer"
+      ]
+    },
+    "ngx-ui-tip": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:tip"
+      ]
+    },
+    "ngx-ui-tree": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:component",
+        "context:tree"
+      ]
+    },
+    "ngx-ui-directives-copy-to-clipboard": {
+      "tags": [
+        "scope:ngx-ui",
+        "type:directive",
+        "context:copy-to-clipboard"
+      ]
+    }
+  },
+  "workspaceLayout": {
+    "appsDir": "packages",
+    "libsDir": "packages"
+  }
+}

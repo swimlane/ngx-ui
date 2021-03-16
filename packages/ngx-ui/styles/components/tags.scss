@@ -1,0 +1,36 @@
+:root {
+  --ngx-ui-tag-background: var(--ngx-ui-color-blue-grey-600);
+  --ngx-ui-tag-color: var(--ngx-ui-color-white);
+}
+
+.ngx-tag {
+  cursor: default;
+  border-radius: 0.1875rem;
+  display: inline-block;
+  margin: 0 0.5rem 0 0;
+  box-sizing: border-box;
+  position: relative;
+  background: var(--ngx-ui-tag-background);
+  color: var(--ngx-ui-tag-color);
+  font-size: 0.875rem;
+  padding: 0 0.3rem;
+
+  &.tag-small {
+    font-size: 0.7rem;
+  }
+
+  &.tag-large {
+    font-size: 1.2rem;
+  }
+
+  &.tag-filled {
+    background-color: var(--ngx-ui-color-blue-grey-050);
+    color: var(--ngx-ui-color-blue-grey-800);
+  }
+
+  &.tag-bordered {
+    border: 1px solid var(--ngx-ui-color-light-blue-400);
+    color: var(--ngx-ui-color-white);
+    background-color: transparent;
+  }
+}

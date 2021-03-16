@@ -1,0 +1,61 @@
+@import './json-editor.extensions.scss';
+
+%node-type {
+  display: flex;
+  margin-bottom: 5px;
+  position: relative;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  ngx-json-editor-node-flat {
+    flex: 1;
+  }
+}
+
+%add-button {
+  height: 100px;
+  position: relative;
+  display: flex;
+
+  ngx-dropdown {
+    padding-bottom: 0;
+  }
+
+  &.compressed {
+    max-height: 80px;
+  }
+
+  &.background {
+    background-color: rgba(var(--ngx-ui-color-blue-grey-700-rgb), 0.4);
+    padding: 7px 7px 7px 0;
+    height: 120px;
+  }
+
+  .indented-content {
+    border: 2px dotted rgba(var(--ngx-ui-color-blue-grey-650-rgb), 0.5);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--ngx-ui-color-blue-grey-300);
+
+    button {
+      display: flex;
+
+      i {
+        font-size: 18px;
+      }
+
+      span {
+        font-size: 14px;
+        margin-left: 10px;
+      }
+    }
+
+    .ngx-dropdown-menu {
+      @extend %ngx-dropdown-menu;
+    }
+  }
+}

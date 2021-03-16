@@ -1,0 +1,37 @@
+/**
+ * Code
+ */
+:root {
+  --ngx-ui-code-color-bg: #282a36;
+  --ngx-ui-code-color-text: #f8f8f2;
+  --ngx-ui-code-font-family: 'Inconsolata', 'Monaco', 'Consolas', 'Andale Mono', 'Bitstream Vera Sans Mono',
+    'Courier New', Courier, monospace;
+}
+
+pre,
+code {
+  display: block;
+}
+
+pre {
+  padding: 1rem;
+  background: var(--ngx-ui-code-color-bg);
+  color: var(--ngx-ui-code-color-text);
+  margin: 0.5rem 0;
+  font-family: var(--ngx-ui-code-font-family);
+  overflow-x: auto;
+  line-height: 1.45;
+  tab-size: 2;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: none;
+  position: relative;
+  border-radius: 0.125rem;
+  font-size: 0.8rem;
+}
+
+code {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}

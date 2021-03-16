@@ -1,0 +1,301 @@
+<demo-section-header>Inputs</demo-section-header>
+
+<demo-markdown [data]="importMd"></demo-markdown>
+
+<ngx-section class="shadow" sectionTitle="Text">
+  <demo-section-header section>
+    with hint and label
+  </demo-section-header>
+  <ngx-input
+    type="text"
+    name="input1"
+    [label]="'Name'"
+    [ngModel]="inputValue"
+    [autofocus]="true"
+    [hint]="'Enter your first and last name'"
+    (change)="output = $event"
+  ></ngx-input>
+  <p>Output: {{ output || inputValue | json }}</p>
+  <demo-markdown [data]="simpleTextMd"></demo-markdown>
+
+  <demo-section-header section>no label</demo-section-header>
+  <ngx-input
+    type="text"
+    name="input2"
+    [ngModel]="inputValue1"
+    [placeholder]="'Enter your first and last name'"
+  ></ngx-input>
+  <demo-markdown [data]="simpleNoLabelMd"></demo-markdown>
+
+  <demo-section-header section>
+    with prefix and suffix
+  </demo-section-header>
+  <ngx-input
+    type="text"
+    name="input22"
+    label="Prefix Suffix Input"
+    [ngModel]="inputValue1"
+  >
+    <ngx-input-prefix>
+      <i class="ngx-icon ngx-add-new"></i>
+    </ngx-input-prefix>
+    <ngx-input-suffix>
+      <button class="btn btn-primary">Clear</button>
+    </ngx-input-suffix>
+  </ngx-input>
+  <demo-markdown [data]="simplePrefixSuffixMd"></demo-markdown>
+
+  <demo-section-header section>disabled</demo-section-header>
+  <ngx-input
+    type="text"
+    name="input3"
+    [label]="'Disabled Example'"
+    disabled
+    [ngModel]="'Disabled value'"
+  ></ngx-input>
+  <demo-markdown [data]="simpleDisabledMd"></demo-markdown>
+
+  <demo-section-header section>unlockable</demo-section-header>
+  <ngx-input
+    type="text"
+    label="Disabled With Unlock Button"
+    unlockable
+    [ngModel]="'Click the button to unlock'"
+  ></ngx-input>
+  <demo-markdown [data]="simpleUnlockableMd"></demo-markdown>
+
+  <demo-section-header section>required</demo-section-header>
+  <ngx-input
+    [label]="'Required Input Example Of The Day'"
+    type="text"
+    name="input4"
+    required
+  ></ngx-input>
+  <demo-markdown [data]="simpleRequiredMd"></demo-markdown>
+
+  <demo-section-header section>default value</demo-section-header>
+  <ngx-input
+    [label]="'Default value'"
+    type="text"
+    name="input44"
+    autoSelect
+    [ngModel]="inputDefaultVal"
+  ></ngx-input>
+  <demo-markdown [data]="simpleDefaultMd"></demo-markdown>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Search box - Demo">
+  <div class="demo-search-box">
+    <ngx-input
+      #searchInput
+      [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)"
+      placeholder="Search"
+      type="text"
+      name="searchInputValue"
+      [(ngModel)]="searchInputValue"
+      (focus)="searchInput.focused = true"
+      (blur)="searchInput.focused = false"
+    >
+      <ngx-input-prefix>
+        <i class="ngx-icon ngx-search"></i>
+      </ngx-input-prefix>
+      <ngx-input-suffix>
+        <button
+          class="btn btn-link"
+          *ngIf="searchInputValue?.length > 0"
+          (click)="searchInputValue = ''"
+        >
+          <i class="ngx-icon ngx-x"></i>
+        </button>
+      </ngx-input-suffix>
+    </ngx-input>
+  </div>
+
+  <demo-tabbed-markdown [markdowns]="searchDemoMd"></demo-tabbed-markdown>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Password">
+  <form>
+    <ngx-input
+      type="text"
+      label="Username"
+      [(ngModel)]="usernameValue"
+      name="input5"
+      required
+      [requiredIndicator]="false"
+      hint="Enter a Username between four and 12 characters"
+      [minlength]="4"
+      [maxlength]="12"
+    ></ngx-input>
+    <ngx-input
+      type="password"
+      [label]="'Password'"
+      [(ngModel)]="passwordValue"
+      name="input6"
+      required
+      hint="Enter a password"
+      passwordToggleEnabled
+    ></ngx-input>
+    <button class="btn" type="submit">Login</button>
+  </form>
+
+  <demo-markdown [data]="passwordMd"></demo-markdown>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Numeric">
+  <demo-section-header section>Simple</demo-section-header>
+  <ngx-input
+    type="number"
+    label="Age"
+    [(ngModel)]="numericValue"
+    name="numeric-input"
+    min="0"
+    max="122"
+  ></ngx-input>
+
+  Value: {{ numericValue }}
+  <demo-markdown [data]="ageNumericMd"></demo-markdown>
+
+  <demo-section-header section>Disabled</demo-section-header>
+  <ngx-input type="number" label="Pi" disabled [ngModel]="3.14159"></ngx-input>
+  <demo-markdown [data]="disabledNumericMd"></demo-markdown>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Validators">
+  <ngx-input
+    type="text"
+    label="Pattern validation"
+    [(ngModel)]="patternValue"
+    name="patern-input"
+    [pattern]="'^\\w+$'"
+    hint="Pattern: ^\\w+$"
+  ></ngx-input>
+
+  <demo-markdown [data]="validatorsMd"></demo-markdown>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Types">
+  <ngx-input
+    type="email"
+    name="input1111"
+    [label]="'Email'"
+    [ngModel]="inputValue"
+  >
+    <ngx-input-hint>Enter a valid email</ngx-input-hint>
+  </ngx-input>
+
+  <ngx-input
+    type="url"
+    name="input1112"
+    [label]="'Url'"
+    [ngModel]="inputValue"
+  ></ngx-input>
+
+  <ngx-input
+    type="tel"
+    name="input1113"
+    [label]="'Tel'"
+    [ngModel]="inputValue"
+  ></ngx-input>
+  <demo-markdown [data]="typesMd"></demo-markdown>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Textarea">
+  <ngx-input
+    type="textarea"
+    name="input111"
+    [label]="'Name'"
+    [ngModel]="inputValue"
+  ></ngx-input>
+  <demo-markdown [data]="textareaMd"></demo-markdown>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Native">
+  <demo-section-header section>Text</demo-section-header>
+  <input type="text" class="form-input" />
+  <input type="text" class="form-input" value="pre populated" />
+  <input type="text" class="form-input" placeholder="A placeholder" />
+  <input type="text" class="form-input" value="disabled" disabled />
+  <input type="tel" class="form-input" value="555-555-5555" />
+  <demo-markdown [data]="nativeTextMd"></demo-markdown>
+
+  <demo-section-header section>Textarea</demo-section-header>
+  <textarea class="form-input"></textarea>
+  <demo-markdown [data]="nativeTextareaMd"></demo-markdown>
+
+  <demo-section-header section>Number</demo-section-header>
+  <input type="number" class="form-input" min="0" />
+  <demo-markdown [data]="nativeNumberMd"></demo-markdown>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Sizes">
+  <ngx-input
+    size="medium"
+    label="Medium"
+    ngModel="Medium Input"
+    hint="example of a medium input"
+  ></ngx-input>
+  <br />
+  <ngx-input
+    size="large"
+    label="Large"
+    ngModel="Large Input"
+    hint="example of a large input"
+  ></ngx-input>
+  <br />
+  <demo-markdown [data]="sizesMd"></demo-markdown>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Appearances">
+  <ngx-input
+    label="Legacy"
+    ngModel="Legacy Input"
+    placeholder="enter your text here..."
+    hint="example of a legacy input"
+  ></ngx-input>
+  <br />
+  <ngx-input
+    label="Fill"
+    appearance="fill"
+    ngModel="Fill Input"
+    placeholder="enter your text here..."
+    hint="example of a fill input"
+  ></ngx-input>
+  <br />
+  <ngx-input
+    label="Fill Numeric"
+    type="number"
+    appearance="fill"
+    ngModel="0"
+    placeholder="enter your number here..."
+    hint="example of a fill number input"
+  ></ngx-input>
+  <br />
+  <ngx-input
+    type="textarea"
+    appearance="fill"
+    label="Fill Textarea"
+    placeholder="enter your text here..."
+    hint="example of a fill textarea"
+  ></ngx-input>
+  <br />
+
+  <demo-markdown [data]="appearancesMd"></demo-markdown>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Autosize">
+  <ngx-input
+    [(ngModel)]="longInputValue"
+    autosize
+    label="Resize Input"
+  ></ngx-input>
+  <demo-markdown [data]="textAutosizeMd"></demo-markdown>
+
+  <ngx-input
+    autosize
+    appearance="fill"
+    type="number"
+    label="Fill Resize Input"
+  ></ngx-input>
+  <demo-markdown [data]="numberAutosizeMd"></demo-markdown>
+</ngx-section>

@@ -1,0 +1,78 @@
+<demo-section-header>Icons</demo-section-header>
+<demo-icons-section-container>
+  <demo-icon-block
+    *ngFor="let icon of icons"
+    [icon]="icon.name"
+    code="ngx-{{ icon.name }}"
+    textToCopy="ngx-{{ icon.name }}"
+  ></demo-icon-block>
+</demo-icons-section-container>
+
+<demo-section-header class="block mt-8 mb-4">
+  Icons: Effects
+</demo-section-header>
+<demo-icons-section-container>
+  <demo-icon-block icon="refresh" code="normal"></demo-icon-block>
+  <demo-icon-block
+    *ngFor="let effect of iconFx"
+    [extraClasses]="['text-4xl']"
+    [extraIconClasses]="['icon-fx-' + effect]"
+    icon="refresh"
+    code="icon-fx-{{ effect }}"
+  ></demo-icon-block>
+</demo-icons-section-container>
+
+<demo-section-header class="block mt-8 mb-4">Icons: Colors</demo-section-header>
+<demo-icons-section-container>
+  <demo-icon-block
+    *ngFor="
+      let color of [
+        'blue',
+        'light-blue',
+        'green',
+        'orange',
+        'red',
+        'purple',
+        'blue-grey',
+        'grey'
+      ]
+    "
+    [extraIconClasses]="['text-' + color]"
+    icon="refresh"
+    code="text-{{ color }}"
+  ></demo-icon-block>
+</demo-icons-section-container>
+
+<demo-section-header class="block mt-8 mb-4">
+  Icons: Stacking
+</demo-section-header>
+<demo-icons-section-container>
+  <demo-icon-block [stacked]="true">
+    <span class="text-4xl icon-fx-stacked">
+      <i class="ngx-icon ngx-square"></i>
+      <i class="ngx-icon ngx-x text-red"></i>
+    </span>
+  </demo-icon-block>
+
+  <demo-icon-block [stacked]="true">
+    <span class="text-4xl icon-fx-stacked">
+      <i class="ngx-icon ngx-square-filled"></i>
+      <i class="ngx-icon ngx-x text-red"></i>
+    </span>
+  </demo-icon-block>
+
+  <demo-icon-block [stacked]="true">
+    <span class="text-4xl icon-fx-stacked">
+      <i class="ngx-icon ngx-square-filled"></i>
+      <i class="ngx-icon ngx-x text-red icon-fx-spinning"></i>
+    </span>
+  </demo-icon-block>
+
+  <demo-icon-block [stacked]="true">
+    <span class="text-4xl icon-fx-stacked">
+      <i class="ngx-icon ngx-field-users"></i>
+      <i class="ngx-icon ngx-circle-filled text-red icon-fx-badge"></i>
+    </span>
+  </demo-icon-block>
+</demo-icons-section-container>
+<demo-markdown [data]="iconsStackingMd"></demo-markdown>
