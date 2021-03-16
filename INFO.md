@@ -156,4 +156,21 @@ $color-border: $color-blue-grey-650;
 - PR your branch like usual
 - Once the PR **is merged**, and **is ready** to cut a new release
 - Pull `master`
-- Check out a `release` branch with `git checkout -b release/X.Y.Z`
+- Run `npm run release`
+  - If this is a pre-release, please run `npm run release -- --preRelease`. See more docs [here](https://github.com/release-it/release-it/blob/master/docs/pre-releases.md)
+  - `CHANGELOG` will be updated based on the commits. Types of commits that will appear in the `CHANGELOG` are defined in [.release-it.json](.release-it.json)
+    - `feat` will bump a `minor` version
+    - `fix`, `perf`, and `refactor` will bump a `patch` version
+    - a `BREAKING CHANGE` in the commit will bump a `major` version
+      > It is worth noting that a `patch` version is always bumped when run `npm run release` so make sure to only run `release` script when the repo is actually ready to be released.
+- Confirm everything in the terminal before say Yes to "Commit"
+  - This is also the time where `CHANGELOG` can be updated manually with custom changes.
+  - After updating `CHANGELOG` manually (if need be) at this step, make sure to stage the changes with `git add .` (in a different terminal) before saying Yes to "Commit"
+- There will be Release hooks
+  - `after:bump`: After the version has been bumped, this hook will run `git checkout -b release/${version}` to checkout a `release` branch
+  - `after:release`: After you have accepted to "Commit" question and "Tag" question, this hook will run `git push origin HEAD --tags` to push the branch and tag upstream. This follows the current release flow
+- There will be Github Actions to publish to NPM.
+  - Manual steps at the moment are:
+    - `npm run build:lib` to build `ngx-ui` and copy assets
+    - `npm run publish:lib` to publish to npm
+      - `npm run publish:lib:beta` to publish to npm with `beta` tag
