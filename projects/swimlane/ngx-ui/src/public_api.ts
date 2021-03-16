@@ -96,6 +96,9 @@ export * from './lib/components/dropdown/dropdown-toggle.directive';
 export * from './lib/components/dropdown/dropdown-menu.directive';
 export * from './lib/components/dropdown/dropdown.show-types.enum';
 
+export * from './lib/components/dropzone/dropzone.module';
+export * from './lib/components/dropzone/dropzone.component';
+
 export * from './lib/components/hotkeys/hotkeys.module';
 export * from './lib/components/hotkeys/hotkeys.component';
 export * from './lib/components/hotkeys/hotkeys.service';

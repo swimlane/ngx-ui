@@ -22,6 +22,7 @@ import { DateTimeModule } from './components/date-time/date-time.module';
 import { DialogModule } from './components/dialog/dialog.module';
 import { DrawerModule } from './components/drawer/drawer.module';
 import { DropdownModule } from './components/dropdown/dropdown.module';
+import { DropzoneModule } from './components/dropzone/dropzone.module';
 import { HotkeysModule } from './components/hotkeys/hotkeys.module';
 import { IconModule } from './components/icon/icon.module';
 import { InputModule } from './components/input/input.module';
@@ -63,6 +64,7 @@ const modules = [
   DirectivesModule,
   DrawerModule,
   DropdownModule,
+  DropzoneModule,
   FormsModule,
   HotkeysModule,
   IconModule,
