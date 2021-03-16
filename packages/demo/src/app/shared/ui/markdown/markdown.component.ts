@@ -4,17 +4,7 @@ type MdFeature = 'landing' | 'style/colors';
 
 @Component({
   selector: 'demo-markdown',
-  template: `
-    <markdown *ngIf="filePath; else noFile" [src]="filePath"></markdown>
-    <ng-template #noFile>
-      <markdown *ngIf="data; else noData" [data]="data"></markdown>
-      <ng-template #noData>
-        <markdown>
-          <ng-content></ng-content>
-        </markdown>
-      </ng-template>
-    </ng-template>
-  `,
+  templateUrl: './markdown.component.html',
   styleUrls: ['./markdown.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

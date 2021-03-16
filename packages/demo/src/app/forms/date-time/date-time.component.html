@@ -1,0 +1,18 @@
+<demo-section-header>Date Time</demo-section-header>
+
+<ngx-section class="shadow" sectionTitle="Date Input">
+  <demo-section-header>Basic</demo-section-header>
+  <ngx-date-time
+    name="calendar-input1"
+    [label]="'Date of attack'"
+    [(ngModel)]="curDate2"
+    (change)="dateChanged($event)"
+    (blur)="onBlurEvent($event)"
+    (dateTimeSelected)="dateTimeSelected($event)"
+  ></ngx-date-time>
+  <demo-markdown>
+    ```html <![CDATA[ <ngx-date-time name="calendar-input2" [disabled]="true" [(ngModel)]="curDate2"
+    (change)="dateChanged($event)" (blur)="onBlurEvent($event)" (dateTimeSelected)="dateTimeSelected($event)" >
+    </ngx-date-time> ]]> ```
+  </demo-markdown>
+</ngx-section>
