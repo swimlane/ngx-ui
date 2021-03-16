@@ -36,9 +36,14 @@
     "publish": false
   },
   "git": {
+    "push": false,
     "commitMessage": "(release): ${version}"
   },
   "github": {
     "releaseNotes": true
+  },
+  "hooks": {
+    "after:bump": "git checkout -b release/${version}",
+    "after:release": "git push origin HEAD --tags"
   }
 }

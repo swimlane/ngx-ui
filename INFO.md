@@ -17,6 +17,35 @@ import { getType } from '@swimlane/ngx-ui/utils/get-type';
 
 - `types` contains common interfaces/types/enums throughout the `ngx-ui` library
 
+#### `LongPressDirective`
+
+- Now supports `continuous` and `continuousInterval`. Think of the case of the Number input with the Spinner.
+- Rewritten with `Observable`
+
+#### `NGX_UI_WINDOW` Token
+
+- Expose a `NGX_UI_WINDOW` injection token to work with `Window` object in an SSR safe way.
+
+```ts
+export class SomeComponent {
+    // bad
+    ngOnInit() {
+        window.navigator...
+    }
+
+    // good
+    constructor(@Inject(NGX_UI_WINDOW) private readonly window: Window) {}
+
+    ngOnInit() {
+        this.window.navigator...
+    }
+}
+```
+
+#### `NGX_UI_IS_MAC` Token
+
+- Expose a `NGX_UI_IS_MAC` injection token as a `boolean`
+
 ## Fixes
 
 - Most Timing API like `setTimeout`/`setInterval` have been refactored to `timer` and `interval` from `rxjs`. Behavior stay the same
@@ -73,44 +102,58 @@ $color-border: $color-blue-grey-650;
   - `InjectionService` and `InjectionRegistryService` have been moved into `injection` dir. Exported as `@swimlane/ngx-ui/injection`
   - `IconRegistryService` has been moved into `IconModule`
 
-### `LongPressDirective`
+#### `LongPressDirective`
 
 - Selector has been changed from `[long-press]` to `[ngxLongPress]`
 
-### `DblClickCopyDirective`
+#### `DblClickCopyDirective`
 
 - Has been refactored to `CopyToClipboardDirective`
 
-### `AutoSizeInputDirective`
+#### `AutoSizeInputDirective`
 
 - Selector has been changed from `[autoSizeInput]` to `[ngxAutosizeInput]`
 
-### `debounceable`
+#### `debounceable`
 
 - Has been renamed to `Debounceable`
 
-### `throttleable`
+#### `throttleable`
 
 - Has been renamed to `Throttleable`
 
-### `CamelToSnakePipe`
+#### `CamelToSnakePipe`
 
 - Typo (`Cammel`) has been fixed
 - Pipe name has been changed from `cammeltosnake` to `camelToSnake`
 
-### `FilterByPipe`
+#### `FilterByPipe`
 
 - Has been made strongly typed with Generics. Might break current usage on the consumers' side
 
-### `JsonTreePipe`
+#### `JsonTreePipe`
 
 - Has been made strongly typed with `TreeNode[]`. Might break current usage on the consumers' side
 
-### `TimeZonePipe`
+#### `TimeZonePipe`
 
 - Pipe name has been changed from `amTimeZone` to `timeZone`
+
+#### `HotKeysModule`
+
+- Use `HotKeysModule.forRoot()` once instead of `HotKeysModule`
 
 ## Tech-debts
 
 - `strict` mode is enabled so there are a lot of `any` or `type assertion` in the code base
 - Some confusion around using Timing/Callback in various services. Eg: `InjectionService` which makes it hard to debug.
+
+## Contributing Pipe-line
+
+- Work on a branch for a fix/feature
+- Commit your changes using `npm run commit` command
+  - This initiates Conventional Commits flow
+- PR your branch like usual
+- Once the PR **is merged**, and **is ready** to cut a new release
+- Pull `master`
+- Check out a `release` branch with `git checkout -b release/X.Y.Z`
