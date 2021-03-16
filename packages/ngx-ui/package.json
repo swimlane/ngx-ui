@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "0.0.1",
+  "version": "35.1.1",
   "peerDependencies": {
     "@angular/common": "~11.2.1",
     "@angular/core": "~11.2.1",

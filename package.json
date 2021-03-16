@@ -1,6 +1,6 @@
 {
   "name": "swimlane",
-  "version": "0.0.0",
+  "version": "35.1.1",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
@@ -30,7 +30,8 @@
     "help": "nx help",
     "scully": "npx scully",
     "scully:serve": "npx scully serve",
-    "commit": "cz"
+    "commit": "cz",
+    "release": "release-it"
   },
   "private": true,
   "dependencies": {
@@ -79,6 +80,8 @@
     "@nrwl/linter": "11.4.0",
     "@nrwl/tao": "11.4.0",
     "@nrwl/workspace": "11.4.0",
+    "@release-it/bumper": "2.0.0",
+    "@release-it/conventional-changelog": "2.0.1",
     "@swimlane/prettier-config-swimlane": "3.0.3",
     "@types/codemirror": "0.0.108",
     "@types/jest": "26.0.20",
@@ -106,6 +109,7 @@
     "postcss": "8.2.8",
     "postcss-url": "10.1.1",
     "prettier": "2.2.1",
+    "release-it": "14.4.1",
     "tailwindcss": "2.0.3",
     "ts-jest": "26.5.3",
     "ts-node": "~9.1.1",
