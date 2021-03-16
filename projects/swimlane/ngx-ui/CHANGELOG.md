@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 35.1.2 (2021-03-15)
+
+- Re-publish master on npm `latest` channel. No changes
+
 ## 35.1.1 (2021-03-10)
 
 - Bug(ngx-progress-spinner): Fix issue with later versions of SASS
