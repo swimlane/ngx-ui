@@ -6,7 +6,7 @@ import {
   OnInit,
   Output,
   SimpleChanges,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { DialogService } from '@swimlane/ngx-ui/dialog';
@@ -19,11 +19,9 @@ import { JSONEditorSchema, JsonSchemaDataType } from '../../interfaces';
   templateUrl: './json-editor-node-flat.component.html',
   styleUrls: ['./json-editor-node-flat.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class JsonEditorNodeFlatComponent
-  extends JsonEditorNode
-  implements OnInit {
+export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnInit {
   @Input() model: any;
 
   @Input() schema!: JSONEditorSchema;
@@ -65,21 +63,15 @@ export class JsonEditorNodeFlatComponent
 
   nextLevel: number = 0;
 
-  constructor(
-    public dialogMngr: DialogService,
-    private domSanitizer: DomSanitizer
-  ) {
+  constructor(public dialogMngr: DialogService, private domSanitizer: DomSanitizer) {
     super(dialogMngr);
-    this.requiredIndicator = this.domSanitizer.bypassSecurityTrustHtml(
-      requiredIndicatorIcon
-    );
+    this.requiredIndicator = this.domSanitizer.bypassSecurityTrustHtml(requiredIndicatorIcon);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     super.ngOnChanges(changes);
     if ('level' in changes || 'hideRoot' in changes) {
-      this.nextLevel =
-        this.level === undefined ? (this.hideRoot ? -1 : 0) : this.level + 1;
+      this.nextLevel = this.level === undefined ? (this.hideRoot ? -1 : 0) : this.level + 1;
     }
   }
 

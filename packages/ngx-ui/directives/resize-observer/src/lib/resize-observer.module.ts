@@ -5,6 +5,6 @@ import { ResizeObserverDirective } from './resize-observer.directive';
 @NgModule({
   imports: [CommonModule],
   declarations: [ResizeObserverDirective],
-  exports: [ResizeObserverDirective],
+  exports: [ResizeObserverDirective]
 })
 export class ResizeObserverModule {}

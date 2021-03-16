@@ -12,20 +12,16 @@ export class HotkeysService {
   readonly changeEvent = this.$hotKeysChanged.asObservable();
   readonly hotkeys: Hotkeys = {};
 
-  constructor(
-    @Inject(NGX_UI_IS_MAC) private readonly isMac: boolean,
-    private readonly ngZone: NgZone
-  ) {}
+  constructor(@Inject(NGX_UI_IS_MAC) private readonly isMac: boolean, private readonly ngZone: NgZone) {}
 
   add(combo: string, options: Omit<HotkeyOptions, 'zone'>) {
     const mergeOptions: HotkeyOptions = { ...options, zone: this.ngZone };
     mergeOptions.status = mergeOptions.status || HotkeyStatus.Active;
     mergeOptions.keys = this.getDisplay(combo);
-    mergeOptions.visible =
-      mergeOptions.visible !== undefined ? mergeOptions.visible : true;
+    mergeOptions.visible = mergeOptions.visible !== undefined ? mergeOptions.visible : true;
 
     mergeOptions.allowIn = Array.isArray(mergeOptions.allowIn)
-      ? mergeOptions.allowIn.map((tag) => tag.toUpperCase())
+      ? mergeOptions.allowIn.map(tag => tag.toUpperCase())
       : [];
 
     function callback(event: Event) {
@@ -47,10 +43,7 @@ export class HotkeysService {
 
     if (mergeOptions.allowIn.length) {
       mousetrap.stopCallback = function (_, element) {
-        return !(
-          !TAGS.includes(element.tagName) ||
-          mergeOptions.allowIn!.includes(element.tagName)
-        );
+        return !(!TAGS.includes(element.tagName) || mergeOptions.allowIn!.includes(element.tagName));
       };
     }
 

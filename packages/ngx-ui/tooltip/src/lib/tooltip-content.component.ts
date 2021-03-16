@@ -10,7 +10,7 @@ import {
   Renderer2,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
@@ -19,11 +19,7 @@ import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
 import { Throttleable } from '@swimlane/ngx-ui/decorators/throttleable';
 import type { Dimension, EnumKey } from '@swimlane/ngx-ui/types';
 import { AlignmentType, PlacementType } from '@swimlane/ngx-ui/types';
-import {
-  determinePlacement,
-  positionCaret,
-  positionContent,
-} from '@swimlane/ngx-ui/utils/position';
+import { determinePlacement, positionCaret, positionContent } from '@swimlane/ngx-ui/utils/position';
 import { TooltipStyleType } from './enums';
 
 @Component({
@@ -32,7 +28,7 @@ import { TooltipStyleType } from './enums';
   styleUrls: ['./tooltip-content.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  exportAs: 'ngxTooltipContent',
+  exportAs: 'ngxTooltipContent'
 })
 export class TooltipContentComponent implements AfterViewInit {
   static ngAcceptInputType_showCaret: BooleanInput;
@@ -80,10 +76,7 @@ export class TooltipContentComponent implements AfterViewInit {
     this.position();
   }
 
-  constructor(
-    readonly element: ElementRef<HTMLElement>,
-    private readonly renderer: Renderer2
-  ) {}
+  constructor(readonly element: ElementRef<HTMLElement>, private readonly renderer: Renderer2) {}
 
   ngAfterViewInit(): void {
     setTimeout(this.position.bind(this));
@@ -108,11 +101,7 @@ export class TooltipContentComponent implements AfterViewInit {
     setTimeout(() => this.renderer.addClass(nativeElm, 'animate'));
   }
 
-  private positionContent(
-    nativeElm: HTMLElement,
-    hostDim: Dimension,
-    elmDim: Dimension
-  ): void {
+  private positionContent(nativeElm: HTMLElement, hostDim: Dimension, elmDim: Dimension): void {
     const { top, left } = positionContent(
       this.placement as PlacementType,
       elmDim,

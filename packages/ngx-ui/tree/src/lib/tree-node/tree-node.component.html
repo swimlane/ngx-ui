@@ -19,11 +19,7 @@
     class="ngx-node-label"
     (click)="onClick()"
   ></span>
-  <ng-template
-    *ngIf="template"
-    [ngTemplateOutlet]="template"
-    [ngTemplateOutletContext]="data"
-  ></ng-template>
+  <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="data"></ng-template>
   <ng-content *ngIf="expanded"></ng-content>
   <ngx-tree
     *ngIf="children?.length && expandable && expanded"

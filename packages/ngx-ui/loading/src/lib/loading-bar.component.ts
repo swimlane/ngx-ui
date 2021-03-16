@@ -5,7 +5,7 @@ import {
   Component,
   HostBinding,
   Input,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import type { NumericInput } from '@swimlane/ngx-ui/decorators/input-numeric';
@@ -17,7 +17,7 @@ import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
   templateUrl: './loading-bar.component.html',
   styleUrls: ['./loading-bar.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoadingBarComponent {
   static ngAcceptInputType_visible: BooleanInput;

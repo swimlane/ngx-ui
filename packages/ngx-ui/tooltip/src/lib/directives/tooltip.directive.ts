@@ -11,7 +11,7 @@ import {
   Output,
   Renderer2,
   TemplateRef,
-  ViewContainerRef,
+  ViewContainerRef
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
@@ -26,7 +26,7 @@ import { TooltipContentComponent } from '../tooltip-content.component';
 
 @Directive({
   selector: '[ngx-tooltip]',
-  exportAs: 'ngxTooltip',
+  exportAs: 'ngxTooltip'
 })
 export class TooltipDirective implements OnDestroy {
   static ngAcceptInputType_tooltipSpacing: NumericInput;
@@ -96,17 +96,11 @@ export class TooltipDirective implements OnDestroy {
   @Output() hidden = new EventEmitter<boolean>();
 
   private get listensForFocus(): boolean {
-    return (
-      this._tooltipShowEvent === TooltipShowType.all ||
-      this._tooltipShowEvent === TooltipShowType.focus
-    );
+    return this._tooltipShowEvent === TooltipShowType.all || this._tooltipShowEvent === TooltipShowType.focus;
   }
 
   private get listensForHover(): boolean {
-    return (
-      this._tooltipShowEvent === TooltipShowType.all ||
-      this._tooltipShowEvent === TooltipShowType.mouseover
-    );
+    return this._tooltipShowEvent === TooltipShowType.all || this._tooltipShowEvent === TooltipShowType.mouseover;
   }
 
   private component?: ComponentRef<TooltipContentComponent>;
@@ -188,14 +182,8 @@ export class TooltipDirective implements OnDestroy {
 
         // add a tiny timeout to avoid event re-triggers
         setTimeout(() => {
-          if (
-            this.component &&
-            this.component.instance &&
-            this.component.instance.element
-          ) {
-            this.addHideListeners(
-              this.component.instance.element.nativeElement
-            );
+          if (this.component && this.component.instance && this.component.instance.element) {
+            this.addHideListeners(this.component.instance.element.nativeElement);
           }
         }, 10);
 
@@ -217,18 +205,13 @@ export class TooltipDirective implements OnDestroy {
       this.hidden.emit(true);
 
       // destroy component
-      this.tooltipService.destroy(
-        this.component as ComponentRef<TooltipContentComponent>
-      );
+      this.tooltipService.destroy(this.component as ComponentRef<TooltipContentComponent>);
       this.component = undefined;
     };
 
     clearTimeout(this.timeout);
     if (!immediate) {
-      this.timeout = (setTimeout(
-        destroyFn,
-        this.tooltipHideTimeout
-      ) as unknown) as number;
+      this.timeout = (setTimeout(destroyFn, this.tooltipHideTimeout) as unknown) as number;
     } else {
       destroyFn();
     }
@@ -264,11 +247,9 @@ export class TooltipDirective implements OnDestroy {
       this.documentClickEvent = this.renderer.listen(
         document,
         'click',
-        /* istanbul ignore next */ (event) => {
+        /* istanbul ignore next */ event => {
           const tooltipContains = tooltip.contains(event.target);
-          const parentContains = this.element.nativeElement.contains(
-            event.target
-          );
+          const parentContains = this.element.nativeElement.contains(event.target);
           if (!tooltipContains && !parentContains) {
             this.hideTooltip();
           }
@@ -288,7 +269,7 @@ export class TooltipDirective implements OnDestroy {
       showCaret: this.tooltipShowCaret,
       cssClass: this.tooltipCssClass,
       spacing: this.tooltipSpacing,
-      context: this.tooltipContext,
+      context: this.tooltipContext
     };
   }
 }

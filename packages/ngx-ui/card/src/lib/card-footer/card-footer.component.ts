@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'ngx-card-footer',
@@ -12,7 +6,7 @@ import {
   styleUrls: ['./card-footer.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  exportAs: 'ngxCardFooter',
+  exportAs: 'ngxCardFooter'
 })
 export class CardFooterComponent {
   @Input() label!: string; // used for vertical card

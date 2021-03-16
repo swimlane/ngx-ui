@@ -1,9 +1,5 @@
 <div class="ngx-nag-content">
-  <ngx-toolbar
-    class="ngx-nag-toolbar"
-    (click)="toggle()"
-    [mainTitle]="nagTitle"
-  >
+  <ngx-toolbar class="ngx-nag-toolbar" (click)="toggle()" [mainTitle]="nagTitle">
     <ngx-toolbar-title *ngIf="!nagTitle">
       <ng-content select="[ngx-nag-title]"></ng-content>
     </ngx-toolbar-title>

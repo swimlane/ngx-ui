@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'demo-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LayoutComponent {
   layoutMd = `

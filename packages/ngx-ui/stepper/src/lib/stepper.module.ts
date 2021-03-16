@@ -8,6 +8,6 @@ import { StepperComponent } from './stepper.component';
 @NgModule({
   imports: [CommonModule, ResizeObserverModule],
   declarations: [StepperComponent, StepComponent, StepContentDirective],
-  exports: [StepperComponent, StepComponent],
+  exports: [StepperComponent, StepComponent]
 })
 export class StepperModule {}

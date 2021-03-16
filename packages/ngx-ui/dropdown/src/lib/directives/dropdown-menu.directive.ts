@@ -2,7 +2,7 @@ import { Directive, ElementRef, HostBinding } from '@angular/core';
 
 @Directive({
   selector: 'ngx-dropdown-menu',
-  exportAs: 'ngxDropdownMenu',
+  exportAs: 'ngxDropdownMenu'
 })
 export class DropdownMenuDirective {
   @HostBinding('class.ngx-dropdown-menu') hostClass = true;

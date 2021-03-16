@@ -11,7 +11,7 @@ import {
   OnInit,
   Output,
   Renderer2,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
@@ -32,7 +32,7 @@ export interface PlusMenuItem {
   templateUrl: './plus-menu.component.html',
   styleUrls: ['./plus-menu.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PlusMenuComponent implements OnInit, OnDestroy {
   static ngAcceptInputType_closeOnClickOutside: BooleanInput;
@@ -119,18 +119,12 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
     this.cdr.markForCheck();
 
     if (this.closeOnClickOutside) {
-      this.documentClickEvent = this.renderer.listen(
-        document,
-        'click',
-        (event) => {
-          const parentContains = this.elementRef.nativeElement.contains(
-            event.target
-          );
-          if (!parentContains && this.open) {
-            this.closeMenu();
-          }
+      this.documentClickEvent = this.renderer.listen(document, 'click', event => {
+        const parentContains = this.elementRef.nativeElement.contains(event.target);
+        if (!parentContains && this.open) {
+          this.closeMenu();
         }
-      );
+      });
     }
   }
 

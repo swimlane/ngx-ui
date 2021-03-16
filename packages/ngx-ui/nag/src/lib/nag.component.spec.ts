@@ -8,9 +8,8 @@ describe('NagComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NagComponent ]
-    })
-    .compileComponents();
+      declarations: [NagComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

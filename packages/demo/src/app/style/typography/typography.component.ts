@@ -9,9 +9,9 @@ import { DomSanitizer } from '@angular/platform-browser';
       :host {
         display: block;
       }
-    `,
+    `
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TypographyComponent {
   fontStyles = {
@@ -22,7 +22,7 @@ export class TypographyComponent {
     'Semi-Bold': 'font-weight: 600; font-style: normal',
     'Semi-Bold Italic': 'font-weight: 600; font-style: italic',
     Bold: 'font-weight: bold; font-style: normal',
-    'Bold Italic': 'font-weight: bold; font-style: italic',
+    'Bold Italic': 'font-weight: bold; font-style: italic'
   };
 
   chars = `

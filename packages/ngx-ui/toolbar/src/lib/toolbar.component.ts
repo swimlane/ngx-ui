@@ -6,7 +6,7 @@ import {
   Input,
   OnInit,
   Renderer2,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import type { ToolbarMenuItem } from './models';
 
@@ -16,7 +16,7 @@ import type { ToolbarMenuItem } from './models';
   templateUrl: './toolbar.component.html',
   styleUrls: ['./toolbar.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ToolbarComponent implements OnInit {
   @Input() title?: string;
@@ -27,21 +27,18 @@ export class ToolbarComponent implements OnInit {
   @HostBinding('class.ngx-toolbar') hostClass = true;
 
   get toolbarItems() {
-    return this.menu.filter((m) => {
+    return this.menu.filter(m => {
       return !m.dropdown;
     });
   }
 
   get dropdownItems() {
-    return this.menu.filter((m) => {
+    return this.menu.filter(m => {
       return m.dropdown;
     });
   }
 
-  constructor(
-    private readonly renderer: Renderer2,
-    private readonly el: ElementRef
-  ) {}
+  constructor(private readonly renderer: Renderer2, private readonly el: ElementRef) {}
 
   ngOnInit(): void {
     // backwards compatibility

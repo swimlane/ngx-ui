@@ -7,6 +7,6 @@ import { LongPressButtonComponent } from './long-press-button.component';
 @NgModule({
   imports: [CommonModule, LongPressModule, IconModule],
   declarations: [LongPressButtonComponent],
-  exports: [LongPressButtonComponent],
+  exports: [LongPressButtonComponent]
 })
 export class LongPressButtonModule {}

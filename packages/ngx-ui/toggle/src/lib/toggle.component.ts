@@ -6,7 +6,7 @@ import {
   forwardRef,
   HostBinding,
   Input,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
@@ -16,7 +16,7 @@ import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
 const TOGGLE_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => ToggleComponent),
-  multi: true,
+  multi: true
 };
 
 let nextId = 0;
@@ -28,7 +28,7 @@ let nextId = 0;
   styleUrls: ['./toggle.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [TOGGLE_VALUE_ACCESSOR],
+  providers: [TOGGLE_VALUE_ACCESSOR]
 })
 export class ToggleComponent implements ControlValueAccessor {
   static ngAcceptInputType_disabled: BooleanInput;

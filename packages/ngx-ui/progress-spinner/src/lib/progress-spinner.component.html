@@ -1,66 +1,22 @@
 <div class="ngx-progress-spinner--spinner-container">
-  <svg
-    class="spinner-svg"
-    [style.width.px]="diameter"
-    [style.height.px]="diameter"
-  >
+  <svg class="spinner-svg" [style.width.px]="diameter" [style.height.px]="diameter">
     <defs>
-      <filter
-        [id]="'thumbs-up-filter--' + uid"
-        filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
-      >
+      <filter [id]="'thumbs-up-filter--' + uid" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
         <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feColorMatrix
-          in="SourceAlpha"
-          type="matrix"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-        />
+        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
         <feGaussianBlur stdDeviation="2" />
-        <feColorMatrix
-          type="matrix"
-          values="0 0 0 0 0.0784314 0 0 0 0 0.513726 0 0 0 0 1 0 0 0 0.8 0"
-        />
-        <feBlend
-          mode="normal"
-          in2="BackgroundImageFix"
-          result="effect1_dropShadow"
-        />
-        <feBlend
-          mode="normal"
-          in="SourceGraphic"
-          in2="effect1_dropShadow"
-          result="shape"
-        />
+        <feColorMatrix type="matrix" values="0 0 0 0 0.0784314 0 0 0 0 0.513726 0 0 0 0 1 0 0 0 0.8 0" />
+        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
       </filter>
 
-      <filter
-        [id]="'thumbs-down-filter--' + uid"
-        filterUnits="userSpaceOnUse"
-        color-interpolation-filters="sRGB"
-      >
+      <filter [id]="'thumbs-down-filter--' + uid" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
         <feFlood flood-opacity="0" result="BackgroundImageFix" />
-        <feColorMatrix
-          in="SourceAlpha"
-          type="matrix"
-          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
-        />
+        <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
         <feGaussianBlur stdDeviation="2" />
-        <feColorMatrix
-          type="matrix"
-          values="0 0 0 0 1 0 0 0 0 0.270588 0 0 0 0 0.0784314 0 0 0 1 0"
-        />
-        <feBlend
-          mode="normal"
-          in2="BackgroundImageFix"
-          result="effect1_dropShadow"
-        />
-        <feBlend
-          mode="normal"
-          in="SourceGraphic"
-          in2="effect1_dropShadow"
-          result="shape"
-        />
+        <feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 0.270588 0 0 0 0 0.0784314 0 0 0 1 0" />
+        <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow" />
+        <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
       </filter>
     </defs>
 
@@ -113,24 +69,15 @@
     </g>
   </svg>
 
-  <div
-    class="spinner-icon--in-progress-icon"
-    *ngIf="value < total && inProgressIcon"
-  >
+  <div class="spinner-icon--in-progress-icon" *ngIf="value < total && inProgressIcon">
     <ng-container *ngTemplateOutlet="inProgressIcon"></ng-container>
   </div>
 
-  <div
-    class="spinner-icon--complete-icon"
-    *ngIf="isComplete && !isFailure && completeIcon"
-  >
+  <div class="spinner-icon--complete-icon" *ngIf="isComplete && !isFailure && completeIcon">
     <ng-container *ngTemplateOutlet="completeIcon"></ng-container>
   </div>
 
-  <div
-    class="spinner-icon--failure-icon"
-    *ngIf="isComplete && isFailure && failIcon"
-  >
+  <div class="spinner-icon--failure-icon" *ngIf="isComplete && isFailure && failIcon">
     <ng-container *ngTemplateOutlet="failIcon"></ng-container>
   </div>
 </div>

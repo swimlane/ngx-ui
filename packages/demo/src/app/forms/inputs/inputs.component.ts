@@ -8,9 +8,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
       :host {
         display: block;
       }
-    `,
+    `
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputsComponent {
   searchInputValue = '';
@@ -178,7 +178,7 @@ export class InputsComponent {
   `;
   searchDemoMd = {
     Markup: this.searchDemoHtmlMd,
-    SCSS: this.searchDemoScssMd,
+    SCSS: this.searchDemoScssMd
   };
 
   passwordMd = `

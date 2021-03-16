@@ -10,7 +10,7 @@ import {
   OnInit,
   Output,
   TemplateRef,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
@@ -25,7 +25,7 @@ import { DrawerDirection, DrawerPosition } from './enums';
   styleUrls: ['./drawer.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [trigger('drawerTransition', DRAWER_ANIMATION)],
+  animations: [trigger('drawerTransition', DRAWER_ANIMATION)]
 })
 export class DrawerComponent implements OnInit, OnDestroy {
   @Input()
@@ -84,9 +84,7 @@ export class DrawerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.position = this.isRoot
-      ? DrawerPosition.fixed
-      : DrawerPosition.absolute;
+    this.position = this.isRoot ? DrawerPosition.fixed : DrawerPosition.absolute;
     this.setDimensions(this.size);
   }
 

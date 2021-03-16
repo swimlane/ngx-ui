@@ -1,10 +1,4 @@
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import type { BooleanInput } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
@@ -15,7 +9,7 @@ import {
   OnInit,
   Output,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
@@ -28,10 +22,7 @@ import { AlertOptions } from './models';
   selector: 'ngx-alert',
   exportAs: 'ngxAlert',
   templateUrl: './alert.component.html',
-  styleUrls: [
-    '../../../dialog/src/lib/dialog.component.scss',
-    './alert.component.scss',
-  ],
+  styleUrls: ['../../../dialog/src/lib/dialog.component.scss', './alert.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
@@ -40,31 +31,31 @@ import { AlertOptions } from './models';
         'active',
         style({
           opacity: 1,
-          transform: 'scale3d(1, 1, 1)',
+          transform: 'scale3d(1, 1, 1)'
         })
       ),
       transition('void => *', [
         style({
           opacity: 0,
-          transform: 'scale3d(1.2, 1.2, 1.2)',
+          transform: 'scale3d(1.2, 1.2, 1.2)'
         }),
-        animate('0.2s ease-out'),
+        animate('0.2s ease-out')
       ]),
       transition('* => inactive', [
         style({
           opacity: 1,
-          transform: 'scale3d(1, 1, 1)',
+          transform: 'scale3d(1, 1, 1)'
         }),
         animate(
           '0.2s ease-out',
           style({
             transform: 'scale3d(0.9, 0.9, 1)',
-            opacity: 0,
+            opacity: 0
           })
-        ),
-      ]),
-    ]),
-  ],
+        )
+      ])
+    ])
+  ]
 })
 export class AlertComponent extends DialogComponent implements OnInit {
   static ngAcceptInputType_longPress: BooleanInput;
@@ -96,8 +87,8 @@ export class AlertComponent extends DialogComponent implements OnInit {
       closeButton: false,
       showOverlay: true,
       visible: true,
-      class: '',
-    },
+      class: ''
+    }
   };
 
   ngOnInit(): void {

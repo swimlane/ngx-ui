@@ -8,7 +8,7 @@ import {
   HostBinding,
   Input,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import type { NumericInput } from '@swimlane/ngx-ui/decorators/input-numeric';
@@ -17,7 +17,7 @@ import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
 const RADIO_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => RadioButtonComponent),
-  multi: true,
+  multi: true
 };
 
 let nextId = 0;
@@ -29,7 +29,7 @@ let nextId = 0;
   styleUrls: ['./radiobutton.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [RADIO_VALUE_ACCESSOR],
+  providers: [RADIO_VALUE_ACCESSOR]
 })
 export class RadioButtonComponent implements ControlValueAccessor {
   static ngAcceptInputType_tabIndex: NumericInput;

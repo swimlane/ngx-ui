@@ -10,6 +10,6 @@ import { DrawerService } from './services';
   imports: [CommonModule, OverlayModule],
   declarations: [DrawerContainerDirective, DrawerComponent],
   providers: [DrawerService, InjectionService],
-  exports: [DrawerContainerDirective, DrawerComponent],
+  exports: [DrawerContainerDirective, DrawerComponent]
 })
 export class DrawerModule {}

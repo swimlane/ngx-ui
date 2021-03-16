@@ -4,6 +4,6 @@ Alternatively, you can also use `@mixin glow()` to apply glow effect using any c
 
 ```scss
 .custom-glow-class {
-    @include glow(#bd4242);
+  @include glow(#bd4242);
 }
 ```

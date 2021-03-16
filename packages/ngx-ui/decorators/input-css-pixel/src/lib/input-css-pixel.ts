@@ -13,7 +13,7 @@ export function InputCssPixel(): PropertyDecorator {
       },
       set(v: string | number) {
         this[coercedCssPixelKey] = coerceCssPixelValue(v);
-      },
+      }
     });
   };
 }

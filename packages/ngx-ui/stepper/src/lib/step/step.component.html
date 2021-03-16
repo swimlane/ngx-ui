@@ -4,16 +4,8 @@
 
 <div class="ngx-step--step">
   <div class="ngx-step--circle" (click)="active = step!">
-    <i
-      *ngIf="icon; else stepNumber"
-      class="center ngx-step--indicator"
-      [ngClass]="icon"
-    ></i>
-    <i
-      *ngIf="completeIcon"
-      class="center ngx-step--complete-icon"
-      [ngClass]="completeIcon"
-    ></i>
+    <i *ngIf="icon; else stepNumber" class="center ngx-step--indicator" [ngClass]="icon"></i>
+    <i *ngIf="completeIcon" class="center ngx-step--complete-icon" [ngClass]="completeIcon"></i>
   </div>
 </div>
 

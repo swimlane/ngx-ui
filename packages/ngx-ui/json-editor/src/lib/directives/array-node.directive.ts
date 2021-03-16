@@ -1,20 +1,7 @@
-import {
-  Directive,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { Directive, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { jsonSchemaDataFormats, jsonSchemaDataTypes } from '../constants';
 import type { JSONEditorSchema, JsonSchemaDataType } from '../interfaces';
-import {
-  createValueForSchema,
-  dataTypeMap,
-  getCurrentType,
-  getIcon,
-  inferType,
-} from '../utils';
+import { createValueForSchema, dataTypeMap, getCurrentType, getIcon, inferType } from '../utils';
 
 @Directive()
 export class ArrayNode implements OnChanges {
@@ -42,10 +29,7 @@ export class ArrayNode implements OnChanges {
 
   requiredCache: any = {};
   schemas: JSONEditorSchema[] = [];
-  dataTypes: JsonSchemaDataType[] = [
-    ...jsonSchemaDataTypes,
-    ...jsonSchemaDataFormats,
-  ];
+  dataTypes: JsonSchemaDataType[] = [...jsonSchemaDataTypes, ...jsonSchemaDataFormats];
   dataTypeMap = dataTypeMap;
 
   _array = Array;
@@ -79,9 +63,7 @@ export class ArrayNode implements OnChanges {
   addArrayItem(dataType?: JsonSchemaDataType): void {
     let schema;
     if (dataType) {
-      schema = JSON.parse(
-        JSON.stringify({ ...(this.schema.items as object), ...dataType.schema })
-      );
+      schema = JSON.parse(JSON.stringify({ ...(this.schema.items as object), ...dataType.schema }));
     } else {
       schema = JSON.parse(JSON.stringify(this.schema.items));
     }
@@ -160,13 +142,11 @@ export class ArrayNode implements OnChanges {
   private initSchemasTypeByModelValue(): void {
     this.schemas = [];
     if (Array.isArray(this.model)) {
-      this.model.forEach((value) => {
+      this.model.forEach(value => {
         let schema = inferType(value, this.typeCheckOverrides);
 
         if (this.schema.items) {
-          schema = JSON.parse(
-            JSON.stringify({ ...(this.schema.items as object), ...schema })
-          );
+          schema = JSON.parse(JSON.stringify({ ...(this.schema.items as object), ...schema }));
         }
 
         this.schemas.push(schema);

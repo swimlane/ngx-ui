@@ -1,11 +1,5 @@
 import type { BooleanInput } from '@angular/cdk/coercion';
-import {
-  Directive,
-  EventEmitter,
-  HostListener,
-  Input,
-  Output,
-} from '@angular/core';
+import { Directive, EventEmitter, HostListener, Input, Output } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import type { NumericInput } from '@swimlane/ngx-ui/decorators/input-numeric';
 import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
@@ -13,7 +7,7 @@ import { interval, Subscription, timer } from 'rxjs';
 import { mapTo, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 @Directive({
-  selector: '[ngxLongPress]',
+  selector: '[ngxLongPress]'
 })
 export class LongPressDirective {
   static ngAcceptInputType_duration: NumericInput;
@@ -60,14 +54,12 @@ export class LongPressDirective {
     if (this.continuous) {
       obs = obs.pipe(
         tap((mouseEvent: MouseEvent) => this.longPressFinish.emit(mouseEvent)),
-        switchMap((mouseEvent) =>
-          interval(this.continuousInterval).pipe(mapTo(mouseEvent))
-        ),
+        switchMap(mouseEvent => interval(this.continuousInterval).pipe(mapTo(mouseEvent))),
         takeUntil(this.longPressCancel)
       );
     }
 
-    this.longPressSubscription = obs.subscribe((mouseEvent) => {
+    this.longPressSubscription = obs.subscribe(mouseEvent => {
       if (this.pressing) {
         this.pressing = this.continuous;
         this.longPressFinish.emit(mouseEvent);

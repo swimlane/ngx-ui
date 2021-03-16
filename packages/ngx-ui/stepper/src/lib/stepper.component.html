@@ -28,9 +28,7 @@
   ></div>
 </div>
 
-<ng-container
-  *ngTemplateOutlet="vertical ? verticalTpl : horizontalTpl"
-></ng-container>
+<ng-container *ngTemplateOutlet="vertical ? verticalTpl : horizontalTpl"></ng-container>
 
 <ng-template #verticalTpl>
   <div
@@ -42,9 +40,7 @@
     (@stepVerticalTransition.done)="onStepAnimationEnd(i)"
   >
     <ng-container *ngIf="active === i && step.content?.first">
-      <ng-template
-        [ngTemplateOutlet]="step.content?.first?.template!"
-      ></ng-template>
+      <ng-template [ngTemplateOutlet]="step.content?.first?.template!"></ng-template>
     </ng-container>
   </div>
 </ng-template>
@@ -59,9 +55,7 @@
     (@stepHorizontalTransition.done)="onStepAnimationEnd(i)"
   >
     <ng-container *ngIf="active === i && step.content?.first">
-      <ng-template
-        [ngTemplateOutlet]="step.content?.first?.template!"
-      ></ng-template>
+      <ng-template [ngTemplateOutlet]="step.content?.first?.template!"></ng-template>
     </ng-container>
   </div>
 </ng-template>

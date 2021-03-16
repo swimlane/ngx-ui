@@ -109,13 +109,7 @@
     }
   }
 
-  @mixin ngx-dropdown-outline(
-    $menu-color,
-    $menu-border,
-    $item-active,
-    $item-hover,
-    $item-color
-  ) {
+  @mixin ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color) {
     background: $menu-color;
     min-width: 130px;
     font-size: 13px;
@@ -188,13 +182,7 @@
       $item-hover: #1f242f;
       $item-color: #fff;
 
-      @include ngx-dropdown-outline(
-        $menu-color,
-        $menu-border,
-        $item-active,
-        $item-hover,
-        $item-color
-      );
+      @include ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color);
     }
 
     &.ngx-dropdown-dark-outline {
@@ -204,13 +192,7 @@
       $item-hover: var(--ngx-ui-color-blue-grey-750);
       $item-color: #afb7c8;
 
-      @include ngx-dropdown-outline(
-        $menu-color,
-        $menu-border,
-        $item-active,
-        $item-hover,
-        $item-color
-      );
+      @include ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color);
     }
   }
 }

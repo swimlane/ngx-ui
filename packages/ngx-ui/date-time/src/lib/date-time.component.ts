@@ -12,7 +12,7 @@ import {
   Output,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
@@ -38,7 +38,7 @@ const MIN_WIDTH = 60;
 const DATE_TIME_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => DateTimeComponent),
-  multi: true,
+  multi: true
 };
 
 @Component({
@@ -48,7 +48,7 @@ const DATE_TIME_VALUE_ACCESSOR = {
   styleUrls: ['./date-time.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DATE_TIME_VALUE_ACCESSOR],
+  providers: [DATE_TIME_VALUE_ACCESSOR]
 })
 export class DateTimeComponent implements OnInit {
   static ngAcceptInputType_minWidth: NumericInput;
@@ -81,12 +81,7 @@ export class DateTimeComponent implements OnInit {
   @Input() precision?: unitOfTime.StartOf;
   @Input() timezone?: string;
 
-  @Input() inputFormats: (string | MomentBuiltinFormat)[] = [
-    'L',
-    `LT`,
-    'L LT',
-    ISO_8601,
-  ];
+  @Input() inputFormats: (string | MomentBuiltinFormat)[] = ['L', `LT`, 'L LT', ISO_8601];
 
   @InputNumeric(MIN_WIDTH)
   @Input()
@@ -261,10 +256,7 @@ export class DateTimeComponent implements OnInit {
   private _format!: string;
   private _inputType!: string;
 
-  constructor(
-    private readonly dialogService: DialogService,
-    private readonly cdr: ChangeDetectorRef
-  ) {}
+  constructor(private readonly dialogService: DialogService, private readonly cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {}
 
@@ -295,7 +287,7 @@ export class DateTimeComponent implements OnInit {
     this.dialog = this.dialogService.create({
       cssClass: 'ngx-date-time-dialog',
       template: this.calendarTpl,
-      closeButton: false,
+      closeButton: false
     });
   }
 
@@ -334,10 +326,7 @@ export class DateTimeComponent implements OnInit {
   isCurrent() {
     const now = this.createMoment(new Date());
     if (this.inputType === 'time') {
-      return (
-        now.hour() === this.dialogModel.hour() &&
-        now.minute() === this.dialogModel.minute()
-      );
+      return now.hour() === this.dialogModel.hour() && now.minute() === this.dialogModel.minute();
     }
     return now.isSame(this.dialogModel, 'minute');
   }
@@ -362,18 +351,14 @@ export class DateTimeComponent implements OnInit {
   getDayDisabled(date: Moment): boolean {
     if (!date) return false;
 
-    const isBeforeMin =
-      !!this.minDate && date.isBefore(this.parseDate(this.minDate));
-    const isAfterMax =
-      !!this.maxDate && date.isAfter(this.parseDate(this.maxDate));
+    const isBeforeMin = !!this.minDate && date.isBefore(this.parseDate(this.minDate));
+    const isAfterMax = !!this.maxDate && date.isAfter(this.parseDate(this.maxDate));
 
     return isBeforeMin || isAfterMax;
   }
 
   isTimeDisabled(mode: moment.unitOfTime.StartOf): boolean {
-    return (
-      this.modes.indexOf(`${this.precision}`) > this.modes.indexOf(`${mode}`)
-    );
+    return this.modes.indexOf(`${this.precision}`) > this.modes.indexOf(`${mode}`);
   }
 
   inputChanged(val: string): void {
@@ -421,8 +406,7 @@ export class DateTimeComponent implements OnInit {
   private validate(date: Moment | undefined) {
     // check if date input is empty
     const dateInput = date?.creationData().input;
-    const isEmpty =
-      dateInput === '' || dateInput === null || dateInput === undefined; // 0 is a valid date input
+    const isEmpty = dateInput === '' || dateInput === null || dateInput === undefined; // 0 is a valid date input
 
     // date can be either valid, or an empty value if not required
     const isValid = date?.isValid() || (!this.required && isEmpty);
@@ -464,9 +448,7 @@ export class DateTimeComponent implements OnInit {
     if (this.format && !inputFormats.includes(this.format)) {
       inputFormats.unshift(this.format);
     }
-    let m = this.timezone
-      ? moment.tz(date, inputFormats, this.timezone)
-      : moment(date, inputFormats);
+    let m = this.timezone ? moment.tz(date, inputFormats, this.timezone) : moment(date, inputFormats);
     m = this.precision ? this.roundTo(m, this.precision) : m;
     return m;
   }

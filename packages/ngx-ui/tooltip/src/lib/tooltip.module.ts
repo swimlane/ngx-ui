@@ -9,6 +9,6 @@ import { TooltipContentComponent } from './tooltip-content.component';
   imports: [CommonModule],
   declarations: [TooltipDirective, TooltipContentComponent],
   providers: [InjectionService, TooltipService],
-  exports: [TooltipDirective, TooltipContentComponent],
+  exports: [TooltipDirective, TooltipContentComponent]
 })
 export class TooltipModule {}

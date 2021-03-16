@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'demo-pipes',
   templateUrl: './pipes.component.html',
   styleUrls: ['./pipes.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PipesComponent {
   jsonObject = JSON.parse(`{
@@ -31,7 +31,7 @@ export class PipesComponent {
     'GEORGE WEASLEY',
     'LUNA LOVEGOOD',
     'ANGELINA JOHNSON',
-    'KATIE BELL',
+    'KATIE BELL'
   ];
 
   stringFilter = '';

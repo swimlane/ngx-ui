@@ -1,1 +1,9 @@
-[{"route":"/"},{"route":"/typography"},{"route":"/colors"},{"route":"/layout"},{"route":"/icons"},{"route":"/animations"},{"route":"/pipes"}]
+[
+  { "route": "/" },
+  { "route": "/typography" },
+  { "route": "/colors" },
+  { "route": "/layout" },
+  { "route": "/icons" },
+  { "route": "/animations" },
+  { "route": "/pipes" }
+]

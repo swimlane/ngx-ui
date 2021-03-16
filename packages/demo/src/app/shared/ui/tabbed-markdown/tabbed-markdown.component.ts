@@ -4,10 +4,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   selector: 'demo-tabbed-markdown',
   template: `
     <ngx-tabs>
-      <ngx-tab
-        *ngFor="let markdown of $any(markdowns) | keyvalue"
-        [label]="markdown.key"
-      >
+      <ngx-tab *ngFor="let markdown of $any(markdowns) | keyvalue" [label]="markdown.key">
         <demo-markdown [data]="markdown.value"></demo-markdown>
       </ngx-tab>
     </ngx-tabs>
@@ -18,9 +15,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
         display: block;
         padding: 1rem 0;
       }
-    `,
+    `
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabbedMarkdownComponent {
   @Input() markdowns: Record<string, string>;

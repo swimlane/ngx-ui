@@ -6,7 +6,7 @@ import { HotkeysFactoryService, HotkeysService } from './services';
 @NgModule({
   imports: [CommonModule],
   declarations: [HotkeysComponent],
-  exports: [HotkeysComponent],
+  exports: [HotkeysComponent]
 })
 export class HotkeysModule {
   // instantiate FactoryService right away
@@ -22,7 +22,7 @@ export class HotkeysModule {
     this.hasBeenCalled = true;
     return {
       ngModule: HotkeysModule,
-      providers: [HotkeysService, HotkeysFactoryService],
+      providers: [HotkeysService, HotkeysFactoryService]
     };
   }
 }

@@ -5,6 +5,6 @@ import { TabComponent, TabsComponent } from './tabs.component';
 @NgModule({
   imports: [CommonModule],
   declarations: [TabsComponent, TabComponent],
-  exports: [TabsComponent, TabComponent],
+  exports: [TabsComponent, TabComponent]
 })
 export class TabsModule {}

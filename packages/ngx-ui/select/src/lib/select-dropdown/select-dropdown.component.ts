@@ -11,7 +11,7 @@ import {
   Output,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { Debounceable } from '@swimlane/ngx-ui/decorators/debounceable';
 import { KeyboardKeys } from '@swimlane/ngx-ui/types';
@@ -24,7 +24,7 @@ import { containsFilter } from '../utils';
   templateUrl: './select-dropdown.component.html',
   styles: [],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectDropdownComponent implements AfterViewInit {
   @Input()
@@ -115,20 +115,14 @@ export class SelectDropdownComponent implements AfterViewInit {
   }
 
   get isNotTemplate(): boolean {
-    return !(
-      typeof this.allowAdditionsText === 'object' &&
-      this.allowAdditionsText instanceof TemplateRef
-    );
+    return !(typeof this.allowAdditionsText === 'object' && this.allowAdditionsText instanceof TemplateRef);
   }
 
   filterQueryIsInOptions = false;
 
   @HostBinding('class.ngx-select-dropdown') hostClass = true;
 
-  constructor(
-    private readonly elementRef: ElementRef,
-    private readonly cdr: ChangeDetectorRef
-  ) {}
+  constructor(private readonly elementRef: ElementRef, private readonly cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     if (this.filterable && !this.tagging) {
@@ -141,11 +135,10 @@ export class SelectDropdownComponent implements AfterViewInit {
   isSelected(option: SelectDropdownOption): boolean {
     if (!this.selected || !this.selected.length) return false;
 
-    const idx = this.selected.findIndex((o) => {
+    const idx = this.selected.findIndex(o => {
       if (this.identifier)
         return (
-          (o as Record<string, unknown>)[this.identifier] ===
-          (option.value as Record<string, unknown>)[this.identifier]
+          (o as Record<string, unknown>)[this.identifier] === (option.value as Record<string, unknown>)[this.identifier]
         );
       return o === option.value;
     });
@@ -155,9 +148,7 @@ export class SelectDropdownComponent implements AfterViewInit {
 
   @Debounceable(500)
   updateFilterQueryIsInOptions() {
-    this.filterQueryIsInOptions = this.options.some(
-      (o) => o.name.toLowerCase() === this.filterQuery!.toLowerCase()
-    );
+    this.filterQueryIsInOptions = this.options.some(o => o.name.toLowerCase() === this.filterQuery!.toLowerCase());
     this.cdr.markForCheck();
   }
 
@@ -218,9 +209,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   }
 
   private focusElement(index: number): void {
-    const elements = this.element.getElementsByClassName(
-      'ngx-select-dropdown-option'
-    );
+    const elements = this.element.getElementsByClassName('ngx-select-dropdown-option');
     const element = elements[index];
 
     if (element) {
@@ -230,11 +219,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     }
   }
 
-  private calculateGroups(
-    groupBy: string | undefined,
-    options: unknown[],
-    filter?: string
-  ): any[] {
+  private calculateGroups(groupBy: string | undefined, options: unknown[], filter?: string): any[] {
     if (!options || !groupBy) return [];
 
     const filterOptions = { filterCaseSensitive: this.filterCaseSensitive };
@@ -244,11 +229,11 @@ export class SelectDropdownComponent implements AfterViewInit {
     if (!groupBy) {
       if (filter) {
         // filter options
-        options = options.filter((o) => {
+        options = options.filter(o => {
           return containsFilter(
             {
               name: (o as { name: string; value: unknown }).name,
-              value: (o as { name: string; value: unknown }).value,
+              value: (o as { name: string; value: unknown }).value
             },
             filter,
             filterOptions
@@ -274,7 +259,7 @@ export class SelectDropdownComponent implements AfterViewInit {
         !containsFilter(
           {
             name: (option as { name: string; value: unknown }).name,
-            value: (option as { name: string; value: unknown }).value,
+            value: (option as { name: string; value: unknown }).value
           },
           filter,
           filterOptions
@@ -283,8 +268,7 @@ export class SelectDropdownComponent implements AfterViewInit {
         continue;
       }
 
-      const group = ((option as { name: string; value: unknown })
-        .value as Record<string, unknown>)[groupBy];
+      const group = ((option as { name: string; value: unknown }).value as Record<string, unknown>)[groupBy];
       const opt = map.get(group);
 
       // need to map the true indexes

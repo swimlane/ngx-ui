@@ -6,7 +6,7 @@ import {
   Input,
   OnInit,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { Debounceable } from '@swimlane/ngx-ui/decorators/debounceable';
 
@@ -19,7 +19,7 @@ interface DataValue {
   templateUrl: './orderable-inputs-list.component.html',
   styleUrls: ['./orderable-inputs-list.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OrderableInputsListComponent implements OnInit {
   @Input() data: string[] = [];
@@ -28,16 +28,16 @@ export class OrderableInputsListComponent implements OnInit {
   dataValues: DataValue[] = [];
 
   ngOnInit() {
-    (this.data || []).forEach((item) => {
+    (this.data || []).forEach(item => {
       this.dataValues.push({
-        value: item,
+        value: item
       });
     });
   }
 
   addExample(): void {
     this.dataValues.push({
-      value: '',
+      value: ''
     });
   }
 
@@ -53,7 +53,7 @@ export class OrderableInputsListComponent implements OnInit {
 
   @Debounceable(500)
   update(): void {
-    const data = this.dataValues.map((item) => item.value);
+    const data = this.dataValues.map(item => item.value);
     this.onUpdate.emit(data);
   }
 }

@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  InjectionRegistryService,
-  InjectionService,
-} from '@swimlane/ngx-ui/injection';
+import { InjectionRegistryService, InjectionService } from '@swimlane/ngx-ui/injection';
 import { TooltipContentComponent } from '../tooltip-content.component';
 
 @Injectable()

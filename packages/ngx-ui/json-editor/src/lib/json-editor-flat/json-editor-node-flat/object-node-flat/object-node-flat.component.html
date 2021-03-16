@@ -9,21 +9,13 @@
     cdkDrag
     cdkDragLockAxis="y"
     class="object-node-content"
-    *ngFor="
-      let prop of propertyIndex | objectValues;
-      let index = index;
-      trackBy: trackBy
-    "
+    *ngFor="let prop of propertyIndex | objectValues; let index = index; trackBy: trackBy"
   >
     <ngx-json-editor-node-flat
       [model]="model[prop.propertyName]"
       (modelChange)="updateProp(prop.id, $event)"
       [schema]="prop"
-      [schemaRef]="
-        schemaRef && schemaRef.properties
-          ? schemaRef.properties[prop.propertyName]
-          : undefined
-      "
+      [schemaRef]="schemaRef && schemaRef.properties ? schemaRef.properties[prop.propertyName] : undefined"
       [required]="!!requiredCache[prop.propertyName]"
       [inline]="prop.type !== 'array' && prop.type !== 'object'"
       [path]="path + getPath(prop.propertyName)"
@@ -61,13 +53,9 @@
                 <button
                   type="button"
                   (click)="deleteProperty(prop.propertyName!)"
-                  [disabled]="
-                    requiredCache[prop.propertyName!] && !schemaBuilderMode
-                  "
+                  [disabled]="requiredCache[prop.propertyName!] && !schemaBuilderMode"
                 >
-                  {{
-                    !schema.properties![prop.propertyName!] ? 'Delete' : 'Remove'
-                  }}
+                  {{ !schema.properties![prop.propertyName!] ? 'Delete' : 'Remove' }}
                 </button>
               </li>
               <ng-container *ngIf="prop?.$meta?.type && !schemaBuilderMode">
@@ -103,10 +91,7 @@
         [class.compressed]="compressed"
         *ngIf="model[$any(prop).key] === undefined"
       >
-        <span
-          class="json-editor--vertical-separator"
-          *ngFor="let separator of indentationArray"
-        ></span>
+        <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
 
         <div
           class="node"
@@ -121,14 +106,9 @@
               <ngx-json-editor-node-info
                 [nameEditable]="false"
                 [propertyName]="$any(prop).key"
-                [title]="
-                  $any(prop).value.title
-                    ? $any(prop).value.title
-                    : $any(prop).key
-                "
+                [title]="$any(prop).value.title ? $any(prop).value.title : $any(prop).key"
                 [type]="
-                  ($any(prop).value.format || $any(prop).value.type
-                    | titlecase) +
+                  ($any(prop).value.format || $any(prop).value.type | titlecase) +
                   ($any(prop).value.enum?.length ? ' + Enum' : '')
                 "
                 [description]="$any(prop).value?.description"
@@ -155,14 +135,8 @@
     [class.background]="hideRoot ? level! > -1 : level!"
     *ngIf="!showKnownProperties || schema.additionalProperties !== false"
   >
-    <span
-      class="json-editor--vertical-separator"
-      *ngFor="let separator of indentationArray"
-    ></span>
-    <div
-      class="indented-content"
-      [style.marginLeft]="hideRoot && level === 0 ? '20px' : '0'"
-    >
+    <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
+    <div class="indented-content" [style.marginLeft]="hideRoot && level === 0 ? '20px' : '0'">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle [disabled]="isDuplicated">
           <button type="button">
@@ -177,53 +151,28 @@
         <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
           <ul
             class="vertical-list dropdown-column"
-            *ngIf="
-              schema.properties && !schemaBuilderMode && !showKnownProperties
-            "
+            *ngIf="schema.properties && !schemaBuilderMode && !showKnownProperties"
           >
-            <li
-              *ngFor="let prop of $any(schema.properties) | keyvalue"
-              (click)="addSchemaProperty($any(prop.key))"
-            >
-              <button
-                [disabled]="model[$any(prop).key] !== undefined"
-                type="button"
-              >
-                {{
-                  $any(prop).value.title
-                    ? $any(prop).value.title
-                    : $any(prop).key
-                }}
+            <li *ngFor="let prop of $any(schema.properties) | keyvalue" (click)="addSchemaProperty($any(prop.key))">
+              <button [disabled]="model[$any(prop).key] !== undefined" type="button">
+                {{ $any(prop).value.title ? $any(prop).value.title : $any(prop).key }}
               </button>
             </li>
           </ul>
           <ul
             class="vertical-list dropdown-column"
-            *ngIf="
-              !schema ||
-              schema.patternProperties ||
-              schema.additionalProperties !== false
-            "
+            *ngIf="!schema || schema.patternProperties || schema.additionalProperties !== false"
           >
             <li
               *ngFor="let prop of $any(schema.patternProperties) | keyvalue"
               (click)="addSchemaPatternProperty($any(prop.key))"
             >
               <button type="button">
-                {{
-                  $any(prop).value.title
-                    ? $any(prop).value.title
-                    : $any(prop).key
-                }}
+                {{ $any(prop).value.title ? $any(prop).value.title : $any(prop).key }}
               </button>
             </li>
-            <ng-template
-              [ngIf]="!schema || schema.additionalProperties !== false"
-            >
-              <li
-                *ngFor="let dataType of dataTypes"
-                (click)="addProperty(dataType)"
-              >
+            <ng-template [ngIf]="!schema || schema.additionalProperties !== false">
+              <li *ngFor="let dataType of dataTypes" (click)="addProperty(dataType)">
                 <button type="button">{{ dataType.name }}</button>
               </li>
             </ng-template>

@@ -9,7 +9,7 @@ import {
   Output,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { KeyboardKeys } from '@swimlane/ngx-ui/types';
 import { timer } from 'rxjs';
@@ -20,7 +20,7 @@ import type { SelectDropdownOption } from '../models';
   exportAs: 'ngxSelectInput',
   templateUrl: './select-input.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectInputComponent implements AfterViewInit {
   @Input() placeholder!: string;
@@ -79,10 +79,7 @@ export class SelectInputComponent implements AfterViewInit {
   }
 
   get isNotTemplate(): boolean {
-    return !(
-      typeof this.selectCaret === 'object' &&
-      this.selectCaret instanceof TemplateRef
-    );
+    return !(typeof this.selectCaret === 'object' && this.selectCaret instanceof TemplateRef);
   }
 
   selectedOptions: SelectDropdownOption[] = [];
@@ -105,7 +102,7 @@ export class SelectInputComponent implements AfterViewInit {
 
     if (key === KeyboardKeys.ENTER) {
       if (value !== '') {
-        const hasSelection = this.selected.find((selection) => {
+        const hasSelection = this.selected.find(selection => {
           return value === selection;
         });
 
@@ -160,7 +157,7 @@ export class SelectInputComponent implements AfterViewInit {
   onOptionRemove(event: Event, option: SelectDropdownOption): void {
     event.stopPropagation();
 
-    const newSelections = this.selected.filter((selection) => {
+    const newSelections = this.selected.filter(selection => {
       if (this.identifier !== undefined) {
         return (
           (option.value as Record<string, unknown>)[this.identifier] !==
@@ -184,12 +181,9 @@ export class SelectInputComponent implements AfterViewInit {
       let match: SelectDropdownOption | undefined;
 
       if (this.options) {
-        match = this.options.find((option) => {
+        match = this.options.find(option => {
           if (this.identifier) {
-            return (
-              selection[this.identifier] ===
-              (option.value as Record<string, unknown>)[this.identifier]
-            );
+            return selection[this.identifier] === (option.value as Record<string, unknown>)[this.identifier];
           }
 
           return selection === option.value;

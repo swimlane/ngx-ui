@@ -7,6 +7,6 @@ import { CalendarComponent } from './calendar.component';
 @NgModule({
   imports: [CommonModule, TimeZoneModule, MomentModule],
   declarations: [CalendarComponent],
-  exports: [CalendarComponent],
+  exports: [CalendarComponent]
 })
 export class CalendarModule {}

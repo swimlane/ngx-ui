@@ -11,7 +11,7 @@ import { LandingComponent } from './landing.component';
     CommonModule,
     RouterModule.forChild([{ path: '', component: LandingComponent }]),
     MarkdownModule,
-    SectionHeaderModule,
-  ],
+    SectionHeaderModule
+  ]
 })
 export class LandingModule {}

@@ -12,9 +12,7 @@ for (const dType of [...jsonSchemaDataTypes, ...jsonSchemaDataFormats]) {
   dataTypeMap[key] = dType;
 }
 
-export function createValueForSchema(
-  schema: JSONEditorSchema
-): JSONSchema7['default'] | unknown {
+export function createValueForSchema(schema: JSONEditorSchema): JSONSchema7['default'] | unknown {
   if (schema.default) {
     return schema.default;
   }
@@ -31,21 +29,14 @@ export function createValueForSchema(
  * @param overrides an object with overridden inference functions for various schema types
  * @param allowedTypes the allowed schema types to consider
  */
-export function inferType(
-  value: unknown,
-  overrides?: Record<string, unknown>,
-  allowedTypes?: string[]
-): any {
+export function inferType(value: unknown, overrides?: Record<string, unknown>, allowedTypes?: string[]): any {
   if (overrides) {
     for (const typeName in overrides) {
       if (allowedTypes !== undefined && !allowedTypes.includes(typeName)) {
         continue;
       }
       // tslint:disable-next-line: tsr-detect-unsafe-properties-access
-      if (
-        dataTypeMap[typeName] &&
-        ((overrides as Record<string, unknown>)[typeName] as any)(value)
-      ) {
+      if (dataTypeMap[typeName] && ((overrides as Record<string, unknown>)[typeName] as any)(value)) {
         return dataTypeMap[typeName].schema;
       }
     }

@@ -5,9 +5,7 @@
       <div class="combination">
         <span *ngFor="let key of hotkey.keys; let i = index">
           <span class="key">{{ key }}</span>
-          <span *ngIf="hotkey.keys?.length && i < hotkey.keys!.length! - 1">
-            +
-          </span>
+          <span *ngIf="hotkey.keys?.length && i < hotkey.keys!.length! - 1">+</span>
         </span>
       </div>
     </div>

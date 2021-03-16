@@ -8,7 +8,7 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
@@ -21,7 +21,7 @@ import { TipStatus } from './enums';
   templateUrl: './tip.component.html',
   styleUrls: ['./tip.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TipComponent implements OnInit, OnDestroy {
   static ngAcceptInputType_isCloseable: BooleanInput;
@@ -55,10 +55,7 @@ export class TipComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.icon =
-      this.status === TipStatus.Error
-        ? 'warning-filled-sm'
-        : 'info-filled-small';
+    this.icon = this.status === TipStatus.Error ? 'warning-filled-sm' : 'info-filled-small';
   }
 
   ngOnDestroy() {

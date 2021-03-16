@@ -9,16 +9,12 @@ import {
   SimpleChanges,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { DialogService } from '@swimlane/ngx-ui/dialog';
 import { jsonSchemaDataTypes } from '../../../constants';
 import { ObjectNode } from '../../../directives';
-import type {
-  JSONEditorSchema,
-  JsonSchemaDataType,
-  PropertyConfigOptions,
-} from '../../../interfaces';
+import type { JSONEditorSchema, JsonSchemaDataType, PropertyConfigOptions } from '../../../interfaces';
 import { createValueForSchema } from '../../../utils';
 import { PropertyConfigComponent } from '../property-config/property-config.component';
 
@@ -27,11 +23,9 @@ import { PropertyConfigComponent } from '../property-config/property-config.comp
   templateUrl: './object-node-flat.component.html',
   styleUrls: ['./object-node-flat.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ObjectNodeFlatComponent
-  extends ObjectNode
-  implements OnInit, OnChanges {
+export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnChanges {
   @ViewChild('propertyConfigTmpl', { static: false })
   propertyConfigTmpl?: TemplateRef<PropertyConfigComponent>;
 
@@ -65,32 +59,25 @@ export class ObjectNodeFlatComponent
       this.initSchemaProperties(this.schemaRef!);
     });
 
-    this.indentationArray = !!this.level
-      ? Array(this.level).fill(this.level)
-      : [];
+    this.indentationArray = !!this.level ? Array(this.level).fill(this.level) : [];
   }
 
   ngOnChanges(changes: SimpleChanges) {
     super.ngOnChanges(changes);
     if ('level' in changes) {
-      this.indentationArray = !!this.level
-        ? Array(this.level).fill(this.level)
-        : [];
+      this.indentationArray = !!this.level ? Array(this.level).fill(this.level) : [];
     }
   }
 
   onUpdatePropertyName(options: { id: string; name: string }): void {
     const existingSchemaProperty = this.schemaRef!.properties![options.name];
     const existingPropertyValue = this.model[options.name];
-    const oldName = this.propertyIndex[(options.id as unknown) as number]
-      .propertyName;
+    const oldName = this.propertyIndex[(options.id as unknown) as number].propertyName;
 
     this.duplicatedFields.delete(options.id);
 
     if (!existingSchemaProperty && existingPropertyValue === undefined) {
-      const index = Object.keys(this.schemaRef!.properties!).findIndex(
-        (prop) => prop === oldName
-      );
+      const index = Object.keys(this.schemaRef!.properties!).findIndex(prop => prop === oldName);
       this.updateSchemaPropertyName(
         this.schemaRef!,
         options.name,
@@ -111,9 +98,9 @@ export class ObjectNodeFlatComponent
         property,
         index,
         schema: this.schema,
-        formats: this.formats,
+        formats: this.formats
       },
-      class: 'property-config-dialog',
+      class: 'property-config-dialog'
     });
   }
 
@@ -163,10 +150,7 @@ export class ObjectNodeFlatComponent
       delete this.schema.properties![propName];
       delete this.schemaRef!.properties![propName];
       this.toggleRequiredValue(false, propName);
-    } else if (
-      !this.schema.required!.includes(propName) &&
-      !(propName in this.schema.properties!)
-    ) {
+    } else if (!this.schema.required!.includes(propName) && !(propName in this.schema.properties!)) {
       delete this.schemaRef!.properties![propName];
     }
 
@@ -177,11 +161,7 @@ export class ObjectNodeFlatComponent
   drop(event: CdkDragDrop<string[]>): void {
     const propertyIndexValues = Object.values(this.propertyIndex);
 
-    moveItemInArray(
-      propertyIndexValues,
-      event.previousIndex,
-      event.currentIndex
-    );
+    moveItemInArray(propertyIndexValues, event.previousIndex, event.currentIndex);
 
     let index = 0;
     for (const prop in this.propertyIndex) {
@@ -195,10 +175,7 @@ export class ObjectNodeFlatComponent
     this.swapSchemaProperties(event.currentIndex, event.previousIndex);
   }
 
-  private swapSchemaProperties(
-    currentIndex: number,
-    previousIndex?: number
-  ): void {
+  private swapSchemaProperties(currentIndex: number, previousIndex?: number): void {
     const propertiesIds = Object.keys(this.schemaRef!.properties!);
 
     if (previousIndex === undefined) {
@@ -241,15 +218,11 @@ export class ObjectNodeFlatComponent
       ...(prop['maxLength'] && { maxLength: prop['maxLength'] }),
       ...(prop['minItems'] && { minItems: prop['minItems'] }),
       ...(prop['maxItems'] && { maxItems: prop['maxItems'] }),
-      ...(prop['pattern'] && { pattern: prop['pattern'] }),
+      ...(prop['pattern'] && { pattern: prop['pattern'] })
     };
   }
 
-  private updateSchemaPropertyName(
-    schema: JSONEditorSchema,
-    newName: string,
-    oldName: string
-  ): void {
+  private updateSchemaPropertyName(schema: JSONEditorSchema, newName: string, oldName: string): void {
     this.updateRequiredProperties(schema, newName, oldName);
     schema.properties![newName] = schema.properties![oldName];
     delete schema.properties![oldName];
@@ -267,11 +240,7 @@ export class ObjectNodeFlatComponent
     this.updateRequiredCache();
   }
 
-  private updateRequiredProperties(
-    schema: JSONEditorSchema,
-    newName: string,
-    oldName: string
-  ): void {
+  private updateRequiredProperties(schema: JSONEditorSchema, newName: string, oldName: string): void {
     const requiredIndex = schema.required!.indexOf(oldName);
     if (requiredIndex >= 0) {
       schema.required![requiredIndex] = newName;

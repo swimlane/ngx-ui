@@ -28,21 +28,14 @@
             <ngx-icon fontIcon="search"></ngx-icon>
           </ngx-input-prefix>
           <ngx-input-suffix>
-            <button
-              class="btn btn-link"
-              [hidden]="!searchValue.length"
-              (click)="searchValue = searchInput.value = ''"
-            >
+            <button class="btn btn-link" [hidden]="!searchValue.length" (click)="searchValue = searchInput.value = ''">
               <ngx-icon class="search-box__clear-btn" fontIcon="x"></ngx-icon>
             </button>
           </ngx-input-suffix>
         </ngx-input>
       </div>
       <ul class="nav-items nav-main vertical-list ngx-scroll-muted">
-        <li
-          *ngFor="let item of filteredNavigationTree; trackBy: trackByName"
-          class="nav-item-container"
-        >
+        <li *ngFor="let item of filteredNavigationTree; trackBy: trackByName" class="nav-item-container">
           <a
             *ngIf="!item.children"
             class="nav-item"
@@ -90,10 +83,7 @@
             </ul>
           </ng-template>
 
-          <ul
-            *ngIf="item.children && navExpanded"
-            class="sub-nav ngx-scroll-muted"
-          >
+          <ul *ngIf="item.children && navExpanded" class="sub-nav ngx-scroll-muted">
             <a
               *ngFor="let child of item.children"
               class="sub-nav-item"
@@ -114,11 +104,7 @@
       <router-outlet></router-outlet>
     </div>
     <ngx-hotkeys></ngx-hotkeys>
-    <ngx-toolbar
-      [mainTitle]="'Angular Style and Component Library'"
-      [subtitle]="version"
-      class="main-toolbar"
-    >
+    <ngx-toolbar [mainTitle]="'Angular Style and Component Library'" [subtitle]="version" class="main-toolbar">
       <ngx-toolbar-content>
         <!-- <a href="#{{state}}" [class.active]="currentTheme === 'day'" (click)="setTheme('day')">Day</a> |
         <a href="#{{state}}" [class.active]="currentTheme === 'night'" (click)="setTheme('night')">Night</a> |

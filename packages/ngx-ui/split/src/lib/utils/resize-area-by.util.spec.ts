@@ -10,7 +10,7 @@ describe(resizeAreaBy.name, () => {
       initialFlexParts: ['1', '1', '50px'],
       minBasis: '',
       maxBasis: '',
-      updateBasis: () => undefined,
+      updateBasis: () => undefined
     } as any;
   });
 
@@ -25,7 +25,7 @@ describe(resizeAreaBy.name, () => {
       initialFlexParts: ['1', '1', '50%'],
       minBasis: '',
       maxBasis: '',
-      updateBasis: () => undefined,
+      updateBasis: () => undefined
     } as any;
 
     const size = resizeAreaBy(splitArea, 10, 50);

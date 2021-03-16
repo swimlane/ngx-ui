@@ -1,10 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import {
-  SelectOptionDirective,
-  SelectOptionInputTemplateDirective,
-  SelectOptionTemplateDirective,
-} from './directives';
+import { SelectOptionDirective, SelectOptionInputTemplateDirective, SelectOptionTemplateDirective } from './directives';
 import { SelectDropdownComponent } from './select-dropdown/select-dropdown.component';
 import { SelectInputComponent } from './select-input/select-input.component';
 import { SelectComponent } from './select.component';
@@ -17,7 +13,7 @@ import { SelectComponent } from './select.component';
     SelectOptionInputTemplateDirective,
     SelectComponent,
     SelectInputComponent,
-    SelectDropdownComponent,
+    SelectDropdownComponent
   ],
   exports: [
     SelectOptionTemplateDirective,
@@ -25,7 +21,7 @@ import { SelectComponent } from './select.component';
     SelectOptionInputTemplateDirective,
     SelectComponent,
     SelectInputComponent,
-    SelectDropdownComponent,
-  ],
+    SelectDropdownComponent
+  ]
 })
 export class SelectModule {}

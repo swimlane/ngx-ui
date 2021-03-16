@@ -8,7 +8,7 @@ import {
   HostListener,
   Input,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import type { NumericInput } from '@swimlane/ngx-ui/decorators/input-numeric';
 import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
@@ -21,7 +21,7 @@ import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
   `,
   styleUrls: ['./navbar-item.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarItemComponent {
   static ngAcceptInputType_total: NumericInput;

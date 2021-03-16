@@ -8,9 +8,8 @@ describe('SplitHandleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SplitHandleComponent ]
-    })
-    .compileComponents();
+      declarations: [SplitHandleComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

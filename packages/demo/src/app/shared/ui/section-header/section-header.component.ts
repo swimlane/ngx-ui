@@ -1,10 +1,5 @@
 import type { BooleanInput } from '@angular/cdk/coercion';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 
 @Component({
@@ -14,7 +9,7 @@ import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
       <ng-content></ng-content>
     </h3>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SectionHeaderComponent {
   static ngAcceptInputType_section: BooleanInput;

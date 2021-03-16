@@ -8,9 +8,8 @@ describe('JsonEditorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ JsonEditorComponent ]
-    })
-    .compileComponents();
+      declarations: [JsonEditorComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

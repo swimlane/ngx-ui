@@ -8,9 +8,8 @@ describe('TipComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TipComponent ]
-    })
-    .compileComponents();
+      declarations: [TipComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

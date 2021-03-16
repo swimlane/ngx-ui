@@ -8,16 +8,12 @@ import {
   SimpleChanges,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { DialogService } from '@swimlane/ngx-ui/dialog';
 import { jsonSchemaDataFormats } from '../constants';
 import { JsonEditor } from '../directives';
-import {
-  JSONEditorSchema,
-  JsonSchemaDataType,
-  PropertyConfigOptions,
-} from '../interfaces';
+import { JSONEditorSchema, JsonSchemaDataType, PropertyConfigOptions } from '../interfaces';
 import { SchemaValidatorService } from '../services';
 import { JsonEditorNodeFlatComponent } from './json-editor-node-flat/json-editor-node-flat.component';
 import { PropertyConfigComponent } from './json-editor-node-flat/property-config/property-config.component';
@@ -27,7 +23,7 @@ import { PropertyConfigComponent } from './json-editor-node-flat/property-config
   templateUrl: './json-editor-flat.component.html',
   styleUrls: ['./json-editor-flat.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JsonEditorFlatComponent extends JsonEditor {
   @Input() model: any;
@@ -83,9 +79,9 @@ export class JsonEditorFlatComponent extends JsonEditor {
       context: {
         property: this.schema,
         schema: this.schema,
-        formats: this.customFormats,
+        formats: this.customFormats
       },
-      class: 'property-config-dialog',
+      class: 'property-config-dialog'
     });
   }
 
@@ -115,12 +111,10 @@ export class JsonEditorFlatComponent extends JsonEditor {
   }
 
   private buildCustomFormats(): void {
-    this.formats.forEach((format) => {
-      const found = jsonSchemaDataFormats.find(
-        (dataFormat: JsonSchemaDataType) => {
-          return dataFormat.schema.format === format;
-        }
-      );
+    this.formats.forEach(format => {
+      const found = jsonSchemaDataFormats.find((dataFormat: JsonSchemaDataType) => {
+        return dataFormat.schema.format === format;
+      });
 
       if (found) {
         this.customFormats.push(found);
@@ -130,12 +124,12 @@ export class JsonEditorFlatComponent extends JsonEditor {
           defaultValue: () => '',
           schema: {
             type: 'string',
-            format,
+            format
           },
           icon: 'field-text',
           matchType: (): boolean => {
             return false;
-          },
+          }
         });
       }
     });

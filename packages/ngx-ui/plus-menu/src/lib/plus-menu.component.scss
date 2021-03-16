@@ -1,8 +1,6 @@
 .ngx-plus-menu {
   --menu-color: #9fce36;
-  --background-color: var(
-    --ngx-ui-color-blue-grey-900-rgb
-  ); // .color-blue-grey-900
+  --background-color: var(--ngx-ui-color-blue-grey-900-rgb); // .color-blue-grey-900
   --background-opacity: 0.7;
   --background-zero-opacity: 0;
 
@@ -23,13 +21,11 @@
   width: var(--button-size);
   height: var(--button-size);
 
-  transition-property: height width background box-shadow border-radius
-    translate;
+  transition-property: height width background box-shadow border-radius translate;
   transition-duration: var(--animation-duration);
 
   background: rgba(var(--background-color), var(--background-zero-opacity));
-  box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur)
-    rgba(var(--background-color), var(--background-zero-opacity));
+  box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur) rgba(var(--background-color), var(--background-zero-opacity));
   border-radius: var(--button-radius);
   overflow: hidden;
   z-index: 10;
@@ -141,10 +137,8 @@
       width: var(--radial-size);
       height: var(--radial-size);
       background: rgba(var(--background-color), var(--background-opacity));
-      box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur)
-        rgba(var(--background-color), var(--background-opacity));
-      border-radius: var(--button-radius) var(--button-radius)
-        var(--button-radius) var(--radial-size);
+      box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur) rgba(var(--background-color), var(--background-opacity));
+      border-radius: var(--button-radius) var(--button-radius) var(--button-radius) var(--radial-size);
     }
 
     .ngx-plus-menu--content-container > svg {
@@ -303,10 +297,8 @@
       width: var(--radial-size);
       height: var(--size);
       background: rgba(var(--background-color), var(--background-opacity));
-      box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur)
-        rgba(var(--background-color), var(--background-opacity));
-      border-radius: var(--radial-radius) var(--radial-radius)
-        var(--button-radius) var(--button-radius);
+      box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur) rgba(var(--background-color), var(--background-opacity));
+      border-radius: var(--radial-radius) var(--radial-radius) var(--button-radius) var(--button-radius);
     }
 
     .ngx-plus-menu--item {
@@ -452,10 +444,8 @@
       height: var(--size);
       width: var(--radial-size);
       background: rgba(var(--background-color), var(--background-opacity));
-      box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur)
-        rgba(var(--background-color), var(--background-opacity));
-      border-radius: var(--button-radius) var(--button-radius)
-        var(--radial-radius) var(--radial-radius);
+      box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur) rgba(var(--background-color), var(--background-opacity));
+      border-radius: var(--button-radius) var(--button-radius) var(--radial-radius) var(--radial-radius);
     }
 
     .ngx-plus-menu--item {

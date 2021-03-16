@@ -26,11 +26,7 @@
   <demo-markdown [data]="basicFilteringMd"></demo-markdown>
 
   <demo-section-header section>Filtering (case sensitive)</demo-section-header>
-  <ngx-select
-    label="Filtering attack type"
-    filterCaseSensitive
-    (keyup)="onKeyup($event)"
-  >
+  <ngx-select label="Filtering attack type" filterCaseSensitive (keyup)="onKeyup($event)">
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -61,23 +57,13 @@
       name="supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious"
       value="supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious"
     ></ngx-select-option>
-    <ngx-select-option
-      name="supe rcalifragilist icexpialidocious"
-      value="s2344"
-    ></ngx-select-option>
-    <ngx-select-option
-      name="super califragilisticex pialidoc ious"
-      value="s3121"
-    ></ngx-select-option>
+    <ngx-select-option name="supe rcalifragilist icexpialidocious" value="s2344"></ngx-select-option>
+    <ngx-select-option name="super califragilisticex pialidoc ious" value="s3121"></ngx-select-option>
   </ngx-select>
   <demo-markdown [data]="basicLongValuesMd"></demo-markdown>
 
   <demo-section-header section>With ngFor</demo-section-header>
-  <ngx-select
-    identifier="attr"
-    [ngModel]="[selects[0]]"
-    label="Select a value..."
-  >
+  <ngx-select identifier="attr" [ngModel]="[selects[0]]" label="Select a value...">
     <ngx-select-option
       *ngFor="let option of selects"
       [value]="option"
@@ -128,41 +114,17 @@
 
   <demo-section-header section>Options with Grouping</demo-section-header>
   <ngx-select groupBy="type" label="Grouping...">
-    <ngx-select-option
-      [name]="'Breach'"
-      [value]="{ value: 'breach', type: 'IOS' }"
-    ></ngx-select-option>
-    <ngx-select-option
-      [name]="'DDOS'"
-      [value]="{ value: 'ddos', type: 'IOS' }"
-    ></ngx-select-option>
-    <ngx-select-option
-      [name]="'Physical'"
-      [value]="{ value: 'Physical', type: 'MOX' }"
-    ></ngx-select-option>
+    <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
+    <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
+    <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
   </ngx-select>
   <demo-markdown [data]="basicGroupByMd"></demo-markdown>
 
-  <demo-section-header section>
-    Options with Grouping - Custom Group Template
-  </demo-section-header>
-  <ngx-select
-    groupBy="type"
-    [groupByTemplate]="groupByTemplate"
-    label="Grouping with custom template..."
-  >
-    <ngx-select-option
-      [name]="'Breach'"
-      [value]="{ value: 'breach', type: 'IOS' }"
-    ></ngx-select-option>
-    <ngx-select-option
-      [name]="'DDOS'"
-      [value]="{ value: 'ddos', type: 'IOS' }"
-    ></ngx-select-option>
-    <ngx-select-option
-      [name]="'Physical'"
-      [value]="{ value: 'Physical', type: 'MOX' }"
-    ></ngx-select-option>
+  <demo-section-header section>Options with Grouping - Custom Group Template</demo-section-header>
+  <ngx-select groupBy="type" [groupByTemplate]="groupByTemplate" label="Grouping with custom template...">
+    <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
+    <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
+    <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
   </ngx-select>
   <ng-template #groupByTemplate let-name="groupName">
     {{ name }}
@@ -173,43 +135,19 @@
   </ng-template>
   <demo-markdown [data]="basicGroupByCustomTemplateMd"></demo-markdown>
 
-  <demo-section-header section>
-    Disabled Options with Placeholder
-  </demo-section-header>
+  <demo-section-header section>Disabled Options with Placeholder</demo-section-header>
   <ngx-select placeholder="Select incident type...">
     <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
-    <ngx-select-option
-      [name]="'DDOS'"
-      [value]="'ddos'"
-      disabled
-    ></ngx-select-option>
-    <ngx-select-option
-      [name]="'Physical'"
-      [value]="'pyhs'"
-      disabled
-    ></ngx-select-option>
+    <ngx-select-option [name]="'DDOS'" [value]="'ddos'" disabled></ngx-select-option>
+    <ngx-select-option [name]="'Physical'" [value]="'pyhs'" disabled></ngx-select-option>
   </ngx-select>
   <demo-markdown [data]="basicDisabledOptionsMd"></demo-markdown>
 
-  <demo-section-header section>
-    Preselected Value as Hidden Option
-  </demo-section-header>
+  <demo-section-header section>Preselected Value as Hidden Option</demo-section-header>
   <ngx-select [ngModel]="['Breach']">
-    <ngx-select-option
-      [name]="'Breach'"
-      [value]="'Breach'"
-      hidden
-    ></ngx-select-option>
-    <ngx-select-option
-      [name]="'DDOS'"
-      [value]="'ddos'"
-      disabled
-    ></ngx-select-option>
-    <ngx-select-option
-      [name]="'Physical'"
-      [value]="'Physical'"
-      disabled
-    ></ngx-select-option>
+    <ngx-select-option [name]="'Breach'" [value]="'Breach'" hidden></ngx-select-option>
+    <ngx-select-option [name]="'DDOS'" [value]="'ddos'" disabled></ngx-select-option>
+    <ngx-select-option [name]="'Physical'" [value]="'Physical'" disabled></ngx-select-option>
   </ngx-select>
   <demo-markdown [data]="basicHiddenPreSelectMd"></demo-markdown>
 
@@ -231,11 +169,7 @@
   <demo-markdown [data]="basicEventsMd"></demo-markdown>
 
   <demo-section-header section>Customization</demo-section-header>
-  <ngx-select
-    allowAdditions
-    allowAdditionsText="Add New Value"
-    [selectCaret]="doubleDown"
-  >
+  <ngx-select allowAdditions allowAdditionsText="Add New Value" [selectCaret]="doubleDown">
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -257,13 +191,7 @@
   <demo-markdown [data]="multiSelectMd"></demo-markdown>
 
   <demo-section-header section>Min/Max Selections</demo-section-header>
-  <ngx-select
-    label="Select one or two"
-    [filterable]="false"
-    multiple
-    minSelections="1"
-    maxSelections="2"
-  >
+  <ngx-select label="Select one or two" [filterable]="false" multiple minSelections="1" maxSelections="2">
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -301,9 +229,7 @@
       [value]="option"
     ></ngx-select-option>
   </ngx-select>
-  <demo-tabbed-markdown
-    [markdowns]="multiSelectDefaultSelectionsMd"
-  ></demo-tabbed-markdown>
+  <demo-tabbed-markdown [markdowns]="multiSelectDefaultSelectionsMd"></demo-tabbed-markdown>
 
   <demo-section-header section>Custom Template</demo-section-header>
   <ngx-select multiple identifier="attr" [ngModel]="[selects[0]]">
@@ -364,12 +290,7 @@
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
   </ngx-select>
 
-  <ngx-select
-    [filterable]="false"
-    appearance="legacy"
-    label="Legacy input with autosize"
-    autosize
-  >
+  <ngx-select [filterable]="false" appearance="legacy" label="Legacy input with autosize" autosize>
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -381,10 +302,7 @@
 
   <ngx-select [filterable]="false" appearance="fill">
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-    <ngx-select-option
-      name="a very long choice that you need to make"
-      value="ddos"
-    ></ngx-select-option>
+    <ngx-select-option name="a very long choice that you need to make" value="ddos"></ngx-select-option>
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
   </ngx-select>
 
@@ -394,54 +312,24 @@
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
   </ngx-select>
 
-  <ngx-select
-    [filterable]="false"
-    multiple
-    appearance="fill"
-    label="Fill With Multiple Selections"
-  >
+  <ngx-select [filterable]="false" multiple appearance="fill" label="Fill With Multiple Selections">
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
   </ngx-select>
 
-  <ngx-select
-    [filterable]="false"
-    tagging
-    appearance="fill"
-    label="Fill With Tagging"
-  >
+  <ngx-select [filterable]="false" tagging appearance="fill" label="Fill With Tagging">
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
   </ngx-select>
 
-  <ngx-select
-    [filterable]="false"
-    tagging
-    appearance="fill"
-    label="Fill Tagging With No Options"
-  ></ngx-select>
+  <ngx-select [filterable]="false" tagging appearance="fill" label="Fill Tagging With No Options"></ngx-select>
 
-  <ngx-select
-    [filterable]="false"
-    tagging
-    appearance="fill"
-    label="Fill With Grouping"
-    groupBy="type"
-  >
-    <ngx-select-option
-      name="Breach"
-      [value]="{ value: 'breach', type: 'IOS' }"
-    ></ngx-select-option>
-    <ngx-select-option
-      name="DDOS"
-      [value]="{ value: 'ddos', type: 'IOS' }"
-    ></ngx-select-option>
-    <ngx-select-option
-      name="Physical"
-      [value]="{ value: 'Physical', type: 'MOX' }"
-    ></ngx-select-option>
+  <ngx-select [filterable]="false" tagging appearance="fill" label="Fill With Grouping" groupBy="type">
+    <ngx-select-option name="Breach" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
+    <ngx-select-option name="DDOS" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
+    <ngx-select-option name="Physical" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
   </ngx-select>
   <demo-markdown [data]="appearanceMd"></demo-markdown>
 
@@ -456,11 +344,7 @@
   >
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-    <ngx-select-option
-      name="Physical"
-      value="physical"
-      disabled
-    ></ngx-select-option>
+    <ngx-select-option name="Physical" value="physical" disabled></ngx-select-option>
   </ngx-select>
 
   <ngx-select appearance="fill" label="Fill With Search" autosize>
@@ -469,58 +353,24 @@
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
   </ngx-select>
 
-  <ngx-select
-    [filterable]="false"
-    multiple
-    appearance="fill"
-    label="Fill With Multiple Selections"
-    autosize
-  >
+  <ngx-select [filterable]="false" multiple appearance="fill" label="Fill With Multiple Selections" autosize>
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
   </ngx-select>
 
-  <ngx-select
-    [filterable]="false"
-    tagging
-    appearance="fill"
-    label="Fill With Tagging"
-    autosize
-  >
+  <ngx-select [filterable]="false" tagging appearance="fill" label="Fill With Tagging" autosize>
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
   </ngx-select>
 
-  <ngx-select
-    [filterable]="false"
-    tagging
-    appearance="fill"
-    label="Fill Tagging With No Options"
-    autosize
-  ></ngx-select>
+  <ngx-select [filterable]="false" tagging appearance="fill" label="Fill Tagging With No Options" autosize></ngx-select>
 
-  <ngx-select
-    [filterable]="false"
-    tagging
-    appearance="fill"
-    label="Fill With Grouping"
-    groupBy="type"
-    autosize
-  >
-    <ngx-select-option
-      name="Breach"
-      [value]="{ value: 'breach', type: 'IOS' }"
-    ></ngx-select-option>
-    <ngx-select-option
-      name="DDOS"
-      [value]="{ value: 'ddos', type: 'IOS' }"
-    ></ngx-select-option>
-    <ngx-select-option
-      name="Physical"
-      [value]="{ value: 'Physical', type: 'MOX' }"
-    ></ngx-select-option>
+  <ngx-select [filterable]="false" tagging appearance="fill" label="Fill With Grouping" groupBy="type" autosize>
+    <ngx-select-option name="Breach" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
+    <ngx-select-option name="DDOS" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
+    <ngx-select-option name="Physical" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
   </ngx-select>
   <demo-markdown [data]="appearanceAutoSizeMd"></demo-markdown>
 </ngx-section>

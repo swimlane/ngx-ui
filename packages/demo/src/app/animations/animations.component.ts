@@ -9,7 +9,7 @@ import {
   slideLeftAnimation,
   slideRightAnimation,
   slideTopAnimation,
-  slideUpFadeOutAnimation,
+  slideUpFadeOutAnimation
 } from '@swimlane/ngx-ui/animations';
 
 @Component({
@@ -20,7 +20,7 @@ import {
       :host {
         display: block;
       }
-    `,
+    `
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
@@ -32,8 +32,8 @@ import {
     trigger('slideLeft', slideLeftAnimation()),
     trigger('slideRight', slideRightAnimation()),
     trigger('slideTop', slideTopAnimation(250)),
-    trigger('slideBottom', slideBottomAnimation(250)),
-  ],
+    trigger('slideBottom', slideBottomAnimation(250))
+  ]
 })
 export class AnimationsComponent {
   count = 0;
@@ -45,7 +45,7 @@ export class AnimationsComponent {
     slideLeft: true,
     slideRight: true,
     slideTop: true,
-    slideBottom: true,
+    slideBottom: true
   };
 
   bounceMd = `

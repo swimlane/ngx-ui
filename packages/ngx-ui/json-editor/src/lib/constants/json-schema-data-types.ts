@@ -5,80 +5,80 @@ export const jsonSchemaDataTypes: JsonSchemaDataType[] = [
     name: 'String',
     defaultValue: () => '',
     schema: {
-      type: 'string',
+      type: 'string'
     },
     icon: 'field-text',
-    matchType: (value) => {
+    matchType: value => {
       return typeof value === 'string';
-    },
+    }
   },
   {
     name: 'Number',
     defaultValue: () => 0,
     schema: {
-      type: 'number',
+      type: 'number'
     },
     icon: 'field-numeric',
-    matchType: (value) => {
+    matchType: value => {
       return typeof value === 'number';
-    },
+    }
   },
   {
     name: 'Integer',
     defaultValue: () => 0,
     schema: {
-      type: 'integer',
+      type: 'integer'
     },
     icon: 'field-numeric',
-    matchType: (value) => {
+    matchType: value => {
       return typeof value === 'number';
-    },
+    }
   },
   {
     name: 'Boolean',
     defaultValue: () => true,
     schema: {
-      type: 'boolean',
+      type: 'boolean'
     },
     icon: 'check-square-filled',
-    matchType: (value) => {
+    matchType: value => {
       return typeof value === 'boolean';
-    },
+    }
   },
   {
     name: 'Object',
     defaultValue: () => JSON.parse(JSON.stringify({})),
     schema: {
-      type: 'object',
+      type: 'object'
     },
     icon: 'reference-tree',
-    matchType: (value) => {
+    matchType: value => {
       return typeof value === 'object';
-    },
+    }
   },
   {
     name: 'Array',
     defaultValue: () => JSON.parse(JSON.stringify([])),
     schema: {
-      type: 'array',
+      type: 'array'
     },
     icon: 'integrations',
-    matchType: (value) => {
+    matchType: value => {
       return Array.isArray(value);
-    },
+    }
   },
   {
     name: 'Null',
     defaultValue: () => null,
     schema: {
-      type: 'null',
+      type: 'null'
     },
     icon: 'disable', // ??
-    matchType: (value) => {
+    matchType: value => {
       // NOTE: because of the way type inference is implemented, we need
       // to check for 'null' AFTER we check for 'object', since
       // typeof null === 'object'
       return value === null;
-    },
-  },
+    }
+  }
 ];

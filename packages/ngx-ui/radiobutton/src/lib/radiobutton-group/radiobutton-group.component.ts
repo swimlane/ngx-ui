@@ -12,7 +12,7 @@ import {
   OnChanges,
   Output,
   QueryList,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
@@ -24,7 +24,7 @@ import { RadioButtonComponent } from '../radiobutton.component';
 const RADIOGROUP_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => RadioButtonGroupComponent),
-  multi: true,
+  multi: true
 };
 
 let nextId = 0;
@@ -37,10 +37,9 @@ let nextId = 0;
   `,
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [RADIOGROUP_VALUE_ACCESSOR, DestroyedService],
+  providers: [RADIOGROUP_VALUE_ACCESSOR, DestroyedService]
 })
-export class RadioButtonGroupComponent
-  implements ControlValueAccessor, AfterContentInit, OnChanges {
+export class RadioButtonGroupComponent implements ControlValueAccessor, AfterContentInit, OnChanges {
   static ngAcceptInputType_disabled: BooleanInput;
 
   readonly UNIQUE_ID = `ngx-radio-group-${++nextId}`;
@@ -83,7 +82,7 @@ export class RadioButtonGroupComponent
   @Output() focus = new EventEmitter<FocusEvent>();
 
   @ContentChildren(forwardRef(() => RadioButtonComponent), {
-    descendants: true,
+    descendants: true
   })
   readonly _radios?: QueryList<RadioButtonComponent>;
 
@@ -98,10 +97,7 @@ export class RadioButtonGroupComponent
 
   @HostBinding('class.ngx-radiobutton-group') hostClass = true;
 
-  constructor(
-    private readonly cdr: ChangeDetectorRef,
-    private readonly destroyed: DestroyedService
-  ) {}
+  constructor(private readonly cdr: ChangeDetectorRef, private readonly destroyed: DestroyedService) {}
 
   ngAfterContentInit() {
     this.subscribeToRadios();
@@ -121,10 +117,8 @@ export class RadioButtonGroupComponent
 
     /* istanbul ignore else */
     if (this._radios) {
-      this._radios.forEach((radio) => {
-        radio.change
-          .pipe(takeUntil(this.destroyed))
-          .subscribe(this.onRadioSelected.bind(this));
+      this._radios.forEach(radio => {
+        radio.change.pipe(takeUntil(this.destroyed)).subscribe(this.onRadioSelected.bind(this));
       });
     }
 
@@ -162,7 +156,7 @@ export class RadioButtonGroupComponent
 
   private _updateRadioButtonNames(): void {
     if (this._radios) {
-      this._radios.forEach((radio) => {
+      this._radios.forEach(radio => {
         radio.name = this.name;
       });
     }
@@ -171,7 +165,7 @@ export class RadioButtonGroupComponent
   private _updateSelectedRadioFromValue(): void {
     /* istanbul ignore else */
     if (this._radios) {
-      this._radios.forEach((radio) => {
+      this._radios.forEach(radio => {
         radio.checked = this.value === radio.value;
 
         if (radio.checked) {
@@ -184,7 +178,7 @@ export class RadioButtonGroupComponent
   private _updateRadioDisabledState(): void {
     /* istanbul ignore else */
     if (this._radios) {
-      this._radios.forEach((radio) => {
+      this._radios.forEach(radio => {
         radio.groupDisabled = this.disabled;
       });
     }

@@ -1,4 +1,4 @@
 export enum FileButtonStyle {
   standard = 'standard',
-  progress = 'progress',
+  progress = 'progress'
 }

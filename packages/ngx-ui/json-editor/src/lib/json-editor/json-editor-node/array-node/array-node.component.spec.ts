@@ -8,9 +8,8 @@ describe('ArrayNodeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ArrayNodeComponent ]
-    })
-    .compileComponents();
+      declarations: [ArrayNodeComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

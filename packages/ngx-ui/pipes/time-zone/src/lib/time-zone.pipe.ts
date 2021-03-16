@@ -5,7 +5,7 @@ import * as momentImported from 'moment-timezone';
 const moment = momentImported;
 
 @Pipe({
-  name: 'timeZone',
+  name: 'timeZone'
 })
 export class TimeZonePipe implements PipeTransform {
   transform(value: MomentInput, timezone?: string): Moment | string {

@@ -6,6 +6,6 @@ import { FileButtonComponent } from './file-button.component';
 @NgModule({
   imports: [CommonModule, FileUploadModule],
   declarations: [FileButtonComponent],
-  exports: [FileButtonComponent],
+  exports: [FileButtonComponent]
 })
 export class FileButtonModule {}

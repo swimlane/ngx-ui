@@ -1,4 +1,4 @@
 export enum Appearance {
   legacy = 'legacy',
-  fill = 'fill',
+  fill = 'fill'
 }

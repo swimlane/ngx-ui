@@ -49,17 +49,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/src/**/*.ts",
-              "packages/ngx-ui/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/src/**/*.ts", "packages/ngx-ui/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui"
-          ],
+          "outputs": ["coverage/packages/ngx-ui"],
           "options": {
             "jestConfig": "packages/ngx-ui/jest.config.js",
             "passWithNoTests": true
@@ -96,9 +91,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/utils/debounce"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/utils/debounce"],
           "options": {
             "jestConfig": "packages/ngx-ui/utils/debounce/jest.config.js",
             "passWithNoTests": true
@@ -135,9 +128,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/utils/filters"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/utils/filters"],
           "options": {
             "jestConfig": "packages/ngx-ui/utils/filters/jest.config.js",
             "passWithNoTests": true
@@ -174,9 +165,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/utils/get-enum-key"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/utils/get-enum-key"],
           "options": {
             "jestConfig": "packages/ngx-ui/utils/get-enum-key/jest.config.js",
             "passWithNoTests": true
@@ -213,9 +202,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/utils/get-type"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/utils/get-type"],
           "options": {
             "jestConfig": "packages/ngx-ui/utils/get-type/jest.config.js",
             "passWithNoTests": true
@@ -244,17 +231,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/utils/id/src/**/*.ts",
-              "packages/ngx-ui/utils/id/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/utils/id/src/**/*.ts", "packages/ngx-ui/utils/id/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/utils/id"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/utils/id"],
           "options": {
             "jestConfig": "packages/ngx-ui/utils/id/jest.config.js",
             "passWithNoTests": true
@@ -291,9 +273,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/utils/is-number"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/utils/is-number"],
           "options": {
             "jestConfig": "packages/ngx-ui/utils/is-number/jest.config.js",
             "passWithNoTests": true
@@ -330,9 +310,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/utils/position"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/utils/position"],
           "options": {
             "jestConfig": "packages/ngx-ui/utils/position/jest.config.js",
             "passWithNoTests": true
@@ -369,9 +347,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/utils/throttle"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/utils/throttle"],
           "options": {
             "jestConfig": "packages/ngx-ui/utils/throttle/jest.config.js",
             "passWithNoTests": true
@@ -400,17 +376,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/types/src/**/*.ts",
-              "packages/ngx-ui/types/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/types/src/**/*.ts", "packages/ngx-ui/types/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/types"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/types"],
           "options": {
             "jestConfig": "packages/ngx-ui/types/jest.config.js",
             "passWithNoTests": true
@@ -447,9 +418,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/decorators/throttleable"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/decorators/throttleable"],
           "options": {
             "jestConfig": "packages/ngx-ui/decorators/throttleable/jest.config.js",
             "passWithNoTests": true
@@ -486,9 +455,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/decorators/debounceable"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/decorators/debounceable"],
           "options": {
             "jestConfig": "packages/ngx-ui/decorators/debounceable/jest.config.js",
             "passWithNoTests": true
@@ -517,17 +484,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/injection/src/**/*.ts",
-              "packages/ngx-ui/injection/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/injection/src/**/*.ts", "packages/ngx-ui/injection/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/injection"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/injection"],
           "options": {
             "jestConfig": "packages/ngx-ui/injection/jest.config.js",
             "passWithNoTests": true
@@ -564,9 +526,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/pipes/camel-to-snake"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/pipes/camel-to-snake"],
           "options": {
             "jestConfig": "packages/ngx-ui/pipes/camel-to-snake/jest.config.js",
             "passWithNoTests": true
@@ -603,9 +563,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/pipes/decamelize"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/pipes/decamelize"],
           "options": {
             "jestConfig": "packages/ngx-ui/pipes/decamelize/jest.config.js",
             "passWithNoTests": true
@@ -642,9 +600,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/pipes/time-zone"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/pipes/time-zone"],
           "options": {
             "jestConfig": "packages/ngx-ui/pipes/time-zone/jest.config.js",
             "passWithNoTests": true
@@ -681,9 +637,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/pipes/filter"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/pipes/filter"],
           "options": {
             "jestConfig": "packages/ngx-ui/pipes/filter/jest.config.js",
             "passWithNoTests": true
@@ -712,17 +666,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/animations/src/**/*.ts",
-              "packages/ngx-ui/animations/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/animations/src/**/*.ts", "packages/ngx-ui/animations/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/animations"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/animations"],
           "options": {
             "jestConfig": "packages/ngx-ui/animations/jest.config.js",
             "passWithNoTests": true
@@ -751,17 +700,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/button/src/**/*.ts",
-              "packages/ngx-ui/button/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/button/src/**/*.ts", "packages/ngx-ui/button/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/button"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/button"],
           "options": {
             "jestConfig": "packages/ngx-ui/button/jest.config.js",
             "passWithNoTests": true
@@ -784,19 +728,10 @@
             "polyfills": "packages/demo/src/polyfills.ts",
             "tsConfig": "packages/demo/tsconfig.app.json",
             "aot": true,
-            "assets": [
-              "packages/demo/src/favicon.ico",
-              "packages/demo/src/assets"
-            ],
-            "styles": [
-              "packages/demo/src/styles.scss",
-              "node_modules/prism-themes/themes/prism-dracula.css"
-            ],
+            "assets": ["packages/demo/src/favicon.ico", "packages/demo/src/assets"],
+            "styles": ["packages/demo/src/styles.scss", "node_modules/prism-themes/themes/prism-dracula.css"],
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "packages/ngx-ui/styles",
-                "packages/ngx-ui/assets"
-              ]
+              "includePaths": ["packages/ngx-ui/styles", "packages/ngx-ui/assets"]
             },
             "scripts": [
               "node_modules/marked/lib/marked.js",
@@ -859,10 +794,7 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/demo/src/**/*.ts",
-              "packages/demo/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/demo/src/**/*.ts", "packages/demo/src/**/*.html"]
           }
         }
       }
@@ -888,17 +820,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/nav-menu/src/**/*.ts",
-              "packages/ngx-ui/nav-menu/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/nav-menu/src/**/*.ts", "packages/ngx-ui/nav-menu/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/nav-menu"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/nav-menu"],
           "options": {
             "jestConfig": "packages/ngx-ui/nav-menu/jest.config.js",
             "passWithNoTests": true
@@ -927,17 +854,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/hotkeys/src/**/*.ts",
-              "packages/ngx-ui/hotkeys/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/hotkeys/src/**/*.ts", "packages/ngx-ui/hotkeys/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/hotkeys"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/hotkeys"],
           "options": {
             "jestConfig": "packages/ngx-ui/hotkeys/jest.config.js",
             "passWithNoTests": true
@@ -966,17 +888,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/di/src/**/*.ts",
-              "packages/ngx-ui/di/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/di/src/**/*.ts", "packages/ngx-ui/di/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/di"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/di"],
           "options": {
             "jestConfig": "packages/ngx-ui/di/jest.config.js",
             "passWithNoTests": true
@@ -1005,17 +922,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/destroyed/src/**/*.ts",
-              "packages/ngx-ui/destroyed/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/destroyed/src/**/*.ts", "packages/ngx-ui/destroyed/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/destroyed"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/destroyed"],
           "options": {
             "jestConfig": "packages/ngx-ui/destroyed/jest.config.js",
             "passWithNoTests": true
@@ -1044,17 +956,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/icon/src/**/*.ts",
-              "packages/ngx-ui/icon/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/icon/src/**/*.ts", "packages/ngx-ui/icon/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/icon"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/icon"],
           "options": {
             "jestConfig": "packages/ngx-ui/icon/jest.config.js",
             "passWithNoTests": true
@@ -1083,17 +990,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/tooltip/src/**/*.ts",
-              "packages/ngx-ui/tooltip/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/tooltip/src/**/*.ts", "packages/ngx-ui/tooltip/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/tooltip"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/tooltip"],
           "options": {
             "jestConfig": "packages/ngx-ui/tooltip/jest.config.js",
             "passWithNoTests": true
@@ -1122,17 +1024,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/toolbar/src/**/*.ts",
-              "packages/ngx-ui/toolbar/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/toolbar/src/**/*.ts", "packages/ngx-ui/toolbar/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/toolbar"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/toolbar"],
           "options": {
             "jestConfig": "packages/ngx-ui/toolbar/jest.config.js",
             "passWithNoTests": true
@@ -1161,17 +1058,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/dropdown/src/**/*.ts",
-              "packages/ngx-ui/dropdown/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/dropdown/src/**/*.ts", "packages/ngx-ui/dropdown/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/dropdown"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/dropdown"],
           "options": {
             "jestConfig": "packages/ngx-ui/dropdown/jest.config.js",
             "passWithNoTests": true
@@ -1200,17 +1092,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/input/src/**/*.ts",
-              "packages/ngx-ui/input/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/input/src/**/*.ts", "packages/ngx-ui/input/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/input"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/input"],
           "options": {
             "jestConfig": "packages/ngx-ui/input/jest.config.js",
             "passWithNoTests": true
@@ -1247,9 +1134,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/utils/queue-for-next-render"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/utils/queue-for-next-render"],
           "options": {
             "jestConfig": "packages/ngx-ui/utils/queue-for-next-render/jest.config.js",
             "passWithNoTests": true
@@ -1286,9 +1171,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/directives/long-press"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/directives/long-press"],
           "options": {
             "jestConfig": "packages/ngx-ui/directives/long-press/jest.config.js",
             "passWithNoTests": true
@@ -1325,9 +1208,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/directives/autosize-input"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/directives/autosize-input"],
           "options": {
             "jestConfig": "packages/ngx-ui/directives/autosize-input/jest.config.js",
             "passWithNoTests": true
@@ -1356,17 +1237,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/drawer/src/**/*.ts",
-              "packages/ngx-ui/drawer/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/drawer/src/**/*.ts", "packages/ngx-ui/drawer/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/drawer"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/drawer"],
           "options": {
             "jestConfig": "packages/ngx-ui/drawer/jest.config.js",
             "passWithNoTests": true
@@ -1395,17 +1271,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/overlay/src/**/*.ts",
-              "packages/ngx-ui/overlay/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/overlay/src/**/*.ts", "packages/ngx-ui/overlay/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/overlay"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/overlay"],
           "options": {
             "jestConfig": "packages/ngx-ui/overlay/jest.config.js",
             "passWithNoTests": true
@@ -1434,17 +1305,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/loading/src/**/*.ts",
-              "packages/ngx-ui/loading/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/loading/src/**/*.ts", "packages/ngx-ui/loading/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/loading"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/loading"],
           "options": {
             "jestConfig": "packages/ngx-ui/loading/jest.config.js",
             "passWithNoTests": true
@@ -1473,17 +1339,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/section/src/**/*.ts",
-              "packages/ngx-ui/section/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/section/src/**/*.ts", "packages/ngx-ui/section/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/section"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/section"],
           "options": {
             "jestConfig": "packages/ngx-ui/section/jest.config.js",
             "passWithNoTests": true
@@ -1520,9 +1381,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/utils/json-to-tree"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/utils/json-to-tree"],
           "options": {
             "jestConfig": "packages/ngx-ui/utils/json-to-tree/jest.config.js",
             "passWithNoTests": true
@@ -1559,9 +1418,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/pipes/json-tree"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/pipes/json-tree"],
           "options": {
             "jestConfig": "packages/ngx-ui/pipes/json-tree/jest.config.js",
             "passWithNoTests": true
@@ -1590,17 +1447,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/tabs/src/**/*.ts",
-              "packages/ngx-ui/tabs/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/tabs/src/**/*.ts", "packages/ngx-ui/tabs/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/tabs"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/tabs"],
           "options": {
             "jestConfig": "packages/ngx-ui/tabs/jest.config.js",
             "passWithNoTests": true
@@ -1629,17 +1481,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/file-button/src/**/*.ts",
-              "packages/ngx-ui/file-button/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/file-button/src/**/*.ts", "packages/ngx-ui/file-button/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/file-button"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/file-button"],
           "options": {
             "jestConfig": "packages/ngx-ui/file-button/jest.config.js",
             "passWithNoTests": true
@@ -1676,9 +1523,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/long-press-button"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/long-press-button"],
           "options": {
             "jestConfig": "packages/ngx-ui/long-press-button/jest.config.js",
             "passWithNoTests": true
@@ -1707,17 +1552,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/calendar/src/**/*.ts",
-              "packages/ngx-ui/calendar/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/calendar/src/**/*.ts", "packages/ngx-ui/calendar/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/calendar"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/calendar"],
           "options": {
             "jestConfig": "packages/ngx-ui/calendar/jest.config.js",
             "passWithNoTests": true
@@ -1746,17 +1586,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/checkbox/src/**/*.ts",
-              "packages/ngx-ui/checkbox/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/checkbox/src/**/*.ts", "packages/ngx-ui/checkbox/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/checkbox"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/checkbox"],
           "options": {
             "jestConfig": "packages/ngx-ui/checkbox/jest.config.js",
             "passWithNoTests": true
@@ -1785,17 +1620,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/card/src/**/*.ts",
-              "packages/ngx-ui/card/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/card/src/**/*.ts", "packages/ngx-ui/card/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/card"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/card"],
           "options": {
             "jestConfig": "packages/ngx-ui/card/jest.config.js",
             "passWithNoTests": true
@@ -1824,17 +1654,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/code-editor/src/**/*.ts",
-              "packages/ngx-ui/code-editor/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/code-editor/src/**/*.ts", "packages/ngx-ui/code-editor/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/code-editor"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/code-editor"],
           "options": {
             "jestConfig": "packages/ngx-ui/code-editor/jest.config.js",
             "passWithNoTests": true
@@ -1871,9 +1696,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/directives/visibility"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/directives/visibility"],
           "options": {
             "jestConfig": "packages/ngx-ui/directives/visibility/jest.config.js",
             "passWithNoTests": true
@@ -1902,17 +1725,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/date-time/src/**/*.ts",
-              "packages/ngx-ui/date-time/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/date-time/src/**/*.ts", "packages/ngx-ui/date-time/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/date-time"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/date-time"],
           "options": {
             "jestConfig": "packages/ngx-ui/date-time/jest.config.js",
             "passWithNoTests": true
@@ -1941,17 +1759,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/dialog/src/**/*.ts",
-              "packages/ngx-ui/dialog/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/dialog/src/**/*.ts", "packages/ngx-ui/dialog/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/dialog"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/dialog"],
           "options": {
             "jestConfig": "packages/ngx-ui/dialog/jest.config.js",
             "passWithNoTests": true
@@ -1980,17 +1793,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/alert/src/**/*.ts",
-              "packages/ngx-ui/alert/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/alert/src/**/*.ts", "packages/ngx-ui/alert/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/alert"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/alert"],
           "options": {
             "jestConfig": "packages/ngx-ui/alert/jest.config.js",
             "passWithNoTests": true
@@ -2019,17 +1827,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/select/src/**/*.ts",
-              "packages/ngx-ui/select/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/select/src/**/*.ts", "packages/ngx-ui/select/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/select"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/select"],
           "options": {
             "jestConfig": "packages/ngx-ui/select/jest.config.js",
             "passWithNoTests": true
@@ -2066,9 +1869,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/decorators/input-boolean"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/decorators/input-boolean"],
           "options": {
             "jestConfig": "packages/ngx-ui/decorators/input-boolean/jest.config.js",
             "passWithNoTests": true
@@ -2105,9 +1906,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/decorators/input-numeric"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/decorators/input-numeric"],
           "options": {
             "jestConfig": "packages/ngx-ui/decorators/input-numeric/jest.config.js",
             "passWithNoTests": true
@@ -2144,9 +1943,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/decorators/input-css-pixel"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/decorators/input-css-pixel"],
           "options": {
             "jestConfig": "packages/ngx-ui/decorators/input-css-pixel/jest.config.js",
             "passWithNoTests": true
@@ -2183,9 +1980,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/decorators/input-enum"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/decorators/input-enum"],
           "options": {
             "jestConfig": "packages/ngx-ui/decorators/input-enum/jest.config.js",
             "passWithNoTests": true
@@ -2214,17 +2009,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/json-editor/src/**/*.ts",
-              "packages/ngx-ui/json-editor/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/json-editor/src/**/*.ts", "packages/ngx-ui/json-editor/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/json-editor"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/json-editor"],
           "options": {
             "jestConfig": "packages/ngx-ui/json-editor/jest.config.js",
             "passWithNoTests": true
@@ -2253,17 +2043,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/toggle/src/**/*.ts",
-              "packages/ngx-ui/toggle/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/toggle/src/**/*.ts", "packages/ngx-ui/toggle/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/toggle"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/toggle"],
           "options": {
             "jestConfig": "packages/ngx-ui/toggle/jest.config.js",
             "passWithNoTests": true
@@ -2292,17 +2077,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/nag/src/**/*.ts",
-              "packages/ngx-ui/nag/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/nag/src/**/*.ts", "packages/ngx-ui/nag/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/nag"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/nag"],
           "options": {
             "jestConfig": "packages/ngx-ui/nag/jest.config.js",
             "passWithNoTests": true
@@ -2339,9 +2119,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/notification"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/notification"],
           "options": {
             "jestConfig": "packages/ngx-ui/notification/jest.config.js",
             "passWithNoTests": true
@@ -2370,17 +2148,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/navbar/src/**/*.ts",
-              "packages/ngx-ui/navbar/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/navbar/src/**/*.ts", "packages/ngx-ui/navbar/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/navbar"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/navbar"],
           "options": {
             "jestConfig": "packages/ngx-ui/navbar/jest.config.js",
             "passWithNoTests": true
@@ -2409,17 +2182,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/plus-menu/src/**/*.ts",
-              "packages/ngx-ui/plus-menu/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/plus-menu/src/**/*.ts", "packages/ngx-ui/plus-menu/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/plus-menu"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/plus-menu"],
           "options": {
             "jestConfig": "packages/ngx-ui/plus-menu/jest.config.js",
             "passWithNoTests": true
@@ -2456,9 +2224,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/progress-spinner"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/progress-spinner"],
           "options": {
             "jestConfig": "packages/ngx-ui/progress-spinner/jest.config.js",
             "passWithNoTests": true
@@ -2487,17 +2253,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/radiobutton/src/**/*.ts",
-              "packages/ngx-ui/radiobutton/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/radiobutton/src/**/*.ts", "packages/ngx-ui/radiobutton/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/radiobutton"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/radiobutton"],
           "options": {
             "jestConfig": "packages/ngx-ui/radiobutton/jest.config.js",
             "passWithNoTests": true
@@ -2526,17 +2287,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/slider/src/**/*.ts",
-              "packages/ngx-ui/slider/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/slider/src/**/*.ts", "packages/ngx-ui/slider/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/slider"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/slider"],
           "options": {
             "jestConfig": "packages/ngx-ui/slider/jest.config.js",
             "passWithNoTests": true
@@ -2565,17 +2321,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/split/src/**/*.ts",
-              "packages/ngx-ui/split/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/split/src/**/*.ts", "packages/ngx-ui/split/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/split"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/split"],
           "options": {
             "jestConfig": "packages/ngx-ui/split/jest.config.js",
             "passWithNoTests": true
@@ -2604,17 +2355,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/stepper/src/**/*.ts",
-              "packages/ngx-ui/stepper/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/stepper/src/**/*.ts", "packages/ngx-ui/stepper/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/stepper"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/stepper"],
           "options": {
             "jestConfig": "packages/ngx-ui/stepper/jest.config.js",
             "passWithNoTests": true
@@ -2651,9 +2397,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/directives/resize-observer"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/directives/resize-observer"],
           "options": {
             "jestConfig": "packages/ngx-ui/directives/resize-observer/jest.config.js",
             "passWithNoTests": true
@@ -2682,17 +2426,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/tip/src/**/*.ts",
-              "packages/ngx-ui/tip/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/tip/src/**/*.ts", "packages/ngx-ui/tip/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/tip"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/tip"],
           "options": {
             "jestConfig": "packages/ngx-ui/tip/jest.config.js",
             "passWithNoTests": true
@@ -2721,17 +2460,12 @@
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "packages/ngx-ui/tree/src/**/*.ts",
-              "packages/ngx-ui/tree/src/**/*.html"
-            ]
+            "lintFilePatterns": ["packages/ngx-ui/tree/src/**/*.ts", "packages/ngx-ui/tree/src/**/*.html"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/tree"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/tree"],
           "options": {
             "jestConfig": "packages/ngx-ui/tree/jest.config.js",
             "passWithNoTests": true
@@ -2768,9 +2502,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/packages/ngx-ui/directives/copy-to-clipboard"
-          ],
+          "outputs": ["coverage/packages/ngx-ui/directives/copy-to-clipboard"],
           "options": {
             "jestConfig": "packages/ngx-ui/directives/copy-to-clipboard/jest.config.js",
             "passWithNoTests": true

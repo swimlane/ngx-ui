@@ -4,9 +4,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   selector: 'demo-icon-block',
   template: `
     <ng-container *ngIf="stacked; else normal">
-      <div
-        class="h-32 flex items-center justify-center shadow-2 shadow-fx border border-gray-800 rounded"
-      >
+      <div class="h-32 flex items-center justify-center shadow-2 shadow-fx border border-gray-800 rounded">
         <ng-content></ng-content>
       </div>
     </ng-container>
@@ -31,17 +29,13 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
       </ng-template>
 
       <ng-template #child>
-        <ngx-icon
-          class="text-4xl"
-          [class]="extraIconClasses"
-          [fontIcon]="icon"
-        ></ngx-icon>
+        <ngx-icon class="text-4xl" [class]="extraIconClasses" [fontIcon]="icon"></ngx-icon>
         <code class="text-xs tracking-tight">{{ code }}</code>
       </ng-template>
     </ng-template>
   `,
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconBlockComponent {
   @Input() stacked = false;

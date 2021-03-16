@@ -28,10 +28,7 @@
         <div class="label">Description</div>
         <div>{{ description }}</div>
       </div>
-      <div
-        *ngIf="description && compressed && examples?.length"
-        class="separator"
-      ></div>
+      <div *ngIf="description && compressed && examples?.length" class="separator"></div>
       <ng-container *ngIf="examples?.length">
         <div class="label">Examples</div>
         <div *ngFor="let example of examples">{{ example }}</div>
@@ -52,11 +49,7 @@
 <!-- Type info -->
 <div class="info-type">
   <span class="type">{{ type }}</span>
-  <ngx-icon
-    *ngIf="propertyName"
-    class="dot-separator"
-    fontIcon="circle-filled"
-  ></ngx-icon>
+  <ngx-icon *ngIf="propertyName" class="dot-separator" fontIcon="circle-filled"></ngx-icon>
   <span
     class="property-name"
     ngx-tooltip

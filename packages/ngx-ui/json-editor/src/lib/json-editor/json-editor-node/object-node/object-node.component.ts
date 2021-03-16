@@ -11,9 +11,9 @@ import { ObjectNode } from '../../../directives';
       .invalid {
         border: 1px solid #e02f00;
       }
-    `,
+    `
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ObjectNodeComponent extends ObjectNode {
   static ngAcceptInputType_isDuplicated: BooleanInput;

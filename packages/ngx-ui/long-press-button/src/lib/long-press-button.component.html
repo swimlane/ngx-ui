@@ -22,15 +22,7 @@
     </g>
   </svg>
   <button [disabled]="disabled">
-    <ngx-icon
-      *ngIf="state === 'active'"
-      class="icon"
-      [fontIcon]="icon"
-    ></ngx-icon>
-    <ngx-icon
-      *ngIf="state === 'submitted'"
-      class="icon"
-      fontIcon="check"
-    ></ngx-icon>
+    <ngx-icon *ngIf="state === 'active'" class="icon" [fontIcon]="icon"></ngx-icon>
+    <ngx-icon *ngIf="state === 'submitted'" class="icon" fontIcon="check"></ngx-icon>
   </button>
 </div>

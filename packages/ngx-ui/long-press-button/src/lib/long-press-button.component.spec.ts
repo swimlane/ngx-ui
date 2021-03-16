@@ -8,9 +8,8 @@ describe('LongPressButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LongPressButtonComponent ]
-    })
-    .compileComponents();
+      declarations: [LongPressButtonComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

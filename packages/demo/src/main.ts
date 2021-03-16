@@ -13,4 +13,4 @@ platformBrowserDynamic()
     defaultEncapsulation: ViewEncapsulation.None,
     preserveWhitespaces: true
   })
-  .catch((err) => console.error(err));
+  .catch(err => console.error(err));

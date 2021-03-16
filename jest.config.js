@@ -67,6 +67,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/directives/resize-observer',
     '<rootDir>/packages/ngx-ui/tip',
     '<rootDir>/packages/ngx-ui/tree',
-    '<rootDir>/packages/ngx-ui/directives/copy-to-clipboard',
-  ],
+    '<rootDir>/packages/ngx-ui/directives/copy-to-clipboard'
+  ]
 };

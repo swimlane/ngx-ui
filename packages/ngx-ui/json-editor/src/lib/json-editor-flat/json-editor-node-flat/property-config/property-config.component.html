@@ -57,11 +57,7 @@
         <!-- FORMAT -->
         <ngx-select
           class="prop-types-formats"
-          *ngIf="
-            editableProperty.type === 'string' &&
-            formats?.length &&
-            !editableProperty.enum?.length
-          "
+          *ngIf="editableProperty.type === 'string' && formats?.length && !editableProperty.enum?.length"
           [filterable]="false"
           [ngModel]="[editableProperty.format]"
           (ngModelChange)="updateFormat($event[0])"
@@ -114,69 +110,33 @@
         </ng-container>
 
         <!-- CONSTRAINS -->
-        <div
-          class="constrain-row"
-          *ngIf="
-            editableProperty.type === 'number' ||
-            editableProperty.type === 'integer'
-          "
-        >
-          <ngx-input
-            type="number"
-            [(ngModel)]="editableProperty.minimum"
-            [label]="'MINIMUM'"
-          ></ngx-input>
+        <div class="constrain-row" *ngIf="editableProperty.type === 'number' || editableProperty.type === 'integer'">
+          <ngx-input type="number" [(ngModel)]="editableProperty.minimum" [label]="'MINIMUM'"></ngx-input>
 
-          <ngx-input
-            type="number"
-            [(ngModel)]="editableProperty.maximum"
-            [label]="'MAXIMUM'"
-          ></ngx-input>
+          <ngx-input type="number" [(ngModel)]="editableProperty.maximum" [label]="'MAXIMUM'"></ngx-input>
         </div>
 
         <div class="constrain-row" *ngIf="editableProperty.type === 'string'">
-          <ngx-input
-            type="number"
-            [(ngModel)]="editableProperty.minLength"
-            [label]="'MINIMUM LENGTH'"
-          ></ngx-input>
+          <ngx-input type="number" [(ngModel)]="editableProperty.minLength" [label]="'MINIMUM LENGTH'"></ngx-input>
 
-          <ngx-input
-            type="number"
-            [(ngModel)]="editableProperty.maxLength"
-            [label]="'MAXIMUM LENGTH'"
-          ></ngx-input>
+          <ngx-input type="number" [(ngModel)]="editableProperty.maxLength" [label]="'MAXIMUM LENGTH'"></ngx-input>
         </div>
 
         <div class="constrain-row" *ngIf="editableProperty.type === 'array'">
-          <ngx-input
-            type="number"
-            [(ngModel)]="editableProperty.minItems"
-            [label]="'MIN ITEMS'"
-          ></ngx-input>
-          <ngx-input
-            type="number"
-            [(ngModel)]="editableProperty.maxItems"
-            [label]="'MAX ITEMS'"
-          ></ngx-input>
+          <ngx-input type="number" [(ngModel)]="editableProperty.minItems" [label]="'MIN ITEMS'"></ngx-input>
+          <ngx-input type="number" [(ngModel)]="editableProperty.maxItems" [label]="'MAX ITEMS'"></ngx-input>
         </div>
 
         <!-- PATTERN -->
         <ngx-input
           type="text"
-          *ngIf="
-            ['string', 'number', 'integer'].includes(
-              $any(editableProperty.type)
-            )
-          "
+          *ngIf="['string', 'number', 'integer'].includes($any(editableProperty.type))"
           [(ngModel)]="editableProperty.pattern"
           [label]="'PATTERN TO MATCH'"
         ></ngx-input>
 
         <!-- REQUIRED -->
-        <ngx-checkbox *ngIf="!arrayItem" [(ngModel)]="required">
-          Required
-        </ngx-checkbox>
+        <ngx-checkbox *ngIf="!arrayItem" [(ngModel)]="required">Required</ngx-checkbox>
       </ng-container>
     </ngx-tab>
     <ngx-tab label="EXAMPLE VALUES">

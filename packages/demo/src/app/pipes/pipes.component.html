@@ -2,9 +2,7 @@
 
 <ngx-section class="shadow" sectionTitle="Decamelize">
   <demo-markdown ngPreserveWhitespaces>
-    ```ts
-    import {{ '{' }} DecamelizeModule {{ '}' }} from '@swimlane/ngx-ui/pipes/decamelize';
-    ```
+    ```ts import {{ '{' }} DecamelizeModule {{ '}' }} from '@swimlane/ngx-ui/pipes/decamelize'; ```
   </demo-markdown>
 
   {{ 'decamelizePipe' | decamelize }}
@@ -13,21 +11,18 @@
 
   <demo-markdown ngPreserveWhitespaces>
     ```html
-    {{ '{{' }} 'decamelizePipe' | decamelize {{ '}\}' }}
-    {{ '{{' }} 'fooBar' | decamelize {{ '}\}' }}
+    {{ '{{' }} 'decamelizePipe' | decamelize {{ '}\}' }} {{ '{{' }} 'fooBar' | decamelize {{ '}\}' }}
     ```
   </demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="TimeZone">
   <demo-markdown ngPreserveWhitespaces>
-    ```ts
-    import {{ '{' }} TimeZoneModule {{ '}' }} from '@swimlane/ngx-ui/pipes/time-zone';
-    ```
+    ```ts import {{ '{' }} TimeZoneModule {{ '}' }} from '@swimlane/ngx-ui/pipes/time-zone'; ```
   </demo-markdown>
 
-  <p>Local: {{date}}</p>
-  <p>America/Los_Angeles: {{date | timeZone:'America/Los_Angeles'}}</p>
+  <p>Local: {{ date }}</p>
+  <p>America/Los_Angeles: {{ date | timeZone: 'America/Los_Angeles' }}</p>
 
   <demo-markdown ngPreserveWhitespaces>
     ```html
@@ -38,14 +33,12 @@
 
 <ngx-section class="shadow" sectionTitle="Filter">
   <demo-markdown ngPreserveWhitespaces>
-    ```ts
-    import {{ '{' }} FilterModule {{ '}' }} from '@swimlane/ngx-ui/pipes/filter';
-    ```
+    ```ts import {{ '{' }} FilterModule {{ '}' }} from '@swimlane/ngx-ui/pipes/filter'; ```
   </demo-markdown>
 
   <ngx-input type="text" [(ngModel)]="stringFilter" placeholder="Filter by"></ngx-input>
   <ul>
-    <li *ngFor='let item of array | filterBy:stringFilter'>
+    <li *ngFor="let item of array | filterBy: stringFilter">
       {{ item }}
     </li>
   </ul>
@@ -59,12 +52,10 @@
 
 <ngx-section class="shadow" sectionTitle="JSON Tree">
   <demo-markdown ngPreserveWhitespaces>
-    ```ts
-    import {{ '{' }} JsonTreeModule {{ '}' }} from '@swimlane/ngx-ui/pipes/json-tree';
-    ```
+    ```ts import {{ '{' }} JsonTreeModule {{ '}' }} from '@swimlane/ngx-ui/pipes/json-tree'; ```
   </demo-markdown>
 
-  <pre>{{jsonObject | jsonTree | json}}</pre>
+  <pre>{{ jsonObject | jsonTree | json }}</pre>
 
   <demo-markdown ngPreserveWhitespaces>
     ```html

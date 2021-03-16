@@ -6,11 +6,7 @@
   </div>
 </div>
 
-<div
-  *ngIf="status && !statusTooltip"
-  class="ngx-card--status"
-  [ngClass]="status"
-></div>
+<div *ngIf="status && !statusTooltip" class="ngx-card--status" [ngClass]="status"></div>
 <div
   *ngIf="status && statusTooltip"
   class="ngx-card--status"

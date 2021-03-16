@@ -3,7 +3,7 @@ import { Inject, Pipe, PipeTransform } from '@angular/core';
 import * as tinycolor from 'tinycolor2';
 
 @Pipe({
-  name: 'bgHex',
+  name: 'bgHex'
 })
 export class BgHexPipe implements PipeTransform {
   constructor(@Inject(DOCUMENT) private readonly document: Document) {}

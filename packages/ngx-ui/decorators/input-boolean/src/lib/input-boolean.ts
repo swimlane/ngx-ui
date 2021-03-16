@@ -11,7 +11,7 @@ export function InputBoolean(): PropertyDecorator {
       },
       set(v: unknown) {
         this[coercedBooleanKey] = coerceBooleanProperty(v);
-      },
+      }
     });
   };
 }

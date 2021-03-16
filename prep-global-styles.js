@@ -10,19 +10,15 @@ const fs = require('fs'),
 
 const { version } = require('./packages/ngx-ui/package.json');
 
-const copyDir = (dir) =>
+const copyDir = dir =>
   new Promise((resolve, reject) => {
     console.log(`Copying ${dir}...`);
-    cpx.copy(
-      `packages/ngx-ui/${dir}/**/*`,
-      `dist/packages/ngx-ui/${dir}`,
-      (err) => {
-        if (err) {
-          return reject(err);
-        }
-        resolve();
+    cpx.copy(`packages/ngx-ui/${dir}/**/*`, `dist/packages/ngx-ui/${dir}`, err => {
+      if (err) {
+        return reject(err);
       }
-    );
+      resolve();
+    });
   });
 
 const compileCss = () =>
@@ -35,10 +31,7 @@ const compileCss = () =>
       sass.render(
         {
           data: `$pkgVersion:'${version}';${data}`,
-          includePaths: [
-            'dist/packages/ngx-ui/styles',
-            'dist/packages/ngx-ui/assets',
-          ],
+          includePaths: ['dist/packages/ngx-ui/styles', 'dist/packages/ngx-ui/assets']
         },
         (err, result) => {
           if (err) {
@@ -51,67 +44,51 @@ const compileCss = () =>
                 {
                   filter: '../../assets/**/*',
                   url: 'copy',
-                  basePath: path.resolve(
-                    __dirname,
-                    './dist/packages/ngx-ui/styles/fonts'
-                  ),
-                  assetsPath: path.resolve(
-                    __dirname,
-                    './dist/packages/ngx-ui'
-                  ),
-                  useHash: true,
+                  basePath: path.resolve(__dirname, './dist/packages/ngx-ui/styles/fonts'),
+                  assetsPath: path.resolve(__dirname, './dist/packages/ngx-ui'),
+                  useHash: true
                 },
                 {
                   filter: '../../assets/**/*',
                   url: ({ url }) => path.basename(url),
-                  multi: true,
+                  multi: true
                 },
                 {
                   filter: '../fonts/**/*',
                   url: 'copy',
-                  basePath: path.resolve(
-                    __dirname,
-                    './dist/packages/ngx-ui/assets/icons/iconfont/scss'
-                  ),
-                  assetsPath: path.resolve(
-                    __dirname,
-                    './dist/packages/ngx-ui'
-                  ),
-                  useHash: true,
+                  basePath: path.resolve(__dirname, './dist/packages/ngx-ui/assets/icons/iconfont/scss'),
+                  assetsPath: path.resolve(__dirname, './dist/packages/ngx-ui'),
+                  useHash: true
                 },
                 {
                   filter: '../fonts/**/*',
                   url: ({ url }) => path.basename(url),
-                  multi: true,
-                },
+                  multi: true
+                }
               ])
             )
             .process(result.css, { from: undefined })
             .then(({ css }) => {
               const cssMinifier = new CleanCss();
               const minifiedCss = cssMinifier.minify(css).styles;
-              fs.writeFile(
-                'dist/packages/ngx-ui/index.css',
-                minifiedCss,
-                (err) => {
-                  if (err) {
-                    return reject(err);
-                  }
-                  resolve();
+              fs.writeFile('dist/packages/ngx-ui/index.css', minifiedCss, err => {
+                if (err) {
+                  return reject(err);
                 }
-              );
+                resolve();
+              });
             });
         }
       );
     });
   });
 
-Promise.all(['assets', 'styles'].map((dir) => copyDir(dir)))
+Promise.all(['assets', 'styles'].map(dir => copyDir(dir)))
   .then(() => compileCss())
   .then(() => {
     console.log('Done.');
   })
-  .catch((err) => {
+  .catch(err => {
     console.error(err);
     process.exit(1);
   });

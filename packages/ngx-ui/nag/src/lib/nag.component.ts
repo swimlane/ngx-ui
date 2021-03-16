@@ -9,7 +9,7 @@ import {
   OnDestroy,
   Output,
   SimpleChanges,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { bounceAnimation } from '@swimlane/ngx-ui/animations';
 import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
@@ -17,7 +17,7 @@ import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
 const enum NagState {
   open = 'open',
   peek = 'peek',
-  closed = 'closed',
+  closed = 'closed'
 }
 
 @Component({
@@ -27,7 +27,7 @@ const enum NagState {
   styleUrls: ['./nag.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [trigger('bounce', bounceAnimation())],
+  animations: [trigger('bounce', bounceAnimation())]
 })
 export class NagComponent implements OnDestroy, OnChanges {
   @Input() cssClass = '';
@@ -68,10 +68,7 @@ export class NagComponent implements OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (
-      changes.hide &&
-      changes.hide.currentValue !== changes.hide.previousValue
-    ) {
+    if (changes.hide && changes.hide.currentValue !== changes.hide.previousValue) {
       if (changes.hide.currentValue === true) {
         // nag is hidden external from component
         this.state = NagState.closed;

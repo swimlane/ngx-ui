@@ -6,47 +6,47 @@ export const jsonSchemaDataFormats: JsonSchemaDataType[] = [
     defaultValue: () => '',
     schema: {
       type: 'string',
-      format: 'date',
+      format: 'date'
     },
     icon: 'field-date',
     matchType: (): boolean => {
       return false; // needs to be overriden
-    },
+    }
   },
   {
     name: 'Date & Time',
     defaultValue: () => '',
     schema: {
       type: 'string',
-      format: 'date-time',
+      format: 'date-time'
     },
     icon: 'field-date',
     matchType: (): boolean => {
       return false; // needs to be overriden
-    },
+    }
   },
   {
     name: 'Password',
     defaultValue: () => '',
     schema: {
       type: 'string',
-      format: 'password',
+      format: 'password'
     },
     icon: 'lock',
     matchType: (): boolean => {
       return false; // needs to be overriden
-    },
+    }
   },
   {
     name: 'Code',
     defaultValue: () => '',
     schema: {
       type: 'string',
-      format: 'code',
+      format: 'code'
     },
     icon: 'code',
     matchType: (): boolean => {
       return false; // needs to be overriden
-    },
-  },
+    }
+  }
 ];

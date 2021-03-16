@@ -1,11 +1,5 @@
 import type { BooleanInput } from '@angular/cdk/coercion';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 
 @Component({
@@ -14,7 +8,7 @@ import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavMenuComponent {
   static ngAcceptInputType_expanded: BooleanInput;

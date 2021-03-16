@@ -1,59 +1,33 @@
 <div *ngIf="model !== undefined" class="json-tree-node-flat">
   <div class="node-container" *ngIf="!(nextLevel === -1 && hideRoot)">
-    <div
-      class="indentation"
-      *ngIf="nextLevel > 0"
-      [style.left]="-1 * (nextLevel * 20) + 'px'"
-    >
-      <span
-        class="json-editor--vertical-separator"
-        *ngFor="let separator of indentationArray"
-      ></span>
+    <div class="indentation" *ngIf="nextLevel > 0" [style.left]="-1 * (nextLevel * 20) + 'px'">
+      <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
     </div>
     <div class="node" [class.compressed]="compressed">
-      <div
-        class="error-box"
-        *ngIf="(!valid && !schemaBuilderMode) || isDuplicated"
-      ></div>
+      <div class="error-box" *ngIf="(!valid && !schemaBuilderMode) || isDuplicated"></div>
 
       <div class="left-options">
         <ng-container *ngIf="hideRoot || (nextLevel > 0 && !arrayItem)">
           <div class="required-indicator">
             <span
               *ngIf="required"
-              [class.invalid]="
-                (!childrenValid && !schemaBuilderMode) || isDuplicated
-              "
+              [class.invalid]="(!childrenValid && !schemaBuilderMode) || isDuplicated"
               [innerHtml]="requiredIndicator"
             ></span>
-            <span
-              *ngIf="!required && schemaBuilderMode"
-              class="not-required"
-              [innerHtml]="requiredIndicator"
-            ></span>
+            <span *ngIf="!required && schemaBuilderMode" class="not-required" [innerHtml]="requiredIndicator"></span>
           </div>
           <ng-content select="[cdkDragHandle]"></ng-content>
         </ng-container>
       </div>
 
-      <div
-        class="node-content"
-        [class.extra-margin]="schema.nameEditable && !schemaBuilderMode"
-      >
+      <div class="node-content" [class.extra-margin]="schema.nameEditable && !schemaBuilderMode">
         <div class="node-info">
           <ngx-json-editor-node-info
             [nameEditable]="!!schema.nameEditable && !schemaBuilderMode"
             [propertyName]="arrayName ? arrayName : schema?.propertyName"
             (propertyNameChange)="updatePropertyName(schema.id!, $event)"
-            [title]="
-              schema?.title ||
-              label ||
-              (arrayItem ? 'Items' : schema?.propertyName)
-            "
-            [type]="
-              ($any(schema?.format || schema?.type) | titlecase) +
-              (schema?.enum?.length ? ' + Enum' : '')
-            "
+            [title]="schema?.title || label || (arrayItem ? 'Items' : schema?.propertyName)"
+            [type]="($any(schema?.format || schema?.type) | titlecase) + (schema?.enum?.length ? ' + Enum' : '')"
             [description]="schema?.description"
             [examples]="$any(schema?.examples)"
             [compressed]="compressed!"
@@ -161,12 +135,7 @@
               >
                 <ngx-input-suffix>
                   <button [disabled]="isDuplicated" (click)="openCodeEditor()">
-                    <ngx-icon
-                      fontIcon="edit"
-                      class="edit-code-icon"
-                      ngx-tooltip
-                      tooltipTitle="Edit Code"
-                    ></ngx-icon>
+                    <ngx-icon fontIcon="edit" class="edit-code-icon" ngx-tooltip tooltipTitle="Edit Code"></ngx-icon>
                   </button>
                 </ngx-input-suffix>
               </ngx-input>
@@ -210,24 +179,12 @@
         </div>
 
         <div *ngIf="schemaBuilderMode" class="node-constrains">
-          <div class="tag" *ngIf="schema.minItems">
-            Min Items: {{ schema.minItems }}
-          </div>
-          <div class="tag" *ngIf="schema.maxItems">
-            Max Items: {{ schema.maxItems }}
-          </div>
-          <div class="tag" *ngIf="schema.minimum">
-            Minimum: {{ schema.minimum }}
-          </div>
-          <div class="tag" *ngIf="schema.maximum">
-            Maximum: {{ schema.maximum }}
-          </div>
-          <div class="tag" *ngIf="schema.minLength">
-            Min Length: {{ schema.minLength }}
-          </div>
-          <div class="tag" *ngIf="schema.maxLength">
-            Max Length: {{ schema.maxLength }}
-          </div>
+          <div class="tag" *ngIf="schema.minItems">Min Items: {{ schema.minItems }}</div>
+          <div class="tag" *ngIf="schema.maxItems">Max Items: {{ schema.maxItems }}</div>
+          <div class="tag" *ngIf="schema.minimum">Minimum: {{ schema.minimum }}</div>
+          <div class="tag" *ngIf="schema.maximum">Maximum: {{ schema.maximum }}</div>
+          <div class="tag" *ngIf="schema.minLength">Min Length: {{ schema.minLength }}</div>
+          <div class="tag" *ngIf="schema.maxLength">Max Length: {{ schema.maxLength }}</div>
           <div class="tag" *ngIf="schema.pattern">Pattern: Yes</div>
         </div>
         <ng-content select="[node-options]"></ng-content>

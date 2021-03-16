@@ -26,7 +26,7 @@
   $color-s: var(#{$color-css-var}-s);
   $color-l: var(#{$color-css-var}-l);
 
-  @if($percentage == 0) {
+  @if ($percentage == 0) {
     @return hsl($color-h, $color-s, $color-l);
   }
 
@@ -42,18 +42,15 @@
   --ngx-ui-shadow-key-penumbra-opacity: 0.14;
   --ngx-ui-shadow-ambient-shadow-opacity: 0.12;
 
-  --ngx-ui-shadow-1: 0 1px 3px 0
-      rgba(0, 0, 0, var(--ngx-ui-shadow-key-umbra-opacity)),
+  --ngx-ui-shadow-1: 0 1px 3px 0 rgba(0, 0, 0, var(--ngx-ui-shadow-key-umbra-opacity)),
     0 1px 1px 0 rgba(0, 0, 0, var(--ngx-ui-shadow-key-penumbra-opacity)),
     0 2px 1px -1px rgba(0, 0, 0, var(--ngx-ui-shadow-ambient-shadow-opacity));
 
-  --ngx-ui-shadow-2: 0 1px 5px 0
-      rgba(0, 0, 0, var(--ngx-ui-shadow-key-umbra-opacity)),
+  --ngx-ui-shadow-2: 0 1px 5px 0 rgba(0, 0, 0, var(--ngx-ui-shadow-key-umbra-opacity)),
     0 2px 2px 0 rgba(0, 0, 0, var(--ngx-ui-shadow-key-penumbra-opacity)),
     0 3px 1px -2px rgba(0, 0, 0, var(--ngx-ui-shadow-ambient-shadow-opacity));
 
-  --ngx-ui-shadow-3: 0 1px 8px 0
-      rgba(0, 0, 0, var(--ngx-ui-shadow-key-umbra-opacity)),
+  --ngx-ui-shadow-3: 0 1px 8px 0 rgba(0, 0, 0, var(--ngx-ui-shadow-key-umbra-opacity)),
     0 3px 4px 0 rgba(0, 0, 0, var(--ngx-ui-shadow-key-penumbra-opacity)),
     0 3px 3px -2px rgba(0, 0, 0, var(--ngx-ui-shadow-ambient-shadow-opacity));
 
@@ -142,41 +139,13 @@
     0 9px 46px 8px rgba(0, 0, 0, var(--ngx-ui-shadow-ambient-shadow-opacity));
 
   // Gradient
-  --ngx-ui-gradient-blue: linear-gradient(
-    to top right,
-    #6bd1f9 0%,
-    #54a4fb 100%
-  );
-  --ngx-ui-gradient-blue-green: linear-gradient(
-    to top right,
-    #69d1f8 0%,
-    #59e6c8 100%
-  );
-  --ngx-ui-gradient-blue-red: linear-gradient(
-    to top right,
-    #50a1f9 0%,
-    #f96f50 100%
-  );
-  --ngx-ui-gradient-blue-purple: linear-gradient(
-    to top right,
-    #73bef4 0%,
-    #aa90ed 100%
-  );
-  --ngx-ui-gradient-red-orange: linear-gradient(
-    to top right,
-    #fc7c5f 0%,
-    #fcbc5a 100%
-  );
-  --ngx-ui-gradient-orange-purple: linear-gradient(
-    to top right,
-    #f5cc98 0%,
-    #ae94ec 100%
-  );
-  --ngx-ui-bg-radial-1: radial-gradient(
-    ellipse farthest-corner at center top,
-    #1e283e 0%,
-    #1b1e27 100%
-  );
+  --ngx-ui-gradient-blue: linear-gradient(to top right, #6bd1f9 0%, #54a4fb 100%);
+  --ngx-ui-gradient-blue-green: linear-gradient(to top right, #69d1f8 0%, #59e6c8 100%);
+  --ngx-ui-gradient-blue-red: linear-gradient(to top right, #50a1f9 0%, #f96f50 100%);
+  --ngx-ui-gradient-blue-purple: linear-gradient(to top right, #73bef4 0%, #aa90ed 100%);
+  --ngx-ui-gradient-red-orange: linear-gradient(to top right, #fc7c5f 0%, #fcbc5a 100%);
+  --ngx-ui-gradient-orange-purple: linear-gradient(to top right, #f5cc98 0%, #ae94ec 100%);
+  --ngx-ui-bg-radial-1: radial-gradient(ellipse farthest-corner at center top, #1e283e 0%, #1b1e27 100%);
   --ngx-ui-bg-radial-2: radial-gradient(
     ellipse farthest-corner at center top,
     rgba(33, 39, 54, 1) 0%,
@@ -322,7 +291,7 @@ $colors: (
   'red': var(--ngx-ui-color-red),
   'purple': var(--ngx-ui-color-purple),
   'blue-grey': var(--ngx-ui-color-blue-grey),
-  'grey': var(--ngx-ui-color-grey),
+  'grey': var(--ngx-ui-color-grey)
 );
 
 $palette: (

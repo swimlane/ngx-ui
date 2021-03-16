@@ -28,7 +28,7 @@ export class OverlayService {
 
     this.triggerComponents.push({
       component: options.triggerComponent,
-      zIndex: options.zIndex,
+      zIndex: options.zIndex
     });
 
     this.component.instance.visible = true;
@@ -74,9 +74,7 @@ export class OverlayService {
   }
 
   removeTriggerComponent(component: any) {
-    const idx = this.triggerComponents.findIndex(
-      (c) => c.component === component
-    );
+    const idx = this.triggerComponents.findIndex(c => c.component === component);
     if (idx !== -1) {
       this.triggerComponents.splice(idx, 1);
     }
@@ -92,7 +90,7 @@ export class OverlayService {
     if (this.triggerComponents.length === 0) {
       return;
     }
-    const indexes = this.triggerComponents.map((tc) => tc.zIndex);
+    const indexes = this.triggerComponents.map(tc => tc.zIndex);
     this.instance!.zIndex = Math.max(...indexes) - 1;
   }
 }

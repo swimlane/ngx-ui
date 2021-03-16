@@ -8,9 +8,8 @@ describe('DrawerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DrawerComponent ]
-    })
-    .compileComponents();
+      declarations: [DrawerComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

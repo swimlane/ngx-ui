@@ -9,16 +9,8 @@ import { MomentModule } from 'ngx-moment';
 import { DateTimeComponent } from './date-time.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    DialogModule,
-    InputModule,
-    FormsModule,
-    MomentModule,
-    TimeZoneModule,
-    CalendarModule,
-  ],
+  imports: [CommonModule, DialogModule, InputModule, FormsModule, MomentModule, TimeZoneModule, CalendarModule],
   declarations: [DateTimeComponent],
-  exports: [DateTimeComponent],
+  exports: [DateTimeComponent]
 })
 export class DateTimeModule {}

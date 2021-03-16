@@ -6,7 +6,7 @@ import { mapTo } from 'rxjs/operators';
   selector: 'ngx-selects',
   templateUrl: './selects.component.html',
   styleUrls: ['./selects.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectsComponent {
   selects = SelectsComponent.results;
@@ -22,7 +22,7 @@ export class SelectsComponent {
         name: `option ${i}`,
         attr: `${i}_intrusion_breach`,
         address: `${i} rd`,
-        disabled: i === 48,
+        disabled: i === 48
       });
     }
 
@@ -158,7 +158,7 @@ export class SelectsComponent {
 
   basicNgFor = {
     Markup: this.basicNgForHtmlMd,
-    TypeScript: this.basicNgForTsMd,
+    TypeScript: this.basicNgForTsMd
   };
 
   basicSingleSelectTsMd = `
@@ -205,7 +205,7 @@ export class SelectsComponent {
   `;
   basicSingleSelect = {
     Markup: this.basicSingleSelectHtmlMd,
-    TypeScript: this.basicSingleSelectTsMd,
+    TypeScript: this.basicSingleSelectTsMd
   };
 
   basicCustomTemplateMd = `
@@ -445,7 +445,7 @@ export class SelectsComponent {
   `;
   multiSelectDefaultSelectionsMd = {
     Markup: this.multiSelectDefaultSelectionsHtmlMd,
-    TypeScrit: this.multiSelectDefaultSelectionsTsMd,
+    TypeScrit: this.multiSelectDefaultSelectionsTsMd
   };
 
   multiSelectCustomTemplateMd = `
@@ -530,7 +530,7 @@ export class SelectsComponent {
   `;
   asyncMd = {
     Markup: this.asyncHtmlMd,
-    TypeScript: this.asyncTsMd,
+    TypeScript: this.asyncTsMd
   };
 
   appearanceMd = `

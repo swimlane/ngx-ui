@@ -7,7 +7,7 @@ import { SectionModule } from '@swimlane/ngx-ui/section';
 import { TabsModule } from '@swimlane/ngx-ui/tabs';
 import { MarkdownModule } from '../../shared/ui/markdown/markdown.module';
 import { SectionHeaderModule } from '../../shared/ui/section-header/section-header.module';
-import { TabbedMarkdownModule } from "../../shared/ui/tabbed-markdown/tabbed-markdown.module";
+import { TabbedMarkdownModule } from '../../shared/ui/tabbed-markdown/tabbed-markdown.module';
 import { InputsComponent } from './inputs.component';
 
 @NgModule({
@@ -21,7 +21,7 @@ import { InputsComponent } from './inputs.component';
     FormsModule,
     MarkdownModule,
     TabsModule,
-    TabbedMarkdownModule,
-  ],
+    TabbedMarkdownModule
+  ]
 })
 export class InputsModule {}

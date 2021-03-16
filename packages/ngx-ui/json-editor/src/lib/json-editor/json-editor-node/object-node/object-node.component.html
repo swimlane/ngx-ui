@@ -42,13 +42,7 @@
         />
 
         <ng-container *ngIf="!prop?.nameEditable">
-          <div
-            class="title"
-            ngx-tooltip
-            [tooltipTitle]="
-              prop?.description ? prop?.description : prop?.propertyName
-            "
-          >
+          <div class="title" ngx-tooltip [tooltipTitle]="prop?.description ? prop?.description : prop?.propertyName">
             {{ prop?.title ? prop?.title : prop?.propertyName }}
             <span *ngIf="requiredCache[prop.propertyName]">*</span>
           </div>
@@ -78,43 +72,26 @@
     </ngx-dropdown-toggle>
     <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
       <ul class="vertical-list dropdown-column" *ngIf="schema.properties">
-        <li
-          *ngFor="let prop of $any(schema.properties) | keyvalue"
-          (click)="addSchemaProperty($any(prop.key))"
-        >
-          <button
-            [disabled]="model[$any(prop.key)] !== undefined"
-            type="button"
-          >
-            {{
-              $any(prop).value.title ? $any(prop).value.title : $any(prop.key)
-            }}
+        <li *ngFor="let prop of $any(schema.properties) | keyvalue" (click)="addSchemaProperty($any(prop.key))">
+          <button [disabled]="model[$any(prop.key)] !== undefined" type="button">
+            {{ $any(prop).value.title ? $any(prop).value.title : $any(prop.key) }}
           </button>
         </li>
       </ul>
       <ul
         class="vertical-list dropdown-column"
-        *ngIf="
-          !schema ||
-          schema.patternProperties ||
-          schema.additionalProperties !== false
-        "
+        *ngIf="!schema || schema.patternProperties || schema.additionalProperties !== false"
       >
         <li
           *ngFor="let prop of $any(schema.patternProperties) | keyvalue"
           (click)="addSchemaPatternProperty($any(prop.key))"
         >
           <button type="button">
-            {{
-              $any(prop).value.title ? $any(prop).value.title : $any(prop.key)
-            }}
+            {{ $any(prop).value.title ? $any(prop).value.title : $any(prop.key) }}
           </button>
         </li>
         <ng-template [ngIf]="!schema || schema.additionalProperties !== false">
-          <li
-            *ngFor="let dataType of dataTypes"
-            (click)="addProperty(dataType)"
-          >
+          <li *ngFor="let dataType of dataTypes" (click)="addProperty(dataType)">
             <button type="button">{{ dataType.name }}</button>
           </li>
         </ng-template>

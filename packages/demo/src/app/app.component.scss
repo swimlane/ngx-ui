@@ -306,7 +306,7 @@ $colors: (
   'red': var(--ngx-ui-color-red),
   'purple': var(--ngx-ui-color-purple),
   'blue-grey': var(--ngx-ui-color-blue-grey),
-  'grey': var(--ngx-ui-color-grey),
+  'grey': var(--ngx-ui-color-grey)
 );
 
 $palette: (
@@ -331,7 +331,7 @@ $palette: (
   825: 32.5%,
   850: 35%,
   875: 37.5%,
-  900: 40%,
+  900: 40%
 );
 
 //@each $name, $hex in $colors {

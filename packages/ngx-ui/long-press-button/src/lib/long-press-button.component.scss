@@ -6,8 +6,7 @@
   --ngx-ui-long-press-process-stroke-color: rgb(13, 238, 114);
 
   border-radius: 50%;
-  border: var(--ngx-ui-long-press-btn-border-width) solid
-    var(--ngx-ui-long-press-btn-bg);
+  border: var(--ngx-ui-long-press-btn-border-width) solid var(--ngx-ui-long-press-btn-bg);
   padding: 0;
   width: var(--ngx-ui-long-press-btn-outer-size);
   height: var(--ngx-ui-long-press-btn-outer-size);
@@ -27,8 +26,7 @@
   .inner-background {
     --ngx-ui-long-press-btn-offset: calc(
       (
-          var(--ngx-ui-long-press-btn-outer-size) -
-            var(--ngx-ui-long-press-btn-inner-size) - 2 *
+          var(--ngx-ui-long-press-btn-outer-size) - var(--ngx-ui-long-press-btn-inner-size) - 2 *
             var(--ngx-ui-long-press-btn-border-width)
         ) / 2
     );

@@ -1,3 +1,3 @@
 export enum NavbarAnimationStates {
-  Animated = 'animated',
+  Animated = 'animated'
 }

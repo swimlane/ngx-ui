@@ -13,7 +13,7 @@ import {
   CardSectionDirective,
   CardSubtitleDirective,
   CardTagDirective,
-  CardTitleDirective,
+  CardTitleDirective
 } from './directives';
 
 @NgModule({
@@ -28,7 +28,7 @@ import {
     CardTagDirective,
     CardSubtitleDirective,
     CardTitleDirective,
-    CardComponent,
+    CardComponent
   ],
   exports: [
     CardAvatarComponent,
@@ -40,7 +40,7 @@ import {
     CardTagDirective,
     CardSubtitleDirective,
     CardTitleDirective,
-    CardComponent,
-  ],
+    CardComponent
+  ]
 })
 export class CardModule {}

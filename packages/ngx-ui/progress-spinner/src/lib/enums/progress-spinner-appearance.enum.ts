@@ -1,4 +1,4 @@
 export enum ProgressSpinnerAppearance {
   Default = 'default',
-  Icon = 'icon',
+  Icon = 'icon'
 }

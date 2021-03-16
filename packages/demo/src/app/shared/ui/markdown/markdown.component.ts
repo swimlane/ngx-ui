@@ -16,7 +16,7 @@ type MdFeature = 'landing' | 'style/colors';
     </ng-template>
   `,
   styleUrls: ['./markdown.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MarkdownComponent {
   @Input() feature?: MdFeature;

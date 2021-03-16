@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'demo-icons',
   templateUrl: './icons.component.html',
   styleUrls: ['./icons.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class IconsComponent {
   icons = require('../../../../../ngx-ui/assets/icons/json/icons.json').icons.reverse();
@@ -19,7 +19,7 @@ export class IconsComponent {
     'dbl-sized',
     'badge',
     'spinning',
-    'spinning-rev',
+    'spinning-rev'
   ];
 
   iconsStackingMd = `

@@ -1,10 +1,6 @@
 <div
   class="json-tree-node"
-  [class.inline]="
-    schema?.type !== 'object' &&
-    schema?.type !== 'array' &&
-    schema?.type !== 'null'
-  "
+  [class.inline]="schema?.type !== 'object' && schema?.type !== 'array' && schema?.type !== 'null'"
   [class.invalid]="!valid || isDuplicated"
   [class.children-invalid]="!childrenValid || isDuplicated"
 >
@@ -100,12 +96,7 @@
           (ngModelChange)="updateModel($event)"
           [required]="required"
         />
-        <select
-          *ngIf="schema?.enum"
-          class="value-input select"
-          [ngModel]="model"
-          (ngModelChange)="updateModel($event)"
-        >
+        <select *ngIf="schema?.enum" class="value-input select" [ngModel]="model" (ngModelChange)="updateModel($event)">
           <option *ngFor="let option of schema.enum" [value]="option">
             {{ option }}
           </option>
@@ -181,10 +172,7 @@
             ></ngx-select-option>
           </ngx-select>
 
-          <ngx-button
-            class="btn btn-primary save-code-button"
-            (click)="updateModel(editorModel); closeCodeEditor()"
-          >
+          <ngx-button class="btn btn-primary save-code-button" (click)="updateModel(editorModel); closeCodeEditor()">
             Save
           </ngx-button>
 
@@ -201,8 +189,5 @@
     </ng-container>
   </div>
 
-  <div
-    class="ngx-tree-vr"
-    *ngIf="schema?.type === 'object' || schema?.type === 'array'"
-  ></div>
+  <div class="ngx-tree-vr" *ngIf="schema?.type === 'object' || schema?.type === 'array'"></div>
 </div>

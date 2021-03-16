@@ -10,19 +10,14 @@ import { ColorTitleComponent } from './components/color-title/color-title.compon
 import { BgHexPipe } from './pipes/bg-hex.pipe';
 
 @NgModule({
-  declarations: [
-    ColorsComponent,
-    BgHexPipe,
-    ColorBlockComponent,
-    ColorTitleComponent,
-  ],
+  declarations: [ColorsComponent, BgHexPipe, ColorBlockComponent, ColorTitleComponent],
   imports: [
     CommonModule,
     SectionHeaderModule,
     RouterModule.forChild([{ path: '', component: ColorsComponent }]),
     CopyToClipboardModule,
-    MarkdownModule,
+    MarkdownModule
   ],
-  exports: [ColorsComponent],
+  exports: [ColorsComponent]
 })
 export class ColorsModule {}

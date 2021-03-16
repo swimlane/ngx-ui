@@ -88,9 +88,7 @@ export class LoadingService {
 
   private create(): ComponentRef<LoadingBarComponent> {
     if (!this.component) {
-      this.component = this.injectionService.appendComponent(
-        LoadingBarComponent
-      );
+      this.component = this.injectionService.appendComponent(LoadingBarComponent);
     }
 
     this.instance!.visible = true;

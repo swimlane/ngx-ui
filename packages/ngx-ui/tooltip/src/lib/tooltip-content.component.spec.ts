@@ -8,9 +8,8 @@ describe('TooltipComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TooltipContentComponent ]
-    })
-    .compileComponents();
+      declarations: [TooltipContentComponent]
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -21,8 +21,8 @@ import { SelectsComponent } from './selects.component';
     MarkdownModule,
     FormsModule,
     TabbedMarkdownModule,
-    IconModule,
+    IconModule
   ],
-  exports: [SelectsComponent],
+  exports: [SelectsComponent]
 })
 export class SelectsModule {}

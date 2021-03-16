@@ -8,7 +8,7 @@ import {
   HostListener,
   Input,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
@@ -20,7 +20,7 @@ import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
 const CHECKBOX_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CheckboxComponent),
-  multi: true,
+  multi: true
 };
 
 let nextId = 0;
@@ -32,7 +32,7 @@ let nextId = 0;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [CHECKBOX_VALUE_ACCESSOR],
-  exportAs: 'ngxCheckbox',
+  exportAs: 'ngxCheckbox'
 })
 export class CheckboxComponent implements ControlValueAccessor {
   static ngAcceptInputType_diameter: CssPixelInput;

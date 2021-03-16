@@ -5,6 +5,6 @@ import { VisibilityDirective } from './visibility.directive';
 @NgModule({
   imports: [CommonModule],
   declarations: [VisibilityDirective],
-  exports: [VisibilityDirective],
+  exports: [VisibilityDirective]
 })
 export class VisibilityModule {}

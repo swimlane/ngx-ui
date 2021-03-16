@@ -12,22 +12,11 @@
       [placeholder]="filterPlaceholder"
       (keyup)="onInputKeyUp($event)"
     />
-    <i
-      [hidden]="!filterInput.value"
-      class="ngx-icon ngx-x"
-      (click)="clearFilter(filterInput)"
-    ></i>
+    <i [hidden]="!filterInput.value" class="ngx-icon ngx-x" (click)="clearFilter(filterInput)"></i>
   </div>
   <ul class="vertical-list ngx-select-dropdown-options">
     <li
-      *ngFor="
-        let group of groups;
-        let i = index;
-        let first = first;
-        let last = last;
-        let odd = odd;
-        let even = even
-      "
+      *ngFor="let group of groups; let i = index; let first = first; let last = last; let odd = odd; let even = even"
       class="ngx-select-option-group"
     >
       <ng-container *ngIf="$any(group).name">
@@ -49,10 +38,7 @@
           </span>
         </ng-container>
         <ng-template #defaultGroupName>
-          <span
-            class="ngx-select-option-group-name"
-            [innerHTML]="$any(group).name"
-          ></span>
+          <span class="ngx-select-option-group-name" [innerHTML]="$any(group).name"></span>
         </ng-template>
       </ng-container>
       <ul class="vertical-list ngx-select-dropdown-options">
@@ -72,74 +58,43 @@
             [ngTemplateOutlet]="kv.option.optionTemplate"
             [ngTemplateOutletContext]="{ option: kv.option }"
           ></ng-template>
-          <span
-            *ngIf="!kv.option.optionTemplate"
-            [innerHTML]="kv.option.name"
-          ></span>
+          <span *ngIf="!kv.option.optionTemplate" [innerHTML]="kv.option.name"></span>
           <i
             *ngIf="!kv.option.optionTemplate && isSelected(kv.option)"
             class="ngx-icon ngx-check ngx-select-dropdown--selected-option"
           ></i>
         </li>
         <li
-          *ngIf="
-            allowAdditions &&
-            filterQuery &&
-            $any(group).options?.length &&
-            !filterQueryIsInOptions
-          "
+          *ngIf="allowAdditions && filterQuery && $any(group).options?.length && !filterQueryIsInOptions"
           class="ngx-select-empty-placeholder"
         >
-          <a
-            href="#"
-            class="ngx-select-add-current-value"
-            (click)="onAddClicked($event, filterQuery)"
-          >
-            <span
-              *ngIf="isNotTemplate; else tpl"
-              [innerHTML]="allowAdditionsText"
-            ></span>
+          <a href="#" class="ngx-select-add-current-value" (click)="onAddClicked($event, filterQuery)">
+            <span *ngIf="isNotTemplate; else tpl" [innerHTML]="allowAdditionsText"></span>
             <ng-template #tpl>
-              <ng-container
-                *ngTemplateOutlet="$any(allowAdditionsText)"
-              ></ng-container>
+              <ng-container *ngTemplateOutlet="$any(allowAdditionsText)"></ng-container>
             </ng-template>
           </a>
         </li>
 
         <li
-          *ngIf="
-            filterQuery &&
-            filterEmptyPlaceholder &&
-            !$any(group).options?.length
-          "
+          *ngIf="filterQuery && filterEmptyPlaceholder && !$any(group).options?.length"
           class="ngx-select-empty-placeholder"
         >
-          <span
-            class="ngx-select-empty-placeholder-text"
-            [innerHTML]="filterEmptyPlaceholder"
-          ></span>
+          <span class="ngx-select-empty-placeholder-text" [innerHTML]="filterEmptyPlaceholder"></span>
           <a
             *ngIf="allowAdditions"
             href="#"
             class="ngx-select-empty-placeholder-add"
             (click)="onAddClicked($event, filterQuery)"
           >
-            <span
-              *ngIf="isNotTemplate; else tpl"
-              [innerHTML]="allowAdditionsText"
-            ></span>
+            <span *ngIf="isNotTemplate; else tpl" [innerHTML]="allowAdditionsText"></span>
             <ng-template #tpl>
-              <ng-container
-                *ngTemplateOutlet="$any(allowAdditionsText)"
-              ></ng-container>
+              <ng-container *ngTemplateOutlet="$any(allowAdditionsText)"></ng-container>
             </ng-template>
           </a>
         </li>
         <li
-          *ngIf="
-            !filterQuery && emptyPlaceholder && !$any(group).options?.length
-          "
+          *ngIf="!filterQuery && emptyPlaceholder && !$any(group).options?.length"
           class="ngx-select-empty-placeholder"
           [innerHTML]="emptyPlaceholder"
         ></li>

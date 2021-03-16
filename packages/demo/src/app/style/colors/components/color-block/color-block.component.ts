@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular/core';
 
 @Component({
   selector: 'demo-color-block',
@@ -19,7 +14,7 @@ import {
       {{ cssVar ? (cssVar | bgHex) : hex }}
     </span>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ColorBlockComponent {
   @HostBinding('class') hostClass = 'inline-flex flex-col';

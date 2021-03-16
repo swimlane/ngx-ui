@@ -254,8 +254,7 @@
     right: -5px;
     left: -5px;
     bottom: -5px;
-    border: var(--ngx-ui-card-outline-border-thickness) solid
-      var(--ngx-ui-color-blue-400);
+    border: var(--ngx-ui-card-outline-border-thickness) solid var(--ngx-ui-color-blue-400);
     border-radius: 5px;
   }
 
@@ -268,8 +267,7 @@
     right: -5px;
     left: -5px;
     bottom: -5px;
-    border: var(--ngx-ui-card-outline-border-thickness) solid
-      var(--ngx-ui-color-blue-400);
+    border: var(--ngx-ui-card-outline-border-thickness) solid var(--ngx-ui-color-blue-400);
     border-bottom: 0;
     border-radius: 5px;
 
@@ -336,8 +334,7 @@
     border-bottom: 2px var(--ngx-ui-color-blue-grey-700);
 
     .ngx-card-avatar {
-      margin: var(--ngx-ui-card-vertical-header-padding) 0
-        var(--ngx-ui-card-vertical-gutter) 0;
+      margin: var(--ngx-ui-card-vertical-header-padding) 0 var(--ngx-ui-card-vertical-gutter) 0;
     }
 
     &--label {
@@ -376,8 +373,7 @@
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
-    padding: var(--ngx-ui-card-vertical-gutter)
-      var(--ngx-ui-card-vertical-body-padding);
+    padding: var(--ngx-ui-card-vertical-gutter) var(--ngx-ui-card-vertical-body-padding);
 
     .ngx-card-title,
     .ngx-card-subtitle {

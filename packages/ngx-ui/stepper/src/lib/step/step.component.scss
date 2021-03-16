@@ -95,11 +95,7 @@
 
       .ngx-step--step {
         &:after {
-          background-image: linear-gradient(
-            to right,
-            #1edeb6 0%,
-            var(--ngx-ui-color-blue-500) 75%
-          ) !important;
+          background-image: linear-gradient(to right, #1edeb6 0%, var(--ngx-ui-color-blue-500) 75%) !important;
         }
 
         .ngx-step--circle {
@@ -156,11 +152,7 @@
       position: relative;
       width: var(--ngx-ui-stepper-size);
       height: var(--ngx-ui-stepper-size);
-      background: linear-gradient(
-        180deg,
-        var(--ngx-ui-color-blue-grey-750) 0%,
-        var(--ngx-ui-color-blue-grey-850) 100%
-      );
+      background: linear-gradient(180deg, var(--ngx-ui-color-blue-grey-750) 0%, var(--ngx-ui-color-blue-grey-850) 100%);
       border-radius: 50%;
       border: 1.75px solid var(--ngx-ui-color-blue-grey-600);
       color: var(--ngx-ui-color-blue-grey-600);

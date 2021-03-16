@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     <h5 class="text-lg font-bold">{{ color }}</h5>
     <code class="text-xs tracking-tighter">{{ cssVar }}</code>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ColorTitleComponent {
   @Input() color: string;

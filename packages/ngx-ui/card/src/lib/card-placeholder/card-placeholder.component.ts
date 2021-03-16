@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
 import type { EnumKey } from '@swimlane/ngx-ui/types';
 import { CardPlaceholderSize } from '../enums';
@@ -15,7 +9,7 @@ import { CardPlaceholderSize } from '../enums';
   styleUrls: ['./card-placeholder.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  exportAs: 'ngxCardPlaceholder',
+  exportAs: 'ngxCardPlaceholder'
 })
 export class CardPlaceholderComponent {
   @HostBinding('class.ngx-card-placeholder') hostClass = true;

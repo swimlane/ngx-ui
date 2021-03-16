@@ -5,6 +5,6 @@ import { LongPressDirective } from './long-press.directive';
 @NgModule({
   imports: [CommonModule],
   declarations: [LongPressDirective],
-  exports: [LongPressDirective],
+  exports: [LongPressDirective]
 })
 export class LongPressModule {}

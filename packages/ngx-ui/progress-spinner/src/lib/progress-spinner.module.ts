@@ -5,6 +5,6 @@ import { ProgressSpinnerComponent } from './progress-spinner.component';
 @NgModule({
   imports: [CommonModule],
   declarations: [ProgressSpinnerComponent],
-  exports: [ProgressSpinnerComponent],
+  exports: [ProgressSpinnerComponent]
 })
 export class ProgressSpinnerModule {}

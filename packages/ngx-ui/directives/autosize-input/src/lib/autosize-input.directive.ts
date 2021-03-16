@@ -7,7 +7,7 @@ import {
   HostListener,
   Input,
   Optional,
-  Renderer2,
+  Renderer2
 } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
@@ -16,10 +16,9 @@ import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
 import { filter, take } from 'rxjs/operators';
 
 @Directive({
-  selector: '[ngxAutosizeInput]',
+  selector: '[ngxAutosizeInput]'
 })
-export class AutosizeInputDirective
-  implements AfterContentChecked, AfterViewInit {
+export class AutosizeInputDirective implements AfterContentChecked, AfterViewInit {
   static ngAcceptInputType_extraWidth: NumericInput;
   static ngAcceptInputType_maxWidth: NumericInput;
   static ngAcceptInputType_minWidth: NumericInput;
@@ -67,10 +66,7 @@ export class AutosizeInputDirective
   }
 
   get paddingWidth(): number {
-    return this.includePadding
-      ? this._getPropertyWidth('padding-left') +
-          this._getPropertyWidth('padding-right')
-      : 0;
+    return this.includePadding ? this._getPropertyWidth('padding-left') + this._getPropertyWidth('padding-right') : 0;
   }
 
   ngAfterContentChecked() {
@@ -81,7 +77,7 @@ export class AutosizeInputDirective
     if (this.ngModel && this.ngModel.valueChanges) {
       this.ngModel.valueChanges
         .pipe(
-          filter((val) => !!val),
+          filter(val => !!val),
           take(1)
         )
         .subscribe(() => this.updateWidth());
@@ -102,12 +98,7 @@ export class AutosizeInputDirective
   }
 
   setWidthUsingText(text: string): void {
-    this.setWidth(
-      this.textWidth(text) +
-        this.extraWidth +
-        this.borderWidth +
-        this.paddingWidth
-    );
+    this.setWidth(this.textWidth(text) + this.extraWidth + this.borderWidth + this.paddingWidth);
   }
 
   textWidth(value: string): number {
@@ -120,30 +111,15 @@ export class AutosizeInputDirective
     const fontFamily = style.getPropertyValue('font-family');
 
     // font string format: {normal, normal, 700, 20px, Roboto, "Helvetica Neue", sans-serif}
-    ctx.font =
-      fontStyle +
-      ' ' +
-      fontVariant +
-      ' ' +
-      fontWeight +
-      ' ' +
-      fontSize +
-      ' ' +
-      fontFamily;
+    ctx.font = fontStyle + ' ' + fontVariant + ' ' + fontWeight + ' ' + fontSize + ' ' + fontFamily;
 
     return ctx!.measureText(value).width;
   }
 
   updateWidth(): void {
-    const inputText = this.ngModel
-      ? this.ngModel.value
-      : this._getProperty('value');
+    const inputText = this.ngModel ? this.ngModel.value : this._getProperty('value');
     const placeHolderText = this._getProperty('placeholder');
-    const inputTextWidth =
-      this.textWidth(inputText) +
-      this.extraWidth +
-      this.borderWidth +
-      this.paddingWidth;
+    const inputTextWidth = this.textWidth(inputText) + this.extraWidth + this.borderWidth + this.paddingWidth;
     const setMinWidth = this.minWidth > 0 && this.minWidth > inputTextWidth;
     const setPlaceHolderWidth =
       this.includePlaceholder &&
@@ -171,9 +147,7 @@ export class AutosizeInputDirective
   }
 
   private _getPropertyWidth(property: string): number {
-    const width = window
-      .getComputedStyle(this.element.nativeElement, '')
-      .getPropertyValue(property);
+    const width = window.getComputedStyle(this.element.nativeElement, '').getPropertyValue(property);
     return parseInt(width, 10);
   }
 }

@@ -13,8 +13,8 @@ import { TypographyComponent } from './typography.component';
     SectionModule,
     RouterModule.forChild([{ path: '', component: TypographyComponent }]),
     MarkdownModule,
-    SectionHeaderModule,
+    SectionHeaderModule
   ],
-  exports: [TypographyComponent],
+  exports: [TypographyComponent]
 })
 export class TypographyModule {}

@@ -2,25 +2,13 @@
   <div class="text-center" [ngSwitch]="currentView">
     <div *ngSwitchCase="'date'">
       <div class="title-row">
-        <button
-          type="button"
-          class="prev-month"
-          [disabled]="disabled"
-          title="Previous Month"
-          (click)="prevMonth()"
-        >
+        <button type="button" class="prev-month" [disabled]="disabled" title="Previous Month" (click)="prevMonth()">
           <span class="icon-arrow-left"></span>
         </button>
         <span class="title" (click)="changeViews()">
           {{ activeDate | timeZone: timezone | amDateFormat: 'MMMM YYYY' }}
         </span>
-        <button
-          type="button"
-          class="next-month"
-          title="Next Month"
-          [disabled]="disabled"
-          (click)="nextMonth()"
-        >
+        <button type="button" class="next-month" title="Next Month" [disabled]="disabled" (click)="nextMonth()">
           <span class="icon-arrow-right"></span>
         </button>
       </div>
@@ -51,25 +39,13 @@
 
     <div *ngSwitchCase="'month'">
       <div class="title-row">
-        <button
-          type="button"
-          class="prev-month"
-          [disabled]="disabled"
-          title="Previous Year"
-          (click)="prevYear()"
-        >
+        <button type="button" class="prev-month" [disabled]="disabled" title="Previous Year" (click)="prevYear()">
           <span class="icon-arrow-left"></span>
         </button>
         <span class="title" (click)="changeViews()">
           {{ activeDate | timeZone: timezone | amDateFormat: 'YYYY' }}
         </span>
-        <button
-          type="button"
-          class="next-month"
-          title="Next Year"
-          [disabled]="disabled"
-          (click)="nextYear()"
-        >
+        <button type="button" class="next-month" title="Next Year" [disabled]="disabled" (click)="nextYear()">
           <span class="icon-arrow-right"></span>
         </button>
       </div>
@@ -101,9 +77,7 @@
         >
           <span class="icon-arrow-left"></span>
         </button>
-        <span class="title" (click)="changeViews()">
-          {{ startYear }} - {{ startYear + 20 }}
-        </span>
+        <span class="title" (click)="changeViews()">{{ startYear }} - {{ startYear + 20 }}</span>
         <button
           type="button"
           class="next-month"

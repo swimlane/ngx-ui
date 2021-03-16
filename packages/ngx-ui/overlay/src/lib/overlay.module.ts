@@ -8,6 +8,6 @@ import { OverlayService } from './services';
   imports: [CommonModule],
   declarations: [OverlayComponent],
   providers: [OverlayService, InjectionService],
-  exports: [OverlayComponent],
+  exports: [OverlayComponent]
 })
 export class OverlayModule {}

@@ -1,6 +1,8 @@
 'use strict';
 
+const swimlaneConfig = require('@swimlane/prettier-config-swimlane');
+
 module.exports = {
-  ...require('@swimlane/prettier-config-swimlane'),
+  ...swimlaneConfig,
   htmlWhitespaceSensitivity: 'ignore'
 };

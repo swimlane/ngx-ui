@@ -9,6 +9,6 @@ import { NotificationService } from './services';
   imports: [CommonModule],
   declarations: [NotificationComponent, NotificationContainerComponent],
   providers: [NotificationService, InjectionService],
-  exports: [NotificationComponent, NotificationContainerComponent],
+  exports: [NotificationComponent, NotificationContainerComponent]
 })
 export class NotificationModule {}

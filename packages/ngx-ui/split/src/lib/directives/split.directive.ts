@@ -7,7 +7,7 @@ import {
   Input,
   OnChanges,
   OnDestroy,
-  QueryList,
+  QueryList
 } from '@angular/core';
 import type { EnumKey } from '@swimlane/ngx-ui/types';
 import { Subscription } from 'rxjs';
@@ -18,7 +18,7 @@ import { SplitAreaDirective } from './split-area.directive';
 
 @Directive({
   selector: '[ngxSplit]',
-  exportAs: 'ngxSplit',
+  exportAs: 'ngxSplit'
 })
 export class SplitDirective implements AfterContentInit, OnChanges, OnDestroy {
   @HostBinding('style.flex-direction')
@@ -54,14 +54,8 @@ export class SplitDirective implements AfterContentInit, OnChanges, OnDestroy {
   constructor(private readonly elementRef: ElementRef) {}
 
   ngAfterContentInit(): void {
-    this.subscriptions.push(
-      ...this.handles!.map((d) =>
-        d.drag.subscribe((ev: MouseEvent) => this.onDrag(ev))
-      )
-    );
-    this.subscriptions.push(
-      ...this.handles!.map((d) => d.dblclick.subscribe(() => this.onDblClick()))
-    );
+    this.subscriptions.push(...this.handles!.map(d => d.drag.subscribe((ev: MouseEvent) => this.onDrag(ev))));
+    this.subscriptions.push(...this.handles!.map(d => d.dblclick.subscribe(() => this.onDblClick())));
     this.updateHandles();
   }
 
@@ -73,38 +67,34 @@ export class SplitDirective implements AfterContentInit, OnChanges, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscriptions.forEach((sub) => {
+    this.subscriptions.forEach(sub => {
       sub.unsubscribe();
     });
   }
 
   resize(delta: number): void {
     const basisToPx =
-      (this.rowCss
-        ? this.elementRef.nativeElement.clientWidth
-        : this.elementRef.nativeElement.clientHeight) / 100;
+      (this.rowCss ? this.elementRef.nativeElement.clientWidth : this.elementRef.nativeElement.clientHeight) / 100;
 
     const areas = this.areas!.toArray();
 
     // for now assuming splitter is after first area
     const [first, ...rest] = areas;
-    [first].forEach((area) => (delta = resizeAreaBy(area, delta, basisToPx)));
+    [first].forEach(area => (delta = resizeAreaBy(area, delta, basisToPx)));
 
     // delta is distributed left to right
-    rest.forEach((area) => (delta += resizeAreaBy(area, -delta, basisToPx)));
+    rest.forEach(area => (delta += resizeAreaBy(area, -delta, basisToPx)));
   }
 
   private updateHandles() {
     if (this.handles) {
-      this.handles.forEach((d) => (d.direction = this.direction));
+      this.handles.forEach(d => (d.direction = this.direction));
     }
   }
 
   private onDblClick(): void {
     const basisToPx =
-      (this.rowCss
-        ? this.elementRef.nativeElement.clientWidth
-        : this.elementRef.nativeElement.clientHeight) / 100;
+      (this.rowCss ? this.elementRef.nativeElement.clientWidth : this.elementRef.nativeElement.clientHeight) / 100;
 
     const area = this.areas!.first;
 
@@ -121,8 +111,7 @@ export class SplitDirective implements AfterContentInit, OnChanges, OnDestroy {
 
     // get baseBasis in percent
     const baseBasis = area.initialFlexParts![2];
-    const baseBasisPct =
-      basisToValue(baseBasis) / (isPercent(baseBasis) ? basisToPx : 1);
+    const baseBasisPct = basisToValue(baseBasis) / (isPercent(baseBasis) ? basisToPx : 1);
 
     const [minBasisPct, maxBasisPct] = getMinMaxPct(
       area.minBasis!,
@@ -144,8 +133,7 @@ export class SplitDirective implements AfterContentInit, OnChanges, OnDestroy {
   }
 
   private onDrag({ movementX, movementY }: MouseEvent): void {
-    const deltaPx =
-      this.direction === SplitDirection.Row ? movementX : movementY;
+    const deltaPx = this.direction === SplitDirection.Row ? movementX : movementY;
     this.resize(deltaPx);
   }
 }

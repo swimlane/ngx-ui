@@ -5,7 +5,7 @@ import {
   ContentChildren,
   Input,
   QueryList,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { JsonEditor } from '../directives';
 import { JSONEditorSchema } from '../interfaces';
@@ -17,7 +17,7 @@ import { JsonEditorNodeComponent } from './json-editor-node/json-editor-node.com
   templateUrl: './json-editor.component.html',
   styleUrls: ['./json-editor.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JsonEditorComponent extends JsonEditor {
   @Input() model: any;
@@ -29,10 +29,7 @@ export class JsonEditorComponent extends JsonEditor {
   @ContentChildren(JsonEditorNodeComponent)
   nodeElms?: QueryList<JsonEditorNodeComponent>;
 
-  constructor(
-    schemaValidatorService: SchemaValidatorService,
-    cdr: ChangeDetectorRef
-  ) {
+  constructor(schemaValidatorService: SchemaValidatorService, cdr: ChangeDetectorRef) {
     super(schemaValidatorService, cdr);
   }
 }

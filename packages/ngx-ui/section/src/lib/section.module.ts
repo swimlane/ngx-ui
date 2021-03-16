@@ -7,6 +7,6 @@ import { SectionComponent } from './section.component';
 @NgModule({
   imports: [CommonModule, IconModule],
   declarations: [SectionHeaderComponent, SectionComponent],
-  exports: [SectionHeaderComponent, SectionComponent],
+  exports: [SectionHeaderComponent, SectionComponent]
 })
 export class SectionModule {}

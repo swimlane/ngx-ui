@@ -25,7 +25,7 @@ import { PipesComponent } from './pipes.component';
     FilterModule,
     InputModule,
     FormsModule,
-    JsonTreeModule,
-  ],
+    JsonTreeModule
+  ]
 })
 export class PipesModule {}

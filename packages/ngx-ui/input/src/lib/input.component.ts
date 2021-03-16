@@ -1,8 +1,4 @@
-import {
-  BooleanInput,
-  coerceBooleanProperty,
-  coerceNumberProperty,
-} from '@angular/cdk/coercion';
+import { BooleanInput, coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { DOCUMENT } from '@angular/common';
 import {
   AfterViewInit,
@@ -17,7 +13,7 @@ import {
   Input,
   Output,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -26,7 +22,7 @@ import {
   NG_VALUE_ACCESSOR,
   NgModel,
   Validator,
-  Validators,
+  Validators
 } from '@angular/forms';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
@@ -45,13 +41,13 @@ const MIN_WIDTH = 60;
 const INPUT_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => InputComponent),
-  multi: true,
+  multi: true
 };
 
 const INPUT_VALIDATORS = {
   provide: NG_VALIDATORS,
   useExisting: forwardRef(() => InputComponent),
-  multi: true,
+  multi: true
 };
 
 @Component({
@@ -62,10 +58,9 @@ const INPUT_VALIDATORS = {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: INPUT_ANIMATIONS,
-  providers: [INPUT_VALUE_ACCESSOR, INPUT_VALIDATORS],
+  providers: [INPUT_VALUE_ACCESSOR, INPUT_VALIDATORS]
 })
-export class InputComponent
-  implements AfterViewInit, ControlValueAccessor, Validator {
+export class InputComponent implements AfterViewInit, ControlValueAccessor, Validator {
   static ngAcceptInputType_tabindex: NumericInput;
   static ngAcceptInputType_min: NumericInput;
   static ngAcceptInputType_max: NumericInput;
@@ -227,8 +222,7 @@ export class InputComponent
 
   set value(val: string | number) {
     if (val !== this._value) {
-      this._value =
-        this._type === InputTypes.number ? coerceNumberProperty(val, '') : val;
+      this._value = this._type === InputTypes.number ? coerceNumberProperty(val, '') : val;
       this.onChangeCallback(this._value);
     }
   }
@@ -281,11 +275,7 @@ export class InputComponent
   }
 
   get labelState(): string {
-    return this.placeholder ||
-      this.focusedOrDirty ||
-      this.appearance === Appearance.fill
-      ? 'outside'
-      : 'inside';
+    return this.placeholder || this.focusedOrDirty || this.appearance === Appearance.fill ? 'outside' : 'inside';
   }
 
   get underlineState(): string {
@@ -293,15 +283,10 @@ export class InputComponent
   }
 
   get element() {
-    return this.type === InputTypes.textarea
-      ? this.textareaControl
-      : this.inputControl;
+    return this.type === InputTypes.textarea ? this.textareaControl : this.inputControl;
   }
 
-  constructor(
-    private readonly cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) private readonly document: Document
-  ) {}
+  constructor(private readonly cdr: ChangeDetectorRef, @Inject(DOCUMENT) private readonly document: Document) {}
 
   ngOnInit(): void {}
 
@@ -354,7 +339,7 @@ export class InputComponent
     if (this.max && this.min) {
       return {
         ...Validators.max(this.max)(c),
-        ...Validators.min(this.min)(c),
+        ...Validators.min(this.min)(c)
       };
     }
 
@@ -451,10 +436,6 @@ export class InputComponent
   };
 
   private updateInputType() {
-    this.type$.next(
-      this.passwordTextVisible && InputTypes.password === this._type
-        ? InputTypes.text
-        : this._type
-    );
+    this.type$.next(this.passwordTextVisible && InputTypes.password === this._type ? InputTypes.text : this._type);
   }
 }

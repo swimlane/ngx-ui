@@ -1,15 +1,8 @@
-import {
-  Directive,
-  ElementRef,
-  EventEmitter,
-  HostBinding,
-  NgZone,
-  Output,
-} from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostBinding, NgZone, Output } from '@angular/core';
 import { Subscription, timer } from 'rxjs';
 
 @Directive({
-  selector: '[visibilityObserver]',
+  selector: '[visibilityObserver]'
 })
 export class VisibilityDirective {
   @HostBinding('class.visible') isVisible = false;
@@ -18,10 +11,7 @@ export class VisibilityDirective {
 
   private checkSubscription?: Subscription;
 
-  constructor(
-    private readonly element: ElementRef<HTMLElement>,
-    private readonly zone: NgZone
-  ) {}
+  constructor(private readonly element: ElementRef<HTMLElement>, private readonly zone: NgZone) {}
 
   ngOnInit(): void {
     this.runCheck();

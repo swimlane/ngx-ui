@@ -10,22 +10,18 @@ import { environment } from '../../environments/environment';
     <demo-section-header>Dependencies</demo-section-header>
     <ul>
       <li *ngFor="let dep of dependencies | keyvalue">
-        <a [attr.href]="'http://www.npmjs.com/package/' + dep.key">
-          {{ dep.key }} - {{ dep.value }}
-        </a>
+        <a [attr.href]="'http://www.npmjs.com/package/' + dep.key">{{ dep.key }} - {{ dep.value }}</a>
       </li>
     </ul>
 
     <demo-section-header>Peer Dependencies</demo-section-header>
     <ul>
       <li *ngFor="let dep of peerDependencies | keyvalue">
-        <a [attr.href]="'http://www.npmjs.com/package/' + dep.key">
-          {{ dep.key }} - {{ dep.value }}
-        </a>
+        <a [attr.href]="'http://www.npmjs.com/package/' + dep.key">{{ dep.key }} - {{ dep.value }}</a>
       </li>
     </ul>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LandingComponent {
   dependencies = environment.dependencies;

@@ -9,6 +9,6 @@ import { DialogService } from './services';
   imports: [CommonModule, OverlayModule],
   providers: [DialogService, InjectionService],
   declarations: [DialogComponent],
-  exports: [DialogComponent],
+  exports: [DialogComponent]
 })
 export class DialogModule {}

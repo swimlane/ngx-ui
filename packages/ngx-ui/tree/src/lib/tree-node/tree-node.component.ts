@@ -7,7 +7,7 @@ import {
   OnChanges,
   Output,
   TemplateRef,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import type { TreeNode } from '@swimlane/ngx-ui/types';
@@ -17,7 +17,7 @@ import type { TreeNode } from '@swimlane/ngx-ui/types';
   exportAs: 'ngxTreeNode',
   templateUrl: './tree-node.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeNodeComponent implements OnChanges {
   static ngAcceptInputType_disabled: BooleanInput;
@@ -49,7 +49,7 @@ export class TreeNodeComponent implements OnChanges {
   @Input() template?: TemplateRef<unknown>;
   @Input() icons = {
     collapse: 'icon-tree-collapse',
-    expand: 'icon-tree-expand',
+    expand: 'icon-tree-expand'
   };
 
   @Output() activate = new EventEmitter();
@@ -67,7 +67,7 @@ export class TreeNodeComponent implements OnChanges {
       $implicit: this.node,
       label: this.label,
       children: this.children,
-      model: this.model,
+      model: this.model
     };
   }
 

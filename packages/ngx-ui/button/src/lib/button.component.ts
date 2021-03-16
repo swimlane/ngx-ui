@@ -7,7 +7,7 @@ import {
   Input,
   OnChanges,
   OnInit,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import type { NumericInput } from '@swimlane/ngx-ui/decorators/input-numeric';
@@ -22,7 +22,7 @@ import { ButtonState } from './enums';
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonComponent implements OnInit, OnChanges {
   static ngAcceptInputType_disabled: BooleanInput;
@@ -125,9 +125,7 @@ export class ButtonComponent implements OnInit, OnChanges {
 
     if (
       this.timeout &&
-      (this.state === ButtonState.Success ||
-        this.state === ButtonState.Fail ||
-        this.state === ButtonState.InProgress)
+      (this.state === ButtonState.Success || this.state === ButtonState.Fail || this.state === ButtonState.InProgress)
     ) {
       if (this.timerId) {
         clearTimeout(this.timerId);

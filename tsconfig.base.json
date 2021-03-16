@@ -16,51 +16,23 @@
     "baseUrl": ".",
     "paths": {
       "@swimlane/ngx-ui": ["packages/ngx-ui/src/index.ts"],
-      "@swimlane/ngx-ui/utils/debounce": [
-        "packages/ngx-ui/utils/debounce/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/utils/filters": [
-        "packages/ngx-ui/utils/filters/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/utils/get-enum-key": [
-        "packages/ngx-ui/utils/get-enum-key/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/utils/get-type": [
-        "packages/ngx-ui/utils/get-type/src/index.ts"
-      ],
+      "@swimlane/ngx-ui/utils/debounce": ["packages/ngx-ui/utils/debounce/src/index.ts"],
+      "@swimlane/ngx-ui/utils/filters": ["packages/ngx-ui/utils/filters/src/index.ts"],
+      "@swimlane/ngx-ui/utils/get-enum-key": ["packages/ngx-ui/utils/get-enum-key/src/index.ts"],
+      "@swimlane/ngx-ui/utils/get-type": ["packages/ngx-ui/utils/get-type/src/index.ts"],
       "@swimlane/ngx-ui/utils/id": ["packages/ngx-ui/utils/id/src/index.ts"],
-      "@swimlane/ngx-ui/utils/is-number": [
-        "packages/ngx-ui/utils/is-number/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/utils/position": [
-        "packages/ngx-ui/utils/position/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/utils/throttle": [
-        "packages/ngx-ui/utils/throttle/src/index.ts"
-      ],
+      "@swimlane/ngx-ui/utils/is-number": ["packages/ngx-ui/utils/is-number/src/index.ts"],
+      "@swimlane/ngx-ui/utils/position": ["packages/ngx-ui/utils/position/src/index.ts"],
+      "@swimlane/ngx-ui/utils/throttle": ["packages/ngx-ui/utils/throttle/src/index.ts"],
       "@swimlane/ngx-ui/types": ["packages/ngx-ui/types/src/index.ts"],
-      "@swimlane/ngx-ui/decorators/throttleable": [
-        "packages/ngx-ui/decorators/throttleable/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/decorators/debounceable": [
-        "packages/ngx-ui/decorators/debounceable/src/index.ts"
-      ],
+      "@swimlane/ngx-ui/decorators/throttleable": ["packages/ngx-ui/decorators/throttleable/src/index.ts"],
+      "@swimlane/ngx-ui/decorators/debounceable": ["packages/ngx-ui/decorators/debounceable/src/index.ts"],
       "@swimlane/ngx-ui/injection": ["packages/ngx-ui/injection/src/index.ts"],
-      "@swimlane/ngx-ui/pipes/camel-to-snake": [
-        "packages/ngx-ui/pipes/camel-to-snake/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/pipes/decamelize": [
-        "packages/ngx-ui/pipes/decamelize/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/pipes/time-zone": [
-        "packages/ngx-ui/pipes/time-zone/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/pipes/filter": [
-        "packages/ngx-ui/pipes/filter/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/animations": [
-        "packages/ngx-ui/animations/src/index.ts"
-      ],
+      "@swimlane/ngx-ui/pipes/camel-to-snake": ["packages/ngx-ui/pipes/camel-to-snake/src/index.ts"],
+      "@swimlane/ngx-ui/pipes/decamelize": ["packages/ngx-ui/pipes/decamelize/src/index.ts"],
+      "@swimlane/ngx-ui/pipes/time-zone": ["packages/ngx-ui/pipes/time-zone/src/index.ts"],
+      "@swimlane/ngx-ui/pipes/filter": ["packages/ngx-ui/pipes/filter/src/index.ts"],
+      "@swimlane/ngx-ui/animations": ["packages/ngx-ui/animations/src/index.ts"],
       "@swimlane/ngx-ui/button": ["packages/ngx-ui/button/src/index.ts"],
       "@swimlane/ngx-ui/nav-menu": ["packages/ngx-ui/nav-menu/src/index.ts"],
       "@swimlane/ngx-ui/hotkeys": ["packages/ngx-ui/hotkeys/src/index.ts"],
@@ -71,88 +43,48 @@
       "@swimlane/ngx-ui/toolbar": ["packages/ngx-ui/toolbar/src/index.ts"],
       "@swimlane/ngx-ui/dropdown": ["packages/ngx-ui/dropdown/src/index.ts"],
       "@swimlane/ngx-ui/input": ["packages/ngx-ui/input/src/index.ts"],
-      "@swimlane/ngx-ui/utils/queue-for-next-render": [
-        "packages/ngx-ui/utils/queue-for-next-render/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/directives/click-hold": [
-        "packages/ngx-ui/directives/click-hold/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/directives/long-press": [
-        "packages/ngx-ui/directives/long-press/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/directives/autosize-input": [
-        "packages/ngx-ui/directives/autosize-input/src/index.ts"
-      ],
+      "@swimlane/ngx-ui/utils/queue-for-next-render": ["packages/ngx-ui/utils/queue-for-next-render/src/index.ts"],
+      "@swimlane/ngx-ui/directives/click-hold": ["packages/ngx-ui/directives/click-hold/src/index.ts"],
+      "@swimlane/ngx-ui/directives/long-press": ["packages/ngx-ui/directives/long-press/src/index.ts"],
+      "@swimlane/ngx-ui/directives/autosize-input": ["packages/ngx-ui/directives/autosize-input/src/index.ts"],
       "@swimlane/ngx-ui/drawer": ["packages/ngx-ui/drawer/src/index.ts"],
       "@swimlane/ngx-ui/overlay": ["packages/ngx-ui/overlay/src/index.ts"],
       "@swimlane/ngx-ui/loading": ["packages/ngx-ui/loading/src/index.ts"],
       "@swimlane/ngx-ui/section": ["packages/ngx-ui/section/src/index.ts"],
-      "@swimlane/ngx-ui/utils/json-to-tree": [
-        "packages/ngx-ui/utils/json-to-tree/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/pipes/json-tree": [
-        "packages/ngx-ui/pipes/json-tree/src/index.ts"
-      ],
+      "@swimlane/ngx-ui/utils/json-to-tree": ["packages/ngx-ui/utils/json-to-tree/src/index.ts"],
+      "@swimlane/ngx-ui/pipes/json-tree": ["packages/ngx-ui/pipes/json-tree/src/index.ts"],
       "@swimlane/ngx-ui/tabs": ["packages/ngx-ui/tabs/src/index.ts"],
-      "@swimlane/ngx-ui/file-button": [
-        "packages/ngx-ui/file-button/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/long-press-button": [
-        "packages/ngx-ui/long-press-button/src/index.ts"
-      ],
+      "@swimlane/ngx-ui/file-button": ["packages/ngx-ui/file-button/src/index.ts"],
+      "@swimlane/ngx-ui/long-press-button": ["packages/ngx-ui/long-press-button/src/index.ts"],
       "@swimlane/ngx-ui/calendar": ["packages/ngx-ui/calendar/src/index.ts"],
       "@swimlane/ngx-ui/checkbox": ["packages/ngx-ui/checkbox/src/index.ts"],
       "@swimlane/ngx-ui/card": ["packages/ngx-ui/card/src/index.ts"],
-      "@swimlane/ngx-ui/code-editor": [
-        "packages/ngx-ui/code-editor/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/directives/visibility": [
-        "packages/ngx-ui/directives/visibility/src/index.ts"
-      ],
+      "@swimlane/ngx-ui/code-editor": ["packages/ngx-ui/code-editor/src/index.ts"],
+      "@swimlane/ngx-ui/directives/visibility": ["packages/ngx-ui/directives/visibility/src/index.ts"],
       "@swimlane/ngx-ui/date-time": ["packages/ngx-ui/date-time/src/index.ts"],
       "@swimlane/ngx-ui/dialog": ["packages/ngx-ui/dialog/src/index.ts"],
       "@swimlane/ngx-ui/alert": ["packages/ngx-ui/alert/src/index.ts"],
       "@swimlane/ngx-ui/select": ["packages/ngx-ui/select/src/index.ts"],
-      "@swimlane/ngx-ui/decorators/input-boolean": [
-        "packages/ngx-ui/decorators/input-boolean/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/decorators/input-numeric": [
-        "packages/ngx-ui/decorators/input-numeric/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/decorators/input-css-pixel": [
-        "packages/ngx-ui/decorators/input-css-pixel/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/decorators/input-enum": [
-        "packages/ngx-ui/decorators/input-enum/src/index.ts"
-      ],
+      "@swimlane/ngx-ui/decorators/input-boolean": ["packages/ngx-ui/decorators/input-boolean/src/index.ts"],
+      "@swimlane/ngx-ui/decorators/input-numeric": ["packages/ngx-ui/decorators/input-numeric/src/index.ts"],
+      "@swimlane/ngx-ui/decorators/input-css-pixel": ["packages/ngx-ui/decorators/input-css-pixel/src/index.ts"],
+      "@swimlane/ngx-ui/decorators/input-enum": ["packages/ngx-ui/decorators/input-enum/src/index.ts"],
       "@swimlane/ngx-ui/abstracts": ["packages/ngx-ui/abstracts/src/index.ts"],
-      "@swimlane/ngx-ui/json-editor": [
-        "packages/ngx-ui/json-editor/src/index.ts"
-      ],
+      "@swimlane/ngx-ui/json-editor": ["packages/ngx-ui/json-editor/src/index.ts"],
       "@swimlane/ngx-ui/toggle": ["packages/ngx-ui/toggle/src/index.ts"],
       "@swimlane/ngx-ui/nag": ["packages/ngx-ui/nag/src/index.ts"],
-      "@swimlane/ngx-ui/notification": [
-        "packages/ngx-ui/notification/src/index.ts"
-      ],
+      "@swimlane/ngx-ui/notification": ["packages/ngx-ui/notification/src/index.ts"],
       "@swimlane/ngx-ui/navbar": ["packages/ngx-ui/navbar/src/index.ts"],
       "@swimlane/ngx-ui/plus-menu": ["packages/ngx-ui/plus-menu/src/index.ts"],
-      "@swimlane/ngx-ui/progress-spinner": [
-        "packages/ngx-ui/progress-spinner/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/radiobutton": [
-        "packages/ngx-ui/radiobutton/src/index.ts"
-      ],
+      "@swimlane/ngx-ui/progress-spinner": ["packages/ngx-ui/progress-spinner/src/index.ts"],
+      "@swimlane/ngx-ui/radiobutton": ["packages/ngx-ui/radiobutton/src/index.ts"],
       "@swimlane/ngx-ui/slider": ["packages/ngx-ui/slider/src/index.ts"],
       "@swimlane/ngx-ui/split": ["packages/ngx-ui/split/src/index.ts"],
       "@swimlane/ngx-ui/stepper": ["packages/ngx-ui/stepper/src/index.ts"],
-      "@swimlane/ngx-ui/directives/resize-observer": [
-        "packages/ngx-ui/directives/resize-observer/src/index.ts"
-      ],
+      "@swimlane/ngx-ui/directives/resize-observer": ["packages/ngx-ui/directives/resize-observer/src/index.ts"],
       "@swimlane/ngx-ui/tip": ["packages/ngx-ui/tip/src/index.ts"],
       "@swimlane/ngx-ui/tree": ["packages/ngx-ui/tree/src/index.ts"],
-      "@swimlane/ngx-ui/directives/copy-to-clipboard": [
-        "packages/ngx-ui/directives/copy-to-clipboard/src/index.ts"
-      ]
+      "@swimlane/ngx-ui/directives/copy-to-clipboard": ["packages/ngx-ui/directives/copy-to-clipboard/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

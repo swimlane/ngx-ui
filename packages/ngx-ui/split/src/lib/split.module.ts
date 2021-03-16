@@ -6,6 +6,6 @@ import { SplitHandleComponent } from './split-handle/split-handle.component';
 @NgModule({
   imports: [CommonModule],
   declarations: [SplitDirective, SplitHandleComponent, SplitAreaDirective],
-  exports: [SplitDirective, SplitHandleComponent, SplitAreaDirective],
+  exports: [SplitDirective, SplitHandleComponent, SplitAreaDirective]
 })
 export class SplitModule {}

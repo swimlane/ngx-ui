@@ -6,7 +6,7 @@ export const HOT_KEYS_MAP = {
   up: '\u2191', // ↑
   down: '\u2193', // ↓
   return: '\u23CE', // ⏎
-  backspace: '\u232B', // ⌫
+  backspace: '\u232B' // ⌫
 };
 
 export const TAGS = ['INPUT', 'SELECT', 'TEXTAREA'];

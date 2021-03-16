@@ -6,6 +6,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   template: `
     <ng-content></ng-content>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputSuffixComponent {}

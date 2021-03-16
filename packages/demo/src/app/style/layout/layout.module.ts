@@ -12,11 +12,11 @@ import { LayoutComponent } from './layout.component';
     RouterModule.forChild([
       {
         path: '',
-        component: LayoutComponent,
-      },
+        component: LayoutComponent
+      }
     ]),
     SectionHeaderModule,
-    MarkdownModule,
-  ],
+    MarkdownModule
+  ]
 })
 export class LayoutModule {}

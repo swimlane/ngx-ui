@@ -24,7 +24,7 @@ import { ArrayNodeComponent } from './json-editor/json-editor-node/array-node/ar
 import { JsonEditorNodeComponent } from './json-editor/json-editor-node/json-editor-node.component';
 import { ObjectNodeComponent } from './json-editor/json-editor-node/object-node/object-node.component';
 import { JsonEditorComponent } from './json-editor/json-editor.component';
-import { ObjectNotEmptyPipe, ObjectValuesPipe } from "./pipes";
+import { ObjectNotEmptyPipe, ObjectValuesPipe } from './pipes';
 import { SchemaValidatorService } from './services';
 
 @NgModule({
@@ -42,7 +42,7 @@ import { SchemaValidatorService } from './services';
     CheckboxModule,
     TabsModule,
     DropdownModule,
-    ToggleModule,
+    ToggleModule
   ],
   declarations: [
     ObjectValuesPipe,
@@ -57,7 +57,7 @@ import { SchemaValidatorService } from './services';
     ObjectNodeFlatComponent,
     NodeInfoComponent,
     PropertyConfigComponent,
-    ObjectNotEmptyPipe,
+    ObjectNotEmptyPipe
   ],
   providers: [SchemaValidatorService],
   exports: [
@@ -73,7 +73,7 @@ import { SchemaValidatorService } from './services';
     ObjectNodeFlatComponent,
     NodeInfoComponent,
     PropertyConfigComponent,
-    ObjectNotEmptyPipe,
-  ],
+    ObjectNotEmptyPipe
+  ]
 })
 export class JsonEditorModule {}

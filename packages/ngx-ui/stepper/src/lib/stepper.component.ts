@@ -9,7 +9,7 @@ import {
   Input,
   Output,
   QueryList,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
@@ -18,11 +18,7 @@ import { DestroyedService } from '@swimlane/ngx-ui/destroyed';
 import { EnumKey } from '@swimlane/ngx-ui/types';
 import { queueForNextRender } from '@swimlane/ngx-ui/utils/queue-for-next-render';
 import { takeUntil } from 'rxjs/operators';
-import {
-  StepperAnimationStates,
-  StepperBarAnimationStates,
-  StepperPosition,
-} from './enums';
+import { StepperAnimationStates, StepperBarAnimationStates, StepperPosition } from './enums';
 import { StepComponent } from './step/step.component';
 import { stepperAnimations } from './stepper.animation';
 
@@ -37,9 +33,9 @@ import { stepperAnimations } from './stepper.animation';
     stepperAnimations.horizontalStepTransition,
     stepperAnimations.verticalStepTransition,
     stepperAnimations.horizontalBarTransition,
-    stepperAnimations.verticalBarTransition,
+    stepperAnimations.verticalBarTransition
   ],
-  providers: [DestroyedService],
+  providers: [DestroyedService]
 })
 export class StepperComponent {
   static ngAcceptInputType_active: NumericInput;
@@ -79,13 +75,7 @@ export class StepperComponent {
   set active(v: number) {
     v = coerceNumberProperty(v);
 
-    if (
-      v !== undefined &&
-      !isNaN(v) &&
-      v !== this._active &&
-      v >= 0 &&
-      (!this._steps || v <= this._steps.length)
-    ) {
+    if (v !== undefined && !isNaN(v) && v !== this._active && v >= 0 && (!this._steps || v <= this._steps.length)) {
       this._active = v;
 
       if (this._steps) {
@@ -146,7 +136,7 @@ export class StepperComponent {
 
           item.step.activeChange.pipe(takeUntil(this.destroyed)).subscribe(
             /* istanbul ignore next */
-            (active) => (this.active = active)
+            active => (this.active = active)
           );
         });
       }
@@ -156,14 +146,11 @@ export class StepperComponent {
   }
 
   get completeSteps() {
-    return this._steps?.filter((s) => s.step! < this.active).length || 0;
+    return this._steps?.filter(s => s.step! < this.active).length || 0;
   }
 
   get vertical() {
-    return (
-      this.position === StepperPosition.Left ||
-      this.position === StepperPosition.Right
-    );
+    return this.position === StepperPosition.Left || this.position === StepperPosition.Right;
   }
 
   get barState() {
@@ -197,10 +184,7 @@ export class StepperComponent {
     return this.position === StepperPosition.Right;
   }
 
-  constructor(
-    private readonly cdr: ChangeDetectorRef,
-    private readonly destroyed: DestroyedService
-  ) {}
+  constructor(private readonly cdr: ChangeDetectorRef, private readonly destroyed: DestroyedService) {}
 
   previous() {
     if (this._active > 0) {
@@ -250,13 +234,9 @@ export class StepperComponent {
     const position = i - this._active;
 
     if (position < 0) {
-      return this.vertical
-        ? StepperAnimationStates.Up
-        : StepperAnimationStates.Left;
+      return this.vertical ? StepperAnimationStates.Up : StepperAnimationStates.Left;
     } else if (position > 0) {
-      return this.vertical
-        ? StepperAnimationStates.Down
-        : StepperAnimationStates.Right;
+      return this.vertical ? StepperAnimationStates.Down : StepperAnimationStates.Right;
     }
 
     return StepperAnimationStates.Current;

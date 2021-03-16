@@ -6,7 +6,7 @@ import {
   HostBinding,
   Input,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
@@ -17,12 +17,9 @@ import { CardOrientation, CardStatus } from './enums';
   selector: 'ngx-card',
   exportAs: 'ngxCard',
   templateUrl: './card.component.html',
-  styleUrls: [
-    './card-horizontal.component.scss',
-    './card-vertical.component.scss',
-  ],
+  styleUrls: ['./card-horizontal.component.scss', './card-vertical.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardComponent {
   static ngAcceptInputType_disabled: BooleanInput;

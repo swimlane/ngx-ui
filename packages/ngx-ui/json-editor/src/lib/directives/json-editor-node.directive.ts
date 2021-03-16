@@ -8,7 +8,7 @@ import {
   Output,
   SimpleChanges,
   TemplateRef,
-  ViewChild,
+  ViewChild
 } from '@angular/core';
 import { DialogComponent, DialogService } from '@swimlane/ngx-ui/dialog';
 import type { JSONEditorSchema } from '../interfaces';
@@ -54,8 +54,8 @@ export class JsonEditorNode implements OnInit, OnChanges {
     mode: {
       label: 'Javascript',
       name: 'javascript',
-      json: true,
-    },
+      json: true
+    }
   };
   editorModel = '';
   editorVisible = true;
@@ -64,24 +64,24 @@ export class JsonEditorNode implements OnInit, OnChanges {
     {
       label: 'Javascript',
       name: 'javascript',
-      json: true,
+      json: true
     },
     {
       label: 'YAML',
-      name: 'yaml',
+      name: 'yaml'
     },
     {
       label: 'Python',
-      name: 'python',
+      name: 'python'
     },
     {
       label: 'Powershell',
-      name: 'powershell',
+      name: 'powershell'
     },
     {
       label: 'HTML',
-      name: 'htmlmixed',
-    },
+      name: 'htmlmixed'
+    }
   ];
 
   constructor(public dialogMngr: DialogService) {}
@@ -89,7 +89,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
   ngOnInit() {
     if (!this.schema) {
       this.schema = {
-        ...inferType(this.model, this.typeCheckOverrides),
+        ...inferType(this.model, this.typeCheckOverrides)
       };
     }
 
@@ -108,11 +108,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
       if (this.model !== undefined) {
         this.schema = {
           ...this.schema,
-          ...inferType(
-            this.model,
-            this.typeCheckOverrides,
-            this.schema.$meta.type
-          ),
+          ...inferType(this.model, this.typeCheckOverrides, this.schema.$meta.type)
         };
       } else {
         this.schema.type = this.schema.type[0];
@@ -158,11 +154,11 @@ export class JsonEditorNode implements OnInit, OnChanges {
     this.childrenErrors = [];
 
     if (this.errors && this.errors.length) {
-      this.ownErrors = this.errors.filter((e) => {
+      this.ownErrors = this.errors.filter(e => {
         return e.dataPath === this.path;
       });
 
-      this.childrenErrors = this.errors.filter((e) => {
+      this.childrenErrors = this.errors.filter(e => {
         return e.dataPath.startsWith(this.path);
       });
     }
@@ -193,7 +189,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
     this.editorModel = this.model;
     this.editorDialog = this.dialogMngr.create({
       template: this.codeEditorTpl,
-      class: 'code-editor-dialog',
+      class: 'code-editor-dialog'
     });
   }
 

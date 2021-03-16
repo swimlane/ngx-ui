@@ -10,7 +10,7 @@ import {
   Input,
   OnInit,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
@@ -26,7 +26,7 @@ const moment = momentImported;
 const CALENDAR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CalendarComponent),
-  multi: true,
+  multi: true
 };
 
 @Component({
@@ -36,7 +36,7 @@ const CALENDAR_VALUE_ACCESSOR = {
   styleUrls: ['./calendar.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [CALENDAR_VALUE_ACCESSOR],
+  providers: [CALENDAR_VALUE_ACCESSOR]
 })
 export class CalendarComponent implements OnInit, ControlValueAccessor {
   static ngAcceptInputType_disabled: BooleanInput;
@@ -45,12 +45,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   @Input() maxDate!: Date | string;
   @Input() daysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   @Input() timezone!: string;
-  @Input() inputFormats: Array<string | MomentBuiltinFormat> = [
-    'L',
-    `LT`,
-    'L LT',
-    moment.ISO_8601,
-  ];
+  @Input() inputFormats: Array<string | MomentBuiltinFormat> = ['L', `LT`, 'L LT', moment.ISO_8601];
 
   @InputBoolean()
   @Input()
@@ -133,11 +128,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   validateView() {
-    const viewsList = [
-      CalendarView.date,
-      CalendarView.month,
-      CalendarView.year,
-    ];
+    const viewsList = [CalendarView.date, CalendarView.month, CalendarView.year];
 
     // date time picker precision validation
     if (!viewsList.includes(this._minView)) {
@@ -145,12 +136,9 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
     }
 
     // defaultView cannot be below minView
-    if (
-      viewsList.indexOf(this._minView) > viewsList.indexOf(this._defaultView)
-    ) {
+    if (viewsList.indexOf(this._minView) > viewsList.indexOf(this._defaultView)) {
       this.defaultView = Object.keys(CalendarView).find(
-        (key) =>
-          CalendarView[key as keyof typeof CalendarView] === this._minView
+        key => CalendarView[key as keyof typeof CalendarView] === this._minView
       ) as keyof typeof CalendarView;
     }
 
@@ -169,9 +157,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
    */
   isMonthActive(month: string): boolean {
     const date = this.createMoment(this.value).month(month);
-    return (
-      date.isSame(this.value, 'month') && date.isSame(this.activeDate, 'year')
-    );
+    return date.isSame(this.value, 'month') && date.isSame(this.activeDate, 'year');
   }
 
   /**
@@ -179,9 +165,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
    */
   isCurrentMonth(month: string): boolean {
     const date = this.activeDate.clone().month(month);
-    return (
-      date.isSame(this._current, 'month') && date.isSame(this._current, 'year')
-    );
+    return date.isSame(this._current, 'month') && date.isSame(this._current, 'year');
   }
 
   /**
@@ -220,10 +204,8 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
         return false;
     }
 
-    const isBeforeMin =
-      this.minDate && date.isBefore(this.parseDate(this.minDate), type);
-    const isAfterMax =
-      this.maxDate && date.isAfter(this.parseDate(this.maxDate), type);
+    const isBeforeMin = this.minDate && date.isBefore(this.parseDate(this.minDate), type);
+    const isAfterMax = this.maxDate && date.isAfter(this.parseDate(this.maxDate), type);
 
     return !!isBeforeMin || !!isAfterMax;
   }
@@ -335,9 +317,7 @@ export class CalendarComponent implements OnInit, ControlValueAccessor {
 
   private parseDate(date: string | Date): Moment {
     date = date instanceof Date ? date.toISOString() : date;
-    return this.timezone
-      ? moment.tz(date, this.inputFormats, this.timezone)
-      : moment(date, this.inputFormats);
+    return this.timezone ? moment.tz(date, this.inputFormats, this.timezone) : moment(date, this.inputFormats);
   }
 
   private createMoment(date: MomentInput): Moment {

@@ -1,11 +1,5 @@
 import type { BooleanInput } from '@angular/cdk/coercion';
-import {
-  ChangeDetectorRef,
-  Directive,
-  HostBinding,
-  Input,
-  OnChanges,
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, HostBinding, Input, OnChanges } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { basisToParts, FlexParts, partsToStyle } from '../utils';
 
@@ -13,7 +7,7 @@ const DEFAULT_BASIS = '1 1 1e-9px';
 
 @Directive({
   selector: '[ngxSplitArea]',
-  exportAs: 'ngxSplitArea',
+  exportAs: 'ngxSplitArea'
 })
 export class SplitAreaDirective implements OnChanges {
   static ngAcceptInputType_shouldAdjustMaxMin: BooleanInput;
@@ -32,9 +26,7 @@ export class SplitAreaDirective implements OnChanges {
 
   @HostBinding('style.flex')
   get flex() {
-    return this.currentFlexParts
-      ? partsToStyle(this.currentFlexParts)
-      : DEFAULT_BASIS;
+    return this.currentFlexParts ? partsToStyle(this.currentFlexParts) : DEFAULT_BASIS;
   }
 
   @HostBinding('style.max-width')

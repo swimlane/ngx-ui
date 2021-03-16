@@ -1,12 +1,5 @@
 import type { BooleanInput } from '@angular/cdk/coercion';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-  TemplateRef,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
 import type { NumericInput } from '@swimlane/ngx-ui/decorators/input-numeric';
@@ -22,7 +15,7 @@ import { ProgressSpinnerLabel } from './interfaces';
   templateUrl: './progress-spinner.component.html',
   styleUrls: ['./progress-spinner.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgressSpinnerComponent {
   static ngAcceptInputType_isFailure: BooleanInput;
@@ -98,9 +91,7 @@ export class ProgressSpinnerComponent {
   @HostBinding('style.--spinner-color')
   @Input()
   get spinnerColor() {
-    return this.isComplete && this.isFailure
-      ? this.failStatusColor
-      : this.color;
+    return this.isComplete && this.isFailure ? this.failStatusColor : this.color;
   }
 
   @HostBinding('class.ngx-progress-spinner--show-icon')
@@ -112,7 +103,7 @@ export class ProgressSpinnerComponent {
 
   private readonly _indeterminate = {
     value: 50,
-    total: 100,
+    total: 100
   };
 
   private get _circumference() {
@@ -120,14 +111,10 @@ export class ProgressSpinnerComponent {
   }
 
   private get _modeValue() {
-    return this.mode === ProgressSpinnerMode.Determinate || this.isComplete
-      ? this.value
-      : this._indeterminate.value;
+    return this.mode === ProgressSpinnerMode.Determinate || this.isComplete ? this.value : this._indeterminate.value;
   }
 
   private get _modeTotal() {
-    return this.mode === ProgressSpinnerMode.Determinate || this.isComplete
-      ? this.total
-      : this._indeterminate.total;
+    return this.mode === ProgressSpinnerMode.Determinate || this.isComplete ? this.total : this._indeterminate.total;
   }
 }

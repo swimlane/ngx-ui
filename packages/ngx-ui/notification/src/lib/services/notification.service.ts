@@ -1,16 +1,9 @@
 import { DOCUMENT } from '@angular/common';
 import { ComponentRef, Inject, Injectable, Type } from '@angular/core';
 import type { PartialBindings } from '@swimlane/ngx-ui/injection';
-import {
-  InjectionRegistryService,
-  InjectionService,
-} from '@swimlane/ngx-ui/injection';
+import { InjectionRegistryService, InjectionService } from '@swimlane/ngx-ui/injection';
 import { Subscription, timer } from 'rxjs';
-import {
-  NotificationPermissionType,
-  NotificationStyleType,
-  NotificationType,
-} from '../enums';
+import { NotificationPermissionType, NotificationStyleType, NotificationType } from '../enums';
 import { NotificationOptions } from '../interfaces';
 import { NotificationContainerComponent } from '../notification-container/notification-container.component';
 import { NotificationComponent } from '../notification.component';
@@ -27,8 +20,8 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
       type: NotificationType.html,
       styleType: NotificationStyleType.none,
       showClose: true,
-      sound: false,
-    },
+      sound: false
+    }
   };
 
   permission?: NotificationPermission;
@@ -39,16 +32,11 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
     return 'Notification' in window;
   }
 
-  constructor(
-    readonly injectionService: InjectionService,
-    @Inject(DOCUMENT) private readonly document: Document
-  ) {
+  constructor(readonly injectionService: InjectionService, @Inject(DOCUMENT) private readonly document: Document) {
     super(injectionService);
   }
 
-  create(
-    bindings: Partial<NotificationOptions>
-  ): ComponentRef<NotificationComponent> {
+  create(bindings: Partial<NotificationOptions>): ComponentRef<NotificationComponent> {
     // verify flood not happening
     if (bindings.rateLimit && this.isFlooded(bindings)) {
       return null as any;
@@ -78,9 +66,7 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
   startTimer(component: ComponentRef<NotificationComponent>): void {
     if (component.instance && component.instance.timeout !== false) {
       this.pauseTimer(component);
-      component.instance.timerSubscription = timer(
-        component.instance.timeout
-      ).subscribe(() => {
+      component.instance.timerSubscription = timer(component.instance.timeout).subscribe(() => {
         this.destroy(component);
       });
     }
@@ -94,9 +80,7 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
 
   requestPermissions(): void {
     if (this.isNativeSupported) {
-      Notification.requestPermission(
-        /* istanbul ignore next */ (status) => (this.permission = status)
-      );
+      Notification.requestPermission(/* istanbul ignore next */ status => (this.permission = status));
     }
   }
 
@@ -112,17 +96,9 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
     return bindings;
   }
 
-  injectComponent(
-    type: Type<NotificationComponent>,
-    options: PartialBindings
-  ): ComponentRef<NotificationComponent> {
-    if (
-      !this.container ||
-      !this.document.contains(this.container.location.nativeElement)
-    ) {
-      this.container = this.injectionService.appendComponent(
-        NotificationContainerComponent
-      );
+  injectComponent(type: Type<NotificationComponent>, options: PartialBindings): ComponentRef<NotificationComponent> {
+    if (!this.container || !this.document.contains(this.container.location.nativeElement)) {
+      this.container = this.injectionService.appendComponent(NotificationContainerComponent);
     }
 
     return this.injectionService.appendComponent(type, options, this.container);

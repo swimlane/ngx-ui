@@ -5,7 +5,7 @@ import {
   HostBinding,
   Input,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { fromEvent, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -20,7 +20,7 @@ const DEFAULT_BASIS = '0 0 15px';
   templateUrl: './split-handle.component.html',
   styleUrls: ['./split-handle.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SplitHandleComponent {
   @Input() ngxSplitHandle = DEFAULT_BASIS;
@@ -61,15 +61,11 @@ export class SplitHandleComponent {
 
   onMousedown(ev: MouseEvent): void {
     const mouseup$ = fromEvent<MouseEvent>(document, 'mouseup');
-    this.subscription = mouseup$.subscribe(
-      /* istanbul ignore next */ (e: MouseEvent) => this.onMouseup(e)
-    );
+    this.subscription = mouseup$.subscribe(/* istanbul ignore next */ (e: MouseEvent) => this.onMouseup(e));
 
     const mousemove$ = fromEvent<MouseEvent>(document, 'mousemove')
       .pipe(takeUntil(mouseup$))
-      .subscribe(
-        /* istanbul ignore next */ (e: MouseEvent) => this.onMouseMove(e)
-      );
+      .subscribe(/* istanbul ignore next */ (e: MouseEvent) => this.onMouseMove(e));
 
     this.subscription.add(mousemove$);
     this.dragStart.emit(ev);

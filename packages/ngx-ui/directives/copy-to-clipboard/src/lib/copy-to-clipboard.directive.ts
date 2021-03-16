@@ -1,16 +1,8 @@
 import { Clipboard } from '@angular/cdk/clipboard';
-import {
-  Directive,
-  ElementRef,
-  EventEmitter,
-  HostBinding,
-  HostListener,
-  Input,
-  Output,
-} from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
 
 @Directive({
-  selector: '[copyToClipboard]',
+  selector: '[copyToClipboard]'
 })
 export class CopyToClipboardDirective {
   @Input() copyToClipboard!: 'clk' | 'dblclk';
@@ -22,10 +14,7 @@ export class CopyToClipboardDirective {
     return `${clickType} to copy to clipboard`;
   }
 
-  constructor(
-    private readonly el: ElementRef<HTMLElement>,
-    private readonly clipboard: Clipboard
-  ) {}
+  constructor(private readonly el: ElementRef<HTMLElement>, private readonly clipboard: Clipboard) {}
 
   @HostListener('click')
   click() {

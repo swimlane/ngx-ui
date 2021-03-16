@@ -15,7 +15,7 @@ import {
   Renderer2,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
@@ -24,12 +24,7 @@ import { InputCssPixel } from '@swimlane/ngx-ui/decorators/input-css-pixel';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
 import type { NumericInput } from '@swimlane/ngx-ui/decorators/input-numeric';
 import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
-import {
-  Appearance,
-  EnumKey,
-  KeyboardKeys,
-  Size,
-} from '@swimlane/ngx-ui/types';
+import { Appearance, EnumKey, KeyboardKeys, Size } from '@swimlane/ngx-ui/types';
 import { SelectOptionDirective } from './directives';
 import type { SelectDropdownOption } from './models';
 import { SelectInputComponent } from './select-input/select-input.component';
@@ -39,7 +34,7 @@ let nextId = 0;
 const SELECT_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => SelectComponent),
-  multi: true,
+  multi: true
 };
 
 @Component({
@@ -49,7 +44,7 @@ const SELECT_VALUE_ACCESSOR = {
   styleUrls: ['./select.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [SELECT_VALUE_ACCESSOR],
+  providers: [SELECT_VALUE_ACCESSOR]
 })
 export class SelectComponent implements ControlValueAccessor, OnDestroy {
   static ngAcceptInputType_minSelections: NumericInput;
@@ -204,24 +199,15 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   get invalid(): boolean {
     if (this.required && this.checkInvalidValue(this.value)) return true;
-    if (
-      this.maxSelections !== undefined &&
-      this.value &&
-      this.value.length > this.maxSelections
-    ) {
+    if (this.maxSelections !== undefined && this.value && this.value.length > this.maxSelections) {
       return true;
     }
 
-    return (
-      this.minSelections !== undefined &&
-      (!this.value || this.value.length < this.minSelections)
-    );
+    return this.minSelections !== undefined && (!this.value || this.value.length < this.minSelections);
   }
 
   get requiredIndicatorView(): string {
-    const required =
-      this.required ||
-      (this.minSelections !== undefined && this.minSelections > 0);
+    const required = this.required || (this.minSelections !== undefined && this.minSelections > 0);
 
     if (!this.requiredIndicator || !required) {
       return '';
@@ -237,11 +223,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   @HostBinding('class.active-selections')
   get hasSelections(): boolean {
-    return (
-      this.value &&
-      this.value.length > 0 &&
-      typeof this.value[0] !== 'undefined'
-    );
+    return this.value && this.value.length > 0 && typeof this.value[0] !== 'undefined';
   }
 
   @HostBinding('class.has-placeholder')
@@ -322,7 +304,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     if (selection.disabled) return;
     if (this.value.length === this.maxSelections) return;
 
-    const idx = this.value.findIndex((o) => {
+    const idx = this.value.findIndex(o => {
       if (this.identifier) {
         return (
           (o as Record<string, unknown>)[this.identifier] ===
@@ -334,10 +316,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     });
 
     if (idx === -1) {
-      this.value =
-        this.multiple || this.tagging
-          ? [...this.value, selection.value]
-          : [selection.value];
+      this.value = this.multiple || this.tagging ? [...this.value, selection.value] : [selection.value];
     }
 
     // if tagging, we need to clear current text
@@ -369,10 +348,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   onBodyClick(event: Event): void {
-    if (
-      this.dropdownActive &&
-      !this.element.nativeElement.contains(event.target)
-    ) {
+    if (this.dropdownActive && !this.element.nativeElement.contains(event.target)) {
       this.toggleDropdown(false);
     }
   }
@@ -397,22 +373,14 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     this.toggle.emit(this.dropdownActive);
 
     if (state && this.closeOnBodyClick) {
-      this.toggleListener = this.renderer.listen(
-        document.body,
-        'click',
-        this.onBodyClick.bind(this)
-      );
+      this.toggleListener = this.renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
     }
 
     this.cdr.markForCheck();
   }
 
   onKeyUp({ event, value }: { event: KeyboardEvent; value?: string }): void {
-    if (
-      event &&
-      event.key === KeyboardKeys.ARROW_DOWN &&
-      this.focusIndex < this.options.length
-    ) {
+    if (event && event.key === KeyboardKeys.ARROW_DOWN && this.focusIndex < this.options.length) {
       ++this.focusIndex;
     } else {
       this.filterQuery = value;
@@ -441,9 +409,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   private checkInvalidValue(value: unknown): boolean {
-    return Array.isArray(value)
-      ? !this.value.length || this.checkInvalidValue(value[0])
-      : value === undefined;
+    return Array.isArray(value) ? !this.value.length || this.checkInvalidValue(value[0]) : value === undefined;
   }
 
   private onChangeCallback(_: any): void {

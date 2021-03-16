@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, HostBinding } from '@angular/core';
   template: `
     <div class="notification-container"></div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationContainerComponent {
   @HostBinding('class.ngx-notification-container') hostClass = true;

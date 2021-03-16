@@ -18,7 +18,7 @@ import {
   Renderer2,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { DestroyedService } from '@swimlane/ngx-ui/destroyed';
@@ -36,7 +36,7 @@ import { takeUntil } from 'rxjs/operators';
       </ng-container>
     </div>
     <ng-template #labelIsStringTmpl>{{ label }}</ng-template>
-  `,
+  `
 })
 export class TabComponent implements OnInit {
   static ngAcceptInputType_cache: BooleanInput;
@@ -123,8 +123,7 @@ export class TabComponent implements OnInit {
       this.renderer.removeAttribute(this.elRef.nativeElement, 'title');
     }
 
-    this.labelTemplate =
-      typeof this._label === 'string' ? this.labelStringTemplate : this._label;
+    this.labelTemplate = typeof this._label === 'string' ? this.labelStringTemplate : this._label;
   }
 }
 
@@ -135,7 +134,7 @@ export class TabComponent implements OnInit {
   styleUrls: ['./tabs.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DestroyedService],
+  providers: [DestroyedService]
 })
 export class TabsComponent implements AfterContentInit {
   @InputBoolean()
@@ -181,10 +180,7 @@ export class TabsComponent implements AfterContentInit {
   private _activeIndex?: number;
   private tabChanged = false;
 
-  constructor(
-    public readonly cdr: ChangeDetectorRef,
-    private readonly destroyed: DestroyedService
-  ) {}
+  constructor(public readonly cdr: ChangeDetectorRef, private readonly destroyed: DestroyedService) {}
 
   ngAfterContentInit(): void {
     this.initTabs();
@@ -218,12 +214,8 @@ export class TabsComponent implements AfterContentInit {
   }
 
   move(offset: number) {
-    const index = this.tabsArray.findIndex((tab) => tab.active);
-    for (
-      let i = index + offset;
-      i < this.tabsArray.length && i >= 0;
-      i += offset
-    ) {
+    const index = this.tabsArray.findIndex(tab => tab.active);
+    for (let i = index + offset; i < this.tabsArray.length && i >= 0; i += offset) {
       const tab = this.tabsArray[i];
       if (tab && !tab.disabled) {
         this.open(this.tabsArray[i]);
@@ -243,11 +235,7 @@ export class TabsComponent implements AfterContentInit {
   private initTabs() {
     const activeTab = this.findActiveTab();
     if (!activeTab && this.tabsArray.length) {
-      if (
-        this.activeIndex != null &&
-        this.activeIndex !== -1 &&
-        this.tabsArray.length > this.activeIndex
-      ) {
+      if (this.activeIndex != null && this.activeIndex !== -1 && this.tabsArray.length > this.activeIndex) {
         this.tabsArray[this.activeIndex].active = true;
       } else {
         this.tabsArray[0].active = true;

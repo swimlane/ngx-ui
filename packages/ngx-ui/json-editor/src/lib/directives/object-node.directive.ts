@@ -6,23 +6,13 @@ import {
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
 
 import type { JSONSchema7TypeName } from 'json-schema';
 import { jsonSchemaDataFormats, jsonSchemaDataTypes } from '../constants';
-import type {
-  JSONEditorSchema,
-  JsonSchemaDataType,
-  PropertyIndex,
-} from '../interfaces';
-import {
-  createValueForSchema,
-  dataTypeMap,
-  getCurrentType,
-  getIcon,
-  inferType,
-} from '../utils';
+import type { JSONEditorSchema, JsonSchemaDataType, PropertyIndex } from '../interfaces';
+import { createValueForSchema, dataTypeMap, getCurrentType, getIcon, inferType } from '../utils';
 
 @Directive()
 export class ObjectNode implements OnInit, OnChanges {
@@ -54,10 +44,7 @@ export class ObjectNode implements OnInit, OnChanges {
 
   initialized = false;
 
-  dataTypes: JsonSchemaDataType[] = [
-    ...jsonSchemaDataTypes,
-    ...jsonSchemaDataFormats,
-  ];
+  dataTypes: JsonSchemaDataType[] = [...jsonSchemaDataTypes, ...jsonSchemaDataFormats];
   propertyCounter: number = 1;
   propertyId: number = 1;
   propertyIndex: PropertyIndex = {};
@@ -81,33 +68,21 @@ export class ObjectNode implements OnInit, OnChanges {
   update(): void {
     setTimeout(() => {
       for (const prop in this.schema.properties) {
-        if (
-          Array.isArray(this.schema.properties[prop].type) &&
-          (this.schema.properties[prop].type as any).length > 0
-        ) {
+        if (Array.isArray(this.schema.properties[prop].type) && (this.schema.properties[prop].type as any).length > 0) {
           if (!this.schema.properties[prop].$meta) {
             this.schema.properties[prop].$meta = {};
           }
 
-          this.schema.properties[prop].$meta.type = [
-            ...(this.schema.properties[prop].type as any),
-          ];
+          this.schema.properties[prop].$meta.type = [...(this.schema.properties[prop].type as any)];
 
           if (this.model[prop] !== undefined) {
             this.schema.properties[prop] = {
               ...this.schema.properties[prop],
-              ...inferType(
-                this.model[prop],
-                this.typeCheckOverrides,
-                this.schema.properties[prop].$meta.type
-              ),
+              ...inferType(this.model[prop], this.typeCheckOverrides, this.schema.properties[prop].$meta.type)
             };
           } else {
-            this.schema.properties[prop].type = (this.schema.properties[prop]
-              .type as any)[0] as JSONSchema7TypeName;
-            this.schema.properties[prop].$meta.currentType = getCurrentType(
-              this.schema.properties[prop]
-            );
+            this.schema.properties[prop].type = (this.schema.properties[prop].type as any)[0] as JSONSchema7TypeName;
+            this.schema.properties[prop].$meta.currentType = getCurrentType(this.schema.properties[prop]);
           }
         }
       }
@@ -161,9 +136,7 @@ export class ObjectNode implements OnInit, OnChanges {
     this.propertyCounter++;
     const schema = JSON.parse(JSON.stringify(dataType.schema));
 
-    this.model[propName] = createValueForSchema(
-      dataType.schema as JSONEditorSchema
-    );
+    this.model[propName] = createValueForSchema(dataType.schema as JSONEditorSchema);
     schema.nameEditable = !this.schemaBuilderMode;
     schema.propertyName = propName;
 
@@ -183,9 +156,7 @@ export class ObjectNode implements OnInit, OnChanges {
       return;
     }
 
-    const schema = JSON.parse(
-      JSON.stringify(this.schema.properties![propName])
-    );
+    const schema = JSON.parse(JSON.stringify(this.schema.properties![propName]));
     if (!schema.type) {
       schema.type = 'object';
     }
@@ -208,14 +179,10 @@ export class ObjectNode implements OnInit, OnChanges {
    * Adds a new patternProperty as defined in the schema
    */
   addSchemaPatternProperty(propName: string): void {
-    const newPropName = `new ${
-      this.schema.patternProperties![propName].title
-    } ${this.propertyCounter}`;
+    const newPropName = `new ${this.schema.patternProperties![propName].title} ${this.propertyCounter}`;
     this.propertyCounter++;
 
-    const schema = JSON.parse(
-      JSON.stringify(this.schema.patternProperties![propName])
-    );
+    const schema = JSON.parse(JSON.stringify(this.schema.patternProperties![propName]));
     schema.isPatternProperty = true;
     if (!schema.type) {
       schema.type = 'object';
@@ -285,9 +252,7 @@ export class ObjectNode implements OnInit, OnChanges {
    * Creates an index out of all the properties in the model
    */
   indexProperties(): void {
-    const props = this.schemaBuilderMode
-      ? this.schemaRef!.properties
-      : this.model;
+    const props = this.schemaBuilderMode ? this.schemaRef!.properties : this.model;
 
     for (const prop in props) {
       if (this.isIndexed(prop)) {
@@ -305,9 +270,7 @@ export class ObjectNode implements OnInit, OnChanges {
             // tslint:disable-next-line: tsr-detect-non-literal-regexp
             const patternRegex = new RegExp(pattern);
             if (patternRegex.test(prop)) {
-              schema = JSON.parse(
-                JSON.stringify(this.schema.patternProperties[pattern])
-              );
+              schema = JSON.parse(JSON.stringify(this.schema.patternProperties[pattern]));
               matchesPattern = true;
             }
           }
@@ -315,7 +278,7 @@ export class ObjectNode implements OnInit, OnChanges {
 
         if (!matchesPattern) {
           schema = {
-            ...inferType(this.model[prop], this.typeCheckOverrides),
+            ...inferType(this.model[prop], this.typeCheckOverrides)
           };
         }
       }
@@ -344,11 +307,7 @@ export class ObjectNode implements OnInit, OnChanges {
   }
 
   isIndexed(propertyName: string): boolean {
-    return (
-      Object.values(this.propertyIndex).findIndex(
-        (s: JSONEditorSchema) => s.propertyName === propertyName
-      ) !== -1
-    );
+    return Object.values(this.propertyIndex).findIndex((s: JSONEditorSchema) => s.propertyName === propertyName) !== -1;
   }
 
   /**

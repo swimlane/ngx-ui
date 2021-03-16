@@ -7,6 +7,6 @@ import { CodeMirrorComponent } from './code-mirror.component';
 @NgModule({
   imports: [CommonModule, FormsModule, VisibilityModule],
   declarations: [CodeMirrorComponent],
-  exports: [CodeMirrorComponent],
+  exports: [CodeMirrorComponent]
 })
 export class CodeEditorModule {}

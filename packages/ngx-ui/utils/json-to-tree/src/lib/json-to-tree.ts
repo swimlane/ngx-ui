@@ -13,7 +13,7 @@ export function jsonToTree(value: any, label?: string): TreeNode {
 
   switch (type) {
     case 'object':
-      children = Object.keys(value).map((key) => jsonToTree(value[key], key));
+      children = Object.keys(value).map(key => jsonToTree(value[key], key));
       expandable = children.length > 0;
 
       return {
@@ -21,7 +21,7 @@ export function jsonToTree(value: any, label?: string): TreeNode {
         expandable,
         expanded: true,
         model: { type, value },
-        children,
+        children
       };
     case 'array':
       children = value.map(jsonToTree);
@@ -32,13 +32,13 @@ export function jsonToTree(value: any, label?: string): TreeNode {
         expandable,
         expanded: true,
         model: { type, value },
-        children,
+        children
       };
     default:
       return {
         label,
         expandable,
-        model: { type, value },
+        model: { type, value }
       };
   }
 }

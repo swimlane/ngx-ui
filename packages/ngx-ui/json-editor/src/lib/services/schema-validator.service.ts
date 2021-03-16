@@ -8,7 +8,7 @@ export class SchemaValidatorService {
 
   constructor() {
     this.ajv = new Ajv({
-      allErrors: true,
+      allErrors: true
     });
     this.ajv.addFormat('password', '.*');
     this.ajv.addFormat('code', '.*');

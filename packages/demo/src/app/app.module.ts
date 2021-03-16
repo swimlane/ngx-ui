@@ -35,11 +35,11 @@ import { ScullyLibModule } from '@scullyio/ng-lib';
     LoadingModule,
     RouterModule.forRoot(appRoutes),
     MarkdownModule.forRoot({
-      loader: HttpClient,
+      loader: HttpClient
     }),
-    ScullyLibModule,
+    ScullyLibModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'objectNotEmpty',
+  name: 'objectNotEmpty'
 })
 export class ObjectNotEmptyPipe implements PipeTransform {
   transform(value?: any | null): boolean {

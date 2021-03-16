@@ -7,23 +7,18 @@ export function Hotkey(
   description: string,
   options?: Partial<Omit<HotkeyOptions, 'zone'>>
 ): PropertyDecorator {
-  return (
-    target: { ngOnInit?: () => void; ngOnDestroy?: () => void },
-    propertyKey
-  ) => {
+  return (target: { ngOnInit?: () => void; ngOnDestroy?: () => void }, propertyKey) => {
     const oldInit = target.ngOnInit;
     target.ngOnInit = function () {
       if (oldInit) oldInit.bind(this)();
 
       HotkeysFactoryService.service.add(key, {
         callback: () => {
-          (((target as unknown) as Record<string, unknown>)[
-            propertyKey as string
-          ] as Function).bind(this)();
+          (((target as unknown) as Record<string, unknown>)[propertyKey as string] as Function).bind(this)();
         },
         description,
         component: this as Type<unknown>,
-        ...options,
+        ...options
       });
     };
 

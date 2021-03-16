@@ -20,11 +20,8 @@ CodeMirror.defineMode(
         }
 
         return null;
-      },
+      }
     };
-    return CodeMirror.overlayMode(
-      CodeMirror.getMode(config, parserConfig.backdrop || 'text/html'),
-      mustacheOverlay
-    );
+    return CodeMirror.overlayMode(CodeMirror.getMode(config, parserConfig.backdrop || 'text/html'), mustacheOverlay);
   }
 );

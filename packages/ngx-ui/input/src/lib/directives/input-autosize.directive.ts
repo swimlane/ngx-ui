@@ -4,7 +4,7 @@ import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 
 @Directive({
   exportAs: 'ngxAutosize',
-  selector: 'textarea[autosize], input[autosize]',
+  selector: 'textarea[autosize], input[autosize]'
 })
 export class InputAutosizeDirective {
   static ngAcceptInputType_autosize: BooleanInput;
@@ -17,9 +17,7 @@ export class InputAutosizeDirective {
     return this.element.nativeElement.nodeName as 'TEXTAREA' | 'INPUT';
   }
 
-  constructor(
-    readonly element: ElementRef<HTMLInputElement | HTMLTextAreaElement>
-  ) {}
+  constructor(readonly element: ElementRef<HTMLInputElement | HTMLTextAreaElement>) {}
 
   onInput() {
     if (this.autosize) {

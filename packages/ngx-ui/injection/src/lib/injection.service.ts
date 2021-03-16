@@ -7,13 +7,11 @@ import {
   Injectable,
   Injector,
   Type,
-  ViewContainerRef,
+  ViewContainerRef
 } from '@angular/core';
 import type { PartialBindings } from './models';
 
-function isViewContainerRef(
-  x: ViewContainerRef | ComponentRef<unknown>
-): x is ViewContainerRef {
+function isViewContainerRef(x: ViewContainerRef | ComponentRef<unknown>): x is ViewContainerRef {
   return 'element' in x;
 }
 
@@ -52,11 +50,9 @@ export class InjectionService {
    */
   getRootViewContainer(): ViewContainerRef | ComponentRef<unknown> {
     if (this._container) return this._container;
-    if (InjectionService.globalRootViewContainer)
-      return InjectionService.globalRootViewContainer;
+    if (InjectionService.globalRootViewContainer) return InjectionService.globalRootViewContainer;
 
-    if (this.applicationRef.components.length)
-      return this.applicationRef.components[0];
+    if (this.applicationRef.components.length) return this.applicationRef.components[0];
 
     throw new Error(
       'View Container not found! ngUpgrade needs to manually set this via setRootViewContainer or setGlobalRootViewContainer.'
@@ -82,19 +78,13 @@ export class InjectionService {
    * @memberOf InjectionService
    * @param component
    */
-  getComponentRootNode(
-    component: ViewContainerRef | ComponentRef<unknown>
-  ): HTMLElement {
+  getComponentRootNode(component: ViewContainerRef | ComponentRef<unknown>): HTMLElement {
     if (isViewContainerRef(component)) {
       return component.element.nativeElement;
     }
 
-    if (
-      component.hostView &&
-      (component.hostView as EmbeddedViewRef<unknown>).rootNodes.length > 0
-    ) {
-      return (component.hostView as EmbeddedViewRef<unknown>)
-        .rootNodes[0] as HTMLElement;
+    if (component.hostView && (component.hostView as EmbeddedViewRef<unknown>).rootNodes.length > 0) {
+      return (component.hostView as EmbeddedViewRef<unknown>).rootNodes[0] as HTMLElement;
     }
 
     // the top most component root node has no `hostView`
@@ -106,9 +96,7 @@ export class InjectionService {
    *
    * @memberOf InjectionService
    */
-  getRootViewContainerNode(
-    component: ViewContainerRef | ComponentRef<unknown>
-  ): HTMLElement {
+  getRootViewContainerNode(component: ViewContainerRef | ComponentRef<unknown>): HTMLElement {
     return this.getComponentRootNode(component);
   }
 
@@ -120,17 +108,13 @@ export class InjectionService {
    *
    * @memberOf InjectionService
    */
-  projectComponentBindings(
-    component: ComponentRef<unknown>,
-    bindings: PartialBindings
-  ): ComponentRef<unknown> {
+  projectComponentBindings(component: ComponentRef<unknown>, bindings: PartialBindings): ComponentRef<unknown> {
     if (bindings) {
       if (bindings.inputs !== undefined) {
         const bindingKeys = Object.getOwnPropertyNames(bindings.inputs);
         for (const bindingName of bindingKeys) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (component.instance as any)[bindingName] =
-            bindings.inputs[bindingName];
+          (component.instance as any)[bindingName] = bindings.inputs[bindingName];
         }
       }
 
@@ -165,9 +149,7 @@ export class InjectionService {
     const appendLocation =
       bindings.inputs && bindings.inputs.isRoot === false
         ? location
-        : this.getComponentRootNode(
-            location as ViewContainerRef | ComponentRef<unknown>
-          );
+        : this.getComponentRootNode(location as ViewContainerRef | ComponentRef<unknown>);
 
     const portalHost = new DomPortalOutlet(
       appendLocation as HTMLElement,

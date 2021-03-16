@@ -11,7 +11,7 @@ import {
   Output,
   QueryList,
   TemplateRef,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { DestroyedService } from '@swimlane/ngx-ui/destroyed';
 import { TreeNode } from '@swimlane/ngx-ui/types';
@@ -25,7 +25,7 @@ import { TreeNodeComponent } from './tree-node/tree-node.component';
   styleUrls: ['./tree.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DestroyedService],
+  providers: [DestroyedService]
 })
 export class TreeComponent implements AfterContentInit {
   @Input() nodes?: TreeNode[];
@@ -35,7 +35,7 @@ export class TreeComponent implements AfterContentInit {
 
   @Input() icons = {
     collapse: 'icon-tree-collapse',
-    expand: 'icon-tree-expand',
+    expand: 'icon-tree-expand'
   };
 
   @ContentChild(TemplateRef, { static: true })
@@ -52,9 +52,7 @@ export class TreeComponent implements AfterContentInit {
 
   @HostBinding('class.one-leaf')
   get hasOneLeaf(): boolean {
-    return (
-      (this.nodes && this.nodes.length === 1) || this.nodeElms?.length === 1
-    );
+    return (this.nodes && this.nodes.length === 1) || this.nodeElms?.length === 1;
   }
 
   get template(): TemplateRef<any> {
@@ -63,16 +61,11 @@ export class TreeComponent implements AfterContentInit {
 
   @HostBinding('class.ngx-tree') hostClass = true;
 
-  constructor(
-    private readonly cdr: ChangeDetectorRef,
-    private readonly destroyed: DestroyedService
-  ) {}
+  constructor(private readonly cdr: ChangeDetectorRef, private readonly destroyed: DestroyedService) {}
 
   ngAfterContentInit() {
     if (this.nodeElms) {
-      this.nodeElms.changes
-        .pipe(takeUntil(this.destroyed))
-        .subscribe(() => this.cdr.markForCheck());
+      this.nodeElms.changes.pipe(takeUntil(this.destroyed)).subscribe(() => this.cdr.markForCheck());
     }
   }
 }

@@ -5,6 +5,6 @@ import { TimeZonePipe } from './time-zone.pipe';
 @NgModule({
   imports: [CommonModule],
   declarations: [TimeZonePipe],
-  exports: [TimeZonePipe],
+  exports: [TimeZonePipe]
 })
 export class TimeZoneModule {}

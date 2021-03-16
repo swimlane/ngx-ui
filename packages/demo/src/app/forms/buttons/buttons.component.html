@@ -3,9 +3,7 @@
 <ngx-section class="shadow" sectionTitle="Buttons">
   <button type="button" class="btn">Default</button>
   <button type="button" class="btn btn-primary">Primary</button>
-  <button type="button" class="btn btn-primary btn-primary-gradient">
-    Primary Gradient
-  </button>
+  <button type="button" class="btn btn-primary btn-primary-gradient">Primary Gradient</button>
   <button type="button" class="btn btn-warning">Warning</button>
   <button type="button" class="btn btn-danger">Danger</button>
   <button type="button" class="btn btn-bordered">Bordered</button>
@@ -14,9 +12,7 @@
 
   <button type="button" class="btn" disabled>Default</button>
   <button type="button" class="btn btn-primary" disabled>Primary</button>
-  <button type="button" class="btn btn-primary btn-primary-gradient" disabled>
-    Primary Gradient
-  </button>
+  <button type="button" class="btn btn-primary btn-primary-gradient" disabled>Primary Gradient</button>
   <button type="button" class="btn btn-warning" disabled>Warning</button>
   <button type="button" class="btn btn-danger" disabled>Danger</button>
   <button type="button" class="btn btn-bordered" disabled>Bordered</button>
@@ -157,9 +153,7 @@
   <br />
   <a class="btn disabled" href="/">Default</a>
   <a class="btn btn-primary disabled" href="/">Primary</a>
-  <a class="btn btn-primary btn-primary-gradient disabled" href="/">
-    Primary Gradient
-  </a>
+  <a class="btn btn-primary btn-primary-gradient disabled" href="/">Primary Gradient</a>
   <a class="btn btn-warning disabled" href="/">Warning</a>
   <a class="btn btn-danger disabled" href="/">Danger</a>
   <a class="btn btn-bordered disabled" href="/">Bordered</a>
@@ -168,11 +162,7 @@
 
 <ngx-section class="shadow" sectionTitle="ngx-button">
   <demo-markdown [data]="importMd"></demo-markdown>
-  <ngx-button
-    [promise]="promises['defaultButton']"
-    (click)="onClick('button click', 'defaultButton')"
-    class="btn"
-  >
+  <ngx-button [promise]="promises['defaultButton']" (click)="onClick('button click', 'defaultButton')" class="btn">
     Default
   </ngx-button>
   <ngx-button
@@ -192,11 +182,7 @@
   <ngx-button
     #failButton
     [promise]="promises['failButton']"
-    (click)="
-      onClick('button click', 'failButton');
-      failButton.state = 'fail';
-      failButton.updateState()
-    "
+    (click)="onClick('button click', 'failButton'); failButton.state = 'fail'; failButton.updateState()"
     class="btn btn-warning"
   >
     Warning
@@ -204,11 +190,7 @@
   <ngx-button
     #sucessButton
     [promise]="promises['sucessButton']"
-    (click)="
-      onClick('button click', 'sucessButton');
-      sucessButton.state = 'success';
-      sucessButton.updateState()
-    "
+    (click)="onClick('button click', 'sucessButton'); sucessButton.state = 'success'; sucessButton.updateState()"
     class="btn btn-danger"
   >
     Danger
@@ -220,11 +202,7 @@
   >
     Bordered
   </ngx-button>
-  <ngx-button
-    [promise]="promises['linkButton']"
-    (click)="onClick('button click', 'linkButton')"
-    class="btn btn-link"
-  >
+  <ngx-button [promise]="promises['linkButton']" (click)="onClick('button click', 'linkButton')" class="btn btn-link">
     Link
   </ngx-button>
   <ngx-button
@@ -237,23 +215,11 @@
   </ngx-button>
   <br />
   <br />
-  <ngx-button (click)="onClick('button click')" class="btn" disabled>
-    Default
-  </ngx-button>
-  <ngx-button state="inProgress" class="btn btn-primary" disabled>
-    Primary
-  </ngx-button>
-  <ngx-button
-    state="inProgress"
-    class="btn btn-primary btn-primary-gradient"
-    disabled
-  >
-    Primary Gradient
-  </ngx-button>
+  <ngx-button (click)="onClick('button click')" class="btn" disabled>Default</ngx-button>
+  <ngx-button state="inProgress" class="btn btn-primary" disabled>Primary</ngx-button>
+  <ngx-button state="inProgress" class="btn btn-primary btn-primary-gradient" disabled>Primary Gradient</ngx-button>
   <ngx-button state="fail" class="btn btn-warning" disabled>Warning</ngx-button>
-  <ngx-button state="success" class="btn btn-danger" disabled>
-    Danger
-  </ngx-button>
+  <ngx-button state="success" class="btn btn-danger" disabled>Danger</ngx-button>
   <ngx-button class="btn btn-bordered" disabled>Bordered</ngx-button>
   <ngx-button class="btn btn-link" disabled>Link</ngx-button>
   <ngx-button [timeout]="0" disabled class="btn">No Timeout</ngx-button>
@@ -262,82 +228,31 @@
 
 <ngx-section class="shadow" sectionTitle="File Upload">
   <demo-markdown [data]="fileUploadImportMd"></demo-markdown>
-  <demo-section-header section>
-    Standard Autoupload
-  </demo-section-header>
-  <ngx-file-button name="uper" styleType="standard" [options]="uploadOptions">
+  <demo-section-header section>Standard Autoupload</demo-section-header>
+  <ngx-file-button name="uper" styleType="standard" [options]="uploadOptions">Choose File</ngx-file-button>
+
+  <ngx-file-button name="uper1" [disabled]="true" styleType="standard" [options]="uploadOptions">
     Choose File
   </ngx-file-button>
 
-  <ngx-file-button
-    name="uper1"
-    [disabled]="true"
-    styleType="standard"
-    [options]="uploadOptions"
-  >
-    Choose File
-  </ngx-file-button>
+  <demo-tabbed-markdown [markdowns]="standardFileUploadMd"></demo-tabbed-markdown>
 
-  <demo-tabbed-markdown
-    [markdowns]="standardFileUploadMd"
-  ></demo-tabbed-markdown>
+  <demo-section-header section>Standard Manual</demo-section-header>
+  <ngx-file-button name="uper2" styleType="standard" [uploader]="uploaderInstance">Choose File</ngx-file-button>
+  <button class="btn btn-primary" style="margin-left: 2rem" (click)="uploaderInstance.uploadAll()">Send</button>
+  <demo-tabbed-markdown [markdowns]="standardFileUploadManualMd"></demo-tabbed-markdown>
 
-  <demo-section-header section>
-    Standard Manual
-  </demo-section-header>
-  <ngx-file-button
-    name="uper2"
-    styleType="standard"
-    [uploader]="uploaderInstance"
-  >
-    Choose File
-  </ngx-file-button>
-  <button
-    class="btn btn-primary"
-    style="margin-left: 2rem"
-    (click)="uploaderInstance.uploadAll()"
-  >
-    Send
-  </button>
-  <demo-tabbed-markdown
-    [markdowns]="standardFileUploadManualMd"
-  ></demo-tabbed-markdown>
-
-  <demo-section-header section>
-    Dropzone Template
-  </demo-section-header>
+  <demo-section-header section>Dropzone Template</demo-section-header>
   <ngx-file-button [uploader]="uploaderInstance">
     <ng-template let-uploader>
       <div style="height: 200px; border: 2px dashed #666">
-        <div
-          style="
-            position: relative;
-            text-align: center;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-          "
-        >
+        <div style="position: relative; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%)">
           DRAG & DROP YOUR FILE
           <br />
           <div class="ngx-file-button">
-            <button
-              type="button"
-              class="ngx-file-button-button"
-              [disabled]="uploader.isUploading"
-            >
-              <input
-                ng2FileSelect
-                type="file"
-                class="ngx-file-button-input"
-                id="file-input"
-                [uploader]="uploader"
-              />
-              <label
-                for="file-input"
-                class="btn btn-link ngx-file-button-label"
-                style="border-bottom: 1px dashed #fff"
-              >
+            <button type="button" class="ngx-file-button-button" [disabled]="uploader.isUploading">
+              <input ng2FileSelect type="file" class="ngx-file-button-input" id="file-input" [uploader]="uploader" />
+              <label for="file-input" class="btn btn-link ngx-file-button-label" style="border-bottom: 1px dashed #fff">
                 Or click to choose
               </label>
             </button>
@@ -348,19 +263,10 @@
   </ngx-file-button>
   <demo-markdown [data]="dropzoneTemplateMd"></demo-markdown>
 
-  <demo-section-header section>
-    Progress Upload
-  </demo-section-header>
-  <ngx-file-button name="uper3" styleType="progress" [options]="uploadOptions">
-    Progress
-  </ngx-file-button>
+  <demo-section-header section>Progress Upload</demo-section-header>
+  <ngx-file-button name="uper3" styleType="progress" [options]="uploadOptions">Progress</ngx-file-button>
 
-  <ngx-file-button
-    name="uper4"
-    disabled="true"
-    styleType="progress"
-    [options]="uploadOptions"
-  >
+  <ngx-file-button name="uper4" disabled="true" styleType="progress" [options]="uploadOptions">
     Progress Disabled
   </ngx-file-button>
   <demo-tabbed-markdown [markdowns]="progressUploadMd"></demo-tabbed-markdown>
@@ -370,16 +276,10 @@
   <demo-markdown [data]="longPressButtonImportMd"></demo-markdown>
 
   <demo-section-header section>Default</demo-section-header>
-  <ngx-long-press-button
-    (longPress)="onClick('button click')"
-  ></ngx-long-press-button>
+  <ngx-long-press-button (longPress)="onClick('button click')"></ngx-long-press-button>
   <demo-markdown [data]="longPressDefaultMd"></demo-markdown>
 
   <demo-section-header section>Configuration</demo-section-header>
-  <ngx-long-press-button
-    (longPress)="onClick('button click')"
-    icon="alert"
-    duration="1000"
-  ></ngx-long-press-button>
+  <ngx-long-press-button (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press-button>
   <demo-markdown [data]="longPressConfigMd"></demo-markdown>
 </ngx-section>

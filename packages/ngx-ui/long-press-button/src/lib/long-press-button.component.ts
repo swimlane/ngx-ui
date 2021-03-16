@@ -1,10 +1,4 @@
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -14,7 +8,7 @@ import {
   Input,
   OnChanges,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
@@ -36,20 +30,20 @@ import { LongPressButtonState } from './enums';
       state(
         'active',
         style({
-          strokeDasharray: '1000 1000',
+          strokeDasharray: '1000 1000'
         })
       ),
       state(
         'inactive',
         style({
-          strokeDasharray: '0 1000',
+          strokeDasharray: '0 1000'
         })
       ),
       transition('inactive => active', animate(`{{ duration }}ms ease-out`), {
-        params: { duration: 1000 },
-      }),
-    ]),
-  ],
+        params: { duration: 1000 }
+      })
+    ])
+  ]
 })
 export class LongPressButtonComponent implements OnChanges {
   @Input() icon = 'mouse-hold';

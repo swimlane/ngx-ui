@@ -1,7 +1,5 @@
 .ngx-tip {
-  --ngx-ui-tip-color-default: var(
-    --ngx-ui-color-blue-grey-350
-  ); // default icon and border left
+  --ngx-ui-tip-color-default: var(--ngx-ui-color-blue-grey-350); // default icon and border left
   --ngx-ui-tip-color-border: var(--ngx-ui-color-blue-grey-650);
 
   .tip-container {

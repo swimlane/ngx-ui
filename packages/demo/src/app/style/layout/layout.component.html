@@ -4,9 +4,8 @@
 <div class="ngx-flex--wrap">
   <demo-section-header>Simple</demo-section-header>
   <demo-markdown ngPreserveWhitespaces>
-    By default children of a `ngx-flex--row` are **autosized**. Add any number
-    of child elements to a `ngx-flex--row`. The `ngx-flex--col` class is
-    optional for auto sized columns.
+    By default children of a `ngx-flex--row` are **autosized**. Add any number of child elements to a `ngx-flex--row`.
+    The `ngx-flex--col` class is optional for auto sized columns.
   </demo-markdown>
 
   <code>.ngx-flex--row</code>
@@ -32,9 +31,8 @@
 
   <demo-section-header section>Sizes</demo-section-header>
   <demo-markdown ngPreserveWhitespaces>
-    Column class numeric modifiers `--col-*` (e.g. `col-4`) indicate the number
-    of columns you’d like to use out of the possible 12 per row (by default). If
-    you want three equal-width columns across, you can use `.ngx-flex--col-4`;
+    Column class numeric modifiers `--col-*` (e.g. `col-4`) indicate the number of columns you’d like to use out of the
+    possible 12 per row (by default). If you want three equal-width columns across, you can use `.ngx-flex--col-4`;
     `.ngx-flex--col-3` gives four columns.
   </demo-markdown>
 
@@ -95,9 +93,7 @@
     </div>
   </div>
 
-  <demo-markdown ngPreserveWhitespaces>
-    You don't need to size each column
-  </demo-markdown>
+  <demo-markdown ngPreserveWhitespaces>You don't need to size each column</demo-markdown>
   <code>.ngx-flex--row</code>
   <div class="ngx-flex--row layout-row">
     <div class="layout-col">
@@ -111,9 +107,7 @@
     </div>
   </div>
 
-  <demo-markdown ngPreserveWhitespaces>
-    Use `--col-auto` to size a column to its content
-  </demo-markdown>
+  <demo-markdown ngPreserveWhitespaces>Use `--col-auto` to size a column to its content</demo-markdown>
   <code>.ngx-flex--row</code>
   <div class="ngx-flex--row layout-row">
     <div class="layout-col--high"></div>
@@ -124,65 +118,45 @@
     <div class="layout-col--high"></div>
   </div>
 
-  <demo-section-header section>
-    Responsive
-  </demo-section-header>
+  <demo-section-header section>Responsive</demo-section-header>
   <demo-markdown ngPreserveWhitespaces>
-    To make the grid responsive, there are five grid breakpoint **modifiers**
-    `--col-modifier-size` (e.g. `--col-sm-4`), one for each responsive
-    breakpoint: `xs`, `sm`, `md`, `lg`, and `xl`. Note that `xs` is the default
-    and optional.
+    To make the grid responsive, there are five grid breakpoint **modifiers** `--col-modifier-size` (e.g. `--col-sm-4`),
+    one for each responsive breakpoint: `xs`, `sm`, `md`, `lg`, and `xl`. Note that `xs` is the default and optional.
   </demo-markdown>
 
   <code>.ngx-flex--row</code>
   <div class="ngx-flex--row layout-row">
-    <div
-      class="ngx-flex--col-12 ngx-flex--col-sm-3 ngx-flex--col-md-2 ngx-flex--col-lg-1 layout-col--high"
-    >
+    <div class="ngx-flex--col-12 ngx-flex--col-sm-3 ngx-flex--col-md-2 ngx-flex--col-lg-1 layout-col--high">
       <code>--col-12 --col-sm-3 --col-md-2 --col-lg-1</code>
     </div>
 
-    <div
-      class="ngx-flex--col-6 ngx-flex--col-sm-6 ngx-flex--col-md-8 ngx-flex--col-lg-10 layout-col--high"
-    >
+    <div class="ngx-flex--col-6 ngx-flex--col-sm-6 ngx-flex--col-md-8 ngx-flex--col-lg-10 layout-col--high">
       <code>--col-6 --col-sm-6 --col-md-8 --col-lg-10</code>
     </div>
 
-    <div
-      class="ngx-flex--col-6 ngx-flex--col-sm-3 ngx-flex--col-md-2 ngx-flex--col-lg-1 layout-col--high"
-    >
+    <div class="ngx-flex--col-6 ngx-flex--col-sm-3 ngx-flex--col-md-2 ngx-flex--col-lg-1 layout-col--high">
       <code>--col-6 --col-sm-3 --col-md-2 --col-lg-1</code>
     </div>
 
-    <div
-      class="ngx-flex--col-12 ngx-flex--col-sm-3 ngx-flex--col-md-2 ngx-flex--col-lg-1 layout-col--high"
-    >
+    <div class="ngx-flex--col-12 ngx-flex--col-sm-3 ngx-flex--col-md-2 ngx-flex--col-lg-1 layout-col--high">
       <code>--col-12 --col-sm-3 --col-md-2 --col-lg-1</code>
     </div>
 
-    <div
-      class="ngx-flex--col-12 ngx-flex--col-sm-9 ngx-flex--col-md-10 ngx-flex--col-lg-11 layout-col--high"
-    >
+    <div class="ngx-flex--col-12 ngx-flex--col-sm-9 ngx-flex--col-md-10 ngx-flex--col-lg-11 layout-col--high">
       <code>--col-12 --col-sm-9 --col-md-10 --col-lg-11</code>
     </div>
 
-    <div
-      class="ngx-flex--col-10 ngx-flex--col-sm-6 ngx-flex--col-md-8 ngx-flex--col-lg-10 layout-col--high"
-    >
+    <div class="ngx-flex--col-10 ngx-flex--col-sm-6 ngx-flex--col-md-8 ngx-flex--col-lg-10 layout-col--high">
       <code>--col-10 --col-sm-6 --col-md-8 --col-lg-10</code>
     </div>
 
-    <div
-      class="ngx-flex--col-2 ngx-flex--col-sm-6 ngx-flex--col-md-4 ngx-flex--col-lg-2 layout-col--high"
-    >
+    <div class="ngx-flex--col-2 ngx-flex--col-sm-6 ngx-flex--col-md-4 ngx-flex--col-lg-2 layout-col--high">
       <code>--col-2 --col-sm-6 --col-md-4 --col-lg-2</code>
     </div>
   </div>
 
   <demo-section-header section>Fluid</demo-section-header>
-  <demo-markdown ngPreserveWhitespaces>
-    Widths allow fluid resizing of columns and rows.
-  </demo-markdown>
+  <demo-markdown ngPreserveWhitespaces>Widths allow fluid resizing of columns and rows.</demo-markdown>
 
   <code>.ngx-flex--row</code>
   <div class="ngx-flex--row layout-row">
@@ -239,12 +213,8 @@
     </div>
   </div>
 
-  <demo-section-header section>
-    Offsets
-  </demo-section-header>
-  <demo-markdown ngPreserveWhitespaces>
-    Offset a column with `--col-offset-size`
-  </demo-markdown>
+  <demo-section-header section>Offsets</demo-section-header>
+  <demo-markdown ngPreserveWhitespaces>Offset a column with `--col-offset-size`</demo-markdown>
 
   <code>.ngx-flex--row</code>
   <div class="ngx-flex--row layout-row">
@@ -293,12 +263,9 @@
     </div>
   </div>
 
-  <demo-section-header section>
-    Alignment
-  </demo-section-header>
+  <demo-section-header section>Alignment</demo-section-header>
   <demo-markdown ngPreserveWhitespaces>
-    Add classes to align elements to the start or end of a row as well as the
-    top, bottom, or center of a column
+    Add classes to align elements to the start or end of a row as well as the top, bottom, or center of a column
   </demo-markdown>
 
   <code>.ngx-flex--row start</code>
@@ -354,12 +321,8 @@
     <div class="layout-col">Content</div>
   </div>
 
-  <demo-section-header section>
-    Distribution
-  </demo-section-header>
-  <demo-markdown ngPreserveWhitespaces>
-    Add classes to distribute the contents of a row or column.
-  </demo-markdown>
+  <demo-section-header section>Distribution</demo-section-header>
+  <demo-markdown ngPreserveWhitespaces>Add classes to distribute the contents of a row or column.</demo-markdown>
 
   <code>.ngx-flex--row around</code>
   <div class="ngx-flex--row around layout-row">
@@ -376,9 +339,7 @@
   </div>
 
   <demo-section-header section>Gut</demo-section-header>
-  <demo-markdown ngPreserveWhitespaces>
-    Add `.gutless` to remove gutters for a row or column.
-  </demo-markdown>
+  <demo-markdown ngPreserveWhitespaces>Add `.gutless` to remove gutters for a row or column.</demo-markdown>
 
   <code>.ngx-flex--row gutless</code>
   <div class="ngx-flex--row gutless layout-row">
@@ -394,12 +355,10 @@
     <div class="layout-col"></div>
   </div>
 
-  <demo-section-header section>
-    Reordering
-  </demo-section-header>
+  <demo-section-header section>Reordering</demo-section-header>
   <demo-markdown ngPreserveWhitespaces>
-    Add classes to reorder columns: `.first` and `.last` on `ngx-flex--col`;
-    `.reverse` on `ngx-flex--row` to reverse the order
+    Add classes to reorder columns: `.first` and `.last` on `ngx-flex--col`; `.reverse` on `ngx-flex--row` to reverse
+    the order
   </demo-markdown>
 
   <code>.ngx-flex--row</code>

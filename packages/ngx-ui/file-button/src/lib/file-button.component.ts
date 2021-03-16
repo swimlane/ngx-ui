@@ -11,17 +11,10 @@ import {
   Output,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
-import type {
-  FileUploaderOptions,
-  ParsedResponseHeaders,
-} from '@swimlane/ng2-file-upload';
-import {
-  FileItem,
-  FileSelectDirective,
-  FileUploader,
-} from '@swimlane/ng2-file-upload';
+import type { FileUploaderOptions, ParsedResponseHeaders } from '@swimlane/ng2-file-upload';
+import { FileItem, FileSelectDirective, FileUploader } from '@swimlane/ng2-file-upload';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
 import type { EnumKey } from '@swimlane/ngx-ui/types';
@@ -36,7 +29,7 @@ let nextId = 0;
   templateUrl: './file-button.component.html',
   styleUrls: ['./file-button.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FileButtonComponent implements OnInit {
   static ngAcceptInputType_disabled: BooleanInput;
@@ -97,7 +90,7 @@ export class FileButtonComponent implements OnInit {
       'progress-style': this._styleType === FileButtonStyle.progress,
       'show-progress': this.uploader && this.uploader.options.isHTML5,
       success: this._isItemSuccessful,
-      active: this.uploader && this.uploader.isUploading,
+      active: this.uploader && this.uploader.isUploading
     };
   }
 
@@ -110,9 +103,7 @@ export class FileButtonComponent implements OnInit {
   ngOnInit(): void {
     this.ngZone.run(() => {
       if (!this.uploader && !this.options) {
-        throw new Error(
-          'You must pass either an uploader instance or options.'
-        );
+        throw new Error('You must pass either an uploader instance or options.');
       }
 
       // if options were passed, init a new uploader
@@ -144,12 +135,7 @@ export class FileButtonComponent implements OnInit {
     });
   }
 
-  onErrorItem(
-    item: FileItem,
-    response: string,
-    status: number,
-    headers: ParsedResponseHeaders
-  ): void {
+  onErrorItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders): void {
     this.errorItem.emit({ response, status, headers });
   }
 
@@ -160,12 +146,7 @@ export class FileButtonComponent implements OnInit {
     });
   }
 
-  onSuccessItem(
-    item: FileItem,
-    response: string,
-    status: number,
-    headers: ParsedResponseHeaders
-  ): void {
+  onSuccessItem(item: FileItem, response: string, status: number, headers: ParsedResponseHeaders): void {
     this.ngZone.run(() => {
       this._isItemSuccessful = true;
 

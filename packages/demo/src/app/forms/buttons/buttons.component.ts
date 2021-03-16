@@ -5,7 +5,7 @@ import { FileUploader } from '@swimlane/ng2-file-upload';
   selector: 'demo-buttons',
   templateUrl: './buttons.component.html',
   styleUrls: ['./buttons.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonsComponent {
   buttonPromise: Promise<unknown> = undefined;
@@ -14,12 +14,12 @@ export class ButtonsComponent {
 
   uploadOptions = {
     url: 'https://evening-anchorage-3159.herokuapp.com/api/',
-    autoUpload: true,
+    autoUpload: true
   };
 
   uploaderInstance = new FileUploader({
     url: 'https://evening-anchorage-3159.herokuapp.com/api/',
-    autoUpload: false,
+    autoUpload: false
   });
 
   onClick(msg: string, targetId?: string) {
@@ -359,7 +359,7 @@ export class ButtonsComponent {
   `;
   ngxButtonMd = {
     Markup: this.ngxButtonHtmlMd,
-    TypeScript: this.ngxButtonTsMd,
+    TypeScript: this.ngxButtonTsMd
   };
 
   fileUploadImportMd = `
@@ -403,7 +403,7 @@ export class ButtonsComponent {
   `;
   standardFileUploadMd = {
     Markup: this.standardFileUploadHtmlMd,
-    TypeScript: this.standardFileUploadTsMd,
+    TypeScript: this.standardFileUploadTsMd
   };
 
   standardFileUploadManualHtmlMd = `
@@ -443,7 +443,7 @@ export class ButtonsComponent {
   `;
   standardFileUploadManualMd = {
     Markup: this.standardFileUploadManualHtmlMd,
-    TypeScript: this.standardFileUploadManualTsMd,
+    TypeScript: this.standardFileUploadManualTsMd
   };
 
   dropzoneTemplateMd = `
@@ -526,7 +526,7 @@ export class ButtonsComponent {
   `;
   progressUploadMd = {
     Markup: this.progressUploadHtmlMd,
-    TypeScript: this.progressUploadTsMd,
+    TypeScript: this.progressUploadTsMd
   };
 
   longPressButtonImportMd = `

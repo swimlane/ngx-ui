@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  HostBinding,
-  Input,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 import type { SafeUrl } from '@angular/platform-browser';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
 import type { EnumKey } from '@swimlane/ngx-ui/types';
@@ -16,7 +10,7 @@ import { CardStatus } from '../enums';
   styleUrls: ['./card-avatar.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  exportAs: 'ngxCardAvatar',
+  exportAs: 'ngxCardAvatar'
 })
 export class CardAvatarComponent {
   @Input() src!: string | SafeUrl;

@@ -1,14 +1,6 @@
 import { trigger } from '@angular/animations';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnInit,
-  ViewEncapsulation,
-} from '@angular/core';
-import {
-  fadeInAnimation,
-  slideDownFadeOutAnimation,
-} from '@swimlane/ngx-ui/animations';
+import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { fadeInAnimation, slideDownFadeOutAnimation } from '@swimlane/ngx-ui/animations';
 import { DestroyedService } from '@swimlane/ngx-ui/destroyed';
 import { BehaviorSubject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -25,23 +17,18 @@ import { HotkeysService } from './services';
   changeDetection: ChangeDetectionStrategy.OnPush,
   animations: [
     trigger('containerAnimationState', slideDownFadeOutAnimation()),
-    trigger('iconAnimationState', fadeInAnimation()),
+    trigger('iconAnimationState', fadeInAnimation())
   ],
-  providers: [DestroyedService],
+  providers: [DestroyedService]
 })
 export class HotkeysComponent implements OnInit {
   readonly hotkeys$ = new BehaviorSubject<HotkeyOptions[]>([]);
   visible = false;
 
-  constructor(
-    private readonly destroyed: DestroyedService,
-    private readonly hotkeysService: HotkeysService
-  ) {}
+  constructor(private readonly destroyed: DestroyedService, private readonly hotkeysService: HotkeysService) {}
 
   ngOnInit(): void {
-    this.hotkeysService.changeEvent
-      .pipe(takeUntil(this.destroyed))
-      .subscribe(this.updateHotkeys.bind(this));
+    this.hotkeysService.changeEvent.pipe(takeUntil(this.destroyed)).subscribe(this.updateHotkeys.bind(this));
     this.updateHotkeys(this.hotkeysService.hotkeys);
   }
 

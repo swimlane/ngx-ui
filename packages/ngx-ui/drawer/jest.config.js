@@ -7,17 +7,14 @@ module.exports = {
       tsConfig: '<rootDir>/tsconfig.spec.json',
       stringifyContentPathRegex: '\\.(html|svg)$',
       astTransformers: {
-        before: [
-          'jest-preset-angular/build/InlineFilesTransformer',
-          'jest-preset-angular/build/StripStylesTransformer',
-        ],
-      },
-    },
+        before: ['jest-preset-angular/build/InlineFilesTransformer', 'jest-preset-angular/build/StripStylesTransformer']
+      }
+    }
   },
   coverageDirectory: '../../../coverage/packages/ngx-ui/drawer',
   snapshotSerializers: [
     'jest-preset-angular/build/AngularNoNgAttributesSnapshotSerializer.js',
     'jest-preset-angular/build/AngularSnapshotSerializer.js',
-    'jest-preset-angular/build/HTMLCommentSerializer.js',
-  ],
+    'jest-preset-angular/build/HTMLCommentSerializer.js'
+  ]
 };

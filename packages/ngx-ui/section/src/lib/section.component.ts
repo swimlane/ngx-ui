@@ -7,7 +7,7 @@ import {
   HostBinding,
   Input,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
@@ -21,7 +21,7 @@ import { SectionHeaderComponent } from './section-header/section-header.componen
   templateUrl: './section.component.html',
   styleUrls: ['./section.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SectionComponent {
   static ngAcceptInputType_sectionCollapsed: BooleanInput;

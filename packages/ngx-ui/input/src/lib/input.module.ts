@@ -10,26 +10,14 @@ import { InputSuffixComponent } from './input-suffix/input-suffix.component';
 import { InputComponent } from './input.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    LongPressModule,
-    AutosizeInputModule,
-    TooltipModule,
-  ],
+  imports: [CommonModule, FormsModule, LongPressModule, AutosizeInputModule, TooltipModule],
   declarations: [
     InputAutosizeDirective,
     InputHintDirective,
     InputPrefixComponent,
     InputSuffixComponent,
-    InputComponent,
+    InputComponent
   ],
-  exports: [
-    InputAutosizeDirective,
-    InputHintDirective,
-    InputPrefixComponent,
-    InputSuffixComponent,
-    InputComponent,
-  ],
+  exports: [InputAutosizeDirective, InputHintDirective, InputPrefixComponent, InputSuffixComponent, InputComponent]
 })
 export class InputModule {}

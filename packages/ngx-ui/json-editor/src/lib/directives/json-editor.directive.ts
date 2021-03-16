@@ -1,12 +1,4 @@
-import {
-  ChangeDetectorRef,
-  Directive,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output,
-  SimpleChanges,
-} from '@angular/core';
+import { ChangeDetectorRef, Directive, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { Debounceable } from '@swimlane/ngx-ui/decorators/debounceable';
 import type { JSONEditorSchema } from '../interfaces';
 import { SchemaValidatorService } from '../services';
@@ -43,7 +35,7 @@ export class JsonEditor implements OnChanges {
 
     if (!this.schema) {
       this.schema = {
-        type: 'object',
+        type: 'object'
       };
     }
     if (!this.schema.type) {

@@ -8,9 +8,7 @@
   ></demo-icon-block>
 </demo-icons-section-container>
 
-<demo-section-header class="block mt-8 mb-4">
-  Icons: Effects
-</demo-section-header>
+<demo-section-header class="block mt-8 mb-4">Icons: Effects</demo-section-header>
 <demo-icons-section-container>
   <demo-icon-block icon="refresh" code="normal"></demo-icon-block>
   <demo-icon-block
@@ -25,27 +23,14 @@
 <demo-section-header class="block mt-8 mb-4">Icons: Colors</demo-section-header>
 <demo-icons-section-container>
   <demo-icon-block
-    *ngFor="
-      let color of [
-        'blue',
-        'light-blue',
-        'green',
-        'orange',
-        'red',
-        'purple',
-        'blue-grey',
-        'grey'
-      ]
-    "
+    *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple', 'blue-grey', 'grey']"
     [extraIconClasses]="['text-' + color]"
     icon="refresh"
     code="text-{{ color }}"
   ></demo-icon-block>
 </demo-icons-section-container>
 
-<demo-section-header class="block mt-8 mb-4">
-  Icons: Stacking
-</demo-section-header>
+<demo-section-header class="block mt-8 mb-4">Icons: Stacking</demo-section-header>
 <demo-icons-section-container>
   <demo-icon-block [stacked]="true">
     <span class="text-4xl icon-fx-stacked">

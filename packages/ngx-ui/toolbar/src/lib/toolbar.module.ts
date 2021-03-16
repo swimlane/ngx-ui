@@ -6,11 +6,7 @@ import { ToolbarComponent } from './toolbar.component';
 
 @NgModule({
   imports: [CommonModule, DropdownModule],
-  declarations: [
-    ToolbarContentDirective,
-    ToolbarTitleDirective,
-    ToolbarComponent,
-  ],
-  exports: [ToolbarContentDirective, ToolbarTitleDirective, ToolbarComponent],
+  declarations: [ToolbarContentDirective, ToolbarTitleDirective, ToolbarComponent],
+  exports: [ToolbarContentDirective, ToolbarTitleDirective, ToolbarComponent]
 })
 export class ToolbarModule {}

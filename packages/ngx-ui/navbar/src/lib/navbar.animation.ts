@@ -11,9 +11,9 @@ export const navbarAnimations = {
         transition: '300ms cubic-bezier(0.35, 0, 0.25, 1)',
         transform: 'translateX({{ width }}px)',
         height: `${BAR_THICKNESS}px`,
-        width: '{{ barSize }}px',
+        width: '{{ barSize }}px'
       }),
       { params: { width: 0, barSize: 0 } }
-    ),
-  ]),
+    )
+  ])
 };

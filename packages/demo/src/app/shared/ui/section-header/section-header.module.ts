@@ -5,6 +5,6 @@ import { SectionHeaderComponent } from './section-header.component';
 @NgModule({
   declarations: [SectionHeaderComponent],
   imports: [CommonModule],
-  exports: [SectionHeaderComponent],
+  exports: [SectionHeaderComponent]
 })
 export class SectionHeaderModule {}

@@ -5,23 +5,19 @@ import {
   Input,
   OnInit,
   Output,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { DialogService } from '@swimlane/ngx-ui/dialog';
 import type { JSONSchema7TypeName } from 'json-schema';
 import { propTypes } from '../../../constants';
-import type {
-  JSONEditorSchema,
-  JsonSchemaDataType,
-  PropertyConfigOptions,
-} from '../../../interfaces';
+import type { JSONEditorSchema, JsonSchemaDataType, PropertyConfigOptions } from '../../../interfaces';
 
 @Component({
   selector: 'ngx-property-config',
   templateUrl: './property-config.component.html',
   styleUrls: ['./property-config.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PropertyConfigComponent implements OnInit {
   @Input() property!: JSONEditorSchema;
@@ -62,7 +58,7 @@ export class PropertyConfigComponent implements OnInit {
       required: this.required,
       index: this.index!,
       newProperty: this.editableProperty,
-      oldProperty: this.property,
+      oldProperty: this.property
     });
   }
 
@@ -92,8 +88,7 @@ export class PropertyConfigComponent implements OnInit {
   }
 
   addEnumValue(): void {
-    const enumValues = (this.editableProperty['enum'] =
-      this.editableProperty['enum'] || []);
+    const enumValues = (this.editableProperty['enum'] = this.editableProperty['enum'] || []);
 
     if (!enumValues.includes(this.newEnumValue)) {
       enumValues.push(this.newEnumValue);

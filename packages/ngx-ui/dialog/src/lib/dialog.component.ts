@@ -1,10 +1,4 @@
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -18,7 +12,7 @@ import {
   Output,
   Renderer2,
   TemplateRef,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
@@ -36,31 +30,31 @@ import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
         'active',
         style({
           opacity: 1,
-          transform: 'scale3d(1, 1, 1)',
+          transform: 'scale3d(1, 1, 1)'
         })
       ),
       transition('void => *', [
         style({
           opacity: 0,
-          transform: 'scale3d(1.2, 1.2, 1.2)',
+          transform: 'scale3d(1.2, 1.2, 1.2)'
         }),
-        animate('0.2s ease-out'),
+        animate('0.2s ease-out')
       ]),
       transition('* => inactive', [
         style({
           opacity: 1,
-          transform: 'scale3d(1, 1, 1)',
+          transform: 'scale3d(1, 1, 1)'
         }),
         animate(
           '0.2s ease-out',
           style({
             transform: 'scale3d(0.9, 0.9, 1)',
-            opacity: 0,
+            opacity: 0
           })
-        ),
-      ]),
-    ]),
-  ],
+        )
+      ])
+    ])
+  ]
 })
 export class DialogComponent implements OnInit, OnDestroy {
   @Input() id?: string;
@@ -117,10 +111,7 @@ export class DialogComponent implements OnInit, OnDestroy {
     }
   }
 
-  constructor(
-    private readonly element: ElementRef,
-    private readonly renderer2: Renderer2
-  ) {}
+  constructor(private readonly element: ElementRef, private readonly renderer2: Renderer2) {}
 
   ngOnInit(): void {
     if (this.visible) this.show();

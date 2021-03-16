@@ -6,7 +6,7 @@ import { SelectOptionTemplateDirective } from './select-option-template.directiv
 
 @Directive({
   selector: 'ngx-select-option',
-  exportAs: 'ngxSelectOption',
+  exportAs: 'ngxSelectOption'
 })
 export class SelectOptionDirective implements SelectDropdownOption {
   @Input() name = '';
@@ -25,7 +25,7 @@ export class SelectOptionDirective implements SelectDropdownOption {
 
   @ContentChild(SelectOptionTemplateDirective, {
     read: TemplateRef,
-    static: true,
+    static: true
   })
   optionTemplateQuery!: TemplateRef<unknown>;
 
@@ -38,7 +38,7 @@ export class SelectOptionDirective implements SelectDropdownOption {
 
   @ContentChild(SelectOptionInputTemplateDirective, {
     read: TemplateRef,
-    static: true,
+    static: true
   })
   inputTemplateQuery!: TemplateRef<unknown>;
 

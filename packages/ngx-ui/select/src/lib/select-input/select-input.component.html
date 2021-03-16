@@ -9,21 +9,13 @@
     <span [innerHTML]="label"></span>
     <span [innerHTML]="requiredIndicator"></span>
   </span>
-  <span
-    *ngIf="!selected?.length && placeholder"
-    class="ngx-select-placeholder"
-    [innerHTML]="placeholder"
-  ></span>
+  <span *ngIf="!selected?.length && placeholder" class="ngx-select-placeholder" [innerHTML]="placeholder"></span>
   <ul
     *ngIf="tagging || selectedOptions?.length"
     class="horizontal-list ngx-select-input-list"
     [class.no-selections]="!selected?.length"
   >
-    <li
-      *ngFor="let option of selectedOptions"
-      class="ngx-select-input-option"
-      [class.disabled]="option.disabled"
-    >
+    <li *ngFor="let option of selectedOptions" class="ngx-select-input-option" [class.disabled]="option.disabled">
       <ng-template
         *ngIf="option.inputTemplate"
         [ngTemplateOutlet]="option.inputTemplate"
@@ -51,11 +43,7 @@
         spellcheck="off"
         (keyup)="onKeyUp($event)"
       />
-      <i
-        [hidden]="!tagInput.value"
-        class="ngx-icon ngx-x"
-        (click)="tagInput.value = ''"
-      ></i>
+      <i [hidden]="!tagInput.value" class="ngx-icon ngx-x" (click)="tagInput.value = ''"></i>
     </li>
   </ul>
   <span

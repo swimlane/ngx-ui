@@ -9,15 +9,9 @@ import { AlertComponent } from './alert.component';
 import { AlertService } from './services/alert.service';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    InputModule,
-    FormsModule,
-    LongPressButtonModule,
-    OverlayModule,
-  ],
+  imports: [CommonModule, InputModule, FormsModule, LongPressButtonModule, OverlayModule],
   providers: [AlertService, InjectionService],
   declarations: [AlertComponent],
-  exports: [AlertComponent],
+  exports: [AlertComponent]
 })
 export class AlertModule {}

@@ -7,26 +7,13 @@
     class="ngx-section-header"
     (click)="sectionCollapsible && onSectionClicked()"
   >
-    <button
-      *ngIf="sectionCollapsible"
-      class="ngx-section-toggle"
-      type="button"
-      title="Toggle Content Visibility"
-    >
-      <ngx-icon
-        [fontIcon]="
-          sectionCollapsed ? 'chevron-bold-right' : 'chevron-bold-down'
-        "
-      ></ngx-icon>
+    <button *ngIf="sectionCollapsible" class="ngx-section-toggle" type="button" title="Toggle Content Visibility">
+      <ngx-icon [fontIcon]="sectionCollapsed ? 'chevron-bold-right' : 'chevron-bold-down'"></ngx-icon>
     </button>
     <ng-content select="ngx-section-header"></ng-content>
     <h1 *ngIf="sectionTitle" [innerHTML]="sectionTitle"></h1>
   </header>
-  <div
-    class="ngx-section-content"
-    [style.padding]="padding"
-    *ngIf="!sectionCollapsed"
-  >
+  <div class="ngx-section-content" [style.padding]="padding" *ngIf="!sectionCollapsed">
     <ng-content></ng-content>
   </div>
 </section>

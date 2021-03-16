@@ -17,7 +17,7 @@ interface NavigationItem {
   selector: 'demo-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   version = environment.version;
@@ -31,31 +31,31 @@ export class AppComponent {
       children: [
         {
           name: 'Typography',
-          route: 'typography',
+          route: 'typography'
         },
         {
           name: 'Colors',
-          route: 'colors',
+          route: 'colors'
         },
         {
           name: 'Layout',
-          route: 'layout',
+          route: 'layout'
         },
         {
           name: 'Icons',
-          route: 'icons',
-        },
-      ],
+          route: 'icons'
+        }
+      ]
     },
     {
       name: 'Animations',
       route: 'animations',
-      icon: 'stars',
+      icon: 'stars'
     },
     {
       name: 'Pipes',
       route: 'pipes',
-      icon: 'code',
+      icon: 'code'
     },
     {
       name: 'Forms',
@@ -63,45 +63,45 @@ export class AppComponent {
       children: [
         {
           name: 'Inputs',
-          route: 'inputs',
+          route: 'inputs'
         },
         {
           name: 'Buttons',
-          route: 'buttons',
+          route: 'buttons'
         },
         {
           name: 'Selects',
-          route: 'selects',
+          route: 'selects'
         },
         {
           name: 'Date/Time Pickers',
-          route: 'datetime',
+          route: 'datetime'
         },
         {
           name: 'Slider',
-          route: 'slider',
+          route: 'slider'
         },
         {
           name: 'Toggle',
-          route: 'toggle',
+          route: 'toggle'
         },
         {
           name: 'Checkbox',
-          route: 'checkbox',
+          route: 'checkbox'
         },
         {
           name: 'Radio Button',
-          route: 'radio',
+          route: 'radio'
         },
         {
           name: 'Calendar',
-          route: 'calendar',
+          route: 'calendar'
         },
         {
           name: 'Code Editor',
-          route: 'code-editor',
-        },
-      ],
+          route: 'code-editor'
+        }
+      ]
     },
     {
       name: 'Elements',
@@ -109,21 +109,21 @@ export class AppComponent {
       children: [
         {
           name: 'Tables',
-          route: 'table',
+          route: 'table'
         },
         {
           name: 'Tags',
-          route: 'tags',
+          route: 'tags'
         },
         {
           name: 'Lists',
-          route: 'lists',
+          route: 'lists'
         },
         {
           name: 'Scrollbars',
-          route: 'scrollbars',
-        },
-      ],
+          route: 'scrollbars'
+        }
+      ]
     },
     {
       name: 'Dialogs',
@@ -131,29 +131,29 @@ export class AppComponent {
       children: [
         {
           name: 'Drawer',
-          route: 'drawer',
+          route: 'drawer'
         },
         {
           name: 'Nag',
-          route: 'nag',
+          route: 'nag'
         },
         {
           name: 'Dialog',
-          route: 'dialog',
+          route: 'dialog'
         },
         {
           name: 'Alert/Confirm',
-          route: 'alert',
+          route: 'alert'
         },
         {
           name: 'Tooltip',
-          route: 'tooltip',
+          route: 'tooltip'
         },
         {
           name: 'Notification',
-          route: 'notification',
-        },
-      ],
+          route: 'notification'
+        }
+      ]
     },
     {
       name: 'Components',
@@ -161,74 +161,74 @@ export class AppComponent {
       children: [
         {
           name: 'Sections',
-          route: 'sections',
+          route: 'sections'
         },
         {
           name: 'Toolbar',
-          route: 'toolbar',
+          route: 'toolbar'
         },
         {
           name: 'Tabs',
-          route: 'tabs',
+          route: 'tabs'
         },
         {
           name: 'Dropdown',
-          route: 'dropdown',
+          route: 'dropdown'
         },
         {
           name: 'Loading',
-          route: 'loading',
+          route: 'loading'
         },
         {
           name: 'Progress Spinner',
-          route: 'progress-spinner',
+          route: 'progress-spinner'
         },
         {
           name: 'Plus Menu',
-          route: 'plus-menu',
+          route: 'plus-menu'
         },
         {
           name: 'Tree',
-          route: 'tree',
+          route: 'tree'
         },
         {
           name: 'JSON Editor',
-          route: 'json-editor',
+          route: 'json-editor'
         },
         {
           name: 'Icon',
-          route: 'ngx-icon',
+          route: 'ngx-icon'
         },
         {
           name: 'Split',
-          route: 'split',
+          route: 'split'
         },
         {
           name: 'Navbar',
-          route: 'navbar',
+          route: 'navbar'
         },
         {
           name: 'Stepper',
-          route: 'stepper',
+          route: 'stepper'
         },
         {
           name: 'Overlay',
-          route: 'overlay',
+          route: 'overlay'
         },
         {
           name: 'Hotkeys',
-          route: 'hotkeys',
+          route: 'hotkeys'
         },
         {
           name: 'Tip',
-          route: 'tip',
+          route: 'tip'
         },
         {
           name: 'Card',
-          route: 'card',
-        },
-      ],
-    },
+          route: 'card'
+        }
+      ]
+    }
   ];
 
   navExpanded = true;
@@ -239,7 +239,7 @@ export class AppComponent {
     private readonly router: Router
   ) {
     // Add loading component in router
-    this.router.events.subscribe((event) => {
+    this.router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.loadingService.start();
       } else if (event instanceof NavigationEnd) {
@@ -257,14 +257,12 @@ export class AppComponent {
     }
 
     updatedVal = updatedVal.toLowerCase();
-    this.filteredNavigationTree = this.navigationTree.map((nav) => {
+    this.filteredNavigationTree = this.navigationTree.map(nav => {
       return {
         ...nav,
         children: nav.children?.length
-          ? nav.children.filter((child: NavigationItem) =>
-              child.name.toLowerCase().includes(updatedVal)
-            )
-          : undefined,
+          ? nav.children.filter((child: NavigationItem) => child.name.toLowerCase().includes(updatedVal))
+          : undefined
       };
     });
   }
@@ -275,12 +273,12 @@ export class AppComponent {
 
   private deepCloneTree() {
     return [
-      ...this.navigationTree.map((nav) => {
+      ...this.navigationTree.map(nav => {
         return {
           ...nav,
-          children: nav.children ? [...nav.children] : undefined,
+          children: nav.children ? [...nav.children] : undefined
         };
-      }),
+      })
     ];
   }
 }

@@ -10,7 +10,7 @@ import { AlertOptions } from '../models';
 const classMap = {
   [AlertStyle.Danger]: 'ngx-alert-danger',
   [AlertStyle.Warning]: 'ngx-alert-warning',
-  [AlertStyle.Info]: 'ngx-alert-info',
+  [AlertStyle.Info]: 'ngx-alert-info'
 };
 
 @Injectable()
@@ -22,16 +22,13 @@ export class AlertService extends DialogService<AlertComponent> {
       closeOnEscape: false,
       closeButton: false,
       showOverlay: true,
-      visible: true,
-    },
+      visible: true
+    }
   };
 
   protected type = AlertComponent;
 
-  constructor(
-    readonly injectionService: InjectionService,
-    overlayService: OverlayService
-  ) {
+  constructor(readonly injectionService: InjectionService, overlayService: OverlayService) {
     super(injectionService, overlayService);
   }
 
@@ -49,18 +46,8 @@ export class AlertService extends DialogService<AlertComponent> {
 
   private createDialog(options: AlertOptions, type: AlertType) {
     const subject = new Subject<{ type: string; data: any }>();
-    const {
-      title,
-      content,
-      longPress,
-      confirmButtonText,
-      cancelButtonText,
-    } = options;
-    const cssClass = [
-      'ngx-alert-dialog',
-      classMap[options.style!],
-      options.cssClass,
-    ].join(' ');
+    const { title, content, longPress, confirmButtonText, cancelButtonText } = options;
+    const cssClass = ['ngx-alert-dialog', classMap[options.style!], options.cssClass].join(' ');
 
     const component = this.create({
       title,
@@ -69,13 +56,13 @@ export class AlertService extends DialogService<AlertComponent> {
       type,
       cssClass,
       confirmButtonText,
-      cancelButtonText,
+      cancelButtonText
     });
 
     const list = component.instance.ok.subscribe((data: { data: any }) => {
       subject.next({
         type: 'ok',
-        data,
+        data
       });
 
       subject.complete();
@@ -86,7 +73,7 @@ export class AlertService extends DialogService<AlertComponent> {
     const list2 = component.instance.cancel.subscribe((data: { data: any }) => {
       subject.next({
         type: 'cancel',
-        data,
+        data
       });
 
       subject.complete();

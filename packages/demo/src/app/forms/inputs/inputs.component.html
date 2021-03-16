@@ -3,9 +3,7 @@
 <demo-markdown [data]="importMd"></demo-markdown>
 
 <ngx-section class="shadow" sectionTitle="Text">
-  <demo-section-header section>
-    with hint and label
-  </demo-section-header>
+  <demo-section-header section>with hint and label</demo-section-header>
   <ngx-input
     type="text"
     name="input1"
@@ -27,15 +25,8 @@
   ></ngx-input>
   <demo-markdown [data]="simpleNoLabelMd"></demo-markdown>
 
-  <demo-section-header section>
-    with prefix and suffix
-  </demo-section-header>
-  <ngx-input
-    type="text"
-    name="input22"
-    label="Prefix Suffix Input"
-    [ngModel]="inputValue1"
-  >
+  <demo-section-header section>with prefix and suffix</demo-section-header>
+  <ngx-input type="text" name="input22" label="Prefix Suffix Input" [ngModel]="inputValue1">
     <ngx-input-prefix>
       <i class="ngx-icon ngx-add-new"></i>
     </ngx-input-prefix>
@@ -46,13 +37,7 @@
   <demo-markdown [data]="simplePrefixSuffixMd"></demo-markdown>
 
   <demo-section-header section>disabled</demo-section-header>
-  <ngx-input
-    type="text"
-    name="input3"
-    [label]="'Disabled Example'"
-    disabled
-    [ngModel]="'Disabled value'"
-  ></ngx-input>
+  <ngx-input type="text" name="input3" [label]="'Disabled Example'" disabled [ngModel]="'Disabled value'"></ngx-input>
   <demo-markdown [data]="simpleDisabledMd"></demo-markdown>
 
   <demo-section-header section>unlockable</demo-section-header>
@@ -65,22 +50,11 @@
   <demo-markdown [data]="simpleUnlockableMd"></demo-markdown>
 
   <demo-section-header section>required</demo-section-header>
-  <ngx-input
-    [label]="'Required Input Example Of The Day'"
-    type="text"
-    name="input4"
-    required
-  ></ngx-input>
+  <ngx-input [label]="'Required Input Example Of The Day'" type="text" name="input4" required></ngx-input>
   <demo-markdown [data]="simpleRequiredMd"></demo-markdown>
 
   <demo-section-header section>default value</demo-section-header>
-  <ngx-input
-    [label]="'Default value'"
-    type="text"
-    name="input44"
-    autoSelect
-    [ngModel]="inputDefaultVal"
-  ></ngx-input>
+  <ngx-input [label]="'Default value'" type="text" name="input44" autoSelect [ngModel]="inputDefaultVal"></ngx-input>
   <demo-markdown [data]="simpleDefaultMd"></demo-markdown>
 </ngx-section>
 
@@ -100,11 +74,7 @@
         <i class="ngx-icon ngx-search"></i>
       </ngx-input-prefix>
       <ngx-input-suffix>
-        <button
-          class="btn btn-link"
-          *ngIf="searchInputValue?.length > 0"
-          (click)="searchInputValue = ''"
-        >
+        <button class="btn btn-link" *ngIf="searchInputValue?.length > 0" (click)="searchInputValue = ''">
           <i class="ngx-icon ngx-x"></i>
         </button>
       </ngx-input-suffix>
@@ -144,14 +114,7 @@
 
 <ngx-section class="shadow" sectionTitle="Numeric">
   <demo-section-header section>Simple</demo-section-header>
-  <ngx-input
-    type="number"
-    label="Age"
-    [(ngModel)]="numericValue"
-    name="numeric-input"
-    min="0"
-    max="122"
-  ></ngx-input>
+  <ngx-input type="number" label="Age" [(ngModel)]="numericValue" name="numeric-input" min="0" max="122"></ngx-input>
 
   Value: {{ numericValue }}
   <demo-markdown [data]="ageNumericMd"></demo-markdown>
@@ -175,38 +138,18 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Types">
-  <ngx-input
-    type="email"
-    name="input1111"
-    [label]="'Email'"
-    [ngModel]="inputValue"
-  >
+  <ngx-input type="email" name="input1111" [label]="'Email'" [ngModel]="inputValue">
     <ngx-input-hint>Enter a valid email</ngx-input-hint>
   </ngx-input>
 
-  <ngx-input
-    type="url"
-    name="input1112"
-    [label]="'Url'"
-    [ngModel]="inputValue"
-  ></ngx-input>
+  <ngx-input type="url" name="input1112" [label]="'Url'" [ngModel]="inputValue"></ngx-input>
 
-  <ngx-input
-    type="tel"
-    name="input1113"
-    [label]="'Tel'"
-    [ngModel]="inputValue"
-  ></ngx-input>
+  <ngx-input type="tel" name="input1113" [label]="'Tel'" [ngModel]="inputValue"></ngx-input>
   <demo-markdown [data]="typesMd"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Textarea">
-  <ngx-input
-    type="textarea"
-    name="input111"
-    [label]="'Name'"
-    [ngModel]="inputValue"
-  ></ngx-input>
+  <ngx-input type="textarea" name="input111" [label]="'Name'" [ngModel]="inputValue"></ngx-input>
   <demo-markdown [data]="textareaMd"></demo-markdown>
 </ngx-section>
 
@@ -229,19 +172,9 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Sizes">
-  <ngx-input
-    size="medium"
-    label="Medium"
-    ngModel="Medium Input"
-    hint="example of a medium input"
-  ></ngx-input>
+  <ngx-input size="medium" label="Medium" ngModel="Medium Input" hint="example of a medium input"></ngx-input>
   <br />
-  <ngx-input
-    size="large"
-    label="Large"
-    ngModel="Large Input"
-    hint="example of a large input"
-  ></ngx-input>
+  <ngx-input size="large" label="Large" ngModel="Large Input" hint="example of a large input"></ngx-input>
   <br />
   <demo-markdown [data]="sizesMd"></demo-markdown>
 </ngx-section>
@@ -284,18 +217,9 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Autosize">
-  <ngx-input
-    [(ngModel)]="longInputValue"
-    autosize
-    label="Resize Input"
-  ></ngx-input>
+  <ngx-input [(ngModel)]="longInputValue" autosize label="Resize Input"></ngx-input>
   <demo-markdown [data]="textAutosizeMd"></demo-markdown>
 
-  <ngx-input
-    autosize
-    appearance="fill"
-    type="number"
-    label="Fill Resize Input"
-  ></ngx-input>
+  <ngx-input autosize appearance="fill" type="number" label="Fill Resize Input"></ngx-input>
   <demo-markdown [data]="numberAutosizeMd"></demo-markdown>
 </ngx-section>

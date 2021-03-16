@@ -1,9 +1,6 @@
 <demo-section-header class="block mb-4">Colors: Hue</demo-section-header>
 <div class="flex flex-col gap-4">
-  <section
-    class="grid grid-cols-11 gap-x-4"
-    *ngFor="let hue of hues | keyvalue"
-  >
+  <section class="grid grid-cols-11 gap-x-4" *ngFor="let hue of hues | keyvalue">
     <demo-color-title
       class="col-span-2"
       [color]="hue.value.text"
@@ -20,14 +17,8 @@
 
 <demo-section-header class="block mb-4 mt-8">Colors: Grey</demo-section-header>
 <div class="flex flex-col gap-4">
-  <section
-    class="flex flex-col gap-4"
-    *ngFor="let hue of extendedHues | keyvalue"
-  >
-    <demo-color-title
-      [color]="hue.value.text"
-      [cssVar]="'--ngx-ui-color-' + hue.key"
-    ></demo-color-title>
+  <section class="flex flex-col gap-4" *ngFor="let hue of extendedHues | keyvalue">
+    <demo-color-title [color]="hue.value.text" [cssVar]="'--ngx-ui-color-' + hue.key"></demo-color-title>
     <div class="grid grid-flow-col gap-4 grid-rows-2 auto-cols-fr">
       <demo-color-block
         *ngFor="let weight of $any(hue.value).weights"
@@ -37,18 +28,13 @@
     </div>
   </section>
 </div>
-<demo-section-header class="block mb-4 mt-8">
-  Colors: Gradient
-</demo-section-header>
+<demo-section-header class="block mb-4 mt-8">Colors: Gradient</demo-section-header>
 <div class="flex flex-col gap-4">
   <section>
     <h5 class="text-lg font-bold">Linear</h5>
     <div class="grid gap-4 grid-flow-col auto-cols-fr">
       <div class="flex flex-col gap-2" *ngFor="let gradient of gradients">
-        <span
-          class="h-32"
-          [style.backgroundImage]="'var(--ngx-ui-' + gradient + ')'"
-        ></span>
+        <span class="h-32" [style.backgroundImage]="'var(--ngx-ui-' + gradient + ')'"></span>
         <code class="text-xs tracking-tighter">--ngx-ui-{{ gradient }}</code>
       </div>
     </div>
@@ -57,14 +43,8 @@
   <section>
     <h5 class="text-lg font-bold">Background Linear</h5>
     <div class="grid gap-4 grid-flow-col auto-cols-fr">
-      <div
-        class="flex flex-col gap-2"
-        *ngFor="let gradient of ['bg-linear-1', 'bg-linear-2']"
-      >
-        <span
-          class="h-32"
-          [style.backgroundImage]="'var(--ngx-ui-' + gradient + ')'"
-        ></span>
+      <div class="flex flex-col gap-2" *ngFor="let gradient of ['bg-linear-1', 'bg-linear-2']">
+        <span class="h-32" [style.backgroundImage]="'var(--ngx-ui-' + gradient + ')'"></span>
         <code class="text-xs tracking-tighter">--ngx-ui-{{ gradient }}</code>
       </div>
     </div>
@@ -73,91 +53,46 @@
   <section>
     <h5 class="text-lg font-bold">Background Radial</h5>
     <div class="grid gap-4 grid-flow-col auto-cols-fr">
-      <div
-        class="flex flex-col gap-2"
-        *ngFor="let gradient of ['bg-radial-1', 'bg-radial-2']"
-      >
-        <span
-          class="h-32"
-          [style.backgroundImage]="'var(--ngx-ui-' + gradient + ')'"
-        ></span>
+      <div class="flex flex-col gap-2" *ngFor="let gradient of ['bg-radial-1', 'bg-radial-2']">
+        <span class="h-32" [style.backgroundImage]="'var(--ngx-ui-' + gradient + ')'"></span>
         <code class="text-xs tracking-tighter">--ngx-ui-{{ gradient }}</code>
       </div>
     </div>
   </section>
 </div>
 
-<demo-section-header class="block mb-4 mt-8">
-  Colors: Ordinal Charts
-</demo-section-header>
+<demo-section-header class="block mb-4 mt-8">Colors: Ordinal Charts</demo-section-header>
 <div class="flex flex-col gap-4">
-  <section
-    class="grid grid-cols-11 gap-x-4"
-    *ngFor="let ordinalChart of chartColorsOrdinal"
-  >
+  <section class="grid grid-cols-11 gap-x-4" *ngFor="let ordinalChart of chartColorsOrdinal">
     <h5 class="text-lg font-bold">{{ ordinalChart.name }}</h5>
-    <demo-color-block
-      *ngFor="let color of ordinalChart.colors"
-      [hex]="color"
-    ></demo-color-block>
+    <demo-color-block *ngFor="let color of ordinalChart.colors" [hex]="color"></demo-color-block>
   </section>
 </div>
 
-<demo-section-header class="block mb-4 mt-8">
-  Colors: Sequential Charts
-</demo-section-header>
+<demo-section-header class="block mb-4 mt-8">Colors: Sequential Charts</demo-section-header>
 <div class="flex flex-col gap-4">
-  <section
-    class="grid grid-cols-11 gap-x-4"
-    *ngFor="let sequentialChart of chartColorsSequential"
-  >
+  <section class="grid grid-cols-11 gap-x-4" *ngFor="let sequentialChart of chartColorsSequential">
     <h5 class="text-lg font-bold">{{ sequentialChart.name }}</h5>
-    <demo-color-block
-      *ngFor="let color of sequentialChart.colors"
-      [hex]="color"
-    ></demo-color-block>
+    <demo-color-block *ngFor="let color of sequentialChart.colors" [hex]="color"></demo-color-block>
   </section>
 </div>
 
-<demo-section-header class="block mb-4 mt-8">
-  Colors: Borders and Glows
-</demo-section-header>
-<demo-markdown
-  class="my-4"
-  feature="style/colors"
-  fileName="borders-glow"
-></demo-markdown>
+<demo-section-header class="block mb-4 mt-8">Colors: Borders and Glows</demo-section-header>
+<demo-markdown class="my-4" feature="style/colors" fileName="borders-glow"></demo-markdown>
 <div class="grid grid-cols-6 gap-4">
   <ng-container *ngFor="let weight of normalWeights">
-    <ng-container
-      *ngFor="
-        let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']
-      "
-    >
-      <code
-        class="h-12 text-xs tracking-tight flex items-center justify-center glow-{{
-          color
-        }}-{{ weight }}"
-      >
+    <ng-container *ngFor="let color of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple']">
+      <code class="h-12 text-xs tracking-tight flex items-center justify-center glow-{{ color }}-{{ weight }}">
         .glow-{{ color }}-{{ weight }}
       </code>
     </ng-container>
   </ng-container>
 </div>
 
-<demo-section-header class="block mb-4 mt-8">
-  Colors: Shadows
-</demo-section-header>
-<demo-markdown
-  class="my-4"
-  feature="style/colors"
-  fileName="shadow"
-></demo-markdown>
+<demo-section-header class="block mb-4 mt-8">Colors: Shadows</demo-section-header>
+<demo-markdown class="my-4" feature="style/colors" fileName="shadow"></demo-markdown>
 <div class="grid grid-cols-6 gap-4">
-  <div
-    *ngFor="let shadow of shadows"
-    class="flex items-center justify-center h-24 shadow-{{ shadow }}"
-  >
+  <div *ngFor="let shadow of shadows" class="flex items-center justify-center h-24 shadow-{{ shadow }}">
     <code class="text-sm tracking-tight">.shadow-{{ shadow }}</code>
   </div>
   <div class="flex items-center justify-center h-24 shadow-10 shadow-fx">

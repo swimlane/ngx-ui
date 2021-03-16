@@ -6,6 +6,6 @@ import { TipComponent } from './tip.component';
 @NgModule({
   imports: [CommonModule, IconModule],
   declarations: [TipComponent],
-  exports: [TipComponent],
+  exports: [TipComponent]
 })
 export class TipModule {}

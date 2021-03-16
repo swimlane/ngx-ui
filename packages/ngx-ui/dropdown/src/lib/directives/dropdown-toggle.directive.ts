@@ -1,13 +1,5 @@
 import type { BooleanInput } from '@angular/cdk/coercion';
-import {
-  Directive,
-  ElementRef,
-  EventEmitter,
-  HostBinding,
-  HostListener,
-  Input,
-  Output,
-} from '@angular/core';
+import { Directive, ElementRef, EventEmitter, HostBinding, HostListener, Input, Output } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputEnum } from '@swimlane/ngx-ui/decorators/input-enum';
 import type { EnumKey } from '@swimlane/ngx-ui/types';
@@ -15,7 +7,7 @@ import { DropdownShowTypes } from '../enums';
 
 @Directive({
   selector: 'ngx-dropdown-toggle',
-  exportAs: 'ngxDropdownToggle',
+  exportAs: 'ngxDropdownToggle'
 })
 export class DropdownToggleDirective {
   static ngAcceptInputType_disabled: BooleanInput;

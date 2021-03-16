@@ -9,7 +9,7 @@ import {
   HostListener,
   Inject,
   Input,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { DestroyedService } from '@swimlane/ngx-ui/destroyed';
@@ -26,7 +26,7 @@ import { DropdownMenuDirective, DropdownToggleDirective } from './directives';
   styleUrls: ['./dropdown.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DestroyedService],
+  providers: [DestroyedService]
 })
 export class DropdownComponent implements AfterContentInit {
   static ngAcceptInputType_open: BooleanInput;
@@ -66,28 +66,19 @@ export class DropdownComponent implements AfterContentInit {
 
   private mouseLeaveTimerSubscription?: Subscription;
 
-  constructor(
-    private readonly destroyed: DestroyedService,
-    @Inject(DOCUMENT) private readonly document: Document
-  ) {}
+  constructor(private readonly destroyed: DestroyedService, @Inject(DOCUMENT) private readonly document: Document) {}
 
   ngAfterContentInit() {
     if (this.dropdownToggle) {
-      this.dropdownToggle.toggle
-        .pipe(takeUntil(this.destroyed))
-        .subscribe(() => (this.open = !this.open));
+      this.dropdownToggle.toggle.pipe(takeUntil(this.destroyed)).subscribe(() => (this.open = !this.open));
     }
   }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
     if (this.open && this.closeOnOutsideClick) {
-      const isToggling = this.dropdownToggle?.element.contains(
-        event.target as Node
-      );
-      const isMenuClick =
-        !this.closeOnClick &&
-        this.dropdownMenu.element.contains(event.target as Node);
+      const isToggling = this.dropdownToggle?.element.contains(event.target as Node);
+      const isMenuClick = !this.closeOnClick && this.dropdownMenu.element.contains(event.target as Node);
 
       if (!isToggling && !isMenuClick) {
         this.close();
@@ -99,9 +90,7 @@ export class DropdownComponent implements AfterContentInit {
   onMouseLeave(): void {
     if (this.closeOnMouseLeave) {
       this.unsubscribeMouseLeave();
-      this.mouseLeaveTimerSubscription = timer(1000).subscribe(() =>
-        this.close()
-      );
+      this.mouseLeaveTimerSubscription = timer(1000).subscribe(() => this.close());
     }
   }
 

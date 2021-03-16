@@ -7,7 +7,7 @@ import {
   Input,
   Output,
   TemplateRef,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
@@ -20,7 +20,7 @@ import { NotificationStyleType } from './enums';
   templateUrl: './notification.component.html',
   styleUrls: ['./notification.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationComponent {
   @Input() cssClass: string = '';

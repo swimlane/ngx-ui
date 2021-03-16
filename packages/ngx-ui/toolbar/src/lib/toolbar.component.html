@@ -10,11 +10,7 @@
     <ng-content *ngIf="!menu.length" select="ngx-toolbar-content"></ng-content>
     <ul class="horizontal-list ngx-toolbar-menu" *ngIf="menu.length">
       <li *ngFor="let item of toolbarItems">
-        <button
-          type="button"
-          [disabled]="item.disabled"
-          (click)="onMenuClicked(item, $event)"
-        >
+        <button type="button" [disabled]="item.disabled" (click)="onMenuClicked(item, $event)">
           {{ item.label }}
         </button>
       </li>

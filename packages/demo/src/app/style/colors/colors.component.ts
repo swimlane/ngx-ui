@@ -1,16 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-const NORMAL_WEIGHTS = [
-  '100',
-  '200',
-  '300',
-  '400',
-  '500',
-  '600',
-  '700',
-  '800',
-  '900',
-];
+const NORMAL_WEIGHTS = ['100', '200', '300', '400', '500', '600', '700', '800', '900'];
 
 const EXTENDED_WEIGHTS = [
   '050',
@@ -34,14 +24,14 @@ const EXTENDED_WEIGHTS = [
   '825',
   '850',
   '875',
-  '900',
+  '900'
 ];
 
 @Component({
   selector: 'demo-colors',
   templateUrl: './colors.component.html',
   styleUrls: ['./colors.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ColorsComponent implements OnInit {
   normalWeights = NORMAL_WEIGHTS;
@@ -58,8 +48,8 @@ export class ColorsComponent implements OnInit {
         '#F4E667',
         '#FF990D',
         '#FF5821',
-        '#D24018',
-      ],
+        '#D24018'
+      ]
     },
     {
       name: 'Natural',
@@ -73,8 +63,8 @@ export class ColorsComponent implements OnInit {
         '#7693B1',
         '#AFAFAF',
         '#707160',
-        '#D9D5C3',
-      ],
+        '#D9D5C3'
+      ]
     },
     {
       name: 'Cool',
@@ -88,8 +78,8 @@ export class ColorsComponent implements OnInit {
         '#A27DA7',
         '#AE6785',
         '#AA5963',
-        '#A9375C',
-      ],
+        '#A9375C'
+      ]
     },
     {
       name: 'Fire',
@@ -103,9 +93,9 @@ export class ColorsComponent implements OnInit {
         '#E75200',
         '#FFCC31',
         '#FFAC12',
-        '#FF7002',
-      ],
-    },
+        '#FF7002'
+      ]
+    }
   ];
 
   chartColorsSequential = [
@@ -121,8 +111,8 @@ export class ColorsComponent implements OnInit {
         '#FFB414',
         '#FFA10F',
         '#FF900B',
-        '#FF7002',
-      ],
+        '#FF7002'
+      ]
     },
     {
       name: 'Air',
@@ -136,8 +126,8 @@ export class ColorsComponent implements OnInit {
         '#0099E4',
         '#0086D0',
         '#0075BC',
-        '#00559A',
-      ],
+        '#00559A'
+      ]
     },
     {
       name: 'Aqua',
@@ -151,47 +141,47 @@ export class ColorsComponent implements OnInit {
         '#00ACC1',
         '#0097A7',
         '#00838F',
-        '#006064',
-      ],
-    },
+        '#006064'
+      ]
+    }
   ];
 
   hues = {
     blue: {
       text: 'Blue',
-      weights: NORMAL_WEIGHTS,
+      weights: NORMAL_WEIGHTS
     },
     'light-blue': {
       text: 'Light Blue',
-      weights: NORMAL_WEIGHTS,
+      weights: NORMAL_WEIGHTS
     },
     green: {
       text: 'Green',
-      weights: NORMAL_WEIGHTS,
+      weights: NORMAL_WEIGHTS
     },
     red: {
       text: 'Red',
-      weights: NORMAL_WEIGHTS,
+      weights: NORMAL_WEIGHTS
     },
     orange: {
       text: 'Orange',
-      weights: NORMAL_WEIGHTS,
+      weights: NORMAL_WEIGHTS
     },
     purple: {
       text: 'Purple',
-      weights: NORMAL_WEIGHTS,
-    },
+      weights: NORMAL_WEIGHTS
+    }
   };
 
   extendedHues = {
     grey: {
       text: 'Grey',
-      weights: EXTENDED_WEIGHTS,
+      weights: EXTENDED_WEIGHTS
     },
     'blue-grey': {
       text: 'Blue Grey',
-      weights: EXTENDED_WEIGHTS,
-    },
+      weights: EXTENDED_WEIGHTS
+    }
   };
 
   gradients = [
@@ -200,7 +190,7 @@ export class ColorsComponent implements OnInit {
     'gradient-blue-red',
     'gradient-blue-purple',
     'gradient-red-orange',
-    'gradient-orange-purple',
+    'gradient-orange-purple'
   ];
 
   shadows = Array.from({ length: 24 })

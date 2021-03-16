@@ -10,24 +10,20 @@ import { IconsSectionContainerComponent } from './components/icons-section-conta
 import { IconsComponent } from './icons.component';
 
 @NgModule({
-  declarations: [
-    IconsComponent,
-    IconsSectionContainerComponent,
-    IconBlockComponent,
-  ],
+  declarations: [IconsComponent, IconsSectionContainerComponent, IconBlockComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
         path: '',
-        component: IconsComponent,
-      },
+        component: IconsComponent
+      }
     ]),
     SectionHeaderModule,
     IconModule,
     CopyToClipboardModule,
-    MarkdownModule,
+    MarkdownModule
   ],
-  exports: [IconsComponent],
+  exports: [IconsComponent]
 })
 export class IconsModule {}

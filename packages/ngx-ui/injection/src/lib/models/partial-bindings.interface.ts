@@ -3,4 +3,4 @@ export interface PartialBindings extends Record<string, unknown> {
   outputs?: Record<string, unknown>;
 }
 
-export type PartialBindingsNoInput = Omit<PartialBindings, 'inputs'>
+export type PartialBindingsNoInput = Omit<PartialBindings, 'inputs'>;

@@ -11,7 +11,7 @@ import {
   Input,
   Output,
   QueryList,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import { Subscription } from 'rxjs';
@@ -26,7 +26,7 @@ import { navbarAnimations } from './navbar.animation';
   styleUrls: ['./navbar.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [navbarAnimations.horizontalBarTransition],
+  animations: [navbarAnimations.horizontalBarTransition]
 })
 export class NavbarComponent {
   static ngAcceptInputType_barAtTop: BooleanInput;
@@ -83,9 +83,7 @@ export class NavbarComponent {
         item.navItem.active = this.active;
         item.navItem.total = this._navItems.length;
 
-        this._navItemActiveChangeSubscription = item.navItem.activeChange.subscribe(
-          (active) => (this.active = active)
-        );
+        this._navItemActiveChangeSubscription = item.navItem.activeChange.subscribe(active => (this.active = active));
       }
     }
   }
@@ -94,11 +92,7 @@ export class NavbarComponent {
   private _navItemActiveChangeSubscription?: Subscription;
 
   get complete() {
-    return (
-      this._navItems?.filter(
-        (s) => s.index !== undefined && s.index < this.active
-      ).length || 0
-    );
+    return this._navItems?.filter(s => s.index !== undefined && s.index < this.active).length || 0;
   }
 
   get barState() {
@@ -114,22 +108,14 @@ export class NavbarComponent {
 
   @HostBinding('class.ngx-navbar') hostClass = true;
 
-  constructor(
-    private readonly el: ElementRef<HTMLElement>,
-    private readonly cdr: ChangeDetectorRef
-  ) {}
+  constructor(private readonly el: ElementRef<HTMLElement>, private readonly cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit() {
     this.cdr.markForCheck();
   }
 
   goTo(index: number) {
-    if (
-      this.navItems &&
-      index !== this.active &&
-      index >= 0 &&
-      index < this.navItems.length
-    ) {
+    if (this.navItems && index !== this.active && index >= 0 && index < this.navItems.length) {
       const nav = this.navItems.find((_n, i) => i === index);
       if (nav) {
         nav.setActive();

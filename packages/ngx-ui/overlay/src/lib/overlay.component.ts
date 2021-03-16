@@ -1,19 +1,6 @@
-import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import type { BooleanInput } from '@angular/cdk/coercion';
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-  ViewEncapsulation,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
 import type { NumericInput } from '@swimlane/ngx-ui/decorators/input-numeric';
 import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
@@ -31,14 +18,14 @@ import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
         'active',
         style({
           opacity: 0.8,
-          visibility: 'visible',
+          visibility: 'visible'
         })
       ),
       state(
         'inactive',
         style({
           visibility: 'hidden',
-          opacity: 0,
+          opacity: 0
         })
       ),
       transition('* => active', [animate('100ms ease-in')]),
@@ -47,12 +34,12 @@ import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
         style({
           opacity: 0,
           visibility: 'hidden',
-          'pointer-events': 'none',
+          'pointer-events': 'none'
         }),
-        animate('100ms ease-out'),
-      ]),
-    ]),
-  ],
+        animate('100ms ease-out')
+      ])
+    ])
+  ]
 })
 export class OverlayComponent {
   static ngAcceptInputType_visible: BooleanInput;

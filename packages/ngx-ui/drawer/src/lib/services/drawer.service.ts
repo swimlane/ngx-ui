@@ -1,13 +1,5 @@
-import {
-  ComponentRef,
-  Injectable,
-  Renderer2,
-  RendererFactory2,
-} from '@angular/core';
-import {
-  InjectionRegistryService,
-  InjectionService,
-} from '@swimlane/ngx-ui/injection';
+import { ComponentRef, Injectable, Renderer2, RendererFactory2 } from '@angular/core';
+import { InjectionRegistryService, InjectionService } from '@swimlane/ngx-ui/injection';
 import { OverlayService } from '@swimlane/ngx-ui/overlay';
 import { Subscription } from 'rxjs';
 import { DrawerComponent } from '../drawer.component';
@@ -20,8 +12,8 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
 
   readonly defaults: DrawerOptions = {
     inputs: {
-      direction: DrawerDirection.Left,
-    },
+      direction: DrawerDirection.Left
+    }
   };
 
   readonly renderer: Renderer2;
@@ -40,11 +32,7 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
 
   create(options: DrawerOptions) {
     const component = super.create(options);
-    this.createSubscriptions(
-      component,
-      options.isRoot,
-      options.parentContainer
-    );
+    this.createSubscriptions(component, options.isRoot, options.parentContainer);
     return component;
   }
 
@@ -80,15 +68,11 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
     return options;
   }
 
-  createSubscriptions(
-    component: ComponentRef<DrawerComponent>,
-    isRoot = true,
-    parentContainer?: any
-  ) {
+  createSubscriptions(component: ComponentRef<DrawerComponent>, isRoot = true, parentContainer?: any) {
     if (isRoot) {
       this.overlayService.show({
         triggerComponent: component,
-        zIndex: this.zIndex,
+        zIndex: this.zIndex
       });
     }
 
@@ -105,10 +89,7 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
       if (overlaySub) {
         overlaySub.unsubscribe();
       }
-      if (
-        this.parentListenerFunc &&
-        this.components.get(this.type)?.length === 1
-      ) {
+      if (this.parentListenerFunc && this.components.get(this.type)?.length === 1) {
         this.parentListenerFunc();
       }
       this.destroy(component);
@@ -121,16 +102,12 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
       } else {
         const components = this.components.get(this.type);
 
-        this.parentListenerFunc = this.renderer.listen(
-          parentContainer,
-          'click',
-          (evt) => {
-            /* istanbul ignore else */
-            if (evt.target === parentContainer) {
-              kill(components![components!.length - 1]);
-            }
+        this.parentListenerFunc = this.renderer.listen(parentContainer, 'click', evt => {
+          /* istanbul ignore else */
+          if (evt.target === parentContainer) {
+            kill(components![components!.length - 1]);
           }
-        );
+        });
       }
     }
   }

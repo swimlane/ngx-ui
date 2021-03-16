@@ -7,10 +7,7 @@ import { getNumberRange } from '../get-number-range/get-number-range.util';
  * @param startDay
  * @return days by week
  */
-export function getWeeksForDays(
-  days: CalendarDay[],
-  startDay: number
-): CalendarDay[][] {
+export function getWeeksForDays(days: CalendarDay[], startDay: number): CalendarDay[][] {
   const weeks: CalendarMonth = [];
   let offset = 7;
 
@@ -32,7 +29,7 @@ export function getWeeksForDays(
           num: date.date(),
           dayOfWeek: date.day(),
           date,
-          prevMonth: true,
+          prevMonth: true
         };
       });
 
@@ -49,20 +46,20 @@ export function getWeeksForDays(
           num: date.date(),
           dayOfWeek: date.day(),
           date,
-          nextMonth: true,
+          nextMonth: true
         };
       });
 
       wk = [...wk, ...fill];
     }
 
-    wk.forEach((day) => {
+    wk.forEach(day => {
       day.classes = {
         'first-day-of-month': day.num === 1,
         'last-day-of-week': day.dayOfWeek === 6,
         today: day.today,
         'next-month': day.nextMonth,
-        'prev-month': day.prevMonth,
+        'prev-month': day.prevMonth
       };
     });
 

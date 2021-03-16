@@ -7,16 +7,12 @@ import {
   SimpleChanges,
   TemplateRef,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { DialogService } from '@swimlane/ngx-ui/dialog';
 import { jsonSchemaDataTypes } from '../../../constants';
 import { ArrayNode } from '../../../directives';
-import type {
-  JSONEditorSchema,
-  JsonSchemaDataType,
-  PropertyConfigOptions,
-} from '../../../interfaces';
+import type { JSONEditorSchema, JsonSchemaDataType, PropertyConfigOptions } from '../../../interfaces';
 import { PropertyConfigComponent } from '../property-config/property-config.component';
 
 @Component({
@@ -24,11 +20,9 @@ import { PropertyConfigComponent } from '../property-config/property-config.comp
   templateUrl: './array-node-flat.component.html',
   styleUrls: ['./array-node-flat.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ArrayNodeFlatComponent
-  extends ArrayNode
-  implements OnInit, OnChanges {
+export class ArrayNodeFlatComponent extends ArrayNode implements OnInit, OnChanges {
   @ViewChild('propertyConfigTmpl', { static: false })
   propertyConfigTmpl?: TemplateRef<PropertyConfigComponent>;
 
@@ -55,26 +49,17 @@ export class ArrayNodeFlatComponent
       this.dataTypes = [...jsonSchemaDataTypes, ...this.formats];
     }
 
-    if (
-      this.schemaBuilderMode &&
-      !this.model.length &&
-      this.schemaRef!.items &&
-      this.schemaRef!.items.type
-    ) {
+    if (this.schemaBuilderMode && !this.model.length && this.schemaRef!.items && this.schemaRef!.items.type) {
       this.model.push(this.schemaRef!.items);
     }
 
-    this.indentationArray = !!this.level
-      ? Array(this.level).fill(this.level)
-      : [];
+    this.indentationArray = !!this.level ? Array(this.level).fill(this.level) : [];
   }
 
   ngOnChanges(changes: SimpleChanges) {
     super.ngOnChanges(changes);
     if ('level' in changes) {
-      this.indentationArray = !!this.level
-        ? Array(this.level).fill(this.level)
-        : [];
+      this.indentationArray = !!this.level ? Array(this.level).fill(this.level) : [];
     }
   }
 
@@ -85,9 +70,9 @@ export class ArrayNodeFlatComponent
         property: item,
         index,
         schema: this.schema,
-        formats: this.formats,
+        formats: this.formats
       },
-      class: 'property-config-dialog',
+      class: 'property-config-dialog'
     });
   }
 
@@ -117,9 +102,7 @@ export class ArrayNodeFlatComponent
     this.schema.items = dataType.schema as object;
     this.schemaRef!.items = dataType.schema as object;
 
-    this.model.push(
-      this.schemaRef!.items.type === 'array' ? [] : this.schemaRef!.items
-    );
+    this.model.push(this.schemaRef!.items.type === 'array' ? [] : this.schemaRef!.items);
 
     this.schemaUpdate.emit();
   }

@@ -7,6 +7,6 @@ import { PlusMenuComponent } from './plus-menu.component';
 @NgModule({
   imports: [CommonModule, IconModule, TooltipModule],
   declarations: [PlusMenuComponent],
-  exports: [PlusMenuComponent],
+  exports: [PlusMenuComponent]
 })
 export class PlusMenuModule {}

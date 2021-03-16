@@ -3,12 +3,9 @@
   --ngx-ui-stepper-size: 1.75rem;
   --ngx-ui-stepper-size-lg: 5.5rem;
   --ngx-ui-stepper-trackbar-to-step-ratio: 1.4;
-  --ngx-ui-stepper-trackbar-margin: (
-      var(--ngx-ui-stepper-trackbar-to-step-ratio) - 1
-    ) * var(--ngx-ui-stepper-size) / 2;
-  --ngx-ui-stepper-trackbar-margin-lg: (
-      var(--ngx-ui-stepper-trackbar-to-step-ratio) - 1
-    ) * var(--ngx-ui-stepper-size-lg) / 2;
+  --ngx-ui-stepper-trackbar-margin: (var(--ngx-ui-stepper-trackbar-to-step-ratio) - 1) * var(--ngx-ui-stepper-size) / 2;
+  --ngx-ui-stepper-trackbar-margin-lg: (var(--ngx-ui-stepper-trackbar-to-step-ratio) - 1) *
+    var(--ngx-ui-stepper-size-lg) / 2;
   --ngx-ui-transition-speed: 0.25s;
 
   display: flex;
@@ -112,11 +109,7 @@
         &.ngx-step--complete-last {
           .ngx-step--step {
             &:after {
-              background-image: linear-gradient(
-                to bottom,
-                #1edeb6 0%,
-                var(--ngx-ui-color-blue-500) 75%
-              ) !important;
+              background-image: linear-gradient(to bottom, #1edeb6 0%, var(--ngx-ui-color-blue-500) 75%) !important;
             }
           }
         }
@@ -275,8 +268,7 @@
       }
 
       .ngx-step--title {
-        transform: translateX(-50%)
-          translateX(var(--ngx-ui-stepper-size-lg) / 2);
+        transform: translateX(-50%) translateX(var(--ngx-ui-stepper-size-lg) / 2);
       }
     }
 

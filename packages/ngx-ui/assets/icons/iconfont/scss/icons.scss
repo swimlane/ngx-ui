@@ -2,7 +2,7 @@
 	icons
 -------------------------*/
 @function unicode($str) {
-  @return unquote("\"\\#{$str}\"");
+  @return unquote('"\\#{$str}"');
 }
 
 $ngx-3d-rotate: unicode(ea10);

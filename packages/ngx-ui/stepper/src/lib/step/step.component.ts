@@ -11,7 +11,7 @@ import {
   OnInit,
   Output,
   QueryList,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import type { NumericInput } from '@swimlane/ngx-ui/decorators/input-numeric';
 import { InputNumeric } from '@swimlane/ngx-ui/decorators/input-numeric';
@@ -23,7 +23,7 @@ import { StepContentDirective } from '../directives';
   templateUrl: './step.component.html',
   styleUrls: ['./step.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StepComponent implements OnInit {
   static ngAcceptInputType_active: NumericInput;
@@ -72,15 +72,11 @@ export class StepComponent implements OnInit {
   }
 
   get stepHeight() {
-    return (this.el.nativeElement.querySelector(
-      '.ngx-step--circle'
-    ) as HTMLElement).offsetHeight;
+    return (this.el.nativeElement.querySelector('.ngx-step--circle') as HTMLElement).offsetHeight;
   }
 
   get stepWidth() {
-    return (this.el.nativeElement.querySelector(
-      '.ngx-step--circle'
-    ) as HTMLElement).offsetWidth;
+    return (this.el.nativeElement.querySelector('.ngx-step--circle') as HTMLElement).offsetWidth;
   }
 
   @HostBinding('class.ngx-step') hostClass = true;
@@ -97,10 +93,7 @@ export class StepComponent implements OnInit {
     return this.step && this.step < this.active;
   }
 
-  constructor(
-    private readonly cdr: ChangeDetectorRef,
-    private readonly el: ElementRef<HTMLElement>
-  ) {}
+  constructor(private readonly cdr: ChangeDetectorRef, private readonly el: ElementRef<HTMLElement>) {}
 
   ngOnInit() {
     this.cdr.markForCheck();

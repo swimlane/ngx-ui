@@ -6,6 +6,6 @@ import { SliderComponent } from './slider.component';
 @NgModule({
   imports: [CommonModule, FormsModule],
   declarations: [SliderComponent],
-  exports: [SliderComponent],
+  exports: [SliderComponent]
 })
 export class SliderModule {}

@@ -65,8 +65,7 @@
           bottom: -1px;
           transition: all 250ms ease 0s;
           transform: scale(0);
-          background: var(--ngx-ui-tabs-active-border-fill) none repeat scroll 0
-            0;
+          background: var(--ngx-ui-tabs-active-border-fill) none repeat scroll 0 0;
           color: var(--ngx-ui-tabs-active-text-color);
         }
       }

@@ -10,7 +10,7 @@ import {
   Output,
   Renderer2,
   ViewChild,
-  ViewEncapsulation,
+  ViewEncapsulation
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { InputBoolean } from '@swimlane/ngx-ui/decorators/input-boolean';
@@ -42,7 +42,7 @@ import './mustache';
 const CODEMIRROR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CodeMirrorComponent),
-  multi: true,
+  multi: true
 };
 
 @Component({
@@ -56,11 +56,11 @@ const CODEMIRROR_VALUE_ACCESSOR = {
     './foldgutter.css',
     './dracula.css',
     './hint.scss',
-    './code-mirror.component.scss',
+    './code-mirror.component.scss'
   ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [CODEMIRROR_VALUE_ACCESSOR],
+  providers: [CODEMIRROR_VALUE_ACCESSOR]
 })
 export class CodeMirrorComponent implements OnInit {
   static ngAcceptInputType_autofocus: BooleanInput;
@@ -68,11 +68,7 @@ export class CodeMirrorComponent implements OnInit {
 
   @Input() config: CodeMirror.EditorConfiguration = { lineWrapping: true };
   @Input() mode?: string | Record<string, unknown>;
-  @Input() lint?:
-    | boolean
-    | CodeMirror.LintStateOptions
-    | CodeMirror.Linter
-    | CodeMirror.AsyncLinter;
+  @Input() lint?: boolean | CodeMirror.LintStateOptions | CodeMirror.Linter | CodeMirror.AsyncLinter;
 
   @Input() theme = 'dracular';
   @Input() readOnly: string | boolean = false;
@@ -124,15 +120,14 @@ export class CodeMirrorComponent implements OnInit {
       lineNumbers: this.lineNumbers,
       gutters: this.gutters,
       extraKeys: {
-        'Ctrl-Space': 'autocomplete',
+        'Ctrl-Space': 'autocomplete'
       },
-      ...this.config,
+      ...this.config
     };
 
     if (this.autocompleteTokens) {
       this.config.hintOptions = this.config.hintOptions || {};
-      this.config.hintOptions.hint = (cm: CodeMirror.Editor) =>
-        this.autocomplete(cm as CodeMirror.EditorFromTextArea);
+      this.config.hintOptions.hint = (cm: CodeMirror.Editor) => this.autocomplete(cm as CodeMirror.EditorFromTextArea);
     }
   }
 
@@ -150,10 +145,7 @@ export class CodeMirrorComponent implements OnInit {
       this.host.nativeElement.value = this.cleanCode(code);
     }
 
-    this.instance = CodeMirror.fromTextArea(
-      this.host.nativeElement,
-      this.config
-    );
+    this.instance = CodeMirror.fromTextArea(this.host.nativeElement, this.config);
     this.instance.on('change', this.onChange.bind(this));
     this.instance.on('blur', this.onBlur.bind(this));
 
@@ -203,14 +195,9 @@ export class CodeMirrorComponent implements OnInit {
   }
 
   onKeyUp(cm: CodeMirror.EditorFromTextArea, event: KeyboardEvent) {
-    if (
-      (!cm.state.completionActive &&
-        event.keyCode > 64 &&
-        event.keyCode < 91) ||
-      event.keyCode === 219
-    ) {
+    if ((!cm.state.completionActive && event.keyCode > 64 && event.keyCode < 91) || event.keyCode === 219) {
       (CodeMirror.commands as any).autocomplete(cm, null, {
-        completeSingle: false,
+        completeSingle: false
       });
     }
   }
@@ -265,17 +252,15 @@ export class CodeMirrorComponent implements OnInit {
     }
 
     const curWord = start !== end ? curLine.slice(start, end) : '';
-    const list = this.autocompleteTokens?.filter(
-      (s: string | HintCompletion) => {
-        s = typeof s === 'string' ? s : s.text;
-        return s ? s.startsWith(curWord) : false;
-      }
-    );
+    const list = this.autocompleteTokens?.filter((s: string | HintCompletion) => {
+      s = typeof s === 'string' ? s : s.text;
+      return s ? s.startsWith(curWord) : false;
+    });
 
     return {
       list,
       from: CodeMirror.Pos(cur.line, start),
-      to: CodeMirror.Pos(cur.line, end),
+      to: CodeMirror.Pos(cur.line, end)
     };
   }
 }

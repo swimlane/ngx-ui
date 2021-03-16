@@ -5,6 +5,6 @@ import { NavMenuComponent } from './nav-menu.component';
 @NgModule({
   imports: [CommonModule],
   declarations: [NavMenuComponent],
-  exports: [NavMenuComponent],
+  exports: [NavMenuComponent]
 })
 export class NavMenuModule {}

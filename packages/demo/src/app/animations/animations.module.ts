@@ -13,7 +13,7 @@ import { AnimationsComponent } from './animations.component';
     RouterModule.forChild([{ path: '', component: AnimationsComponent }]),
     SectionHeaderModule,
     SectionModule,
-    MarkdownModule,
-  ],
+    MarkdownModule
+  ]
 })
 export class AnimationsModule {}

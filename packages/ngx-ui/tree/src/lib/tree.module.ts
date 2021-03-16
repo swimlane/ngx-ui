@@ -6,6 +6,6 @@ import { TreeComponent } from './tree.component';
 @NgModule({
   imports: [CommonModule],
   declarations: [TreeComponent, TreeNodeComponent],
-  exports: [TreeComponent, TreeNodeComponent],
+  exports: [TreeComponent, TreeNodeComponent]
 })
 export class TreeModule {}
