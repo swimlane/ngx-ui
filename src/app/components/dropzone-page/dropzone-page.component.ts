@@ -20,4 +20,8 @@ export class DropzonePageComponent {
   openDialog(options) {
     this.dialogMngr.create(options);
   }
+
+  onAfterAddingFile(fileItem): void {
+    console.log('file added', fileItem);
+  }
 }

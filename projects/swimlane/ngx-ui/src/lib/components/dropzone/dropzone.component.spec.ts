@@ -1,39 +1,43 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { Shallow } from 'shallow-render';
+import { DropzoneComponent } from './dropzone.component';
+import { DropzoneModule } from './dropzone.module';
+import { Rendering } from 'shallow-render/dist/lib/models/rendering';
 import { FileUploader } from '@swimlane/ng2-file-upload';
 
-import { DropzoneComponent } from './dropzone.component';
-
+const uploader = new FileUploader({});
 const acceptedFileFormats = ['.txt', '.json'];
 
 describe('DropzoneComponent', () => {
-  let component: DropzoneComponent;
-  let fixture: ComponentFixture<DropzoneComponent>;
+  let shallow: Shallow<DropzoneComponent>;
+  let rendering: Rendering<DropzoneComponent, unknown>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-      declarations: [DropzoneComponent]
+    shallow = new Shallow(DropzoneComponent, DropzoneModule).import(HttpClientTestingModule);
+  });
+
+  describe('init', () => {
+    beforeEach(async () => {
+      rendering = await shallow.render({
+        bind: {
+          uploader
+        }
+      });
     });
-  });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DropzoneComponent);
-    component = fixture.componentInstance;
-    component.uploader = new FileUploader({});
-    fixture.detectChanges();
-  });
+    it('has correct class', () => {
+      expect(rendering.find('ngx-file-button').nativeElement).toHaveClass('ngx-dropzone');
+    });
 
-  it('can load instance', () => {
-    expect(component).toBeTruthy();
-  });
+    it('multiple defaults to true', () => {
+      expect(rendering.instance.multiple).toBe(true);
+    });
 
-  describe('ngOnInit', () => {
     it('accepted file formats', () => {
-      component.uploader = new FileUploader({});
-      component.acceptedFileFormats = acceptedFileFormats;
-      component.ngOnInit();
-      expect(component.acceptedFileFormatsTextDisplay).toEqual('.txt and .json');
+      rendering.instance.acceptedFileFormats = acceptedFileFormats;
+      rendering.instance.ngOnInit();
+      expect(rendering.instance.acceptedFileFormatsTextDisplay).toEqual('.txt and .json');
     });
   });
 });

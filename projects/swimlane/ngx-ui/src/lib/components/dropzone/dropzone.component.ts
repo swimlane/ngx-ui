@@ -39,7 +39,7 @@ export class DropzoneComponent implements OnInit {
 
   acceptedFileFormatsTextDisplay: string;
 
-  private _multiple: boolean = false;
+  private _multiple: boolean = true;
 
   ngOnInit(): void {
     if (this.acceptedFileFormats && this.acceptedFileFormats.length) {

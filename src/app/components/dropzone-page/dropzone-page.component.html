@@ -4,6 +4,7 @@
     [uploader]="uploaderInstance"
     [acceptedFileFormats]="acceptedFileFormats"
     [multiple]="true"
+    (afterAddingFile)="onAfterAddingFile($event)"
   >
   </ngx-dropzone>
   <app-prism>
