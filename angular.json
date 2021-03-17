@@ -729,6 +729,14 @@
     },
     "demo": {
       "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss",
+          "skipTests": true,
+          "changeDetection": "OnPush",
+          "preserveWhitespaces": true
+        }
+      },
       "root": "packages/demo",
       "sourceRoot": "packages/demo/src",
       "prefix": "demo",
