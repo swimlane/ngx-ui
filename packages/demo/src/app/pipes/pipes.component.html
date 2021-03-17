@@ -1,15 +1,13 @@
 <demo-section-header>Pipes</demo-section-header>
 
 <ngx-section class="shadow" sectionTitle="Decamelize">
-  <demo-markdown ngPreserveWhitespaces>
-    ```ts import {{ '{' }} DecamelizeModule {{ '}' }} from '@swimlane/ngx-ui/pipes/decamelize'; ```
-  </demo-markdown>
+  <demo-markdown markdownPath="pipes/decamelize-import"></demo-markdown>
 
   {{ 'decamelizePipe' | decamelize }}
   <br />
   {{ 'fooBar' | decamelize }}
 
-  <demo-markdown ngPreserveWhitespaces>
+  <demo-markdown>
     ```html
     {{ '{{' }} 'decamelizePipe' | decamelize {{ '}\}' }} {{ '{{' }} 'fooBar' | decamelize {{ '}\}' }}
     ```
@@ -17,14 +15,12 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="TimeZone">
-  <demo-markdown ngPreserveWhitespaces>
-    ```ts import {{ '{' }} TimeZoneModule {{ '}' }} from '@swimlane/ngx-ui/pipes/time-zone'; ```
-  </demo-markdown>
+  <demo-markdown markdownPath="pipes/timezone-import"></demo-markdown>
 
   <p>Local: {{ date }}</p>
   <p>America/Los_Angeles: {{ date | timeZone: 'America/Los_Angeles' }}</p>
 
-  <demo-markdown ngPreserveWhitespaces>
+  <demo-markdown>
     ```html
     {{ '{{' }} date | timeZone:'America/Los_Angeles' {{ '}\}' }}
     ```
@@ -32,9 +28,7 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Filter">
-  <demo-markdown ngPreserveWhitespaces>
-    ```ts import {{ '{' }} FilterModule {{ '}' }} from '@swimlane/ngx-ui/pipes/filter'; ```
-  </demo-markdown>
+  <demo-markdown markdownPath="pipes/filter-import"></demo-markdown>
 
   <ngx-input type="text" [(ngModel)]="stringFilter" placeholder="Filter by"></ngx-input>
   <ul>
@@ -43,7 +37,7 @@
     </li>
   </ul>
 
-  <demo-markdown ngPreserveWhitespaces>
+  <demo-markdown>
     ```html
     {{ '{{' }} array | filterBy:query {{ '}\}' }}
     ```
@@ -51,13 +45,11 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="JSON Tree">
-  <demo-markdown ngPreserveWhitespaces>
-    ```ts import {{ '{' }} JsonTreeModule {{ '}' }} from '@swimlane/ngx-ui/pipes/json-tree'; ```
-  </demo-markdown>
+  <demo-markdown markdownPath="pipes/json-tree-import"></demo-markdown>
 
   <pre>{{ jsonObject | jsonTree | json }}</pre>
 
-  <demo-markdown ngPreserveWhitespaces>
+  <demo-markdown>
     ```html
     {{ '{{' }} jsonObject | jsonTree {{ '}\}' }}
     ```

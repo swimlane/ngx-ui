@@ -1,9 +1,9 @@
 <demo-section-header>Layout: Flex</demo-section-header>
-<demo-markdown [data]="layoutMd"></demo-markdown>
+<demo-markdown markdownPath="style/layout/layout"></demo-markdown>
 
 <div class="ngx-flex--wrap">
   <demo-section-header>Simple</demo-section-header>
-  <demo-markdown ngPreserveWhitespaces>
+  <demo-markdown>
     By default children of a `ngx-flex--row` are **autosized**. Add any number of child elements to a `ngx-flex--row`.
     The `ngx-flex--col` class is optional for auto sized columns.
   </demo-markdown>
@@ -30,7 +30,7 @@
   </div>
 
   <demo-section-header section>Sizes</demo-section-header>
-  <demo-markdown ngPreserveWhitespaces>
+  <demo-markdown>
     Column class numeric modifiers `--col-*` (e.g. `col-4`) indicate the number of columns you’d like to use out of the
     possible 12 per row (by default). If you want three equal-width columns across, you can use `.ngx-flex--col-4`;
     `.ngx-flex--col-3` gives four columns.
@@ -93,7 +93,7 @@
     </div>
   </div>
 
-  <demo-markdown ngPreserveWhitespaces>You don't need to size each column</demo-markdown>
+  <demo-markdown>You don't need to size each column</demo-markdown>
   <code>.ngx-flex--row</code>
   <div class="ngx-flex--row layout-row">
     <div class="layout-col">
@@ -107,7 +107,7 @@
     </div>
   </div>
 
-  <demo-markdown ngPreserveWhitespaces>Use `--col-auto` to size a column to its content</demo-markdown>
+  <demo-markdown>Use `--col-auto` to size a column to its content</demo-markdown>
   <code>.ngx-flex--row</code>
   <div class="ngx-flex--row layout-row">
     <div class="layout-col--high"></div>
@@ -119,7 +119,7 @@
   </div>
 
   <demo-section-header section>Responsive</demo-section-header>
-  <demo-markdown ngPreserveWhitespaces>
+  <demo-markdown>
     To make the grid responsive, there are five grid breakpoint **modifiers** `--col-modifier-size` (e.g. `--col-sm-4`),
     one for each responsive breakpoint: `xs`, `sm`, `md`, `lg`, and `xl`. Note that `xs` is the default and optional.
   </demo-markdown>
@@ -156,7 +156,7 @@
   </div>
 
   <demo-section-header section>Fluid</demo-section-header>
-  <demo-markdown ngPreserveWhitespaces>Widths allow fluid resizing of columns and rows.</demo-markdown>
+  <demo-markdown>Widths allow fluid resizing of columns and rows.</demo-markdown>
 
   <code>.ngx-flex--row</code>
   <div class="ngx-flex--row layout-row">
@@ -214,7 +214,7 @@
   </div>
 
   <demo-section-header section>Offsets</demo-section-header>
-  <demo-markdown ngPreserveWhitespaces>Offset a column with `--col-offset-size`</demo-markdown>
+  <demo-markdown>Offset a column with `--col-offset-size`</demo-markdown>
 
   <code>.ngx-flex--row</code>
   <div class="ngx-flex--row layout-row">
@@ -264,7 +264,7 @@
   </div>
 
   <demo-section-header section>Alignment</demo-section-header>
-  <demo-markdown ngPreserveWhitespaces>
+  <demo-markdown>
     Add classes to align elements to the start or end of a row as well as the top, bottom, or center of a column
   </demo-markdown>
 
@@ -322,7 +322,7 @@
   </div>
 
   <demo-section-header section>Distribution</demo-section-header>
-  <demo-markdown ngPreserveWhitespaces>Add classes to distribute the contents of a row or column.</demo-markdown>
+  <demo-markdown>Add classes to distribute the contents of a row or column.</demo-markdown>
 
   <code>.ngx-flex--row around</code>
   <div class="ngx-flex--row around layout-row">
@@ -339,7 +339,7 @@
   </div>
 
   <demo-section-header section>Gut</demo-section-header>
-  <demo-markdown ngPreserveWhitespaces>Add `.gutless` to remove gutters for a row or column.</demo-markdown>
+  <demo-markdown>Add `.gutless` to remove gutters for a row or column.</demo-markdown>
 
   <code>.ngx-flex--row gutless</code>
   <div class="ngx-flex--row gutless layout-row">
@@ -356,7 +356,7 @@
   </div>
 
   <demo-section-header section>Reordering</demo-section-header>
-  <demo-markdown ngPreserveWhitespaces>
+  <demo-markdown>
     Add classes to reorder columns: `.first` and `.last` on `ngx-flex--col`; `.reverse` on `ngx-flex--row` to reverse
     the order
   </demo-markdown>

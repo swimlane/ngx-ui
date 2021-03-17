@@ -4,7 +4,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'demo-pipes',
   templateUrl: './pipes.component.html',
   styleUrls: ['./pipes.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  preserveWhitespaces: true
 })
 export class PipesComponent {
   jsonObject = JSON.parse(`{

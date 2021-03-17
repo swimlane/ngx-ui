@@ -789,6 +789,20 @@
           }
         },
         "serve": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "npx ng run demo:serve-demo"
+              },
+              {
+                "command": "npx ts-node tools/md-watch"
+              }
+            ],
+            "parallel": true
+          }
+        },
+        "serve-demo": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "demo:build"

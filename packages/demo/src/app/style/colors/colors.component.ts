@@ -31,7 +31,8 @@ const EXTENDED_WEIGHTS = [
   selector: 'demo-colors',
   templateUrl: './colors.component.html',
   styleUrls: ['./colors.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  preserveWhitespaces: true
 })
 export class ColorsComponent implements OnInit {
   normalWeights = NORMAL_WEIGHTS;

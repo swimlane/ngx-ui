@@ -8,7 +8,7 @@
   <button type="button" class="btn btn-danger">Danger</button>
   <button type="button" class="btn btn-bordered">Bordered</button>
   <button type="button" class="btn btn-link">Link</button>
-  <demo-markdown class="mb-8" [data]="buttonsMd"></demo-markdown>
+  <demo-markdown class="mb-8" markdownPath="forms/buttons/buttons"></demo-markdown>
 
   <button type="button" class="btn" disabled>Default</button>
   <button type="button" class="btn btn-primary" disabled>Primary</button>
@@ -17,7 +17,7 @@
   <button type="button" class="btn btn-danger" disabled>Danger</button>
   <button type="button" class="btn btn-bordered" disabled>Bordered</button>
   <button type="button" class="btn btn-link" disabled>Link</button>
-  <demo-markdown [data]="disabledButtonsMd"></demo-markdown>
+  <demo-markdown markdownPath="forms/buttons/disabled-buttons"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Buttons with Icons">
@@ -111,7 +111,7 @@
   <button type="button" class="btn btn-link" disabled>
     <i class="ngx-icon ngx-plus"></i>
   </button>
-  <demo-markdown [data]="buttonsWithIconsMd"></demo-markdown>
+  <demo-markdown markdownPath="forms/buttons/buttons-with-icons"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Button Sizes">
@@ -139,7 +139,7 @@
     <i class="ngx-icon ngx-plus has-text"></i>
     Large
   </button>
-  <demo-markdown [data]="buttonSizesMd"></demo-markdown>
+  <demo-markdown markdownPath="forms/buttons/buttons-sizes"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Links">
@@ -157,11 +157,11 @@
   <a class="btn btn-warning disabled" href="/">Warning</a>
   <a class="btn btn-danger disabled" href="/">Danger</a>
   <a class="btn btn-bordered disabled" href="/">Bordered</a>
-  <demo-markdown [data]="linksMd"></demo-markdown>
+  <demo-markdown markdownPath="forms/buttons/links"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="ngx-button">
-  <demo-markdown [data]="importMd"></demo-markdown>
+  <demo-markdown markdownPath="forms/buttons/import"></demo-markdown>
   <ngx-button [promise]="promises['defaultButton']" (click)="onClick('button click', 'defaultButton')" class="btn">
     Default
   </ngx-button>
@@ -182,7 +182,7 @@
   <ngx-button
     #failButton
     [promise]="promises['failButton']"
-    (click)="onClick('button click', 'failButton'); failButton.state = 'fail'; failButton.updateState()"
+    (click)="onClick('button click', 'failButton'); failButton._state = 'fail'; failButton.updateState()"
     class="btn btn-warning"
   >
     Warning
@@ -190,7 +190,7 @@
   <ngx-button
     #sucessButton
     [promise]="promises['sucessButton']"
-    (click)="onClick('button click', 'sucessButton'); sucessButton.state = 'success'; sucessButton.updateState()"
+    (click)="onClick('button click', 'sucessButton'); sucessButton._state = 'success'; sucessButton.updateState()"
     class="btn btn-danger"
   >
     Danger
@@ -223,11 +223,14 @@
   <ngx-button class="btn btn-bordered" disabled>Bordered</ngx-button>
   <ngx-button class="btn btn-link" disabled>Link</ngx-button>
   <ngx-button [timeout]="0" disabled class="btn">No Timeout</ngx-button>
-  <demo-tabbed-markdown [markdowns]="ngxButtonMd"></demo-tabbed-markdown>
+  <demo-tabbed-markdown
+    htmlPath="forms/buttons/ngx-button.html"
+    tsPath="forms/buttons/ngx-button.ts"
+  ></demo-tabbed-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="File Upload">
-  <demo-markdown [data]="fileUploadImportMd"></demo-markdown>
+  <demo-markdown markdownPath="forms/buttons/file-upload-import"></demo-markdown>
   <demo-section-header section>Standard Autoupload</demo-section-header>
   <ngx-file-button name="uper" styleType="standard" [options]="uploadOptions">Choose File</ngx-file-button>
 
@@ -235,12 +238,18 @@
     Choose File
   </ngx-file-button>
 
-  <demo-tabbed-markdown [markdowns]="standardFileUploadMd"></demo-tabbed-markdown>
+  <demo-tabbed-markdown
+    htmlPath="forms/buttons/standard-file-upload.html"
+    tsPath="forms/buttons/standard-file-upload.ts"
+  ></demo-tabbed-markdown>
 
   <demo-section-header section>Standard Manual</demo-section-header>
   <ngx-file-button name="uper2" styleType="standard" [uploader]="uploaderInstance">Choose File</ngx-file-button>
   <button class="btn btn-primary" style="margin-left: 2rem" (click)="uploaderInstance.uploadAll()">Send</button>
-  <demo-tabbed-markdown [markdowns]="standardFileUploadManualMd"></demo-tabbed-markdown>
+  <demo-tabbed-markdown
+    htmlPath="forms/buttons/standard-file-upload-manual.html"
+    tsPath="forms/buttons/standard-file-upload-manual.ts"
+  ></demo-tabbed-markdown>
 
   <demo-section-header section>Dropzone Template</demo-section-header>
   <ngx-file-button [uploader]="uploaderInstance">
@@ -261,7 +270,7 @@
       </div>
     </ng-template>
   </ngx-file-button>
-  <demo-markdown [data]="dropzoneTemplateMd"></demo-markdown>
+  <demo-markdown markdownPath="forms/buttons/dropzone-template"></demo-markdown>
 
   <demo-section-header section>Progress Upload</demo-section-header>
   <ngx-file-button name="uper3" styleType="progress" [options]="uploadOptions">Progress</ngx-file-button>
@@ -269,17 +278,20 @@
   <ngx-file-button name="uper4" disabled="true" styleType="progress" [options]="uploadOptions">
     Progress Disabled
   </ngx-file-button>
-  <demo-tabbed-markdown [markdowns]="progressUploadMd"></demo-tabbed-markdown>
+  <demo-tabbed-markdown
+    htmlPath="forms/buttons/progress-upload.html"
+    tsPath="forms/buttons/progress-upload.ts"
+  ></demo-tabbed-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Long Press">
-  <demo-markdown [data]="longPressButtonImportMd"></demo-markdown>
+  <demo-markdown markdownPath="forms/buttons/long-press-button-import"></demo-markdown>
 
   <demo-section-header section>Default</demo-section-header>
   <ngx-long-press-button (longPress)="onClick('button click')"></ngx-long-press-button>
-  <demo-markdown [data]="longPressDefaultMd"></demo-markdown>
+  <demo-markdown markdownPath="forms/buttons/long-press-default"></demo-markdown>
 
   <demo-section-header section>Configuration</demo-section-header>
   <ngx-long-press-button (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press-button>
-  <demo-markdown [data]="longPressConfigMd"></demo-markdown>
+  <demo-markdown markdownPath="forms/buttons/long-press-config"></demo-markdown>
 </ngx-section>

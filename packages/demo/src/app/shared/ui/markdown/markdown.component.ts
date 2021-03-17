@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
-
-type MdFeature = 'landing' | 'style/colors';
+import { MarkdownPath } from '../../../../markdown-path.type';
 
 @Component({
   selector: 'demo-markdown',
@@ -9,13 +8,12 @@ type MdFeature = 'landing' | 'style/colors';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MarkdownComponent {
-  @Input() feature?: MdFeature;
-  @Input() fileName?: string;
+  @Input() markdownPath?: MarkdownPath;
   @Input() data?: string;
 
-  get filePath(): string | undefined {
-    if (this.feature && this.fileName) {
-      return `/assets/markdowns/${this.feature}/${this.fileName}.md`;
+  get mdFilePath(): string | undefined {
+    if (this.markdownPath) {
+      return `/assets/markdowns/${this.markdownPath}.md`;
     }
     return undefined;
   }

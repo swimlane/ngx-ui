@@ -3,21 +3,21 @@
   <button class="btn" (click)="count = count + 1">Click Me {{ count }}</button>
   <div class="my-4 p-4 rounded bg-blue-600 text-white" [@bounce]="count">Bounce</div>
 
-  <demo-markdown [data]="bounceMd"></demo-markdown>
+  <demo-markdown markdownPath="animations/bounce"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Fade In">
   <button class="btn" (click)="visible.fadeIn = !visible.fadeIn">Toggle Fade In {{ visible.fadeIn }}</button>
   <div class="my-4 p-4 rounded bg-blue-600 text-white" *ngIf="visible.fadeIn" @fadeIn>Fade In</div>
 
-  <demo-markdown [data]="fadeInMd"></demo-markdown>
+  <demo-markdown markdownPath="animations/fade-in"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Fade Out">
   <button class="btn" (click)="visible.fadeOut = !visible.fadeOut">Toggle Fade Out {{ visible.fadeOut }}</button>
   <div class="my-4 p-4 rounded bg-blue-600 text-white" *ngIf="visible.fadeOut" @fadeOut>Fade Out</div>
 
-  <demo-markdown [data]="fadeOutMd"></demo-markdown>
+  <demo-markdown markdownPath="animations/fade-out"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Slide Down Fade Out">
@@ -28,7 +28,7 @@
     Slide Down Fade Out
   </div>
 
-  <demo-markdown [data]="slideDownFadeOutMd"></demo-markdown>
+  <demo-markdown markdownPath="animations/slide-down-fade-out"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Slide Up Fade Out">
@@ -39,7 +39,7 @@
     Slide Up Fade Out
   </div>
 
-  <demo-markdown [data]="slideUpFadeOutMd"></demo-markdown>
+  <demo-markdown markdownPath="animations/slide-up-fade-out"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Slide Left">
@@ -48,7 +48,7 @@
   </button>
   <div class="my-4 p-4 rounded bg-blue-600 text-white" *ngIf="visible.slideLeft" @slideLeft>Slide Left</div>
 
-  <demo-markdown [data]="slideLeftMd"></demo-markdown>
+  <demo-markdown markdownPath="animations/slide-left"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Slide Right">
@@ -57,14 +57,14 @@
   </button>
   <div class="my-4 p-4 rounded bg-blue-600 text-white" *ngIf="visible.slideRight" @slideRight>Slide Right</div>
 
-  <demo-markdown [data]="slideRightMd"></demo-markdown>
+  <demo-markdown markdownPath="animations/slide-right"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Slide Top">
   <button class="btn" (click)="visible.slideTop = !visible.slideTop">Toggle Slide Top {{ visible.slideTop }}</button>
   <div class="my-4 p-4 rounded bg-blue-600 text-white" *ngIf="visible.slideTop" @slideTop>Slide Top</div>
 
-  <demo-markdown [data]="slideTopMd"></demo-markdown>
+  <demo-markdown markdownPath="animations/slide-top"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Slide Bottom">
@@ -73,5 +73,5 @@
   </button>
   <div class="my-4 p-4 rounded bg-blue-600 text-white" *ngIf="visible.slideBottom" @slideBottom>Slide Bottom</div>
 
-  <demo-markdown [data]="slideBottomMd"></demo-markdown>
+  <demo-markdown markdownPath="animations/slide-bottom"></demo-markdown>
 </ngx-section>

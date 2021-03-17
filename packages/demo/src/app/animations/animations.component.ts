@@ -33,7 +33,8 @@ import {
     trigger('slideRight', slideRightAnimation()),
     trigger('slideTop', slideTopAnimation(250)),
     trigger('slideBottom', slideBottomAnimation(250))
-  ]
+  ],
+  preserveWhitespaces: true
 })
 export class AnimationsComponent {
   count = 0;
@@ -47,76 +48,4 @@ export class AnimationsComponent {
     slideTop: true,
     slideBottom: true
   };
-
-  bounceMd = `
-    \`\`\`html
-    <div [@bounce]='count'>
-      Bounce
-    </div>
-    \`\`\`
-  `;
-
-  fadeInMd = `
-    \`\`\`html
-    <div *ngIf='fadeInFlag' @fadeIn>
-      Fade In
-    </div>
-    \`\`\`
-  `;
-
-  fadeOutMd = `
-    \`\`\`html
-    <div *ngIf='fadeOutFlag' @fadeOut>
-      Fade Out
-    </div>
-    \`\`\`
-  `;
-
-  slideDownFadeOutMd = `
-    \`\`\`html
-    <div *ngIf='slideDownFadeOutFlag' @slideDownFadeOut>
-      Slide Down Fade Out
-    </div>
-    \`\`\`
-  `;
-
-  slideUpFadeOutMd = `
-    \`\`\`html
-    <div *ngIf='slideUpFadeOutFlag' @slideUpFadeOut>
-      Slide Up Fade Out
-    </div>
-    \`\`\`
-  `;
-
-  slideLeftMd = `
-    \`\`\`html
-    <div *ngIf='slideLeftFlag' @slideLeft>
-      Slide Left
-    </div>
-    \`\`\`
-  `;
-
-  slideRightMd = `
-    \`\`\`html
-    <div *ngIf='slideRightFlag' @slideRight>
-      Slide Right
-    </div>
-    \`\`\`
-  `;
-
-  slideTopMd = `
-    \`\`\`html
-    <div *ngIf='slideTopFlag' @slideTop>
-      Slide Top
-    </div>
-    \`\`\`
-  `;
-
-  slideBottomMd = `
-    \`\`\`html
-    <div *ngIf='slideBottomFlag' @slideBottom>
-      Slide Bottom
-    </div>
-    \`\`\`
-  `;
 }

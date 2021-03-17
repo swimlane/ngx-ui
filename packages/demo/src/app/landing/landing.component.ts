@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
   selector: 'demo-landing',
   template: `
     <demo-section-header>Preface</demo-section-header>
-    <demo-markdown feature="landing" fileName="preface"></demo-markdown>
+    <demo-markdown markdownPath="landing/preface"></demo-markdown>
 
     <demo-section-header>Dependencies</demo-section-header>
     <ul>
@@ -21,7 +21,8 @@ import { environment } from '../../environments/environment';
       </li>
     </ul>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  preserveWhitespaces: true
 })
 export class LandingComponent {
   dependencies = environment.dependencies;

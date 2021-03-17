@@ -10,9 +10,5 @@
     (blur)="onBlurEvent($event)"
     (dateTimeSelected)="dateTimeSelected($event)"
   ></ngx-date-time>
-  <demo-markdown>
-    ```html <![CDATA[ <ngx-date-time name="calendar-input2" [disabled]="true" [(ngModel)]="curDate2"
-    (change)="dateChanged($event)" (blur)="onBlurEvent($event)" (dateTimeSelected)="dateTimeSelected($event)" >
-    </ngx-date-time> ]]> ```
-  </demo-markdown>
+  <demo-tabbed-markdown htmlPath="forms/date-time/basic.html" tsPath="forms/date-time/basic.ts"></demo-tabbed-markdown>
 </ngx-section>
