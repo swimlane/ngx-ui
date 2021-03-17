@@ -24,3 +24,26 @@ Sample usage as follows:
 - A string `'forms/buttons/test-markdown'` will be generated and added to `markdown-path.type.ts`
 - Use `<demo-markdown markdownPath="forms/buttons/test-markdown"></demo-markdown>` to render this Markdown file. `markdownPath` will be intellisensed according to `markdown-path.type.ts`
   > Sometimes, you'd need to open `markdown-path.type.ts` for TypeScript to re-index this file so intellisense will work.
+
+#### `demo-markdown` component
+
+`demo-markdown` is a component that wraps `ngx-markdown`. You can either use a Markdown file or Inline markdown with `demo-markdown`
+
+```html
+<demo-markdown markdownPath="forms/buttons/buttons"></demo-markdown>
+
+<demo-markdown>**inline markdown goes here**</demo-markdown>
+```
+
+> If you want to render Code block with Highlighting with Inline syntax, use `<![CDATA[content goes here]]>` to prevent Angular from trying to parse the code.
+
+#### `demo-tabbed-markdown` component
+
+`demo-tabbed-markdown` is a component that will accept multiple Markdown path and render them in a `ngx-tabs`
+
+```html
+<demo-tabbed-markdown
+  htmlPath="forms/buttons/ngx-button.html"
+  tsPath="forms/buttons/ngx-button.ts"
+></demo-tabbed-markdown>
+```
