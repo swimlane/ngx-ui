@@ -29,12 +29,11 @@ Sample usage as follows:
 
 `demo-markdown` is a component that wraps `ngx-markdown`. You can either use a Markdown file or Inline markdown with `demo-markdown`
 
-````html
 ```html
 <demo-markdown path="forms/buttons/buttons"></demo-markdown>
 
 <demo-markdown>**inline markdown goes here**</demo-markdown>
-````
+```
 
 > If you want to render Code block with Highlighting with Inline syntax, use `<![CDATA[content goes here]]>` to prevent Angular from trying to parse the code.
 
