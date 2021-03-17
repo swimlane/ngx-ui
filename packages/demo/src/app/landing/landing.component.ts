@@ -5,7 +5,7 @@ import { environment } from '../../environments/environment';
   selector: 'demo-landing',
   template: `
     <demo-section-header>Preface</demo-section-header>
-    <demo-markdown markdownPath="landing/preface"></demo-markdown>
+    <demo-markdown path="landing/preface"></demo-markdown>
 
     <demo-section-header>Dependencies</demo-section-header>
     <ul>

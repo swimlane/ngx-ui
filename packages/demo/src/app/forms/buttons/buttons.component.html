@@ -8,7 +8,7 @@
   <button type="button" class="btn btn-danger">Danger</button>
   <button type="button" class="btn btn-bordered">Bordered</button>
   <button type="button" class="btn btn-link">Link</button>
-  <demo-markdown class="mb-8" markdownPath="forms/buttons/buttons"></demo-markdown>
+  <demo-markdown class="mb-8" path="forms/buttons/buttons"></demo-markdown>
 
   <button type="button" class="btn" disabled>Default</button>
   <button type="button" class="btn btn-primary" disabled>Primary</button>
@@ -17,7 +17,7 @@
   <button type="button" class="btn btn-danger" disabled>Danger</button>
   <button type="button" class="btn btn-bordered" disabled>Bordered</button>
   <button type="button" class="btn btn-link" disabled>Link</button>
-  <demo-markdown markdownPath="forms/buttons/disabled-buttons"></demo-markdown>
+  <demo-markdown path="forms/buttons/disabled-buttons"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Buttons with Icons">
@@ -111,7 +111,7 @@
   <button type="button" class="btn btn-link" disabled>
     <i class="ngx-icon ngx-plus"></i>
   </button>
-  <demo-markdown markdownPath="forms/buttons/buttons-with-icons"></demo-markdown>
+  <demo-markdown path="forms/buttons/buttons-with-icons"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Button Sizes">
@@ -139,7 +139,7 @@
     <i class="ngx-icon ngx-plus has-text"></i>
     Large
   </button>
-  <demo-markdown markdownPath="forms/buttons/buttons-sizes"></demo-markdown>
+  <demo-markdown path="forms/buttons/buttons-sizes"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Links">
@@ -157,11 +157,11 @@
   <a class="btn btn-warning disabled" href="/">Warning</a>
   <a class="btn btn-danger disabled" href="/">Danger</a>
   <a class="btn btn-bordered disabled" href="/">Bordered</a>
-  <demo-markdown markdownPath="forms/buttons/links"></demo-markdown>
+  <demo-markdown path="forms/buttons/links"></demo-markdown>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="ngx-button">
-  <demo-markdown markdownPath="forms/buttons/import"></demo-markdown>
+  <demo-markdown path="forms/buttons/import"></demo-markdown>
   <ngx-button [promise]="promises['defaultButton']" (click)="onClick('button click', 'defaultButton')" class="btn">
     Default
   </ngx-button>
@@ -230,7 +230,7 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="File Upload">
-  <demo-markdown markdownPath="forms/buttons/file-upload-import"></demo-markdown>
+  <demo-markdown path="forms/buttons/file-upload-import"></demo-markdown>
   <demo-section-header section>Standard Autoupload</demo-section-header>
   <ngx-file-button name="uper" styleType="standard" [options]="uploadOptions">Choose File</ngx-file-button>
 
@@ -270,7 +270,7 @@
       </div>
     </ng-template>
   </ngx-file-button>
-  <demo-markdown markdownPath="forms/buttons/dropzone-template"></demo-markdown>
+  <demo-markdown path="forms/buttons/dropzone-template"></demo-markdown>
 
   <demo-section-header section>Progress Upload</demo-section-header>
   <ngx-file-button name="uper3" styleType="progress" [options]="uploadOptions">Progress</ngx-file-button>
@@ -285,13 +285,13 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Long Press">
-  <demo-markdown markdownPath="forms/buttons/long-press-button-import"></demo-markdown>
+  <demo-markdown path="forms/buttons/long-press-button-import"></demo-markdown>
 
   <demo-section-header section>Default</demo-section-header>
   <ngx-long-press-button (longPress)="onClick('button click')"></ngx-long-press-button>
-  <demo-markdown markdownPath="forms/buttons/long-press-default"></demo-markdown>
+  <demo-markdown path="forms/buttons/long-press-default"></demo-markdown>
 
   <demo-section-header section>Configuration</demo-section-header>
   <ngx-long-press-button (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press-button>
-  <demo-markdown markdownPath="forms/buttons/long-press-config"></demo-markdown>
+  <demo-markdown path="forms/buttons/long-press-config"></demo-markdown>
 </ngx-section>

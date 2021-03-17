@@ -12,7 +12,7 @@ import { MarkdownPath } from '../../../../markdown-path.type';
     <ng-template #usePaths>
       <ngx-tabs>
         <ngx-tab *ngFor="let path of $any(paths) | keyvalue" [label]="path.key">
-          <demo-markdown [markdownPath]="$any(path.value)"></demo-markdown>
+          <demo-markdown [path]="$any(path.value)"></demo-markdown>
         </ngx-tab>
       </ngx-tabs>
     </ng-template>

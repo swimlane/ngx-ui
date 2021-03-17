@@ -8,12 +8,12 @@ import { MarkdownPath } from '../../../../markdown-path.type';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MarkdownComponent {
-  @Input() markdownPath?: MarkdownPath;
+  @Input() path?: MarkdownPath;
   @Input() data?: string;
 
   get mdFilePath(): string | undefined {
-    if (this.markdownPath) {
-      return `/assets/markdowns/${this.markdownPath}.md`;
+    if (this.path) {
+      return `/assets/markdowns/${this.path}.md`;
     }
     return undefined;
   }

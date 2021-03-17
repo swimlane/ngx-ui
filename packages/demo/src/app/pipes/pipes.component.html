@@ -1,7 +1,7 @@
 <demo-section-header>Pipes</demo-section-header>
 
 <ngx-section class="shadow" sectionTitle="Decamelize">
-  <demo-markdown markdownPath="pipes/decamelize-import"></demo-markdown>
+  <demo-markdown path="pipes/decamelize-import"></demo-markdown>
 
   {{ 'decamelizePipe' | decamelize }}
   <br />
@@ -15,7 +15,7 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="TimeZone">
-  <demo-markdown markdownPath="pipes/timezone-import"></demo-markdown>
+  <demo-markdown path="pipes/timezone-import"></demo-markdown>
 
   <p>Local: {{ date }}</p>
   <p>America/Los_Angeles: {{ date | timeZone: 'America/Los_Angeles' }}</p>
@@ -28,7 +28,7 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Filter">
-  <demo-markdown markdownPath="pipes/filter-import"></demo-markdown>
+  <demo-markdown path="pipes/filter-import"></demo-markdown>
 
   <ngx-input type="text" [(ngModel)]="stringFilter" placeholder="Filter by"></ngx-input>
   <ul>
@@ -45,7 +45,7 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="JSON Tree">
-  <demo-markdown markdownPath="pipes/json-tree-import"></demo-markdown>
+  <demo-markdown path="pipes/json-tree-import"></demo-markdown>
 
   <pre>{{ jsonObject | jsonTree | json }}</pre>
 
