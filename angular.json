@@ -17,6 +17,9 @@
               },
               {
                 "command": "node prep-global-styles.js"
+              },
+              {
+                "command": "npx cpx README.md dist/packages/ngx-ui"
               }
             ],
             "parallel": false
@@ -29,6 +32,9 @@
                 },
                 {
                   "command": "node prep-global-styles.js"
+                },
+                {
+                  "command": "npx cpx README.md dist/packages/ngx-ui"
                 }
               ]
             }
