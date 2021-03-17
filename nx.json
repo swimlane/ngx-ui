@@ -1,7 +1,7 @@
 {
   "npmScope": "swimlane",
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "nx"
   },
   "implicitDependencies": {
     "angular.json": "*",
