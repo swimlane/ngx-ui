@@ -1,0 +1,24 @@
+```html
+<ngx-select
+  multiple
+  [identifier]="'attr'"
+  [ngModel]="[
+        selects[0],
+        selects[1],
+        selects[2],
+        selects[3],
+        selects[4],
+        selects[5],
+        selects[6],
+        selects[7],
+        selects[8]
+      ]"
+>
+  <ngx-select-option
+    *ngFor="let option of selects"
+    [name]="option.name"
+    [disabled]="option.disabled"
+    [value]="option"
+  ></ngx-select-option>
+</ngx-select>
+```
