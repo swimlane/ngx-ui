@@ -1,4 +1,4 @@
-<div class="ngx-progress-spinner--spinner-container">
+<div class="ngx-progress-spinner--spinner-container" style="--spinner-color: {{spinnerColor}}">
   <svg class="spinner-svg" [style.width.px]="diameter" [style.height.px]="diameter">
     <defs>
       <filter [id]="'thumbs-up-filter--' + uid" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
