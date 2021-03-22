@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Fix(PlusMenuComponent): use inline style instead of HostBinding to be compatible when Ivy is off
+- Fix(ProgressSpinnerComponent): use inline style instead of HostBinding to be compatible when Ivy is off
+
 =======
 
 ## 35.2.0 (2021-03-16)

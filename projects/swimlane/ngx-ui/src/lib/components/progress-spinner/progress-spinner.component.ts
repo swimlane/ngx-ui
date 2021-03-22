@@ -106,7 +106,6 @@ export class ProgressSpinnerComponent {
     return this.mode === ProgressSpinnerMode.Indeterminate;
   }
 
-  @HostBinding('style.--spinner-color')
   @Input()
   get spinnerColor() {
     return this.isComplete && this.isFailure ? this.failStatusColor : this.color;
