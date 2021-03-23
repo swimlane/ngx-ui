@@ -54,6 +54,8 @@
 - Feature: Add `timeout` option to `ButtonComponent`
 - Fix(ngx-input): Make the lockpad button clickable when the textbox appearance is set to "Fill" and has `[unlockable] = "true"` set. Also fix vertical alignment.
 
+- Enhancement(Dropdown): Add viewport intersection to change the direction of the dropdown menu upwards or downwards.
+
 ## 34.1.0 (2021-01-20)
 
 - Enhancement: Add `blur` and `dateTimeSelected` outputs to `DateTimeComponent`.
