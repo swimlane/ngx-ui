@@ -84,7 +84,6 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   private _closeOnOutsideClick: boolean = true;
   private _closeOnMouseLeave: boolean = false;
   private _leaveTimeout = null;
-  private _visible = true;
 
   constructor(private readonly renderer: Renderer2, private readonly cd: ChangeDetectorRef) {}
 
