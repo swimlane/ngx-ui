@@ -14,6 +14,9 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { InViewportMetadata } from 'ng-in-viewport';
 
 @Component({
   exportAs: 'ngxDropdown',
@@ -29,6 +32,8 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent implements AfterContentInit, OnDestroy {
+  destroy$ = new Subject();
+
   @Input()
   get open() {
     return this._open;
@@ -79,6 +84,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   private _closeOnOutsideClick: boolean = true;
   private _closeOnMouseLeave: boolean = false;
   private _leaveTimeout = null;
+  private _visible = true;
 
   constructor(private readonly renderer: Renderer2, private readonly cd: ChangeDetectorRef) {}
 
@@ -86,10 +92,39 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     if (this.dropdownToggle) {
       this.dropdownToggle.toggle.subscribe((ev: Event) => this.onToggleClick(ev));
     }
+
+    if (this.dropdownMenu) {
+      this.dropdownMenu.options = { partial: false };
+      this.dropdownMenu
+        .getCallbackFn()
+        .pipe(takeUntil(this.destroy$))
+        // tslint:disable-next-line: deprecation
+        .subscribe({ next: this.adjustMenuDirection.bind(this) });
+    }
+  }
+
+  adjustMenuDirection(event: {
+    [InViewportMetadata]: { entry: IntersectionObserverEntry };
+    target: HTMLElement;
+    visible: boolean;
+  }): void {
+    if (!event.visible && this.open) {
+      if (this.isIntersectingBottom(event[InViewportMetadata].entry)) {
+        this.renderer.addClass(this.dropdownMenu.element, 'ngx-dropdown-menu--upwards');
+      } else {
+        this.renderer.removeClass(this.dropdownMenu.element, 'ngx-dropdown-menu--upwards');
+      }
+    }
+  }
+
+  isIntersectingBottom(entry: IntersectionObserverEntry): boolean {
+    return entry.boundingClientRect.bottom >= entry.rootBounds.bottom;
   }
 
   ngOnDestroy(): void {
     if (this._documentListener) this._documentListener();
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
   onDocumentClick(e: Event): void {
@@ -130,6 +165,9 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
   }
 
   private close() {
+    if (this.dropdownMenu) {
+      this.renderer.removeClass(this.dropdownMenu.element, 'ngx-dropdown-menu--upwards');
+    }
     this.open = false;
     if (this._documentListener) this._documentListener();
     this.cd.markForCheck();

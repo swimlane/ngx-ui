@@ -41,6 +41,18 @@ $dropdown-color: $color-grey-100;
     }
   }
 
+  .ngx-dropdown-menu--upwards {
+    bottom: 100%;
+    top: auto !important;
+    margin-bottom: 14px;
+
+    &::before {
+      transform: rotate(225deg) !important;
+      bottom: -7px;
+      top: auto !important;
+    }
+  }
+
   .ngx-dropdown-menu {
     position: absolute;
     clear: left;
