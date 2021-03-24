@@ -11,9 +11,9 @@ export class DropdownMenuDirective extends InViewportDirective {
   readonly element: HTMLElement;
 
   constructor(
-    @Inject(PLATFORM_ID) private readonly _platformIdentifier: any,
-    private readonly _elementReference: ElementRef,
-    private readonly _insideViewport: InViewportService
+    @Inject(PLATFORM_ID) readonly _platformIdentifier: any,
+    readonly _elementReference: ElementRef,
+    readonly _insideViewport: InViewportService
   ) {
     super(_platformIdentifier, _elementReference, _insideViewport);
     this.element = this._elementReference.nativeElement;
