@@ -20,7 +20,7 @@ import { id } from '../../utils/id/id.util';
 })
 export class DropzoneComponent implements OnInit {
   @Input() id: string = `input-${id()}`;
-  @Input() acceptedFileFormats: string[];
+  @Input() acceptedFileFormats: string[]; // supported file extensions
   @Input() uploader: FileUploader;
   @Input() options: FileUploaderOptions;
   @Input()
@@ -43,6 +43,11 @@ export class DropzoneComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.acceptedFileFormats && this.acceptedFileFormats.length) {
+      this.acceptedFileFormats.forEach((fileFormat, idx) => {
+        if (fileFormat[0] !== '.') {
+          this.acceptedFileFormats[idx] = '.' + fileFormat;
+        }
+      });
       this.acceptedFileFormatsTextDisplay =
         this.acceptedFileFormats.slice(0, -1).join(', ') + ' and ' + this.acceptedFileFormats.slice(-1);
     }

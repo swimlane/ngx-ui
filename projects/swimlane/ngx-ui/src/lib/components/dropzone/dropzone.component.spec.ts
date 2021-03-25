@@ -7,7 +7,7 @@ import { Rendering } from 'shallow-render/dist/lib/models/rendering';
 import { FileUploader } from '@swimlane/ng2-file-upload';
 
 const uploader = new FileUploader({});
-const acceptedFileFormats = ['.txt', '.json'];
+const acceptedFileFormats = ['txt', '.json'];
 
 describe('DropzoneComponent', () => {
   let shallow: Shallow<DropzoneComponent>;
@@ -34,10 +34,18 @@ describe('DropzoneComponent', () => {
       expect(rendering.instance.multiple).toBe(true);
     });
 
-    it('accepted file formats', () => {
-      rendering.instance.acceptedFileFormats = acceptedFileFormats;
-      rendering.instance.ngOnInit();
-      expect(rendering.instance.acceptedFileFormatsTextDisplay).toEqual('.txt and .json');
+    describe('accepted file formats', () => {
+      beforeEach(() => {
+        rendering.instance.acceptedFileFormats = acceptedFileFormats;
+        rendering.instance.ngOnInit();
+      });
+      it('sets acceptedFileFormatsTextDisplay', () => {
+        expect(rendering.instance.acceptedFileFormatsTextDisplay).toEqual('.txt and .json');
+      });
+      it('formats to file extension compatible with input', () => {
+        expect(rendering.instance.acceptedFileFormats[0]).toEqual('.txt');
+        expect(rendering.instance.acceptedFileFormats[1]).toEqual('.json');
+      });
     });
   });
 });

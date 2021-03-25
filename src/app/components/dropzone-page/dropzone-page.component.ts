@@ -8,7 +8,7 @@ import { FileUploader } from '@swimlane/ng2-file-upload';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropzonePageComponent {
-  acceptedFileFormats = ['.txt', '.ssp', '.json', '.png', '.jpg', '.csv'];
+  acceptedFileFormats = ['txt', 'ssp', 'json', 'png', 'jpg', 'csv'];
 
   uploaderInstance = new FileUploader({
     url: 'https://evening-anchorage-3159.herokuapp.com/api/',

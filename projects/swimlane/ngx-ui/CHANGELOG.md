@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix(DropzoneComponent): Format acceptedFileFormats to be compatible with native `input`
+
 =======
 
 ## 35.3.0 (2021-03-23)
