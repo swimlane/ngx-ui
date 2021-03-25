@@ -300,6 +300,18 @@ $card-vertical-gutter: 20px;
         width: 20px;
       }
     }
+
+    &.error {
+      color: $color-red-500;
+      border-color: $color-red-500;
+
+      .inner-text {
+        &::before,
+        &::after {
+          background: $color-red-500;
+        }
+      }
+    }
   }
 } // end of ngx-card-horizontal
 

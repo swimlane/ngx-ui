@@ -1,7 +1,7 @@
 <div class="ngx-card--outline" *ngIf="selected && !outlineText && !error"></div>
-<div class="ngx-card--outline error" *ngIf="error"></div>
+<div class="ngx-card--outline error" *ngIf="error && !outlineText"></div>
 
-<div class="ngx-card--outline-text" *ngIf="outlineText && !error">
+<div class="ngx-card--outline-text" [class.error]="error" *ngIf="outlineText">
   <div class="inner-text" (click)="onOutlineClick($event)">{{outlineText}}</div>
 </div>
 
