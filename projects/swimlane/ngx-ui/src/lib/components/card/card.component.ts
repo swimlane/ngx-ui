@@ -47,6 +47,7 @@ export class CardComponent {
   @Input() statusTooltip: string;
   @Input() selectable: boolean = false;
   @Input() selected: boolean = false;
+  @Input() error: boolean;
   @Input() outlineText: string;
   @Input() appearance: CardAppearance = CardAppearance.Normal;
   @Input() hideAccent: boolean = false;

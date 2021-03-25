@@ -251,6 +251,9 @@ $card-vertical-gutter: 20px;
     bottom: -5px;
     border: $card-outline-border-thickness solid $color-blue-400;
     border-radius: 5px;
+    &.error {
+      border: $card-outline-border-thickness solid $color-red-500;
+    }
   }
 
   .ngx-card--outline-text {

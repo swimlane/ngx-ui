@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Feature(CardComponent): add error outline
+
 =======
 
 ## 35.3.0 (2021-03-23)
