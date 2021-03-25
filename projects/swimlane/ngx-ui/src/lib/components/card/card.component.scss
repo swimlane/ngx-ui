@@ -253,7 +253,7 @@ $card-vertical-gutter: 20px;
     border-radius: 5px;
 
     &.error {
-      border: $card-outline-border-thickness solid $color-red-500;
+      border-color: $color-red-500;
     }
   }
 
