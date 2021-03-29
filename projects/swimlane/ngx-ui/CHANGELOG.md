@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix(DropzoneComponent): addressing minor design review feedback
+
 =======
 
 ## 35.3.0 (2021-03-23)
