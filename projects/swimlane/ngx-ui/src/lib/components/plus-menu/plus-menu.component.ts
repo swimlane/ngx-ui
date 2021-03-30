@@ -32,18 +32,24 @@ export interface PlusMenuItem {
 export class PlusMenuComponent implements OnInit, OnDestroy {
   @Input() items: PlusMenuItem[] = [];
   @Input() position = PlusMenuPosition.Right;
-
   @Input() menuTitle = '';
   @Input() closeOnClickOutside = true;
+  @Input() menuColor = '#9fce36';
 
   @Output() clickItem = new EventEmitter();
   @Output() toggleMenu = new EventEmitter<boolean>();
 
-  readonly PlusMenuPosition = PlusMenuPosition;
+  get itemColor0() {
+    return this.items[0].color || this.menuColor;
+  }
 
-  @HostBinding('style.--menu-color')
-  @Input()
-  menuColor = '#9fce36';
+  get itemColor1() {
+    return this.items[1].color || this.menuColor;
+  }
+
+  get itemColor2() {
+    return this.items[2]?.color || this.menuColor;
+  }
 
   @HostBinding('class')
   get p() {
@@ -59,23 +65,8 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
     return this.items.length > 2;
   }
 
-  @HostBinding('style.--item-0-color')
-  get itemColor0() {
-    return this.items[0].color || this.menuColor;
-  }
-
-  @HostBinding('style.--item-1-color')
-  get itemColor1() {
-    return this.items[1].color || this.menuColor;
-  }
-
-  @HostBinding('style.--item-2-color')
-  get itemColor2() {
-    return this.items[2]?.color || this.menuColor;
-  }
-
   uid: string = '';
-
+  readonly PlusMenuPosition = PlusMenuPosition;
   private documentClickEvent: () => void;
 
   constructor(

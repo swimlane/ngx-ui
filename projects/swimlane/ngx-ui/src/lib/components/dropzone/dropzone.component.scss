@@ -96,13 +96,14 @@
       }
 
       .ngx-dropzone--sub-title {
-        color: $color-blue-grey-500;
+        color: $color-blue-400;
         font-size: 12px;
         font-weight: bold;
         transition: color 0.2s ease-in-out;
 
-        &:hover {
-          color: $color-blue-500;
+        &:hover,
+        &:focus {
+          color: $color-blue-300;
         }
 
         .underline {
@@ -112,7 +113,7 @@
 
       .ngx-dropzone--supporting-files {
         margin-top: 20px;
-        color: $color-blue-grey-500;
+        color: $color-blue-grey-350;
         font-size: 12px;
         padding: 0 10px;
       }

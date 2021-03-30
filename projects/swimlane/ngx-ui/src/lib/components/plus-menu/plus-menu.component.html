@@ -1,9 +1,19 @@
-<div class="ngx-plus-menu--circle-container" (click)="onClickOpenClose()" ngx-tooltip [tooltipDisabled]="!menuTitle || position !== PlusMenuPosition.Right" [tooltipTitle]="menuTitle" tooltipPlacement="left">
+<div 
+  class="ngx-plus-menu--circle-container" 
+  (click)="onClickOpenClose()" 
+  ngx-tooltip [tooltipDisabled]="!menuTitle || position !== PlusMenuPosition.Right" 
+  [tooltipTitle]="menuTitle" 
+  tooltipPlacement="left"
+  style="--menu-color: {{menuColor}}"
+>
   <ngx-icon class="ngx-plus-menu--circle" fontIcon="add-circle-medium"></ngx-icon>
   <span class="ngx-plus-menu--menu-title">{{ menuTitle }}</span>
 </div>
 
-<div class="ngx-plus-menu--content-container">
+<div 
+  class="ngx-plus-menu--content-container"
+  style="--item-0-color: {{itemColor0}}; --item-1-color: {{itemColor1}}; --item-2-color: {{itemColor2}}; --menu-color: {{menuColor}}"
+>
   <svg
     width="880"
     height="836"
@@ -132,4 +142,3 @@
     </div>
   </div>
 </div>
-
