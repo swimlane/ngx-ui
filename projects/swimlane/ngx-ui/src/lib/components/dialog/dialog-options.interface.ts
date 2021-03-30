@@ -1,14 +1,16 @@
-import { TemplateRef } from '@angular/core';
+import {TemplateRef} from '@angular/core';
 
-import { PartialBindings } from '../../services/injection-registry/partial-bindings.interface';
+import {PartialBindings} from '../../services/injection-registry/partial-bindings.interface';
 
-import { AlertStyles } from './alert/alert-styles.enum';
-import { AlertTypes } from './alert/alert-types.enum';
+import {AlertStyles} from './alert/alert-styles.enum';
+import {AlertTypes} from './alert/alert-types.enum';
+import {DialogFormat} from "./dialog-format.enum";
 
 export interface DialogOptions extends PartialBindings {
   readonly title?: string;
   readonly content?: string;
   readonly template?: TemplateRef<any>;
+  readonly format?: DialogFormat;
   readonly cssClass?: string;
   readonly context?: any;
   readonly class?: string;

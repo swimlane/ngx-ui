@@ -1,5 +1,7 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {coerceBooleanProperty, coerceNumberProperty} from '@angular/cdk/coercion';
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
@@ -8,12 +10,11 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewEncapsulation,
   Renderer2,
   TemplateRef,
-  ChangeDetectionStrategy
+  ViewEncapsulation
 } from '@angular/core';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import {DialogFormat} from "@swimlane/ngx-ui/components/dialog/dialog-format.enum";
 
 @Component({
   exportAs: 'ngxDialog',
@@ -64,6 +65,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   @Input() cssClass: string;
   @Input() context: any;
   @Input() class: string;
+  @Input() format = DialogFormat.Regular;
 
   @Input()
   get closeOnBlur() {

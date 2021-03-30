@@ -1,17 +1,19 @@
-import { Injectable } from '@angular/core';
-import { Subscription } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {InjectionRegistryService} from '../../services/injection-registry/injection-registry.service';
 
-import { InjectionService } from '../../services/injection/injection.service';
-import { InjectionRegistryService } from '../../services/injection-registry/injection-registry.service';
-import { OverlayService } from '../overlay/overlay.service';
-import { DialogComponent } from './dialog.component';
-import { DialogOptions } from './dialog-options.interface';
+import {InjectionService} from '../../services/injection/injection.service';
+import {OverlayService} from '../overlay/overlay.service';
+import {DialogFormat} from "./dialog-format.enum";
+import {DialogOptions} from './dialog-options.interface';
+import {DialogComponent} from './dialog.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DialogService<T = DialogComponent> extends InjectionRegistryService<T> {
   readonly defaults: DialogOptions = {
+    format: DialogFormat.Regular,
     inputs: {
       zIndex: 991,
       closeOnBlur: true,
