@@ -1,3 +1,10 @@
+## [36.0.0-beta.5](https://github.com/swimlane/ngx-ui/compare/36.0.0-beta.4...36.0.0-beta.5) (2021-03-31)
+
+
+### Documentations
+
+* **demo:** add copy patch to colors page ([e7e4bf3](https://github.com/swimlane/ngx-ui/commit/e7e4bf3a4010545999b71396f8b9c62c2bc9d9d3))
+
 ## [36.0.0-beta.4](https://github.com/swimlane/ngx-ui/compare/36.0.0-beta.2...36.0.0-beta.4) (2021-03-31)
 
 
