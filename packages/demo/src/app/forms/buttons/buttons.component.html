@@ -182,7 +182,7 @@
   <ngx-button
     #failButton
     [promise]="promises['failButton']"
-    (click)="onClick('button click', 'failButton'); failButton._state = 'fail'; failButton.updateState()"
+    (click)="onClick('button click', 'failButton'); failButton._state = 'Fail'; failButton.updateState()"
     class="btn btn-warning"
   >
     Warning
@@ -190,7 +190,7 @@
   <ngx-button
     #sucessButton
     [promise]="promises['sucessButton']"
-    (click)="onClick('button click', 'sucessButton'); sucessButton._state = 'success'; sucessButton.updateState()"
+    (click)="onClick('button click', 'sucessButton'); sucessButton._state = 'Success'; sucessButton.updateState()"
     class="btn btn-danger"
   >
     Danger

@@ -50,6 +50,7 @@ const INPUT_VALIDATORS = {
   multi: true
 };
 
+/** @dynamic */
 @Component({
   selector: 'ngx-input',
   exportAs: 'ngxInput',

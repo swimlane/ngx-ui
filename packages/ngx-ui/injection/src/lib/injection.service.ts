@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import type { PartialBindings } from './models';
 
-function isViewContainerRef(x: ViewContainerRef | ComponentRef<unknown>): x is ViewContainerRef {
+export function isViewContainerRef(x: ViewContainerRef | ComponentRef<unknown>): x is ViewContainerRef {
   return 'element' in x;
 }
 
@@ -24,7 +24,7 @@ function isViewContainerRef(x: ViewContainerRef | ComponentRef<unknown>): x is V
  */
 @Injectable()
 export class InjectionService {
-  static globalRootViewContainer: ViewContainerRef;
+  static globalRootViewContainer: ViewContainerRef | null = null;
   private _container?: ViewContainerRef;
 
   /**
@@ -32,6 +32,7 @@ export class InjectionService {
    * things like ngUpgrade that doesn't have a ApplicationRef root.
    *
    * @param container
+   * @dynamic
    */
   static setGlobalRootViewContainer(container: ViewContainerRef): void {
     InjectionService.globalRootViewContainer = container;

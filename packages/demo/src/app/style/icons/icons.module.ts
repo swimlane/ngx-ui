@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CopyToClipboardModule } from '@swimlane/ngx-ui/directives/copy-to-clipboard';
 import { IconModule } from '@swimlane/ngx-ui/icon';
+import { CopyToClipboardPatchModule } from '../../shared/directives/copy-to-clipboard/copy-to-clipboard-patch.module';
 import { MarkdownModule } from '../../shared/ui/markdown/markdown.module';
 import { SectionHeaderModule } from '../../shared/ui/section-header/section-header.module';
 import { IconBlockComponent } from './components/icon-block.component';
@@ -22,7 +23,8 @@ import { IconsComponent } from './icons.component';
     SectionHeaderModule,
     IconModule,
     CopyToClipboardModule,
-    MarkdownModule
+    MarkdownModule,
+    CopyToClipboardPatchModule
   ],
   exports: [IconsComponent]
 })

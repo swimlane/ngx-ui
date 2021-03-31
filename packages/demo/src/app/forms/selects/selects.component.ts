@@ -10,11 +10,11 @@ import { mapTo } from 'rxjs/operators';
   preserveWhitespaces: true
 })
 export class SelectsComponent {
-  selects = SelectsComponent.results;
+  selects = this.results;
   singleSelectModel = this.selects[0];
-  asyncOptions$ = timer(5000).pipe(mapTo(SelectsComponent.results));
+  asyncOptions$ = timer(5000).pipe(mapTo(this.results));
 
-  private static get results() {
+  private get results() {
     let i = 50;
     const results: unknown[] = [];
 

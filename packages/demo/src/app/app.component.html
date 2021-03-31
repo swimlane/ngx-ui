@@ -7,7 +7,7 @@
           routerLink="/"
           svgSrc="ngx-ui"
           class="library-name"
-          [class]="navExpanded ? [] : ['hidden']"
+          [ngClass]="navExpanded ? [] : ['hidden']"
         ></ngx-icon>
         <ngx-icon
           [svgSrc]="navExpanded ? 'slide-left' : 'slide-right'"

@@ -12,7 +12,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
       <div
         *ngIf="textToCopy; else noCopy"
         class="h-32 flex flex-col gap-2 items-center justify-center shadow-2 shadow-fx border border-gray-800 rounded text-center cursor-pointer"
-        [class]="extraClasses"
+        [ngClass]="extraClasses"
         copyToClipboard="dblclk"
         [copyToClipboardText]="textToCopy"
       >
@@ -22,14 +22,14 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
       <ng-template #noCopy>
         <div
           class="h-32 flex flex-col gap-2 items-center justify-center shadow-2 shadow-fx border border-gray-800 rounded text-center"
-          [class]="extraClasses"
+          [ngClass]="extraClasses"
         >
           <ng-container *ngTemplateOutlet="child"></ng-container>
         </div>
       </ng-template>
 
       <ng-template #child>
-        <ngx-icon class="text-4xl" [class]="extraIconClasses" [fontIcon]="icon"></ngx-icon>
+        <ngx-icon class="text-4xl" [ngClass]="extraIconClasses" [fontIcon]="icon"></ngx-icon>
         <code class="text-xs tracking-tight">{{ code }}</code>
       </ng-template>
     </ng-template>

@@ -1,14 +1,14 @@
-@mixin notification($color) {
+@mixin notification($colorVar) {
   .notification-bar {
-    background-color: rgba($color, 0.2);
+    background-color: rgba(var(unquote(#{$colorVar}-rgb)), 0.2);
 
     .bar {
-      background-color: $color;
+      background-color: var($colorVar);
     }
   }
 
   .icon-container .icon {
-    color: $color;
+    color: var($colorVar);
   }
 }
 
@@ -46,7 +46,7 @@
 
     &.animated {
       .bar {
-        height: 0;
+        height: 0%;
         animation: 1s ease-out 0s 1 heightBar;
       }
     }
@@ -92,19 +92,19 @@
   }
 
   &.ngx-notification-info {
-    @include notification(var(--ngx-ui-color-blue-rgb));
+    @include notification(--ngx-ui-color-blue);
   }
 
   &.ngx-notification-error {
-    @include notification(var(--ngx-ui-color-red-rgb));
+    @include notification(--ngx-ui-color-red);
   }
 
   &.ngx-notification-warning {
-    @include notification(var(--ngx-ui-color-orange-rgb));
+    @include notification(--ngx-ui-color-orange);
   }
 
   &.ngx-notification-success {
-    @include notification(var(--ngx-ui-color-green-rgb));
+    @include notification(--ngx-ui-color-green);
   }
 
   .ngx-notification-title {

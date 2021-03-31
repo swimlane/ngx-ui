@@ -242,12 +242,12 @@
 
   <div class="ngx-plus-menu--items-container">
     <div *ngFor="let item of items; index as i" (click)="onClickItem(i)">
-      <div [class]="'ngx-plus-menu--item ngx-plus-menu--item-' + i">
+      <div [ngClass]="'ngx-plus-menu--item ngx-plus-menu--item-' + i">
         {{ item.title }}
         <div class="subtitle" *ngIf="item.subtitle">{{ item.subtitle }}</div>
       </div>
       <div
-        [class]="'ngx-plus-menu--icon ngx-plus-menu--icon-' + i"
+        [ngClass]="'ngx-plus-menu--icon ngx-plus-menu--icon-' + i"
         [class.custom-color]="item.color"
         [style.--itemColor]="item.color"
       >

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ModuleWithProviders, NgModule } from '@angular/core';
+import { Inject, ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { HotkeysComponent } from './hotkeys.component';
 import { HotkeysFactoryService, HotkeysService } from './services';
 
@@ -10,16 +10,16 @@ import { HotkeysFactoryService, HotkeysService } from './services';
 })
 export class HotkeysModule {
   // instantiate FactoryService right away
-  constructor(_: HotkeysFactoryService) {}
-
-  private static hasBeenCalled = false;
+  constructor(
+    @Optional() @SkipSelf() @Inject(HotkeysModule) parentModule: HotkeysModule | null,
+    _: HotkeysFactoryService
+  ) {
+    if (parentModule) {
+      throw new Error(`HotkeysModule has already been loaded.`);
+    }
+  }
 
   static forRoot(): ModuleWithProviders<HotkeysModule> {
-    if (this.hasBeenCalled) {
-      throw new Error('HotkeysModule has already been initialized');
-    }
-
-    this.hasBeenCalled = true;
     return {
       ngModule: HotkeysModule,
       providers: [HotkeysService, HotkeysFactoryService]

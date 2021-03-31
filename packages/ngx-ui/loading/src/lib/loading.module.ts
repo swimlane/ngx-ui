@@ -8,6 +8,7 @@ import { LoadingService } from './services';
   imports: [CommonModule],
   declarations: [LoadingBarComponent],
   providers: [LoadingService, InjectionService],
-  exports: [LoadingBarComponent]
+  exports: [LoadingBarComponent],
+  entryComponents: [LoadingBarComponent]
 })
 export class LoadingModule {}

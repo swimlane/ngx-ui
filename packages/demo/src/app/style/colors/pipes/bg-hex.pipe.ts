@@ -2,6 +2,7 @@ import { DOCUMENT } from '@angular/common';
 import { Inject, Pipe, PipeTransform } from '@angular/core';
 import * as tinycolor from 'tinycolor2';
 
+/** @dynamic */
 @Pipe({
   name: 'bgHex'
 })

@@ -11,7 +11,7 @@
   </div>
 
   <div *ngIf="styleType === NotificationStyleType.none && icon" class="icon-container">
-    <span [class]="'icon ' + icon"></span>
+    <span [ngClass]="'icon ' + icon"></span>
   </div>
 
   <div class="notification-content" [class.has-icon]="styleType !== NotificationStyleType.none || icon">

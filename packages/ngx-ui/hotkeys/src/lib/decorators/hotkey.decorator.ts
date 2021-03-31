@@ -12,7 +12,7 @@ export function Hotkey(
     target.ngOnInit = function () {
       if (oldInit) oldInit.bind(this)();
 
-      HotkeysFactoryService.service.add(key, {
+      HotkeysFactoryService.service?.add(key, {
         callback: () => {
           (((target as unknown) as Record<string, unknown>)[propertyKey as string] as Function).bind(this)();
         },
@@ -25,7 +25,7 @@ export function Hotkey(
     const oldDestroy = target.ngOnDestroy;
     target.ngOnDestroy = function () {
       if (oldDestroy) oldDestroy.bind(this)();
-      HotkeysFactoryService.service.deregister(this as Type<unknown>);
+      HotkeysFactoryService.service?.deregister(this as Type<unknown>);
     };
   };
 }

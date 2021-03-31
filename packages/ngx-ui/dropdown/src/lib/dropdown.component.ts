@@ -17,6 +17,7 @@ import { Subscription, timer } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { DropdownMenuDirective, DropdownToggleDirective } from './directives';
 
+/** @dynamic */
 @Component({
   selector: 'ngx-dropdown',
   exportAs: 'ngxDropdown',
