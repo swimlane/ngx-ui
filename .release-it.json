@@ -51,8 +51,8 @@
     "after:release": [
       "git push origin HEAD --tags",
       "git checkout -",
-      "git merge release/${version}",
-      "git push --no-edit -m='chore: release/${version}'"
+      "git merge --no-edit -m='chore: release/${version}' release/${version}",
+      "git push"
     ]
   }
 }
