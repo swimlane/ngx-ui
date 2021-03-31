@@ -29,7 +29,11 @@
       "infile": "CHANGELOG.md"
     },
     "@release-it/bumper": {
-      "out": ["package.json", "package-lock.json", "packages/ngx-ui/package*.json"]
+      "out": [
+        "package.json",
+        "package-lock.json",
+        "packages/ngx-ui/package*.json"
+      ]
     }
   },
   "npm": {
@@ -44,6 +48,11 @@
   },
   "hooks": {
     "after:bump": "git checkout -b release/${version}",
-    "after:release": "git push origin HEAD --tags"
+    "after:release": [
+      "git push origin HEAD --tags",
+      "git checkout -",
+      "git merge release/${version}",
+      "git push --no-edit -m='chore: release/${version}'"
+    ]
   }
 }
