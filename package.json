@@ -8,7 +8,7 @@
     "nx": "nx",
     "start": "ng serve",
     "build": "ng build",
-    "build:demo": "cross-env NODE_ENV=production ng build --prod",
+    "build:demo": "cross-env NODE_ENV=production ng build --prod && scully --prod --scanRoutes",
     "build:lib": "ng run ngx-ui:build --prod",
     "publish:lib": "ng run ngx-ui:publish-lib",
     "publish:lib:beta": "ng run ngx-ui:publish-lib-beta",
