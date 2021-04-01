@@ -4,7 +4,7 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input } from '@angular
   selector: 'demo-color-block',
   template: `
     <span
-      copyToClipboard="clk"
+      copyToClipboard="dblclk"
       [copyToClipboardText]="hexSpan.innerText"
       class="inline-block h-12 rounded cursor-pointer"
       [style.backgroundColor]="cssVar ? 'var(' + cssVar + ')' : hex"
