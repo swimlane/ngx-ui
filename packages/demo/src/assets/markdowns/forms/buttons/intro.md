@@ -30,4 +30,3 @@ Similar to default button. no priority, commonly a secondary button.
 
 Used for external content. For the most part, you shouldn't use buttons as links. staying semantic
 with [anchor tags](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) would be a better choice.
-
