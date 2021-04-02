@@ -1,3 +1,5 @@
+Sometimes a link needs to be styled as a button, applying the button css classes will style the anchor tags as buttons
+
 ```html
 <a class="btn" href="/">Default</a>
 <a class="btn btn-primary" href="/">Primary</a>

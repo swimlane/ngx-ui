@@ -1,3 +1,5 @@
+ngx-ui support default button size along with large and small. Omitting any sizing will result in a default styled button.
+
 ```html
 <button type="button" class="btn btn-primary small">
   <i class="ngx-icon ngx-plus has-text"></i>

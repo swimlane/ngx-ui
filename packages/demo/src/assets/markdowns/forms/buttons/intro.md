@@ -30,3 +30,11 @@ Similar to default button. no priority, commonly a secondary button.
 
 Used for external content. For the most part, you shouldn't use buttons as links. staying semantic
 with [anchor tags](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a) would be a better choice.
+
+There are two ways to create a button with ngx-ui.
+
+1. CSS classes
+2. `ngx-button`
+
+When needing just a styled button, then the CSS class based button is recommended.
+`ngx-button` provides extra functionality and is recommended if you need that functionality. You can read more about `ngx-button` below

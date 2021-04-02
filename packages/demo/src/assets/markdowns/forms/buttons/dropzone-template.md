@@ -1,3 +1,5 @@
+`ngx-file-button` provides a drag and drop solution as well. This example uses the instance of `FileUploader` to pass to a template.
+
 ```html
 <ngx-file-button [uploader]="uploaderInstance">
   <ng-template let-uploader>

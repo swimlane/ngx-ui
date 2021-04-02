@@ -1,3 +1,5 @@
+Here we are using the `FileUploaderOptions` type to specify the upload behavior.
+
 ```ts
 import { FileUploaderOptions } from '@swimlane/ng2-file-upload';
 

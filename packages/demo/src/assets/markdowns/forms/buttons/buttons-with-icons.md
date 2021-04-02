@@ -1,3 +1,5 @@
+[Providing an icon](/icons) within a button, adds the icon to the button.
+
 ```html
 <button type="button" class="btn btn-primary">
   <i class="ngx-icon ngx-plus has-text"></i>
