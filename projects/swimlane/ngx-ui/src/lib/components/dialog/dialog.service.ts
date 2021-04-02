@@ -1,12 +1,12 @@
-import {Injectable} from '@angular/core';
-import {Subscription} from 'rxjs';
-import {InjectionRegistryService} from '../../services/injection-registry/injection-registry.service';
+import { Injectable } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { InjectionRegistryService } from '../../services/injection-registry/injection-registry.service';
 
-import {InjectionService} from '../../services/injection/injection.service';
-import {OverlayService} from '../overlay/overlay.service';
-import {DialogFormat} from "./dialog-format.enum";
-import {DialogOptions} from './dialog-options.interface';
-import {DialogComponent} from './dialog.component';
+import { InjectionService } from '../../services/injection/injection.service';
+import { OverlayService } from '../overlay/overlay.service';
+import { DialogFormat } from './dialog-format.enum';
+import { DialogOptions } from './dialog-options.interface';
+import { DialogComponent } from './dialog.component';
 
 @Injectable({
   providedIn: 'root'

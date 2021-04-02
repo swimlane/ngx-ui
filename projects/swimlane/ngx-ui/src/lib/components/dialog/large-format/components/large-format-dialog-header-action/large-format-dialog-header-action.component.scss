@@ -1,0 +1,21 @@
+@import 'colors/variables';
+
+.ngx-large-format-dialog-header-action {
+  flex: 0 0 20%;
+  max-width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  &__icon {
+    font-size: 0.625rem;
+    color: $color-blue-grey-400;
+    cursor: pointer;
+  }
+
+  &__button {
+    color: $color-blue-grey-400;
+    font-size: 0.8125rem;
+    line-height: 1rem;
+  }
+}

@@ -1,1 +1,42 @@
-<main class="dialog-container"></main>
+<main class="dialog-container">
+  <ng-container *ngIf="!useStepper && !useTabs; else custom">
+    <header class="dialog-container__header">
+      <ng-container *ngTemplateOutlet="header"></ng-container>
+    </header>
+    <section class="dialog-container__body">
+      <ng-content></ng-content>
+    </section>
+  </ng-container>
+
+  <ng-template #custom>
+    <section
+      [ngClass]="
+        useStepper ? ['dialog-container--stepper', 'dialog-stepper'] : ['dialog-container--tabs', 'dialog-tabs']
+      "
+    >
+      <header
+        class="dialog-container__header"
+        [ngClass]="{ 'dialog-stepper__header': useStepper, 'dialog-tabs__header': useTabs }"
+        [attr.data-variant]="useStepper ? 'stepper' : 'tabs'"
+      >
+        <ng-container *ngTemplateOutlet="header"></ng-container>
+      </header>
+      <ng-content *ngIf="useStepper; else tabs" select="ngx-stepper"></ng-content>
+      <ng-template #tabs>
+        <ng-content select="ngx-tabs"></ng-content>
+      </ng-template>
+    </section>
+  </ng-template>
+
+  <ng-content select="ngx-large-format-dialog-footer"></ng-content>
+</main>
+
+<ng-template #header>
+  <ngx-large-format-dialog-header-title [title]="title" [subtitle]="subtitle"></ngx-large-format-dialog-header-title>
+  <ngx-large-format-dialog-header-action
+    [dirty]="dirty"
+    [actionTitle]="actionTitle"
+    [dirtyActionTitle]="dirtyActionTitle"
+    (closeOrCancel)="closeOrCancel.emit($event)"
+  ></ngx-large-format-dialog-header-action>
+</ng-template>

@@ -136,6 +136,10 @@ export class AppComponent {
           route: 'dialog'
         },
         {
+          name: 'Dialog - Large Format',
+          route: 'dialog-large-format'
+        },
+        {
           name: 'Alert/Confirm',
           route: 'alert'
         },

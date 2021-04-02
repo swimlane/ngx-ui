@@ -1,0 +1,26 @@
+@import 'colors/variables';
+
+.ngx-large-format-dialog-header-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 0 0 20%;
+  max-width: 50%;
+
+  & h1,
+  h4 {
+    margin: 0;
+  }
+
+  h1 {
+    color: $color-white;
+    font-size: 1.75rem;
+    line-height: 1.25rem;
+  }
+
+  h4 {
+    color: $color-blue-grey-250;
+    font-size: 1rem;
+    line-height: 0.75rem;
+  }
+}
