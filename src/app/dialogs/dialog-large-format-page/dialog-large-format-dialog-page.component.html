@@ -1,33 +1,34 @@
-  <p>
-    Large Format Dialog is a regular Dialog whose content is wrapped inside of <code>NgxLargeFormatDialogContent</code>
-    component
-  </p>
+<h3 class="style-header">Dialog - Large Format</h3>
+<p>
+  Large Format Dialog is a regular Dialog whose content is wrapped inside of <code>NgxLargeFormatDialogContent</code>
+  component
+</p>
 
-  <p>Large Format Dialog has the following styles:</p>
+<p>Large Format Dialog has the following styles:</p>
 
-  <ul>
-    <li>
-      Top/bottom spacing: <code>50px</code>
-    </li>
-    <li>
-      Left/Right spacing: <code>60px</code>
-    </li>
-    <li>
-      Header height: <code>90px</code>
-    </li>
-    <li>
-      Footer height: <code>64px</code>
-    </li>
-    <li>
-      Body Left/Right spacing: <code>32px</code> each side
-    </li>
-  </ul>
+<ul>
+  <li>
+    Top/bottom spacing: <code>50px</code>
+  </li>
+  <li>
+    Left/Right spacing: <code>60px</code>
+  </li>
+  <li>
+    Header height: <code>90px</code>
+  </li>
+  <li>
+    Footer height: <code>64px</code>
+  </li>
+  <li>
+    Body Left/Right spacing: <code>32px</code> each side
+  </li>
+</ul>
 
-  <p>There are two requirements to use Large Format Dialog:</p>
-  <ul>
-    <li>Wrap your content inside of <code>ngx-large-format-dialog-content</code></li>
-    <li>Provide <code>format: DialogFormat.Large</code> to the options object when invoking <code>DialogService#create</code></li>
-  </ul>
+<p>There are two requirements to use Large Format Dialog:</p>
+<ul>
+  <li>Wrap your content inside of <code>ngx-large-format-dialog-content</code></li>
+  <li>Provide <code>format: DialogFormat.Large</code> to the options object when invoking <code>DialogService#create</code></li>
+</ul>
 <ngx-section class="shadow" sectionTitle="Basic">
   <ng-template #largeFormat let-context="context">
     <ngx-large-format-dialog-content title="Title" subtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">

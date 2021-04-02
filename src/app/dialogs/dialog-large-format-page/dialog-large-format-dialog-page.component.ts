@@ -39,17 +39,6 @@ export class DialogLargeFormatDialogPageComponent {
     this.dialogRef?.destroy();
   }
 
-  // onOpenDrawer(elementRef: ElementRef<HTMLElement>) {
-  //   this.drawerService.create({
-  //     isRoot: false,
-  //     parentContainer: elementRef.nativeElement,
-  //     direction: DrawerDirection.Bottom,
-  //     template: this.drawerTemplate,
-  //     cssClass: 'large-format-dialog-drawer large-format-dialog-drawer--1/2 shadow-2',
-  //     size: 100
-  //   });
-  // }
-
   openDrawer(elementRef: ElementRef<HTMLElement>, size: 'full' | 'half' | 'third' = 'full') {
     let cssClass = 'large-format-dialog-drawer';
 
