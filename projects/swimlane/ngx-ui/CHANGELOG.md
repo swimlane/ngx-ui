@@ -3,6 +3,7 @@
 ## HEAD (unreleased)
 
 - Fix(DropzoneComponent): addressing minor design review feedback
+- Feat(LargeFormatDialogContentComponent): add new component as wrapper for Dialog content
 
 =======
 
