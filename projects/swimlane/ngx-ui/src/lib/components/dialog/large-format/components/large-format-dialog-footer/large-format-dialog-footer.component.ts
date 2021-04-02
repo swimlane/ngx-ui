@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, HostBinding, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'ngx-large-format-dialog-footer',
@@ -7,10 +7,6 @@ import { ChangeDetectionStrategy, Component, HostBinding, OnInit, ViewEncapsulat
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LargeFormatDialogFooterComponent implements OnInit {
+export class LargeFormatDialogFooterComponent {
   @HostBinding('class.ngx-large-format-dialog-footer') hostClass = true;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }
