@@ -33,7 +33,6 @@ import { AppRoutingModule } from './app.routing.module';
     HttpClientModule,
     NavMenuModule
   ],
-  exports: [AppComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
