@@ -1,13 +1,13 @@
 <div [class]="class" [class.ngx-dialog]="true" [style.zIndex]="zIndex">
   <div
     class="ngx-dialog-content {{ cssClass }}"
-    [class.large]="format === 'large'"
+    [attr.data-dialog-format]="format"
     [@visibilityTransition]="visibleState"
     [style.zIndex]="contentzIndex"
     tabindex="-1"
     role="dialog"
   >
-    <ng-container *ngIf="format === 'regular';else largeFormat">
+    <ng-container *ngIf="format === DialogFormat.Regular;else largeFormat">
       <button *ngIf="closeButton" type="button" class="close" (click)="hide()">
         <span class="icon-x"></span>
       </button>

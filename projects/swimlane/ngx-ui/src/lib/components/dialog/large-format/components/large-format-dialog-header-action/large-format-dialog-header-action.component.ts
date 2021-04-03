@@ -11,14 +11,12 @@ import {
 @Component({
   selector: 'ngx-large-format-dialog-header-action',
   template: `
-    <i class="ngx-large-format-dialog-header-action__icon ngx-icon ngx-x" (click)="closeOrCancel.emit(dirty)"></i>
-    <button
-      type="button"
-      class="ngx-large-format-dialog-header-action__button btn btn-link"
-      (click)="closeOrCancel.emit(dirty)"
-    >
-      {{ dirty ? dirtyActionTitle : actionTitle }}
-    </button>
+    <section (click)="closeOrCancel.emit(dirty)">
+      <i class="ngx-large-format-dialog-header-action__icon ngx-icon ngx-x"></i>
+      <button type="button" class="ngx-large-format-dialog-header-action__button btn btn-link">
+        {{ dirty ? dirtyActionTitle : actionTitle }}
+      </button>
+    </section>
   `,
   styleUrls: ['./large-format-dialog-header-action.component.scss'],
   encapsulation: ViewEncapsulation.None,

@@ -123,6 +123,8 @@ export class DialogComponent implements OnInit, OnDestroy {
     return this.visible ? 'active' : 'inactive';
   }
 
+  readonly DialogFormat = DialogFormat;
+
   private _closeOnBlur?: boolean;
   private _closeOnEscape?: boolean;
   private _closeButton?: boolean;
