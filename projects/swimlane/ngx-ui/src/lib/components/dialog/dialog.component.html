@@ -7,7 +7,7 @@
     tabindex="-1"
     role="dialog"
   >
-    <ng-container *ngIf="format === DialogFormat.Regular;else largeFormat">
+    <ng-container *ngIf="format === DialogFormat.Regular; else largeFormat">
       <button *ngIf="closeButton" type="button" class="close" (click)="hide()">
         <span class="icon-x"></span>
       </button>
