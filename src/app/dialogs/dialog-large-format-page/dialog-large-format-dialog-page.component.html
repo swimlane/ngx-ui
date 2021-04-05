@@ -49,6 +49,30 @@
     <li><code>--tabs-header-gap</code>: The spacing <strong>between</strong> the tabs' labels (default to <code>1.25rem</code>)</li>
   </ul>
   <blockquote>For <code>--tabs-header-gap</code>, the consumers need to handle responsiveness (different values for <code>--tabs-header-gap</code> at different breakpoints) on their own.</blockquote>
+
+  <ngx-tabs>
+    <ngx-tab title="Markup">
+      <app-prism>
+<![CDATA[<ng-template>
+  <ngx-large-format-dialog-content class="custom-gaps">
+    <!-- content goes here -->
+  </ngx-large-format-dialog-content>
+</ng-template>]]>
+      </app-prism>
+    </ngx-tab>
+    <ngx-tab title="SCSS">
+      <app-prism language="css">
+<![CDATA[
+.custom-gaps {
+  --tabs-header-gap: 2rem;
+  
+  @media screen and (max-width: 1319px) {
+    --tabs-header-gap: 1.5rem;
+  }
+}]]>
+      </app-prism>
+    </ngx-tab>
+  </ngx-tabs>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Basic">
