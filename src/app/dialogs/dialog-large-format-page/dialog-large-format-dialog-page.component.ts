@@ -11,6 +11,13 @@ import { BehaviorSubject } from 'rxjs';
         display: inline-block;
         color: #479eff;
       }
+
+      blockquote {
+        background: #212631;
+        padding: 1rem;
+        margin-left: 0;
+        border-left: 0.25rem solid;
+      }
     `
   ],
   changeDetection: ChangeDetectionStrategy.OnPush

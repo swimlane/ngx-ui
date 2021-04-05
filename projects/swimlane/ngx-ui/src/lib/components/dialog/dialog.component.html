@@ -1,7 +1,7 @@
 <div [class]="class" [class.ngx-dialog]="true" [style.zIndex]="zIndex">
   <div
     class="ngx-dialog-content {{ cssClass }}"
-    [attr.data-dialog-format]="format"
+    [class.ngx-dialog-content--large]="format === DialogFormat.Large"
     [@visibilityTransition]="visibleState"
     [style.zIndex]="contentzIndex"
     tabindex="-1"

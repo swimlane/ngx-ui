@@ -10,6 +10,13 @@
   & h1,
   h4 {
     margin: 0;
+
+    /**
+    truncate
+     */
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
   }
 
   h1 {

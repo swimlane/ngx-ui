@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component, HostBinding, ViewEncapsulation } fr
 @Component({
   selector: 'ngx-large-format-dialog-footer',
   template: ` <ng-content></ng-content>`,
-  styles: [],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })

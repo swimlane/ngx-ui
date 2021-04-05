@@ -29,6 +29,28 @@
   <li>Wrap your content inside of <code>ngx-large-format-dialog-content</code></li>
   <li>Provide <code>format: DialogFormat.Large</code> to the options object when invoking <code>DialogService#create</code></li>
 </ul>
+
+<ngx-section class="shadow" sectionTitle="CSS Variables">
+  <p>Available CSS variables are as followed:</p>
+
+  <ul>
+    <li><code>--header-item-max-width</code>: Max width of Header Title and Header Action sections (default to <code>400px</code>)</li>
+    <li><code>--header-item-max-width-lg</code>: Max width of Header Title and Header Action sections below <code>lg</code> breakpoint (default to <code>250px</code>)</li>
+    <li><code>--header-item-max-width-md</code>: Max width of Header Title and Header Action sections below <code>md</code> breakpoint (default to <code>150px</code>)</li>
+  </ul>
+
+  <p>For Stepper variant:</p>
+  <ul>
+    <li><code>--stepper-header-custom-offset</code>: Additional white space between the steps to the Header Title and Header Action sections (default to <code>0px</code>)</li>
+  </ul>
+
+  <p>For Tabs variant:</p>
+  <ul>
+    <li><code>--tabs-header-gap</code>: The spacing <strong>between</strong> the tabs' labels (default to <code>1.25rem</code>)</li>
+  </ul>
+  <blockquote>For <code>--tabs-header-gap</code>, the consumers need to handle responsiveness (different values for <code>--tabs-header-gap</code> at different breakpoints) on their own.</blockquote>
+</ngx-section>
+
 <ngx-section class="shadow" sectionTitle="Basic">
   <ng-template #largeFormat let-context="context">
     <ngx-large-format-dialog-content title="Title" subtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
@@ -181,7 +203,6 @@
     <ngx-large-format-dialog-content
       title="Another Title"
       subtitle="Another Optional Subtitle"
-      [style.--stepper-header-custom-offset.px]="200"
       (closeOrCancel)="onCloseOrCancel()"
     >
       <ngx-stepper [readonly]="false" [(active)]="stepIndex">

@@ -27,7 +27,7 @@ $dialog-body-color: $color-grey-300;
     font-size: 0.9rem;
     color: $dialog-body-color;
 
-    &[data-dialog-format='large'] {
+    &--large {
       padding: 0;
       height: calc(100% - 7.25rem); // 50px top and bottom
       width: calc(100% - 7.5rem); // 60px right and left
@@ -79,6 +79,7 @@ $dialog-body-color: $color-grey-300;
 
         .wizard-nav {
           float: left;
+
           .btn {
             margin: 0 5px 0 0;
           }
