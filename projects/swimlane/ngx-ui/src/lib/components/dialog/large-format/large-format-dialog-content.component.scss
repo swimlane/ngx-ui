@@ -1,7 +1,6 @@
 @import 'colors/variables';
 
 .ngx-large-format-dialog-content {
-  // eslint-disable-next-line length-zero-no-unit
   --stepper-header-custom-offset: 0px;
   --stepper-bar-track-offset: 12px;
   --header-item-max-width: 400px;
@@ -94,10 +93,9 @@
          */
         & .ngx-stepper--bar-track {
           margin: auto;
-          min-width: calc(
-            100% - ((var(--header-item-max-width) + var(--stepper-header-custom-offset)) * 2) - 8rem +
-              var(--stepper-bar-track-offset)
-          );
+
+          /* prettier-ignore */
+          min-width: calc(100% - ((var(--header-item-max-width) + var(--stepper-header-custom-offset)) * 2) - 8rem + var(--stepper-bar-track-offset));
 
           & .ngx-stepper--bar {
             top: 32px;
