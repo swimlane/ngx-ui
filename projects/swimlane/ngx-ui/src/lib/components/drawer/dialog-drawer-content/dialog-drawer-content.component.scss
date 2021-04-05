@@ -1,0 +1,38 @@
+@import 'colors/variables';
+
+.ngx-dialog-drawer-content {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 100%;
+
+  &__header {
+    background-color: $color-blue-grey-700;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+
+  &__header-title {
+    color: $color-blue-grey-350;
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  &__dismiss-btn {
+    color: $color-blue-grey-350;
+    font-size: 0.875rem;
+    padding-right: 0;
+
+    &:hover {
+      color: $color-white;
+    }
+  }
+
+  &__content {
+    height: 100%;
+    padding: 0 2rem;
+    overflow: auto;
+  }
+}

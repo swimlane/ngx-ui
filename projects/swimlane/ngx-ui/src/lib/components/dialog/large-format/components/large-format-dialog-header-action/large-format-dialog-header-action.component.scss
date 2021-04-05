@@ -1,35 +1,25 @@
 @import 'colors/variables';
 
 .ngx-large-format-dialog-header-action {
-  $this: &;
   flex: 0 0 20%;
   max-width: 50%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
 
-  & section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-
-    &:hover {
-      & #{$this}__icon,
-      & #{$this}__button {
-        color: $color-white;
-      }
-    }
-  }
-
-  &__icon {
-    font-size: 0.625rem;
-    color: $color-blue-grey-400;
-  }
-
   &__button {
     color: $color-blue-grey-400;
     font-size: 0.8125rem;
     line-height: 1rem;
+    padding-right: 0;
+
+    & i.ngx-icon {
+      font-size: 0.625rem;
+      margin-right: 0.5rem;
+    }
+
+    &:hover {
+      color: $color-white;
+    }
   }
 }

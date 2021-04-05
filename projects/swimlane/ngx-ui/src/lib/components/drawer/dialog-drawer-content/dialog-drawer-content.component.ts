@@ -1,0 +1,35 @@
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  Output,
+  ViewEncapsulation
+} from '@angular/core';
+
+@Component({
+  selector: 'ngx-dialog-drawer-content',
+  template: `
+    <header class="ngx-dialog-drawer-content__header shadow-1">
+      <h2 class="ngx-dialog-drawer-content__header-title">{{ title }}</h2>
+      <button type="button" class="ngx-dialog-drawer-content__dismiss-btn btn btn-link" (click)="dismiss.emit()">
+        <i class="ngx-icon ngx-arrow-bold-down"></i>
+        {{ dismissBtnText }}
+      </button>
+    </header>
+    <section class="ngx-dialog-drawer-content__content">
+      <ng-content></ng-content>
+    </section>
+  `,
+  styleUrls: ['./dialog-drawer-content.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None
+})
+export class DialogDrawerContentComponent {
+  @Input() title = '';
+  @Input() dismissBtnText = 'Dismiss';
+  @Output() dismiss = new EventEmitter();
+
+  @HostBinding('class.ngx-dialog-drawer-content') hostClass = true;
+}

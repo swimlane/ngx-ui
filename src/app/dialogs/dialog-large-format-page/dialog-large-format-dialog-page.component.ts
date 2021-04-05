@@ -21,6 +21,7 @@ export class DialogLargeFormatDialogPageComponent {
   dirty$ = new BehaviorSubject(false);
 
   @ViewChild('drawerTemplate') drawerTemplate: TemplateRef<unknown>;
+  @ViewChild('dialogDrawerTemplate') dialogDrawerTemplate: TemplateRef<unknown>;
 
   private dialogRef?: ComponentRef<DialogComponent>;
 
@@ -52,7 +53,7 @@ export class DialogLargeFormatDialogPageComponent {
       isRoot: false,
       parentContainer: elementRef.nativeElement,
       direction: DrawerDirection.Bottom,
-      template: this.drawerTemplate,
+      template: this.dialogDrawerTemplate,
       cssClass: `${cssClass} shadow-3`,
       size: 100
     });
