@@ -1,6 +1,7 @@
 @import 'colors/variables';
 
 .ngx-large-format-dialog-content {
+  // eslint-disable-next-line length-zero-no-unit
   --stepper-header-custom-offset: 0px;
   --stepper-bar-track-offset: 12px;
   --header-item-max-width: 400px;
@@ -133,6 +134,7 @@
           height: 5.5rem;
           margin: -5.5rem auto 0;
           border-bottom: unset;
+
           /**
           used to separated the Labels. Default to 20px
            */
