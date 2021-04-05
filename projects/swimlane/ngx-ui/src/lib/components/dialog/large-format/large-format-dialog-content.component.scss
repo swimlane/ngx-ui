@@ -128,9 +128,8 @@
 
         @media screen and (max-width: 1319px) {
           & .ngx-stepper--steps {
-            min-width: calc(
-              100% - ((var(--header-item-max-width-lg) + var(--stepper-header-custom-offset)) * 2) - 8rem
-            );
+            /* prettier-ignore */
+            min-width: calc(100% - ((var(--header-item-max-width-lg) + var(--stepper-header-custom-offset)) * 2) - 8rem);
           }
 
           & .ngx-stepper--bar-track {
@@ -141,9 +140,8 @@
 
         @media screen and (max-width: 959px) {
           & .ngx-stepper--steps {
-            min-width: calc(
-              100% - ((var(--header-item-max-width-md) + var(--stepper-header-custom-offset)) * 2) - 8rem
-            );
+            /* prettier-ignore */
+            min-width: calc(100% - ((var(--header-item-max-width-md) + var(--stepper-header-custom-offset)) * 2) - 8rem);
           }
 
           & .ngx-stepper--bar-track {
