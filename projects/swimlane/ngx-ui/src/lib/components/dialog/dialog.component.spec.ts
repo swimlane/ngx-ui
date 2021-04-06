@@ -1,3 +1,4 @@
+import { ApplicationRef } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -94,14 +95,14 @@ describe('DialogComponent', () => {
     it('should call hide when closeOnEscape', () => {
       const spy = spyOn(component, 'hide');
       component.closeOnEscape = true;
-      component.onEscapeKeyDown();
+      fixture.nativeElement.dispatchEvent(getEscapeEvent());
       expect(spy).toHaveBeenCalled();
     });
 
     it('should not call hide when !closeOnEscape', () => {
       const spy = spyOn(component, 'hide');
       component.closeOnEscape = false;
-      component.onEscapeKeyDown();
+      fixture.nativeElement.dispatchEvent(getEscapeEvent());
       expect(spy).not.toHaveBeenCalled();
     });
   });
@@ -110,7 +111,7 @@ describe('DialogComponent', () => {
     it('should hide if contains target', () => {
       const spy = spyOn(component, 'containsTarget').and.returnValue(true);
       component.visible = true;
-      component.onDocumentClick({});
+      document.dispatchEvent(new Event('click'));
       expect(spy).toHaveBeenCalled();
       expect(component.visible).toBeFalsy();
     });
@@ -118,9 +119,55 @@ describe('DialogComponent', () => {
     it('should not hide if doesnt contain target', () => {
       const spy = spyOn(component, 'containsTarget').and.returnValue(false);
       component.visible = true;
-      component.onDocumentClick({});
+      document.dispatchEvent(new Event('click'));
       expect(spy).toHaveBeenCalled();
       expect(component.visible).toBeTruthy();
     });
   });
+
+  describe('change detection', () => {
+    it('should not run change detection if the `closeOnEscape` is falsy', () => {
+      const appRef = TestBed.inject(ApplicationRef);
+      const spy = spyOn(appRef, 'tick');
+
+      component.closeOnEscape = false;
+
+      const event = getEscapeEvent();
+      fixture.nativeElement.dispatchEvent(event);
+      fixture.nativeElement.dispatchEvent(event);
+
+      expect(spy).toHaveBeenCalledTimes(0);
+
+      component.closeOnEscape = true;
+      fixture.nativeElement.dispatchEvent(event);
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    it('should not run change detection if does not contain target', () => {
+      const appRef = TestBed.inject(ApplicationRef);
+      const spy = spyOn(appRef, 'tick');
+
+      component.closeOnBlur = false;
+      document.dispatchEvent(new Event('click'));
+      document.dispatchEvent(new Event('click'));
+
+      expect(spy).toHaveBeenCalledTimes(0);
+
+      spyOn(component, 'containsTarget').and.returnValue(true);
+      document.dispatchEvent(new Event('click'));
+
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
 });
+
+function getEscapeEvent() {
+  const event = new KeyboardEvent('keydown');
+  // There seems to be an issue with TS typings since the type-checker throws:
+  // Object literal may only specify known properties, and 'keyCode' does not exist in type 'KeyboardEventInit'.
+  Object.defineProperty(event, 'keyCode', {
+    get: () => 27
+  });
+  return event;
+}

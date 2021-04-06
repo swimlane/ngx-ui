@@ -3,7 +3,6 @@ import {
   Component,
   ElementRef,
   EventEmitter,
-  HostListener,
   Input,
   OnDestroy,
   OnInit,
@@ -11,8 +10,10 @@ import {
   ViewEncapsulation,
   Renderer2,
   TemplateRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  NgZone
 } from '@angular/core';
+import { ESCAPE } from '@angular/cdk/keycodes';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 @Component({
@@ -121,20 +122,30 @@ export class DialogComponent implements OnInit, OnDestroy {
   private _closeButton?: boolean;
   private _visible?: boolean;
   private _zIndex?: number;
+  private _unlisteners: VoidFunction[] = [];
 
-  constructor(private readonly element: ElementRef, private readonly renderer2: Renderer2) {}
+  constructor(
+    private readonly ngZone: NgZone,
+    private readonly element: ElementRef<HTMLElement>,
+    private readonly renderer: Renderer2
+  ) {}
 
   ngOnInit(): void {
     if (this.visible) this.show();
     // backwards compatibility
     if (this.title) {
       this.dialogTitle = this.title;
-      this.renderer2.removeAttribute(this.element.nativeElement, 'title');
+      this.renderer.removeAttribute(this.element.nativeElement, 'title');
     }
+
+    this.setupEventListeners();
   }
 
   ngOnDestroy() {
     this.close.emit(true);
+    while (this._unlisteners.length) {
+      this._unlisteners.pop()();
+    }
   }
 
   show(): void {
@@ -151,15 +162,30 @@ export class DialogComponent implements OnInit, OnDestroy {
     return this.closeOnBlur && target.classList.contains('dialog');
   }
 
-  @HostListener('keydown.esc')
-  onEscapeKeyDown(): void {
-    if (this.closeOnEscape) this.hide();
-  }
+  private setupEventListeners(): void {
+    this.ngZone.runOutsideAngular(() => {
+      const keydownEscListener = this.renderer.listen(this.element.nativeElement, 'keydown', (event: KeyboardEvent) => {
+        // We could've actually used `render.listener(element, 'keydown.esc')` and that would definitely work.
+        // Unfortunately, Angular delegates the event handling to the `KeyEventsPlugin` when it meets the `.` (dot)
+        // in the event name. The `KeyEventsPlugin` calls `ngZone.runGuarded` which triggers change detection anyway
+        // (no matter if we added event listeners in the root zone).
+        // In that case the change detection will be run only when the user clicks `esc` button.
+        if (event.keyCode === ESCAPE && this.closeOnEscape) {
+          this.ngZone.run(() => {
+            this.hide();
+          });
+        }
+      });
 
-  @HostListener('document:click', ['$event.target'])
-  onDocumentClick(target: any): void {
-    if (this.containsTarget(target)) {
-      this.hide();
-    }
+      const documentClickListener = this.renderer.listen('document', 'click', (event: MouseEvent) => {
+        if (this.containsTarget(event.target)) {
+          this.ngZone.run(() => {
+            this.hide();
+          });
+        }
+      });
+
+      this._unlisteners.push(keydownEscListener, documentClickListener);
+    });
   }
 }
