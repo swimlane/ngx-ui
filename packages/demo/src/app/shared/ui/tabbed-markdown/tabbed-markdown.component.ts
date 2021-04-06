@@ -21,7 +21,15 @@ import { MarkdownPath } from '../../../../markdown-path.type';
     `
       :host {
         display: block;
-        padding: 1rem 0;
+        padding-top: 1rem;
+      }
+
+      :host ngx-tabs.ngx-tabs {
+        margin-bottom: 0;
+      }
+
+      :host ::ng-deep ngx-tabs.ngx-tabs .ngx-tab-content {
+        padding: 0;
       }
     `
   ],

@@ -11,4 +11,34 @@
     (dateTimeSelected)="dateTimeSelected($event)"
   ></ngx-date-time>
   <demo-tabbed-markdown htmlPath="forms/date-time/basic.html" tsPath="forms/date-time/basic.ts"></demo-tabbed-markdown>
+
+  <demo-section-header section>Disabled</demo-section-header>
+  <ngx-date-time
+    name="calendar-input1"
+    disabled
+    [label]="'Date of attack'"
+    [(ngModel)]="curDate2"
+    (change)="dateChanged($event)"
+    (blur)="onBlurEvent($event)"
+    (dateTimeSelected)="dateTimeSelected($event)"
+  ></ngx-date-time>
+  <demo-markdown path="forms/date-time/basic-disabled"></demo-markdown>
+
+  <demo-section-header section>Invalid</demo-section-header>
+  <ngx-date-time
+    name="calendar-input3"
+    [(ngModel)]="invalidDate"
+    hint="Default is invalid"
+    (change)="dateChanged($event)"
+  ></ngx-date-time>
+  <demo-markdown path="forms/date-time/basic-invalid"></demo-markdown>
+
+  <demo-section-header section>Custom Format</demo-section-header>
+  <ngx-date-time
+    name="calendar-input3"
+    [(ngModel)]="curDate2"
+    [format]="'M/Y'"
+    (change)="dateChanged($event)"
+  ></ngx-date-time>
+  <demo-markdown path="forms/date-time/basic-custom-format"></demo-markdown>
 </ngx-section>
