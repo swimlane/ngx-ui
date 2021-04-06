@@ -4,6 +4,7 @@
 
 - Feature(CardComponent): add error outline
 - Fix(DropzoneComponent): addressing minor design review feedback
+- Enhancement(ButtonComponent): button clicks don't run change detection anymore
 
 =======
 

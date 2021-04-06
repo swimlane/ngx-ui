@@ -4,8 +4,11 @@ import {
   ViewEncapsulation,
   OnInit,
   OnChanges,
-  HostListener,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  NgZone,
+  Renderer2,
+  ElementRef,
+  OnDestroy
 } from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { BehaviorSubject } from 'rxjs';
@@ -28,7 +31,7 @@ import { ButtonState } from './button-state.enum';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonComponent implements OnInit, OnChanges {
+export class ButtonComponent implements OnInit, OnChanges, OnDestroy {
   @Input() promise?: Promise<any>;
 
   @Input()
@@ -69,6 +72,20 @@ export class ButtonComponent implements OnInit, OnChanges {
   private _disabled = false;
   private _timer: any;
   private _timeout: any;
+  private _clickListener: VoidFunction;
+
+  constructor(ngZone: NgZone, renderer: Renderer2, host: ElementRef<HTMLElement>) {
+    ngZone.runOutsideAngular(() => {
+      this._clickListener = renderer.listen(host.nativeElement, 'click', (event: MouseEvent) => {
+        if (this.disabled) {
+          event.stopPropagation();
+          event.preventDefault();
+          // Necessary for legacy browsers that don't support preventDefault (e.g. IE)
+          event.returnValue = false;
+        }
+      });
+    });
+  }
 
   ngOnInit() {
     this.updateState();
@@ -77,6 +94,10 @@ export class ButtonComponent implements OnInit, OnChanges {
   ngOnChanges() {
     this.updateState();
     this.updatePromise();
+  }
+
+  ngOnDestroy(): void {
+    this._clickListener();
   }
 
   updatePromise() {
@@ -110,17 +131,5 @@ export class ButtonComponent implements OnInit, OnChanges {
         this.updateState();
       }, this.timeout);
     }
-  }
-
-  @HostListener('click', ['$event'])
-  onClick(event: Event) {
-    if (this.disabled) {
-      event.stopPropagation();
-      event.preventDefault();
-
-      return false;
-    }
-
-    return true;
   }
 }

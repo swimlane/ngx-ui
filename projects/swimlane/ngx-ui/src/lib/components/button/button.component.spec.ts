@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ApplicationRef, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { ButtonComponent } from './button.component';
 import { ButtonState } from './button-state.enum';
@@ -100,19 +100,35 @@ describe('ButtonComponent', () => {
   describe('onClick', () => {
     it('should prevent event when disabled', () => {
       component.disabled = true;
-      fixture.detectChanges();
-      const res = component.onClick({
-        stopPropagation: () => null,
-        preventDefault: () => null
-      } as any);
-      expect(res).toBe(false);
+      const event = new Event('click');
+      const preventDefaultSpy = spyOn(event, 'preventDefault').and.callThrough();
+      const stopPropagationSpy = spyOn(event, 'stopPropagation').and.callThrough();
+      fixture.nativeElement.dispatchEvent(event);
+      expect(preventDefaultSpy).toHaveBeenCalled();
+      expect(stopPropagationSpy).toHaveBeenCalled();
     });
 
     it('should allow event when not disabled', () => {
       component.disabled = false;
-      fixture.detectChanges();
-      const res = component.onClick({} as any);
-      expect(res).toBe(true);
+      const event = new Event('click');
+      const preventDefaultSpy = spyOn(event, 'preventDefault').and.callThrough();
+      const stopPropagationSpy = spyOn(event, 'stopPropagation').and.callThrough();
+      fixture.nativeElement.dispatchEvent(event);
+      expect(preventDefaultSpy).not.toHaveBeenCalled();
+      expect(stopPropagationSpy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('change detection', () => {
+    it('should not run change detection if the button has been clicked', () => {
+      const appRef = TestBed.inject(ApplicationRef);
+      const spy = spyOn(appRef, 'tick');
+
+      fixture.nativeElement.dispatchEvent(new Event('click'));
+      fixture.nativeElement.dispatchEvent(new Event('click'));
+      fixture.nativeElement.dispatchEvent(new Event('click'));
+
+      expect(spy).toHaveBeenCalledTimes(0);
     });
   });
 });
