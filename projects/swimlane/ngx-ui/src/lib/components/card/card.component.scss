@@ -251,6 +251,10 @@ $card-vertical-gutter: 20px;
     bottom: -5px;
     border: $card-outline-border-thickness solid $color-blue-400;
     border-radius: 5px;
+
+    &.error {
+      border-color: $color-red-500;
+    }
   }
 
   .ngx-card--outline-text {
@@ -294,6 +298,18 @@ $card-vertical-gutter: 20px;
         margin-left: 15px;
         border-radius: 0 0 2px 0;
         width: 20px;
+      }
+    }
+
+    &.error {
+      color: $color-red-500;
+      border-color: $color-red-500;
+
+      .inner-text {
+        &::before,
+        &::after {
+          background: $color-red-500;
+        }
       }
     }
   }
