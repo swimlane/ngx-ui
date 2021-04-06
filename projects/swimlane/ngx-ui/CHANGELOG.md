@@ -3,6 +3,7 @@
 ## HEAD (unreleased)
 
 - Feature(CardComponent): add error outline
+- Fix(DropzoneComponent): addressing minor design review feedback
 
 =======
 
