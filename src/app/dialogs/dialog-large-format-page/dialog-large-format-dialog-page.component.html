@@ -151,20 +151,23 @@
   </p>
 
   <ng-template #largeFormatWithDirty>
-    <ngx-large-format-dialog-content
-      title="Title"
-      subtitle="Optional Subtitle"
-      [dirty]="dirty$ | async"
-      actionTitle="Custom Close"
-      dirtyActionTitle="Custom Cancel"
-      (closeOrCancel)="onCloseOrCancel2($event)"
-    >
-      <p>Content</p>
-      <button type="button" class="btn btn-bordered" (click)="dirty$.next(!dirty$.value)">Toggle dirty</button>
-      <ngx-large-format-dialog-footer style="display: flex; justify-content: center; align-items: center">
-        <button type="button" class="btn btn-primary">Button</button>
-      </ngx-large-format-dialog-footer>
-    </ngx-large-format-dialog-content>
+    <ng-container *ngIf="{dirty: dirty$ | async} as vm">
+      <ngx-large-format-dialog-content
+        title="Title"
+        subtitle="Optional Subtitle"
+        [dirty]="vm.dirty"
+        actionTitle="Custom Close"
+        dirtyActionTitle="Custom Cancel"
+        (closeOrCancel)="onCloseOrCancel2($event)"
+      >
+        <p>Content</p>
+        <pre>Is dirty: {{ vm.dirty }}</pre>
+        <button type="button" class="btn btn-bordered" (click)="dirty$.next(!dirty$.value)">Toggle dirty</button>
+        <ngx-large-format-dialog-footer style="display: flex; justify-content: center; align-items: center">
+          <button type="button" class="btn btn-primary">Button</button>
+        </ngx-large-format-dialog-footer>
+      </ngx-large-format-dialog-content>
+    </ng-container>
   </ng-template>
 
   <button type="button" class="btn" (click)="openDialog({ template: largeFormatWithDirty, format: 'large' })">
@@ -184,6 +187,7 @@
     (closeOrCancel)="onCloseOrCancel2($event)"
   >
     <p>Content</p>
+    <pre>Is dirty: {{ dirty$ | async }}</pre>
     <button type="button" class="btn btn-bordered" (click)="dirty$.next(!dirty$.value)">Toggle dirty</button>
 
     <ngx-large-format-dialog-footer style="display: flex; justify-content: center; align-items: center">
