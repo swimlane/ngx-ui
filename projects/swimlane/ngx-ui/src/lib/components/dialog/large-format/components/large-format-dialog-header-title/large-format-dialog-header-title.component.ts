@@ -3,8 +3,14 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulati
 @Component({
   selector: 'ngx-large-format-dialog-header-title',
   template: `
-    <h1>{{ title }}</h1>
-    <h4 *ngIf="subtitle">{{ subtitle }}</h4>
+    <div
+      class="ngx-large-format-dialog-header-title__text-wrapper ngx-large-format-dialog-header-title__text-wrapper--title"
+    >
+      <h1>{{ title }}</h1>
+    </div>
+    <div class="ngx-large-format-dialog-header-title__text-wrapper">
+      <h4 *ngIf="subtitle">{{ subtitle }}</h4>
+    </div>
   `,
   styleUrls: ['./large-format-dialog-header-title.component.scss'],
   encapsulation: ViewEncapsulation.None,

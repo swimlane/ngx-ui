@@ -12,6 +12,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 2rem;
+    cursor: pointer;
   }
 
   &__header-title {
@@ -34,5 +35,12 @@
     height: 100%;
     padding: 0 2rem;
     overflow: auto;
+  }
+
+  & ~ ngx-drawer.ngx-drawer.large-format-dialog-drawer {
+    margin-left: 0;
+    max-width: 100%;
+    min-height: calc(100% - 3.5rem - 4px);
+    max-height: calc(100% - 3.5rem - 4px);
   }
 }
