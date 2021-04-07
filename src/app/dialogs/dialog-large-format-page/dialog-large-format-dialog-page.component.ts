@@ -31,6 +31,7 @@ export class DialogLargeFormatDialogPageComponent {
   @ViewChild('dialogDrawerTemplate') dialogDrawerTemplate: TemplateRef<unknown>;
 
   private dialogRef?: ComponentRef<DialogComponent>;
+  private elRef?: ElementRef<HTMLElement>;
 
   constructor(public dialogMngr: DialogService, private drawerService: DrawerService) {}
 
@@ -48,6 +49,7 @@ export class DialogLargeFormatDialogPageComponent {
   }
 
   openDrawer(elementRef: ElementRef<HTMLElement>, size: 'full' | 'half' | 'third' = 'full') {
+    this.elRef = elementRef;
     let cssClass = 'large-format-dialog-drawer';
 
     if (size === 'half') {
@@ -62,7 +64,21 @@ export class DialogLargeFormatDialogPageComponent {
       direction: DrawerDirection.Bottom,
       template: this.dialogDrawerTemplate,
       cssClass: `${cssClass} shadow-3`,
-      size: 100
+      size: 100,
+      context: { size: 100 }
+    });
+  }
+
+  openInnerDrawer(context: any) {
+    console.log({ context });
+    this.drawerService.create({
+      isRoot: false,
+      parentContainer: this.elRef.nativeElement,
+      direction: DrawerDirection.Bottom,
+      template: this.dialogDrawerTemplate,
+      cssClass: `large-format-dialog-drawer shadow-3`,
+      size: context.size - 10,
+      context: { size: context.size - 10 }
     });
   }
 }
