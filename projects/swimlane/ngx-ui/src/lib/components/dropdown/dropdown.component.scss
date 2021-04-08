@@ -16,6 +16,11 @@ $dropdown-color: $color-grey-100;
   &.open {
     .ngx-dropdown-menu {
       display: block;
+    }
+  }
+
+  &.adjusted {
+    .ngx-dropdown-menu {
       opacity: 1;
       animation: openAnimation 0.25s;
     }

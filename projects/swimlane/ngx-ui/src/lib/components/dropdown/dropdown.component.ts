@@ -21,11 +21,12 @@ import { InViewportMetadata } from 'ng-in-viewport';
 @Component({
   exportAs: 'ngxDropdown',
   selector: 'ngx-dropdown',
-  template: ` <ng-content></ng-content> `,
+  template: `<ng-content></ng-content>`,
   styleUrls: ['./dropdown.component.scss'],
   host: {
     class: 'ngx-dropdown',
     '[class.open]': 'open',
+    '[class.adjusted]': 'positionAdjusted',
     '[class.has-caret]': 'showCaret'
   },
   encapsulation: ViewEncapsulation.None,
@@ -33,6 +34,10 @@ import { InViewportMetadata } from 'ng-in-viewport';
 })
 export class DropdownComponent implements AfterContentInit, OnDestroy {
   destroy$ = new Subject();
+  private _positionAdjusted = false;
+  public get positionAdjusted() {
+    return this._positionAdjusted;
+  }
 
   @Input()
   get open() {
@@ -114,6 +119,10 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
         this.renderer.removeClass(this.dropdownMenu.element, 'ngx-dropdown-menu--upwards');
       }
     }
+    if (this.open) {
+      this._positionAdjusted = true;
+      this.cd.markForCheck();
+    }
   }
 
   isIntersectingBottom(entry: IntersectionObserverEntry): boolean {
@@ -144,6 +153,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
       this._documentListener = this.renderer.listen(document, 'click', this.onDocumentClick.bind(this));
     } else {
       this._documentListener();
+      this._positionAdjusted = false;
     }
   }
 
@@ -168,6 +178,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
       this.renderer.removeClass(this.dropdownMenu.element, 'ngx-dropdown-menu--upwards');
     }
     this.open = false;
+    this._positionAdjusted = false;
     if (this._documentListener) this._documentListener();
     this.cd.markForCheck();
   }
