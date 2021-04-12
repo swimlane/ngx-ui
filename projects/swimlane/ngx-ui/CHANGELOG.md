@@ -4,6 +4,8 @@
 
 - Feature(CardComponent): add error outline
 - Fix(DropzoneComponent): addressing minor design review feedback
+- Fix(TipComponent): change error color
+- Enhancement: Add `$color-error` css var
 
 =======
 
