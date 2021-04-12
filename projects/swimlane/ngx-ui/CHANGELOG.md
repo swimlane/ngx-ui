@@ -4,6 +4,7 @@
 
 - Feature(CardComponent): add error outline
 - Fix(DropzoneComponent): addressing minor design review feedback
+- Fix: add label color to ToggleComponent, RadioButtonComponent, CheckboxComponent
 
 =======
 

@@ -1,3 +1,5 @@
+@import 'colors/variables';
+
 .ngx-radiobutton {
   display: block;
 
@@ -8,6 +10,10 @@
     margin: 0 0.8rem 0 0;
     cursor: pointer;
     user-select: none;
+
+    &--content {
+      color: $color-blue-grey-100;
+    }
   }
 
   /* Hide default radio button */
