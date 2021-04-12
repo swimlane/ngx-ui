@@ -7,6 +7,10 @@
 
 =======
 
+## 35.3.1 (2021-03-29)
+
+- Fix(DropzoneComponent): addressing minor design review feedback
+
 ## 35.3.0 (2021-03-23)
 
 - Fix(PlusMenuComponent): use inline style instead of HostBinding to be compatible when Ivy is off
