@@ -4,6 +4,7 @@
 
 - Feature(CardComponent): add error outline
 - Fix(DropzoneComponent): addressing minor design review feedback
+- Feature(JsonEditor): add support multiline support for string nodes
 
 =======
 
