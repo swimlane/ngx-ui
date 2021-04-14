@@ -1,4 +1,4 @@
-import { Injectable, ComponentRef } from '@angular/core';
+import { Injectable, ComponentRef, NgZone } from '@angular/core';
 
 import { InjectionService } from '../../services/injection/injection.service';
 import { LoadingComponent } from './loading.component';
@@ -34,7 +34,7 @@ export class LoadingService {
   private component: ComponentRef<LoadingComponent>;
   private _progress: number = 0;
 
-  constructor(private readonly injectionService: InjectionService) {}
+  constructor(private readonly ngZone: NgZone, private readonly injectionService: InjectionService) {}
 
   start(autoIncrement: boolean = true): void {
     this.create();
@@ -46,13 +46,17 @@ export class LoadingService {
       const fn = () => {
         this.increment();
         if (this.progress < 100) {
-          this.timeout = setTimeout(fn, this.threshold);
+          this.ngZone.runOutsideAngular(() => {
+            this.timeout = setTimeout(fn, this.threshold);
+          });
         } else {
           this.complete();
         }
       };
 
-      this.timeout = setTimeout(fn, this.threshold);
+      this.ngZone.runOutsideAngular(() => {
+        this.timeout = setTimeout(fn, this.threshold);
+      });
     }
   }
 

@@ -1,4 +1,13 @@
-import { Component, Input, ViewEncapsulation, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewEncapsulation,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  ViewChild,
+  ElementRef,
+  Renderer2
+} from '@angular/core';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 @Component({
@@ -17,7 +26,10 @@ export class LoadingComponent {
   }
   set visible(visible: boolean) {
     this._visible = coerceBooleanProperty(visible);
-    this.cdr.markForCheck();
+    // `markForCheck` will not run change detection but will change the state of all parent components
+    // to `ChecksEnabled` which means the `ApplicationRef.tick()` will run change detection on all components
+    // down to this one.
+    this.cdr.detectChanges();
   }
 
   @Input()
@@ -26,11 +38,15 @@ export class LoadingComponent {
   }
   set progress(progress: number) {
     this._progress = coerceNumberProperty(progress);
-    this.cdr.markForCheck();
+    if (this.bar) {
+      this.renderer.setStyle(this.bar.nativeElement, 'width', `${this.progress}%`);
+    }
   }
+
+  @ViewChild('bar', { static: false }) bar?: ElementRef<HTMLElement>;
 
   private _visible: boolean = false;
   private _progress: number = 0;
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(private cdr: ChangeDetectorRef, private renderer: Renderer2) {}
 }

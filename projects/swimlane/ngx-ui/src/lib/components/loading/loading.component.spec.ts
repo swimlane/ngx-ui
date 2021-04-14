@@ -25,4 +25,9 @@ describe('LoadingComponent', () => {
   it('can load instance', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should change loading bar width 60%', () => {
+    component.progress = 60;
+    expect(component.bar.nativeElement.style.width).toBe('60%');
+  });
 });

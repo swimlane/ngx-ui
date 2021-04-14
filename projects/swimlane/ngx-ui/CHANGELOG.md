@@ -4,6 +4,7 @@
 
 - Feature(CardComponent): add error outline
 - Fix(DropzoneComponent): addressing minor design review feedback
+- Enhancement(LoadingComponent): timers do not run change detection anymore
 
 =======
 
