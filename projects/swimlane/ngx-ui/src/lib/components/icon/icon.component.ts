@@ -2,12 +2,15 @@ import {
   Component,
   Input,
   ChangeDetectionStrategy,
+  NgZone,
   ElementRef,
   OnChanges,
   OnInit,
-  ViewEncapsulation
+  ViewEncapsulation,
+  OnDestroy
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Subscription } from 'rxjs';
 
 import { IconRegistryService } from '../../services/icon-registry/icon-registry.service';
 
@@ -19,7 +22,7 @@ import { IconRegistryService } from '../../services/icon-registry/icon-registry.
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class IconComponent implements OnChanges, OnInit {
+export class IconComponent implements OnChanges, OnInit, OnDestroy {
   @Input() fontIcon: string | string[];
   @Input() alt: string;
   @Input() defaultPath: string = 'assets/svgs';
@@ -32,9 +35,12 @@ export class IconComponent implements OnChanges, OnInit {
 
   cssClasses: string[];
 
+  private subscription: Subscription | null = null;
+
   constructor(
+    private ngZone: NgZone,
     private http: HttpClient,
-    private elementRef: ElementRef,
+    private host: ElementRef<HTMLElement>,
     private iconRegisteryService: IconRegistryService
   ) {}
 
@@ -46,6 +52,10 @@ export class IconComponent implements OnChanges, OnInit {
     this.update();
   }
 
+  ngOnDestroy(): void {
+    this.dispose();
+  }
+
   update() {
     if (this.fontIcon) {
       this.cssClasses = this.iconRegisteryService.get(this.fontIcon, this.fontSet);
@@ -53,26 +63,36 @@ export class IconComponent implements OnChanges, OnInit {
   }
 
   loadSvg(val: string): void {
-    const opts: any = { responseType: 'text' };
-    this.http.get<string>(`${this.defaultPath}/${val}.svg`, opts).subscribe(
-      /* istanbul ignore next */
-      (response: any) => {
-        // get our element and clean it out
-        const element = this.elementRef.nativeElement;
-        element.innerHTML = '';
+    this.dispose();
 
-        // get response and build svg element
-        const parser = new DOMParser();
-        const svg = parser.parseFromString(response, 'image/svg+xml');
+    this.ngZone.runOutsideAngular(() => {
+      this.subscription = this.http.get(`${this.defaultPath}/${val}.svg`, { responseType: 'text' }).subscribe(
+        /* istanbul ignore next */
+        (response: string) => {
+          // get our element and clean it out
+          const element = this.host.nativeElement;
+          element.innerHTML = '';
 
-        // insert the svg result
-        // tslint:disable-next-line: tsr-detect-html-injection
-        element.innerHTML = svg.documentElement.outerHTML;
-      },
-      /* istanbul ignore next */
-      err => {
-        console.error(err);
-      }
-    );
+          // get response and build svg element
+          const parser = new DOMParser();
+          const svg = parser.parseFromString(response, 'image/svg+xml');
+
+          // insert the svg result
+          // tslint:disable-next-line: tsr-detect-html-injection
+          element.innerHTML = svg.documentElement.outerHTML;
+        },
+        /* istanbul ignore next */
+        err => {
+          console.error(err);
+        }
+      );
+    });
+  }
+
+  private dispose(): void {
+    if (this.subscription !== null) {
+      this.subscription.unsubscribe();
+      this.subscription = null;
+    }
   }
 }
