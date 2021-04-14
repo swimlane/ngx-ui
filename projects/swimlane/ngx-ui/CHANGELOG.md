@@ -4,6 +4,7 @@
 
 - Feature(CardComponent): add error outline
 - Fix(DropzoneComponent): addressing minor design review feedback
+- Enhancement(DrawerComponent): keyboard clicks do not trigger change detection anymore except `Escape`
 
 =======
 

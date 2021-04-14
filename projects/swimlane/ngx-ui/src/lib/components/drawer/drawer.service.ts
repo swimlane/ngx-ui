@@ -1,5 +1,5 @@
-import { Injectable, ComponentRef, Renderer2, RendererFactory2 } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Injectable, ComponentRef, NgZone } from '@angular/core';
+import { fromEvent, Subscription } from 'rxjs';
 
 import { InjectionService } from '../../services/injection/injection.service';
 import { InjectionRegistryService } from '../../services/injection-registry/injection-registry.service';
@@ -20,18 +20,16 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
     }
   };
 
-  readonly renderer: Renderer2;
   private zIndex: number = 995;
   private size: number = 80;
-  private parentListenerFunc: () => void;
+  private parentClickSubscription: Subscription | null = null;
 
   constructor(
     readonly injectionService: InjectionService,
     private readonly overlayService: OverlayService,
-    private readonly rendererFactory: RendererFactory2
+    private readonly ngZone: NgZone
   ) {
     super(injectionService);
-    this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
   create(options: DrawerOptions) {
@@ -93,8 +91,9 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
       if (overlaySub) {
         overlaySub.unsubscribe();
       }
-      if (this.parentListenerFunc && this.components.get(this.type).length === 1) {
-        this.parentListenerFunc();
+      if (this.parentClickSubscription !== null && this.components.get(this.type).length === 1) {
+        this.parentClickSubscription.unsubscribe();
+        this.parentClickSubscription = null;
       }
       this.destroy(component);
     };
@@ -106,11 +105,15 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
       } else {
         const components = this.components.get(this.type);
 
-        this.parentListenerFunc = this.renderer.listen(parentContainer, 'click', evt => {
-          /* istanbul ignore else */
-          if (evt.target === parentContainer) {
-            kill(components[components.length - 1]);
-          }
+        this.ngZone.runOutsideAngular(() => {
+          this.parentClickSubscription = fromEvent<MouseEvent>(parentContainer, 'click').subscribe(event => {
+            /* istanbul ignore else */
+            if (event.target === parentContainer) {
+              this.ngZone.run(() => {
+                kill(components[components.length - 1]);
+              });
+            }
+          });
         });
       }
     }

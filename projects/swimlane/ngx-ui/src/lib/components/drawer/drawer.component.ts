@@ -3,13 +3,16 @@ import {
   Input,
   Output,
   EventEmitter,
-  HostListener,
   ViewEncapsulation,
   OnDestroy,
   ChangeDetectionStrategy,
   TemplateRef,
-  OnInit
+  OnInit,
+  NgZone,
+  Renderer2,
+  ElementRef
 } from '@angular/core';
+import { ESCAPE } from '@angular/cdk/keycodes';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { trigger } from '@angular/animations';
 
@@ -91,6 +94,21 @@ export class DrawerComponent implements OnInit, OnDestroy {
   private _size: number;
   private _zIndex: number;
   private _closeOnOutsideClick: boolean;
+  private _keyupListener: VoidFunction;
+
+  constructor(ngZone: NgZone, renderer: Renderer2, host: ElementRef<HTMLElement>) {
+    ngZone.runOutsideAngular(() => {
+      this._keyupListener = renderer.listen(host.nativeElement, 'keyup', (event: KeyboardEvent) => {
+        // We will trigger change detection only when the `esc` button is pressed and if there are any
+        // `close` observers, e.g. added through template listener: `(close)="handleClose()"`.
+        if (event.keyCode === ESCAPE && this.close.observers.length > 0) {
+          ngZone.run(() => {
+            this.close.emit(true);
+          });
+        }
+      });
+    });
+  }
 
   ngOnInit() {
     this.position = this.isRoot ? DrawerPosition.fixed : DrawerPosition.absolute;
@@ -99,15 +117,11 @@ export class DrawerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.close.emit(true);
+    this._keyupListener();
   }
 
   setDimensions(size: number): void {
     this.heightSize = `${this.isBottom && size ? size : 100}%`;
     this.widthSize = `${this.isLeft && size ? size : 100}%`;
-  }
-
-  @HostListener('keyup.esc')
-  onEscapeKey(): void {
-    this.close.emit(true);
   }
 }
