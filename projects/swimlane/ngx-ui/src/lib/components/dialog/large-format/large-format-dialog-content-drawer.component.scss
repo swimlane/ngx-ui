@@ -1,0 +1,28 @@
+@import 'colors/variables';
+
+.ngx-large-format-dialog-content {
+  & ngx-drawer.ngx-drawer {
+    &.large-format-dialog-drawer {
+      min-height: calc(100% - 2rem);
+      max-height: calc(100% - 2rem);
+      margin-left: 1rem;
+      max-width: calc(100% - 2rem);
+      background-color: $color-blue-grey-750;
+      overflow: hidden;
+
+      &--1\/2 {
+        min-width: 50%;
+        max-width: 50%;
+        left: unset;
+        right: 1rem;
+      }
+
+      &--1\/3 {
+        min-width: 33%;
+        max-width: 33%;
+        left: unset;
+        right: 1rem;
+      }
+    }
+  }
+}
