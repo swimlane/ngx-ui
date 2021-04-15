@@ -4,6 +4,7 @@
 
 - Feature(CardComponent): add error outline
 - Fix(DropzoneComponent): addressing minor design review feedback
+- Fix: add label color to ToggleComponent, RadioButtonComponent, CheckboxComponent
 - Fix(TipComponent): change error color
 - Enhancement: Add `$color-error` css var
 - Feat(LargeFormatDialogContentComponent): add new component as wrapper for Dialog content
