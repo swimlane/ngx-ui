@@ -46,10 +46,10 @@
 
       &.ngx-alert-danger {
         .ngx-dialog-header {
-          border-left-color: $color-red-500;
+          border-left-color: $color-error;
 
           .close-button {
-            background: $color-red-500;
+            background: $color-error;
             color: white;
           }
         }
