@@ -4,6 +4,7 @@ import { PartialBindings } from '../../services/injection-registry/partial-bindi
 
 import { AlertStyles } from './alert/alert-styles.enum';
 import { AlertTypes } from './alert/alert-types.enum';
+import { DialogFormat } from './dialog-format.enum';
 
 export interface DialogOptions extends PartialBindings {
   readonly title?: string;
@@ -22,7 +23,10 @@ export interface DialogOptions extends PartialBindings {
   readonly type?: AlertTypes;
   readonly style?: AlertStyles;
   readonly confirmButtonText?: string;
+  readonly confirmButtonClass?: string | string[];
   readonly cancelButtonText?: string;
+  readonly cancelButtonClass?: string | string[];
+  readonly format?: DialogFormat;
   readonly inputs?: {
     title?: string;
     content?: string;
