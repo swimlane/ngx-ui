@@ -97,14 +97,11 @@ button {
 
     &.btn-link {
       background-color: transparent;
+      color: $color-blue-200;
     }
 
     &.btn-bordered {
       border-color: $color-blue-200;
-      color: $color-blue-200;
-    }
-
-    &.btn-link {
       color: $color-blue-200;
     }
   }
