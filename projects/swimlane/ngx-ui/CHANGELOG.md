@@ -8,6 +8,7 @@
 - Fix(TipComponent): change error color
 - Enhancement: Add `$color-error` css var
 - Feat(LargeFormatDialogContentComponent): add new component as wrapper for Dialog content
+- Enhancement: Changed color for `btn-link` to be `$color-blue-400`.
 
 ## 35.3.1 (2021-03-29)
 

@@ -103,6 +103,10 @@ button {
       border-color: $color-blue-200;
       color: $color-blue-200;
     }
+
+    &.btn-link {
+      color: $color-blue-200;
+    }
   }
 
   &:hover,
@@ -139,6 +143,7 @@ button {
   &.btn-link {
     background-color: transparent;
     box-shadow: none;
+    color: $color-blue-400;
   }
 
   &.btn-bordered,
