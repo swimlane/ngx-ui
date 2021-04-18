@@ -39,6 +39,13 @@ const routes: Routes = [
     loadChildren: () => import('./dialogs/dialog-page/dialog-page.module').then(m => m.DialogPageModule)
   },
   {
+    path: 'dialog-large-format',
+    loadChildren: () =>
+      import('./dialogs/dialog-large-format-page/dialog-large-format-page.module').then(
+        m => m.DialogLargeFormatPageModule
+      )
+  },
+  {
     path: 'drawer',
     loadChildren: () => import('./dialogs/drawer-page/drawer-page.module').then(m => m.DrawerPageModule)
   },

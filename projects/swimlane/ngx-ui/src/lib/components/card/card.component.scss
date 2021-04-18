@@ -57,8 +57,8 @@ $card-vertical-gutter: 20px;
     }
 
     &.error {
-      background-color: $color-red-500;
-      box-shadow: 0 0 7px $color-red-500;
+      background-color: $color-error;
+      box-shadow: 0 0 7px $color-error;
     }
   }
 
@@ -253,7 +253,7 @@ $card-vertical-gutter: 20px;
     border-radius: 5px;
 
     &.error {
-      border-color: $color-red-500;
+      border-color: $color-error;
     }
   }
 
@@ -302,13 +302,13 @@ $card-vertical-gutter: 20px;
     }
 
     &.error {
-      color: $color-red-500;
-      border-color: $color-red-500;
+      color: $color-error;
+      border-color: $color-error;
 
       .inner-text {
         &::before,
         &::after {
-          background: $color-red-500;
+          background: $color-error;
         }
       }
     }
