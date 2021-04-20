@@ -19,7 +19,7 @@ jobs:
           node-version: ${{ env.NODE_LATEST }}
 
       - name: Install
-        uses: bahmutov/npm-install@v1
+        uses: bahmutov/npm-install@v1.7.4
         with:
           useLockFile: true
 
