@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.4.0 (2021-04-22)
+
 - Feature(CardComponent): add error outline
 - Fix(DropzoneComponent): addressing minor design review feedback
 - Fix: add label color to ToggleComponent, RadioButtonComponent, CheckboxComponent
