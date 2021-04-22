@@ -16,6 +16,11 @@ $dropdown-color: $color-grey-100;
   &.open {
     .ngx-dropdown-menu {
       display: block;
+    }
+  }
+
+  &.adjusted {
+    .ngx-dropdown-menu {
       opacity: 1;
       animation: openAnimation 0.25s;
     }
@@ -38,6 +43,18 @@ $dropdown-color: $color-grey-100;
       > button {
         cursor: not-allowed;
       }
+    }
+  }
+
+  .ngx-dropdown-menu--upwards {
+    bottom: 100%;
+    top: auto !important;
+    margin-bottom: 14px;
+
+    &::before {
+      transform: rotate(225deg) !important;
+      bottom: -7px;
+      top: auto !important;
     }
   }
 
