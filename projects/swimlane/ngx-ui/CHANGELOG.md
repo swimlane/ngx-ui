@@ -10,6 +10,7 @@
 - Fix(TipComponent): change error color
 - Enhancement: Add `$color-error` css var
 - Feat(LargeFormatDialogContentComponent): add new component as wrapper for Dialog content
+- Enhancement: Added icons (#595)
 
 ## 35.3.1 (2021-03-29)
 
