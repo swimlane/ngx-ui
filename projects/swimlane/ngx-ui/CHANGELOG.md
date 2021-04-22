@@ -2,6 +2,11 @@
 
 ## HEAD (unreleased)
 
+## 35.5.0 (2021-04-22)
+
+- Enhancement: Added icons (#595)
+- Enhancement(Dropdown): Add viewport intersection to change the direction of the dropdown menu upwards or downwards.
+
 ## 35.4.0 (2021-04-22)
 
 - Feature(CardComponent): add error outline
@@ -11,7 +16,6 @@
 - Fix(TipComponent): change error color
 - Enhancement: Add `$color-error` css var
 - Feat(LargeFormatDialogContentComponent): add new component as wrapper for Dialog content
-- Enhancement: Added icons (#595)
 
 ## 35.3.1 (2021-03-29)
 
@@ -57,8 +61,6 @@
 - Enhancement: When `sectionCollapsible` in `SectionComponent` is true, make the section header clickable to expand and collapse
 - Feature: Add `timeout` option to `ButtonComponent`
 - Fix(ngx-input): Make the lockpad button clickable when the textbox appearance is set to "Fill" and has `[unlockable] = "true"` set. Also fix vertical alignment.
-
-- Enhancement(Dropdown): Add viewport intersection to change the direction of the dropdown menu upwards or downwards.
 
 ## 34.1.0 (2021-01-20)
 
