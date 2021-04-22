@@ -6,6 +6,7 @@
 
 - Feature(CardComponent): add error outline
 - Fix(DropzoneComponent): addressing minor design review feedback
+- Feature(JsonEditor): add support multiline support for string nodes
 - Fix: add label color to ToggleComponent, RadioButtonComponent, CheckboxComponent
 - Fix(TipComponent): change error color
 - Enhancement: Add `$color-error` css var

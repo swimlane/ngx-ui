@@ -4,10 +4,35 @@
     <div class="ngx-input-flex-wrap-inner">
       <div class="ngx-input-box-wrap">
         <textarea
-          *ngIf="type === inputTypes.textarea"
+          *ngIf="type === inputTypes.textarea && autosize"
           class="ngx-input-textarea"
           rows="1"
           autosize
+          [(ngModel)]="value"
+          [id]="id"
+          [name]="name"
+          [placeholder]="placeholder"
+          [disabled]="disabled"
+          [attr.tabindex]="tabindex"
+          [attr.autocomplete]="autocomplete"
+          [attr.autocorrect]="autocorrect"
+          [attr.spellcheck]="spellcheck"
+          [minlength]="minlength"
+          [maxlength]="maxlength"
+          [required]="required"
+          (change)="onChange($event)"
+          (keyup)="onKeyUp($event)"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)"
+          (click)="click.emit($event)"
+          #inputModel="ngModel"
+          #textareaControl
+        >
+        </textarea>
+        <textarea
+          *ngIf="type === inputTypes.textarea && !autosize"
+          class="ngx-input-textarea"
+          rows="1"
           [(ngModel)]="value"
           [id]="id"
           [name]="name"
