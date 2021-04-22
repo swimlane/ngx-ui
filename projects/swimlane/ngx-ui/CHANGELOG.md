@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Chore: Add `ng-in-viewport` as a peer dependency
+
 ## 35.5.0 (2021-04-22)
 
 - Enhancement: Added icons (#595)
