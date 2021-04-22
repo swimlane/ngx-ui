@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.5.0 (2021-04-22)
+
 - Enhancement: Added icons (#595)
 - Enhancement(Dropdown): Add viewport intersection to change the direction of the dropdown menu upwards or downwards.
 
