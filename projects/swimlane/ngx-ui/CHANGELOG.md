@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.5.1 (2021-04-22)
+
 - Chore: Add `ng-in-viewport` as a peer dependency
 
 ## 35.5.0 (2021-04-22)
