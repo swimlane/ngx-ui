@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.6.0 (2021-04-28)
+
 - Refactor: `ngx-large-format-dialog-content` Stepper and Tabs variant usage
 
   - The variants are now driven via `ng-template` and custom directives instead of Content Project due to limit of Content Project when it comes to nested elements.
