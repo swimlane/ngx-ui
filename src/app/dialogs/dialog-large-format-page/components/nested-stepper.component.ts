@@ -116,7 +116,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
       <ngx-step label="Conditions">
         <ng-template ngxStepContent>
           <p>Some nested stepper</p>
-          <ngx-stepper largeFormatDialogSubStepper [readonly]="false" [(active)]="stepIndex">
+          <ngx-stepper largeFormatDialogSubStepper [readonly]="false" [(active)]="nestedStepIndex">
             <ngx-step label="Initial Selections">
               <ng-template ngxStepContent>
                 Step One
@@ -156,4 +156,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class NestedStepperComponent {
   @Input() stepIndex: number;
+  nestedStepIndex = 0;
 }
