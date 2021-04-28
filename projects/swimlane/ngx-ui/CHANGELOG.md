@@ -2,6 +2,39 @@
 
 ## HEAD (unreleased)
 
+- Refactor: `ngx-large-format-dialog-content` Stepper and Tabs variant usage
+
+  - The variants are now driven via `ng-template` and custom directives instead of Content Project due to limit of Content Project when it comes to nested elements.
+
+  ```html
+  <ngx-large-format-dialog-content>
+    <!-- before -->
+    <ngx-stepper></ngx-stepper>
+
+    <!-- after -->
+    <ng-template largeFormatDialogStepper>
+      <ngx-stepper></ngx-stepper>
+    </ng-template>
+  </ngx-large-format-dialog-content>
+  ```
+
+  ```html
+  <ngx-large-format-dialog-content>
+    <!-- before -->
+    <ngx-tabs></ngx-tabs>
+
+    <!-- after -->
+    <ng-template largeFormatDialogTabs>
+      <ngx-tabs></ngx-tabs>
+    </ng-template>
+  </ngx-large-format-dialog-content>
+  ```
+
+  - This change also allows for nesting Stepper and Tabs
+
+- Enhancement: apply default styles to `ngx-large-format-dialog-footer`. Items will be center by default with a `0.5rem` gap. `[styleClass]` input nullifies the default.
+- Fix: Export `DialogFormat` from `public_api`
+
 ## 35.5.1 (2021-04-22)
 
 - Chore: Add `ng-in-viewport` as a peer dependency

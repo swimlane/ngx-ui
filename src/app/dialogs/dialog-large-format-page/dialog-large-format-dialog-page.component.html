@@ -77,7 +77,7 @@
 
 <ngx-section class="shadow" sectionTitle="Basic">
   <ng-template #largeFormat let-context="context">
-    <ngx-large-format-dialog-content title="Title" subtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
+    <ngx-large-format-dialog-content dialogTitle="Title" dialogSubtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
       <p>Content</p>
     </ngx-large-format-dialog-content>
   </ng-template>
@@ -88,7 +88,7 @@
 
   <app-prism>
 <![CDATA[<ng-template #largeFormatDialog>
-  <ngx-large-format-dialog-content title="Dialog Title" subtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
+  <ngx-large-format-dialog-content dialogTitle="Dialog Title" dialogSubtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
     <p>Content</p>
   </ngx-large-format-dialog-content>
 </ng-template>
@@ -103,10 +103,11 @@
   <p>Large Format Dialog can also have a <strong>Footer</strong> by rendering <code>ngx-large-format-dialog-footer</code> component as its content</p>
 
   <ng-template #largeFormatWithFooter>
-    <ngx-large-format-dialog-content title="Title" subtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
+    <ngx-large-format-dialog-content dialogTitle="Title" dialogSubtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
       <p>Content</p>
-      <ngx-large-format-dialog-footer style="display: flex; justify-content: center; align-items: center">
+      <ngx-large-format-dialog-footer [style.--item-gap.rem]="1">
         <button type="button" class="btn btn-primary">Button</button>
+        <button type="button" class="btn btn-primary">Second Button</button>
       </ngx-large-format-dialog-footer>
     </ngx-large-format-dialog-content>
   </ng-template>
@@ -117,14 +118,15 @@
 
   <app-prism>
 <![CDATA[<ng-template #largeFormatWithFooter>
-<ngx-large-format-dialog-content title="Title" subtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
-  <p>Content</p>
+  <ngx-large-format-dialog-content dialogTitle="Title" dialogSubtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
+    <p>Content</p>
 
-  <ngx-large-format-dialog-footer style="display: flex; justify-content: center; align-items: center">
-    <button type="button" class="btn btn-primary">Button</button>
-  </ngx-large-format-dialog-footer>
+    <ngx-large-format-dialog-footer [style.--item-gap.rem]="1">
+      <button type="button" class="btn btn-primary">Button</button>
+      <button type="button" class="btn btn-primary">Second Button</button>
+    </ngx-large-format-dialog-footer>
 
-</ngx-large-format-dialog-content>
+  </ngx-large-format-dialog-content>
 </ng-template>
 
 <button type="button" class="btn" (click)="openDialog({ template: largeFormatWithFooter, format: 'large' })">
@@ -133,7 +135,8 @@
   </app-prism>
 
   <p><code>ngx-large-format-dialog-footer</code> will always be at the bottom of the Dialog with the max height of <code>64px</code></p>
-  <p><code>ngx-large-format-dialog-footer</code> does not have any preset styles to layout its children.</p>
+  <p><code>ngx-large-format-dialog-footer</code> applies some default styles to set the children to the center with a default <code>gap</code> of <code>0.5rem</code>. The <code>gap</code> can be customized by using <code>--item-gap</code> CSS variable</p>
+  <p>You can pass in <code>[styleClass]</code> to completely nullify the default styles.</p>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Basic w/ Custom Action Button Text">
@@ -153,17 +156,18 @@
   <ng-template #largeFormatWithDirty>
     <ng-container *ngIf="{dirty: dirty$ | async} as vm">
       <ngx-large-format-dialog-content
-        title="Title"
-        subtitle="Optional Subtitle"
+        dialogTitle="Title"
+        dialogSubtitle="Optional Subtitle"
         [dirty]="vm.dirty"
-        actionTitle="Custom Close"
-        dirtyActionTitle="Custom Cancel"
+        dialogActionTitle="Custom Close"
+        dialogDirtyActionTitle="Custom Cancel"
+        [dirtyAlertOptions]="{title: 'You have CUSTOM unsaved changes'}"
         (closeOrCancel)="onCloseOrCancel2($event)"
       >
         <p>Content</p>
         <pre>Is dirty: {{ vm.dirty }}</pre>
         <button type="button" class="btn btn-bordered" (click)="dirty$.next(!dirty$.value)">Toggle dirty</button>
-        <ngx-large-format-dialog-footer style="display: flex; justify-content: center; align-items: center">
+        <ngx-large-format-dialog-footer>
           <button type="button" class="btn btn-primary">Button</button>
         </ngx-large-format-dialog-footer>
       </ngx-large-format-dialog-content>
@@ -179,18 +183,18 @@
       <app-prism>
 <![CDATA[<ng-template #largeFormatWithDirty>
   <ngx-large-format-dialog-content
-    title="Title"
-    subtitle="Optional Subtitle"
+    dialogTitle="Title"
+    dialogSubtitle="Optional Subtitle"
     [dirty]="dirty$ | async"
-    actionTitle="Custom Close"
-    dirtyActionTitle="Custom Cancel"
-    (closeOrCancel)="onCloseOrCancel2($event)"
+    dialogActionTitle="Custom Close"
+    dialogDirtyActionTitle="Custom Cancel"
+    [dirtyAlertOptions]="{title: 'You have CUSTOM unsaved changes'}"
   >
     <p>Content</p>
     <pre>Is dirty: {{ dirty$ | async }}</pre>
     <button type="button" class="btn btn-bordered" (click)="dirty$.next(!dirty$.value)">Toggle dirty</button>
 
-    <ngx-large-format-dialog-footer style="display: flex; justify-content: center; align-items: center">
+    <ngx-large-format-dialog-footer>
       <button type="button" class="btn btn-primary">Button</button>
     </ngx-large-format-dialog-footer>
 
@@ -219,131 +223,252 @@
       </app-prism>
     </ngx-tab>
   </ngx-tabs>
+
+  <p>When the users attempt to close the Dialog while in <code>dirty</code> state, <code>LargeFormatDialogContent</code> will display a <strong>Confirmation</strong> on close to ensure the users indeed want to close the dialog and discard their changes.</p>
+  <p>You can pass in <code>[dirtyAlertOptions]</code> to customize the content of the <strong>Confirmation</strong></p>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="With Stepper">
   <p>
-    When a <code>ngx-stepper</code> is rendered within <code>ngx-large-format-dialog-content</code>, the <strong>stepper variant</strong> is triggered.
-    Custom styles will be applied to the <code>ngx-stepper</code> component.
+    <code>ngx-large-format-dialog-content</code> will be switched to <strong>Stepper Variant</strong> when it finds a <code>LargeFormatDialogStepperDirective</code> instance.
+    If there is a <code>ngx-stepper</code>, custom styles will be applied to this Stepper.
   </p>
 
   <ng-template #largeFormatStepper>
     <ngx-large-format-dialog-content
-      title="Another Title"
-      subtitle="Another Optional Subtitle"
+      dialogTitle="Another Title"
+      dialogSubtitle="Another Optional Subtitle"
       (closeOrCancel)="onCloseOrCancel()"
     >
+      <ng-template largeFormatDialogStepper>
+        <ngx-stepper [readonly]="false" [(active)]="stepIndex">
+          <ngx-step label="Initial Selections">
+            <ng-template ngxStepContent>
+              <p>
+                Ut fusce consectetur tempor per tristique odio lorem adipiscing, litora sodales cursus molestie cras
+                auctor ornare augue, primis massa class interdum nisl conubia quis. Commodo posuere porttitor eleifend hac
+                proin senectus dictum non, aenean iaculis ut venenatis laoreet habitant volutpat, auctor conubia maximus
+                in lobortis nam luctus. Arcu neque dictumst vestibulum feugiat habitant hac habitasse litora enim ad,
+                interdum inceptos aliquet etiam rhoncus ante pulvinar nunc diam conubia sapien, fames posuere nascetur eu
+                commodo turpis velit congue viverra. Curae libero vulputate tristique ipsum tempus, tincidunt habitant
+                iaculis arcu id vitae, quis auctor nisi primis. Etiam nisl imperdiet penatibus nostra ultrices pharetra
+                nascetur nam, nullam varius curae parturient eros sit eu quisque, proin lacinia a ligula egestas senectus
+                malesuada. Viverra curabitur cras amet purus congue imperdiet elit, nec justo per laoreet nisi rhoncus
+                lacus accumsan, leo potenti fusce turpis consectetur blandit. Duis ultricies egestas urna dignissim
+                dictumst cursus, vehicula penatibus mollis euismod quam rutrum, vestibulum vivamus ultrices cubilia
+                malesuada. Proin ad elementum nascetur penatibus dictum accumsan aenean, phasellus quisque convallis odio
+                aptent lectus euismod, hendrerit iaculis nam mattis rhoncus feugiat. Imperdiet mollis lorem risus placerat
+                cursus orci eu viverra donec duis, ligula amet adipiscing elit nec pretium ultrices at vulputate, et
+                sapien praesent felis dui lectus cras taciti nascetur. Amet odio urna sit ex ligula massa tempus consequat
+                augue purus condimentum erat molestie, felis integer placerat mauris aptent orci ultricies laoreet
+                fringilla efficitur ornare in. Curae facilisis et habitasse class ac sem rhoncus varius ad phasellus eget
+                montes fusce est, vel primis commodo suscipit iaculis volutpat sit lacinia nostra tortor porta torquent.
+                Dignissim eros nascetur praesent libero habitant inceptos, natoque efficitur taciti venenatis lacinia
+                lorem finibus, laoreet volutpat quis suspendisse metus. Ultricies facilisi morbi parturient litora
+                hendrerit lobortis, fringilla purus congue nisi cubilia ipsum, commodo ornare himenaeos fermentum
+                ultrices. Adipiscing habitant viverra nibh nulla aliquam ultrices auctor, erat lacinia ridiculus malesuada
+                scelerisque tempor ultricies, curae senectus sit faucibus dapibus tincidunt. Congue tincidunt sodales
+                aptent eleifend dis duis integer quis id semper tempor tellus, tortor platea porta cras ornare odio
+                sagittis netus suscipit adipiscing metus. Inceptos at aliquet purus malesuada tempus, lobortis ac dui
+                platea a facilisis, sem vestibulum potenti dignissim phasellus, etiam vel viverra fringilla. Fringilla
+                mattis turpis magnis sociosqu curae ac, arcu magna scelerisque nibh dictumst dapibus montes, nisi primis
+                eget faucibus vulputate. Porta parturient natoque mattis turpis molestie habitasse condimentum, fermentum
+                porttitor urna ut nisl consectetur pharetra eu, venenatis id rutrum primis facilisi enim. Vehicula
+                ultrices mollis suspendisse velit non, purus egestas class neque faucibus ipsum, mi vivamus arcu felis.
+                Purus taciti laoreet dolor dis a orci platea quam inceptos nostra sapien, luctus porta habitasse ridiculus
+                leo fusce natoque hendrerit ultrices. Dis mattis aptent massa semper sed commodo sociosqu est iaculis
+                fusce, id nam dolor mi malesuada elit vivamus neque ridiculus orci, erat facilisi pharetra suscipit amet
+                lobortis nisl interdum aenean. Vitae turpis commodo per condimentum feugiat lacus tempor et euismod a
+                phasellus nibh, eros ipsum vel orci tincidunt venenatis dictum donec imperdiet erat montes. Fermentum
+                adipiscing integer taciti hendrerit et scelerisque torquent maximus velit ut iaculis, tortor habitant
+                mollis enim facilisi donec sodales semper nec elementum. Iaculis suspendisse aenean torquent nisi
+                facilisis tincidunt pharetra montes tristique, quam sit nascetur commodo diam dictumst faucibus nunc, enim
+                metus pellentesque maximus finibus praesent accumsan hac. Ac curabitur ante sem massa per ut lobortis
+                senectus quam venenatis elit efficitur, vestibulum turpis quis praesent laoreet fames metus ligula cras
+                porta sapien. Nisi taciti sagittis iaculis volutpat primis mattis curabitur ad laoreet tincidunt
+                elementum, posuere curae facilisis et malesuada cursus enim maximus aliquet. Dapibus malesuada rutrum
+                ridiculus dui ultricies eleifend, rhoncus consectetur ac sit posuere, primis aliquet vulputate augue
+                magnis. Blandit per porttitor quam purus vivamus orci, sit potenti hac ante integer ornare, pellentesque
+                sociosqu consectetur suspendisse posuere elementum, nisl tincidunt ultricies in lectus. Suscipit integer
+                morbi nunc elit scelerisque primis ipsum proin lobortis nullam, posuere fringilla id aliquet dui mattis
+                libero non quis convallis urna, ullamcorper aenean mollis ligula blandit vestibulum nostra ridiculus
+                volutpat. Himenaeos neque dis etiam tellus dolor cubilia mattis bibendum mi cursus sodales eu, semper nam
+                rhoncus congue magna nascetur purus ultrices dignissim amet. Varius netus platea egestas volutpat finibus
+                augue elementum, imperdiet facilisis pretium sociosqu justo ornare velit, ultrices pharetra montes
+                maecenas tempor iaculis. Ultrices at etiam ac pellentesque auctor ut, purus ultricies nulla dis hendrerit
+                primis, inceptos ornare ad praesent fringilla. Aliquet aenean id massa fames dapibus tincidunt
+                pellentesque venenatis fermentum, rhoncus magna cras eget morbi mus nascetur natoque, quis luctus torquent
+                augue urna tempus interdum dictum. Vivamus libero facilisis risus netus platea ligula aptent nostra leo
+                finibus habitant, per quisque suscipit lorem penatibus vel duis venenatis dictumst a, eget lacinia augue
+                sollicitudin semper pretium maximus nisi diam montes. Dignissim hac ornare elit turpis posuere venenatis
+                integer, dis himenaeos quam ullamcorper fermentum vivamus sociosqu, ante nunc aliquam purus fames nam.
+                Sollicitudin orci fames rutrum diam adipiscing, arcu ex conubia blandit malesuada purus, fusce quisque
+                rhoncus sed. Volutpat magna nibh id dolor auctor a cubilia, metus risus lacinia et accumsan turpis nam
+                viverra, ornare ut varius ad litora torquent. Venenatis fringilla faucibus integer parturient dis fames
+                scelerisque tempus pretium mattis fermentum felis dolor, viverra ac taciti vehicula conubia eu class
+                senectus tellus sem mi. Vivamus mi class hac venenatis lacus sed dis, netus ad leo lobortis volutpat
+                facilisis condimentum, litora elit tortor tempor rutrum eleifend. Nam scelerisque aenean hac sociosqu
+                fames rutrum taciti mollis eros tempus risus, tortor quam tellus vivamus cras phasellus diam tincidunt nec
+                hendrerit, finibus gravida nullam ridiculus at volutpat felis netus odio fringilla. Hendrerit magnis duis
+                neque maximus aliquet phasellus hac magna curae orci finibus, eleifend pulvinar dapibus sed sollicitudin
+                porttitor pharetra fusce sapien. Inceptos augue tempus gravida dapibus platea fermentum pellentesque risus
+                velit, lacus tristique magna purus suscipit mus ipsum in aliquam, quam facilisis vel sociosqu mi elementum
+                montes euismod. Eu cras metus inceptos magnis pellentesque non lobortis finibus arcu facilisi tincidunt
+                velit tempus, nibh dis class proin lectus feugiat per conubia penatibus bibendum fringilla. Nec efficitur
+                est vehicula condimentum cursus maecenas tempor convallis, sit leo tristique ullamcorper pulvinar lacus
+                in. Parturient ut sit nam et volutpat pulvinar dapibus, iaculis neque magna lectus himenaeos eu
+                pellentesque, dolor finibus tellus ipsum dignissim nisi. Quis lectus nibh rutrum neque phasellus per,
+                aptent auctor quam magnis platea scelerisque vehicula, turpis ut etiam adipiscing fermentum. Dictumst
+                proin varius mauris metus nisi himenaeos nisl, lobortis ultricies malesuada vulputate porta fusce cubilia
+                facilisis, mollis mi hendrerit erat sociosqu ex. Condimentum nascetur fusce habitant non per montes orci
+                elit, sed eu aliquet consectetur ipsum mattis elementum ornare, duis inceptos neque magnis facilisis
+                auctor efficitur. Feugiat semper vehicula nulla eleifend sociosqu lorem diam sem non nisl, ad facilisis
+                libero varius curabitur malesuada in blandit elit inceptos, porttitor fusce conubia ex habitasse aliquam
+                ipsum tempor sagittis. Imperdiet est magna vitae ullamcorper per consectetur sit eget eu, vivamus etiam
+                nullam suspendisse risus pellentesque nibh hac donec, ultrices viverra cras sem felis tempor vestibulum
+                neque. Dictumst nascetur nec purus eu nullam conubia sodales ullamcorper urna massa blandit non malesuada
+                ad, morbi porta interdum sagittis maximus pellentesque tristique libero quis semper a volutpat sit. Magna
+                hac lacinia lacus class nulla torquent, elementum eu augue mi nam risus, a orci ligula vestibulum curae.
+                Lectus hendrerit felis quisque velit conubia dapibus augue nunc imperdiet praesent dictumst vehicula
+                vivamus, nostra aptent penatibus inceptos mus metus nibh donec mollis molestie sodales id. Et varius orci
+                accumsan a netus risus gravida eget dolor habitant, sapien platea cras ex adipiscing hac ac felis
+                phasellus, euismod blandit semper morbi rhoncus torquent suspendisse porttitor tellus. Aenean porttitor ut
+                viverra imperdiet feugiat vehicula, rutrum condimentum erat varius vel, vestibulum donec amet efficitur
+                dictum. Commodo non magnis netus imperdiet, in nullam primis lobortis hac, ultricies justo enim. Praesent
+                nec inceptos ultricies sodales consequat fringilla class venenatis augue faucibus, metus in primis per
+                euismod habitasse aliquet magna. In montes porttitor praesent egestas sollicitudin ridiculus semper
+                senectus donec, sem penatibus sociosqu lobortis conubia condimentum aliquam facilisis, fames nullam
+                torquent ipsum litora proin tristique duis. Dictum a dolor adipiscing vestibulum condimentum facilisis
+                taciti euismod mollis in, efficitur auctor pharetra ut tortor rhoncus malesuada purus arcu scelerisque,
+                nullam vulputate vel donec justo maecenas suspendisse pretium aptent. Conubia risus cubilia neque ut ac
+                ridiculus facilisi sem, eget donec tempus quis ipsum dapibus nam scelerisque, amet rhoncus magnis quam
+                dignissim litora mi. In sit luctus varius nostra nulla ornare platea, parturient ipsum facilisis justo
+                duis mattis viverra phasellus, dictumst quisque quam lacus cursus finibus. Proin ligula potenti magna
+                nullam elementum gravida nam, fusce ante torquent finibus litora tortor imperdiet eget, iaculis pharetra
+                habitasse ac inceptos euismod. Ornare venenatis dignissim mi porttitor fringilla duis, magna lectus
+                inceptos nostra massa. Nostra pharetra cursus consectetur donec pulvinar dictum malesuada convallis
+                fermentum pellentesque nascetur maecenas orci purus fusce natoque, quis augue sociosqu fringilla dictumst
+                duis scelerisque cubilia sem arcu et congue taciti montes. Integer elit commodo mollis tempus nibh morbi
+                torquent nisl dolor, vestibulum eget facilisi eu lectus ultrices dapibus aliquam, platea interdum nam
+                suspendisse lacinia finibus eros fermentum.
+              </p>
+            </ng-template>
+          </ngx-step>
+          <ngx-step label="Conditions">
+            <ng-template ngxStepContent>
+              Step Two
+            </ng-template>
+          </ngx-step>
+          <ngx-step label="Outputs">
+            <ng-template ngxStepContent>
+              Step Three
+            </ng-template>
+          </ngx-step>
+          <ngx-step label="Finish">
+            <ng-template ngxStepContent>
+              Step Four
+            </ng-template>
+          </ngx-step>
+        </ngx-stepper>
+      </ng-template>
+
+      <ngx-large-format-dialog-footer>
+        <button type="button" class="btn btn-bordered">Save and Close</button>
+        <button type="button" class="btn btn-primary">Save and Continue</button>
+      </ngx-large-format-dialog-footer>
+    </ngx-large-format-dialog-content>
+  </ng-template>
+
+  <ng-template #largeFormatStepperWrap>
+    <ngx-large-format-dialog-content
+      dialogTitle="Another Title"
+      dialogSubtitle="Another Optional Subtitle"
+      (closeOrCancel)="onCloseOrCancel()"
+    >
+      <ng-template largeFormatDialogStepper>
+        <app-nested-stepper [stepIndex]="stepIndex"></app-nested-stepper>
+      </ng-template>
+
+      <ngx-large-format-dialog-footer>
+        <button type="button" class="btn btn-bordered">Save and Close</button>
+        <button type="button" class="btn btn-primary">Save and Continue</button>
+      </ngx-large-format-dialog-footer>
+    </ngx-large-format-dialog-content>
+  </ng-template>
+
+  <ng-template #largeFormatStepperNested>
+    <ngx-large-format-dialog-content
+      dialogTitle="Another Title"
+      dialogSubtitle="Another Optional Subtitle"
+      (closeOrCancel)="onCloseOrCancel()"
+    >
+      <ng-template largeFormatDialogStepper>
+        <ngx-stepper [readonly]="false" [(active)]="stepIndex">
+          <ngx-step label="Initial Selections">
+            <ng-template ngxStepContent>
+              <p>Some nested stepper</p>
+              <ngx-stepper [readonly]="false" largeFormatDialogSubStepper>
+                <ngx-step label="Nested One">
+                  <ng-template ngxStepContent>
+                    Nested Step One
+                  </ng-template>
+                </ngx-step>
+                <ngx-step label="Nested Two">
+                  <ng-template ngxStepContent>
+                    Nested Step Two
+                  </ng-template>
+                </ngx-step>
+                <ngx-step label="Nested Three">
+                  <ng-template ngxStepContent>
+                    Nested Step Three
+                  </ng-template>
+                </ngx-step>
+              </ngx-stepper>
+            </ng-template>
+          </ngx-step>
+          <ngx-step label="Conditions">
+            <ng-template ngxStepContent>
+              Step Two
+            </ng-template>
+          </ngx-step>
+          <ngx-step label="Outputs">
+            <ng-template ngxStepContent>
+              Step Three
+            </ng-template>
+          </ngx-step>
+          <ngx-step label="Finish">
+            <ng-template ngxStepContent>
+              Step Four
+            </ng-template>
+          </ngx-step>
+        </ngx-stepper>
+      </ng-template>
+
+      <ngx-large-format-dialog-footer>
+        <button type="button" class="btn btn-bordered">Save and Close</button>
+        <button type="button" class="btn btn-primary">Save and Continue</button>
+      </ngx-large-format-dialog-footer>
+    </ngx-large-format-dialog-content>
+  </ng-template>
+
+  <button type="button" class="btn" (click)="openDialog({ template: largeFormatStepper, format: 'large' })">
+    Open Large Dialog Stepper
+  </button>
+
+  <app-prism>
+<![CDATA[<ng-template #largeFormatStepper>
+  <ngx-large-format-dialog-content
+    dialogTitle="Another Title"
+    dialogSubtitle="Another Optional Subtitle"
+    [style.--stepper-header-custom-offset.px]="200"
+    (closeOrCancel)="onCloseOrCancel()"
+  >
+    <!-- add      👇👇 largeFormatDialogStepper directive -->
+    <ng-template largeFormatDialogStepper>
       <ngx-stepper [readonly]="false" [(active)]="stepIndex">
         <ngx-step label="Initial Selections">
           <ng-template ngxStepContent>
-            <p>
-              Ut fusce consectetur tempor per tristique odio lorem adipiscing, litora sodales cursus molestie cras
-              auctor ornare augue, primis massa class interdum nisl conubia quis. Commodo posuere porttitor eleifend hac
-              proin senectus dictum non, aenean iaculis ut venenatis laoreet habitant volutpat, auctor conubia maximus
-              in lobortis nam luctus. Arcu neque dictumst vestibulum feugiat habitant hac habitasse litora enim ad,
-              interdum inceptos aliquet etiam rhoncus ante pulvinar nunc diam conubia sapien, fames posuere nascetur eu
-              commodo turpis velit congue viverra. Curae libero vulputate tristique ipsum tempus, tincidunt habitant
-              iaculis arcu id vitae, quis auctor nisi primis. Etiam nisl imperdiet penatibus nostra ultrices pharetra
-              nascetur nam, nullam varius curae parturient eros sit eu quisque, proin lacinia a ligula egestas senectus
-              malesuada. Viverra curabitur cras amet purus congue imperdiet elit, nec justo per laoreet nisi rhoncus
-              lacus accumsan, leo potenti fusce turpis consectetur blandit. Duis ultricies egestas urna dignissim
-              dictumst cursus, vehicula penatibus mollis euismod quam rutrum, vestibulum vivamus ultrices cubilia
-              malesuada. Proin ad elementum nascetur penatibus dictum accumsan aenean, phasellus quisque convallis odio
-              aptent lectus euismod, hendrerit iaculis nam mattis rhoncus feugiat. Imperdiet mollis lorem risus placerat
-              cursus orci eu viverra donec duis, ligula amet adipiscing elit nec pretium ultrices at vulputate, et
-              sapien praesent felis dui lectus cras taciti nascetur. Amet odio urna sit ex ligula massa tempus consequat
-              augue purus condimentum erat molestie, felis integer placerat mauris aptent orci ultricies laoreet
-              fringilla efficitur ornare in. Curae facilisis et habitasse class ac sem rhoncus varius ad phasellus eget
-              montes fusce est, vel primis commodo suscipit iaculis volutpat sit lacinia nostra tortor porta torquent.
-              Dignissim eros nascetur praesent libero habitant inceptos, natoque efficitur taciti venenatis lacinia
-              lorem finibus, laoreet volutpat quis suspendisse metus. Ultricies facilisi morbi parturient litora
-              hendrerit lobortis, fringilla purus congue nisi cubilia ipsum, commodo ornare himenaeos fermentum
-              ultrices. Adipiscing habitant viverra nibh nulla aliquam ultrices auctor, erat lacinia ridiculus malesuada
-              scelerisque tempor ultricies, curae senectus sit faucibus dapibus tincidunt. Congue tincidunt sodales
-              aptent eleifend dis duis integer quis id semper tempor tellus, tortor platea porta cras ornare odio
-              sagittis netus suscipit adipiscing metus. Inceptos at aliquet purus malesuada tempus, lobortis ac dui
-              platea a facilisis, sem vestibulum potenti dignissim phasellus, etiam vel viverra fringilla. Fringilla
-              mattis turpis magnis sociosqu curae ac, arcu magna scelerisque nibh dictumst dapibus montes, nisi primis
-              eget faucibus vulputate. Porta parturient natoque mattis turpis molestie habitasse condimentum, fermentum
-              porttitor urna ut nisl consectetur pharetra eu, venenatis id rutrum primis facilisi enim. Vehicula
-              ultrices mollis suspendisse velit non, purus egestas class neque faucibus ipsum, mi vivamus arcu felis.
-              Purus taciti laoreet dolor dis a orci platea quam inceptos nostra sapien, luctus porta habitasse ridiculus
-              leo fusce natoque hendrerit ultrices. Dis mattis aptent massa semper sed commodo sociosqu est iaculis
-              fusce, id nam dolor mi malesuada elit vivamus neque ridiculus orci, erat facilisi pharetra suscipit amet
-              lobortis nisl interdum aenean. Vitae turpis commodo per condimentum feugiat lacus tempor et euismod a
-              phasellus nibh, eros ipsum vel orci tincidunt venenatis dictum donec imperdiet erat montes. Fermentum
-              adipiscing integer taciti hendrerit et scelerisque torquent maximus velit ut iaculis, tortor habitant
-              mollis enim facilisi donec sodales semper nec elementum. Iaculis suspendisse aenean torquent nisi
-              facilisis tincidunt pharetra montes tristique, quam sit nascetur commodo diam dictumst faucibus nunc, enim
-              metus pellentesque maximus finibus praesent accumsan hac. Ac curabitur ante sem massa per ut lobortis
-              senectus quam venenatis elit efficitur, vestibulum turpis quis praesent laoreet fames metus ligula cras
-              porta sapien. Nisi taciti sagittis iaculis volutpat primis mattis curabitur ad laoreet tincidunt
-              elementum, posuere curae facilisis et malesuada cursus enim maximus aliquet. Dapibus malesuada rutrum
-              ridiculus dui ultricies eleifend, rhoncus consectetur ac sit posuere, primis aliquet vulputate augue
-              magnis. Blandit per porttitor quam purus vivamus orci, sit potenti hac ante integer ornare, pellentesque
-              sociosqu consectetur suspendisse posuere elementum, nisl tincidunt ultricies in lectus. Suscipit integer
-              morbi nunc elit scelerisque primis ipsum proin lobortis nullam, posuere fringilla id aliquet dui mattis
-              libero non quis convallis urna, ullamcorper aenean mollis ligula blandit vestibulum nostra ridiculus
-              volutpat. Himenaeos neque dis etiam tellus dolor cubilia mattis bibendum mi cursus sodales eu, semper nam
-              rhoncus congue magna nascetur purus ultrices dignissim amet. Varius netus platea egestas volutpat finibus
-              augue elementum, imperdiet facilisis pretium sociosqu justo ornare velit, ultrices pharetra montes
-              maecenas tempor iaculis. Ultrices at etiam ac pellentesque auctor ut, purus ultricies nulla dis hendrerit
-              primis, inceptos ornare ad praesent fringilla. Aliquet aenean id massa fames dapibus tincidunt
-              pellentesque venenatis fermentum, rhoncus magna cras eget morbi mus nascetur natoque, quis luctus torquent
-              augue urna tempus interdum dictum. Vivamus libero facilisis risus netus platea ligula aptent nostra leo
-              finibus habitant, per quisque suscipit lorem penatibus vel duis venenatis dictumst a, eget lacinia augue
-              sollicitudin semper pretium maximus nisi diam montes. Dignissim hac ornare elit turpis posuere venenatis
-              integer, dis himenaeos quam ullamcorper fermentum vivamus sociosqu, ante nunc aliquam purus fames nam.
-              Sollicitudin orci fames rutrum diam adipiscing, arcu ex conubia blandit malesuada purus, fusce quisque
-              rhoncus sed. Volutpat magna nibh id dolor auctor a cubilia, metus risus lacinia et accumsan turpis nam
-              viverra, ornare ut varius ad litora torquent. Venenatis fringilla faucibus integer parturient dis fames
-              scelerisque tempus pretium mattis fermentum felis dolor, viverra ac taciti vehicula conubia eu class
-              senectus tellus sem mi. Vivamus mi class hac venenatis lacus sed dis, netus ad leo lobortis volutpat
-              facilisis condimentum, litora elit tortor tempor rutrum eleifend. Nam scelerisque aenean hac sociosqu
-              fames rutrum taciti mollis eros tempus risus, tortor quam tellus vivamus cras phasellus diam tincidunt nec
-              hendrerit, finibus gravida nullam ridiculus at volutpat felis netus odio fringilla. Hendrerit magnis duis
-              neque maximus aliquet phasellus hac magna curae orci finibus, eleifend pulvinar dapibus sed sollicitudin
-              porttitor pharetra fusce sapien. Inceptos augue tempus gravida dapibus platea fermentum pellentesque risus
-              velit, lacus tristique magna purus suscipit mus ipsum in aliquam, quam facilisis vel sociosqu mi elementum
-              montes euismod. Eu cras metus inceptos magnis pellentesque non lobortis finibus arcu facilisi tincidunt
-              velit tempus, nibh dis class proin lectus feugiat per conubia penatibus bibendum fringilla. Nec efficitur
-              est vehicula condimentum cursus maecenas tempor convallis, sit leo tristique ullamcorper pulvinar lacus
-              in. Parturient ut sit nam et volutpat pulvinar dapibus, iaculis neque magna lectus himenaeos eu
-              pellentesque, dolor finibus tellus ipsum dignissim nisi. Quis lectus nibh rutrum neque phasellus per,
-              aptent auctor quam magnis platea scelerisque vehicula, turpis ut etiam adipiscing fermentum. Dictumst
-              proin varius mauris metus nisi himenaeos nisl, lobortis ultricies malesuada vulputate porta fusce cubilia
-              facilisis, mollis mi hendrerit erat sociosqu ex. Condimentum nascetur fusce habitant non per montes orci
-              elit, sed eu aliquet consectetur ipsum mattis elementum ornare, duis inceptos neque magnis facilisis
-              auctor efficitur. Feugiat semper vehicula nulla eleifend sociosqu lorem diam sem non nisl, ad facilisis
-              libero varius curabitur malesuada in blandit elit inceptos, porttitor fusce conubia ex habitasse aliquam
-              ipsum tempor sagittis. Imperdiet est magna vitae ullamcorper per consectetur sit eget eu, vivamus etiam
-              nullam suspendisse risus pellentesque nibh hac donec, ultrices viverra cras sem felis tempor vestibulum
-              neque. Dictumst nascetur nec purus eu nullam conubia sodales ullamcorper urna massa blandit non malesuada
-              ad, morbi porta interdum sagittis maximus pellentesque tristique libero quis semper a volutpat sit. Magna
-              hac lacinia lacus class nulla torquent, elementum eu augue mi nam risus, a orci ligula vestibulum curae.
-              Lectus hendrerit felis quisque velit conubia dapibus augue nunc imperdiet praesent dictumst vehicula
-              vivamus, nostra aptent penatibus inceptos mus metus nibh donec mollis molestie sodales id. Et varius orci
-              accumsan a netus risus gravida eget dolor habitant, sapien platea cras ex adipiscing hac ac felis
-              phasellus, euismod blandit semper morbi rhoncus torquent suspendisse porttitor tellus. Aenean porttitor ut
-              viverra imperdiet feugiat vehicula, rutrum condimentum erat varius vel, vestibulum donec amet efficitur
-              dictum. Commodo non magnis netus imperdiet, in nullam primis lobortis hac, ultricies justo enim. Praesent
-              nec inceptos ultricies sodales consequat fringilla class venenatis augue faucibus, metus in primis per
-              euismod habitasse aliquet magna. In montes porttitor praesent egestas sollicitudin ridiculus semper
-              senectus donec, sem penatibus sociosqu lobortis conubia condimentum aliquam facilisis, fames nullam
-              torquent ipsum litora proin tristique duis. Dictum a dolor adipiscing vestibulum condimentum facilisis
-              taciti euismod mollis in, efficitur auctor pharetra ut tortor rhoncus malesuada purus arcu scelerisque,
-              nullam vulputate vel donec justo maecenas suspendisse pretium aptent. Conubia risus cubilia neque ut ac
-              ridiculus facilisi sem, eget donec tempus quis ipsum dapibus nam scelerisque, amet rhoncus magnis quam
-              dignissim litora mi. In sit luctus varius nostra nulla ornare platea, parturient ipsum facilisis justo
-              duis mattis viverra phasellus, dictumst quisque quam lacus cursus finibus. Proin ligula potenti magna
-              nullam elementum gravida nam, fusce ante torquent finibus litora tortor imperdiet eget, iaculis pharetra
-              habitasse ac inceptos euismod. Ornare venenatis dignissim mi porttitor fringilla duis, magna lectus
-              inceptos nostra massa. Nostra pharetra cursus consectetur donec pulvinar dictum malesuada convallis
-              fermentum pellentesque nascetur maecenas orci purus fusce natoque, quis augue sociosqu fringilla dictumst
-              duis scelerisque cubilia sem arcu et congue taciti montes. Integer elit commodo mollis tempus nibh morbi
-              torquent nisl dolor, vestibulum eget facilisi eu lectus ultrices dapibus aliquam, platea interdum nam
-              suspendisse lacinia finibus eros fermentum.
-            </p>
+            Step One
           </ng-template>
         </ngx-step>
         <ngx-step label="Conditions">
@@ -362,49 +487,9 @@
           </ng-template>
         </ngx-step>
       </ngx-stepper>
+    </ng-template>
 
-      <ngx-large-format-dialog-footer style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
-        <button type="button" class="btn btn-bordered">Save and Close</button>
-        <button type="button" class="btn btn-primary">Save and Continue</button>
-      </ngx-large-format-dialog-footer>
-    </ngx-large-format-dialog-content>
-  </ng-template>
-  <button type="button" class="btn" (click)="openDialog({ template: largeFormatStepper, format: 'large' })">
-    Open Large Dialog Stepper
-  </button>
-
-  <app-prism>
-<![CDATA[ <ng-template #largeFormatStepper>
-  <ngx-large-format-dialog-content
-    title="Another Title"
-    subtitle="Another Optional Subtitle"
-    [style.--stepper-header-custom-offset.px]="200"
-    (closeOrCancel)="onCloseOrCancel()"
-  >
-    <ngx-stepper [readonly]="false" [(active)]="stepIndex">
-      <ngx-step label="Initial Selections">
-        <ng-template ngxStepContent>
-          Step One
-        </ng-template>
-      </ngx-step>
-      <ngx-step label="Conditions">
-        <ng-template ngxStepContent>
-          Step Two
-        </ng-template>
-      </ngx-step>
-      <ngx-step label="Outputs">
-        <ng-template ngxStepContent>
-          Step Three
-        </ng-template>
-      </ngx-step>
-      <ngx-step label="Finish">
-        <ng-template ngxStepContent>
-          Step Four
-        </ng-template>
-      </ngx-step>
-    </ngx-stepper>
-
-    <ngx-large-format-dialog-footer style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+    <ngx-large-format-dialog-footer>
       <button type="button" class="btn btn-bordered">Save and Close</button>
       <button type="button" class="btn btn-primary">Save and Continue</button>
     </ngx-large-format-dialog-footer>
@@ -416,146 +501,308 @@
   Open Large Dialog Stepper
 </button>]]>
   </app-prism>
+
+  <p>You can also wrap <code>ngx-stepper</code> inside a custom component for clean template purposes</p>
+  <button type="button" class="btn" (click)="openDialog({ template: largeFormatStepperWrap, format: 'large' })">
+    Open Large Dialog Stepper Nested
+  </button>
+
+  <app-prism>
+<![CDATA[<ng-template #largeFormatStepperWrap>
+  <ngx-large-format-dialog-content
+    dialogTitle="Another Title"
+    dialogSubtitle="Another Optional Subtitle"
+    [style.--stepper-header-custom-offset.px]="200"
+    (closeOrCancel)="onCloseOrCancel()"
+  >
+    <ng-template largeFormatDialogStepper>
+      <app-nested-stepper [stepIndex]="stepIndex"></app-nested-stepper>
+    </ng-template>
+
+    <ngx-large-format-dialog-footer>
+      <button type="button" class="btn btn-bordered">Save and Close</button>
+      <button type="button" class="btn btn-primary">Save and Continue</button>
+    </ngx-large-format-dialog-footer>
+
+  </ngx-large-format-dialog-content>
+</ng-template>
+
+<button type="button" class="btn" (click)="openDialog({ template: largeFormatStepper, format: 'large' })">
+  Open Large Dialog Stepper Nested
+</button>]]>
+  </app-prism>
+
+  <p>
+    If you want to have sub-Stepper inside of the main Stepper, while triggering <strong>Stepper Variant</strong>, you can put <code>largeFormatDialogSubStepper</code> on the sub <code>ngx-stepper</code>.
+    This will tell the <code>LargeFormatDialogContent</code> to <strong>NOT</strong> apply the custom stepper styles to this sub Stepper.
+  </p>
+  <button type="button" class="btn" (click)="openDialog({ template: largeFormatStepperNested, format: 'large' })">
+    Open Large Dialog Stepper with sub Stepper
+  </button>
+
+  <app-prism>
+<![CDATA[<ng-template #largeFormatStepperNested>
+  <ngx-large-format-dialog-content
+    dialogTitle="Another Title"
+    dialogSubtitle="Another Optional Subtitle"
+    [style.--stepper-header-custom-offset.px]="200"
+    (closeOrCancel)="onCloseOrCancel()"
+  >
+
+    <ng-template largeFormatDialogStepper>
+      <ngx-stepper [readonly]="false" [(active)]="stepIndex">
+        <ngx-step label="Initial Selections">
+          <ng-template ngxStepContent>
+            <p>Some nested stepper</p>
+            <!-- add      👇👇 largeFormatDialogSubStepper directive -->
+            <ngx-stepper largeFormatDialogSubStepper [readonly]="false">
+              <ngx-step label="Nested One">
+                <ng-template ngxStepContent>
+                  Nested Step One
+                </ng-template>
+              </ngx-step>
+              <ngx-step label="Nested Two">
+                <ng-template ngxStepContent>
+                  Nested Step Two
+                </ng-template>
+              </ngx-step>
+              <ngx-step label="Nested Three">
+                <ng-template ngxStepContent>
+                  Nested Step Three
+                </ng-template>
+              </ngx-step>
+            </ngx-stepper>
+          </ng-template>
+        </ngx-step>
+        <ngx-step label="Conditions">
+          <ng-template ngxStepContent>
+            Step Two
+          </ng-template>
+        </ngx-step>
+        <ngx-step label="Outputs">
+          <ng-template ngxStepContent>
+            Step Three
+          </ng-template>
+        </ngx-step>
+        <ngx-step label="Finish">
+          <ng-template ngxStepContent>
+            Step Four
+          </ng-template>
+        </ngx-step>
+      </ngx-stepper>
+    </ng-template>
+
+    <ngx-large-format-dialog-footer>
+      <button type="button" class="btn btn-bordered">Save and Close</button>
+      <button type="button" class="btn btn-primary">Save and Continue</button>
+    </ngx-large-format-dialog-footer>
+
+  </ngx-large-format-dialog-content>
+</ng-template>
+
+<button type="button" class="btn" (click)="openDialog({ template: largeFormatStepper, format: 'large' })">
+  Open Large Dialog Stepper Nested
+</button>]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="With Tabs">
   <p>
-    When a <code>ngx-tabs</code> is rendered within <code>ngx-large-format-dialog-content</code>, the <strong>tabs variant</strong> is triggered.
-    Custom styles will be applied to the <code>ngx-tabs</code> component.
+    <code>ngx-large-format-dialog-content</code> will be switched to <strong>Tabs Variant</strong> when it finds a <code>LargeFormatDialogTabsDirective</code> instance.
+    If there is a <code>ngx-tabs</code>, custom styles will be applied to this Tabs.
   </p>
 
   <ng-template #largeFormatTabs>
     <ngx-large-format-dialog-content
-      #dialogContent
-      title="Another Title Tabs"
-      subtitle="Another Optional Subtitle Tabs"
+      dialogTitle="Another Title Tabs"
+      dialogSubtitle="Another Optional Subtitle Tabs"
       (closeOrCancel)="onCloseOrCancel()"
     >
-      <ngx-tabs>
-        <ngx-tab label="Initial Selections">
-          <ng-template ngxIfTabActive>
-            <p>
-              Ut fusce consectetur tempor per tristique odio lorem adipiscing, litora sodales cursus molestie cras
-              auctor ornare augue, primis massa class interdum nisl conubia quis. Commodo posuere porttitor eleifend hac
-              proin senectus dictum non, aenean iaculis ut venenatis laoreet habitant volutpat, auctor conubia maximus
-              in lobortis nam luctus. Arcu neque dictumst vestibulum feugiat habitant hac habitasse litora enim ad,
-              interdum inceptos aliquet etiam rhoncus ante pulvinar nunc diam conubia sapien, fames posuere nascetur eu
-              commodo turpis velit congue viverra. Curae libero vulputate tristique ipsum tempus, tincidunt habitant
-              iaculis arcu id vitae, quis auctor nisi primis. Etiam nisl imperdiet penatibus nostra ultrices pharetra
-              nascetur nam, nullam varius curae parturient eros sit eu quisque, proin lacinia a ligula egestas senectus
-              malesuada. Viverra curabitur cras amet purus congue imperdiet elit, nec justo per laoreet nisi rhoncus
-              lacus accumsan, leo potenti fusce turpis consectetur blandit. Duis ultricies egestas urna dignissim
-              dictumst cursus, vehicula penatibus mollis euismod quam rutrum, vestibulum vivamus ultrices cubilia
-              malesuada. Proin ad elementum nascetur penatibus dictum accumsan aenean, phasellus quisque convallis odio
-              aptent lectus euismod, hendrerit iaculis nam mattis rhoncus feugiat. Imperdiet mollis lorem risus placerat
-              cursus orci eu viverra donec duis, ligula amet adipiscing elit nec pretium ultrices at vulputate, et
-              sapien praesent felis dui lectus cras taciti nascetur. Amet odio urna sit ex ligula massa tempus consequat
-              augue purus condimentum erat molestie, felis integer placerat mauris aptent orci ultricies laoreet
-              fringilla efficitur ornare in. Curae facilisis et habitasse class ac sem rhoncus varius ad phasellus eget
-              montes fusce est, vel primis commodo suscipit iaculis volutpat sit lacinia nostra tortor porta torquent.
-              Dignissim eros nascetur praesent libero habitant inceptos, natoque efficitur taciti venenatis lacinia
-              lorem finibus, laoreet volutpat quis suspendisse metus. Ultricies facilisi morbi parturient litora
-              hendrerit lobortis, fringilla purus congue nisi cubilia ipsum, commodo ornare himenaeos fermentum
-              ultrices. Adipiscing habitant viverra nibh nulla aliquam ultrices auctor, erat lacinia ridiculus malesuada
-              scelerisque tempor ultricies, curae senectus sit faucibus dapibus tincidunt. Congue tincidunt sodales
-              aptent eleifend dis duis integer quis id semper tempor tellus, tortor platea porta cras ornare odio
-              sagittis netus suscipit adipiscing metus. Inceptos at aliquet purus malesuada tempus, lobortis ac dui
-              platea a facilisis, sem vestibulum potenti dignissim phasellus, etiam vel viverra fringilla. Fringilla
-              mattis turpis magnis sociosqu curae ac, arcu magna scelerisque nibh dictumst dapibus montes, nisi primis
-              eget faucibus vulputate. Porta parturient natoque mattis turpis molestie habitasse condimentum, fermentum
-              porttitor urna ut nisl consectetur pharetra eu, venenatis id rutrum primis facilisi enim. Vehicula
-              ultrices mollis suspendisse velit non, purus egestas class neque faucibus ipsum, mi vivamus arcu felis.
-              Purus taciti laoreet dolor dis a orci platea quam inceptos nostra sapien, luctus porta habitasse ridiculus
-              leo fusce natoque hendrerit ultrices. Dis mattis aptent massa semper sed commodo sociosqu est iaculis
-              fusce, id nam dolor mi malesuada elit vivamus neque ridiculus orci, erat facilisi pharetra suscipit amet
-              lobortis nisl interdum aenean. Vitae turpis commodo per condimentum feugiat lacus tempor et euismod a
-              phasellus nibh, eros ipsum vel orci tincidunt venenatis dictum donec imperdiet erat montes. Fermentum
-              adipiscing integer taciti hendrerit et scelerisque torquent maximus velit ut iaculis, tortor habitant
-              mollis enim facilisi donec sodales semper nec elementum. Iaculis suspendisse aenean torquent nisi
-              facilisis tincidunt pharetra montes tristique, quam sit nascetur commodo diam dictumst faucibus nunc, enim
-              metus pellentesque maximus finibus praesent accumsan hac. Ac curabitur ante sem massa per ut lobortis
-              senectus quam venenatis elit efficitur, vestibulum turpis quis praesent laoreet fames metus ligula cras
-              porta sapien. Nisi taciti sagittis iaculis volutpat primis mattis curabitur ad laoreet tincidunt
-              elementum, posuere curae facilisis et malesuada cursus enim maximus aliquet. Dapibus malesuada rutrum
-              ridiculus dui ultricies eleifend, rhoncus consectetur ac sit posuere, primis aliquet vulputate augue
-              magnis. Blandit per porttitor quam purus vivamus orci, sit potenti hac ante integer ornare, pellentesque
-              sociosqu consectetur suspendisse posuere elementum, nisl tincidunt ultricies in lectus. Suscipit integer
-              morbi nunc elit scelerisque primis ipsum proin lobortis nullam, posuere fringilla id aliquet dui mattis
-              libero non quis convallis urna, ullamcorper aenean mollis ligula blandit vestibulum nostra ridiculus
-              volutpat. Himenaeos neque dis etiam tellus dolor cubilia mattis bibendum mi cursus sodales eu, semper nam
-              rhoncus congue magna nascetur purus ultrices dignissim amet. Varius netus platea egestas volutpat finibus
-              augue elementum, imperdiet facilisis pretium sociosqu justo ornare velit, ultrices pharetra montes
-              maecenas tempor iaculis. Ultrices at etiam ac pellentesque auctor ut, purus ultricies nulla dis hendrerit
-              primis, inceptos ornare ad praesent fringilla. Aliquet aenean id massa fames dapibus tincidunt
-              pellentesque venenatis fermentum, rhoncus magna cras eget morbi mus nascetur natoque, quis luctus torquent
-              augue urna tempus interdum dictum. Vivamus libero facilisis risus netus platea ligula aptent nostra leo
-              finibus habitant, per quisque suscipit lorem penatibus vel duis venenatis dictumst a, eget lacinia augue
-              sollicitudin semper pretium maximus nisi diam montes. Dignissim hac ornare elit turpis posuere venenatis
-              integer, dis himenaeos quam ullamcorper fermentum vivamus sociosqu, ante nunc aliquam purus fames nam.
-              Sollicitudin orci fames rutrum diam adipiscing, arcu ex conubia blandit malesuada purus, fusce quisque
-              rhoncus sed. Volutpat magna nibh id dolor auctor a cubilia, metus risus lacinia et accumsan turpis nam
-              viverra, ornare ut varius ad litora torquent. Venenatis fringilla faucibus integer parturient dis fames
-              scelerisque tempus pretium mattis fermentum felis dolor, viverra ac taciti vehicula conubia eu class
-              senectus tellus sem mi. Vivamus mi class hac venenatis lacus sed dis, netus ad leo lobortis volutpat
-              facilisis condimentum, litora elit tortor tempor rutrum eleifend. Nam scelerisque aenean hac sociosqu
-              fames rutrum taciti mollis eros tempus risus, tortor quam tellus vivamus cras phasellus diam tincidunt nec
-              hendrerit, finibus gravida nullam ridiculus at volutpat felis netus odio fringilla. Hendrerit magnis duis
-              neque maximus aliquet phasellus hac magna curae orci finibus, eleifend pulvinar dapibus sed sollicitudin
-              porttitor pharetra fusce sapien. Inceptos augue tempus gravida dapibus platea fermentum pellentesque risus
-              velit, lacus tristique magna purus suscipit mus ipsum in aliquam, quam facilisis vel sociosqu mi elementum
-              montes euismod. Eu cras metus inceptos magnis pellentesque non lobortis finibus arcu facilisi tincidunt
-              velit tempus, nibh dis class proin lectus feugiat per conubia penatibus bibendum fringilla. Nec efficitur
-              est vehicula condimentum cursus maecenas tempor convallis, sit leo tristique ullamcorper pulvinar lacus
-              in. Parturient ut sit nam et volutpat pulvinar dapibus, iaculis neque magna lectus himenaeos eu
-              pellentesque, dolor finibus tellus ipsum dignissim nisi. Quis lectus nibh rutrum neque phasellus per,
-              aptent auctor quam magnis platea scelerisque vehicula, turpis ut etiam adipiscing fermentum. Dictumst
-              proin varius mauris metus nisi himenaeos nisl, lobortis ultricies malesuada vulputate porta fusce cubilia
-              facilisis, mollis mi hendrerit erat sociosqu ex. Condimentum nascetur fusce habitant non per montes orci
-              elit, sed eu aliquet consectetur ipsum mattis elementum ornare, duis inceptos neque magnis facilisis
-              auctor efficitur. Feugiat semper vehicula nulla eleifend sociosqu lorem diam sem non nisl, ad facilisis
-              libero varius curabitur malesuada in blandit elit inceptos, porttitor fusce conubia ex habitasse aliquam
-              ipsum tempor sagittis. Imperdiet est magna vitae ullamcorper per consectetur sit eget eu, vivamus etiam
-              nullam suspendisse risus pellentesque nibh hac donec, ultrices viverra cras sem felis tempor vestibulum
-              neque. Dictumst nascetur nec purus eu nullam conubia sodales ullamcorper urna massa blandit non malesuada
-              ad, morbi porta interdum sagittis maximus pellentesque tristique libero quis semper a volutpat sit. Magna
-              hac lacinia lacus class nulla torquent, elementum eu augue mi nam risus, a orci ligula vestibulum curae.
-              Lectus hendrerit felis quisque velit conubia dapibus augue nunc imperdiet praesent dictumst vehicula
-              vivamus, nostra aptent penatibus inceptos mus metus nibh donec mollis molestie sodales id. Et varius orci
-              accumsan a netus risus gravida eget dolor habitant, sapien platea cras ex adipiscing hac ac felis
-              phasellus, euismod blandit semper morbi rhoncus torquent suspendisse porttitor tellus. Aenean porttitor ut
-              viverra imperdiet feugiat vehicula, rutrum condimentum erat varius vel, vestibulum donec amet efficitur
-              dictum. Commodo non magnis netus imperdiet, in nullam primis lobortis hac, ultricies justo enim. Praesent
-              nec inceptos ultricies sodales consequat fringilla class venenatis augue faucibus, metus in primis per
-              euismod habitasse aliquet magna. In montes porttitor praesent egestas sollicitudin ridiculus semper
-              senectus donec, sem penatibus sociosqu lobortis conubia condimentum aliquam facilisis, fames nullam
-              torquent ipsum litora proin tristique duis. Dictum a dolor adipiscing vestibulum condimentum facilisis
-              taciti euismod mollis in, efficitur auctor pharetra ut tortor rhoncus malesuada purus arcu scelerisque,
-              nullam vulputate vel donec justo maecenas suspendisse pretium aptent. Conubia risus cubilia neque ut ac
-              ridiculus facilisi sem, eget donec tempus quis ipsum dapibus nam scelerisque, amet rhoncus magnis quam
-              dignissim litora mi. In sit luctus varius nostra nulla ornare platea, parturient ipsum facilisis justo
-              duis mattis viverra phasellus, dictumst quisque quam lacus cursus finibus. Proin ligula potenti magna
-              nullam elementum gravida nam, fusce ante torquent finibus litora tortor imperdiet eget, iaculis pharetra
-              habitasse ac inceptos euismod. Ornare venenatis dignissim mi porttitor fringilla duis, magna lectus
-              inceptos nostra massa. Nostra pharetra cursus consectetur donec pulvinar dictum malesuada convallis
-              fermentum pellentesque nascetur maecenas orci purus fusce natoque, quis augue sociosqu fringilla dictumst
-              duis scelerisque cubilia sem arcu et congue taciti montes. Integer elit commodo mollis tempus nibh morbi
-              torquent nisl dolor, vestibulum eget facilisi eu lectus ultrices dapibus aliquam, platea interdum nam
-              suspendisse lacinia finibus eros fermentum.
-            </p>
-          </ng-template>
-        </ngx-tab>
-        <ngx-tab label="Conditions">
-          Conditions
-        </ngx-tab>
-        <ngx-tab label="Outputs">
-          Outputs
-        </ngx-tab>
-        <ngx-tab label="Finish">
-          Finish
-        </ngx-tab>
-      </ngx-tabs>
+      <ng-template largeFormatDialogTabs>
+        <ngx-tabs>
+          <ngx-tab label="Initial Selections">
+            <ng-template ngxIfTabActive>
+              <p>
+                Ut fusce consectetur tempor per tristique odio lorem adipiscing, litora sodales cursus molestie cras
+                auctor ornare augue, primis massa class interdum nisl conubia quis. Commodo posuere porttitor eleifend hac
+                proin senectus dictum non, aenean iaculis ut venenatis laoreet habitant volutpat, auctor conubia maximus
+                in lobortis nam luctus. Arcu neque dictumst vestibulum feugiat habitant hac habitasse litora enim ad,
+                interdum inceptos aliquet etiam rhoncus ante pulvinar nunc diam conubia sapien, fames posuere nascetur eu
+                commodo turpis velit congue viverra. Curae libero vulputate tristique ipsum tempus, tincidunt habitant
+                iaculis arcu id vitae, quis auctor nisi primis. Etiam nisl imperdiet penatibus nostra ultrices pharetra
+                nascetur nam, nullam varius curae parturient eros sit eu quisque, proin lacinia a ligula egestas senectus
+                malesuada. Viverra curabitur cras amet purus congue imperdiet elit, nec justo per laoreet nisi rhoncus
+                lacus accumsan, leo potenti fusce turpis consectetur blandit. Duis ultricies egestas urna dignissim
+                dictumst cursus, vehicula penatibus mollis euismod quam rutrum, vestibulum vivamus ultrices cubilia
+                malesuada. Proin ad elementum nascetur penatibus dictum accumsan aenean, phasellus quisque convallis odio
+                aptent lectus euismod, hendrerit iaculis nam mattis rhoncus feugiat. Imperdiet mollis lorem risus placerat
+                cursus orci eu viverra donec duis, ligula amet adipiscing elit nec pretium ultrices at vulputate, et
+                sapien praesent felis dui lectus cras taciti nascetur. Amet odio urna sit ex ligula massa tempus consequat
+                augue purus condimentum erat molestie, felis integer placerat mauris aptent orci ultricies laoreet
+                fringilla efficitur ornare in. Curae facilisis et habitasse class ac sem rhoncus varius ad phasellus eget
+                montes fusce est, vel primis commodo suscipit iaculis volutpat sit lacinia nostra tortor porta torquent.
+                Dignissim eros nascetur praesent libero habitant inceptos, natoque efficitur taciti venenatis lacinia
+                lorem finibus, laoreet volutpat quis suspendisse metus. Ultricies facilisi morbi parturient litora
+                hendrerit lobortis, fringilla purus congue nisi cubilia ipsum, commodo ornare himenaeos fermentum
+                ultrices. Adipiscing habitant viverra nibh nulla aliquam ultrices auctor, erat lacinia ridiculus malesuada
+                scelerisque tempor ultricies, curae senectus sit faucibus dapibus tincidunt. Congue tincidunt sodales
+                aptent eleifend dis duis integer quis id semper tempor tellus, tortor platea porta cras ornare odio
+                sagittis netus suscipit adipiscing metus. Inceptos at aliquet purus malesuada tempus, lobortis ac dui
+                platea a facilisis, sem vestibulum potenti dignissim phasellus, etiam vel viverra fringilla. Fringilla
+                mattis turpis magnis sociosqu curae ac, arcu magna scelerisque nibh dictumst dapibus montes, nisi primis
+                eget faucibus vulputate. Porta parturient natoque mattis turpis molestie habitasse condimentum, fermentum
+                porttitor urna ut nisl consectetur pharetra eu, venenatis id rutrum primis facilisi enim. Vehicula
+                ultrices mollis suspendisse velit non, purus egestas class neque faucibus ipsum, mi vivamus arcu felis.
+                Purus taciti laoreet dolor dis a orci platea quam inceptos nostra sapien, luctus porta habitasse ridiculus
+                leo fusce natoque hendrerit ultrices. Dis mattis aptent massa semper sed commodo sociosqu est iaculis
+                fusce, id nam dolor mi malesuada elit vivamus neque ridiculus orci, erat facilisi pharetra suscipit amet
+                lobortis nisl interdum aenean. Vitae turpis commodo per condimentum feugiat lacus tempor et euismod a
+                phasellus nibh, eros ipsum vel orci tincidunt venenatis dictum donec imperdiet erat montes. Fermentum
+                adipiscing integer taciti hendrerit et scelerisque torquent maximus velit ut iaculis, tortor habitant
+                mollis enim facilisi donec sodales semper nec elementum. Iaculis suspendisse aenean torquent nisi
+                facilisis tincidunt pharetra montes tristique, quam sit nascetur commodo diam dictumst faucibus nunc, enim
+                metus pellentesque maximus finibus praesent accumsan hac. Ac curabitur ante sem massa per ut lobortis
+                senectus quam venenatis elit efficitur, vestibulum turpis quis praesent laoreet fames metus ligula cras
+                porta sapien. Nisi taciti sagittis iaculis volutpat primis mattis curabitur ad laoreet tincidunt
+                elementum, posuere curae facilisis et malesuada cursus enim maximus aliquet. Dapibus malesuada rutrum
+                ridiculus dui ultricies eleifend, rhoncus consectetur ac sit posuere, primis aliquet vulputate augue
+                magnis. Blandit per porttitor quam purus vivamus orci, sit potenti hac ante integer ornare, pellentesque
+                sociosqu consectetur suspendisse posuere elementum, nisl tincidunt ultricies in lectus. Suscipit integer
+                morbi nunc elit scelerisque primis ipsum proin lobortis nullam, posuere fringilla id aliquet dui mattis
+                libero non quis convallis urna, ullamcorper aenean mollis ligula blandit vestibulum nostra ridiculus
+                volutpat. Himenaeos neque dis etiam tellus dolor cubilia mattis bibendum mi cursus sodales eu, semper nam
+                rhoncus congue magna nascetur purus ultrices dignissim amet. Varius netus platea egestas volutpat finibus
+                augue elementum, imperdiet facilisis pretium sociosqu justo ornare velit, ultrices pharetra montes
+                maecenas tempor iaculis. Ultrices at etiam ac pellentesque auctor ut, purus ultricies nulla dis hendrerit
+                primis, inceptos ornare ad praesent fringilla. Aliquet aenean id massa fames dapibus tincidunt
+                pellentesque venenatis fermentum, rhoncus magna cras eget morbi mus nascetur natoque, quis luctus torquent
+                augue urna tempus interdum dictum. Vivamus libero facilisis risus netus platea ligula aptent nostra leo
+                finibus habitant, per quisque suscipit lorem penatibus vel duis venenatis dictumst a, eget lacinia augue
+                sollicitudin semper pretium maximus nisi diam montes. Dignissim hac ornare elit turpis posuere venenatis
+                integer, dis himenaeos quam ullamcorper fermentum vivamus sociosqu, ante nunc aliquam purus fames nam.
+                Sollicitudin orci fames rutrum diam adipiscing, arcu ex conubia blandit malesuada purus, fusce quisque
+                rhoncus sed. Volutpat magna nibh id dolor auctor a cubilia, metus risus lacinia et accumsan turpis nam
+                viverra, ornare ut varius ad litora torquent. Venenatis fringilla faucibus integer parturient dis fames
+                scelerisque tempus pretium mattis fermentum felis dolor, viverra ac taciti vehicula conubia eu class
+                senectus tellus sem mi. Vivamus mi class hac venenatis lacus sed dis, netus ad leo lobortis volutpat
+                facilisis condimentum, litora elit tortor tempor rutrum eleifend. Nam scelerisque aenean hac sociosqu
+                fames rutrum taciti mollis eros tempus risus, tortor quam tellus vivamus cras phasellus diam tincidunt nec
+                hendrerit, finibus gravida nullam ridiculus at volutpat felis netus odio fringilla. Hendrerit magnis duis
+                neque maximus aliquet phasellus hac magna curae orci finibus, eleifend pulvinar dapibus sed sollicitudin
+                porttitor pharetra fusce sapien. Inceptos augue tempus gravida dapibus platea fermentum pellentesque risus
+                velit, lacus tristique magna purus suscipit mus ipsum in aliquam, quam facilisis vel sociosqu mi elementum
+                montes euismod. Eu cras metus inceptos magnis pellentesque non lobortis finibus arcu facilisi tincidunt
+                velit tempus, nibh dis class proin lectus feugiat per conubia penatibus bibendum fringilla. Nec efficitur
+                est vehicula condimentum cursus maecenas tempor convallis, sit leo tristique ullamcorper pulvinar lacus
+                in. Parturient ut sit nam et volutpat pulvinar dapibus, iaculis neque magna lectus himenaeos eu
+                pellentesque, dolor finibus tellus ipsum dignissim nisi. Quis lectus nibh rutrum neque phasellus per,
+                aptent auctor quam magnis platea scelerisque vehicula, turpis ut etiam adipiscing fermentum. Dictumst
+                proin varius mauris metus nisi himenaeos nisl, lobortis ultricies malesuada vulputate porta fusce cubilia
+                facilisis, mollis mi hendrerit erat sociosqu ex. Condimentum nascetur fusce habitant non per montes orci
+                elit, sed eu aliquet consectetur ipsum mattis elementum ornare, duis inceptos neque magnis facilisis
+                auctor efficitur. Feugiat semper vehicula nulla eleifend sociosqu lorem diam sem non nisl, ad facilisis
+                libero varius curabitur malesuada in blandit elit inceptos, porttitor fusce conubia ex habitasse aliquam
+                ipsum tempor sagittis. Imperdiet est magna vitae ullamcorper per consectetur sit eget eu, vivamus etiam
+                nullam suspendisse risus pellentesque nibh hac donec, ultrices viverra cras sem felis tempor vestibulum
+                neque. Dictumst nascetur nec purus eu nullam conubia sodales ullamcorper urna massa blandit non malesuada
+                ad, morbi porta interdum sagittis maximus pellentesque tristique libero quis semper a volutpat sit. Magna
+                hac lacinia lacus class nulla torquent, elementum eu augue mi nam risus, a orci ligula vestibulum curae.
+                Lectus hendrerit felis quisque velit conubia dapibus augue nunc imperdiet praesent dictumst vehicula
+                vivamus, nostra aptent penatibus inceptos mus metus nibh donec mollis molestie sodales id. Et varius orci
+                accumsan a netus risus gravida eget dolor habitant, sapien platea cras ex adipiscing hac ac felis
+                phasellus, euismod blandit semper morbi rhoncus torquent suspendisse porttitor tellus. Aenean porttitor ut
+                viverra imperdiet feugiat vehicula, rutrum condimentum erat varius vel, vestibulum donec amet efficitur
+                dictum. Commodo non magnis netus imperdiet, in nullam primis lobortis hac, ultricies justo enim. Praesent
+                nec inceptos ultricies sodales consequat fringilla class venenatis augue faucibus, metus in primis per
+                euismod habitasse aliquet magna. In montes porttitor praesent egestas sollicitudin ridiculus semper
+                senectus donec, sem penatibus sociosqu lobortis conubia condimentum aliquam facilisis, fames nullam
+                torquent ipsum litora proin tristique duis. Dictum a dolor adipiscing vestibulum condimentum facilisis
+                taciti euismod mollis in, efficitur auctor pharetra ut tortor rhoncus malesuada purus arcu scelerisque,
+                nullam vulputate vel donec justo maecenas suspendisse pretium aptent. Conubia risus cubilia neque ut ac
+                ridiculus facilisi sem, eget donec tempus quis ipsum dapibus nam scelerisque, amet rhoncus magnis quam
+                dignissim litora mi. In sit luctus varius nostra nulla ornare platea, parturient ipsum facilisis justo
+                duis mattis viverra phasellus, dictumst quisque quam lacus cursus finibus. Proin ligula potenti magna
+                nullam elementum gravida nam, fusce ante torquent finibus litora tortor imperdiet eget, iaculis pharetra
+                habitasse ac inceptos euismod. Ornare venenatis dignissim mi porttitor fringilla duis, magna lectus
+                inceptos nostra massa. Nostra pharetra cursus consectetur donec pulvinar dictum malesuada convallis
+                fermentum pellentesque nascetur maecenas orci purus fusce natoque, quis augue sociosqu fringilla dictumst
+                duis scelerisque cubilia sem arcu et congue taciti montes. Integer elit commodo mollis tempus nibh morbi
+                torquent nisl dolor, vestibulum eget facilisi eu lectus ultrices dapibus aliquam, platea interdum nam
+                suspendisse lacinia finibus eros fermentum.
+              </p>
+            </ng-template>
+          </ngx-tab>
+          <ngx-tab label="Conditions">
+            Conditions
+          </ngx-tab>
+          <ngx-tab label="Outputs">
+            Outputs
+          </ngx-tab>
+          <ngx-tab label="Finish">
+            Finish
+          </ngx-tab>
+        </ngx-tabs>
+      </ng-template>
 
-      <ngx-large-format-dialog-footer style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+      <ngx-large-format-dialog-footer>
+        <button type="button" class="btn btn-bordered">Save and Close</button>
+        <button type="button" class="btn btn-primary">Save and Continue</button>
+      </ngx-large-format-dialog-footer>
+    </ngx-large-format-dialog-content>
+  </ng-template>
+
+  <ng-template #largeFormatTabsWrap>
+    <ngx-large-format-dialog-content
+      dialogTitle="Another Title Tabs"
+      dialogSubtitle="Another Optional Subtitle Tabs"
+      (closeOrCancel)="onCloseOrCancel()"
+    >
+      <ng-template largeFormatDialogTabs>
+        <app-nested-tabs></app-nested-tabs>
+      </ng-template>
+
+      <ngx-large-format-dialog-footer>
+        <button type="button" class="btn btn-bordered">Save and Close</button>
+        <button type="button" class="btn btn-primary">Save and Continue</button>
+      </ngx-large-format-dialog-footer>
+    </ngx-large-format-dialog-content>
+  </ng-template>
+
+  <ng-template #largeFormatTabsNested>
+    <ngx-large-format-dialog-content
+      dialogTitle="Another Title Tabs"
+      dialogSubtitle="Another Optional Subtitle Tabs"
+      (closeOrCancel)="onCloseOrCancel()"
+    >
+      <ng-template largeFormatDialogTabs>
+        <ngx-tabs>
+          <ngx-tab label="Initial Selections">
+            Initial Selections
+          </ngx-tab>
+          <ngx-tab label="Conditions">
+            <p>Some nested tabs</p>
+            <ngx-tabs largeFormatDialogSubTabs>
+              <ngx-tab label="Nested Tab One">
+                Nested Tab One
+              </ngx-tab>
+              <ngx-tab label="Nested Tab Two">
+                Nested Tab Two
+              </ngx-tab>
+              <ngx-tab label="Nested Tab Three">
+                Nested Tab Three
+              </ngx-tab>
+            </ngx-tabs>
+          </ngx-tab>
+          <ngx-tab label="Outputs">
+            Outputs
+          </ngx-tab>
+          <ngx-tab label="Finish">
+            Finish
+          </ngx-tab>
+        </ngx-tabs>
+      </ng-template>
+
+      <ngx-large-format-dialog-footer>
         <button type="button" class="btn btn-bordered">Save and Close</button>
         <button type="button" class="btn btn-primary">Save and Continue</button>
       </ngx-large-format-dialog-footer>
@@ -567,29 +814,31 @@
   </button>
 
   <app-prism>
-<![CDATA[ <ng-template #largeFormatStepper>
+<![CDATA[<ng-template #largeFormatTabs>
   <ngx-large-format-dialog-content
-    title="Another Title"
-    subtitle="Another Optional Subtitle"
-    [style.--stepper-header-custom-offset.px]="200"
+    dialogTitle="Another Title"
+    dialogSubtitle="Another Optional Subtitle"
     (closeOrCancel)="onCloseOrCancel()"
   >
-    <ngx-tabs>
-      <ngx-tab label="Initial Selections">
-        Initial Selections
-      </ngx-tab>
-      <ngx-tab label="Conditions">
-        Conditions
-      </ngx-tab>
-      <ngx-tab label="Outputs">
-        Outputs
-      </ngx-tab>
-      <ngx-tab label="Finish">
-        Finish
-      </ngx-tab>
-    </ngx-tabs>
+    <!-- add      👇👇 largeFormatDialogTabs directive -->
+    <ng-template largeFormatDialogTabs>
+      <ngx-tabs>
+        <ngx-tab label="Initial Selections">
+          Initial Selections
+        </ngx-tab>
+        <ngx-tab label="Conditions">
+          Conditions
+        </ngx-tab>
+        <ngx-tab label="Outputs">
+          Outputs
+        </ngx-tab>
+        <ngx-tab label="Finish">
+          Finish
+        </ngx-tab>
+      </ngx-tabs>
+    </ng-template>
 
-    <ngx-large-format-dialog-footer style="display: flex; align-items: center; justify-content: center; gap: 0.5rem;">
+    <ngx-large-format-dialog-footer>
       <button type="button" class="btn btn-bordered">Save and Close</button>
       <button type="button" class="btn btn-primary">Save and Continue</button>
     </ngx-large-format-dialog-footer>
@@ -597,8 +846,94 @@
   </ngx-large-format-dialog-content>
 </ng-template>
 
-<button type="button" class="btn" (click)="openDialog({ template: largeFormatStepper, format: 'large' })">
-  Open Large Dialog Stepper
+<button type="button" class="btn" (click)="openDialog({ template: largeFormatTabs, format: 'large' })">
+  Open Large Dialog Tabs
+</button>]]>
+  </app-prism>
+
+  <p>You can also wrap <code>ngx-tabs</code> in a custom component for clean template purposes</p>
+  <button type="button" class="btn" (click)="openDialog({ template: largeFormatTabsWrap, format: 'large' })">
+    Open Large Dialog Tabs Wrap
+  </button>
+
+  <app-prism>
+<![CDATA[<ng-template #largeFormatTabsWrap>
+  <ngx-large-format-dialog-content
+    dialogTitle="Another Title"
+    dialogSubtitle="Another Optional Subtitle"
+    (closeOrCancel)="onCloseOrCancel()"
+  >
+    <ng-template largeFormatDialogTabs>
+      <app-nested-tabs></app-nested-tabs>
+    </ng-template>
+
+    <ngx-large-format-dialog-footer>
+      <button type="button" class="btn btn-bordered">Save and Close</button>
+      <button type="button" class="btn btn-primary">Save and Continue</button>
+    </ngx-large-format-dialog-footer>
+
+  </ngx-large-format-dialog-content>
+</ng-template>
+
+<button type="button" class="btn" (click)="openDialog({ template: largeFormatTabsWrap, format: 'large' })">
+  Open Large Dialog Tabs Wrap
+</button>]]>
+  </app-prism>
+
+  <p>
+    If you want to have sub-Tabs inside of the main Tabs, while triggering <strong>Tabs Variant</strong>, you can put <code>largeFormatDialogSubTabs</code> on the sub <code>ngx-tabs</code>.
+    This will tell the <code>LargeFormatDialogContent</code> to <strong>NOT</strong> apply the custom tabs styles to this sub Tabs.
+  </p>
+  <button type="button" class="btn" (click)="openDialog({ template: largeFormatTabsNested, format: 'large' })">
+    Open Large Dialog Tabs with sub Tabs
+  </button>
+
+  <app-prism>
+<![CDATA[<ng-template #largeFormatTabsNested>
+  <ngx-large-format-dialog-content
+    dialogTitle="Another Title"
+    dialogSubtitle="Another Optional Subtitle"
+    (closeOrCancel)="onCloseOrCancel()"
+  >
+    <ng-template largeFormatDialogTabs>
+      <ngx-tabs>
+        <ngx-tab label="Initial Selections">
+          Initial Selections
+        </ngx-tab>
+        <ngx-tab label="Conditions">
+          <p>Some nested tabs</p>
+          <!-- add      👇👇 largeFormatDialogSubTabs directive -->
+          <ngx-tabs largeFormatDialogSubTabs>
+            <ngx-tab label="Nested Tab One">
+              Nested Tab One
+            </ngx-tab>
+            <ngx-tab label="Nested Tab Two">
+              Nested Tab Two
+            </ngx-tab>
+            <ngx-tab label="Nested Tab Three">
+              Nested Tab Three
+            </ngx-tab>
+          </ngx-tabs>
+        </ngx-tab>
+        <ngx-tab label="Outputs">
+          Outputs
+        </ngx-tab>
+        <ngx-tab label="Finish">
+          Finish
+        </ngx-tab>
+      </ngx-tabs>
+    </ng-template>
+
+    <ngx-large-format-dialog-footer>
+      <button type="button" class="btn btn-bordered">Save and Close</button>
+      <button type="button" class="btn btn-primary">Save and Continue</button>
+    </ngx-large-format-dialog-footer>
+
+  </ngx-large-format-dialog-content>
+</ng-template>
+
+<button type="button" class="btn" (click)="openDialog({ template: largeFormatTabsNested, format: 'large' })">
+  Open Large Dialog Tabs with sub Tabs
 </button>]]>
   </app-prism>
 </ngx-section>
@@ -615,7 +950,8 @@
   </p>
 
   <ng-template #largeFormatDialogWithDrawer>
-    <ngx-large-format-dialog-content #dialogContent title="Title" subtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
+    <ngx-large-format-dialog-content #dialogContent dialogTitle="Title" dialogSubtitle="Optional Subtitle"
+                                     (closeOrCancel)="onCloseOrCancel()">
       <p>Open drawer</p>
       <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef)">Open Drawer</button>
     </ngx-large-format-dialog-content>
@@ -635,7 +971,8 @@
   </ul>
 
   <ng-template #largeFormatDialogWithDrawerVariants>
-    <ngx-large-format-dialog-content #dialogContent title="Title" subtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
+    <ngx-large-format-dialog-content #dialogContent dialogTitle="Title" dialogSubtitle="Optional Subtitle"
+                                     (closeOrCancel)="onCloseOrCancel()">
       <p>Open drawer</p>
       <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef )">Open Drawer</button>
       <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef, 'half')">Open Drawer Half</button>
@@ -651,7 +988,7 @@
     <ngx-tab title="Markup">
       <app-prism>
 <![CDATA[<ng-template #largeFormatDialogDrawer>
-  <ngx-large-format-dialog-content #dialogContent title="Title" subtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
+  <ngx-large-format-dialog-content #dialogContent dialogTitle="Title" dialogSubtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
     <p>Open drawer</p>
     <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef )">Open Drawer</button>
     <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef, 'half')">Open Drawer Half</button>

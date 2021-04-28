@@ -7,13 +7,15 @@ import {
   HostBinding,
   Input,
   Output,
+  TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
 import { pluck, take } from 'rxjs/operators';
-import { StepperComponent } from '../../stepper/stepper.component';
-import { TabsComponent } from '../../tabs/tabs.component';
 import { AlertService } from '../alert/alert.service';
+import { DialogOptions } from '../dialog-options.interface';
 import { LargeFormatDialogFooterComponent } from './components/large-format-dialog-footer/large-format-dialog-footer.component';
+import { LargeFormatDialogStepperDirective } from './directives/large-format-dialog-stepper/large-format-dialog-stepper.directive';
+import { LargeFormatDialogTabsDirective } from './directives/large-format-dialog-tabs/large-format-dialog-tabs.directive';
 
 @Component({
   selector: 'ngx-large-format-dialog-content',
@@ -25,13 +27,16 @@ import { LargeFormatDialogFooterComponent } from './components/large-format-dial
 })
 export class LargeFormatDialogContentComponent {
   // header-title inputs
-  @Input() title = '';
-  @Input() subtitle?: string;
+  @Input() dialogTitle = '';
+  @Input() dialogSubtitle?: string;
 
   // header-action inputs
-  @Input() actionTitle = 'Close';
+  @Input() dialogActionTitle = 'Close';
   @Input() dirty = false;
-  @Input() dirtyActionTitle = 'Cancel';
+  @Input() dialogDirtyActionTitle = 'Cancel';
+
+  // dirty alert options
+  @Input() dirtyAlertOptions?: DialogOptions;
 
   // header-action outputs
   @Output() closeOrCancel = new EventEmitter<boolean>();
@@ -40,17 +45,9 @@ export class LargeFormatDialogContentComponent {
 
   @ContentChild(LargeFormatDialogFooterComponent) footerComponent?: LargeFormatDialogFooterComponent;
 
-  @ContentChild(StepperComponent) set stepperComponent(v: StepperComponent) {
-    this.useStepper = !!v;
-  }
+  @ContentChild(LargeFormatDialogStepperDirective, { read: TemplateRef }) stepperTemplate?: TemplateRef<unknown>;
 
-  useStepper = false;
-
-  @ContentChild(TabsComponent) set tabsComponent(v: TabsComponent) {
-    this.useTabs = !!v;
-  }
-
-  useTabs = false;
+  @ContentChild(LargeFormatDialogTabsDirective, { read: TemplateRef }) tabsTemplate?: TemplateRef<unknown>;
 
   constructor(public elementRef: ElementRef, private readonly alertService: AlertService) {}
 
@@ -61,7 +58,8 @@ export class LargeFormatDialogContentComponent {
         content: 'Are you sure you want to discard your changes?',
         cancelButtonText: 'Discard',
         cancelButtonClass: 'btn-bordered',
-        confirmButtonText: 'Cancel'
+        confirmButtonText: 'Cancel',
+        ...(this.dirtyAlertOptions || {})
       });
 
       alertRef

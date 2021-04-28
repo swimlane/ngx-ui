@@ -36,10 +36,10 @@ describe(LargeFormatDialogHeaderTitleComponent.name, () => {
   });
 
   it('should have title', () => {
-    component.title = 'Title';
+    component.dialogTitle = 'Title';
     fixture.detectChanges();
 
-    expect(nativeElement.querySelector('h1').textContent).toContain(component.title);
+    expect(nativeElement.querySelector('h1').textContent).toContain(component.dialogTitle);
   });
 
   describe('subtitle', () => {
@@ -48,10 +48,10 @@ describe(LargeFormatDialogHeaderTitleComponent.name, () => {
     });
 
     it('should have subtitle when subtitle is passed in', () => {
-      component.subtitle = 'subtitle';
+      component.dialogSubtitle = 'subtitle';
       fixture.detectChanges();
 
-      expect(nativeElement.querySelector('h4').textContent).toContain(component.subtitle);
+      expect(nativeElement.querySelector('h4').textContent).toContain(component.dialogSubtitle);
     });
   });
 });

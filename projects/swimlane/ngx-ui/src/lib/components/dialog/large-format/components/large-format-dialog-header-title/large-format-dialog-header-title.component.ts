@@ -6,10 +6,10 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulati
     <div
       class="ngx-large-format-dialog-header-title__text-wrapper ngx-large-format-dialog-header-title__text-wrapper--title"
     >
-      <h1>{{ title }}</h1>
+      <h1>{{ dialogTitle }}</h1>
     </div>
     <div class="ngx-large-format-dialog-header-title__text-wrapper">
-      <h4 *ngIf="subtitle">{{ subtitle }}</h4>
+      <h4 *ngIf="dialogSubtitle">{{ dialogSubtitle }}</h4>
     </div>
   `,
   styleUrls: ['./large-format-dialog-header-title.component.scss'],
@@ -17,8 +17,8 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulati
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LargeFormatDialogHeaderTitleComponent {
-  @Input() title = '';
-  @Input() subtitle?: string;
+  @Input() dialogTitle = '';
+  @Input() dialogSubtitle?: string;
 
   @HostBinding('class.ngx-large-format-dialog-header-title') hostClass = true;
 }
