@@ -1,5 +1,5 @@
 <main class="dialog-container">
-  <ng-container *ngIf="!useStepper && !useTabs; else custom">
+  <ng-container *ngIf="!stepperTemplate && !tabsTemplate; else custom">
     <header class="dialog-container__header">
       <ng-container *ngTemplateOutlet="header"></ng-container>
     </header>
@@ -10,21 +10,26 @@
 
   <ng-template #custom>
     <section
-      [ngClass]="
-        useStepper ? ['dialog-container--stepper', 'dialog-stepper'] : ['dialog-container--tabs', 'dialog-tabs']
-      "
+      [ngClass]="{
+        'dialog-container--stepper dialog-stepper': !!stepperTemplate,
+        'dialog-container--tabs dialog-tabs': !!tabsTemplate
+      }"
     >
       <header
         class="dialog-container__header"
-        [ngClass]="{ 'dialog-stepper__header': useStepper, 'dialog-tabs__header': useTabs }"
-        [attr.data-variant]="useStepper ? 'stepper' : 'tabs'"
+        [ngClass]="{
+          'dialog-stepper__header': !!stepperTemplate,
+          'dialog-tabs__header': !!tabsTemplate
+        }"
       >
         <ng-container *ngTemplateOutlet="header"></ng-container>
       </header>
-      <ng-content *ngIf="useStepper; else tabs" select="ngx-stepper"></ng-content>
-      <ng-template #tabs>
-        <ng-content select="ngx-tabs"></ng-content>
-      </ng-template>
+      <ng-container *ngIf="stepperTemplate">
+        <ng-container *ngTemplateOutlet="stepperTemplate"></ng-container>
+      </ng-container>
+      <ng-container *ngIf="tabsTemplate">
+        <ng-container *ngTemplateOutlet="tabsTemplate"></ng-container>
+      </ng-container>
     </section>
   </ng-template>
 
@@ -32,11 +37,14 @@
 </main>
 
 <ng-template #header>
-  <ngx-large-format-dialog-header-title [title]="title" [subtitle]="subtitle"></ngx-large-format-dialog-header-title>
+  <ngx-large-format-dialog-header-title
+    [dialogTitle]="dialogTitle"
+    [dialogSubtitle]="dialogSubtitle"
+  ></ngx-large-format-dialog-header-title>
   <ngx-large-format-dialog-header-action
     [dirty]="dirty"
-    [actionTitle]="actionTitle"
-    [dirtyActionTitle]="dirtyActionTitle"
+    [actionTitle]="dialogActionTitle"
+    [dirtyActionTitle]="dialogDirtyActionTitle"
     (closeOrCancel)="onCloseOrCancel($event)"
   ></ngx-large-format-dialog-header-action>
 </ng-template>
