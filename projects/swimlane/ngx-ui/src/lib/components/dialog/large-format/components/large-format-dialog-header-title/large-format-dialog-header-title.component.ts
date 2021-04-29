@@ -8,8 +8,8 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulati
     >
       <h1>{{ dialogTitle }}</h1>
     </div>
-    <div class="ngx-large-format-dialog-header-title__text-wrapper">
-      <h4 *ngIf="dialogSubtitle">{{ dialogSubtitle }}</h4>
+    <div *ngIf="dialogSubtitle" class="ngx-large-format-dialog-header-title__text-wrapper">
+      <h4>{{ dialogSubtitle }}</h4>
     </div>
   `,
   styleUrls: ['./large-format-dialog-header-title.component.scss'],
