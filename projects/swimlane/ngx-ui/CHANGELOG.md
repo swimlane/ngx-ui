@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix: LargeFormatDialog title layout when `subtitle` does not have value.
+
 ## 35.6.0 (2021-04-28)
 
 - Refactor: `ngx-large-format-dialog-content` Stepper and Tabs variant usage
