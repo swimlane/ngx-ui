@@ -3,6 +3,7 @@
 ## HEAD (unreleased)
 
 - Fix: LargeFormatDialog title layout when `subtitle` does not have value.
+- Fix: change events emitted inside a select field are propagated to the select component.
 
 ## 35.6.0 (2021-04-28)
 
