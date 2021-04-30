@@ -12,7 +12,7 @@ import { DrawerDirection, DrawerService } from '@swimlane/ngx-ui';
 @Component({
   selector: 'app-parent-drawer',
   template: `
-    <ngx-dialog-drawer-content title="Drawer" (dismiss)="dismiss.emit()">
+    <ngx-dialog-drawer-content drawerTitle="Drawer" (dismiss)="dismiss.emit()">
       <button class="btn" (click)="openInnerDrawer()">Open Drawer</button>
       <p>
         Iaculis pellentesque in curae purus accumsan ac nostra semper, scelerisque lorem quam ad aenean nulla turpis,

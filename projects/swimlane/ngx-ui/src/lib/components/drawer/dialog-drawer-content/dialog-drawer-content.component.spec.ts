@@ -23,7 +23,7 @@ describe(DialogDrawerContentComponent.name, () => {
     fixture = TestBed.createComponent(DialogDrawerContentComponent);
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement;
-    component.title = 'Title';
+    component.drawerTitle = 'Title';
 
     fixture.detectChanges();
   });
@@ -39,7 +39,7 @@ describe(DialogDrawerContentComponent.name, () => {
   it('should have title', () => {
     const h2Title = nativeElement.querySelector('h2.ngx-dialog-drawer-content__header-title') as HTMLHeadingElement;
     expect(h2Title).toBeTruthy();
-    expect(h2Title.textContent).toContain(component.title);
+    expect(h2Title.textContent).toContain(component.drawerTitle);
   });
 
   describe('dismiss button', () => {
