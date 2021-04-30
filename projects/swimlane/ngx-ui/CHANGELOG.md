@@ -8,6 +8,7 @@
 - Fix: Change `DialogDrawerContentComponent#title` to `drawerTitle`
 - Feat: Add `skipDirtyAlert` input to `LargeFormatDialogContent`
 - Docs: Add usage of `DialogDrawerContentComponent` to demo
+- Feat: Add `$bg-linear3` to Gradients
 
 ## 35.6.0 (2021-04-28)
 
