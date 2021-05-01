@@ -78,6 +78,7 @@ export * from './lib/components/dialog/dialog.component';
 export * from './lib/components/dialog/dialog.service';
 export * from './lib/components/dialog/dialog-options.interface';
 export * from './lib/components/dialog/dialog-format.enum';
+export * from './lib/components/dialog/large-format/large-format-dialog-content.component';
 export * from './lib/components/dialog/large-format/directives/large-format-dialog-stepper/large-format-dialog-stepper.directive';
 export * from './lib/components/dialog/large-format/directives/large-format-dialog-stepper/large-format-dialog-sub-stepper.directive';
 export * from './lib/components/dialog/large-format/directives/large-format-dialog-tabs/large-format-dialog-tabs.directive';

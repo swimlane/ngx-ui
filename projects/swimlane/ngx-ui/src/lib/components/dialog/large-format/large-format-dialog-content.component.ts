@@ -37,6 +37,7 @@ export class LargeFormatDialogContentComponent {
 
   // dirty alert options
   @Input() dirtyAlertOptions?: DialogOptions;
+  @Input() skipDirtyAlert = false;
 
   // header-action outputs
   @Output() closeOrCancel = new EventEmitter<boolean>();
@@ -52,7 +53,7 @@ export class LargeFormatDialogContentComponent {
   constructor(public elementRef: ElementRef, private readonly alertService: AlertService) {}
 
   onCloseOrCancel(isDirty: boolean) {
-    if (isDirty) {
+    if (isDirty && !this.skipDirtyAlert) {
       const alertRef = this.alertService.confirm({
         title: 'You Have Unsaved Changes',
         content: 'Are you sure you want to discard your changes?',

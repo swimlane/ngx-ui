@@ -12,7 +12,7 @@ import { DrawerDirection, DrawerService } from '@swimlane/ngx-ui';
 @Component({
   selector: 'app-child-drawer',
   template: `
-    <ngx-dialog-drawer-content title="Child Drawer" (dismiss)="dismiss.emit()">
+    <ngx-dialog-drawer-content drawerTitle="Child Drawer" (dismiss)="dismiss.emit()">
       <button class="btn" (click)="openInnerDrawer()">Open Grand-child Drawer</button>
       <p>
         Iaculis pellentesque in curae purus accumsan ac nostra semper, scelerisque lorem quam ad aenean nulla turpis,
@@ -94,7 +94,7 @@ import { DrawerDirection, DrawerService } from '@swimlane/ngx-ui';
     </ngx-dialog-drawer-content>
 
     <ng-template #childDrawer let-close="close">
-      <ngx-dialog-drawer-content title="Grand Child Drawer" (dismiss)="close.emit()">
+      <ngx-dialog-drawer-content drawerTitle="Grand Child Drawer" (dismiss)="close.emit()">
         <p>
           Iaculis pellentesque in curae purus accumsan ac nostra semper, scelerisque lorem quam ad aenean nulla turpis,
           proin metus ligula luctus sociosqu sapien aliquet. Class dui arcu metus tristique conubia rhoncus varius

@@ -154,7 +154,7 @@
   </p>
 
   <ng-template #largeFormatWithDirty>
-    <ng-container *ngIf="{dirty: dirty$ | async} as vm">
+    <ng-container *ngIf="{dirty: dirty$ | async, skipDirty: skipDirty$ | async} as vm">
       <ngx-large-format-dialog-content
         dialogTitle="Title"
         dialogSubtitle="Optional Subtitle"
@@ -162,10 +162,12 @@
         dialogActionTitle="Custom Close"
         dialogDirtyActionTitle="Custom Cancel"
         [dirtyAlertOptions]="{title: 'You have CUSTOM unsaved changes'}"
+        [skipDirtyAlert]="vm.skipDirty"
         (closeOrCancel)="onCloseOrCancel2($event)"
       >
         <p>Content</p>
         <pre>Is dirty: {{ vm.dirty }}</pre>
+        <pre>Will skip dirty alert? {{vm.skipDirty}}</pre>
         <button type="button" class="btn btn-bordered" (click)="dirty$.next(!dirty$.value)">Toggle dirty</button>
         <ngx-large-format-dialog-footer>
           <button type="button" class="btn btn-primary">Button</button>
@@ -189,6 +191,7 @@
     dialogActionTitle="Custom Close"
     dialogDirtyActionTitle="Custom Cancel"
     [dirtyAlertOptions]="{title: 'You have CUSTOM unsaved changes'}"
+    [skipDirtyAlert]="skipDirty$ | async"
   >
     <p>Content</p>
     <pre>Is dirty: {{ dirty$ | async }}</pre>
@@ -226,6 +229,9 @@
 
   <p>When the users attempt to close the Dialog while in <code>dirty</code> state, <code>LargeFormatDialogContent</code> will display a <strong>Confirmation</strong> on close to ensure the users indeed want to close the dialog and discard their changes.</p>
   <p>You can pass in <code>[dirtyAlertOptions]</code> to customize the content of the <strong>Confirmation</strong></p>
+
+  <p>You can also skip the <strong>Confirmation</strong> altogether by setting <code>[skipDirtyAlert]</code> to <code>true</code>. Try toggling the button below then open the Dialog again</p>
+  <button type="button" class="btn" (click)="skipDirty$.next(!skipDirty$.value)">Toggle <code>skipDirtyAlert</code>: {{skipDirty$ | async}}</button>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="With Stepper">
@@ -949,6 +955,10 @@
     <code>DrawerComponent</code> width will have an inset of <code>16px</code> on each side.
   </p>
 
+  <p>
+    There is a helper component <code>ngx-dialog-drawer-content</code> that you can use to wrap your Drawer content that will give you some custom styles for Drawer header
+  </p>
+
   <ng-template #largeFormatDialogWithDrawer>
     <ngx-large-format-dialog-content #dialogContent dialogTitle="Title" dialogSubtitle="Optional Subtitle"
                                      (closeOrCancel)="onCloseOrCancel()">
@@ -1001,24 +1011,26 @@
 </button>
 
 <ng-template #drawerTemplate let-close="close">
-  <p>
-    Iaculis pellentesque in curae purus accumsan ac nostra semper, scelerisque lorem quam ad aenean nulla turpis,
-    proin metus ligula luctus sociosqu sapien aliquet. Class dui arcu metus tristique conubia rhoncus varius feugiat,
-    ligula rutrum elit molestie accumsan facilisis augue amet lobortis, condimentum nostra dapibus torquent sit
-    fermentum nisl. Vel ornare porttitor vestibulum metus vitae non volutpat augue sit lacus, eros maecenas pharetra
-    ipsum leo congue adipiscing natoque iaculis, consectetur rhoncus imperdiet justo maximus per vehicula aliquet
-    quisque. Mattis imperdiet eros pretium sed eleifend cubilia ipsum, elit dictumst faucibus interdum massa orci
-    quam, congue odio vitae bibendum inceptos sapien. Tempus dignissim amet fermentum class tempor suspendisse orci
-    nunc curae, risus in mi sem urna ridiculus potenti aptent, porta scelerisque vel posuere ligula natoque pulvinar
-    faucibus. Odio varius vitae inceptos quis blandit, penatibus conubia pharetra eros, cursus rutrum praesent
-    aliquam. Montes tortor sapien natoque vivamus placerat potenti fermentum facilisis, pretium tempor ac imperdiet
-    praesent dictum viverra blandit in, tellus orci sem eget nullam ad platea. Vivamus in nascetur commodo habitasse
-    finibus luctus massa sed, erat integer donec efficitur purus ullamcorper metus. Nulla suscipit eleifend curae
-    tempus congue mus justo, sagittis facilisi luctus non blandit lectus metus leo, placerat mi ultrices dapibus
-    rutrum et. Euismod nam taciti maecenas vulputate dictumst mi ornare, elementum laoreet gravida porttitor fames
-    tempus integer sociosqu, tincidunt lorem hendrerit nullam consectetur ex.
-  </p>
-  <button class="btn" (click)="close.emit()">Close</button>
+  <ngx-dialog-drawer-content>
+    <p>
+      Iaculis pellentesque in curae purus accumsan ac nostra semper, scelerisque lorem quam ad aenean nulla turpis,
+      proin metus ligula luctus sociosqu sapien aliquet. Class dui arcu metus tristique conubia rhoncus varius feugiat,
+      ligula rutrum elit molestie accumsan facilisis augue amet lobortis, condimentum nostra dapibus torquent sit
+      fermentum nisl. Vel ornare porttitor vestibulum metus vitae non volutpat augue sit lacus, eros maecenas pharetra
+      ipsum leo congue adipiscing natoque iaculis, consectetur rhoncus imperdiet justo maximus per vehicula aliquet
+      quisque. Mattis imperdiet eros pretium sed eleifend cubilia ipsum, elit dictumst faucibus interdum massa orci
+      quam, congue odio vitae bibendum inceptos sapien. Tempus dignissim amet fermentum class tempor suspendisse orci
+      nunc curae, risus in mi sem urna ridiculus potenti aptent, porta scelerisque vel posuere ligula natoque pulvinar
+      faucibus. Odio varius vitae inceptos quis blandit, penatibus conubia pharetra eros, cursus rutrum praesent
+      aliquam. Montes tortor sapien natoque vivamus placerat potenti fermentum facilisis, pretium tempor ac imperdiet
+      praesent dictum viverra blandit in, tellus orci sem eget nullam ad platea. Vivamus in nascetur commodo habitasse
+      finibus luctus massa sed, erat integer donec efficitur purus ullamcorper metus. Nulla suscipit eleifend curae
+      tempus congue mus justo, sagittis facilisi luctus non blandit lectus metus leo, placerat mi ultrices dapibus
+      rutrum et. Euismod nam taciti maecenas vulputate dictumst mi ornare, elementum laoreet gravida porttitor fames
+      tempus integer sociosqu, tincidunt lorem hendrerit nullam consectetur ex.
+    </p>
+    <button class="btn" (click)="close.emit()">Close</button>
+  </ngx-dialog-drawer-content>
 </ng-template>]]>
       </app-prism>
     </ngx-tab>
@@ -1050,27 +1062,6 @@
     </ngx-tab>
   </ngx-tabs>
 </ngx-section>
-
-<ng-template #drawerTemplate let-close="close">
-  <p>
-    Iaculis pellentesque in curae purus accumsan ac nostra semper, scelerisque lorem quam ad aenean nulla turpis,
-    proin metus ligula luctus sociosqu sapien aliquet. Class dui arcu metus tristique conubia rhoncus varius feugiat,
-    ligula rutrum elit molestie accumsan facilisis augue amet lobortis, condimentum nostra dapibus torquent sit
-    fermentum nisl. Vel ornare porttitor vestibulum metus vitae non volutpat augue sit lacus, eros maecenas pharetra
-    ipsum leo congue adipiscing natoque iaculis, consectetur rhoncus imperdiet justo maximus per vehicula aliquet
-    quisque. Mattis imperdiet eros pretium sed eleifend cubilia ipsum, elit dictumst faucibus interdum massa orci
-    quam, congue odio vitae bibendum inceptos sapien. Tempus dignissim amet fermentum class tempor suspendisse orci
-    nunc curae, risus in mi sem urna ridiculus potenti aptent, porta scelerisque vel posuere ligula natoque pulvinar
-    faucibus. Odio varius vitae inceptos quis blandit, penatibus conubia pharetra eros, cursus rutrum praesent
-    aliquam. Montes tortor sapien natoque vivamus placerat potenti fermentum facilisis, pretium tempor ac imperdiet
-    praesent dictum viverra blandit in, tellus orci sem eget nullam ad platea. Vivamus in nascetur commodo habitasse
-    finibus luctus massa sed, erat integer donec efficitur purus ullamcorper metus. Nulla suscipit eleifend curae
-    tempus congue mus justo, sagittis facilisi luctus non blandit lectus metus leo, placerat mi ultrices dapibus
-    rutrum et. Euismod nam taciti maecenas vulputate dictumst mi ornare, elementum laoreet gravida porttitor fames
-    tempus integer sociosqu, tincidunt lorem hendrerit nullam consectetur ex.
-  </p>
-  <button class="btn" (click)="close.emit()">Close</button>
-</ng-template>
 
 <ng-template #dialogDrawerTemplate let-close="close" let-context="context">
   <app-parent-drawer (dismiss)="close.emit()"></app-parent-drawer>

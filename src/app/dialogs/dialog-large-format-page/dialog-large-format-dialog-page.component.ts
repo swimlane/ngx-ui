@@ -26,8 +26,8 @@ export class DialogLargeFormatDialogPageComponent {
   stepIndex = 0;
 
   dirty$ = new BehaviorSubject(false);
+  skipDirty$ = new BehaviorSubject(false);
 
-  @ViewChild('drawerTemplate') drawerTemplate: TemplateRef<unknown>;
   @ViewChild('dialogDrawerTemplate') dialogDrawerTemplate: TemplateRef<unknown>;
 
   private dialogRef?: ComponentRef<DialogComponent>;

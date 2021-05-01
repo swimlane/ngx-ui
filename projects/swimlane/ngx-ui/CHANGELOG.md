@@ -3,6 +3,12 @@
 ## HEAD (unreleased)
 
 - Fix: LargeFormatDialog title layout when `subtitle` does not have value.
+- Fix: Change `LargeFormatDialogContentComponent` background to a gradient background
+- Fix: Expose `LargeFormatDialogContentComponent` on public API
+- Fix: Change `DialogDrawerContentComponent#title` to `drawerTitle`
+- Feat: Add `skipDirtyAlert` input to `LargeFormatDialogContent`
+- Docs: Add usage of `DialogDrawerContentComponent` to demo
+- Feat: Add `$bg-linear3` to Gradients
 - Fix: change events emitted inside a select field are propagated to the select component.
 
 ## 35.6.0 (2021-04-28)

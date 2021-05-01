@@ -12,7 +12,7 @@ import {
   selector: 'ngx-dialog-drawer-content',
   template: `
     <header class="ngx-dialog-drawer-content__header shadow-1" (click)="dismiss.emit()">
-      <h2 class="ngx-dialog-drawer-content__header-title">{{ title }}</h2>
+      <h2 class="ngx-dialog-drawer-content__header-title">{{ drawerTitle }}</h2>
       <button type="button" class="ngx-dialog-drawer-content__dismiss-btn btn btn-link">
         <i class="ngx-icon ngx-arrow-bold-down"></i>
         {{ dismissBtnText }}
@@ -27,7 +27,7 @@ import {
   encapsulation: ViewEncapsulation.None
 })
 export class DialogDrawerContentComponent {
-  @Input() title = '';
+  @Input() drawerTitle = '';
   @Input() dismissBtnText = 'Dismiss';
   @Output() dismiss = new EventEmitter();
 

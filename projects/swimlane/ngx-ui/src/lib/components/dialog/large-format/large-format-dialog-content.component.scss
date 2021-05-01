@@ -18,6 +18,9 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    background: $bg-linear-3;
+    box-shadow: 0 0 100px rgba(0, 0, 0, 0.25);
+    border-radius: 0.125rem;
 
     &__header {
       max-height: 90px;
