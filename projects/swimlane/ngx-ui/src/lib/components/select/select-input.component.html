@@ -41,6 +41,7 @@
         autocorrect="off"
         spellcheck="off"
         (keyup)="onKeyUp($event)"
+        (change)="$event.stopPropagation()"
       />
       <i [hidden]="!tagInput.value" class="ngx-icon ngx-x" (click)="tagInput.value = ''"></i>
     </li>
