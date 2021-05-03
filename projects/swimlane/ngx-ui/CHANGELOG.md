@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.6.1 (2021-05-03)
+
 - Fix: LargeFormatDialog title layout when `subtitle` does not have value.
 - Fix: Change `LargeFormatDialogContentComponent` background to a gradient background
 - Fix: Expose `LargeFormatDialogContentComponent` on public API
