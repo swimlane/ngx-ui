@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.6.2 (2021-05-03)
+
 - Fix: Align `LargeFormatDialogContent#dialogTitle` when `dialogSubtitle` does not exist
 
 ## 35.6.1 (2021-05-03)
