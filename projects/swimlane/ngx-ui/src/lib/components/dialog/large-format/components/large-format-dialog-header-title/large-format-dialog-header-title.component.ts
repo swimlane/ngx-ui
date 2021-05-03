@@ -4,7 +4,12 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulati
   selector: 'ngx-large-format-dialog-header-title',
   template: `
     <div
-      class="ngx-large-format-dialog-header-title__text-wrapper ngx-large-format-dialog-header-title__text-wrapper--title"
+      class="ngx-large-format-dialog-header-title__text-wrapper"
+      [ngClass]="
+        !!dialogSubtitle
+          ? ['ngx-large-format-dialog-header-title__text-wrapper--title']
+          : ['ngx-large-format-dialog-header-title__text-wrapper--title-center']
+      "
     >
       <h1>{{ dialogTitle }}</h1>
     </div>
