@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix: Adjust `line-height` on `LargeFormatDialogContent#dialogTitle` to prevent cut off from overflow for truncating
+
 ## 35.6.2 (2021-05-03)
 
 - Fix: Align `LargeFormatDialogContent#dialogTitle` when `dialogSubtitle` does not exist
