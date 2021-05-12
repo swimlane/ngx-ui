@@ -46,7 +46,7 @@
     "@swimlane/ng2-file-upload": "1.1.0",
     "@types/json-schema": "^7.0.4",
     "ajv": "^6.5.5",
-    "codemirror": "^5.49.2",
+    "codemirror": "^5.58.2",
     "d3-color": "^1.2.3",
     "moment-timezone": "^0.5.28",
     "mousetrap": "^1.6.5",
