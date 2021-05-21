@@ -617,4 +617,32 @@ describe('DateTimeComponent', () => {
       expect(component.change.emit).not.toHaveBeenCalled();
     });
   });
+
+  describe('error messages', () => {
+    it('should update Date out of range error when minDate is changed', () => {
+      const today = new Date();
+      let yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+      component.minDate = today;
+      component.writeValue(yesterday);
+      expect(component.errorMsg).toEqual('Date out of range');
+      const newMinDate = new Date(yesterday.setDate(yesterday.getDate() - 1));
+      debugger;
+      component.minDate = newMinDate;
+      expect(component.errorMsg).toEqual('');
+    });
+
+    it('should update Date out of range error when maxDate is changed', () => {
+      const today = new Date();
+      let yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+      component.maxDate = yesterday;
+      component.writeValue(today);
+      expect(component.errorMsg).toEqual('Date out of range');
+      const newMaxDate = new Date(today.setDate(today.getDate() + 1));
+      debugger;
+      component.maxDate = newMaxDate;
+      expect(component.errorMsg).toEqual('');
+    });
+  });
 });

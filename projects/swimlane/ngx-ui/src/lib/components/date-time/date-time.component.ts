@@ -63,11 +63,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() size: Size = Size.Small;
   @Input() appearance: Appearance = Appearance.Legacy;
   @Input() withMargin = true;
-
-  @Input() minDate: string | Date;
-  @Input() maxDate: string | Date;
   @Input() precision: moment.unitOfTime.StartOf;
-
   @Input() timezone: string;
   @Input() inputFormats: any[] = ['L', `LT`, 'L LT', moment.ISO_8601];
 
@@ -196,6 +192,24 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this._autosize = coerceBooleanProperty(v);
   }
 
+  @Input()
+  get minDate() {
+    return this._minDate;
+  }
+  set minDate(val: Date | string) {
+    this._minDate = val;
+    this.validate(this.parseDate(this._value));
+  }
+
+  @Input()
+  get maxDate() {
+    return this._maxDate;
+  }
+  set maxDate(val: Date | string) {
+    this._maxDate = val;
+    this.validate(this.parseDate(this._value));
+  }
+
   /**
    * this output will emit only when the input value is valid or cleared.
    * @see inputChange for always emitting the value
@@ -234,6 +248,8 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   private _autosize: boolean = false;
   private _minWidth: number = MIN_WIDTH;
   private _required: boolean = false;
+  private _maxDate: Date | string;
+  private _minDate: Date | string;
 
   constructor(private readonly dialogService: DialogService, private readonly cdr: ChangeDetectorRef) {}
 

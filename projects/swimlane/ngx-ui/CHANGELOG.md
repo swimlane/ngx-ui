@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: Add validation when change on `minDate` or `maxDate` occurs.
+
 ## 35.6.3 (2021-05-03)
 
 - Fix: Adjust `line-height` on `LargeFormatDialogContent#dialogTitle` to prevent cut off from overflow for truncating
