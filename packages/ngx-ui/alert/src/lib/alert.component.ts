@@ -62,7 +62,9 @@ export class AlertComponent extends DialogComponent implements OnInit {
 
   @Input() data: any = '';
   @Input() confirmButtonText!: string;
+  @Input() confirmButtonClass!: string | string[];
   @Input() cancelButtonText!: string;
+  @Input() cancelButtonClass!: string | string[];
 
   @InputEnum(AlertType)
   @Input('type')

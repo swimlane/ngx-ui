@@ -1,5 +1,6 @@
 import { TemplateRef } from '@angular/core';
 import type { PartialBindingsNoInput } from '@swimlane/ngx-ui/injection';
+import type { DialogFormat } from '../enums';
 
 export interface DialogOptions extends PartialBindingsNoInput {
   readonly title?: string;
@@ -16,7 +17,10 @@ export interface DialogOptions extends PartialBindingsNoInput {
   readonly showOverlay?: boolean;
   readonly zIndex?: number;
   readonly confirmButtonText?: string;
+  readonly confirmButtonClass?: string | string[];
   readonly cancelButtonText?: string;
+  readonly cancelButtonClass?: string | string[];
+  readonly format?: DialogFormat;
   readonly inputs?: {
     title?: string;
     content?: string;
