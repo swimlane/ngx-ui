@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.6.4 (2021-05-25)
+
 - Enhancement: Add validation when change on `minDate` or `maxDate` occurs to the `date-time` component.
 
 ## 35.6.3 (2021-05-03)
