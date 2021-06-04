@@ -85,4 +85,18 @@ $color-border: $color-blue-grey-650;
       }
     }
   }
+
+  &.ngx-tip--warning {
+    .tip-container {
+      &::before {
+        background: $color-orange-400;
+      }
+
+      .tip-content {
+        &--icon .ngx-icon {
+          color: $color-orange-400;
+        }
+      }
+    }
+  }
 }

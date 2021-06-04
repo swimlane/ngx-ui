@@ -23,6 +23,7 @@ describe('TipComponent', () => {
     expect(component.TipStatus.Success).toEqual('success');
     expect(component.TipStatus.Error).toEqual('error');
     expect(component.TipStatus.Notice).toEqual('notice');
+    expect(component.TipStatus.Warning).toEqual('warning');
   });
   it('default icon', () => {
     const defaultIcon = 'info-filled-small';
@@ -34,6 +35,21 @@ describe('TipComponent', () => {
     (component.status as any) = 'error';
     component.ngOnInit();
     expect(component.icon).toEqual(errorIcon);
+  });
+  it('warning icon', () => {
+    const warningIcon = 'alert';
+    (component.status as any) = 'warning';
+    component.ngOnInit();
+    expect(component.icon).toEqual(warningIcon);
+  });
+  it('dislay custom icon', () => {
+    const warningIcon = 'alert';
+    const customIcon = 'smiley-frown';
+    (component.status as any) = 'warning';
+    component.icon = customIcon;
+    component.ngOnInit();
+    expect(component.icon).not.toEqual(warningIcon);
+    expect(component.icon).toEqual(customIcon);
   });
   it('emits close', () => {
     spyOn(component.close, 'emit');

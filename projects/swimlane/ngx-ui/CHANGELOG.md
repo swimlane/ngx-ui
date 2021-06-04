@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: Add `warning` status to `tip` component
+- Enhancement: Add ability to display custom icon on `tip` component
+
 ## 35.6.4 (2021-05-25)
 
 - Enhancement: Add validation when change on `minDate` or `maxDate` occurs to the `date-time` component.
