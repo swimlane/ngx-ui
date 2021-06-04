@@ -221,7 +221,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     this.close.emit();
   }
 
-  handleKeyEvent(event) {
+  onShiftEnterKeyDown(event) {
     if (this.allowAdditions) {
       this.onAddClicked(event, this.filterQuery);
     }
