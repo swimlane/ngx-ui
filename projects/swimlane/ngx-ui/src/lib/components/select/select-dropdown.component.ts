@@ -221,6 +221,12 @@ export class SelectDropdownComponent implements AfterViewInit {
     this.close.emit();
   }
 
+  handleKeyEvent(event) {
+    if (this.allowAdditions) {
+      this.onAddClicked(event, this.filterQuery);
+    }
+  }
+
   private focusElement(index: number): void {
     const elements = this.element.getElementsByClassName('ngx-select-dropdown-option');
     const element = elements[index];

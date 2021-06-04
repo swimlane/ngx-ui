@@ -83,14 +83,19 @@
   <br />
 
   <h4>Add New</h4>
-  <ngx-select [filterable]="true" [allowAdditions]="true" [allowAdditionsText]="'Add New Value'">
+  <ngx-select 
+    [filterable]="true" [allowAdditions]="true" [allowAdditionsText]="'Add New Value (Shift + ⏎)'" hint="Users can add new value by clicking on Add New Value or by pressing Shift + ⏎">
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
   </ngx-select>
 
 <app-prism>
-<![CDATA[<ngx-select [filterable]="true" [allowAdditions]="true" [allowAdditionsText]="'Add New Value'">
+<![CDATA[<ngx-select 
+  [filterable]="true" 
+  [allowAdditions]="true" 
+  [allowAdditionsText]="'Add New Value (Shift + ⏎)'"
+  hint="Users can add new value by clicking on Add New Value or by pressing Shift + ⏎">
   <ngx-select-option name="Breach" value="breach"></ngx-select-option>
   <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
   <ngx-select-option name="Physical" value="physical"></ngx-select-option>
