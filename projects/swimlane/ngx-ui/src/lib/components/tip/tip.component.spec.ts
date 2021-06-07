@@ -27,19 +27,19 @@ describe('TipComponent', () => {
   });
   it('default icon', () => {
     const defaultIcon = 'info-filled-small';
-    component.ngOnInit();
+    component.ngOnChanges();
     expect(component.icon).toEqual(defaultIcon);
   });
   it('error icon', () => {
     const errorIcon = 'warning-filled-sm';
     (component.status as any) = 'error';
-    component.ngOnInit();
+    component.ngOnChanges();
     expect(component.icon).toEqual(errorIcon);
   });
   it('warning icon', () => {
     const warningIcon = 'alert';
     (component.status as any) = 'warning';
-    component.ngOnInit();
+    component.ngOnChanges();
     expect(component.icon).toEqual(warningIcon);
   });
   it('dislay custom icon', () => {
@@ -47,7 +47,7 @@ describe('TipComponent', () => {
     const customIcon = 'smiley-frown';
     (component.status as any) = 'warning';
     component.icon = customIcon;
-    component.ngOnInit();
+    component.ngOnChanges();
     expect(component.icon).not.toEqual(warningIcon);
     expect(component.icon).toEqual(customIcon);
   });
