@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: Add ability to add new values via `Shift + ⏎` on select component when `allowAdditions` is true
+
 ## 35.6.4 (2021-05-25)
 
 - Enhancement: Add validation when change on `minDate` or `maxDate` occurs to the `date-time` component.
