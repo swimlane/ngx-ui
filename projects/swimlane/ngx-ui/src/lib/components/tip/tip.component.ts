@@ -1,13 +1,14 @@
 import { Component, Input, Output, EventEmitter, ViewEncapsulation, ChangeDetectionStrategy } from '@angular/core';
 import { TipStatus } from './tip-status.enum';
 
+const ICONS = {
+  [TipStatus.Error]: 'warning-filled-sm',
+  [TipStatus.Warning]: 'alert',
+  default: 'info-filled-small'
+};
+
 function getIcon(status: TipStatus): string {
-  const icons = {
-    [TipStatus.Error]: 'warning-filled-sm',
-    [TipStatus.Warning]: 'alert',
-    default: 'info-filled-small'
-  };
-  return icons[status] || icons['default'];
+  return ICONS[status] || ICONS['default'];
 }
 
 @Component({
