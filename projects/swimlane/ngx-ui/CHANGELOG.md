@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.6.5 (2021-06-08)
+
 - Enhancement: Add `warning` status to `tip` component
 - Enhancement: Add ability to display custom icon on `tip` component
 - Enhancement: Add ability to add new values via `Shift + ⏎` on select component when `allowAdditions` is true
