@@ -22,7 +22,11 @@ button {
 
   &:active,
   &:focus {
-    outline: none;
+    outline: -webkit-focus-ring-color auto 1px;
+  }
+
+  &:focus-visible {
+    outline: -webkit-focus-ring-color auto 1px;
   }
 }
 
@@ -73,9 +77,13 @@ button {
     padding: 0;
   }
 
-  &:focus {
-    outline: none;
-    box-shadow: $shadow-3;
+  // &:focus {
+  //   outline: none;
+  //   box-shadow: $shadow-3;
+  // }
+
+  &:focus-visible {
+    outline: -webkit-focus-ring-color auto 1px;
   }
 
   &:active:hover:focus:not([disabled]),

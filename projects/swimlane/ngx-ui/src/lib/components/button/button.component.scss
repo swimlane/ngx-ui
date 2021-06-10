@@ -28,6 +28,10 @@
     box-shadow: $shadow-3;
   }
 
+  &:focus-visible {
+    outline: -webkit-focus-ring-color auto 1px;
+  }
+
   &.in-progress,
   &.success,
   &.fail {

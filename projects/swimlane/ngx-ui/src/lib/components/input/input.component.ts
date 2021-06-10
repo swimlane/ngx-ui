@@ -139,8 +139,8 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   get autocomplete() {
     return this._autocomplete;
   }
-  set autocomplete(autocomplete: boolean) {
-    this._autocomplete = coerceBooleanProperty(autocomplete);
+  set autocomplete(autocomplete: boolean | string) {
+    this._autocomplete = coerceBooleanProperty(autocomplete) ? 'on' : 'off';
   }
 
   @Input()
@@ -250,7 +250,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   private _required: boolean = false;
   private _autoSelect: boolean = false;
   private _autofocus: boolean = false;
-  private _autocomplete: boolean = false;
+  private _autocomplete: string = 'off';
   private _autocorrect: boolean = false;
   private _spellcheck: boolean = false;
   private _autosize: boolean = false;

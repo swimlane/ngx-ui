@@ -19,4 +19,8 @@ export class InputsPageComponent {
   passwordValue: any;
   output: any;
   patternValue: string = 'Has space';
+
+  onClick(event: any) {
+    console.log({ event });
+  }
 }

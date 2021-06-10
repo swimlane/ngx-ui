@@ -86,10 +86,10 @@
         >
         </span>
       </div>
-      <span class="ngx-input-label" [@labelState]="labelState">
+      <label class="ngx-input-label" [@labelState]="labelState" [attr.for]="id">
         <span [innerHTML]="label"></span>&nbsp;
         <span *ngIf="required && requiredIndicator" [innerHTML]="requiredIndicator"></span>
-      </span>
+      </label>
     </div>
     <ng-content select="ngx-input-suffix"></ng-content>
   </div>

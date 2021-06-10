@@ -413,7 +413,7 @@
 
 <ngx-section class="shadow" [sectionTitle]="'Multi Select'">
   <h4>Basic</h4>
-  <ngx-select [filterable]="false" [multiple]="true">
+  <ngx-select [filterable]="false" [multiple]="true" label="Multi Select">
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -514,7 +514,7 @@
 
 <ngx-section class="shadow" [sectionTitle]="'Tagging'">
   <h4>Basic</h4>
-  <ngx-select [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)" (change)="onEvent('change', $event)">
+  <ngx-select [label]="'Tagging'" [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)" (change)="onEvent('change', $event)">
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
