@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: Updated import and export icon style (#625)
+
 ## 35.6.5 (2021-06-08)
 
 - Enhancement: Add `warning` status to `tip` component

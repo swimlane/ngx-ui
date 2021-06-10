@@ -171,19 +171,19 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-action-minimize::before {
-  content: "\ea07";
-}
-
-.ngx-icon.ngx-action-outline-small::before {
   content: "\ea05";
 }
 
+.ngx-icon.ngx-action-outline-small::before {
+  content: "\ea06";
+}
+
 .ngx-icon.ngx-action-outline::before {
-  content: "\ea08";
+  content: "\ea07";
 }
 
 .ngx-icon.ngx-action::before {
-  content: "\ea06";
+  content: "\ea08";
 }
 
 .ngx-icon.ngx-add-circle-filled::before {
@@ -455,11 +455,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-chart-full-stacked-area::before {
-  content: "\ea4d";
+  content: "\ea4c";
 }
 
 .ngx-icon.ngx-chart-heat::before {
-  content: "\ea4c";
+  content: "\ea4d";
 }
 
 .ngx-icon.ngx-chart-horz-full-stack-bar::before {
@@ -591,11 +591,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-condition::before {
-  content: "\ea6f";
+  content: "\ea6e";
 }
 
 .ngx-icon.ngx-copy-app::before {
-  content: "\ea6e";
+  content: "\ea6f";
 }
 
 .ngx-icon.ngx-copy-filled::before {
@@ -859,11 +859,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-field-users::before {
-  content: "\eab1";
+  content: "\eab2";
 }
 
 .ngx-icon.ngx-filter-bar::before {
-  content: "\eab2";
+  content: "\eab1";
 }
 
 .ngx-icon.ngx-filter::before {
@@ -1143,11 +1143,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-mfa::before {
-  content: "\eaf9";
+  content: "\eaf8";
 }
 
 .ngx-icon.ngx-mic::before {
-  content: "\eaf8";
+  content: "\eaf9";
 }
 
 .ngx-icon.ngx-minus::before {
@@ -1179,23 +1179,23 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-numbered-list::before {
-  content: "\eb01";
-}
-
-.ngx-icon.ngx-open::before {
-  content: "\eb03";
-}
-
-.ngx-icon.ngx-orchestration::before {
-  content: "\eb05";
-}
-
-.ngx-icon.ngx-paragraph::before {
   content: "\eb02";
 }
 
-.ngx-icon.ngx-pause-circle::before {
+.ngx-icon.ngx-open::before {
+  content: "\eb01";
+}
+
+.ngx-icon.ngx-orchestration::before {
+  content: "\eb03";
+}
+
+.ngx-icon.ngx-paragraph::before {
   content: "\eb04";
+}
+
+.ngx-icon.ngx-pause-circle::before {
+  content: "\eb05";
 }
 
 .ngx-icon.ngx-pause::before {
@@ -1547,11 +1547,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-switch::before {
-  content: "\eb5e";
+  content: "\eb5d";
 }
 
 .ngx-icon.ngx-system-diagnostics-2::before {
-  content: "\eb5d";
+  content: "\eb5e";
 }
 
 .ngx-icon.ngx-system-diagnostics::before {

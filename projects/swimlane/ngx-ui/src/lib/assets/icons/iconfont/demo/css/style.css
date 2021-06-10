@@ -163,19 +163,19 @@ icons
 }
 
 .ngx-action-minimize::before {
-    content: "\ea07";
-}
-
-.ngx-action-outline-small::before {
     content: "\ea05";
 }
 
+.ngx-action-outline-small::before {
+    content: "\ea06";
+}
+
 .ngx-action-outline::before {
-    content: "\ea08";
+    content: "\ea07";
 }
 
 .ngx-action::before {
-    content: "\ea06";
+    content: "\ea08";
 }
 
 .ngx-add-circle-filled::before {
@@ -447,11 +447,11 @@ icons
 }
 
 .ngx-chart-full-stacked-area::before {
-    content: "\ea4d";
+    content: "\ea4c";
 }
 
 .ngx-chart-heat::before {
-    content: "\ea4c";
+    content: "\ea4d";
 }
 
 .ngx-chart-horz-full-stack-bar::before {
@@ -583,11 +583,11 @@ icons
 }
 
 .ngx-condition::before {
-    content: "\ea6f";
+    content: "\ea6e";
 }
 
 .ngx-copy-app::before {
-    content: "\ea6e";
+    content: "\ea6f";
 }
 
 .ngx-copy-filled::before {
@@ -851,11 +851,11 @@ icons
 }
 
 .ngx-field-users::before {
-    content: "\eab1";
+    content: "\eab2";
 }
 
 .ngx-filter-bar::before {
-    content: "\eab2";
+    content: "\eab1";
 }
 
 .ngx-filter::before {
@@ -1135,11 +1135,11 @@ icons
 }
 
 .ngx-mfa::before {
-    content: "\eaf9";
+    content: "\eaf8";
 }
 
 .ngx-mic::before {
-    content: "\eaf8";
+    content: "\eaf9";
 }
 
 .ngx-minus::before {
@@ -1171,23 +1171,23 @@ icons
 }
 
 .ngx-numbered-list::before {
-    content: "\eb01";
-}
-
-.ngx-open::before {
-    content: "\eb03";
-}
-
-.ngx-orchestration::before {
-    content: "\eb05";
-}
-
-.ngx-paragraph::before {
     content: "\eb02";
 }
 
-.ngx-pause-circle::before {
+.ngx-open::before {
+    content: "\eb01";
+}
+
+.ngx-orchestration::before {
+    content: "\eb03";
+}
+
+.ngx-paragraph::before {
     content: "\eb04";
+}
+
+.ngx-pause-circle::before {
+    content: "\eb05";
 }
 
 .ngx-pause::before {
@@ -1539,11 +1539,11 @@ icons
 }
 
 .ngx-switch::before {
-    content: "\eb5e";
+    content: "\eb5d";
 }
 
 .ngx-system-diagnostics-2::before {
-    content: "\eb5d";
+    content: "\eb5e";
 }
 
 .ngx-system-diagnostics::before {
