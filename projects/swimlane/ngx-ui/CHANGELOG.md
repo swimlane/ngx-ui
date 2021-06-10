@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.6.6 (2021-06-10)
+
 - Enhancement: Updated import and export icon style (#625)
 
 ## 35.6.5 (2021-06-08)
