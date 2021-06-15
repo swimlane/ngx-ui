@@ -1,8 +1,4 @@
 {
-  "npmScope": "ngx-ui",
-  "affected": {
-    "defaultBase": "master"
-  },
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",
@@ -10,22 +6,25 @@
     },
     ".eslintrc.json": "*"
   },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "ngx-ui",
   "tasksRunnerOptions": {
     "default": {
       "runner": "@nrwl/workspace/tasks-runners/default",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
       }
     }
   },
-  "projects": {},
   "workspaceLayout": {
     "appsDir": "packages",
     "libsDir": "packages"
+  },
+  "projects": {
+    "ngx-ui": {
+      "tags": ["scope:ngx-ui", "type:library"]
+    }
   }
 }

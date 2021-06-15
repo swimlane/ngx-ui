@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@swimlane/ngx-ui": ["packages/ngx-ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
