@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path d="M19.707,18.293 L18.293,19.706 L12.9,14.314 C11.504,15.404 9.799,16 8,16 C5.863,16 3.854,15.168 2.344,13.656 C0.833,12.146 0,10.137 0,8 C0,5.863 0.833,3.854 2.344,2.344 C3.854,0.832 5.863,0 8,0 C10.137,0 12.146,0.832 13.656,2.344 C15.167,3.854 16,5.863 16,8 C16,9.799 15.403,11.504 14.314,12.9 L19.707,18.293 Z M8,14 C9.603,14 11.109,13.376 12.242,12.243 C13.376,11.11 14,9.603 14,8 C14,6.398 13.376,4.891 12.242,3.758 C11.109,2.624 9.603,2 8,2 C6.397,2 4.891,2.624 3.758,3.758 C2.624,4.891 2,6.398 2,8 C2,9.603 2.624,11.11 3.758,12.243 C4.891,13.376 6.397,14 8,14 Z" id="path-1"></path>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="search">
+            <g id="Page-1">
+                <g id="Applications-2-&gt;-List">
+                    <g id="top-controls">
+                        <g id="search">
+                            <g id="Group">
+                                <g id="Line_Icons">
+                                    <g id="Group"></g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <use id="Combined-Shape" fill="#72809B" fill-rule="nonzero" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>
