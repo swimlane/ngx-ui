@@ -1,0 +1,34 @@
+@import '../variables';
+@import '../mixins';
+
+@each $name, $hex in $colors {
+  @each $weight, $percentage in $palette {
+    $color-h: var(--ngx-ui-color-#{unquote($name)}-h);
+    $color-s: var(--ngx-ui-color-#{unquote($name)}-s);
+    $color-l: var(--ngx-ui-color-#{unquote($name)}-l);
+
+    @if ($weight < 100) {
+      .glow-#{$name}-#{'0' + $weight} {
+        @include glow(
+          lightenCssVar(--ngx-ui-color-#{unquote($name)}, $percentage)
+        );
+      }
+    } @else if ($weight < 500) {
+      .glow-#{$name}-#{$weight} {
+        @include glow(
+          lightenCssVar(--ngx-ui-color-#{unquote($name)}, $percentage)
+        );
+      }
+    } @else if ($weight > 500) {
+      .glow-#{$name}-#{$weight} {
+        @include glow(
+          darkenCssVar(--ngx-ui-color-#{unquote($name)}, $percentage)
+        );
+      }
+    } @else {
+      .glow-#{$name}-#{$weight} {
+        @include glow(lightenCssVar(--ngx-ui-color-#{unquote($name)}, 0));
+      }
+    }
+  }
+}

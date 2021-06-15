@@ -1,0 +1,207 @@
+/**
+ * Button styling
+ */
+
+:root {
+  --ngx-ui-button-text-color: var(--ngx-ui-color-white);
+  --ngx-ui-button-fill-color: var(--ngx-ui-color-blue-grey-600);
+  --ngx-ui-button-fill-active-color: var(--ngx-ui-color-blue-grey-700);
+}
+
+button {
+  box-sizing: border-box;
+  color: inherit;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  font: inherit;
+  background: transparent;
+  border: none;
+  text-shadow: 1px 1px rgba(0, 0, 0, 0.07);
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+.btn {
+  box-sizing: border-box;
+  color: var(--ngx-ui-button-text-color);
+  display: inline-block;
+  padding: 0.35em 0.55em;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  font: inherit;
+  font-size: 0.9em;
+  font-weight: bold;
+  outline: none;
+  line-height: 1em;
+
+  background: var(--ngx-ui-button-fill-color);
+  border: solid 1px transparent;
+  border-radius: 0.125rem;
+  box-shadow: var(--ngx-ui-shadow-1);
+  transition: background-color 200ms, box-shadow 200ms;
+
+  .ngx-icon,
+  .icon {
+    font-weight: normal;
+    vertical-align: middle;
+    line-height: 1em;
+    font-size: 0.9em;
+
+    &:before {
+      font-weight: inherit;
+    }
+
+    &.has-text,
+    &.has-text-right {
+      margin-right: 0.2em;
+    }
+
+    &.has-text-left {
+      margin-left: 0.2em;
+    }
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: var(--ngx-ui-shadow-3);
+  }
+
+  &:active:hover:focus:not([disabled]),
+  &:active:hover:focus:not(.disabled) {
+    cursor: pointer;
+    background: var(--ngx-ui-button-fill-active-color);
+
+    &.btn-primary {
+      background-color: var(--ngx-ui-color-blue);
+    }
+
+    &.btn-warning {
+      background-color: var(--ngx-ui-color-orange);
+    }
+
+    &.btn-danger {
+      background-color: var(--ngx-ui-color-red);
+    }
+
+    &.btn-link {
+      background-color: transparent;
+    }
+
+    &.btn-bordered {
+      border-color: var(--ngx-ui-color-blue-200);
+      color: var(--ngx-ui-color-blue-200);
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+  }
+
+  // sizes
+  &.small {
+    font-size: 0.6em;
+  }
+
+  &.large {
+    font-size: 1.3em;
+  }
+
+  &.btn-primary {
+    background-color: var(--ngx-ui-color-blue-400);
+
+    &.btn-primary-gradient {
+      background: linear-gradient(
+        125.43deg,
+        var(--ngx-ui-color-light-blue-400) 10.86%,
+        var(--ngx-ui-color-blue-400) 49.11%
+      );
+    }
+  }
+
+  &.btn-warning {
+    background-color: var(--ngx-ui-color-orange-400);
+    color: var(--ngx-ui-color-blue-grey-900);
+  }
+
+  &.btn-danger {
+    background-color: var(--ngx-ui-color-red-400);
+  }
+
+  &.btn-link {
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  &.btn-bordered,
+  &.btn-primary.btn-bordered {
+    border: 1px solid var(--ngx-ui-color-blue-400);
+    color: var(--ngx-ui-color-blue-400);
+    background-color: transparent;
+    box-shadow: none;
+
+    &.disabled-button {
+      opacity: 0.5;
+
+      .button {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.btn-default.btn-bordered {
+    border: 1px solid var(--ngx-ui-button-text-color);
+    color: var(--ngx-ui-button-text-color);
+    background-color: transparent;
+    box-shadow: none;
+
+    &:hover {
+      border-color: var(--ngx-ui-color-blue) !important;
+      color: var(--ngx-ui-color-blue) !important;
+    }
+
+    &.disabled-button {
+      opacity: 0.5;
+
+      .button {
+        opacity: 1;
+      }
+    }
+  }
+
+  &.btn-file {
+    cursor: pointer;
+    padding: 0;
+
+    label {
+      display: block;
+      cursor: pointer;
+      padding: 0.35em 0.75em;
+    }
+
+    &[disabled] label {
+      cursor: not-allowed;
+    }
+
+    input[type='file'] {
+      pointer-events: none;
+      position: absolute;
+      left: -9999px;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+html,
+body {
+  font-family: var(--ngx-ui-source-sans-stack);
+  font-size: var(--ngx-ui-font-size);
+  line-height: var(--ngx-ui-line-height);
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+[disabled],
+:disabled,
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed !important;
+}
+
+/**
+ * Prevent margin and border from affecting element width.
+ * https://goo.gl/pYtbK7
+ *
+ */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/**
+ * Suppress the focus outline on elements that cannot be accessed via keyboard.
+ * This prevents an unwanted focus outline from appearing around elements that
+ * might still respond to pointer events.
+ */
+[tabindex='-1']:focus {
+  outline: none !important;
+}
+
+/**
+ * Horizontal text alignment
+ */
+.text-center {
+  text-align: center !important;
+}
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}

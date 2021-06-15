@@ -1,0 +1,77 @@
+:root {
+  --ngx-ui-source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
+}
+
+/**
+ * Font stacks
+ * http://www.fontspring.com/blog/smoother-rendering-in-chrome-update
+*/
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  src: url('../../assets/fonts/source-sans/SourceSansPro-Regular.ttf')
+    format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: italic;
+  src: url('../../assets/fonts/source-sans/SourceSansPro-Italic.ttf')
+    format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-weight: 300;
+  font-style: normal;
+  src: url('../../assets/fonts/source-sans/SourceSansPro-Light.ttf')
+    format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-weight: 300;
+  font-style: italic;
+  src: url('../../assets/fonts/source-sans/SourceSansPro-LightItalic.ttf')
+    format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-weight: 600;
+  font-style: normal;
+  src: url('../../assets/fonts/source-sans/SourceSansPro-Semibold.ttf')
+    format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-weight: 600;
+  font-style: italic;
+  src: url('../../assets/fonts/source-sans/SourceSansPro-SemiboldItalic.ttf')
+    format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-weight: bold;
+  font-style: normal;
+  src: url('../../assets/fonts/source-sans/SourceSansPro-Bold.ttf')
+    format('truetype');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-weight: bold;
+  font-style: italic;
+  src: url('../../assets/fonts/source-sans/SourceSansPro-BoldItalic.ttf')
+    format('truetype');
+  font-display: swap;
+}

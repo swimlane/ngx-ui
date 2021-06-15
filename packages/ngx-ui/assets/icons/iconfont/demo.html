@@ -1937,7 +1937,10 @@
           };
 
           var beforeContentChar = window
-              .getComputedStyle(listItems[i].getElementsByTagName('i')[0], '::before')
+              .getComputedStyle(
+                listItems[i].getElementsByTagName('i')[0],
+                '::before'
+              )
               .getPropertyValue('content')
               .replace(/'/g, '')
               .replace(/"/g, ''),

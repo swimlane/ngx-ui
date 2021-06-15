@@ -1,0 +1,24 @@
+@import '../variables';
+
+@each $name, $hex in $colors {
+  @each $weight, $percentage in $palette {
+    $color-h: var(--ngx-ui-color-#{unquote($name)}-h);
+    $color-s: var(--ngx-ui-color-#{unquote($name)}-s);
+    $color-l: var(--ngx-ui-color-#{unquote($name)}-l);
+
+    @if ($weight < 500) {
+      .text-#{$name}-#{$weight} {
+        color: hsl($color-h, $color-s, calc(#{$color-l} + #{$percentage}));
+      }
+    } @else if ($weight > 500) {
+      .text-#{$name}-#{$weight} {
+        color: hsl($color-h, $color-s, calc(#{$color-l} - #{$percentage}));
+      }
+    } @else {
+      .text-#{$name},
+      .text-#{$name}-#{$weight} {
+        color: $hex;
+      }
+    }
+  }
+}

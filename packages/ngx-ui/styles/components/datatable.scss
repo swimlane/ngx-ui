@@ -1,0 +1,112 @@
+:root {
+  --ngx-ui-datatable-bg: var(--ngx-ui-color-blue-grey-800);
+  --ngx-ui-datatable-border: var(--ngx-ui-color-blue-grey-700);
+  --ngx-ui-datatable-color: var(--ngx-ui-color-grey-100);
+  --ngx-ui-datatable-row-hover: #181b23;
+}
+
+.ngx-datatable {
+  box-shadow: none;
+  background: var(--ngx-ui-datatable-bg);
+  border: 1px solid var(--ngx-ui-datatable-border);
+  color: var(--ngx-ui-datatable-color);
+  font-size: 0.8125rem;
+
+  .datatable-header {
+    background: #181b24;
+    color: #72809b;
+
+    .datatable-header-cell {
+      text-align: left;
+      padding: 0.5rem 1.2rem;
+      font-weight: bold;
+
+      .datatable-header-cell-label {
+        line-height: 1.5rem;
+      }
+    }
+  }
+
+  .datatable-body {
+    background: var(--ngx-ui-datatable-bg);
+
+    .datatable-body-row {
+      border-top: 1px solid var(--ngx-ui-datatable-border);
+
+      .datatable-body-cell {
+        text-align: left;
+        padding: 0.5rem 1.2rem;
+        vertical-align: top;
+      }
+
+      &:hover {
+        background: var(--ngx-ui-datatable-row-hover);
+        transition-property: background;
+        transition-duration: 0.3s;
+        transition-timing-function: linear;
+      }
+
+      &:focus {
+        background-color: var(--ngx-ui-datatable-row-hover);
+      }
+
+      &.active {
+        background-color: var(--ngx-ui-color-blue);
+        color: var(--ngx-ui-color-grey-100);
+      }
+    }
+  }
+
+  .datatable-footer {
+    background: var(--ngx-ui-color-blue-grey-700);
+    color: var(--ngx-ui-color-grey-300);
+    margin-top: -1px;
+
+    .page-count {
+      line-height: 3.125rem;
+      height: 3.125rem;
+      padding: 0 1.2rem;
+    }
+
+    .datatable-pager {
+      margin: 0 0.625rem;
+      vertical-align: top;
+
+      ul {
+        li {
+          margin: 0.625rem 0;
+
+          a {
+            height: 1.375rem;
+            min-width: 1.5rem;
+            line-height: 1.375rem;
+            padding: 0;
+            border-radius: 0.1875rem;
+            margin: 0 0.1875rem;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: bottom;
+            color: var(--ngx-ui-color-grey-300);
+          }
+
+          &:not(.disabled) {
+            &.active a,
+            &:hover a {
+              background-color: var(--ngx-ui-color-blue-grey-600);
+              font-weight: bold;
+            }
+          }
+        }
+      }
+
+      .icon-left,
+      .icon-skip,
+      .icon-right,
+      .icon-prev {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        padding: 0 0.1875rem;
+      }
+    }
+  }
+}

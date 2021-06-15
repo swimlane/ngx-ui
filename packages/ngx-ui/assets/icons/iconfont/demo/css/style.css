@@ -7,8 +7,10 @@ Generated using nucleoapp.com
 @font-face {
   font-family: 'ngx-icon';
   src: url('../../fonts/ngx-icon.eot');
-  src: url('../../fonts/ngx-icon.eot') format('embedded-opentype'), url('../../fonts/ngx-icon.woff2') format('woff2'),
-    url('../../fonts/ngx-icon.woff') format('woff'), url('../../fonts/ngx-icon.ttf') format('truetype'),
+  src: url('../../fonts/ngx-icon.eot') format('embedded-opentype'),
+    url('../../fonts/ngx-icon.woff2') format('woff2'),
+    url('../../fonts/ngx-icon.woff') format('woff'),
+    url('../../fonts/ngx-icon.ttf') format('truetype'),
     url('../../fonts/ngx-icon.svg') format('svg');
   font-weight: normal;
   font-style: normal;

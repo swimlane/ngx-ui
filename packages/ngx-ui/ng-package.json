@@ -3,5 +3,6 @@
   "dest": "../../dist/packages/ngx-ui",
   "lib": {
     "entryFile": "index.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["normalize.css"]
 }

@@ -1,0 +1,19 @@
+select {
+  background: var(--ngx-ui-color-input-bg);
+  border: solid 1px var(--ngx-ui-color-input-border);
+  color: var(--ngx-ui-color-input-text);
+  border-radius: 0.125rem;
+  height: 2rem;
+  line-height: 2rem;
+  font-size: 0.8125rem;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+    color: var(--ngx-ui-color-blue-grey-300);
+  }
+}
