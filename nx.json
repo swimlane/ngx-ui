@@ -25,6 +25,9 @@
   "projects": {
     "ngx-ui": {
       "tags": ["scope:ngx-ui", "type:library"]
+    },
+    "ngx-ui-typings": {
+      "tags": ["scope:typings", "type:lib"]
     }
   }
 }

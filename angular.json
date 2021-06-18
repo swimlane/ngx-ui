@@ -3,6 +3,7 @@
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
+  "defaultProject": "ngx-ui",
   "schematics": {
     "@nrwl/angular:application": {
       "linter": "eslint",
@@ -55,7 +56,47 @@
           }
         }
       }
+    },
+    "ngx-ui-typings": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/typings",
+      "sourceRoot": "packages/ngx-ui/typings/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/typings"],
+          "options": {
+            "project": "packages/ngx-ui/typings/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/typings/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/typings/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/typings"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/typings/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/typings/src/**/*.ts",
+              "packages/ngx-ui/typings/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
-  },
-  "defaultProject": "ngx-ui"
+  }
 }

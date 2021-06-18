@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@swimlane/ngx-ui": ["packages/ngx-ui/src/index.ts"]
+      "@swimlane/ngx-ui": ["packages/ngx-ui/src/index.ts"],
+      "@swimlane/ngx-ui/typings": ["packages/ngx-ui/typings/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
