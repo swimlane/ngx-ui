@@ -28,6 +28,9 @@
     },
     "ngx-ui-typings": {
       "tags": ["scope:typings", "type:lib"]
+    },
+    "ngx-ui-utils": {
+      "tags": ["scope:utils", "type:lib"]
     }
   }
 }
