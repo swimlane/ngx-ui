@@ -138,6 +138,47 @@
           }
         }
       }
+    },
+    "ngx-ui-common": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/common",
+      "sourceRoot": "packages/ngx-ui/common/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/common"],
+          "options": {
+            "project": "packages/ngx-ui/common/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/common/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/common/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/common"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/common/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/common/src/**/*.ts",
+              "packages/ngx-ui/common/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

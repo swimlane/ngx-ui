@@ -17,7 +17,8 @@
     "paths": {
       "@swimlane/ngx-ui": ["packages/ngx-ui/src/index.ts"],
       "@swimlane/ngx-ui/typings": ["packages/ngx-ui/typings/src/index.ts"],
-      "@swimlane/ngx-ui/utils": ["packages/ngx-ui/utils/src/index.ts"]
+      "@swimlane/ngx-ui/utils": ["packages/ngx-ui/utils/src/index.ts"],
+      "@swimlane/ngx-ui/common": ["packages/ngx-ui/common/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

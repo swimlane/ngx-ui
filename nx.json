@@ -31,6 +31,9 @@
     },
     "ngx-ui-utils": {
       "tags": ["scope:utils", "type:lib"]
+    },
+    "ngx-ui-common": {
+      "tags": ["scope:common", "type:lib"]
     }
   }
 }
