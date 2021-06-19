@@ -24,6 +24,9 @@
       ],
       "@swimlane/ngx-ui/autosize-input": [
         "packages/ngx-ui/autosize-input/src/index.ts"
+      ],
+      "@swimlane/ngx-ui/copy-to-clipboard": [
+        "packages/ngx-ui/copy-to-clipboard/src/index.ts"
       ]
     }
   },

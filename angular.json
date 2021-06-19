@@ -261,6 +261,47 @@
           }
         }
       }
+    },
+    "ngx-ui-copy-to-clipboard": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/copy-to-clipboard",
+      "sourceRoot": "packages/ngx-ui/copy-to-clipboard/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/copy-to-clipboard"],
+          "options": {
+            "project": "packages/ngx-ui/copy-to-clipboard/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/copy-to-clipboard/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/copy-to-clipboard/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/copy-to-clipboard"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/copy-to-clipboard/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/copy-to-clipboard/src/**/*.ts",
+              "packages/ngx-ui/copy-to-clipboard/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

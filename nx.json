@@ -40,6 +40,9 @@
     },
     "ngx-ui-autosize-input": {
       "tags": ["scope:autosize-input", "type:lib"]
+    },
+    "ngx-ui-copy-to-clipboard": {
+      "tags": ["scope:copy-to-clipboard", "type:lib"]
     }
   }
 }
