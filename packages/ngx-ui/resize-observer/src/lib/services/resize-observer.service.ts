@@ -25,14 +25,16 @@ export class ResizeObserverService extends Observable<
         return;
       }
 
-      observer = new ResizeObserver((entries) => {
-        ngZone.run(() => subscriber.next(entries));
+      ngZone.runOutsideAngular(() => {
+        observer = new ResizeObserver((entries) => {
+          ngZone.run(() => subscriber.next(entries));
+        });
+
+        observer.observe(nativeElement, { box: observeBox });
       });
 
-      observer.observe(nativeElement, { box: observeBox });
-
       return () => {
-        observer.disconnect();
+        observer?.disconnect();
       };
     });
 
