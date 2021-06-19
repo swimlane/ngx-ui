@@ -7,5 +7,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/animations',
     '<rootDir>/packages/ngx-ui/autosize-input',
     '<rootDir>/packages/ngx-ui/copy-to-clipboard',
+    '<rootDir>/packages/ngx-ui/long-press',
   ],
 };

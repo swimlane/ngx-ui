@@ -302,6 +302,47 @@
           }
         }
       }
+    },
+    "ngx-ui-long-press": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/long-press",
+      "sourceRoot": "packages/ngx-ui/long-press/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/long-press"],
+          "options": {
+            "project": "packages/ngx-ui/long-press/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/long-press/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/long-press/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/long-press"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/long-press/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/long-press/src/**/*.ts",
+              "packages/ngx-ui/long-press/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

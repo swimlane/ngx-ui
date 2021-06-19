@@ -43,6 +43,9 @@
     },
     "ngx-ui-copy-to-clipboard": {
       "tags": ["scope:copy-to-clipboard", "type:lib"]
+    },
+    "ngx-ui-long-press": {
+      "tags": ["scope:long-press", "type:lib"]
     }
   }
 }
