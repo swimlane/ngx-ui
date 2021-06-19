@@ -46,6 +46,9 @@
     },
     "ngx-ui-long-press": {
       "tags": ["scope:long-press", "type:lib"]
+    },
+    "ngx-ui-resize-observer": {
+      "tags": ["scope:resize-observer", "type:lib"]
     }
   }
 }

@@ -28,7 +28,12 @@
       "@swimlane/ngx-ui/copy-to-clipboard": [
         "packages/ngx-ui/copy-to-clipboard/src/index.ts"
       ],
-      "@swimlane/ngx-ui/long-press": ["packages/ngx-ui/long-press/src/index.ts"]
+      "@swimlane/ngx-ui/long-press": [
+        "packages/ngx-ui/long-press/src/index.ts"
+      ],
+      "@swimlane/ngx-ui/resize-observer": [
+        "packages/ngx-ui/resize-observer/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

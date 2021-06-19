@@ -8,5 +8,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/autosize-input',
     '<rootDir>/packages/ngx-ui/copy-to-clipboard',
     '<rootDir>/packages/ngx-ui/long-press',
+    '<rootDir>/packages/ngx-ui/resize-observer',
   ],
 };

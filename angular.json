@@ -343,6 +343,47 @@
           }
         }
       }
+    },
+    "ngx-ui-resize-observer": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/resize-observer",
+      "sourceRoot": "packages/ngx-ui/resize-observer/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/resize-observer"],
+          "options": {
+            "project": "packages/ngx-ui/resize-observer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/resize-observer/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/resize-observer/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/resize-observer"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/resize-observer/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/resize-observer/src/**/*.ts",
+              "packages/ngx-ui/resize-observer/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }
