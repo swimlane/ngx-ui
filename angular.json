@@ -179,6 +179,47 @@
           }
         }
       }
+    },
+    "ngx-ui-animations": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/animations",
+      "sourceRoot": "packages/ngx-ui/animations/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/animations"],
+          "options": {
+            "project": "packages/ngx-ui/animations/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/animations/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/animations/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/animations"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/animations/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/animations/src/**/*.ts",
+              "packages/ngx-ui/animations/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }
