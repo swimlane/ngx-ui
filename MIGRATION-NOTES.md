@@ -26,6 +26,10 @@
 - Refactor `LongPressDirective` with support for "hold and fire" with `[ngxLongPressInterval]`
 - Implement `ResizeObserverDirective` without `resize-observer-polyfills`
   - `ngxResizeObserverBox` to provide `{box}` options for `observer.observe`. This is an `Attribute` so `string` only
+- Implement `IntersectionObserverDirective`
+  - `rootMargin` and `threshold` can be customized using `Attribute` `ngxIntersectionObserverRootMargin`
+    and `ngxIntersectionObserverThreshold`. These are `Attributes` so `string` value only.
+  - `root` can be customized using `ngxIntersectionObserverRoot` directive on a parent element.
 
 ## Breaking Changes
 
@@ -41,3 +45,5 @@
   - `[disabled]` -> `[ngxLongPressDisabled]`
 - `ResizeObserverDirective`
   - `[resizeObserver]` -> `[ngxResizeObserver]`
+- Deprecate `VisibilityDirective` in favor of `IntersectDirective` (with `IntersectionObserver` implementation)
+  - `visibility (visible)` -> `(ngxIntersect)`

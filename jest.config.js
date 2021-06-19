@@ -9,5 +9,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/copy-to-clipboard',
     '<rootDir>/packages/ngx-ui/long-press',
     '<rootDir>/packages/ngx-ui/resize-observer',
+    '<rootDir>/packages/ngx-ui/intersection-observer',
   ],
 };

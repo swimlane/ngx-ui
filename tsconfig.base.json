@@ -33,6 +33,9 @@
       ],
       "@swimlane/ngx-ui/resize-observer": [
         "packages/ngx-ui/resize-observer/src/index.ts"
+      ],
+      "@swimlane/ngx-ui/intersection-observer": [
+        "packages/ngx-ui/intersection-observer/src/index.ts"
       ]
     }
   },

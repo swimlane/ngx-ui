@@ -384,6 +384,47 @@
           }
         }
       }
+    },
+    "ngx-ui-intersection-observer": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/intersection-observer",
+      "sourceRoot": "packages/ngx-ui/intersection-observer/src",
+      "prefix": "ngx-ui",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/intersection-observer"],
+          "options": {
+            "project": "packages/ngx-ui/intersection-observer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/intersection-observer/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/intersection-observer/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/intersection-observer"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/intersection-observer/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/intersection-observer/src/**/*.ts",
+              "packages/ngx-ui/intersection-observer/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

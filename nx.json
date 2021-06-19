@@ -49,6 +49,9 @@
     },
     "ngx-ui-resize-observer": {
       "tags": ["scope:resize-observer", "type:lib"]
+    },
+    "ngx-ui-intersection-observer": {
+      "tags": ["scope:intersection-observer", "type:lib"]
     }
   }
 }
