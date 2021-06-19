@@ -8,4 +8,7 @@
   - `long-press` -> `ngxLongPress`
   - `[duration]` -> `[ngxLongPress]`
   - `[disabled]` -> `[ngxLongPressDisabled]`
-  - `LongPressDirective` supports for "hold and fire" with `[ngxLongPressInterval]` 
+  - `LongPressDirective` supports for "hold and fire" with `[ngxLongPressInterval]`
+- Implement `ResizeObserverDirective` without `resize-observer-polyfills`
+  - `[resizeObserver]` -> `[ngxResizeObserver]`
+  - `ngxResizeObserverBox` to provide `{box}` options for `observer.observe`. This is an `Attribute` so `string` only
