@@ -37,6 +37,9 @@
     },
     "ngx-ui-animations": {
       "tags": ["scope:animations", "type:lib"]
+    },
+    "ngx-ui-autosize-input": {
+      "tags": ["scope:autosize-input", "type:lib"]
     }
   }
 }

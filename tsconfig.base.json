@@ -19,7 +19,12 @@
       "@swimlane/ngx-ui/typings": ["packages/ngx-ui/typings/src/index.ts"],
       "@swimlane/ngx-ui/utils": ["packages/ngx-ui/utils/src/index.ts"],
       "@swimlane/ngx-ui/common": ["packages/ngx-ui/common/src/index.ts"],
-      "@swimlane/ngx-ui/animations": ["packages/ngx-ui/animations/src/index.ts"]
+      "@swimlane/ngx-ui/animations": [
+        "packages/ngx-ui/animations/src/index.ts"
+      ],
+      "@swimlane/ngx-ui/autosize-input": [
+        "packages/ngx-ui/autosize-input/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -220,6 +220,47 @@
           }
         }
       }
+    },
+    "ngx-ui-autosize-input": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/autosize-input",
+      "sourceRoot": "packages/ngx-ui/autosize-input/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/autosize-input"],
+          "options": {
+            "project": "packages/ngx-ui/autosize-input/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/autosize-input/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/autosize-input/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/autosize-input"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/autosize-input/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/autosize-input/src/**/*.ts",
+              "packages/ngx-ui/autosize-input/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

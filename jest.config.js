@@ -5,5 +5,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/utils',
     '<rootDir>/packages/ngx-ui/common',
     '<rootDir>/packages/ngx-ui/animations',
+    '<rootDir>/packages/ngx-ui/autosize-input',
   ],
 };
