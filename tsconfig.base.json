@@ -46,7 +46,8 @@
       "@swimlane/ngx-ui/filter-by": ["packages/ngx-ui/filter-by/src/index.ts"],
       "@swimlane/ngx-ui/json-tree": ["packages/ngx-ui/json-tree/src/index.ts"],
       "@swimlane/ngx-ui/time-zone": ["packages/ngx-ui/time-zone/src/index.ts"],
-      "@swimlane/ngx-ui/button": ["packages/ngx-ui/button/src/index.ts"]
+      "@swimlane/ngx-ui/button": ["packages/ngx-ui/button/src/index.ts"],
+      "@swimlane/ngx-doc": ["packages/ngx-doc/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

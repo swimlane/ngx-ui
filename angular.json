@@ -671,6 +671,47 @@
           }
         }
       }
+    },
+    "ngx-doc": {
+      "projectType": "library",
+      "root": "packages/ngx-doc",
+      "sourceRoot": "packages/ngx-doc/src",
+      "prefix": "ngx-doc",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-doc"],
+          "options": {
+            "project": "packages/ngx-doc/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-doc/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-doc/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-doc"],
+          "options": {
+            "jestConfig": "packages/ngx-doc/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-doc/src/**/*.ts",
+              "packages/ngx-doc/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

@@ -70,6 +70,9 @@
     },
     "ngx-ui-button": {
       "tags": ["scope:button", "type:lib"]
+    },
+    "ngx-doc": {
+      "tags": ["scope:ngx-doc", "type:lib"]
     }
   }
 }
