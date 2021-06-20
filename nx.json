@@ -58,6 +58,9 @@
     },
     "ngx-ui-decamelize": {
       "tags": ["scope:decamelize", "type:lib"]
+    },
+    "ngx-ui-filter-by": {
+      "tags": ["scope:filter-by", "type:lib"]
     }
   }
 }

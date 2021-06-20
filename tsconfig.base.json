@@ -40,7 +40,10 @@
       "@swimlane/ngx-ui/camel-to-snake": [
         "packages/ngx-ui/camel-to-snake/src/index.ts"
       ],
-      "@swimlane/ngx-ui/decamelize": ["packages/ngx-ui/decamelize/src/index.ts"]
+      "@swimlane/ngx-ui/decamelize": [
+        "packages/ngx-ui/decamelize/src/index.ts"
+      ],
+      "@swimlane/ngx-ui/filter-by": ["packages/ngx-ui/filter-by/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
