@@ -548,6 +548,47 @@
           }
         }
       }
+    },
+    "ngx-ui-json-tree": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/json-tree",
+      "sourceRoot": "packages/ngx-ui/json-tree/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/json-tree"],
+          "options": {
+            "project": "packages/ngx-ui/json-tree/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/json-tree/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/json-tree/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/json-tree"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/json-tree/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/json-tree/src/**/*.ts",
+              "packages/ngx-ui/json-tree/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

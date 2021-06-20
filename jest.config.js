@@ -13,5 +13,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/camel-to-snake',
     '<rootDir>/packages/ngx-ui/decamelize',
     '<rootDir>/packages/ngx-ui/filter-by',
+    '<rootDir>/packages/ngx-ui/json-tree',
   ],
 };

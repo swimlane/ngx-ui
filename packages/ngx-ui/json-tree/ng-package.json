@@ -1,0 +1,7 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/packages/ngx-ui/json-tree",
+  "lib": {
+    "entryFile": "src/index.ts"
+  }
+}

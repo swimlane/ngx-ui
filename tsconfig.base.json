@@ -43,7 +43,8 @@
       "@swimlane/ngx-ui/decamelize": [
         "packages/ngx-ui/decamelize/src/index.ts"
       ],
-      "@swimlane/ngx-ui/filter-by": ["packages/ngx-ui/filter-by/src/index.ts"]
+      "@swimlane/ngx-ui/filter-by": ["packages/ngx-ui/filter-by/src/index.ts"],
+      "@swimlane/ngx-ui/json-tree": ["packages/ngx-ui/json-tree/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

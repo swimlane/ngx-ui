@@ -50,6 +50,9 @@
 
 ### Pipes
 
-- `CamelToSnake`
+- `CamelToSnakePipe`
   - `cammeltosnake` -> `camelToSnake`
   - Only accepts `string | undefined | null` as value
+- `DecamelizePipe` is now type-safe. Parameters must be a `string`
+- `FilterByPipe` is now type-safe. Parameters must be an `Array`.
+- `JsonTreePipe` now has type-safe return type which is a `TreeNode[]`

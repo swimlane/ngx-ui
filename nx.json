@@ -61,6 +61,9 @@
     },
     "ngx-ui-filter-by": {
       "tags": ["scope:filter-by", "type:lib"]
+    },
+    "ngx-ui-json-tree": {
+      "tags": ["scope:json-tree", "type:lib"]
     }
   }
 }
