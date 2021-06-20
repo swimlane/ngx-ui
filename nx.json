@@ -67,6 +67,9 @@
     },
     "ngx-ui-time-zone": {
       "tags": ["scope:time-zone", "type:lib"]
+    },
+    "ngx-ui-button": {
+      "tags": ["scope:button", "type:lib"]
     }
   }
 }

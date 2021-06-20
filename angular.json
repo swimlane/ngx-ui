@@ -630,6 +630,47 @@
           }
         }
       }
+    },
+    "ngx-ui-button": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/button",
+      "sourceRoot": "packages/ngx-ui/button/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/button"],
+          "options": {
+            "project": "packages/ngx-ui/button/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/button/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/button/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/button"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/button/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/button/src/**/*.ts",
+              "packages/ngx-ui/button/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }
