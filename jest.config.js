@@ -14,5 +14,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/decamelize',
     '<rootDir>/packages/ngx-ui/filter-by',
     '<rootDir>/packages/ngx-ui/json-tree',
+    '<rootDir>/packages/ngx-ui/time-zone',
   ],
 };

@@ -1,0 +1,11 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/packages/ngx-ui/time-zone",
+  "lib": {
+    "entryFile": "src/index.ts",
+    "umdModuleIds": {
+      "moment-timezone": "moment-timezone",
+      "moment": "moment"
+    }
+  }
+}

@@ -45,7 +45,7 @@
   - `[disabled]` -> `[ngxLongPressDisabled]`
 - `ResizeObserverDirective`
   - `[resizeObserver]` -> `[ngxResizeObserver]`
-- Deprecate `VisibilityDirective` in favor of `IntersectDirective` (with `IntersectionObserver` implementation)
+- Remove `VisibilityDirective` in favor of `IntersectDirective` (with `IntersectionObserver` implementation)
   - `visibility (visible)` -> `(ngxIntersect)`
 
 ### Pipes
@@ -53,6 +53,9 @@
 - `CamelToSnakePipe`
   - `cammeltosnake` -> `camelToSnake`
   - Only accepts `string | undefined | null` as value
-- `DecamelizePipe` is now type-safe. Parameters must be a `string`
-- `FilterByPipe` is now type-safe. Parameters must be an `Array`.
+- `DecamelizePipe` is now type-safe. Only accepts a `string`
+- `FilterByPipe` is now type-safe. Only accepts an `Array`.
 - `JsonTreePipe` now has type-safe return type which is a `TreeNode[]`
+- `TimeZonePipe`
+  - `amTimeZone` -> `timeZone`
+  - Accepts `MomentInput` type and returns `Moment | string`

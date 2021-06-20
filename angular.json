@@ -589,6 +589,47 @@
           }
         }
       }
+    },
+    "ngx-ui-time-zone": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/time-zone",
+      "sourceRoot": "packages/ngx-ui/time-zone/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/time-zone"],
+          "options": {
+            "project": "packages/ngx-ui/time-zone/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/time-zone/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/time-zone/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/time-zone"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/time-zone/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/time-zone/src/**/*.ts",
+              "packages/ngx-ui/time-zone/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

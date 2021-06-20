@@ -64,6 +64,9 @@
     },
     "ngx-ui-json-tree": {
       "tags": ["scope:json-tree", "type:lib"]
+    },
+    "ngx-ui-time-zone": {
+      "tags": ["scope:time-zone", "type:lib"]
     }
   }
 }
