@@ -466,6 +466,47 @@
           }
         }
       }
+    },
+    "ngx-ui-decamelize": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/decamelize",
+      "sourceRoot": "packages/ngx-ui/decamelize/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/decamelize"],
+          "options": {
+            "project": "packages/ngx-ui/decamelize/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/decamelize/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/decamelize/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/decamelize"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/decamelize/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/decamelize/src/**/*.ts",
+              "packages/ngx-ui/decamelize/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }

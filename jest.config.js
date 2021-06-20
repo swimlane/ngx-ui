@@ -11,5 +11,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/resize-observer',
     '<rootDir>/packages/ngx-ui/intersection-observer',
     '<rootDir>/packages/ngx-ui/camel-to-snake',
+    '<rootDir>/packages/ngx-ui/decamelize',
   ],
 };
