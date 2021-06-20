@@ -24,7 +24,7 @@
   },
   "projects": {
     "ngx-ui": {
-      "tags": ["scope:ngx-ui", "type:library"]
+      "tags": ["scope:ngx-ui", "type:lib"]
     },
     "ngx-ui-typings": {
       "tags": ["scope:typings", "type:lib"]
@@ -52,6 +52,9 @@
     },
     "ngx-ui-intersection-observer": {
       "tags": ["scope:intersection-observer", "type:lib"]
+    },
+    "ngx-ui-camel-to-snake": {
+      "tags": ["scope:camel-to-snake", "type:lib"]
     }
   }
 }

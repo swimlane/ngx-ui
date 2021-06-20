@@ -36,6 +36,9 @@
       ],
       "@swimlane/ngx-ui/intersection-observer": [
         "packages/ngx-ui/intersection-observer/src/index.ts"
+      ],
+      "@swimlane/ngx-ui/camel-to-snake": [
+        "packages/ngx-ui/camel-to-snake/src/index.ts"
       ]
     }
   },

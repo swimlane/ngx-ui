@@ -10,5 +10,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/long-press',
     '<rootDir>/packages/ngx-ui/resize-observer',
     '<rootDir>/packages/ngx-ui/intersection-observer',
+    '<rootDir>/packages/ngx-ui/camel-to-snake',
   ],
 };

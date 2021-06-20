@@ -425,6 +425,47 @@
           }
         }
       }
+    },
+    "ngx-ui-camel-to-snake": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/camel-to-snake",
+      "sourceRoot": "packages/ngx-ui/camel-to-snake/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/camel-to-snake"],
+          "options": {
+            "project": "packages/ngx-ui/camel-to-snake/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/camel-to-snake/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/camel-to-snake/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/camel-to-snake"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/camel-to-snake/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/camel-to-snake/src/**/*.ts",
+              "packages/ngx-ui/camel-to-snake/src/**/*.html"
+            ]
+          }
+        }
+      }
     }
   }
 }
