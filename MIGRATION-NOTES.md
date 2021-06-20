@@ -47,3 +47,9 @@
   - `[resizeObserver]` -> `[ngxResizeObserver]`
 - Deprecate `VisibilityDirective` in favor of `IntersectDirective` (with `IntersectionObserver` implementation)
   - `visibility (visible)` -> `(ngxIntersect)`
+
+### Pipes
+
+- `CamelToSnake`
+  - `cammeltosnake` -> `camelToSnake`
+  - Only accepts `string | undefined | null` as value
