@@ -29,6 +29,7 @@ export function intersectionObserverOptionsFactory(
 
 @Directive({
   selector: '[ngxIntersect]',
+  exportAs: 'ngxIntersect',
   providers: [
     IntersectionObserverService,
     {

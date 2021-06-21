@@ -4,6 +4,7 @@ import { IntersectionObserveeService } from './services/';
 
 @Directive({
   selector: '[ngxIntersectionObservee]',
+  exportAs: 'ngxIntersectionObservee',
   providers: [IntersectionObserveeService],
 })
 export class IntersectionObserveeDirective {
