@@ -11,6 +11,7 @@ import {
 
 @Directive({
   selector: '[ngxCopyToClipboard]',
+  exportAs: 'ngxCopyToClipboard',
 })
 export class CopyToClipboardDirective {
   @Input() ngxCopyToClipboard: 'clk' | 'dblclk' = 'clk';
