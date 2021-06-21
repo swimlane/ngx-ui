@@ -40,7 +40,8 @@ export class ButtonComponent implements OnInit, OnChanges {
   @Input()
   timeout = 3000;
 
-  @Input() set _state(v: EnumKey<typeof ButtonState>) {
+  @Input('state')
+  set _state(v: EnumKey<typeof ButtonState>) {
     const buttonState = ButtonState[v];
     this.state = buttonState;
 
