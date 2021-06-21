@@ -88,3 +88,11 @@ export enum ButtonState {
 
 - `[promise]` is now a `Promise<unknown>` instead of `Promise<any>`
 - `[state]` is a string union of `keyof ButtonState` instead of `ButtonState` enum itself.
+
+#### FileButton
+
+- `FileButtonStyleType` enum is renamed to `FileButtonStyle`
+- `(successItem)` has been made type-safe
+  with `{item: FileItem; response: string; status: number; headers: ParsedResponseHeaders;}`
+- `(errorItem)` has been made type-safe
+  with `{item: FileItem; response: string; status: number; headers: ParsedResponseHeaders;}`
