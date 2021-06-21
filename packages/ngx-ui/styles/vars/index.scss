@@ -155,393 +155,123 @@
 
   // Blue
   @include defineColorCSSVar(--ngx-ui-color-blue, #1483ff);
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-100,
-    lightenCssVar(--ngx-ui-color-blue, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-200,
-    lightenCssVar(--ngx-ui-color-blue, 25%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-300,
-    lightenCssVar(--ngx-ui-color-blue, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-400,
-    lightenCssVar(--ngx-ui-color-blue, 10%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-blue-100, #add4ff);
+  @include defineColorCSSVar(--ngx-ui-color-blue-200, #93c6ff);
+  @include defineColorCSSVar(--ngx-ui-color-blue-300, #7ab9ff);
+  @include defineColorCSSVar(--ngx-ui-color-blue-400, #479eff);
   @include defineColorCSSVar(--ngx-ui-color-blue-500, #1483ff);
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-600,
-    darkenCssVar(--ngx-ui-color-blue, 10%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-700,
-    darkenCssVar(--ngx-ui-color-blue, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-800,
-    darkenCssVar(--ngx-ui-color-blue, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-900,
-    darkenCssVar(--ngx-ui-color-blue, 35%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-blue-600, #006ae0);
+  @include defineColorCSSVar(--ngx-ui-color-blue-700, #0052ad);
+  @include defineColorCSSVar(--ngx-ui-color-blue-800, #003a7a);
+  @include defineColorCSSVar(--ngx-ui-color-blue-900, #002e60);
 
   // Light Blue
   @include defineColorCSSVar(--ngx-ui-color-light-blue, #22befb);
-  @include defineColorCSSVar(
-    --ngx-ui-color-light-blue-100,
-    lightenCssVar(--ngx-ui-color-light-blue, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-light-blue-200,
-    lightenCssVar(--ngx-ui-color-light-blue, 25%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-light-blue-300,
-    lightenCssVar(--ngx-ui-color-light-blue, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-light-blue-400,
-    lightenCssVar(--ngx-ui-color-light-blue, 10%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-light-blue-100, #b8eafe);
+  @include defineColorCSSVar(--ngx-ui-color-light-blue-200, #9fe3fd);
+  @include defineColorCSSVar(--ngx-ui-color-light-blue-300, #86dbfd);
+  @include defineColorCSSVar(--ngx-ui-color-light-blue-400, #54cdfc);
   @include defineColorCSSVar(--ngx-ui-color-light-blue-500, #22befb);
-  @include defineColorCSSVar(
-    --ngx-ui-color-light-blue-600,
-    darkenCssVar(--ngx-ui-color-light-blue, 10%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-light-blue-700,
-    darkenCssVar(--ngx-ui-color-light-blue, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-light-blue-800,
-    darkenCssVar(--ngx-ui-color-light-blue, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-light-blue-900,
-    darkenCssVar(--ngx-ui-color-light-blue, 35%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-light-blue-600, #04a6e6);
+  @include defineColorCSSVar(--ngx-ui-color-light-blue-700, #0382b4);
+  @include defineColorCSSVar(--ngx-ui-color-light-blue-800, #025e82);
+  @include defineColorCSSVar(--ngx-ui-color-light-blue-900, #024c69);
 
   // Green
   @include defineColorCSSVar(--ngx-ui-color-green, #1ddeb6);
-  @include defineColorCSSVar(
-    --ngx-ui-color-green-100,
-    lightenCssVar(--ngx-ui-color-green, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-green-200,
-    lightenCssVar(--ngx-ui-color-green, 25%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-green-300,
-    lightenCssVar(--ngx-ui-color-green, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-green-400,
-    lightenCssVar(--ngx-ui-color-green, 10%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-green-100, #a1f3e2);
+  @include defineColorCSSVar(--ngx-ui-color-green-200, #8bf0db);
+  @include defineColorCSSVar(--ngx-ui-color-green-300, #74edd4);
+  @include defineColorCSSVar(--ngx-ui-color-green-400, #47e7c6);
   @include defineColorCSSVar(--ngx-ui-color-green-500, #1ddeb6);
-  @include defineColorCSSVar(
-    --ngx-ui-color-green-600,
-    darkenCssVar(--ngx-ui-color-green, 10%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-green-700,
-    darkenCssVar(--ngx-ui-color-green, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-green-800,
-    darkenCssVar(--ngx-ui-color-green, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-green-900,
-    darkenCssVar(--ngx-ui-color-green, 35%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-green-600, #17b191);
+  @include defineColorCSSVar(--ngx-ui-color-green-700, #11846c);
+  @include defineColorCSSVar(--ngx-ui-color-green-800, #0b5747);
+  @include defineColorCSSVar(--ngx-ui-color-green-900, #084035);
 
   // Red
   @include defineColorCSSVar(--ngx-ui-color-red, #ff4514);
-  @include defineColorCSSVar(
-    --ngx-ui-color-red-100,
-    lightenCssVar(--ngx-ui-color-red, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-red-200,
-    lightenCssVar(--ngx-ui-color-red, 25%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-red-300,
-    lightenCssVar(--ngx-ui-color-red, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-red-400,
-    lightenCssVar(--ngx-ui-color-red, 10%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-red-100, #ffbead);
+  @include defineColorCSSVar(--ngx-ui-color-red-200, #ffaa93);
+  @include defineColorCSSVar(--ngx-ui-color-red-300, #ff967a);
+  @include defineColorCSSVar(--ngx-ui-color-red-400, #ff6d47);
   @include defineColorCSSVar(--ngx-ui-color-red-500, #ff4514);
-  @include defineColorCSSVar(
-    --ngx-ui-color-red-600,
-    darkenCssVar(--ngx-ui-color-red, 10%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-red-700,
-    darkenCssVar(--ngx-ui-color-red, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-red-800,
-    darkenCssVar(--ngx-ui-color-red, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-red-900,
-    darkenCssVar(--ngx-ui-color-red, 35%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-red-600, #e02f00);
+  @include defineColorCSSVar(--ngx-ui-color-red-700, #ad2400);
+  @include defineColorCSSVar(--ngx-ui-color-red-800, #7a1900);
+  @include defineColorCSSVar(--ngx-ui-color-red-900, #601400);
 
   // Orange
   @include defineColorCSSVar(--ngx-ui-color-orange, #ffa814);
-  @include defineColorCSSVar(
-    --ngx-ui-color-orange-100,
-    lightenCssVar(--ngx-ui-color-orange, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-orange-200,
-    lightenCssVar(--ngx-ui-color-orange, 25%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-orange-300,
-    lightenCssVar(--ngx-ui-color-orange, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-orange-400,
-    lightenCssVar(--ngx-ui-color-orange, 10%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-orange-100, #ffe1ad);
+  @include defineColorCSSVar(--ngx-ui-color-orange-200, #ffd793);
+  @include defineColorCSSVar(--ngx-ui-color-orange-300, #ffce7a);
+  @include defineColorCSSVar(--ngx-ui-color-orange-400, #ffbb47);
   @include defineColorCSSVar(--ngx-ui-color-orange-500, #ffa814);
-  @include defineColorCSSVar(
-    --ngx-ui-color-orange-600,
-    darkenCssVar(--ngx-ui-color-orange, 10%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-orange-700,
-    darkenCssVar(--ngx-ui-color-orange, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-orange-800,
-    darkenCssVar(--ngx-ui-color-orange, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-orange-900,
-    darkenCssVar(--ngx-ui-color-orange, 35%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-orange-600, #e08d00);
+  @include defineColorCSSVar(--ngx-ui-color-orange-700, #ad6d00);
+  @include defineColorCSSVar(--ngx-ui-color-orange-800, #7a4d00);
+  @include defineColorCSSVar(--ngx-ui-color-orange-900, #603d00);
 
   // Purple
   @include defineColorCSSVar(--ngx-ui-color-purple, #8a65e8);
-  @include defineColorCSSVar(
-    --ngx-ui-color-purple-100,
-    lightenCssVar(--ngx-ui-color-purple, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-purple-200,
-    lightenCssVar(--ngx-ui-color-purple, 25%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-purple-300,
-    lightenCssVar(--ngx-ui-color-purple, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-purple-400,
-    lightenCssVar(--ngx-ui-color-purple, 10%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-purple-100, #efeafc);
+  @include defineColorCSSVar(--ngx-ui-color-purple-200, #ded4f9);
+  @include defineColorCSSVar(--ngx-ui-color-purple-300, #cdbef5);
+  @include defineColorCSSVar(--ngx-ui-color-purple-400, #ac91ef);
   @include defineColorCSSVar(--ngx-ui-color-purple-500, #8a65e8);
-  @include defineColorCSSVar(
-    --ngx-ui-color-purple-600,
-    darkenCssVar(--ngx-ui-color-purple, 10%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-purple-700,
-    darkenCssVar(--ngx-ui-color-purple, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-purple-800,
-    darkenCssVar(--ngx-ui-color-purple, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-purple-900,
-    darkenCssVar(--ngx-ui-color-purple, 35%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-purple-600, #6839e1);
+  @include defineColorCSSVar(--ngx-ui-color-purple-700, #4e1ec9);
+  @include defineColorCSSVar(--ngx-ui-color-purple-800, #3d179d);
+  @include defineColorCSSVar(--ngx-ui-color-purple-900, #341486);
 
   // Blue Grey
   @include defineColorCSSVar(--ngx-ui-color-blue-grey, #5a6884);
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-050,
-    lightenCssVar(--ngx-ui-color-blue-grey, 50%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-100,
-    lightenCssVar(--ngx-ui-color-blue-grey, 40%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-150,
-    lightenCssVar(--ngx-ui-color-blue-grey, 35%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-200,
-    lightenCssVar(--ngx-ui-color-blue-grey, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-250,
-    lightenCssVar(--ngx-ui-color-blue-grey, 25%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-300,
-    lightenCssVar(--ngx-ui-color-blue-grey, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-350,
-    lightenCssVar(--ngx-ui-color-blue-grey, 15%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-400,
-    lightenCssVar(--ngx-ui-color-blue-grey, 10%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-450,
-    lightenCssVar(--ngx-ui-color-blue-grey, 5%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-050, #ebedf2);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-100, #cdd2dd);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-150, #bec5d3);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-200, #afb7c8);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-250, #a0aabe);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-300, #909cb4);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-350, #818fa9);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-400, #72819f);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-450, #647493);
   @include defineColorCSSVar(--ngx-ui-color-blue-grey-500, #5a6884);
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-550,
-    darkenCssVar(--ngx-ui-color-blue-grey, 5%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-600,
-    darkenCssVar(--ngx-ui-color-blue-grey, 10%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-650,
-    darkenCssVar(--ngx-ui-color-blue-grey, 15%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-700,
-    darkenCssVar(--ngx-ui-color-blue-grey, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-725,
-    darkenCssVar(--ngx-ui-color-blue-grey, 22.5%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-750,
-    darkenCssVar(--ngx-ui-color-blue-grey, 25%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-775,
-    darkenCssVar(--ngx-ui-color-blue-grey, 27.5%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-800,
-    darkenCssVar(--ngx-ui-color-blue-grey, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-825,
-    darkenCssVar(--ngx-ui-color-blue-grey, 32.5%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-850,
-    darkenCssVar(--ngx-ui-color-blue-grey, 35%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-875,
-    darkenCssVar(--ngx-ui-color-blue-grey, 37.5%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-900,
-    darkenCssVar(--ngx-ui-color-blue-grey, 40%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-550, #505c75);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-600, #455066);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-650, #3b4457);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-700, #313847);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-725, #2b3240);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-750, #262c38);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-775, #212631);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-800, #1c2029);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-825, #171a21);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-850, #12141a);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-875, #0c0e12);
+  @include defineColorCSSVar(--ngx-ui-color-blue-grey-900, #07080b);
 
   // Light Grey
-  @include defineColorCSSVar(--ngx-ui-color-blue-grey, #696969);
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-050,
-    lightenCssVar(--ngx-ui-color-blue-grey, 50%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-100,
-    lightenCssVar(--ngx-ui-color-blue-grey, 40%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-150,
-    lightenCssVar(--ngx-ui-color-blue-grey, 35%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-200,
-    lightenCssVar(--ngx-ui-color-blue-grey, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-250,
-    lightenCssVar(--ngx-ui-color-blue-grey, 25%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-300,
-    lightenCssVar(--ngx-ui-color-blue-grey, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-350,
-    lightenCssVar(--ngx-ui-color-blue-grey, 15%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-400,
-    lightenCssVar(--ngx-ui-color-blue-grey, 10%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-450,
-    lightenCssVar(--ngx-ui-color-blue-grey, 5%)
-  );
-  @include defineColorCSSVar(--ngx-ui-color-blue-grey-500, #696969);
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-550,
-    darkenCssVar(--ngx-ui-color-blue-grey, 5%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-600,
-    darkenCssVar(--ngx-ui-color-blue-grey, 10%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-650,
-    darkenCssVar(--ngx-ui-color-blue-grey, 15%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-700,
-    darkenCssVar(--ngx-ui-color-blue-grey, 20%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-725,
-    darkenCssVar(--ngx-ui-color-blue-grey, 22.5%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-750,
-    darkenCssVar(--ngx-ui-color-blue-grey, 25%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-775,
-    darkenCssVar(--ngx-ui-color-blue-grey, 27.5%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-800,
-    darkenCssVar(--ngx-ui-color-blue-grey, 30%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-825,
-    darkenCssVar(--ngx-ui-color-blue-grey, 32.5%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-850,
-    darkenCssVar(--ngx-ui-color-blue-grey, 35%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-875,
-    darkenCssVar(--ngx-ui-color-blue-grey, 37.5%)
-  );
-  @include defineColorCSSVar(
-    --ngx-ui-color-blue-grey-900,
-    darkenCssVar(--ngx-ui-color-blue-grey, 40%)
-  );
+  @include defineColorCSSVar(--ngx-ui-color-grey, #696969);
+  @include defineColorCSSVar(--ngx-ui-color-grey-050, #e9e9e9);
+  @include defineColorCSSVar(--ngx-ui-color-grey-100, #cfcfcf);
+  @include defineColorCSSVar(--ngx-ui-color-grey-150, #c2c2c2);
+  @include defineColorCSSVar(--ngx-ui-color-grey-200, #b6b6b6);
+  @include defineColorCSSVar(--ngx-ui-color-grey-250, #a9a9a9);
+  @include defineColorCSSVar(--ngx-ui-color-grey-300, #9c9c9c);
+  @include defineColorCSSVar(--ngx-ui-color-grey-350, #8f8f8f);
+  @include defineColorCSSVar(--ngx-ui-color-grey-400, #838383);
+  @include defineColorCSSVar(--ngx-ui-color-grey-450, #767676);
+  @include defineColorCSSVar(--ngx-ui-color-grey-500, #696969);
+  @include defineColorCSSVar(--ngx-ui-color-grey-550, #696969);
+  @include defineColorCSSVar(--ngx-ui-color-grey-600, #5c5c5c);
+  @include defineColorCSSVar(--ngx-ui-color-grey-650, #505050);
+  @include defineColorCSSVar(--ngx-ui-color-grey-700, #434343);
+  @include defineColorCSSVar(--ngx-ui-color-grey-725, #363636);
+  @include defineColorCSSVar(--ngx-ui-color-grey-750, #303030);
+  @include defineColorCSSVar(--ngx-ui-color-grey-775, #292929);
+  @include defineColorCSSVar(--ngx-ui-color-grey-800, #232323);
+  @include defineColorCSSVar(--ngx-ui-color-grey-825, #1d1d1d);
+  @include defineColorCSSVar(--ngx-ui-color-grey-850, #161616);
+  @include defineColorCSSVar(--ngx-ui-color-grey-875, #101010);
+  @include defineColorCSSVar(--ngx-ui-color-grey-900, #090909);
 }
