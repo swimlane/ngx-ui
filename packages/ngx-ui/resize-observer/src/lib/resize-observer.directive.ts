@@ -25,6 +25,7 @@ export function observeBoxFactory({
 
 @Directive({
   selector: '[ngxResizeObserver]',
+  exportAs: 'ngxResizeObserver',
   providers: [
     ResizeObserverService,
     {
