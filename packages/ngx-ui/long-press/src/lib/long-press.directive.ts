@@ -16,6 +16,7 @@ import { mapTo, switchMap, takeUntil, tap } from 'rxjs/operators';
 
 @Directive({
   selector: '[ngxLongPress]',
+  exportAs: 'ngxLongPress',
 })
 export class LongPressDirective {
   static ngAcceptInputType_ngxLongPress: NumericInput;
