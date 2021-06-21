@@ -17,5 +17,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/time-zone',
     '<rootDir>/packages/ngx-ui/button',
     '<rootDir>/packages/ngx-doc',
+    '<rootDir>/packages/ngx-ui/file-button',
   ],
 };

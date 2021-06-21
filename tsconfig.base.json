@@ -15,39 +15,42 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@swimlane/ngx-doc": ["packages/ngx-doc/src/index.ts"],
       "@swimlane/ngx-ui": ["packages/ngx-ui/src/index.ts"],
-      "@swimlane/ngx-ui/typings": ["packages/ngx-ui/typings/src/index.ts"],
-      "@swimlane/ngx-ui/utils": ["packages/ngx-ui/utils/src/index.ts"],
-      "@swimlane/ngx-ui/common": ["packages/ngx-ui/common/src/index.ts"],
       "@swimlane/ngx-ui/animations": [
         "packages/ngx-ui/animations/src/index.ts"
       ],
       "@swimlane/ngx-ui/autosize-input": [
         "packages/ngx-ui/autosize-input/src/index.ts"
       ],
+      "@swimlane/ngx-ui/button": ["packages/ngx-ui/button/src/index.ts"],
+      "@swimlane/ngx-ui/camel-to-snake": [
+        "packages/ngx-ui/camel-to-snake/src/index.ts"
+      ],
+      "@swimlane/ngx-ui/common": ["packages/ngx-ui/common/src/index.ts"],
       "@swimlane/ngx-ui/copy-to-clipboard": [
         "packages/ngx-ui/copy-to-clipboard/src/index.ts"
       ],
+      "@swimlane/ngx-ui/decamelize": [
+        "packages/ngx-ui/decamelize/src/index.ts"
+      ],
+      "@swimlane/ngx-ui/file-button": [
+        "packages/ngx-ui/file-button/src/index.ts"
+      ],
+      "@swimlane/ngx-ui/filter-by": ["packages/ngx-ui/filter-by/src/index.ts"],
+      "@swimlane/ngx-ui/intersection-observer": [
+        "packages/ngx-ui/intersection-observer/src/index.ts"
+      ],
+      "@swimlane/ngx-ui/json-tree": ["packages/ngx-ui/json-tree/src/index.ts"],
       "@swimlane/ngx-ui/long-press": [
         "packages/ngx-ui/long-press/src/index.ts"
       ],
       "@swimlane/ngx-ui/resize-observer": [
         "packages/ngx-ui/resize-observer/src/index.ts"
       ],
-      "@swimlane/ngx-ui/intersection-observer": [
-        "packages/ngx-ui/intersection-observer/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/camel-to-snake": [
-        "packages/ngx-ui/camel-to-snake/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/decamelize": [
-        "packages/ngx-ui/decamelize/src/index.ts"
-      ],
-      "@swimlane/ngx-ui/filter-by": ["packages/ngx-ui/filter-by/src/index.ts"],
-      "@swimlane/ngx-ui/json-tree": ["packages/ngx-ui/json-tree/src/index.ts"],
       "@swimlane/ngx-ui/time-zone": ["packages/ngx-ui/time-zone/src/index.ts"],
-      "@swimlane/ngx-ui/button": ["packages/ngx-ui/button/src/index.ts"],
-      "@swimlane/ngx-doc": ["packages/ngx-doc/src/index.ts"]
+      "@swimlane/ngx-ui/typings": ["packages/ngx-ui/typings/src/index.ts"],
+      "@swimlane/ngx-ui/utils": ["packages/ngx-ui/utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

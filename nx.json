@@ -23,17 +23,18 @@
     "libsDir": "packages"
   },
   "projects": {
+    "docs": {
+      "tags": ["scope:docs", "type:app"]
+    },
+    "docs-e2e": {
+      "tags": [],
+      "implicitDependencies": ["docs"]
+    },
+    "ngx-doc": {
+      "tags": ["scope:ngx-doc", "type:lib"]
+    },
     "ngx-ui": {
       "tags": ["scope:ngx-ui", "type:lib"]
-    },
-    "ngx-ui-typings": {
-      "tags": ["scope:typings", "type:lib"]
-    },
-    "ngx-ui-utils": {
-      "tags": ["scope:utils", "type:lib"]
-    },
-    "ngx-ui-common": {
-      "tags": ["scope:common", "type:lib"]
     },
     "ngx-ui-animations": {
       "tags": ["scope:animations", "type:lib"]
@@ -41,8 +42,32 @@
     "ngx-ui-autosize-input": {
       "tags": ["scope:autosize-input", "type:lib"]
     },
+    "ngx-ui-button": {
+      "tags": ["scope:button", "type:lib"]
+    },
+    "ngx-ui-camel-to-snake": {
+      "tags": ["scope:camel-to-snake", "type:lib"]
+    },
+    "ngx-ui-common": {
+      "tags": ["scope:common", "type:lib"]
+    },
     "ngx-ui-copy-to-clipboard": {
       "tags": ["scope:copy-to-clipboard", "type:lib"]
+    },
+    "ngx-ui-decamelize": {
+      "tags": ["scope:decamelize", "type:lib"]
+    },
+    "ngx-ui-file-button": {
+      "tags": ["scope:file-button", "type:lib"]
+    },
+    "ngx-ui-filter-by": {
+      "tags": ["scope:filter-by", "type:lib"]
+    },
+    "ngx-ui-intersection-observer": {
+      "tags": ["scope:intersection-observer", "type:lib"]
+    },
+    "ngx-ui-json-tree": {
+      "tags": ["scope:json-tree", "type:lib"]
     },
     "ngx-ui-long-press": {
       "tags": ["scope:long-press", "type:lib"]
@@ -50,36 +75,14 @@
     "ngx-ui-resize-observer": {
       "tags": ["scope:resize-observer", "type:lib"]
     },
-    "ngx-ui-intersection-observer": {
-      "tags": ["scope:intersection-observer", "type:lib"]
-    },
-    "ngx-ui-camel-to-snake": {
-      "tags": ["scope:camel-to-snake", "type:lib"]
-    },
-    "ngx-ui-decamelize": {
-      "tags": ["scope:decamelize", "type:lib"]
-    },
-    "ngx-ui-filter-by": {
-      "tags": ["scope:filter-by", "type:lib"]
-    },
-    "ngx-ui-json-tree": {
-      "tags": ["scope:json-tree", "type:lib"]
-    },
     "ngx-ui-time-zone": {
       "tags": ["scope:time-zone", "type:lib"]
     },
-    "ngx-ui-button": {
-      "tags": ["scope:button", "type:lib"]
+    "ngx-ui-typings": {
+      "tags": ["scope:typings", "type:lib"]
     },
-    "ngx-doc": {
-      "tags": ["scope:ngx-doc", "type:lib"]
-    },
-    "docs": {
-      "tags": ["scope:docs", "type:app"]
-    },
-    "docs-e2e": {
-      "tags": [],
-      "implicitDependencies": ["docs"]
+    "ngx-ui-utils": {
+      "tags": ["scope:utils", "type:lib"]
     }
   }
 }
