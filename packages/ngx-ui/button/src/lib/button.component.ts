@@ -20,6 +20,7 @@ import { ButtonState } from './enums';
 
 @Component({
   selector: 'ngx-button',
+  exportAs: 'ngxButton',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],
   encapsulation: ViewEncapsulation.None,
