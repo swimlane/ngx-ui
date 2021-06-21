@@ -104,9 +104,18 @@ export class ButtonComponent implements OnInit, OnChanges {
     this._state = 'inProgress';
 
     return this.promise
-      .then(() => (this._state = 'success'))
-      .catch(() => (this._state = 'fail'))
+      .then(() => {
+        this._state = 'success';
+        this.updateState();
+      })
+      .catch(() => {
+        this._state = 'fail';
+        this.updateState();
+      });
+    /*
+      TODO: switch to finally() when target is es2018
       .finally(() => this.updateState());
+       */
   }
 
   private updateState(): void {
