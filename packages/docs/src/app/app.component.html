@@ -1,3 +1,6 @@
-<ngx-file-button name="uper" styleType="standard" [options]="uploadOptions">
-  Choose File
-</ngx-file-button>
+<ngx-calendar
+  name="calendar1"
+  [(ngModel)]="curDate"
+  (dateChange)="dateChanged($event)"
+>
+</ngx-calendar>

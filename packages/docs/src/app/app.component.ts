@@ -6,8 +6,9 @@ import { Component } from '@angular/core';
   styles: [],
 })
 export class AppComponent {
-  uploadOptions = {
-    url: 'https://evening-anchorage-3159.herokuapp.com/api/',
-    autoUpload: true
-  };
+  curDate = new Date();
+
+  dateChanged(val: Date) {
+    console.log('date changed!', val);
+  }
 }
