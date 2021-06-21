@@ -55,6 +55,8 @@ export enum ButtonState {
 }
 ```
 
+- All components styles have been adjusted to be divisible by 2/4/8 (16px or 1rem base)
+
 ### Directives
 
 - `AutosizeInputDirective`
@@ -87,12 +89,17 @@ export enum ButtonState {
 #### Button
 
 - `[promise]` is now a `Promise<unknown>` instead of `Promise<any>`
-- `[state]` is a string union of `keyof ButtonState` instead of `ButtonState` enum itself.
+- `[state]` accepts a string union of `keyof ButtonState` instead of `ButtonState` enum itself.
 
 #### FileButton
 
 - `FileButtonStyleType` enum is renamed to `FileButtonStyle`
+- `[styleType]` accepts a string union of `keyof FileButtonStyle` instead of `FileButtonStyle` enum itself.
 - `(successItem)` has been made type-safe
   with `{item: FileItem; response: string; status: number; headers: ParsedResponseHeaders;}`
 - `(errorItem)` has been made type-safe
   with `{item: FileItem; response: string; status: number; headers: ParsedResponseHeaders;}`
+
+#### Calendar
+
+- `(change)` is renamed to `(dateChange)`
