@@ -45,6 +45,9 @@
     "ngx-ui-button": {
       "tags": ["scope:button", "type:lib"]
     },
+    "ngx-ui-calendar": {
+      "tags": ["scope:calendar", "type:lib"]
+    },
     "ngx-ui-camel-to-snake": {
       "tags": ["scope:camel-to-snake", "type:lib"]
     },

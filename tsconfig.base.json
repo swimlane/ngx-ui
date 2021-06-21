@@ -24,6 +24,7 @@
         "packages/ngx-ui/autosize-input/src/index.ts"
       ],
       "@swimlane/ngx-ui/button": ["packages/ngx-ui/button/src/index.ts"],
+      "@swimlane/ngx-ui/calendar": ["packages/ngx-ui/calendar/src/index.ts"],
       "@swimlane/ngx-ui/camel-to-snake": [
         "packages/ngx-ui/camel-to-snake/src/index.ts"
       ],

@@ -328,6 +328,47 @@
         }
       }
     },
+    "ngx-ui-calendar": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/calendar",
+      "sourceRoot": "packages/ngx-ui/calendar/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/calendar"],
+          "options": {
+            "project": "packages/ngx-ui/calendar/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/calendar/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/calendar/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/calendar"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/calendar/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/calendar/src/**/*.ts",
+              "packages/ngx-ui/calendar/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-camel-to-snake": {
       "projectType": "library",
       "root": "packages/ngx-ui/camel-to-snake",

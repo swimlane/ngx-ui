@@ -1,0 +1,184 @@
+.ngx-calendar {
+  --ngx-ui-calendar-bg: var(--ngx-ui-color-blue-grey-800);
+  --ngx-ui-calendar-border: var(--ngx-ui-color-blue-grey-700);
+  --ngx-ui-calendar-title-bg: var(--ngx-ui-color-blue-grey-800);
+  --ngx-ui-calendar-title-btn: var(--ngx-ui-color-blue-grey-350);
+  --ngx-ui-calendar-hover-bg: var(--ngx-ui-color-blue-400);
+  --ngx-ui-calendar-today-bg: var(--ngx-ui-color-blue-grey-750);
+  --ngx-ui-calendar-active-bg: var(--ngx-ui-color-blue-400);
+  --ngx-ui-calendar-active-text: var(--ngx-ui-color-grey-050);
+  --ngx-ui-calendar-day-text: var(--ngx-ui-color-blue-grey-350);
+  --ngx-ui-calendar-month-current: var(--ngx-ui-color-blue-grey-750);
+
+  position: relative;
+  font-size: 1rem;
+  box-shadow: var(--ngx-ui-shadow-3);
+  background: var(--ngx-ui-calendar-bg);
+  display: inline-block;
+  border: 1px solid var(--ngx-ui-calendar-border);
+  // 7 columns * (30px + 8 margin) + 16 padding + 2 border
+  width: 284px;
+  height: 270px;
+  padding: 0.5rem;
+
+  .ngx-calendar-wrap {
+    flex: 1 1 100%;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  .title-row {
+    background: var(--ngx-ui-calendar-title-bg);
+    color: var(--ngx-ui-calendar-active-text);
+    padding: 0.75rem 0;
+    font-weight: 600;
+    line-height: 0;
+
+    .title {
+      color: var(--ngx-ui-calendar-active-bg);
+      min-width: 100px;
+      cursor: pointer;
+    }
+
+    button {
+      color: var(--ngx-ui-calendar-title-btn);
+      font-size: 0.5rem;
+    }
+  }
+
+  .day-name-row {
+    color: var(--ngx-ui-calendar-day-text);
+    font-weight: 600;
+    display: flex;
+
+    .day-name {
+      flex: 0 0 30px;
+    }
+  }
+
+  .day-name,
+  .day-cell {
+    margin: 0.125rem 0.25rem;
+    line-height: 1.75rem;
+    text-align: center;
+    width: 1.75rem;
+    height: 1.75rem;
+  }
+
+  .day-container {
+    margin-top: 0;
+
+    .day-row {
+      display: flex;
+
+      .day-cell {
+        flex: 0 0 30px;
+      }
+    }
+
+    .day {
+      color: var(--ngx-ui-calendar-active-text);
+      height: 100%;
+      width: 100%;
+      max-height: 30px;
+      max-width: 30px;
+      line-height: 100%;
+      border-radius: 50%;
+      text-align: center;
+      transition: background 200ms;
+      padding: 0;
+
+      &.prev-month,
+      &.next-month {
+        color: var(--ngx-ui-calendar-day-text);
+        opacity: 0.2;
+      }
+
+      &.today {
+        background: var(--ngx-ui-calendar-today-bg);
+      }
+
+      &.active {
+        background: var(--ngx-ui-calendar-active-bg);
+        color: var(--ngx-ui-calendar-active-text);
+      }
+
+      &:hover:not(.active) {
+        &:hover:not([disabled]) {
+          background: var(--ngx-ui-calendar-hover-bg);
+          color: var(--ngx-ui-calendar-active-text);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .months-container,
+  .years-container {
+    margin: 0.5rem;
+    border: solid 1px var(--ngx-ui-calendar-border);
+    border-bottom: 0;
+    color: var(--ngx-ui-calendar-active-text);
+
+    .months-row,
+    .years-row {
+      display: grid;
+    }
+
+    .month,
+    .year {
+      border-right: solid 1px var(--ngx-ui-calendar-border);
+      border-bottom: solid 1px var(--ngx-ui-calendar-border);
+      grid-auto-rows: auto;
+      text-transform: uppercase;
+      text-align: center;
+      font-size: 0.875rem;
+
+      &.active {
+        background-color: var(--ngx-ui-calendar-active-bg);
+      }
+
+      &.current:not(.active) {
+        background-color: var(--ngx-ui-calendar-month-current);
+      }
+
+      &:hover:not(.active) {
+        &:hover:not([disabled]) {
+          background: var(--ngx-ui-calendar-hover-bg);
+          color: var(--ngx-ui-calendar-active-text);
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .months-container {
+    .months-row {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .month {
+      padding: 0.75rem;
+
+      &:nth-child(3n) {
+        border-right: 0;
+      }
+    }
+  }
+
+  .years-container {
+    .years-row {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .year {
+      padding: 0.5rem;
+
+      &:nth-child(4n) {
+        border-right: 0;
+      }
+    }
+  }
+}
