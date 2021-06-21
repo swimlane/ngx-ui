@@ -6,14 +6,19 @@
   "defaultProject": "ngx-ui",
   "schematics": {
     "@nrwl/angular:application": {
+      "style": "scss",
       "linter": "eslint",
-      "unitTestRunner": "jest"
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
+      "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest"
     },
-    "@nrwl/angular:component": {}
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
   },
   "projects": {
     "ngx-ui": {
@@ -24,7 +29,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui"],
+          "outputs": [
+            "dist/packages/ngx-ui"
+          ],
           "options": {
             "project": "packages/ngx-ui/ng-package.json"
           },
@@ -40,7 +47,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui"],
+          "outputs": [
+            "coverage/packages/ngx-ui"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/jest.config.js",
             "passWithNoTests": true
@@ -65,7 +74,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/typings"],
+          "outputs": [
+            "dist/packages/ngx-ui/typings"
+          ],
           "options": {
             "project": "packages/ngx-ui/typings/ng-package.json"
           },
@@ -81,7 +92,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/typings"],
+          "outputs": [
+            "coverage/packages/ngx-ui/typings"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/typings/jest.config.js",
             "passWithNoTests": true
@@ -106,7 +119,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/utils"],
+          "outputs": [
+            "dist/packages/ngx-ui/utils"
+          ],
           "options": {
             "project": "packages/ngx-ui/utils/ng-package.json"
           },
@@ -122,7 +137,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/utils"],
+          "outputs": [
+            "coverage/packages/ngx-ui/utils"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/utils/jest.config.js",
             "passWithNoTests": true
@@ -147,7 +164,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/common"],
+          "outputs": [
+            "dist/packages/ngx-ui/common"
+          ],
           "options": {
             "project": "packages/ngx-ui/common/ng-package.json"
           },
@@ -163,7 +182,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/common"],
+          "outputs": [
+            "coverage/packages/ngx-ui/common"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/common/jest.config.js",
             "passWithNoTests": true
@@ -188,7 +209,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/animations"],
+          "outputs": [
+            "dist/packages/ngx-ui/animations"
+          ],
           "options": {
             "project": "packages/ngx-ui/animations/ng-package.json"
           },
@@ -204,7 +227,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/animations"],
+          "outputs": [
+            "coverage/packages/ngx-ui/animations"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/animations/jest.config.js",
             "passWithNoTests": true
@@ -229,7 +254,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/autosize-input"],
+          "outputs": [
+            "dist/packages/ngx-ui/autosize-input"
+          ],
           "options": {
             "project": "packages/ngx-ui/autosize-input/ng-package.json"
           },
@@ -245,7 +272,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/autosize-input"],
+          "outputs": [
+            "coverage/packages/ngx-ui/autosize-input"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/autosize-input/jest.config.js",
             "passWithNoTests": true
@@ -270,7 +299,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/copy-to-clipboard"],
+          "outputs": [
+            "dist/packages/ngx-ui/copy-to-clipboard"
+          ],
           "options": {
             "project": "packages/ngx-ui/copy-to-clipboard/ng-package.json"
           },
@@ -286,7 +317,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/copy-to-clipboard"],
+          "outputs": [
+            "coverage/packages/ngx-ui/copy-to-clipboard"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/copy-to-clipboard/jest.config.js",
             "passWithNoTests": true
@@ -311,7 +344,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/long-press"],
+          "outputs": [
+            "dist/packages/ngx-ui/long-press"
+          ],
           "options": {
             "project": "packages/ngx-ui/long-press/ng-package.json"
           },
@@ -327,7 +362,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/long-press"],
+          "outputs": [
+            "coverage/packages/ngx-ui/long-press"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/long-press/jest.config.js",
             "passWithNoTests": true
@@ -352,7 +389,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/resize-observer"],
+          "outputs": [
+            "dist/packages/ngx-ui/resize-observer"
+          ],
           "options": {
             "project": "packages/ngx-ui/resize-observer/ng-package.json"
           },
@@ -368,7 +407,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/resize-observer"],
+          "outputs": [
+            "coverage/packages/ngx-ui/resize-observer"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/resize-observer/jest.config.js",
             "passWithNoTests": true
@@ -393,7 +434,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/intersection-observer"],
+          "outputs": [
+            "dist/packages/ngx-ui/intersection-observer"
+          ],
           "options": {
             "project": "packages/ngx-ui/intersection-observer/ng-package.json"
           },
@@ -409,7 +452,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/intersection-observer"],
+          "outputs": [
+            "coverage/packages/ngx-ui/intersection-observer"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/intersection-observer/jest.config.js",
             "passWithNoTests": true
@@ -434,7 +479,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/camel-to-snake"],
+          "outputs": [
+            "dist/packages/ngx-ui/camel-to-snake"
+          ],
           "options": {
             "project": "packages/ngx-ui/camel-to-snake/ng-package.json"
           },
@@ -450,7 +497,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/camel-to-snake"],
+          "outputs": [
+            "coverage/packages/ngx-ui/camel-to-snake"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/camel-to-snake/jest.config.js",
             "passWithNoTests": true
@@ -475,7 +524,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/decamelize"],
+          "outputs": [
+            "dist/packages/ngx-ui/decamelize"
+          ],
           "options": {
             "project": "packages/ngx-ui/decamelize/ng-package.json"
           },
@@ -491,7 +542,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/decamelize"],
+          "outputs": [
+            "coverage/packages/ngx-ui/decamelize"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/decamelize/jest.config.js",
             "passWithNoTests": true
@@ -516,7 +569,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/filter-by"],
+          "outputs": [
+            "dist/packages/ngx-ui/filter-by"
+          ],
           "options": {
             "project": "packages/ngx-ui/filter-by/ng-package.json"
           },
@@ -532,7 +587,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/filter-by"],
+          "outputs": [
+            "coverage/packages/ngx-ui/filter-by"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/filter-by/jest.config.js",
             "passWithNoTests": true
@@ -557,7 +614,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/json-tree"],
+          "outputs": [
+            "dist/packages/ngx-ui/json-tree"
+          ],
           "options": {
             "project": "packages/ngx-ui/json-tree/ng-package.json"
           },
@@ -573,7 +632,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/json-tree"],
+          "outputs": [
+            "coverage/packages/ngx-ui/json-tree"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/json-tree/jest.config.js",
             "passWithNoTests": true
@@ -598,7 +659,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/time-zone"],
+          "outputs": [
+            "dist/packages/ngx-ui/time-zone"
+          ],
           "options": {
             "project": "packages/ngx-ui/time-zone/ng-package.json"
           },
@@ -614,7 +677,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/time-zone"],
+          "outputs": [
+            "coverage/packages/ngx-ui/time-zone"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/time-zone/jest.config.js",
             "passWithNoTests": true
@@ -639,7 +704,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/button"],
+          "outputs": [
+            "dist/packages/ngx-ui/button"
+          ],
           "options": {
             "project": "packages/ngx-ui/button/ng-package.json"
           },
@@ -655,7 +722,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/button"],
+          "outputs": [
+            "coverage/packages/ngx-ui/button"
+          ],
           "options": {
             "jestConfig": "packages/ngx-ui/button/jest.config.js",
             "passWithNoTests": true
@@ -680,7 +749,9 @@
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-doc"],
+          "outputs": [
+            "dist/packages/ngx-doc"
+          ],
           "options": {
             "project": "packages/ngx-doc/ng-package.json"
           },
@@ -696,7 +767,9 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-doc"],
+          "outputs": [
+            "coverage/packages/ngx-doc"
+          ],
           "options": {
             "jestConfig": "packages/ngx-doc/jest.config.js",
             "passWithNoTests": true
@@ -709,6 +782,112 @@
               "packages/ngx-doc/src/**/*.ts",
               "packages/ngx-doc/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "docs": {
+      "projectType": "application",
+      "root": "packages/docs",
+      "sourceRoot": "packages/docs/src",
+      "prefix": "docs",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/packages/docs",
+            "index": "packages/docs/src/index.html",
+            "main": "packages/docs/src/main.ts",
+            "polyfills": "packages/docs/src/polyfills.ts",
+            "tsConfig": "packages/docs/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "packages/docs/src/favicon.ico",
+              "packages/docs/src/assets"
+            ],
+            "styles": [
+              "packages/docs/src/styles.scss"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "packages/ngx-ui/styles",
+                "packages/ngx-ui/assets"
+              ]
+            },
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "packages/docs/src/environments/environment.ts",
+                  "with": "packages/docs/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "docs:build:production"
+            },
+            "development": {
+              "browserTarget": "docs:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "docs:build"
+          }
+        }
+      }
+    },
+    "docs-e2e": {
+      "root": "packages/docs-e2e",
+      "sourceRoot": "packages/docs-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "packages/docs-e2e/cypress.json",
+            "tsConfig": "packages/docs-e2e/tsconfig.e2e.json",
+            "devServerTarget": "docs:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "docs:serve:production"
+            }
           }
         }
       }

@@ -73,6 +73,13 @@
     },
     "ngx-doc": {
       "tags": ["scope:ngx-doc", "type:lib"]
+    },
+    "docs": {
+      "tags": ["scope:docs", "type:app"]
+    },
+    "docs-e2e": {
+      "tags": [],
+      "implicitDependencies": ["docs"]
     }
   }
 }
