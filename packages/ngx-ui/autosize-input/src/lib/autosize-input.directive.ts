@@ -21,6 +21,7 @@ import { filter, take } from 'rxjs/operators';
 
 @Directive({
   selector: '[ngxAutosizeInput]',
+  exportAs: 'ngxAutosizeInput',
 })
 export class AutosizeInputDirective
   implements AfterContentChecked, AfterViewInit
