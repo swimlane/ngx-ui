@@ -32,16 +32,16 @@ button {
   box-sizing: border-box;
   color: var(--ngx-ui-button-text-color);
   display: inline-block;
-  padding: 0.35em 0.55em;
+  padding: 0.25rem 0.5rem;
   position: relative;
   text-align: center;
   text-decoration: none;
   user-select: none;
   font: inherit;
-  font-size: 0.9em;
+  font-size: 1rem;
   font-weight: bold;
   outline: none;
-  line-height: 1em;
+  line-height: 1rem;
 
   background: var(--ngx-ui-button-fill-color);
   border: solid 1px transparent;
@@ -53,8 +53,8 @@ button {
   .icon {
     font-weight: normal;
     vertical-align: middle;
-    line-height: 1em;
-    font-size: 0.9em;
+    line-height: 1rem;
+    font-size: 1rem;
 
     &:before {
       font-weight: inherit;
@@ -62,11 +62,11 @@ button {
 
     &.has-text,
     &.has-text-right {
-      margin-right: 0.2em;
+      margin-right: 0.25rem;
     }
 
     &.has-text-left {
-      margin-left: 0.2em;
+      margin-left: 0.25rem;
     }
   }
 
@@ -115,11 +115,11 @@ button {
 
   // sizes
   &.small {
-    font-size: 0.6em;
+    font-size: 0.5rem;
   }
 
   &.large {
-    font-size: 1.3em;
+    font-size: 1.25rem;
   }
 
   &.btn-primary {
@@ -191,7 +191,7 @@ button {
     label {
       display: block;
       cursor: pointer;
-      padding: 0.35em 0.75em;
+      padding: 0.25em 0.75em;
     }
 
     &[disabled] label {

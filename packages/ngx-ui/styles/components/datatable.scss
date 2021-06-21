@@ -10,7 +10,7 @@
   background: var(--ngx-ui-datatable-bg);
   border: 1px solid var(--ngx-ui-datatable-border);
   color: var(--ngx-ui-datatable-color);
-  font-size: 0.8125rem;
+  font-size: 0.75rem;
 
   .datatable-header {
     background: #181b24;
@@ -18,7 +18,7 @@
 
     .datatable-header-cell {
       text-align: left;
-      padding: 0.5rem 1.2rem;
+      padding: 0.5rem 1.25rem;
       font-weight: bold;
 
       .datatable-header-cell-label {
@@ -35,7 +35,7 @@
 
       .datatable-body-cell {
         text-align: left;
-        padding: 0.5rem 1.2rem;
+        padding: 0.5rem 1.25rem;
         vertical-align: top;
       }
 
@@ -65,7 +65,7 @@
     .page-count {
       line-height: 3.125rem;
       height: 3.125rem;
-      padding: 0 1.2rem;
+      padding: 0 1.25rem;
     }
 
     .datatable-pager {

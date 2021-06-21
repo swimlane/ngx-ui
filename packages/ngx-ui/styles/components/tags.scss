@@ -5,22 +5,22 @@
 
 .ngx-tag {
   cursor: default;
-  border-radius: 0.1875rem;
+  border-radius: 0.25rem;
   display: inline-block;
   margin: 0 0.5rem 0 0;
   box-sizing: border-box;
   position: relative;
   background: var(--ngx-ui-tag-background);
   color: var(--ngx-ui-tag-color);
-  font-size: 0.875rem;
-  padding: 0 0.3rem;
+  font-size: 0.75rem;
+  padding: 0 0.25rem;
 
   &.tag-small {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
   }
 
   &.tag-large {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
   }
 
   &.tag-filled {

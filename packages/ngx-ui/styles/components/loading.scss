@@ -47,7 +47,6 @@
     left: 0;
     height: 0.1875rem;
     width: 100%;
-    // border: 1px solid red;
     border-right: 0.625rem solid var(--ngx-ui-preloader-color);
     transform: rotateZ(0deg);
     animation: arc-spinner-rotator-arc var(--ngx-ui-preloader-duration)
