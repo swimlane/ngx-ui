@@ -33,6 +33,28 @@
 
 ## Breaking Changes
 
+### Common
+
+- All Enums are **camelCase** instead of **PascalCase**. For example:
+
+```ts
+// before
+export enum ButtonState {
+  Active = 'active',
+  InProgress = 'inProgress',
+  Success = 'success',
+  Failed = 'failed'
+}
+
+// after
+export enum ButtonState {
+  active = 'active',
+  inProgress = 'inProgress',
+  success = 'success',
+  failed = 'failed'
+}
+```
+
 ### Directives
 
 - `AutosizeInputDirective`
@@ -59,3 +81,10 @@
 - `TimeZonePipe`
   - `amTimeZone` -> `timeZone`
   - Accepts `MomentInput` type and returns `Moment | string`
+
+### Components
+
+#### Button
+
+- `[promise]` is now a `Promise<unknown>` instead of `Promise<any>`
+- `[state]` is a string union of `keyof ButtonState` instead of `ButtonState` enum itself.
