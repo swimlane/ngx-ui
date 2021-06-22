@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from '@swimlane/ngx-ui/button';
 import { CalendarModule } from '@swimlane/ngx-ui/calendar';
+import { CardModule } from '@swimlane/ngx-ui/card';
+import { CheckboxModule } from '@swimlane/ngx-ui/checkbox';
 import { FileButtonModule } from '@swimlane/ngx-ui/file-button';
 
 import { AppComponent } from './app.component';
@@ -17,6 +19,8 @@ import { AppComponent } from './app.component';
     FileButtonModule,
     CalendarModule,
     FormsModule,
+    CheckboxModule,
+    CardModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

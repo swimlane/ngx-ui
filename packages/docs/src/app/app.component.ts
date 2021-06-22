@@ -3,12 +3,17 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'docs-root',
   templateUrl: './app.component.html',
-  styles: [],
+  styles: [
+    `
+      :host {
+        padding: 1rem;
+        display: block;
+      }
+    `,
+  ],
 })
 export class AppComponent {
-  curDate = new Date();
-
-  dateChanged(val: Date) {
-    console.log('date changed!', val);
+  onClick() {
+    console.log('click');
   }
 }
