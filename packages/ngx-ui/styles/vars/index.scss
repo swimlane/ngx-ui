@@ -274,4 +274,6 @@
   @include defineColorCSSVar(--ngx-ui-color-grey-850, #161616);
   @include defineColorCSSVar(--ngx-ui-color-grey-875, #101010);
   @include defineColorCSSVar(--ngx-ui-color-grey-900, #090909);
+
+  --ngx-ui-color-error: var(--ngx-ui-color-red-500);
 }
