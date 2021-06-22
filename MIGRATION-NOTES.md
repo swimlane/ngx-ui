@@ -103,3 +103,25 @@ export enum ButtonState {
 #### Calendar
 
 - `(change)` is renamed to `(dateChange)`
+
+#### Card
+
+- `[orientation]` accepts a string union of `keyof CardOrientation` instead of `CardOrientation` enum itself.
+- `[appearance]` accepts a string union of `keyof CardAppearance` instead of `CardAppearance` enum itself.
+- `[status]` accepts a string union of `keyof CardStatus` instead of `CardStatus` enum itself.
+- `(select)` has been renamed to `(cardSelect)`
+- `(outlineClick)` has been renamed to `(cardOutlineClick)`
+
+###### CardAvatar
+
+- `[status]` accepts a string union of `keyof CardStatus` instead of `CardStatus` enum itself.
+
+###### CardPlaceholder
+
+- `[size]` accepts a string union of `keyof CardPlaceholderSize` instead of `CardPlaceholderSize` enum itself.
+
+#### Checkbox
+
+- `(change)` has been renamed to `(checkboxChange)`
+- `(focus)` has been renamed to `(checkboxFocus)`
+- `(blur)` has been renamed to `(checkboxBlur)`
