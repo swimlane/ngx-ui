@@ -3,7 +3,7 @@ import {
   InjectionRegistryService,
   InjectionService,
 } from '@swimlane/ngx-ui/common';
-import { TooltipContentComponent } from '../tooltip-content.component';
+import { TooltipContentComponent } from './tooltip-content.component';
 
 @Injectable({ providedIn: 'root' })
 export class TooltipService extends InjectionRegistryService<TooltipContentComponent> {

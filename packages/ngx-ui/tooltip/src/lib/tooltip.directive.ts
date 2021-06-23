@@ -1,3 +1,4 @@
+import type { TemplateRef } from '@angular/core';
 import {
   ComponentRef,
   Directive,
@@ -9,7 +10,6 @@ import {
   OnDestroy,
   Output,
   Renderer2,
-  TemplateRef,
   ViewContainerRef,
 } from '@angular/core';
 import {
@@ -24,9 +24,9 @@ import {
   EnumKey,
   PlacementType,
 } from '@swimlane/ngx-ui/typings';
-import { TooltipShowTypes, TooltipStyleTypes } from '../enums';
-import { TooltipService } from '../services';
-import { TooltipContentComponent } from '../tooltip-content.component';
+import { TooltipShowTypes, TooltipStyleTypes } from './enums';
+import { TooltipContentComponent } from './tooltip-content.component';
+import { TooltipService } from './tooltip.service';
 
 @Directive({
   selector: '[ngxTooltip]',
