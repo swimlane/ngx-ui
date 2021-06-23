@@ -19,5 +19,8 @@ module.exports = {
     '<rootDir>/packages/ngx-doc',
     '<rootDir>/packages/ngx-ui/file-button',
     '<rootDir>/packages/ngx-ui/calendar',
+    '<rootDir>/packages/ngx-ui/card',
+    '<rootDir>/packages/ngx-ui/checkbox',
+    '<rootDir>/packages/ngx-ui/tooltip',
   ],
 };

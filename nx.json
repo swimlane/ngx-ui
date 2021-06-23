@@ -51,6 +51,12 @@
     "ngx-ui-camel-to-snake": {
       "tags": ["scope:camel-to-snake", "type:lib"]
     },
+    "ngx-ui-card": {
+      "tags": ["scope:card", "type:lib"]
+    },
+    "ngx-ui-checkbox": {
+      "tags": ["scope:checkbox", "type:lib"]
+    },
     "ngx-ui-common": {
       "tags": ["scope:common", "type:lib"]
     },
@@ -80,6 +86,9 @@
     },
     "ngx-ui-time-zone": {
       "tags": ["scope:time-zone", "type:lib"]
+    },
+    "ngx-ui-tooltip": {
+      "tags": ["scope:tooltip", "type:lib"]
     },
     "ngx-ui-typings": {
       "tags": ["scope:typings", "type:lib"]

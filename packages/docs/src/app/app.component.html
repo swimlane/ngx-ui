@@ -1,4 +1,9 @@
-<ngx-card class="my-custom-card-class" status="success" (click)="onClick()">
+<ngx-card
+  class="my-custom-card-class"
+  status="success"
+  statusTooltip="success tooltip"
+  (click)="onClick()"
+>
   <ngx-card-header>
     <ngx-card-avatar> AB</ngx-card-avatar>
     <ngx-card-tag> CARD TAG</ngx-card-tag>
@@ -8,7 +13,8 @@
   <ngx-card-section> Card Section</ngx-card-section>
   <ngx-card-section> Card Section</ngx-card-section>
 </ngx-card>
-<ngx-card status="error" (click)="onClick()">
+
+<ngx-card status="error" statusTooltip="error tooltip" (click)="onClick()">
   <ngx-card-header>
     <ngx-card-avatar> AB</ngx-card-avatar>
     <ngx-card-tag> CARD TAG</ngx-card-tag>

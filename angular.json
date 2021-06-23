@@ -410,6 +410,88 @@
         }
       }
     },
+    "ngx-ui-card": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/card",
+      "sourceRoot": "packages/ngx-ui/card/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/card"],
+          "options": {
+            "project": "packages/ngx-ui/card/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/card/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/card/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/card"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/card/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/card/src/**/*.ts",
+              "packages/ngx-ui/card/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-ui-checkbox": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/checkbox",
+      "sourceRoot": "packages/ngx-ui/checkbox/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/checkbox"],
+          "options": {
+            "project": "packages/ngx-ui/checkbox/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/checkbox/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/checkbox/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/checkbox"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/checkbox/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/checkbox/src/**/*.ts",
+              "packages/ngx-ui/checkbox/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-common": {
       "projectType": "library",
       "root": "packages/ngx-ui/common",
@@ -815,6 +897,47 @@
             "lintFilePatterns": [
               "packages/ngx-ui/time-zone/src/**/*.ts",
               "packages/ngx-ui/time-zone/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-ui-tooltip": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/tooltip",
+      "sourceRoot": "packages/ngx-ui/tooltip/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/tooltip"],
+          "options": {
+            "project": "packages/ngx-ui/tooltip/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/tooltip/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/tooltip/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/tooltip"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/tooltip/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/tooltip/src/**/*.ts",
+              "packages/ngx-ui/tooltip/src/**/*.html"
             ]
           }
         }

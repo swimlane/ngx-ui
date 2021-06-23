@@ -28,6 +28,8 @@
       "@swimlane/ngx-ui/camel-to-snake": [
         "packages/ngx-ui/camel-to-snake/src/index.ts"
       ],
+      "@swimlane/ngx-ui/card": ["packages/ngx-ui/card/src/index.ts"],
+      "@swimlane/ngx-ui/checkbox": ["packages/ngx-ui/checkbox/src/index.ts"],
       "@swimlane/ngx-ui/common": ["packages/ngx-ui/common/src/index.ts"],
       "@swimlane/ngx-ui/copy-to-clipboard": [
         "packages/ngx-ui/copy-to-clipboard/src/index.ts"
@@ -50,6 +52,7 @@
         "packages/ngx-ui/resize-observer/src/index.ts"
       ],
       "@swimlane/ngx-ui/time-zone": ["packages/ngx-ui/time-zone/src/index.ts"],
+      "@swimlane/ngx-ui/tooltip": ["packages/ngx-ui/tooltip/src/index.ts"],
       "@swimlane/ngx-ui/typings": ["packages/ngx-ui/typings/src/index.ts"],
       "@swimlane/ngx-ui/utils": ["packages/ngx-ui/utils/src/index.ts"]
     }
