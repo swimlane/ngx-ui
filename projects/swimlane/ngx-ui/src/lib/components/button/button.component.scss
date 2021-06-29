@@ -3,10 +3,21 @@
 
 .ngx-button {
   transition: background-color 0.25s ease-out !important;
+  padding: 0 !important;
 
   button {
-    padding: 0;
+    padding: 0.35em 0.55em;
     width: 100%;
+
+    &:after {
+      border: none;
+    }
+
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+      outline: none;
+    }
   }
 
   &.disabled-button {
@@ -30,6 +41,11 @@
 
   &:focus-visible {
     outline: -webkit-focus-ring-color auto 1px;
+  }
+
+  &:focus-visible,
+  &:focus {
+    outline: 2px solid red;
   }
 
   &.in-progress,

@@ -70,21 +70,21 @@
             (mouseleave)="clearSpinnerInterval()"
           ></i>
         </div>
-        <span
+        <button
           *ngIf="type === inputTypes.password && passwordToggleEnabled"
-          class="icon-eye"
+          class="btn btn-link icon-eye"
           title="Toggle Text Visibility"
           (click)="togglePassword()"
         >
-        </span>
-        <span
+        </button>
+        <button
           *ngIf="type === inputTypes.text && unlockable && disabled"
-          class="icon-lock"
+          class="btn btn-link icon-lock"
           (click)="disabled = false"
           ngx-tooltip
           [tooltipTitle]="unlockableTooltip"
         >
-        </span>
+        </button>
       </div>
       <label class="ngx-input-label" [@labelState]="labelState" [attr.for]="id">
         <span [innerHTML]="label"></span>&nbsp;
