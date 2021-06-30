@@ -3,6 +3,7 @@
 ## HEAD (unreleased)
 
 - Enhancement: Updated import and export icon style (#625)
+- Fix: `ngx-select` not populating selected options once `options` changes
 
 ## 35.6.5 (2021-06-08)
 
