@@ -5,7 +5,9 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnChanges,
   Output,
+  SimpleChanges,
   TemplateRef,
   ViewChild
 } from '@angular/core';
@@ -21,7 +23,7 @@ import { SelectDropdownOption } from './select-dropdown-option.interface';
   host: { class: 'ngx-select-input' },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectInputComponent implements AfterViewInit {
+export class SelectInputComponent implements AfterViewInit, OnChanges {
   @Input() placeholder: string;
   @Input() identifier: string;
   @Input() options: SelectDropdownOption[];
@@ -121,6 +123,12 @@ export class SelectInputComponent implements AfterViewInit {
   private _tagging: boolean;
   private _allowAdditions: boolean;
   private _disableDropdown: boolean;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('options' in changes && !changes.options.firstChange) {
+      this.selectedOptions = this.calcSelectedOptions(this.selected);
+    }
+  }
 
   ngAfterViewInit(): void {
     if (this.tagging && this.autofocus) {
