@@ -4,7 +4,7 @@ import { DrawerService, LoadingService } from '@swimlane/ngx-ui';
 import Prism from 'prismjs';
 import 'prismjs/plugins/custom-class/prism-custom-class';
 
-import { version } from '../../projects/swimlane/ngx-ui/package.json';
+import pkg from '../../projects/swimlane/ngx-ui/package.json';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -14,7 +14,7 @@ import { version } from '../../projects/swimlane/ngx-ui/package.json';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  version = version;
+  version = pkg.version;
   searchValue: string = '';
   filteredNavigationTree: any[];
 

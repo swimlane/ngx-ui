@@ -5,6 +5,8 @@
   MIT License: https://github.com/driftyco/ionicons
 */
 
+@use "sass:math";
+
 .icon-loading {
   animation: spin 1s infinite linear;
   font-size: 32px;
@@ -55,7 +57,7 @@
 
   $num: 24;
   @for $i from 0 through $num {
-    $delay: $duration / 5 / $num * $i;
+    $delay: math.div($duration * 0.2, $num) * $i;
     .arc-#{$i} {
       animation-delay: $delay, 0s;
     }
@@ -110,7 +112,7 @@
  * Version: 1.1.1
  */
 .ngx-progress {
-  $pi: 355/113;
+  $pi: math.div(355, 113);
 
   $easing: cubic-bezier(0.8, 0, 0.4, 0.8);
 
