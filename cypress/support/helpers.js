@@ -1,4 +1,5 @@
 const CODEMIRROR = 'NGX-CODEMIRROR';
+const SELECT = 'NGX-SELECT';
 const CLEAR = Cypress.platform != 'darwin' ? '{ctrl}a{del}' : '{meta}a{del}';
 
 Cypress.Commands.add('getByName', (name) => {
@@ -27,7 +28,7 @@ Cypress.Commands.add('getValue', { prevSubject: true }, (element) => {
       const $el = element.find('.CodeMirror');
       return $el[0]?.CodeMirror?.getValue() || '';      
     }
-    case 'NGX-SELECT': {
+    case SELECT: {
       const $el = element.find('.ngx-select-input-name');
       return $el?.text() || '';      
     }
@@ -45,7 +46,7 @@ Cypress.Commands.overwrite('clear', (originalFn, element, options) => {
         .findInput()
         .type(CLEAR);
       return cy.wrap(element);
-    case 'NGX-SELECT':
+    case SELECT:
       cy.wrap(element)
         .find('.ngx-select-clear')
         .click();
