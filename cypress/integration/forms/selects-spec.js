@@ -4,6 +4,27 @@ describe('Selects', () => {
     cy.get('.page-loader').should('not.exist', { timeout: 20000 });
   });
 
+  describe('Filtering Input', () => {
+    beforeEach(() => {
+      cy.get('#select-3').as('CUT');
+    });
+
+    it('enters text and clears text', () => {
+      const text = 'DDOS';
+
+      cy.get('@CUT').type(`${text}{downarrow}{enter}`).getValue().should('equal', text);
+
+      cy.get('@CUT')
+        .getValue()
+        .should('equal', text);
+
+      cy.get('@CUT')
+        .clear()
+        .getValue()
+        .should('equal', '');
+    });
+  });
+
   describe('Close on body click', () => {
     beforeEach(() => {
       cy.asAllDataCy();
