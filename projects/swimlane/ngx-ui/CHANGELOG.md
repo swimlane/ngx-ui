@@ -2,8 +2,13 @@
 
 ## HEAD (unreleased)
 
-- Enhancement: Updated import and export icon style (#625)
+## 35.6.5 (2021-06-29)
+
 - Fix: `ngx-select` not populating selected options once `options` changes
+
+## 35.6.6 (2021-06-08)
+
+- Enhancement: Updated import and export icon style (#625)
 
 ## 35.6.5 (2021-06-08)
 
@@ -38,7 +43,8 @@
 
 - Refactor: `ngx-large-format-dialog-content` Stepper and Tabs variant usage
 
-  - The variants are now driven via `ng-template` and custom directives instead of Content Project due to limit of Content Project when it comes to nested elements.
+  - The variants are now driven via `ng-template` and custom directives instead of Content Project due to limit of
+    Content Project when it comes to nested elements.
 
   ```html
   <ngx-large-format-dialog-content>
@@ -66,7 +72,8 @@
 
   - This change also allows for nesting Stepper and Tabs
 
-- Enhancement: apply default styles to `ngx-large-format-dialog-footer`. Items will be center by default with a `0.5rem` gap. `[styleClass]` input nullifies the default.
+- Enhancement: apply default styles to `ngx-large-format-dialog-footer`. Items will be center by default with a `0.5rem`
+  gap. `[styleClass]` input nullifies the default.
 - Fix: Export `DialogFormat` from `public_api`
 
 ## 35.5.1 (2021-04-22)
@@ -129,9 +136,11 @@
 - Feature: Add `appearance` input to CardComponent
 - Enhancement: Add `hideAccent` input to CardComponent
 - Feature: Add `appearance` and `togglePosition` inputs to `SectionComponent`
-- Enhancement: When `sectionCollapsible` in `SectionComponent` is true, make the section header clickable to expand and collapse
+- Enhancement: When `sectionCollapsible` in `SectionComponent` is true, make the section header clickable to expand and
+  collapse
 - Feature: Add `timeout` option to `ButtonComponent`
-- Fix(ngx-input): Make the lockpad button clickable when the textbox appearance is set to "Fill" and has `[unlockable] = "true"` set. Also fix vertical alignment.
+- Fix(ngx-input): Make the lockpad button clickable when the textbox appearance is set to "Fill" and
+  has `[unlockable] = "true"` set. Also fix vertical alignment.
 
 ## 34.1.0 (2021-01-20)
 
@@ -153,13 +162,15 @@
 
 ## 33.1.0 (2020-12-14)
 
-- Feature: add `groupByTemplate` Input to `ngx-select`. Check [Selects Documentation](https://swimlane.github.io/ngx-ui/selects) for usage
+- Feature: add `groupByTemplate` Input to `ngx-select`.
+  Check [Selects Documentation](https://swimlane.github.io/ngx-ui/selects) for usage
 
 ## 33.0.0 (2020-12-8)
 
 - Feature: add `ngx-plus-menu`
 - Enhancement: Add `required` and `requiredIndicator` inputs to `DateTimeComponent`.
-- Breaking: An empty value will no longer cause the `DateTimeComponent` to become invalid, unless it is explicitly marked as `required`.
+- Breaking: An empty value will no longer cause the `DateTimeComponent` to become invalid, unless it is explicitly
+  marked as `required`.
 - Feature(Stepper): Add `[large]` input to increase the default icon size.
 - Feature(Stepper): Add `[trackBar]` input to make track bar optional.
 - Feature(Stepper): Add `[progress]` input to show a progress indicator on the active step.
@@ -177,15 +188,18 @@
 - Fix: re-infer `json-editor` node types after model change
 - Fix: Reference leak caused when duplicating field names on a object
 - Enhancement: Add `[withMargin]` option to `ngx-input`
-  - `[withMargin]` allows for consumers of `ngx-input` to remove the vertical margins that are added by the `ngx-input` itself, to take control of positioning of the `ngx-input`.
+  - `[withMargin]` allows for consumers of `ngx-input` to remove the vertical margins that are added by the `ngx-input`
+    itself, to take control of positioning of the `ngx-input`.
   - Default is `true` to keep the current behavior intact.
 - Enhancement: Add `[withMargin]` option to `ngx-date-time`
   - `[withMargin]` on `ngx-date-time` is passed down to `ngx-input` resulting the above points.
   - Default is `true` to keep the current behavior intact.
-  - `[withMargin]=true` adds `.marginless` CSS class to determine the `translateY` value of `calendar-dialog-btn` relative to the Host component.
+  - `[withMargin]=true` adds `.marginless` CSS class to determine the `translateY` value of `calendar-dialog-btn`
+    relative to the Host component.
 - Enhancement: Remove `padding-top` style to `ngx-input` if there's no `label` passed in.
   - For `ngx-date-time`, **calendar toggle button** is positioned properly with no `label`.
-- Enhancement: Port `AutoSizeInputDirective` from `ngx-autosize-input` to `ngx-ui` because of bad implementation on first `ngModel.valueChanges` in `ngx-autosize-input`.
+- Enhancement: Port `AutoSizeInputDirective` from `ngx-autosize-input` to `ngx-ui` because of bad implementation on
+  first `ngModel.valueChanges` in `ngx-autosize-input`.
 - Chore: Remove `ngx-autosize-input` as a dependency.
 
 ## 31.0.1 (2020-11-03)
@@ -214,7 +228,8 @@
 - Breaking: Upgrade to Angular 10
 - Enhancement: replace the default chrome accessibility number spinner with a styled one for number type ngx-inputs
 - Enhancement: added a minWidth input property to ngx-input
-- Fix: rework the way autosize works on ngx-input so that it sizes to its content correctly. Now using ngx-autosize-input library.
+- Fix: rework the way autosize works on ngx-input so that it sizes to its content correctly. Now using
+  ngx-autosize-input library.
 - Enhancement: Updated ngx-date-time component to have fill variants and autosize option
 
 ## 29.3.0 (2020-08-17)
@@ -548,7 +563,8 @@
 
 ## 25.0.0 (2019-01-28)
 
-- Breaking: @angular/flex-layout must be imported in the modules it's used in - it is no longer imported in the main `NgxUIModule` (#217)
+- Breaking: @angular/flex-layout must be imported in the modules it's used in - it is no longer imported in the
+  main `NgxUIModule` (#217)
 - Fix: Fixes circular dependency warnings and the AoT build (#217)
 - Fix: Fixes an error in the splitter component (#219)
 
