@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { dependencies } from '../../../projects/swimlane/ngx-ui/package.json';
+import pkg from '../../../projects/swimlane/ngx-ui/package.json';
 
 @Component({
   selector: 'app-landing-page',
@@ -8,6 +8,6 @@ import { dependencies } from '../../../projects/swimlane/ngx-ui/package.json';
 export class LandingPageComponent {
   deps: any;
   constructor() {
-    this.deps = dependencies;
+    this.deps = pkg.dependencies;
   }
 }

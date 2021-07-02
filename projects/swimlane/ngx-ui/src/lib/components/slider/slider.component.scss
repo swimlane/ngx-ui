@@ -93,7 +93,7 @@ $slider-thumb-width: 1em;
       background-color: $slider-bg;
       width: 100%;
       height: $slider-track-width;
-      top: calc(#{$slider-thumb-width / 2} - #{$slider-track-width / 2});
+      top: calc(#{$slider-thumb-width * 0.5} - #{$slider-track-width * 0.5});
       pointer-events: none;
       opacity: 0.3;
     }
@@ -103,7 +103,7 @@ $slider-thumb-width: 1em;
       background-color: $slider-thumb;
       height: $slider-thumb-width;
       width: $slider-thumb-width;
-      border-radius: $slider-thumb-width / 2;
+      border-radius: $slider-thumb-width * 0.5;
       pointer-events: none;
       z-index: 100;
       box-shadow: 0px 0px 0px 0px rgba($slider-thumb, 0.3);
@@ -141,7 +141,7 @@ $slider-thumb-width: 1em;
     pointer-events: none;
     height: $slider-fill-width;
     left: 0;
-    top: calc(50% - #{$slider-fill-width / 2});
+    top: calc(50% - #{$slider-fill-width * 0.5});
     width: 100%;
   }
 }

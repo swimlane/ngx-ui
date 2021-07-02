@@ -118,37 +118,25 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
           <p>Some nested stepper</p>
           <ngx-stepper largeFormatDialogSubStepper [readonly]="false" [(active)]="nestedStepIndex">
             <ngx-step label="Initial Selections">
-              <ng-template ngxStepContent>
-                Step One
-              </ng-template>
+              <ng-template ngxStepContent> Step One </ng-template>
             </ngx-step>
             <ngx-step label="Conditions">
-              <ng-template ngxStepContent>
-                Step Two
-              </ng-template>
+              <ng-template ngxStepContent> Step Two </ng-template>
             </ngx-step>
             <ngx-step label="Outputs">
-              <ng-template ngxStepContent>
-                Step Three
-              </ng-template>
+              <ng-template ngxStepContent> Step Three </ng-template>
             </ngx-step>
             <ngx-step label="Finish">
-              <ng-template ngxStepContent>
-                Step Four
-              </ng-template>
+              <ng-template ngxStepContent> Step Four </ng-template>
             </ngx-step>
           </ngx-stepper>
         </ng-template>
       </ngx-step>
       <ngx-step label="Outputs">
-        <ng-template ngxStepContent>
-          Step Three
-        </ng-template>
+        <ng-template ngxStepContent> Step Three </ng-template>
       </ngx-step>
       <ngx-step label="Finish">
-        <ng-template ngxStepContent>
-          Step Four
-        </ng-template>
+        <ng-template ngxStepContent> Step Four </ng-template>
       </ngx-step>
     </ngx-stepper>
   `,

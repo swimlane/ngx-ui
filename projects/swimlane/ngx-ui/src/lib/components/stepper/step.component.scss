@@ -154,7 +154,7 @@
       border-radius: 50%;
       border: 1.75px solid $color-blue-grey-600;
       color: $color-blue-grey-600;
-      font-size: $stepper-size / 2;
+      font-size: $stepper-size * 0.5;
       font-weight: bold;
       transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
       user-select: none;

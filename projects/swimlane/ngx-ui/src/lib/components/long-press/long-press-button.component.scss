@@ -25,7 +25,7 @@ $background-color: $color-blue-grey-850;
   }
 
   .inner-background {
-    $offset: ($outerSize - $innerSize - 2 * $borderWidth) / 2;
+    $offset: ($outerSize - $innerSize - 2 * $borderWidth) * 0.5;
 
     border-radius: 50%;
     background: $background-color;
@@ -37,7 +37,7 @@ $background-color: $color-blue-grey-850;
   }
 
   .ngx-icon {
-    font-size: $innerSize / 2;
+    font-size: $innerSize * 0.5;
     height: $outerSize;
     vertical-align: middle;
     line-height: $outerSize;
