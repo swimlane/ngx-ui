@@ -96,5 +96,13 @@
     "ngx-ui-utils": {
       "tags": ["scope:utils", "type:lib"]
     }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   }
 }
