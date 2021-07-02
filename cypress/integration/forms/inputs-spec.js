@@ -21,7 +21,7 @@ describe('Inputs', () => {
         });
     });
 
-    it('entersand clears text', () => {
+    it('enters and clears text', () => {
       const text = 'hello world';
 
       cy.get('@CUT').clear().type(text);
