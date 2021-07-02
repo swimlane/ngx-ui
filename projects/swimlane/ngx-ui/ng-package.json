@@ -15,5 +15,5 @@
       "ajv": "Ajv"
     }
   },
-  "whitelistedNonPeerDependencies": ["mousetrap", "ng2-file-upload", "normalize.css"]
+  "allowedNonPeerDependencies": ["mousetrap", "ng2-file-upload", "normalize.css"]
 }

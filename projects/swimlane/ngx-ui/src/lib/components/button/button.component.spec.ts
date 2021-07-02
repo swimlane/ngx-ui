@@ -58,7 +58,7 @@ describe('ButtonComponent', () => {
     it('should update and resolve', done => {
       const spy = spyOn(component, 'updateState');
       component.promise = new Promise(resolve => {
-        resolve();
+        resolve('');
       });
 
       component.updatePromise().finally(() => {

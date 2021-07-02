@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "35.6.6",
+  "version": "35.6.7",
   "engines": {
     "node": ">=12.0.0"
   },

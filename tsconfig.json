@@ -22,6 +22,7 @@
       "@angular/*": ["node_modules/@angular/*"],
       "tslib": ["node_modules/tslib"]
     },
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   }
 }
