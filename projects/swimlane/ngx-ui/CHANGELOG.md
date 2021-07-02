@@ -2,7 +2,7 @@
 
 ## HEAD (unreleased)
 
-## 35.6.5 (2021-06-29)
+## 35.6.7 (2021-06-29)
 
 - Fix: `ngx-select` not populating selected options once `options` changes
 
