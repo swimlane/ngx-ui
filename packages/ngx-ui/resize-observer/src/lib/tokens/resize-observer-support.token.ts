@@ -7,7 +7,10 @@ export const RESIZE_OBSERVER_SUPPORT = new InjectionToken<boolean>(
     providedIn: 'root',
     factory: () => {
       const w = inject(NGX_UI_WINDOW);
-      return 'ResizeObserver' in w && w['ResizeObserver'] != null;
+      return (
+        'ResizeObserver' in w &&
+        (w as unknown as Record<string, unknown>)['ResizeObserver'] != null
+      );
     },
   }
 );

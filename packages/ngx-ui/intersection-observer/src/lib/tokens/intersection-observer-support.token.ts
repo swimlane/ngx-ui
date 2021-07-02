@@ -7,7 +7,11 @@ export const INTERSECTION_OBSERVER_SUPPORT = new InjectionToken<boolean>(
     providedIn: 'root',
     factory: () => {
       const w = inject(NGX_UI_WINDOW);
-      return 'IntersectionObserver' in w && w['IntersectionObserver'] != null;
+      return (
+        'IntersectionObserver' in w &&
+        (w as unknown as Record<string, unknown>)['IntersectionObserver'] !=
+          null
+      );
     },
   }
 );
