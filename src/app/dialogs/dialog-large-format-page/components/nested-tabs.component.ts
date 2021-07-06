@@ -113,15 +113,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
           </p>
         </ng-template>
       </ngx-tab>
-      <ngx-tab label="Conditions">
-        Conditions
-      </ngx-tab>
-      <ngx-tab label="Outputs">
-        Outputs
-      </ngx-tab>
-      <ngx-tab label="Finish">
-        Finish
-      </ngx-tab>
+      <ngx-tab label="Conditions"> Conditions </ngx-tab>
+      <ngx-tab label="Outputs"> Outputs </ngx-tab>
+      <ngx-tab label="Finish"> Finish </ngx-tab>
     </ngx-tabs>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
