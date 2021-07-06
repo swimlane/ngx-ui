@@ -25,7 +25,7 @@ import {
   PlacementType,
 } from '@swimlane/ngx-ui/typings';
 import { TooltipShowTypes, TooltipStyleTypes } from './enums';
-import { TooltipContentComponent } from './tooltip-content.component';
+import { TooltipContentComponent } from './tooltip-content/tooltip-content.component';
 import { TooltipService } from './tooltip.service';
 
 @Directive({
