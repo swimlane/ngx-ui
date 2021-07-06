@@ -15,7 +15,7 @@ export class CardTagDirective {
 }
 
 @Directive({
-  selector: 'ngx-card-title, [ngxCardTitlte], [ngx-card-title]',
+  selector: 'ngx-card-title, [ngxCardTitle], [ngx-card-title]',
 })
 export class CardTitleDirective {
   @HostBinding('class.ngx-card-title') hostClass = true;
