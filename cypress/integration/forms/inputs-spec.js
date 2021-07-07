@@ -16,17 +16,14 @@ describe('Inputs', () => {
     it('has no placeholder', () => {
       cy.get('@CUT')
         .findInput()
-        .then($el => {
-          expect($el.attr('placeholder')).to.equal('');
-        });
+        .should('have.attr', 'placeholder', '');
     });
 
     it('enters and clears text', () => {
       const text = 'hello world';
 
-      cy.get('@CUT').clear().type(text);
-
       cy.get('@CUT')
+        .fill(text)
         .getValue()
         .should('equal', text);
 
@@ -38,7 +35,7 @@ describe('Inputs', () => {
 
     it('underlines active input', () => {
       // reset active input box
-      cy.get('@CUT').findInput().click().blur();
+      cy.focused().blur();
 
       cy.get('@CUT')
         .find('.ngx-input-underline .underline-fill')
@@ -49,7 +46,7 @@ describe('Inputs', () => {
 
       // when we click on the input box
       // it underlines it
-      cy.get('@CUT').findInput().click();
+      cy.get('@CUT').click();
 
       cy.get('@CUT')
         .find('.ngx-input-underline .underline-fill')
@@ -57,6 +54,29 @@ describe('Inputs', () => {
           expect(el).to.have.attr('style');
           expect(Cypress.$(el).attr('style')).to.match(/.*width:\s*100%.*/);
         });
+    });
+  });
+
+  describe('Native Input', () => {
+    beforeEach(() => {
+      cy.get('[sectiontitle="Native"] input').first().as('CUT');
+    });
+
+    it('enters and clears text', () => {
+      const text = 'hello world';
+
+      cy.get('@CUT').fill(text);
+
+      cy.get('@CUT')
+        .getValue()
+        .should('equal', text);
+
+      cy.get('@CUT')
+        .clear();
+  
+      cy.get('@CUT')
+        .getValue()
+        .should('equal', '');
     });
   });
 
@@ -72,23 +92,18 @@ describe('Inputs', () => {
     it('has no placeholder', () => {
       cy.get('@CUT')
         .findInput()
-        .then($el => {
-          expect($el.attr('placeholder')).to.equal('');
-        });
+        .should('have.attr', 'placeholder', '');
     });
 
     it('enters text', () => {
       const text = ' hello world';
 
-      cy.get('@CUT').clear().type(text);
+      cy.get('@CUT').fill(text);
 
-      cy.get('@CUT').findInput().should('have.prop', 'value', text);
+      cy.get('@CUT').getValue().should('equal', text);
     });
 
     it('underlines active input', () => {
-      // reset active input box
-      cy.get('@CUT').findInput().click().blur();
-
       cy.get('@CUT')
         .find('.ngx-input-underline .underline-fill')
         .should(el => {
@@ -115,7 +130,8 @@ describe('Inputs', () => {
     });
 
     it('adds a placeholder', () => {
-      cy.get('@CUT').findInput().should('have.attr', 'placeholder', 'Enter your first and last name');
+      cy.get('@CUT').findInput()
+        .should('have.attr', 'placeholder', 'Enter your first and last name');
     });
 
     it('has no label', () => {
@@ -124,7 +140,7 @@ describe('Inputs', () => {
 
     it('underlines active input', () => {
       // reset active input box
-      cy.get('@CUT').findInput().click().blur();
+      cy.focused().blur();
 
       cy.get('@CUT')
         .find('.ngx-input-underline .underline-fill')
@@ -158,9 +174,7 @@ describe('Inputs', () => {
     it('have no placeholder', () => {
       cy.get('@CUT')
         .findInput()
-        .then($el => {
-          expect($el.attr('placeholder')).to.equal('');
-        });
+        .should('have.attr', 'placeholder', '');
     });
 
     it('adds a prefix', () => {
@@ -184,13 +198,11 @@ describe('Inputs', () => {
     it('has no placeholder', () => {
       cy.get('@CUT')
         .findInput()
-        .then($el => {
-          expect($el.attr('placeholder')).to.equal('');
-        });
+        .should('have.attr', 'placeholder', '');
     });
 
     it('has a value', () => {
-      cy.get('@CUT').findInput().should('have.prop', 'value', 'Disabled value');
+      cy.get('@CUT').getValue().should('equal', 'Disabled value');
     });
 
     it('should be disabled', () => {
@@ -210,9 +222,7 @@ describe('Inputs', () => {
     it('has no placeholder', () => {
       cy.get('@CUT')
         .findInput()
-        .then($el => {
-          expect($el.attr('placeholder')).to.equal('');
-        });
+        .should('have.attr', 'placeholder', '');
     });
 
     it('should be required', () => {
@@ -232,13 +242,11 @@ describe('Inputs', () => {
     it('has no placeholder', () => {
       cy.get('@CUT')
         .findInput()
-        .then($el => {
-          expect($el.attr('placeholder')).to.equal('');
-        });
+        .should('have.attr', 'placeholder', '');
     });
 
     it('should be required', () => {
-      cy.get('@CUT').findInput().should('have.prop', 'value', 'Defaulted!');
+      cy.get('@CUT').getValue().should('equal', 'Defaulted!');
     });
   });
 
@@ -254,9 +262,7 @@ describe('Inputs', () => {
     it('has no placeholder', () => {
       cy.get('@CUT')
         .findInput()
-        .then($el => {
-          expect($el.attr('placeholder')).to.equal('');
-        });
+        .should('have.attr', 'placeholder', '');
     });
 
     it('should have a password ', () => {
@@ -264,16 +270,10 @@ describe('Inputs', () => {
     });
 
     it('should allow input', () => {
-      cy.get('@CUT')
-        .findInput()
-        .then($el => {
-          expect($el.prop('value')).to.equal('');
-        });
-
       const text = '>vQ9~4W$%ag!ACe$';
 
-      cy.get('@CUT').findInput().type(text).blur();
-      cy.get('@CUT').findInput().should('have.prop', 'value', text);
+      cy.get('@CUT').fill(text);
+      cy.get('@CUT').getValue().should('equal', text);
     });
 
     it('should toggle password', () => {

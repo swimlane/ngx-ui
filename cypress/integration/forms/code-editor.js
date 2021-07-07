@@ -12,7 +12,7 @@ describe('Code Editor', () => {
     it('enters text and clears', () => {
       const text = '<a>hello\nworld</a>';
 
-      cy.get('@CUT').clear().type(text);
+      cy.get('@CUT').fill(text);
 
       cy.get('@CUT')
         .getValue()
