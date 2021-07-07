@@ -1,19 +1,15 @@
 // tslint:disable-next-line:no-namespace
 declare namespace Cypress {
   interface Chainable<T = unknown> {
-    /**
-     * Get and alias all elements with `[data-cy]` attr on the current page.
-     * @see https://docs.cypress.io/guides/references/best-practices.html#Selecting-Elements
-     *
-     * @example
-     *    <div data-cy="firstDiv"></div>
-     *    <div data-cy="secondDiv"></div>
-     *
-     *    cy.asAllDataCy();
-     *    // equivalent to:
-     *    cy.get('[data-cy=firstDiv]').as('firstDiv');
-     *    cy.get('[data-cy=secondDiv]').as('secondDiv');
-     */
     asAllDataCy(): Chainable<void>;
+    getByName(name: string): Chainable<Element>;
+    getByLabel(name: string): Chainable<Element>;
+    findInput(): Chainable<Element>;
+    getValue(): Chainable<string>;
+    closeNotifications(): Chainable<void>;
+    withinEach(fn: (el: Element) => void): Chainable<void>;
+    whileHovering(fn: (el: Element) => void): Chainable<void>;
+    fill(text: string): Chainable<void>;
+    iff(selector: (string | ((el: Element) => void)), fn?: (el: Element) => void): Chainable<void>;
   }
 }

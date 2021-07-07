@@ -1,3 +1,19 @@
+/// <reference types="cypress" />
+
+declare namespace Cypress {
+  interface Chainable {
+    getByName(name: string): Chainable<Element>;
+    getByLabel(name: string): Chainable<Element>;
+    findInput(): Chainable<Element>;
+    getValue(): Chainable<string>;
+    closeNotifications(): Chainable<void>;
+    withinEach(fn: (el: Element) => void): Chainable<void>;
+    whileHovering(fn: (el: Element) => void): Chainable<void>;
+    fill(text: string): Chainable<void>;
+    iff(selector: (string | ((el: Element) => void)), fn?: (el: Element) => void): Chainable<void>;
+  }
+}
+
 const CODEMIRROR = 'NGX-CODEMIRROR';
 const SELECT = 'NGX-SELECT';
 const INPUT = 'NGX-INPUT';
@@ -5,17 +21,23 @@ const DATETIME = "NGX-DATE-TIME";
 
 const CLEAR = Cypress.platform != 'darwin' ? '{ctrl}a{del}' : '{meta}a{del}';
 
+/**
+ * Find element by name attribute.
+ */
 Cypress.Commands.add('getByName', (name) => {
   return cy.get(`*[name="${name}"]`);
 });
 
+/**
+ * Find element by label attribute.
+ */
 Cypress.Commands.add('getByLabel', (label) => {
   return cy.get(`*[label="${label}"]`);
 });
 
 /**
  * Given an element, returns the child input element.
- * */
+ */
 Cypress.Commands.add('findInput', { prevSubject: true }, (element) => {
   switch (element.prop("tagName")) {
     case INPUT:
@@ -34,7 +56,7 @@ Cypress.Commands.add('findInput', { prevSubject: true }, (element) => {
 
 /**
  * Given an element, returns the child input element's value.
- * */
+ */
 Cypress.Commands.add('getValue', { prevSubject: true }, (element) => {
   switch (element.prop("tagName")) {
     case CODEMIRROR: {
@@ -56,11 +78,17 @@ Cypress.Commands.add('getValue', { prevSubject: true }, (element) => {
     .invoke('val');
 });
 
+/**
+ * Close all notifications, if any.
+ */
 Cypress.Commands.add('closeNotifications', () => {
   cy.get('ngx-notification-container')
     .iff('.ngx-notification-close', $el => $el.click());
 });
 
+/**
+ * Like `cy.within`, but for each element.
+ */
 Cypress.Commands.add('withinEach', { prevSubject: true }, (subject, fn) => {
   cy.wrap(subject).each($el => {
     cy.wrap($el).within(fn);
@@ -69,7 +97,7 @@ Cypress.Commands.add('withinEach', { prevSubject: true }, (subject, fn) => {
 
 /**
  * Like `cy.within` but also forces the element into a hover state.
- * */
+ */
 Cypress.Commands.add('whileHovering', { prevSubject: true }, (subject, fn) => {
   return cy
     .wrap(subject)
@@ -87,6 +115,9 @@ Cypress.Commands.add('whileHovering', { prevSubject: true }, (subject, fn) => {
     });
 });
 
+/**
+ * Overwrites `cy.clear` to work with ngx-ui elements.
+ */
 Cypress.Commands.overwrite('clear', (originalFn, element, options) => {
   switch (element.prop("tagName")) {
     case CODEMIRROR:
@@ -108,6 +139,9 @@ Cypress.Commands.overwrite('clear', (originalFn, element, options) => {
   return originalFn(element, options);
 });
 
+/**
+ * Like `cy.type` clears existing text before and works with ngx-ui elements.
+ */
 Cypress.Commands.add('fill', { prevSubject: true }, (subject, text, options) => {
   switch (subject.prop("tagName")) {
     case SELECT:
@@ -132,6 +166,9 @@ Cypress.Commands.add('fill', { prevSubject: true }, (subject, text, options) => 
   return cy.wrap(subject);
 });
 
+/**
+ * Like `cy.within` but only if the element exists in the DOM.
+ */
 Cypress.Commands.add('iff', { prevSubject: true }, (subject, selector, fn) => {
   if (typeof selector === 'function') {
     fn = selector;
