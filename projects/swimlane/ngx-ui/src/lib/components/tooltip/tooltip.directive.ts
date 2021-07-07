@@ -60,7 +60,7 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipShowCaret = coerceBooleanProperty(val);
   }
 
-  get tooltipCloseOnClickOutside() {
+  get tooltipCloseOnClickOutside(): boolean {
     return this._tooltipCloseOnClickOutside;
   }
   @Input()
@@ -152,7 +152,7 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('mouseleave', ['$event'])
-  onMouseLeave(event: any): void {
+  onMouseLeave(event: { toElement: Node }): void {
     if (this.listensForHover && this.tooltipCloseOnMouseLeave) {
       clearTimeout(this.timeout);
 
@@ -168,7 +168,7 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('click')
-  onMouseClick() {
+  onMouseClick(): void {
     if (this.tooltipShowEvent === ShowTypes.mouseover) {
       this.hideTooltip(true);
     }

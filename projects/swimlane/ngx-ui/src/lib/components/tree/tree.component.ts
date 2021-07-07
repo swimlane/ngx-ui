@@ -61,11 +61,11 @@ export class TreeComponent implements AfterContentInit, OnDestroy {
 
   constructor(private readonly _cdr: ChangeDetectorRef) {}
 
-  ngAfterContentInit() {
+  ngAfterContentInit(): void {
     this.nodeElms.changes.pipe(takeUntil(this._destroy$)).subscribe(() => this._cdr.markForCheck());
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this._destroy$.next();
     this._destroy$.complete();
   }

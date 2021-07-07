@@ -88,14 +88,14 @@ describe('TooltipDirective', () => {
   describe('onMouseLeave', () => {
     it('should hide tooltip', () => {
       const spy = spyOn(directive, 'hideTooltip');
-      directive.onMouseLeave(document.createElement('div'));
+      directive.onMouseLeave({ toElement: document.createElement('div') });
       expect(spy).toHaveBeenCalled();
     });
 
     it('should not hide tooltip', () => {
       const spy = spyOn(directive, 'hideTooltip');
       directive.tooltipShowEvent = ShowTypes.focus;
-      directive.onMouseLeave(document.createElement('div'));
+      directive.onMouseLeave({ toElement: document.createElement('div') });
       expect(spy).not.toHaveBeenCalled();
     });
   });

@@ -3,7 +3,7 @@ import { getType } from '../../utils/get-type/get-type.util';
 
 import { TreeNode } from '../../components/tree/tree-node.model';
 
-export const jsonToTree = (value: unknown, label?: string): TreeNode => {
+export const jsonToTree = (value: any, label?: string): TreeNode => {
   const type = getType(value);
 
   let children: any[];

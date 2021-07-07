@@ -38,14 +38,15 @@ module.exports = {
         // off for demo packages
         'no-console': 'off',
         
-        // fix these in this repo, warn for now
-        'guard-for-in': 'warn',
-        '@typescript-eslint/explicit-module-boundary-types': 'warn',
-        '@angular-eslint/no-host-metadata-property': 'warn',
-        '@angular-eslint/no-output-native': 'warn',
-        '@angular-eslint/component-class-suffix': ['error', { suffixes: ['Component', 'Fixture'] }],
-        '@angular-eslint/directive-class-suffix': 'warn',
-        '@angular-eslint/no-output-on-prefix': 'warn'
+        // fix these in this repo, off for now
+        'guard-for-in': 'off',
+        '@angular-eslint/no-host-metadata-property': 'off',
+        '@angular-eslint/no-output-native': 'off',
+        '@angular-eslint/component-class-suffix': 'off',
+        '@angular-eslint/directive-class-suffix': 'off',
+        '@angular-eslint/no-output-on-prefix': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/no-explicit-any': 'off',
       }
     },
     {
