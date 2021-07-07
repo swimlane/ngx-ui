@@ -1,6 +1,7 @@
 const CODEMIRROR = 'NGX-CODEMIRROR';
 const SELECT = 'NGX-SELECT';
 const INPUT = 'NGX-INPUT';
+const DATETIME = "NGX-DATE-TIME";
 
 const CLEAR = Cypress.platform != 'darwin' ? '{ctrl}a{del}' : '{meta}a{del}';
 
@@ -18,6 +19,7 @@ Cypress.Commands.add('getByLabel', (label) => {
 Cypress.Commands.add('findInput', { prevSubject: true }, (element) => {
   switch (element.prop("tagName")) {
     case INPUT:
+    case DATETIME:
       return cy.wrap(element)
         .click()
         .find('input,textarea');
@@ -44,6 +46,7 @@ Cypress.Commands.add('getValue', { prevSubject: true }, (element) => {
       return $el?.text() || '';      
     }
     case INPUT:
+    case DATETIME:
       return cy.wrap(element)
         .find('input,textarea')
         .invoke('val');
@@ -92,6 +95,7 @@ Cypress.Commands.overwrite('clear', (originalFn, element, options) => {
         .type(CLEAR);
       return cy.wrap(element);
     case INPUT:
+    case DATETIME:
       cy.wrap(element)
         .findInput()
         .clear();
@@ -108,19 +112,14 @@ Cypress.Commands.add('fill', { prevSubject: true }, (subject, text, options) => 
   switch (subject.prop("tagName")) {
     case SELECT:
       return cy.wrap(subject)
-        .iff('.ngx-select-clear', $el => $el.click())
+        .clear()
         .type(`${text}{downarrow}{enter}`, options);
     case INPUT:
-      cy.wrap(subject)
-        .findInput()
-        .clear()
-        .type(text, options)
-        .blur();
-      return cy.wrap(subject);
+    case DATETIME:
     case CODEMIRROR:
       cy.wrap(subject)
+        .clear()
         .findInput()
-        .type(CLEAR)
         .type(text, options)
         .blur();
       return cy.wrap(subject);
