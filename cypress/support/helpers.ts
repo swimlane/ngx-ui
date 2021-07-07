@@ -1,19 +1,3 @@
-/// <reference types="cypress" />
-
-declare namespace Cypress {
-  interface Chainable {
-    getByName(name: string): Chainable<Element>;
-    getByLabel(name: string): Chainable<Element>;
-    findInput(): Chainable<Element>;
-    getValue(): Chainable<string>;
-    closeNotifications(): Chainable<void>;
-    withinEach(fn: (el: Element) => void): Chainable<void>;
-    whileHovering(fn: (el: Element) => void): Chainable<void>;
-    fill(text: string): Chainable<void>;
-    iff(selector: (string | ((el: Element) => void)), fn?: (el: Element) => void): Chainable<void>;
-  }
-}
-
 const CODEMIRROR = 'NGX-CODEMIRROR';
 const SELECT = 'NGX-SELECT';
 const INPUT = 'NGX-INPUT';
