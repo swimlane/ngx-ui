@@ -2,7 +2,6 @@ import { ElementRef, Directive, Inject, PLATFORM_ID, EventEmitter } from '@angul
 import { InViewportDirective, InViewportService } from 'ng-in-viewport';
 
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
   exportAs: 'ngxDropdownMenu',
   selector: 'ngx-dropdown-menu',
   host: { class: 'ngx-dropdown-menu' }

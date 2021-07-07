@@ -6,7 +6,6 @@ import { SelectOptionInputTemplateDirective } from './select-option-input-templa
 import { SelectDropdownOption } from './select-dropdown-option.interface';
 
 @Directive({
-  // eslint-disable-next-line @angular-eslint/directive-selector
   exportAs: 'ngxSelectOption',
   selector: 'ngx-select-option'
 })

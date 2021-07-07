@@ -1,7 +1,6 @@
 import { Directive, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 
-// eslint-disable-next-line @angular-eslint/directive-selector
 @Directive({
   selector: '[long-press]'
 })

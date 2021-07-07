@@ -22,7 +22,6 @@ import { StyleTypes } from './style-types.enum';
 import { TooltipService } from './tooltip.service';
 import { TooltipContentComponent } from './tooltip.component';
 
-// eslint-disable-next-line @angular-eslint/directive-selector
 @Directive({
   selector: '[ngx-tooltip]',
   exportAs: 'ngxTooltip'

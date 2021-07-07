@@ -11,7 +11,7 @@ import { Directive, Output, EventEmitter, ElementRef, HostBinding, NgZone, OnIni
  * 		</div>
  *
  */
-// eslint-disable-next-line @angular-eslint/directive-selector
+
 @Directive({
   selector: '[visibilityObserver]'
 })

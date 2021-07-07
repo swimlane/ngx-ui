@@ -38,9 +38,6 @@ module.exports = {
         // off for demo packages
         'no-console': 'off',
         
-        // override prettier
-        quotes: ['error', 'single'],
-
         // fix these in this repo, warn for now
         'guard-for-in': 'warn',
         '@typescript-eslint/explicit-module-boundary-types': 'warn',

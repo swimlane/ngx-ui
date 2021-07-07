@@ -1,6 +1,5 @@
 import { Directive, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
 
-// eslint-disable-next-line @angular-eslint/directive-selector
 @Directive({
   selector: '[dbl-click-copy]',
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
