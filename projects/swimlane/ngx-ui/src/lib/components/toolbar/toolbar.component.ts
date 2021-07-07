@@ -36,13 +36,13 @@ export class ToolbarComponent implements OnInit {
   @ViewChild(ToolbarTitleDirective) toolbarTitle: ToolbarTitleDirective;
   @ViewChild(ToolbarContentDirective) toolbarContent: ToolbarContentDirective;
 
-  get toolbarItems() {
+  get toolbarItems(): ToolbarMenuItem[] {
     return this.menu.filter(m => {
       return !m.dropdown;
     });
   }
 
-  get dropdownItems() {
+  get dropdownItems(): ToolbarMenuItem[] {
     return this.menu.filter(m => {
       return m.dropdown;
     });
@@ -50,13 +50,13 @@ export class ToolbarComponent implements OnInit {
 
   constructor(private renderer: Renderer2, private elRef: ElementRef) {}
 
-  onMenuClicked(item: ToolbarMenuItem, $event: Event) {
+  onMenuClicked(item: ToolbarMenuItem, $event: Event): void {
     if (item.click) {
       item.click($event);
     }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // backwards compatibility
     if (this.title) {
       this.mainTitle = this.title;

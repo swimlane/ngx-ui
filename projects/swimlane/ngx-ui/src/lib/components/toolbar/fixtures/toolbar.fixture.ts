@@ -33,7 +33,7 @@ export class ToolbarFixtureComponent {
     }
   ];
 
-  menuClicked(e: Event) {
+  menuClicked(e: Event): Event {
     return e;
   }
 }

@@ -73,7 +73,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this._destroy$.next();
     this._destroy$.complete();
   }
@@ -88,7 +88,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
     this.selectTab.emit(activeTab);
   }
 
-  move(offset: number) {
+  move(offset: number): void {
     const tabs = this.tabs.toArray();
     for (let i = this.index + offset; i < tabs.length && i >= 0; i += offset) {
       const tab = tabs[i];

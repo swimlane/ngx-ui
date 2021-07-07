@@ -18,7 +18,7 @@ export abstract class InjectionRegistryService<T = any> {
     return this.components.get(type);
   }
 
-  create(bindings: any): ComponentRef<T> {
+  create(bindings: PartialBindings): ComponentRef<T> {
     return this.createByType(this.type, bindings);
   }
 

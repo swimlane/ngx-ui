@@ -41,7 +41,7 @@ export class TabComponent implements OnInit, OnChanges {
 
   constructor(private cdr: ChangeDetectorRef, private renderer: Renderer2, private elRef: ElementRef) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     // backwards compatibility
     if (this.title) {
       this.label = this.title;
@@ -51,11 +51,11 @@ export class TabComponent implements OnInit, OnChanges {
     this.labelTemplate = typeof this.label === 'string' ? this.labelStringTemplate : this.label;
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     this.inputChanges.emit(changes);
   }
 
-  detectChanges() {
+  detectChanges(): void {
     this.cdr.detectChanges();
   }
 }

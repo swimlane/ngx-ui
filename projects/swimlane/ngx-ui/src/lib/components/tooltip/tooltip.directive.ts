@@ -36,7 +36,7 @@ export class TooltipDirective implements OnDestroy {
   @Input() tooltipShowEvent: ShowTypes = ShowTypes.all;
   @Input() tooltipContext: any;
 
-  get tooltipSpacing() {
+  get tooltipSpacing(): number {
     return this._tooltipSpacing;
   }
   @Input()
@@ -44,7 +44,7 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipSpacing = coerceNumberProperty(val);
   }
 
-  get tooltipDisabled() {
+  get tooltipDisabled(): boolean {
     return this._tooltipDisabled;
   }
   @Input()
@@ -52,7 +52,7 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipDisabled = coerceBooleanProperty(val);
   }
 
-  get tooltipShowCaret() {
+  get tooltipShowCaret(): boolean {
     return this._tooltipShowCaret;
   }
   @Input()
@@ -68,7 +68,7 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipCloseOnClickOutside = coerceBooleanProperty(val);
   }
 
-  get tooltipCloseOnMouseLeave() {
+  get tooltipCloseOnMouseLeave(): boolean {
     return this._tooltipCloseOnMouseLeave;
   }
   @Input()
@@ -76,7 +76,7 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipCloseOnMouseLeave = coerceBooleanProperty(val);
   }
 
-  get tooltipHideTimeout() {
+  get tooltipHideTimeout(): number {
     return this._tooltipHideTimeout;
   }
   @Input()
@@ -84,7 +84,7 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipHideTimeout = coerceNumberProperty(val, 300);
   }
 
-  get tooltipShowTimeout() {
+  get tooltipShowTimeout(): number {
     return this._tooltipShowTimeout;
   }
   @Input()

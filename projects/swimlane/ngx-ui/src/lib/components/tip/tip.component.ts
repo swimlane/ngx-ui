@@ -36,27 +36,25 @@ function getIcon(status: TipStatus): string {
   }
 })
 export class TipComponent implements OnChanges, OnDestroy {
-  @Input()
-  status: TipStatus;
-  @Input()
-  isCloseable = false;
-  @Input()
-  icon: string;
-  @Output()
-  close = new EventEmitter();
+  @Input() status: TipStatus;
+  @Input() isCloseable = false;
+  @Input() icon: string;
+
+  @Output() close = new EventEmitter();
+
   readonly TipStatus = TipStatus;
 
-  ngOnChanges() {
+  ngOnChanges(): void {
     if (!this.icon) {
       this.icon = getIcon(this.status);
     }
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.close.emit();
   }
 
-  onClose() {
+  onClose(): void {
     this.close.emit();
   }
 }
