@@ -28,9 +28,9 @@ export class SectionComponent {
     return this.appearance === SectionApperance.Outline;
   }
 
-  @Input() sectionCollapsed: boolean = false;
-  @Input() sectionCollapsible: boolean = true;
-  @Input() headerToggle: boolean = false;
+  @Input() sectionCollapsed = false;
+  @Input() sectionCollapsible = true;
+  @Input() headerToggle = false;
   @Input() sectionTitle: string;
   @Input() padding: any = '1.8em';
   @Input() appearance: SectionApperance = SectionApperance.Legacy;

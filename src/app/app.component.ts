@@ -15,7 +15,7 @@ import pkg from '../../projects/swimlane/ngx-ui/package.json';
 })
 export class AppComponent {
   version = pkg.version;
-  searchValue: string = '';
+  searchValue = '';
   filteredNavigationTree: any[];
 
   navigationTree: any[] = [

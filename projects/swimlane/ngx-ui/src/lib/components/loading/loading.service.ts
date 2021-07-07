@@ -36,7 +36,7 @@ export class LoadingService {
 
   constructor(private readonly injectionService: InjectionService) {}
 
-  start(autoIncrement: boolean = true): void {
+  start(autoIncrement = true): void {
     this.create();
     this._count++;
 
@@ -61,11 +61,11 @@ export class LoadingService {
     clearTimeout(this.timeout);
   }
 
-  reset(num: number = 0): void {
+  reset(num = 0): void {
     this.progress = num;
   }
 
-  complete(all: boolean = false): void {
+  complete(all = false): void {
     this._count--;
 
     if (this.count <= 0 || all) {

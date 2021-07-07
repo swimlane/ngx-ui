@@ -26,7 +26,7 @@ import { FileButtonStyleType } from './file-button-style.type';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FileButtonComponent implements OnInit {
-  @Input() id: string = `input-${id()}`;
+  @Input() id = `input-${id()}`;
   @Input() name: string;
   @Input() styleType = FileButtonStyleType.standard;
   @Input() uploader: FileUploader;

@@ -5,7 +5,7 @@ import {
   EventEmitter,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  OnInit,
+  OnChanges,
   OnDestroy
 } from '@angular/core';
 import { TipStatus } from './tip-status.enum';
@@ -35,11 +35,11 @@ function getIcon(status: TipStatus): string {
     '[class.ngx-tip--warning]': 'status === TipStatus.Warning'
   }
 })
-export class TipComponent {
+export class TipComponent implements OnChanges, OnDestroy {
   @Input()
   status: TipStatus;
   @Input()
-  isCloseable: boolean = false;
+  isCloseable = false;
   @Input()
   icon: string;
   @Output()

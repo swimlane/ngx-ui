@@ -88,11 +88,11 @@ export class ToggleComponent implements ControlValueAccessor {
     return this.disabled ? 'disabled' : '';
   }
 
-  private _value: boolean = false;
-  private _disabled: boolean = false;
-  private _required: boolean = false;
-  private _showIcons: boolean = true;
-  private _tabIndex: number = 0;
+  private _value = false;
+  private _disabled = false;
+  private _required = false;
+  private _showIcons = true;
+  private _tabIndex = 0;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 

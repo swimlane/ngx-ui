@@ -65,7 +65,7 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
     return this.items.length > 2;
   }
 
-  uid: string = '';
+  uid = '';
   readonly PlusMenuPosition = PlusMenuPosition;
   private documentClickEvent: () => void;
 

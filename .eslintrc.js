@@ -10,8 +10,7 @@ module.exports = {
 
   extends: [
     '@swimlane',
-    'prettier',
-    'prettier/@typescript-eslint'
+    'prettier'
   ],
 
   rules: {
@@ -33,8 +32,7 @@ module.exports = {
         '@swimlane/eslint-config/typescript',
         'plugin:@angular-eslint/recommended',
         'plugin:@angular-eslint/template/process-inline-templates',
-        'prettier',
-        'prettier/@typescript-eslint'
+        'prettier'
       ],
       rules: {
         // off for demo packages

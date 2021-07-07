@@ -247,7 +247,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   private _tabindex: number;
   private _autosize = false;
   private _minWidth: number = MIN_WIDTH;
-  private _required: boolean = false;
+  private _required = false;
   private _maxDate: Date | string;
   private _minDate: Date | string;
 
