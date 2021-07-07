@@ -57,8 +57,8 @@ $card-vertical-gutter: 20px;
     }
 
     &.error {
-      background-color: $color-red-500;
-      box-shadow: 0 0 7px $color-red-500;
+      background-color: $color-error;
+      box-shadow: 0 0 7px $color-error;
     }
   }
 
@@ -78,6 +78,11 @@ $card-vertical-gutter: 20px;
 
   .ngx-dropdown.ellipsis {
     padding: 0;
+  }
+
+  &.flat {
+    background: none;
+    box-shadow: none;
   }
 } // end of ngx-card
 
@@ -187,6 +192,7 @@ $card-vertical-gutter: 20px;
         -webkit-box-orient: vertical;
         -webkit-line-clamp: 3;
         overflow: hidden;
+        word-break: break-word;
       }
     }
 
@@ -245,6 +251,10 @@ $card-vertical-gutter: 20px;
     bottom: -5px;
     border: $card-outline-border-thickness solid $color-blue-400;
     border-radius: 5px;
+
+    &.error {
+      border-color: $color-error;
+    }
   }
 
   .ngx-card--outline-text {
@@ -288,6 +298,18 @@ $card-vertical-gutter: 20px;
         margin-left: 15px;
         border-radius: 0 0 2px 0;
         width: 20px;
+      }
+    }
+
+    &.error {
+      color: $color-error;
+      border-color: $color-error;
+
+      .inner-text {
+        &::before,
+        &::after {
+          background: $color-error;
+        }
       }
     }
   }

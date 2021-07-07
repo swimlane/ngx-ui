@@ -4,7 +4,7 @@ import { DrawerService, LoadingService } from '@swimlane/ngx-ui';
 import Prism from 'prismjs';
 import 'prismjs/plugins/custom-class/prism-custom-class';
 
-import { version } from '../../projects/swimlane/ngx-ui/package.json';
+import pkg from '../../projects/swimlane/ngx-ui/package.json';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -14,8 +14,8 @@ import { version } from '../../projects/swimlane/ngx-ui/package.json';
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  version = version;
-  searchValue = '';
+  version = pkg.version;
+  searchValue: string = '';
   filteredNavigationTree: any[];
 
   navigationTree: any[] = [
@@ -136,6 +136,10 @@ export class AppComponent {
           route: 'dialog'
         },
         {
+          name: 'Dialog - Large Format',
+          route: 'dialog-large-format'
+        },
+        {
           name: 'Alert/Confirm',
           route: 'alert'
         },
@@ -220,6 +224,10 @@ export class AppComponent {
         {
           name: 'Card',
           route: 'card'
+        },
+        {
+          name: 'Dropzone',
+          route: 'dropzone'
         }
       ]
     }

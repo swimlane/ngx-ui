@@ -92,6 +92,7 @@ describe('CalendarComponent', () => {
 
     it('should return false if not same month of year', () => {
       const now = new Date();
+      now.setDate(1);
       now.setMonth(now.getMonth() - 1);
       component.value = now;
       expect(component.isMonthActive(moment().format('MMMM'))).toBe(false);
@@ -107,6 +108,7 @@ describe('CalendarComponent', () => {
 
     it('should return false if month is not same as current', () => {
       const now = new Date();
+      now.setDate(1);
       now.setMonth(now.getMonth() - 1);
       component.value = now;
       component.ngOnInit();

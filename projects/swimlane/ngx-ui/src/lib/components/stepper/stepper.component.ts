@@ -1,24 +1,24 @@
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
-  Component,
   ChangeDetectionStrategy,
-  ViewEncapsulation,
   ChangeDetectorRef,
-  Input,
-  Output,
-  EventEmitter,
+  Component,
   ContentChildren,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  Output,
   QueryList,
-  OnDestroy
+  ViewEncapsulation
 } from '@angular/core';
-import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
-import { StepperPosition } from './stepper-position.enum';
 import { StepComponent } from './step.component';
-import { stepperAnimations } from './stepper.animation';
 import { StepperAnimationStates } from './stepper-animation-states.enum';
 import { StepperBarAnimationStates } from './stepper-bar-animation-states.enum';
+
+import { StepperPosition } from './stepper-position.enum';
+import { stepperAnimations } from './stepper.animation';
 
 @Component({
   exportAs: 'ngxStepper',
@@ -52,6 +52,7 @@ export class StepperComponent implements OnDestroy {
   get completeIcon() {
     return this._completeIcon;
   }
+
   set completeIcon(v: string) {
     if (this._steps) {
       for (const step of this._steps) {
@@ -68,6 +69,7 @@ export class StepperComponent implements OnDestroy {
   get active() {
     return this._active;
   }
+
   set active(v: number) {
     v = coerceNumberProperty(v);
 
@@ -88,6 +90,7 @@ export class StepperComponent implements OnDestroy {
   get readonly() {
     return this._readonly;
   }
+
   set readonly(v: boolean) {
     this._readonly = coerceBooleanProperty(v);
   }
@@ -96,6 +99,7 @@ export class StepperComponent implements OnDestroy {
   get progress() {
     return this._progress;
   }
+
   set progress(v: boolean) {
     this._progress = coerceBooleanProperty(v);
   }
@@ -104,6 +108,7 @@ export class StepperComponent implements OnDestroy {
   get large() {
     return this._large;
   }
+
   set large(v: boolean) {
     this._large = coerceBooleanProperty(v);
   }
@@ -112,6 +117,7 @@ export class StepperComponent implements OnDestroy {
   get removeHighlight() {
     return this._removeHighlight;
   }
+
   set removeHighlight(v: boolean) {
     this._removeHighlight = coerceBooleanProperty(v);
   }
@@ -120,6 +126,7 @@ export class StepperComponent implements OnDestroy {
   get trackBar() {
     return this._trackBar;
   }
+
   set trackBar(v: boolean) {
     this._trackBar = coerceBooleanProperty(v);
   }
@@ -130,6 +137,7 @@ export class StepperComponent implements OnDestroy {
   get steps() {
     return this._steps;
   }
+
   set steps(v) {
     this._steps = v;
     this._destroy$.next();

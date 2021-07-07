@@ -30,7 +30,7 @@ export class JsonEditorNodeInfoComponent {
 
   @Output() propertyNameChange = new EventEmitter<string>();
 
-  updatePropertyName() {
+  updatePropertyName(name: string) {
     this.propertyNameChange.emit(name);
   }
 }

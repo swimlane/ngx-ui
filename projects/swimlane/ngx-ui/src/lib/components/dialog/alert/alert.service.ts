@@ -3,11 +3,11 @@ import { Subject } from 'rxjs';
 
 import { InjectionService } from '../../../services/injection/injection.service';
 import { OverlayService } from '../../overlay/overlay.service';
-import { DialogService } from '../dialog.service';
-import { AlertComponent } from './alert.component';
-import { AlertTypes } from './alert-types.enum';
-import { AlertStyles } from './alert-styles.enum';
 import { DialogOptions } from '../dialog-options.interface';
+import { DialogService } from '../dialog.service';
+import { AlertStyles } from './alert-styles.enum';
+import { AlertTypes } from './alert-types.enum';
+import { AlertComponent } from './alert.component';
 
 const classMap = {
   [AlertStyles.Danger]: 'ngx-alert-danger',
@@ -15,7 +15,9 @@ const classMap = {
   [AlertStyles.Info]: 'ngx-alert-info'
 };
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AlertService extends DialogService<AlertComponent> {
   readonly defaults: DialogOptions = {
     inputs: {
@@ -48,7 +50,15 @@ export class AlertService extends DialogService<AlertComponent> {
 
   private createDialog(options: DialogOptions, type: AlertTypes) {
     const subject = new Subject<{ type: string; data: any }>();
-    const { title, content, longPress, confirmButtonText, cancelButtonText } = options;
+    const {
+      title,
+      content,
+      longPress,
+      confirmButtonText,
+      cancelButtonText,
+      cancelButtonClass = [],
+      confirmButtonClass = 'btn-primary'
+    } = options;
     const cssClass = ['ngx-alert-dialog', classMap[options.style], options.cssClass].join(' ');
 
     const component = this.create({
@@ -58,7 +68,9 @@ export class AlertService extends DialogService<AlertComponent> {
       type,
       cssClass,
       confirmButtonText,
-      cancelButtonText
+      cancelButtonText,
+      cancelButtonClass,
+      confirmButtonClass
     });
 
     const list = component.instance.ok.subscribe((data: { data: any }) => {

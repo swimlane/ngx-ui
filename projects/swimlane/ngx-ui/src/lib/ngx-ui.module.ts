@@ -2,16 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { DialogService } from './components/dialog/dialog.service';
 import { DirectivesModule } from './directives/directives.module';
-import { DrawerService } from './components/drawer/drawer.service';
-import { IconRegistryService } from './services/icon-registry/icon-registry.service';
 import { InjectionService } from './services/injection/injection.service';
-import { LoadingService } from './components/loading/loading.service';
-import { NotificationService } from './components/notification/notification.service';
-import { OverlayService } from './components/overlay/overlay.service';
 import { PipesModule } from './pipes/pipes.module';
-import { TooltipService } from './components/tooltip/tooltip.service';
 
 import { ButtonModule } from './components/button/button.module';
 import { CalendarModule } from './components/calendar/calendar.module';
@@ -22,6 +15,7 @@ import { DateTimeModule } from './components/date-time/date-time.module';
 import { DialogModule } from './components/dialog/dialog.module';
 import { DrawerModule } from './components/drawer/drawer.module';
 import { DropdownModule } from './components/dropdown/dropdown.module';
+import { DropzoneModule } from './components/dropzone/dropzone.module';
 import { HotkeysModule } from './components/hotkeys/hotkeys.module';
 import { IconModule } from './components/icon/icon.module';
 import { InputModule } from './components/input/input.module';
@@ -63,6 +57,7 @@ const modules = [
   DirectivesModule,
   DrawerModule,
   DropdownModule,
+  DropzoneModule,
   FormsModule,
   HotkeysModule,
   IconModule,
@@ -92,16 +87,7 @@ const modules = [
   TreeModule
 ];
 
-const services = [
-  DialogService,
-  DrawerService,
-  IconRegistryService,
-  InjectionService,
-  LoadingService,
-  NotificationService,
-  OverlayService,
-  TooltipService
-];
+const services = [InjectionService];
 
 @NgModule({
   providers: [...services],

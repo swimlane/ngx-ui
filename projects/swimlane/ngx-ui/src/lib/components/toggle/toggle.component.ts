@@ -52,6 +52,15 @@ export class ToggleComponent implements ControlValueAccessor {
   }
 
   @Input()
+  get showIcons() {
+    return this._showIcons;
+  }
+
+  set showIcons(showIcons) {
+    this._showIcons = coerceBooleanProperty(showIcons);
+  }
+
+  @Input()
   get tabIndex() {
     return this._tabIndex;
   }
@@ -79,10 +88,11 @@ export class ToggleComponent implements ControlValueAccessor {
     return this.disabled ? 'disabled' : '';
   }
 
-  private _value = false;
-  private _disabled = false;
-  private _required = false;
-  private _tabIndex = 0;
+  private _value: boolean = false;
+  private _disabled: boolean = false;
+  private _required: boolean = false;
+  private _showIcons: boolean = true;
+  private _tabIndex: number = 0;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 

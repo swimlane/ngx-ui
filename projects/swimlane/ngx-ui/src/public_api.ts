@@ -77,6 +77,12 @@ export * from './lib/components/dialog/dialog.module';
 export * from './lib/components/dialog/dialog.component';
 export * from './lib/components/dialog/dialog.service';
 export * from './lib/components/dialog/dialog-options.interface';
+export * from './lib/components/dialog/dialog-format.enum';
+export * from './lib/components/dialog/large-format/large-format-dialog-content.component';
+export * from './lib/components/dialog/large-format/directives/large-format-dialog-stepper/large-format-dialog-stepper.directive';
+export * from './lib/components/dialog/large-format/directives/large-format-dialog-stepper/large-format-dialog-sub-stepper.directive';
+export * from './lib/components/dialog/large-format/directives/large-format-dialog-tabs/large-format-dialog-tabs.directive';
+export * from './lib/components/dialog/large-format/directives/large-format-dialog-tabs/large-format-dialog-sub-tabs.directive';
 export * from './lib/components/dialog/alert/alert.component';
 export * from './lib/components/dialog/alert/alert.service';
 export * from './lib/components/dialog/alert/alert-types.enum';
@@ -95,6 +101,9 @@ export * from './lib/components/dropdown/dropdown.component';
 export * from './lib/components/dropdown/dropdown-toggle.directive';
 export * from './lib/components/dropdown/dropdown-menu.directive';
 export * from './lib/components/dropdown/dropdown.show-types.enum';
+
+export * from './lib/components/dropzone/dropzone.module';
+export * from './lib/components/dropzone/dropzone.component';
 
 export * from './lib/components/hotkeys/hotkeys.module';
 export * from './lib/components/hotkeys/hotkeys.component';

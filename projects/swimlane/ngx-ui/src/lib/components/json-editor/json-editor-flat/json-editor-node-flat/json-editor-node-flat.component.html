@@ -66,12 +66,13 @@
             <div *ngIf="!schema.format">
               <ngx-input
                 *ngIf="!schema?.enum"
-                type="text"
+                type="textarea"
                 [ngModel]="model"
                 (ngModelChange)="updateModel($event)"
                 [requiredIndicator]="false"
                 [required]="required"
                 [disabled]="isDuplicated"
+                [autosize]="false"
               >
               </ngx-input>
 

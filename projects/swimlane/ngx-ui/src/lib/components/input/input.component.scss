@@ -265,6 +265,12 @@ $input-placeholder-color: $color-blue-grey-350;
 
   &.fill {
     .ngx-input-wrap .ngx-input-box-wrap {
+      .icon-eye,
+      .icon-lock {
+        line-height: 33.33px;
+        z-index: 2;
+      }
+
       .ngx-input-box,
       .ngx-input-textarea {
         margin: 0;

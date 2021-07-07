@@ -57,7 +57,7 @@ ngx-json-editor-node-flat {
       border-radius: 2px;
       top: 0;
       left: 0;
-      border: 2px solid $color-red-500;
+      border: 2px solid $color-error;
     }
 
     .left-options {
@@ -89,8 +89,8 @@ ngx-json-editor-node-flat {
 
           &.invalid {
             svg path {
-              fill: $color-red-500;
-              stroke: $color-red-500;
+              fill: $color-error;
+              stroke: $color-error;
             }
           }
         }
@@ -149,7 +149,7 @@ ngx-json-editor-node-flat {
         }
 
         .input-error {
-          color: $color-red-500;
+          color: $color-error;
           min-height: 1.2em; // min height keeps input from shifing when error is shown
         }
       }

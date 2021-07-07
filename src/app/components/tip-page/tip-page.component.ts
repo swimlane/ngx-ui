@@ -3,7 +3,8 @@ import { ChangeDetectionStrategy, Component, ViewEncapsulation } from '@angular/
 enum TipStatus {
   Success = 'success',
   Error = 'error',
-  Notice = 'notice'
+  Notice = 'notice',
+  Warning = 'warning'
 }
 const text = 'Validate and submit the form to the left to view the method’s response.';
 @Component({

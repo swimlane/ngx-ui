@@ -206,6 +206,8 @@
     class="btn btn-bordered">Bordered</ngx-button>
   <ngx-button #linkButton [promise]="promises['linkButton']" (click)="onClick('button click', 'linkButton')"
     class="btn btn-link">Link</ngx-button>
+  <ngx-button #noTimeoutButton [promise]="promises['noTimeoutButton']" [timeout]="0" (click)="onClick('button click', 'noTimeoutButton')"
+    class="btn">No Timeout</ngx-button>
   <p></p>
   <ngx-button (click)="onClick('button click')" class="btn" disabled="true">Default</ngx-button>
   <ngx-button state="inProgress" class="btn btn-primary" disabled="true">Primary</ngx-button>
@@ -215,6 +217,7 @@
   <ngx-button state="success" class="btn btn-danger" disabled="true">Danger</ngx-button>
   <ngx-button class="btn btn-bordered" disabled="true">Bordered</ngx-button>
   <ngx-button class="btn btn-link" disabled="true">Link</ngx-button>
+  <ngx-button [timeout]="0" disabled="true" class="btn">No Timeout</ngx-button>
 
   <app-prism>
 <![CDATA[<ngx-button #defaultButton [promise]="promises['defaultButton']" (click)="onClick('button click', 'defaultButton')"
@@ -231,6 +234,8 @@
   class="btn btn-bordered">Bordered</ngx-button>
 <ngx-button #linkButton [promise]="promises['linkButton']" (click)="onClick('button click', 'linkButton')"
   class="btn btn-link">Link</ngx-button>
+<ngx-button #noTimeoutButton [promise]="promises['noTimeoutButton']" [timeout]="0" (click)="onClick('button click', 'noTimeoutButton')"
+  class="btn">No Timeout</ngx-button>
 <p></p>
 <ngx-button (click)="onClick('button click')" class="btn" disabled="true">Default</ngx-button>
 <ngx-button state="inProgress" class="btn btn-primary" disabled="true">Primary</ngx-button>
@@ -239,7 +244,9 @@
 <ngx-button state="fail" class="btn btn-warning" disabled="true">Warning</ngx-button>
 <ngx-button state="success" class="btn btn-danger" disabled="true">Danger</ngx-button>
 <ngx-button class="btn btn-bordered" disabled="true">Bordered</ngx-button>
-<ngx-button class="btn btn-link" disabled="true">Link</ngx-button>]]>
+<ngx-button class="btn btn-link" disabled="true">Link</ngx-button>
+<ngx-button [timeout]="0" disabled="true" class="btn">No Timeout</ngx-button>
+]]>
   </app-prism>
 </ngx-section>
 

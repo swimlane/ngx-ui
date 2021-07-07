@@ -24,7 +24,7 @@
     display: none;
 
     &:checked ~ .ngx-toggle-label {
-      background: $color-blue-400;
+      background: $color-blue-700;
 
       &:after {
         left: 15px;
@@ -38,7 +38,7 @@
     display: block;
     height: 14px;
     width: 34px;
-    background: $color-blue-grey-700;
+    background: $color-blue-grey-900;
     border-radius: 100px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -60,10 +60,31 @@
       content: '';
       transition: all 0.3s ease;
     }
+
+    .ngx-icon {
+      display: flex;
+
+      &.ngx-check {
+        opacity: 0.5;
+        color: $color-white;
+        padding: 2.5px 4px;
+        font-size: 9px;
+      }
+
+      &.ngx-x {
+        flex-direction: row-reverse;
+        opacity: 0.7;
+        color: $color-blue-grey-400;
+        padding: 4px 5px;
+        font-size: 7px;
+        font-weight: 900;
+      }
+    }
   }
 
   .ngx-toggle-text {
     cursor: pointer;
     padding-left: 5px;
+    color: $color-blue-grey-100;
   }
 }

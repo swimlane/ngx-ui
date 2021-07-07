@@ -15,7 +15,11 @@
     class="horizontal-list ngx-select-input-list"
     [class.no-selections]="!selected?.length"
   >
-    <li *ngFor="let option of selectedOptions" class="ngx-select-input-option" [class.disabled]="option.disabled">
+    <li
+      *ngFor="let option of selectedOptions"
+      class="ngx-select-input-option"
+      [class.disabled]="multiple && selectedOptions.length > 1 && option.disabled"
+    >
       <ng-template
         *ngIf="option.inputTemplate"
         [ngTemplateOutlet]="option.inputTemplate"
@@ -41,6 +45,7 @@
         autocorrect="off"
         spellcheck="off"
         (keyup)="onKeyUp($event)"
+        (change)="$event.stopPropagation()"
       />
       <i [hidden]="!tagInput.value" class="ngx-icon ngx-x" (click)="tagInput.value = ''"></i>
     </li>

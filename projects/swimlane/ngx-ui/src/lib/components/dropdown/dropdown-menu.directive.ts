@@ -1,4 +1,5 @@
-import { ElementRef, Directive } from '@angular/core';
+import { ElementRef, Directive, Inject, PLATFORM_ID, EventEmitter } from '@angular/core';
+import { InViewportDirective, InViewportService } from 'ng-in-viewport';
 
 @Directive({
   // eslint-disable-next-line @angular-eslint/directive-selector
@@ -6,10 +7,19 @@ import { ElementRef, Directive } from '@angular/core';
   selector: 'ngx-dropdown-menu',
   host: { class: 'ngx-dropdown-menu' }
 })
-export class DropdownMenuDirective {
+export class DropdownMenuDirective extends InViewportDirective {
   readonly element: HTMLElement;
 
-  constructor(private readonly el: ElementRef<HTMLElement>) {
-    this.element = this.el.nativeElement;
+  constructor(
+    @Inject(PLATFORM_ID) readonly _platformIdentifier: any,
+    readonly _elementReference: ElementRef,
+    readonly _insideViewport: InViewportService
+  ) {
+    super(_platformIdentifier, _elementReference, _insideViewport);
+    this.element = this._elementReference.nativeElement;
+  }
+
+  getCallbackFn(): EventEmitter<any> {
+    return this.inViewportAction;
   }
 }

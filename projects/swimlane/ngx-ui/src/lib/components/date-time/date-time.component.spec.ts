@@ -1,13 +1,13 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import moment from 'moment-timezone';
 import { MomentModule } from 'ngx-moment';
-
-import { DateTimeComponent } from './date-time.component';
-import { DialogModule } from '../dialog/dialog.module';
 import { PipesModule } from '../../pipes/pipes.module';
 import { InjectionService } from '../../services/injection/injection.service';
+import { DialogModule } from '../dialog/dialog.module';
+
+import { DateTimeComponent } from './date-time.component';
 
 (moment as any).suppressDeprecationWarnings = true;
 
@@ -558,10 +558,20 @@ describe('DateTimeComponent', () => {
       expect((component.value as Date).toLocaleDateString()).toEqual(date);
     });
 
+    // TODO: fix the handling of invalid inputs in the component and update the tests
     it('should not set invalid value', () => {
       const date = 'test';
       component.inputChanged(date);
       expect(component.value).toEqual(date);
+    });
+
+    it('should always emit with inputChange output', () => {
+      const invalidDate = 'abc123';
+      component.inputChange.subscribe(actual => {
+        expect(actual).toEqual('abc123');
+      });
+      component.inputChanged(invalidDate);
+      expect(component.value).toEqual(invalidDate);
     });
   });
 
@@ -606,6 +616,32 @@ describe('DateTimeComponent', () => {
       spyOn(component.change, 'emit');
       component.value = 'INVALID_DATE';
       expect(component.change.emit).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('error messages', () => {
+    it('should update Date out of range error when minDate is changed', () => {
+      const today = new Date();
+      const yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+      component.minDate = today;
+      component.writeValue(yesterday);
+      expect(component.errorMsg).toEqual('Date out of range');
+      const newMinDate = new Date(yesterday.setDate(yesterday.getDate() - 1));
+      component.minDate = newMinDate;
+      expect(component.errorMsg).toEqual('');
+    });
+
+    it('should update Date out of range error when maxDate is changed', () => {
+      const today = new Date();
+      const yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+      component.maxDate = yesterday;
+      component.writeValue(today);
+      expect(component.errorMsg).toEqual('Date out of range');
+      const newMaxDate = new Date(today.setDate(today.getDate() + 1));
+      component.maxDate = newMaxDate;
+      expect(component.errorMsg).toEqual('');
     });
   });
 });

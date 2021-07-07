@@ -63,11 +63,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() size: Size = Size.Small;
   @Input() appearance: Appearance = Appearance.Legacy;
   @Input() withMargin = true;
-
-  @Input() minDate: string | Date;
-  @Input() maxDate: string | Date;
   @Input() precision: moment.unitOfTime.StartOf;
-
   @Input() timezone: string;
   @Input() inputFormats: any[] = ['L', 'LT', 'L LT', moment.ISO_8601];
 
@@ -176,6 +172,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
       this.onChangeCallback(val);
       this.change.emit(val);
     }
+    this.inputChange.emit(val);
   }
 
   get displayValue(): string {
@@ -195,9 +192,37 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this._autosize = coerceBooleanProperty(v);
   }
 
+  @Input()
+  get minDate() {
+    return this._minDate;
+  }
+  set minDate(val: Date | string) {
+    this._minDate = val;
+    this.validate(this.parseDate(this._value));
+  }
+
+  @Input()
+  get maxDate() {
+    return this._maxDate;
+  }
+  set maxDate(val: Date | string) {
+    this._maxDate = val;
+    this.validate(this.parseDate(this._value));
+  }
+
+  /**
+   * this output will emit only when the input value is valid or cleared.
+   * @see inputChange for always emitting the value
+   */
   @Output() change = new EventEmitter<string | Date>();
   @Output() blur = new EventEmitter<Event>();
   @Output() dateTimeSelected = new EventEmitter<Date | string>();
+
+  /**
+   * this output will emit anytime the value changes regardless of validity.
+   * @see change when only emitting
+   */
+  @Output() inputChange = new EventEmitter<string | Date>();
 
   @ViewChild('dialogTpl', { static: true })
   readonly calendarTpl: TemplateRef<ElementRef>;
@@ -222,7 +247,9 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   private _tabindex: number;
   private _autosize = false;
   private _minWidth: number = MIN_WIDTH;
-  private _required = false;
+  private _required: boolean = false;
+  private _maxDate: Date | string;
+  private _minDate: Date | string;
 
   constructor(private readonly dialogService: DialogService, private readonly cdr: ChangeDetectorRef) {}
 

@@ -39,12 +39,23 @@ const routes: Routes = [
     loadChildren: () => import('./dialogs/dialog-page/dialog-page.module').then(m => m.DialogPageModule)
   },
   {
+    path: 'dialog-large-format',
+    loadChildren: () =>
+      import('./dialogs/dialog-large-format-page/dialog-large-format-page.module').then(
+        m => m.DialogLargeFormatPageModule
+      )
+  },
+  {
     path: 'drawer',
     loadChildren: () => import('./dialogs/drawer-page/drawer-page.module').then(m => m.DrawerPageModule)
   },
   {
     path: 'dropdown',
     loadChildren: () => import('./components/dropdown-page/dropdown-page.module').then(m => m.DropdownPageModule)
+  },
+  {
+    path: 'dropzone',
+    loadChildren: () => import('./components/dropzone-page/dropzone-page.module').then(m => m.DropzonePageModule)
   },
   {
     path: 'hotkeys',

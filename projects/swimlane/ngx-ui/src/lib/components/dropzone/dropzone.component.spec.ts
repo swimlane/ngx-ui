@@ -1,0 +1,43 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { Shallow } from 'shallow-render';
+import { DropzoneComponent } from './dropzone.component';
+import { DropzoneModule } from './dropzone.module';
+import { Rendering } from 'shallow-render/dist/lib/models/rendering';
+import { FileUploader } from '@swimlane/ng2-file-upload';
+
+const uploader = new FileUploader({});
+const acceptedFileFormats = ['.txt', '.json'];
+
+describe('DropzoneComponent', () => {
+  let shallow: Shallow<DropzoneComponent>;
+  let rendering: Rendering<DropzoneComponent, unknown>;
+
+  beforeEach(() => {
+    shallow = new Shallow(DropzoneComponent, DropzoneModule).import(HttpClientTestingModule);
+  });
+
+  describe('init', () => {
+    beforeEach(async () => {
+      rendering = await shallow.render({
+        bind: {
+          uploader
+        }
+      });
+    });
+
+    it('has correct class', () => {
+      expect(rendering.find('ngx-file-button').nativeElement).toHaveClass('ngx-dropzone');
+    });
+
+    it('multiple defaults to true', () => {
+      expect(rendering.instance.multiple).toBe(true);
+    });
+
+    it('accepted file formats', () => {
+      rendering.instance.acceptedFileFormats = acceptedFileFormats;
+      rendering.instance.ngOnInit();
+      expect(rendering.instance.acceptedFileFormatsTextDisplay).toEqual('.txt and .json');
+    });
+  });
+});

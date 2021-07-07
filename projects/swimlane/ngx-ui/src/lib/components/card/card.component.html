@@ -1,6 +1,7 @@
-<div class="ngx-card--outline" *ngIf="selected && !outlineText"></div>
+<div class="ngx-card--outline" *ngIf="selected && !outlineText && !error"></div>
+<div class="ngx-card--outline error" *ngIf="error && !outlineText"></div>
 
-<div class="ngx-card--outline-text" *ngIf="outlineText">
+<div class="ngx-card--outline-text" [class.error]="error" *ngIf="outlineText">
   <div class="inner-text" (click)="onOutlineClick($event)">{{outlineText}}</div>
 </div>
 
@@ -28,4 +29,4 @@
 ></ngx-checkbox>
 
 <ng-content></ng-content>
-<div class="ngx-card--accent"></div>
+<div *ngIf="!hideAccent" class="ngx-card--accent"></div>

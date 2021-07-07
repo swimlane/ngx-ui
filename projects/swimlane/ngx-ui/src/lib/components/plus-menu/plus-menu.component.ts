@@ -13,11 +13,13 @@ import {
   OnDestroy
 } from '@angular/core';
 import { PlusMenuPosition } from './plus-menu-position.enum';
+import { id } from '../../utils/id/id.util';
 
 export interface PlusMenuItem {
   title: string;
   subtitle?: string;
   icon: string;
+  color?: string;
 }
 
 @Component({
@@ -30,14 +32,24 @@ export interface PlusMenuItem {
 export class PlusMenuComponent implements OnInit, OnDestroy {
   @Input() items: PlusMenuItem[] = [];
   @Input() position = PlusMenuPosition.Right;
-  @Input() menuColor = '#9fce36';
   @Input() menuTitle = '';
   @Input() closeOnClickOutside = true;
+  @Input() menuColor = '#9fce36';
 
   @Output() clickItem = new EventEmitter();
   @Output() toggleMenu = new EventEmitter<boolean>();
 
-  readonly PlusMenuPosition = PlusMenuPosition;
+  get itemColor0() {
+    return this.items[0].color || this.menuColor;
+  }
+
+  get itemColor1() {
+    return this.items[1].color || this.menuColor;
+  }
+
+  get itemColor2() {
+    return this.items[2]?.color || this.menuColor;
+  }
 
   @HostBinding('class')
   get p() {
@@ -48,10 +60,13 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
   open = false;
 
   @HostBinding('class.has-three')
-  get s() {
+  @Input()
+  get hasThree(): boolean {
     return this.items.length > 2;
   }
 
+  uid: string = '';
+  readonly PlusMenuPosition = PlusMenuPosition;
   private documentClickEvent: () => void;
 
   constructor(
@@ -61,7 +76,7 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.elementRef.nativeElement.style.setProperty('--menu-color', this.menuColor);
+    this.uid = id(); // for svg linear gradient ids
   }
 
   ngOnDestroy(): void {

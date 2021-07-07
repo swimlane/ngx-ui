@@ -188,7 +188,9 @@ export function Hotkey(key: string, description: string, options?: Partial<Hotke
   };
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class HotkeysService {
   readonly suspend = _suspend;
   readonly activate = _activate;

@@ -1,6 +1,6 @@
 <div
   class="json-tree-node"
-  [class.inline]="schema?.type !== 'object' && schema?.type !== 'array'"
+  [class.inline]="schema?.type !== 'object' && schema?.type !== 'array' && schema?.type !== 'null'"
   [class.invalid]="!valid || isDuplicated"
   [class.children-invalid]="!childrenValid || isDuplicated"
 >
@@ -88,7 +88,7 @@
     <ng-container *ngIf="schema?.type === 'string'">
       <!-- No format -->
       <div *ngIf="!schema.format">
-        <input
+        <textarea
           *ngIf="!schema?.enum"
           class="value-input"
           type="text"
@@ -97,7 +97,7 @@
           [disabled]="isDuplicated"
           (ngModelChange)="updateModel($event)"
           [required]="required"
-        />
+        ></textarea>
         <select *ngIf="schema?.enum" class="value-input select" [ngModel]="model" (ngModelChange)="updateModel($event)">
           <option *ngFor="let option of schema.enum" [value]="option">{{ option }}</option>
         </select>

@@ -1,5 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   EventEmitter,
@@ -8,12 +10,11 @@ import {
   OnDestroy,
   OnInit,
   Output,
-  ViewEncapsulation,
   Renderer2,
   TemplateRef,
-  ChangeDetectionStrategy
+  ViewEncapsulation
 } from '@angular/core';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { DialogFormat } from './dialog-format.enum';
 
 @Component({
   exportAs: 'ngxDialog',
@@ -64,11 +65,13 @@ export class DialogComponent implements OnInit, OnDestroy {
   @Input() cssClass: string;
   @Input() context: any;
   @Input() class: string;
+  @Input() format = DialogFormat.Regular;
 
   @Input()
   get closeOnBlur() {
     return this._closeOnBlur;
   }
+
   set closeOnBlur(closeOnBlur) {
     this._closeOnBlur = coerceBooleanProperty(closeOnBlur);
   }
@@ -77,6 +80,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   get closeOnEscape() {
     return this._closeOnEscape;
   }
+
   set closeOnEscape(closeOnEscape) {
     this._closeOnEscape = coerceBooleanProperty(closeOnEscape);
   }
@@ -85,6 +89,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   get closeButton() {
     return this._closeButton;
   }
+
   set closeButton(closeButton) {
     this._closeButton = coerceBooleanProperty(closeButton);
   }
@@ -93,6 +98,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   get visible() {
     return this._visible;
   }
+
   set visible(visible) {
     this._visible = coerceBooleanProperty(visible);
   }
@@ -101,6 +107,7 @@ export class DialogComponent implements OnInit, OnDestroy {
   get zIndex() {
     return this._zIndex;
   }
+
   set zIndex(zIndex) {
     this._zIndex = coerceNumberProperty(zIndex);
   }
@@ -115,6 +122,8 @@ export class DialogComponent implements OnInit, OnDestroy {
   get visibleState() {
     return this.visible ? 'active' : 'inactive';
   }
+
+  readonly DialogFormat = DialogFormat;
 
   private _closeOnBlur?: boolean;
   private _closeOnEscape?: boolean;

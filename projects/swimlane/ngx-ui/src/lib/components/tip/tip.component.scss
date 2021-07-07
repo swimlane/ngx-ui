@@ -75,12 +75,26 @@ $color-border: $color-blue-grey-650;
   &.ngx-tip--error {
     .tip-container {
       &::before {
-        background: #f56a38; // not in ngx-ui yet
+        background: $color-error;
       }
 
       .tip-content {
         &--icon .ngx-icon {
-          color: #f56a38;
+          color: $color-error;
+        }
+      }
+    }
+  }
+
+  &.ngx-tip--warning {
+    .tip-container {
+      &::before {
+        background: $color-orange-400;
+      }
+
+      .tip-content {
+        &--icon .ngx-icon {
+          color: $color-orange-400;
         }
       }
     }
