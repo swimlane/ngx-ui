@@ -12,8 +12,10 @@ export function NgxNumericInput(fallback?: number): PropertyDecorator {
         return this[coercedNumericKey];
       },
       set(v: unknown) {
-        this[coercedNumericKey] = fallback ? coerceNumberProperty(v, fallback) : coerceNumberProperty(v);
-      }
+        this[coercedNumericKey] = fallback
+          ? coerceNumberProperty(v, fallback)
+          : coerceNumberProperty(v);
+      },
     });
   };
 }

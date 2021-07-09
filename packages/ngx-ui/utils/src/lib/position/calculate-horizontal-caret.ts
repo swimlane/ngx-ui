@@ -17,7 +17,10 @@ export function calculateHorizontalCaret(
   let result = 0;
 
   if (alignment === AlignmentType.left) {
-    result = requiredElDimensions.width / 2 - requiredCaretDimensions.width / 2 + CARET_OFFSET;
+    result =
+      requiredElDimensions.width / 2 -
+      requiredCaretDimensions.width / 2 +
+      CARET_OFFSET;
   }
 
   if (alignment === AlignmentType.right) {
@@ -29,12 +32,18 @@ export function calculateHorizontalCaret(
   }
 
   if (alignment === AlignmentType.center) {
-    result = requiredPopoverDimensions.width / 2 - requiredCaretDimensions.width / 2;
+    result =
+      requiredPopoverDimensions.width / 2 - requiredCaretDimensions.width / 2;
   }
 
-  const popoverPosition = horizontalPosition(requiredElDimensions, requiredPopoverDimensions, alignment);
+  const popoverPosition = horizontalPosition(
+    requiredElDimensions,
+    requiredPopoverDimensions,
+    alignment
+  );
   if (popoverPosition + requiredPopoverDimensions.width > window.innerWidth) {
-    result += popoverPosition + requiredPopoverDimensions.width - window.innerWidth;
+    result +=
+      popoverPosition + requiredPopoverDimensions.width - window.innerWidth;
   }
 
   return result;

@@ -3,5 +3,5 @@ export enum AlignmentType {
   bottom = 'bottom',
   left = 'left',
   right = 'right',
-  center = 'center'
+  center = 'center',
 }

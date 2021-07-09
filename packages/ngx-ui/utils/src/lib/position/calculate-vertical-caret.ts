@@ -17,7 +17,10 @@ export function calculateVerticalCaret(
   let result = 0;
 
   if (alignment === AlignmentType.top) {
-    result = requiredElDimensions.height / 2 - requiredCaretDimensions.height / 2 + CARET_OFFSET;
+    result =
+      requiredElDimensions.height / 2 -
+      requiredCaretDimensions.height / 2 +
+      CARET_OFFSET;
   }
 
   if (alignment === AlignmentType.bottom) {
@@ -29,12 +32,18 @@ export function calculateVerticalCaret(
   }
 
   if (alignment === AlignmentType.center) {
-    result = requiredPopoverDimensions.height / 2 - requiredCaretDimensions.height / 2;
+    result =
+      requiredPopoverDimensions.height / 2 - requiredCaretDimensions.height / 2;
   }
 
-  const popoverPosition = verticalPosition(requiredElDimensions, requiredPopoverDimensions, alignment);
+  const popoverPosition = verticalPosition(
+    requiredElDimensions,
+    requiredPopoverDimensions,
+    alignment
+  );
   if (popoverPosition + requiredPopoverDimensions.height > window.innerHeight) {
-    result += popoverPosition + requiredPopoverDimensions.height - window.innerHeight;
+    result +=
+      popoverPosition + requiredPopoverDimensions.height - window.innerHeight;
   }
 
   return result;

@@ -17,28 +17,49 @@ export function shouldFlip(
   let flip = false;
 
   if (placement === PlacementType.right) {
-    const popoverPosition = horizontalPosition(elDimensions, popoverDimensions, alignment);
-    if (popoverPosition + requiredPopoverDimensions.width + spacing > window.innerWidth) {
+    const popoverPosition = horizontalPosition(
+      elDimensions,
+      popoverDimensions,
+      alignment
+    );
+    if (
+      popoverPosition + requiredPopoverDimensions.width + spacing >
+      window.innerWidth
+    ) {
       flip = true;
     }
   }
 
   if (placement === PlacementType.left) {
-    const popoverPosition = horizontalPosition(elDimensions, popoverDimensions, alignment);
+    const popoverPosition = horizontalPosition(
+      elDimensions,
+      popoverDimensions,
+      alignment
+    );
     if (popoverPosition - spacing < 0) {
       flip = true;
     }
   }
 
   if (placement === PlacementType.top) {
-    if (requiredElDimensions.top - requiredPopoverDimensions.height - spacing < 0) {
+    if (
+      requiredElDimensions.top - requiredPopoverDimensions.height - spacing <
+      0
+    ) {
       flip = true;
     }
   }
 
   if (placement === PlacementType.bottom) {
-    const popoverPosition = verticalPosition(elDimensions, popoverDimensions, alignment);
-    if (popoverPosition + requiredPopoverDimensions.height + spacing > window.innerHeight) {
+    const popoverPosition = verticalPosition(
+      elDimensions,
+      popoverDimensions,
+      alignment
+    );
+    if (
+      popoverPosition + requiredPopoverDimensions.height + spacing >
+      window.innerHeight
+    ) {
       flip = true;
     }
   }

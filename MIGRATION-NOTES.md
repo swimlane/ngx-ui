@@ -43,7 +43,7 @@ export enum ButtonState {
   Active = 'active',
   InProgress = 'inProgress',
   Success = 'success',
-  Failed = 'failed'
+  Failed = 'failed',
 }
 
 // after
@@ -51,7 +51,7 @@ export enum ButtonState {
   active = 'active',
   inProgress = 'inProgress',
   success = 'success',
-  failed = 'failed'
+  failed = 'failed',
 }
 ```
 

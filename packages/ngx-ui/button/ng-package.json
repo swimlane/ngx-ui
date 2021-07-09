@@ -3,8 +3,6 @@
   "dest": "../../../dist/packages/ngx-ui/button",
   "lib": {
     "entryFile": "src/index.ts",
-    "styleIncludePaths": [
-      "../styles"
-    ]
+    "styleIncludePaths": ["../styles"]
   }
 }

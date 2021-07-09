@@ -1,1 +1,1 @@
-export * from './throttleable.decorator'
+export * from './throttleable.decorator';

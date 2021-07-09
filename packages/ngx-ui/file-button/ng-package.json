@@ -3,9 +3,7 @@
   "dest": "../../../dist/packages/ngx-ui/file-button",
   "lib": {
     "entryFile": "src/index.ts",
-    "styleIncludePaths": [
-      "../styles"
-    ],
+    "styleIncludePaths": ["../styles"],
     "umdModuleIds": {
       "@swimlane/ng2-file-upload": "@swimlane/ng2-file-upload"
     }

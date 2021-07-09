@@ -26,10 +26,20 @@ export function positionCaret(
     top = calculateVerticalCaret(hostDim, elmDim, caretDimensions, alignment);
   } else if (placement === PlacementType.top) {
     top = requiredElmDim.height - 1;
-    left = calculateHorizontalCaret(hostDim, elmDim, caretDimensions, alignment);
+    left = calculateHorizontalCaret(
+      hostDim,
+      elmDim,
+      caretDimensions,
+      alignment
+    );
   } else {
     top = offset;
-    left = calculateHorizontalCaret(hostDim, elmDim, caretDimensions, alignment);
+    left = calculateHorizontalCaret(
+      hostDim,
+      elmDim,
+      caretDimensions,
+      alignment
+    );
   }
 
   return { top, left };

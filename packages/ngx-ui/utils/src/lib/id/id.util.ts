@@ -11,7 +11,9 @@ const cache: { [id: string]: boolean | undefined } = {};
  *  Example: `aebgf`
  */
 export function id(): string {
-  let newId = ('0000' + ((Math.random() * Math.pow(36, 4)) << 0).toString(36)).slice(-4);
+  let newId = (
+    '0000' + ((Math.random() * Math.pow(36, 4)) << 0).toString(36)
+  ).slice(-4);
 
   // append a 'a' because neo gets mad
   newId = `a${newId}`;

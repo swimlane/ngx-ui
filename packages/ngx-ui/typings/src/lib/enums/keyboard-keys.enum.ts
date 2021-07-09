@@ -6,5 +6,5 @@ export enum KeyboardKeys {
   ArrowDown = 'ArrowDown',
   ArrowUp = 'ArrowUp',
   ArrowLeft = 'ArrowLeft',
-  ArrowRight = 'ArrowRight'
+  ArrowRight = 'ArrowRight',
 }

@@ -13,7 +13,7 @@ export function NgxBooleanInput(): PropertyDecorator {
       },
       set(v: unknown) {
         this[coercedBooleanKey] = coerceBooleanProperty(v);
-      }
+      },
     });
   };
 }

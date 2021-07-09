@@ -1,6 +1,10 @@
 import { ThrottleOptions } from './throttle-options.interface';
 
-export function throttle(fn: () => void, wait: number, options: ThrottleOptions = {}) {
+export function throttle(
+  fn: () => void,
+  wait: number,
+  options: ThrottleOptions = {}
+) {
   let timeout: ReturnType<typeof setTimeout> | null = null;
   let previous = 0;
 

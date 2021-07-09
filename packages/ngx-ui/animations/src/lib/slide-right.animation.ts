@@ -6,24 +6,24 @@ export function slideRightAnimation(ms = 500): AnimationTransitionMetadata[] {
     transition(':enter', [
       style({
         opacity: 0,
-        transform: 'translateX(100%)'
+        transform: 'translateX(100%)',
       }),
       animate(
         ms,
         style({
           transform: 'translateX(0)',
-          opacity: 1
+          opacity: 1,
         })
-      )
+      ),
     ]),
     transition(':leave', [
       animate(
         ms,
         style({
           transform: 'translateX(100%)',
-          opacity: 0
+          opacity: 0,
         })
-      )
-    ])
+      ),
+    ]),
   ];
 }
