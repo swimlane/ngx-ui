@@ -20,9 +20,10 @@
       "@swimlane/ngx-ui/animations": [
         "packages/ngx-ui/animations/src/index.ts"
       ],
-      "@swimlane/ngx-ui/autosize-input": [
-        "packages/ngx-ui/autosize-input/src/index.ts"
+      "@swimlane/ngx-ui/appearance": [
+        "packages/ngx-ui/appearance/src/index.ts"
       ],
+      "@swimlane/ngx-ui/autofocus": ["packages/ngx-ui/autofocus/src/index.ts"],
       "@swimlane/ngx-ui/button": ["packages/ngx-ui/button/src/index.ts"],
       "@swimlane/ngx-ui/calendar": ["packages/ngx-ui/calendar/src/index.ts"],
       "@swimlane/ngx-ui/camel-to-snake": [
@@ -44,6 +45,13 @@
         "packages/ngx-ui/file-button/src/index.ts"
       ],
       "@swimlane/ngx-ui/filter-by": ["packages/ngx-ui/filter-by/src/index.ts"],
+      "@swimlane/ngx-ui/input": ["packages/ngx-ui/input/src/index.ts"],
+      "@swimlane/ngx-ui/input-attribute": [
+        "packages/ngx-ui/input-attribute/src/index.ts"
+      ],
+      "@swimlane/ngx-ui/input-autosize": [
+        "packages/ngx-ui/input-autosize/src/index.ts"
+      ],
       "@swimlane/ngx-ui/intersection-observer": [
         "packages/ngx-ui/intersection-observer/src/index.ts"
       ],
@@ -51,9 +59,13 @@
       "@swimlane/ngx-ui/long-press": [
         "packages/ngx-ui/long-press/src/index.ts"
       ],
+      "@swimlane/ngx-ui/marginless": [
+        "packages/ngx-ui/marginless/src/index.ts"
+      ],
       "@swimlane/ngx-ui/resize-observer": [
         "packages/ngx-ui/resize-observer/src/index.ts"
       ],
+      "@swimlane/ngx-ui/size": ["packages/ngx-ui/size/src/index.ts"],
       "@swimlane/ngx-ui/time-zone": ["packages/ngx-ui/time-zone/src/index.ts"],
       "@swimlane/ngx-ui/tooltip": ["packages/ngx-ui/tooltip/src/index.ts"],
       "@swimlane/ngx-ui/typings": ["packages/ngx-ui/typings/src/index.ts"],

@@ -31,10 +31,61 @@
     and `ngxIntersectionObserverThreshold`. These are `Attributes` so `string` value only.
   - `root` can be customized using `ngxIntersectionObserverRoot` directive on a parent element.
 
+### Controllers
+
+- `ngx-ui` utilizes the Controller pattern to share functionalities instead of the legacy mixins approach.
+- Controller can be attached on any component/element as an Attribute Directive. For example:
+
+```html
+
+<ngx-input ngxSize="sm" ngxAppearance="fill"></ngx-input>
+```
+
+- Module needs to be imported to use a Controller. `ngxSize` is exported from `SizeModule`, `ngxAppearance` is exported
+  from `AppearanceModule` and so on.
+
+#### SizeController
+
+- `ngxSize` accepts the key of `Size` enum as input.
+- Bind value on Host's class (`class.sm|md|lg`)
+
+#### AppearanceController
+
+- `ngxAppearance` accepts the key of `Appearance` enum as input.
+- Bind value on Host's class (`class.fill|legacy`)
+
+#### MarginlessController
+
+- `ngxMarginless` accepts a boolean as input
+- Bind value on Host's class (`class.marginless`)
+
+#### AutofocusController
+
+- `ngxAutofocus` accepts a boolean as input
+- `[ngxAutofocusOptions]` accepts `FocusOptions` as input
+- Use `focusableElement` to change the `HTMLElement` as you see fit. Default to `Host#elementRef#nativeElement`
+
+```ts
+@ViewChild('someOtherElement') set
+someOtherElementRef(v
+:
+ElementRef<HTMLElement>
+)
+{
+  this.autofocusController.focusableElement = v.nativeElement;
+}
+```
+
+#### InputAttributeController
+
+- Provides common Input attributes like min, max, required, disabled etc...
+- `[type]` accepts the key of `InputType` enum
+
 ## Breaking Changes
 
 ### Common
 
+- `InputTypes` has been renamed to `InputType`
 - All Enums are **camelCase** instead of **PascalCase**. For example:
 
 ```ts
@@ -59,8 +110,6 @@ export enum ButtonState {
 
 ### Directives
 
-- `AutosizeInputDirective`
-  - `autoSizeInput` -> `ngxAutosizeInput`
 - `DblClickCopyDirective` has been changed to `CopyToClipboardDirective`
   - `dbl-click-copy` -> `ngxCopyToClipboard="dblclick"`
 - `LongPressDirective`
@@ -127,6 +176,7 @@ export enum ButtonState {
 - `(blur)` has been renamed to `(checkboxBlur)`
 
 #### CodeEditor
+
 - Selector has been changed from `ngx-codemirror` to `ngx-code-editor` to match with the component's name
 - `[config]` has been strong-typed to `Partial<CodeMirror.EditorConfiguration>`
 - `[readOnly]` has been strongly-typed to `CodeMirror.EditorConfiguration['readOnly']`
@@ -137,3 +187,19 @@ export enum ButtonState {
 - `(change)` has been renamed to `(codeEditorChange)`
 - `(blur)` has been renamed to `(codeEditorBlur)`
 
+#### Input
+
+- `AutosizeInputDirective` has been moved to local `InputComponent`
+- `selector` has been changed from `autoSizeInput` to `ngxAutosizeInput`
+- `(change)` has been renamed to `(inputChange)`
+- `(blur)` has been renamed to `(inputBlur)`
+  - `inputBlur` emits `FocusEvent` instead of `Event`
+- `(focus)` has been renamed to `(inputFocus)`
+- `(keyup)` has been renamed to `(inputKeyup)`
+- `(click)` has been renamed to `(inputClick)`
+- `(select)` has been renamed to `(inputSelect)`
+- `[appearance]`: check [AppearanceController](#appearancecontroller)
+- `[size]`: check [SizeController](#sizecontroller)
+- `[withMargin]`: check [MarginlessController](#marginlesscontroller)
+- `[autofocus]`: check [AutofocusController](#autofocuscontroller)
+- Other attributes check [InputAttributeController](#inputattributecontroller)

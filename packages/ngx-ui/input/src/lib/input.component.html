@@ -1,0 +1,134 @@
+<div class="ngx-input-wrap">
+  <div class="ngx-input-flex-wrap">
+    <ng-content select="ngx-input-prefix"></ng-content>
+    <div class="ngx-input-flex-wrap-inner">
+      <div class="ngx-input-box-wrap">
+        <textarea
+          *ngIf="inputAttributeController.type === InputType.textarea"
+          class="ngx-input-textarea"
+          rows="1"
+          [ngxAutosize]="autosize"
+          [(ngModel)]="value"
+          [id]="id"
+          [name]="name"
+          [placeholder]="inputAttributeController.placeholder"
+          [disabled]="inputAttributeController.disabled"
+          [attr.tabindex]="inputAttributeController.tabindex"
+          [attr.autocomplete]="inputAttributeController.autocomplete"
+          [attr.autocorrect]="inputAttributeController.autocorrect"
+          [attr.spellcheck]="inputAttributeController.spellcheck"
+          [attr.minlength]="inputAttributeController.minlength"
+          [attr.maxlength]="inputAttributeController.maxlength"
+          [required]="inputAttributeController.required"
+          (change)="onChange($event)"
+          (keyup)="onKeyUp($event)"
+          (focus)="onFocus($event)"
+          (blur)="onBlur($event)"
+          (click)="inputClick.emit($event)"
+          #inputModel="ngModel"
+          #textareaControl
+        >
+        </textarea>
+        <ng-container *ngTemplateOutlet="inputTpl"></ng-container>
+
+        <div
+          class="numeric-spinner"
+          *ngIf="
+            !inputAttributeController.disabled &&
+            inputAttributeController.type === InputType.number
+          "
+        >
+          <i
+            class="ngx-icon ngx-chevron-bold-up"
+            [ngxLongPress]="500"
+            [ngxLongPressInterval]="50"
+            (longPressStart)="increment($event)"
+            (longPressFinish)="increment($event)"
+          ></i>
+          <i
+            class="ngx-icon ngx-chevron-bold-down"
+            [ngxLongPress]="500"
+            [ngxLongPressInterval]="50"
+            (longPressStart)="decrement($event)"
+            (longPressFinish)="decrement($event)"
+          ></i>
+        </div>
+        <span
+          *ngIf="
+            inputAttributeController.type === InputType.password &&
+            inputAttributeController.passwordToggleEnabled
+          "
+          class="icon-eye"
+          title="Toggle Text Visibility"
+          (click)="togglePassword()"
+        >
+        </span>
+        <span
+          *ngIf="
+            inputAttributeController.type === InputType.text &&
+            inputAttributeController.unlockable &&
+            inputAttributeController.disabled
+          "
+          class="icon-lock"
+          (click)="inputAttributeController.disabled = false"
+          ngxTooltip
+          [tooltipTitle]="inputAttributeController.unlockableTooltip"
+        >
+        </span>
+      </div>
+      <span class="ngx-input-label" [@labelState]="labelState">
+        <span [innerHTML]="label"></span>&nbsp;
+        <span
+          *ngIf="
+            inputAttributeController.required &&
+            inputAttributeController.requiredIndicator
+          "
+          [innerHTML]="inputAttributeController.requiredIndicator"
+        ></span>
+      </span>
+    </div>
+    <ng-content select="ngx-input-suffix"></ng-content>
+  </div>
+  <div class="ngx-input-underline">
+    <div class="underline-fill" [@underlineState]="underlineState"></div>
+  </div>
+  <div class="ngx-input-hint">
+    <ng-content select="ngx-input-hint"></ng-content>
+    <span *ngIf="hint" [innerHTML]="hint"></span>
+  </div>
+</div>
+
+<ng-template #inputTpl>
+  <input
+    *ngIf="inputAttributeController.type !== InputType.textarea"
+    class="ngx-input-box"
+    [ngxAutosize]="autosize"
+    ngxAutosizeInput
+    [extraWidth]="inputAttributeController.type === InputType.number ? 20 : 0"
+    [minWidth]="minWidth"
+    [includePadding]="true"
+    [(ngModel)]="value"
+    [value]="value"
+    [id]="id"
+    [name]="name"
+    [placeholder]="inputAttributeController.placeholder"
+    [disabled]="inputAttributeController.disabled"
+    [type]="inputAttributeController.type"
+    [min]="inputAttributeController.min"
+    [max]="inputAttributeController.max"
+    [attr.minlength]="inputAttributeController.minlength"
+    [attr.maxlength]="inputAttributeController.maxlength"
+    [attr.tabindex]="inputAttributeController.tabindex"
+    [attr.autocomplete]="inputAttributeController.autocomplete"
+    [attr.autocorrect]="inputAttributeController.autocorrect"
+    [attr.spellcheck]="inputAttributeController.spellcheck"
+    (change)="onChange($event)"
+    (keyup)="onKeyUp($event)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+    (click)="inputClick.emit($event)"
+    [required]="inputAttributeController.required"
+    #inputModel="ngModel"
+    #inputControl
+  />
+</ng-template>

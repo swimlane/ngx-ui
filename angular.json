@@ -246,33 +246,33 @@
         }
       }
     },
-    "ngx-ui-autosize-input": {
+    "ngx-ui-appearance": {
       "projectType": "library",
-      "root": "packages/ngx-ui/autosize-input",
-      "sourceRoot": "packages/ngx-ui/autosize-input/src",
+      "root": "packages/ngx-ui/appearance",
+      "sourceRoot": "packages/ngx-ui/appearance/src",
       "prefix": "ngx",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
-          "outputs": ["dist/packages/ngx-ui/autosize-input"],
+          "outputs": ["dist/packages/ngx-ui/appearance"],
           "options": {
-            "project": "packages/ngx-ui/autosize-input/ng-package.json"
+            "project": "packages/ngx-ui/appearance/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "packages/ngx-ui/autosize-input/tsconfig.lib.prod.json"
+              "tsConfig": "packages/ngx-ui/appearance/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "packages/ngx-ui/autosize-input/tsconfig.lib.json"
+              "tsConfig": "packages/ngx-ui/appearance/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/packages/ngx-ui/autosize-input"],
+          "outputs": ["coverage/packages/ngx-ui/appearance"],
           "options": {
-            "jestConfig": "packages/ngx-ui/autosize-input/jest.config.js",
+            "jestConfig": "packages/ngx-ui/appearance/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -280,8 +280,49 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "packages/ngx-ui/autosize-input/src/**/*.ts",
-              "packages/ngx-ui/autosize-input/src/**/*.html"
+              "packages/ngx-ui/appearance/src/**/*.ts",
+              "packages/ngx-ui/appearance/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-ui-autofocus": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/autofocus",
+      "sourceRoot": "packages/ngx-ui/autofocus/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/autofocus"],
+          "options": {
+            "project": "packages/ngx-ui/autofocus/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/autofocus/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/autofocus/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/autofocus"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/autofocus/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/autofocus/src/**/*.ts",
+              "packages/ngx-ui/autofocus/src/**/*.html"
             ]
           }
         }
@@ -738,6 +779,129 @@
         }
       }
     },
+    "ngx-ui-input": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/input",
+      "sourceRoot": "packages/ngx-ui/input/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/input"],
+          "options": {
+            "project": "packages/ngx-ui/input/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/input/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/input/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/input"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/input/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/input/src/**/*.ts",
+              "packages/ngx-ui/input/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-ui-input-attribute": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/input-attribute",
+      "sourceRoot": "packages/ngx-ui/input-attribute/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/input-attribute"],
+          "options": {
+            "project": "packages/ngx-ui/input-attribute/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/input-attribute/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/input-attribute/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/input-attribute"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/input-attribute/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/input-attribute/src/**/*.ts",
+              "packages/ngx-ui/input-attribute/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-ui-input-autosize": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/input-autosize",
+      "sourceRoot": "packages/ngx-ui/input-autosize/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/input-autosize"],
+          "options": {
+            "project": "packages/ngx-ui/input-autosize/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/input-autosize/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/input-autosize/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/input-autosize"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/input-autosize/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/input-autosize/src/**/*.ts",
+              "packages/ngx-ui/input-autosize/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-intersection-observer": {
       "projectType": "library",
       "root": "packages/ngx-ui/intersection-observer",
@@ -861,6 +1025,47 @@
         }
       }
     },
+    "ngx-ui-marginless": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/marginless",
+      "sourceRoot": "packages/ngx-ui/marginless/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/marginless"],
+          "options": {
+            "project": "packages/ngx-ui/marginless/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/marginless/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/marginless/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/marginless"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/marginless/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/marginless/src/**/*.ts",
+              "packages/ngx-ui/marginless/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-resize-observer": {
       "projectType": "library",
       "root": "packages/ngx-ui/resize-observer",
@@ -897,6 +1102,47 @@
             "lintFilePatterns": [
               "packages/ngx-ui/resize-observer/src/**/*.ts",
               "packages/ngx-ui/resize-observer/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "ngx-ui-size": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/size",
+      "sourceRoot": "packages/ngx-ui/size/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/size"],
+          "options": {
+            "project": "packages/ngx-ui/size/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/size/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/size/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/size"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/size/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/size/src/**/*.ts",
+              "packages/ngx-ui/size/src/**/*.html"
             ]
           }
         }

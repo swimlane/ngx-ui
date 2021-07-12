@@ -39,8 +39,11 @@
     "ngx-ui-animations": {
       "tags": ["scope:animations", "type:lib"]
     },
-    "ngx-ui-autosize-input": {
-      "tags": ["scope:autosize-input", "type:lib"]
+    "ngx-ui-appearance": {
+      "tags": ["scope:appearance", "type:lib"]
+    },
+    "ngx-ui-autofocus": {
+      "tags": ["scope:autofocus", "type:lib"]
     },
     "ngx-ui-button": {
       "tags": ["scope:button", "type:lib"]
@@ -75,6 +78,15 @@
     "ngx-ui-filter-by": {
       "tags": ["scope:filter-by", "type:lib"]
     },
+    "ngx-ui-input": {
+      "tags": ["scope:input", "type:lib"]
+    },
+    "ngx-ui-input-attribute": {
+      "tags": ["scope:input-attribute", "type:lib"]
+    },
+    "ngx-ui-input-autosize": {
+      "tags": ["scope:input-autosize", "type:lib"]
+    },
     "ngx-ui-intersection-observer": {
       "tags": ["scope:intersection-observer", "type:lib"]
     },
@@ -84,8 +96,14 @@
     "ngx-ui-long-press": {
       "tags": ["scope:long-press", "type:lib"]
     },
+    "ngx-ui-marginless": {
+      "tags": ["scope:marginless", "type:lib"]
+    },
     "ngx-ui-resize-observer": {
       "tags": ["scope:resize-observer", "type:lib"]
+    },
+    "ngx-ui-size": {
+      "tags": ["scope:size", "type:lib"]
     },
     "ngx-ui-time-zone": {
       "tags": ["scope:time-zone", "type:lib"]
