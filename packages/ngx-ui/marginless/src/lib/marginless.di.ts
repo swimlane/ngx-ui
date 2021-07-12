@@ -7,4 +7,5 @@ export const [
 ] = createControllerProviderFactory({
   controller: MarginlessControllerDirective,
   watchedControllerTokenName: 'Watched ngxMarginless Controller',
+  newInstanceOnNull: true,
 });
