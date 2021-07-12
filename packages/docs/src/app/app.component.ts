@@ -13,7 +13,6 @@ import { Component } from '@angular/core';
   ],
 })
 export class AppComponent {
-  onClick() {
-    console.log('click');
-  }
+  inputValue = 'A Value';
+  output?: string | number;
 }
