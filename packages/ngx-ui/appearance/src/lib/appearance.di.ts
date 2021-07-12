@@ -7,6 +7,7 @@ export const [
 ] = createControllerProviderFactory({
   watchedControllerTokenName: 'Watched ngxAppearance Controller',
   controller: AppearanceControllerDirective,
+  newInstanceOnNull: true,
 });
 
 // export const NGX_APPEARANCE_WATCHED_CONTROLLER = new InjectionToken(

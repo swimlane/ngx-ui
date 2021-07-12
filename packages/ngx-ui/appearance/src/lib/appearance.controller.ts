@@ -15,8 +15,10 @@ export class AppearanceControllerDirective extends Controller {
     return this.appearance === Appearance.fill;
   }
 
-  @Input() set ngxAppearance(v: EnumKey<typeof Appearance>) {
-    this.appearance = Appearance[v];
+  @Input() set ngxAppearance(v: EnumKey<typeof Appearance> | '') {
+    if (v) {
+      this.appearance = Appearance[v];
+    }
   }
 
   appearance = Appearance.legacy;
