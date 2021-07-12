@@ -15,20 +15,28 @@ export interface CreateControllerTokenFactoryOptions<
 > {
   watchedControllerTokenName: string;
   controller: Type<TController>;
+  newInstanceOnNull?: boolean;
 }
 
 export function controllerFactory<TController extends Controller>(
-  controller: TController | null,
-  changeDetectorRef: ChangeDetectorRef,
-  destroyed: Observable<void>
-): TController | null {
-  if (!controller) return null;
+  newInstanceOnNull = false,
+  controllerType: Type<TController>
+) {
+  return (
+    controller: TController | null,
+    changeDetectorRef: ChangeDetectorRef,
+    destroyed: Observable<void>
+  ): TController | null => {
+    if (!controller) {
+      return newInstanceOnNull ? new controllerType() : null;
+    }
 
-  controller.changes$.pipe(takeUntil(destroyed)).subscribe(() => {
-    changeDetectorRef.markForCheck();
-  });
+    controller.changes$.pipe(takeUntil(destroyed)).subscribe(() => {
+      changeDetectorRef.markForCheck();
+    });
 
-  return controller;
+    return controller;
+  };
 }
 
 export function createControllerProviderFactory<
@@ -36,6 +44,7 @@ export function createControllerProviderFactory<
 >({
   watchedControllerTokenName,
   controller,
+  newInstanceOnNull = false,
 }: CreateControllerTokenFactoryOptions<TController>): [
   InjectionToken<TController>,
   Provider[]
@@ -47,7 +56,7 @@ export function createControllerProviderFactory<
     {
       provide: watchedControllerToken,
       deps: [[new Optional(), controller], ChangeDetectorRef, DestroyedService],
-      useFactory: controllerFactory,
+      useFactory: controllerFactory(newInstanceOnNull, controller),
     },
   ];
 
