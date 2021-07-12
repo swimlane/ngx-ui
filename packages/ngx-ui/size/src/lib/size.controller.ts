@@ -19,8 +19,10 @@ export class SizeControllerDirective extends Controller {
     return this.size === Size.large;
   }
 
-  @Input() set ngxSize(v: EnumKey<typeof Size>) {
-    this.size = Size[v];
+  @Input() set ngxSize(v: EnumKey<typeof Size> | '') {
+    if (v) {
+      this.size = Size[v];
+    }
   }
 
   size = Size.small;
