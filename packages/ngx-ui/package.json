@@ -6,12 +6,16 @@
     "@angular/common": "^12.0.4",
     "@angular/core": "^12.0.4",
     "@swimlane/ng2-file-upload": "~1.1.0",
+    "codemirror": "~5.62.0",
     "moment": "~2.29.1",
     "moment-timezone": "~0.5.33",
     "ngx-moment": "~5.0.0"
   },
   "peerDependenciesMeta": {
     "@swimlane/ng2-file-upload": {
+      "optional": true
+    },
+    "codemirror": {
       "optional": true
     },
     "moment": {

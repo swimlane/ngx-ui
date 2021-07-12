@@ -57,6 +57,9 @@
     "ngx-ui-checkbox": {
       "tags": ["scope:checkbox", "type:lib"]
     },
+    "ngx-ui-code-editor": {
+      "tags": ["scope:code-editor", "type:lib"]
+    },
     "ngx-ui-common": {
       "tags": ["scope:common", "type:lib"]
     },

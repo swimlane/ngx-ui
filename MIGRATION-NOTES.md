@@ -125,3 +125,15 @@ export enum ButtonState {
 - `(change)` has been renamed to `(checkboxChange)`
 - `(focus)` has been renamed to `(checkboxFocus)`
 - `(blur)` has been renamed to `(checkboxBlur)`
+
+#### CodeEditor
+- Selector has been changed from `ngx-codemirror` to `ngx-code-editor` to match with the component's name
+- `[config]` has been strong-typed to `Partial<CodeMirror.EditorConfiguration>`
+- `[readOnly]` has been strongly-typed to `CodeMirror.EditorConfiguration['readOnly']`
+- `[allowDropFileTypes]` has been strongly-typed to `CodeMirror.EditorConfiguration['allowDropFileTypes']`
+- `[gutters]` has been strongly-typed to `CodeMirror.EditorConfiguration['gutters']`
+- `[mode]` has been strongly-typed to `CodeMirror.EditorConfiguration['mode']`
+- `[lint]` has been strongly-typed to `CodeMirror.EditorConfiguration['lint']`
+- `(change)` has been renamed to `(codeEditorChange)`
+- `(blur)` has been renamed to `(codeEditorBlur)`
+

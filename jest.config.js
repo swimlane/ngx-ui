@@ -22,5 +22,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/card',
     '<rootDir>/packages/ngx-ui/checkbox',
     '<rootDir>/packages/ngx-ui/tooltip',
+    '<rootDir>/packages/ngx-ui/code-editor',
   ],
 };
