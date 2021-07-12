@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { AppearanceModule } from '@swimlane/ngx-ui/appearance';
 import { AutofocusModule } from '@swimlane/ngx-ui/autofocus';
 import { ButtonModule } from '@swimlane/ngx-ui/button';
 import { CalendarModule } from '@swimlane/ngx-ui/calendar';
@@ -11,6 +12,8 @@ import { CheckboxModule } from '@swimlane/ngx-ui/checkbox';
 import { FileButtonModule } from '@swimlane/ngx-ui/file-button';
 import { InputModule } from '@swimlane/ngx-ui/input';
 import { InputAttributeModule } from '@swimlane/ngx-ui/input-attribute';
+import { MarginlessModule } from '@swimlane/ngx-ui/marginless';
+import { SizeModule } from '@swimlane/ngx-ui/size';
 
 import { AppComponent } from './app.component';
 
@@ -29,6 +32,9 @@ import { AppComponent } from './app.component';
     InputModule,
     InputAttributeModule,
     AutofocusModule,
+    AppearanceModule,
+    SizeModule,
+    MarginlessModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
