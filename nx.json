@@ -36,6 +36,9 @@
     "ngx-ui": {
       "tags": ["scope:ngx-ui", "type:lib"]
     },
+    "ngx-ui-alert": {
+      "tags": ["scope:alert", "type:lib"]
+    },
     "ngx-ui-animations": {
       "tags": ["scope:animations", "type:lib"]
     },
@@ -44,6 +47,9 @@
     },
     "ngx-ui-autofocus": {
       "tags": ["scope:autofocus", "type:lib"]
+    },
+    "ngx-ui-autosize": {
+      "tags": ["scope:autosize", "type:lib"]
     },
     "ngx-ui-button": {
       "tags": ["scope:button", "type:lib"]
@@ -69,14 +75,23 @@
     "ngx-ui-copy-to-clipboard": {
       "tags": ["scope:copy-to-clipboard", "type:lib"]
     },
+    "ngx-ui-date-time": {
+      "tags": ["scope:date-time", "type:lib"]
+    },
     "ngx-ui-decamelize": {
       "tags": ["scope:decamelize", "type:lib"]
+    },
+    "ngx-ui-dialog": {
+      "tags": ["scope:dialog", "type:lib"]
     },
     "ngx-ui-file-button": {
       "tags": ["scope:file-button", "type:lib"]
     },
     "ngx-ui-filter-by": {
       "tags": ["scope:filter-by", "type:lib"]
+    },
+    "ngx-ui-icon": {
+      "tags": ["scope:icon", "type:lib"]
     },
     "ngx-ui-input": {
       "tags": ["scope:input", "type:lib"]
@@ -96,8 +111,14 @@
     "ngx-ui-long-press": {
       "tags": ["scope:long-press", "type:lib"]
     },
+    "ngx-ui-long-press-button": {
+      "tags": ["scope:long-press-button", "type:lib"]
+    },
     "ngx-ui-marginless": {
       "tags": ["scope:marginless", "type:lib"]
+    },
+    "ngx-ui-overlay": {
+      "tags": ["scope:overlay", "type:lib"]
     },
     "ngx-ui-resize-observer": {
       "tags": ["scope:resize-observer", "type:lib"]

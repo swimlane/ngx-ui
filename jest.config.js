@@ -29,5 +29,12 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/marginless',
     '<rootDir>/packages/ngx-ui/input-attribute',
     '<rootDir>/packages/ngx-ui/autofocus',
+    '<rootDir>/packages/ngx-ui/date-time',
+    '<rootDir>/packages/ngx-ui/autosize',
+    '<rootDir>/packages/ngx-ui/dialog',
+    '<rootDir>/packages/ngx-ui/overlay',
+    '<rootDir>/packages/ngx-ui/alert',
+    '<rootDir>/packages/ngx-ui/icon',
+    '<rootDir>/packages/ngx-ui/long-press-button',
   ],
 };

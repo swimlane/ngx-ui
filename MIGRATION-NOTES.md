@@ -37,7 +37,6 @@
 - Controller can be attached on any component/element as an Attribute Directive. For example:
 
 ```html
-
 <ngx-input ngxSize="sm" ngxAppearance="fill"></ngx-input>
 ```
 
@@ -59,6 +58,11 @@
 - `ngxMarginless` accepts a boolean as input
 - Bind value on Host's class (`class.marginless`)
 
+#### AutosizeController
+
+- `ngxAutosize` accepts a boolean as input
+- Bind value on Host's class (`class.autosize`)
+
 #### AutofocusController
 
 - `ngxAutofocus` accepts a boolean as input
@@ -66,12 +70,7 @@
 - Use `focusableElement` to change the `HTMLElement` as you see fit. Default to `Host#elementRef#nativeElement`
 
 ```ts
-@ViewChild('someOtherElement') set
-someOtherElementRef(v
-:
-ElementRef<HTMLElement>
-)
-{
+@ViewChild('someOtherElement') set someOtherElementRef(v:ElementRef<HTMLElement>) {
   this.autofocusController.focusableElement = v.nativeElement;
 }
 ```
@@ -202,4 +201,20 @@ export enum ButtonState {
 - `[size]`: check [SizeController](#sizecontroller)
 - `[withMargin]`: check [MarginlessController](#marginlesscontroller)
 - `[autofocus]`: check [AutofocusController](#autofocuscontroller)
+- `[autosize]`: check [AutosizeController](#autosizecontroller)
 - Other attributes check [InputAttributeController](#inputattributecontroller)
+
+#### Dialog
+
+#### LargeFormatDialogContent
+
+- Now has its own module `LargeFormatDialogContentModule` and no longer belong to `DialogModule`
+
+#### Alert
+
+- Now has its own module `AlertModule` and no longer belong to `DialogModule`
+
+#### Overlay
+
+- `show()` parameter has been strongly typed to `{ triggerComponent: ComponentRef<unknown>, zIndex: number }` instead of `any`
+
