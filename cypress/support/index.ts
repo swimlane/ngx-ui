@@ -13,8 +13,11 @@
 // https://on.cypress.io/configuration
 // ***********************************************************
 
+/// <reference path='./index.d.ts'/>
+
 // Import commands.js using ES2015 syntax:
 import './commands';
+import './helpers';
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')

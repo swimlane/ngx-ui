@@ -192,9 +192,9 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="ngx-button">
-  <ngx-button #defaultButton [promise]="promises['defaultButton']" (click)="onClick('button click', 'defaultButton')"
+  <ngx-button #defaultButton [promise]="promises['defaultButton']" (click)="onClick('button click', 'defaultButton', 1)"
     class="btn">Default</ngx-button>
-  <ngx-button #primaryButton [promise]="promises['primaryButton']" (click)="onClick('button click', 'primaryButton')"
+  <ngx-button #primaryButton [promise]="promises['primaryButton']" (click)="onClick('button click', 'primaryButton', 0)"
     class="btn btn-primary">Primary</ngx-button>
   <ngx-button #gradiantButton [promise]="promises['gradiantButton']" (click)="onClick('button click', 'gradiantButton')"
     class="btn btn-primary btn-primary-gradient">Primary Gradient</ngx-button>
