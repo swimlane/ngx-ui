@@ -9,6 +9,8 @@ import {
 import { EnumKey, InputType } from '@swimlane/ngx-ui/typings';
 import { BehaviorSubject } from 'rxjs';
 
+const MIN_WIDTH = 60;
+
 @Directive({
   selector: '[ngxInputAttribute]',
   exportAs: 'ngxInputAttribute',
@@ -31,7 +33,12 @@ export class InputAttributeControllerDirective
   static ngAcceptInputType_passwordTextVisible: BooleanInput;
   static ngAcceptInputType_unlockable: BooleanInput;
 
+  @Input() hint = '';
   @Input() placeholder = '';
+
+  @NgxNumericInput(MIN_WIDTH)
+  @Input()
+  minWidth = MIN_WIDTH;
 
   @NgxNumericInput(-1)
   @Input()
