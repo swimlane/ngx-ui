@@ -7,7 +7,7 @@
           *ngIf="inputAttributeController.type === InputType.textarea"
           class="ngx-input-textarea"
           rows="1"
-          [ngxAutosize]="autosize"
+          [ngxInputAutosize]="autosizeController.ngxAutosize"
           [(ngModel)]="value"
           [id]="id"
           [name]="name"
@@ -94,7 +94,10 @@
   </div>
   <div class="ngx-input-hint">
     <ng-content select="ngx-input-hint"></ng-content>
-    <span *ngIf="hint" [innerHTML]="hint"></span>
+    <span
+      *ngIf="inputAttributeController.hint"
+      [innerHTML]="inputAttributeController.hint"
+    ></span>
   </div>
 </div>
 
@@ -102,10 +105,10 @@
   <input
     *ngIf="inputAttributeController.type !== InputType.textarea"
     class="ngx-input-box"
-    [ngxAutosize]="autosize"
+    [ngxInputAutosize]="autosizeController.ngxAutosize"
     ngxAutosizeInput
     [extraWidth]="inputAttributeController.type === InputType.number ? 20 : 0"
-    [minWidth]="minWidth"
+    [minWidth]="inputAttributeController.minWidth"
     [includePadding]="true"
     [(ngModel)]="value"
     [value]="value"

@@ -33,11 +33,11 @@ import {
   NGX_AUTOFOCUS_WATCHED_CONTROLLER,
 } from '@swimlane/ngx-ui/autofocus';
 import {
-  BooleanInput,
-  NgxBooleanInput,
-  NgxNumericInput,
-  NumericInput,
-} from '@swimlane/ngx-ui/common';
+  AutosizeControllerDirective,
+  NGX_AUTOSIZE_CONTROLLER_PROVIDER,
+  NGX_AUTOSIZE_WATCHED_CONTROLLER,
+} from '@swimlane/ngx-ui/autosize';
+import { BooleanInput, NgxBooleanInput } from '@swimlane/ngx-ui/common';
 import {
   InputAttributeControllerDirective,
   NGX_INPUT_ATTRIBUTE_CONTROLLER_PROVIDER,
@@ -63,8 +63,6 @@ const INPUT_VALIDATORS = {
   multi: true,
 };
 
-const MIN_WIDTH = 60;
-
 @Component({
   selector: 'ngx-input',
   exportAs: 'ngxInput',
@@ -81,12 +79,11 @@ const MIN_WIDTH = 60;
     NGX_MARGINLESS_CONTROLLER_PROVIDER,
     NGX_INPUT_ATTRIBUTE_CONTROLLER_PROVIDER,
     NGX_AUTOFOCUS_CONTROLLER_PROVIDER,
+    NGX_AUTOSIZE_CONTROLLER_PROVIDER,
   ],
 })
 export class InputComponent implements ControlValueAccessor {
-  static ngAcceptInputType_minWidth: NumericInput;
   static ngAcceptInputType_autoSelect: BooleanInput;
-  static ngAcceptInputType_autosize: BooleanInput;
 
   @HostBinding('class.ngx-input') hostClass = true;
 
@@ -99,20 +96,9 @@ export class InputComponent implements ControlValueAccessor {
     return !this.label;
   }
 
-  @Input() hint = '';
-
-  @NgxNumericInput(MIN_WIDTH)
-  @Input()
-  minWidth = MIN_WIDTH;
-
   @NgxBooleanInput()
   @Input()
   autoSelect = false;
-
-  @HostBinding('class.autosize')
-  @NgxBooleanInput()
-  @Input()
-  autosize = false;
 
   @Output() inputChange = new EventEmitter<string | number>();
   @Output() inputBlur = new EventEmitter<FocusEvent>();
@@ -202,6 +188,8 @@ export class InputComponent implements ControlValueAccessor {
     public readonly inputAttributeController: InputAttributeControllerDirective,
     @Inject(NGX_AUTOFOCUS_WATCHED_CONTROLLER)
     public readonly autofocusController: AutofocusControllerDirective,
+    @Inject(NGX_AUTOSIZE_WATCHED_CONTROLLER)
+    public readonly autosizeController: AutosizeControllerDirective,
     private readonly cdr: ChangeDetectorRef,
     @Inject(DOCUMENT) private readonly document: Document
   ) {}
