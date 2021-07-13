@@ -6,7 +6,7 @@ import {
   Output,
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IntersectionObserverService } from './services';
+import { IntersectionObserverService } from './intersection-observer.service';
 import {
   INTERSECTION_OBSERVER_ROOT_MARGIN,
   INTERSECTION_OBSERVER_ROOT_MARGIN_DEFAULT,
@@ -14,17 +14,20 @@ import {
   INTERSECTION_OBSERVER_THRESHOLD_DEFAULT,
 } from './tokens';
 
-export function intersectionObserverOptionsFactory(
-  attributeName:
-    | 'ngxIntersectionObserverRootMargin'
-    | 'ngxIntersectionObserverThreshold',
-  defaultValue: string | (number | number[])
-) {
-  return ({ nativeElement }: ElementRef<Element>) => {
-    const attribute = nativeElement.getAttribute(attributeName) as string;
+export function intersectionRootMarginFactory(elementRef: ElementRef<Element>) {
+  const attribute = elementRef.nativeElement.getAttribute(
+    'ngxIntersectionObserverRootMargin'
+  ) as string;
 
-    return attribute || defaultValue;
-  };
+  return attribute || INTERSECTION_OBSERVER_ROOT_MARGIN_DEFAULT;
+}
+
+export function intersectionThresholdFactory(elementRef: ElementRef<Element>) {
+  const attribute = elementRef.nativeElement.getAttribute(
+    'ngxIntersectionObserverThreshold'
+  ) as string;
+
+  return attribute || INTERSECTION_OBSERVER_THRESHOLD_DEFAULT;
 }
 
 @Directive({
@@ -35,18 +38,12 @@ export function intersectionObserverOptionsFactory(
     {
       provide: INTERSECTION_OBSERVER_ROOT_MARGIN,
       deps: [ElementRef],
-      useFactory: intersectionObserverOptionsFactory(
-        'ngxIntersectionObserverRootMargin',
-        INTERSECTION_OBSERVER_ROOT_MARGIN_DEFAULT
-      ),
+      useFactory: intersectionRootMarginFactory,
     },
     {
       provide: INTERSECTION_OBSERVER_THRESHOLD,
       deps: [ElementRef],
-      useFactory: intersectionObserverOptionsFactory(
-        'ngxIntersectionObserverThreshold',
-        INTERSECTION_OBSERVER_THRESHOLD_DEFAULT
-      ),
+      useFactory: intersectionThresholdFactory,
     },
   ],
 })

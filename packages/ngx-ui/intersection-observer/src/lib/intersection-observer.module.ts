@@ -6,14 +6,14 @@ import { IntersectionObserverDirective } from './intersection-observer.directive
 
 @NgModule({
   declarations: [
-    IntersectionObserverDirective,
     IntersectDirective,
+    IntersectionObserverDirective,
     IntersectionObserveeDirective,
     IntersectionObserverRootDirective,
   ],
   exports: [
-    IntersectionObserverDirective,
     IntersectDirective,
+    IntersectionObserverDirective,
     IntersectionObserveeDirective,
     IntersectionObserverRootDirective,
   ],

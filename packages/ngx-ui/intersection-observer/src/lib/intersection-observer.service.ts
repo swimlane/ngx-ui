@@ -12,7 +12,7 @@ import {
   INTERSECTION_OBSERVER_ROOT_MARGIN,
   INTERSECTION_OBSERVER_SUPPORT,
   INTERSECTION_OBSERVER_THRESHOLD,
-} from '../tokens';
+} from './tokens';
 
 @Injectable()
 export class IntersectionObserverService extends Observable<

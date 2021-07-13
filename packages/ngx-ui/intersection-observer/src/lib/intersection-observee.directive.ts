@@ -1,6 +1,6 @@
 import { Directive, Inject, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IntersectionObserveeService } from './services/';
+import { IntersectionObserveeService } from './intersection-observee.service';
 
 @Directive({
   selector: '[ngxIntersectionObservee]',

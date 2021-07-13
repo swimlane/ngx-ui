@@ -1,7 +1,7 @@
 import { ElementRef, Inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { share } from 'rxjs/operators';
-import { IntersectionObserverDirective } from '../intersection-observer.directive';
+import { IntersectionObserverDirective } from './intersection-observer.directive';
 
 @Injectable()
 export class IntersectionObserveeService extends Observable<

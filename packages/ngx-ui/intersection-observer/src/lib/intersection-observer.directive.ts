@@ -34,11 +34,11 @@ export class IntersectionObserverDirective
   private readonly callbacks = new Map<Element, IntersectionObserverCallback>();
 
   constructor(
+    @Attribute('ngxIntersectionObserverRootMargin') rootMargin: string | null,
+    @Attribute('ngxIntersectionObserverThreshold') threshold: string | null,
     @Optional()
     @Inject(INTERSECTION_OBSERVER_ROOT)
-    root: ElementRef<Element> | null,
-    @Attribute('ngxIntersectionObserverRootMargin') rootMargin: string | null,
-    @Attribute('ngxIntersectionObserverThreshold') threshold: string | null
+    root?: ElementRef<Element> | null
   ) {
     super(
       (entries) => {
