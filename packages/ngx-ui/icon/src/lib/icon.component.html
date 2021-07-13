@@ -1,0 +1,7 @@
+<ng-container [ngSwitch]="cssClasses?.length">
+  <ng-content *ngSwitchCase="0"></ng-content>
+  <i *ngSwitchCase="1" [ngClass]="cssClasses[0]"></i>
+  <span *ngSwitchDefault class="icon-fx-stacked">
+    <i *ngFor="let cssClass of cssClasses" [ngClass]="cssClass"></i>
+  </span>
+</ng-container>
