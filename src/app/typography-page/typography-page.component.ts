@@ -1,3 +1,5 @@
+/* eslint-disable no-irregular-whitespace */
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 

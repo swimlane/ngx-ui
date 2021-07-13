@@ -69,9 +69,9 @@ export class PropertyConfigComponent implements OnInit {
   }
 
   updateType(type: string): void {
-    if (this.editableProperty['type'] !== type) {
-      this.editableProperty['type'] = type as JSONSchema7TypeName;
-      delete this.editableProperty['format'];
+    if (this.editableProperty.type !== type) {
+      this.editableProperty.type = type as JSONSchema7TypeName;
+      delete this.editableProperty.format;
 
       this.cleanUpPropertyConstrains();
     }
@@ -79,40 +79,40 @@ export class PropertyConfigComponent implements OnInit {
 
   updateExamples(examples: string[]): void {
     if (examples && examples.length) {
-      this.editableProperty['examples'] = examples;
+      this.editableProperty.examples = examples;
     } else {
       delete this.editableProperty.examples;
     }
   }
 
   updateFormat(format: string): void {
-    if (this.editableProperty['format'] !== format) {
-      this.editableProperty['type'] = 'string';
-      this.editableProperty['format'] = format;
+    if (this.editableProperty.format !== format) {
+      this.editableProperty.type = 'string';
+      this.editableProperty.format = format;
       this.cleanUpPropertyConstrains();
     }
   }
 
   addEnumValue(): void {
-    const enumValues = (this.editableProperty['enum'] = this.editableProperty['enum'] || []);
+    const enumValues = (this.editableProperty.enum = this.editableProperty.enum || []);
 
     if (!enumValues.includes(this.newEnumValue)) {
       enumValues.push(this.newEnumValue);
       this.newEnumValue = '';
-      delete this.editableProperty['format'];
+      delete this.editableProperty.format;
     }
   }
 
   updateDefault(enumValue: string): void {
     if (!enumValue) {
-      delete this.editableProperty['default'];
+      delete this.editableProperty.default;
     } else {
-      this.editableProperty['default'] = enumValue;
+      this.editableProperty.default = enumValue;
     }
   }
 
   removeEnumValue(val: string): void {
-    const enumValues = this.editableProperty['enum'];
+    const enumValues = this.editableProperty.enum;
     const index = enumValues.indexOf(val);
 
     if (index > -1) {
@@ -121,22 +121,22 @@ export class PropertyConfigComponent implements OnInit {
 
     if (!enumValues.length) {
       // Remove enum property if empty
-      delete this.editableProperty['enum'];
+      delete this.editableProperty.enum;
     }
   }
 
   private cleanUpPropertyConstrains(): void {
-    delete this.editableProperty['enum'];
-    delete this.editableProperty['properties'];
-    delete this.editableProperty['required'];
-    delete this.editableProperty['items'];
-    delete this.editableProperty['minimum'];
-    delete this.editableProperty['maximum'];
-    delete this.editableProperty['default'];
-    delete this.editableProperty['minLength'];
-    delete this.editableProperty['maxLength'];
-    delete this.editableProperty['minItems'];
-    delete this.editableProperty['maxItems'];
+    delete this.editableProperty.enum;
+    delete this.editableProperty.properties;
+    delete this.editableProperty.required;
+    delete this.editableProperty.items;
+    delete this.editableProperty.minimum;
+    delete this.editableProperty.maximum;
+    delete this.editableProperty.default;
+    delete this.editableProperty.minLength;
+    delete this.editableProperty.maxLength;
+    delete this.editableProperty.minItems;
+    delete this.editableProperty.maxItems;
   }
 
   private setRequired(): void {

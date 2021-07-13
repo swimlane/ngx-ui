@@ -14,7 +14,7 @@ import { patternValidator } from './pattern.validator';
   ]
 })
 export class PatternValidatorDirective implements Validator {
-  @Input('pattern') pattern: string;
+  @Input() pattern: string;
 
   validate(control: AbstractControl): { [key: string]: any } {
     return this.pattern ? patternValidator(this.pattern)(control) : null;

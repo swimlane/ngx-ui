@@ -6,7 +6,7 @@ import { jsonToTree } from './json-to-tree.util';
   name: 'jsonTree'
 })
 export class JSONTreePipe implements PipeTransform {
-  transform(input: any): any[] {
+  transform(input: unknown): any[] {
     return [jsonToTree(input)];
   }
 }

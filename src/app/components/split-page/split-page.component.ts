@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-split-page',
@@ -10,7 +10,7 @@ export class SplitPageComponent {
   hideAlertArea = false;
   hideFixedSidebar = false;
 
-  direction: string = 'row';
+  direction = 'row';
 
   constructor() {
     this.getPanelState();

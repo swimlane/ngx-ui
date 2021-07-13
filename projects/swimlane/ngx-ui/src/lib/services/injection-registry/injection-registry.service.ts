@@ -1,3 +1,5 @@
+/* eslint-disable security/detect-object-injection */
+import { ViewContainerRef } from '@angular/core';
 import { ComponentRef, Type } from '@angular/core';
 
 import { InjectionService } from '../injection/injection.service';
@@ -5,18 +7,18 @@ import { PartialBindings } from './partial-bindings.interface';
 
 /* istanbul ignore next */
 export abstract class InjectionRegistryService<T = any> {
-  protected abstract type: Type<T>;
-
   protected defaults: PartialBindings = {};
   protected components = new Map<any, Array<ComponentRef<T>>>();
 
+  protected abstract type: Type<T>;
+
   constructor(protected readonly injectionService: InjectionService) {}
 
-  getByType(type: Type<T> = this.type) {
+  getByType(type: Type<T> = this.type): ComponentRef<T>[] {
     return this.components.get(type);
   }
 
-  create(bindings: object): ComponentRef<T> {
+  create(bindings: PartialBindings): ComponentRef<T> {
     return this.createByType(this.type, bindings);
   }
 
@@ -59,11 +61,15 @@ export abstract class InjectionRegistryService<T = any> {
     }
   }
 
-  protected injectComponent(type: Type<T>, bindings: PartialBindings, location?): ComponentRef<T> {
+  protected injectComponent(
+    type: Type<T>,
+    bindings: PartialBindings,
+    location?: ComponentRef<any> | ViewContainerRef
+  ): ComponentRef<T> {
     return this.injectionService.appendComponent(type, bindings, location);
   }
 
-  protected assignDefaults(bindings: any): PartialBindings {
+  protected assignDefaults(bindings: Record<string, any>): PartialBindings {
     const inputs = { ...this.defaults.inputs };
     const outputs = { ...this.defaults.outputs };
 

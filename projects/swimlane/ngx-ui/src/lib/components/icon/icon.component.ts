@@ -22,8 +22,8 @@ import { IconRegistryService } from '../../services/icon-registry/icon-registry.
 export class IconComponent implements OnChanges, OnInit {
   @Input() fontIcon: string | string[];
   @Input() alt: string;
-  @Input() defaultPath: string = 'assets/svgs';
-  @Input() fontSet: string = 'ngx';
+  @Input() defaultPath = 'assets/svgs';
+  @Input() fontSet = 'ngx';
 
   @Input()
   set svgSrc(val: string) {
@@ -66,11 +66,12 @@ export class IconComponent implements OnChanges, OnInit {
         const svg = parser.parseFromString(response, 'image/svg+xml');
 
         // insert the svg result
-        // tslint:disable-next-line: tsr-detect-html-injection
+        // eslint-disable-next-line
         element.innerHTML = svg.documentElement.outerHTML;
       },
       /* istanbul ignore next */
       err => {
+        // eslint-disable-next-line no-console
         console.error(err);
       }
     );

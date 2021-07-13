@@ -5,7 +5,8 @@ import {
   Output,
   ViewEncapsulation,
   Input,
-  HostBinding
+  HostBinding,
+  OnChanges
 } from '@angular/core';
 import { Subscription, fromEvent } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
@@ -17,7 +18,7 @@ const DEFAULT_BASIS = '0 0 15px';
 
 @Component({
   exportAs: 'ngxSplitHandle',
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: '[ngxSplitHandle]',
   templateUrl: './split-handle.component.html',
   styleUrls: ['./split-handle.component.scss'],
@@ -30,7 +31,7 @@ const DEFAULT_BASIS = '0 0 15px';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SplitHandleComponent {
+export class SplitHandleComponent implements OnChanges {
   @Input() ngxSplitHandle = DEFAULT_BASIS;
 
   @Output() drag = new EventEmitter<{ x: number; y: number }>();

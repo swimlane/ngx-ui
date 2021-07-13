@@ -5,7 +5,7 @@ import { AutosizeDirective } from './input-autosize.directive';
 import { InputTypes } from './input-types.enum';
 
 @Component({
-  selector: `ngx-input-autosize-fixture`,
+  selector: 'ngx-input-autosize-fixture',
   template: `
     <input
       #input

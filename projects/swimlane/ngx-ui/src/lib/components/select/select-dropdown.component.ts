@@ -129,7 +129,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   }
 
   groups: any[];
-  filterQueryIsInOptions: boolean = false;
+  filterQueryIsInOptions = false;
 
   private _options: SelectDropdownOption[];
   private _groupBy: string;

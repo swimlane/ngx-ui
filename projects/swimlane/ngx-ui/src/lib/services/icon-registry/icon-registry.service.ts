@@ -6,10 +6,10 @@ import { convertClass } from './convert-class.util';
   providedIn: 'root'
 })
 export class IconRegistryService {
-  private _defaultFontSetClass: string = 'ngx';
+  private _defaultFontSetClass = 'ngx';
   private _iconMap: Map<string, string[]> = new Map();
 
-  setDefaultFontSetClass(iconSet: string) {
+  setDefaultFontSetClass(iconSet: string): string {
     this._defaultFontSetClass = iconSet;
     return this._defaultFontSetClass;
   }

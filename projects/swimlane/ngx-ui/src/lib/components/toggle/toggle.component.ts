@@ -31,40 +31,40 @@ let nextId = 0;
   }
 })
 export class ToggleComponent implements ControlValueAccessor {
-  @Input() id: string = `toggle-${++nextId}`;
+  @Input() id = `toggle-${++nextId}`;
   @Input() name: string = null;
   @Input() label: string;
 
   @Input()
-  get disabled() {
+  get disabled(): boolean {
     return this._disabled;
   }
-  set disabled(disabled) {
+  set disabled(disabled: boolean) {
     this._disabled = coerceBooleanProperty(disabled);
   }
 
   @Input()
-  get required() {
+  get required(): boolean {
     return this._required;
   }
-  set required(required) {
+  set required(required: boolean) {
     this._required = coerceBooleanProperty(required);
   }
 
   @Input()
-  get showIcons() {
+  get showIcons(): boolean {
     return this._showIcons;
   }
 
-  set showIcons(showIcons) {
+  set showIcons(showIcons: boolean) {
     this._showIcons = coerceBooleanProperty(showIcons);
   }
 
   @Input()
-  get tabIndex() {
+  get tabIndex(): number {
     return this._tabIndex;
   }
-  set tabIndex(tabIndex) {
+  set tabIndex(tabIndex: number) {
     this._tabIndex = coerceNumberProperty(tabIndex);
   }
 
@@ -72,7 +72,7 @@ export class ToggleComponent implements ControlValueAccessor {
     return this._value;
   }
 
-  set value(value) {
+  set value(value: boolean) {
     if (this.value !== value) {
       this._value = value;
       this.onChangeCallback(value);
@@ -88,11 +88,11 @@ export class ToggleComponent implements ControlValueAccessor {
     return this.disabled ? 'disabled' : '';
   }
 
-  private _value: boolean = false;
-  private _disabled: boolean = false;
-  private _required: boolean = false;
-  private _showIcons: boolean = true;
-  private _tabIndex: number = 0;
+  private _value = false;
+  private _disabled = false;
+  private _required = false;
+  private _showIcons = true;
+  private _tabIndex = 0;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 
@@ -104,22 +104,22 @@ export class ToggleComponent implements ControlValueAccessor {
     this.onTouchedCallback();
   }
 
-  writeValue(val: any): void {
+  writeValue(val: unknown): void {
     if (val === null || val === undefined) {
       val = false;
     }
 
     if (val !== this._value) {
-      this.value = val;
+      this.value = val as boolean;
       this.cdr.markForCheck();
     }
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: (_: unknown) => void): void {
     this.onChangeCallback = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouchedCallback = fn;
   }
 
@@ -127,7 +127,7 @@ export class ToggleComponent implements ControlValueAccessor {
     // placeholder
   };
 
-  private onChangeCallback = (_: any) => {
+  private onChangeCallback = (_: unknown) => {
     // placeholder
   };
 }

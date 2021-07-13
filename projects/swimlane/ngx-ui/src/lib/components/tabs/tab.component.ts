@@ -11,7 +11,8 @@ import {
   ChangeDetectorRef,
   EventEmitter,
   Output,
-  SimpleChanges
+  SimpleChanges,
+  OnChanges
 } from '@angular/core';
 import { IfTabActiveDirective } from './if-tab-active.directive';
 
@@ -26,8 +27,8 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
   },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TabComponent implements OnInit {
-  @Input() title: string = '';
+export class TabComponent implements OnInit, OnChanges {
+  @Input() title = '';
   @Input() label: string | TemplateRef<any> = '';
   @Input() active = false;
   @Input() disabled = false;
@@ -40,7 +41,7 @@ export class TabComponent implements OnInit {
 
   constructor(private cdr: ChangeDetectorRef, private renderer: Renderer2, private elRef: ElementRef) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     // backwards compatibility
     if (this.title) {
       this.label = this.title;
@@ -50,11 +51,11 @@ export class TabComponent implements OnInit {
     this.labelTemplate = typeof this.label === 'string' ? this.labelStringTemplate : this.label;
   }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges(changes: SimpleChanges): void {
     this.inputChanges.emit(changes);
   }
 
-  detectChanges() {
+  detectChanges(): void {
     this.cdr.detectChanges();
   }
 }

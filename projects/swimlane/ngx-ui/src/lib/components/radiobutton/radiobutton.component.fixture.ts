@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { RadioButtonComponent } from './radiobutton.component';
 
 @Component({
-  selector: `ngx-radiobutton-fixture`,
+  selector: 'ngx-radiobutton-fixture',
   template: `
     <ngx-radiobutton
       #one

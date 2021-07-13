@@ -1,13 +1,12 @@
 import { Directive, Input, Output, EventEmitter, HostListener } from '@angular/core';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 
-// tslint:disable-next-line:directive-selector
 @Directive({
   selector: '[long-press]'
 })
 export class LongPressDirective {
   @Input()
-  get duration() {
+  get duration(): number {
     return this._duration;
   }
   set duration(duration: number) {
@@ -15,7 +14,7 @@ export class LongPressDirective {
   }
 
   @Input()
-  get disabled() {
+  get disabled(): boolean {
     return this._disabled;
   }
   set disabled(disabled: boolean) {
@@ -26,9 +25,9 @@ export class LongPressDirective {
   @Output() longPressFinish = new EventEmitter<boolean>();
   @Output() longPressCancel = new EventEmitter<boolean>();
 
-  private _duration: number = 3000;
-  private _disabled: boolean = false;
-  private _pressed: boolean = false;
+  private _duration = 3000;
+  private _disabled = false;
+  private _pressed = false;
   private _pressTimeout: any;
 
   @HostListener('mousedown', ['$event'])

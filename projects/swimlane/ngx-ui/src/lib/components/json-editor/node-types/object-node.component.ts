@@ -29,7 +29,7 @@ export class ObjectNode implements OnInit, OnChanges {
 
   @Input() model: any;
 
-  @Input() required: boolean = false;
+  @Input() required = false;
 
   @Input() expanded: boolean;
 
@@ -54,8 +54,8 @@ export class ObjectNode implements OnInit, OnChanges {
   initialized = false;
 
   dataTypes: JsonSchemaDataType[] = [...jsonSchemaDataTypes, ...jsonSchemaDataFormats];
-  propertyCounter: number = 1;
-  propertyId: number = 1;
+  propertyCounter = 1;
+  propertyId = 1;
   propertyIndex: PropertyIndex = {};
 
   duplicatedFields = new Map<string, string>();
@@ -106,6 +106,7 @@ export class ObjectNode implements OnInit, OnChanges {
 
   /**
    * Updates a property on the model and emits the change event
+   *
    * @param propName
    * @param value
    */
@@ -117,6 +118,7 @@ export class ObjectNode implements OnInit, OnChanges {
 
   /**
    * Updates the name of a property
+   *
    * @param id
    * @param name
    */
@@ -278,7 +280,7 @@ export class ObjectNode implements OnInit, OnChanges {
         let matchesPattern = false;
         if (this.schema.patternProperties) {
           for (const pattern in this.schema.patternProperties) {
-            // tslint:disable-next-line: tsr-detect-non-literal-regexp
+            // eslint-disable-next-line
             const patternRegex = new RegExp(pattern);
             if (patternRegex.test(prop)) {
               schema = JSON.parse(JSON.stringify(this.schema.patternProperties[pattern]));
@@ -365,6 +367,7 @@ export class ObjectNode implements OnInit, OnChanges {
 
   /**
    * Track By function for the array ittierator
+   *
    * @param index
    * @param value
    */

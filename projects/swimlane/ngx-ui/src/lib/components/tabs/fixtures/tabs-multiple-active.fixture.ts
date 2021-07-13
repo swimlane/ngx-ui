@@ -2,7 +2,7 @@ import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { TabsComponent } from '../tabs.component';
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'tabs-multiple-active-fixture',
   templateUrl: 'tabs-multiple-active.fixture.html',
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -39,7 +39,7 @@ import { LongPressButtonState } from './long-press-button-state.enum';
           strokeDasharray: '0 1000'
         })
       ),
-      transition('inactive => active', animate(`{{ duration }}ms ease-out`), { params: { duration: 1000 } })
+      transition('inactive => active', animate('{{ duration }}ms ease-out'), { params: { duration: 1000 } })
     ])
   ],
   encapsulation: ViewEncapsulation.None,
@@ -47,7 +47,7 @@ import { LongPressButtonState } from './long-press-button-state.enum';
 })
 export class LongPressButtonComponent implements OnInit, OnChanges {
   @Input() state = LongPressButtonState.Active;
-  @Input() icon: string = 'mouse-hold';
+  @Input() icon = 'mouse-hold';
 
   @Input()
   get duration() {
@@ -68,11 +68,11 @@ export class LongPressButtonComponent implements OnInit, OnChanges {
   @Output() longPress: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   readonly LongPressButtonState = LongPressButtonState;
-  pressed: boolean = false;
+  pressed = false;
 
   private _lastTimeout: any;
-  private _duration: number = 3000;
-  private _disabled: boolean = false;
+  private _duration = 3000;
+  private _disabled = false;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 

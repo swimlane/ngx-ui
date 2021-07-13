@@ -9,7 +9,8 @@ import { debounce } from '../../utils/debounce/debounce.util';
  *  }
  */
 export function debounceable(duration: number, immediate?: boolean) {
-  return function innerDecorator(_: any, key: string, descriptor: any) {
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  return (_: any, key: string, descriptor: any): any => {
     return {
       configurable: true,
       enumerable: descriptor.enumerable,
@@ -20,6 +21,7 @@ export function debounceable(duration: number, immediate?: boolean) {
           value: debounce(descriptor.value, duration, immediate)
         });
 
+        // eslint-disable-next-line security/detect-object-injection
         return this[key];
       }
     };

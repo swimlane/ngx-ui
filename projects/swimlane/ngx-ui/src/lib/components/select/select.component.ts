@@ -67,15 +67,15 @@ const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectComponent extends _InputMixinBase implements ControlValueAccessor, OnDestroy {
-  @Input() id: string = `select-${++nextId}`;
+  @Input() id = `select-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
   @Input() hint: string;
-  @Input() placeholder: string = '';
-  @Input() emptyPlaceholder: string = 'No options available';
-  @Input() filterEmptyPlaceholder: string = 'No matches...';
-  @Input() filterPlaceholder: string = 'Filter options...';
-  @Input() allowAdditionsText: string = 'Add Value';
+  @Input() placeholder = '';
+  @Input() emptyPlaceholder = 'No options available';
+  @Input() filterEmptyPlaceholder = 'No matches...';
+  @Input() filterPlaceholder = 'Filter options...';
+  @Input() allowAdditionsText = 'Add Value';
   @Input() groupBy: string;
   @Input() selectCaret: string;
   @Input() requiredIndicator: string | boolean = '*';
@@ -317,9 +317,9 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
   toggleListener?: () => void;
   filterQuery: string;
-  focusIndex: number = -1;
-  dropdownActive: boolean = false;
-  touched: boolean = false;
+  focusIndex = -1;
+  dropdownActive = false;
+  touched = false;
 
   private _optionTemplates: QueryList<SelectOptionDirective>;
   private _value: any[] = [];
@@ -327,20 +327,20 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   private _minSelections?: number;
   private _maxSelections?: number;
 
-  private _autofocus: boolean = false;
-  private _autosize: boolean = false;
-  private _allowClear: boolean = true;
-  private _allowAdditions: boolean = false;
-  private _disableDropdown: boolean = false;
+  private _autofocus = false;
+  private _autosize = false;
+  private _allowClear = true;
+  private _allowAdditions = false;
+  private _disableDropdown = false;
   private _closeOnSelect: boolean;
-  private _closeOnBodyClick: boolean = true;
-  private _filterable: boolean = true;
+  private _closeOnBodyClick = true;
+  private _filterable = true;
   private _required: boolean;
   private _filterCaseSensitive = false;
-  private _tagging: boolean = false;
-  private _multiple: boolean = false;
-  private _disabled: boolean = false;
-  private _autosizeMinWidth: string = '60px';
+  private _tagging = false;
+  private _multiple = false;
+  private _disabled = false;
+  private _autosizeMinWidth = '60px';
 
   constructor(
     private readonly _element: ElementRef,

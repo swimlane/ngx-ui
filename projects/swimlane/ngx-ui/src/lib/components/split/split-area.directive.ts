@@ -26,7 +26,7 @@ export class SplitAreaDirective implements OnChanges {
   @Input() maxBasis: string;
   @Input() shouldAdjustMaxMin = false;
 
-  overflow: string = 'hidden';
+  overflow = 'hidden';
   initialFlexParts: FlexParts;
   currentFlexParts: FlexParts;
 

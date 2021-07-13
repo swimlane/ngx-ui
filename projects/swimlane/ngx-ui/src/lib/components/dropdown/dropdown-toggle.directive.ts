@@ -4,7 +4,6 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { DropdownShowTypes } from './dropdown.show-types.enum';
 
 @Directive({
-  // tslint:disable-next-line:directive-selector
   exportAs: 'ngxDropdownToggle',
   selector: 'ngx-dropdown-toggle',
   host: {
@@ -16,7 +15,7 @@ export class DropdownToggleDirective {
   @Input() showEvent: DropdownShowTypes = DropdownShowTypes.Click;
 
   @Input()
-  get disabled() {
+  get disabled(): boolean {
     return this._disabled;
   }
   set disabled(disabled: boolean) {
@@ -33,7 +32,7 @@ export class DropdownToggleDirective {
   }
 
   @HostListener('click', ['$event'])
-  onClick(event: Event) {
+  onClick(event: Event): void {
     if (this.showEvent === DropdownShowTypes.Click && !this.disabled) {
       event.preventDefault();
       this.toggle.emit(event);
@@ -41,7 +40,7 @@ export class DropdownToggleDirective {
   }
 
   @HostListener('contextmenu', ['$event'])
-  onContextmenu(event: Event) {
+  onContextmenu(event: Event): void {
     if (this.showEvent === DropdownShowTypes.Contextmenu && !this.disabled) {
       event.preventDefault();
       this.toggle.emit(event);
@@ -49,7 +48,7 @@ export class DropdownToggleDirective {
   }
 
   @HostListener('dblclick', ['$event'])
-  onDblclick(event: Event) {
+  onDblclick(event: Event): void {
     if (this.showEvent === DropdownShowTypes.Dblclick && !this.disabled) {
       event.preventDefault();
       this.toggle.emit(event);

@@ -7,6 +7,7 @@ import {
   ElementRef,
   EventEmitter,
   Input,
+  OnInit,
   Output,
   ViewChild,
   ViewEncapsulation
@@ -58,7 +59,7 @@ import { AlertTypes } from './alert-types.enum';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AlertComponent extends DialogComponent implements AfterViewInit {
+export class AlertComponent extends DialogComponent implements AfterViewInit, OnInit {
   @Input() type: AlertTypes;
   @Input() data: any = '';
   @Input() confirmButtonText: string;

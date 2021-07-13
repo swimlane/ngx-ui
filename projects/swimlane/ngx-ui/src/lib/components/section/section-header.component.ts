@@ -3,7 +3,7 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/
 @Component({
   selector: 'ngx-section-header',
   exportAs: 'ngxSectionHeader',
-  template: ` <ng-content></ng-content> `,
+  template: ' <ng-content></ng-content> ',
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })

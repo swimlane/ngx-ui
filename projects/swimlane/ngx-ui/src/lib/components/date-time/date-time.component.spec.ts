@@ -440,7 +440,7 @@ describe('DateTimeComponent', () => {
       expect(component.isCurrent()).toBe(false);
 
       component.apply();
-      expect(component.displayValue).toEqual(`01/01/1990 12:39 PM`);
+      expect(component.displayValue).toEqual('01/01/1990 12:39 PM');
     });
 
     it('should set current', () => {
@@ -578,6 +578,7 @@ describe('DateTimeComponent', () => {
   describe('registerOnChange', () => {
     it('should register onchange callback', done => {
       const fn = () => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore: private and only accessible within class
         expect(component.onChangeCallback).toBe(fn);
         done();

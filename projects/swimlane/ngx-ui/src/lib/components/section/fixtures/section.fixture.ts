@@ -3,7 +3,7 @@ import { Component, ViewChild } from '@angular/core';
 import { SectionComponent } from '../section.component';
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'section-fixture',
   templateUrl: 'section.fixture.html'
 })
