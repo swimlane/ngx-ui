@@ -1,10 +1,4 @@
-import {
-  Directive,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  Input,
-} from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 import {
   BooleanInput,
   Controller,
@@ -12,19 +6,15 @@ import {
 } from '@swimlane/ngx-ui/common';
 
 @Directive({
-  selector: 'textarea[ngxAutosize], input[ngxAutosize]',
-  exportAs: 'ngxAutosize',
+  selector: 'textarea[ngxInputAutosize], input[ngxInputAutosize]',
+  exportAs: 'ngxInputAutosize',
 })
 export class InputAutosizeControllerDirective extends Controller {
-  static ngAcceptInputType_ngxAutosize: BooleanInput;
-
-  @HostBinding('class.autosize') get autosize() {
-    return this.ngxAutosize;
-  }
+  static ngAcceptInputType_ngxInputAutosize: BooleanInput;
 
   @NgxBooleanInput()
   @Input()
-  ngxAutosize = false;
+  ngxInputAutosize = false;
 
   get nodeName() {
     return this.elementRef.nativeElement.nodeName as 'TEXTAREA' | 'INPUT';
@@ -40,7 +30,7 @@ export class InputAutosizeControllerDirective extends Controller {
 
   @HostListener('input')
   onInput() {
-    if (this.ngxAutosize) {
+    if (this.ngxInputAutosize) {
       const nativeEl = this.elementRef.nativeElement;
 
       if (this.nodeName === 'TEXTAREA') {
