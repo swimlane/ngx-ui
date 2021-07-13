@@ -10,6 +10,20 @@ describe('Selects', () => {
   //     cy.checkA11y($el);
   //   });
   // });
+  
+  describe('Filtering Input', () => {
+    beforeEach(() => {
+      cy.get('#select-3').as('CUT');
+    });
+
+    it('enters text and clears text', () => {
+      const text = 'DDOS';
+
+      cy.get('@CUT').fill(`${text}{downarrow}{enter}`).getValue().should('equal', text);
+
+      cy.get('@CUT').clear().getValue().should('equal', '');
+    });
+  });
 
   describe('Close on body click', () => {
     beforeEach(() => {

@@ -25,12 +25,12 @@ export class ButtonsPageComponent {
     console.log(`Demo app click: ${msg}`);
   }
 
-  onClick(msg: string, targetId?: string) {
+  onClick(msg: string, targetId?: string, successProbability = 0.5) {
     this.onBtnClick(msg);
 
     const buttonPromise = new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (Math.random() < 0.5) {
+        if (Math.random() < successProbability) {
           resolve('Success!');
         } else {
           reject('I fail you!');
