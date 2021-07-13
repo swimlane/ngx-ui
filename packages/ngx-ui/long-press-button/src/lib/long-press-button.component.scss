@@ -1,0 +1,74 @@
+.ngx-long-press {
+  --ngx-ui-long-press-btn-outer-size: 3.75rem;
+  --ngx-ui-long-press-btn-inner-size: 2.875rem;
+  --ngx-ui-long-press-btn-border-width: 0.1875rem;
+  --ngx-ui-long-press-btn-bg: var(--ngx-ui-color-blue-grey-850);
+  --ngx-ui-long-press-process-stroke-color: rgb(13, 238, 114);
+
+  border-radius: 50%;
+  border: var(--ngx-ui-long-press-btn-border-width) solid
+    var(--ngx-ui-long-press-btn-bg);
+  padding: 0;
+  width: var(--ngx-ui-long-press-btn-outer-size);
+  height: var(--ngx-ui-long-press-btn-outer-size);
+  overflow: hidden;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  cursor: pointer;
+
+  button {
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  .inner-background {
+    --ngx-ui-long-press-btn-offset: calc(
+      (
+          var(--ngx-ui-long-press-btn-outer-size) -
+            var(--ngx-ui-long-press-btn-inner-size) - 2 *
+            var(--ngx-ui-long-press-btn-border-width)
+        ) / 2
+    );
+
+    border-radius: 50%;
+    background: var(--ngx-ui-long-press-btn-bg);
+    width: var(--ngx-ui-long-press-btn-inner-size);
+    height: var(--ngx-ui-long-press-btn-inner-size);
+    position: absolute;
+    top: var(--ngx-ui-long-press-btn-offset);
+    left: var(--ngx-ui-long-press-btn-offset);
+  }
+
+  .ngx-icon {
+    font-size: calc(var(--ngx-ui-long-press-btn-inner-size) / 2);
+    height: var(--ngx-ui-long-press-btn-outer-size);
+    vertical-align: middle;
+    line-height: var(--ngx-ui-long-press-btn-outer-size);
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    ::before {
+      line-height: var(--ngx-ui-long-press-btn-outer-size);
+    }
+  }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  circle {
+    fill: none;
+    stroke: var(--ngx-ui-long-press-process-stroke-color);
+    stroke-width: 16;
+
+    &.loading-circle {
+      stroke-dashoffset: 0;
+      stroke-dasharray: 122 1000;
+    }
+  }
+}
