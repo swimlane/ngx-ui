@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { SliderComponent } from '../slider.component';
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'slider-fixture',
   templateUrl: 'slider.fixture.html'
 })

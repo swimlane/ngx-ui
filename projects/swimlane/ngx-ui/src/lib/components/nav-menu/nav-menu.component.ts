@@ -21,5 +21,5 @@ export class NavMenuComponent {
   set expanded(expanded) {
     this._expanded = coerceBooleanProperty(expanded);
   }
-  private _expanded: boolean = false;
+  private _expanded = false;
 }

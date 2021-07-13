@@ -176,13 +176,13 @@ export class StepperComponent implements OnDestroy {
 
   readonly StepperPosition = StepperPosition;
 
-  private _active: number = 0;
-  private _readonly: boolean = true;
-  private _trackBar: boolean = true;
-  private _progress: boolean = false;
-  private _large: boolean = false;
-  private _removeHighlight: boolean = false;
-  private _completeIcon: string = 'ngx-icon ngx-check';
+  private _active = 0;
+  private _readonly = true;
+  private _trackBar = true;
+  private _progress = false;
+  private _large = false;
+  private _removeHighlight = false;
+  private _completeIcon = 'ngx-icon ngx-check';
   private _steps?: QueryList<StepComponent>;
   private _barState = StepperBarAnimationStates.Stay;
   private readonly _destroy$ = new Subject<void>();

@@ -66,7 +66,7 @@ const CODEMIRROR_VALUE_ACCESSOR = {
 })
 export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() config: any = { lineWrapping: true };
-  @Input() theme: string = 'dracula';
+  @Input() theme = 'dracula';
   @Input() readOnly: string | boolean = false;
   @Input() allowDropFileTypes: string[] = [];
   @Input() gutters: Array<string | { className: string; style?: string }> = [];
@@ -110,8 +110,8 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
     }
   }
 
-  private _autofocus: boolean = false;
-  private _lineNumbers: boolean = false;
+  private _autofocus = false;
+  private _lineNumbers = false;
 
   constructor(private readonly renderer: Renderer2) {}
 
@@ -171,7 +171,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
 
     // Make it so each line starts at 0 whitespace
     const firstLineWhitespace = lines[0].match(/^\s*/)[0];
-    // tslint:disable-next-line: tsr-detect-non-literal-regexp
+    // eslint-disable-next-line
     const startingWhitespaceRegex = new RegExp('^' + firstLineWhitespace);
     lines = lines.map(function (line) {
       return line

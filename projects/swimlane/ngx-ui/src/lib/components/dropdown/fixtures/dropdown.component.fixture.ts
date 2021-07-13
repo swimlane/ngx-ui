@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { DropdownComponent } from '../dropdown.component';
 
 @Component({
-  selector: `ngx-dropdown-fixture`,
+  selector: 'ngx-dropdown-fixture',
   template: `
     <ngx-dropdown showCaret>
       <ngx-dropdown-toggle *ngIf="hasToggler$ | async">Button</ngx-dropdown-toggle>

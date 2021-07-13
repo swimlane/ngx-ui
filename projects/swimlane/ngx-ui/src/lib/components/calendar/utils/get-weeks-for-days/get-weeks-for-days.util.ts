@@ -5,6 +5,7 @@ import { getNumberRange } from '../get-number-range/get-number-range.util';
 
 /**
  * Gets a array of days split by week
+ *
  * @param days
  * @param offset
  * @return days by week

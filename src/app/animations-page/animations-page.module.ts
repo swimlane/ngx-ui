@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SectionModule, ButtonModule } from '@swimlane/ngx-ui';
+import { ButtonModule, SectionModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../common/prism/prism.module';
 
 import { AnimationsPageComponent } from './animations-page.component';

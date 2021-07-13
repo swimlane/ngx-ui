@@ -76,7 +76,7 @@ export class DialogLargeFormatDialogPageComponent {
       parentContainer: this.elRef.nativeElement,
       direction: DrawerDirection.Bottom,
       template: this.dialogDrawerTemplate,
-      cssClass: `large-format-dialog-drawer shadow-3`,
+      cssClass: 'large-format-dialog-drawer shadow-3',
       size: context.size - 10,
       context: { size: context.size - 10 }
     });

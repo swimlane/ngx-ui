@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
   CardModule,
-  SectionModule,
-  IconModule,
   DropdownModule,
+  IconModule,
   ResizeObserverModule,
+  SectionModule,
   ToggleModule
 } from '@swimlane/ngx-ui';
 import { CardPageComponent } from './card-page.component';

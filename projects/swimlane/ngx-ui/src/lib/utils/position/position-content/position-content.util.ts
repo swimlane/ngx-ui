@@ -15,13 +15,13 @@ import { calculateHorizontalAlignment } from '../calculate-horizontal-alignment/
  *
  * @returns ({ top: number; left: number; })
  */
-export function positionContent(
+export const positionContent = (
   placement: PlacementTypes,
   elmDim: Dimensions,
   hostDim: Dimensions,
   spacing: number,
   alignment: AlignmentTypes
-) {
+): { top: number; left: number } => {
   let top = 0;
   let left = 0;
 
@@ -40,4 +40,4 @@ export function positionContent(
   }
 
   return { top, left };
-}
+};

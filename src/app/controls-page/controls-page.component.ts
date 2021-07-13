@@ -20,7 +20,7 @@ export class ControlsPageComponent {
   hideAlertArea = false;
   hideFixedSidebar = false;
   curDate2: any = new Date('10/10/2016');
-  favoriteSeason: string = 'Spring';
+  favoriteSeason = 'Spring';
 
   dateChanged(val) {
     console.log('date changed!', val);

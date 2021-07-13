@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { debounce } from './debounce.util';
 
 describe('debounce', () => {

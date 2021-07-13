@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, ElementRef, Input, TemplateRef } from '@angular/core';
-import { DrawerService, DrawerDirection } from '@swimlane/ngx-ui';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, TemplateRef } from '@angular/core';
+import { DrawerDirection, DrawerService } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-drawer-container-example',

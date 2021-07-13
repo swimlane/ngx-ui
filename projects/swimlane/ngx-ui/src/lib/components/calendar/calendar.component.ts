@@ -45,7 +45,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() maxDate: Date | string;
   @Input() daysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   @Input() timezone: string;
-  @Input() inputFormats: Array<string | moment.MomentBuiltinFormat> = ['L', `LT`, 'L LT', moment.ISO_8601];
+  @Input() inputFormats: Array<string | moment.MomentBuiltinFormat> = ['L', 'LT', 'L LT', moment.ISO_8601];
 
   @Input('minView')
   get minView() {

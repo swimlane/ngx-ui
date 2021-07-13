@@ -36,7 +36,7 @@ const enum State {
   animations: [trigger('bounce', bounceAnimation())]
 })
 export class NagComponent implements OnDestroy, OnChanges {
-  @Input() cssClass: string = '';
+  @Input() cssClass = '';
 
   @Input()
   state: State | keyof typeof State = State.closed;
@@ -51,7 +51,7 @@ export class NagComponent implements OnDestroy, OnChanges {
     this._zIndex = coerceNumberProperty(val);
   }
 
-  @Input() nagTitle: string = '';
+  @Input() nagTitle = '';
   @Input() watch: any; // changes to this value cause animation and state changes
   @Input() hide: any; // setting this value will force the nag to close
 
@@ -62,7 +62,7 @@ export class NagComponent implements OnDestroy, OnChanges {
 
   // Controls the bounce animation
   @HostBinding('@bounce')
-  bounce: number = 0;
+  bounce = 0;
 
   private _zIndex: number;
 

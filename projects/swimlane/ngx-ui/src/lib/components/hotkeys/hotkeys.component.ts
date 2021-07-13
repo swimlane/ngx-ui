@@ -22,7 +22,7 @@ import { HotkeyStatus } from './hotkey-status.enum';
 })
 export class HotkeysComponent implements OnInit, OnDestroy {
   readonly hotkeys$ = new BehaviorSubject<Hotkey[]>([]);
-  visible: boolean = false;
+  visible = false;
 
   private readonly _destroy = new Subject<void>();
 

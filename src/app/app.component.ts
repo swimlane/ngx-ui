@@ -1,21 +1,21 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
+import { Event, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { DrawerService, LoadingService } from '@swimlane/ngx-ui';
 import Prism from 'prismjs';
 import 'prismjs/plugins/custom-class/prism-custom-class';
 
-import { version } from '../../projects/swimlane/ngx-ui/package.json';
+import pkg from '../../projects/swimlane/ngx-ui/package.json';
 
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app',
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.template.html',
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  version = version;
-  searchValue: string = '';
+  version = pkg.version;
+  searchValue = '';
   filteredNavigationTree: any[];
 
   navigationTree: any[] = [
@@ -234,7 +234,7 @@ export class AppComponent {
   ];
   /* end of naviation tree */
 
-  navExpanded: boolean = true;
+  navExpanded = true;
 
   constructor(private drawerMngr: DrawerService, private loadingService: LoadingService, private router: Router) {
     Prism.plugins.customClass.prefix('prism--');

@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'decamelize'
 })
 export class DecamelizePipe implements PipeTransform {
-  transform(input: any): string {
+  transform(input: unknown): string {
     if (!input) return '';
 
     const s = input.toString();

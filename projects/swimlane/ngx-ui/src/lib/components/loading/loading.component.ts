@@ -29,8 +29,8 @@ export class LoadingComponent {
     this.cdr.markForCheck();
   }
 
-  private _visible: boolean = false;
-  private _progress: number = 0;
+  private _visible = false;
+  private _progress = 0;
 
   constructor(private cdr: ChangeDetectorRef) {}
 }

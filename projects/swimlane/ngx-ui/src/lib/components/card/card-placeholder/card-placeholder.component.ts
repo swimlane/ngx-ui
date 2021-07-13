@@ -9,7 +9,7 @@ enum CardPlaceholderSize {
 @Component({
   exportAs: 'ngxCardPlaceholder',
   selector: 'ngx-card-placeholder',
-  template: ``,
+  template: '',
   styleUrls: ['./card-placeholder.component.scss'],
   host: {
     class: 'ngx-card-placeholder',

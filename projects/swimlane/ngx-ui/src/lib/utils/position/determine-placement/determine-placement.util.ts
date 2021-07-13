@@ -14,13 +14,13 @@ import { shouldFlip } from '../should-flip/should-flip.util';
  *
  * @returns PlacementTypes
  */
-export function determinePlacement(
+export const determinePlacement = (
   placement: PlacementTypes,
   elmDim: Dimensions,
   hostDim: Dimensions,
   spacing: number,
   alignment: AlignmentTypes
-) {
+): PlacementTypes => {
   const flip = shouldFlip(hostDim, elmDim, placement, alignment, spacing);
 
   if (flip) {
@@ -36,4 +36,4 @@ export function determinePlacement(
   }
 
   return placement;
-}
+};

@@ -44,7 +44,7 @@ export class TooltipContentComponent implements AfterViewInit {
   @Input() template: TemplateRef<any>;
   @Input() context: any;
 
-  get showCaret() {
+  get showCaret(): boolean {
     return this._showCaret;
   }
   @Input()
@@ -52,7 +52,7 @@ export class TooltipContentComponent implements AfterViewInit {
     this._showCaret = coerceBooleanProperty(val);
   }
 
-  get spacing() {
+  get spacing(): number {
     return this._spacing;
   }
   @Input()

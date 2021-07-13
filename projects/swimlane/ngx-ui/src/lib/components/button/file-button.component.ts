@@ -26,7 +26,7 @@ import { FileButtonStyleType } from './file-button-style.type';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FileButtonComponent implements OnInit {
-  @Input() id: string = `input-${id()}`;
+  @Input() id = `input-${id()}`;
   @Input() name: string;
   @Input() styleType = FileButtonStyleType.standard;
   @Input() uploader: FileUploader;
@@ -76,13 +76,13 @@ export class FileButtonComponent implements OnInit {
   }
 
   readonly FileButtonStyleType = FileButtonStyleType;
-  progress: number = 0;
-  fileName: string = '';
-  fileOverDropzone: boolean = false;
+  progress = 0;
+  fileName = '';
+  fileOverDropzone = false;
 
-  private _isItemSuccessful: boolean = false;
-  private _disabled: boolean = false;
-  private _multiple: boolean = false;
+  private _isItemSuccessful = false;
+  private _disabled = false;
+  private _multiple = false;
 
   constructor(public readonly _ngZone: NgZone) {}
 

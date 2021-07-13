@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-toggle-page',
@@ -9,6 +9,7 @@ export class TogglePageComponent {
   toggleChk = true;
 
   onToggleChange(event) {
+    // eslint-disable-next-line no-console
     console.log('check?', event);
   }
 }

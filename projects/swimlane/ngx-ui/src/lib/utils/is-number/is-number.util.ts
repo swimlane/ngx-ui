@@ -1,3 +1,3 @@
-export function isNumber(value: any) {
-  return !isNaN(parseInt(value, 10)) && isFinite(value);
-}
+export const isNumber = (value: string | number): boolean => {
+  return !isNaN(parseInt(value as string, 10)) && isFinite(value as number);
+};

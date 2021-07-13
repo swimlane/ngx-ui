@@ -70,11 +70,11 @@ const MIN_WIDTH = 60;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAccessor, Validator {
-  @Input() id: string = `input-${++nextId}`;
+  @Input() id = `input-${++nextId}`;
   @Input() name: string;
-  @Input() label: string = '';
+  @Input() label = '';
   @Input() hint: string;
-  @Input() placeholder: string = '';
+  @Input() placeholder = '';
   @Input() tabindex: number;
   @Input() min: number;
   @Input() max: number;
@@ -109,7 +109,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     this._required = coerceBooleanProperty(required);
   }
 
-  @Input() passwordToggleEnabled: boolean = false;
+  @Input() passwordToggleEnabled = false;
   @Input()
   get passwordTextVisible() {
     return this._passwordTextVisible;
@@ -186,7 +186,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
       this.disabled = true;
     }
   }
-  @Input() unlockableTooltip: string = 'Click to unlock';
+  @Input() unlockableTooltip = 'Click to unlock';
 
   @Output() change = new EventEmitter<string | number>();
   @Output() blur = new EventEmitter<Event>();
@@ -239,25 +239,25 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     return this.type === InputTypes.textarea ? this.textareaControl : this.inputControl;
   }
 
-  focused: boolean = false;
+  focused = false;
   readonly type$ = new BehaviorSubject<InputTypes>(InputTypes.text);
   readonly inputTypes = InputTypes;
 
   private _value: string | number = '';
   private _type: InputTypes = InputTypes.text;
-  private _passwordTextVisible: boolean = false;
-  private _disabled: boolean = false;
-  private _required: boolean = false;
-  private _autoSelect: boolean = false;
-  private _autofocus: boolean = false;
-  private _autocomplete: string = 'off';
-  private _autocorrect: boolean = false;
-  private _spellcheck: boolean = false;
-  private _autosize: boolean = false;
+  private _passwordTextVisible = false;
+  private _disabled = false;
+  private _required = false;
+  private _autoSelect = false;
+  private _autofocus = false;
+  private _autocomplete = 'off';
+  private _autocorrect = false;
+  private _spellcheck = false;
+  private _autosize = false;
   private _spinnerInterval;
   private _spinnerTimeout;
   private _minWidth: number = MIN_WIDTH;
-  private _unlockable: boolean = false;
+  private _unlockable = false;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 
@@ -382,7 +382,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   };
 
   private updateInputType() {
-    // tslint:disable-next-line: tsr-detect-possible-timing-attacks
+    // eslint-disable-next-line
     this.type$.next(this.passwordTextVisible && InputTypes.password === this.type ? InputTypes.text : this.type);
   }
 
