@@ -12,7 +12,7 @@ import {
   ViewChild,
   ViewEncapsulation,
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { BooleanInput, NgxBooleanInput } from '@swimlane/ngx-ui/common';
 import * as CodeMirror from 'codemirror';
 import 'codemirror/addon/dialog/dialog.js';
@@ -69,7 +69,9 @@ const CODEMIRROR_VALUE_ACCESSOR = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [CODEMIRROR_VALUE_ACCESSOR],
 })
-export class CodeEditorComponent implements OnInit, AfterViewInit {
+export class CodeEditorComponent
+  implements OnInit, AfterViewInit, ControlValueAccessor
+{
   static ngAcceptInputType_autofocus: BooleanInput;
   static ngAcceptInputType_lineNumbers: BooleanInput;
 

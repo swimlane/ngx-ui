@@ -1,9 +1,9 @@
-@import 'colors/variables';
-
-$dropdown-bg: $color-blue-grey-700;
-$dropdown-bg-active: $color-blue-grey-750;
-$dropdown-bg-hover: $color-blue-grey-800;
-$dropdown-color: $color-blue-grey-150;
+:root {
+  --ngx-ui-dropdown-bg: var(--ngx-ui-color-blue-grey-700);
+  --ngx-ui-dropdown-bg-active: var(--ngx-ui-color-blue-grey-750);
+  --ngx-ui-dropdown-bg-hover: var(--ngx-ui-color-blue-grey-800);
+  --ngx-ui-dropdown-color: var(--ngx-ui-color-blue-grey-150);
+}
 
 .CodeMirror-hints {
   position: absolute;
@@ -17,8 +17,8 @@ $dropdown-color: $color-blue-grey-150;
   font-size: 90%;
   font-family: monospace;
 
-  background: $dropdown-bg;
-  box-shadow: $shadow-3;
+  background: var(--ngx-ui-dropdown-bg);
+  box-shadow: var(--ngx-ui-shadow-3);
 
   max-height: 20em;
   overflow-y: auto;
@@ -30,15 +30,15 @@ $dropdown-color: $color-blue-grey-150;
   white-space: pre;
   background: transparent;
   box-shadow: none;
-  color: $dropdown-color;
+  color: var(--ngx-ui-dropdown-color);
   font-size: 0.9em;
   cursor: pointer;
 }
 
 li.CodeMirror-hint-active {
-  background: $dropdown-bg-active;
+  background: var(--ngx-ui-dropdown-bg-active);
 }
 
 li.CodeMirror-hint:hover {
-  background: $dropdown-bg-hover;
+  background: var(--ngx-ui-dropdown-bg-hover);
 }
