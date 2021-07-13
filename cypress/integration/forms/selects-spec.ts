@@ -12,15 +12,9 @@ describe('Selects', () => {
     it('enters text and clears text', () => {
       const text = 'DDOS';
 
-      cy.get('@CUT')
-        .fill(`${text}{downarrow}{enter}`)
-        .getValue()
-        .should('equal', text);
+      cy.get('@CUT').fill(`${text}{downarrow}{enter}`).getValue().should('equal', text);
 
-      cy.get('@CUT')
-        .clear()
-        .getValue()
-        .should('equal', '');
+      cy.get('@CUT').clear().getValue().should('equal', '');
     });
   });
 

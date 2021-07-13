@@ -14,23 +14,15 @@ describe('Inputs', () => {
     });
 
     it('has no placeholder', () => {
-      cy.get('@CUT')
-        .findInput()
-        .should('have.attr', 'placeholder', '');
+      cy.get('@CUT').findInput().should('have.attr', 'placeholder', '');
     });
 
     it('enters and clears text', () => {
       const text = 'hello world';
 
-      cy.get('@CUT')
-        .fill(text)
-        .getValue()
-        .should('equal', text);
+      cy.get('@CUT').fill(text).getValue().should('equal', text);
 
-      cy.get('@CUT')
-        .clear()
-        .getValue()
-        .should('equal', '');
+      cy.get('@CUT').clear().getValue().should('equal', '');
     });
 
     it('underlines active input', () => {
@@ -67,16 +59,11 @@ describe('Inputs', () => {
 
       cy.get('@CUT').fill(text);
 
-      cy.get('@CUT')
-        .getValue()
-        .should('equal', text);
+      cy.get('@CUT').getValue().should('equal', text);
 
-      cy.get('@CUT')
-        .clear();
-  
-      cy.get('@CUT')
-        .getValue()
-        .should('equal', '');
+      cy.get('@CUT').clear();
+
+      cy.get('@CUT').getValue().should('equal', '');
     });
   });
 
@@ -90,9 +77,7 @@ describe('Inputs', () => {
     });
 
     it('has no placeholder', () => {
-      cy.get('@CUT')
-        .findInput()
-        .should('have.attr', 'placeholder', '');
+      cy.get('@CUT').findInput().should('have.attr', 'placeholder', '');
     });
 
     it('enters text', () => {
@@ -130,8 +115,7 @@ describe('Inputs', () => {
     });
 
     it('adds a placeholder', () => {
-      cy.get('@CUT').findInput()
-        .should('have.attr', 'placeholder', 'Enter your first and last name');
+      cy.get('@CUT').findInput().should('have.attr', 'placeholder', 'Enter your first and last name');
     });
 
     it('has no label', () => {
@@ -172,9 +156,7 @@ describe('Inputs', () => {
     });
 
     it('have no placeholder', () => {
-      cy.get('@CUT')
-        .findInput()
-        .should('have.attr', 'placeholder', '');
+      cy.get('@CUT').findInput().should('have.attr', 'placeholder', '');
     });
 
     it('adds a prefix', () => {
@@ -196,9 +178,7 @@ describe('Inputs', () => {
     });
 
     it('has no placeholder', () => {
-      cy.get('@CUT')
-        .findInput()
-        .should('have.attr', 'placeholder', '');
+      cy.get('@CUT').findInput().should('have.attr', 'placeholder', '');
     });
 
     it('has a value', () => {
@@ -220,9 +200,7 @@ describe('Inputs', () => {
     });
 
     it('has no placeholder', () => {
-      cy.get('@CUT')
-        .findInput()
-        .should('have.attr', 'placeholder', '');
+      cy.get('@CUT').findInput().should('have.attr', 'placeholder', '');
     });
 
     it('should be required', () => {
@@ -240,9 +218,7 @@ describe('Inputs', () => {
     });
 
     it('has no placeholder', () => {
-      cy.get('@CUT')
-        .findInput()
-        .should('have.attr', 'placeholder', '');
+      cy.get('@CUT').findInput().should('have.attr', 'placeholder', '');
     });
 
     it('should be required', () => {
@@ -260,9 +236,7 @@ describe('Inputs', () => {
     });
 
     it('has no placeholder', () => {
-      cy.get('@CUT')
-        .findInput()
-        .should('have.attr', 'placeholder', '');
+      cy.get('@CUT').findInput().should('have.attr', 'placeholder', '');
     });
 
     it('should have a password ', () => {

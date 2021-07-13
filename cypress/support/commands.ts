@@ -63,8 +63,8 @@ Cypress.Commands.add('navigate', (url, options = {}) => {
   });
 });
 
-Cypress.Commands.add('dataCy', (value) => {
-  return cy.get(`[data-cy=${value}]`)
+Cypress.Commands.add('dataCy', value => {
+  return cy.get(`[data-cy=${value}]`);
 });
 
 Cypress.Commands.add('asAllDataCy', () =>

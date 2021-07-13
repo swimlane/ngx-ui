@@ -1,12 +1,10 @@
 describe('Large Format Dialog', () => {
   before(() => {
-    cy.visit('/dialog-large-format')
+    cy.visit('/dialog-large-format');
   });
 
   it('should open and close dialog', () => {
-    cy.get('button')
-      .contains('Open Large Dialog')
-      .click();
+    cy.get('button').contains('Open Large Dialog').click();
 
     cy.get('.ngx-dialog-content').within(() => {
       cy.get('.dialog-container__header h1').should('contain', 'Title');

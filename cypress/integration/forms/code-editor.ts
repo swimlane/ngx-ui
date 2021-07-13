@@ -14,14 +14,9 @@ describe('Code Editor', () => {
 
       cy.get('@CUT').fill(text);
 
-      cy.get('@CUT')
-        .getValue()
-        .should('equal', text);
+      cy.get('@CUT').getValue().should('equal', text);
 
-      cy.get('@CUT')
-        .clear()
-        .getValue()
-        .should('equal', '');
+      cy.get('@CUT').clear().getValue().should('equal', '');
     });
   });
 });
