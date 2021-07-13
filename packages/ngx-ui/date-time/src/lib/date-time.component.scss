@@ -1,0 +1,214 @@
+.ngx-date-time {
+  --ngx-ui-calendar-bg: var(--ngx-ui-color-blue-grey-800);
+  --ngx-ui-calendar-border: #2d3544;
+  --ngx-ui-animation-timing: 200ms;
+
+  position: relative;
+  display: block;
+  max-width: 100%;
+
+  &.md {
+    .ngx-input {
+      font-size: 1.125rem !important;
+    }
+  }
+
+  &.lg {
+    .ngx-input {
+      font-size: 1.5rem !important;
+    }
+  }
+
+  .calendar-dialog-btn {
+    display: inline-flex;
+    position: absolute;
+    padding: 0;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--ngx-ui-color-blue-grey-200);
+    z-index: 2;
+  }
+
+  .ngx-input-box-wrap {
+    padding-right: 1.5rem;
+  }
+
+  &.no-label {
+    .calendar-dialog-btn {
+      top: 0.5rem;
+      transform: translateY(0);
+    }
+  }
+
+  &.fill {
+    .calendar-dialog-btn {
+      transform: translateY(-35%);
+      right: 0.625rem;
+    }
+
+    &.no-label {
+      .calendar-dialog-btn {
+        transform: translateY(0);
+      }
+    }
+  }
+
+  .date-time-hint {
+    display: flex;
+    justify-content: space-between;
+
+    .input-error {
+      color: var(--ngx-ui-color-red);
+      margin-left: auto;
+      padding-left: 0.25rem;
+    }
+  }
+
+  &.autosize {
+    display: inline-block;
+
+    .calendar-dialog-btn {
+      transform: translateY(-25%);
+    }
+
+    &.fill .calendar-dialog-btn {
+      transform: translateY(-15%);
+    }
+
+    &.marginless .calendar-dialog-btn {
+      transform: translateY(-35%);
+    }
+
+    &.no-label {
+      .calendar-dialog-btn {
+        transform: translateY(0);
+      }
+    }
+
+    .ngx-input-hint {
+      position: relative;
+
+      .date-time-hint {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        max-width: 100%;
+        white-space: nowrap;
+
+        > * {
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+}
+
+.ngx-dialog .ngx-dialog-content.ngx-date-time-dialog {
+  padding: 0 !important;
+  width: auto;
+
+  h1 {
+    font-size: 1.25rem;
+    white-space: nowrap;
+
+    small {
+      color: var(--ngx-ui-color-grey-100);
+    }
+  }
+
+  .selected-header {
+    padding: 0.25rem 1.25rem;
+    background: var(--ngx-ui-color-blue);
+    color: var(--ngx-ui-color-grey-100);
+  }
+
+  .time-row {
+    background: var(--ngx-ui-calendar-bg);
+    border: 1px solid var(--ngx-ui-calendar-border);
+    padding: 0.5rem 1.125rem;
+    margin-top: 0;
+
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    place-content: stretch center;
+    align-items: baseline;
+    justify-content: space-between;
+
+    > * {
+      flex: 0 0 calc(33% - 6px);
+    }
+
+    .ngx-input {
+      margin-top: 0;
+      padding-top: 0;
+
+      .ngx-input-underline {
+        background-color: var(--ngx-ui-color-input-text);
+      }
+    }
+
+    button.ampm {
+      color: var(--ngx-ui-color-blue-grey-500);
+
+      &.selected {
+        color: var(--ngx-ui-color-white);
+      }
+    }
+  }
+
+  .ngx-calendar {
+    box-shadow: none;
+
+    .title-row {
+      background: none;
+    }
+
+    .day-name-row {
+      margin-top: 0;
+    }
+  }
+
+  .ngx-dialog-footer {
+    border: 1px solid var(--ngx-ui-calendar-border);
+    border-top: 0;
+    padding: 0.5rem 0;
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+
+    > * {
+      flex: 1 1 50%;
+    }
+
+    .btn {
+      font-size: 1em;
+      color: var(--ngx-ui-color-blue-grey-400);
+      margin: 0;
+      padding: 0;
+    }
+
+    .today-btn {
+      margin-left: 1rem;
+      opacity: 1;
+      transition: opacity var(--ngx-ui-animation-timing);
+
+      &[hidden] {
+        display: inline-block !important;
+        opacity: 0;
+      }
+    }
+
+    .apply-btn {
+      margin-right: 1rem;
+      color: var(--ngx-ui-color-blue-400);
+    }
+
+    .clear-btn {
+      margin-right: 1rem;
+    }
+  }
+}
