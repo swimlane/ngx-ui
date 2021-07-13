@@ -21,7 +21,7 @@ export class ButtonsPageComponent {
     autoUpload: false
   });
 
-  onClick(msg: string, targetId?: string, successProbability: number = 0.5) {
+  onClick(msg: string, targetId?: string, successProbability = 0.5) {
     console.log('Demo app click: ', msg);
 
     const buttonPromise = new Promise((resolve, reject) => {
