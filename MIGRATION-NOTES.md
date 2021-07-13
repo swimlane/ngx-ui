@@ -70,7 +70,8 @@
 - Use `focusableElement` to change the `HTMLElement` as you see fit. Default to `Host#elementRef#nativeElement`
 
 ```ts
-@ViewChild('someOtherElement') set someOtherElementRef(v:ElementRef<HTMLElement>) {
+@ViewChild('someOtherElement') set
+someOtherElementRef(v:ElementRef<HTMLElement>) {
   this.autofocusController.focusableElement = v.nativeElement;
 }
 ```
@@ -206,6 +207,10 @@ export enum ButtonState {
 
 #### Dialog
 
+- `(open)` has been renamed to `(dialogOpen)`
+- `(close)` has been renamed to `(dialogClose)`
+- `[title]` is removed. Use `[dialogTitle]` instead
+
 #### LargeFormatDialogContent
 
 - Now has its own module `LargeFormatDialogContentModule` and no longer belong to `DialogModule`
@@ -216,5 +221,16 @@ export enum ButtonState {
 
 #### Overlay
 
-- `show()` parameter has been strongly typed to `{ triggerComponent: ComponentRef<unknown>, zIndex: number }` instead of `any`
+- `show()` parameter has been strongly typed to `{ triggerComponent: ComponentRef<unknown>, zIndex: number }` instead
+  of `any`
 
+#### LongPressButton
+
+- Now has its own module `LongPressButtonModule` and no longer belong to `ButtonModule`
+- `[state]` accepts a string union of `keyof LongPressButtonState` instead of the enum itself
+
+#### DateTime
+
+- `(change)` has been renamed to `(dateTimeChange)`
+- `(blur)` has been renamed to `(dateTimeBlur)`
+- `(selected)` has been renamed to `(dateTimeSelected)`
