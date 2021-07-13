@@ -1,0 +1,76 @@
+<div
+  class="ngx-dialog ngx-alert-dialog"
+  [style.zIndex]="zIndex"
+  [ngClass]="type"
+>
+  <div
+    class="ngx-dialog-content"
+    [ngClass]="cssClass"
+    [@visibilityTransition]="visibleState"
+    [style.zIndex]="contentZIndex"
+    #dialogContent
+    (keydown.escape)="onCancelClick()"
+    (keydown.enter)="onKeydown()"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="ngx-dialog-header" *ngIf="dialogTitle || closeButton">
+      <button *ngIf="closeButton" type="button" class="close" (click)="hide()">
+        <span class="icon-x"></span>
+      </button>
+      <button
+        *ngIf="type === AlertType.alert"
+        type="button"
+        class="btn close-button"
+        (click)="onOkClick()"
+      >
+        <ng-container *ngTemplateOutlet="okBtnContentTmpl"></ng-container>
+      </button>
+      <h1 *ngIf="dialogTitle" [innerHTML]="dialogTitle"></h1>
+    </div>
+    <div *ngIf="content" class="ngx-dialog-body" [innerHTML]="content"></div>
+
+    <div class="ngx-dialog-body" *ngIf="type === AlertType.prompt">
+      <ngx-input
+        ngxAppearance
+        ngxSize
+        ngxAutofocus
+        ngxInputAttribute
+        type="text"
+        name="confirm_input"
+        [(ngModel)]="data"
+      ></ngx-input>
+    </div>
+
+    <div class="ngx-dialog-footer" *ngIf="type !== AlertType.alert">
+      <ng-container *ngIf="!longPress">
+        <button
+          type="button"
+          class="btn"
+          [ngClass]="confirmButtonClass"
+          (click)="onOkClick()"
+        >
+          <ng-container *ngTemplateOutlet="okBtnContentTmpl"></ng-container>
+        </button>
+        <button
+          type="button"
+          class="btn"
+          [ngClass]="cancelButtonClass"
+          (click)="onCancelClick()"
+        >
+          <ng-container *ngTemplateOutlet="cancelBtnContentTmpl"></ng-container>
+        </button>
+      </ng-container>
+      <ngx-long-press-button
+        *ngIf="longPress"
+        (longPress)="onOkClick()"
+        duration="1000"
+      ></ngx-long-press-button>
+    </div>
+  </div>
+</div>
+
+<ng-template #okBtnContentTmpl>{{ confirmButtonText || 'Ok' }}</ng-template>
+<ng-template #cancelBtnContentTmpl>{{
+  cancelButtonText || 'Cancel'
+}}</ng-template>
