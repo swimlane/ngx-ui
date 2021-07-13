@@ -1,5 +1,5 @@
 {
-  "name": "@swimlane/ngx-ui-input-attribute",
+  "name": "@swimlane/ngx-ui/input-attribute",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.1.1",
