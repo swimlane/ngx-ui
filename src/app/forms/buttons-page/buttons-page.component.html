@@ -1,7 +1,7 @@
 <h3 class="style-header">Buttons</h3>
 <ngx-section class="shadow" sectionTitle="Buttons">
-  <button type="button" class="btn">Default</button>
-  <button type="button" class="btn btn-primary">Primary</button>
+  <button type="button" class="btn" (click)="onBtnClick('Default')">Default</button>
+  <button type="button" class="btn btn-primary" (click)="onBtnClick('Primary')">Primary</button>
   <button type="button" class="btn btn-primary btn-primary-gradient">Primary Gradient</button>
   <button type="button" class="btn btn-warning">Warning</button>
   <button type="button" class="btn btn-danger">Danger</button>
@@ -192,9 +192,9 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="ngx-button">
-  <ngx-button #defaultButton [promise]="promises['defaultButton']" (click)="onClick('button click', 'defaultButton')"
+  <ngx-button #defaultButton [promise]="promises['defaultButton']" (click)="onClick('Default', 'defaultButton')"
     class="btn">Default</ngx-button>
-  <ngx-button #primaryButton [promise]="promises['primaryButton']" (click)="onClick('button click', 'primaryButton')"
+  <ngx-button #primaryButton [promise]="promises['primaryButton']" (click)="onClick('Primary', 'primaryButton')"
     class="btn btn-primary">Primary</ngx-button>
   <ngx-button #gradiantButton [promise]="promises['gradiantButton']" (click)="onClick('button click', 'gradiantButton')"
     class="btn btn-primary btn-primary-gradient">Primary Gradient</ngx-button>

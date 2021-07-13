@@ -18,6 +18,26 @@
     &:focus-within {
       outline: none;
     }
+
+    // Focus ring
+    &:after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      z-index: 1;
+
+      border-radius: 4px;
+      opacity: 0;
+      border: 2px solid $button-fill-color;
+      transition: opacity 0.3s;
+    }
+
+    &:focus-visible:after {
+      opacity: 1;
+    }
   }
 
   &.disabled-button {
@@ -32,20 +52,6 @@
   &.fail {
     background-color: $color-red !important;
     color: $color-white;
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: $shadow-3;
-  }
-
-  &:focus-visible {
-    outline: -webkit-focus-ring-color auto 1px;
-  }
-
-  &:focus-visible,
-  &:focus {
-    outline: 2px solid red;
   }
 
   &.in-progress,
@@ -91,6 +97,26 @@
         overflow: hidden;
         font-size: 1em;
       }
+    }
+  }
+
+  // focus ring colors
+  &.btn-primary button:after {
+    border-color: $color-blue;
+  }
+
+  &.btn-warning button:after {
+    border-color: $color-orange;
+  }
+
+  &.btn-danger button:after {
+    border-color: $color-red-400;
+  }
+
+  &.btn-bordered,
+  &.btn-primary.btn-bordered {
+    button:after {
+      border-color: $color-blue-400;
     }
   }
 }

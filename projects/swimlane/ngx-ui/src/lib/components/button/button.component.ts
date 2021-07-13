@@ -23,9 +23,7 @@ import { ButtonState } from './button-state.enum';
     '[class.active]': 'active$.value',
     '[class.success]': 'success$.value',
     '[class.fail]': 'fail$.value',
-    '[class.disabled-button]': 'disabled',
-    role: 'button',
-    '[tabindex]': 'disabled ? -1 : 0'
+    '[class.disabled-button]': 'disabled'
   },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

@@ -68,3 +68,13 @@ Cypress.Commands.add('asAllDataCy', () =>
     list.each((i, { dataset: { cy: name } }) => cy.get(`[data-cy=${name}]`).as(name));
   })
 );
+
+Cypress.Commands.add('findPseudoBefore', { prevSubject: 'element' }, (el) => {
+  const win = el[0].ownerDocument.defaultView;
+  return win.getComputedStyle(el[0], 'before');
+});
+
+Cypress.Commands.add('findPseudoAfter', { prevSubject: 'element' }, (el) => {
+  const win = el[0].ownerDocument.defaultView;
+  return win.getComputedStyle(el[0], 'after');
+});
