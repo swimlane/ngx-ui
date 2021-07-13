@@ -1,3 +1,4 @@
+/* eslint-disable security/detect-non-literal-fs-filename */
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { Shallow } from 'shallow-render';

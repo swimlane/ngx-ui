@@ -1,13 +1,14 @@
 import { Directive, Output, EventEmitter, HostListener, ElementRef } from '@angular/core';
 
-// tslint:disable-next-line:directive-selector
 @Directive({
   selector: '[dbl-click-copy]',
+  // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     title: 'Double click to copy to clipboard'
   }
 })
 export class DblClickCopyDirective {
+  // eslint-disable-next-line @angular-eslint/no-output-on-prefix
   @Output() onCopy = new EventEmitter<Range>();
 
   constructor(private readonly element: ElementRef<HTMLElement>) {}

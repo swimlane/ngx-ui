@@ -84,12 +84,12 @@ export class RadioButtonComponent implements ControlValueAccessor {
   @Output() blur = new EventEmitter<Event>();
   @Output() focus = new EventEmitter<FocusEvent>();
 
-  public groupDisabled: boolean = false;
+  public groupDisabled = false;
 
-  private _checked: boolean = false;
-  private _value: boolean = false;
-  private _disabled: boolean = false;
-  private _tabindex: number = 0;
+  private _checked = false;
+  private _value = false;
+  private _disabled = false;
+  private _tabindex = 0;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 

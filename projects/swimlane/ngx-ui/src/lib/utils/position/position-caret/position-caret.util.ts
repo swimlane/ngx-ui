@@ -16,13 +16,13 @@ import { CARET_OFFSET } from '../caret-offset.constant';
  *
  * @returns ({ top: number; left: number; })
  */
-export function positionCaret(
+export const positionCaret = (
   placement: PlacementTypes,
   elmDim: Dimensions,
   hostDim: Dimensions,
   caretDimensions: Dimensions,
   alignment: AlignmentTypes
-) {
+): { top: number; left: number } => {
   let top = 0;
   let left = 0;
 
@@ -41,4 +41,4 @@ export function positionCaret(
   }
 
   return { top, left };
-}
+};

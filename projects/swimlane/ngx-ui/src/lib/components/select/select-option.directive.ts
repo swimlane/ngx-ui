@@ -6,12 +6,11 @@ import { SelectOptionInputTemplateDirective } from './select-option-input-templa
 import { SelectDropdownOption } from './select-dropdown-option.interface';
 
 @Directive({
-  // tslint:disable-next-line:directive-selector
   exportAs: 'ngxSelectOption',
   selector: 'ngx-select-option'
 })
 export class SelectOptionDirective implements SelectDropdownOption {
-  @Input() name: string = '';
+  @Input() name = '';
   @Input() value: any;
 
   @Input()
@@ -30,6 +29,7 @@ export class SelectOptionDirective implements SelectDropdownOption {
     this._hidden = coerceBooleanProperty(hidden);
   }
 
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('optionTemplate')
   _optionTemplateInput: TemplateRef<any>;
 
@@ -40,6 +40,7 @@ export class SelectOptionDirective implements SelectDropdownOption {
     return this._optionTemplateInput || this._optionTemplateQuery;
   }
 
+  // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('inputTemplate')
   _inputTemplateInput: TemplateRef<any>;
 
@@ -50,6 +51,6 @@ export class SelectOptionDirective implements SelectDropdownOption {
     return this._inputTemplateInput || this._inputTemplateQuery;
   }
 
-  private _disabled: boolean = false;
-  private _hidden: boolean = false;
+  private _disabled = false;
+  private _hidden = false;
 }

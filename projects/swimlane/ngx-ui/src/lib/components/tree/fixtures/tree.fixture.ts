@@ -3,7 +3,7 @@ import { TreeComponent } from '../tree.component';
 import { TreeNode } from '../tree-node.model';
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'tree-fixture',
   templateUrl: 'tree.fixture.html'
 })

@@ -122,7 +122,7 @@ describe('SliderComponent', () => {
     expect(multiSlider.setValues).not.toHaveBeenCalled();
   });
 
-  it("writing a value to what's already in _values doesnt call setvalues", () => {
+  it("writing a value to what's already in _values doesn't call setvalues", () => {
     spyOn(defaultSlider, 'setValues');
     defaultSlider.writeValue(0);
 

@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, OnInit } from '@angular/core';
+/* eslint-disable no-console */
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable, timer } from 'rxjs';
 import { map } from 'rxjs/operators';
 

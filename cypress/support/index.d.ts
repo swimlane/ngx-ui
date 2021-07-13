@@ -1,4 +1,4 @@
-// tslint:disable-next-line:no-namespace
+/* eslint-disable @typescript-eslint/no-unused-vars */
 declare namespace Cypress {
   interface Chainable<T = unknown> {
     dataCy(value: string): Chainable<Element>;

@@ -29,7 +29,7 @@ import { filterDefault } from '../../utils/filter/filter-default/filter-default.
   pure: false
 })
 export class FilterPipe implements PipeTransform {
-  transform(array: any[], filter: any): any[] {
+  transform(array: any[], filter: unknown): any[] {
     if (typeof filter === 'string') {
       if (isNumber(filter)) {
         return array.filter(filterDefault(filter));

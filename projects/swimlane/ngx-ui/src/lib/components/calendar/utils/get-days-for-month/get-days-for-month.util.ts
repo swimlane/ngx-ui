@@ -5,6 +5,7 @@ import { getNumberRange } from '../get-number-range/get-number-range.util';
 
 /**
  * Get the days for the month
+ *
  * @param active
  * @return array of days
  */

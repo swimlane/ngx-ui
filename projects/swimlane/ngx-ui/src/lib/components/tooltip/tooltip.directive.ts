@@ -22,14 +22,13 @@ import { StyleTypes } from './style-types.enum';
 import { TooltipService } from './tooltip.service';
 import { TooltipContentComponent } from './tooltip.component';
 
-// tslint:disable-next-line:directive-selector
 @Directive({
   selector: '[ngx-tooltip]',
   exportAs: 'ngxTooltip'
 })
 export class TooltipDirective implements OnDestroy {
-  @Input() tooltipCssClass: string = '';
-  @Input() tooltipTitle: string = '';
+  @Input() tooltipCssClass = '';
+  @Input() tooltipTitle = '';
   @Input() tooltipPlacement: PlacementTypes = PlacementTypes.top;
   @Input() tooltipAlignment: AlignmentTypes = AlignmentTypes.center;
   @Input() tooltipType: StyleTypes = StyleTypes.popover;
@@ -37,7 +36,7 @@ export class TooltipDirective implements OnDestroy {
   @Input() tooltipShowEvent: ShowTypes = ShowTypes.all;
   @Input() tooltipContext: any;
 
-  get tooltipSpacing() {
+  get tooltipSpacing(): number {
     return this._tooltipSpacing;
   }
   @Input()
@@ -45,7 +44,7 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipSpacing = coerceNumberProperty(val);
   }
 
-  get tooltipDisabled() {
+  get tooltipDisabled(): boolean {
     return this._tooltipDisabled;
   }
   @Input()
@@ -53,7 +52,7 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipDisabled = coerceBooleanProperty(val);
   }
 
-  get tooltipShowCaret() {
+  get tooltipShowCaret(): boolean {
     return this._tooltipShowCaret;
   }
   @Input()
@@ -61,7 +60,7 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipShowCaret = coerceBooleanProperty(val);
   }
 
-  get tooltipCloseOnClickOutside() {
+  get tooltipCloseOnClickOutside(): boolean {
     return this._tooltipCloseOnClickOutside;
   }
   @Input()
@@ -69,7 +68,7 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipCloseOnClickOutside = coerceBooleanProperty(val);
   }
 
-  get tooltipCloseOnMouseLeave() {
+  get tooltipCloseOnMouseLeave(): boolean {
     return this._tooltipCloseOnMouseLeave;
   }
   @Input()
@@ -77,7 +76,7 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipCloseOnMouseLeave = coerceBooleanProperty(val);
   }
 
-  get tooltipHideTimeout() {
+  get tooltipHideTimeout(): number {
     return this._tooltipHideTimeout;
   }
   @Input()
@@ -85,7 +84,7 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipHideTimeout = coerceNumberProperty(val, 300);
   }
 
-  get tooltipShowTimeout() {
+  get tooltipShowTimeout(): number {
     return this._tooltipShowTimeout;
   }
   @Input()
@@ -93,16 +92,17 @@ export class TooltipDirective implements OnDestroy {
     this._tooltipShowTimeout = coerceNumberProperty(val, 100);
   }
 
+  // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() show = new EventEmitter<boolean>();
   @Output() hide = new EventEmitter<boolean>();
 
-  private _tooltipSpacing: number = 10;
-  private _tooltipDisabled: boolean = false;
-  private _tooltipShowCaret: boolean = true;
-  private _tooltipCloseOnClickOutside: boolean = true;
-  private _tooltipCloseOnMouseLeave: boolean = true;
-  private _tooltipHideTimeout: number = 300;
-  private _tooltipShowTimeout: number = 100;
+  private _tooltipSpacing = 10;
+  private _tooltipDisabled = false;
+  private _tooltipShowCaret = true;
+  private _tooltipCloseOnClickOutside = true;
+  private _tooltipCloseOnMouseLeave = true;
+  private _tooltipHideTimeout = 300;
+  private _tooltipShowTimeout = 100;
 
   private get listensForFocus(): boolean {
     return this.tooltipShowEvent === ShowTypes.all || this.tooltipShowEvent === ShowTypes.focus;
@@ -152,7 +152,7 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('mouseleave', ['$event'])
-  onMouseLeave(event: any): void {
+  onMouseLeave(event: { toElement: Node }): void {
     if (this.listensForHover && this.tooltipCloseOnMouseLeave) {
       clearTimeout(this.timeout);
 
@@ -168,7 +168,7 @@ export class TooltipDirective implements OnDestroy {
   }
 
   @HostListener('click')
-  onMouseClick() {
+  onMouseClick(): void {
     if (this.tooltipShowEvent === ShowTypes.mouseover) {
       this.hideTooltip(true);
     }

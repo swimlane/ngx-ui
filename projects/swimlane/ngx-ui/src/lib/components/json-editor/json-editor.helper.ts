@@ -171,7 +171,8 @@ export const jsonSchemaDataFormats: JsonSchemaDataType[] = [
   }
 ];
 
-export const dataTypeMap: {} = {};
+export const dataTypeMap: Record<string, any> = {};
+
 for (const dType of [...jsonSchemaDataTypes, ...jsonSchemaDataFormats]) {
   let key = dType.schema.type;
   if (dType.schema.format) {
@@ -192,6 +193,7 @@ export function createValueForSchema(schema: JSONEditorSchema): any {
 
 /**
  * Infers the schema type of the value
+ *
  * @param value the value to infer the schema for
  * @param overrides an object with overridden inference functions for various schema types
  * @param allowedTypes the allowed schema types to consider
@@ -202,7 +204,7 @@ export function inferType(value: any, overrides?: any, allowedTypes?: string[]):
       if (allowedTypes !== undefined && !allowedTypes.includes(typeName)) {
         continue;
       }
-      // tslint:disable-next-line: tsr-detect-unsafe-properties-access
+      // eslint-disable-next-line
       if (dataTypeMap[typeName] && overrides[typeName](value)) {
         return dataTypeMap[typeName].schema;
       }
@@ -221,7 +223,7 @@ export function inferType(value: any, overrides?: any, allowedTypes?: string[]):
   }
 
   if (!type) {
-    type = dataTypeMap['object'].schema;
+    type = dataTypeMap.object.schema;
   }
   return type;
 }
@@ -244,6 +246,7 @@ export function getIcon(schema: JSONEditorSchema): string {
 /**
  * Returns a string for the schema.$meta.currentType property in the following format:
  * string, string=code, object, etc.
+ *
  * @param schema
  */
 export function getCurrentType(schema: JSONEditorSchema): string {

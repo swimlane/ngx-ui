@@ -42,6 +42,7 @@ export class JsonEditor implements OnChanges {
 
   /**
    * Model change callback. Validates the model and emits a change event
+   *
    * @param model
    */
   modelChangedCallback(model: any) {
@@ -51,6 +52,7 @@ export class JsonEditor implements OnChanges {
 
   /**
    * Validates the model based on the schema
+   *
    * @param schema
    * @param model
    */

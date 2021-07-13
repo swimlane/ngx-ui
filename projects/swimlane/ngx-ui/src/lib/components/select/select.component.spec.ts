@@ -54,6 +54,7 @@ describe('SelectComponent', () => {
     });
 
     it('should not update value if hasnt changed', () => {
+      // eslint-disable-next-line no-self-assign
       component.select.value = component.select.value;
       fixture.detectChanges();
       expect(component.selected.length).toBe(1);

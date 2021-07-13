@@ -100,8 +100,8 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
 
   readonly BAR_SIZE = 40;
 
-  private _active: number = 0;
-  private _barAtTop: boolean = false;
+  private _active = 0;
+  private _barAtTop = false;
   private _navItems?: QueryList<NavbarItemComponent>;
   private _barState = NavbarBarAnimationStates.Animated;
   private readonly _destroy$ = new Subject<void>();

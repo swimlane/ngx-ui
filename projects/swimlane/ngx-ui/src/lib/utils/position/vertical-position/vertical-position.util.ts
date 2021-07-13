@@ -2,7 +2,11 @@ import { Dimensions } from '../dimensions.interface';
 import { AlignmentTypes } from '../alignment-types.enum';
 import { CARET_OFFSET } from '../caret-offset.constant';
 
-export function verticalPosition(elDimensions: Dimensions, popoverDimensions: Dimensions, alignment: AlignmentTypes) {
+export const verticalPosition = (
+  elDimensions: Dimensions,
+  popoverDimensions: Dimensions,
+  alignment: AlignmentTypes
+): number => {
   let result: number;
 
   if (alignment === AlignmentTypes.top) {
@@ -18,4 +22,4 @@ export function verticalPosition(elDimensions: Dimensions, popoverDimensions: Di
   }
 
   return result;
-}
+};

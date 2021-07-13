@@ -42,6 +42,7 @@ describe('CheckboxComponent', () => {
   describe('onBlur', () => {
     it('should call touched callback on blur', done => {
       const fn = () => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         expect(component.onTouchedCallback).toBe(fn);
         done();

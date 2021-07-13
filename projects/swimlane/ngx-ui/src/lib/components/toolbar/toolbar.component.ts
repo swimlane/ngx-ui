@@ -7,7 +7,8 @@ import {
   ViewEncapsulation,
   Renderer2,
   ElementRef,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  OnInit
 } from '@angular/core';
 
 import { ToolbarTitleDirective } from './toolbar-title.directive';
@@ -24,7 +25,7 @@ import { ToolbarMenuItem } from './toolbar-menu-item.interface';
     class: 'ngx-toolbar'
   }
 })
-export class ToolbarComponent {
+export class ToolbarComponent implements OnInit {
   @Input() title: string;
   @Input() mainTitle: string;
   @Input() subtitle: string;
@@ -35,13 +36,13 @@ export class ToolbarComponent {
   @ViewChild(ToolbarTitleDirective) toolbarTitle: ToolbarTitleDirective;
   @ViewChild(ToolbarContentDirective) toolbarContent: ToolbarContentDirective;
 
-  get toolbarItems() {
+  get toolbarItems(): ToolbarMenuItem[] {
     return this.menu.filter(m => {
       return !m.dropdown;
     });
   }
 
-  get dropdownItems() {
+  get dropdownItems(): ToolbarMenuItem[] {
     return this.menu.filter(m => {
       return m.dropdown;
     });
@@ -49,13 +50,13 @@ export class ToolbarComponent {
 
   constructor(private renderer: Renderer2, private elRef: ElementRef) {}
 
-  onMenuClicked(item: ToolbarMenuItem, $event: Event) {
+  onMenuClicked(item: ToolbarMenuItem, $event: Event): void {
     if (item.click) {
       item.click($event);
     }
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     // backwards compatibility
     if (this.title) {
       this.mainTitle = this.title;

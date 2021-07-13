@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ViewEncapsulation, Input, ChangeDetectionStrategy, OnInit } from '@angular/core';
 import { JsonEditorNode } from '../../json-editor-node';
 
 import { DialogService } from '../../../dialog/dialog.service';
@@ -11,7 +11,7 @@ import { JSONEditorSchema } from '../../json-editor.helper';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class JsonEditorNodeComponent extends JsonEditorNode {
+export class JsonEditorNodeComponent extends JsonEditorNode implements OnInit {
   @Input() model: any;
 
   @Input() schema: JSONEditorSchema;
@@ -24,7 +24,7 @@ export class JsonEditorNodeComponent extends JsonEditorNode {
 
   @Input() isDuplicated = false;
 
-  placeholder: string = '';
+  placeholder = '';
 
   constructor(public dialogMngr: DialogService) {
     super(dialogMngr);

@@ -13,12 +13,12 @@ import { verticalPosition } from '../vertical-position/vertical-position.util';
  *
  * @memberOf PositionHelper
  */
-export function calculateVerticalCaret(
+export const calculateVerticalCaret = (
   elDimensions: Dimensions,
   popoverDimensions: Dimensions,
   caretDimensions: Dimensions,
   alignment: AlignmentTypes
-): number {
+): number => {
   let result: number;
 
   if (alignment === AlignmentTypes.top) {
@@ -39,4 +39,4 @@ export function calculateVerticalCaret(
   }
 
   return result;
-}
+};

@@ -1,0 +1,14 @@
+{
+  "ignorePatterns": ["!**/*"],
+  "plugins": [
+    "cypress",
+    "no-only-tests"
+  ],
+  "extends": [
+    "../.eslintrc.js",
+    "plugin:cypress/recommended"
+  ],
+  "rules": {
+    "no-only-tests/no-only-tests": "error"
+  }
+}

@@ -8,7 +8,9 @@ import {
   ViewChild,
   TemplateRef,
   SimpleChanges,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  OnChanges,
+  OnInit
 } from '@angular/core';
 import { JsonEditorNodeFlatComponent } from './json-editor-node-flat/json-editor-node-flat.component';
 import { SchemaValidatorService } from '../schema-validator.service';
@@ -27,7 +29,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class JsonEditorFlatComponent extends JsonEditor {
+export class JsonEditorFlatComponent extends JsonEditor implements OnInit, OnChanges {
   @Input() model: any;
 
   @Input() schema: JSONEditorSchema;

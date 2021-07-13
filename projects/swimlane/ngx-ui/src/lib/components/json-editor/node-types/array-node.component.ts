@@ -19,7 +19,7 @@ export class ArrayNode implements OnChanges {
 
   @Input() model: any[];
 
-  @Input() required: boolean = false;
+  @Input() required = false;
 
   @Input() expanded: boolean;
 
@@ -59,6 +59,7 @@ export class ArrayNode implements OnChanges {
 
   /**
    * Updates an array item of the model and emits the change event
+   *
    * @param index
    * @param value
    */
@@ -73,7 +74,7 @@ export class ArrayNode implements OnChanges {
   addArrayItem(dataType?: JsonSchemaDataType): void {
     let schema;
     if (dataType) {
-      schema = JSON.parse(JSON.stringify({ ...(this.schema.items as object), ...dataType.schema }));
+      schema = JSON.parse(JSON.stringify({ ...(this.schema.items as any), ...dataType.schema }));
     } else {
       schema = JSON.parse(JSON.stringify(this.schema.items));
     }
@@ -105,6 +106,7 @@ export class ArrayNode implements OnChanges {
 
   /**
    * Deletes an item from the array
+   *
    * @param index
    */
   deleteArrayItem(index: number): void {
@@ -117,6 +119,7 @@ export class ArrayNode implements OnChanges {
 
   /**
    * Track By function for the array ittierator
+   *
    * @param index
    * @param value
    */
@@ -158,7 +161,7 @@ export class ArrayNode implements OnChanges {
         let schema = inferType(value, this.typeCheckOverrides);
 
         if (this.schema.items) {
-          schema = JSON.parse(JSON.stringify({ ...(this.schema.items as object), ...schema }));
+          schema = JSON.parse(JSON.stringify({ ...(this.schema.items as any), ...schema }));
         }
 
         this.schemas.push(schema);

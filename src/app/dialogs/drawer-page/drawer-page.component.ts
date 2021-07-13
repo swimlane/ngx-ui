@@ -1,6 +1,6 @@
-import { Component, ViewChild, TemplateRef, ChangeDetectionStrategy, ElementRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, TemplateRef, ViewChild } from '@angular/core';
 
-import { DrawerService, DrawerDirection } from '@swimlane/ngx-ui';
+import { DrawerDirection, DrawerService } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-drawer-page',

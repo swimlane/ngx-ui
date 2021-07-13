@@ -39,18 +39,18 @@ export class CardComponent {
 
   @HostBinding('class.disabled')
   @Input()
-  disabled: boolean = false;
+  disabled = false;
 
   @Input() orientation: CardOrientation = CardOrientation.Horizontal;
 
   @Input() status: CardStatus;
   @Input() statusTooltip: string;
-  @Input() selectable: boolean = false;
-  @Input() selected: boolean = false;
+  @Input() selectable = false;
+  @Input() selected = false;
   @Input() error: boolean;
   @Input() outlineText: string;
   @Input() appearance: CardAppearance = CardAppearance.Normal;
-  @Input() hideAccent: boolean = false;
+  @Input() hideAccent = false;
 
   @Output() select = new EventEmitter<boolean>();
   @Output() outlineClick = new EventEmitter<void>();
