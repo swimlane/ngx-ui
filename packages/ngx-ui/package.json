@@ -9,6 +9,7 @@
     "codemirror": "~5.62.0",
     "moment": "~2.29.1",
     "moment-timezone": "~0.5.33",
+    "mousetrap": "~1.6.5",
     "ng-in-viewport": "~6.1.5",
     "ngx-moment": "~5.0.0"
   },
@@ -23,6 +24,9 @@
       "optional": true
     },
     "moment-timezone": {
+      "optional": true
+    },
+    "mousetrap": {
       "optional": true
     },
     "ng-in-viewport": {

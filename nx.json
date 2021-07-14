@@ -99,6 +99,9 @@
     "ngx-ui-filter-by": {
       "tags": ["scope:filter-by", "type:lib"]
     },
+    "ngx-ui-hotkeys": {
+      "tags": ["scope:hotkeys", "type:lib"]
+    },
     "ngx-ui-icon": {
       "tags": ["scope:icon", "type:lib"]
     },

@@ -40,5 +40,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/drawer',
     '<rootDir>/packages/ngx-ui/dropdown',
     '<rootDir>/packages/ngx-ui/dropzone',
+    '<rootDir>/packages/ngx-ui/hotkeys',
   ],
 };

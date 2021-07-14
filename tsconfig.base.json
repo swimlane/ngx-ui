@@ -52,6 +52,7 @@
         "packages/ngx-ui/file-button/src/index.ts"
       ],
       "@swimlane/ngx-ui/filter-by": ["packages/ngx-ui/filter-by/src/index.ts"],
+      "@swimlane/ngx-ui/hotkeys": ["packages/ngx-ui/hotkeys/src/index.ts"],
       "@swimlane/ngx-ui/icon": ["packages/ngx-ui/icon/src/index.ts"],
       "@swimlane/ngx-ui/input": ["packages/ngx-ui/input/src/index.ts"],
       "@swimlane/ngx-ui/input-attribute": [

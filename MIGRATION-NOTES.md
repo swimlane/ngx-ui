@@ -249,3 +249,7 @@ export enum ButtonState {
 ##### DropdownToggle
 
 - `[showEvent]` accepts a string union of `keyof DropdownShowTypes` instead of the enum itself
+
+#### Hotkeys
+
+- Use `HotkeysModule.forRoot()` at the top module ONCE (`AppModule`)

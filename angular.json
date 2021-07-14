@@ -1066,6 +1066,47 @@
         }
       }
     },
+    "ngx-ui-hotkeys": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/hotkeys",
+      "sourceRoot": "packages/ngx-ui/hotkeys/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/hotkeys"],
+          "options": {
+            "project": "packages/ngx-ui/hotkeys/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/hotkeys/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/hotkeys/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/hotkeys"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/hotkeys/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/hotkeys/src/**/*.ts",
+              "packages/ngx-ui/hotkeys/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-icon": {
       "projectType": "library",
       "root": "packages/ngx-ui/icon",
