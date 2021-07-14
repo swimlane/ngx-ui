@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppearanceModule } from '@swimlane/ngx-ui/appearance';
 import { AutofocusModule } from '@swimlane/ngx-ui/autofocus';
+import { InjectionService } from '@swimlane/ngx-ui/common';
 import { IconModule } from '@swimlane/ngx-ui/icon';
 import { InputModule } from '@swimlane/ngx-ui/input';
 import { InputAttributeModule } from '@swimlane/ngx-ui/input-attribute';
@@ -30,5 +31,6 @@ import { AlertComponent } from './alert.component';
   ],
   declarations: [AlertComponent],
   exports: [AlertComponent],
+  providers: [InjectionService],
 })
 export class AlertModule {}

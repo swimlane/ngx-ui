@@ -238,3 +238,7 @@ export enum ButtonState {
 - `(change)` has been renamed to `(dateTimeChange)`
 - `(blur)` has been renamed to `(dateTimeBlur)`
 - `(selected)` has been renamed to `(dateTimeSelected)`
+
+#### Drawer
+
+- `[drawerContainer]` has been renamed to `[ngxDrawerContainer]`

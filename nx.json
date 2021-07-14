@@ -84,6 +84,9 @@
     "ngx-ui-dialog": {
       "tags": ["scope:dialog", "type:lib"]
     },
+    "ngx-ui-drawer": {
+      "tags": ["scope:drawer", "type:lib"]
+    },
     "ngx-ui-file-button": {
       "tags": ["scope:file-button", "type:lib"]
     },

@@ -861,6 +861,47 @@
         }
       }
     },
+    "ngx-ui-drawer": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/drawer",
+      "sourceRoot": "packages/ngx-ui/drawer/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/drawer"],
+          "options": {
+            "project": "packages/ngx-ui/drawer/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/drawer/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/drawer/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/drawer"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/drawer/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/drawer/src/**/*.ts",
+              "packages/ngx-ui/drawer/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-file-button": {
       "projectType": "library",
       "root": "packages/ngx-ui/file-button",
