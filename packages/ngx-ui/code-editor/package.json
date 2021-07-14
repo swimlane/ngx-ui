@@ -1,5 +1,5 @@
 {
-  "name": "@swimlane/ngx-ui/code-editor",
+  "name": "@swimlane/ngx-ui-code-editor",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.1.1",

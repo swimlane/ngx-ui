@@ -36,5 +36,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/alert',
     '<rootDir>/packages/ngx-ui/icon',
     '<rootDir>/packages/ngx-ui/long-press-button',
+    '<rootDir>/packages/ngx-ui/large-format-dialog',
   ],
 };

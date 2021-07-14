@@ -108,6 +108,9 @@
     "ngx-ui-json-tree": {
       "tags": ["scope:json-tree", "type:lib"]
     },
+    "ngx-ui-large-format-dialog": {
+      "tags": ["scope:large-format-dialog", "type:lib"]
+    },
     "ngx-ui-long-press": {
       "tags": ["scope:long-press", "type:lib"]
     },

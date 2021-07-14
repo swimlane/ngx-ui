@@ -1,5 +1,5 @@
 {
-  "name": "@swimlane/ngx-ui/typings",
+  "name": "@swimlane/ngx-ui-typings",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.0.4",

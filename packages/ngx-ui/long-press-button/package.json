@@ -1,5 +1,5 @@
 {
-  "name": "@swimlane/ngx-ui/long-press-button",
+  "name": "@swimlane/ngx-ui-long-press-button",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.1.1",

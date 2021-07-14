@@ -1,5 +1,5 @@
 {
-  "name": "@swimlane/ngx-ui/common",
+  "name": "@swimlane/ngx-ui-common",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.0.4",

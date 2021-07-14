@@ -61,6 +61,9 @@
         "packages/ngx-ui/intersection-observer/src/index.ts"
       ],
       "@swimlane/ngx-ui/json-tree": ["packages/ngx-ui/json-tree/src/index.ts"],
+      "@swimlane/ngx-ui/large-format-dialog": [
+        "packages/ngx-ui/large-format-dialog/src/index.ts"
+      ],
       "@swimlane/ngx-ui/long-press": [
         "packages/ngx-ui/long-press/src/index.ts"
       ],

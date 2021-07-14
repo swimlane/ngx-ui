@@ -1189,6 +1189,47 @@
         }
       }
     },
+    "ngx-ui-large-format-dialog": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/large-format-dialog",
+      "sourceRoot": "packages/ngx-ui/large-format-dialog/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/large-format-dialog"],
+          "options": {
+            "project": "packages/ngx-ui/large-format-dialog/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/large-format-dialog/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/large-format-dialog/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/large-format-dialog"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/large-format-dialog/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/large-format-dialog/src/**/*.ts",
+              "packages/ngx-ui/large-format-dialog/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-long-press": {
       "projectType": "library",
       "root": "packages/ngx-ui/long-press",
