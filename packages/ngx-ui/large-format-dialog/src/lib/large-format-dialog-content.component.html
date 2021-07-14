@@ -1,0 +1,50 @@
+<main class="dialog-container">
+  <ng-container *ngIf="!stepperTemplate && !tabsTemplate; else custom">
+    <header class="dialog-container__header">
+      <ng-container *ngTemplateOutlet="header"></ng-container>
+    </header>
+    <section class="dialog-container__body">
+      <ng-content></ng-content>
+    </section>
+  </ng-container>
+
+  <ng-template #custom>
+    <section
+      [ngClass]="{
+        'dialog-container--stepper dialog-stepper': !!stepperTemplate,
+        'dialog-container--tabs dialog-tabs': !!tabsTemplate
+      }"
+    >
+      <header
+        class="dialog-container__header"
+        [ngClass]="{
+          'dialog-stepper__header': !!stepperTemplate,
+          'dialog-tabs__header': !!tabsTemplate
+        }"
+      >
+        <ng-container *ngTemplateOutlet="header"></ng-container>
+      </header>
+      <ng-container *ngIf="stepperTemplate">
+        <ng-container *ngTemplateOutlet="stepperTemplate"></ng-container>
+      </ng-container>
+      <ng-container *ngIf="tabsTemplate">
+        <ng-container *ngTemplateOutlet="tabsTemplate"></ng-container>
+      </ng-container>
+    </section>
+  </ng-template>
+
+  <ng-content select="ngx-large-format-dialog-footer"></ng-content>
+</main>
+
+<ng-template #header>
+  <ngx-large-format-dialog-header-title
+    [dialogTitle]="dialogTitle"
+    [dialogSubtitle]="dialogSubtitle"
+  ></ngx-large-format-dialog-header-title>
+  <ngx-large-format-dialog-header-action
+    [dirty]="dirty"
+    [actionTitle]="dialogActionTitle"
+    [dirtyActionTitle]="dialogDirtyActionTitle"
+    (closeOrCancel)="onCloseOrCancel($event)"
+  ></ngx-large-format-dialog-header-action>
+</ng-template>
