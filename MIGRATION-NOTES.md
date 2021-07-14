@@ -242,3 +242,10 @@ export enum ButtonState {
 #### Drawer
 
 - `[drawerContainer]` has been renamed to `[ngxDrawerContainer]`
+
+
+#### Dropdown
+
+##### DropdownToggle
+
+- `[showEvent]` accepts a string union of `keyof DropdownShowTypes` instead of the enum itself
