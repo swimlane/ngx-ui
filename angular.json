@@ -943,6 +943,47 @@
         }
       }
     },
+    "ngx-ui-dropzone": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/dropzone",
+      "sourceRoot": "packages/ngx-ui/dropzone/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/dropzone"],
+          "options": {
+            "project": "packages/ngx-ui/dropzone/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/dropzone/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/dropzone/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/dropzone"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/dropzone/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/dropzone/src/**/*.ts",
+              "packages/ngx-ui/dropzone/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-file-button": {
       "projectType": "library",
       "root": "packages/ngx-ui/file-button",

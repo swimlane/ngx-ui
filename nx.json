@@ -90,6 +90,9 @@
     "ngx-ui-dropdown": {
       "tags": ["scope:dropdown", "type:lib"]
     },
+    "ngx-ui-dropzone": {
+      "tags": ["scope:dropzone", "type:lib"]
+    },
     "ngx-ui-file-button": {
       "tags": ["scope:file-button", "type:lib"]
     },

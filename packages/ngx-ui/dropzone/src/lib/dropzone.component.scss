@@ -1,0 +1,120 @@
+@keyframes soundWave {
+  100% {
+    stroke: var(--ngx-ui-color-blue-500);
+    scale: 1.2;
+  }
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.5);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.ngx-dropzone {
+  display: flex;
+  align-items: center;
+  position: relative;
+  flex-direction: column;
+  flex: 1;
+  padding: 50px;
+  overflow: hidden;
+
+  .file-over {
+    .ngx-dropzone--label {
+      .ngx-dropzone--rings {
+        path {
+          animation: soundWave 1s infinite;
+
+          @for $i from 0 through 8 {
+            &.ngx-dropzone--ring-#{$i + 1} {
+              animation-delay: $i * 0.08s;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .ngx-dropzone--input {
+    display: none;
+  }
+
+  .ngx-dropzone--label {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin: 0;
+    font-weight: normal;
+    cursor: pointer;
+    animation: popIn 0.35s ease-in-out;
+    height: 500px;
+    width: 500px;
+
+    .ngx-dropzone--rings {
+      fill: none;
+      width: 100%;
+
+      path {
+        clip-rule: evenodd;
+        fill-rule: evenodd;
+        stroke: var(--ngx-ui-color-blue-grey-650);
+        stroke-width: 2;
+        stroke-linejoin: round;
+        transition: stroke 0.2s ease-in-out;
+      }
+    }
+
+    .ngx-dropzone--btn {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+
+      .ngx-dropzone--icon {
+        font-size: 30px;
+        color: var(--ngx-ui-color-blue-grey-100);
+      }
+
+      .ngx-dropzone--title {
+        font-size: 20px;
+        line-height: 25px;
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: var(--ngx-ui-color-blue-grey-100);
+      }
+
+      .ngx-dropzone--sub-title {
+        color: var(--ngx-ui-color-blue-400);
+        font-size: 12px;
+        font-weight: bold;
+        transition: color 0.2s ease-in-out;
+
+        &:hover,
+        &:focus {
+          color: var(--ngx-ui-color-blue-300);
+        }
+
+        .underline {
+          border-bottom: 1px dotted;
+        }
+      }
+
+      .ngx-dropzone--supporting-files {
+        margin-top: 20px;
+        color: var(--ngx-ui-color-blue-grey-350);
+        font-size: 12px;
+        padding: 0 10px;
+      }
+    }
+  }
+}
