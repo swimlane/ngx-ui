@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { convertIconClass } from './convert-icon-class.util';
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class IconRegistryService {
   private _defaultFontSetClass = 'ngx';
   private _iconMap = new Map<string, string[]>();
