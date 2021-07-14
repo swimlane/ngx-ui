@@ -213,7 +213,11 @@ export enum ButtonState {
 
 #### LargeFormatDialogContent
 
-- Now has its own module `LargeFormatDialogContentModule` and no longer belong to `DialogModule`
+- Now has its own module `LargeFormatDialogModule` and no longer belong to `DialogModule`
+- `largeFormatDialogStepper` has been renamed to `ngxLargeFormatDialogStepper`
+- `largeFormatDialogSubStepper` has been renamed to `ngxLargeFormatDialogSubStepper`
+- `largeFormatDialogTabs` has been renamed to `ngxLargeFormatDialogTabs`
+- `largeFormatDialogSubTabs` has been renamed to `ngxLargeFormatDialogSubTabs`
 
 #### Alert
 
