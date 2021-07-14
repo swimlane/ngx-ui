@@ -9,6 +9,7 @@
     "codemirror": "~5.62.0",
     "moment": "~2.29.1",
     "moment-timezone": "~0.5.33",
+    "ng-in-viewport": "~6.1.5",
     "ngx-moment": "~5.0.0"
   },
   "peerDependenciesMeta": {
@@ -22,6 +23,9 @@
       "optional": true
     },
     "moment-timezone": {
+      "optional": true
+    },
+    "ng-in-viewport": {
       "optional": true
     },
     "ngx-moment": {

@@ -46,6 +46,7 @@
       ],
       "@swimlane/ngx-ui/dialog": ["packages/ngx-ui/dialog/src/index.ts"],
       "@swimlane/ngx-ui/drawer": ["packages/ngx-ui/drawer/src/index.ts"],
+      "@swimlane/ngx-ui/dropdown": ["packages/ngx-ui/dropdown/src/index.ts"],
       "@swimlane/ngx-ui/file-button": [
         "packages/ngx-ui/file-button/src/index.ts"
       ],

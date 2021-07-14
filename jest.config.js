@@ -38,5 +38,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/long-press-button',
     '<rootDir>/packages/ngx-ui/large-format-dialog',
     '<rootDir>/packages/ngx-ui/drawer',
+    '<rootDir>/packages/ngx-ui/dropdown',
   ],
 };

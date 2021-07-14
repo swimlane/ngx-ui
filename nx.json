@@ -87,6 +87,9 @@
     "ngx-ui-drawer": {
       "tags": ["scope:drawer", "type:lib"]
     },
+    "ngx-ui-dropdown": {
+      "tags": ["scope:dropdown", "type:lib"]
+    },
     "ngx-ui-file-button": {
       "tags": ["scope:file-button", "type:lib"]
     },
