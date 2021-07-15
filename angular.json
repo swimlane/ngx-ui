@@ -1763,6 +1763,47 @@
         }
       }
     },
+    "ngx-ui-plus-menu": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/plus-menu",
+      "sourceRoot": "packages/ngx-ui/plus-menu/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/plus-menu"],
+          "options": {
+            "project": "packages/ngx-ui/plus-menu/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/plus-menu/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/plus-menu/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/plus-menu"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/plus-menu/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/plus-menu/src/**/*.ts",
+              "packages/ngx-ui/plus-menu/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-progress-spinner": {
       "projectType": "library",
       "root": "packages/ngx-ui/progress-spinner",

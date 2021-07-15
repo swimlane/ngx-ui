@@ -58,5 +58,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/section',
     '<rootDir>/packages/ngx-ui/radio-button',
     '<rootDir>/packages/ngx-ui/progress-spinner',
+    '<rootDir>/packages/ngx-ui/plus-menu',
   ],
 };

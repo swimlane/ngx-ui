@@ -85,6 +85,7 @@
       "@swimlane/ngx-ui/nav-menu": ["packages/ngx-ui/nav-menu/src/index.ts"],
       "@swimlane/ngx-ui/navbar": ["packages/ngx-ui/navbar/src/index.ts"],
       "@swimlane/ngx-ui/overlay": ["packages/ngx-ui/overlay/src/index.ts"],
+      "@swimlane/ngx-ui/plus-menu": ["packages/ngx-ui/plus-menu/src/index.ts"],
       "@swimlane/ngx-ui/progress-spinner": [
         "packages/ngx-ui/progress-spinner/src/index.ts"
       ],

@@ -150,6 +150,9 @@
     "ngx-ui-overlay": {
       "tags": ["scope:overlay", "type:lib"]
     },
+    "ngx-ui-plus-menu": {
+      "tags": ["scope:plus-menu", "type:lib"]
+    },
     "ngx-ui-progress-spinner": {
       "tags": ["scope:progress-spinner", "type:lib"]
     },
