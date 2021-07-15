@@ -1,8 +1,18 @@
 import { coerceNumberProperty, NumberInput } from '@angular/cdk/coercion';
+import { queueForNextRender } from '@swimlane/ngx-ui/utils';
 
 export type NumericInput = NumberInput;
 
-export function NgxNumericInput(fallback?: number): PropertyDecorator {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function NgxNumericInput<TComponent = any>(
+  fallback?: number,
+  setter?: (setterProps: {
+    component: TComponent;
+    coercedValue: number;
+    previousValue: number;
+    setFn: () => void;
+  }) => void
+): PropertyDecorator {
   return (target, propertyKey) => {
     // double underscore used as to not pollute the single underscore private 'namespace'
     const coercedNumericKey = `__${String(propertyKey)}`;
@@ -12,9 +22,28 @@ export function NgxNumericInput(fallback?: number): PropertyDecorator {
         return this[coercedNumericKey];
       },
       set(v: unknown) {
-        this[coercedNumericKey] = fallback
+        const coercedValue = fallback
           ? coerceNumberProperty(v, fallback)
           : coerceNumberProperty(v);
+
+        const internalSetter = (newValue: number) => {
+          return () => {
+            this[coercedNumericKey] = newValue;
+          };
+        };
+
+        if (setter) {
+          queueForNextRender(() => {
+            setter({
+              component: this,
+              coercedValue,
+              previousValue: this[coercedNumericKey],
+              setFn: internalSetter(coercedValue),
+            });
+          });
+        } else {
+          internalSetter(coercedValue)();
+        }
       },
     });
   };
