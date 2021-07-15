@@ -1,4 +1,10 @@
-import { Directive, Input, OnChanges, SimpleChanges } from '@angular/core';
+import {
+  Directive,
+  HostBinding,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import {
   BooleanInput,
   Controller,
@@ -36,6 +42,17 @@ export class InputAttributeControllerDirective
   @Input() hint = '';
   @Input() placeholder = '';
 
+  @HostBinding('class.has-placeholder')
+  get hasPlaceholder(): boolean {
+    return !!this.placeholder && this.placeholder.length > 0;
+  }
+
+  @Input() label = '';
+
+  @HostBinding('class.no-label') get noLabelClass() {
+    return !this.label;
+  }
+
   @NgxNumericInput(MIN_WIDTH)
   @Input()
   minWidth = MIN_WIDTH;
@@ -60,6 +77,7 @@ export class InputAttributeControllerDirective
   @Input()
   maxlength?: number;
 
+  @HostBinding('class.disabled')
   @NgxBooleanInput()
   @Input()
   disabled = false;
