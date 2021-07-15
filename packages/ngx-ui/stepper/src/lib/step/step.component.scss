@@ -1,0 +1,194 @@
+.ngx-step {
+  flex: 1 1 auto;
+
+  &:last-child {
+    flex: initial;
+
+    .ngx-step--step {
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  &.ngx-step--active {
+    .ngx-step--title {
+      color: var(--ngx-ui-color-blue-500);
+    }
+
+    .ngx-step--step {
+      &:after {
+        background-image: linear-gradient(
+          to right,
+          var(--ngx-ui-color-blue-500) 0%,
+          var(--ngx-ui-color-blue-grey-600) 75%
+        ) !important;
+      }
+
+      .ngx-step--circle {
+        border: 1.75px solid var(--ngx-ui-color-blue-500);
+        color: var(--ngx-ui-color-blue-500);
+        box-shadow: 0 0 9.59842px rgba(20, 131, 255, 0.8);
+
+        .marker-path {
+          fill: var(--ngx-ui-color-blue-500);
+        }
+      }
+    }
+  }
+
+  &.ngx-step--complete {
+    .ngx-step--circle {
+      &:hover {
+        border: 1.75px solid var(--ngx-ui-color-blue-500);
+        color: var(--ngx-ui-color-blue-500);
+        box-shadow: 0 0 9.59842px rgba(20, 131, 255, 0.8);
+
+        .ngx-step--indicator {
+          opacity: 1 !important;
+        }
+
+        i.ngx-step--complete-icon {
+          opacity: 0 !important;
+        }
+
+        .marker-path {
+          fill: var(--ngx-ui-color-blue-500);
+        }
+      }
+    }
+
+    &:not(.ngx-step--complete-last) {
+      .ngx-step--title {
+        color: var(--ngx-ui-color-green-500);
+      }
+
+      .ngx-step--step {
+        &:after {
+          background-color: var(--ngx-ui-color-green-500) !important;
+        }
+
+        .ngx-step--circle {
+          border: 1.75px solid var(--ngx-ui-color-green-500);
+          color: var(--ngx-ui-color-green-500);
+          box-shadow: 0 0 9.59842px rgba(122, 185, 255, 0.7);
+
+          .marker-path {
+            fill: var(--ngx-ui-color-green-500);
+          }
+
+          .ngx-step--indicator {
+            opacity: 0;
+          }
+
+          i.ngx-step--complete-icon {
+            opacity: 1;
+          }
+        }
+      }
+    }
+
+    &.ngx-step--complete-last {
+      .ngx-step--title {
+        color: var(--ngx-ui-color-green-500);
+      }
+
+      .ngx-step--step {
+        &:after {
+          background-image: linear-gradient(
+            to right,
+            #1edeb6 0%,
+            var(--ngx-ui-color-blue-500) 75%
+          ) !important;
+        }
+
+        .ngx-step--circle {
+          border: 1.75px solid var(--ngx-ui-color-green-500);
+          color: var(--ngx-ui-color-green-500);
+          box-shadow: 0 0 9.59842px rgba(122, 185, 255, 0.7);
+
+          .marker-path {
+            fill: var(--ngx-ui-color-green-500);
+          }
+
+          .ngx-step--indicator {
+            opacity: 0;
+          }
+
+          i.ngx-step--complete-icon {
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .ngx-step--title {
+    padding: 0 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    color: var(--ngx-ui-color-blue-grey-600);
+    transition: color var(--ngx-ui-stepper-transition-speed) ease-in-out;
+  }
+
+  .ngx-step--step {
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+
+    &:after {
+      flex: 1 1 auto;
+      height: 1.4px;
+      background-color: var(--ngx-ui-color-blue-grey-600);
+      transition: background-color var(--ngx-ui-stepper-transition-speed)
+          ease-in-out,
+        background-image var(--ngx-ui-stepper-transition-speed) ease-in-out;
+      content: '';
+    }
+
+    .ngx-step--circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: var(--ngx-ui-stepper-size);
+      height: var(--ngx-ui-stepper-size);
+      background: linear-gradient(
+        180deg,
+        var(--ngx-ui-color-blue-grey-750) 0%,
+        var(--ngx-ui-color-blue-grey-850) 100%
+      );
+      border-radius: 50%;
+      border: 1.75px solid var(--ngx-ui-color-blue-grey-600);
+      color: var(--ngx-ui-color-blue-grey-600);
+      font-size: calc(var(--ngx-ui-stepper-size) * 0.5);
+      font-weight: bold;
+      transition: border-color var(--ngx-ui-stepper-transition-speed)
+          ease-in-out,
+        color var(--ngx-ui-stepper-transition-speed) ease-in-out;
+      user-select: none;
+      cursor: pointer;
+
+      .ngx-step--indicator {
+        padding-bottom: 1px;
+      }
+
+      i.ngx-step--complete-icon {
+        opacity: 0;
+      }
+
+      .center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: opacity var(--ngx-ui-stepper-transition-speed) ease-in-out;
+      }
+    }
+  }
+}
