@@ -90,12 +90,6 @@ export class InputComponent implements ControlValueAccessor {
   @Input() id = `input-${++nextId}`;
   @Input() name = '';
 
-  @Input() label = '';
-
-  @HostBinding('class.no-label') get noLabelClass() {
-    return !this.label;
-  }
-
   @NgxBooleanInput()
   @Input()
   autoSelect = false;
