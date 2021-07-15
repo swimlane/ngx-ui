@@ -159,6 +159,9 @@
     "ngx-ui-size": {
       "tags": ["scope:size", "type:lib"]
     },
+    "ngx-ui-split": {
+      "tags": ["scope:split", "type:lib"]
+    },
     "ngx-ui-stepper": {
       "tags": ["scope:stepper", "type:lib"]
     },

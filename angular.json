@@ -1886,6 +1886,47 @@
         }
       }
     },
+    "ngx-ui-split": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/split",
+      "sourceRoot": "packages/ngx-ui/split/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/split"],
+          "options": {
+            "project": "packages/ngx-ui/split/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/split/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/split/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/split"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/split/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/split/src/**/*.ts",
+              "packages/ngx-ui/split/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-stepper": {
       "projectType": "library",
       "root": "packages/ngx-ui/stepper",

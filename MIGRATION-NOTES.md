@@ -288,3 +288,10 @@ export enum ButtonState {
 ##### SelectInput
 
 - `(keyup)` has been renamed to `(selectDropdownKeyup)`
+
+#### Split
+
+##### SplitHandle
+
+- `(drag)` has been renamed to `(splitHandleDrag)`
+- `(dblclick)` has been renamed to `(splitHandleDblClick)`
