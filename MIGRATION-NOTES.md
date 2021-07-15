@@ -37,6 +37,7 @@
 - Controller can be attached on any component/element as an Attribute Directive. For example:
 
 ```html
+
 <ngx-input ngxSize="sm" ngxAppearance="fill"></ngx-input>
 ```
 
@@ -70,7 +71,12 @@
 - Use `focusableElement` to change the `HTMLElement` as you see fit. Default to `Host#elementRef#nativeElement`
 
 ```ts
-@ViewChild('someOtherElement') set someOtherElementRef(v:ElementRef<HTMLElement>) {
+@ViewChild('someOtherElement') set
+someOtherElementRef(v
+:
+ElementRef<HTMLElement>
+)
+{
   this.autofocusController.focusableElement = v.nativeElement;
 }
 ```
@@ -313,3 +319,9 @@ export enum ButtonState {
 - `(change)` has been renamed to `(radioButtonGroupChange)`
 - `(focus)` has been renamed to `(radioButtonGroupFocus)`
 - `(blur)` has been renamed to `(radioButtonGroupBlur)`
+
+#### Notification
+
+- `(close)` has been renamed to `(notificationClose)`
+- `(pause)` has been renamed to `(notificationPause)`
+- `(resume)` has been renamed to `(notificationResume)`

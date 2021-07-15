@@ -147,6 +147,9 @@
     "ngx-ui-navbar": {
       "tags": ["scope:navbar", "type:lib"]
     },
+    "ngx-ui-notification": {
+      "tags": ["scope:notification", "type:lib"]
+    },
     "ngx-ui-overlay": {
       "tags": ["scope:overlay", "type:lib"]
     },

@@ -1,0 +1,52 @@
+<div>
+  <div class="notification-bar" [class.animated]="timeout">
+    <div
+      class="bar"
+      [ngStyle]="{ 'animation-duration': animationDuration }"
+    ></div>
+  </div>
+
+  <div
+    *ngIf="styleType !== NotificationStyleType.none && !icon"
+    class="icon-container"
+  >
+    <span
+      *ngIf="styleType === NotificationStyleType.info"
+      class="icon icon-info-fulled"
+    ></span>
+    <span
+      *ngIf="styleType === NotificationStyleType.warning"
+      class="icon icon-warning-filled"
+    ></span>
+    <span
+      *ngIf="styleType === NotificationStyleType.error"
+      class="icon icon-x-filled"
+    ></span>
+    <span
+      *ngIf="styleType === NotificationStyleType.success"
+      class="icon icon-check-filled"
+    ></span>
+  </div>
+
+  <div
+    *ngIf="styleType === NotificationStyleType.none && icon"
+    class="icon-container"
+  >
+    <span [ngClass]="'icon ' + icon"></span>
+  </div>
+
+  <div
+    class="notification-content"
+    [class.has-icon]="styleType !== NotificationStyleType.none || icon"
+  >
+    <h2 class="ngx-notification-title" [innerHTML]="title"></h2>
+    <p class="ngx-notification-body" [innerHTML]="body"></p>
+    <ng-template *ngIf="template" [ngTemplateOutlet]="template"></ng-template>
+    <button
+      *ngIf="showClose"
+      type="button"
+      (click)="notificationClose.emit()"
+      class="icon-x ngx-notification-close"
+    ></button>
+  </div>
+</div>

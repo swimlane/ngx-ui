@@ -1722,6 +1722,47 @@
         }
       }
     },
+    "ngx-ui-notification": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/notification",
+      "sourceRoot": "packages/ngx-ui/notification/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/notification"],
+          "options": {
+            "project": "packages/ngx-ui/notification/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/notification/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/notification/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/notification"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/notification/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/notification/src/**/*.ts",
+              "packages/ngx-ui/notification/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-overlay": {
       "projectType": "library",
       "root": "packages/ngx-ui/overlay",
