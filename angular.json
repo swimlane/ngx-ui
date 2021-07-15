@@ -1804,6 +1804,47 @@
         }
       }
     },
+    "ngx-ui-section": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/section",
+      "sourceRoot": "packages/ngx-ui/section/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/section"],
+          "options": {
+            "project": "packages/ngx-ui/section/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/section/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/section/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/section"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/section/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/section/src/**/*.ts",
+              "packages/ngx-ui/section/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-select": {
       "projectType": "library",
       "root": "packages/ngx-ui/select",

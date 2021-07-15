@@ -88,6 +88,7 @@
       "@swimlane/ngx-ui/resize-observer": [
         "packages/ngx-ui/resize-observer/src/index.ts"
       ],
+      "@swimlane/ngx-ui/section": ["packages/ngx-ui/section/src/index.ts"],
       "@swimlane/ngx-ui/select": ["packages/ngx-ui/select/src/index.ts"],
       "@swimlane/ngx-ui/size": ["packages/ngx-ui/size/src/index.ts"],
       "@swimlane/ngx-ui/slider": ["packages/ngx-ui/slider/src/index.ts"],

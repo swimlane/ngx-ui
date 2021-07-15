@@ -153,6 +153,9 @@
     "ngx-ui-resize-observer": {
       "tags": ["scope:resize-observer", "type:lib"]
     },
+    "ngx-ui-section": {
+      "tags": ["scope:section", "type:lib"]
+    },
     "ngx-ui-select": {
       "tags": ["scope:select", "type:lib"]
     },

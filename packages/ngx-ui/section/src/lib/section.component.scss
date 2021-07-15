@@ -1,0 +1,89 @@
+.ngx-section {
+  --ngx-ui-section-header-bg: var(--ngx-ui-color-blue-grey-775);
+  --ngx-ui-section-header-color: var(--ngx-ui-color-blue-grey-100);
+  --ngx-ui-section-shadow: var(--ngx-ui-shadow-3);
+
+  display: block;
+  margin-bottom: 2em;
+  background: var(--ngx-ui-color-blue-grey-825);
+
+  .ngx-section-header {
+    background: var(--ngx-ui-section-header-bg);
+    display: block;
+    width: auto;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    color: var(--ngx-ui-section-header-color);
+    position: relative;
+
+    .ngx-section-toggle {
+      font-size: 8px;
+      vertical-align: top;
+      display: inline-block;
+      line-height: 40px;
+      position: absolute;
+      background: none;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      left: 15px;
+    }
+
+    a {
+      color: var(--ngx-ui-section-header-color);
+    }
+
+    h1 {
+      font-size: 1.1em;
+      font-weight: 600;
+      line-height: 40px;
+      padding: 0;
+      margin: 0;
+    }
+
+    &.ngx-section-collapsible {
+      padding: 0 20px 0 35px;
+      &.header-toggle {
+        cursor: pointer;
+      }
+    }
+
+    &.toggle-right {
+      &.ngx-section-collapsible {
+        padding: 0 20px 0 15px;
+      }
+
+      .ngx-section-toggle {
+        left: calc(100% - 30px);
+      }
+    }
+  }
+
+  &.shadow {
+    > section {
+      box-shadow: var(--ngx-ui-section-shadow);
+    }
+  }
+
+  &.outline {
+    .ngx-section-header,
+    .ngx-section-content {
+      background: none;
+      border: 1px solid var(--ngx-ui-color-blue-grey-600);
+    }
+
+    .ngx-section-header {
+      border-radius: 2px 2px 0 0;
+
+      &.section-collapsed {
+        border-radius: 2px;
+      }
+    }
+
+    .ngx-section-content {
+      border-top: 0;
+      border-radius: 0 0 2px 2px;
+    }
+  }
+}
