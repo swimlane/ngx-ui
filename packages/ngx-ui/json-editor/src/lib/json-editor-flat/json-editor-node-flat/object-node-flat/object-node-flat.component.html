@@ -1,0 +1,189 @@
+<div
+  class="object-node-flat"
+  [hidden]="!expanded"
+  cdkDropList
+  [cdkDropListDisabled]="!schemaBuilderMode"
+  (cdkDropListDropped)="drop($event)"
+>
+  <div
+    cdkDrag
+    cdkDragLockAxis="y"
+    class="object-node-content"
+    *ngFor="
+      let prop of propertyIndex | objectValues;
+      let index = index;
+      trackBy: trackBy
+    "
+  >
+    <ng-container
+      *ngIf="jsonEditorNodeTemplate"
+      [ngTemplateOutlet]="jsonEditorNodeTemplate"
+      [ngTemplateOutletContext]="{
+        prop: prop,
+        index: index,
+        updateProp: updateProp,
+        propertyPath: getPath(prop.propertyName),
+        isPropertyDuplicated: duplicatedFields.has(prop.id),
+        onUpdatePropertyName: onUpdatePropertyName,
+        onPropertyConfig: onPropertyConfig,
+        deleteProperty: deleteProperty,
+        changePropertyType: changePropertyType,
+        dataTypeMap: dataTypeMap
+      }"
+    ></ng-container>
+
+    <div
+      *cdkDragPlaceholder
+      class="indentation-placeholder"
+      [ngStyle]="{ width: 'calc(100% + ' + level! * 20 + 'px)' }"
+    ></div>
+  </div>
+
+  <ng-container *ngIf="showKnownProperties">
+    <ng-container *ngFor="let prop of $any(schema.properties) | keyvalue">
+      <div
+        class="node-container add-button add-prop-button"
+        [class.compressed]="compressed"
+        *ngIf="model[$any(prop).key] === undefined"
+      >
+        <span
+          class="json-editor--vertical-separator"
+          *ngFor="let separator of indentationArray"
+        ></span>
+
+        <div
+          class="node"
+          [class.compressed]="compressed"
+          [style.marginLeft]="level === 0 ? '20px' : '0'"
+          (click)="addSchemaProperty($any(prop.key))"
+        >
+          <div class="left-options"></div>
+
+          <div class="node-content">
+            <div class="node-info">
+              <ngx-json-editor-node-info
+                [nameEditable]="false"
+                [propertyName]="$any(prop).key"
+                [title]="
+                  $any(prop).value.title
+                    ? $any(prop).value.title
+                    : $any(prop).key
+                "
+                [type]="
+                  ($any(prop).value.format || $any(prop).value.type
+                    | titlecase) +
+                  ($any(prop).value.enum?.length ? ' + Enum' : '')
+                "
+                [description]="$any(prop).value?.description"
+                [examples]="$any($any(prop).value.examples)"
+                [compressed]="compressed!"
+              ></ngx-json-editor-node-info>
+            </div>
+
+            <div class="indented-content">
+              <button type="button">
+                <i class="ngx-icon ngx-tree-expand"></i>
+                <span>Include</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <div
+    class="add-button"
+    [class.compressed]="compressed"
+    [class.background]="hideRoot ? level! > -1 : level!"
+    *ngIf="!showKnownProperties || schema.additionalProperties !== false"
+  >
+    <span
+      class="json-editor--vertical-separator"
+      *ngFor="let separator of indentationArray"
+    ></span>
+    <div
+      class="indented-content"
+      [style.marginLeft]="hideRoot && level === 0 ? '20px' : '0'"
+    >
+      <ngx-dropdown [showCaret]="true">
+        <ngx-dropdown-toggle [disabled]="isDuplicated">
+          <button type="button">
+            <i class="ngx-icon ngx-tree-expand"></i>
+            <span>
+              Add
+              {{ (propertyIndex | objectNotEmpty) ? 'a' : 'your first' }}
+              property
+            </span>
+          </button>
+        </ngx-dropdown-toggle>
+        <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+          <ul
+            class="vertical-list dropdown-column"
+            *ngIf="
+              schema.properties && !schemaBuilderMode && !showKnownProperties
+            "
+          >
+            <li
+              *ngFor="let prop of $any(schema.properties) | keyvalue"
+              (click)="addSchemaProperty($any(prop.key))"
+            >
+              <button
+                [disabled]="model[$any(prop).key] !== undefined"
+                type="button"
+              >
+                {{
+                  $any(prop).value.title
+                    ? $any(prop).value.title
+                    : $any(prop).key
+                }}
+              </button>
+            </li>
+          </ul>
+          <ul
+            class="vertical-list dropdown-column"
+            *ngIf="
+              !schema ||
+              schema.patternProperties ||
+              schema.additionalProperties !== false
+            "
+          >
+            <li
+              *ngFor="let prop of $any(schema.patternProperties) | keyvalue"
+              (click)="addSchemaPatternProperty($any(prop.key))"
+            >
+              <button type="button">
+                {{
+                  $any(prop).value.title
+                    ? $any(prop).value.title
+                    : $any(prop).key
+                }}
+              </button>
+            </li>
+            <ng-template
+              [ngIf]="!schema || schema.additionalProperties !== false"
+            >
+              <li
+                *ngFor="let dataType of dataTypes"
+                (click)="addProperty(dataType)"
+              >
+                <button type="button">{{ dataType.name }}</button>
+              </li>
+            </ng-template>
+          </ul>
+        </ngx-dropdown-menu>
+      </ngx-dropdown>
+    </div>
+  </div>
+</div>
+
+<!-- Property Config Dialog -->
+<ng-template #propertyConfigTmpl let-context="context">
+  <ngx-property-config
+    [property]="$any(context.property)"
+    [index]="context.index"
+    [schema]="context.schema"
+    [formats]="context.formats"
+    (updateSchema)="updateSchema($event)"
+  ></ngx-property-config>
+</ng-template>

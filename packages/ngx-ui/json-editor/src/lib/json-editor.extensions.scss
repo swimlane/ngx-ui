@@ -1,0 +1,34 @@
+%ngx-dropdown-menu {
+  white-space: nowrap;
+  margin-top: 10px;
+
+  .dropdown-column {
+    vertical-align: top;
+    display: inline-block;
+    min-width: 150px;
+
+    &:nth-child(2) {
+      border-left: 1px solid var(--ngx-ui-color-blue-grey-550);
+    }
+  }
+}
+
+%indentation {
+  border-radius: 2px 0 0 2px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(var(--ngx-ui-color-blue-grey-700-rgb), 0.4);
+}
+
+.json-editor--vertical-separator {
+  background-color: var(--ngx-ui-color-blue-grey-650);
+  opacity: 0.5;
+  border-radius: 2px;
+  width: 1px;
+  height: calc(100% - 4px);
+  margin-right: 20px;
+
+  &:first-child {
+    margin-left: 20px;
+  }
+}

@@ -70,15 +70,14 @@
 - Use `focusableElement` to change the `HTMLElement` as you see fit. Default to `Host#elementRef#nativeElement`
 
 ```ts
-@ViewChild('someOtherElement') set
-someOtherElementRef(v:ElementRef<HTMLElement>) {
+@ViewChild('someOtherElement') set someOtherElementRef(v:ElementRef<HTMLElement>) {
   this.autofocusController.focusableElement = v.nativeElement;
 }
 ```
 
 #### InputAttributeController
 
-- Provides common Input attributes like min, max, required, disabled etc...
+- Provides common Input attributes like min, max, required, disabled etc...````
 - `[type]` accepts the key of `InputType` enum
 
 ## Breaking Changes
@@ -243,7 +242,6 @@ export enum ButtonState {
 
 - `[drawerContainer]` has been renamed to `[ngxDrawerContainer]`
 
-
 #### Dropdown
 
 ##### DropdownToggle
@@ -253,3 +251,40 @@ export enum ButtonState {
 #### Hotkeys
 
 - Use `HotkeysModule.forRoot()` at the top module ONCE (`AppModule`)
+
+#### Loading
+
+- `ngx-loading-bar` has been renamed to `ngx-loading`
+- `.ngx-loading-bar` class has been renamed to `.ngx-loading`
+
+#### Toolbar
+
+- `title` has been deprecated. Use `mainTitle`
+
+#### Tip
+
+- `[status]` accepts a string union of `keyof TipStatus` instead of the enum itself
+  - Default to `TipStatus.notice`
+- `(close)` has been renamed to `(tipClose)`
+
+#### Tabs
+
+- `(select)` has been deprecated. Use `(selectTab)`
+
+#### TabItem
+
+- `[title]` has been deprecated. Use `[label]`
+
+#### Select
+
+- `(change)` has been renamed to `(selectChange)`
+- `(keyup)` has been renamed to `(selectKeyup)`
+
+##### SelectDropdown
+
+- `(keyup)` has been renamed to `(selectDropdownKeyup)`
+- `(close)` has been renamed to `(selectDropdownClose)`
+
+##### SelectInput
+
+- `(keyup)` has been renamed to `(selectDropdownKeyup)`

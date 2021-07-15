@@ -117,11 +117,17 @@
     "ngx-ui-intersection-observer": {
       "tags": ["scope:intersection-observer", "type:lib"]
     },
+    "ngx-ui-json-editor": {
+      "tags": ["scope:json-editor", "type:lib"]
+    },
     "ngx-ui-json-tree": {
       "tags": ["scope:json-tree", "type:lib"]
     },
     "ngx-ui-large-format-dialog": {
       "tags": ["scope:large-format-dialog", "type:lib"]
+    },
+    "ngx-ui-loading": {
+      "tags": ["scope:loading", "type:lib"]
     },
     "ngx-ui-long-press": {
       "tags": ["scope:long-press", "type:lib"]
@@ -132,20 +138,50 @@
     "ngx-ui-marginless": {
       "tags": ["scope:marginless", "type:lib"]
     },
+    "ngx-ui-nag": {
+      "tags": ["scope:nag", "type:lib"]
+    },
+    "ngx-ui-nav-menu": {
+      "tags": ["scope:nav-menu", "type:lib"]
+    },
+    "ngx-ui-navbar": {
+      "tags": ["scope:navbar", "type:lib"]
+    },
     "ngx-ui-overlay": {
       "tags": ["scope:overlay", "type:lib"]
     },
     "ngx-ui-resize-observer": {
       "tags": ["scope:resize-observer", "type:lib"]
     },
+    "ngx-ui-select": {
+      "tags": ["scope:select", "type:lib"]
+    },
     "ngx-ui-size": {
       "tags": ["scope:size", "type:lib"]
+    },
+    "ngx-ui-stepper": {
+      "tags": ["scope:stepper", "type:lib"]
+    },
+    "ngx-ui-tabs": {
+      "tags": ["scope:tabs", "type:lib"]
     },
     "ngx-ui-time-zone": {
       "tags": ["scope:time-zone", "type:lib"]
     },
+    "ngx-ui-tip": {
+      "tags": ["scope:tip", "type:lib"]
+    },
+    "ngx-ui-toggle": {
+      "tags": ["scope:toggle", "type:lib"]
+    },
+    "ngx-ui-toolbar": {
+      "tags": ["scope:toolbar", "type:lib"]
+    },
     "ngx-ui-tooltip": {
       "tags": ["scope:tooltip", "type:lib"]
+    },
+    "ngx-ui-tree": {
+      "tags": ["scope:tree", "type:lib"]
     },
     "ngx-ui-typings": {
       "tags": ["scope:typings", "type:lib"]

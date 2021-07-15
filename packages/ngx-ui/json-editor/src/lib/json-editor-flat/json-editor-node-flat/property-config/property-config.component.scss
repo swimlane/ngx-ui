@@ -1,0 +1,74 @@
+.property-config {
+  .header {
+    background: linear-gradient(180deg, var(--ngx-ui-color-blue-grey-650) 0%, var(--ngx-ui-color-blue-grey-750) 100%);
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+
+    span {
+      font-size: 19px;
+      color: white;
+    }
+
+    button {
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
+
+  .ngx-tab-content {
+    max-height: 65vh;
+    overflow: auto;
+  }
+
+  .new-enum-input {
+    button {
+      color: var(--ngx-ui-color-grey-500);
+    }
+
+    .ngx-input-hint {
+      display: none;
+    }
+  }
+
+  .enum-edit {
+    button {
+      font-size: 9px;
+      padding-right: 0;
+    }
+  }
+
+  .constrain-row {
+    display: flex;
+
+    ngx-input {
+      flex-basis: 50%;
+
+      &:first-child {
+        margin-right: 30px;
+      }
+    }
+  }
+
+  ngx-checkbox {
+    label {
+      display: flex;
+      align-items: center;
+      margin: 1.2rem 1.2rem 1.2rem 0 !important;
+    }
+  }
+
+  .prop-types-formats {
+    .ngx-select-input-name,
+    .ngx-select-dropdown-option {
+      text-transform: capitalize;
+    }
+  }
+
+  .examples-container {
+    border: 1px solid var(--ngx-ui-color-blue-grey-550);
+    padding: 14px;
+  }
+}
