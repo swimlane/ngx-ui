@@ -84,11 +84,6 @@ export class DateTimeComponent implements ControlValueAccessor {
   @HostBinding('class.ngx-date-time') hostClass = true;
 
   @Input() id = `datetime-${++nextId}`;
-  @Input() label = '';
-
-  @HostBinding('class.no-label') get noLabelClass() {
-    return !this.label;
-  }
 
   @Input() precision?: unitOfTime.StartOf;
   @Input() timezone?: string;
