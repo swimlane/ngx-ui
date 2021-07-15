@@ -85,6 +85,9 @@
       "@swimlane/ngx-ui/nav-menu": ["packages/ngx-ui/nav-menu/src/index.ts"],
       "@swimlane/ngx-ui/navbar": ["packages/ngx-ui/navbar/src/index.ts"],
       "@swimlane/ngx-ui/overlay": ["packages/ngx-ui/overlay/src/index.ts"],
+      "@swimlane/ngx-ui/radio-button": [
+        "packages/ngx-ui/radio-button/src/index.ts"
+      ],
       "@swimlane/ngx-ui/resize-observer": [
         "packages/ngx-ui/resize-observer/src/index.ts"
       ],

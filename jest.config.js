@@ -56,5 +56,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/split',
     '<rootDir>/packages/ngx-ui/slider',
     '<rootDir>/packages/ngx-ui/section',
+    '<rootDir>/packages/ngx-ui/radio-button',
   ],
 };

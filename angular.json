@@ -1763,6 +1763,47 @@
         }
       }
     },
+    "ngx-ui-radio-button": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/radio-button",
+      "sourceRoot": "packages/ngx-ui/radio-button/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/radio-button"],
+          "options": {
+            "project": "packages/ngx-ui/radio-button/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/radio-button/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/radio-button/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/radio-button"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/radio-button/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/radio-button/src/**/*.ts",
+              "packages/ngx-ui/radio-button/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-resize-observer": {
       "projectType": "library",
       "root": "packages/ngx-ui/resize-observer",

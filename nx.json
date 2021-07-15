@@ -150,6 +150,9 @@
     "ngx-ui-overlay": {
       "tags": ["scope:overlay", "type:lib"]
     },
+    "ngx-ui-radio-button": {
+      "tags": ["scope:radio-button", "type:lib"]
+    },
     "ngx-ui-resize-observer": {
       "tags": ["scope:resize-observer", "type:lib"]
     },

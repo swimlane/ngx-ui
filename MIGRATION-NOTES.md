@@ -299,3 +299,17 @@ export enum ButtonState {
 #### Slider
 
 - `(change)` has been renamed to `(sliderChange)`
+
+#### RadioButton
+
+- `ngx-radiobutton` has been renamed to `ngx-radio-button`
+- `(change)` has been renamed to `(radioButtonChange)`
+- `(focus)` has been renamed to `(radioButtonFocus)`
+- `(blur)` has been renamed to `(radioButtonBlur)`
+
+##### RadioButtonGroup
+
+- `ngx-radiobutton-group` selector has been renamed to `ngx-radio-button-group`
+- `(change)` has been renamed to `(radioButtonGroupChange)`
+- `(focus)` has been renamed to `(radioButtonGroupFocus)`
+- `(blur)` has been renamed to `(radioButtonGroupBlur)`
