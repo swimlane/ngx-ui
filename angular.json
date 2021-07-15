@@ -1886,6 +1886,47 @@
         }
       }
     },
+    "ngx-ui-slider": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/slider",
+      "sourceRoot": "packages/ngx-ui/slider/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/slider"],
+          "options": {
+            "project": "packages/ngx-ui/slider/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/slider/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/slider/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/slider"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/slider/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/slider/src/**/*.ts",
+              "packages/ngx-ui/slider/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-split": {
       "projectType": "library",
       "root": "packages/ngx-ui/split",

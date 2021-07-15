@@ -159,6 +159,9 @@
     "ngx-ui-size": {
       "tags": ["scope:size", "type:lib"]
     },
+    "ngx-ui-slider": {
+      "tags": ["scope:slider", "type:lib"]
+    },
     "ngx-ui-split": {
       "tags": ["scope:split", "type:lib"]
     },

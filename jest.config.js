@@ -54,5 +54,6 @@ module.exports = {
     '<rootDir>/packages/ngx-ui/select',
     '<rootDir>/packages/ngx-ui/json-editor',
     '<rootDir>/packages/ngx-ui/split',
+    '<rootDir>/packages/ngx-ui/slider',
   ],
 };

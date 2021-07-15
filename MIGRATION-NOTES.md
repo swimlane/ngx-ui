@@ -295,3 +295,7 @@ export enum ButtonState {
 
 - `(drag)` has been renamed to `(splitHandleDrag)`
 - `(dblclick)` has been renamed to `(splitHandleDblClick)`
+
+#### Slider
+
+- `(change)` has been renamed to `(sliderChange)`
