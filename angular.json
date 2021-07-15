@@ -1763,6 +1763,47 @@
         }
       }
     },
+    "ngx-ui-progress-spinner": {
+      "projectType": "library",
+      "root": "packages/ngx-ui/progress-spinner",
+      "sourceRoot": "packages/ngx-ui/progress-spinner/src",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/packages/ngx-ui/progress-spinner"],
+          "options": {
+            "project": "packages/ngx-ui/progress-spinner/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "packages/ngx-ui/progress-spinner/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "packages/ngx-ui/progress-spinner/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/packages/ngx-ui/progress-spinner"],
+          "options": {
+            "jestConfig": "packages/ngx-ui/progress-spinner/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "packages/ngx-ui/progress-spinner/src/**/*.ts",
+              "packages/ngx-ui/progress-spinner/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ngx-ui-radio-button": {
       "projectType": "library",
       "root": "packages/ngx-ui/radio-button",
