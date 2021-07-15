@@ -46,6 +46,9 @@ Cypress.Commands.add('findInput', { prevSubject: true }, element => {
   return cy.wrap(element).click();
 });
 
+/**
+ * Given an element, returns the child label element.
+ */
 Cypress.Commands.add('findLabel', { prevSubject: true }, element => {
   switch (element.prop('tagName')) {
     case INPUT:
@@ -169,6 +172,9 @@ Cypress.Commands.overwrite('clear', (originalFn, element, ...options) => {
   return originalFn(element, ...options);
 });
 
+/**
+ * Overwrites `cy.click` to work with ngx-ui elements.
+ */
 Cypress.Commands.overwrite('click', (originalFn, element, ...options) => {
   switch (element.prop('tagName')) {
     case TOGGLE:
@@ -185,6 +191,9 @@ Cypress.Commands.overwrite('click', (originalFn, element, ...options) => {
   return originalFn(element, ...options);
 });
 
+/**
+ * Overwrites `cy.check` to work with ngx-ui elements.
+ */
 Cypress.Commands.overwrite('check', (originalFn, element, ...options) => {
   switch (element.prop('tagName')) {
     case TOGGLE:
@@ -198,6 +207,9 @@ Cypress.Commands.overwrite('check', (originalFn, element, ...options) => {
   return originalFn(element, ...options);
 });
 
+/**
+ * Overwrites `cy.uncheck` to work with ngx-ui elements.
+ */
 Cypress.Commands.overwrite('uncheck', (originalFn, element, ...options) => {
   switch (element.prop('tagName')) {
     case TOGGLE:
@@ -210,6 +222,9 @@ Cypress.Commands.overwrite('uncheck', (originalFn, element, ...options) => {
   return originalFn(element, ...options);
 });
 
+/**
+ * Overwrites `cy.select` to work with ngx-ui elements.
+ */
 Cypress.Commands.overwrite('select', (originalFn, element, text, ...options) => {
   switch (element.prop('tagName')) {
     case SELECT:
@@ -232,7 +247,7 @@ Cypress.Commands.overwrite('select', (originalFn, element, text, ...options) => 
 });
 
 /**
- * Like `cy.type` clears existing text before and works with ngx-ui elements.
+ * Like `cy.type` but clears existing text before and works with ngx-ui elements.
  */
 Cypress.Commands.add('fill', { prevSubject: true }, (subject, text?, ...options) => {
   if (!text) {
