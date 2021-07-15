@@ -83,7 +83,10 @@ Cypress.Commands.add('getValue', { prevSubject: true }, element => {
       return cy.wrap(element).findInput().invoke('val');
     case TOGGLE:
     case CHECKBOX:
-      return cy.wrap(element).findInput().then(el => el.is(':checked'));
+      return cy
+        .wrap(element)
+        .findInput()
+        .then(el => el.is(':checked'));
     case SLIDER:
       return cy.wrap(element).findInput().invoke('val');
     case RADIOBUTTON_GROUP: {
@@ -93,7 +96,10 @@ Cypress.Commands.add('getValue', { prevSubject: true }, element => {
       return el.parent().find('.radio-label--content').text().trim() || '';
     }
     case RADIOBUTTON:
-      return cy.wrap(element).findInput().then(el => el.is(':checked'));
+      return cy
+        .wrap(element)
+        .findInput()
+        .then(el => el.is(':checked'));
   }
 
   return cy.wrap(element).invoke('val');
@@ -152,10 +158,13 @@ Cypress.Commands.overwrite('clear', (originalFn, element, ...options) => {
     case CHECKBOX:
       return cy.wrap(element).uncheck();
     case SLIDER:
-      return cy.wrap(element).findInput().then($el => {
-        const min = $el.attr('min');
-        return $el.val(min);
-      });
+      return cy
+        .wrap(element)
+        .findInput()
+        .then($el => {
+          const min = $el.attr('min');
+          return $el.val(min);
+        });
   }
   return originalFn(element, ...options);
 });
@@ -163,10 +172,14 @@ Cypress.Commands.overwrite('clear', (originalFn, element, ...options) => {
 Cypress.Commands.overwrite('click', (originalFn, element, ...options) => {
   switch (element.prop('tagName')) {
     case TOGGLE:
-      cy.wrap(element).find('.ngx-toggle-label').click(...options);
+      cy.wrap(element)
+        .find('.ngx-toggle-label')
+        .click(...options);
       return cy.wrap(element);
     case CHECKBOX:
-      cy.wrap(element).find('.ngx-checkbox--label').click(...options);
+      cy.wrap(element)
+        .find('.ngx-checkbox--label')
+        .click(...options);
       return cy.wrap(element);
   }
   return originalFn(element, ...options);
@@ -177,7 +190,9 @@ Cypress.Commands.overwrite('check', (originalFn, element, ...options) => {
     case TOGGLE:
     case CHECKBOX:
     case RADIOBUTTON:
-      cy.wrap(element).findInput().check({ ...options, force: true });
+      cy.wrap(element)
+        .findInput()
+        .check({ ...options, force: true });
       return cy.wrap(element);
   }
   return originalFn(element, ...options);
@@ -187,7 +202,9 @@ Cypress.Commands.overwrite('uncheck', (originalFn, element, ...options) => {
   switch (element.prop('tagName')) {
     case TOGGLE:
     case CHECKBOX:
-      cy.wrap(element).findInput().uncheck({ ...options, force: true });
+      cy.wrap(element)
+        .findInput()
+        .uncheck({ ...options, force: true });
       return cy.wrap(element);
   }
   return originalFn(element, ...options);
@@ -196,17 +213,20 @@ Cypress.Commands.overwrite('uncheck', (originalFn, element, ...options) => {
 Cypress.Commands.overwrite('select', (originalFn, element, text, ...options) => {
   switch (element.prop('tagName')) {
     case SELECT:
-      return cy.wrap(element).clear().within(() => {
-        cy.get('.ngx-select-caret').click();
-        if (Array.isArray(text)) {
-          text.forEach(t => {
-            cy.contains(t).click();
-          });
-        } else {
-          cy.contains(text).click();
-        }
-        cy.get('.ngx-select-caret').click();
-      });
+      return cy
+        .wrap(element)
+        .clear()
+        .within(() => {
+          cy.get('.ngx-select-caret').click();
+          if (Array.isArray(text)) {
+            text.forEach(t => {
+              cy.contains(t).click();
+            });
+          } else {
+            cy.contains(text).click();
+          }
+          cy.get('.ngx-select-caret').click();
+        });
   }
   return originalFn(element, text, ...options);
 });
@@ -225,10 +245,14 @@ Cypress.Commands.add('fill', { prevSubject: true }, (subject, text?, ...options)
     case INPUT:
     case DATETIME:
     case CODEMIRROR:
-      cy.wrap(subject).clear().findInput().type(text, ...options).blur();
+      cy.wrap(subject)
+        .clear()
+        .findInput()
+        .type(text, ...options)
+        .blur();
       return cy.wrap(subject);
     case SLIDER:
-      cy.wrap(subject).findInput().invoke('val', text).trigger('change')
+      cy.wrap(subject).findInput().invoke('val', text).trigger('change');
       return cy.wrap(subject);
     case RADIOBUTTON_GROUP:
       // This is not good, need to find the real value
@@ -236,7 +260,10 @@ Cypress.Commands.add('fill', { prevSubject: true }, (subject, text?, ...options)
       return cy.wrap(subject);
   }
 
-  cy.wrap(subject).clear().type(text, ...options).blur();
+  cy.wrap(subject)
+    .clear()
+    .type(text, ...options)
+    .blur();
   return cy.wrap(subject);
 });
 
@@ -257,5 +284,3 @@ Cypress.Commands.add('iff', { prevSubject: true }, (subject, selector, fn) => {
   }
   return subject;
 });
-
-
