@@ -31,7 +31,6 @@ Cypress.Commands.add('getByLabel', label => {
  * Given an element, returns the child input element.
  */
 Cypress.Commands.add('findInput', { prevSubject: true }, element => {
-  console.log(element.prop('tagName'));
   switch (element.prop('tagName')) {
     case INPUT:
     case DATETIME:

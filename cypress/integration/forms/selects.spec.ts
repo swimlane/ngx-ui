@@ -75,7 +75,6 @@ describe('Selects', () => {
       cy.get('@CUT').getValue().should('deep.equal', []);
       cy.get('@CUT').select('Green').getValue().should('deep.equal', ['Green']);
       cy.get('@CUT').select(['Green', 'Red']).getValue().should('deep.equal', ['Red', 'Green']);
-      // cy.get('@CUT').clear().getValue().should('deep.equal', []);
     });
   });
 
