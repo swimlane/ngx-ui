@@ -41,7 +41,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "packages/docs/src/favicon.ico",
-              "packages/docs/src/assets"
+              "packages/docs/src/assets",
+              {
+                "input": "packages/ngx-ui/assets/svgs",
+                "glob": "**",
+                "output": "/assets/svgs"
+              }
             ],
             "styles": [
               "packages/docs/src/styles.scss"

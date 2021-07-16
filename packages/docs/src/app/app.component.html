@@ -1,16 +1,27 @@
-<ngx-input
-  ngxAutofocus
-  ngxInputAttribute
-  ngxSize
-  ngxAppearance
-  type="text"
-  name="input1"
-  [label]="'Name'"
-  [ngModel]="inputValue"
-  [minlength]="4"
-  [hint]="'Enter your first and last name'"
-  (inputChange)="output = $event"
+<ngx-doc-main
+  mainTitle="Angular Style and Component Library"
+  [subtitle]="version"
+  [navigationItems]="navigationItems"
 >
-</ngx-input>
+  <ng-template ngxDocNavigationLogo let-expanded="expanded">
+    <div class="logo-container">
+      <ngx-icon
+        ngxDocNavigationLogoCollapsed
+        svgSrc="swimlane"
+        class="swimlane-logo"
+      ></ngx-icon>
+      <ngx-icon
+        routerLink="/"
+        svgSrc="ngx-ui"
+        class="library-name"
+        [style.display]="expanded ? 'inline-block' : 'none'"
+      ></ngx-icon>
+    </div>
+  </ng-template>
 
-<pre>{{ output | json }}</pre>
+  <ng-container ngProjectAs="ngxDocToolbarContent">
+    <a href="https://github.com/swimlane/ngx-ui" target="_blank" rel="noopener">
+      Github
+    </a>
+  </ng-container>
+</ngx-doc-main>
