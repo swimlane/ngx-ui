@@ -43,7 +43,7 @@
   <br />
 
   <h4>Filtering</h4>
-  <ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)" (change)="onEvent('change', $event)">
+  <ngx-select [filterable]="true" [label]="'Attack Type'" (keyup)="onSelectKeyUp($event)" (change)="onEvent('change', $event)">
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
     <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -559,6 +559,22 @@
   <option>Red</option>
   <option>Blue</option>
   <option>Green</option>
+</select>
+]]>
+</app-prism>
+
+<select multiple style="height: 200px">
+  <option>Red</option>
+  <option>Blue</option>
+  <option>Green</option>
+</select>
+<br />
+<br />
+<app-prism>
+<![CDATA[<select multiple>
+<option>Red</option>
+<option>Blue</option>
+<option>Green</option>
 </select>
 ]]>
 </app-prism>

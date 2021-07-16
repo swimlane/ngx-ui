@@ -9,8 +9,12 @@ describe('Inputs', () => {
       cy.getByName('input1').as('CUT');
     });
 
+    afterEach(() => {
+      cy.get('@CUT').fill('A Value');
+    });
+
     it('has a label', () => {
-      cy.get('@CUT').find('.ngx-input-label').contains('Name');
+      cy.get('@CUT').findLabel().should('contain.text', 'Name');
     });
 
     it('has no placeholder', () => {
@@ -26,9 +30,6 @@ describe('Inputs', () => {
     });
 
     it('underlines active input', () => {
-      // reset active input box
-      cy.focused().blur();
-
       cy.get('@CUT')
         .find('.ngx-input-underline .underline-fill')
         .should(el => {
@@ -72,8 +73,12 @@ describe('Inputs', () => {
       cy.getByName('input111').as('CUT');
     });
 
+    afterEach(() => {
+      cy.get('@CUT').fill('A Value');
+    });
+
     it('has a label', () => {
-      cy.get('@CUT').find('.ngx-input-label').contains('Name');
+      cy.get('@CUT').findLabel().contains('Name');
     });
 
     it('has no placeholder', () => {
@@ -114,12 +119,12 @@ describe('Inputs', () => {
       cy.getByName('input2').as('CUT');
     });
 
-    it('adds a placeholder', () => {
-      cy.get('@CUT').findInput().should('have.attr', 'placeholder', 'Enter your first and last name');
+    afterEach(() => {
+      cy.get('@CUT').fill('');
     });
 
-    it('has no label', () => {
-      cy.get('@CUT').find('ngx-input-label').should('have.length', 0);
+    it('adds a placeholder', () => {
+      cy.get('@CUT').findInput().should('have.attr', 'placeholder', 'Enter your first and last name');
     });
 
     it('underlines active input', () => {
@@ -151,8 +156,12 @@ describe('Inputs', () => {
       cy.getByLabel('Prefix Suffix Input').as('CUT');
     });
 
+    afterEach(() => {
+      cy.get('@CUT').fill('');
+    });
+
     it('has a label', () => {
-      cy.get('@CUT').find('.ngx-input-label').contains('Prefix Suffix Input');
+      cy.get('@CUT').findLabel().should('contain.text', 'Prefix Suffix Input');
     });
 
     it('have no placeholder', () => {
@@ -164,7 +173,7 @@ describe('Inputs', () => {
     });
 
     it('adds a suffix', () => {
-      cy.get('@CUT').contains('Clear');
+      cy.get('@CUT').should('contain.text', 'Clear');
     });
   });
 
@@ -174,7 +183,7 @@ describe('Inputs', () => {
     });
 
     it('has a label', () => {
-      cy.get('@CUT').find('.ngx-input-label').contains('Disabled Example');
+      cy.get('@CUT').findLabel().should('contain.text', 'Disabled Example');
     });
 
     it('has no placeholder', () => {
@@ -196,7 +205,8 @@ describe('Inputs', () => {
     });
 
     it('has a label with asterisk', () => {
-      cy.get('@CUT').find('.ngx-input-label').contains('Required Input Example Of The Day *');
+      cy.get('@CUT').findLabel().should('contain.text', 'Required Input Example Of The Day');
+      // todo: check if the asterisk is in the right place
     });
 
     it('has no placeholder', () => {
@@ -214,7 +224,7 @@ describe('Inputs', () => {
     });
 
     it('has a label', () => {
-      cy.get('@CUT').find('.ngx-input-label').contains('Default value');
+      cy.get('@CUT').findLabel().should('contain.text', 'Default value');
     });
 
     it('has no placeholder', () => {
@@ -232,7 +242,7 @@ describe('Inputs', () => {
     });
 
     it('has a label', () => {
-      cy.get('@CUT').find('.ngx-input-label').contains('Password *');
+      cy.get('@CUT').findLabel().contains('Password *');
     });
 
     it('has no placeholder', () => {
