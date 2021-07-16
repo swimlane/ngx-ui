@@ -1,8 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 declare namespace Cypress {
-  interface Chainable<T = unknown> {
-    dataCy(value: string): Chainable<Element>;
-    asAllDataCy(): Chainable<void>;
+  interface Chainable<T = unknown, Subject = any> {
     getByName(name: string): Chainable<Element>;
     getByLabel(name: string): Chainable<Element>;
     findInput(): Chainable<Element>;

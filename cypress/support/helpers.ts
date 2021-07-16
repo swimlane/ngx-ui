@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path='./helpers.d.ts'/>
+
 const CODEMIRROR = 'NGX-CODEMIRROR';
 const SELECT = 'NGX-SELECT';
 const INPUT = 'NGX-INPUT';
