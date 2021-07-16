@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "esnext",
+    "lib": ["es2018", "dom"],
+    "types": ["cypress"],
+    "moduleResolution": "node",
+    "declaration": true
+  },
+  "include": ["**/*.ts"]
+}

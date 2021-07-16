@@ -1,5 +1,19 @@
-// eslint-disable-next-line @typescript-eslint/triple-slash-reference
-/// <reference path='./helpers.d.ts'/>
+/// <reference types="cypress" />
+
+declare namespace Cypress {
+  interface Chainable {
+    getByName(name: string): Chainable<JQuery<any>>;
+    getByLabel(name: string): Chainable<JQuery<any>>;
+    findInput(): Chainable<JQuery<any>>;
+    findLabel(): Chainable<JQuery<any>>;
+    getValue(): Chainable<string>;
+    closeNotifications(): Chainable<void>;
+    withinEach(fn: (el: JQuery<any>) => void): Chainable<void>;
+    whileHovering(fn: (el: JQuery<any>) => void): Chainable<void>;
+    fill(text: string): Chainable<Element>;
+    iff(selector: string | ((el: JQuery<any>) => void), fn?: (el: JQuery<any>) => void): Chainable<Element>;
+  }
+}
 
 const CODEMIRROR = 'NGX-CODEMIRROR';
 const SELECT = 'NGX-SELECT';
