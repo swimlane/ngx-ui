@@ -1,0 +1,34 @@
+<div class="ngx-doc-page">
+  <div
+    class="ngx-doc-navigation-container"
+    *ngIf="navigation"
+    [attr.data-collapsed]="!navigationExpanded"
+  >
+    <ngx-doc-navigation
+      [navigationItems]="navigationItems"
+      [logo]="logo"
+      [search]="search"
+      [hasLogoCollapsed]="logoTemplate?.hasLogoCollapsed$ | async"
+      [(navigationExpanded)]="navigationExpanded"
+    >
+      <ng-container ngProjectAs="ngxDocNavigationLogo">
+        <ng-container
+          *ngIf="logoTemplate"
+          [ngTemplateOutlet]="logoTemplate.templateRef"
+          [ngTemplateOutletContext]="{ expanded: navigationExpanded }"
+        ></ng-container>
+      </ng-container>
+    </ngx-doc-navigation>
+  </div>
+  <div class="ngx-doc-content-container">
+    <ngx-toolbar [mainTitle]="mainTitle" [subtitle]="subtitle">
+      <ng-container ngProjectAs="ngx-toolbar-content">
+        <ng-content select="ngxDocToolbarContent"></ng-content>
+      </ng-container>
+    </ngx-toolbar>
+    <div class="ngx-doc-content">
+      <router-outlet class="ngx-doc-outlet"></router-outlet>
+    </div>
+  </div>
+  <ngx-hotkeys></ngx-hotkeys>
+</div>

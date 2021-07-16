@@ -1,0 +1,93 @@
+.ngx-doc-navigation {
+  $doc-navigation: &;
+
+  &__logo {
+    height: var(--ngx-doc-navigation-section-height);
+    display: flex;
+    align-items: center;
+    padding: 0 0.5rem;
+
+    &[data-collapsed='true'] {
+      position: relative;
+      justify-content: center;
+
+      & #{$doc-navigation}__expander {
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        text-align: center;
+      }
+
+      &[data-logo-collapsed='true'] {
+        & .logo-collapsed {
+          opacity: 1;
+          transition: opacity 250ms ease-in-out;
+        }
+
+        & #{$doc-navigation}__expander {
+          display: none;
+        }
+
+        &:hover {
+          & .logo-collapsed {
+            opacity: 0;
+          }
+
+          & #{$doc-navigation}__expander {
+            display: inline-block;
+          }
+        }
+      }
+    }
+  }
+
+  &__expander {
+    color: var(--ngx-ui-color-blue-grey-400);
+    margin-left: auto;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--ngx-ui-color-blue-400);
+    }
+
+    & svg {
+      fill: currentColor;
+    }
+  }
+
+  &__search {
+    color: var(--ngx-ui-color-blue-grey-400);
+    background: var(--ngx-ui-color-blue-grey-700);
+    padding: 0.5rem;
+    height: 2.5rem;
+
+    &[data-no-logo='true'] {
+      height: var(--ngx-doc-navigation-section-height);
+    }
+
+    & ngx-input.ngx-input {
+      margin-top: -0.25rem;
+
+      & .ngx-input-underline {
+        display: none;
+      }
+
+      & ngx-input-suffix {
+        margin-top: -4px;
+
+        & button.btn-link {
+          color: var(--ngx-ui-color-blue-grey-400);
+
+          &:hover {
+            color: var(--ngx-ui-color-white);
+          }
+
+          & .ngx-icon {
+            font-size: 0.75rem;
+          }
+        }
+      }
+    }
+  }
+}
