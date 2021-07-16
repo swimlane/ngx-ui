@@ -8,7 +8,6 @@ import { AutosizeModule } from '@swimlane/ngx-ui/autosize';
 import { IconModule } from '@swimlane/ngx-ui/icon';
 import { InputModule } from '@swimlane/ngx-ui/input';
 import { InputAttributeModule } from '@swimlane/ngx-ui/input-attribute';
-import { LoadingModule } from '@swimlane/ngx-ui/loading';
 import { MarginlessModule } from '@swimlane/ngx-ui/marginless';
 import { NavMenuModule } from '@swimlane/ngx-ui/nav-menu';
 import { SizeModule } from '@swimlane/ngx-ui/size';
@@ -29,7 +28,6 @@ import { DocNavigationComponent } from './doc-navigation.component';
     IconModule,
     MarginlessModule,
     TooltipModule,
-    LoadingModule,
     RouterModule,
     ReactiveFormsModule,
   ],
