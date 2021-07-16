@@ -10,7 +10,7 @@ import {
 import { IconRegistryService } from './icon-registry.service';
 
 @Component({
-  selector: 'ngx-icon[fontIcon]',
+  selector: 'ngx-icon[fontIcon], ngx-icon[svgSrc]',
   exportAs: 'ngxIcon',
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss'],
