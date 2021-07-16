@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 35.6.8 (2021-07-16)
+
+- Revert to `master` branch
+
 ## 35.6.7 (2021-06-29)
 
 - Fix: `ngx-select` not populating selected options once `options` changes
