@@ -7,6 +7,8 @@ export * from './lib/components/doc-page/doc-page.component';
 export * from './lib/components/doc-page/doc-page.module';
 export * from './lib/components/doc-example/doc-example.component';
 export * from './lib/components/doc-example/doc-example.module';
+export * from './lib/components/doc-markdown/doc-markdown.component';
+export * from './lib/components/doc-markdown/doc-markdown.module';
 
 // Directives
 export * from './lib/directives/doc-navigation-logo/doc-navigation-logo.directive';
@@ -19,5 +21,8 @@ export * from './lib/models';
 
 // Utils
 export * from './lib/utils';
+
+// Tokens
+export * from './lib/tokens';
 
 export * from './lib/ngx-doc.module';

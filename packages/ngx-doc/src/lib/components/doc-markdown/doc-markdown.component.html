@@ -1,0 +1,8 @@
+<p *ngIf="filename" class="ngx-doc-markdown__filename">{{ filename }}</p>
+<markdown
+  *ngIf="lang; else rawMarkdown"
+  [data]="code | language: lang"
+></markdown>
+<ng-template #rawMarkdown>
+  <markdown [data]="code"></markdown>
+</ng-template>

@@ -1,1 +1,15 @@
-<p>doc-page works!</p>
+<header class="ngx-doc-page__header">
+  <h1 class="ngx-doc-page__header-title">
+    {{ header }}
+    <span
+      *ngIf="deprecated"
+      class="ngx-tag ngx-doc-page__tag"
+      data-tag="deprecated"
+    >
+      deprecated
+    </span>
+  </h1>
+</header>
+<div class="ngx-doc-page__content">
+  <ng-content></ng-content>
+</div>

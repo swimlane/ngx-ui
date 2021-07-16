@@ -1,0 +1,19 @@
+.ngx-doc-example {
+  &__section-header {
+    display: flex;
+    align-items: center;
+  }
+
+  &__section-header-title {
+    margin: 0;
+  }
+
+  &__section-header-link {
+    font-size: 0.75rem;
+    color: var(--ngx-ui-color-blue-grey-250);
+
+    &:hover {
+      color: var(--ngx-ui-color-blue-grey-150);
+    }
+  }
+}

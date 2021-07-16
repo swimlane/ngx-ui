@@ -1,0 +1,35 @@
+.ngx-doc-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex-basis: 0;
+  flex-grow: 1;
+
+  &__header {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 6rem;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    padding: 3rem 0 0;
+    box-shadow: inset 0 -1px 0 0 var(--ngx-ui-color-blue-grey-600);
+  }
+
+  &__header-title {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__tag {
+    margin-top: 0.5rem;
+
+    &[data-tag='deprecated'] {
+    }
+  }
+
+  &__content {
+    padding-top: 2rem;
+  }
+}

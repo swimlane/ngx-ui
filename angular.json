@@ -49,7 +49,8 @@
               }
             ],
             "styles": [
-              "packages/docs/src/styles.scss"
+              "packages/docs/src/styles.scss",
+              "node_modules/prism-themes/themes/prism-dracula.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -57,7 +58,16 @@
                 "packages/ngx-ui/assets"
               ]
             },
-            "scripts": []
+            "scripts": [
+              "node_modules/marked/lib/marked.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-typescript.min.js",
+              "node_modules/prismjs/components/prism-bash.min.js",
+              "node_modules/prismjs/components/prism-css.min.js",
+              "node_modules/prismjs/components/prism-scss.min.js",
+              "node_modules/prismjs/components/prism-css-extras.min.js",
+              "node_modules/prismjs/components/prism-markup.min.js"
+            ]
           },
           "configurations": {
             "production": {

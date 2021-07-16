@@ -1,7 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DocPageModule, generateRoutes } from '@swimlane/ngx-doc';
+import {
+  DocExampleModule,
+  DocMarkdownModule,
+  DocPageModule,
+  generateRoutes,
+} from '@swimlane/ngx-doc';
 import { HomeComponent } from './home.component';
 
 @NgModule({
@@ -10,6 +15,8 @@ import { HomeComponent } from './home.component';
     CommonModule,
     RouterModule.forChild(generateRoutes(HomeComponent)),
     DocPageModule,
+    DocExampleModule,
+    DocMarkdownModule,
   ],
 })
 export class HomeModule {}

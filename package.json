@@ -44,8 +44,11 @@
     "moment-timezone": "~0.5.33",
     "mousetrap": "^1.6.5",
     "ng-in-viewport": "^6.1.5",
+    "ngx-markdown": "^12.0.1",
     "ngx-moment": "~5.0.0",
     "normalize.css": "8.0.1",
+    "prism-themes": "^1.7.0",
+    "prismjs": "^1.24.1",
     "rxjs": "~6.6.0",
     "tslib": "2.3.0",
     "zone.js": "~0.11.4"
