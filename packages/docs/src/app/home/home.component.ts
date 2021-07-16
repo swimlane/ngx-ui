@@ -1,5 +1,4 @@
-// @ts-ignore
-import { default as preface } from '!!raw-loader!./docs/preface.md';
+import preface from '!!raw-loader!./docs/preface.md';
 
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
