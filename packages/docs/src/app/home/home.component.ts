@@ -1,23 +1,25 @@
 // @ts-ignore
-import { default as doc } from '!!raw-loader!./docs/doc.md';
-// @ts-ignore
-import { default as componentTs } from '!!raw-loader!./examples/component.ts';
-// @ts-ignore
-import { default as moduleTs } from '!!raw-loader!./examples/module.ts';
-// @ts-ignore
-import { default as sliceTs } from '!!raw-loader!./examples/slice.ts';
-// @ts-ignore
-import { default as templateHtml } from '!!raw-loader!./examples/template.html';
+import { default as preface } from '!!raw-loader!./docs/preface.md';
 
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { DocExamples } from '@swimlane/ngx-doc';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'docs-home',
   template: `
     <ngx-doc-page header="NGX-UI">
-      <ngx-doc-example heading="Preface" id="preface" [content]="examples">
-        <ngx-doc-markdown [code]="doc" filename="doc.md"></ngx-doc-markdown>
+      <ngx-doc-example heading="Preface" id="preface">
+        <ngx-doc-markdown [code]="preface"></ngx-doc-markdown>
+      </ngx-doc-example>
+
+      <ngx-doc-example heading="Peer Dependencies" id="peer-dependencies">
+        <ul>
+          <li *ngFor="let dep of peerDependencies | keyvalue">
+            <a [attr.href]="'http://www.npmjs.com/package/' + dep.key">
+              {{ dep.key }} - {{ dep.value }}
+            </a>
+          </li>
+        </ul>
       </ngx-doc-example>
     </ngx-doc-page>
   `,
@@ -25,14 +27,9 @@ import { DocExamples } from '@swimlane/ngx-doc';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
-  readonly examples: DocExamples = {
-    'slice.ts': [sliceTs],
-    'component.ts': [componentTs],
-    'template.html': [templateHtml, 'markup'],
-    'module.ts': [moduleTs],
-  };
+  readonly preface = preface;
 
-  readonly doc = doc;
+  readonly peerDependencies = environment.peerDependencies;
 
   constructor() {}
 

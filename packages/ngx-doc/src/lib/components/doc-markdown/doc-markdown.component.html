@@ -1,8 +1,14 @@
 <p *ngIf="filename" class="ngx-doc-markdown__filename">{{ filename }}</p>
-<markdown
-  *ngIf="lang; else rawMarkdown"
-  [data]="code | language: lang"
-></markdown>
-<ng-template #rawMarkdown>
-  <markdown [data]="code"></markdown>
-</ng-template>
+<div
+  class="ngx-doc-markdown__markdown-container"
+  [class.shadow-3]="!!filename"
+  [attr.data-has-filename]="!!filename"
+>
+  <markdown
+    *ngIf="lang; else rawMarkdown"
+    [data]="code | language: lang"
+  ></markdown>
+  <ng-template #rawMarkdown>
+    <markdown [data]="code"></markdown>
+  </ng-template>
+</div>

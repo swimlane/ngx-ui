@@ -1,0 +1,18 @@
+.ngx-doc-markdown {
+  display: flex;
+  flex-direction: column;
+
+  &__filename {
+    font-size: 0.75rem;
+    margin: 0;
+    font-weight: bold;
+  }
+
+  &__markdown-container {
+    &[data-has-filename='true'] {
+      padding: 1rem;
+      background: var(--ngx-ui-color-blue-grey-800);
+      border-radius: 0.25rem;
+    }
+  }
+}

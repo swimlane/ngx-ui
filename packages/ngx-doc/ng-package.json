@@ -2,6 +2,31 @@
   "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
   "dest": "../../dist/packages/ngx-doc",
   "lib": {
-    "entryFile": "src/index.ts"
-  }
+    "entryFile": "src/index.ts",
+    "umdModuleIds": {
+      "@swimlane/ngx-ui/common": "@swimlane/ngx-ui/common",
+      "@swimlane/ngx-ui/loading": "@swimlane/ngx-ui/loading",
+      "@swimlane/ngx-ui/nav-menu": "@swimlane/ngx-ui/nav-menu",
+      "@swimlane/ngx-ui/icon": "@swimlane/ngx-ui/icon",
+      "@swimlane/ngx-ui/input": "@swimlane/ngx-ui/input",
+      "@swimlane/ngx-ui/appearance": "@swimlane/ngx-ui/appearance",
+      "@swimlane/ngx-ui/size": "@swimlane/ngx-ui/size",
+      "@swimlane/ngx-ui/autofocus": "@swimlane/ngx-ui/autofocus",
+      "@swimlane/ngx-ui/autosize": "@swimlane/ngx-ui/autosize",
+      "@swimlane/ngx-ui/input-attribute": "@swimlane/ngx-ui/input-attribute",
+      "@swimlane/ngx-ui/marginless": "@swimlane/ngx-ui/marginless",
+      "@swimlane/ngx-ui/tooltip": "@swimlane/ngx-ui/tooltip",
+      "@swimlane/ngx-ui/toolbar": "@swimlane/ngx-ui/toolbar",
+      "@swimlane/ngx-ui/hotkeys": "@swimlane/ngx-ui/hotkeys",
+      "@swimlane/ngx-ui/section": "@swimlane/ngx-ui/section",
+      "@swimlane/ngx-ui/tabs": "@swimlane/ngx-ui/tabs",
+      "@swimlane/ngx-ui/utils": "@swimlane/ngx-ui/utils",
+      "ngx-markdown": "ngx-markdown"
+    }
+  },
+  "allowedNonPeerDependencies": [
+    "ngx-markdown",
+    "prismjs",
+    "prism-themes"
+  ]
 }

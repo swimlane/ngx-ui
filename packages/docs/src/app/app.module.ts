@@ -7,6 +7,7 @@ import {
   DocMainModule,
   DocNavigationLogoCollapsedModule,
   DocNavigationLogoModule,
+  NGX_DOC_TITLE_PREFIX,
 } from '@swimlane/ngx-doc';
 import { AppearanceModule } from '@swimlane/ngx-ui/appearance';
 import { AutofocusModule } from '@swimlane/ngx-ui/autofocus';
@@ -47,7 +48,12 @@ import { appRoutes } from './app.routes';
     DocNavigationLogoCollapsedModule,
     IconModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: NGX_DOC_TITLE_PREFIX,
+      useValue: 'ngx-ui | ',
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
