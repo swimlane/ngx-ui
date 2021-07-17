@@ -46,4 +46,11 @@
     padding: 0 0.25rem;
     border-radius: 0.25rem;
   }
+
+  & blockquote {
+    border-left: 4px solid var(--ngx-ui-color-blue-grey-450);
+    margin: 0;
+    padding-left: 1rem;
+    background: var(--ngx-ui-color-blue-grey-700);
+  }
 }

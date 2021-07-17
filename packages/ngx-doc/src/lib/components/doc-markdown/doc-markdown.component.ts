@@ -5,8 +5,10 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 
+export type MarkdownLang = 'typescript' | 'markup' | 'bash' | 'css' | 'scss';
+
 @Component({
-  selector: 'ngx-doc-markdown[code]',
+  selector: 'ngx-doc-markdown',
   templateUrl: './doc-markdown.component.html',
   styleUrls: ['./doc-markdown.component.scss'],
   encapsulation: ViewEncapsulation.None,
@@ -17,5 +19,5 @@ export class DocMarkdownComponent {
 
   @Input() code = '';
 
-  @Input() lang?: 'typescript' | 'markup' | 'bash' | 'css' | 'scss';
+  @Input() lang?: MarkdownLang;
 }

@@ -87,7 +87,7 @@
           <a
             *ngFor="let child of menuItem.children"
             class="sub-nav-item"
-            routerLink="{{ child.route }}"
+            [routerLink]="child.route"
             routerLinkActive="active"
           >
             <span class="subnav-label">{{ child.name }}</span>

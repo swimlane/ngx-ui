@@ -4,11 +4,18 @@
   [class.shadow-3]="!!filename"
   [attr.data-has-filename]="!!filename"
 >
-  <markdown
-    *ngIf="lang; else rawMarkdown"
-    [data]="code | language: lang"
-  ></markdown>
-  <ng-template #rawMarkdown>
-    <markdown [data]="code"></markdown>
+  <ng-container *ngIf="code; else raw">
+    <markdown
+      *ngIf="lang; else rawMarkdown"
+      [data]="code | language: lang"
+    ></markdown>
+    <ng-template #rawMarkdown>
+      <markdown [data]="code"></markdown>
+    </ng-template>
+  </ng-container>
+  <ng-template #raw>
+    <markdown ngPreserveWhitespaces>
+      <ng-content></ng-content>
+    </markdown>
   </ng-template>
 </div>

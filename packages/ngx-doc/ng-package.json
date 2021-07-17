@@ -15,6 +15,7 @@
       "@swimlane/ngx-ui/autosize": "@swimlane/ngx-ui/autosize",
       "@swimlane/ngx-ui/input-attribute": "@swimlane/ngx-ui/input-attribute",
       "@swimlane/ngx-ui/marginless": "@swimlane/ngx-ui/marginless",
+      "@swimlane/ngx-ui/notification": "@swimlane/ngx-ui/notification",
       "@swimlane/ngx-ui/tooltip": "@swimlane/ngx-ui/tooltip",
       "@swimlane/ngx-ui/toolbar": "@swimlane/ngx-ui/toolbar",
       "@swimlane/ngx-ui/hotkeys": "@swimlane/ngx-ui/hotkeys",
