@@ -44,7 +44,8 @@ module.exports = pkg => ({
   },
   git: {
     push: false,
-    commitMessage: '(release-' + pkg + '): ${version}'
+    commitMessage: '(release-' + pkg + '): ${version}',
+    tagName: '${version}' + '-' + pkg
   },
   github: {
     releaseNotes: true
