@@ -15,7 +15,12 @@
     (schemaUpdate)="schemaUpdate.emit($event)"
   >
     <div class="node-options" node-options>
-      <button *ngIf="schemaBuilderMode" type="button" class="node-options-btn" (click)="onPropertyConfig()">
+      <button
+        *ngIf="schemaBuilderMode"
+        type="button"
+        class="node-options-btn"
+        (click)="onPropertyConfig()"
+      >
         <i class="ngx-icon ngx-cog"></i>
       </button>
     </div>

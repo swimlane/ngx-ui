@@ -8,9 +8,8 @@ describe('DialogDrawerContentComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DialogDrawerContentComponent ]
-    })
-    .compileComponents();
+      declarations: [DialogDrawerContentComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -91,7 +91,10 @@
       background-color: var(--ngx-ui-slider-bg);
       width: 100%;
       height: var(--ngx-ui-slider-track-width);
-      top: calc((var(--ngx-ui-slider-thumb-width) * 0.5) - (var(--ngx-ui-slider-track-width) * 0.5));
+      top: calc(
+        (var(--ngx-ui-slider-thumb-width) * 0.5) -
+          (var(--ngx-ui-slider-track-width) * 0.5)
+      );
       pointer-events: none;
       opacity: 0.3;
     }
@@ -133,7 +136,10 @@
   &.filled .fill-bar {
     background-repeat: no-repeat;
     //noinspection CssInvalidFunction
-    background-image: linear-gradient(var(--ngx-ui-slider-bg-fill), var(--ngx-ui-slider-bg-fill));
+    background-image: linear-gradient(
+      var(--ngx-ui-slider-bg-fill),
+      var(--ngx-ui-slider-bg-fill)
+    );
     position: absolute;
     border-radius: 0;
     z-index: 99;

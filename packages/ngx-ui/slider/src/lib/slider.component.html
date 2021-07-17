@@ -5,7 +5,14 @@
   <div class="inputs">
     <div class="slider-track"></div>
     <span *ngIf="filled" [ngStyle]="_fill" class="fill-bar"></span>
-    <ng-container *ngFor="let value of _values; let i = index; let odd = odd; trackBy: trackIndex">
+    <ng-container
+      *ngFor="
+        let value of _values;
+        let i = index;
+        let odd = odd;
+        trackBy: trackIndex
+      "
+    >
       <input
         type="range"
         [id]="id + '-' + i"
@@ -24,7 +31,11 @@
         (mouseenter)="setActive(i, true)"
         (mouseleave)="setActive(i, false)"
       />
-      <div class="slider-thumb" [class.active]="_active[i]" [ngStyle]="_thumbs[i]"></div>
+      <div
+        class="slider-thumb"
+        [class.active]="_active[i]"
+        [ngStyle]="_thumbs[i]"
+      ></div>
     </ng-container>
   </div>
 </div>

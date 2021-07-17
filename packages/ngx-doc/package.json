@@ -1,6 +1,25 @@
 {
   "name": "@swimlane/ngx-doc",
-  "version": "0.0.1",
+  "version": "0.2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swimlane/ngx-ui.git"
+  },
+  "author": "Swimlane",
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "components",
+    "directives",
+    "docs"
+  ],
+  "bugs": {
+    "url": "https://github.com/swimlane/ngx-ui/issues"
+  },
+  "homepage": "https://github.com/swimlane/ngx-ui#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "peerDependencies": {
     "@angular/common": "^12.0.4",
     "@angular/core": "^12.0.4",

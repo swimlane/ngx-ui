@@ -13,13 +13,22 @@ export function containsFilter(
       return value === keyword;
     }
 
-    const idx = options.filterCaseSensitive ? value.indexOf(keyword) : value.search(new RegExp(keyword, 'i'));
+    const idx = options.filterCaseSensitive
+      ? value.indexOf(keyword)
+      : value.search(new RegExp(keyword, 'i'));
     return idx > -1;
   } else if (typeof value === 'object') {
     const keys = Object.getOwnPropertyNames(value);
 
     for (const k of keys) {
-      if (containsFilter((value as Record<string, unknown>)[k], keyword, options, depth + 1)) {
+      if (
+        containsFilter(
+          (value as Record<string, unknown>)[k],
+          keyword,
+          options,
+          depth + 1
+        )
+      ) {
         return true;
       }
     }

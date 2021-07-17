@@ -1,12 +1,14 @@
 import {
-  ChangeDetectorRef, ContentChild,
+  ChangeDetectorRef,
+  ContentChild,
   Directive,
   EventEmitter,
   Input,
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges, TemplateRef
+  SimpleChanges,
+  TemplateRef,
 } from '@angular/core';
 
 import type { JSONSchema7TypeName } from 'json-schema';

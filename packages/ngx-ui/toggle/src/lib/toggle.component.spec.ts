@@ -8,7 +8,7 @@ describe('ToggleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ToggleComponent]
+      declarations: [ToggleComponent],
     }).compileComponents();
   });
 

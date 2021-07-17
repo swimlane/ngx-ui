@@ -8,9 +8,8 @@ describe('LargeFormatDialogFooterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LargeFormatDialogFooterComponent ]
-    })
-    .compileComponents();
+      declarations: [LargeFormatDialogFooterComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

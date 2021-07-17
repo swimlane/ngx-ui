@@ -1,4 +1,4 @@
 export enum DrawerDirection {
   left = 'left',
-  bottom = 'bottom'
+  bottom = 'bottom',
 }

@@ -1,4 +1,8 @@
-module.exports = {
+/**
+ *
+ * @param {'doc'|'ui'} pkg
+ */
+module.exports = pkg => ({
   plugins: {
     '@release-it/conventional-changelog': {
       preset: {
@@ -6,36 +10,57 @@ module.exports = {
         types: [
           {
             type: 'feat',
-            section: 'Features',
+            section: 'Features'
           },
           {
             type: 'fix',
-            section: 'Bug Fixes',
+            section: 'Bug Fixes'
           },
           {
             type: 'perf',
-            section: 'Performances',
+            section: 'Performances'
           },
           {
             type: 'refactor',
-            section: 'Refactor',
+            section: 'Refactor'
           },
           {
             type: 'docs',
-            section: 'Documentations',
-          },
-        ],
+            section: 'Documentations'
+          }
+        ]
       },
-      infile: 'CHANGELOG.md',
+      infile: `packages/ngx-${pkg}/CHANGELOG.md`
     },
+    '@release-it/bumper': {
+      in: `packages/ngx-${pkg}/package.json`,
+      out: [
+        `packages/ngx-${pkg}/package.json`
+      ]
+    }
   },
   npm: {
-    publish: false,
+    publish: false
   },
   git: {
     push: false,
+    commitMessage: '(release-' + pkg + '): ${version}',
+    tagName: '${version}' + '-' + pkg
   },
   github: {
-    releaseNotes: true,
+    releaseNotes: true
   },
-};
+  hooks: {
+    'after:bump': [
+      'git checkout -- package-lock.json',
+      'git checkout -- package.json',
+      'git checkout -b release-' + pkg + '/${version}'
+    ],
+    'after:release': [
+      'git push origin HEAD --tags',
+      'git checkout -',
+      'git merge --no-edit -m=\'chore: release-' + pkg + '/${version}\' release-' + pkg + '/${version}',
+      'git push'
+    ]
+  }
+});

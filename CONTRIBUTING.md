@@ -12,6 +12,15 @@
   - This initiates Conventional Commits flow
 - PR your branch like usual
 
+#### Add a new Component/Library
+
+- Generate a Angular library: `npx ng generate @nrwl/angular:library {{name_of_library}} --directory=ngx-ui --builable --publishable --importPath=@swimlane/ngx-ui/{{name_of_library}} --prefix=ngx --simpleModuleName --tags=scope:{{name_of_library}},type:lib`
+- Adjust property `name` in `{{name_of_library}}/package.json` to `@swimlane/ngx-ui/{{name_of_library}}`
+
+#### Work with existing library
+
+- If you add new Public API to the library, make sure to edit `index.ts` in that library
+
 #### Release
 
 - Once the PR **is merged**, and **is ready** to cut a new release
@@ -38,8 +47,10 @@
 ### NGX-DOC
 
 - Same process as `NGX-UI` with the following differences:
-  - `ng build ngx-doc` instead of `ng build ngx-ui`
   - `npm run release:doc` instead of `npm run release:ui`
+    - The `release-it` process needs to be adjusted a bit. Right now, bump the version of `ngx-doc` and update its CHANGELOG manually
+  - `ng build ngx-doc` instead of `ng build ngx-ui`
+    - `ngx-doc` depends on `ngx-ui` so if you run into a build error about `ngx-doc` dependencies, simply run `ng build ngx-ui`
   - `npm run publish:doc` instead of `npm run publish:ui`
 
 ### Docs Site
@@ -49,7 +60,7 @@ The demo site is filled with code snippets and documentations. These are provide
 #### Add a new component/page
 
 - Generate a Module with `<component_or_page_name>`: `ng generate module {{component}}`
-- Generate a Component with `<component_or_page_name>`: `ng generate component {{component}} --inlineStyle --inlineTemplate --skipTests`
+- Generate a Component with `<component_or_page_name>`: `ng generate component {{component}} --inlineStyle --inlineTemplate --skipTests --flat`
 - Setup routing for the new Module with `generateRoutes` utility
 
 ```ts

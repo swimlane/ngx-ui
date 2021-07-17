@@ -8,9 +8,8 @@ describe('LargeFormatDialogHeaderTitleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LargeFormatDialogHeaderTitleComponent ]
-    })
-    .compileComponents();
+      declarations: [LargeFormatDialogHeaderTitleComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -25,9 +25,5 @@
       "ngx-markdown": "ngx-markdown"
     }
   },
-  "allowedNonPeerDependencies": [
-    "ngx-markdown",
-    "prismjs",
-    "prism-themes"
-  ]
+  "allowedNonPeerDependencies": ["ngx-markdown", "prismjs", "prism-themes"]
 }
