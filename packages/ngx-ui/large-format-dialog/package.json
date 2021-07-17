@@ -1,5 +1,5 @@
 {
-  "name": "@swimlane/ngx-ui-large-format-dialog",
+  "name": "@swimlane/ngx-ui/large-format-dialog",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.1.1",

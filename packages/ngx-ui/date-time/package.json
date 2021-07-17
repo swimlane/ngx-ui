@@ -1,5 +1,5 @@
 {
-  "name": "@swimlane/ngx-ui-date-time",
+  "name": "@swimlane/ngx-ui/date-time",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.1.1",

@@ -1,5 +1,5 @@
 {
-  "name": "@swimlane/ngx-ui-json-tree",
+  "name": "@swimlane/ngx-ui/json-tree",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.0.4",

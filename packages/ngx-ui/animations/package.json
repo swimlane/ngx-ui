@@ -1,5 +1,5 @@
 {
-  "name": "@swimlane/ngx-ui-animations",
+  "name": "@swimlane/ngx-ui/animations",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.0.4",

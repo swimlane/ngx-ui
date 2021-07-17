@@ -1,5 +1,5 @@
 {
-  "name": "@swimlane/ngx-ui-nav-menu",
+  "name": "@swimlane/ngx-ui/nav-menu",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.1.1",

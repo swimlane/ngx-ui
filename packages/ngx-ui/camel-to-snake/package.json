@@ -1,5 +1,5 @@
 {
-  "name": "@swimlane/ngx-ui-camel-to-snake",
+  "name": "@swimlane/ngx-ui/camel-to-snake",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.0.4",
