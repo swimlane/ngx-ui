@@ -50,19 +50,22 @@
       overflow: hidden;
 
       &__header {
-        & ngx-large-format-dialog-header-title.ngx-large-format-dialog-header-title,
+        &
+          ngx-large-format-dialog-header-title.ngx-large-format-dialog-header-title,
         ngx-large-format-dialog-header-action.ngx-large-format-dialog-header-action {
           max-width: var(--header-item-max-width);
           min-width: var(--header-item-max-width);
         }
 
-        & ngx-large-format-dialog-header-action.ngx-large-format-dialog-header-action {
+        &
+          ngx-large-format-dialog-header-action.ngx-large-format-dialog-header-action {
           position: relative;
           z-index: 1;
         }
 
         @media screen and (max-width: 1319px) {
-          & ngx-large-format-dialog-header-title.ngx-large-format-dialog-header-title,
+          &
+            ngx-large-format-dialog-header-title.ngx-large-format-dialog-header-title,
           ngx-large-format-dialog-header-action.ngx-large-format-dialog-header-action {
             max-width: var(--header-item-max-width-lg);
             min-width: var(--header-item-max-width-lg);
@@ -70,7 +73,8 @@
         }
 
         @media screen and (max-width: 959px) {
-          & ngx-large-format-dialog-header-title.ngx-large-format-dialog-header-title,
+          &
+            ngx-large-format-dialog-header-title.ngx-large-format-dialog-header-title,
           ngx-large-format-dialog-header-action.ngx-large-format-dialog-header-action {
             max-width: var(--header-item-max-width-md);
             min-width: var(--header-item-max-width-md);

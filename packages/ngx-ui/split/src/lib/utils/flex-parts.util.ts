@@ -5,7 +5,11 @@ export function partsToStyle(parts: FlexParts): string {
   return `${grow} ${shrink} ${basis}`;
 }
 
-export function basisToParts(grow: string, shrink: string, flexBasis: string): FlexParts {
+export function basisToParts(
+  grow: string,
+  shrink: string,
+  flexBasis: string
+): FlexParts {
   // TODO: validate?
   const parts = flexBasis.split(' ');
   if (parts.length === 3) {

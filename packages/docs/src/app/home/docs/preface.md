@@ -10,9 +10,7 @@ npm install @swimlane/ngx-ui
 
 ```json
 {
-  "styles": [
-    "node_modules/@swimlane/ngx-ui/ngx-ui.css"
-  ]
+  "styles": ["node_modules/@swimlane/ngx-ui/ngx-ui.css"]
 }
 ```
 
@@ -37,8 +35,7 @@ import { NgModule } from '@angular/core';
 import { ButtonModule } from '@swimlane/ngx-ui/button';
 
 @NgModule({
-  imports: [ButtonModule]
+  imports: [ButtonModule],
 })
-export class SomeModule {
-}
+export class SomeModule {}
 ```

@@ -3,14 +3,20 @@ import { basisToValue } from './basis-to-value.util';
 import { getMinMaxPct } from './get-min-max-pct.util';
 import { isPercent } from './is-percent.util';
 
-export function resizeAreaBy(area: SplitAreaDirective, _delta: number, basisToPx: number): number {
+export function resizeAreaBy(
+  area: SplitAreaDirective,
+  _delta: number,
+  basisToPx: number
+): number {
   const [grow, shrink, basis] = area.currentFlexParts!;
   const isPct = isPercent(basis);
   const basisValue = basisToValue(basis);
 
   // get baseBasis in percent
   const baseBasis = area.initialFlexParts![2];
-  const baseBasisPct = isPercent(baseBasis) ? basisToValue(baseBasis) : basisToValue(baseBasis) / basisToPx;
+  const baseBasisPct = isPercent(baseBasis)
+    ? basisToValue(baseBasis)
+    : basisToValue(baseBasis) / basisToPx;
 
   // get basis in px and %
   const basisPx = isPct ? basisValue * basisToPx : basisValue;

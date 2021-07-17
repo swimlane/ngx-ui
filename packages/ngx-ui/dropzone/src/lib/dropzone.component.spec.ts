@@ -8,9 +8,8 @@ describe('DropzoneComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DropzoneComponent ]
-    })
-    .compileComponents();
+      declarations: [DropzoneComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

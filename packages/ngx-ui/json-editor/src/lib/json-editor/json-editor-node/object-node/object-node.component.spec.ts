@@ -8,7 +8,7 @@ describe('ObjectNodeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ObjectNodeComponent]
+      declarations: [ObjectNodeComponent],
     }).compileComponents();
   });
 

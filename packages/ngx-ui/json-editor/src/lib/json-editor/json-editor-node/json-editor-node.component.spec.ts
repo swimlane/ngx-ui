@@ -8,7 +8,7 @@ describe('JsonEditorNodeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [JsonEditorNodeComponent]
+      declarations: [JsonEditorNodeComponent],
     }).compileComponents();
   });
 

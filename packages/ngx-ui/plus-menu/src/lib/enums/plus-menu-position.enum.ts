@@ -1,5 +1,5 @@
 export enum PlusMenuPosition {
   right = 'right',
   bottom = 'bottom',
-  top = 'top'
+  top = 'top',
 }

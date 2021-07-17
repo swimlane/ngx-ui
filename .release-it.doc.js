@@ -5,20 +5,20 @@ module.exports = {
   plugins: {
     ...releaseItJson.plugins,
     '@release-it/bumper': {
-      out: ['packages/ngx-doc/package*.json'],
-    },
+      out: ['packages/ngx-doc/package*.json']
+    }
   },
   git: {
     ...releaseItJson.git,
-    commitMessage: '(release-doc): ${version}',
+    commitMessage: '(release-doc): ${version}'
   },
   hooks: {
     'after:bump': 'git checkout -b release-doc/${version}',
     'after:release': [
       'git push origin HEAD --tags',
       'git checkout -',
-      "git merge --no-edit -m='chore: release-doc/${version}' release-doc/${version}",
-      'git push',
-    ],
-  },
+      'git merge --no-edit -m=\'chore: release-doc/${version}\' release-doc/${version}',
+      'git push'
+    ]
+  }
 };

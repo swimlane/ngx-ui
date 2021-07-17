@@ -5,7 +5,8 @@ import {
   Input,
   OnChanges,
   Output,
-  SimpleChanges, TemplateRef
+  SimpleChanges,
+  TemplateRef,
 } from '@angular/core';
 import { jsonSchemaDataFormats, jsonSchemaDataTypes } from '../constants';
 import type { JSONEditorSchema, JsonSchemaDataType } from '../interfaces';

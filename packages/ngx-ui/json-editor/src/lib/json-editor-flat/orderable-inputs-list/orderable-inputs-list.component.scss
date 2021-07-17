@@ -50,6 +50,7 @@
 }
 
 .cdk-drag-animating,
-.orderable-inputs-list.cdk-drop-list-dragging .input-item:not(.cdk-drag-placeholder) {
+.orderable-inputs-list.cdk-drop-list-dragging
+  .input-item:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }

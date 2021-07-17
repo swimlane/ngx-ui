@@ -6,36 +6,36 @@ module.exports = {
         types: [
           {
             type: 'feat',
-            section: 'Features',
+            section: 'Features'
           },
           {
             type: 'fix',
-            section: 'Bug Fixes',
+            section: 'Bug Fixes'
           },
           {
             type: 'perf',
-            section: 'Performances',
+            section: 'Performances'
           },
           {
             type: 'refactor',
-            section: 'Refactor',
+            section: 'Refactor'
           },
           {
             type: 'docs',
-            section: 'Documentations',
-          },
-        ],
+            section: 'Documentations'
+          }
+        ]
       },
-      infile: 'CHANGELOG.md',
-    },
+      infile: 'CHANGELOG.md'
+    }
   },
   npm: {
-    publish: false,
+    publish: false
   },
   git: {
-    push: false,
+    push: false
   },
   github: {
-    releaseNotes: true,
-  },
+    releaseNotes: true
+  }
 };
