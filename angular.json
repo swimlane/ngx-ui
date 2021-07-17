@@ -155,7 +155,8 @@
             "dist/packages/ngx-doc"
           ],
           "options": {
-            "project": "packages/ngx-doc/ng-package.json"
+            "project": "packages/ngx-doc/ng-package.json",
+            "updateBuildableProjectDepsInPackageJson": false
           },
           "configurations": {
             "production": {
