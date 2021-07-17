@@ -33,9 +33,7 @@ module.exports = pkg => ({
       infile: `packages/ngx-${pkg}/CHANGELOG.md`
     },
     '@release-it/bumper': {
-      in: [
-        `packages/ngx-${pkg}/package.json`
-      ],
+      in: `packages/ngx-${pkg}/package.json`,
       out: [
         `packages/ngx-${pkg}/package.json`
       ]
@@ -52,7 +50,9 @@ module.exports = pkg => ({
     releaseNotes: true
   },
   hooks: {
-    'after:bump': 'git checkout -b release-' + pkg + '/${version}',
+    'after:bump': [
+      'git checkout -b release-' + pkg + '/${version}'
+    ],
     'after:release': [
       'git push origin HEAD --tags',
       'git checkout -',
