@@ -33,7 +33,8 @@
     "***release:doc***": "release-it --config .release-it.doc.js --ci=false",
     "release:doc": "echo TBD",
     "publish:doc": "ng run ngx-doc:publish-lib",
-    "publish:doc:beta": "ng run ngx-doc:publish-lib-beta"
+    "publish:doc:beta": "ng run ngx-doc:publish-lib-beta",
+    "build:demo": "ng run docs:build"
   },
   "private": true,
   "dependencies": {
@@ -89,6 +90,7 @@
     "clean-css": "^5.1.3",
     "commitizen": "^4.2.4",
     "cpx": "^1.5.0",
+    "cross-env": "^7.0.3",
     "cypress": "~7.7.0",
     "cz-conventional-changelog": "^3.3.0",
     "dotenv": "10.0.0",
