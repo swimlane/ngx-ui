@@ -60,7 +60,7 @@ The demo site is filled with code snippets and documentations. These are provide
 #### Add a new component/page
 
 - Generate a Module with `<component_or_page_name>`: `ng generate module {{component}}`
-- Generate a Component with `<component_or_page_name>`: `ng generate component {{component}} --inlineStyle --inlineTemplate --skipTests`
+- Generate a Component with `<component_or_page_name>`: `ng generate component {{component}} --inlineStyle --inlineTemplate --skipTests --flat`
 - Setup routing for the new Module with `generateRoutes` utility
 
 ```ts
