@@ -1,3 +1,5 @@
+## [36.0.0-beta.8](https://github.com/swimlane/ngx-ui/compare/36.0.0-beta.7...36.0.0-beta.8-ui) (2021-07-17)
+
 ## 36.0.0-beta.7 (2021-07-17)
 
 
