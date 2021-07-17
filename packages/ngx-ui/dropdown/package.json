@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui/dropdown",
-  "version": "0.0.1",
+  "version": "0.0.1-0",
   "peerDependencies": {
     "@angular/common": "^12.1.1",
     "@angular/core": "^12.1.1"
