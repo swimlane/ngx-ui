@@ -51,6 +51,8 @@ module.exports = pkg => ({
   },
   hooks: {
     'after:bump': [
+      'git checkout -- package-lock.json',
+      'git checkout -- package.json',
       'git checkout -b release-' + pkg + '/${version}'
     ],
     'after:release': [
