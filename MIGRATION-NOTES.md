@@ -3,6 +3,10 @@
 ### Miscellaneous
 
 - `static ngAcceptInputType_*` is being utilized to provide better type-checking for Language Service
+- `DestroyedService` to use with `takeUntil()` instead of `destroy$` subject in various components.
+  - `imperativeDestroy()` call is to use to send a signal to `DestroyedService`. To be used in cases where `takeUntil()` needs a signal but `ngOnDestroy` hasn't happened
+- No `host` property in `@Component`. All have been converted over to `HostBinding`
+  - For `class` binding on Host element, the current usage is `HostBinding('class.className')` instead of `'class'`
 
 ### Common
 
@@ -14,6 +18,30 @@
   and `ngAcceptInputType`
 - `DestroyedService` to be provided on the Component/Directive provider to use together with `takeUntil`
 - `NGX_UI_WINDOW` and `NGX_UI_IS_MAC` Injection tokens are provided
+
+#### `NGX_UI_WINDOW` Token
+
+- Expose a `NGX_UI_WINDOW` injection token to work with `Window` object in an SSR safe way.
+
+```ts
+export class SomeComponent {
+    // bad
+    ngOnInit() {
+        window.navigator...
+    }
+
+    // good
+    constructor(@Inject(NGX_UI_WINDOW) private readonly window: Window) {}
+
+    ngOnInit() {
+        this.window.navigator...
+    }
+}
+```
+
+#### `NGX_UI_IS_MAC` Token
+
+- Expose a `NGX_UI_IS_MAC` injection token as a `boolean`
 
 ### Utilities
 
@@ -37,7 +65,6 @@
 - Controller can be attached on any component/element as an Attribute Directive. For example:
 
 ```html
-
 <ngx-input ngxSize="sm" ngxAppearance="fill"></ngx-input>
 ```
 
