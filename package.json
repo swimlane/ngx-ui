@@ -26,7 +26,13 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "commit": "cz"
+    "commit": "cz",
+    "release:ui": "release-it --config .release-it.ui.js",
+    "publish:ui": "ng run ngx-ui:publish-lib",
+    "publish:ui:beta": "ng run ngx-ui:publish-lib-beta",
+    "release:doc": "release-it --config .release-it.doc.js",
+    "publish:doc": "ng run ngx-doc:publish-lib",
+    "publish:doc:beta": "ng run ngx-doc:publish-lib-beta"
   },
   "private": true,
   "dependencies": {
@@ -70,6 +76,8 @@
     "@nrwl/linter": "12.5.8",
     "@nrwl/tao": "12.5.8",
     "@nrwl/workspace": "12.5.8",
+    "@release-it/bumper": "^3.0.1",
+    "@release-it/conventional-changelog": "^3.0.1",
     "@types/codemirror": "^5.60.2",
     "@types/jest": "26.0.24",
     "@types/mousetrap": "^1.6.8",
@@ -91,6 +99,7 @@
     "postcss": "^8.3.5",
     "postcss-url": "^10.1.3",
     "prettier": "2.3.2",
+    "release-it": "^14.10.0",
     "ts-jest": "27.0.3",
     "ts-node": "10.1.0",
     "typescript": "4.3.5"

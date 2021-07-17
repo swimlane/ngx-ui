@@ -185,6 +185,20 @@
               "packages/ngx-doc/src/**/*.html"
             ]
           }
+        },
+        "publish-lib": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "npm publish",
+            "cwd": "dist/packages/ngx-doc"
+          }
+        },
+        "publish-lib-beta": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "npm publish --tag beta",
+            "cwd": "dist/packages/ngx-doc"
+          }
         }
       }
     },
@@ -241,6 +255,20 @@
               "packages/ngx-ui/src/**/*.ts",
               "packages/ngx-ui/src/**/*.html"
             ]
+          }
+        },
+        "publish-lib": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "npm publish",
+            "cwd": "dist/packages/ngx-ui"
+          }
+        },
+        "publish-lib-beta": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "npm publish --tag beta",
+            "cwd": "dist/packages/ngx-ui"
           }
         }
       }

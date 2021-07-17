@@ -16,8 +16,8 @@
 
 - Once the PR **is merged**, and **is ready** to cut a new release
 - Pull `master`
-- Run `npm run release`
-  - If this is a pre-release, please run `npm run release -- --preRelease`. See more docs [here](https://github.com/release-it/release-it/blob/master/docs/pre-releases.md)
+- Run `npm run release:ui`
+  - If this is a pre-release, please run `npm run release:ui -- --preRelease`. See more docs [here](https://github.com/release-it/release-it/blob/master/docs/pre-releases.md)
   - `CHANGELOG` will be updated based on the commits. Types of commits that will appear in the `CHANGELOG` are defined in [.release-it.json](.release-it.json)
     - `feat` will bump a `minor` version
     - `fix`, `perf`, and `refactor` will bump a `patch` version
@@ -32,10 +32,15 @@
 - There will be Github Actions to publish to NPM.
   - Manual steps at the moment are:
     - `npx ng build ngx-ui` to build `ngx-ui` and copy assets
-    - `npm run publish:lib` to publish to npm
-      - `npm run publish:lib:beta` to publish to npm with `beta` tag
+    - `npm run publish:ui` to publish to npm
+      - `npm run publish:ui:beta` to publish to npm with `beta` tag
 
 ### NGX-DOC
+
+- Same process as `NGX-UI` with the following differences:
+  - `ng build ngx-doc` instead of `ng build ngx-ui`
+  - `npm run release:doc` instead of `npm run release:ui`
+  - `npm run publish:doc` instead of `npm run publish:ui`
 
 ### Docs Site
 
