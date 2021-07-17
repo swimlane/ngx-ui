@@ -22,239 +22,180 @@
         "packages/ngx-doc/src/index.ts"
       ],
       "@swimlane/ngx-ui": [
-        "dist/packages/ngx-ui",
         "packages/ngx-ui/src/index.ts"
       ],
       "@swimlane/ngx-ui/alert": [
-        "dist/packages/ngx-ui/alert",
         "packages/ngx-ui/alert/src/index.ts"
       ],
       "@swimlane/ngx-ui/animations": [
-        "dist/packages/ngx-ui/animations",
         "packages/ngx-ui/animations/src/index.ts"
       ],
       "@swimlane/ngx-ui/appearance": [
-        "dist/packages/ngx-ui/appearance",
         "packages/ngx-ui/appearance/src/index.ts"
       ],
       "@swimlane/ngx-ui/autofocus": [
-        "dist/packages/ngx-ui/autofocus",
         "packages/ngx-ui/autofocus/src/index.ts"
       ],
       "@swimlane/ngx-ui/autosize": [
-        "dist/packages/ngx-ui/autosize",
         "packages/ngx-ui/autosize/src/index.ts"
       ],
       "@swimlane/ngx-ui/button": [
-        "dist/packages/ngx-ui/button",
         "packages/ngx-ui/button/src/index.ts"
       ],
       "@swimlane/ngx-ui/calendar": [
-        "dist/packages/ngx-ui/calendar",
         "packages/ngx-ui/calendar/src/index.ts"
       ],
       "@swimlane/ngx-ui/camel-to-snake": [
-        "dist/packages/ngx-ui/camel-to-snake",
         "packages/ngx-ui/camel-to-snake/src/index.ts"
       ],
       "@swimlane/ngx-ui/card": [
-        "dist/packages/ngx-ui/card",
         "packages/ngx-ui/card/src/index.ts"
       ],
       "@swimlane/ngx-ui/checkbox": [
-        "dist/packages/ngx-ui/checkbox",
         "packages/ngx-ui/checkbox/src/index.ts"
       ],
       "@swimlane/ngx-ui/code-editor": [
-        "dist/packages/ngx-ui/code-editor",
         "packages/ngx-ui/code-editor/src/index.ts"
       ],
       "@swimlane/ngx-ui/common": [
-        "dist/packages/ngx-ui/common",
         "packages/ngx-ui/common/src/index.ts"
       ],
       "@swimlane/ngx-ui/copy-to-clipboard": [
-        "dist/packages/ngx-ui/copy-to-clipboard",
         "packages/ngx-ui/copy-to-clipboard/src/index.ts"
       ],
       "@swimlane/ngx-ui/date-time": [
-        "dist/packages/ngx-ui/date-time",
         "packages/ngx-ui/date-time/src/index.ts"
       ],
       "@swimlane/ngx-ui/decamelize": [
-        "dist/packages/ngx-ui/decamelize",
         "packages/ngx-ui/decamelize/src/index.ts"
       ],
       "@swimlane/ngx-ui/dialog": [
-        "dist/packages/ngx-ui/dialog",
         "packages/ngx-ui/dialog/src/index.ts"
       ],
       "@swimlane/ngx-ui/drawer": [
-        "dist/packages/ngx-ui/drawer",
         "packages/ngx-ui/drawer/src/index.ts"
       ],
       "@swimlane/ngx-ui/dropdown": [
-        "dist/packages/ngx-ui/dropdown",
         "packages/ngx-ui/dropdown/src/index.ts"
       ],
       "@swimlane/ngx-ui/dropzone": [
-        "dist/packages/ngx-ui/dropzone",
         "packages/ngx-ui/dropzone/src/index.ts"
       ],
       "@swimlane/ngx-ui/file-button": [
-        "dist/packages/ngx-ui/file-button",
         "packages/ngx-ui/file-button/src/index.ts"
       ],
       "@swimlane/ngx-ui/filter-by": [
-        "dist/packages/ngx-ui/filter-by",
         "packages/ngx-ui/filter-by/src/index.ts"
       ],
       "@swimlane/ngx-ui/hotkeys": [
-        "dist/packages/ngx-ui/hotkeys",
         "packages/ngx-ui/hotkeys/src/index.ts"
       ],
       "@swimlane/ngx-ui/icon": [
-        "dist/packages/ngx-ui/icon",
         "packages/ngx-ui/icon/src/index.ts"
       ],
       "@swimlane/ngx-ui/input": [
-        "dist/packages/ngx-ui/input",
         "packages/ngx-ui/input/src/index.ts"
       ],
       "@swimlane/ngx-ui/input-attribute": [
-        "dist/packages/ngx-ui/input-attribute",
         "packages/ngx-ui/input-attribute/src/index.ts"
       ],
       "@swimlane/ngx-ui/input-autosize": [
-        "dist/packages/ngx-ui/input-autosize",
         "packages/ngx-ui/input-autosize/src/index.ts"
       ],
       "@swimlane/ngx-ui/intersection-observer": [
-        "dist/packages/ngx-ui/intersection-observer",
         "packages/ngx-ui/intersection-observer/src/index.ts"
       ],
       "@swimlane/ngx-ui/json-editor": [
-        "dist/packages/ngx-ui/json-editor",
         "packages/ngx-ui/json-editor/src/index.ts"
       ],
       "@swimlane/ngx-ui/json-tree": [
-        "dist/packages/ngx-ui/json-tree",
         "packages/ngx-ui/json-tree/src/index.ts"
       ],
       "@swimlane/ngx-ui/large-format-dialog": [
-        "dist/packages/ngx-ui/large-format-dialog",
         "packages/ngx-ui/large-format-dialog/src/index.ts"
       ],
       "@swimlane/ngx-ui/loading": [
-        "dist/packages/ngx-ui/loading",
         "packages/ngx-ui/loading/src/index.ts"
       ],
       "@swimlane/ngx-ui/long-press": [
-        "dist/packages/ngx-ui/long-press",
         "packages/ngx-ui/long-press/src/index.ts"
       ],
       "@swimlane/ngx-ui/long-press-button": [
-        "dist/packages/ngx-ui/long-press-button",
         "packages/ngx-ui/long-press-button/src/index.ts"
       ],
       "@swimlane/ngx-ui/marginless": [
-        "dist/packages/ngx-ui/marginless",
         "packages/ngx-ui/marginless/src/index.ts"
       ],
       "@swimlane/ngx-ui/nag": [
-        "dist/packages/ngx-ui/nag",
         "packages/ngx-ui/nag/src/index.ts"
       ],
       "@swimlane/ngx-ui/nav-menu": [
-        "dist/packages/ngx-ui/nav-menu",
         "packages/ngx-ui/nav-menu/src/index.ts"
       ],
       "@swimlane/ngx-ui/navbar": [
-        "dist/packages/ngx-ui/navbar",
         "packages/ngx-ui/navbar/src/index.ts"
       ],
       "@swimlane/ngx-ui/notification": [
-        "dist/packages/ngx-ui/notification",
         "packages/ngx-ui/notification/src/index.ts"
       ],
       "@swimlane/ngx-ui/overlay": [
-        "dist/packages/ngx-ui/overlay",
         "packages/ngx-ui/overlay/src/index.ts"
       ],
       "@swimlane/ngx-ui/plus-menu": [
-        "dist/packages/ngx-ui/plus-menu",
         "packages/ngx-ui/plus-menu/src/index.ts"
       ],
       "@swimlane/ngx-ui/progress-spinner": [
-        "dist/packages/ngx-ui/progress-spinner",
         "packages/ngx-ui/progress-spinner/src/index.ts"
       ],
       "@swimlane/ngx-ui/radio-button": [
-        "dist/packages/ngx-ui/radio-button",
         "packages/ngx-ui/radio-button/src/index.ts"
       ],
       "@swimlane/ngx-ui/resize-observer": [
-        "dist/packages/ngx-ui/resize-observer",
         "packages/ngx-ui/resize-observer/src/index.ts"
       ],
       "@swimlane/ngx-ui/section": [
-        "dist/packages/ngx-ui/section",
         "packages/ngx-ui/section/src/index.ts"
       ],
       "@swimlane/ngx-ui/select": [
-        "dist/packages/ngx-ui/select",
         "packages/ngx-ui/select/src/index.ts"
       ],
       "@swimlane/ngx-ui/size": [
-        "dist/packages/ngx-ui/size",
         "packages/ngx-ui/size/src/index.ts"
       ],
       "@swimlane/ngx-ui/slider": [
-        "dist/packages/ngx-ui/slider",
         "packages/ngx-ui/slider/src/index.ts"
       ],
       "@swimlane/ngx-ui/split": [
-        "dist/packages/ngx-ui/split",
         "packages/ngx-ui/split/src/index.ts"
       ],
       "@swimlane/ngx-ui/stepper": [
-        "dist/packages/ngx-ui/stepper",
         "packages/ngx-ui/stepper/src/index.ts"
       ],
       "@swimlane/ngx-ui/tabs": [
-        "dist/packages/ngx-ui/tabs",
         "packages/ngx-ui/tabs/src/index.ts"
       ],
       "@swimlane/ngx-ui/time-zone": [
-        "dist/packages/ngx-ui/time-zone",
         "packages/ngx-ui/time-zone/src/index.ts"
       ],
       "@swimlane/ngx-ui/tip": [
-        "dist/packages/ngx-ui/tip",
         "packages/ngx-ui/tip/src/index.ts"
       ],
       "@swimlane/ngx-ui/toggle": [
-        "dist/packages/ngx-ui/toggle",
         "packages/ngx-ui/toggle/src/index.ts"
       ],
       "@swimlane/ngx-ui/toolbar": [
-        "dist/packages/ngx-ui/toolbar",
         "packages/ngx-ui/toolbar/src/index.ts"
       ],
       "@swimlane/ngx-ui/tooltip": [
-        "dist/packages/ngx-ui/tooltip",
         "packages/ngx-ui/tooltip/src/index.ts"
       ],
       "@swimlane/ngx-ui/tree": [
-        "dist/packages/ngx-ui/tree",
         "packages/ngx-ui/tree/src/index.ts"
       ],
       "@swimlane/ngx-ui/typings": [
-        "dist/packages/ngx-ui/typings",
         "packages/ngx-ui/typings/src/index.ts"
       ],
       "@swimlane/ngx-ui/utils": [
-        "dist/packages/ngx-ui/utils",
         "packages/ngx-ui/utils/src/index.ts"
       ]
     }
