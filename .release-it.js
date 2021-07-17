@@ -1,4 +1,8 @@
-module.exports = {
+/**
+ *
+ * @param {'doc'|'ui'} pkg
+ */
+module.exports = pkg => ({
   plugins: {
     '@release-it/conventional-changelog': {
       preset: {
@@ -26,16 +30,32 @@ module.exports = {
           }
         ]
       },
-      infile: 'CHANGELOG.md'
+      infile: `packages/ngx-${pkg}/CHANGELOG.md`
+    },
+    '@release-it/bumper': {
+      in: [`packages/ngx-${pkg}/package*.json`],
+      out: [
+        `packages/ngx-${pkg}/package*.json`
+      ]
     }
   },
   npm: {
     publish: false
   },
   git: {
-    push: false
+    push: false,
+    commitMessage: '(release-' + pkg + '): ${version}'
   },
   github: {
     releaseNotes: true
+  },
+  hooks: {
+    'after:bump': 'git checkout -b release-' + pkg + '/${version}',
+    'after:release': [
+      'git push origin HEAD --tags',
+      'git checkout -',
+      'git merge --no-edit -m=\'chore: release-' + pkg + '/${version}\' release-' + pkg + '/${version}',
+      'git push'
+    ]
   }
-};
+});
