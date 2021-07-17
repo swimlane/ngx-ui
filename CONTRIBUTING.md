@@ -50,6 +50,7 @@
   - `npm run release:doc` instead of `npm run release:ui`
     - The `release-it` process needs to be adjusted a bit. Right now, bump the version of `ngx-doc` and update its CHANGELOG manually
   - `ng build ngx-doc` instead of `ng build ngx-ui`
+    - `ngx-doc` depends on `ngx-ui` so if you run into a build error about `ngx-doc` dependencies, simply run `ng build ngx-ui`
   - `npm run publish:doc` instead of `npm run publish:ui`
 
 ### Docs Site
