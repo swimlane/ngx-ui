@@ -33,9 +33,7 @@ module.exports = pkg => ({
       infile: `packages/ngx-${pkg}/CHANGELOG.md`
     },
     '@release-it/bumper': {
-      in: [
-        `packages/ngx-${pkg}/package.json`
-      ],
+      in: `packages/ngx-${pkg}/package.json`,
       out: [
         `packages/ngx-${pkg}/package.json`
       ]
