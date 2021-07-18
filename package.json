@@ -59,6 +59,7 @@
     "prism-themes": "^1.7.0",
     "prismjs": "^1.24.1",
     "rxjs": "~6.6.0",
+    "tinycolor2": "^1.4.2",
     "tslib": "2.3.0",
     "zone.js": "~0.11.4"
   },
@@ -84,6 +85,7 @@
     "@types/jest": "26.0.24",
     "@types/mousetrap": "^1.6.8",
     "@types/node": "14.14.33",
+    "@types/tinycolor2": "^1.4.3",
     "@typescript-eslint/eslint-plugin": "4.28.3",
     "@typescript-eslint/parser": "4.28.3",
     "autoprefixer": "^10.3.1",

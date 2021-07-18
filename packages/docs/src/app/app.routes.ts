@@ -21,4 +21,12 @@ export const appRoutes: Routes = [
       title: 'Typography',
     },
   },
+  {
+    path: 'colors',
+    loadChildren: () =>
+      import('./colors/colors.module').then((m) => m.ColorsModule),
+    data: {
+      title: 'Colors',
+    },
+  },
 ];
