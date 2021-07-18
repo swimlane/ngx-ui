@@ -1,0 +1,66 @@
+:host {
+  display: block;
+}
+
+.layout-row {
+  border: 1px solid var(--ngx-ui-color-green-300);
+  border-radius: 0.25rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.layout-col {
+  border: 1px dashed var(--ngx-ui-color-blue-400);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+
+  & code {
+    font-size: smaller;
+    letter-spacing: -0.025rem;
+  }
+
+  &--auto {
+    border: 1px dashed var(--ngx-ui-color-blue-400);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: auto;
+
+    & code {
+      font-size: smaller;
+      letter-spacing: -0.025rem;
+    }
+  }
+
+  &--high {
+    border: 1px dashed var(--ngx-ui-color-blue-400);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 4rem;
+
+    & code {
+      font-size: smaller;
+      letter-spacing: -0.025rem;
+    }
+  }
+
+  &--higher {
+    border: 1px dashed var(--ngx-ui-color-blue-400);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 8rem;
+
+    & code {
+      font-size: smaller;
+      letter-spacing: -0.025rem;
+    }
+  }
+}

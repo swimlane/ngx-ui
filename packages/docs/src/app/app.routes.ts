@@ -29,4 +29,12 @@ export const appRoutes: Routes = [
       title: 'Colors',
     },
   },
+  {
+    path: 'layout',
+    loadChildren: () =>
+      import('./layout/layout.module').then((m) => m.LayoutModule),
+    data: {
+      title: 'Layout',
+    },
+  },
 ];
