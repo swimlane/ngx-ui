@@ -103,7 +103,9 @@ export class InputComponent implements ControlValueAccessor {
 
   @ViewChild('inputControl') set inputControl(v: ElementRef<HTMLInputElement>) {
     if (v?.nativeElement) {
-      this.autofocusController.focusableElement = v.nativeElement;
+      if (this.autofocusController) {
+        this.autofocusController.focusableElement = v.nativeElement;
+      }
       this.element = v.nativeElement;
     }
   }
@@ -112,7 +114,9 @@ export class InputComponent implements ControlValueAccessor {
     v: ElementRef<HTMLTextAreaElement>
   ) {
     if (v?.nativeElement) {
-      this.autofocusController.focusableElement = v.nativeElement;
+      if (this.autofocusController) {
+        this.autofocusController.focusableElement = v.nativeElement;
+      }
       this.element = v.nativeElement;
     }
   }
