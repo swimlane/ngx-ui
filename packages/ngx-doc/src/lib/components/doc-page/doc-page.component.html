@@ -11,5 +11,19 @@
   </h1>
 </header>
 <div class="ngx-doc-page__content">
-  <ng-content></ng-content>
+  <ng-container *ngIf="tabConnectors.length; else noTabs">
+    <ngx-tabs>
+      <ngx-tab
+        *ngFor="let pageTab of tabConnectors; index as i"
+        [label]="pageTab.ngxDocPageTab || defaultTabs[i]"
+      >
+        <ng-template ngxIfTabActive>
+          <ng-container *ngTemplateOutlet="pageTab.templateRef"></ng-container>
+        </ng-template>
+      </ngx-tab>
+    </ngx-tabs>
+  </ng-container>
+  <ng-template #noTabs>
+    <ng-content></ng-content>
+  </ng-template>
 </div>
