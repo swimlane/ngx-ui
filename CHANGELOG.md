@@ -1,3 +1,10 @@
+## [36.0.0-beta.10](https://github.com/swimlane/ngx-ui/compare/36.0.0-beta.9...36.0.0-beta.10) (2021-07-19)
+
+
+### Bug Fixes
+
+* **ngx-doc:** export DocPageDirective, add npm scripts ([dfdf4e8](https://github.com/swimlane/ngx-ui/commit/dfdf4e897b0266685db54b85b243b4f1cc2963af))
+
 ## [36.0.0-beta.9](https://github.com/swimlane/ngx-ui/compare/36.0.0-beta.8-ui...36.0.0-beta.9) (2021-07-19)
 
 
