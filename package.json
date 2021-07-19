@@ -36,6 +36,8 @@
     "publish:ui:beta": "ng run ngx-ui:publish-lib-beta",
     "publish:doc": "ng run ngx-doc:publish-lib",
     "publish:doc:beta": "ng run ngx-doc:publish-lib-beta",
+    "publish:libs": "npm run publish:ui && npm run publish:doc",
+    "publish:libs:beta": "npm run publish:ui:beta && npm run publish:doc:beta",
     "build:demo": "ng run docs:build"
   },
   "private": true,

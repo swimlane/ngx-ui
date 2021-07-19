@@ -14,6 +14,9 @@
 
 #### Add a new Component/Library
 
+> **What is a library?**
+> Components, Pipes and Directives follow the SCAM (Single Component As Module) approach. For NX workspace a library will be the same as an angular module.
+
 - Generate a Angular library: `npx ng generate @nrwl/angular:library {{name_of_library}} --directory=ngx-ui --buildable --publishable --importPath=@swimlane/ngx-ui/{{name_of_library}} --prefix=ngx --simpleModuleName --tags=scope:{{name_of_library}},type:lib`
 - Adjust property `name` in `{{name_of_library}}/package.json` to `@swimlane/ngx-ui/{{name_of_library}}`
 
@@ -25,8 +28,8 @@
 
 - Once the PR **is merged**, and **is ready** to cut a new release
 - Pull `master`
-- Run `npm run release:ui`
-  - If this is a pre-release, please run `npm run release:ui -- --preRelease`. See more docs [here](https://github.com/release-it/release-it/blob/master/docs/pre-releases.md)
+- Run `npm run release`
+  - If this is a pre-release, please run `npm run release:pre`. See more docs [here](https://github.com/release-it/release-it/blob/master/docs/pre-releases.md)
   - `CHANGELOG` will be updated based on the commits. Types of commits that will appear in the `CHANGELOG` are defined in [.release-it.json](.release-it.json)
     - `feat` will bump a `minor` version
     - `fix`, `perf`, and `refactor` will bump a `patch` version
@@ -38,20 +41,18 @@
 - There will be Release hooks
   - `after:bump`: After the version has been bumped, this hook will run `git checkout -b release/${version}` to checkout a `release` branch
   - `after:release`: After you have accepted to "Commit" question and "Tag" question, this hook will run `git push origin HEAD --tags` to push the branch and tag upstream. This follows the current release flow
-- There will be Github Actions to publish to NPM.
+  
+  - if there is an error, you will need to delete branch and tag **locally and on the remote**.
+    - TODO [run programmatically](https://github.com/release-it/release-it/blob/master/docs/recipes/programmatic.md) 
+  
+- There will be GitHub Actions to publish to NPM.
   - Manual steps at the moment are:
-    - `npx ng build ngx-ui` to build `ngx-ui` and copy assets
-    - `npm run publish:ui` to publish to npm
-      - `npm run publish:ui:beta` to publish to npm with `beta` tag
+    - `npm run build:libs` to build `ngx-ui`, copy assets, and `ngx-doc`
+    - `npm run publish:libs` to publish to npm
+      - `npm run publish:libs:beta` to publish to npm with `beta` tag
 
 ### NGX-DOC
-
-- Same process as `NGX-UI` with the following differences:
-  - `npm run release:doc` instead of `npm run release:ui`
-    - The `release-it` process needs to be adjusted a bit. Right now, bump the version of `ngx-doc` and update its CHANGELOG manually
-  - `ng build ngx-doc` instead of `ng build ngx-ui`
-    - `ngx-doc` depends on `ngx-ui` so if you run into a build error about `ngx-doc` dependencies, simply run `ng build ngx-ui`
-  - `npm run publish:doc` instead of `npm run publish:ui`
+> will get published with ngx-ui from above steps
 
 ### Docs Site
 
