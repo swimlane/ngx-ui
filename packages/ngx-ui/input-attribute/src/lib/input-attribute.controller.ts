@@ -1,4 +1,5 @@
 import {
+  ChangeDetectorRef,
   Directive,
   HostBinding,
   Input,
@@ -108,7 +109,15 @@ export class InputAttributeControllerDirective
   @Input()
   passwordTextVisible = false;
 
-  @NgxBooleanInput()
+  @NgxBooleanInput<InputAttributeControllerDirective>(
+    ({ component, coercedValue, setFn }) => {
+      setFn();
+      if (coercedValue) {
+        component.disabled = true;
+        component.cdr.markForCheck();
+      }
+    }
+  )
   @Input()
   unlockable = false;
 
@@ -123,13 +132,11 @@ export class InputAttributeControllerDirective
   private readonly $type = new BehaviorSubject(this.type);
   readonly type$ = this.$type.asObservable();
 
-  ngOnChanges(changes: SimpleChanges) {
-    if ('unlockable' in changes) {
-      if (changes.unlockable.currentValue) {
-        this.disabled = true;
-      }
-    }
+  constructor(readonly cdr: ChangeDetectorRef) {
+    super();
+  }
 
+  ngOnChanges(changes: SimpleChanges) {
     if ('type' in changes || 'passwordTextVisible' in changes) {
       this.updateInputType();
     }
