@@ -30,6 +30,8 @@
     "help": "nx help",
     "commit": "cz",
     "release": "release-it --ci=false",
+    "release:pre": "release-it --ci=false --preRelease",
+    "build:libs": "ng build ngx-ui && ng build ngx-doc",
     "publish:ui": "ng run ngx-ui:publish-lib",
     "publish:ui:beta": "ng run ngx-ui:publish-lib-beta",
     "publish:doc": "ng run ngx-doc:publish-lib",

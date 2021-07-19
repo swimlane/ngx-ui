@@ -15,6 +15,7 @@ export * from './lib/directives/doc-navigation-logo/doc-navigation-logo.directiv
 export * from './lib/directives/doc-navigation-logo/doc-navigation-logo.module';
 export * from './lib/directives/doc-navigation-logo-collapsed/doc-navigation-logo-collapsed.directive';
 export * from './lib/directives/doc-navigation-logo-collapsed/doc-navigation-logo-collapsed.module';
+export * from './lib/components/doc-page/doc-page-tab.directive';
 
 // Models
 export * from './lib/models';
