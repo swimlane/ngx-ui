@@ -30,7 +30,8 @@ import {
   pure: false,
 })
 export class FilterByPipe implements PipeTransform {
-  transform<TItems extends [], TFilter = unknown>(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  transform<TItems extends Array<any>, TFilter = unknown>(
     array: TItems,
     filter: TFilter
   ): TItems {
