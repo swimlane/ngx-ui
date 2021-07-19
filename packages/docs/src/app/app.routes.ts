@@ -45,4 +45,12 @@ export const appRoutes: Routes = [
       title: 'Icons',
     },
   },
+  {
+    path: 'animations',
+    loadChildren: () =>
+      import('./animations/animations.module').then((m) => m.AnimationsModule),
+    data: {
+      title: 'Animations',
+    },
+  },
 ];
