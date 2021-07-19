@@ -1,21 +1,15 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'docs-input-page',
   template: `
-   <ngx-doc-page header='Inputs'>
-      <docs-input-text></docs-input-text>
-   </ngx-doc-page>
+    <ngx-doc-page header="Inputs">
+      <ng-template ngxDocPageTab>
+        <docs-input-text></docs-input-text>
+      </ng-template>
+      <ng-template ngxDocPageTab> API</ng-template>
+    </ngx-doc-page>
   `,
-  styles: [
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InputPageComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-}
+export class InputPageComponent {}
