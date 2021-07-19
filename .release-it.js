@@ -1,8 +1,4 @@
-/**
- *
- * @param {'doc'|'ui'} pkg
- */
-module.exports = pkg => ({
+module.exports = {
   plugins: {
     '@release-it/conventional-changelog': {
       preset: {
@@ -10,57 +6,54 @@ module.exports = pkg => ({
         types: [
           {
             type: 'feat',
-            section: 'Features'
+            section: 'Features',
           },
           {
             type: 'fix',
-            section: 'Bug Fixes'
+            section: 'Bug Fixes',
           },
           {
             type: 'perf',
-            section: 'Performances'
+            section: 'Performances',
           },
           {
             type: 'refactor',
-            section: 'Refactor'
+            section: 'Refactor',
           },
           {
             type: 'docs',
-            section: 'Documentations'
-          }
-        ]
+            section: 'Documentations',
+          },
+        ],
       },
-      infile: `packages/ngx-${pkg}/CHANGELOG.md`
+      infile: 'CHANGELOG.md',
     },
     '@release-it/bumper': {
-      in: `packages/ngx-${pkg}/package.json`,
-      out: [
-        `packages/ngx-${pkg}/package.json`
-      ]
-    }
+      out: ['packages/ngx-ui/package.json', 'packages/ngx-doc/package.json'],
+    },
   },
   npm: {
-    publish: false
+    publish: false,
   },
   git: {
     push: false,
-    commitMessage: '(release-' + pkg + '): ${version}',
-    tagName: '${version}' + '-' + pkg
+    commitMessage: '(release): ${version}',
+    tagName: '${version}',
   },
   github: {
-    releaseNotes: true
+    releaseNotes: true,
   },
   hooks: {
     'after:bump': [
       'git checkout -- package-lock.json',
       'git checkout -- package.json',
-      'git checkout -b release-' + pkg + '/${version}'
+      'git checkout -b release/${version}',
     ],
     'after:release': [
       'git push origin HEAD --tags',
       'git checkout -',
-      'git merge --no-edit -m=\'chore: release-' + pkg + '/${version}\' release-' + pkg + '/${version}',
-      'git push'
-    ]
-  }
-});
+      "git merge --no-edit -m='chore: release/${version}' release/${version}'",
+      'git push',
+    ],
+  },
+};
