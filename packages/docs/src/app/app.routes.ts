@@ -53,4 +53,12 @@ export const appRoutes: Routes = [
       title: 'Animations',
     },
   },
+  {
+    path: 'pipes',
+    loadChildren: () =>
+      import('./pipes/pipes.module').then((m) => m.PipesModule),
+    data: {
+      title: 'Pipes',
+    },
+  },
 ];

@@ -1,0 +1,13 @@
+<ngx-input
+  ngxSize
+  ngxAppearance
+  ngxInputAttribute
+  type="text"
+  [(ngModel)]="stringFilter"
+  placeholder="Filter by"
+></ngx-input>
+<ul>
+  <li *ngFor="let item of array | filterBy: stringFilter">
+    {{ item }}
+  </li>
+</ul>
