@@ -4,10 +4,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'docs-typography-fonts',
   template: `
-    <ngx-doc-markdown>
-      Out of the box styling for headings, paragraphs, links, and codeblocks.
-    </ngx-doc-markdown>
-
     <ngx-doc-example heading="Fonts" id="fonts">
       <h3>
         Source Sans Pro

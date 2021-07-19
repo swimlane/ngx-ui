@@ -16,7 +16,7 @@ import {
     <span
       class="color-block"
       ngxCopyToClipboard="dblclk"
-      [ngxCopyToClipboardText]="hexSpan.innerText"
+      [ngxCopyToClipboardText]="cssVar"
       (copied)="onColorCopy($event)"
       [style.backgroundColor]="cssVar ? 'var(' + cssVar + ')' : hex"
     ></span>

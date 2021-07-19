@@ -78,6 +78,21 @@ export class AppComponent {
       icon: 'code',
     },
     {
+      name: 'Controllers',
+      route: 'controllers',
+      icon:'condition',
+      children: [
+        {
+          name: 'Introduction',
+          route: 'controllers',
+        },
+        {
+          name: 'Forms',
+          route: 'controller-forms',
+        },
+      ],
+    },
+    {
       name: 'Forms',
       icon: 'application',
       children: [

@@ -1,0 +1,16 @@
+<ngx-input
+  ngxInputAttribute
+  ngxAutofocus
+  ngxSize
+  ngxAppearance
+  type="text"
+  name="input1"
+  [label]="'Name'"
+  [ngModel]="inputValue"
+  [minlength]="4"
+  [hint]="'Enter your first and last name'"
+  (inputChange)="output = $event"
+>
+</ngx-input>
+
+<p>Output: {{ output | json }}</p>

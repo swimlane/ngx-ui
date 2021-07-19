@@ -4,6 +4,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'docs-typography',
   template: `
     <ngx-doc-page header="Typography">
+      <ngx-doc-markdown>
+        Out of the box styling for headings, paragraphs, links, and codeblocks.
+      </ngx-doc-markdown>
       <docs-typography-fonts></docs-typography-fonts>
       <docs-typography-headings></docs-typography-headings>
       <docs-typography-css-helpers></docs-typography-css-helpers>
