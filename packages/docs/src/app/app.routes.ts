@@ -37,4 +37,12 @@ export const appRoutes: Routes = [
       title: 'Layout',
     },
   },
+  {
+    path: 'icons',
+    loadChildren: () =>
+      import('./icons/icons.module').then((m) => m.IconsModule),
+    data: {
+      title: 'Icons',
+    },
+  },
 ];
