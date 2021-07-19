@@ -126,7 +126,7 @@ Cypress.Commands.add('getValue', { prevSubject: true }, element => {
 });
 
 /**
- * Close all notifications, if any.
+ * Close all ngx-ui notifications, if any.
  */
 Cypress.Commands.add('closeNotifications', () => {
   cy.get('ngx-notification-container').iff('.ngx-notification-close', $el => $el.trigger('click'));
