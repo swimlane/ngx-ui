@@ -45,14 +45,12 @@ module.exports = {
   },
   hooks: {
     'after:bump': [
-      'git checkout -- package-lock.json',
-      'git checkout -- package.json',
       'git checkout -b release/${version}',
     ],
     'after:release': [
       'git push origin HEAD --tags',
       'git checkout -',
-      "git merge --no-edit -m='chore: release/${version}' release/${version}'",
+      "git merge --no-edit -m='chore: release/${version}' release/${version}",
       'git push',
     ],
   },
