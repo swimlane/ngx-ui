@@ -98,12 +98,7 @@ export class SomeComponent {
 - Use `focusableElement` to change the `HTMLElement` as you see fit. Default to `Host#elementRef#nativeElement`
 
 ```ts
-@ViewChild('someOtherElement') set
-someOtherElementRef(v
-:
-ElementRef<HTMLElement>
-)
-{
+@ViewChild('someOtherElement') set someOtherElementRef(v:ElementRef<HTMLElement>) {
   this.autofocusController.focusableElement = v.nativeElement;
 }
 ```

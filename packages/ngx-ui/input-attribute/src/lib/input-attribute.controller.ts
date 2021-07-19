@@ -124,8 +124,6 @@ export class InputAttributeControllerDirective
   readonly type$ = this.$type.asObservable();
 
   ngOnChanges(changes: SimpleChanges) {
-    super.ngOnChanges(changes);
-
     if ('unlockable' in changes) {
       if (changes.unlockable.currentValue) {
         this.disabled = true;
@@ -135,6 +133,8 @@ export class InputAttributeControllerDirective
     if ('type' in changes || 'passwordTextVisible' in changes) {
       this.updateInputType();
     }
+
+    super.ngOnChanges(changes);
   }
 
   togglePasswordVisible() {

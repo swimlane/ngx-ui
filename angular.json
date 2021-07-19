@@ -3,7 +3,7 @@
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
-  "defaultProject": "ngx-ui",
+  "defaultProject": "docs",
   "schematics": {
     "@nrwl/angular:application": {
       "style": "scss",

@@ -1,33 +1,32 @@
-<ng-container *ngIf="id">
-  <ngx-section class="shadow" togglePosition="right">
-    <ngx-section-header class="ngx-doc-example__section-header">
-      <h3 class="ngx-doc-example__section-header-title">{{ heading }}</h3>
-      <button
-        class="btn btn-link"
-        type="button"
-        title="Copy"
-        (click)="copySectionLink()"
+<ngx-section class="shadow" togglePosition="right">
+  <ngx-section-header class="ngx-doc-example__section-header">
+    <h3 class="ngx-doc-example__section-header-title">{{ heading }}</h3>
+    <button
+      *ngIf="id"
+      class="btn btn-link"
+      type="button"
+      title="Copy"
+      (click)="copySectionLink()"
+    >
+      <i class="ngx-icon ngx-link ngx-doc-example__section-header-link"></i>
+    </button>
+  </ngx-section-header>
+  <div class="ngx-doc-example__content">
+    <ng-content></ng-content>
+  </div>
+  <div *ngIf="hasContent" class="ngx-doc-example__code">
+    <ngx-tabs>
+      <ngx-tab
+        *ngFor="let record of $any(processedContent) | keyvalue"
+        [label]="$any(record.key)"
       >
-        <i class="ngx-icon ngx-link ngx-doc-example__section-header-link"></i>
-      </button>
-    </ngx-section-header>
-    <div class="ngx-doc-example__content">
-      <ng-content></ng-content>
-    </div>
-    <div *ngIf="hasContent" class="ngx-doc-example__code">
-      <ngx-tabs>
-        <ngx-tab
-          *ngFor="let record of $any(processedContent) | keyvalue"
-          [label]="$any(record.key)"
-        >
-          <ng-template ngxIfTabActive>
-            <ngx-doc-markdown
-              [code]="$any(record.value)[0]"
-              [lang]="$any(record.value)[1] || 'typescript'"
-            ></ngx-doc-markdown>
-          </ng-template>
-        </ngx-tab>
-      </ngx-tabs>
-    </div>
-  </ngx-section>
-</ng-container>
+        <ng-template ngxIfTabActive>
+          <ngx-doc-markdown
+            [code]="$any(record.value)[0]"
+            [lang]="$any(record.value)[1] || 'typescript'"
+          ></ngx-doc-markdown>
+        </ng-template>
+      </ngx-tab>
+    </ngx-tabs>
+  </div>
+</ngx-section>

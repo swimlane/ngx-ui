@@ -1,19 +1,17 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { DocPageModule, generateRoutes } from '@swimlane/ngx-doc';
+import { DocExampleModule, DocMarkdownModule, DocPageModule, generateRoutes } from '@swimlane/ngx-doc';
 import { ControllerFormComponent } from './controller-form.component';
 
-
 @NgModule({
-  declarations: [
-    ControllerFormComponent
-  ],
+  declarations: [ControllerFormComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(generateRoutes(ControllerFormComponent)),
-    DocPageModule
-  ]
+    DocPageModule,
+    DocExampleModule,
+    DocMarkdownModule,
+  ],
 })
-export class ControllerFormPageModule {
-}
+export class ControllerFormPageModule {}
