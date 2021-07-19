@@ -1,4 +1,4 @@
-describe('Toogles', () => {
+describe('Toggles', () => {
   before(() => {
     cy.visit('/toggle');
     cy.get('.page-loader').should('not.exist', { timeout: 20000 });
