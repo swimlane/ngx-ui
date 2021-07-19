@@ -42,7 +42,7 @@ Cypress.Commands.add('getByLabel', label => {
 });
 
 /**
- * Given an element, returns the child input element.
+ * Given an ngx-ui element, returns the child native input element.
  */
 Cypress.Commands.add('findInput', { prevSubject: true }, element => {
   console.log(element.prop('tagName'));
@@ -64,7 +64,7 @@ Cypress.Commands.add('findInput', { prevSubject: true }, element => {
 });
 
 /**
- * Given an element, returns the child label element.
+ * Given an element, returns the label element.
  */
 Cypress.Commands.add('findLabel', { prevSubject: true }, element => {
   switch (element.prop('tagName')) {
@@ -82,7 +82,7 @@ Cypress.Commands.add('findLabel', { prevSubject: true }, element => {
 });
 
 /**
- * Given an element, returns the child input element's value.
+ * Given an element, returns the element's value.
  */
 Cypress.Commands.add('getValue', { prevSubject: true }, element => {
   switch (element.prop('tagName')) {
