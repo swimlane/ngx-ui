@@ -1,3 +1,35 @@
+## [36.0.0-beta.9](https://github.com/swimlane/ngx-ui/compare/36.0.0-beta.8-ui...36.0.0-beta.9) (2021-07-19)
+
+
+### Features
+
+* **ngx-doc:** add DocPageTab ([5e22b68](https://github.com/swimlane/ngx-ui/commit/5e22b6896c935db7d7489cff2551434097339af5))
+
+
+### Bug Fixes
+
+* **filter-by:** adjust typings ([86871e8](https://github.com/swimlane/ngx-ui/commit/86871e83056fe1cbc3be8fd4183cd47804a50ac9))
+* **input:** null check autofocusController before setting element ([ae9de43](https://github.com/swimlane/ngx-ui/commit/ae9de4378ecc34266592e51ead034c22076bf5a5))
+
+
+### Documentations
+
+* add Animations page ([af619d4](https://github.com/swimlane/ngx-ui/commit/af619d4ab7f48fce5df29c898c86affb43333cf5))
+* add colors ([d28d774](https://github.com/swimlane/ngx-ui/commit/d28d774f3387e6c874a32ab5361d674c8a0212d0))
+* add Colors page ([324f8ab](https://github.com/swimlane/ngx-ui/commit/324f8abef7a1c5a3075857904ca56ffe8a35af5d))
+* add docs for ngx-doc ([b661445](https://github.com/swimlane/ngx-ui/commit/b661445ac385fd361c1cf0a09e94074b651e81de))
+* add FormControllers ([268f667](https://github.com/swimlane/ngx-ui/commit/268f667eb347aa150deca4dcc6e4c3f5fc7c82f6))
+* add Icons page ([5fe7e82](https://github.com/swimlane/ngx-ui/commit/5fe7e823050576a312c0fd3c5a9b3e1ab210e3ef))
+* add Input Text section ([9378b5d](https://github.com/swimlane/ngx-ui/commit/9378b5d15d3341f6ac44370a58196c1e990aad53))
+* add Layout page ([3612bd7](https://github.com/swimlane/ngx-ui/commit/3612bd75368b328dd70a3ebb6d6d3c37df7af274))
+* add note about building ngx-doc ([596aa2a](https://github.com/swimlane/ngx-ui/commit/596aa2a695c0cd8b38be22c2317a3d709a53304a))
+* add Pipes page ([a43db1b](https://github.com/swimlane/ngx-ui/commit/a43db1b822da1ea0f2cca5c912d52181a4cde18c))
+* adjust settings ([1645007](https://github.com/swimlane/ngx-ui/commit/1645007dd8c7fd1ce1f25611b637831bc7fcd26a))
+* **ngx-doc:** up version ([e98540c](https://github.com/swimlane/ngx-ui/commit/e98540c4c9c1befc9b97f210042bbaeebf5381b8))
+* reformat InputPage ([b7a6117](https://github.com/swimlane/ngx-ui/commit/b7a61177b02ee9f875958d23153f7d243d757925))
+* WIP ([4f77b9c](https://github.com/swimlane/ngx-ui/commit/4f77b9c1f13e79bf42508543775607622049d110))
+* wip controllers ([fee2e0a](https://github.com/swimlane/ngx-ui/commit/fee2e0a279090f97f4d9a73990d505b19e7b8ee4))
+
 ### 0.0.1-0 (2021-07-17)
 
 
