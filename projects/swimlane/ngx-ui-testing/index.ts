@@ -136,6 +136,7 @@ Cypress.Commands.add('closeNotifications', () => {
  * Like `cy.within`, but for each element.
  */
 Cypress.Commands.add('withinEach', { prevSubject: true }, (subject, fn) => {
+  // TODO: support `.withinEach(options, callbackFn)`
   cy.wrap(subject).each($el => {
     cy.wrap($el).within(fn);
   });
@@ -145,6 +146,7 @@ Cypress.Commands.add('withinEach', { prevSubject: true }, (subject, fn) => {
  * Like `cy.within` but also forces the element into a hover state.
  */
 Cypress.Commands.add('whileHovering', { prevSubject: true }, (subject, fn) => {
+  // TODO: support `.whileHovering(options, callbackFn)`
   return cy
     .wrap(subject)
     .trigger('mouseover', { log: false })
@@ -216,6 +218,7 @@ Cypress.Commands.overwrite('check', (originalFn, element, ...options) => {
     case TOGGLE:
     case CHECKBOX:
     case RADIOBUTTON:
+      // TODO: suppport `.check(value, options)`
       cy.wrap(element)
         .findInput()
         .check({ ...options, force: true });
@@ -231,6 +234,7 @@ Cypress.Commands.overwrite('uncheck', (originalFn, element, ...options) => {
   switch (element.prop('tagName')) {
     case TOGGLE:
     case CHECKBOX:
+      // TODO: suppport `.uncheck(value, options)`
       cy.wrap(element)
         .findInput()
         .uncheck({ ...options, force: true });
@@ -303,6 +307,7 @@ Cypress.Commands.add('fill', { prevSubject: true }, (subject, text?, ...options)
  * Like `cy.within` but only if the element exists in the DOM.
  */
 Cypress.Commands.add('iff', { prevSubject: true }, (subject, selector, fn) => {
+  // TODO: support `.iff(selector, options, callbackFn)`
   if (typeof selector === 'function') {
     fn = selector;
     selector = '';
