@@ -10,6 +10,7 @@ declare namespace Cypress {
     withinEach(fn: (el: JQuery<any>) => void): Chainable<void>;
     whileHovering(fn: (el: JQuery<any>) => void): Chainable<void>;
     fill(text: string): Chainable<Element>;
+    setValue(text: string): Chainable<JQuery<any>>;
     iff(selector: string | ((el: JQuery<any>) => void), fn?: (el: JQuery<any>) => void): Chainable<Element>;
   }
 }

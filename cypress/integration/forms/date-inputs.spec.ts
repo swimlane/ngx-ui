@@ -9,6 +9,10 @@ describe('Date/Time', () => {
       cy.get('ngx-date-time').first().as('CUT');
     });
 
+    afterEach(() => {
+      cy.get('@CUT').clear();
+    });
+
     it('has a label', () => {
       cy.get('@CUT').findLabel().should('contain.text', 'Date of attack');
     });

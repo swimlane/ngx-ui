@@ -14,6 +14,8 @@ describe('Selects', () => {
     });
 
     it('selects and clears value', () => {
+      cy.get('@CUT').getValue().should('equal', '');
+
       const text = 'DDOS';
 
       cy.get('@CUT').select(text).getValue().should('equal', text);

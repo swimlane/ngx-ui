@@ -10,7 +10,7 @@ describe('Inputs', () => {
     });
 
     afterEach(() => {
-      cy.get('@CUT').fill('A Value');
+      cy.get('@CUT').setValue('A Value');
     });
 
     it('has a label', () => {
@@ -24,18 +24,22 @@ describe('Inputs', () => {
     it('enters and clears text', () => {
       const text = 'hello world';
 
-      cy.get('@CUT').fill(text).getValue().should('equal', text);
+      cy.get('@CUT').getValue().should('equal', 'A Value');
 
-      cy.get('@CUT').clear().getValue().should('equal', '');
+      cy.get('@CUT')
+        .fill(text)
+        .getValue().should('equal', text);
+
+      cy.get('@CUT')
+        .clear()
+        .getValue().should('equal', '');
     });
 
     it('underlines active input', () => {
-      cy.get('@CUT')
-        .find('.ngx-input-underline .underline-fill')
-        .should(el => {
-          expect(el).to.have.attr('style');
-          expect(Cypress.$(el).attr('style')).to.match(/.*width:\s*0%.*/);
-        });
+      // cy.get('@CUT')
+      //   .find('.ngx-input-underline .underline-fill')
+      //   .invoke('attr', 'style')
+      //   .should('contain', 'width: 0%');
 
       // when we click on the input box
       // it underlines it
@@ -43,16 +47,18 @@ describe('Inputs', () => {
 
       cy.get('@CUT')
         .find('.ngx-input-underline .underline-fill')
-        .should(el => {
-          expect(el).to.have.attr('style');
-          expect(Cypress.$(el).attr('style')).to.match(/.*width:\s*100%.*/);
-        });
+        .invoke('attr', 'style')
+        .should('contain', 'width: 100%');
     });
   });
 
   describe('Native Input', () => {
     beforeEach(() => {
       cy.get('[sectiontitle="Native"] input').first().as('CUT');
+    });
+
+    afterEach(() => {
+      cy.get('@CUT').setValue('');
     });
 
     it('enters and clears text', () => {
@@ -74,7 +80,7 @@ describe('Inputs', () => {
     });
 
     afterEach(() => {
-      cy.get('@CUT').fill('A Value');
+      cy.get('@CUT').setValue('A Value');
     });
 
     it('has a label', () => {
@@ -120,7 +126,7 @@ describe('Inputs', () => {
     });
 
     afterEach(() => {
-      cy.get('@CUT').fill('');
+      cy.get('@CUT').setValue('');
     });
 
     it('adds a placeholder', () => {
@@ -157,7 +163,7 @@ describe('Inputs', () => {
     });
 
     afterEach(() => {
-      cy.get('@CUT').fill('');
+      cy.get('@CUT').setValue('');
     });
 
     it('has a label', () => {

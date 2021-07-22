@@ -6,26 +6,148 @@ declare namespace Cypress {
     getByLabel(name: string): Chainable<JQuery<any>>;
     findInput(): Chainable<JQuery<any>>;
     findLabel(): Chainable<JQuery<any>>;
-    getValue(): Chainable<string>;
+    getValue(): Chainable<string | boolean | number>;
     closeNotifications(): Chainable<void>;
     withinEach(fn: (el: JQuery<any>) => void): Chainable<void>;
     whileHovering(fn: (el: JQuery<any>) => void): Chainable<void>;
-    fill(text: string): Chainable<Element>;
-    iff(selector: string | ((el: JQuery<any>) => void), fn?: (el: JQuery<any>) => void): Chainable<Element>;
+    fill(text: string): Chainable<JQuery<any>>;
+    setValue(text: string): Chainable<JQuery<any>>;
+    iff(selector: string | ((el: JQuery<any>) => void), fn?: (el: JQuery<any>) => void): Chainable<JQuery<any>>;
   }
 }
 
-const CODEMIRROR = 'NGX-CODEMIRROR';
-const SELECT = 'NGX-SELECT';
-const INPUT = 'NGX-INPUT';
-const DATETIME = 'NGX-DATE-TIME';
-const TOGGLE = 'NGX-TOGGLE';
-const CHECKBOX = 'NGX-CHECKBOX';
-const SLIDER = 'NGX-SLIDER';
-const RADIOBUTTON_GROUP = 'NGX-RADIOBUTTON-GROUP';
-const RADIOBUTTON = 'NGX-RADIOBUTTON';
+const CODEMIRROR = 'ngx-codemirror';
+const SELECT = 'ngx-select';
+const INPUT = 'ngx-input';
+const DATETIME = 'ngx-date-time';
+const TOGGLE = 'ngx-toggle';
+const CHECKBOX = 'ngx-checkbox';
+const SLIDER = 'ngx-slider';
+const RADIOBUTTON_GROUP = 'ngx-radiobutton-group';
+const RADIOBUTTON = 'ngx-radiobutton';
 
 const CLEAR = Cypress.platform != 'darwin' ? '{ctrl}a{del}' : '{meta}a{del}';
+const LOG_FALSE = { log: false };
+
+function findInput(element: JQuery<Element>): any {
+  switch (element.prop('tagName').toLowerCase()) {
+    case INPUT:
+    case DATETIME:
+      return element.find('input,textarea');
+    case TOGGLE:
+    case CHECKBOX:
+      return element.find('input[type="checkbox"]');
+    case SLIDER:
+      return element.find('input[type="range"]');
+    case RADIOBUTTON:
+      return element.find('input[type="radio"]');
+    case CODEMIRROR:
+      return cy.wrap(element).find('div.CodeMirror').click().find('textarea');
+  }
+  return element;
+}
+
+function findLabel(element: JQuery<Element>): any {
+  switch (element.prop('tagName').toLowerCase()) {
+    case INPUT:
+    case DATETIME:
+      return element.find('.ngx-input-label');
+    case TOGGLE:
+      return element.find('.ngx-toggle-text');
+    case CHECKBOX:
+      return element.find('.ngx-checkbox--content');
+    case SELECT:
+      return element.find('.ngx-select-label');
+  }
+  return element;
+}
+
+function clear(subject: JQuery<Element>) {
+  switch (subject.prop('tagName').toLowerCase()) {
+    case CODEMIRROR:
+      return cy.wrap(subject, LOG_FALSE).findInput().type(CLEAR, LOG_FALSE);
+    case INPUT:
+    case DATETIME:
+      return cy.wrap(findInput(subject), LOG_FALSE).clear(LOG_FALSE);
+    case SELECT:
+      return cy.wrap(subject, LOG_FALSE).iff('.ngx-select-clear', $el => $el.trigger('click'));
+    case TOGGLE:
+    case CHECKBOX:
+      return cy.wrap(findInput(subject), LOG_FALSE).uncheck({ ...LOG_FALSE, force: true });
+    case SLIDER:
+      const $el = findInput(subject);
+      const min = $el.attr('min');
+      return $el.val(min);
+  }
+}
+
+function getValue(element: JQuery<Element>): any {
+  switch (element.prop('tagName').toLowerCase()) {
+    case CODEMIRROR: {
+      const $el = element.find('.CodeMirror');
+      return $el[0]['CodeMirror']?.getValue() || '';
+    }
+    case SELECT: {
+      const $el = element.find('.ngx-select-input-name');
+      if (element.hasClass('multi-selection') || $el.length > 1) {
+        return Cypress.$.map($el, (el: Element) => Cypress.$(el).text());
+      } else {
+        return $el?.text() || '';
+      }
+    }
+    case TOGGLE:
+    case CHECKBOX:
+    case RADIOBUTTON:
+      return findInput(element).is(':checked');
+    case RADIOBUTTON_GROUP: {
+      // This is not good, need to find the real value
+      const el = element.find('input[type="radio"]:checked');
+      if (!el) return '';
+      return el.parent().find('.radio-label--content').text().trim() || '';
+    }
+  }
+  return findInput(element).val();
+}
+
+function setValue(element: JQuery<Element>, text?: string, options = {}) {
+  findInput(element).val(text);
+  element.trigger('change');
+}
+
+function fillValue(element: any, text?: string, options = {}) {
+  switch (element.prop('tagName').toLowerCase()) {
+    case SELECT:
+      clear(element);
+      if (text) {
+        return cy.wrap(element, LOG_FALSE).type(`${text}{downarrow}{enter}`, { ...options, ...LOG_FALSE });
+      }
+    case SLIDER:
+      return setValue(element, text);
+    case RADIOBUTTON_GROUP:
+      // This is not good, need to find the real value
+      return cy.wrap(element, LOG_FALSE).contains(text).click(LOG_FALSE);
+  }
+
+  clear(element);
+  if (text) {
+    cy.wrap(element, LOG_FALSE).type(text, { ...options, ...LOG_FALSE });
+  }
+  return cy.focused(LOG_FALSE).blur(LOG_FALSE);
+}
+
+function iff(element: any, selector: string, fn: any) {
+  if (typeof selector === 'function') {
+    fn = selector;
+    selector = '';
+  }
+  if (Cypress.$('body').find(element).length) {
+    // check if subject is still in DOM
+    const $el = selector ? element.find(selector) : element;
+    if ($el.length) {
+      return cy.wrap($el).within(fn);
+    }
+  }
+}
 
 /**
  * Find element by name attribute.
@@ -44,85 +166,55 @@ Cypress.Commands.add('getByLabel', label => {
 /**
  * Given an ngx-ui element, returns the child native input element.
  */
-Cypress.Commands.add('findInput', { prevSubject: true }, element => {
-  console.log(element.prop('tagName'));
-  switch (element.prop('tagName')) {
-    case INPUT:
-    case DATETIME:
-      return cy.wrap(element).click().find('input,textarea');
-    case CODEMIRROR:
-      return cy.wrap(element).find('div.CodeMirror').click().find('textarea');
-    case TOGGLE:
-    case CHECKBOX:
-      return cy.wrap(element).find('input[type="checkbox"]');
-    case SLIDER:
-      return cy.wrap(element).find('input[type="range"]');
-    case RADIOBUTTON:
-      return cy.wrap(element).find('input[type="radio"]');
+Cypress.Commands.add('findInput', { prevSubject: 'element' }, (subject, options = {}) => {
+  options = {
+    log: true,
+    ...options
+  };
+
+  if (options.log) {
+    Cypress.log({
+      name: 'findInput',
+      $el: subject
+    });
   }
-  return cy.wrap(element).click();
+  return findInput(subject);
 });
 
 /**
  * Given an element, returns the label element.
  */
-Cypress.Commands.add('findLabel', { prevSubject: true }, element => {
-  switch (element.prop('tagName')) {
-    case INPUT:
-    case DATETIME:
-      return cy.wrap(element).find('.ngx-input-label');
-    case TOGGLE:
-      return cy.wrap(element).find('.ngx-toggle-text');
-    case CHECKBOX:
-      return cy.wrap(element).find('.ngx-checkbox--content');
-    case SELECT:
-      return cy.wrap(element).find('.ngx-select-label');
+Cypress.Commands.add('findLabel', { prevSubject: 'element' }, (subject, options = {}) => {
+  options = {
+    log: true,
+    ...options
+  };
+
+  if (options.log) {
+    Cypress.log({
+      name: 'findLabel',
+      $el: subject
+    });
   }
-  return cy.wrap(element);
+  return findLabel(subject);
 });
 
 /**
  * Given an element, returns the element's value.
  */
-Cypress.Commands.add('getValue', { prevSubject: true }, element => {
-  switch (element.prop('tagName')) {
-    case CODEMIRROR: {
-      const $el = element.find('.CodeMirror');
-      return $el[0]?.CodeMirror?.getValue() || '';
-    }
-    case SELECT: {
-      const $el = element.find('.ngx-select-input-name');
-      if (element.hasClass('multi-selection') || $el.length > 1) {
-        return Cypress.$.map($el, el => Cypress.$(el).text());
-      } else {
-        return $el?.text() || '';
-      }
-    }
-    case INPUT:
-    case DATETIME:
-      return cy.wrap(element).findInput().invoke('val');
-    case TOGGLE:
-    case CHECKBOX:
-      return cy
-        .wrap(element)
-        .findInput()
-        .then(el => el.is(':checked'));
-    case SLIDER:
-      return cy.wrap(element).findInput().invoke('val');
-    case RADIOBUTTON_GROUP: {
-      // This is not good, need to find the real value
-      const el = element.find('input[type="radio"]:checked');
-      if (!el) return '';
-      return el.parent().find('.radio-label--content').text().trim() || '';
-    }
-    case RADIOBUTTON:
-      return cy
-        .wrap(element)
-        .findInput()
-        .then(el => el.is(':checked'));
-  }
+Cypress.Commands.add('getValue', { prevSubject: 'element' }, (subject, options = {}) => {
+  options = {
+    log: true,
+    ...options
+  };
 
-  return cy.wrap(element).invoke('val');
+  if (options.log) {
+    Cypress.log({
+      name: 'getValue',
+      $el: subject
+    });
+  }
+  return getValue(subject);
 });
 
 /**
@@ -137,187 +229,175 @@ Cypress.Commands.add('closeNotifications', () => {
  */
 Cypress.Commands.add('withinEach', { prevSubject: true }, (subject, fn) => {
   // TODO: support `.withinEach(options, callbackFn)`
-  cy.wrap(subject).each($el => {
-    cy.wrap($el).within(fn);
+  subject.each(function () {
+    cy.wrap(this).within(fn);
   });
 });
 
 /**
  * Like `cy.within` but also forces the element into a hover state.
  */
-Cypress.Commands.add('whileHovering', { prevSubject: true }, (subject, fn) => {
+Cypress.Commands.add('whileHovering', { prevSubject: 'element' }, (subject, fn) => {
   // TODO: support `.whileHovering(options, callbackFn)`
-  return cy
-    .wrap(subject)
-    .trigger('mouseover', { log: false })
-    .trigger('mouseenter', { log: false })
+  cy.wrap(subject, LOG_FALSE)
+    .trigger('mouseover', LOG_FALSE)
+    .trigger('mouseenter', LOG_FALSE)
     .within($el => {
       subject.addClass('cy-hover');
       fn($el);
       subject.removeClass('cy-hover');
     })
     .iff($el => {
-      return cy.wrap($el).trigger('mouseleave', { log: false }).trigger('mouseout', { log: false });
+      return cy.wrap($el).trigger('mouseleave', LOG_FALSE).trigger('mouseout', LOG_FALSE);
     });
+  return cy.wrap(subject, LOG_FALSE);
 });
 
 /**
  * Overwrites `cy.clear` to work with ngx-ui elements.
  */
-Cypress.Commands.overwrite('clear', (originalFn, element, ...options) => {
-  switch (element.prop('tagName')) {
+Cypress.Commands.overwrite('clear', (originalFn, subject, options = {}, ...args) => {
+  switch (subject.prop('tagName').toLowerCase()) {
     case CODEMIRROR:
-      cy.wrap(element).findInput().type(CLEAR);
-      return cy.wrap(element);
     case INPUT:
     case DATETIME:
-      cy.wrap(element).findInput().clear();
-      return cy.wrap(element);
     case SELECT:
-      cy.wrap(element).iff('.ngx-select-clear', $el => $el.trigger('click'));
-      return cy.wrap(element);
     case TOGGLE:
     case CHECKBOX:
-      return cy.wrap(element).uncheck();
-    case SLIDER:
-      return cy
-        .wrap(element)
-        .findInput()
-        .then($el => {
-          const min = $el.attr('min');
-          return $el.val(min);
+    case SLIDER: {
+      if (options.log !== false) {
+        Cypress.log({
+          name: 'clear',
+          $el: subject
         });
+      }
+      return cy.wrap(subject, LOG_FALSE).each(clear);
+    }
   }
-  return originalFn(element, ...options);
+  return originalFn(subject, options, ...args);
 });
 
 /**
  * Overwrites `cy.click` to work with ngx-ui elements.
  */
-Cypress.Commands.overwrite('click', (originalFn, element, ...options) => {
-  switch (element.prop('tagName')) {
+Cypress.Commands.overwrite('click', (originalFn, subject, ...options) => {
+  switch (subject.prop('tagName').toLowerCase()) {
     case TOGGLE:
-      cy.wrap(element)
-        .find('.ngx-toggle-label')
-        .click(...options);
-      return cy.wrap(element);
     case CHECKBOX:
-      cy.wrap(element)
-        .find('.ngx-checkbox--label')
-        .click(...options);
-      return cy.wrap(element);
+      return cy.wrap(subject, LOG_FALSE).each(el => {
+        originalFn(findInput(el), { ...options, force: true });
+      });
   }
-  return originalFn(element, ...options);
+  return originalFn(subject, ...options);
 });
 
 /**
  * Overwrites `cy.check` to work with ngx-ui elements.
  */
-Cypress.Commands.overwrite('check', (originalFn, element, ...options) => {
-  switch (element.prop('tagName')) {
+Cypress.Commands.overwrite('check', (originalFn, subject, ...options) => {
+  switch (subject.prop('tagName').toLowerCase()) {
     case TOGGLE:
     case CHECKBOX:
     case RADIOBUTTON:
       // TODO: suppport `.check(value, options)`
-      cy.wrap(element)
-        .findInput()
-        .check({ ...options, force: true });
-      return cy.wrap(element);
+      return cy.wrap(subject, LOG_FALSE).each(el => {
+        originalFn(findInput(el), { ...options, force: true });
+      });
   }
-  return originalFn(element, ...options);
+  return originalFn(subject, ...options);
 });
 
 /**
  * Overwrites `cy.uncheck` to work with ngx-ui elements.
  */
-Cypress.Commands.overwrite('uncheck', (originalFn, element, ...options) => {
-  switch (element.prop('tagName')) {
+Cypress.Commands.overwrite('uncheck', (originalFn, subject, ...options) => {
+  switch (subject.prop('tagName').toLowerCase()) {
     case TOGGLE:
     case CHECKBOX:
       // TODO: suppport `.uncheck(value, options)`
-      cy.wrap(element)
-        .findInput()
-        .uncheck({ ...options, force: true });
-      return cy.wrap(element);
+      return cy.wrap(subject, LOG_FALSE).each(el => {
+        originalFn(findInput(el), { ...options, force: true });
+      });
   }
-  return originalFn(element, ...options);
+  return originalFn(subject, ...options);
 });
 
 /**
  * Overwrites `cy.select` to work with ngx-ui elements.
  */
-Cypress.Commands.overwrite('select', (originalFn, element, text, ...options) => {
-  switch (element.prop('tagName')) {
+Cypress.Commands.overwrite('select', (originalFn, subject, text, ...options) => {
+  switch (subject.prop('tagName').toLowerCase()) {
     case SELECT:
-      return cy
-        .wrap(element)
-        .clear()
-        .within(() => {
-          cy.get('.ngx-select-caret').click();
-          if (Array.isArray(text)) {
-            text.forEach(t => {
-              cy.contains(t).click();
-            });
-          } else {
-            cy.contains(text).click();
-          }
-          cy.get('.ngx-select-caret').click();
+      // clear(subject);
+      // subject.find('.ngx-select-caret').click();
+
+      if (!Array.isArray(text)) text = [text];
+
+      return cy.wrap(subject, LOG_FALSE).withinEach($el => {
+        clear($el);
+        cy.get('.ngx-select-caret').click();
+        text.forEach((t: string | number | RegExp) => {
+          cy.get('li', LOG_FALSE).contains(t).click(LOG_FALSE);
         });
+        cy.get('.ngx-select-caret').click();
+      });
   }
-  return originalFn(element, text, ...options);
+  return originalFn(subject, text, ...options);
 });
 
 /**
  * Like `cy.type` but clears existing text before and works with ngx-ui elements.
  */
-Cypress.Commands.add('fill', { prevSubject: true }, (subject, text?, ...options) => {
-  if (!text) {
-    return cy.wrap(subject).clear(...options);
-  }
-  switch (subject.prop('tagName')) {
-    case SELECT:
-      cy.wrap(subject).clear();
-      return cy.wrap(subject).type(`${text}{downarrow}{enter}`, ...options);
-    case INPUT:
-    case DATETIME:
-    case CODEMIRROR:
-      cy.wrap(subject)
-        .clear()
-        .findInput()
-        .type(text, ...options)
-        .blur();
-      return cy.wrap(subject);
-    case SLIDER:
-      cy.wrap(subject).findInput().invoke('val', text).trigger('change');
-      return cy.wrap(subject);
-    case RADIOBUTTON_GROUP:
-      // This is not good, need to find the real value
-      cy.get('@CUT').contains(text).click();
-      return cy.wrap(subject);
-  }
+Cypress.Commands.add('fill', { prevSubject: 'element' }, (subject, text?, options = {}) => {
+  options = {
+    log: true,
+    ...options
+  };
 
-  cy.wrap(subject)
-    .clear()
-    .type(text, ...options)
-    .blur();
-  return cy.wrap(subject);
+  if (options.log) {
+    Cypress.log({
+      name: 'fill',
+      $el: subject
+    });
+  }
+  return cy.wrap(subject, LOG_FALSE).each(el => fillValue(el, text, options));
+});
+
+/**
+ * Set an elements value directly
+ */
+Cypress.Commands.add('setValue', { prevSubject: 'element' }, (subject, text?, options = {}) => {
+  options = {
+    log: true,
+    ...options
+  };
+
+  if (options.log) {
+    Cypress.log({
+      name: 'setValue',
+      $el: subject
+    });
+  }
+  return cy.wrap(subject, LOG_FALSE).each(el => setValue(el, text, options));
 });
 
 /**
  * Like `cy.within` but only if the element exists in the DOM.
  */
-Cypress.Commands.add('iff', { prevSubject: true }, (subject, selector, fn) => {
+Cypress.Commands.add('iff', { prevSubject: true }, (subject, selector, fn, options) => {
+  options = {
+    log: true,
+    ...options
+  };
+  if (options.log) {
+    Cypress.log({
+      name: 'iff',
+      $el: subject,
+      message: selector
+    });
+  }
+
   // TODO: support `.iff(selector, options, callbackFn)`
-  if (typeof selector === 'function') {
-    fn = selector;
-    selector = '';
-  }
-  if (Cypress.$('body').find(subject).length) {
-    // check if subject is still in DOM
-    const $el = selector ? subject.find(selector) : subject;
-    if ($el.length) {
-      return cy.wrap($el).within(fn);
-    }
-  }
-  return subject;
+  iff(subject, selector, fn);
+  return cy.wrap(subject, LOG_FALSE);
 });
