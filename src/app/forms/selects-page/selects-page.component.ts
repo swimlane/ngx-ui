@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Observable, timer } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { fromFetch } from 'rxjs/fetch';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-selects-page',
@@ -12,7 +13,7 @@ export class SelectsPageComponent implements OnInit {
   selects = this._results;
   selectsModel = [this.selects[0]];
   singleSelectModel = this.selects[0];
-  asyncOptions$: Observable<any[]>;
+  asyncOptions$: Observable<any>;
 
   private get _results() {
     let i = 50;
@@ -30,8 +31,22 @@ export class SelectsPageComponent implements OnInit {
     return results;
   }
 
+  search(query: string): void {
+    query = query.toLowerCase();
+
+    this.asyncOptions$ = fromFetch(`https://jsonplaceholder.typicode.com/posts?q=${query}`).pipe(
+      switchMap(async response => {
+        const body = await response.json();
+        return body.filter(item => {
+          item.disabled = item.id % 15 === 0;
+          return item.title.toLowerCase().indexOf(query) > -1;
+        });
+      })
+    );
+  }
+
   ngOnInit() {
-    this.asyncOptions$ = timer(0, 5000).pipe(map(() => this._results));
+    this.search('');
   }
 
   onSelectKeyUp(event: KeyboardEvent) {

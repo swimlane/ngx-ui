@@ -581,10 +581,10 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Async">
-  <ngx-select>
+  <ngx-select (keyup)="search($event.value)">
     <ngx-select-option
       *ngFor="let option of asyncOptions$ | async"
-      [name]="option.name"
+      [name]="option.title"
       [value]="option"
       [disabled]="option.disabled"
     ></ngx-select-option>

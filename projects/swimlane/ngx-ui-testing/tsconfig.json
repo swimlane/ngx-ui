@@ -5,7 +5,9 @@
     "lib": ["es2018", "dom"],
     "types": ["cypress"],
     "moduleResolution": "node",
-    "declaration": true
+    "declaration": true,
+    "rootDir": "src",
+    "outDir": "dist"
   },
   "include": ["**/*.ts"]
 }

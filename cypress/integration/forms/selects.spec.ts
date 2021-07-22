@@ -36,7 +36,7 @@ describe('Selects', () => {
     it('selects and clears value', () => {
       const text = 'DDOS';
 
-      cy.get('@CUT').fill(text).getValue().should('equal', text);
+      cy.get('@CUT').fill(text).select(text).getValue().should('equal', text);
 
       cy.get('@CUT').clear().getValue().should('equal', '');
     });
@@ -77,6 +77,21 @@ describe('Selects', () => {
       cy.get('@CUT').getValue().should('deep.equal', []);
       cy.get('@CUT').select('Green').getValue().should('deep.equal', ['Green']);
       cy.get('@CUT').select(['Green', 'Red']).getValue().should('deep.equal', ['Red', 'Green']);
+    });
+  });
+
+  describe('Async', () => {
+    beforeEach(() => {
+      cy.get('[sectiontitle="Async"] ngx-select').first().as('CUT').scrollIntoView();
+      cy.intercept('https://jsonplaceholder.typicode.com/posts?q=dolorem').as('api');
+    });
+
+    it('selects value', () => {
+      cy.get('@CUT').getValue().should('deep.equal', '');
+      cy.get('@CUT').fill('dolorem');
+      cy.wait('@api');
+      cy.get('@CUT').select('dolorem');
+      cy.get('@CUT').getValue().should('deep.equal', 'dolorem eum magni eos aperiam quia');
     });
   });
 
