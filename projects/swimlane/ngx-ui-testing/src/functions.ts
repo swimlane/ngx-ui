@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference path='./commands.d.ts'/>
 
-export const enum Components {
+export const enum NGX {
   CODEMIRROR = 'ngx-codemirror',
   SELECT = 'ngx-select',
   INPUT = 'ngx-input',
@@ -19,19 +19,19 @@ export const LOG = { log: DEBUG };
 
 export function findInput(element: JQuery<Element>): any {
   switch (element.prop('tagName').toLowerCase()) {
-    case Components.INPUT:
-    case Components.DATETIME:
+    case NGX.INPUT:
+    case NGX.DATETIME:
       return element.find('input,textarea');
-    case Components.TOGGLE:
-    case Components.CHECKBOX:
+    case NGX.TOGGLE:
+    case NGX.CHECKBOX:
       return element.find('input[type="checkbox"]');
-    case Components.SLIDER:
+    case NGX.SLIDER:
       return element.find('input[type="range"]');
-    case Components.RADIOBUTTON:
+    case NGX.RADIOBUTTON:
       return element.find('input[type="radio"]');
-    case Components.CODEMIRROR:
+    case NGX.CODEMIRROR:
       return cy.wrap(element).find('div.CodeMirror').click().find('textarea');
-    case Components.SELECT:
+    case NGX.SELECT:
       return element.find('input[type="search"]');
   }
   return element;
@@ -39,14 +39,14 @@ export function findInput(element: JQuery<Element>): any {
 
 export function findLabel(element: JQuery<Element>): any {
   switch (element.prop('tagName').toLowerCase()) {
-    case Components.INPUT:
-    case Components.DATETIME:
+    case NGX.INPUT:
+    case NGX.DATETIME:
       return element.find('.ngx-input-label');
-    case Components.TOGGLE:
+    case NGX.TOGGLE:
       return element.find('.ngx-toggle-text');
-    case Components.CHECKBOX:
+    case NGX.CHECKBOX:
       return element.find('.ngx-checkbox--content');
-    case Components.SELECT:
+    case NGX.SELECT:
       return element.find('.ngx-select-label');
   }
   return element;
@@ -54,17 +54,17 @@ export function findLabel(element: JQuery<Element>): any {
 
 export function clear(subject: JQuery<Element>) {
   switch (subject.prop('tagName').toLowerCase()) {
-    case Components.CODEMIRROR:
+    case NGX.CODEMIRROR:
       return cy.wrap(subject, LOG).findInput().type(CLEAR, LOG);
-    case Components.INPUT:
-    case Components.DATETIME:
+    case NGX.INPUT:
+    case NGX.DATETIME:
       return cy.wrap(findInput(subject), LOG).clear(LOG);
-    case Components.SELECT:
+    case NGX.SELECT:
       return cy.wrap(subject, LOG).iff('.ngx-select-clear', $el => $el.trigger('click'));
-    case Components.TOGGLE:
-    case Components.CHECKBOX:
+    case NGX.TOGGLE:
+    case NGX.CHECKBOX:
       return cy.wrap(findInput(subject), LOG).uncheck({ ...LOG, force: true });
-    case Components.SLIDER:
+    case NGX.SLIDER:
       const $el = findInput(subject);
       const min = $el.attr('min');
       return $el.val(min);
@@ -73,11 +73,11 @@ export function clear(subject: JQuery<Element>) {
 
 export function getValue(element: JQuery<Element>): any {
   switch (element.prop('tagName').toLowerCase()) {
-    case Components.CODEMIRROR: {
+    case NGX.CODEMIRROR: {
       const $el = element.find('.CodeMirror');
       return $el[0]['CodeMirror']?.getValue() || '';
     }
-    case Components.SELECT: {
+    case NGX.SELECT: {
       const $el = element.find('.ngx-select-input-name');
       if (element.hasClass('multi-selection') || $el.length > 1) {
         return Cypress.$.map($el, (el: Element) => Cypress.$(el).text());
@@ -85,11 +85,11 @@ export function getValue(element: JQuery<Element>): any {
         return $el?.text() || '';
       }
     }
-    case Components.TOGGLE:
-    case Components.CHECKBOX:
-    case Components.RADIOBUTTON:
+    case NGX.TOGGLE:
+    case NGX.CHECKBOX:
+    case NGX.RADIOBUTTON:
       return findInput(element).is(':checked');
-    case Components.RADIOBUTTON_GROUP: {
+    case NGX.RADIOBUTTON_GROUP: {
       // This is not good, need to find the real value
       const el = element.find('input[type="radio"]:checked');
       if (!el) return '';
@@ -101,7 +101,7 @@ export function getValue(element: JQuery<Element>): any {
 
 export function setValue(element: JQuery<Element>, text?: string) {
   switch (element.prop('tagName').toLowerCase()) {
-    case Components.SELECT:
+    case NGX.SELECT:
       return cy.wrap(element).select(text);
   }
   console.log(findInput(element));
@@ -111,14 +111,14 @@ export function setValue(element: JQuery<Element>, text?: string) {
 
 export function fillValue(element: any, text?: string, options = {}) {
   switch (element.prop('tagName').toLowerCase()) {
-    case Components.SELECT:
+    case NGX.SELECT:
       clear(element);
       if (text) {
         return cy.wrap(element, LOG).type(text, { ...options, ...LOG });
       }
-    case Components.SLIDER:
+    case NGX.SLIDER:
       return setValue(element, text);
-    case Components.RADIOBUTTON_GROUP:
+    case NGX.RADIOBUTTON_GROUP:
       // This is not good, need to find the real value
       return cy.wrap(element, LOG).contains(text).click(LOG);
   }

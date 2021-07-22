@@ -1,14 +1,14 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference path='./commands.d.ts'/>
 
-import { LOG, Components, clear, findInput } from './functions';
+import { LOG, NGX, clear, findInput } from './functions';
 
 /**
  * Overwrites `cy.select` to work with ngx-ui elements.
  */
 Cypress.Commands.overwrite('select', (originalFn, subject, text, ...options) => {
   switch (subject.prop('tagName').toLowerCase()) {
-    case Components.SELECT:
+    case NGX.SELECT:
       if (!Array.isArray(text)) text = [text];
 
       return cy
@@ -31,13 +31,13 @@ Cypress.Commands.overwrite('select', (originalFn, subject, text, ...options) => 
  */
 Cypress.Commands.overwrite('clear', (originalFn, subject, options = {}, ...args) => {
   switch (subject.prop('tagName').toLowerCase()) {
-    case Components.CODEMIRROR:
-    case Components.INPUT:
-    case Components.DATETIME:
-    case Components.SELECT:
-    case Components.TOGGLE:
-    case Components.CHECKBOX:
-    case Components.SLIDER: {
+    case NGX.CODEMIRROR:
+    case NGX.INPUT:
+    case NGX.DATETIME:
+    case NGX.SELECT:
+    case NGX.TOGGLE:
+    case NGX.CHECKBOX:
+    case NGX.SLIDER: {
       if (options.log !== false) {
         Cypress.log({
           name: 'clear',
@@ -55,8 +55,8 @@ Cypress.Commands.overwrite('clear', (originalFn, subject, options = {}, ...args)
  */
 Cypress.Commands.overwrite('click', (originalFn, subject, ...options) => {
   switch (subject.prop('tagName').toLowerCase()) {
-    case Components.TOGGLE:
-    case Components.CHECKBOX:
+    case NGX.TOGGLE:
+    case NGX.CHECKBOX:
       return cy.wrap(subject, LOG).each(el => {
         originalFn(findInput(el), { ...options, force: true });
       });
@@ -69,9 +69,9 @@ Cypress.Commands.overwrite('click', (originalFn, subject, ...options) => {
  */
 Cypress.Commands.overwrite('check', (originalFn, subject, ...options) => {
   switch (subject.prop('tagName').toLowerCase()) {
-    case Components.TOGGLE:
-    case Components.CHECKBOX:
-    case Components.RADIOBUTTON:
+    case NGX.TOGGLE:
+    case NGX.CHECKBOX:
+    case NGX.RADIOBUTTON:
       // TODO: suppport `.check(value, options)`
       return cy.wrap(subject, LOG).each(el => {
         originalFn(findInput(el), { ...options, force: true });
@@ -85,8 +85,8 @@ Cypress.Commands.overwrite('check', (originalFn, subject, ...options) => {
  */
 Cypress.Commands.overwrite('uncheck', (originalFn, subject, ...options) => {
   switch (subject.prop('tagName').toLowerCase()) {
-    case Components.TOGGLE:
-    case Components.CHECKBOX:
+    case NGX.TOGGLE:
+    case NGX.CHECKBOX:
       // TODO: suppport `.uncheck(value, options)`
       return cy.wrap(subject, LOG).each(el => {
         originalFn(findInput(el), { ...options, force: true });

@@ -26,13 +26,9 @@ describe('Inputs', () => {
 
       cy.get('@CUT').getValue().should('equal', 'A Value');
 
-      cy.get('@CUT')
-        .fill(text)
-        .getValue().should('equal', text);
+      cy.get('@CUT').fill(text).getValue().should('equal', text);
 
-      cy.get('@CUT')
-        .clear()
-        .getValue().should('equal', '');
+      cy.get('@CUT').clear().getValue().should('equal', '');
     });
 
     it('underlines active input', () => {

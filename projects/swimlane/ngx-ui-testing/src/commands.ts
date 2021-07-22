@@ -1,4 +1,4 @@
-import { fillValue, findInput, findLabel, getValue, iff, LOG, Components, setValue } from './functions';
+import { fillValue, findInput, findLabel, getValue, iff, LOG, NGX, setValue } from './functions';
 
 /**
  * Find element by name attribute.
@@ -107,7 +107,7 @@ Cypress.Commands.add('whileHovering', { prevSubject: 'element' }, (subject, fn) 
 Cypress.Commands.add('open', { prevSubject: 'element' }, subject => {
   console.log({ subject });
   switch (subject.prop('tagName').toLowerCase()) {
-    case Components.SELECT:
+    case NGX.SELECT:
       return cy.wrap(subject, LOG).withinEach($el => {
         if (!$el.hasClass('active')) {
           $el.find('.ngx-select-caret').trigger('click', LOG);
@@ -119,7 +119,7 @@ Cypress.Commands.add('open', { prevSubject: 'element' }, subject => {
 
 Cypress.Commands.add('close', { prevSubject: 'element' }, subject => {
   switch (subject.prop('tagName').toLowerCase()) {
-    case Components.SELECT:
+    case NGX.SELECT:
       return cy.wrap(subject, LOG).withinEach($el => {
         if (subject.hasClass('active')) {
           subject.find('.ngx-select-caret').trigger('click', LOG);
