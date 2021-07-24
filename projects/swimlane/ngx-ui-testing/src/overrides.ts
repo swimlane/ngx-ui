@@ -3,27 +3,39 @@
 
 import { LOG, NGX, clear, findInput } from './functions';
 
+function escapeRegex(string: string) {
+  return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+}
+
 /**
  * Overwrites `cy.select` to work with ngx-ui elements.
  */
-Cypress.Commands.overwrite('select', (originalFn, subject, text, ...options) => {
+Cypress.Commands.overwrite('select', (originalFn, subject, text, options = {}, ...args) => {
   switch (subject.prop('tagName').toLowerCase()) {
     case NGX.SELECT:
+      if (options.log !== false) {
+        Cypress.log({
+          name: 'select',
+          $el: subject
+        });
+      }
+
       if (!Array.isArray(text)) text = [text];
 
       return cy
         .wrap(subject, LOG)
-        .clear()
-        .open()
+        .clear(LOG)
+        .ngxOpen(LOG)
         .withinEach(() => {
-          // cy.get('.ngx-select-caret').click();
-          text.forEach((t: string | number | RegExp) => {
-            cy.get('li', LOG).contains(t).click(LOG);
+          // Support matching on value or display text
+          text.forEach((t: string) => {
+            const re = new RegExp(`^\\s*${escapeRegex(t)}\\s*$`, 'g');
+            cy.contains('li', re, LOG).click(LOG);
           });
-        })
-        .close();
+        }, LOG)
+        .ngxClose(LOG);
   }
-  return originalFn(subject, text, ...options);
+  return originalFn(subject, text, options, ...args);
 });
 
 /**

@@ -10,12 +10,52 @@ export const enum NGX {
   CHECKBOX = 'ngx-checkbox',
   SLIDER = 'ngx-slider',
   RADIOBUTTON_GROUP = 'ngx-radiobutton-group',
-  RADIOBUTTON = 'ngx-radiobutton'
+  RADIOBUTTON = 'ngx-radiobutton',
+  SECTION = 'ngx-section',
+  DROPDOWN = 'ngx-dropdown',
+  PLUS_MENU = 'ngx-plus-menu',
+  LFD = 'ngx-large-format-dialog-content',
+  NOTIFICATION = 'ngx-notification'
 }
 
 const DEBUG = false;
 const CLEAR = Cypress.platform != 'darwin' ? '{ctrl}a{del}' : '{meta}a{del}';
 export const LOG = { log: DEBUG };
+
+const $ = Cypress.$;
+
+export function ngxClosest(element: JQuery<Element>) {
+  let $ngx = element.closest(NGX.DATETIME);
+  if ($ngx.length) return $ngx;
+
+  $ngx = element.closest(NGX.INPUT);
+  if ($ngx.length) return $ngx;
+
+  return;
+}
+
+export function getByLabel(label: string) {
+  let $el = $(`*[label="${label}"]`);
+  if ($el.length) return $el;
+
+  $el = $(`label:contains("${label}")`);
+  if (!$el.length) return;
+
+  const id = $el.attr('for');
+  if (id) {
+    $el = $(`#${id}`);
+    return ngxClosest($el) || $el;
+  }
+
+  return ngxClosest($el) || $el.next();
+}
+
+export function getByPlaceholder(label: string) {
+  const $el = $(`*[placeholder="${label}"]`);
+  if (!$el.length) return;
+
+  return ngxClosest($el) || $el;
+}
 
 export function findInput(element: JQuery<Element>): any {
   switch (element.prop('tagName').toLowerCase()) {
@@ -55,12 +95,12 @@ export function findLabel(element: JQuery<Element>): any {
 export function clear(subject: JQuery<Element>) {
   switch (subject.prop('tagName').toLowerCase()) {
     case NGX.CODEMIRROR:
-      return cy.wrap(subject, LOG).findInput().type(CLEAR, LOG);
+      return cy.wrap(subject, LOG).ngxFindNativeInput().type(CLEAR, LOG);
     case NGX.INPUT:
     case NGX.DATETIME:
       return cy.wrap(findInput(subject), LOG).clear(LOG);
     case NGX.SELECT:
-      return cy.wrap(subject, LOG).iff('.ngx-select-clear', $el => $el.trigger('click'));
+      return cy.wrap(subject, LOG).iff('.ngx-select-clear', $el => $el.trigger('click'), LOG);
     case NGX.TOGGLE:
     case NGX.CHECKBOX:
       return cy.wrap(findInput(subject), LOG).uncheck({ ...LOG, force: true });
@@ -80,7 +120,7 @@ export function getValue(element: JQuery<Element>): any {
     case NGX.SELECT: {
       const $el = element.find('.ngx-select-input-name');
       if (element.hasClass('multi-selection') || $el.length > 1) {
-        return Cypress.$.map($el, (el: Element) => Cypress.$(el).text());
+        return $.map($el, (el: Element) => $(el).text());
       } else {
         return $el?.text() || '';
       }
@@ -102,9 +142,11 @@ export function getValue(element: JQuery<Element>): any {
 export function setValue(element: JQuery<Element>, text?: string) {
   switch (element.prop('tagName').toLowerCase()) {
     case NGX.SELECT:
-      return cy.wrap(element).select(text);
+      return cy.wrap(element, LOG).select(text);
+    case NGX.RADIOBUTTON_GROUP:
+      // TODO: select based on display text or value
+      return cy.wrap(element, LOG).contains(text).click(LOG);
   }
-  console.log(findInput(element));
   findInput(element).val(text);
   element.trigger('change');
 }
@@ -112,18 +154,17 @@ export function setValue(element: JQuery<Element>, text?: string) {
 export function fillValue(element: any, text?: string, options = {}) {
   switch (element.prop('tagName').toLowerCase()) {
     case NGX.SELECT:
-      clear(element);
+      cy.wrap(element, LOG).clear(LOG);
       if (text) {
         return cy.wrap(element, LOG).type(text, { ...options, ...LOG });
       }
     case NGX.SLIDER:
-      return setValue(element, text);
+      throw new Error(`don't use .ngxFill on ngx-sliders, use .ngxSetValue`);
     case NGX.RADIOBUTTON_GROUP:
-      // This is not good, need to find the real value
-      return cy.wrap(element, LOG).contains(text).click(LOG);
+      throw new Error(`don't use .ngxFill on ngx-radiobutton-group, use .ngxSetValue`);
   }
 
-  clear(element);
+  cy.wrap(element, LOG).clear(LOG);
   if (text) {
     cy.wrap(element, LOG).type(text, { ...options, ...LOG });
   }
@@ -135,11 +176,67 @@ export function iff(element: any, selector: string, fn: any) {
     fn = selector;
     selector = '';
   }
-  if (Cypress.$('body').find(element).length) {
+  if ($('body').find(element).length) {
     // check if subject is still in DOM
     const $el = selector ? element.find(selector) : element;
     if ($el.length) {
-      return cy.wrap($el, LOG).within(fn);
+      return cy.wrap($el, LOG).within(LOG, fn);
     }
+  }
+}
+
+export function open(element: JQuery<Element>) {
+  switch (element.prop('tagName').toLowerCase()) {
+    case NGX.SELECT:
+      if (!element.hasClass('active')) {
+        element.find('.ngx-select-caret').trigger('click');
+      }
+      return;
+    case NGX.SECTION:
+      if (element.find('.ngx-section-header').hasClass('section-collapsed')) {
+        element.find('.ngx-section-toggle').trigger('click');
+      }
+      return;
+    case NGX.DROPDOWN:
+      if (!element.hasClass('open')) {
+        element.find('button').first().trigger('click'); // TOOD: add a dropgown toggle class to ngx-dropdown
+      }
+      return;
+    case NGX.PLUS_MENU:
+      if (!element.hasClass('open')) {
+        element.find('.ngx-plus-menu--circle-container').trigger('click');
+      }
+      return;
+  }
+}
+
+export function close(element: JQuery<Element>) {
+  switch (element.prop('tagName').toLowerCase()) {
+    case NGX.SELECT:
+      if (element.hasClass('active')) {
+        element.find('.ngx-select-caret').trigger('click', LOG);
+      }
+      return;
+    case NGX.SECTION:
+      if (!element.find('.ngx-section-header').hasClass('section-collapsed')) {
+        element.find('.ngx-section-toggle').trigger('click', LOG);
+      }
+      return;
+    case NGX.DROPDOWN:
+      if (element.hasClass('open')) {
+        element.find('button').first().trigger('click'); // TOOD: add a dropgown toggle class to ngx-dropdown
+      }
+      return;
+    case NGX.PLUS_MENU:
+      if (element.hasClass('open')) {
+        element.find('.ngx-plus-menu--circle-container').trigger('click');
+      }
+      return;
+    case NGX.LFD:
+      element.find('.dialog-container__header button').trigger('click');
+      return;
+    case NGX.NOTIFICATION:
+      element.find('.ngx-notification-close').trigger('click');
+      return;
   }
 }

@@ -79,49 +79,51 @@ Overwrites [cy.select](https://docs.cypress.io/api/commands/select) to work with
 
 ## New Commands
 
-### `.findInput`
+### `.ngxFindNativeInput`
 
 Given an ngx-ui element, returns the child native input element. Works with: `ngx-codemirror`, `ngx-input`, `ngx-date-time`, `ngx-toggle`, `ngx-checkbox`, `ngx-select`, `ngx-slider`, `ngx-radiobutton`.
 
 ```ts
-.findInput()
+.ngxFindNativeInput()
 ```
 
 #### example
 
 ```ts
-cy.get('#my-input').findInput().should('have.attr', 'foo');
+cy.get('ngx-input').ngxFindNativeInput().should('have.attr', 'type');
 ```
 
 ---
 
-### `.findLabel`
+### `.ngxFindLabel`
 
 Given an element, returns the label element. Works with: `ngx-input`, `ngx-date-time`, `ngx-toggle`, `ngx-checkbox`, `ngx-select`.
 
 ```ts
-.findLabel()
+.ngxFindLabel()
 ```
 
 ---
 
-### `.getValue`
+### `.ngxGetValue`
 
 Given an element, returns the element's value. Works with: `ngx-codemirror`, `ngx-input`, `ngx-date-time`, `ngx-toggle`, `ngx-checkbox`, `ngx-select`, `ngx-slider`, `ngx-radiobutton`, `ngx-radiobutton-group`.
 
 ```ts
-.getValue()
+.ngxGetValue()
 ```
 
 #### example
 
 ```ts
-cy.get('#my-input').getValue().should('eq', 'foo');
+cy.get('ngx-input').ngxGetValue().should('eq', 'foo');
 ```
 
-### `.fill`
+---
 
-Like [cy.type](https://docs.cypress.io/api/commands/type) but clears existing text before and works with ngx-ui elements: `ngx-codemirror`, `ngx-input`, `ngx-date-time`, `ngx-select`, `ngx-slider`, `ngx-radiobutton-group`.
+### `.ngxFill`
+
+Like [cy.type](https://docs.cypress.io/api/commands/type) but clears existing text before and works with ngx-ui elements: `ngx-codemirror`, `ngx-input`, `ngx-date-time`, `ngx-select`.
 
 ```ts
 .fill(value)
@@ -131,17 +133,38 @@ Like [cy.type](https://docs.cypress.io/api/commands/type) but clears existing te
 #### example
 
 ```ts
-cy.get('#my-input').fill('foo').getValue().should('eq', 'foo');
+cy.get('ngx-input').fill('foo').ngxGetValue().should('eq', 'foo');
+cy.get('ngx-select').fill('foo').selct('foo').ngxGetValue().should('eq', 'foo');
 ```
 
 ---
 
-### `.closeNotifications`
+### `.ngxOpen`
+
+Open a ngx-ui components if it is closed. Works with `ngx-select`, `ngx-section`, `ngx-dropdown`, `ngx-plus-menu`.
+
+```ts
+.ngxOpen()
+```
+
+---
+
+### `.ngxClose`
+
+Close a ngx-ui components if it is open. Works with `ngx-select`, `ngx-section`, `ngx-dropdown`, `ngx-plus-menu`, `ngx-largeformat-dialog`, `ngx-notification`.
+
+```ts
+.ngxClose()
+```
+
+---
+
+### `.ngxCloseNotifications`
 
 Close all `.ngx-notification`s, if any. Will not fail if no notifications are found.
 
 ```ts
-.closeNotifications()
+.ngxCloseNotifications()
 ```
 
 ---
@@ -153,7 +176,7 @@ Close all `.ngx-notification`s, if any. Will not fail if no notifications are fo
 Find element by name attribute. Alias for ` cy.get(``*[name="${name}"]``) `
 
 ```ts
-.getByName(name)
+.getByName('name')
 ```
 
 ---
@@ -163,7 +186,17 @@ Find element by name attribute. Alias for ` cy.get(``*[name="${name}"]``) `
 Find element by label attribute. Alias for ` cy.get(``*[label="${label}"]``) `
 
 ```ts
-.getByLabel(label)
+.getByLabel('label')
+```
+
+---
+
+#### `.getByPlaceholder`
+
+Find element by placeholder.
+
+```ts
+.getByPlaceholder('label')
 ```
 
 ---

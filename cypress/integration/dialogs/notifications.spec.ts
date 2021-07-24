@@ -5,7 +5,7 @@ describe('Notifications', () => {
   });
 
   afterEach(() => {
-    cy.closeNotifications();
+    cy.ngxCloseNotifications();
   });
 
   it('should display and close an info notification', () => {
@@ -25,6 +25,13 @@ describe('Notifications', () => {
       cy.get('.ngx-notification-body').should('contain.text', 'Hackers have been stopped!');
       cy.get('.ngx-notification-close').click();
     });
+    cy.get('.ngx-notification.ngx-notification-success').should('not.exist');
+  });
+
+  it('should close using testing lib', () => {
+    cy.get('button').contains('Type: Success').click();
+    cy.get('.ngx-notification.ngx-notification-success').ngxClose();
+    cy.get('.ngx-notification.ngx-notification-success').should('not.exist');
   });
 
   it('should display a warning notification', () => {

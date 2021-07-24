@@ -14,7 +14,7 @@ describe('Date/Time', () => {
     });
 
     it('has a label', () => {
-      cy.get('@CUT').findLabel().should('contain.text', 'Date of attack');
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Date of attack');
     });
 
     it('enters text', () => {
@@ -22,9 +22,9 @@ describe('Date/Time', () => {
 
       cy.get('@CUT').clear().type(text);
 
-      cy.get('@CUT').getValue().should('equal', text);
+      cy.get('@CUT').ngxGetValue().should('equal', text);
 
-      cy.get('@CUT').clear().getValue().should('equal', '');
+      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
     });
   });
 });
