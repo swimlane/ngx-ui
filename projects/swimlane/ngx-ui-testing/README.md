@@ -151,7 +151,7 @@ Open a ngx-ui components if it is closed. Works with `ngx-select`, `ngx-section`
 
 ### `.ngxClose`
 
-Close a ngx-ui components if it is open. Works with `ngx-select`, `ngx-section`, `ngx-dropdown`, `ngx-plus-menu`, `ngx-largeformat-dialog`, `ngx-notification`.
+Close a ngx-ui components if it is open. Works with `ngx-select`, `ngx-section`, `ngx-dropdown`, `ngx-plus-menu`, `ngx-largeformat-dialog`, `ngx-notification`, `ngx-nag`, `ngx-alert-dialog`, `ngx-drawer.
 
 ```ts
 .ngxClose()
@@ -183,7 +183,7 @@ Find element by name attribute. Alias for ` cy.get(``*[name="${name}"]``) `
 
 #### `.getByLabel`
 
-Find element by label attribute. Alias for ` cy.get(``*[label="${label}"]``) `
+Find element by label either within a ngx-ui component or via the `for` attribute.
 
 ```ts
 .getByLabel('label')
