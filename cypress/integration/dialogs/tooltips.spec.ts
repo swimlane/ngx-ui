@@ -1,6 +1,7 @@
 describe('Large Format Dialog', () => {
   before(() => {
     cy.visit('/tooltip');
+    cy.get('.page-loader').should('not.exist', { timeout: 20000 });
   });
 
   beforeEach(() => {

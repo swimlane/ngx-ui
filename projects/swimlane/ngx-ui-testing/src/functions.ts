@@ -15,7 +15,10 @@ export const enum NGX {
   DROPDOWN = 'ngx-dropdown',
   PLUS_MENU = 'ngx-plus-menu',
   LFD = 'ngx-large-format-dialog-content',
-  NOTIFICATION = 'ngx-notification'
+  NOTIFICATION = 'ngx-notification',
+  NAG = 'ngx-nag',
+  ALERT = 'ngx-alert-dialog',
+  DRAWER = 'ngx-drawer'
 }
 
 const DEBUG = false;
@@ -207,6 +210,11 @@ export function open(element: JQuery<Element>) {
         element.find('.ngx-plus-menu--circle-container').trigger('click');
       }
       return;
+    case NGX.NAG:
+      if (!element.hasClass('ngx-nag-open')) {
+        element.find('.ngx-nag-icon').trigger('click');
+      }
+      return;
   }
 }
 
@@ -237,6 +245,17 @@ export function close(element: JQuery<Element>) {
       return;
     case NGX.NOTIFICATION:
       element.find('.ngx-notification-close').trigger('click');
+      return;
+    case NGX.NAG:
+      if (element.hasClass('ngx-nag-open')) {
+        element.find('.ngx-nag-icon').trigger('click');
+      }
+      return;
+    case NGX.ALERT:
+      element.find('.close-button').trigger('click');
+      return;
+    case NGX.DRAWER:
+      element.find('.ngx-dialog-drawer-content__dismiss-btn').trigger('click');
       return;
   }
 }

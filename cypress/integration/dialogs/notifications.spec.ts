@@ -2,6 +2,7 @@ describe('Notifications', () => {
   before(() => {
     cy.clock();
     cy.visit('/notification');
+    cy.get('.page-loader').should('not.exist', { timeout: 20000 });
   });
 
   afterEach(() => {

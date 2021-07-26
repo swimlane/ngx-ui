@@ -234,6 +234,7 @@ Cypress.Commands.add('ngxOpen', { prevSubject: 'element' }, (subject, options = 
     case NGX.SECTION:
     case NGX.DROPDOWN:
     case NGX.PLUS_MENU:
+    case NGX.NAG:
       return cy.wrap(subject, LOG).withinEach(open, LOG);
   }
   return; // THROW ERROR
@@ -258,6 +259,9 @@ Cypress.Commands.add('ngxClose', { prevSubject: 'element' }, (subject, options =
     case NGX.PLUS_MENU:
     case NGX.LFD:
     case NGX.NOTIFICATION:
+    case NGX.NAG:
+    case NGX.ALERT:
+    case NGX.DRAWER:
       return cy.wrap(subject, LOG).withinEach(close, LOG);
   }
   return; // THROW ERROR

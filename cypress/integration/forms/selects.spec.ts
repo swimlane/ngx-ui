@@ -18,8 +18,7 @@ describe('Selects', () => {
 
       const text = 'DDOS';
 
-      cy.get('@CUT').select(text)
-        .ngxGetValue().should('equal', text);
+      cy.get('@CUT').select(text).ngxGetValue().should('equal', text);
 
       cy.get('@CUT').clear().ngxGetValue().should('equal', '');
     });
