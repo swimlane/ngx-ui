@@ -42,6 +42,22 @@ describe('Selects', () => {
     });
   });
 
+  describe('Templates', () => {
+    beforeEach(() => {
+      cy.get('#select-9').as('CUT');
+    });
+
+    it('selects and clears value', () => {
+      cy.get('@CUT').ngxGetValue().should('equal', '');
+
+      const text = 'breach';
+
+      cy.get('@CUT').select(text).ngxGetValue().should('equal', text);
+
+      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
+    });
+  });
+
   describe('Multiple Select', () => {
     beforeEach(() => {
       cy.get('#select-19').as('CUT');

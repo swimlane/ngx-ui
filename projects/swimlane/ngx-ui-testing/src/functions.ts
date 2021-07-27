@@ -121,11 +121,12 @@ export function getValue(element: JQuery<Element>): any {
       return $el[0]['CodeMirror']?.getValue() || '';
     }
     case NGX.SELECT: {
-      const $el = element.find('.ngx-select-input-name');
-      if (element.hasClass('multi-selection') || $el.length > 1) {
-        return $.map($el, (el: Element) => $(el).text());
+      if (element.hasClass('multi-selection')) {
+        const $el = element.find('.ngx-select-input-name');
+        return $.map($el, (el: Element) => $(el).text().trim());
       } else {
-        return $el?.text() || '';
+        const $el = element.find('.ngx-select-input-list');
+        return $el?.text().trim() || '';
       }
     }
     case NGX.TOGGLE:
