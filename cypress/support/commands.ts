@@ -27,11 +27,11 @@ Cypress.Commands.add('navigate', (url, options = {}) => {
     return navByLink(url);
 
     // Equivalent to navigating by link
-    function navByLink(url) {
+    function navByLink(href: string) {
       cy.log('navByLink');
       return cy.document().then($doc => {
-        var a = $doc.createElement('a');
-        a.href = url;
+        const a = $doc.createElement('a');
+        a.href = href;
         $doc.body.appendChild(a);
         a.click();
         $doc.body.removeChild(a);

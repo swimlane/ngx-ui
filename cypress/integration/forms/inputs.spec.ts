@@ -5,37 +5,49 @@ describe('Inputs', () => {
   });
 
   describe('Text Input', () => {
+    const defaultText = 'A Value';
+
     beforeEach(() => {
       cy.getByName('input1').as('CUT');
     });
 
     afterEach(() => {
-      cy.get('@CUT').fill('A Value');
+      cy.get('@CUT').ngxSetValue(defaultText);
     });
 
     it('has a label', () => {
-      cy.get('@CUT').findLabel().should('contain.text', 'Name');
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Name');
     });
 
     it('has no placeholder', () => {
-      cy.get('@CUT').findInput().should('have.attr', 'placeholder', '');
+      cy.get('@CUT').ngxFindNativeInput().should('have.attr', 'placeholder', '');
     });
 
     it('enters and clears text', () => {
       const text = 'hello world';
 
-      cy.get('@CUT').fill(text).getValue().should('equal', text);
+      cy.get('@CUT').ngxGetValue().should('equal', defaultText);
 
-      cy.get('@CUT').clear().getValue().should('equal', '');
+      cy.get('@CUT').ngxFill(text).ngxGetValue().should('equal', text);
+
+      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
+    });
+
+    it('enters and clears text using native elements', () => {
+      const text = 'hello world';
+
+      cy.get('@CUT').ngxFindNativeInput().ngxGetValue().should('equal', defaultText);
+
+      cy.get('@CUT').ngxFindNativeInput().ngxFill(text).ngxGetValue().should('equal', text);
+
+      cy.get('@CUT').ngxFindNativeInput().clear().ngxGetValue().should('equal', '');
     });
 
     it('underlines active input', () => {
-      cy.get('@CUT')
-        .find('.ngx-input-underline .underline-fill')
-        .should(el => {
-          expect(el).to.have.attr('style');
-          expect(Cypress.$(el).attr('style')).to.match(/.*width:\s*0%.*/);
-        });
+      // cy.get('@CUT')
+      //   .find('.ngx-input-underline .underline-fill')
+      //   .invoke('attr', 'style')
+      //   .should('contain', 'width: 0%');
 
       // when we click on the input box
       // it underlines it
@@ -43,28 +55,32 @@ describe('Inputs', () => {
 
       cy.get('@CUT')
         .find('.ngx-input-underline .underline-fill')
-        .should(el => {
-          expect(el).to.have.attr('style');
-          expect(Cypress.$(el).attr('style')).to.match(/.*width:\s*100%.*/);
-        });
+        .invoke('attr', 'style')
+        .should('contain', 'width: 100%');
     });
   });
 
   describe('Native Input', () => {
     beforeEach(() => {
-      cy.get('[sectiontitle="Native"] input').first().as('CUT');
+      cy.getByLabel('Text').as('CUT');
+    });
+
+    afterEach(() => {
+      cy.get('@CUT').ngxSetValue('');
     });
 
     it('enters and clears text', () => {
       const text = 'hello world';
 
-      cy.get('@CUT').fill(text);
+      cy.get('@CUT').ngxGetValue().should('equal', '');
 
-      cy.get('@CUT').getValue().should('equal', text);
+      cy.get('@CUT').ngxFill(text);
+
+      cy.get('@CUT').ngxGetValue().should('equal', text);
 
       cy.get('@CUT').clear();
 
-      cy.get('@CUT').getValue().should('equal', '');
+      cy.get('@CUT').ngxGetValue().should('equal', '');
     });
   });
 
@@ -74,23 +90,23 @@ describe('Inputs', () => {
     });
 
     afterEach(() => {
-      cy.get('@CUT').fill('A Value');
+      cy.get('@CUT').ngxSetValue('A Value');
     });
 
     it('has a label', () => {
-      cy.get('@CUT').findLabel().contains('Name');
+      cy.get('@CUT').ngxFindLabel().contains('Name');
     });
 
     it('has no placeholder', () => {
-      cy.get('@CUT').findInput().should('have.attr', 'placeholder', '');
+      cy.get('@CUT').ngxFindNativeInput().should('have.attr', 'placeholder', '');
     });
 
     it('enters text', () => {
       const text = ' hello world';
 
-      cy.get('@CUT').fill(text);
+      cy.get('@CUT').ngxFill(text);
 
-      cy.get('@CUT').getValue().should('equal', text);
+      cy.get('@CUT').ngxGetValue().should('equal', text);
     });
 
     it('underlines active input', () => {
@@ -103,7 +119,7 @@ describe('Inputs', () => {
 
       // when we click on the input box
       // it underlines it
-      cy.get('@CUT').findInput().click();
+      cy.get('@CUT').ngxFindNativeInput().click();
 
       cy.get('@CUT')
         .find('.ngx-input-underline .underline-fill')
@@ -116,15 +132,15 @@ describe('Inputs', () => {
 
   describe('Text Input with placeholder', () => {
     beforeEach(() => {
-      cy.getByName('input2').as('CUT');
+      cy.getByPlaceholder('Enter your first and last name').as('CUT');
     });
 
     afterEach(() => {
-      cy.get('@CUT').fill('');
+      cy.get('@CUT').ngxSetValue('');
     });
 
     it('adds a placeholder', () => {
-      cy.get('@CUT').findInput().should('have.attr', 'placeholder', 'Enter your first and last name');
+      cy.get('@CUT').ngxFindNativeInput().should('have.attr', 'placeholder', 'Enter your first and last name');
     });
 
     it('underlines active input', () => {
@@ -140,7 +156,7 @@ describe('Inputs', () => {
 
       // when we click on the input box
       // it underlines it
-      cy.get('@CUT').findInput().click();
+      cy.get('@CUT').ngxFindNativeInput().click();
 
       cy.get('@CUT')
         .find('.ngx-input-underline .underline-fill')
@@ -157,15 +173,15 @@ describe('Inputs', () => {
     });
 
     afterEach(() => {
-      cy.get('@CUT').fill('');
+      cy.get('@CUT').ngxSetValue('');
     });
 
     it('has a label', () => {
-      cy.get('@CUT').findLabel().should('contain.text', 'Prefix Suffix Input');
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Prefix Suffix Input');
     });
 
     it('have no placeholder', () => {
-      cy.get('@CUT').findInput().should('have.attr', 'placeholder', '');
+      cy.get('@CUT').ngxFindNativeInput().should('have.attr', 'placeholder', '');
     });
 
     it('adds a prefix', () => {
@@ -183,19 +199,19 @@ describe('Inputs', () => {
     });
 
     it('has a label', () => {
-      cy.get('@CUT').findLabel().should('contain.text', 'Disabled Example');
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Disabled Example');
     });
 
     it('has no placeholder', () => {
-      cy.get('@CUT').findInput().should('have.attr', 'placeholder', '');
+      cy.get('@CUT').ngxFindNativeInput().should('have.attr', 'placeholder', '');
     });
 
     it('has a value', () => {
-      cy.get('@CUT').getValue().should('equal', 'Disabled value');
+      cy.get('@CUT').ngxGetValue().should('equal', 'Disabled value');
     });
 
     it('should be disabled', () => {
-      cy.get('@CUT').findInput().should('be.disabled');
+      cy.get('@CUT').ngxFindNativeInput().should('be.disabled');
     });
   });
 
@@ -205,16 +221,16 @@ describe('Inputs', () => {
     });
 
     it('has a label with asterisk', () => {
-      cy.get('@CUT').findLabel().should('contain.text', 'Required Input Example Of The Day');
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Required Input Example Of The Day');
       // todo: check if the asterisk is in the right place
     });
 
     it('has no placeholder', () => {
-      cy.get('@CUT').findInput().should('have.attr', 'placeholder', '');
+      cy.get('@CUT').ngxFindNativeInput().should('have.attr', 'placeholder', '');
     });
 
     it('should be required', () => {
-      cy.get('@CUT').findInput().should('have.attr', 'required');
+      cy.get('@CUT').ngxFindNativeInput().should('have.attr', 'required');
     });
   });
 
@@ -224,15 +240,15 @@ describe('Inputs', () => {
     });
 
     it('has a label', () => {
-      cy.get('@CUT').findLabel().should('contain.text', 'Default value');
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Default value');
     });
 
     it('has no placeholder', () => {
-      cy.get('@CUT').findInput().should('have.attr', 'placeholder', '');
+      cy.get('@CUT').ngxFindNativeInput().should('have.attr', 'placeholder', '');
     });
 
     it('should be required', () => {
-      cy.get('@CUT').getValue().should('equal', 'Defaulted!');
+      cy.get('@CUT').ngxGetValue().should('equal', 'Defaulted!');
     });
   });
 
@@ -242,30 +258,30 @@ describe('Inputs', () => {
     });
 
     it('has a label', () => {
-      cy.get('@CUT').findLabel().contains('Password *');
+      cy.get('@CUT').ngxFindLabel().contains('Password *');
     });
 
     it('has no placeholder', () => {
-      cy.get('@CUT').findInput().should('have.attr', 'placeholder', '');
+      cy.get('@CUT').ngxFindNativeInput().should('have.attr', 'placeholder', '');
     });
 
     it('should have a password ', () => {
-      cy.get('@CUT').findInput().first().should('have.attr', 'type', 'password');
+      cy.get('@CUT').ngxFindNativeInput().first().should('have.attr', 'type', 'password');
     });
 
     it('should allow input', () => {
       const text = '>vQ9~4W$%ag!ACe$';
 
-      cy.get('@CUT').fill(text);
-      cy.get('@CUT').getValue().should('equal', text);
+      cy.get('@CUT').ngxFill(text);
+      cy.get('@CUT').ngxGetValue().should('equal', text);
     });
 
     it('should toggle password', () => {
-      cy.get('@CUT').findInput().first().should('have.attr', 'type', 'password');
+      cy.get('@CUT').ngxFindNativeInput().first().should('have.attr', 'type', 'password');
 
       cy.get('@CUT').find('.icon-eye').click();
 
-      cy.get('@CUT').findInput().first().should('have.attr', 'type', 'text');
+      cy.get('@CUT').ngxFindNativeInput().first().should('have.attr', 'type', 'text');
     });
   });
 });

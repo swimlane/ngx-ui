@@ -19,6 +19,8 @@
     "paths": {
       "@swimlane/ngx-ui": ["projects/swimlane/ngx-ui/src/public_api"],
       "@swimlane/ngx-ui/*": ["projects/swimlane/ngx-ui/src/lib/*"],
+      "@swimlane/ngx-ui-testing": ["projects/swimlane/ngx-ui-testing/index"],
+      "@swimlane/ngx-ui-testing/*": ["projects/swimlane/ngx-ui-testing/*"],
       "@angular/*": ["node_modules/@angular/*"],
       "tslib": ["node_modules/tslib"]
     },

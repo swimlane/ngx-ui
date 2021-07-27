@@ -14,33 +14,33 @@ describe('Toggles', () => {
     });
 
     it('has a label', () => {
-      cy.get('@CUT').findLabel().should('contain.text', 'High Priority');
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'High Priority');
     });
 
     it('click toggles value', () => {
-      cy.get('@CUT').getValue().should('equal', true);
+      cy.get('@CUT').ngxGetValue().should('equal', true);
       cy.get('@CUT').click();
-      cy.get('@CUT').getValue().should('equal', false);
+      cy.get('@CUT').ngxGetValue().should('equal', false);
     });
 
     it('label click toggles value', () => {
-      cy.get('@CUT').getValue().should('equal', true);
-      cy.get('@CUT').findLabel().click();
-      cy.get('@CUT').getValue().should('equal', false);
+      cy.get('@CUT').ngxGetValue().should('equal', true);
+      cy.get('@CUT').ngxFindLabel().click();
+      cy.get('@CUT').ngxGetValue().should('equal', false);
     });
 
     it('clears value', () => {
-      cy.get('@CUT').getValue().should('equal', true);
+      cy.get('@CUT').ngxGetValue().should('equal', true);
       cy.get('@CUT').clear();
-      cy.get('@CUT').getValue().should('equal', false);
+      cy.get('@CUT').ngxGetValue().should('equal', false);
     });
 
     it('can use check/uncheck', () => {
-      cy.get('@CUT').getValue().should('equal', true);
+      cy.get('@CUT').ngxGetValue().should('equal', true);
       cy.get('@CUT').check();
-      cy.get('@CUT').getValue().should('equal', true);
+      cy.get('@CUT').ngxGetValue().should('equal', true);
       cy.get('@CUT').uncheck();
-      cy.get('@CUT').getValue().should('equal', false);
+      cy.get('@CUT').ngxGetValue().should('equal', false);
     });
   });
 });

@@ -10,15 +10,17 @@ describe('Selects', () => {
     });
 
     it('has a label', () => {
-      cy.get('@CUT').findLabel().should('contain.text', 'Attack Type');
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Attack Type');
     });
 
     it('selects and clears value', () => {
+      cy.get('@CUT').ngxGetValue().should('equal', '');
+
       const text = 'DDOS';
 
-      cy.get('@CUT').select(text).getValue().should('equal', text);
+      cy.get('@CUT').select(text).ngxGetValue().should('equal', text);
 
-      cy.get('@CUT').clear().getValue().should('equal', '');
+      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
     });
   });
 
@@ -28,15 +30,15 @@ describe('Selects', () => {
     });
 
     it('has a label', () => {
-      cy.get('@CUT').findLabel().should('contain.text', 'Attack Type');
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Attack Type');
     });
 
     it('selects and clears value', () => {
       const text = 'DDOS';
 
-      cy.get('@CUT').fill(text).getValue().should('equal', text);
+      cy.get('@CUT').ngxFill(text).select(text).ngxGetValue().should('equal', text);
 
-      cy.get('@CUT').clear().getValue().should('equal', '');
+      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
     });
   });
 
@@ -46,12 +48,12 @@ describe('Selects', () => {
     });
 
     it('selects and clears value', () => {
-      cy.get('@CUT').getValue().should('deep.equal', []);
+      cy.get('@CUT').ngxGetValue().should('deep.equal', []);
 
-      cy.get('@CUT').select('DDOS').getValue().should('deep.equal', ['DDOS']);
-      cy.get('@CUT').select(['DDOS', 'Physical']).getValue().should('deep.equal', ['DDOS', 'Physical']);
+      cy.get('@CUT').select('DDOS').ngxGetValue().should('deep.equal', ['DDOS']);
+      cy.get('@CUT').select(['DDOS', 'Physical']).ngxGetValue().should('deep.equal', ['DDOS', 'Physical']);
 
-      cy.get('@CUT').clear().getValue().should('deep.equal', []);
+      cy.get('@CUT').clear().ngxGetValue().should('deep.equal', []);
     });
   });
 
@@ -61,8 +63,8 @@ describe('Selects', () => {
     });
 
     it('selects value', () => {
-      cy.get('@CUT').getValue().should('equal', 'Red');
-      cy.get('@CUT').select('Green').getValue().should('equal', 'Green');
+      cy.get('@CUT').ngxGetValue().should('equal', 'Red');
+      cy.get('@CUT').select('Green').ngxGetValue().should('equal', 'Green');
     });
   });
 
@@ -72,9 +74,26 @@ describe('Selects', () => {
     });
 
     it('selects value', () => {
-      cy.get('@CUT').getValue().should('deep.equal', []);
-      cy.get('@CUT').select('Green').getValue().should('deep.equal', ['Green']);
-      cy.get('@CUT').select(['Green', 'Red']).getValue().should('deep.equal', ['Red', 'Green']);
+      cy.get('@CUT').ngxGetValue().should('deep.equal', []);
+      cy.get('@CUT').select('Green').ngxGetValue().should('deep.equal', ['Green']);
+      cy.get('@CUT').select(['Green', 'Red']).ngxGetValue().should('deep.equal', ['Red', 'Green']);
+    });
+  });
+
+  describe('Async', () => {
+    const text = 'dolorem';
+
+    beforeEach(() => {
+      cy.get('[sectiontitle="Async"] ngx-select').first().as('CUT').scrollIntoView();
+      cy.intercept(`https://jsonplaceholder.typicode.com/posts?q=${text}`).as('api');
+    });
+
+    it('selects value', () => {
+      cy.get('@CUT').ngxGetValue().should('deep.equal', '');
+      cy.get('@CUT').ngxFill('dolorem');
+      cy.wait('@api');
+      cy.get('@CUT').select('dolorem eum magni eos aperiam quia');
+      cy.get('@CUT').ngxGetValue().should('deep.equal', 'dolorem eum magni eos aperiam quia');
     });
   });
 
