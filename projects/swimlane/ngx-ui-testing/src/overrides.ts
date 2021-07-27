@@ -30,7 +30,7 @@ Cypress.Commands.overwrite('select', (originalFn, subject, text, options = {}, .
           // Support matching on value or display text
           text.forEach((t: string) => {
             const re = new RegExp(`^\\s*${escapeRegex(t)}\\s*$`, 'g');
-            cy.contains('li', re, LOG).click(LOG);
+            cy.get('li').contains(re, LOG).click(LOG);
           });
         }, LOG)
         .ngxClose(LOG);
