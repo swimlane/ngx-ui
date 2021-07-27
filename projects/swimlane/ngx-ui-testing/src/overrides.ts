@@ -16,7 +16,14 @@ Cypress.Commands.overwrite('select', (originalFn, subject, text, options = {}, .
       if (options.log !== false) {
         Cypress.log({
           name: 'select',
-          $el: subject
+          $el: subject,
+          consoleProps: () => {
+            return {
+              Selected: text,
+              'Applied to': subject,
+              Elements: subject.length
+            };
+          }
         });
       }
 
@@ -53,7 +60,13 @@ Cypress.Commands.overwrite('clear', (originalFn, subject, options = {}, ...args)
       if (options.log !== false) {
         Cypress.log({
           name: 'clear',
-          $el: subject
+          $el: subject,
+          consoleProps: () => {
+            return {
+              'Applied to': subject,
+              Elements: subject.length
+            };
+          }
         });
       }
       return cy.wrap(subject, LOG).each(clear);
