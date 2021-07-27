@@ -5,10 +5,6 @@ describe('Dropdowns', () => {
   });
 
   describe('Section', () => {
-    afterEach(() => {
-      // cy.get('@CUT').ngxClose();
-    });
-
     it('Opens and closes dropdowns with click', () => {
       cy.get('ngx-dropdown').first().as('CUT');
       cy.get('@CUT').within(() => {
