@@ -66,7 +66,7 @@ Overwrites [cy.uncheck](https://docs.cypress.io/api/commands/uncheck) to work wi
 
 ### `.select`
 
-Overwrites [cy.select](https://docs.cypress.io/api/commands/select) to work with ngx-ui elements: `ngx-select`.
+Overwrites [cy.select](https://docs.cypress.io/api/commands/select) to work with ngx-ui elements: `ngx-select`, `ngx-dropdown`.
 
 ```ts
 .select(value)

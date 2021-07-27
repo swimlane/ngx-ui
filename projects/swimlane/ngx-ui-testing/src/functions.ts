@@ -201,8 +201,9 @@ export function open(element: JQuery<Element>) {
       }
       return;
     case NGX.DROPDOWN:
+      console.log(element.hasClass('open'), element);
       if (!element.hasClass('open')) {
-        element.find('button').first().trigger('click'); // TOOD: add a dropgown toggle class to ngx-dropdown
+        element.find('ngx-dropdown-toggle button').trigger('click'); // TOOD: add a dropgown toggle class to ngx-dropdown
       }
       return;
     case NGX.PLUS_MENU:

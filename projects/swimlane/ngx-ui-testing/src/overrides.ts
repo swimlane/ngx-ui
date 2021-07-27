@@ -11,7 +11,10 @@ function escapeRegex(string: string) {
  * Overwrites `cy.select` to work with ngx-ui elements.
  */
 Cypress.Commands.overwrite('select', (originalFn, subject, text, options = {}, ...args) => {
-  switch (subject.prop('tagName').toLowerCase()) {
+  const tagName = subject.prop('tagName').toLowerCase();
+
+  switch (tagName) {
+    case NGX.DROPDOWN:
     case NGX.SELECT:
       if (options.log !== false) {
         Cypress.log({
@@ -28,7 +31,21 @@ Cypress.Commands.overwrite('select', (originalFn, subject, text, options = {}, .
       }
 
       if (!Array.isArray(text)) text = [text];
+  }
 
+  switch (tagName) {
+    case NGX.DROPDOWN:
+      return cy
+        .wrap(subject, LOG)
+        .ngxOpen(LOG)
+        .withinEach(() => {
+          text.forEach((t: string) => {
+            const re = new RegExp(`^\\s*${escapeRegex(t)}\\s*$`, 'g');
+            cy.get('li').contains(re, LOG).click(LOG);
+          });
+        }, LOG)
+        .ngxClose(LOG);
+    case NGX.SELECT:
       return cy
         .wrap(subject, LOG)
         .clear(LOG)
