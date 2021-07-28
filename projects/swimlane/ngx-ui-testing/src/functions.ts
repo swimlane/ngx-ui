@@ -43,7 +43,7 @@ export function ngxClosest(element: JQuery<Element>) {
 }
 
 export function getByLabel(label: string, options: any) {
-  const root = options.withinSubject ? options.withinSubject : $(cy['state']('document'));
+  const root = options.withinSubject ? options.withinSubject : $('body');
 
   let $el = root.find(`*[label="${label}"]`);
   if ($el.length) return $el;
@@ -68,7 +68,7 @@ export function getByPlaceholder(label: string) {
 }
 
 export function findInput(element: JQuery<Element>): any {
-  switch (element.prop('tagName').toLowerCase()) {
+  switch (getTagName(element)) {
     case NGX.INPUT:
     case NGX.DATETIME:
       return element.find('input,textarea');
@@ -88,7 +88,7 @@ export function findInput(element: JQuery<Element>): any {
 }
 
 export function findLabel(element: JQuery<Element>): any {
-  switch (element.prop('tagName').toLowerCase()) {
+  switch (getTagName(element)) {
     case NGX.INPUT:
     case NGX.DATETIME:
       return element.find('.ngx-input-label');
@@ -102,27 +102,27 @@ export function findLabel(element: JQuery<Element>): any {
   return element;
 }
 
-export function clear(subject: JQuery<Element>) {
-  switch (subject.prop('tagName').toLowerCase()) {
+export function clear(element: JQuery<Element>) {
+  switch (getTagName(element)) {
     case NGX.CODEMIRROR:
-      return cy.wrap(subject, LOG).ngxFindNativeInput().type(CLEAR, LOG);
+      return cy.wrap(element, LOG).ngxFindNativeInput().type(CLEAR, LOG);
     case NGX.INPUT:
     case NGX.DATETIME:
-      return cy.wrap(findInput(subject), LOG).clear(LOG);
+      return cy.wrap(findInput(element), LOG).clear(LOG);
     case NGX.SELECT:
-      return cy.wrap(subject, LOG).iff('.ngx-select-clear', $el => $el.trigger('click'), LOG);
+      return cy.wrap(element, LOG).iff('.ngx-select-clear', $el => $el.trigger('click'), LOG);
     case NGX.TOGGLE:
     case NGX.CHECKBOX:
-      return cy.wrap(findInput(subject), LOG).uncheck({ ...LOG, force: true });
+      return cy.wrap(findInput(element), LOG).uncheck({ ...LOG, force: true });
     case NGX.SLIDER:
-      const $el = findInput(subject);
+      const $el = findInput(element);
       const min = $el.attr('min');
       return $el.val(min);
   }
 }
 
 export function getValue(element: JQuery<Element>): any {
-  switch (element.prop('tagName').toLowerCase()) {
+  switch (getTagName(element)) {
     case NGX.CODEMIRROR: {
       const $el = element.find('.CodeMirror');
       return $el[0]['CodeMirror']?.getValue() || '';
@@ -151,7 +151,7 @@ export function getValue(element: JQuery<Element>): any {
 }
 
 export function setValue(element: JQuery<Element>, text?: string) {
-  switch (element.prop('tagName').toLowerCase()) {
+  switch (getTagName(element)) {
     case NGX.SELECT:
       return cy.wrap(element, LOG).select(text);
     case NGX.RADIOBUTTON_GROUP:
@@ -163,7 +163,7 @@ export function setValue(element: JQuery<Element>, text?: string) {
 }
 
 export function fillValue(element: any, text?: string, options = {}) {
-  switch (element.prop('tagName').toLowerCase()) {
+  switch (getTagName(element)) {
     case NGX.SELECT:
       cy.wrap(element, LOG).clear(LOG);
       if (text) {
@@ -197,7 +197,7 @@ export function iff(element: any, selector: string, fn: any) {
 }
 
 export function open(element: JQuery<Element>) {
-  switch (element.prop('tagName').toLowerCase()) {
+  switch (getTagName(element)) {
     case NGX.SELECT:
       if (!element.hasClass('active')) {
         element.find('.ngx-select-caret').trigger('click');
@@ -228,7 +228,7 @@ export function open(element: JQuery<Element>) {
 }
 
 export function close(element: JQuery<Element>) {
-  switch (element.prop('tagName').toLowerCase()) {
+  switch (getTagName(element)) {
     case NGX.SELECT:
       if (element.hasClass('active')) {
         element.find('.ngx-select-caret').trigger('click', LOG);
