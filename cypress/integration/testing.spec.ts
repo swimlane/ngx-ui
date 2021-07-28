@@ -12,4 +12,13 @@ describe('ngx-ui demo', () => {
       cy.getByLabel('Name').first().then(console.log).should('have.attr', 'id', 'input2');
     });
   });
+
+  it('getByPlaceholder works with within', () => {
+    cy.getByPlaceholder('Name').first().then(console.log).should('have.attr', 'id', 'input1');
+    cy.getByPlaceholder('Name').eq(1).then(console.log).should('have.attr', 'id', 'input2');
+
+    cy.get('#B').within(() => {
+      cy.getByPlaceholder('Name').first().then(console.log).should('have.attr', 'id', 'input2');
+    });
+  });
 });

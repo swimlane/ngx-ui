@@ -58,10 +58,11 @@ Cypress.Commands.add('getByLabel', (label, options) => {
 Cypress.Commands.add('getByPlaceholder', (text, options) => {
   options = {
     log: true,
+    withinSubject: cy['state']('withinSubject'),
     ...options
   };
 
-  const $el = getByPlaceholder(text) as JQuery<any>;
+  const $el = getByPlaceholder(text, options) as JQuery<any>;
 
   if (options.log) {
     Cypress.log({

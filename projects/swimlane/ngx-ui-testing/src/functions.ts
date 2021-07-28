@@ -60,8 +60,10 @@ export function getByLabel(label: string, options: any) {
   return ngxClosest($el) || $el.next();
 }
 
-export function getByPlaceholder(label: string) {
-  const $el = $(`*[placeholder="${label}"]`);
+export function getByPlaceholder(label: string, options: any) {
+  const root = options.withinSubject ? options.withinSubject : $('body');
+
+  const $el = root.find(`*[placeholder="${label}"]`);
   if (!$el.length) return;
 
   return ngxClosest($el) || $el;
