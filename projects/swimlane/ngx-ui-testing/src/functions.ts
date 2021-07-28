@@ -45,7 +45,7 @@ export function ngxClosest(element: JQuery<Element>) {
 export function getByLabel(label: string, options: any) {
   const root = options.withinSubject ? options.withinSubject : $('body');
 
-  let $el = root.find(`*[label="${label}"]`);
+  let $el = root.find(`*[label="${label}"]`); // todo: add support for aria-label
   if ($el.length) return $el;
 
   $el = root.find(`label:contains("${label}")`);
@@ -118,7 +118,7 @@ export function clear(element: JQuery<Element>) {
       return cy.wrap(findInput(element), LOG).uncheck({ ...LOG, force: true });
     case NGX.SLIDER:
       const $el = findInput(element);
-      const min = $el.attr('min');
+      const min = $el.attr('min') || $el.attr('aria-valuemin');
       return $el.val(min);
   }
 }
@@ -131,6 +131,7 @@ export function getValue(element: JQuery<Element>): any {
     }
     case NGX.SELECT: {
       if (element.hasClass('multi-selection')) {
+        // TODO: aria-multiselectable
         const $el = element.find('.ngx-select-input-name');
         return $.map($el, (el: Element) => $(el).text().trim());
       } else {
@@ -144,7 +145,7 @@ export function getValue(element: JQuery<Element>): any {
       return findInput(element).is(':checked');
     case NGX.RADIOBUTTON_GROUP: {
       // This is not good, need to find the real value
-      const el = element.find('input[type="radio"]:checked');
+      const el = element.find('input[type="radio"]:checked'); // TODO: aria-checked
       if (!el) return '';
       return el.parent().find('.radio-label--content').text().trim() || '';
     }

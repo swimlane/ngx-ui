@@ -10,7 +10,7 @@ function escapeRegex(string: string) {
 /**
  * Overwrites `cy.select` to work with ngx-ui elements.
  */
-Cypress.Commands.overwrite('select', (originalFn, subject, text, options = {}, ...args) => {
+Cypress.Commands.overwrite('select', (originalFn, subject, text: Array<string | RegExp>, options = {}, ...args) => {
   const tagName = subject.prop('tagName').toLowerCase();
 
   switch (tagName) {
@@ -31,6 +31,10 @@ Cypress.Commands.overwrite('select', (originalFn, subject, text, options = {}, .
       }
 
       if (!Array.isArray(text)) text = [text];
+      text = text.map(t => {
+        if (t instanceof RegExp) return t;
+        return new RegExp(`^\\s*${escapeRegex(t)}\\s*$`, 'g');
+      });
   }
 
   switch (tagName) {
@@ -39,10 +43,7 @@ Cypress.Commands.overwrite('select', (originalFn, subject, text, options = {}, .
         .wrap(subject, LOG)
         .ngxOpen(LOG)
         .withinEach(() => {
-          text.forEach((t: string) => {
-            const re = new RegExp(`^\\s*${escapeRegex(t)}\\s*$`, 'g');
-            cy.get('li').contains(re, LOG).click(LOG);
-          });
+          text.forEach((re: RegExp) => cy.get('li').contains(re, LOG).click(LOG));
         }, LOG)
         .ngxClose(LOG);
     case NGX.SELECT:
@@ -52,10 +53,7 @@ Cypress.Commands.overwrite('select', (originalFn, subject, text, options = {}, .
         .ngxOpen(LOG)
         .withinEach(() => {
           // Support matching on value or display text
-          text.forEach((t: string) => {
-            const re = new RegExp(`^\\s*${escapeRegex(t)}\\s*$`, 'g');
-            cy.get('li').contains(re, LOG).click(LOG);
-          });
+          text.forEach((re: RegExp) => cy.get('li').contains(re, LOG).click(LOG));
         }, LOG)
         .ngxClose(LOG);
   }

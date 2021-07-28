@@ -42,7 +42,7 @@ Cypress.Commands.add('getByLabel', (label, options) => {
       consoleProps: () => {
         return {
           Yielded: $el,
-          Elements: $el.length,
+          Elements: $el?.length,
           Label: label
         };
       }
@@ -72,7 +72,7 @@ Cypress.Commands.add('getByPlaceholder', (text, options) => {
       consoleProps: () => {
         return {
           Yielded: $el,
-          Elements: $el.length,
+          Elements: $el?.length,
           Placeholder: text
         };
       }
@@ -99,7 +99,7 @@ Cypress.Commands.add('withinEach', { prevSubject: true }, (subject, fn, options)
       consoleProps: () => {
         return {
           'Applied To': subject,
-          Elements: subject.length
+          Elements: subject?.length
         };
       }
     });
@@ -123,7 +123,7 @@ Cypress.Commands.add('hover', { prevSubject: 'element' }, (subject, options) => 
       consoleProps: () => {
         return {
           'Applied To': subject,
-          Elements: subject.length
+          Elements: subject?.length
         };
       }
     });
@@ -144,7 +144,7 @@ Cypress.Commands.add('unhover', { prevSubject: 'element' }, (subject, options) =
       consoleProps: () => {
         return {
           'Applied To': subject,
-          Elements: subject.length
+          Elements: subject?.length
         };
       }
     });
@@ -168,7 +168,7 @@ Cypress.Commands.add('whileHovering', { prevSubject: 'element' }, (subject, fn, 
       consoleProps: () => {
         return {
           'Applied To': subject,
-          Elements: subject.length
+          Elements: subject?.length
         };
       }
     });
@@ -200,7 +200,7 @@ Cypress.Commands.add('iff', { prevSubject: true }, (subject, selector, fn, optio
       consoleProps: () => {
         return {
           'Applied To': subject,
-          Elements: subject.length,
+          Elements: subject?.length,
           Selector: selector
         };
       }
@@ -239,7 +239,7 @@ Cypress.Commands.add('ngxFindNativeInput', { prevSubject: 'element' }, (subject,
       consoleProps: () => {
         return {
           'Applied To': subject,
-          Elements: subject.length,
+          Elements: subject?.length,
           Yielded: $el
         };
       }
@@ -266,7 +266,7 @@ Cypress.Commands.add('ngxFindLabel', { prevSubject: 'element' }, (subject, optio
       consoleProps: () => {
         return {
           'Applied To': subject,
-          Elements: subject.length,
+          Elements: subject?.length,
           Yielded: $el
         };
       }
@@ -294,7 +294,7 @@ Cypress.Commands.add('ngxOpen', { prevSubject: 'element' }, (subject, options = 
       consoleProps: () => {
         return {
           'Applied To': subject,
-          Elements: subject.length
+          Elements: subject?.length
         };
       }
     });
@@ -323,7 +323,7 @@ Cypress.Commands.add('ngxClose', { prevSubject: 'element' }, (subject, options =
       consoleProps: () => {
         return {
           'Applied To': subject,
-          Elements: subject.length
+          Elements: subject?.length
         };
       }
     });
@@ -360,7 +360,7 @@ Cypress.Commands.add('ngxFill', { prevSubject: 'element' }, (subject, text?, opt
       consoleProps: () => {
         return {
           'Applied To': subject,
-          Elements: subject.length,
+          Elements: subject?.length,
           text
         };
       }
@@ -378,7 +378,7 @@ Cypress.Commands.add('ngxGetValue', { prevSubject: 'element' }, (subject, option
     ...options
   };
 
-  const ret = getValue(subject);
+  const value = getValue(subject);
 
   if (options.log) {
     Cypress.log({
@@ -387,13 +387,13 @@ Cypress.Commands.add('ngxGetValue', { prevSubject: 'element' }, (subject, option
       consoleProps: () => {
         return {
           'Applied To': subject,
-          Elements: subject.length,
-          Returned: ret
+          Elements: subject?.length,
+          Returned: value
         };
       }
     });
   }
-  return ret;
+  return value;
 });
 
 /**
@@ -412,7 +412,7 @@ Cypress.Commands.add('ngxSetValue', { prevSubject: 'element' }, (subject, text?,
       consoleProps: () => {
         return {
           'Applied To': subject,
-          Elements: subject.length,
+          Elements: subject?.length,
           Value: text
         };
       }
