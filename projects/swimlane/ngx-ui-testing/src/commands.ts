@@ -28,10 +28,11 @@ Cypress.Commands.add('getByName', name => {
 Cypress.Commands.add('getByLabel', (label, options) => {
   options = {
     log: true,
+    withinSubject: cy['state']('withinSubject'),
     ...options
   };
 
-  const $el = getByLabel(label) as JQuery<any>;
+  const $el = getByLabel(label, options) as JQuery<any>;
 
   if (options.log) {
     Cypress.log({

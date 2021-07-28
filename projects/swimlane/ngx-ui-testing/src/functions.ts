@@ -27,6 +27,11 @@ export const LOG = { log: DEBUG };
 
 const $ = Cypress.$;
 
+export function getTagName(el: JQuery<Element>): string {
+  const tagName = el.prop('tagName') || '';
+  return tagName.toLowerCase();
+}
+
 export function ngxClosest(element: JQuery<Element>) {
   let $ngx = element.closest(NGX.DATETIME);
   if ($ngx.length) return $ngx;
@@ -37,11 +42,13 @@ export function ngxClosest(element: JQuery<Element>) {
   return;
 }
 
-export function getByLabel(label: string) {
-  let $el = $(`*[label="${label}"]`);
+export function getByLabel(label: string, options: any) {
+  const root = options.withinSubject ? options.withinSubject : $(cy['state']('document'));
+
+  let $el = root.find(`*[label="${label}"]`);
   if ($el.length) return $el;
 
-  $el = $(`label:contains("${label}")`);
+  $el = root.find(`label:contains("${label}")`);
   if (!$el.length) return;
 
   const id = $el.attr('for');
