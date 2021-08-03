@@ -5,11 +5,11 @@ describe('Selects', () => {
     cy.get('.page-loader').should('not.exist', { timeout: 20000 });
   });
 
-  // it('has no detectable a11y violations on load', () => {
-  //   cy.get('ngx-select-input').then($el => {
-  //     cy.checkA11y($el);
-  //   });
-  // });
+  it('has no detectable a11y violations on load', () => {
+    cy.get('ngx-select-input').then($el => {
+      cy.checkA11y($el);
+    });
+  });
   
   describe('Filtering Input', () => {
     beforeEach(() => {

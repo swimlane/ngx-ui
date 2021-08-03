@@ -12,11 +12,11 @@ describe('Code Editor', () => {
     it('enters text and clears', () => {
       const text = '<a>hello\nworld</a>';
 
-      cy.get('@CUT').fill(text);
+      cy.get('@CUT').ngxFill(text);
 
-      cy.get('@CUT').getValue().should('equal', text);
+      cy.get('@CUT').ngxGetValue().should('equal', text);
 
-      cy.get('@CUT').clear().getValue().should('equal', '');
+      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
     });
   });
 });
