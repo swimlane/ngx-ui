@@ -3,7 +3,7 @@
 ## HEAD (unreleased)
 
 - Feature: Added focus rings to buttons
-- Enhancement: Improve sematic HTML in `ngx-input` and `ngx-select`
+- Enhancement: Improve semantic HTML in `ngx-input` and `ngx-select`
 - Enhancement: Added `for` attribute to `ngx-input` labels
 - Enhancement: Added ARIA role attribute to `ngx-plus-menu`
 
