@@ -2,6 +2,11 @@
 
 ## HEAD (unreleased)
 
+- Feature: Added focus rings to buttons
+- Enhancement: Improve sematic HTML in `ngx-input` and `ngx-select`
+- Enhancement: Added `for` attribute to `ngx-input` labels
+- Enhancement: Added ARIA role attribute to `ngx-plus-menu`
+
 ## 35.6.7 (2021-06-29)
 
 - Fix: `ngx-select` not populating selected options once `options` changes
