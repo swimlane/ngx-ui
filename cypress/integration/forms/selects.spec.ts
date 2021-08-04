@@ -10,7 +10,7 @@ describe('Selects', () => {
       cy.checkA11y($el, {
         rules: {
           'color-contrast': { enabled: false },
-          'label': { enabled: false },  // TODO: fix these
+          label: { enabled: false } // TODO: fix these
         }
       });
     });
