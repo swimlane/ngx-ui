@@ -1,7 +1,19 @@
 describe('Selects', () => {
   before(() => {
     cy.visit('/selects');
+    cy.injectAxe();
     cy.get('.page-loader').should('not.exist', { timeout: 20000 });
+  });
+
+  it('have no detectable a11y violations on load', () => {
+    cy.get('ngx-select-input').withinEach($el => {
+      cy.checkA11y($el, {
+        rules: {
+          'color-contrast': { enabled: false },
+          'label': { enabled: false },  // TODO: fix these
+        }
+      });
+    });
   });
 
   describe('Basic Input', () => {
