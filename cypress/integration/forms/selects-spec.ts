@@ -10,7 +10,7 @@ describe('Selects', () => {
       cy.checkA11y($el);
     });
   });
-  
+
   describe('Filtering Input', () => {
     beforeEach(() => {
       cy.get('#select-3').as('CUT');

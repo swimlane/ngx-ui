@@ -148,7 +148,7 @@ describe('Inputs', () => {
 
     it('has no detectable a11y violations on load', () => {
       cy.get('@CUT').then($el => {
-        cy.checkA11y($el)
+        cy.checkA11y($el);
       });
     });
 
@@ -189,9 +189,11 @@ describe('Inputs', () => {
     });
 
     it('has no detectable a11y violations on load', () => {
-      cy.get('@CUT').find('.ngx-input-flex-wrap-inner').then($el => {
-        cy.checkA11y($el)
-      });
+      cy.get('@CUT')
+        .find('.ngx-input-flex-wrap-inner')
+        .then($el => {
+          cy.checkA11y($el);
+        });
     });
 
     it('has a label', () => {
@@ -217,9 +219,11 @@ describe('Inputs', () => {
     });
 
     it('has no detectable a11y violations on load', () => {
-      cy.get('@CUT').find('.ngx-input-flex-wrap-inner').then($el => {
-        cy.checkA11y($el)
-      });
+      cy.get('@CUT')
+        .find('.ngx-input-flex-wrap-inner')
+        .then($el => {
+          cy.checkA11y($el);
+        });
     });
 
     it('has a label', () => {
@@ -245,9 +249,11 @@ describe('Inputs', () => {
     });
 
     it('has no detectable a11y violations on load', () => {
-      cy.get('@CUT').find('.ngx-input-flex-wrap-inner').then($el => {
-        cy.checkA11y($el)
-      });
+      cy.get('@CUT')
+        .find('.ngx-input-flex-wrap-inner')
+        .then($el => {
+          cy.checkA11y($el);
+        });
     });
 
     it('has a label with asterisk', () => {
@@ -270,9 +276,11 @@ describe('Inputs', () => {
     });
 
     it('has no detectable a11y violations on load', () => {
-      cy.get('@CUT').find('.ngx-input-flex-wrap-inner').then($el => {
-        cy.checkA11y($el)
-      });
+      cy.get('@CUT')
+        .find('.ngx-input-flex-wrap-inner')
+        .then($el => {
+          cy.checkA11y($el);
+        });
     });
 
     it('has a label', () => {
@@ -294,9 +302,11 @@ describe('Inputs', () => {
     });
 
     it('has no detectable a11y violations on load', () => {
-      cy.get('@CUT').find('.ngx-input-flex-wrap-inner').then($el => {
-        cy.checkA11y($el)
-      });
+      cy.get('@CUT')
+        .find('.ngx-input-flex-wrap-inner')
+        .then($el => {
+          cy.checkA11y($el);
+        });
     });
 
     it('has a label', () => {

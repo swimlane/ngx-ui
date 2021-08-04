@@ -52,12 +52,12 @@ Cypress.Commands.add('asAllDataCy', () =>
   })
 );
 
-Cypress.Commands.add('findPseudoBefore', { prevSubject: 'element' }, (el) => {
+Cypress.Commands.add('findPseudoBefore', { prevSubject: 'element' }, el => {
   const win = el[0].ownerDocument.defaultView;
   return win.getComputedStyle(el[0], 'before');
 });
 
-Cypress.Commands.add('findPseudoAfter', { prevSubject: 'element' }, (el) => {
+Cypress.Commands.add('findPseudoAfter', { prevSubject: 'element' }, el => {
   const win = el[0].ownerDocument.defaultView;
   return win.getComputedStyle(el[0], 'after');
 });
