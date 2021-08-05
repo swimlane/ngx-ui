@@ -28,16 +28,24 @@ Cypress.Commands.add('getByName', name => {
 Cypress.Commands.add('getByLabel', (label, options) => {
   options = {
     log: true,
+    withinSubject: cy['state']('withinSubject'),
     ...options
   };
 
-  const $el = getByLabel(label) as JQuery<any>;
+  const $el = getByLabel(label, options) as JQuery<any>;
 
   if (options.log) {
     Cypress.log({
       name: 'getByLabel',
       message: label,
-      $el
+      $el,
+      consoleProps: () => {
+        return {
+          Yielded: $el,
+          Elements: $el?.length,
+          Label: label
+        };
+      }
     });
   }
 
@@ -50,16 +58,24 @@ Cypress.Commands.add('getByLabel', (label, options) => {
 Cypress.Commands.add('getByPlaceholder', (text, options) => {
   options = {
     log: true,
+    withinSubject: cy['state']('withinSubject'),
     ...options
   };
 
-  const $el = getByPlaceholder(text) as JQuery<any>;
+  const $el = getByPlaceholder(text, options) as JQuery<any>;
 
   if (options.log) {
     Cypress.log({
       name: 'getByLabel',
       message: text,
-      $el
+      $el,
+      consoleProps: () => {
+        return {
+          Yielded: $el,
+          Elements: $el?.length,
+          Placeholder: text
+        };
+      }
     });
   }
 
@@ -79,7 +95,13 @@ Cypress.Commands.add('withinEach', { prevSubject: true }, (subject, fn, options)
   if (options.log) {
     Cypress.log({
       name: 'withinEach',
-      $el: subject
+      $el: subject,
+      consoleProps: () => {
+        return {
+          'Applied To': subject,
+          Elements: subject?.length
+        };
+      }
     });
   }
 
@@ -97,7 +119,13 @@ Cypress.Commands.add('hover', { prevSubject: 'element' }, (subject, options) => 
   if (options.log) {
     Cypress.log({
       name: 'hover',
-      $el: subject
+      $el: subject,
+      consoleProps: () => {
+        return {
+          'Applied To': subject,
+          Elements: subject?.length
+        };
+      }
     });
   }
 
@@ -112,7 +140,13 @@ Cypress.Commands.add('unhover', { prevSubject: 'element' }, (subject, options) =
   if (options.log) {
     Cypress.log({
       name: 'unhover',
-      $el: subject
+      $el: subject,
+      consoleProps: () => {
+        return {
+          'Applied To': subject,
+          Elements: subject?.length
+        };
+      }
     });
   }
 
@@ -130,7 +164,13 @@ Cypress.Commands.add('whileHovering', { prevSubject: 'element' }, (subject, fn, 
   if (options.log) {
     Cypress.log({
       name: 'whileHovering',
-      $el: subject
+      $el: subject,
+      consoleProps: () => {
+        return {
+          'Applied To': subject,
+          Elements: subject?.length
+        };
+      }
     });
   }
 
@@ -156,7 +196,14 @@ Cypress.Commands.add('iff', { prevSubject: true }, (subject, selector, fn, optio
     Cypress.log({
       name: 'iff',
       $el: subject,
-      message: selector
+      message: selector,
+      consoleProps: () => {
+        return {
+          'Applied To': subject,
+          Elements: subject?.length,
+          Selector: selector
+        };
+      }
     });
   }
 
@@ -183,13 +230,22 @@ Cypress.Commands.add('ngxFindNativeInput', { prevSubject: 'element' }, (subject,
     ...options
   };
 
+  const $el = findInput(subject);
+
   if (options.log) {
     Cypress.log({
       name: 'findInput',
-      $el: subject
+      $el: subject,
+      consoleProps: () => {
+        return {
+          'Applied To': subject,
+          Elements: subject?.length,
+          Yielded: $el
+        };
+      }
     });
   }
-  return findInput(subject);
+  return $el;
 });
 
 /**
@@ -201,13 +257,22 @@ Cypress.Commands.add('ngxFindLabel', { prevSubject: 'element' }, (subject, optio
     ...options
   };
 
+  const $el = findLabel(subject);
+
   if (options.log) {
     Cypress.log({
       name: 'findLabel',
-      $el: subject
+      $el: subject,
+      consoleProps: () => {
+        return {
+          'Applied To': subject,
+          Elements: subject?.length,
+          Yielded: $el
+        };
+      }
     });
   }
-  return findLabel(subject);
+  return $el;
 });
 
 /**
@@ -225,7 +290,13 @@ Cypress.Commands.add('ngxOpen', { prevSubject: 'element' }, (subject, options = 
   if (options.log) {
     Cypress.log({
       name: 'ngxOpen',
-      $el: subject
+      $el: subject,
+      consoleProps: () => {
+        return {
+          'Applied To': subject,
+          Elements: subject?.length
+        };
+      }
     });
   }
 
@@ -248,7 +319,13 @@ Cypress.Commands.add('ngxClose', { prevSubject: 'element' }, (subject, options =
   if (options.log) {
     Cypress.log({
       name: 'ngxClose',
-      $el: subject
+      $el: subject,
+      consoleProps: () => {
+        return {
+          'Applied To': subject,
+          Elements: subject?.length
+        };
+      }
     });
   }
 
@@ -279,7 +356,14 @@ Cypress.Commands.add('ngxFill', { prevSubject: 'element' }, (subject, text?, opt
   if (options.log) {
     Cypress.log({
       name: 'fill',
-      $el: subject
+      $el: subject,
+      consoleProps: () => {
+        return {
+          'Applied To': subject,
+          Elements: subject?.length,
+          text
+        };
+      }
     });
   }
   return cy.wrap(subject, LOG).each(el => fillValue(el, text, options));
@@ -294,13 +378,22 @@ Cypress.Commands.add('ngxGetValue', { prevSubject: 'element' }, (subject, option
     ...options
   };
 
+  const value = getValue(subject);
+
   if (options.log) {
     Cypress.log({
       name: 'getValue',
-      $el: subject
+      $el: subject,
+      consoleProps: () => {
+        return {
+          'Applied To': subject,
+          Elements: subject?.length,
+          Returned: value
+        };
+      }
     });
   }
-  return getValue(subject);
+  return value;
 });
 
 /**
@@ -315,7 +408,14 @@ Cypress.Commands.add('ngxSetValue', { prevSubject: 'element' }, (subject, text?,
   if (options.log) {
     Cypress.log({
       name: 'setValue',
-      $el: subject
+      $el: subject,
+      consoleProps: () => {
+        return {
+          'Applied To': subject,
+          Elements: subject?.length,
+          Value: text
+        };
+      }
     });
   }
   return cy.wrap(subject, LOG).each(el => setValue(el, text));

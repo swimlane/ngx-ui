@@ -31,6 +31,10 @@ const routes: Routes = [
     loadChildren: () => import('./controls-page/controls-page.module').then(m => m.ControlsPageModule)
   },
   {
+    path: 'testing',
+    loadChildren: () => import('./testing-page/testing-page.module').then(m => m.TestingPageModule)
+  },
+  {
     path: 'datetime',
     loadChildren: () => import('./forms/datetime-page/datetime-page.module').then(m => m.DatetimePageModule)
   },

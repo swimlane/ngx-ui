@@ -27,6 +27,11 @@ export const LOG = { log: DEBUG };
 
 const $ = Cypress.$;
 
+export function getTagName(el: JQuery<Element>): string {
+  const tagName = el.prop('tagName') || '';
+  return tagName.toLowerCase();
+}
+
 export function ngxClosest(element: JQuery<Element>) {
   let $ngx = element.closest(NGX.DATETIME);
   if ($ngx.length) return $ngx;
@@ -37,11 +42,13 @@ export function ngxClosest(element: JQuery<Element>) {
   return;
 }
 
-export function getByLabel(label: string) {
-  let $el = $(`*[label="${label}"]`);
+export function getByLabel(label: string, options: any) {
+  const root = options.withinSubject ? options.withinSubject : $('body');
+
+  let $el = root.find(`*[label="${label}"]`); // todo: add support for aria-label
   if ($el.length) return $el;
 
-  $el = $(`label:contains("${label}")`);
+  $el = root.find(`label:contains("${label}")`);
   if (!$el.length) return;
 
   const id = $el.attr('for');
@@ -53,15 +60,17 @@ export function getByLabel(label: string) {
   return ngxClosest($el) || $el.next();
 }
 
-export function getByPlaceholder(label: string) {
-  const $el = $(`*[placeholder="${label}"]`);
+export function getByPlaceholder(label: string, options: any) {
+  const root = options.withinSubject ? options.withinSubject : $('body');
+
+  const $el = root.find(`*[placeholder="${label}"]`);
   if (!$el.length) return;
 
   return ngxClosest($el) || $el;
 }
 
 export function findInput(element: JQuery<Element>): any {
-  switch (element.prop('tagName').toLowerCase()) {
+  switch (getTagName(element)) {
     case NGX.INPUT:
     case NGX.DATETIME:
       return element.find('input,textarea');
@@ -81,7 +90,7 @@ export function findInput(element: JQuery<Element>): any {
 }
 
 export function findLabel(element: JQuery<Element>): any {
-  switch (element.prop('tagName').toLowerCase()) {
+  switch (getTagName(element)) {
     case NGX.INPUT:
     case NGX.DATETIME:
       return element.find('.ngx-input-label');
@@ -95,37 +104,39 @@ export function findLabel(element: JQuery<Element>): any {
   return element;
 }
 
-export function clear(subject: JQuery<Element>) {
-  switch (subject.prop('tagName').toLowerCase()) {
+export function clear(element: JQuery<Element>) {
+  switch (getTagName(element)) {
     case NGX.CODEMIRROR:
-      return cy.wrap(subject, LOG).ngxFindNativeInput().type(CLEAR, LOG);
+      return cy.wrap(element, LOG).ngxFindNativeInput().type(CLEAR, LOG);
     case NGX.INPUT:
     case NGX.DATETIME:
-      return cy.wrap(findInput(subject), LOG).clear(LOG);
+      return cy.wrap(findInput(element), LOG).clear(LOG);
     case NGX.SELECT:
-      return cy.wrap(subject, LOG).iff('.ngx-select-clear', $el => $el.trigger('click'), LOG);
+      return cy.wrap(element, LOG).iff('.ngx-select-clear', $el => $el.trigger('click'), LOG);
     case NGX.TOGGLE:
     case NGX.CHECKBOX:
-      return cy.wrap(findInput(subject), LOG).uncheck({ ...LOG, force: true });
+      return cy.wrap(findInput(element), LOG).uncheck({ ...LOG, force: true });
     case NGX.SLIDER:
-      const $el = findInput(subject);
-      const min = $el.attr('min');
+      const $el = findInput(element);
+      const min = $el.attr('min') || $el.attr('aria-valuemin');
       return $el.val(min);
   }
 }
 
 export function getValue(element: JQuery<Element>): any {
-  switch (element.prop('tagName').toLowerCase()) {
+  switch (getTagName(element)) {
     case NGX.CODEMIRROR: {
       const $el = element.find('.CodeMirror');
       return $el[0]['CodeMirror']?.getValue() || '';
     }
     case NGX.SELECT: {
-      const $el = element.find('.ngx-select-input-name');
-      if (element.hasClass('multi-selection') || $el.length > 1) {
-        return $.map($el, (el: Element) => $(el).text());
+      if (element.hasClass('multi-selection')) {
+        // TODO: aria-multiselectable
+        const $el = element.find('.ngx-select-input-name');
+        return $.map($el, (el: Element) => $(el).text().trim());
       } else {
-        return $el?.text() || '';
+        const $el = element.find('.ngx-select-input-list');
+        return $el?.text().trim() || '';
       }
     }
     case NGX.TOGGLE:
@@ -134,7 +145,7 @@ export function getValue(element: JQuery<Element>): any {
       return findInput(element).is(':checked');
     case NGX.RADIOBUTTON_GROUP: {
       // This is not good, need to find the real value
-      const el = element.find('input[type="radio"]:checked');
+      const el = element.find('input[type="radio"]:checked'); // TODO: aria-checked
       if (!el) return '';
       return el.parent().find('.radio-label--content').text().trim() || '';
     }
@@ -143,7 +154,7 @@ export function getValue(element: JQuery<Element>): any {
 }
 
 export function setValue(element: JQuery<Element>, text?: string) {
-  switch (element.prop('tagName').toLowerCase()) {
+  switch (getTagName(element)) {
     case NGX.SELECT:
       return cy.wrap(element, LOG).select(text);
     case NGX.RADIOBUTTON_GROUP:
@@ -155,7 +166,7 @@ export function setValue(element: JQuery<Element>, text?: string) {
 }
 
 export function fillValue(element: any, text?: string, options = {}) {
-  switch (element.prop('tagName').toLowerCase()) {
+  switch (getTagName(element)) {
     case NGX.SELECT:
       cy.wrap(element, LOG).clear(LOG);
       if (text) {
@@ -189,7 +200,7 @@ export function iff(element: any, selector: string, fn: any) {
 }
 
 export function open(element: JQuery<Element>) {
-  switch (element.prop('tagName').toLowerCase()) {
+  switch (getTagName(element)) {
     case NGX.SELECT:
       if (!element.hasClass('active')) {
         element.find('.ngx-select-caret').trigger('click');
@@ -201,8 +212,9 @@ export function open(element: JQuery<Element>) {
       }
       return;
     case NGX.DROPDOWN:
+      console.log(element.hasClass('open'), element);
       if (!element.hasClass('open')) {
-        element.find('button').first().trigger('click'); // TOOD: add a dropgown toggle class to ngx-dropdown
+        element.find('ngx-dropdown-toggle button').trigger('click'); // TOOD: add a dropgown toggle class to ngx-dropdown
       }
       return;
     case NGX.PLUS_MENU:
@@ -219,7 +231,7 @@ export function open(element: JQuery<Element>) {
 }
 
 export function close(element: JQuery<Element>) {
-  switch (element.prop('tagName').toLowerCase()) {
+  switch (getTagName(element)) {
     case NGX.SELECT:
       if (element.hasClass('active')) {
         element.find('.ngx-select-caret').trigger('click', LOG);
