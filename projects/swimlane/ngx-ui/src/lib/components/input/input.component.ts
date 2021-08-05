@@ -250,7 +250,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   private _required = false;
   private _autoSelect = false;
   private _autofocus = false;
-  private _autocomplete = 'off';
+  private _autocomplete: boolean | string = 'off';
   private _autocorrect = false;
   private _spellcheck = false;
   private _autosize = false;
