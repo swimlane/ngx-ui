@@ -6,6 +6,7 @@
 - Enhancement: Improve semantic HTML in `ngx-input` and `ngx-select`
 - Enhancement: Added `for` attribute to `ngx-input` labels
 - Enhancement: Added ARIA role attribute to `ngx-plus-menu`
+- Fix: Toggle going out of bounds when disabled in `ngx-toggle`
 
 ## 35.6.7 (2021-06-29)
 
