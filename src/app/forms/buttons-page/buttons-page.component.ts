@@ -21,8 +21,12 @@ export class ButtonsPageComponent {
     autoUpload: false
   });
 
+  onBtnClick(msg: string) {
+    console.log(`Demo app click: ${msg}`);
+  }
+
   onClick(msg: string, targetId?: string, successProbability = 0.5) {
-    console.log('Demo app click: ', msg);
+    this.onBtnClick(msg);
 
     const buttonPromise = new Promise((resolve, reject) => {
       setTimeout(() => {

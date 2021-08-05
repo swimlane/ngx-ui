@@ -1,6 +1,7 @@
 describe('Inputs', () => {
   before(() => {
     cy.visit('/inputs');
+    cy.injectAxe();
     cy.get('.page-loader').should('not.exist', { timeout: 20000 });
   });
 
@@ -9,6 +10,12 @@ describe('Inputs', () => {
 
     beforeEach(() => {
       cy.getByName('input1').as('CUT');
+    });
+
+    it('has no detectable a11y violations on load', () => {
+      cy.get('@CUT').then($el => {
+        cy.checkA11y($el);
+      });
     });
 
     afterEach(() => {
@@ -139,6 +146,12 @@ describe('Inputs', () => {
       cy.get('@CUT').ngxSetValue('');
     });
 
+    it('has no detectable a11y violations on load', () => {
+      cy.get('@CUT').then($el => {
+        cy.checkA11y($el);
+      });
+    });
+
     it('adds a placeholder', () => {
       cy.get('@CUT').ngxFindNativeInput().should('have.attr', 'placeholder', 'Enter your first and last name');
     });
@@ -171,9 +184,16 @@ describe('Inputs', () => {
     beforeEach(() => {
       cy.getByLabel('Prefix Suffix Input').as('CUT');
     });
-
     afterEach(() => {
       cy.get('@CUT').ngxSetValue('');
+    });
+
+    it('has no detectable a11y violations on load', () => {
+      cy.get('@CUT')
+        .find('.ngx-input-flex-wrap-inner')
+        .then($el => {
+          cy.checkA11y($el);
+        });
     });
 
     it('has a label', () => {
@@ -198,6 +218,14 @@ describe('Inputs', () => {
       cy.getByName('input3').as('CUT');
     });
 
+    it('has no detectable a11y violations on load', () => {
+      cy.get('@CUT')
+        .find('.ngx-input-flex-wrap-inner')
+        .then($el => {
+          cy.checkA11y($el);
+        });
+    });
+
     it('has a label', () => {
       cy.get('@CUT').ngxFindLabel().should('contain.text', 'Disabled Example');
     });
@@ -220,6 +248,14 @@ describe('Inputs', () => {
       cy.get('ngx-input[name="input4"]').as('CUT');
     });
 
+    it('has no detectable a11y violations on load', () => {
+      cy.get('@CUT')
+        .find('.ngx-input-flex-wrap-inner')
+        .then($el => {
+          cy.checkA11y($el);
+        });
+    });
+
     it('has a label with asterisk', () => {
       cy.get('@CUT').ngxFindLabel().should('contain.text', 'Required Input Example Of The Day');
       // todo: check if the asterisk is in the right place
@@ -239,6 +275,14 @@ describe('Inputs', () => {
       cy.get('ngx-input[name="input44"]').as('CUT');
     });
 
+    it('has no detectable a11y violations on load', () => {
+      cy.get('@CUT')
+        .find('.ngx-input-flex-wrap-inner')
+        .then($el => {
+          cy.checkA11y($el);
+        });
+    });
+
     it('has a label', () => {
       cy.get('@CUT').ngxFindLabel().should('contain.text', 'Default value');
     });
@@ -255,6 +299,14 @@ describe('Inputs', () => {
   describe('Password', () => {
     beforeEach(() => {
       cy.getByName('input6').as('CUT');
+    });
+
+    it('has no detectable a11y violations on load', () => {
+      cy.get('@CUT')
+        .find('.ngx-input-flex-wrap-inner')
+        .then($el => {
+          cy.checkA11y($el);
+        });
     });
 
     it('has a label', () => {

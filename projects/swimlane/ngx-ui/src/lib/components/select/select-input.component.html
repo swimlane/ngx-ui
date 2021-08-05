@@ -5,10 +5,10 @@
   class="ngx-select-input-box"
   (click)="onClick($event)"
 >
-  <span *ngIf="label" class="ngx-select-label">
+  <label *ngIf="label" class="ngx-select-label">
     <span [innerHTML]="label"></span>
     <span [innerHTML]="requiredIndicator"></span>
-  </span>
+  </label>
   <span *ngIf="!selected?.length && placeholder" class="ngx-select-placeholder" [innerHTML]="placeholder"> </span>
   <ul
     *ngIf="tagging || selectedOptions?.length"
