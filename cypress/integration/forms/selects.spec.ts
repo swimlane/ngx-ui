@@ -9,7 +9,7 @@ describe('Selects', () => {
     cy.get('ngx-select-input').withinEach($el => {
       cy.checkA11y($el, {
         rules: {
-          'color-contrast': { enabled: false },
+          'color-contrast': { enabled: false },  // NOTE: to be evaluated by UIUX
           label: { enabled: false } // TODO: fix these
         }
       });

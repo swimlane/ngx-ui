@@ -15,7 +15,7 @@ describe('Buttons', () => {
         cy.get('.ngx-section-content button').then($el => {
           cy.checkA11y($el, {
             rules: {
-              'color-contrast': { enabled: false }
+              'color-contrast': { enabled: false }  // NOTE: to be evaluated by UIUX
             }
           });
         });
@@ -54,7 +54,7 @@ describe('Buttons', () => {
       });
     });
 
-    it('does not fucus on disable buttons', () => {
+    it('does not focus on disable buttons', () => {
       cy.get('@SUT').within(() => {
         cy.get('.ngx-section-content').realClick({ x: 10, y: 10 }); // Navigates to first section
         cy.realPress('Tab')
@@ -80,7 +80,7 @@ describe('Buttons', () => {
         cy.get('.ngx-section-content ngx-button').withinEach($el => {
           cy.checkA11y($el, {
             rules: {
-              'color-contrast': { enabled: false }
+              'color-contrast': { enabled: false }  // NOTE: to be evaluated by UIUX
             }
           });
         });

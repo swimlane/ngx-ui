@@ -2,8 +2,11 @@
 @import '../../styles/components/buttons.scss';
 
 .ngx-button {
-  transition: background-color 0.25s ease-out !important;
-  padding: 0 !important;
+  &,
+  &.btn {
+    transition: background-color 0.25s ease-out;
+    padding: 0;
+  }
 
   button {
     padding: 0.35em 0.55em;
