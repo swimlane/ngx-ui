@@ -15,7 +15,7 @@ describe('Buttons', () => {
         cy.get('.ngx-section-content button').then($el => {
           cy.checkA11y($el, {
             rules: {
-              'color-contrast': { enabled: false }  // NOTE: to be evaluated by UIUX
+              'color-contrast': { enabled: false } // NOTE: to be evaluated by UIUX
             }
           });
         });
@@ -80,7 +80,7 @@ describe('Buttons', () => {
         cy.get('.ngx-section-content ngx-button').withinEach($el => {
           cy.checkA11y($el, {
             rules: {
-              'color-contrast': { enabled: false }  // NOTE: to be evaluated by UIUX
+              'color-contrast': { enabled: false } // NOTE: to be evaluated by UIUX
             }
           });
         });
