@@ -58,18 +58,16 @@
   <br />
   <br />
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <a
-        href="/"
-        [tooltipPlacement]="'top'"
-        [tooltipType]="'tooltip'"
-        ngx-tooltip
-        [tooltipTitle]="'Phishing Attack'">
-        Top
-      </a>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<a
+  href="/"
+  [tooltipPlacement]="'top'"
+  [tooltipType]="'tooltip'"
+  ngx-tooltip
+  [tooltipTitle]="'Phishing Attack'">
+  Top
+</a>]]>
+  </app-prism>
 
 </ngx-section>
 
@@ -133,22 +131,20 @@
   <br />
   <br />
 
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ng-template #popoverTemplate let-model="model">
-        <h3>Tool tip custom content defined inside a template</h3>
-        <p>With context binding: tooltipModel.text</p>
-      </ng-template>
+  <app-prism>
+<![CDATA[<ng-template #popoverTemplate let-model="model">
+  <h3>Tool tip custom content defined inside a template</h3>
+  <p>With context binding: tooltipModel.text</p>
+</ng-template>
 
-      <a
-        href="/"
-        ngx-tooltip
-        [tooltipContext]="{ foo: 'YAZ' }"
-        [tooltipType]="'popover'"
-        [tooltipPlacement]="'top'"
-        [tooltipTemplate]="popoverTemplate">
-        Top
-      </a>
-    ]]>
-  </ngx-codemirror>
+<a
+  href="/"
+  ngx-tooltip
+  [tooltipContext]="{ foo: 'YAZ' }"
+  [tooltipType]="'popover'"
+  [tooltipPlacement]="'top'"
+  [tooltipTemplate]="popoverTemplate">
+  Top
+</a>]]>
+  </app-prism>
 </ngx-section>

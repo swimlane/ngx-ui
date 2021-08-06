@@ -1,35 +1,45 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
+import { Event, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { DrawerService, LoadingService } from '@swimlane/ngx-ui';
-import { version } from '../../projects/swimlane/ngx-ui/package.json';
+import Prism from 'prismjs';
+import 'prismjs/plugins/custom-class/prism-custom-class';
+
+import pkg from '../../projects/swimlane/ngx-ui/package.json';
 
 @Component({
-  // tslint:disable-next-line:component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'app',
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.template.html',
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
-  version = version;
-  searchValue: string = '';
+  version = pkg.version;
+  searchValue = '';
   filteredNavigationTree: any[];
 
   navigationTree: any[] = [
     {
-      name: 'Colors',
-      route: 'colors',
-      icon: 'formula'
-    },
-    {
-      name: 'Typography',
-      route: 'typography',
-      icon: 'field-text'
-    },
-    {
-      name: 'Icons',
-      route: 'icons',
-      icon: 'field-grid'
+      name: 'Style',
+      icon: 'formula',
+      children: [
+        {
+          name: 'Typography',
+          route: 'typography'
+        },
+        {
+          name: 'Colors',
+          route: 'colors'
+        },
+        {
+          name: 'Layout',
+          route: 'layout'
+        },
+        {
+          name: 'Icons',
+          route: 'icons'
+        }
+      ]
     },
     {
       name: 'Animations',
@@ -126,6 +136,10 @@ export class AppComponent {
           route: 'dialog'
         },
         {
+          name: 'Dialog - Large Format',
+          route: 'dialog-large-format'
+        },
+        {
           name: 'Alert/Confirm',
           route: 'alert'
         },
@@ -160,16 +174,16 @@ export class AppComponent {
           route: 'dropdown'
         },
         {
-          name: 'Datatable',
-          route: 'datatable'
-        },
-        {
           name: 'Loading',
           route: 'loading'
         },
         {
           name: 'Progress Spinner',
           route: 'progress-spinner'
+        },
+        {
+          name: 'Plus Menu',
+          route: 'plus-menu'
         },
         {
           name: 'Tree',
@@ -202,15 +216,29 @@ export class AppComponent {
         {
           name: 'Hotkeys',
           route: 'hotkeys'
+        },
+        {
+          name: 'Tip',
+          route: 'tip'
+        },
+        {
+          name: 'Card',
+          route: 'card'
+        },
+        {
+          name: 'Dropzone',
+          route: 'dropzone'
         }
       ]
     }
   ];
   /* end of naviation tree */
 
-  navExpanded: boolean = true;
+  navExpanded = true;
 
   constructor(private drawerMngr: DrawerService, private loadingService: LoadingService, private router: Router) {
+    Prism.plugins.customClass.prefix('prism--');
+
     // Adding loading component in router
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
@@ -225,23 +253,33 @@ export class AppComponent {
   }
 
   updateSearchValue(updatedVal: string) {
-    const tree = this.deepCloneTree();
-
     if (!updatedVal) {
-      this.filteredNavigationTree = tree;
+      this.filteredNavigationTree = this.deepCloneTree();
     }
 
     updatedVal = updatedVal.toLowerCase();
-    this.filteredNavigationTree = tree.map(nav => {
-      if (nav.children) {
-        nav.children = nav.children.filter(child => child.name.toLowerCase().includes(updatedVal));
-      }
-
-      return nav;
+    this.filteredNavigationTree = this.navigationTree.map(nav => {
+      return {
+        ...nav,
+        children: nav.children?.length
+          ? nav.children.filter((child: any) => child.name.toLowerCase().includes(updatedVal))
+          : undefined
+      };
     });
   }
 
+  trackByName(_index: number, item: any): string {
+    return item.name;
+  }
+
   private deepCloneTree() {
-    return JSON.parse(JSON.stringify(this.navigationTree));
+    return [
+      ...this.navigationTree.map(nav => {
+        return {
+          ...nav,
+          children: nav.children ? [...nav.children] : undefined
+        };
+      })
+    ];
   }
 }

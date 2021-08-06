@@ -2,11 +2,13 @@ import { ThrottleOptions } from './throttle-options.interface';
 
 /**
  * Throttle a function
+ *
  * @param func    function to execute
  * @param wait    duration to wait
  * @param options options
+ * @returns anything
  */
-export function throttle(func: () => void, wait: number, options?: ThrottleOptions) {
+export function throttle(func: () => void, wait: number, options?: ThrottleOptions): any {
   options = options || {};
 
   let context: any;
@@ -15,11 +17,11 @@ export function throttle(func: () => void, wait: number, options?: ThrottleOptio
   let timeout = null;
   let previous = 0;
 
-  function later() {
+  const later = () => {
     previous = options.leading === false ? 0 : +new Date();
     timeout = null;
     result = func.apply(context, args);
-  }
+  };
 
   return function () {
     const now = +new Date();
@@ -29,7 +31,9 @@ export function throttle(func: () => void, wait: number, options?: ThrottleOptio
     }
 
     const remaining = wait - (now - previous);
+    // eslint-disable-next-line consistent-this
     context = this;
+    // eslint-disable-next-line prefer-rest-params
     args = arguments;
 
     if (remaining <= 0) {

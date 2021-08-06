@@ -7,10 +7,12 @@ import {
   HostListener,
   ChangeDetectionStrategy
 } from '@angular/core';
+
 import { BehaviorSubject } from 'rxjs';
 
 import { ButtonState } from './button-state.enum';
 import { CoerceBooleanProperty } from '@swimlane/ngx-ui/utils/coerce/coerce-boolean';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'ngx-button',
@@ -48,6 +50,14 @@ export class ButtonComponent implements OnInit, OnChanges {
     this.fail$.next(v === ButtonState.Fail);
   }
 
+  @Input()
+  get timeout() {
+    return this._timeout === undefined ? 3000 : this._timeout;
+  }
+  set timeout(v: number) {
+    this._timeout = coerceNumberProperty(v);
+  }
+
   readonly inProgress$ = new BehaviorSubject(false);
   readonly active$ = new BehaviorSubject(false);
   readonly success$ = new BehaviorSubject(false);
@@ -55,6 +65,7 @@ export class ButtonComponent implements OnInit, OnChanges {
 
   private _state = ButtonState.Active;
   private _timer: any;
+  private _timeout: any;
 
   ngOnInit() {
     this.updateState();
@@ -68,7 +79,7 @@ export class ButtonComponent implements OnInit, OnChanges {
   updatePromise() {
     if (this.promise) {
       this.state = ButtonState.InProgress;
-      this.updateState();
+
       return this.promise
         .then(() => {
           this.state = ButtonState.Success;
@@ -87,15 +98,14 @@ export class ButtonComponent implements OnInit, OnChanges {
     }
 
     if (
-      this.state === ButtonState.Success ||
-      this.state === ButtonState.Fail ||
-      this.state === ButtonState.InProgress
+      this.timeout &&
+      (this.state === ButtonState.Success || this.state === ButtonState.Fail || this.state === ButtonState.InProgress)
     ) {
       clearTimeout(this._timer);
       this._timer = setTimeout(() => {
         this.state = ButtonState.Active;
         this.updateState();
-      }, 3000);
+      }, this.timeout);
     }
   }
 

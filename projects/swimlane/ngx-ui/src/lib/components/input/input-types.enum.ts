@@ -1,3 +1,4 @@
+/* eslint-disable id-blacklist */
 export enum InputTypes {
   text = 'text',
   number = 'number',

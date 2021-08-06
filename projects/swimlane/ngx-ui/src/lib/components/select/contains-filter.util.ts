@@ -13,7 +13,7 @@ export function containsFilter(
       return value === keyword;
     }
 
-    // tslint:disable-next-line: tsr-detect-non-literal-regexp
+    // eslint-disable-next-line
     const idx = options.filterCaseSensitive ? value.indexOf(keyword) : value.search(new RegExp(keyword, 'i'));
     return idx > -1;
   } else if (typeof value === 'object') {

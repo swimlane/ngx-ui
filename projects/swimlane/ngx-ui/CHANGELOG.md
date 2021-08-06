@@ -1,6 +1,291 @@
 # CHANGELOG
 
-## HEAD (Unreleased)
+## HEAD (unreleased)
+
+- Feature: Added focus rings to buttons
+- Enhancement: Improve semantic HTML in `ngx-input` and `ngx-select`
+- Enhancement: Added `for` attribute to `ngx-input` labels
+- Enhancement: Added ARIA role attribute to `ngx-plus-menu`
+- Fix: Toggle going out of bounds when disabled in `ngx-toggle`
+
+## 35.6.7 (2021-06-29)
+
+- Fix: `ngx-select` not populating selected options once `options` changes
+
+## 35.6.6 (2021-06-08)
+
+- Enhancement: Updated import and export icon style (#625)
+
+## 35.6.5 (2021-06-08)
+
+- Enhancement: Add `warning` status to `tip` component
+- Enhancement: Add ability to display custom icon on `tip` component
+- Enhancement: Add ability to add new values via `Shift + ⏎` on select component when `allowAdditions` is true
+
+## 35.6.4 (2021-05-25)
+
+- Enhancement: Add validation when change on `minDate` or `maxDate` occurs to the `date-time` component.
+
+## 35.6.3 (2021-05-03)
+
+- Fix: Adjust `line-height` on `LargeFormatDialogContent#dialogTitle` to prevent cut off from overflow for truncating
+
+## 35.6.2 (2021-05-03)
+
+- Fix: Align `LargeFormatDialogContent#dialogTitle` when `dialogSubtitle` does not exist
+
+## 35.6.1 (2021-05-03)
+
+- Fix: LargeFormatDialog title layout when `subtitle` does not have value.
+- Fix: Change `LargeFormatDialogContentComponent` background to a gradient background
+- Fix: Expose `LargeFormatDialogContentComponent` on public API
+- Fix: Change `DialogDrawerContentComponent#title` to `drawerTitle`
+- Feat: Add `skipDirtyAlert` input to `LargeFormatDialogContent`
+- Docs: Add usage of `DialogDrawerContentComponent` to demo
+- Feat: Add `$bg-linear3` to Gradients
+- Fix: change events emitted inside a select field are propagated to the select component.
+
+## 35.6.0 (2021-04-28)
+
+- Refactor: `ngx-large-format-dialog-content` Stepper and Tabs variant usage
+
+  - The variants are now driven via `ng-template` and custom directives instead of Content Project due to limit of
+    Content Project when it comes to nested elements.
+
+  ```html
+  <ngx-large-format-dialog-content>
+    <!-- before -->
+    <ngx-stepper></ngx-stepper>
+
+    <!-- after -->
+    <ng-template largeFormatDialogStepper>
+      <ngx-stepper></ngx-stepper>
+    </ng-template>
+  </ngx-large-format-dialog-content>
+  ```
+
+  ```html
+  <ngx-large-format-dialog-content>
+    <!-- before -->
+    <ngx-tabs></ngx-tabs>
+
+    <!-- after -->
+    <ng-template largeFormatDialogTabs>
+      <ngx-tabs></ngx-tabs>
+    </ng-template>
+  </ngx-large-format-dialog-content>
+  ```
+
+  - This change also allows for nesting Stepper and Tabs
+
+- Enhancement: apply default styles to `ngx-large-format-dialog-footer`. Items will be center by default with a `0.5rem`
+  gap. `[styleClass]` input nullifies the default.
+- Fix: Export `DialogFormat` from `public_api`
+
+## 35.5.1 (2021-04-22)
+
+- Chore: Add `ng-in-viewport` as a peer dependency
+
+## 35.5.0 (2021-04-22)
+
+- Enhancement: Added icons (#595)
+- Enhancement(Dropdown): Add viewport intersection to change the direction of the dropdown menu upwards or downwards.
+
+## 35.4.0 (2021-04-22)
+
+- Feature(CardComponent): add error outline
+- Fix(DropzoneComponent): addressing minor design review feedback
+- Feature(JsonEditor): add support multiline support for string nodes
+- Fix: add label color to ToggleComponent, RadioButtonComponent, CheckboxComponent
+- Fix(TipComponent): change error color
+- Enhancement: Add `$color-error` css var
+- Feat(LargeFormatDialogContentComponent): add new component as wrapper for Dialog content
+
+## 35.3.1 (2021-03-29)
+
+- Fix(DropzoneComponent): addressing minor design review feedback
+
+## 35.3.0 (2021-03-23)
+
+- Fix(PlusMenuComponent): use inline style instead of HostBinding to be compatible when Ivy is off
+- Fix(ProgressSpinnerComponent): use inline style instead of HostBinding to be compatible when Ivy is off
+
+## 35.2.0 (2021-03-16)
+
+- Enhancement: Add Dropzone component
+- Fix(FileButtonComponent): change id to be unique
+- Enhancement: Provide services in root injector
+
+## 35.1.2 (2021-03-15)
+
+- Re-publish master on npm `latest` channel. No changes
+
+## 35.1.1 (2021-03-10)
+
+- Bug(ngx-progress-spinner): Fix issue with later versions of SASS
+
+## 35.1.0 (2021-02-26)
+
+- Bug(ngx-section): Make toggle on header click optional
+- Feature(ngx-section): Add `None` toggle position
+- Feature: Add `appearance` to `ProgressSpinnerComponent` where default is no icon
+- Feature: Add failure state and failure icon to `ProgressSpinnerComponent`
+- Feature: Add an option to add label to `ProgressSpinnerComponent`
+
+## 35.0.1 (2021-02-24)
+
+- Fix(ngx-card/ngx-section): User supplied classes are not preserved in some cases using `HostBinding`
+
+## 35.0.0 (2021-02-22)
+
+- Feature: Add an option to add `color` to `items` in `PlusMenuComponent`
+- Feature: Add `appearance` input to CardComponent
+- Enhancement: Add `hideAccent` input to CardComponent
+- Feature: Add `appearance` and `togglePosition` inputs to `SectionComponent`
+- Enhancement: When `sectionCollapsible` in `SectionComponent` is true, make the section header clickable to expand and
+  collapse
+- Feature: Add `timeout` option to `ButtonComponent`
+- Fix(ngx-input): Make the lockpad button clickable when the textbox appearance is set to "Fill" and
+  has `[unlockable] = "true"` set. Also fix vertical alignment.
+
+## 34.1.0 (2021-01-20)
+
+- Enhancement: Add `blur` and `dateTimeSelected` outputs to `DateTimeComponent`.
+- Enhancement: Add `showIcons` input to `ToggleComponent` to display optional icons.
+- Fix(JsonEditor): Remove unnecessary `onModelChange` event emissions on init.
+- Fix(json-editor): allow 'null' type in schema.
+
+## 34.0.1 (2020-12-17)
+
+- Fix(ngx-plus-menu): classes not set correctly in some cases.
+
+## 34.0.0 (2020-12-17)
+
+- Fix(DateTime): Component no longer emits a `(change)` event when input value is invalid.
+- Fix(DateTime): Display value not updated correctly.
+- Breaking(ngx-plus-menu): items now contain `title` and `subtitle`. Does not setup it's own hotkeys.
+- Fix(ngx-plus-menu): no popup us shown if `menuTitle` is not passed as an input to `ngx-plus-menu`
+
+## 33.1.0 (2020-12-14)
+
+- Feature: add `groupByTemplate` Input to `ngx-select`.
+  Check [Selects Documentation](https://swimlane.github.io/ngx-ui/selects) for usage
+
+## 33.0.0 (2020-12-8)
+
+- Feature: add `ngx-plus-menu`
+- Enhancement: Add `required` and `requiredIndicator` inputs to `DateTimeComponent`.
+- Breaking: An empty value will no longer cause the `DateTimeComponent` to become invalid, unless it is explicitly
+  marked as `required`.
+- Feature(Stepper): Add `[large]` input to increase the default icon size.
+- Feature(Stepper): Add `[trackBar]` input to make track bar optional.
+- Feature(Stepper): Add `[progress]` input to show a progress indicator on the active step.
+- Feature(Stepper): Add `[removeHighlight]` input to remove highlight color for the completed steps.
+- Feature(Stepper): Add `[icon]` input to show an icon instead of the step number.
+- Feature(Stepper): Add `.complete()` method to complete every step (including the last one).
+- Fix: remove hover state on ngx-card and fix minor style issues
+
+## 32.0.0 (2020-11-24)
+
+- Enhancement: ngx card component
+
+## 31.1.0 (2020-11-10)
+
+- Fix: re-infer `json-editor` node types after model change
+- Fix: Reference leak caused when duplicating field names on a object
+- Enhancement: Add `[withMargin]` option to `ngx-input`
+  - `[withMargin]` allows for consumers of `ngx-input` to remove the vertical margins that are added by the `ngx-input`
+    itself, to take control of positioning of the `ngx-input`.
+  - Default is `true` to keep the current behavior intact.
+- Enhancement: Add `[withMargin]` option to `ngx-date-time`
+  - `[withMargin]` on `ngx-date-time` is passed down to `ngx-input` resulting the above points.
+  - Default is `true` to keep the current behavior intact.
+  - `[withMargin]=true` adds `.marginless` CSS class to determine the `translateY` value of `calendar-dialog-btn`
+    relative to the Host component.
+- Enhancement: Remove `padding-top` style to `ngx-input` if there's no `label` passed in.
+  - For `ngx-date-time`, **calendar toggle button** is positioned properly with no `label`.
+- Enhancement: Port `AutoSizeInputDirective` from `ngx-autosize-input` to `ngx-ui` because of bad implementation on
+  first `ngModel.valueChanges` in `ngx-autosize-input`.
+- Chore: Remove `ngx-autosize-input` as a dependency.
+
+## 31.0.1 (2020-11-03)
+
+- Fix: Change \* imports to a namespaces compatible version
+
+## 31.0.0 (2020-10-29)
+
+- Feature: Add `confirmButtonText` and `cancelButtonText` config options (`<ngx-alert-dialog />`).
+- Enhancement: Performance improvements.
+- Enhancement: Add `[unlockable]` option to InputComponent.
+- Fix: Select not auto-collapse when click on caret.
+- Fix: DateTimeComponent displaValue.
+- Fix: Protect against unwanted schema changes when using Two-way binding outside of schema-builder mode.
+- Breaking: `JsonEditor` components `@Output() schemaChange` was renamed to `schemaUpdate`.
+
+## 30.1.0 (2020-09-22)
+
+- Bug: Revert removal of ngx-datatable styles
+
+## 30.0.0 (2020-09-18)
+
+- Bug: Fix ngx-select issue when using the filter and arrow keys/enter to selecting a dropdown option (#494)
+- Chore: Removed ngx-datatable from demo page
+- Enhancement: Added icons; update icon style for `calendar-clock` and `calendar` icons (#491)
+- Breaking: Upgrade to Angular 10
+- Enhancement: replace the default chrome accessibility number spinner with a styled one for number type ngx-inputs
+- Enhancement: added a minWidth input property to ngx-input
+- Fix: rework the way autosize works on ngx-input so that it sizes to its content correctly. Now using
+  ngx-autosize-input library.
+- Enhancement: Updated ngx-date-time component to have fill variants and autosize option
+
+## 29.3.0 (2020-08-17)
+
+- enhancement: update ngx-select focus underline to be clearer. clicking the input box now also toggles dropdown
+- Bug: fix ngx-select so that clicking the caret closes the dropdown
+
+## 29.2.3 (2020-08-14)
+
+- Fix: refactor ngx-select fill css to use proper css ordering and not rely on important keyword
+- Bug: fix ngx-button issue related to the promise input
+
+## 29.2.2 (2020-08-11)
+
+- Fix: Export TipComponent and TipModule
+
+## 29.2.1 (2020-07-24)
+
+- Bug: fix ngx-input/ngx-select host class syntax for prod builds
+- Bug: fix navbar background color to be solid and match UX
+
+## 29.2.0 (2020-07-23)
+
+- Feature: support `cssClass` in alert/config options
+- Feature: ngx-tip component
+- Feature: autosize input width
+- Feature: fill input style
+- Feature: sm, md, lg input sizing
+- Bug: make context drawer compatible with components
+- Bug: fix ngx-drawer-content scrolling scss issue
+- Feature: fill select style
+- Enhancement: select dropdown styling
+
+## 29.1.0 (2020-06-29)
+
+- Feature: Show step labels in horizontal stepper
+- Bug: Make `SplitDirective#resize` public again
+
+## 29.0.0 (2020-06-15)
+
+- Breaking: `ngxSplit` directives no longer require, nor support, `@angular/flex-layout` directives
+- Enhancement: Remove @angular/flex-layout
+- Enhancement: Added `ngx-flex` classes for easy flex layouts
+
+## 28.7.0 (2020-06-15)
+
+- Feature: allow showing all object properties by defualt
+- Feature: Source Sans Pro fonts now defined with `font-display: swap` for better UX
+- Fix: Text inputs in flat JSON editor now trigger validation on change.
+- Fix: various alignment issues in flat JSON editor
 
 ## 28.6.3 (2020-06-04)
 
@@ -284,7 +569,8 @@
 
 ## 25.0.0 (2019-01-28)
 
-- Breaking: @angular/flex-layout must be imported in the modules it's used in - it is no longer imported in the main `NgxUIModule` (#217)
+- Breaking: @angular/flex-layout must be imported in the modules it's used in - it is no longer imported in the
+  main `NgxUIModule` (#217)
 - Fix: Fixes circular dependency warnings and the AoT build (#217)
 - Fix: Fixes an error in the splitter component (#219)
 

@@ -1,0 +1,130 @@
+@import 'colors/variables';
+
+.card-page-container {
+  .ngx-card {
+    margin-bottom: 20px;
+
+    .date-display {
+      color: $color-blue-grey-400;
+    }
+
+    .card-gutter {
+      margin-left: 30px;
+    }
+
+    .ngx-card-section {
+      .ngx-icon {
+        cursor: pointer;
+      }
+    }
+
+    .card-action {
+      justify-content: space-between;
+      padding-right: 0 !important;
+      color: $color-blue-grey-350;
+    }
+  }
+
+  .playbook-card {
+    &.border {
+      border: solid 2px #3b4457;
+      border-radius: 2px;
+    }
+
+    .ngx-card-header {
+      .ngx-card-avatar {
+        &--avatar {
+          border-color: #afe43b;
+        }
+      }
+    }
+
+    .ngx-card--accent {
+      background: #afe43b;
+    }
+  }
+
+  .plugin-card {
+    .ngx-card-header {
+      .ngx-card-subtitle {
+        i {
+          margin-right: 5px;
+          margin-top: 5px;
+        }
+      }
+
+      .ngx-card-avatar .status {
+        background-color: #1483ff;
+      }
+    }
+
+    .card-toggle {
+      color: #8f9db7;
+      font-size: 14px;
+    }
+  }
+
+  .ngx-card-vertical {
+    .ngx-card-header--label {
+      color: #afe43b;
+    }
+
+    .ngx-card-header {
+      .ngx-card-avatar {
+        width: 68px;
+        height: 68px;
+        min-width: 68px;
+        min-height: 68px;
+
+        &--avatar {
+          border-color: #afe43b;
+        }
+      }
+    }
+
+    .ngx-card-body {
+      .card-stat-container {
+        margin: 20px 0;
+        display: flex;
+        width: 100%;
+        height: 68px;
+        background: linear-gradient(180deg, #2b3240 0%, #262c38 100%);
+        opacity: 0.7;
+        box-shadow: 0 2px 15px rgba(7, 8, 11, 0.2);
+        border-radius: 2px;
+
+        .card-stat {
+          width: 50%;
+          margin: auto 0;
+          text-align: center;
+
+          .ngx-icon {
+            color: $color-blue-grey-350;
+          }
+
+          .card-stat--value {
+            color: $color-blue-grey-100;
+            font-size: 21px;
+          }
+
+          .card-stat--label {
+            color: $color-blue-grey-350;
+            font-size: 12px;
+            font-weight: 600;
+          }
+
+          &:first-child {
+            border-right: 1px solid #313847;
+          }
+        }
+      }
+
+      .date-display {
+        display: inline-block;
+        align-items: center;
+        color: $color-blue-grey-400;
+        font-size: 14px;
+      }
+    }
+  }
+}

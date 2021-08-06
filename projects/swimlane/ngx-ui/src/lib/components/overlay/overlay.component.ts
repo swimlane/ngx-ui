@@ -74,8 +74,8 @@ export class OverlayComponent {
     return this.visible ? 'active' : 'inactive';
   }
 
-  private _visible: boolean = false;
-  private _zIndex: number = 990;
+  private _visible = false;
+  private _zIndex = 990;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 }

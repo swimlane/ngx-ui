@@ -1,4 +1,13 @@
-import { Input, EventEmitter, Output, OnInit, OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import {
+  Input,
+  EventEmitter,
+  Output,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  ChangeDetectorRef,
+  Directive
+} from '@angular/core';
 
 import {
   createValueForSchema,
@@ -14,12 +23,13 @@ import {
 } from '../json-editor.helper';
 import { JSONSchema7TypeName } from 'json-schema';
 
+@Directive()
 export class ObjectNode implements OnInit, OnChanges {
   @Input() schema: JSONEditorSchema;
 
   @Input() model: any;
 
-  @Input() required: boolean = false;
+  @Input() required = false;
 
   @Input() expanded: boolean;
 
@@ -33,16 +43,22 @@ export class ObjectNode implements OnInit, OnChanges {
 
   @Input() schemaRef: JSONEditorSchema;
 
+  @Input() showKnownProperties = false;
+
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
-  @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();
+  @Output() schemaUpdate: EventEmitter<JSONEditorSchema> = new EventEmitter();
 
   requiredCache: { [key: string]: boolean } = {};
 
+  initialized = false;
+
   dataTypes: JsonSchemaDataType[] = [...jsonSchemaDataTypes, ...jsonSchemaDataFormats];
-  propertyCounter: number = 1;
-  propertyId: number = 1;
+  propertyCounter = 1;
+  propertyId = 1;
   propertyIndex: PropertyIndex = {};
+
+  duplicatedFields = new Map<string, string>();
 
   dataTypeMap = dataTypeMap;
 
@@ -84,11 +100,13 @@ export class ObjectNode implements OnInit, OnChanges {
       this.indexProperties();
       this.addRequiredProperties();
       this.updateIcons();
+      this.initialized = true;
     });
   }
 
   /**
    * Updates a property on the model and emits the change event
+   *
    * @param propName
    * @param value
    */
@@ -100,16 +118,25 @@ export class ObjectNode implements OnInit, OnChanges {
 
   /**
    * Updates the name of a property
+   *
    * @param id
    * @param name
    */
   updatePropertyName(id: number | string, name: string) {
+    const existingPropertyValue = this.model[name];
     const oldName = this.propertyIndex[id].propertyName;
-    this.model[name] = this.model[oldName];
-    this.propertyIndex[id].propertyName = name;
-    delete this.model[oldName];
-    this.propertyIndex = { ...this.propertyIndex };
-    this.modelChange.emit(this.model);
+
+    this.duplicatedFields.delete(id as string);
+
+    if (existingPropertyValue === undefined) {
+      this.model[name] = this.model[oldName];
+      this.propertyIndex[id].propertyName = name;
+      delete this.model[oldName];
+      this.propertyIndex = { ...this.propertyIndex };
+      this.modelChange.emit(this.model);
+    } else if (oldName !== name) {
+      this.duplicatedFields.set(id as string, name);
+    }
   }
 
   /**
@@ -154,7 +181,9 @@ export class ObjectNode implements OnInit, OnChanges {
     this.propertyIndex[schema.id] = schema;
     this.propertyIndex = { ...this.propertyIndex };
 
-    this.modelChange.emit(this.model);
+    if (this.initialized) {
+      this.modelChange.emit(this.model);
+    }
     this.updateIcons();
   }
 
@@ -251,7 +280,7 @@ export class ObjectNode implements OnInit, OnChanges {
         let matchesPattern = false;
         if (this.schema.patternProperties) {
           for (const pattern in this.schema.patternProperties) {
-            // tslint:disable-next-line: tsr-detect-non-literal-regexp
+            // eslint-disable-next-line
             const patternRegex = new RegExp(pattern);
             if (patternRegex.test(prop)) {
               schema = JSON.parse(JSON.stringify(this.schema.patternProperties[pattern]));
@@ -277,10 +306,16 @@ export class ObjectNode implements OnInit, OnChanges {
       const schema = this.propertyIndex[id];
       if (this.model[schema.propertyName] === undefined) {
         delete this.propertyIndex[id];
+      } else {
+        const model = this.model[schema.propertyName];
+        const { type } = inferType(model);
+        if (schema.type !== type) {
+          this.propertyIndex[schema.id].type = type;
+        }
       }
     }
 
-    this.propertyIndex = { ...this.propertyIndex };
+    this.propertyIndex = JSON.parse(JSON.stringify(this.propertyIndex));
     this.cdr.markForCheck();
   }
 
@@ -332,6 +367,7 @@ export class ObjectNode implements OnInit, OnChanges {
 
   /**
    * Track By function for the array ittierator
+   *
    * @param index
    * @param value
    */

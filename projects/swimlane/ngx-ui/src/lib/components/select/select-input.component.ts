@@ -1,13 +1,15 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  ViewChild,
   AfterViewInit,
-  TemplateRef,
+  ChangeDetectionStrategy,
+  Component,
   ElementRef,
-  ChangeDetectionStrategy
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+  TemplateRef,
+  ViewChild
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
@@ -21,7 +23,7 @@ import { SelectDropdownOption } from './select-dropdown-option.interface';
   host: { class: 'ngx-select-input' },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SelectInputComponent implements AfterViewInit {
+export class SelectInputComponent implements AfterViewInit, OnChanges {
   @Input() placeholder: string;
   @Input() identifier: string;
   @Input() options: SelectDropdownOption[];
@@ -35,6 +37,7 @@ export class SelectInputComponent implements AfterViewInit {
   get autofocus() {
     return this._autofocus;
   }
+
   set autofocus(autofocus) {
     this._autofocus = coerceBooleanProperty(autofocus);
   }
@@ -43,6 +46,7 @@ export class SelectInputComponent implements AfterViewInit {
   get allowClear() {
     return this._allowClear;
   }
+
   set allowClear(allowClear) {
     this._allowClear = coerceBooleanProperty(allowClear);
   }
@@ -51,6 +55,7 @@ export class SelectInputComponent implements AfterViewInit {
   get multiple() {
     return this._multiple;
   }
+
   set multiple(multiple) {
     this._multiple = coerceBooleanProperty(multiple);
   }
@@ -59,6 +64,7 @@ export class SelectInputComponent implements AfterViewInit {
   get tagging() {
     return this._tagging;
   }
+
   set tagging(tagging) {
     this._tagging = coerceBooleanProperty(tagging);
   }
@@ -67,6 +73,7 @@ export class SelectInputComponent implements AfterViewInit {
   get allowAdditions() {
     return this._allowAdditions;
   }
+
   set allowAdditions(allowAdditions) {
     this._allowAdditions = coerceBooleanProperty(allowAdditions);
   }
@@ -75,6 +82,7 @@ export class SelectInputComponent implements AfterViewInit {
   get disableDropdown() {
     return this._disableDropdown;
   }
+
   set disableDropdown(disableDropdown) {
     this._disableDropdown = coerceBooleanProperty(disableDropdown);
   }
@@ -83,6 +91,7 @@ export class SelectInputComponent implements AfterViewInit {
   get selected() {
     return this._selected;
   }
+
   set selected(val: any[]) {
     this._selected = val;
     this.selectedOptions = this.calcSelectedOptions(val);
@@ -98,8 +107,7 @@ export class SelectInputComponent implements AfterViewInit {
 
   get caretVisible(): boolean {
     if (this.disableDropdown) return false;
-    if (this.tagging && (!this.options || !this.options.length)) return false;
-    return true;
+    return !(this.tagging && (!this.options || !this.options.length));
   }
 
   get isNotTemplate() {
@@ -115,6 +123,12 @@ export class SelectInputComponent implements AfterViewInit {
   private _tagging: boolean;
   private _allowAdditions: boolean;
   private _disableDropdown: boolean;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('options' in changes && !changes.options.firstChange) {
+      this.selectedOptions = this.calcSelectedOptions(this.selected);
+    }
+  }
 
   ngAfterViewInit(): void {
     if (this.tagging && this.autofocus) {
@@ -178,6 +192,10 @@ export class SelectInputComponent implements AfterViewInit {
         this.inputElement.nativeElement.focus();
       }, 5);
     }
+  }
+
+  onToggle(): void {
+    this.toggle.emit();
   }
 
   onOptionRemove(event: Event, option: SelectDropdownOption): void {

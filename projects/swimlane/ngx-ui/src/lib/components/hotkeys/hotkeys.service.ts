@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import * as Mousetrap from 'mousetrap';
+import Mousetrap from 'mousetrap';
 import { Subject } from 'rxjs';
 
 import { Hotkey } from './hotkey.interface';
@@ -10,7 +10,7 @@ const hotkeyChangedSource = new Subject<{ [combo: string]: Hotkey[] }>();
 const isMac = /Mac|iPod|iPhone|iPad/.test(window.navigator.platform);
 const tags = ['INPUT', 'SELECT', 'TEXTAREA'];
 
-/*tslint:disable*/
+/* eslint-disable */
 const map = {
   command: '\u2318', // ⌘
   shift: '\u21E7', // ⇧
@@ -21,7 +21,7 @@ const map = {
   return: '\u23CE', // ⏎
   backspace: '\u232B' // ⌫
 };
-/*tslint:enable*/
+/* eslint-enable */
 
 function _getDisplay(combo: string) {
   const keys = combo.split('+');
@@ -68,6 +68,8 @@ export function _add(combo: string, opts: Hotkey) {
 
   hotkeys[combo].push(opts);
   hotkeyChangedSource.next(hotkeys);
+
+  return opts;
 
   /* istanbul ignore next */
   function callback(event: Event) {
@@ -186,7 +188,9 @@ export function Hotkey(key: string, description: string, options?: Partial<Hotke
   };
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class HotkeysService {
   readonly suspend = _suspend;
   readonly activate = _activate;
@@ -202,7 +206,7 @@ export class HotkeysService {
   constructor(private readonly ngZone: NgZone) {}
 
   add(combo: string, opts: Hotkey) {
-    _add(combo, { zone: this.ngZone, ...opts });
+    return _add(combo, { zone: this.ngZone, ...opts });
   }
 
   clear() {

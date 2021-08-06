@@ -1,5 +1,5 @@
 <div class="ngx-select-wrap">
-  <div class="ngx-select-flex-wrap">
+  <div class="ngx-select-flex-wrap" [style.min-width]="autosize ? autosizeMinWidth : undefined">
     <div class="ngx-select-flex-wrap-inner">
       <ngx-select-input
         [autofocus]="autofocus"
@@ -34,6 +34,7 @@
     [allowAdditionsText]="allowAdditionsText"
     [selected]="value"
     [groupBy]="groupBy"
+    [groupByTemplate]="groupByTemplate"
     [emptyPlaceholder]="emptyPlaceholder"
     [tagging]="tagging"
     [filterEmptyPlaceholder]="filterEmptyPlaceholder"

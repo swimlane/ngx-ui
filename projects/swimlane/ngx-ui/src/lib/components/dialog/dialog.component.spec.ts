@@ -1,5 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+/* eslint-disable security/detect-non-literal-fs-filename */
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { DialogFormat } from '@swimlane/ngx-ui/components/dialog/dialog-format.enum';
 
 import { DialogComponent } from './dialog.component';
 
@@ -7,12 +9,14 @@ describe('DialogComponent', () => {
   let component: DialogComponent;
   let fixture: ComponentFixture<DialogComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [DialogComponent],
-      imports: [NoopAnimationsModule]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [DialogComponent],
+        imports: [NoopAnimationsModule]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DialogComponent);
@@ -119,6 +123,27 @@ describe('DialogComponent', () => {
       component.onDocumentClick({});
       expect(spy).toHaveBeenCalled();
       expect(component.visible).toBeTruthy();
+    });
+  });
+
+  describe('largeFormat', () => {
+    beforeEach(() => {
+      component.format = DialogFormat.Large;
+    });
+
+    it('should hide close button', () => {
+      component.closeButton = true;
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('button.close')).not.toBeTruthy();
+    });
+
+    it('should hide default header and title', () => {
+      component.dialogTitle = 'title';
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('div.ngx-dialog-header')).not.toBeTruthy();
+      expect(fixture.nativeElement.querySelector('h2.ngx-dialog-title')).not.toBeTruthy();
     });
   });
 });

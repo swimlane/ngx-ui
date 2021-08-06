@@ -6,7 +6,7 @@ import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { selectDropdownOptionMock } from './select-dropdown-option.mock';
 
 @Component({
-  selector: `ngx-select-fixture`,
+  selector: 'ngx-select-fixture',
   template: `
     <ngx-select
       placeholder="placeholder"
@@ -15,6 +15,7 @@ import { selectDropdownOptionMock } from './select-dropdown-option.mock';
       [minSelections]="minSelections$ | async"
       [maxSelections]="maxSelections$ | async"
       [autofocus]="autofocus$ | async"
+      [autosize]="autosize$ | async"
       [allowClear]="allowClear$ | async"
       [allowAdditions]="allowAdditions$ | async"
       [disableDropdown]="disableDropdown$ | async"
@@ -38,6 +39,7 @@ import { selectDropdownOptionMock } from './select-dropdown-option.mock';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+// eslint-disable-next-line @angular-eslint/component-class-suffix
 export class SelectComponentFixture {
   selected = [];
 
@@ -45,6 +47,7 @@ export class SelectComponentFixture {
   readonly minSelections$ = new BehaviorSubject(0);
   readonly maxSelections$ = new BehaviorSubject(3);
   readonly autofocus$ = new BehaviorSubject(false);
+  readonly autosize$ = new BehaviorSubject(false);
   readonly allowClear$ = new BehaviorSubject(false);
   readonly allowAdditions$ = new BehaviorSubject(false);
   readonly disableDropdown$ = new BehaviorSubject(false);

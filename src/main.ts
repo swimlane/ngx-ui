@@ -10,4 +10,5 @@ if (environment.production) {
 
 platformBrowserDynamic()
   .bootstrapModule(AppModule, { preserveWhitespaces: true })
+  // eslint-disable-next-line no-console
   .catch(err => console.error(err));

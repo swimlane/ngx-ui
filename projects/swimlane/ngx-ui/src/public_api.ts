@@ -42,6 +42,8 @@ export * from './lib/directives/validators/pattern-validator/pattern-validator.m
 export * from './lib/directives/validators/pattern-validator/pattern-validator.directive';
 export * from './lib/directives/visibility/visibility.module';
 export * from './lib/directives/visibility/visibility.directive';
+export * from './lib/directives/autosize-input/autosize-input.module';
+export * from './lib/directives/autosize-input/autosize-input.directive';
 
 // components
 export * from './lib/components/button/button.module';
@@ -55,6 +57,9 @@ export * from './lib/components/calendar/calendar.component';
 export * from './lib/components/calendar/calendar-day.interface';
 export * from './lib/components/calendar/calendar-month.type';
 export * from './lib/components/calendar/calendar-view.enum';
+
+export * from './lib/components/card/card.module';
+export * from './lib/components/card/card.component';
 
 export * from './lib/components/checkbox/checkbox.module';
 export * from './lib/components/checkbox/checkbox.component';
@@ -72,6 +77,12 @@ export * from './lib/components/dialog/dialog.module';
 export * from './lib/components/dialog/dialog.component';
 export * from './lib/components/dialog/dialog.service';
 export * from './lib/components/dialog/dialog-options.interface';
+export * from './lib/components/dialog/dialog-format.enum';
+export * from './lib/components/dialog/large-format/large-format-dialog-content.component';
+export * from './lib/components/dialog/large-format/directives/large-format-dialog-stepper/large-format-dialog-stepper.directive';
+export * from './lib/components/dialog/large-format/directives/large-format-dialog-stepper/large-format-dialog-sub-stepper.directive';
+export * from './lib/components/dialog/large-format/directives/large-format-dialog-tabs/large-format-dialog-tabs.directive';
+export * from './lib/components/dialog/large-format/directives/large-format-dialog-tabs/large-format-dialog-sub-tabs.directive';
 export * from './lib/components/dialog/alert/alert.component';
 export * from './lib/components/dialog/alert/alert.service';
 export * from './lib/components/dialog/alert/alert-types.enum';
@@ -90,6 +101,9 @@ export * from './lib/components/dropdown/dropdown.component';
 export * from './lib/components/dropdown/dropdown-toggle.directive';
 export * from './lib/components/dropdown/dropdown-menu.directive';
 export * from './lib/components/dropdown/dropdown.show-types.enum';
+
+export * from './lib/components/dropzone/dropzone.module';
+export * from './lib/components/dropzone/dropzone.component';
 
 export * from './lib/components/hotkeys/hotkeys.module';
 export * from './lib/components/hotkeys/hotkeys.component';
@@ -219,6 +233,14 @@ export * from './lib/components/tree/tree.module';
 export * from './lib/components/tree/tree.component';
 export * from './lib/components/tree/tree-node.component';
 export * from './lib/components/tree/tree-node.model';
+
+export * from './lib/components/tip/tip.module';
+export * from './lib/components/tip/tip.component';
+export * from './lib/components/tip/tip-status.enum';
+
+export * from './lib/components/plus-menu/plus-menu.module';
+export * from './lib/components/plus-menu/plus-menu.component';
+export * from './lib/components/plus-menu/plus-menu-position.enum';
 
 // utils
 export * from './lib/utils/debounce/debounce.util';

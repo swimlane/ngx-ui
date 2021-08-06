@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ProgressSpinnerMode } from '@swimlane/ngx-ui';
 
 @Component({
@@ -8,10 +8,17 @@ import { ProgressSpinnerMode } from '@swimlane/ngx-ui';
 })
 export class ProgressSpinnerPageComponent {
   diameter = 100;
-  strokeWidth = 5;
+  strokeWidth = 3;
   value = 35;
   total = 100;
   color = '#1483FF';
   mode = ProgressSpinnerMode.Indeterminate;
   small = false;
+  isFailure = false;
+  showIcon = true;
+  spinnerLabel = {
+    inProgressLabel: 'Uploading...',
+    failLabel: 'Upload Failed',
+    completeLabel: 'Upload Successful'
+  };
 }

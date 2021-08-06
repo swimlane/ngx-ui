@@ -1,14 +1,14 @@
 <i class="ngx-icon-icon ngx-icon-3d-rotate"></i>
 
-<h3 class="style-header">Typography: Icons</h3>
+<h3 class="style-header">Icons</h3>
 <ul class="icons-preview">
   <li *ngFor="let icon of icons" class="shadow-2 shadow-fx">
     <ngx-icon [fontIcon]="icon.name"></ngx-icon>
-    <span class="icon-name" dbl-click-copy>ngx-icon ngx-{{icon.name}}</span>
+    <span class="icon-name" dbl-click-copy>ngx-icon ngx-{{ icon.name }}</span>
   </li>
 </ul>
 
-<h3 class="style-header">Typography: Icon effects</h3>
+<h3 class="style-header">Icons: effects</h3>
 <ul class="icons-preview">
   <li class="shadow-2 shadow-fx">
     <span class="large-icon">
@@ -19,23 +19,26 @@
 
   <li *ngFor="let fx of iconFx" class="shadow-2 shadow-fx">
     <span class="large-icon">
-      <i class="ngx-icon ngx-refresh icon-fx-{{fx}}"></i>
+      <i class="ngx-icon ngx-refresh icon-fx-{{ fx }}"></i>
     </span>
-    <span class="icon-name" dbl-click-copy>icon-fx-{{fx}}</span>
+    <span class="icon-name" dbl-click-copy>icon-fx-{{ fx }}</span>
   </li>
 </ul>
 
-<h3 class="style-header">Typography: Icon colors</h3>
+<h3 class="style-header">Icons: colors</h3>
 <ul class="icons-preview">
-  <li *ngFor="let c of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple', 'blue-grey', 'grey']" class="shadow-2 shadow-fx">
+  <li
+    *ngFor="let c of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple', 'blue-grey', 'grey']"
+    class="shadow-2 shadow-fx"
+  >
     <span class="large-icon">
-      <i class="ngx-icon ngx-refresh text-{{c}}"></i>
+      <i class="ngx-icon ngx-refresh text-{{ c }}"></i>
     </span>
-    <span class="icon-name" dbl-click-copy>text-{{c}}</span>
+    <span class="icon-name" dbl-click-copy>text-{{ c }}</span>
   </li>
 </ul>
 
-<h3 class="style-header">Typography: Icon stacking</h3>
+<h3 class="style-header">Icons: stacking</h3>
 
 <span class="large-icon">
   <span class="icon-fx-stacked">
@@ -56,23 +59,10 @@
   </span>
 </span>
 
-<ngx-codemirror mode="htmlmixed" readOnly="true">
-  <![CDATA[
-    <span class="icon-fx-stacked">
-      <i class="ngx-icon ngx-square"></i>
-      <i class="ngx-icon ngx-x color-red"></i>
-    </span>
-    <span class="icon-fx-stacked">
-      <i class="ngx-icon ngx-square-filled"></i>
-      <i class="ngx-icon ngx-x text-red"></i>
-    </span>
-    <span class="icon-fx-stacked">
-      <i class="ngx-icon ngx-square-filled"></i>
-      <i class="ngx-icon ngx-x text-red icon-fx-spinning"></i>
-    </span>
-    <span class="icon-fx-stacked">
-      <i class="ngx-icon ngx-field-users"></i>
-      <i class="ngx-icon ngx-circle-filled text-red icon-fx-badge"></i>
-    </span>
-  ]]>
-</ngx-codemirror>
+<app-prism>
+  <![CDATA[<span class="icon-fx-stacked"> <i class="ngx-icon ngx-square"></i><i class="ngx-icon ngx-x color-red"></i>
+  </span> <span class="icon-fx-stacked"> <i class="ngx-icon ngx-square-filled"></i><i class="ngx-icon ngx-x
+  text-red"></i> </span> <span class="icon-fx-stacked"> <i class="ngx-icon ngx-square-filled"></i><i class="ngx-icon
+  ngx-x text-red icon-fx-spinning"></i> </span> <span class="icon-fx-stacked"> <i class="ngx-icon
+  ngx-field-users"></i><i class="ngx-icon ngx-circle-filled text-red icon-fx-badge"></i> </span>]]>
+</app-prism>

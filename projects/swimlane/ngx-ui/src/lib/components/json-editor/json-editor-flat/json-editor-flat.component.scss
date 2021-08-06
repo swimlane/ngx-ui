@@ -2,8 +2,11 @@
 
 .ngx-json-editor-flat {
   position: relative;
+  width: 100%;
 
   .node-options {
+    flex: 0 0 80px;
+
     .node-options-btn {
       color: $color-blue-grey-400;
       padding: 1px 3px 2px;

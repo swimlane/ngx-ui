@@ -54,6 +54,7 @@ describe('SelectComponent', () => {
     });
 
     it('should not update value if hasnt changed', () => {
+      // eslint-disable-next-line no-self-assign
       component.select.value = component.select.value;
       fixture.detectChanges();
       expect(component.selected.length).toBe(1);
@@ -346,6 +347,15 @@ describe('SelectComponent', () => {
       component.select.optionTemplates = undefined;
       expect(component.select.optionTemplates).toBeUndefined();
       expect(component.select.options.length).toBe(1);
+    });
+  });
+
+  describe('autosize', () => {
+    it('setting autosize adds class to component', () => {
+      component.autosize$.next(true);
+      fixture.detectChanges();
+      const select = fixture.nativeElement.querySelector('.ngx-select');
+      expect(select).toHaveClass('autosize');
     });
   });
 });

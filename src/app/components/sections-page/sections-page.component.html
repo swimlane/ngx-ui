@@ -8,15 +8,14 @@
     grue
     error fopen null. James T. Kirk firewall recursively hello world man pages protected.
   </ngx-section>
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-section
-        class="shadow"
-        [sectionTitle]="'Attack Details'">
-        Some Content
-      </ngx-section>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-section
+  class="shadow"
+  [sectionTitle]="'Attack Details'"
+>
+  Some Content
+</ngx-section>]]>
+    </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
@@ -31,17 +30,15 @@
     grue
     error fopen null. James T. Kirk firewall recursively hello world man pages protected.
   </ngx-section>
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-section class="shadow">
-        <ngx-section-header>
-          <h3>Attack Found!</h3>
-          <a href="/">List</a>
-        </ngx-section-header>
-        Some Content
-      </ngx-section>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-section class="shadow">
+  <ngx-section-header>
+    <h3>Attack Found!</h3>
+    <a href="/">List</a>
+  </ngx-section-header>
+  Some Content
+</ngx-section>]]>
+    </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
@@ -52,16 +49,15 @@
     grue
     error fopen null. James T. Kirk firewall recursively hello world man pages protected.
   </ngx-section>
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-section
-        class="shadow"
-        [sectionTitle]="'Attack Details'"
-        [sectionCollapsible]="false">
-        Some Content
-      </ngx-section>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-section
+  class="shadow"
+  [sectionTitle]="'Attack Details'"
+  [sectionCollapsible]="false"
+>
+  Some Content
+</ngx-section>]]>
+    </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'No Title and Shadow'">
@@ -72,11 +68,65 @@
     grue
     error fopen null. James T. Kirk firewall recursively hello world man pages protected.
   </ngx-section>
-  <ngx-codemirror mode="htmlmixed" readOnly="true">
-    <![CDATA[
-      <ngx-section class="shadow">
-        Some Content
-      </ngx-section>
-    ]]>
-  </ngx-codemirror>
+  <app-prism>
+<![CDATA[<ngx-section class="shadow">
+  Some Content
+</ngx-section>]]>
+    </app-prism>
+</ngx-section>
+
+
+<ngx-section [sectionTitle]="'Outline'">
+  <ngx-section [sectionTitle]="'Attack Details'" appearance="outline">
+    Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
+    bytes ban headers
+    gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a
+    grue
+    error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+  </ngx-section>
+  <app-prism>
+<![CDATA[<ngx-section
+  [sectionTitle]="'Attack Details'"
+  appearance="outline"
+>
+  Some Content
+</ngx-section>]]>
+    </app-prism>
+</ngx-section>
+
+<ngx-section [sectionTitle]="'Outline and Toggle Right'">
+  <ngx-section [sectionTitle]="'Attack Details'" appearance="outline" togglePosition="right">
+    Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
+    bytes ban headers
+    gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a
+    grue
+    error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+  </ngx-section>
+  <app-prism>
+<![CDATA[<ngx-section
+  [sectionTitle]="'Attack Details'"
+  appearance="outline"
+  togglePosition="right"
+>
+  Some Content
+</ngx-section>]]>
+    </app-prism>
+</ngx-section>
+
+<ngx-section [sectionTitle]="'Hide toggle use Header'">
+  <ngx-section sectionTitle="Attack Details" togglePosition="none" [headerToggle]="true">
+    Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
+    bytes ban headers
+    gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a
+    grue
+    error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+  </ngx-section>
+  <app-prism>
+<![CDATA[<ngx-section
+  sectionTitle="Attack Details"
+  [showToggle]="false"
+  [headerToggle]="true">
+  Some Content
+</ngx-section>]]>
+    </app-prism>
 </ngx-section>

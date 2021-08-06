@@ -5,7 +5,7 @@ import { InputComponent } from './input.component';
 import { InputTypes } from './input-types.enum';
 
 @Component({
-  selector: `ngx-input-fixture`,
+  selector: 'ngx-input-fixture',
   template: `
     <ngx-input
       [(ngModel)]="value"
@@ -20,12 +20,15 @@ import { InputTypes } from './input-types.enum';
       [spellcheck]="spellcheck$ | async"
       [min]="min$ | async"
       [max]="max$ | async"
+      [autosize]="autosize$ | async"
+      [unlockable]="unlockable$ | async"
     ></ngx-input>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputComponentFixture {
   value: string | number = 'test';
+
   readonly type$ = new BehaviorSubject(InputTypes.text);
   readonly disabled$ = new BehaviorSubject(false);
   readonly passwordTextVisible$ = new BehaviorSubject(false);
@@ -37,6 +40,8 @@ export class InputComponentFixture {
   readonly spellcheck$ = new BehaviorSubject(true);
   readonly min$ = new BehaviorSubject<number>(undefined);
   readonly max$ = new BehaviorSubject<number>(undefined);
+  readonly autosize$ = new BehaviorSubject<boolean>(false);
+  readonly unlockable$ = new BehaviorSubject<boolean>(false);
 
   @ViewChild(InputComponent, { static: false })
   readonly input: InputComponent;

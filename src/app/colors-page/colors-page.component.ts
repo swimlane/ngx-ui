@@ -3,7 +3,8 @@ import { getComputedStyle, rgb2hex } from '../app.utils';
 
 @Component({
   selector: 'app-colors-page',
-  templateUrl: './colors-page.component.html'
+  templateUrl: './colors-page.component.html',
+  styleUrls: ['./colors-page.component.scss']
 })
 export class ColorsPageComponent {
   chartColorsOrdinal = [

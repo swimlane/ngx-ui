@@ -1,4 +1,4 @@
-import * as faker from 'faker';
+import faker from 'faker/locale/en';
 
 import { NotificationOptions } from './notification-options.interface';
 

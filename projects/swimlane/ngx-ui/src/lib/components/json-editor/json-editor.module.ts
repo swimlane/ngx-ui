@@ -14,7 +14,6 @@ import { TabsModule } from '../tabs/tabs.module';
 import { ToggleModule } from '../toggle/toggle.module';
 import { CheckboxModule } from '../checkbox/checkbox.module';
 import { SelectModule } from '../select/select.module';
-import { SchemaValidatorService } from './schema-validator.service';
 
 import { JsonEditorComponent } from './json-editor/json-editor.component';
 import { JsonEditorNodeComponent } from './json-editor/json-editor-node/json-editor-node.component';
@@ -28,6 +27,7 @@ import { ObjectNodeFlatComponent } from './json-editor-flat/json-editor-node-fla
 import { PropertyConfigComponent } from './json-editor-flat/json-editor-node-flat/node-types/property-config/property-config.component';
 import { OrderableInputsListComponent } from './json-editor-flat/orderable-inputs-list/orderable-inputs-list.component';
 import { ObjectValuesPipe } from './object-values.pipe';
+import { JsonEditorNodeInfoComponent } from './json-editor-flat/json-editor-node-flat/node-types/node-info/node-info.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +37,7 @@ import { ObjectValuesPipe } from './object-values.pipe';
     ArrayNodeComponent,
     JsonEditorFlatComponent,
     JsonEditorNodeFlatComponent,
+    JsonEditorNodeInfoComponent,
     ArrayNodeFlatComponent,
     ObjectNodeFlatComponent,
     PropertyConfigComponent,
@@ -50,6 +51,7 @@ import { ObjectValuesPipe } from './object-values.pipe';
     ArrayNodeComponent,
     JsonEditorFlatComponent,
     JsonEditorNodeFlatComponent,
+    JsonEditorNodeInfoComponent,
     ArrayNodeFlatComponent,
     ObjectNodeFlatComponent,
     PropertyConfigComponent
@@ -69,7 +71,6 @@ import { ObjectValuesPipe } from './object-values.pipe';
     ToggleModule,
     SelectModule,
     TabsModule
-  ],
-  providers: [SchemaValidatorService]
+  ]
 })
 export class JsonEditorModule {}

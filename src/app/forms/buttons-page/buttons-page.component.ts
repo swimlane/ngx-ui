@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FileUploader } from '@swimlane/ng2-file-upload';
 
 @Component({
@@ -21,12 +21,16 @@ export class ButtonsPageComponent {
     autoUpload: false
   });
 
-  onClick(msg: string, targetId?: string) {
-    console.log('Demo app click: ', msg);
+  onBtnClick(msg: string) {
+    console.log(`Demo app click: ${msg}`);
+  }
+
+  onClick(msg: string, targetId?: string, successProbability = 0.5) {
+    this.onBtnClick(msg);
 
     const buttonPromise = new Promise((resolve, reject) => {
       setTimeout(() => {
-        if (Math.random() < 0.5) {
+        if (Math.random() < successProbability) {
           resolve('Success!');
         } else {
           reject('I fail you!');

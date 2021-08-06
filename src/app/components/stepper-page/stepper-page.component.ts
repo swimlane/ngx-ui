@@ -1,6 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { StepperPosition } from '@swimlane/ngx-ui';
-import * as faker from 'faker';
 
 @Component({
   selector: 'app-stepper-page',
@@ -9,11 +8,11 @@ import * as faker from 'faker';
 })
 export class StepperPageComponent {
   readonly StepperPosition = StepperPosition;
-  readonly steps: Array<{ readonly title: string; readonly icon?: string }> = [
-    { title: faker.random.word() },
-    { title: faker.random.word() },
-    { title: faker.random.word() },
-    { title: faker.random.word() }
+  readonly steps: Array<{ readonly title: string; readonly icon?: string; readonly completeIcon?: string }> = [
+    { title: 'step 1', icon: 'ngx-icon ngx-cloud-download' },
+    { title: 'step 2', icon: 'ngx-icon ngx-rocket' },
+    { title: 'step 3', icon: 'ngx-icon ngx-bell-alarm' },
+    { title: 'step 4', icon: 'ngx-icon ngx-cloud-upload' }
   ];
 
   index = 2;
@@ -38,7 +37,7 @@ export class StepperPageComponent {
 
   addStep() {
     this.steps.push({
-      title: faker.random.word(),
+      title: 'next step',
       icon: 'ngx-icon ngx-bug'
     });
   }

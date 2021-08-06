@@ -37,11 +37,11 @@ import { DrawerPosition } from './drawer-position.enum';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DrawerComponent implements OnInit, OnDestroy {
-  @Input() cssClass: string = '';
+  @Input() cssClass = '';
   @Input() direction: DrawerDirection;
   @Input() template: TemplateRef<any>;
   @Input() context: any;
-  @Input() isRoot: boolean = true;
+  @Input() isRoot = true;
 
   @Input()
   get size() {

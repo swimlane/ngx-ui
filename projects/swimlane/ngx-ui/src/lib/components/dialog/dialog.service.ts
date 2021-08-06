@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { InjectionRegistryService } from '../../services/injection-registry/injection-registry.service';
 
 import { InjectionService } from '../../services/injection/injection.service';
-import { InjectionRegistryService } from '../../services/injection-registry/injection-registry.service';
 import { OverlayService } from '../overlay/overlay.service';
-import { DialogComponent } from './dialog.component';
+import { DialogFormat } from './dialog-format.enum';
 import { DialogOptions } from './dialog-options.interface';
+import { DialogComponent } from './dialog.component';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class DialogService<T = DialogComponent> extends InjectionRegistryService<T> {
   readonly defaults: DialogOptions = {
+    format: DialogFormat.Regular,
     inputs: {
       zIndex: 991,
       closeOnBlur: true,
@@ -21,7 +25,7 @@ export class DialogService<T = DialogComponent> extends InjectionRegistryService
   };
 
   protected type: any = DialogComponent;
-  private zIndex: number = 995;
+  private zIndex = 995;
 
   constructor(readonly injectionService: InjectionService, readonly overlayService: OverlayService) {
     super(injectionService);
@@ -47,6 +51,7 @@ export class DialogService<T = DialogComponent> extends InjectionRegistryService
   }
 
   createSubscriptions(triggerComponent: any): void {
+    // eslint-disable-next-line prefer-const
     let closeSub: Subscription;
     let overlaySub: Subscription;
 

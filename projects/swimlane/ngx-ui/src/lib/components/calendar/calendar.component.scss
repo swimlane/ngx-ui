@@ -22,6 +22,10 @@ $calendar-month-current: $color-blue-grey-750;
   padding: 0.5rem;
   height: 270px;
 
+  .ngx-calendar-wrap {
+    flex: 1 1 100%;
+  }
+
   &:focus {
     outline: none;
   }
@@ -48,6 +52,11 @@ $calendar-month-current: $color-blue-grey-750;
   .day-name-row {
     color: $calendar-day-text;
     font-weight: 600;
+    display: flex;
+
+    .day-name {
+      flex: 0 0 30px;
+    }
   }
 
   .day-name,
@@ -61,6 +70,14 @@ $calendar-month-current: $color-blue-grey-750;
 
   .day-container {
     margin-top: 0;
+
+    .day-row {
+      display: flex;
+
+      .day-cell {
+        flex: 0 0 30px;
+      }
+    }
 
     .day {
       color: $calendar-active-text;

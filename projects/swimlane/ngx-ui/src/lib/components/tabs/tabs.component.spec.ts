@@ -110,6 +110,7 @@ describe('TabsComponent', () => {
     });
 
     it('Tabs with multiple active tabs throws error when initialized', () => {
+      // eslint-disable-next-line no-console
       expect(console.error).toHaveBeenCalled();
     });
   });

@@ -127,22 +127,6 @@
 }
 
 /**
- * Colors
- */
-.color-group {
-  width: 250px;
-  margin: 0 20px 20px 0 !important;
-
-  .main-color {
-    height: 70px;
-  }
-
-  .color {
-    padding: 15px 10px;
-  }
-}
-
-/**
  * Icons Preview
  */
 .icons-preview {
@@ -222,14 +206,6 @@
     display: block;
     margin: 8px 0;
   }
-}
-
-.shadow-demo {
-  width: 120px;
-  height: 120px;
-  margin: 15px;
-  text-align: center;
-  line-height: 120px;
 }
 
 .demo-class {
@@ -324,36 +300,6 @@ $palette: (
         background-color: $hex;
       }
     }
-  }
-}
-
-table.alignment-test {
-  margin-left: 20px;
-  margin-top: 20px;
-
-  td {
-    border: 10px solid #34282c;
-    vertical-align: baseline;
-  }
-
-  tr td:first-child {
-    border: none;
-  }
-
-  td > * {
-    border: 1px solid red;
-  }
-
-  &.align-middle td {
-    vertical-align: middle;
-  }
-
-  &.align-top td {
-    vertical-align: top;
-  }
-
-  &.align-bottom td {
-    vertical-align: bottom;
   }
 }
 

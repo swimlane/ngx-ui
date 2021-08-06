@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-controls-page',
-  templateUrl: './controls-page.component.html'
+  templateUrl: './controls-page.component.html',
+  styleUrls: ['./controls-page.component.scss']
 })
 export class ControlsPageComponent {
   inputValue: any = 'A Value';
@@ -19,7 +20,7 @@ export class ControlsPageComponent {
   hideAlertArea = false;
   hideFixedSidebar = false;
   curDate2: any = new Date('10/10/2016');
-  favoriteSeason: string = 'Spring';
+  favoriteSeason = 'Spring';
 
   dateChanged(val) {
     console.log('date changed!', val);

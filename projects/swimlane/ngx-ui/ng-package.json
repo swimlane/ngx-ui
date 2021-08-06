@@ -3,7 +3,17 @@
   "dest": "../../../dist/swimlane/ngx-ui",
   "lib": {
     "entryFile": "src/public_api.ts",
-    "styleIncludePaths": ["src/lib/components", "src/lib/styles", "src/lib/assets"]
+    "styleIncludePaths": ["src/lib/components", "src/lib/styles", "src/lib/assets"],
+    "umdModuleIds": {
+      "moment-timezone": "moment",
+      "resize-observer-polyfill": "ResizeObserver",
+      "@swimlane/ng2-file-upload": "ng2FileUpload",
+      "ngx-moment": "ngxMoment",
+      "codemirror": "CodeMirror",
+      "mousetrap": "Mousetrap",
+      "ngx-autosize-input": "ngxAutosizeInput",
+      "ajv": "Ajv"
+    }
   },
-  "whitelistedNonPeerDependencies": ["mousetrap", "ng2-file-upload", "normalize.css"]
+  "allowedNonPeerDependencies": ["mousetrap", "ng2-file-upload", "normalize.css"]
 }

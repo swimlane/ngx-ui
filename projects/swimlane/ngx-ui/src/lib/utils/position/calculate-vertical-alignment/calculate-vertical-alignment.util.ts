@@ -11,11 +11,11 @@ import { verticalPosition } from '../vertical-position/vertical-position.util';
  *
  * @memberOf PositionHelper
  */
-export function calculateVerticalAlignment(
+export const calculateVerticalAlignment = (
   elDimensions: Dimensions,
   popoverDimensions: Dimensions,
   alignment: AlignmentTypes
-): number {
+): number => {
   let result = verticalPosition(elDimensions, popoverDimensions, alignment);
 
   if (result + popoverDimensions.height > window.innerHeight) {
@@ -23,4 +23,4 @@ export function calculateVerticalAlignment(
   }
 
   return result;
-}
+};

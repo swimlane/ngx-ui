@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+/* eslint-disable no-console */
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-datetime-page',
@@ -15,5 +16,13 @@ export class DatetimePageComponent {
 
   dateChanged(val) {
     console.log('date changed!', val);
+  }
+
+  onBlurEvent(val) {
+    console.log('blur event triggered', val);
+  }
+
+  dateTimeSelected(val) {
+    console.log('date time selected', val);
   }
 }

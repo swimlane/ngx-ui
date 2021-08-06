@@ -1,17 +1,17 @@
 <div *ngIf="model !== undefined" class="json-tree-node-flat">
   <div class="node-container" *ngIf="!(nextLevel === -1 && hideRoot)">
     <div class="indentation" *ngIf="nextLevel > 0" [style.left]="-1 * (nextLevel * 20) + 'px'">
-      <span class="separator" *ngFor="let separator of indentationArray"></span>
+      <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
     </div>
     <div class="node" [class.compressed]="compressed">
-      <div class="error-box" *ngIf="!valid && !schemaBuilderMode"></div>
+      <div class="error-box" *ngIf="(!valid && !schemaBuilderMode) || isDuplicated"></div>
 
       <div class="left-options">
         <ng-container *ngIf="hideRoot || (nextLevel > 0 && !arrayItem)">
           <div class="required-indicator">
             <span
               *ngIf="required"
-              [class.invalid]="!childrenValid && !schemaBuilderMode"
+              [class.invalid]="(!childrenValid && !schemaBuilderMode) || isDuplicated"
               [innerHtml]="requiredIndicator"
             ></span>
             <span *ngIf="!required && schemaBuilderMode" class="not-required" [innerHtml]="requiredIndicator"></span>
@@ -22,63 +22,17 @@
 
       <div class="node-content" [class.extra-margin]="schema.nameEditable && !schemaBuilderMode">
         <div class="node-info">
-          <!-- Property name/title -->
-          <div
-            class="info-name"
-            *ngIf="(!schema.nameEditable || schemaBuilderMode) && (schema?.propertyName || label || arrayItem)"
+          <ngx-json-editor-node-info
+            [nameEditable]="schema.nameEditable && !schemaBuilderMode"
+            [propertyName]="arrayName ? arrayName : schema?.propertyName"
+            (propertyNameChange)="updatePropertyName(schema.id, $event)"
+            [title]="schema?.title || label || (arrayItem ? 'Items' : schema?.propertyName)"
+            [type]="(schema?.format || schema?.type | titlecase) + (schema?.enum?.length ? ' + Enum' : '')"
+            [description]="schema?.description"
+            [examples]="schema?.examples"
+            [compressed]="compressed"
           >
-            <span class="name">
-              {{ schema?.title || label || (arrayItem ? 'Items' : schema?.propertyName) }}
-            </span>
-            <ngx-icon
-              *ngIf="schema?.description || schema?.examples"
-              class="info-btn"
-              fontIcon="info-filled"
-              ngx-tooltip
-              [tooltipContext]="schema"
-              [tooltipType]="'popover'"
-              [tooltipPlacement]="'top'"
-              [tooltipTemplate]="popoverTemplate"
-            ></ngx-icon>
-
-            <ng-template #popoverTemplate let-model="model">
-              <div class="popover-template">
-                <div *ngIf="model?.description">
-                  <div class="label">DESCRIPTION</div>
-                  <div>{{ model?.description }}</div>
-                </div>
-                <div class="separator" *ngIf="model?.description && model?.examples"></div>
-                <div *ngIf="model?.examples">
-                  <div class="label">EXAMPLES</div>
-                  <div *ngFor="let example of model?.examples">{{ example }}</div>
-                </div>
-              </div>
-            </ng-template>
-          </div>
-
-          <!-- Inline text editing-->
-          <ngx-input
-            class="editable-name"
-            type="text"
-            *ngIf="schema.nameEditable && !schemaBuilderMode"
-            [ngModel]="schema?.propertyName"
-            (ngModelChange)="updatePropertyName(schema.id, $event)"
-          ></ngx-input>
-
-          <div class="info-type">
-            <span class="type"
-              >{{ schema?.format || schema?.type | titlecase }}{{ schema?.enum?.length ? ' + Enum' : '' }}</span
-            >
-            <ngx-icon
-              *ngIf="schema?.propertyName || arrayName"
-              class="dot-separator"
-              fontIcon="circle-filled"
-            ></ngx-icon>
-            <span class="property-name">{{ arrayName ? arrayName : schema?.propertyName }}</span>
-          </div>
-
-          <!-- Description -->
-          <span *ngIf="!compressed" class="description">{{ schema?.description }}</span>
+          </ngx-json-editor-node-info>
         </div>
 
         <div *ngIf="!schemaBuilderMode" class="node-input">
@@ -90,6 +44,7 @@
               (ngModelChange)="updateModel($event)"
               [requiredIndicator]="false"
               [required]="required"
+              [disabled]="isDuplicated"
             ></ngx-input>
           </div>
 
@@ -100,6 +55,7 @@
               [ngModel]="model"
               (ngModelChange)="updateModel($event)"
               [label]="model | json"
+              [disabled]="isDuplicated"
             >
             </ngx-toggle>
           </div>
@@ -110,11 +66,13 @@
             <div *ngIf="!schema.format">
               <ngx-input
                 *ngIf="!schema?.enum"
-                type="text"
+                type="textarea"
                 [ngModel]="model"
-                (change)="updateModel($event)"
+                (ngModelChange)="updateModel($event)"
                 [requiredIndicator]="false"
                 [required]="required"
+                [disabled]="isDuplicated"
+                [autosize]="false"
               >
               </ngx-input>
 
@@ -124,6 +82,7 @@
                 [ngModel]="[model]"
                 (ngModelChange)="updateModel($event[0])"
                 [required]="required"
+                [disabled]="isDuplicated"
               >
                 <ngx-select-option *ngFor="let option of schema.enum" [name]="option" [value]="option">
                 </ngx-select-option>
@@ -138,6 +97,7 @@
                 (ngModelChange)="updateModel($event)"
                 [requiredIndicator]="false"
                 [required]="required"
+                [disabled]="isDuplicated"
               ></ngx-input>
             </div>
 
@@ -149,6 +109,7 @@
                 (ngModelChange)="updateModel($event)"
                 [requiredIndicator]="false"
                 [required]="required"
+                [disabled]="isDuplicated"
               ></ngx-input>
             </div>
 
@@ -160,6 +121,7 @@
                 (ngModelChange)="updateModel($event)"
                 [requiredIndicator]="false"
                 [required]="required"
+                [disabled]="isDuplicated"
               ></ngx-input>
             </div>
 
@@ -173,7 +135,7 @@
                 [disabled]="true"
               >
                 <ngx-input-suffix>
-                  <button (click)="openCodeEditor()">
+                  <button [disabled]="isDuplicated" (click)="openCodeEditor()">
                     <ngx-icon fontIcon="edit" class="edit-code-icon" ngx-tooltip tooltipTitle="Edit Code"> </ngx-icon>
                   </button>
                 </ngx-input-suffix>
@@ -210,7 +172,9 @@
             </ng-template>
           </ng-container>
 
-          <div class="input-error" *ngFor="let error of ownErrors">{{ error.message }}</div>
+          <div class="input-error">
+            <span *ngFor="let error of ownErrors">{{ error.message }}</span>
+          </div>
         </div>
 
         <div *ngIf="schemaBuilderMode" class="node-constrains">
@@ -238,12 +202,14 @@
       (modelChange)="updateModel($event)"
       [path]="path"
       [errors]="childrenErrors"
+      [isDuplicated]="isDuplicated"
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="nextLevel"
       [compressed]="compressed"
       [schemaBuilderMode]="schemaBuilderMode"
       [formats]="formats"
-      (schemaChange)="schemaChange.emit(schemaRef)"
+      [showKnownProperties]="showKnownProperties"
+      (schemaUpdate)="schemaUpdate.emit(schemaRef)"
     >
     </ngx-json-object-node-flat>
   </div>
@@ -263,8 +229,10 @@
       [errors]="childrenErrors"
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="nextLevel"
+      [isDuplicated]="isDuplicated"
       [schemaBuilderMode]="schemaBuilderMode"
-      (schemaChange)="schemaChange.emit(schemaRef)"
+      [showKnownProperties]="showKnownProperties"
+      (schemaUpdate)="schemaUpdate.emit(schemaRef)"
     >
     </ngx-json-array-node-flat>
   </div>

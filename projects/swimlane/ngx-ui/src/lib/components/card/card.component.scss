@@ -1,0 +1,458 @@
+@import 'colors/variables';
+
+$color-accent-grey: linear-gradient(180deg, $color-blue-grey-100 0%, $color-blue-grey-200 100%);
+$card-accent-thickness: 4px;
+
+$color-background-grey: linear-gradient(180deg, $color-blue-grey-750 0%, $color-blue-grey-800 100%);
+
+$card-outline-border-thickness: 3px;
+
+$card-horizontal-header-padding: 25px;
+$card-horizontal-gutter: 30px;
+$card-horizontal-description-padding: 15px;
+
+$card-vertical-header-padding: 15px;
+$card-vertical-body-padding: 27px;
+$card-vertical-gutter: 20px;
+
+@keyframes cardSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ngx-card {
+  display: flex;
+  background: $color-background-grey;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+
+  // disabled
+  &.disabled {
+    cursor: default;
+    pointer-events: none;
+
+    &:hover {
+      filter: none;
+    }
+  }
+
+  &--status {
+    display: block;
+    background-color: $color-blue-grey-550;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    box-shadow: inset 0 -2px 2px $color-blue-grey-600;
+
+    &.success {
+      background-color: #b0e53c;
+      box-shadow: 0 0 7px #b0e53c;
+    }
+
+    &.error {
+      background-color: $color-error;
+      box-shadow: 0 0 7px $color-error;
+    }
+  }
+
+  &--accent {
+    display: block;
+    background: $color-accent-grey;
+  }
+
+  .dot {
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background-color: $color-blue-grey-400;
+    margin: 3px 5px;
+  }
+
+  .ngx-dropdown.ellipsis {
+    padding: 0;
+  }
+
+  &.flat {
+    background: none;
+    box-shadow: none;
+  }
+} // end of ngx-card
+
+.ngx-card-horizontal {
+  position: relative;
+  width: 100%;
+  min-width: 500px;
+  min-height: 80px;
+  height: 80px;
+  transition: all 0.2s ease-in-out;
+  animation: 0.2s ease-in-out cardSlideIn;
+
+  .ngx-card--status {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+
+  .ngx-card--select {
+    margin-left: $card-horizontal-header-padding;
+
+    .ngx-checkbox--label .ngx-checkbox--box {
+      margin-right: 0;
+    }
+  }
+
+  .ngx-card--accent {
+    position: absolute;
+    width: $card-accent-thickness;
+    min-width: $card-accent-thickness;
+    right: 0;
+    height: 100%;
+    border-radius: 0 2px 2px 0;
+  }
+
+  // horizontal header
+  .ngx-card-header {
+    display: flex;
+    align-items: center;
+    padding: 0 $card-horizontal-header-padding;
+    flex-grow: 1;
+    overflow: hidden;
+    cursor: pointer;
+
+    &.no-click {
+      cursor: default;
+    }
+
+    &--title-group {
+      margin-left: $card-horizontal-header-padding;
+      display: flex;
+      flex-direction: column;
+      width: calc(100% - 79px); // header padding + avatar width
+
+      .ngx-card-tag,
+      .ngx-card-title,
+      .ngx-card-subtitle {
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+
+      .ngx-card-tag {
+        font-weight: bold;
+        font-size: 10px;
+        line-height: 12px;
+      }
+
+      .ngx-card-title {
+        font-weight: 600;
+        font-size: 22px;
+        color: #f0f1f6;
+      }
+
+      .ngx-card-subtitle {
+        display: inline-block;
+        font-weight: 600;
+        font-size: 14px;
+        color: $color-blue-grey-300;
+
+        > span {
+          display: inline-block;
+        }
+      }
+    }
+  }
+
+  .ngx-card-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 0 $card-horizontal-gutter;
+    border-left: 1px #313847 solid;
+
+    &--description {
+      flex-basis: 28%;
+      padding-top: $card-horizontal-description-padding;
+      padding-bottom: $card-horizontal-description-padding;
+
+      > p {
+        color: $color-blue-grey-350;
+        font-size: 14px;
+        line-height: 18px;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        word-break: break-word;
+      }
+    }
+
+    &--placeholder {
+      flex-direction: column;
+      flex-basis: 20%;
+
+      .ngx-card-placeholder {
+        margin-bottom: 10px;
+        width: 100%; // section placeholders takes up entire width
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+
+      // width of .ngx-card-section
+      &.large {
+        flex-basis: 50%;
+      }
+
+      &.medium {
+        flex-basis: 28%;
+      }
+
+      &.small {
+        flex-basis: 20%;
+      }
+    }
+
+    .view-details {
+      display: flex;
+      color: $color-blue-400;
+      font-size: 15px;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+
+      i {
+        margin-top: 5px;
+        margin-right: 5px;
+      }
+    }
+
+    .ngx-dropdown.ellipsis {
+      margin-right: 12px;
+    }
+  }
+
+  .ngx-card--outline {
+    pointer-events: none;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    left: -5px;
+    bottom: -5px;
+    border: $card-outline-border-thickness solid $color-blue-400;
+    border-radius: 5px;
+
+    &.error {
+      border-color: $color-error;
+    }
+  }
+
+  .ngx-card--outline-text {
+    pointer-events: none;
+    color: $color-blue-400;
+    white-space: nowrap;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    left: -5px;
+    bottom: -5px;
+    border: $card-outline-border-thickness solid $color-blue-400;
+    border-bottom: 0;
+    border-radius: 5px;
+
+    .inner-text {
+      font-size: 14px;
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      bottom: -8px;
+      pointer-events: auto;
+      cursor: pointer;
+
+      &::before,
+      &::after {
+        content: '';
+        height: $card-outline-border-thickness;
+        background: $color-blue-400;
+      }
+
+      &::before {
+        margin-right: 15px;
+        border-radius: 0 0 0 2px;
+        flex: 1;
+      }
+
+      &::after {
+        margin-left: 15px;
+        border-radius: 0 0 2px 0;
+        width: 20px;
+      }
+    }
+
+    &.error {
+      color: $color-error;
+      border-color: $color-error;
+
+      .inner-text {
+        &::before,
+        &::after {
+          background: $color-error;
+        }
+      }
+    }
+  }
+} // end of ngx-card-horizontal
+
+.ngx-card-vertical {
+  position: relative;
+  flex-direction: column;
+  min-width: 347px;
+  max-width: 850px;
+  height: 418px;
+  color: $color-blue-grey-350;
+
+  .ngx-card--status {
+    margin: $card-vertical-header-padding auto 0 auto;
+  }
+
+  .ngx-card--accent {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: $card-accent-thickness;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .ngx-card-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 2px $color-blue-grey-700;
+
+    .ngx-card-avatar {
+      margin: $card-vertical-header-padding 0 $card-vertical-gutter 0;
+    }
+
+    &--label {
+      font-weight: 600;
+      font-size: 12px;
+      border-bottom: 0;
+      white-space: nowrap;
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      bottom: -15px;
+      left: 0;
+
+      &::before,
+      &::after {
+        content: '';
+        height: 2px;
+        background: $color-blue-grey-700;
+        width: 100%;
+      }
+
+      &::before {
+        margin-right: 20px;
+      }
+
+      &::after {
+        margin-left: 20px;
+      }
+    }
+  }
+
+  .ngx-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    padding: $card-vertical-gutter 0;
+    padding-left: $card-vertical-body-padding;
+    padding-right: $card-vertical-body-padding;
+
+    .ngx-card-title,
+    .ngx-card-subtitle {
+      font-weight: 600;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-align: center;
+    }
+
+    .ngx-card-title {
+      font-weight: 600;
+      font-size: 21px;
+      color: #f0f1f6;
+      margin-bottom: 5px;
+    }
+
+    .ngx-card-subtitle {
+      color: $color-blue-grey-200;
+      font-size: 13px;
+    }
+  }
+
+  .ngx-card-footer {
+    position: relative;
+    border-bottom: 2px $color-blue-grey-700;
+    height: 50px;
+    padding: $card-vertical-gutter 0;
+    margin-bottom: $card-accent-thickness;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--label {
+      font-weight: 600;
+      font-size: 12px;
+      border-bottom: 0;
+      white-space: nowrap;
+      width: 100%;
+      text-align: center;
+      position: absolute;
+      display: flex;
+      align-items: center;
+      top: -15px;
+      left: 0;
+
+      &::before,
+      &::after {
+        content: '';
+        height: 2px;
+        background: $color-blue-grey-700;
+        width: 100%;
+      }
+
+      &::before {
+        margin-right: 20px;
+      }
+
+      &::after {
+        margin-left: 20px;
+      }
+    }
+
+    .action {
+      // footer action button
+      cursor: pointer;
+      margin-right: 25px;
+    }
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 @Component({
   selector: 'app-inputs-page',
@@ -6,16 +6,21 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InputsPageComponent {
-  searchInputValue: string = '';
+  searchInputValue = '';
   inputValue: any = 'A Value';
+  longInputValue = 'A very long input value that should be autosized';
   inputValue1: any;
   inputValue2: any;
   inputValue3: any;
   input5: any;
-  inputDefaultVal: string = 'Defaulted!';
+  inputDefaultVal = 'Defaulted!';
   numericValue: any;
   usernameValue: any;
   passwordValue: any;
   output: any;
-  patternValue: string = 'Has space';
+  patternValue = 'Has space';
+
+  onClick(event: any) {
+    console.log({ event });
+  }
 }

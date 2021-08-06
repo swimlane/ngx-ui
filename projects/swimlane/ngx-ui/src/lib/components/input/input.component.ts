@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  OnDestroy,
   Component,
   ElementRef,
   EventEmitter,
@@ -21,11 +22,14 @@ import {
   FormControl,
   Validators
 } from '@angular/forms';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { BehaviorSubject } from 'rxjs';
 
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { Appearance } from '../../mixins/appearance/appearance.enum';
+
 import { InputTypes } from './input-types.enum';
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import { INPUT_ANIMATIONS } from './input-animations.constant';
+import { Size } from '../../mixins/size/size.enum';
 
 let nextId = 0;
 
@@ -41,63 +45,44 @@ const INPUT_VALIDATORS = {
   multi: true
 };
 
+const MIN_WIDTH = 60;
+
 @Component({
   exportAs: 'ngxInput',
   selector: 'ngx-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
-  host: { class: 'ngx-input' },
+  host: {
+    class: 'ngx-input',
+    '[class.legacy]': 'appearance === "legacy"',
+    '[class.fill]': 'appearance === "fill"',
+    '[class.sm]': 'size === "sm"',
+    '[class.md]': 'size === "md"',
+    '[class.lg]': 'size === "lg"',
+    '[class.focused]': 'focused',
+    '[class.autosize]': 'autosize',
+    '[class.marginless]': '!withMargin',
+    '[class.no-label]': '!label'
+  },
+  animations: INPUT_ANIMATIONS,
   providers: [INPUT_VALUE_ACCESSOR, INPUT_VALIDATORS],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  animations: [
-    trigger('labelState', [
-      state(
-        'inside',
-        style({
-          'font-size': '1em',
-          top: '0'
-        })
-      ),
-      state(
-        'outside',
-        style({
-          'font-size': '.7rem',
-          top: '-15px'
-        })
-      ),
-      transition('inside => outside', animate('150ms ease-out')),
-      transition('outside => inside', animate('150ms ease-out'))
-    ]),
-    trigger('underlineState', [
-      state(
-        'collapsed',
-        style({
-          width: '0%'
-        })
-      ),
-      state(
-        'expanded',
-        style({
-          width: '100%'
-        })
-      ),
-      transition('collapsed => expanded', animate('150ms ease-out')),
-      transition('expanded => collapsed', animate('150ms ease-out'))
-    ])
-  ]
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class InputComponent implements AfterViewInit, ControlValueAccessor, Validator {
-  @Input() id: string = `input-${++nextId}`;
+export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAccessor, Validator {
+  @Input() id = `input-${++nextId}`;
   @Input() name: string;
-  @Input() label: string = '';
+  @Input() label = '';
   @Input() hint: string;
-  @Input() placeholder: string = '';
+  @Input() placeholder = '';
   @Input() tabindex: number;
   @Input() min: number;
   @Input() max: number;
   @Input() minlength: number;
   @Input() maxlength: number;
+  @Input() size: Size = Size.Small;
+  @Input() appearance: Appearance = Appearance.Legacy;
+  @Input() withMargin = true;
 
   @Input()
   get disabled() {
@@ -105,6 +90,14 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   }
   set disabled(disabled: boolean) {
     this._disabled = coerceBooleanProperty(disabled);
+  }
+
+  @Input()
+  get minWidth(): number {
+    return this._minWidth;
+  }
+  set minWidth(minWidth) {
+    this._minWidth = coerceNumberProperty(minWidth);
   }
 
   @Input() requiredIndicator: string | boolean = '*';
@@ -116,7 +109,7 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
     this._required = coerceBooleanProperty(required);
   }
 
-  @Input() passwordToggleEnabled: boolean = false;
+  @Input() passwordToggleEnabled = false;
   @Input()
   get passwordTextVisible() {
     return this._passwordTextVisible;
@@ -146,8 +139,8 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   get autocomplete() {
     return this._autocomplete;
   }
-  set autocomplete(autocomplete: boolean) {
-    this._autocomplete = coerceBooleanProperty(autocomplete);
+  set autocomplete(autocomplete: boolean | string) {
+    this._autocomplete = coerceBooleanProperty(autocomplete) ? 'on' : 'off';
   }
 
   @Input()
@@ -174,6 +167,26 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
     this._type = type;
     this.updateInputType();
   }
+
+  @Input()
+  get autosize() {
+    return this._autosize;
+  }
+  set autosize(v: boolean) {
+    this._autosize = coerceBooleanProperty(v);
+  }
+
+  @Input()
+  get unlockable() {
+    return this._unlockable;
+  }
+  set unlockable(v: boolean) {
+    this._unlockable = coerceBooleanProperty(v);
+    if (this._unlockable) {
+      this.disabled = true;
+    }
+  }
+  @Input() unlockableTooltip = 'Click to unlock';
 
   @Output() change = new EventEmitter<string | number>();
   @Output() blur = new EventEmitter<Event>();
@@ -215,54 +228,57 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   }
 
   get labelState(): string {
-    return this.placeholder || this.focusedOrDirty ? 'outside' : 'inside';
+    return this.placeholder || this.focusedOrDirty || this.appearance === Appearance.Fill ? 'outside' : 'inside';
   }
 
   get underlineState(): string {
     return this.focused ? 'expanded' : 'collapsed';
   }
 
-  get requiredIndicatorView(): string {
-    return !this.requiredIndicator || !this.required ? '' : (this.requiredIndicator as string);
-  }
-
   get element() {
     return this.type === InputTypes.textarea ? this.textareaControl : this.inputControl;
   }
 
-  focused: boolean = false;
+  focused = false;
   readonly type$ = new BehaviorSubject<InputTypes>(InputTypes.text);
+  readonly inputTypes = InputTypes;
 
   private _value: string | number = '';
   private _type: InputTypes = InputTypes.text;
-  private _passwordTextVisible: boolean = false;
-  private _disabled: boolean = false;
-  private _required: boolean = false;
-  private _autoSelect: boolean = false;
-  private _autofocus: boolean = false;
-  private _autocomplete: boolean = false;
-  private _autocorrect: boolean = false;
-  private _spellcheck: boolean = false;
+  private _passwordTextVisible = false;
+  private _disabled = false;
+  private _required = false;
+  private _autoSelect = false;
+  private _autofocus = false;
+  private _autocomplete: boolean | string = 'off';
+  private _autocorrect = false;
+  private _spellcheck = false;
+  private _autosize = false;
+  private _spinnerInterval;
+  private _spinnerTimeout;
+  private _minWidth: number = MIN_WIDTH;
+  private _unlockable = false;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     if (this.autofocus) {
-      setTimeout(() => this.element.nativeElement.focus());
-    }
+      setTimeout(() => {
+        this.element.nativeElement.focus();
 
-    // sometimes the label doesn't update on load
-    setTimeout(() => this.cdr.markForCheck());
+        // sometimes the label doesn't update on load
+        this.cdr.markForCheck();
+      });
+    }
   }
 
-  ngOnChanges(changes: any) {
-    if ('max' in changes || 'min' in changes) {
-      this.onChangeCallback(this._value);
-    }
+  ngOnDestroy(): void {
+    this.clearSpinnerInterval();
   }
 
   onChange(event: Event): void {
     event.stopPropagation();
+
     this.change.emit(this.value);
   }
 
@@ -327,6 +343,36 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
     this.disabled = coerceBooleanProperty(isDisabled);
   }
 
+  incrementValue(event: MouseEvent): void {
+    this.increment(event);
+    if (!this._spinnerInterval) {
+      this._spinnerTimeout = setTimeout(() => {
+        this._spinnerInterval = setInterval(() => {
+          this.increment(event);
+        }, 50);
+      }, 500);
+    }
+  }
+
+  decrementValue(event: MouseEvent): void {
+    this.decrement(event);
+    if (!this._spinnerInterval) {
+      this._spinnerTimeout = setTimeout(() => {
+        this._spinnerInterval = setInterval(() => {
+          this.decrement(event);
+        }, 50);
+      }, 500);
+    }
+  }
+
+  clearSpinnerInterval() {
+    clearTimeout(this._spinnerTimeout);
+    this._spinnerTimeout = undefined;
+
+    clearInterval(this._spinnerInterval);
+    this._spinnerInterval = undefined;
+  }
+
   private onTouchedCallback: () => void = () => {
     // placeholder
   };
@@ -336,7 +382,51 @@ export class InputComponent implements AfterViewInit, ControlValueAccessor, Vali
   };
 
   private updateInputType() {
-    // tslint:disable-next-line: tsr-detect-possible-timing-attacks
+    // eslint-disable-next-line
     this.type$.next(this.passwordTextVisible && InputTypes.password === this.type ? InputTypes.text : this.type);
+  }
+
+  private increment(event: MouseEvent) {
+    event.preventDefault();
+
+    if (!this.disabled) {
+      const el = this.element.nativeElement as HTMLInputElement;
+      const max = +this.max;
+      if ((max || max === 0) && +el.value >= max) return;
+
+      el.value = el.value ? (+el.value + 1).toString() : '1';
+      this.value = el.value;
+      this.change.emit(this._value);
+      if (document.activeElement !== this.inputControl.nativeElement) {
+        this.inputControl.nativeElement.focus();
+      }
+    }
+  }
+
+  private decrement(event: MouseEvent) {
+    event.preventDefault();
+
+    if (!this.disabled) {
+      const el = this.element.nativeElement as HTMLInputElement;
+      const min = +this.min;
+      if (min || min === 0) {
+        if (min === 0 && !el.value) {
+          el.value = '0';
+          this.value = el.value;
+          this.change.emit(this._value);
+          this.inputControl.nativeElement.focus();
+          return;
+        } else if (+el.value <= min) {
+          return;
+        }
+      }
+
+      el.value = el.value ? (+el.value - 1).toString() : '-1';
+      this.value = el.value;
+      this.change.emit(this._value);
+      if (document.activeElement !== this.inputControl.nativeElement) {
+        this.inputControl.nativeElement.focus();
+      }
+    }
   }
 }

@@ -5,14 +5,21 @@
   class="ngx-select-input-box"
   (click)="onClick($event)"
 >
-  <span *ngIf="label !== undefined" class="ngx-select-label">
+  <label *ngIf="label" class="ngx-select-label">
     <span [innerHTML]="label"></span>
     <span [innerHTML]="requiredIndicator"></span>
-  </span>
-  <span *ngIf="!selected?.length && placeholder !== undefined" class="ngx-select-placeholder" [innerHTML]="placeholder">
-  </span>
-  <ul class="horizontal-list ngx-select-input-list">
-    <li *ngFor="let option of selectedOptions" class="ngx-select-input-option" [class.disabled]="option.disabled">
+  </label>
+  <span *ngIf="!selected?.length && placeholder" class="ngx-select-placeholder" [innerHTML]="placeholder"> </span>
+  <ul
+    *ngIf="tagging || selectedOptions?.length"
+    class="horizontal-list ngx-select-input-list"
+    [class.no-selections]="!selected?.length"
+  >
+    <li
+      *ngFor="let option of selectedOptions"
+      class="ngx-select-input-option"
+      [class.disabled]="multiple && selectedOptions.length > 1 && option.disabled"
+    >
       <ng-template
         *ngIf="option.inputTemplate"
         [ngTemplateOutlet]="option.inputTemplate"
@@ -33,37 +40,39 @@
       <input
         #tagInput
         type="search"
-        class="ng-select-text-box"
+        class="ngx-select-text-box"
         autocomplete="off"
         autocorrect="off"
         spellcheck="off"
         (keyup)="onKeyUp($event)"
+        (change)="$event.stopPropagation()"
       />
+      <i [hidden]="!tagInput.value" class="ngx-icon ngx-x" (click)="tagInput.value = ''"></i>
     </li>
   </ul>
+  <span
+    *ngIf="allowClear && !multiple && !tagging && selectedOptions?.length"
+    title="Clear Selections"
+    class="ngx-select-clear icon-x"
+    (click)="selection.emit([])"
+  >
+  </span>
 </div>
-<div class="ngx-select-input-underline">
-  <div class="underline-fill"></div>
-</div>
-<div class="ngx-select-hint">
-  <span *ngIf="hint !== undefined" [innerHTML]="hint"></span>
-  <ng-content select="ngx-input-hint"></ng-content>
-</div>
-<span
-  *ngIf="allowClear && !multiple && !tagging && selectedOptions?.length"
-  title="Clear Selections"
-  class="ngx-select-clear icon-x"
-  (click)="selection.emit([])"
->
-</span>
 <span
   *ngIf="caretVisible"
   class="ngx-select-caret icon-arrow-down"
   [class.icon-arrow-down]="!selectCaret"
-  (click)="toggle.emit()"
+  (click)="onToggle()"
 >
   <span *ngIf="isNotTemplate; else tpl" [innerHTML]="selectCaret"> </span>
   <ng-template #tpl>
     <ng-container *ngTemplateOutlet="selectCaret"></ng-container>
   </ng-template>
 </span>
+<div class="ngx-select-input-underline">
+  <div class="underline-fill"></div>
+</div>
+<div class="ngx-select-hint">
+  <span *ngIf="hint" [innerHTML]="hint"></span>
+  <ng-content select="ngx-input-hint"></ng-content>
+</div>

@@ -1,10 +1,11 @@
-import * as moment from 'moment';
+import moment from 'moment';
 
 import { CalendarDay } from '../../calendar-day.interface';
 import { getNumberRange } from '../get-number-range/get-number-range.util';
 
 /**
  * Get the days for the month
+ *
  * @param active
  * @return array of days
  */

@@ -1,0 +1,37 @@
+<h3 class="style-header">Dropzone</h3>
+<ngx-section class="shadow" sectionTitle="Dropzone">
+  <ngx-dropzone
+    [uploader]="uploaderInstance"
+    [acceptedFileFormats]="acceptedFileFormats"
+    [multiple]="true"
+    (afterAddingFile)="onAfterAddingFile($event)"
+  >
+  </ngx-dropzone>
+  <app-prism>
+    <![CDATA[
+    <ngx-dropzone
+      [uploader]="uploaderInstance"
+      [acceptedFileFormats]="acceptedFileFormats"
+    >
+    </ngx-dropzone>
+    ]]>
+  </app-prism>
+</ngx-section>
+
+<ngx-section sectionTitle="Dropzone in dialog">
+  <button type="button" class="btn" (click)="openDialog({ template: uploadTpl })">
+    Open Upload Dialog
+  </button>
+
+  <app-prism>
+    <![CDATA[
+      <ng-template #uploadTpl>
+        <ngx-dropzone [uploader]="uploaderInstance"></ngx-dropzone>
+      </ng-template>
+    ]]>
+  </app-prism>
+</ngx-section>
+
+<ng-template #uploadTpl>
+  <ngx-dropzone [uploader]="uploaderInstance"></ngx-dropzone>
+</ng-template>

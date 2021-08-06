@@ -13,7 +13,7 @@ import { coerceNumberProperty } from '@angular/cdk/coercion';
 @Component({
   exportAs: 'ngxNavbarItem',
   selector: 'ngx-navbar-item',
-  template: ` <ng-content></ng-content> `,
+  template: ' <ng-content></ng-content> ',
   styleUrls: ['./navbar-item.component.scss'],
   host: {
     class: 'ngx-navbar-item',

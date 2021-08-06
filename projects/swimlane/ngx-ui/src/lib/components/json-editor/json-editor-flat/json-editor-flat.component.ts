@@ -7,7 +7,10 @@ import {
   ChangeDetectionStrategy,
   ViewChild,
   TemplateRef,
-  SimpleChanges
+  SimpleChanges,
+  ChangeDetectorRef,
+  OnChanges,
+  OnInit
 } from '@angular/core';
 import { JsonEditorNodeFlatComponent } from './json-editor-node-flat/json-editor-node-flat.component';
 import { SchemaValidatorService } from '../schema-validator.service';
@@ -26,7 +29,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class JsonEditorFlatComponent extends JsonEditor {
+export class JsonEditorFlatComponent extends JsonEditor implements OnInit, OnChanges {
   @Input() model: any;
 
   @Input() schema: JSONEditorSchema;
@@ -41,6 +44,8 @@ export class JsonEditorFlatComponent extends JsonEditor {
 
   @Input() hideRoot = false;
 
+  @Input() showKnownProperties = false;
+
   @ContentChildren(JsonEditorNodeFlatComponent) nodeElms: QueryList<JsonEditorNodeFlatComponent>;
 
   @ViewChild('propertyConfigTmpl') propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;
@@ -49,8 +54,12 @@ export class JsonEditorFlatComponent extends JsonEditor {
 
   customFormats: JsonSchemaDataType[] = [];
 
-  constructor(private dialogService: DialogService, protected schemaValidatorService: SchemaValidatorService) {
-    super(schemaValidatorService);
+  constructor(
+    private dialogService: DialogService,
+    protected schemaValidatorService: SchemaValidatorService,
+    protected cdr: ChangeDetectorRef
+  ) {
+    super(schemaValidatorService, cdr);
   }
 
   ngOnInit() {
@@ -100,7 +109,7 @@ export class JsonEditorFlatComponent extends JsonEditor {
     this.schema = { ...this.schema };
     this.schemaRef = { ...this.schemaRef };
 
-    this.schemaChange.emit(this.schemaRef);
+    this.schemaUpdate.emit(this.schemaRef);
   }
 
   private buildCustomFormats(): void {

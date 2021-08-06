@@ -1,3 +1,4 @@
+/* eslint-disable @angular-eslint/component-class-suffix */
 import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 
 import { StepperComponent } from './stepper.component';

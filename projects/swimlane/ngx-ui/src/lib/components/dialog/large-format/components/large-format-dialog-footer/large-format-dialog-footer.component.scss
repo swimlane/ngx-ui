@@ -1,0 +1,10 @@
+.ngx-large-format-dialog-footer {
+  --item-gap: 0.5rem;
+
+  &--default {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--item-gap);
+  }
+}

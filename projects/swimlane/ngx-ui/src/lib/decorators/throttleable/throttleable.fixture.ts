@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { throttleable } from './throttleable.decorator';
 
 export class ThrottleableFixture {

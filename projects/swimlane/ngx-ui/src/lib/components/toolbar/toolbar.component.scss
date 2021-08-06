@@ -13,6 +13,17 @@ $toolbar-color: $color-blue-grey-250;
   width: 100%;
   font-size: 0.8rem;
 
+  .flex-container {
+    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+
+    > * {
+      flex: 1 1 0%;
+      box-sizing: border-box;
+    }
+  }
+
   a {
     color: $toolbar-color;
   }

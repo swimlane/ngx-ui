@@ -7,42 +7,46 @@ import {
   SimpleChanges,
   TemplateRef,
   ViewChild,
-  ComponentRef
+  ComponentRef,
+  Directive
 } from '@angular/core';
 
 import { createValueForSchema, inferType, JSONEditorSchema } from './json-editor.helper';
 import { DialogComponent } from '../dialog/dialog.component';
 import { DialogService } from '../dialog/dialog.service';
 
+@Directive()
 export class JsonEditorNode implements OnInit, OnChanges {
   @Input() schema: JSONEditorSchema;
 
   @Input() model: any;
 
-  @Input() required: boolean = false;
+  @Input() required = false;
 
-  @Input() inline: boolean = false;
+  @Input() inline = false;
 
-  @Input() path: string = '';
+  @Input() path = '';
 
   @Input() errors: any[];
 
   @Input() typeCheckOverrides?: any;
 
+  @Input() showKnownProperties = false;
+
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
-  @Output() schemaChange: EventEmitter<JSONEditorSchema> = new EventEmitter();
+  @Output() schemaUpdate: EventEmitter<JSONEditorSchema> = new EventEmitter();
 
   @ViewChild('codeEditorTpl') codeEditorTpl: TemplateRef<any>;
 
   requiredCache: any = {};
-  expanded: boolean = true;
+  expanded = true;
 
   ownErrors: any[];
-  valid: boolean = true;
+  valid = true;
 
   childrenErrors: any[];
-  childrenValid: boolean = true;
+  childrenValid = true;
 
   editorDialog: ComponentRef<DialogComponent>;
   editorConfig = {
@@ -54,8 +58,8 @@ export class JsonEditorNode implements OnInit, OnChanges {
       json: true
     }
   };
-  editorModel: string = '';
-  editorVisible: boolean = true;
+  editorModel = '';
+  editorVisible = true;
 
   editorModes: any[] = [
     {
@@ -165,6 +169,7 @@ export class JsonEditorNode implements OnInit, OnChanges {
 
   /**
    * Updates the whole model and emits the change event
+   *
    * @param value
    */
   updateModel(value: any): void {

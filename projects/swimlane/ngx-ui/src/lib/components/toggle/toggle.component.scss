@@ -24,10 +24,10 @@
     display: none;
 
     &:checked ~ .ngx-toggle-label {
-      background: $color-blue-400;
+      background: $color-blue-700;
 
       &:after {
-        left: 15px;
+        left: 16px;
         background: $color-blue;
       }
     }
@@ -37,8 +37,8 @@
     position: relative;
     display: block;
     height: 14px;
-    width: 34px;
-    background: $color-blue-grey-700;
+    width: 36px;
+    background: $color-blue-grey-900;
     border-radius: 100px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -49,21 +49,42 @@
 
     &:after {
       position: absolute;
-      left: -2px;
+      left: 0;
       top: -3px;
       display: block;
       height: 20px;
       width: 20px;
-      border-radius: 100px;
+      border-radius: 100%;
       background: $color-blue-grey-400;
       box-shadow: 0px 3px 3px $color-blue-grey-900;
       content: '';
       transition: all 0.3s ease;
+    }
+
+    .ngx-icon {
+      display: flex;
+
+      &.ngx-check {
+        opacity: 0.5;
+        color: $color-white;
+        padding: 2.5px 3.5px;
+        font-size: 9px;
+      }
+
+      &.ngx-x {
+        flex-direction: row-reverse;
+        opacity: 0.7;
+        color: $color-blue-grey-400;
+        padding: 3.5px 4.5px;
+        font-size: 7px;
+        font-weight: 900;
+      }
     }
   }
 
   .ngx-toggle-text {
     cursor: pointer;
     padding-left: 5px;
+    color: $color-blue-grey-100;
   }
 }

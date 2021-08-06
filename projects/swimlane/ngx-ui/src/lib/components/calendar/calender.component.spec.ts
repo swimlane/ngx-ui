@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { MomentModule } from 'ngx-moment';
@@ -15,13 +15,15 @@ describe('CalendarComponent', () => {
   let component: CalendarComponent;
   let fixture: ComponentFixture<CalendarComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [CalendarComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-      imports: [MomentModule, PipesModule]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [CalendarComponent],
+        schemas: [NO_ERRORS_SCHEMA],
+        imports: [MomentModule, PipesModule]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CalendarComponent);
@@ -90,6 +92,7 @@ describe('CalendarComponent', () => {
 
     it('should return false if not same month of year', () => {
       const now = new Date();
+      now.setDate(1);
       now.setMonth(now.getMonth() - 1);
       component.value = now;
       expect(component.isMonthActive(moment().format('MMMM'))).toBe(false);
@@ -105,6 +108,7 @@ describe('CalendarComponent', () => {
 
     it('should return false if month is not same as current', () => {
       const now = new Date();
+      now.setDate(1);
       now.setMonth(now.getMonth() - 1);
       component.value = now;
       component.ngOnInit();

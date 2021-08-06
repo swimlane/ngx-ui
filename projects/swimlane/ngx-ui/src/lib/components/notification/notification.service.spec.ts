@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { EventEmitter, ComponentRef } from '@angular/core';
+import { ComponentRef, EventEmitter } from '@angular/core';
 
 import { InjectionService } from '../../services/injection/injection.service';
 import { NotificationService } from './notification.service';
@@ -22,8 +22,8 @@ describe('NotificationService', () => {
   });
 
   beforeEach(() => {
-    service = TestBed.get(NotificationService);
-    injectionService = TestBed.get(InjectionService);
+    service = TestBed.inject(NotificationService);
+    injectionService = TestBed.inject(InjectionService);
   });
 
   it('can load instance', () => {

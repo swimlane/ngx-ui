@@ -6,12 +6,32 @@
   position: relative;
   flex-direction: column;
   overflow: hidden;
-  padding: 10px;
+  padding: $stepper-padding;
+
+  &.ngx-stepper--top,
+  &.ngx-stepper--bottom {
+    .ngx-stepper--steps {
+      margin-left: $stepper-trackbar-margin;
+      margin-right: $stepper-trackbar-margin;
+    }
+
+    .ngx-step--title {
+      position: absolute;
+      display: inline-block;
+      transform: translateX(calc(-50% + #{$stepper-size} / 2));
+      text-align: center;
+      font-size: 12px;
+    }
+  }
 
   &.ngx-stepper--top {
     .ngx-stepper--bar {
       bottom: 0;
-      margin-top: 10px;
+      margin-top: $stepper-padding;
+    }
+
+    .ngx-step--title {
+      top: 100%;
     }
   }
 
@@ -20,7 +40,11 @@
 
     .ngx-stepper--bar {
       top: 0;
-      margin-bottom: 10px;
+      margin-bottom: $stepper-padding;
+    }
+
+    .ngx-step--title {
+      top: calc(-100% + 5px);
     }
   }
 
@@ -31,7 +55,7 @@
       flex-direction: row;
 
       .ngx-step--title {
-        margin-right: 10px;
+        margin-right: $stepper-padding;
       }
     }
 
@@ -40,7 +64,7 @@
 
       .ngx-stepper--bar {
         right: 0;
-        margin-left: 10px;
+        margin-left: $stepper-padding;
       }
     }
   }
@@ -52,7 +76,7 @@
       flex-direction: row-reverse;
 
       .ngx-step--title {
-        margin-left: 10px;
+        margin-left: $stepper-padding;
       }
     }
 
@@ -61,7 +85,7 @@
 
       .ngx-stepper--bar {
         left: 0;
-        margin-right: 10px;
+        margin-right: $stepper-padding;
       }
     }
   }
@@ -69,12 +93,14 @@
   &.ngx-stepper--left,
   &.ngx-stepper--right {
     .ngx-stepper--steps {
+      margin-top: $stepper-trackbar-margin;
+      margin-bottom: $stepper-trackbar-margin;
       flex-direction: column;
 
       .ngx-step {
         display: flex;
 
-        &.ngx-step--semi-complete {
+        &.ngx-step--complete-last {
           .ngx-step--step {
             &:after {
               background-image: linear-gradient(to bottom, #1edeb6 0%, $color-blue-500 75%) !important;
@@ -91,8 +117,13 @@
         }
 
         .ngx-step--title {
+          position: unset;
           display: block;
+          transform: unset;
           margin-bottom: 0;
+          max-width: 100px;
+          width: 100px;
+          text-align: unset;
         }
 
         .ngx-step--step {
@@ -111,19 +142,18 @@
 
   &.ngx-stepper--readonly {
     .ngx-step {
-      &.ngx-step--complete,
-      &.ngx-step--semi-complete {
+      &.ngx-step--complete {
         .ngx-step--circle {
           &:hover {
             border: initial;
             color: initial;
             box-shadow: initial;
 
-            span {
+            .ngx-step--indicator {
               opacity: initial;
             }
 
-            i {
+            i.ngx-step--complete-icon {
               opacity: initial;
             }
 
@@ -141,6 +171,42 @@
     }
   }
 
+  &.ngx-stepper--with-progress {
+    .ngx-step {
+      &.ngx-step--active {
+        .ngx-step--step {
+          .ngx-step--circle {
+            border: none !important;
+            box-shadow: none;
+
+            @keyframes spinner {
+              0% {
+                transform: rotate(0deg);
+              }
+
+              100% {
+                transform: rotate(360deg);
+              }
+            }
+
+            &::before {
+              animation: 1.5s linear infinite spinner;
+              animation-play-state: inherit;
+              border: solid 1px transparent;
+              border-bottom-color: $color-blue-500;
+              border-right-color: $color-blue-500;
+              border-radius: 50%;
+              content: '';
+              height: 100%;
+              width: 100%;
+              will-change: transform;
+            }
+          }
+        }
+      }
+    }
+  }
+
   .ngx-stepper--steps {
     display: flex;
     position: relative;
@@ -149,7 +215,7 @@
   }
 
   .ngx-stepper--bar-track {
-    min-height: 20px;
+    min-height: 25px;
     position: relative;
 
     .ngx-stepper--bar {
@@ -164,6 +230,102 @@
 
     &.active {
       display: initial;
+    }
+  }
+
+  // for large icons
+  &.ngx-stepper--lg {
+    .ngx-stepper--steps {
+      min-width: $stepper-size-lg;
+
+      .ngx-step {
+        .ngx-step--step {
+          .ngx-step--circle {
+            width: $stepper-size-lg;
+            height: $stepper-size-lg;
+            font-size: $stepper-size-lg * 0.5;
+          }
+        }
+      }
+    }
+
+    &.ngx-stepper--top,
+    &.ngx-stepper--bottom {
+      .ngx-stepper--steps {
+        margin-left: $stepper-trackbar-margin-lg;
+        margin-right: $stepper-trackbar-margin-lg;
+      }
+
+      .ngx-step--title {
+        transform: translateX(calc(-50% + #{$stepper-size-lg} / 2));
+      }
+    }
+
+    &.ngx-stepper--left,
+    &.ngx-stepper--right {
+      .ngx-stepper--steps {
+        margin-top: $stepper-trackbar-margin-lg;
+        margin-bottom: $stepper-trackbar-margin-lg;
+
+        .ngx-step {
+          .ngx-step--step {
+            &:after {
+              min-height: $stepper-size-lg;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // for complete steps highlight
+  &.ngx-stepper--no-highlight {
+    .ngx-stepper--steps {
+      .ngx-step {
+        &.ngx-step--complete {
+          &:not(.ngx-step--complete-last) {
+            .ngx-step--title {
+              color: $color-blue-500;
+            }
+
+            .ngx-step--step {
+              &:after {
+                background-color: $color-blue-500 !important;
+              }
+
+              .ngx-step--circle {
+                border-color: $color-blue-500;
+                color: $color-blue-500;
+
+                .marker-path {
+                  fill: $color-blue-500;
+                }
+              }
+            }
+          }
+
+          &.ngx-step--complete-last {
+            .ngx-step--title {
+              color: $color-blue-500;
+            }
+
+            .ngx-step--step {
+              &:after {
+                background-image: linear-gradient(to right, $color-blue-500 0%, $color-blue-500 75%) !important;
+              }
+
+              .ngx-step--circle {
+                border-color: $color-blue-500;
+                color: $color-blue-500;
+
+                .marker-path {
+                  fill: $color-blue-500;
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

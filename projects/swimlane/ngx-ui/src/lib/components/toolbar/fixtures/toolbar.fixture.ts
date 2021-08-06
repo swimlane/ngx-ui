@@ -3,7 +3,7 @@ import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { ToolbarComponent } from '../toolbar.component';
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'toolbar-fixture',
   templateUrl: 'toolbar.fixture.html',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -33,7 +33,7 @@ export class ToolbarFixtureComponent {
     }
   ];
 
-  menuClicked(e: Event) {
+  menuClicked(e: Event): Event {
     return e;
   }
 }

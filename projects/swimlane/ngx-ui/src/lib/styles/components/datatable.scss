@@ -74,7 +74,20 @@ $datatable-row-hover: darken($datatable-bg, 2%);
 
       ul {
         li {
-          margin: 10px 0px;
+          margin: 10px 0;
+
+          a {
+            height: 22px;
+            min-width: 24px;
+            line-height: 22px;
+            padding: 0;
+            border-radius: 3px;
+            margin: 0 3px;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: bottom;
+            color: $color-grey-300;
+          }
 
           &:not(.disabled) {
             &.active a,
@@ -84,20 +97,6 @@ $datatable-row-hover: darken($datatable-bg, 2%);
             }
           }
         }
-      }
-
-      a {
-        height: 22px;
-        min-width: 24px;
-        line-height: 22px;
-        padding: 0;
-        border-radius: 3px;
-        margin: 0 3px;
-        text-align: center;
-        vertical-align: top;
-        text-decoration: none;
-        vertical-align: bottom;
-        color: $color-grey-300;
       }
 
       .icon-left,

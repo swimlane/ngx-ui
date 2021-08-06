@@ -1,13 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import moment from 'moment-timezone';
 import { MomentModule } from 'ngx-moment';
-
-import { DateTimeComponent } from './date-time.component';
-import { DialogModule } from '../dialog/dialog.module';
 import { PipesModule } from '../../pipes/pipes.module';
 import { InjectionService } from '../../services/injection/injection.service';
+import { DialogModule } from '../dialog/dialog.module';
+
+import { DateTimeComponent } from './date-time.component';
 
 (moment as any).suppressDeprecationWarnings = true;
 
@@ -30,19 +30,21 @@ describe('DateTimeComponent', () => {
   let component: DateTimeComponent;
   let fixture: ComponentFixture<DateTimeComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [DateTimeComponent],
-      imports: [MomentModule, PipesModule, DialogModule],
-      schemas: [NO_ERRORS_SCHEMA],
-      providers: [InjectionService]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [DateTimeComponent],
+        imports: [MomentModule, PipesModule, DialogModule],
+        schemas: [NO_ERRORS_SCHEMA],
+        providers: [InjectionService]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
-    const injectionService = TestBed.get(InjectionService);
+    const injectionService = TestBed.inject(InjectionService);
     fixture = TestBed.createComponent(DateTimeComponent);
-    injectionService.setRootViewContainer(fixture.componentRef);
+    injectionService.setRootViewContainer(fixture.componentRef as any);
     component = fixture.componentInstance;
     component.disabled = false;
     component.tabindex = 0;
@@ -438,7 +440,7 @@ describe('DateTimeComponent', () => {
       expect(component.isCurrent()).toBe(false);
 
       component.apply();
-      expect(component.displayValue).toEqual(`01/01/1990 12:39 PM`);
+      expect(component.displayValue).toEqual('01/01/1990 12:39 PM');
     });
 
     it('should set current', () => {
@@ -463,6 +465,20 @@ describe('DateTimeComponent', () => {
       component.value = new Date();
       component.onBlur();
       expect(component.input.value).toBeDefined();
+    });
+
+    it('should allow empty value if NOT required', () => {
+      component.value = '';
+      component.required = false;
+      component.onBlur();
+      expect(component.input.value).toEqual('');
+    });
+
+    it('should NOT allow empty value if required', () => {
+      component.value = '';
+      component.required = true;
+      component.onBlur();
+      expect(component.input.value).toBeUndefined();
     });
 
     it('should invalidate and not set value', () => {
@@ -542,16 +558,27 @@ describe('DateTimeComponent', () => {
       expect((component.value as Date).toLocaleDateString()).toEqual(date);
     });
 
+    // TODO: fix the handling of invalid inputs in the component and update the tests
     it('should not set invalid value', () => {
       const date = 'test';
       component.inputChanged(date);
       expect(component.value).toEqual(date);
+    });
+
+    it('should always emit with inputChange output', () => {
+      const invalidDate = 'abc123';
+      component.inputChange.subscribe(actual => {
+        expect(actual).toEqual('abc123');
+      });
+      component.inputChanged(invalidDate);
+      expect(component.value).toEqual(invalidDate);
     });
   });
 
   describe('registerOnChange', () => {
     it('should register onchange callback', done => {
       const fn = () => {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore: private and only accessible within class
         expect(component.onChangeCallback).toBe(fn);
         done();
@@ -569,6 +596,52 @@ describe('DateTimeComponent', () => {
       };
       component.registerOnTouched(fn);
       component.onBlur();
+    });
+  });
+
+  describe('set value', () => {
+    it('should emit "change" event', () => {
+      component.change.subscribe(date => expect(date).toBe(MOON_LANDING));
+      component.value = MOON_LANDING;
+    });
+
+    it('should NOT emit "change" event if value does not change', () => {
+      spyOn(component.change, 'emit');
+      component.value = MOON_LANDING;
+      component.value = MOON_LANDING_DATE;
+      expect(component.change.emit).toHaveBeenCalledTimes(1);
+    });
+
+    it('should NOT emit "change" event if invalid', () => {
+      spyOn(component.change, 'emit');
+      component.value = 'INVALID_DATE';
+      expect(component.change.emit).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('error messages', () => {
+    it('should update Date out of range error when minDate is changed', () => {
+      const today = new Date();
+      const yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+      component.minDate = today;
+      component.writeValue(yesterday);
+      expect(component.errorMsg).toEqual('Date out of range');
+      const newMinDate = new Date(yesterday.setDate(yesterday.getDate() - 1));
+      component.minDate = newMinDate;
+      expect(component.errorMsg).toEqual('');
+    });
+
+    it('should update Date out of range error when maxDate is changed', () => {
+      const today = new Date();
+      const yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+      component.maxDate = yesterday;
+      component.writeValue(today);
+      expect(component.errorMsg).toEqual('Date out of range');
+      const newMaxDate = new Date(today.setDate(today.getDate() + 1));
+      component.maxDate = newMaxDate;
+      expect(component.errorMsg).toEqual('');
     });
   });
 });

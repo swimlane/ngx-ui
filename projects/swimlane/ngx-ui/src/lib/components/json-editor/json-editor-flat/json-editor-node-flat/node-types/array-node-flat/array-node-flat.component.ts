@@ -5,7 +5,9 @@ import {
   ViewChild,
   TemplateRef,
   OnInit,
-  ChangeDetectionStrategy
+  ChangeDetectionStrategy,
+  SimpleChanges,
+  OnChanges
 } from '@angular/core';
 import { ArrayNode } from '../../../../node-types/array-node.component';
 import { JSONEditorSchema, JsonSchemaDataType, jsonSchemaDataTypes } from '../../../../json-editor.helper';
@@ -19,7 +21,7 @@ import { PropertyConfigOptions, PropertyConfigComponent } from '../property-conf
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
+export class ArrayNodeFlatComponent extends ArrayNode implements OnInit, OnChanges {
   @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;
 
   @Input() level: number;
@@ -30,7 +32,9 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
 
   @Input() compressed: boolean;
 
-  @Input() hideRoot;
+  @Input() hideRoot = false;
+
+  @Input() isDuplicated = false;
 
   indentationArray: number[] = [];
 
@@ -47,8 +51,13 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
       this.model.push(this.schemaRef.items);
     }
 
-    if (this.level > 0) {
-      this.indentationArray = Array(this.level).fill(this.level);
+    this.indentationArray = this.level > 0 ? Array(this.level).fill(this.level) : [];
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+    if ('level' in changes) {
+      this.indentationArray = this.level > 0 ? Array(this.level).fill(this.level) : [];
     }
   }
 
@@ -68,7 +77,7 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
   updateSchema(options: PropertyConfigOptions): void {
     this.schema.items = options.newProperty;
     this.schemaRef.items = options.newProperty;
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
   }
 
   addArrayItem(dataType?: JsonSchemaDataType) {
@@ -88,12 +97,12 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
   }
 
   addDefaultItemForSchemaBuilder(dataType: JsonSchemaDataType): void {
-    this.schema.items = dataType.schema as object;
-    this.schemaRef.items = dataType.schema as object;
+    this.schema.items = dataType.schema as Record<string, any>;
+    this.schemaRef.items = dataType.schema as Record<string, any>;
 
     this.model.push(this.schemaRef.items.type === 'array' ? [] : this.schemaRef.items);
 
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
   }
 
   private removeDefaultItemForSchemaBuilder(): void {
@@ -102,6 +111,6 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit {
 
     this.model = [];
 
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
   }
 }

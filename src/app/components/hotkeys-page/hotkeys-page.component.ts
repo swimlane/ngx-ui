@@ -1,5 +1,5 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { Hotkey, HotkeysService, DialogService } from '@swimlane/ngx-ui';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
+import { DialogService, Hotkey, HotkeysService } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-hotkeys-page',

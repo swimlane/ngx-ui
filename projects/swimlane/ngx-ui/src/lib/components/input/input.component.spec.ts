@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, FormControl } from '@angular/forms';
+import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { InputComponent } from './input.component';
@@ -8,6 +9,7 @@ import { InputTypes } from './input-types.enum';
 import { InputComponentFixture } from './input.component.fixture';
 
 const MOCK_EVENT: any = {
+  target: {},
   stopPropagation: () => ({})
 };
 
@@ -44,12 +46,6 @@ describe('InputComponent', () => {
     component.input.autoSelect = true;
     component.input.onFocus(MOCK_EVENT);
     expect(spy).toHaveBeenCalled();
-  });
-
-  it('should be required', () => {
-    component.required$.next(true);
-    fixture.detectChanges();
-    expect(component.input.requiredIndicatorView).toEqual(component.input.requiredIndicator as string);
   });
 
   it('should be textarea', () => {
@@ -171,6 +167,129 @@ describe('InputComponent', () => {
       component.input.value = '';
       fixture.detectChanges();
       expect(component.input.value as any).toEqual(null);
+    });
+  });
+
+  describe('incrementValue', () => {
+    beforeEach(() => {
+      component.type$.next(InputTypes.number);
+    });
+
+    it('should not increment if input disabled', done => {
+      component.input.disabled = true;
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        component.input.incrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+
+        expect(component.input.value).toBe('test');
+        done();
+      });
+    });
+
+    it('should set to 1 if input value is falsy', done => {
+      component.input.value = undefined;
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        component.input.incrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+
+        expect(component.input.value).toBe(1);
+        done();
+      });
+    });
+
+    it('should increment input value by 1', done => {
+      component.input.value = 41;
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        component.input.incrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+        fixture.detectChanges();
+
+        expect(component.input.value).toBe(42);
+        done();
+      });
+    });
+  });
+
+  describe('decrementValue', () => {
+    beforeEach(() => {
+      component.type$.next(InputTypes.number);
+    });
+
+    it('should not decrement if input disabled', done => {
+      component.input.disabled = true;
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        component.input.decrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+
+        expect(component.input.value).toBe('test');
+        done();
+      });
+    });
+
+    it('should set to -1 if input value is falsy', done => {
+      component.input.value = undefined;
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        component.input.decrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+
+        expect(component.input.value).toBe(-1);
+        done();
+      });
+    });
+
+    it('should decrement input value by 1', done => {
+      component.input.value = 41;
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        component.input.decrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+
+        expect(component.input.value).toBe(40);
+        done();
+      });
+    });
+  });
+
+  describe('unlockable', () => {
+    let lockBtn: DebugElement;
+
+    beforeEach(() => {
+      component.unlockable$.next(true);
+      fixture.detectChanges();
+
+      lockBtn = fixture.debugElement.queryAll(By.css('button.icon-lock'))[0];
+    });
+
+    it('should show unlock button', () => {
+      expect(lockBtn).toBeDefined();
+    });
+
+    it('should be disabled by default', () => {
+      expect(component.input.disabled).toBeTrue();
+    });
+
+    it('should NOT be disabled when lock button clicked', () => {
+      lockBtn.triggerEventHandler('click', null);
+      expect(component.input.disabled).toBeFalse();
+    });
+
+    it('should remove lock button from DOM when unlocked', () => {
+      lockBtn.triggerEventHandler('click', null);
+      fixture.detectChanges();
+
+      const lockBtnAfter = fixture.debugElement.queryAll(By.css('span.icon-lock'))[0];
+      expect(lockBtnAfter).not.toBeDefined();
     });
   });
 });

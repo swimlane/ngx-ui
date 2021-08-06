@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { TooltipDirective } from './tooltip.directive';
 import { TooltipContentComponent } from './tooltip.component';
-import { TooltipService } from './tooltip.service';
 
 import { InjectionService } from '../../services/injection/injection.service';
 
 @NgModule({
   declarations: [TooltipContentComponent, TooltipDirective],
-  providers: [InjectionService, TooltipService],
+  providers: [InjectionService],
   exports: [TooltipContentComponent, TooltipDirective],
   imports: [CommonModule],
   entryComponents: [TooltipContentComponent]

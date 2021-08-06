@@ -1,14 +1,14 @@
 <div
   class="json-tree-node"
-  [class.inline]="schema?.type !== 'object' && schema?.type !== 'array'"
-  [class.invalid]="!valid"
-  [class.children-invalid]="!childrenValid"
+  [class.inline]="schema?.type !== 'object' && schema?.type !== 'array' && schema?.type !== 'null'"
+  [class.invalid]="!valid || isDuplicated"
+  [class.children-invalid]="!childrenValid || isDuplicated"
 >
   <span
     *ngIf="schema?.type === 'object' || schema?.type === 'array'"
     class="ngx-expander"
     (click)="onExpandClick()"
-    [class.invalid]="!childrenValid"
+    [class.invalid]="!childrenValid || isDuplicated"
     [ngClass]="{
       'icon-tree-collapse': expanded,
       'icon-tree-expand': !expanded
@@ -35,10 +35,12 @@
         [schema]="schema"
         [model]="model"
         [expanded]="expanded"
+        [isDuplicated]="isDuplicated"
         (modelChange)="updateModel($event)"
         [path]="path"
         [errors]="childrenErrors"
         [typeCheckOverrides]="typeCheckOverrides"
+        [showKnownProperties]="showKnownProperties"
       ></ngx-json-object-node>
     </div>
 
@@ -48,10 +50,12 @@
         [schema]="schema"
         [model]="model"
         [expanded]="expanded"
+        [isDuplicated]="isDuplicated"
         (modelChange)="updateModel($event)"
         [path]="path"
         [errors]="childrenErrors"
         [typeCheckOverrides]="typeCheckOverrides"
+        [showKnownProperties]="showKnownProperties"
       ></ngx-json-array-node>
     </div>
 
@@ -61,6 +65,7 @@
         class="value-input"
         type="number"
         [placeholder]="placeholder"
+        [disabled]="isDuplicated"
         [ngModel]="model"
         (ngModelChange)="updateModel($event)"
         [required]="required"
@@ -69,7 +74,13 @@
 
     <!-- Boolean -->
     <div *ngIf="schema?.type === 'boolean'">
-      <ngx-toggle class="toggle-input" [ngModel]="model" (ngModelChange)="updateModel($event)" [label]="model | json">
+      <ngx-toggle
+        class="toggle-input"
+        [disabled]="isDuplicated"
+        [ngModel]="model"
+        (ngModelChange)="updateModel($event)"
+        [label]="model | json"
+      >
       </ngx-toggle>
     </div>
 
@@ -77,15 +88,16 @@
     <ng-container *ngIf="schema?.type === 'string'">
       <!-- No format -->
       <div *ngIf="!schema.format">
-        <input
+        <textarea
           *ngIf="!schema?.enum"
           class="value-input"
           type="text"
           [placeholder]="placeholder"
           [ngModel]="model"
+          [disabled]="isDuplicated"
           (ngModelChange)="updateModel($event)"
           [required]="required"
-        />
+        ></textarea>
         <select *ngIf="schema?.enum" class="value-input select" [ngModel]="model" (ngModelChange)="updateModel($event)">
           <option *ngFor="let option of schema.enum" [value]="option">{{ option }}</option>
         </select>
@@ -98,6 +110,7 @@
           type="password"
           [placeholder]="placeholder"
           [ngModel]="model"
+          [disabled]="isDuplicated"
           (ngModelChange)="updateModel($event)"
           [required]="required"
         />
@@ -110,6 +123,7 @@
           type="date"
           [placeholder]="placeholder"
           [ngModel]="model"
+          [disabled]="isDuplicated"
           (ngModelChange)="updateModel($event)"
           [required]="required"
         />
@@ -122,6 +136,7 @@
           type="datetime-local"
           [placeholder]="placeholder"
           [ngModel]="model"
+          [disabled]="isDuplicated"
           (ngModelChange)="updateModel($event)"
           [required]="required"
         />
@@ -146,6 +161,7 @@
           <ngx-select
             class="mode-select"
             label="Language Mode"
+            [disabled]="isDuplicated"
             [ngModel]="[editorConfig.mode.name]"
             (ngModelChange)="selectEditorMode($event[0])"
           >
@@ -160,6 +176,7 @@
           <ngx-codemirror
             *ngIf="editorVisible"
             [ngModel]="editorModel"
+            [disabled]="isDuplicated"
             (ngModelChange)="editorModel = $event"
             [config]="editorConfig"
             class="code-editor"

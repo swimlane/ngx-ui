@@ -3,8 +3,8 @@
  *
  * @param filter
  */
-export function filterDefault(filter: any) {
-  return (value: any) => {
+export const filterDefault = (filter: unknown) => {
+  return (value: unknown): boolean => {
     return !filter || filter === value;
   };
-}
+};

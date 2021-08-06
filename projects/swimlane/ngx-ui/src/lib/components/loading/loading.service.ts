@@ -3,9 +3,11 @@ import { Injectable, ComponentRef } from '@angular/core';
 import { InjectionService } from '../../services/injection/injection.service';
 import { LoadingComponent } from './loading.component';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class LoadingService {
-  threshold: number = 250;
+  threshold = 250;
 
   set progress(val: number) {
     if (this.instance) {
@@ -27,14 +29,14 @@ export class LoadingService {
     if (this.component) return this.component.instance;
   }
 
-  private _count: number = 0;
+  private _count = 0;
   private timeout: any;
   private component: ComponentRef<LoadingComponent>;
-  private _progress: number = 0;
+  private _progress = 0;
 
   constructor(private readonly injectionService: InjectionService) {}
 
-  start(autoIncrement: boolean = true): void {
+  start(autoIncrement = true): void {
     this.create();
     this._count++;
 
@@ -59,11 +61,11 @@ export class LoadingService {
     clearTimeout(this.timeout);
   }
 
-  reset(num: number = 0): void {
+  reset(num = 0): void {
     this.progress = num;
   }
 
-  complete(all: boolean = false): void {
+  complete(all = false): void {
     this._count--;
 
     if (this.count <= 0 || all) {

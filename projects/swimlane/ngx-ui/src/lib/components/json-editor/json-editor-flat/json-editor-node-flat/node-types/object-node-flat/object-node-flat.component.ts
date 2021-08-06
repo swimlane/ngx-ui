@@ -6,7 +6,9 @@ import {
   TemplateRef,
   OnInit,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  SimpleChanges,
+  OnChanges
 } from '@angular/core';
 import { ObjectNode } from '../../../../node-types/object-node.component';
 import { DialogService } from '../../../../../dialog/dialog.service';
@@ -26,7 +28,7 @@ import { PropertyConfigOptions, PropertyConfigComponent } from '../property-conf
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
+export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnChanges {
   @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;
 
   @Input() level: number;
@@ -37,9 +39,13 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
 
   @Input() compressed: boolean;
 
-  @Input() hideRoot;
+  @Input() hideRoot = false;
+
+  @Input() isDuplicated = false;
 
   indentationArray: number[] = [];
+
+  duplicatedFields = new Map<string, string>();
 
   objectKeys = Object.keys;
 
@@ -57,18 +63,32 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
       this.initSchemaProperties(this.schemaRef);
     });
 
-    if (this.level > 0) {
-      this.indentationArray = Array(this.level).fill(this.level);
+    this.indentationArray = this.level > 0 ? Array(this.level).fill(this.level) : [];
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
+    if ('level' in changes) {
+      this.indentationArray = this.level > 0 ? Array(this.level).fill(this.level) : [];
     }
   }
 
   onUpdatePropertyName(options: { id: string; name: string }): void {
+    const existingSchemaProperty = this.schemaRef.properties[options.name];
+    const existingPropertyValue = this.model[options.name];
     const oldName = this.propertyIndex[options.id].propertyName;
-    const index = Object.keys(this.schemaRef.properties).findIndex(prop => prop === oldName);
-    this.updateSchemaPropertyName(this.schemaRef, options.name, this.propertyIndex[options.id].propertyName);
-    this.swapSchemaProperties(index);
-    this.updatePropertyName(options.id, options.name);
-    this.schemaChange.emit();
+
+    this.duplicatedFields.delete(options.id);
+
+    if (!existingSchemaProperty && existingPropertyValue === undefined) {
+      const index = Object.keys(this.schemaRef.properties).findIndex(prop => prop === oldName);
+      this.updateSchemaPropertyName(this.schemaRef, options.name, this.propertyIndex[options.id].propertyName);
+      this.swapSchemaProperties(index);
+      this.updatePropertyName(options.id, options.name);
+      this.schemaUpdate.emit();
+    } else if (oldName !== options.name) {
+      this.duplicatedFields.set(options.id, options.name);
+    }
   }
 
   onPropertyConfig(property: JSONEditorSchema, index: number): void {
@@ -116,14 +136,14 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
     }
 
     this.propertyIndex = { ...this.propertyIndex };
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
   }
 
   addProperty(dataType: JsonSchemaDataType): void {
     super.addProperty(dataType);
 
     this.updateSchemaRefProperty(this.propertyIndex[this.propertyId - 1]);
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
   }
 
   deleteProperty(propName: string): void {
@@ -135,7 +155,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
       delete this.schemaRef.properties[propName];
     }
 
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
     super.deleteProperty(propName);
   }
 
@@ -170,7 +190,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
       return result;
     }, {});
 
-    this.schemaChange.emit();
+    this.schemaUpdate.emit();
   }
 
   private initSchemaProperties(schema: JSONEditorSchema): void {
@@ -183,23 +203,23 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit {
   private updateSchemaRefProperty(prop: any): void {
     this.schemaRef.properties[prop.propertyName] = {
       type: prop.type,
-      ...(prop['format'] && { format: prop['format'] }),
-      ...(prop['examples'] && { examples: prop['examples'] }),
-      ...(prop['title'] && { title: prop['title'] }),
-      ...(prop['items'] && { items: prop['items'] }),
-      ...(prop['required'] && { required: prop['required'] }),
-      ...(prop['properties'] && { properties: prop['properties'] }),
-      ...(prop['enum'] && { enum: prop['enum'] }),
-      ...(prop['default'] && { default: prop['default'] }),
-      ...(prop['description'] && { description: prop['description'] }),
-      ...(prop['nameEditable'] && { nameEditable: prop['nameEditable'] }),
-      ...(prop['minimum'] && { minimum: prop['minimum'] }),
-      ...(prop['maximum'] && { maximum: prop['maximum'] }),
-      ...(prop['minLength'] && { minLength: prop['minLength'] }),
-      ...(prop['maxLength'] && { maxLength: prop['maxLength'] }),
-      ...(prop['minItems'] && { minItems: prop['minItems'] }),
-      ...(prop['maxItems'] && { maxItems: prop['maxItems'] }),
-      ...(prop['pattern'] && { pattern: prop['pattern'] })
+      ...(prop.format && { format: prop.format }),
+      ...(prop.examples && { examples: prop.examples }),
+      ...(prop.title && { title: prop.title }),
+      ...(prop.items && { items: prop.items }),
+      ...(prop.required && { required: prop.required }),
+      ...(prop.properties && { properties: prop.properties }),
+      ...(prop.enum && { enum: prop.enum }),
+      ...(prop.default && { default: prop.default }),
+      ...(prop.description && { description: prop.description }),
+      ...(prop.nameEditable && { nameEditable: prop.nameEditable }),
+      ...(prop.minimum && { minimum: prop.minimum }),
+      ...(prop.maximum && { maximum: prop.maximum }),
+      ...(prop.minLength && { minLength: prop.minLength }),
+      ...(prop.maxLength && { maxLength: prop.maxLength }),
+      ...(prop.minItems && { minItems: prop.minItems }),
+      ...(prop.maxItems && { maxItems: prop.maxItems }),
+      ...(prop.pattern && { pattern: prop.pattern })
     };
   }
 

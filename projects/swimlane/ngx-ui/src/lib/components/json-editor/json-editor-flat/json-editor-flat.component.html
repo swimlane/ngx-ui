@@ -11,7 +11,8 @@
     [compressed]="compressed"
     [formats]="customFormats"
     [schemaBuilderMode]="schemaBuilderMode"
-    (schemaChange)="schemaChange.emit($event)"
+    [showKnownProperties]="showKnownProperties"
+    (schemaUpdate)="schemaUpdate.emit($event)"
   >
     <div class="node-options" node-options>
       <button *ngIf="schemaBuilderMode" type="button" class="node-options-btn" (click)="onPropertyConfig()">

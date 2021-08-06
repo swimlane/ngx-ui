@@ -15,7 +15,9 @@ import { NotificationOptions } from './notification-options.interface';
 
 /** adding dynamic to suppress `Document` type metadata error  */
 /** @dynamic */
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NotificationService extends InjectionRegistryService<NotificationComponent> {
   static readonly limit: number | boolean = 10;
   readonly defaults: NotificationOptions = {
@@ -110,29 +112,21 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
   }
 
   createSubscriptions(component: ComponentRef<NotificationComponent>): any {
-    let pauseSub: Subscription;
-    let resumeSub: Subscription;
-    let closeSub: Subscription;
+    const pauseSub: Subscription = component.instance.pause.subscribe(() => {
+      this.pauseTimer(component);
+    });
 
-    const kill = () => {
+    const resumeSub: Subscription = component.instance.resume.subscribe(() => {
+      this.startTimer(component);
+    });
+
+    const closeSub: Subscription = component.instance.close.subscribe(() => {
       closeSub.unsubscribe();
       resumeSub.unsubscribe();
       pauseSub.unsubscribe();
 
       this.destroy(component);
-    };
-
-    const pause = () => {
-      this.pauseTimer(component);
-    };
-
-    const resume = () => {
-      this.startTimer(component);
-    };
-
-    pauseSub = component.instance.pause.subscribe(pause);
-    resumeSub = component.instance.resume.subscribe(resume);
-    closeSub = component.instance.close.subscribe(kill);
+    });
   }
 
   isFlooded(options: Partial<NotificationOptions>): boolean {
@@ -161,6 +155,7 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
     const note = new Notification(options.title, options);
 
     note.onerror = () => {
+      // eslint-disable-next-line no-console
       console.error('Notification failed!', options);
     };
 
