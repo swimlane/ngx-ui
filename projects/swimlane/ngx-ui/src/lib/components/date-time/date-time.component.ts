@@ -21,8 +21,8 @@ import { DateTimeType } from './date-time-type.enum';
 import { Datelike } from './date-like.type';
 import { InputComponent } from '../input/input.component';
 
-import { CoerceBooleanProperty } from '@swimlane/ngx-ui/utils/coerce/coerce-boolean';
-import { CoerceNumberProperty } from '@swimlane/ngx-ui/utils/coerce/coerce-number';
+import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
+import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
 
 import { Size } from '../../mixins/size/size.enum';
 import { Appearance } from '../../mixins/appearance/appearance.enum';

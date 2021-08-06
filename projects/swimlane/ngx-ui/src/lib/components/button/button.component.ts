@@ -11,8 +11,8 @@ import {
 import { BehaviorSubject } from 'rxjs';
 
 import { ButtonState } from './button-state.enum';
-import { CoerceBooleanProperty } from '@swimlane/ngx-ui/utils/coerce/coerce-boolean';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 
 @Component({
   selector: 'ngx-button',

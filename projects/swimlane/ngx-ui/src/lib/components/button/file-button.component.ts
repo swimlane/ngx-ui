@@ -15,7 +15,7 @@ import {
 import { FileUploaderOptions, FileUploader, FileItem } from '@swimlane/ng2-file-upload';
 import { id } from '../../utils/id/id.util';
 import { FileButtonStyleType } from './file-button-style.type';
-import { CoerceBooleanProperty } from '@swimlane/ngx-ui/utils/coerce/coerce-boolean';
+import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 
 @Component({
   exportAs: 'ngxFileButton',
