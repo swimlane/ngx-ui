@@ -109,17 +109,37 @@ describe('Selects', () => {
   });
 
   describe('Async', () => {
-    const text = 'dolorem';
-
     beforeEach(() => {
       cy.get('[sectiontitle="Async"] ngx-select').first().as('CUT').scrollIntoView();
-      cy.intercept(`https://jsonplaceholder.typicode.com/posts?q=${text}`).as('api');
+      cy.intercept(`https://jsonplaceholder.typicode.com/posts?q=*`, {
+        delay: 600,
+        body: [
+          {
+              "userId": 1,
+              "id": 4,
+              "title": "eum et est occaecati",
+              "body": "ullam et saepe reiciendis voluptatem adipisci\nsit amet autem assumenda provident rerum culpa\nquis hic commodi nesciunt rem tenetur doloremque ipsam iure\nquis sunt voluptatem rerum illo velit"
+          },
+          {
+              "userId": 1,
+              "id": 6,
+              "title": "dolorem eum magni eos aperiam quia",
+              "body": "ut aspernatur corporis harum nihil quis provident sequi\nmollitia nobis aliquid molestiae\nperspiciatis et ea nemo ab reprehenderit accusantium quas\nvoluptate dolores velit et doloremque molestiae"
+          },
+          {
+              "userId": 1,
+              "id": 8,
+              "title": "dolorem dolore est ipsam",
+              "body": "dignissimos aperiam dolorem qui eum\nfacilis quibusdam animi sint suscipit qui sint possimus cum\nquaerat magni maiores excepturi\nipsam ut commodi dolor voluptatum modi aut vitae"
+          }
+      ]}).as('api');
     });
 
     it('selects value', () => {
       cy.get('@CUT').ngxGetValue().should('deep.equal', '');
       cy.get('@CUT').ngxFill('dolorem');
       cy.wait('@api');
+      cy.get('@CUT').find('li.ngx-select-dropdown-option').should('have.length', 2);
       cy.get('@CUT').select('dolorem eum magni eos aperiam quia');
       cy.get('@CUT').ngxGetValue().should('deep.equal', 'dolorem eum magni eos aperiam quia');
     });
