@@ -12,10 +12,10 @@ import {
   ElementRef,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { FileUploaderOptions, FileUploader, FileItem } from '@swimlane/ng2-file-upload';
 import { id } from '../../utils/id/id.util';
 import { FileButtonStyleType } from './file-button-style.type';
+import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 
 @Component({
   exportAs: 'ngxFileButton',
@@ -33,20 +33,12 @@ export class FileButtonComponent implements OnInit {
   @Input() options: FileUploaderOptions;
 
   @Input()
-  get disabled() {
-    return this._disabled;
-  }
-  set disabled(disabled) {
-    this._disabled = coerceBooleanProperty(disabled);
-  }
+  @CoerceBooleanProperty()
+  disabled = false;
 
   @Input()
-  get multiple() {
-    return this._multiple;
-  }
-  set multiple(multiple) {
-    this._multiple = coerceBooleanProperty(multiple);
-  }
+  @CoerceBooleanProperty()
+  multiple = false;
 
   @Output() afterAddingFile = new EventEmitter<{ fileItem: FileItem }>();
   @Output() beforeUploadItem = new EventEmitter<{ fileItem: FileItem }>();
@@ -81,8 +73,6 @@ export class FileButtonComponent implements OnInit {
   fileOverDropzone = false;
 
   private _isItemSuccessful = false;
-  private _disabled = false;
-  private _multiple = false;
 
   constructor(public readonly _ngZone: NgZone) {}
 
