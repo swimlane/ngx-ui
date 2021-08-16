@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["es5", "dom"],
-    "types": ["cypress"]
+    "target": "es2015",
+    "lib": ["es2015", "dom"],
+    "types": ["cypress"],
+    "baseUrl": "../",
+    "paths": {
+      "@swimlane/ngx-ui-testing": ["projects/swimlane/ngx-ui-testing/index"],
+      "@swimlane/ngx-ui-testing/*": ["projects/swimlane/ngx-ui-testing/*"]
+    }
   },
   "include": ["**/*.ts"]
 }

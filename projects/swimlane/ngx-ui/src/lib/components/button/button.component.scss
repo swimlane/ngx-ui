@@ -2,11 +2,45 @@
 @import '../../styles/components/buttons.scss';
 
 .ngx-button {
-  transition: background-color 0.25s ease-out !important;
+  &,
+  &.btn {
+    transition: background-color 0.25s ease-out;
+    padding: 0;
+  }
 
   button {
-    padding: 0;
+    padding: 0.35em 0.55em;
     width: 100%;
+
+    &:after {
+      border: none;
+    }
+
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
+      outline: none;
+    }
+
+    // Focus ring
+    &:after {
+      content: '';
+      position: absolute;
+      top: -4px;
+      left: -4px;
+      right: -4px;
+      bottom: -4px;
+      z-index: 1;
+
+      border-radius: 4px;
+      opacity: 0;
+      border: 2px solid $button-fill-color;
+      transition: opacity 0.3s;
+    }
+
+    &:focus-visible:after {
+      opacity: 1;
+    }
   }
 
   &.disabled-button {
@@ -21,11 +55,6 @@
   &.fail {
     background-color: $color-red !important;
     color: $color-white;
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: $shadow-3;
   }
 
   &.in-progress,
@@ -71,6 +100,26 @@
         overflow: hidden;
         font-size: 1em;
       }
+    }
+  }
+
+  // focus ring colors
+  &.btn-primary button:after {
+    border-color: $color-blue;
+  }
+
+  &.btn-warning button:after {
+    border-color: $color-orange;
+  }
+
+  &.btn-danger button:after {
+    border-color: $color-red-400;
+  }
+
+  &.btn-bordered,
+  &.btn-primary.btn-bordered {
+    button:after {
+      border-color: $color-blue-400;
     }
   }
 }

@@ -1,23 +1,8 @@
-// ***********************************************************
-// This example support/index.js is processed and
-// loaded automatically before your test files.
-//
-// This is a great place to put global configuration and
-// behavior that modifies Cypress.
-//
-// You can change the location of this file or turn off
-// automatically serving support files with the
-// 'supportFile' configuration option.
-//
-// You can read more here:
-// https://on.cypress.io/configuration
-// ***********************************************************
+// eslint-disable-next-line @typescript-eslint/triple-slash-reference
+/// <reference path='../../projects/swimlane/ngx-ui-testing/src/commands.d.ts'/>
 
-/// <reference path='./index.d.ts'/>
+import 'cypress-axe';
+import 'cypress-real-events/support';
 
-// Import commands.js using ES2015 syntax:
+import '@swimlane/ngx-ui-testing/src/index.ts';
 import './commands';
-import './helpers';
-
-// Alternatively you can use CommonJS syntax:
-// require('./commands')

@@ -37,7 +37,7 @@
       <i class="icon-add-new"></i>
     </ngx-input-prefix>
     <ngx-input-suffix>
-      <button class="btn btn-primary">Clear</button>
+      <button class="btn btn-primary" (click)="onClick($event)">Clear</button>
     </ngx-input-suffix>
   </ngx-input>
   <br />
@@ -51,7 +51,7 @@
     <i class="icon-add-new"></i>
   </ngx-input-prefix>
   <ngx-input-suffix>
-    <button class="btn btn-primary">Clear</button>
+    <ngx-button class="btn btn-primary">Clear</ngx-button>
   </ngx-input-suffix>
 </ngx-input>]]>
   </app-prism>
@@ -294,8 +294,8 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Native">
-  <h4>Text</h4>
-  <input type="text" class="form-input" />
+  <label for="native">Text</label>
+  <input type="text" class="form-input" id="native" />
   <input type="text" class="form-input" value="pre populated" />
   <input type="text" class="form-input" placeholder="A placeholder" />
   <input type="text" class="form-input" value="disabled" disabled />

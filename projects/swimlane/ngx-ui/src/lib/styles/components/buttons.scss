@@ -22,7 +22,11 @@ button {
 
   &:active,
   &:focus {
-    outline: none;
+    outline: -webkit-focus-ring-color auto 1px;
+  }
+
+  &:focus-visible {
+    outline: -webkit-focus-ring-color auto 1px;
   }
 }
 
@@ -73,15 +77,40 @@ button {
     padding: 0;
   }
 
-  &:focus {
+  &:focus,
+  &:focus-visible,
+  &:focus-within {
     outline: none;
-    box-shadow: $shadow-3;
+  }
+
+  // Focus ring
+  &:after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    z-index: 1;
+
+    border-radius: 4px;
+    opacity: 0;
+    border: 2px solid $button-fill-color;
+    transition: opacity 0.3s;
+  }
+
+  &:focus-visible:after {
+    opacity: 1;
   }
 
   &:active:hover:focus:not([disabled]),
   &:active:hover:focus:not(.disabled) {
     cursor: pointer;
     background: $button-fill-active-color;
+
+    &:after {
+      border-color: $button-fill-active-color;
+    }
 
     &.btn-primary {
       background-color: $color-blue;
@@ -94,7 +123,6 @@ button {
     &.btn-danger {
       background-color: $color-red;
     }
-
     &.btn-link {
       background-color: transparent;
     }
@@ -125,15 +153,24 @@ button {
     &.btn-primary-gradient {
       background: linear-gradient(125.43deg, $color-light-blue-400 10.86%, $color-blue-400 49.11%);
     }
+    &:after {
+      border-color: $color-blue;
+    }
   }
 
   &.btn-warning {
     background-color: $color-orange-400;
     color: $color-blue-grey-900;
+    &:after {
+      border-color: $color-orange;
+    }
   }
 
   &.btn-danger {
     background-color: $color-red-400;
+    &:after {
+      border-color: $color-red-400;
+    }
   }
 
   &.btn-link {
@@ -154,6 +191,9 @@ button {
       .button {
         opacity: 1;
       }
+    }
+    &:after {
+      border-color: $color-blue-400;
     }
   }
 
