@@ -158,7 +158,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
       isSame = val === this._value;
     }
 
-    const isValid = this.validate(date);
+    const isValid = this.validate(date.toDate());
     this._value = date && date.isValid() ? date.toDate() : val;
 
     // notify of changes only when the component is cleared
@@ -189,7 +189,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
   set minDate(val: Date | string) {
     this._minDate = val;
-    this.validate(this.parseDate(this._value));
+    this.validate(this.parseDate(this._value).toDate());
   }
 
   @Input()
@@ -198,7 +198,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
   set maxDate(val: Date | string) {
     this._maxDate = val;
-    this.validate(this.parseDate(this._value));
+    this.validate(this.parseDate(this._value).toDate());
   }
 
   /**
@@ -251,7 +251,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this.onTouchedCallback();
 
     const value = this.parseDate(this.value);
-    if (this.validate(value)) {
+    if (this.validate(value.toDate())) {
       const displayValue = this.getDisplayValue();
       if (this.input.value !== displayValue) {
         this.input.value = displayValue;
@@ -357,7 +357,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this.dialogService.destroy(this.dialog);
 
     const date = this.parseDate(this.value);
-    this.validate(date);
+    this.validate(date.toDate());
   }
 
   registerOnChange(fn: any): void {
@@ -395,23 +395,25 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     }
   }
 
-  private validate(date: moment.Moment | undefined) {
+  private validate(date: Date | undefined) {
+    const momentDate = date ? moment(date) : undefined;
+
     // check if date input is empty
-    const dateInput = date?.creationData().input;
+    const dateInput = momentDate?.creationData().input;
     const isEmpty = dateInput === '' || dateInput === null || dateInput === undefined; // 0 is a valid date input
 
     // date can be either valid, or an empty value if not required
-    const isValid = date?.isValid() || (!this.required && isEmpty);
-    const isInRange = !this.getDayDisabled(date);
+    const isValidDate = isValid(date) || (!this.required && isEmpty);
+    const isInRange = !this.getDayDisabled(momentDate);
 
     let errorMsg = '';
     if (this.required && isEmpty) {
       /* no datetime component specific error message */
-    } else if (!isValid) errorMsg = 'Invalid Date';
+    } else if (!isValidDate) errorMsg = 'Invalid Date';
     else if (!isInRange) errorMsg = 'Date out of range';
     this.errorMsg = errorMsg;
 
-    return isValid && isInRange;
+    return isValidDate && isInRange;
   }
 
   private onTouchedCallback: () => void = () => {
