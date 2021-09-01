@@ -28,7 +28,12 @@ import { Size } from '../../mixins/size/size.enum';
 import { Appearance } from '../../mixins/appearance/appearance.enum';
 import {
   format,
+  isSameDay,
+  isSameHour,
   isSameMinute,
+  isSameMonth,
+  isSameSecond,
+  isSameYear,
   isValid,
   parse,
   startOfDay,
@@ -38,6 +43,7 @@ import {
   startOfSecond,
   startOfYear
 } from 'date-fns';
+import { DateTimeUnit } from './date-time-unit.enum';
 
 let nextId = 0;
 
@@ -78,7 +84,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() size: Size = Size.Small;
   @Input() appearance: Appearance = Appearance.Legacy;
   @Input() withMargin = true;
-  @Input() precision: moment.unitOfTime.StartOf;
+  @Input() precision: DateTimeUnit;
   @Input() timezone: string;
   @Input() inputFormats: any[] = ['P', 'p', 'P p', moment.ISO_8601];
 
@@ -138,32 +144,32 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     return this._value;
   }
   set value(val: Date | string) {
-    let date: moment.Moment;
-    let isSame: boolean;
+    let date: Date;
+    let isSameDate: boolean;
 
     if (val) {
-      date = this.parseDate(val);
-      let sameDiff: moment.unitOfTime.StartOf;
+      date = this.parseDate(val).toDate();
+      let sameDiff: DateTimeUnit;
 
       if (this.precision) {
         sameDiff = this.precision;
       } else {
-        sameDiff = this.inputType === DateTimeType.date ? 'day' : 'second';
+        sameDiff = this.inputType === DateTimeType.date ? DateTimeUnit.date : DateTimeUnit.second;
       }
 
-      isSame = this._value && date.isSame(this._value, sameDiff);
+      isSameDate = this._value && this.isSame(date, moment(this._value).toDate(), sameDiff);
     } else {
       // if we have a val and had no val before, ensure
       // we set the property correctly even if its same
-      isSame = val === this._value;
+      isSameDate = val === this._value;
     }
 
-    const isValid = this.validate(date.toDate());
-    this._value = date && date.isValid() ? date.toDate() : val;
+    const isValidDate = this.validate(date);
+    this._value = date && isValid(date) ? date : val;
 
     // notify of changes only when the component is cleared
     // or when the set value is valid
-    if ((!val || isValid) && !isSame) {
+    if ((!val || isValidDate) && !isSameDate) {
       this.onChangeCallback(val);
       this.change.emit(val);
     }
@@ -368,30 +374,27 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this.onTouchedCallback = fn;
   }
 
-  private roundTo(val: Date, key: string): Date {
+  private roundTo(val: Date, unit: DateTimeUnit): Date {
     /* istanbul ignore if */
-    if (!key || !val) {
+    if (!unit || !val) {
       return val;
     }
 
-    switch (key) {
-      case 'millisecond':
-        // TODO(jose): there is no date-fns function for this. not sure if needed though
-        return val;
-      case 'second':
+    switch (unit) {
+      case DateTimeUnit.second:
         return startOfSecond(val);
-      case 'minute':
+      case DateTimeUnit.minute:
         return startOfMinute(val);
-      case 'hour':
+      case DateTimeUnit.hour:
         return startOfHour(val);
-      case 'date':
+      case DateTimeUnit.date:
         return startOfDay(val);
-      case 'month':
+      case DateTimeUnit.month:
         return startOfMonth(val);
-      case 'year':
+      case DateTimeUnit.year:
         return startOfYear(val);
       default:
-        throw new Error(`Unknown time component '${key}'`);
+        throw new Error(`Unknown DateTimeUnit '${unit}'`);
     }
   }
 
@@ -453,5 +456,24 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     date = this.timezone ? moment(date).tz(this.timezone).toDate() : date;
     date = this.precision ? this.roundTo(date, this.precision) : date;
     return date;
+  }
+
+  private isSame(dateLeft: Date, dateRight: Date, precision: DateTimeUnit): boolean {
+    switch (precision) {
+      case DateTimeUnit.second:
+        return isSameSecond(dateLeft, dateRight);
+      case DateTimeUnit.minute:
+        return isSameMinute(dateLeft, dateRight);
+      case DateTimeUnit.hour:
+        return isSameHour(dateLeft, dateRight);
+      case DateTimeUnit.date:
+        return isSameDay(dateLeft, dateRight);
+      case DateTimeUnit.month:
+        return isSameMonth(dateLeft, dateRight);
+      case DateTimeUnit.year:
+        return isSameYear(dateLeft, dateRight);
+      default:
+        throw new Error(`Unknown DateTimeUnit '${precision}'`);
+    }
   }
 }
