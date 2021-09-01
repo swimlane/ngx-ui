@@ -13,7 +13,6 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 import moment from 'moment-timezone';
 
@@ -21,6 +20,10 @@ import { DialogService } from '../dialog/dialog.service';
 import { DateTimeType } from './date-time-type.enum';
 import { Datelike } from './date-like.type';
 import { InputComponent } from '../input/input.component';
+
+import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
+import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
+
 import { Size } from '../../mixins/size/size.enum';
 import { Appearance } from '../../mixins/appearance/appearance.enum';
 
@@ -68,36 +71,19 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() inputFormats: any[] = ['L', 'LT', 'L LT', moment.ISO_8601];
 
   @Input()
-  get disabled() {
-    return this._disabled;
-  }
-  set disabled(disabled) {
-    this._disabled = coerceBooleanProperty(disabled);
-  }
+  @CoerceBooleanProperty()
+  disabled = false;
+
+  @CoerceNumberProperty()
+  minWidth: number = MIN_WIDTH;
 
   @Input()
-  get minWidth(): number {
-    return this._minWidth;
-  }
-  set minWidth(minWidth) {
-    this._minWidth = coerceNumberProperty(minWidth);
-  }
+  @CoerceNumberProperty()
+  tabindex: number;
 
   @Input()
-  get tabindex() {
-    return this._tabindex;
-  }
-  set tabindex(tabindex) {
-    this._tabindex = coerceNumberProperty(tabindex);
-  }
-
-  @Input()
-  get autofocus() {
-    return this._autofocus;
-  }
-  set autofocus(autofocus) {
-    this._autofocus = coerceBooleanProperty(autofocus);
-  }
+  @CoerceBooleanProperty()
+  autofocus = false;
 
   @Input()
   get inputType(): string {
@@ -131,13 +117,10 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
 
   @Input() requiredIndicator: string | boolean = '*';
+
   @Input()
-  get required() {
-    return this._required;
-  }
-  set required(required: boolean) {
-    this._required = coerceBooleanProperty(required);
-  }
+  @CoerceBooleanProperty()
+  required = false;
 
   get value() {
     return this._value;
@@ -185,12 +168,8 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
 
   @Input()
-  get autosize() {
-    return this._autosize;
-  }
-  set autosize(v: boolean) {
-    this._autosize = coerceBooleanProperty(v);
-  }
+  @CoerceBooleanProperty()
+  autosize = false;
 
   @Input()
   get minDate() {
@@ -242,12 +221,6 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   private _displayValue = '';
   private _format: string;
   private _inputType: string;
-  private _disabled = false;
-  private _autofocus = false;
-  private _tabindex: number;
-  private _autosize = false;
-  private _minWidth: number = MIN_WIDTH;
-  private _required = false;
   private _maxDate: Date | string;
   private _minDate: Date | string;
 

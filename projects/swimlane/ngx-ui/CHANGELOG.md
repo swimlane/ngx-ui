@@ -9,6 +9,11 @@
 - Fix: Toggle going out of bounds when disabled in `ngx-toggle`
 - Fix: Call to `onTouchedCallback()` should be executed on blur, per `ControlValueAccessor.registerOnTouched` docs
 
+## 35.6.8 (2021-07-16)
+
+- Revert to `master` branch
+- Breaking: Upgrade to Angular 12 (#633)
+
 ## 35.6.7 (2021-06-29)
 
 - Fix: `ngx-select` not populating selected options once `options` changes

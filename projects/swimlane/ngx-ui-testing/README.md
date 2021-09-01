@@ -16,6 +16,8 @@ import '@swimlane/ngx-ui-testing';
 
 ## Extended Commands
 
+The following Cypress commands have been extended to support testing ngx-ui components:
+
 ### `.clear`
 
 Overwrites [cy.clear](https://docs.cypress.io/api/commands/clear) to work with ngx-ui elements: `ngx-codemirror`, `ngx-input`, `ngx-date-time`, `ngx-select`, `ngx-toggle`, `ngx-checkbox`, `ngx-select`, `ngx-slider`.
@@ -79,6 +81,8 @@ Overwrites [cy.select](https://docs.cypress.io/api/commands/select) to work with
 
 ## New Commands
 
+The following commands have been added (with an `ngx` prefix) to support testing ngx-ui components:
+
 ### `.ngxFindNativeInput`
 
 Given an ngx-ui element, returns the child native input element. Works with: `ngx-codemirror`, `ngx-input`, `ngx-date-time`, `ngx-toggle`, `ngx-checkbox`, `ngx-select`, `ngx-slider`, `ngx-radiobutton`.
@@ -126,15 +130,15 @@ cy.get('ngx-input').ngxGetValue().should('eq', 'foo');
 Like [cy.type](https://docs.cypress.io/api/commands/type) but clears existing text before and works with ngx-ui elements: `ngx-codemirror`, `ngx-input`, `ngx-date-time`, `ngx-select`.
 
 ```ts
-.fill(value)
-.fill(value, options)
+.ngxFill(value)
+.ngxFill(value, options)
 ```
 
 #### example
 
 ```ts
-cy.get('ngx-input').fill('foo').ngxGetValue().should('eq', 'foo');
-cy.get('ngx-select').fill('foo').selct('foo').ngxGetValue().should('eq', 'foo');
+cy.get('ngx-input').ngxFill('foo').ngxGetValue().should('eq', 'foo');
+cy.get('ngx-select').ngxFill('foo').selct('foo').ngxGetValue().should('eq', 'foo');
 ```
 
 ---
@@ -151,7 +155,7 @@ Open a ngx-ui components if it is closed. Works with `ngx-select`, `ngx-section`
 
 ### `.ngxClose`
 
-Close a ngx-ui components if it is open. Works with `ngx-select`, `ngx-section`, `ngx-dropdown`, `ngx-plus-menu`, `ngx-largeformat-dialog`, `ngx-notification`, `ngx-nag`, `ngx-alert-dialog`, `ngx-drawer.
+Close a ngx-ui components if it is open. Works with `ngx-select`, `ngx-section`, `ngx-dropdown`, `ngx-plus-menu`, `ngx-largeformat-dialog`, `ngx-notification`, `ngx-nag`, `ngx-alert-dialog`, `ngx-drawer`.
 
 ```ts
 .ngxClose()
@@ -170,6 +174,8 @@ Close all `.ngx-notification`s, if any. Will not fail if no notifications are fo
 ---
 
 ## Generic Helper Commands
+
+These are helper commands not directly related to ngx-ui.
 
 ### `.getByName`
 
@@ -231,7 +237,7 @@ Like [cy.within](https://docs.cypress.io/api/commands/within) but also forces th
 
 #### `.iff`
 
-Like [cy.within](https://docs.cypress.io/api/commands/within) but only if the element exists in the DOM.
+Like [cy.within](https://docs.cypress.io/api/commands/within) but only if the element exists in the DOM. Accepts an optional child selector.
 
 ```ts
 .iff(callbackFn)
