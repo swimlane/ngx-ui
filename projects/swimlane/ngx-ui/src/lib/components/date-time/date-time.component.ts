@@ -26,6 +26,7 @@ import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
 
 import { Size } from '../../mixins/size/size.enum';
 import { Appearance } from '../../mixins/appearance/appearance.enum';
+import { startOfDay, startOfHour, startOfMinute, startOfMonth, startOfSecond, startOfYear } from 'date-fns';
 
 let nextId = 0;
 
@@ -252,7 +253,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     const value = moment(this._value);
     const isValid = value.isValid();
 
-    this.setDialogDate(isValid ? value : new Date());
+    this.setDialogDate(isValid ? value.toDate() : new Date());
 
     this.dialog = this.dialogService.create({
       cssClass: 'ngx-date-time-dialog',
@@ -355,22 +356,31 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this.onTouchedCallback = fn;
   }
 
-  private roundTo(val: moment.Moment, key: string): moment.Moment {
+  private roundTo(val: Date, key: string): Date {
     /* istanbul ignore if */
     if (!key || !val) {
       return val;
     }
-    val = val.clone();
 
-    const idx = this.modes.indexOf(key);
-    if (idx > 0) {
-      this.modes.forEach((mode, index) => {
-        if (index < idx) {
-          val = val[mode](mode === 'date' ? 1 : 0);
-        }
-      });
+    switch (key) {
+      case 'millisecond':
+        // TODO(jose): there is no date-fns function for this. not sure if needed though
+        return val;
+      case 'second':
+        return startOfSecond(val);
+      case 'minute':
+        return startOfMinute(val);
+      case 'hour':
+        return startOfHour(val);
+      case 'date':
+        return startOfDay(val);
+      case 'month':
+        return startOfMonth(val);
+      case 'year':
+        return startOfYear(val);
+      default:
+        throw new Error(`Unknown time component '${key}'`);
     }
-    return val;
   }
 
   private validate(date: moment.Moment | undefined) {
@@ -419,14 +429,14 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
       inputFormats.unshift(this.format);
     }
     let m = this.timezone ? moment.tz(date, inputFormats, this.timezone) : moment(date, inputFormats);
-    m = this.precision ? this.roundTo(m, this.precision) : m;
+    m = this.precision ? moment(this.roundTo(m.toDate(), this.precision)) : m;
     return m;
   }
 
   private createMoment(date: Datelike): moment.Moment {
     let m = moment(date).clone();
     m = this.timezone ? m.tz(this.timezone) : m;
-    m = this.precision ? this.roundTo(m, this.precision) : m;
+    m = this.precision ? moment(this.roundTo(m.toDate(), this.precision)) : m;
     return m;
   }
 }
