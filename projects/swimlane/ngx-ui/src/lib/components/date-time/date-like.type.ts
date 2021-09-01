@@ -1,3 +1,1 @@
-import moment from 'moment';
-
-export type Datelike = string | Date | moment.Moment;
+export type Datelike = string | Date;

@@ -26,7 +26,18 @@ import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
 
 import { Size } from '../../mixins/size/size.enum';
 import { Appearance } from '../../mixins/appearance/appearance.enum';
-import { startOfDay, startOfHour, startOfMinute, startOfMonth, startOfSecond, startOfYear } from 'date-fns';
+import {
+  format,
+  isSameMinute,
+  isValid,
+  parse,
+  startOfDay,
+  startOfHour,
+  startOfMinute,
+  startOfMonth,
+  startOfSecond,
+  startOfYear
+} from 'date-fns';
 
 let nextId = 0;
 
@@ -69,7 +80,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   @Input() withMargin = true;
   @Input() precision: moment.unitOfTime.StartOf;
   @Input() timezone: string;
-  @Input() inputFormats: any[] = ['L', 'LT', 'L LT', moment.ISO_8601];
+  @Input() inputFormats: any[] = ['P', 'p', 'P p', moment.ISO_8601];
 
   @Input()
   @CoerceBooleanProperty()
@@ -102,11 +113,11 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   get format(): string {
     if (!this._format) {
       if (this.inputType === DateTimeType.date) {
-        return 'L';
+        return 'P';
       } else if (this.inputType === DateTimeType.datetime) {
-        return 'L LT';
+        return 'P p';
       } else {
-        return 'LT';
+        return 'p';
       }
     }
 
@@ -270,7 +281,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
 
   setDialogDate(date: Datelike) {
-    this.dialogModel = this.createMoment(date);
+    this.dialogModel = moment(this.createDate(date));
     this.hour = +this.dialogModel.format('hh');
     this.minute = this.dialogModel.format('mm');
     this.amPmVal = this.dialogModel.format('A');
@@ -295,11 +306,12 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   }
 
   isCurrent() {
-    const now = this.createMoment(new Date());
+    const now = this.createDate(new Date());
+    const dialogModel = this.dialogModel.toDate();
     if (this.inputType === 'time') {
-      return now.hour() === this.dialogModel.hour() && now.minute() === this.dialogModel.minute();
+      return now.getHours() === dialogModel.getHours() && now.getMinutes() === dialogModel.getMinutes();
     }
-    return now.isSame(this.dialogModel, 'minute');
+    return isSameMinute(dialogModel, now);
   }
 
   clear(): void {
@@ -415,8 +427,9 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     if (!this.value) {
       return '';
     }
-    const m = this.createMoment(this.value);
-    return m.isValid() ? m.format(this.format) : '' + String(this.value);
+
+    const date = this.createDate(this.value);
+    return isValid(date) ? format(date, this.format) : '' + String(this.value);
   }
 
   private parseDate(date: string | Date): moment.Moment {
@@ -433,10 +446,10 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     return m;
   }
 
-  private createMoment(date: Datelike): moment.Moment {
-    let m = moment(date).clone();
-    m = this.timezone ? m.tz(this.timezone) : m;
-    m = this.precision ? moment(this.roundTo(m.toDate(), this.precision)) : m;
-    return m;
+  private createDate(date: Datelike): Date {
+    date = date instanceof Date ? date : parse(this.format, date, new Date());
+    date = this.timezone ? moment(date).tz(this.timezone).toDate() : date;
+    date = this.precision ? this.roundTo(date, this.precision) : date;
+    return date;
   }
 }
