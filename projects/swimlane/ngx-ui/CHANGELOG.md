@@ -7,6 +7,7 @@
 - Enhancement: Added `for` attribute to `ngx-input` labels
 - Enhancement: Added ARIA role attribute to `ngx-plus-menu`
 - Fix: Toggle going out of bounds when disabled in `ngx-toggle`
+- Fix: Use input password type for password fields in JSON editor.
 
 ## 35.6.8 (2021-07-16)
 
