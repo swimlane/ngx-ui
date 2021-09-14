@@ -2,8 +2,8 @@
 
 $tabs-border-fill: $color-blue-grey-700;
 $tabs-active-border-fill: $color-blue;
-$tabs-text-color: $color-blue-grey-100;
-$tabs-active-text-color: $color-grey-100;
+$tabs-text-color: $color-blue-grey-250;
+$tabs-active-text-color: $color-white;
 
 .ngx-tabs {
   margin-bottom: 2em;
@@ -22,6 +22,7 @@ $tabs-active-text-color: $color-grey-100;
         button:hover {
           color: $tabs-active-text-color;
           border-width: 0;
+          font-weight: bold;
         }
       }
 
