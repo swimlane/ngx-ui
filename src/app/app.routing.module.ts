@@ -13,6 +13,11 @@ const routes: Routes = [
     loadChildren: () => import('./forms/buttons-page/buttons-page.module').then(m => m.ButtonsPageModule)
   },
   {
+    path: 'button-group',
+    loadChildren: () =>
+      import('./components/button-group-page/button-group-page.module').then(m => m.ButtonGroupPageModule)
+  },
+  {
     path: 'calendar',
     loadChildren: () => import('./forms/calendar-page/calendar-page.module').then(m => m.CalendarPageModule)
   },

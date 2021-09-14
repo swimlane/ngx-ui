@@ -1,0 +1,240 @@
+@import '../../styles/colors/variables.scss';
+@import '../../styles/components/buttons.scss';
+
+.ngx-button-group {
+  display: inline-flex;
+
+  // default colors
+  --button-bg: #{$color-blue-grey-600};
+  --button-border: #{$color-blue-grey-600};
+  --button-text: white;
+  --button-hover: #{$color-blue-grey-700};
+
+  &.ngx-button-group--contained--primary {
+    --button-bg: #{$color-blue-400};
+    --button-border: #{$color-blue-400};
+    --button-text: white;
+    --button-hover: #{$color-blue};
+  }
+
+  &.ngx-button-group--contained--bordered {
+    --button-bg: transparent;
+    --button-border: #{$color-blue-400};
+    --button-text: #{$color-blue-400};
+    --button-hover: #{$color-blue-200};
+  }
+
+  > ngx-dropdown {
+    padding-bottom: 0;
+
+    > ngx-dropdown-toggle {
+      height: 100%;
+      width: 100%;
+
+      > ngx-button {
+        height: 100%;
+        width: 100%;
+
+        .ngx-button-group__toggle-icon > i {
+          transform: rotate(0deg);
+          transition: all 0.35s;
+        }
+      }
+    }
+
+    &.open {
+      // we want to animate the rotation of the arrow down icon on the dropdown toggle button
+      > ngx-dropdown-toggle > ngx-button .ngx-button-group__toggle-icon > i {
+        transform: rotate(180deg);
+        transition: all 0.35s;
+      }
+    }
+  }
+
+  // unify all the button colors
+  &.ngx-button-group--contained {
+    button:not(ngx-dropdown-menu *),
+    ngx-button:not(ngx-dropdown-menu *) {
+      background: var(--button-bg) !important;
+      border-color: var(--button-border) !important;
+      color: var(--button-text) !important;
+      box-shadow: unset !important;
+
+      &:active:hover:focus:not([disabled]),
+      &:active:hover:focus:not(.disabled) {
+        background-color: var(--button-hover) !important;
+        border-color: var(--button-hover) !important;
+      }
+
+      &:after {
+        border-color: var(--button-border) !important;
+      }
+    }
+
+    &--bordered {
+      button:not(ngx-dropdown-menu *),
+      ngx-button:not(ngx-dropdown-menu *) {
+        &:active:hover:focus:not([disabled]),
+        &:active:hover:focus:not(.disabled) {
+          background-color: var(--button-bg) !important;
+          color: var(--button-hover) !important;
+          z-index: 99; // make sure all borders are showing in hover color
+        }
+      }
+    }
+  }
+
+  &.ngx-button-group--small {
+    button:not(ngx-dropdown-menu *) {
+      padding: 0.25rem 0.5rem;
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+  }
+
+  &.ngx-button-group--medium {
+    button:not(ngx-dropdown-menu *) {
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+  }
+
+  &.ngx-button-group--large {
+    button:not(ngx-dropdown-menu *) {
+      padding: 0.5rem 1rem;
+      font-size: 1.25rem;
+      line-height: 1.5;
+    }
+  }
+
+  &.ngx-button-group--horizontal {
+    align-items: center;
+
+    &.ngx-button-group--contained {
+      > * {
+        &:first-child {
+          border-top-right-radius: unset;
+          border-bottom-right-radius: unset;
+
+          > ngx-dropdown-toggle > * {
+            border-top-right-radius: unset;
+            border-bottom-right-radius: unset;
+          }
+        }
+
+        &:last-child {
+          border-top-left-radius: unset;
+          border-bottom-left-radius: unset;
+
+          > ngx-dropdown-toggle > * {
+            border-top-left-radius: unset;
+            border-bottom-left-radius: unset;
+          }
+        }
+
+        &:not(:first-child):not(:last-child) {
+          border-radius: unset;
+
+          > ngx-dropdown-toggle > * {
+            border-radius: unset;
+          }
+        }
+
+        &:not(:first-child) {
+          border-left: 0;
+
+          > ngx-dropdown-toggle > * {
+            border-left: 0;
+          }
+        }
+
+        &:not(:last-child) {
+          margin-right: 1px;
+        }
+      }
+
+      &--bordered {
+        > * {
+          &:not(:first-child) {
+            border-left: 1px solid var(--button-border);
+            margin-left: -2px; // overlap the borders of the adjacent button
+          }
+        }
+      }
+    } // end of horizontal contained
+
+    &.ngx-button-group--text {
+      > * {
+        &:not(:last-child) {
+          border-right: 1px solid white;
+        }
+      }
+    }
+  } // end of horizontal
+
+  &.ngx-button-group--vertical {
+    flex-direction: column;
+    align-items: unset;
+
+    &.ngx-button-group--contained {
+      > * {
+        &:first-child {
+          border-bottom-left-radius: unset;
+          border-bottom-right-radius: unset;
+
+          > ngx-dropdown-toggle > * {
+            border-bottom-left-radius: unset;
+            border-bottom-right-radius: unset;
+          }
+        }
+        &:last-child {
+          border-top-left-radius: unset;
+          border-top-right-radius: unset;
+
+          > ngx-dropdown-toggle > * {
+            border-top-left-radius: unset;
+            border-top-right-radius: unset;
+          }
+        }
+
+        &:not(:first-child):not(:last-child) {
+          border-radius: unset;
+
+          > ngx-dropdown-toggle > * {
+            border-radius: unset;
+          }
+        }
+
+        &:not(:first-child) {
+          border-top: 0;
+
+          > ngx-dropdown-toggle > * {
+            border-top: 0;
+          }
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 1px;
+        }
+      }
+
+      &--bordered {
+        > * {
+          &:not(:first-child) {
+            border-top: 1px solid var(--button-border);
+            margin-top: -2px; // overlap the borders of the adjacent button
+          }
+        }
+      }
+    } // end of vertical contained
+
+    &.ngx-button-group--text {
+      > * {
+        &:not(:last-child) {
+          border-bottom: 1px solid white;
+        }
+      }
+    }
+  } // end of vertical
+}

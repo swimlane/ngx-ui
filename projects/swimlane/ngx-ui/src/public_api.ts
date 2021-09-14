@@ -52,6 +52,9 @@ export * from './lib/components/button/button-state.enum';
 export * from './lib/components/button/file-button.component';
 export * from './lib/components/button/file-button-style.type';
 
+export * from './lib/components/button-group/button-group.module';
+export * from './lib/components/button-group/button-group.component';
+
 export * from './lib/components/calendar/calendar.module';
 export * from './lib/components/calendar/calendar.component';
 export * from './lib/components/calendar/calendar-day.interface';

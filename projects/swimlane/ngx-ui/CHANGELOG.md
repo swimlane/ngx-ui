@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Feature: Create `ButtonGroupComponent`
+- Fix: Add `cursor: pointer` to `ngx-button` class
 - Feature: Added focus rings to buttons
 - Enhancement: Improve semantic HTML in `ngx-input` and `ngx-select`
 - Enhancement: Added `for` attribute to `ngx-input` labels

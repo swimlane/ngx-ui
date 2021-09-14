@@ -2,6 +2,8 @@
 @import '../../styles/components/buttons.scss';
 
 .ngx-button {
+  cursor: pointer;
+
   &,
   &.btn {
     transition: background-color 0.25s ease-out;
