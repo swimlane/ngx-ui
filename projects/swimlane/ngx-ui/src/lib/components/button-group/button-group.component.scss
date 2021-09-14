@@ -66,7 +66,7 @@
         border-color: var(--button-hover) !important;
       }
 
-      &:after {
+      &::after {
         border-color: var(--button-border) !important;
       }
     }
@@ -188,6 +188,7 @@
             border-bottom-right-radius: unset;
           }
         }
+
         &:last-child {
           border-top-left-radius: unset;
           border-top-right-radius: unset;
