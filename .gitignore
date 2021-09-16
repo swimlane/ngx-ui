@@ -4,6 +4,7 @@
 /dist
 /tmp
 /out-tsc
+/cypress/videos
 
 # dependencies
 /node_modules
@@ -37,3 +38,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+/cypress/videos/
