@@ -4,82 +4,99 @@ export const appRoutes: Routes = [
   {
     path: '',
     redirectTo: 'home',
-    pathMatch: 'full'
+    pathMatch: 'full',
   },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
     data: {
-      title: 'Home'
-    }
+      title: 'Home',
+    },
   },
   {
     path: 'typography',
     loadChildren: () =>
       import('./typography/typography.module').then((m) => m.TypographyModule),
     data: {
-      title: 'Typography'
-    }
+      title: 'Typography',
+    },
   },
   {
     path: 'colors',
     loadChildren: () =>
       import('./colors/colors.module').then((m) => m.ColorsModule),
     data: {
-      title: 'Colors'
-    }
+      title: 'Colors',
+    },
   },
   {
     path: 'layout',
     loadChildren: () =>
       import('./layout/layout.module').then((m) => m.LayoutModule),
     data: {
-      title: 'Layout'
-    }
+      title: 'Layout',
+    },
   },
   {
     path: 'icons',
     loadChildren: () =>
       import('./icons/icons.module').then((m) => m.IconsModule),
     data: {
-      title: 'Icons'
-    }
+      title: 'Icons',
+    },
   },
   {
     path: 'animations',
     loadChildren: () =>
       import('./animations/animations.module').then((m) => m.AnimationsModule),
     data: {
-      title: 'Animations'
-    }
+      title: 'Animations',
+    },
   },
   {
     path: 'pipes',
     loadChildren: () =>
       import('./pipes/pipes.module').then((m) => m.PipesModule),
     data: {
-      title: 'Pipes'
-    }
+      title: 'Pipes',
+    },
   },
   {
     path: 'inputs',
-    loadChildren: () => import('./forms/input/input-page.module').then(m => m.InputPageModule),
+    loadChildren: () =>
+      import('./forms/input/input-page.module').then((m) => m.InputPageModule),
     data: {
-      title: 'Inputs'
-    }
+      title: 'Inputs',
+    },
   },
   {
     path: 'controllers',
-    loadChildren: () => import('./controllers/controller-intro-page/controller-intro-page.module').then(m => m.ControllerIntroPageModule),
+    loadChildren: () =>
+      import(
+        './controllers/controller-intro-page/controller-intro-page.module'
+      ).then((m) => m.ControllerIntroPageModule),
     data: {
-      title: 'Controllers'
-    }
+      title: 'Controllers',
+    },
   },
   {
     path: 'controller-forms',
-    loadChildren: () => import('./controllers/controller-form-page/controller-form-page.module').then(m => m.ControllerFormPageModule),
+    loadChildren: () =>
+      import(
+        './controllers/controller-form-page/controller-form-page.module'
+      ).then((m) => m.ControllerFormPageModule),
     data: {
-      title: 'Form Controllers'
-    }
-  }
+      title: 'Form Controllers',
+    },
+  },
+  {
+    path: 'buttons',
+    loadChildren: () =>
+      import('./forms/button/button-page.module').then(
+        (m) => m.ButtonPageModule
+      ),
+    data: {
+      title: 'Buttons',
+    },
+  },
 ];

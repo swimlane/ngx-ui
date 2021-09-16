@@ -1,0 +1,11 @@
+<ngx-file-button
+  name="uper2"
+  styleType="standard"
+  [uploader]="manualUploaderInstance"
+>
+  Choose File
+</ngx-file-button>
+
+<button (click)="manualUploaderInstance.uploadAll()" class="btn btn-primary">
+  Upload
+</button>

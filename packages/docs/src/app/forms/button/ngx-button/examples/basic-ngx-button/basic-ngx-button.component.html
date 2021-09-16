@@ -1,0 +1,82 @@
+<ngx-button
+  #defaultButton
+  [promise]="promises['defaultButton']"
+  (click)="onClick('button click', 'defaultButton')"
+  class="btn"
+  >Default
+</ngx-button>
+<ngx-button
+  #primaryButton
+  [promise]="promises['primaryButton']"
+  (click)="onClick('button click', 'primaryButton')"
+  class="btn btn-primary"
+  >Primary
+</ngx-button>
+<ngx-button
+  #gradiantButton
+  [promise]="promises['gradiantButton']"
+  (click)="onClick('button click', 'gradiantButton')"
+  class="btn btn-primary btn-primary-gradient"
+  >Primary Gradient
+</ngx-button>
+<ngx-button
+  #failButton
+  [promise]="promises['failButton']"
+  [state]="ButtonState.fail"
+  (click)="onClick('button click', 'failButton')"
+  class="btn btn-warning"
+  >Warning
+</ngx-button>
+<ngx-button
+  #successButton
+  [promise]="promises['successButton']"
+  [state]="ButtonState.success"
+  (click)="onClick('button click', 'successButton')"
+  class="btn btn-danger"
+>
+  Danger
+</ngx-button>
+<ngx-button
+  #borderButton
+  [promise]="promises['borderButton']"
+  (click)="onClick('button click', 'borderButton')"
+  class="btn btn-bordered"
+  >Bordered
+</ngx-button>
+<ngx-button
+  #linkButton
+  [promise]="promises['linkButton']"
+  (click)="onClick('button click', 'linkButton')"
+  class="btn btn-link"
+  >Link
+</ngx-button>
+<ngx-button
+  #noTimeoutButton
+  [promise]="promises['noTimeoutButton']"
+  [timeout]="0"
+  (click)="onClick('button click', 'noTimeoutButton')"
+  class="btn"
+  >No Timeout
+</ngx-button>
+<br />
+<ngx-button (click)="onClick('button click')" class="btn" disabled="true"
+  >Default
+</ngx-button>
+<ngx-button state="inProgress" class="btn btn-primary" disabled="true"
+  >Primary
+</ngx-button>
+<ngx-button
+  state="inProgress"
+  class="btn btn-primary btn-primary-gradient"
+  disabled="true"
+  >Primary Gradient
+</ngx-button>
+<ngx-button state="fail" class="btn btn-warning" disabled="true"
+  >Warning
+</ngx-button>
+<ngx-button state="success" class="btn btn-danger" disabled="true"
+  >Danger
+</ngx-button>
+<ngx-button class="btn btn-bordered" disabled="true">Bordered</ngx-button>
+<ngx-button class="btn btn-link" disabled="true">Link</ngx-button>
+<ngx-button [timeout]="0" disabled="true" class="btn">No Timeout</ngx-button>
