@@ -297,7 +297,6 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     }
 
     this.focus.emit(event);
-    this.onTouchedCallback();
   }
 
   onBlur(event: Event): void {
@@ -305,6 +304,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
 
     this.focused = false;
     this.blur.emit(event);
+    this.onTouchedCallback();
   }
 
   validate(c: FormControl) {

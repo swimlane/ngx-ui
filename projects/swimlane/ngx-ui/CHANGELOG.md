@@ -7,6 +7,7 @@
 - Enhancement: Added `for` attribute to `ngx-input` labels
 - Enhancement: Added ARIA role attribute to `ngx-plus-menu`
 - Fix: Toggle going out of bounds when disabled in `ngx-toggle`
+- Fix: Call to `onTouchedCallback()` should be executed on blur, per `ControlValueAccessor.registerOnTouched` docs
 - Fix: Tabs in `ngx-tabs` are now `type="button"`
 
 ## 35.6.8 (2021-07-16)
