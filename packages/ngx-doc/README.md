@@ -40,7 +40,7 @@ npm install @swimlane/ngx-doc @swimlane/ngx-ui
 
 > This is an example. You can pick any theme you want
 
-4. TBD 
+4. TBD
 
 ## Building blocks
 

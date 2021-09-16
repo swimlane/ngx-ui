@@ -2,9 +2,10 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {
-  DocExampleModule, DocMarkdownModule,
+  DocExampleModule,
+  DocMarkdownModule,
   DocPageModule,
-  generateRoutes
+  generateRoutes,
 } from '@swimlane/ngx-doc';
 import { CopyToClipboardModule } from '@swimlane/ngx-ui/copy-to-clipboard';
 import { ColorsGradientsComponent } from './colors-gradients/colors-gradients.component';

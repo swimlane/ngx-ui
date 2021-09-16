@@ -80,7 +80,7 @@ export class AppComponent {
     {
       name: 'Controllers',
       route: 'controllers',
-      icon:'condition',
+      icon: 'condition',
       children: [
         {
           name: 'Introduction',

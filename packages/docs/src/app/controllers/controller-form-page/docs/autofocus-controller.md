@@ -27,7 +27,7 @@ export class SomeModule {}
 
 ## Advance Usage
 
-`AutofocusController` keeps track of a `focusableElement`, which is default to the host `ElementRef`. `focusableElement` can be assigned to a different `HTMLElement` 
+`AutofocusController` keeps track of a `focusableElement`, which is default to the host `ElementRef`. `focusableElement` can be assigned to a different `HTMLElement`
 
 ```ts
 @ViewChild('someOtherElement') set someOtherElementRef(v:ElementRef<HTMLElement>) {

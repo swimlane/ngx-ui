@@ -39,12 +39,13 @@
   - This is also the time where `CHANGELOG` can be updated manually with custom changes.
   - After updating `CHANGELOG` manually (if need be) at this step, make sure to stage the changes with `git add .` (in a different terminal) before saying Yes to "Commit"
 - There will be Release hooks
+
   - `after:bump`: After the version has been bumped, this hook will run `git checkout -b release/${version}` to checkout a `release` branch
   - `after:release`: After you have accepted to "Commit" question and "Tag" question, this hook will run `git push origin HEAD --tags` to push the branch and tag upstream. This follows the current release flow
-  
+
   - if there is an error, you will need to delete branch and tag **locally and on the remote**.
-    - TODO [run programmatically](https://github.com/release-it/release-it/blob/master/docs/recipes/programmatic.md) 
-  
+    - TODO [run programmatically](https://github.com/release-it/release-it/blob/master/docs/recipes/programmatic.md)
+
 - There will be GitHub Actions to publish to NPM.
   - Manual steps at the moment are:
     - `npm run build:libs` to build `ngx-ui`, copy assets, and `ngx-doc`
@@ -52,6 +53,7 @@
       - `npm run publish:libs:beta` to publish to npm with `beta` tag
 
 ### NGX-DOC
+
 > will get published with ngx-ui from above steps
 
 ### Docs Site

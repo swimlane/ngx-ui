@@ -7,7 +7,5 @@
   placeholder="Filter by"
 ></ngx-input>
 <ul>
-  <li *ngFor="let item of array | filterBy: stringFilter">
-    {{ item }}
-  </li>
+  <li *ngFor="let item of array | filterBy: stringFilter">{{ item }}</li>
 </ul>
