@@ -1,0 +1,14 @@
+import { DocExamples } from '@swimlane/ngx-doc';
+import <%= propertyName %>Html from '!!raw-loader!./<%= fileName %>.component.html';
+import <%= propertyName %>Ts from '!!raw-loader!./<%= fileName %>.component.ts';
+
+const <%= className %>Content: DocExamples = {
+'<%= fileName %>.component.html': [<%= propertyName %>Html, 'markup'],
+'<%= fileName %>.component.ts': [<%= propertyName %>Ts, 'typescript'],
+}
+
+export {
+  <%= className %>Content,
+  <%= propertyName %>Ts,
+  <%= propertyName %>Html
+}
