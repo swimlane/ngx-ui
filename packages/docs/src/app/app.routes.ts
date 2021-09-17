@@ -99,4 +99,10 @@ export const appRoutes: Routes = [
       title: 'Buttons',
     },
   },
+  {
+    path: 'selects',
+    loadChildren: () =>
+      import('./forms/select/select.module').then((m) => m.SelectModule),
+    data: { title: 'Selects' },
+  },
 ];
