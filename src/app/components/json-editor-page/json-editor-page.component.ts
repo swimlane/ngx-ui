@@ -85,14 +85,20 @@ export class JsonEditorPageComponent {
             maximum: 180
           }
         }
+      },
+      userApiKey: {
+        title: 'User API key',
+        type: 'string',
+        format: 'password'
       }
     },
-    required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions']
+    required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions', 'userApiKey']
   };
 
   compressed = false;
   hideRoot = false;
   showKnownProperties = false;
+  passwordToggleEnabled = false;
 
   _jsonEditorSchema: any = {};
 

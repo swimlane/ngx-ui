@@ -46,6 +46,8 @@ export class JsonEditorFlatComponent extends JsonEditor implements OnInit, OnCha
 
   @Input() showKnownProperties = false;
 
+  @Input() passwordToggleEnabled = false;
+
   @ContentChildren(JsonEditorNodeFlatComponent) nodeElms: QueryList<JsonEditorNodeFlatComponent>;
 
   @ViewChild('propertyConfigTmpl') propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;

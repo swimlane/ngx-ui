@@ -36,6 +36,8 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit, OnChang
 
   @Input() isDuplicated = false;
 
+  @Input() passwordToggleEnabled = false;
+
   indentationArray: number[] = [];
 
   constructor(private dialogService: DialogService) {

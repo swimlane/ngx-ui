@@ -41,6 +41,7 @@
         [errors]="childrenErrors"
         [typeCheckOverrides]="typeCheckOverrides"
         [showKnownProperties]="showKnownProperties"
+        [passwordToggleEnabled]="passwordToggleEnabled"
       ></ngx-json-object-node>
     </div>
 
@@ -56,6 +57,7 @@
         [errors]="childrenErrors"
         [typeCheckOverrides]="typeCheckOverrides"
         [showKnownProperties]="showKnownProperties"
+        [passwordToggleEnabled]="passwordToggleEnabled"
       ></ngx-json-array-node>
     </div>
 
@@ -113,7 +115,7 @@
           [disabled]="isDuplicated"
           (ngModelChange)="updateModel($event)"
           [required]="required"
-          [passwordToggleEnabled]="true"
+          [passwordToggleEnabled]="passwordToggleEnabled"
         ></ngx-input>
       </div>
 
