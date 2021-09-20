@@ -6,7 +6,7 @@
         <textarea
           *ngIf="type === inputTypes.textarea && autosize"
           class="ngx-input-textarea"
-          rows="1"
+          [rows]="textareaRow"
           autosize
           [(ngModel)]="value"
           [id]="id"
@@ -32,7 +32,7 @@
         <textarea
           *ngIf="type === inputTypes.textarea && !autosize"
           class="ngx-input-textarea"
-          rows="1"
+          [rows]="textareaRow"
           [(ngModel)]="value"
           [id]="id"
           [name]="name"
