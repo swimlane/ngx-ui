@@ -24,6 +24,8 @@ export class JsonEditorNodeComponent extends JsonEditorNode implements OnInit {
 
   @Input() isDuplicated = false;
 
+  @Input() passwordToggleEnabled = false;
+
   placeholder = '';
 
   constructor(public dialogMngr: DialogService) {

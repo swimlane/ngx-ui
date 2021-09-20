@@ -98,6 +98,7 @@
                 [requiredIndicator]="false"
                 [required]="required"
                 [disabled]="isDuplicated"
+                [passwordToggleEnabled]="passwordToggleEnabled"
               ></ngx-input>
             </div>
 
@@ -209,6 +210,7 @@
       [schemaBuilderMode]="schemaBuilderMode"
       [formats]="formats"
       [showKnownProperties]="showKnownProperties"
+      [passwordToggleEnabled]="passwordToggleEnabled"
       (schemaUpdate)="schemaUpdate.emit(schemaRef)"
     >
     </ngx-json-object-node-flat>
@@ -232,6 +234,7 @@
       [isDuplicated]="isDuplicated"
       [schemaBuilderMode]="schemaBuilderMode"
       [showKnownProperties]="showKnownProperties"
+      [passwordToggleEnabled]="passwordToggleEnabled"
       (schemaUpdate)="schemaUpdate.emit(schemaRef)"
     >
     </ngx-json-array-node-flat>

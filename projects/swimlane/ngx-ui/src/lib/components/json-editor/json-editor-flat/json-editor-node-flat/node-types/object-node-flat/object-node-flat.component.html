@@ -28,6 +28,7 @@
       [compressed]="compressed"
       [indentationArray]="indentationArray"
       [showKnownProperties]="showKnownProperties"
+      [passwordToggleEnabled]="passwordToggleEnabled"
       [isDuplicated]="duplicatedFields.has(prop.id)"
       (schemaUpdate)="schemaUpdate.emit(schemaRef)"
       (updatePropertyNameEvent)="onUpdatePropertyName($event)"
@@ -121,7 +122,6 @@
                 <span>Include</span>
               </button>
             </div>
-
           </div>
         </div>
       </div>

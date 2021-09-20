@@ -41,6 +41,7 @@
         [errors]="childrenErrors"
         [typeCheckOverrides]="typeCheckOverrides"
         [showKnownProperties]="showKnownProperties"
+        [passwordToggleEnabled]="passwordToggleEnabled"
       ></ngx-json-object-node>
     </div>
 
@@ -56,6 +57,7 @@
         [errors]="childrenErrors"
         [typeCheckOverrides]="typeCheckOverrides"
         [showKnownProperties]="showKnownProperties"
+        [passwordToggleEnabled]="passwordToggleEnabled"
       ></ngx-json-array-node>
     </div>
 
@@ -105,7 +107,7 @@
 
       <!-- Password -->
       <div *ngIf="schema.format === 'password'">
-        <input
+        <ngx-input
           class="value-input"
           type="password"
           [placeholder]="placeholder"
@@ -113,7 +115,8 @@
           [disabled]="isDuplicated"
           (ngModelChange)="updateModel($event)"
           [required]="required"
-        />
+          [passwordToggleEnabled]="passwordToggleEnabled"
+        ></ngx-input>
       </div>
 
       <!-- Date -->
