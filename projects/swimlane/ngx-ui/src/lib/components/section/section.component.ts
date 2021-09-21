@@ -25,7 +25,12 @@ import { TogglePosition } from './section-toggle-position.enum';
 export class SectionComponent {
   @HostBinding('class.outline')
   get outline() {
-    return this.appearance === SectionApperance.Outline;
+    return this.appearance === SectionApperance.Outline || this.appearance === SectionApperance.LightOutline;
+  }
+
+  @HostBinding('class.light')
+  get light() {
+    return this.appearance === SectionApperance.Light || this.appearance === SectionApperance.LightOutline;
   }
 
   @Input() sectionCollapsed = false;
