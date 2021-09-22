@@ -24,11 +24,6 @@ import {
   NGX_APPEARANCE_WATCHED_CONTROLLER,
 } from '@swimlane/ngx-ui/appearance';
 import {
-  AutofocusControllerDirective,
-  NGX_AUTOFOCUS_CONTROLLER_PROVIDER,
-  NGX_AUTOFOCUS_WATCHED_CONTROLLER,
-} from '@swimlane/ngx-ui/autofocus';
-import {
   AutosizeControllerDirective,
   NGX_AUTOSIZE_CONTROLLER_PROVIDER,
   NGX_AUTOSIZE_WATCHED_CONTROLLER,
@@ -41,11 +36,6 @@ import {
   NgxNumericInput,
   NumericInput,
 } from '@swimlane/ngx-ui/common';
-import {
-  InputAttributeControllerDirective,
-  NGX_INPUT_ATTRIBUTE_CONTROLLER_PROVIDER,
-  NGX_INPUT_ATTRIBUTE_WATCHED_CONTROLLER,
-} from '@swimlane/ngx-ui/input-attribute';
 import { NGX_SIZE_CONTROLLER_PROVIDER } from '@swimlane/ngx-ui/size';
 import { KeyboardKeys } from '@swimlane/ngx-ui/typings';
 import { SelectOptionDirective } from './directives';
@@ -69,9 +59,7 @@ const SELECT_VALUE_ACCESSOR = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     SELECT_VALUE_ACCESSOR,
-    NGX_AUTOFOCUS_CONTROLLER_PROVIDER,
     NGX_AUTOSIZE_CONTROLLER_PROVIDER,
-    NGX_INPUT_ATTRIBUTE_CONTROLLER_PROVIDER,
     NGX_APPEARANCE_CONTROLLER_PROVIDER,
     NGX_SIZE_CONTROLLER_PROVIDER,
   ],
@@ -193,7 +181,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   get invalid(): boolean {
     if (
-      this.inputAttributeController.required &&
+      this.inputComponent.inputAttributeController.required &&
       this.checkInvalidValue(this.value)
     )
       return true;
@@ -213,14 +201,18 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
 
   get requiredIndicatorView(): string {
     const required =
-      this.inputAttributeController.required ||
+      this.inputComponent.inputAttributeController.required ||
       (this.minSelections !== undefined && this.minSelections > 0);
 
-    if (!this.inputAttributeController.requiredIndicator || !required) {
+    if (
+      !this.inputComponent.inputAttributeController.requiredIndicator ||
+      !required
+    ) {
       return '';
     }
 
-    return this.inputAttributeController.requiredIndicator as string;
+    return this.inputComponent.inputAttributeController
+      .requiredIndicator as string;
   }
 
   @HostBinding('class.single-selection')
@@ -284,10 +276,6 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
     private readonly cdr: ChangeDetectorRef,
     @Inject(NGX_APPEARANCE_WATCHED_CONTROLLER)
     public readonly appearanceController: AppearanceControllerDirective,
-    @Inject(NGX_INPUT_ATTRIBUTE_WATCHED_CONTROLLER)
-    public readonly inputAttributeController: InputAttributeControllerDirective,
-    @Inject(NGX_AUTOFOCUS_WATCHED_CONTROLLER)
-    public readonly autofocusController: AutofocusControllerDirective,
     @Inject(NGX_AUTOSIZE_WATCHED_CONTROLLER)
     public readonly autosizeController: AutosizeControllerDirective
   ) {}
@@ -335,7 +323,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   onFocus($event: Event): void {
-    if (this.inputAttributeController.disabled) return;
+    if (this.inputComponent.inputAttributeController.disabled) return;
 
     this.toggleDropdown(!this.dropdownActive);
     this.onTouchedCallback();
@@ -360,7 +348,7 @@ export class SelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   onToggle(): void {
-    if (this.inputAttributeController.disabled) return;
+    if (this.inputComponent.inputAttributeController.disabled) return;
 
     this.toggleDropdown(!this.dropdownActive);
     this.onTouchedCallback();

@@ -41,7 +41,7 @@ export function inputAttributeControllerFactory(
   destroyed: Observable<void>
 ) {
   if (!controller) {
-    return null;
+    return new InputAttributeControllerDirective(changeDetectorRef);
   }
 
   controller.changes$.pipe(takeUntil(destroyed)).subscribe(() => {

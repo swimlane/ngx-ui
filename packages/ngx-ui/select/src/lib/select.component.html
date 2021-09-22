@@ -7,20 +7,17 @@
   >
     <div class="ngx-select-flex-wrap-inner">
       <ngx-select-input
-        [ngxAutofocus]="autofocusController.ngxAutofocus"
+        ngxAutofocus
         ngxInputAttribute
         [options]="options"
         [allowClear]="allowClear"
-        [label]="inputAttributeController.label"
         [requiredIndicator]="requiredIndicatorView"
-        [placeholder]="inputAttributeController.placeholder"
         [multiple]="multiple"
         [identifier]="identifier"
         [tagging]="tagging"
         [allowAdditions]="allowAdditions"
         [selectCaret]="selectCaret"
         [selected]="value"
-        [hint]="inputAttributeController.hint"
         [disableDropdown]="disableDropdown"
         (selectInputKeyup)="onKeyUp($event)"
         (toggle)="onToggle()"
