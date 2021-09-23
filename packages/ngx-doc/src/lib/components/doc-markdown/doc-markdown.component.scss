@@ -9,10 +9,18 @@
   }
 
   &__markdown-container {
+    position: relative;
+
     &[data-has-filename='true'] {
       padding: 1rem;
       background: var(--ngx-ui-color-blue-grey-800);
       border-radius: 0.25rem;
+    }
+
+    .copy-btn {
+      position: absolute;
+      top: 0;
+      right: 0;
     }
   }
 }

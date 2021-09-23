@@ -18,4 +18,13 @@
       <ng-content></ng-content>
     </markdown>
   </ng-template>
+  <button
+    class="btn btn-primary copy-btn"
+    *ngIf="allowCopy"
+    ngxCopyToClipboard="clk"
+    [ngxCopyToClipboardText]="code"
+    (copied)="copied()"
+  >
+    Copy
+  </button>
 </div>

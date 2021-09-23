@@ -4,6 +4,10 @@ import {
   Input,
   ViewEncapsulation,
 } from '@angular/core';
+import {
+  NotificationService,
+  NotificationStyleType,
+} from '@swimlane/ngx-ui/notification';
 
 export type MarkdownLang = 'typescript' | 'markup' | 'bash' | 'css' | 'scss';
 
@@ -20,4 +24,15 @@ export class DocMarkdownComponent {
   @Input() code = '';
 
   @Input() lang?: MarkdownLang;
+
+  @Input() allowCopy = false;
+
+  constructor(private readonly notify: NotificationService) {}
+
+  copied() {
+    this.notify.create({
+      title: 'Copied!',
+      styleType: NotificationStyleType.success,
+    });
+  }
 }

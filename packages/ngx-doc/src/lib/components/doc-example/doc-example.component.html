@@ -24,6 +24,7 @@
           <ngx-doc-markdown
             [code]="$any(record.value)[0]"
             [lang]="$any(record.value)[1] || 'typescript'"
+            [allowCopy]="true"
           ></ngx-doc-markdown>
         </ng-template>
       </ngx-tab>
