@@ -292,5 +292,13 @@ $input-placeholder-color: $color-blue-grey-350;
         right: 10px;
       }
     }
+
+    ngx-input-prefix {
+      padding-left: 5px;
+    }
+
+    ngx-input-suffix {
+      padding-right: 5px;
+    }
   }
 }
