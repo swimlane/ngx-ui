@@ -238,7 +238,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     options: unknown[],
     filter?: string
   ) {
-    if (!options || !groupBy) return [];
+    if (!options && !groupBy) return [];
 
     const filterOptions = { filterCaseSensitive: this.filterCaseSensitive };
 
@@ -266,6 +266,8 @@ export class SelectDropdownComponent implements AfterViewInit {
 
       return [{ options }];
     }
+
+    if(!options) return []
 
     const map = new Map();
     let i = 0;
