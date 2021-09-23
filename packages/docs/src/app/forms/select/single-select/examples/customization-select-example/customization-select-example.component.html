@@ -1,1 +1,19 @@
-<p>customization-select-example works!</p>
+<ngx-select ngxInputAttribute
+            [formControl]='selectControl'
+            [filterable]="true"
+            [allowAdditions]="true"
+            allowAdditionsText='Add New Value'
+            [selectCaret]="doubleDown"
+>
+  <ngx-select-option
+    *ngFor='let option of options'
+    [name]='option.name'
+    [value]='option.value'
+  ></ngx-select-option>
+</ngx-select>
+
+<p>You Selected: {{ selectControl.value | json }}</p>
+
+<ng-template #doubleDown>
+  <ngx-icon fontIcon="double-down"></ngx-icon>
+</ng-template>

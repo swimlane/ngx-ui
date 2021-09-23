@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import {
-  DocExampleModule,
-  DocPageModule,
-  generateRoutes,
-} from '@swimlane/ngx-doc';
+import { DocExampleModule, DocMarkdownModule, DocPageModule, generateRoutes } from '@swimlane/ngx-doc';
+import { AutofocusModule } from '@swimlane/ngx-ui/autofocus';
+import { IconModule } from '@swimlane/ngx-ui/icon';
+import { InputAttributeModule } from '@swimlane/ngx-ui/input-attribute';
+import { SelectModule } from '@swimlane/ngx-ui/select';
 import { AppearancesSelectComponent } from './appearances-select/appearances-select.component';
 import { FillAppearancesSelectExampleComponent } from './appearances-select/examples/fill-appearances-select-example/fill-appearances-select-example.component';
 import { LegacyAppearancesSelectExampleComponent } from './appearances-select/examples/legacy-appearances-select-example/legacy-appearances-select-example.component';
@@ -31,11 +32,9 @@ import { GroupingSelectExampleComponent } from './single-select/examples/groupin
 import { GroupingTemplateSelectExampleComponent } from './single-select/examples/grouping-template-select-example/grouping-template-select-example.component';
 import { HiddenDisabledSelectExampleComponent } from './single-select/examples/hidden-disabled-select-example/hidden-disabled-select-example.component';
 import { LongValuesSelectExampleComponent } from './single-select/examples/long-values-select-example/long-values-select-example.component';
-import { NgForDefaultSelectExampleComponent } from './single-select/examples/ng-for-default-select-example/ng-for-default-select-example.component';
 import { NoOptionsSelectExampleComponent } from './single-select/examples/no-options-select-example/no-options-select-example.component';
 import { PreselectedHiddenSelectExampleComponent } from './single-select/examples/preselected-hidden-select-example/preselected-hidden-select-example.component';
 import { RequiredSelectExampleComponent } from './single-select/examples/required-select-example/required-select-example.component';
-import { SingleValueSelectExampleComponent } from './single-select/examples/single-value-select-example/single-value-select-example.component';
 import { TemplateSelectExampleComponent } from './single-select/examples/template-select-example/template-select-example.component';
 import { SingleSelectComponent } from './single-select/single-select.component';
 import { BasicTaggingSelectExampleComponent } from './tagging-select/examples/basic-tagging-select-example/basic-tagging-select-example.component';
@@ -51,8 +50,6 @@ import { TaggingSelectComponent } from './tagging-select/tagging-select.componen
     AddNewSelectExampleComponent,
     FilterSelectExampleComponent,
     LongValuesSelectExampleComponent,
-    NgForDefaultSelectExampleComponent,
-    SingleValueSelectExampleComponent,
     TemplateSelectExampleComponent,
     GroupingSelectExampleComponent,
     GroupingTemplateSelectExampleComponent,
@@ -78,13 +75,21 @@ import { TaggingSelectComponent } from './tagging-select/tagging-select.componen
     NativeSelectExampleComponent,
     AsyncSelectExampleComponent,
     LegacyAppearancesSelectExampleComponent,
-    FillAppearancesSelectExampleComponent,
+    FillAppearancesSelectExampleComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(generateRoutes(SelectPageComponent)),
     DocExampleModule,
     DocPageModule,
-  ],
+    SelectModule,
+    FormsModule,
+    InputAttributeModule,
+    AutofocusModule,
+    DocMarkdownModule,
+    ReactiveFormsModule,
+    IconModule
+  ]
 })
-export class SelectModule {}
+export class SelectionModule {
+}

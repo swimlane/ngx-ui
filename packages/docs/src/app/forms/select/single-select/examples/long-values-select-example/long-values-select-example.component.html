@@ -1,1 +1,13 @@
-<p>long-values-select-example works!</p>
+<ngx-select
+  ngxInputAttribute
+  style='max-width: 300px;'
+  [formControl]='selectControl'
+>
+  <ngx-select-option
+    *ngFor='let option of options'
+    [name]='option.name'
+    [value]='option.value'
+  ></ngx-select-option>
+</ngx-select>
+
+<p>You Selected: {{ selectControl.value | json }}</p>

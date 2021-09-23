@@ -102,7 +102,7 @@ export const appRoutes: Routes = [
   {
     path: 'selects',
     loadChildren: () =>
-      import('./forms/select/select.module').then((m) => m.SelectModule),
+      import('./forms/select/selection.module').then((m) => m.SelectionModule),
     data: { title: 'Selects' },
   },
 ];

@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'docs-hidden-disabled-select-example',
@@ -6,8 +7,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HiddenDisabledSelectExampleComponent implements OnInit {
-  constructor() {}
+export class HiddenDisabledSelectExampleComponent  {
+  options = [
+    { name: 'Breach', value: 'breach', isDisabled: true, isHidden: true},
+    { name: 'DDOS', value: 'ddos', isDisabled: false, isHidden: false},
+    { name: 'Physical', value: 'physical', isDisabled: true, isHidden: false }
+  ];
 
-  ngOnInit(): void {}
+  selectControl = new FormControl([this.options[0].value]);
 }

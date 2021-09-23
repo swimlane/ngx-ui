@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'docs-no-options-select-example',
@@ -6,8 +7,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NoOptionsSelectExampleComponent implements OnInit {
-  constructor() {}
+export class NoOptionsSelectExampleComponent {
+  options = [ ];
 
-  ngOnInit(): void {}
+  selectControl = new FormControl([]);
 }

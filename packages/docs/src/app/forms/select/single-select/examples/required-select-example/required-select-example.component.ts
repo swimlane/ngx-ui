@@ -1,13 +1,18 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'docs-required-select-example',
   templateUrl: './required-select-example.component.html',
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class RequiredSelectExampleComponent implements OnInit {
-  constructor() {}
+export class RequiredSelectExampleComponent {
+  options = [
+    { name: 'Breach', value: 'breach' },
+    { name: 'DDOS', value: 'ddos' },
+    { name: 'Physical', value: 'physical' }
+  ];
 
-  ngOnInit(): void {}
+  selectControl = new FormControl([this.options[0].value], [Validators.required]);
 }

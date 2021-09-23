@@ -1,1 +1,27 @@
-<p>filter-select-example works!</p>
+<ngx-select
+  ngxInputAttribute
+  [formControl]='selectControl'
+  [filterable]='true'
+  label='Attack Type'>
+  <ngx-select-option
+    *ngFor='let option of options'
+    [name]='option.name'
+    [value]='option.value'
+  ></ngx-select-option>
+</ngx-select>
+
+<p>You Selected: {{ selectControl.value | json }}</p>
+
+<ngx-select
+  ngxInputAttribute
+  [formControl]='caseSensitiveControl'
+  [filterable]='true'
+  [filterCaseSensitive]='true'
+  label='Attack Type (case sensitive)'>
+  <ngx-select-option
+    *ngFor='let option of options'
+    [name]='option.name'
+    [value]='option.value'
+  ></ngx-select-option>
+</ngx-select>
+<p>You Selected: {{ caseSensitiveControl.value | json }}</p>

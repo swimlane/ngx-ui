@@ -1,13 +1,18 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'docs-grouping-select-example',
   templateUrl: './grouping-select-example.component.html',
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class GroupingSelectExampleComponent implements OnInit {
-  constructor() {}
+export class GroupingSelectExampleComponent {
+  options = [
+    { name: 'Breach', value: { value: 'breach', type: 'iOS' } },
+    { name: 'DDOS', value: { value: 'ddos', type: 'Android' } },
+    { name: 'Physical', value: { value: 'physical', type: 'iOS' } },
+  ];
 
-  ngOnInit(): void {}
+  selectControl = new FormControl([this.options[0].value]);
 }

@@ -1,1 +1,11 @@
-<p>grouping-select-example works!</p>
+<ngx-select ngxInputAttribute
+            [formControl]='selectControl'
+            groupBy='type'>
+  <ngx-select-option
+    *ngFor='let option of options'
+    [name]='option.name'
+    [value]='option.value'
+  ></ngx-select-option>
+</ngx-select>
+
+<p>You Selected: {{ selectControl.value | json }}</p>

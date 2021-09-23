@@ -1,9 +1,9 @@
 import {
-  Component,
-  OnInit,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
+  Component,
+  ViewEncapsulation,
 } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'docs-basic-single-select-example',
@@ -12,8 +12,12 @@ import {
   encapsulation: ViewEncapsulation.Emulated,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BasicSingleSelectExampleComponent implements OnInit {
-  constructor() {}
+export class BasicSingleSelectExampleComponent {
+  options = [
+    { name: 'Breach', value: 'breach' },
+    { name: 'DDOS', value: 'ddos' },
+    { name: 'Physical', value: 'physical' },
+  ];
 
-  ngOnInit(): void {}
+  selectControl = new FormControl([this.options[0].value]);
 }

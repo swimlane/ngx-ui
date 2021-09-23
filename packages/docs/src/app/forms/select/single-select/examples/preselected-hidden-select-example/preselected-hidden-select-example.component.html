@@ -1,1 +1,13 @@
-<p>preselected-hidden-select-example works!</p>
+<ngx-select ngxInputAttribute
+            [formControl]='selectControl'
+            placeholder='Select incident type...'>
+  <ngx-select-option
+    *ngFor='let option of options'
+    [name]='option.name'
+    [value]='option.value'
+    [disabled]='option.isDisabled'
+    [hidden]='option.isHidden'
+  ></ngx-select-option>
+</ngx-select>
+
+<p>You Selected: {{ selectControl.value | json }}</p>

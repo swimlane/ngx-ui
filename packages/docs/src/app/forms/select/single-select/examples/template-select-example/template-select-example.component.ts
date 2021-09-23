@@ -1,13 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'docs-template-select-example',
   templateUrl: './template-select-example.component.html',
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TemplateSelectExampleComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class TemplateSelectExampleComponent {
+  selectControl = new FormControl([]);
 }

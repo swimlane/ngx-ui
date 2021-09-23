@@ -1,15 +1,10 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import { DocExamples } from '@swimlane/ngx-doc';
 import { AddNewSelectExampleContent } from './examples/add-new-select-example';
-import {
-  basicSingleSelectExampleHtml,
-  basicSingleSelectExampleTS,
-} from './examples/basic-single-select-example';
+import { BasicSelectExampleContent } from './examples/basic-single-select-example';
 import { CustomizationSelectExampleContent } from './examples/customization-select-example';
 import { DisabledPlaceholderSelectExampleContent } from './examples/disabled-placeholder-select-example';
 import { DisabledPreselectSelectExampleContent } from './examples/disabled-preselect-select-example';
@@ -19,19 +14,17 @@ import { GroupingSelectExampleContent } from './examples/grouping-select-example
 import { GroupingTemplateSelectExampleContent } from './examples/grouping-template-select-example';
 import { HiddenDisabledSelectExampleContent } from './examples/hidden-disabled-select-example';
 import { LongValuesSelectExampleContent } from './examples/long-values-select-example';
-import { NgForDefaultSelectExampleContent } from './examples/ng-for-default-select-example';
 import { NoOptionsSelectExampleContent } from './examples/no-options-select-example';
 import { PreselectedHiddenSelectExampleContent } from './examples/preselected-hidden-select-example';
-import {
-  requiredSelectExampleHtml,
-  requiredSelectExampleTs,
-} from './examples/required-select-example';
-import { SingleValueSelectExampleContent } from './examples/single-value-select-example';
+import { RequiredSelectExampleContent } from './examples/required-select-example';
 import { TemplateSelectExampleContent } from './examples/template-select-example';
 
 @Component({
   selector: 'docs-single-select',
   template: `
+    <ngx-doc-markdown>
+      > Note: Values from single selects are string arrays</ngx-doc-markdown
+    >
     <ngx-doc-example
       heading="Basic Select"
       id="basic-select"
@@ -70,22 +63,6 @@ import { TemplateSelectExampleContent } from './examples/template-select-example
       [content]="longValuesExample"
     >
       <docs-long-values-select-example></docs-long-values-select-example>
-    </ngx-doc-example>
-
-    <ngx-doc-example
-      heading="ngFor w/ Default Selection"
-      id="ngfor-default-selection"
-      [content]="ngForDefaultExample"
-    >
-      <docs-ng-for-default-select-example></docs-ng-for-default-select-example>
-    </ngx-doc-example>
-
-    <ngx-doc-example
-      heading="Single Select Value"
-      id="single-select-value"
-      [content]="singleSelectValueExample"
-    >
-      <docs-single-value-select-example></docs-single-value-select-example>
     </ngx-doc-example>
 
     <ngx-doc-example
@@ -172,22 +149,12 @@ import { TemplateSelectExampleContent } from './examples/template-select-example
   encapsulation: ViewEncapsulation.Emulated,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SingleSelectComponent implements OnInit {
-  readonly basicSelectExample: DocExamples = {
-    'basic-select-example.html': [basicSingleSelectExampleHtml, 'markup'],
-    'basic-select-example.ts': [basicSingleSelectExampleTS, 'typescript'],
-  };
-
-  readonly requiredSelectExample: DocExamples = {
-    'required-select-example.html': [requiredSelectExampleHtml, 'markup'],
-    'required-select-example.ts': [requiredSelectExampleTs, 'typescript'],
-  };
-
+export class SingleSelectComponent {
+  readonly basicSelectExample = BasicSelectExampleContent;
+  readonly requiredSelectExample = RequiredSelectExampleContent;
   readonly addNewSelectExample = AddNewSelectExampleContent;
   readonly filterSelectExample = FilterSelectExampleContent;
   readonly longValuesExample = LongValuesSelectExampleContent;
-  readonly ngForDefaultExample = NgForDefaultSelectExampleContent;
-  readonly singleSelectValueExample = SingleValueSelectExampleContent;
   readonly templateExamples = TemplateSelectExampleContent;
   readonly objectGroupingExample = GroupingSelectExampleContent;
   readonly groupingTemplateExample = GroupingTemplateSelectExampleContent;
@@ -199,8 +166,4 @@ export class SingleSelectComponent implements OnInit {
   readonly noOptionExample = NoOptionsSelectExampleContent;
   readonly eventsExample = EventsSelectExampleContent;
   readonly customizationExample = CustomizationSelectExampleContent;
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

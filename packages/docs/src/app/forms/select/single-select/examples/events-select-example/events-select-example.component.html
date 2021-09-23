@@ -1,1 +1,16 @@
-<p>events-select-example works!</p>
+<ngx-select ngxInputAttribute
+            [filterable]='true'
+            [formControl]='selectControl'
+            label='Attack Type'
+            (change)="onEvent('ngx-select change', $event)"
+            (keyup)="onEvent('ngx-select change', $event)"
+            (toggle)="onEvent('ngx-select toggle', $event)">
+  <ngx-select-option
+    *ngFor='let option of options'
+    [name]='option.name'
+    [value]='option.value'
+  ></ngx-select-option>
+</ngx-select>
+
+<p>You Selected: {{ selectControl.value | json }}</p>
+<p>Most Recent Event: {{ eventInfo | json}}</p>

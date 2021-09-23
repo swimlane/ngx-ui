@@ -1,1 +1,15 @@
-<p>add-new-select-example works!</p>
+<ngx-select
+  ngxInputAttribute
+  [formControl]='selectControl'
+  [filterable]='true'
+  [allowAdditions]='true'
+  allowAdditionsText='Add New Value (Shift + ⏎)'
+  hint='Users can add new value by clicking on Add New Value or by pressing Shift + ⏎'>
+  <ngx-select-option
+    *ngFor='let option of options'
+    [name]='option.name'
+    [value]='option.value'
+  ></ngx-select-option>
+</ngx-select>
+
+<p>You Selected: {{ selectControl.value | json }}</p>

@@ -1,1 +1,16 @@
-<p>basic-single-select-example works!</p>
+<!-- note the usage of ngxInputAttribute. this provides the `label` input -->
+<ngx-select
+  ngxInputAttribute
+  [formControl]="selectControl"
+  [filterable]="false"
+  label="Attack Type"
+  data-cy="attackType"
+>
+  <ngx-select-option
+    *ngFor="let option of options"
+    [name]="option.name"
+    [value]="option.value"
+  ></ngx-select-option>
+</ngx-select>
+
+<p>You Selected: {{ selectControl.value | json }}</p>

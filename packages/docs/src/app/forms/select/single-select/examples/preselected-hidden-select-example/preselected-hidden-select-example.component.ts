@@ -1,13 +1,18 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'docs-preselected-hidden-select-example',
   templateUrl: './preselected-hidden-select-example.component.html',
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class PreselectedHiddenSelectExampleComponent implements OnInit {
-  constructor() {}
+export class PreselectedHiddenSelectExampleComponent {
+  options = [
+    { name: 'Breach', value: 'breach', isDisabled: false, isHidden: false },
+    { name: 'DDOS', value: 'ddos', isDisabled: true, isHidden: true },
+    { name: 'Physical', value: 'physical', isDisabled: true, isHidden: false }
+  ];
 
-  ngOnInit(): void {}
+  selectControl = new FormControl([this.options[1].value]);
 }
