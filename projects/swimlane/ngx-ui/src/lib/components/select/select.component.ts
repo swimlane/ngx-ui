@@ -17,10 +17,13 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { InViewportMetadata } from 'ng-in-viewport';
+import { take } from 'rxjs/operators';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { appearanceMixin } from '../../mixins/appearance/appearance.mixin';
 import { sizeMixin } from '../../mixins/size/size.mixin';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
+import { SelectDropdownComponent } from './select-dropdown.component';
 import { SelectInputComponent } from './select-input.component';
 
 import { SelectOptionDirective } from './select-option.directive';
@@ -238,6 +241,9 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   @ViewChild(SelectInputComponent, { static: true })
   readonly inputComponent: SelectInputComponent;
 
+  @ViewChild(SelectDropdownComponent, { static: false })
+  readonly selectDropdown: SelectDropdownComponent;
+
   /**
    * Custom Template for groupBy
    * Only works with groupBy on
@@ -431,7 +437,13 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
       this.toggleListener = this._renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
     }
 
-    this._cdr.markForCheck();
+    this._cdr.detectChanges();
+
+    if (this.dropdownActive && this.selectDropdown?.inViewport) {
+      this.selectDropdown.inViewport.inViewportAction
+        .pipe(take(1))
+        .subscribe({ next: this.adjustMenuDirection.bind(this) });
+    }
   }
 
   onKeyUp({ event, value }: { event: KeyboardEvent; value?: string }): void {
@@ -465,6 +477,22 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
   setDisabledState(isDisabled: boolean): void {
     this._disabled = isDisabled;
+  }
+
+  private adjustMenuDirection(event: {
+    [InViewportMetadata]: { entry: IntersectionObserverEntry };
+    target: HTMLElement;x
+    visible: boolean;
+  }): void {
+    if (this.isIntersectingBottom(event[InViewportMetadata].entry)) {
+      this._renderer.addClass(this.selectDropdown.element, 'ngx-select-dropdown--upwards');
+    } else {
+      this._renderer.addClass(this.selectDropdown.element, 'ngx-select-dropdown--downwards');
+    }
+  }
+
+  private isIntersectingBottom(entry: IntersectionObserverEntry): boolean {
+    return entry.boundingClientRect.bottom >= entry.rootBounds.bottom;
   }
 
   private checkInvalidValue(value: any): boolean {
