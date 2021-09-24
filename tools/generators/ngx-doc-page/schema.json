@@ -1,0 +1,24 @@
+{
+  "cli": "nx",
+  "id": "ngx-doc-page",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Library name",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      }
+    },
+    "path": {
+      "type": "string",
+      "description": "path to generate component in starting from after 'app'",
+      "$default": {
+        "$source": "argv",
+        "index": 1
+      }
+    }
+  },
+  "required": ["name", "path"]
+}

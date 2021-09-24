@@ -85,6 +85,7 @@
     "@nrwl/linter": "12.5.8",
     "@nrwl/tao": "12.5.8",
     "@nrwl/workspace": "12.5.8",
+    "@phenomnomnominal/tsquery": "^4.1.1",
     "@release-it/bumper": "^3.0.1",
     "@release-it/conventional-changelog": "^3.0.1",
     "@types/codemirror": "^5.60.2",
