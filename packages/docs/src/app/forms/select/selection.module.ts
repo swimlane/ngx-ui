@@ -2,7 +2,13 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { DocExampleModule, DocMarkdownModule, DocPageModule, generateRoutes } from '@swimlane/ngx-doc';
+import {
+  DocExampleModule,
+  DocMarkdownModule,
+  DocPageModule,
+  generateRoutes,
+} from '@swimlane/ngx-doc';
+import { AppearanceModule } from '@swimlane/ngx-ui/appearance';
 import { AutofocusModule } from '@swimlane/ngx-ui/autofocus';
 import { IconModule } from '@swimlane/ngx-ui/icon';
 import { InputAttributeModule } from '@swimlane/ngx-ui/input-attribute';
@@ -75,7 +81,7 @@ import { TaggingSelectComponent } from './tagging-select/tagging-select.componen
     NativeSelectExampleComponent,
     AsyncSelectExampleComponent,
     LegacyAppearancesSelectExampleComponent,
-    FillAppearancesSelectExampleComponent
+    FillAppearancesSelectExampleComponent,
   ],
   imports: [
     CommonModule,
@@ -88,8 +94,8 @@ import { TaggingSelectComponent } from './tagging-select/tagging-select.componen
     AutofocusModule,
     DocMarkdownModule,
     ReactiveFormsModule,
-    IconModule
-  ]
+    IconModule,
+    AppearanceModule,
+  ],
 })
-export class SelectionModule {
-}
+export class SelectionModule {}

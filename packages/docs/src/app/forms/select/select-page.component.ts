@@ -4,13 +4,16 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   selector: 'docs-select-page',
   template: `
     <ngx-doc-page header="Select">
-      <ngx-doc-markdown>
-        You'll need to use the ngxInputAttribute directive to add the following
-        inputs to the select (or any input) components - label - required - hint
-        - placeholder - minWidth - tabIndex - min - max - maxLength - minLength
-        - disabled - autocorrect - spellcheck - passwordToggleEnabled -
-        passwordTextVisible - unlockable - unlockableToolTip - type
-      </ngx-doc-markdown>
+      <ng-template>
+        <ngx-doc-markdown>
+          You'll need to use the ngxInputAttribute directive to add the
+          following inputs to the select (or any input) components - label -
+          required - hint - placeholder - minWidth - tabIndex - min - max -
+          maxLength - minLength - disabled - autocorrect - spellcheck -
+          passwordToggleEnabled - passwordTextVisible - unlockable -
+          unlockableToolTip - type
+        </ngx-doc-markdown>
+      </ng-template>
 
       <ng-template ngxDocPageTab="Single Select">
         <docs-single-select></docs-single-select>

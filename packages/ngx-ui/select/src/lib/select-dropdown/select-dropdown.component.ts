@@ -267,7 +267,7 @@ export class SelectDropdownComponent implements AfterViewInit {
       return [{ options }];
     }
 
-    if(!options) return []
+    if (!options) return [];
 
     const map = new Map();
     let i = 0;
