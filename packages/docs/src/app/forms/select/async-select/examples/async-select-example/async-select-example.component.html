@@ -1,1 +1,15 @@
-<p>async-select-example works!</p>
+<ngx-select
+  ngxInputAttribute
+  [formControl]="selectControl"
+  (selectKeyup)="search($event?.value || '')"
+>
+  <ngx-select-option
+    *ngFor="let option of asyncOptions$ | async"
+    [name]="option.title"
+    [disabled]="option.isDisabled"
+    [value]="option"
+  ></ngx-select-option>
+</ngx-select>
+
+<p>You Selected:</p>
+<pre>{{ selectControl.value | json }}</pre>
