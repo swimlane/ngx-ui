@@ -1,1 +1,16 @@
-<p>multi-default-multiselect-example works!</p>
+<ngx-select
+  ngxInputAttribute
+  label="Will Auto Close"
+  [formControl]="selectControl"
+  [filterable]="false"
+  [multiple]="true"
+  [closeOnSelect]="true"
+>
+  <ngx-select-option
+    *ngFor="let option of options"
+    [name]="option.name"
+    [value]="option.value"
+  ></ngx-select-option>
+</ngx-select>
+
+<p>You Selected: {{ selectControl.value | json }}</p>

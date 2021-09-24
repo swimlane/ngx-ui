@@ -1,1 +1,17 @@
-<p>min-max-multiselect-example works!</p>
+<ngx-select
+  ngxInputAttribute
+  label="Select one or two"
+  [formControl]="selectControl"
+  [filterable]="false"
+  [multiple]="true"
+  [minSelections]="1"
+  [maxSelections]="2"
+>
+  <ngx-select-option
+    *ngFor="let option of options"
+    [name]="option.name"
+    [value]="option.value"
+  ></ngx-select-option>
+</ngx-select>
+
+<p>You Selected: {{ selectControl.value | json }}</p>

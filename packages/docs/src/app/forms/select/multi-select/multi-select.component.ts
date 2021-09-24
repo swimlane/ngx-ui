@@ -29,6 +29,7 @@ import { TemplatesMultiselectExampleContent } from './examples/templates-multise
       id="auto-close-multi-select"
       [content]="autoCloseExample"
     >
+      <docs-auto-close-multiselect-example></docs-auto-close-multiselect-example>
     </ngx-doc-example>
 
     <ngx-doc-example
@@ -36,6 +37,7 @@ import { TemplatesMultiselectExampleContent } from './examples/templates-multise
       id="multi-default-multi-select"
       [content]="multiSelectionExample"
     >
+      <docs-multi-default-multiselect-example></docs-multi-default-multiselect-example>
     </ngx-doc-example>
 
     <ngx-doc-example
@@ -43,6 +45,7 @@ import { TemplatesMultiselectExampleContent } from './examples/templates-multise
       id="templates-multi-select"
       [content]="templatesExample"
     >
+      <docs-templates-multiselect-example></docs-templates-multiselect-example>
     </ngx-doc-example>
   `,
 })

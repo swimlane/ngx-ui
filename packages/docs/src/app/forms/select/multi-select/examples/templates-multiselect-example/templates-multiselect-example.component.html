@@ -1,1 +1,18 @@
-<p>templates-multiselect-example works!</p>
+<ngx-select
+  ngxInputAttribute
+  label="Template Multi Select"
+  [multiple]="true"
+  (keyup)="onEvent($event)"
+  [formControl]="selectControl"
+>
+  <ngx-select-option
+    *ngFor="let option of options; let idx = index"
+    [name]="option.name"
+    [disabled]="option.isDisabled"
+    [value]="option"
+  >
+    <ng-template ngx-select-option-input-template let-option="option">
+      {{ idx + 1 }}. {{ option.value.name }}
+    </ng-template>
+  </ngx-select-option>
+</ngx-select>

@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'docs-templates-multiselect-example',
@@ -6,8 +7,16 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TemplatesMultiselectExampleComponent implements OnInit {
-  constructor() {}
+export class TemplatesMultiselectExampleComponent {
+  options = [
+    { name: 'Breach', value: 'breach', isDisabled: false },
+    { name: 'DDOS', value: 'ddos', isDisabled: true },
+    { name: 'Physical', value: 'physical', isDisabled: false },
+  ];
 
-  ngOnInit(): void {}
+  selectControl = new FormControl([this.options[0]]);
+
+  onEvent($event: unknown) {
+    console.log({ $event });
+  }
 }
