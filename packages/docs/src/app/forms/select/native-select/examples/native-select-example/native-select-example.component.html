@@ -1,1 +1,15 @@
-<p>native-select-example works!</p>
+<select [formControl]="selectControl">
+  <option *ngFor="let option of options" [value]="option.value">
+    {{ option.name }}
+  </option>
+</select>
+
+<p>You Selected: {{ selectControl.value | json }}</p>
+
+<select multiple [formControl]="multiSelectControl" style="height: 100px">
+  <option *ngFor="let option of options" [value]="option.value">
+    {{ option.name }}
+  </option>
+</select>
+
+<p>You Selected: {{ multiSelectControl.value | json }}</p>
