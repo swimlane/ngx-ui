@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'docs-no-options-tagging-select-example',
@@ -6,8 +7,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NoOptionsTaggingSelectExampleComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class NoOptionsTaggingSelectExampleComponent {
+  selectControl = new FormControl([]);
 }

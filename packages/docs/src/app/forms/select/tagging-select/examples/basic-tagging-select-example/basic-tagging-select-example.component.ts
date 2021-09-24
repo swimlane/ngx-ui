@@ -1,4 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'docs-basic-tagging-select-example',
@@ -6,8 +7,12 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BasicTaggingSelectExampleComponent implements OnInit {
-  constructor() {}
+export class BasicTaggingSelectExampleComponent {
+  options = [
+    { name: 'Breach', value: 'breach' },
+    { name: 'DDOS', value: 'ddos' },
+    { name: 'Physical', value: 'physical' },
+  ];
 
-  ngOnInit(): void {}
+  selectControl = new FormControl([this.options[0].value]);
 }

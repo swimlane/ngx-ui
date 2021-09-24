@@ -1,1 +1,9 @@
-<p>no-options-tagging-select-example works!</p>
+<ngx-select
+  ngxInputAttribute
+  [formControl]="selectControl"
+  [filterable]="false"
+  [tagging]="true"
+>
+</ngx-select>
+
+<p>You Selected: {{ selectControl.value | json }}</p>
