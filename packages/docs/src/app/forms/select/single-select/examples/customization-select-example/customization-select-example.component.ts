@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
   styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CustomizationSelectExampleComponent  {
+export class CustomizationSelectExampleComponent {
   options = [
     { name: 'Breach', value: 'breach' },
     { name: 'DDOS', value: 'ddos' },

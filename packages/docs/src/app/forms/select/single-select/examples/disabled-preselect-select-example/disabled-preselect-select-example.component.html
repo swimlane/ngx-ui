@@ -1,11 +1,13 @@
-<ngx-select ngxInputAttribute
-            [formControl]='selectControl'
-            placeholder='Select incident type...'>
+<ngx-select
+  ngxInputAttribute
+  [formControl]="selectControl"
+  placeholder="Select incident type..."
+>
   <ngx-select-option
-    *ngFor='let option of options'
-    [name]='option.name'
-    [value]='option.value'
-    [disabled]='option.isDisabled'
+    *ngFor="let option of options"
+    [name]="option.name"
+    [value]="option.value"
+    [disabled]="option.isDisabled"
   ></ngx-select-option>
 </ngx-select>
 

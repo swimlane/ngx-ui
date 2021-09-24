@@ -1,10 +1,8 @@
-<ngx-select ngxInputAttribute
-            [formControl]='selectControl'
-            groupBy='type'>
+<ngx-select ngxInputAttribute [formControl]="selectControl" groupBy="type">
   <ngx-select-option
-    *ngFor='let option of options'
-    [name]='option.name'
-    [value]='option.value'
+    *ngFor="let option of options"
+    [name]="option.name"
+    [value]="option.value"
   ></ngx-select-option>
 </ngx-select>
 

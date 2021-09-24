@@ -1,19 +1,20 @@
-<ngx-select ngxInputAttribute
-            [formControl]='selectControl'
-            groupBy='type'
-            [groupByTemplate]='groupByTemplate'
+<ngx-select
+  ngxInputAttribute
+  [formControl]="selectControl"
+  groupBy="type"
+  [groupByTemplate]="groupByTemplate"
 >
   <ngx-select-option
-    *ngFor='let option of options'
-    [name]='option.name'
-    [value]='option.value'
+    *ngFor="let option of options"
+    [name]="option.name"
+    [value]="option.value"
   ></ngx-select-option>
 </ngx-select>
 
 <p>You Selected: {{ selectControl.value | json }}</p>
 
 <ng-template #groupByTemplate let-name="groupName">
-  {{name}}
+  {{ name }}
   <ng-container [ngSwitch]="name">
     <ng-container *ngSwitchCase="'iOS'">🍎</ng-container>
     <ng-container *ngSwitchCase="'Android'">🤖</ng-container>

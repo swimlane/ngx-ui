@@ -1,15 +1,17 @@
-<ngx-select ngxInputAttribute
-            label='Select Option Templates'
-            [formControl]='selectControl'>
-  <ngx-select-option value='breach'>
-    <ng-template ngx-select-option-template let-option='option'>
-      🐛 {{option.value}}
+<ngx-select
+  ngxInputAttribute
+  label="Select Option Templates"
+  [formControl]="selectControl"
+>
+  <ngx-select-option value="breach">
+    <ng-template ngx-select-option-template let-option="option">
+      🐛 {{ option.value }}
     </ng-template>
   </ngx-select-option>
-  <ngx-select-option name='DDOS' value='ddos'></ngx-select-option>
-  <ngx-select-option name='Physical' value='physical'>
-    <ng-template ngx-select-option-template let-option='option'>
-      🏃‍♀️ {{option.name}}
+  <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+  <ngx-select-option name="Physical" value="physical">
+    <ng-template ngx-select-option-template let-option="option">
+      🏃‍♀️ {{ option.name }}
     </ng-template>
   </ngx-select-option>
 </ngx-select>

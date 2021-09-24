@@ -8,7 +8,7 @@ import { FormControl } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoOptionsSelectExampleComponent {
-  options = [ ];
+  options = [];
 
   selectControl = new FormControl([]);
 }

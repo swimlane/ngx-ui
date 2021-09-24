@@ -5,13 +5,13 @@ import { FormControl } from '@angular/forms';
   selector: 'docs-add-new-select-example',
   templateUrl: './add-new-select-example.component.html',
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AddNewSelectExampleComponent {
   options = [
     { name: 'Breach', value: 'breach' },
     { name: 'DDOS', value: 'ddos' },
-    { name: 'Physical', value: 'physical' }
+    { name: 'Physical', value: 'physical' },
   ];
 
   // TODO (caleb) does add new add to the option list?

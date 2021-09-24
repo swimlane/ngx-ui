@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
   selector: 'docs-grouping-select-example',
   templateUrl: './grouping-select-example.component.html',
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class GroupingSelectExampleComponent {
   options = [

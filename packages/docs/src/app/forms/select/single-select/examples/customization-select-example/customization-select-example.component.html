@@ -1,14 +1,15 @@
-<ngx-select ngxInputAttribute
-            [formControl]='selectControl'
-            [filterable]="true"
-            [allowAdditions]="true"
-            allowAdditionsText='Add New Value'
-            [selectCaret]="doubleDown"
+<ngx-select
+  ngxInputAttribute
+  [formControl]="selectControl"
+  [filterable]="true"
+  [allowAdditions]="true"
+  allowAdditionsText="Add New Value"
+  [selectCaret]="doubleDown"
 >
   <ngx-select-option
-    *ngFor='let option of options'
-    [name]='option.name'
-    [value]='option.value'
+    *ngFor="let option of options"
+    [name]="option.name"
+    [value]="option.value"
   ></ngx-select-option>
 </ngx-select>
 

@@ -5,7 +5,7 @@ import { FormControl } from '@angular/forms';
   selector: 'docs-template-select-example',
   templateUrl: './template-select-example.component.html',
   styles: [],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TemplateSelectExampleComponent {
   selectControl = new FormControl([]);
