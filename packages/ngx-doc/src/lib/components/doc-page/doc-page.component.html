@@ -11,6 +11,8 @@
   </h1>
 </header>
 <div class="ngx-doc-page__content">
+  <ng-content select="ngx-doc-markdown"></ng-content>
+
   <ng-container *ngIf="tabConnectors.length; else noTabs">
     <ngx-tabs>
       <ngx-tab
