@@ -1,0 +1,12 @@
+<ngx-date-time
+  ngxInputAttribute
+  label="Local Time"
+  dateTimeInputType='dateTime'
+  [formControl]="dateControl"
+  format="MMM DD, YYYY hh:mm A Z"
+  timezone="Asia/Tokyo"
+  precision='hour'
+>
+</ngx-date-time>
+
+<p>Selected Date: {{ dateControl.value | json }}</p>

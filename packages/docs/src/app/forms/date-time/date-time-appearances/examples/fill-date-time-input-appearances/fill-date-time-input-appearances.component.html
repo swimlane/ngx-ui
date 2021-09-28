@@ -1,0 +1,28 @@
+<ngx-date-time
+  ngxInputAttribute
+  ngxAppearance='fill'
+  label='Date Fill Appearance'
+  dateTimeInputType='date'
+  [formControl]='dateControl'
+>
+</ngx-date-time>
+
+<ngx-date-time
+  ngxInputAttribute
+  ngxAppearance='fill'
+  dateTimeInputType='time'
+  label='Time Fill Appearance'
+  [formControl]='dateControl'
+>
+</ngx-date-time>
+
+<ngx-date-time
+  ngxInputAttribute
+  dateTimeInputType='dateTime'
+  ngxAppearance='fill'
+  label='DateTime Fill Appearance'
+  [formControl]='dateControl'
+>
+</ngx-date-time>
+
+<p>Selected Date: {{ dateControl.value | json }}</p>

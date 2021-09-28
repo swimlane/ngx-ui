@@ -1,0 +1,10 @@
+<ngx-date-time
+  ngxInputAttribute
+  name="calendar-input1"
+  label="Date of attack"
+  [format]="customFormat"
+  [formControl]="dateControl"
+>
+</ngx-date-time>
+
+<p>Selected Date: {{ dateControl.value | json }}</p>

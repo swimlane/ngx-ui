@@ -105,4 +105,12 @@ export const appRoutes: Routes = [
       import('./forms/select/selection.module').then((m) => m.SelectionModule),
     data: { title: 'Selects' },
   },
+  {
+    path: 'datetime',
+    loadChildren: () =>
+      import('./forms/date-time/date-time-page.module').then(
+        (m) => m.DateTimePageModule
+      ),
+    data: { title: 'DateTime' },
+  },
 ];
