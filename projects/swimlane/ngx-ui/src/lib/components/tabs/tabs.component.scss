@@ -22,7 +22,6 @@ $tabs-active-text-color: $color-white;
         button:hover {
           color: $tabs-active-text-color;
           border-width: 0;
-          font-weight: bold;
         }
       }
 
@@ -49,6 +48,7 @@ $tabs-active-text-color: $color-white;
         user-select: none;
         font: inherit;
         font-size: 1em;
+        font-weight: bold;
         outline: none;
         bottom: -1px;
 
