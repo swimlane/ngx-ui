@@ -463,6 +463,10 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     };
   }
 
+  setDisabledState(isDisabled: boolean): void {
+    this._disabled = isDisabled;
+  }
+
   private checkInvalidValue(value: any): boolean {
     if (Array.isArray(value)) {
       return !this.value.length || this.checkInvalidValue(value[0]);
