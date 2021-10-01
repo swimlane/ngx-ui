@@ -84,7 +84,7 @@
   <br />
 
   <h4>Add New</h4>
-  <ngx-select 
+  <ngx-select
     [filterable]="true" [allowAdditions]="true" [allowAdditionsText]="'Add New Value (Shift + ⏎)'" hint="Users can add new value by clicking on Add New Value or by pressing Shift + ⏎">
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
@@ -92,9 +92,9 @@
   </ngx-select>
 
 <app-prism>
-<![CDATA[<ngx-select 
-  [filterable]="true" 
-  [allowAdditions]="true" 
+<![CDATA[<ngx-select
+  [filterable]="true"
+  [allowAdditions]="true"
   [allowAdditionsText]="'Add New Value (Shift + ⏎)'"
   hint="Users can add new value by clicking on Add New Value or by pressing Shift + ⏎">
   <ngx-select-option name="Breach" value="breach"></ngx-select-option>
@@ -407,8 +407,67 @@
 <ng-template #doubleDown>
   <ngx-icon fontIcon="double-down"></ngx-icon>
 </ng-template>
-
 <!-- `allowAdditionsText` and `selectCaret` both accept strings or template references -->]]>
+</app-prism>
+
+  <br />
+  <br />
+  <br />
+
+  <h4>Enabled state can be changed using reactive forms</h4>
+  <form [formGroup]="form">
+    <ngx-select label="Attack Type" formControlName="formCtrl1">
+      <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+      <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+      <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+    </ngx-select>
+    <br />
+    <button class="btn btn-primary" type="button" (click)="onToggleNgxSelectState()">
+      Toggle form control state
+    </button>
+  </form>
+
+  <br />
+
+<app-prism>
+<![CDATA[<form [formGroup]="form">
+  <ngx-select label="Attack Type" formControlName="formCtrl1">
+    <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+    <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+    <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+  </ngx-select>
+  <br />
+  <button class="btn btn-primary" type="button" (click)="onToggleNgxSelectState()">
+    Toggle form control state
+  </button>
+</form>
+]]>
+</app-prism>
+
+  <br />
+  <br />
+  <br />
+
+  <h4>Disabled by default using reactive forms</h4>
+  <form [formGroup]="form">
+    <ngx-select label="Attack Type" formControlName="formCtrl2">
+      <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+      <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+      <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+    </ngx-select>
+    <br />
+  </form>
+
+<app-prism>
+<![CDATA[<form [formGroup]="form">
+  <ngx-select label="Attack Type" formControlName="formCtrl2">
+    <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+    <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+    <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+  </ngx-select>
+  <br />
+</form>
+]]>
 </app-prism>
 </ngx-section>
 
