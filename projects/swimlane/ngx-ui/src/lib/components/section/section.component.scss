@@ -93,20 +93,13 @@ $section-shadow: $shadow-3;
   &.light {
     background: $color-blue-grey-750;
 
-    .ngx-section-header {
-      background: $color-blue-grey-700;
-    }
-  }
-
-  &.light.outline {
-    background: $color-blue-grey-750;
-
     .ngx-section-header,
     .ngx-section-content {
       border: 3px solid $color-blue-grey-700;
     }
 
     .ngx-section-header {
+      background: $color-blue-grey-700;
       border-radius: 0;
 
       &.section-collapsed {
