@@ -3,11 +3,15 @@
 ## HEAD (unreleased)
 
 - Feature: Added focus rings to buttons
+- Feature: Add `passwordToggleEnabled` input to JSON editor.
 - Enhancement: Improve semantic HTML in `ngx-input` and `ngx-select`
 - Enhancement: Added `for` attribute to `ngx-input` labels
 - Enhancement: Added ARIA role attribute to `ngx-plus-menu`
 - Fix: Toggle going out of bounds when disabled in `ngx-toggle`
 - Enhancement: Improve active tab contrast in `ngx-tabs`
+- Fix: Use input password type for password fields in JSON editor.
+- Fix: Call to `onTouchedCallback()` should be executed on blur, per `ControlValueAccessor.registerOnTouched` docs
+- Fix: Tabs in `ngx-tabs` are now `type="button"`
 
 ## 35.6.8 (2021-07-16)
 

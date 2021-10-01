@@ -43,6 +43,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
 
   @Input() isDuplicated = false;
 
+  @Input() passwordToggleEnabled = false;
+
   indentationArray: number[] = [];
 
   duplicatedFields = new Map<string, string>();

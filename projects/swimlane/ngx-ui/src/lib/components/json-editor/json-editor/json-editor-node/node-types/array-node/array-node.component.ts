@@ -8,4 +8,6 @@ import { ArrayNode } from '../../../../node-types/array-node.component';
 })
 export class ArrayNodeComponent extends ArrayNode {
   @Input() isDuplicated = false;
+
+  @Input() passwordToggleEnabled = false;
 }

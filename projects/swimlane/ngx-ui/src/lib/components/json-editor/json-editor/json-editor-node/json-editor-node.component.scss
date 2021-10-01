@@ -171,7 +171,8 @@
     color: $color-error;
   }
 
-  .value-input {
+  *:not(ngx-input).value-input,
+  ngx-input.value-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {
     border: 1px solid $color-node-item-border;
     background: $color-node-item-bg;
     color: $color-blue-grey-150;
@@ -179,6 +180,7 @@
     height: 30px;
     padding: 5px;
     border-radius: 0;
+    margin: 0;
 
     &.select * {
       background-color: $color-blue-grey-700;
@@ -220,6 +222,16 @@
           display: inline;
         }
       }
+    }
+  }
+
+  ngx-input.value-input {
+    margin: 0;
+
+    .ngx-input-label,
+    .ngx-input-underline,
+    .ngx-input-hint {
+      display: none;
     }
   }
 

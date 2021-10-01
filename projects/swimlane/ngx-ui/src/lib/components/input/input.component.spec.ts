@@ -78,6 +78,13 @@ describe('InputComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
+  it('should execute registered onTouchedCallback on blur', () => {
+    const onTouchedCallback = jasmine.createSpy();
+    component.input.registerOnTouched(onTouchedCallback);
+    component.input.onBlur(MOCK_EVENT);
+    expect(onTouchedCallback).toHaveBeenCalled();
+  });
+
   describe('password', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(InputComponentFixture);

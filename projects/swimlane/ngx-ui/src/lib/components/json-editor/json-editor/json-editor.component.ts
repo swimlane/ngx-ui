@@ -26,6 +26,8 @@ export class JsonEditorComponent extends JsonEditor {
 
   @Input() typeCheckOverrides?: any;
 
+  @Input() passwordToggleEnabled = false;
+
   @ContentChildren(JsonEditorNodeComponent)
   nodeElms: QueryList<JsonEditorNodeComponent>;
 
