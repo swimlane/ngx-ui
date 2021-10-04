@@ -49,11 +49,6 @@ describe('Selects', () => {
     });
 
     it('should be able to get re-enabled', () => {
-      // cy.get('@CUT').should('not.have.class', 'disabled');
-      //
-      // cy.get('@reactiveFormSelectToggleBtn').click();
-      // cy.get('@CUT').should('have.class', 'disabled');
-
       cy.get('@reactiveFormSelectToggleBtn').click();
       cy.get('@CUT').should('not.have.class', 'disabled');
     });
