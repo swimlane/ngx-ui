@@ -72,7 +72,11 @@
         </div>
         <button
           *ngIf="type === inputTypes.password && passwordToggleEnabled"
-          class="btn btn-link icon-eye"
+          class="btn btn-link"
+          [ngClass]="{
+            'icon-eye': (type$ | async) === inputTypes.password,
+            'icon-eye-disabled': (type$ | async) !== inputTypes.password
+          }"
           title="Toggle Text Visibility"
           (click)="togglePassword()"
         >
