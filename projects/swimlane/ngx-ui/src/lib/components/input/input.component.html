@@ -78,11 +78,12 @@
         >
         </button>
         <button
-          *ngIf="type === inputTypes.text && unlockable && disabled"
+          *ngIf="(type === inputTypes.text || type === inputTypes.password) && unlockable && disabled"
           class="btn btn-link icon-lock"
-          (click)="disabled = false"
+          (click)="unlock()"
           ngx-tooltip
           [tooltipTitle]="unlockableTooltip"
+          [attr.aria-label]="unlockableTooltip"
         >
         </button>
       </div>

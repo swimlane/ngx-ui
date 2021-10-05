@@ -336,4 +336,28 @@ describe('Inputs', () => {
       cy.get('@CUT').ngxFindNativeInput().first().should('have.attr', 'type', 'text');
     });
   });
+
+  describe('Unlockable password', () => {
+    beforeEach(() => {
+      cy.getByName('input6b').as('CUT');
+    });
+
+    it('has no detectable a11y violations on load', () => {
+      cy.get('@CUT')
+        .find('.ngx-input-flex-wrap-inner')
+        .then($el => {
+          cy.checkA11y($el);
+        });
+    });
+
+    it('has a label', () => {
+      cy.get('@CUT').ngxFindLabel().contains('Secret');
+    });
+
+    it('should clear the password on unlock', () => {
+      cy.get('@CUT').find('.icon-lock').click();
+      cy.get('@CUT').ngxFindNativeInput().ngxGetValue().should('equal', '');
+      cy.get('@CUT').ngxFindNativeInput().should('not.be.disabled');
+    });
+  });
 });

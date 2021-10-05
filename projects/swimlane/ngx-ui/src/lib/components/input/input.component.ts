@@ -343,6 +343,14 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     this.disabled = coerceBooleanProperty(isDisabled);
   }
 
+  unlock(): void {
+    if (this.type === InputTypes.password) {
+      this.value = '';
+    }
+    this.disabled = false;
+    this.updateInputType();
+  }
+
   incrementValue(event: MouseEvent): void {
     this.increment(event);
     if (!this._spinnerInterval) {

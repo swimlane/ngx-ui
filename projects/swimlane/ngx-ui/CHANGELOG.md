@@ -12,6 +12,7 @@
 - Fix: Use input password type for password fields in JSON editor.
 - Fix: Call to `onTouchedCallback()` should be executed on blur, per `ControlValueAccessor.registerOnTouched` docs
 - Fix: Tabs in `ngx-tabs` are now `type="button"`
+- Enhancement: Add ability to unlock `ngx-input` for passwords
 
 ## 35.6.8 (2021-07-16)
 

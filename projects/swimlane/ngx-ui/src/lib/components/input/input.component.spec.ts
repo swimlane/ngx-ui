@@ -98,6 +98,15 @@ describe('InputComponent', () => {
       component.input.togglePassword();
       expect(component.input.type$.value).toEqual(InputTypes.text);
     });
+
+    it('should clear password on unlock', () => {
+      component.value = 'password';
+      fixture.detectChanges();
+      expect(component.input.type$.value).toEqual(InputTypes.password);
+      component.input.unlock();
+      expect(component.input.value).toEqual('');
+      expect(component.input.disabled).toEqual(false);
+    });
   });
 
   describe('validate', () => {
