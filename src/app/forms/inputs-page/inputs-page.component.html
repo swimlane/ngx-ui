@@ -220,7 +220,7 @@
   <button class="btn" type="submit">Login</button>
 </form>]]>
   </app-prism>
-  <ngx-input type="password" [label]="'Unlockable Secret'" [(ngModel)]="secretValue" [unlockable]="true" name="input6b">
+  <ngx-input type="password" [label]="'Unlockable Secret'" [(ngModel)]="secretValue" [unlockable]="true" [passwordToggleEnabled]="true" name="input6b">
   </ngx-input>
   <app-prism>
 <![CDATA[<ngx-input
@@ -228,6 +228,7 @@
   [label]="'Unlockable Secret'"
   [(ngModel)]="secretValue"
   [unlockable]="true"
+  [passwordToggleEnabled]="true"
   name="input6b">]]>
   </app-prism>
 </ngx-section>

@@ -354,10 +354,20 @@ describe('Inputs', () => {
       cy.get('@CUT').ngxFindLabel().contains('Secret');
     });
 
+    it('should show lock icon when locked', () => {
+      cy.get('@CUT').find('.icon-lock').should('be.visible');
+      cy.get('@CUT').find('.icon-eye').should('not.exist');
+    });
+
     it('should clear the password on unlock', () => {
       cy.get('@CUT').find('.icon-lock').click();
       cy.get('@CUT').ngxFindNativeInput().ngxGetValue().should('equal', '');
       cy.get('@CUT').ngxFindNativeInput().should('not.be.disabled');
+    });
+
+    it('should show visibility icon when unlocked', () => {
+      cy.get('@CUT').find('.icon-lock').should('not.exist');
+      cy.get('@CUT').find('.icon-eye').should('be.visible');
     });
   });
 });
