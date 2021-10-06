@@ -13,6 +13,7 @@
 - Fix: Call to `onTouchedCallback()` should be executed on blur, per `ControlValueAccessor.registerOnTouched` docs
 - Fix: Tabs in `ngx-tabs` are now `type="button"`
 - Enhancement: Add ability to unlock `ngx-input` for passwords
+- Fix: Add capability of disabling `ngx-select` elements using its `FormControl` when used inside a reactive form.
 
 ## 35.6.8 (2021-07-16)
 

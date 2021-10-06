@@ -358,4 +358,32 @@ describe('SelectComponent', () => {
       expect(select).toHaveClass('autosize');
     });
   });
+
+  describe('setDisabledState', () => {
+    it('should disable select element accordingly', async () => {
+      component.select.setDisabledState(true);
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(component.select.disabled).toBeTrue();
+    });
+
+    it('should enable select element accordingly', async () => {
+      // first disables the component
+      component.select.setDisabledState(true);
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(component.select.disabled).toBeTrue();
+
+      component.select.setDisabledState(false);
+
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(component.select.disabled).toBeFalse();
+    });
+  });
 });
