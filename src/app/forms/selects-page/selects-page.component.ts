@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
 import { switchMap } from 'rxjs/operators';
@@ -14,6 +15,10 @@ export class SelectsPageComponent implements OnInit {
   selectsModel = [this.selects[0]];
   singleSelectModel = this.selects[0];
   asyncOptions$: Observable<any>;
+  form = new FormGroup({
+    formCtrl1: new FormControl([]),
+    formCtrl2: new FormControl({ value: [], disabled: true })
+  });
 
   private get _results() {
     let i = 50;
@@ -55,5 +60,14 @@ export class SelectsPageComponent implements OnInit {
 
   onEvent(name: string, event: Event): void {
     console.log(name, event);
+  }
+
+  onToggleNgxSelectState(): void {
+    const formControl = this.form.get('formCtrl1');
+    if (formControl.enabled) {
+      formControl.disable();
+    } else {
+      formControl.enable();
+    }
   }
 }

@@ -2,8 +2,8 @@
 
 $tabs-border-fill: $color-blue-grey-700;
 $tabs-active-border-fill: $color-blue;
-$tabs-text-color: $color-blue-grey-100;
-$tabs-active-text-color: $color-grey-100;
+$tabs-text-color: $color-blue-grey-250;
+$tabs-active-text-color: $color-white;
 
 .ngx-tabs {
   margin-bottom: 2em;
@@ -48,6 +48,7 @@ $tabs-active-text-color: $color-grey-100;
         user-select: none;
         font: inherit;
         font-size: 1em;
+        font-weight: bold;
         outline: none;
         bottom: -1px;
 

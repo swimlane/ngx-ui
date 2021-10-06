@@ -36,6 +36,34 @@ describe('Selects', () => {
     });
   });
 
+  describe('Input with AbstractControl', () => {
+    beforeEach(() => {
+      cy.get('#select-19').as('CUT');
+      cy.get('[data-cy=reactiveFormSelectToggleBtn]').as('reactiveFormSelectToggleBtn');
+    });
+
+    it('should be able to be disabled', () => {
+      cy.get('@CUT').should('not.have.class', 'disabled');
+      cy.get('@reactiveFormSelectToggleBtn').click();
+      cy.get('@CUT').should('have.class', 'disabled');
+    });
+
+    it('should be able to get re-enabled', () => {
+      cy.get('@reactiveFormSelectToggleBtn').click();
+      cy.get('@CUT').should('not.have.class', 'disabled');
+    });
+  });
+
+  describe('Input with AbstractControl disabled by default', () => {
+    beforeEach(() => {
+      cy.get('#select-20').as('CUT');
+    });
+
+    it('should be able to be disabled', () => {
+      cy.get('@CUT').should('have.class', 'disabled');
+    });
+  });
+
   describe('Filtering Input', () => {
     beforeEach(() => {
       cy.get('#select-3').as('CUT');
@@ -72,7 +100,7 @@ describe('Selects', () => {
 
   describe('Multiple Select', () => {
     beforeEach(() => {
-      cy.get('#select-19').as('CUT');
+      cy.get('#select-21').as('CUT');
     });
 
     it('selects and clears value', () => {

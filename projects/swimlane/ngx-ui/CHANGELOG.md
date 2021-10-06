@@ -8,11 +8,13 @@
 - Enhancement: Added `for` attribute to `ngx-input` labels
 - Enhancement: Added ARIA role attribute to `ngx-plus-menu`
 - Fix: Toggle going out of bounds when disabled in `ngx-toggle`
+- Enhancement: Improve active tab contrast in `ngx-tabs`
 - Fix: Use input password type for password fields in JSON editor.
 - Fix: Call to `onTouchedCallback()` should be executed on blur, per `ControlValueAccessor.registerOnTouched` docs
 - Fix: Tabs in `ngx-tabs` are now `type="button"`
 - Fix: Adjust label position and background of `ngx-input` fill appearance
 - Enhancement: Add input, `textareaRows` to allow setting `row` attribute of `ngx-input` textarea
+- Fix: Add capability of disabling `ngx-select` elements using its `FormControl` when used inside a reactive form.
 
 ## 35.6.8 (2021-07-16)
 
