@@ -289,7 +289,7 @@
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Textarea'">
-  <ngx-input type="textarea" name="input111" [label]="'Name'" [ngModel]="inputValue">
+  <ngx-input type="textarea" name="input111" [label]="'Name'" [ngModel]="inputValue" [textareaRows]="3">
   </ngx-input>
 </ngx-section>
 
@@ -359,6 +359,12 @@
 
   <ngx-input type="textarea" appearance="fill" label="Fill Textarea" placeholder="enter your text here..." hint="example of a fill textarea"></ngx-input>
 
+  <br />
+
+  <ngx-input label="Fill Prefix Suffix" type="number" appearance="fill" ngModel="0" placeholder="enter your dollar amount here..." hint="example of a fill number input">
+    <ngx-input-prefix>$</ngx-input-prefix>
+    <ngx-input-suffix>USD</ngx-input-suffix>
+  </ngx-input>
   <br />
 
   <app-prism>

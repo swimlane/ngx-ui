@@ -264,6 +264,15 @@ $input-placeholder-color: $color-blue-grey-350;
   }
 
   &.fill {
+    .ngx-input-flex-wrap {
+      background-color: $color-blue-grey-875;
+      mix-blend-mode: exclusion;
+    }
+
+    .ngx-input-label {
+      left: 0;
+    }
+
     .ngx-input-wrap .ngx-input-box-wrap {
       .icon-eye,
       .icon-lock {
@@ -282,17 +291,19 @@ $input-placeholder-color: $color-blue-grey-350;
       .ngx-input-box + .numeric-spinner {
         right: 10px;
       }
+    }
 
-      &::after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-color: $color-blue-grey-875;
-        mix-blend-mode: exclusion;
-        content: '';
-      }
+    ngx-input-prefix,
+    ngx-input-suffix {
+      color: $color-blue-grey-350;
+    }
+
+    ngx-input-prefix {
+      padding-left: 10px;
+    }
+
+    ngx-input-suffix {
+      padding-right: 10px;
     }
   }
 }
