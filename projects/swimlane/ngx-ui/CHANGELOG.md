@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.7.0 (2021-10-07)
+
 - Enhancement(Dropdown): Add viewport intersection to support opening select dropdowns if hidden by viewport.
 - Feature: Added focus rings to buttons
 - Feature: Add `passwordToggleEnabled` input to JSON editor.
