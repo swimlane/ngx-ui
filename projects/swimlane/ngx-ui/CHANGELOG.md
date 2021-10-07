@@ -7,6 +7,7 @@
 - Enhancement: Improve semantic HTML in `ngx-input` and `ngx-select`
 - Enhancement: Added `for` attribute to `ngx-input` labels
 - Enhancement: Added ARIA role attribute to `ngx-plus-menu`
+- Enhancement: Added 'light' appearance to `ngx-section`
 - Fix: Toggle going out of bounds when disabled in `ngx-toggle`
 - Enhancement: Improve active tab contrast in `ngx-tabs`
 - Fix: Use input password type for password fields in JSON editor.
