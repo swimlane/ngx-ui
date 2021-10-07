@@ -481,7 +481,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
   private adjustMenuDirection(event: {
     [InViewportMetadata]: { entry: IntersectionObserverEntry };
-    target: HTMLElement;x
+    target: HTMLElement;
     visible: boolean;
   }): void {
     if (this.isIntersectingBottom(event[InViewportMetadata].entry)) {
