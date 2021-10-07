@@ -11,6 +11,7 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
+import { InViewportDirective } from 'ng-in-viewport';
 import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
@@ -119,6 +120,9 @@ export class SelectDropdownComponent implements AfterViewInit {
 
   @ViewChild('filterInput')
   readonly filterInput?: ElementRef<HTMLInputElement>;
+
+  @ViewChild(InViewportDirective)
+  readonly inViewport: InViewportDirective;
 
   get element() {
     return this.elementRef.nativeElement;

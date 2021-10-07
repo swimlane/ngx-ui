@@ -84,10 +84,21 @@ $color-chip-text: #fff;
       }
     }
 
-    .ngx-select-dropdown {
-      display: block;
+    .ngx-select-dropdown--upwards {
+      opacity: 1;
+      bottom: 100%;
+      top: auto;
+      margin-bottom: 24px;
+      animation: openUpwardsAnimation 0.25s;
+    }
+
+    .ngx-select-dropdown--downwards {
       opacity: 1;
       animation: openAnimation 0.25s;
+    }
+
+    .ngx-select-dropdown {
+      display: block;
     }
   }
 
@@ -609,6 +620,15 @@ $color-chip-text: #fff;
   @keyframes openAnimation {
     0% {
       transform: translateY(-25px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+
+  @keyframes openUpwardsAnimation {
+    0% {
+      transform: translateY(25px);
     }
     100% {
       transform: translateY(0px);
