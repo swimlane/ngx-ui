@@ -2,17 +2,23 @@
 
 ## HEAD (unreleased)
 
+## 35.7.0 (2021-10-07)
+
+- Enhancement(Dropdown): Add viewport intersection to support opening select dropdowns if hidden by viewport.
 - Feature: Added focus rings to buttons
 - Feature: Add `passwordToggleEnabled` input to JSON editor.
 - Enhancement: Improve semantic HTML in `ngx-input` and `ngx-select`
 - Enhancement: Added `for` attribute to `ngx-input` labels
 - Enhancement: Added ARIA role attribute to `ngx-plus-menu`
+- Enhancement: Added 'light' appearance to `ngx-section`
 - Fix: Toggle going out of bounds when disabled in `ngx-toggle`
 - Enhancement: Improve active tab contrast in `ngx-tabs`
 - Fix: Use input password type for password fields in JSON editor.
 - Fix: Call to `onTouchedCallback()` should be executed on blur, per `ControlValueAccessor.registerOnTouched` docs
 - Fix: Tabs in `ngx-tabs` are now `type="button"`
 - Enhancement: Add ability to unlock `ngx-input` for passwords
+- Fix: Adjust label position and background of `ngx-input` fill appearance
+- Enhancement: Add input, `textareaRows` to allow setting `row` attribute of `ngx-input` textarea
 - Fix: Add capability of disabling `ngx-select` elements using its `FormControl` when used inside a reactive form.
 
 ## 35.6.8 (2021-07-16)

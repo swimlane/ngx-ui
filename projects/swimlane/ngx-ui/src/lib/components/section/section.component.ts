@@ -28,6 +28,11 @@ export class SectionComponent {
     return this.appearance === SectionApperance.Outline;
   }
 
+  @HostBinding('class.light')
+  get light() {
+    return this.appearance === SectionApperance.Light;
+  }
+
   @Input() sectionCollapsed = false;
   @Input() sectionCollapsible = true;
   @Input() headerToggle = false;
