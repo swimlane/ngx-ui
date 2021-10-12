@@ -1,3 +1,40 @@
+## [36.0.0-beta.11](https://github.com/swimlane/ngx-ui/compare/36.0.0-beta.10...36.0.0-beta.11) (2021-10-12)
+
+
+### Features
+
+* **doc-markdown:** click to copy ([54045ad](https://github.com/swimlane/ngx-ui/commit/54045add23dd31cac3b589907dd87b2aa3afc583))
+
+
+### Bug Fixes
+
+* **select:** show dropdown options ([b8cd470](https://github.com/swimlane/ngx-ui/commit/b8cd470cb44d7064dce22d62e502345c8a2da4c8))
+
+
+### Refactor
+
+* **lint clean up:** lint all files in project with prettier ([d2bf4dc](https://github.com/swimlane/ngx-ui/commit/d2bf4dceed98d0707e5e0360afc54c81df47694e))
+
+
+### Documentations
+
+* **buttons:** add button docs ([4e3a388](https://github.com/swimlane/ngx-ui/commit/4e3a3888bd0193dad7068dcc86b4e0d64a849507))
+* **contributing:** update to reflect new commands ([1b47e09](https://github.com/swimlane/ngx-ui/commit/1b47e09fd36e9ed48675a9c9e53ae7f0d6096a98))
+* **datetime:** add datetime examples ([a61a768](https://github.com/swimlane/ngx-ui/commit/a61a768fc3bac8813a454d61afe999fa932fc9c4))
+* **doc example generator:** add generate to create doc example ([4231c8c](https://github.com/swimlane/ngx-ui/commit/4231c8cf97c8a4e7cdfda7b94c235fd1bd0de966))
+* **native select:** add native select to docs ([0ab5c9d](https://github.com/swimlane/ngx-ui/commit/0ab5c9d2987adf0bfa10c54602a4f3e33724372c))
+* **ngx-doc-page:** add markdown content support ([44bcefa](https://github.com/swimlane/ngx-ui/commit/44bcefaf0ff1fa21c40a26135596692d97467a1c))
+* **select appearances:** add select appearances to docs ([650c4b0](https://github.com/swimlane/ngx-ui/commit/650c4b0e62ca7dbbd6d21211d81c820db67c66a2))
+* **select async:** add select async to docs ([52136b8](https://github.com/swimlane/ngx-ui/commit/52136b8e68cebd3170881528560e5c7f772536e2))
+* **select multi:** add mutli select examples to docs ([34ee569](https://github.com/swimlane/ngx-ui/commit/34ee569fc378317ce1ee05be8f7b6a414b16cf48))
+* **selects:** add intro markdown ([e887fe6](https://github.com/swimlane/ngx-ui/commit/e887fe676d7651f1210b4287e942a3202fc830aa))
+* **selects:** add single select examples ([8488e78](https://github.com/swimlane/ngx-ui/commit/8488e78c30babb58cc279cdcff76d85a8c57c5e1))
+* **select:** stub select docs ([04ff936](https://github.com/swimlane/ngx-ui/commit/04ff936778a8beca8e53c71d6645938c82fd333b))
+* **single selects:** update single select doc examples ([bc7a8b2](https://github.com/swimlane/ngx-ui/commit/bc7a8b275c3234edfcf76c8f06c3a42604de20e3))
+* **tagging select:** add tagging select to docs ([6103907](https://github.com/swimlane/ngx-ui/commit/61039070d0b44da63cb4539f48f2a24568829d0a))
+* **workspace generators:** add page generator ([a847a77](https://github.com/swimlane/ngx-ui/commit/a847a772a752d5e7d880c62c3fb91aace6155325))
+* **workspace generators:** update generators to modify parents ([0404d1b](https://github.com/swimlane/ngx-ui/commit/0404d1b693f7531eb9dbeb81a65704f7d480cec4))
+
 ## [36.0.0-beta.10](https://github.com/swimlane/ngx-ui/compare/36.0.0-beta.9...36.0.0-beta.10) (2021-07-19)
 
 ### Bug Fixes
