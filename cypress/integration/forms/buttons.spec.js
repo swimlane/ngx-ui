@@ -22,15 +22,31 @@ describe('Buttons', () => {
       });
     });
 
+    it('should have Default button', () => {
+      cy.get('@SUT').within(() => {
+        cy.get('button').contains('Default').should('exist').as('CUT');
+        cy.get('@CUT').should('contain', 'Default').click();
+      });
+    });
+
+    it('should have Primary button', () => {
+      cy.get('@SUT').within(() => {
+        cy.get('button').contains('Primary').should('exist').as('CUT');
+        cy.get('@CUT').should('contain', 'Primary').click();
+      });
+    });
+
     it('adds outline on focus', () => {
       cy.get('@SUT').within(() => {
         cy.get('.ngx-section-content button').first().as('CUT');
 
-        cy.get('@CUT').findPseudoAfter().its('opacity').should('eq', '0');
+        cy.get('@CUT').should('have.css', 'outline-style', 'none');
+        cy.get('@CUT').should('have.css', 'outline-color', 'rgb(255, 255, 255)');
 
         cy.get('.ngx-section-content').realClick({ x: 10, y: 10 });
         cy.realPress('Tab'); // Navigates to first button
-        cy.get('@CUT').findPseudoAfter().its('opacity').should('eq', '1');
+        cy.get('@CUT').should('have.css', 'outline-style', 'solid');
+        cy.get('@CUT').should('have.css', 'outline-color', 'rgb(69, 80, 102)');
       });
     });
 
@@ -115,11 +131,11 @@ describe('Buttons', () => {
       cy.get('@SUT').within(() => {
         cy.get('.ngx-section-content ngx-button').first().as('CUT');
 
-        cy.get('@CUT').find('button').findPseudoAfter().its('opacity').should('eq', '0');
+        cy.get('@CUT').find('button').should('have.css', 'outline-style', 'none');
 
         cy.get('.ngx-section-content').realClick({ x: 10, y: 10 });
         cy.realPress('Tab'); // Navigates to first button
-        cy.get('@CUT').find('button').findPseudoAfter().its('opacity').should('eq', '1');
+        cy.get('@CUT').find('button').should('have.css', 'outline-style', 'solid');
       });
     });
 
@@ -132,18 +148,18 @@ describe('Buttons', () => {
         cy.get('.ngx-section-content').realClick({ x: 10, y: 10 }); // Navigates to first section
 
         cy.realPress('Tab'); // Navigates to first button
-        cy.focused().should('contain.text', 'Default').findPseudoAfter().its('opacity').should('eq', '1');
+        cy.focused().should('contain.text', 'Default').should('have.css', 'outline-style', 'solid');
         cy.realPress('Space'); // Presses the button
         cy.get('@consoleLog').should('be.calledWith', 'Demo app click: Default');
 
         cy.realPress('Tab'); // Navigates to first button
-        cy.focused().should('contain.text', 'Primary').findPseudoAfter().its('opacity').should('eq', '1');
+        cy.focused().should('contain.text', 'Primary').should('have.css', 'outline-style', 'solid');
         cy.realPress('Space'); // Presses the button
         cy.get('@consoleLog').should('be.calledWith', 'Demo app click: Primary');
       });
     });
 
-    it('does not fucus on disable buttons', () => {
+    it('does not focus on disable buttons', () => {
       cy.get('@SUT').within(() => {
         cy.get('.ngx-section-content').realClick({ x: 10, y: 10 }); // Navigates to first section
         cy.realPress('Tab')
