@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.7.1 (2021-10-13)
+
 - Fix(buttons): Fix issue where buttons were reported as covered by Cypress
 
 ## 35.7.0 (2021-10-07)
