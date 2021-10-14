@@ -78,6 +78,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   @Input() emptyPlaceholder = 'No options available';
   @Input() filterEmptyPlaceholder = 'No matches...';
   @Input() filterPlaceholder = 'Filter options...';
+  @Input() forceDownwardOpening = false;
   @Input() allowAdditionsText = 'Add Value';
   @Input() groupBy: string;
   @Input() selectCaret: string;
@@ -486,7 +487,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     target: HTMLElement;
     visible: boolean;
   }): void {
-    if (this.isIntersectingBottom(event[InViewportMetadata].entry)) {
+    if (this.isIntersectingBottom(event[InViewportMetadata].entry) && !this.forceDownwardOpening) {
       this._renderer.addClass(this.selectDropdown.element, 'ngx-select-dropdown--upwards');
     } else {
       this._renderer.addClass(this.selectDropdown.element, 'ngx-select-dropdown--downwards');
