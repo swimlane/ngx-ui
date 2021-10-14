@@ -5,6 +5,8 @@
 ## 35.7.1 (2021-10-13)
 
 - Fix(buttons): Fix issue where buttons were reported as covered by Cypress
+- Fix(ngx-select): Fix issue where `active` class was not updated when the
+  dropdown was closed
 
 ## 35.7.0 (2021-10-07)
 

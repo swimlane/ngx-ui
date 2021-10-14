@@ -444,6 +444,8 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
         .pipe(take(1))
         .subscribe({ next: this.adjustMenuDirection.bind(this) });
     }
+
+    this._cdr.markForCheck();
   }
 
   onKeyUp({ event, value }: { event: KeyboardEvent; value?: string }): void {

@@ -12,7 +12,7 @@ describe('Selects', () => {
           'color-contrast': { enabled: false }, // NOTE: to be evaluated by UIUX
           label: { enabled: false } // TODO: fix these
         }
-      });
+      } as any);
     });
   });
 
@@ -32,6 +32,17 @@ describe('Selects', () => {
 
       cy.get('@CUT').select(text).ngxGetValue().should('equal', text);
 
+      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
+    });
+
+    it('selects and clears value twice', () => {
+      cy.get('@CUT').ngxGetValue().should('equal', '');
+
+      const text = 'DDOS';
+      cy.get('@CUT').select(text).ngxGetValue().should('equal', text);
+      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
+
+      cy.get('@CUT').select(text).ngxGetValue().should('equal', text);
       cy.get('@CUT').clear().ngxGetValue().should('equal', '');
     });
   });
