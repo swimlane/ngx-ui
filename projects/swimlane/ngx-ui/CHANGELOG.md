@@ -3,6 +3,8 @@
 ## HEAD (unreleased)
 
 - Enhancement: Add optional forceDownwardOpening option to `ngx-select`
+- Enhancement: Keep `ngx-select` opening downwards when intersecting viewport top
+
 ## 35.7.2 (2021-10-14)
 
 - Fix(ngx-select): Fix issue where `active` class was not updated when the dropdown was closed

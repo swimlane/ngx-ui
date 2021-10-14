@@ -487,7 +487,8 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     target: HTMLElement;
     visible: boolean;
   }): void {
-    if (this.isIntersectingBottom(event[InViewportMetadata].entry) && !this.forceDownwardOpening) {
+    const { entry } = event[InViewportMetadata];
+    if (!this.forceDownwardOpening && this.isIntersectingBottom(entry) && !this.isIntersectingTop(entry)) {
       this._renderer.addClass(this.selectDropdown.element, 'ngx-select-dropdown--upwards');
     } else {
       this._renderer.addClass(this.selectDropdown.element, 'ngx-select-dropdown--downwards');
@@ -496,6 +497,10 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
   private isIntersectingBottom(entry: IntersectionObserverEntry): boolean {
     return entry.boundingClientRect.bottom >= entry.rootBounds.bottom;
+  }
+
+  private isIntersectingTop(entry: IntersectionObserverEntry): boolean {
+    return entry.boundingClientRect.top - entry.boundingClientRect.height <= entry.rootBounds.top;
   }
 
   private checkInvalidValue(value: any): boolean {
