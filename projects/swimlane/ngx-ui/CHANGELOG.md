@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.8.0 (2021-10-15)
+
 - Enhancement: Add optional forceDownwardOpening option to `ngx-select`
 - Enhancement: Keep `ngx-select` opening downwards when intersecting viewport top
 
