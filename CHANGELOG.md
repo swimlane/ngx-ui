@@ -1,3 +1,11 @@
+## [36.0.0-beta.12](https://github.com/swimlane/ngx-ui/compare/36.0.0-beta.11...36.0.0-beta.12) (2021-10-18)
+
+
+### Documentations
+
+* **contrubiting:** update for latest guide ([bf2cc11](https://github.com/swimlane/ngx-ui/commit/bf2cc1125921258af18cbbd4ad4a11fe169406f0))
+* **release config:** update to build after check out ([adece05](https://github.com/swimlane/ngx-ui/commit/adece058bc146bbf0848ee81883a8188a6af4783))
+
 ## [36.0.0-beta.11](https://github.com/swimlane/ngx-ui/compare/36.0.0-beta.10...36.0.0-beta.11) (2021-10-12)
 
 

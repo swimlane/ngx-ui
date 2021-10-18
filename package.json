@@ -1,6 +1,6 @@
 {
   "name": "ngx-ui",
-  "version": "36.0.0-beta.11",
+  "version": "36.0.0-beta.12",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
