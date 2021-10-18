@@ -44,7 +44,7 @@ module.exports = {
     releaseNotes: true,
   },
   hooks: {
-    'after:bump': ['git checkout -b release/${version}'],
+    'after:bump': ['npm run build:libs', 'git checkout -b release/${version}'],
     'after:release': [
       'git push origin HEAD --tags',
       'git checkout -',
