@@ -36,11 +36,11 @@
     - a `BREAKING CHANGE` in the commit will bump a `major` version
       > It is worth noting that a `patch` version is always bumped when run `npm run release` so make sure to only run `release` script when the repo is actually ready to be released.
 - Confirm everything in the terminal before say Yes to "Commit"
-  - This is also the time where `CHANGELOG` can be updated manually with custom changes.
+  - This is also the time when `CHANGELOG` can be updated manually with custom changes.
   - After updating `CHANGELOG` manually (if need be) at this step, make sure to stage the changes with `git add .` (in a different terminal) before saying Yes to "Commit"
 - There will be Release hooks
 
-  - `after:bump`: After the version has been bumped, this hook will run `git checkout -b release/${version}` to checkout a `release` branch
+  - `after:bump`: After the version has been bumped, this hook will run `git checkout -b release/${version}` to checkout a `release` branch and will run `npm run build:libs`
   - `after:release`: After you have accepted to "Commit" question and "Tag" question, this hook will run `git push origin HEAD --tags` to push the branch and tag upstream. This follows the current release flow
 
   - if there is an error, you will need to delete branch and tag **locally and on the remote**.
@@ -61,10 +61,32 @@
 The demo site is filled with code snippets and documentations. These are provided by utilizing `ngx-doc-markdown`
 
 #### Add a new component/page
+> we utilize [nx workspace generator](https://nx.dev/l/n/generators/workspace-generators) to simplify the creation and standardize the docs structure
+Note: paths for these workspace generators assume the `<doc root>/src/app` in the path so that can be excluded when providing the path. i.e. provide the path starting from inside the `app` folder
 
-- Generate a Module with `<component_or_page_name>`: `ng generate module {{component}}`
-- Generate a Component with `<component_or_page_name>`: `ng generate component {{component}} --inlineStyle --inlineTemplate --skipTests --flat`
-- Setup routing for the new Module with `generateRoutes` utility
+- To create a page run `npm run doc:page <page_name> <path_to_page>`
+  - A page is a navigable route on the docs site. i.e. it'll show up in the side nav
+  - To manually create
+    1. generate a module `ng generate module {{module}}`
+    2. generate a component `ng generate component {{component}} --inlineStyle --inlineTemplate --skipTests --flat`
+    3. use `generateRoutes` to make a child route in page module imports
+       1. `RouterModule.forChild(generateRoutes(MyPageComponent))`
+    4. update `app.routes.ts` to lazy load the module in
+    5. update the component template to use `<ngx-doc-page>`
+  
+- To create an example run `npm run doc:example <example_name> <path_to_example>`
+  - An example is a specific example you wish to show within a page
+  - To manually create
+    1. generate a component `ng generate component {{component}} --inlineStyle --skipTests --flat`
+    2. create an `index.ts` file next to the component
+    3. import the component and template via `raw-loader`
+    4. create a `DocExamples` object for the template and component imports named `<ExampleComponentName>Content`
+    5. export the doc example, template, and component
+    6. update the parent page to use this example
+
+```bash
+npm run doc:page my-fancy-page . # using '.' to be at the root of `app` folder
+```
 
 ```ts
 import { CommonModule } from '@angular/common';
