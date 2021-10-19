@@ -4,6 +4,7 @@
 
 - Enhancement: Add optional forceDownwardOpening option to `ngx-select`
 - Enhancement: Keep `ngx-select` opening downwards when intersecting viewport top
+- Fix: Buttons should not have outline on click
 
 ## 35.7.2 (2021-10-14)
 
