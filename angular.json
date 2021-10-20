@@ -179,7 +179,8 @@
               "packages/ngx-doc/src/**/*.ts",
               "packages/ngx-doc/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "publish-lib": {
           "builder": "@nrwl/workspace:run-commands",
@@ -248,7 +249,8 @@
               "packages/ngx-ui/src/**/*.ts",
               "packages/ngx-ui/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "publish-lib": {
           "builder": "@nrwl/workspace:run-commands",
@@ -303,7 +305,8 @@
               "packages/ngx-ui/alert/src/**/*.ts",
               "packages/ngx-ui/alert/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -344,7 +347,8 @@
               "packages/ngx-ui/animations/src/**/*.ts",
               "packages/ngx-ui/animations/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -385,7 +389,8 @@
               "packages/ngx-ui/appearance/src/**/*.ts",
               "packages/ngx-ui/appearance/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -426,7 +431,8 @@
               "packages/ngx-ui/autofocus/src/**/*.ts",
               "packages/ngx-ui/autofocus/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -467,7 +473,8 @@
               "packages/ngx-ui/autosize/src/**/*.ts",
               "packages/ngx-ui/autosize/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -508,7 +515,8 @@
               "packages/ngx-ui/button/src/**/*.ts",
               "packages/ngx-ui/button/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -549,7 +557,8 @@
               "packages/ngx-ui/calendar/src/**/*.ts",
               "packages/ngx-ui/calendar/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -590,7 +599,8 @@
               "packages/ngx-ui/camel-to-snake/src/**/*.ts",
               "packages/ngx-ui/camel-to-snake/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -631,7 +641,8 @@
               "packages/ngx-ui/card/src/**/*.ts",
               "packages/ngx-ui/card/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -672,7 +683,8 @@
               "packages/ngx-ui/checkbox/src/**/*.ts",
               "packages/ngx-ui/checkbox/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -713,7 +725,8 @@
               "packages/ngx-ui/code-editor/src/**/*.ts",
               "packages/ngx-ui/code-editor/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -754,7 +767,8 @@
               "packages/ngx-ui/common/src/**/*.ts",
               "packages/ngx-ui/common/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -795,7 +809,8 @@
               "packages/ngx-ui/copy-to-clipboard/src/**/*.ts",
               "packages/ngx-ui/copy-to-clipboard/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -836,7 +851,8 @@
               "packages/ngx-ui/date-time/src/**/*.ts",
               "packages/ngx-ui/date-time/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -877,7 +893,8 @@
               "packages/ngx-ui/decamelize/src/**/*.ts",
               "packages/ngx-ui/decamelize/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -918,7 +935,8 @@
               "packages/ngx-ui/dialog/src/**/*.ts",
               "packages/ngx-ui/dialog/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -959,7 +977,8 @@
               "packages/ngx-ui/drawer/src/**/*.ts",
               "packages/ngx-ui/drawer/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1000,7 +1019,8 @@
               "packages/ngx-ui/dropdown/src/**/*.ts",
               "packages/ngx-ui/dropdown/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1041,7 +1061,8 @@
               "packages/ngx-ui/dropzone/src/**/*.ts",
               "packages/ngx-ui/dropzone/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1082,7 +1103,8 @@
               "packages/ngx-ui/file-button/src/**/*.ts",
               "packages/ngx-ui/file-button/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1123,7 +1145,8 @@
               "packages/ngx-ui/filter-by/src/**/*.ts",
               "packages/ngx-ui/filter-by/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1164,7 +1187,8 @@
               "packages/ngx-ui/hotkeys/src/**/*.ts",
               "packages/ngx-ui/hotkeys/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1205,7 +1229,8 @@
               "packages/ngx-ui/icon/src/**/*.ts",
               "packages/ngx-ui/icon/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1246,7 +1271,8 @@
               "packages/ngx-ui/input/src/**/*.ts",
               "packages/ngx-ui/input/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1287,7 +1313,8 @@
               "packages/ngx-ui/input-attribute/src/**/*.ts",
               "packages/ngx-ui/input-attribute/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1328,7 +1355,8 @@
               "packages/ngx-ui/input-autosize/src/**/*.ts",
               "packages/ngx-ui/input-autosize/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1369,7 +1397,8 @@
               "packages/ngx-ui/intersection-observer/src/**/*.ts",
               "packages/ngx-ui/intersection-observer/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1410,7 +1439,8 @@
               "packages/ngx-ui/json-editor/src/**/*.ts",
               "packages/ngx-ui/json-editor/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1451,7 +1481,8 @@
               "packages/ngx-ui/json-tree/src/**/*.ts",
               "packages/ngx-ui/json-tree/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1492,7 +1523,8 @@
               "packages/ngx-ui/large-format-dialog/src/**/*.ts",
               "packages/ngx-ui/large-format-dialog/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1533,7 +1565,8 @@
               "packages/ngx-ui/loading/src/**/*.ts",
               "packages/ngx-ui/loading/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1574,7 +1607,8 @@
               "packages/ngx-ui/long-press/src/**/*.ts",
               "packages/ngx-ui/long-press/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1615,7 +1649,8 @@
               "packages/ngx-ui/long-press-button/src/**/*.ts",
               "packages/ngx-ui/long-press-button/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1656,7 +1691,8 @@
               "packages/ngx-ui/marginless/src/**/*.ts",
               "packages/ngx-ui/marginless/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1697,7 +1733,8 @@
               "packages/ngx-ui/nag/src/**/*.ts",
               "packages/ngx-ui/nag/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1738,7 +1775,8 @@
               "packages/ngx-ui/nav-menu/src/**/*.ts",
               "packages/ngx-ui/nav-menu/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1779,7 +1817,8 @@
               "packages/ngx-ui/navbar/src/**/*.ts",
               "packages/ngx-ui/navbar/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1820,7 +1859,8 @@
               "packages/ngx-ui/notification/src/**/*.ts",
               "packages/ngx-ui/notification/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1861,7 +1901,8 @@
               "packages/ngx-ui/overlay/src/**/*.ts",
               "packages/ngx-ui/overlay/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1902,7 +1943,8 @@
               "packages/ngx-ui/plus-menu/src/**/*.ts",
               "packages/ngx-ui/plus-menu/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1943,7 +1985,8 @@
               "packages/ngx-ui/progress-spinner/src/**/*.ts",
               "packages/ngx-ui/progress-spinner/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -1984,7 +2027,8 @@
               "packages/ngx-ui/radio-button/src/**/*.ts",
               "packages/ngx-ui/radio-button/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2025,7 +2069,8 @@
               "packages/ngx-ui/resize-observer/src/**/*.ts",
               "packages/ngx-ui/resize-observer/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2066,7 +2111,8 @@
               "packages/ngx-ui/section/src/**/*.ts",
               "packages/ngx-ui/section/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2107,7 +2153,8 @@
               "packages/ngx-ui/select/src/**/*.ts",
               "packages/ngx-ui/select/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2148,7 +2195,8 @@
               "packages/ngx-ui/size/src/**/*.ts",
               "packages/ngx-ui/size/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2189,7 +2237,8 @@
               "packages/ngx-ui/slider/src/**/*.ts",
               "packages/ngx-ui/slider/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2230,7 +2279,8 @@
               "packages/ngx-ui/split/src/**/*.ts",
               "packages/ngx-ui/split/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2271,7 +2321,8 @@
               "packages/ngx-ui/stepper/src/**/*.ts",
               "packages/ngx-ui/stepper/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2312,7 +2363,8 @@
               "packages/ngx-ui/tabs/src/**/*.ts",
               "packages/ngx-ui/tabs/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2353,7 +2405,8 @@
               "packages/ngx-ui/time-zone/src/**/*.ts",
               "packages/ngx-ui/time-zone/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2394,7 +2447,8 @@
               "packages/ngx-ui/tip/src/**/*.ts",
               "packages/ngx-ui/tip/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2435,7 +2489,8 @@
               "packages/ngx-ui/toggle/src/**/*.ts",
               "packages/ngx-ui/toggle/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2476,7 +2531,8 @@
               "packages/ngx-ui/toolbar/src/**/*.ts",
               "packages/ngx-ui/toolbar/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2517,7 +2573,8 @@
               "packages/ngx-ui/tooltip/src/**/*.ts",
               "packages/ngx-ui/tooltip/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2558,7 +2615,8 @@
               "packages/ngx-ui/tree/src/**/*.ts",
               "packages/ngx-ui/tree/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2599,7 +2657,8 @@
               "packages/ngx-ui/typings/src/**/*.ts",
               "packages/ngx-ui/typings/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     },
@@ -2640,7 +2699,8 @@
               "packages/ngx-ui/utils/src/**/*.ts",
               "packages/ngx-ui/utils/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
       }
     }
