@@ -22,196 +22,27 @@
     "appsDir": "packages",
     "libsDir": "packages"
   },
-  "projects": {
-    "docs": {
-      "tags": ["scope:docs", "type:app"]
-    },
-    "docs-e2e": {
-      "tags": [],
-      "implicitDependencies": ["docs"]
-    },
-    "ngx-doc": {
-      "tags": ["scope:ngx-doc", "type:lib"]
-    },
-    "ngx-ui": {
-      "tags": ["scope:ngx-ui", "type:lib"]
-    },
-    "ngx-ui-alert": {
-      "tags": ["scope:alert", "type:lib"]
-    },
-    "ngx-ui-animations": {
-      "tags": ["scope:animations", "type:lib"]
-    },
-    "ngx-ui-appearance": {
-      "tags": ["scope:appearance", "type:lib"]
-    },
-    "ngx-ui-autofocus": {
-      "tags": ["scope:autofocus", "type:lib"]
-    },
-    "ngx-ui-autosize": {
-      "tags": ["scope:autosize", "type:lib"]
-    },
-    "ngx-ui-button": {
-      "tags": ["scope:button", "type:lib"]
-    },
-    "ngx-ui-calendar": {
-      "tags": ["scope:calendar", "type:lib"]
-    },
-    "ngx-ui-camel-to-snake": {
-      "tags": ["scope:camel-to-snake", "type:lib"]
-    },
-    "ngx-ui-card": {
-      "tags": ["scope:card", "type:lib"]
-    },
-    "ngx-ui-checkbox": {
-      "tags": ["scope:checkbox", "type:lib"]
-    },
-    "ngx-ui-code-editor": {
-      "tags": ["scope:code-editor", "type:lib"]
-    },
-    "ngx-ui-common": {
-      "tags": ["scope:common", "type:lib"]
-    },
-    "ngx-ui-copy-to-clipboard": {
-      "tags": ["scope:copy-to-clipboard", "type:lib"]
-    },
-    "ngx-ui-date-time": {
-      "tags": ["scope:date-time", "type:lib"]
-    },
-    "ngx-ui-decamelize": {
-      "tags": ["scope:decamelize", "type:lib"]
-    },
-    "ngx-ui-dialog": {
-      "tags": ["scope:dialog", "type:lib"]
-    },
-    "ngx-ui-drawer": {
-      "tags": ["scope:drawer", "type:lib"]
-    },
-    "ngx-ui-dropdown": {
-      "tags": ["scope:dropdown", "type:lib"]
-    },
-    "ngx-ui-dropzone": {
-      "tags": ["scope:dropzone", "type:lib"]
-    },
-    "ngx-ui-file-button": {
-      "tags": ["scope:file-button", "type:lib"]
-    },
-    "ngx-ui-filter-by": {
-      "tags": ["scope:filter-by", "type:lib"]
-    },
-    "ngx-ui-hotkeys": {
-      "tags": ["scope:hotkeys", "type:lib"]
-    },
-    "ngx-ui-icon": {
-      "tags": ["scope:icon", "type:lib"]
-    },
-    "ngx-ui-input": {
-      "tags": ["scope:input", "type:lib"]
-    },
-    "ngx-ui-input-attribute": {
-      "tags": ["scope:input-attribute", "type:lib"]
-    },
-    "ngx-ui-input-autosize": {
-      "tags": ["scope:input-autosize", "type:lib"]
-    },
-    "ngx-ui-intersection-observer": {
-      "tags": ["scope:intersection-observer", "type:lib"]
-    },
-    "ngx-ui-json-editor": {
-      "tags": ["scope:json-editor", "type:lib"]
-    },
-    "ngx-ui-json-tree": {
-      "tags": ["scope:json-tree", "type:lib"]
-    },
-    "ngx-ui-large-format-dialog": {
-      "tags": ["scope:large-format-dialog", "type:lib"]
-    },
-    "ngx-ui-loading": {
-      "tags": ["scope:loading", "type:lib"]
-    },
-    "ngx-ui-long-press": {
-      "tags": ["scope:long-press", "type:lib"]
-    },
-    "ngx-ui-long-press-button": {
-      "tags": ["scope:long-press-button", "type:lib"]
-    },
-    "ngx-ui-marginless": {
-      "tags": ["scope:marginless", "type:lib"]
-    },
-    "ngx-ui-nag": {
-      "tags": ["scope:nag", "type:lib"]
-    },
-    "ngx-ui-nav-menu": {
-      "tags": ["scope:nav-menu", "type:lib"]
-    },
-    "ngx-ui-navbar": {
-      "tags": ["scope:navbar", "type:lib"]
-    },
-    "ngx-ui-notification": {
-      "tags": ["scope:notification", "type:lib"]
-    },
-    "ngx-ui-overlay": {
-      "tags": ["scope:overlay", "type:lib"]
-    },
-    "ngx-ui-plus-menu": {
-      "tags": ["scope:plus-menu", "type:lib"]
-    },
-    "ngx-ui-progress-spinner": {
-      "tags": ["scope:progress-spinner", "type:lib"]
-    },
-    "ngx-ui-radio-button": {
-      "tags": ["scope:radio-button", "type:lib"]
-    },
-    "ngx-ui-resize-observer": {
-      "tags": ["scope:resize-observer", "type:lib"]
-    },
-    "ngx-ui-section": {
-      "tags": ["scope:section", "type:lib"]
-    },
-    "ngx-ui-select": {
-      "tags": ["scope:select", "type:lib"]
-    },
-    "ngx-ui-size": {
-      "tags": ["scope:size", "type:lib"]
-    },
-    "ngx-ui-slider": {
-      "tags": ["scope:slider", "type:lib"]
-    },
-    "ngx-ui-split": {
-      "tags": ["scope:split", "type:lib"]
-    },
-    "ngx-ui-stepper": {
-      "tags": ["scope:stepper", "type:lib"]
-    },
-    "ngx-ui-tabs": {
-      "tags": ["scope:tabs", "type:lib"]
-    },
-    "ngx-ui-time-zone": {
-      "tags": ["scope:time-zone", "type:lib"]
-    },
-    "ngx-ui-tip": {
-      "tags": ["scope:tip", "type:lib"]
-    },
-    "ngx-ui-toggle": {
-      "tags": ["scope:toggle", "type:lib"]
-    },
-    "ngx-ui-toolbar": {
-      "tags": ["scope:toolbar", "type:lib"]
-    },
-    "ngx-ui-tooltip": {
-      "tags": ["scope:tooltip", "type:lib"]
-    },
-    "ngx-ui-tree": {
-      "tags": ["scope:tree", "type:lib"]
-    },
-    "ngx-ui-typings": {
-      "tags": ["scope:typings", "type:lib"]
-    },
-    "ngx-ui-utils": {
-      "tags": ["scope:utils", "type:lib"]
-    }
-  },
   "targetDependencies": {
     "build": []
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "docs",
+  "generators": {
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
   }
 }

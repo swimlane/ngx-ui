@@ -1,25 +1,5 @@
 {
   "version": 1,
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
-  "defaultProject": "docs",
-  "schematics": {
-    "@nrwl/angular:application": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "scss"
-    }
-  },
   "projects": {
     "docs": {
       "projectType": "application",
@@ -119,7 +99,8 @@
             "browserTarget": "docs:build"
           }
         }
-      }
+      },
+      "tags": ["scope:docs", "type:app"]
     },
     "docs-e2e": {
       "root": "packages/docs-e2e",
@@ -139,7 +120,9 @@
             }
           }
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["docs"]
     },
     "ngx-doc": {
       "projectType": "library",
@@ -196,7 +179,8 @@
             "cwd": "dist/packages/ngx-doc"
           }
         }
-      }
+      },
+      "tags": ["scope:ngx-doc", "type:lib"]
     },
     "ngx-ui": {
       "projectType": "library",
@@ -266,7 +250,8 @@
             "cwd": "dist/packages/ngx-ui"
           }
         }
-      }
+      },
+      "tags": ["scope:ngx-ui", "type:lib"]
     },
     "ngx-ui-alert": {
       "projectType": "library",
@@ -308,7 +293,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:alert", "type:lib"]
     },
     "ngx-ui-animations": {
       "projectType": "library",
@@ -350,7 +336,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:animations", "type:lib"]
     },
     "ngx-ui-appearance": {
       "projectType": "library",
@@ -392,7 +379,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:appearance", "type:lib"]
     },
     "ngx-ui-autofocus": {
       "projectType": "library",
@@ -434,7 +422,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:autofocus", "type:lib"]
     },
     "ngx-ui-autosize": {
       "projectType": "library",
@@ -476,7 +465,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:autosize", "type:lib"]
     },
     "ngx-ui-button": {
       "projectType": "library",
@@ -518,7 +508,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:button", "type:lib"]
     },
     "ngx-ui-calendar": {
       "projectType": "library",
@@ -560,7 +551,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:calendar", "type:lib"]
     },
     "ngx-ui-camel-to-snake": {
       "projectType": "library",
@@ -602,7 +594,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:camel-to-snake", "type:lib"]
     },
     "ngx-ui-card": {
       "projectType": "library",
@@ -644,7 +637,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:card", "type:lib"]
     },
     "ngx-ui-checkbox": {
       "projectType": "library",
@@ -686,7 +680,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:checkbox", "type:lib"]
     },
     "ngx-ui-code-editor": {
       "projectType": "library",
@@ -728,7 +723,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:code-editor", "type:lib"]
     },
     "ngx-ui-common": {
       "projectType": "library",
@@ -770,7 +766,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:common", "type:lib"]
     },
     "ngx-ui-copy-to-clipboard": {
       "projectType": "library",
@@ -812,7 +809,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:copy-to-clipboard", "type:lib"]
     },
     "ngx-ui-date-time": {
       "projectType": "library",
@@ -854,7 +852,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:date-time", "type:lib"]
     },
     "ngx-ui-decamelize": {
       "projectType": "library",
@@ -896,7 +895,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:decamelize", "type:lib"]
     },
     "ngx-ui-dialog": {
       "projectType": "library",
@@ -938,7 +938,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:dialog", "type:lib"]
     },
     "ngx-ui-drawer": {
       "projectType": "library",
@@ -980,7 +981,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:drawer", "type:lib"]
     },
     "ngx-ui-dropdown": {
       "projectType": "library",
@@ -1022,7 +1024,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:dropdown", "type:lib"]
     },
     "ngx-ui-dropzone": {
       "projectType": "library",
@@ -1064,7 +1067,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:dropzone", "type:lib"]
     },
     "ngx-ui-file-button": {
       "projectType": "library",
@@ -1106,7 +1110,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:file-button", "type:lib"]
     },
     "ngx-ui-filter-by": {
       "projectType": "library",
@@ -1148,7 +1153,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:filter-by", "type:lib"]
     },
     "ngx-ui-hotkeys": {
       "projectType": "library",
@@ -1190,7 +1196,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:hotkeys", "type:lib"]
     },
     "ngx-ui-icon": {
       "projectType": "library",
@@ -1232,7 +1239,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:icon", "type:lib"]
     },
     "ngx-ui-input": {
       "projectType": "library",
@@ -1274,7 +1282,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:input", "type:lib"]
     },
     "ngx-ui-input-attribute": {
       "projectType": "library",
@@ -1316,7 +1325,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:input-attribute", "type:lib"]
     },
     "ngx-ui-input-autosize": {
       "projectType": "library",
@@ -1358,7 +1368,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:input-autosize", "type:lib"]
     },
     "ngx-ui-intersection-observer": {
       "projectType": "library",
@@ -1400,7 +1411,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:intersection-observer", "type:lib"]
     },
     "ngx-ui-json-editor": {
       "projectType": "library",
@@ -1442,7 +1454,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:json-editor", "type:lib"]
     },
     "ngx-ui-json-tree": {
       "projectType": "library",
@@ -1484,7 +1497,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:json-tree", "type:lib"]
     },
     "ngx-ui-large-format-dialog": {
       "projectType": "library",
@@ -1526,7 +1540,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:large-format-dialog", "type:lib"]
     },
     "ngx-ui-loading": {
       "projectType": "library",
@@ -1568,7 +1583,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:loading", "type:lib"]
     },
     "ngx-ui-long-press": {
       "projectType": "library",
@@ -1610,7 +1626,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:long-press", "type:lib"]
     },
     "ngx-ui-long-press-button": {
       "projectType": "library",
@@ -1652,7 +1669,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:long-press-button", "type:lib"]
     },
     "ngx-ui-marginless": {
       "projectType": "library",
@@ -1694,7 +1712,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:marginless", "type:lib"]
     },
     "ngx-ui-nag": {
       "projectType": "library",
@@ -1736,7 +1755,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:nag", "type:lib"]
     },
     "ngx-ui-nav-menu": {
       "projectType": "library",
@@ -1778,7 +1798,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:nav-menu", "type:lib"]
     },
     "ngx-ui-navbar": {
       "projectType": "library",
@@ -1820,7 +1841,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:navbar", "type:lib"]
     },
     "ngx-ui-notification": {
       "projectType": "library",
@@ -1862,7 +1884,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:notification", "type:lib"]
     },
     "ngx-ui-overlay": {
       "projectType": "library",
@@ -1904,7 +1927,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:overlay", "type:lib"]
     },
     "ngx-ui-plus-menu": {
       "projectType": "library",
@@ -1946,7 +1970,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:plus-menu", "type:lib"]
     },
     "ngx-ui-progress-spinner": {
       "projectType": "library",
@@ -1988,7 +2013,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:progress-spinner", "type:lib"]
     },
     "ngx-ui-radio-button": {
       "projectType": "library",
@@ -2030,7 +2056,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:radio-button", "type:lib"]
     },
     "ngx-ui-resize-observer": {
       "projectType": "library",
@@ -2072,7 +2099,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:resize-observer", "type:lib"]
     },
     "ngx-ui-section": {
       "projectType": "library",
@@ -2114,7 +2142,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:section", "type:lib"]
     },
     "ngx-ui-select": {
       "projectType": "library",
@@ -2156,7 +2185,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:select", "type:lib"]
     },
     "ngx-ui-size": {
       "projectType": "library",
@@ -2198,7 +2228,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:size", "type:lib"]
     },
     "ngx-ui-slider": {
       "projectType": "library",
@@ -2240,7 +2271,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:slider", "type:lib"]
     },
     "ngx-ui-split": {
       "projectType": "library",
@@ -2282,7 +2314,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:split", "type:lib"]
     },
     "ngx-ui-stepper": {
       "projectType": "library",
@@ -2324,7 +2357,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:stepper", "type:lib"]
     },
     "ngx-ui-tabs": {
       "projectType": "library",
@@ -2366,7 +2400,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:tabs", "type:lib"]
     },
     "ngx-ui-time-zone": {
       "projectType": "library",
@@ -2408,7 +2443,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:time-zone", "type:lib"]
     },
     "ngx-ui-tip": {
       "projectType": "library",
@@ -2450,7 +2486,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:tip", "type:lib"]
     },
     "ngx-ui-toggle": {
       "projectType": "library",
@@ -2492,7 +2529,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:toggle", "type:lib"]
     },
     "ngx-ui-toolbar": {
       "projectType": "library",
@@ -2534,7 +2572,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:toolbar", "type:lib"]
     },
     "ngx-ui-tooltip": {
       "projectType": "library",
@@ -2576,7 +2615,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:tooltip", "type:lib"]
     },
     "ngx-ui-tree": {
       "projectType": "library",
@@ -2618,7 +2658,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:tree", "type:lib"]
     },
     "ngx-ui-typings": {
       "projectType": "library",
@@ -2660,7 +2701,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:typings", "type:lib"]
     },
     "ngx-ui-utils": {
       "projectType": "library",
@@ -2702,7 +2744,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": ["scope:utils", "type:lib"]
     }
   }
 }
