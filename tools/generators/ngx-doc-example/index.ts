@@ -5,7 +5,7 @@ import {
   logger,
   names,
   readProjectConfiguration,
-  Tree,
+  Tree
 } from '@nrwl/devkit';
 import { wrapAngularDevkitSchematic } from '@nrwl/devkit/ngcli-adapter';
 import { tsquery } from '@phenomnomnominal/tsquery';
@@ -16,7 +16,7 @@ export interface NgxDocExampleSchema {
   path: string;
 }
 
-export default async function (host: Tree, schema: NgxDocExampleSchema) {
+export default async function(host: Tree, schema: NgxDocExampleSchema) {
   const normalizedNames = names(schema.name);
   const docsRoot = readProjectConfiguration(host, 'docs').root;
   const pathToComponent = joinPathFragments(
@@ -37,7 +37,7 @@ export default async function (host: Tree, schema: NgxDocExampleSchema) {
     inlineStyle: true,
     changeDetection: 'OnPush',
     prefix: 'docs',
-    skipTests: true,
+    skipTests: true
   });
 
   generateFiles(
@@ -54,6 +54,26 @@ export default async function (host: Tree, schema: NgxDocExampleSchema) {
     '..',
     `${parentComponentName}.component.ts`
   );
+
+
+  if (!host.exists(parentComponentPath)) {
+    const generationPath = joinPathFragments(pathToComponent, '..');
+    console.log({ parentPathParts, parentComponentName, parentComponentPath, generationPath });
+    logger.warn(`Unable to find parent page component. Will generate it`);
+    await componentGenerator(host, {
+      name: parentComponentName,
+      path: generationPath,
+      project: 'docs',
+      inlineStyle: true,
+      inlineTemplate: true,
+      changeDetection: 'OnPush',
+      prefix: 'docs',
+      skipTests: true,
+      viewEncapsulation: 'None',
+      flat: true
+    });
+  }
+
   addExampleToParentComponent(host, normalizedNames, parentComponentPath);
 
   await formatFiles(host);
@@ -64,6 +84,11 @@ function addExampleToParentComponent(
   generatedComponentNames: ReturnType<typeof names>,
   pathToParentComponent: string
 ) {
+  if (!host.exists(pathToParentComponent)) {
+    logger.fatal(`Unable to find parent page component at path ${pathToParentComponent}`);
+    throw new Error(`Unable to find path ${pathToParentComponent}. is the provided path to generate the example correct?`);
+  }
+
   const componentEntry = host.read(pathToParentComponent);
   const componentContents = componentEntry.toString();
 

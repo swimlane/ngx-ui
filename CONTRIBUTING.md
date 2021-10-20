@@ -84,8 +84,17 @@ Note: paths for these workspace generators assume the `<doc root>/src/app` in th
     5. export the doc example, template, and component
     6. update the parent page to use this example
 
+To generate a page
 ```bash
 npm run doc:page my-fancy-page . # using '.' to be at the root of `app` folder
+```
+
+To generate an example
+```bash
+npm run doc:example my-fancy-example my-fancy-page/basic-fancy-examples/examples
+# <basic-fancy-examples> is the folder to group this set of examples in. 
+# in there there should be a component where all the examples will be used, 
+# if there isn't a component then the generator will create the component.
 ```
 
 ```ts
