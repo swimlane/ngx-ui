@@ -434,16 +434,19 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     if (this.toggleListener) this.toggleListener();
     this.toggle.emit(this.dropdownActive);
 
-    if (state && this.closeOnBodyClick) {
-      this.toggleListener = this._renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
-    }
+    if (this.dropdownActive) {
+      // if open
+      if (this.closeOnBodyClick) {
+        this.toggleListener = this._renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
+      }
 
-    this._cdr.detectChanges();
+      this._cdr.detectChanges();
 
-    if (this.dropdownActive && this.selectDropdown?.inViewport) {
-      this.selectDropdown.inViewport.inViewportAction
-        .pipe(take(1))
-        .subscribe({ next: this.adjustMenuDirection.bind(this) });
+      if (this.selectDropdown?.inViewport) {
+        this.selectDropdown.inViewport.inViewportAction
+          .pipe(take(1))
+          .subscribe({ next: this.adjustMenuDirection.bind(this) });
+      }
     }
 
     this._cdr.markForCheck();
