@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.8.1 (2021-10-26)
+
 - Fix: prevent `ngx-input` buttons from submitting forms
 - Fix: Buttons should not have outline on click
 - Fix: Fix error thrown from `ngx-select` on destroy
