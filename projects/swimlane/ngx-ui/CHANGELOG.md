@@ -2,6 +2,7 @@
 
 ## HEAD (unreleased)
 
+- Fix: prevent `ngx-input` buttons from submitting forms
 - Fix: Buttons should not have outline on click
 - Fix: Fix error thrown from `ngx-select` on destroy
 

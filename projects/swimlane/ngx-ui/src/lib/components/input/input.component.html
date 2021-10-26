@@ -72,6 +72,7 @@
         </div>
         <button
           *ngIf="type === inputTypes.password && passwordToggleEnabled"
+          type="button"
           class="btn btn-link icon-eye"
           title="Toggle Text Visibility"
           (click)="togglePassword()"
@@ -79,6 +80,7 @@
         </button>
         <button
           *ngIf="type === inputTypes.text && unlockable && disabled"
+          type="button"
           class="btn btn-link icon-lock"
           (click)="disabled = false"
           ngx-tooltip

@@ -189,6 +189,7 @@ $input-placeholder-color: $color-blue-grey-350;
         font-size: 0.8rem;
         color: $input-icon-color;
         transition: color 100ms;
+        padding: 0;
 
         &:hover {
           color: $color-grey-200;
