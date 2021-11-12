@@ -241,6 +241,24 @@
 </ngx-input>]]>
   </app-prism>
 
+  <ngx-input type="number" label="Fraction" [(ngModel)]="fractionValue" name="fraction-input" min="-30" max="30" incrementRes="0.5">
+  </ngx-input>
+
+  Value: {{ fractionValue }}
+
+  <br />
+  <app-prism>
+<![CDATA[<ngx-input
+  type="number"
+  label="Fraction"
+  [(ngModel)]="fractionValue"
+  name="fraction-input"
+  min="-30"
+  max="30"
+  incrementRes="0.5">
+</ngx-input>]]>
+  </app-prism>
+
   <ngx-input type="number" label="Pi" [disabled]="true" [ngModel]="3.14159">
   </ngx-input>
 

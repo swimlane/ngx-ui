@@ -208,7 +208,7 @@ describe('InputComponent', () => {
       });
     });
 
-    it('should increment input value by 1', done => {
+    it('should increment input value by 1 when resolution is not set', done => {
       component.input.value = 41;
       fixture.detectChanges();
 
@@ -218,6 +218,21 @@ describe('InputComponent', () => {
         fixture.detectChanges();
 
         expect(component.input.value).toBe(42);
+        done();
+      });
+    });
+
+    it('should increment input value by 0.1 when resolution is set to 0.1', done => {
+      component.input.value = 41;
+      component.input.incrementRes = 0.1;
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        component.input.incrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+        fixture.detectChanges();
+
+        expect(component.input.value).toBe(41.1);
         done();
       });
     });
@@ -254,7 +269,7 @@ describe('InputComponent', () => {
       });
     });
 
-    it('should decrement input value by 1', done => {
+    it('should decrement input value by 1 when resolution is not set', done => {
       component.input.value = 41;
       fixture.detectChanges();
 
@@ -263,6 +278,21 @@ describe('InputComponent', () => {
         component.input.clearSpinnerInterval();
 
         expect(component.input.value).toBe(40);
+        done();
+      });
+    });
+
+    it('should decrement input value by 0.1 when resolution is set to 0.1', done => {
+      component.input.value = 41;
+      component.input.incrementRes = 0.1;
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        component.input.decrementValue(new MouseEvent('mousedown'));
+        component.input.clearSpinnerInterval();
+        fixture.detectChanges();
+
+        expect(component.input.value).toBe(40.9);
         done();
       });
     });

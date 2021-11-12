@@ -80,6 +80,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   @Input() max: number;
   @Input() minlength: number;
   @Input() maxlength: number;
+  @Input() incrementRes = 1;
   @Input() size: Size = Size.Small;
   @Input() appearance: Appearance = Appearance.Legacy;
   @Input() withMargin = true;
@@ -395,7 +396,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
       const max = +this.max;
       if ((max || max === 0) && +el.value >= max) return;
 
-      el.value = el.value ? (+el.value + 1).toString() : '1';
+      el.value = el.value ? (+el.value + +this.incrementRes).toString() : this.incrementRes.toString();
       this.value = el.value;
       this.change.emit(this._value);
       if (document.activeElement !== this.inputControl.nativeElement) {
@@ -422,7 +423,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
         }
       }
 
-      el.value = el.value ? (+el.value - 1).toString() : '-1';
+      el.value = el.value ? (+el.value - +this.incrementRes).toString() : (-this.incrementRes).toString();
       this.value = el.value;
       this.change.emit(this._value);
       if (document.activeElement !== this.inputControl.nativeElement) {

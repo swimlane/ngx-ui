@@ -15,6 +15,7 @@ export class InputsPageComponent {
   input5: any;
   inputDefaultVal = 'Defaulted!';
   numericValue: any;
+  fractionValue: any;
   usernameValue: any;
   passwordValue: any;
   output: any;
