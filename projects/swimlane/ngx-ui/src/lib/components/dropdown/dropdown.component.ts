@@ -112,17 +112,24 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     target: HTMLElement;
     visible: boolean;
   }): void {
+    const { entry } = event[InViewportMetadata];
+
     if (!event.visible && this.open) {
-      if (this.isIntersectingBottom(event[InViewportMetadata].entry)) {
+      if (this.isIntersectingBottom(entry) && !this.isIntersectingTop(entry)) {
         this.renderer.addClass(this.dropdownMenu.element, 'ngx-dropdown-menu--upwards');
       } else {
         this.renderer.removeClass(this.dropdownMenu.element, 'ngx-dropdown-menu--upwards');
       }
     }
+
     if (this.open) {
       this._positionAdjusted = true;
       this.cd.markForCheck();
     }
+  }
+
+  private isIntersectingTop(entry: IntersectionObserverEntry): boolean {
+    return entry.boundingClientRect.top - entry.boundingClientRect.height <= entry.rootBounds.top;
   }
 
   isIntersectingBottom(entry: IntersectionObserverEntry): boolean {

@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: Force `ngx-dropdown` opening downwards when intersecting viewport top
+
 ## 35.8.1 (2021-10-26)
 
 - Fix: prevent `ngx-input` buttons from submitting forms
