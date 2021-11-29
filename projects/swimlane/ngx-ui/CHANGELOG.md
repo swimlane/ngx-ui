@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 35.9.0 (2021-11-29)
+
 - Feature: add `forceDownwardOpening` input to `ngx-dropdown`
 - Fix: set default `forceDownwardOpening` on `ngx-dropdown` to false
 
