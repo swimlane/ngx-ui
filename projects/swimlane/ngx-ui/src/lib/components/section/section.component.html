@@ -13,6 +13,8 @@
       class="ngx-section-toggle"
       type="button"
       title="Toggle Content Visibility"
+      [attr.aria-controls]="id"
+      [attr.aria-expanded]="!sectionCollapsed"
       (click)="sectionCollapsible && onSectionClicked()"
     >
       <ngx-icon 
