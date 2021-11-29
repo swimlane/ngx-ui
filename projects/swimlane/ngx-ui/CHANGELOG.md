@@ -2,6 +2,7 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: `ngx-select` with `headerToggle` enable is noy keyboard accessible
 - Enhancement: Added ARIA controls and expanded attribute to `ngx-section`
 - Feature: add `forceDownwardOpening` input to `ngx-dropdown`
 - Fix: set default `forceDownwardOpening` on `ngx-dropdown` to false

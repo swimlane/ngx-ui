@@ -6,6 +6,8 @@
     [class.toggle-right]="togglePosition === TogglePosition.Right"
     [class.header-toggle]="headerToggle"
     class="ngx-section-header"
+    [attr.tabindex]="headerToggle && 0"
+    (keyup.space)="headerToggle && sectionCollapsible && onSectionClicked()"
     (click)="headerToggle && sectionCollapsible && onSectionClicked()"
   >
     <button
