@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Feature: add `forceDownwardOpening` input to `ngx-dropdown`
+- Fix: set default `forceDownwardOpening` on `ngx-dropdown` to false
+
 ## 35.8.1 (2021-10-26)
 
 - Fix: prevent `ngx-input` buttons from submitting forms
