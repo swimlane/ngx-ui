@@ -16,7 +16,7 @@ describe('Sections', () => {
     });
 
     it('has no detectable a11y violations on load', () => {
-      cy.get('@CUT').then(($el) => {
+      cy.get('@CUT').then($el => {
         cy.checkA11y($el);
       });
     });
@@ -47,7 +47,9 @@ describe('Sections', () => {
       cy.get('@SUT').within(() => {
         cy.get('.ngx-section-header').realClick({ x: 100, y: 10 });
 
-        cy.get('@CUT').find('.ngx-section-toggle').as('toggle')
+        cy.get('@CUT')
+          .find('.ngx-section-toggle')
+          .as('toggle')
           .should('have.css', 'outline-style', 'none')
           .should('have.css', 'outline-color', 'rgb(205, 210, 221)');
 
@@ -62,18 +64,15 @@ describe('Sections', () => {
       cy.get('@SUT').within(() => {
         cy.get('.ngx-section-header').realClick({ x: 100, y: 10 }); // Navigates to first section
 
-        cy.get('@CUT').find('.ngx-section-header')
-          .should('not.have.class', 'section-collapsed');
- 
-        cy.realPress('Tab');  // Tabs to the toggle button
-        
-        cy.realPress('Space'); // Presses the button
-        cy.get('@CUT').find('.ngx-section-header')
-          .should('have.class', 'section-collapsed');
+        cy.get('@CUT').find('.ngx-section-header').should('not.have.class', 'section-collapsed');
+
+        cy.realPress('Tab'); // Tabs to the toggle button
 
         cy.realPress('Space'); // Presses the button
-        cy.get('@CUT').find('.ngx-section-header')
-          .should('not.have.class', 'section-collapsed');
+        cy.get('@CUT').find('.ngx-section-header').should('have.class', 'section-collapsed');
+
+        cy.realPress('Space'); // Presses the button
+        cy.get('@CUT').find('.ngx-section-header').should('not.have.class', 'section-collapsed');
       });
     });
   });
