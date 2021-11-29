@@ -17,6 +17,7 @@ import { DropdownToggleDirective } from './dropdown-toggle.directive';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { InViewportMetadata } from 'ng-in-viewport';
+import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 
 @Component({
   exportAs: 'ngxDropdown',
@@ -79,6 +80,8 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     this._closeOnMouseLeave = coerceBooleanProperty(val);
   }
 
+  @Input() @CoerceBooleanProperty() forceDownwardOpening = true;
+
   @ContentChild(DropdownToggleDirective) readonly dropdownToggle: DropdownToggleDirective;
   @ContentChild(DropdownMenuDirective) readonly dropdownMenu: DropdownMenuDirective;
 
@@ -113,7 +116,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     visible: boolean;
   }): void {
     if (!event.visible && this.open) {
-      if (this.isIntersectingBottom(event[InViewportMetadata].entry)) {
+      if (!this.forceDownwardOpening && this.isIntersectingBottom(event[InViewportMetadata].entry)) {
         this.renderer.addClass(this.dropdownMenu.element, 'ngx-dropdown-menu--upwards');
       } else {
         this.renderer.removeClass(this.dropdownMenu.element, 'ngx-dropdown-menu--upwards');
