@@ -32,21 +32,13 @@ describe('Tabs', () => {
 
     it('starts on first tab and should select other tabs on click', () => {
       cy.get('@CUT').within(() => {
-        cy.get('.ngx-tab-content ngx-tab').eq(0)
-          .should('be.visible')
-          .should('contain', 'Tab 1 contents.');
+        cy.get('.ngx-tab-content ngx-tab').eq(0).should('be.visible').should('contain', 'Tab 1 contents.');
         cy.get('.ngx-tab').eq(1).click();
-        cy.get('.ngx-tab-content ngx-tab').eq(1)
-          .should('be.visible')
-          .should('contain', 'Tab 2 contents.');
+        cy.get('.ngx-tab-content ngx-tab').eq(1).should('be.visible').should('contain', 'Tab 2 contents.');
         cy.get('.ngx-tab').eq(2).click();
-        cy.get('.ngx-tab-content ngx-tab').eq(2)
-          .should('be.visible')
-          .should('contain', 'Tab 3 contents.');
+        cy.get('.ngx-tab-content ngx-tab').eq(2).should('be.visible').should('contain', 'Tab 3 contents.');
         cy.get('.ngx-tab').eq(3).click();
-        cy.get('.ngx-tab-content ngx-tab').eq(3)
-          .should('be.visible')
-          .should('contain', 'Tab 4 contents.');
+        cy.get('.ngx-tab-content ngx-tab').eq(3).should('be.visible').should('contain', 'Tab 4 contents.');
       });
     });
 
@@ -55,7 +47,8 @@ describe('Tabs', () => {
         cy.get('.ngx-section-header').realClick({ x: 100, y: 10 });
 
         cy.get('@CUT')
-          .find('.ngx-tab').eq(0)
+          .find('.ngx-tab')
+          .eq(0)
           .as('button')
           .should('have.css', 'outline-style', 'none')
           .should('have.css', 'outline-color', 'rgb(255, 255, 255)');
@@ -71,21 +64,13 @@ describe('Tabs', () => {
       cy.get('@SUT').get('.ngx-section-header').realClick({ x: 100, y: 10 });
 
       cy.get('@CUT').within(() => {
-        cy.get('.ngx-tab-content ngx-tab').eq(0)
-          .should('be.visible')
-          .should('contain', 'Tab 1 contents.');
+        cy.get('.ngx-tab-content ngx-tab').eq(0).should('be.visible').should('contain', 'Tab 1 contents.');
         cy.realPress(['Tab', 'Tab', 'Space']);
-        cy.get('.ngx-tab-content ngx-tab').eq(1)
-          .should('be.visible')
-          .should('contain', 'Tab 2 contents.');
+        cy.get('.ngx-tab-content ngx-tab').eq(1).should('be.visible').should('contain', 'Tab 2 contents.');
         cy.realPress(['Tab', 'Space']);
-        cy.get('.ngx-tab-content ngx-tab').eq(2)
-          .should('be.visible')
-          .should('contain', 'Tab 3 contents.');
+        cy.get('.ngx-tab-content ngx-tab').eq(2).should('be.visible').should('contain', 'Tab 3 contents.');
         cy.realPress(['Tab', 'Space']);
-        cy.get('.ngx-tab-content ngx-tab').eq(3)
-          .should('be.visible')
-          .should('contain', 'Tab 4 contents.');
+        cy.get('.ngx-tab-content ngx-tab').eq(3).should('be.visible').should('contain', 'Tab 4 contents.');
       });
     });
   });
