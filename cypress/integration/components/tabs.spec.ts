@@ -50,13 +50,12 @@ describe('Tabs', () => {
           .find('.ngx-tab')
           .eq(0)
           .as('button')
-          .should('have.css', 'outline-style', 'none')
-          .should('have.css', 'outline-color', 'rgb(255, 255, 255)');
+          .should('have.css', 'outline-style', 'none');
 
         cy.realPress('Tab'); // Navigates to first button
         cy.get('@button')
-          .should('have.css', 'outline-style', 'auto')
-          .should('have.css', 'outline-color', 'rgb(0, 95, 204)');
+          .should('have.css', 'outline-style', 'solid')
+          .should('have.css', 'outline-color', 'rgb(148, 198, 255)');
       });
     });
 
