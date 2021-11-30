@@ -67,6 +67,12 @@ $tabs-active-text-color: $color-white;
         color: $tabs-active-text-color;
         border-width: 0;
       }
+
+      &:focus-visible {
+        outline: 2px solid $color-blue-200;
+        border-radius: 2px;
+        outline-offset: 1px;
+      }
     }
   }
 
