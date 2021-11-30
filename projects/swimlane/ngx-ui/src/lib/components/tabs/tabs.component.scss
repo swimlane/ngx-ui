@@ -69,7 +69,6 @@ $tabButtonHeight: 36px;
 
         &::after {
           content: '';
-          background: $tabs-active-fill;
           height: 2px;
           position: absolute;
           width: 100%;
