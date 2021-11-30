@@ -25,7 +25,9 @@ let nextId = 0;
   styleUrls: ['./section.component.scss']
 })
 export class SectionComponent {
-  @Input() id = `section-${++nextId}`;
+  @HostBinding('id')
+  @Input()
+  id = `section-${++nextId}`;
 
   @HostBinding('class.outline')
   get outline() {

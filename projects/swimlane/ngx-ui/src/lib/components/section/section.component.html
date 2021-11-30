@@ -8,6 +8,7 @@
     class="ngx-section-header"
     [attr.tabindex]="headerToggle && 0"
     (keyup.space)="headerToggle && sectionCollapsible && onSectionClicked()"
+    (keyup.enter)="headerToggle && sectionCollapsible && onSectionClicked()"
     (click)="headerToggle && sectionCollapsible && onSectionClicked()"
   >
     <button
@@ -17,6 +18,7 @@
       title="Toggle Content Visibility"
       [attr.aria-controls]="id"
       [attr.aria-expanded]="!sectionCollapsed"
+      (keyup.space)="sectionCollapsible && onSectionClicked()"
       (click)="sectionCollapsible && onSectionClicked()"
     >
       <ngx-icon 
