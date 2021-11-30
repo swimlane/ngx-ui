@@ -52,7 +52,7 @@
     "mousetrap": "^1.6.5",
     "ng-in-viewport": "^6.1.5",
     "normalize.css": "^8.0.0",
-    "prismjs": "^1.21.0",
+    "prismjs": "^1.25.0",
     "resize-observer-polyfill": "^1.5.1",
     "rxjs": "~6.5.5",
     "tslib": "^2.3.0"
