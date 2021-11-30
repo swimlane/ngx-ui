@@ -46,11 +46,7 @@ describe('Tabs', () => {
       cy.get('@SUT').within(() => {
         cy.get('.ngx-section-header').realClick({ x: 100, y: 10 });
 
-        cy.get('@CUT')
-          .find('.ngx-tab')
-          .eq(0)
-          .as('button')
-          .should('have.css', 'outline-style', 'none');
+        cy.get('@CUT').find('.ngx-tab').eq(0).as('button').should('have.css', 'outline-style', 'none');
 
         cy.realPress('Tab'); // Navigates to first button
         cy.get('@button')
