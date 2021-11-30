@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+- Breaking: Improve semantic HTML in `ngx-tabs`
+- Enhancement: Added ARIA role attribute to `ngx-tabs`
+- Feature: Added focus rings to `ngx-tabs` buttons
+
 ## 35.9.0 (2021-11-29)
 
 - Feature: add `forceDownwardOpening` input to `ngx-dropdown`

@@ -13,67 +13,59 @@ $tabs-active-text-color: $color-white;
     display: block;
     border-bottom: solid 2px $tabs-border-fill;
 
-    li {
+    button.ngx-tab {
       display: inline-block;
+      border: none;
+      color: $tabs-text-color;
+      background: transparent;
+      box-shadow: none;
+      font-size: 1.1rem;
+      box-sizing: border-box;
+      display: inline-block;
+      margin: 0;
+      padding: 0.35em 0.75em;
+      position: relative;
+      text-align: center;
+      user-select: none;
+      font: inherit;
+      font-size: 1em;
+      font-weight: bold;
+      bottom: -1px;
 
-      &.active {
-        button,
-        button:focus,
-        button:hover {
+      &::after {
+        content: '';
+        height: 2px;
+        position: absolute;
+        width: 100%;
+        left: 0;
+        bottom: -1px;
+        transition: all 250ms ease 0s;
+        transform: scale(0);
+        background: $tabs-active-border-fill none repeat scroll 0 0;
+        color: $tabs-active-text-color;
+      }
+
+      &:not([disabled]) {
+        &:hover {
+          border: none;
           color: $tabs-active-text-color;
-          border-width: 0;
+          background: transparent;
+          opacity: 1;
+        }
+
+        &.active,
+        &:hover {
+          &::after {
+            transform: scale(1);
+          }
         }
       }
 
       &.active,
-      &:hover {
-        button:not([disabled])::after {
-          transform: scale(1);
-        }
-      }
-
-      button {
-        border: none;
-        color: $tabs-text-color;
-        background: transparent;
-        outline: none;
-        box-shadow: none;
-        font-size: 1.1rem;
-        box-sizing: border-box;
-        display: inline-block;
-        margin: 0;
-        padding: 0.35em 0.75em;
-        position: relative;
-        text-align: center;
-        user-select: none;
-        font: inherit;
-        font-size: 1em;
-        font-weight: bold;
-        outline: none;
-        bottom: -1px;
-
-        &:not([disabled]) {
-          &:hover {
-            border: none;
-            color: $tabs-active-text-color;
-            background: transparent;
-            opacity: 1;
-          }
-        }
-
-        &::after {
-          content: '';
-          background: $tabs-active-border-fill;
-          height: 2px;
-          position: absolute;
-          width: 100%;
-          left: 0;
-          bottom: -1px;
-          transition: all 250ms ease 0s;
-          transform: scale(0);
-          background: $tabs-active-border-fill none repeat scroll 0 0;
-          color: $tabs-active-text-color;
-        }
+      &.active:focus,
+      &.active:hover {
+        color: $tabs-active-text-color;
+        border-width: 0;
       }
     }
   }

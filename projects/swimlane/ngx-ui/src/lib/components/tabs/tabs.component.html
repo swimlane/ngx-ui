@@ -1,11 +1,14 @@
 <section>
-  <ul class="ngx-tabs-list list-reset" [class.tabs-vertical]="vertical" [class.tabs-horizontal]="!vertical">
-    <li *ngFor="let tab of tabs" class="ngx-tab" [class.disabled]="tab.disabled" [class.active]="tab.active">
-      <button type="button" (click)="tabClicked(tab)" [disabled]="tab.disabled">
-        <ng-container *ngTemplateOutlet="tab.labelTemplate; context: { $implicit: tab }"> </ng-container>
-      </button>
-    </li>
-  </ul>
+  <div class="ngx-tabs-list" role="tablist" [class.tabs-vertical]="vertical" [class.tabs-horizontal]="!vertical">
+    <button
+        *ngFor="let tab of tabs"
+        type="button" role="tab" [attr.id]="tab.tabId"
+        [attr.aria-controls]="tab.id" [attr.aria-selected]="tab.active"
+        class="ngx-tab" [class.disabled]="tab.disabled" [class.active]="tab.active"
+        (click)="tabClicked(tab)" [disabled]="tab.disabled">
+      <ng-container *ngTemplateOutlet="tab.labelTemplate; context: { $implicit: tab }"> </ng-container>
+    </button>
+  </div>
   <div class="ngx-tab-content">
     <ng-content></ng-content>
   </div>

@@ -54,7 +54,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
     if (actives.length > 1) {
       // eslint-disable-next-line no-console
-      console.error("Multiple active tabs set 'active'");
+      console.error(`Multiple active tabs set 'active'`);
     } else if (!actives.length && tabs.length) {
       setTimeout(() => {
         tabs[0].active = true;

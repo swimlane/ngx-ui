@@ -3,11 +3,13 @@
 <ngx-section class="shadow" sectionTitle="Basic Tabs">
   <ngx-tabs>
     <ngx-tab label="Tab 1">
+      Tab 1 contents.
       This content is rendered once, when the ngx-tabs component is initialized.
       <counter id="tab1"></counter>
     </ngx-tab>
     <ngx-tab label="Tab 2">
       <div *ngxIfTabActive>
+        Tab 2 contents.
         Wrap the content in an element with an *ngxIfTabActive directive to only initialize when the tab is active.
         <br />This content is rendered each time the tab is activated.
         <counter id="tab2"></counter>
@@ -15,13 +17,15 @@
     </ngx-tab>
     <ngx-tab label="Tab 3">
       <ng-template ngxIfTabActive>
-        This is equivelent to Tab 2.
+        Tab 3 contents.
+        This is equivalent to Tab 2.
         <br />This content is rendered each time the tab is activated.
         <counter id="tab3"></counter>
       </ng-template>
     </ngx-tab>
     <ngx-tab label="Tab 4" [active]="false" #thisTab>
-      An *ngIf can be used to control selectivly certain content.
+      Tab 4 contents.
+      An *ngIf can be used to control selectively certain content.
       <br />This portion is rendered once, when the ngx-tabs component is initialized.
       <counter id="tab4a"></counter>
       <div *ngIf="thisTab?.active">
@@ -46,13 +50,13 @@
   </ngx-tab>
   <ngx-tab label="Tab 3">
     <ng-template ngxIfTabActive>
-      This is equivelent to Tab 2.
+      This is equivalent to Tab 2.
       <br />This content is rendered each time the tab is activated.
       <counter id="tab3"></counter>
     </ng-template>
   </ngx-tab>
   <ngx-tab label="Tab 4" [active]="false" #thisTab>
-    An *ngIf can be used to control selectivly certain content.
+    An *ngIf can be used to control selectively certain content.
     <br />This portion is rendered once, when the ngx-tabs component is initialized.
     <counter id="tab4a"></counter>
     <div *ngIf="thisTab?.active">
