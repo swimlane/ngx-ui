@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: Added 'light' appearance to `ngx-tabs`
+
 ## 35.9.0 (2021-11-29)
 
 - Feature: add `forceDownwardOpening` input to `ngx-dropdown`
