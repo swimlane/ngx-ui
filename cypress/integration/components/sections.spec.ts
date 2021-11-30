@@ -50,13 +50,12 @@ describe('Sections', () => {
         cy.get('@CUT')
           .find('.ngx-section-toggle')
           .as('toggle')
-          .should('have.css', 'outline-style', 'none')
-          .should('have.css', 'outline-color', 'rgb(205, 210, 221)');
+          .should('have.css', 'outline-style', 'none');
 
         cy.realPress('Tab'); // Navigates to first button
         cy.get('@toggle')
-          .should('have.css', 'outline-style', 'auto')
-          .should('have.css', 'outline-color', 'rgb(0, 95, 204)');
+          .should('have.css', 'outline-style', 'solid')
+          .should('have.css', 'outline-color', 'rgb(148, 198, 255)');
       });
     });
 
