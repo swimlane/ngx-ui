@@ -18,7 +18,8 @@ export const enum NGX {
   NOTIFICATION = 'ngx-notification',
   NAG = 'ngx-nag',
   ALERT = 'ngx-alert-dialog',
-  DRAWER = 'ngx-drawer'
+  DRAWER = 'ngx-drawer',
+  TABS = 'ngx-tabs'
 }
 
 const DEBUG = false;
