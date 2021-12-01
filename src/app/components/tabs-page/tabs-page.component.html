@@ -158,3 +158,20 @@
   <ng-template #tabLabel2> <ngx-icon fontIcon="user-groups"></ngx-icon> Tab 2 </ng-template>
   <ng-template #tabLabel3> <ngx-icon fontIcon="plane"></ngx-icon> Tab 3 </ng-template>
 </ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Light Appearance" appearance='light'>
+  <ngx-tabs appearance='light'>
+    <ngx-tab label="Tab 1">
+      Tab 1 Content
+    </ngx-tab>
+    <ngx-tab label="Tab 2">
+      Tab 2 Content
+    </ngx-tab>
+    <ngx-tab label="Tab 3" [disabled]="true">
+      Tab 3 Content, Disabled
+    </ngx-tab>
+    <ngx-tab label="Tab 4">
+      Tab 4 Content
+    </ngx-tab>
+  </ngx-tabs>
+</ngx-section>

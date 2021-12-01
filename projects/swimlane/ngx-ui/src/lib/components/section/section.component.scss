@@ -4,6 +4,12 @@ $section-header-bg: $color-blue-grey-775;
 $section-header-color: $color-blue-grey-100;
 $section-shadow: $shadow-3;
 
+@mixin focus-ring {
+  outline: 2px solid $color-blue-200;
+  border-radius: 2px;
+  outline-offset: 1px;
+}
+
 .ngx-section {
   display: block;
   margin-bottom: 2em;
@@ -28,8 +34,12 @@ $section-shadow: $shadow-3;
       background: none;
       border: none;
       box-shadow: none;
-      padding: 0;
-      left: 15px;
+      padding: 0 10px;
+      left: 5px;
+
+      &:focus-visible {
+        @include focus-ring;
+      }
     }
 
     a {
@@ -49,6 +59,10 @@ $section-shadow: $shadow-3;
 
       &.header-toggle {
         cursor: pointer;
+
+        &:focus-visible {
+          @include focus-ring;
+        }
       }
     }
 

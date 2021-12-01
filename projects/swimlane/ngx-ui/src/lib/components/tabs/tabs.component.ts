@@ -9,12 +9,14 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  OnDestroy
+  OnDestroy,
+  HostBinding
 } from '@angular/core';
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { TabComponent } from './tab.component';
+import { TabsAppearance } from './tabs-appearance.enum';
 
 @Component({
   exportAs: 'ngxTabs',
@@ -28,12 +30,19 @@ import { TabComponent } from './tab.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsComponent implements AfterContentInit, OnDestroy {
+  @HostBinding('class.light')
+  get light() {
+    return this.appearance === TabsAppearance.Light;
+  }
+
   @Input() vertical: boolean;
 
   @Output() selectTab = new EventEmitter();
   // For backwards compat... user selectTab instead.
   // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() select = this.selectTab;
+
+  @Input() appearance: TabsAppearance = TabsAppearance.Legacy;
 
   @ContentChildren(TabComponent) readonly tabs: QueryList<TabComponent>;
 
