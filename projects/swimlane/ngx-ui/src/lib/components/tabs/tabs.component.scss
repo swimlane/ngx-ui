@@ -141,8 +141,8 @@ $tabs-button-height--vertical: 53px;
   }
 
   &.tabs-vertical.light {
-    button.ngx-tab {
-      line-height: 40px;
+    .ngx-tabs-list button.ngx-tab {
+      line-height: 38px;
 
       &:last-child {
         border: none !important;
