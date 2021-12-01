@@ -9,7 +9,8 @@ $tabs-fill--light: $color-blue-grey-700;
 $tabs-shadow--light: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 $tabs-content-color--light: #1b1e27;
 
-$tabButtonHeight: 36px;
+$tabs-button-height--light: 36px;
+$tabs-button-height--vertical: 53px;
 
 .ngx-tabs {
   margin-bottom: 2em;
@@ -98,13 +99,55 @@ $tabButtonHeight: 36px;
       margin-left: -2px; // align tabs to the left border
 
       .ngx-tab {
-        height: $tabButtonHeight;
+        height: $tabs-button-height--light;
         padding: 8px 1.25em;
       }
     }
 
     .ngx-tab-content {
       background-color: $tabs-content-color--light;
+    }
+  }
+
+  &.tabs-vertical {
+    section {
+      display: flex;
+    }
+
+    .ngx-tabs-list {
+      flex: 0 0 160px;
+      border: none;
+
+      button.ngx-tab {
+        height: $tabs-button-height--vertical;
+        width: 100%;
+        text-align: left;
+        font-size: 13px;
+        line-height: 45px;
+        border: none !important;
+        border-bottom: 2px solid $color-blue-grey-750 !important;
+        padding-left: 19px;
+        font-weight: 600;
+
+        &:after {
+          display: none;
+        }
+      }
+    }
+
+    .ngx-tab-content {
+      flex: 1 1 100%;
+    }
+  }
+
+  &.tabs-vertical.light {
+    button.ngx-tab {
+      line-height: 40px;
+
+      &:last-child {
+        border: none !important;
+        border-bottom: none !important;
+      }
     }
   }
 }
