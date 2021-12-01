@@ -25,5 +25,6 @@ declare namespace Cypress {
     ngxFill(text: string, options?: Partial<Loggable>): Chainable<Element>;
     ngxGetValue(options?: Partial<Loggable>): Chainable<string>;
     ngxSetValue(text: string, options?: Partial<Loggable>): Chainable<JQuery<any>>;
+    ngxSelectTab(textOrIndex: string | number, options?: Partial<Loggable>): Chainable<JQuery<any>>;
   }
 }

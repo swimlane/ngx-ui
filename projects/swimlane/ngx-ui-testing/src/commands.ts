@@ -420,3 +420,38 @@ Cypress.Commands.add('ngxSetValue', { prevSubject: 'element' }, (subject, text?,
   }
   return cy.wrap(subject, LOG).each(el => setValue(el, text));
 });
+
+Cypress.Commands.add(
+  'ngxSelectTab',
+  { prevSubject: 'element' },
+  (subject, textOrIndex: string | number, options = {}) => {
+    options = {
+      log: true,
+      ...options
+    };
+    if (options.log) {
+      Cypress.log({
+        name: 'ngxSelectTab',
+        $el: subject,
+        consoleProps: () => {
+          return {
+            'Applied To': subject,
+            Elements: subject?.length
+          };
+        }
+      });
+    }
+
+    switch (subject.prop('tagName').toLowerCase()) {
+      case NGX.TABS:
+        return cy.wrap(subject, LOG).withinEach(() => {
+          if (typeof textOrIndex === 'number') {
+            cy.get('.ngx-tabs-list button.ngx-tab').eq(textOrIndex).click();
+          } else {
+            cy.get('.ngx-tabs-list button.ngx-tab').contains(textOrIndex).click();
+          }
+        }, LOG);
+    }
+    return; // THROW ERROR
+  }
+);

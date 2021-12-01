@@ -138,7 +138,7 @@ Like [cy.type](https://docs.cypress.io/api/commands/type) but clears existing te
 
 ```ts
 cy.get('ngx-input').ngxFill('foo').ngxGetValue().should('eq', 'foo');
-cy.get('ngx-select').ngxFill('foo').selct('foo').ngxGetValue().should('eq', 'foo');
+cy.get('ngx-select').ngxFill('foo').select('foo').ngxGetValue().should('eq', 'foo');
 ```
 
 ---
@@ -172,6 +172,15 @@ Close all `.ngx-notification`s, if any. Will not fail if no notifications are fo
 ```
 
 ---
+
+### `.ngxSelectTab`
+
+Select a tab in a `.ngx-tabs` component by label or index.
+
+```ts
+.ngxSelectTab('Tab 1')
+.ngxSelectTab(3)
+```
 
 ## Generic Helper Commands
 
