@@ -37,7 +37,7 @@ describe('SectionComponent', () => {
     expect(component.padding).toEqual('1.8em');
   });
 
-  it('apperance defaults to legacy', () => {
+  it('appearance defaults to legacy', () => {
     expect(component.appearance).toEqual('legacy');
   });
 

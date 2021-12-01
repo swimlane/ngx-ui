@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: `ngx-select` with `headerToggle` enable is noy keyboard accessible
+- Enhancement: Added ARIA controls and expanded attribute to `ngx-section`
+- Breaking: Fixed spelling error in exported enum (`SectionApperance` -> `SectionAppearance`)
 - Enhancement: Added 'light' appearance to `ngx-tabs`
 
 ## 35.9.0 (2021-11-29)

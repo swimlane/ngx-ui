@@ -1,7 +1,7 @@
 <h3 class="style-header">Section</h3>
 
-<ngx-section class="shadow" [sectionTitle]="'Title and Shadow'">
-  <ngx-section class="shadow" [sectionTitle]="'Attack Details'">
+<ngx-section class="shadow" sectionTitle="Title and Shadow">
+  <ngx-section id="attack-details" class="shadow" sectionTitle="Attack Details">
     Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
     bytes ban headers
     gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a
@@ -10,12 +10,13 @@
   </ngx-section>
   <app-prism>
 <![CDATA[<ngx-section
+  id="attack-details" 
   class="shadow"
-  [sectionTitle]="'Attack Details'"
+  sectionTitle="Attack Details"
 >
   Some Content
 </ngx-section>]]>
-    </app-prism>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
