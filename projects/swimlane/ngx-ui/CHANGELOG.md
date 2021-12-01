@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Breaking: Improve semantic HTML in `ngx-tabs`
+- Enhancement: Added ARIA role attribute to `ngx-tabs`
+- Feature: Added focus rings to `ngx-tabs` buttons
 - Enhancement: `ngx-select` with `headerToggle` enable is noy keyboard accessible
 - Enhancement: Added ARIA controls and expanded attribute to `ngx-section`
 - Breaking: Fixed spelling error in exported enum (`SectionApperance` -> `SectionAppearance`)

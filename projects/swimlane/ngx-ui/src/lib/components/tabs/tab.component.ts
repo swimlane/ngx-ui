@@ -12,9 +12,12 @@ import {
   EventEmitter,
   Output,
   SimpleChanges,
-  OnChanges
+  OnChanges,
+  HostBinding
 } from '@angular/core';
 import { IfTabActiveDirective } from './if-tab-active.directive';
+
+let nextId = 0;
 
 /**
  * TODO: Remove hidden when https://github.com/angular/angular/issues/18310 is resolved
@@ -28,6 +31,15 @@ import { IfTabActiveDirective } from './if-tab-active.directive';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabComponent implements OnInit, OnChanges {
+  @HostBinding('attr.id')
+  id = `tab-panel-${++nextId}`;
+
+  @HostBinding('attr.aria-labelledby')
+  tabId = `tab-${nextId}`;
+
+  @HostBinding('attr.role')
+  role = 'tabpanel';
+
   @Input() title = '';
   @Input() label: string | TemplateRef<any> = '';
   @Input() active = false;
