@@ -159,7 +159,22 @@
   <ng-template #tabLabel3> <ngx-icon fontIcon="plane"></ngx-icon> Tab 3 </ng-template>
 </ngx-section>
 
-<ngx-section class="shadow" sectionTitle="Light Appearance" appearance='light'>
+<ngx-section class="shadow" sectionTitle="Variants">
+  <ngx-tabs [vertical]="true">
+    <ngx-tab label="Tab 1">
+      Tab 1 Content
+    </ngx-tab>
+    <ngx-tab label="Tab 2">
+      Tab 2 Content
+    </ngx-tab>
+    <ngx-tab label="Tab 3" [disabled]="true">
+      Tab 3 Content, Disabled
+    </ngx-tab>
+    <ngx-tab label="Tab 4">
+      Tab 4 Content
+    </ngx-tab>
+  </ngx-tabs>
+
   <ngx-tabs appearance='light'>
     <ngx-tab label="Tab 1">
       Tab 1 Content
@@ -174,4 +189,21 @@
       Tab 4 Content
     </ngx-tab>
   </ngx-tabs>
+
+  <ngx-tabs appearance='light' [vertical]="true">
+    <ngx-tab label="Tab 1">
+      Tab 1 Content
+    </ngx-tab>
+    <ngx-tab label="Tab 2">
+      Tab 2 Content
+    </ngx-tab>
+    <ngx-tab label="Tab 3" [disabled]="true">
+      Tab 3 Content, Disabled
+    </ngx-tab>
+    <ngx-tab label="Tab 4">
+      Tab 4 Content
+    </ngx-tab>
+  </ngx-tabs>
 </ngx-section>
+
+

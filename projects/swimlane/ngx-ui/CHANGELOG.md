@@ -4,6 +4,7 @@
 
 ## 36.0.0 (2021-12-02)
 
+- Enhancement: Add vertical alignment for `ngx-tabs`
 - Breaking: Improve semantic HTML in `ngx-tabs`
 - Enhancement: Added ARIA role attribute to `ngx-tabs`
 - Feature: Added focus rings to `ngx-tabs` buttons
