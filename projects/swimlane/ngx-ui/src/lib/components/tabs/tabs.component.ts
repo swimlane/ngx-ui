@@ -46,9 +46,14 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
   @ContentChildren(TabComponent) readonly tabs: QueryList<TabComponent>;
 
-  @HostBinding('class')
-  get orientationClass() {
-    return this.vertical ? 'tabs-vertical' : 'tabs-horizontal';
+  @HostBinding('class.tabs-horizontal')
+  get horizontalClass() {
+    return !this.vertical;
+  }
+
+  @HostBinding('class.tabs-vertical')
+  get verticalClass() {
+    return this.vertical;
   }
 
   private tabEvents: Subscription[] = [];
