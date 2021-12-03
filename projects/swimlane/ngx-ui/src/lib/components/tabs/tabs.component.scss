@@ -129,7 +129,7 @@ $tabs-button-height--vertical: 53px;
         padding-left: 19px;
         font-weight: 600;
 
-        &:after {
+        &::after {
           display: none;
         }
       }
