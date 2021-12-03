@@ -125,7 +125,7 @@ $tabs-button-height--vertical: 53px;
         font-size: 13px;
         line-height: 45px;
         border: none !important;
-        border-bottom: 2px solid $color-blue-grey-750 !important;
+        border-bottom: 1px solid $color-blue-grey-700 !important;
         padding-left: 19px;
         font-weight: 600;
 
@@ -141,13 +141,23 @@ $tabs-button-height--vertical: 53px;
   }
 
   &.tabs-vertical.light {
-    .ngx-tabs-list button.ngx-tab {
-      line-height: 38px;
+    .ngx-tabs-list {
+      background-color: $color-blue-grey-750;
+      border-right: 2px solid $tabs-fill--light;
+      border-left: 2px solid $tabs-fill--light;
 
-      &:last-child {
-        border: none !important;
-        border-bottom: none !important;
+      button.ngx-tab {
+        line-height: 38px;
+
+        &:last-child {
+          border: none !important;
+          border-bottom: none !important;
+        }
       }
+    }
+
+    .ngx-tab-content {
+      background-color: $color-blue-grey-750;
     }
   }
 }
