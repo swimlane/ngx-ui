@@ -12,7 +12,7 @@ describe('Tabs', () => {
     });
 
     afterEach(() => {
-      cy.get('.ngx-tab').eq(0).click();
+      cy.get('@CUT').ngxSelectTab(0);
     });
 
     it('has no detectable a11y violations on load', () => {
@@ -38,6 +38,18 @@ describe('Tabs', () => {
         cy.get('.ngx-tab').eq(2).click();
         cy.get('.ngx-tab-content ngx-tab').eq(2).should('be.visible').should('contain', 'Tab 3 contents.');
         cy.get('.ngx-tab').eq(3).click();
+        cy.get('.ngx-tab-content ngx-tab').eq(3).should('be.visible').should('contain', 'Tab 4 contents.');
+      });
+    });
+
+    it('selects tabs using ngxSelectTab', () => {
+      cy.get('@CUT').within(() => {
+        cy.get('.ngx-tab-content ngx-tab').eq(0).should('be.visible').should('contain', 'Tab 1 contents.');
+        cy.root().ngxSelectTab('Tab 2');
+        cy.get('.ngx-tab-content ngx-tab').eq(1).should('be.visible').should('contain', 'Tab 2 contents.');
+        cy.root().ngxSelectTab(2);
+        cy.get('.ngx-tab-content ngx-tab').eq(2).should('be.visible').should('contain', 'Tab 3 contents.');
+        cy.root().ngxSelectTab('Tab 4');
         cy.get('.ngx-tab-content ngx-tab').eq(3).should('be.visible').should('contain', 'Tab 4 contents.');
       });
     });

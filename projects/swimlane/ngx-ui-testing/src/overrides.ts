@@ -112,7 +112,7 @@ Cypress.Commands.overwrite('check', (originalFn, subject, ...options) => {
     case NGX.TOGGLE:
     case NGX.CHECKBOX:
     case NGX.RADIOBUTTON:
-      // TODO: suppport `.check(value, options)`
+      // TODO: support `.check(value, options)`
       return cy.wrap(subject, LOG).each(el => {
         originalFn(findInput(el), { ...options, force: true });
       });
@@ -127,7 +127,7 @@ Cypress.Commands.overwrite('uncheck', (originalFn, subject, ...options) => {
   switch (subject.prop('tagName').toLowerCase()) {
     case NGX.TOGGLE:
     case NGX.CHECKBOX:
-      // TODO: suppport `.uncheck(value, options)`
+      // TODO: support `.uncheck(value, options)`
       return cy.wrap(subject, LOG).each(el => {
         originalFn(findInput(el), { ...options, force: true });
       });
