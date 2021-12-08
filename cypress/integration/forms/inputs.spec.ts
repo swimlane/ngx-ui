@@ -202,7 +202,6 @@ describe('Inputs', () => {
       cy.getByName('input3').as('CUT');
     });
 
-
     it('has a label', () => {
       cy.get('@CUT').ngxFindLabel().should('contain.text', 'Disabled Example');
     });
