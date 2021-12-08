@@ -364,6 +364,8 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   }
 
   incrementValue(event: MouseEvent): void {
+    if (this.disabled) return;
+
     this.increment(event);
     if (!this._spinnerInterval) {
       this._spinnerTimeout = setTimeout(() => {
@@ -375,6 +377,8 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   }
 
   decrementValue(event: MouseEvent): void {
+    if (this.disabled) return;
+
     this.decrement(event);
     if (!this._spinnerInterval) {
       this._spinnerTimeout = setTimeout(() => {
