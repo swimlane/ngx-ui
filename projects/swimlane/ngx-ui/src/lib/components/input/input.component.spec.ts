@@ -13,7 +13,7 @@ const MOCK_EVENT: any = {
   stopPropagation: () => ({})
 };
 
-fdescribe('InputComponent', () => {
+describe('InputComponent', () => {
   let component: InputComponentFixture;
   let fixture: ComponentFixture<InputComponentFixture>;
 
