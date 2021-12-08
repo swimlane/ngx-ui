@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: allow exponential notation for number inputs
+- Enhancement: add aria labels for unlock and reveal password buttons
+
 ## 36.0.0 (2021-12-03)
 
 - Enhancement: Add vertical alignment for `ngx-tabs`
