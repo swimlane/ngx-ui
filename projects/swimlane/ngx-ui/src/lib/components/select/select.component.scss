@@ -571,13 +571,9 @@ $color-chip-text: #fff;
       }
     }
 
-    &.single-selection .ngx-select-input .ngx-select-clear {
-      top: 50%;
-      z-index: 500;
-    }
-
+    &.single-selection .ngx-select-input .ngx-select-clear,
     .ngx-select-caret {
-      top: 50%;
+      top: 1.5em;
       z-index: 500;
     }
 
