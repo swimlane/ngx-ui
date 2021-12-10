@@ -236,7 +236,6 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     return typeof this.value !== 'undefined' && this.value !== null;
   }
 
-  @HostBinding('class.ng-invalid')
   get isBadInput() {
     const validity = (this.inputControl?.nativeElement as HTMLInputElement)?.validity;
     return validity && validity.badInput;
@@ -333,6 +332,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     }
 
     return {
+      ...(this.isBadInput ? { badInput: true } : null),
       ...Validators.max(this.max)(c),
       ...Validators.min(this.min)(c)
     };
