@@ -212,7 +212,8 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   }
 
   get valueAsString(): string {
-    return this._value ? String(this._value) : '';
+    if (this._value == null || typeof this._value === 'undefined') return '';
+    return String(this._value);
   }
 
   get valueAsNumber(): number {
