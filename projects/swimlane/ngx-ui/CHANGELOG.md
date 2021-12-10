@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 36.1.0 (2021-12-10)
+
 - Enhancement: allow exponential notation for number inputs
 - Enhancement: add aria labels for unlock and reveal password buttons
 
