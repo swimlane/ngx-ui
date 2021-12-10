@@ -20,7 +20,8 @@ import {
   NG_VALIDATORS,
   NgModel,
   FormControl,
-  Validators
+  Validators,
+  ValidationErrors
 } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { BehaviorSubject } from 'rxjs';
@@ -327,7 +328,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     this.onTouchedCallback();
   }
 
-  validate(c: FormControl) {
+  validate(c: FormControl): ValidationErrors | null {
     if (this.type !== InputTypes.number) {
       return null;
     }
