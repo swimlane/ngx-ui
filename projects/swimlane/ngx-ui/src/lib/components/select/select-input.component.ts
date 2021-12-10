@@ -24,6 +24,7 @@ import { SelectDropdownOption } from './select-dropdown-option.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectInputComponent implements AfterViewInit, OnChanges {
+  @Input() selectId: string;
   @Input() placeholder: string;
   @Input() identifier: string;
   @Input() options: SelectDropdownOption[];
@@ -31,13 +32,12 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   @Input() hint: string;
   @Input() selectCaret: string | TemplateRef<any>;
   @Input() requiredIndicator: string | boolean;
-  @Input() tabindex: number;
+  @Input() tabindex = 0;
 
   @Input()
   get autofocus() {
     return this._autofocus;
   }
-
   set autofocus(autofocus) {
     this._autofocus = coerceBooleanProperty(autofocus);
   }
@@ -46,7 +46,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   get allowClear() {
     return this._allowClear;
   }
-
   set allowClear(allowClear) {
     this._allowClear = coerceBooleanProperty(allowClear);
   }
@@ -55,7 +54,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   get multiple() {
     return this._multiple;
   }
-
   set multiple(multiple) {
     this._multiple = coerceBooleanProperty(multiple);
   }
@@ -64,7 +62,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   get tagging() {
     return this._tagging;
   }
-
   set tagging(tagging) {
     this._tagging = coerceBooleanProperty(tagging);
   }
@@ -73,7 +70,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   get allowAdditions() {
     return this._allowAdditions;
   }
-
   set allowAdditions(allowAdditions) {
     this._allowAdditions = coerceBooleanProperty(allowAdditions);
   }
@@ -82,7 +78,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   get disableDropdown() {
     return this._disableDropdown;
   }
-
   set disableDropdown(disableDropdown) {
     this._disableDropdown = coerceBooleanProperty(disableDropdown);
   }
@@ -91,15 +86,16 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   get selected() {
     return this._selected;
   }
-
   set selected(val: any[]) {
     this._selected = val;
     this.selectedOptions = this.calcSelectedOptions(val);
   }
 
   @Output() toggle = new EventEmitter<void>();
+  @Output() close = new EventEmitter<void>();
   @Output() selection = new EventEmitter<any[]>();
   @Output() activate = new EventEmitter<Event>();
+  @Output() activateLast = new EventEmitter<Event>();
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
 
   @ViewChild('tagInput')
@@ -158,19 +154,32 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
       }
 
       event.preventDefault();
-    } else if (key === (KeyboardKeys.ESCAPE as any)) {
+    } else if (key === KeyboardKeys.ESCAPE) {
       this.toggle.emit();
     }
 
     this.keyup.emit({ event, value });
   }
 
+  // Events on input element
   onGlobalKeyUp(event: KeyboardEvent) {
     event.stopPropagation();
-    const key = event.key;
 
-    if (key === KeyboardKeys.ARROW_DOWN) {
-      this.activate.emit(event);
+    switch (event.code) {
+      case KeyboardKeys.SPACE:
+      case KeyboardKeys.ARROW_DOWN:
+        event.preventDefault();
+        this.activate.emit(event);
+        break;
+      case KeyboardKeys.ARROW_UP:
+        event.preventDefault();
+        this.activateLast.emit(event);
+        break;
+      case KeyboardKeys.ESCAPE:
+        event.preventDefault();
+        this.close.emit();
+        break;
+      // TODO: Printable characters: select any matching options without expanding the options menu
     }
   }
 

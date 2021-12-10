@@ -277,7 +277,8 @@ $color-chip-text: #fff;
       }
     }
 
-    .ngx-select-input-box:focus + .ngx-select-input-underline {
+    &:focus-within,
+    .ngx-select-input-box:focus {
       .underline-fill {
         width: 100%;
       }

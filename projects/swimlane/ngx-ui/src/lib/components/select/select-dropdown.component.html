@@ -16,7 +16,7 @@
     />
     <i [hidden]="!filterInput.value" class="ngx-icon ngx-x" (click)="clearFilter(filterInput)"></i>
   </div>
-  <ul class="vertical-list ngx-select-dropdown-options">
+  <ul class="vertical-list ngx-select-dropdown-options" role="listbox">
     <li
       *ngFor="let group of groups; let i = index; let first = first; let last = last; let odd = odd; let even = even"
       class="ngx-select-option-group"

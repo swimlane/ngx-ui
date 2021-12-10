@@ -204,14 +204,17 @@ export class SelectDropdownComponent implements AfterViewInit {
     event.preventDefault();
     event.stopPropagation();
 
-    const key = event.key;
-
-    if (key === (KeyboardKeys.ARROW_DOWN as any)) {
-      if (this.focusIndex < this.options.length - 1) ++this.focusIndex;
-    } else if (key === (KeyboardKeys.ARROW_UP as any)) {
-      if (this.focusIndex > 0) --this.focusIndex;
-    } else if (key === (KeyboardKeys.ENTER as any)) {
-      this.selection.emit(option);
+    switch (event.key) {
+      case KeyboardKeys.ARROW_DOWN:
+        if (this.focusIndex < this.options.length - 1) ++this.focusIndex;
+        break;
+      case KeyboardKeys.ARROW_UP:
+        if (this.focusIndex > 0) --this.focusIndex;
+        break;
+      case KeyboardKeys.ENTER:
+      case KeyboardKeys.SPACE:
+        this.selection.emit(option);
+        break;
     }
   }
 
@@ -229,6 +232,12 @@ export class SelectDropdownComponent implements AfterViewInit {
     if (this.allowAdditions) {
       this.onAddClicked(event, this.filterQuery);
     }
+  }
+
+  focusOn(index: number): void {
+    if (index < 0) index = this.options.length + index;
+    this.focusIndex = index;
+    this.cdr.markForCheck();
   }
 
   private focusElement(index: number): void {

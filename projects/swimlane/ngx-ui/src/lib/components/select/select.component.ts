@@ -63,7 +63,8 @@ const _InputMixinBase = sizeMixin(InputBase);
     '[class.active-selections]': 'hasSelections',
     '[class.has-placeholder]': 'hasPlaceholder',
     '[class.autosize]': 'autosize',
-    '[style.min-width]': 'autosize ? autosizeMinWidth : undefined'
+    '[style.min-width]': 'autosize ? autosizeMinWidth : undefined',
+    '[attr.aria-expanded]': 'dropdownActive'
   },
   providers: [SELECT_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
@@ -218,7 +219,6 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get disabled() {
     return this._disabled;
   }
-
   set disabled(disabled) {
     this._disabled = coerceBooleanProperty(disabled);
   }
@@ -383,8 +383,22 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   onFocus(): void {
     if (this.disabled) return;
 
-    this.toggleDropdown(!this.dropdownActive);
+    this.toggleDropdown(true);
     this.onTouchedCallback();
+    this.focusOn(0);
+  }
+
+  onFocusLast(): void {
+    if (this.disabled) return;
+
+    this.toggleDropdown(true);
+    this.onTouchedCallback();
+    this.focusOn(-1);
+  }
+
+  focusOn(index: number): void {
+    if (index < 0) index = this.options.length + index;
+    this.focusIndex = index;
   }
 
   onClear(): void {
@@ -404,6 +418,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
   onClose(): void {
     this.toggleDropdown(false);
+    // TODO: keep focus on component
   }
 
   onToggle(): void {
@@ -434,6 +449,10 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
           .pipe(take(1))
           .subscribe({ next: this.adjustMenuDirection.bind(this) });
       }
+    } else {
+      // Keep focus on the select
+      // this.inputComponent.inputElement.nativeElement.focus();
+      // this._element.nativeElement.focus();
     }
 
     this._cdr.markForCheck();

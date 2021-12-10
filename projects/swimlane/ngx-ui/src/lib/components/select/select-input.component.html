@@ -5,7 +5,7 @@
   class="ngx-select-input-box"
   (click)="onClick($event)"
 >
-  <label *ngIf="label" class="ngx-select-label">
+  <label *ngIf="label" class="ngx-select-label" [attr.for]="selectId">
     <span [innerHTML]="label"></span>
     <span [innerHTML]="requiredIndicator"></span>
   </label>
@@ -44,6 +44,7 @@
         autocomplete="off"
         autocorrect="off"
         spellcheck="off"
+        role="combobox"
         (keyup)="onKeyUp($event)"
         (change)="$event.stopPropagation()"
       />
