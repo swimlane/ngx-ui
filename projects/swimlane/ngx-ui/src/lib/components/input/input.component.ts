@@ -207,7 +207,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   set value(val: string | number) {
     if (val !== this._value) {
       this._value = val;
-      this.onChangeCallback(this._value);
+      this.onChangeCallback(this.value);
     }
   }
 
