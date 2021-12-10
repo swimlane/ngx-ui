@@ -76,7 +76,6 @@
     "@types/codemirror": "0.0.80",
     "@types/faker": "^4.1.11",
     "@types/jasmine": "~3.6.0",
-    "@types/jasminewd2": "^2.0.8",
     "@types/moment-timezone": "^0.5.13",
     "@types/mousetrap": "^1.6.3",
     "@types/node": "^12.11.1",
