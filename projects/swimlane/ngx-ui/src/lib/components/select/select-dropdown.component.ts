@@ -204,13 +204,17 @@ export class SelectDropdownComponent implements AfterViewInit {
     event.preventDefault();
     event.stopPropagation();
 
-    switch (event.key) {
+    switch (event.code) {
+      case KeyboardKeys.ESCAPE:
+        return this.close.emit(true);
       case KeyboardKeys.ARROW_DOWN:
         return this.focusNext();
       case KeyboardKeys.ARROW_UP:
         return this.focusPrev();
       case KeyboardKeys.ENTER:
       case KeyboardKeys.SPACE:
+        // TODO: clear selection if option is already selected
+        // TODO: don't close on space
         this.selection.emit(option);
         break;
     }
