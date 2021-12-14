@@ -45,7 +45,7 @@
           [class.selected]="isSelected(kv.option)"
           [hidden]="kv.option.hidden"
           [attr.tabindex]="-1"
-          (click)="selection.emit(kv.option)"
+          (click)="onOptionClick(kv.option)"
           (keydown)="onOptionKeyDown($event, kv.option)"
         >
           <ng-template

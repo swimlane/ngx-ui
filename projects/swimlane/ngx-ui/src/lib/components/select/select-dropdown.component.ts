@@ -175,9 +175,15 @@ export class SelectDropdownComponent implements AfterViewInit {
     this.keyup.emit({ event, value });
   }
 
+  onOptionClick(option: SelectDropdownOption) {
+    this.selection.emit(option);
+  }
+
   onOptionKeyDown(event: KeyboardEvent, option?: SelectDropdownOption): void {
     event.preventDefault();
     event.stopPropagation();
+
+    console.log(option);
 
     switch (event.code) {
       case KeyboardKeys.ESCAPE:
