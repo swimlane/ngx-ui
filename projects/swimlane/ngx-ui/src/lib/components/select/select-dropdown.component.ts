@@ -183,8 +183,6 @@ export class SelectDropdownComponent implements AfterViewInit {
     event.preventDefault();
     event.stopPropagation();
 
-    console.log(option);
-
     switch (event.code) {
       case KeyboardKeys.ESCAPE:
         return this.close.emit(true);

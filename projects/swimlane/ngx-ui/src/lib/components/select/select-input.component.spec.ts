@@ -83,7 +83,7 @@ describe('SelectInputComponent', () => {
 
     describe('enter', () => {
       beforeEach(() => {
-        event.key = KeyboardKeys.ENTER;
+        event.key = event.code = KeyboardKeys.ENTER;
       });
 
       it('should select value when not selected', () => {
@@ -110,7 +110,7 @@ describe('SelectInputComponent', () => {
 
     describe('escape', () => {
       beforeEach(() => {
-        event.key = KeyboardKeys.ESCAPE;
+        event.key = event.code = KeyboardKeys.ESCAPE;
       });
 
       it('should toggle', () => {
@@ -126,7 +126,8 @@ describe('SelectInputComponent', () => {
 
     beforeEach(() => {
       event = {
-        stopPropagation: () => undefined
+        stopPropagation: () => undefined,
+        preventDefault: () => undefined
       };
     });
 
