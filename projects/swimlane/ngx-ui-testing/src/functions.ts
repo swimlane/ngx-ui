@@ -50,6 +50,7 @@ export function getByLabel(label: string, options: any) {
   if ($el.length) return $el;
 
   $el = root.find(`label:contains("${label}")`);
+  console.log({ $el });
   if (!$el.length) return;
 
   const id = $el.attr('for');

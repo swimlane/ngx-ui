@@ -18,7 +18,7 @@ describe('Selects', () => {
 
   describe('Basic Input', () => {
     beforeEach(() => {
-      cy.get('#select-1').as('CUT');
+      cy.getByLabel('Attack Type').first().as('CUT').then(console.log)
     });
 
     it('has a label', () => {
@@ -49,7 +49,7 @@ describe('Selects', () => {
 
   describe('Input with AbstractControl', () => {
     beforeEach(() => {
-      cy.get('#select-19').as('CUT');
+      cy.getByName('formCtrl1').as('CUT');
       cy.get('[data-cy=reactiveFormSelectToggleBtn]').as('reactiveFormSelectToggleBtn');
     });
 
@@ -67,7 +67,7 @@ describe('Selects', () => {
 
   describe('Input with AbstractControl disabled by default', () => {
     beforeEach(() => {
-      cy.get('#select-20').as('CUT');
+      cy.getByName('formCtrl2').as('CUT');
     });
 
     it('should be able to be disabled', () => {
@@ -77,7 +77,7 @@ describe('Selects', () => {
 
   describe('Filtering Input', () => {
     beforeEach(() => {
-      cy.get('#select-3').as('CUT');
+      cy.getByName('filtering').as('CUT');
     });
 
     it('has a label', () => {
@@ -95,7 +95,7 @@ describe('Selects', () => {
 
   describe('Templates', () => {
     beforeEach(() => {
-      cy.get('#select-9').as('CUT');
+      cy.get('[data-cy=templates]').as('CUT');
     });
 
     it('selects and clears value', () => {
@@ -111,7 +111,7 @@ describe('Selects', () => {
 
   describe('Multiple Select', () => {
     beforeEach(() => {
-      cy.get('#select-21').as('CUT');
+      cy.getByLabel('Multiple Select').as('CUT');
     });
 
     it('selects and clears value', () => {
@@ -177,7 +177,8 @@ describe('Selects', () => {
 
     it('selects value', () => {
       cy.get('@CUT').ngxGetValue().should('deep.equal', '');
-      cy.get('@CUT').ngxFill('dolorem');
+      cy.get('@CUT').ngxOpen();
+      cy.get('@CUT').find('input').ngxFill('dolorem');
       cy.wait('@api');
       cy.get('@CUT').find('li.ngx-select-dropdown-option').should('have.length', 2);
       cy.get('@CUT').select('dolorem eum magni eos aperiam quia');
@@ -191,26 +192,38 @@ describe('Selects', () => {
     });
 
     it('should close on input click', () => {
-      cy.get('@attackType').find('.ngx-select-dropdown-options').should('not.exist');
-      cy.get('@attackType').find('.ngx-select-input-box').click();
-      cy.get('@attackType').find('.ngx-select-dropdown-options').should('be.visible');
+      cy.get('@attackType').within(() => {
+        cy.get('.ngx-select-dropdown-options').should('not.exist');
+        cy.get('.ngx-select-input-box').click();
+        cy.get('.ngx-select-dropdown-options').first().scrollIntoView();
+        cy.get('.ngx-select-dropdown-options').should('be.visible');
+      });
 
-      cy.get('@attackTypeRequired').find('.ngx-select-dropdown-options').should('not.exist');
-      cy.get('@attackTypeRequired').find('.ngx-select-input-box').click();
-      cy.get('@attackTypeRequired').find('.ngx-select-dropdown-options').should('be.visible');
+      cy.get('@attackTypeRequired').within(() => {
+        cy.get('.ngx-select-dropdown-options').should('not.exist');
+        cy.get('.ngx-select-input-box').click();
+        cy.get('.ngx-select-dropdown-options').first().scrollIntoView();
+        cy.get('.ngx-select-dropdown-options').should('be.visible');
+      });
 
       // the current opened select should be closed
       cy.get('@attackType').find('.ngx-select-dropdown-options').should('not.exist');
     });
 
     it('should close on caret down click', () => {
-      cy.get('@attackType').find('.ngx-select-dropdown-options').should('not.exist');
-      cy.get('@attackType').find('.ngx-select-caret').click();
-      cy.get('@attackType').find('.ngx-select-dropdown-options').should('be.visible');
+      cy.get('@attackType').within(() => {
+        cy.get('.ngx-select-dropdown-options').should('not.exist');
+        cy.get('.ngx-select-caret').click();
+        cy.get('.ngx-select-dropdown-options').first().scrollIntoView();
+        cy.get('.ngx-select-dropdown-options').should('be.visible');
+      });
 
-      cy.get('@attackTypeRequired').find('.ngx-select-dropdown-options').should('not.exist');
-      cy.get('@attackTypeRequired').find('.ngx-select-caret').click();
-      cy.get('@attackTypeRequired').find('.ngx-select-dropdown-options').should('be.visible');
+      cy.get('@attackTypeRequired').within(() => {
+        cy.get('.ngx-select-dropdown-options').should('not.exist');
+        cy.get('.ngx-select-caret').click();
+        cy.get('.ngx-select-dropdown-options').first().scrollIntoView();
+        cy.get('.ngx-select-dropdown-options').should('be.visible');
+      });
 
       // the current opened select should be closed
       cy.get('@attackType').find('.ngx-select-dropdown-options').should('not.exist');

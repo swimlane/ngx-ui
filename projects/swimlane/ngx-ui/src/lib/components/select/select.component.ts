@@ -418,7 +418,6 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
   onClose(): void {
     this.toggleDropdown(false);
-    // TODO: keep focus on component
   }
 
   onToggle(): void {
