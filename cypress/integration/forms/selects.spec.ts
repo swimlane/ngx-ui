@@ -18,7 +18,7 @@ describe('Selects', () => {
 
   describe('Basic Input', () => {
     beforeEach(() => {
-      cy.getByLabel('Attack Type').first().as('CUT').then(console.log)
+      cy.get('ngx-select').first().as('CUT');
     });
 
     it('has a label', () => {

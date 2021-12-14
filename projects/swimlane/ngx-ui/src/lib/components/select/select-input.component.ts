@@ -11,10 +11,10 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
+import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 
 @Component({
   exportAs: 'ngxSelectInput',
@@ -35,60 +35,32 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   @Input() tabindex = 0;
 
   @Input()
-  get autofocus() {
-    return this._autofocus;
-  }
-  set autofocus(autofocus) {
-    this._autofocus = coerceBooleanProperty(autofocus);
-  }
+  @CoerceBooleanProperty()
+  autofocus: boolean;
 
   @Input()
-  get allowClear() {
-    return this._allowClear;
-  }
-  set allowClear(allowClear) {
-    this._allowClear = coerceBooleanProperty(allowClear);
-  }
+  @CoerceBooleanProperty()
+  allowClear: boolean;
 
   @Input()
-  get multiple() {
-    return this._multiple;
-  }
-  set multiple(multiple) {
-    this._multiple = coerceBooleanProperty(multiple);
-  }
+  @CoerceBooleanProperty()
+  multiple: boolean;
 
   @Input()
-  get tagging() {
-    return this._tagging;
-  }
-  set tagging(tagging) {
-    this._tagging = coerceBooleanProperty(tagging);
-  }
+  @CoerceBooleanProperty()
+  tagging: boolean;
 
   @Input()
-  get allowAdditions() {
-    return this._allowAdditions;
-  }
-  set allowAdditions(allowAdditions) {
-    this._allowAdditions = coerceBooleanProperty(allowAdditions);
-  }
+  @CoerceBooleanProperty()
+  allowAdditions: boolean;
 
   @Input()
-  get disableDropdown() {
-    return this._disableDropdown;
-  }
-  set disableDropdown(disableDropdown) {
-    this._disableDropdown = coerceBooleanProperty(disableDropdown);
-  }
+  @CoerceBooleanProperty()
+  disableDropdown: boolean;
 
   @Input()
-  get disabled() {
-    return this._disabled;
-  }
-  set disabled(disabled) {
-    this._disabled = coerceBooleanProperty(disabled);
-  }
+  @CoerceBooleanProperty()
+  disabled: boolean;
 
   @Input()
   get selected() {
@@ -124,13 +96,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   selectedOptions: SelectDropdownOption[] = [];
 
   private _selected: any[];
-  private _autofocus: boolean;
-  private _allowClear: boolean;
-  private _multiple: boolean;
-  private _tagging: boolean;
-  private _allowAdditions: boolean;
-  private _disableDropdown: boolean;
-  private _disabled: boolean;
 
   ngOnChanges(changes: SimpleChanges) {
     if ('options' in changes && !changes.options.firstChange) {

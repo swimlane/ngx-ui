@@ -1,4 +1,4 @@
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -11,9 +11,11 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import { InViewportDirective } from 'ng-in-viewport';
-import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 
+import { InViewportDirective } from 'ng-in-viewport';
+
+import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
+import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { containsFilter } from './contains-filter.util';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
@@ -37,46 +39,25 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Input() allowAdditionsText: string | TemplateRef<any> = 'Add Value';
 
   @Input()
-  get tagging() {
-    return this._tagging;
-  }
-
-  set tagging(tagging) {
-    this._tagging = coerceBooleanProperty(tagging);
-  }
+  @CoerceBooleanProperty()
+  tagging: boolean;
 
   @Input()
-  get allowAdditions() {
-    return this._allowAdditions;
-  }
-
-  set allowAdditions(allowAdditions) {
-    this._allowAdditions = coerceBooleanProperty(allowAdditions);
-  }
+  @CoerceBooleanProperty()
+  allowAdditions: boolean;
 
   @Input()
-  get filterable() {
-    return this._filterable;
-  }
-
-  set filterable(filterable) {
-    this._filterable = coerceBooleanProperty(filterable);
-  }
+  @CoerceBooleanProperty()
+  filterable: boolean;
 
   @Input()
-  get filterCaseSensitive() {
-    return this._filterCaseSensitive;
-  }
-
-  set filterCaseSensitive(filterCaseSensitive) {
-    this._filterCaseSensitive = coerceBooleanProperty(filterCaseSensitive);
-  }
+  @CoerceBooleanProperty()
+  filterCaseSensitive = false;
 
   @Input()
   get focusIndex() {
     return this._focusIndex;
   }
-
   set focusIndex(val: number) {
     this._focusIndex = coerceNumberProperty(val);
     this.focusElement(this._focusIndex);
@@ -86,7 +67,6 @@ export class SelectDropdownComponent implements AfterViewInit {
   get filterQuery() {
     return this._filterQuery;
   }
-
   set filterQuery(val: string) {
     this._filterQuery = val;
     this.groups = this.calculateGroups(this.groupBy, this.options, val);
@@ -96,7 +76,6 @@ export class SelectDropdownComponent implements AfterViewInit {
   get groupBy() {
     return this._groupBy;
   }
-
   set groupBy(val: string) {
     this._groupBy = val;
     this.groups = this.calculateGroups(val, this.options);
@@ -139,10 +118,6 @@ export class SelectDropdownComponent implements AfterViewInit {
   private _groupBy: string;
   private _filterQuery: string;
   private _focusIndex: number;
-  private _tagging: boolean;
-  private _allowAdditions: boolean;
-  private _filterable: boolean;
-  private _filterCaseSensitive = false;
 
   constructor(private readonly elementRef: ElementRef, private readonly cdr: ChangeDetectorRef) {}
 
