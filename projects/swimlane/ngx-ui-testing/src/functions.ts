@@ -33,6 +33,7 @@ export function getTagName(el: JQuery<Element>): string {
   return tagName.toLowerCase();
 }
 
+// TODO: add ngx-select
 export function ngxClosest(element: JQuery<Element>): JQuery<Element> {
   let $ngx = element.closest(NGX.DATETIME);
   if ($ngx.length) return $ngx;
@@ -43,6 +44,7 @@ export function ngxClosest(element: JQuery<Element>): JQuery<Element> {
   return;
 }
 
+// TODO: options for exact or fuzzy match
 export function getByLabel(label: string, options: Partial<Cypress.Loggable & Cypress.Withinable>): JQuery<Element> {
   const root = options.withinSubject ? $(options.withinSubject) : $('body');
 
@@ -61,6 +63,7 @@ export function getByLabel(label: string, options: Partial<Cypress.Loggable & Cy
   return ngxClosest($el) || $el.next();
 }
 
+// TODO: options for exact or fuzzy match
 export function getByPlaceholder(
   label: string,
   options: Partial<Cypress.Loggable & Cypress.Withinable>
