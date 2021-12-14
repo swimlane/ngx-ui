@@ -1,9 +1,10 @@
 <div
-  [tabindex]="tabindex"
+  [tabindex]="disabled ? -1 : tabindex"
   (keydown)="onKeyDown($event)"
   (keyup)="onGlobalKeyUp($event)"
   class="ngx-select-input-box"
   (click)="onClick($event)"
+  #inputContainer
 >
   <label *ngIf="label" class="ngx-select-label" [attr.for]="selectId">
     <span [innerHTML]="label"></span>

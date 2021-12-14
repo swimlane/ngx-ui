@@ -206,15 +206,38 @@ export class SelectDropdownComponent implements AfterViewInit {
 
     switch (event.key) {
       case KeyboardKeys.ARROW_DOWN:
-        if (this.focusIndex < this.options.length - 1) ++this.focusIndex;
-        break;
+        return this.focusNext();
       case KeyboardKeys.ARROW_UP:
-        if (this.focusIndex > 0) --this.focusIndex;
-        break;
+        return this.focusPrev();
       case KeyboardKeys.ENTER:
       case KeyboardKeys.SPACE:
         this.selection.emit(option);
         break;
+    }
+  }
+
+  focusNext() {
+    const options = this.options;
+    const len = options.length;
+    if (this.focusIndex < len - 1) {
+      for (let i = this.focusIndex + 1; i < len; i++) {
+        if (!options[i].disabled && !options[i].hidden) {
+          this.focusIndex = i;
+          break;
+        }
+      }
+    }
+  }
+
+  focusPrev() {
+    const options = this.options;
+    if (this.focusIndex > 0) {
+      for (let i = this.focusIndex - 1; i >= 0; i--) {
+        if (!options[i].disabled && !options[i].hidden) {
+          this.focusIndex = i;
+          break;
+        }
+      }
     }
   }
 

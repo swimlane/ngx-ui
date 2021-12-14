@@ -602,7 +602,8 @@ $color-chip-text: #fff;
     }
   }
 
-  &.active:not(.ng-invalid) {
+  &.active:not(.ng-invalid),
+  &:focus-within:not(.ng-invalid) {
     .ngx-select-label,
     .ngx-select-caret,
     &.single-selection .ngx-select-clear {

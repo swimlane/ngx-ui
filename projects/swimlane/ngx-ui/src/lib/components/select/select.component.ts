@@ -451,8 +451,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
       }
     } else {
       // Keep focus on the select
-      // this.inputComponent.inputElement.nativeElement.focus();
-      // this._element.nativeElement.focus();
+      this.inputComponent.focus();
     }
 
     this._cdr.markForCheck();

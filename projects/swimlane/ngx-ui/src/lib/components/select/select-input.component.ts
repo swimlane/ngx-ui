@@ -83,6 +83,14 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   }
 
   @Input()
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(disabled) {
+    this._disabled = coerceBooleanProperty(disabled);
+  }
+
+  @Input()
   get selected() {
     return this._selected;
   }
@@ -97,6 +105,9 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   @Output() activate = new EventEmitter<Event>();
   @Output() activateLast = new EventEmitter<Event>();
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
+
+  @ViewChild('inputContainer')
+  readonly inputContainer?: ElementRef<HTMLElement>;
 
   @ViewChild('tagInput')
   readonly inputElement?: ElementRef<HTMLInputElement>;
@@ -119,6 +130,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   private _tagging: boolean;
   private _allowAdditions: boolean;
   private _disableDropdown: boolean;
+  private _disabled: boolean;
 
   ngOnChanges(changes: SimpleChanges) {
     if ('options' in changes && !changes.options.firstChange) {
@@ -219,6 +231,10 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     });
 
     this.selection.emit(newSelections);
+  }
+
+  focus() {
+    this.inputContainer.nativeElement.focus();
   }
 
   private calcSelectedOptions(selected: any[]) {
