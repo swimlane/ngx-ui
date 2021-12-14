@@ -5,6 +5,11 @@ describe('Selects', () => {
     cy.get('.page-loader').should('not.exist', { timeout: 20000 });
   });
 
+  const shouldBeNotFocused = () => cy.get('.ngx-select-input-underline .underline-fill').should('have.css', 'width', '0px');
+  const shouldBeFocused = () => cy.get('.ngx-select-input-underline .underline-fill').should('not.have.css', 'width', '0px');
+  const shouldBeNotActive = () => cy.root().should('not.have.class', 'active');
+  const shouldBeActive = () => cy.root().should('have.class', 'active');
+
   it('have no detectable a11y violations on load', () => {
     cy.get('ngx-select-input').withinEach($el => {
       cy.checkA11y($el, {
@@ -18,7 +23,8 @@ describe('Selects', () => {
 
   describe('Basic Input', () => {
     beforeEach(() => {
-      cy.get('ngx-select').first().as('CUT');
+      cy.get('ngx-section').first().as('SUT');
+      cy.get('@SUT').find('ngx-select').first().as('CUT');
     });
 
     it('has a label', () => {
@@ -44,6 +50,72 @@ describe('Selects', () => {
 
       cy.get('@CUT').select(text).ngxGetValue().should('equal', text);
       cy.get('@CUT').clear().ngxGetValue().should('equal', '');
+    });
+
+    it('is keyboard accessible', () => {
+      cy.get('@SUT').find('h4').contains('Basic').click();
+
+      cy.get('@CUT').within(() => {
+        shouldBeNotFocused();
+        shouldBeNotActive();
+
+        cy.realPress('Tab');
+        shouldBeFocused();
+        shouldBeNotActive();
+        
+        cy.realPress('ArrowDown');
+        shouldBeFocused();
+        shouldBeActive();
+
+        cy.get('.ngx-select-dropdown-options li li').within(() => {
+          cy.root().first().should('have.class', 'active');  // active
+          cy.root().last().should('not.have.class', 'active');  // not active
+  
+          cy.realPress('ArrowDown').realPress('ArrowDown');
+          cy.root().first().should('not.have.class', 'active');  // not active
+          cy.root().last().should('have.class', 'active');  // active
+        })
+
+        cy.realPress('Escape');
+        shouldBeFocused();
+        shouldBeNotActive();
+
+        cy.realPress('ArrowUp');
+        shouldBeFocused();
+        shouldBeActive();
+
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(10);  // Needed for testing!!!
+
+        cy.get('.ngx-select-dropdown-options li li').within(() => {
+          cy.root().first().should('not.have.class', 'active');  // not active
+          cy.root().last().should('have.class', 'active');  // active
+  
+          cy.realPress('ArrowUp');
+          // eslint-disable-next-line cypress/no-unnecessary-waiting
+          cy.wait(10);  // Needed for testing!!!
+          cy.realPress('ArrowUp');
+          cy.root().first().should('have.class', 'active');  // active
+          cy.root().last().should('not.have.class', 'active');  // not active
+        });
+
+        cy.realPress('Enter');
+        shouldBeFocused();
+        shouldBeNotActive();
+        cy.root().ngxGetValue().should('equal', 'Breach');
+
+        cy.realPress('Space');
+        cy.realPress('ArrowDown');
+        cy.realPress('Space');
+        cy.root().ngxGetValue().should('equal', 'DDOS');
+        shouldBeFocused();
+        shouldBeActive();
+
+        cy.root().ngxClose();
+        cy.realPress('Tab');
+        shouldBeNotFocused();
+        shouldBeNotActive();
+      });
     });
   });
 
@@ -111,7 +183,8 @@ describe('Selects', () => {
 
   describe('Multiple Select', () => {
     beforeEach(() => {
-      cy.getByLabel('Multiple Select').as('CUT');
+      cy.get('section header h1').contains('Multi Select').closest('ngx-section').as('SUT');
+      cy.get('@SUT').find('ngx-select').first().as('CUT');
     });
 
     it('selects and clears value', () => {
@@ -121,6 +194,72 @@ describe('Selects', () => {
       cy.get('@CUT').select(['DDOS', 'Physical']).ngxGetValue().should('deep.equal', ['DDOS', 'Physical']);
 
       cy.get('@CUT').clear().ngxGetValue().should('deep.equal', []);
+    });
+
+    it('is keyboard accessible', () => {
+      cy.get('@SUT').find('h4').contains('Basic').click();
+
+      cy.get('@CUT').within(() => {
+        shouldBeNotFocused();
+        shouldBeNotActive();
+
+        cy.realPress('Tab');
+        shouldBeFocused();
+        shouldBeNotActive();
+        
+        cy.realPress('ArrowDown');
+        shouldBeFocused();
+        shouldBeActive();
+
+        cy.get('.ngx-select-dropdown-options li li').within(() => {
+          cy.root().first().should('have.class', 'active');  // active
+          cy.root().last().should('not.have.class', 'active');  // not active
+  
+          cy.realPress('ArrowDown').realPress('ArrowDown');
+          cy.root().first().should('not.have.class', 'active');  // not active
+          cy.root().last().should('have.class', 'active');  // active
+        })
+
+        cy.realPress('Escape');
+        shouldBeFocused();
+        shouldBeNotActive();
+
+        cy.realPress('ArrowUp');
+        shouldBeFocused();
+        shouldBeActive();
+
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(10);  // Needed for testing!!!
+
+        cy.get('.ngx-select-dropdown-options li li').within(() => {
+          cy.root().first().should('not.have.class', 'active');  // not active
+          cy.root().last().should('have.class', 'active');  // active
+  
+          cy.realPress('ArrowUp');
+          // eslint-disable-next-line cypress/no-unnecessary-waiting
+          cy.wait(10);  // Needed for testing!!!
+          cy.realPress('ArrowUp');
+          cy.root().first().should('have.class', 'active');  // active
+          cy.root().last().should('not.have.class', 'active');  // not active
+        });
+
+        cy.realPress('Enter');
+        shouldBeFocused();
+        shouldBeActive();
+        cy.root().ngxGetValue().should('deep.equal', ['Breach']);
+
+        cy.realPress('Space');
+        cy.realPress('ArrowDown');
+        cy.realPress('Space');
+        cy.root().ngxGetValue().should('deep.equal', ['Breach', 'DDOS']);
+        shouldBeFocused();
+        shouldBeActive();
+
+        cy.root().ngxClose();
+        cy.realPress('Tab');
+        shouldBeNotFocused();
+        shouldBeNotActive();
+      });
     });
   });
 

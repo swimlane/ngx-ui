@@ -164,6 +164,8 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   }
 
   onKeyDown(event: KeyboardEvent): void {
+    if (event.code === KeyboardKeys.TAB) return; // don't trap tabs
+
     if (this.disableDropdown) return;
     event.stopPropagation();
     event.preventDefault();
