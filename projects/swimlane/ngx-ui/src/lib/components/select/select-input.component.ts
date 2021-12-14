@@ -111,34 +111,37 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     }
   }
 
+  // Events in the input box
   onKeyUp(event: KeyboardEvent): void {
     event.stopPropagation();
 
-    const key = event.key;
     const value = (event.target as any).value;
 
-    if (key === (KeyboardKeys.ENTER as any)) {
-      if (value !== '') {
-        const hasSelection = this.selected.find(selection => {
-          return value === selection;
-        });
+    switch (event.code) {
+      case KeyboardKeys.ENTER:
+        event.preventDefault();
+        if (value !== '') {
+          const hasSelection = this.selected.find(selection => {
+            return value === selection;
+          });
 
-        if (!hasSelection) {
-          const newSelections = [...this.selected, value];
-          this.selection.emit(newSelections);
-          (event.target as any).value = '';
+          if (!hasSelection) {
+            const newSelections = [...this.selected, value];
+            this.selection.emit(newSelections);
+            (event.target as any).value = '';
+          }
         }
-      }
-
-      event.preventDefault();
-    } else if (key === KeyboardKeys.ESCAPE) {
-      this.toggle.emit();
+        break;
+      case KeyboardKeys.ESCAPE:
+        event.preventDefault();
+        this.toggle.emit();
+        break;
     }
 
     this.keyup.emit({ event, value });
   }
 
-  // Events on input element
+  // Events on ngx-select-input-box element
   onGlobalKeyUp(event: KeyboardEvent) {
     event.stopPropagation();
 
@@ -163,6 +166,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   onKeyDown(event: KeyboardEvent): void {
     if (this.disableDropdown) return;
     event.stopPropagation();
+    event.preventDefault();
 
     if (!this.tagging) {
       this.keyup.emit({ event });
