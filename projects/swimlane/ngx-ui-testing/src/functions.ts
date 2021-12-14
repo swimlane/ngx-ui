@@ -87,7 +87,7 @@ export function findInput(element: JQuery<Element>): JQuery<Element> {
       return element.find('input[type="radio"]');
     case NGX.CODEMIRROR:
       const $cm = element.find('div.CodeMirror');
-      cy.wrap($cm).click();
+      cy.wrap($cm, LOG).click(LOG);
       return $cm.find('textarea');
     case NGX.SELECT:
       return element.find('input[type="search"]');
@@ -113,7 +113,10 @@ export function findLabel(element: JQuery<Element>): JQuery<Element> {
 export function clear(element: JQuery<Element>): Cypress.Chainable<JQuery<any>> {
   switch (getTagName(element)) {
     case NGX.CODEMIRROR:
-      return cy.wrap(element, LOG).ngxFindNativeInput().type(CLEAR, LOG);
+      return cy
+        .wrap(element, LOG)
+        .ngxFindNativeInput(LOG)
+        .type(CLEAR, { ...LOG, force: true });
     case NGX.INPUT:
     case NGX.DATETIME:
       return cy.wrap(findInput(element), LOG).clear(LOG);
@@ -184,6 +187,15 @@ export function fillValue(
       if (text) {
         return cy.wrap(element, LOG).type(text, { ...options, ...LOG });
       }
+      return;
+    case NGX.CODEMIRROR:
+      cy.wrap(element, LOG).clear(LOG);
+      if (text) {
+        cy.wrap(element, LOG)
+          .ngxFindNativeInput(LOG)
+          .type(text, { ...options, ...LOG, force: true });
+      }
+      return cy.focused(LOG).blur(LOG);
     case NGX.SLIDER:
       throw new Error(`don't use .ngxFill on ngx-sliders, use .ngxSetValue`);
     case NGX.RADIOBUTTON_GROUP:

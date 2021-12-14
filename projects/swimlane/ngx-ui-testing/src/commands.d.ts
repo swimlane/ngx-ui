@@ -13,8 +13,8 @@ declare namespace Cypress {
       fn?: (el: JQuery<any>) => void,
       options?: Partial<Loggable>
     ): Chainable<JQuery<Element>>;
-    hover(options?: Partial<Loggable>): Chainable<JQuery<Element>>;
-    unhover(options?: Partial<Loggable>): Chainable<JQuery<Element>>;
+    ngxHover(options?: Partial<Loggable>): Chainable<JQuery<Element>>;
+    ngxUnhover(options?: Partial<Loggable>): Chainable<JQuery<Element>>;
     // ---- Commands ----
     ngxDebug(value: boolean): Chainable<void>;
     ngxFindNativeInput(options?: Partial<Loggable>): Chainable<JQuery<Element>>;

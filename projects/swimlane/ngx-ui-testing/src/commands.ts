@@ -13,6 +13,13 @@ import {
   getByPlaceholder
 } from './functions';
 
+// -------------- Helpers --------------
+
+// Workaround for https://github.com/cypress-io/cypress/issues/18879
+function Cypress_Commands_add_Subject<T extends keyof Cypress.Chainable>(name: T, options: any, fn: any): void {
+  Cypress.Commands.add(name, options, fn);
+}
+
 // -------------- Utils --------------
 
 /**
@@ -93,9 +100,9 @@ Cypress.Commands.add('getByPlaceholder', (text: string, options: Partial<Cypress
 /**
  * Like `cy.within`, but for each element.
  */
-Cypress.Commands.add(
+Cypress_Commands_add_Subject(
   'withinEach',
-  { prevSubject: true },
+  { prevSubject: 'element' },
   (
     subject: JQuery<any>,
     fn: (el: JQuery<any>) => void,
@@ -126,8 +133,8 @@ Cypress.Commands.add(
   }
 );
 
-Cypress.Commands.add(
-  'hover',
+Cypress_Commands_add_Subject(
+  'ngxHover',
   { prevSubject: 'element' },
   (subject: JQuery<any>, options: Partial<Cypress.Loggable>): Cypress.Chainable<JQuery<Element>> => {
     options = {
@@ -151,8 +158,8 @@ Cypress.Commands.add(
   }
 );
 
-Cypress.Commands.add(
-  'unhover',
+Cypress_Commands_add_Subject(
+  'ngxUnhover',
   { prevSubject: 'element' },
   (subject: JQuery<any>, options: Partial<Cypress.Loggable>): Cypress.Chainable<JQuery<Element>> => {
     options = {
@@ -179,7 +186,7 @@ Cypress.Commands.add(
 /**
  * Like `cy.within` but also forces the element into a hover state.
  */
-Cypress.Commands.add(
+Cypress_Commands_add_Subject(
   'whileHovering',
   { prevSubject: 'element' },
   (
@@ -206,10 +213,10 @@ Cypress.Commands.add(
 
     // TODO: support `.whileHovering(options, callbackFn)`
     cy.wrap(subject, LOG)
-      .hover(LOG)
+      .ngxHover(LOG)
       .within(fn)
       .iff($el => {
-        return cy.wrap($el).unhover(LOG);
+        return cy.wrap($el).ngxUnhover(LOG);
       });
     return cy.wrap(subject, LOG);
   }
@@ -218,7 +225,7 @@ Cypress.Commands.add(
 /**
  * Like `cy.within` but only if the element exists in the DOM.
  */
-Cypress.Commands.add(
+Cypress_Commands_add_Subject(
   'iff',
   { prevSubject: true },
   (
@@ -257,14 +264,14 @@ Cypress.Commands.add(
 /**
  * Set ngx-ui-testing debug mode.
  */
-Cypress.Commands.add('ngxDebug', (value: boolean): void => {
+Cypress.Commands.add('ngxDebug', (value: boolean): any => {
   LOG.log = value;
 });
 
 /**
  * Given an ngx-ui element, returns the child native input element.
  */
-Cypress.Commands.add(
+Cypress_Commands_add_Subject(
   'ngxFindNativeInput',
   { prevSubject: 'element' },
   (subject: JQuery<any>, options: Partial<Cypress.Loggable> = {}): Cypress.Chainable<JQuery<Element>> => {
@@ -288,14 +295,14 @@ Cypress.Commands.add(
         }
       });
     }
-    return cy.wrap($el);
+    return cy.wrap($el, LOG);
   }
 );
 
 /**
  * Given an element, returns the label element.
  */
-Cypress.Commands.add(
+Cypress_Commands_add_Subject(
   'ngxFindLabel',
   { prevSubject: 'element' },
   (subject: JQuery<any>, options: Partial<Cypress.Loggable> = {}): Cypress.Chainable<JQuery<Element>> => {
@@ -327,10 +334,10 @@ Cypress.Commands.add(
  * Close all ngx-ui notifications, if any.
  */
 Cypress.Commands.add('ngxCloseNotifications', () => {
-  cy.get('ngx-notification-container').iff('.ngx-notification-close', $el => $el.trigger('click'));
+  return cy.get('ngx-notification-container').iff('.ngx-notification-close', $el => $el.trigger('click'));
 });
 
-Cypress.Commands.add(
+Cypress_Commands_add_Subject(
   'ngxOpen',
   { prevSubject: 'element' },
   (subject: JQuery<any>, options: Partial<Cypress.Loggable> = {}): Cypress.Chainable<JQuery<Element>> => {
@@ -363,7 +370,7 @@ Cypress.Commands.add(
   }
 );
 
-Cypress.Commands.add(
+Cypress_Commands_add_Subject(
   'ngxClose',
   { prevSubject: 'element' },
   (subject: JQuery<any>, options: Partial<Cypress.Loggable> = {}): Cypress.Chainable<JQuery<Element>> => {
@@ -403,7 +410,7 @@ Cypress.Commands.add(
 /**
  * Like `cy.type` but clears existing text before and works with ngx-ui elements.
  */
-Cypress.Commands.add(
+Cypress_Commands_add_Subject(
   'ngxFill',
   { prevSubject: 'element' },
   (
@@ -436,7 +443,7 @@ Cypress.Commands.add(
 /**
  * Given an element, returns the element's value.
  */
-Cypress.Commands.add(
+Cypress_Commands_add_Subject(
   'ngxGetValue',
   { prevSubject: 'element' },
   (
@@ -470,7 +477,7 @@ Cypress.Commands.add(
 /**
  * Set an elements value directly
  */
-Cypress.Commands.add(
+Cypress_Commands_add_Subject(
   'ngxSetValue',
   { prevSubject: 'element' },
   (
@@ -500,7 +507,7 @@ Cypress.Commands.add(
   }
 );
 
-Cypress.Commands.add(
+Cypress_Commands_add_Subject(
   'ngxSelectTab',
   { prevSubject: 'element' },
   (
