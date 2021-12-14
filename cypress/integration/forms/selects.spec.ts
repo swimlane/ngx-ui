@@ -5,8 +5,10 @@ describe('Selects', () => {
     cy.get('.page-loader').should('not.exist', { timeout: 20000 });
   });
 
-  const shouldBeNotFocused = () => cy.get('.ngx-select-input-underline .underline-fill').should('have.css', 'width', '0px');
-  const shouldBeFocused = () => cy.get('.ngx-select-input-underline .underline-fill').should('not.have.css', 'width', '0px');
+  const shouldBeNotFocused = () =>
+    cy.get('.ngx-select-input-underline .underline-fill').should('have.css', 'width', '0px');
+  const shouldBeFocused = () =>
+    cy.get('.ngx-select-input-underline .underline-fill').should('not.have.css', 'width', '0px');
   const shouldBeNotActive = () => cy.root().should('not.have.class', 'active');
   const shouldBeActive = () => cy.root().should('have.class', 'active');
 
@@ -62,19 +64,19 @@ describe('Selects', () => {
         cy.realPress('Tab');
         shouldBeFocused();
         shouldBeNotActive();
-        
+
         cy.realPress('ArrowDown');
         shouldBeFocused();
         shouldBeActive();
 
         cy.get('.ngx-select-dropdown-options li li').within(() => {
-          cy.root().first().should('have.class', 'active');  // active
-          cy.root().last().should('not.have.class', 'active');  // not active
-  
+          cy.root().first().should('have.class', 'active'); // active
+          cy.root().last().should('not.have.class', 'active'); // not active
+
           cy.realPress('ArrowDown').realPress('ArrowDown');
-          cy.root().first().should('not.have.class', 'active');  // not active
-          cy.root().last().should('have.class', 'active');  // active
-        })
+          cy.root().first().should('not.have.class', 'active'); // not active
+          cy.root().last().should('have.class', 'active'); // active
+        });
 
         cy.realPress('Escape');
         shouldBeFocused();
@@ -85,18 +87,18 @@ describe('Selects', () => {
         shouldBeActive();
 
         // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(10);  // Needed for testing!!!
+        cy.wait(10); // Needed for testing!!!
 
         cy.get('.ngx-select-dropdown-options li li').within(() => {
-          cy.root().first().should('not.have.class', 'active');  // not active
-          cy.root().last().should('have.class', 'active');  // active
-  
+          cy.root().first().should('not.have.class', 'active'); // not active
+          cy.root().last().should('have.class', 'active'); // active
+
           cy.realPress('ArrowUp');
           // eslint-disable-next-line cypress/no-unnecessary-waiting
-          cy.wait(10);  // Needed for testing!!!
+          cy.wait(10); // Needed for testing!!!
           cy.realPress('ArrowUp');
-          cy.root().first().should('have.class', 'active');  // active
-          cy.root().last().should('not.have.class', 'active');  // not active
+          cy.root().first().should('have.class', 'active'); // active
+          cy.root().last().should('not.have.class', 'active'); // not active
         });
 
         cy.realPress('Enter');
@@ -206,19 +208,19 @@ describe('Selects', () => {
         cy.realPress('Tab');
         shouldBeFocused();
         shouldBeNotActive();
-        
+
         cy.realPress('ArrowDown');
         shouldBeFocused();
         shouldBeActive();
 
         cy.get('.ngx-select-dropdown-options li li').within(() => {
-          cy.root().first().should('have.class', 'active');  // active
-          cy.root().last().should('not.have.class', 'active');  // not active
-  
+          cy.root().first().should('have.class', 'active'); // active
+          cy.root().last().should('not.have.class', 'active'); // not active
+
           cy.realPress('ArrowDown').realPress('ArrowDown');
-          cy.root().first().should('not.have.class', 'active');  // not active
-          cy.root().last().should('have.class', 'active');  // active
-        })
+          cy.root().first().should('not.have.class', 'active'); // not active
+          cy.root().last().should('have.class', 'active'); // active
+        });
 
         cy.realPress('Escape');
         shouldBeFocused();
@@ -229,18 +231,18 @@ describe('Selects', () => {
         shouldBeActive();
 
         // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(10);  // Needed for testing!!!
+        cy.wait(10); // Needed for testing!!!
 
         cy.get('.ngx-select-dropdown-options li li').within(() => {
-          cy.root().first().should('not.have.class', 'active');  // not active
-          cy.root().last().should('have.class', 'active');  // active
-  
+          cy.root().first().should('not.have.class', 'active'); // not active
+          cy.root().last().should('have.class', 'active'); // active
+
           cy.realPress('ArrowUp');
           // eslint-disable-next-line cypress/no-unnecessary-waiting
-          cy.wait(10);  // Needed for testing!!!
+          cy.wait(10); // Needed for testing!!!
           cy.realPress('ArrowUp');
-          cy.root().first().should('have.class', 'active');  // active
-          cy.root().last().should('not.have.class', 'active');  // not active
+          cy.root().first().should('have.class', 'active'); // active
+          cy.root().last().should('not.have.class', 'active'); // not active
         });
 
         cy.realPress('Enter');
