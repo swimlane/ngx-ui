@@ -20,7 +20,8 @@ import {
   NG_VALIDATORS,
   NgModel,
   FormControl,
-  Validators
+  Validators,
+  ValidationErrors
 } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { BehaviorSubject } from 'rxjs';
@@ -207,12 +208,13 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   set value(val: string | number) {
     if (val !== this._value) {
       this._value = val;
-      this.onChangeCallback(this._value);
+      this.onChangeCallback(this.value);
     }
   }
 
   get valueAsString(): string {
-    return this._value ? String(this._value) : '';
+    if (this._value == null || typeof this._value === 'undefined') return '';
+    return String(this._value);
   }
 
   get valueAsNumber(): number {
@@ -236,7 +238,6 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     return typeof this.value !== 'undefined' && this.value !== null;
   }
 
-  @HostBinding('class.ng-invalid')
   get isBadInput() {
     const validity = (this.inputControl?.nativeElement as HTMLInputElement)?.validity;
     return validity && validity.badInput;
@@ -327,12 +328,13 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     this.onTouchedCallback();
   }
 
-  validate(c: FormControl) {
+  validate(c: FormControl): ValidationErrors | null {
     if (this.type !== InputTypes.number) {
       return null;
     }
 
     return {
+      ...(this.isBadInput ? { badInput: true } : null),
       ...Validators.max(this.max)(c),
       ...Validators.min(this.min)(c)
     };
