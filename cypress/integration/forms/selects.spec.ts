@@ -54,7 +54,7 @@ describe('Selects', () => {
 
       cy.get('@CUT').ngxOpen();
       cy.get('@CUT').find('.ngx-select-dropdown-option').contains(text).click();
-      
+
       cy.get('@CUT').ngxGetValue().should('equal', '');
     });
 
@@ -195,9 +195,7 @@ describe('Selects', () => {
 
       cy.get('@CUT').select('DDOS').ngxGetValue().should('equal', 'DDOS');
       cy.get('@CUT').find('input').click().type('Other').type('{enter}');
-      cy.get('@CUT').ngxGetValue()
-        .should('contain', 'DDOS')
-        .should('contain', 'Other');
+      cy.get('@CUT').ngxGetValue().should('contain', 'DDOS').should('contain', 'Other');
 
       // TODO(ngx-ui-testing): support clearing all tags
       cy.get('@CUT').find('.ngx-select-clear').first().click();
