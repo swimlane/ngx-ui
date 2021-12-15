@@ -182,7 +182,7 @@ describe('InputComponent', () => {
       expect(component.input.valueAsString).toEqual('');
     });
 
-    fit('should all engineering notation', () => {
+    it('should all engineering notation', () => {
       component.input.value = '1e10';
       fixture.detectChanges();
       expect(component.input.value as any).toEqual(10000000000);
