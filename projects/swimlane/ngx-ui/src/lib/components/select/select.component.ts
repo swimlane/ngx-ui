@@ -270,28 +270,35 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     this.toggleDropdown(false);
   }
 
-  onDropdownSelection(selection: SelectDropdownOption): void {
+  onDropdownSelection(selection: SelectDropdownOption, shouldClose = this.closeOnSelect || !this.multiple): void {
     if (selection.disabled) return;
     if (this.value.length === this.maxSelections) return;
 
-    const idx = this.value.findIndex(o => {
-      if (this.identifier) {
-        return o[this.identifier] === selection.value[this.identifier];
-      }
-
-      return o === selection.value;
-    });
+    const idx = this.findIndex(selection);
 
     if (idx === -1) {
       this.value = this.multiple || this.tagging ? [...this.value, selection.value] : [selection.value];
     }
+    this.afterSelect(shouldClose);
+  }
 
+  onDropdownDeselection(selection: SelectDropdownOption, shouldClose = this.closeOnSelect || !this.multiple): void {
+    if (selection.disabled) return;
+    if (!this.allowClear) return;
+
+    const idx = this.findIndex(selection);
+
+    if (idx > -1) {
+      this.value = this.value.filter((_, i) => i !== idx);
+    }
+    this.afterSelect(shouldClose);
+  }
+
+  private afterSelect(shouldClose: boolean = this.closeOnSelect || !this.multiple) {
     // if tagging, we need to clear current text
     if (this.tagging) {
       this.inputComponent.inputElement.nativeElement.value = '';
     }
-
-    const shouldClose = this.closeOnSelect || !this.multiple;
 
     if (shouldClose) {
       this.toggleDropdown(false);
@@ -409,6 +416,15 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  private findIndex(selection: SelectDropdownOption) {
+    return this.value.findIndex(o => {
+      if (this.identifier) {
+        return o[this.identifier] === selection.value[this.identifier];
+      }
+      return o === selection.value;
+    });
   }
 
   private adjustMenuDirection(event: {

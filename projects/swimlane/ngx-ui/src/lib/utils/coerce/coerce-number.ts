@@ -3,7 +3,7 @@ import { coerceNumberProperty } from '@angular/cdk/coercion';
 export function CoerceNumberProperty(fallback?: number): PropertyDecorator {
   // eslint-disable-next-line @typescript-eslint/ban-types
   return function (target: Object, propertyKey: string | symbol): void {
-    const _key = Symbol();
+    const _key = Symbol(String(propertyKey));
     target[_key] = target[propertyKey];
     Object.defineProperty(target, propertyKey, {
       get(): number {

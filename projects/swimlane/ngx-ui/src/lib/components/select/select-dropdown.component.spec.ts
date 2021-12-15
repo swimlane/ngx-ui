@@ -166,8 +166,8 @@ describe('SelectDropdownComponent', () => {
       expect(component.filterQuery).toEqual('');
     });
 
-    it('should call updatefilterQueryIsInOptions', fakeAsync(() => {
-      const spy = spyOnProperty(component, 'updatefilterQueryIsInOptions').and.callThrough();
+    it('should call updateFilterQueryIsInOptions', fakeAsync(() => {
+      const spy = spyOnProperty(component, 'updateFilterQueryIsInOptions').and.callThrough();
       component.onInputKeyUp(event);
       flush();
       fixture.detectChanges();

@@ -95,6 +95,9 @@ export class SelectDropdownComponent implements AfterViewInit {
 
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
   @Output() selection = new EventEmitter<SelectDropdownOption>();
+  @Output() deselection = new EventEmitter<SelectDropdownOption>();
+  @Output() keyboardSelection = new EventEmitter<SelectDropdownOption>();
+  @Output() keyboardDeselection = new EventEmitter<SelectDropdownOption>();
   @Output() close = new EventEmitter<boolean | undefined>();
 
   @ViewChild('filterInput')
@@ -141,7 +144,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   }
 
   @debounceable(500)
-  updatefilterQueryIsInOptions() {
+  updateFilterQueryIsInOptions() {
     this.filterQueryIsInOptions = this.options.some(o => o.name.toLowerCase() === this.filterQuery.toLowerCase());
     this.cdr.markForCheck();
   }
@@ -150,7 +153,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     filterInput.value = '';
 
     this.filterQuery = '';
-    this.updatefilterQueryIsInOptions();
+    this.updateFilterQueryIsInOptions();
     this.cdr.markForCheck();
   }
 
@@ -171,12 +174,16 @@ export class SelectDropdownComponent implements AfterViewInit {
       this.filterQuery = value;
     }
 
-    this.updatefilterQueryIsInOptions();
+    this.updateFilterQueryIsInOptions();
     this.keyup.emit({ event, value });
   }
 
   onOptionClick(option: SelectDropdownOption) {
-    this.selection.emit(option);
+    if (this.isSelected(option)) {
+      this.deselection.emit(option);
+    } else {
+      this.selection.emit(option);
+    }
   }
 
   onOptionKeyDown(event: KeyboardEvent, option?: SelectDropdownOption): void {
@@ -191,11 +198,11 @@ export class SelectDropdownComponent implements AfterViewInit {
       case KeyboardKeys.ARROW_UP:
         return this.focusPrev();
       case KeyboardKeys.ENTER:
+        // Enter may trigger dropdown close
+        return this.isSelected(option) ? this.deselection.emit(option) : this.selection.emit(option);
       case KeyboardKeys.SPACE:
-        // TODO: clear selection if option is already selected
-        // TODO: don't close on space
-        this.selection.emit(option);
-        break;
+        // Space does not trigger dropdown close
+        return this.isSelected(option) ? this.keyboardDeselection.emit(option) : this.keyboardSelection.emit(option);
     }
   }
 

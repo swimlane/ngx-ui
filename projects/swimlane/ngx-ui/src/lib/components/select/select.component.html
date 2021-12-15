@@ -48,6 +48,9 @@
     (keyup)="keyup.emit($event)"
     (close)="onClose()"
     (selection)="onDropdownSelection($event)"
+    (deselection)="onDropdownDeselection($event)"
+    (keyboardSelection)="onDropdownSelection($event, false)"
+    (keyboardDeselection)="onDropdownDeselection($event, false)"
   >
   </ngx-select-dropdown>
 </div>
