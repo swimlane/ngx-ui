@@ -77,7 +77,7 @@ describe('SelectInputComponent', () => {
 
     it('should emit event and value', () => {
       const spy = spyOn(component.keyup, 'emit');
-      component.onKeyUp(event);
+      component.onInputKeyUp(event);
       expect(spy).toHaveBeenCalledWith({ event, value: '' });
     });
 
@@ -89,7 +89,7 @@ describe('SelectInputComponent', () => {
       it('should select value when not selected', () => {
         const spy = spyOn(component.selection, 'emit');
         event.target.value = 'test';
-        component.onKeyUp(event);
+        component.onInputKeyUp(event);
         expect(spy).toHaveBeenCalled();
       });
 
@@ -97,13 +97,13 @@ describe('SelectInputComponent', () => {
         component.selected = ['test'];
         const spy = spyOn(component.selection, 'emit');
         event.target.value = 'test';
-        component.onKeyUp(event);
+        component.onInputKeyUp(event);
         expect(spy).not.toHaveBeenCalled();
       });
 
       it('should do nothing if !value', () => {
         const spy = spyOn(component.selection, 'emit');
-        component.onKeyUp(event);
+        component.onInputKeyUp(event);
         expect(spy).not.toHaveBeenCalled();
       });
     });
@@ -115,7 +115,7 @@ describe('SelectInputComponent', () => {
 
       it('should toggle', () => {
         const spy = spyOn(component.toggle, 'emit');
-        component.onKeyUp(event);
+        component.onInputKeyUp(event);
         expect(spy).toHaveBeenCalled();
       });
     });
@@ -154,8 +154,6 @@ describe('SelectInputComponent', () => {
   });
 
   describe('onClick', () => {
-    const event: any = {};
-
     beforeEach(() => {
       fixture = TestBed.createComponent(SelectInputComponent);
       component = fixture.componentInstance;
@@ -173,13 +171,13 @@ describe('SelectInputComponent', () => {
     it('should do nothing if disableDropdown', () => {
       const spy = spyOn(component.activate, 'emit');
       component.disableDropdown = true;
-      component.onClick(event);
+      component.onClick();
       expect(spy).not.toHaveBeenCalled();
     });
 
     it('should focus input if tagging', done => {
       const spy = spyOn(component.inputElement.nativeElement, 'focus');
-      component.onClick(event);
+      component.onClick();
 
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();
@@ -190,7 +188,7 @@ describe('SelectInputComponent', () => {
     it('should emit activate but not focus is !tagging', done => {
       const spy = spyOn(component.inputElement.nativeElement, 'focus');
       component.tagging = false;
-      component.onClick(event);
+      component.onClick();
 
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();
