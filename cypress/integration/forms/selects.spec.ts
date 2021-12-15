@@ -213,23 +213,23 @@ describe('Selects', () => {
         shouldBeActive();
 
         // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(100);  // Wait for element to refocus
+        cy.wait(100); // Wait for element to refocus
 
-        cy.focused().type('Other{enter}');  // Input should be focused
+        cy.focused().type('Other{enter}'); // Input should be focused
 
         cy.root().ngxGetValue().should('contain', 'Other');
 
         // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(100);  // Wait for element to refocus
+        cy.wait(100); // Wait for element to refocus
 
         // Down arrow to select second item, closes list, stays active
         cy.realPress('ArrowDown');
         // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(100);  // Needed for testing!!!
+        cy.wait(100); // Needed for testing!!!
         cy.realPress('Enter');
 
         // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(120);  // Wait for element to refocus on input
+        cy.wait(120); // Wait for element to refocus on input
 
         shouldBeFocused();
         shouldBeActive();
@@ -237,7 +237,7 @@ describe('Selects', () => {
         cy.root().ngxGetValue().should('contain', 'Other').should('contain', 'DDOS');
 
         // Clears with backspace
-        cy.focused().type('{backspace}{backspace}{backspace}');  // For some reason needs three backspaces in testing
+        cy.focused().type('{backspace}{backspace}{backspace}'); // For some reason needs three backspaces in testing
       });
     });
   });
