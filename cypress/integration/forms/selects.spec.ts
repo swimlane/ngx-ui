@@ -43,6 +43,19 @@ describe('Selects', () => {
       cy.get('@CUT').clear().ngxGetValue().should('equal', '');
     });
 
+    it('deselects on click', () => {
+      cy.get('@CUT').ngxGetValue().should('equal', '');
+
+      const text = 'DDOS';
+
+      cy.get('@CUT').select(text).ngxGetValue().should('equal', text);
+
+      cy.get('@CUT').ngxOpen();
+      cy.get('@CUT').find('.ngx-select-dropdown-option').contains(text).click();
+      
+      cy.get('@CUT').ngxGetValue().should('equal', '');
+    });
+
     it('selects and clears value twice', () => {
       cy.get('@CUT').ngxGetValue().should('equal', '');
 
@@ -58,13 +71,16 @@ describe('Selects', () => {
       cy.get('@SUT').find('h4').contains('Basic').click();
 
       cy.get('@CUT').within(() => {
+        // Starts out not focused not open
         shouldBeNotFocused();
         shouldBeNotActive();
 
+        // Tab into the select, now focused but still closed
         cy.realPress('Tab');
         shouldBeFocused();
         shouldBeNotActive();
 
+        // Down arrow to open and select first item
         cy.realPress('ArrowDown');
         shouldBeFocused();
         shouldBeActive();
@@ -78,10 +94,12 @@ describe('Selects', () => {
           cy.root().last().should('have.class', 'active'); // active
         });
 
+        // Escape to close list
         cy.realPress('Escape');
         shouldBeFocused();
         shouldBeNotActive();
 
+        // Arrow up to open and select last item
         cy.realPress('ArrowUp');
         shouldBeFocused();
         shouldBeActive();
@@ -101,18 +119,31 @@ describe('Selects', () => {
           cy.root().last().should('not.have.class', 'active'); // not active
         });
 
+        // Enter selects an option and closes the list
         cy.realPress('Enter');
         shouldBeFocused();
         shouldBeNotActive();
         cy.root().ngxGetValue().should('equal', 'Breach');
 
+        // Space opens
         cy.realPress('Space');
+        shouldBeFocused();
+        shouldBeActive();
+
+        // Space selects an option but leaves list open
         cy.realPress('ArrowDown');
         cy.realPress('Space');
         cy.root().ngxGetValue().should('equal', 'DDOS');
         shouldBeFocused();
         shouldBeActive();
 
+        // Can deselect
+        cy.realPress('Space');
+        cy.root().ngxGetValue().should('equal', '');
+        shouldBeFocused();
+        shouldBeActive();
+
+        // Tab away
         cy.root().ngxClose();
         cy.realPress('Tab');
         shouldBeNotFocused();
@@ -202,13 +233,16 @@ describe('Selects', () => {
       cy.get('@SUT').find('h4').contains('Basic').click();
 
       cy.get('@CUT').within(() => {
+        // Starts out not focused not open
         shouldBeNotFocused();
         shouldBeNotActive();
 
+        // Tab into the select, now focused but still closed
         cy.realPress('Tab');
         shouldBeFocused();
         shouldBeNotActive();
 
+        // Down arrow to open and select first item
         cy.realPress('ArrowDown');
         shouldBeFocused();
         shouldBeActive();
@@ -222,10 +256,12 @@ describe('Selects', () => {
           cy.root().last().should('have.class', 'active'); // active
         });
 
+        // Escape to close list
         cy.realPress('Escape');
         shouldBeFocused();
         shouldBeNotActive();
 
+        //  Arrow up to open and select last item
         cy.realPress('ArrowUp');
         shouldBeFocused();
         shouldBeActive();
@@ -245,15 +281,23 @@ describe('Selects', () => {
           cy.root().last().should('not.have.class', 'active'); // not active
         });
 
+        // Enter selects an option and leaves list open
         cy.realPress('Enter');
         shouldBeFocused();
         shouldBeActive();
         cy.root().ngxGetValue().should('deep.equal', ['Breach']);
 
-        cy.realPress('Space');
+        // Space selects an option but leaves list open
         cy.realPress('ArrowDown');
         cy.realPress('Space');
         cy.root().ngxGetValue().should('deep.equal', ['Breach', 'DDOS']);
+        shouldBeFocused();
+        shouldBeActive();
+
+        // Can deselect an option
+        cy.realPress('ArrowUp');
+        cy.realPress('Space');
+        cy.root().ngxGetValue().should('deep.equal', ['DDOS']);
         shouldBeFocused();
         shouldBeActive();
 
