@@ -27,6 +27,8 @@ describe('Selects', () => {
     beforeEach(() => {
       cy.get('ngx-section').first().as('SUT');
       cy.get('@SUT').find('ngx-select').first().as('CUT');
+      cy.get('@CUT').ngxClose();
+      cy.get('@CUT').clear();
     });
 
     it('has a label', () => {
@@ -156,6 +158,9 @@ describe('Selects', () => {
     beforeEach(() => {
       cy.get('#section-3').first().as('SUT');
       cy.get('@SUT').find('ngx-select').first().as('CUT');
+      cy.get('@CUT').ngxClose();
+      // TODO: support ngxSetValue for tagging
+      // cy.get('@CUT').ngxSetValue('');
     });
 
     it('has a label', () => {
