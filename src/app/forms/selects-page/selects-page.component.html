@@ -572,7 +572,7 @@
   </ngx-select>
 </ngx-section>
 
-<ngx-section class="shadow" [sectionTitle]="'Tagging'">
+<ngx-section class="shadow" data-cy="tagging" [sectionTitle]="'Tagging'">
   <h4>Basic</h4>
   <ngx-select [label]="'Tagging'" [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)" (change)="onEvent('change', $event)">
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>

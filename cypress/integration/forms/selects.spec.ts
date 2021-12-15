@@ -156,7 +156,7 @@ describe('Selects', () => {
 
   describe('Tagging', () => {
     beforeEach(() => {
-      cy.get('#section-3').first().as('SUT');
+      cy.get('ngx-section[data-cy=tagging]').as('SUT');
       cy.get('@SUT').find('ngx-select').first().as('CUT');
       cy.get('@CUT').ngxClose();
     });
