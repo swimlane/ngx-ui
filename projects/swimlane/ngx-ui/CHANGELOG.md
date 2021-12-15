@@ -3,6 +3,8 @@
 ## HEAD (unreleased)
 
 - Enhancement: Improved keyboard accessibility for `ngx-select`
+- Enhancement: allow exponential notation for number inputs
+- Enhancement: add aria labels for unlock and reveal password buttons
 
 ## 36.0.0 (2021-12-03)
 
