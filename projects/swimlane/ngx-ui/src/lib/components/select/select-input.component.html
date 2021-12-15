@@ -49,7 +49,7 @@
         (keydown)="onInputKeyDown($event)"
         (keyup)="onInputKeyUp($event)"
         (change)="$event.stopPropagation()"
-        (blur)="clearInput($event)"
+        (blur)="clearInput()"
       />
       <i [hidden]="!tagInput.value" class="ngx-icon ngx-x" (click)="tagInput.value = ''"></i>
     </li>
