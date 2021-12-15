@@ -74,8 +74,8 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   @Output() toggle = new EventEmitter<void>();
   @Output() close = new EventEmitter<void>();
   @Output() selection = new EventEmitter<any[]>();
-  @Output() activate = new EventEmitter<Event>();
-  @Output() activateLast = new EventEmitter<Event>();
+  @Output() activate = new EventEmitter<void>();
+  @Output() activateLast = new EventEmitter<void>();
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
 
   @ViewChild('inputContainer')
@@ -112,7 +112,20 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   }
 
   // Events in the input box
-  onKeyUp(event: KeyboardEvent): void {
+  onInputKeyDown(event: KeyboardEvent): void {
+    if (event.code === KeyboardKeys.BACKSPACE) {
+      const value = (event.target as any).value;
+      if (value === '') {
+        event.stopPropagation();
+        event.preventDefault();
+        const newSelections = this.selected.slice(0, this.selected.length - 1);
+        this.selection.emit(newSelections);
+      }
+    }
+  }
+
+  // Events in the input box
+  onInputKeyUp(event: KeyboardEvent): void {
     event.stopPropagation();
 
     const value = (event.target as any).value;
@@ -128,17 +141,22 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
           if (!hasSelection) {
             const newSelections = [...this.selected, value];
             this.selection.emit(newSelections);
-            (event.target as any).value = '';
+            this.clearInput();
           }
         }
-        break;
+        return;
       case KeyboardKeys.ESCAPE:
         event.preventDefault();
         this.toggle.emit();
-        break;
+        return;
     }
 
     this.keyup.emit({ event, value });
+  }
+
+  clearInput() {
+    this.inputElement.nativeElement.value = '';
+    this.keyup.emit({ event: undefined, value: '' });
   }
 
   // Events on ngx-select-input-box element
@@ -149,11 +167,11 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
       case KeyboardKeys.SPACE:
       case KeyboardKeys.ARROW_DOWN:
         event.preventDefault();
-        this.activate.emit(event);
+        this.activate.emit();
         break;
       case KeyboardKeys.ARROW_UP:
         event.preventDefault();
-        this.activateLast.emit(event);
+        this.activateLast.emit();
         break;
       case KeyboardKeys.ESCAPE:
         event.preventDefault();
@@ -175,14 +193,21 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  onClick(event: Event): void {
+  onClick(): void {
     if (this.disableDropdown) return;
-    this.activate.emit(event);
+    this.activate.emit();
 
     if (this.tagging) {
       setTimeout(() => {
         this.inputElement.nativeElement.focus();
-      }, 5);
+      }, 30);
+    }
+  }
+
+  onFocus() {
+    if (!this.disabled && this.tagging) {
+      // Open dropdown and focus on input
+      this.onClick();
     }
   }
 

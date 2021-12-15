@@ -297,12 +297,10 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   private afterSelect(shouldClose: boolean = this.closeOnSelect || !this.multiple) {
     // if tagging, we need to clear current text
     if (this.tagging) {
-      this.inputComponent.inputElement.nativeElement.value = '';
+      this.inputComponent.clearInput();
     }
 
-    if (shouldClose) {
-      this.toggleDropdown(false);
-    }
+    if (shouldClose) this.onClose(true);
   }
 
   onInputSelection(selections: any[]): void {
@@ -345,8 +343,14 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     }
   }
 
-  onClose(): void {
+  onClose(keepFocus = false): void {
     this.toggleDropdown(false);
+
+    if (keepFocus) {
+      setTimeout(() => {
+        this.inputComponent.focus();
+      }, 30);
+    }
   }
 
   onToggle(): void {
@@ -377,9 +381,6 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
           .pipe(take(1))
           .subscribe({ next: this.adjustMenuDirection.bind(this) });
       }
-    } else {
-      // Keep focus on the select
-      this.inputComponent.focus();
     }
 
     this._cdr.markForCheck();

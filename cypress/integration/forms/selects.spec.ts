@@ -159,8 +159,6 @@ describe('Selects', () => {
       cy.get('#section-3').first().as('SUT');
       cy.get('@SUT').find('ngx-select').first().as('CUT');
       cy.get('@CUT').ngxClose();
-      // TODO: support ngxSetValue for tagging
-      // cy.get('@CUT').ngxSetValue('');
     });
 
     it('has a label', () => {
@@ -197,9 +195,50 @@ describe('Selects', () => {
       cy.get('@CUT').find('input').click().type('Other').type('{enter}');
       cy.get('@CUT').ngxGetValue().should('contain', 'DDOS').should('contain', 'Other');
 
-      // TODO(ngx-ui-testing): support clearing all tags
       cy.get('@CUT').find('.ngx-select-clear').first().click();
       cy.get('@CUT').find('.ngx-select-clear').first().click();
+    });
+
+    it('is keyboard accessible', () => {
+      cy.get('@SUT').find('h4').contains('Basic').click();
+
+      cy.get('@CUT').within(() => {
+        // Starts out not focused not open
+        shouldBeNotFocused();
+        shouldBeNotActive();
+
+        // Tab into the select, now focused and open
+        cy.realPress('Tab');
+        shouldBeFocused();
+        shouldBeActive();
+
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(100);  // Wait for element to refocus
+
+        cy.focused().type('Other{enter}');  // Input should be focused
+
+        cy.root().ngxGetValue().should('contain', 'Other');
+
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(100);  // Wait for element to refocus
+
+        // Down arrow to select second item, closes list, stays active
+        cy.realPress('ArrowDown');
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(100);  // Needed for testing!!!
+        cy.realPress('Enter');
+
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(120);  // Wait for element to refocus on input
+
+        shouldBeFocused();
+        shouldBeActive();
+
+        cy.root().ngxGetValue().should('contain', 'Other').should('contain', 'DDOS');
+
+        // Clears with backspace
+        cy.focused().type('{backspace}{backspace}{backspace}');  // For some reason needs three backspaces in testing
+      });
     });
   });
 

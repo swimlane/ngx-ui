@@ -3,7 +3,8 @@
   (keydown)="onKeyDown($event)"
   (keyup)="onGlobalKeyUp($event)"
   class="ngx-select-input-box"
-  (click)="onClick($event)"
+  (click)="onClick()"
+  (focus)="onFocus()"
   #inputContainer
 >
   <label *ngIf="label" class="ngx-select-label" [attr.for]="selectId">
@@ -45,8 +46,10 @@
         autocomplete="off"
         autocorrect="off"
         spellcheck="off"
-        (keyup)="onKeyUp($event)"
+        (keydown)="onInputKeyDown($event)"
+        (keyup)="onInputKeyUp($event)"
         (change)="$event.stopPropagation()"
+        (blur)="clearInput($event)"
       />
       <i [hidden]="!tagInput.value" class="ngx-icon ngx-x" (click)="tagInput.value = ''"></i>
     </li>
