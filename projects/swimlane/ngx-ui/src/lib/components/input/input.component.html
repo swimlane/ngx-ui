@@ -58,13 +58,13 @@
 
         <div class="numeric-spinner" *ngIf="!disabled && (type$ | async) === inputTypes.number">
           <i
-            class="ngx-icon ngx-chevron-bold-up"
+            class="ngx-icon ngx-chevron-bold-up numeric-spinner__up"
             (mousedown)="incrementValue($event)"
             (mouseup)="clearSpinnerInterval()"
             (mouseleave)="clearSpinnerInterval()"
           ></i>
           <i
-            class="ngx-icon ngx-chevron-bold-down"
+            class="ngx-icon ngx-chevron-bold-down numeric-spinner__down"
             (mousedown)="decrementValue($event)"
             (mouseup)="clearSpinnerInterval()"
             (mouseleave)="clearSpinnerInterval()"
@@ -74,14 +74,17 @@
           *ngIf="type === inputTypes.password && passwordToggleEnabled"
           type="button"
           class="btn btn-link icon-eye"
-          title="Toggle Text Visibility"
+          aria-label="Toggle Text Visibility"
           (click)="togglePassword()"
+          ngx-tooltip
+          tooltipTitle="Toggle Text Visibility"
         >
         </button>
         <button
           *ngIf="type === inputTypes.text && unlockable && disabled"
           type="button"
           class="btn btn-link icon-lock"
+          [attr.aria-label]="unlockableTooltip"
           (click)="disabled = false"
           ngx-tooltip
           [tooltipTitle]="unlockableTooltip"
@@ -112,8 +115,8 @@
     [extraWidth]="type === inputTypes.number ? 20 : 0"
     [minWidth]="minWidth"
     [includePadding]="true"
-    [(ngModel)]="value"
-    [value]="value"
+    [ngModel]="valueAsString"
+    (ngModelChange)="value = $event"
     [id]="id"
     [name]="name"
     [placeholder]="placeholder"
@@ -139,7 +142,8 @@
   <input
     *ngIf="type !== inputTypes.textarea && !autosize"
     class="ngx-input-box"
-    [(ngModel)]="value"
+    [ngModel]="valueAsString"
+    (ngModelChange)="value = $event"
     [id]="id"
     [name]="name"
     [placeholder]="placeholder"

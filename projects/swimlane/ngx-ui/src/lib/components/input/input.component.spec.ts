@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
@@ -162,18 +162,38 @@ describe('InputComponent', () => {
       component.input.value = '5';
       fixture.detectChanges();
       expect(component.input.value as any).toEqual(5);
+      expect(component.input.valueAsNumber).toEqual(5);
+      expect(component.input.valueAsString).toEqual('5');
     });
 
     it('should preserve null', () => {
       component.input.value = null;
       fixture.detectChanges();
       expect(component.input.value as any).toEqual(null);
+      expect(component.input.valueAsNumber).toEqual(null);
+      expect(component.input.valueAsString).toEqual('');
     });
 
     it('should coerce other inputs to null', () => {
       component.input.value = '';
       fixture.detectChanges();
       expect(component.input.value as any).toEqual(null);
+      expect(component.input.valueAsNumber).toEqual(null);
+      expect(component.input.valueAsString).toEqual('');
+    });
+
+    fit('should all engineering notation', () => {
+      component.input.value = '1e10';
+      fixture.detectChanges();
+      expect(component.input.value as any).toEqual(10000000000);
+      expect(component.input.valueAsNumber).toEqual(10000000000);
+      expect(component.input.valueAsString).toEqual('1e10');
+
+      component.input.value = '-1E-10';
+      fixture.detectChanges();
+      expect(component.input.value as any).toEqual(-1e-10);
+      expect(component.input.valueAsNumber).toEqual(-1e-10);
+      expect(component.input.valueAsString).toEqual('-1E-10');
     });
   });
 
@@ -182,45 +202,41 @@ describe('InputComponent', () => {
       component.type$.next(InputTypes.number);
     });
 
-    it('should not increment if input disabled', done => {
+    it('should not increment if input disabled', () => {
+      component.input.value = '5';
       component.input.disabled = true;
       fixture.detectChanges();
+      expect(component.input.valueAsNumber).toEqual(5);
 
-      fixture.whenStable().then(() => {
-        component.input.incrementValue(new MouseEvent('mousedown'));
-        component.input.clearSpinnerInterval();
+      component.input.incrementValue(new MouseEvent('mousedown'));
+      component.input.clearSpinnerInterval();
 
-        expect(component.input.value).toBe('test');
-        done();
-      });
+      expect(component.input.valueAsNumber).toBe(5);
     });
 
-    it('should set to 1 if input value is falsy', done => {
+    it('should set to 1 if input value is falsy', () => {
       component.input.value = undefined;
       fixture.detectChanges();
+      expect(component.input.valueAsNumber).toEqual(null);
 
-      fixture.whenStable().then(() => {
-        component.input.incrementValue(new MouseEvent('mousedown'));
-        component.input.clearSpinnerInterval();
+      component.input.incrementValue(new MouseEvent('mousedown'));
+      component.input.clearSpinnerInterval();
 
-        expect(component.input.value).toBe(1);
-        done();
-      });
+      expect(component.input.valueAsNumber).toEqual(1);
     });
 
-    it('should increment input value by 1', done => {
+    it('should increment input value by 1', fakeAsync(() => {
       component.input.value = 41;
       fixture.detectChanges();
+      expect(component.input.valueAsNumber).toEqual(41);
+      tick(50);
 
-      fixture.whenStable().then(() => {
-        component.input.incrementValue(new MouseEvent('mousedown'));
-        component.input.clearSpinnerInterval();
-        fixture.detectChanges();
+      component.input.incrementValue(new MouseEvent('mousedown'));
+      component.input.clearSpinnerInterval();
+      fixture.detectChanges();
 
-        expect(component.input.value).toBe(42);
-        done();
-      });
-    });
+      expect(component.input.valueAsNumber).toEqual(42);
+    }));
   });
 
   describe('decrementValue', () => {
@@ -228,44 +244,40 @@ describe('InputComponent', () => {
       component.type$.next(InputTypes.number);
     });
 
-    it('should not decrement if input disabled', done => {
+    it('should not decrement if input disabled', () => {
+      component.input.value = 41;
       component.input.disabled = true;
       fixture.detectChanges();
+      expect(component.input.valueAsNumber).toEqual(41);
 
-      fixture.whenStable().then(() => {
-        component.input.decrementValue(new MouseEvent('mousedown'));
-        component.input.clearSpinnerInterval();
+      component.input.decrementValue(new MouseEvent('mousedown'));
+      component.input.clearSpinnerInterval();
 
-        expect(component.input.value).toBe('test');
-        done();
-      });
+      expect(component.input.valueAsNumber).toEqual(41);
     });
 
-    it('should set to -1 if input value is falsy', done => {
+    it('should set to -1 if input value is falsy', fakeAsync(() => {
       component.input.value = undefined;
       fixture.detectChanges();
+      expect(component.input.valueAsNumber).toEqual(null);
 
-      fixture.whenStable().then(() => {
-        component.input.decrementValue(new MouseEvent('mousedown'));
-        component.input.clearSpinnerInterval();
+      component.input.decrementValue(new MouseEvent('mousedown'));
+      component.input.clearSpinnerInterval();
 
-        expect(component.input.value).toBe(-1);
-        done();
-      });
-    });
+      expect(component.input.valueAsNumber).toEqual(-1);
+    }));
 
-    it('should decrement input value by 1', done => {
+    it('should decrement input value by 1', fakeAsync(() => {
       component.input.value = 41;
       fixture.detectChanges();
+      expect(component.input.valueAsNumber).toEqual(41);
+      tick(50);
 
-      fixture.whenStable().then(() => {
-        component.input.decrementValue(new MouseEvent('mousedown'));
-        component.input.clearSpinnerInterval();
+      component.input.decrementValue(new MouseEvent('mousedown'));
+      component.input.clearSpinnerInterval();
 
-        expect(component.input.value).toBe(40);
-        done();
-      });
-    });
+      expect(component.input.valueAsNumber).toEqual(40);
+    }));
   });
 
   describe('unlockable', () => {
