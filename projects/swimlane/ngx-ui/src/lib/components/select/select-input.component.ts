@@ -168,9 +168,9 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
 
     if (this.disableDropdown) return;
     event.stopPropagation();
-    event.preventDefault();
 
     if (!this.tagging) {
+      event.preventDefault();
       this.keyup.emit({ event });
     }
   }

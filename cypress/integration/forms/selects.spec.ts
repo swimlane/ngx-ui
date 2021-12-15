@@ -152,6 +152,54 @@ describe('Selects', () => {
     });
   });
 
+  describe('Tagging', () => {
+    beforeEach(() => {
+      cy.get('#section-3').first().as('SUT');
+      cy.get('@SUT').find('ngx-select').first().as('CUT');
+    });
+
+    it('has a label', () => {
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Tagging');
+    });
+
+    it('selects and clears existing values', () => {
+      cy.get('@CUT').ngxGetValue().should('equal', '');
+
+      const text = 'DDOS';
+
+      cy.get('@CUT').select(text).ngxGetValue().should('equal', text);
+
+      // TODO(ngx-ui-testing): tagging should return an array of values
+      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
+    });
+
+    it('can add and clear a new value', () => {
+      cy.get('@CUT').ngxGetValue().should('equal', '');
+
+      const text = 'Other';
+
+      // TODO(ngx-ui-testing): support ngxFill for tagging
+      cy.get('@CUT').find('input').click().type(text).type('{enter}');
+      cy.get('@CUT').ngxGetValue().should('equal', text);
+
+      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
+    });
+
+    it('can add and clear multiple values', () => {
+      cy.get('@CUT').ngxGetValue().should('equal', '');
+
+      cy.get('@CUT').select('DDOS').ngxGetValue().should('equal', 'DDOS');
+      cy.get('@CUT').find('input').click().type('Other').type('{enter}');
+      cy.get('@CUT').ngxGetValue()
+        .should('contain', 'DDOS')
+        .should('contain', 'Other');
+
+      // TODO(ngx-ui-testing): support clearing all tags
+      cy.get('@CUT').find('.ngx-select-clear').first().click();
+      cy.get('@CUT').find('.ngx-select-clear').first().click();
+    });
+  });
+
   describe('Input with AbstractControl', () => {
     beforeEach(() => {
       cy.getByName('formCtrl1').as('CUT');
