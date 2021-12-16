@@ -73,28 +73,25 @@
         <button
           *ngIf="type === inputTypes.password && passwordToggleEnabled"
           type="button"
-          class="btn btn-link icon-eye"
+          class="btn btn-link ngx-input__password-toggle"
           aria-label="Toggle Text Visibility"
-          class="btn btn-link"
-          [ngClass]="{
-            'icon-eye': (type$ | async) === inputTypes.password,
-            'icon-eye-disabled': (type$ | async) !== inputTypes.password
-          }"
           title="Toggle Text Visibility"
           (click)="togglePassword()"
           ngx-tooltip
           tooltipTitle="Toggle Text Visibility"
         >
+          <i class="ngx-icon" [ngClass]="(type$ | async) === inputTypes.password ? 'ngx-eye' : 'ngx-eye-disabled'"></i>
         </button>
         <button
           *ngIf="type === inputTypes.text && unlockable && disabled"
           type="button"
-          class="btn btn-link icon-lock"
+          class="btn btn-link ngx-input__lock-toggle"
           [attr.aria-label]="unlockableTooltip"
           (click)="disabled = false"
           ngx-tooltip
           [tooltipTitle]="unlockableTooltip"
         >
+          <i class="ngx-icon ngx-lock"></i>
         </button>
       </div>
       <label class="ngx-input-label" [@labelState]="labelState" [attr.for]="id">

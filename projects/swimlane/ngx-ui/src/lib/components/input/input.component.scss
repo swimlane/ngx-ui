@@ -178,9 +178,8 @@ $input-placeholder-color: $color-blue-grey-350;
         resize: none;
       }
 
-      .icon-eye,
-      .icon-eye-disabled,
-      .icon-lock {
+      .ngx-input__password-toggle,
+      .ngx-input__lock-toggle {
         line-height: 25px;
         top: 0;
         bottom: 0;
