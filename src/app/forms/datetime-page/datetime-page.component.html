@@ -293,53 +293,6 @@
   </app-prism>
 </ngx-section>
 
-<ngx-section class="shadow" sectionTitle="Fill">
-  Current Value: {{ curDate2 | json }}
-  <ngx-date-time
-    appearance="fill"
-    inputType="date"
-    label="Year"
-    precision="year"
-    [(ngModel)]="curDate2"
-    format="YYYY"
-    (change)="dateChanged($event)"
-  >
-  </ngx-date-time>
-
-  <ngx-date-time
-    appearance="fill"
-    inputType="date"
-    label="Month"
-    precision="month"
-    [(ngModel)]="curDate2"
-    format="MMM YYYY"
-    (change)="dateChanged($event)"
-  >
-  </ngx-date-time>
-
-  <ngx-date-time
-    appearance="fill"
-    inputType="datetime"
-    label="Hour"
-    precision="hour"
-    [(ngModel)]="curDate2"
-    format="MMM DD, YYYY, hh:mm"
-    (change)="dateChanged($event)"
-  >
-  </ngx-date-time>
-
-  <ngx-date-time
-    appearance="fill"
-    inputType="datetime"
-    label="Minutes"
-    precision="minute"
-    [(ngModel)]="curDate2"
-    format="MMM DD, YYYY, hh:mm:ss"
-    (change)="dateChanged($event)"
-  >
-  </ngx-date-time>
-</ngx-section>
-
 <ngx-section class="shadow" sectionTitle="Autosize">
   Current Value: {{ curDate2 | json }}
 
@@ -411,4 +364,38 @@
     (change)="dateChanged($event)"
   >
   </ngx-date-time>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Appearances">
+  <table class="appearance-table">
+    <tr>
+      <th></th>
+      <th>
+        Default
+      </th>
+      <th>
+        Fill
+      </th>
+    </tr>
+    <tr>
+      <td>Filled</td>
+      <td><ngx-date-time label="Label" [ngModel]="curDate2" hint="A brief bit of help text"></ngx-date-time></td>
+      <td><ngx-date-time appearance="fill" label="Label" [ngModel]="curDate2"  hint="A brief bit of help text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Empty w/o Placeholder</td>
+      <td><ngx-date-time label="Label" hint="A brief bit of help text"></ngx-date-time></td>
+      <td><ngx-date-time appearance="fill" label="Label" hint="A brief bit of help text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Empty w/ Placeholder</td>
+      <td><ngx-date-time label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Invalid</td>
+      <td><ngx-date-time [ngModel]="'What what'" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="'What what'" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+  </table>
 </ngx-section>
