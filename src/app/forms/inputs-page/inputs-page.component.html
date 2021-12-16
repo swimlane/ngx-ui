@@ -355,34 +355,6 @@
   </app-prism>
 </ngx-section>
 
-<ngx-section class="shadow" sectionTitle="Appearances">
-  <ngx-input label="Legacy" ngModel="Legacy Input" placeholder="enter your text here..." hint="example of a legacy input"></ngx-input>
-
-  <br />
-
-  <ngx-input label="Fill" appearance="fill" ngModel="Fill Input" placeholder="enter your text here..." hint="example of a fill input"></ngx-input>
-
-  <br />
-
-  <ngx-input label="Fill Numeric" type="number" appearance="fill" ngModel="0" placeholder="enter your number here..." hint="example of a fill number input"></ngx-input>
-
-  <br />
-
-  <ngx-input type="textarea" appearance="fill" label="Fill Textarea" placeholder="enter your text here..." hint="example of a fill textarea"></ngx-input>
-
-  <br />
-
-  <ngx-input label="Fill Prefix Suffix" type="number" appearance="fill" ngModel="0" placeholder="enter your dollar amount here..." hint="example of a fill number input">
-    <ngx-input-prefix>$</ngx-input-prefix>
-    <ngx-input-suffix>USD</ngx-input-suffix>
-  </ngx-input>
-  <br />
-
-  <app-prism>
-<![CDATA[<ngx-input label="Fill" appearance="fill" ngModel="Fill Input" placeholder="enter your text here..." hint="example of a fill input"></ngx-input>]]>
-  </app-prism>
-</ngx-section>
-
 <ngx-section class="shadow" sectionTitle="Auto Size">
   <ngx-input [(ngModel)]="longInputValue" autosize label="Resize Input"></ngx-input>
 
@@ -402,4 +374,73 @@
   <app-prism>
 <![CDATA[<ngx-input autosize appearance="fill" type="number" label="Fill Resize Input"></ngx-input>]]>
   </app-prism>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Appearances">
+  <table class="appearance-table">
+    <tr>
+      <th></th>
+      <th>
+        Default
+      </th>
+      <th>
+        Fill
+      </th>
+    </tr>
+    <tr>
+      <td>Filled</td>
+      <td><ngx-input label="Label" ngModel="Value" hint="A brief bit of help text"></ngx-input></td>
+      <td><ngx-input label="Label" appearance="fill" ngModel="Value" hint="A brief bit of help text"></ngx-input></td>
+    </tr>
+    <tr>
+      <td>Empty w/o Placeholder</td>
+      <td><ngx-input label="Label" hint="A brief bit of help text"></ngx-input></td>
+      <td><ngx-input label="Label" appearance="fill" hint="A brief bit of help text"></ngx-input></td>
+    </tr>
+    <tr>
+      <td>Empty w/ Placeholder</td>
+      <td><ngx-input label="Label" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+      <td><ngx-input label="Label" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+    </tr>
+    <tr>
+      <td>Numeric</td>
+      <td><ngx-input label="Label" type="number" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+      <td><ngx-input label="Label" type="number" appearance="fill" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+    </tr>
+    <tr>
+      <td>Text Area</td>
+      <td><ngx-input type="textarea" label="Label" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+      <td><ngx-input type="textarea" appearance="fill" label="Label" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+    </tr>
+    <tr>
+      <td>Prefix Suffix</td>
+      <td>
+        <ngx-input label="Label" type="number" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text">
+          <ngx-input-prefix>$</ngx-input-prefix>
+          <ngx-input-suffix>USD</ngx-input-suffix>
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-input label="Label" type="number" appearance="fill" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text">
+          <ngx-input-prefix>$</ngx-input-prefix>
+          <ngx-input-suffix>USD</ngx-input-suffix>
+        </ngx-input>
+      </td>
+    </tr>
+    <tr>
+      <td>Error</td>
+      <td>
+        <ngx-input label="Label" type="number" ngModel="10" max="5" placeholder="Placeholder Text" hint="A brief bit of help text">
+          <ngx-input-prefix>$</ngx-input-prefix>
+          <ngx-input-suffix>USD</ngx-input-suffix>
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-input label="Label" type="number" appearance="fill" ngModel="10" max="5" placeholder="Placeholder Text" hint="A brief bit of help text">
+          <ngx-input-prefix>$</ngx-input-prefix>
+          <ngx-input-suffix>USD</ngx-input-suffix>
+        </ngx-input>
+      </td>
+    </tr>
+  </table>
 </ngx-section>
