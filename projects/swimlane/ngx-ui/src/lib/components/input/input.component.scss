@@ -179,6 +179,7 @@ $input-placeholder-color: $color-blue-grey-350;
       }
 
       .icon-eye,
+      .icon-eye-disabled,
       .icon-lock {
         line-height: 25px;
         top: 0;
@@ -276,6 +277,7 @@ $input-placeholder-color: $color-blue-grey-350;
 
     .ngx-input-wrap .ngx-input-box-wrap {
       .icon-eye,
+      .icon-eye-disabled,
       .icon-lock {
         line-height: 33.33px;
         z-index: 2;
