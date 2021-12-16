@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Appearance } from '@swimlane/ngx-ui/mixins/appearance/appearance.enum';
 
 @Component({
   selector: 'app-inputs-page',
@@ -19,6 +20,8 @@ export class InputsPageComponent {
   passwordValue: any;
   output: any;
   patternValue = 'Has space';
+
+  Appearance = Appearance;
 
   onClick(event: any) {
     console.log({ event });
