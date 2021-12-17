@@ -287,7 +287,7 @@ describe('InputComponent', () => {
       component.unlockable$.next(true);
       fixture.detectChanges();
 
-      lockBtn = fixture.debugElement.queryAll(By.css('button.icon-lock'))[0];
+      lockBtn = fixture.debugElement.queryAll(By.css('button.ngx-input__lock-toggle'))[0];
     });
 
     it('should show unlock button', () => {
@@ -307,7 +307,7 @@ describe('InputComponent', () => {
       lockBtn.triggerEventHandler('click', null);
       fixture.detectChanges();
 
-      const lockBtnAfter = fixture.debugElement.queryAll(By.css('span.icon-lock'))[0];
+      const lockBtnAfter = fixture.debugElement.queryAll(By.css('button.ngx-input__lock-toggle'))[0];
       expect(lockBtnAfter).not.toBeDefined();
     });
   });
