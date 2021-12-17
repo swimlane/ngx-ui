@@ -3,6 +3,7 @@ table.alignment-test {
   margin-top: 20px;
 
   td {
+    padding: 05px;
     border: 10px solid #34282c;
     vertical-align: baseline;
   }
@@ -11,9 +12,9 @@ table.alignment-test {
     border: none;
   }
 
-  td > * {
-    border: 1px solid red;
-  }
+  // td > * {
+  //   border: 1px solid red;
+  // }
 
   &.align-middle td {
     vertical-align: middle;

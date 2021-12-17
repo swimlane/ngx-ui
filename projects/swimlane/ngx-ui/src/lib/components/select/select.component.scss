@@ -15,8 +15,7 @@ $color-filter-text: $color-blue-grey-050;
 $color-empty-text: $color-blue-grey-150;
 
 // chips
-$color-chip-bg: $color-blue-400;
-$color-chip-hover-bg: $color-blue;
+$color-chip-bg: $color-blue-grey-600;
 $color-chip-text: #fff;
 
 .ngx-select {
@@ -80,7 +79,7 @@ $color-chip-text: #fff;
 
       .ngx-select-caret {
         transition: transform 200ms ease-in-out, margin 200ms ease-in-out;
-        transform: rotate(180deg) translateY(50%);
+        transform: rotate(180deg) translateY(55%);
       }
     }
 
@@ -114,11 +113,11 @@ $color-chip-text: #fff;
   &.tagging-selection,
   &.multi-selection {
     .ngx-select-input-option {
-      background: $color-blue-grey-600;
+      background: $color-chip-bg;
       color: $color-chip-text;
       border-radius: 2px;
       margin: 2px 5px 2px 0;
-      line-height: 1.8;
+      line-height: 1.7;
       white-space: nowrap;
       overflow: visible;
       text-overflow: ellipsis;
@@ -174,7 +173,7 @@ $color-chip-text: #fff;
           border: none;
           outline: none;
           -webkit-appearance: none;
-          color: $color-blue-grey-100;
+          color: $color-input-text;
           line-height: 20px;
           display: inline-block;
           font-size: 1rem;
@@ -218,7 +217,7 @@ $color-chip-text: #fff;
           white-space: nowrap;
           text-overflow: ellipsis;
           display: block;
-          color: #cdd2dd;
+          color: $color-input-text;
           overflow-x: hidden;
           overflow-y: visible;
         }
@@ -294,8 +293,12 @@ $color-chip-text: #fff;
     .ngx-select-label {
       pointer-events: none;
       position: absolute;
-      top: 0;
+      top: -3px;
       transition: 150ms ease-out;
+      color: $input-label-color;
+      text-overflow: ellipsis;
+      max-width: 100%;
+      font-weight: 600;
     }
 
     .ngx-select-caret {
@@ -303,7 +306,7 @@ $color-chip-text: #fff;
       top: 1em;
       right: 5px;
       transition: transform 200ms ease-in-out, margin 200ms ease-in-out;
-      transform: translateY(-50%);
+      transform: translateY(-45%);
       cursor: pointer;
       color: $color-caret-bg;
       font-size: 0.7em;
@@ -496,8 +499,8 @@ $color-chip-text: #fff;
     .ngx-select-input {
       .ngx-select-label {
         position: absolute;
-        font-size: 0.8125em;
-        top: -1.563em;
+        font-size: 0.7em;
+        top: -21px;
         left: 0;
         line-height: 1.875em;
       }
@@ -534,8 +537,10 @@ $color-chip-text: #fff;
   }
 
   &.fill {
-    padding: 0;
-    margin: 0;
+    margin-top: 16px;
+    margin-bottom: 8px;
+    padding-top: calc(0.7em + 8px);
+    padding-bottom: 0;
 
     .ngx-select-input-box {
       margin: 0;
@@ -548,10 +553,6 @@ $color-chip-text: #fff;
 
     .ngx-select-input-list {
       padding-left: 10px;
-    }
-
-    .ngx-select-wrap {
-      position: initial;
     }
 
     .ngx-select-flex-wrap {
@@ -574,7 +575,7 @@ $color-chip-text: #fff;
 
     &.single-selection .ngx-select-input .ngx-select-clear,
     .ngx-select-caret {
-      top: 1.5em;
+      top: 1.4em;
       z-index: 500;
     }
 
@@ -607,7 +608,7 @@ $color-chip-text: #fff;
     .ngx-select-label,
     .ngx-select-caret,
     &.single-selection .ngx-select-clear {
-      color: $input-active-underline-fill;
+      color: $input-label-color-active;
 
       &:hover {
         color: $color-blue-400;
