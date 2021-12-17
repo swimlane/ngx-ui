@@ -1,5 +1,5 @@
 <label class="ngx-checkbox--label" [attr.for]="id + '-chk'"
-  [tabIndex]="tabindex"
+  [tabIndex]="disabled ? -1 : tabindex"
   (keydown.space)="onKeyup($event)">
   <input
     type="checkbox"

@@ -62,5 +62,15 @@
       margin: auto 0;
       color: $color-blue-grey-100;
     }
+
+    &:focus-visible {
+      outline: none;
+
+      .ngx-checkbox--box {
+        outline: 2px solid $color-blue-200;
+        border-radius: 2px;
+        outline-offset: 1px;
+      }
+    }
   }
 }
