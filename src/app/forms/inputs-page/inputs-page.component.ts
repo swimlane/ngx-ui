@@ -17,6 +17,7 @@ export class InputsPageComponent {
   numericValue: any;
   usernameValue: any;
   passwordValue: any;
+  secretValue = 'secret';
   output: any;
   patternValue = 'Has space';
 
