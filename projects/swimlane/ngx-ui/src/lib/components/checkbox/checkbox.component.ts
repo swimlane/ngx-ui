@@ -11,7 +11,7 @@ import {
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 
-const CHKBOX_VALUE_ACCESSOR = {
+const CHECKBOX_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CheckboxComponent),
   multi: true
@@ -30,7 +30,7 @@ let nextId = 0;
     '[class.round]': 'round',
     '(blur)': 'onBlur($event)'
   },
-  providers: [CHKBOX_VALUE_ACCESSOR],
+  providers: [CHECKBOX_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -38,6 +38,19 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Input() id = `checkbox-${++nextId}`;
   @Input() name?: string;
   @Input() diameter = '18px';
+
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  @Input('checked')
+  set value(value: boolean) {
+    if (this._value !== value) {
+      this._value = value;
+      this.cdr.markForCheck();
+      this.onChangeCallback(this._value);
+    }
+  }
+  get value(): boolean {
+    return this._value;
+  }
 
   @Input()
   get tabindex() {
@@ -69,18 +82,6 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Output() change = new EventEmitter<Event>();
   @Output() blur = new EventEmitter<FocusEvent>();
   @Output() focus = new EventEmitter<FocusEvent>();
-
-  set value(value: boolean) {
-    if (this._value !== value) {
-      this._value = value;
-      this.cdr.markForCheck();
-      this.onChangeCallback(this._value);
-    }
-  }
-
-  get value(): boolean {
-    return this._value;
-  }
 
   private _value = false;
   private _tabindex = 0;
