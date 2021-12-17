@@ -3,6 +3,7 @@
 ## HEAD (unreleased)
 
 - Enhancement: Improved keyboard accessibility for `ngx-select`
+- Enhancement: Add ability to unlock `ngx-input` for passwords
 
 ## 36.1.0 (2021-12-10)
 
