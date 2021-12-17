@@ -1,11 +1,13 @@
-<label class="ngx-checkbox--label">
+<label class="ngx-checkbox--label" [attr.for]="id + '-chk'"
+  [tabIndex]="tabindex"
+  (keydown.space)="onKeyup($event)">
   <input
     type="checkbox"
     [id]="id + '-chk'"
     [(ngModel)]="value"
     [disabled]="disabled"
+    [attr.aria-checked]="value"
     [name]="name + '-chk'"
-    [tabIndex]="tabindex"
     (focus)="focus.emit($event)"
     (blur)="blur.emit($event)"
     (change)="change.emit($event)"

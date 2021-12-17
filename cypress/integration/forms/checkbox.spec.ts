@@ -1,7 +1,14 @@
 describe('Checkbox', () => {
   before(() => {
     cy.visit('/checkbox');
+    cy.injectAxe();
     cy.get('.page-loader').should('not.exist', { timeout: 20000 });
+  });
+
+  it('Check A11y', () => {
+    cy.get('ngx-checkbox').withinEach($el => {
+      cy.checkA11y($el);
+    });
   });
 
   describe('Checkbox', () => {

@@ -84,7 +84,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   @Output() focus = new EventEmitter<FocusEvent>();
 
   private _value = false;
-  private _tabindex = 0;
+  private _tabindex = 1;
   private _disabled = false;
   private _round = false;
 
@@ -92,6 +92,12 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   onBlur(_: any) {
     this.onTouchedCallback();
+  }
+
+  onKeyup(ev: Event) {
+    ev.stopPropagation();
+    ev.preventDefault();
+    this.toggle();
   }
 
   toggle() {
