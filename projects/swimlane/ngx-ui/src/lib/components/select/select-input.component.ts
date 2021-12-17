@@ -155,7 +155,9 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   }
 
   clearInput() {
-    this.inputElement.nativeElement.value = '';
+    if (this.inputElement && this.inputElement.nativeElement) {
+      this.inputElement.nativeElement.value = '';
+    }
     this.keyup.emit({ event: undefined, value: '' });
   }
 
