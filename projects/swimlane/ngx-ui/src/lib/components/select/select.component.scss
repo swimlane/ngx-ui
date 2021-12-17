@@ -555,22 +555,10 @@ $color-chip-text: #fff;
       padding-left: 10px;
     }
 
-    .ngx-select-flex-wrap {
+    .ngx-select-flex-wrap .ngx-select-input-box {
       position: relative;
-
-      .ngx-select-input-box::after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: -2px;
-        left: 0;
-        z-index: -1;
-        opacity: 0.25;
-        background-color: $color-blue-grey-650;
-        mix-blend-mode: exclusion;
-        border-radius: 1px 1px 0 0;
-        content: '';
-      }
+      background-color: $color-fill-input-bg;
+      mix-blend-mode: exclusion;
     }
 
     &.single-selection .ngx-select-input .ngx-select-clear,

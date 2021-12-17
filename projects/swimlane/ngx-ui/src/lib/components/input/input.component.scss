@@ -183,6 +183,7 @@
         color: $input-icon-color;
         transition: color 100ms;
         padding: 0;
+        z-index: 1;
 
         &:hover {
           color: $color-input-text;
