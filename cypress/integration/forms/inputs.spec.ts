@@ -283,7 +283,7 @@ describe('Inputs', () => {
     it('should toggle password', () => {
       cy.get('@CUT').ngxFindNativeInput().first().should('have.attr', 'type', 'password');
 
-      cy.get('@CUT').find('.icon-eye').click();
+      cy.get('@CUT').find('.ngx-input__password-toggle').click();
 
       cy.get('@CUT').ngxFindNativeInput().first().should('have.attr', 'type', 'text');
     });
