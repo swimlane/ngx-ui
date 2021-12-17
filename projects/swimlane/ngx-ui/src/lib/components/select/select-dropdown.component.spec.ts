@@ -135,6 +135,7 @@ describe('SelectDropdownComponent', () => {
         preventDefault: () => undefined,
         stopPropagation: () => undefined,
         key: '',
+        code: '',
         target: { value: '' }
       };
     });
@@ -146,7 +147,7 @@ describe('SelectDropdownComponent', () => {
     });
 
     it('should close when escape pressed', () => {
-      event.key = KeyboardKeys.ESCAPE;
+      event.key = event.code = KeyboardKeys.ESCAPE;
       const spy = spyOn(component.close, 'emit');
       component.onInputKeyUp(event);
       expect(spy).toHaveBeenCalled();
@@ -154,7 +155,7 @@ describe('SelectDropdownComponent', () => {
 
     it('should focus next item on arrow-down', () => {
       const idx = component.focusIndex;
-      event.key = KeyboardKeys.ARROW_DOWN;
+      event.key = event.code = event.code = KeyboardKeys.ARROW_DOWN;
       component.onInputKeyUp(event);
       expect(component.focusIndex).toEqual(idx + 1);
     });
@@ -165,8 +166,8 @@ describe('SelectDropdownComponent', () => {
       expect(component.filterQuery).toEqual('');
     });
 
-    it('should call updatefilterQueryIsInOptions', fakeAsync(() => {
-      const spy = spyOnProperty(component, 'updatefilterQueryIsInOptions').and.callThrough();
+    it('should call updateFilterQueryIsInOptions', fakeAsync(() => {
+      const spy = spyOnProperty(component, 'updateFilterQueryIsInOptions').and.callThrough();
       component.onInputKeyUp(event);
       flush();
       fixture.detectChanges();
@@ -253,13 +254,14 @@ describe('SelectDropdownComponent', () => {
       event = {
         preventDefault: () => undefined,
         stopPropagation: () => undefined,
-        key: ''
+        key: '',
+        code: ''
       };
     });
 
     it('should focus next element on arrow down', () => {
       const idx = component.focusIndex;
-      event.key = KeyboardKeys.ARROW_DOWN;
+      event.key = event.code = KeyboardKeys.ARROW_DOWN;
       component.onOptionKeyDown(event);
       expect(component.focusIndex).toEqual(idx + 1);
     });
@@ -267,7 +269,7 @@ describe('SelectDropdownComponent', () => {
     it('should not focus next element when element is last', () => {
       component.focusIndex = component.options.length - 1;
       const idx = component.focusIndex;
-      event.key = KeyboardKeys.ARROW_DOWN;
+      event.key = event.code = KeyboardKeys.ARROW_DOWN;
       component.onOptionKeyDown(event);
       expect(component.focusIndex).toEqual(idx);
     });
@@ -275,7 +277,7 @@ describe('SelectDropdownComponent', () => {
     it('should focus last element on arrow up', () => {
       component.focusIndex = 2;
       const idx = component.focusIndex;
-      event.key = KeyboardKeys.ARROW_UP;
+      event.key = event.code = KeyboardKeys.ARROW_UP;
       component.onOptionKeyDown(event);
       expect(component.focusIndex).toEqual(idx - 1);
     });
@@ -283,14 +285,14 @@ describe('SelectDropdownComponent', () => {
     it('should not focus last element when element is first', () => {
       component.focusIndex = 0;
       const idx = component.focusIndex;
-      event.key = KeyboardKeys.ARROW_UP;
+      event.key = event.code = KeyboardKeys.ARROW_UP;
       component.onOptionKeyDown(event);
       expect(component.focusIndex).toEqual(idx);
     });
 
     it('should select element on enter', () => {
       const spy = spyOn(component.selection, 'emit');
-      event.key = KeyboardKeys.ENTER;
+      event.key = event.code = KeyboardKeys.ENTER;
       component.onOptionKeyDown(event);
       expect(spy).toHaveBeenCalled();
     });

@@ -43,7 +43,7 @@
   <br />
 
   <h4>Filtering</h4>
-  <ngx-select [filterable]="true" [label]="'Attack Type'" (keyup)="onSelectKeyUp($event)" (change)="onEvent('change', $event)">
+  <ngx-select name="filtering" [filterable]="true" [label]="'Attack Type'" (keyup)="onSelectKeyUp($event)" (change)="onEvent('change', $event)">
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>
     <ngx-select-option name="DDOS and Breach" value="ddos_breach"></ngx-select-option>
     <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
@@ -178,7 +178,7 @@
 </app-prism>
 
   <h4>Input and Option Templates</h4>
-  <ngx-select>
+  <ngx-select data-cy="templates">
     <ngx-select-option value="breach">
       <ng-template ngx-select-option-input-template let-option="option">
         <span class="tag">{{option.value}}</span>
@@ -277,14 +277,14 @@
   <ngx-select [placeholder]="'Select incident type...'">
     <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
     <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
-    <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="true"></ngx-select-option>
+    <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="false"></ngx-select-option>
   </ngx-select>
 
 <app-prism>
 <![CDATA[<ngx-select [placeholder]="'Select incident type...'">
   <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
   <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
-  <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="true"></ngx-select-option>
+  <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="false"></ngx-select-option>
 </ngx-select>
 ]]>
 </app-prism>
@@ -296,15 +296,15 @@
   <h4> Hidden Disabled Options </h4>
   <ngx-select [placeholder]="'Select incident type...'">
     <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
-    <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true" [hidden]="true"></ngx-select-option>
-    <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="true" [hidden]="true"></ngx-select-option>
+    <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true" [hidden]="false"></ngx-select-option>
+    <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="false" [hidden]="true"></ngx-select-option>
   </ngx-select>
 
 <app-prism>
 <![CDATA[<ngx-select [placeholder]="'Select incident type...'">
   <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
-  <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true" [hidden]="true"></ngx-select-option>
-  <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="true" [hidden]="true"></ngx-select-option>
+  <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true" [hidden]="false"></ngx-select-option>
+  <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="false" [hidden]="true"></ngx-select-option>
 </ngx-select>
 ]]>
 </app-prism>
@@ -317,14 +317,14 @@
   <ngx-select [disabled]="true" [ngModel]="['Breach']">
     <ngx-select-option [name]="'Breach'" [value]="'Breach'"></ngx-select-option>
     <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
-    <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="true"></ngx-select-option>
+    <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="false"></ngx-select-option>
   </ngx-select>
 
 <app-prism>
 <![CDATA[<ngx-select [disabled]="true" [ngModel]="['Breach']">
   <ngx-select-option [name]="'Breach'" [value]="'Breach'"></ngx-select-option>
   <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
-  <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="true"></ngx-select-option>
+  <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="false"></ngx-select-option>
 </ngx-select>
 ]]>
 </app-prism>
@@ -337,14 +337,14 @@
   <ngx-select [ngModel]="['Breach']">
     <ngx-select-option [name]="'Breach'" [value]="'Breach'" [hidden]="true"></ngx-select-option>
     <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
-    <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="true"></ngx-select-option>
+    <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="false"></ngx-select-option>
   </ngx-select>
 
 <app-prism>
 <![CDATA[<ngx-select [ngModel]="['Breach']">
   <ngx-select-option [name]="'Breach'" [value]="'Breach'" [hidden]="true"></ngx-select-option>
   <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
-  <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="true"></ngx-select-option>
+  <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="false"></ngx-select-option>
 </ngx-select>
 ]]>
 </app-prism>
@@ -416,7 +416,7 @@
 
   <h4>Enabled state can be changed using reactive forms</h4>
   <form [formGroup]="form">
-    <ngx-select label="Attack Type" formControlName="formCtrl1">
+    <ngx-select label="Attack Type" formControlName="formCtrl1" name="formCtrl1">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
       <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
       <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -450,7 +450,7 @@
 
   <h4>Disabled by default using reactive forms</h4>
   <form [formGroup]="form">
-    <ngx-select label="Attack Type" formControlName="formCtrl2">
+    <ngx-select label="Attack Type" formControlName="formCtrl2" name="formCtrl2">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
       <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
       <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -572,7 +572,7 @@
   </ngx-select>
 </ngx-section>
 
-<ngx-section class="shadow" [sectionTitle]="'Tagging'">
+<ngx-section class="shadow" data-cy="tagging" [sectionTitle]="'Tagging'">
   <h4>Basic</h4>
   <ngx-select [label]="'Tagging'" [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)" (change)="onEvent('change', $event)">
     <ngx-select-option name="Breach" value="breach"></ngx-select-option>

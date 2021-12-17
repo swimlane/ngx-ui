@@ -1,4 +1,3 @@
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -17,16 +16,18 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Appearance } from '../../mixins/appearance/appearance.enum';
 import { InViewportMetadata } from 'ng-in-viewport';
 import { take } from 'rxjs/operators';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
-import { appearanceMixin } from '../../mixins/appearance/appearance.mixin';
 import { sizeMixin } from '../../mixins/size/size.mixin';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { SelectDropdownComponent } from './select-dropdown.component';
 import { SelectInputComponent } from './select-input.component';
 
 import { SelectOptionDirective } from './select-option.directive';
+import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
+import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
 
 let nextId = 0;
 
@@ -38,7 +39,7 @@ const SELECT_VALUE_ACCESSOR = {
 
 class InputBase {}
 
-const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
+const _InputMixinBase = sizeMixin(InputBase);
 
 @Component({
   exportAs: 'ngxSelect',
@@ -63,7 +64,8 @@ const _InputMixinBase = appearanceMixin(sizeMixin(InputBase));
     '[class.active-selections]': 'hasSelections',
     '[class.has-placeholder]': 'hasPlaceholder',
     '[class.autosize]': 'autosize',
-    '[style.min-width]': 'autosize ? autosizeMinWidth : undefined'
+    '[style.min-width]': 'autosize ? autosizeMinWidth : undefined',
+    '[attr.aria-expanded]': 'dropdownActive'
   },
   providers: [SELECT_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
@@ -86,21 +88,20 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
   @Input() options: SelectDropdownOption[] = [];
   @Input() identifier: string;
+  @Input() appearance = Appearance.Legacy;
 
   @Input()
-  get minSelections() {
-    return this._minSelections;
-  }
+  @CoerceNumberProperty()
+  minSelections?: number;
 
-  set minSelections(minSelections) {
-    this._minSelections = coerceNumberProperty(minSelections, undefined);
-  }
+  @Input()
+  @CoerceNumberProperty()
+  maxSelections?: number;
 
   @Input()
   get autosizeMinWidth(): number | string {
     return this._autosizeMinWidth;
   }
-
   set autosizeMinWidth(autosizeMinWidth) {
     if (!isNaN(+autosizeMinWidth)) {
       this._autosizeMinWidth = `${autosizeMinWidth}px`;
@@ -110,130 +111,56 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   }
 
   @Input()
-  get maxSelections() {
-    return this._maxSelections;
-  }
-
-  set maxSelections(maxSelections) {
-    this._maxSelections = coerceNumberProperty(maxSelections, undefined);
-  }
+  @CoerceBooleanProperty()
+  autofocus = false;
 
   @Input()
-  get autofocus() {
-    return this._autofocus;
-  }
-
-  set autofocus(autofocus) {
-    this._autofocus = coerceBooleanProperty(autofocus);
-  }
+  @CoerceBooleanProperty()
+  autosize = false;
 
   @Input()
-  get autosize() {
-    return this._autosize;
-  }
-
-  set autosize(autosize) {
-    this._autosize = coerceBooleanProperty(autosize);
-  }
+  @CoerceBooleanProperty()
+  allowClear = true;
 
   @Input()
-  get allowClear() {
-    return this._allowClear;
-  }
-
-  set allowClear(allowClear) {
-    this._allowClear = coerceBooleanProperty(allowClear);
-  }
+  @CoerceBooleanProperty()
+  allowAdditions = false;
 
   @Input()
-  get allowAdditions() {
-    return this._allowAdditions;
-  }
-
-  set allowAdditions(allowAdditions) {
-    this._allowAdditions = coerceBooleanProperty(allowAdditions);
-  }
+  @CoerceBooleanProperty()
+  disableDropdown = false;
 
   @Input()
-  get disableDropdown() {
-    return this._disableDropdown;
-  }
-
-  set disableDropdown(disableDropdown) {
-    this._disableDropdown = coerceBooleanProperty(disableDropdown);
-  }
+  @CoerceBooleanProperty()
+  closeOnSelect = false;
 
   @Input()
-  get closeOnSelect() {
-    return this._closeOnSelect;
-  }
-
-  set closeOnSelect(closeOnSelect) {
-    this._closeOnSelect = coerceBooleanProperty(closeOnSelect);
-  }
+  @CoerceBooleanProperty()
+  closeOnBodyClick = true;
 
   @Input()
-  get closeOnBodyClick() {
-    return this._closeOnBodyClick;
-  }
-
-  set closeOnBodyClick(closeOnBodyClick) {
-    this._closeOnBodyClick = coerceBooleanProperty(closeOnBodyClick);
-  }
+  @CoerceBooleanProperty()
+  filterable = true;
 
   @Input()
-  get filterable() {
-    return this._filterable;
-  }
-
-  set filterable(filterable) {
-    this._filterable = coerceBooleanProperty(filterable);
-  }
+  @CoerceBooleanProperty()
+  required = false;
 
   @Input()
-  get required() {
-    return this._required;
-  }
-
-  set required(required) {
-    this._required = coerceBooleanProperty(required);
-  }
+  @CoerceBooleanProperty()
+  filterCaseSensitive = false;
 
   @Input()
-  get filterCaseSensitive() {
-    return this._filterCaseSensitive;
-  }
-
-  set filterCaseSensitive(filterCaseSensitive) {
-    this._filterCaseSensitive = coerceBooleanProperty(filterCaseSensitive);
-  }
+  @CoerceBooleanProperty()
+  tagging = false;
 
   @Input()
-  get tagging() {
-    return this._tagging;
-  }
-
-  set tagging(tagging) {
-    this._tagging = coerceBooleanProperty(tagging);
-  }
+  @CoerceBooleanProperty()
+  multiple = false;
 
   @Input()
-  get multiple() {
-    return this._multiple;
-  }
-
-  set multiple(multiple) {
-    this._multiple = coerceBooleanProperty(multiple);
-  }
-
-  @Input()
-  get disabled() {
-    return this._disabled;
-  }
-
-  set disabled(disabled) {
-    this._disabled = coerceBooleanProperty(disabled);
-  }
+  @CoerceBooleanProperty()
+  disabled = false;
 
   @Output() change = new EventEmitter<any[]>();
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
@@ -306,7 +233,6 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   get value() {
     return this._value;
   }
-
   set value(val: any[]) {
     if (val !== this._value) {
       this._value = val;
@@ -330,23 +256,6 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
   private _optionTemplates: QueryList<SelectOptionDirective>;
   private _value: any[] = [];
-
-  private _minSelections?: number;
-  private _maxSelections?: number;
-
-  private _autofocus = false;
-  private _autosize = false;
-  private _allowClear = true;
-  private _allowAdditions = false;
-  private _disableDropdown = false;
-  private _closeOnSelect: boolean;
-  private _closeOnBodyClick = true;
-  private _filterable = true;
-  private _required: boolean;
-  private _filterCaseSensitive = false;
-  private _tagging = false;
-  private _multiple = false;
-  private _disabled = false;
   private _autosizeMinWidth = '60px';
 
   constructor(
@@ -361,32 +270,37 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     this.toggleDropdown(false);
   }
 
-  onDropdownSelection(selection: SelectDropdownOption): void {
+  onDropdownSelection(selection: SelectDropdownOption, shouldClose = this.closeOnSelect || !this.multiple): void {
     if (selection.disabled) return;
     if (this.value.length === this.maxSelections) return;
 
-    const idx = this.value.findIndex(o => {
-      if (this.identifier) {
-        return o[this.identifier] === selection.value[this.identifier];
-      }
-
-      return o === selection.value;
-    });
+    const idx = this.findIndex(selection);
 
     if (idx === -1) {
       this.value = this.multiple || this.tagging ? [...this.value, selection.value] : [selection.value];
     }
+    this.afterSelect(shouldClose);
+  }
 
+  onDropdownDeselection(selection: SelectDropdownOption, shouldClose = this.closeOnSelect || !this.multiple): void {
+    if (selection.disabled) return;
+    if (!this.allowClear) return;
+
+    const idx = this.findIndex(selection);
+
+    if (idx > -1) {
+      this.value = this.value.filter((_, i) => i !== idx);
+    }
+    this.afterSelect(shouldClose);
+  }
+
+  private afterSelect(shouldClose: boolean = this.closeOnSelect || !this.multiple) {
     // if tagging, we need to clear current text
     if (this.tagging) {
-      this.inputComponent.inputElement.nativeElement.value = '';
+      this.inputComponent.clearInput();
     }
 
-    const shouldClose = this.closeOnSelect || !this.multiple;
-
-    if (shouldClose) {
-      this.toggleDropdown(false);
-    }
+    if (shouldClose) this.onClose(true);
   }
 
   onInputSelection(selections: any[]): void {
@@ -396,8 +310,22 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   onFocus(): void {
     if (this.disabled) return;
 
-    this.toggleDropdown(!this.dropdownActive);
+    this.toggleDropdown(true);
     this.onTouchedCallback();
+    this.focusOn(0);
+  }
+
+  onFocusLast(): void {
+    if (this.disabled) return;
+
+    this.toggleDropdown(true);
+    this.onTouchedCallback();
+    this.focusOn(-1);
+  }
+
+  focusOn(index: number): void {
+    if (index < 0) index = this.options.length + index;
+    this.focusIndex = index;
   }
 
   onClear(): void {
@@ -415,8 +343,14 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
     }
   }
 
-  onClose(): void {
+  onClose(keepFocus = false): void {
     this.toggleDropdown(false);
+
+    if (keepFocus) {
+      setTimeout(() => {
+        this.inputComponent.focus();
+      }, 30);
+    }
   }
 
   onToggle(): void {
@@ -482,7 +416,16 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   }
 
   setDisabledState(isDisabled: boolean): void {
-    this._disabled = isDisabled;
+    this.disabled = isDisabled;
+  }
+
+  private findIndex(selection: SelectDropdownOption) {
+    return this.value.findIndex(o => {
+      if (this.identifier) {
+        return o[this.identifier] === selection.value[this.identifier];
+      }
+      return o === selection.value;
+    });
   }
 
   private adjustMenuDirection(event: {

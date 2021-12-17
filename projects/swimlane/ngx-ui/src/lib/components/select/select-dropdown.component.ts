@@ -1,4 +1,4 @@
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -11,9 +11,11 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import { InViewportDirective } from 'ng-in-viewport';
-import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 
+import { InViewportDirective } from 'ng-in-viewport';
+
+import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
+import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { containsFilter } from './contains-filter.util';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
@@ -37,46 +39,25 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Input() allowAdditionsText: string | TemplateRef<any> = 'Add Value';
 
   @Input()
-  get tagging() {
-    return this._tagging;
-  }
-
-  set tagging(tagging) {
-    this._tagging = coerceBooleanProperty(tagging);
-  }
+  @CoerceBooleanProperty()
+  tagging: boolean;
 
   @Input()
-  get allowAdditions() {
-    return this._allowAdditions;
-  }
-
-  set allowAdditions(allowAdditions) {
-    this._allowAdditions = coerceBooleanProperty(allowAdditions);
-  }
+  @CoerceBooleanProperty()
+  allowAdditions: boolean;
 
   @Input()
-  get filterable() {
-    return this._filterable;
-  }
-
-  set filterable(filterable) {
-    this._filterable = coerceBooleanProperty(filterable);
-  }
+  @CoerceBooleanProperty()
+  filterable: boolean;
 
   @Input()
-  get filterCaseSensitive() {
-    return this._filterCaseSensitive;
-  }
-
-  set filterCaseSensitive(filterCaseSensitive) {
-    this._filterCaseSensitive = coerceBooleanProperty(filterCaseSensitive);
-  }
+  @CoerceBooleanProperty()
+  filterCaseSensitive = false;
 
   @Input()
   get focusIndex() {
     return this._focusIndex;
   }
-
   set focusIndex(val: number) {
     this._focusIndex = coerceNumberProperty(val);
     this.focusElement(this._focusIndex);
@@ -86,7 +67,6 @@ export class SelectDropdownComponent implements AfterViewInit {
   get filterQuery() {
     return this._filterQuery;
   }
-
   set filterQuery(val: string) {
     this._filterQuery = val;
     this.groups = this.calculateGroups(this.groupBy, this.options, val);
@@ -96,7 +76,6 @@ export class SelectDropdownComponent implements AfterViewInit {
   get groupBy() {
     return this._groupBy;
   }
-
   set groupBy(val: string) {
     this._groupBy = val;
     this.groups = this.calculateGroups(val, this.options);
@@ -116,6 +95,9 @@ export class SelectDropdownComponent implements AfterViewInit {
 
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
   @Output() selection = new EventEmitter<SelectDropdownOption>();
+  @Output() deselection = new EventEmitter<SelectDropdownOption>();
+  @Output() keyboardSelection = new EventEmitter<SelectDropdownOption>();
+  @Output() keyboardDeselection = new EventEmitter<SelectDropdownOption>();
   @Output() close = new EventEmitter<boolean | undefined>();
 
   @ViewChild('filterInput')
@@ -139,10 +121,6 @@ export class SelectDropdownComponent implements AfterViewInit {
   private _groupBy: string;
   private _filterQuery: string;
   private _focusIndex: number;
-  private _tagging: boolean;
-  private _allowAdditions: boolean;
-  private _filterable: boolean;
-  private _filterCaseSensitive = false;
 
   constructor(private readonly elementRef: ElementRef, private readonly cdr: ChangeDetectorRef) {}
 
@@ -166,7 +144,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   }
 
   @debounceable(500)
-  updatefilterQueryIsInOptions() {
+  updateFilterQueryIsInOptions() {
     this.filterQueryIsInOptions = this.options.some(o => o.name.toLowerCase() === this.filterQuery.toLowerCase());
     this.cdr.markForCheck();
   }
@@ -175,7 +153,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     filterInput.value = '';
 
     this.filterQuery = '';
-    this.updatefilterQueryIsInOptions();
+    this.updateFilterQueryIsInOptions();
     this.cdr.markForCheck();
   }
 
@@ -196,22 +174,60 @@ export class SelectDropdownComponent implements AfterViewInit {
       this.filterQuery = value;
     }
 
-    this.updatefilterQueryIsInOptions();
+    this.updateFilterQueryIsInOptions();
     this.keyup.emit({ event, value });
+  }
+
+  onOptionClick(option: SelectDropdownOption) {
+    if (this.isSelected(option)) {
+      this.deselection.emit(option);
+    } else {
+      this.selection.emit(option);
+    }
   }
 
   onOptionKeyDown(event: KeyboardEvent, option?: SelectDropdownOption): void {
     event.preventDefault();
     event.stopPropagation();
 
-    const key = event.key;
+    switch (event.code) {
+      case KeyboardKeys.ESCAPE:
+        return this.close.emit(true);
+      case KeyboardKeys.ARROW_DOWN:
+        return this.focusNext();
+      case KeyboardKeys.ARROW_UP:
+        return this.focusPrev();
+      case KeyboardKeys.ENTER:
+        // Enter may trigger dropdown close
+        return this.isSelected(option) ? this.deselection.emit(option) : this.selection.emit(option);
+      case KeyboardKeys.SPACE:
+        // Space does not trigger dropdown close
+        return this.isSelected(option) ? this.keyboardDeselection.emit(option) : this.keyboardSelection.emit(option);
+    }
+  }
 
-    if (key === (KeyboardKeys.ARROW_DOWN as any)) {
-      if (this.focusIndex < this.options.length - 1) ++this.focusIndex;
-    } else if (key === (KeyboardKeys.ARROW_UP as any)) {
-      if (this.focusIndex > 0) --this.focusIndex;
-    } else if (key === (KeyboardKeys.ENTER as any)) {
-      this.selection.emit(option);
+  focusNext() {
+    const options = this.options;
+    const len = options.length;
+    if (this.focusIndex < len - 1) {
+      for (let i = this.focusIndex + 1; i < len; i++) {
+        if (!options[i].disabled && !options[i].hidden) {
+          this.focusIndex = i;
+          break;
+        }
+      }
+    }
+  }
+
+  focusPrev() {
+    const options = this.options;
+    if (this.focusIndex > 0) {
+      for (let i = this.focusIndex - 1; i >= 0; i--) {
+        if (!options[i].disabled && !options[i].hidden) {
+          this.focusIndex = i;
+          break;
+        }
+      }
     }
   }
 
@@ -229,6 +245,12 @@ export class SelectDropdownComponent implements AfterViewInit {
     if (this.allowAdditions) {
       this.onAddClicked(event, this.filterQuery);
     }
+  }
+
+  focusOn(index: number): void {
+    if (index < 0) index = this.options.length + index;
+    this.focusIndex = index;
+    this.cdr.markForCheck();
   }
 
   private focusElement(index: number): void {

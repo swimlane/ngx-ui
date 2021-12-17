@@ -11,10 +11,10 @@ import {
   TemplateRef,
   ViewChild
 } from '@angular/core';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
+import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 
 @Component({
   exportAs: 'ngxSelectInput',
@@ -24,6 +24,7 @@ import { SelectDropdownOption } from './select-dropdown-option.interface';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectInputComponent implements AfterViewInit, OnChanges {
+  @Input() selectId: string;
   @Input() placeholder: string;
   @Input() identifier: string;
   @Input() options: SelectDropdownOption[];
@@ -31,76 +32,54 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   @Input() hint: string;
   @Input() selectCaret: string | TemplateRef<any>;
   @Input() requiredIndicator: string | boolean;
-  @Input() tabindex: number;
+  @Input() tabindex = 0;
 
   @Input()
-  get autofocus() {
-    return this._autofocus;
-  }
-
-  set autofocus(autofocus) {
-    this._autofocus = coerceBooleanProperty(autofocus);
-  }
+  @CoerceBooleanProperty()
+  autofocus: boolean;
 
   @Input()
-  get allowClear() {
-    return this._allowClear;
-  }
-
-  set allowClear(allowClear) {
-    this._allowClear = coerceBooleanProperty(allowClear);
-  }
+  @CoerceBooleanProperty()
+  allowClear: boolean;
 
   @Input()
-  get multiple() {
-    return this._multiple;
-  }
-
-  set multiple(multiple) {
-    this._multiple = coerceBooleanProperty(multiple);
-  }
+  @CoerceBooleanProperty()
+  multiple: boolean;
 
   @Input()
-  get tagging() {
-    return this._tagging;
-  }
-
-  set tagging(tagging) {
-    this._tagging = coerceBooleanProperty(tagging);
-  }
+  @CoerceBooleanProperty()
+  tagging: boolean;
 
   @Input()
-  get allowAdditions() {
-    return this._allowAdditions;
-  }
-
-  set allowAdditions(allowAdditions) {
-    this._allowAdditions = coerceBooleanProperty(allowAdditions);
-  }
+  @CoerceBooleanProperty()
+  allowAdditions: boolean;
 
   @Input()
-  get disableDropdown() {
-    return this._disableDropdown;
-  }
+  @CoerceBooleanProperty()
+  disableDropdown: boolean;
 
-  set disableDropdown(disableDropdown) {
-    this._disableDropdown = coerceBooleanProperty(disableDropdown);
-  }
+  @Input()
+  @CoerceBooleanProperty()
+  disabled: boolean;
 
   @Input()
   get selected() {
     return this._selected;
   }
-
   set selected(val: any[]) {
     this._selected = val;
     this.selectedOptions = this.calcSelectedOptions(val);
   }
 
   @Output() toggle = new EventEmitter<void>();
+  @Output() close = new EventEmitter<void>();
   @Output() selection = new EventEmitter<any[]>();
-  @Output() activate = new EventEmitter<Event>();
+  @Output() activate = new EventEmitter<void>();
+  @Output() activateLast = new EventEmitter<void>();
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
+
+  @ViewChild('inputContainer')
+  readonly inputContainer?: ElementRef<HTMLElement>;
 
   @ViewChild('tagInput')
   readonly inputElement?: ElementRef<HTMLInputElement>;
@@ -117,12 +96,6 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   selectedOptions: SelectDropdownOption[] = [];
 
   private _selected: any[];
-  private _autofocus: boolean;
-  private _allowClear: boolean;
-  private _multiple: boolean;
-  private _tagging: boolean;
-  private _allowAdditions: boolean;
-  private _disableDropdown: boolean;
 
   ngOnChanges(changes: SimpleChanges) {
     if ('options' in changes && !changes.options.firstChange) {
@@ -138,59 +111,105 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  onKeyUp(event: KeyboardEvent): void {
+  // Events in the input box
+  onInputKeyDown(event: KeyboardEvent): void {
+    if (event.code === KeyboardKeys.BACKSPACE) {
+      const value = (event.target as any).value;
+      if (value === '') {
+        event.stopPropagation();
+        event.preventDefault();
+        const newSelections = this.selected.slice(0, this.selected.length - 1);
+        this.selection.emit(newSelections);
+      }
+    }
+  }
+
+  // Events in the input box
+  onInputKeyUp(event: KeyboardEvent): void {
     event.stopPropagation();
 
-    const key = event.key;
     const value = (event.target as any).value;
 
-    if (key === (KeyboardKeys.ENTER as any)) {
-      if (value !== '') {
-        const hasSelection = this.selected.find(selection => {
-          return value === selection;
-        });
+    switch (event.code) {
+      case KeyboardKeys.ENTER:
+        event.preventDefault();
+        if (value !== '') {
+          const hasSelection = this.selected.find(selection => {
+            return value === selection;
+          });
 
-        if (!hasSelection) {
-          const newSelections = [...this.selected, value];
-          this.selection.emit(newSelections);
-          (event.target as any).value = '';
+          if (!hasSelection) {
+            const newSelections = [...this.selected, value];
+            this.selection.emit(newSelections);
+            this.clearInput();
+          }
         }
-      }
-
-      event.preventDefault();
-    } else if (key === (KeyboardKeys.ESCAPE as any)) {
-      this.toggle.emit();
+        return;
+      case KeyboardKeys.ESCAPE:
+        event.preventDefault();
+        this.toggle.emit();
+        return;
     }
 
     this.keyup.emit({ event, value });
   }
 
+  clearInput() {
+    if (this.inputElement && this.inputElement.nativeElement) {
+      this.inputElement.nativeElement.value = '';
+    }
+    this.keyup.emit({ event: undefined, value: '' });
+  }
+
+  // Events on ngx-select-input-box element
   onGlobalKeyUp(event: KeyboardEvent) {
     event.stopPropagation();
-    const key = event.key;
 
-    if (key === KeyboardKeys.ARROW_DOWN) {
-      this.activate.emit(event);
+    switch (event.code) {
+      case KeyboardKeys.SPACE:
+      case KeyboardKeys.ARROW_DOWN:
+        event.preventDefault();
+        this.activate.emit();
+        break;
+      case KeyboardKeys.ARROW_UP:
+        event.preventDefault();
+        this.activateLast.emit();
+        break;
+      case KeyboardKeys.ESCAPE:
+        event.preventDefault();
+        this.close.emit();
+        break;
+      // TODO: Printable characters: select any matching options without expanding the options menu
     }
   }
 
   onKeyDown(event: KeyboardEvent): void {
+    if (event.code === KeyboardKeys.TAB) return; // don't trap tabs
+
     if (this.disableDropdown) return;
     event.stopPropagation();
 
     if (!this.tagging) {
+      event.preventDefault();
       this.keyup.emit({ event });
     }
   }
 
-  onClick(event: Event): void {
+  onClick(): void {
     if (this.disableDropdown) return;
-    this.activate.emit(event);
+    this.activate.emit();
 
     if (this.tagging) {
       setTimeout(() => {
         this.inputElement.nativeElement.focus();
-      }, 5);
+      }, 30);
+    }
+  }
+
+  onFocus() {
+    if (!this.disabled && this.tagging) {
+      // Open dropdown and focus on input
+      this.onClick();
     }
   }
 
@@ -210,6 +229,10 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     });
 
     this.selection.emit(newSelections);
+  }
+
+  focus() {
+    this.inputContainer.nativeElement.focus();
   }
 
   private calcSelectedOptions(selected: any[]) {

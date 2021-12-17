@@ -277,7 +277,8 @@ $color-chip-text: #fff;
       }
     }
 
-    .ngx-select-input-box:focus + .ngx-select-input-underline {
+    &:focus-within,
+    .ngx-select-input-box:focus {
       .underline-fill {
         width: 100%;
       }
@@ -571,13 +572,9 @@ $color-chip-text: #fff;
       }
     }
 
-    &.single-selection .ngx-select-input .ngx-select-clear {
-      top: 50%;
-      z-index: 500;
-    }
-
+    &.single-selection .ngx-select-input .ngx-select-clear,
     .ngx-select-caret {
-      top: 50%;
+      top: 1.5em;
       z-index: 500;
     }
 
@@ -605,7 +602,8 @@ $color-chip-text: #fff;
     }
   }
 
-  &.active:not(.ng-invalid) {
+  &.active:not(.ng-invalid),
+  &:focus-within:not(.ng-invalid) {
     .ngx-select-label,
     .ngx-select-caret,
     &.single-selection .ngx-select-clear {

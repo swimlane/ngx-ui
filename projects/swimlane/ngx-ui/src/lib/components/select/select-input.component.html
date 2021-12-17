@@ -1,11 +1,13 @@
 <div
-  [tabindex]="tabindex"
+  [tabindex]="disabled ? -1 : tabindex"
   (keydown)="onKeyDown($event)"
   (keyup)="onGlobalKeyUp($event)"
   class="ngx-select-input-box"
-  (click)="onClick($event)"
+  (click)="onClick()"
+  (focus)="onFocus()"
+  #inputContainer
 >
-  <label *ngIf="label" class="ngx-select-label">
+  <label *ngIf="label" class="ngx-select-label" [attr.for]="selectId">
     <span [innerHTML]="label"></span>
     <span [innerHTML]="requiredIndicator"></span>
   </label>
@@ -44,8 +46,10 @@
         autocomplete="off"
         autocorrect="off"
         spellcheck="off"
-        (keyup)="onKeyUp($event)"
+        (keydown)="onInputKeyDown($event)"
+        (keyup)="onInputKeyUp($event)"
         (change)="$event.stopPropagation()"
+        (blur)="clearInput()"
       />
       <i [hidden]="!tagInput.value" class="ngx-icon ngx-x" (click)="tagInput.value = ''"></i>
     </li>

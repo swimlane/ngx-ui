@@ -6,6 +6,7 @@
     "bundle-report": "webpack-bundle-analyzer dist/ngx-ui/stats.json",
     "prestart": "npm run build:css",
     "start": "ng serve --port 4200",
+    "prestart-prod": "npm run build:lib",
     "start-prod": "ng serve --configuration production --port 4200",
     "build": "npm run build:lib && ng build --configuration production",
     "build:demo": "npm run build:lib && cross-env NODE_ENV=production ng build --configuration production --statsJson=true --base-href=\"/ngx-ui/\"",
