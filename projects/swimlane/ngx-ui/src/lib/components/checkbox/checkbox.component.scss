@@ -31,6 +31,8 @@
       transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
       user-select: none;
       margin: auto 10px auto 0;
+      outline: 0px none $color-blue-200;
+      outline-offset: 1px;
 
       &:after {
         position: absolute;
@@ -68,8 +70,6 @@
 
       .ngx-checkbox--box {
         outline: 2px solid $color-blue-200;
-        border-radius: 2px;
-        outline-offset: 1px;
       }
     }
   }

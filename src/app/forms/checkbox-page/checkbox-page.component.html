@@ -48,7 +48,7 @@
 </ngx-section>
 
 <ngx-section sectionTitle="Round">
-  <ngx-checkbox round diameter="25px">
+  <ngx-checkbox round diameter="25px" name="chk4">
     Round Checkbox
   </ngx-checkbox>
 
@@ -57,4 +57,24 @@
   Round Checkbox
 </ngx-checkbox>]]>
   </app-prism>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Events and FormGroup">
+  <ngx-checkbox name="chk5" [(checked)]="checked">
+    Alert the SOC
+  </ngx-checkbox>
+
+  <p>Checked: <code>{{ checked}}</code></p>
+
+  <div data-cy="form-group" [formGroup]="alertType">
+    <h4>Select Alert Type:</h4>
+    <p><ngx-checkbox formControlName="breach">Breach</ngx-checkbox></p>
+    <p><ngx-checkbox formControlName="ddos">DDOS</ngx-checkbox></p>
+    <p><ngx-checkbox formControlName="physical">Physical</ngx-checkbox></p>
+  </div>
+  
+  <div [formGroup]="alertType">
+    <h4>You chose:</h4>
+    <code>{{alertType.value | json}}</code>
+  </div>
 </ngx-section>
