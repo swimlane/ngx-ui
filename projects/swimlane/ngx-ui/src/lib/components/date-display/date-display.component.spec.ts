@@ -1,12 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ClipboardModule } from 'ngx-clipboard';
 
 import { NgxDateDisplayComponent as TestComponent } from './date-display.component';
 import { MomentModule } from 'ngx-moment';
 import moment from 'moment-timezone';
+import { InjectionService } from '../../services/injection/injection.service';
+import { TimeZoneModule } from '../../pipes/time-zone/time-zone.module';
 
-import { providers, mockNgxUIProviders } from '@tests/mocks/providers';
+const MOON_LANDING = '1969-07-20T20:17:43Z';
 
 const allTimeZones = [
   'Africa/Abidjan',
@@ -356,18 +358,20 @@ const allTimeZones = [
   'Pacific/Wallis'
 ];
 
-describe('NgxDateDisplayComponent', () => {
+fdescribe('NgxDateDisplayComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [MomentModule, ClipboardModule],
-      declarations: [TestComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-      providers: [...providers, ...mockNgxUIProviders]
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        imports: [MomentModule, ClipboardModule, TimeZoneModule],
+        declarations: [TestComponent],
+        schemas: [NO_ERRORS_SCHEMA],
+        providers: [InjectionService]
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);
@@ -379,12 +383,18 @@ describe('NgxDateDisplayComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set default timezones', () => {
-    expect(component.timezones.System).toEqual('Etc/UTC');
-    expect(component.timezones.User).toEqual(moment.tz.guess());
+  it('should set defaults', () => {
+    expect(component.date).toBeDefined(Date);
+    expect(component.defaultInputTimeZone).toBeUndefined();
+    expect(component.displayTimeZone).toBeUndefined();
+    expect(component.displayMode).toBe('user');
+    expect(component.displayFormat).toBe('LLLL');
+    expect(component.clipFormat).toBe('LL');
+    expect(component.timezones.UTC).toEqual('Etc/UTC');
+    expect(component.timezones.Local).toEqual('');
   });
 
-  it('should support all server timezones', () => {
+  it('should support all timezones', () => {
     component.date = new Date();
 
     component.timezones = allTimeZones.reduce((acc, curr, index) => {
@@ -404,26 +414,33 @@ describe('NgxDateDisplayComponent', () => {
   });
 
   describe('should set timeValues and titleValue', () => {
-    it('no values when no date provided', () => {
+    it('current date when no date provided', () => {
       component.ngOnChanges();
       fixture.detectChanges();
 
-      expect(Object.keys(component.timeValues).length).toEqual(0);
-      expect(component.titleValue).toEqual('');
+      expect(component.internalDate).toBeDefined();
+
+      expect(Object.keys(component.timeValues).length).toEqual(2);
+      expect(component.titleValue).toContain('[Local]');
+      expect(component.titleValue).toContain('[UTC]');
     });
 
     it('when user date provided', () => {
-      component.date = new Date(2000, 1, 5, 8, 30); // note: browser timezone
+      const date = '2000-02-05 8:30 AM';
+      component.date = new Date(date); // note: browser timezone
+      component.displayFormat = 'fullDateTime';
 
       component.ngOnChanges();
       fixture.detectChanges();
 
+      expect(component.internalDate.toDateString()).toEqual('Sat Feb 05 2000');
+
       expect(Object.keys(component.timeValues).length).toEqual(2);
-      expect(component.titleValue).toContain('Feb 05, 2000 08:30 AM'); // note: defaults to browser timezone
-      expect(component.titleValue).toContain('[User]');
+      expect(component.titleValue).toContain('Sat, Feb 5, 2000 8:30 AM -07:00'); // note: defaults to browser timezone
+      expect(component.titleValue).toContain('[Local]');
 
       // expect(component.titleValue).toContain('Feb 05, 2000 08:30 AM');
-      expect(component.titleValue).toContain('[System]');
+      expect(component.titleValue).toContain('[UTC]');
 
       for (const key in component.timeValues) {
         expect(component.timeValues[key]).toBeTruthy();
@@ -432,17 +449,19 @@ describe('NgxDateDisplayComponent', () => {
     });
 
     it('when iso date provided', () => {
-      component.date = new Date('2007-04-05T12:30Z'); // note: browser UTC
+      component.date = new Date(MOON_LANDING); // note: browser UTC
+      component.displayFormat = 'fullDateTime';
 
       component.ngOnChanges();
       fixture.detectChanges();
 
-      expect(Object.keys(component.timeValues).length).toEqual(2);
-      // expect(component.titleValue).toContain('Feb 05, 2000 08:30 AM');
-      expect(component.titleValue).toContain('[User]');
+      expect(component.internalDate.toDateString()).toEqual('Sun Jul 20 1969');
 
-      expect(component.titleValue).toContain('Thu, Apr 05, 2007 12:30 PM +00:00 (UTC)'); // note: defaults to UTC
-      expect(component.titleValue).toContain('[System]');
+      expect(Object.keys(component.timeValues).length).toEqual(2);
+      expect(component.titleValue).toContain('[Local]');
+
+      expect(component.titleValue).toContain('Sun, Jul 20, 1969 8:17 PM +00:00 (UTC)'); // note: defaults to UTC
+      expect(component.titleValue).toContain('[UTC]');
 
       for (const key in component.timeValues) {
         expect(component.timeValues[key]).toBeTruthy();
@@ -451,7 +470,6 @@ describe('NgxDateDisplayComponent', () => {
     });
   });
 
-  // TODO: move to date-display
   describe('should handle bad inputs', () => {
     it('should handle bad date', () => {
       (moment as any).suppressDeprecationWarnings = true;
@@ -460,23 +478,22 @@ describe('NgxDateDisplayComponent', () => {
       component.ngOnChanges();
       fixture.detectChanges();
 
-      for (const key in component.timeValues) {
-        expect(component.timeValues[key].full).toEqual('Invalid date');
-      }
+      expect(Object.keys(component.timeValues).length).toEqual(0);
     });
 
     it('should handle bad timezone', () => {
       (moment as any).suppressDeprecationWarnings = true;
       component.date = new Date();
+      component.displayFormat = 'fullDateTime';
 
       component.timezones = {
-        System: 'Timbuktu'
+        Test: 'Timbuktu'
       };
 
       component.ngOnChanges();
       fixture.detectChanges();
 
-      expect(component.timeValues['System'].full).toContain('Coordinated Universal Time');
+      expect(component.timeValues['Test'].display).toContain('Coordinated Universal Time');
     });
   });
 });

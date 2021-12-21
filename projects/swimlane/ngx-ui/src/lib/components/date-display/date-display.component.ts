@@ -18,13 +18,13 @@ import { Datelike } from '../date-time/date-like.type';
 })
 export class NgxDateDisplayComponent implements OnInit, OnChanges {
   @Input()
+  date: Datelike = new Date();
+
+  @Input()
   defaultInputTimeZone: string;
 
   @Input()
   displayTimeZone: string;
-
-  @Input()
-  date: Datelike = new Date();
 
   @Input()
   set displayMode(val: DATE_DISPLAY_TYPES) {
@@ -108,7 +108,7 @@ export class NgxDateDisplayComponent implements OnInit, OnChanges {
 
   private _displayMode: DATE_DISPLAY_TYPES;
   private _displayFormat: string;
-  private _clipFormat: string = DATE_DISPLAY_FORMATS.shortDateTime;
+  private _clipFormat: string;
   private _clickable: boolean;
 
   constructor(private clipboardService: ClipboardService, private notificationService: NotificationService) {}
