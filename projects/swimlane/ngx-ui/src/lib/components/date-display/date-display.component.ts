@@ -162,7 +162,7 @@ export class NgxDateDisplayComponent implements OnInit, OnChanges {
 
     const mdate = momentTimezone.tz(this.date as string, DATE_DISPLAY_INPUT_FORMATS, inputTimezone);
     this.dateInvalid = !mdate.isValid();
-    this.internalDate = !this.dateInvalid ? mdate.toDate() : undefined;
+    this.internalDate = this.dateInvalid ? undefined : mdate.toDate();
 
     if (this.dateInvalid) {
       return;
@@ -173,12 +173,14 @@ export class NgxDateDisplayComponent implements OnInit, OnChanges {
     for (const key in this.timezones) {
       const tz = this.timezones[key] || localTimezone;
       const date = mdate.clone().tz(tz);
-      const item = (this.timeValues[key] = {
+      const clip = date.format(this.clipFormat);
+      const display = date.format(this.displayFormat);
+      this.timeValues[key] = {
         key,
-        clip: date.format(this.clipFormat),
-        display: date.format(this.displayFormat)
-      });
-      titleValue.push(`${item.display} [${item.key}]`);
+        clip,
+        display
+      };
+      titleValue.push(`${display} [${key}]`);
     }
     this.titleValue = titleValue.join('\n');
   }

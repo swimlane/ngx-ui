@@ -37,7 +37,7 @@ ngx-date-display {
   .date-zone-display {
     font-weight: bold;
     font-size: 15px;
-    color: #313847;
+    color: $color-blue-grey-700;
 
     > span {
       display: inline-block;
@@ -49,7 +49,7 @@ ngx-date-display {
       line-height: 16px;
       font-size: 11px;
       text-transform: uppercase;
-      color: #313847;
+      color: $color-blue-grey-700;
       background: #dee1ea;
       margin-left: 5px;
       padding: 0 6px;
