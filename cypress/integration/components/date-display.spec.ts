@@ -1,11 +1,7 @@
-import moment from 'moment-timezone';
-
 describe('Date/Time Display', () => {
-  const TOHOKU_EARTHQUAKE = '2011-03-11T05:46:24Z';
-  const TOHOKU_TOKYO = 'Friday, March 11, 2011 2:46 PM';
-  const TOHOKU_GMT = 'Friday, March 11, 2011 5:46 AM';
-  const localTimezone = moment.tz.guess();
-  const localString = moment(TOHOKU_EARTHQUAKE).tz(localTimezone).format('LLL');
+  const TOKYO = 'Friday, March 11, 2011 2:46 PM';
+  const GMT = 'Friday, March 11, 2011 5:46 AM';
+  const LA = 'Thursday, March 10, 2011 9:46 PM';  // America/Los_Angeles should be passed as TZ env var to cypress
 
   before(() => {
     cy.visit('/date-display');
@@ -22,12 +18,12 @@ describe('Date/Time Display', () => {
       cy.get('@CUT')
         .first()
         .whileHovering(() => {
-          cy.get('abbr').should('contain.text', localString);
+          cy.get('abbr').should('contain.text', LA);
           cy.root()
             .closest('body')
             .find('ngx-tooltip-content')
-            .should('contain.text', localString)
-            .and('contain.text', TOHOKU_GMT);
+            .should('contain.text', LA)
+            .and('contain.text', GMT);
         });
     });
 
@@ -39,8 +35,8 @@ describe('Date/Time Display', () => {
           cy.root()
             .closest('body')
             .find('ngx-tooltip-content')
-            .should('contain.text', localString)
-            .and('contain.text', TOHOKU_GMT);
+            .should('contain.text', LA)
+            .and('contain.text', GMT);
         });
     });
 
@@ -48,7 +44,7 @@ describe('Date/Time Display', () => {
       cy.get('@CUT')
         .eq(2)
         .whileHovering(() => {
-          cy.get('abbr').should('contain.text', localString);
+          cy.get('abbr').should('contain.text', LA);
         });
     });
   });
@@ -67,8 +63,8 @@ describe('Date/Time Display', () => {
           cy.root()
             .closest('body')
             .find('ngx-tooltip-content')
-            .should('contain.text', localString)
-            .and('contain.text', TOHOKU_GMT);
+            .should('contain.text', LA)
+            .and('contain.text', GMT);
         });
     });
 
@@ -76,12 +72,12 @@ describe('Date/Time Display', () => {
       cy.get('@CUT')
         .eq(1)
         .whileHovering(() => {
-          cy.get('abbr').should('contain.text', localString);
+          cy.get('abbr').should('contain.text', LA);
           cy.root()
             .closest('body')
             .find('ngx-tooltip-content')
-            .should('contain.text', localString)
-            .and('contain.text', TOHOKU_GMT);
+            .should('contain.text', LA)
+            .and('contain.text', GMT);
         });
     });
 
@@ -89,12 +85,12 @@ describe('Date/Time Display', () => {
       cy.get('@CUT')
         .eq(2)
         .whileHovering(() => {
-          cy.get('abbr').should('contain.text', localString);
+          cy.get('abbr').should('contain.text', LA);
           cy.root()
             .closest('body')
             .find('ngx-tooltip-content')
-            .should('contain.text', localString)
-            .and('contain.text', TOHOKU_GMT);
+            .should('contain.text', LA)
+            .and('contain.text', GMT);
         });
     });
   });
@@ -109,11 +105,11 @@ describe('Date/Time Display', () => {
       cy.get('@CUT')
         .first()
         .whileHovering(() => {
-          cy.get('abbr').should('contain.text', localString);
+          cy.get('abbr').should('contain.text', LA);
           cy.get('.ngx-date-display__container')
             .invoke('attr', 'title')
-            .should('contain', localString)
-            .and('contain', TOHOKU_GMT);
+            .should('contain', LA)
+            .and('contain', GMT);
         });
     });
 
@@ -121,13 +117,13 @@ describe('Date/Time Display', () => {
       cy.get('@CUT')
         .eq(1)
         .whileHovering(() => {
-          cy.get('abbr').should('contain.text', localString);
+          cy.get('abbr').should('contain.text', LA);
           cy.root()
             .closest('body')
             .find('ngx-tooltip-content')
-            .should('contain.text', TOHOKU_TOKYO)
-            .should('contain.text', localString)
-            .and('contain.text', TOHOKU_GMT);
+            .should('contain.text', TOKYO)
+            .should('contain.text', LA)
+            .and('contain.text', GMT);
         });
     });
   });
