@@ -6,8 +6,8 @@ module.exports = {
   plugins: [
     new MomentLocalesPlugin(),
     new MomentTimezoneDataPlugin({
-      startYear: currentYear - 5,
-      endYear: currentYear + 5
+      startYear: currentYear - 15,
+      endYear: currentYear + 15
     })
   ]
 };

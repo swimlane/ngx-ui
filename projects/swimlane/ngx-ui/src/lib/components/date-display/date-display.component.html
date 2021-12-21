@@ -8,7 +8,6 @@
   [tooltipShowTimeout]="400"
   [attr.title]="tooltipDisabled && hasPopup ? titleValue : null"
 >
-
   <ng-container *ngIf="!dateInvalid">
     <ng-container [ngSwitch]="displayMode">
       <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.HUMAN">

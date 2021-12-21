@@ -1,4 +1,5 @@
-
+{{ date }}
+{{ localString }}
 
 <ngx-section sectionTitle="Formats">
   <div class="example">
@@ -41,14 +42,14 @@
 
   <div class="example">
     <h4>Default input timezone can be specified</h4>
-    <ngx-date-display date="1969-07-20 20:17" defaultInputTimeZone="Etc/UTC" displayTimeZone="Asia/Tokyo"></ngx-date-display>
-    <app-prism><![CDATA[<ngx-date-display date="1969-07-20 20:17" defaultInputTimeZone="Etc/UTC" displayTimeZone="Asia/Tokyo"></ngx-date-display>]]></app-prism>
+    <ngx-date-display date="March 11, 2011 2:46 PM" defaultInputTimeZone="Asia/Tokyo"></ngx-date-display>
+    <app-prism><![CDATA[<ngx-date-display date="March 11, 2011 2:46 PM" defaultInputTimeZone="Asia/Tokyo"></ngx-date-display>]]></app-prism>
   </div>
 
   <div class="example">
     <h4>Explicit timezone in input value overrides default input timezone</h4>
-    <ngx-date-display date="1969-07-20T20:17:00.000Z" defaultInputTimeZone="Asia/Tokyo" displayTimeZone="Asia/Tokyo"></ngx-date-display>
-    <app-prism><![CDATA[<ngx-date-display date="1969-07-20T20:17:00.000Z" defaultInputTimeZone="Asia/Tokyo" displayTimeZone="Asia/Tokyo"></ngx-date-display>]]></app-prism>
+    <ngx-date-display [date]="date" defaultInputTimeZone="Asia/Tokyo"></ngx-date-display>
+    <app-prism><![CDATA[<ngx-date-display date="date" defaultInputTimeZone="Asia/Tokyo"></ngx-date-display>]]></app-prism>
   </div>
 </ngx-section>
 
@@ -61,7 +62,7 @@
 
   <div class="example">
     <h4>Defined Timezones</h4>
-    <ngx-date-display [date]="date" [timezones]="{ 'GMT': 'Etc/UTC', 'Tokyo': 'Asia/Tokyo', 'Denver': 'America/Denver' }"></ngx-date-display>
+    <ngx-date-display [date]="date" [timezones]="{ 'Local': '', 'GMT': 'Etc/UTC', 'Tokyo': 'Asia/Tokyo' }"></ngx-date-display>
     <app-prism><![CDATA[<ngx-date-display [date]="date" [timezones]="{ 'Local': '', 'GMT': 'Etc/UTC', 'Tokyo': 'Asia/Tokyo' }"></ngx-date-display>]]></app-prism>
   </div>
 </ngx-section>
