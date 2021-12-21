@@ -174,7 +174,7 @@ export class AppComponent {
           route: 'calendar'
         },
         {
-          name: 'Date Display',
+          name: 'Date/Time Display',
           route: 'date-display'
         },
         {

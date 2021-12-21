@@ -1,13 +1,14 @@
 import { Component, Input, HostListener, ViewEncapsulation, OnChanges, HostBinding, OnInit } from '@angular/core';
 
 import { ClipboardService } from 'ngx-clipboard';
-import moment from 'moment-timezone';
+import momentTimezone from 'moment-timezone';
 
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { NotificationService } from '../notification/notification.service';
 import { NotificationStyleType } from '../notification/notification-style-type.enum';
 
 import { DATE_DISPLAY_TYPES, DATE_DISPLAY_INPUT_FORMATS, DATE_DISPLAY_FORMATS } from './date-formats.enum';
+import { Datelike } from '../date-time/date-like.type';
 
 @Component({
   selector: 'ngx-date-display',
@@ -17,19 +18,13 @@ import { DATE_DISPLAY_TYPES, DATE_DISPLAY_INPUT_FORMATS, DATE_DISPLAY_FORMATS } 
 })
 export class NgxDateDisplayComponent implements OnInit, OnChanges {
   @Input()
-  set date(val: Date | string) {
-    if (typeof val === 'string') {
-      // ensure values without time zone offset are read as UTC
-      const mdate = moment.utc(val, DATE_DISPLAY_INPUT_FORMATS);
-      if (mdate.isValid()) {
-        val = mdate.toDate();
-      }
-    }
-    this._date = val as Date;
-  }
-  get date(): Date {
-    return this._date;
-  }
+  defaultInputTimeZone: string;
+
+  @Input()
+  displayTimeZone: string;
+
+  @Input()
+  date: Datelike = new Date();
 
   @Input()
   set displayMode(val: DATE_DISPLAY_TYPES) {
@@ -47,7 +42,7 @@ export class NgxDateDisplayComponent implements OnInit, OnChanges {
     this._displayFormat = val;
   }
   get displayFormat(): string {
-    return DATE_DISPLAY_FORMATS[this._displayFormat] || this._displayFormat;
+    return DATE_DISPLAY_FORMATS[this._displayFormat] || this._displayFormat || DATE_DISPLAY_FORMATS.fullLocale;
   }
 
   @Input()
@@ -55,16 +50,13 @@ export class NgxDateDisplayComponent implements OnInit, OnChanges {
     this._clipFormat = val;
   }
   get clipFormat(): string {
-    return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat;
+    return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat || DATE_DISPLAY_FORMATS.shortLocale;
   }
-
-  @Input()
-  userTimeZone = moment.tz.guess();
 
   @Input()
   timezones: Record<string, string> = {
     UTC: 'Etc/UTC',
-    Local: this.userTimeZone
+    Local: ''
   };
 
   @Input()
@@ -84,6 +76,9 @@ export class NgxDateDisplayComponent implements OnInit, OnChanges {
   @Input()
   defaultCopyKey = 'Local';
 
+  @Input()
+  invalidDateMessage = 'Invalid date';
+
   @HostBinding('class.ngx-date-display--clickable')
   @Input()
   get clickable(): boolean {
@@ -96,18 +91,23 @@ export class NgxDateDisplayComponent implements OnInit, OnChanges {
     this._clickable = val;
   }
 
-  @HostBinding('class.ngx-date-display--date-valid')
-  dateValid = false;
+  @HostBinding('class.ngx-date-display--has-popup')
+  get hasPopup() {
+    return !this.dateInvalid && DATE_DISPLAY_TYPES.LOCAL !== this.displayMode;
+  }
+
+  @HostBinding('class.ngx-date-display--date-invalid')
+  dateInvalid = true;
 
   timeValues = {};
   titleValue = '';
+  internalDate: Date;
 
   readonly DATE_DISPLAY_TYPES = DATE_DISPLAY_TYPES;
   readonly DATE_DISPLAY_FORMATS = DATE_DISPLAY_FORMATS;
 
-  private _date = new Date();
   private _displayMode: DATE_DISPLAY_TYPES;
-  private _displayFormat: string = DATE_DISPLAY_FORMATS.fullDateTime;
+  private _displayFormat: string;
   private _clipFormat: string = DATE_DISPLAY_FORMATS.shortDateTime;
   private _clickable: boolean;
 
@@ -132,7 +132,7 @@ export class NgxDateDisplayComponent implements OnInit, OnChanges {
   }
 
   onClick(item: any) {
-    this.clipboardService.copyFromContent(item.value.short);
+    this.clipboardService.copyFromContent(item.value.clip);
     this.notificationService.create({
       body: `${item.key} date copied to clipboard`,
       styleType: NotificationStyleType.success,
@@ -141,31 +141,44 @@ export class NgxDateDisplayComponent implements OnInit, OnChanges {
   }
 
   private update() {
+    this.internalDate = undefined;
     this.timeValues = {};
     this.titleValue = '';
-    this.dateValid = false;
+    this.dateInvalid = true;
 
     if (!this.date) {
       return;
     }
 
-    const titleValue = [];
-
-    const mdate = moment.utc(this.date);
-    this.dateValid = mdate.isValid();
-
-    if (!this.dateValid) {
+    if (DATE_DISPLAY_TYPES.LOCAL === this.displayMode) {
+      const mdate = momentTimezone(this.date);
+      this.dateInvalid = !mdate.isValid();
+      this.internalDate = !this.dateInvalid ? mdate.toDate() : undefined;
       return;
     }
 
+    const localTimezone = momentTimezone.tz.guess();
+    const inputTimezone = this.defaultInputTimeZone || localTimezone;
+
+    const mdate = momentTimezone.tz(this.date as string, DATE_DISPLAY_INPUT_FORMATS, inputTimezone);
+    this.dateInvalid = !mdate.isValid();
+    this.internalDate = !this.dateInvalid ? mdate.toDate() : undefined;
+
+    if (this.dateInvalid) {
+      return;
+    }
+
+    const titleValue = [];
+
     for (const key in this.timezones) {
-      const date = mdate.clone().tz(this.timezones[key]);
+      const tz = this.timezones[key] || localTimezone;
+      const date = mdate.clone().tz(tz);
       const item = (this.timeValues[key] = {
         key,
-        short: date.format(this.clipFormat),
-        full: date.format(this.displayFormat)
+        clip: date.format(this.clipFormat),
+        display: date.format(this.displayFormat)
       });
-      titleValue.push(`${item.full} [${item.key}]`);
+      titleValue.push(`${item.display} [${item.key}]`);
     }
     this.titleValue = titleValue.join('\n');
   }

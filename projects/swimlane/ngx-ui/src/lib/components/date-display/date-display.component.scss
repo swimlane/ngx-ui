@@ -4,7 +4,6 @@ ngx-date-display {
   .ngx-date-display__container {
     display: inline-block;
     overflow: visible;
-    color: $color-error;
 
     input,
     abbr {
@@ -12,7 +11,11 @@ ngx-date-display {
     }
   }
 
-  &.ngx-date-display--date-valid .ngx-date-display__container {
+  &.ngx-date-display--date-invalid .ngx-date-display__container {
+    color: $color-error;
+  }
+
+  &.ngx-date-display--has-popup .ngx-date-display__container {
     text-decoration-line: underline;
     text-decoration-style: dashed;
     cursor: copy;
