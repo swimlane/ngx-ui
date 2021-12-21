@@ -1,7 +1,7 @@
 describe('Date/Time Display', () => {
   const TOKYO = 'Friday, March 11, 2011 2:46 PM';
   const GMT = 'Friday, March 11, 2011 5:46 AM';
-  const LA = 'Thursday, March 10, 2011 9:46 PM';  // America/Los_Angeles should be passed as TZ env var to cypress
+  const LA = 'Thursday, March 10, 2011 9:46 PM'; // America/Los_Angeles should be passed as TZ env var to cypress
 
   before(() => {
     cy.visit('/date-display');
@@ -19,11 +19,7 @@ describe('Date/Time Display', () => {
         .first()
         .whileHovering(() => {
           cy.get('abbr').should('contain.text', LA);
-          cy.root()
-            .closest('body')
-            .find('ngx-tooltip-content')
-            .should('contain.text', LA)
-            .and('contain.text', GMT);
+          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA).and('contain.text', GMT);
         });
     });
 
@@ -32,11 +28,7 @@ describe('Date/Time Display', () => {
         .eq(1)
         .whileHovering(() => {
           cy.get('abbr').should('contain.text', 'years ago');
-          cy.root()
-            .closest('body')
-            .find('ngx-tooltip-content')
-            .should('contain.text', LA)
-            .and('contain.text', GMT);
+          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA).and('contain.text', GMT);
         });
     });
 
@@ -60,11 +52,7 @@ describe('Date/Time Display', () => {
         .first()
         .whileHovering(() => {
           cy.get('abbr').should('contain.text', 'Friday, March 11, 2011 2:46 PM');
-          cy.root()
-            .closest('body')
-            .find('ngx-tooltip-content')
-            .should('contain.text', LA)
-            .and('contain.text', GMT);
+          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA).and('contain.text', GMT);
         });
     });
 
@@ -73,11 +61,7 @@ describe('Date/Time Display', () => {
         .eq(1)
         .whileHovering(() => {
           cy.get('abbr').should('contain.text', LA);
-          cy.root()
-            .closest('body')
-            .find('ngx-tooltip-content')
-            .should('contain.text', LA)
-            .and('contain.text', GMT);
+          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA).and('contain.text', GMT);
         });
     });
 
@@ -86,11 +70,7 @@ describe('Date/Time Display', () => {
         .eq(2)
         .whileHovering(() => {
           cy.get('abbr').should('contain.text', LA);
-          cy.root()
-            .closest('body')
-            .find('ngx-tooltip-content')
-            .should('contain.text', LA)
-            .and('contain.text', GMT);
+          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA).and('contain.text', GMT);
         });
     });
   });
@@ -106,10 +86,7 @@ describe('Date/Time Display', () => {
         .first()
         .whileHovering(() => {
           cy.get('abbr').should('contain.text', LA);
-          cy.get('.ngx-date-display__container')
-            .invoke('attr', 'title')
-            .should('contain', LA)
-            .and('contain', GMT);
+          cy.get('.ngx-date-display__container').invoke('attr', 'title').should('contain', LA).and('contain', GMT);
         });
     });
 
