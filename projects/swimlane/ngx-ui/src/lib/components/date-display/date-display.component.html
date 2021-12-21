@@ -1,0 +1,32 @@
+<abbr
+  ngx-tooltip
+  class="ngx-date-display__container"
+  [tooltipDisabled]="tooltipDisabled || !date || !dateValid"
+  [tooltipTemplate]="tooltipTemplate || tooltipTemplate"
+  [tooltipCssClass]="tooltipCssClass"
+  [tooltipPlacement]="tooltipPlacement"
+  [tooltipShowTimeout]="400"
+  [attr.title]="tooltipDisabled && dateValid ? titleValue : null"
+>
+  <ng-container *ngIf="dateValid">
+    <ng-container [ngSwitch]="displayMode">
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.HUMAN">
+        {{ date | amTimeAgo }}
+      </ng-container>
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.USER">
+        {{ date | amTimeZone: userTimeZone | amDateFormat: displayFormat  }}
+      </ng-container>
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.CUSTOM">{{ date | amDateFormat: displayFormat }}</ng-container>
+    </ng-container>    
+  </ng-container>
+  <ng-container *ngIf="!dateValid">
+    {{ date }}
+  </ng-container>
+</abbr>
+
+<ng-template #tooltipTemplate>
+  <div *ngFor="let item of timeValues | keyvalue" class="date-zone-display">
+    <span>{{ item.value.full }}</span>
+    <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
+  </div>
+</ng-template>

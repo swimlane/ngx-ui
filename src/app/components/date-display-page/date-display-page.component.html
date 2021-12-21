@@ -1,0 +1,30 @@
+
+<p>
+  User Readable Date-Time:
+  <ngx-date-display [date]="date"></ngx-date-display>
+</p>
+
+<p>
+  Human Readable Date-Time:
+  <ngx-date-display [date]="date" displayMode="human"></ngx-date-display>
+</p>
+
+<p>
+  Date and format:
+  <ngx-date-display [date]="'1/1/1970 MST'" displayFormat="shortDateTime"></ngx-date-display>
+</p>
+
+<p>
+  Custom format:
+  <ngx-date-display [date]="date" displayFormat="MMM YYYY"></ngx-date-display>
+</p>
+
+<p>
+  Native Tooltip:
+  <ngx-date-display [date]="date" tooltipDisabled="true"></ngx-date-display>
+</p>
+
+<p>
+  Invalid:
+  <ngx-date-display [date]="'1/1/1/1970'"></ngx-date-display>
+</p>
