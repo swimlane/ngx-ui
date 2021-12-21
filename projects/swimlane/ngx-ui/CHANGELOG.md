@@ -2,7 +2,7 @@
 
 ## HEAD (unreleased)
 
-- Feature: added `ngx-date-Display` component
+- Feature: added `ngx-date-display` component
 - Enhancement: Improved keyboard accessibility for `ngx-select`
 - Enhancement: Add ability to unlock `ngx-input` for passwords
 
