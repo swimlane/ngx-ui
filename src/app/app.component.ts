@@ -175,7 +175,7 @@ export class AppComponent {
         },
         {
           name: 'Date/Time Display',
-          route: 'date-display'
+          route: 'time-display'
         },
         {
           name: 'Loading',

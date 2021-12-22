@@ -7,11 +7,11 @@ import { TimeZoneModule } from '../../pipes/time-zone/time-zone.module';
 import { IconModule } from '../icon/icon.module';
 import { TooltipModule } from '../tooltip/tooltip.module';
 
-import { NgxDateDisplayComponent } from './date-display.component';
+import { NgxTimeDisplayComponent } from './time-display.component';
 
 @NgModule({
-  declarations: [NgxDateDisplayComponent],
-  exports: [NgxDateDisplayComponent],
+  declarations: [NgxTimeDisplayComponent],
+  exports: [NgxTimeDisplayComponent],
   imports: [CommonModule, MomentModule, TimeZoneModule, TooltipModule, IconModule]
 })
 export class DateDisplayModule {}

@@ -2,7 +2,7 @@ import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ClipboardModule } from 'ngx-clipboard';
 
-import { NgxDateDisplayComponent as TestComponent } from './date-display.component';
+import { NgxTimeDisplayComponent as TestComponent } from './time-display.component';
 import { MomentModule } from 'ngx-moment';
 import moment from 'moment-timezone';
 import { InjectionService } from '../../services/injection/injection.service';
@@ -358,7 +358,7 @@ const allTimeZones = [
   'Pacific/Wallis'
 ];
 
-fdescribe('NgxDateDisplayComponent', () => {
+fdescribe('NgxTimeDisplayComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
@@ -384,7 +384,7 @@ fdescribe('NgxDateDisplayComponent', () => {
   });
 
   it('should set defaults', () => {
-    expect(component.date).toBeDefined(Date);
+    expect(component.datetime).toBeDefined(Date);
     expect(component.defaultInputTimeZone).toBeUndefined();
     expect(component.displayTimeZone).toBeUndefined();
     expect(component.displayMode).toBe('user');
@@ -395,7 +395,7 @@ fdescribe('NgxDateDisplayComponent', () => {
   });
 
   it('should support all timezones', () => {
-    component.date = new Date();
+    component.datetime = new Date();
 
     component.timezones = allTimeZones.reduce((acc, curr, index) => {
       acc[`Zone [${index}]`] = curr;
@@ -418,7 +418,7 @@ fdescribe('NgxDateDisplayComponent', () => {
       component.ngOnChanges();
       fixture.detectChanges();
 
-      expect(component.internalDate).toBeDefined();
+      expect(component.internalDatetime).toBeDefined();
 
       expect(Object.keys(component.timeValues).length).toEqual(2);
       expect(component.titleValue).toContain('[Local]');
@@ -427,13 +427,13 @@ fdescribe('NgxDateDisplayComponent', () => {
 
     it('when user date provided', () => {
       const date = '2000-02-05 8:30 AM';
-      component.date = new Date(date); // note: browser timezone
+      component.datetime = new Date(date); // note: browser timezone
       component.displayFormat = 'fullDateTime';
 
       component.ngOnChanges();
       fixture.detectChanges();
 
-      expect(component.internalDate.toDateString()).toEqual('Sat Feb 05 2000');
+      expect(component.internalDatetime.toDateString()).toEqual('Sat Feb 05 2000');
 
       expect(Object.keys(component.timeValues).length).toEqual(2);
       expect(component.titleValue).toContain('Sat, Feb 5, 2000 8:30 AM -07:00'); // note: defaults to browser timezone
@@ -449,13 +449,13 @@ fdescribe('NgxDateDisplayComponent', () => {
     });
 
     it('when iso date provided', () => {
-      component.date = new Date(MOON_LANDING); // note: browser UTC
+      component.datetime = new Date(MOON_LANDING); // note: browser UTC
       component.displayFormat = 'fullDateTime';
 
       component.ngOnChanges();
       fixture.detectChanges();
 
-      expect(component.internalDate.toDateString()).toEqual('Sun Jul 20 1969');
+      expect(component.internalDatetime.toDateString()).toEqual('Sun Jul 20 1969');
 
       expect(Object.keys(component.timeValues).length).toEqual(2);
       expect(component.titleValue).toContain('[Local]');
@@ -473,7 +473,7 @@ fdescribe('NgxDateDisplayComponent', () => {
   describe('should handle bad inputs', () => {
     it('should handle bad date', () => {
       (moment as any).suppressDeprecationWarnings = true;
-      component.date = 'Tomarrow';
+      component.datetime = 'Tomarrow';
 
       component.ngOnChanges();
       fixture.detectChanges();
@@ -483,7 +483,7 @@ fdescribe('NgxDateDisplayComponent', () => {
 
     it('should handle bad timezone', () => {
       (moment as any).suppressDeprecationWarnings = true;
-      component.date = new Date();
+      component.datetime = new Date();
       component.displayFormat = 'fullDateTime';
 
       component.timezones = {

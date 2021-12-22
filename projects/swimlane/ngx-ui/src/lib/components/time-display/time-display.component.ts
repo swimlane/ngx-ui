@@ -11,14 +11,14 @@ import { DATE_DISPLAY_TYPES, DATE_DISPLAY_INPUT_FORMATS, DATE_DISPLAY_FORMATS } 
 import { Datelike } from '../date-time/date-like.type';
 
 @Component({
-  selector: 'ngx-date-display',
-  templateUrl: './date-display.component.html',
-  styleUrls: ['./date-display.component.scss'],
+  selector: 'ngx-time',
+  templateUrl: './time-display.component.html',
+  styleUrls: ['./time-display.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class NgxDateDisplayComponent implements OnInit, OnChanges {
+export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   @Input()
-  date: Datelike = new Date();
+  datetime: Datelike = new Date();
 
   @Input()
   defaultInputTimeZone: string;
@@ -62,7 +62,7 @@ export class NgxDateDisplayComponent implements OnInit, OnChanges {
   @Input()
   tooltipTemplate: string;
 
-  @HostBinding('class.ngx-date-display--tooltip-disabled')
+  @HostBinding('class.ngx-time--tooltip-disabled')
   @Input()
   @CoerceBooleanProperty()
   tooltipDisabled = false;
@@ -79,7 +79,7 @@ export class NgxDateDisplayComponent implements OnInit, OnChanges {
   @Input()
   invalidDateMessage = 'Invalid date';
 
-  @HostBinding('class.ngx-date-display--clickable')
+  @HostBinding('class.ngx-time--clickable')
   @Input()
   get clickable(): boolean {
     if (typeof this._clickable !== 'undefined') {
@@ -91,17 +91,18 @@ export class NgxDateDisplayComponent implements OnInit, OnChanges {
     this._clickable = val;
   }
 
-  @HostBinding('class.ngx-date-display--has-popup')
+  @HostBinding('class.ngx-time--has-popup')
   get hasPopup() {
     return !this.dateInvalid && DATE_DISPLAY_TYPES.LOCAL !== this.displayMode;
   }
 
-  @HostBinding('class.ngx-date-display--date-invalid')
+  @HostBinding('class.ngx-time--date-invalid')
   dateInvalid = true;
 
   timeValues = {};
   titleValue = '';
-  internalDate: Date;
+  internalDatetime: Date;
+  utcDatetime: string;
 
   readonly DATE_DISPLAY_TYPES = DATE_DISPLAY_TYPES;
   readonly DATE_DISPLAY_FORMATS = DATE_DISPLAY_FORMATS;
@@ -141,28 +142,31 @@ export class NgxDateDisplayComponent implements OnInit, OnChanges {
   }
 
   private update() {
-    this.internalDate = undefined;
+    this.internalDatetime = undefined;
     this.timeValues = {};
     this.titleValue = '';
     this.dateInvalid = true;
+    this.utcDatetime = '';
 
-    if (!this.date) {
+    if (!this.datetime) {
       return;
     }
 
     if (DATE_DISPLAY_TYPES.LOCAL === this.displayMode) {
-      const mdate = momentTimezone(this.date);
+      const mdate = momentTimezone(this.datetime);
       this.dateInvalid = !mdate.isValid();
-      this.internalDate = !this.dateInvalid ? mdate.toDate() : undefined;
+      this.internalDatetime = this.dateInvalid ? undefined : mdate.toDate();
+      this.utcDatetime = this.dateInvalid ? '' : mdate.format('YYYY-MM-DD[T]HH:mm:ss.SSS');
       return;
     }
 
     const localTimezone = momentTimezone.tz.guess();
     const inputTimezone = this.defaultInputTimeZone || localTimezone;
 
-    const mdate = momentTimezone.tz(this.date as string, DATE_DISPLAY_INPUT_FORMATS, inputTimezone);
+    const mdate = momentTimezone.tz(this.datetime as string, DATE_DISPLAY_INPUT_FORMATS, inputTimezone);
     this.dateInvalid = !mdate.isValid();
-    this.internalDate = this.dateInvalid ? undefined : mdate.toDate();
+    this.internalDatetime = this.dateInvalid ? undefined : mdate.toDate();
+    this.utcDatetime = this.dateInvalid ? '' : mdate.toISOString();
 
     if (this.dateInvalid) {
       return;

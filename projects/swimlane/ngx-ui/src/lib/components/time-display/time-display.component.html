@@ -1,6 +1,7 @@
-<abbr
+<time
   ngx-tooltip
-  class="ngx-date-display__container"
+  class="ngx-time__container"
+  [attr.datetime]="utcDatetime"
   [tooltipDisabled]="tooltipDisabled || !hasPopup"
   [tooltipTemplate]="tooltipTemplate || tooltipTemplate"
   [tooltipCssClass]="tooltipCssClass"
@@ -11,19 +12,19 @@
   <ng-container *ngIf="!dateInvalid">
     <ng-container [ngSwitch]="displayMode">
       <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.HUMAN">
-        {{ internalDate | amTimeAgo }}
+        {{ internalDatetime | amTimeAgo }}
       </ng-container>
       <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.USER">
-        {{ internalDate | amTimeZone: displayTimeZone | amDateFormat: displayFormat  }}
+        {{ internalDatetime | amTimeZone: displayTimeZone | amDateFormat: displayFormat  }}
       </ng-container>
-      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.CUSTOM">{{ date | amDateFormat: displayFormat }}</ng-container>
-      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.LOCAL">{{ date | amDateFormat: displayFormat }}</ng-container>
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.CUSTOM">{{ datetime | amDateFormat: displayFormat }}</ng-container>
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.LOCAL">{{ datetime | amDateFormat: displayFormat }}</ng-container>
     </ng-container>
   </ng-container>
   <ng-container *ngIf="dateInvalid">
-    {{ invalidDateMessage }} "{{ date }}"
+    {{ invalidDateMessage }} "{{ datetime }}"
   </ng-container>
-</abbr>
+</time>
 
 <ng-template #tooltipTemplate>
   <div *ngFor="let item of timeValues | keyvalue" class="date-zone-display">

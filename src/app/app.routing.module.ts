@@ -17,9 +17,9 @@ const routes: Routes = [
     loadChildren: () => import('./forms/calendar-page/calendar-page.module').then(m => m.CalendarPageModule)
   },
   {
-    path: 'date-display',
+    path: 'time-display',
     loadChildren: () =>
-      import('./components/date-display-page/date-display-page.component.module').then(m => m.DateDisplayPageModule)
+      import('./components/time-display-page/time-display-page.component.module').then(m => m.DateDisplayPageModule)
   },
   { path: 'card', loadChildren: () => import('./components/card-page/card-page.module').then(m => m.CardPageModule) },
   {
