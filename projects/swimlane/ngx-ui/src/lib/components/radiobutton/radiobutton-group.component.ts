@@ -20,9 +20,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { RadioButtonComponent } from './radiobutton.component';
-import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
-import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 
 const RADIOGROUP_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -51,8 +50,13 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   @Input() id: string = this.UNIQUE_ID;
 
   @Input()
-  @CoerceBooleanProperty()
-  disabled = false;
+  get disabled() {
+    return this._disabled;
+  }
+  set disabled(val: boolean) {
+    this._disabled = coerceBooleanProperty(val);
+    this._updateRadioDisabledState();
+  }
 
   @Input()
   get value(): any {
@@ -108,6 +112,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
 
   private _name: string = this.UNIQUE_ID;
   private _value = false;
+  private _disabled = false;
   private _selected: RadioButtonComponent;
   private _focusIndex: number;
   private _tabIndex = 0;
@@ -205,6 +210,10 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
         }
       }
     }
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    this.disabled = coerceBooleanProperty(isDisabled);
   }
 
   private focusOn(index: number) {
