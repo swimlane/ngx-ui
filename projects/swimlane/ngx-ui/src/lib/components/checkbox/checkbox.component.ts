@@ -6,12 +6,14 @@ import {
   forwardRef,
   ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  HostBinding
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
+import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
+import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 
-const CHKBOX_VALUE_ACCESSOR = {
+const CHECKBOX_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CheckboxComponent),
   multi: true
@@ -30,62 +32,50 @@ let nextId = 0;
     '[class.round]': 'round',
     '(blur)': 'onBlur($event)'
   },
-  providers: [CHKBOX_VALUE_ACCESSOR],
+  providers: [CHECKBOX_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent implements ControlValueAccessor {
-  @Input() id = `checkbox-${++nextId}`;
+  @HostBinding()
+  @Input()
+  id = `checkbox-${++nextId}`;
+
   @Input() name?: string;
   @Input() diameter = '18px';
 
-  @Input()
-  get tabindex() {
-    return this._tabindex;
-  }
-  set tabindex(v: number) {
-    this._tabindex = coerceNumberProperty(v);
-    this.cdr.markForCheck();
-  }
-
-  @Input()
-  get disabled() {
-    return this._disabled;
-  }
-  set disabled(v: boolean) {
-    this._disabled = coerceBooleanProperty(v);
-    this.cdr.markForCheck();
-  }
-
-  @Input()
-  get round() {
-    return this._round;
-  }
-  set round(v: boolean) {
-    this._round = coerceBooleanProperty(v);
-    this.cdr.markForCheck();
-  }
-
-  @Output() change = new EventEmitter<Event>();
-  @Output() blur = new EventEmitter<FocusEvent>();
-  @Output() focus = new EventEmitter<FocusEvent>();
-
+  // eslint-disable-next-line @angular-eslint/no-input-rename
+  @Input('checked')
   set value(value: boolean) {
     if (this._value !== value) {
       this._value = value;
       this.cdr.markForCheck();
       this.onChangeCallback(this._value);
+      this.checkedChange.emit(this._value);
     }
   }
-
   get value(): boolean {
     return this._value;
   }
 
+  @Input()
+  @CoerceNumberProperty()
+  tabindex = 0;
+
+  @Input()
+  @CoerceBooleanProperty()
+  disabled = false;
+
+  @Input()
+  @CoerceBooleanProperty()
+  round = false;
+
+  @Output() change = new EventEmitter<Event>();
+  @Output() checkedChange = new EventEmitter<boolean>();
+  @Output() blur = new EventEmitter<FocusEvent>();
+  @Output() focus = new EventEmitter<FocusEvent>();
+
   private _value = false;
-  private _tabindex = 0;
-  private _disabled = false;
-  private _round = false;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 
@@ -93,12 +83,20 @@ export class CheckboxComponent implements ControlValueAccessor {
     this.onTouchedCallback();
   }
 
+  onKeyup(ev: Event) {
+    ev.stopPropagation();
+    ev.preventDefault();
+    this.toggle();
+  }
+
   toggle() {
     this.value = !this.value;
+    this.cdr.markForCheck();
   }
 
   writeValue(value: boolean) {
     this.value = value;
+    this.cdr.markForCheck();
   }
 
   registerOnChange(fn: any) {
