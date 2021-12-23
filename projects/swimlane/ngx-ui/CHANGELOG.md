@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: Improved keyboard accessibility for `ngx-radiobutton` and `ngx-radiobutton-group`
+- Fix: Fixed issues on `ngx-radiobutton` and `ngx-radiobutton-group` with form controls
 - Enhancement: Improved keyboard accessibility for `ngx-select`
 - Enhancement: Add ability to unlock `ngx-input` for passwords
 
