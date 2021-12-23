@@ -14,4 +14,4 @@ import { NgxTimeDisplayComponent } from './time-display.component';
   exports: [NgxTimeDisplayComponent],
   imports: [CommonModule, MomentModule, TimeZoneModule, TooltipModule, IconModule]
 })
-export class DateDisplayModule {}
+export class TimeDisplayModule {}
