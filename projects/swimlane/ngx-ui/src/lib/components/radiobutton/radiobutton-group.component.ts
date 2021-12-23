@@ -23,7 +23,6 @@ import { RadioButtonComponent } from './radiobutton.component';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
-import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
 
 const RADIOGROUP_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -89,8 +88,12 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
 
   @HostBinding('attr.tabindex')
   @Input()
-  @CoerceNumberProperty()
-  tabindex = 0;
+  get tabIndex() {
+    return this.disabled ? -1 : this._tabIndex;
+  }
+  set tabIndex(val: number) {
+    this._tabIndex = coerceNumberProperty(val);
+  }
 
   @Output() change = new EventEmitter<boolean>();
   @Output() blur = new EventEmitter<Event>();
@@ -107,6 +110,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   private _value = false;
   private _selected: RadioButtonComponent;
   private _focusIndex: number;
+  private _tabIndex = 0;
   private _destroy$ = new Subject<void>();
 
   constructor(private readonly _cdr: ChangeDetectorRef) {}
@@ -129,11 +133,6 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
 
   ngOnChanges() {
     this.update();
-  }
-
-  @HostListener('focus')
-  onFocus() {
-    this.focusIndex = 0;
   }
 
   @HostListener('keydown', ['$event'])
@@ -162,7 +161,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
       });
     }
 
-    this._cdr.markForCheck();
+    this.update();
   }
 
   onRadioSelected(value: string) {
@@ -195,16 +194,12 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
     // placeholder
   }
 
-  private focusOn(index: number) {
-    const radioArray = this._radios.toArray();
-    radioArray[index].focusElement();
-  }
-
-  private focusPrev() {
-    const radioArray = this._radios.toArray();
-    if (this.focusIndex > 0) {
-      for (let i = this.focusIndex - 1; i >= 0; i--) {
-        if (!radioArray[i].disabled) {
+  @HostListener('focus')
+  focusFirst() {
+    if (!this.disabled && this._radios) {
+      const len = this._radios.length;
+      for (let i = 0; i < len; i++) {
+        if (!this._radios.get(i).disabled) {
           this.focusIndex = i;
           break;
         }
@@ -212,14 +207,34 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
     }
   }
 
+  private focusOn(index: number) {
+    if (!this.disabled) {
+      this._radios.get(index).focusElement();
+    }
+  }
+
+  private focusPrev() {
+    if (!this.disabled && this._radios) {
+      if (this.focusIndex > 0) {
+        for (let i = this.focusIndex - 1; i >= 0; i--) {
+          if (!this._radios.get(i).disabled) {
+            this.focusIndex = i;
+            break;
+          }
+        }
+      }
+    }
+  }
+
   private focusNext() {
-    const radioArray = this._radios.toArray();
-    const len = radioArray.length;
-    if (this.focusIndex < len - 1) {
-      for (let i = this.focusIndex + 1; i < len; i++) {
-        if (!radioArray[i].disabled) {
-          this.focusIndex = i;
-          break;
+    if (!this.disabled && this._radios) {
+      const len = this._radios.length;
+      if (this.focusIndex < len - 1) {
+        for (let i = this.focusIndex + 1; i < len; i++) {
+          if (!this._radios.get(i).disabled) {
+            this.focusIndex = i;
+            break;
+          }
         }
       }
     }
@@ -228,6 +243,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   private update() {
     this._updateSelectedRadioFromValue();
     this._updateRadioDisabledState();
+    this._cdr.markForCheck();
   }
 
   private _updateRadioButtonNames(): void {
