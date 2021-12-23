@@ -11,14 +11,19 @@ import {
   AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  OnChanges
+  OnChanges,
+  HostListener,
+  HostBinding
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { RadioButtonComponent } from './radiobutton.component';
-import { CoerceBooleanProperty } from '../../../lib/utils/coerce/coerce-boolean';
+import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
+import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
+import { coerceNumberProperty } from '@angular/cdk/coercion';
+import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
 
 const RADIOGROUP_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -73,6 +78,20 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
     }
   }
 
+  @Input()
+  get focusIndex() {
+    return this._focusIndex;
+  }
+  set focusIndex(val: number) {
+    this._focusIndex = coerceNumberProperty(val);
+    this.focusOn(this._focusIndex);
+  }
+
+  @HostBinding('attr.tabindex')
+  @Input()
+  @CoerceNumberProperty()
+  tabindex = 0;
+
   @Output() change = new EventEmitter<boolean>();
   @Output() blur = new EventEmitter<Event>();
   @Output() focus = new EventEmitter<FocusEvent>();
@@ -87,6 +106,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   private _name: string = this.UNIQUE_ID;
   private _value = false;
   private _selected: RadioButtonComponent;
+  private _focusIndex: number;
   private _destroy$ = new Subject<void>();
 
   constructor(private readonly _cdr: ChangeDetectorRef) {}
@@ -109,6 +129,27 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
 
   ngOnChanges() {
     this.update();
+  }
+
+  @HostListener('focus')
+  onFocus() {
+    this.focusIndex = 0;
+  }
+
+  @HostListener('keydown', ['$event'])
+  onKeyUp(ev: KeyboardEvent) {
+    switch (ev.code) {
+      case KeyboardKeys.ARROW_UP:
+        ev.stopPropagation();
+        ev.preventDefault();
+        this.focusPrev();
+        break;
+      case KeyboardKeys.ARROW_DOWN:
+        ev.stopPropagation();
+        ev.preventDefault();
+        this.focusNext();
+        break;
+    }
   }
 
   subscribeToRadios(): void {
@@ -154,6 +195,36 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
     // placeholder
   }
 
+  private focusOn(index: number) {
+    const radioArray = this._radios.toArray();
+    radioArray[index].focusElement();
+  }
+
+  private focusPrev() {
+    const radioArray = this._radios.toArray();
+    if (this.focusIndex > 0) {
+      for (let i = this.focusIndex - 1; i >= 0; i--) {
+        if (!radioArray[i].disabled) {
+          this.focusIndex = i;
+          break;
+        }
+      }
+    }
+  }
+
+  private focusNext() {
+    const radioArray = this._radios.toArray();
+    const len = radioArray.length;
+    if (this.focusIndex < len - 1) {
+      for (let i = this.focusIndex + 1; i < len; i++) {
+        if (!radioArray[i].disabled) {
+          this.focusIndex = i;
+          break;
+        }
+      }
+    }
+  }
+
   private update() {
     this._updateSelectedRadioFromValue();
     this._updateRadioDisabledState();
@@ -172,6 +243,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
     if (this._radios) {
       this._radios.forEach(radio => {
         radio.checked = this.value === radio.value;
+        radio.isInGroup = true;
 
         if (radio.checked) {
           this._selected = radio;

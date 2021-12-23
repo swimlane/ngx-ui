@@ -6,7 +6,8 @@ import {
   ViewEncapsulation,
   forwardRef,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ElementRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -85,12 +86,13 @@ export class RadioButtonComponent implements ControlValueAccessor {
   @Output() focus = new EventEmitter<FocusEvent>();
 
   public groupDisabled = false;
+  public isInGroup = false;
 
   private _checked = false;
   private _value = false;
   private _disabled = false;
 
-  constructor(private readonly cdr: ChangeDetectorRef) {}
+  constructor(private readonly cdr: ChangeDetectorRef, private readonly elementRef: ElementRef) {}
 
   _onInputChange(event: Event) {
     event.stopPropagation();
@@ -106,12 +108,22 @@ export class RadioButtonComponent implements ControlValueAccessor {
     this.onTouchedCallback();
   }
 
+  focusElement(): void {
+    this.elementRef.nativeElement.getElementsByClassName('radio-label')[0].focus();
+  }
+
   registerOnChange(fn: any): void {
     this.onChangeCallback = fn;
   }
 
   registerOnTouched(fn: any): void {
     this.onTouchedCallback = fn;
+  }
+
+  onSpace(ev: Event) {
+    ev.stopPropagation();
+    ev.preventDefault();
+    this.checked = true;
   }
 
   private onChangeCallback(value: any) {
