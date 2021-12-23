@@ -14,11 +14,11 @@ import {
   OnChanges
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
-import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { RadioButtonComponent } from './radiobutton.component';
+import { CoerceBooleanProperty } from '../../../lib/utils/coerce/coerce-boolean';
 
 const RADIOGROUP_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -47,12 +47,8 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   @Input() id: string = this.UNIQUE_ID;
 
   @Input()
-  get disabled() {
-    return this._disabled;
-  }
-  set disabled(disabled: boolean) {
-    this._disabled = coerceBooleanProperty(disabled);
-  }
+  @CoerceBooleanProperty()
+  disabled = false;
 
   @Input()
   get value(): any {
@@ -61,8 +57,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   set value(value) {
     if (this._value !== value) {
       this._value = value;
-      this._updateSelectedRadioFromValue();
-      this._updateRadioDisabledState();
+      this.update();
       this.onChangeCallback(this._value);
     }
   }
@@ -92,7 +87,6 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   private _name: string = this.UNIQUE_ID;
   private _value = false;
   private _selected: RadioButtonComponent;
-  private _disabled = false;
   private _destroy$ = new Subject<void>();
 
   constructor(private readonly _cdr: ChangeDetectorRef) {}
@@ -104,6 +98,8 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
     if (this._radios) {
       this._radios.changes.subscribe(this.subscribeToRadios.bind(this));
     }
+
+    this.update();
   }
 
   ngOnDestroy() {
@@ -112,7 +108,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   }
 
   ngOnChanges() {
-    this._updateRadioDisabledState();
+    this.update();
   }
 
   subscribeToRadios(): void {
@@ -138,6 +134,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
 
   writeValue(value: any): void {
     this.value = value;
+    this.update();
   }
 
   registerOnChange(fn: any): void {
@@ -155,6 +152,11 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   /* istanbul ignore next */
   onTouchedCallback() {
     // placeholder
+  }
+
+  private update() {
+    this._updateSelectedRadioFromValue();
+    this._updateRadioDisabledState();
   }
 
   private _updateRadioButtonNames(): void {

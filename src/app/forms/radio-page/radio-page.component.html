@@ -20,12 +20,12 @@
   <br />
   <h3>Radio Button Group</h3>
 
-  <ngx-radiobutton-group [(ngModel)]="secondFavoriteSeason" [disabled]="disabled">
+  <ngx-radiobutton-group [(ngModel)]="favoriteSeason" [disabled]="disabled">
     <ngx-radiobutton *ngFor="let season of seasons" [value]="season">
       {{season}}
     </ngx-radiobutton>
   </ngx-radiobutton-group>
-  <div class="example-selected-value">Your favorite season is: {{secondFavoriteSeason}}</div>
+  <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
 
   <button class="btn btn-primary" (click)="seasons.push('Holiday')">Add Season</button>
 
@@ -87,4 +87,26 @@
 <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>]]>
   </app-prism>
 
+</ngx-section>
+
+<ngx-section sectionTitle="FormGroup">
+  <form [formGroup]="form">
+    <ngx-radiobutton-group formControlName="season">
+      <ngx-radiobutton *ngFor="let season of seasons" [value]="season">
+        {{season}}
+      </ngx-radiobutton>
+    </ngx-radiobutton-group>
+  </form>
+
+  <output>{{ form.value | json }}</output>
+
+  <app-prism>
+    <![CDATA[<form [formGroup]="form">
+      <ngx-radiobutton-group formControlName="season">
+        <ngx-radiobutton *ngFor="let season of seasons" [value]="season">
+          {{season}}
+        </ngx-radiobutton>
+      </ngx-radiobutton-group>
+    </form>]]>
+      </app-prism>
 </ngx-section>

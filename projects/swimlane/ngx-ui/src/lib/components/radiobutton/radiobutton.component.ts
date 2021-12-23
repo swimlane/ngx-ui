@@ -9,7 +9,8 @@ import {
   ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
 
 const RADIO_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -38,13 +39,11 @@ export class RadioButtonComponent implements ControlValueAccessor {
   @Input() id: string = this.UNIQUE_ID;
   @Input() name: string = this.UNIQUE_ID;
 
+  @Input() radioId = `${this.id}-radio`;
+
   @Input()
-  get tabindex() {
-    return this._tabindex;
-  }
-  set tabindex(tabindex: number) {
-    this._tabindex = coerceNumberProperty(tabindex);
-  }
+  @CoerceNumberProperty()
+  tabindex = 0;
 
   @Input()
   get checked() {
@@ -58,14 +57,15 @@ export class RadioButtonComponent implements ControlValueAccessor {
       this.onChangeCallback(this._value);
     }
 
-    this.cdr.markForCheck();
+    this.cdr.detectChanges(); // Update this component
+    this.cdr.markForCheck(); // Update the host component (radio group)
   }
 
   @Input()
-  get value() {
+  get value(): any {
     return this._value;
   }
-  set value(value: boolean) {
+  set value(value: any) {
     if (this._value !== value) {
       this._value = value;
       this.onChangeCallback(this._value);
@@ -80,7 +80,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
     this._disabled = coerceBooleanProperty(disabled);
   }
 
-  @Output() change = new EventEmitter<boolean>();
+  @Output() change = new EventEmitter<any>();
   @Output() blur = new EventEmitter<Event>();
   @Output() focus = new EventEmitter<FocusEvent>();
 
@@ -89,7 +89,6 @@ export class RadioButtonComponent implements ControlValueAccessor {
   private _checked = false;
   private _value = false;
   private _disabled = false;
-  private _tabindex = 0;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 
@@ -115,7 +114,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
     this.onTouchedCallback = fn;
   }
 
-  private onChangeCallback(value: boolean) {
+  private onChangeCallback(value: any) {
     if (this.checked) {
       this.change.emit(value);
     }
