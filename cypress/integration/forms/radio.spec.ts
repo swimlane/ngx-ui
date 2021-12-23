@@ -78,7 +78,7 @@ describe('Radio', () => {
     });
 
     afterEach(() => {
-      cy.get('@SUT').find('ngx-radiobutton').eq(1).click();
+      cy.get('@SUT').find('ngx-radiobutton').eq(2).click();
     });
 
     it('enters text and clears', () => {
@@ -92,37 +92,30 @@ describe('Radio', () => {
     });
 
     it('keyboard accessible', () => {
-      // Within a radio group, the radio button are accessible via arrows
+      // Within a radio group, the radio button are selectable via arrows
 
       cy.get('@SUT').find('h1').click();
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px'); // not focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false'); // not checked
-      cy.get('@CUT').ngxGetValue().should('equal', 'Spring');
+      cy.get('@CUT').find('.checkmark').eq(2).should('have.css', 'outline', 'rgb(148, 198, 255) none 0px'); // not focused
+      cy.get('@CUT').find('input').eq(2).should('have.attr', 'aria-checked', 'true'); // checked
+      cy.get('@CUT').ngxGetValue().should('equal', 'Summer');
 
-      cy.realPress('Tab'); // Tab to radio group, focuses on first radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false'); // not checked
-      cy.get('@CUT').ngxGetValue().should('equal', 'Spring');
+      cy.realPress('Tab'); // Tab to radio group, focuses on checked radio button
+      cy.get('@CUT').find('.checkmark').eq(2).should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // focused
+      cy.get('@CUT').find('input').eq(2).should('have.attr', 'aria-checked', 'true'); // checked
+      cy.get('@CUT').ngxGetValue().should('equal', 'Summer');
 
-      cy.realPress('Space'); // Select to first radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true'); // checked
-      cy.get('@CUT').ngxGetValue().should('equal', 'Winter');
-
-      cy.realPress('ArrowDown'); // Arrow to second radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px'); // not focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true'); // still checked
-      cy.get('@CUT').ngxGetValue().should('equal', 'Winter');
-
-      cy.realPress('Space'); // Select second radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px'); // not focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false'); // not checked
-      cy.get('@CUT').ngxGetValue().should('equal', 'Spring');
+      cy.realPress('ArrowDown'); // Select next item
+      cy.get('@CUT').find('.checkmark').eq(2).should('have.css', 'outline', 'rgb(148, 198, 255) none 0px'); // not focused
+      cy.get('@CUT').find('.checkmark').eq(3).should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // focused
+      cy.get('@CUT').find('input').eq(2).should('have.attr', 'aria-checked', 'false'); // not checked
+      cy.get('@CUT').find('input').eq(3).should('have.attr', 'aria-checked', 'true'); // checked
+      cy.get('@CUT').ngxGetValue().should('equal', 'Autumn');
 
       cy.realPress('ArrowUp'); // Arrow to first radio button
-      cy.realPress('Space'); // Select to first radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true'); // checked
+      cy.realPress('ArrowUp');
+      cy.realPress('ArrowUp');
+      cy.get('@CUT').find('.checkmark').first().should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // focused
+      cy.get('@CUT').find('input').first().should('have.attr', 'aria-checked', 'true'); // checked
       cy.get('@CUT').ngxGetValue().should('equal', 'Winter');
     });
   });

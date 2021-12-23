@@ -106,6 +106,25 @@
       </app-prism>
 </ngx-section>
 
+<ngx-section sectionTitle="Native">
+
+  <div>
+    <div *ngFor="let season of seasons; let i = index">
+      <input [id]="i + 'chk'" type="radio" [value]="season" name="season">
+      <label [attr.for]="i + 'chk'">{{ season }}</label>
+    </div>
+  </div>
+
+  <p></p>
+
+  <form [formGroup]="form">
+    <div *ngFor="let season of seasons; let i = index">
+       <input [id]="i + 'chk'" type="radio" [value]="season" formControlName="season">
+       <label [attr.for]="i + 'chk'">{{ season }}</label>
+    </div>
+ </form>
+</ngx-section>
+
 <p>
   <button class="btn btn-primary" (click)="seasons.push('Holiday')">Add Holiday Season</button>
 </p>

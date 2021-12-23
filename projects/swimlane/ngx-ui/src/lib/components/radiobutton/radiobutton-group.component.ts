@@ -114,7 +114,7 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   private _value = false;
   private _disabled = false;
   private _selected: RadioButtonComponent;
-  private _focusIndex: number;
+  private _focusIndex = -1;
   private _tabIndex = 0;
   private _destroy$ = new Subject<void>();
 
@@ -140,18 +140,33 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
     this.update();
   }
 
+  @HostListener('focus')
+  onFocus() {
+    if (this.selected) {
+      // Moves keyboard focus to the checked radio button in a radiogroup.
+      this.focusIndex = this._radios.toArray().indexOf(this.selected);
+    } else {
+      // If no radio button is checked, focus moves to the first radio button in the group.
+      this.focusFirst();
+    }
+  }
+
   @HostListener('keydown', ['$event'])
   onKeyUp(ev: KeyboardEvent) {
     switch (ev.code) {
+      case KeyboardKeys.ARROW_LEFT:
       case KeyboardKeys.ARROW_UP:
         ev.stopPropagation();
         ev.preventDefault();
-        this.focusPrev();
+        this.focusPrev(); // Moves focus to previous radio button in the group.
+        this.selectIndex(this.focusIndex); // Selects the radio button in the group.
         break;
+      case KeyboardKeys.ARROW_RIGHT:
       case KeyboardKeys.ARROW_DOWN:
         ev.stopPropagation();
         ev.preventDefault();
-        this.focusNext();
+        this.focusNext(); // Moves focus to next radio button in the group.
+        this.selectIndex(this.focusIndex); // Selects the radio button in the group.
         break;
     }
   }
@@ -199,7 +214,6 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
     // placeholder
   }
 
-  @HostListener('focus')
   focusFirst() {
     if (!this.disabled && this._radios) {
       const len = this._radios.length;
@@ -216,34 +230,47 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
     this.disabled = coerceBooleanProperty(isDisabled);
   }
 
+  private selectIndex(index: number) {
+    if (!this.disabled && this.focusIndex > -1) {
+      this.value = this._radios.get(index).value;
+    }
+  }
+
   private focusOn(index: number) {
     if (!this.disabled) {
       this._radios.get(index).focusElement();
     }
   }
 
+  /**
+   * Moves focus to previous radio button in the group.
+   * If focus is on the first radio button in the group, move focus to the last radio button.
+   */
   private focusPrev() {
     if (!this.disabled && this._radios) {
-      if (this.focusIndex > 0) {
-        for (let i = this.focusIndex - 1; i >= 0; i--) {
-          if (!this._radios.get(i).disabled) {
-            this.focusIndex = i;
-            break;
-          }
+      const len = this._radios.length;
+      const startFocusIndex = this.focusIndex > 0 ? this.focusIndex - 1 : len - 1;
+      for (let i = startFocusIndex; i >= 0; i--) {
+        if (!this._radios.get(i).disabled) {
+          this.focusIndex = i;
+          break;
         }
       }
     }
   }
 
+  /**
+   * Moves focus to next radio button in the group.
+   * If focus is on the last radio button in the group, move focus to the first radio button.
+   */
   private focusNext() {
     if (!this.disabled && this._radios) {
       const len = this._radios.length;
-      if (this.focusIndex < len - 1) {
-        for (let i = this.focusIndex + 1; i < len; i++) {
-          if (!this._radios.get(i).disabled) {
-            this.focusIndex = i;
-            break;
-          }
+      const startFocusIndex = this.focusIndex < len - 1 ? this.focusIndex + 1 : 0;
+      for (let i = startFocusIndex; i < len; i++) {
+        if (!this._radios.get(i).disabled) {
+          this.focusIndex = i;
+          break;
         }
       }
     }

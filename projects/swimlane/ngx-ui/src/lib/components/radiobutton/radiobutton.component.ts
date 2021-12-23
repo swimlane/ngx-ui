@@ -121,6 +121,7 @@ export class RadioButtonComponent implements ControlValueAccessor {
   }
 
   onSpace(ev: Event) {
+    // If the radio button with focus is unchecked, it's state will be changed to checked.
     ev.stopPropagation();
     ev.preventDefault();
     this.checked = true;
