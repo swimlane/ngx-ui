@@ -26,7 +26,7 @@ describe('Radio', () => {
       cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false');
 
       cy.get('@CUT').click();
-      
+
       cy.get('@CUT').ngxGetValue().should('equal', true);
       cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true');
     });
@@ -43,31 +43,31 @@ describe('Radio', () => {
 
     it('keyboard accessible', () => {
       // Without a radio group, the radio button are accessible via tab
-      
+
       cy.get('@SUT').find('h1').click();
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px');  // not focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false');  // not checked
+      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px'); // not focused
+      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false'); // not checked
 
       cy.realPress('Tab'); // Tab to first radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px');  // focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false');  // not checked
+      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // focused
+      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false'); // not checked
 
       cy.realPress('Space'); // Select to first radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px');  // focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true');  // checked
+      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // focused
+      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true'); // checked
 
       cy.realPress('Tab'); // Tab to second radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px');  // not focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true');  // still checked
+      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px'); // not focused
+      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true'); // still checked
 
       cy.realPress('Space'); // Select second radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px');  // not focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false');  // not checked
-      
+      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px'); // not focused
+      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false'); // not checked
+
       cy.realPress(['Shift', 'Tab']);
       cy.realPress('Space'); // Select to first radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px');  // focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true');  // checked
+      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // focused
+      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true'); // checked
     });
   });
 
@@ -93,36 +93,36 @@ describe('Radio', () => {
 
     it('keyboard accessible', () => {
       // Within a radio group, the radio button are accessible via arrows
-      
+
       cy.get('@SUT').find('h1').click();
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px');  // not focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false');  // not checked
+      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px'); // not focused
+      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false'); // not checked
       cy.get('@CUT').ngxGetValue().should('equal', 'Spring');
 
       cy.realPress('Tab'); // Tab to radio group, focuses on first radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px');  // focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false');  // not checked
+      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // focused
+      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false'); // not checked
       cy.get('@CUT').ngxGetValue().should('equal', 'Spring');
 
       cy.realPress('Space'); // Select to first radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px');  // focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true');  // checked
+      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // focused
+      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true'); // checked
       cy.get('@CUT').ngxGetValue().should('equal', 'Winter');
 
       cy.realPress('ArrowDown'); // Arrow to second radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px');  // not focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true');  // still checked
+      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px'); // not focused
+      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true'); // still checked
       cy.get('@CUT').ngxGetValue().should('equal', 'Winter');
 
       cy.realPress('Space'); // Select second radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px');  // not focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false');  // not checked
+      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px'); // not focused
+      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false'); // not checked
       cy.get('@CUT').ngxGetValue().should('equal', 'Spring');
 
       cy.realPress('ArrowUp'); // Arrow to first radio button
       cy.realPress('Space'); // Select to first radio button
-      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px');  // focused
-      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true');  // checked
+      cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // focused
+      cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true'); // checked
       cy.get('@CUT').ngxGetValue().should('equal', 'Winter');
     });
   });
