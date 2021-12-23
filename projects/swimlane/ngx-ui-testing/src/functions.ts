@@ -41,6 +41,9 @@ export function ngxClosest(element: JQuery<Element>): JQuery<Element> {
   $ngx = element.closest(NGX.INPUT);
   if ($ngx.length) return $ngx;
 
+  $ngx = element.closest(NGX.RADIOBUTTON);
+  if ($ngx.length) return $ngx;
+
   return;
 }
 
@@ -60,7 +63,7 @@ export function getByLabel(label: string, options: Partial<Cypress.Loggable & Cy
     return ngxClosest($el) || $el;
   }
 
-  return ngxClosest($el) || $el.next();
+  return ngxClosest($el) || $el.next() || $el.parent();
 }
 
 // TODO: options for exact or fuzzy match

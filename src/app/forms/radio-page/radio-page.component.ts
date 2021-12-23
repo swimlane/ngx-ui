@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class RadioPageComponent {
   favoriteSeason = 'Spring';
+  secondFavoriteSeason = 'Summer';
   disabled = false;
   seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
   season: string;
