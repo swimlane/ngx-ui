@@ -358,7 +358,7 @@ const allTimeZones = [
   'Pacific/Wallis'
 ];
 
-fdescribe('NgxTimeDisplayComponent', () => {
+describe('NgxTimeDisplayComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
@@ -436,7 +436,7 @@ fdescribe('NgxTimeDisplayComponent', () => {
       expect(component.internalDatetime.toDateString()).toEqual('Sat Feb 05 2000');
 
       expect(Object.keys(component.timeValues).length).toEqual(2);
-      expect(component.titleValue).toContain('Sat, Feb 5, 2000 8:30 AM -07:00'); // note: defaults to browser timezone
+      expect(component.titleValue).toContain('Sat, Feb 5, 2000 8:30 AM -08:00 (PST)'); // note: need TZ set to PST
       expect(component.titleValue).toContain('[Local]');
 
       // expect(component.titleValue).toContain('Feb 05, 2000 08:30 AM');
