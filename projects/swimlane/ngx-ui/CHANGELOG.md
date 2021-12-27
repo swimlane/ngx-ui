@@ -2,6 +2,7 @@
 
 ## HEAD (unreleased)
 
+- Feature: added `ngx-time` component
 - Enhancement: Improved keyboard accessibility for `ngx-select`
 - Enhancement: Add ability to unlock `ngx-input` for passwords
 - Enhancement: Add `checked` and `checkedChange` to `ngx-checkbox`

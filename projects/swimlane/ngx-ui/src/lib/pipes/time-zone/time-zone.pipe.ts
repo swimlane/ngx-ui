@@ -10,7 +10,9 @@ export class TimeZonePipe implements PipeTransform {
       return '';
     }
 
-    const m = timezone ? momentTimezone(value).tz(timezone) : momentTimezone(value);
+    timezone ||= momentTimezone.tz.guess();
+
+    const m = momentTimezone(value).tz(timezone);
     return m.isValid() ? m : '' + value;
   }
 }

@@ -1,0 +1,34 @@
+<time
+  ngx-tooltip
+  class="ngx-time__container"
+  [attr.datetime]="utcDatetime"
+  [tooltipDisabled]="tooltipDisabled || !hasPopup"
+  [tooltipTemplate]="tooltipTemplate || tooltipTemplate"
+  [tooltipCssClass]="tooltipCssClass"
+  [tooltipPlacement]="tooltipPlacement"
+  [tooltipShowTimeout]="400"
+  [attr.title]="tooltipDisabled && hasPopup ? titleValue : null"
+>
+  <ng-container *ngIf="!dateInvalid">
+    <ng-container [ngSwitch]="displayMode">
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.HUMAN">
+        {{ internalDatetime | amTimeAgo }}
+      </ng-container>
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.USER">
+        {{ internalDatetime | amTimeZone: displayTimeZone | amDateFormat: displayFormat  }}
+      </ng-container>
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.CUSTOM">{{ datetime | amDateFormat: displayFormat }}</ng-container>
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.LOCAL">{{ datetime | amDateFormat: displayFormat }}</ng-container>
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="dateInvalid">
+    {{ invalidDateMessage }} "{{ datetime }}"
+  </ng-container>
+</time>
+
+<ng-template #tooltipTemplate>
+  <div *ngFor="let item of timeValues | keyvalue" class="date-zone-display">
+    <span>{{ item.value.display }}</span>
+    <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
+  </div>
+</ng-template>

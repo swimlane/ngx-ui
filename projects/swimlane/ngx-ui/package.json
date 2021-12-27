@@ -43,6 +43,7 @@
     "ajv": "^6.5.0",
     "json-schema": "*",
     "ngx-autosize-input": "^2.3.7",
+    "ngx-clipboard": "^15.0.1",
     "ng-in-viewport": "^6.1.5"
   },
   "dependencies": {

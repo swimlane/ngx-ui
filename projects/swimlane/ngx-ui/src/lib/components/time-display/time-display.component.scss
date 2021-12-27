@@ -1,0 +1,73 @@
+@import 'colors/variables';
+
+ngx-time {
+  .ngx-time__container {
+    display: inline-block;
+    overflow: visible;
+
+    input,
+    time {
+      cursor: unset;
+    }
+  }
+
+  &.ngx-time--date-invalid .ngx-time__container {
+    color: $color-error;
+  }
+
+  &.ngx-time--has-popup .ngx-time__container {
+    text-decoration-line: underline;
+    text-decoration-style: dashed;
+    cursor: copy;
+    color: inherit;
+  }
+
+  &.ngx-time--clickable .ngx-time__container {
+    cursor: pointer;
+
+    &:active {
+      transform: translate(1px, 1px);
+      color: $color-blue-grey-350;
+    }
+  }
+}
+
+.ngx-tooltip-content.date-tip-tooltip {
+  padding: 5px;
+
+  .date-zone-display {
+    font-weight: bold;
+    font-size: 15px;
+    color: $color-blue-grey-700;
+
+    > span {
+      display: inline-block;
+    }
+
+    button {
+      float: right;
+      font-weight: bold;
+      line-height: 16px;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: $color-blue-grey-700;
+      background: #dee1ea;
+      margin-left: 5px;
+      padding: 0 6px;
+      vertical-align: text-top;
+      text-align: left;
+      min-width: 70px;
+
+      ngx-icon {
+        padding-right: 5px;
+      }
+
+      &:hover,
+      &:active,
+      &:active:hover:focus:not(.disabled),
+      &:active:hover:focus:not([disabled]) {
+        background: #fff;
+      }
+    }
+  }
+}
