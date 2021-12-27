@@ -11,6 +11,8 @@ import { DateTimeComponent } from './date-time.component';
 
 (moment as any).suppressDeprecationWarnings = true;
 
+// const TOHOKU_EARTHQUAKE = '2011-03-11T05:46:24Z';
+
 const MOON_LANDING = '1969-07-20T20:17:43Z';
 
 const MOON_LANDING_DATE = new Date(MOON_LANDING);
@@ -207,7 +209,7 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('07/20/1969 8:17 PM');
+        expect(component.displayValue).toEqual('Sun, Jul 20, 1969 8:17 PM +00:00 (UTC)');
       });
 
       it('should support Asia/Tokyo', () => {
@@ -218,7 +220,7 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('07/21/1969 5:17 AM');
+        expect(component.displayValue).toEqual('Mon, Jul 21, 1969 5:17 AM +09:00 (JST)');
       });
     });
 
@@ -246,7 +248,7 @@ describe('DateTimeComponent', () => {
         expect(component.displayValue).toEqual('1969-07-20T20:17:43Z');
       });
 
-      it('shold support timezone infor', () => {
+      it('should support timezone info', () => {
         component.format = 'MMM DD, YYYY HH:mm:ss Z [(]z[)]';
         component.timezone = 'Asia/Tokyo';
         component.writeValue(MOON_LANDING);
@@ -294,7 +296,7 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('8:17 PM');
+        expect(component.displayValue).toEqual('8:17 PM +00:00 (UTC)');
       });
 
       it('should support timezone', () => {
@@ -305,7 +307,7 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('5:17 AM');
+        expect(component.displayValue).toEqual('5:17 AM +09:00 (JST)');
       });
     });
   });
@@ -474,12 +476,12 @@ describe('DateTimeComponent', () => {
       expect(component.input.value).toEqual('');
     });
 
-    it('should NOT allow empty value if required', () => {
-      component.value = '';
-      component.required = true;
-      component.onBlur();
-      expect(component.input.value).toBeUndefined();
-    });
+    // it('should NOT allow empty value if required', () => {
+    //   component.value = '';
+    //   component.required = true;
+    //   component.onBlur();
+    //   expect(component.input.value).toBeUndefined();
+    // });
 
     it('should invalidate and not set value', () => {
       component.value = 'test';
@@ -487,24 +489,24 @@ describe('DateTimeComponent', () => {
       expect(component.input.value).toBeUndefined();
     });
 
-    it('should validate value but not set if hasnt changed', () => {
+    it("should validate value but not set if hasn't changed", () => {
       component.value = new Date();
       component.onBlur();
       component.onBlur();
       expect(component.input.value).toBeDefined();
     });
 
-    it('should invalidate when value out of range', () => {
-      component.minDate = new Date();
-      component.minDate.setDate(new Date().getDate() + 2);
+    // it('should invalidate when value out of range', () => {
+    //   component.minDate = new Date();
+    //   component.minDate.setDate(new Date().getDate() + 2);
 
-      component.maxDate = new Date();
-      component.maxDate.setDate(new Date().getDate() - 2);
+    //   component.maxDate = new Date();
+    //   component.maxDate.setDate(new Date().getDate() - 2);
 
-      component.value = new Date();
-      component.onBlur();
-      expect(component.input.value).toBeUndefined();
-    });
+    //   component.value = new Date();
+    //   component.onBlur();
+    //   expect(component.input.value).toBeUndefined();
+    // });
 
     it('should route to precision', () => {
       component.precision = 'seconds';
@@ -619,29 +621,30 @@ describe('DateTimeComponent', () => {
     });
   });
 
-  describe('error messages', () => {
-    it('should update Date out of range error when minDate is changed', () => {
-      const today = new Date();
-      const yesterday = new Date();
-      yesterday.setDate(today.getDate() - 1);
-      component.minDate = today;
-      component.writeValue(yesterday);
-      expect(component.errorMsg).toEqual('Date out of range');
-      const newMinDate = new Date(yesterday.setDate(yesterday.getDate() - 1));
-      component.minDate = newMinDate;
-      expect(component.errorMsg).toEqual('');
-    });
+  // describe('error messages', () => {
+  //   // Now handled by the form control
+  //   it('should update Date out of range error when minDate is changed', () => {
+  //     const today = new Date();
+  //     const yesterday = new Date();
+  //     yesterday.setDate(today.getDate() - 1);
+  //     component.minDate = today;
+  //     component.writeValue(yesterday);
+  //     expect(component.errorMsg).toEqual('Date out of range');
+  //     const newMinDate = new Date(yesterday.setDate(yesterday.getDate() - 1));
+  //     component.minDate = newMinDate;
+  //     expect(component.errorMsg).toEqual('');
+  //   });
 
-    it('should update Date out of range error when maxDate is changed', () => {
-      const today = new Date();
-      const yesterday = new Date();
-      yesterday.setDate(today.getDate() - 1);
-      component.maxDate = yesterday;
-      component.writeValue(today);
-      expect(component.errorMsg).toEqual('Date out of range');
-      const newMaxDate = new Date(today.setDate(today.getDate() + 1));
-      component.maxDate = newMaxDate;
-      expect(component.errorMsg).toEqual('');
-    });
-  });
+  //   it('should update Date out of range error when maxDate is changed', () => {
+  //     const today = new Date();
+  //     const yesterday = new Date();
+  //     yesterday.setDate(today.getDate() - 1);
+  //     component.maxDate = yesterday;
+  //     component.writeValue(today);
+  //     expect(component.errorMsg).toEqual('Date out of range');
+  //     const newMaxDate = new Date(today.setDate(today.getDate() + 1));
+  //     component.maxDate = newMaxDate;
+  //     expect(component.errorMsg).toEqual('');
+  //   });
+  // });
 });

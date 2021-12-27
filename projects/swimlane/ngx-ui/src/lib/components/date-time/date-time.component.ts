@@ -220,9 +220,12 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
   @Input()
   set value(val: Date | string) {
-    let isSame = (!val && !this._value) || val === this._value;
+    if (!val && !this._value) this._value = val; // Match falsey values
+
+    let isSame = val === this._value;
     if (isSame) return; // if values are the same at this point, do nothing
 
+    let isDate = false;
     const date = this.parseDate(val);
     if (val && date.isValid()) {
       const sameDiff: moment.unitOfTime.StartOf = this.precision
@@ -231,11 +234,11 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
         ? 'day'
         : 'second';
       isSame = this._value ? date.isSame(this._value, sameDiff) : false;
-      if (!isSame) val = date.toDate();
+      if (!isSame) isDate = true;
     }
 
     if (!isSame) {
-      this._value = val;
+      this._value = isDate ? date.toDate() : val;
       // notify of changes only when the component is cleared
       // or when the set value is valid
       if (isValidDate(this.parseDate(val))) {
@@ -346,6 +349,9 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     const value = this.parseDate(this.value);
     if (isValidDate(value)) {
       this.update();
+      if (this.input.value !== this.displayValue) {
+        this.input.value = this.displayValue;
+      }
     }
     this.blur.emit(event);
   }
