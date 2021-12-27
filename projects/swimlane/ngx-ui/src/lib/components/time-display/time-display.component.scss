@@ -24,6 +24,7 @@ ngx-time {
 
   &.ngx-time--clickable .ngx-time__container {
     cursor: pointer;
+
     &:active {
       transform: translate(1px, 1px);
       color: $color-blue-grey-350;
@@ -65,7 +66,7 @@ ngx-time {
       &:active,
       &:active:hover:focus:not(.disabled),
       &:active:hover:focus:not([disabled]) {
-        background: #ffffff;
+        background: #fff;
       }
     }
   }
