@@ -4,6 +4,7 @@
 $calendar-bg: $color-blue-grey-800;
 $calender-border: #2d3544;
 $animation-timing: 200ms;
+$input-invalid-color: $color-red;
 
 .ngx-date-time {
   position: relative;
@@ -57,17 +58,6 @@ $animation-timing: 200ms;
     }
   }
 
-  .date-time-hint {
-    display: flex;
-    justify-content: space-between;
-
-    .input-error {
-      color: $color-red;
-      margin-left: auto;
-      padding-left: 5px;
-    }
-  }
-
   &.autosize {
     display: inline-block;
 
@@ -108,12 +98,43 @@ $animation-timing: 200ms;
     }
   }
 
+  &.invalid.ng-touched,
+  &.ng-invalid.ng-touched,
+  &.ng-invalid.ng-dirty {
+    .ngx-input-underline {
+      background-color: $input-invalid-color !important;
+
+      .underline-fill {
+        background-color: $input-invalid-color !important;
+      }
+    }
+
+    .ngx-input-label {
+      color: $input-invalid-color !important;
+    }
+
+    .ngx-input-hint {
+      color: $input-invalid-color;
+    }
+
+    .ngx-input-box,
+    .ngx-input-textarea {
+      caret-color: $input-invalid-color !important;
+    }
+  }
+
   &--has-popup {
     input {
       text-decoration-line: underline;
       text-decoration-style: dashed;
     }
   }
+
+  // &--date-invalid {
+  //   input {
+  //     color: $input-invalid-color !important;
+  //   }
+  // }
 }
 
 .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog {

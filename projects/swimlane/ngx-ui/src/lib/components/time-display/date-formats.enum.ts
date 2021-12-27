@@ -39,6 +39,7 @@ export const DATE_DISPLAY_INPUT_FORMATS: Array<string | moment.MomentBuiltinForm
   DATE_DISPLAY_FORMATS.shortDateTimeSeconds,
   DATE_DISPLAY_FORMATS.shortDate,
   DATE_DISPLAY_FORMATS.shortTime,
+  'MM/DD',
   'MM/DD/YYYY',
   'M/DD/YYYY',
   'MM/DD/YY',

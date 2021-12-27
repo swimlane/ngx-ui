@@ -136,6 +136,8 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="TimeZones">
+  Value: {{ curDate }}
+
   <ngx-date-time
     name="time-input1"
     inputType="datetime"
@@ -390,6 +392,11 @@
       <td>Invalid</td>
       <td><ngx-date-time [ngModel]="'What what'" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
       <td><ngx-date-time [ngModel]="'What what'" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Timezone</td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" displayMode="user" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" displayMode="user" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
     </tr>
   </table>
 </ngx-section>
