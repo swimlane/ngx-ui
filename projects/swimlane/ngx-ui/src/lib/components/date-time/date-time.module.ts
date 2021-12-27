@@ -8,6 +8,7 @@ import { DialogModule } from '../dialog/dialog.module';
 import { InputModule } from '../input/input.module';
 import { ToggleModule } from '../toggle/toggle.module';
 import { PipesModule } from '../../pipes/pipes.module';
+import { TooltipModule } from '../tooltip/tooltip.module';
 
 import { DateTimeComponent } from './date-time.component';
 
@@ -22,7 +23,8 @@ import { DateTimeComponent } from './date-time.component';
     MomentModule,
     CalendarModule,
     ToggleModule,
-    PipesModule
+    PipesModule,
+    TooltipModule
   ]
 })
 export class DateTimeModule {}

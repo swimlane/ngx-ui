@@ -112,7 +112,10 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   private _clipFormat: string;
   private _clickable: boolean;
 
-  constructor(private clipboardService: ClipboardService, private notificationService: NotificationService) {}
+  constructor(
+    private readonly clipboardService: ClipboardService,
+    private readonly notificationService: NotificationService
+  ) {}
 
   ngOnInit() {
     this.update();

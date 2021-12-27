@@ -1,10 +1,17 @@
 describe('Date/Time', () => {
   before(() => {
     cy.visit('/datetime');
+    cy.injectAxe();
     cy.get('.page-loader').should('not.exist', { timeout: 20000 });
   });
 
-  describe('Date Input', () => {
+  it('Check A11y', () => {
+    cy.get('ngx-date-time').withinEach($el => {
+      cy.checkA11y($el);
+    });
+  });
+
+  describe('Basic Date Input', () => {
     beforeEach(() => {
       cy.get('ngx-date-time').first().as('CUT');
     });
