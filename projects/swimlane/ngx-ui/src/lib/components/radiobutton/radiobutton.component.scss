@@ -52,8 +52,8 @@
     }
 
     /* Indicator */
-    &:hover .checkmark:after,
-    & .checkmark:after {
+    &:hover .checkmark::after,
+    & .checkmark::after {
       content: '';
       position: absolute;
       display: block;
