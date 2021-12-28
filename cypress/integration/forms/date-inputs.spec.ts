@@ -21,8 +21,9 @@ describe('Date/Time', () => {
     it('has a label', () => {
       // With Value
       cy.get('@CUT').ngxFill('10/10/2021');
-      cy.get('@SUT').find('h1').click();  // blur
-      cy.get('@CUT').ngxFindLabel()
+      cy.get('@SUT').find('h1').click(); // blur
+      cy.get('@CUT')
+        .ngxFindLabel()
         .should('contain.text', 'Date of attack')
         .should('have.css', 'color', 'rgb(129, 143, 169)')
         .should('have.css', 'font-size', '11.2px')
@@ -30,8 +31,9 @@ describe('Date/Time', () => {
 
       // Without Value
       cy.get('@CUT').ngxFill('');
-      cy.get('@SUT').find('h1').click();  // blur
-      cy.get('@CUT').ngxFindLabel()
+      cy.get('@SUT').find('h1').click(); // blur
+      cy.get('@CUT')
+        .ngxFindLabel()
         .should('contain.text', 'Date of attack')
         .should('have.css', 'color', 'rgb(129, 143, 169)')
         .should('have.css', 'font-size', '16px')
@@ -39,7 +41,8 @@ describe('Date/Time', () => {
 
       // with focus
       cy.get('@CUT').ngxFindNativeInput().focus().click();
-      cy.get('@CUT').ngxFindLabel()
+      cy.get('@CUT')
+        .ngxFindLabel()
         .should('contain.text', 'Date of attack')
         .should('have.css', 'color', 'rgb(20, 131, 255)')
         .should('have.css', 'font-size', '11.2px')
@@ -67,7 +70,7 @@ describe('Date/Time', () => {
       cy.get('@CUT').should('have.class', 'ngx-date-time--date-invalid');
       cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(255, 69, 20)');
 
-      cy.get('@SUT').find('h1').click();  // blur
+      cy.get('@SUT').find('h1').click(); // blur
       cy.get('@CUT').ngxGetValue().should('equal', text);
       cy.get('@output').should('contain.text', text);
       cy.get('@CUT').should('have.class', 'ngx-date-time--date-invalid');
@@ -94,7 +97,7 @@ describe('Date/Time', () => {
       cy.get('@CUT').ngxGetValue().should('equal', text);
       cy.get('@output').should('contain.text', text);
 
-      cy.get('@SUT').find('h1').click();  // blur formats
+      cy.get('@SUT').find('h1').click(); // blur formats
 
       cy.get('@CUT').ngxGetValue().should('equal', '12/2020');
       cy.get('@output').should('contain.text', '12/2020');
@@ -130,13 +133,14 @@ describe('Date/Time', () => {
   describe('TimeZones', () => {
     beforeEach(() => {
       cy.get('[sectiontitle="TimeZones"]').as('SUT');
-      cy.get('@SUT').within(() => {  // Bun in ngx-ui testing
+      cy.get('@SUT').within(() => {
+        // Bun in ngx-ui testing
         cy.getByLabel('Current Value:').as('output');
       });
     });
 
     it('has current values', () => {
-      cy.get('@output').should('contain.text', 'Thu Mar 10 2011 21:46:24 GMT-0800 (Pacific Standard Time)');  // Timezone set by env var
+      cy.get('@output').should('contain.text', 'Thu Mar 10 2011 21:46:24 GMT-0800 (Pacific Standard Time)'); // Timezone set by env var
 
       cy.get('@SUT').within(() => {
         cy.get('ngx-date-time').eq(0).ngxGetValue().should('equal', '03/10/2011 9:46 PM (PST)');
@@ -146,14 +150,18 @@ describe('Date/Time', () => {
     });
 
     it('has popups', () => {
-      cy.get('@SUT').find('ngx-date-time').each($el => {
-        cy.wrap($el).whileHovering(() => {
-          cy.root().closest('body').find('.date-tip-tooltip')
-            .should('be.visible')
-            .should('contain.text', '03/10/2011 9:46 PM (PST)')
-            .should('contain.text', '03/11/2011 5:46 AM (UTC)');
+      cy.get('@SUT')
+        .find('ngx-date-time')
+        .each($el => {
+          cy.wrap($el).whileHovering(() => {
+            cy.root()
+              .closest('body')
+              .find('.date-tip-tooltip')
+              .should('be.visible')
+              .should('contain.text', '03/10/2011 9:46 PM (PST)')
+              .should('contain.text', '03/11/2011 5:46 AM (UTC)');
+          });
         });
-      });
     });
   });
 });
