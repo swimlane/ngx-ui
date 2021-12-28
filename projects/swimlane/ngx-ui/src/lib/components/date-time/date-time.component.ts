@@ -541,23 +541,20 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
     return m;
   }
 
-  private getDisplayValue(): string | null {
-    if (!this.value) return '';
-    if (this.dateInvalid) return this.value as string;
-    const m = this.createMoment(this.value);
-    return m.isValid() ? m.format(this.format) : '' + String(this.value);
-  }
-
   private update() {
-    const mdate = this.createMoment(this.value);
-    this.dateInvalid = !!this.value && !mdate.isValid(); // falsy values are valid
-    this.displayValue = this.getDisplayValue();
+    const isDate = this.value instanceof Date;
+    this.dateInvalid = !!this.value && !isDate; // falsy values are valid
+    this.displayValue = !this.value ? '' : String(this.value);
+    this.dateOutOfRange = false;
     this.timeValues = {};
+
+    if (!isDate) return;
+
+    const mdate = this.createMoment(this.value);
+    this.displayValue = mdate.format(this.format);
     this.dateOutOfRange = !this.dateInvalid && this.getDayDisabled(mdate);
 
-    if (this.dateInvalid || !this.hasPopup) {
-      return;
-    }
+    if (!this.hasPopup) return;
 
     const localTimezone = moment.tz.guess();
 
