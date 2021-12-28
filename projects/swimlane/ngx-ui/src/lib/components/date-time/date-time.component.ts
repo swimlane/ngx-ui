@@ -122,7 +122,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
       // notify of changes only when the component is cleared
       // or when the set value is valid
       if (!this.dateInvalid) {
-        this.change.emit(this._value as Date);
+        this.change.emit(this._value);
       }
 
       // called each time for validation
@@ -298,7 +298,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   /**
    * this output will emit only when the input value is valid or cleared.
    */
-  @Output() change = new EventEmitter<Date | undefined | null>();
+  @Output() change = new EventEmitter<string | Date | undefined | null>();
 
   /**
    * this output will emit anytime the value changes regardless of validity.
@@ -543,7 +543,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
 
   private update() {
     const isDate = this.value instanceof Date;
-    this.dateInvalid = !!this.value && !isDate; // falsy values are valid
+    this.dateInvalid = !!this.value && !isDate; // if there is a value and it's not a date then it is invalid, falsy values are valid
     this.displayValue = !this.value ? '' : String(this.value);
     this.dateOutOfRange = false;
     this.timeValues = {};

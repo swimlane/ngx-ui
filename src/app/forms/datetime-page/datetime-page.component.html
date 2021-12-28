@@ -6,7 +6,7 @@
   Current Value: {{ date | json }}
 
   <ngx-date-time
-    name="calendar-input1"
+    name="date-input1"
     label="Date of attack"
     [(value)]="date"
     (change)="dateChanged($event)"
@@ -19,7 +19,7 @@
 
   <app-prism>
 <![CDATA[<ngx-date-time
-  name="calendar-input2"
+  name="date-input1"
   [disabled]="true"
   label="Date of attack"
   [(value)]="date"
@@ -34,12 +34,12 @@
   <br />
 
   <h3>Disabled</h3>
-  <ngx-date-time name="calendar-input2" label="Disabled" [disabled]="true" [(value)]="date">
+  <ngx-date-time name="date-input2" label="Disabled" [disabled]="true" [(value)]="date">
   </ngx-date-time>
   <br />
   <app-prism>
 <![CDATA[<ngx-date-time
-  name="calendar-input2"
+  name="date-input2"
   [disabled]="true"
   label="Disabled"
   [(value)]="date"
@@ -51,12 +51,12 @@
   <br />
 
   <h3>Custom Format</h3>
-  <ngx-date-time name="calendar-input3" label="Custom Format" [(value)]="date" [format]="'M/Y'">
+  <ngx-date-time name="date-input3" label="Custom Format" [(value)]="date" [format]="'M/Y'">
   </ngx-date-time>
   <br />
   <app-prism>
 <![CDATA[ <ngx-date-time
-  name="calendar-input3"
+  name="date-input3"
   [(value)]="date"
   [format]="'M/Y'"
 >
@@ -68,7 +68,7 @@
 
   <h3>Min/Max Dates</h3>
   <ngx-date-time
-    name="calendar-input4"
+    name="date-input4"
     label="Min/Max Dates"
     [minDate]="minDate"
     [maxDate]="maxDate"
@@ -79,7 +79,7 @@
   <br />
   <app-prism>
 <![CDATA[<ngx-date-time
-  name="calendar-input4"
+  name="date-input4"
   [minDate]="minDate"
   [maxDate]="maxDate"
   [hint]="'Select date between' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
@@ -153,30 +153,30 @@
   </ngx-date-time>
 
   <app-prism>
-<![CDATA[  <ngx-date-time
-name="timezone-local"
-inputType="datetime"
-label="Local Time"
-displayMode="timezone"
-[(value)]="eventDate"
+<![CDATA[ <ngx-date-time
+  name="timezone-local"
+  inputType="datetime"
+  label="Local Time"
+  displayMode="timezone"
+  [(value)]="eventDate"
+>
+</ngx-date-time>
+
+  <ngx-date-time
+  name="timezone-utc"
+  inputType="datetime"
+  label="UTC"
+  timezone="utc"
+  [(value)]="eventDate"
 >
 </ngx-date-time>
 
 <ngx-date-time
-name="timezone-utc"
-inputType="datetime"
-label="UTC"
-timezone="utc"
-[(value)]="eventDate"
->
-</ngx-date-time>
-
-<ngx-date-time
-name="timezone-jst"
-inputType="datetime"
-label="JST"
-timezone="Asia/Tokyo"
-[(value)]="eventDate"
+  name="timezone-jst"
+  inputType="datetime"
+  label="JST"
+  timezone="Asia/Tokyo"
+  [(value)]="eventDate"
 >
 </ngx-date-time>]]>
   </app-prism>
@@ -248,8 +248,8 @@ timezone="Asia/Tokyo"
   precision="year"
   [(value)]="precisionDate"
   format="dateYear"
-  >
-  </ngx-date-time>
+>
+</ngx-date-time>
 
   <ngx-date-time
   inputType="date"
@@ -257,8 +257,8 @@ timezone="Asia/Tokyo"
   precision="month"
   [(value)]="precisionDate"
   format="dateMonth"
-  >
-  </ngx-date-time>
+>
+</ngx-date-time>
 
   <ngx-date-time
   inputType="datetime"
@@ -266,8 +266,8 @@ timezone="Asia/Tokyo"
   precision="hour"
   [(value)]="precisionDate"
   format="shortDateTime"
-  >
-  </ngx-date-time>
+>
+</ngx-date-time>
 
   <ngx-date-time
   inputType="datetime"
@@ -275,8 +275,8 @@ timezone="Asia/Tokyo"
   precision="minute"
   [(value)]="precisionDate"
   format="shortDateTimeSeconds"
-  >
-  </ngx-date-time>]]>
+>
+</ngx-date-time>]]>
   </app-prism>
 </ngx-section>
 
