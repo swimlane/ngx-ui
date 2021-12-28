@@ -1,9 +1,8 @@
 <h3 class="style-header">Date Time</h3>
 
 <ngx-section class="shadow" sectionTitle="Date Input">
-  <h3>Basic</h3>
-
-  Current Value: {{ date | json }}
+  <label>Current Value:</label>
+  <output>{{ date | json }}</output>
 
   <ngx-date-time
     name="date-input1"
@@ -33,7 +32,6 @@
   <br />
   <br />
 
-  <h3>Disabled</h3>
   <ngx-date-time name="date-input2" label="Disabled" [disabled]="true" [(value)]="date">
   </ngx-date-time>
   <br />
@@ -50,7 +48,6 @@
   <br />
   <br />
 
-  <h3>Custom Format</h3>
   <ngx-date-time name="date-input3" label="Custom Format" [(value)]="date" [format]="'M/Y'">
   </ngx-date-time>
   <br />
@@ -66,7 +63,6 @@
   <br />
   <br />
 
-  <h3>Min/Max Dates</h3>
   <ngx-date-time
     name="date-input4"
     label="Min/Max Dates"
@@ -123,7 +119,7 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="TimeZones">
-  Value: {{ eventDate }}
+  <label>Current Value:</label> <output>{{ eventDate }}</output>
 
   <ngx-date-time
     name="timezone-local"
