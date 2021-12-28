@@ -358,7 +358,7 @@ const allTimeZones = [
   'Pacific/Wallis'
 ];
 
-fdescribe('NgxTimeDisplayComponent', () => {
+describe('NgxTimeDisplayComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
