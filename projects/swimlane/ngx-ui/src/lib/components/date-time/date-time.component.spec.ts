@@ -124,7 +124,7 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('07/20/1969');
+        expect(component.displayValue).toEqual('07/20/1969 (UTC)');
       });
 
       it('should support Asia/Tokyo', () => {
@@ -135,7 +135,7 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('07/21/1969');
+        expect(component.displayValue).toEqual('07/21/1969 (JST)');
       });
     });
   });
@@ -209,7 +209,7 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('Sun, Jul 20, 1969 8:17 PM +00:00 (UTC)');
+        expect(component.displayValue).toEqual('07/20/1969 8:17 PM (UTC)');
       });
 
       it('should support Asia/Tokyo', () => {
@@ -220,7 +220,7 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('Mon, Jul 21, 1969 5:17 AM +09:00 (JST)');
+        expect(component.displayValue).toEqual('07/21/1969 5:17 AM (JST)');
       });
     });
 
@@ -296,7 +296,7 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('8:17 PM +00:00 (UTC)');
+        expect(component.displayValue).toEqual('8:17 PM (UTC)');
       });
 
       it('should support timezone', () => {
@@ -307,7 +307,7 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('5:17 AM +09:00 (JST)');
+        expect(component.displayValue).toEqual('5:17 AM (JST)');
       });
     });
   });
