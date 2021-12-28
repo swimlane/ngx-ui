@@ -13,7 +13,14 @@ import {
   ChangeDetectorRef,
   HostBinding
 } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALIDATORS, NG_VALUE_ACCESSOR, ValidationErrors } from '@angular/forms';
+import {
+  ControlValueAccessor,
+  FormControl,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
+  Validator
+} from '@angular/forms';
 
 import moment from 'moment-timezone';
 import { ClipboardService } from 'ngx-clipboard';
@@ -86,7 +93,7 @@ function isValidDate(date: moment.Moment | undefined) {
     '[class.no-label]': '!label'
   }
 })
-export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
+export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Validator {
   @Input() id = `datetime-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
@@ -129,7 +136,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
   /**
    * Display mode for date/time
-   * 'user' - display date/time with a timezone
+   * 'timezone' - display date/time with a timezone
    * 'local' - display date/time without timezone
    *
    * Defaults to LOCAL unless timezone is set
@@ -218,7 +225,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     this._clipFormat = val;
   }
   get clipFormat(): string {
-    return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat || DATE_DISPLAY_FORMATS.shortLocale;
+    return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat || this.format;
   }
 
   @Input() requiredIndicator: string | boolean = '*';
@@ -262,7 +269,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
       this.update();
     }
   }
-  get value() {
+  get value(): Date | string {
     return this._value;
   }
 
@@ -488,7 +495,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
 
     return {
       ...(isValid ? null : { invalid: true }),
-      ...(isValid && !this.getDayDisabled(date) ? null : { outOfRange: true })
+      ...(isValid && this.getDayDisabled(date) ? { outOfRange: true } : null)
     };
   }
 

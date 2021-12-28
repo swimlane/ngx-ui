@@ -6,6 +6,7 @@ import { MomentModule } from 'ngx-moment';
 import { PipesModule } from '../../pipes/pipes.module';
 import { InjectionService } from '../../services/injection/injection.service';
 import { DialogModule } from '../dialog/dialog.module';
+import { DATE_DISPLAY_TYPES } from '../time-display/date-formats.enum';
 
 import { DateTimeComponent } from './date-time.component';
 
@@ -28,7 +29,7 @@ const LOCAL_HOUR = LOCAL_TIME.split(':')[0];
 const LOCAL_MIN = MOON_LANDING_DATE.toLocaleTimeString('en-US', { minute: 'numeric' });
 const LOCAL_AMPM = LOCAL_TIME.slice(-2);
 
-describe('DateTimeComponent', () => {
+fdescribe('DateTimeComponent', () => {
   let component: DateTimeComponent;
   let fixture: ComponentFixture<DateTimeComponent>;
 
@@ -47,10 +48,13 @@ describe('DateTimeComponent', () => {
     const injectionService = TestBed.inject(InjectionService);
     fixture = TestBed.createComponent(DateTimeComponent);
     injectionService.setRootViewContainer(fixture.componentRef as any);
+
     component = fixture.componentInstance;
     component.disabled = false;
     component.tabindex = 0;
     component.autofocus = false;
+    component.minDate = undefined;
+    component.minDate = undefined;
     fixture.detectChanges();
   });
 
@@ -58,6 +62,49 @@ describe('DateTimeComponent', () => {
     expect(component).toBeTruthy();
     expect(component.value).toBeFalsy();
     expect(typeof component.displayValue === 'string').toBeTruthy();
+  });
+
+  describe('defaults', () => {
+    it('should have reasonable defaults', () => {
+      expect(component.appearance).toEqual('legacy');
+      expect(component.inputType).toEqual('date');
+      expect(component.displayMode).toEqual('local');
+      expect(component.format).toEqual('L');
+      expect(component.clipFormat).toEqual('L');
+    });
+
+    it('should have reasonable defaults when timezone is provided', () => {
+      component.timezone = 'America/Los_Angeles';
+      fixture.detectChanges();
+
+      expect(component.appearance).toEqual('legacy');
+      expect(component.inputType).toEqual('date');
+      expect(component.displayMode).toEqual('timezone');
+      expect(component.format).toEqual('L [(]zz[)]');
+      expect(component.clipFormat).toEqual('L [(]zz[)]');
+    });
+
+    it('should have reasonable defaults when mode is provided', () => {
+      component.displayMode = DATE_DISPLAY_TYPES.TIMEZONE;
+      fixture.detectChanges();
+
+      expect(component.appearance).toEqual('legacy');
+      expect(component.inputType).toEqual('date');
+      expect(component.displayMode).toEqual('timezone');
+      expect(component.format).toEqual('L [(]zz[)]');
+      expect(component.clipFormat).toEqual('L [(]zz[)]');
+    });
+
+    it('should have reasonable defaults when mode is provided', () => {
+      component.displayMode = DATE_DISPLAY_TYPES.CUSTOM;
+      fixture.detectChanges();
+
+      expect(component.appearance).toEqual('legacy');
+      expect(component.inputType).toEqual('date');
+      expect(component.displayMode).toEqual('custom');
+      expect(component.format).toEqual('MMM D, YYYY');
+      expect(component.clipFormat).toEqual('MMM D, YYYY');
+    });
   });
 
   describe('date mode', () => {
@@ -476,43 +523,66 @@ describe('DateTimeComponent', () => {
       expect(component.input.value).toEqual('');
     });
 
-    // it('should NOT allow empty value if required', () => {
-    //   component.value = '';
-    //   component.required = true;
-    //   component.onBlur();
-    //   expect(component.input.value).toBeUndefined();
-    // });
-
     it('should invalidate and not set value', () => {
-      component.value = 'test';
+      component.inputChanged('test');
       component.onBlur();
       expect(component.input.value).toBeUndefined();
     });
 
-    it("should validate value but not set if hasn't changed", () => {
+    it(`should validate value but not set if hasn't changed`, () => {
       component.value = new Date();
       component.onBlur();
       component.onBlur();
       expect(component.input.value).toBeDefined();
     });
 
-    // it('should invalidate when value out of range', () => {
-    //   component.minDate = new Date();
-    //   component.minDate.setDate(new Date().getDate() + 2);
-
-    //   component.maxDate = new Date();
-    //   component.maxDate.setDate(new Date().getDate() - 2);
-
-    //   component.value = new Date();
-    //   component.onBlur();
-    //   expect(component.input.value).toBeUndefined();
-    // });
-
-    it('should route to precision', () => {
-      component.precision = 'seconds';
-      component.value = new Date().toLocaleString();
+    it('should round to precision [hour]', () => {
+      component.precision = 'hour';
+      component.format = 'shortDateTimeSeconds';
+      component.inputChanged(MOON_LANDING);
       component.onBlur();
-      expect(component.input.value).not.toEqual(component.value);
+      expect(component.input.value).toEqual('Jul 20, 1969 1:00:00 PM');
+      expect(component.value).toBeInstanceOf(Date);
+    });
+
+    it('should round to precision [minute]', () => {
+      component.precision = 'minute';
+      component.format = 'shortDateTimeSeconds';
+      component.inputChanged(MOON_LANDING);
+      component.onBlur();
+      expect(component.input.value).toEqual('Jul 20, 1969 1:17:00 PM');
+      expect(component.value).toBeInstanceOf(Date);
+    });
+
+    it('should complete partial dates', () => {
+      component.inputChanged('1/1');
+      component.onBlur();
+      const year = moment().format('YYYY');
+      expect(component.input.value).toEqual(`01/01/${year}`);
+      expect(component.value).toEqual(new Date(`01/01/${year}`));
+    });
+
+    it('should complete timezone dates', () => {
+      component.timezone = 'America/Los_Angeles';
+      component.inputChanged('7/20/1969');
+      component.onBlur();
+      expect(component.input.value).toEqual('07/20/1969 (PDT)');
+      expect(component.value).toBeInstanceOf(Date);
+    });
+
+    it('should change to default format', () => {
+      component.inputChanged(MOON_LANDING);
+      component.onBlur();
+      expect(component.input.value).toEqual('07/20/1969');
+      expect(component.value).toBeInstanceOf(Date);
+    });
+
+    it('should change format to defined format', () => {
+      component.format = 'YYYY MM';
+      component.inputChanged(MOON_LANDING);
+      component.onBlur();
+      expect(component.input.value).toEqual('1969 07');
+      expect(component.value).toBeInstanceOf(Date);
     });
   });
 
@@ -521,7 +591,7 @@ describe('DateTimeComponent', () => {
       component.dialogModel = moment(new Date());
     });
 
-    it('should chnage from AM -> PM', () => {
+    it('should change from AM -> PM', () => {
       component.onAmPmChange('AM');
       component.onAmPmChange('PM');
       component.onAmPmChange('AM');
@@ -621,30 +691,34 @@ describe('DateTimeComponent', () => {
     });
   });
 
-  // describe('error messages', () => {
-  //   // Now handled by the form control
-  //   it('should update Date out of range error when minDate is changed', () => {
-  //     const today = new Date();
-  //     const yesterday = new Date();
-  //     yesterday.setDate(today.getDate() - 1);
-  //     component.minDate = today;
-  //     component.writeValue(yesterday);
-  //     expect(component.errorMsg).toEqual('Date out of range');
-  //     const newMinDate = new Date(yesterday.setDate(yesterday.getDate() - 1));
-  //     component.minDate = newMinDate;
-  //     expect(component.errorMsg).toEqual('');
-  //   });
+  describe('validation', () => {
+    it('should start withy no validation issues', () => {
+      expect(component.validate(component as any)).toBeNull();
+    });
 
-  //   it('should update Date out of range error when maxDate is changed', () => {
-  //     const today = new Date();
-  //     const yesterday = new Date();
-  //     yesterday.setDate(today.getDate() - 1);
-  //     component.maxDate = yesterday;
-  //     component.writeValue(today);
-  //     expect(component.errorMsg).toEqual('Date out of range');
-  //     const newMaxDate = new Date(today.setDate(today.getDate() + 1));
-  //     component.maxDate = newMaxDate;
-  //     expect(component.errorMsg).toEqual('');
-  //   });
-  // });
+    it('should update Date out of range error when minDate is changed', () => {
+      const today = new Date();
+      const yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+      component.minDate = today;
+      component.writeValue(yesterday);
+
+      expect(component.validate(component as any)).toEqual({ outOfRange: true });
+    });
+
+    it('should update Date out of range error when maxDate is changed', () => {
+      const today = new Date();
+      const yesterday = new Date();
+      yesterday.setDate(today.getDate() - 1);
+      component.maxDate = yesterday;
+      component.writeValue(today);
+
+      expect(component.validate(component as any)).toEqual({ outOfRange: true });
+    });
+
+    it('should have validation message on invalid date', () => {
+      component.writeValue('WHAT');
+      expect(component.validate(component as any)).toEqual({ invalid: true });
+    });
+  });
 });
