@@ -59,20 +59,6 @@ const DATE_TIME_VALIDATORS = {
   multi: true
 };
 
-function isValidDate(date: moment.Moment | undefined) {
-  if (!date) {
-    return true;
-  }
-
-  // check if date input is empty
-  const dateInput = date?.creationData().input;
-
-  if (dateInput === '' || dateInput === null || dateInput === undefined) return true; // 0 is a valid date input
-
-  // date can be either valid, or an empty value if not required
-  return date.isValid();
-}
-
 @Component({
   exportAs: 'ngxDateTime',
   selector: 'ngx-date-time',
@@ -105,6 +91,48 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   @Input() precision: moment.unitOfTime.StartOf;
   @Input() timezone: string;
   @Input() inputFormats: any[] = DATE_DISPLAY_INPUT_FORMATS;
+
+  @Input()
+  set value(val: Date | string) {
+    if (!val && !this._value) {
+      val = this._value = null; // Match falsey values
+    }
+
+    let isSame = val === this._value;
+    if (isSame) return; // if values are the same at this point, do nothing
+
+    let isDate = false;
+    const date = this.parseDate(val);
+    if (val && date.isValid()) {
+      isDate = true;
+      const sameDiff: moment.unitOfTime.StartOf = this.precision
+        ? this.precision
+        : this.inputType === DateTimeType.date
+        ? 'day'
+        : 'second';
+      isSame = this._value ? date.isSame(this._value, sameDiff) : false;
+    }
+
+    if (!isSame) {
+      this._value = isDate ? date.toDate() : val;
+
+      // update the display value and table
+      this.update();
+
+      // notify of changes only when the component is cleared
+      // or when the set value is valid
+      if (!this.dateInvalid) {
+        this.change.emit(this._value as Date);
+      }
+
+      // called each time for validation
+      this.onChangeCallback(val);
+      this.valueChange.emit(val);
+    }
+  }
+  get value(): Date | string {
+    return this._value;
+  }
 
   @Input()
   @CoerceBooleanProperty()
@@ -203,7 +231,10 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   }
 
   @HostBinding('class.ngx-date-time--date-invalid')
-  dateInvalid = true;
+  dateInvalid = false;
+
+  @HostBinding('class.ngx-date-time--date-out-of-range')
+  dateOutOfRange = false;
 
   // Used to display date in other timezones
   /**
@@ -233,45 +264,6 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   @Input()
   @CoerceBooleanProperty()
   required = false;
-
-  @Input()
-  set value(val: Date | string) {
-    if (!val && !this._value) this._value = val; // Match falsey values
-
-    let isSame = val === this._value;
-    if (isSame) return; // if values are the same at this point, do nothing
-
-    let isDate = false;
-    const date = this.parseDate(val);
-    if (val && date.isValid()) {
-      const sameDiff: moment.unitOfTime.StartOf = this.precision
-        ? this.precision
-        : this.inputType === DateTimeType.date
-        ? 'day'
-        : 'second';
-      isSame = this._value ? date.isSame(this._value, sameDiff) : false;
-      if (!isSame) isDate = true;
-    }
-
-    if (!isSame) {
-      this._value = isDate ? date.toDate() : val;
-      // notify of changes only when the component is cleared
-      // or when the set value is valid
-      if (isValidDate(this.parseDate(val))) {
-        this.change.emit(val);
-      }
-
-      // called each time for validation
-      this.onChangeCallback(val);
-      this.valueChange.emit(val);
-
-      // update the display value and table
-      this.update();
-    }
-  }
-  get value(): Date | string {
-    return this._value;
-  }
 
   get displayValue(): string {
     return this._displayValue;
@@ -306,17 +298,17 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   /**
    * this output will emit only when the input value is valid or cleared.
    */
-  @Output() change = new EventEmitter<string | Date>();
+  @Output() change = new EventEmitter<Date | undefined | null>();
 
   /**
    * this output will emit anytime the value changes regardless of validity.
    */
-  @Output() valueChange = new EventEmitter<string | Date>();
+  @Output() valueChange = new EventEmitter<string | Date | undefined | null>();
 
   /**
    * this output will emit anytime the value changes in the input, regardless of validity.
    */
-  @Output() inputChange = new EventEmitter<string | Date>();
+  @Output() inputChange = new EventEmitter<string | Date | undefined | null>();
 
   @Output() blur = new EventEmitter<Event>();
   @Output() dateTimeSelected = new EventEmitter<Date | string>();
@@ -359,15 +351,12 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
     this.value = val;
   }
 
-  onBlur(event?: Event) {
+  onBlur(_event?: Event) {
     this.onTouchedCallback();
 
-    const value = this.parseDate(this.value);
-    if (isValidDate(value)) {
-      this.update();
-      if (this.input.value !== this.displayValue) {
-        this.input.value = this.displayValue;
-      }
+    this.update();
+    if (!this.dateInvalid && this.input.value !== this.displayValue) {
+      this.input.value = this.displayValue;
     }
     this.blur.emit(event);
   }
@@ -387,7 +376,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
 
   apply(): void {
     this.value = this.dialogModel.toDate();
-    this.displayValue = this.getDisplayValue();
+    this.update();
     this.dateTimeSelected.emit(this.value);
     this.close();
   }
@@ -490,14 +479,23 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   validate(c: FormControl): ValidationErrors | null {
     if (!c.value) return null;
 
-    const date = this.parseDate(c.value);
-    const isValid = isValidDate(date);
-
     return {
-      ...(isValid ? null : { invalid: true }),
-      ...(isValid && this.getDayDisabled(date) ? { outOfRange: true } : null)
+      ...(this.dateInvalid ? { invalid: true } : null),
+      ...(this.dateOutOfRange ? { outOfRange: true } : null)
     };
   }
+
+  setDisabledState(isDisabled: boolean) {
+    this.disabled = isDisabled;
+  }
+
+  onTouchedCallback: () => void = () => {
+    // placeholder
+  };
+
+  onChangeCallback: (_: any) => void = () => {
+    // placeholder
+  };
 
   private roundTo(val: moment.Moment, key: string): moment.Moment {
     /* istanbul ignore if */
@@ -517,23 +515,6 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
     return val;
   }
 
-  onTouchedCallback: () => void = () => {
-    // placeholder
-  };
-
-  onChangeCallback: (_: any) => void = () => {
-    // placeholder
-  };
-
-  private getDisplayValue(): string {
-    // note same as {{ value | amTimeZone: timezone | amDateFormat: format }}
-    if (!this.value) {
-      return '';
-    }
-    const m = this.createMoment(this.value);
-    return m.isValid() ? m.format(this.format) : '' + String(this.value);
-  }
-
   private parseDate(date: string | Date): moment.Moment {
     if (date instanceof Date) {
       /* istanbul ignore next */
@@ -543,7 +524,9 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
     if (this.format && !inputFormats.includes(this.format)) {
       inputFormats.unshift(this.format);
     }
-    let m = this.timezone ? moment.tz(date, inputFormats, this.timezone) : moment(date, inputFormats);
+    const timezone =
+      this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE ? moment.tz.guess() : undefined);
+    let m = timezone ? moment.tz(date, inputFormats, this.timezone) : moment(date, inputFormats);
     m = this.precision ? this.roundTo(m, this.precision) : m;
     return m;
   }
@@ -558,11 +541,19 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
     return m;
   }
 
+  private getDisplayValue(): string | null {
+    if (!this.value) return '';
+    if (this.dateInvalid) return this.value as string;
+    const m = this.createMoment(this.value);
+    return m.isValid() ? m.format(this.format) : '' + String(this.value);
+  }
+
   private update() {
-    this.displayValue = this.getDisplayValue();
     const mdate = this.createMoment(this.value);
-    this.dateInvalid = !isValidDate(mdate);
+    this.dateInvalid = !!this.value && !mdate.isValid(); // falsy values are valid
+    this.displayValue = this.getDisplayValue();
     this.timeValues = {};
+    this.dateOutOfRange = !this.dateInvalid && this.getDayDisabled(mdate);
 
     if (this.dateInvalid || !this.hasPopup) {
       return;

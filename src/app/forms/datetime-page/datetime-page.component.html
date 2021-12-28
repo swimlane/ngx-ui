@@ -2,15 +2,19 @@
 
 <ngx-section class="shadow" sectionTitle="Date Input">
   <h3>Basic</h3>
+
+  Current Value: {{ date | json }}
+
   <ngx-date-time
     name="calendar-input1"
     label="Date of attack"
-    [(ngModel)]="curDate2"
+    [(value)]="date"
     (change)="dateChanged($event)"
     (blur)="onBlurEvent($event)"
     (dateTimeSelected)="dateTimeSelected($event)"
   >
   </ngx-date-time>
+
   <br />
 
   <app-prism>
@@ -18,7 +22,7 @@
   name="calendar-input2"
   [disabled]="true"
   label="Date of attack"
-  [(ngModel)]="curDate2"
+  [(value)]="date"
   (change)="dateChanged($event)"
   (blur)="onBlurEvent($event)"
   (dateTimeSelected)="dateTimeSelected($event)"
@@ -30,7 +34,7 @@
   <br />
 
   <h3>Disabled</h3>
-  <ngx-date-time name="calendar-input2" label="Disabled" [disabled]="true" [(ngModel)]="curDate2" (change)="dateChanged($event)">
+  <ngx-date-time name="calendar-input2" label="Disabled" [disabled]="true" [(value)]="date">
   </ngx-date-time>
   <br />
   <app-prism>
@@ -38,32 +42,7 @@
   name="calendar-input2"
   [disabled]="true"
   label="Disabled"
-  [(ngModel)]="curDate2"
-  (change)="dateChanged($event)"
->
-</ngx-date-time>]]>
-  </app-prism>
-
-  <br />
-  <br />
-
-  <h3>Invalid</h3>
-  <ngx-date-time
-    name="calendar-input3"
-    label="Invalid"
-    hint="Default is invalid"
-    [(ngModel)]="invalidDate"
-    (change)="dateChanged($event)"
-  >
-  </ngx-date-time>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-date-time
-  name="calendar-input3"
-  label="Invalid"
-  [(ngModel)]="invalidDate"
-  hint="Default is invalid"
-  (change)="dateChanged($event)"
+  [(value)]="date"
 >
 </ngx-date-time>]]>
   </app-prism>
@@ -72,15 +51,14 @@
   <br />
 
   <h3>Custom Format</h3>
-  <ngx-date-time name="calendar-input3" label="Custom Format" [(ngModel)]="curDate2" [format]="'M/Y'" (change)="dateChanged($event)">
+  <ngx-date-time name="calendar-input3" label="Custom Format" [(value)]="date" [format]="'M/Y'">
   </ngx-date-time>
   <br />
   <app-prism>
 <![CDATA[ <ngx-date-time
   name="calendar-input3"
-  [(ngModel)]="curDate2"
+  [(value)]="date"
   [format]="'M/Y'"
-  (change)="dateChanged($event)"
 >
 </ngx-date-time>]]>
   </app-prism>
@@ -95,8 +73,7 @@
     [minDate]="minDate"
     [maxDate]="maxDate"
     [hint]="'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
-    [(ngModel)]="curDate2"
-    (change)="dateChanged($event)"
+    [(value)]="date"
   >
   </ngx-date-time>
   <br />
@@ -106,94 +83,100 @@
   [minDate]="minDate"
   [maxDate]="maxDate"
   [hint]="'Select date between' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
-  [(ngModel)]="curDate2"
-  (change)="dateChanged($event)"
+  [(value)]="curDate"
 >
 </ngx-date-time>]]>
   </app-prism>
 </ngx-section>
 
-<ngx-section class="shadow" sectionTitle="Date Time Input">
+<ngx-section class="shadow" sectionTitle="Form Control">
+  Form Control Value: {{ dateControl.value | json }}
+
+  <ngx-date-time label="Form Control" [formControl]="dateControl"></ngx-date-time>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ngx-date-time label="Form Control Name" formControlName="date"></ngx-date-time>
+    <ngx-date-time label="Disabled" formControlName="disabledDate"></ngx-date-time>
+  </form>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Date/Time Input">
+  Value: {{ dateTime }}
+
   <ngx-date-time
-    name="time-input1"
-    [inputType]="'datetime'"
-    [label]="'Time of attack'"
-    [(ngModel)]="curDate2"
-    (change)="dateChanged($event)"
+    name="datetime-input"
+    inputType="datetime"
+    label="Moon Landing"
+    [(value)]="dateTime"
   >
   </ngx-date-time>
   <br />
   <app-prism>
 <![CDATA[<ngx-date-time
-  name="time-input1"
-  [inputType]="'datetime'"
-  [label]="'Time of attack'"
-  [(ngModel)]="curDate2"
-  (change)="dateChanged($event)"
+  name="datetime-input"
+  inputType="datetime"
+  label="Moon Landing"
+  [(value)]="dateTime"
 >
 </ngx-date-time>]]>
   </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="TimeZones">
-  Value: {{ curDate }}
+  Value: {{ eventDate }}
 
   <ngx-date-time
-    name="time-input1"
+    name="timezone-local"
     inputType="datetime"
     label="Local Time"
     displayMode="timezone"
-    [(ngModel)]="curDate"
-    (change)="dateChanged($event)"
+    [(value)]="eventDate"
   >
   </ngx-date-time>
 
   <ngx-date-time
-    name="time-input1"
+    name="timezone-utc"
     inputType="datetime"
     label="UTC"
     timezone="utc"
-    [(ngModel)]="curDate"
-    (change)="dateChanged($event)"
+    [(value)]="eventDate"
   >
   </ngx-date-time>
 
   <ngx-date-time
-    name="time-input1"
+    name="timezone-jst"
     inputType="datetime"
     label="JST"
     timezone="Asia/Tokyo"
-    [(ngModel)]="curDate"
-    (change)="dateChanged($event)"
+    [(value)]="eventDate"
   >
   </ngx-date-time>
 
   <app-prism>
-<![CDATA[<ngx-date-time
-  name="time-input1"
-  inputType="datetime"
-  label="Local Time"
-  displayMode="timezone"
-  [(ngModel)]="curDate"
-  (change)="dateChanged($event)"
+<![CDATA[  <ngx-date-time
+name="timezone-local"
+inputType="datetime"
+label="Local Time"
+displayMode="timezone"
+[(value)]="eventDate"
 >
 </ngx-date-time>
+
 <ngx-date-time
-  name="time-input1"
-  inputType="datetime"
-  label="UTC"
-  timezone="utc"
-  [(ngModel)]="curDate"
-  (change)="dateChanged($event)"
+name="timezone-utc"
+inputType="datetime"
+label="UTC"
+timezone="utc"
+[(value)]="eventDate"
 >
 </ngx-date-time>
+
 <ngx-date-time
-  name="time-input1"
-  inputType="datetime"
-  label="JST"
-  timezone="Asia/Tokyo"
-  [(ngModel)]="curDate"
-  (change)="dateChanged($event)"
+name="timezone-jst"
+inputType="datetime"
+label="JST"
+timezone="Asia/Tokyo"
+[(value)]="eventDate"
 >
 </ngx-date-time>]]>
   </app-prism>
@@ -202,35 +185,32 @@
 <ngx-section class="shadow" sectionTitle="Time Input">
   <ngx-date-time
     name="time-input1"
-    [inputType]="'time'"
-    [label]="'Time of attack'"
-    [(ngModel)]="curDate2"
-    (change)="dateChanged($event)"
-    required
+    inputType="time"
+    label="Time of attack"
+    [(value)]="time"
   >
   </ngx-date-time>
   <br />
   <app-prism>
 <![CDATA[<ngx-date-time
   name="time-input1"
-  [inputType]="'time'"
-  [label]="'Time of attack'"
-  [(ngModel)]="curDate2"
-  (change)="dateChanged($event)"
-  required
+  inputType="time"
+  label="Time of attack"
+  [(value)]="time"
 >
 </ngx-date-time>]]>
   </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Precision">
-  Current Value: {{ curDate2 | json }}
+  Current Value: {{ precisionDate | json }}
+
   <ngx-date-time
     inputType="date"
     label="Year"
     precision="year"
-    [(ngModel)]="curDate2"
-    format="YYYY"
+    [(value)]="precisionDate"
+    format="dateYear"
   >
   </ngx-date-time>
 
@@ -238,8 +218,8 @@
     inputType="date"
     label="Month"
     precision="month"
-    [(ngModel)]="curDate2"
-    format="MMM YYYY"
+    [(value)]="precisionDate"
+    format="dateMonth"
   >
   </ngx-date-time>
 
@@ -247,8 +227,8 @@
     inputType="datetime"
     label="Hour"
     precision="hour"
-    [(ngModel)]="curDate2"
-    format="MMM DD, YYYY, hh:mm"
+    [(value)]="precisionDate"
+    format="shortDateTime"
   >
   </ngx-date-time>
 
@@ -256,8 +236,8 @@
     inputType="datetime"
     label="Minutes"
     precision="minute"
-    [(ngModel)]="curDate2"
-    format="MMM DD, YYYY, hh:mm:ss"
+    [(value)]="precisionDate"
+    format="shortDateTimeSeconds"
   >
   </ngx-date-time>
 
@@ -266,26 +246,37 @@
   inputType="date"
   label="Year"
   precision="year"
-  [(ngModel)]="curDate2"
-  format="YYYY"
->
-</ngx-date-time>
-<ngx-date-time
+  [(value)]="precisionDate"
+  format="dateYear"
+  >
+  </ngx-date-time>
+
+  <ngx-date-time
   inputType="date"
   label="Month"
   precision="month"
-  [(ngModel)]="curDate2"
-  format="MMM YYYY"
->
-</ngx-date-time>
-<ngx-date-time
+  [(value)]="precisionDate"
+  format="dateMonth"
+  >
+  </ngx-date-time>
+
+  <ngx-date-time
   inputType="datetime"
   label="Hour"
   precision="hour"
-  [(ngModel)]="curDate2"
-  format="MMM DD, YYYY, hh:mm"
->
-</ngx-date-time>]]>
+  [(value)]="precisionDate"
+  format="shortDateTime"
+  >
+  </ngx-date-time>
+
+  <ngx-date-time
+  inputType="datetime"
+  label="Minutes"
+  precision="minute"
+  [(value)]="precisionDate"
+  format="shortDateTimeSeconds"
+  >
+  </ngx-date-time>]]>
   </app-prism>
 </ngx-section>
 
@@ -301,7 +292,6 @@
     precision="year"
     [(ngModel)]="curDate2"
     format="YYYY"
-    (change)="dateChanged($event)"
   >
   </ngx-date-time>
 
@@ -314,7 +304,6 @@
     precision="month"
     [(ngModel)]="curDate2"
     format="MMM YYYY"
-    (change)="dateChanged($event)"
   >
   </ngx-date-time>
 
@@ -328,7 +317,6 @@
     precision="hour"
     [(ngModel)]="curDate2"
     format="MMM DD, YYYY, hh:mm"
-    (change)="dateChanged($event)"
   >
   </ngx-date-time>
 
@@ -342,7 +330,6 @@
     precision="minute"
     [(ngModel)]="curDate2"
     format="MMM DD, YYYY, hh:mm:ss"
-    (change)="dateChanged($event)"
   >
   </ngx-date-time>
 
@@ -357,7 +344,6 @@
     precision="minute"
     [(ngModel)]="curDate2"
     format="MMM DD, YYYY, hh:mm:ss"
-    (change)="dateChanged($event)"
   >
   </ngx-date-time>
 </ngx-section>

@@ -98,6 +98,8 @@ $input-invalid-color: $color-red;
     }
   }
 
+  &--date-invalid,
+  &--date-out-of-range,
   &.invalid.ng-touched,
   &.ng-invalid.ng-touched,
   &.ng-invalid.ng-dirty {
@@ -109,12 +111,13 @@ $input-invalid-color: $color-red;
       }
     }
 
-    .ngx-input-label {
+    .ngx-input .ngx-input-label,
+    .ngx-input.focused .ngx-input-label {
       color: $input-invalid-color !important;
     }
 
     .ngx-input-hint {
-      color: $input-invalid-color;
+      color: $input-invalid-color !important;
     }
 
     .ngx-input-box,
@@ -129,12 +132,6 @@ $input-invalid-color: $color-red;
       text-decoration-style: dashed;
     }
   }
-
-  // &--date-invalid {
-  //   input {
-  //     color: $input-invalid-color !important;
-  //   }
-  // }
 }
 
 .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog {
