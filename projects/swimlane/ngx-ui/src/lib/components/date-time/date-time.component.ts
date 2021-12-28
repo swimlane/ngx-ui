@@ -42,6 +42,7 @@ import {
   DATE_DISPLAY_INPUT_FORMATS,
   DATE_DISPLAY_TYPES
 } from '../time-display/date-formats.enum';
+import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 
 let nextId = 0;
 
@@ -496,6 +497,15 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   onChangeCallback: (_: any) => void = () => {
     // placeholder
   };
+
+  onInputKeyDown(event: KeyboardEvent): void {
+    if (event.code === KeyboardKeys.ARROW_DOWN && event.altKey) {
+      this.open();
+      // todo: focus on the calendar once keyboard navigation is supported
+    } else if (event.code === KeyboardKeys.ESCAPE) {
+      this.close();
+    }
+  }
 
   private roundTo(val: moment.Moment, key: string): moment.Moment {
     /* istanbul ignore if */

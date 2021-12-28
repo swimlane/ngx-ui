@@ -25,6 +25,7 @@
     [hint]="hint"
     (ngModelChange)="inputChanged($event)"
     (blur)="onBlur($event)"
+    (keydown)="onInputKeyDown($event)"
   >
   </ngx-input>
   <button
@@ -40,8 +41,6 @@
     class="calendar-dialog-btn"
   ></button>  
 </div>
-
-
 
 <ng-template #dialogTpl>
   <div class="selected-header text-center">
