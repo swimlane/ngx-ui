@@ -144,7 +144,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
     if (typeof this._displayMode === 'string') {
       return this._displayMode;
     }
-    return this.timezone ? DATE_DISPLAY_TYPES.USER : DATE_DISPLAY_TYPES.LOCAL;
+    return this.timezone ? DATE_DISPLAY_TYPES.TIMEZONE : DATE_DISPLAY_TYPES.LOCAL;
   }
 
   /**
@@ -155,22 +155,31 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   get format(): string {
     if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
 
-    if (this.displayMode === DATE_DISPLAY_TYPES.USER) {
+    if (this.displayMode === DATE_DISPLAY_TYPES.LOCAL) {
       if (this.inputType === DateTimeType.date) {
         return DATE_DISPLAY_FORMATS.localeDate;
       } else if (this.inputType === DateTimeType.time) {
-        return DATE_DISPLAY_FORMATS.fullTime;
+        return DATE_DISPLAY_FORMATS.localeTime;
       }
-      return DATE_DISPLAY_FORMATS.fullDateTime;
+      return DATE_DISPLAY_FORMATS.localeDateTime;
+    }
+
+    if (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE) {
+      if (this.inputType === DateTimeType.date) {
+        return DATE_DISPLAY_FORMATS.userDate;
+      } else if (this.inputType === DateTimeType.time) {
+        return DATE_DISPLAY_FORMATS.userTime;
+      }
+      return DATE_DISPLAY_FORMATS.userDateTime;
     }
 
     if (this.inputType === DateTimeType.date) {
-      return DATE_DISPLAY_FORMATS.localeDate;
+      return DATE_DISPLAY_FORMATS.date;
     } else if (this.inputType === DateTimeType.time) {
-      return DATE_DISPLAY_FORMATS.localeTime;
+      return DATE_DISPLAY_FORMATS.time;
     }
 
-    return DATE_DISPLAY_FORMATS.localeDateTime;
+    return DATE_DISPLAY_FORMATS.dateTime;
   }
   set format(val: string) {
     this._format = val;
@@ -535,7 +544,8 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor {
   // Converts datelike to a moment object, considers if timezone is needed
   private createMoment(date: Datelike): moment.Moment {
     let m = moment(date).clone();
-    const timezone = this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.USER ? moment.tz.guess() : undefined);
+    const timezone =
+      this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE ? moment.tz.guess() : undefined);
     m = timezone ? m.tz(timezone) : m;
     m = this.precision ? this.roundTo(m, this.precision) : m;
     return m;

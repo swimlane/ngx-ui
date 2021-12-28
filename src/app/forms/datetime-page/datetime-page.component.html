@@ -142,7 +142,7 @@
     name="time-input1"
     inputType="datetime"
     label="Local Time"
-    displayMode="user"
+    displayMode="timezone"
     [(ngModel)]="curDate"
     (change)="dateChanged($event)"
   >
@@ -173,7 +173,7 @@
   name="time-input1"
   inputType="datetime"
   label="Local Time"
-  displayMode="user"
+  displayMode="timezone"
   [(ngModel)]="curDate"
   (change)="dateChanged($event)"
 >
@@ -379,6 +379,11 @@
       <td><ngx-date-time appearance="fill" label="Label" [ngModel]="curDate2"  hint="A brief bit of help text"></ngx-date-time></td>
     </tr>
     <tr>
+      <td>Required</td>
+      <td><ngx-date-time label="Label" required [ngModel]="curDate2" hint="A brief bit of help text"></ngx-date-time></td>
+      <td><ngx-date-time appearance="fill" required label="Label" [ngModel]="curDate2"  hint="A brief bit of help text"></ngx-date-time></td>
+    </tr>
+    <tr>
       <td>Empty w/o Placeholder</td>
       <td><ngx-date-time label="Label" hint="A brief bit of help text"></ngx-date-time></td>
       <td><ngx-date-time appearance="fill" label="Label" hint="A brief bit of help text"></ngx-date-time></td>
@@ -389,14 +394,34 @@
       <td><ngx-date-time appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
     </tr>
     <tr>
+      <td>Time</td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="time" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="time" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Date/Time</td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+    <tr>
       <td>Invalid</td>
       <td><ngx-date-time [ngModel]="'What what'" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
       <td><ngx-date-time [ngModel]="'What what'" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
     </tr>
     <tr>
       <td>Timezone</td>
-      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" displayMode="user" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" displayMode="user" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Time w/ Timezone</td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="time" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="time" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Date w/ Timezone</td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="date" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="date" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
     </tr>
   </table>
 </ngx-section>

@@ -22,9 +22,15 @@ export const DATE_DISPLAY_FORMATS = {
   fullTime: 'h:mm A Z [(]zz[)]', // 9:00 PM -07:00 (MST)
   fullDateTime: 'ddd, MMM D, YYYY h:mm A Z [(]zz[)]', // Tue, Jan 1, 2000 9:00 PM -07:00 (MST)
 
+  // Locale
   localeDate: 'L', // 09/04/1986
   localeDateTime: 'L LT', // 09/04/1986 8:30 PM
   localeTime: 'LT', // 8:30 PM
+
+  // User
+  userDate: 'L [(]zz[)]', // 09/04/1986
+  userDateTime: 'L LT [(]zz[)]', // 09/04/1986 8:30 PM
+  userTime: 'LT [(]zz[)]', // 8:30 PM
 
   locale: 'LLL',
   shortLocale: 'LL',

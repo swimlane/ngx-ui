@@ -14,7 +14,7 @@
       <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.HUMAN">
         {{ internalDatetime | amTimeAgo }}
       </ng-container>
-      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.USER">
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.TIMEZONE">
         {{ internalDatetime | amTimeZone: displayTimeZone | amDateFormat: displayFormat  }}
       </ng-container>
       <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.CUSTOM">{{ datetime | amDateFormat: displayFormat }}</ng-container>

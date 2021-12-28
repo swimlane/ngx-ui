@@ -34,7 +34,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
     if (typeof this._displayMode === 'string') {
       return this._displayMode;
     }
-    return DATE_DISPLAY_TYPES.USER;
+    return DATE_DISPLAY_TYPES.TIMEZONE;
   }
 
   @Input()
