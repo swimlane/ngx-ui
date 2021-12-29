@@ -106,6 +106,11 @@ $calendar-month-current: $color-blue-grey-750;
         color: $calendar-active-text;
       }
 
+      // &.focus {
+      //   outline: 2px solid $color-blue-200;
+      //   outline-offset: 1px;
+      // }
+
       &:hover:not(.active) {
         &:hover:not([disabled]) {
           background: $calendar-hover-bg;
@@ -172,6 +177,14 @@ $calendar-month-current: $color-blue-grey-750;
       &:nth-child(4n) {
         border-right: 0;
       }
+    }
+  }
+
+  // Highlight day if calendar is focused
+  &:focus-within {
+    .day-container .day.focus {
+      outline: 2px solid $color-blue-200;
+      outline-offset: 1px;
     }
   }
 }

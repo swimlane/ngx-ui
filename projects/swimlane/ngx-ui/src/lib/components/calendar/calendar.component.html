@@ -1,4 +1,4 @@
-<div class="ngx-calendar-wrap">
+<div class="ngx-calendar-wrap" (keydown)="onInputKeyDown($event)">
   <div class="text-center" [ngSwitch]="currentView">
     <div *ngSwitchCase="'date'">
       <div class="title-row">
@@ -6,7 +6,7 @@
           <span class="icon-arrow-left"></span>
         </button>
         <span class="title" (click)="changeViews()">
-          {{ activeDate | amTimeZone: timezone | amDateFormat: 'MMMM YYYY' }}
+          {{ focusDate | amTimeZone: timezone | amDateFormat: 'MMMM YYYY' }}
         </span>
         <button type="button" class="next-month" title="Next Month" [disabled]="disabled" (click)="nextMonth()">
           <span class="icon-arrow-right"></span>
@@ -24,8 +24,10 @@
               *ngIf="day.num"
               class="day"
               type="button"
+              (focus)="onDayFocus(day)"
               [title]="day.date | amTimeZone: timezone | amDateFormat: 'LL'"
               [class.active]="isDayActive(day.date)"
+              [class.focus]="isDayFocus(day.date)"
               [ngClass]="day.classes"
               [disabled]="isDisabled(day.date, 'day')"
               (click)="onDayClick(day)"
@@ -35,6 +37,7 @@
           </div>
         </div>
       </div>
+      {{ focusDate }}
     </div>
 
     <div *ngSwitchCase="'month'">
@@ -43,7 +46,7 @@
           <span class="icon-arrow-left"></span>
         </button>
         <span class="title" (click)="changeViews()">
-          {{ activeDate | amTimeZone: timezone | amDateFormat: 'YYYY' }}
+          {{ focusDate | amTimeZone: timezone | amDateFormat: 'YYYY' }}
         </span>
         <button type="button" class="next-month" title="Next Year" [disabled]="disabled" (click)="nextYear()">
           <span class="icon-arrow-right"></span>
