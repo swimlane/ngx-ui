@@ -10,7 +10,7 @@ import {
   ChangeDetectorRef,
   AfterViewInit,
   ElementRef,
-  HostListener
+  HostBinding
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import moment from 'moment-timezone';
@@ -71,10 +71,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Output() change = new EventEmitter<Date>();
   @Output() dayKeyEnter = new EventEmitter<Date>();
 
-  @HostListener('focus')
-  onFocus() {
-    this.focus();
-  }
+  @HostBinding('attr.tabindex')
+  tabindex = -1;
 
   get value() {
     return this._value;
@@ -284,7 +282,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   moveFocus(amount: number, duration: string) {
     const date = this.focusDate.clone();
     this.focusDate = date.add(amount as any, duration as any);
-    // this.value = this.focusDate.toDate();
     this.weeks = getMonth(this.focusDate);
     this.cdr.detectChanges();
     this.focus();
@@ -330,53 +327,73 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     }
   }
 
-  onInputKeyDown(event: KeyboardEvent) {
+  onDayDown(event: KeyboardEvent) {
     // console.log(event.code);
 
-    switch (event.code) {
-      case KeyboardKeys.ARROW_DOWN: /// next week
-        this.moveFocus(1, 'week');
-        event.stopPropagation();
-        event.preventDefault();
-        break;
-      case KeyboardKeys.ARROW_UP: // prev week
-        this.moveFocus(-1, 'week');
-        event.stopPropagation();
-        event.preventDefault();
-        break;
-      case KeyboardKeys.ARROW_LEFT: // prev day
-        this.moveFocus(-1, 'day');
-        event.preventDefault();
-        event.stopPropagation();
-        break;
-      case KeyboardKeys.ARROW_RIGHT: // next day
-        this.moveFocus(1, 'day');
-        event.stopPropagation();
-        event.preventDefault();
-        break;
-      case KeyboardKeys.PAGE_UP: // page up - go to prev month
-        this.moveFocus(-1, 'month');
-        event.stopPropagation();
-        event.preventDefault();
-        break;
-      case KeyboardKeys.PAGE_DOWN: // page down - go to next month
-        this.moveFocus(1, 'month');
-        event.stopPropagation();
-        event.preventDefault();
-        break;
-      case KeyboardKeys.ENTER: // enter and close if in dialog
-        setTimeout(() => {
-          // wait for click event to fire
-          this.dayKeyEnter.emit();
-        }, 200);
-        break;
-      // TODO:
-      // home - go to first day of month
-      // end - go to last day of month
-      // alt + page up - go to prev year
-      // alt + page down - go to next year
-      // enter/space - select current date (close dialog)
-      // escape - close dialog
+    let stop = false;
+
+    if (this.currentView === CalendarView.Date) {
+      switch (event.code) {
+        case KeyboardKeys.ARROW_DOWN: /// next week
+          this.moveFocus(1, 'week');
+          stop = true;
+          break;
+        case KeyboardKeys.ARROW_UP: // prev week
+          this.moveFocus(-1, 'week');
+          stop = true;
+          break;
+        case KeyboardKeys.ARROW_LEFT: // prev day
+          this.moveFocus(-1, 'day');
+          stop = true;
+          break;
+        case KeyboardKeys.ARROW_RIGHT: // next day
+          this.moveFocus(1, 'day');
+          stop = true;
+          break;
+        case KeyboardKeys.PAGE_UP: // TODO: Sets focus on the same day of the same week
+          if (event.altKey) {
+            this.moveFocus(-1, 'year'); // alt + page up - go to prev year
+          } else {
+            this.moveFocus(-1, 'month'); // page up - go to prev month
+          }
+          stop = true;
+          break;
+        case KeyboardKeys.PAGE_DOWN: // TODO: Sets focus on the same day of the same week
+          if (event.altKey) {
+            this.moveFocus(1, 'year'); // alt + page down - go to next year
+          } else {
+            this.moveFocus(1, 'month'); // page down - go to next month
+          }
+          stop = true;
+          break;
+        case KeyboardKeys.ENTER: // enter and close if in dialog
+          setTimeout(() => {
+            // wait for click event to fire
+            this.dayKeyEnter.emit();
+          }, 200);
+          break;
+        case KeyboardKeys.HOME: // home - go to first day of week
+          this.focusDate = this.focusDate.clone().startOf('week');
+          this.moveFocus(0, 'day');
+          stop = true;
+          break;
+        case KeyboardKeys.END: // end - go to last day of week
+          this.focusDate = this.focusDate.clone().endOf('week');
+          this.moveFocus(0, 'day');
+          stop = true;
+          break;
+
+        // TODO?:
+        // home - go to first day of month
+        // end - go to last day of month
+      }
+    }
+
+    // TODO: month and year views
+
+    if (stop) {
+      event.stopPropagation();
+      event.preventDefault();
     }
 
     this.cdr.detectChanges();

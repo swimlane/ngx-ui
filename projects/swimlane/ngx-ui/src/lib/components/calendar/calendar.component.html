@@ -1,14 +1,14 @@
-<div class="ngx-calendar-wrap" (keydown)="onInputKeyDown($event)">
+<div class="ngx-calendar-wrap">
   <div class="text-center" [ngSwitch]="currentView">
     <div *ngSwitchCase="'date'">
       <div class="title-row">
-        <button type="button" class="prev-month" [disabled]="disabled" title="Previous Month" (click)="prevMonth()">
+        <button type="button" tabindex="0" class="prev-month" [disabled]="disabled" title="Previous Month" (click)="prevMonth()">
           <span class="icon-arrow-left"></span>
         </button>
-        <span class="title" (click)="changeViews()">
+        <button type="button" class="title" tabindex="0" (click)="changeViews()">
           {{ focusDate | amTimeZone: timezone | amDateFormat: 'MMMM YYYY' }}
-        </span>
-        <button type="button" class="next-month" title="Next Month" [disabled]="disabled" (click)="nextMonth()">
+        </button>
+        <button type="button" tabindex="0" class="next-month" title="Next Month" [disabled]="disabled" (click)="nextMonth()">
           <span class="icon-arrow-right"></span>
         </button>
       </div>
@@ -17,27 +17,30 @@
           {{ d }}
         </div>
       </div>
-      <div class="day-container">
-        <div *ngFor="let week of weeks" class="day-row">
-          <div *ngFor="let day of week" class="day-cell text-center">
+      <table class="day-container" role="grid">
+        <tr *ngFor="let week of weeks" class="day-row" role="row">
+          <td *ngFor="let day of week" class="day-cell text-center" role="gridcell">
             <button
               *ngIf="day.num"
               class="day"
               type="button"
               (focus)="onDayFocus(day)"
+              [attr.aria-label]="day.date | amTimeZone: timezone | amDateFormat: 'LL'"
               [title]="day.date | amTimeZone: timezone | amDateFormat: 'LL'"
               [class.active]="isDayActive(day.date)"
               [class.focus]="isDayFocus(day.date)"
+              [attr.tabindex]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day')? 0 : -1"
+              [attr.aria-selected]="isDayActive(day.date)"
               [ngClass]="day.classes"
               [disabled]="isDisabled(day.date, 'day')"
               (click)="onDayClick(day)"
+              (keydown)="onDayDown($event)"
             >
               {{ day.num }}
             </button>
-          </div>
-        </div>
-      </div>
-      {{ focusDate }}
+          </td>
+        </tr>
+      </table>
     </div>
 
     <div *ngSwitchCase="'month'">

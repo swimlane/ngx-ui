@@ -43,7 +43,8 @@ $calendar-month-current: $color-blue-grey-750;
       cursor: pointer;
     }
 
-    button {
+    .prev-month,
+    .next-month {
       color: $calendar-title-btn;
       font-size: 0.6rem;
     }
@@ -119,7 +120,16 @@ $calendar-month-current: $color-blue-grey-750;
         }
       }
     }
+
+    // Highlight day if calendar is focused
+    &:focus-within {
+      .day-container .day.focus {
+        outline: 2px solid $color-blue-200;
+        outline-offset: 1px;
+      }
+    }
   }
+
   .months-container,
   .years-container {
     margin: 0.5rem;
@@ -177,14 +187,6 @@ $calendar-month-current: $color-blue-grey-750;
       &:nth-child(4n) {
         border-right: 0;
       }
-    }
-  }
-
-  // Highlight day if calendar is focused
-  &:focus-within {
-    .day-container .day.focus {
-      outline: 2px solid $color-blue-200;
-      outline-offset: 1px;
     }
   }
 }
