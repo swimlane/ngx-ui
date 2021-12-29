@@ -352,17 +352,17 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
           break;
         case KeyboardKeys.PAGE_UP: // TODO: Sets focus on the same day of the same week
           if (event.altKey) {
-            this.moveFocus(-1, 'year'); // alt + page up - go to prev year
+            this.moveFocus(-52, 'weeks'); // alt + page up - go to prev year
           } else {
-            this.moveFocus(-1, 'month'); // page up - go to prev month
+            this.moveFocus(-4, 'weeks'); // page up - go to prev month
           }
           stop = true;
           break;
         case KeyboardKeys.PAGE_DOWN: // TODO: Sets focus on the same day of the same week
           if (event.altKey) {
-            this.moveFocus(1, 'year'); // alt + page down - go to next year
+            this.moveFocus(52, 'weeks'); // alt + page down - go to next year
           } else {
-            this.moveFocus(1, 'month'); // page down - go to next month
+            this.moveFocus(4, 'weeks'); // page down - go to next month
           }
           stop = true;
           break;

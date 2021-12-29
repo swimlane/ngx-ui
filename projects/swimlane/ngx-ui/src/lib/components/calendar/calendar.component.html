@@ -48,9 +48,9 @@
         <button type="button" class="prev-month" [disabled]="disabled" title="Previous Year" (click)="prevYear()">
           <span class="icon-arrow-left"></span>
         </button>
-        <span class="title" (click)="changeViews()">
+        <button class="title" (click)="changeViews()">
           {{ focusDate | amTimeZone: timezone | amDateFormat: 'YYYY' }}
-        </span>
+        </button>
         <button type="button" class="next-month" title="Next Year" [disabled]="disabled" (click)="nextYear()">
           <span class="icon-arrow-right"></span>
         </button>
@@ -83,7 +83,7 @@
         >
           <span class="icon-arrow-left"></span>
         </button>
-        <span class="title" (click)="changeViews()"> {{ startYear }} - {{ startYear + 20 }} </span>
+        <button class="title" (click)="changeViews()"> {{ startYear }} - {{ startYear + 20 }} </button>
         <button
           type="button"
           class="next-month"
