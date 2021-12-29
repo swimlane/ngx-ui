@@ -50,7 +50,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
     this._clipFormat = val;
   }
   get clipFormat(): string {
-    return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat || DATE_DISPLAY_FORMATS.shortLocale;
+    return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat || DATE_DISPLAY_FORMATS.fullLocale;
   }
 
   @Input()
