@@ -1,6 +1,6 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ClipboardModule } from 'ngx-clipboard';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 import { NgxTimeDisplayComponent as TestComponent } from './time-display.component';
 import { MomentModule } from 'ngx-moment';
@@ -389,7 +389,7 @@ describe('NgxTimeDisplayComponent', () => {
     expect(component.displayTimeZone).toBeUndefined();
     expect(component.displayMode).toBe('user');
     expect(component.displayFormat).toBe('LLLL');
-    expect(component.clipFormat).toBe('LL');
+    expect(component.clipFormat).toBe('LLLL');
     expect(component.timezones.UTC).toEqual('Etc/UTC');
     expect(component.timezones.Local).toEqual('');
   });
