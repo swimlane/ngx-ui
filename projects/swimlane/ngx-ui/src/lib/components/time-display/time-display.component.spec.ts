@@ -1,6 +1,5 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ClipboardModule } from 'ngx-clipboard';
 
 import { NgxTimeDisplayComponent as TestComponent } from './time-display.component';
 import { MomentModule } from 'ngx-moment';
