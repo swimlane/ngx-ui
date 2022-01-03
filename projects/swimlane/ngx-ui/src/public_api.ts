@@ -242,6 +242,10 @@ export * from './lib/components/plus-menu/plus-menu.module';
 export * from './lib/components/plus-menu/plus-menu.component';
 export * from './lib/components/plus-menu/plus-menu-position.enum';
 
+export * from './lib/components/time-display/time-display.module';
+export * from './lib/components/time-display/time-display.component';
+export * from './lib/components/time-display/date-formats.enum';
+
 // utils
 export * from './lib/utils/debounce/debounce.util';
 
