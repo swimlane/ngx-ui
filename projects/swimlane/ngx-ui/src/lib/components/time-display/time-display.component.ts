@@ -1,6 +1,6 @@
 import { Component, Input, HostListener, ViewEncapsulation, OnChanges, HostBinding, OnInit } from '@angular/core';
+import { Clipboard } from '@angular/cdk/clipboard';
 
-import { ClipboardService } from 'ngx-clipboard';
 import momentTimezone from 'moment-timezone';
 
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
@@ -50,7 +50,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
     this._clipFormat = val;
   }
   get clipFormat(): string {
-    return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat || DATE_DISPLAY_FORMATS.shortLocale;
+    return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat || DATE_DISPLAY_FORMATS.fullLocale;
   }
 
   @Input()
@@ -112,10 +112,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   private _clipFormat: string;
   private _clickable: boolean;
 
-  constructor(
-    private readonly clipboardService: ClipboardService,
-    private readonly notificationService: NotificationService
-  ) {}
+  constructor(private readonly clipboard: Clipboard, private readonly notificationService: NotificationService) {}
 
   ngOnInit() {
     this.update();
@@ -136,7 +133,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   }
 
   onClick(item: any) {
-    this.clipboardService.copyFromContent(item.value.clip);
+    this.clipboard.copy(item.value.clip);
     this.notificationService.create({
       body: `${item.key} date copied to clipboard`,
       styleType: NotificationStyleType.success,
