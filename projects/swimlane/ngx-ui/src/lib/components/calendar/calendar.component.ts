@@ -44,7 +44,11 @@ const CALENDAR_VALUE_ACCESSOR = {
 })
 export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() minDate: Date | string;
-  @Input() disabled: boolean;
+
+  @HostBinding('class.ngx-calendar--disabled')
+  @Input()
+  disabled: boolean;
+
   @Input() maxDate: Date | string;
   @Input() daysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   @Input() timezone: string;

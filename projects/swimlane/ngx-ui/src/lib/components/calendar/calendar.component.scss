@@ -30,6 +30,15 @@ $calendar-month-current: $color-blue-grey-750;
     outline: none;
   }
 
+  button {
+    outline: 0px auto $color-blue-200;
+
+    &:focus-within {
+      outline: 2px solid $color-blue-200;
+      outline-offset: 1px;
+    }
+  }
+
   .title-row {
     background: $calendar-title-bg;
     color: $calendar-active-text;
@@ -42,12 +51,14 @@ $calendar-month-current: $color-blue-grey-750;
       min-width: 100px;
       padding: 9px;
       cursor: pointer;
+      border-radius: 3px;
     }
 
     .prev-month,
     .next-month {
       color: $calendar-title-btn;
       font-size: 0.6rem;
+      border-radius: 3px;
     }
   }
 
