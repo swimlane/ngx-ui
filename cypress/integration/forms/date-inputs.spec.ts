@@ -84,7 +84,8 @@ describe('Date/Time', () => {
       cy.get('@CUT').find('.calendar-dialog-btn').click();
       cy.get('.ngx-date-time-dialog')
         .should('exist')
-        .find('.selected-header h1').should('contain.text', 'Mon, Oct 10 2016');
+        .find('.selected-header h1')
+        .should('contain.text', 'Mon, Oct 10 2016');
       cy.get('.day').contains('17').click();
       cy.get('.apply-btn').click();
       cy.get('.ngx-date-time-dialog').should('not.exist');
