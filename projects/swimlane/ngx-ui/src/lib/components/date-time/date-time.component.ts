@@ -503,13 +503,12 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   };
 
   onInputKeyDown(event: KeyboardEvent): void {
-    if (event.code === KeyboardKeys.ARROW_DOWN && event.altKey) {
-      // Alt + Down Arrow	Open the calendar pop-up
+    if (event.code === KeyboardKeys.ARROW_DOWN) {
+      // Down Arrow	Open the calendar pop-up
       this.open();
       setTimeout(() => {
         this.calendar.focus();
       }, 200);
-      // todo: focus on the calendar once keyboard navigation is supported
     } else if (event.code === KeyboardKeys.ESCAPE) {
       // Escape	Close the calendar pop-up
       this.close();
