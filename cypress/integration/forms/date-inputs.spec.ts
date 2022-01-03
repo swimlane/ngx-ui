@@ -97,7 +97,7 @@ describe('Date/Time', () => {
       cy.realPress('ArrowDown');
       cy.get('.ngx-date-time-dialog')
         .should('exist')
-        .find('.selected-header h1').should('contain.text', 'Sun, Oct 9 2016');  // BUG
+        .find('.selected-header h1').should('contain.text', 'Mon, Oct 10 2016');  // BUG
       cy.get('.day.focus')
         .should('contain.text', '10')
         .should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px');  // Focuses on current value
@@ -163,7 +163,7 @@ describe('Date/Time', () => {
     beforeEach(() => {
       cy.get('[sectiontitle="TimeZones"]').as('SUT');
       cy.get('@SUT').within(() => {
-        // Bun in ngx-ui testing
+        // Bug in ngx-ui testing... can't get the get by label off a get
         cy.getByLabel('Current Value:').as('output');
       });
     });
@@ -191,6 +191,20 @@ describe('Date/Time', () => {
               .should('contain.text', '03/11/2011 5:46 AM (UTC)');
           });
         });
+    });
+
+    it('has correct popup', () => {
+      cy.get('@SUT').find('ngx-date-time').eq(0).find('.calendar-dialog-btn').click();
+      cy.get('.ngx-dialog .selected-header').should('contain.text', 'Thu, Mar 10 2011').should('contain.text', '9:46 pm');
+      cy.get('body').click();
+
+      cy.get('@SUT').find('ngx-date-time').eq(1).find('.calendar-dialog-btn').click();
+      cy.get('.ngx-dialog .selected-header').should('contain.text', 'Fri, Mar 11 2011').should('contain.text', '5:46 am');
+      cy.get('body').click();
+
+      cy.get('@SUT').find('ngx-date-time').eq(2).find('.calendar-dialog-btn').click();
+      cy.get('.ngx-dialog .selected-header').should('contain.text', 'Fri, Mar 11 2011').should('contain.text', '2:46 pm');
+      cy.get('body').click();
     });
   });
 });
