@@ -1,10 +1,10 @@
-<div class="ngx-date-time__container"
-  ngx-tooltip
-  [tooltipDisabled]="tooltipDisabled || !hasPopup"
-  [tooltipTemplate]="defaultTooltipTemplate"
-  [tooltipCssClass]="tooltipCssClass">
+<div class="ngx-date-time__container">
   <ngx-input
     #input
+    ngx-tooltip
+    [tooltipDisabled]="tooltipDisabled || !hasPopup"
+    [tooltipTemplate]="defaultTooltipTemplate"
+    [tooltipCssClass]="tooltipCssClass"
     [minWidth]="minWidth"
     [id]="id + '-input'"
     [autosize]="autosize"

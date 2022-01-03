@@ -229,7 +229,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
 
   @HostBinding('class.ngx-date-time--has-popup')
   get hasPopup() {
-    return !this.dateInvalid && DATE_DISPLAY_TYPES.LOCAL !== this.displayMode;
+    return !!this.value && !this.dateInvalid && DATE_DISPLAY_TYPES.LOCAL !== this.displayMode;
   }
 
   @HostBinding('class.ngx-date-time--date-invalid')
