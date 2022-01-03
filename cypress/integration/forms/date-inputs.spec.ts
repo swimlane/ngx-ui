@@ -97,14 +97,11 @@ describe('Date/Time', () => {
       cy.realPress('ArrowDown');
       cy.get('.ngx-date-time-dialog')
         .should('exist')
-        .find('.selected-header h1').should('contain.text', 'Mon, Oct 10 2016');  // BUG
-      cy.get('.day.focus')
-        .should('contain.text', '10')
-        .should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px');  // Focuses on current value
+        .find('.selected-header h1')
+        .should('contain.text', 'Mon, Oct 10 2016'); // BUG
+      cy.get('.day.focus').should('contain.text', '10').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // Focuses on current value
       cy.realPress('ArrowDown');
-      cy.get('.day.focus')
-        .should('contain.text', '17')
-        .should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px');  // Focuses on current value
+      cy.get('.day.focus').should('contain.text', '17').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // Focuses on current value
       cy.realPress('Space');
       cy.realPress('Enter');
       cy.get('@output').should('contain.text', '2016-10-17');
@@ -195,15 +192,21 @@ describe('Date/Time', () => {
 
     it('has correct popup', () => {
       cy.get('@SUT').find('ngx-date-time').eq(0).find('.calendar-dialog-btn').click();
-      cy.get('.ngx-dialog .selected-header').should('contain.text', 'Thu, Mar 10 2011').should('contain.text', '9:46 pm');
+      cy.get('.ngx-dialog .selected-header')
+        .should('contain.text', 'Thu, Mar 10 2011')
+        .should('contain.text', '9:46 pm');
       cy.get('body').click();
 
       cy.get('@SUT').find('ngx-date-time').eq(1).find('.calendar-dialog-btn').click();
-      cy.get('.ngx-dialog .selected-header').should('contain.text', 'Fri, Mar 11 2011').should('contain.text', '5:46 am');
+      cy.get('.ngx-dialog .selected-header')
+        .should('contain.text', 'Fri, Mar 11 2011')
+        .should('contain.text', '5:46 am');
       cy.get('body').click();
 
       cy.get('@SUT').find('ngx-date-time').eq(2).find('.calendar-dialog-btn').click();
-      cy.get('.ngx-dialog .selected-header').should('contain.text', 'Fri, Mar 11 2011').should('contain.text', '2:46 pm');
+      cy.get('.ngx-dialog .selected-header')
+        .should('contain.text', 'Fri, Mar 11 2011')
+        .should('contain.text', '2:46 pm');
       cy.get('body').click();
     });
   });

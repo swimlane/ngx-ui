@@ -7,6 +7,7 @@
 - Enhancement: Add ability to unlock `ngx-input` for passwords
 - Enhancement: Add `checked` and `checkedChange` to `ngx-checkbox`
 - Enhancement: Keyboard accessibility for `ngx-checkbox`
+- Enhancement: Keyboard accessibility for `ngx-calendar`
 
 ## 36.1.0 (2021-12-10)
 
