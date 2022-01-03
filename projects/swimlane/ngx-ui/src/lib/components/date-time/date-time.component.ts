@@ -23,7 +23,7 @@ import {
 } from '@angular/forms';
 
 import moment from 'moment-timezone';
-import { ClipboardService } from 'ngx-clipboard';
+import { Clipboard } from '@angular/cdk/clipboard';
 
 import { DialogService } from '../dialog/dialog.service';
 import { DateTimeType } from './date-time-type.enum';
@@ -344,7 +344,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   constructor(
     private readonly dialogService: DialogService,
     private readonly cdr: ChangeDetectorRef,
-    private readonly clipboardService: ClipboardService,
+    private readonly clipboard: Clipboard,
     private readonly notificationService: NotificationService
   ) {}
 
@@ -473,7 +473,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   }
 
   onClick(item: any) {
-    this.clipboardService.copyFromContent(item.value.clip);
+    this.clipboard.copy(item.value.clip);
     this.notificationService.create({
       body: `${item.key} date copied to clipboard`,
       styleType: NotificationStyleType.success,
