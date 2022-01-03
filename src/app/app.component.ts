@@ -88,10 +88,6 @@ export class AppComponent {
           route: 'radio'
         },
         {
-          name: 'Calendar',
-          route: 'calendar'
-        },
-        {
           name: 'Code Editor',
           route: 'code-editor'
         }
@@ -172,6 +168,14 @@ export class AppComponent {
         {
           name: 'Dropdown',
           route: 'dropdown'
+        },
+        {
+          name: 'Calendar',
+          route: 'calendar'
+        },
+        {
+          name: 'Date/Time Display',
+          route: 'time-display'
         },
         {
           name: 'Loading',

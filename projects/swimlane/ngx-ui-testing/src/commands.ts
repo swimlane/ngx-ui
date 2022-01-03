@@ -154,7 +154,11 @@ Cypress_Commands_add_Subject(
       });
     }
 
-    return cy.wrap(subject, LOG).trigger('mouseover', LOG).trigger('mouseenter', LOG).invoke('addClass', 'cy-hover');
+    return cy
+      .wrap(subject, LOG)
+      .trigger('mouseover', LOG)
+      .trigger('mouseenter', LOG)
+      .invoke(LOG, 'addClass', 'cy-hover');
   }
 );
 
@@ -179,7 +183,11 @@ Cypress_Commands_add_Subject(
       });
     }
 
-    return cy.wrap(subject, LOG).invoke('removeClass', 'cy-hover').trigger('mouseleave', LOG).trigger('mouseout', LOG);
+    return cy
+      .wrap(subject, LOG)
+      .invoke(LOG, 'removeClass', 'cy-hover')
+      .trigger('mouseleave', LOG)
+      .trigger('mouseout', LOG);
   }
 );
 
@@ -214,10 +222,14 @@ Cypress_Commands_add_Subject(
     // TODO: support `.whileHovering(options, callbackFn)`
     cy.wrap(subject, LOG)
       .ngxHover(LOG)
-      .within(fn)
-      .iff($el => {
-        return cy.wrap($el).ngxUnhover(LOG);
-      });
+      .within(LOG, fn)
+      .iff(
+        undefined,
+        $el => {
+          return cy.wrap($el, LOG).ngxUnhover(LOG);
+        },
+        LOG
+      );
     return cy.wrap(subject, LOG);
   }
 );

@@ -16,6 +16,11 @@ const routes: Routes = [
     path: 'calendar',
     loadChildren: () => import('./forms/calendar-page/calendar-page.module').then(m => m.CalendarPageModule)
   },
+  {
+    path: 'time-display',
+    loadChildren: () =>
+      import('./components/time-display-page/time-display-page.component.module').then(m => m.DateDisplayPageModule)
+  },
   { path: 'card', loadChildren: () => import('./components/card-page/card-page.module').then(m => m.CardPageModule) },
   {
     path: 'checkbox',
