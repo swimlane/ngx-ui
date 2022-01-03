@@ -16,12 +16,11 @@ describe('Date/Time', () => {
       cy.get('[sectiontitle="Date Input"]').as('SUT');
       cy.get('@SUT').getByLabel('Date of attack').as('CUT');
       cy.get('@SUT').getByLabel('Current Value:').as('output');
+      cy.get('@CUT').ngxFill('10/10/2016').ngxFindNativeInput().focus().blur();
     });
 
     it('has a label', () => {
       // With Value
-      cy.get('@CUT').ngxFill('10/10/2021');
-      cy.get('@SUT').find('h1').click(); // blur
       cy.get('@CUT')
         .ngxFindLabel()
         .should('contain.text', 'Date of attack')
@@ -79,6 +78,17 @@ describe('Date/Time', () => {
       cy.get('@CUT').clear().ngxGetValue().should('equal', '');
       cy.get('@CUT').should('not.have.class', 'ngx-date-time--date-invalid');
       cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(20, 131, 255)');
+    });
+
+    it('opens calendar with button', () => {
+      cy.get('@CUT').find('.calendar-dialog-btn').click();
+      cy.get('.ngx-date-time-dialog')
+        .should('exist')
+        .find('.selected-header h1').should('contain.text', 'Mon, Oct 10 2016');
+      cy.get('.day').contains('17').click();
+      cy.get('.apply-btn').click();
+      cy.get('.ngx-date-time-dialog').should('not.exist');
+      cy.get('@output').should('contain.text', '2016-10-17');
     });
   });
 
