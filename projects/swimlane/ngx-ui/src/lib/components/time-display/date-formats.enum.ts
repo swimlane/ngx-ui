@@ -22,6 +22,17 @@ export const DATE_DISPLAY_FORMATS = {
   fullTime: 'h:mm A Z [(]zz[)]', // 9:00 PM -07:00 (MST)
   fullDateTime: 'ddd, MMM D, YYYY h:mm A Z [(]zz[)]', // Tue, Jan 1, 2000 9:00 PM -07:00 (MST)
 
+  // Local (civil) time
+  localeDate: 'L', // 09/04/1986
+  localeDateTime: 'L LT', // 09/04/1986 8:30 PM
+  localeTime: 'LT', // 8:30 PM
+
+  // Timezone
+  userDate: 'L [(]zz[)]', // 09/04/1986
+  userDateTime: 'L LT [(]zz[)]', // 09/04/1986 8:30 PM
+  userTime: 'LT [(]zz[)]', // 8:30 PM
+
+  // Locale (civil) time
   locale: 'LLL',
   shortLocale: 'LL',
   fullLocale: 'LLLL'
@@ -35,6 +46,7 @@ export const DATE_DISPLAY_INPUT_FORMATS: Array<string | moment.MomentBuiltinForm
   DATE_DISPLAY_FORMATS.shortDateTimeSeconds,
   DATE_DISPLAY_FORMATS.shortDate,
   DATE_DISPLAY_FORMATS.shortTime,
+  'MM/DD',
   'MM/DD/YYYY',
   'M/DD/YYYY',
   'MM/DD/YY',
@@ -61,7 +73,7 @@ export const DATE_DISPLAY_INPUT_FORMATS: Array<string | moment.MomentBuiltinForm
 
 export enum DATE_DISPLAY_TYPES {
   HUMAN = 'human',
-  USER = 'user',
+  TIMEZONE = 'timezone',
   LOCAL = 'local',
   CUSTOM = 'custom'
 }

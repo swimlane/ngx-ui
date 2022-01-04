@@ -3,7 +3,7 @@
   class="ngx-time__container"
   [attr.datetime]="utcDatetime"
   [tooltipDisabled]="tooltipDisabled || !hasPopup"
-  [tooltipTemplate]="tooltipTemplate || tooltipTemplate"
+  [tooltipTemplate]="tooltipTemplate || defaultTooltipTemplate"
   [tooltipCssClass]="tooltipCssClass"
   [tooltipPlacement]="tooltipPlacement"
   [tooltipShowTimeout]="400"
@@ -14,7 +14,7 @@
       <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.HUMAN">
         {{ internalDatetime | amTimeAgo }}
       </ng-container>
-      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.USER">
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.TIMEZONE">
         {{ internalDatetime | amTimeZone: displayTimeZone | amDateFormat: displayFormat  }}
       </ng-container>
       <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.CUSTOM">{{ datetime | amDateFormat: displayFormat }}</ng-container>
@@ -26,7 +26,7 @@
   </ng-container>
 </time>
 
-<ng-template #tooltipTemplate>
+<ng-template #defaultTooltipTemplate>
   <div *ngFor="let item of timeValues | keyvalue" class="date-zone-display">
     <span>{{ item.value.display }}</span>
     <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
