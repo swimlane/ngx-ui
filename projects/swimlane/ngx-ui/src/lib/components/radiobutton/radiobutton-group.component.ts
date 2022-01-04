@@ -31,6 +31,10 @@ const RADIOGROUP_VALUE_ACCESSOR = {
 
 let nextId = 0;
 
+function mod(v: number, n: number): number {
+  return ((v % n) + n) % n;
+}
+
 @Component({
   exportAs: 'ngxRadiobuttonGroup',
   selector: 'ngx-radiobutton-group',
@@ -158,14 +162,14 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
       case KeyboardKeys.ARROW_UP:
         ev.stopPropagation();
         ev.preventDefault();
-        this.focusPrev(); // Moves focus to previous radio button in the group.
+        this.focusIn(-1); // Moves focus to previous radio button in the group.
         this.selectIndex(this.focusIndex); // Selects the radio button in the group.
         break;
       case KeyboardKeys.ARROW_RIGHT:
       case KeyboardKeys.ARROW_DOWN:
         ev.stopPropagation();
         ev.preventDefault();
-        this.focusNext(); // Moves focus to next radio button in the group.
+        this.focusIn(1); // Moves focus to next radio button in the group.
         this.selectIndex(this.focusIndex); // Selects the radio button in the group.
         break;
     }
@@ -243,34 +247,17 @@ export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestro
   }
 
   /**
-   * Moves focus to previous radio button in the group.
-   * If focus is on the first radio button in the group, move focus to the last radio button.
-   */
-  private focusPrev() {
-    if (!this.disabled && this._radios) {
-      const len = this._radios.length;
-      const startFocusIndex = this.focusIndex > 0 ? this.focusIndex - 1 : len - 1;
-      for (let i = startFocusIndex; i >= 0; i--) {
-        if (!this._radios.get(i).disabled) {
-          this.focusIndex = i;
-          break;
-        }
-      }
-    }
-  }
-
-  /**
    * Moves focus to next radio button in the group.
-   * If focus is on the last radio button in the group, move focus to the first radio button.
+   * +1 is next radio button, -1 is previous radio button.
    */
-  private focusNext() {
+  private focusIn(dir: 1 | -1) {
     if (!this.disabled && this._radios) {
       const len = this._radios.length;
-      const startFocusIndex = this.focusIndex < len - 1 ? this.focusIndex + 1 : 0;
-      for (let i = startFocusIndex; i < len; i++) {
-        if (!this._radios.get(i).disabled) {
-          this.focusIndex = i;
-          break;
+      for (let i = 1; i < len; i++) {
+        const ii = mod(this.focusIndex + dir * i, len);
+        if (!this._radios.get(ii).disabled) {
+          this.focusIndex = ii;
+          return;
         }
       }
     }
