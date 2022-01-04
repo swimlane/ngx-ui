@@ -308,6 +308,320 @@
     </tr>
   </table>
 
+  <table class="alignment-test">
+    <tr>
+      <th></th>
+      <th>label</th>
+      <th>ngx-input</th>
+      <th>ngx-select</th>
+      <th>ngx-select tagging</th>
+      <th>ngx-button</th>
+      <th>native input</th>
+      <th>native select</th>
+    </tr>
+    <tr>
+      <td>No labels</td>
+      <td>
+        <label>A label:</label>
+      </td>
+      <td>
+        <ngx-input appearance="fill" type="text" [ngModel]="inputValue" (change)="inputValue = $event"> </ngx-input>
+      </td>
+      <td>
+        <ngx-select appearance="fill" [filterable]="false" [ngModel]="[inputValue]">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-select>
+      </td>
+      <td>
+        <ngx-select appearance="fill" [multiple]="true" [ngModel]="[inputValue]">
+          <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
+          </ngx-select-option>
+        </ngx-select>
+      </td>
+      <td>
+        <ngx-button class="btn">Default</ngx-button>
+      </td>
+      <td>
+        <input type="text" class="form-input" />
+      </td>
+      <td>
+        <select>
+          <option>Breach</option>
+          <option>DDOS</option>
+          <option>Physical</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>With labels</td>
+      <td>
+        <label>A label:</label>
+      </td>
+      <td>
+        <ngx-input appearance="fill" type="text" [ngModel]="inputValue" (change)="inputValue = $event" label="Inputbox Label">
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-select appearance="fill" [filterable]="false" label="SelectBox Label">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-select>
+      </td>
+      <td>
+        <ngx-select appearance="fill" [multiple]="true" label="Select box Label">
+          <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
+          </ngx-select-option>
+        </ngx-select>
+      </td>
+      <td>
+        <ngx-button class="btn">Default</ngx-button>
+      </td>
+      <td>
+        <input type="text" class="form-input" />
+      </td>
+      <td>
+        <select>
+          <option>Breach</option>
+          <option>DDOS</option>
+          <option>Physical</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>With hints</td>
+      <td>
+        <label>A label:</label>
+      </td>
+      <td>
+        <ngx-input appearance="fill" type="text" [ngModel]="inputValue" (change)="inputValue = $event" hint="Input help text">
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-select appearance="fill" [filterable]="false" hint="Select help text">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-select>
+      </td>
+      <td>
+        <ngx-select appearance="fill" [multiple]="true" hint="Select help text">
+          <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
+          </ngx-select-option>
+        </ngx-select>
+      </td>
+      <td>
+        <ngx-button class="btn">Default</ngx-button>
+      </td>
+      <td>
+        <input type="text" class="form-input" />
+      </td>
+      <td>
+        <select>
+          <option>Red</option>
+          <option>Blue</option>
+          <option>Green</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>With multiline hints</td>
+      <td>
+        <label>A label:</label>
+      </td>
+      <td>
+        <ngx-input appearance="fill"
+          type="text"
+          [ngModel]="inputValue"
+          (change)="inputValue = $event"
+          hint="Input help text<br />Second line"
+          label="Inputbox Label"
+        >
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-select appearance="fill" [filterable]="false" hint="Select help text<br />Second line<br />A third" label="Select box Label">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-select>
+      </td>
+      <td>
+        <ngx-select appearance="fill" [multiple]="true" hint="Select help text<br />Second line<br />A third" label="Select box Label">
+          <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
+          </ngx-select-option>
+        </ngx-select>
+      </td>
+      <td>
+        <ngx-button class="btn">Default</ngx-button>
+      </td>
+      <td>
+        <input type="text" class="form-input" />
+      </td>
+      <td>
+        <select>
+          <option>Breach</option>
+          <option>DDOS</option>
+          <option>Physical</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>With placeholders</td>
+      <td>
+        <label>A label:</label>
+      </td>
+      <td>
+        <ngx-input appearance="fill" type="text" [ngModel]="inputValue" (change)="inputValue = $event" placeholder="Inputbox Placeholder">
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-select appearance="fill" [filterable]="false" placeholder="SelectBox Placeholder">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-select>
+      </td>
+      <td>
+        <ngx-select appearance="fill" [multiple]="true" placeholder="Select Box Placeholder">
+          <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
+          </ngx-select-option>
+        </ngx-select>
+      </td>
+      <td>
+        <ngx-button class="btn">Default</ngx-button>
+      </td>
+      <td>
+        <input type="text" class="form-input" placeholder="Inputbox Placeholder" />
+      </td>
+      <td>
+        <select placeholder="Select Box Placeholder">
+          <option>Breach</option>
+          <option>DDOS</option>
+          <option>Physical</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>With everything</td>
+      <td>
+        <label>A label:</label>
+      </td>
+      <td>
+        <ngx-input
+          appearance="fill"
+          type="text"
+          [ngModel]="inputValue"
+          (change)="inputValue = $event"
+          hint="Input help text<br />Second line"
+          label="Inputbox Label"
+          placeholder="Inputbox Placeholder"
+        >
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-select
+          appearance="fill"
+          [filterable]="false"
+          hint="Select help text<br />Second line<br />A third"
+          label="Select box Label"
+          placeholder="SelectBox Placeholder"
+        >
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-select>
+      </td>
+      <td>
+        <ngx-select
+          appearance="fill"
+          [multiple]="true"
+          hint="Select help text<br />Second line<br />A third"
+          label="Select box Label"
+          placeholder="SelectBox Placeholder"
+        >
+          <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
+          </ngx-select-option>
+        </ngx-select>
+      </td>
+      <td>
+        <ngx-button class="btn">Default</ngx-button>
+      </td>
+      <td>
+        <input type="text" class="form-input" placeholder="Input placeholder" />
+      </td>
+      <td>
+        <select>
+          <option>Breach</option>
+          <option>DDOS</option>
+          <option>Physical</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>Invalid</td>
+      <td>
+        <label>A label:</label>
+      </td>
+      <td>
+        <ngx-input
+          appearance="fill"
+          [required]="true"
+          type="text"
+          [minlength]="10"
+          [ngModel]="inputValue"
+          (change)="inputValue = $event"
+          hint="Input help text<br />Second line"
+          label="Inputbox Label"
+          placeholder="Inputbox Placeholder"
+        >
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-select
+          appearance="fill"
+          minSelections="1"
+          [filterable]="false"
+          hint="Select help text<br />Second line<br />A third"
+          label="Select box Label"
+          placeholder="SelectBox Placeholder"
+        >
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-select>
+      </td>
+      <td>
+        <ngx-select
+          appearance="fill"
+          minSelections="1"
+          [multiple]="true"
+          hint="Select help text<br />Second line<br />A third"
+          label="Select box Label"
+          placeholder="SelectBox Placeholder"
+        >
+          <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
+          </ngx-select-option>
+        </ngx-select>
+      </td>
+      <td>
+        <ngx-button class="btn">Default</ngx-button>
+      </td>
+      <td>
+        <input required type="text" class="form-input" placeholder="Input placeholder" />
+      </td>
+      <td>
+        <select required>
+          <option>Breach</option>
+          <option>DDOS</option>
+          <option>Physical</option>
+        </select>
+      </td>
+    </tr>
+  </table>
+
   <h3 class="style-header">Responsive Validation Tests</h3>
 
   <ngx-input [(ngModel)]="minValue" type="text" type="number" label="Min Length" [min]="0" [max]="maxValue">
