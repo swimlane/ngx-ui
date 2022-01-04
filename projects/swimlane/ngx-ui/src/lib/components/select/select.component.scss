@@ -116,8 +116,7 @@ $color-chip-text: #fff;
       background: $color-chip-bg;
       color: $color-chip-text;
       border-radius: 2px;
-      margin: 2px 5px 2px 0;
-      line-height: 1.7;
+      margin: 0 5px 0 0;
       white-space: nowrap;
       overflow: visible;
       text-overflow: ellipsis;
@@ -537,34 +536,40 @@ $color-chip-text: #fff;
   }
 
   &.fill {
-    margin-top: 16px;
-    margin-bottom: 8px;
-    padding-top: calc(0.7em + 8px);
-    padding-bottom: 0;
-
-    .ngx-select-input-box {
-      margin: 0;
-      padding: 3px 0;
-      min-height: 1.75rem;
-      position: relative;
-      z-index: 1;
-      color: $color-blue-grey-050;
-    }
-
     .ngx-select-input-list {
       padding-left: 10px;
     }
 
     .ngx-select-flex-wrap .ngx-select-input-box {
+      margin: -4px 0 0;
+      padding: 3px 0;
+      top: 3px;
+      min-height: 1.75rem;
+      position: relative;
+      z-index: 1;
+      color: $color-blue-grey-050;
+
       position: relative;
       background-color: $color-fill-input-bg;
       mix-blend-mode: exclusion;
     }
 
+    .ngx-select-input .ngx-select-label {
+      top: -18px;
+      padding: 0;
+      position: absolute;
+      font-size: 0.7em;
+      padding: 0;
+      line-height: 1.875em;
+    }
+
     &.single-selection .ngx-select-input .ngx-select-clear,
     .ngx-select-caret {
-      top: 1.4em;
       z-index: 500;
+    }
+
+    &.single-selection .ngx-select-input .ngx-select-clear {
+      top: 1.4em;
     }
 
     .ngx-select-label {
