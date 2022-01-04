@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: Improved keyboard accessibility for `ngx-radiobutton` and `ngx-radiobutton-group`
+- Fix: Fixed issues on `ngx-radiobutton` and `ngx-radiobutton-group` with form controls
 - Fix: `ngx-date-time` now works with form controls
 - Breaking: `ngx-date-time` no longer displays it's own validation messages
 - Feature: added timezone popup to `ngx-date-time`
