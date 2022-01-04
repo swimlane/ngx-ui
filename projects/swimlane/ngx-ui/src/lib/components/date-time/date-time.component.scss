@@ -4,6 +4,7 @@
 $calendar-bg: $color-blue-grey-800;
 $calender-border: #2d3544;
 $animation-timing: 200ms;
+$input-invalid-color: $color-red;
 
 .ngx-date-time {
   position: relative;
@@ -57,17 +58,6 @@ $animation-timing: 200ms;
     }
   }
 
-  .date-time-hint {
-    display: flex;
-    justify-content: space-between;
-
-    .input-error {
-      color: $color-red;
-      margin-left: auto;
-      padding-left: 5px;
-    }
-  }
-
   &.autosize {
     display: inline-block;
 
@@ -105,6 +95,41 @@ $animation-timing: 200ms;
           text-overflow: ellipsis;
         }
       }
+    }
+  }
+
+  &--date-invalid,
+  &--date-out-of-range,
+  &.invalid.ng-touched,
+  &.ng-invalid.ng-touched,
+  &.ng-invalid.ng-dirty {
+    .ngx-input-underline {
+      background-color: $input-invalid-color !important;
+
+      .underline-fill {
+        background-color: $input-invalid-color !important;
+      }
+    }
+
+    .ngx-input .ngx-input-label,
+    .ngx-input.focused .ngx-input-label {
+      color: $input-invalid-color !important;
+    }
+
+    .ngx-input-hint {
+      color: $input-invalid-color !important;
+    }
+
+    .ngx-input-box,
+    .ngx-input-textarea {
+      caret-color: $input-invalid-color !important;
+    }
+  }
+
+  &--has-popup {
+    input {
+      text-decoration-line: underline;
+      text-decoration-style: dashed;
     }
   }
 }
@@ -212,6 +237,46 @@ $animation-timing: 200ms;
 
     .clear-btn {
       margin-right: 15px;
+    }
+  }
+}
+
+.ngx-tooltip-content.date-tip-tooltip {
+  padding: 5px;
+
+  .date-zone-display {
+    font-weight: bold;
+    font-size: 15px;
+    color: $color-blue-grey-700;
+
+    > span {
+      display: inline-block;
+    }
+
+    button {
+      float: right;
+      font-weight: bold;
+      line-height: 16px;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: $color-blue-grey-700;
+      background: #dee1ea;
+      margin-left: 5px;
+      padding: 0 6px;
+      vertical-align: text-top;
+      text-align: left;
+      min-width: 70px;
+
+      ngx-icon {
+        padding-right: 5px;
+      }
+
+      &:hover,
+      &:active,
+      &:active:hover:focus:not(.disabled),
+      &:active:hover:focus:not([disabled]) {
+        background: #fff;
+      }
     }
   }
 }

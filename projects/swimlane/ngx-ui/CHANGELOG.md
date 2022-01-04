@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Fix: `ngx-date-time` now works with form controls
+- Breaking: `ngx-date-time` no longer displays it's own validation messages
+- Feature: added timezone popup to `ngx-date-time`
 - Feature: added `ngx-time` component
 - Enhancement: Improved keyboard accessibility for `ngx-select`
 - Enhancement: Add ability to unlock `ngx-input` for passwords

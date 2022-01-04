@@ -387,7 +387,7 @@ describe('NgxTimeDisplayComponent', () => {
     expect(component.datetime).toBeDefined(Date);
     expect(component.defaultInputTimeZone).toBeUndefined();
     expect(component.displayTimeZone).toBeUndefined();
-    expect(component.displayMode).toBe('user');
+    expect(component.displayMode).toBe('timezone');
     expect(component.displayFormat).toBe('LLLL');
     expect(component.clipFormat).toBe('LLLL');
     expect(component.timezones.UTC).toEqual('Etc/UTC');
