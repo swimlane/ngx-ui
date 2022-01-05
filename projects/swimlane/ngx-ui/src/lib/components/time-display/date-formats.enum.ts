@@ -43,6 +43,7 @@ export const DATE_DISPLAY_FORMATS = {
 
 export const DATE_DISPLAY_INPUT_FORMATS: Array<string | moment.MomentBuiltinFormat> = [
   DATE_DISPLAY_FORMATS.dateTime,
+  DATE_DISPLAY_FORMATS.dateTimeSeconds,
   DATE_DISPLAY_FORMATS.date,
   DATE_DISPLAY_FORMATS.time,
   DATE_DISPLAY_FORMATS.shortDateTime,

@@ -31,6 +31,8 @@
 </ngx-section>
 
 <ngx-section sectionTitle="Time Zones">
+  <output>{{ localString | json }}</output>
+  
   <div class="example">
     <h4>By default inputs are assumed local date/time, display TZ can be defined</h4>
     <ngx-time [datetime]="localString" displayTimeZone="Asia/Tokyo"></ngx-time>

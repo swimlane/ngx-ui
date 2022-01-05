@@ -223,10 +223,15 @@ describe('Date/Time', () => {
         .find('.selected-header h1')
         .should('contain.text', 'Thu, Mar 10 2011')
         .should('contain.text', '9:46 pm');
-      cy.get('.day').contains('17').click();
+      cy.get('.day').contains('17').click();  // Note: local
+      cy.get('.ngx-date-time-dialog')
+        .should('exist')
+        .find('.selected-header h1')
+        .should('contain.text', 'Thu, Mar 17 2011')
+        .should('contain.text', '9:46 pm');
       cy.get('.apply-btn').click();
       cy.get('.ngx-date-time-dialog').should('not.exist');
-      cy.get('@output').should('contain.text', 'Mar 17 2011');
+      cy.get('@output').should('contain.text', '2011-03-18T05:46:24.000Z'); // Note: UTC
     });
 
     it('handles invalid input', () => {
