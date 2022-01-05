@@ -96,7 +96,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   @Input()
   set value(val: Date | string) {
     if (!val && !this._value) {
-      val = this._value = null; // Match falsey values
+      val = this._value = null; // Match falsely values
     }
 
     let isSame = val === this._value;
@@ -191,28 +191,48 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   get format(): string {
     if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
 
-    if (this.displayMode === DATE_DISPLAY_TYPES.LOCAL) {
-      if (this.inputType === DateTimeType.date) {
-        return DATE_DISPLAY_FORMATS.localeDate;
-      } else if (this.inputType === DateTimeType.time) {
-        return DATE_DISPLAY_FORMATS.localeTime;
-      }
-      return DATE_DISPLAY_FORMATS.localeDateTime;
+    switch (this.displayMode) {
+      case DATE_DISPLAY_TYPES.TIMEZONE:
+        switch (this.inputType) {
+          case DateTimeType.date:
+            switch (this.precision) {
+              case 'month':
+                return DATE_DISPLAY_FORMATS.dateMonth;
+              case 'year':
+                return DATE_DISPLAY_FORMATS.dateYear;
+            }
+            return DATE_DISPLAY_FORMATS.date;
+          case DateTimeType.time:
+            return DATE_DISPLAY_FORMATS.time;
+        }
+        return DATE_DISPLAY_FORMATS.dateTime;
+      case DATE_DISPLAY_TYPES.LOCAL:
+        switch (this.inputType) {
+          case DateTimeType.date:
+            switch (this.precision) {
+              case 'month':
+                return DATE_DISPLAY_FORMATS.dateMonth;
+              case 'year':
+                return DATE_DISPLAY_FORMATS.dateYear;
+            }
+            return DATE_DISPLAY_FORMATS.localeDate;
+          case DateTimeType.time:
+            return DATE_DISPLAY_FORMATS.localeTime;
+        }
+        return DATE_DISPLAY_FORMATS.localeDateTime;
     }
 
-    if (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE) {
-      if (this.inputType === DateTimeType.date) {
-        return DATE_DISPLAY_FORMATS.userDate;
-      } else if (this.inputType === DateTimeType.time) {
-        return DATE_DISPLAY_FORMATS.userTime;
-      }
-      return DATE_DISPLAY_FORMATS.userDateTime;
-    }
-
-    if (this.inputType === DateTimeType.date) {
-      return DATE_DISPLAY_FORMATS.date;
-    } else if (this.inputType === DateTimeType.time) {
-      return DATE_DISPLAY_FORMATS.time;
+    switch (this.inputType) {
+      case DateTimeType.date:
+        switch (this.precision) {
+          case 'month':
+            return DATE_DISPLAY_FORMATS.dateMonth;
+          case 'year':
+            return DATE_DISPLAY_FORMATS.dateYear;
+        }
+        return DATE_DISPLAY_FORMATS.date;
+      case DateTimeType.time:
+        return DATE_DISPLAY_FORMATS.time;
     }
 
     return DATE_DISPLAY_FORMATS.dateTime;
@@ -532,6 +552,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
       /* istanbul ignore next */
       date = isNaN(date.getTime()) ? date.toString() : date.toISOString();
     }
+    // Ensures that the input formats includes the display format
     const inputFormats = [...this.inputFormats];
     if (this.format && !inputFormats.includes(this.format)) {
       inputFormats.unshift(this.format);
