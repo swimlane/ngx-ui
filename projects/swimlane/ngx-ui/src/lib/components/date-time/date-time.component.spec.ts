@@ -54,7 +54,7 @@ describe('DateTimeComponent', () => {
     component.tabindex = 0;
     component.autofocus = false;
     component.minDate = undefined;
-    component.minDate = undefined;
+    component.maxDate = undefined;
     fixture.detectChanges();
   });
 

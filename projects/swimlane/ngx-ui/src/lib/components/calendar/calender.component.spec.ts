@@ -233,7 +233,7 @@ describe('CalendarComponent', () => {
 
   describe('pagination', () => {
     beforeEach(() => {
-      component.activeDate = moment('5/1/1975');
+      component.focusDate = moment('5/1/1975');
       component.startYear = new Date().getFullYear();
       component.weeks = [];
     });
@@ -241,18 +241,18 @@ describe('CalendarComponent', () => {
     describe('month', () => {
       describe('prevMonth', () => {
         it('should set value to previous month', () => {
-          const month = component.activeDate.get('month');
+          const month = component.focusDate.get('month');
           component.prevMonth();
-          expect(component.activeDate.get('month')).toBe(month - 1);
+          expect(component.focusDate.get('month')).toBe(month - 1);
           expect(component.weeks.length).toBeGreaterThan(0);
         });
       });
 
       describe('nextMonth', () => {
         it('should set value to next month', () => {
-          const month = component.activeDate.get('month');
+          const month = component.focusDate.get('month');
           component.nextMonth();
-          expect(component.activeDate.get('month')).toBe(month < 11 ? month + 1 : 0);
+          expect(component.focusDate.get('month')).toBe(month < 11 ? month + 1 : 0);
           expect(component.weeks.length).toBeGreaterThan(0);
         });
       });
@@ -261,17 +261,17 @@ describe('CalendarComponent', () => {
     describe('year', () => {
       describe('prevYear', () => {
         it('should set value to previous year', () => {
-          const year = component.activeDate.get('year');
+          const year = component.focusDate.get('year');
           component.prevYear();
-          expect(component.activeDate.get('year')).toBe(year - 1);
+          expect(component.focusDate.get('year')).toBe(year - 1);
         });
       });
 
       describe('nextYear', () => {
         it('should set value to next year', () => {
-          const year = component.activeDate.get('year');
+          const year = component.focusDate.get('year');
           component.nextYear();
-          expect(component.activeDate.get('year')).toBe(year + 1);
+          expect(component.focusDate.get('year')).toBe(year + 1);
         });
       });
     });
@@ -302,14 +302,14 @@ describe('CalendarComponent', () => {
       now.setDate(now.getDate() - 1);
       component.value = now;
       component.writeValue(newDate);
-      expect(component.activeDate.isSame(newDate)).toBe(true);
+      expect(component.focusDate.isSame(newDate)).toBe(true);
     });
 
     it('should not write new value if invalid', () => {
       const date = 'test';
       component.value = new Date();
       component.writeValue(date);
-      expect(component.activeDate.isSame(date)).toBe(false);
+      expect(component.focusDate.isSame(date)).toBe(false);
     });
   });
 

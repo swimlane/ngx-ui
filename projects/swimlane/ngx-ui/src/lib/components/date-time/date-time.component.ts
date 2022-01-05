@@ -43,6 +43,7 @@ import {
   DATE_DISPLAY_TYPES
 } from '../time-display/date-formats.enum';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
+import { CalendarComponent } from '../calendar/calendar.component';
 
 let nextId = 0;
 
@@ -353,6 +354,9 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   @ViewChild('input', { static: true })
   readonly input: InputComponent;
 
+  @ViewChild(CalendarComponent, { static: false })
+  readonly calendar: CalendarComponent;
+
   dialog: any;
   dialogModel: moment.Moment;
   hour: number;
@@ -533,10 +537,12 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   };
 
   onInputKeyDown(event: KeyboardEvent): void {
-    if (event.code === KeyboardKeys.ARROW_DOWN && event.altKey) {
-      // Alt + Down Arrow	Open the calendar pop-up
+    if (event.code === KeyboardKeys.ARROW_DOWN) {
+      // Down Arrow	Open the calendar pop-up
       this.open();
-      // todo: focus on the calendar once keyboard navigation is supported
+      setTimeout(() => {
+        this.calendar.focus();
+      }, 200);
     } else if (event.code === KeyboardKeys.ESCAPE) {
       // Escape	Close the calendar pop-up
       this.close();

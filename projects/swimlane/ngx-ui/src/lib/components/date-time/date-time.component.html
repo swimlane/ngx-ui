@@ -61,6 +61,7 @@
     [id]="id + '-cal'"
     *ngIf="inputType === 'date' || inputType === 'datetime'"
     (change)="setDialogDate($event)"
+    (dayKeyEnter)="apply()"
     [minDate]="minDate"
     [maxDate]="maxDate"
     [ngModel]="dialogModel"
