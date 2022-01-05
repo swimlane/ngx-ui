@@ -223,7 +223,7 @@ describe('Date/Time', () => {
         .find('.selected-header h1')
         .should('contain.text', 'Thu, Mar 10 2011')
         .should('contain.text', '9:46 pm');
-      cy.get('.day').contains('17').click();  // Note: local
+      cy.get('.day').contains('17').click(); // Note: local
       cy.get('.ngx-date-time-dialog')
         .should('exist')
         .find('.selected-header h1')
