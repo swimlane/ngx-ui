@@ -80,22 +80,22 @@ describe('DateTimeComponent', () => {
       expect(component.appearance).toEqual('legacy');
       expect(component.inputType).toEqual('date');
       expect(component.displayMode).toEqual('timezone');
-      expect(component.format).toEqual('MMM D, YYYY');
-      expect(component.clipFormat).toEqual('MMM D, YYYY');
+      expect(component.format).toEqual('L Z');
+      expect(component.clipFormat).toEqual('L Z');
     });
 
-    it('should have reasonable defaults when mode is provided', () => {
+    it('should have reasonable defaults when mode is timezone', () => {
       component.displayMode = DATE_DISPLAY_TYPES.TIMEZONE;
       fixture.detectChanges();
 
       expect(component.appearance).toEqual('legacy');
       expect(component.inputType).toEqual('date');
       expect(component.displayMode).toEqual('timezone');
-      expect(component.format).toEqual('MMM D, YYYY');
-      expect(component.clipFormat).toEqual('MMM D, YYYY');
+      expect(component.format).toEqual('L Z');
+      expect(component.clipFormat).toEqual('L Z');
     });
 
-    it('should have reasonable defaults when mode is provided', () => {
+    it('should have reasonable defaults when mode is custom', () => {
       component.displayMode = DATE_DISPLAY_TYPES.CUSTOM;
       fixture.detectChanges();
 
@@ -104,6 +104,39 @@ describe('DateTimeComponent', () => {
       expect(component.displayMode).toEqual('custom');
       expect(component.format).toEqual('MMM D, YYYY');
       expect(component.clipFormat).toEqual('MMM D, YYYY');
+    });
+
+    it('should have reasonable defaults when precision is month', () => {
+      component.precision = 'month';
+      fixture.detectChanges();
+
+      expect(component.appearance).toEqual('legacy');
+      expect(component.inputType).toEqual('date');
+      expect(component.displayMode).toEqual('local');
+      expect(component.format).toEqual('MMM YYYY');
+      expect(component.clipFormat).toEqual('MMM YYYY');
+    });
+
+    it('should have reasonable defaults when precision is year', () => {
+      component.precision = 'year';
+      fixture.detectChanges();
+
+      expect(component.appearance).toEqual('legacy');
+      expect(component.inputType).toEqual('date');
+      expect(component.displayMode).toEqual('local');
+      expect(component.format).toEqual('YYYY');
+      expect(component.clipFormat).toEqual('YYYY');
+    });
+
+    it('should have reasonable defaults when precision is hour', () => {
+      component.precision = 'hour';
+      fixture.detectChanges();
+
+      expect(component.appearance).toEqual('legacy');
+      expect(component.inputType).toEqual('datetime');
+      expect(component.displayMode).toEqual('local');
+      expect(component.format).toEqual('L LT');
+      expect(component.clipFormat).toEqual('L LT');
     });
   });
 
@@ -171,7 +204,7 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('Jul 20, 1969');
+        expect(component.displayValue).toEqual('07/20/1969 +00:00');
       });
 
       it('should support Asia/Tokyo', () => {
@@ -182,7 +215,7 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('Jul 21, 1969');
+        expect(component.displayValue).toEqual('07/21/1969 +09:00');
       });
     });
   });
@@ -256,7 +289,7 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('Jul 20, 1969 8:17 PM +00:00');
+        expect(component.displayValue).toEqual('07/20/1969 8:17 PM +00:00');
       });
 
       it('should support Asia/Tokyo', () => {
@@ -267,7 +300,7 @@ describe('DateTimeComponent', () => {
         expect(component.value).toBeTruthy();
         expect(component.value instanceof Date).toBeTruthy();
         expect(typeof component.displayValue === 'string').toBeTruthy();
-        expect(component.displayValue).toEqual('Jul 21, 1969 5:17 AM +09:00');
+        expect(component.displayValue).toEqual('07/21/1969 5:17 AM +09:00');
       });
     });
 
@@ -538,19 +571,19 @@ describe('DateTimeComponent', () => {
 
     it('should round to precision [hour]', () => {
       component.precision = 'hour';
-      component.format = 'shortDateTimeSeconds';
+      component.inputType = 'datetime';
       component.inputChanged(MOON_LANDING);
       component.onBlur();
-      expect(component.input.value).toEqual('Jul 20, 1969 1:00:00 PM');
+      expect(component.input.value).toEqual('07/20/1969 1:00 PM');
       expect(component.value).toBeInstanceOf(Date);
     });
 
     it('should round to precision [minute]', () => {
       component.precision = 'minute';
-      component.format = 'shortDateTimeSeconds';
+      component.inputType = 'datetime';
       component.inputChanged(MOON_LANDING);
       component.onBlur();
-      expect(component.input.value).toEqual('Jul 20, 1969 1:17:00 PM');
+      expect(component.input.value).toEqual('07/20/1969 1:17 PM');
       expect(component.value).toBeInstanceOf(Date);
     });
 
@@ -567,7 +600,7 @@ describe('DateTimeComponent', () => {
       component.timezone = 'America/Los_Angeles';
       component.inputChanged('7/20/1969');
       component.onBlur();
-      expect(component.input.value).toEqual('Jul 20, 1969 12:00 AM -07:00');
+      expect(component.input.value).toEqual('07/20/1969 12:00 AM -07:00');
       expect(component.value).toBeInstanceOf(Date);
     });
 

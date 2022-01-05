@@ -153,10 +153,9 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   // date, time, dateTime
   @Input()
   get inputType(): string {
-    if (!this._inputType) {
-      return DateTimeType.date;
-    }
-    return this._inputType;
+    if (this._inputType) return this._inputType;
+    if (this.precision === 'hour' || this.precision === 'minute') return DateTimeType.datetime;
+    return DateTimeType.date;
   }
   set inputType(val: string) {
     this._inputType = val;
@@ -197,15 +196,15 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
           case DateTimeType.date:
             switch (this.precision) {
               case 'month':
-                return DATE_DISPLAY_FORMATS.dateMonth;
+                return DATE_DISPLAY_FORMATS.timezoneDateMonth;
               case 'year':
-                return DATE_DISPLAY_FORMATS.dateYear;
+                return DATE_DISPLAY_FORMATS.timezoneDateYear;
             }
-            return DATE_DISPLAY_FORMATS.date;
+            return DATE_DISPLAY_FORMATS.timezoneDate;
           case DateTimeType.time:
-            return DATE_DISPLAY_FORMATS.time;
+            return DATE_DISPLAY_FORMATS.timezoneTime;
         }
-        return DATE_DISPLAY_FORMATS.dateTime;
+        return DATE_DISPLAY_FORMATS.timezoneDateTime;
       case DATE_DISPLAY_TYPES.LOCAL:
         switch (this.inputType) {
           case DateTimeType.date:
@@ -240,6 +239,20 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   set format(val: string) {
     this._format = val;
     this.update();
+  }
+
+  @Input()
+  set displayFormat(val: string) {
+    this._displayFormat = val;
+  }
+  get displayFormat(): string {
+    return (
+      DATE_DISPLAY_FORMATS[this._displayFormat] ||
+      this._displayFormat ||
+      DATE_DISPLAY_FORMATS[this._format] ||
+      this._format ||
+      DATE_DISPLAY_FORMATS.fullDateTime
+    );
   }
 
   @Input()
@@ -351,6 +364,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   private _value: Date | string;
   private _displayValue = '';
   private _format: string;
+  private _displayFormat: string;
   private _inputType: string;
   private _maxDate: Date | string;
   private _minDate: Date | string;
@@ -559,7 +573,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
     }
     const timezone =
       this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE ? moment.tz.guess() : undefined);
-    let m = timezone ? moment.tz(date, inputFormats, this.timezone) : moment(date, inputFormats);
+    let m = timezone ? moment.tz(date, inputFormats, timezone) : moment(date, inputFormats);
     m = this.precision ? this.roundTo(m, this.precision) : m;
     return m;
   }
@@ -595,7 +609,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
       const tz = this.timezones[key] || localTimezone;
       const date = mdate.clone().tz(tz);
       const clip = date.format(this.clipFormat);
-      const display = date.format(this.format);
+      const display = date.format(this.displayFormat);
       this.timeValues[key] = {
         key,
         clip,

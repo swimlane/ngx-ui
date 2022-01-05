@@ -151,12 +151,12 @@ describe('Date/Time', () => {
     });
 
     it('has current values', () => {
-      cy.get('@output').should('contain.text', 'Thu Mar 10 2011 21:46:24 GMT-0800 (Pacific Standard Time)'); // Timezone set by env var
+      cy.get('@output').should('contain.text', '2011-03-11T05:46:24.000Z'); // Timezone set by env var
 
       cy.get('@SUT').within(() => {
-        cy.get('ngx-date-time').eq(0).ngxGetValue().should('equal', '03/10/2011 9:46 PM (PST)');
-        cy.get('ngx-date-time').eq(1).ngxGetValue().should('equal', '03/11/2011 5:46 AM (UTC)');
-        cy.get('ngx-date-time').eq(2).ngxGetValue().should('equal', '03/11/2011 2:46 PM (JST)');
+        cy.get('ngx-date-time').eq(0).ngxGetValue().should('equal', '03/10/2011 9:46 PM -08:00');
+        cy.get('ngx-date-time').eq(1).ngxGetValue().should('equal', '03/11/2011 5:46 AM +00:00');
+        cy.get('ngx-date-time').eq(2).ngxGetValue().should('equal', '03/11/2011 2:46 PM +09:00');
       });
     });
 
@@ -169,8 +169,8 @@ describe('Date/Time', () => {
               .closest('body')
               .find('.date-tip-tooltip')
               .should('be.visible')
-              .should('contain.text', '03/10/2011 9:46 PM (PST)')
-              .should('contain.text', '03/11/2011 5:46 AM (UTC)');
+              .should('contain.text', 'Mar 10, 2011 9:46 PM -08:00 (PST)')
+              .should('contain.text', 'Mar 11, 2011 5:46 AM +00:00 (UTC)');
           });
         });
     });
