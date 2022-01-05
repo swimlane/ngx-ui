@@ -2,10 +2,10 @@
 
 <ngx-section class="shadow" [sectionTitle]="'Calendar'">
   <h3>Basic</h3>
-  <ngx-calendar name="calendar1" [(ngModel)]="curDate" (change)="dateChanged($event)">
+  <ngx-calendar name="calendar1" [(ngModel)]="curDate1" (change)="dateChanged($event)">
   </ngx-calendar>
   <p>Current Date:
-    <i>{{curDate}}</i>
+    <i>{{curDate1}}</i>
   </p>
   <app-prism>
 <![CDATA[<ngx-calendar
@@ -17,7 +17,7 @@
   <br />
 
   <h3>Min/Max Dates</h3>
-  <ngx-calendar name="calendar2" [minDate]="minDate" [maxDate]="maxDate" [(ngModel)]="curDate3" (change)="dateChanged($event)">
+  <ngx-calendar name="calendar2" [minDate]="minDate" [maxDate]="maxDate" [(ngModel)]="date" (change)="dateChanged($event)">
   </ngx-calendar>
   <p>Min Date:
     <i>{{minDate}}</i> and Max Date:
@@ -28,7 +28,7 @@
   name="calendar2"
   [minDate]="minDate"
   [maxDate]="maxDate"
-  [(ngModel)]="curDate"
+  [(ngModel)]="date"
   (change)="dateChanged($event)">
 </ngx-calendar>]]>
   </app-prism>
@@ -36,7 +36,7 @@
   <br />
 
   <h3>Disabled</h3>
-  <ngx-calendar name="calendar3" [disabled]="true" [(ngModel)]="curDate" (change)="dateChanged($event)">
+  <ngx-calendar name="calendar3" [disabled]="true" [(ngModel)]="curDate3" (change)="dateChanged($event)">
   </ngx-calendar>
   <br />
   <app-prism>
@@ -50,16 +50,16 @@
 
   <h3>Timezones</h3>
 
-  <h4>Local: {{curDate | amDateFormat: 'LL zz' }}</h4>
-  <ngx-calendar name="calendar3" [(ngModel)]="curDate" (change)="dateChanged($event)">
+  <h4>Local: {{dateTz | amDateFormat: 'LL zz' }}</h4>
+  <ngx-calendar name="calendar3" [(ngModel)]="dateTz" (change)="dateChanged($event)">
   </ngx-calendar>
 
-  <h4>UTC: {{curDate | amTimeZone: 'utc' | amDateFormat: 'LL zz' }}</h4>
-  <ngx-calendar name="calendar3" timezone="utc" [(ngModel)]="curDate" (change)="dateChanged($event)">
+  <h4>UTC: {{dateTz | amTimeZone: 'utc' | amDateFormat: 'LL zz' }}</h4>
+  <ngx-calendar name="calendar3" timezone="utc" [(ngModel)]="dateTz" (change)="dateChanged($event)">
   </ngx-calendar>
 
-  <h4>JST: {{curDate | amTimeZone: 'Asia/Tokyo' | amDateFormat: 'LL zz' }}</h4>
-  <ngx-calendar name="calendar3" timezone="Asia/Tokyo"  [(ngModel)]="curDate" (change)="dateChanged($event)">
+  <h4>JST: {{dateTz | amTimeZone: 'Asia/Tokyo' | amDateFormat: 'LL zz' }}</h4>
+  <ngx-calendar name="calendar3" timezone="Asia/Tokyo"  [(ngModel)]="dateTz" (change)="dateChanged($event)">
   </ngx-calendar>
   <br />
   <br />
@@ -68,10 +68,10 @@
   <h3>Min view and Default view</h3>
 
   <h4> Min view: "date" default view: "date" </h4>
-  <ngx-calendar name="calendar4" [(ngModel)]="curDate" (change)="dateChanged($event)" [minView]="'date'" [defaultView]="'date'">
+  <ngx-calendar name="calendar4" [(ngModel)]="curDate4" (change)="dateChanged($event)" [minView]="'date'" [defaultView]="'date'">
   </ngx-calendar>
   <p>Current Date:
-    <i>{{curDate}}</i>
+    <i>{{curDate4}}</i>
   </p>
   <app-prism>
 <![CDATA[<ngx-calendar
@@ -84,10 +84,10 @@
   <br />
 
   <h4> Min view: "date" default view: "month" </h4>
-  <ngx-calendar name="calendar5" [(ngModel)]="curDate" (change)="dateChanged($event)" [minView]="'date'" [defaultView]="'month'">
+  <ngx-calendar name="calendar5" [(ngModel)]="curDate5" (change)="dateChanged($event)" [minView]="'date'" [defaultView]="'month'">
   </ngx-calendar>
   <p>Current Date:
-    <i>{{curDate}}</i>
+    <i>{{curDate5}}</i>
   </p>
   <app-prism>
 <![CDATA[<ngx-calendar
@@ -99,10 +99,10 @@
   </app-prism>
   <br />
   <h4> Min view: "month" default view: "year" </h4>
-  <ngx-calendar name="calendar6" [(ngModel)]="curDate" (change)="dateChanged($event)" [minView]="'month'" [defaultView]="'year'">
+  <ngx-calendar name="calendar6" [(ngModel)]="curDate6" (change)="dateChanged($event)" [minView]="'month'" [defaultView]="'year'">
   </ngx-calendar>
   <p>Current Date:
-    <i>{{curDate}}</i>
+    <i>{{curDate6}}</i>
   </p>
   <app-prism>
 <![CDATA[<ngx-calendar
