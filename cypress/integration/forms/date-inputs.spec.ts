@@ -209,5 +209,121 @@ describe('Date/Time', () => {
         .should('contain.text', '2:46 pm');
       cy.get('body').click();
     });
+
+    it('handles invalid input', () => {
+      const text = 'what what';
+
+      cy.get('@CUT').clear().type(text);
+
+      cy.get('@CUT').ngxGetValue().should('equal', text);
+      cy.get('@output').should('contain.text', text);
+      cy.get('@CUT').should('have.class', 'ngx-date-time--date-invalid');
+      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(255, 69, 20)');
+
+      cy.get('@SUT').find('h1').click(); // blur
+      cy.get('@CUT').ngxGetValue().should('equal', text);
+      cy.get('@output').should('contain.text', text);
+      cy.get('@CUT').should('have.class', 'ngx-date-time--date-invalid');
+      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(255, 69, 20)');
+
+      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
+      cy.get('@CUT').should('not.have.class', 'ngx-date-time--date-invalid');
+      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(20, 131, 255)');
+    });
+
+    it('opens calendar with button', () => {
+      cy.get('@CUT').find('.calendar-dialog-btn').click();
+      cy.get('.ngx-date-time-dialog')
+        .should('exist')
+        .find('.selected-header h1')
+        .should('contain.text', 'Mon, Oct 10 2016');
+      cy.get('.day').contains('17').click();
+      cy.get('.apply-btn').click();
+      cy.get('.ngx-date-time-dialog').should('not.exist');
+      cy.get('@output').should('contain.text', '2016-10-17');
+    });
+  });
+
+  describe('Custom Format', () => {
+    beforeEach(() => {
+      cy.get('[sectiontitle="Date Input"]').as('SUT');
+      cy.get('@SUT').getByLabel('Custom Format').as('CUT');
+      cy.get('@SUT').getByLabel('Current Value:').as('output');
+    });
+
+    it('enters text', () => {
+      const text = '12/12/2020';
+
+      cy.get('@CUT').clear().type(text);
+
+      cy.get('@CUT').ngxGetValue().should('equal', text);
+      cy.get('@output').should('contain.text', text);
+
+      cy.get('@SUT').find('h1').click(); // blur formats
+
+      cy.get('@CUT').ngxGetValue().should('equal', '12/2020');
+      cy.get('@output').should('contain.text', '12/2020');
+    });
+  });
+
+  describe('Min/max', () => {
+    beforeEach(() => {
+      cy.get('[sectiontitle="Date Input"]').as('SUT');
+      cy.get('@SUT').getByLabel('Min/Max Dates').as('CUT');
+      cy.get('@SUT').getByLabel('Current Value:').as('output');
+    });
+
+    it('enters text', () => {
+      cy.get('@CUT').ngxFill('');
+      cy.get('@CUT').should('not.have.class', 'ngx-date-time--date-out-of-range');
+      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(129, 143, 169)');
+
+      cy.get('@CUT').ngxFill('10/28/2016');
+      cy.get('@CUT').should('have.class', 'ngx-date-time--date-out-of-range');
+      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(255, 69, 20)');
+
+      cy.get('@CUT').ngxFill('10/10/2016');
+      cy.get('@CUT').should('not.have.class', 'ngx-date-time--date-out-of-range');
+      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(129, 143, 169)');
+
+      cy.get('@CUT').ngxFill('10/1/2016');
+      cy.get('@CUT').should('have.class', 'ngx-date-time--date-out-of-range');
+      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(255, 69, 20)');
+    });
+  });
+
+  describe('TimeZones', () => {
+    beforeEach(() => {
+      cy.get('[sectiontitle="TimeZones"]').as('SUT');
+      cy.get('@SUT').within(() => {
+        // Bun in ngx-ui testing
+        cy.getByLabel('Current Value:').as('output');
+      });
+    });
+
+    it('has current values', () => {
+      cy.get('@output').should('contain.text', 'Thu Mar 10 2011 21:46:24 GMT-0800 (Pacific Standard Time)'); // Timezone set by env var
+
+      cy.get('@SUT').within(() => {
+        cy.get('ngx-date-time').eq(0).ngxGetValue().should('equal', '03/10/2011 9:46 PM (PST)');
+        cy.get('ngx-date-time').eq(1).ngxGetValue().should('equal', '03/11/2011 5:46 AM (UTC)');
+        cy.get('ngx-date-time').eq(2).ngxGetValue().should('equal', '03/11/2011 2:46 PM (JST)');
+      });
+    });
+
+    it('has popups', () => {
+      cy.get('@SUT')
+        .find('ngx-date-time')
+        .each($el => {
+          cy.wrap($el).whileHovering(() => {
+            cy.root()
+              .closest('body')
+              .find('.date-tip-tooltip')
+              .should('be.visible')
+              .should('contain.text', '03/10/2011 9:46 PM (PST)')
+              .should('contain.text', '03/11/2011 5:46 AM (UTC)');
+          });
+        });
+    });
   });
 });

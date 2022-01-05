@@ -97,7 +97,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   @Input()
   set value(val: Date | string) {
     if (!val && !this._value) {
-      val = this._value = null; // Match falsey values
+      val = this._value = null; // Match falsely values
     }
 
     let isSame = val === this._value;

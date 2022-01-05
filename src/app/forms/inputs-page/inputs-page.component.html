@@ -214,6 +214,7 @@
     [(ngModel)]="passwordValue"
     name="input6"
     [required]="true"
+    [passwordToggleEnabled]="true"
     [hint]="'Enter a password'">
   </ngx-input>
   <br />
@@ -276,7 +277,6 @@
 </ngx-input>]]>
   </app-prism>
 </ngx-section>
-
 
 <ngx-section class="shadow" [sectionTitle]="'Validators'">
   <ngx-input type="text" label="Pattern validation" [(ngModel)]="patternValue" name="patern-input" [pattern]="'^\\w+$'"
@@ -442,14 +442,43 @@
       <td>Error</td>
       <td>
         <ngx-input label="Label" type="number" ngModel="10" max="5" placeholder="Placeholder Text" hint="A brief bit of help text">
-          <ngx-input-prefix>$</ngx-input-prefix>
-          <ngx-input-suffix>USD</ngx-input-suffix>
         </ngx-input>
       </td>
       <td>
         <ngx-input label="Label" type="number" appearance="fill" ngModel="10" max="5" placeholder="Placeholder Text" hint="A brief bit of help text">
-          <ngx-input-prefix>$</ngx-input-prefix>
-          <ngx-input-suffix>USD</ngx-input-suffix>
+        </ngx-input>
+      </td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td>
+        <ngx-input label="Label" type="password" ngModel="secret" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-input label="Label" type="password" appearance="fill" ngModel="secret" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
+        </ngx-input>
+      </td>
+    </tr>
+    <tr>
+      <td>Unlockable</td>
+      <td>
+        <ngx-input label="Label" type="text" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text">
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-input label="Label" type="text" appearance="fill" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text">
+        </ngx-input>
+      </td>
+    </tr>
+    <tr>
+      <td>Secret</td>
+      <td>
+        <ngx-input label="Label" type="password" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-input label="Label" type="password" appearance="fill" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
         </ngx-input>
       </td>
     </tr>
