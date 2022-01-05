@@ -3,7 +3,7 @@ describe('Date/Time', () => {
   const FOCUSED = 'rgb(20, 131, 255)';
   const UNFOCUSED = 'rgb(129, 143, 169)';
   const FOCUS_OUTLINE = 'rgb(148, 198, 255) solid 2px';
-  
+
   before(() => {
     cy.visit('/datetime');
     cy.injectAxe();
