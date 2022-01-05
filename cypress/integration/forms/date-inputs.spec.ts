@@ -1,4 +1,9 @@
 describe('Date/Time', () => {
+  const INVALID = 'rgb(255, 69, 20)';
+  const FOCUSED = 'rgb(20, 131, 255)';
+  const UNFOCUSED = 'rgb(129, 143, 169)';
+  const FOCUS_OUTLINE = 'rgb(148, 198, 255) solid 2px';
+  
   before(() => {
     cy.visit('/datetime');
     cy.injectAxe();
@@ -24,7 +29,7 @@ describe('Date/Time', () => {
       cy.get('@CUT')
         .ngxFindLabel()
         .should('contain.text', 'Date of attack')
-        .should('have.css', 'color', 'rgb(129, 143, 169)')
+        .should('have.css', 'color', UNFOCUSED)
         .should('have.css', 'font-size', '11.2px')
         .should('have.css', 'top', '-15px');
 
@@ -34,7 +39,7 @@ describe('Date/Time', () => {
       cy.get('@CUT')
         .ngxFindLabel()
         .should('contain.text', 'Date of attack')
-        .should('have.css', 'color', 'rgb(129, 143, 169)')
+        .should('have.css', 'color', UNFOCUSED)
         .should('have.css', 'font-size', '16px')
         .should('have.css', 'top', '0px');
 
@@ -43,7 +48,7 @@ describe('Date/Time', () => {
       cy.get('@CUT')
         .ngxFindLabel()
         .should('contain.text', 'Date of attack')
-        .should('have.css', 'color', 'rgb(20, 131, 255)')
+        .should('have.css', 'color', FOCUSED)
         .should('have.css', 'font-size', '11.2px')
         .should('have.css', 'top', '-15px');
     });
@@ -67,17 +72,17 @@ describe('Date/Time', () => {
       cy.get('@CUT').ngxGetValue().should('equal', text);
       cy.get('@output').should('contain.text', text);
       cy.get('@CUT').should('have.class', 'ngx-date-time--date-invalid');
-      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(255, 69, 20)');
+      cy.get('@CUT').find('label').should('have.css', 'color', INVALID);
 
       cy.get('@SUT').find('h1').click(); // blur
       cy.get('@CUT').ngxGetValue().should('equal', text);
       cy.get('@output').should('contain.text', text);
       cy.get('@CUT').should('have.class', 'ngx-date-time--date-invalid');
-      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(255, 69, 20)');
+      cy.get('@CUT').find('label').should('have.css', 'color', INVALID);
 
       cy.get('@CUT').clear().ngxGetValue().should('equal', '');
       cy.get('@CUT').should('not.have.class', 'ngx-date-time--date-invalid');
-      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(20, 131, 255)');
+      cy.get('@CUT').find('label').should('have.css', 'color', FOCUSED);
     });
 
     it('opens calendar with button', () => {
@@ -99,9 +104,9 @@ describe('Date/Time', () => {
         .should('exist')
         .find('.selected-header h1')
         .should('contain.text', 'Mon, Oct 10 2016'); // BUG
-      cy.get('.day.focus').should('contain.text', '10').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // Focuses on current value
+      cy.get('.day.focus').should('contain.text', '10').should('have.css', 'outline', FOCUS_OUTLINE); // Focuses on current value
       cy.realPress('ArrowDown');
-      cy.get('.day.focus').should('contain.text', '17').should('have.css', 'outline', 'rgb(148, 198, 255) solid 2px'); // Focuses on current value
+      cy.get('.day.focus').should('contain.text', '17').should('have.css', 'outline', FOCUS_OUTLINE); // Focuses on current value
       cy.realPress('Space');
       cy.realPress('Enter');
       cy.get('@output').should('contain.text', '2016-10-17');
@@ -140,19 +145,19 @@ describe('Date/Time', () => {
     it('enters text', () => {
       cy.get('@CUT').ngxFill('');
       cy.get('@CUT').should('not.have.class', 'ngx-date-time--date-out-of-range');
-      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(129, 143, 169)');
+      cy.get('@CUT').find('label').should('have.css', 'color', UNFOCUSED);
 
       cy.get('@CUT').ngxFill('10/28/2016');
       cy.get('@CUT').should('have.class', 'ngx-date-time--date-out-of-range');
-      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(255, 69, 20)');
+      cy.get('@CUT').find('label').should('have.css', 'color', INVALID);
 
       cy.get('@CUT').ngxFill('10/10/2016');
       cy.get('@CUT').should('not.have.class', 'ngx-date-time--date-out-of-range');
-      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(129, 143, 169)');
+      cy.get('@CUT').find('label').should('have.css', 'color', UNFOCUSED);
 
       cy.get('@CUT').ngxFill('10/1/2016');
       cy.get('@CUT').should('have.class', 'ngx-date-time--date-out-of-range');
-      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(255, 69, 20)');
+      cy.get('@CUT').find('label').should('have.css', 'color', INVALID);
     });
   });
 
@@ -218,17 +223,17 @@ describe('Date/Time', () => {
       cy.get('@CUT').ngxGetValue().should('equal', text);
       cy.get('@output').should('contain.text', text);
       cy.get('@CUT').should('have.class', 'ngx-date-time--date-invalid');
-      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(255, 69, 20)');
+      cy.get('@CUT').find('label').should('have.css', 'color', INVALID);
 
       cy.get('@SUT').find('h1').click(); // blur
       cy.get('@CUT').ngxGetValue().should('equal', text);
       cy.get('@output').should('contain.text', text);
       cy.get('@CUT').should('have.class', 'ngx-date-time--date-invalid');
-      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(255, 69, 20)');
+      cy.get('@CUT').find('label').should('have.css', 'color', INVALID);
 
       cy.get('@CUT').clear().ngxGetValue().should('equal', '');
       cy.get('@CUT').should('not.have.class', 'ngx-date-time--date-invalid');
-      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(20, 131, 255)');
+      cy.get('@CUT').find('label').should('have.css', 'color', FOCUSED);
     });
 
     it('opens calendar with button', () => {
@@ -276,19 +281,19 @@ describe('Date/Time', () => {
     it('enters text', () => {
       cy.get('@CUT').ngxFill('');
       cy.get('@CUT').should('not.have.class', 'ngx-date-time--date-out-of-range');
-      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(129, 143, 169)');
+      cy.get('@CUT').find('label').should('have.css', 'color', UNFOCUSED);
 
       cy.get('@CUT').ngxFill('10/28/2016');
       cy.get('@CUT').should('have.class', 'ngx-date-time--date-out-of-range');
-      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(255, 69, 20)');
+      cy.get('@CUT').find('label').should('have.css', 'color', INVALID);
 
       cy.get('@CUT').ngxFill('10/10/2016');
       cy.get('@CUT').should('not.have.class', 'ngx-date-time--date-out-of-range');
-      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(129, 143, 169)');
+      cy.get('@CUT').find('label').should('have.css', 'color', UNFOCUSED);
 
       cy.get('@CUT').ngxFill('10/1/2016');
       cy.get('@CUT').should('have.class', 'ngx-date-time--date-out-of-range');
-      cy.get('@CUT').find('label').should('have.css', 'color', 'rgb(255, 69, 20)');
+      cy.get('@CUT').find('label').should('have.css', 'color', INVALID);
     });
   });
 
