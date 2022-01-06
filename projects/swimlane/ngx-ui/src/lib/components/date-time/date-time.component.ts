@@ -96,6 +96,10 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
 
   @Input()
   set value(val: Date | string) {
+    if (typeof val === 'string') {
+      val = val.trim();
+    }
+
     if (!val && !this._value) {
       val = this._value = null; // Match falsely values
     }
@@ -107,12 +111,15 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
     const date = this.parseDate(val);
     if (val && date.isValid()) {
       isDate = true;
-      const sameDiff: moment.unitOfTime.StartOf = this.precision
-        ? this.precision
-        : this.inputType === DateTimeType.date
-        ? 'day'
-        : 'second';
-      isSame = this._value ? date.isSame(this._value, sameDiff) : false;
+      if (this._value instanceof Date) {
+        // only compare precision if old values is a date
+        const sameDiff: moment.unitOfTime.StartOf = this.precision
+          ? this.precision
+          : this.inputType === DateTimeType.date
+          ? 'day'
+          : 'second';
+        isSame = this._value ? date.isSame(this._value, sameDiff) : false;
+      }
     }
 
     if (!isSame) {
