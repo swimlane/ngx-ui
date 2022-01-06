@@ -97,7 +97,8 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Date/Time Input">
-  Value: {{ dateTime }}
+  <label>Value: </label>
+  <output>{{ date | json }}</output>
 
   <ngx-date-time
     name="datetime-input"
@@ -119,7 +120,8 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="TimeZones">
-  <label>Current Value:</label> <output>{{ eventDate }}</output>
+  <label>Current Value:</label>
+  <output>{{ eventDate | json }}</output>
 
   <ngx-date-time
     name="timezone-local"
@@ -196,88 +198,83 @@
 >
 </ngx-date-time>]]>
   </app-prism>
+
+  <ngx-date-time
+  name="time-input2"
+  inputType="time"
+  displayMode="timezone"
+  label="Time of attack"
+  [(value)]="time"
+  >
+  </ngx-date-time>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Precision">
-  Current Value: {{ precisionDate | json }}
+  <label>Current Value:</label>
+  <output>{{ precisionDate | json }}</output>
 
   <ngx-date-time
-    inputType="date"
     label="Year"
     precision="year"
     [(value)]="precisionDate"
-    format="dateYear"
   >
   </ngx-date-time>
 
   <ngx-date-time
-    inputType="date"
     label="Month"
     precision="month"
     [(value)]="precisionDate"
-    format="dateMonth"
   >
   </ngx-date-time>
 
   <ngx-date-time
-    inputType="datetime"
     label="Hour"
     precision="hour"
     [(value)]="precisionDate"
-    format="shortDateTime"
   >
   </ngx-date-time>
 
   <ngx-date-time
-    inputType="datetime"
     label="Minutes"
     precision="minute"
     [(value)]="precisionDate"
-    format="shortDateTimeSeconds"
   >
   </ngx-date-time>
 
   <app-prism>
 <![CDATA[<ngx-date-time
-  inputType="date"
   label="Year"
   precision="year"
   [(value)]="precisionDate"
-  format="dateYear"
 >
 </ngx-date-time>
 
   <ngx-date-time
-  inputType="date"
   label="Month"
   precision="month"
   [(value)]="precisionDate"
-  format="dateMonth"
 >
 </ngx-date-time>
 
   <ngx-date-time
-  inputType="datetime"
   label="Hour"
   precision="hour"
   [(value)]="precisionDate"
-  format="shortDateTime"
 >
 </ngx-date-time>
 
   <ngx-date-time
-  inputType="datetime"
   label="Minutes"
   precision="minute"
   [(value)]="precisionDate"
-  format="shortDateTimeSeconds"
 >
 </ngx-date-time>]]>
   </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Autosize">
-  Current Value: {{ curDate2 | json }}
+  <label>Current Value:</label>
+  <output>{{ curDate2 | json }}</output>
 
   <br />
 

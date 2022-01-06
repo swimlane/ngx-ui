@@ -96,6 +96,10 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
 
   @Input()
   set value(val: Date | string) {
+    if (typeof val === 'string') {
+      val = val.trim();
+    }
+
     if (!val && !this._value) {
       val = this._value = null; // Match falsely values
     }
@@ -107,12 +111,15 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
     const date = this.parseDate(val);
     if (val && date.isValid()) {
       isDate = true;
-      const sameDiff: moment.unitOfTime.StartOf = this.precision
-        ? this.precision
-        : this.inputType === DateTimeType.date
-        ? 'day'
-        : 'second';
-      isSame = this._value ? date.isSame(this._value, sameDiff) : false;
+      if (this._value instanceof Date) {
+        // only compare precision if old values is a date
+        const sameDiff: moment.unitOfTime.StartOf = this.precision
+          ? this.precision
+          : this.inputType === DateTimeType.date
+          ? 'day'
+          : 'second';
+        isSame = this._value ? date.isSame(this._value, sameDiff) : false;
+      }
     }
 
     if (!isSame) {
@@ -154,10 +161,9 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   // date, time, dateTime
   @Input()
   get inputType(): string {
-    if (!this._inputType) {
-      return DateTimeType.date;
-    }
-    return this._inputType;
+    if (this._inputType) return this._inputType;
+    if (this.precision === 'hour' || this.precision === 'minute') return DateTimeType.datetime;
+    return DateTimeType.date;
   }
   set inputType(val: string) {
     this._inputType = val;
@@ -192,28 +198,48 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   get format(): string {
     if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
 
-    if (this.displayMode === DATE_DISPLAY_TYPES.LOCAL) {
-      if (this.inputType === DateTimeType.date) {
-        return DATE_DISPLAY_FORMATS.localeDate;
-      } else if (this.inputType === DateTimeType.time) {
-        return DATE_DISPLAY_FORMATS.localeTime;
-      }
-      return DATE_DISPLAY_FORMATS.localeDateTime;
+    switch (this.displayMode) {
+      case DATE_DISPLAY_TYPES.TIMEZONE:
+        switch (this.inputType) {
+          case DateTimeType.date:
+            switch (this.precision) {
+              case 'month':
+                return DATE_DISPLAY_FORMATS.timezoneDateMonth;
+              case 'year':
+                return DATE_DISPLAY_FORMATS.timezoneDateYear;
+            }
+            return DATE_DISPLAY_FORMATS.timezoneDate;
+          case DateTimeType.time:
+            return DATE_DISPLAY_FORMATS.timezoneTime;
+        }
+        return DATE_DISPLAY_FORMATS.timezoneDateTime;
+      case DATE_DISPLAY_TYPES.LOCAL:
+        switch (this.inputType) {
+          case DateTimeType.date:
+            switch (this.precision) {
+              case 'month':
+                return DATE_DISPLAY_FORMATS.dateMonth;
+              case 'year':
+                return DATE_DISPLAY_FORMATS.dateYear;
+            }
+            return DATE_DISPLAY_FORMATS.localeDate;
+          case DateTimeType.time:
+            return DATE_DISPLAY_FORMATS.localeTime;
+        }
+        return DATE_DISPLAY_FORMATS.localeDateTime;
     }
 
-    if (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE) {
-      if (this.inputType === DateTimeType.date) {
-        return DATE_DISPLAY_FORMATS.userDate;
-      } else if (this.inputType === DateTimeType.time) {
-        return DATE_DISPLAY_FORMATS.userTime;
-      }
-      return DATE_DISPLAY_FORMATS.userDateTime;
-    }
-
-    if (this.inputType === DateTimeType.date) {
-      return DATE_DISPLAY_FORMATS.date;
-    } else if (this.inputType === DateTimeType.time) {
-      return DATE_DISPLAY_FORMATS.time;
+    switch (this.inputType) {
+      case DateTimeType.date:
+        switch (this.precision) {
+          case 'month':
+            return DATE_DISPLAY_FORMATS.dateMonth;
+          case 'year':
+            return DATE_DISPLAY_FORMATS.dateYear;
+        }
+        return DATE_DISPLAY_FORMATS.date;
+      case DateTimeType.time:
+        return DATE_DISPLAY_FORMATS.time;
     }
 
     return DATE_DISPLAY_FORMATS.dateTime;
@@ -221,6 +247,20 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   set format(val: string) {
     this._format = val;
     this.update();
+  }
+
+  @Input()
+  set displayFormat(val: string) {
+    this._displayFormat = val;
+  }
+  get displayFormat(): string {
+    return (
+      DATE_DISPLAY_FORMATS[this._displayFormat] ||
+      this._displayFormat ||
+      DATE_DISPLAY_FORMATS[this._format] ||
+      this._format ||
+      DATE_DISPLAY_FORMATS.fullDateTime
+    );
   }
 
   @Input()
@@ -335,6 +375,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   private _value: Date | string;
   private _displayValue = '';
   private _format: string;
+  private _displayFormat: string;
   private _inputType: string;
   private _maxDate: Date | string;
   private _minDate: Date | string;
@@ -538,13 +579,14 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
       /* istanbul ignore next */
       date = isNaN(date.getTime()) ? date.toString() : date.toISOString();
     }
+    // Ensures that the input formats includes the display format
     const inputFormats = [...this.inputFormats];
     if (this.format && !inputFormats.includes(this.format)) {
       inputFormats.unshift(this.format);
     }
     const timezone =
       this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE ? moment.tz.guess() : undefined);
-    let m = timezone ? moment.tz(date, inputFormats, this.timezone) : moment(date, inputFormats);
+    let m = timezone ? moment.tz(date, inputFormats, timezone) : moment(date, inputFormats);
     m = this.precision ? this.roundTo(m, this.precision) : m;
     return m;
   }
@@ -580,7 +622,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
       const tz = this.timezones[key] || localTimezone;
       const date = mdate.clone().tz(tz);
       const clip = date.format(this.clipFormat);
-      const display = date.format(this.format);
+      const display = date.format(this.displayFormat);
       this.timeValues[key] = {
         key,
         clip,
