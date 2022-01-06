@@ -2,13 +2,15 @@
 
 ## HEAD (unreleased)
 
-- Enhancement: `ngx-date-time` now sets default formats based on precision
-- Enhancement: Improved keyboard accessibility for `ngx-radiobutton` and `ngx-radiobutton-group`
+## 37.0.0-rc0 (2022-1-6)
+
+- Breaking: `ngx-date-time` no longer displays it's own validation messages
 - Fix: Fixed issues on `ngx-radiobutton` and `ngx-radiobutton-group` with form controls
 - Fix: `ngx-date-time` now works with form controls
-- Breaking: `ngx-date-time` no longer displays it's own validation messages
 - Feature: added timezone popup to `ngx-date-time`
 - Feature: added `ngx-time` component
+- Enhancement: `ngx-date-time` now sets default formats based on precision
+- Enhancement: Improved keyboard accessibility for `ngx-radiobutton` and `ngx-radiobutton-group`
 - Enhancement: Improved keyboard accessibility for `ngx-select`
 - Enhancement: Add ability to unlock `ngx-input` for passwords
 - Enhancement: Add `checked` and `checkedChange` to `ngx-checkbox`
