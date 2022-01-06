@@ -51,6 +51,14 @@ describe('Checkbox', () => {
       cy.get('@CUT').ngxGetValue().should('equal', false);
     });
 
+    it('focuses and blurs', () => {
+      cy.get('@CUT').focus();
+      cy.focused().should('have.class', 'ngx-checkbox--label');
+      cy.focused().closest('ngx-checkbox').should('exist');
+      cy.get('@CUT').blur();
+      cy.focused().should('not.exist');
+    });
+
     it('is keyboard accessible', () => {
       cy.get('@SUT').find('h1').contains('Demo').click();
 

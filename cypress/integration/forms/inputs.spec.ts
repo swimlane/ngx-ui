@@ -11,7 +11,7 @@ describe('Inputs', () => {
         rules: {
           'color-contrast': { enabled: false } // NOTE: to be evaluated by UIUX
         }
-      });
+      } as any);
     });
   });
 
@@ -61,6 +61,13 @@ describe('Inputs', () => {
         .find('.ngx-input-underline .underline-fill')
         .invoke('attr', 'style')
         .should('contain', 'width: 100%');
+    });
+
+    it('focuses and blurs', () => {
+      cy.get('@CUT').focus();
+      cy.focused().closest('ngx-input').should('have.attr', 'name', 'input1');
+      cy.get('@CUT').blur();
+      cy.focused().should('not.exist');
     });
   });
 

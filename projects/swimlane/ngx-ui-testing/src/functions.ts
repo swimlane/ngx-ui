@@ -139,6 +139,33 @@ export function clear(element: JQuery<Element>): Cypress.Chainable<JQuery<any>> 
   }
 }
 
+export function focus(element: JQuery<Element>) /* : Cypress.Chainable<JQuery<any>> */ {
+  switch (getTagName(element)) {
+    case NGX.CODEMIRROR:
+    case NGX.INPUT:
+    case NGX.DATETIME:
+    // case NGX.SELECT: TBD
+    case NGX.RADIOBUTTON:
+    case NGX.TOGGLE:
+      return cy.wrap(findInput(element), LOG).focus(LOG);
+    case NGX.CHECKBOX:
+      return cy.wrap(element, LOG).find('label', LOG).focus();
+  }
+}
+
+export function blur(element: JQuery<Element>) /* : Cypress.Chainable<JQuery<any>> */ {
+  switch (getTagName(element)) {
+    case NGX.CODEMIRROR:
+    case NGX.INPUT:
+    case NGX.DATETIME:
+    case NGX.TOGGLE:
+    case NGX.RADIOBUTTON:
+      return cy.wrap(findInput(element), LOG).blur(LOG);
+    case NGX.CHECKBOX:
+      return cy.wrap(element, LOG).find('label', LOG).blur(LOG);
+  }
+}
+
 export function getValue(element: JQuery<Element>): string | number | string[] | undefined | boolean {
   switch (getTagName(element)) {
     case NGX.CODEMIRROR: {

@@ -18,5 +18,12 @@ describe('Code Editor', () => {
 
       cy.get('@CUT').clear().ngxGetValue().should('equal', '');
     });
+
+    it('focuses and blurs', () => {
+      cy.get('@CUT').focus();
+      cy.focused().closest('ngx-codemirror').should('exist');
+      cy.get('@CUT').blur();
+      cy.focused().should('not.exist');
+    });
   });
 });

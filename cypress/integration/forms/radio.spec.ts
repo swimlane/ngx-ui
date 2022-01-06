@@ -41,6 +41,14 @@ describe('Radio', () => {
       cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true');
     });
 
+    it('focuses and blurs', () => {
+      cy.get('@CUT').focus();
+      cy.focused().should('have.class', 'radio-input');
+      cy.focused().closest('ngx-radiobutton').should('have.class', 'ngx-radiobutton');
+      cy.get('@CUT').blur();
+      cy.focused().should('not.exist');
+    });
+
     it('keyboard accessible', () => {
       // Without a radio group, the radio button are accessible via tab
 
@@ -89,6 +97,14 @@ describe('Radio', () => {
 
       cy.get('@CUT').ngxSetValue(value);
       cy.get('@CUT').ngxGetValue().should('equal', value);
+    });
+
+    it('focuses and blurs', () => {
+      cy.get('@CUT').focus();
+      cy.focused().should('have.class', 'radio-label');
+      cy.focused().closest('ngx-radiobutton-group').should('exist');
+      // cy.get('@CUT').blur();  TBD
+      // cy.focused().should('not.exist');
     });
 
     it('keyboard accessible', () => {

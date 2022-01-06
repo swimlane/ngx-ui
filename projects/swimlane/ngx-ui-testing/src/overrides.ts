@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
 /// <reference path='./commands.d.ts'/>
 
-import { LOG, NGX, clear, findInput } from './functions';
+import { LOG, NGX, clear, focus, blur, findInput } from './functions';
 
 function escapeRegex(string: string) {
   return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
@@ -101,6 +101,75 @@ Cypress_Commands_overwrite_Subject(
           });
         }
         return cy.wrap(subject, LOG).each(clear);
+      }
+    }
+    return originalFn(subject, options, ...args);
+  }
+);
+
+/**
+ * Overwrites `cy.focus` to work with ngx-ui elements.
+ */
+Cypress_Commands_overwrite_Subject(
+  'focus',
+  (originalFn: Function, subject: JQuery<HTMLElement>, options: Partial<Cypress.ClearOptions> = {}, ...args: any[]) => {
+    switch (subject.prop('tagName').toLowerCase()) {
+      case NGX.CODEMIRROR:
+      case NGX.INPUT:
+      case NGX.DATETIME:
+      case NGX.SELECT:
+      case NGX.TOGGLE:
+      case NGX.CHECKBOX:
+      case NGX.RADIOBUTTON:
+      case NGX.SLIDER: {
+        if (options.log !== false) {
+          Cypress.log({
+            name: 'focus',
+            $el: subject,
+            consoleProps: () => {
+              return {
+                'Applied to': subject,
+                Elements: subject.length
+              };
+            }
+          });
+        }
+        return cy.wrap(subject, LOG).each(focus);
+      }
+    }
+    return originalFn(subject, options, ...args);
+  }
+);
+
+/**
+ * Overwrites `cy.blur` to work with ngx-ui elements.
+ */
+Cypress_Commands_overwrite_Subject(
+  'blur',
+  (originalFn: Function, subject: JQuery<HTMLElement>, options: Partial<Cypress.ClearOptions> = {}, ...args: any[]) => {
+    switch (subject.prop('tagName').toLowerCase()) {
+      case NGX.CODEMIRROR:
+      case NGX.INPUT:
+      case NGX.DATETIME:
+      case NGX.SELECT:
+      case NGX.TOGGLE:
+      case NGX.CHECKBOX:
+      case NGX.RADIOBUTTON:
+      case NGX.RADIOBUTTON_GROUP:
+      case NGX.SLIDER: {
+        if (options.log !== false) {
+          Cypress.log({
+            name: 'blur',
+            $el: subject,
+            consoleProps: () => {
+              return {
+                'Applied to': subject,
+                Elements: subject.length
+              };
+            }
+          });
+        }
+        return cy.wrap(subject, LOG).each(blur);
       }
     }
     return originalFn(subject, options, ...args);

@@ -64,6 +64,13 @@ describe('Date/Time', () => {
       cy.get('@CUT').clear().ngxGetValue().should('equal', '');
     });
 
+    it('focuses and blurs', () => {
+      cy.get('@CUT').focus();
+      cy.focused().closest('ngx-date-time').should('have.class', 'ngx-date-time');
+      cy.get('@CUT').blur();
+      cy.focused().should('not.exist');
+    });
+
     it('handles invalid input', () => {
       const text = 'what what';
 
