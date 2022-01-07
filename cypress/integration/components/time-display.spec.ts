@@ -2,11 +2,6 @@ describe('Date/Time Display', () => {
   const UTC = '2011-03-11T05:46:24.000Z';
 
   const LA_LOCAL = '03/10/2011 9:46 PM';
-  const TOKYO_LOCAL = '03/11/2011 2:46 PM';
-
-  // const TOKYO = '03/11/2011 2:46 PM +09:00';
-  // const GMT = '03/11/2011 5:46 AM +00:00';
-  const LA = `${LA_LOCAL} -08:00`; // America/Los_Angeles should be passed as TZ env var to cypress
 
   const TOKYO_DISPLAY = 'Fri, Mar 11, 2011 2:46 PM +09:00 (JST)';
   const GMT_DISPLAY = 'Fri, Mar 11, 2011 5:46 AM +00:00 (UTC)';
@@ -27,7 +22,7 @@ describe('Date/Time Display', () => {
       cy.get('@CUT')
         .first()
         .whileHovering(() => {
-          cy.get('time').should('contain.text', LA).should('have.attr', 'datetime', UTC);
+          cy.get('time').should('contain.text', LA_DISPLAY).should('have.attr', 'datetime', UTC);
           cy.root()
             .closest('body')
             .find('ngx-tooltip-content')
@@ -75,7 +70,7 @@ describe('Date/Time Display', () => {
       cy.get('@CUT')
         .first()
         .whileHovering(() => {
-          cy.get('time').should('contain.text', TOKYO_LOCAL).should('have.attr', 'datetime', UTC);
+          cy.get('time').should('contain.text', TOKYO_DISPLAY).should('have.attr', 'datetime', UTC);
           cy.root()
             .closest('body')
             .find('ngx-tooltip-content')
@@ -88,7 +83,7 @@ describe('Date/Time Display', () => {
       cy.get('@CUT')
         .eq(1)
         .whileHovering(() => {
-          cy.get('time').should('contain.text', LA).should('have.attr', 'datetime', UTC);
+          cy.get('time').should('contain.text', LA_DISPLAY).should('have.attr', 'datetime', UTC);
           cy.root()
             .closest('body')
             .find('ngx-tooltip-content')
@@ -101,7 +96,7 @@ describe('Date/Time Display', () => {
       cy.get('@CUT')
         .eq(2)
         .whileHovering(() => {
-          cy.get('time').should('contain.text', LA).should('have.attr', 'datetime', UTC);
+          cy.get('time').should('contain.text', LA_DISPLAY).should('have.attr', 'datetime', UTC);
           cy.root()
             .closest('body')
             .find('ngx-tooltip-content')
@@ -121,7 +116,7 @@ describe('Date/Time Display', () => {
       cy.get('@CUT')
         .first()
         .whileHovering(() => {
-          cy.get('time').should('contain.text', LA).should('have.attr', 'datetime', UTC);
+          cy.get('time').should('contain.text', LA_DISPLAY).should('have.attr', 'datetime', UTC);
           cy.get('.ngx-time__container')
             .invoke('attr', 'title')
             .should('contain', LA_DISPLAY)
@@ -133,7 +128,7 @@ describe('Date/Time Display', () => {
       cy.get('@CUT')
         .eq(1)
         .whileHovering(() => {
-          cy.get('time').should('contain.text', LA).should('have.attr', 'datetime', UTC);
+          cy.get('time').should('contain.text', LA_DISPLAY).should('have.attr', 'datetime', UTC);
           cy.root()
             .closest('body')
             .find('ngx-tooltip-content')

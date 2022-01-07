@@ -24,7 +24,8 @@ import {
   Validator
 } from '@angular/forms';
 
-import moment from 'moment-timezone';
+import momentTimezone from 'moment-timezone';
+
 import { Clipboard } from '@angular/cdk/clipboard';
 
 import { DialogService } from '../dialog/dialog.service';
@@ -42,7 +43,7 @@ import { Appearance } from '../../mixins/appearance/appearance.enum';
 import { DATE_DISPLAY_FORMATS, DATE_DISPLAY_INPUT_FORMATS, DATE_DISPLAY_TYPES } from '../../enums/date-formats.enum';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { CalendarComponent } from '../calendar/calendar.component';
-import { defaultDisplayFormat, defaultFormat } from '../../utils/date-formats/default-formats';
+import { defaultDisplayFormat, defaultInputFormat } from '../../utils/date-formats/default-formats';
 
 let nextId = 0;
 
@@ -59,6 +60,8 @@ const DATE_TIME_VALIDATORS = {
   useExisting: forwardRef(() => DateTimeComponent),
   multi: true
 };
+
+const guessTimeZone = momentTimezone.tz.guess();
 
 @Component({
   exportAs: 'ngxDateTime',
@@ -197,7 +200,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   }
   get format(): string {
     if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
-    return defaultFormat(this.displayMode, this.inputType as DateTimeType, this.precision);
+    return defaultInputFormat(this.displayMode, this.inputType as DateTimeType, this.precision);
   }
 
   @Input()
@@ -349,7 +352,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   }
 
   open(): void {
-    const value = moment(this._value);
+    const value = momentTimezone(this._value);
     const isValid = value.isValid();
 
     this.setDialogDate(isValid ? value : new Date());
@@ -525,18 +528,16 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
     if (this.format && !inputFormats.includes(this.format)) {
       inputFormats.unshift(this.format);
     }
-    const timezone =
-      this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE ? moment.tz.guess() : undefined);
-    let m = timezone ? moment.tz(date, inputFormats, timezone) : moment(date, inputFormats);
+    const timezone = this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE ? guessTimeZone : undefined);
+    let m = timezone ? momentTimezone.tz(date, inputFormats, timezone) : momentTimezone(date, inputFormats);
     m = this.precision ? this.roundTo(m, this.precision) : m;
     return m;
   }
 
   // Converts datelike to a moment object, considers if timezone is needed
   private createMoment(date: Datelike): moment.Moment {
-    let m = moment(date).clone();
-    const timezone =
-      this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE ? moment.tz.guess() : undefined);
+    let m = momentTimezone(date).clone();
+    const timezone = this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE ? guessTimeZone : undefined);
     m = timezone ? m.tz(timezone) : m;
     m = this.precision ? this.roundTo(m, this.precision) : m;
     return m;
@@ -557,10 +558,8 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
 
     if (!this.hasPopup) return;
 
-    const localTimezone = moment.tz.guess();
-
     for (const key in this.timezones) {
-      const tz = this.timezones[key] || localTimezone;
+      const tz = this.timezones[key] || guessTimeZone;
       const date = mdate.clone().tz(tz);
       const clip = date.format(this.clipFormat);
       const display = date.format(this.tooltipFormat);

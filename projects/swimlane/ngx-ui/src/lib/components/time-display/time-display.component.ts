@@ -10,7 +10,9 @@ import { NotificationStyleType } from '../notification/notification-style-type.e
 import { DATE_DISPLAY_TYPES, DATE_DISPLAY_INPUT_FORMATS, DATE_DISPLAY_FORMATS } from '../../enums/date-formats.enum';
 import { Datelike } from '../date-time/date-like.type';
 import { DateTimeType } from '../date-time/date-time-type.enum';
-import { defaultDisplayFormat, defaultFormat } from '../../utils/date-formats/default-formats';
+import { defaultDisplayFormat, defaultInputFormat } from '../../utils/date-formats/default-formats';
+
+const guessTimeZone = momentTimezone.tz.guess();
 
 @Component({
   selector: 'ngx-time',
@@ -25,15 +27,10 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   @Input() precision: moment.unitOfTime.StartOf;
 
   @Input()
-  timezone: string;
+  timezone: string = guessTimeZone;
 
   @Input()
-  set defaultInputTimeZone(val: string) {
-    this._defaultInputTimeZone = val;
-  }
-  get defaultInputTimeZone() {
-    return this._defaultInputTimeZone || this.timezone;
-  }
+  defaultInputTimeZone: string;
 
   @Input()
   set mode(val: DATE_DISPLAY_TYPES) {
@@ -62,7 +59,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   }
   get format(): string {
     if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
-    return defaultFormat(this.mode, this.type as DateTimeType, this.precision);
+    return defaultDisplayFormat(this.mode, this.type as DateTimeType, this.precision);
   }
 
   @Input()
@@ -71,8 +68,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   }
   get tooltipFormat(): string {
     if (this._tooltipFormat) return DATE_DISPLAY_FORMATS[this._tooltipFormat] || this._tooltipFormat;
-    if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
-    return defaultDisplayFormat(this.mode, this.type as DateTimeType, this.precision);
+    return this.format;
   }
 
   @Input()
@@ -81,7 +77,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   }
   get clipFormat(): string {
     if (this._clipFormat) return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat;
-    return this.format;
+    return defaultInputFormat(this.mode, this.type as DateTimeType, this.precision);
   }
 
   @Input()
@@ -144,7 +140,6 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   private _clipFormat: string;
   private _clickable: boolean;
   private _type: string;
-  private _defaultInputTimeZone: string;
 
   constructor(private readonly clipboard: Clipboard, private readonly notificationService: NotificationService) {}
 
@@ -194,7 +189,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
       return;
     }
 
-    const localTimezone = momentTimezone.tz.guess();
+    const localTimezone = this.timezone || guessTimeZone;
     const inputTimezone = this.defaultInputTimeZone || localTimezone;
 
     const mdate = momentTimezone.tz(this.datetime as string, DATE_DISPLAY_INPUT_FORMATS, inputTimezone);
@@ -209,7 +204,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
     const titleValue = [];
 
     for (const key in this.timezones) {
-      const tz = this.timezones[key] || localTimezone;
+      const tz = this.timezones[key] || guessTimeZone;
       const date = mdate.clone().tz(tz);
       const clip = date.format(this.clipFormat);
       const display = date.format(this.tooltipFormat);

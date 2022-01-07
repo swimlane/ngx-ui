@@ -2,24 +2,24 @@ import moment from 'moment';
 
 export const DATE_DISPLAY_FORMATS = {
   // for input
-  shortDate: 'M/D/YYYY', // 1/1/2020
-  shortTime: 'h:mm A', // 9:00 PM
-  shortDateTime: 'M/D/YYYY h:mm A', // 1/1/2020 9:00 PM
-  shortDateTimeSeconds: 'M/D/YYYY h:mm:ss A', // 1/1/2020 9:00 PM
+  shortDate: 'l', // 1/1/2020
+  shortTime: 'LT', // 9:00 PM
+  shortDateTime: 'l LT', // 1/1/2020 9:00 PM
+  shortDateTimeSeconds: 'l LTS', // 1/1/2020 9:00 PM
 
-  date: 'MMM D, YYYY', // Jan 1, 2000
-  time: 'h:mm A', // 9:00 PM
-  dateTime: 'MMM D, YYYY h:mm A', // Jan 1, 2000 9:00 PM
-  dateTimeSeconds: 'MMM D, YYYY h:mm:ss A', // Jan 1, 2000 9:00 PM
+  date: 'll', // Jan 1, 2000
+  time: 'LT', // 9:00 PM
+  dateTime: 'lll', // Jan 1, 2000 9:00 PM
+  dateTimeSeconds: 'll LTS', // Jan 1, 2000 9:00:00 PM
 
   // Date min-modes
   dateMonth: 'MMM YYYY', // Jan 2000
   dateYear: 'YYYY', // 2000
 
   // full display
-  fullDate: 'ddd, MMM D, YYYY Z [(]zz[)]', // Sat, Jan 1, 2000 -07:00 (MST)
-  fullTime: 'h:mm A Z [(]zz[)]', // 9:00 PM -07:00 (MST)
-  fullDateTime: 'ddd, MMM D, YYYY h:mm A Z [(]zz[)]', // Tue, Jan 1, 2000 9:00 PM -07:00 (MST)
+  fullDate: 'ddd, ll Z [(]zz[)]', // Sat, Jan 1, 2000 -07:00 (MST)
+  fullTime: 'LT Z [(]zz[)]', // 9:00 PM -07:00 (MST)
+  fullDateTime: 'llll Z [(]zz[)]', // Tue, Jan 1, 2000 9:00 PM -07:00 (MST)
 
   // Date min-modes
   fullDateMonth: 'MMM YYYY Z [(]zz[)]', // Jan 2000 -07:00 (MST)
