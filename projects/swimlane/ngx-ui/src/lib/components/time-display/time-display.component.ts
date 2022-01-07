@@ -62,7 +62,6 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   }
   get format(): string {
     if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
-    // return DATE_DISPLAY_FORMATS.fullLocale;
     return defaultFormat(this.mode, this.type as DateTimeType, this.precision);
   }
 
@@ -73,7 +72,6 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   get tooltipFormat(): string {
     if (this._tooltipFormat) return DATE_DISPLAY_FORMATS[this._tooltipFormat] || this._tooltipFormat;
     if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
-    // return DATE_DISPLAY_FORMATS.fullLocale;
     return defaultDisplayFormat(this.mode, this.type as DateTimeType, this.precision);
   }
 
