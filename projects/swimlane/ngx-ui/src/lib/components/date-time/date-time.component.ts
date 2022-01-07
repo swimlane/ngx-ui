@@ -200,11 +200,11 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   }
 
   @Input()
-  set displayFormat(val: string) {
-    this._displayFormat = val;
+  set tooltipFormat(val: string) {
+    this._tooltipFormat = val;
   }
-  get displayFormat(): string {
-    if (this._displayFormat) return DATE_DISPLAY_FORMATS[this._displayFormat] || this._displayFormat;
+  get tooltipFormat(): string {
+    if (this._tooltipFormat) return DATE_DISPLAY_FORMATS[this._tooltipFormat] || this._tooltipFormat;
     if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
 
     return defaultDisplayFormat(this.displayMode, this.inputType as DateTimeType, this.precision);
@@ -310,7 +310,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   private _value: Date | string;
   private _displayValue = '';
   private _format: string;
-  private _displayFormat: string;
+  private _tooltipFormat: string;
   private _inputType: string;
   private _displayMode: DATE_DISPLAY_TYPES;
   private _clipFormat: string;
@@ -559,7 +559,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
       const tz = this.timezones[key] || localTimezone;
       const date = mdate.clone().tz(tz);
       const clip = date.format(this.clipFormat);
-      const display = date.format(this.displayFormat);
+      const display = date.format(this.tooltipFormat);
       this.timeValues[key] = {
         key,
         clip,

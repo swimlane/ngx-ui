@@ -386,9 +386,9 @@ describe('NgxTimeDisplayComponent', () => {
   it('should set defaults', () => {
     expect(component.datetime).toBeDefined(Date);
     expect(component.defaultInputTimeZone).toBeUndefined();
-    expect(component.displayTimeZone).toBeUndefined();
-    expect(component.displayMode).toBe('timezone');
-    expect(component.displayFormat).toBe('LLLL');
+    expect(component.timezone).toBeUndefined();
+    expect(component.mode).toBe('timezone');
+    expect(component.tooltipFormat).toBe('LLLL');
     expect(component.clipFormat).toBe('LLLL');
     expect(component.timezones.UTC).toEqual('Etc/UTC');
     expect(component.timezones.Local).toEqual('');
@@ -428,7 +428,7 @@ describe('NgxTimeDisplayComponent', () => {
     it('when user date provided', () => {
       const date = '2000-02-05 8:30 AM';
       component.datetime = new Date(date); // note: browser timezone
-      component.displayFormat = 'fullDateTime';
+      component.tooltipFormat = 'fullDateTime';
 
       component.ngOnChanges();
       fixture.detectChanges();
@@ -450,7 +450,7 @@ describe('NgxTimeDisplayComponent', () => {
 
     it('when iso date provided', () => {
       component.datetime = new Date(MOON_LANDING); // note: browser UTC
-      component.displayFormat = 'fullDateTime';
+      component.tooltipFormat = 'fullDateTime';
 
       component.ngOnChanges();
       fixture.detectChanges();
@@ -484,7 +484,7 @@ describe('NgxTimeDisplayComponent', () => {
     it('should handle bad timezone', () => {
       (moment as any).suppressDeprecationWarnings = true;
       component.datetime = new Date();
-      component.displayFormat = 'fullDateTime';
+      component.tooltipFormat = 'fullDateTime';
 
       component.timezones = {
         Test: 'Timbuktu'
