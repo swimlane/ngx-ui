@@ -3,10 +3,10 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import moment from 'moment-timezone';
 import { MomentModule } from 'ngx-moment';
+import { DATE_DISPLAY_TYPES } from '../../enums/date-formats.enum';
 import { PipesModule } from '../../pipes/pipes.module';
 import { InjectionService } from '../../services/injection/injection.service';
 import { DialogModule } from '../dialog/dialog.module';
-import { DATE_DISPLAY_TYPES } from '../time-display/date-formats.enum';
 
 import { DateTimeComponent } from './date-time.component';
 

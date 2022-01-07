@@ -388,8 +388,8 @@ describe('NgxTimeDisplayComponent', () => {
     expect(component.defaultInputTimeZone).toBeUndefined();
     expect(component.timezone).toBeUndefined();
     expect(component.mode).toBe('timezone');
-    expect(component.tooltipFormat).toBe('LLLL');
-    expect(component.clipFormat).toBe('LLLL');
+    expect(component.tooltipFormat).toBe('ddd, MMM D, YYYY h:mm A Z [(]zz[)]');
+    expect(component.clipFormat).toBe('ddd, MMM D, YYYY h:mm A Z [(]zz[)]');
     expect(component.timezones.UTC).toEqual('Etc/UTC');
     expect(component.timezones.Local).toEqual('');
   });
