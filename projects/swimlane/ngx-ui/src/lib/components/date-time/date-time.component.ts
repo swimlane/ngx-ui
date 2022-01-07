@@ -12,7 +12,8 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   HostBinding,
-  OnChanges
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -245,7 +246,8 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
     this._clipFormat = val;
   }
   get clipFormat(): string {
-    return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat || this.format;
+    if (this._clipFormat) return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat;
+    return this.format;
   }
 
   @Input() requiredIndicator: string | boolean = '*';
@@ -326,8 +328,10 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
     this.close();
   }
 
-  ngOnChanges() {
-    this.update();
+  ngOnChanges(changes: SimpleChanges) {
+    if (!('value' in changes)) {
+      this.update();
+    }
   }
 
   writeValue(val: any): void {

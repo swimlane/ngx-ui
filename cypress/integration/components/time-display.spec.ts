@@ -1,8 +1,16 @@
 describe('Date/Time Display', () => {
   const UTC = '2011-03-11T05:46:24.000Z';
-  const TOKYO = 'Friday, March 11, 2011 2:46 PM';
-  const GMT = 'Friday, March 11, 2011 5:46 AM';
-  const LA = 'Thursday, March 10, 2011 9:46 PM'; // America/Los_Angeles should be passed as TZ env var to cypress
+
+  const LA_LOCAL = '03/10/2011 9:46 PM';
+  const TOKYO_LOCAL = '03/11/2011 2:46 PM';
+
+  // const TOKYO = '03/11/2011 2:46 PM +09:00';
+  // const GMT = '03/11/2011 5:46 AM +00:00';
+  const LA = `${LA_LOCAL} -08:00`; // America/Los_Angeles should be passed as TZ env var to cypress
+
+  const TOKYO_DISPLAY = 'Fri, Mar 11, 2011 2:46 PM +09:00 (JST)';
+  const GMT_DISPLAY = 'Fri, Mar 11, 2011 5:46 AM +00:00 (UTC)';
+  const LA_DISPLAY = 'Thu, Mar 10, 2011 9:46 PM -08:00 (PST)'; // America/Los_Angeles should be passed as TZ env var to cypress
 
   before(() => {
     cy.visit('/time-display');
@@ -20,40 +28,47 @@ describe('Date/Time Display', () => {
         .first()
         .whileHovering(() => {
           cy.get('time').should('contain.text', LA).should('have.attr', 'datetime', UTC);
-          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA).and('contain.text', GMT);
+          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA_DISPLAY).and('contain.text', GMT_DISPLAY);
         });
+    });
+  });
+
+  describe('Modes', () => {
+    beforeEach(() => {
+      cy.get('ngx-section').eq(2).as('SUT');
+      cy.get('@SUT').find('ngx-time').as('CUT');
     });
 
     it('Human', () => {
       cy.get('@CUT')
-        .eq(1)
+        .eq(0)
         .whileHovering(() => {
           cy.get('time').should('contain.text', 'years ago').should('have.attr', 'datetime', UTC);
-          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA).and('contain.text', GMT);
+          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA_DISPLAY).and('contain.text', GMT_DISPLAY);
         });
     });
 
     it('Local', () => {
       cy.get('@CUT')
-        .eq(2)
+        .eq(1)
         .whileHovering(() => {
-          cy.get('time').should('contain.text', LA).should('have.attr', 'datetime', '2011-03-10T21:46:24.000');
+          cy.get('time').should('contain.text', LA_LOCAL).should('have.attr', 'datetime', '2011-03-10T21:46:24.000');
         });
     });
   });
 
   describe('Time Zones', () => {
     beforeEach(() => {
-      cy.get('ngx-section').eq(1).as('SUT');
+      cy.get('ngx-section').eq(4).as('SUT');
       cy.get('@SUT').find('ngx-time').as('CUT');
     });
 
-    it('Default Date-Time', () => {
+    it('Specific Timezone', () => {
       cy.get('@CUT')
         .first()
         .whileHovering(() => {
-          cy.get('time').should('contain.text', 'Friday, March 11, 2011 2:46 PM').should('have.attr', 'datetime', UTC);
-          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA).and('contain.text', GMT);
+          cy.get('time').should('contain.text', TOKYO_LOCAL).should('have.attr', 'datetime', UTC);
+          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA_DISPLAY).and('contain.text', GMT_DISPLAY);
         });
     });
 
@@ -62,7 +77,7 @@ describe('Date/Time Display', () => {
         .eq(1)
         .whileHovering(() => {
           cy.get('time').should('contain.text', LA).should('have.attr', 'datetime', UTC);
-          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA).and('contain.text', GMT);
+          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA_DISPLAY).and('contain.text', GMT_DISPLAY);
         });
     });
 
@@ -71,14 +86,14 @@ describe('Date/Time Display', () => {
         .eq(2)
         .whileHovering(() => {
           cy.get('time').should('contain.text', LA).should('have.attr', 'datetime', UTC);
-          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA).and('contain.text', GMT);
+          cy.root().closest('body').find('ngx-tooltip-content').should('contain.text', LA_DISPLAY).and('contain.text', GMT_DISPLAY);
         });
     });
   });
 
   describe('Popups', () => {
     beforeEach(() => {
-      cy.get('ngx-section').eq(2).as('SUT');
+      cy.get('ngx-section').eq(5).as('SUT');
       cy.get('@SUT').find('ngx-time').as('CUT');
     });
 
@@ -87,7 +102,7 @@ describe('Date/Time Display', () => {
         .first()
         .whileHovering(() => {
           cy.get('time').should('contain.text', LA).should('have.attr', 'datetime', UTC);
-          cy.get('.ngx-time__container').invoke('attr', 'title').should('contain', LA).and('contain', GMT);
+          cy.get('.ngx-time__container').invoke('attr', 'title').should('contain', LA_DISPLAY).and('contain', GMT_DISPLAY);
         });
     });
 
@@ -99,9 +114,9 @@ describe('Date/Time Display', () => {
           cy.root()
             .closest('body')
             .find('ngx-tooltip-content')
-            .should('contain.text', TOKYO)
-            .should('contain.text', LA)
-            .and('contain.text', GMT);
+            .should('contain.text', TOKYO_DISPLAY)
+            .should('contain.text', LA_DISPLAY)
+            .and('contain.text', GMT_DISPLAY);
         });
     });
   });

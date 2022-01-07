@@ -83,7 +83,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   }
   get clipFormat(): string {
     if (this._clipFormat) return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat;
-    return this.tooltipFormat;
+    return this.format;
   }
 
   @Input()

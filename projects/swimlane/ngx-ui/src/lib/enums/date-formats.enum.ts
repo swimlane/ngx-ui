@@ -33,6 +33,7 @@ export const DATE_DISPLAY_FORMATS = {
   // Timezone
   timezoneDate: 'L Z', // 09/04/1986 -07:00
   timezoneDateTime: 'L LT Z', // 09/04/1986 8:30 PM -07:00
+  timezoneDateTimeSeconds: 'L LTS Z', // 09/04/1986 8:30 PM -07:00
   timezoneTime: 'LT Z', // 8:30 PM -07:00
 
   // Date min-modes
@@ -55,6 +56,7 @@ export const DATE_DISPLAY_INPUT_FORMATS: Array<string | moment.MomentBuiltinForm
   DATE_DISPLAY_FORMATS.shortDate,
   DATE_DISPLAY_FORMATS.shortTime,
   DATE_DISPLAY_FORMATS.timezoneDateTime,
+  DATE_DISPLAY_FORMATS.timezoneDateTimeSeconds,
   DATE_DISPLAY_FORMATS.timezoneDate,
   DATE_DISPLAY_FORMATS.timezoneTime,
   DATE_DISPLAY_FORMATS.localeDateTime,

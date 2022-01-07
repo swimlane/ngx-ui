@@ -52,21 +52,21 @@
   <output>{{ localString | json }}</output>
   
   <div class="example">
-    <h4>By default inputs are assumed local date/time, display TZ can be defined</h4>
-    <ngx-time [datetime]="localString" timezone="Asia/Tokyo"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="localString" timezone="Asia/Tokyo"></ngx-time>]]></app-prism> 
+    <h4>Input and display TZ can be defined</h4>
+    <ngx-time datetime="March 11, 2011 2:46:24 PM" timezone="Asia/Tokyo"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="'March 11, 2011 2:46:24 PM'" timezone="Asia/Tokyo"></ngx-time>]]></app-prism> 
   </div>
 
   <div class="example">
-    <h4>Default input timezone can be specified</h4>
-    <ngx-time datetime="March 11, 2011 2:46:24 PM" timezone="Asia/Tokyo"></ngx-time>
+    <h4>Default input timezone can be specified separately from display</h4>
+    <ngx-time datetime="March 11, 2011 2:46:24 PM" defaultInputTimeZone="Asia/Tokyo"></ngx-time>
     <app-prism><![CDATA[<ngx-time [datetime]="March 11, 2011 2:46:24 PM" defaultInputTimeZone="Asia/Tokyo"></ngx-time>]]></app-prism>
   </div>
 
   <div class="example">
     <h4>Explicit timezone in input value overrides default input timezone</h4>
-    <ngx-time [datetime]="date" timezone="Asia/Tokyo"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" defaultInputTimeZone="Asia/Tokyo"></ngx-time>]]></app-prism>
+    <ngx-time datetime="03/10/2011 9:46:24 PM -08:00" defaultInputTimeZone="Asia/Tokyo"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="Thu, Mar 10, 2011 9:46 PM -08:00" defaultInputTimeZone="Asia/Tokyo"></ngx-time>]]></app-prism>
   </div>
 </ngx-section>
 
