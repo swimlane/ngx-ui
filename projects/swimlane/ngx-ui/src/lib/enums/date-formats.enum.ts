@@ -4,8 +4,8 @@ export const DATE_DISPLAY_FORMATS = {
   // for input
   shortDate: 'M/D/YYYY', // 1/1/2020
   shortTime: 'h:mm A', // 9:00 PM
-  shortDateTime: 'M/D/YYYY h:mm A', // Jan 1, 2000 9:00 PM
-  shortDateTimeSeconds: 'M/D/YYYY h:mm:ss A', // Jan 1, 2000 9:00 PM
+  shortDateTime: 'M/D/YYYY h:mm A', // 1/1/2020 9:00 PM
+  shortDateTimeSeconds: 'M/D/YYYY h:mm:ss A', // 1/1/2020 9:00 PM
 
   date: 'MMM D, YYYY', // Jan 1, 2000
   time: 'h:mm A', // 9:00 PM
