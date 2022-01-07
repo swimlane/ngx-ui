@@ -19,14 +19,14 @@
 
   <div class="example">
     <h4>Format</h4>
-    <ngx-time [datetime]="date" displayFormat="fullDateTime"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" displayFormat="fullDateTime"></ngx-time>]]></app-prism>  
+    <ngx-time [datetime]="date" format="dateTime"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="date" format="fullDateTime"></ngx-time>]]></app-prism>  
   </div>
   
   <div class="example">
     <h4>Custom format</h4>
-    <ngx-time [datetime]="date" displayFormat="YYYY MMM"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" displayFormat="YYYY MMM"></ngx-time>]]></app-prism>    
+    <ngx-time [datetime]="date" format="YYYY MMM"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="date" format="YYYY MMM"></ngx-time>]]></app-prism>    
   </div>
 </ngx-section>
 
@@ -63,6 +63,18 @@
     <h4>Defined Timezones</h4>
     <ngx-time [datetime]="date" [timezones]="{ 'Local': '', 'GMT': 'Etc/UTC', 'Tokyo': 'Asia/Tokyo' }"></ngx-time>
     <app-prism><![CDATA[<ngx-time [datetime]="date" [timezones]="{ 'Local': '', 'GMT': 'Etc/UTC', 'Tokyo': 'Asia/Tokyo' }"></ngx-time>]]></app-prism>
+  </div>
+
+  <div class="example">
+    <h4>Popup Format</h4>
+    <ngx-time [datetime]="date" displayFormat="localeTime"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="date" displayFormat="localeTime"></ngx-time>]]></app-prism>
+  </div>
+
+  <div class="example">
+    <h4>Custom Popup Format</h4>
+    <ngx-time [datetime]="date" displayFormat="YYYY MMM"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="date" displayFormat="YYYY MMM"></ngx-time>]]></app-prism>
   </div>
 </ngx-section>
 

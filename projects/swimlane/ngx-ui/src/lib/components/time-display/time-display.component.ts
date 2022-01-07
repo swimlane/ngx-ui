@@ -7,8 +7,10 @@ import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { NotificationService } from '../notification/notification.service';
 import { NotificationStyleType } from '../notification/notification-style-type.enum';
 
-import { DATE_DISPLAY_TYPES, DATE_DISPLAY_INPUT_FORMATS, DATE_DISPLAY_FORMATS } from './date-formats.enum';
+import { DATE_DISPLAY_TYPES, DATE_DISPLAY_INPUT_FORMATS, DATE_DISPLAY_FORMATS } from '../../enums/date-formats.enum';
 import { Datelike } from '../date-time/date-like.type';
+import { DateTimeType } from '../date-time/date-time-type.enum';
+import { defaultDisplayFormat, defaultFormat } from '../../utils/date-formats/default-formats';
 
 @Component({
   selector: 'ngx-time',
@@ -22,6 +24,8 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
 
   @Input()
   defaultInputTimeZone: string;
+
+  @Input() precision: moment.unitOfTime.StartOf;
 
   @Input()
   displayTimeZone: string;
@@ -37,12 +41,35 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
     return DATE_DISPLAY_TYPES.TIMEZONE;
   }
 
+  // date, time, dateTime
+  @Input()
+  get type(): string {
+    if (this._type) return this._type;
+    return DateTimeType.datetime;
+  }
+  set inputType(val: string) {
+    this._type = val;
+  }
+
+  @Input()
+  set format(val: string) {
+    this._format = val;
+  }
+  get format(): string {
+    if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
+    // return DATE_DISPLAY_FORMATS.fullLocale;
+    return defaultFormat(this.displayMode, this.type as DateTimeType, this.precision);
+  }
+
   @Input()
   set displayFormat(val: string) {
     this._displayFormat = val;
   }
   get displayFormat(): string {
-    return DATE_DISPLAY_FORMATS[this._displayFormat] || this._displayFormat || DATE_DISPLAY_FORMATS.fullLocale;
+    if (this._displayFormat) return DATE_DISPLAY_FORMATS[this._displayFormat] || this._displayFormat;
+    if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
+    // return DATE_DISPLAY_FORMATS.fullLocale;
+    return defaultDisplayFormat(this.displayMode, this.type as DateTimeType, this.precision);
   }
 
   @Input()
@@ -50,7 +77,8 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
     this._clipFormat = val;
   }
   get clipFormat(): string {
-    return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat || DATE_DISPLAY_FORMATS.fullLocale;
+    if (this._clipFormat) return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat;
+    return this.displayFormat;
   }
 
   @Input()
@@ -108,9 +136,11 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   readonly DATE_DISPLAY_FORMATS = DATE_DISPLAY_FORMATS;
 
   private _displayMode: DATE_DISPLAY_TYPES;
+  private _format: string;
   private _displayFormat: string;
   private _clipFormat: string;
   private _clickable: boolean;
+  private _type: string;
 
   constructor(private readonly clipboard: Clipboard, private readonly notificationService: NotificationService) {}
 

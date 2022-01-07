@@ -11,7 +11,8 @@ import {
   ElementRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  HostBinding
+  HostBinding,
+  OnChanges
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -37,13 +38,10 @@ import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
 
 import { Size } from '../../mixins/size/size.enum';
 import { Appearance } from '../../mixins/appearance/appearance.enum';
-import {
-  DATE_DISPLAY_FORMATS,
-  DATE_DISPLAY_INPUT_FORMATS,
-  DATE_DISPLAY_TYPES
-} from '../time-display/date-formats.enum';
+import { DATE_DISPLAY_FORMATS, DATE_DISPLAY_INPUT_FORMATS, DATE_DISPLAY_TYPES } from '../../enums/date-formats.enum';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { CalendarComponent } from '../calendar/calendar.component';
+import { defaultDisplayFormat, defaultFormat } from '../../utils/date-formats/default-formats';
 
 let nextId = 0;
 
@@ -81,7 +79,7 @@ const DATE_TIME_VALIDATORS = {
     '[class.no-label]': '!label'
   }
 })
-export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Validator {
+export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAccessor, Validator {
   @Input() id = `datetime-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
@@ -160,14 +158,13 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
 
   // date, time, dateTime
   @Input()
+  set inputType(val: string) {
+    this._inputType = val;
+  }
   get inputType(): string {
     if (this._inputType) return this._inputType;
     if (this.precision === 'hour' || this.precision === 'minute') return DateTimeType.datetime;
     return DateTimeType.date;
-  }
-  set inputType(val: string) {
-    this._inputType = val;
-    this.update();
   }
 
   /**
@@ -180,7 +177,6 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   @Input()
   set displayMode(val: DATE_DISPLAY_TYPES) {
     this._displayMode = val;
-    this.update();
   }
   // Defaults to LOCAL unless
   get displayMode(): DATE_DISPLAY_TYPES {
@@ -195,58 +191,12 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
    * Considers if mode is user (has timezone), local (no timezone)
    */
   @Input()
-  get format(): string {
-    if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
-
-    switch (this.displayMode) {
-      case DATE_DISPLAY_TYPES.TIMEZONE:
-        switch (this.inputType) {
-          case DateTimeType.date:
-            switch (this.precision) {
-              case 'month':
-                return DATE_DISPLAY_FORMATS.timezoneDateMonth;
-              case 'year':
-                return DATE_DISPLAY_FORMATS.timezoneDateYear;
-            }
-            return DATE_DISPLAY_FORMATS.timezoneDate;
-          case DateTimeType.time:
-            return DATE_DISPLAY_FORMATS.timezoneTime;
-        }
-        return DATE_DISPLAY_FORMATS.timezoneDateTime;
-      case DATE_DISPLAY_TYPES.LOCAL:
-        switch (this.inputType) {
-          case DateTimeType.date:
-            switch (this.precision) {
-              case 'month':
-                return DATE_DISPLAY_FORMATS.dateMonth;
-              case 'year':
-                return DATE_DISPLAY_FORMATS.dateYear;
-            }
-            return DATE_DISPLAY_FORMATS.localeDate;
-          case DateTimeType.time:
-            return DATE_DISPLAY_FORMATS.localeTime;
-        }
-        return DATE_DISPLAY_FORMATS.localeDateTime;
-    }
-
-    switch (this.inputType) {
-      case DateTimeType.date:
-        switch (this.precision) {
-          case 'month':
-            return DATE_DISPLAY_FORMATS.dateMonth;
-          case 'year':
-            return DATE_DISPLAY_FORMATS.dateYear;
-        }
-        return DATE_DISPLAY_FORMATS.date;
-      case DateTimeType.time:
-        return DATE_DISPLAY_FORMATS.time;
-    }
-
-    return DATE_DISPLAY_FORMATS.dateTime;
-  }
   set format(val: string) {
     this._format = val;
-    this.update();
+  }
+  get format(): string {
+    if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
+    return defaultFormat(this.displayMode, this.inputType as DateTimeType, this.precision);
   }
 
   @Input()
@@ -254,13 +204,10 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
     this._displayFormat = val;
   }
   get displayFormat(): string {
-    return (
-      DATE_DISPLAY_FORMATS[this._displayFormat] ||
-      this._displayFormat ||
-      DATE_DISPLAY_FORMATS[this._format] ||
-      this._format ||
-      DATE_DISPLAY_FORMATS.fullDateTime
-    );
+    if (this._displayFormat) return DATE_DISPLAY_FORMATS[this._displayFormat] || this._displayFormat;
+    if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
+
+    return defaultDisplayFormat(this.displayMode, this.inputType as DateTimeType, this.precision);
   }
 
   @Input()
@@ -320,22 +267,10 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   autosize = false;
 
   @Input()
-  get minDate() {
-    return this._minDate;
-  }
-  set minDate(val: Date | string) {
-    this._minDate = val;
-    this.update();
-  }
+  minDate: Date | string;
 
   @Input()
-  get maxDate() {
-    return this._maxDate;
-  }
-  set maxDate(val: Date | string) {
-    this._maxDate = val;
-    this.update();
-  }
+  maxDate: Date | string;
 
   /**
    * this output will emit only when the input value is valid or cleared.
@@ -377,8 +312,6 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   private _format: string;
   private _displayFormat: string;
   private _inputType: string;
-  private _maxDate: Date | string;
-  private _minDate: Date | string;
   private _displayMode: DATE_DISPLAY_TYPES;
   private _clipFormat: string;
 
@@ -391,6 +324,10 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
 
   ngOnDestroy(): void {
     this.close();
+  }
+
+  ngOnChanges() {
+    this.update();
   }
 
   writeValue(val: any): void {
