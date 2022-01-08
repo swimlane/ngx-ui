@@ -62,28 +62,29 @@ export const DATE_DISPLAY_INPUT_FORMATS: Array<string | moment.MomentBuiltinForm
   DATE_DISPLAY_FORMATS.localeDateTime,
   DATE_DISPLAY_FORMATS.localeDate,
   DATE_DISPLAY_FORMATS.localeTime,
+  DATE_DISPLAY_FORMATS.locale,
+  DATE_DISPLAY_FORMATS.shortLocale,
+  DATE_DISPLAY_FORMATS.fullLocale,
+
+  // Fall back to some US based formats
   'MM/DD',
   'MM/DD/YYYY',
   'M/DD/YYYY',
   'MM/DD/YY',
   'MM/DD/YYYY, h:mm A',
   'MM/DD/YYYY, h:mm:ss A',
-  moment.HTML5_FMT.DATETIME_LOCAL,
-  'YYYY-MM-DDTHH:mm', // <input type="datetime-local" />
-  moment.HTML5_FMT.DATETIME_LOCAL_SECONDS,
-  'YYYY-MM-DDTHH:mm:ss', // <input type="datetime-local" />
-  moment.HTML5_FMT.DATETIME_LOCAL_MS,
-  'YYYY-MM-DDTHH:mm:ss.SSS', // <input type="datetime-local" />
-  moment.HTML5_FMT.DATE,
-  'YYYY-MM-DD', // <input type="date" />
-  moment.HTML5_FMT.TIME,
-  'HH:mm', // <input type="time" />
-  moment.HTML5_FMT.TIME_SECONDS,
-  'HH:mm:ss', // <input type="time" />
-  moment.HTML5_FMT.TIME_MS,
-  'HH:mm:ss.SSS', // <input type="time" />
-  moment.HTML5_FMT.MONTH,
-  'YYYY-MM', // <input type="month" />
+
+  // Match HTML5 formats
+  moment.HTML5_FMT.DATETIME_LOCAL, // YYYY-MM-DDTHH:mm <input type="datetime-local" />
+  moment.HTML5_FMT.DATETIME_LOCAL_SECONDS, // YYYY-MM-DDTHH:mm:ss <input type="datetime-local" />
+  moment.HTML5_FMT.DATETIME_LOCAL_MS, // YYYY-MM-DDTHH:mm:ss.SSS <input type="datetime-local" />
+  moment.HTML5_FMT.DATE, // YYYY-MM-DD <input type="date" />
+  moment.HTML5_FMT.TIME, // HH:mm <input type="time" />
+  moment.HTML5_FMT.TIME_SECONDS, // HH:mm:ss <input type="time" />
+  moment.HTML5_FMT.TIME_MS, // HH:mm:ss.SSS <input type="time" />
+  moment.HTML5_FMT.MONTH, // YYYY-MM <input type="month" />
+
+  // Finally ISO
   moment.ISO_8601
 ];
 
