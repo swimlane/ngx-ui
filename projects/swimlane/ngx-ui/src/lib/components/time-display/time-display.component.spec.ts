@@ -386,9 +386,9 @@ describe('NgxTimeDisplayComponent', () => {
   it('should set defaults', () => {
     expect(component.datetime).toBeDefined(Date);
     expect(component.defaultInputTimeZone).toBeUndefined();
-    expect(component.timezone).toBeUndefined();
+    expect(component.timezone).toEqual('America/Los_Angeles');
     expect(component.mode).toBe('timezone');
-    expect(component.tooltipFormat).toBe('ddd, MMM D, YYYY h:mm A Z [(]zz[)]');
+    expect(component.tooltipFormat).toBe('llll Z [(]zz[)]');
     expect(component.clipFormat).toBe('L LT Z');
     expect(component.timezones.UTC).toEqual('Etc/UTC');
     expect(component.timezones.Local).toEqual('');

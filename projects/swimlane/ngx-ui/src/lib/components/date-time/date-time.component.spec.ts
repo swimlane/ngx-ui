@@ -102,8 +102,8 @@ describe('DateTimeComponent', () => {
       expect(component.appearance).toEqual('legacy');
       expect(component.inputType).toEqual('date');
       expect(component.displayMode).toEqual('custom');
-      expect(component.format).toEqual('MMM D, YYYY');
-      expect(component.clipFormat).toEqual('MMM D, YYYY');
+      expect(component.format).toEqual('ll');
+      expect(component.clipFormat).toEqual('ll');
     });
 
     it('should have reasonable defaults when precision is month', () => {
