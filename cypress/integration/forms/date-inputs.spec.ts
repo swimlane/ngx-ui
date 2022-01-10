@@ -59,7 +59,7 @@ describe('Date/Time', () => {
       cy.get('@CUT').clear().type(text);
 
       cy.get('@CUT').ngxGetValue().should('equal', text);
-      cy.get('@output').should('contain.text', text);
+      cy.get('@output').should('contain.text', '2020-12-12T08:00:00.000Z');
 
       cy.get('@CUT').clear().ngxGetValue().should('equal', '');
     });

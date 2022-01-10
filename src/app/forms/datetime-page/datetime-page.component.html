@@ -8,7 +8,7 @@
     name="date-input1"
     label="Date of attack"
     [(value)]="date"
-    (change)="dateChanged($event)"
+    (ngModelChange)="dateChanged($event)"
     (blur)="onBlurEvent($event)"
     (dateTimeSelected)="dateTimeSelected($event)"
   >
@@ -32,7 +32,7 @@
   <br />
   <br />
 
-  <ngx-date-time name="date-input2" label="Disabled" [disabled]="true" [(value)]="date">
+  <ngx-date-time name="date-input2" label="Disabled" [disabled]="true" [(value)]="date2">
   </ngx-date-time>
   <br />
   <app-prism>
@@ -40,7 +40,7 @@
   name="date-input2"
   [disabled]="true"
   label="Disabled"
-  [(value)]="date"
+  [(value)]="date2"
 >
 </ngx-date-time>]]>
   </app-prism>
@@ -48,13 +48,13 @@
   <br />
   <br />
 
-  <ngx-date-time name="date-input3" label="Custom Format" [(value)]="date" [format]="'M/Y'">
+  <ngx-date-time name="date-input3" label="Custom Format" [(value)]="date3" [format]="'M/Y'">
   </ngx-date-time>
   <br />
   <app-prism>
 <![CDATA[ <ngx-date-time
   name="date-input3"
-  [(value)]="date"
+  [(value)]="date3"
   [format]="'M/Y'"
 >
 </ngx-date-time>]]>
@@ -69,7 +69,7 @@
     [minDate]="minDate"
     [maxDate]="maxDate"
     [hint]="'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
-    [(value)]="date"
+    [(value)]="date4"
   >
   </ngx-date-time>
   <br />
@@ -79,7 +79,7 @@
   [minDate]="minDate"
   [maxDate]="maxDate"
   [hint]="'Select date between' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
-  [(value)]="curDate"
+  [(value)]="date4"
 >
 </ngx-date-time>]]>
   </app-prism>
@@ -98,7 +98,7 @@
 
 <ngx-section class="shadow" sectionTitle="Date/Time Input">
   <label>Value: </label>
-  <output>{{ date | json }}</output>
+  <output>{{ dateTime | json }}</output>
 
   <ngx-date-time
     name="datetime-input"
@@ -181,6 +181,9 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Time Input">
+  <label>Current Value:</label>
+  <output>{{ time | json }}</output>
+
   <ngx-date-time
     name="time-input1"
     inputType="time"

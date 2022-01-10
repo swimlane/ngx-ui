@@ -124,9 +124,9 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
       }
     }
 
-    if (!isSame) {
-      this._value = isDate ? date.toDate() : val;
+    this._value = isDate ? date.toDate() : val;
 
+    if (!isSame) {
       // update the display value and table
       this.update();
 
@@ -137,8 +137,8 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
       }
 
       // called each time for validation
-      this.onChangeCallback(val);
-      this.valueChange.emit(val);
+      this.onChangeCallback(this._value);
+      this.valueChange.emit(this._value);
     }
   }
   get value(): Date | string {
@@ -332,9 +332,8 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!('value' in changes)) {
-      this.update();
-    }
+    if ('value' in changes && !changes.value.firstChange) return;
+    this.update();
   }
 
   writeValue(val: any): void {
