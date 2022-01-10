@@ -3,10 +3,10 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import moment from 'moment-timezone';
 import { MomentModule } from 'ngx-moment';
+import { DATE_DISPLAY_TYPES } from '../../enums/date-formats.enum';
 import { PipesModule } from '../../pipes/pipes.module';
 import { InjectionService } from '../../services/injection/injection.service';
 import { DialogModule } from '../dialog/dialog.module';
-import { DATE_DISPLAY_TYPES } from '../time-display/date-formats.enum';
 
 import { DateTimeComponent } from './date-time.component';
 
@@ -102,8 +102,8 @@ describe('DateTimeComponent', () => {
       expect(component.appearance).toEqual('legacy');
       expect(component.inputType).toEqual('date');
       expect(component.displayMode).toEqual('custom');
-      expect(component.format).toEqual('MMM D, YYYY');
-      expect(component.clipFormat).toEqual('MMM D, YYYY');
+      expect(component.format).toEqual('ll');
+      expect(component.clipFormat).toEqual('ll');
     });
 
     it('should have reasonable defaults when precision is month', () => {
