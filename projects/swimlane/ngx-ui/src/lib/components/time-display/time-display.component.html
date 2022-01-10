@@ -10,15 +10,15 @@
   [attr.title]="tooltipDisabled && hasPopup ? titleValue : null"
 >
   <ng-container *ngIf="!dateInvalid">
-    <ng-container [ngSwitch]="displayMode">
+    <ng-container [ngSwitch]="mode">
       <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.HUMAN">
         {{ internalDatetime | amTimeAgo }}
       </ng-container>
       <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.TIMEZONE">
-        {{ internalDatetime | amTimeZone: displayTimeZone | amDateFormat: displayFormat  }}
+        {{ internalDatetime | amTimeZone: timezone | amDateFormat: format  }}
       </ng-container>
-      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.CUSTOM">{{ datetime | amDateFormat: displayFormat }}</ng-container>
-      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.LOCAL">{{ datetime | amDateFormat: displayFormat }}</ng-container>
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.CUSTOM">{{ datetime | amDateFormat: format }}</ng-container>
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.LOCAL">{{ datetime | amDateFormat: format }}</ng-container>
     </ng-container>
   </ng-container>
   <ng-container *ngIf="dateInvalid">

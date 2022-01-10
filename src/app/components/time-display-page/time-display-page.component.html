@@ -1,32 +1,50 @@
-<ngx-section sectionTitle="Formats">
+<ngx-section sectionTitle="Basic">
   <div class="example">
     <h4>Default Date-Time</h4>
     <ngx-time [datetime]="date"></ngx-time>
     <app-prism><![CDATA[<ngx-time [datetime]="date"></ngx-time>]]></app-prism>
   </div>
+</ngx-section>
 
-  <div class="example">
-    <h4>Human Readable Date-Time</h4>
-    <ngx-time [datetime]="date" displayMode="human"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" displayMode="human"></ngx-time>]]></app-prism> 
-  </div>
-
-  <div class="example">
-    <h4>Local</h4>
-    <ngx-time [datetime]="date" displayMode="local"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" displayMode="local"></ngx-time>]]></app-prism> 
-  </div>
-
+<ngx-section sectionTitle="Formats">
   <div class="example">
     <h4>Format</h4>
-    <ngx-time [datetime]="date" displayFormat="fullDateTime"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" displayFormat="fullDateTime"></ngx-time>]]></app-prism>  
+    <ngx-time [datetime]="date" format="dateTime"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="date" format="fullDateTime"></ngx-time>]]></app-prism>  
   </div>
   
   <div class="example">
     <h4>Custom format</h4>
-    <ngx-time [datetime]="date" displayFormat="YYYY MMM"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" displayFormat="YYYY MMM"></ngx-time>]]></app-prism>    
+    <ngx-time [datetime]="date" format="YYYY MMM"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="date" format="YYYY MMM"></ngx-time>]]></app-prism>    
+  </div>
+</ngx-section>
+
+<ngx-section sectionTitle="Modes">
+  <div class="example">
+    <h4>Human Readable Date-Time</h4>
+    <ngx-time [datetime]="date" mode="human"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="date" mode="human"></ngx-time>]]></app-prism> 
+  </div>
+
+  <div class="example">
+    <h4>Local</h4>
+    <ngx-time [datetime]="date" mode="local"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="date" mode="local"></ngx-time>]]></app-prism> 
+  </div>
+</ngx-section>
+
+<ngx-section sectionTitle="Types">
+  <div class="example">
+    <h4>Time</h4>
+    <ngx-time [datetime]="date" type="time"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="date" type="time"></ngx-time>]]></app-prism> 
+  </div>
+
+  <div class="example">
+    <h4>Date</h4>
+    <ngx-time [datetime]="date" type="date"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="date" type="date"></ngx-time>]]></app-prism> 
   </div>
 </ngx-section>
 
@@ -34,21 +52,21 @@
   <output>{{ localString | json }}</output>
   
   <div class="example">
-    <h4>By default inputs are assumed local date/time, display TZ can be defined</h4>
-    <ngx-time [datetime]="localString" displayTimeZone="Asia/Tokyo"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="localString" displayTimeZone="Asia/Tokyo"></ngx-time>]]></app-prism> 
+    <h4>Input and display TZ can be defined</h4>
+    <ngx-time datetime="March 11, 2011 2:46:24 PM" timezone="Asia/Tokyo"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="'March 11, 2011 2:46:24 PM'" timezone="Asia/Tokyo"></ngx-time>]]></app-prism> 
   </div>
 
   <div class="example">
-    <h4>Default input timezone can be specified</h4>
+    <h4>Default input timezone can be specified separately from display</h4>
     <ngx-time datetime="March 11, 2011 2:46:24 PM" defaultInputTimeZone="Asia/Tokyo"></ngx-time>
-    <app-prism><![CDATA[<ngx-time date="March 11, 2011 2:46:24 PM" defaultInputTimeZone="Asia/Tokyo"></ngx-time>]]></app-prism>
+    <app-prism><![CDATA[<ngx-time [datetime]="March 11, 2011 2:46:24 PM" defaultInputTimeZone="Asia/Tokyo"></ngx-time>]]></app-prism>
   </div>
 
   <div class="example">
     <h4>Explicit timezone in input value overrides default input timezone</h4>
-    <ngx-time [datetime]="date" defaultInputTimeZone="Asia/Tokyo"></ngx-time>
-    <app-prism><![CDATA[<ngx-time date="date" defaultInputTimeZone="Asia/Tokyo"></ngx-time>]]></app-prism>
+    <ngx-time datetime="03/10/2011 9:46:24 PM -08:00" defaultInputTimeZone="Asia/Tokyo"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="Thu, Mar 10, 2011 9:46 PM -08:00" defaultInputTimeZone="Asia/Tokyo"></ngx-time>]]></app-prism>
   </div>
 </ngx-section>
 
@@ -63,6 +81,18 @@
     <h4>Defined Timezones</h4>
     <ngx-time [datetime]="date" [timezones]="{ 'Local': '', 'GMT': 'Etc/UTC', 'Tokyo': 'Asia/Tokyo' }"></ngx-time>
     <app-prism><![CDATA[<ngx-time [datetime]="date" [timezones]="{ 'Local': '', 'GMT': 'Etc/UTC', 'Tokyo': 'Asia/Tokyo' }"></ngx-time>]]></app-prism>
+  </div>
+
+  <div class="example">
+    <h4>Popup Format</h4>
+    <ngx-time [datetime]="date" tooltipFormat="localeTime"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="date" tooltipFormat="localeTime"></ngx-time>]]></app-prism>
+  </div>
+
+  <div class="example">
+    <h4>Custom Popup Format</h4>
+    <ngx-time [datetime]="date" tooltipFormat="YYYY MMM"></ngx-time>
+    <app-prism><![CDATA[<ngx-time [datetime]="date" tooltipFormat="YYYY MMM"></ngx-time>]]></app-prism>
   </div>
 </ngx-section>
 

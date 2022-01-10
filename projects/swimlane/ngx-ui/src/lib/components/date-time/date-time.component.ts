@@ -11,7 +11,9 @@ import {
   ElementRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  HostBinding
+  HostBinding,
+  OnChanges,
+  SimpleChanges
 } from '@angular/core';
 import {
   ControlValueAccessor,
@@ -22,7 +24,8 @@ import {
   Validator
 } from '@angular/forms';
 
-import moment from 'moment-timezone';
+import momentTimezone from 'moment-timezone';
+
 import { Clipboard } from '@angular/cdk/clipboard';
 
 import { DialogService } from '../dialog/dialog.service';
@@ -37,13 +40,10 @@ import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
 
 import { Size } from '../../mixins/size/size.enum';
 import { Appearance } from '../../mixins/appearance/appearance.enum';
-import {
-  DATE_DISPLAY_FORMATS,
-  DATE_DISPLAY_INPUT_FORMATS,
-  DATE_DISPLAY_TYPES
-} from '../time-display/date-formats.enum';
+import { DATE_DISPLAY_FORMATS, DATE_DISPLAY_INPUT_FORMATS, DATE_DISPLAY_TYPES } from '../../enums/date-formats.enum';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { CalendarComponent } from '../calendar/calendar.component';
+import { defaultDisplayFormat, defaultInputFormat } from '../../utils/date-formats/default-formats';
 
 let nextId = 0;
 
@@ -60,6 +60,8 @@ const DATE_TIME_VALIDATORS = {
   useExisting: forwardRef(() => DateTimeComponent),
   multi: true
 };
+
+const guessTimeZone = momentTimezone.tz.guess();
 
 @Component({
   exportAs: 'ngxDateTime',
@@ -81,7 +83,7 @@ const DATE_TIME_VALIDATORS = {
     '[class.no-label]': '!label'
   }
 })
-export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Validator {
+export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAccessor, Validator {
   @Input() id = `datetime-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
@@ -160,14 +162,13 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
 
   // date, time, dateTime
   @Input()
+  set inputType(val: string) {
+    this._inputType = val;
+  }
   get inputType(): string {
     if (this._inputType) return this._inputType;
     if (this.precision === 'hour' || this.precision === 'minute') return DateTimeType.datetime;
     return DateTimeType.date;
-  }
-  set inputType(val: string) {
-    this._inputType = val;
-    this.update();
   }
 
   /**
@@ -180,7 +181,6 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   @Input()
   set displayMode(val: DATE_DISPLAY_TYPES) {
     this._displayMode = val;
-    this.update();
   }
   // Defaults to LOCAL unless
   get displayMode(): DATE_DISPLAY_TYPES {
@@ -195,72 +195,23 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
    * Considers if mode is user (has timezone), local (no timezone)
    */
   @Input()
-  get format(): string {
-    if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
-
-    switch (this.displayMode) {
-      case DATE_DISPLAY_TYPES.TIMEZONE:
-        switch (this.inputType) {
-          case DateTimeType.date:
-            switch (this.precision) {
-              case 'month':
-                return DATE_DISPLAY_FORMATS.timezoneDateMonth;
-              case 'year':
-                return DATE_DISPLAY_FORMATS.timezoneDateYear;
-            }
-            return DATE_DISPLAY_FORMATS.timezoneDate;
-          case DateTimeType.time:
-            return DATE_DISPLAY_FORMATS.timezoneTime;
-        }
-        return DATE_DISPLAY_FORMATS.timezoneDateTime;
-      case DATE_DISPLAY_TYPES.LOCAL:
-        switch (this.inputType) {
-          case DateTimeType.date:
-            switch (this.precision) {
-              case 'month':
-                return DATE_DISPLAY_FORMATS.dateMonth;
-              case 'year':
-                return DATE_DISPLAY_FORMATS.dateYear;
-            }
-            return DATE_DISPLAY_FORMATS.localeDate;
-          case DateTimeType.time:
-            return DATE_DISPLAY_FORMATS.localeTime;
-        }
-        return DATE_DISPLAY_FORMATS.localeDateTime;
-    }
-
-    switch (this.inputType) {
-      case DateTimeType.date:
-        switch (this.precision) {
-          case 'month':
-            return DATE_DISPLAY_FORMATS.dateMonth;
-          case 'year':
-            return DATE_DISPLAY_FORMATS.dateYear;
-        }
-        return DATE_DISPLAY_FORMATS.date;
-      case DateTimeType.time:
-        return DATE_DISPLAY_FORMATS.time;
-    }
-
-    return DATE_DISPLAY_FORMATS.dateTime;
-  }
   set format(val: string) {
     this._format = val;
-    this.update();
+  }
+  get format(): string {
+    if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
+    return defaultInputFormat(this.displayMode, this.inputType as DateTimeType, this.precision);
   }
 
   @Input()
-  set displayFormat(val: string) {
-    this._displayFormat = val;
+  set tooltipFormat(val: string) {
+    this._tooltipFormat = val;
   }
-  get displayFormat(): string {
-    return (
-      DATE_DISPLAY_FORMATS[this._displayFormat] ||
-      this._displayFormat ||
-      DATE_DISPLAY_FORMATS[this._format] ||
-      this._format ||
-      DATE_DISPLAY_FORMATS.fullDateTime
-    );
+  get tooltipFormat(): string {
+    if (this._tooltipFormat) return DATE_DISPLAY_FORMATS[this._tooltipFormat] || this._tooltipFormat;
+    if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
+
+    return defaultDisplayFormat(this.displayMode, this.inputType as DateTimeType, this.precision);
   }
 
   @Input()
@@ -298,7 +249,8 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
     this._clipFormat = val;
   }
   get clipFormat(): string {
-    return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat || this.format;
+    if (this._clipFormat) return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat;
+    return this.format;
   }
 
   @Input() requiredIndicator: string | boolean = '*';
@@ -320,22 +272,10 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   autosize = false;
 
   @Input()
-  get minDate() {
-    return this._minDate;
-  }
-  set minDate(val: Date | string) {
-    this._minDate = val;
-    this.update();
-  }
+  minDate: Date | string;
 
   @Input()
-  get maxDate() {
-    return this._maxDate;
-  }
-  set maxDate(val: Date | string) {
-    this._maxDate = val;
-    this.update();
-  }
+  maxDate: Date | string;
 
   /**
    * this output will emit only when the input value is valid or cleared.
@@ -375,10 +315,8 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   private _value: Date | string;
   private _displayValue = '';
   private _format: string;
-  private _displayFormat: string;
+  private _tooltipFormat: string;
   private _inputType: string;
-  private _maxDate: Date | string;
-  private _minDate: Date | string;
   private _displayMode: DATE_DISPLAY_TYPES;
   private _clipFormat: string;
 
@@ -391,6 +329,12 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
 
   ngOnDestroy(): void {
     this.close();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (!('value' in changes)) {
+      this.update();
+    }
   }
 
   writeValue(val: any): void {
@@ -408,7 +352,7 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
   }
 
   open(): void {
-    const value = moment(this._value);
+    const value = momentTimezone(this._value);
     const isValid = value.isValid();
 
     this.setDialogDate(isValid ? value : new Date());
@@ -584,18 +528,16 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
     if (this.format && !inputFormats.includes(this.format)) {
       inputFormats.unshift(this.format);
     }
-    const timezone =
-      this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE ? moment.tz.guess() : undefined);
-    let m = timezone ? moment.tz(date, inputFormats, timezone) : moment(date, inputFormats);
+    const timezone = this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE ? guessTimeZone : undefined);
+    let m = timezone ? momentTimezone.tz(date, inputFormats, timezone) : momentTimezone(date, inputFormats);
     m = this.precision ? this.roundTo(m, this.precision) : m;
     return m;
   }
 
   // Converts datelike to a moment object, considers if timezone is needed
   private createMoment(date: Datelike): moment.Moment {
-    let m = moment(date).clone();
-    const timezone =
-      this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE ? moment.tz.guess() : undefined);
+    let m = momentTimezone(date).clone();
+    const timezone = this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE ? guessTimeZone : undefined);
     m = timezone ? m.tz(timezone) : m;
     m = this.precision ? this.roundTo(m, this.precision) : m;
     return m;
@@ -616,13 +558,11 @@ export class DateTimeComponent implements OnDestroy, ControlValueAccessor, Valid
 
     if (!this.hasPopup) return;
 
-    const localTimezone = moment.tz.guess();
-
     for (const key in this.timezones) {
-      const tz = this.timezones[key] || localTimezone;
+      const tz = this.timezones[key] || guessTimeZone;
       const date = mdate.clone().tz(tz);
       const clip = date.format(this.clipFormat);
-      const display = date.format(this.displayFormat);
+      const display = date.format(this.tooltipFormat);
       this.timeValues[key] = {
         key,
         clip,

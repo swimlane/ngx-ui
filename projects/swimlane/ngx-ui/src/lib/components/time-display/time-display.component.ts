@@ -7,8 +7,12 @@ import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { NotificationService } from '../notification/notification.service';
 import { NotificationStyleType } from '../notification/notification-style-type.enum';
 
-import { DATE_DISPLAY_TYPES, DATE_DISPLAY_INPUT_FORMATS, DATE_DISPLAY_FORMATS } from './date-formats.enum';
+import { DATE_DISPLAY_TYPES, DATE_DISPLAY_INPUT_FORMATS, DATE_DISPLAY_FORMATS } from '../../enums/date-formats.enum';
 import { Datelike } from '../date-time/date-like.type';
+import { DateTimeType } from '../date-time/date-time-type.enum';
+import { defaultDisplayFormat, defaultInputFormat } from '../../utils/date-formats/default-formats';
+
+const guessTimeZone = momentTimezone.tz.guess();
 
 @Component({
   selector: 'ngx-time',
@@ -20,29 +24,51 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   @Input()
   datetime: Datelike = new Date();
 
+  @Input() precision: moment.unitOfTime.StartOf;
+
+  @Input()
+  timezone: string = guessTimeZone;
+
   @Input()
   defaultInputTimeZone: string;
 
   @Input()
-  displayTimeZone: string;
-
-  @Input()
-  set displayMode(val: DATE_DISPLAY_TYPES) {
-    this._displayMode = val;
+  set mode(val: DATE_DISPLAY_TYPES) {
+    this._mode = val;
   }
-  get displayMode(): DATE_DISPLAY_TYPES {
-    if (typeof this._displayMode === 'string') {
-      return this._displayMode;
+  get mode(): DATE_DISPLAY_TYPES {
+    if (typeof this._mode === 'string') {
+      return this._mode;
     }
     return DATE_DISPLAY_TYPES.TIMEZONE;
   }
 
+  // date, time, dateTime
   @Input()
-  set displayFormat(val: string) {
-    this._displayFormat = val;
+  set type(val: string) {
+    this._type = val;
   }
-  get displayFormat(): string {
-    return DATE_DISPLAY_FORMATS[this._displayFormat] || this._displayFormat || DATE_DISPLAY_FORMATS.fullLocale;
+  get type(): string {
+    if (this._type) return this._type;
+    return DateTimeType.datetime;
+  }
+
+  @Input()
+  set format(val: string) {
+    this._format = val;
+  }
+  get format(): string {
+    if (this._format) return DATE_DISPLAY_FORMATS[this._format] || this._format;
+    return defaultDisplayFormat(this.mode, this.type as DateTimeType, this.precision);
+  }
+
+  @Input()
+  set tooltipFormat(val: string) {
+    this._tooltipFormat = val;
+  }
+  get tooltipFormat(): string {
+    if (this._tooltipFormat) return DATE_DISPLAY_FORMATS[this._tooltipFormat] || this._tooltipFormat;
+    return this.format;
   }
 
   @Input()
@@ -50,7 +76,8 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
     this._clipFormat = val;
   }
   get clipFormat(): string {
-    return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat || DATE_DISPLAY_FORMATS.fullLocale;
+    if (this._clipFormat) return DATE_DISPLAY_FORMATS[this._clipFormat] || this._clipFormat;
+    return defaultInputFormat(this.mode, this.type as DateTimeType, this.precision);
   }
 
   @Input()
@@ -93,7 +120,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
 
   @HostBinding('class.ngx-time--has-popup')
   get hasPopup() {
-    return !this.dateInvalid && DATE_DISPLAY_TYPES.LOCAL !== this.displayMode;
+    return !this.dateInvalid && DATE_DISPLAY_TYPES.LOCAL !== this.mode;
   }
 
   @HostBinding('class.ngx-time--date-invalid')
@@ -107,10 +134,12 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   readonly DATE_DISPLAY_TYPES = DATE_DISPLAY_TYPES;
   readonly DATE_DISPLAY_FORMATS = DATE_DISPLAY_FORMATS;
 
-  private _displayMode: DATE_DISPLAY_TYPES;
-  private _displayFormat: string;
+  private _mode: DATE_DISPLAY_TYPES;
+  private _format: string;
+  private _tooltipFormat: string;
   private _clipFormat: string;
   private _clickable: boolean;
+  private _type: string;
 
   constructor(private readonly clipboard: Clipboard, private readonly notificationService: NotificationService) {}
 
@@ -152,7 +181,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
       return;
     }
 
-    if (DATE_DISPLAY_TYPES.LOCAL === this.displayMode) {
+    if (DATE_DISPLAY_TYPES.LOCAL === this.mode) {
       const mdate = momentTimezone(this.datetime);
       this.dateInvalid = !mdate.isValid();
       this.internalDatetime = this.dateInvalid ? undefined : mdate.toDate();
@@ -160,7 +189,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
       return;
     }
 
-    const localTimezone = momentTimezone.tz.guess();
+    const localTimezone = this.timezone || guessTimeZone;
     const inputTimezone = this.defaultInputTimeZone || localTimezone;
 
     const mdate = momentTimezone.tz(this.datetime as string, DATE_DISPLAY_INPUT_FORMATS, inputTimezone);
@@ -175,10 +204,10 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
     const titleValue = [];
 
     for (const key in this.timezones) {
-      const tz = this.timezones[key] || localTimezone;
+      const tz = this.timezones[key] || guessTimeZone;
       const date = mdate.clone().tz(tz);
       const clip = date.format(this.clipFormat);
-      const display = date.format(this.displayFormat);
+      const display = date.format(this.tooltipFormat);
       this.timeValues[key] = {
         key,
         clip,
