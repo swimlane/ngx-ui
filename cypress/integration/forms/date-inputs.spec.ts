@@ -20,7 +20,7 @@ describe('Date/Time', () => {
     beforeEach(() => {
       cy.get('[sectiontitle="Date Input"]').as('SUT');
       cy.get('@SUT').getByLabel('Date of attack').as('CUT');
-      cy.get('@SUT').getByLabel('Current Value:').as('output');
+      cy.get('@SUT').getByLabel('Current Value:').first().as('output');
       cy.get('@CUT').ngxFill('10/10/2016').ngxFindNativeInput().focus().blur();
     });
 
@@ -117,7 +117,7 @@ describe('Date/Time', () => {
     beforeEach(() => {
       cy.get('[sectiontitle="Date Input"]').as('SUT');
       cy.get('@SUT').getByLabel('Custom Format').as('CUT');
-      cy.get('@SUT').getByLabel('Current Value:').as('output');
+      cy.get('@SUT').getByLabel('Current Value:').eq(1).as('output');
     });
 
     it('enters text', () => {
@@ -126,12 +126,12 @@ describe('Date/Time', () => {
       cy.get('@CUT').clear().type(text);
 
       cy.get('@CUT').ngxGetValue().should('equal', text);
-      cy.get('@output').should('contain.text', text);
+      cy.get('@output').should('contain.text', '2020-12-12T08:00:00.000Z');
 
       cy.get('@SUT').find('h1').click(); // blur formats
 
       cy.get('@CUT').ngxGetValue().should('equal', '12/2020');
-      cy.get('@output').should('contain.text', '12/2020');
+      cy.get('@output').should('contain.text', '2020-12-01T08:00:00.000Z');
     });
   });
 
