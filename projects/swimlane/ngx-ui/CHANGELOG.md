@@ -2,7 +2,7 @@
 
 ## HEAD (unreleased)
 
-## 37.0.0-rc0 (2022-1-6)
+## 37.0.0-rc1 (2022-1-10)
 
 - Breaking: `ngx-date-time` no longer displays it's own validation messages
 - Fix: Fixed issues on `ngx-radiobutton` and `ngx-radiobutton-group` with form controls
