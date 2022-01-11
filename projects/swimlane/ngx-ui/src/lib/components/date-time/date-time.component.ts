@@ -138,7 +138,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
 
       // called each time for validation
       this.onChangeCallback(this._value);
-      this.valueChange.emit(this._value);
+      this.valueChange.emit(val);
     }
   }
   get value(): Date | string {
@@ -229,7 +229,6 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   @HostBinding('class.ngx-date-time--date-out-of-range')
   dateOutOfRange = false;
 
-  // Used to display date in other timezones
   /**
    * Used to display date in other timezones
    *
@@ -292,8 +291,12 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
    */
   @Output() inputChange = new EventEmitter<string | Date | undefined | null>();
 
-  @Output() blur = new EventEmitter<Event>();
+  /**
+   * this output will emit a date is selected from the calendar
+   */
   @Output() dateTimeSelected = new EventEmitter<Date | string>();
+
+  @Output() blur = new EventEmitter<Event>();
 
   @ViewChild('dialogTpl', { static: true })
   readonly calendarTpl: TemplateRef<ElementRef>;
