@@ -68,7 +68,7 @@ $calendar-month-current: $color-blue-grey-750;
     display: flex;
 
     .day-name {
-      flex: 0 0 30px;
+      flex: 1 0 30px;
     }
   }
 
@@ -83,12 +83,13 @@ $calendar-month-current: $color-blue-grey-750;
 
   .day-container {
     margin-top: 0;
+    width: 100%;
 
     .day-row {
       display: flex;
 
       .day-cell {
-        flex: 0 0 30px;
+        flex: 1 0 30px;
       }
     }
 
