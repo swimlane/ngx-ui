@@ -537,6 +537,10 @@ $color-chip-text: #fff;
 
   &.fill {
     .ngx-select-input-list {
+      padding-left: 5px;
+    }
+
+    &.single-selection .ngx-select-input-list {
       padding-left: 10px;
     }
 
