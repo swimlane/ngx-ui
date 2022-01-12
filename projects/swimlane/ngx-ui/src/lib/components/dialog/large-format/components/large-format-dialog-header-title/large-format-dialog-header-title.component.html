@@ -1,0 +1,19 @@
+<img *ngIf="imgSrc"
+  class="ngx-large-format-dialog-header-title__img"
+  [src]="imgSrc"
+  draggable="false" />
+<div class="ngx-large-format-dialog-header-title__wrapper">
+  <div
+    class="ngx-large-format-dialog-header-title__text-wrapper"
+    [ngClass]="
+      !!dialogSubtitle
+        ? ['ngx-large-format-dialog-header-title__text-wrapper--title']
+        : ['ngx-large-format-dialog-header-title__text-wrapper--title-center']
+    "
+  >
+    <h1>{{ dialogTitle }}</h1>
+  </div>
+  <div *ngIf="dialogSubtitle" class="ngx-large-format-dialog-header-title__text-wrapper">
+    <h4>{{ dialogSubtitle }}</h4>
+  </div>
+</div>

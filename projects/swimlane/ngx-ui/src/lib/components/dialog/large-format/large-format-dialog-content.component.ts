@@ -10,6 +10,7 @@ import {
   TemplateRef,
   ViewEncapsulation
 } from '@angular/core';
+import { SafeUrl } from '@angular/platform-browser';
 import { pluck, take } from 'rxjs/operators';
 import { AlertService } from '../alert/alert.service';
 import { DialogOptions } from '../dialog-options.interface';
@@ -29,6 +30,7 @@ export class LargeFormatDialogContentComponent {
   // header-title inputs
   @Input() dialogTitle = '';
   @Input() dialogSubtitle?: string;
+  @Input() imgSrc?: string | SafeUrl;
 
   // header-action inputs
   @Input() dialogActionTitle = 'Close';

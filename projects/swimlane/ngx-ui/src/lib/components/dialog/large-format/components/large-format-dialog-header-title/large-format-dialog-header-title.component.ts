@@ -1,22 +1,9 @@
 import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
+import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'ngx-large-format-dialog-header-title',
-  template: `
-    <div
-      class="ngx-large-format-dialog-header-title__text-wrapper"
-      [ngClass]="
-        !!dialogSubtitle
-          ? ['ngx-large-format-dialog-header-title__text-wrapper--title']
-          : ['ngx-large-format-dialog-header-title__text-wrapper--title-center']
-      "
-    >
-      <h1>{{ dialogTitle }}</h1>
-    </div>
-    <div *ngIf="dialogSubtitle" class="ngx-large-format-dialog-header-title__text-wrapper">
-      <h4>{{ dialogSubtitle }}</h4>
-    </div>
-  `,
+  templateUrl: './large-format-dialog-header-title.component.html',
   styleUrls: ['./large-format-dialog-header-title.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -24,6 +11,11 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulati
 export class LargeFormatDialogHeaderTitleComponent {
   @Input() dialogTitle = '';
   @Input() dialogSubtitle?: string;
+  @Input() imgSrc?: string | SafeUrl;
 
   @HostBinding('class.ngx-large-format-dialog-header-title') hostClass = true;
+
+  ngOnInit() {
+    console.log('IMAGE: ', this.imgSrc);
+  }
 }
