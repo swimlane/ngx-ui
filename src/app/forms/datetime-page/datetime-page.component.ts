@@ -12,6 +12,9 @@ const MOON_LANDING = '1969-07-20T20:17:43Z';
 })
 export class DatetimePageComponent {
   date = new Date('10/10/2016');
+  date2 = new Date('10/10/2016');
+  date3 = new Date('10/10/2016');
+  date4 = new Date('10/10/2016');
   minDate = new Date('10/2/2016');
   maxDate = new Date('10/22/2016');
 
