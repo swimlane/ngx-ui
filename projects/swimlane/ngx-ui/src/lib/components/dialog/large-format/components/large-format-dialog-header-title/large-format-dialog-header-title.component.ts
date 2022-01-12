@@ -14,8 +14,4 @@ export class LargeFormatDialogHeaderTitleComponent {
   @Input() imgSrc?: string | SafeUrl;
 
   @HostBinding('class.ngx-large-format-dialog-header-title') hostClass = true;
-
-  ngOnInit() {
-    console.log('IMAGE: ', this.imgSrc);
-  }
 }
