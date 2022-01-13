@@ -2,7 +2,7 @@
 
 ## HEAD (unreleased)
 
-## 37.0.0-rc4 (2022-1-12)
+## 37.0.0-rc5 (2022-1-12)
 
 - Breaking: `ngx-date-time` no longer displays it's own validation messages
 - Breaking: `ngx-select` now deselects an selected option when the user clicks on the same option
