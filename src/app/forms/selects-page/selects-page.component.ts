@@ -1,9 +1,16 @@
 /* eslint-disable no-console */
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
 import { switchMap } from 'rxjs/operators';
+
+export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const forbidden = nameRe.test(control.value);
+    return forbidden ? { forbiddenName: { value: control.value } } : null;
+  };
+}
 
 @Component({
   selector: 'app-selects-page',
@@ -17,7 +24,8 @@ export class SelectsPageComponent implements OnInit {
   asyncOptions$: Observable<any>;
   form = new FormGroup({
     formCtrl1: new FormControl([]),
-    formCtrl2: new FormControl({ value: [], disabled: true })
+    formCtrl2: new FormControl({ value: [], disabled: true }),
+    formCtrl3: new FormControl(['ddos'], [forbiddenNameValidator(/ddos/)])
   });
 
   private get _results() {
