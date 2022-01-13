@@ -73,6 +73,9 @@ export * from './lib/components/date-time/date-time.component';
 export * from './lib/components/date-time/date-time-type.enum';
 export * from './lib/components/date-time/date-like.type';
 
+export * from './lib/components/time-display/time-display.module';
+export * from './lib/components/time-display/time-display.component';
+
 export * from './lib/components/dialog/dialog.module';
 export * from './lib/components/dialog/dialog.component';
 export * from './lib/components/dialog/dialog.service';
