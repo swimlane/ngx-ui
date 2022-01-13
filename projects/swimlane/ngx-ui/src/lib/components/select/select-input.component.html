@@ -58,7 +58,7 @@
     *ngIf="allowClear && !multiple && !tagging && selectedOptions?.length"
     title="Clear Selections"
     class="ngx-select-clear icon-x"
-    (click)="selection.emit([])"
+    (click)="!disabled && selection.emit([])"
   >
   </span>
 </div>

@@ -17,6 +17,8 @@
 - Enhancement: Keyboard accessibility for `ngx-calendar`
 - Fix: Fixed issues on `ngx-radiobutton` and `ngx-radiobutton-group` with form controls
 - Fix: `ngx-date-time` now works with form controls
+- Fix: `ngx-select` now displays correctly with form controls validations
+- Fix: `ngx-select` no longer displays focus and allows clearing when disabled
 
 ## 36.1.0 (2021-12-10)
 
