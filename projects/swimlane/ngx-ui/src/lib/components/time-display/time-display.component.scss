@@ -18,6 +18,7 @@ ngx-time {
   &.ngx-time--has-popup .ngx-time__container {
     text-decoration-line: underline;
     text-decoration-style: dashed;
+    text-decoration-thickness: from-font;
     cursor: copy;
     color: inherit;
   }
