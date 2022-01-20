@@ -1,5 +1,5 @@
+import { ElementRef } from '@angular/core';
 import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
-import { SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'ngx-large-format-dialog-header-title',
@@ -9,9 +9,9 @@ import { SafeUrl } from '@angular/platform-browser';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LargeFormatDialogHeaderTitleComponent {
+  constructor(public elementRef: ElementRef) {}
   @Input() dialogTitle = '';
   @Input() dialogSubtitle?: string;
-  @Input() imgSrc?: string | SafeUrl;
-
+  @Input() imageTemplate: any;
   @HostBinding('class.ngx-large-format-dialog-header-title') hostClass = true;
 }

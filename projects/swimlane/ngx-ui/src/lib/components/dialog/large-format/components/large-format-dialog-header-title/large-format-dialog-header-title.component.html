@@ -1,7 +1,4 @@
-<img *ngIf="imgSrc"
-  class="ngx-large-format-dialog-header-title__img"
-  [src]="imgSrc"
-  draggable="false" />
+<ng-container *ngTemplateOutlet="imageTemplate.template"></ng-container>
 <div class="ngx-large-format-dialog-header-title__wrapper">
   <div
     class="ngx-large-format-dialog-header-title__text-wrapper"
