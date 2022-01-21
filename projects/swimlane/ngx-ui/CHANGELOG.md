@@ -2,6 +2,7 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: add ability to display an image in `ngx-large-format-dialog` header
 - Enhancement: `ngx-date-time` now sets default formats based on precision
 - Enhancement: Improved keyboard accessibility for `ngx-radiobutton` and `ngx-radiobutton-group`
 - Fix: Fixed issues on `ngx-radiobutton` and `ngx-radiobutton-group` with form controls
