@@ -124,9 +124,9 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
       }
     }
 
-    if (!isSame) {
-      this._value = isDate ? date.toDate() : val;
+    this._value = isDate ? date.toDate() : val;
 
+    if (!isSame) {
       // update the display value and table
       this.update();
 
@@ -137,7 +137,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
       }
 
       // called each time for validation
-      this.onChangeCallback(val);
+      this.onChangeCallback(this._value);
       this.valueChange.emit(val);
     }
   }
@@ -220,7 +220,9 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
 
   @HostBinding('class.ngx-date-time--has-popup')
   get hasPopup() {
-    return !!this.value && !this.dateInvalid && DATE_DISPLAY_TYPES.LOCAL !== this.displayMode;
+    if (DATE_DISPLAY_TYPES.LOCAL === this.displayMode) return false;
+    if (this.tooltipDisabled) return false;
+    return !!this.value && !this.dateInvalid;
   }
 
   @HostBinding('class.ngx-date-time--date-invalid')
@@ -229,7 +231,6 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   @HostBinding('class.ngx-date-time--date-out-of-range')
   dateOutOfRange = false;
 
-  // Used to display date in other timezones
   /**
    * Used to display date in other timezones
    *
@@ -292,8 +293,12 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
    */
   @Output() inputChange = new EventEmitter<string | Date | undefined | null>();
 
-  @Output() blur = new EventEmitter<Event>();
+  /**
+   * this output will emit a date is selected from the calendar
+   */
   @Output() dateTimeSelected = new EventEmitter<Date | string>();
+
+  @Output() blur = new EventEmitter<Event>();
 
   @ViewChild('dialogTpl', { static: true })
   readonly calendarTpl: TemplateRef<ElementRef>;
@@ -332,9 +337,8 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (!('value' in changes)) {
-      this.update();
-    }
+    if ('value' in changes && !changes.value.firstChange) return;
+    this.update();
   }
 
   writeValue(val: any): void {

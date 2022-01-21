@@ -107,6 +107,10 @@ $color-chip-text: #fff;
         cursor: not-allowed;
       }
     }
+
+    .underline-fill {
+      width: 0 !important;
+    }
   }
 
   // multi-select
@@ -507,6 +511,8 @@ $color-chip-text: #fff;
   }
 
   // Validation
+  &.ng-invalid.ng-touched,
+  &.ng-invalid.ng-dirty,
   &.invalid {
     .ngx-select-label {
       font-weight: 600;
@@ -537,6 +543,10 @@ $color-chip-text: #fff;
 
   &.fill {
     .ngx-select-input-list {
+      padding-left: 5px;
+    }
+
+    &.single-selection .ngx-select-input-list {
       padding-left: 10px;
     }
 
@@ -596,8 +606,8 @@ $color-chip-text: #fff;
     }
   }
 
-  &.active:not(.ng-invalid),
-  &:focus-within:not(.ng-invalid) {
+  &.active:not(.ng-invalid):not(.disabled),
+  &:focus-within:not(.ng-invalid):not(.disabled) {
     .ngx-select-label,
     .ngx-select-caret,
     &.single-selection .ngx-select-clear {
