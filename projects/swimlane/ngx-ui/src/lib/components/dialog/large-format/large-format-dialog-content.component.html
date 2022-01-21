@@ -36,10 +36,15 @@
   <ng-content select="ngx-large-format-dialog-footer"></ng-content>
 </main>
 
+<ng-template #myTemplate>
+  <img *ngIf="imgSrc" class="ngx-large-format-dialog-header-title__img" [src]="imgSrc" draggable="false" />
+</ng-template>
+
 <ng-template #header>
   <ngx-large-format-dialog-header-title
     [dialogTitle]="dialogTitle"
     [dialogSubtitle]="dialogSubtitle"
+    [imageTemplate]="imageTemplate"
   ></ngx-large-format-dialog-header-title>
   <ngx-large-format-dialog-header-action
     [dirty]="dirty"
