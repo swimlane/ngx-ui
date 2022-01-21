@@ -41,6 +41,7 @@ import { ToggleModule } from './components/toggle/toggle.module';
 import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { TooltipModule } from './components/tooltip/tooltip.module';
 import { TreeModule } from './components/tree/tree.module';
+import { TimeDisplayModule } from './components/time-display/time-display.module';
 
 /**
  * Exported Modules
@@ -53,6 +54,7 @@ const modules = [
   CodeEditorModule,
   CommonModule,
   DateTimeModule,
+  TimeDisplayModule,
   DialogModule,
   DirectivesModule,
   DrawerModule,
