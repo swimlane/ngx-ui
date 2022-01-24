@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { JsonEditorNodeInfoComponent } from './node-info.component';
+import { TooltipModule } from '../../../../../tooltip/tooltip.module';
 
 describe('JsonEditorNodeInfoComponent', () => {
   let component: JsonEditorNodeInfoComponent;
@@ -9,7 +10,8 @@ describe('JsonEditorNodeInfoComponent', () => {
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [JsonEditorNodeInfoComponent]
+        declarations: [JsonEditorNodeInfoComponent],
+        imports: [TooltipModule]
       }).compileComponents();
     })
   );
