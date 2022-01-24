@@ -3,7 +3,6 @@ import {
   Input,
   Output,
   ContentChildren,
-  QueryList,
   EventEmitter,
   ViewEncapsulation,
   AfterContentInit,
@@ -12,6 +11,8 @@ import {
   OnDestroy,
   HostBinding
 } from '@angular/core';
+import type { QueryList } from '@angular/core';
+
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 

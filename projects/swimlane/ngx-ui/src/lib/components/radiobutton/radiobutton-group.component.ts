@@ -6,7 +6,6 @@ import {
   forwardRef,
   ViewEncapsulation,
   ContentChildren,
-  QueryList,
   OnDestroy,
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -22,6 +21,8 @@ import { takeUntil } from 'rxjs/operators';
 import { RadioButtonComponent } from './radiobutton.component';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+
+import type { QueryList } from '@angular/core';
 
 const RADIOGROUP_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,

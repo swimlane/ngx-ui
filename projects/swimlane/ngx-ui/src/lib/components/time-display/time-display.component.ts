@@ -1,7 +1,7 @@
 import { Component, Input, HostListener, ViewEncapsulation, OnChanges, HostBinding, OnInit } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 
-import momentTimezone from 'moment-timezone';
+import moment from 'moment-timezone';
 
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { NotificationService } from '../notification/notification.service';
@@ -12,7 +12,7 @@ import { Datelike } from '../date-time/date-like.type';
 import { DateTimeType } from '../date-time/date-time-type.enum';
 import { defaultDisplayFormat, defaultInputFormat } from '../../utils/date-formats/default-formats';
 
-const guessTimeZone = momentTimezone.tz.guess();
+const guessTimeZone = moment.tz.guess();
 
 @Component({
   selector: 'ngx-time',
@@ -182,7 +182,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
     }
 
     if (DATE_DISPLAY_TYPES.LOCAL === this.mode) {
-      const mdate = momentTimezone(this.datetime);
+      const mdate = moment(this.datetime);
       this.dateInvalid = !mdate.isValid();
       this.internalDatetime = this.dateInvalid ? undefined : mdate.toDate();
       this.utcDatetime = this.dateInvalid ? '' : mdate.format('YYYY-MM-DD[T]HH:mm:ss.SSS');
@@ -192,7 +192,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
     const localTimezone = this.timezone || guessTimeZone;
     const inputTimezone = this.defaultInputTimeZone || localTimezone;
 
-    const mdate = momentTimezone.tz(this.datetime as string, DATE_DISPLAY_INPUT_FORMATS, inputTimezone);
+    const mdate = moment.tz(this.datetime as string, DATE_DISPLAY_INPUT_FORMATS, inputTimezone);
     this.dateInvalid = !mdate.isValid();
     this.internalDatetime = this.dateInvalid ? undefined : mdate.toDate();
     this.utcDatetime = this.dateInvalid ? '' : mdate.toISOString();

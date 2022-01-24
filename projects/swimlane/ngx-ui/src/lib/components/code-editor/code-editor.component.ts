@@ -14,7 +14,7 @@ import {
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
-import CodeMirror from 'codemirror';
+import * as CodeMirror from 'codemirror';
 
 // code extensions
 import 'codemirror/mode/yaml/yaml.js';

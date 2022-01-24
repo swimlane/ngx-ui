@@ -9,7 +9,6 @@ import {
   Input,
   OnDestroy,
   Output,
-  QueryList,
   ViewEncapsulation
 } from '@angular/core';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -19,6 +18,8 @@ import { takeUntil } from 'rxjs/operators';
 import { navbarAnimations } from './navbar.animation';
 import { NavbarItemComponent } from './navbar-item.component';
 import { NavbarBarAnimationStates } from './navbar-bar-animation-states.enum';
+
+import type { QueryList } from '@angular/core';
 
 @Component({
   exportAs: 'ngxNavbar',

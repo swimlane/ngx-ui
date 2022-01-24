@@ -2,7 +2,6 @@ import {
   Component,
   ViewEncapsulation,
   ContentChildren,
-  QueryList,
   Input,
   ChangeDetectionStrategy,
   ChangeDetectorRef
@@ -11,6 +10,8 @@ import { JsonEditor } from '../json-editor';
 import { SchemaValidatorService } from '../schema-validator.service';
 import { JsonEditorNodeComponent } from './json-editor-node/json-editor-node.component';
 import { JSONEditorSchema } from '../json-editor.helper';
+
+import type { QueryList } from '@angular/core';
 
 @Component({
   selector: 'ngx-json-editor',

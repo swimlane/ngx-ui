@@ -1,12 +1,14 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Component } from '@angular/core';
-import iconsList from '@swimlane/ngx-ui/assets/icons/json/icons.json';
+import iconsData from '@swimlane/ngx-ui/assets/icons/json/icons.json';
 
 @Component({
   selector: 'app-icons-page',
   templateUrl: './icons-page.component.html'
 })
 export class IconsPageComponent {
-  icons = iconsList.icons.reverse();
+  // @ts-ignore
+  icons = iconsData.icons.reverse();
   iconFx = [
     'inverse',
     'rotate-90',

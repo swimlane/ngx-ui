@@ -1,4 +1,4 @@
-import momentTimezone from 'moment-timezone';
+import moment from 'moment-timezone';
 
 import { TimeZonePipe } from './time-zone.pipe';
 
@@ -19,6 +19,6 @@ describe('TimeZonePipe', () => {
 
   it('should get date without timezone', () => {
     const now = new Date();
-    expect(pipe.transform(now).toString()).toEqual(momentTimezone(now).toString());
+    expect(pipe.transform(now).toString()).toEqual(moment(now).toString());
   });
 });

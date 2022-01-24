@@ -13,7 +13,7 @@ import {
   HostBinding
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import moment from 'moment-timezone';
+import moment, { Moment, MomentBuiltinFormat } from 'moment-timezone';
 
 import { getMonth } from './utils/get-month/get-month.util';
 import { getDecadeStartYear } from './utils/get-decade-start-year/get-decade-start-year.util';
@@ -52,7 +52,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() maxDate: Date | string;
   @Input() daysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   @Input() timezone: string;
-  @Input() inputFormats: Array<string | moment.MomentBuiltinFormat> = ['L', 'LT', 'L LT', moment.ISO_8601];
+  @Input() inputFormats: Array<string | MomentBuiltinFormat> = ['L', 'LT', 'L LT', moment.ISO_8601];
 
   @Input('minView')
   get minView() {
@@ -94,11 +94,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     }
   }
 
-  get current(): moment.Moment {
+  get current(): Moment {
     return this._current;
   }
 
-  focusDate: moment.Moment;
+  focusDate: Moment;
   weeks: CalendarMonth;
   currentView: CalendarView;
   monthsList = moment.monthsShort();
@@ -107,7 +107,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   readonly CalendarView = CalendarView;
 
   private _value: Date;
-  private _current: moment.Moment;
+  private _current: Moment;
   private _minView: CalendarView;
   private _defaultView: CalendarView;
 
@@ -157,14 +157,14 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   /**
    * Checks if `date` matches selected value
    */
-  isDayActive(date: moment.Moment): boolean {
+  isDayActive(date: Moment): boolean {
     return date.isSame(this.value, 'day');
   }
 
   /**
    * Checks if `date` matches selected value
    */
-  isDayFocus(date: moment.Moment): boolean {
+  isDayFocus(date: Moment): boolean {
     if (!this.focusDate) return false;
     return date.isSame(this.focusDate, 'day');
   }
@@ -221,7 +221,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     if (this.disabled) return true;
     if (!value) return false;
 
-    let date: moment.Moment;
+    let date: Moment;
 
     switch (type) {
       case 'day':
@@ -305,7 +305,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     this.setFocus(focusDate);
   }
 
-  setFocus(focusDate: moment.Moment) {
+  setFocus(focusDate: Moment) {
     this.focusDate = focusDate;
     this.weeks = getMonth(this.focusDate);
     if (this.focusDate.year() < this.startYear) {
@@ -554,12 +554,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     // placeholder
   };
 
-  private parseDate(date: string | Date): moment.Moment {
+  private parseDate(date: string | Date): Moment {
     date = date instanceof Date ? date.toISOString() : date;
     return this.timezone ? moment.tz(date, this.inputFormats, this.timezone) : moment(date, this.inputFormats);
   }
 
-  private createMoment(date: string | Date | moment.Moment): moment.Moment {
+  private createMoment(date: string | Date | Moment): Moment {
     const m = moment(date).clone();
     return this.timezone ? m.tz(this.timezone) : m;
   }

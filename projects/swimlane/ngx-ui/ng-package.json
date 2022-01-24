@@ -12,7 +12,8 @@
       "codemirror": "CodeMirror",
       "mousetrap": "Mousetrap",
       "ngx-autosize-input": "ngxAutosizeInput",
-      "ajv": "Ajv"
+      "ajv": "Ajv",
+      "ng-in-viewport": "ngInViewport"
     }
   },
   "allowedNonPeerDependencies": ["mousetrap", "ng2-file-upload", "normalize.css"]
