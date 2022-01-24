@@ -86,7 +86,7 @@ describe('CalendarComponent', () => {
   describe('isMonthActive', () => {
     it('should return true if same month of year', () => {
       component.value = new Date();
-      expect(component.isMonthActive(mommomentent().format('MMMM'))).toBe(true);
+      expect(component.isMonthActive(moment().format('MMMM'))).toBe(true);
     });
 
     it('should return false if not same month of year', () => {
