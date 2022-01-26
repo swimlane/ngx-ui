@@ -1,9 +1,9 @@
-import moment from 'moment';
+import { Moment } from 'moment-timezone';
 
 export interface CalendarDay {
   num: number;
   dayOfWeek: number;
-  date: moment.Moment;
+  date: Moment;
   today?: boolean;
   nextMonth?: boolean;
   prevMonth?: boolean;

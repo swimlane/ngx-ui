@@ -9,13 +9,15 @@ import {
   Input,
   OnDestroy,
   Output,
-  QueryList,
   Renderer2,
   TemplateRef,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
+import type { QueryList } from '@angular/core';
+
 import { Appearance } from '../../mixins/appearance/appearance.enum';
 import { InViewportMetadata } from 'ng-in-viewport';
 import { take } from 'rxjs/operators';

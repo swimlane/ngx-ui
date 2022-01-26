@@ -16,7 +16,7 @@ export class DrawerPageComponent {
 
   readonly DrawerDirection = DrawerDirection;
 
-  constructor(readonly drawerMngr: DrawerService, private readonly el: ElementRef<HTMLElement>) {}
+  constructor(readonly drawerService: DrawerService, private readonly el: ElementRef<HTMLElement>) {}
 
   dateChanged(val: Date | string) {
     console.log('date changed!', val);
@@ -29,7 +29,7 @@ export class DrawerPageComponent {
     template = this.editTmpl,
     isRoot = true
   ) {
-    this.drawerMngr.create({
+    this.drawerService.create({
       direction,
       template,
       size,

@@ -2,13 +2,14 @@ import {
   Input,
   ContentChildren,
   AfterContentInit,
-  QueryList,
   ElementRef,
   Directive,
   OnChanges,
   HostBinding,
   OnDestroy
 } from '@angular/core';
+
+import type { QueryList } from '@angular/core';
 
 import { SplitAreaDirective } from './split-area.directive';
 import { SplitHandleComponent } from './split-handle.component';

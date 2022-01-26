@@ -24,7 +24,7 @@ import {
   Validator
 } from '@angular/forms';
 
-import momentTimezone from 'moment-timezone';
+import moment from 'moment-timezone';
 
 import { Clipboard } from '@angular/cdk/clipboard';
 
@@ -61,7 +61,7 @@ const DATE_TIME_VALIDATORS = {
   multi: true
 };
 
-const guessTimeZone = momentTimezone.tz.guess();
+const guessTimeZone = moment.tz.guess();
 
 @Component({
   exportAs: 'ngxDateTime',
@@ -356,7 +356,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   }
 
   open(): void {
-    const value = momentTimezone(this._value);
+    const value = moment(this._value);
     const isValid = value.isValid();
 
     this.setDialogDate(isValid ? value : new Date());
@@ -533,14 +533,14 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
       inputFormats.unshift(this.format);
     }
     const timezone = this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE ? guessTimeZone : undefined);
-    let m = timezone ? momentTimezone.tz(date, inputFormats, timezone) : momentTimezone(date, inputFormats);
+    let m = timezone ? moment.tz(date, inputFormats, timezone) : moment(date, inputFormats);
     m = this.precision ? this.roundTo(m, this.precision) : m;
     return m;
   }
 
   // Converts datelike to a moment object, considers if timezone is needed
   private createMoment(date: Datelike): moment.Moment {
-    let m = momentTimezone(date).clone();
+    let m = moment(date).clone();
     const timezone = this.timezone || (this.displayMode === DATE_DISPLAY_TYPES.TIMEZONE ? guessTimeZone : undefined);
     m = timezone ? m.tz(timezone) : m;
     m = this.precision ? this.roundTo(m, this.precision) : m;

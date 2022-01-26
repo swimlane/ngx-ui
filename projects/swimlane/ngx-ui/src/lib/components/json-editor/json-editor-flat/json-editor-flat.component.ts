@@ -1,7 +1,6 @@
 import {
   Component,
   ContentChildren,
-  QueryList,
   Input,
   ViewEncapsulation,
   ChangeDetectionStrategy,
@@ -21,6 +20,8 @@ import {
   PropertyConfigComponent,
   PropertyConfigOptions
 } from './json-editor-node-flat/node-types/property-config/property-config.component';
+
+import type { QueryList } from '@angular/core';
 
 @Component({
   selector: 'ngx-json-editor-flat',

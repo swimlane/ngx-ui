@@ -18,6 +18,7 @@
     "allowSyntheticDefaultImports": true,
     "suppressExcessPropertyErrors": true,
     "suppressImplicitAnyIndexErrors": true,
+    "resolveJsonModule": true,
     "outDir": "release",
     "declarationDir": "release",
     "lib": ["es2016", "dom"],

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import CodeMirror from 'codemirror';
+import * as CodeMirror from 'codemirror';
 
 import { CodeEditorComponent } from './code-editor.component';
 
@@ -52,7 +52,7 @@ describe('CodeEditorComponent', () => {
   });
 
   describe('onVisible', () => {
-    it('should refesh instance for sizing', () => {
+    it('should refresh instance for sizing', () => {
       const spy = spyOn(component.instance, 'refresh');
       component.onVisible();
       expect(spy).toHaveBeenCalled();

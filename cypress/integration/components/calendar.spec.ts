@@ -1,8 +1,8 @@
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 describe('Calendar', () => {
   moment.suppressDeprecationWarnings = true;
-  let today = moment();
+  const today = moment();
 
   const NOT_FOCUSED = 'rgb(148, 198, 255) auto 0px';
   const FOCUSED = 'rgb(148, 198, 255) solid 2px';

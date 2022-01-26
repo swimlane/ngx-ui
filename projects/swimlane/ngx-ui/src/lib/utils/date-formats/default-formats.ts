@@ -1,4 +1,4 @@
-import moment from 'moment-timezone';
+import type { unitOfTime } from 'moment-timezone';
 
 import { DateTimeType } from '../../components/date-time/date-time-type.enum';
 import { DATE_DISPLAY_FORMATS, DATE_DISPLAY_TYPES } from '../../enums/date-formats.enum';
@@ -9,7 +9,7 @@ import { DATE_DISPLAY_FORMATS, DATE_DISPLAY_TYPES } from '../../enums/date-forma
 export function defaultInputFormat(
   displayMode: DATE_DISPLAY_TYPES,
   inputType: DateTimeType,
-  precision: moment.unitOfTime.StartOf
+  precision: unitOfTime.StartOf
 ) {
   switch (displayMode) {
     case DATE_DISPLAY_TYPES.HUMAN:
@@ -64,7 +64,7 @@ export function defaultInputFormat(
 export function defaultDisplayFormat(
   displayMode: DATE_DISPLAY_TYPES,
   inputType: DateTimeType,
-  precision: moment.unitOfTime.StartOf
+  precision: unitOfTime.StartOf
 ) {
   switch (displayMode) {
     case DATE_DISPLAY_TYPES.HUMAN:

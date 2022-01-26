@@ -1,25 +1,25 @@
 /* eslint-disable security/detect-object-injection */
 /* eslint-disable @typescript-eslint/member-ordering */
 import {
+  Injectable,
+  ViewContainerRef,
   ApplicationRef,
   ComponentFactoryResolver,
   ComponentRef,
-  Injectable,
   Injector,
-  ViewContainerRef,
   EmbeddedViewRef,
   Type
 } from '@angular/core';
 import { DomPortalOutlet, ComponentPortal } from '@angular/cdk/portal';
 
-const isViewContainerRef = (x: any): x is ViewContainerRef => {
+function isViewContainerRef(x: any): x is ViewContainerRef {
   return x.element;
-};
+}
 
 /**
  * Injection service is a helper to append components
  * dynamically to a known location in the DOM, most
- * noteably for dialogs/tooltips appending to body.
+ * notably for dialogs/tooltips appending to body.
  *
  * @export
  */

@@ -8,10 +8,11 @@ import {
   EventEmitter,
   OnInit,
   ElementRef,
-  ContentChildren,
-  QueryList
+  ContentChildren
 } from '@angular/core';
 import { coerceNumberProperty } from '@angular/cdk/coercion';
+
+import type { QueryList } from '@angular/core';
 
 import { StepContentDirective } from './step-content.directive';
 

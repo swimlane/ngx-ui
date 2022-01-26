@@ -2,14 +2,13 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { MomentModule } from 'ngx-moment';
-import moment from 'moment';
-import momentTimezone from 'moment-timezone';
+import moment from 'moment-timezone';
 
 import { PipesModule } from '../../pipes/pipes.module';
 import { CalendarView } from './calendar-view.enum';
 import { CalendarComponent } from './calendar.component';
 
-(momentTimezone as any).suppressDeprecationWarnings = true;
+(moment as any).suppressDeprecationWarnings = true;
 
 describe('CalendarComponent', () => {
   let component: CalendarComponent;

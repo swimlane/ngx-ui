@@ -8,9 +8,10 @@ import {
   Input,
   OnDestroy,
   Output,
-  QueryList,
   ViewEncapsulation
 } from '@angular/core';
+import type { QueryList } from '@angular/core';
+
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { StepComponent } from './step.component';
