@@ -2,12 +2,28 @@
 
 .ngx-large-format-dialog-header-title {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  flex: 0 0 20%;
+  flex-direction: row;
+  gap: 1.5rem;
+  flex: 1;
   max-width: 50%;
   height: 100%;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
+
+  &__img {
+    background-color: white;
+    height: 60px;
+    width: 60px;
+  }
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    flex: 0 0 20%;
+    height: 100%;
+    justify-content: center;
+  }
 
   &__text-wrapper {
     height: 100%;

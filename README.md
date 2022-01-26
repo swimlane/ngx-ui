@@ -5,7 +5,7 @@ Component & Style Library for Angular by Swimlane.
 ## Installing
 
 - `npm i @swimlane/ngx-ui --S`
-- Install the project's [peer depencencies](https://github.com/swimlane/ngx-ui/blob/master/projects/swimlane/ngx-ui/package.json#L27) (moment, codemirror)
+- Install the project's [peer dependencies](https://github.com/swimlane/ngx-ui/blob/master/projects/swimlane/ngx-ui/package.json#L27) (moment, codemirror)
 - Add `NgxUIModule` to your application module
 
 ## Building ngx-ui

@@ -130,6 +130,7 @@ $input-invalid-color: $color-red;
     input {
       text-decoration-line: underline;
       text-decoration-style: dashed;
+      text-decoration-thickness: from-font;
     }
   }
 }
