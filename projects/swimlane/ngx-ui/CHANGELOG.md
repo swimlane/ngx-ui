@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 37.1.0 (2022-2-1)
+
 - Enhancement: add ability to display an image in `ngx-large-format-dialog` header
 - Enhancement: adding additional information for installation in README.md
 - Fix: cypress calendar test
