@@ -3,6 +3,7 @@
 ## HEAD (unreleased)
 
 - Enhancement: add ability to display an image in `ngx-large-format-dialog` header
+- Enhancement: adding additional information for installation in README.md
 
 ## 37.0.0 (2022-1-20)
 
