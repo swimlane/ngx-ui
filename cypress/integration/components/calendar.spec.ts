@@ -206,7 +206,7 @@ describe('Calendar', () => {
         cy.get('.title').should('contain.text', focusedDate.add(2, 'year').format('YYYY'));
 
         cy.realPress('Space');
-        cy.get('.title').should('contain.text', focusedDate.format('MMM YYYY'));
+        cy.get('.title').should('contain.text', focusedDate.format('MMMM YYYY'));
       });
     });
   });
