@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import * as Mousetrap from 'mousetrap';
+import Mousetrap from 'mousetrap';
 import { Subject } from 'rxjs';
 
 import { Hotkey } from './hotkey.interface';
