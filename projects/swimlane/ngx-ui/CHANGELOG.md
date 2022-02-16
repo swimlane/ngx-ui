@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Breaking: escape HTML in labels of input, select and date time components
+
 ## 37.1.1 (2022-2-8)
 
 - Fix: Revert Mousetrap import in HotKeys service
