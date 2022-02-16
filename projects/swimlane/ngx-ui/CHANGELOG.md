@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 38.0.0 (2022-2-16)
+
 - Breaking: escape HTML in labels of input, select and date time components
 
 ## 37.1.1 (2022-2-8)
