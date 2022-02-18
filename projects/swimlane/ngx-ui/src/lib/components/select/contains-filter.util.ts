@@ -1,4 +1,4 @@
-import { escapeRegExp } from '@swimlane/ngx-ui/utils/regex/escape.util';
+import { escapeRegExp } from '../../utils/regex/escape.util';
 
 export function containsFilter(
   value: any,
