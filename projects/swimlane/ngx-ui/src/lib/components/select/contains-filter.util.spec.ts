@@ -6,8 +6,20 @@ describe('containsFilter', () => {
     expect(res).toBeTruthy();
   });
 
+  it('should be true when not case sensitive and filter contains special regex characters', () => {
+    const res = containsFilter('Special regex characters .*+?^${}()|[]\\ are escaped', '.*+?^${}()|[]\\', {});
+    expect(res).toBeTruthy();
+  });
+
   it('should be true when case sensitive and filter exists', () => {
     const res = containsFilter('test', 'test', { filterCaseSensitive: true });
+    expect(res).toBeTruthy();
+  });
+
+  it('should be true when case sensitive and filter contains special regex characters', () => {
+    const res = containsFilter('Special regex characters .*+?^${}()|[]\\ are escaped', '.*+?^${}()|[]\\', {
+      filterCaseSensitive: true
+    });
     expect(res).toBeTruthy();
   });
 

@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix: Escape special character on select filter regex
+
 ## 38.0.0 (2022-2-16)
 
 - Breaking: escape HTML in labels of input, select and date time components

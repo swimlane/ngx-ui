@@ -1,3 +1,5 @@
+import { escapeRegExp } from '@swimlane/ngx-ui/utils/regex/escape.util';
+
 export function containsFilter(
   value: any,
   keyword: string,
@@ -13,8 +15,9 @@ export function containsFilter(
       return value === keyword;
     }
 
+    const escapedKeyword = escapeRegExp(keyword);
     // eslint-disable-next-line
-    const idx = options.filterCaseSensitive ? value.indexOf(keyword) : value.search(new RegExp(keyword, 'i'));
+    const idx = options.filterCaseSensitive ? value.indexOf(keyword) : value.search(new RegExp(escapedKeyword, 'i'));
     return idx > -1;
   } else if (typeof value === 'object') {
     const keys = Object.getOwnPropertyNames(value);
