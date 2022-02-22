@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Fix: `ngx-date-time` input changes when focused causing partial user input to be lost
+- Enhancement: `ngx-date-time` disable popup when input has focus
+
 ## 38.0.0 (2022-2-16)
 
 - Breaking: escape HTML in labels of input, select and date time components
