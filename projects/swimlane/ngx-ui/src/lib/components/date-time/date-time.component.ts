@@ -44,6 +44,7 @@ import { DATE_DISPLAY_FORMATS, DATE_DISPLAY_INPUT_FORMATS, DATE_DISPLAY_TYPES } 
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 import { CalendarComponent } from '../calendar/calendar.component';
 import { defaultDisplayFormat, defaultInputFormat } from '../../utils/date-formats/default-formats';
+import { TooltipDirective } from '../tooltip/tooltip.directive';
 
 let nextId = 0;
 
@@ -222,6 +223,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   get hasPopup() {
     if (DATE_DISPLAY_TYPES.LOCAL === this.displayMode) return false;
     if (this.tooltipDisabled) return false;
+    if (this._focused) return false;
     return !!this.value && !this.dateInvalid;
   }
 
@@ -299,6 +301,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   @Output() dateTimeSelected = new EventEmitter<Date | string>();
 
   @Output() blur = new EventEmitter<Event>();
+  @Output() focus = new EventEmitter<Event>();
 
   @ViewChild('dialogTpl', { static: true })
   readonly calendarTpl: TemplateRef<ElementRef>;
@@ -308,6 +311,9 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
 
   @ViewChild(CalendarComponent, { static: false })
   readonly calendar: CalendarComponent;
+
+  @ViewChild(TooltipDirective, { static: true })
+  readonly tooltip: TooltipDirective;
 
   dialog: any;
   dialogModel: moment.Moment;
@@ -324,6 +330,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   private _inputType: string;
   private _displayMode: DATE_DISPLAY_TYPES;
   private _clipFormat: string;
+  private _focused = false;
 
   constructor(
     private readonly dialogService: DialogService,
@@ -337,7 +344,8 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if ('value' in changes && !changes.value.firstChange) return;
+    if ('value' in changes && !changes.value.firstChange) return; // only on first change to value
+    if (this._focused) return; // don't update if focused
     this.update();
   }
 
@@ -345,8 +353,15 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
     this.value = val;
   }
 
-  onBlur(_event?: Event) {
+  onFocus(event: Event) {
+    this.tooltip.hideTooltip();
+    this._focused = true;
+    this.focus.emit(event);
+  }
+
+  onBlur(event: Event) {
     this.onTouchedCallback();
+    this._focused = false;
 
     this.update();
     if (!this.dateInvalid && this.input.value !== this.displayValue) {
