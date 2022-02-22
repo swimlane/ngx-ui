@@ -353,13 +353,13 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
     this.value = val;
   }
 
-  onFocus(event: Event) {
+  onFocus(event?: Event) {
     this.tooltip.hideTooltip();
     this._focused = true;
     this.focus.emit(event);
   }
 
-  onBlur(event: Event) {
+  onBlur(event?: Event) {
     this.onTouchedCallback();
     this._focused = false;
 
