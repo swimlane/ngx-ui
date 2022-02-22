@@ -31,12 +31,16 @@
 
   &.success {
     background-color: $color-green !important;
+    background: $color-green !important;
     color: $color-white;
+    border: none !important;
   }
 
   &.fail {
     background-color: $color-red !important;
+    background: $color-red !important;
     color: $color-white;
+    border: none !important;
   }
 
   &.in-progress,

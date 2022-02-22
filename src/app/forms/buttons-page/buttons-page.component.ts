@@ -4,6 +4,7 @@ import { FileUploader } from '@swimlane/ng2-file-upload';
 @Component({
   selector: 'app-buttons-page',
   templateUrl: './buttons-page.component.html',
+  styleUrls: ['./buttons-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonsPageComponent {

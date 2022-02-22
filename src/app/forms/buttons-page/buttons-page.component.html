@@ -1,4 +1,5 @@
 <h3 class="style-header">Buttons</h3>
+
 <ngx-section class="shadow" sectionTitle="Buttons">
   <button type="button" class="btn" (click)="onBtnClick('Default')">Default</button>
   <button type="button" class="btn btn-primary" (click)="onBtnClick('Primary')">Primary</button>
@@ -196,12 +197,12 @@
     class="btn">Default</ngx-button>
   <ngx-button #primaryButton [promise]="promises['primaryButton']" (click)="onClick('Primary', 'primaryButton', 0)"
     class="btn btn-primary">Primary</ngx-button>
-  <ngx-button #gradiantButton [promise]="promises['gradiantButton']" (click)="onClick('button click', 'gradiantButton')"
+  <ngx-button #gradientButton [promise]="promises['gradientButton']" (click)="onClick('button click', 'gradientButton')"
     class="btn btn-primary btn-primary-gradient">Primary Gradient</ngx-button>
   <ngx-button #failButton [promise]="promises['failButton']" (click)="onClick('button click', 'failButton')"
     class="btn btn-warning" (click)="failButton.state = 'fail'; failButton.updateState()">Warning</ngx-button>
-  <ngx-button #sucessButton [promise]="promises['sucessButton']" (click)="onClick('button click', 'sucessButton')"
-    class="btn btn-danger" (click)="sucessButton.state = 'success'; sucessButton.updateState()">Danger</ngx-button>
+  <ngx-button #successButton [promise]="promises['successButton']" (click)="onClick('button click', 'successButton')"
+    class="btn btn-danger" (click)="successButton.state = 'success'; successButton.updateState()">Danger</ngx-button>
   <ngx-button #borderButton [promise]="promises['borderButton']" (click)="onClick('button click', 'borderButton')"
     class="btn btn-bordered">Bordered</ngx-button>
   <ngx-button #linkButton [promise]="promises['linkButton']" (click)="onClick('button click', 'linkButton')"
@@ -224,12 +225,12 @@
   class="btn">Default</ngx-button>
 <ngx-button #primaryButton [promise]="promises['primaryButton']" (click)="onClick('button click', 'primaryButton')"
   class="btn btn-primary">Primary</ngx-button>
-<ngx-button #gradiantButton [promise]="promises['gradiantButton']" (click)="onClick('button click', 'gradiantButton')"
+<ngx-button #gradientButton [promise]="promises['gradientButton']" (click)="onClick('button click', 'gradientButton')"
   class="btn btn-primary btn-primary-gradient">Primary Gradient</ngx-button>
 <ngx-button #failButton [promise]="promises['failButton']" (click)="onClick('button click', 'failButton')"
   class="btn btn-warning" (click)="failButton.state = 'fail'; failButton.updateState()">Warning</ngx-button>
-<ngx-button #sucessButton [promise]="promises['sucessButton']" (click)="onClick('button click', 'sucessButton')"
-  class="btn btn-danger" (click)="sucessButton.state = 'success'; sucessButton.updateState()">Danger</ngx-button>
+<ngx-button #successButton [promise]="promises['successButton']" (click)="onClick('button click', 'successButton')"
+  class="btn btn-danger" (click)="successButton.state = 'success'; successButton.updateState()">Danger</ngx-button>
 <ngx-button #borderButton [promise]="promises['borderButton']" (click)="onClick('button click', 'borderButton')"
   class="btn btn-bordered">Bordered</ngx-button>
 <ngx-button #linkButton [promise]="promises['linkButton']" (click)="onClick('button click', 'linkButton')"
@@ -248,6 +249,71 @@
 <ngx-button [timeout]="0" disabled="true" class="btn">No Timeout</ngx-button>
 ]]>
   </app-prism>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="States">
+  <table class="appearance-table">
+    <tr>
+      <th>Class</th>
+      <th>Active</th>
+      <th>In Progress</th>
+      <th>Success</th>
+      <th>Fail</th>
+      <th>Disabled</th>
+      <th>Focus</th>
+      <th>Hover</th>
+    </tr>
+    <tr>
+      <th>Default</th>
+      <td><ngx-button class="btn">Default</ngx-button></td>
+      <td><ngx-button class="btn" state="in-progress" timeout="0">Default</ngx-button></td>
+      <td><ngx-button class="btn" state="success" timeout="0">Default</ngx-button></td>
+      <td><ngx-button class="btn" state="fail" timeout="0">Default</ngx-button></td>
+      <td><ngx-button class="btn" disabled>Default</ngx-button></td>
+      <td><ngx-button class="btn focus-visible">Default</ngx-button></td>
+      <td><ngx-button class="btn focus-hover">Default</ngx-button></td>
+    </tr>
+    <tr>
+      <th>Primary</th>
+      <td><ngx-button class="btn btn-primary">Primary</ngx-button></td>
+      <td><ngx-button class="btn btn-primary" state="in-progress" timeout="0">Primary</ngx-button></td>
+      <td><ngx-button class="btn btn-primary" state="success" timeout="0">Primary</ngx-button></td>
+      <td><ngx-button class="btn btn-primary" state="fail" timeout="0">Primary</ngx-button></td>
+      <td><ngx-button class="btn btn-primary" disabled>Primary</ngx-button></td>
+      <td><ngx-button class="btn btn-primary focus-visible">Primary</ngx-button></td>
+      <td><ngx-button class="btn btn-primary focus-hover">Primary</ngx-button></td>
+    </tr>
+    <tr>
+      <th>Primary Gradient</th>
+      <td><ngx-button class="btn btn-primary btn-primary-gradient">Gradient</ngx-button></td>
+      <td><ngx-button class="btn btn-primary btn-primary-gradient" state="in-progress" timeout="0">Gradient</ngx-button></td>
+      <td><ngx-button class="btn btn-primary btn-primary-gradient" state="success" timeout="0">Gradient</ngx-button></td>
+      <td><ngx-button class="btn btn-primary btn-primary-gradient" state="fail" timeout="0">Gradient</ngx-button></td>
+      <td><ngx-button class="btn btn-primary btn-primary-gradient" disabled>Gradient</ngx-button></td>
+      <td><ngx-button class="btn btn-primary btn-primary-gradient focus-visible">Default</ngx-button></td>
+      <td><ngx-button class="btn btn-primary btn-primary-gradient focus-hover">Default</ngx-button></td>
+    </tr>
+    <tr>
+      <th>Bordered</th>
+      <td><ngx-button class="btn btn-bordered">Bordered</ngx-button></td>
+      <td><ngx-button class="btn btn-bordered" state="in-progress" timeout="0">Bordered</ngx-button></td>
+      <td><ngx-button class="btn btn-bordered" state="success" timeout="0">Bordered</ngx-button></td>
+      <td><ngx-button class="btn btn-bordered" state="fail" timeout="0">Bordered</ngx-button></td>
+      <td><ngx-button class="btn btn-bordered" disabled>Bordered</ngx-button></td>
+      <td><ngx-button class="btn btn-bordered focus-visible">Default</ngx-button></td>
+      <td><ngx-button class="btn btn-bordered focus-hover">Default</ngx-button></td>
+    </tr>
+    <tr>
+      <th>Link</th>
+      <td><ngx-button class="btn btn-link">Link</ngx-button></td>
+      <td><ngx-button class="btn btn-link" state="in-progress" timeout="0">Link</ngx-button></td>
+      <td><ngx-button class="btn btn-link" state="success" timeout="0">Link</ngx-button></td>
+      <td><ngx-button class="btn btn-link" state="fail" timeout="0">Link</ngx-button></td>
+      <td><ngx-button class="btn btn-link" disabled>Link</ngx-button></td>
+      <td><ngx-button class="btn btn-link focus-visible">Default</ngx-button></td>
+      <td><ngx-button class="btn btn-link focus-hover">Default</ngx-button></td>
+    </tr>
+  </table>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="File Upload">
