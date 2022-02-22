@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+- Fix: Hover states now work on hover
+- Fix: Success and failed states for primary gradient now show background
+- Fix: Removed border for success and failed states
+
 ## 38.0.0 (2022-2-16)
 
 - Breaking: escape HTML in labels of input, select and date time components
