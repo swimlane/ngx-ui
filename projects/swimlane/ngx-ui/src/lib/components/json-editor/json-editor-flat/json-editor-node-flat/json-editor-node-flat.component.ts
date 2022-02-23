@@ -47,8 +47,6 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() arrayName = '';
 
-  @Input() compressed: boolean;
-
   @Input() indentationArray: number[];
 
   @Input() showKnownProperties = false;

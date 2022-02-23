@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ViewEncapsulation, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'ngx-json-editor-node-info',
@@ -6,9 +6,12 @@ import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angu
   styleUrls: ['./node-info.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class JsonEditorNodeInfoComponent {
+export class JsonEditorNodeInfoComponent implements OnInit {
   @Input()
   nameEditable = false;
+
+  @Input()
+  required = false;
 
   @Input()
   title: string;
@@ -25,11 +28,11 @@ export class JsonEditorNodeInfoComponent {
   @Input()
   examples: string[];
 
-  @Input()
-  compressed = false;
-
   @Output() propertyNameChange = new EventEmitter<string>();
-
+  ngOnInit() {
+    // eslint-disable-next-line no-console
+    console.log(this.required);
+  }
   updatePropertyName(name: string) {
     this.propertyNameChange.emit(name);
   }

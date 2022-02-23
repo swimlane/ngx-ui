@@ -17,12 +17,14 @@
   border-radius: 2px 0px 0px 2px;
   display: flex;
   align-items: center;
-  background-color: rgba(red($color-blue-grey-700), green($color-blue-grey-700), blue($color-blue-grey-700), 0.4);
+  border-left: 1px solid $color-blue-grey-650;
+  gap: -0.25rem;
+  line-height: 5px;
+  margin: -5px 0px;
 }
 
 .json-editor--vertical-separator {
-  background-color: $color-blue-grey-650;
-  opacity: 0.5;
+  background-color: #3b4457;
   border-radius: 2px;
   width: 1px;
   height: calc(100% - 4px);
