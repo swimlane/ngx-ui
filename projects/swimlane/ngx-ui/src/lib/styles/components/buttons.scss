@@ -143,7 +143,7 @@ button {
       background: linear-gradient(350.57deg, $color-blue-600 14.42%, $color-light-blue-600 100%);
       box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-      border: none;
+      border: 1px solid $color-blue-600;
     }
   }
 
