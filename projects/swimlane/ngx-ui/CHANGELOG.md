@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 38.1.0 (2022-2-23)
+
 - Fix: Hover states now work on hover
 - Fix: Success and failed states for primary gradient now show background
 - Fix: Removed border for success and failed states
