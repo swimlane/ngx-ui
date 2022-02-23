@@ -29,14 +29,25 @@
     pointer-events: none;
   }
 
+  &.success,
+  &.fail {
+    color: black !important;
+  }
+
+  &.in-progress {
+    color: $color-white !important;
+  }
+
   &.success {
     background-color: $color-green !important;
-    color: $color-white;
+    background: $color-green !important;
+    border: 1px solid $color-green !important;
   }
 
   &.fail {
     background-color: $color-red !important;
-    color: $color-white;
+    background: $color-red !important;
+    border: 1px solid $color-red !important;
   }
 
   &.in-progress,
@@ -44,7 +55,6 @@
   &.fail {
     pointer-events: auto;
     cursor: wait !important;
-    color: $color-white;
     position: relative;
     opacity: 1 !important;
 

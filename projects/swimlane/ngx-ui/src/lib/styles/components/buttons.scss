@@ -25,7 +25,8 @@ button {
     outline: none;
   }
 
-  &:focus-visible {
+  &:focus-visible,
+  &.focus-visible {
     outline: -webkit-focus-ring-color auto 1px;
   }
 }
@@ -84,12 +85,15 @@ button {
   }
 
   // Focus ring
-  &:focus-visible {
+  &:focus-visible,
+  &.focus-visible {
     outline: 2px solid $button-fill-color;
   }
 
-  &:active:hover:focus:not([disabled]),
-  &:active:hover:focus:not(.disabled) {
+  &:hover:not([disabled]),
+  &:hover:not(.disabled),
+  &.focus-hover:not([disabled]),
+  &.focus-hover:not(.disabled) {
     cursor: pointer;
     background: $button-fill-active-color;
     outline-color: $button-fill-active-color;
@@ -135,7 +139,11 @@ button {
     outline-color: $color-blue;
 
     &.btn-primary-gradient {
-      background: linear-gradient(125.43deg, $color-light-blue-400 10.86%, $color-blue-400 49.11%);
+      background-color: $color-blue-600;
+      background: linear-gradient(350.57deg, $color-blue-600 14.42%, $color-light-blue-600 100%);
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+      border: 1px solid $color-blue-600;
     }
   }
 
