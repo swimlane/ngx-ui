@@ -24,6 +24,7 @@
     [requiredIndicator]="requiredIndicator"
     [hint]="hint"
     (ngModelChange)="inputChanged($event)"
+    (focus)="onFocus($event)"
     (blur)="onBlur($event)"
     (keydown)="onInputKeyDown($event)"
   >
