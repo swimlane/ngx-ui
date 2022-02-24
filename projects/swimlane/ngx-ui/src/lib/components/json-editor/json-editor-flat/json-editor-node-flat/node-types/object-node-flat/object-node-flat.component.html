@@ -101,7 +101,7 @@
                 [type]="(prop.value.format || prop.value.type | titlecase) + (prop.value.enum?.length ? ' + Enum' : '')"
                 [description]="prop.value?.description"
                 [examples]="prop.value.examples"
-                [required]="requiredIndicator"
+                [required]="required"
               >
               </ngx-json-editor-node-info>
             </div>
