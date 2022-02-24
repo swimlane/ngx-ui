@@ -350,7 +350,7 @@ describe('SelectDropdownComponent', () => {
     });
 
     it('should not filter options', () => {
-      component.filterQuery = component.options[0].value;
+      component.filterQuery = '';
       component.groupBy = 'group';
       expect(component.groups).toBeDefined();
     });
