@@ -20,7 +20,7 @@
   border-left: 1px solid $color-blue-grey-650;
   gap: -0.25rem;
   line-height: 5px;
-  margin: -5px 0px;
+  margin: -6px 0px -11px;
 }
 
 .json-editor--vertical-separator {
@@ -32,5 +32,7 @@
 
   &:first-child {
     margin-left: 20px;
+    margin-top: 1px;
+    height: 100%;
   }
 }

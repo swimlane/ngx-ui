@@ -5,6 +5,7 @@
     </div>
     <div class="node">
       <div class="left-options">
+        <div class="error-box" *ngIf="(!valid && !schemaBuilderMode) || isDuplicated"></div>
         <ng-container *ngIf="hideRoot || (nextLevel > 0 && !arrayItem)">
           <ng-content select="[cdkDragHandle]"></ng-content>
         </ng-container>

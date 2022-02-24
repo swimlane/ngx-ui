@@ -18,7 +18,8 @@
   height: 100px;
   position: relative;
   display: flex;
-
+  padding-left: 5px;
+  padding-top: 5px;
   ngx-dropdown {
     padding-bottom: 0;
   }
@@ -28,9 +29,10 @@
   }
 
   &.background {
-    background-color: rgba(red($color-blue-grey-700), green($color-blue-grey-700), blue($color-blue-grey-700), 0.4);
-    padding: 7px 7px 7px 0;
-    height: 120px;
+    border-left: 1px solid #3b4457;
+    height: 96px;
+    padding-left: 0px;
+    padding-top: 0px;
   }
 
   .indented-content {

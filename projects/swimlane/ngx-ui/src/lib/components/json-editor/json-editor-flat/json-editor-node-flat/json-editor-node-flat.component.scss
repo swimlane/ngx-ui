@@ -46,6 +46,16 @@ ngx-json-editor-node-flat {
     height: 96px;
     min-width: 0; // https://css-tricks.com/flexbox-truncated-text/#the-solution-is-min-width-0-on-the-flex-child
 
+    .error-box {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 2px;
+      top: 0;
+      left: 0;
+      border: 2px solid $color-error;
+    }
+
     .left-options {
       display: flex;
       flex-direction: column;
