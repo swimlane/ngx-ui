@@ -18,8 +18,7 @@
   height: 100px;
   position: relative;
   display: flex;
-  padding-left: 5px;
-  padding-top: 5px;
+  padding-top: 2px;
   ngx-dropdown {
     padding-bottom: 0;
   }
@@ -41,11 +40,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $color-blue-grey-300;
 
     button {
       display: flex;
-
+      color: $color-blue-400;
       i {
         font-size: 18px;
       }
