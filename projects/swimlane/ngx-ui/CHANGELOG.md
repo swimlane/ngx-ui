@@ -2,11 +2,14 @@
 
 ## HEAD (unreleased)
 
+## 38.1.0 (2022-2-23)
+
 - Fix: Hover states now work on hover
 - Fix: Success and failed states for primary gradient now show background
 - Fix: Removed border for success and failed states
 - Fix: `ngx-date-time` input changes when focused causing partial user input to be lost
 - Enhancement: `ngx-date-time` disable popup when input has focus
+- Fix: Escape special character on select filter regex
 
 ## 38.0.0 (2022-2-16)
 
