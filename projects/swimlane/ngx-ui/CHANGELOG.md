@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 39.0.0 (2022-2-28)
+
+- Breaking: Updated json-editor-flat component styles. Removed the `compact` input
+
 ## 38.1.0 (2022-2-23)
 
 - Fix: Hover states now work on hover
