@@ -3,19 +3,10 @@
     <div class="indentation" *ngIf="nextLevel > 0" [style.left]="-1 * (nextLevel * 20) + 'px'">
       <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
     </div>
-    <div class="node" [class.compressed]="compressed">
-      <div class="error-box" *ngIf="(!valid && !schemaBuilderMode) || isDuplicated"></div>
-
+    <div class="node">
       <div class="left-options">
+        <div class="error-box" *ngIf="(!valid && !schemaBuilderMode) || isDuplicated"></div>
         <ng-container *ngIf="hideRoot || (nextLevel > 0 && !arrayItem)">
-          <div class="required-indicator">
-            <span
-              *ngIf="required"
-              [class.invalid]="(!childrenValid && !schemaBuilderMode) || isDuplicated"
-              [innerHtml]="requiredIndicator"
-            ></span>
-            <span *ngIf="!required && schemaBuilderMode" class="not-required" [innerHtml]="requiredIndicator"></span>
-          </div>
           <ng-content select="[cdkDragHandle]"></ng-content>
         </ng-container>
       </div>
@@ -30,7 +21,7 @@
             [type]="(schema?.format || schema?.type | titlecase) + (schema?.enum?.length ? ' + Enum' : '')"
             [description]="schema?.description"
             [examples]="schema?.examples"
-            [compressed]="compressed"
+            [required]="required"
           >
           </ngx-json-editor-node-info>
         </div>
@@ -39,6 +30,7 @@
           <!-- Number | Integer -->
           <div *ngIf="schema?.type === 'number' || schema?.type === 'integer'">
             <ngx-input
+              appearance="fill"
               type="number"
               [ngModel]="model"
               (ngModelChange)="updateModel($event)"
@@ -65,6 +57,7 @@
             <!-- No format -->
             <div *ngIf="!schema.format">
               <ngx-input
+                appearance="fill"
                 *ngIf="!schema?.enum"
                 type="textarea"
                 [ngModel]="model"
@@ -77,6 +70,7 @@
               </ngx-input>
 
               <ngx-select
+                appearance="fill"
                 [filterable]="false"
                 *ngIf="schema?.enum"
                 [ngModel]="[model]"
@@ -92,6 +86,7 @@
             <!-- Password -->
             <div *ngIf="schema.format === 'password'">
               <ngx-input
+                appearance="fill"
                 type="password"
                 [ngModel]="model"
                 (ngModelChange)="updateModel($event)"
@@ -105,6 +100,7 @@
             <!-- Date -->
             <div *ngIf="schema.format === 'date'">
               <ngx-input
+                appearance="fill"
                 type="date"
                 [ngModel]="model"
                 (ngModelChange)="updateModel($event)"
@@ -117,6 +113,7 @@
             <!-- DateTime -->
             <div *ngIf="schema.format === 'date-time'">
               <ngx-input
+                appearance="fill"
                 type="datetime-local"
                 [ngModel]="model"
                 (ngModelChange)="updateModel($event)"
@@ -129,6 +126,7 @@
             <!-- Code -->
             <div *ngIf="schema.format === 'code'" class="code">
               <ngx-input
+                appearance="fill"
                 type="text"
                 [ngModel]="model"
                 [requiredIndicator]="false"
@@ -146,6 +144,7 @@
             <ng-template #codeEditorTpl>
               <div class="code-editor">
                 <ngx-select
+                  appearance="fill"
                   label="Language Mode"
                   [ngModel]="[editorConfig.mode.name]"
                   (ngModelChange)="selectEditorMode($event[0])"
@@ -206,7 +205,6 @@
       [isDuplicated]="isDuplicated"
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="nextLevel"
-      [compressed]="compressed"
       [schemaBuilderMode]="schemaBuilderMode"
       [formats]="formats"
       [showKnownProperties]="showKnownProperties"
@@ -227,7 +225,6 @@
       [hideRoot]="hideRoot"
       (modelChange)="updateModel($event)"
       [path]="path"
-      [compressed]="compressed"
       [errors]="childrenErrors"
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="nextLevel"

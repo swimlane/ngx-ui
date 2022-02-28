@@ -27,14 +27,26 @@ ngx-json-editor-node-info {
     color: #f0f1f6;
   }
 
-  .name,
-  .description,
-  .info-type {
+  .name {
     display: inline-block;
     white-space: nowrap;
     text-overflow: ellipsis;
     max-width: calc(100% - 30px);
     overflow: hidden;
+  }
+
+  .required,
+  .info-type,
+  .property-name {
+    font-size: 12px;
+  }
+
+  .description {
+    font-size: 14px;
+  }
+
+  .required {
+    color: $color-red-400;
   }
 
   .property-name,

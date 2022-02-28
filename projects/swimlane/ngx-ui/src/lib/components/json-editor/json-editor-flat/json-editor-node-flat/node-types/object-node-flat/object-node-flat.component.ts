@@ -37,8 +37,6 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
 
   @Input() formats: JsonSchemaDataType[] = [];
 
-  @Input() compressed: boolean;
-
   @Input() hideRoot = false;
 
   @Input() isDuplicated = false;

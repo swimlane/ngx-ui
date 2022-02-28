@@ -41,8 +41,6 @@ export class JsonEditorFlatComponent extends JsonEditor implements OnInit, OnCha
 
   @Input() formats?: string[] = [];
 
-  @Input() compressed = false;
-
   @Input() hideRoot = false;
 
   @Input() showKnownProperties = false;

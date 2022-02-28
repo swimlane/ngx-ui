@@ -1,17 +1,19 @@
 <!-- Property name/title -->
 <div class="info-name" *ngIf="!nameEditable && title">
-  <span class="name"
+  <span
+    class="name"
     ngx-tooltip
     tooltipType="tooltip"
     [tooltipTitle]="title"
     [tooltipShowCaret]="false"
     tooltipCssClass="narrow"
-    [tooltipShowTimeout]="750">
+    [tooltipShowTimeout]="750"
+  >
     {{ title }}
   </span>
 
   <ngx-icon
-    *ngIf="(description && compressed) || examples?.length"
+    *ngIf="description || examples?.length"
     class="info-btn"
     fontIcon="info-filled"
     ngx-tooltip
@@ -22,14 +24,14 @@
 
   <ng-template #popoverTemplate>
     <div class="json-editor--popover-template">
-      <div *ngIf="description && compressed">
+      <div *ngIf="description">
         <div class="label">Description</div>
         <div>{{ description }}</div>
       </div>
-      <div *ngIf="(description && compressed) && examples?.length" class="separator"></div>
+      <div *ngIf="description && examples?.length" class="separator"></div>
       <ng-container *ngIf="examples?.length">
         <div class="label">Examples</div>
-        <div *ngFor="let example of examples">{{ example }}</div>          
+        <div *ngFor="let example of examples">{{ example }}</div>
       </ng-container>
     </div>
   </ng-template>
@@ -37,6 +39,7 @@
 
 <!-- Inline text editing-->
 <ngx-input
+  appearance="fill"
   class="editable-name"
   type="text"
   *ngIf="nameEditable"
@@ -47,29 +50,31 @@
 <!-- Type info -->
 <div class="info-type">
   <span class="type">{{ type }}</span>
-  <ngx-icon
-    *ngIf="propertyName"
-    class="dot-separator"
-    fontIcon="circle-filled"
-  ></ngx-icon>
-  <span class="property-name"
+  <ngx-icon *ngIf="propertyName && required" class="dot-separator" fontIcon="circle-filled"></ngx-icon>
+  <span class="required" *ngIf="required">required</span>
+  <ngx-icon *ngIf="propertyName" class="dot-separator" fontIcon="circle-filled"></ngx-icon>
+  <span
+    class="property-name"
     ngx-tooltip
     tooltipType="tooltip"
     [tooltipTitle]="propertyName"
     [tooltipShowCaret]="false"
     [tooltipShowTimeout]="750"
-    tooltipCssClass="narrow">
-      {{ propertyName }}
-    </span>
+    tooltipCssClass="narrow"
+  >
+    {{ propertyName }}
+  </span>
 </div>
 
 <!-- Description -->
-<span *ngIf="!compressed" class="description"
+<span
+  class="description"
   ngx-tooltip
   tooltipType="tooltip"
   [tooltipTitle]="description"
   [tooltipShowCaret]="false"
   [tooltipShowTimeout]="750"
-  tooltipCssClass="narrow">
+  tooltipCssClass="narrow"
+>
   {{ description }}
 </span>

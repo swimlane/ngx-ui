@@ -16,7 +16,7 @@
   .add-prop-button {
     background-color: rgba(red($color-blue-grey-700), green($color-blue-grey-700), blue($color-blue-grey-700), 0.4);
     margin-bottom: 5px;
-    height: 120px;
+    height: 96px;
 
     &:last-child {
       margin-bottom: 0;
@@ -54,6 +54,8 @@
 
   .add-button {
     display: none;
+    padding-left: 1rem;
+    border-left: 1px solid $color-blue-grey-650;
   }
 }
 

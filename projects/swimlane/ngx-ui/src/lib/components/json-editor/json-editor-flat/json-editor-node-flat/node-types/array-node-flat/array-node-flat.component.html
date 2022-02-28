@@ -13,7 +13,6 @@
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="level"
       [hideRoot]="hideRoot"
-      [compressed]="compressed"
       [formats]="formats"
       [schemaRef]="schemaRef?.items || null"
       [schemaBuilderMode]="schemaBuilderMode"
@@ -60,7 +59,6 @@
   <div
     *ngIf="!schemaBuilderMode || !model.length"
     class="add-button"
-    [class.compressed]="compressed"
     [class.background]="hideRoot ? level > -1 : level"
   >
     <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>

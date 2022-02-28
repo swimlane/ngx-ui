@@ -95,7 +95,6 @@ export class JsonEditorPageComponent {
     required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions', 'userApiKey']
   };
 
-  compressed = false;
   hideRoot = false;
   showKnownProperties = false;
   passwordToggleEnabled = false;
@@ -126,10 +125,6 @@ export class JsonEditorPageComponent {
       return regex.test(value);
     }
   };
-
-  toggleCompressed(): void {
-    this.compressed = !this.compressed;
-  }
 
   updateJsonEditorSchema(schema: string) {
     this.jsonEditorSchema = JSON.parse(schema);

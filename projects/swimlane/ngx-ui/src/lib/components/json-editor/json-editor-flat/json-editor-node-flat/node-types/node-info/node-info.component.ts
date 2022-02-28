@@ -11,6 +11,9 @@ export class JsonEditorNodeInfoComponent {
   nameEditable = false;
 
   @Input()
+  required = false;
+
+  @Input()
   title: string;
 
   @Input()
@@ -24,9 +27,6 @@ export class JsonEditorNodeInfoComponent {
 
   @Input()
   examples: string[];
-
-  @Input()
-  compressed = false;
 
   @Output() propertyNameChange = new EventEmitter<string>();
 
