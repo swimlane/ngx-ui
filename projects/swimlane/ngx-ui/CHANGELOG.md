@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix: Display proper supports message with only one allowed file format on `Dropzone` component
+
 ## 39.0.0 (2022-2-28)
 
 - Breaking: Updated json-editor-flat component styles. Removed the `compact` input
