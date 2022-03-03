@@ -2,7 +2,7 @@
 
 %node-type {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: 0px;
   position: relative;
 
   &:last-child {
@@ -18,7 +18,7 @@
   height: 100px;
   position: relative;
   display: flex;
-  padding-top: 2px;
+  padding-top: 4px;
   ngx-dropdown {
     padding-bottom: 0;
   }
@@ -31,7 +31,8 @@
     border-left: 1px solid $color-blue-grey-650;
     height: 96px;
     padding-left: 0px;
-    padding-top: 0px;
+    padding-top: 1px;
+    padding-bottom: 4px;
   }
 
   .indented-content {
@@ -40,7 +41,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    border-radius: 4px;
     button {
       display: flex;
       color: $color-blue-400;

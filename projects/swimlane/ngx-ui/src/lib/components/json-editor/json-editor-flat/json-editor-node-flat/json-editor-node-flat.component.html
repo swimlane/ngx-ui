@@ -100,7 +100,6 @@
             <!-- Date -->
             <div *ngIf="schema.format === 'date'">
               <ngx-input
-                appearance="fill"
                 type="date"
                 [ngModel]="model"
                 (ngModelChange)="updateModel($event)"
@@ -144,7 +143,6 @@
             <ng-template #codeEditorTpl>
               <div class="code-editor">
                 <ngx-select
-                  appearance="fill"
                   label="Language Mode"
                   [ngModel]="[editorConfig.mode.name]"
                   (ngModelChange)="selectEditorMode($event[0])"

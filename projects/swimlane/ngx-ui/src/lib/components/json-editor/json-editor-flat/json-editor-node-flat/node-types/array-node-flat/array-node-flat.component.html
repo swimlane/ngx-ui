@@ -17,7 +17,12 @@
       [schemaRef]="schemaRef?.items || null"
       [schemaBuilderMode]="schemaBuilderMode"
       [arrayItem]="schemaBuilderMode"
-      [arrayName]="(schema.title ? schema.title : schema.propertyName) + '[' + (schemaBuilderMode ? '' : i) + ']'"
+      [arrayName]="
+        (schema.title ? schema.title : schema.propertyName !== undefined ? schema.propertyName : 'Array ' + level) +
+        '[' +
+        (schemaBuilderMode ? '' : i) +
+        ']'
+      "
       [indentationArray]="indentationArray"
       [showKnownProperties]="showKnownProperties"
       [isDuplicated]="isDuplicated"
