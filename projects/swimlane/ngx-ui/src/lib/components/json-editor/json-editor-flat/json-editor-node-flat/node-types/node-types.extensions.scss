@@ -2,7 +2,7 @@
 
 %node-type {
   display: flex;
-  margin-bottom: 0px;
+  margin-bottom: 4px;
   position: relative;
 
   &:last-child {
@@ -42,6 +42,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 4px;
+    margin-bottom: -2px;
     button {
       display: flex;
       color: $color-blue-400;

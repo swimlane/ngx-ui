@@ -14,14 +14,13 @@
 }
 
 %indentation {
-  border-radius: 2px 0px 0px 2px;
+  border-radius: 0px;
   display: flex;
   align-items: center;
   border-left: 1px solid $color-blue-grey-650;
   gap: -0.25rem;
   line-height: 5px;
-  margin: -8.7px 0px -8px;
-  border-radius: 0;
+  margin: -3px 0px -13px;
 }
 
 .json-editor--vertical-separator {
@@ -36,6 +35,5 @@
     margin-top: 1px;
     height: 100%;
     margin-bottom: -5px;
-    margin-top: 3px;
   }
 }
