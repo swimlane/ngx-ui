@@ -112,7 +112,6 @@
             <!-- DateTime -->
             <div *ngIf="schema.format === 'date-time'">
               <ngx-input
-                appearance="fill"
                 type="datetime-local"
                 [ngModel]="model"
                 (ngModelChange)="updateModel($event)"

@@ -74,6 +74,9 @@ export class ArrayNode implements OnChanges {
   addArrayItem(dataType?: JsonSchemaDataType): void {
     let schema;
     if (dataType) {
+      if (dataType.name === 'String') {
+        dataType.schema = { type: 'string' };
+      }
       schema = JSON.parse(JSON.stringify({ ...(this.schema.items as any), ...dataType.schema }));
     } else {
       schema = JSON.parse(JSON.stringify(this.schema.items));
@@ -166,6 +169,9 @@ export class ArrayNode implements OnChanges {
           prevSchemas[index].format !== undefined &&
           prevSchemas[index].format !== schema.format
         ) {
+          schema.format = prevSchemas[index].format;
+        }
+        if (prevSchemas.length > 0 && prevSchemas[index].format === undefined) {
           schema.format = prevSchemas[index].format;
         }
         if (this.schema.items) {
