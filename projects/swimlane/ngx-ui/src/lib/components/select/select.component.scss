@@ -144,11 +144,11 @@ $color-chip-text: #fff;
       top: 0;
       right: 5px;
       z-index: 500;
-      font-size: 0.8em;
+      font-size: 0.6em;
       color: $color-caret-bg;
 
       button {
-        padding: 0;
+        padding: 0 2px;
         cursor: pointer;
 
         &:hover {
@@ -156,9 +156,13 @@ $color-chip-text: #fff;
         }
       }
 
+      .ngx-select-clear {
+        font-size: 0.8em;
+      }
+
       .ngx-select-caret {
         transition: transform 200ms ease-in-out;
-        transform: rotate(0deg) translateY(-5%);
+        transform: rotate(0deg) translateY(0);
       }
     }
   }
@@ -192,14 +196,14 @@ $color-chip-text: #fff;
       }
 
       .ngx-select-clear {
-        padding: 0;
+        padding: 0 0 0 2px;
         cursor: pointer;
-        font-size: 0.8em;
+        font-size: 0.5em;
         color: $color-caret-bg;
-        font-size: 0.8em;
-        line-height: 0.8em;
-        height: 0.8em;
+        line-height: 0.5em;
+        height: 0.5em;
         z-index: 500;
+        top: -1px;
         &:hover {
           color: $color-blue-400;
         }
@@ -243,20 +247,20 @@ $color-chip-text: #fff;
             outline: none;
           }
         }
+      }
 
-        // i.ngx-x {
-        //   font-size: 9px;
-        //   top: 50%;
-        //   margin-top: -4.5px;
-        //   right: 10px;
-        //   color: $color-blue-grey-300;
-        //   z-index: 500;
-        //   cursor: pointer;
-
-        //   &:hover {
-        //     color: $color-blue-400;
-        //   }
-        // }
+      .ngx-select-clear-tagging-input {
+        padding: 0 0 0 2px;
+        cursor: pointer;
+        font-size: 0.5em;
+        color: $color-caret-bg;
+        line-height: 0.5em;
+        height: 0.5em;
+        z-index: 500;
+        top: -1px;
+        &:hover {
+          color: $color-blue-400;
+        }
       }
     }
   }

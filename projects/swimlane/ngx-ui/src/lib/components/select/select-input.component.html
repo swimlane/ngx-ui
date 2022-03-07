@@ -37,7 +37,7 @@
         class="ngx-select-clear"
         (click)="onOptionRemove($event, option)"
       >
-        <i class=" icon-x"></i>
+        <i class="ngx-icon ngx-x-small"></i>
       </button>
     </li>
     <li *ngIf="tagging" class="ngx-select-input-box-wrapper">
@@ -53,7 +53,9 @@
         (change)="$event.stopPropagation()"
         (blur)="clearInput()"
       />
-      <i [hidden]="!tagInput.value" class="ngx-icon ngx-x" (click)="tagInput.value = ''"></i>
+      <button type="button" [hidden]="!tagInput.value" class="ngx-select-clear-tagging-input">
+        <i class="ngx-icon ngx-x-small" (click)="tagInput.value = ''"></i>
+      </button>
     </li>
   </ul>
 
@@ -66,7 +68,7 @@
     class="ngx-select-clear"
     (click)="!disabled && selection.emit([])"
   >
-    <i class=" icon-x"></i>
+    <i class="ngx-icon ngx-x-small"></i>
   </button>
   <button
     type="button"
@@ -74,7 +76,7 @@
     class="ngx-select-caret"
     (click)="onToggle()"
   >
-    <i *ngIf="!selectCaret" class="icon-arrow-down"></i>
+    <i *ngIf="!selectCaret" class="ngx-icon ngx-chevron-bold-down"></i>
     <span *ngIf="isNotTemplate; else tpl" [innerHTML]="selectCaret"> </span>
     <ng-template #tpl>
       <ng-container *ngTemplateOutlet="selectCaret"></ng-container>
