@@ -213,8 +213,16 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  onToggle(): void {
+  onToggle(ev?: PointerEvent): void {
+    ev?.stopPropagation();
     this.toggle.emit();
+  }
+
+  onClear(ev?: PointerEvent): void {
+    if (!this.disabled) {
+      ev?.stopPropagation();
+      this.selection.emit([]);
+    }
   }
 
   onOptionRemove(event: Event, option: SelectDropdownOption): void {
@@ -229,6 +237,13 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     });
 
     this.selection.emit(newSelections);
+  }
+
+  onClearTaggingInput(ev?: PointerEvent): void {
+    ev?.stopPropagation();
+    if (this.inputElement && this.inputElement.nativeElement) {
+      this.inputElement.nativeElement.value = '';
+    }
   }
 
   focus() {

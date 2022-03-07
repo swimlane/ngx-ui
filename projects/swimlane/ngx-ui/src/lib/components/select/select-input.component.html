@@ -53,8 +53,8 @@
         (change)="$event.stopPropagation()"
         (blur)="clearInput()"
       />
-      <button type="button" [hidden]="!tagInput.value" class="ngx-select-clear-tagging-input">
-        <i class="ngx-icon ngx-x-small" (click)="tagInput.value = ''"></i>
+      <button type="button" *ngIf="tagInput.value" class="ngx-select-clear-tagging-input" (click)="onClearTaggingInput($event)">
+        <i class="ngx-icon ngx-x-small"></i>
       </button>
     </li>
   </ul>
@@ -66,7 +66,7 @@
     *ngIf="allowClear && !multiple && !tagging && selectedOptions?.length"
     title="Clear Selections"
     class="ngx-select-clear"
-    (click)="!disabled && selection.emit([])"
+    (click)="onClear($event)"
   >
     <i class="ngx-icon ngx-x-small"></i>
   </button>
@@ -74,7 +74,7 @@
     type="button"
     *ngIf="caretVisible"
     class="ngx-select-caret"
-    (click)="onToggle()"
+    (click)="onToggle($event)"
   >
     <i *ngIf="!selectCaret" class="ngx-icon ngx-chevron-bold-down"></i>
     <span *ngIf="isNotTemplate; else tpl" [innerHTML]="selectCaret"> </span>
