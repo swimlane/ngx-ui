@@ -53,7 +53,7 @@
         (change)="$event.stopPropagation()"
         (blur)="clearInput()"
       />
-      <button type="button" *ngIf="tagInput.value" class="ngx-select-clear-tagging-input" (click)="onClearTaggingInput($event)">
+      <button type="button" aria-label="Clear" *ngIf="tagInput.value" class="ngx-select-clear-tagging-input" (click)="onClearTaggingInput($event)">
         <i class="ngx-icon ngx-x-small"></i>
       </button>
     </li>
@@ -65,6 +65,7 @@
     type="button"
     *ngIf="allowClear && !multiple && !tagging && selectedOptions?.length"
     title="Clear Selections"
+    aria-label="Clear Selections"
     class="ngx-select-clear"
     (click)="onClear($event)"
   >
@@ -73,6 +74,7 @@
   <button
     type="button"
     *ngIf="caretVisible"
+    aria-label="Toggle Dropdown"
     class="ngx-select-caret"
     (click)="onToggle($event)"
   >

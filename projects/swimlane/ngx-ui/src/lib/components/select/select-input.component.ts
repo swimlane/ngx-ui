@@ -213,8 +213,9 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  onToggle(ev?: PointerEvent): void {
-    ev?.stopPropagation();
+  onToggle(_ev?: PointerEvent): void {
+    // Future: this should stopPropagation
+    // not happening now to ensure closeOnBodyClick is triggered
     this.toggle.emit();
   }
 
