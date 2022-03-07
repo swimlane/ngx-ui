@@ -150,6 +150,10 @@ $color-chip-text: #fff;
       button {
         padding: 0;
         cursor: pointer;
+
+        &:hover {
+          color: $color-blue-400;
+        }
       }
 
       .ngx-select-caret {
@@ -185,6 +189,20 @@ $color-chip-text: #fff;
         white-space: nowrap;
         text-overflow: ellipsis;
         vertical-align: top;
+      }
+
+      .ngx-select-clear {
+        padding: 0;
+        cursor: pointer;
+        font-size: 0.8em;
+        color: $color-caret-bg;
+        font-size: 0.8em;
+        line-height: 0.8em;
+        height: 0.8em;
+        z-index: 500;
+        &:hover {
+          color: $color-blue-400;
+        }
       }
 
       &.disabled {
@@ -226,19 +244,19 @@ $color-chip-text: #fff;
           }
         }
 
-        i.ngx-x {
-          font-size: 9px;
-          top: 50%;
-          margin-top: -4.5px;
-          right: 10px;
-          color: $color-blue-grey-300;
-          z-index: 500;
-          cursor: pointer;
+        // i.ngx-x {
+        //   font-size: 9px;
+        //   top: 50%;
+        //   margin-top: -4.5px;
+        //   right: 10px;
+        //   color: $color-blue-grey-300;
+        //   z-index: 500;
+        //   cursor: pointer;
 
-          &:hover {
-            color: $color-blue-400;
-          }
-        }
+        //   &:hover {
+        //     color: $color-blue-400;
+        //   }
+        // }
       }
     }
   }
@@ -534,12 +552,23 @@ $color-chip-text: #fff;
       top: 3px;
       min-height: 1.75rem;
       position: relative;
-      z-index: 1;
       color: $color-blue-grey-050;
-
       position: relative;
+      z-index: 1;
       background-color: $color-fill-input-bg;
       mix-blend-mode: exclusion;
+
+      // &::before {
+      //   content: "";
+      //   position: absolute;
+      //   top: 0;
+      //   left: 0;
+      //   right: 0;
+      //   bottom: 0;
+      //   z-index: 1;
+      //   background-color: $color-fill-input-bg;
+      //   mix-blend-mode: exclusion;
+      // }
     }
 
     .ngx-select-input .ngx-select-label {
