@@ -576,10 +576,11 @@ $color-chip-text: #fff;
     &.single-selection .ngx-select-input .ngx-select-clear,
     .ngx-select-caret {
       z-index: 500;
+      top: 1.2em;
     }
 
     &.single-selection .ngx-select-input .ngx-select-clear {
-      top: 1.4em;
+      top: 1.3em;
     }
 
     .ngx-select-label {
