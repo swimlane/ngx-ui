@@ -54,25 +54,31 @@
       <i [hidden]="!tagInput.value" class="ngx-icon ngx-x" (click)="tagInput.value = ''"></i>
     </li>
   </ul>
-  <span
+
+</div>
+<div class="ngx-select-input-box__controls">
+  <button
+    type="button"
     *ngIf="allowClear && !multiple && !tagging && selectedOptions?.length"
     title="Clear Selections"
-    class="ngx-select-clear icon-x"
+    class="ngx-select-clear"
     (click)="!disabled && selection.emit([])"
   >
-  </span>
+    <i class=" icon-x"></i>
+  </button>
+  <button
+    type="button"
+    *ngIf="caretVisible"
+    class="ngx-select-caret"
+    (click)="onToggle()"
+  >
+    <i *ngIf="!selectCaret" class="icon-arrow-down"></i>
+    <span *ngIf="isNotTemplate; else tpl" [innerHTML]="selectCaret"> </span>
+    <ng-template #tpl>
+      <ng-container *ngTemplateOutlet="selectCaret"></ng-container>
+    </ng-template>
+  </button>
 </div>
-<span
-  *ngIf="caretVisible"
-  class="ngx-select-caret icon-arrow-down"
-  [class.icon-arrow-down]="!selectCaret"
-  (click)="onToggle()"
->
-  <span *ngIf="isNotTemplate; else tpl" [innerHTML]="selectCaret"> </span>
-  <ng-template #tpl>
-    <ng-container *ngTemplateOutlet="selectCaret"></ng-container>
-  </ng-template>
-</span>
 <div class="ngx-select-input-underline">
   <div class="underline-fill"></div>
 </div>

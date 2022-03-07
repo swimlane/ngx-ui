@@ -717,13 +717,26 @@
       </th>
     </tr>
     <tr>
-      <td>Filled</td>
+      <td>With Value</td>
       <td><ngx-select label="Label" [ngModel]="['ddos']" hint="A brief bit of help text">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select></td>
       <td><ngx-select label="Label" appearance="fill" [ngModel]="['ddos']" hint="A brief bit of help text">
+        <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+        <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+        <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+      </ngx-select></td>
+    </tr>
+    <tr>
+      <td>Disabled Dropdown/td>
+      <td><ngx-select label="Label" [ngModel]="['ddos']" hint="A brief bit of help text" [disableDropdown]="true" >
+        <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+        <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+        <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+      </ngx-select></td>
+      <td><ngx-select label="Label" appearance="fill" [ngModel]="['ddos']" hint="A brief bit of help text" [disableDropdown]="true">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
