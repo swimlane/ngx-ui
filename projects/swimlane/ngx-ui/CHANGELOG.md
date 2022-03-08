@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Feature: Add small style variant to Dropzone component
+
 ## 39.0.0 (2022-2-28)
 
 - Breaking: Updated json-editor-flat component styles. Removed the `compact` input
