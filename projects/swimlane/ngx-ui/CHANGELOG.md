@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 39.1.0 (2022-3-8)
+
 - Fix: Issues with the json Editor
 - Fix: change the JsonEditor errors
 - Fix: Add an array inside an array in json editor works
