@@ -112,6 +112,7 @@ export class ObjectNode implements OnInit, OnChanges {
    */
   updateProp(id: number | string, value: any): void {
     const propName = this.propertyIndex[id].propertyName;
+    this.model = { ...this.model };
     this.model[propName] = value;
     this.modelChange.emit(this.model);
   }
@@ -129,6 +130,7 @@ export class ObjectNode implements OnInit, OnChanges {
     this.duplicatedFields.delete(id as string);
 
     if (existingPropertyValue === undefined) {
+      this.model = { ...this.model };
       this.model[name] = this.model[oldName];
       this.propertyIndex[id].propertyName = name;
       delete this.model[oldName];
@@ -147,6 +149,7 @@ export class ObjectNode implements OnInit, OnChanges {
     this.propertyCounter++;
     const schema = JSON.parse(JSON.stringify(dataType.schema));
 
+    this.model = { ...this.model };
     this.model[propName] = createValueForSchema(dataType.schema as JSONEditorSchema);
     schema.nameEditable = !this.schemaBuilderMode;
     schema.propertyName = propName;
@@ -173,6 +176,7 @@ export class ObjectNode implements OnInit, OnChanges {
     }
 
     const value: any = createValueForSchema(schema);
+    this.model = { ...this.model };
     this.model[propName] = value;
 
     schema.nameEditable = false;
@@ -201,6 +205,7 @@ export class ObjectNode implements OnInit, OnChanges {
     }
 
     const value: any = createValueForSchema(schema);
+    this.model = { ...this.model };
     this.model[newPropName] = value;
 
     schema.nameEditable = true;
@@ -217,6 +222,7 @@ export class ObjectNode implements OnInit, OnChanges {
    * Deletes a property
    */
   deleteProperty(propName: string): void {
+    this.model = { ...this.model };
     delete this.model[propName];
     for (const id in this.propertyIndex) {
       if (this.propertyIndex[id].propertyName === propName) {
@@ -224,7 +230,6 @@ export class ObjectNode implements OnInit, OnChanges {
         break;
       }
     }
-    this.model = { ...this.model };
     this.propertyIndex = { ...this.propertyIndex };
     this.modelChange.emit(this.model);
   }
@@ -359,6 +364,7 @@ export class ObjectNode implements OnInit, OnChanges {
     }
 
     const value: any = createValueForSchema(property);
+    this.model = { ...this.model };
     this.model[property.propertyName] = value;
 
     this.modelChange.emit(this.model);
