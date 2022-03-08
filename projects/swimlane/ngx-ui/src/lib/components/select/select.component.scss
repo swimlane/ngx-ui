@@ -116,11 +116,15 @@ $color-chip-text: #fff;
   // multi-select
   &.tagging-selection,
   &.multi-selection {
+    .ngx-select-input-list {
+      margin-bottom: -5px;
+    }
+
     .ngx-select-input-option {
       background: $color-chip-bg;
       color: $color-chip-text;
       border-radius: 2px;
-      margin: 0 5px 0 0;
+      margin: 0 5px 5px 0;
       white-space: nowrap;
       overflow: visible;
       text-overflow: ellipsis;

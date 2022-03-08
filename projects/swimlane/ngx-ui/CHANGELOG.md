@@ -2,10 +2,11 @@
 
 ## HEAD (unreleased)
 
-Fix: Issues with the json Editor
-Fix: change the JsonEditor errors
-Fix: Add an array inside an array in json editor works
-Fix: Adding a code , date , date-time or password inside an Array in the json Editor works
+- Fix: Issues with the json Editor
+- Fix: change the JsonEditor errors
+- Fix: Add an array inside an array in json editor works
+- Fix: Adding a code , date , date-time or password inside an Array in the json Editor works
+- Fix: add vertical margin between rows of tags in select component
 
 ## 39.0.0 (2022-2-28)
 
