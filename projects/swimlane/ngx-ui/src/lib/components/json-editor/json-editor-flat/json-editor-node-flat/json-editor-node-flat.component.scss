@@ -28,12 +28,12 @@ ngx-json-editor-node-flat {
 .json-tree-node-flat {
   .indentation {
     @extend %indentation;
-    flex: 1 0 20px;
+    flex: 1 0 15px;
   }
 
   .node-container {
     display: flex;
-    padding-bottom: 3px;
+    padding-bottom: 0px;
   }
 
   .node {
@@ -117,7 +117,7 @@ ngx-json-editor-node-flat {
 
       .node-input {
         flex: 0 1 60%;
-        padding-top: 1em;
+        padding-top: 5px;
 
         ngx-input {
           padding: 0;
@@ -148,6 +148,9 @@ ngx-json-editor-node-flat {
         .input-error {
           color: $color-error;
           min-height: 1.2em; // min height keeps input from shifing when error is shown
+          text-transform: capitalize;
+          font-size: 12px;
+          font-family: Source Sans Pro, Open Sans, Arial, sans-serif;
         }
       }
     }

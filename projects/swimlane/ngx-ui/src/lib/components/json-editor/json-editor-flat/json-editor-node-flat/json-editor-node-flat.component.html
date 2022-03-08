@@ -100,7 +100,6 @@
             <!-- Date -->
             <div *ngIf="schema.format === 'date'">
               <ngx-input
-                appearance="fill"
                 type="date"
                 [ngModel]="model"
                 (ngModelChange)="updateModel($event)"
@@ -113,7 +112,6 @@
             <!-- DateTime -->
             <div *ngIf="schema.format === 'date-time'">
               <ngx-input
-                appearance="fill"
                 type="datetime-local"
                 [ngModel]="model"
                 (ngModelChange)="updateModel($event)"
@@ -126,7 +124,6 @@
             <!-- Code -->
             <div *ngIf="schema.format === 'code'" class="code">
               <ngx-input
-                appearance="fill"
                 type="text"
                 [ngModel]="model"
                 [requiredIndicator]="false"
@@ -144,7 +141,6 @@
             <ng-template #codeEditorTpl>
               <div class="code-editor">
                 <ngx-select
-                  appearance="fill"
                   label="Language Mode"
                   [ngModel]="[editorConfig.mode.name]"
                   (ngModelChange)="selectEditorMode($event[0])"
