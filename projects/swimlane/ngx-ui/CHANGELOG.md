@@ -3,6 +3,7 @@
 ## HEAD (unreleased)
 
 - Feature: Add small style variant to Dropzone component
+- Fix: add vertical margin between rows of tags in select component
 
 ## 39.0.0 (2022-2-28)
 
