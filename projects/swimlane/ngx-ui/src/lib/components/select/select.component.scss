@@ -188,11 +188,15 @@ $color-chip-text: #fff;
       // Specific style for links in tagging options
       > a {
         color: $color-blue-grey-050;
+        > .ngx-icon {
+          color: $color-blue-grey-200;
+          font-size: 0.55em;
+        }
         &:hover {
           color: #fff;
-        }
-        > .ngx-icon {
-          font-size: 0.6em;
+          > .ngx-icon {
+            color: #fff;
+          }
         }
       }
 
@@ -215,6 +219,7 @@ $color-chip-text: #fff;
         height: 0.5em;
         z-index: 500;
         top: -1px;
+        text-shadow: none;
         &:hover {
           color: $color-blue-400;
         }
