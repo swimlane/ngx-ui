@@ -185,6 +185,17 @@ $color-chip-text: #fff;
       padding: 0 0.5em;
       font-size: 1em;
 
+      // Specific style for links in tagging options
+      > a {
+        color: $color-blue-grey-050;
+        &:hover {
+          color: #fff;
+        }
+        > .ngx-icon {
+          font-size: 0.6em;
+        }
+      }
+
       .ngx-select-input-name {
         text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
         max-width: 300px;
