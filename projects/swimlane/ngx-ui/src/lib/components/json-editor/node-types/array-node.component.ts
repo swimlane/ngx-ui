@@ -64,6 +64,7 @@ export class ArrayNode implements OnChanges {
    * @param value
    */
   updateArrayItem(index: number, value: any): void {
+    this.model = [...this.model];
     this.model[index] = value;
     this.modelChange.emit(this.model);
   }
@@ -99,8 +100,8 @@ export class ArrayNode implements OnChanges {
     const value: any = createValueForSchema(schema);
 
     if (value !== undefined) {
-      this.model.push(value);
-      this.schemas.push(schema);
+      this.model = [...this.model, value];
+      this.schemas = [...this.schemas, schema];
     }
 
     this.modelChange.emit(this.model);
@@ -113,9 +114,9 @@ export class ArrayNode implements OnChanges {
    * @param index
    */
   deleteArrayItem(index: number): void {
+    this.model = [...this.model];
     this.model.splice(index, 1);
     this.schemas.splice(index, 1);
-    this.model = [...this.model];
     this.schemas = [...this.schemas];
     this.modelChange.emit(this.model);
   }
@@ -148,6 +149,7 @@ export class ArrayNode implements OnChanges {
     }
 
     const value: any = createValueForSchema(schema);
+    this.model = [...this.model];
     this.model[index] = value;
 
     this.modelChange.emit(this.model);
