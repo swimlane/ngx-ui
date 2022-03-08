@@ -28,7 +28,7 @@ ngx-json-editor-node-flat {
 .json-tree-node-flat {
   .indentation {
     @extend %indentation;
-    flex: 1 0 20px;
+    flex: 1 0 15px;
   }
 
   .node-container {

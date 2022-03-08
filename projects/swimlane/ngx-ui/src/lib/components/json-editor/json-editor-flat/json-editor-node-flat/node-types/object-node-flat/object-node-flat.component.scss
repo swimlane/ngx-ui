@@ -3,7 +3,7 @@
 @import '../../../../json-editor.extensions.scss';
 
 .object-node-flat {
-  margin-top: 5px;
+  margin-top: 4px;
 
   .object-node-content {
     @extend %node-type;
@@ -15,7 +15,7 @@
 
   .add-prop-button {
     background-color: rgba(red($color-blue-grey-700), green($color-blue-grey-700), blue($color-blue-grey-700), 0.4);
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     height: 96px;
 
     &:last-child {
