@@ -3,11 +3,20 @@
 ## HEAD (unreleased)
 
 - Feature: Add small style variant to Dropzone component
+- Fix: Issues with the json Editor
+- Fix: change the JsonEditor errors
+- Fix: Add an array inside an array in json editor works
+- Fix: Adding a code , date , date-time or password inside an Array in the json Editor works
 - Fix: add vertical margin between rows of tags in select component
 
 ## 39.0.0 (2022-2-28)
 
 - Breaking: Updated json-editor-flat component styles. Removed the `compact` input
+- Fix: `ngx-select` control alignment
+- Fix: `ngx-select` clear button position when dropdown is disabled
+- Enhancement: use current ngx-ui icons for `ngx-select` buttons
+- Fix: move `ngx-select` background in fill appearance to avoid saturation issue
+- Fix: stop propagation on button click inside `ngx-select`
 
 ## 38.1.0 (2022-2-23)
 

@@ -75,6 +75,9 @@ export class ArrayNode implements OnChanges {
   addArrayItem(dataType?: JsonSchemaDataType): void {
     let schema;
     if (dataType) {
+      if (dataType.name === 'String') {
+        dataType.schema = { type: 'string' };
+      }
       schema = JSON.parse(JSON.stringify({ ...(this.schema.items as any), ...dataType.schema }));
     } else {
       schema = JSON.parse(JSON.stringify(this.schema.items));
@@ -157,16 +160,27 @@ export class ArrayNode implements OnChanges {
    * Infers the schema type for each item in the array
    */
   private initSchemasTypeByModelValue(): void {
+    const prevSchemas = this.schemas ? [...this.schemas] : [];
     this.schemas = [];
     if (Array.isArray(this.model)) {
-      this.model.forEach(value => {
+      this.model.forEach((value, index) => {
         let schema = inferType(value, this.typeCheckOverrides);
 
+        if (
+          prevSchemas.length > 0 &&
+          prevSchemas[index].format !== undefined &&
+          prevSchemas[index].format !== schema.format
+        ) {
+          schema.format = prevSchemas[index].format;
+        }
+        if (prevSchemas.length > 0 && prevSchemas[index].format === undefined) {
+          schema.format = prevSchemas[index].format;
+        }
         if (this.schema.items) {
           schema = JSON.parse(JSON.stringify({ ...(this.schema.items as any), ...schema }));
         }
 
-        this.schemas.push(schema);
+        this.schemas.push(Object.assign({}, schema));
       });
     }
   }
