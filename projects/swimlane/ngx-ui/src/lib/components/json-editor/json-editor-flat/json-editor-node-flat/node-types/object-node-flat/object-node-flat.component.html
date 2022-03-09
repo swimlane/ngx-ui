@@ -89,7 +89,7 @@
       <div class="node-container add-button add-prop-button" *ngIf="model[prop.key] === undefined">
         <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
         <div class="indentation"></div>
-        <div class="node" [style.marginLeft]="level === 0 ? '15px' : '0'" (click)="addSchemaProperty(prop.key)">
+        <div class="node" [style.marginLeft]="level === 0 ? '15px' : '1px'" (click)="addSchemaProperty(prop.key)">
           <div class="left-options"></div>
 
           <div class="node-content">
