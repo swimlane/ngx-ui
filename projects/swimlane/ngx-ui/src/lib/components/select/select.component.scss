@@ -167,6 +167,23 @@ $color-chip-text: #fff;
     }
   }
 
+  .ngx-select-input-option {
+    // Specific style for links in tagging options
+    > a {
+      color: $color-blue-grey-050;
+      > .ngx-icon {
+        color: $color-blue-grey-200;
+        font-size: 0.55em;
+      }
+      &:hover {
+        color: #fff;
+        > .ngx-icon {
+          color: #fff;
+        }
+      }
+    }
+  }
+
   // multi-select
   &.tagging-selection,
   &.multi-selection {
@@ -188,21 +205,6 @@ $color-chip-text: #fff;
       top: 0;
       padding: 0 0.5em;
       font-size: 1em;
-
-      // Specific style for links in tagging options
-      > a {
-        color: $color-blue-grey-050;
-        > .ngx-icon {
-          color: $color-blue-grey-200;
-          font-size: 0.55em;
-        }
-        &:hover {
-          color: #fff;
-          > .ngx-icon {
-            color: #fff;
-          }
-        }
-      }
 
       .ngx-select-input-name {
         text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
@@ -588,6 +590,7 @@ $color-chip-text: #fff;
         bottom: 0;
         background-color: $color-fill-input-bg;
         mix-blend-mode: exclusion;
+        pointer-events: none;
       }
     }
 

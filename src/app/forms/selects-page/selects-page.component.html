@@ -808,6 +808,37 @@
       </ngx-select></td>
     </tr>
     <tr>
+      <td>Select With Links</td>
+      <td><ngx-select label="Label" [ngModel]="['Physical']" placeholder="Placeholder Text" hint="A brief bit of help text">
+        <ngx-select-option
+          *ngFor="let option of ['Breach', 'DDOS', 'Physical']"
+          [name]="option"
+          [value]="option"
+        >
+          <ng-template ngx-select-option-input-template>
+            <a href="#">
+              <i class="ngx-icon ngx-link"></i>
+              {{ option }}
+            </a>
+          </ng-template>
+        </ngx-select-option>
+      </ngx-select></td>
+      <td><ngx-select label="Label" [ngModel]="['Physical']" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text">
+        <ngx-select-option
+          *ngFor="let option of ['Breach', 'DDOS', 'Physical']"
+          [name]="option"
+          [value]="option"
+        >
+          <ng-template ngx-select-option-input-template>
+            <a href="#">
+              <i class="ngx-icon ngx-link"></i>
+              {{ option }}
+            </a>
+          </ng-template>
+        </ngx-select-option>
+      </ngx-select></td>
+    </tr>
+    <tr>
       <td>Tagging With Links</td>
       <td><ngx-select label="Label" [ngModel]="['DDOS', 'Physical']" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true">
         <ngx-select-option
