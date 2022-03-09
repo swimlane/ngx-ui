@@ -717,13 +717,26 @@
       </th>
     </tr>
     <tr>
-      <td>Filled</td>
-      <td><ngx-select label="Label" [ngModel]="['ddos']" hint="A brief bit of help text">
+      <td>With Value</td>
+      <td><ngx-select label="Label" [ngModel]="['ddos']" hint="A brief bit of help text" (click)="onEvent('click', $event)">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select></td>
       <td><ngx-select label="Label" appearance="fill" [ngModel]="['ddos']" hint="A brief bit of help text">
+        <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+        <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+        <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+      </ngx-select></td>
+    </tr>
+    <tr>
+      <td>Disabled Dropdown</td>
+      <td><ngx-select label="Label" [ngModel]="['ddos']" hint="A brief bit of help text" [disableDropdown]="true" >
+        <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+        <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+        <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+      </ngx-select></td>
+      <td><ngx-select label="Label" appearance="fill" [ngModel]="['ddos']" hint="A brief bit of help text" [disableDropdown]="true">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -770,7 +783,7 @@
     </tr>
     <tr>
       <td>Multiple</td>
-      <td><ngx-select label="Label" [ngModel]="['ddos', 'physical']" placeholder="Placeholder Text" hint="A brief bit of help text"  [multiple]="true">
+      <td><ngx-select label="Label" [ngModel]="['ddos', 'physical']" placeholder="Placeholder Text" hint="A brief bit of help text"  [multiple]="true" (click)="onEvent('click', $event)">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -783,7 +796,7 @@
     </tr>
     <tr>
       <td>Tagging</td>
-      <td><ngx-select label="Label" [ngModel]="['ddos', 'physical']" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true">
+      <td><ngx-select label="Label" [ngModel]="['ddos', 'physical']" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true" (click)="onEvent('click', $event)">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -792,6 +805,37 @@
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+      </ngx-select></td>
+    </tr>
+    <tr>
+      <td>Tagging With Links</td>
+      <td><ngx-select label="Label" [ngModel]="['DDOS', 'Physical']" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true">
+        <ngx-select-option
+          *ngFor="let option of ['Breach', 'DDOS', 'Physical']"
+          [name]="option"
+          [value]="option"
+        >
+          <ng-template ngx-select-option-input-template>
+            <a href="#">
+              <i class="ngx-icon ngx-link"></i>
+              {{ option }}
+            </a>
+          </ng-template>
+        </ngx-select-option>
+      </ngx-select></td>
+      <td><ngx-select label="Label" [ngModel]="['DDOS', 'Physical']" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true">
+        <ngx-select-option
+          *ngFor="let option of ['Breach', 'DDOS', 'Physical']"
+          [name]="option"
+          [value]="option"
+        >
+          <ng-template ngx-select-option-input-template>
+            <a href="#">
+              <i class="ngx-icon ngx-link"></i>
+              {{ option }}
+            </a>
+          </ng-template>
+        </ngx-select-option>
       </ngx-select></td>
     </tr>
     <tr>

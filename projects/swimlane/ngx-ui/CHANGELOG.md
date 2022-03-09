@@ -11,6 +11,11 @@
 ## 39.0.0 (2022-2-28)
 
 - Breaking: Updated json-editor-flat component styles. Removed the `compact` input
+- Fix: `ngx-select` control alignment
+- Fix: `ngx-select` clear button position when dropdown is disabled
+- Enhancement: use current ngx-ui icons for `ngx-select` buttons
+- Fix: move `ngx-select` background in fill appearance to avoid saturation issue
+- Fix: stop propagation on button click inside `ngx-select`
 
 ## 38.1.0 (2022-2-23)
 
