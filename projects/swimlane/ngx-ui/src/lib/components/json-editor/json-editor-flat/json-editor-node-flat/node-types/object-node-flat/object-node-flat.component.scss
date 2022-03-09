@@ -14,10 +14,9 @@
   }
 
   .add-prop-button {
-    background-color: rgba(red($color-blue-grey-700), green($color-blue-grey-700), blue($color-blue-grey-700), 0.4);
-    margin-bottom: 4px;
+    margin-bottom: 2px;
     height: 96px;
-
+    border-left: 1px solid $color-blue-grey-650;
     &:last-child {
       margin-bottom: 0;
     }
@@ -25,7 +24,6 @@
     .node {
       margin-bottom: 0;
       justify-content: unset !important;
-      background-color: rgba($color-blue-grey-700, 0.5);
       opacity: 0.2;
       cursor: pointer;
       outline: 2px dotted rgba(red($color-blue-grey-650), green($color-blue-grey-650), blue($color-blue-grey-650), 0.5);
