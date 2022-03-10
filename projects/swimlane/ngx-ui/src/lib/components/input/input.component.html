@@ -10,7 +10,7 @@
           autosize
           [(ngModel)]="value"
           [id]="id"
-          [name]="name"
+          [attr.name]="name"
           [placeholder]="placeholder"
           [disabled]="disabled"
           [attr.tabindex]="tabindex"
@@ -35,7 +35,7 @@
           [rows]="textareaRows"
           [(ngModel)]="value"
           [id]="id"
-          [name]="name"
+          [attr.name]="name"
           [placeholder]="placeholder"
           [disabled]="disabled"
           [attr.tabindex]="tabindex"
@@ -96,7 +96,8 @@
         </button>
       </div>
       <label class="ngx-input-label" [@labelState]="labelState" [attr.for]="id">
-        <span>{{ label }}</span>&nbsp;
+        <span>{{ label }}</span
+        >&nbsp;
         <span *ngIf="required && requiredIndicator" [innerHTML]="requiredIndicator"></span>
       </label>
     </div>
@@ -122,7 +123,7 @@
     [ngModel]="valueAsString"
     (ngModelChange)="value = $event"
     [id]="id"
-    [name]="name"
+    [attr.name]="name"
     [placeholder]="placeholder"
     [disabled]="disabled"
     [type]="type$ | async"
@@ -149,7 +150,7 @@
     [ngModel]="valueAsString"
     (ngModelChange)="value = $event"
     [id]="id"
-    [name]="name"
+    [attr.name]="name"
     [placeholder]="placeholder"
     [disabled]="disabled"
     [type]="type$ | async"
