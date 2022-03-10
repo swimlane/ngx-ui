@@ -2,6 +2,7 @@
 
 ## HEAD (unreleased)
 
+- Feature: Add small style variant to Dropzone component
 - Fix: Issues with the json Editor
 - Fix: change the JsonEditor errors
 - Fix: Add an array inside an array in json editor works

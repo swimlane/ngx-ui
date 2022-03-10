@@ -11,6 +11,11 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { FileUploaderOptions, FileUploader, FileItem } from '@swimlane/ng2-file-upload';
 import { id } from '../../utils/id/id.util';
 
+export enum DropzoneSize {
+  Small = 'small',
+  Large = 'large'
+}
+
 @Component({
   selector: 'ngx-dropzone',
   templateUrl: './dropzone.component.html',
@@ -23,6 +28,7 @@ export class DropzoneComponent implements OnInit {
   @Input() acceptedFileFormats: string[];
   @Input() uploader: FileUploader;
   @Input() options: FileUploaderOptions;
+  @Input() size: DropzoneSize = DropzoneSize.Large;
   @Input()
   get multiple() {
     return this._multiple;
@@ -38,6 +44,7 @@ export class DropzoneComponent implements OnInit {
   @Output() progressAll = new EventEmitter<{ progress: number }>();
 
   acceptedFileFormatsTextDisplay: string;
+  DropzoneSize = DropzoneSize;
 
   private _multiple = true;
 
