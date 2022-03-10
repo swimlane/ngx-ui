@@ -68,186 +68,6 @@ $color-chip-text: #fff;
     }
   }
 
-  // dropdown active
-  &.active {
-    .ngx-select-input {
-      .ngx-select-input-underline {
-        .underline-fill {
-          width: 100%;
-        }
-      }
-
-      .ngx-select-caret {
-        transition: transform 200ms ease-in-out, margin 200ms ease-in-out;
-        transform: rotate(180deg) translateY(55%);
-      }
-    }
-
-    .ngx-select-dropdown--upwards {
-      opacity: 1;
-      bottom: 100%;
-      top: auto;
-      margin-bottom: 24px;
-      animation: openUpwardsAnimation 0.25s;
-    }
-
-    .ngx-select-dropdown--downwards {
-      opacity: 1;
-      animation: openAnimation 0.25s;
-    }
-
-    .ngx-select-dropdown {
-      display: block;
-    }
-  }
-
-  &.disabled {
-    .ngx-select-input {
-      .ngx-select-input-box {
-        cursor: not-allowed;
-      }
-    }
-
-    .underline-fill {
-      width: 0 !important;
-    }
-  }
-
-  // multi-select
-  &.tagging-selection,
-  &.multi-selection {
-    .ngx-select-input-list {
-      margin-bottom: -5px;
-    }
-
-    .ngx-select-input-option {
-      background: $color-chip-bg;
-      color: $color-chip-text;
-      border-radius: 2px;
-      margin: 0 5px 5px 0;
-      white-space: nowrap;
-      overflow: visible;
-      text-overflow: ellipsis;
-      cursor: text;
-      transition: background 100ms ease-in;
-      position: relative;
-      top: 0;
-      padding: 0 0.5em;
-      font-size: 1em;
-
-      .ngx-select-input-name {
-        text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
-        max-width: 300px;
-        overflow: hidden;
-        display: inline-block;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        vertical-align: top;
-      }
-
-      .ngx-select-clear {
-        display: inline;
-        vertical-align: middle;
-        font-size: 0.8em;
-        color: $color-blue-grey-300;
-        transition: color 100ms ease-in;
-        cursor: pointer;
-        line-height: 1.4em;
-
-        &:hover {
-          color: $color-blue-400;
-        }
-      }
-
-      &.disabled {
-        padding-right: 10px;
-      }
-    }
-  }
-
-  // tagging
-  &.tagging-selection {
-    .ngx-select-input {
-      .ngx-select-input-box {
-        cursor: text;
-      }
-
-      .ngx-select-input-box-wrapper {
-        position: relative;
-
-        .ngx-select-text-box {
-          background-color: transparent;
-          border: none;
-          outline: none;
-          -webkit-appearance: none;
-          color: $color-input-text;
-          line-height: 20px;
-          display: inline-block;
-          font-size: 1rem;
-          vertical-align: bottom;
-
-          &::-webkit-search-decoration,
-          &::-webkit-search-cancel-button,
-          &::-webkit-search-results-button,
-          &::-webkit-search-results-decoration {
-            -webkit-appearance: none !important;
-          }
-
-          &:focus {
-            outline: none;
-          }
-        }
-
-        i.ngx-x {
-          font-size: 9px;
-          top: 50%;
-          margin-top: -4.5px;
-          right: 10px;
-          color: $color-blue-grey-300;
-          z-index: 500;
-          cursor: pointer;
-
-          &:hover {
-            color: $color-blue-400;
-          }
-        }
-      }
-    }
-  }
-
-  // single-select
-  &.single-selection {
-    .ngx-select-input {
-      .ngx-select-input-list {
-        .ngx-select-input-option {
-          width: 100%;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          display: block;
-          color: $color-input-text;
-          overflow-x: hidden;
-          overflow-y: visible;
-        }
-      }
-
-      .ngx-select-clear {
-        position: absolute;
-        top: 1em;
-        right: 20px;
-        transform: translateY(-50%);
-        cursor: pointer;
-        color: $color-caret-bg;
-        font-size: 12px;
-        height: auto;
-        line-height: normal;
-
-        &:hover {
-          color: $color-grey-100;
-        }
-      }
-    }
-  }
-
   // Input
   .ngx-select-input {
     display: block;
@@ -308,17 +128,6 @@ $color-chip-text: #fff;
       font-weight: 600;
     }
 
-    .ngx-select-caret {
-      position: absolute;
-      top: 1em;
-      right: 5px;
-      transition: transform 200ms ease-in-out, margin 200ms ease-in-out;
-      transform: translateY(-45%);
-      cursor: pointer;
-      color: $color-caret-bg;
-      font-size: 0.7em;
-    }
-
     .ngx-select-placeholder {
       display: block;
       cursor: pointer;
@@ -328,6 +137,215 @@ $color-chip-text: #fff;
       white-space: nowrap;
       text-overflow: ellipsis;
       max-width: 100%;
+    }
+
+    .ngx-select-input-box__controls {
+      position: absolute;
+      top: 0;
+      right: 5px;
+      z-index: 500;
+      font-size: 0.6em;
+      color: $color-caret-bg;
+
+      button {
+        padding: 0 2px;
+        cursor: pointer;
+
+        &:hover {
+          color: $color-blue-400;
+        }
+      }
+
+      .ngx-select-clear {
+        font-size: 0.8em;
+      }
+
+      .ngx-select-caret {
+        transition: transform 200ms ease-in-out;
+        transform: rotate(0deg) translateY(0);
+      }
+    }
+  }
+
+  .ngx-select-input-option {
+    // Specific style for links in tagging options
+    > a {
+      color: $color-blue-grey-050;
+      > .ngx-icon {
+        color: $color-blue-grey-200;
+        font-size: 0.55em;
+      }
+      &:hover {
+        color: #fff;
+        > .ngx-icon {
+          color: #fff;
+        }
+      }
+    }
+  }
+
+  // multi-select
+  &.tagging-selection,
+  &.multi-selection {
+    .ngx-select-input-list {
+      margin-bottom: -5px;
+    }
+
+    .ngx-select-input-option {
+      background: $color-chip-bg;
+      color: $color-chip-text;
+      border-radius: 2px;
+      margin: 0 5px 5px 0;
+      white-space: nowrap;
+      overflow: visible;
+      text-overflow: ellipsis;
+      cursor: text;
+      transition: background 100ms ease-in;
+      position: relative;
+      top: 0;
+      padding: 0 0.5em;
+      font-size: 1em;
+
+      .ngx-select-input-name {
+        text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
+        max-width: 300px;
+        overflow: hidden;
+        display: inline-block;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        vertical-align: top;
+      }
+
+      .ngx-select-clear {
+        padding: 0 0 0 2px;
+        cursor: pointer;
+        font-size: 0.5em;
+        color: $color-caret-bg;
+        line-height: 0.5em;
+        height: 0.5em;
+        z-index: 500;
+        top: -1px;
+        text-shadow: none;
+        &:hover {
+          color: $color-blue-400;
+        }
+      }
+
+      &.disabled {
+        padding-right: 10px;
+      }
+    }
+  }
+
+  // tagging
+  &.tagging-selection {
+    .ngx-select-input {
+      .ngx-select-input-box {
+        cursor: text;
+      }
+
+      .ngx-select-input-box-wrapper {
+        position: relative;
+
+        .ngx-select-text-box {
+          background-color: transparent;
+          border: none;
+          outline: none;
+          -webkit-appearance: none;
+          color: $color-input-text;
+          line-height: 20px;
+          display: inline-block;
+          font-size: 1rem;
+          vertical-align: bottom;
+
+          &::-webkit-search-decoration,
+          &::-webkit-search-cancel-button,
+          &::-webkit-search-results-button,
+          &::-webkit-search-results-decoration {
+            -webkit-appearance: none !important;
+          }
+
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+
+      .ngx-select-clear-tagging-input {
+        padding: 0 0 0 2px;
+        cursor: pointer;
+        font-size: 0.5em;
+        color: $color-caret-bg;
+        line-height: 0.5em;
+        height: 0.5em;
+        z-index: 500;
+        top: -1px;
+        &:hover {
+          color: $color-blue-400;
+        }
+      }
+    }
+  }
+
+  // single-select
+  &.single-selection {
+    .ngx-select-input {
+      .ngx-select-input-list {
+        .ngx-select-input-option {
+          width: 100%;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: block;
+          color: $color-input-text;
+          overflow-x: hidden;
+          overflow-y: visible;
+        }
+      }
+    }
+  }
+
+  // dropdown active
+  &.active {
+    .ngx-select-input {
+      .ngx-select-input-underline {
+        .underline-fill {
+          width: 100%;
+        }
+      }
+
+      .ngx-select-caret {
+        transition: transform 200ms ease-in-out;
+        transform: rotate(180deg) translateY(10%);
+      }
+    }
+
+    .ngx-select-dropdown--upwards {
+      opacity: 1;
+      bottom: 100%;
+      top: auto;
+      margin-bottom: 24px;
+      animation: openUpwardsAnimation 0.25s;
+    }
+
+    .ngx-select-dropdown--downwards {
+      opacity: 1;
+      animation: openAnimation 0.25s;
+    }
+
+    .ngx-select-dropdown {
+      display: block;
+    }
+  }
+
+  &.disabled {
+    .ngx-select-input {
+      .ngx-select-input-box {
+        cursor: not-allowed;
+      }
+    }
+
+    .underline-fill {
+      width: 0 !important;
     }
   }
 
@@ -560,12 +578,20 @@ $color-chip-text: #fff;
       top: 3px;
       min-height: 1.75rem;
       position: relative;
-      z-index: 1;
       color: $color-blue-grey-050;
-
       position: relative;
-      background-color: $color-fill-input-bg;
-      mix-blend-mode: exclusion;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: $color-fill-input-bg;
+        mix-blend-mode: exclusion;
+        pointer-events: none;
+      }
     }
 
     .ngx-select-input .ngx-select-label {
@@ -577,15 +603,6 @@ $color-chip-text: #fff;
       line-height: 1.875em;
     }
 
-    &.single-selection .ngx-select-input .ngx-select-clear,
-    .ngx-select-caret {
-      z-index: 500;
-    }
-
-    &.single-selection .ngx-select-input .ngx-select-clear {
-      top: 1.4em;
-    }
-
     .ngx-select-label {
       padding-left: 10px;
       line-height: 0;
@@ -593,6 +610,10 @@ $color-chip-text: #fff;
 
     .ngx-select-placeholder {
       padding-left: 10px;
+    }
+
+    .ngx-select-input-box__controls {
+      padding-top: 0.3em;
     }
 
     &.active-selections,
