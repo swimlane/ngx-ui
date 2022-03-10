@@ -143,7 +143,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     return this._autocomplete;
   }
   set autocomplete(autocomplete: boolean | string) {
-    this._autocomplete = coerceBooleanProperty(autocomplete) ? 'on' : 'off';
+    this._autocomplete = coerceBooleanProperty(autocomplete) ? 'on' : 'new-password';
   }
 
   @Input()

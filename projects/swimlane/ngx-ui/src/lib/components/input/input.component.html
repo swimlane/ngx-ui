@@ -96,7 +96,8 @@
         </button>
       </div>
       <label class="ngx-input-label" [@labelState]="labelState" [attr.for]="id">
-        <span>{{ label }}</span>&nbsp;
+        <span>{{ label }}</span
+        >&nbsp;
         <span *ngIf="required && requiredIndicator" [innerHTML]="requiredIndicator"></span>
       </label>
     </div>
