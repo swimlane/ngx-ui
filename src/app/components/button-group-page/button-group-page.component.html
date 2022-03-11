@@ -1,41 +1,37 @@
 <h3 class="style-header">Button Groups</h3>
 <ngx-section class="shadow" sectionTitle="Basic Button Group">
   <ngx-button-group>
-    <button type="button" class="btn" (click)="onBtnClick('Default')">Default</button>
-    <button type="button" class="btn" (click)="onBtnClick('Default')">Default</button>
-    <button type="button" class="btn" (click)="onBtnClick('Default')">Default</button>
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Default')">Default</ngx-button>
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Default')">Default</ngx-button>
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Default')">Default</ngx-button>
   </ngx-button-group>
   <p></p>
-  <ngx-button-group buttonGroupStyle="primary">
-    <button type="button" class="btn" (click)="onBtnClick('Primary')">Primary</button>
-    <button type="button" class="btn" (click)="onBtnClick('Primary')">Primary</button>
-    <button type="button" class="btn" (click)="onBtnClick('Primary')">Primary</button>
+  <ngx-button-group>
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Default')">Default</ngx-button>
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Default')">Default</ngx-button>
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Default')">Default</ngx-button>
   </ngx-button-group>
   <p></p>
-  <ngx-button-group buttonGroupStyle="bordered">
-    <button type="button" class="btn" (click)="onBtnClick('bordered')">Bordered</button>
-    <button type="button" class="btn" (click)="onBtnClick('bordered')">Bordered</button>
-    <button type="button" class="btn" (click)="onBtnClick('bordered')">Bordered</button>
+  <ngx-button-group buttonGroupStyle="primary" orientation="vertical">
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Primary')">Primary</ngx-button>
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Primary')">Primary</ngx-button>
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Primary')">Primary</ngx-button>
   </ngx-button-group>
+  <p></p>
   <app-prism>
 <![CDATA[
   <ngx-button-group>
-    <button type="button" class="btn" (click)="onBtnClick('Default')">Default</button>
-    <button type="button" class="btn" (click)="onBtnClick('Default')">Default</button>
-    <button type="button" class="btn" (click)="onBtnClick('Default')">Default</button>
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Default')">Default</ngx-button>
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Default')">Default</ngx-button>
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Default')">Default</ngx-button>
   </ngx-button-group>
   <p></p>
   <ngx-button-group buttonGroupStyle="primary">
-    <button type="button" class="btn" (click)="onBtnClick('Primary')">Primary</button>
-    <button type="button" class="btn" (click)="onBtnClick('Primary')">Primary</button>
-    <button type="button" class="btn" (click)="onBtnClick('Primary')">Primary</button>
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Primary')">Primary</ngx-button>
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Primary')">Primary</ngx-button>
+    <ngx-button type="button" class="btn" (click)="onBtnClick('Primary')">Primary</ngx-button>
   </ngx-button-group>
   <p></p>
-  <ngx-button-group buttonGroupStyle="bordered">
-    <button type="button" class="btn" (click)="onBtnClick('bordered')">Bordered</button>
-    <button type="button" class="btn" (click)="onBtnClick('bordered')">Bordered</button>
-    <button type="button" class="btn" (click)="onBtnClick('bordered')">Bordered</button>
-  </ngx-button-group>
 ]]>
   </app-prism>
 </ngx-section>
@@ -46,7 +42,7 @@
     <ngx-dropdown>
       <ngx-dropdown-toggle>
         <ngx-button type="button" class="btn">
-          <ngx-icon class="ngx-button-group__toggle-icon" fontIcon="arrow-down"></ngx-icon>
+          <ngx-icon fontIcon="arrow-down"></ngx-icon>
         </ngx-button>
       </ngx-dropdown-toggle>
       <ngx-dropdown-menu>
@@ -65,7 +61,47 @@
     <ngx-dropdown>
       <ngx-dropdown-toggle>
         <ngx-button type="button" class="btn">
-          <ngx-icon class="ngx-button-group__toggle-icon" fontIcon="arrow-down"></ngx-icon>
+          <ngx-icon fontIcon="arrow-down"></ngx-icon>
+        </ngx-button>
+      </ngx-dropdown-toggle>
+      <ngx-dropdown-menu>
+        <ul class="vertical-list">
+          <li>
+            <ngx-button type="button" #saveButton [promise]="promises['saveButton']" (click)="onClick('Default', 'saveButton', 1)">Save</ngx-button>
+          </li>
+          <li><ngx-button type="button" #saveButton [promise]="promises['saveButton']" (click)="onClick('Default', 'saveButton', 1)">Save & Close</ngx-button></li>
+        </ul>
+      </ngx-dropdown-menu>
+    </ngx-dropdown>
+    <ngx-button type="button" class="btn btn-primary" #saveButton [promise]="promises['saveButton']" (click)="onClick('Default', 'saveButton', 1)">Save</ngx-button>
+  </ngx-button-group>
+  <p></p>
+
+  <ngx-button-group>
+    <ngx-dropdown>
+      <ngx-dropdown-toggle>
+        <ngx-button type="button" class="btn">
+          <ngx-icon fontIcon="arrow-down"></ngx-icon>
+        </ngx-button>
+      </ngx-dropdown-toggle>
+      <ngx-dropdown-menu>
+        <ul class="vertical-list">
+          <li>
+            <ngx-button class="small" type="button" #saveButton (click)="onClick('Default', 'saveButton', 1)">Save</ngx-button>
+          </li>
+          <li><ngx-button class="small" type="button" #saveButton (click)="onClick('Default', 'saveButton', 1)">Save & Close</ngx-button></li>
+        </ul>
+      </ngx-dropdown-menu>
+    </ngx-dropdown>
+    <ngx-button type="button" class="btn btn-primary" #saveButton [promise]="promises['saveButton']" (click)="onClick('Default', 'saveButton', 1)">Save</ngx-button>
+  </ngx-button-group>
+  <p></p>
+  <ngx-button-group buttonGroupStyle="primary" orientation="vertical">
+    <ngx-button type="button" class="btn btn-primary" #saveButton [promise]="promises['saveButton']" (click)="onClick('Default', 'saveButton', 1)">Save</ngx-button>
+    <ngx-dropdown>
+      <ngx-dropdown-toggle>
+        <ngx-button type="button" class="btn">
+          <ngx-icon fontIcon="arrow-down"></ngx-icon>
         </ngx-button>
       </ngx-dropdown-toggle>
       <ngx-dropdown-menu>
@@ -79,12 +115,13 @@
     </ngx-dropdown>
   </ngx-button-group>
   <p></p>
-  <ngx-button-group buttonGroupStyle="bordered">
+  <ngx-button-group orientation="vertical">
+    <ngx-button type="button" class="btn btn-primary" #saveButton [promise]="promises['saveButton']" (click)="onClick('Default', 'saveButton', 1)">Save</ngx-button>
     <ngx-button type="button" class="btn btn-primary" #saveButton [promise]="promises['saveButton']" (click)="onClick('Default', 'saveButton', 1)">Save</ngx-button>
     <ngx-dropdown>
       <ngx-dropdown-toggle>
         <ngx-button type="button" class="btn">
-          <ngx-icon class="ngx-button-group__toggle-icon" fontIcon="arrow-down"></ngx-icon>
+          <ngx-icon fontIcon="arrow-down"></ngx-icon>
         </ngx-button>
       </ngx-dropdown-toggle>
       <ngx-dropdown-menu>
@@ -97,6 +134,7 @@
       </ngx-dropdown-menu>
     </ngx-dropdown>
   </ngx-button-group>
+  <p></p>
   <app-prism>
 <![CDATA[
   <ngx-button-group buttonGroupStyle="primary">
@@ -104,7 +142,7 @@
     <ngx-dropdown>
       <ngx-dropdown-toggle>
         <ngx-button type="button" class="btn">
-          <ngx-icon class="ngx-button-group__toggle-icon" fontIcon="arrow-down"></ngx-icon>
+          <ngx-icon fontIcon="arrow-down"></ngx-icon>
         </ngx-button>
       </ngx-dropdown-toggle>
       <ngx-dropdown-menu>

@@ -18,14 +18,11 @@ describe('Button Group', () => {
     expect(buttonGroup).toBeDefined();
     expect(buttonGroup).toHaveClass('ngx-button-group');
     expect(buttonGroup).not.toHaveClass('ngx-button-group--vertical');
-    expect(buttonGroup).not.toHaveClass('ngx-button-group--small');
-    expect(buttonGroup).not.toHaveClass('ngx-button-group--large');
     expect(buttonGroup).not.toHaveClass('ngx-button-group--contained--primary');
     expect(buttonGroup).not.toHaveClass('ngx-button-group--contained--bordered');
     expect(buttonGroup).not.toHaveClass('ngx-button-group--text');
     expect(buttonGroup).toHaveClass('ngx-button-group--horizontal');
     expect(buttonGroup).toHaveClass('ngx-button-group--contained');
-    expect(buttonGroup).toHaveClass('ngx-button-group--medium');
     expect(buttonGroup).toHaveClass('ngx-button-group--contained--default');
   });
 });

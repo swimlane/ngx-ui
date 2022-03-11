@@ -5,12 +5,6 @@ export enum ButtonGroupOrientation {
   Vertical = 'vertical'
 }
 
-export enum ButtonGroupSize {
-  Small = 'small',
-  Medium = 'medium',
-  Large = 'large'
-}
-
 export enum ButtonGroupVariant {
   Contained = 'contained',
   Text = 'text'
@@ -18,8 +12,7 @@ export enum ButtonGroupVariant {
 
 export enum BottonGroupStyle {
   Default = 'default',
-  Primary = 'primary',
-  Bordered = 'bordered'
+  Primary = 'primary'
 }
 
 @Component({
@@ -39,9 +32,6 @@ export class ButtonGroupComponent {
 
   @Input()
   variant: ButtonGroupVariant = ButtonGroupVariant.Contained;
-
-  @Input()
-  size: ButtonGroupSize = ButtonGroupSize.Medium;
 
   @Input()
   buttonGroupStyle: BottonGroupStyle = BottonGroupStyle.Default;
@@ -68,22 +58,6 @@ export class ButtonGroupComponent {
     return this.variant === 'text';
   }
 
-  // button group sizes
-  @HostBinding('class.ngx-button-group--small')
-  get small() {
-    return this.size === ButtonGroupSize.Small;
-  }
-
-  @HostBinding('class.ngx-button-group--medium')
-  get medium() {
-    return this.size === ButtonGroupSize.Medium;
-  }
-
-  @HostBinding('class.ngx-button-group--large')
-  get large() {
-    return this.size === ButtonGroupSize.Large;
-  }
-
   // button group styles
   @HostBinding('class.ngx-button-group--contained--default')
   get default() {
@@ -93,10 +67,5 @@ export class ButtonGroupComponent {
   @HostBinding('class.ngx-button-group--contained--primary')
   get primary() {
     return this.buttonGroupStyle === BottonGroupStyle.Primary;
-  }
-
-  @HostBinding('class.ngx-button-group--contained--bordered')
-  get bordered() {
-    return this.buttonGroupStyle === BottonGroupStyle.Bordered;
   }
 }
