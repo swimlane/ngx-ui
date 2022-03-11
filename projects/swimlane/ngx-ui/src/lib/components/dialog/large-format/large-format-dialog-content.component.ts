@@ -8,15 +8,17 @@ import {
   Input,
   Output,
   TemplateRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  ViewChild,
+  OnInit
 } from '@angular/core';
+import { SafeUrl } from '@angular/platform-browser';
 import { pluck, take } from 'rxjs/operators';
 import { AlertService } from '../alert/alert.service';
 import { DialogOptions } from '../dialog-options.interface';
 import { LargeFormatDialogFooterComponent } from './components/large-format-dialog-footer/large-format-dialog-footer.component';
 import { LargeFormatDialogStepperDirective } from './directives/large-format-dialog-stepper/large-format-dialog-stepper.directive';
 import { LargeFormatDialogTabsDirective } from './directives/large-format-dialog-tabs/large-format-dialog-tabs.directive';
-
 @Component({
   selector: 'ngx-large-format-dialog-content',
   exportAs: 'ngxLargeFormatDialogContent',
@@ -25,10 +27,11 @@ import { LargeFormatDialogTabsDirective } from './directives/large-format-dialog
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
-export class LargeFormatDialogContentComponent {
+export class LargeFormatDialogContentComponent implements OnInit {
   // header-title inputs
   @Input() dialogTitle = '';
   @Input() dialogSubtitle?: string;
+  @Input() imgSrc?: string | SafeUrl;
 
   // header-action inputs
   @Input() dialogActionTitle = 'Close';
@@ -50,8 +53,17 @@ export class LargeFormatDialogContentComponent {
 
   @ContentChild(LargeFormatDialogTabsDirective, { read: TemplateRef }) tabsTemplate?: TemplateRef<unknown>;
 
+  @ViewChild('myTemplate', { static: true }) myTemplate: ElementRef;
   constructor(public elementRef: ElementRef, private readonly alertService: AlertService) {}
+  imageTemplate = {};
 
+  ngOnInit() {
+    if (this.myTemplate) {
+      this.imageTemplate = {
+        template: this.myTemplate
+      };
+    }
+  }
   onCloseOrCancel(isDirty: boolean) {
     if (isDirty && !this.skipDirtyAlert) {
       const alertRef = this.alertService.confirm({

@@ -214,15 +214,38 @@
     [(ngModel)]="passwordValue"
     name="input6"
     [required]="true"
+    [passwordToggleEnabled]="true"
     [hint]="'Enter a password'">
   </ngx-input>
   <br />
   <button class="btn" type="submit">Login</button>
 </form>]]>
   </app-prism>
+  <ngx-input type="password" [label]="'Unlockable Secret'" [(ngModel)]="secretValue" [unlockable]="true" [passwordToggleEnabled]="true" name="input6b">
+  </ngx-input>
+  <app-prism>
+<![CDATA[<ngx-input
+  type="password"
+  [label]="'Unlockable Secret'"
+  [(ngModel)]="secretValue"
+  [unlockable]="true"
+  [passwordToggleEnabled]="true"
+  name="input6b">]]>
+  </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Numeric'">
+  <ngx-input type="number" label="Number">
+  </ngx-input>
+
+  <br />
+  <app-prism>
+<![CDATA[
+<ngx-input type="number" label="Number">
+</ngx-input>
+]]>
+  </app-prism>
+
   <ngx-input type="number" label="Age" [(ngModel)]="numericValue" name="numeric-input" min="0" max="122">
   </ngx-input>
 
@@ -254,7 +277,6 @@
 </ngx-input>]]>
   </app-prism>
 </ngx-section>
-
 
 <ngx-section class="shadow" [sectionTitle]="'Validators'">
   <ngx-input type="text" label="Pattern validation" [(ngModel)]="patternValue" name="patern-input" [pattern]="'^\\w+$'"
@@ -289,7 +311,7 @@
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Textarea'">
-  <ngx-input type="textarea" name="input111" [label]="'Name'" [ngModel]="inputValue">
+  <ngx-input type="textarea" name="input111" [label]="'Name'" [ngModel]="inputValue" [textareaRows]="3">
   </ngx-input>
 </ngx-section>
 
@@ -344,28 +366,6 @@
   </app-prism>
 </ngx-section>
 
-<ngx-section class="shadow" sectionTitle="Appearances">
-  <ngx-input label="Legacy" ngModel="Legacy Input" placeholder="enter your text here..." hint="example of a legacy input"></ngx-input>
-
-  <br />
-
-  <ngx-input label="Fill" appearance="fill" ngModel="Fill Input" placeholder="enter your text here..." hint="example of a fill input"></ngx-input>
-
-  <br />
-
-  <ngx-input label="Fill Numeric" type="number" appearance="fill" ngModel="0" placeholder="enter your number here..." hint="example of a fill number input"></ngx-input>
-
-  <br />
-
-  <ngx-input type="textarea" appearance="fill" label="Fill Textarea" placeholder="enter your text here..." hint="example of a fill textarea"></ngx-input>
-
-  <br />
-
-  <app-prism>
-<![CDATA[<ngx-input label="Fill" appearance="fill" ngModel="Fill Input" placeholder="enter your text here..." hint="example of a fill input"></ngx-input>]]>
-  </app-prism>
-</ngx-section>
-
 <ngx-section class="shadow" sectionTitle="Auto Size">
   <ngx-input [(ngModel)]="longInputValue" autosize label="Resize Input"></ngx-input>
 
@@ -385,4 +385,102 @@
   <app-prism>
 <![CDATA[<ngx-input autosize appearance="fill" type="number" label="Fill Resize Input"></ngx-input>]]>
   </app-prism>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Appearances">
+  <table class="appearance-table">
+    <tr>
+      <th></th>
+      <th>
+        Default
+      </th>
+      <th>
+        Fill
+      </th>
+    </tr>
+    <tr>
+      <td>Filled</td>
+      <td><ngx-input label="Label" ngModel="Value" hint="A brief bit of help text"></ngx-input></td>
+      <td><ngx-input label="Label" appearance="fill" ngModel="Value" hint="A brief bit of help text"></ngx-input></td>
+    </tr>
+    <tr>
+      <td>Empty w/o Placeholder</td>
+      <td><ngx-input label="Label" hint="A brief bit of help text"></ngx-input></td>
+      <td><ngx-input label="Label" appearance="fill" hint="A brief bit of help text"></ngx-input></td>
+    </tr>
+    <tr>
+      <td>Empty w/ Placeholder</td>
+      <td><ngx-input label="Label" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+      <td><ngx-input label="Label" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+    </tr>
+    <tr>
+      <td>Numeric</td>
+      <td><ngx-input label="Label" type="number" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+      <td><ngx-input label="Label" type="number" appearance="fill" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+    </tr>
+    <tr>
+      <td>Text Area</td>
+      <td><ngx-input type="textarea" label="Label" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+      <td><ngx-input type="textarea" appearance="fill" label="Label" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+    </tr>
+    <tr>
+      <td>Prefix Suffix</td>
+      <td>
+        <ngx-input label="Label" type="number" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text">
+          <ngx-input-prefix>$</ngx-input-prefix>
+          <ngx-input-suffix>USD</ngx-input-suffix>
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-input label="Label" type="number" appearance="fill" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text">
+          <ngx-input-prefix>$</ngx-input-prefix>
+          <ngx-input-suffix>USD</ngx-input-suffix>
+        </ngx-input>
+      </td>
+    </tr>
+    <tr>
+      <td>Error</td>
+      <td>
+        <ngx-input label="Label" type="number" ngModel="10" max="5" placeholder="Placeholder Text" hint="A brief bit of help text">
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-input label="Label" type="number" appearance="fill" ngModel="10" max="5" placeholder="Placeholder Text" hint="A brief bit of help text">
+        </ngx-input>
+      </td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td>
+        <ngx-input label="Label" type="password" ngModel="secret" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-input label="Label" type="password" appearance="fill" ngModel="secret" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
+        </ngx-input>
+      </td>
+    </tr>
+    <tr>
+      <td>Unlockable</td>
+      <td>
+        <ngx-input label="Label" type="text" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text">
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-input label="Label" type="text" appearance="fill" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text">
+        </ngx-input>
+      </td>
+    </tr>
+    <tr>
+      <td>Secret</td>
+      <td>
+        <ngx-input label="Label" type="password" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-input label="Label" type="password" appearance="fill" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
+        </ngx-input>
+      </td>
+    </tr>
+  </table>
 </ngx-section>

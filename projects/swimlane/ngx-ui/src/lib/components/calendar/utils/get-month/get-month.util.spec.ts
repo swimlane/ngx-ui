@@ -1,4 +1,4 @@
-import * as moment from 'moment';
+import moment from 'moment-timezone';
 
 import { getMonth } from './get-month.util';
 

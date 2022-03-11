@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { Event, NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { DrawerService, LoadingService } from '@swimlane/ngx-ui';
-import Prism from 'prismjs';
+import * as Prism from 'prismjs';
 import 'prismjs/plugins/custom-class/prism-custom-class';
 
 import pkg from '../../projects/swimlane/ngx-ui/package.json';
@@ -88,10 +88,6 @@ export class AppComponent {
           route: 'radio'
         },
         {
-          name: 'Calendar',
-          route: 'calendar'
-        },
-        {
           name: 'Code Editor',
           route: 'code-editor'
         }
@@ -174,6 +170,14 @@ export class AppComponent {
           route: 'dropdown'
         },
         {
+          name: 'Calendar',
+          route: 'calendar'
+        },
+        {
+          name: 'Date/Time Display',
+          route: 'time-display'
+        },
+        {
           name: 'Loading',
           route: 'loading'
         },
@@ -236,11 +240,11 @@ export class AppComponent {
       ]
     }
   ];
-  /* end of naviation tree */
+  /* end of navigation tree */
 
   navExpanded = true;
 
-  constructor(private drawerMngr: DrawerService, private loadingService: LoadingService, private router: Router) {
+  constructor(private drawerService: DrawerService, private loadingService: LoadingService, private router: Router) {
     Prism.plugins.customClass.prefix('prism--');
 
     // Adding loading component in router
@@ -249,7 +253,7 @@ export class AppComponent {
         this.loadingService.start();
       } else if (event instanceof NavigationEnd) {
         this.loadingService.complete();
-        this.drawerMngr.destroyAll();
+        this.drawerService.destroyAll();
       }
     });
 

@@ -57,10 +57,10 @@
 class MyComponent {
   @ViewChild('editTmpl', { static: false }) editTmpl: TemplateRef<any>;
 
-  constructor(private drawerMngr: DrawerService) { }
+  constructor(private drawerService: DrawerService) { }
 
   openDrawer(direction = 'left', size?, closeOnOutsideClick = true, template = this.editTmpl, isRoot = true, parentContainer?: any) {
-    this.drawerMngr.create({
+    this.drawerService.create({
       direction,
       template,
       size,
@@ -139,10 +139,10 @@ class MyComponent {
 class MyComponent {
   @ViewChild('editTmpl', { static: false }) editTmpl: TemplateRef<any>;
 
-  constructor(private drawerMngr: DrawerService) { }
+  constructor(private drawerService: DrawerService) { }
 
   openDrawer(direction = 'left', size?, closeOnOutsideClick = true, template = this.editTmpl, isRoot = true, parentContainer?: any) {
-    this.drawerMngr.create({
+    this.drawerService.create({
       direction,
       template,
       size,

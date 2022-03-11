@@ -1,7 +1,6 @@
 import {
   Component,
   ContentChildren,
-  QueryList,
   Input,
   ViewEncapsulation,
   ChangeDetectionStrategy,
@@ -22,6 +21,8 @@ import {
   PropertyConfigOptions
 } from './json-editor-node-flat/node-types/property-config/property-config.component';
 
+import type { QueryList } from '@angular/core';
+
 @Component({
   selector: 'ngx-json-editor-flat',
   templateUrl: './json-editor-flat.component.html',
@@ -40,11 +41,11 @@ export class JsonEditorFlatComponent extends JsonEditor implements OnInit, OnCha
 
   @Input() formats?: string[] = [];
 
-  @Input() compressed = false;
-
   @Input() hideRoot = false;
 
   @Input() showKnownProperties = false;
+
+  @Input() passwordToggleEnabled = false;
 
   @ContentChildren(JsonEditorNodeFlatComponent) nodeElms: QueryList<JsonEditorNodeFlatComponent>;
 

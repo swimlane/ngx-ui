@@ -10,6 +10,8 @@ import { ObjectNode } from '../../../../node-types/object-node.component';
 export class ObjectNodeComponent extends ObjectNode {
   @Input() isDuplicated = false;
 
+  @Input() passwordToggleEnabled = false;
+
   constructor(protected cdr: ChangeDetectorRef) {
     super(cdr);
   }

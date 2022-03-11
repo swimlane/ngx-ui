@@ -18,7 +18,8 @@ export const enum NGX {
   NOTIFICATION = 'ngx-notification',
   NAG = 'ngx-nag',
   ALERT = 'ngx-alert-dialog',
-  DRAWER = 'ngx-drawer'
+  DRAWER = 'ngx-drawer',
+  TABS = 'ngx-tabs'
 }
 
 const DEBUG = false;
@@ -32,18 +33,23 @@ export function getTagName(el: JQuery<Element>): string {
   return tagName.toLowerCase();
 }
 
-export function ngxClosest(element: JQuery<Element>) {
+// TODO: add ngx-select
+export function ngxClosest(element: JQuery<Element>): JQuery<Element> {
   let $ngx = element.closest(NGX.DATETIME);
   if ($ngx.length) return $ngx;
 
   $ngx = element.closest(NGX.INPUT);
   if ($ngx.length) return $ngx;
 
+  $ngx = element.closest(NGX.RADIOBUTTON);
+  if ($ngx.length) return $ngx;
+
   return;
 }
 
-export function getByLabel(label: string, options: any) {
-  const root = options.withinSubject ? options.withinSubject : $('body');
+// TODO: options for exact or fuzzy match
+export function getByLabel(label: string, options: Partial<Cypress.Loggable & Cypress.Withinable>): JQuery<Element> {
+  const root = options.withinSubject ? $(options.withinSubject) : $('body');
 
   let $el = root.find(`*[label="${label}"]`); // todo: add support for aria-label
   if ($el.length) return $el;
@@ -57,11 +63,15 @@ export function getByLabel(label: string, options: any) {
     return ngxClosest($el) || $el;
   }
 
-  return ngxClosest($el) || $el.next();
+  return ngxClosest($el) || $el.next() || $el.parent();
 }
 
-export function getByPlaceholder(label: string, options: any) {
-  const root = options.withinSubject ? options.withinSubject : $('body');
+// TODO: options for exact or fuzzy match
+export function getByPlaceholder(
+  label: string,
+  options: Partial<Cypress.Loggable & Cypress.Withinable>
+): JQuery<Element> {
+  const root = options.withinSubject ? $(options.withinSubject) : $('body');
 
   const $el = root.find(`*[placeholder="${label}"]`);
   if (!$el.length) return;
@@ -69,7 +79,7 @@ export function getByPlaceholder(label: string, options: any) {
   return ngxClosest($el) || $el;
 }
 
-export function findInput(element: JQuery<Element>): any {
+export function findInput(element: JQuery<Element>): JQuery<Element> {
   switch (getTagName(element)) {
     case NGX.INPUT:
     case NGX.DATETIME:
@@ -82,14 +92,16 @@ export function findInput(element: JQuery<Element>): any {
     case NGX.RADIOBUTTON:
       return element.find('input[type="radio"]');
     case NGX.CODEMIRROR:
-      return cy.wrap(element).find('div.CodeMirror').click().find('textarea');
+      const $cm = element.find('div.CodeMirror');
+      cy.wrap($cm, LOG).click(LOG);
+      return $cm.find('textarea');
     case NGX.SELECT:
       return element.find('input[type="search"]');
   }
   return element;
 }
 
-export function findLabel(element: JQuery<Element>): any {
+export function findLabel(element: JQuery<Element>): JQuery<Element> {
   switch (getTagName(element)) {
     case NGX.INPUT:
     case NGX.DATETIME:
@@ -104,10 +116,13 @@ export function findLabel(element: JQuery<Element>): any {
   return element;
 }
 
-export function clear(element: JQuery<Element>) {
+export function clear(element: JQuery<Element>): Cypress.Chainable<JQuery<any>> {
   switch (getTagName(element)) {
     case NGX.CODEMIRROR:
-      return cy.wrap(element, LOG).ngxFindNativeInput().type(CLEAR, LOG);
+      return cy
+        .wrap(element, LOG)
+        .ngxFindNativeInput(LOG)
+        .type(CLEAR, { ...LOG, force: true });
     case NGX.INPUT:
     case NGX.DATETIME:
       return cy.wrap(findInput(element), LOG).clear(LOG);
@@ -119,11 +134,12 @@ export function clear(element: JQuery<Element>) {
     case NGX.SLIDER:
       const $el = findInput(element);
       const min = $el.attr('min') || $el.attr('aria-valuemin');
-      return $el.val(min);
+      $el.val(min);
+      return cy.wrap($el);
   }
 }
 
-export function getValue(element: JQuery<Element>): any {
+export function getValue(element: JQuery<Element>): string | number | string[] | undefined | boolean {
   switch (getTagName(element)) {
     case NGX.CODEMIRROR: {
       const $el = element.find('.CodeMirror');
@@ -131,7 +147,7 @@ export function getValue(element: JQuery<Element>): any {
     }
     case NGX.SELECT: {
       if (element.hasClass('multi-selection')) {
-        // TODO: aria-multiselectable
+        // TODO: aria
         const $el = element.find('.ngx-select-input-name');
         return $.map($el, (el: Element) => $(el).text().trim());
       } else {
@@ -153,7 +169,7 @@ export function getValue(element: JQuery<Element>): any {
   return findInput(element).val();
 }
 
-export function setValue(element: JQuery<Element>, text?: string) {
+export function setValue(element: JQuery<Element>, text?: string): Cypress.Chainable<JQuery<Element>> {
   switch (getTagName(element)) {
     case NGX.SELECT:
       return cy.wrap(element, LOG).select(text);
@@ -163,15 +179,29 @@ export function setValue(element: JQuery<Element>, text?: string) {
   }
   findInput(element).val(text);
   element.trigger('change');
+  return cy.wrap(element);
 }
 
-export function fillValue(element: any, text?: string, options = {}) {
+export function fillValue(
+  element: any,
+  text?: string,
+  options: Partial<Cypress.TypeOptions> = {}
+): Cypress.Chainable<JQuery<Element>> {
   switch (getTagName(element)) {
     case NGX.SELECT:
       cy.wrap(element, LOG).clear(LOG);
       if (text) {
         return cy.wrap(element, LOG).type(text, { ...options, ...LOG });
       }
+      return;
+    case NGX.CODEMIRROR:
+      cy.wrap(element, LOG).clear(LOG);
+      if (text) {
+        cy.wrap(element, LOG)
+          .ngxFindNativeInput(LOG)
+          .type(text, { ...options, ...LOG, force: true });
+      }
+      return cy.focused(LOG).blur(LOG);
     case NGX.SLIDER:
       throw new Error(`don't use .ngxFill on ngx-sliders, use .ngxSetValue`);
     case NGX.RADIOBUTTON_GROUP:
@@ -185,7 +215,11 @@ export function fillValue(element: any, text?: string, options = {}) {
   return cy.focused(LOG).blur(LOG);
 }
 
-export function iff(element: any, selector: string, fn: any) {
+export function iff(
+  element: JQuery<HTMLElement>,
+  selector: string,
+  fn: (currentSubject: JQuery<any>) => void
+): Cypress.Chainable<JQuery<Element>> {
   if (typeof selector === 'function') {
     fn = selector;
     selector = '';
@@ -199,7 +233,7 @@ export function iff(element: any, selector: string, fn: any) {
   }
 }
 
-export function open(element: JQuery<Element>) {
+export function open(element: JQuery<Element>): Cypress.Chainable<JQuery<Element>> {
   switch (getTagName(element)) {
     case NGX.SELECT:
       if (!element.hasClass('active')) {
@@ -214,7 +248,7 @@ export function open(element: JQuery<Element>) {
     case NGX.DROPDOWN:
       console.log(element.hasClass('open'), element);
       if (!element.hasClass('open')) {
-        element.find('ngx-dropdown-toggle button').trigger('click'); // TOOD: add a dropgown toggle class to ngx-dropdown
+        element.find('ngx-dropdown-toggle button').trigger('click'); // TODO: add a dropdown toggle class to ngx-dropdown
       }
       return;
     case NGX.PLUS_MENU:
@@ -230,7 +264,7 @@ export function open(element: JQuery<Element>) {
   }
 }
 
-export function close(element: JQuery<Element>) {
+export function close(element: JQuery<Element>): Cypress.Chainable<JQuery<Element>> {
   switch (getTagName(element)) {
     case NGX.SELECT:
       if (element.hasClass('active')) {
@@ -244,7 +278,7 @@ export function close(element: JQuery<Element>) {
       return;
     case NGX.DROPDOWN:
       if (element.hasClass('open')) {
-        element.find('button').first().trigger('click'); // TOOD: add a dropgown toggle class to ngx-dropdown
+        element.find('button').first().trigger('click'); // TODO: add a dropdown toggle class to ngx-dropdown
       }
       return;
     case NGX.PLUS_MENU:

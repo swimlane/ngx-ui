@@ -30,6 +30,15 @@ $calendar-month-current: $color-blue-grey-750;
     outline: none;
   }
 
+  button {
+    outline: 0px auto $color-blue-200;
+
+    &:focus-within {
+      outline: 2px solid $color-blue-200;
+      outline-offset: 1px;
+    }
+  }
+
   .title-row {
     background: $calendar-title-bg;
     color: $calendar-active-text;
@@ -40,12 +49,16 @@ $calendar-month-current: $color-blue-grey-750;
     .title {
       color: $calendar-active-bg;
       min-width: 100px;
+      padding: 9px;
       cursor: pointer;
+      border-radius: 3px;
     }
 
-    button {
+    .prev-month,
+    .next-month {
       color: $calendar-title-btn;
       font-size: 0.6rem;
+      border-radius: 3px;
     }
   }
 
@@ -55,7 +68,7 @@ $calendar-month-current: $color-blue-grey-750;
     display: flex;
 
     .day-name {
-      flex: 0 0 30px;
+      flex: 1 0 30px;
     }
   }
 
@@ -70,12 +83,13 @@ $calendar-month-current: $color-blue-grey-750;
 
   .day-container {
     margin-top: 0;
+    width: 100%;
 
     .day-row {
       display: flex;
 
       .day-cell {
-        flex: 0 0 30px;
+        flex: 1 0 30px;
       }
     }
 
@@ -115,25 +129,33 @@ $calendar-month-current: $color-blue-grey-750;
       }
     }
   }
+
   .months-container,
   .years-container {
     margin: 0.5rem;
-    border: solid 1px $calendar-border;
-    border-bottom: 0;
     color: $calendar-active-text;
+    width: calc(100% - 1rem);
+    border-collapse: collapse;
 
     .months-row,
     .years-row {
       display: grid;
+      border: 1px solid $calendar-border;
     }
+
+    .month-cell,
+    .year-cell {
+      padding: 0;
+      border: 1px solid $calendar-border;
+    }
+
     .month,
     .year {
-      border-right: solid 1px $calendar-border;
-      border-bottom: solid 1px $calendar-border;
       grid-auto-rows: auto;
       text-transform: uppercase;
       text-align: center;
       font-size: 14px;
+      width: 100%;
 
       &.active {
         background-color: $calendar-active-bg;

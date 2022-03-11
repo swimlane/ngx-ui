@@ -1,3 +1,48 @@
+<div class="ngx-date-time__container">
+  <ngx-input
+    #input
+    ngx-tooltip
+    [tooltipDisabled]="tooltipDisabled || !hasPopup"
+    [tooltipTemplate]="defaultTooltipTemplate"
+    [tooltipCssClass]="tooltipCssClass"
+    [minWidth]="minWidth"
+    [id]="id + '-input'"
+    [autosize]="autosize"
+    [size]="size"
+    [appearance]="appearance"
+    [autocorrect]="false"
+    [autocomplete]="false"
+    [spellcheck]="false"
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    [autofocus]="autofocus"
+    [tabindex]="tabindex"
+    [label]="label"
+    [withMargin]="withMargin"
+    [ngModel]="displayValue"
+    [required]="required"
+    [requiredIndicator]="requiredIndicator"
+    [hint]="hint"
+    (ngModelChange)="inputChanged($event)"
+    (focus)="onFocus($event)"
+    (blur)="onBlur($event)"
+    (keydown)="onInputKeyDown($event)"
+  >
+  </ngx-input>
+  <button
+    title="Show date/time selector"
+    type="button"
+    [disabled]="disabled"
+    (click)="open()"
+    [ngClass]="{
+      'icon-calendar': inputType === 'date',
+      'icon-calendar-clock': inputType === 'datetime',
+      'icon-clock': inputType === 'time'
+    }"
+    class="calendar-dialog-btn"
+  ></button>  
+</div>
+
 <ng-template #dialogTpl>
   <div class="selected-header text-center">
     <h1>
@@ -17,6 +62,7 @@
     [id]="id + '-cal'"
     *ngIf="inputType === 'date' || inputType === 'datetime'"
     (change)="setDialogDate($event)"
+    (dayKeyEnter)="apply()"
     [minDate]="minDate"
     [maxDate]="maxDate"
     [ngModel]="dialogModel"
@@ -85,42 +131,10 @@
     </div>
   </nav>
 </ng-template>
-<ngx-input
-  #input
-  [minWidth]="minWidth"
-  [id]="id + '-input'"
-  [autosize]="autosize"
-  [size]="size"
-  [appearance]="appearance"
-  [autocorrect]="false"
-  [autocomplete]="false"
-  [spellcheck]="false"
-  [disabled]="disabled"
-  [placeholder]="placeholder"
-  [autofocus]="autofocus"
-  [tabindex]="tabindex"
-  [label]="label"
-  [withMargin]="withMargin"
-  [ngModel]="displayValue"
-  [required]="required"
-  [requiredIndicator]="requiredIndicator"
-  (ngModelChange)="inputChanged($event)"
-  (blur)="onBlur($event)"
->
-  <ngx-input-hint class="date-time-hint">
-    <div *ngIf="hint">{{ hint }}</div>
-    <div *ngIf="errorMsg" class="input-error">{{ errorMsg }}</div>
-  </ngx-input-hint>
-</ngx-input>
-<button
-  title="Show date/time selector"
-  type="button"
-  [disabled]="disabled"
-  (click)="open()"
-  [ngClass]="{
-    'icon-calendar': inputType === 'date',
-    'icon-calendar-clock': inputType === 'datetime',
-    'icon-clock': inputType === 'time'
-  }"
-  class="calendar-dialog-btn"
-></button>
+
+<ng-template #defaultTooltipTemplate>
+  <div *ngFor="let item of timeValues | keyvalue" class="date-zone-display">
+    <span>{{ item.value.display }}</span>
+    <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
+  </div>
+</ng-template>

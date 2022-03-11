@@ -7,6 +7,7 @@
   (errorItem)="errorItem.emit($event)"
   (progressAll)="progressAll.emit($event)"
   class="ngx-dropzone"
+  [ngClass]="'ngx-dropzone--' + size"
 >
   <ng-template #dropzoneTemplate let-uploader>
     <input
@@ -20,7 +21,7 @@
     />
   
     <label [attr.for]="'ngx-dropzone--input--' + id" class="ngx-dropzone--label">
-    <svg class="ngx-dropzone--rings" viewBox="0 0 506 506" xmlns="http://www.w3.org/2000/svg">
+    <svg *ngIf="size === DropzoneSize.Large" class="ngx-dropzone--rings" viewBox="0 0 506 506" xmlns="http://www.w3.org/2000/svg">
       <path
         class="ngx-dropzone--ring-9"
         opacity="0.2"
@@ -68,13 +69,25 @@
     </svg>
 
     <div class="ngx-dropzone--btn">
-      <ngx-icon class="ngx-dropzone--icon" fontIcon="upload-outline-large"></ngx-icon>
-      <div class="ngx-dropzone--title">Drag + Drop</div>
-      <div class="ngx-dropzone--sub-title">OR <span class="underline">BROWSE</span></div>
-      <div *ngIf="acceptedFileFormats?.length" class="ngx-dropzone--supporting-files">
-        Supports: {{acceptedFileFormatsTextDisplay}}
-      </div>
-    </div>
+      <ng-container *ngIf="size === DropzoneSize.Large; else smallSizeTpl">
+        <ngx-icon class="ngx-dropzone--icon" fontIcon="upload-outline-large"></ngx-icon>
+        <div class="ngx-dropzone--title">Drag + Drop</div>
+        <div class="ngx-dropzone--sub-title">OR <span class="underline">BROWSE</span></div>
+        <div *ngIf="acceptedFileFormats?.length > 0" class="ngx-dropzone--supporting-files">
+          Supports: {{acceptedFileFormatsTextDisplay}}
+        </div>
+      </ng-container>
+      <ng-template #smallSizeTpl>
+        <ngx-icon class="ngx-dropzone--icon" fontIcon="upload-outline-large"></ngx-icon>
+        <div class="ngx-dropzone--title">Drag + Drop</div>
+        <div 
+          *ngIf="acceptedFileFormats?.length > 0" 
+          ngx-tooltip 
+          [tooltipTitle]="acceptedFileFormatsTextDisplay" 
+          class="ngx-dropzone--sub-title">OR <span class="underline">BROWSE</span></div>
+        <div *ngIf="!acceptedFileFormats || acceptedFileFormats.length === 0" class="ngx-dropzone--sub-title">OR <span class="underline">BROWSE</span></div> 
+      </ng-template>
+    </div>      
     </label>
   </ng-template>
 </ngx-file-button>

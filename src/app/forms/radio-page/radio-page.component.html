@@ -1,7 +1,6 @@
 <h3 class="style-header">Radio Buttons</h3>
 
-<ngx-section class="shadow" [sectionTitle]="'Demo'">
-  <h3>Single Radio Button</h3>
+<ngx-section class="shadow" sectionTitle="Single Radio Buttons">
   <ngx-radiobutton *ngFor="let season of seasons" [checked]="favoriteSeason === season" (change)="favoriteSeason = season">
     {{season}}
   </ngx-radiobutton>
@@ -16,18 +15,15 @@
 </ngx-radiobutton>
 <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>]]>
   </app-prism>
+</ngx-section>
 
-  <br />
-  <h3>Radio Button Group</h3>
-
+<ngx-section sectionTitle="Radio Button Group">
   <ngx-radiobutton-group [(ngModel)]="secondFavoriteSeason" [disabled]="disabled">
     <ngx-radiobutton *ngFor="let season of seasons" [value]="season">
       {{season}}
     </ngx-radiobutton>
   </ngx-radiobutton-group>
   <div class="example-selected-value">Your favorite season is: {{secondFavoriteSeason}}</div>
-
-  <button class="btn btn-primary" (click)="seasons.push('Holiday')">Add Season</button>
 
   <app-prism>
 <![CDATA[<ngx-radiobutton-group
@@ -86,5 +82,49 @@
 </ngx-radiobutton-group>
 <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>]]>
   </app-prism>
-
 </ngx-section>
+
+<ngx-section sectionTitle="FormGroup">
+  <form [formGroup]="form">
+    <ngx-radiobutton-group formControlName="season">
+      <ngx-radiobutton *ngFor="let season of seasons" [value]="season">
+        {{season}}
+      </ngx-radiobutton>
+    </ngx-radiobutton-group>
+  </form>
+
+  <output>{{ form.value | json }}</output>
+
+  <app-prism>
+    <![CDATA[<form [formGroup]="form">
+      <ngx-radiobutton-group formControlName="season">
+        <ngx-radiobutton *ngFor="let season of seasons" [value]="season">
+          {{season}}
+        </ngx-radiobutton>
+      </ngx-radiobutton-group>
+    </form>]]>
+      </app-prism>
+</ngx-section>
+
+<ngx-section sectionTitle="Native">
+
+  <div>
+    <div *ngFor="let season of seasons; let i = index">
+      <input [id]="i + 'chk'" type="radio" [value]="season" name="season">
+      <label [attr.for]="i + 'chk'">{{ season }}</label>
+    </div>
+  </div>
+
+  <p></p>
+
+  <form [formGroup]="form">
+    <div *ngFor="let season of seasons; let i = index">
+       <input [id]="i + 'chk'" type="radio" [value]="season" formControlName="season">
+       <label [attr.for]="i + 'chk'">{{ season }}</label>
+    </div>
+ </form>
+</ngx-section>
+
+<p>
+  <button class="btn btn-primary" (click)="seasons.push('Holiday')">Add Holiday Season</button>
+</p>

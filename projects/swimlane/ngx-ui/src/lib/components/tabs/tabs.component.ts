@@ -3,18 +3,21 @@ import {
   Input,
   Output,
   ContentChildren,
-  QueryList,
   EventEmitter,
   ViewEncapsulation,
   AfterContentInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  OnDestroy
+  OnDestroy,
+  HostBinding
 } from '@angular/core';
+import type { QueryList } from '@angular/core';
+
 import { Subject, Subscription } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { TabComponent } from './tab.component';
+import { TabsAppearance } from './tabs-appearance.enum';
 
 @Component({
   exportAs: 'ngxTabs',
@@ -28,6 +31,11 @@ import { TabComponent } from './tab.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsComponent implements AfterContentInit, OnDestroy {
+  @HostBinding('class.light')
+  get light() {
+    return this.appearance === TabsAppearance.Light;
+  }
+
   @Input() vertical: boolean;
 
   @Output() selectTab = new EventEmitter();
@@ -35,7 +43,19 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
   // eslint-disable-next-line @angular-eslint/no-output-native
   @Output() select = this.selectTab;
 
+  @Input() appearance: TabsAppearance = TabsAppearance.Legacy;
+
   @ContentChildren(TabComponent) readonly tabs: QueryList<TabComponent>;
+
+  @HostBinding('class.tabs-horizontal')
+  get horizontalClass() {
+    return !this.vertical;
+  }
+
+  @HostBinding('class.tabs-vertical')
+  get verticalClass() {
+    return this.vertical;
+  }
 
   private tabEvents: Subscription[] = [];
 
@@ -54,7 +74,7 @@ export class TabsComponent implements AfterContentInit, OnDestroy {
 
     if (actives.length > 1) {
       // eslint-disable-next-line no-console
-      console.error("Multiple active tabs set 'active'");
+      console.error(`Multiple active tabs set 'active'`);
     } else if (!actives.length && tabs.length) {
       setTimeout(() => {
         tabs[0].active = true;

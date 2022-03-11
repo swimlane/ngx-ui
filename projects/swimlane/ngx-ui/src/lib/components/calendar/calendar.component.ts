@@ -8,16 +8,19 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  AfterViewInit
+  AfterViewInit,
+  ElementRef,
+  HostBinding
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import moment from 'moment-timezone';
+import moment, { Moment, MomentBuiltinFormat } from 'moment-timezone';
 
 import { getMonth } from './utils/get-month/get-month.util';
 import { getDecadeStartYear } from './utils/get-decade-start-year/get-decade-start-year.util';
 import { CalendarDay } from './calendar-day.interface';
 import { CalendarMonth } from './calendar-month.type';
 import { CalendarView } from './calendar-view.enum';
+import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 
 const CALENDAR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
@@ -41,11 +44,15 @@ const CALENDAR_VALUE_ACCESSOR = {
 })
 export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() minDate: Date | string;
-  @Input() disabled: boolean;
+
+  @HostBinding('class.ngx-calendar--disabled')
+  @Input()
+  disabled: boolean;
+
   @Input() maxDate: Date | string;
   @Input() daysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   @Input() timezone: string;
-  @Input() inputFormats: Array<string | moment.MomentBuiltinFormat> = ['L', 'LT', 'L LT', moment.ISO_8601];
+  @Input() inputFormats: Array<string | MomentBuiltinFormat> = ['L', 'LT', 'L LT', moment.ISO_8601];
 
   @Input('minView')
   get minView() {
@@ -66,6 +73,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   @Output() change = new EventEmitter<Date>();
+  @Output() dayKeyEnter = new EventEmitter<Date>();
+
+  @HostBinding('attr.tabindex')
+  tabindex = -1;
 
   get value() {
     return this._value;
@@ -83,28 +94,30 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     }
   }
 
-  get current(): moment.Moment {
+  get current(): Moment {
     return this._current;
   }
 
-  activeDate: moment.Moment;
+  focusDate: Moment;
   weeks: CalendarMonth;
   currentView: CalendarView;
   monthsList = moment.monthsShort();
   startYear: number;
 
+  readonly CalendarView = CalendarView;
+
   private _value: Date;
-  private _current: moment.Moment;
+  private _current: Moment;
   private _minView: CalendarView;
   private _defaultView: CalendarView;
 
-  constructor(private readonly cdr: ChangeDetectorRef) {}
+  constructor(private readonly cdr: ChangeDetectorRef, private readonly elm: ElementRef) {}
 
   ngOnInit() {
-    this.activeDate = this.createMoment(this.value);
-    this.weeks = getMonth(this.activeDate);
+    this.focusDate = this.createMoment(this.value);
+    this.weeks = getMonth(this.focusDate);
     this.monthsList = moment.monthsShort();
-    this._current = this.activeDate;
+    this._current = this.focusDate;
     this.startYear = getDecadeStartYear(this._current.year());
     this.validateView();
   }
@@ -122,7 +135,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
       this.currentView = this.minView;
     }
 
-    this.weeks = getMonth(this.activeDate);
+    this.weeks = getMonth(this.focusDate);
   }
 
   validateView() {
@@ -144,8 +157,16 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   /**
    * Checks if `date` matches selected value
    */
-  isDayActive(date: moment.Moment): boolean {
+  isDayActive(date: Moment): boolean {
     return date.isSame(this.value, 'day');
+  }
+
+  /**
+   * Checks if `date` matches selected value
+   */
+  isDayFocus(date: Moment): boolean {
+    if (!this.focusDate) return false;
+    return date.isSame(this.focusDate, 'day');
   }
 
   /**
@@ -153,15 +174,23 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
    */
   isMonthActive(month: string): boolean {
     const date = this.createMoment(this.value).month(month);
-    return date.isSame(this.value, 'month') && date.isSame(this.activeDate, 'year');
+    return date.isSame(this.value, 'month') && date.isSame(this.focusDate, 'year');
   }
 
   /**
    * Checks if `month` and year matches current
    */
   isCurrentMonth(month: string): boolean {
-    const date = this.activeDate.clone().month(month);
+    const date = this.focusDate.clone().month(month);
     return date.isSame(this._current, 'month') && date.isSame(this._current, 'year');
+  }
+
+  /**
+   * Checks if `month` and year matches current focus
+   */
+  isFocusMonth(month: string): boolean {
+    const date = this.focusDate.clone().month(month);
+    return date.isSame(this.focusDate, 'month') && date.isSame(this.focusDate, 'year');
   }
 
   /**
@@ -180,21 +209,29 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     return date.isSame(this._current, 'year');
   }
 
+  /**
+   * Checks if year matches current focus
+   */
+  isFocusYear(year: number): boolean {
+    const date = this.focusDate.clone().year(year);
+    return date.isSame(this.focusDate, 'year');
+  }
+
   isDisabled(value: any, type: string): boolean {
     if (this.disabled) return true;
     if (!value) return false;
 
-    let date: moment.Moment;
+    let date: Moment;
 
     switch (type) {
       case 'day':
         date = value;
         break;
       case 'month':
-        date = this.activeDate.clone().month(value);
+        date = this.focusDate.clone().month(value);
         break;
       case 'year':
-        date = this.activeDate.clone().year(value);
+        date = this.focusDate.clone().year(value);
         break;
       default:
         return false;
@@ -207,54 +244,77 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   onDayClick(day: CalendarDay) {
-    this.activeDate = day.date.clone();
-    this.value = this.activeDate.toDate();
+    this.focusDate = day.date.clone();
+    this.value = this.focusDate.toDate();
 
     if (day.prevMonth || day.nextMonth) {
-      this.weeks = getMonth(this.activeDate);
+      this.weeks = getMonth(this.focusDate);
     }
   }
 
+  onDayFocus(day: CalendarDay) {
+    this.focusDate = day.date.clone();
+    this.cdr.detectChanges();
+    this.focus();
+  }
+
   onMonthClick(month: string) {
-    this.activeDate.month(month);
-    this.value = this.activeDate.toDate();
+    this.focusDate.month(month);
+    this.value = this.focusDate.toDate();
 
     if (this.minView !== CalendarView.Month) {
       this.currentView = CalendarView.Date;
-      this.weeks = getMonth(this.activeDate);
+      this.weeks = getMonth(this.focusDate);
     }
   }
 
   onYearClick(year: number) {
-    this.activeDate.year(year);
-    this.value = this.activeDate.toDate();
+    this.focusDate.year(year);
+    this.value = this.focusDate.toDate();
 
     if (this.minView !== CalendarView.Year) {
       this.currentView = CalendarView.Month;
-      this.weeks = getMonth(this.activeDate);
+      this.weeks = getMonth(this.focusDate);
     }
   }
 
   prevMonth() {
-    const date = this.activeDate.clone();
-    this.activeDate = date.subtract(1, 'month');
-    this.weeks = getMonth(this.activeDate);
+    const date = this.focusDate.clone();
+    this.focusDate = date.subtract(1, 'month');
+    this.weeks = getMonth(this.focusDate);
   }
 
   nextMonth() {
-    const date = this.activeDate.clone();
-    this.activeDate = date.add(1, 'month');
-    this.weeks = getMonth(this.activeDate);
+    const date = this.focusDate.clone();
+    this.focusDate = date.add(1, 'month');
+    this.weeks = getMonth(this.focusDate);
   }
 
   prevYear() {
-    const date = this.activeDate.clone();
-    this.activeDate = date.subtract(1, 'year');
+    const date = this.focusDate.clone();
+    this.focusDate = date.subtract(1, 'year');
   }
 
   nextYear() {
-    const date = this.activeDate.clone();
-    this.activeDate = date.add(1, 'year');
+    const date = this.focusDate.clone();
+    this.focusDate = date.add(1, 'year');
+  }
+
+  moveFocus(amount: number, duration: moment.unitOfTime.DurationConstructor) {
+    const focusDate = this.focusDate.clone().add(amount, duration);
+    this.setFocus(focusDate);
+  }
+
+  setFocus(focusDate: Moment) {
+    this.focusDate = focusDate;
+    this.weeks = getMonth(this.focusDate);
+    if (this.focusDate.year() < this.startYear) {
+      this.prevTwoDecades();
+    } else if (this.focusDate.year() > this.startYear + 20) {
+      this.nextTwoDecades();
+    }
+    this.cdr.detectChanges();
+    this.focus();
   }
 
   prevTwoDecades() {
@@ -266,13 +326,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   writeValue(val: any) {
-    const activeDate = this.createMoment(val);
+    const focusDate = this.createMoment(val);
 
-    if (activeDate.isValid() && !activeDate.isSame(this.value, 'day')) {
-      this.activeDate = activeDate;
-      this.weeks = getMonth(this.activeDate);
+    if (focusDate.isValid() && !focusDate.isSame(this.value, 'day')) {
+      this.focusDate = focusDate;
+      this.weeks = getMonth(this.focusDate);
       this._value = val;
-      this.startYear = getDecadeStartYear(this.activeDate.year());
+      this.startYear = getDecadeStartYear(this.focusDate.year());
     }
 
     this.cdr.markForCheck();
@@ -290,16 +350,216 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     // placeholder
   };
 
+  // Moves keyboard focus to the focused element
+  focus() {
+    const elm = this.elm.nativeElement.querySelector('button.focus');
+    if (elm) {
+      elm.focus();
+    }
+  }
+
+  onDayDown(event: KeyboardEvent) {
+    // console.log(event.code);
+
+    let stop = false;
+
+    if (this.currentView === CalendarView.Date) {
+      switch (event.code) {
+        case KeyboardKeys.ARROW_DOWN: /// next week
+          this.moveFocus(1, 'week');
+          stop = true;
+          break;
+        case KeyboardKeys.ARROW_UP: // prev week
+          this.moveFocus(-1, 'week');
+          stop = true;
+          break;
+        case KeyboardKeys.ARROW_LEFT: // prev day
+          this.moveFocus(-1, 'day');
+          stop = true;
+          break;
+        case KeyboardKeys.ARROW_RIGHT: // next day
+          this.moveFocus(1, 'day');
+          stop = true;
+          break;
+        case KeyboardKeys.PAGE_UP: {
+          // page up - go to prev month
+          // alt + page up - go to prev year
+          const prev = event.altKey ? 'year' : 'month';
+          this.moveFocus(-1, prev);
+          stop = true;
+          break;
+        }
+        case KeyboardKeys.PAGE_DOWN: {
+          // page down - go to next month
+          // alt + page down - go to next year
+          const next = event.altKey ? 'year' : 'month';
+          this.moveFocus(1, next);
+          stop = true;
+          break;
+        }
+        case KeyboardKeys.ENTER: // enter and close if in dialog
+          setTimeout(() => {
+            // wait for click event to fire
+            this.dayKeyEnter.emit();
+          }, 200);
+          break;
+        case KeyboardKeys.HOME: {
+          // home - go to first day of week
+          // alt-home - go to first day of month
+          const startOf = event.altKey ? 'month' : 'week';
+          this.setFocus(this.focusDate.clone().startOf(startOf));
+          stop = true;
+          break;
+        }
+        case KeyboardKeys.END: {
+          const endOf = event.altKey ? 'month' : 'week';
+          // end - go to last day of week
+          // alt-end - go to last day of month
+          this.setFocus(this.focusDate.clone().endOf(endOf));
+          stop = true;
+          break;
+        }
+      }
+    }
+
+    // TODO: month and year views
+
+    if (stop) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+
+    this.cdr.detectChanges();
+  }
+
+  onMonthDown(event: KeyboardEvent) {
+    let stop = false;
+
+    if (this.currentView === CalendarView.Month) {
+      switch (event.code) {
+        case KeyboardKeys.ARROW_DOWN:
+          this.moveFocus(3, 'month');
+          stop = true;
+          break;
+        case KeyboardKeys.ARROW_UP:
+          this.moveFocus(-3, 'month');
+          stop = true;
+          break;
+        case KeyboardKeys.ARROW_LEFT:
+          this.moveFocus(-1, 'month');
+          stop = true;
+          break;
+        case KeyboardKeys.ARROW_RIGHT:
+          this.moveFocus(1, 'month');
+          stop = true;
+          break;
+        case KeyboardKeys.HOME:
+          // home - go to first month
+          this.setFocus(this.focusDate.clone().startOf('year'));
+          stop = true;
+          break;
+        case KeyboardKeys.END:
+          // end - go to last day of year
+          this.setFocus(this.focusDate.clone().endOf('year'));
+          stop = true;
+          break;
+        case KeyboardKeys.PAGE_UP:
+          // page down - go to prev month
+          this.moveFocus(-1, 'year');
+          stop = true;
+          break;
+        case KeyboardKeys.PAGE_DOWN:
+          // page down - go to next month
+          this.moveFocus(1, 'year');
+          stop = true;
+          break;
+        case KeyboardKeys.SPACE:
+          setTimeout(() => {
+            // wait for click event to fire
+            this.setFocus(this.focusDate.clone());
+          }, 200);
+          break;
+        case KeyboardKeys.ENTER: // enter and close if in dialog
+          setTimeout(() => {
+            // wait for click event to fire
+            this.dayKeyEnter.emit();
+          }, 200);
+          break;
+      }
+    }
+
+    if (stop) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+
+    this.cdr.detectChanges();
+  }
+
+  onYearDown(event: KeyboardEvent) {
+    let stop = false;
+
+    if (this.currentView === CalendarView.Year) {
+      switch (event.code) {
+        case KeyboardKeys.ARROW_DOWN:
+          this.moveFocus(4, 'year');
+          stop = true;
+          break;
+        case KeyboardKeys.ARROW_UP:
+          this.moveFocus(-4, 'year');
+          stop = true;
+          break;
+        case KeyboardKeys.ARROW_LEFT:
+          this.moveFocus(-1, 'year');
+          stop = true;
+          break;
+        case KeyboardKeys.ARROW_RIGHT:
+          this.moveFocus(1, 'year');
+          stop = true;
+          break;
+        case KeyboardKeys.PAGE_UP:
+          // page down - go to prev two decades
+          this.moveFocus(-20, 'year');
+          stop = true;
+          break;
+        case KeyboardKeys.PAGE_DOWN:
+          // page down - go to next two decades
+          this.moveFocus(20, 'year');
+          stop = true;
+          break;
+        case KeyboardKeys.SPACE:
+          setTimeout(() => {
+            // wait for click event to fire
+            this.setFocus(this.focusDate.clone());
+          }, 200);
+          break;
+        case KeyboardKeys.ENTER: // enter and close if in dialog
+          setTimeout(() => {
+            // wait for click event to fire
+            this.dayKeyEnter.emit();
+          }, 200);
+          break;
+      }
+    }
+
+    if (stop) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
+
+    this.cdr.detectChanges();
+  }
+
   private onChangeCallback: (_: any) => void = () => {
     // placeholder
   };
 
-  private parseDate(date: string | Date): moment.Moment {
+  private parseDate(date: string | Date): Moment {
     date = date instanceof Date ? date.toISOString() : date;
     return this.timezone ? moment.tz(date, this.inputFormats, this.timezone) : moment(date, this.inputFormats);
   }
 
-  private createMoment(date: string | Date | moment.Moment): moment.Moment {
+  private createMoment(date: string | Date | Moment): Moment {
     const m = moment(date).clone();
     return this.timezone ? m.tz(this.timezone) : m;
   }

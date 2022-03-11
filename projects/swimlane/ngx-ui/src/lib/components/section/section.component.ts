@@ -10,8 +10,10 @@ import {
 } from '@angular/core';
 
 import { SectionHeaderComponent } from './section-header.component';
-import { SectionApperance } from './section-appearance.enum';
+import { SectionAppearance } from './section-appearance.enum';
 import { TogglePosition } from './section-toggle-position.enum';
+
+let nextId = 0;
 
 @Component({
   selector: 'ngx-section',
@@ -23,9 +25,18 @@ import { TogglePosition } from './section-toggle-position.enum';
   styleUrls: ['./section.component.scss']
 })
 export class SectionComponent {
+  @HostBinding('id')
+  @Input()
+  id = `section-${++nextId}`;
+
   @HostBinding('class.outline')
   get outline() {
-    return this.appearance === SectionApperance.Outline;
+    return this.appearance === SectionAppearance.Outline;
+  }
+
+  @HostBinding('class.light')
+  get light() {
+    return this.appearance === SectionAppearance.Light;
   }
 
   @Input() sectionCollapsed = false;
@@ -33,7 +44,7 @@ export class SectionComponent {
   @Input() headerToggle = false;
   @Input() sectionTitle: string;
   @Input() padding: any = '1.8em';
-  @Input() appearance: SectionApperance = SectionApperance.Legacy;
+  @Input() appearance: SectionAppearance = SectionAppearance.Legacy;
   @Input() togglePosition: TogglePosition = TogglePosition.Left;
 
   @Output() toggle = new EventEmitter();

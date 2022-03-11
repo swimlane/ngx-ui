@@ -85,14 +85,19 @@ export class JsonEditorPageComponent {
             maximum: 180
           }
         }
+      },
+      userApiKey: {
+        title: 'User API key',
+        type: 'string',
+        format: 'password'
       }
     },
-    required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions']
+    required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions', 'userApiKey']
   };
 
-  compressed = false;
   hideRoot = false;
   showKnownProperties = false;
+  passwordToggleEnabled = false;
 
   _jsonEditorSchema: any = {};
 
@@ -120,10 +125,6 @@ export class JsonEditorPageComponent {
       return regex.test(value);
     }
   };
-
-  toggleCompressed(): void {
-    this.compressed = !this.compressed;
-  }
 
   updateJsonEditorSchema(schema: string) {
     this.jsonEditorSchema = JSON.parse(schema);

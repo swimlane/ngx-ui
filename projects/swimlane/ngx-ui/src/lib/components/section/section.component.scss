@@ -4,6 +4,12 @@ $section-header-bg: $color-blue-grey-775;
 $section-header-color: $color-blue-grey-100;
 $section-shadow: $shadow-3;
 
+@mixin focus-ring {
+  outline: 2px solid $color-blue-200;
+  border-radius: 2px;
+  outline-offset: 1px;
+}
+
 .ngx-section {
   display: block;
   margin-bottom: 2em;
@@ -28,8 +34,12 @@ $section-shadow: $shadow-3;
       background: none;
       border: none;
       box-shadow: none;
-      padding: 0;
-      left: 15px;
+      padding: 0 10px;
+      left: 5px;
+
+      &:focus-visible {
+        @include focus-ring;
+      }
     }
 
     a {
@@ -49,6 +59,10 @@ $section-shadow: $shadow-3;
 
       &.header-toggle {
         cursor: pointer;
+
+        &:focus-visible {
+          @include focus-ring;
+        }
       }
     }
 
@@ -87,6 +101,28 @@ $section-shadow: $shadow-3;
     .ngx-section-content {
       border-top: 0;
       border-radius: 0 0 2px 2px;
+    }
+  }
+
+  &.light {
+    background: $color-blue-grey-775;
+
+    .ngx-section-header,
+    .ngx-section-content {
+      border: 2px solid $color-blue-grey-700;
+    }
+
+    .ngx-section-header {
+      background: $color-blue-grey-700;
+      border-radius: 0;
+
+      &.section-collapsed {
+        border-radius: 0;
+      }
+    }
+
+    .ngx-section-content {
+      border-radius: 0;
     }
   }
 }

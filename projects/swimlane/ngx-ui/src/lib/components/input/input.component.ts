@@ -20,7 +20,8 @@ import {
   NG_VALIDATORS,
   NgModel,
   FormControl,
-  Validators
+  Validators,
+  ValidationErrors
 } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
 import { BehaviorSubject } from 'rxjs';
@@ -83,6 +84,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   @Input() size: Size = Size.Small;
   @Input() appearance: Appearance = Appearance.Legacy;
   @Input() withMargin = true;
+  @Input() textareaRows = 1;
 
   @Input()
   get disabled() {
@@ -101,6 +103,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   }
 
   @Input() requiredIndicator: string | boolean = '*';
+
   @Input()
   get required() {
     return this._required;
@@ -140,7 +143,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     return this._autocomplete;
   }
   set autocomplete(autocomplete: boolean | string) {
-    this._autocomplete = coerceBooleanProperty(autocomplete) ? 'on' : 'off';
+    this._autocomplete = coerceBooleanProperty(autocomplete) ? 'on' : 'new-password';
   }
 
   @Input()
@@ -200,13 +203,22 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   @ViewChild('textareaControl') readonly textareaControl: ElementRef<HTMLTextAreaElement>;
 
   get value(): string | number {
-    return this._value;
+    return this.type === InputTypes.number ? this.valueAsNumber : this._value;
   }
   set value(val: string | number) {
     if (val !== this._value) {
-      this._value = this.type === InputTypes.number ? coerceNumberProperty(val, null) : val;
-      this.onChangeCallback(this._value);
+      this._value = val;
+      this.onChangeCallback(this.value);
     }
+  }
+
+  get valueAsString(): string {
+    if (this._value == null || typeof this._value === 'undefined') return '';
+    return String(this._value);
+  }
+
+  get valueAsNumber(): number {
+    return coerceNumberProperty(this._value, null);
   }
 
   @HostBinding('class.ng-dirty')
@@ -215,11 +227,20 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
       return true;
     }
 
+    if (this._type === InputTypes.number && this.isBadInput) {
+      return true;
+    }
+
     if (typeof this.value === 'string') {
-      return this.value && this.value.length;
+      return (this.value && this.value.length > 0) || false;
     }
 
     return typeof this.value !== 'undefined' && this.value !== null;
+  }
+
+  get isBadInput() {
+    const validity = (this.inputControl?.nativeElement as HTMLInputElement)?.validity;
+    return validity && validity.badInput;
   }
 
   @HostBinding('class.ng-touched')
@@ -297,7 +318,6 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     }
 
     this.focus.emit(event);
-    this.onTouchedCallback();
   }
 
   onBlur(event: Event): void {
@@ -305,14 +325,16 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
 
     this.focused = false;
     this.blur.emit(event);
+    this.onTouchedCallback();
   }
 
-  validate(c: FormControl) {
+  validate(c: FormControl): ValidationErrors | null {
     if (this.type !== InputTypes.number) {
       return null;
     }
 
     return {
+      ...(this.isBadInput ? { badInput: true } : null),
       ...Validators.max(this.max)(c),
       ...Validators.min(this.min)(c)
     };
@@ -343,7 +365,17 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     this.disabled = coerceBooleanProperty(isDisabled);
   }
 
+  unlock(): void {
+    if (this.type === InputTypes.password) {
+      this.value = '';
+    }
+    this.disabled = false;
+    this.updateInputType();
+  }
+
   incrementValue(event: MouseEvent): void {
+    if (this.disabled) return;
+
     this.increment(event);
     if (!this._spinnerInterval) {
       this._spinnerTimeout = setTimeout(() => {
@@ -355,6 +387,8 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   }
 
   decrementValue(event: MouseEvent): void {
+    if (this.disabled) return;
+
     this.decrement(event);
     if (!this._spinnerInterval) {
       this._spinnerTimeout = setTimeout(() => {

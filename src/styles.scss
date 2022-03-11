@@ -3,3 +3,12 @@
 
 // prism theme
 @import './app/common/prism/prism.css';
+
+.appearance-table {
+  width: 100%;
+
+  td,
+  th {
+    padding: 10px;
+  }
+}

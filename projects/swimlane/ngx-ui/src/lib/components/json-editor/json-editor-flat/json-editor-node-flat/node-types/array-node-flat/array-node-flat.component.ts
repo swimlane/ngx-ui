@@ -30,11 +30,11 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit, OnChang
 
   @Input() formats: JsonSchemaDataType[];
 
-  @Input() compressed: boolean;
-
   @Input() hideRoot = false;
 
   @Input() isDuplicated = false;
+
+  @Input() passwordToggleEnabled = false;
 
   indentationArray: number[] = [];
 

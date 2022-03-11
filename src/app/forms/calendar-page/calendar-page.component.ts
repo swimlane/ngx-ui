@@ -6,11 +6,19 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarPageComponent {
-  curDate: any = new Date();
-  minDate: any = new Date('10/2/2016');
-  maxDate: any = new Date('10/22/2016');
-  curDate2: any = new Date('10/10/2016');
-  curDate3: any = new Date('10/10/2016');
+  curDate1 = new Date();
+  curDate2 = new Date();
+  curDate3 = new Date();
+  curDate4 = new Date();
+  curDate5 = new Date();
+  curDate6 = new Date();
+
+  minDate = new Date('10/2/2016');
+  maxDate = new Date('10/22/2016');
+  date = new Date('10/22/2016');
+
+  dateTz: any = new Date('10/10/2016');
+
   invalidDate: any = 'foo';
   emptyDate: any = null;
 

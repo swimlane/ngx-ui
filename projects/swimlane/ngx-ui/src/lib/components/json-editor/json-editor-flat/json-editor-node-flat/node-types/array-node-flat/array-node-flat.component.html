@@ -13,15 +13,20 @@
       [typeCheckOverrides]="typeCheckOverrides"
       [level]="level"
       [hideRoot]="hideRoot"
-      [compressed]="compressed"
       [formats]="formats"
       [schemaRef]="schemaRef?.items || null"
       [schemaBuilderMode]="schemaBuilderMode"
       [arrayItem]="schemaBuilderMode"
-      [arrayName]="(schema.title ? schema.title : schema.propertyName) + '[' + (schemaBuilderMode ? '' : i) + ']'"
+      [arrayName]="
+        (schema.title ? schema.title : schema.propertyName !== undefined ? schema.propertyName : 'Array ' + level) +
+        '[' +
+        (schemaBuilderMode ? '' : i) +
+        ']'
+      "
       [indentationArray]="indentationArray"
       [showKnownProperties]="showKnownProperties"
       [isDuplicated]="isDuplicated"
+      [passwordToggleEnabled]="passwordToggleEnabled"
     >
       <div class="node-options" node-options>
         <button
@@ -59,11 +64,14 @@
   <div
     *ngIf="!schemaBuilderMode || !model.length"
     class="add-button"
-    [class.compressed]="compressed"
     [class.background]="hideRoot ? level > -1 : level"
   >
     <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
-    <div class="indented-content" [style.marginLeft]="hideRoot && level === 0 ? '20px' : '0'">
+    <div
+      class="indented-content"
+      [style.marginLeft]="hideRoot && level === 0 ? '15px' : '0'"
+      [style.backgroundColor]="level === 0 ? '' : 'rgba(49,56,71,0.5)'"
+    >
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle>
           <button [disabled]="isDuplicated" type="button">

@@ -1,4 +1,6 @@
-import { Component, ChangeDetectionStrategy, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewChild, ViewChildren } from '@angular/core';
+
+import type { QueryList } from '@angular/core';
 
 import { SplitDirective } from './split.directive';
 import { SplitAreaDirective } from './split-area.directive';

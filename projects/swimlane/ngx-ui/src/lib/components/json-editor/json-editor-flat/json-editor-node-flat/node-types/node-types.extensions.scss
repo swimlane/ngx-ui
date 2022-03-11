@@ -2,7 +2,7 @@
 
 %node-type {
   display: flex;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   position: relative;
 
   &:last-child {
@@ -18,7 +18,7 @@
   height: 100px;
   position: relative;
   display: flex;
-
+  padding-top: 0px;
   ngx-dropdown {
     padding-bottom: 0;
   }
@@ -28,9 +28,13 @@
   }
 
   &.background {
-    background-color: rgba(red($color-blue-grey-700), green($color-blue-grey-700), blue($color-blue-grey-700), 0.4);
-    padding: 7px 7px 7px 0;
-    height: 120px;
+    border-left: 1px solid $color-blue-grey-650;
+    height: 96px;
+    padding-left: 0px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-top: -2px;
+    margin-bottom: -2px;
   }
 
   .indented-content {
@@ -39,11 +43,11 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: $color-blue-grey-300;
-
+    border-radius: 4px;
+    margin-bottom: 0px;
     button {
       display: flex;
-
+      color: $color-blue-400;
       i {
         font-size: 18px;
       }

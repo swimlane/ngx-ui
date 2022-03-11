@@ -11,10 +11,12 @@
     "inlineSources": true,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "importHelpers": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": false,
+    "importHelpers": false,
     "types": [],
-    "lib": ["dom", "es2018"],
-    "allowSyntheticDefaultImports": true
+    "lib": ["dom", "es2018"]
   },
   "angularCompilerOptions": {
     "skipTemplateCodegen": true,
@@ -23,7 +25,8 @@
     "strictInjectionParameters": true,
     "enableResourceInlining": true,
     "preserveWhitespaces": true,
-    "enableIvy": false
+    "enableIvy": true,
+    "compilationMode": "partial"
   },
   "exclude": ["src/test.ts", "**/*.spec.ts"]
 }

@@ -1,4 +1,4 @@
-import moment from 'moment';
+import type { Moment } from 'moment';
 
 import { CalendarDay } from '../../calendar-day.interface';
 import { getNumberRange } from '../get-number-range/get-number-range.util';
@@ -9,7 +9,7 @@ import { getNumberRange } from '../get-number-range/get-number-range.util';
  * @param active
  * @return array of days
  */
-export function getDaysForMonth(active: moment.Moment): CalendarDay[] {
+export function getDaysForMonth(active: Moment): CalendarDay[] {
   return getNumberRange(1, active.daysInMonth() + 1).map(i => {
     const date = active.clone().date(i);
     const today = date.isSame(new Date(), 'day');

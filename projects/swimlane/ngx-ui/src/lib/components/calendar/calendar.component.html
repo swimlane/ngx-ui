@@ -1,14 +1,14 @@
 <div class="ngx-calendar-wrap">
   <div class="text-center" [ngSwitch]="currentView">
-    <div *ngSwitchCase="'date'">
+    <div *ngSwitchCase="CalendarView.Date">
       <div class="title-row">
-        <button type="button" class="prev-month" [disabled]="disabled" title="Previous Month" (click)="prevMonth()">
+        <button type="button" tabindex="0" class="prev-month" [disabled]="disabled" title="Previous Month" (click)="prevMonth()">
           <span class="icon-arrow-left"></span>
         </button>
-        <span class="title" (click)="changeViews()">
-          {{ activeDate | amTimeZone: timezone | amDateFormat: 'MMMM YYYY' }}
-        </span>
-        <button type="button" class="next-month" title="Next Month" [disabled]="disabled" (click)="nextMonth()">
+        <button type="button" class="title" tabindex="0" (click)="changeViews()">
+          {{ focusDate | amTimeZone: timezone | amDateFormat: 'MMMM YYYY' }}
+        </button>
+        <button type="button" tabindex="0" class="next-month" title="Next Month" [disabled]="disabled" (click)="nextMonth()">
           <span class="icon-arrow-right"></span>
         </button>
       </div>
@@ -17,56 +17,64 @@
           {{ d }}
         </div>
       </div>
-      <div class="day-container">
-        <div *ngFor="let week of weeks" class="day-row">
-          <div *ngFor="let day of week" class="day-cell text-center">
+      <table class="day-container" role="grid">
+        <tr *ngFor="let week of weeks" class="day-row" role="row">
+          <td *ngFor="let day of week" class="day-cell text-center" role="gridcell">
             <button
               *ngIf="day.num"
               class="day"
               type="button"
+              (focus)="onDayFocus(day)"
               [title]="day.date | amTimeZone: timezone | amDateFormat: 'LL'"
               [class.active]="isDayActive(day.date)"
+              [class.focus]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day')"
+              [attr.tabindex]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day') ? 0 : -1"
               [ngClass]="day.classes"
               [disabled]="isDisabled(day.date, 'day')"
               (click)="onDayClick(day)"
+              (keydown)="onDayDown($event)"
             >
               {{ day.num }}
             </button>
-          </div>
-        </div>
-      </div>
+          </td>
+        </tr>
+      </table>
     </div>
 
-    <div *ngSwitchCase="'month'">
+    <div *ngSwitchCase="CalendarView.Month">
       <div class="title-row">
         <button type="button" class="prev-month" [disabled]="disabled" title="Previous Year" (click)="prevYear()">
           <span class="icon-arrow-left"></span>
         </button>
-        <span class="title" (click)="changeViews()">
-          {{ activeDate | amTimeZone: timezone | amDateFormat: 'YYYY' }}
-        </span>
+        <button class="title" (click)="changeViews()">
+          {{ focusDate | amTimeZone: timezone | amDateFormat: 'YYYY' }}
+        </button>
         <button type="button" class="next-month" title="Next Year" [disabled]="disabled" (click)="nextYear()">
           <span class="icon-arrow-right"></span>
         </button>
       </div>
-      <div class="months-container">
-        <div class="months-row">
-          <button
-            class="month"
-            type="button"
-            [class.active]="isMonthActive(month)"
-            [class.current]="isCurrentMonth(month)"
-            *ngFor="let month of monthsList"
-            (click)="onMonthClick(month)"
-            [disabled]="isDisabled(month, 'month')"
-          >
-            {{ month }}
-          </button>
-        </div>
-      </div>
+      <table class="months-container" role="grid">
+        <tr class="months-row" role="row">
+          <td class="month-cell text-center" role="gridcell" *ngFor="let month of monthsList">
+            <button
+              type="button"
+              class="month"
+              [class.active]="isMonthActive(month)"
+              [class.current]="isCurrentMonth(month)"
+              [class.focus]="isFocusMonth(month)"
+              [attr.tabindex]="!disabled && isFocusMonth(month) && !isDisabled(month, 'month') ? 0 : -1"
+              (click)="onMonthClick(month)"
+              [disabled]="isDisabled(month, 'month')"
+              (keydown)="onMonthDown($event)"
+            >
+              {{ month }}
+            </button>            
+          </td>
+        </tr>
+      </table>
     </div>
 
-    <div *ngSwitchCase="'year'">
+    <div *ngSwitchCase="CalendarView.Year">
       <div class="title-row">
         <button
           type="button"
@@ -77,7 +85,7 @@
         >
           <span class="icon-arrow-left"></span>
         </button>
-        <span class="title" (click)="changeViews()"> {{ startYear }} - {{ startYear + 20 }} </span>
+        <button class="title" (click)="changeViews()"> {{ startYear }} - {{ startYear + 20 }} </button>
         <button
           type="button"
           class="next-month"
@@ -88,21 +96,25 @@
           <span class="icon-arrow-right"></span>
         </button>
       </div>
-      <div class="years-container">
-        <div class="years-row">
-          <button
-            class="year"
-            type="button"
-            *ngFor="let dummy of ' '.repeat(20).split(''); let x = index"
-            [class.active]="isYearActive(x + startYear)"
-            [class.current]="isCurrentYear(x + startYear)"
-            (click)="onYearClick(x + startYear)"
-            [disabled]="isDisabled(x + startYear, 'year')"
-          >
-            {{ x + startYear }}
-          </button>
-        </div>
-      </div>
+      <table class="years-container" role="grid">
+        <tr class="years-row" role="row">
+          <td class="year-cell text-center" role="gridcell" *ngFor="let dummy of ' '.repeat(20).split(''); let x = index;">
+            <button
+              class="year"
+              type="button"
+              [class.active]="isYearActive(x + startYear)"
+              [class.current]="isCurrentYear(x + startYear)"
+              [class.focus]="isFocusYear(x + startYear)"
+              [attr.tabindex]="!disabled && isFocusYear(x + startYear) && !isDisabled(x + startYear, 'year') ? 0 : -1"
+              (click)="onYearClick(x + startYear)"
+              [disabled]="isDisabled(x + startYear, 'year')"
+              (keydown)="onYearDown($event)"
+            >
+              {{ x + startYear }}
+            </button>
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>

@@ -6,7 +6,7 @@
         <textarea
           *ngIf="type === inputTypes.textarea && autosize"
           class="ngx-input-textarea"
-          rows="1"
+          [rows]="textareaRows"
           autosize
           [(ngModel)]="value"
           [id]="id"
@@ -32,7 +32,7 @@
         <textarea
           *ngIf="type === inputTypes.textarea && !autosize"
           class="ngx-input-textarea"
-          rows="1"
+          [rows]="textareaRows"
           [(ngModel)]="value"
           [id]="id"
           [name]="name"
@@ -58,36 +58,46 @@
 
         <div class="numeric-spinner" *ngIf="!disabled && (type$ | async) === inputTypes.number">
           <i
-            class="ngx-icon ngx-chevron-bold-up"
+            class="ngx-icon ngx-chevron-bold-up numeric-spinner__up"
             (mousedown)="incrementValue($event)"
             (mouseup)="clearSpinnerInterval()"
             (mouseleave)="clearSpinnerInterval()"
           ></i>
           <i
-            class="ngx-icon ngx-chevron-bold-down"
+            class="ngx-icon ngx-chevron-bold-down numeric-spinner__down"
             (mousedown)="decrementValue($event)"
             (mouseup)="clearSpinnerInterval()"
             (mouseleave)="clearSpinnerInterval()"
           ></i>
         </div>
         <button
-          *ngIf="type === inputTypes.password && passwordToggleEnabled"
-          class="btn btn-link icon-eye"
+          *ngIf="type === inputTypes.password && passwordToggleEnabled && (!unlockable || !disabled)"
+          type="button"
+          class="btn btn-link ngx-input__password-toggle"
+          aria-label="Toggle Text Visibility"
           title="Toggle Text Visibility"
           (click)="togglePassword()"
+          ngx-tooltip
+          tooltipTitle="Toggle Text Visibility"
         >
+          <i class="ngx-icon" [ngClass]="(type$ | async) === inputTypes.password ? 'ngx-eye' : 'ngx-eye-disabled'"></i>
         </button>
         <button
-          *ngIf="type === inputTypes.text && unlockable && disabled"
-          class="btn btn-link icon-lock"
-          (click)="disabled = false"
+          *ngIf="(type === inputTypes.text || type === inputTypes.password) && unlockable && disabled"
+          type="button"
+          class="btn btn-link ngx-input__lock-toggle"
+          [attr.aria-label]="unlockableTooltip"
+          (click)="unlock()"
           ngx-tooltip
           [tooltipTitle]="unlockableTooltip"
+          [attr.aria-label]="unlockableTooltip"
         >
+          <i class="ngx-icon ngx-lock"></i>
         </button>
       </div>
       <label class="ngx-input-label" [@labelState]="labelState" [attr.for]="id">
-        <span [innerHTML]="label"></span>&nbsp;
+        <span>{{ label }}</span
+        >&nbsp;
         <span *ngIf="required && requiredIndicator" [innerHTML]="requiredIndicator"></span>
       </label>
     </div>
@@ -110,8 +120,8 @@
     [extraWidth]="type === inputTypes.number ? 20 : 0"
     [minWidth]="minWidth"
     [includePadding]="true"
-    [(ngModel)]="value"
-    [value]="value"
+    [ngModel]="valueAsString"
+    (ngModelChange)="value = $event"
     [id]="id"
     [name]="name"
     [placeholder]="placeholder"
@@ -137,7 +147,8 @@
   <input
     *ngIf="type !== inputTypes.textarea && !autosize"
     class="ngx-input-box"
-    [(ngModel)]="value"
+    [ngModel]="valueAsString"
+    (ngModelChange)="value = $event"
     [id]="id"
     [name]="name"
     [placeholder]="placeholder"

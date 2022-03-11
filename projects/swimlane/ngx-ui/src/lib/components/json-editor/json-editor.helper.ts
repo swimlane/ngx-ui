@@ -1,4 +1,4 @@
-import { JSONSchema7, JSONSchema7TypeName } from 'json-schema';
+import type { JSONSchema7, JSONSchema7TypeName } from 'json-schema';
 
 export const requiredIndicatorIcon = `
   <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -130,7 +130,7 @@ export const jsonSchemaDataFormats: JsonSchemaDataType[] = [
     },
     icon: 'field-date',
     matchType: (): boolean => {
-      return false; // needs to be overriden
+      return false; // needs to be overridden
     }
   },
   {
@@ -142,7 +142,7 @@ export const jsonSchemaDataFormats: JsonSchemaDataType[] = [
     },
     icon: 'field-date',
     matchType: (): boolean => {
-      return false; // needs to be overriden
+      return false; // needs to be overridden
     }
   },
   {
@@ -154,7 +154,7 @@ export const jsonSchemaDataFormats: JsonSchemaDataType[] = [
     },
     icon: 'lock',
     matchType: (): boolean => {
-      return false; // needs to be overriden
+      return false; // needs to be overridden
     }
   },
   {
@@ -166,7 +166,7 @@ export const jsonSchemaDataFormats: JsonSchemaDataType[] = [
     },
     icon: 'code',
     matchType: (): boolean => {
-      return false; // needs to be overriden
+      return false; // needs to be overridden
     }
   }
 ];

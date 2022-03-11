@@ -1,23 +1,27 @@
 <h3 class="style-header">Date Time</h3>
 
-<ngx-section class="shadow" [sectionTitle]="'Date Input'">
-  <h3>Basic</h3>
+<ngx-section class="shadow" sectionTitle="Date Input">
+  <label>Current Value:</label>
+  <output>{{ date | json }}</output>
+
   <ngx-date-time
-    name="calendar-input1"
-    [label]="'Date of attack'"
-    [(ngModel)]="curDate2"
-    (change)="dateChanged($event)"
+    name="date-input1"
+    label="Date of attack"
+    [(value)]="date"
+    (ngModelChange)="dateChanged($event)"
     (blur)="onBlurEvent($event)"
     (dateTimeSelected)="dateTimeSelected($event)"
   >
   </ngx-date-time>
+
   <br />
 
   <app-prism>
 <![CDATA[<ngx-date-time
-  name="calendar-input2"
+  name="date-input1"
   [disabled]="true"
-  [(ngModel)]="curDate2"
+  label="Date of attack"
+  [(value)]="date"
   (change)="dateChanged($event)"
   (blur)="onBlurEvent($event)"
   (dateTimeSelected)="dateTimeSelected($event)"
@@ -28,16 +32,15 @@
   <br />
   <br />
 
-  <h3>Disabled</h3>
-  <ngx-date-time name="calendar-input2" [disabled]="true" [(ngModel)]="curDate2" (change)="dateChanged($event)">
+  <ngx-date-time name="date-input2" label="Disabled" [disabled]="true" [(value)]="date2">
   </ngx-date-time>
   <br />
   <app-prism>
 <![CDATA[<ngx-date-time
-  name="calendar-input2"
+  name="date-input2"
   [disabled]="true"
-  [(ngModel)]="curDate2"
-  (change)="dateChanged($event)"
+  label="Disabled"
+  [(value)]="date2"
 >
 </ngx-date-time>]]>
   </app-prism>
@@ -45,38 +48,17 @@
   <br />
   <br />
 
-  <h3>Invalid</h3>
-  <ngx-date-time
-    name="calendar-input3"
-    hint="Default is invalid"
-    [(ngModel)]="invalidDate"
-    (change)="dateChanged($event)"
-  >
-  </ngx-date-time>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-date-time
-  name="calendar-input3"
-  [(ngModel)]="invalidDate"
-  hint="Default is invalid"
-  (change)="dateChanged($event)"
->
-</ngx-date-time>]]>
-  </app-prism>
+  <label>Current Value:</label>
+  <output>{{ date3 | json }}</output>
 
-  <br />
-  <br />
-
-  <h3>Custom Format</h3>
-  <ngx-date-time name="calendar-input3" [(ngModel)]="curDate2" [format]="'M/Y'" (change)="dateChanged($event)">
+  <ngx-date-time name="date-input3" label="Custom Format" [(value)]="date3" [format]="'M/Y'">
   </ngx-date-time>
   <br />
   <app-prism>
 <![CDATA[ <ngx-date-time
-  name="calendar-input3"
-  [(ngModel)]="curDate2"
+  name="date-input3"
+  [(value)]="date3"
   [format]="'M/Y'"
-  (change)="dateChanged($event)"
 >
 </ngx-date-time>]]>
   </app-prism>
@@ -84,264 +66,239 @@
   <br />
   <br />
 
-  <h3>Min/Max Dates</h3>
   <ngx-date-time
-    name="calendar-input4"
+    name="date-input4"
+    label="Min/Max Dates"
     [minDate]="minDate"
     [maxDate]="maxDate"
     [hint]="'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
-    [(ngModel)]="curDate2"
-    (change)="dateChanged($event)"
+    [(value)]="date4"
   >
   </ngx-date-time>
   <br />
   <app-prism>
 <![CDATA[<ngx-date-time
-  name="calendar-input4"
+  name="date-input4"
   [minDate]="minDate"
   [maxDate]="maxDate"
   [hint]="'Select date between' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
-  [(ngModel)]="curDate2"
-  (change)="dateChanged($event)"
+  [(value)]="date4"
 >
 </ngx-date-time>]]>
   </app-prism>
 </ngx-section>
 
-<ngx-section class="shadow" [sectionTitle]="'Date Time Input'">
+<ngx-section class="shadow" sectionTitle="Form Control">
+  Form Control Value: {{ dateControl.value | json }}
+
+  <ngx-date-time label="Form Control" [formControl]="dateControl"></ngx-date-time>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <ngx-date-time label="Form Control Name" formControlName="date"></ngx-date-time>
+    <ngx-date-time label="Disabled" formControlName="disabledDate"></ngx-date-time>
+  </form>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Date/Time Input">
+  <label>Value: </label>
+  <output>{{ dateTime | json }}</output>
+
   <ngx-date-time
-    name="time-input1"
-    [inputType]="'datetime'"
-    [label]="'Time of attack'"
-    [(ngModel)]="curDate2"
-    (change)="dateChanged($event)"
+    name="datetime-input"
+    inputType="datetime"
+    label="Moon Landing"
+    [(value)]="dateTime"
   >
   </ngx-date-time>
   <br />
   <app-prism>
 <![CDATA[<ngx-date-time
-  name="time-input1"
-  [inputType]="'datetime'"
-  [label]="'Time of attack'"
-  [(ngModel)]="curDate2"
-  (change)="dateChanged($event)"
+  name="datetime-input"
+  inputType="datetime"
+  label="Moon Landing"
+  [(value)]="dateTime"
 >
 </ngx-date-time>]]>
   </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="TimeZones">
+  <label>Current Value:</label>
+  <output>{{ eventDate | json }}</output>
+
   <ngx-date-time
-    name="time-input1"
-    [inputType]="'datetime'"
-    [label]="'Local Time'"
-    format="MMM DD, YYYY hh:mm A Z"
-    [(ngModel)]="curDate"
-    (change)="dateChanged($event)"
+    name="timezone-local"
+    inputType="datetime"
+    label="Local Time"
+    displayMode="timezone"
+    [(value)]="eventDate"
   >
   </ngx-date-time>
 
   <ngx-date-time
-    name="time-input1"
-    [inputType]="'datetime'"
+    name="timezone-utc"
+    inputType="datetime"
     label="UTC"
     timezone="utc"
-    format="MMM DD, YYYY hh:mm A Z"
-    [(ngModel)]="curDate"
-    (change)="dateChanged($event)"
+    [(value)]="eventDate"
   >
   </ngx-date-time>
 
   <ngx-date-time
-    name="time-input1"
-    [inputType]="'datetime'"
+    name="timezone-jst"
+    inputType="datetime"
     label="JST"
     timezone="Asia/Tokyo"
-    format="MMM DD, YYYY hh:mm A Z"
-    [(ngModel)]="curDate"
-    (change)="dateChanged($event)"
+    [(value)]="eventDate"
   >
   </ngx-date-time>
 
   <app-prism>
-<![CDATA[<ngx-date-time
-  name="time-input1"
+<![CDATA[ <ngx-date-time
+  name="timezone-local"
   inputType="datetime"
   label="Local Time"
-  format="MMM DD, YYYY hh:mm A Z"
-  [(ngModel)]="curDate"
-  (change)="dateChanged($event)"
+  displayMode="timezone"
+  [(value)]="eventDate"
 >
 </ngx-date-time>
-<ngx-date-time
-  name="time-input1"
-  [inputType]="'datetime'"
+
+  <ngx-date-time
+  name="timezone-utc"
+  inputType="datetime"
   label="UTC"
   timezone="utc"
-  format="MMM DD, YYYY hh:mm A Z"
-  [(ngModel)]="curDate"
-  (change)="dateChanged($event)"
+  [(value)]="eventDate"
 >
 </ngx-date-time>
+
 <ngx-date-time
-  name="time-input1"
-  [inputType]="'datetime'"
+  name="timezone-jst"
+  inputType="datetime"
   label="JST"
   timezone="Asia/Tokyo"
-  format="MMM DD, YYYY hh:mm A Z"
-  [(ngModel)]="curDate"
-  (change)="dateChanged($event)"
+  [(value)]="eventDate"
 >
 </ngx-date-time>]]>
   </app-prism>
 </ngx-section>
 
-<ngx-section class="shadow" [sectionTitle]="'Time Input'">
+<ngx-section class="shadow" sectionTitle="Time Input">
+  <label>Current Value:</label>
+  <output>{{ time | json }}</output>
+
   <ngx-date-time
     name="time-input1"
-    [inputType]="'time'"
-    [label]="'Time of attack'"
-    [(ngModel)]="curDate2"
-    (change)="dateChanged($event)"
-    required
+    inputType="time"
+    label="Time of attack"
+    [(value)]="time"
   >
   </ngx-date-time>
   <br />
   <app-prism>
 <![CDATA[<ngx-date-time
   name="time-input1"
-  [inputType]="'time'"
-  [label]="'Time of attack'"
-  [(ngModel)]="curDate2"
-  (change)="dateChanged($event)"
-  required
+  inputType="time"
+  label="Time of attack"
+  [(value)]="time"
 >
 </ngx-date-time>]]>
   </app-prism>
+
+  <ngx-date-time
+  name="time-input2"
+  inputType="time"
+  displayMode="timezone"
+  label="Time of attack"
+  [(value)]="time"
+  >
+  </ngx-date-time>
+
+  <ngx-date-time
+  name="time-input2"
+  inputType="time"
+  timezone="utc"
+  label="Time of attack (UTC)"
+  [(value)]="time"
+  >
+  </ngx-date-time>
+
+  <ngx-date-time
+  name="time-input2"
+  inputType="time"
+  timezone="Asia/Tokyo"
+  label="Time of attack (JST)"
+  [(value)]="time"
+  >
+  </ngx-date-time>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Precision">
-  Current Value: {{ curDate2 | json }}
+  <label>Current Value:</label>
+  <output>{{ precisionDate | json }}</output>
+
   <ngx-date-time
-    inputType="date"
     label="Year"
     precision="year"
-    [(ngModel)]="curDate2"
-    format="YYYY"
-    (change)="dateChanged($event)"
+    [(value)]="precisionDate"
   >
   </ngx-date-time>
 
   <ngx-date-time
-    inputType="date"
     label="Month"
     precision="month"
-    [(ngModel)]="curDate2"
-    format="MMM YYYY"
-    (change)="dateChanged($event)"
+    [(value)]="precisionDate"
   >
   </ngx-date-time>
 
   <ngx-date-time
-    inputType="datetime"
     label="Hour"
     precision="hour"
-    [(ngModel)]="curDate2"
-    format="MMM DD, YYYY, hh:mm"
-    (change)="dateChanged($event)"
+    [(value)]="precisionDate"
   >
   </ngx-date-time>
 
   <ngx-date-time
-    inputType="datetime"
     label="Minutes"
     precision="minute"
-    [(ngModel)]="curDate2"
-    format="MMM DD, YYYY, hh:mm:ss"
-    (change)="dateChanged($event)"
+    [(value)]="precisionDate"
   >
   </ngx-date-time>
 
   <app-prism>
 <![CDATA[<ngx-date-time
-  inputType="date"
   label="Year"
   precision="year"
-  [(ngModel)]="curDate2"
-  format="YYYY"
-  (change)="dateChanged($event)"
+  [(value)]="precisionDate"
 >
 </ngx-date-time>
-<ngx-date-time
-  inputType="date"
+
+  <ngx-date-time
   label="Month"
   precision="month"
-  [(ngModel)]="curDate2"
-  format="MMM YYYY"
-  (change)="dateChanged($event)"
+  [(value)]="precisionDate"
 >
 </ngx-date-time>
-<ngx-date-time
-  inputType="datetime"
+
+  <ngx-date-time
   label="Hour"
   precision="hour"
-  [(ngModel)]="curDate2"
-  format="MMM DD, YYYY, hh:mm"
-  (change)="dateChanged($event)"
+  [(value)]="precisionDate"
+>
+</ngx-date-time>
+
+  <ngx-date-time
+  label="Minutes"
+  precision="minute"
+  [(value)]="precisionDate"
 >
 </ngx-date-time>]]>
   </app-prism>
 </ngx-section>
 
-<ngx-section class="shadow" sectionTitle="Fill">
-  Current Value: {{ curDate2 | json }}
-  <ngx-date-time
-    appearance="fill"
-    inputType="date"
-    label="Year"
-    precision="year"
-    [(ngModel)]="curDate2"
-    format="YYYY"
-    (change)="dateChanged($event)"
-  >
-  </ngx-date-time>
-
-  <ngx-date-time
-    appearance="fill"
-    inputType="date"
-    label="Month"
-    precision="month"
-    [(ngModel)]="curDate2"
-    format="MMM YYYY"
-    (change)="dateChanged($event)"
-  >
-  </ngx-date-time>
-
-  <ngx-date-time
-    appearance="fill"
-    inputType="datetime"
-    label="Hour"
-    precision="hour"
-    [(ngModel)]="curDate2"
-    format="MMM DD, YYYY, hh:mm"
-    (change)="dateChanged($event)"
-  >
-  </ngx-date-time>
-
-  <ngx-date-time
-    appearance="fill"
-    inputType="datetime"
-    label="Minutes"
-    precision="minute"
-    [(ngModel)]="curDate2"
-    format="MMM DD, YYYY, hh:mm:ss"
-    (change)="dateChanged($event)"
-  >
-  </ngx-date-time>
-</ngx-section>
-
 <ngx-section class="shadow" sectionTitle="Autosize">
-  Current Value: {{ curDate2 | json }}
+  <label>Current Value:</label>
+  <output>{{ curDate2 | json }}</output>
 
   <br />
 
@@ -352,7 +309,6 @@
     precision="year"
     [(ngModel)]="curDate2"
     format="YYYY"
-    (change)="dateChanged($event)"
   >
   </ngx-date-time>
 
@@ -365,7 +321,6 @@
     precision="month"
     [(ngModel)]="curDate2"
     format="MMM YYYY"
-    (change)="dateChanged($event)"
   >
   </ngx-date-time>
 
@@ -379,7 +334,6 @@
     precision="hour"
     [(ngModel)]="curDate2"
     format="MMM DD, YYYY, hh:mm"
-    (change)="dateChanged($event)"
   >
   </ngx-date-time>
 
@@ -393,7 +347,6 @@
     precision="minute"
     [(ngModel)]="curDate2"
     format="MMM DD, YYYY, hh:mm:ss"
-    (change)="dateChanged($event)"
   >
   </ngx-date-time>
 
@@ -408,7 +361,96 @@
     precision="minute"
     [(ngModel)]="curDate2"
     format="MMM DD, YYYY, hh:mm:ss"
-    (change)="dateChanged($event)"
   >
   </ngx-date-time>
+</ngx-section>
+
+<ngx-section sectionTitle="Native">
+  <label>Date</label>
+  <input type="date" value="2018-07-22" min="2018-01-01">
+
+  <br />
+  <br />
+
+  <label>Date/Time Local</label>
+  <input type="datetime-local" value="2018-07-22" min="2018-01-01">
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Appearances">
+  <table class="appearance-table">
+    <tr>
+      <th></th>
+      <th>
+        Default
+      </th>
+      <th>
+        Fill
+      </th>
+    </tr>
+    <tr>
+      <td>Filled</td>
+      <td><ngx-date-time label="Label" [ngModel]="curDate2" hint="A brief bit of help text"></ngx-date-time></td>
+      <td><ngx-date-time appearance="fill" label="Label" [ngModel]="curDate2"  hint="A brief bit of help text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Required</td>
+      <td><ngx-date-time label="Label" required [ngModel]="curDate2" hint="A brief bit of help text"></ngx-date-time></td>
+      <td><ngx-date-time appearance="fill" required label="Label" [ngModel]="curDate2"  hint="A brief bit of help text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Empty w/o Placeholder</td>
+      <td><ngx-date-time label="Label" hint="A brief bit of help text"></ngx-date-time></td>
+      <td><ngx-date-time appearance="fill" label="Label" hint="A brief bit of help text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Empty w/ Placeholder</td>
+      <td><ngx-date-time label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Time</td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="time" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="time" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Date/Time</td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Invalid</td>
+      <td><ngx-date-time [ngModel]="'What what'" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="'What what'" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Timezone</td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Timezone w/ tooltip disabled</td>
+      <td><ngx-date-time [ngModel]="curDate2" [tooltipDisabled]="true" inputType="datetime" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="curDate2" [tooltipDisabled]="true" inputType="datetime" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Empty Timezone w/ placeholder</td>
+      <td><ngx-date-time inputType="datetime" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time inputType="datetime" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Empty Timezone w/o placeholder</td>
+      <td><ngx-date-time inputType="datetime" displayMode="timezone" label="Label" hint="A brief bit of help text"></ngx-date-time></td>
+      <td><ngx-date-time inputType="datetime" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Time w/ Timezone</td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="time" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="time" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+    <tr>
+      <td>Date w/ Timezone</td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="date" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+      <td><ngx-date-time [ngModel]="curDate2" inputType="date" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+    </tr>
+  </table>
 </ngx-section>

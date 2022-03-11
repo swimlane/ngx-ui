@@ -4,11 +4,133 @@
 
 - Feature: Create `ButtonGroupComponent`
 - Fix: Add `cursor: pointer` to `ngx-button` class
+
+## 39.2.0 (2022-3-11)
+
+- Feature: Add small style variant to Dropzone component
+- Fix: Stle fixes for JSON editor component
+
+## 39.1.0 (2022-3-8)
+
+- Fix: Issues with the json Editor
+- Fix: change the JsonEditor errors
+- Fix: Add an array inside an array in json editor works
+- Fix: Adding a code , date , date-time or password inside an Array in the json Editor works
+- Fix: add vertical margin between rows of tags in select component
+
+## 39.0.0 (2022-2-28)
+
+- Breaking: Updated json-editor-flat component styles. Removed the `compact` input
+- Fix: `ngx-select` control alignment
+- Fix: `ngx-select` clear button position when dropdown is disabled
+- Enhancement: use current ngx-ui icons for `ngx-select` buttons
+- Fix: move `ngx-select` background in fill appearance to avoid saturation issue
+- Fix: stop propagation on button click inside `ngx-select`
+
+## 38.1.0 (2022-2-23)
+
+- Fix: Hover states now work on hover
+- Fix: Success and failed states for primary gradient now show background
+- Fix: Removed border for success and failed states
+- Fix: `ngx-date-time` input changes when focused causing partial user input to be lost
+- Enhancement: `ngx-date-time` disable popup when input has focus
+- Fix: Escape special character on select filter regex
+
+## 38.0.0 (2022-2-16)
+
+- Breaking: escape HTML in labels of input, select and date time components
+
+## 37.1.1 (2022-2-8)
+
+- Fix: Revert Mousetrap import in HotKeys service
+
+## 37.1.0 (2022-2-1)
+
+- Enhancement: add ability to display an image in `ngx-large-format-dialog` header
+- Enhancement: adding additional information for installation in README.md
+- Fix: cypress calendar test
+
+## 37.0.0 (2022-1-20)
+
+- Enhancement: `ngx-date-time` now sets default formats based on precision
+- Enhancement: Improved keyboard accessibility for `ngx-radiobutton` and `ngx-radiobutton-group`
+- Fix: Fixed issues on `ngx-radiobutton` and `ngx-radiobutton-group` with form controls
+- Fix: `ngx-date-time` now works with form controls
+- Fix: `ngx-select` now displays correctly with form controls validations
+- Fix: `ngx-select` no longer displays focus and allows clearing when disabled
+- Breaking: `ngx-date-time` no longer displays it's own validation messages
+- Breaking: `ngx-select` now deselects an selected option when the user clicks on the same option
+- Feature: added timezone popup to `ngx-date-time`
+- Feature: added `ngx-time` component
+- Enhancement: `ngx-date-time` now sets default formats based on precision
+- Enhancement: Improved keyboard accessibility for `ngx-radiobutton` and `ngx-radiobutton-group`
+- Enhancement: Improved keyboard accessibility for `ngx-select`
+- Enhancement: Add ability to unlock `ngx-input` for passwords
+- Enhancement: Add `checked` and `checkedChange` to `ngx-checkbox`
+- Enhancement: Keyboard accessibility for `ngx-checkbox`
+- Enhancement: Keyboard accessibility for `ngx-calendar`
+- Fix: Fixed issues on `ngx-radiobutton` and `ngx-radiobutton-group` with form controls
+- Fix: `ngx-date-time` now works with form controls
+- Fix: `ngx-select` now displays correctly with form controls validations
+- Fix: `ngx-select` no longer displays focus and allows clearing when disabled
+
+## 36.1.0 (2021-12-10)
+
+- Enhancement: allow exponential notation for number inputs
+- Enhancement: add aria labels for unlock and reveal password buttons
+
+## 36.0.0 (2021-12-03)
+
+- Enhancement: Add vertical alignment for `ngx-tabs`
+- Breaking: Improve semantic HTML in `ngx-tabs`
+- Enhancement: Added ARIA role attribute to `ngx-tabs`
+- Feature: Added focus rings to `ngx-tabs` buttons
+- Enhancement: `ngx-select` with `headerToggle` enable is noy keyboard accessible
+- Enhancement: Added ARIA controls and expanded attribute to `ngx-section`
+- Breaking: Fixed spelling error in exported enum (`SectionApperance` -> `SectionAppearance`)
+- Enhancement: Added 'light' appearance to `ngx-tabs`
+
+## 35.9.0 (2021-11-29)
+
+- Feature: add `forceDownwardOpening` input to `ngx-dropdown`
+- Fix: set default `forceDownwardOpening` on `ngx-dropdown` to false
+
+## 35.8.1 (2021-10-26)
+
+- Fix: prevent `ngx-input` buttons from submitting forms
+- Fix: Buttons should not have outline on click
+- Fix: Fix error thrown from `ngx-select` on destroy
+
+## 35.8.0 (2021-10-15)
+
+- Enhancement: Add optional forceDownwardOpening option to `ngx-select`
+- Enhancement: Keep `ngx-select` opening downwards when intersecting viewport top
+
+## 35.7.2 (2021-10-14)
+
+- Fix(ngx-select): Fix issue where `active` class was not updated when the dropdown was closed
+
+## 35.7.1 (2021-10-13)
+
+- Fix(buttons): Fix issue where buttons were reported as covered by Cypress
+
+## 35.7.0 (2021-10-07)
+
+- Enhancement(Dropdown): Add viewport intersection to support opening select dropdowns if hidden by viewport.
 - Feature: Added focus rings to buttons
+- Feature: Add `passwordToggleEnabled` input to JSON editor.
 - Enhancement: Improve semantic HTML in `ngx-input` and `ngx-select`
 - Enhancement: Added `for` attribute to `ngx-input` labels
 - Enhancement: Added ARIA role attribute to `ngx-plus-menu`
+- Enhancement: Added 'light' appearance to `ngx-section`
 - Fix: Toggle going out of bounds when disabled in `ngx-toggle`
+- Enhancement: Improve active tab contrast in `ngx-tabs`
+- Fix: Use input password type for password fields in JSON editor.
+- Fix: Call to `onTouchedCallback()` should be executed on blur, per `ControlValueAccessor.registerOnTouched` docs
+- Fix: Tabs in `ngx-tabs` are now `type="button"`
+- Fix: Adjust label position and background of `ngx-input` fill appearance
+- Enhancement: Add input, `textareaRows` to allow setting `row` attribute of `ngx-input` textarea
+- Fix: Add capability of disabling `ngx-select` elements using its `FormControl` when used inside a reactive form.
 
 ## 35.6.8 (2021-07-16)
 

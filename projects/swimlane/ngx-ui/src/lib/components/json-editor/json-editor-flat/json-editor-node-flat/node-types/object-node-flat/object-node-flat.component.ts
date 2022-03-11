@@ -37,11 +37,11 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
 
   @Input() formats: JsonSchemaDataType[] = [];
 
-  @Input() compressed: boolean;
-
   @Input() hideRoot = false;
 
   @Input() isDuplicated = false;
+
+  @Input() passwordToggleEnabled = false;
 
   indentationArray: number[] = [];
 
@@ -151,7 +151,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
       delete this.schema.properties[propName];
       delete this.schemaRef.properties[propName];
       this.toggleRequiredValue(false, propName);
-    } else if (!this.schema.required.includes(propName) && !(propName in this.schema.properties)) {
+    } else if (!this.schema.required?.includes(propName) && !(propName in this.schema.properties)) {
       delete this.schemaRef.properties[propName];
     }
 

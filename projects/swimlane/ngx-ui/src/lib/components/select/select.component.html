@@ -2,6 +2,7 @@
   <div class="ngx-select-flex-wrap" [style.min-width]="autosize ? autosizeMinWidth : undefined">
     <div class="ngx-select-flex-wrap-inner">
       <ngx-select-input
+        [selectId]="id"
         [autofocus]="autofocus"
         [options]="options"
         [allowClear]="allowClear"
@@ -16,9 +17,12 @@
         [selected]="value"
         [hint]="hint"
         [disableDropdown]="disableDropdown"
+        [disabled]="disabled"
         (keyup)="onKeyUp($event)"
         (toggle)="onToggle()"
+        (close)="onClose(true)"
         (activate)="onFocus()"
+        (activateLast)="onFocusLast()"
         (selection)="onInputSelection($event)"
       >
       </ngx-select-input>
@@ -42,8 +46,11 @@
     [identifier]="identifier"
     [options]="options"
     (keyup)="keyup.emit($event)"
-    (close)="onClose()"
+    (close)="onClose(true)"
     (selection)="onDropdownSelection($event)"
+    (deselection)="onDropdownDeselection($event)"
+    (keyboardSelection)="onDropdownSelection($event, false)"
+    (keyboardDeselection)="onDropdownDeselection($event, false)"
   >
   </ngx-select-dropdown>
 </div>

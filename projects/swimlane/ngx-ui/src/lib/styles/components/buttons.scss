@@ -22,10 +22,11 @@ button {
 
   &:active,
   &:focus {
-    outline: -webkit-focus-ring-color auto 1px;
+    outline: none;
   }
 
-  &:focus-visible {
+  &:focus-visible,
+  &.focus-visible {
     outline: -webkit-focus-ring-color auto 1px;
   }
 }
@@ -44,6 +45,7 @@ button {
   font-weight: bold;
   outline: none;
   line-height: 1em;
+  outline-offset: 1px;
 
   background: $button-fill-color;
   border: solid 1px transparent;
@@ -78,39 +80,23 @@ button {
   }
 
   &:focus,
-  &:focus-visible,
   &:focus-within {
     outline: none;
   }
 
   // Focus ring
-  &:after {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    z-index: 1;
-
-    border-radius: 4px;
-    opacity: 0;
-    border: 2px solid $button-fill-color;
-    transition: opacity 0.3s;
+  &:focus-visible,
+  &.focus-visible {
+    outline: 2px solid $button-fill-color;
   }
 
-  &:focus-visible:after {
-    opacity: 1;
-  }
-
-  &:active:hover:focus:not([disabled]),
-  &:active:hover:focus:not(.disabled) {
+  &:hover:not([disabled]),
+  &:hover:not(.disabled),
+  &.focus-hover:not([disabled]),
+  &.focus-hover:not(.disabled) {
     cursor: pointer;
     background: $button-fill-active-color;
-
-    &:after {
-      border-color: $button-fill-active-color;
-    }
+    outline-color: $button-fill-active-color;
 
     &.btn-primary {
       background-color: $color-blue;
@@ -150,27 +136,26 @@ button {
 
   &.btn-primary {
     background-color: $color-blue-400;
+    outline-color: $color-blue;
+
     &.btn-primary-gradient {
-      background: linear-gradient(125.43deg, $color-light-blue-400 10.86%, $color-blue-400 49.11%);
-    }
-    &:after {
-      border-color: $color-blue;
+      background-color: $color-blue-600;
+      background: linear-gradient(350.57deg, $color-blue-600 14.42%, $color-light-blue-600 100%);
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+      border: 1px solid $color-blue-600;
     }
   }
 
   &.btn-warning {
     background-color: $color-orange-400;
     color: $color-blue-grey-900;
-    &:after {
-      border-color: $color-orange;
-    }
+    outline-color: $color-orange;
   }
 
   &.btn-danger {
     background-color: $color-red-400;
-    &:after {
-      border-color: $color-red-400;
-    }
+    outline-color: $color-red-400;
   }
 
   &.btn-link {
@@ -184,6 +169,7 @@ button {
     color: $color-blue-400;
     background-color: transparent;
     box-shadow: none;
+    outline-color: $color-blue-400;
 
     &.disabled-button {
       opacity: 0.5;
@@ -191,9 +177,6 @@ button {
       .button {
         opacity: 1;
       }
-    }
-    &:after {
-      border-color: $color-blue-400;
     }
   }
 

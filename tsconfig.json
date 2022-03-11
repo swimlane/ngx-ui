@@ -11,6 +11,7 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "resolveJsonModule": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "target": "es2015",
@@ -26,5 +27,9 @@
     },
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
-  }
+  },
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts"
+  ]
 }

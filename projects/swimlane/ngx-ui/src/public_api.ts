@@ -76,6 +76,9 @@ export * from './lib/components/date-time/date-time.component';
 export * from './lib/components/date-time/date-time-type.enum';
 export * from './lib/components/date-time/date-like.type';
 
+export * from './lib/components/time-display/time-display.module';
+export * from './lib/components/time-display/time-display.component';
+
 export * from './lib/components/dialog/dialog.module';
 export * from './lib/components/dialog/dialog.component';
 export * from './lib/components/dialog/dialog.service';
@@ -245,6 +248,9 @@ export * from './lib/components/plus-menu/plus-menu.module';
 export * from './lib/components/plus-menu/plus-menu.component';
 export * from './lib/components/plus-menu/plus-menu-position.enum';
 
+export * from './lib/components/time-display/time-display.module';
+export * from './lib/components/time-display/time-display.component';
+
 // utils
 export * from './lib/utils/debounce/debounce.util';
 
@@ -273,6 +279,9 @@ export * from './lib/utils/position/vertical-position/vertical-position.util';
 
 export * from './lib/utils/throttle/throttle-options.interface';
 export * from './lib/utils/throttle/throttle.util';
+
+// enums
+export * from './lib/enums/date-formats.enum';
 
 // decorators
 export * from './lib/decorators/debounceable/debounceable.decorator';

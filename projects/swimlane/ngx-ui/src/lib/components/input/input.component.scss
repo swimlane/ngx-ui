@@ -1,13 +1,6 @@
 @import 'colors/variables';
 @import 'forms/inputs';
 
-$input-hint-color: $color-blue-grey-350;
-$input-invalid-color: $color-red;
-$input-active-underline-fill: $color-blue;
-$input-inactive-underline-fill: $color-blue-grey-600;
-$input-icon-color: $color-grey-300;
-$input-placeholder-color: $color-blue-grey-350;
-
 .ngx-input {
   display: block;
   max-width: 100%;
@@ -43,7 +36,7 @@ $input-placeholder-color: $color-blue-grey-350;
   &.focused {
     &:not(.ng-invalid) {
       .ngx-input-label {
-        color: $input-active-underline-fill !important;
+        color: $input-label-color-active !important;
       }
     }
   }
@@ -142,12 +135,12 @@ $input-placeholder-color: $color-blue-grey-350;
         padding-left: 0px;
         width: 100%;
         max-width: 100%;
-        color: $color-blue-grey-100;
+        color: $color-input-text;
         font-size: 1em;
         line-height: 1.25em;
         min-height: 0px;
         font-family: inherit;
-        caret-color: $input-active-underline-fill;
+        caret-color: $input-label-color-active;
 
         &::placeholder {
           color: $input-placeholder-color;
@@ -159,7 +152,7 @@ $input-placeholder-color: $color-blue-grey-350;
         }
 
         &:disabled {
-          color: $color-blue-grey-400;
+          color: $color-input-text-disabled;
           user-select: none;
         }
       }
@@ -178,20 +171,21 @@ $input-placeholder-color: $color-blue-grey-350;
         resize: none;
       }
 
-      .icon-eye,
-      .icon-lock {
+      .ngx-input__password-toggle,
+      .ngx-input__lock-toggle {
         line-height: 25px;
         top: 0;
         bottom: 0;
-        position: absolute;
         right: 10px;
         cursor: pointer;
         font-size: 0.8rem;
         color: $input-icon-color;
         transition: color 100ms;
+        padding: 0;
+        z-index: 1;
 
         &:hover {
-          color: $color-grey-200;
+          color: $color-input-text;
         }
       }
 
@@ -208,11 +202,11 @@ $input-placeholder-color: $color-blue-grey-350;
 
         i {
           font-size: 0.625rem;
-          color: $color-blue-grey-300;
+          color: $input-icon-color;
           cursor: pointer;
 
           &:hover {
-            color: $color-blue-grey-100;
+            color: $input-icon-color-hover;
           }
 
           &:active {
@@ -233,7 +227,7 @@ $input-placeholder-color: $color-blue-grey-350;
       font-size: 13px;
       font-weight: 600;
       transition: color 0.2s ease-in-out;
-      color: $color-blue-grey-350;
+      color: $input-label-color;
       white-space: nowrap;
       max-width: 100%;
       overflow: hidden;
@@ -264,8 +258,18 @@ $input-placeholder-color: $color-blue-grey-350;
   }
 
   &.fill {
+    .ngx-input-flex-wrap {
+      background-color: $color-fill-input-bg;
+      mix-blend-mode: exclusion;
+    }
+
+    .ngx-input-label {
+      left: 0;
+    }
+
     .ngx-input-wrap .ngx-input-box-wrap {
       .icon-eye,
+      .icon-eye-disabled,
       .icon-lock {
         line-height: 33.33px;
         z-index: 2;
@@ -274,7 +278,7 @@ $input-placeholder-color: $color-blue-grey-350;
       .ngx-input-box,
       .ngx-input-textarea {
         margin: 0;
-        padding: 6px 10px;
+        padding: 4px 10px;
         position: relative;
         z-index: 1;
       }
@@ -282,17 +286,19 @@ $input-placeholder-color: $color-blue-grey-350;
       .ngx-input-box + .numeric-spinner {
         right: 10px;
       }
+    }
 
-      &::after {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-color: $color-blue-grey-875;
-        mix-blend-mode: exclusion;
-        content: '';
-      }
+    ngx-input-prefix,
+    ngx-input-suffix {
+      color: $input-label-color;
+    }
+
+    ngx-input-prefix {
+      padding-left: 10px;
+    }
+
+    ngx-input-suffix {
+      padding-right: 10px;
     }
   }
 }
