@@ -60,6 +60,10 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
   protected assignDefaults(options: Partial<DrawerOptions>): any {
     options = super.assignDefaults(options);
 
+    options.isRoot ??= !options.parentContainer;
+    options.showOverlay ??= options.isRoot;
+    options.fullscreenOverlay ??= options.isRoot;
+
     if (!options.inputs.zIndex) {
       this.zIndex = this.overlayService.instance
         ? this.overlayService.instance.zIndex + 3
@@ -79,6 +83,7 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
     if (options.showOverlay) {
       this.overlayService.show({
         location: options.isRoot ? undefined : options.parentContainer,
+        fullscreen: options.fullscreenOverlay,
         triggerComponent: component,
         zIndex: this.zIndex
       });

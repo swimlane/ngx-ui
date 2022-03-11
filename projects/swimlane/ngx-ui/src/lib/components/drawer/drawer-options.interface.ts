@@ -12,6 +12,7 @@ export interface DrawerOptions {
   closeOnOutsideClick?: boolean;
   isRoot?: boolean;
   showOverlay?: boolean;
+  fullscreenOverlay?: boolean;
   parentContainer?: any;
   inputs?: {
     cssClass?: string;

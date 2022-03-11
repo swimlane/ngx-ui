@@ -75,9 +75,9 @@ export class OverlayComponent {
     this.cdr.markForCheck();
   }
 
-  @HostBinding('class.root')
+  @HostBinding('class.fullscreen')
   @Input()
-  isRoot = true;
+  fullscreen = true;
 
   @Output() click = new EventEmitter<boolean>();
 
