@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+- Feature: allow `OverlayComponent` to be contained in a parent element
+- Feature: add `location` and `fullscreen` options to `OverlayService`
+- Feature: add `showOverlay` and `fullscreenOverlay` options to `DrawerService`
+
 ## 39.2.0 (2022-3-11)
 
 - Feature: Add small style variant to Dropzone component
