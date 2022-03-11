@@ -164,7 +164,14 @@ export class ArrayNode implements OnChanges {
     this.schemas = [];
     if (Array.isArray(this.model)) {
       this.model.forEach((value, index) => {
-        let schema = inferType(value, this.typeCheckOverrides);
+        const inferedSchema = inferType(value, this.typeCheckOverrides);
+        let schema;
+
+        if (inferedSchema.type === 'null' && prevSchemas[index]) {
+          schema = prevSchemas[index];
+        } else {
+          schema = inferedSchema;
+        }
 
         if (
           prevSchemas.length > 0 &&

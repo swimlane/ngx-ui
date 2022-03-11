@@ -314,7 +314,7 @@ export class ObjectNode implements OnInit, OnChanges {
       } else {
         const model = this.model[schema.propertyName];
         const { type } = inferType(model);
-        if (schema.type !== type) {
+        if (schema.type !== type && type !== 'null') {
           this.propertyIndex[schema.id].type = type;
         }
       }
