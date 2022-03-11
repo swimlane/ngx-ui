@@ -2,7 +2,13 @@
 
 ## HEAD (unreleased)
 
+## 39.2.0 (2022-3-11)
+
 - Feature: Add small style variant to Dropzone component
+- Fix: Stle fixes for JSON editor component
+
+## 39.1.0 (2022-3-8)
+
 - Fix: Issues with the json Editor
 - Fix: change the JsonEditor errors
 - Fix: Add an array inside an array in json editor works
