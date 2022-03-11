@@ -34,9 +34,12 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
-  create(options: DrawerOptions) {
+  create(options: Partial<DrawerOptions>) {
+    options.isRoot ??= !options.parentContainer;
+    options.showOverlay ??= options.isRoot;
+
     const component = super.create(options);
-    this.createSubscriptions(component, options.isRoot, options.parentContainer);
+    this.createSubscriptions(component, options);
     return component;
   }
 
@@ -54,7 +57,7 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
     }, 10);
   }
 
-  assignDefaults(options: DrawerOptions): any {
+  protected assignDefaults(options: Partial<DrawerOptions>): any {
     options = super.assignDefaults(options);
 
     if (!options.inputs.zIndex) {
@@ -72,9 +75,10 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
     return options;
   }
 
-  createSubscriptions(component: ComponentRef<DrawerComponent>, isRoot = true, parentContainer?) {
-    if (isRoot) {
+  private createSubscriptions(component: ComponentRef<DrawerComponent>, options: DrawerOptions) {
+    if (options.showOverlay) {
       this.overlayService.show({
+        location: options.isRoot ? undefined : options.parentContainer,
         triggerComponent: component,
         zIndex: this.zIndex
       });
@@ -102,14 +106,14 @@ export class DrawerService extends InjectionRegistryService<DrawerComponent> {
 
     closeSub = component.instance.close.subscribe(kill.bind(this, component));
     if (component.instance.closeOnOutsideClick) {
-      if (isRoot) {
+      if (options.showOverlay) {
         overlaySub = this.overlayService.click.subscribe(kill);
-      } else {
+      } else if (options.parentContainer) {
         const components = this.components.get(this.type);
 
-        this.parentListenerFunc = this.renderer.listen(parentContainer, 'click', evt => {
+        this.parentListenerFunc = this.renderer.listen(options.parentContainer, 'click', evt => {
           /* istanbul ignore else */
-          if (evt.target === parentContainer) {
+          if (evt.target === options.parentContainer) {
             kill(components[components.length - 1]);
           }
         });

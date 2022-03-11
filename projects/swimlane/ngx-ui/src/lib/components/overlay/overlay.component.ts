@@ -4,6 +4,8 @@ import {
   ChangeDetectorRef,
   Component,
   EventEmitter,
+  HostBinding,
+  HostListener,
   Input,
   Output,
   ViewEncapsulation
@@ -16,7 +18,7 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 @Component({
   exportAs: 'ngxOverlay',
   selector: 'ngx-overlay',
-  templateUrl: './overlay.component.html',
+  template: '<ng-content></ng-content>',
   styleUrls: ['./overlay.component.scss'],
   animations: [
     trigger('overlayTransition', [
@@ -50,6 +52,10 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OverlayComponent {
+  @HostBinding('class.ngx-overlay')
+  overlay = true;
+
+  @HostBinding('class.root')
   @Input()
   get visible() {
     return this._visible;
@@ -59,6 +65,7 @@ export class OverlayComponent {
     this.cdr.markForCheck();
   }
 
+  @HostBinding('style.zIndex')
   @Input()
   get zIndex() {
     return this._zIndex;
@@ -68,8 +75,13 @@ export class OverlayComponent {
     this.cdr.markForCheck();
   }
 
+  @HostBinding('class.root')
+  @Input()
+  isRoot = true;
+
   @Output() click = new EventEmitter<boolean>();
 
+  @HostBinding('@overlayTransition')
   get animationState(): string {
     return this.visible ? 'active' : 'inactive';
   }
@@ -78,4 +90,9 @@ export class OverlayComponent {
   private _zIndex = 990;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
+
+  @HostListener('click')
+  onClick() {
+    this.click.emit(true);
+  }
 }

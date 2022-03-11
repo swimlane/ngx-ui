@@ -24,7 +24,7 @@ export class OverlayService {
       throw new Error('ngx-ui OverlayService.show: triggerComponent missing ');
     }
     if (!this.component) {
-      this.component = this.injectComponent();
+      this.component = this.injectComponent(options.location);
       this.instance.click.subscribe(this.onClick.bind(this));
     }
 
@@ -61,8 +61,9 @@ export class OverlayService {
     }
   }
 
-  injectComponent(): ComponentRef<OverlayComponent> {
-    return this.injectionService.appendComponent(OverlayComponent);
+  injectComponent(location?: any): ComponentRef<OverlayComponent> {
+    const isRoot = location === undefined;
+    return this.injectionService.appendComponent(OverlayComponent, { inputs: { isRoot } }, location);
   }
 
   onClick() {

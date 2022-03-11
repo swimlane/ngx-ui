@@ -1,5 +1,5 @@
 .ngx-overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
@@ -12,4 +12,8 @@
   visibility: hidden;
   text-align: center;
   line-height: 100vh;
+}
+
+.ngx-overlay.root {
+  position: fixed;
 }

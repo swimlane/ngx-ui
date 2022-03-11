@@ -21,7 +21,8 @@ export class DrawerContainerExampleComponent {
       context: 'Alert Everyone!',
       closeOnOutsideClick: true,
       parentContainer: this.el.nativeElement,
-      isRoot: false
+      isRoot: false,
+      showOverlay: true
     });
   }
 }
