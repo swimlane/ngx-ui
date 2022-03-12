@@ -36,7 +36,7 @@ export class OverlayService {
     }
     if (!this.component) {
       this.component = this.injectComponent(options);
-      this.instance.click.subscribe(this.onClick.bind(this));
+      this.instance.overlayClick.subscribe(this.onClick.bind(this));
     }
 
     this.triggerComponents.push({
@@ -44,7 +44,10 @@ export class OverlayService {
       zIndex: options.zIndex
     });
 
-    this.component.instance.visible = true;
+    setTimeout(() => {
+      this.component.instance.visible = true;
+    });
+
     this.updateZIndex();
 
     return this.component;
@@ -105,6 +108,7 @@ export class OverlayService {
   private assignDefaults(options: Partial<OverlayOptions>): Partial<OverlayOptions> {
     options.isRoot ??= options.location === undefined;
     options.fullscreen ??= options.isRoot;
+    options.zIndex ??= 990;
 
     return {
       ...options
