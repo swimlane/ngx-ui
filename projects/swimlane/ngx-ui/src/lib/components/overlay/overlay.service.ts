@@ -115,7 +115,7 @@ export class OverlayService {
     };
   }
 
-  private injectComponent(options: Partial<OverlayOptions>): ComponentRef<OverlayComponent> {
+  injectComponent(options: Partial<OverlayOptions> = {}): ComponentRef<OverlayComponent> {
     return this.injectionService.appendComponent(
       OverlayComponent,
       { inputs: { isRoot: options.isRoot, fullscreen: options.fullscreen } },
