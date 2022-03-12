@@ -44,9 +44,7 @@ export class OverlayService {
       zIndex: options.zIndex
     });
 
-    setTimeout(() => {
-      this.component.instance.visible = true;
-    });
+    this.component.instance.visible = true;
 
     this.updateZIndex();
 

@@ -43,7 +43,7 @@ describe('OverlayService', () => {
     expect(service.triggerComponents.length).toEqual(1);
 
     service.hide();
-    // expect(service.instance.visible).not.toEqual(false);
+    expect(service.instance.visible).not.toEqual(false);
   });
 
   it('calling destroy sets component to undefined', done => {
@@ -81,7 +81,7 @@ describe('OverlayService', () => {
     service.show({ triggerComponent: component.componentInstance });
 
     expect(service.triggerComponents.length).toEqual(1);
-    // expect(service.instance.visible).toEqual(true);
+    expect(service.instance.visible).toEqual(true);
   });
 
   it('injectComponent calls the injection service appendComponent', () => {
@@ -133,7 +133,6 @@ describe('OverlayService', () => {
     expect(service.component).toBeTruthy();
     expect(service.triggerComponents.length).toEqual(1);
 
-    // Timeout
-    // expect(service.instance.visible).toEqual(true);
+    expect(service.instance.visible).toEqual(true);
   });
 });
