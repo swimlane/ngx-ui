@@ -20,8 +20,7 @@ export class DrawerContainerExampleComponent {
       template: this.template,
       context: 'Alert Everyone!',
       closeOnOutsideClick: true,
-      parentContainer: this.el.nativeElement,
-      isRoot: false
+      parentContainer: this.el.nativeElement
     });
   }
 }

@@ -132,6 +132,7 @@ describe('OverlayService', () => {
     expect(injectionService.appendComponent).toHaveBeenCalled();
     expect(service.component).toBeTruthy();
     expect(service.triggerComponents.length).toEqual(1);
+
     expect(service.instance.visible).toEqual(true);
   });
 });

@@ -3,6 +3,15 @@ import { Injectable, ComponentRef, EventEmitter } from '@angular/core';
 import { InjectionService } from '../../services/injection/injection.service';
 import { OverlayComponent } from './overlay.component';
 
+interface OverlayOptions {
+  triggerComponent: any;
+  location: any;
+  zIndex: number;
+  fullscreen: boolean;
+  isRoot: boolean;
+  inputs: Record<string, any>;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,13 +28,15 @@ export class OverlayService {
 
   constructor(private injectionService: InjectionService) {}
 
-  show(options: any = {}) {
+  show(options: Partial<OverlayOptions> = {}) {
+    options = this.assignDefaults(options);
+
     if (!options.triggerComponent) {
       throw new Error('ngx-ui OverlayService.show: triggerComponent missing ');
     }
     if (!this.component) {
-      this.component = this.injectComponent();
-      this.instance.click.subscribe(this.onClick.bind(this));
+      this.component = this.injectComponent(options);
+      this.instance.overlayClick.subscribe(this.onClick.bind(this));
     }
 
     this.triggerComponents.push({
@@ -34,6 +45,7 @@ export class OverlayService {
     });
 
     this.component.instance.visible = true;
+
     this.updateZIndex();
 
     return this.component;
@@ -59,10 +71,6 @@ export class OverlayService {
         }
       }, 100);
     }
-  }
-
-  injectComponent(): ComponentRef<OverlayComponent> {
-    return this.injectionService.appendComponent(OverlayComponent);
   }
 
   onClick() {
@@ -93,5 +101,23 @@ export class OverlayService {
     const indexes = this.triggerComponents.map(tc => tc.zIndex);
     const zIndex = Math.max(...indexes) - 1;
     this.instance.zIndex = zIndex;
+  }
+
+  private assignDefaults(options: Partial<OverlayOptions>): Partial<OverlayOptions> {
+    options.isRoot ??= options.location === undefined;
+    options.fullscreen ??= options.isRoot;
+    options.zIndex ??= 990;
+
+    return {
+      ...options
+    };
+  }
+
+  injectComponent(options: Partial<OverlayOptions> = {}): ComponentRef<OverlayComponent> {
+    return this.injectionService.appendComponent(
+      OverlayComponent,
+      { inputs: { isRoot: options.isRoot, fullscreen: options.fullscreen } },
+      options.location
+    );
   }
 }

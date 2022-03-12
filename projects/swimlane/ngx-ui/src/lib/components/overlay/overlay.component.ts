@@ -1,14 +1,16 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import {
   ChangeDetectionStrategy,
-  ChangeDetectorRef,
   Component,
   EventEmitter,
+  HostBinding,
+  HostListener,
   Input,
   Output,
   ViewEncapsulation
 } from '@angular/core';
-import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
+
+import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
+import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
 
 /**
  * Overlay Component for Drawer/Dialogs
@@ -16,66 +18,34 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
 @Component({
   exportAs: 'ngxOverlay',
   selector: 'ngx-overlay',
-  templateUrl: './overlay.component.html',
+  template: '<ng-content></ng-content>',
   styleUrls: ['./overlay.component.scss'],
-  animations: [
-    trigger('overlayTransition', [
-      state(
-        'active',
-        style({
-          opacity: 0.8,
-          visibility: 'visible'
-        })
-      ),
-      state(
-        'inactive',
-        style({
-          visibility: 'hidden',
-          opacity: 0
-        })
-      ),
-      transition('* => active', [animate('100ms ease-in')]),
-      transition('* => inactive', [animate('100ms ease-out')]),
-      transition('* => void', [
-        style({
-          opacity: 0,
-          visibility: 'hidden',
-          'pointer-events': 'none'
-        }),
-        animate('100ms ease-out')
-      ])
-    ])
-  ],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OverlayComponent {
+  @HostBinding('class.ngx-overlay')
+  overlay = true;
+
+  @HostBinding('class.visible')
   @Input()
-  get visible() {
-    return this._visible;
-  }
-  set visible(val: boolean) {
-    this._visible = coerceBooleanProperty(val);
-    this.cdr.markForCheck();
-  }
+  @CoerceBooleanProperty()
+  visible = false;
 
+  @HostBinding('style.zIndex')
   @Input()
-  get zIndex() {
-    return this._zIndex;
+  @CoerceNumberProperty()
+  zIndex = 990;
+
+  @HostBinding('class.fullscreen')
+  @Input()
+  @CoerceBooleanProperty()
+  fullscreen = true;
+
+  @Output() overlayClick = new EventEmitter<boolean>();
+
+  @HostListener('click')
+  onClick() {
+    this.overlayClick.emit(true);
   }
-  set zIndex(val: number) {
-    this._zIndex = coerceNumberProperty(val);
-    this.cdr.markForCheck();
-  }
-
-  @Output() click = new EventEmitter<boolean>();
-
-  get animationState(): string {
-    return this.visible ? 'active' : 'inactive';
-  }
-
-  private _visible = false;
-  private _zIndex = 990;
-
-  constructor(private readonly cdr: ChangeDetectorRef) {}
 }

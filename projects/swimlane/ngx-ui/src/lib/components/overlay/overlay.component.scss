@@ -1,5 +1,9 @@
 .ngx-overlay {
-  position: fixed;
+  --animation-duration: 100ms;
+  --background-color: #000;
+  --opacity: 0.8;
+
+  position: absolute;
   top: 0;
   left: 0;
   bottom: 0;
@@ -7,9 +11,23 @@
   width: 100%;
   overflow: hidden;
   height: 100%;
-  background-color: #000;
-  opacity: 0;
-  visibility: hidden;
+  background-color: var(--background-color);
   text-align: center;
   line-height: 100vh;
+
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+
+  transition: opacity var(--animation-duration, 100ms) ease-out;
+
+  &.visible {
+    opacity: var(--opacity, 0.8);
+    pointer-events: unset;
+    visibility: inherit;
+  }
+
+  &.fullscreen {
+    position: fixed;
+  }
 }
