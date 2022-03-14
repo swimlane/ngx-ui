@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix: fix mis-aligned input box in multi select
+
 ## 39.2.0 (2022-3-11)
 
 - Feature: Add small style variant to Dropzone component
