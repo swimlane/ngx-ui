@@ -1,6 +1,13 @@
 @import 'colors/variables';
 @import '../../json-editor.extensions.scss';
-
+.code-editor {
+  .ngx-select .ngx-select-input .ngx-select-input-box__controls .ngx-select-caret {
+    display: none;
+  }
+  .ngx-select .ngx-select-input .ngx-select-input-box__controls .ngx-select-clear {
+    display: none;
+  }
+}
 .json-editor--popover-template {
   font-weight: 600;
   font-size: 12px;
@@ -113,6 +120,7 @@ ngx-json-editor-node-flat {
         flex: 0 0 40%;
         padding-right: 25px;
         overflow: hidden;
+        padding-top: 3px;
       }
 
       .node-input {
