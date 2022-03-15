@@ -10,6 +10,7 @@ import {
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 import { FileUploaderOptions, FileUploader, FileItem } from '@swimlane/ng2-file-upload';
 import { id } from '../../utils/id/id.util';
+import { listFormatter } from '@swimlane/ngx-ui/utils/list-format/list-format.util';
 
 @Component({
   selector: 'ngx-dropzone',
@@ -43,12 +44,7 @@ export class DropzoneComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.acceptedFileFormats && this.acceptedFileFormats.length) {
-      if (this.acceptedFileFormats.length === 1) {
-        this.acceptedFileFormatsTextDisplay = this.acceptedFileFormats[0];
-      } else {
-        this.acceptedFileFormatsTextDisplay =
-          this.acceptedFileFormats.slice(0, -1).join(', ') + ' and ' + this.acceptedFileFormats.slice(-1);
-      }
+      this.acceptedFileFormatsTextDisplay = listFormatter.format(this.acceptedFileFormats);
     }
   }
 }
