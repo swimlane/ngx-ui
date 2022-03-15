@@ -21,9 +21,9 @@
       </td>
       <td>
         <ngx-select [filterable]="false" [ngModel]="[inputValue]">
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+          <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
+          <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
@@ -56,14 +56,14 @@
         </ngx-input>
       </td>
       <td>
-        <ngx-select [filterable]="false" label="SelectBox Label">
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        <ngx-select [ngModel]="[inputValue]" [filterable]="false" label="SelectBox Label">
+          <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
+          <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
-        <ngx-select [multiple]="true" label="Select box Label">
+        <ngx-select [ngModel]="[inputValue]" [multiple]="true" label="Select box Label">
           <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
           </ngx-select-option>
         </ngx-select>
@@ -92,14 +92,14 @@
         </ngx-input>
       </td>
       <td>
-        <ngx-select [filterable]="false" hint="Select help text">
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        <ngx-select [ngModel]="[inputValue]" [filterable]="false" hint="Select help text">
+          <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
+          <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
-        <ngx-select [multiple]="true" hint="Select help text">
+        <ngx-select [ngModel]="[inputValue]" [multiple]="true" hint="Select help text">
           <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
           </ngx-select-option>
         </ngx-select>
@@ -134,14 +134,14 @@
         </ngx-input>
       </td>
       <td>
-        <ngx-select [filterable]="false" hint="Select help text<br />Second line<br />A third" label="Select box Label">
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        <ngx-select [ngModel]="[inputValue]" [filterable]="false" hint="Select help text<br />Second line<br />A third" label="Select box Label">
+          <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
+          <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
-        <ngx-select [multiple]="true" hint="Select help text<br />Second line<br />A third" label="Select box Label">
+        <ngx-select [ngModel]="[inputValue]" [multiple]="true" hint="Select help text<br />Second line<br />A third" label="Select box Label">
           <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
           </ngx-select-option>
         </ngx-select>
@@ -170,14 +170,14 @@
         </ngx-input>
       </td>
       <td>
-        <ngx-select [filterable]="false" placeholder="SelectBox Placeholder">
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        <ngx-select [ngModel]="[inputValue]" [filterable]="false" placeholder="SelectBox Placeholder">
+          <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
+          <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
-        <ngx-select [multiple]="true" placeholder="Select Box Placeholder">
+        <ngx-select [ngModel]="[inputValue]" [multiple]="true" placeholder="Select Box Placeholder">
           <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
           </ngx-select-option>
         </ngx-select>
@@ -214,19 +214,21 @@
       </td>
       <td>
         <ngx-select
+          [ngModel]="[inputValue]"
           [filterable]="false"
           hint="Select help text<br />Second line<br />A third"
           label="Select box Label"
           placeholder="SelectBox Placeholder"
         >
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+          <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
+          <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
         <ngx-select
           [multiple]="true"
+          [ngModel]="[inputValue]"
           hint="Select help text<br />Second line<br />A third"
           label="Select box Label"
           placeholder="SelectBox Placeholder"
@@ -269,19 +271,21 @@
       </td>
       <td>
         <ngx-select
+          [ngModel]="[inputValue]"
           minSelections="1"
           [filterable]="false"
           hint="Select help text<br />Second line<br />A third"
           label="Select box Label"
           placeholder="SelectBox Placeholder"
         >
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+          <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
+          <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
         <ngx-select
+          [ngModel]="[inputValue]"
           minSelections="1"
           [multiple]="true"
           hint="Select help text<br />Second line<br />A third"
@@ -329,9 +333,9 @@
       </td>
       <td>
         <ngx-select appearance="fill" [filterable]="false" [ngModel]="[inputValue]">
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+          <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
+          <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
@@ -364,14 +368,14 @@
         </ngx-input>
       </td>
       <td>
-        <ngx-select appearance="fill" [filterable]="false" label="SelectBox Label">
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        <ngx-select [ngModel]="[inputValue]" appearance="fill" [filterable]="false" label="SelectBox Label">
+          <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
+          <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
-        <ngx-select appearance="fill" [multiple]="true" label="Select box Label">
+        <ngx-select [ngModel]="[inputValue]" appearance="fill" [multiple]="true" label="Select box Label">
           <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
           </ngx-select-option>
         </ngx-select>
@@ -400,14 +404,14 @@
         </ngx-input>
       </td>
       <td>
-        <ngx-select appearance="fill" [filterable]="false" hint="Select help text">
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        <ngx-select [ngModel]="[inputValue]" appearance="fill" [filterable]="false" hint="Select help text">
+          <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
+          <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
-        <ngx-select appearance="fill" [multiple]="true" hint="Select help text">
+        <ngx-select [ngModel]="[inputValue]" appearance="fill" [multiple]="true" hint="Select help text">
           <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
           </ngx-select-option>
         </ngx-select>
@@ -442,14 +446,14 @@
         </ngx-input>
       </td>
       <td>
-        <ngx-select appearance="fill" [filterable]="false" hint="Select help text<br />Second line<br />A third" label="Select box Label">
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        <ngx-select [ngModel]="[inputValue]" appearance="fill" [filterable]="false" hint="Select help text<br />Second line<br />A third" label="Select box Label">
+          <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
+          <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
-        <ngx-select appearance="fill" [multiple]="true" hint="Select help text<br />Second line<br />A third" label="Select box Label">
+        <ngx-select [ngModel]="[inputValue]" appearance="fill" [multiple]="true" hint="Select help text<br />Second line<br />A third" label="Select box Label">
           <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
           </ngx-select-option>
         </ngx-select>
@@ -478,14 +482,14 @@
         </ngx-input>
       </td>
       <td>
-        <ngx-select appearance="fill" [filterable]="false" placeholder="SelectBox Placeholder">
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        <ngx-select [ngModel]="[inputValue]" appearance="fill" [filterable]="false" placeholder="SelectBox Placeholder">
+          <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
+          <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
-        <ngx-select appearance="fill" [multiple]="true" placeholder="Select Box Placeholder">
+        <ngx-select [ngModel]="[inputValue]" appearance="fill" [multiple]="true" placeholder="Select Box Placeholder">
           <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
           </ngx-select-option>
         </ngx-select>
@@ -523,19 +527,21 @@
       </td>
       <td>
         <ngx-select
+          [ngModel]="[inputValue]"
           appearance="fill"
           [filterable]="false"
           hint="Select help text<br />Second line<br />A third"
           label="Select box Label"
           placeholder="SelectBox Placeholder"
         >
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+          <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
+          <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
         <ngx-select
+          [ngModel]="[inputValue]"
           appearance="fill"
           [multiple]="true"
           hint="Select help text<br />Second line<br />A third"
@@ -581,6 +587,7 @@
       </td>
       <td>
         <ngx-select
+          [ngModel]="[inputValue]"
           appearance="fill"
           minSelections="1"
           [filterable]="false"
@@ -588,13 +595,14 @@
           label="Select box Label"
           placeholder="SelectBox Placeholder"
         >
-          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+          <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
+          <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
         </ngx-select>
       </td>
       <td>
         <ngx-select
+          [ngModel]="[inputValue]"
           appearance="fill"
           minSelections="1"
           [multiple]="true"

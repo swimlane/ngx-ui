@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./controls-page.component.scss']
 })
 export class ControlsPageComponent {
-  inputValue: any = 'A Value';
+  inputValue: any = 'Breach';
   minValue = 0;
   maxValue = 100;
   prefix = '$USD';

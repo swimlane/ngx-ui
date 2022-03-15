@@ -1,23 +1,7 @@
 /**
  * Form Element Inputs
  */
-$color-input-bg: $color-blue-grey-700;
-$color-input-border: $color-blue-grey-600;
-$color-input-text: $color-blue-grey-050;
-$color-input-text-placeholder: $color-blue-grey-450;
-$color-input-text-disabled: $color-blue-grey-400;
-
-$input-hint-color: $color-blue-grey-350;
-$input-invalid-color: $color-red;
-$input-active-underline-fill: $color-blue;
-$input-inactive-underline-fill: $color-blue-grey-600;
-$input-icon-color: $color-grey-300;
-$input-icon-color-hover: $color-grey-100;
-$input-placeholder-color: $color-blue-grey-350;
-$input-label-color: $color-blue-grey-350;
-$input-label-color-active: $color-blue-500;
-
-$color-fill-input-bg: $color-blue-grey-875;
+@import 'variables';
 
 input[type='number'],
 input[type='tel'],

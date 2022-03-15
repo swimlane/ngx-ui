@@ -13,7 +13,7 @@ export const INPUT_ANIMATIONS = [
       'outside',
       style({
         'font-size': '.7rem',
-        top: '-15px'
+        top: '-18px'
       })
     ),
     transition('inside => outside', animate('150ms ease-out')),
