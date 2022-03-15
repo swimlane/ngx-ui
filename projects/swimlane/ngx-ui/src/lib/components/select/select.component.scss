@@ -604,6 +604,13 @@ $color-chip-text: #fff;
       }
     }
 
+    &.multi-selection,
+    &.tagging-selection {
+      .ngx-select-flex-wrap .ngx-select-input-box::before {
+        bottom: 3px; // hack
+      }
+    }
+
     .ngx-select-placeholder {
       padding-left: 10px;
     }
