@@ -38,6 +38,9 @@ export class ButtonComponent implements OnInit, OnChanges {
   disabled = false;
 
   @Input()
+  type = 'button';
+
+  @Input()
   get state() {
     return this._state;
   }
