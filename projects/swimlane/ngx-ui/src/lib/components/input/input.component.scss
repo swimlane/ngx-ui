@@ -7,8 +7,7 @@
   margin-top: $input-margin-top;
   margin-bottom: $input-margin-bottom;
   line-height: $input-line-height;
-  padding-top: 20px;
-  padding-top: calc(0.7em + 8px);
+  padding-top: $input-padding-top;
   padding-bottom: 0;
 
   &.marginless {
@@ -224,6 +223,7 @@
     }
 
     .ngx-input-label {
+      line-height: 1em;
       pointer-events: none;
       position: absolute;
       font-size: $input-label-font-size;
@@ -254,7 +254,7 @@
       color: $input-hint-color;
       margin-top: 2px;
       min-height: 1em;
-      line-height: 14px;
+      line-height: $input-hint-line-height;
       transition: color 0.2s ease-in-out;
     }
   }

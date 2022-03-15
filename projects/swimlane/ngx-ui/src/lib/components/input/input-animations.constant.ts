@@ -6,14 +6,14 @@ export const INPUT_ANIMATIONS = [
       'inside',
       style({
         'font-size': '1em',
-        top: '0'
+        top: '8px'
       })
     ),
     state(
       'outside',
       style({
         'font-size': '.7rem',
-        top: '-18px'
+        top: '-0.7rem'
       })
     ),
     transition('inside => outside', animate('150ms ease-out')),

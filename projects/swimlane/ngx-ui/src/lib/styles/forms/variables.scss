@@ -1,0 +1,35 @@
+$color-input-bg: $color-blue-grey-700;
+$color-input-border: $color-blue-grey-600;
+$color-input-text: $color-blue-grey-050;
+$color-input-text-placeholder: $color-blue-grey-450;
+$color-input-text-disabled: $color-blue-grey-400;
+
+$input-invalid-color: $color-red;
+$input-icon-color: $color-grey-300;
+$input-icon-color-hover: $color-grey-100;
+$input-placeholder-color: $color-blue-grey-350;
+
+$color-fill-input-bg: $color-blue-grey-875;
+
+$input-underline-height: 1px;
+$input-underline-height-fill: 2px;
+$input-active-underline-fill: $color-blue;
+$input-inactive-underline-fill: $color-blue-grey-600;
+
+$input-label-color: $color-blue-grey-350;
+$input-label-color-active: $color-blue-500;
+$input-label-font-size: 1em;
+$input-label-font-size-active: 0.7rem;
+$input-label-font-weight: 600;
+
+$input-hint-color: $color-blue-grey-350;
+$input-hint-font-size: 12px;
+$input-hint-margin-top: 2px;
+$input-hint-min-height: 1em;
+$input-hint-line-height: 14px;
+
+$input-min-width: 300px;
+$input-line-height: 1.4em;
+$input-margin-top: 16px;
+$input-margin-bottom: 8px;
+$input-padding-top: calc(#{$input-label-font-size-active} + 8px);
