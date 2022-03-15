@@ -19,7 +19,6 @@ $color-chip-bg: $color-blue-grey-600;
 $color-chip-text: #fff;
 
 .ngx-select {
-  position: relative;
   display: block;
   min-width: $input-min-width;
   line-height: $input-line-height;
@@ -27,7 +26,16 @@ $color-chip-text: #fff;
   margin-bottom: $input-margin-bottom;
   padding-top: $input-padding-top;
   padding-bottom: 0;
-  top: 3px; // alignment hack
+  // top: 3px; // alignment hack
+
+  &.marginless {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &.no-label {
+    padding-top: 0;
+  }
 
   &.autosize {
     .ngx-select-dropdown {
@@ -41,18 +49,6 @@ $color-chip-text: #fff;
       width: fit-content;
     }
   }
-
-  .ngx-select-flex-wrap {
-    flex-direction: row;
-    display: flex;
-
-    .ngx-select-flex-wrap-inner {
-      display: flex;
-      flex: 100%;
-      width: 100%;
-    }
-  }
-
   .ngx-select-wrap {
     position: relative;
     display: block;
@@ -65,6 +61,17 @@ $color-chip-text: #fff;
       margin-top: 2px;
       line-height: $input-hint-line-height;
       min-height: 1em;
+    }
+  }
+
+  .ngx-select-flex-wrap {
+    flex-direction: row;
+    display: flex;
+
+    .ngx-select-flex-wrap-inner {
+      display: flex;
+      flex: 100%;
+      width: 100%;
     }
   }
 
@@ -85,8 +92,6 @@ $color-chip-text: #fff;
       min-height: 1.75em;
       min-width: 60px;
       cursor: pointer;
-      display: inline-block;
-      vertical-align: bottom;
     }
 
     .ngx-select-input-underline {
@@ -111,7 +116,7 @@ $color-chip-text: #fff;
     }
 
     .ngx-select-input-list {
-      padding: 2px 40px 2px 0;
+      padding: 3px 40px 3px 0;
       color: $color-input-text;
       min-height: 1.4em;
       max-width: 100%;

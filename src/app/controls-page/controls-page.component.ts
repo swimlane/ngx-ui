@@ -28,7 +28,12 @@ export class ControlsPageComponent {
   alignments = ['top', 'baseline', 'middle', 'bottom'];
   alignment = 'baseline';
 
-  dateChanged(val) {
+  fontSizes = ['16px', '13px', '30px', '10px'];
+  fontSize = '16px';
+
+  showOutline = false;
+
+  dateChanged(val: any) {
     console.log('date changed!', val);
   }
 }

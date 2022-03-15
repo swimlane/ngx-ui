@@ -21,8 +21,8 @@ table.alignment-test {
     border: none;
   }
 
-  td > * {
-    border: 1px solid red;
+  &.show-outline td > * {
+    outline: 1px solid red;
   }
 }
 
