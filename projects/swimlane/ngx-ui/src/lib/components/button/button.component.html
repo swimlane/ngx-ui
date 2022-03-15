@@ -1,4 +1,4 @@
-<button [disabled]="disabled">
+<button [disabled]="disabled" [attr.type]="type">
   <span class="content"><ng-content></ng-content></span>
   <span class="state-icon">
     <span *ngIf="inProgress$ | async" class="ngx-icon ngx-loading icon-fx-spinning"></span>

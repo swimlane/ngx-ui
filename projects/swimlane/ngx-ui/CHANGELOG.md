@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Feature: `ngx-button` now accepts a `type` input
+- Breaking: `ngx-button` now defaults to `type="button"`
+
 ## 39.2.0 (2022-3-11)
 
 - Feature: Add small style variant to Dropzone component
