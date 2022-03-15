@@ -22,6 +22,12 @@ export class ControlsPageComponent {
   curDate2: any = new Date('10/10/2016');
   favoriteSeason = 'Spring';
 
+  appearances = ['legacy', 'fill'];
+  appearance = 'legacy';
+
+  alignments = ['top', 'baseline', 'middle', 'bottom'];
+  alignment = 'baseline';
+
   dateChanged(val) {
     console.log('date changed!', val);
   }
