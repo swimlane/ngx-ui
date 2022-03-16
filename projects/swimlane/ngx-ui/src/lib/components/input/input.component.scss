@@ -2,22 +2,7 @@
 @import 'forms/variables';
 
 .ngx-input {
-  display: block;
-  max-width: 100%;
-  margin-top: $input-margin-top;
-  margin-bottom: $input-margin-bottom;
-  line-height: $input-line-height;
-  padding-top: $input-padding-top;
-  padding-bottom: 0;
-
-  &.marginless {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  &.no-label {
-    padding-top: 0;
-  }
+  @include input-box;
 
   &.md {
     .ngx-input-box,
@@ -223,46 +208,21 @@
     }
 
     .ngx-input-label {
-      line-height: 1em;
-      pointer-events: none;
-      position: absolute;
-      font-size: $input-label-font-size;
-      font-weight: $input-label-font-weight;
-      transition: color 0.2s ease-in-out;
-      color: $input-label-color;
-      white-space: nowrap;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      @include input-label;
     }
 
     .ngx-input-underline {
-      width: 100%;
-      height: $input-underline-height;
-      background-color: $input-inactive-underline-fill;
-
-      .underline-fill {
-        background-color: $input-active-underline-fill;
-        width: 100%;
-        height: $input-underline-height-fill;
-        margin: 0 auto;
-      }
+      @include input-underline;
     }
 
     .ngx-input-hint {
-      font-size: $input-hint-font-size;
-      color: $input-hint-color;
-      margin-top: 2px;
-      min-height: 1em;
-      line-height: $input-hint-line-height;
-      transition: color 0.2s ease-in-out;
+      @include input-hint;
     }
   }
 
   &.fill {
     .ngx-input-flex-wrap {
-      background-color: $color-fill-input-bg;
-      mix-blend-mode: exclusion;
+      @include input-fill-background;
     }
 
     .ngx-input-label {
@@ -301,6 +261,15 @@
 
     ngx-input-suffix {
       padding-right: 10px;
+    }
+  }
+
+  &.active,
+  &.fill,
+  &.has-placeholder {
+    .ngx-input-wrap .ngx-input-label {
+      font-size: $input-label-font-size-active;
+      top: -1em;
     }
   }
 }

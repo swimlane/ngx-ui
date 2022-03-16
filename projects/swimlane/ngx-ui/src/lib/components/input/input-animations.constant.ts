@@ -1,24 +1,24 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 export const INPUT_ANIMATIONS = [
-  trigger('labelState', [
-    state(
-      'inside',
-      style({
-        'font-size': '1em',
-        top: '8px'
-      })
-    ),
-    state(
-      'outside',
-      style({
-        'font-size': '.7rem',
-        top: '-0.7rem'
-      })
-    ),
-    transition('inside => outside', animate('150ms ease-out')),
-    transition('outside => inside', animate('150ms ease-out'))
-  ]),
+  // trigger('labelState', [
+  //   state(
+  //     'inside',
+  //     style({
+  //       'font-size': '1em',
+  //       top: '0'
+  //     })
+  //   ),
+  //   state(
+  //     'outside',
+  //     style({
+  //       'font-size': '.7rem',
+  //       top: '-0.7rem'
+  //     })
+  //   ),
+  //   transition('inside => outside', animate('150ms ease-out')),
+  //   transition('outside => inside', animate('150ms ease-out'))
+  // ]),
   trigger('underlineState', [
     state(
       'collapsed',

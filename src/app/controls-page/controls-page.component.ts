@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./controls-page.component.scss']
 })
 export class ControlsPageComponent {
-  inputValue: any = 'Breach';
+  inputValue = 'Breach';
+  selectValue = ['Breach'];
+
   minValue = 0;
   maxValue = 100;
   prefix = '$USD';
@@ -28,7 +30,7 @@ export class ControlsPageComponent {
   alignments = ['top', 'baseline', 'middle', 'bottom'];
   alignment = 'baseline';
 
-  fontSizes = ['16px', '13px', '30px', '10px'];
+  fontSizes = ['16px', '13px', '21px', '10px'];
   fontSize = '16px';
 
   showOutline = false;
