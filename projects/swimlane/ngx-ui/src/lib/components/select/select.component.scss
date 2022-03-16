@@ -22,19 +22,6 @@ $color-chip-text: #fff;
   @include input-box;
   min-width: $input-min-width;
 
-  &.autosize {
-    .ngx-select-dropdown {
-      width: fit-content;
-      min-width: 190px;
-      max-width: 100%;
-    }
-
-    .ngx-select-flex-wrap {
-      max-width: 100%;
-      width: fit-content;
-    }
-  }
-
   .ngx-select-flex-wrap {
     flex-direction: row;
     display: flex;
@@ -109,6 +96,7 @@ $color-chip-text: #fff;
       white-space: nowrap;
       text-overflow: ellipsis;
       max-width: 100%;
+      padding-right: 25px; // room for caret
     }
 
     .ngx-select-input-box__controls {
@@ -564,15 +552,31 @@ $color-chip-text: #fff;
     }
   }
 
+  &.autosize {
+    .ngx-select-dropdown {
+      width: fit-content;
+      min-width: 190px;
+      max-width: 100%;
+    }
+
+    .ngx-select-flex-wrap {
+      max-width: 100%;
+      width: fit-content;
+    }
+
+    .ngx-select-input .ngx-select-label {
+      padding-right: 25px; // space for the caret
+    }
+  }
+
   &.active-selections,
   &.has-placeholder,
   &.active,
   &.fill {
-    .ngx-select-input {
-      .ngx-select-label {
-        font-size: $input-label-font-size-active;
-        top: -1em;
-      }
+    .ngx-select-input .ngx-select-label {
+      font-size: $input-label-font-size-active;
+      top: -1em;
+      padding-right: 0;
     }
   }
 }
