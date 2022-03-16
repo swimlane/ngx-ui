@@ -18,6 +18,27 @@
   </app-prism>
 </ngx-section>
 
+<ngx-section class="shadow" sectionTitle="Dropzone Small">
+  <ngx-dropzone
+    [uploader]="uploaderInstance"
+    [acceptedFileFormats]="acceptedFileFormats"
+    [multiple]="true"
+    size="small"
+    (afterAddingFile)="onAfterAddingFile($event)"
+  >
+  </ngx-dropzone>
+  <app-prism>
+    <![CDATA[
+    <ngx-dropzone
+      [uploader]="uploaderInstance"
+      [acceptedFileFormats]="acceptedFileFormats"
+      size="small"
+    >
+    </ngx-dropzone>
+    ]]>
+  </app-prism>
+</ngx-section>
+
 <ngx-section sectionTitle="Dropzone in dialog">
   <button type="button" class="btn" (click)="openDialog({ template: uploadTpl })">
     Open Upload Dialog

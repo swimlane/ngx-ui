@@ -1,7 +1,7 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { Shallow } from 'shallow-render';
-import { DropzoneComponent } from './dropzone.component';
+import { DropzoneComponent, DropzoneSize } from './dropzone.component';
 import { DropzoneModule } from './dropzone.module';
 import { Rendering } from 'shallow-render/dist/lib/models/rendering';
 import { FileUploader } from '@swimlane/ng2-file-upload';
@@ -29,10 +29,15 @@ describe('DropzoneComponent', () => {
 
     it('has correct class', () => {
       expect(rendering.find('ngx-file-button').nativeElement).toHaveClass('ngx-dropzone');
+      expect(rendering.find('ngx-file-button').nativeElement).toHaveClass('ngx-dropzone--large');
     });
 
     it('multiple defaults to true', () => {
       expect(rendering.instance.multiple).toBe(true);
+    });
+
+    it('size defaults to large', () => {
+      expect(rendering.instance.size).toBe(DropzoneSize.Large);
     });
 
     it('accepted file formats', () => {

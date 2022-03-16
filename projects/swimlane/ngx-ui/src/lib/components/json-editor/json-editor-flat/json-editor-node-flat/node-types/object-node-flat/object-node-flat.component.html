@@ -87,9 +87,14 @@
   <ng-container *ngIf="showKnownProperties">
     <ng-container *ngFor="let prop of schema.properties | keyvalue">
       <div class="node-container add-button add-prop-button" *ngIf="model[prop.key] === undefined">
-        <span class="json-editor--vertical-separators" *ngFor="let separator of indentationArray"></span>
-
-        <div class="node" [style.marginLeft]="level === 0 ? '20px' : '0'" (click)="addSchemaProperty(prop.key)">
+        <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
+        <div *ngIf="level === 0" [style.marginLeft]="'15px'" class="indentation"></div>
+        <div *ngIf="level !== 0 && !hideRoot" class="indentation"></div>
+        <div
+          class="node"
+          [style.marginLeft]="level === 0 ? '0px' : hideRoot ? '15px' : '1px'"
+          (click)="addSchemaProperty(prop.key)"
+        >
           <div class="left-options"></div>
 
           <div class="node-content">
@@ -126,7 +131,7 @@
     <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
     <div
       class="indented-content"
-      [style.marginLeft]="hideRoot && level === 0 ? '20px' : '0'"
+      [style.marginLeft]="hideRoot && level === 0 ? '15px' : '1'"
       [style.backgroundColor]="level === 0 ? '' : 'rgba(49,56,71,0.5)'"
     >
       <ngx-dropdown [showCaret]="true">

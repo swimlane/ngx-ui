@@ -3,7 +3,7 @@
 @import '../../../../json-editor.extensions.scss';
 
 .object-node-flat {
-  margin-top: 5px;
+  margin-top: 4px;
 
   .object-node-content {
     @extend %node-type;
@@ -14,10 +14,9 @@
   }
 
   .add-prop-button {
-    background-color: rgba(red($color-blue-grey-700), green($color-blue-grey-700), blue($color-blue-grey-700), 0.4);
-    margin-bottom: 5px;
+    margin-bottom: 4px;
     height: 96px;
-
+    margin-left: -15px;
     &:last-child {
       margin-bottom: 0;
     }
@@ -25,7 +24,6 @@
     .node {
       margin-bottom: 0;
       justify-content: unset !important;
-      background-color: rgba($color-blue-grey-700, 0.5);
       opacity: 0.2;
       cursor: pointer;
       outline: 2px dotted rgba(red($color-blue-grey-650), green($color-blue-grey-650), blue($color-blue-grey-650), 0.5);
