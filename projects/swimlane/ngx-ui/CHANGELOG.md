@@ -4,6 +4,8 @@
 
 - Feature: Create `ButtonGroupComponent`
 - Fix: Add `cursor: pointer` to `ngx-button` class
+- Feature: `ngx-button` now accepts a `type` input
+- Breaking: `ngx-button` now defaults to `type="button"`
 
 ## 39.2.0 (2022-3-11)
 
