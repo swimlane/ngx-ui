@@ -1,10 +1,8 @@
 @import 'colors/variables';
 @import '../../json-editor.extensions.scss';
-.code-editor {
-  .ngx-select .ngx-select-input .ngx-select-input-box__controls .ngx-select-caret {
-    display: none;
-  }
-  .ngx-select .ngx-select-input .ngx-select-input-box__controls .ngx-select-clear {
+.code-editor .ngx-select .ngx-select-input .ngx-select-input-box__controls {
+  .ngx-select-caret,
+  .ngx-select-clear {
     display: none;
   }
 }
