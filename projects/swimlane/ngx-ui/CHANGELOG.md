@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 40.0.0 (2022-3-23)
+
 - Feature: `ngx-button` now accepts a `type` input
 - Breaking: `ngx-button` now defaults to `type="button"`
 
