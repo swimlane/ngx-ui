@@ -77,10 +77,14 @@ $color-chip-text: #fff;
     }
 
     .ngx-select-input-list {
-      padding: 0 40px 0 0;
+      padding: 0;
       color: $color-input-text;
       min-height: 1.4em;
       max-width: 100%;
+    }
+
+    .ngx-select-input--has-controls .ngx-select-input-list {
+      padding: 0 40px 0 0;
     }
 
     .ngx-select-label {

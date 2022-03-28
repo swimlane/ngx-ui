@@ -59,10 +59,10 @@
     </li>
   </ul>
 </div>
-<div class="ngx-select-input-box__controls">
+<div class="ngx-select-input-box__controls" *ngIf="hasControls">
   <button
     type="button"
-    *ngIf="allowClear && !multiple && !tagging && selectedOptions?.length"
+    *ngIf="clearVisible"
     title="Clear Selections"
     aria-label="Clear Selections"
     class="ngx-select-clear"

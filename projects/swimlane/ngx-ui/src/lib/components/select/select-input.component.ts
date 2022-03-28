@@ -20,7 +20,10 @@ import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
   exportAs: 'ngxSelectInput',
   selector: 'ngx-select-input',
   templateUrl: './select-input.component.html',
-  host: { class: 'ngx-select-input' },
+  host: {
+    class: 'ngx-select-input',
+    '[class.ngx-select-input--has-controls]': 'hasControls'
+  },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectInputComponent implements AfterViewInit, OnChanges {
@@ -87,6 +90,14 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   get caretVisible(): boolean {
     if (this.disableDropdown) return false;
     return !(this.tagging && (!this.options || !this.options.length));
+  }
+
+  get clearVisible() {
+    return this.allowClear && !this.multiple && !this.tagging && this.selectedOptions?.length > 0;
+  }
+
+  get hasControls(): boolean {
+    return this.caretVisible && this.clearVisible;
   }
 
   get isNotTemplate() {
