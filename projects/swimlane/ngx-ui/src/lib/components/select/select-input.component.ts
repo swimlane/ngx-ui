@@ -124,13 +124,19 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
 
   // Events in the input box
   onInputKeyDown(event: KeyboardEvent): void {
-    if (event.code === KeyboardKeys.BACKSPACE) {
-      const value = (event.target as any).value;
-      if (value === '') {
-        event.stopPropagation();
+    event.stopPropagation();
+
+    switch (event.code) {
+      case KeyboardKeys.ENTER:
         event.preventDefault();
-        const newSelections = this.selected.slice(0, this.selected.length - 1);
-        this.selection.emit(newSelections);
+        break;
+      case KeyboardKeys.ESCAPE: {
+        const value = (event.target as any).value;
+        if (value === '') {
+          const newSelections = this.selected.slice(0, this.selected.length - 1);
+          this.selection.emit(newSelections);
+        }
+        break;
       }
     }
   }
