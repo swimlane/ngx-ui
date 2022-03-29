@@ -13,7 +13,7 @@ describe('Selects', () => {
   const shouldBeActive = () => cy.root().should('have.class', 'active');
 
   it('have no detectable a11y violations on load', () => {
-    cy.get('ngx-select-input').withinEach($el => {
+    cy.get('ngx-select:not(.autosize) ngx-select-input').withinEach($el => {
       cy.checkA11y($el, {
         rules: {
           'color-contrast': { enabled: false }, // NOTE: to be evaluated by UIUX
