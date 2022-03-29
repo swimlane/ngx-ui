@@ -97,7 +97,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   }
 
   get hasControls(): boolean {
-    return this.caretVisible && this.clearVisible;
+    return this.caretVisible || this.clearVisible;
   }
 
   get isNotTemplate() {
