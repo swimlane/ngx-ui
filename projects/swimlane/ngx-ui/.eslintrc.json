@@ -5,7 +5,7 @@
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "project": ["projects/swimlane/ngx-ui/tsconfig.lib.json", "projects/swimlane/ngx-ui/tsconfig.spec.json"],
+        "project": ["projects/swimlane/ngx-ui/tsconfig.eslint.json"],
         "createDefaultProgram": true
       },
       "rules": {

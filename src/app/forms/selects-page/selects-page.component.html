@@ -412,7 +412,6 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Form Controls">
-
   <h4>Enabled state can be changed using reactive forms</h4>
   <form [formGroup]="form">
     <ngx-select label="Attack Type" formControlName="formCtrl1" name="formCtrl1">
@@ -797,14 +796,22 @@
     <tr>
       <td>Tagging</td>
       <td><ngx-select label="Label" [ngModel]="['ddos', 'physical']" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true" (click)="onEvent('click', $event)">
-        <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-        <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-        <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select></td>
       <td><ngx-select label="Label" [ngModel]="['ddos', 'physical']" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true">
-        <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-        <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-        <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+      </ngx-select></td>
+    </tr>
+    <tr>
+      <td>Empty Tagging w/o Placeholder</td>
+      <td><ngx-select label="Label" [ngModel]="[]" hint="A brief bit of help text"  [tagging]="true" (click)="onEvent('click', $event)">
+      </ngx-select></td>
+      <td><ngx-select label="Label" [ngModel]="[]" appearance="fill" hint="A brief bit of help text"  [tagging]="true">
+      </ngx-select></td>
+    </tr>
+    <tr>
+      <td>Empty Tagging w/ Placeholder</td>
+      <td><ngx-select label="Label" [ngModel]="[]" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true" (click)="onEvent('click', $event)">
+      </ngx-select></td>
+      <td><ngx-select label="Label" [ngModel]="[]" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true">
       </ngx-select></td>
     </tr>
     <tr>

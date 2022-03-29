@@ -248,8 +248,14 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     return this.inputModel ? this.inputModel.touched : false;
   }
 
-  get labelState(): string {
-    return this.placeholder || this.focusedOrDirty || this.appearance === Appearance.Fill ? 'outside' : 'inside';
+  @HostBinding('class.has-placeholder')
+  get hasPlaceholder(): boolean {
+    return !!this.placeholder;
+  }
+
+  @HostBinding('class.active')
+  get labelState(): boolean {
+    return this.focusedOrDirty;
   }
 
   get underlineState(): string {
