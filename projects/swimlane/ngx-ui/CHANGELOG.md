@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Fix: Fix various alignment issues in selects
+- Fix: select box with tagging enabled triggers form submit on enter
+
 ## 40.0.0 (2022-3-23)
 
 - Feature: `ngx-button` now accepts a `type` input
