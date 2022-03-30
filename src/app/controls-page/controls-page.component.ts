@@ -38,4 +38,8 @@ export class ControlsPageComponent {
   dateChanged(val: any) {
     console.log('date changed!', val);
   }
+
+  onSubmit() {
+    alert('Form Submit');
+  }
 }

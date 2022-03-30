@@ -3,6 +3,8 @@
 ## HEAD (unreleased)
 
 - Fix: Display proper supports message with only one allowed file format on `Dropzone` component
+- Fix: Fix various alignment issues in selects
+- Fix: select box with tagging enabled triggers form submit on enter
 
 ## 40.0.0 (2022-3-23)
 
