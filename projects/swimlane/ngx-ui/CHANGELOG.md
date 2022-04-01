@@ -37,7 +37,7 @@
 
 - Enhancement (`ngx-date-time`):disable popup when input has focus
 - Fix: Hover states now work on hover
-- Fix: Success and failed states for primary gradient now show background @a11y
+- Fix (`ngx-button`): Success and failed states for primary gradient now show background @a11y
 - Fix: Removed border for success and failed states
 - Fix (`ngx-date-time`): input changes when focused causing partial user input to be lost
 - Fix: Escape special character on select filter regex
@@ -83,7 +83,7 @@
 ## 36.1.0 (2021-12-10)
 
 - Enhancement: allow exponential notation for number inputs
-- Enhancement: add aria labels for unlock and reveal password buttons @a11y
+- Enhancement (`ngx-input`): add aria labels for unlock and reveal password buttons @a11y
 
 ## 36.0.0 (2021-12-03)
 
@@ -92,7 +92,7 @@
 - Feature: Added focus rings to `ngx-tabs` buttons @a11y
 - Enhancement: Add vertical alignment for `ngx-tabs`
 - Enhancement (`ngx-tabs`): Added ARIA role attributes @a11y
-- Enhancement (`ngx-select`): `headerToggle` is now keyboard accessible @a11y
+- Enhancement (`ngx-section`): `headerToggle` is now keyboard accessible @a11y
 - Enhancement (`ngx-section`): Added ARIA controls and expanded attribute @a11y
 - Enhancement (`ngx-tabs`): Added 'light' appearance
 
@@ -123,7 +123,7 @@
 ## 35.7.0 (2021-10-07)
 
 - Feature (`Dropdown`): Add viewport intersection to support opening select dropdowns if hidden by viewport.
-- Feature: Added focus rings to buttons @a11y
+- Feature (`ngx-button`): Added focus rings to buttons @a11y
 - Feature: Add `passwordToggleEnabled` input to JSON editor.
 - Enhancement (`ngx-select`): Improve semantic HTML in `ngx-input` @a11y
 - Enhancement (`ngx-input`): Added `for` attribute to labels @a11y
