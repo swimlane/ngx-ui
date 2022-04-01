@@ -877,6 +877,13 @@
       </ngx-select></td>
     </tr>
     <tr>
+      <td>Tagging With Long Values</td>
+      <td><ngx-select label="Label" [ngModel]="['Breach DDOS Physical', aLongString, aVeryLongString]" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true">
+      </ngx-select></td>
+      <td><ngx-select label="Label" [ngModel]="['Breach DDOS Physical', aLongString, aVeryLongString]" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true">
+      </ngx-select></td>
+    </tr>
+    <tr>
       <td>Grouping</td>
       <td>
         <ngx-select [filterable]="false" [ngModel]="[]" label="Label" groupBy="type">
