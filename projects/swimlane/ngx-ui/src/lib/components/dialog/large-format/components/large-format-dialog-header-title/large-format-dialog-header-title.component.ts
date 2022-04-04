@@ -13,6 +13,6 @@ export class LargeFormatDialogHeaderTitleComponent {
   @Input() dialogTitle = '';
   @Input() dialogSubtitle?: string;
   @Input() imageTemplate: any;
-  @Input() dialogSubtitleTemplate: TemplateRef<any>;
+  @Input() dialogSubtitleTemplate: TemplateRef<unknown>;
   @HostBinding('class.ngx-large-format-dialog-header-title') hostClass = true;
 }
