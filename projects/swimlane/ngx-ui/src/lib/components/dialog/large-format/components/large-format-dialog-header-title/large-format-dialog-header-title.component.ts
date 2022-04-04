@@ -1,4 +1,4 @@
-import { ElementRef } from '@angular/core';
+import { ElementRef, TemplateRef } from '@angular/core';
 import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
@@ -13,5 +13,6 @@ export class LargeFormatDialogHeaderTitleComponent {
   @Input() dialogTitle = '';
   @Input() dialogSubtitle?: string;
   @Input() imageTemplate: any;
+  @Input() dialogSubtitleTemplate: TemplateRef<any>;
   @HostBinding('class.ngx-large-format-dialog-header-title') hostClass = true;
 }
