@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-select`): More overflow issues
+
 ## 40.1.0 (2022-3-30)
 
 - Fix: Display proper supports message with only one allowed file format on `Dropzone` component

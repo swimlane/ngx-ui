@@ -83,7 +83,7 @@ $color-chip-text: #fff;
       max-width: 100%;
     }
 
-    .ngx-select-input--has-controls .ngx-select-input-list {
+    &--has-controls .ngx-select-input-list {
       padding: 0 40px 0 0;
     }
 
@@ -166,10 +166,11 @@ $color-chip-text: #fff;
       padding: 0 0.5em;
       font-size: 1em;
       line-height: 1.4em;
+      max-width: 300px;
 
       .ngx-select-input-name {
         text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
-        max-width: 300px;
+        max-width: calc(100% - 10px);
         overflow: hidden;
         display: inline-block;
         white-space: nowrap;
