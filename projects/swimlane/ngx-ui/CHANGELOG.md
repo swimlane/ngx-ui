@@ -3,6 +3,7 @@
 ## HEAD (unreleased)
 
 - Fix (`ngx-select`): More overflow issues
+- Feature (`ngx-large-format-dialog-content`): Custom template support for subtitle
 
 ## 40.1.0 (2022-3-30)
 
