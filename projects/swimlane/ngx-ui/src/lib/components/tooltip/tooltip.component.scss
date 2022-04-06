@@ -12,9 +12,6 @@ $popover-caret-bg: $popover-bg;
 $popover-border: transparent;
 $popover-spacing: 10px;
 
-$pop-over-color: $color-blue-grey-200;
-$black-bg: #030304;
-
 .ngx-tooltip-content {
   position: fixed;
   z-index: 5000;
@@ -31,7 +28,6 @@ $black-bg: #030304;
   &.type-popover {
     background: $popover-bg;
     color: $popover-color;
-    border: 1px solid $popover-border;
     box-shadow: $shadow-3;
     font-size: 13px;
     padding: 10px;
