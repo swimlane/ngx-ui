@@ -9,8 +9,11 @@ $tooltip-spacing: 10px;
 $popover-bg: $color-blue-grey-200;
 $popover-color: $color-blue-grey-700;
 $popover-caret-bg: $popover-bg;
-$popover-border: transparet;
+$popover-border: transparent;
 $popover-spacing: 10px;
+
+$pop-over-color: $color-blue-grey-200;
+$black-bg: #030304;
 
 .ngx-tooltip-content {
   position: fixed;
@@ -18,6 +21,12 @@ $popover-spacing: 10px;
   display: block;
   font-weight: normal;
   opacity: 0;
+  max-width: 600px;
+  overflow-wrap: anywhere;
+
+  &:not(.has-host) {
+    position: absolute;
+  }
 
   &.type-popover {
     background: $popover-bg;
@@ -124,5 +133,8 @@ $popover-spacing: 10px;
 
   &.narrow {
     max-width: 300px;
+    text-align: center;
   }
+
+  // TODO: dark-outline
 }

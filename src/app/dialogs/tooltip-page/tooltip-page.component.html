@@ -1,6 +1,6 @@
 <h3 class="style-header">Tooltip</h3>
 
-<ngx-section class="shadow" [sectionTitle]="'Tooltip'">
+<ngx-section class="shadow" sectionTitle="Tooltip">
   <a href="#" [tooltipPlacement]="'top'" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="'Phishing Attack'">
     Top
   </a>
@@ -71,7 +71,7 @@
 
 </ngx-section>
 
-<ngx-section class="shadow" [sectionTitle]="'Popover'">
+<ngx-section class="shadow" sectionTitle="Popover">
   <ng-template #popoverTemplate let-model="model">
     <h3>Tool tip custom content defined inside a template</h3>
     <p>With context binding: {{tooltipModel.text}}</p>
@@ -147,4 +147,50 @@
   Top
 </a>]]>
   </app-prism>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Appearances">
+  <table class="appearance-table" style="max-width: 100%">
+    <tr>
+      <th width="10%"></th>
+      <th width="45%">Tooltip</th>
+      <th width="45%">Popup</th>
+    </tr>
+    <tr>
+      <td>Default</td>
+      <td>
+        <ngx-tooltip-content type="tooltip" placement="top" title="Phishing" [showCaret]="true"></ngx-tooltip-content>
+      </td>
+      <td>
+        <ngx-tooltip-content type="popover" placement="top" title="Phishing" [showCaret]="false"></ngx-tooltip-content>
+      </td>
+    </tr>
+    <tr>
+      <td>Long String</td>
+      <td>
+        <ngx-tooltip-content type="tooltip" placement="top" [title]="aLongString" [showCaret]="false"></ngx-tooltip-content>
+      </td>
+      <td>
+        <ngx-tooltip-content type="popover" placement="top" [title]="aLongString" [showCaret]="false"></ngx-tooltip-content>
+      </td>
+    </tr>
+    <tr>
+      <td>Long String <code>.narrow</code></td>
+      <td>
+        <ngx-tooltip-content cssClass="narrow" type="tooltip" placement="top" [title]="aLongString" [showCaret]="false"></ngx-tooltip-content>
+      </td>
+      <td>
+        <ngx-tooltip-content cssClass="narrow" type="popover" placement="top" [title]="aLongString" [showCaret]="false"></ngx-tooltip-content>
+      </td>
+    </tr>
+    <tr>
+      <td>Unbroken String</td>
+      <td>
+        <ngx-tooltip-content type="tooltip" placement="top" [title]="aVeryLongString" [showCaret]="false"></ngx-tooltip-content>
+      </td>
+      <td>
+        <ngx-tooltip-content type="popover" placement="top" [title]="aVeryLongString" [showCaret]="false"></ngx-tooltip-content>
+      </td>
+    </tr>
+  </table>
 </ngx-section>

@@ -2,10 +2,12 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-tooltip`): Ensure unbroken strings can wrap
+
 ## 40.2.0 (2022-4-5)
 
-- Fix (`ngx-select`): More overflow issues
 - Feature (`ngx-large-format-dialog-content`): Custom template support for subtitle
+- Fix (`ngx-select`): More overflow issues
 
 ## 40.1.0 (2022-3-30)
 
