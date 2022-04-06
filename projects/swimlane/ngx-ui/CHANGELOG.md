@@ -2,6 +2,7 @@
 
 ## HEAD (unreleased)
 
+- Feature (`ngx-tooltip`): Added overall max width of 600px
 - Fix (`ngx-tooltip`): Ensure unbroken strings can wrap
 
 ## 40.2.0 (2022-4-5)
@@ -17,7 +18,7 @@
 
 ## 40.0.0 (2022-3-23)
 
-- BREAKING: (`ngx-button`): now defaults to `type="button"` @a11y
+- BREAKING (`ngx-button`): now defaults to `type="button"` @a11y
 - Feature (`ngx-button`): now accepts a `type` input @a11y
 
 ## 39.2.0 (2022-3-11)
