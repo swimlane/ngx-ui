@@ -6,6 +6,7 @@
 
 - Fix (`ngx-select`): More overflow issues
 - Feature (`ngx-large-format-dialog-content`): Custom template support for subtitle
+- Bumped dependencies
 
 ## 40.1.0 (2022-3-30)
 
@@ -196,25 +197,51 @@
 
   ```html
   <ngx-large-format-dialog-content>
+
+
     <!-- before -->
+
+
     <ngx-stepper></ngx-stepper>
 
+
     <!-- after -->
+
+
     <ng-template largeFormatDialogStepper>
+
+
       <ngx-stepper></ngx-stepper>
+
+
     </ng-template>
+
+
   </ngx-large-format-dialog-content>
   ```
 
   ```html
   <ngx-large-format-dialog-content>
+
+
     <!-- before -->
+
+
     <ngx-tabs></ngx-tabs>
 
+
     <!-- after -->
+
+
     <ng-template largeFormatDialogTabs>
+
+
       <ngx-tabs></ngx-tabs>
+
+
     </ng-template>
+
+
   </ngx-large-format-dialog-content>
   ```
 
