@@ -4,6 +4,7 @@
 
 - Feature (`ngx-tooltip`): Added overall max width of 600px
 - Fix (`ngx-tooltip`): Ensure unbroken strings can wrap
+- Fix (`ngx-button`): Don't wrap text, show ellipsis when text is too long
 
 ## 40.2.0 (2022-4-5)
 
