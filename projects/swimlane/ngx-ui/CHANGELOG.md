@@ -199,7 +199,7 @@
   <ngx-large-format-dialog-content>
     <!-- before -->
     <ngx-stepper></ngx-stepper>
-    
+
     <!-- after -->
     <ng-template largeFormatDialogStepper>
       <ngx-stepper></ngx-stepper>
