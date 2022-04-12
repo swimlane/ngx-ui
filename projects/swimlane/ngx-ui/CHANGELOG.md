@@ -4,6 +4,10 @@
 
 - Feature (`ngx-tooltip`): Added overall max width of 600px
 - Fix (`ngx-tooltip`): Ensure unbroken strings can wrap
+- Fix (`ngx-large-format-dialog-content`): Display subtitle container only when there is subtitle
+
+## 40.3.0 (2022-4-12)
+
 - Fix (`ngx-button`): Don't wrap text, show ellipsis when text is too long
 - Chore: Bumped dependencies
 
