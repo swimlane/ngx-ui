@@ -2,13 +2,16 @@
 
 ## HEAD (unreleased)
 
+## 40.3.0 (2022-4-12)
+
 - Fix (`ngx-button`): Don't wrap text, show ellipsis when text is too long
+- Bumped dependencies
+- Fix (`ngx-large-format-dialog-content`): Display subtitle container only when there is subtitle
 
 ## 40.2.0 (2022-4-5)
 
 - Fix (`ngx-select`): More overflow issues
 - Feature (`ngx-large-format-dialog-content`): Custom template support for subtitle
-- Bumped dependencies
 
 ## 40.1.0 (2022-3-30)
 
