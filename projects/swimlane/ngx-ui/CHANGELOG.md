@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 40.4.0 (2022-4-12)
+
 - Feature (`ngx-tooltip`): Added overall max width of 600px
 - Fix (`ngx-tooltip`): Ensure unbroken strings can wrap
 - Fix (`ngx-large-format-dialog-content`): Display subtitle container only when there is subtitle
