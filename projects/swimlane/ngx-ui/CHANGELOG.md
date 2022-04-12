@@ -4,14 +4,16 @@
 
 ## 40.3.0 (2022-4-12)
 
+- Feature (`ngx-tooltip`): Added overall max width of 600px
+- Fix (`ngx-tooltip`): Ensure unbroken strings can wrap
 - Fix (`ngx-button`): Don't wrap text, show ellipsis when text is too long
-- Bumped dependencies
+- Chore: Bumped dependencies
 - Fix (`ngx-large-format-dialog-content`): Display subtitle container only when there is subtitle
 
 ## 40.2.0 (2022-4-5)
 
-- Fix (`ngx-select`): More overflow issues
 - Feature (`ngx-large-format-dialog-content`): Custom template support for subtitle
+- Fix (`ngx-select`): More overflow issues
 
 ## 40.1.0 (2022-3-30)
 
@@ -21,7 +23,7 @@
 
 ## 40.0.0 (2022-3-23)
 
-- BREAKING: (`ngx-button`): now defaults to `type="button"` @a11y
+- BREAKING (`ngx-button`): now defaults to `type="button"` @a11y
 - Feature (`ngx-button`): now accepts a `type` input @a11y
 
 ## 39.2.0 (2022-3-11)
