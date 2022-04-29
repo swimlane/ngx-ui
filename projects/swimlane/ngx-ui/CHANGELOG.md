@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-dropdown`): Improve styles and behavior of dividers
+
 ## 40.4.0 (2022-4-12)
 
 - Feature (`ngx-tooltip`): Added overall max width of 600px

@@ -165,46 +165,6 @@
 
 </ngx-section>
 
-<ngx-section class="shadow" sectionTitle="Dropdown Styles">
-
-  <ngx-dropdown [showCaret]="true">
-    <ngx-dropdown-toggle>
-      <button class="btn" type="button">
-        ngx-dropdown-light-outline
-      </button>
-    </ngx-dropdown-toggle>
-    <ngx-dropdown-menu class="ngx-dropdown-light-outline">
-      <h1 style="padding: 10px; text-align: center;">Hello!</h1>
-    </ngx-dropdown-menu>
-  </ngx-dropdown>
-
-  <ngx-dropdown [showCaret]="true">
-    <ngx-dropdown-toggle>
-      <button class="btn" type="button">
-        ngx-dropdown-dark-outline
-      </button>
-    </ngx-dropdown-toggle>
-    <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
-      <h1 style="padding: 10px; text-align: center;">Hello!</h1>
-    </ngx-dropdown-menu>
-  </ngx-dropdown>
-
-  <br />
-  <br />
-  <app-prism>
-<![CDATA[<ngx-dropdown [showCaret]="true">
-  <ngx-dropdown-toggle>
-    <button class="btn" type="button">
-      ngx-dropdown-dark-outline
-    </button>
-  </ngx-dropdown-toggle>
-  <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
-    <h1 style="padding: 10px;">Hello!</h1>
-  </ngx-dropdown-menu>
-</ngx-dropdown>]]>
-  </app-prism>
-</ngx-section>
-
 <ngx-section class="shadow" sectionTitle="Prevent close by click or document click">
   <ngx-dropdown #unclosableDropdown [closeOnClick]="false" [closeOnOutsideClick]="false">
     <ngx-dropdown-toggle>
@@ -305,3 +265,327 @@
     </ngx-dropdown-menu>
   </ngx-dropdown>
 </ngx-section>
+
+<ngx-section sectionTitle="Dropdown Appearances">
+  <table class="appearance-table">
+    <tr>
+      <th></th>
+      <th>Default</th>
+      <th>Light Outline</th>
+      <th>Dark Outline</th>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <ngx-dropdown [open]="true" [showCaret]="true">
+          <ngx-dropdown-menu>
+            <ul class="vertical-list">
+              <li>
+                <button type="button">Button 1</button>
+              </li>
+              <li>
+                <button type="button">Button 2</button>
+              </li>
+              <li>
+                <a href="/">Link 1</a>
+              </li>
+              <li>
+                <a href="/">Link 2</a>
+              </li>
+            </ul>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
+      </td>
+      <td>
+        <ngx-dropdown [open]="true" [showCaret]="true">
+        <ngx-dropdown-menu class="ngx-dropdown-light-outline">
+          <ul class="vertical-list">
+            <li>
+              <button type="button">Button 1</button>
+            </li>
+            <li>
+              <button type="button">Button 2</button>
+            </li>
+            <li>
+              <a href="/">Link 1</a>
+            </li>
+            <li>
+              <a href="/">Link 2</a>
+            </li>
+          </ul>
+        </ngx-dropdown-menu>
+      </ngx-dropdown></td>
+      <td>
+        <ngx-dropdown [open]="true" [showCaret]="true">
+          <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+            <ul class="vertical-list">
+              <li>
+                <button type="button">Button 1</button>
+              </li>
+              <li>
+                <button type="button">Button 2</button>
+              </li>
+              <li>
+                <a href="/">Link 1</a>
+              </li>
+              <li>
+                <a href="/">Link 2</a>
+              </li>
+            </ul>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
+      </td>
+    </tr>
+    <tr>
+      <td>Dividers</td>
+      <td>
+        <ngx-dropdown [open]="true" [showCaret]="true">
+          <ngx-dropdown-menu>
+            <ul class="vertical-list">
+              <li class="divider">
+                <hr />
+              </li>
+              <li>
+                <button type="button">Button 1</button>
+              </li>
+              <li>
+                <button type="button">Button 2</button>
+              </li>
+              <li class="divider">
+                <hr />
+              </li>
+              <li>
+                <a href="/">Link 1</a>
+              </li>
+              <li>
+                <a href="/">Link 2</a>
+              </li>
+            </ul>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
+      </td>
+      <td>
+        <ngx-dropdown [open]="true" [showCaret]="true">
+        <ngx-dropdown-menu class="ngx-dropdown-light-outline">
+          <ul class="vertical-list">
+            <li class="divider">
+              <hr />
+            </li>
+            <li>
+              <button type="button">Button 1</button>
+            </li>
+            <li>
+              <button type="button">Button 2</button>
+            </li>
+            <li class="divider">
+              <hr />
+            </li>
+            <li>
+              <a href="/">Link 1</a>
+            </li>
+            <li>
+              <a href="/">Link 2</a>
+            </li>
+          </ul>
+        </ngx-dropdown-menu>
+      </ngx-dropdown></td>
+      <td>
+        <ngx-dropdown [open]="true" [showCaret]="true">
+          <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+            <ul class="vertical-list">
+              <li class="divider">
+                <hr />
+              </li>
+              <li>
+                <button type="button">Button 1</button>
+              </li>
+              <li>
+                <button type="button">Button 2</button>
+              </li>
+              <li class="divider">
+                <hr />
+              </li>
+              <li>
+                <a href="/">Link 1</a>
+              </li>
+              <li>
+                <a href="/">Link 2</a>
+              </li>
+            </ul>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
+      </td>
+    </tr>
+    <tr>
+      <td>Divider Labels</td>
+      <td>
+        <ngx-dropdown [open]="true" [showCaret]="true">
+          <ngx-dropdown-menu>
+            <ul class="vertical-list">
+              <li class="divider-label">
+                BUTTONS
+              </li>
+              <li>
+                <button type="button">Button 1</button>
+              </li>
+              <li>
+                <button type="button">Button 2</button>
+              </li>
+              <li class="divider-label">
+                LINKS
+              </li>
+              <li>
+                <a href="/">Link 1</a>
+              </li>
+              <li>
+                <a href="/">Link 2</a>
+              </li>
+            </ul>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
+      </td>
+      <td>
+        <ngx-dropdown [open]="true" [showCaret]="true">
+        <ngx-dropdown-menu class="ngx-dropdown-light-outline">
+          <ul class="vertical-list">
+            <li class="divider-label">
+              BUTTONS
+            </li>
+            <li>
+              <button type="button">Button 1</button>
+            </li>
+            <li>
+              <button type="button">Button 2</button>
+            </li>
+            <li class="divider-label">
+              LINKS
+            </li>
+            <li>
+              <a href="/">Link 1</a>
+            </li>
+            <li>
+              <a href="/">Link 2</a>
+            </li>
+          </ul>
+        </ngx-dropdown-menu>
+      </ngx-dropdown></td>
+      <td>
+        <ngx-dropdown [open]="true" [showCaret]="true">
+          <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+            <ul class="vertical-list">
+              <li class="divider-label">
+                BUTTONS
+              </li>
+              <li>
+                <button type="button">Button 1</button>
+              </li>
+              <li>
+                <button type="button">Button 2</button>
+              </li>
+              <li class="divider-label">
+                LINKS
+              </li>
+              <li>
+                <a href="/">Link 1</a>
+              </li>
+              <li>
+                <a href="/">Link 2</a>
+              </li>
+            </ul>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
+      </td>
+    </tr>
+    <tr>
+      <td>Dividers and Dividers Labels</td>
+      <td>
+        <ngx-dropdown [open]="true" [showCaret]="true">
+          <ngx-dropdown-menu>
+            <ul class="vertical-list">
+              <li class="divider-label">
+                BUTTONS
+              </li>
+              <li>
+                <button type="button">Button 1</button>
+              </li>
+              <li>
+                <button type="button">Button 2</button>
+              </li>
+              <li class="divider">
+                <hr />
+              </li>
+              <li class="divider-label">
+                LINKS
+              </li>
+              <li>
+                <a href="/">Link 1</a>
+              </li>
+              <li>
+                <a href="/">Link 2</a>
+              </li>
+            </ul>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
+      </td>
+      <td>
+        <ngx-dropdown [open]="true" [showCaret]="true">
+        <ngx-dropdown-menu class="ngx-dropdown-light-outline">
+          <ul class="vertical-list">
+            <li class="divider-label">
+              BUTTONS
+            </li>
+            <li>
+              <button type="button">Button 1</button>
+            </li>
+            <li>
+              <button type="button">Button 2</button>
+            </li>
+            <li class="divider">
+              <hr />
+            </li>
+            <li class="divider-label">
+              LINKS
+            </li>
+            <li>
+              <a href="/">Link 1</a>
+            </li>
+            <li>
+              <a href="/">Link 2</a>
+            </li>
+          </ul>
+        </ngx-dropdown-menu>
+      </ngx-dropdown></td>
+      <td>
+        <ngx-dropdown [open]="true" [showCaret]="true">
+          <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+            <ul class="vertical-list">
+              <li class="divider-label">
+                BUTTONS
+              </li>
+              <li>
+                <button type="button">Button 1</button>
+              </li>
+              <li>
+                <button type="button">Button 2</button>
+              </li>
+              <li class="divider">
+                <hr />
+              </li>
+              <li class="divider-label">
+                LINKS
+              </li>
+              <li>
+                <a href="/">Link 1</a>
+              </li>
+              <li>
+                <a href="/">Link 2</a>
+              </li>
+            </ul>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
+      </td>
+    </tr>
+  </table>
+</ngx-section>
+
+
