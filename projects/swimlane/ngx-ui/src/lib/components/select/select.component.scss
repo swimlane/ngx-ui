@@ -135,6 +135,7 @@ $color-chip-text: #fff;
     // Specific style for links in tagging options
     > a {
       color: $color-blue-grey-050;
+
       > .ngx-icon {
         color: $color-blue-grey-200;
         font-size: 0.55em;
@@ -167,15 +168,16 @@ $color-chip-text: #fff;
       font-size: 1em;
       line-height: 1.4em;
       max-width: 300px;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
 
-      .ngx-select-input-name {
-        text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
-        max-width: calc(100% - 10px);
+      > * {
+        flex: 0 1 100%;
         overflow: hidden;
-        display: inline-block;
-        white-space: nowrap;
         text-overflow: ellipsis;
-        vertical-align: top;
+        white-space: nowrap;
+        text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
       }
 
       .ngx-select-clear {
@@ -183,11 +185,13 @@ $color-chip-text: #fff;
         cursor: pointer;
         font-size: 0.5em;
         color: $color-caret-bg;
-        line-height: 0.5em;
-        height: 0.5em;
+        line-height: 1em;
+        height: 1em;
         z-index: 500;
         top: -1px;
         text-shadow: none;
+        flex: 0 0 auto;
+
         &:hover {
           color: $color-blue-400;
         }
