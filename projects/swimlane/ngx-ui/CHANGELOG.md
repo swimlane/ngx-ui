@@ -3,6 +3,7 @@
 ## HEAD (unreleased)
 
 - Enhancement (`ngx-dropdown`): Improve styles and behavior of dividers
+- Fix (`ngx-select`): Tagging option width is not correct
 
 ## 40.4.0 (2022-4-12)
 
