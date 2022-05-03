@@ -121,4 +121,12 @@ describe('DropdownComponent', () => {
       expect(component.dropdown.open).toBe(false);
     }));
   });
+
+  describe('closeDropdownWhenCloseMethodIsCalled', () => {
+    it('should close the dropdown when the close method is called', () => {
+      component.dropdown.open = true;
+      component.dropdown.close();
+      expect(component.dropdown.open).toBe(false);
+    });
+  });
 });
