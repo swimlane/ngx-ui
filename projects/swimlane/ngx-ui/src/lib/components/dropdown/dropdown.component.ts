@@ -176,7 +176,14 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     }
   }
 
-  private close() {
+  /**
+   * @function close
+   *
+   * Programmatically closes the dropdown menu. This method provides the same behavior as clicking off of the dropdown menu.
+   *
+   * @returns void
+   */
+  public close(): void {
     if (this.dropdownMenu) {
       this.renderer.removeClass(this.dropdownMenu.element, 'ngx-dropdown-menu--upwards');
     }
