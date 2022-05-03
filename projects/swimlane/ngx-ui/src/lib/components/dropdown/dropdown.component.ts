@@ -183,7 +183,7 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
    *
    * @returns void
    */
-  public close(): void {
+  close(): void {
     if (this.dropdownMenu) {
       this.renderer.removeClass(this.dropdownMenu.element, 'ngx-dropdown-menu--upwards');
     }
