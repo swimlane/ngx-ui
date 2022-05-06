@@ -3,6 +3,7 @@
 ## HEAD (unreleased)
 
 - Fix (`ngx-select`): Tagging option width is not correct
+- Enhancement: Added webhook icons
 
 ## 40.4.0 (2022-4-12)
 
