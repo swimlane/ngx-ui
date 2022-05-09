@@ -29,7 +29,7 @@
     [schema]="context.schema"
     [formats]="context.formats"
     [rootItem]="true"
-    (updateSchema)="updateSchema($event)"
+    (updateProperty)="context.apply($event)"
   >
   </ngx-property-config>
 </ng-template>
