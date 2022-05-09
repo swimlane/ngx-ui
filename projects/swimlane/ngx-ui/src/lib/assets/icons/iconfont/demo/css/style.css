@@ -14,64 +14,27 @@ Generated using nucleoapp.com
 
 /* --------------------------------
 
-Reset
+Primary style
 
 -------------------------------- */
-
 *, *::after, *::before {
-  box-sizing: inherit;
-}
-
-* {
-  font: inherit;
-}
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video, hr {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
-
-html {
   box-sizing: border-box;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
-  background-color: white;
-  font-family: system-ui, sans-serif;
-  color: hsl(240, 4%, 20%);
-  padding: 1em;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section, main, form legend {
-  display: block;
-}
-
-ol, ul {
-  list-style: none;
-}
-
-button, input, textarea, select {
-  margin: 0;
+  font-size: 1.6rem;
+  font-family: sans-serif;
+  color: #333333;
+  background: white;
 }
 
 a {
-  color: hsl(230, 93%, 66%);
+  color: #608CEE;
+  text-decoration: none;
 }
 
 /* --------------------------------
@@ -81,29 +44,31 @@ Main components
 -------------------------------- */
 header {
   text-align: center;
-  margin: 3em auto;
+  padding: 80px 0 48px;
 }
 
 header h1 {
-  font-size: 2.6rem;
-  font-weight: 600;
+  font-size: 2.8rem;
 }
 
 header p {
-  font-size: 1rem;
+  font-size: 1.4rem;
   margin-top: 1em;
-  color: hsla(0, 0%, 0%, 0.5);
+}
+
+header a:hover {
+  text-decoration: underline;
 }
 
 ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 ul li {
-  border-radius: .4em;
-  transition: background-color .2s;
+  border-radius: .25em;
+  transition: background 0.2s;
   user-select: none;
   overflow: hidden;
   text-align: center;
@@ -111,37 +76,40 @@ ul li {
 }
 
 ul li:hover {
-  background: hsla(0, 0%, 0%, 0.05);
+  background: #f8f8f8;
 }
 
 ul p, ul em, ul input {
   display: block;
-  font-size: 0.75rem;
-  color: hsla(0, 0%, 0%, 0.5);
+  font-size: 1.1rem;
+  color: rgba(0,0,0,0.6);
+  -webkit-user-select: auto;
+  -moz-user-select: auto;
+  -ms-user-select: auto;
   user-select: auto;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
-  max-width: 6rem;
+  max-width: 11rem;
 }
 
 ul p {
-  padding: 8px 0 4px;
+  padding: 10px 0;
 }
 
 ul p::selection, ul em::selection {
-  background: hsl(230, 93%, 66%);
+  background: #608CEE;
   color: #fff;
 }
 
 ul p::-moz-selection, ul em::-moz-selection {
-  background: hsl(230, 93%, 66%);
+  background: #608CEE;
   color: #fff;
 }
 
 ul em {
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 ul em::before {
@@ -157,7 +125,6 @@ ul input {
   border: none;
   box-shadow: none;
   outline: none;
-  font-family: auto;
 }
 
 /* --------------------------------
@@ -165,7 +132,7 @@ ul input {
 icons
 
 -------------------------------- */
-.ngx- {
+.ngx-icon {
   display: inline-block;
   font: normal normal normal 32px/1 'ngx-icon';
   speak: none;
@@ -179,1647 +146,1635 @@ icons
   font icons
 -------------------------*/
 
-.ngx-icon-3d-rotate::before {
-  content: "\ea01";
+.ngx-3d-rotate::before {
+    content: "\ea01";
 }
 
-.ngx-icon-action-close::before {
-  content: "\ea02";
+.ngx-action-close::before {
+    content: "\ea02";
 }
 
-.ngx-icon-action-maximize-inverse::before {
-  content: "\ea03";
+.ngx-action-maximize-inverse::before {
+    content: "\ea03";
 }
 
-.ngx-icon-action-maximize::before {
-  content: "\ea04";
+.ngx-action-maximize::before {
+    content: "\ea04";
 }
 
-.ngx-icon-action-minimize::before {
-  content: "\ea05";
+.ngx-action-minimize::before {
+    content: "\ea05";
 }
 
-.ngx-icon-action-outline-small::before {
-  content: "\ea06";
+.ngx-action-outline-small::before {
+    content: "\ea06";
 }
 
-.ngx-icon-action-outline::before {
-  content: "\ea07";
+.ngx-action-outline::before {
+    content: "\ea07";
 }
 
-.ngx-icon-action::before {
-  content: "\ea08";
+.ngx-action::before {
+    content: "\ea08";
 }
 
-.ngx-icon-add-circle-filled::before {
-  content: "\ea09";
+.ngx-add-circle-filled::before {
+    content: "\ea09";
 }
 
-.ngx-icon-add-circle-medium::before {
-  content: "\ea0a";
+.ngx-add-circle-medium::before {
+    content: "\ea0a";
 }
 
-.ngx-icon-add-circle-thin::before {
-  content: "\ea0b";
+.ngx-add-circle-thin::before {
+    content: "\ea0b";
 }
 
-.ngx-icon-add-circle::before {
-  content: "\ea0c";
+.ngx-add-circle::before {
+    content: "\ea0c";
 }
 
-.ngx-icon-add-edge::before {
-  content: "\ea0d";
+.ngx-add-edge::before {
+    content: "\ea0d";
 }
 
-.ngx-icon-add-new::before {
-  content: "\ea0e";
+.ngx-add-new::before {
+    content: "\ea0e";
 }
 
-.ngx-icon-add-node::before {
-  content: "\ea0f";
+.ngx-add-node::before {
+    content: "\ea0f";
 }
 
-.ngx-icon-advanced-pie::before {
-  content: "\ea10";
+.ngx-advanced-pie::before {
+    content: "\ea10";
 }
 
-.ngx-icon-alert::before {
-  content: "\ea11";
+.ngx-alert::before {
+    content: "\ea11";
 }
 
-.ngx-icon-app-store::before {
-  content: "\ea12";
+.ngx-app-store::before {
+    content: "\ea12";
 }
 
-.ngx-icon-app-workspaces::before {
-  content: "\ea13";
+.ngx-app-workspaces::before {
+    content: "\ea13";
 }
 
-.ngx-icon-applet::before {
-  content: "\ea14";
+.ngx-applet::before {
+    content: "\ea14";
 }
 
-.ngx-icon-applets::before {
-  content: "\ea15";
+.ngx-applets::before {
+    content: "\ea15";
 }
 
-.ngx-icon-application::before {
-  content: "\ea16";
+.ngx-application::before {
+    content: "\ea16";
 }
 
-.ngx-icon-apps::before {
-  content: "\ea17";
+.ngx-apps::before {
+    content: "\ea17";
 }
 
-.ngx-icon-area-chart::before {
-  content: "\ea18";
+.ngx-area-chart::before {
+    content: "\ea18";
 }
 
-.ngx-icon-arrow-bold-circle-left::before {
-  content: "\ea19";
+.ngx-arrow-bold-circle-left::before {
+    content: "\ea19";
 }
 
-.ngx-icon-arrow-bold-circle-right::before {
-  content: "\ea1a";
+.ngx-arrow-bold-circle-right::before {
+    content: "\ea1a";
 }
 
-.ngx-icon-arrow-bold-down::before {
-  content: "\ea1b";
+.ngx-arrow-bold-down::before {
+    content: "\ea1b";
 }
 
-.ngx-icon-arrow-bold-left::before {
-  content: "\ea1c";
+.ngx-arrow-bold-left::before {
+    content: "\ea1c";
 }
 
-.ngx-icon-arrow-bold-right::before {
-  content: "\ea1e";
+.ngx-arrow-bold-right::before {
+    content: "\ea1d";
 }
 
-.ngx-icon-arrow-bold-up::before {
-  content: "\ea1d";
+.ngx-arrow-bold-up::before {
+    content: "\ea1e";
 }
 
-.ngx-icon-arrow-down::before {
-  content: "\ea23";
+.ngx-arrow-down::before {
+    content: "\ea1f";
 }
 
-.ngx-icon-arrow-input::before {
-  content: "\ea28";
+.ngx-arrow-input::before {
+    content: "\ea20";
 }
 
-.ngx-icon-arrow-left::before {
-  content: "\ea27";
+.ngx-arrow-left::before {
+    content: "\ea21";
 }
 
-.ngx-icon-arrow-output::before {
-  content: "\ea1f";
+.ngx-arrow-output::before {
+    content: "\ea22";
 }
 
-.ngx-icon-arrow-right-down-medium::before {
-  content: "\ea20";
+.ngx-arrow-right-down-medium::before {
+    content: "\ea23";
 }
 
-.ngx-icon-arrow-right-medium::before {
-  content: "\ea21";
+.ngx-arrow-right-medium::before {
+    content: "\ea24";
 }
 
-.ngx-icon-arrow-right::before {
-  content: "\ea22";
+.ngx-arrow-right::before {
+    content: "\ea25";
 }
 
-.ngx-icon-arrow-tail-left::before {
-  content: "\ea24";
+.ngx-arrow-tail-left::before {
+    content: "\ea26";
 }
 
-.ngx-icon-arrow-tail-right::before {
-  content: "\ea25";
+.ngx-arrow-tail-right::before {
+    content: "\ea27";
 }
 
-.ngx-icon-arrow-tail-solid-left::before {
-  content: "\ea26";
+.ngx-arrow-tail-solid-left::before {
+    content: "\ea28";
 }
 
-.ngx-icon-arrow-tail-solid-right::before {
-  content: "\ea29";
+.ngx-arrow-tail-solid-right::before {
+    content: "\ea29";
 }
 
-.ngx-icon-arrow-tail-subright::before {
-  content: "\ea2a";
+.ngx-arrow-tail-subright::before {
+    content: "\ea2a";
 }
 
-.ngx-icon-arrow-up::before {
-  content: "\ea2b";
+.ngx-arrow-up::before {
+    content: "\ea2b";
 }
 
-.ngx-icon-asset-outline-small::before {
-  content: "\ea2c";
+.ngx-asset-outline-small::before {
+    content: "\ea2c";
 }
 
-.ngx-icon-asset-outline::before {
-  content: "\ea2d";
+.ngx-asset-outline::before {
+    content: "\ea2d";
 }
 
-.ngx-icon-assets::before {
-  content: "\ea2e";
+.ngx-assets::before {
+    content: "\ea2e";
 }
 
-.ngx-icon-attachment::before {
-  content: "\ea2f";
+.ngx-attachment::before {
+    content: "\ea2f";
 }
 
-.ngx-icon-automation-alternate::before {
-  content: "\ea30";
+.ngx-automation-alternate::before {
+    content: "\ea30";
 }
 
-.ngx-icon-automation::before {
-  content: "\ea31";
+.ngx-automation::before {
+    content: "\ea31";
 }
 
-.ngx-icon-back-arrow-filled::before {
-  content: "\ea32";
+.ngx-back-arrow-filled::before {
+    content: "\ea32";
 }
 
-.ngx-icon-back-arrow::before {
-  content: "\ea33";
+.ngx-back-arrow::before {
+    content: "\ea33";
 }
 
-.ngx-icon-bars::before {
-  content: "\ea34";
+.ngx-bars::before {
+    content: "\ea34";
 }
 
-.ngx-icon-bell-alarm::before {
-  content: "\ea35";
+.ngx-bell-alarm::before {
+    content: "\ea35";
 }
 
-.ngx-icon-bell::before {
-  content: "\ea36";
+.ngx-bell::before {
+    content: "\ea36";
 }
 
-.ngx-icon-bold::before {
-  content: "\ea37";
+.ngx-bold::before {
+    content: "\ea37";
 }
 
-.ngx-icon-bolt::before {
-  content: "\ea38";
+.ngx-bolt::before {
+    content: "\ea38";
 }
 
-.ngx-icon-branch-node-vert::before {
-  content: "\ea39";
+.ngx-branch-node-vert::before {
+    content: "\ea39";
 }
 
-.ngx-icon-branch-node::before {
-  content: "\ea3a";
+.ngx-branch-node::before {
+    content: "\ea3a";
 }
 
-.ngx-icon-broom::before {
-  content: "\ea3b";
+.ngx-broom::before {
+    content: "\ea3b";
 }
 
-.ngx-icon-browser-size::before {
-  content: "\ea3c";
+.ngx-browser-size::before {
+    content: "\ea3c";
 }
 
-.ngx-icon-bug::before {
-  content: "\ea3d";
+.ngx-bug::before {
+    content: "\ea3d";
 }
 
-.ngx-icon-builder-outline::before {
-  content: "\ea3e";
+.ngx-builder-outline::before {
+    content: "\ea3e";
 }
 
-.ngx-icon-builder::before {
-  content: "\ea3f";
+.ngx-builder::before {
+    content: "\ea3f";
 }
 
-.ngx-icon-button-push-outline-large::before {
-  content: "\ea40";
+.ngx-button-push-outline-large::before {
+    content: "\ea40";
 }
 
-.ngx-icon-button-push-outline-small::before {
-  content: "\ea41";
+.ngx-button-push-outline-small::before {
+    content: "\ea41";
 }
 
-.ngx-icon-button-push-outline::before {
-  content: "\ea42";
+.ngx-button-push-outline::before {
+    content: "\ea42";
 }
 
-.ngx-icon-calendar-clock::before {
-  content: "\ea43";
+.ngx-calendar-clock::before {
+    content: "\ea43";
 }
 
-.ngx-icon-calendar::before {
-  content: "\ea44";
+.ngx-calendar::before {
+    content: "\ea44";
 }
 
-.ngx-icon-calender-clock::before {
-  content: "\ea45";
+.ngx-calender-clock::before {
+    content: "\ea45";
 }
 
-.ngx-icon-cards::before {
-  content: "\ea46";
+.ngx-cards::before {
+    content: "\ea46";
 }
 
-.ngx-icon-center-align::before {
-  content: "\ea47";
+.ngx-center-align::before {
+    content: "\ea47";
 }
 
-.ngx-icon-chart-area::before {
-  content: "\ea48";
+.ngx-chart-area::before {
+    content: "\ea48";
 }
 
-.ngx-icon-chart-bar-bar::before {
-  content: "\ea49";
+.ngx-chart-bar-bar::before {
+    content: "\ea49";
 }
 
-.ngx-icon-chart-bubble::before {
-  content: "\ea4a";
+.ngx-chart-bubble::before {
+    content: "\ea4a";
 }
 
-.ngx-icon-chart-donut::before {
-  content: "\ea4b";
+.ngx-chart-donut::before {
+    content: "\ea4b";
 }
 
-.ngx-icon-chart-full-stacked-area::before {
-  content: "\ea4c";
+.ngx-chart-full-stacked-area::before {
+    content: "\ea4c";
 }
 
-.ngx-icon-chart-heat::before {
-  content: "\ea4d";
+.ngx-chart-heat::before {
+    content: "\ea4d";
 }
 
-.ngx-icon-chart-horz-full-stack-bar::before {
-  content: "\ea4e";
+.ngx-chart-horz-full-stack-bar::before {
+    content: "\ea4e";
 }
 
-.ngx-icon-chart-number-card::before {
-  content: "\ea4f";
+.ngx-chart-number-card::before {
+    content: "\ea4f";
 }
 
-.ngx-icon-chart-pie-grid::before {
-  content: "\ea50";
+.ngx-chart-pie-grid::before {
+    content: "\ea50";
 }
 
-.ngx-icon-chart-pie::before {
-  content: "\ea51";
+.ngx-chart-pie::before {
+    content: "\ea51";
 }
 
-.ngx-icon-chart-scatter::before {
-  content: "\ea52";
+.ngx-chart-scatter::before {
+    content: "\ea52";
 }
 
-.ngx-icon-chart-spider::before {
-  content: "\ea53";
+.ngx-chart-spider::before {
+    content: "\ea53";
 }
 
-.ngx-icon-chart-stacked-area::before {
-  content: "\ea54";
+.ngx-chart-stacked-area::before {
+    content: "\ea54";
 }
 
-.ngx-icon-chart-vert-bar::before {
-  content: "\ea55";
+.ngx-chart-vert-bar::before {
+    content: "\ea55";
 }
 
-.ngx-icon-chart-vert-bar2::before {
-  content: "\ea56";
+.ngx-chart-vert-bar2::before {
+    content: "\ea56";
 }
 
-.ngx-icon-chart-vert-stacked-bar::before {
-  content: "\ea57";
+.ngx-chart-vert-stacked-bar::before {
+    content: "\ea57";
 }
 
-.ngx-icon-check-filled-sm::before {
-  content: "\ea58";
+.ngx-check-filled-sm::before {
+    content: "\ea58";
 }
 
-.ngx-icon-check-filled::before {
-  content: "\ea59";
+.ngx-check-filled::before {
+    content: "\ea59";
 }
 
-.ngx-icon-check-square-filled::before {
-  content: "\ea5a";
+.ngx-check-square-filled::before {
+    content: "\ea5a";
 }
 
-.ngx-icon-check::before {
-  content: "\ea5b";
+.ngx-check::before {
+    content: "\ea5b";
 }
 
-.ngx-icon-checklist::before {
-  content: "\ea5c";
+.ngx-checklist::before {
+    content: "\ea5c";
 }
 
-.ngx-icon-chevron-bold-down::before {
-  content: "\ea5e";
+.ngx-chevron-bold-down::before {
+    content: "\ea5d";
 }
 
-.ngx-icon-chevron-bold-left::before {
-  content: "\ea5d";
+.ngx-chevron-bold-left::before {
+    content: "\ea5e";
 }
 
-.ngx-icon-chevron-bold-right::before {
-  content: "\ea5f";
+.ngx-chevron-bold-right::before {
+    content: "\ea5f";
 }
 
-.ngx-icon-chevron-bold-up::before {
-  content: "\ea60";
+.ngx-chevron-bold-up::before {
+    content: "\ea60";
 }
 
-.ngx-icon-circle-filled::before {
-  content: "\ea61";
+.ngx-circle-filled::before {
+    content: "\ea61";
 }
 
-.ngx-icon-circle::before {
-  content: "\ea62";
+.ngx-circle::before {
+    content: "\ea62";
 }
 
-.ngx-icon-circles::before {
-  content: "\ea63";
+.ngx-circles::before {
+    content: "\ea63";
 }
 
-.ngx-icon-circuit-board::before {
-  content: "\ea64";
+.ngx-circuit-board::before {
+    content: "\ea64";
 }
 
-.ngx-icon-clipboard::before {
-  content: "\ea65";
+.ngx-clipboard::before {
+    content: "\ea65";
 }
 
-.ngx-icon-clock::before {
-  content: "\ea66";
+.ngx-clock::before {
+    content: "\ea66";
 }
 
-.ngx-icon-cloud-download::before {
-  content: "\ea67";
+.ngx-cloud-download::before {
+    content: "\ea67";
 }
 
-.ngx-icon-cloud-upload::before {
-  content: "\ea68";
+.ngx-cloud-upload::before {
+    content: "\ea68";
 }
 
-.ngx-icon-code::before {
-  content: "\ea6a";
+.ngx-code::before {
+    content: "\ea69";
 }
 
-.ngx-icon-cog::before {
-  content: "\ea69";
+.ngx-cog::before {
+    content: "\ea6a";
 }
 
-.ngx-icon-collapse::before {
-  content: "\ea6b";
+.ngx-collapse::before {
+    content: "\ea6b";
 }
 
-.ngx-icon-commandline::before {
-  content: "\ea6c";
+.ngx-commandline::before {
+    content: "\ea6c";
 }
 
-.ngx-icon-comments::before {
-  content: "\ea6d";
+.ngx-comments::before {
+    content: "\ea6d";
 }
 
-.ngx-icon-condition::before {
-  content: "\ea6e";
+.ngx-condition::before {
+    content: "\ea6e";
 }
 
-.ngx-icon-copy-app::before {
-  content: "\ea6f";
+.ngx-copy-app::before {
+    content: "\ea6f";
 }
 
-.ngx-icon-copy-filled::before {
-  content: "\ea70";
+.ngx-copy-filled::before {
+    content: "\ea70";
 }
 
-.ngx-icon-copy::before {
-  content: "\ea71";
+.ngx-copy::before {
+    content: "\ea71";
 }
 
-.ngx-icon-credit-card::before {
-  content: "\ea72";
+.ngx-credit-card::before {
+    content: "\ea72";
 }
 
-.ngx-icon-dashboard-outline::before {
-  content: "\ea74";
+.ngx-dashboard-outline::before {
+    content: "\ea73";
 }
 
-.ngx-icon-dashboard::before {
-  content: "\ea73";
+.ngx-dashboard::before {
+    content: "\ea74";
 }
 
-.ngx-icon-database::before {
-  content: "\ea75";
+.ngx-database::before {
+    content: "\ea75";
 }
 
-.ngx-icon-devil::before {
-  content: "\ea76";
+.ngx-devil::before {
+    content: "\ea76";
 }
 
-.ngx-icon-disable::before {
-  content: "\ea77";
+.ngx-disable::before {
+    content: "\ea77";
 }
 
-.ngx-icon-document::before {
-  content: "\ea78";
+.ngx-document::before {
+    content: "\ea78";
 }
 
-.ngx-icon-documentation::before {
-  content: "\ea79";
+.ngx-documentation::before {
+    content: "\ea79";
 }
 
-.ngx-icon-domain::before {
-  content: "\ea7a";
+.ngx-domain::before {
+    content: "\ea7a";
 }
 
-.ngx-icon-dots-horz::before {
-  content: "\ea7b";
+.ngx-dots-horz::before {
+    content: "\ea7b";
 }
 
-.ngx-icon-dots-vert-round::before {
-  content: "\ea7c";
+.ngx-dots-vert-round::before {
+    content: "\ea7c";
 }
 
-.ngx-icon-dots-vert::before {
-  content: "\ea7d";
+.ngx-dots-vert::before {
+    content: "\ea7d";
 }
 
-.ngx-icon-double-down::before {
-  content: "\ea7e";
+.ngx-double-down::before {
+    content: "\ea7e";
 }
 
-.ngx-icon-double-left::before {
-  content: "\ea7f";
+.ngx-double-left::before {
+    content: "\ea7f";
 }
 
-.ngx-icon-double-right::before {
-  content: "\ea80";
+.ngx-double-right::before {
+    content: "\ea80";
 }
 
-.ngx-icon-double-up::before {
-  content: "\ea81";
+.ngx-double-up::before {
+    content: "\ea81";
 }
 
-.ngx-icon-downgrade-horizontal::before {
-  content: "\ea82";
+.ngx-downgrade-horizontal::before {
+    content: "\ea82";
 }
 
-.ngx-icon-downgrade::before {
-  content: "\ea83";
+.ngx-downgrade::before {
+    content: "\ea83";
 }
 
-.ngx-icon-download-outline-large::before {
-  content: "\ea84";
+.ngx-download-outline-large::before {
+    content: "\ea84";
 }
 
-.ngx-icon-download-outline-small::before {
-  content: "\ea85";
+.ngx-download-outline-small::before {
+    content: "\ea85";
 }
 
-.ngx-icon-download-outline::before {
-  content: "\ea86";
+.ngx-download-outline::before {
+    content: "\ea86";
 }
 
-.ngx-icon-drag::before {
-  content: "\ea87";
+.ngx-drag::before {
+    content: "\ea87";
 }
 
-.ngx-icon-edit-app::before {
-  content: "\ea88";
+.ngx-edit-app::before {
+    content: "\ea88";
 }
 
-.ngx-icon-edit-outline-large::before {
-  content: "\ea89";
+.ngx-edit-outline-large::before {
+    content: "\ea89";
 }
 
-.ngx-icon-edit-outline-small::before {
-  content: "\ea8a";
+.ngx-edit-outline-small::before {
+    content: "\ea8a";
 }
 
-.ngx-icon-edit-outline::before {
-  content: "\ea8b";
+.ngx-edit-outline::before {
+    content: "\ea8b";
 }
 
-.ngx-icon-edit::before {
-  content: "\ea8c";
+.ngx-edit::before {
+    content: "\ea8c";
 }
 
-.ngx-icon-email::before {
-  content: "\ea94";
+.ngx-email::before {
+    content: "\ea8d";
 }
 
-.ngx-icon-enrich-small::before {
-  content: "\ea95";
+.ngx-enrich-small::before {
+    content: "\ea8e";
 }
 
-.ngx-icon-escalate::before {
-  content: "\ea8e";
+.ngx-escalate::before {
+    content: "\ea8f";
 }
 
-.ngx-icon-events-outline-small::before {
-  content: "\ea8d";
+.ngx-events-outline-small::before {
+    content: "\ea90";
 }
 
-.ngx-icon-events-outline::before {
-  content: "\ea8f";
+.ngx-events-outline::before {
+    content: "\ea91";
 }
 
-.ngx-icon-expand::before {
-  content: "\ea90";
+.ngx-expand::before {
+    content: "\ea92";
 }
 
-.ngx-icon-explore::before {
-  content: "\ea91";
+.ngx-explore::before {
+    content: "\ea93";
 }
 
-.ngx-icon-export-filled::before {
-  content: "\ea92";
+.ngx-export-filled::before {
+    content: "\ea94";
 }
 
-.ngx-icon-export-outline-large::before {
-  content: "\ea93";
+.ngx-export-outline-large::before {
+    content: "\ea95";
 }
 
-.ngx-icon-export-outline-small::before {
-  content: "\ea96";
+.ngx-export-outline-small::before {
+    content: "\ea96";
 }
 
-.ngx-icon-export-outline::before {
-  content: "\ea97";
+.ngx-export-outline::before {
+    content: "\ea97";
 }
 
-.ngx-icon-export::before {
-  content: "\ea98";
+.ngx-export::before {
+    content: "\ea98";
 }
 
-.ngx-icon-eye-disabled::before {
-  content: "\ea99";
+.ngx-eye-disabled::before {
+    content: "\ea99";
 }
 
-.ngx-icon-eye-hidden::before {
-  content: "\ea9a";
+.ngx-eye-hidden::before {
+    content: "\ea9a";
 }
 
-.ngx-icon-eye::before {
-  content: "\ea9b";
+.ngx-eye::before {
+    content: "\ea9b";
 }
 
-.ngx-icon-field-created-by::before {
-  content: "\ea9c";
+.ngx-field-created-by::before {
+    content: "\ea9c";
 }
 
-.ngx-icon-field-created-date::before {
-  content: "\ea9d";
+.ngx-field-created-date::before {
+    content: "\ea9d";
 }
 
-.ngx-icon-field-date::before {
-  content: "\ea9e";
+.ngx-field-date::before {
+    content: "\ea9e";
 }
 
-.ngx-icon-field-double-select::before {
-  content: "\ea9f";
+.ngx-field-double-select::before {
+    content: "\ea9f";
 }
 
-.ngx-icon-field-edited-by::before {
-  content: "\eaa0";
+.ngx-field-edited-by::before {
+    content: "\eaa0";
 }
 
-.ngx-icon-field-edited-date::before {
-  content: "\eaa1";
+.ngx-field-edited-date::before {
+    content: "\eaa1";
 }
 
-.ngx-icon-field-grid::before {
-  content: "\eaa2";
+.ngx-field-grid::before {
+    content: "\eaa2";
 }
 
-.ngx-icon-field-html::before {
-  content: "\eaa7";
+.ngx-field-html::before {
+    content: "\eaa3";
 }
 
-.ngx-icon-field-json::before {
-  content: "\eaa3";
+.ngx-field-json::before {
+    content: "\eaa4";
 }
 
-.ngx-icon-field-list-small::before {
-  content: "\eaa4";
+.ngx-field-list-small::before {
+    content: "\eaa5";
 }
 
-.ngx-icon-field-list::before {
-  content: "\eaa5";
+.ngx-field-list::before {
+    content: "\eaa6";
 }
 
-.ngx-icon-field-lists::before {
-  content: "\eaa6";
+.ngx-field-lists::before {
+    content: "\eaa7";
 }
 
-.ngx-icon-field-multiselect::before {
-  content: "\eaa8";
+.ngx-field-multiselect::before {
+    content: "\eaa8";
 }
 
-.ngx-icon-field-number::before {
-  content: "\eaa9";
+.ngx-field-number::before {
+    content: "\eaa9";
 }
 
-.ngx-icon-field-numeric::before {
-  content: "\eaaa";
+.ngx-field-numeric::before {
+    content: "\eaaa";
 }
 
-.ngx-icon-field-richtext::before {
-  content: "\eaab";
+.ngx-field-richtext::before {
+    content: "\eaab";
 }
 
-.ngx-icon-field-single-select::before {
-  content: "\eaac";
+.ngx-field-single-select::before {
+    content: "\eaac";
 }
 
-.ngx-icon-field-singleline::before {
-  content: "\eaad";
+.ngx-field-singleline::before {
+    content: "\eaad";
 }
 
-.ngx-icon-field-text::before {
-  content: "\eaae";
+.ngx-field-text::before {
+    content: "\eaae";
 }
 
-.ngx-icon-field-textarea::before {
-  content: "\eaaf";
+.ngx-field-textarea::before {
+    content: "\eaaf";
 }
 
-.ngx-icon-field-textual::before {
-  content: "\eab0";
+.ngx-field-textual::before {
+    content: "\eab0";
 }
 
-.ngx-icon-field-users::before {
-  content: "\eab1";
+.ngx-field-users::before {
+    content: "\eab2";
 }
 
-.ngx-icon-filter-bar::before {
-  content: "\eab2";
+.ngx-filter-bar::before {
+    content: "\eab1";
 }
 
-.ngx-icon-filter::before {
-  content: "\eab3";
+.ngx-filter::before {
+    content: "\eab3";
 }
 
-.ngx-icon-find-page::before {
-  content: "\eab4";
+.ngx-find-page::before {
+    content: "\eab4";
 }
 
-.ngx-icon-flame::before {
-  content: "\eab5";
+.ngx-flame::before {
+    content: "\eab5";
 }
 
-.ngx-icon-folder-closed-small::before {
-  content: "\eab9";
+.ngx-folder-closed-small::before {
+    content: "\eab6";
 }
 
-.ngx-icon-folder-open-small::before {
-  content: "\eabc";
+.ngx-folder-open-small::before {
+    content: "\eab7";
 }
 
-.ngx-icon-folder::before {
-  content: "\eabe";
+.ngx-folder::before {
+    content: "\eab8";
 }
 
-.ngx-icon-folders::before {
-  content: "\eab6";
+.ngx-folders::before {
+    content: "\eab9";
 }
 
-.ngx-icon-font::before {
-  content: "\eab7";
+.ngx-font::before {
+    content: "\eaba";
 }
 
-.ngx-icon-format-indent-decrease::before {
-  content: "\eab8";
+.ngx-format-indent-decrease::before {
+    content: "\eabb";
 }
 
-.ngx-icon-format-indent-increase::before {
-  content: "\eaba";
+.ngx-format-indent-increase::before {
+    content: "\eabc";
 }
 
-.ngx-icon-formula::before {
-  content: "\eabd";
+.ngx-formula::before {
+    content: "\eabd";
 }
 
-.ngx-icon-forward-arrow-filled::before {
-  content: "\eabb";
+.ngx-forward-arrow-filled::before {
+    content: "\eabe";
 }
 
-.ngx-icon-forward-arrow::before {
-  content: "\eac1";
+.ngx-forward-arrow::before {
+    content: "\eabf";
 }
 
-.ngx-icon-full-align::before {
-  content: "\eabf";
+.ngx-full-align::before {
+    content: "\eac0";
 }
 
-.ngx-icon-gauge::before {
-  content: "\eac0";
+.ngx-gauge::before {
+    content: "\eac1";
 }
 
-.ngx-icon-gear-small::before {
-  content: "\eac2";
+.ngx-gear-small::before {
+    content: "\eac2";
 }
 
-.ngx-icon-gear-square::before {
-  content: "\eac3";
+.ngx-gear-square::before {
+    content: "\eac3";
 }
 
-.ngx-icon-gear::before {
-  content: "\eac4";
+.ngx-gear::before {
+    content: "\eac4";
 }
 
-.ngx-icon-globe::before {
-  content: "\eac5";
+.ngx-globe::before {
+    content: "\eac5";
 }
 
-.ngx-icon-graph-alt1::before {
-  content: "\eac6";
+.ngx-graph-alt1::before {
+    content: "\eac6";
 }
 
-.ngx-icon-graph::before {
-  content: "\eac7";
+.ngx-graph::before {
+    content: "\eac7";
 }
 
-.ngx-icon-grid-view::before {
-  content: "\eac9";
+.ngx-grid-view::before {
+    content: "\eac8";
 }
 
-.ngx-icon-hand::before {
-  content: "\eacb";
+.ngx-hand::before {
+    content: "\eac9";
 }
 
-.ngx-icon-handle::before {
-  content: "\eac8";
+.ngx-handle::before {
+    content: "\eaca";
 }
 
-.ngx-icon-heat::before {
-  content: "\eaca";
+.ngx-heat::before {
+    content: "\eacb";
 }
 
-.ngx-icon-helper::before {
-  content: "\ead0";
+.ngx-helper::before {
+    content: "\eacc";
 }
 
-.ngx-icon-history::before {
-  content: "\eacf";
+.ngx-history::before {
+    content: "\eacd";
 }
 
-.ngx-icon-horz-bar-graph-grouped::before {
-  content: "\eace";
+.ngx-horz-bar-graph-grouped::before {
+    content: "\eace";
 }
 
-.ngx-icon-horz-stacked-bar::before {
-  content: "\eacc";
+.ngx-horz-stacked-bar::before {
+    content: "\eacf";
 }
 
-.ngx-icon-html-code::before {
-  content: "\eacd";
+.ngx-html-code::before {
+    content: "\ead0";
 }
 
-.ngx-icon-icon-chart-bar-horizontal::before {
-  content: "\ead1";
+.ngx-icon-chart-bar-horizontal::before {
+    content: "\ead1";
 }
 
-.ngx-icon-icon-chart-horz-bar::before {
-  content: "\ead2";
+.ngx-icon-chart-horz-bar::before {
+    content: "\ead2";
 }
 
-.ngx-icon-import-outline-large::before {
-  content: "\ead3";
+.ngx-import-outline-large::before {
+    content: "\ead3";
 }
 
-.ngx-icon-import-outline-small::before {
-  content: "\ead4";
+.ngx-import-outline-small::before {
+    content: "\ead4";
 }
 
-.ngx-icon-import-outline::before {
-  content: "\ead5";
+.ngx-import-outline::before {
+    content: "\ead5";
 }
 
-.ngx-icon-info-filled-2::before {
-  content: "\ead6";
+.ngx-info-filled-2::before {
+    content: "\ead6";
 }
 
-.ngx-icon-info-filled-small::before {
-  content: "\ead7";
+.ngx-info-filled-small::before {
+    content: "\ead7";
 }
 
-.ngx-icon-info-filled::before {
-  content: "\ead8";
+.ngx-info-filled::before {
+    content: "\ead8";
 }
 
-.ngx-icon-ingest-small::before {
-  content: "\ead9";
+.ngx-ingest-small::before {
+    content: "\ead9";
 }
 
-.ngx-icon-inspect::before {
-  content: "\eada";
+.ngx-inspect::before {
+    content: "\eada";
 }
 
-.ngx-icon-integration::before {
-  content: "\eadb";
+.ngx-integration::before {
+    content: "\eadb";
 }
 
-.ngx-icon-integrations::before {
-  content: "\eadc";
+.ngx-integrations::before {
+    content: "\eadc";
 }
 
-.ngx-icon-ip::before {
-  content: "\eadd";
+.ngx-ip::before {
+    content: "\eadd";
 }
 
-.ngx-icon-italic::before {
-  content: "\eade";
+.ngx-italic::before {
+    content: "\eade";
 }
 
-.ngx-icon-key-outline-small::before {
-  content: "\eadf";
+.ngx-key-outline-small::before {
+    content: "\eadf";
 }
 
-.ngx-icon-key-outline::before {
-  content: "\eae0";
+.ngx-key-outline::before {
+    content: "\eae0";
 }
 
-.ngx-icon-key::before {
-  content: "\eae1";
+.ngx-key::before {
+    content: "\eae1";
 }
 
-.ngx-icon-keyboard-return::before {
-  content: "\eae2";
+.ngx-keyboard-return::before {
+    content: "\eae2";
 }
 
-.ngx-icon-keyboard::before {
-  content: "\eae3";
+.ngx-keyboard::before {
+    content: "\eae3";
 }
 
-.ngx-icon-layer::before {
-  content: "\eae4";
+.ngx-layer::before {
+    content: "\eae4";
 }
 
-.ngx-icon-left-align::before {
-  content: "\eae5";
+.ngx-left-align::before {
+    content: "\eae5";
 }
 
-.ngx-icon-line-chart::before {
-  content: "\eae6";
+.ngx-line-chart::before {
+    content: "\eae6";
 }
 
-.ngx-icon-line-graph::before {
-  content: "\eae7";
+.ngx-line-graph::before {
+    content: "\eae7";
 }
 
-.ngx-icon-linear-gauge::before {
-  content: "\eae8";
+.ngx-linear-gauge::before {
+    content: "\eae8";
 }
 
-.ngx-icon-link::before {
-  content: "\eae9";
+.ngx-link::before {
+    content: "\eae9";
 }
 
-.ngx-icon-list-1::before {
-  content: "\eaea";
+.ngx-list-1::before {
+    content: "\eaea";
 }
 
-.ngx-icon-list-view::before {
-  content: "\eaeb";
+.ngx-list-view::before {
+    content: "\eaeb";
 }
 
-.ngx-icon-list::before {
-  content: "\eaec";
+.ngx-list::before {
+    content: "\eaec";
 }
 
-.ngx-icon-loading::before {
-  content: "\eaed";
+.ngx-loading::before {
+    content: "\eaed";
 }
 
-.ngx-icon-locate-filled::before {
-  content: "\eaee";
+.ngx-locate-filled::before {
+    content: "\eaee";
 }
 
-.ngx-icon-locate-outline-large::before {
-  content: "\eaef";
+.ngx-locate-outline-large::before {
+    content: "\eaef";
 }
 
-.ngx-icon-locate-outline::before {
-  content: "\eaf0";
+.ngx-locate-outline::before {
+    content: "\eaf0";
 }
 
-.ngx-icon-location::before {
-  content: "\eaf1";
+.ngx-location::before {
+    content: "\eaf1";
 }
 
-.ngx-icon-lock-sm::before {
-  content: "\eaf2";
+.ngx-lock-sm::before {
+    content: "\eaf2";
 }
 
-.ngx-icon-lock::before {
-  content: "\eaf3";
+.ngx-lock::before {
+    content: "\eaf3";
 }
 
-.ngx-icon-mail-1::before {
-  content: "\eaf4";
+.ngx-mail-1::before {
+    content: "\eaf4";
 }
 
-.ngx-icon-mail::before {
-  content: "\eaf5";
+.ngx-mail::before {
+    content: "\eaf5";
 }
 
-.ngx-icon-map::before {
-  content: "\eaf6";
+.ngx-map::before {
+    content: "\eaf6";
 }
 
-.ngx-icon-menu::before {
-  content: "\eaf7";
+.ngx-menu::before {
+    content: "\eaf7";
 }
 
-.ngx-icon-mfa::before {
-  content: "\eaf8";
+.ngx-mfa::before {
+    content: "\eaf8";
 }
 
-.ngx-icon-mic::before {
-  content: "\eaf9";
+.ngx-mic::before {
+    content: "\eaf9";
 }
 
-.ngx-icon-minus::before {
-  content: "\eafa";
+.ngx-minus::before {
+    content: "\eafa";
 }
 
-.ngx-icon-money::before {
-  content: "\eafb";
+.ngx-money::before {
+    content: "\eafb";
 }
 
-.ngx-icon-mouse-hold::before {
-  content: "\eafc";
+.ngx-mouse-hold::before {
+    content: "\eafc";
 }
 
-.ngx-icon-multi-line::before {
-  content: "\eafd";
+.ngx-multi-line::before {
+    content: "\eafd";
 }
 
-.ngx-icon-new-app::before {
-  content: "\eafe";
+.ngx-new-app::before {
+    content: "\eafe";
 }
 
-.ngx-icon-notation-arrow-down-left::before {
-  content: "\eaff";
+.ngx-notation-arrow-down-left::before {
+    content: "\eaff";
 }
 
-.ngx-icon-notation-arrow-up::before {
-  content: "\eb00";
+.ngx-notation-arrow-up::before {
+    content: "\eb00";
 }
 
-.ngx-icon-numbered-list::before {
-  content: "\eb01";
+.ngx-numbered-list::before {
+    content: "\eb02";
 }
 
-.ngx-icon-open::before {
-  content: "\eb02";
+.ngx-open::before {
+    content: "\eb01";
 }
 
-.ngx-icon-orchestration::before {
-  content: "\eb03";
+.ngx-orchestration::before {
+    content: "\eb03";
 }
 
-.ngx-icon-paragraph::before {
-  content: "\eb04";
+.ngx-paragraph::before {
+    content: "\eb04";
 }
 
-.ngx-icon-pause-circle::before {
-  content: "\eb05";
+.ngx-pause-circle::before {
+    content: "\eb05";
 }
 
-.ngx-icon-pause::before {
-  content: "\eb06";
+.ngx-pause::before {
+    content: "\eb06";
 }
 
-.ngx-icon-phone::before {
-  content: "\eb07";
+.ngx-phone::before {
+    content: "\eb07";
 }
 
-.ngx-icon-photo::before {
-  content: "\eb08";
+.ngx-photo::before {
+    content: "\eb08";
 }
 
-.ngx-icon-pie-chart::before {
-  content: "\eb09";
+.ngx-pie-chart::before {
+    content: "\eb09";
 }
 
-.ngx-icon-pin::before {
-  content: "\eb0a";
+.ngx-pin::before {
+    content: "\eb0a";
 }
 
-.ngx-icon-plane::before {
-  content: "\eb0b";
+.ngx-plane::before {
+    content: "\eb0b";
 }
 
-.ngx-icon-play-circle::before {
-  content: "\eb0c";
+.ngx-play-circle::before {
+    content: "\eb0c";
 }
 
-.ngx-icon-play::before {
-  content: "\eb0d";
+.ngx-play::before {
+    content: "\eb0d";
 }
 
-.ngx-icon-playbook-outline-small::before {
-  content: "\eb0e";
+.ngx-playbook-outline-small::before {
+    content: "\eb0e";
 }
 
-.ngx-icon-playbook-outline::before {
-  content: "\eb0f";
+.ngx-playbook-outline::before {
+    content: "\eb0f";
 }
 
-.ngx-icon-plugin-outline-small::before {
-  content: "\eb10";
+.ngx-plugin-outline-small::before {
+    content: "\eb10";
 }
 
-.ngx-icon-plugin-outline::before {
-  content: "\eb11";
+.ngx-plugin-outline::before {
+    content: "\eb11";
 }
 
-.ngx-icon-plugin::before {
-  content: "\eb13";
+.ngx-plugin::before {
+    content: "\eb12";
 }
 
-.ngx-icon-plus-bold::before {
-  content: "\eb12";
+.ngx-plus-bold::before {
+    content: "\eb13";
 }
 
-.ngx-icon-plus::before {
-  content: "\eb14";
+.ngx-plus::before {
+    content: "\eb14";
 }
 
-.ngx-icon-prev::before {
-  content: "\eb15";
+.ngx-prev::before {
+    content: "\eb15";
 }
 
-.ngx-icon-printer::before {
-  content: "\eb16";
+.ngx-printer::before {
+    content: "\eb16";
 }
 
-.ngx-icon-profile-filled::before {
-  content: "\eb17";
+.ngx-profile-filled::before {
+    content: "\eb17";
 }
 
-.ngx-icon-profile::before {
-  content: "\eb18";
+.ngx-profile::before {
+    content: "\eb18";
 }
 
-.ngx-icon-promote-horizontal::before {
-  content: "\eb19";
+.ngx-promote-horizontal::before {
+    content: "\eb19";
 }
 
-.ngx-icon-promote::before {
-  content: "\eb1a";
+.ngx-promote::before {
+    content: "\eb1a";
 }
 
-.ngx-icon-question-filled-sm::before {
-  content: "\eb1b";
+.ngx-question-filled-sm::before {
+    content: "\eb1b";
 }
 
-.ngx-icon-question-filled::before {
-  content: "\eb1c";
+.ngx-question-filled::before {
+    content: "\eb1c";
 }
 
-.ngx-icon-question::before {
-  content: "\eb1d";
+.ngx-question::before {
+    content: "\eb1d";
 }
 
-.ngx-icon-radio-button::before {
-  content: "\eb1e";
+.ngx-radio-button::before {
+    content: "\eb1e";
 }
 
-.ngx-icon-redo-all::before {
-  content: "\eb1f";
+.ngx-redo-all::before {
+    content: "\eb1f";
 }
 
-.ngx-icon-redo::before {
-  content: "\eb20";
+.ngx-redo::before {
+    content: "\eb20";
 }
 
-.ngx-icon-reference-grid::before {
-  content: "\eb21";
+.ngx-reference-grid::before {
+    content: "\eb21";
 }
 
-.ngx-icon-reference-multi::before {
-  content: "\eb22";
+.ngx-reference-multi::before {
+    content: "\eb22";
 }
 
-.ngx-icon-reference-single::before {
-  content: "\eb23";
+.ngx-reference-single::before {
+    content: "\eb23";
 }
 
-.ngx-icon-reference-tree::before {
-  content: "\eb24";
+.ngx-reference-tree::before {
+    content: "\eb24";
 }
 
-.ngx-icon-reference::before {
-  content: "\eb25";
+.ngx-reference::before {
+    content: "\eb25";
 }
 
-.ngx-icon-refresh-circle::before {
-  content: "\eb26";
+.ngx-refresh-circle::before {
+    content: "\eb26";
 }
 
-.ngx-icon-refresh-small::before {
-  content: "\eb27";
+.ngx-refresh-small::before {
+    content: "\eb27";
 }
 
-.ngx-icon-refresh::before {
-  content: "\eb28";
+.ngx-refresh::before {
+    content: "\eb28";
 }
 
-.ngx-icon-remove-edge::before {
-  content: "\eb29";
+.ngx-remove-edge::before {
+    content: "\eb29";
 }
 
-.ngx-icon-remove-node::before {
-  content: "\eb2a";
+.ngx-remove-node::before {
+    content: "\eb2a";
 }
 
-.ngx-icon-remove-users::before {
-  content: "\eb2b";
+.ngx-remove-users::before {
+    content: "\eb2b";
 }
 
-.ngx-icon-remove::before {
-  content: "\eb2c";
+.ngx-remove::before {
+    content: "\eb2c";
 }
 
-.ngx-icon-repeat::before {
-  content: "\eb2d";
+.ngx-repeat::before {
+    content: "\eb2d";
 }
 
-.ngx-icon-replace::before {
-  content: "\eb2e";
+.ngx-replace::before {
+    content: "\eb2e";
 }
 
-.ngx-icon-reports-outline::before {
-  content: "\eb2f";
+.ngx-reports-outline::before {
+    content: "\eb2f";
 }
 
-.ngx-icon-reports::before {
-  content: "\eb30";
+.ngx-reports::before {
+    content: "\eb30";
 }
 
-.ngx-icon-resize::before {
-  content: "\eb31";
+.ngx-resize::before {
+    content: "\eb31";
 }
 
-.ngx-icon-right-align::before {
-  content: "\eb32";
+.ngx-right-align::before {
+    content: "\eb32";
 }
 
-.ngx-icon-rocket::before {
-  content: "\eb33";
+.ngx-rocket::before {
+    content: "\eb33";
 }
 
-.ngx-icon-rotate::before {
-  content: "\eb34";
+.ngx-rotate::before {
+    content: "\eb34";
 }
 
-.ngx-icon-rule-outline::before {
-  content: "\eb35";
+.ngx-rule-outline::before {
+    content: "\eb35";
 }
 
-.ngx-icon-runner::before {
-  content: "\eb36";
+.ngx-runner::before {
+    content: "\eb36";
 }
 
-.ngx-icon-runs-outline-small::before {
-  content: "\eb37";
+.ngx-runs-outline-small::before {
+    content: "\eb37";
 }
 
-.ngx-icon-runs-outline::before {
-  content: "\eb38";
+.ngx-runs-outline::before {
+    content: "\eb38";
 }
 
-.ngx-icon-save-outline-large::before {
-  content: "\eb39";
+.ngx-save-outline-large::before {
+    content: "\eb39";
 }
 
-.ngx-icon-save-outline-small::before {
-  content: "\eb3a";
+.ngx-save-outline-small::before {
+    content: "\eb3a";
 }
 
-.ngx-icon-save-outline::before {
-  content: "\eb3b";
+.ngx-save-outline::before {
+    content: "\eb3b";
 }
 
-.ngx-icon-save::before {
-  content: "\eb3c";
+.ngx-save::before {
+    content: "\eb3c";
 }
 
-.ngx-icon-screen-1::before {
-  content: "\eb3d";
+.ngx-screen-1::before {
+    content: "\eb3d";
 }
 
-.ngx-icon-screen::before {
-  content: "\eb3e";
+.ngx-screen::before {
+    content: "\eb3e";
 }
 
-.ngx-icon-search::before {
-  content: "\eb3f";
+.ngx-search::before {
+    content: "\eb3f";
 }
 
-.ngx-icon-section::before {
-  content: "\eb40";
+.ngx-section::before {
+    content: "\eb40";
 }
 
-.ngx-icon-select-all::before {
-  content: "\eb41";
+.ngx-select-all::before {
+    content: "\eb41";
 }
 
-.ngx-icon-select-user::before {
-  content: "\eb42";
+.ngx-select-user::before {
+    content: "\eb42";
 }
 
-.ngx-icon-select-users::before {
-  content: "\eb43";
+.ngx-select-users::before {
+    content: "\eb43";
 }
 
-.ngx-icon-sensor-outline-small::before {
-  content: "\eb44";
+.ngx-sensor-outline-small::before {
+    content: "\eb44";
 }
 
-.ngx-icon-sensor-outline::before {
-  content: "\eb45";
+.ngx-sensor-outline::before {
+    content: "\eb45";
 }
 
-.ngx-icon-server::before {
-  content: "\eb46";
+.ngx-server::before {
+    content: "\eb46";
 }
 
-.ngx-icon-shield::before {
-  content: "\eb48";
+.ngx-shield::before {
+    content: "\eb47";
 }
 
-.ngx-icon-shrink::before {
-  content: "\eb47";
+.ngx-shrink::before {
+    content: "\eb48";
 }
 
-.ngx-icon-skip::before {
-  content: "\eb4a";
+.ngx-skip::before {
+    content: "\eb49";
 }
 
-.ngx-icon-slide-left::before {
-  content: "\eb49";
+.ngx-slide-left::before {
+    content: "\eb4a";
 }
 
-.ngx-icon-slide-right::before {
-  content: "\eb4b";
+.ngx-slide-right::before {
+    content: "\eb4b";
 }
 
-.ngx-icon-smartphone::before {
-  content: "\eb4c";
+.ngx-smartphone::before {
+    content: "\eb4c";
 }
 
-.ngx-icon-smiley-frown::before {
-  content: "\eb4d";
+.ngx-smiley-frown::before {
+    content: "\eb4d";
 }
 
-.ngx-icon-snapshot::before {
-  content: "\eb4e";
+.ngx-snapshot::before {
+    content: "\eb4e";
 }
 
-.ngx-icon-spaces-list::before {
-  content: "\eb4f";
+.ngx-spaces-list::before {
+    content: "\eb4f";
 }
 
-.ngx-icon-spaces-outline-large::before {
-  content: "\eb50";
+.ngx-spaces-outline-large::before {
+    content: "\eb50";
 }
 
-.ngx-icon-spaces-outline::before {
-  content: "\eb51";
+.ngx-spaces-outline::before {
+    content: "\eb51";
 }
 
-.ngx-icon-spaces::before {
-  content: "\eb55";
+.ngx-spaces::before {
+    content: "\eb52";
 }
 
-.ngx-icon-speedometer::before {
-  content: "\eb54";
+.ngx-speedometer::before {
+    content: "\eb53";
 }
 
-.ngx-icon-split-handle::before {
-  content: "\eb53";
+.ngx-split-handle::before {
+    content: "\eb54";
 }
 
-.ngx-icon-square-filled::before {
-  content: "\eb52";
+.ngx-square-filled::before {
+    content: "\eb55";
 }
 
-.ngx-icon-square::before {
-  content: "\eb56";
+.ngx-square::before {
+    content: "\eb56";
 }
 
-.ngx-icon-star-filled::before {
-  content: "\eb57";
+.ngx-star-filled::before {
+    content: "\eb57";
 }
 
-.ngx-icon-star::before {
-  content: "\eb58";
+.ngx-star::before {
+    content: "\eb58";
 }
 
-.ngx-icon-stars::before {
-  content: "\eb59";
+.ngx-stars::before {
+    content: "\eb59";
 }
 
-.ngx-icon-stopwatch::before {
-  content: "\eb5a";
+.ngx-stopwatch::before {
+    content: "\eb5a";
 }
 
-.ngx-icon-superscript::before {
-  content: "\eb5b";
+.ngx-superscript::before {
+    content: "\eb5b";
 }
 
-.ngx-icon-swap::before {
-  content: "\eb5c";
+.ngx-swap::before {
+    content: "\eb5c";
 }
 
-.ngx-icon-switch::before {
-  content: "\eb5d";
+.ngx-switch::before {
+    content: "\eb5d";
 }
 
-.ngx-icon-system-diagnostics-2::before {
-  content: "\eb5e";
+.ngx-system-diagnostics-2::before {
+    content: "\eb5e";
 }
 
-.ngx-icon-system-diagnostics::before {
-  content: "\eb5f";
+.ngx-system-diagnostics::before {
+    content: "\eb5f";
 }
 
-.ngx-icon-table::before {
-  content: "\eb60";
+.ngx-table::before {
+    content: "\eb60";
 }
 
-.ngx-icon-tabs::before {
-  content: "\eb61";
+.ngx-tabs::before {
+    content: "\eb61";
 }
 
-.ngx-icon-tag-filled::before {
-  content: "\eb62";
+.ngx-tag-filled::before {
+    content: "\eb62";
 }
 
-.ngx-icon-tags-outline::before {
-  content: "\eb63";
+.ngx-tags-outline::before {
+    content: "\eb63";
 }
 
-.ngx-icon-target::before {
-  content: "\eb64";
+.ngx-target::before {
+    content: "\eb64";
 }
 
-.ngx-icon-task-outline::before {
-  content: "\eb65";
+.ngx-task-outline::before {
+    content: "\eb65";
 }
 
-.ngx-icon-thumb-down-filled::before {
-  content: "\eb66";
+.ngx-thumb-down-filled::before {
+    content: "\eb66";
 }
 
-.ngx-icon-thumb-down-outline-large::before {
-  content: "\eb67";
+.ngx-thumb-down-outline-large::before {
+    content: "\eb67";
 }
 
-.ngx-icon-thumb-down-outline::before {
-  content: "\eb68";
+.ngx-thumb-down-outline::before {
+    content: "\eb68";
 }
 
-.ngx-icon-thumb-up-filled::before {
-  content: "\eb69";
+.ngx-thumb-up-filled::before {
+    content: "\eb69";
 }
 
-.ngx-icon-thumb-up-outline-large::before {
-  content: "\eb6a";
+.ngx-thumb-up-outline-large::before {
+    content: "\eb6a";
 }
 
-.ngx-icon-thumb-up-outline::before {
-  content: "\eb6b";
+.ngx-thumb-up-outline::before {
+    content: "\eb6b";
 }
 
-.ngx-icon-tracking-id::before {
-  content: "\eb6c";
+.ngx-tracking-id::before {
+    content: "\eb6c";
 }
 
-.ngx-icon-transfer::before {
-  content: "\eb6d";
+.ngx-transfer::before {
+    content: "\eb6d";
 }
 
-.ngx-icon-trash::before {
-  content: "\eb6e";
+.ngx-trash::before {
+    content: "\eb6e";
 }
 
-.ngx-icon-tree-collapse::before {
-  content: "\eb6f";
+.ngx-tree-collapse::before {
+    content: "\eb6f";
 }
 
-.ngx-icon-tree-expand::before {
-  content: "\eb70";
+.ngx-tree-expand::before {
+    content: "\eb70";
 }
 
-.ngx-icon-tree::before {
-  content: "\eb71";
+.ngx-tree::before {
+    content: "\eb71";
 }
 
-.ngx-icon-trend-down::before {
-  content: "\eb72";
+.ngx-trend-down::before {
+    content: "\eb72";
 }
 
-.ngx-icon-trend-level::before {
-  content: "\eb73";
+.ngx-trend-level::before {
+    content: "\eb73";
 }
 
-.ngx-icon-trend-up::before {
-  content: "\eb74";
+.ngx-trend-up::before {
+    content: "\eb74";
 }
 
-.ngx-icon-trending::before {
-  content: "\eb75";
+.ngx-trending::before {
+    content: "\eb75";
 }
 
-.ngx-icon-underline::before {
-  content: "\eb76";
+.ngx-underline::before {
+    content: "\eb76";
 }
 
-.ngx-icon-undo-all::before {
-  content: "\eb77";
+.ngx-undo-all::before {
+    content: "\eb77";
 }
 
-.ngx-icon-undo::before {
-  content: "\eb78";
+.ngx-undo::before {
+    content: "\eb78";
 }
 
-.ngx-icon-unlink::before {
-  content: "\eb79";
+.ngx-unlink::before {
+    content: "\eb79";
 }
 
-.ngx-icon-upload-outline-large::before {
-  content: "\eb7a";
+.ngx-upload-outline-large::before {
+    content: "\eb7a";
 }
 
-.ngx-icon-upload-outline-small::before {
-  content: "\eb7b";
+.ngx-upload-outline-small::before {
+    content: "\eb7b";
 }
 
-.ngx-icon-upload-outline::before {
-  content: "\eb7c";
+.ngx-upload-outline::before {
+    content: "\eb7c";
 }
 
-.ngx-icon-user-add::before {
-  content: "\eb7d";
+.ngx-user-add::before {
+    content: "\eb7d";
 }
 
-.ngx-icon-user-circle::before {
-  content: "\eb7e";
+.ngx-user-circle::before {
+    content: "\eb7e";
 }
 
-.ngx-icon-user-groups::before {
-  content: "\eb7f";
+.ngx-user-groups::before {
+    content: "\eb7f";
 }
 
-.ngx-icon-user::before {
-  content: "\eb80";
+.ngx-user::before {
+    content: "\eb80";
 }
 
-.ngx-icon-users::before {
-  content: "\eb81";
+.ngx-users::before {
+    content: "\eb81";
 }
 
-.ngx-icon-version::before {
-  content: "\eb82";
+.ngx-version::before {
+    content: "\eb82";
 }
 
-.ngx-icon-vert-bar-graph-grouped::before {
-  content: "\eb83";
+.ngx-vert-bar-graph-grouped::before {
+    content: "\eb83";
 }
 
-.ngx-icon-vert-full-stack-bar::before {
-  content: "\eb84";
+.ngx-vert-full-stack-bar::before {
+    content: "\eb84";
 }
 
-.ngx-icon-view-code::before {
-  content: "\eb85";
+.ngx-view-code::before {
+    content: "\eb85";
 }
 
-.ngx-icon-view-designer::before {
-  content: "\eb86";
+.ngx-view-designer::before {
+    content: "\eb86";
 }
 
-.ngx-icon-view-split::before {
-  content: "\eb87";
+.ngx-view-split::before {
+    content: "\eb87";
 }
 
-.ngx-icon-wand::before {
-  content: "\eb88";
+.ngx-wand::before {
+    content: "\eb88";
 }
 
-.ngx-icon-warning-filled-sm::before {
-  content: "\eb89";
+.ngx-warning-filled-sm::before {
+    content: "\eb89";
 }
 
-.ngx-icon-warning-filled::before {
-  content: "\eb8a";
+.ngx-warning-filled::before {
+    content: "\eb8a";
 }
 
-.ngx-icon-warning-thin::before {
-  content: "\eb8b";
+.ngx-warning-thin::before {
+    content: "\eb8b";
 }
 
-.ngx-icon-web-api::before {
-  content: "\eb8c";
+.ngx-web-api::before {
+    content: "\eb8c";
 }
 
-.ngx-icon-webhook-outline-large::before {
-  content: "\eb8d";
+.ngx-widget::before {
+    content: "\eb8d";
 }
 
-.ngx-icon-webhook-outline-small::before {
-  content: "\eb8e";
+.ngx-worker::before {
+    content: "\eb8e";
 }
 
-.ngx-icon-webhook-outline::before {
-  content: "\eb8f";
+.ngx-workflow-alternate-large::before {
+    content: "\eb8f";
 }
 
-.ngx-icon-widget::before {
-  content: "\eb90";
+.ngx-workflow-alternate-small::before {
+    content: "\eb90";
 }
 
-.ngx-icon-worker::before {
-  content: "\eb91";
+.ngx-workflow-alternate::before {
+    content: "\eb91";
 }
 
-.ngx-icon-workflow-alternate-large::before {
-  content: "\eb92";
+.ngx-workflow::before {
+    content: "\eb92";
 }
 
-.ngx-icon-workflow-alternate-small::before {
-  content: "\eb93";
+.ngx-workspaces::before {
+    content: "\eb93";
 }
 
-.ngx-icon-workflow-alternate::before {
-  content: "\eb94";
+.ngx-workstation::before {
+    content: "\eb94";
 }
 
-.ngx-icon-workflow::before {
-  content: "\eb95";
+.ngx-wrench::before {
+    content: "\eb95";
 }
 
-.ngx-icon-workspaces::before {
-  content: "\eb96";
+.ngx-x-filled::before {
+    content: "\eb96";
 }
 
-.ngx-icon-workstation::before {
-  content: "\eb97";
+.ngx-x-small::before {
+    content: "\eb97";
 }
 
-.ngx-icon-wrench::before {
-  content: "\eb98";
-}
-
-.ngx-icon-x-filled::before {
-  content: "\eb99";
-}
-
-.ngx-icon-x-small::before {
-  content: "\eb9a";
-}
-
-.ngx-icon-x::before {
-  content: "\eb9b";
+.ngx-x::before {
+    content: "\eb98";
 }
 
