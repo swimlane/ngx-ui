@@ -6,6 +6,7 @@
 - Fix (`ngx-property-config`): Apply button no longer closes all dialogs
 - Feature (`ngx-property-config`): Property names and now generated from title and locked until changed
 - Feature (`ngx-input`): Now emits `lockChange` even when an input is unlocked
+- Enhancement: Added webhook icons
 
 ## 40.4.0 (2022-4-12)
 
