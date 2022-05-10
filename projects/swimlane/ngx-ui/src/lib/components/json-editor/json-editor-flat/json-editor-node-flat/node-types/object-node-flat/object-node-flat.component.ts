@@ -91,7 +91,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
     }
   }
 
-  onPropertyConfig(property: JSONEditorSchema, index: number): void {
+  onPropertyConfig(property: JSONEditorSchema, index: number, isNew = false): void {
     const dialog = this.dialogService.create({
       template: this.propertyConfigTmpl,
       context: {
@@ -99,6 +99,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
         index,
         schema: this.schema,
         formats: this.formats,
+        isNew,
         apply: (options: PropertyConfigOptions) => {
           dialog.destroy();
           this.updateSchemaProperty(options);
@@ -146,8 +147,14 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
   addProperty(dataType: JsonSchemaDataType): void {
     super.addProperty(dataType);
 
-    this.updateSchemaRefProperty(this.propertyIndex[this.propertyId - 1]);
+    const index = this.propertyId - 1;
+    const property = this.propertyIndex[index];
+    this.updateSchemaRefProperty(property);
     this.schemaUpdate.emit();
+
+    if (this.schemaBuilderMode) {
+      this.onPropertyConfig(property, index, true);
+    }
   }
 
   deleteProperty(propName: string): void {

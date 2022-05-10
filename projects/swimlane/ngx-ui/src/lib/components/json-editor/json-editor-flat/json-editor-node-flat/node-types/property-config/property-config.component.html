@@ -12,7 +12,7 @@
         *ngIf="!arrayItem"
         type="text"
         [(ngModel)]="editableProperty.title"
-        (change)="onTitleChange($event)"
+        (ngModelChange)="onTitleChange($event)"
         [label]="'PROPERTY TITLE'"
         [hint]="'A human-readable name for this property'"
       >
