@@ -92,19 +92,23 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
   }
 
   onPropertyConfig(property: JSONEditorSchema, index: number): void {
-    this.dialogService.create({
+    const dialog = this.dialogService.create({
       template: this.propertyConfigTmpl,
       context: {
         property,
         index,
         schema: this.schema,
-        formats: this.formats
+        formats: this.formats,
+        apply: (options: PropertyConfigOptions) => {
+          dialog.destroy();
+          this.updateSchemaProperty(options);
+        }
       },
       class: 'property-config-dialog'
     });
   }
 
-  updateSchema(options: PropertyConfigOptions): void {
+  updateSchemaProperty(options: PropertyConfigOptions): void {
     const oldProperty = options.oldProperty;
     const newProperty = options.newProperty;
 

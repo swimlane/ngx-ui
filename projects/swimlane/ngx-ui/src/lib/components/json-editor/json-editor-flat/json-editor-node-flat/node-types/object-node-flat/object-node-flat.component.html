@@ -178,7 +178,7 @@
     [index]="context.index"
     [schema]="context.schema"
     [formats]="context.formats"
-    (updateSchema)="updateSchema($event)"
+    (updateProperty)="context.apply($event)"
   >
   </ngx-property-config>
 </ng-template>

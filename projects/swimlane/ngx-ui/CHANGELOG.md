@@ -1,9 +1,16 @@
 # CHANGELOG
 
 ## HEAD (unreleased)
-
 - Enhancement (`ngx-dropdown`): Improve styles and behavior of dividers
+
+## 40.5.0 (2022-5-11)
+
 - Fix (`ngx-select`): Tagging option width is not correct
+- Fix (`ngx-property-config`): Apply button no longer closes all dialogs
+- Fix (`ngx-json-editor-flat`): Long name and descriptions now display properly
+- Feature (`ngx-property-config`): Property names and now generated from title and locked until changed
+- Feature (`ngx-input`): Now emits `lockChange` even when an input is unlocked
+- Enhancement: Added webhook icons
 
 ## 40.4.0 (2022-4-12)
 
