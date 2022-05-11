@@ -197,6 +197,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   @Output() keyup = new EventEmitter<KeyboardEvent>();
   @Output() click = new EventEmitter<Event>();
   @Output() select = new EventEmitter<FocusEvent>();
+  @Output() lockChange = new EventEmitter<boolean>();
 
   @ViewChild('inputControl') readonly inputControl: ElementRef<HTMLInputElement>;
   @ViewChild('inputModel') readonly inputModel: NgModel;
@@ -376,6 +377,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
       this.value = '';
     }
     this.disabled = false;
+    this.lockChange.emit(false);
     this.updateInputType();
   }
 
