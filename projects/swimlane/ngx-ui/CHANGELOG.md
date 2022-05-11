@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 40.5.1 (2022-5-11)
+
 - Enhancement (`ngx-large-format-dialog-content`): Changing Active tab indicator (blue line) to the header bottom line level
 
 ## 40.5.0 (2022-5-11)
