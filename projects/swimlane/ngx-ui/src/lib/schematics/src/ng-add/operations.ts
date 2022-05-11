@@ -19,7 +19,8 @@ export const addPackages = () => {
     const dependencies: NodeDependency[] = [
       {
         name: '@swimlane/ngx-ui',
-        version: ngxUIVersion
+        version: ngxUIVersion,
+        overwrite: true
       },
       {
         name: '@angular/cdk',
@@ -44,7 +45,7 @@ export const addPackages = () => {
     ].map(item => ({
       ...item,
       type: NodeDependencyType.Default,
-      overwrite: false
+      overwrite: item.overwrite || false
     }));
 
     dependencies.forEach(dependency => {

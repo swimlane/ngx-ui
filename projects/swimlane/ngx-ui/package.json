@@ -70,5 +70,5 @@
     "@types/faker": "^4.1.11",
     "faker": "^5.1.0"
   },
-  "schematics": "../../../dist/swimlane/ngx-ui/lib/schematics/ng-add/collection.json"
+  "schematics": "../../../dist/swimlane/ngx-ui/lib/schematics/collection.json"
 }
