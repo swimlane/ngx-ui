@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 40.5.0 (2022-5-11)
+
 - Fix (`ngx-select`): Tagging option width is not correct
 - Fix (`ngx-property-config`): Apply button no longer closes all dialogs
 - Fix (`ngx-json-editor-flat`): Long name and descriptions now display properly
