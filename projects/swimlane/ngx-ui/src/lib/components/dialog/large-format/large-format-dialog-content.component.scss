@@ -79,6 +79,10 @@
           }
         }
       }
+
+      & .ngx-tabs.tabs-horizontal button.ngx-tab {
+        height: 100%;
+      }
     }
 
     & .dialog-stepper {
