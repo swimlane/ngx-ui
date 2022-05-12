@@ -4,8 +4,8 @@ ngx-icon Web Font
 Generated using nucleoapp.com
 
 -------------------------------- */
-$ngx-icon-font-path: "../fonts" !default;
-
+$ngx-font-path: "../fonts" !default;
+/*
 @font-face {
   font-family: 'ngx-icon';
   src: url('#{$ngx-font-path}/ngx-icon.eot');
@@ -17,6 +17,7 @@ $ngx-icon-font-path: "../fonts" !default;
   font-weight: normal;
   font-style: normal;
 }
+ */
 
 /*------------------------
 	base class definition

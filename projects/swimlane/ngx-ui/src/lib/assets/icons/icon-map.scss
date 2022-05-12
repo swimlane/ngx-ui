@@ -1,0 +1,8 @@
+@use "sass:map";
+@use "iconfont/scss/icons";
+
+$ngx-arrow-down:        icons.unicode(map.get(icons.$icons, 'arrow-down'));
+$ngx-arrow-up:          icons.unicode(map.get(icons.$icons, 'arrow-up'));
+$ngx-arrow-left:        icons.unicode(map.get(icons.$icons, 'arrow-left'));
+$ngx-arrow-right:       icons.unicode(map.get(icons.$icons, 'arrow-right'));
+$ngx-warning-filled-sm: icons.unicode(map.get(icons.$icons, 'warning-filled-sm'));
