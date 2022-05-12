@@ -12,8 +12,8 @@ import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/works
 
 export const addPackages = () => {
   return (tree: Tree, _context: SchematicContext) => {
-    // TODO: find appropriate angular version and then get the matching ngxUI
     const ngCoreVersionTag = getPackageJsonDependency(tree, '@angular/core');
+    // TODO: find appropriate angular version and then get the matching ngxUI
     const ngxUIVersion = getNgxUIVersion();
 
     const dependencies: NodeDependency[] = [
@@ -41,10 +41,40 @@ export const addPackages = () => {
       {
         name: 'resize-observer-polyfill',
         version: `1.5.1`
+      },
+      {
+        name: 'codemirror',
+        version: '5.65.3'
+      },
+      {
+        name: 'json-schema',
+        version: '*'
+      },
+      {
+        name: '@types/json-schema',
+        version: '^7.0.3',
+        type: NodeDependencyType.Dev
+      },
+      {
+        name: 'ajv',
+        version: '8.11.0'
+      },
+      {
+        name: '@types/codemirror',
+        version: '5.60.5',
+        type: NodeDependencyType.Dev
+      },
+      {
+        name: 'ngx-autosize-input',
+        version: '^2.3.7'
+      },
+      {
+        name: 'ng-in-viewport',
+        version: '^6.1.5'
       }
     ].map(item => ({
       ...item,
-      type: NodeDependencyType.Default,
+      type: item.type || NodeDependencyType.Default,
       overwrite: item.overwrite || false
     }));
 
@@ -56,6 +86,8 @@ export const addPackages = () => {
     return tree;
   };
 };
+
+const getNgxUIVersion = () => `^40.4.0`;
 
 export const installDeps = () => (tree: Tree, _context: SchematicContext) => {
   _context.logger.info('installing dependencies...');
@@ -104,5 +136,3 @@ export const addStylesToWorkspace = (options: Schema) => async (_: Tree, _contex
 export const printBanner = () => (_: Tree, _context: SchematicContext) => {
   _context.logger.warn(`@swimlane/ngx-ui - Component & Style Library for Angular by Swimlane`);
 };
-
-const getNgxUIVersion = () => `^40.4.0`;
