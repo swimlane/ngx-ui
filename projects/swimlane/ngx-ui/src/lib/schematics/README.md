@@ -26,5 +26,6 @@ npm publish
 ```
 
 ng add ../../ngx-ui/projects/swimlane/ngx-ui/src/lib/schematics
+ng add ..\..\ngx-ui\projects\swimlane\ngx-ui\
 
 That's it!

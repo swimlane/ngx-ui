@@ -76,7 +76,7 @@ export const addNGXModules = (_: Schema) => async (tree: Tree, _context: Schemat
   addModuleImportToRootModule(tree, ngxIconModuleName, ngxUINamespace, project);
 };
 
-export const addCStylesToWorkspace = (options: Schema) => async (_: Tree, _context: SchematicContext) => {
+export const addStylesToWorkspace = (options: Schema) => async (_: Tree, _context: SchematicContext) => {
   _context.logger.info('adding styles...');
   let projectName = options.project;
 
@@ -102,7 +102,7 @@ export const addCStylesToWorkspace = (options: Schema) => async (_: Tree, _conte
 };
 
 export const printBanner = () => (_: Tree, _context: SchematicContext) => {
-  _context.logger.warn(`@swimlane/ngx-UI - Component & Style Library for Angular by Swimlane`);
+  _context.logger.warn(`@swimlane/ngx-ui - Component & Style Library for Angular by Swimlane`);
 };
 
 const getNgxUIVersion = () => `^40.4.0`;
