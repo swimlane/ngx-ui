@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 41.0.0 (2022-5-12)
+
 - Enhancement (`ngx-large-format-dialog-content`): Changing Active tab indicator (blue line) to the header bottom line level
 - Fix (`ngx-select`): Tagging option width is not correct
 - Fix (`ngx-property-config`): Apply button no longer closes all dialogs
