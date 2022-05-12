@@ -7,6 +7,17 @@
   </div>
   <ngx-tabs *ngIf="property">
     <ngx-tab label="GENERAL">
+      <!-- TITLE -->
+      <ngx-input
+        *ngIf="!arrayItem"
+        type="text"
+        [(ngModel)]="editableProperty.title"
+        (ngModelChange)="onTitleChange($event)"
+        [label]="'PROPERTY TITLE'"
+        [hint]="'A human-readable name for this property'"
+      >
+      </ngx-input>
+
       <!-- PROPERTY NAME -->
       <ngx-input
         *ngIf="!arrayItem && !rootItem"
@@ -15,17 +26,10 @@
         [(ngModel)]="editableProperty.propertyName"
         [label]="'PROPERTY NAME'"
         [required]="true"
-        [hint]="'Must only contain A-Z, a-z, 0-9 or _'"
-      >
-      </ngx-input>
-
-      <!-- TITLE -->
-      <ngx-input
-        *ngIf="!arrayItem"
-        type="text"
-        [(ngModel)]="editableProperty.title"
-        [label]="'PROPERTY TITLE'"
-        [hint]="'A human-readable name for this property'"
+        [unlockable]="true"
+        (lockChanged)="isNameLocked = $event"
+        hint="Must only contain A-Z, a-z, 0-9 or _"
+        pattern="[a-zA-Z0-9_]*"
       >
       </ngx-input>
 
@@ -48,6 +52,7 @@
           (ngModelChange)="updateType($event[0])"
           [required]="true"
           [label]="'TYPE'"
+          [disabled]="!canChangeType"
         >
           <ngx-select-option *ngFor="let propType of propTypes" [name]="propType" [value]="propType">
           </ngx-select-option>

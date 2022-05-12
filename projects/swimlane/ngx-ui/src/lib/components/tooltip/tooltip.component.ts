@@ -44,18 +44,18 @@ export class TooltipContentComponent implements AfterViewInit {
   @Input() template: TemplateRef<any>;
   @Input() context: any;
 
+  @Input()
   get showCaret(): boolean {
     return this._showCaret;
   }
-  @Input()
   set showCaret(val: boolean) {
     this._showCaret = coerceBooleanProperty(val);
   }
 
+  @Input()
   get spacing(): number {
     return this._spacing;
   }
-  @Input()
   set spacing(val: number) {
     this._spacing = coerceNumberProperty(val);
   }
@@ -63,12 +63,17 @@ export class TooltipContentComponent implements AfterViewInit {
   private _spacing: number;
   private _showCaret: boolean;
 
+  get hostElement(): HTMLElement {
+    return this.host?.nativeElement;
+  }
+
   @HostBinding('class')
   get cssClasses(): string {
     let clz = 'ngx-tooltip-content';
     clz += ` position-${this.placement}`;
     clz += ` type-${this.type}`;
     clz += ` ${this.cssClass}`;
+    clz += this.hostElement ? ` has-host` : '';
     return clz;
   }
 
@@ -86,17 +91,19 @@ export class TooltipContentComponent implements AfterViewInit {
 
   position(): void {
     const nativeElm = this.element.nativeElement;
-    const hostDim = this.host.nativeElement.getBoundingClientRect();
+    if (this.hostElement) {
+      const hostDim = this.hostElement.getBoundingClientRect();
 
-    // if no dims were found, never show
-    if (!hostDim.height && !hostDim.width) return;
+      // if no dims were found, never show
+      if (!hostDim.height && !hostDim.width) return;
 
-    const elmDim = nativeElm.getBoundingClientRect();
-    this.checkFlip(hostDim, elmDim);
-    this.positionContent(nativeElm, hostDim, elmDim);
+      const elmDim = nativeElm.getBoundingClientRect();
+      this.checkFlip(hostDim, elmDim);
+      this.positionContent(nativeElm, hostDim, elmDim);
 
-    if (this.showCaret) {
-      this.positionCaret(hostDim, elmDim);
+      if (this.showCaret) {
+        this.positionCaret(hostDim, elmDim);
+      }
     }
 
     // animate its entry

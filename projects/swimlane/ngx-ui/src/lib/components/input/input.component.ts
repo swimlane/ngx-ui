@@ -143,7 +143,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     return this._autocomplete;
   }
   set autocomplete(autocomplete: boolean | string) {
-    this._autocomplete = coerceBooleanProperty(autocomplete) ? 'on' : 'off';
+    this._autocomplete = coerceBooleanProperty(autocomplete) ? 'on' : 'new-password';
   }
 
   @Input()
@@ -197,6 +197,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   @Output() keyup = new EventEmitter<KeyboardEvent>();
   @Output() click = new EventEmitter<Event>();
   @Output() select = new EventEmitter<FocusEvent>();
+  @Output() lockChange = new EventEmitter<boolean>();
 
   @ViewChild('inputControl') readonly inputControl: ElementRef<HTMLInputElement>;
   @ViewChild('inputModel') readonly inputModel: NgModel;
@@ -248,8 +249,14 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     return this.inputModel ? this.inputModel.touched : false;
   }
 
-  get labelState(): string {
-    return this.placeholder || this.focusedOrDirty || this.appearance === Appearance.Fill ? 'outside' : 'inside';
+  @HostBinding('class.has-placeholder')
+  get hasPlaceholder(): boolean {
+    return !!this.placeholder;
+  }
+
+  @HostBinding('class.active')
+  get labelState(): boolean {
+    return this.focusedOrDirty;
   }
 
   get underlineState(): string {
@@ -370,6 +377,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
       this.value = '';
     }
     this.disabled = false;
+    this.lockChange.emit(false);
     this.updateInputType();
   }
 

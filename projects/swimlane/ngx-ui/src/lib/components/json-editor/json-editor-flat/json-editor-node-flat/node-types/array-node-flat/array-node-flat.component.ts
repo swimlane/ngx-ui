@@ -30,8 +30,6 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit, OnChang
 
   @Input() formats: JsonSchemaDataType[];
 
-  @Input() compressed: boolean;
-
   @Input() hideRoot = false;
 
   @Input() isDuplicated = false;
@@ -64,19 +62,23 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit, OnChang
   }
 
   onPropertyConfig(item: JSONEditorSchema, index: number): void {
-    this.dialogService.create({
+    const dialog = this.dialogService.create({
       template: this.propertyConfigTmpl,
       context: {
         property: item,
         index,
         schema: this.schema,
-        formats: this.formats
+        formats: this.formats,
+        apply: (options: PropertyConfigOptions) => {
+          dialog.destroy();
+          this.updateSchemaProperty(options);
+        }
       },
       class: 'property-config-dialog'
     });
   }
 
-  updateSchema(options: PropertyConfigOptions): void {
+  updateSchemaProperty(options: PropertyConfigOptions): void {
     this.schema.items = options.newProperty;
     this.schemaRef.items = options.newProperty;
     this.schemaUpdate.emit();

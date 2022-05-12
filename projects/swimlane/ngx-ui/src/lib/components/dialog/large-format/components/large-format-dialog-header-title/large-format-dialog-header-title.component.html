@@ -10,7 +10,10 @@
   >
     <h1>{{ dialogTitle }}</h1>
   </div>
-  <div *ngIf="dialogSubtitle" class="ngx-large-format-dialog-header-title__text-wrapper">
-    <h4>{{ dialogSubtitle }}</h4>
+  <div *ngIf="dialogSubtitle || dialogSubtitleTemplate" class="ngx-large-format-dialog-header-title__text-wrapper">
+    <h4 *ngIf="dialogSubtitle">{{ dialogSubtitle }}</h4>
+    <ng-container *ngIf="!dialogSubtitle && dialogSubtitleTemplate">
+      <ng-container *ngTemplateOutlet="dialogSubtitleTemplate"></ng-container>
+    </ng-container>
   </div>
 </div>

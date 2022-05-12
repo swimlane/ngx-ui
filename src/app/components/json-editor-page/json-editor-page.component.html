@@ -28,59 +28,31 @@
   <ngx-tabs>
     <ngx-tab label="Markup">
       <app-prism language="html">
-<![CDATA[<ngx-json-editor
-  [(model)]="jsonEditorModel"
-  [schema]="jsonEditorSchema"
-  label="Model"
-  [typeCheckOverrides]="typeOverrides"
->
-</ngx-json-editor>]]>
+        <![CDATA[<ngx-json-editor [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
+        [typeCheckOverrides]="typeOverrides" > </ngx-json-editor>]]>
       </app-prism>
     </ngx-tab>
     <ngx-tab label="Typescript">
       <app-prism language="js">
-<![CDATA[typeOverrides: any = {
-  'string=code': (value: any) => {
-    if (typeof value !== 'string') {
-      return false;
-    }
-    const regex = new RegExp(/^<<(.*)>>$/, 's');
-    return regex.test(value);
-  }
-};]]>
+        <![CDATA[typeOverrides: any = { 'string=code': (value: any) => { if (typeof value !== 'string') { return false;
+        } const regex = new RegExp(/^<<(.*)>>$/, 's'); return regex.test(value); } };]]>
       </app-prism>
     </ngx-tab>
   </ngx-tabs>
-
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat'">
-  <ngx-toggle
-    [(ngModel)]="compressed"
-    label="Compressed Mode">
-  </ngx-toggle>
+  <ngx-toggle [(ngModel)]="hideRoot" label="Hide Root"> </ngx-toggle>
 
-  <ngx-toggle
-    [(ngModel)]="hideRoot"
-    label="Hide Root">
-  </ngx-toggle>
+  <ngx-toggle [(ngModel)]="showKnownProperties" label="Show Known Object Properties"> </ngx-toggle>
 
-  <ngx-toggle
-    [(ngModel)]="showKnownProperties"
-    label="Show Known Object Properties">
-  </ngx-toggle>
-
-  <ngx-toggle
-    [(ngModel)]="passwordToggleEnabled"
-    label="Enable Password Toggle">
-  </ngx-toggle>
+  <ngx-toggle [(ngModel)]="passwordToggleEnabled" label="Enable Password Toggle"> </ngx-toggle>
 
   <ngx-json-editor-flat
     [(model)]="jsonEditorModelFlat"
     [schema]="jsonEditorSchema"
     label="Model"
     [typeCheckOverrides]="typeOverrides"
-    [compressed]="compressed"
     [hideRoot]="hideRoot"
     [showKnownProperties]="showKnownProperties"
     [passwordToggleEnabled]="passwordToggleEnabled"
@@ -97,30 +69,16 @@
   <ngx-tabs>
     <ngx-tab label="Markup">
       <app-prism language="html">
-<![CDATA[<ngx-json-editor-flat
-  [(model)]="jsonEditorModelFlat"
-  [schema]="jsonEditorSchema"
-  label="Model"
-  [typeCheckOverrides]="typeOverrides"
-  [compressed]="compressed"
-  [hideRoot]="hideRoot"
-  [showKnownProperties]="showKnownProperties"
-  [passwordToggleEnabled]="showKnownProperties"
-  (schemaUpdate)="modelschemaUpdate($event)">
-</ngx-json-editor-flat>]]>
+        <![CDATA[<ngx-json-editor-flat [(model)]="jsonEditorModelFlat" [schema]="jsonEditorSchema" label="Model"
+        [typeCheckOverrides]="typeOverrides" [hideRoot]="hideRoot" [showKnownProperties]="showKnownProperties"
+        [passwordToggleEnabled]="showKnownProperties" (schemaUpdate)="modelschemaUpdate($event)">
+        </ngx-json-editor-flat>]]>
       </app-prism>
     </ngx-tab>
     <ngx-tab label="Typescript">
       <app-prism language="js">
-<![CDATA[typeOverrides: any = {
-  'string=code': (value: any) => {
-    if (typeof value !== 'string') {
-      return false;
-    }
-    const regex = new RegExp(/^<<(.*)>>$/, 's');
-    return regex.test(value);
-  }
-};]]>
+        <![CDATA[typeOverrides: any = { 'string=code': (value: any) => { if (typeof value !== 'string') { return false;
+        } const regex = new RegExp(/^<<(.*)>>$/, 's'); return regex.test(value); } };]]>
       </app-prism>
     </ngx-tab>
   </ngx-tabs>
@@ -129,14 +87,10 @@
 <br />
 
 <ngx-section class="shadow" [sectionTitle]="'Schema Builder Mode'">
-  <ngx-button class="btn btn-primary" [style.marginBottom]="'8px'" (click)="toggleCompressed()"
-    >Toggle compressed mode</ngx-button
-  >
   <ngx-json-editor-flat
     [(model)]="jsonEditorSchemaBuilderModel"
     [schema]="{}"
     label="Schema"
-    [compressed]="compressed"
     [typeCheckOverrides]="typeOverrides"
     [schemaBuilderMode]="true"
     [formats]="customFormats"
@@ -150,31 +104,16 @@
   <ngx-tabs>
     <ngx-tab label="Markup">
       <app-prism language="html">
-<![CDATA[<ngx-json-editor-flat
-  [(model)]="jsonEditorSchemaBuilderModel"
-  [schema]="{}"
-  label="Schema"
-  [compressed]="compressed"
-  [typeCheckOverrides]="typeOverrides"
-  [schemaBuilderMode]="true"
-  [formats]="customFormats"
-  (schemaUpdate)="schemaUpdate($event)">
-</ngx-json-editor-flat>]]>
+        <![CDATA[<ngx-json-editor-flat [(model)]="jsonEditorSchemaBuilderModel" [schema]="{}" label="Schema"
+        [typeCheckOverrides]="typeOverrides" [schemaBuilderMode]="true" [formats]="customFormats"
+        (schemaUpdate)="schemaUpdate($event)"> </ngx-json-editor-flat>]]>
       </app-prism>
     </ngx-tab>
     <ngx-tab label="Typescript">
       <app-prism language="js">
-<![CDATA[typeOverrides: any = {
-  'string=code': (value: any) => {
-    if (typeof value !== 'string') {
-      return false;
-    }
-    const regex = new RegExp(/^<<(.*)>>$/, 's');
-    return regex.test(value);
-  }
-};]]>
+        <![CDATA[typeOverrides: any = { 'string=code': (value: any) => { if (typeof value !== 'string') { return false;
+        } const regex = new RegExp(/^<<(.*)>>$/, 's'); return regex.test(value); } };]]>
       </app-prism>
     </ngx-tab>
   </ngx-tabs>
 </ngx-section>
-

@@ -64,6 +64,7 @@ export class ArrayNode implements OnChanges {
    * @param value
    */
   updateArrayItem(index: number, value: any): void {
+    this.model = [...this.model];
     this.model[index] = value;
     this.modelChange.emit(this.model);
   }
@@ -74,6 +75,9 @@ export class ArrayNode implements OnChanges {
   addArrayItem(dataType?: JsonSchemaDataType): void {
     let schema;
     if (dataType) {
+      if (dataType.name === 'String') {
+        dataType.schema = { type: 'string' };
+      }
       schema = JSON.parse(JSON.stringify({ ...(this.schema.items as any), ...dataType.schema }));
     } else {
       schema = JSON.parse(JSON.stringify(this.schema.items));
@@ -96,8 +100,8 @@ export class ArrayNode implements OnChanges {
     const value: any = createValueForSchema(schema);
 
     if (value !== undefined) {
-      this.model.push(value);
-      this.schemas.push(schema);
+      this.model = [...this.model, value];
+      this.schemas = [...this.schemas, schema];
     }
 
     this.modelChange.emit(this.model);
@@ -110,9 +114,9 @@ export class ArrayNode implements OnChanges {
    * @param index
    */
   deleteArrayItem(index: number): void {
+    this.model = [...this.model];
     this.model.splice(index, 1);
     this.schemas.splice(index, 1);
-    this.model = [...this.model];
     this.schemas = [...this.schemas];
     this.modelChange.emit(this.model);
   }
@@ -145,6 +149,7 @@ export class ArrayNode implements OnChanges {
     }
 
     const value: any = createValueForSchema(schema);
+    this.model = [...this.model];
     this.model[index] = value;
 
     this.modelChange.emit(this.model);
@@ -155,16 +160,34 @@ export class ArrayNode implements OnChanges {
    * Infers the schema type for each item in the array
    */
   private initSchemasTypeByModelValue(): void {
+    const prevSchemas = this.schemas ? [...this.schemas] : [];
     this.schemas = [];
     if (Array.isArray(this.model)) {
-      this.model.forEach(value => {
-        let schema = inferType(value, this.typeCheckOverrides);
+      this.model.forEach((value, index) => {
+        const inferedSchema = inferType(value, this.typeCheckOverrides);
+        let schema;
 
+        if (inferedSchema.type === 'null' && prevSchemas[index]) {
+          schema = prevSchemas[index];
+        } else {
+          schema = inferedSchema;
+        }
+
+        if (
+          prevSchemas.length > 0 &&
+          prevSchemas[index].format !== undefined &&
+          prevSchemas[index].format !== schema.format
+        ) {
+          schema.format = prevSchemas[index].format;
+        }
+        if (prevSchemas.length > 0 && prevSchemas[index].format === undefined) {
+          schema.format = prevSchemas[index].format;
+        }
         if (this.schema.items) {
           schema = JSON.parse(JSON.stringify({ ...(this.schema.items as any), ...schema }));
         }
 
-        this.schemas.push(schema);
+        this.schemas.push(Object.assign({}, schema));
       });
     }
   }

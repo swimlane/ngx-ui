@@ -3,29 +3,34 @@ table.alignment-test {
   margin-top: 20px;
   background: #171a21;
 
+  tr,
+  tr td {
+    vertical-align: inherit;
+  }
+
+  tr th {
+    vertical-align: bottom;
+  }
+
   td {
     padding: 05px;
     border: 10px solid #34282c;
-    vertical-align: baseline;
   }
 
   tr td:first-child {
     border: none;
   }
 
-  // td > * {
-  //   border: 1px solid red;
-  // }
-
-  &.align-middle td {
-    vertical-align: middle;
+  &.show-outline td > * {
+    outline: 1px solid red;
   }
+}
 
-  &.align-top td {
-    vertical-align: top;
-  }
+.flex-container {
+  display: flex;
+  gap: 12px;
 
-  &.align-bottom td {
-    vertical-align: bottom;
+  > * {
+    flex: 0 1 20%;
   }
 }

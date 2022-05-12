@@ -20,7 +20,10 @@ import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
   exportAs: 'ngxSelectInput',
   selector: 'ngx-select-input',
   templateUrl: './select-input.component.html',
-  host: { class: 'ngx-select-input' },
+  host: {
+    class: 'ngx-select-input',
+    '[class.ngx-select-input--has-controls]': 'hasControls'
+  },
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectInputComponent implements AfterViewInit, OnChanges {
@@ -89,6 +92,14 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     return !(this.tagging && (!this.options || !this.options.length));
   }
 
+  get clearVisible() {
+    return this.allowClear && !this.multiple && !this.tagging && this.selectedOptions?.length > 0;
+  }
+
+  get hasControls(): boolean {
+    return this.caretVisible || this.clearVisible;
+  }
+
   get isNotTemplate() {
     return !(typeof this.selectCaret === 'object' && this.selectCaret instanceof TemplateRef);
   }
@@ -113,13 +124,19 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
 
   // Events in the input box
   onInputKeyDown(event: KeyboardEvent): void {
-    if (event.code === KeyboardKeys.BACKSPACE) {
-      const value = (event.target as any).value;
-      if (value === '') {
-        event.stopPropagation();
+    event.stopPropagation();
+
+    switch (event.code) {
+      case KeyboardKeys.ENTER:
         event.preventDefault();
-        const newSelections = this.selected.slice(0, this.selected.length - 1);
-        this.selection.emit(newSelections);
+        break;
+      case KeyboardKeys.ESCAPE: {
+        const value = (event.target as any).value;
+        if (value === '') {
+          const newSelections = this.selected.slice(0, this.selected.length - 1);
+          this.selection.emit(newSelections);
+        }
+        break;
       }
     }
   }
@@ -213,8 +230,17 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     }
   }
 
-  onToggle(): void {
+  onToggle(_ev?: PointerEvent): void {
+    // Future: this should stopPropagation
+    // not happening now to ensure closeOnBodyClick is triggered
     this.toggle.emit();
+  }
+
+  onClear(ev?: PointerEvent): void {
+    if (!this.disabled) {
+      ev?.stopPropagation();
+      this.selection.emit([]);
+    }
   }
 
   onOptionRemove(event: Event, option: SelectDropdownOption): void {
@@ -229,6 +255,13 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
     });
 
     this.selection.emit(newSelections);
+  }
+
+  onClearTaggingInput(ev?: PointerEvent): void {
+    ev?.stopPropagation();
+    if (this.inputElement && this.inputElement.nativeElement) {
+      this.inputElement.nativeElement.value = '';
+    }
   }
 
   focus() {

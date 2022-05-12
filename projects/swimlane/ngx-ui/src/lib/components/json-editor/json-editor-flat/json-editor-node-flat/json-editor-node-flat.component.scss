@@ -1,6 +1,11 @@
 @import 'colors/variables';
 @import '../../json-editor.extensions.scss';
-
+.code-editor .ngx-select .ngx-select-input .ngx-select-input-box__controls {
+  .ngx-select-caret,
+  .ngx-select-clear {
+    display: none;
+  }
+}
 .json-editor--popover-template {
   font-weight: 600;
   font-size: 12px;
@@ -28,11 +33,12 @@ ngx-json-editor-node-flat {
 .json-tree-node-flat {
   .indentation {
     @extend %indentation;
-    flex: 1 0 20px;
+    flex: 1 0 15px;
   }
 
   .node-container {
     display: flex;
+    padding-bottom: 0px;
   }
 
   .node {
@@ -43,12 +49,8 @@ ngx-json-editor-node-flat {
     padding: 25px 10px;
     position: relative;
     flex: 0 1 100%;
-    height: 120px;
+    height: 96px;
     min-width: 0; // https://css-tricks.com/flexbox-truncated-text/#the-solution-is-min-width-0-on-the-flex-child
-
-    &.compressed {
-      height: 80px;
-    }
 
     .error-box {
       position: absolute;
@@ -116,11 +118,13 @@ ngx-json-editor-node-flat {
         flex: 0 0 40%;
         padding-right: 25px;
         overflow: hidden;
+        padding-top: 3px;
       }
 
       .node-input {
         flex: 0 1 60%;
-        padding-top: 1em;
+        padding-top: 5px;
+        margin-bottom: 2px;
 
         ngx-input {
           padding: 0;
@@ -151,6 +155,9 @@ ngx-json-editor-node-flat {
         .input-error {
           color: $color-error;
           min-height: 1.2em; // min height keeps input from shifing when error is shown
+          text-transform: capitalize;
+          font-size: 12px;
+          font-family: Source Sans Pro, Open Sans, Arial, sans-serif;
         }
       }
     }

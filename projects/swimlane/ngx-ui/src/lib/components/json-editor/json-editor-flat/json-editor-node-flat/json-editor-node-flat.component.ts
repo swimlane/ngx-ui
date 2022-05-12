@@ -12,8 +12,7 @@ import {
 import { JsonEditorNode } from '../../json-editor-node';
 
 import { DialogService } from '../../../dialog/dialog.service';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { requiredIndicatorIcon, JSONEditorSchema, JsonSchemaDataType } from '../../json-editor.helper';
+import { JSONEditorSchema, JsonSchemaDataType } from '../../json-editor.helper';
 
 @Component({
   selector: 'ngx-json-editor-node-flat',
@@ -47,8 +46,6 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Input() arrayName = '';
 
-  @Input() compressed: boolean;
-
   @Input() indentationArray: number[];
 
   @Input() showKnownProperties = false;
@@ -59,13 +56,10 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   @Output() updatePropertyNameEvent = new EventEmitter<{ id: string | number; name: string }>();
 
-  requiredIndicator: SafeHtml;
-
   nextLevel = 0;
 
-  constructor(public dialogMngr: DialogService, private domSanitizer: DomSanitizer) {
+  constructor(public dialogMngr: DialogService) {
     super(dialogMngr);
-    this.requiredIndicator = this.domSanitizer.bypassSecurityTrustHtml(requiredIndicatorIcon);
   }
 
   ngOnChanges(changes: SimpleChanges) {

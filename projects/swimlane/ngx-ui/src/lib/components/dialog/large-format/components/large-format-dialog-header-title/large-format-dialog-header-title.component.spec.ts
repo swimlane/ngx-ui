@@ -47,6 +47,11 @@ describe(LargeFormatDialogHeaderTitleComponent.name, () => {
       expect(nativeElement.querySelector('h4')).not.toBeTruthy();
     });
 
+    it('should not have subtitle when dialogSubtitleTemplate is defined', () => {
+      component.dialogSubtitleTemplate = null;
+      expect(nativeElement.querySelector('h4')).not.toBeTruthy();
+    });
+
     it('should have subtitle when subtitle is passed in', () => {
       component.dialogSubtitle = 'subtitle';
       fixture.detectChanges();

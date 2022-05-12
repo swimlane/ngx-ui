@@ -37,8 +37,6 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
 
   @Input() formats: JsonSchemaDataType[] = [];
 
-  @Input() compressed: boolean;
-
   @Input() hideRoot = false;
 
   @Input() isDuplicated = false;
@@ -93,20 +91,25 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
     }
   }
 
-  onPropertyConfig(property: JSONEditorSchema, index: number): void {
-    this.dialogService.create({
+  onPropertyConfig(property: JSONEditorSchema, index: number, isNew = false): void {
+    const dialog = this.dialogService.create({
       template: this.propertyConfigTmpl,
       context: {
         property,
         index,
         schema: this.schema,
-        formats: this.formats
+        formats: this.formats,
+        isNew,
+        apply: (options: PropertyConfigOptions) => {
+          dialog.destroy();
+          this.updateSchemaProperty(options);
+        }
       },
       class: 'property-config-dialog'
     });
   }
 
-  updateSchema(options: PropertyConfigOptions): void {
+  updateSchemaProperty(options: PropertyConfigOptions): void {
     const oldProperty = options.oldProperty;
     const newProperty = options.newProperty;
 
@@ -144,8 +147,14 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
   addProperty(dataType: JsonSchemaDataType): void {
     super.addProperty(dataType);
 
-    this.updateSchemaRefProperty(this.propertyIndex[this.propertyId - 1]);
+    const index = this.propertyId - 1;
+    const property = this.propertyIndex[index];
+    this.updateSchemaRefProperty(property);
     this.schemaUpdate.emit();
+
+    if (this.schemaBuilderMode) {
+      this.onPropertyConfig(property, index, true);
+    }
   }
 
   deleteProperty(propName: string): void {
@@ -153,7 +162,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
       delete this.schema.properties[propName];
       delete this.schemaRef.properties[propName];
       this.toggleRequiredValue(false, propName);
-    } else if (!this.schema.required.includes(propName) && !(propName in this.schema.properties)) {
+    } else if (!this.schema.required?.includes(propName) && !(propName in this.schema.properties)) {
       delete this.schemaRef.properties[propName];
     }
 

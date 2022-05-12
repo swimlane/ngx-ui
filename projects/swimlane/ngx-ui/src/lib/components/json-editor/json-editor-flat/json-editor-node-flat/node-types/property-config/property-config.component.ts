@@ -7,9 +7,9 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { DialogService } from '../../../../../dialog/dialog.service';
 import { JSONEditorSchema, propTypes, JsonSchemaDataType } from '../../../../json-editor.helper';
 import { JSONSchema7TypeName } from 'json-schema';
+import camelCase from 'camelcase';
 
 export interface PropertyConfigOptions {
   required: boolean;
@@ -38,7 +38,9 @@ export class PropertyConfigComponent implements OnInit {
 
   @Input() rootItem? = false;
 
-  @Output() updateSchema = new EventEmitter<PropertyConfigOptions>();
+  @Input() isNew = false;
+
+  @Output() updateProperty = new EventEmitter<PropertyConfigOptions>();
 
   propTypes: string[] = propTypes;
 
@@ -46,12 +48,16 @@ export class PropertyConfigComponent implements OnInit {
 
   required = false;
 
-  newEnumValue = '';
+  isNameLocked = true;
 
-  constructor(private dialogService: DialogService) {}
+  canChangeType = false;
+
+  newEnumValue = '';
 
   ngOnInit() {
     this.editableProperty = JSON.parse(JSON.stringify(this.property));
+    this.isNameLocked = this.isNew;
+    this.canChangeType = this.isNew;
 
     if (!this.arrayItem) {
       this.setRequired();
@@ -59,8 +65,7 @@ export class PropertyConfigComponent implements OnInit {
   }
 
   applyChanges(): void {
-    this.dialogService.destroyAll();
-    this.updateSchema.emit({
+    this.updateProperty.emit({
       required: this.required,
       index: this.index,
       newProperty: this.editableProperty,
@@ -122,6 +127,12 @@ export class PropertyConfigComponent implements OnInit {
     if (!enumValues.length) {
       // Remove enum property if empty
       delete this.editableProperty.enum;
+    }
+  }
+
+  onTitleChange(title: string): void {
+    if (this.isNameLocked) {
+      this.editableProperty.propertyName = camelCase(title);
     }
   }
 

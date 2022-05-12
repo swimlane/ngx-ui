@@ -119,4 +119,48 @@
       }
     }
   }
+
+  &--small {
+    box-sizing: border-box;
+    height: 120px;
+    background-color: $color-blue-grey-800;
+    border: 1px dashed $color-blue-grey-500;
+    padding: 0;
+    justify-content: center;
+
+    .file-over {
+      .ngx-dropzone--icon {
+        i {
+          background: -moz-linear-gradient(350.57deg, #006ae0 14.42%, #04a6e6 100%);
+          background: -webkit-linear-gradient(350.57deg, #006ae0 14.42%, #04a6e6 100%);
+          background: linear-gradient(350.57deg, #006ae0 14.42%, #04a6e6 100%);
+          -webkit-background-clip: text;
+          -moz-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+    }
+
+    .ngx-dropzone--label {
+      height: 100%;
+
+      .ngx-dropzone--btn {
+        position: relative;
+        left: 0;
+        top: 0;
+        transform: none;
+
+        .ngx-dropzone--title {
+          font-size: 12px;
+          line-height: 15px;
+          margin-bottom: 0;
+        }
+
+        .ngx-dropzone--sub-title {
+          font-size: 10px;
+        }
+      }
+    }
+  }
 }
