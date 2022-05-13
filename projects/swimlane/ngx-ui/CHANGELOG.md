@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-property-config`): names generated from title are now Snake_Case
+- BREAKING (`PipesModule`): Rename `cammeltosnake` to `cameltosnake`
+
 ## 41.0.0 (2022-5-12)
 
 - Enhancement (`ngx-large-format-dialog-content`): Changing Active tab indicator (blue line) to the header bottom line level
