@@ -38,6 +38,8 @@ export class PropertyConfigComponent implements OnInit {
 
   @Input() rootItem? = false;
 
+  @Input() isNew = false;
+
   @Output() updateProperty = new EventEmitter<PropertyConfigOptions>();
 
   propTypes: string[] = propTypes;
@@ -54,8 +56,8 @@ export class PropertyConfigComponent implements OnInit {
 
   ngOnInit() {
     this.editableProperty = JSON.parse(JSON.stringify(this.property));
-    this.isNameLocked = this.property.propertyName === camelCase(this.property.title);
-    this.canChangeType = !this.property.type;
+    this.isNameLocked = this.isNew;
+    this.canChangeType = this.isNew;
 
     if (!this.arrayItem) {
       this.setRequired();

@@ -12,7 +12,7 @@
         *ngIf="!arrayItem"
         type="text"
         [(ngModel)]="editableProperty.title"
-        (change)="onTitleChange($event)"
+        (ngModelChange)="onTitleChange($event)"
         [label]="'PROPERTY TITLE'"
         [hint]="'A human-readable name for this property'"
       >
@@ -28,7 +28,8 @@
         [required]="true"
         [unlockable]="true"
         (lockChanged)="isNameLocked = $event"
-        [hint]="'Must only contain A-Z, a-z, 0-9 or _'"
+        hint="Must only contain A-Z, a-z, 0-9 or _"
+        pattern="[a-zA-Z0-9_]*"
       >
       </ngx-input>
 

@@ -4,14 +4,19 @@
 
 - Enhancement (`ngx-dropdown`): Improve styles and behavior of dividers
 
-## 40.5.0 (2022-5-11)
+## 41.0.0 (2022-5-12)
 
+- Enhancement (`ngx-large-format-dialog-content`): Changing Active tab indicator (blue line) to the header bottom line level
 - Fix (`ngx-select`): Tagging option width is not correct
 - Fix (`ngx-property-config`): Apply button no longer closes all dialogs
 - Fix (`ngx-json-editor-flat`): Long name and descriptions now display properly
-- Feature (`ngx-property-config`): Property names and now generated from title and locked until changed
+- Feature (`ngx-property-config`): When a new property is added (in schema builder mode):
+  - the property dialog is shown
+  - the property name is generated from the title
+  - the property type is editable
 - Feature (`ngx-input`): Now emits `lockChange` even when an input is unlocked
 - Enhancement: Added webhook icons
+- BREAKING (`ngx-property-config`): Type is not editable once a property is added
 
 ## 40.4.0 (2022-4-12)
 
