@@ -5,7 +5,7 @@ Generated using nucleoapp.com
 
 -------------------------------- */
 $ngx-font-path: "../fonts" !default;
-/*
+
 @font-face {
   font-family: 'ngx-icon';
   src: url('#{$ngx-font-path}/ngx-icon.eot');
@@ -17,7 +17,6 @@ $ngx-font-path: "../fonts" !default;
   font-weight: normal;
   font-style: normal;
 }
- */
 
 /*------------------------
 	base class definition
@@ -26,7 +25,7 @@ $ngx-font-path: "../fonts" !default;
 .ngx-icon {
   display: inline-block;
   font: normal normal normal 1em/1 'ngx-icon';
-  color: inherit;
+  //color: inherit;
   flex-shrink: 0;
   speak: none;
   text-transform: none;
