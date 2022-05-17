@@ -1,0 +1,10 @@
+{
+  "$schema": "../../../node_modules/@angular-devkit/schematics/collection-schema.json",
+  "schematics": {
+    "ng-add": {
+      "description": "add ngx-ui to your angular cli project",
+      "factory": "./ng-add/index#schematics",
+      "schema": "./ng-add/schema.json"
+    }
+  }
+}

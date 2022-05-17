@@ -9,8 +9,9 @@ import {
 } from '@schematics/angular/utility/dependencies';
 import { addModuleImportToRootModule, getProjectFromWorkspace, getProjectTargetOptions } from '@angular/cdk/schematics';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/workspace';
+import { JsonArray, JsonObject } from '@angular-devkit/core';
 
-export const addPackages = () => {
+export const addPackages = (options: Schema) => {
   return (tree: Tree, _context: SchematicContext) => {
     const ngCoreVersionTag = getPackageJsonDependency(tree, '@angular/core');
     // TODO: find appropriate angular version and then get the matching ngxUI
@@ -78,8 +79,9 @@ export const addPackages = () => {
       overwrite: item.overwrite || false
     }));
 
-    dependencies.forEach(dependency => {
+    dependencies.forEach(async dependency => {
       addPackageJsonDependency(tree, dependency);
+      await addAllowedCommonJsDependencies(options)(tree, _context, dependency.name);
       _context.logger.log('info', `✅️ added "${dependency.name}" into ${dependency.type}`);
     });
 
@@ -119,19 +121,47 @@ export const addStylesToWorkspace = (options: Schema) => async (_: Tree, _contex
     }
 
     const project = getProjectFromWorkspace(workspace, projectName);
-    const targetOptions = getProjectTargetOptions(project, 'build');
-    const styles = targetOptions['styles'] as (string | { input: string })[];
-    const existingStyles = styles.map(s => (typeof s === 'string' ? s : s.input));
+    const targetOptionsList = [getProjectTargetOptions(project, 'build'), getProjectTargetOptions(project, 'test')];
+    targetOptionsList.forEach(targetOptions => {
+      const styles = targetOptions['styles'] as (string | { input: string })[];
+      const existingStyles = styles.map(s => (typeof s === 'string' ? s : s.input));
 
-    if (!targetOptions.styles) {
-      targetOptions.styles = [assetPath];
-    } else if (!existingStyles.find((s: any) => s.includes(assetPath))) {
-      styles.unshift(assetPath);
-    }
+      if (!targetOptions.styles) {
+        targetOptions.styles = [assetPath];
+      } else if (!existingStyles.find((s: any) => s.includes(assetPath))) {
+        styles.unshift(assetPath);
+      }
+    });
 
     return workspace;
   });
 };
+
+export const addAllowedCommonJsDependencies =
+  (options: Schema) => async (_: Tree, _context: SchematicContext, dependency: string) => {
+    _context.logger.info('adding dependencies to allowedCommonJsDependencies section ...');
+    let projectName = options.project;
+
+    return updateWorkspace((workspace: any) => {
+      if (!projectName) {
+        projectName = workspace.extensions['defaultProject'];
+      }
+
+      const project = getProjectFromWorkspace(workspace, projectName);
+      const targetOptions = getProjectTargetOptions(project, 'build');
+      const optionsSection = targetOptions['options'] as JsonObject;
+
+      _context.logger.info(JSON.stringify(optionsSection));
+
+      if (!optionsSection.allowedCommonJsDependencies) {
+        optionsSection.allowedCommonJsDependencies = [];
+      }
+
+      (optionsSection.allowedCommonJsDependencies as JsonArray).push(dependency);
+
+      return workspace;
+    });
+  };
 
 export const printBanner = () => (_: Tree, _context: SchematicContext) => {
   _context.logger.warn(`@swimlane/ngx-ui - Component & Style Library for Angular by Swimlane`);
