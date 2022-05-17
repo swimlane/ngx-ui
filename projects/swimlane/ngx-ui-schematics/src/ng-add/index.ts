@@ -1,5 +1,5 @@
 import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
-import { addStylesToWorkspace, addNGXModules, addPackages, installDeps, printBanner } from './operations';
+import { addStylesToWorkspace, addNGXModules, addPackages, logBanner, logInstallDependencies } from './operations';
 import { Schema } from './schema';
 
 //#region json imports
@@ -14,11 +14,11 @@ import * as collection from '../collection.json';
 export function schematics(_options: Schema): Rule {
   return (tree: Tree, _context: SchematicContext) => {
     return chain([
-      printBanner(),
+      logBanner(),
       addPackages(_options),
-      installDeps(),
       addNGXModules(_options),
-      addStylesToWorkspace(_options)
+      addStylesToWorkspace(_options),
+      logInstallDependencies()
     ])(tree, _context);
   };
 }

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/schema",
-  "id": "ngx-ui-schematics",
+  "$id": "ngx-ui-schematics",
   "title": "add ngx-ui",
   "type": "object",
   "properties": {

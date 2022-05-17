@@ -9,9 +9,8 @@ import {
 } from '@schematics/angular/utility/dependencies';
 import { addModuleImportToRootModule, getProjectFromWorkspace, getProjectTargetOptions } from '@angular/cdk/schematics';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/workspace';
-import { JsonArray, JsonObject } from '@angular-devkit/core';
 
-export const addPackages = (options: Schema) => {
+export const addPackages = (_: Schema) => {
   return (tree: Tree, _context: SchematicContext) => {
     const ngCoreVersionTag = getPackageJsonDependency(tree, '@angular/core');
     // TODO: find appropriate angular version and then get the matching ngxUI
@@ -49,7 +48,7 @@ export const addPackages = (options: Schema) => {
       },
       {
         name: 'json-schema',
-        version: '*'
+        version: '*.4.0'
       },
       {
         name: '@types/json-schema',
@@ -58,7 +57,7 @@ export const addPackages = (options: Schema) => {
       },
       {
         name: 'ajv',
-        version: '8.11.0'
+        version: '6.12.6'
       },
       {
         name: '@types/codemirror',
@@ -81,7 +80,6 @@ export const addPackages = (options: Schema) => {
 
     dependencies.forEach(async dependency => {
       addPackageJsonDependency(tree, dependency);
-      await addAllowedCommonJsDependencies(options)(tree, _context, dependency.name);
       _context.logger.log('info', `✅️ added "${dependency.name}" into ${dependency.type}`);
     });
 
@@ -89,7 +87,7 @@ export const addPackages = (options: Schema) => {
   };
 };
 
-const getNgxUIVersion = () => `^40.4.0`;
+const getNgxUIVersion = () => `^41.0.0`;
 
 export const installDeps = () => (tree: Tree, _context: SchematicContext) => {
   _context.logger.info('installing dependencies...');
@@ -137,32 +135,10 @@ export const addStylesToWorkspace = (options: Schema) => async (_: Tree, _contex
   });
 };
 
-export const addAllowedCommonJsDependencies =
-  (options: Schema) => async (_: Tree, _context: SchematicContext, dependency: string) => {
-    _context.logger.info('adding dependencies to allowedCommonJsDependencies section ...');
-    let projectName = options.project;
-
-    return updateWorkspace((workspace: any) => {
-      if (!projectName) {
-        projectName = workspace.extensions['defaultProject'];
-      }
-
-      const project = getProjectFromWorkspace(workspace, projectName);
-      const targetOptions = getProjectTargetOptions(project, 'build');
-      const optionsSection = targetOptions['options'] as JsonObject;
-
-      _context.logger.info(JSON.stringify(optionsSection));
-
-      if (!optionsSection.allowedCommonJsDependencies) {
-        optionsSection.allowedCommonJsDependencies = [];
-      }
-
-      (optionsSection.allowedCommonJsDependencies as JsonArray).push(dependency);
-
-      return workspace;
-    });
-  };
-
-export const printBanner = () => (_: Tree, _context: SchematicContext) => {
+export const logBanner = () => (_: Tree, _context: SchematicContext) => {
   _context.logger.warn(`@swimlane/ngx-ui - Component & Style Library for Angular by Swimlane`);
+};
+
+export const logInstallDependencies = () => (_: Tree, _context: SchematicContext) => {
+  _context.logger.info(`Please run 'npm install --legacy-peer-deps' to use @swimlane/ng-ui in your app.`);
 };
