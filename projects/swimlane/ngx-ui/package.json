@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "42.0.2",
+  "version": "42.0.3",
   "engines": {
     "node": ">=12.0.0"
   },
@@ -27,12 +27,12 @@
   "homepage": "https://github.com/swimlane/ngx-ui#readme",
   "sideEffects": true,
   "peerDependencies": {
-    "@angular/animations": ">=12.2.16",
-    "@angular/cdk": ">=12.2.16",
+    "@angular/animations": ">=12.2.2",
+    "@angular/cdk": ">=12.2.2",
     "@angular/common": ">=12.2.16",
-    "@angular/core": ">=12.2.16",
-    "@angular/forms": ">=12.2.16",
-    "@angular/platform-browser": ">=12.2.16",
+    "@angular/core": ">=12.2.6",
+    "@angular/forms": ">=12.2.2",
+    "@angular/platform-browser": ">=12.2.2",
     "@types/json-schema": "^7.0.9",
     "ajv": "^6.12.6",
     "codemirror": "5.63.0",
@@ -52,14 +52,14 @@
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@angular/animations": ">=12.2.16",
-    "@angular/cdk": ">=12.2.16",
+    "@angular/animations": ">=12.2.2",
+    "@angular/cdk": ">=12.2.2",
     "@angular/common": ">=12.2.16",
-    "@angular/compiler": ">=12.2.16",
-    "@angular/core": ">=12.2.16",
-    "@angular/forms": ">=12.2.16",
-    "@angular/platform-browser": ">=12.2.16",
-    "@angular/platform-browser-dynamic": ">=12.2.16",
+    "@angular/compiler": ">=12.2.2",
+    "@angular/core": ">=12.2.6",
+    "@angular/forms": ">=12.2.2",
+    "@angular/platform-browser": ">=12.2.2",
+    "@angular/platform-browser-dynamic": ">=12.2.6",
     "@types/faker": "^4.1.11",
     "codemirror": "^5.63.0",
     "core-js": "^3.17.3",
