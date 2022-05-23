@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 42.0.1 (2022-5-22)
+
 - Enhancement (`ngx-property-config`): names generated from title are now Snake_Case
 - BREAKING (`PipesModule`): Rename `cammeltosnake` to `cameltosnake`
 
