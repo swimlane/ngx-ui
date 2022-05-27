@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-large-format-dialog-content`): Active tab indicator (blue line) position
+
 ## 42.0.3 (2022-5-17)
 
 - Enhancement (`ngx-property-config`): names generated from title are now Snake_Case
