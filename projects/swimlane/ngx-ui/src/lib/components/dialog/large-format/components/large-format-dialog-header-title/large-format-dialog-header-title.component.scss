@@ -10,10 +10,18 @@
   justify-content: flex-start;
   align-items: center;
 
+  &__clear,
   &__img {
-    background-color: white;
     height: 60px;
     width: 60px;
+  }
+
+  &__img {
+    background-color: white;
+  }
+
+  &__clear {
+    background-color: transparent;
   }
 
   &__wrapper {
