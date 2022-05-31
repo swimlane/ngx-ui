@@ -2,6 +2,7 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-large-format-dialog-content`): Template for custom logo
 - Enhancement (`ngx-large-format-dialog-content`): Active tab indicator (blue line) position
 
 ## 42.0.3 (2022-5-17)
