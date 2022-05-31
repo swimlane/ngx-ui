@@ -103,11 +103,12 @@
   </app-prism>
 </ngx-section>
 
-<ngx-section class="shadow" sectionTitle="With custom template for subtitle">
+<ngx-section class="shadow" sectionTitle="With custom template for subtitle and top corner logo">
   <ng-template #largeFormatCustomSubtitle let-context="context">
     <ngx-large-format-dialog-content 
       dialogTitle="Title"
       [dialogSubtitleTemplate]="myCustomTemplateSubtitle" 
+      [logoTemplate]="myCustomTemplateLogo"
       (closeOrCancel)="onCloseOrCancel()">
       <p>Content</p>
     </ngx-large-format-dialog-content>
@@ -115,16 +116,20 @@
   <ng-template #myCustomTemplateSubtitle>
     <span>Hi <i class="ngx-icon ngx-trend-level"></i> <i class="ngx-icon ngx-hand"></i></span>
   </ng-template>
+  <ng-template #myCustomTemplateLogo>
+    <ngx-card-avatar>PLAY</ngx-card-avatar>
+  </ng-template>
 
   <button type="button" class="btn" (click)="openDialog({ template: largeFormatCustomSubtitle, format: 'large', closeOnEscape: true })">
-    Open Dialog with Custom Template for SubTitle
+    Open Dialog with Custom Template for SubTitle and logo
   </button>
 
   <app-prism>
       <![CDATA[<ng-template #largeFormatCustomSubtitle let-context="context">
         <ngx-large-format-dialog-content 
           dialogTitle="Title"
-          [dialogSubtitleTemplate]="myCustomTemplateSubtitle" 
+          [dialogSubtitleTemplate]="myCustomTemplateSubtitle"
+          [logoTemplate]="myCustomTemplateLogo" 
           (closeOrCancel)="onCloseOrCancel()">
           <p>Content</p>
         </ngx-large-format-dialog-content>
@@ -132,9 +137,12 @@
       <ng-template #myCustomTemplateSubtitle>
         <span>Hi <i class="ngx-icon ngx-trend-level"></i> <i class="ngx-icon ngx-hand"></i></span>
       </ng-template>
+      <ng-template #myCustomTemplateLogo>
+        <ngx-card-avatar>PLAY</ngx-card-avatar>
+      </ng-template>
     
       <button type="button" class="btn" (click)="openDialog({ template: largeFormatCustomSubtitle, format: 'large', closeOnEscape: true })">
-        Open Dialog with Custom Template for SubTitle
+        Open Dialog with Custom Template for SubTitle and logo
       </button>]]>
     </app-prism>
 </ngx-section>
