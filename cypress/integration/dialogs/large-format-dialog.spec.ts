@@ -55,8 +55,12 @@ describe('Large Format Dialog', () => {
       cy.get('.dialog-container__header span i.ngx-icon.ngx-trend-level').should('exist');
       cy.get('.dialog-container__header span i.ngx-icon.ngx-hand').should('exist');
       cy.get('.dialog-container__header div.ngx-large-format-dialog-header-title__clear').should('exist');
-      cy.get('.dialog-container__header div.ngx-large-format-dialog-header-title__clear > ngx-card-avatar').should('exist');
-      cy.get('.dialog-container__header div.ngx-large-format-dialog-header-title__clear .ngx-card-avatar--content').should('contain', 'PLAY');
+      cy.get('.dialog-container__header div.ngx-large-format-dialog-header-title__clear > ngx-card-avatar').should(
+        'exist'
+      );
+      cy.get(
+        '.dialog-container__header div.ngx-large-format-dialog-header-title__clear .ngx-card-avatar--content'
+      ).should('contain', 'PLAY');
     });
 
     cy.get('ngx-large-format-dialog-content').ngxClose();
