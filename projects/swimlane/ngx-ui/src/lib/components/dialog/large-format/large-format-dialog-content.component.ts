@@ -32,6 +32,7 @@ export class LargeFormatDialogContentComponent implements OnInit {
   @Input() dialogTitle = '';
   @Input() dialogSubtitle?: string;
   @Input() imgSrc?: string | SafeUrl;
+  @Input() logoTemplate?: TemplateRef<unknown>;
   @Input() dialogSubtitleTemplate?: TemplateRef<unknown>;
 
   // header-action inputs
