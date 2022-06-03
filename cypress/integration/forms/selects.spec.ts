@@ -45,6 +45,14 @@ describe('Selects', () => {
       cy.get('@CUT').clear().ngxGetValue().should('equal', '');
     });
 
+    it('selects and clears value by number', () => {
+      cy.get('@CUT').ngxGetValue().should('equal', '');
+
+      cy.get('@CUT').select(2).ngxGetValue().should('equal', 'Physical');
+
+      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
+    });
+
     it('deselects on click', () => {
       cy.get('@CUT').ngxGetValue().should('equal', '');
 
@@ -407,6 +415,7 @@ describe('Selects', () => {
     it('selects value', () => {
       cy.get('@CUT').ngxGetValue().should('equal', 'Red');
       cy.get('@CUT').select('Green').ngxGetValue().should('equal', 'Green');
+      cy.get('@CUT').select(2).ngxGetValue().should('equal', 'Blue-Green');
     });
   });
 

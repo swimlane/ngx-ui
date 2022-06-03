@@ -44,6 +44,7 @@
           [class.active]="kv.index === focusIndex"
           [class.selected]="isSelected(kv.option)"
           [hidden]="kv.option.hidden"
+          [attr.data-value]="kv.option.value"
           tabindex="-1"
           (click)="onOptionClick(kv.option)"
           (keydown)="onOptionKeyDown($event, kv.option)"
