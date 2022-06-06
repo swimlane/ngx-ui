@@ -16,7 +16,7 @@
     {
       "groupName": "angular packages",
       "matchPackagePrefixes": [
-        "@polymer/"
+        "@angular/"
       ],
       "enabled": false
     }
