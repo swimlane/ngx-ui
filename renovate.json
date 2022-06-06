@@ -1,9 +1,10 @@
 {
   "extends": [
     "config:base",
-    "group:allNonMajor",
+    "group:allNonMajor"
   ],
   "ignorePaths": [".github/workflows/**"],
+  "labels": ["dependencies"],
   "packageRules": [
     {
       "matchDepTypes": ["devDependencies"],
