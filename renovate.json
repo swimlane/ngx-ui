@@ -16,7 +16,7 @@
     {
       "groupName": "angular packages",
       "matchPackagePrefixes": [
-        "@angular/"
+        "@angular/*"
       ],
       "enabled": false
     }
