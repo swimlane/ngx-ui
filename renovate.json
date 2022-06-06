@@ -28,7 +28,7 @@
         "matchDepTypes": null,
         "matchUpdateTypes": ["patch", "minor"],
         "groupName": "vulnerabilities",
-        "commitMessageSuffix": "[SECURITY Vulnerabilities]"
+        "commitMessageSuffix": "[SECURITY]"
       }
     ]
   }
