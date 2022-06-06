@@ -24,6 +24,17 @@
       ],
       "groupName": "angular monorepo",
       "enabled" false
+    },
+    {
+      "extends": "monorepo:angular-cli",
+      "matchUpdateTypes": [
+        "digest",
+        "patch",
+        "minor",
+        "major"
+      ],
+      "groupName": "angular-cli monorepo",
+      "enabled" false
     }
   ],
   "vulnerabilityAlerts": {
