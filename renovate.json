@@ -1,0 +1,47 @@
+{
+  "extends": [
+    "config:base",
+    "group:allNonMajor"
+  ],
+  "ignorePaths": [".github/workflows/**"],
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    },
+    {
+      "extends": "monorepo:angular",
+      "matchUpdateTypes": [
+        "digest",
+        "patch",
+        "minor",
+        "major"
+      ],
+      "groupName": "angular monorepo",
+      "enabled": false
+    },
+    {
+      "extends": "monorepo:angular-cli",
+      "matchUpdateTypes": [
+        "digest",
+        "patch",
+        "minor",
+        "major"
+      ],
+      "groupName": "angular-cli monorepo",
+      "enabled": false
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "packageRules": [
+      {
+        "matchDepTypes": null,
+        "matchUpdateTypes": ["patch", "minor"],
+        "groupName": "vulnerabilities",
+        "commitMessageSuffix": "[SECURITY]"
+      }
+    ]
+  }
+}
