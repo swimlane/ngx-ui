@@ -2,6 +2,7 @@
   "extends": [
     "config:base"
   ],
+  "ignorePaths": ["**/.github/workflows/**"]
   "packageRules": [
     {
       "matchDepTypes": ["devDependencies"],
