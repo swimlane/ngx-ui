@@ -15,11 +15,15 @@
       "groupName": "dependencies (non-major)"
     },
     {
-      "groupName": "angular packages",
-      "matchPackagePrefixes": [
-        "@angular/"
+      "extends": "monorepo:angular",
+      "matchUpdateTypes": [
+        "digest",
+        "patch",
+        "minor",
+        "major"
       ],
-      "enabled": false
+      "groupName": "angular monorepo",
+      "enabled" false
     }
   ],
   "vulnerabilityAlerts": {
