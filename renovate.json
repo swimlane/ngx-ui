@@ -6,12 +6,21 @@
     {
       "matchDepTypes": ["devDependencies"],
       "matchUpdateTypes": ["patch", "minor"],
-      "groupName": "devDependencies (patch)"
+      "groupName": "devDependencies (non-major)"
     },
-        {
+    {
       "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["patch", "minor"],
-      "groupName": "dependencies (patch)"
+      "groupName": "dependencies (non-major)"
     }
-  ]
+  ],
+  "vulnerabilityAlerts": {
+    "packageRules": [
+      {
+        "matchDepTypes": ["*"],
+        "matchUpdateTypes": ["patch", "minor"],
+        "groupName": "vulnerabilities"
+      }
+    ]
+  }
 }
