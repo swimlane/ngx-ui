@@ -12,14 +12,22 @@
       "matchDepTypes": ["dependencies"],
       "matchUpdateTypes": ["patch", "minor"],
       "groupName": "dependencies (non-major)"
+    },
+    {
+      "groupName": "angular packages",
+      "matchPackagePrefixes": [
+        "@polymer/"
+      ],
+      enabled: false
     }
   ],
   "vulnerabilityAlerts": {
     "packageRules": [
       {
-        "matchDepTypes": ["*"],
+        "matchDepTypes": null,
         "matchUpdateTypes": ["patch", "minor"],
-        "groupName": "vulnerabilities"
+        "groupName": "vulnerabilities",
+        commitMessageSuffix: '[SECURITY]'
       }
     ]
   }
