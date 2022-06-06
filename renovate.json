@@ -23,7 +23,7 @@
         "major"
       ],
       "groupName": "angular monorepo",
-      "enabled" false
+      "enabled": false
     },
     {
       "extends": "monorepo:angular-cli",
@@ -34,7 +34,7 @@
         "major"
       ],
       "groupName": "angular-cli monorepo",
-      "enabled" false
+      "enabled": false
     }
   ],
   "vulnerabilityAlerts": {
