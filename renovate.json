@@ -2,7 +2,7 @@
   "extends": [
     "config:base"
   ],
-  "ignorePaths": ["**/.github/workflows/**"]
+  "ignorePaths": [".github/workflows/**"]
   "packageRules": [
     {
       "matchDepTypes": ["devDependencies"],
@@ -17,7 +17,7 @@
     {
       "groupName": "angular packages",
       "matchPackagePrefixes": [
-        "@angular/*"
+        "@angular/"
       ],
       "enabled": false
     }
