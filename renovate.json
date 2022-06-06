@@ -1,5 +1,17 @@
 {
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["patch"],
+      "groupName": "devDependencies (patch)"
+    },
+        {
+      "matchDepTypes": ["dependencies"],
+      "matchUpdateTypes": ["patch"],
+      "groupName": "dependencies (patch)"
+    }
   ]
 }
