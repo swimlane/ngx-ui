@@ -35,7 +35,7 @@
     "@angular/platform-browser": ">=12.2.2",
     "@types/json-schema": "^7.0.9",
     "ajv": "^6.12.6",
-    "codemirror": "5.63.0",
+    "codemirror": "5.65.5",
     "core-js": "^3.6.5",
     "json-schema": "*",
     "moment": "^2.29.1",
@@ -46,7 +46,7 @@
     "zone.js": "^0.11.4"
   },
   "dependencies": {
-    "@swimlane/ng2-file-upload": "1.1.0",
+    "@swimlane/ng2-file-upload": "1.2.0",
     "mousetrap": "^1.6.2",
     "normalize.css": "^5.0.0",
     "tslib": "^2.3.1"
