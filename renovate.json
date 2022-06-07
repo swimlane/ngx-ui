@@ -32,6 +32,17 @@
       ],
       "groupName": "angular-cli monorepo",
       "enabled": false
+    },
+    {
+      matchPackageNames: [ "typescript"],
+      "matchUpdateTypes": [
+        "digest",
+        "patch",
+        "minor",
+        "major"
+      ],
+      "groupName": "ignore typescript",
+      "enabled": false
     }
   ],
   "vulnerabilityAlerts": {
