@@ -30,7 +30,6 @@ describe('Dropdowns', () => {
     });
 
     it('Opens and closes dropdowns with testing lib using index', () => {
-      cy.ngxDebug(true);
       cy.get('ngx-dropdown').eq(1).as('CUT');
       cy.get('@CUT').within(() => {
         cy.get('.ngx-dropdown-menu').first().should('not.be.visible');
