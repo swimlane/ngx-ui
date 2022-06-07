@@ -34,14 +34,14 @@
       "enabled": false
     },
     {
-      matchPackageNames: [ "typescript"],
+      matchPackageNames: [ "typescript", "@angular-builders/", "@angular-devkit/" ],
       "matchUpdateTypes": [
         "digest",
         "patch",
         "minor",
         "major"
       ],
-      "groupName": "ignore typescript",
+      "groupName": "ignore angular deps",
       "enabled": false
     }
   ],
