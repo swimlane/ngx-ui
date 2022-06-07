@@ -34,7 +34,7 @@
       "enabled": false
     },
     {
-      matchPackageNames: [ "typescript", "@angular-builders/", "@angular-devkit/" ],
+      "matchPackageNames": [ "typescript", "@angular-builders/", "@angular-devkit/" ],
       "matchUpdateTypes": [
         "digest",
         "patch",
