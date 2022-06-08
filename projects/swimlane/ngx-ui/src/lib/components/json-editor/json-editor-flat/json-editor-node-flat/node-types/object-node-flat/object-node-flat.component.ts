@@ -49,6 +49,10 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
 
   objectKeys = Object.keys;
 
+  get isRoot() {
+    return (this.hideRoot && this.level === -1) || (!this.hideRoot && this.level === 0);
+  }
+
   constructor(private dialogService: DialogService, protected cdr: ChangeDetectorRef) {
     super(cdr);
   }
@@ -212,6 +216,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
   }
 
   private updateSchemaRefProperty(prop: any): void {
+    this.schemaRef.properties ||= Object.create(null);
     this.schemaRef.properties[prop.propertyName] = {
       type: prop.type,
       ...(prop.format && { format: prop.format }),
