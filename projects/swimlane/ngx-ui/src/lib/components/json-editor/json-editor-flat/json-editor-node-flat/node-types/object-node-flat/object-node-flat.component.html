@@ -55,7 +55,7 @@
                   (click)="deleteProperty(prop.propertyName)"
                   [disabled]="requiredCache[prop.propertyName] && !schemaBuilderMode"
                 >
-                  {{ !schema.properties[prop.propertyName] ? 'Delete' : 'Remove' }}
+                  {{ !schema.properties?.[prop.propertyName] ? 'Delete' : 'Remove' }}
                 </button>
               </li>
               <ng-container *ngIf="prop?.$meta?.type && !schemaBuilderMode">
