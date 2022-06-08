@@ -79,7 +79,7 @@
     "@types/jasmine": "~3.6.0",
     "@types/moment-timezone": "^0.5.13",
     "@types/mousetrap": "^1.6.3",
-    "@types/node": "^12.11.1",
+    "@types/node": "16.11.39",
     "@types/prismjs": "^1.16.1",
     "@typescript-eslint/eslint-plugin": "4.23.0",
     "@typescript-eslint/parser": "4.23.0",
