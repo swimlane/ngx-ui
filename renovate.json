@@ -3,6 +3,7 @@
     "config:base",
     "group:allNonMajor"
   ],
+  "masterIssue": true,
   "ignorePaths": [".github/workflows/**"],
   "labels": ["dependencies"],
   "commitBody": "[skip netlify]"
