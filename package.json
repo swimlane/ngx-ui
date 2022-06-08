@@ -84,7 +84,7 @@
     "@typescript-eslint/eslint-plugin": "4.23.0",
     "@typescript-eslint/parser": "4.23.0",
     "angular-cli-ghpages": "^0.6.2",
-    "autoprefixer": "^9.3.1",
+    "autoprefixer": "10.4.7",
     "axe-core": "^4.2.2",
     "clean-css": "5.3.0",
     "codelyzer": "^6.0.0",
