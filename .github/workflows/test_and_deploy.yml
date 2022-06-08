@@ -1,7 +1,7 @@
 name: Build, Test, and Deploy
 
 env:
-  NODE_LATEST: 12.x
+  NODE_LATEST: 16.x
   NODE_OPTIONS: --max_old_space_size=6144
 
 on: [push]
@@ -19,9 +19,9 @@ jobs:
           node-version: ${{ env.NODE_LATEST }}
 
       - name: Install
-        uses: bahmutov/npm-install@v1.7.4
+        uses: bahmutov/npm-install@v1
         with:
-          useLockFile: true
+          install-command: npm ci --legacy-peer-deps
 
       - name: Build
         run: |

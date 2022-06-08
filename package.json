@@ -74,7 +74,7 @@
     "@open-wc/semantic-dom-diff": "^0.19.3",
     "@swimlane/eslint-config": "^2.0.0",
     "@swimlane/prettier-config-swimlane": "^3.0.2",
-    "@types/codemirror": "0.0.80",
+    "@types/codemirror": "5.60.5",
     "@types/faker": "^4.1.11",
     "@types/jasmine": "~3.6.0",
     "@types/moment-timezone": "^0.5.13",
