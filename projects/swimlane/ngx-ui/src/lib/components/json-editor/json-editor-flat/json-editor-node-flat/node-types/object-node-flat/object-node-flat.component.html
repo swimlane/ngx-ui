@@ -131,8 +131,7 @@
     <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
     <div
       class="indented-content"
-      [style.marginLeft]="hideRoot && level === 0 ? '15px' : '1'"
-      [style.backgroundColor]="level === 0 ? '' : 'rgba(49,56,71,0.5)'"
+      [class.indented-content--root]="isRoot"
     >
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle [disabled]="isDuplicated">
