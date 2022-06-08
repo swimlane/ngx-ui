@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 42.0.6 (2022-6-8)
+
 - Fix (`ngx-json-editor-flat`): "Add a property" has correct indention when `hideRoot = false`
 - Ensure object types have `required` object when adding children
 
