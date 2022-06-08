@@ -2,13 +2,16 @@
 
 ## HEAD (unreleased)
 
+## 42.0.5 (2022-6-8)
+
+- Fix (`ngx-json-editor-flat`): Ensure top level object "Add a property" has correct color when `hideRoot = true`
+- Fix (`ngx-json-editor-flat`): Ensure object types have `properties` object when adding children
+- Fix (`ngx-json-editor-flat`): Replace "Add your first property" with "Add a property" per design
+
 ## 42.0.4 (2022-6-1)
 
 - Enhancement (`ngx-large-format-dialog-content`): Template for custom logo
 - Enhancement (`ngx-large-format-dialog-content`): Active tab indicator (blue line) position
-- Fix (`ngx-json-editor-flat`): Ensure top level object "Add a property" has correct color when `hideRoot = true`
-- Fix (`ngx-json-editor-flat`): Ensure object types have `properties` object when adding children
-- Fix (`ngx-json-editor-flat`): Replace "Add your first property" with "Add a property" per design
 
 ## 42.0.3 (2022-5-17)
 
