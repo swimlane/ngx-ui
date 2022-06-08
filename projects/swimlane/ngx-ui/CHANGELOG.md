@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-json-editor-flat`): "Add a property" has correct indention when `hideRoot = false`
+- Ensure object types have `required` object when adding children
+
 ## 42.0.5 (2022-6-8)
 
 - Fix (`ngx-json-editor-flat`): Ensure top level object "Add a property" has correct color when `hideRoot = true`

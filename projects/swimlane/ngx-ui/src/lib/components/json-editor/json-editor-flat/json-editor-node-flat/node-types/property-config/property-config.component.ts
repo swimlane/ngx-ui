@@ -152,6 +152,7 @@ export class PropertyConfigComponent implements OnInit {
   }
 
   private setRequired(): void {
+    this.schema.required ||= [];
     this.required = this.schema.required.includes(this.property.propertyName);
   }
 }
