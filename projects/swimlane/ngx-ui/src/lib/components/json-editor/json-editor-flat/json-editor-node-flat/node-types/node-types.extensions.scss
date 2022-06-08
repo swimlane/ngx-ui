@@ -45,6 +45,14 @@
     align-items: center;
     border-radius: 4px;
     margin-bottom: 0px;
+    margin-left: 15px;
+    background-color: rgba(49, 56, 71, 0.5);
+
+    &.indented-content--root {
+      margin-left: unset;
+      background-color: unset;
+    }
+
     button {
       display: flex;
       color: $color-blue-400;
