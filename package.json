@@ -106,7 +106,7 @@
     "eslint-plugin-security": "1.5.0",
     "faker": "^5.1.0",
     "gh-pages": "^2.2.0",
-    "husky": "^4.2.4",
+    "husky": "8.0.1",
     "jasmine-core": "3.99.1",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "6.3.20",
