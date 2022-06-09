@@ -33,16 +33,14 @@ describe('DateTimeComponent', () => {
   let component: DateTimeComponent;
   let fixture: ComponentFixture<DateTimeComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [DateTimeComponent],
-        imports: [MomentModule, PipesModule, DialogModule],
-        schemas: [NO_ERRORS_SCHEMA],
-        providers: [InjectionService]
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [DateTimeComponent],
+      imports: [MomentModule, PipesModule, DialogModule],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [InjectionService]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     const injectionService = TestBed.inject(InjectionService);

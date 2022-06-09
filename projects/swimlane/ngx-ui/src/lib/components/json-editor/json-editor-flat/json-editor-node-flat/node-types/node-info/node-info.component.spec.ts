@@ -7,14 +7,12 @@ describe('JsonEditorNodeInfoComponent', () => {
   let component: JsonEditorNodeInfoComponent;
   let fixture: ComponentFixture<JsonEditorNodeInfoComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [JsonEditorNodeInfoComponent],
-        imports: [TooltipModule]
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [JsonEditorNodeInfoComponent],
+      imports: [TooltipModule]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(JsonEditorNodeInfoComponent);
