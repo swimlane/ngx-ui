@@ -8,16 +8,14 @@ describe(DialogDrawerContentComponent.name, () => {
   let fixture: ComponentFixture<DialogDrawerContentComponent>;
   let nativeElement: HTMLElement;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [DialogDrawerContentComponent],
-        imports: [NoopAnimationsModule]
-      })
-        .overrideComponent(DialogDrawerContentComponent, { set: { changeDetection: ChangeDetectionStrategy.Default } })
-        .compileComponents();
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [DialogDrawerContentComponent],
+      imports: [NoopAnimationsModule]
     })
-  );
+      .overrideComponent(DialogDrawerContentComponent, { set: { changeDetection: ChangeDetectionStrategy.Default } })
+      .compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DialogDrawerContentComponent);

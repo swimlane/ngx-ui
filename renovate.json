@@ -3,9 +3,10 @@
     "config:base",
     "group:allNonMajor"
   ],
+  "masterIssue": true,
   "ignorePaths": [".github/workflows/**"],
   "labels": ["dependencies"],
-  "commitBody": "[skip netlify]"
+  "commitMessageExtra": "[skip netlify]",
   "packageRules": [
     {
       "matchUpdateTypes": ["patch"],

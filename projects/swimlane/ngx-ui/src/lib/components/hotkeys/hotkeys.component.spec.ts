@@ -25,15 +25,13 @@ describe('HotkeysComponent', () => {
     }
   ];
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [NoopAnimationsModule],
-        declarations: [HotkeysComponent],
-        providers: [HotkeysService]
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [NoopAnimationsModule],
+      declarations: [HotkeysComponent],
+      providers: [HotkeysService]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HotkeysComponent);
