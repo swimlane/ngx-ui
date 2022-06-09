@@ -14,15 +14,13 @@ describe('CalendarComponent', () => {
   let component: CalendarComponent;
   let fixture: ComponentFixture<CalendarComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [CalendarComponent],
-        schemas: [NO_ERRORS_SCHEMA],
-        imports: [MomentModule, PipesModule]
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [CalendarComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+      imports: [MomentModule, PipesModule]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CalendarComponent);
