@@ -55,7 +55,7 @@
     "normalize.css": "^8.0.0",
     "prismjs": "1.28.0",
     "resize-observer-polyfill": "^1.5.1",
-    "rxjs": "6.6.7",
+    "rxjs": "^7.5.5",
     "tslib": "2.4.0"
   },
   "devDependencies": {
