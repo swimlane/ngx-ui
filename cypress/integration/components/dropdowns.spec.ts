@@ -24,9 +24,16 @@ describe('Dropdowns', () => {
       cy.get('ngx-dropdown').eq(1).as('CUT');
       cy.get('@CUT').within(() => {
         cy.get('.ngx-dropdown-menu').first().should('not.be.visible');
-        cy.root().ngxOpen();
-        cy.get('.ngx-dropdown-menu').first().should('be.visible');
         cy.root().select('Button 2');
+        cy.get('.ngx-dropdown-menu').first().should('not.be.visible');
+      });
+    });
+
+    it('Opens and closes dropdowns with testing lib using index', () => {
+      cy.get('ngx-dropdown').eq(1).as('CUT');
+      cy.get('@CUT').within(() => {
+        cy.get('.ngx-dropdown-menu').first().should('not.be.visible');
+        cy.root().select(1);
         cy.get('.ngx-dropdown-menu').first().should('not.be.visible');
       });
     });

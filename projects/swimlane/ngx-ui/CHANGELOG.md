@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-select`): Add option values as `data-value` attribute.
+
 ## 42.0.6 (2022-6-8)
 
 - Fix (`ngx-json-editor-flat`): "Add a property" has correct indention when `hideRoot = false`
