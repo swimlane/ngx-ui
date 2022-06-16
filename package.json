@@ -84,7 +84,7 @@
     "@types/prismjs": "1.26.0",
     "@typescript-eslint/eslint-plugin": "4.33.0",
     "@typescript-eslint/parser": "4.33.0",
-    "angular-cli-ghpages": "^0.6.2",
+    "angular-cli-ghpages": "1.0.0",
     "autoprefixer": "10.4.7",
     "axe-core": "4.4.2",
     "clean-css": "5.3.0",
