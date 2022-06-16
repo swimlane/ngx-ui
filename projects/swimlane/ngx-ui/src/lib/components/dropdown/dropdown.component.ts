@@ -34,7 +34,7 @@ import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent implements AfterContentInit, OnDestroy {
-  destroy$ = new Subject();
+  destroy$ = new Subject<void>();
   private _positionAdjusted = false;
   public get positionAdjusted() {
     return this._positionAdjusted;
