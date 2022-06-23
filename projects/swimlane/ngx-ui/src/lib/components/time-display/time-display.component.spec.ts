@@ -362,16 +362,14 @@ describe('NgxTimeDisplayComponent', () => {
   let component: TestComponent;
   let fixture: ComponentFixture<TestComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        imports: [MomentModule, ClipboardModule, TimeZoneModule],
-        declarations: [TestComponent],
-        schemas: [NO_ERRORS_SCHEMA],
-        providers: [InjectionService]
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [MomentModule, ClipboardModule, TimeZoneModule],
+      declarations: [TestComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+      providers: [InjectionService]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);

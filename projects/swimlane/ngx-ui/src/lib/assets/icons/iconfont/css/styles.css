@@ -17,6 +17,8 @@ Generated using nucleoapp.com
 .ngx-icon {
   display: inline-block;
   font: normal normal normal 1em/1 'ngx-icon';
+  color: inherit;
+  flex-shrink: 0;
   speak: none;
   text-transform: none;
   /* Better Font Rendering */
@@ -40,70 +42,18 @@ Generated using nucleoapp.com
 .ngx-icon-32 {
   font-size: 32px;
 }
-/*----------------------------------
-  add a square/circle background
------------------------------------*/
-.ngx-icon-bg-square,
-.ngx-icon-bg-circle {
-  padding: 0.35em;
-  background-color: #eee;
-}
-.ngx-icon-bg-circle {
-  border-radius: 50%;
-}
-/*------------------------------------
-  use icons as list item markers
--------------------------------------*/
-.ngx-icon-ul {
-  padding-left: 0;
-  list-style-type: none;
-}
-.ngx-icon-ul > li {
-  display: flex;
-  align-items: flex-start;
-  line-height: 1.4;
-}
-.ngx-icon-ul > li > .ngx-icon {
-  margin-right: 0.4em;
-  line-height: inherit;
-}
+
 /*------------------------
   spinning icons
 -------------------------*/
 .ngx-icon-is-spinning {
-  -webkit-animation: ngx-icon-spin 2s infinite linear;
-  -moz-animation: ngx-icon-spin 2s infinite linear;
-  animation: ngx-icon-spin 2s infinite linear;
-}
-@-webkit-keyframes ngx-icon-spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-@-moz-keyframes ngx-icon-spin {
-  0% {
-    -moz-transform: rotate(0deg);
-  }
-  100% {
-    -moz-transform: rotate(360deg);
-  }
+  animation: ngx-icon-spin 1s infinite linear;
 }
 @keyframes ngx-icon-spin {
   0% {
-    -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -ms-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
     transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(360deg);
-    -moz-transform: rotate(360deg);
-    -ms-transform: rotate(360deg);
-    -o-transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
@@ -111,44 +61,19 @@ Generated using nucleoapp.com
   rotated/flipped icons
 -------------------------*/
 .ngx-icon-rotate-90 {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
   transform: rotate(90deg);
 }
 .ngx-icon-rotate-180 {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 .ngx-icon-rotate-270 {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
-  -webkit-transform: rotate(270deg);
-  -moz-transform: rotate(270deg);
-  -ms-transform: rotate(270deg);
-  -o-transform: rotate(270deg);
   transform: rotate(270deg);
 }
 .ngx-icon-flip-y {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
-  -webkit-transform: scale(-1, 1);
-  -moz-transform: scale(-1, 1);
-  -ms-transform: scale(-1, 1);
-  -o-transform: scale(-1, 1);
-  transform: scale(-1, 1);
+  transform: scaleY(-1);
 }
 .ngx-icon-flip-x {
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
-  -webkit-transform: scale(1, -1);
-  -moz-transform: scale(1, -1);
-  -ms-transform: scale(1, -1);
-  -o-transform: scale(1, -1);
-  transform: scale(1, -1);
+  transform: scaleX(-1);
 }
 /*------------------------
 	icons
@@ -319,15 +244,15 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-arrow-tail-subright::before {
-  content: "\ea2a";
-}
-
-.ngx-icon.ngx-arrow-up::before {
   content: "\ea2b";
 }
 
+.ngx-icon.ngx-arrow-up::before {
+  content: "\ea2a";
+}
+
 .ngx-icon.ngx-asset-outline-small::before {
-  content: "\ea2c";
+  content: "\ea2f";
 }
 
 .ngx-icon.ngx-asset-outline::before {
@@ -335,11 +260,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-assets::before {
-  content: "\ea2e";
+  content: "\ea2c";
 }
 
 .ngx-icon.ngx-attachment::before {
-  content: "\ea2f";
+  content: "\ea2e";
 }
 
 .ngx-icon.ngx-automation-alternate::before {
@@ -603,35 +528,35 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-copy::before {
-  content: "\ea71";
-}
-
-.ngx-icon.ngx-credit-card::before {
-  content: "\ea72";
-}
-
-.ngx-icon.ngx-dashboard-outline::before {
   content: "\ea73";
 }
 
-.ngx-icon.ngx-dashboard::before {
+.ngx-icon.ngx-credit-card::before {
   content: "\ea74";
 }
 
+.ngx-icon.ngx-dashboard-outline::before {
+  content: "\ea78";
+}
+
+.ngx-icon.ngx-dashboard::before {
+  content: "\ea71";
+}
+
 .ngx-icon.ngx-database::before {
-  content: "\ea75";
+  content: "\ea72";
 }
 
 .ngx-icon.ngx-devil::before {
-  content: "\ea76";
+  content: "\ea75";
 }
 
 .ngx-icon.ngx-disable::before {
-  content: "\ea77";
+  content: "\ea76";
 }
 
 .ngx-icon.ngx-document::before {
-  content: "\ea78";
+  content: "\ea77";
 }
 
 .ngx-icon.ngx-documentation::before {
@@ -687,11 +612,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-download-outline::before {
-  content: "\ea86";
+  content: "\ea87";
 }
 
 .ngx-icon.ngx-drag::before {
-  content: "\ea87";
+  content: "\ea86";
 }
 
 .ngx-icon.ngx-edit-app::before {
@@ -859,11 +784,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-field-users::before {
-  content: "\eab2";
+  content: "\eab1";
 }
 
 .ngx-icon.ngx-filter-bar::before {
-  content: "\eab1";
+  content: "\eab2";
 }
 
 .ngx-icon.ngx-filter::before {
@@ -1003,11 +928,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-import-outline::before {
-  content: "\ead5";
+  content: "\ead6";
 }
 
 .ngx-icon.ngx-info-filled-2::before {
-  content: "\ead6";
+  content: "\ead5";
 }
 
 .ngx-icon.ngx-info-filled-small::before {
@@ -1179,11 +1104,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-numbered-list::before {
-  content: "\eb02";
+  content: "\eb01";
 }
 
 .ngx-icon.ngx-open::before {
-  content: "\eb01";
+  content: "\eb02";
 }
 
 .ngx-icon.ngx-orchestration::before {
@@ -1323,15 +1248,15 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-reference::before {
-  content: "\eb25";
-}
-
-.ngx-icon.ngx-refresh-circle::before {
   content: "\eb26";
 }
 
+.ngx-icon.ngx-refresh-circle::before {
+  content: "\eb25";
+}
+
 .ngx-icon.ngx-refresh-small::before {
-  content: "\eb27";
+  content: "\eb2c";
 }
 
 .ngx-icon.ngx-refresh::before {
@@ -1339,19 +1264,19 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-remove-edge::before {
-  content: "\eb29";
+  content: "\eb27";
 }
 
 .ngx-icon.ngx-remove-node::before {
-  content: "\eb2a";
+  content: "\eb29";
 }
 
 .ngx-icon.ngx-remove-users::before {
-  content: "\eb2b";
+  content: "\eb2a";
 }
 
 .ngx-icon.ngx-remove::before {
-  content: "\eb2c";
+  content: "\eb2b";
 }
 
 .ngx-icon.ngx-repeat::before {
@@ -1395,11 +1320,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-runs-outline-small::before {
-  content: "\eb37";
+  content: "\eb38";
 }
 
 .ngx-icon.ngx-runs-outline::before {
-  content: "\eb38";
+  content: "\eb37";
 }
 
 .ngx-icon.ngx-save-outline-large::before {
@@ -1495,11 +1420,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-spaces-outline-large::before {
-  content: "\eb50";
+  content: "\eb51";
 }
 
 .ngx-icon.ngx-spaces-outline::before {
-  content: "\eb51";
+  content: "\eb50";
 }
 
 .ngx-icon.ngx-spaces::before {
@@ -1683,11 +1608,11 @@ Generated using nucleoapp.com
 }
 
 .ngx-icon.ngx-user-groups::before {
-  content: "\eb7f";
+  content: "\eb80";
 }
 
 .ngx-icon.ngx-user::before {
-  content: "\eb80";
+  content: "\eb7f";
 }
 
 .ngx-icon.ngx-users::before {
@@ -1738,50 +1663,62 @@ Generated using nucleoapp.com
   content: "\eb8c";
 }
 
-.ngx-icon.ngx-widget::before {
+.ngx-icon.ngx-webhook-outline-large::before {
   content: "\eb8d";
 }
 
-.ngx-icon.ngx-worker::before {
+.ngx-icon.ngx-webhook-outline-small::before {
   content: "\eb8e";
 }
 
-.ngx-icon.ngx-workflow-alternate-large::before {
+.ngx-icon.ngx-webhook-outline::before {
   content: "\eb8f";
 }
 
-.ngx-icon.ngx-workflow-alternate-small::before {
+.ngx-icon.ngx-widget::before {
   content: "\eb90";
 }
 
-.ngx-icon.ngx-workflow-alternate::before {
+.ngx-icon.ngx-worker::before {
   content: "\eb91";
 }
 
-.ngx-icon.ngx-workflow::before {
+.ngx-icon.ngx-workflow-alternate-large::before {
   content: "\eb92";
 }
 
-.ngx-icon.ngx-workspaces::before {
+.ngx-icon.ngx-workflow-alternate-small::before {
   content: "\eb93";
 }
 
-.ngx-icon.ngx-workstation::before {
+.ngx-icon.ngx-workflow-alternate::before {
   content: "\eb94";
 }
 
-.ngx-icon.ngx-wrench::before {
+.ngx-icon.ngx-workflow::before {
   content: "\eb95";
 }
 
-.ngx-icon.ngx-x-filled::before {
+.ngx-icon.ngx-workspaces::before {
   content: "\eb96";
 }
 
-.ngx-icon.ngx-x-small::before {
+.ngx-icon.ngx-workstation::before {
   content: "\eb97";
 }
 
-.ngx-icon.ngx-x::before {
+.ngx-icon.ngx-wrench::before {
   content: "\eb98";
+}
+
+.ngx-icon.ngx-x-filled::before {
+  content: "\eb99";
+}
+
+.ngx-icon.ngx-x-small::before {
+  content: "\eb9a";
+}
+
+.ngx-icon.ngx-x::before {
+  content: "\eb9b";
 }

@@ -7,13 +7,11 @@ describe('ProgressSpinnerComponent', () => {
   let component: ProgressSpinnerComponent;
   let fixture: ComponentFixture<ProgressSpinnerComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [ProgressSpinnerComponent]
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [ProgressSpinnerComponent]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ProgressSpinnerComponent);

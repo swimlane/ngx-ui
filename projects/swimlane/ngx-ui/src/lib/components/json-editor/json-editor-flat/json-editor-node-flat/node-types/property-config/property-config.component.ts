@@ -7,9 +7,10 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { JSONEditorSchema, propTypes, JsonSchemaDataType } from '../../../../json-editor.helper';
 import { JSONSchema7TypeName } from 'json-schema';
-import camelCase from 'camelcase';
+
+import { JSONEditorSchema, propTypes, JsonSchemaDataType } from '../../../../json-editor.helper';
+import { snakeCase } from '../../../../../../utils/strings/snake-case';
 
 export interface PropertyConfigOptions {
   required: boolean;
@@ -132,7 +133,7 @@ export class PropertyConfigComponent implements OnInit {
 
   onTitleChange(title: string): void {
     if (this.isNameLocked) {
-      this.editableProperty.propertyName = camelCase(title);
+      this.editableProperty.propertyName = snakeCase(title);
     }
   }
 
@@ -151,6 +152,7 @@ export class PropertyConfigComponent implements OnInit {
   }
 
   private setRequired(): void {
+    this.schema.required ||= [];
     this.required = this.schema.required.includes(this.property.propertyName);
   }
 }

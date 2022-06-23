@@ -16,5 +16,5 @@
       "ng-in-viewport": "ngInViewport"
     }
   },
-  "allowedNonPeerDependencies": ["mousetrap", "ng2-file-upload", "normalize.css", "camelcase"]
+  "allowedNonPeerDependencies": ["mousetrap", "ng2-file-upload", "normalize.css"]
 }

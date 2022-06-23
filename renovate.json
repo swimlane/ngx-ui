@@ -1,0 +1,60 @@
+{
+  "extends": [
+    "config:base",
+    "group:allNonMajor"
+  ],
+  "masterIssue": true,
+  "ignorePaths": [".github/workflows/**"],
+  "labels": ["dependencies"],
+  "commitMessageExtra": "[skip netlify]",
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    },
+    {
+      "extends": "monorepo:angular",
+      "matchUpdateTypes": [
+        "digest",
+        "patch",
+        "minor",
+        "major"
+      ],
+      "groupName": "angular monorepo",
+      "enabled": false
+    },
+    {
+      "extends": "monorepo:angular-cli",
+      "matchUpdateTypes": [
+        "digest",
+        "patch",
+        "minor",
+        "major"
+      ],
+      "groupName": "angular-cli monorepo",
+      "enabled": false
+    },
+    {
+      "matchPackagePatterns": [ "typescript", "@angular-builders/*", "@angular-devkit/*", "ng-packagr" ],
+      "matchUpdateTypes": [
+        "digest",
+        "patch",
+        "minor",
+        "major"
+      ],
+      "groupName": "ignore angular deps",
+      "enabled": false
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "packageRules": [
+      {
+        "matchDepTypes": null,
+        "matchUpdateTypes": ["patch", "minor"],
+        "groupName": "vulnerabilities",
+        "commitMessageSuffix": "[SECURITY]"
+      }
+    ]
+  }
+}

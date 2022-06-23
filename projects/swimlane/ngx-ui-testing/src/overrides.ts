@@ -3,6 +3,8 @@
 
 import { LOG, NGX, clear, findInput } from './functions';
 
+const { $ } = Cypress;
+
 function escapeRegex(string: string) {
   return string.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 }
@@ -20,7 +22,7 @@ Cypress_Commands_overwrite_Subject(
   (
     originalFn: Function,
     subject: JQuery<HTMLElement>,
-    text: Array<string | RegExp>,
+    valueOrTextOrIndex: Array<string | RegExp | number>,
     options: Partial<Cypress.SelectOptions> = {},
     ...args: any[]
   ) => {
@@ -35,19 +37,13 @@ Cypress_Commands_overwrite_Subject(
             $el: subject,
             consoleProps: () => {
               return {
-                Selected: text,
+                Selected: valueOrTextOrIndex,
                 'Applied to': subject,
                 Elements: subject.length
               };
             }
           });
         }
-
-        if (!Array.isArray(text)) text = [text];
-        text = text.map(t => {
-          if (t instanceof RegExp) return t;
-          return new RegExp(`^\\s*${escapeRegex(t)}\\s*$`, 'g');
-        });
     }
 
     switch (tagName) {
@@ -55,22 +51,61 @@ Cypress_Commands_overwrite_Subject(
         return cy
           .wrap(subject, LOG)
           .ngxOpen(LOG)
-          .withinEach(() => {
-            text.forEach((re: RegExp) => cy.get('li').contains(re, LOG).click(LOG));
-          }, LOG)
+          .withinEach($el => selectItems($el, 'li'), LOG)
           .ngxClose(LOG);
       case NGX.SELECT:
         return cy
           .wrap(subject, LOG)
           .clear(LOG)
           .ngxOpen(LOG)
-          .withinEach(() => {
-            // Support matching on value or display text
-            text.forEach((re: RegExp) => cy.get('li').contains(re, LOG).click(LOG));
-          }, LOG)
+          .withinEach($el => selectItems($el, '.ngx-select-dropdown-option'), LOG)
           .ngxClose(LOG);
     }
-    return originalFn(subject, text as any, options, ...args);
+    return originalFn(subject, valueOrTextOrIndex as any, options, ...args);
+
+    function getOptions($el: JQuery<any>, selector: string) {
+      const optionEls = new Set<JQuery<any>>();
+
+      if (!Array.isArray(valueOrTextOrIndex)) valueOrTextOrIndex = [valueOrTextOrIndex];
+      $el.find(selector).map((index, el) => {
+        $el = $(el);
+        const content = $el.text();
+        const value = $el.attr('data-value');
+
+        if (
+          valueOrTextOrIndex.includes(index) ||
+          valueOrTextOrIndex.includes(content) ||
+          valueOrTextOrIndex.includes(value)
+        ) {
+          optionEls.add(el);
+          return;
+        }
+
+        valueOrTextOrIndex.forEach(item => {
+          if (typeof item === 'string') item = new RegExp(`^\\s*${escapeRegex(item)}\\s*$`, 'g');
+          if (item instanceof RegExp) {
+            if (value?.match(item) || content?.match(item)) optionEls.add(el);
+          }
+        });
+      });
+      return Array.from(optionEls);
+    }
+
+    function selectItems($el: JQuery<any>, selector: string) {
+      const options = getOptions($el, selector);
+      if (options.length === 0) {
+        throw new Error(
+          `cy.select() failed because it could not find an item with value, index, or text matching: ${valueOrTextOrIndex}`
+        );
+      }
+
+      // TODO: throw if more than one option is found and item is not multi-selectable
+
+      options.forEach(option => {
+        // TODO: throw if option is disabled
+        cy.wrap(option, LOG).click(LOG);
+      });
+    }
   }
 );
 
