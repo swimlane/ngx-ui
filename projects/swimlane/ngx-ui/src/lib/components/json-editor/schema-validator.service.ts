@@ -13,6 +13,7 @@ export class SchemaValidatorService {
     });
     this.ajv.addFormat('password', '.*');
     this.ajv.addFormat('code', '.*');
+    this.ajv.addFormat('binary', '.*');
   }
 
   /**
