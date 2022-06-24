@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 42.0.8 (2022-6-24)
+
 - Fix (`ngx-json-editor-flat`): Applying titlecase pipe to type value in html.
 
 ## 42.0.7 (2022-6-24)
