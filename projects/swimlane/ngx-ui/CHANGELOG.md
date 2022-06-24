@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 42.0.7 (2022-6-24)
+
 - Enhancement (`ngx-select`): Add option values as `data-value` attribute.
 - Enhancement (`ngx-json-editor-flat`): Add support for binary format properties.
 
