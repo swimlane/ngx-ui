@@ -141,6 +141,10 @@
           color: $color-input-text-disabled;
           user-select: none;
         }
+
+        &:read-only {
+          color: $color-input-text-disabled;
+        }
       }
 
       .ngx-input-box {

@@ -60,6 +60,12 @@ describe('InputComponent', () => {
     expect(component.input.disabled).toEqual(true);
   });
 
+  it('should be readonly', () => {
+    component.readonly$.next(true);
+    fixture.detectChanges();
+    expect(component.input.readonly).toEqual(true);
+  });
+
   it('should emit changes', () => {
     const spy = spyOn(component.input.change, 'emit');
     component.input.onChange(MOCK_EVENT);

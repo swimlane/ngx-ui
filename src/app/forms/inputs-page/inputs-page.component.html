@@ -85,7 +85,22 @@
   </ngx-input>
 ]]>
   </app-prism>
+  <br />
 
+  <ngx-input type="text" name="input3" [label]="'Readonly Example'" [readonly]="true" [ngModel]="'Readonly value'"
+    (change)="inputValue1 = $event">
+  </ngx-input>
+  <br />
+  <app-prism>
+<![CDATA[
+  <ngx-input
+    type="text"
+    [label]="'Readonly Example'"
+    [readonly]="true"
+    [ngModel]="'Readonly value'">
+  </ngx-input>
+]]>
+  </app-prism>
   <br />
 
   <ngx-input [label]="'Required Input Example Of The Day'" type="text" name="input4" [required]="true"

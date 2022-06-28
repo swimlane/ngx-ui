@@ -95,6 +95,14 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   }
 
   @Input()
+  get readonly() {
+    return this._readonly;
+  }
+  set readonly(readonly: boolean) {
+    this._readonly = coerceBooleanProperty(readonly);
+  }
+
+  @Input()
   get minWidth(): number {
     return this._minWidth;
   }
@@ -275,6 +283,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   private _type: InputTypes = InputTypes.text;
   private _passwordTextVisible = false;
   private _disabled = false;
+  private _readonly = false;
   private _required = false;
   private _autoSelect = false;
   private _autofocus = false;
