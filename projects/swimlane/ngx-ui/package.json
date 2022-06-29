@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "41.0.0",
+  "version": "42.0.8",
   "engines": {
     "node": ">=12.0.0"
   },
@@ -29,24 +29,24 @@
   "peerDependencies": {
     "@angular/animations": ">=12.2.2",
     "@angular/cdk": ">=12.2.2",
-    "@angular/common": ">=12.2.4",
+    "@angular/common": ">=12.2.16",
     "@angular/core": ">=12.2.6",
     "@angular/forms": ">=12.2.2",
     "@angular/platform-browser": ">=12.2.2",
     "@types/json-schema": "^7.0.9",
     "ajv": "^6.12.6",
-    "codemirror": "5.63.0",
-    "core-js": "^3.17.3",
+    "codemirror": "5.65.5",
+    "core-js": "^3.6.5",
     "json-schema": "*",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
     "ng-in-viewport": "^6.1.5",
     "ngx-autosize-input": "^2.3.7",
-    "rxjs": "^6.6.7",
+    "rxjs": "^6.6.7|| ^7.4.0",
     "zone.js": "^0.11.4"
   },
   "dependencies": {
-    "@swimlane/ng2-file-upload": "1.1.0",
+    "@swimlane/ng2-file-upload": "1.2.0",
     "mousetrap": "^1.6.2",
     "normalize.css": "^5.0.0",
     "tslib": "^2.3.1"
@@ -54,7 +54,7 @@
   "devDependencies": {
     "@angular/animations": ">=12.2.2",
     "@angular/cdk": ">=12.2.2",
-    "@angular/common": ">=12.2.4",
+    "@angular/common": ">=12.2.16",
     "@angular/compiler": ">=12.2.2",
     "@angular/core": ">=12.2.6",
     "@angular/forms": ">=12.2.2",
@@ -67,7 +67,7 @@
     "moment": "^2.29.1",
     "ngx-moment": "^5.0.0",
     "resize-observer-polyfill": "^1.5.1",
-    "rxjs": "^6.6.7",
+    "rxjs": "7.5.5",
     "zone.js": "^0.11.4"
   },
   "schematics": "../../../dist/swimlane/ngx-ui-schematics/collection.json"

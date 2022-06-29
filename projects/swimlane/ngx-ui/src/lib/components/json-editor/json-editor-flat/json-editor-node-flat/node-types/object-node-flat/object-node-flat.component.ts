@@ -49,6 +49,14 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
 
   objectKeys = Object.keys;
 
+  get isRoot() {
+    return (this.hideRoot && this.level === -1) || (!this.hideRoot && this.level === 0);
+  }
+
+  get indentAdd() {
+    return this.hideRoot && this.level === 0;
+  }
+
   constructor(private dialogService: DialogService, protected cdr: ChangeDetectorRef) {
     super(cdr);
   }
@@ -127,8 +135,10 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
 
     this.toggleRequiredValue(options.required, newName);
 
+    this.schema.properties ||= {};
     this.schema.properties[newName] = newProperty;
     this.propertyIndex[options.newProperty.id] = newProperty;
+
     this.updateSchemaRefProperty(newProperty);
 
     if (newName !== oldName) {
@@ -212,6 +222,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
   }
 
   private updateSchemaRefProperty(prop: any): void {
+    this.schemaRef.properties ||= Object.create(null);
     this.schemaRef.properties[prop.propertyName] = {
       type: prop.type,
       ...(prop.format && { format: prop.format }),

@@ -25,7 +25,7 @@
     &__header {
       max-height: 90px;
       height: 90px;
-      border-bottom: 1px solid $color-blue-grey-700;
+      border-bottom: 2px solid $color-blue-grey-700;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -42,7 +42,7 @@
       max-height: 4rem;
       flex: 0 0 4rem;
       height: 4rem;
-      border-top: 1px solid $color-blue-grey-700;
+      border-top: 2px solid $color-blue-grey-700;
     }
 
     & .dialog-stepper,
@@ -82,6 +82,10 @@
 
       & .ngx-tabs.tabs-horizontal button.ngx-tab {
         height: 100%;
+      }
+
+      & .ngx-tabs.tabs-horizontal button.ngx-tab::after {
+        bottom: 1px;
       }
     }
 

@@ -2,6 +2,33 @@
 
 ## HEAD (unreleased)
 
+## 42.0.8 (2022-6-24)
+
+- Fix (`ngx-json-editor-flat`): Applying titlecase pipe to type value in html.
+
+## 42.0.7 (2022-6-24)
+
+- Enhancement (`ngx-select`): Add option values as `data-value` attribute.
+- Enhancement (`ngx-json-editor-flat`): Add support for binary format properties.
+
+## 42.0.6 (2022-6-8)
+
+- Fix (`ngx-json-editor-flat`): "Add a property" has correct indention when `hideRoot = false`
+- Ensure object types have `required` object when adding children
+
+## 42.0.5 (2022-6-8)
+
+- Fix (`ngx-json-editor-flat`): Ensure top level object "Add a property" has correct color when `hideRoot = true`
+- Fix (`ngx-json-editor-flat`): Ensure object types have `properties` object when adding children
+- Fix (`ngx-json-editor-flat`): Replace "Add your first property" with "Add a property" per design
+
+## 42.0.4 (2022-6-1)
+
+- Enhancement (`ngx-large-format-dialog-content`): Template for custom logo
+- Enhancement (`ngx-large-format-dialog-content`): Active tab indicator (blue line) position
+
+## 42.0.3 (2022-5-17)
+
 - Enhancement (`ngx-property-config`): names generated from title are now Snake_Case
 - BREAKING (`PipesModule`): Rename `cammeltosnake` to `cameltosnake`
 

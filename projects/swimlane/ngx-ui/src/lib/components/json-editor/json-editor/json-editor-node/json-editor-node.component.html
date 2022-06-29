@@ -89,7 +89,7 @@
     <!-- String -->
     <ng-container *ngIf="schema?.type === 'string'">
       <!-- No format -->
-      <div *ngIf="!schema.format">
+      <div *ngIf="!schema.format || schema.format === 'binary'">
         <textarea
           *ngIf="!schema?.enum"
           class="value-input"

@@ -8,24 +8,22 @@ describe(LargeFormatDialogHeaderTitleComponent.name, () => {
   let fixture: ComponentFixture<LargeFormatDialogHeaderTitleComponent>;
   let nativeElement: HTMLElement;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [LargeFormatDialogHeaderTitleComponent],
-        imports: [NoopAnimationsModule]
-      })
-        .overrideComponent(LargeFormatDialogHeaderTitleComponent, {
-          set: { changeDetection: ChangeDetectionStrategy.Default }
-        })
-        .compileComponents();
-
-      fixture = TestBed.createComponent(LargeFormatDialogHeaderTitleComponent);
-      component = fixture.componentInstance;
-      nativeElement = fixture.nativeElement;
-
-      fixture.detectChanges();
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [LargeFormatDialogHeaderTitleComponent],
+      imports: [NoopAnimationsModule]
     })
-  );
+      .overrideComponent(LargeFormatDialogHeaderTitleComponent, {
+        set: { changeDetection: ChangeDetectionStrategy.Default }
+      })
+      .compileComponents();
+
+    fixture = TestBed.createComponent(LargeFormatDialogHeaderTitleComponent);
+    component = fixture.componentInstance;
+    nativeElement = fixture.nativeElement;
+
+    fixture.detectChanges();
+  }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
