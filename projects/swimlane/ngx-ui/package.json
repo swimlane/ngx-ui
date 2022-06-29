@@ -70,5 +70,5 @@
     "rxjs": "7.5.5",
     "zone.js": "^0.11.4"
   },
-  "schematics": "../../../dist/swimlane/ngx-ui-schematics/collection.json"
+  "schematics": "./lib/schematics/collection.json"
 }

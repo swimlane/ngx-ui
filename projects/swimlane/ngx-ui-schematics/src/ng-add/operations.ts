@@ -10,13 +10,13 @@ import {
 import { addModuleImportToRootModule, getProjectFromWorkspace, getProjectTargetOptions } from '@angular/cdk/schematics';
 import { getWorkspace, updateWorkspace } from '@schematics/angular/utility/workspace';
 
-export const addPackages = (_: Schema) => {
+export const addPackages = (options: Schema) => {
   return (tree: Tree, _context: SchematicContext) => {
     const ngCoreVersionTag = getPackageJsonDependency(tree, '@angular/core');
     // TODO: find appropriate angular version and then get the matching ngxUI
     const ngxUIVersion = getNgxUIVersion();
 
-    const dependencies: NodeDependency[] = [
+    const dependencies: Partial<NodeDependency>[] = [
       {
         name: '@swimlane/ngx-ui',
         version: ngxUIVersion,
@@ -72,13 +72,23 @@ export const addPackages = (_: Schema) => {
         name: 'ng-in-viewport',
         version: '^6.1.5'
       }
-    ].map(item => ({
+    ];
+
+    if (options?.addNgxUITesting) {
+      dependencies.push({
+        name: 'cypress-ngx-ui-testing',
+        version: '1.1.2',
+        type: NodeDependencyType.Dev
+      });
+    }
+
+    const nodeDependencies: NodeDependency[] = dependencies.map(item => ({
       ...item,
       type: item.type || NodeDependencyType.Default,
       overwrite: item.overwrite || false
-    }));
+    })) as NodeDependency[];
 
-    dependencies.forEach(async dependency => {
+    nodeDependencies.forEach(async dependency => {
       addPackageJsonDependency(tree, dependency);
       _context.logger.log('info', `✅️ added "${dependency.name}" into ${dependency.type}`);
     });
@@ -87,7 +97,7 @@ export const addPackages = (_: Schema) => {
   };
 };
 
-const getNgxUIVersion = () => `^41.0.0`;
+const getNgxUIVersion = () => `42.0.8`;
 
 export const installDeps = () => (tree: Tree, _context: SchematicContext) => {
   _context.logger.info('installing dependencies...');

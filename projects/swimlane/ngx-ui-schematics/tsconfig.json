@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "tsconfig",
-    "outDir": "../../../dist/swimlane/ngx-ui-schematics",
+    "outDir": "../../../dist/swimlane/ngx-ui/lib/schematics",
     "lib": ["es2018", "dom"],
     "declaration": true,
     "module": "commonjs",
