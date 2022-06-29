@@ -36,7 +36,7 @@
       "enabled": false
     },
     {
-      "matchPackageNames": [ "typescript", "@angular-builders/", "@angular-devkit/" ],
+      "matchPackagePatterns": [ "typescript", "@angular-builders/*", "@angular-devkit/*", "ng-packagr" ],
       "matchUpdateTypes": [
         "digest",
         "patch",

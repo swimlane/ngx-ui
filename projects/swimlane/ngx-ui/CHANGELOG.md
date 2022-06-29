@@ -2,7 +2,14 @@
 
 ## HEAD (unreleased)
 
+## 42.0.8 (2022-6-24)
+
+- Fix (`ngx-json-editor-flat`): Applying titlecase pipe to type value in html.
+
+## 42.0.7 (2022-6-24)
+
 - Enhancement (`ngx-select`): Add option values as `data-value` attribute.
+- Enhancement (`ngx-json-editor-flat`): Add support for binary format properties.
 
 ## 42.0.6 (2022-6-8)
 
