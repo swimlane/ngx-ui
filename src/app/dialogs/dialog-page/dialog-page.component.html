@@ -42,6 +42,7 @@ export class AppComponent {
 <ngx-section class="shadow" [sectionTitle]="'Component'">
   <ngx-dialog dialogTitle="Attack Alert" *ngIf="dialogVis" (onClose)="dialogVis = false" [zIndex]="10">
     <p>Attack Found!</p>
+    <ngx-input label="Details" [autofocus]="true"></ngx-input>
   </ngx-dialog>
 
   <button type="button" class="btn" (click)="dialogVis = !dialogVis">
