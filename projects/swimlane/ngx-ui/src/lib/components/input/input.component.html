@@ -105,7 +105,7 @@
     </div>
     <ng-content select="ngx-input-suffix"></ng-content>
   </div>
-  <div class="ngx-input-underline">
+  <div class="ngx-input-underline" [ngClass]="{ 'ngx-input-underline__visibility-hidden': readonly }">
     <div class="underline-fill" [@underlineState]="underlineState"></div>
   </div>
   <div class="ngx-input-hint">
