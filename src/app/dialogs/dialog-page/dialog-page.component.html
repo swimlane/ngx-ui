@@ -42,6 +42,7 @@ export class AppComponent {
 <ngx-section class="shadow" [sectionTitle]="'Component'">
   <ngx-dialog dialogTitle="Attack Alert" *ngIf="dialogVis" (onClose)="dialogVis = false" [zIndex]="10">
     <p>Attack Found!</p>
+    <ngx-input label="Details" [autofocus]="true"></ngx-input>
   </ngx-dialog>
 
   <button type="button" class="btn" (click)="dialogVis = !dialogVis">
@@ -280,6 +281,65 @@ export class AppComponent {
   openDialog(options): void {
     this.dialogMngr.create(options);
   }
+}]]>
+      </app-prism>
+    </ngx-tab>
+  </ngx-tabs>
+</ngx-section>
+
+<ngx-section class="shadow" [sectionTitle]="'closeOnBlur & closeOnEscape'">
+  <ng-template #dirtyDialogTmpl let-context="context">
+    <p>
+      Can close the dialog on esc or blur: <i>{{ canClose | json }}</i>
+    </p>
+
+    <button type="button" class="btn" (click)="canClose = !canClose">Toggle canClose</button>
+  </ng-template>
+
+  <button
+    type="button"
+    class="btn"
+    (click)="openDialog({ title: 'Dirty Check', closeOnBlur: true, closeOnEscape: true, beforeClose, template: dirtyDialogTmpl })"
+  >
+    Open Dialog
+  </button>
+
+  <br />
+  <br />
+
+  <ngx-tabs>
+    <ngx-tab label="Markup">
+      <app-prism>
+<![CDATA[<button type="button" class="btn" (click)="openDialog({ title: 'Dirty Check', closeOnBlur: true, closeOnEscape: true, beforeClose, template: dirtyDialogTmpl })"
+> Open Dialog </button>]]>
+      </app-prism>
+    </ngx-tab>
+    <ngx-tab label="TypeScript">
+      <app-prism language="js">
+<![CDATA[import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild } from '@angular/core';
+import { DialogService } from '@swimlane/ngx-ui';
+
+@Component({
+  selector: 'app-dialog-page',
+  templateUrl: './dialog-page.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class DialogPageComponent {
+  dialogVis: any;
+  canClose = true;
+
+  @ViewChild('dialogTmpl', { static: true })
+  dialogTpl: TemplateRef<any>;
+
+  constructor(public dialogMngr: DialogService) {}
+
+  openDialog(options) {
+    this.dialogMngr.create(options);
+  }
+
+  beforeClose = (): boolean => {
+    return this.canClose;
+  };
 }]]>
       </app-prism>
     </ngx-tab>
