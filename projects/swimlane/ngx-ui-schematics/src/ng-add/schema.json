@@ -12,7 +12,7 @@
     "addNgxUITesting": {
       "type": "boolean",
       "description": "Cypress Helper commands for testing application that utilize ngx-ui.",
-      "x-prompt": "Would you like to use ngx-ui-testing package?"
+      "x-prompt": "Would you like to use @swimlane/ngx-ui-testing package?"
     }
   }
 }

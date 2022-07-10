@@ -35,16 +35,8 @@ export const addPackages = (options: Schema) => {
         version: `0.5.34`
       },
       {
-        name: 'ngx-moment',
-        version: `6.0.2`
-      },
-      {
-        name: 'resize-observer-polyfill',
-        version: `1.5.1`
-      },
-      {
         name: 'codemirror',
-        version: '5.65.3'
+        version: '5.65.5'
       },
       {
         name: 'json-schema',
@@ -52,12 +44,12 @@ export const addPackages = (options: Schema) => {
       },
       {
         name: '@types/json-schema',
-        version: '^7.0.3',
+        version: '^7.0.9',
         type: NodeDependencyType.Dev
       },
       {
         name: 'ajv',
-        version: '6.12.6'
+        version: '^6.12.6'
       },
       {
         name: '@types/codemirror',
@@ -76,7 +68,7 @@ export const addPackages = (options: Schema) => {
 
     if (options?.addNgxUITesting) {
       dependencies.push({
-        name: 'cypress-ngx-ui-testing',
+        name: '@swimlane/ngx-ui-testing',
         version: '1.1.2',
         type: NodeDependencyType.Dev
       });
@@ -111,7 +103,7 @@ export const addNGXModules = (_: Schema) => async (tree: Tree, _context: Schemat
   const ngxUIModuleName = 'NgxUIModule';
   const ngxIconModuleName = 'IconModule';
 
-  const workspace = await getWorkspace(tree);
+  const workspace: any = await getWorkspace(tree);
   const project = getProjectFromWorkspace(workspace);
 
   addModuleImportToRootModule(tree, ngxUIModuleName, ngxUINamespace, project);
