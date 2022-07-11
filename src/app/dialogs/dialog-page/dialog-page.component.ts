@@ -8,6 +8,7 @@ import { DialogService } from '@swimlane/ngx-ui';
 })
 export class DialogPageComponent {
   dialogVis: any;
+  canClose = true;
 
   @ViewChild('dialogTmpl', { static: true })
   dialogTpl: TemplateRef<any>;
@@ -17,4 +18,8 @@ export class DialogPageComponent {
   openDialog(options) {
     this.dialogMngr.create(options);
   }
+
+  beforeClose = (): boolean => {
+    return this.canClose;
+  };
 }

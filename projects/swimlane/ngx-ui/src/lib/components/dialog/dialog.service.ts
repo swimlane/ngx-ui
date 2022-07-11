@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 import { InjectionRegistryService } from '../../services/injection-registry/injection-registry.service';
 
 import { InjectionService } from '../../services/injection/injection.service';
@@ -76,7 +77,7 @@ export class DialogService<T = DialogComponent> extends InjectionRegistryService
           zIndex
         });
         if (triggerComponent.instance.closeOnBlur) {
-          overlaySub = this.overlayService.click.subscribe(kill);
+          overlaySub = this.overlayService.click.pipe(filter(() => triggerComponent.instance.canClose)).subscribe(kill);
         }
       });
     }

@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-dialog`): Dialog close behavior can be controlled by `beforeClose` method when `closeOnEscape` or `closeOnBlur` are `true`
+
 ## 42.0.8 (2022-6-24)
 
 - Fix (`ngx-json-editor-flat`): Applying titlecase pipe to type value in html.

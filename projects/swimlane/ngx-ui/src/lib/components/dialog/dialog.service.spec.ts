@@ -4,6 +4,7 @@ import { EventEmitter } from '@angular/core';
 import { InjectionService } from '../../services/injection/injection.service';
 import { OverlayService } from '../overlay/overlay.service';
 import { DialogService } from './dialog.service';
+import { of } from 'rxjs';
 
 describe('DialogService', () => {
   let service: DialogService;
@@ -14,7 +15,7 @@ describe('DialogService', () => {
     const overlayServiceStub = {
       removeTriggerComponent: () => ({}),
       show: () => ({}),
-      click: { subscribe: () => ({}) },
+      click: of({}),
       instance: { zIndex: {} }
     };
 
@@ -87,6 +88,23 @@ describe('DialogService', () => {
       const overlaySpy = spyOn(overlayService.click, 'subscribe');
 
       service.create({ closeOnBlur: false });
+      expect(spy).toHaveBeenCalled();
+      expect(overlaySpy).not.toHaveBeenCalled();
+    });
+
+    it('should not close on blur if beforeClose returns false', () => {
+      const component = {
+        instance: {
+          close: new EventEmitter<void>(),
+          showOverlay: true,
+          closeOnBlur: true,
+          beforeClose: () => false
+        }
+      };
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
+      const overlaySpy = spyOn(overlayService.click, 'subscribe');
+
+      service.create({ closeOnBlur: true });
       expect(spy).toHaveBeenCalled();
       expect(overlaySpy).not.toHaveBeenCalled();
     });
