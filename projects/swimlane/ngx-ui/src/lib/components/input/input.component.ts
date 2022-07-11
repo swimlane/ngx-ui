@@ -56,7 +56,7 @@ const MIN_WIDTH = 60;
   host: {
     class: 'ngx-input',
     '[class.legacy]': 'appearance === "legacy"',
-    '[class.fill]': 'appearance === "fill"',
+    '[class.fill]': 'appearance === "fill" && !readonly',
     '[class.sm]': 'size === "sm"',
     '[class.md]': 'size === "md"',
     '[class.lg]': 'size === "lg"',
