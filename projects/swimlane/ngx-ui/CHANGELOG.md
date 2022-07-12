@@ -3,6 +3,7 @@
 ## HEAD (unreleased)
 
 - Enhancement (`ngx-dialog`): Dialog close behavior can be controlled by `beforeClose` method when `closeOnEscape` or `closeOnBlur` are `true`
+- Fix (`ngx-json-editor-flat`): Fix bugs on json editor flat to allow to create array of objects
 
 ## 42.0.8 (2022-6-24)
 

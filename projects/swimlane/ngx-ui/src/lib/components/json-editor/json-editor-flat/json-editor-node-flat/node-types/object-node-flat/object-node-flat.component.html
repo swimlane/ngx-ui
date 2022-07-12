@@ -129,11 +129,7 @@
     *ngIf="!showKnownProperties || schema.additionalProperties !== false"
   >
     <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
-    <div
-      class="indented-content"
-      [class.indented-content--root]="isRoot"
-      [class.indented-content--indent]="indentAdd"
-    >
+    <div class="indented-content" [class.indented-content--root]="isRoot" [class.indented-content--indent]="indentAdd">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle [disabled]="isDuplicated">
           <button type="button">
@@ -148,7 +144,7 @@
           >
             <li *ngFor="let prop of schema.properties | keyvalue" (click)="addSchemaProperty(prop.key)">
               <button [disabled]="model[prop.key] !== undefined" type="button">
-                {{ prop.value.title ? prop.value.title : prop.key }}
+                {{ prop?.value?.title ? prop.value.title : prop.key }}
               </button>
             </li>
           </ul>
