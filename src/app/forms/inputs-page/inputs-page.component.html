@@ -111,7 +111,7 @@
 <![CDATA[
   <ngx-input
     type="text"
-    [label]="'Readonly Example with Hint Text'"
+    [label]="'Readonly Example with Hint'"
     [readonly]="true"
     [ngModel]="'Readonly value'"
     [hint]="'A brief bit of help text'">
@@ -344,6 +344,9 @@
 
 <ngx-section class="shadow" [sectionTitle]="'Textarea'">
   <ngx-input type="textarea" name="input111" [label]="'Name'" [ngModel]="inputValue" [textareaRows]="3">
+  </ngx-input>
+
+  <ngx-input type="textarea" [label]="'Readonly Name'" [readonly]="true" [ngModel]="readonlyTextareaValue" [textareaRows]="3">
   </ngx-input>
 </ngx-section>
 
