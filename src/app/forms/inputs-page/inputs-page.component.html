@@ -85,7 +85,39 @@
   </ngx-input>
 ]]>
   </app-prism>
+  <br />
 
+  <ngx-input type="text" name="input3" [label]="'Readonly Example'" [readonly]="true" [ngModel]="'Readonly value'"
+    (change)="inputValue1 = $event">
+  </ngx-input>
+  <br />
+  <app-prism>
+<![CDATA[
+  <ngx-input
+    type="text"
+    [label]="'Readonly Example'"
+    [readonly]="true"
+    [ngModel]="'Readonly value'">
+  </ngx-input>
+]]>
+  </app-prism>
+  <br />
+
+  <ngx-input type="text" name="input3" [label]="'Readonly Example With Hint'" [readonly]="true" [ngModel]="'Readonly value'"
+    [hint]="'A brief bit of help text'" (change)="inputValue1 = $event">
+  </ngx-input>
+  <br />
+  <app-prism>
+<![CDATA[
+  <ngx-input
+    type="text"
+    [label]="'Readonly Example with Hint'"
+    [readonly]="true"
+    [ngModel]="'Readonly value'"
+    [hint]="'A brief bit of help text'">
+  </ngx-input>
+]]>
+  </app-prism>
   <br />
 
   <ngx-input [label]="'Required Input Example Of The Day'" type="text" name="input4" [required]="true"
@@ -313,6 +345,9 @@
 <ngx-section class="shadow" [sectionTitle]="'Textarea'">
   <ngx-input type="textarea" name="input111" [label]="'Name'" [ngModel]="inputValue" [textareaRows]="3">
   </ngx-input>
+
+  <ngx-input type="textarea" [label]="'Readonly Name'" [readonly]="true" [ngModel]="readonlyTextareaValue" [textareaRows]="3">
+  </ngx-input>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Native">
@@ -479,6 +514,17 @@
       </td>
       <td>
         <ngx-input label="Label" type="password" appearance="fill" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
+        </ngx-input>
+      </td>
+    </tr>
+    <tr>
+      <td>Readonly</td>
+      <td>
+        <ngx-input label="Label" [readonly]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text">
+        </ngx-input>
+      </td>
+      <td>
+        <ngx-input label="Label" [readonly]="true" appearance="fill" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text">
         </ngx-input>
       </td>
     </tr>
