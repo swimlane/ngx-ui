@@ -56,7 +56,7 @@ const MIN_WIDTH = 60;
   host: {
     class: 'ngx-input',
     '[class.legacy]': 'appearance === "legacy"',
-    '[class.fill]': 'appearance === "fill"',
+    '[class.fill]': 'appearance === "fill" && !readonly',
     '[class.sm]': 'size === "sm"',
     '[class.md]': 'size === "md"',
     '[class.lg]': 'size === "lg"',
@@ -92,6 +92,14 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   }
   set disabled(disabled: boolean) {
     this._disabled = coerceBooleanProperty(disabled);
+  }
+
+  @Input()
+  get readonly() {
+    return this._readonly;
+  }
+  set readonly(readonly: boolean) {
+    this._readonly = coerceBooleanProperty(readonly);
   }
 
   @Input()
@@ -275,6 +283,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   private _type: InputTypes = InputTypes.text;
   private _passwordTextVisible = false;
   private _disabled = false;
+  private _readonly = false;
   private _required = false;
   private _autoSelect = false;
   private _autofocus = false;
