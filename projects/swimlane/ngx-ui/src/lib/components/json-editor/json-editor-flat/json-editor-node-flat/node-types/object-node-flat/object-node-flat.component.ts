@@ -175,7 +175,6 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
 
   deleteProperty(propName: string): void {
     if (!this.schemaBuilderMode) {
-      delete this.model[propName];
       this.schemaUpdate.emit();
       super.deleteProperty(propName);
       return;
