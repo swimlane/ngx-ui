@@ -78,7 +78,7 @@ export class ObjectNode implements OnInit, OnChanges {
   update(): void {
     setTimeout(() => {
       for (const prop in this.schema.properties) {
-        if (Array.isArray(this.schema.properties[prop].type) && this.schema.properties[prop].type.length > 0) {
+        if (Array.isArray(this.schema.properties[prop]?.type) && this.schema.properties[prop]?.type.length > 0) {
           if (!this.schema.properties[prop].$meta) {
             this.schema.properties[prop].$meta = {};
           }
