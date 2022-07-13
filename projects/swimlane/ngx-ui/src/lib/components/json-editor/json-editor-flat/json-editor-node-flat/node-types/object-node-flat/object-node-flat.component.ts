@@ -84,12 +84,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
   onUpdatePropertyName(options: { id: string; name: string }): void {
     let schema = this.schemaBuilderMode ? this.schemaRef : this.schema;
 
-    if (!schema?.properties) {
-      if (!schema) {
-        schema = {};
-      }
-      schema.properties = {};
-    }
+    schema ||= {};
+    schema.properties ||= {};
 
     const existingSchemaProperty = schema.properties[options.name];
     const existingPropertyValue = this.model[options.name];
@@ -98,10 +94,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
     this.duplicatedFields.delete(options.id);
 
     if (!existingSchemaProperty && existingPropertyValue === undefined) {
-      const index = Object.keys(schema.properties).findIndex(prop => prop === oldName);
-
+      const index = Object.keys(schema.properties).indexOf(oldName);
       this.updateSchemaPropertyName(schema, options.name, this.propertyIndex[options.id].propertyName);
-
       if (this.schemaBuilderMode) this.swapSchemaProperties(index);
       this.updatePropertyName(options.id, options.name);
       this.schemaUpdate.emit();
@@ -266,7 +260,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
 
   private updateSchemaPropertyName(schema: JSONEditorSchema, newName: string, oldName: string): void {
     this.updateRequiredProperties(schema, newName, oldName);
-    schema.properties = (schema || {}).properties || {};
+    schema ||= {};
+    schema.properties ||= {};
     schema.properties[newName] = schema.properties[oldName];
     delete schema.properties[oldName];
   }
@@ -284,7 +279,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
   }
 
   private updateRequiredProperties(schema: JSONEditorSchema, newName: string, oldName: string): void {
-    schema.required = (schema || {}).required || [];
+    schema ||= {};
+    schema.required ||= [];
     const requiredIndex = schema.required.indexOf(oldName);
     if (requiredIndex >= 0) {
       schema.required[requiredIndex] = newName;
