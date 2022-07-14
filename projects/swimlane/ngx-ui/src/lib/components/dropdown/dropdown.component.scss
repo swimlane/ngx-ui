@@ -116,6 +116,35 @@ $dropdown-color: $color-grey-100;
       &:hover {
         background: $dropdown-bg-hover;
       }
+
+      &.divider,
+      &.divider-label {
+        height: initial;
+        margin: 8px 0;
+        padding: 0 20px;
+        overflow: hidden;
+        background-color: initial !important;
+        color: $color-blue-grey-400 !important;
+      }
+
+      // Floating dividers are hidden
+      &.divider {
+        display: none;
+        padding: 0;
+
+        hr {
+          margin: 2px 0;
+        }
+
+        &:first-child,
+        &:last-child {
+          display: none;
+        }
+      }
+
+      & + li.divider {
+        display: block;
+      }
     }
   }
 
@@ -180,13 +209,8 @@ $dropdown-color: $color-grey-100;
           }
         }
 
-        &.divider-label {
-          height: initial;
-          margin: 8px 0;
-          padding: 0 20px;
-          overflow: hidden;
-          background-color: initial;
-          color: $color-blue-grey-400;
+        &.divider hr {
+          border-bottom: 1px solid $color-blue-grey-700;
         }
       }
     }
