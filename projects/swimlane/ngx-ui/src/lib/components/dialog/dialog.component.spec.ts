@@ -76,20 +76,6 @@ describe('DialogComponent', () => {
     });
   });
 
-  describe('containsTarget', () => {
-    it('should be true when closeOnBlur and contains dialog', () => {
-      const target = { classList: { contains: () => true } };
-      component.closeOnBlur = true;
-      expect(component.containsTarget(target)).toBeTruthy();
-    });
-
-    it('should be false when !closeOnBlur', () => {
-      const target = { classList: { contains: () => true } };
-      component.closeOnBlur = false;
-      expect(component.containsTarget(target)).toBeFalsy();
-    });
-  });
-
   describe('onEscapeKeyDown', () => {
     it('should call hide when closeOnEscape', () => {
       const spy = spyOn(component, 'hide');
@@ -104,23 +90,15 @@ describe('DialogComponent', () => {
       component.onEscapeKeyDown();
       expect(spy).not.toHaveBeenCalled();
     });
-  });
 
-  describe('onDocumentClick', () => {
-    it('should hide if contains target', () => {
-      const spy = spyOn(component, 'containsTarget').and.returnValue(true);
-      component.visible = true;
-      component.onDocumentClick({});
-      expect(spy).toHaveBeenCalled();
-      expect(component.visible).toBeFalsy();
-    });
-
-    it('should not hide if doesnt contain target', () => {
-      const spy = spyOn(component, 'containsTarget').and.returnValue(false);
-      component.visible = true;
-      component.onDocumentClick({});
-      expect(spy).toHaveBeenCalled();
-      expect(component.visible).toBeTruthy();
+    it('should not invoke .hide() if closeOnEscape is true but canClose is false', () => {
+      const hideSpy = spyOn(component, 'hide');
+      const beforeCloseSpy = jasmine.createSpy('beforeClose', () => false);
+      component.beforeClose = beforeCloseSpy;
+      component.closeOnEscape = true;
+      component.onEscapeKeyDown();
+      expect(beforeCloseSpy).toHaveBeenCalled();
+      expect(hideSpy).not.toHaveBeenCalled();
     });
   });
 

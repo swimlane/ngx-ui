@@ -90,9 +90,14 @@ export class JsonEditorPageComponent {
         title: 'User API key',
         type: 'string',
         format: 'password'
+      },
+      file: {
+        title: 'File Binary',
+        type: 'string',
+        format: 'binary'
       }
     },
-    required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions', 'userApiKey']
+    required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions', 'userApiKey', 'file']
   };
 
   hideRoot = false;

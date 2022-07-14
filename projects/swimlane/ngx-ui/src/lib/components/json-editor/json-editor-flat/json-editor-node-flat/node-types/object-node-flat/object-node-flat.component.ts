@@ -82,16 +82,21 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
   }
 
   onUpdatePropertyName(options: { id: string; name: string }): void {
-    const existingSchemaProperty = this.schemaRef.properties[options.name];
+    let schema = this.schemaBuilderMode ? this.schemaRef : this.schema;
+
+    schema ||= {};
+    schema.properties ||= {};
+
+    const existingSchemaProperty = schema.properties[options.name];
     const existingPropertyValue = this.model[options.name];
     const oldName = this.propertyIndex[options.id].propertyName;
 
     this.duplicatedFields.delete(options.id);
 
     if (!existingSchemaProperty && existingPropertyValue === undefined) {
-      const index = Object.keys(this.schemaRef.properties).findIndex(prop => prop === oldName);
-      this.updateSchemaPropertyName(this.schemaRef, options.name, this.propertyIndex[options.id].propertyName);
-      this.swapSchemaProperties(index);
+      const index = Object.keys(schema.properties).indexOf(oldName);
+      this.updateSchemaPropertyName(schema, options.name, this.propertyIndex[options.id].propertyName);
+      if (this.schemaBuilderMode) this.swapSchemaProperties(index);
       this.updatePropertyName(options.id, options.name);
       this.schemaUpdate.emit();
     } else if (oldName !== options.name) {
@@ -129,7 +134,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
         this.updateSchemaPropertyName(this.schema, newName, oldName);
       }
 
-      this.updateSchemaPropertyName(this.schemaRef, newName, oldName);
+      const schema = this.schemaBuilderMode ? this.schemaRef : this.schema;
+      this.updateSchemaPropertyName(schema, newName, oldName);
       this.updatePropertyName(options.newProperty.id, newName);
     }
 
@@ -139,7 +145,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
     this.schema.properties[newName] = newProperty;
     this.propertyIndex[options.newProperty.id] = newProperty;
 
-    this.updateSchemaRefProperty(newProperty);
+    if (this.schemaBuilderMode) this.updateSchemaRefProperty(newProperty);
 
     if (newName !== oldName) {
       this.swapSchemaProperties(options.index);
@@ -159,7 +165,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
 
     const index = this.propertyId - 1;
     const property = this.propertyIndex[index];
-    this.updateSchemaRefProperty(property);
+    if (this.schemaBuilderMode) this.updateSchemaRefProperty(property);
     this.schemaUpdate.emit();
 
     if (this.schemaBuilderMode) {
@@ -168,6 +174,12 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
   }
 
   deleteProperty(propName: string): void {
+    if (!this.schemaBuilderMode) {
+      this.schemaUpdate.emit();
+      super.deleteProperty(propName);
+      return;
+    }
+
     if (this.schemaBuilderMode) {
       delete this.schema.properties[propName];
       delete this.schemaRef.properties[propName];
@@ -247,6 +259,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
 
   private updateSchemaPropertyName(schema: JSONEditorSchema, newName: string, oldName: string): void {
     this.updateRequiredProperties(schema, newName, oldName);
+    schema ||= {};
+    schema.properties ||= {};
     schema.properties[newName] = schema.properties[oldName];
     delete schema.properties[oldName];
   }
@@ -264,6 +278,8 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
   }
 
   private updateRequiredProperties(schema: JSONEditorSchema, newName: string, oldName: string): void {
+    schema ||= {};
+    schema.required ||= [];
     const requiredIndex = schema.required.indexOf(oldName);
     if (requiredIndex >= 0) {
       schema.required[requiredIndex] = newName;

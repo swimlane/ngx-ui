@@ -213,6 +213,10 @@
 
     .ngx-input-underline {
       @include input-underline;
+
+      &__visibility-hidden {
+        visibility: hidden;
+      }
     }
 
     .ngx-input-hint {

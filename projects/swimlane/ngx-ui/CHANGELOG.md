@@ -3,7 +3,24 @@
 ## HEAD (unreleased)
 
 - Enhancement (`ngx-dropdown`): Improve styles and behavior of dividers
+
+## 42.1.0 (2022-7-12)
+
+- Feature (`ngx-input`): Added `readonly` input
+
+## 42.0.9 (2022-7-12)
+
+- Enhancement (`ngx-dialog`): Dialog close behavior can be controlled by `beforeClose` method when `closeOnEscape` or `closeOnBlur` are `true`
+- Fix (`ngx-json-editor-flat`): Fix bugs on json editor flat to allow to create array of objects
+
+## 42.0.8 (2022-6-24)
+
+- Fix (`ngx-json-editor-flat`): Applying titlecase pipe to type value in html.
+
+## 42.0.7 (2022-6-24)
+
 - Enhancement (`ngx-select`): Add option values as `data-value` attribute.
+- Enhancement (`ngx-json-editor-flat`): Add support for binary format properties.
 
 ## 42.0.6 (2022-6-8)
 

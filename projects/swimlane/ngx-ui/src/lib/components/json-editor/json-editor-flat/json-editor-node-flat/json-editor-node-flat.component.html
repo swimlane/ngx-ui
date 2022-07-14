@@ -18,7 +18,7 @@
             [propertyName]="arrayName ? arrayName : schema?.propertyName"
             (propertyNameChange)="updatePropertyName(schema.id, $event)"
             [title]="schema?.title || label || (arrayItem ? 'Items' : schema?.propertyName)"
-            [type]="(schema?.format || schema?.type | titlecase) + (schema?.enum?.length ? ' + Enum' : '')"
+            [type]="((schema?.format && schema?.format !== 'binary' ? schema?.format : schema?.type) | titlecase) + (schema?.enum?.length ? ' + Enum' : '')"
             [description]="schema?.description"
             [examples]="schema?.examples"
             [required]="required"
@@ -55,7 +55,7 @@
           <!-- String -->
           <ng-container *ngIf="schema?.type === 'string'">
             <!-- No format -->
-            <div *ngIf="!schema.format">
+            <div *ngIf="!schema.format || schema.format === 'binary'">
               <ngx-input
                 appearance="fill"
                 *ngIf="!schema?.enum"
