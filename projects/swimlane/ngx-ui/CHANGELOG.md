@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 42.1.0 (2022-7-12)
+
+- Feature (`ngx-input`): Added `readonly` input
+
 ## 42.0.9 (2022-7-12)
 
 - Enhancement (`ngx-dialog`): Dialog close behavior can be controlled by `beforeClose` method when `closeOnEscape` or `closeOnBlur` are `true`
