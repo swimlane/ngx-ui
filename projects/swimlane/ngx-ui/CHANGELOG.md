@@ -4,6 +4,10 @@
 
 - Enhancement (`ngx-dropdown`): Improve styles and behavior of dividers
 
+## 42.1.1 (2022-7-18)
+
+- Fix (`ngx-select`): Filter input doesn't consistently autofocus on open
+
 ## 42.1.0 (2022-7-12)
 
 - Feature (`ngx-input`): Added `readonly` input
