@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-button`): Allow overflow-y so that text is not cut off.
+
 ## 42.1.1 (2022-7-18)
 
 - Fix (`ngx-select`): Filter input doesn't consistently autofocus on open

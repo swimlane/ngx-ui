@@ -16,7 +16,8 @@
 
     > .content {
       text-overflow: ellipsis;
-      overflow: clip;
+      overflow-x: clip;
+      overflow-y: visible;
       width: 100%;
       display: block;
       white-space: nowrap;
