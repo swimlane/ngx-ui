@@ -467,22 +467,35 @@ Cypress_Commands_add_Subject(
       ...options
     };
 
-    const value = getValue(subject);
+    let consoleProps: Record<string, any> = null;
 
     if (options.log) {
-      Cypress.log({
+      consoleProps = {
+        'Applied To': subject,
+        Elements: subject?.length
+      };
+
+      options['_log'] = Cypress.log({
         name: 'ngxGetValue',
         $el: subject,
-        consoleProps: () => {
-          return {
-            'Applied To': subject,
-            Elements: subject?.length,
-            Returned: value
-          };
-        }
+        consoleProps: () => consoleProps
       });
     }
-    return cy.wrap(value);
+
+    const internalGetValue = () => {
+      const value = getValue(subject);
+      if (consoleProps) {
+        consoleProps['Returned'] = value;
+      }
+      return value;
+    };
+
+    const onRetry = () =>
+      Cypress.Promise.try(internalGetValue).then(value => {
+        return cy['verifyUpcomingAssertions'](value, options, { onRetry });
+      });
+
+    return onRetry() as any;
   }
 );
 
