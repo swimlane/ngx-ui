@@ -71,7 +71,7 @@
     "@angular/compiler-cli": "^12.1.0",
     "@angular/language-service": "~12.1.0",
     "@angular/platform-browser-dynamic": "^12.1.0",
-    "@ngneat/spectator": "^5.13.3",
+    "@ngneat/spectator": "11.1.3",
     "@open-wc/semantic-dom-diff": "0.19.6",
     "@swimlane/eslint-config": "^2.0.0",
     "@swimlane/prettier-config-swimlane": "^3.0.2",
