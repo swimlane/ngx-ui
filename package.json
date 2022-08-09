@@ -39,7 +39,7 @@
     "@angular-devkit/architect": "^0.1401.1",
     "@angular-devkit/core": "^14.1.1",
     "@angular/animations": "^14.1.1",
-    "@angular/cdk": "^13.3.9",
+    "@angular/cdk": "^14.1.1",
     "@angular/common": "^14.1.1",
     "@angular/compiler": "^14.1.1",
     "@angular/core": "^14.1.1",
