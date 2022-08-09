@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 const TOHOKU_EARTHQUAKE = '2011-03-11T05:46:24Z';
 const MOON_LANDING = '1969-07-20T20:17:43Z';
@@ -28,11 +28,11 @@ export class DatetimePageComponent {
   curDate: any = new Date(TOHOKU_EARTHQUAKE);
   curDate2: any = new Date('10/10/2016 2:35 PM');
 
-  dateControl: FormControl;
-  disabledDateControl: FormControl;
-  form: FormGroup;
+  dateControl: UntypedFormControl;
+  disabledDateControl: UntypedFormControl;
+  form: UntypedFormGroup;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: UntypedFormBuilder) {
     this.dateControl = fb.control(new Date('10/10/2016'));
     this.disabledDateControl = fb.control({ value: new Date('10/10/2016'), disabled: true });
     this.form = fb.group({

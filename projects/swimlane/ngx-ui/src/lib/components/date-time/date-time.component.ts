@@ -17,7 +17,7 @@ import {
 } from '@angular/core';
 import {
   ControlValueAccessor,
-  FormControl,
+  UntypedFormControl,
   NG_VALIDATORS,
   NG_VALUE_ACCESSOR,
   ValidationErrors,
@@ -485,7 +485,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
     });
   }
 
-  validate(c: FormControl): ValidationErrors | null {
+  validate(c: UntypedFormControl): ValidationErrors | null {
     if (!c.value) return null;
 
     return {

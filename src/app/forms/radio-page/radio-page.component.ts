@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-radio-page',
@@ -12,9 +12,9 @@ export class RadioPageComponent {
   disabled = false;
   seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
   season: string;
-  form: FormGroup;
+  form: UntypedFormGroup;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: UntypedFormBuilder) {
     this.form = fb.group({
       season: 'Spring'
     });

@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
+import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
 import { switchMap } from 'rxjs/operators';
@@ -22,10 +22,10 @@ export class SelectsPageComponent implements OnInit {
   selectsModel = [this.selects[0]];
   singleSelectModel = this.selects[0];
   asyncOptions$: Observable<any>;
-  form = new FormGroup({
-    formCtrl1: new FormControl([]),
-    formCtrl2: new FormControl({ value: [], disabled: true }),
-    formCtrl3: new FormControl(['ddos'], [forbiddenNameValidator(/ddos/)])
+  form = new UntypedFormGroup({
+    formCtrl1: new UntypedFormControl([]),
+    formCtrl2: new UntypedFormControl({ value: [], disabled: true }),
+    formCtrl3: new UntypedFormControl(['ddos'], [forbiddenNameValidator(/ddos/)])
   });
 
   aLongString = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
