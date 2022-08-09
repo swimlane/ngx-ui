@@ -30,4 +30,21 @@ describe('ngx-ui demo', () => {
       cy.getByName('Name').first().should('have.attr', 'id', 'input2');
     });
   });
+
+  it('ngxGetValue works', () => {
+    cy.getByLabel('Name').first().ngxFill('John');
+    cy.getByLabel('Name').first().ngxGetValue().should('equal', 'John');
+  });
+
+  it('ngxGetValue waits for assertion', () => {
+    cy.getByLabel('Name')
+      .eq(1)
+      .then($el => {
+        setTimeout(() => {
+          $el.find('input').val('John');
+        }, 100);
+      });
+
+    cy.getByLabel('Name').eq(1).ngxGetValue().should('equal', 'John');
+  });
 });
