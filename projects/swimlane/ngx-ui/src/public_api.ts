@@ -32,6 +32,7 @@ export * from './lib/pipes/time-zone/time-zone.module';
 export * from './lib/pipes/time-zone/time-zone.pipe';
 
 // directives
+export * from './lib/directives/directives.module';
 export * from './lib/directives/dbl-click-copy/dbl-click-copy.module';
 export * from './lib/directives/dbl-click-copy/dbl-click-copy.directive';
 export * from './lib/directives/long-press/long-press.module';
@@ -60,6 +61,11 @@ export * from './lib/components/calendar/calendar-view.enum';
 
 export * from './lib/components/card/card.module';
 export * from './lib/components/card/card.component';
+export * from './lib/components/card/card-header.component';
+export * from './lib/components/card/card';
+export * from './lib/components/card/card-avatar/card-avatar.component';
+export * from './lib/components/card/card-placeholder/card-placeholder.component';
+export * from './lib/components/card/card-footer.component';
 
 export * from './lib/components/checkbox/checkbox.module';
 export * from './lib/components/checkbox/checkbox.component';
@@ -90,6 +96,7 @@ export * from './lib/components/dialog/alert/alert.component';
 export * from './lib/components/dialog/alert/alert.service';
 export * from './lib/components/dialog/alert/alert-types.enum';
 export * from './lib/components/dialog/alert/alert-styles.enum';
+export * from './lib/components/dialog/large-format/components/large-format-dialog-footer/large-format-dialog-footer.component';
 
 export * from './lib/components/drawer/drawer.module';
 export * from './lib/components/drawer/drawer.component';
@@ -98,6 +105,7 @@ export * from './lib/components/drawer/drawer-position.enum';
 export * from './lib/components/drawer/drawer-options.interface';
 export * from './lib/components/drawer/drawer-direction.enum';
 export * from './lib/components/drawer/drawer-container.directive';
+export * from './lib/components/drawer/dialog-drawer-content/dialog-drawer-content.component';
 
 export * from './lib/components/dropdown/dropdown.module';
 export * from './lib/components/dropdown/dropdown.component';
@@ -142,6 +150,7 @@ export * from './lib/components/json-editor/json-editor.helper';
 export * from './lib/components/json-editor/object-values.pipe';
 export * from './lib/components/json-editor/node-types/array-node.component';
 export * from './lib/components/json-editor/node-types/object-node.component';
+export * from './lib/components/json-editor/json-editor-flat/json-editor-node-flat/node-types/node-info/node-info.component';
 
 export * from './lib/components/loading/loading.module';
 export * from './lib/components/loading/loading.component';

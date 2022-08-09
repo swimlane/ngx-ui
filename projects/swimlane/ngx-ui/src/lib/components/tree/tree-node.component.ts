@@ -9,7 +9,7 @@ import {
   ChangeDetectionStrategy
 } from '@angular/core';
 
-import { TreeNode } from './tree-node.model';
+import type { TreeNode } from './tree-node.model';
 
 @Component({
   exportAs: 'ngxTreeNode',

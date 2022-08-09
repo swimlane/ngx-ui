@@ -18,7 +18,8 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { TreeNodeComponent } from './tree-node.component';
-import { TreeNode } from './tree-node.model';
+
+import type { TreeNode } from './tree-node.model';
 
 @Component({
   selector: 'ngx-tree',
