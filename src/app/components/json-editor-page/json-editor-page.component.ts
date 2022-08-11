@@ -131,6 +131,34 @@ export class JsonEditorPageComponent {
     }
   };
 
+  jsonEditorModel2 = { pathParemeters: { string: { '$:ref': 'abc' } } };
+  jsonEditorSchema2 = {
+    $schema: 'http://json-schema.org/draft-07/schema#',
+    title: 'Test',
+    description: 'Test catalog',
+    type: 'object',
+    properties: {
+      pathParameters: {
+        type: 'object',
+        properties: {
+          string: {
+            type: 'string'
+          }
+          // width: {
+          //   type: 'number'
+          // },
+          // height: {
+          //   type: 'number',
+          //   description: 'Height if dimensions are a volume'
+          // }
+        }
+        // required: ['length', 'width'],
+        // additionalProperties: false
+      }
+    },
+    required: []
+  };
+
   updateJsonEditorSchema(schema: string) {
     this.jsonEditorSchema = JSON.parse(schema);
     this.jsonEditorModel = {};

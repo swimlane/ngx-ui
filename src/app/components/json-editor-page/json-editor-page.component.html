@@ -1,6 +1,6 @@
 <h3 class="style-header">JSON Editor</h3>
 
-<ngx-section class="shadow" [sectionTitle]="'JSON Editor'">
+<!-- <ngx-section class="shadow" [sectionTitle]="'JSON Editor'">
   <ngx-tabs>
     <ngx-tab label="Editor">
       <ngx-json-editor
@@ -86,6 +86,32 @@
 
 <br />
 
+<ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat with custom template for input control'">
+
+  <ngx-json-editor-flat
+    [(model)]="jsonEditorModelFlat"
+    [schema]="jsonEditorSchema"
+    label="Model"
+    [hideRoot]="hideRoot"
+    [showKnownProperties]="showKnownProperties"
+    [passwordToggleEnabled]="true"
+    [inputControlTemplate]="myInputControl"
+    [enableSchemaValidation]="false"
+  >
+  </ngx-json-editor-flat>
+
+  <ng-template #myInputControl let-nodeModel="nodeModel" let-nodeSchema="nodeSchema" let-nodeChangeValue$="nodeChangeValue$">
+    <input type="text" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/>
+  </ng-template>
+
+  <hr />
+  <h3>Model</h3>
+  <pre>{{ jsonEditorModelFlat | json }}</pre>
+  <h3>Schema</h3>
+  <pre>{{ modelSchemaRef | json }}</pre>
+
+</ngx-section>
+
 <ngx-section class="shadow" [sectionTitle]="'Schema Builder Mode'">
   <ngx-json-editor-flat
     [(model)]="jsonEditorSchemaBuilderModel"
@@ -117,4 +143,23 @@
       </app-prism>
     </ngx-tab>
   </ngx-tabs>
-</ngx-section>
+</ngx-section> -->
+
+
+<ngx-json-editor-flat
+[(model)]="jsonEditorModel2"
+[schema]="jsonEditorSchema2"
+label="Model"
+[typeCheckOverrides]="false"
+[hideRoot]="hideRoot"
+[showKnownProperties]="showKnownProperties"
+[passwordToggleEnabled]="passwordToggleEnabled"
+(schemaUpdate)="modelschemaUpdate($event)"
+>
+</ngx-json-editor-flat>
+
+<hr />
+<h3>Model</h3>
+<pre>{{ jsonEditorModel2 | json }}</pre>
+<h3>Schema</h3>
+<pre>{{ jsonEditorSchema2 | json }}</pre>
