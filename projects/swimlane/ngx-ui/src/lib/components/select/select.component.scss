@@ -115,11 +115,13 @@ $color-chip-text: #fff;
       color: $color-caret-bg;
       display: flex;
       flex-wrap: nowrap;
-      margin-right: 5px;
+      min-height: 1.75em;
+      padding-right: 5px;
 
       button {
         padding: 0 2px;
         cursor: pointer;
+        min-height: 1em;
 
         &:hover {
           color: $color-blue-400;
@@ -128,6 +130,8 @@ $color-chip-text: #fff;
 
       .ngx-select-clear,
       .ngx-select-caret {
+        align-items: center;
+        display: flex;
         font-size: 0.6em;
       }
 
@@ -530,11 +534,15 @@ $color-chip-text: #fff;
       padding-left: 10px;
     }
 
-    .ngx-select-flex-wrap .ngx-select-input-box {
-      @include input-fill-background;
+    .ngx-select-flex-wrap {
+      .ngx-select-input-box-outer-wrap {
+        @include input-fill-background;
+      }
 
-      min-height: 1.75em;
-      color: $color-blue-grey-050;
+      .ngx-select-input-box {
+        min-height: 1.75em;
+        color: $color-blue-grey-050;
+      }
     }
 
     .ngx-select-placeholder {
