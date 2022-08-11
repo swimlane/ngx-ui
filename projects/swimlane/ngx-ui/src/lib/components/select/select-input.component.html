@@ -67,7 +67,6 @@
       title="Clear Selections"
       aria-label="Clear Selections"
       class="ngx-select-clear"
-      [class]="{ 'ngx-select-clear--auto': autoTextSize }"
       (click)="onClear($event)"
     >
       <i class="ngx-icon ngx-x-small"></i>
@@ -77,7 +76,6 @@
       *ngIf="caretVisible"
       aria-label="Toggle Dropdown"
       class="ngx-select-caret"
-      [class]="{ 'ngx-select-caret--auto': autoTextSize }"
       (click)="onToggle($event)"
     >
       <i *ngIf="!selectCaret" class="ngx-icon ngx-chevron-bold-down"></i>
