@@ -51,7 +51,15 @@ $color-chip-text: #fff;
     margin-bottom: 0;
     width: 100%;
 
+    .ngx-select-input-box-outer-wrap {
+      align-items: center;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+
     .ngx-select-input-box {
+      align-items: center;
       position: relative;
       background: transparent;
       outline: none;
@@ -61,7 +69,7 @@ $color-chip-text: #fff;
       min-height: 1.75em;
       min-width: 60px;
       cursor: pointer;
-      display: inline-block;
+      display: flex;
       vertical-align: bottom;
     }
 
@@ -84,7 +92,7 @@ $color-chip-text: #fff;
     }
 
     &--has-controls .ngx-select-input-list {
-      padding: 0 40px 0 0;
+      padding: 0 10px 0 0;
     }
 
     .ngx-select-label {
@@ -104,12 +112,10 @@ $color-chip-text: #fff;
     }
 
     .ngx-select-input-box__controls {
-      position: absolute;
-      top: 0.4em;
-      right: 5px;
-      z-index: 500;
-      font-size: 0.6em;
       color: $color-caret-bg;
+      display: flex;
+      flex-wrap: nowrap;
+      margin-right: 5px;
 
       button {
         padding: 0 2px;
@@ -120,8 +126,13 @@ $color-chip-text: #fff;
         }
       }
 
+      .ngx-select-clear,
+      .ngx-select-caret {
+        font-size: 0.6em;
+      }
+
       .ngx-select-clear {
-        font-size: 0.8em;
+        margin-right: 5px;
       }
 
       .ngx-select-caret {
@@ -208,6 +219,7 @@ $color-chip-text: #fff;
     .ngx-select-input {
       .ngx-select-input-box {
         cursor: text;
+        flex: 1;
       }
 
       .ngx-select-input-box-wrapper {
