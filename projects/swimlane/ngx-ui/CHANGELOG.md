@@ -2,6 +2,20 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-button`): Allow overflow-y so that text is not cut off.
+
+## 42.1.1 (2022-7-18)
+
+- Fix (`ngx-select`): Filter input doesn't consistently autofocus on open
+- Fix (`ngx-json-editor-flat`): Fix bugs on json editor flat to allow to create array of objects
+- Enhancement (`ngx-dropdown`): Improve styles and behavior of dividers
+
+## 42.1.0 (2022-7-12)
+
+- Feature (`ngx-input`): Added `readonly` input
+
+## 42.0.9 (2022-7-12)
+
 - Enhancement (`ngx-dialog`): Dialog close behavior can be controlled by `beforeClose` method when `closeOnEscape` or `closeOnBlur` are `true`
 
 ## 42.0.8 (2022-6-24)
