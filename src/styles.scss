@@ -3,6 +3,7 @@
 
 // prism theme
 @import './app/common/prism/prism.css';
+@import 'colors/variables';
 
 .appearance-table {
   max-width: 500px;
@@ -23,4 +24,16 @@ $ngx-font-path: '../projects/swimlane/ngx-ui/src/lib/assets/icons/iconfont/fonts
     url('#{$ngx-font-path}/ngx-icon.ttf') format('truetype'), url('#{$ngx-font-path}/ngx-icon.svg') format('svg');
   font-weight: normal;
   font-style: normal;
+}
+
+code {
+  font-size: 14px;
+}
+
+.component-description {
+  font-size: 15px;
+}
+
+.component-type {
+  color: $color-blue-200;
 }

@@ -27,4 +27,8 @@ export class InputsPageComponent {
   onClick(event: any) {
     console.log({ event });
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

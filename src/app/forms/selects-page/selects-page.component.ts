@@ -15,6 +15,7 @@ export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
 @Component({
   selector: 'app-selects-page',
   templateUrl: './selects-page.component.html',
+  styleUrls: ['./selects-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectsPageComponent implements OnInit {
@@ -81,5 +82,9 @@ export class SelectsPageComponent implements OnInit {
     } else {
       formControl.enable();
     }
+  }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
 }
