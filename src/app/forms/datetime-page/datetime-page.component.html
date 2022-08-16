@@ -1,456 +1,736 @@
 <h3 class="style-header">Date Time</h3>
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" sectionTitle="Date Input">
+      <label>Current Value:</label>
+      <output>{{ date | json }}</output>
+    
+      <ngx-date-time
+        name="date-input1"
+        label="Date of attack"
+        [(value)]="date"
+        (ngModelChange)="dateChanged($event)"
+        (blur)="onBlurEvent($event)"
+        (dateTimeSelected)="dateTimeSelected($event)"
+      >
+      </ngx-date-time>
+    
+      <br />
+    
+      <app-prism>
+    <![CDATA[<ngx-date-time
+      name="date-input1"
+      [disabled]="true"
+      label="Date of attack"
+      [(value)]="date"
+      (change)="dateChanged($event)"
+      (blur)="onBlurEvent($event)"
+      (dateTimeSelected)="dateTimeSelected($event)"
+    >
+    </ngx-date-time>]]>
+      </app-prism>
+    
+      <br />
+      <br />
+    
+      <ngx-date-time name="date-input2" label="Disabled" [disabled]="true" [(value)]="date2">
+      </ngx-date-time>
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-date-time
+      name="date-input2"
+      [disabled]="true"
+      label="Disabled"
+      [(value)]="date2"
+    >
+    </ngx-date-time>]]>
+      </app-prism>
+    
+      <br />
+      <br />
+    
+      <label>Current Value:</label>
+      <output>{{ date3 | json }}</output>
+    
+      <ngx-date-time name="date-input3" label="Custom Format" [(value)]="date3" [format]="'M/Y'">
+      </ngx-date-time>
+      <br />
+      <app-prism>
+    <![CDATA[ <ngx-date-time
+      name="date-input3"
+      [(value)]="date3"
+      [format]="'M/Y'"
+    >
+    </ngx-date-time>]]>
+      </app-prism>
+    
+      <br />
+      <br />
+    
+      <ngx-date-time
+        name="date-input4"
+        label="Min/Max Dates"
+        [minDate]="minDate"
+        [maxDate]="maxDate"
+        [hint]="'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
+        [(value)]="date4"
+      >
+      </ngx-date-time>
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-date-time
+      name="date-input4"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [hint]="'Select date between' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
+      [(value)]="date4"
+    >
+    </ngx-date-time>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Form Control">
+      Form Control Value: {{ dateControl.value | json }}
+    
+      <ngx-date-time label="Form Control" [formControl]="dateControl"></ngx-date-time>
+    
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <ngx-date-time label="Form Control Name" formControlName="date"></ngx-date-time>
+        <ngx-date-time label="Disabled" formControlName="disabledDate"></ngx-date-time>
+      </form>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Date/Time Input">
+      <label>Value: </label>
+      <output>{{ dateTime | json }}</output>
+    
+      <ngx-date-time
+        name="datetime-input"
+        inputType="datetime"
+        label="Moon Landing"
+        [(value)]="dateTime"
+      >
+      </ngx-date-time>
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-date-time
+      name="datetime-input"
+      inputType="datetime"
+      label="Moon Landing"
+      [(value)]="dateTime"
+    >
+    </ngx-date-time>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="TimeZones">
+      <label>Current Value:</label>
+      <output>{{ eventDate | json }}</output>
+    
+      <ngx-date-time
+        name="timezone-local"
+        inputType="datetime"
+        label="Local Time"
+        displayMode="timezone"
+        [(value)]="eventDate"
+      >
+      </ngx-date-time>
+    
+      <ngx-date-time
+        name="timezone-utc"
+        inputType="datetime"
+        label="UTC"
+        timezone="utc"
+        [(value)]="eventDate"
+      >
+      </ngx-date-time>
+    
+      <ngx-date-time
+        name="timezone-jst"
+        inputType="datetime"
+        label="JST"
+        timezone="Asia/Tokyo"
+        [(value)]="eventDate"
+      >
+      </ngx-date-time>
+    
+      <app-prism>
+    <![CDATA[ <ngx-date-time
+      name="timezone-local"
+      inputType="datetime"
+      label="Local Time"
+      displayMode="timezone"
+      [(value)]="eventDate"
+    >
+    </ngx-date-time>
+    
+      <ngx-date-time
+      name="timezone-utc"
+      inputType="datetime"
+      label="UTC"
+      timezone="utc"
+      [(value)]="eventDate"
+    >
+    </ngx-date-time>
+    
+    <ngx-date-time
+      name="timezone-jst"
+      inputType="datetime"
+      label="JST"
+      timezone="Asia/Tokyo"
+      [(value)]="eventDate"
+    >
+    </ngx-date-time>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Time Input">
+      <label>Current Value:</label>
+      <output>{{ time | json }}</output>
+    
+      <ngx-date-time
+        name="time-input1"
+        inputType="time"
+        label="Time of attack"
+        [(value)]="time"
+      >
+      </ngx-date-time>
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-date-time
+      name="time-input1"
+      inputType="time"
+      label="Time of attack"
+      [(value)]="time"
+    >
+    </ngx-date-time>]]>
+      </app-prism>
+    
+      <ngx-date-time
+      name="time-input2"
+      inputType="time"
+      displayMode="timezone"
+      label="Time of attack"
+      [(value)]="time"
+      >
+      </ngx-date-time>
+    
+      <ngx-date-time
+      name="time-input2"
+      inputType="time"
+      timezone="utc"
+      label="Time of attack (UTC)"
+      [(value)]="time"
+      >
+      </ngx-date-time>
+    
+      <ngx-date-time
+      name="time-input2"
+      inputType="time"
+      timezone="Asia/Tokyo"
+      label="Time of attack (JST)"
+      [(value)]="time"
+      >
+      </ngx-date-time>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Precision">
+      <label>Current Value:</label>
+      <output>{{ precisionDate | json }}</output>
+    
+      <ngx-date-time
+        label="Year"
+        precision="year"
+        [(value)]="precisionDate"
+      >
+      </ngx-date-time>
+    
+      <ngx-date-time
+        label="Month"
+        precision="month"
+        [(value)]="precisionDate"
+      >
+      </ngx-date-time>
+    
+      <ngx-date-time
+        label="Hour"
+        precision="hour"
+        [(value)]="precisionDate"
+      >
+      </ngx-date-time>
+    
+      <ngx-date-time
+        label="Minutes"
+        precision="minute"
+        [(value)]="precisionDate"
+      >
+      </ngx-date-time>
+    
+      <app-prism>
+    <![CDATA[<ngx-date-time
+      label="Year"
+      precision="year"
+      [(value)]="precisionDate"
+    >
+    </ngx-date-time>
+    
+      <ngx-date-time
+      label="Month"
+      precision="month"
+      [(value)]="precisionDate"
+    >
+    </ngx-date-time>
+    
+      <ngx-date-time
+      label="Hour"
+      precision="hour"
+      [(value)]="precisionDate"
+    >
+    </ngx-date-time>
+    
+      <ngx-date-time
+      label="Minutes"
+      precision="minute"
+      [(value)]="precisionDate"
+    >
+    </ngx-date-time>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Autosize">
+      <label>Current Value:</label>
+      <output>{{ curDate2 | json }}</output>
+    
+      <br />
+    
+      <ngx-date-time
+        autosize="true"
+        inputType="date"
+        label="Year"
+        precision="year"
+        [(ngModel)]="curDate2"
+        format="YYYY"
+      >
+      </ngx-date-time>
+    
+      <br />
+    
+      <ngx-date-time
+        autosize="true"
+        inputType="date"
+        label="Month"
+        precision="month"
+        [(ngModel)]="curDate2"
+        format="MMM YYYY"
+      >
+      </ngx-date-time>
+    
+      <br />
+    
+      <ngx-date-time
+        autosize="true"
+        appearance="fill"
+        inputType="datetime"
+        label="Hour"
+        precision="hour"
+        [(ngModel)]="curDate2"
+        format="MMM DD, YYYY, hh:mm"
+      >
+      </ngx-date-time>
+    
+      <br />
+    
+      <ngx-date-time
+        autosize="true"
+        appearance="fill"
+        inputType="datetime"
+        label="Minutes"
+        precision="minute"
+        [(ngModel)]="curDate2"
+        format="MMM DD, YYYY, hh:mm:ss"
+      >
+      </ngx-date-time>
+    
+      <br />
+    
+      <ngx-date-time
+        autosize="true"
+        appearance="fill"
+        [withMargin]="false"
+        inputType="datetime"
+        label="Minutes without margin"
+        precision="minute"
+        [(ngModel)]="curDate2"
+        format="MMM DD, YYYY, hh:mm:ss"
+      >
+      </ngx-date-time>
+    </ngx-section>
+    
+    <ngx-section sectionTitle="Native">
+      <label>Date</label>
+      <input type="date" value="2018-07-22" min="2018-01-01">
+    
+      <br />
+      <br />
+    
+      <label>Date/Time Local</label>
+      <input type="datetime-local" value="2018-07-22" min="2018-01-01">
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Appearances">
+      <table class="appearance-table">
+        <tr>
+          <th></th>
+          <th>
+            Default
+          </th>
+          <th>
+            Fill
+          </th>
+        </tr>
+        <tr>
+          <td>Filled</td>
+          <td><ngx-date-time label="Label" [ngModel]="curDate2" hint="A brief bit of help text"></ngx-date-time></td>
+          <td><ngx-date-time appearance="fill" label="Label" [ngModel]="curDate2"  hint="A brief bit of help text"></ngx-date-time></td>
+        </tr>
+        <tr>
+          <td>Required</td>
+          <td><ngx-date-time label="Label" required [ngModel]="curDate2" hint="A brief bit of help text"></ngx-date-time></td>
+          <td><ngx-date-time appearance="fill" required label="Label" [ngModel]="curDate2"  hint="A brief bit of help text"></ngx-date-time></td>
+        </tr>
+        <tr>
+          <td>Empty w/o Placeholder</td>
+          <td><ngx-date-time label="Label" hint="A brief bit of help text"></ngx-date-time></td>
+          <td><ngx-date-time appearance="fill" label="Label" hint="A brief bit of help text"></ngx-date-time></td>
+        </tr>
+        <tr>
+          <td>Empty w/ Placeholder</td>
+          <td><ngx-date-time label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+          <td><ngx-date-time appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+        </tr>
+        <tr>
+          <td>Time</td>
+          <td><ngx-date-time [ngModel]="curDate2" inputType="time" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+          <td><ngx-date-time [ngModel]="curDate2" inputType="time" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+        </tr>
+        <tr>
+          <td>Date/Time</td>
+          <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+          <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+        </tr>
+        <tr>
+          <td>Invalid</td>
+          <td><ngx-date-time [ngModel]="'What what'" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+          <td><ngx-date-time [ngModel]="'What what'" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+        </tr>
+        <tr>
+          <td>Timezone</td>
+          <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+          <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+        </tr>
+        <tr>
+          <td>Timezone w/ tooltip disabled</td>
+          <td><ngx-date-time [ngModel]="curDate2" [tooltipDisabled]="true" inputType="datetime" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+          <td><ngx-date-time [ngModel]="curDate2" [tooltipDisabled]="true" inputType="datetime" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+        </tr>
+        <tr>
+          <td>Empty Timezone w/ placeholder</td>
+          <td><ngx-date-time inputType="datetime" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+          <td><ngx-date-time inputType="datetime" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+        </tr>
+        <tr>
+          <td>Empty Timezone w/o placeholder</td>
+          <td><ngx-date-time inputType="datetime" displayMode="timezone" label="Label" hint="A brief bit of help text"></ngx-date-time></td>
+          <td><ngx-date-time inputType="datetime" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text"></ngx-date-time></td>
+        </tr>
+        <tr>
+          <td>Time w/ Timezone</td>
+          <td><ngx-date-time [ngModel]="curDate2" inputType="time" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+          <td><ngx-date-time [ngModel]="curDate2" inputType="time" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+        </tr>
+        <tr>
+          <td>Date w/ Timezone</td>
+          <td><ngx-date-time [ngModel]="curDate2" inputType="date" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+          <td><ngx-date-time [ngModel]="curDate2" inputType="date" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+        </tr>
+      </table>
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="content" (click)="scrollTo('inputs')">Component Inputs</a>
+    <a class="content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <hr>
 
-<ngx-section class="shadow" sectionTitle="Date Input">
-  <label>Current Value:</label>
-  <output>{{ date | json }}</output>
-
-  <ngx-date-time
-    name="date-input1"
-    label="Date of attack"
-    [(value)]="date"
-    (ngModelChange)="dateChanged($event)"
-    (blur)="onBlurEvent($event)"
-    (dateTimeSelected)="dateTimeSelected($event)"
-  >
-  </ngx-date-time>
-
-  <br />
-
-  <app-prism>
-<![CDATA[<ngx-date-time
-  name="date-input1"
-  [disabled]="true"
-  label="Date of attack"
-  [(value)]="date"
-  (change)="dateChanged($event)"
-  (blur)="onBlurEvent($event)"
-  (dateTimeSelected)="dateTimeSelected($event)"
->
-</ngx-date-time>]]>
-  </app-prism>
-
-  <br />
-  <br />
-
-  <ngx-date-time name="date-input2" label="Disabled" [disabled]="true" [(value)]="date2">
-  </ngx-date-time>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-date-time
-  name="date-input2"
-  [disabled]="true"
-  label="Disabled"
-  [(value)]="date2"
->
-</ngx-date-time>]]>
-  </app-prism>
-
-  <br />
-  <br />
-
-  <label>Current Value:</label>
-  <output>{{ date3 | json }}</output>
-
-  <ngx-date-time name="date-input3" label="Custom Format" [(value)]="date3" [format]="'M/Y'">
-  </ngx-date-time>
-  <br />
-  <app-prism>
-<![CDATA[ <ngx-date-time
-  name="date-input3"
-  [(value)]="date3"
-  [format]="'M/Y'"
->
-</ngx-date-time>]]>
-  </app-prism>
-
-  <br />
-  <br />
-
-  <ngx-date-time
-    name="date-input4"
-    label="Min/Max Dates"
-    [minDate]="minDate"
-    [maxDate]="maxDate"
-    [hint]="'Select date between ' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
-    [(value)]="date4"
-  >
-  </ngx-date-time>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-date-time
-  name="date-input4"
-  [minDate]="minDate"
-  [maxDate]="maxDate"
-  [hint]="'Select date between' + minDate.toLocaleDateString() + ' and ' + maxDate.toLocaleDateString()"
-  [(value)]="date4"
->
-</ngx-date-time>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Form Control">
-  Form Control Value: {{ dateControl.value | json }}
-
-  <ngx-date-time label="Form Control" [formControl]="dateControl"></ngx-date-time>
-
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <ngx-date-time label="Form Control Name" formControlName="date"></ngx-date-time>
-    <ngx-date-time label="Disabled" formControlName="disabledDate"></ngx-date-time>
-  </form>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Date/Time Input">
-  <label>Value: </label>
-  <output>{{ dateTime | json }}</output>
-
-  <ngx-date-time
-    name="datetime-input"
-    inputType="datetime"
-    label="Moon Landing"
-    [(value)]="dateTime"
-  >
-  </ngx-date-time>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-date-time
-  name="datetime-input"
-  inputType="datetime"
-  label="Moon Landing"
-  [(value)]="dateTime"
->
-</ngx-date-time>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="TimeZones">
-  <label>Current Value:</label>
-  <output>{{ eventDate | json }}</output>
-
-  <ngx-date-time
-    name="timezone-local"
-    inputType="datetime"
-    label="Local Time"
-    displayMode="timezone"
-    [(value)]="eventDate"
-  >
-  </ngx-date-time>
-
-  <ngx-date-time
-    name="timezone-utc"
-    inputType="datetime"
-    label="UTC"
-    timezone="utc"
-    [(value)]="eventDate"
-  >
-  </ngx-date-time>
-
-  <ngx-date-time
-    name="timezone-jst"
-    inputType="datetime"
-    label="JST"
-    timezone="Asia/Tokyo"
-    [(value)]="eventDate"
-  >
-  </ngx-date-time>
-
-  <app-prism>
-<![CDATA[ <ngx-date-time
-  name="timezone-local"
-  inputType="datetime"
-  label="Local Time"
-  displayMode="timezone"
-  [(value)]="eventDate"
->
-</ngx-date-time>
-
-  <ngx-date-time
-  name="timezone-utc"
-  inputType="datetime"
-  label="UTC"
-  timezone="utc"
-  [(value)]="eventDate"
->
-</ngx-date-time>
-
-<ngx-date-time
-  name="timezone-jst"
-  inputType="datetime"
-  label="JST"
-  timezone="Asia/Tokyo"
-  [(value)]="eventDate"
->
-</ngx-date-time>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Time Input">
-  <label>Current Value:</label>
-  <output>{{ time | json }}</output>
-
-  <ngx-date-time
-    name="time-input1"
-    inputType="time"
-    label="Time of attack"
-    [(value)]="time"
-  >
-  </ngx-date-time>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-date-time
-  name="time-input1"
-  inputType="time"
-  label="Time of attack"
-  [(value)]="time"
->
-</ngx-date-time>]]>
-  </app-prism>
-
-  <ngx-date-time
-  name="time-input2"
-  inputType="time"
-  displayMode="timezone"
-  label="Time of attack"
-  [(value)]="time"
-  >
-  </ngx-date-time>
-
-  <ngx-date-time
-  name="time-input2"
-  inputType="time"
-  timezone="utc"
-  label="Time of attack (UTC)"
-  [(value)]="time"
-  >
-  </ngx-date-time>
-
-  <ngx-date-time
-  name="time-input2"
-  inputType="time"
-  timezone="Asia/Tokyo"
-  label="Time of attack (JST)"
-  [(value)]="time"
-  >
-  </ngx-date-time>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Precision">
-  <label>Current Value:</label>
-  <output>{{ precisionDate | json }}</output>
-
-  <ngx-date-time
-    label="Year"
-    precision="year"
-    [(value)]="precisionDate"
-  >
-  </ngx-date-time>
-
-  <ngx-date-time
-    label="Month"
-    precision="month"
-    [(value)]="precisionDate"
-  >
-  </ngx-date-time>
-
-  <ngx-date-time
-    label="Hour"
-    precision="hour"
-    [(value)]="precisionDate"
-  >
-  </ngx-date-time>
-
-  <ngx-date-time
-    label="Minutes"
-    precision="minute"
-    [(value)]="precisionDate"
-  >
-  </ngx-date-time>
-
-  <app-prism>
-<![CDATA[<ngx-date-time
-  label="Year"
-  precision="year"
-  [(value)]="precisionDate"
->
-</ngx-date-time>
-
-  <ngx-date-time
-  label="Month"
-  precision="month"
-  [(value)]="precisionDate"
->
-</ngx-date-time>
-
-  <ngx-date-time
-  label="Hour"
-  precision="hour"
-  [(value)]="precisionDate"
->
-</ngx-date-time>
-
-  <ngx-date-time
-  label="Minutes"
-  precision="minute"
-  [(value)]="precisionDate"
->
-</ngx-date-time>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Autosize">
-  <label>Current Value:</label>
-  <output>{{ curDate2 | json }}</output>
-
-  <br />
-
-  <ngx-date-time
-    autosize="true"
-    inputType="date"
-    label="Year"
-    precision="year"
-    [(ngModel)]="curDate2"
-    format="YYYY"
-  >
-  </ngx-date-time>
-
-  <br />
-
-  <ngx-date-time
-    autosize="true"
-    inputType="date"
-    label="Month"
-    precision="month"
-    [(ngModel)]="curDate2"
-    format="MMM YYYY"
-  >
-  </ngx-date-time>
-
-  <br />
-
-  <ngx-date-time
-    autosize="true"
-    appearance="fill"
-    inputType="datetime"
-    label="Hour"
-    precision="hour"
-    [(ngModel)]="curDate2"
-    format="MMM DD, YYYY, hh:mm"
-  >
-  </ngx-date-time>
-
-  <br />
-
-  <ngx-date-time
-    autosize="true"
-    appearance="fill"
-    inputType="datetime"
-    label="Minutes"
-    precision="minute"
-    [(ngModel)]="curDate2"
-    format="MMM DD, YYYY, hh:mm:ss"
-  >
-  </ngx-date-time>
-
-  <br />
-
-  <ngx-date-time
-    autosize="true"
-    appearance="fill"
-    [withMargin]="false"
-    inputType="datetime"
-    label="Minutes without margin"
-    precision="minute"
-    [(ngModel)]="curDate2"
-    format="MMM DD, YYYY, hh:mm:ss"
-  >
-  </ngx-date-time>
-</ngx-section>
-
-<ngx-section sectionTitle="Native">
-  <label>Date</label>
-  <input type="date" value="2018-07-22" min="2018-01-01">
-
-  <br />
-  <br />
-
-  <label>Date/Time Local</label>
-  <input type="datetime-local" value="2018-07-22" min="2018-01-01">
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Appearances">
-  <table class="appearance-table">
-    <tr>
-      <th></th>
-      <th>
-        Default
-      </th>
-      <th>
-        Fill
-      </th>
-    </tr>
-    <tr>
-      <td>Filled</td>
-      <td><ngx-date-time label="Label" [ngModel]="curDate2" hint="A brief bit of help text"></ngx-date-time></td>
-      <td><ngx-date-time appearance="fill" label="Label" [ngModel]="curDate2"  hint="A brief bit of help text"></ngx-date-time></td>
-    </tr>
-    <tr>
-      <td>Required</td>
-      <td><ngx-date-time label="Label" required [ngModel]="curDate2" hint="A brief bit of help text"></ngx-date-time></td>
-      <td><ngx-date-time appearance="fill" required label="Label" [ngModel]="curDate2"  hint="A brief bit of help text"></ngx-date-time></td>
-    </tr>
-    <tr>
-      <td>Empty w/o Placeholder</td>
-      <td><ngx-date-time label="Label" hint="A brief bit of help text"></ngx-date-time></td>
-      <td><ngx-date-time appearance="fill" label="Label" hint="A brief bit of help text"></ngx-date-time></td>
-    </tr>
-    <tr>
-      <td>Empty w/ Placeholder</td>
-      <td><ngx-date-time label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-      <td><ngx-date-time appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-    </tr>
-    <tr>
-      <td>Time</td>
-      <td><ngx-date-time [ngModel]="curDate2" inputType="time" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-      <td><ngx-date-time [ngModel]="curDate2" inputType="time" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-    </tr>
-    <tr>
-      <td>Date/Time</td>
-      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-    </tr>
-    <tr>
-      <td>Invalid</td>
-      <td><ngx-date-time [ngModel]="'What what'" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-      <td><ngx-date-time [ngModel]="'What what'" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-    </tr>
-    <tr>
-      <td>Timezone</td>
-      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-      <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-    </tr>
-    <tr>
-      <td>Timezone w/ tooltip disabled</td>
-      <td><ngx-date-time [ngModel]="curDate2" [tooltipDisabled]="true" inputType="datetime" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-      <td><ngx-date-time [ngModel]="curDate2" [tooltipDisabled]="true" inputType="datetime" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-    </tr>
-    <tr>
-      <td>Empty Timezone w/ placeholder</td>
-      <td><ngx-date-time inputType="datetime" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-      <td><ngx-date-time inputType="datetime" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-    </tr>
-    <tr>
-      <td>Empty Timezone w/o placeholder</td>
-      <td><ngx-date-time inputType="datetime" displayMode="timezone" label="Label" hint="A brief bit of help text"></ngx-date-time></td>
-      <td><ngx-date-time inputType="datetime" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text"></ngx-date-time></td>
-    </tr>
-    <tr>
-      <td>Time w/ Timezone</td>
-      <td><ngx-date-time [ngModel]="curDate2" inputType="time" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-      <td><ngx-date-time [ngModel]="curDate2" inputType="time" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-    </tr>
-    <tr>
-      <td>Date w/ Timezone</td>
-      <td><ngx-date-time [ngModel]="curDate2" inputType="date" displayMode="timezone" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-      <td><ngx-date-time [ngModel]="curDate2" inputType="date" displayMode="timezone" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
-    </tr>
-  </table>
-</ngx-section>
+    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>appearance: 'fill' | 'legacy' = 'legacy'</code>
+          </th>
+          <td>The appearance style of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>autofocus: boolean</code>
+          </th>
+          <td>Whether the component is auto-focused.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>autosize: boolean</code>
+          </th>
+          <td>Whether the component is autosized.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>clipFormat: string</code>
+          </th>
+          <td>The clip format of the component. See <i>date-formats.enum.ts</i> for examples.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>disabled: boolean</code>
+          </th>
+          <td>Whether the component is disabled.</td>
+        </tr>
+        <tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>displayMode: DATE_DISPLAY_TYPES</code>
+          </th>
+          <td>The display mode of the component. See <i>date-formats.enum.ts</i> for examples.</td>
+        </tr>
+        <tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>format: string</code>
+          </th>
+          <td>The display format for date/time values. Considers if mode is user (has timezone) or local (no timezone).</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>hint: string</code>
+          </th>
+          <td>The hint to display beneath the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>id: string = 'datetime-1'</code>
+          </th>
+          <td>The ID for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>inputFormats: any[]</code>
+          </th>
+          <td>The input formats to display date/time values in. See <i>date-formats.enum.ts</i> for examples.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>inputType: string = 'date'</code>
+          </th>
+          <td>The input type of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>label: string</code>
+          </th>
+          <td class="component-description">The label for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input</code>
+            <code>minDate: Date | string</code>
+          </th>
+          <td class="component-description">The earliest date to display on the date picker.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>maxDate: Date | string</code>
+          </th>
+          <td class="component-description">The latest date to display on the date picker.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>minWidth: number = 60</code>
+          </th>
+          <td class="component-description">The minimum width of the component, in pixels.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>name: string</code>
+          </th>
+          <td class="component-description">The name for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>placeholder: string</code>
+          </th>
+          <td class="component-description">The placeholder for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>precision: moment.unitOfTime.StartOf</code>
+          </th>
+          <td class="component-description">Mutates the original moment by setting it to the start of a unit of time.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>required: boolean</code>
+          </th>
+          <td class="component-description">Whether the user's input is required.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>requiredIndicator: string | boolean = '*'</code>
+          </th>
+          <td class="component-description">The indicator displayed to inform the user that input is required.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>size: 'sm' | 'md' | 'lg' = 'sm'</code>
+          </th>
+          <td class="component-description">The size of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tabindex: number</code>
+          </th>
+          <td class="component-description">The tab index for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>timezone: string</code>
+          </th>
+          <td class="component-description">The timezone to display date/time values in.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>timezones: Record&lt;string, string&gt; = &#123; UTC: 'Etc/UTC, Local: '' &#125;</code>
+          </th>
+          <td class="component-description">Used to display dates in other timezones. Only used if <i>displayMode</i> is set to <i>user</i> or <i>timezone</i> is set.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipCssClass: string = 'date-tip-tooltip'</code>
+          </th>
+          <td class="component-description">The CSS class for styling the component tooltip.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipDisabled: boolean</code>
+          </th>
+          <td class="component-description">Whether the component tooltip is disabled.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipFormat: string</code>
+          </th>
+          <td class="component-description">The display format for tooltips.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>value: Date | string</code>
+          </th>
+          <td class="component-description">The value of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>withMargin: boolean = true</code>
+          </th>
+          <td class="component-description">Whether the component is displayed with default margins.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="outputs">Component Outputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>blur: EventEmitter&lt;Event&gt;</code>
+          </th>
+          <td>Event emitted on component blur.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>change: EventEmitter&lt;string | Date | undefined | null&gt;</code>
+          </th>
+          <td>Event emitted when the component's input value is valid or cleared.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>dateTimeSelected: EventEmitter&lt;Date | string&gt;</code>
+          </th>
+          <td>Event emitted when a date is selected from the calendar.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>focus: EventEmitter&lt;Event&gt;</code>
+          </th>
+          <td>Event emitted when the component receives focus.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>inputChange: EventEmitter&lt;string | Date | undefined | null&gt;</code>
+          </th>
+          <td>Event emitted when the component's input value is changed, regardless of validity.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>valueChange: EventEmitter&lt;string | Date | undefined | null&gt;</code>
+          </th>
+          <td>Event emitted when the value is changed, regardless of validity.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>

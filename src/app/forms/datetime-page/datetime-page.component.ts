@@ -8,6 +8,7 @@ const MOON_LANDING = '1969-07-20T20:17:43Z';
 @Component({
   selector: 'app-datetime-page',
   templateUrl: './datetime-page.component.html',
+  styleUrls: ['./datetime-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DatetimePageComponent {
@@ -55,5 +56,9 @@ export class DatetimePageComponent {
 
   onSubmit() {
     console.warn(this.form.value);
+  }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
 }
