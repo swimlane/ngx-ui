@@ -1,5 +1,12 @@
 import { chain, Rule, SchematicContext, Tree } from '@angular-devkit/schematics';
-import { addStylesToWorkspace, addNGXModules, addPackages, logBanner, logInstallDependencies } from './operations';
+import {
+  addStylesToWorkspace,
+  addNGXModules,
+  addPackages,
+  logBanner,
+  createNPMRC,
+  logAboutSyntheticImports
+} from './operations';
 import { Schema } from './schema';
 
 //#region json imports
@@ -18,7 +25,8 @@ export function schematics(_options: Schema): Rule {
       addPackages(_options),
       addNGXModules(_options),
       addStylesToWorkspace(_options),
-      logInstallDependencies()
+      createNPMRC(),
+      logAboutSyntheticImports()
     ])(tree, _context);
   };
 }

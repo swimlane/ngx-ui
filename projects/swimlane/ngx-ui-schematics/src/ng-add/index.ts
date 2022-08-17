@@ -16,7 +16,8 @@ export function schematics(_options: Schema): Rule {
       type: NodeDependencyType.Default
     });
 
-    const installTaskId = _context.addTask(new NodePackageInstallTask());
-    _context.addTask(new RunSchematicTask('setup-ngx-ui', _options), [installTaskId]);
+    let installTaskId = _context.addTask(new NodePackageInstallTask());
+    installTaskId = _context.addTask(new RunSchematicTask('setup-ngx-ui', _options), [installTaskId]);
+    _context.addTask(new NodePackageInstallTask(), [installTaskId]);
   };
 }

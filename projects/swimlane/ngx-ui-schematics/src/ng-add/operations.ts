@@ -28,7 +28,7 @@ export const addPackages = (options: Schema) => {
       },
       {
         name: 'moment',
-        version: `2.29.3`
+        version: `2.29.1`
       },
       {
         name: 'moment-timezone',
@@ -63,6 +63,16 @@ export const addPackages = (options: Schema) => {
       {
         name: 'ng-in-viewport',
         version: '^6.1.5'
+      },
+      {
+        name: 'resize-observer-polyfill',
+        version: '^1.5.1',
+        type: NodeDependencyType.Dev
+      },
+      {
+        name: 'ngx-moment',
+        version: '^5.0.0',
+        type: NodeDependencyType.Dev
       }
     ];
 
@@ -89,7 +99,7 @@ export const addPackages = (options: Schema) => {
   };
 };
 
-const getNgxUIVersion = () => `42.0.8`;
+const getNgxUIVersion = () => `42.1.1`;
 
 export const installDeps = () => (tree: Tree, _context: SchematicContext) => {
   _context.logger.info('installing dependencies...');
@@ -137,10 +147,20 @@ export const addStylesToWorkspace = (options: Schema) => async (_: Tree, _contex
   });
 };
 
+export const createNPMRC = () => (tree: Tree, _context: SchematicContext) => {
+  if (!tree.exists('.npmrc')) {
+    tree.create('.npmrc', 'legacy-peer-deps = true');
+  } else {
+    _context.logger.info(`Please run 'npm install --legacy-peer-deps' to use @swimlane/ng-ui in your app.`);
+  }
+
+  return tree;
+};
+
 export const logBanner = () => (_: Tree, _context: SchematicContext) => {
   _context.logger.warn(`@swimlane/ngx-ui - Component & Style Library for Angular by Swimlane`);
 };
 
-export const logInstallDependencies = () => (_: Tree, _context: SchematicContext) => {
-  _context.logger.info(`Please run 'npm install --legacy-peer-deps' to use @swimlane/ng-ui in your app.`);
+export const logAboutSyntheticImports = () => (_: Tree, _context: SchematicContext) => {
+  _context.logger.info(`Please configure 'allowSyntheticDefaultImports' setting in tsconfig to avoid errors`);
 };
