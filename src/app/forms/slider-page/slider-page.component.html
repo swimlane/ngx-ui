@@ -1,226 +1,337 @@
 <h3 class="style-header">Slider</h3>
 
-<ngx-section class="shadow" [sectionTitle]="'Horizontal'">
-  <ngx-slider [(ngModel)]="sliderValue" [step]="5" [filled]="true" [min]="10" [max]="200" (change)="sliderEvent1 = $event">
-  </ngx-slider>
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" [sectionTitle]="'Horizontal'">
+      <ngx-slider [(ngModel)]="sliderValue" [step]="5" [filled]="true" [min]="10" [max]="200" (change)="sliderEvent1 = $event">
+      </ngx-slider>
+    
+      <app-prism>
+    <![CDATA[<ngx-slider
+      [(ngModel)]="sliderValue"
+      [step]="5"
+      [filled]="true"
+      [min]="10"
+      [max]="200"
+      (change)="sliderEvent1 = $event">
+    </ngx-slider>]]>
+      </app-prism>
+    
+      <br />
+    
+      <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [tickStep]="25" [filled]="true" [min]="0"
+        [max]="100" (change)="sliderEvent2 = $event">
+      </ngx-slider>
+    
+      <app-prism>
+    <![CDATA[<ngx-slider
+      [(ngModel)]="sliderValue"
+      [step]="5"
+      [showTicks]="true"
+      [tickStep]="25"
+      [filled]="true"
+      [min]="0"
+      [max]="100"
+      (change)="sliderEvent2 = $event">
+    </ngx-slider>]]>
+      </app-prism>
+    
+      <br />
+    
+      <ngx-slider [(ngModel)]="sliderValue" [step]="5" [filled]="false" [min]="0" [max]="100" (change)="sliderEvent3 = $event">
+      </ngx-slider>
+    
+      <app-prism>
+    <![CDATA[<ngx-slider
+      [(ngModel)]="sliderValue"
+      [step]="5"
+      [filled]="false"
+      [min]="0"
+      [max]="100"
+      (change)="sliderEvent3 = $event">
+    </ngx-slider>]]>
+      </app-prism>
+    
+      <br />
+    
+      <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [filled]="false" [min]="0" [max]="100"
+        (change)="sliderEvent4 = $event">
+      </ngx-slider>
+    
+      <app-prism>
+    <![CDATA[<ngx-slider
+      [(ngModel)]="sliderValue"
+      [step]="5"
+      [showTicks]="true"
+      [filled]="false"
+      [min]="0"
+      [max]="100"
+      (change)="sliderEvent4 = $event">
+    </ngx-slider>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" [sectionTitle]="'Vertical'">
+      <ngx-slider [(ngModel)]="sliderValue" [step]="5" [orientation]="'vertical'" [filled]="true" [min]="10" [max]="200"
+        (change)="sliderEvent5 = $event">
+      </ngx-slider>
+    
+      <app-prism>
+    <![CDATA[<ngx-slider
+      [(ngModel)]="sliderValue"
+      [step]="5"
+      [filled]="true"
+      [orientation]="'vertical'"
+      [min]="10"
+      [max]="200"
+      (change)="sliderEvent5 = $event">
+    </ngx-slider>]]>
+      </app-prism>
+    
+      <br />
+    
+      <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [tickStep]="25" [orientation]="'vertical'"
+        [filled]="true" [min]="0" [max]="100" (change)="sliderEvent6 = $event">
+      </ngx-slider>
+    
+      <app-prism>
+    <![CDATA[<ngx-slider
+      [(ngModel)]="sliderValue"
+      [step]="5"
+      [orientation]="'vertical'"
+      [showTicks]="true"
+      [tickStep]="25"
+      [filled]="true"
+      [min]="0"
+      [max]="100"
+      (change)="sliderEvent6 = $event">
+    </ngx-slider>]]>
+      </app-prism>
+    
+      <br />
+    
+      <ngx-slider [(ngModel)]="sliderValue" [step]="5" [filled]="false" [min]="0" [orientation]="'vertical'" [max]="100"
+        (change)="sliderEvent7 = $event">
+      </ngx-slider>
+    
+      <app-prism>
+    <![CDATA[<ngx-slider
+      [(ngModel)]="sliderValue"
+      [step]="5"
+      [filled]="false"
+      [orientation]="'vertical'"
+      [min]="0"
+      [max]="100"
+      (change)="sliderEvent7 = $event">
+    </ngx-slider>]]>
+      </app-prism>
+    
+      <br />
+    
+      <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [filled]="false" [orientation]="'vertical'"
+        [min]="0" [max]="100" (change)="sliderEvent8 = $event">
+      </ngx-slider>
+    
+      <app-prism>
+    <![CDATA[<ngx-slider
+      [(ngModel)]="sliderValue"
+      [orientation]="'vertical'"
+      [step]="5"
+      [showTicks]="true"
+      [filled]="false"
+      [min]="0"
+      [max]="100"
+      (change)="sliderEvent8 = $event">
+    </ngx-slider>]]>
+      </app-prism>
+    
+    </ngx-section>
+    
+    <ngx-section class="shadow" [sectionTitle]="'Range'">
+      <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [step]="5" [filled]="true" [min]="10" [max]="200"
+        (change)="sliderEvent1 = $event">
+      </ngx-slider>
+    
+      <app-prism>
+    <![CDATA[<ngx-slider
+      [(ngModel)]="sliderValues"
+      [multiple]="true"
+      [step]="5"
+      [filled]="true"
+      [min]="10"
+      [max]="200"
+      (change)="sliderEvent1 = $event">
+    </ngx-slider>]]>
+      </app-prism>
+    
+      <br />
+    
+      <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [orientation]="'vertical'" [step]="5" [filled]="true"
+        [min]="10" [max]="200" (change)="sliderEvent5 = $event">
+      </ngx-slider>
+    
+      <p>Slider Values: {{sliderValues}}</p>
+    
+      <app-prism>
+    <![CDATA[<ngx-slider
+      [(ngModel)]="sliderValues"
+      [multiple]="true"
+      [orientation]="'vertical'"
+      [step]="5"
+      [filled]="true"
+      [min]="10"
+      [max]="200"
+      (change)="sliderEvent5 = $event">
+    </ngx-slider>]]>
+      </app-prism>
+    
+    </ngx-section>
+    
+    <ngx-section class="shadow" [sectionTitle]="'Disabled'">
+      <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [disabled]="true" [step]="5" [filled]="true" [min]="10"
+        [max]="200" (change)="sliderEvent1 = $event">
+      </ngx-slider>
+    
+      <app-prism>
+    <![CDATA[<ngx-slider
+      [(ngModel)]="sliderValues"
+      [disabled]="true"
+      [step]="5"
+      [filled]="true"
+      [min]="10"
+      [max]="200"
+      (change)="sliderEvent1 = $event">
+    </ngx-slider>]]>
+      </app-prism>
+    
+      <br />
+    
+      <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [disabled]="true" [orientation]="'vertical'"
+        [step]="5" [filled]="true" [min]="10" [max]="200" (change)="sliderEvent5 = $event">
+      </ngx-slider>
+    
+      <p>Slider Values: {{sliderValues}}</p>
+    
+      <app-prism>
+    <![CDATA[<ngx-slider
+      [(ngModel)]="sliderValues"
+      [disabled]="true"
+      [orientation]="'vertical'"
+      [step]="5"
+      [filled]="true"
+      [min]="10"
+      [max]="200"
+      (change)="sliderEvent5 = $event">
+    </ngx-slider>]]>
+      </app-prism>
+    
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="content" (click)="scrollTo('inputs')">Component Inputs</a>
+    <a class="content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <hr>
 
-  <app-prism>
-<![CDATA[<ngx-slider
-  [(ngModel)]="sliderValue"
-  [step]="5"
-  [filled]="true"
-  [min]="10"
-  [max]="200"
-  (change)="sliderEvent1 = $event">
-</ngx-slider>]]>
-  </app-prism>
-
-  <br />
-
-  <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [tickStep]="25" [filled]="true" [min]="0"
-    [max]="100" (change)="sliderEvent2 = $event">
-  </ngx-slider>
-
-  <app-prism>
-<![CDATA[<ngx-slider
-  [(ngModel)]="sliderValue"
-  [step]="5"
-  [showTicks]="true"
-  [tickStep]="25"
-  [filled]="true"
-  [min]="0"
-  [max]="100"
-  (change)="sliderEvent2 = $event">
-</ngx-slider>]]>
-  </app-prism>
-
-  <br />
-
-  <ngx-slider [(ngModel)]="sliderValue" [step]="5" [filled]="false" [min]="0" [max]="100" (change)="sliderEvent3 = $event">
-  </ngx-slider>
-
-  <app-prism>
-<![CDATA[<ngx-slider
-  [(ngModel)]="sliderValue"
-  [step]="5"
-  [filled]="false"
-  [min]="0"
-  [max]="100"
-  (change)="sliderEvent3 = $event">
-</ngx-slider>]]>
-  </app-prism>
-
-  <br />
-
-  <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [filled]="false" [min]="0" [max]="100"
-    (change)="sliderEvent4 = $event">
-  </ngx-slider>
-
-  <app-prism>
-<![CDATA[<ngx-slider
-  [(ngModel)]="sliderValue"
-  [step]="5"
-  [showTicks]="true"
-  [filled]="false"
-  [min]="0"
-  [max]="100"
-  (change)="sliderEvent4 = $event">
-</ngx-slider>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" [sectionTitle]="'Vertical'">
-  <ngx-slider [(ngModel)]="sliderValue" [step]="5" [orientation]="'vertical'" [filled]="true" [min]="10" [max]="200"
-    (change)="sliderEvent5 = $event">
-  </ngx-slider>
-
-  <app-prism>
-<![CDATA[<ngx-slider
-  [(ngModel)]="sliderValue"
-  [step]="5"
-  [filled]="true"
-  [orientation]="'vertical'"
-  [min]="10"
-  [max]="200"
-  (change)="sliderEvent5 = $event">
-</ngx-slider>]]>
-  </app-prism>
-
-  <br />
-
-  <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [tickStep]="25" [orientation]="'vertical'"
-    [filled]="true" [min]="0" [max]="100" (change)="sliderEvent6 = $event">
-  </ngx-slider>
-
-  <app-prism>
-<![CDATA[<ngx-slider
-  [(ngModel)]="sliderValue"
-  [step]="5"
-  [orientation]="'vertical'"
-  [showTicks]="true"
-  [tickStep]="25"
-  [filled]="true"
-  [min]="0"
-  [max]="100"
-  (change)="sliderEvent6 = $event">
-</ngx-slider>]]>
-  </app-prism>
-
-  <br />
-
-  <ngx-slider [(ngModel)]="sliderValue" [step]="5" [filled]="false" [min]="0" [orientation]="'vertical'" [max]="100"
-    (change)="sliderEvent7 = $event">
-  </ngx-slider>
-
-  <app-prism>
-<![CDATA[<ngx-slider
-  [(ngModel)]="sliderValue"
-  [step]="5"
-  [filled]="false"
-  [orientation]="'vertical'"
-  [min]="0"
-  [max]="100"
-  (change)="sliderEvent7 = $event">
-</ngx-slider>]]>
-  </app-prism>
-
-  <br />
-
-  <ngx-slider [(ngModel)]="sliderValue" [step]="5" [showTicks]="true" [filled]="false" [orientation]="'vertical'"
-    [min]="0" [max]="100" (change)="sliderEvent8 = $event">
-  </ngx-slider>
-
-  <app-prism>
-<![CDATA[<ngx-slider
-  [(ngModel)]="sliderValue"
-  [orientation]="'vertical'"
-  [step]="5"
-  [showTicks]="true"
-  [filled]="false"
-  [min]="0"
-  [max]="100"
-  (change)="sliderEvent8 = $event">
-</ngx-slider>]]>
-  </app-prism>
-
-</ngx-section>
-
-<ngx-section class="shadow" [sectionTitle]="'Range'">
-  <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [step]="5" [filled]="true" [min]="10" [max]="200"
-    (change)="sliderEvent1 = $event">
-  </ngx-slider>
-
-  <app-prism>
-<![CDATA[<ngx-slider
-  [(ngModel)]="sliderValues"
-  [multiple]="true"
-  [step]="5"
-  [filled]="true"
-  [min]="10"
-  [max]="200"
-  (change)="sliderEvent1 = $event">
-</ngx-slider>]]>
-  </app-prism>
-
-  <br />
-
-  <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [orientation]="'vertical'" [step]="5" [filled]="true"
-    [min]="10" [max]="200" (change)="sliderEvent5 = $event">
-  </ngx-slider>
-
-  <p>Slider Values: {{sliderValues}}</p>
-
-  <app-prism>
-<![CDATA[<ngx-slider
-  [(ngModel)]="sliderValues"
-  [multiple]="true"
-  [orientation]="'vertical'"
-  [step]="5"
-  [filled]="true"
-  [min]="10"
-  [max]="200"
-  (change)="sliderEvent5 = $event">
-</ngx-slider>]]>
-  </app-prism>
-
-</ngx-section>
-
-<ngx-section class="shadow" [sectionTitle]="'Disabled'">
-  <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [disabled]="true" [step]="5" [filled]="true" [min]="10"
-    [max]="200" (change)="sliderEvent1 = $event">
-  </ngx-slider>
-
-  <app-prism>
-<![CDATA[<ngx-slider
-  [(ngModel)]="sliderValues"
-  [disabled]="true"
-  [step]="5"
-  [filled]="true"
-  [min]="10"
-  [max]="200"
-  (change)="sliderEvent1 = $event">
-</ngx-slider>]]>
-  </app-prism>
-
-  <br />
-
-  <ngx-slider [(ngModel)]="sliderValues" [multiple]="true" [disabled]="true" [orientation]="'vertical'"
-    [step]="5" [filled]="true" [min]="10" [max]="200" (change)="sliderEvent5 = $event">
-  </ngx-slider>
-
-  <p>Slider Values: {{sliderValues}}</p>
-
-  <app-prism>
-<![CDATA[<ngx-slider
-  [(ngModel)]="sliderValues"
-  [disabled]="true"
-  [orientation]="'vertical'"
-  [step]="5"
-  [filled]="true"
-  [min]="10"
-  [max]="200"
-  (change)="sliderEvent5 = $event">
-</ngx-slider>]]>
-  </app-prism>
-
-</ngx-section>
+    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>disabled: boolean</code>
+          </th>
+          <td>Whether the component is disabled.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>filled: boolean</code>
+          </th>
+          <td>Whether the component has a filled-in style applied, typically from the start of the component to the currently selected value.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>id: string = 'range-1'</code>
+          </th>
+          <td>The ID of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>min: number = 0</code>
+          </th>
+          <td>The minimum value allowed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>max: number = 100</code>
+          </th>
+          <td>The maximum value allowed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>multiple: boolean</code>
+          </th>
+          <td>Whether the component allows multiple values through a range selection.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>orientation: 'horizontal' | 'vertical' = 'horizontal'</code>
+          </th>
+          <td>Whether the component is displayed horizontally or vertically.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>showTicks: boolean</code>
+          </th>
+          <td>Whether the component displays tick marks between each allowable value.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>step: number = 1</code>
+          </th>
+          <td>The stepping interval between allowable numbers e.g. a step of <i>5</i> only allows values that are multiples of <i>5</i>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tickStep: number</code>
+          </th>
+          <td>The stepping interval between tick marks. Applicable if <i>showTicks</i> is enabled.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="outputs">Component Outputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>change: EventEmitter&lt;any&gt;</code>
+          </th>
+          <td>Event emitted when the value of the component is changed.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>

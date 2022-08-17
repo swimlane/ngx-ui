@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-checkbox-page',
   templateUrl: './checkbox-page.component.html',
+  styleUrls: ['./checkbox-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxPageComponent {
@@ -17,5 +18,9 @@ export class CheckboxPageComponent {
       ddos: false,
       physical: false
     });
+  }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
 }

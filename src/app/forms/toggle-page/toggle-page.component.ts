@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'app-toggle-page',
   templateUrl: './toggle-page.component.html',
+  styleUrls: ['./toggle-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TogglePageComponent {
@@ -11,5 +12,9 @@ export class TogglePageComponent {
   onToggleChange(event) {
     // eslint-disable-next-line no-console
     console.log('check?', event);
+  }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
 }

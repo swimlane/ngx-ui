@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'app-slider-page',
   templateUrl: './slider-page.component.html',
+  styleUrls: ['./slider-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SliderPageComponent {
@@ -16,4 +17,8 @@ export class SliderPageComponent {
   sliderEvent8: any;
   sliderValue = 85;
   sliderValues = '45,85';
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

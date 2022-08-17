@@ -1,51 +1,125 @@
 <h3 class="style-header">Toggle</h3>
 
-<ngx-section class="shadow" [sectionTitle]="'Demo'">
-  <ngx-toggle name="toggle1" [(ngModel)]="toggleChk" [label]="'High Priority'">
-  </ngx-toggle>
-  <app-prism>
-<![CDATA[<ngx-toggle
-  name="toggle1"
-  [(ngModel)]="toggleChk"
-  [label]="'High Priority'">
-</ngx-toggle>]]>
-  </app-prism>
-  <br />
-  <br />
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" [sectionTitle]="'Demo'">
+      <ngx-toggle name="toggle1" [(ngModel)]="toggleChk" [label]="'High Priority'">
+      </ngx-toggle>
+      <app-prism>
+    <![CDATA[<ngx-toggle
+      name="toggle1"
+      [(ngModel)]="toggleChk"
+      [label]="'High Priority'">
+    </ngx-toggle>]]>
+      </app-prism>
+      <br />
+      <br />
+    
+      <ngx-toggle name="toggle2" [disabled]="true" [label]="'Disabled'">
+      </ngx-toggle>
+      <app-prism>
+    <![CDATA[<ngx-toggle
+      name="toggle2"
+      [disabled]="true"
+      [label]="'Disabled'">
+    </ngx-toggle>]]>
+      </app-prism>
+      <br />
+      <br />
+    
+      <ngx-toggle name="toggle3" [(ngModel)]="toggleChk" (ngModelChange)="onToggleChange($event)">
+        <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
+        <strong class="color-green" [hidden]="toggleChk">All good!</strong>
+      </ngx-toggle>
+      <app-prism>
+    <![CDATA[<ngx-toggle name="toggle3" [(ngModel)]="toggleChk" (ngModelChange)="onToggleChange($event)">
+      <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
+      <strong class="color-green" [hidden]="toggleChk">All good!</strong>
+    </ngx-toggle>]]>
+      </app-prism>
+      <br />
+      <br />
+    
+      <ngx-toggle name="toggle4" [(ngModel)]="toggleChk" [label]="'High Priority With No Icons'" [showIcons]="false">
+      </ngx-toggle>
+      <app-prism>
+    <![CDATA[<ngx-toggle 
+      name="toggle4" 
+      [(ngModel)]="toggleChk" 
+      [label]="'High Priority With No Icons'" 
+      [showIcons]="false">
+    </ngx-toggle>]]>
+      </app-prism>
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="content" (click)="scrollTo('inputs')">Component Inputs</a>
+    <a class="content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <hr>
 
-  <ngx-toggle name="toggle2" [disabled]="true" [label]="'Disabled'">
-  </ngx-toggle>
-  <app-prism>
-<![CDATA[<ngx-toggle
-  name="toggle2"
-  [disabled]="true"
-  [label]="'Disabled'">
-</ngx-toggle>]]>
-  </app-prism>
-  <br />
-  <br />
-
-  <ngx-toggle name="toggle3" [(ngModel)]="toggleChk" (ngModelChange)="onToggleChange($event)">
-    <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
-    <strong class="color-green" [hidden]="toggleChk">All good!</strong>
-  </ngx-toggle>
-  <app-prism>
-<![CDATA[<ngx-toggle name="toggle3" [(ngModel)]="toggleChk" (ngModelChange)="onToggleChange($event)">
-  <strong class="color-red" [hidden]="!toggleChk">Alert Everyone!</strong>
-  <strong class="color-green" [hidden]="toggleChk">All good!</strong>
-</ngx-toggle>]]>
-  </app-prism>
-  <br />
-  <br />
-
-  <ngx-toggle name="toggle4" [(ngModel)]="toggleChk" [label]="'High Priority With No Icons'" [showIcons]="false">
-  </ngx-toggle>
-  <app-prism>
-<![CDATA[<ngx-toggle 
-  name="toggle4" 
-  [(ngModel)]="toggleChk" 
-  [label]="'High Priority With No Icons'" 
-  [showIcons]="false">
-</ngx-toggle>]]>
-  </app-prism>
-</ngx-section>
+    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>disabled: boolean</code>
+          </th>
+          <td>Whether the component is disabled.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>id: string = 'toggle-1'</code>
+          </th>
+          <td>The ID of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>label: string</code>
+          </th>
+          <td>The label for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>name: string = null</code>
+          </th>
+          <td>The name for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>required: boolean</code>
+          </th>
+          <td>Whether the user's input is required.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>showIcons: boolean = true</code>
+          </th>
+          <td>Whether the component displays the status of the toggle by utilizing icons. See Examples tab.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tabIndex: number</code>
+          </th>
+          <td>The tab index for the component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="outputs">Component Outputs</h3>
+    <h4>No component outputs to display.</h4>
+  </ngx-tab>
+</ngx-tabs>

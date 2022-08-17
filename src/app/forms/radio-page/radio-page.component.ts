@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-radio-page',
   templateUrl: './radio-page.component.html',
+  styleUrls: ['./radio-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioPageComponent {
@@ -18,5 +19,9 @@ export class RadioPageComponent {
     this.form = fb.group({
       season: 'Spring'
     });
+  }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
 }
