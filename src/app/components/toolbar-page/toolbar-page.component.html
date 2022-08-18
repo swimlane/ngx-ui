@@ -1,37 +1,99 @@
 <h3 class="style-header">Toolbar</h3>
 
-<ngx-section class="shadow" sectionTitle="Title/Menu">
-  <ngx-toolbar [mainTitle]="'Record'" [subtitle]="'IR-344'" [menu]="toolbarMenu" (menuClick)="menuClicked($event)">
-  </ngx-toolbar>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-toolbar
-  [mainTitle]="'Record'"
-  [subtitle]="'IR-344'"
-  [menu]="toolbarMenu"
-  (menuClick)="menuClicked($event)">
-</ngx-toolbar>]]>
-  </app-prism>
-</ngx-section>
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" sectionTitle="Title/Menu">
+      <ngx-toolbar [mainTitle]="'Record'" [subtitle]="'IR-344'" [menu]="toolbarMenu" (menuClick)="menuClicked($event)">
+      </ngx-toolbar>
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-toolbar
+      [mainTitle]="'Record'"
+      [subtitle]="'IR-344'"
+      [menu]="toolbarMenu"
+      (menuClick)="menuClicked($event)">
+    </ngx-toolbar>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Dynamic Content">
+      <ngx-toolbar>
+        <ngx-toolbar-title>
+          <span class="tag">dynamic title</span>
+        </ngx-toolbar-title>
+        <ngx-toolbar-content>
+          <i>dynamic content</i>
+        </ngx-toolbar-content>
+      </ngx-toolbar>
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-toolbar>
+      <ngx-toolbar-title>
+        <span class="tag">dynamic title</span>
+      </ngx-toolbar-title>
+      <ngx-toolbar-content>
+        <i>dynamic content</i>
+      </ngx-toolbar-content>
+    </ngx-toolbar>]]>
+      </app-prism>
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="content" (click)="scrollTo('inputs')">Component Inputs</a>
+    <a class="content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <hr>
 
-<ngx-section class="shadow" sectionTitle="Dynamic Content">
-  <ngx-toolbar>
-    <ngx-toolbar-title>
-      <span class="tag">dynamic title</span>
-    </ngx-toolbar-title>
-    <ngx-toolbar-content>
-      <i>dynamic content</i>
-    </ngx-toolbar-content>
-  </ngx-toolbar>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-toolbar>
-  <ngx-toolbar-title>
-    <span class="tag">dynamic title</span>
-  </ngx-toolbar-title>
-  <ngx-toolbar-content>
-    <i>dynamic content</i>
-  </ngx-toolbar-content>
-</ngx-toolbar>]]>
-  </app-prism>
-</ngx-section>
+    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>mainTitle: string</code>
+          </th>
+          <td>The primary title for the component. See Examples tab.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>menu: ToolbarMenuItem = []</code>
+          </th>
+          <td>The menu for the component. See Examples tab.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>subtitle: string</code>
+          </th>
+          <td>The secondary title for the component. See Examples tab.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="outputs">Component Outputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>menuClick: EventEmitter&lt;any&gt;</code>
+          </th>
+          <td>Event emitted when the component menu is clicked.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>
