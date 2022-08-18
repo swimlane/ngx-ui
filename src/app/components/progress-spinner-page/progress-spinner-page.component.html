@@ -1,224 +1,342 @@
-<ngx-section sectionTitle="Preloader">
-  <div
-    class="ngx-preloader"
-    [class.ngx-preloader-small]="small"
-  >
-    <div class="arc arc-0"></div>
-    <div class="arc arc-1"></div>
-    <div class="arc arc-2"></div>
-    <div class="arc arc-3"></div>
-    <div class="arc arc-4"></div>
-    <div class="arc arc-5"></div>
-    <div class="arc arc-6"></div>
-    <div class="arc arc-7"></div>
-    <div class="arc arc-8"></div>
-    <div class="arc arc-9"></div>
-    <div class="arc arc-10"></div>
-    <div class="arc arc-11"></div>
-    <div class="arc arc-12"></div>
-    <div class="arc arc-13"></div>
-    <div class="arc arc-14"></div>
-    <div class="arc arc-15"></div>
-    <div class="arc arc-16"></div>
-    <div class="arc arc-17"></div>
-    <div class="arc arc-18"></div>
-    <div class="arc arc-19"></div>
-    <div class="arc arc-20"></div>
-    <div class="arc arc-21"></div>
-    <div class="arc arc-22"></div>
-    <div class="arc arc-23"></div>
-    <div class="arc arc-24"></div>
-  </div>
+<h3 class="style-header">Progress Spinner</h3>
 
-  <app-prism>
-<![CDATA[<div
-  class="ngx-preloader"
-  [class.ngx-preloader-small]="small"
->
-  <div class="arc arc-0"></div>
-  <div class="arc arc-1"></div>
-  <div class="arc arc-2"></div>
-  <div class="arc arc-3"></div>
-  <div class="arc arc-4"></div>
-  <div class="arc arc-5"></div>
-  <div class="arc arc-6"></div>
-  <div class="arc arc-7"></div>
-  <div class="arc arc-8"></div>
-  <div class="arc arc-9"></div>
-  <div class="arc arc-10"></div>
-  <div class="arc arc-11"></div>
-  <div class="arc arc-12"></div>
-  <div class="arc arc-13"></div>
-  <div class="arc arc-14"></div>
-  <div class="arc arc-15"></div>
-  <div class="arc arc-16"></div>
-  <div class="arc arc-17"></div>
-  <div class="arc arc-18"></div>
-  <div class="arc arc-19"></div>
-  <div class="arc arc-20"></div>
-  <div class="arc arc-21"></div>
-  <div class="arc arc-22"></div>
-  <div class="arc arc-23"></div>
-  <div class="arc arc-24"></div>
-</div>]]>
-  </app-prism>
-
-  <button class="btn" (click)="small = !small">
-    {{ small ? 'Large' : 'Small' }}
-  </button>
-</ngx-section>
-
-<ngx-section sectionTitle="Progress Spinner">
-  <ngx-progress-spinner
-    [mode]="mode"
-    [color]="color"
-    [value]="value"
-    [total]="total"
-    [diameter]="diameter"
-    [strokeWidth]="strokeWidth"
-    [appearance]="showIcon ? 'icon': 'default'"
-    [isFailure]="isFailure"
-  ></ngx-progress-spinner>
-
-  <app-prism>
-<![CDATA[<ngx-progress-spinner
-  [mode]="mode"
-  [color]="color"
-  [value]="value"
-  [total]="total"
-  [diameter]="diameter"
-  [strokeWidth]="strokeWidth"
-  [appearance]="showIcon ? 'icon': 'default'"
-  [isFailure]="isFailure"
-></ngx-progress-spinner>]]>
-  </app-prism>
-
-  <ngx-input
-    label="Value"
-    type="number"
-    min="0"
-    [max]="total"
-    [(ngModel)]="value"
-  ></ngx-input>
-
-  <ngx-input
-    label="Total"
-    type="number"
-    min="1"
-    [(ngModel)]="total"
-  ></ngx-input>
-
-  <ngx-input
-    label="Diameter"
-    type="number"
-    min="1"
-    [(ngModel)]="diameter"
-  ></ngx-input>
-
-  <ngx-input
-    label="Stroke Width"
-    type="number"
-    min="1"
-    [(ngModel)]="strokeWidth"
-  ></ngx-input>
-
-  <ngx-input
-    label="Color"
-    [(ngModel)]="color"
-  ></ngx-input>
-
-  <ngx-select
-    label="Mode"
-    [ngModel]="[mode]"
-    (ngModelChange)="mode = $event[0]"
-    filterable="false"
-  >
-    <ngx-select-option name="Determinate" value="determinate"></ngx-select-option>
-    <ngx-select-option name="Indeterminate" value="indeterminate"></ngx-select-option>
-  </ngx-select>
-
-  <ngx-select
-    label="Complete Status"
-    [ngModel]="[isFailure]"
-    (ngModelChange)="isFailure = $event[0]"
-    filterable="false"
-  >
-    <ngx-select-option name="Success" [value]="false"></ngx-select-option>
-    <ngx-select-option name="Fail" [value]="true"></ngx-select-option>
-  </ngx-select>
-
-  <ngx-toggle name="showIcon" [(ngModel)]="showIcon" (ngModelChange)="showIcon = $event">
-    <strong [hidden]="showIcon">Hide Icon</strong>
-    <strong [hidden]="!showIcon">Show Icon</strong>
-  </ngx-toggle>
-
-</ngx-section>
-
-<ngx-section sectionTitle="Progress Spinner custom icons">
-  <ngx-progress-spinner
-    [mode]="mode"
-    [color]="color"
-    [value]="value"
-    [total]="total"
-    [diameter]="diameter"
-    [strokeWidth]="strokeWidth"
-    appearance="icon"
-    [inProgressIcon]="inprogressIcon"
-    [completeIcon]="completeIcon"
-    [isFailure]="isFailure"
-  ></ngx-progress-spinner>
-
-<app-prism>
-  <![CDATA[<ngx-progress-spinner
-    [mode]="mode"
-    [color]="color"
-    [value]="value"
-    [total]="total"
-    [diameter]="diameter"
-    [strokeWidth]="strokeWidth"
-    appearance="icon"
-    [inProgressIcon]="inprogressIcon"
-    [completeIcon]="completeIcon"
-    [isFailure]="isFailure"
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section sectionTitle="Preloader">
+      <div
+        class="ngx-preloader"
+        [class.ngx-preloader-small]="small"
+      >
+        <div class="arc arc-0"></div>
+        <div class="arc arc-1"></div>
+        <div class="arc arc-2"></div>
+        <div class="arc arc-3"></div>
+        <div class="arc arc-4"></div>
+        <div class="arc arc-5"></div>
+        <div class="arc arc-6"></div>
+        <div class="arc arc-7"></div>
+        <div class="arc arc-8"></div>
+        <div class="arc arc-9"></div>
+        <div class="arc arc-10"></div>
+        <div class="arc arc-11"></div>
+        <div class="arc arc-12"></div>
+        <div class="arc arc-13"></div>
+        <div class="arc arc-14"></div>
+        <div class="arc arc-15"></div>
+        <div class="arc arc-16"></div>
+        <div class="arc arc-17"></div>
+        <div class="arc arc-18"></div>
+        <div class="arc arc-19"></div>
+        <div class="arc arc-20"></div>
+        <div class="arc arc-21"></div>
+        <div class="arc arc-22"></div>
+        <div class="arc arc-23"></div>
+        <div class="arc arc-24"></div>
+      </div>
+    
+      <app-prism>
+    <![CDATA[<div
+      class="ngx-preloader"
+      [class.ngx-preloader-small]="small"
+    >
+      <div class="arc arc-0"></div>
+      <div class="arc arc-1"></div>
+      <div class="arc arc-2"></div>
+      <div class="arc arc-3"></div>
+      <div class="arc arc-4"></div>
+      <div class="arc arc-5"></div>
+      <div class="arc arc-6"></div>
+      <div class="arc arc-7"></div>
+      <div class="arc arc-8"></div>
+      <div class="arc arc-9"></div>
+      <div class="arc arc-10"></div>
+      <div class="arc arc-11"></div>
+      <div class="arc arc-12"></div>
+      <div class="arc arc-13"></div>
+      <div class="arc arc-14"></div>
+      <div class="arc arc-15"></div>
+      <div class="arc arc-16"></div>
+      <div class="arc arc-17"></div>
+      <div class="arc arc-18"></div>
+      <div class="arc arc-19"></div>
+      <div class="arc arc-20"></div>
+      <div class="arc arc-21"></div>
+      <div class="arc arc-22"></div>
+      <div class="arc arc-23"></div>
+      <div class="arc arc-24"></div>
+    </div>]]>
+      </app-prism>
+    
+      <button class="btn" (click)="small = !small">
+        {{ small ? 'Large' : 'Small' }}
+      </button>
+    </ngx-section>
+    
+    <ngx-section sectionTitle="Progress Spinner">
+      <ngx-progress-spinner
+        [mode]="mode"
+        [color]="color"
+        [value]="value"
+        [total]="total"
+        [diameter]="diameter"
+        [strokeWidth]="strokeWidth"
+        [appearance]="showIcon ? 'icon': 'default'"
+        [isFailure]="isFailure"
+      ></ngx-progress-spinner>
+    
+      <app-prism>
+    <![CDATA[<ngx-progress-spinner
+      [mode]="mode"
+      [color]="color"
+      [value]="value"
+      [total]="total"
+      [diameter]="diameter"
+      [strokeWidth]="strokeWidth"
+      [appearance]="showIcon ? 'icon': 'default'"
+      [isFailure]="isFailure"
     ></ngx-progress-spinner>]]>
-  </app-prism>
-</ngx-section>
+      </app-prism>
+    
+      <ngx-input
+        label="Value"
+        type="number"
+        min="0"
+        [max]="total"
+        [(ngModel)]="value"
+      ></ngx-input>
+    
+      <ngx-input
+        label="Total"
+        type="number"
+        min="1"
+        [(ngModel)]="total"
+      ></ngx-input>
+    
+      <ngx-input
+        label="Diameter"
+        type="number"
+        min="1"
+        [(ngModel)]="diameter"
+      ></ngx-input>
+    
+      <ngx-input
+        label="Stroke Width"
+        type="number"
+        min="1"
+        [(ngModel)]="strokeWidth"
+      ></ngx-input>
+    
+      <ngx-input
+        label="Color"
+        [(ngModel)]="color"
+      ></ngx-input>
+    
+      <ngx-select
+        label="Mode"
+        [ngModel]="[mode]"
+        (ngModelChange)="mode = $event[0]"
+        filterable="false"
+      >
+        <ngx-select-option name="Determinate" value="determinate"></ngx-select-option>
+        <ngx-select-option name="Indeterminate" value="indeterminate"></ngx-select-option>
+      </ngx-select>
+    
+      <ngx-select
+        label="Complete Status"
+        [ngModel]="[isFailure]"
+        (ngModelChange)="isFailure = $event[0]"
+        filterable="false"
+      >
+        <ngx-select-option name="Success" [value]="false"></ngx-select-option>
+        <ngx-select-option name="Fail" [value]="true"></ngx-select-option>
+      </ngx-select>
+    
+      <ngx-toggle name="showIcon" [(ngModel)]="showIcon" (ngModelChange)="showIcon = $event">
+        <strong [hidden]="showIcon">Hide Icon</strong>
+        <strong [hidden]="!showIcon">Show Icon</strong>
+      </ngx-toggle>
+    
+    </ngx-section>
+    
+    <ngx-section sectionTitle="Progress Spinner custom icons">
+      <ngx-progress-spinner
+        [mode]="mode"
+        [color]="color"
+        [value]="value"
+        [total]="total"
+        [diameter]="diameter"
+        [strokeWidth]="strokeWidth"
+        appearance="icon"
+        [inProgressIcon]="inprogressIcon"
+        [completeIcon]="completeIcon"
+        [isFailure]="isFailure"
+      ></ngx-progress-spinner>
+    
+    <app-prism>
+      <![CDATA[<ngx-progress-spinner
+        [mode]="mode"
+        [color]="color"
+        [value]="value"
+        [total]="total"
+        [diameter]="diameter"
+        [strokeWidth]="strokeWidth"
+        appearance="icon"
+        [inProgressIcon]="inprogressIcon"
+        [completeIcon]="completeIcon"
+        [isFailure]="isFailure"
+        ></ngx-progress-spinner>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section sectionTitle="Progress Spinner with icon and label">
+    
+      <ngx-progress-spinner
+        [mode]="mode"
+        [color]="color"
+        [value]="value"
+        [total]="total"
+        [diameter]="diameter"
+        [strokeWidth]="strokeWidth"
+        appearance="icon"
+        [isFailure]="isFailure"
+        [spinnerLabel]="spinnerLabel"
+      ></ngx-progress-spinner>
+    
+    <app-prism>
+      <![CDATA[<ngx-progress-spinner
+        [mode]="mode"
+        [color]="color"
+        [value]="value"
+        [total]="total"
+        [diameter]="diameter"
+        [strokeWidth]="strokeWidth"
+        appearance="icon"
+        [isFailure]="isFailure"
+        [spinnerLabel]="spinnerLabel"
+        ></ngx-progress-spinner>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ng-template #inprogressIcon>
+      <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path transform="translate(25 25)" d="M50 0C50 0 35 0 30 5C24.1875 10.8125 10 32.5 10 32.5L17.5 40C17.5 40 39.1875 25.8125 45 20C50 15 50 0 50 0ZM17.5 40L20 50C28.84 44.6975 27.5 37.5 27.5 35L17.5 40ZM10 32.5L15 22.5C12.5 22.5 5.3025 21.16 0 30L10 32.5ZM37.1875 7.8125C38.4669 7.8125 39.7269 8.32063 40.7031 9.29688C42.6556 11.2469 42.6556 14.3756 40.7031 16.3281C38.7506 18.2806 35.6244 18.2806 33.6719 16.3281C31.7194 14.3756 31.7194 11.2494 33.6719 9.29688C34.6481 8.32063 35.9081 7.8125 37.1875 7.8125ZM7.5 37.5C0 40 0.15625 49.8438 0.15625 49.8438C0.15625 49.8438 10 50 12.5 42.5L5 45L7.5 37.5Z" fill="#1483FF"/>
+      </svg>    
+    </ng-template>
+    
+    <ng-template #completeIcon>
+      <i class="ngx-icon ngx-check" [style.color]="color" [style.font-size]="'50px'"></i>
+    </ng-template>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="content" (click)="scrollTo('inputs')">Component Inputs</a>
+    <a class="content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <hr>
 
-<ngx-section sectionTitle="Progress Spinner with icon and label">
-
-  <ngx-progress-spinner
-    [mode]="mode"
-    [color]="color"
-    [value]="value"
-    [total]="total"
-    [diameter]="diameter"
-    [strokeWidth]="strokeWidth"
-    appearance="icon"
-    [isFailure]="isFailure"
-    [spinnerLabel]="spinnerLabel"
-  ></ngx-progress-spinner>
-
-<app-prism>
-  <![CDATA[<ngx-progress-spinner
-    [mode]="mode"
-    [color]="color"
-    [value]="value"
-    [total]="total"
-    [diameter]="diameter"
-    [strokeWidth]="strokeWidth"
-    appearance="icon"
-    [isFailure]="isFailure"
-    [spinnerLabel]="spinnerLabel"
-    ></ngx-progress-spinner>]]>
-  </app-prism>
-</ngx-section>
-
-<ng-template #inprogressIcon>
-  <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path transform="translate(25 25)" d="M50 0C50 0 35 0 30 5C24.1875 10.8125 10 32.5 10 32.5L17.5 40C17.5 40 39.1875 25.8125 45 20C50 15 50 0 50 0ZM17.5 40L20 50C28.84 44.6975 27.5 37.5 27.5 35L17.5 40ZM10 32.5L15 22.5C12.5 22.5 5.3025 21.16 0 30L10 32.5ZM37.1875 7.8125C38.4669 7.8125 39.7269 8.32063 40.7031 9.29688C42.6556 11.2469 42.6556 14.3756 40.7031 16.3281C38.7506 18.2806 35.6244 18.2806 33.6719 16.3281C31.7194 14.3756 31.7194 11.2494 33.6719 9.29688C34.6481 8.32063 35.9081 7.8125 37.1875 7.8125ZM7.5 37.5C0 40 0.15625 49.8438 0.15625 49.8438C0.15625 49.8438 10 50 12.5 42.5L5 45L7.5 37.5Z" fill="#1483FF"/>
-  </svg>    
-</ng-template>
-
-<ng-template #completeIcon>
-  <i class="ngx-icon ngx-check" [style.color]="color" [style.font-size]="'50px'"></i>
-</ng-template>
+    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>appearance: SpinnerAppearance = SpinnerAppearance.Default</code>
+          </th>
+          <td>The appearance style of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>color: string = '#1483FF'</code>
+          </th>
+          <td>The color of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>completeIcon: TemplateRef&lt;any&gt;</code>
+          </th>
+          <td>The template to display once loading has completed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>diameter: number = 100</code>
+          </th>
+          <td>The width and height of the component, in pixels.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>failIcon: TemplateRef&lt;any&gt;</code>
+          </th>
+          <td>The template to display once loading has failed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>failStatusColor: string = '#FF4514'</code>
+          </th>
+          <td>The color of the component when the mode is set to <i>determinate</i>, and the loading has failed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>inProgressIcon: TemplateRef&lt;any&gt;</code>
+          </th>
+          <td>The template to display while loading is in progress.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>isFailure: boolean</code>
+          </th>
+          <td>Whether the component is in a failed state.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>mode: ProgressSpinnerMode = ProgressSpinnerMode.Indeterminate</code>
+          </th>
+          <td>The mode for the component, either <i>determinate</i> or <i>indeterminate</i>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>spinnerLabel: SpinnerLabel</code>
+          </th>
+          <td>The label for the component in various states.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>strokeWidth: number = 3</code>
+          </th>
+          <td>The width of the loading bar, in pixels.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>total: number = 100</code>
+          </th>
+          <td>The numerical value for the completion state of the component. Applicable if <i>mode</i> is set to <i>determinate</i>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>value: number = 0</code>
+          </th>
+          <td>The numerical value for the current progress of the component. Applicable if <i>mode</i> is set to <i>determinate</i>.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="outputs">Component Outputs</h3>
+    <h4>No component outputs to display.</h4>
+  </ngx-tab>
+</ngx-tabs>

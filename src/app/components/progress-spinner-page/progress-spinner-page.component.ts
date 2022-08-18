@@ -4,6 +4,7 @@ import { ProgressSpinnerMode } from '@swimlane/ngx-ui';
 @Component({
   selector: 'app-progress-spinner-page',
   templateUrl: './progress-spinner-page.component.html',
+  styleUrls: ['./progress-spinner-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProgressSpinnerPageComponent {
@@ -21,4 +22,8 @@ export class ProgressSpinnerPageComponent {
     failLabel: 'Upload Failed',
     completeLabel: 'Upload Successful'
   };
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

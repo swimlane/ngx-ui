@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'app-calendar-page',
   templateUrl: './calendar-page.component.html',
+  styleUrls: ['./calendar-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CalendarPageComponent {
@@ -24,5 +25,9 @@ export class CalendarPageComponent {
 
   dateChanged(val) {
     console.log('date changed!', val);
+  }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
 }
