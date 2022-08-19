@@ -1,14 +1,3 @@
-.hide-vr ::ng-deep {
-  .ngx-tree {
-    .ngx-tree-vr {
-      display: none;
-    }
-    .ngx-tree-node .ngx-expander {
-      top: 6px;
-    }
-  }
-}
-
 .content {
   cursor: pointer;
   display: block;

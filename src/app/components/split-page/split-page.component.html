@@ -1,93 +1,163 @@
 <h3 class="style-header">Split</h3>
 
-<ngx-section class="shadow" sectionTitle="Split Areas">
-  <div class="split-example">
-    <div ngxSplit ngxSplit="row">
-      <div ngxSplitArea>
-        <!--- This will fill available space -->
-        <div ngxSplit ngxSplit="column">
-          <div class="fixed-header">Fixed header</div>
-          <div ngxSplitArea="1 1 50%" class="security-panel">
-            <!-- start as 50% -->
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" sectionTitle="Split Areas">
+      <div class="split-example">
+        <div ngxSplit ngxSplit="row">
+          <div ngxSplitArea>
+            <!--- This will fill available space -->
+            <div ngxSplit ngxSplit="column">
+              <div class="fixed-header">Fixed header</div>
+              <div ngxSplitArea="1 1 50%" class="security-panel">
+                <!-- start as 50% -->
+                <h1>Security Dashboard</h1>
+                <p>
+                  Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for mutex
+                  daemon todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python
+                  bin big-endian break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script
+                  kiddies.
+                </p>
+              </div>
+              <div ngxSplitHandle="5px">
+                <!-- 5px splitter -->
+              </div>
+              <div ngxSplitArea ngxSplitArea="1 0 50%" class="alerts-panel">
+                <!-- start as 50%, cannot shrink below 50% -->
+                <h2>Alerts</h2>
+                <ul>
+                  <li>DDOS</li>
+                  <li>DDOS</li>
+                  <li>DDOS</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div ngxSplitHandle *ngIf="!hideAlertArea">
+            <!--- This will default to 15px wide -->
+          </div>
+          <div
+            ngxSplitArea
+            ngxSplitArea="400px"
+            maxBasis="600px"
+            minBasis="200px"
+            class="right-panel"
+            *ngIf="!hideAlertArea"
+          >
+            <!--- This start as flex width of 400px, with a range of 200 - 600px -->
+            <ul>
+              <li>Alerts</li>
+              <li>Search</li>
+              <li>Admin</li>
+            </ul>
+          </div>
+          <div class="fixed-panel" *ngIf="!hideFixedSidebar">
+            Fixed Sidebar
+          </div>
+        </div>
+      </div>
+    
+      <ngx-checkbox [(ngModel)]="hideAlertArea" (change)="panelStateChanged()">
+        Hide Alert Area
+      </ngx-checkbox>
+      <ngx-checkbox [(ngModel)]="hideFixedSidebar" (change)="panelStateChanged()">
+        Hide Fixed Sidebar
+      </ngx-checkbox>
+    </ngx-section>
+    
+    <ngx-section class="shadow" [sectionTitle]="'Switching Layout Direction'">
+      <h3>Current Direction: {{ direction }}</h3>
+      <ngx-button class="btn btn-primary" (click)="toggleDirection()">Toggle Direction</ngx-button>
+      <br />
+      <br />
+    
+      <div class="split-example">
+        <div ngxSplit [ngxSplit]="direction">
+          <div ngxSplitArea class="security-panel">
             <h1>Security Dashboard</h1>
             <p>
               Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for mutex
-              daemon todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python
-              bin big-endian break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script
-              kiddies.
+              daemon todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python bin
+              big-endian break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script kiddies.
             </p>
           </div>
-          <div ngxSplitHandle="5px">
-            <!-- 5px splitter -->
-          </div>
-          <div ngxSplitArea ngxSplitArea="1 0 50%" class="alerts-panel">
-            <!-- start as 50%, cannot shrink below 50% -->
-            <h2>Alerts</h2>
+          <div ngxSplitHandle></div>
+          <div ngxSplitArea="0 1 50%" class="right-panel">
+            <!-- starts at 50%, cannot grow -->
             <ul>
-              <li>DDOS</li>
-              <li>DDOS</li>
-              <li>DDOS</li>
+              <li>Alerts</li>
+              <li>Search</li>
+              <li>Admin</li>
             </ul>
           </div>
         </div>
       </div>
-      <div ngxSplitHandle *ngIf="!hideAlertArea">
-        <!--- This will default to 15px wide -->
-      </div>
-      <div
-        ngxSplitArea
-        ngxSplitArea="400px"
-        maxBasis="600px"
-        minBasis="200px"
-        class="right-panel"
-        *ngIf="!hideAlertArea"
-      >
-        <!--- This start as flex width of 400px, with a range of 200 - 600px -->
-        <ul>
-          <li>Alerts</li>
-          <li>Search</li>
-          <li>Admin</li>
-        </ul>
-      </div>
-      <div class="fixed-panel" *ngIf="!hideFixedSidebar">
-        Fixed Sidebar
-      </div>
-    </div>
-  </div>
+    </ngx-section>
 
-  <ngx-checkbox [(ngModel)]="hideAlertArea" (change)="panelStateChanged()">
-    Hide Alert Area
-  </ngx-checkbox>
-  <ngx-checkbox [(ngModel)]="hideFixedSidebar" (change)="panelStateChanged()">
-    Hide Fixed Sidebar
-  </ngx-checkbox>
-</ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="content" (click)="scrollTo('inputs')">Component Inputs</a>
+    <a class="content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <hr>
 
-<ngx-section class="shadow" [sectionTitle]="'Switching Layout Direction'">
-  <h3>Current Direction: {{ direction }}</h3>
-  <ngx-button class="btn btn-primary" (click)="toggleDirection()">Toggle Direction</ngx-button>
-  <br />
-  <br />
-
-  <div class="split-example">
-    <div ngxSplit [ngxSplit]="direction">
-      <div ngxSplitArea class="security-panel">
-        <h1>Security Dashboard</h1>
-        <p>
-          Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for mutex
-          daemon todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python bin
-          big-endian break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script kiddies.
-        </p>
-      </div>
-      <div ngxSplitHandle></div>
-      <div ngxSplitArea="0 1 50%" class="right-panel">
-        <!-- starts at 50%, cannot grow -->
-        <ul>
-          <li>Alerts</li>
-          <li>Search</li>
-          <li>Admin</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</ngx-section>
+    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>ngxSplitHandle: string = '0 0 15px'</code>
+          </th>
+          <td>The CSS <i>flex</i> property's value. Determines how big the gap is between split areas.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="outputs">Component Outputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>dblclick: EventEmitter&lt;MouseEvent&gt;</code>
+          </th>
+          <td>Event emitted when the component registers a <i>dblclick</i> event.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>drag: EventEmitter&lt;&#123; x: number, y: number &#125;&gt;</code>
+          </th>
+          <td>Event emitted when the component registers a <i>MouseEvent</i>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>dragStart: EventEmitter&lt;MouseEvent&gt;</code>
+          </th>
+          <td>Event emitted when the component registers a <i>mousedown</i> event.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>dragEnd: EventEmitter&lt;MouseEvent&gt;</code>
+          </th>
+          <td>Event emitted when the component registers a <i>mouseup</i> event.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>

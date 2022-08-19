@@ -4,6 +4,7 @@ import { IconRegistryService } from '@swimlane/ngx-ui';
 @Component({
   selector: 'app-ngx-icon-page',
   templateUrl: './ngx-icon-page.component.html',
+  styleUrls: ['./ngx-icon-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NgxIconPageComponent {
@@ -16,5 +17,9 @@ export class NgxIconPageComponent {
     iconRegistryService.add('app:create', 'new-app');
     iconRegistryService.add('app:edit', 'edit-app');
     iconRegistryService.add('app:copy', 'copy-app');
+  }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
 }

@@ -4,6 +4,7 @@ import { StepperPosition } from '@swimlane/ngx-ui';
 @Component({
   selector: 'app-stepper-page',
   templateUrl: './stepper-page.component.html',
+  styleUrls: ['./stepper-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StepperPageComponent {
@@ -40,5 +41,9 @@ export class StepperPageComponent {
       title: 'next step',
       icon: 'ngx-icon ngx-bug'
     });
+  }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
 }

@@ -1,320 +1,493 @@
 <h3 class="style-header">Stepper</h3>
 
-<ngx-section class="shadow" sectionTitle="Stepper">
-  <ngx-stepper
-    #stepper
-    [readonly]="readonly"
-    [(active)]="index"
-  >
-    <ngx-step
-      #ngxStep
-      [label]="step.title"
-      *ngFor="let step of steps"
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" sectionTitle="Stepper">
+      <ngx-stepper
+        #stepper
+        [readonly]="readonly"
+        [(active)]="index"
+      >
+        <ngx-step
+          #ngxStep
+          [label]="step.title"
+          *ngFor="let step of steps"
+        >
+          <ng-template ngxStepContent>
+            Step #{{ ngxStep.step + 1 }}
+          </ng-template>
+        </ngx-step>
+      </ngx-stepper>
+    
+      <br />
+      <br />
+    
+      <button class="btn" (click)="stepper.first()">First Step</button>
+      <button class="btn" (click)="previous()">Previous Step</button>
+      <button class="btn" (click)="next()">Next Step</button>
+      <button class="btn" (click)="stepper.last()">Last Step</button>
+      <button class="btn" (click)="stepper.complete()">Complete</button>
+    
+      <br />
+      <br />
+    
+      <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
+      <button class="btn" (click)="addStep()">Add Step</button>
+    
+      <br />
+      <br />
+    
+      <app-prism>
+    <![CDATA[<ngx-stepper
+      [readonly]="readonly"
+      [(active)]="index"
     >
-      <ng-template ngxStepContent>
-        Step #{{ ngxStep.step + 1 }}
-      </ng-template>
-    </ngx-step>
-  </ngx-stepper>
-
-  <br />
-  <br />
-
-  <button class="btn" (click)="stepper.first()">First Step</button>
-  <button class="btn" (click)="previous()">Previous Step</button>
-  <button class="btn" (click)="next()">Next Step</button>
-  <button class="btn" (click)="stepper.last()">Last Step</button>
-  <button class="btn" (click)="stepper.complete()">Complete</button>
-
-  <br />
-  <br />
-
-  <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
-  <button class="btn" (click)="addStep()">Add Step</button>
-
-  <br />
-  <br />
-
-  <app-prism>
-<![CDATA[<ngx-stepper
-  [readonly]="readonly"
-  [(active)]="index"
->
-  <ngx-step *ngFor="let step of steps">
-    <ng-template ngxStepContent>
-    </ng-template>
-  </ngx-step>
-</ngx-stepper>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Stepper (With progress indicator)">
-  <ngx-stepper
-    #stepper
-    progress="true"
-    trackBar="false"
-    [readonly]="readonly"
-    [(active)]="index"
-  >
-    <ngx-step
-      #ngxStep
-      [label]="step.title"
-      *ngFor="let step of steps"
+      <ngx-step *ngFor="let step of steps">
+        <ng-template ngxStepContent>
+        </ng-template>
+      </ngx-step>
+    </ngx-stepper>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Stepper (With progress indicator)">
+      <ngx-stepper
+        #stepper
+        progress="true"
+        trackBar="false"
+        [readonly]="readonly"
+        [(active)]="index"
+      >
+        <ngx-step
+          #ngxStep
+          [label]="step.title"
+          *ngFor="let step of steps"
+        >
+          <ng-template ngxStepContent>
+            Step #{{ ngxStep.step + 1 }}
+          </ng-template>
+        </ngx-step>
+      </ngx-stepper>
+    
+      <br />
+      <br />
+    
+      <button class="btn" (click)="stepper.first()">First Step</button>
+      <button class="btn" (click)="previous()">Previous Step</button>
+      <button class="btn" (click)="next()">Next Step</button>
+      <button class="btn" (click)="stepper.last()">Last Step</button>
+      <button class="btn" (click)="stepper.complete()">Complete</button>
+    
+      <br />
+      <br />
+    
+      <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
+      <button class="btn" (click)="addStep()">Add Step</button>
+    
+      <br />
+      <br />
+    
+      <app-prism>
+    <![CDATA[<ngx-stepper
+      progress="true"
+      trackBar="false"
+      [readonly]="readonly"
+      [(active)]="index"
     >
-      <ng-template ngxStepContent>
-        Step #{{ ngxStep.step + 1 }}
-      </ng-template>
-    </ngx-step>
-  </ngx-stepper>
-
-  <br />
-  <br />
-
-  <button class="btn" (click)="stepper.first()">First Step</button>
-  <button class="btn" (click)="previous()">Previous Step</button>
-  <button class="btn" (click)="next()">Next Step</button>
-  <button class="btn" (click)="stepper.last()">Last Step</button>
-  <button class="btn" (click)="stepper.complete()">Complete</button>
-
-  <br />
-  <br />
-
-  <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
-  <button class="btn" (click)="addStep()">Add Step</button>
-
-  <br />
-  <br />
-
-  <app-prism>
-<![CDATA[<ngx-stepper
-  progress="true"
-  trackBar="false"
-  [readonly]="readonly"
-  [(active)]="index"
->
-  <ngx-step *ngFor="let step of steps">
-    <ng-template ngxStepContent>
-    </ng-template>
-  </ngx-step>
-</ngx-stepper>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Stepper (Custom Icon)">
-  <ngx-stepper
-    #stepper
-    [readonly]="readonly"
-    [(active)]="index"
-  >
-    <ngx-step
-      #ngxStep
-      *ngFor="let step of steps"
-      [icon]="step.icon"
+      <ngx-step *ngFor="let step of steps">
+        <ng-template ngxStepContent>
+        </ng-template>
+      </ngx-step>
+    </ngx-stepper>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Stepper (Custom Icon)">
+      <ngx-stepper
+        #stepper
+        [readonly]="readonly"
+        [(active)]="index"
+      >
+        <ngx-step
+          #ngxStep
+          *ngFor="let step of steps"
+          [icon]="step.icon"
+        >
+          <ng-template ngxStepContent>
+            Step #{{ ngxStep.step + 1 }}
+          </ng-template>
+        </ngx-step>
+      </ngx-stepper>
+    
+      <br />
+      <br />
+    
+      <button class="btn" (click)="stepper.first()">First Step</button>
+      <button class="btn" (click)="previous()">Previous Step</button>
+      <button class="btn" (click)="next()">Next Step</button>
+      <button class="btn" (click)="stepper.last()">Last Step</button>
+      <button class="btn" (click)="stepper.complete()">Complete</button>
+    
+      <br />
+      <br />
+    
+      <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
+      <button class="btn" (click)="addStep()">Add Step</button>
+    
+      <br />
+      <br />
+    
+      <app-prism>
+    <![CDATA[<ngx-stepper
+      [readonly]="readonly"
+      [(active)]="index"
     >
-      <ng-template ngxStepContent>
-        Step #{{ ngxStep.step + 1 }}
-      </ng-template>
-    </ngx-step>
-  </ngx-stepper>
-
-  <br />
-  <br />
-
-  <button class="btn" (click)="stepper.first()">First Step</button>
-  <button class="btn" (click)="previous()">Previous Step</button>
-  <button class="btn" (click)="next()">Next Step</button>
-  <button class="btn" (click)="stepper.last()">Last Step</button>
-  <button class="btn" (click)="stepper.complete()">Complete</button>
-
-  <br />
-  <br />
-
-  <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
-  <button class="btn" (click)="addStep()">Add Step</button>
-
-  <br />
-  <br />
-
-  <app-prism>
-<![CDATA[<ngx-stepper
-  [readonly]="readonly"
-  [(active)]="index"
->
-  <ngx-step
-    *ngFor="let step of steps"
-    [icon]="step.icon"
-  >
-    <ng-template ngxStepContent>
-    </ng-template>
-  </ngx-step>
-</ngx-stepper>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Stepper (Custom Complete Icon)">
-  <ngx-stepper
-    #stepper
-    completeIcon="ngx-icon ngx-arrow-bold-right"
-    [readonly]="readonly"
-    [(active)]="index"
-  >
-    <ngx-step
-      #ngxStep
-      *ngFor="let step of steps"
-      [completeIcon]="step.completeIcon"
+      <ngx-step
+        *ngFor="let step of steps"
+        [icon]="step.icon"
+      >
+        <ng-template ngxStepContent>
+        </ng-template>
+      </ngx-step>
+    </ngx-stepper>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Stepper (Custom Complete Icon)">
+      <ngx-stepper
+        #stepper
+        completeIcon="ngx-icon ngx-arrow-bold-right"
+        [readonly]="readonly"
+        [(active)]="index"
+      >
+        <ngx-step
+          #ngxStep
+          *ngFor="let step of steps"
+          [completeIcon]="step.completeIcon"
+        >
+          <ng-template ngxStepContent>
+            Step #{{ ngxStep.step + 1 }}
+          </ng-template>
+        </ngx-step>
+      </ngx-stepper>
+    
+      <br />
+      <br />
+    
+      <button class="btn" (click)="stepper.first()">First Step</button>
+      <button class="btn" (click)="previous()">Previous Step</button>
+      <button class="btn" (click)="next()">Next Step</button>
+      <button class="btn" (click)="stepper.last()">Last Step</button>
+      <button class="btn" (click)="stepper.complete()">Complete</button>
+    
+      <br />
+      <br />
+    
+      <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
+      <button class="btn" (click)="addStep()">Add Step</button>
+    
+      <br />
+      <br />
+    
+      <app-prism>
+    <![CDATA[<ngx-stepper
+      completeIcon="ngx-icon ngx-arrow-bold-right"
+      [readonly]="readonly"
+      [(active)]="index"
     >
-      <ng-template ngxStepContent>
-        Step #{{ ngxStep.step + 1 }}
-      </ng-template>
-    </ngx-step>
-  </ngx-stepper>
-
-  <br />
-  <br />
-
-  <button class="btn" (click)="stepper.first()">First Step</button>
-  <button class="btn" (click)="previous()">Previous Step</button>
-  <button class="btn" (click)="next()">Next Step</button>
-  <button class="btn" (click)="stepper.last()">Last Step</button>
-  <button class="btn" (click)="stepper.complete()">Complete</button>
-
-  <br />
-  <br />
-
-  <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
-  <button class="btn" (click)="addStep()">Add Step</button>
-
-  <br />
-  <br />
-
-  <app-prism>
-<![CDATA[<ngx-stepper
-  completeIcon="ngx-icon ngx-arrow-bold-right"
-  [readonly]="readonly"
-  [(active)]="index"
->
-  <ngx-step
-    *ngFor="let step of steps"
-    [completeIcon]="step.completeIcon"
-  >
-    <ng-template ngxStepContent>
-    </ng-template>
-  </ngx-step>
-</ngx-stepper>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Stepper (Large Icon)">
-  <ngx-stepper
-    #stepper
-    [readonly]="readonly"
-    [(active)]="index"
-    large="true"
-  >
-    <ngx-step
-      #ngxStep
-      *ngFor="let step of steps"
-      [icon]="step.icon"
+      <ngx-step
+        *ngFor="let step of steps"
+        [completeIcon]="step.completeIcon"
+      >
+        <ng-template ngxStepContent>
+        </ng-template>
+      </ngx-step>
+    </ngx-stepper>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Stepper (Large Icon)">
+      <ngx-stepper
+        #stepper
+        [readonly]="readonly"
+        [(active)]="index"
+        large="true"
+      >
+        <ngx-step
+          #ngxStep
+          *ngFor="let step of steps"
+          [icon]="step.icon"
+        >
+          <ng-template ngxStepContent>
+            Step #{{ ngxStep.step + 1 }}
+          </ng-template>
+        </ngx-step>
+      </ngx-stepper>
+    
+      <br />
+      <br />
+    
+      <button class="btn" (click)="stepper.first()">First Step</button>
+      <button class="btn" (click)="previous()">Previous Step</button>
+      <button class="btn" (click)="next()">Next Step</button>
+      <button class="btn" (click)="stepper.last()">Last Step</button>
+      <button class="btn" (click)="stepper.complete()">Complete</button>
+    
+      <br />
+      <br />
+    
+      <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
+      <button class="btn" (click)="addStep()">Add Step</button>
+    
+      <br />
+      <br />
+    
+      <app-prism>
+    <![CDATA[<ngx-stepper
+      [readonly]="readonly"
+      [(active)]="index"
+      large="true"
     >
-      <ng-template ngxStepContent>
-        Step #{{ ngxStep.step + 1 }}
-      </ng-template>
-    </ngx-step>
-  </ngx-stepper>
-
-  <br />
-  <br />
-
-  <button class="btn" (click)="stepper.first()">First Step</button>
-  <button class="btn" (click)="previous()">Previous Step</button>
-  <button class="btn" (click)="next()">Next Step</button>
-  <button class="btn" (click)="stepper.last()">Last Step</button>
-  <button class="btn" (click)="stepper.complete()">Complete</button>
-
-  <br />
-  <br />
-
-  <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
-  <button class="btn" (click)="addStep()">Add Step</button>
-
-  <br />
-  <br />
-
-  <app-prism>
-<![CDATA[<ngx-stepper
-  [readonly]="readonly"
-  [(active)]="index"
-  large="true"
->
-  <ngx-step
-    *ngFor="let step of steps"
-    [icon]="step.icon"
-  >
-    <ng-template ngxStepContent>
-    </ng-template>
-  </ngx-step>
-</ngx-stepper>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Stepper (Position Change)">
-  <ngx-stepper
-    #stepper
-    [position]="position"
-    [readonly]="readonly"
-    [(active)]="index"
-  >
-    <ngx-step
-      #ngxStep
-      *ngFor="let step of steps"
-      [label]="step.title"
-      [completeIcon]="step.completeIcon"
+      <ngx-step
+        *ngFor="let step of steps"
+        [icon]="step.icon"
+      >
+        <ng-template ngxStepContent>
+        </ng-template>
+      </ngx-step>
+    </ngx-stepper>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Stepper (Position Change)">
+      <ngx-stepper
+        #stepper
+        [position]="position"
+        [readonly]="readonly"
+        [(active)]="index"
+      >
+        <ngx-step
+          #ngxStep
+          *ngFor="let step of steps"
+          [label]="step.title"
+          [completeIcon]="step.completeIcon"
+        >
+          <ng-template ngxStepContent>
+            Step #{{ ngxStep.step + 1 }}
+          </ng-template>
+        </ngx-step>
+      </ngx-stepper>
+    
+      <br />
+      <br />
+    
+      <button class="btn" (click)="stepper.first()">First Step</button>
+      <button class="btn" (click)="previous()">Previous Step</button>
+      <button class="btn" (click)="next()">Next Step</button>
+      <button class="btn" (click)="stepper.last()">Last Step</button>
+      <button class="btn" (click)="stepper.complete()">Complete</button>
+    
+      <br />
+      <br />
+    
+      <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
+      <button class="btn" (click)="addStep()">Add Step</button>
+    
+      <ngx-select [ngModel]="[position]" (ngModelChange)="position = $event[0]" filterable="false">
+        <ngx-select-option name="Top" [value]="StepperPosition.Top"></ngx-select-option>
+        <ngx-select-option name="Bottom" [value]="StepperPosition.Bottom"></ngx-select-option>
+        <ngx-select-option name="Left" [value]="StepperPosition.Left"></ngx-select-option>
+        <ngx-select-option name="Right" [value]="StepperPosition.Right"></ngx-select-option>
+      </ngx-select>
+    
+      <br />
+      <br />
+    
+      <app-prism>
+    <![CDATA[<ngx-stepper
+      [position]="position"
+      [readonly]="readonly"
+      [(active)]="index"
     >
-      <ng-template ngxStepContent>
-        Step #{{ ngxStep.step + 1 }}
-      </ng-template>
-    </ngx-step>
-  </ngx-stepper>
+      <ngx-step
+        *ngFor="let step of steps"
+        [label]="step.title"
+        [completeIcon]="step.icon"
+      >
+        <ng-template ngxStepContent>
+        </ng-template>
+      </ngx-step>
+    </ngx-stepper>]]>
+      </app-prism>
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="content" (click)="scrollTo('ngx-stepper-inputs')">ngx-stepper Inputs</a>
+    <a class="content" (click)="scrollTo('ngx-stepper-outputs')">ngx-stepper Outputs</a>
+    <a class="content" (click)="scrollTo('ngx-step-inputs')">ngx-step Inputs</a>
+    <a class="content" (click)="scrollTo('ngx-step-outputs')">ngx-step Outputs</a>
+    <hr>
 
-  <br />
-  <br />
+    <h3 class="style-header" id="ngx-stepper-inputs">ngx-stepper Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>active: number = 0</code>
+          </th>
+          <td>The inititially active step.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>completeIcon: string = 'ngx-icon ngx-check'</code>
+          </th>
+          <td>The icon to display when all steps in the component have been completed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>large: boolean</code>
+          </th>
+          <td>Whether the component is displayed larger. See Examples tab.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>position: StepperPosition = StepperPosition.Top</code>
+          </th>
+          <td>The position of the component relative to the trackbar.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>progress: boolean</code>
+          </th>
+          <td>Whether the component displays a progress indicator. See Examples tab.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>readonly: boolean = true</code>
+          </th>
+          <td>Whether the component is readonly. Applies basic CSS styling.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>removeHighlight: boolean</code>
+          </th>
+          <td>Whether background highlight styling is displayed for previously completed steps.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>trackBar: boolean = true</code>
+          </th>
+          <td>Whether the trackbar is displayed underneath the current step. See Examples tab.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="ngx-stepper-outputs">ngx-stepper Outputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>activeChange: EventEmitter&lt;number&gt;</code>
+          </th>
+          <td>Event emitted when the active <i>ngx-step</i> changes.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
 
-  <button class="btn" (click)="stepper.first()">First Step</button>
-  <button class="btn" (click)="previous()">Previous Step</button>
-  <button class="btn" (click)="next()">Next Step</button>
-  <button class="btn" (click)="stepper.last()">Last Step</button>
-  <button class="btn" (click)="stepper.complete()">Complete</button>
-
-  <br />
-  <br />
-
-  <button class="btn" (click)="toggleReadonly()">{{ readonly ? 'Not Readonly' : 'Readonly' }}</button>
-  <button class="btn" (click)="addStep()">Add Step</button>
-
-  <ngx-select [ngModel]="[position]" (ngModelChange)="position = $event[0]" filterable="false">
-    <ngx-select-option name="Top" [value]="StepperPosition.Top"></ngx-select-option>
-    <ngx-select-option name="Bottom" [value]="StepperPosition.Bottom"></ngx-select-option>
-    <ngx-select-option name="Left" [value]="StepperPosition.Left"></ngx-select-option>
-    <ngx-select-option name="Right" [value]="StepperPosition.Right"></ngx-select-option>
-  </ngx-select>
-
-  <br />
-  <br />
-
-  <app-prism>
-<![CDATA[<ngx-stepper
-  [position]="position"
-  [readonly]="readonly"
-  [(active)]="index"
->
-  <ngx-step
-    *ngFor="let step of steps"
-    [label]="step.title"
-    [completeIcon]="step.icon"
-  >
-    <ng-template ngxStepContent>
-    </ng-template>
-  </ngx-step>
-</ngx-stepper>]]>
-  </app-prism>
-</ngx-section>
+    <h3 class="style-header" id="ngx-step-inputs">ngx-step Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>active: number</code>
+          </th>
+          <td>The active component, zero indexed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>completeIcon: string</code>
+          </th>
+          <td>The icon to display when the component is complete.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>icon: string</code>
+          </th>
+          <td>The icon to display for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>label: string</code>
+          </th>
+          <td>The label for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>step: number</code>
+          </th>
+          <td>The numerical value assigned to each <i>ngx-step</i> component, zero indexed. Used to determine if the <i>ngx-step</i> component is complete.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>total: number</code>
+          </th>
+          <td>The total number of <i>ngx-step</i> components.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="ngx-step-outputs">ngx-step Outputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>activeChange: EventEmitter&lt;number&gt;</code>
+          </th>
+          <td>Event emitted when the active component changes.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>
