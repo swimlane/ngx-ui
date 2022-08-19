@@ -1,38 +1,123 @@
 <h3 class="style-header">Overlay</h3>
-<ngx-section class="shadow" sectionTitle="Demo">
-  <ngx-overlay #overlay (click)="overlay.visible = false">
-    <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
-      <h3>Click anywhere to return</h3>
-    </span>
-  </ngx-overlay>
-  <button class="btn btn-primary" (click)="overlay.visible = true">Show Overlay</button>
 
-  <app-prism>
-<![CDATA[<ngx-overlay #overlay (click)="overlay.visible = false">
-  <span style="display: inline-block; line-height:14px; vertical-align: middle;">
-    <h3>Click anywhere to return</h3>
-  </span>
-</ngx-overlay>
-<button class="btn btn-primary" (click)="overlay.visible = true">Show Overlay</button>]]>
-    </app-prism>
-</ngx-section>
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" sectionTitle="Demo">
+      <ngx-overlay #overlay (click)="overlay.visible = false">
+        <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
+          <h3>Click anywhere to return</h3>
+        </span>
+      </ngx-overlay>
+      <button class="btn btn-primary" (click)="overlay.visible = true">Show Overlay</button>
+    
+      <app-prism>
+    <![CDATA[<ngx-overlay #overlay (click)="overlay.visible = false">
+      <span style="display: inline-block; line-height:14px; vertical-align: middle;">
+        <h3>Click anywhere to return</h3>
+      </span>
+    </ngx-overlay>
+    <button class="btn btn-primary" (click)="overlay.visible = true">Show Overlay</button>]]>
+        </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Browser size">
+      Resize your browser to be less than 600px to to see the overlay.
+    
+      <ngx-resize-overlay query="(min-width: 959px) and (min-height: 650px)" combo="alt+shift+o"> </ngx-resize-overlay>
+    
+      <app-prism>
+    <![CDATA[<ngx-resize-overlay query="(min-width: 959px) and (min-height: 650px)" combo="alt+shift+o"></ngx-resize-overlay>]]>
+        </app-prism>
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="content" (click)="scrollTo('ngx-overlay-inputs')">ngx-overlay Inputs</a>
+    <a class="content" (click)="scrollTo('ngx-overlay-outputs')">ngx-overlay Outputs</a>
+    <a class="content" (click)="scrollTo('ngx-resize-overlay-inputs')">ngx-resize-overlay Inputs</a>
+    <a class="content" (click)="scrollTo('ngx-resize-overlay-outputs')">ngx-resize-overlay Outputs</a>
+    <hr>
 
-<ngx-section class="shadow" sectionTitle="Browser size">
-  Resize your browser to be less than 600px to to see the overlay.
+    <h3 class="style-header" id="ngx-overlay-inputs">ngx-overlay Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>visible: boolean</code>
+          </th>
+          <td>Whether the component is visible.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>zIndex: number = 990</code>
+          </th>
+          <td>The CSS z-index value for the component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="ngx-overlay-outputs">ngx-overlay Outputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>click: EventEmitter&lt;boolean&gt;</code>
+          </th>
+          <td>Event emitted when a click event is registered on the component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
 
-  <ngx-resize-overlay query="(min-width: 959px) and (min-height: 650px)" combo="alt+shift+o"> </ngx-resize-overlay>
-
-  <app-prism>
-<![CDATA[<div fxHide.gt-sm="true">
-  <ngx-overlay visible="true">
-    <span style="display: inline-block; line-height: 14px; vertical-align: middle;">
-      <h1>
-        <i class="ngx-icon ngx-hand icon-fx-dbl-sized"></i>
-      </h1>
-      <h3>Your browser is too small</h3>
-      Resize your browser to be at least 600px to return to action.
-    </span>
-  </ngx-overlay>
-</div>]]>
-    </app-prism>
-</ngx-section>
+    <h3 class="style-header" id="ngx-resize-overlay-inputs">ngx-resize-overlay Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>combo: string = 'ctrl+shift+o'</code>
+          </th>
+          <td>The keyboard hotkey to close the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>disabled: boolean</code>
+          </th>
+          <td>Whether the component is disabled.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>query: string = (min-width: 959px) and (min-height: 650px)'</code>
+          </th>
+          <td>The minimum width and height values for the component to remain invisible. If the browser's width and height values fall below the provided query, the component will display. The format must be valid CSS syntax.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="ngx-resize-overlay-outputs">ngx-resize-overlay Outputs</h3>
+    <h4>No component outputs to display.</h4>
+  </ngx-tab>
+</ngx-tabs>

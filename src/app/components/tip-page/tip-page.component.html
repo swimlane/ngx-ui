@@ -1,78 +1,140 @@
 <div class="inputs-section"> 
   <h3 class="style-header">Tip</h3>
 
-  <ngx-section class="shadow" sectionTitle="Styles">
-    <div class="tip-example">
-      <ngx-tip [status]="TipStatus.Success">
-        {{text}}
-      </ngx-tip>
-      <ngx-tip [status]="TipStatus.Error">
-        {{text}}
-      </ngx-tip>
-      <ngx-tip [status]="TipStatus.Notice">
-        {{text}}
-      </ngx-tip>
-      <ngx-tip [status]="TipStatus.Warning">
-        {{text}}
-      </ngx-tip>
-    </div>
-    <app-prism>
-<![CDATA[<ngx-tip [status]="TipStatus.Success">
-  {{text}}
-</ngx-tip>
-<ngx-tip [status]="TipStatus.Error">
-  {{text}}
-</ngx-tip>
-<ngx-tip [status]="TipStatus.Notice">
-  {{text}}
-</ngx-tip>
-<ngx-tip [status]="TipStatus.Warning">
-  {{text}}
-</ngx-tip>]]>
-    </app-prism>
-  </ngx-section>
+  <ngx-tabs>
+    <ngx-tab label="Examples">
+      <ngx-section class="shadow" sectionTitle="Styles">
+        <div class="tip-example">
+          <ngx-tip [status]="TipStatus.Success">
+            {{text}}
+          </ngx-tip>
+          <ngx-tip [status]="TipStatus.Error">
+            {{text}}
+          </ngx-tip>
+          <ngx-tip [status]="TipStatus.Notice">
+            {{text}}
+          </ngx-tip>
+          <ngx-tip [status]="TipStatus.Warning">
+            {{text}}
+          </ngx-tip>
+        </div>
+        <app-prism>
+    <![CDATA[<ngx-tip [status]="TipStatus.Success">
+      {{text}}
+    </ngx-tip>
+    <ngx-tip [status]="TipStatus.Error">
+      {{text}}
+    </ngx-tip>
+    <ngx-tip [status]="TipStatus.Notice">
+      {{text}}
+    </ngx-tip>
+    <ngx-tip [status]="TipStatus.Warning">
+      {{text}}
+    </ngx-tip>]]>
+        </app-prism>
+      </ngx-section>
+    
+      <ngx-section class="shadow" sectionTitle="Custom Icons">
+        <div class="tip-example">
+          <ngx-tip [status]="TipStatus.Success" icon="check-filled-sm">
+            {{text}}
+          </ngx-tip>
+          <ngx-tip [status]="TipStatus.Error" icon="smiley-frown">
+            {{text}}
+          </ngx-tip>
+          <ngx-tip [status]="TipStatus.Notice" icon="eye-disabled">
+            {{text}}
+          </ngx-tip>
+          <ngx-tip [status]="TipStatus.Warning" icon="pause-circle">
+            {{text}}
+          </ngx-tip>
+        </div>
+        <app-prism>
+    <![CDATA[<ngx-tip [status]="TipStatus.Success" icon="check-filled-sm">
+      {{text}}
+    </ngx-tip>
+    <ngx-tip [status]="TipStatus.Error" icon="smiley-frown">
+      {{text}}
+    </ngx-tip>
+    <ngx-tip [status]="TipStatus.Notice" icon="eye-disabled">
+      {{text}}
+    </ngx-tip>
+    <ngx-tip [status]="TipStatus.Warning" icon="pause-circle">
+      {{text}}
+    </ngx-tip>]]>
+        </app-prism>
+      </ngx-section>
+    
+      <ngx-section class="shadow" sectionTitle="Closeable">
+        <div class="tip-example">
+          <ngx-tip *ngIf="showTip" [isCloseable]="true" (close)="showTip = false">
+            {{text}}
+          </ngx-tip>
+        </div>
+        <app-prism>
+    <![CDATA[<ngx-tip *ngIf="showTip" [isCloseable]="true" (close)="showTip = false">
+      {{text}}
+    </ngx-tip>]]>
+        </app-prism>
+      </ngx-section>
+    </ngx-tab>
+    <ngx-tab label="API">
+      <h3>Table of Contents</h3>
+      <a class="content" (click)="scrollTo('inputs')">Component Inputs</a>
+      <a class="content" (click)="scrollTo('outputs')">Component Outputs</a>
+      <hr>
 
-  <ngx-section class="shadow" sectionTitle="Custom Icons">
-    <div class="tip-example">
-      <ngx-tip [status]="TipStatus.Success" icon="check-filled-sm">
-        {{text}}
-      </ngx-tip>
-      <ngx-tip [status]="TipStatus.Error" icon="smiley-frown">
-        {{text}}
-      </ngx-tip>
-      <ngx-tip [status]="TipStatus.Notice" icon="eye-disabled">
-        {{text}}
-      </ngx-tip>
-      <ngx-tip [status]="TipStatus.Warning" icon="pause-circle">
-        {{text}}
-      </ngx-tip>
-    </div>
-    <app-prism>
-<![CDATA[<ngx-tip [status]="TipStatus.Success" icon="check-filled-sm">
-  {{text}}
-</ngx-tip>
-<ngx-tip [status]="TipStatus.Error" icon="smiley-frown">
-  {{text}}
-</ngx-tip>
-<ngx-tip [status]="TipStatus.Notice" icon="eye-disabled">
-  {{text}}
-</ngx-tip>
-<ngx-tip [status]="TipStatus.Warning" icon="pause-circle">
-  {{text}}
-</ngx-tip>]]>
-    </app-prism>
-  </ngx-section>
-
-  <ngx-section class="shadow" sectionTitle="Closeable">
-    <div class="tip-example">
-      <ngx-tip *ngIf="showTip" [isCloseable]="true" (close)="showTip = false">
-        {{text}}
-      </ngx-tip>
-    </div>
-    <app-prism>
-<![CDATA[<ngx-tip *ngIf="showTip" [isCloseable]="true" (close)="showTip = false">
-  {{text}}
-</ngx-tip>]]>
-    </app-prism>
-  </ngx-section>
+      <h3 class="style-header" id="inputs">Component Inputs</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <code class="component-type">@Input()</code>
+              <code>icon: string</code>
+            </th>
+            <td>The icon to display on the component. A default icon will display based on the provided status if no value is provided for this Input. See Examples tab.</td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">@Input()</code>
+              <code>isCloseable: boolean</code>
+            </th>
+            <td>Whether the component can be removed from the page.</td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">@Input()</code>
+              <code>status: TipStatus</code>
+            </th>
+            <td>The status of the component.</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <h3 class="style-header" id="outputs">Component Outputs</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <code class="component-type">@Output()</code>
+              <code>close: EventEmitter&lt;any&gt;</code>
+            </th>
+            <td>Event emitted when the component is closed. The <i>isCloseable</i> Input must be set to <i>true</i> for this event to emit.</td>
+          </tr>
+        </tbody>
+      </table>
+    </ngx-tab>
+  </ngx-tabs>
 </div>

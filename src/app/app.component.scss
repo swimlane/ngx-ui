@@ -115,6 +115,10 @@
   margin-bottom: 20px;
   font-weight: 600;
 
+  &:not(:first-of-type) {
+    margin-top: 6rem;
+  }
+
   &:after {
     content: '';
     width: 25px;
