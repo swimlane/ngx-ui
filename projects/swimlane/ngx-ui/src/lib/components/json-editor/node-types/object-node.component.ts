@@ -326,7 +326,7 @@ export class ObjectNode implements OnInit, OnChanges {
         delete this.propertyIndex[id];
       } else {
         const model = this.model[schema.propertyName];
-        const { type } = inferType(model);
+        const { type } = schema.type ? schema : inferType(model);
         if (schema.type !== type && type !== 'null') {
           this.propertyIndex[schema.id].type = type;
         }

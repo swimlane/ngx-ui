@@ -11,7 +11,7 @@
     class="object-node-content"
     *ngFor="let prop of propertyIndex | objectValues; let index = index; trackBy: trackBy"
   >
-  {{prop | json}}
+
     <ngx-json-editor-node-flat
       [model]="model[prop.propertyName]"
       (modelChange)="updateProp(prop.id, $event)"
