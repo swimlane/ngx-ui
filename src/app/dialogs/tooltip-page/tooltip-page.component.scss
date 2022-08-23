@@ -12,3 +12,20 @@
     }
   }
 }
+
+.content {
+  cursor: pointer;
+  display: block;
+  margin-block: 1rem;
+}
+
+.content:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.docs-table {
+  th,
+  td {
+    width: 50%;
+  }
+}

@@ -5,6 +5,7 @@ import { FileUploader } from '@swimlane/ng2-file-upload';
 @Component({
   selector: 'app-dropzone-page',
   templateUrl: './dropzone-page.component.html',
+  styleUrls: ['./dropzone-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropzonePageComponent {
@@ -23,5 +24,9 @@ export class DropzonePageComponent {
 
   onAfterAddingFile(fileItem): void {
     console.log('file added', fileItem);
+  }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
 }

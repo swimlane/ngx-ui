@@ -1,347 +1,494 @@
 <h3 class="style-header">Dialog</h3>
 
-<ngx-section class="shadow" [sectionTitle]="'Content'">
-  <button type="button" class="btn" (click)="openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })">
-    Open Dialog
-  </button>
-
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" [sectionTitle]="'Content'">
+      <button type="button" class="btn" (click)="openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })">
+        Open Dialog
+      </button>
+    
+      <br />
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<button
+      type="button"
+      class="btn"
+      (click)="openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })">
+      Open Dialog
+    </button>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[import { DialogService } from '@swimlane/ngx-ui';
+    
+    @Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      constructor(public dialogMngr: DialogService) { }
+      openDialog(options): void {
+        this.dialogMngr.create(options);
+      }
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    
+    </ngx-section>
+    
+    <ngx-section class="shadow" [sectionTitle]="'Component'">
+      <ngx-dialog dialogTitle="Attack Alert" *ngIf="dialogVis" (onClose)="dialogVis = false" [zIndex]="10">
+        <p>Attack Found!</p>
+        <ngx-input label="Details" [autofocus]="true"></ngx-input>
+      </ngx-dialog>
+    
+      <button type="button" class="btn" (click)="dialogVis = !dialogVis">
+        Toggle Dialog
+      </button>
+    
+      <br />
+      <br />
+    
       <app-prism>
-<![CDATA[<button
-  type="button"
-  class="btn"
-  (click)="openDialog({ title: 'Alert!', context: { count: 19 }, content: 'Hello!' })">
-  Open Dialog
-</button>]]>
+    <![CDATA[<ngx-dialog
+      dialogTitle="Attack Alert"
+      *ngIf="dialogVis"
+      (onClose)="dialogVis = false">
+      <p>Attack Found!</p>
+    </ngx-dialog>
+    <button
+      type="button"
+      class="btn"
+      (click)="dialogVis = true">
+      Open Dialog
+    </button>]]>
       </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[import { DialogService } from '@swimlane/ngx-ui';
-
-@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  constructor(public dialogMngr: DialogService) { }
-  openDialog(options): void {
-    this.dialogMngr.create(options);
-  }
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-
-</ngx-section>
-
-<ngx-section class="shadow" [sectionTitle]="'Component'">
-  <ngx-dialog dialogTitle="Attack Alert" *ngIf="dialogVis" (onClose)="dialogVis = false" [zIndex]="10">
-    <p>Attack Found!</p>
-    <ngx-input label="Details" [autofocus]="true"></ngx-input>
-  </ngx-dialog>
-
-  <button type="button" class="btn" (click)="dialogVis = !dialogVis">
-    Toggle Dialog
-  </button>
-
-  <br />
-  <br />
-
-  <app-prism>
-<![CDATA[<ngx-dialog
-  dialogTitle="Attack Alert"
-  *ngIf="dialogVis"
-  (onClose)="dialogVis = false">
-  <p>Attack Found!</p>
-</ngx-dialog>
-<button
-  type="button"
-  class="btn"
-  (click)="dialogVis = true">
-  Open Dialog
-</button>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" [sectionTitle]="'Template'">
-  <ng-template #dialogTmpl let-context="context">
-    <p>Malware Detected. Found:
-      <i>{{context.count}}</i>
-    </p>
-    <button type="button" class="btn" (click)="openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })">
-      Open Incident
-    </button>
-  </ng-template>
-
-  <button type="button" class="btn" (click)="openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })">
-    Open Dialog
-  </button>
-
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
-      <app-prism>
-<![CDATA[<ng-template #dialogTmpl let-context="context">
-  <p>Malware Detected. Found: <i>{ {context.count} }</i></p>
-  <button
-    type="button"
-    class="btn"
-    (click)="openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })">
-    Open Incident
-  </button>
-</ng-template>
-
-<button
-  type="button"
-  class="btn"
-  (click)="openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })">
-  Open Dialog
-</button>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[import { DialogService } from '@swimlane/ngx-ui';
-
-@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  @ViewChild('dialogTmpl', { static: false }) dialogTpl: TemplateRef<any>;
-
-  constructor(public dialogMngr: DialogService) { }
-
-  openDialog(options): void {
-    this.dialogMngr.create(options);
-  }
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-</ngx-section>
-
-
-<ngx-section class="shadow" [sectionTitle]="'Custom header and footer'">
-  <ng-template #wizardTmpl let-context="context">
-    <div class="ngx-dialog-header">
-      <h1>Custom header title</h1>
-      <span>Custom subtext</span>
-    </div>
-
-    <ngx-tabs #tabs>
-      <ngx-tab label="General">
-        <h2>Tab content</h2>
-        <p>First tab content goes here</p>
-        <p>Count:
-          <strong>{{context.count}}</strong>
+    </ngx-section>
+    
+    <ngx-section class="shadow" [sectionTitle]="'Template'">
+      <ng-template #dialogTmpl let-context="context">
+        <p>Malware Detected. Found:
+          <i>{{context.count}}</i>
         </p>
-      </ngx-tab>
-      <ngx-tab label="Administration">
-        <h2>Second tab has a slightly longer title that goes here</h2>
-        <p>Second tab content goes here</p>
-      </ngx-tab>
-    </ngx-tabs>
-
-    <div class="ngx-dialog-footer">
-      <div class="wizard-nav">
-        <button type="button" class="btn btn-bordered" (click)="tabs.prev()">
-          <i class="ngx-icon ngx-arrow-left has-text"></i>Prev
+        <button type="button" class="btn" (click)="openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })">
+          Open Incident
         </button>
-        <button type="button" class="btn btn-bordered" (click)="tabs.next()">
-          Next
-          <i class="ngx-icon ngx-arrow-right"></i>
+      </ng-template>
+    
+      <button type="button" class="btn" (click)="openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })">
+        Open Dialog
+      </button>
+    
+      <br />
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<ng-template #dialogTmpl let-context="context">
+      <p>Malware Detected. Found: <i>{ {context.count} }</i></p>
+      <button
+        type="button"
+        class="btn"
+        (click)="openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })">
+        Open Incident
+      </button>
+    </ng-template>
+    
+    <button
+      type="button"
+      class="btn"
+      (click)="openDialog({ title: 'Alert!', context: { count: 19 }, template: dialogTmpl })">
+      Open Dialog
+    </button>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[import { DialogService } from '@swimlane/ngx-ui';
+    
+    @Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      @ViewChild('dialogTmpl', { static: false }) dialogTpl: TemplateRef<any>;
+    
+      constructor(public dialogMngr: DialogService) { }
+    
+      openDialog(options): void {
+        this.dialogMngr.create(options);
+      }
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+    
+    
+    <ngx-section class="shadow" [sectionTitle]="'Custom header and footer'">
+      <ng-template #wizardTmpl let-context="context">
+        <div class="ngx-dialog-header">
+          <h1>Custom header title</h1>
+          <span>Custom subtext</span>
+        </div>
+    
+        <ngx-tabs #tabs>
+          <ngx-tab label="General">
+            <h2>Tab content</h2>
+            <p>First tab content goes here</p>
+            <p>Count:
+              <strong>{{context.count}}</strong>
+            </p>
+          </ngx-tab>
+          <ngx-tab label="Administration">
+            <h2>Second tab has a slightly longer title that goes here</h2>
+            <p>Second tab content goes here</p>
+          </ngx-tab>
+        </ngx-tabs>
+    
+        <div class="ngx-dialog-footer">
+          <div class="wizard-nav">
+            <button type="button" class="btn btn-bordered" (click)="tabs.prev()">
+              <i class="ngx-icon ngx-arrow-left has-text"></i>Prev
+            </button>
+            <button type="button" class="btn btn-bordered" (click)="tabs.next()">
+              Next
+              <i class="ngx-icon ngx-arrow-right"></i>
+            </button>
+          </div>
+          <button type="button" class="btn btn-primary">
+            <i class="ngx-icon ngx-check has-text"></i>Save
+          </button>
+        </div>
+      </ng-template>
+    
+      <button type="button" class="btn" (click)="openDialog({ context: { count: 19 }, template: wizardTmpl, class: 'wizard' })">
+        Open Dialog
+      </button>
+    
+      <br />
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<ng-template #wizardTmpl let-context="context">
+      <div class="ngx-dialog-header">
+        <h1>Custom header title</h1>
+        <span>Custom subtext</span>
+      </div>
+    
+      <ngx-tabs>
+        <ngx-tab label="General">
+          <h2>Tab content</h2>
+          <p>First tab content goes here</p>
+          <p>Count: <strong>{ {context.count} }</strong></p>
+        </ngx-tab>
+        <ngx-tab label="Administration">
+          <h2>Second tab has a slightly longer title that goes here</h2>
+          <p>Second tab content goes here</p>
+        </ngx-tab>
+      </ngx-tabs>
+    
+      <div class="ngx-dialog-footer">
+        <div class="wizard-nav">
+          <button type="button" class="btn btn-bordered">
+            <i class="ngx-icon ngx-arrow-left has-text"></i>Prev
+          </button>
+          <button type="button" class="btn btn-bordered">
+            Next <i class="ngx-icon ngx-arrow-right"></i>
+          </button>
+        </div>
+        <button type="button" class="btn btn-primary">
+          <i class="ngx-icon ngx-check has-text"></i>Save
         </button>
       </div>
-      <button type="button" class="btn btn-primary">
-        <i class="ngx-icon ngx-check has-text"></i>Save
+    </ng-template>
+    
+    <button
+      type="button"
+      class="btn"
+      (click)="openDialog({ context: { count: 19 }, template: wizardTmpl, class: 'wizard' })">
+      Open Dialog
+    </button>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[import { DialogService } from '@swimlane/ngx-ui';
+    
+    @Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      @ViewChild('dialogTmpl', { static: false }) dialogTpl: TemplateRef<any>;
+    
+      constructor(public dialogMngr: DialogService) { }
+    
+      openDialog(options): void {
+        this.dialogMngr.create(options);
+      }
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+    
+    <ngx-section class="shadow" [sectionTitle]="'Full screen'">
+      <ng-template #fullScreenDialogTemplate let-context="context">
+        <h1>Full screen</h1>
+      </ng-template>
+    
+      <button type="button" class="btn" (click)="openDialog({ context: { count: 19 }, template: fullScreenDialogTemplate, class: 'ngx-dialog-full-screen' })">
+        Open Dialog
       </button>
-    </div>
-  </ng-template>
-
-  <button type="button" class="btn" (click)="openDialog({ context: { count: 19 }, template: wizardTmpl, class: 'wizard' })">
-    Open Dialog
-  </button>
-
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
-      <app-prism>
-<![CDATA[<ng-template #wizardTmpl let-context="context">
-  <div class="ngx-dialog-header">
-    <h1>Custom header title</h1>
-    <span>Custom subtext</span>
-  </div>
-
-  <ngx-tabs>
-    <ngx-tab label="General">
-      <h2>Tab content</h2>
-      <p>First tab content goes here</p>
-      <p>Count: <strong>{ {context.count} }</strong></p>
-    </ngx-tab>
-    <ngx-tab label="Administration">
-      <h2>Second tab has a slightly longer title that goes here</h2>
-      <p>Second tab content goes here</p>
-    </ngx-tab>
-  </ngx-tabs>
-
-  <div class="ngx-dialog-footer">
-    <div class="wizard-nav">
-      <button type="button" class="btn btn-bordered">
-        <i class="ngx-icon ngx-arrow-left has-text"></i>Prev
+    
+      <br />
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<ng-template #fullScreenDialogTemplate let-context="context">
+      <h1>Full screen</h1>
+    </ng-template>
+    
+    <button
+      type="button"
+      class="btn"
+      (click)="openDialog({ context: { count: 19 }, template: fullScreenDialogTemplate, class: 'ngx-dialog-full-screen' })">
+      Open Dialog
+    </button>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[import { DialogService } from '@swimlane/ngx-ui';
+    
+    @Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+    
+      constructor(public dialogMngr: DialogService) { }
+    
+      openDialog(options): void {
+        this.dialogMngr.create(options);
+      }
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+    
+    <ngx-section class="shadow" [sectionTitle]="'closeOnBlur & closeOnEscape'">
+      <ng-template #dirtyDialogTmpl let-context="context">
+        <p>
+          Can close the dialog on esc or blur: <i>{{ canClose | json }}</i>
+        </p>
+    
+        <button type="button" class="btn" (click)="canClose = !canClose">Toggle canClose</button>
+      </ng-template>
+    
+      <button
+        type="button"
+        class="btn"
+        (click)="openDialog({ title: 'Dirty Check', closeOnBlur: true, closeOnEscape: true, beforeClose, template: dirtyDialogTmpl })"
+      >
+        Open Dialog
       </button>
-      <button type="button" class="btn btn-bordered">
-        Next <i class="ngx-icon ngx-arrow-right"></i>
-      </button>
-    </div>
-    <button type="button" class="btn btn-primary">
-      <i class="ngx-icon ngx-check has-text"></i>Save
-    </button>
-  </div>
-</ng-template>
+    
+      <br />
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<button type="button" class="btn" (click)="openDialog({ title: 'Dirty Check', closeOnBlur: true, closeOnEscape: true, beforeClose, template: dirtyDialogTmpl })"
+    > Open Dialog </button>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild } from '@angular/core';
+    import { DialogService } from '@swimlane/ngx-ui';
+    
+    @Component({
+      selector: 'app-dialog-page',
+      templateUrl: './dialog-page.component.html',
+      changeDetection: ChangeDetectionStrategy.OnPush
+    })
+    export class DialogPageComponent {
+      dialogVis: any;
+      canClose = true;
+    
+      @ViewChild('dialogTmpl', { static: true })
+      dialogTpl: TemplateRef<any>;
+    
+      constructor(public dialogMngr: DialogService) {}
+    
+      openDialog(options) {
+        this.dialogMngr.create(options);
+      }
+    
+      beforeClose = (): boolean => {
+        return this.canClose;
+      };
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
 
-<button
-  type="button"
-  class="btn"
-  (click)="openDialog({ context: { count: 19 }, template: wizardTmpl, class: 'wizard' })">
-  Open Dialog
-</button>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[import { DialogService } from '@swimlane/ngx-ui';
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="content" (click)="scrollTo('inputs')">Component Inputs</a>
+    <a class="content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <hr>
 
-@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  @ViewChild('dialogTmpl', { static: false }) dialogTpl: TemplateRef<any>;
-
-  constructor(public dialogMngr: DialogService) { }
-
-  openDialog(options): void {
-    this.dialogMngr.create(options);
-  }
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-</ngx-section>
-
-<ngx-section class="shadow" [sectionTitle]="'Full screen'">
-  <ng-template #fullScreenDialogTemplate let-context="context">
-    <h1>Full screen</h1>
-  </ng-template>
-
-  <button type="button" class="btn" (click)="openDialog({ context: { count: 19 }, template: fullScreenDialogTemplate, class: 'ngx-dialog-full-screen' })">
-    Open Dialog
-  </button>
-
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
-      <app-prism>
-<![CDATA[<ng-template #fullScreenDialogTemplate let-context="context">
-  <h1>Full screen</h1>
-</ng-template>
-
-<button
-  type="button"
-  class="btn"
-  (click)="openDialog({ context: { count: 19 }, template: fullScreenDialogTemplate, class: 'ngx-dialog-full-screen' })">
-  Open Dialog
-</button>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[import { DialogService } from '@swimlane/ngx-ui';
-
-@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-
-  constructor(public dialogMngr: DialogService) { }
-
-  openDialog(options): void {
-    this.dialogMngr.create(options);
-  }
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-</ngx-section>
-
-<ngx-section class="shadow" [sectionTitle]="'closeOnBlur & closeOnEscape'">
-  <ng-template #dirtyDialogTmpl let-context="context">
-    <p>
-      Can close the dialog on esc or blur: <i>{{ canClose | json }}</i>
-    </p>
-
-    <button type="button" class="btn" (click)="canClose = !canClose">Toggle canClose</button>
-  </ng-template>
-
-  <button
-    type="button"
-    class="btn"
-    (click)="openDialog({ title: 'Dirty Check', closeOnBlur: true, closeOnEscape: true, beforeClose, template: dirtyDialogTmpl })"
-  >
-    Open Dialog
-  </button>
-
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
-      <app-prism>
-<![CDATA[<button type="button" class="btn" (click)="openDialog({ title: 'Dirty Check', closeOnBlur: true, closeOnEscape: true, beforeClose, template: dirtyDialogTmpl })"
-> Open Dialog </button>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild } from '@angular/core';
-import { DialogService } from '@swimlane/ngx-ui';
-
-@Component({
-  selector: 'app-dialog-page',
-  templateUrl: './dialog-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class DialogPageComponent {
-  dialogVis: any;
-  canClose = true;
-
-  @ViewChild('dialogTmpl', { static: true })
-  dialogTpl: TemplateRef<any>;
-
-  constructor(public dialogMngr: DialogService) {}
-
-  openDialog(options) {
-    this.dialogMngr.create(options);
-  }
-
-  beforeClose = (): boolean => {
-    return this.canClose;
-  };
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-</ngx-section>
+    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>beforeClose: () =&gt; boolean</code>
+          </th>
+          <td>Custom function to execute before the component is closed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>class: string</code>
+          </th>
+          <td>The CSS class to add to the root <i>&lt;div&gt;</i> of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>closeButton: boolean</code>
+          </th>
+          <td>Whether a close button is displayed in the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>closeOnBlur: boolean</code>
+          </th>
+          <td>Whether the component should close when a <i>blur</i> event is registered.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>closeOnEscape: boolean</code>
+          </th>
+          <td>Whether the component should close when the <i>escape</i> key is pressed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>content: string</code>
+          </th>
+          <td>The content to display below the component title and custom template.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>context: any</code>
+          </th>
+          <td>The custom object to provide to the custom template.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>cssClass: string</code>
+          </th>
+          <td>The custom CSS class to add to the dialog content section.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>dialogTitle: string</code>
+          </th>
+          <td>The title for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>format: DialogFormat = DialogFormat.Regular</code>
+          </th>
+          <td>The format for the component, either <i>Regular</i> or <i>Large</i>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>id: string</code>
+          </th>
+          <td>The ID for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>template: TemplateRef&lt;any&gt;</code>
+          </th>
+          <td>Custom template to display below the component title. See Examples tab.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>visible: boolean</code>
+          </th>
+          <td>Whether dialog content is visible.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>zIndex: number</code>
+          </th>
+          <td>The value for the CSS <i>z-index</i> property to be applied to the component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="outputs">Component Outputs</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>close: EventEmitter&lt;boolean | void&gt;</code>
+          </th>
+          <td>Event emitted when the component is destroyed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>open: EventEmitter&lt;boolean | void&gt;</code>
+          </th>
+          <td>Event emitted when the component is opened.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>

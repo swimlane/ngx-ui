@@ -4,6 +4,7 @@ import { DialogService } from '@swimlane/ngx-ui';
 @Component({
   selector: 'app-dialog-page',
   templateUrl: './dialog-page.component.html',
+  styleUrls: ['./dialog-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DialogPageComponent {
@@ -22,4 +23,8 @@ export class DialogPageComponent {
   beforeClose = (): boolean => {
     return this.canClose;
   };
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }
