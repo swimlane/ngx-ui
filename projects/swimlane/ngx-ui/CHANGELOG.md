@@ -4,6 +4,7 @@
 
 - Fix (`ngx-button`): Allow overflow-y so that text is not cut off.
 - Fix (`ngx-select`): Vertically aligned clear and caret buttons. Clear and caret button sizes change with parent text size.
+- Bump to Cypress version 10.6.0
 
 ## 42.1.1 (2022-7-18)
 
