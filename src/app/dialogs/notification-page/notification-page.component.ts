@@ -4,6 +4,7 @@ import { NotificationService, NotificationStyleType, NotificationType } from '@s
 @Component({
   selector: 'app-notification-page',
   templateUrl: './notification-page.component.html',
+  styleUrls: ['./notification-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NotificationPageComponent {
@@ -11,4 +12,8 @@ export class NotificationPageComponent {
   readonly NotificationStyleType = NotificationStyleType;
 
   constructor(readonly notificationService: NotificationService) {}
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

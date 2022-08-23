@@ -1,229 +1,299 @@
 <h3 class="style-header">Notifications</h3>
-<ngx-section class="shadow" sectionTitle="Demos">
 
-  <h3>Basics</h3>
-  <button type="button" class="btn" (click)="notificationService.create({
-    title: 'Fatal Alert!',
-    body: 'The system was compromised by hackers.',
-    styleType: NotificationStyleType.info
-  })">
-    Type: Info
-  </button>
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" sectionTitle="Demos">
 
-  <button type="button" class="btn" (click)="notificationService.create({
-    title: 'Patch Applied!',
-    body: 'Hackers have been stopped!',
-    styleType: NotificationStyleType.success,
-    timeout: false,
-    rateLimit: false
-  })">
-    Type: Success
-  </button>
-
-  <button type="button" class="btn" (click)="notificationService.create({
-    title: 'Patch Unknown!',
-    body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
-    styleType: NotificationStyleType.warning,
-    timeout: false,
-    rateLimit: false
-  })">
-    Type: Warning
-  </button>
-
-  <button type="button" class="btn" (click)="notificationService.create({
-    body: 'Patch Failed!',
-    styleType: NotificationStyleType.error,
-    rateLimit: false,
-    timeout: false
-  })">
-    Type: Error
-  </button>
-
-  <button type="button" class="btn" (click)="notificationService.create({
-    body: 'Patch Failed!',
-    icon: 'icon-flame',
-    rateLimit: false,
-    timeout: false
-  })">
-    Custom Icon
-  </button>
-
-  <button type="button" class="btn" (click)="notificationService.create({
-    title: 'Patch Failed!',
-    rateLimit: false,
-    timeout: false
-  })">
-    No Type
-  </button>
-
-  <button style="margin-left:20px" type="btn btn-link" (click)="notificationService.destroyAll()">
-    Close All
-  </button>
-
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
+      <h3>Basics</h3>
+      <button type="button" class="btn" (click)="notificationService.create({
+        title: 'Fatal Alert!',
+        body: 'The system was compromised by hackers.',
+        styleType: NotificationStyleType.info
+      })">
+        Type: Info
+      </button>
+    
+      <button type="button" class="btn" (click)="notificationService.create({
+        title: 'Patch Applied!',
+        body: 'Hackers have been stopped!',
+        styleType: NotificationStyleType.success,
+        timeout: false,
+        rateLimit: false
+      })">
+        Type: Success
+      </button>
+    
+      <button type="button" class="btn" (click)="notificationService.create({
+        title: 'Patch Unknown!',
+        body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
+        styleType: NotificationStyleType.warning,
+        timeout: false,
+        rateLimit: false
+      })">
+        Type: Warning
+      </button>
+    
+      <button type="button" class="btn" (click)="notificationService.create({
+        body: 'Patch Failed!',
+        styleType: NotificationStyleType.error,
+        rateLimit: false,
+        timeout: false
+      })">
+        Type: Error
+      </button>
+    
+      <button type="button" class="btn" (click)="notificationService.create({
+        body: 'Patch Failed!',
+        icon: 'icon-flame',
+        rateLimit: false,
+        timeout: false
+      })">
+        Custom Icon
+      </button>
+    
+      <button type="button" class="btn" (click)="notificationService.create({
+        title: 'Patch Failed!',
+        rateLimit: false,
+        timeout: false
+      })">
+        No Type
+      </button>
+    
+      <button style="margin-left:20px" type="btn btn-link" (click)="notificationService.destroyAll()">
+        Close All
+      </button>
+    
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<button
+      type="button"
+      class="btn"
+      (click)="notificationService.create({
+        title: 'Fatal Alert!',
+        body: 'The system was compromised by hackers.',
+        styleType: 'info'
+      })">
+      Type: Info
+    </button>
+    
+    <button
+      type="button"
+      class="btn"
+      (click)="notificationService.create({
+        title: 'Patch Applied!',
+        body: 'Hackers have been stopped!',
+        styleType: 'success',
+        timeout: false,
+        rateLimit: false
+      })">
+      Type: Success
+    </button>
+    
+    <button
+      type="button"
+      class="btn"
+      (click)="notificationService.create({
+        title: 'Patch Unknown!',
+        body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
+        styleType: 'warning',
+        timeout: false,
+        rateLimit: false
+      })">
+      Type: Warning
+    </button>
+    
+    <button
+      type="button"
+      class="btn"
+      (click)="notificationService.create({
+        title: 'Patch Failed!',
+        styleType: 'error',
+        rateLimit: false,
+        timeout: false
+      })">
+      Type: Error
+    </button>
+    
+    <button
+      type="button"
+      class="btn"
+      (click)="notificationService.create({
+        title: 'Patch Failed!',
+        icon: 'icon-flame',
+        rateLimit: false,
+        timeout: false
+      })">
+      Custom Icon
+    </button>
+    
+    <button
+      type="button"
+      class="btn"
+      (click)="notificationService.create({
+        title: 'Patch Failed!',
+        rateLimit: false,
+        timeout: false
+      })">
+      No Type
+    </button>
+    
+    <button
+      style="margin-left:20px"
+      type="btn btn-link"
+      (click)="notificationService.destroyAll()">
+      Close All
+    </button>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[import { NotificationService } from '@swimlane/ngx-ui';
+    @Component({ selector: 'app' })
+    class MyComponent {
+      constructor(private notificationService: NotificationService) { }
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    
+      <br />
+      <br />
+    
+      <h3>Templated Notifications</h3>
+    
+      <ng-template #noteTpl>
+        <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
+      </ng-template>
+    
+      <button type="button" class="btn" (click)="notificationService.create({
+        template: noteTpl,
+        showClose: false
+      })">
+        Template Ref
+      </button>
+      <br />
+    
       <app-prism>
-<![CDATA[<button
-  type="button"
-  class="btn"
-  (click)="notificationService.create({
-    title: 'Fatal Alert!',
-    body: 'The system was compromised by hackers.',
-    styleType: 'info'
-  })">
-  Type: Info
-</button>
-
-<button
-  type="button"
-  class="btn"
-  (click)="notificationService.create({
-    title: 'Patch Applied!',
-    body: 'Hackers have been stopped!',
-    styleType: 'success',
-    timeout: false,
-    rateLimit: false
-  })">
-  Type: Success
-</button>
-
-<button
-  type="button"
-  class="btn"
-  (click)="notificationService.create({
-    title: 'Patch Unknown!',
-    body: 'Jerrys patch was applied on some systems only. He was in charge of Bobby and Bobby was on vacation!',
-    styleType: 'warning',
-    timeout: false,
-    rateLimit: false
-  })">
-  Type: Warning
-</button>
-
-<button
-  type="button"
-  class="btn"
-  (click)="notificationService.create({
-    title: 'Patch Failed!',
-    styleType: 'error',
-    rateLimit: false,
-    timeout: false
-  })">
-  Type: Error
-</button>
-
-<button
-  type="button"
-  class="btn"
-  (click)="notificationService.create({
-    title: 'Patch Failed!',
-    icon: 'icon-flame',
-    rateLimit: false,
-    timeout: false
-  })">
-  Custom Icon
-</button>
-
-<button
-  type="button"
-  class="btn"
-  (click)="notificationService.create({
-    title: 'Patch Failed!',
-    rateLimit: false,
-    timeout: false
-  })">
-  No Type
-</button>
-
-<button
-  style="margin-left:20px"
-  type="btn btn-link"
-  (click)="notificationService.destroyAll()">
-  Close All
-</button>]]>
+    <![CDATA[<ng-template #noteTpl>
+      <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
+    </ng-template>
+    
+    <button
+      type="button"
+      class="btn"
+      (click)="notificationService.create({
+        template: noteTpl,
+        showClose: false
+      })">
+      Template Ref
+    </button>]]>
       </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[import { NotificationService } from '@swimlane/ngx-ui';
-@Component({ selector: 'app' })
-class MyComponent {
-  constructor(private notificationService: NotificationService) { }
-}]]>
+    
+      <br />
+      <br />
+    
+      <h3>Native Notifications</h3>
+    
+      <button type="button" class="btn" (click)="notificationService.requestPermissions()">
+        Request Permissions
+      </button>
+    
+      <button type="button" class="btn" (click)="notificationService.create({
+        type: NotificationType.native,
+        title: 'Alert the SOC!',
+        body: 'A security breach has been detected by DLP.'
+      })">
+        Native Notification
+      </button>
+    
+      <app-prism>
+    <![CDATA[<button
+      type="button"
+      class="btn"
+      (click)="notificationService.requestPermissions()">
+      Request Permissions
+    </button>
+    
+    <button
+      type="button"
+      class="btn"
+      (click)="notificationService.create({
+        type: NotificationType.native,
+        title: 'Alert the SOC!',
+        body: 'A security breach has been detected by DLP.'
+      })">
+      Native Notification
+    </button>]]>
       </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
+    
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="content" (click)="scrollTo('options')">Component Options</a>
+    <hr>
 
-  <br />
-  <br />
-
-  <h3>Templated Notifications</h3>
-
-  <ng-template #noteTpl>
-    <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
-  </ng-template>
-
-  <button type="button" class="btn" (click)="notificationService.create({
-    template: noteTpl,
-    showClose: false
-  })">
-    Template Ref
-  </button>
-  <br />
-
-  <app-prism>
-<![CDATA[<ng-template #noteTpl>
-  <h1 class="color-red">WE ARE GETTING ATTACKED!</h1>
-</ng-template>
-
-<button
-  type="button"
-  class="btn"
-  (click)="notificationService.create({
-    template: noteTpl,
-    showClose: false
-  })">
-  Template Ref
-</button>]]>
-  </app-prism>
-
-  <br />
-  <br />
-
-  <h3>Native Notifications</h3>
-
-  <button type="button" class="btn" (click)="notificationService.requestPermissions()">
-    Request Permissions
-  </button>
-
-  <button type="button" class="btn" (click)="notificationService.create({
-    type: NotificationType.native,
-    title: 'Alert the SOC!',
-    body: 'A security breach has been detected by DLP.'
-  })">
-    Native Notification
-  </button>
-
-  <app-prism>
-<![CDATA[<button
-  type="button"
-  class="btn"
-  (click)="notificationService.requestPermissions()">
-  Request Permissions
-</button>
-
-<button
-  type="button"
-  class="btn"
-  (click)="notificationService.create({
-    type: NotificationType.native,
-    title: 'Alert the SOC!',
-    body: 'A security breach has been detected by DLP.'
-  })">
-  Native Notification
-</button>]]>
-  </app-prism>
-
-</ngx-section>
+    <p>The Notification component is created using the <i>NotificationService</i>.</p>
+    
+    <p>Listed below are the customization options that can be provided to the <i>NotificationService</i> when calling the <i>create()</i> method.</p> 
+    
+    <p>See Examples tab for more information.</p>
+    
+    <h3 class="style-header" id="options">Component Options</h3>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code>pauseOnHover: boolean = true</code>
+          </th>
+          <td>Whether the component should pause the timeout while the mouse is hovering to prevent auto-closing.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>rateLimit: boolean = true</code>
+          </th>
+          <td>Whether the amount of notifications displayed at one time should be limited.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>showClose: boolean = true</code>
+          </th>
+          <td>Whether the component should display a close button.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>sound: boolean</code>
+          </th>
+          <td>Whether the component should play a sound when opening.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>styleType: NotificationStyleType = NotificationStyleType.none</code>
+          </th>
+          <td>The styling of the component. The selectable style types are <i>info</i>, <i>warning</i>, <i>success</i>, <i>error</i>, or <i>none</i>. See Examples tab.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>timeout: number = 3000</code>
+          </th>
+          <td>The duration between when the component is opened and automatically closed, in milliseconds.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>type: NotificationType = NotificationType.html</code>
+          </th>
+          <td>The type of the component, either <i>html</i> or <i>native</i>. See Examples tab.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>

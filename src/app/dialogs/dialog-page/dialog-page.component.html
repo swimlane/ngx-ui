@@ -351,11 +351,17 @@
   </ngx-tab>
   <ngx-tab label="API">
     <h3>Table of Contents</h3>
-    <a class="content" (click)="scrollTo('inputs')">Component Inputs</a>
-    <a class="content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <a class="content" (click)="scrollTo('options')">Component Options</a>
+    <a class="content" (click)="scrollTo('methods')">DialogService Methods</a>
     <hr>
 
-    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <p>The Dialog component is created using the <i>DialogService</i>.</p>
+    
+    <p>Listed below are the customization options that can be provided to the <i>DialogService</i> when calling the <i>create()</i> method.</p> 
+    
+    <p>See Examples tab for more information.</p>
+
+    <h3 class="style-header" id="options">Component Options</h3>
     <table class="table">
       <thead>
         <tr>
@@ -366,127 +372,119 @@
       <tbody>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
-            <code>beforeClose: () =&gt; boolean</code>
-          </th>
-          <td>Custom function to execute before the component is closed.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">@Input()</code>
             <code>class: string</code>
           </th>
           <td>The CSS class to add to the root <i>&lt;div&gt;</i> of the component.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
-            <code>closeButton: boolean</code>
+            <code>closeButton: boolean = true</code>
           </th>
           <td>Whether a close button is displayed in the component.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
-            <code>closeOnBlur: boolean</code>
+            <code>closeOnBlur: boolean = true</code>
           </th>
           <td>Whether the component should close when a <i>blur</i> event is registered.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
-            <code>closeOnEscape: boolean</code>
+            <code>closeOnEscape: boolean = true</code>
           </th>
-          <td>Whether the component should close when the <i>escape</i> key is pressed.</td>
+          <td>Whether the component should close when the escape key is pressed.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
             <code>content: string</code>
           </th>
           <td>The content to display below the component title and custom template.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
             <code>context: any</code>
           </th>
           <td>The custom object to provide to the custom template.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
             <code>cssClass: string</code>
           </th>
           <td>The custom CSS class to add to the dialog content section.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
             <code>dialogTitle: string</code>
           </th>
           <td>The title for the component.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
             <code>format: DialogFormat = DialogFormat.Regular</code>
           </th>
           <td>The format for the component, either <i>Regular</i> or <i>Large</i>.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
-            <code>id: string</code>
+            <code>showOverlay: boolean = true</code>
           </th>
-          <td>The ID for the component.</td>
+          <td>Whether an overlay for the component is displayed.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
             <code>template: TemplateRef&lt;any&gt;</code>
           </th>
           <td>Custom template to display below the component title. See Examples tab.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
-            <code>visible: boolean</code>
+            <code>title: string</code>
+          </th>
+          <td>DEPRECATED. The title for the component. Use the <i>dialogTitle</i> Input instead.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>visible: boolean = true</code>
           </th>
           <td>Whether dialog content is visible.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
-            <code>zIndex: number</code>
+            <code>zIndex: number = 991</code>
           </th>
           <td>The value for the CSS <i>z-index</i> property to be applied to the component.</td>
         </tr>
       </tbody>
     </table>
     <hr>
-    <h3 class="style-header" id="outputs">Component Outputs</h3>
-    <table class="table">
+
+    <h3 class="style-header" id="methods">DialogService Methods</h3>
+    <table class="table methods-table">
       <thead>
         <tr>
           <th>Name</th>
           <th>Description</th>
+          <th>Parameters</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th>
-            <code class="component-type">@Output()</code>
-            <code>close: EventEmitter&lt;boolean | void&gt;</code>
+            <code>create</code>
           </th>
-          <td>Event emitted when the component is destroyed.</td>
+          <td>Creates an instance of the <i>DialogComponent</i> and returns a <i>ComponentRef&lt;T&gt;</i>.</td>
+          <td>
+            <code>options: DialogOptions</code>
+          </td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Output()</code>
-            <code>open: EventEmitter&lt;boolean | void&gt;</code>
+            <code>destroy</code>
           </th>
-          <td>Event emitted when the component is opened.</td>
+          <td>Destroys an instance of the <i>DialogComponent</i>.</td>
+          <td>
+            <code>component: ComponentRef&lt;T&gt;</code>
+          </td>
         </tr>
       </tbody>
     </table>
