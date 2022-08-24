@@ -18,6 +18,31 @@ import { BehaviorSubject } from 'rxjs';
         margin-left: 0;
         border-left: 0.25rem solid;
       }
+
+      .content {
+        cursor: pointer;
+        display: block;
+        margin-block: 1rem;
+      }
+
+      .content:last-of-type {
+        margin-bottom: 2rem;
+      }
+
+      th,
+      td {
+        width: 50%;
+      }
+
+      .input-name {
+        color: #ebedf2;
+        display: block;
+        white-space: pre-line;
+      }
+
+      .margin-left-12 {
+        margin-left: 12px;
+      }
     `
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -80,5 +105,9 @@ export class DialogLargeFormatDialogPageComponent {
       size: context.size - 10,
       context: { size: context.size - 10 }
     });
+  }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
 }

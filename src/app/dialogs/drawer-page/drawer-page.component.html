@@ -224,11 +224,17 @@
   </ngx-tab>
   <ngx-tab label="API">
     <h3>Table of Contents</h3>
-    <a class="content" (click)="scrollTo('inputs')">Component Inputs</a>
-    <a class="content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <a class="content" (click)="scrollTo('options')">Component Options</a>
+    <a class="content" (click)="scrollTo('methods')">DrawerService Methods</a>
     <hr>
 
-    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <p>The Notification component is created using the <i>DrawerService</i>.</p>
+    
+    <p>Listed below are the customization options that can be provided to the <i>DrawerService</i> when calling the <i>create()</i> method.</p> 
+    
+    <p>See Examples tab for more information.</p>
+
+    <h3 class="style-header" id="options">Component Options</h3>
     <table class="table">
       <thead>
         <tr>
@@ -239,78 +245,90 @@
       <tbody>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
             <code>closeOnOutsideClick: boolean</code>
           </th>
           <td>Whether the component should close when a click outside is registered.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
             <code>context: any</code>
           </th>
           <td>The custom object to provide to the custom template.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
             <code>cssClass: string</code>
           </th>
           <td>The custom CSS class to add to the component.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
-            <code>direction: DrawerDirection</code>
+            <code>direction: DrawerDirection = DrawerDirection.Left</code>
           </th>
           <td>The direction that the component should open, either <i>Left</i> or <i>Bottom</i>.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
             <code>isRoot: boolean = true</code>
           </th>
-          <td>By default, the component has <i>fixed</i> positioning. If this Input is set to <i>false</i>, the component will have <i>absolute</i> positioning.</td>
+          <td>By default, the component has <i>fixed</i> positioning. If this variable is set to <i>false</i>, the component will have <i>absolute</i> positioning.</td>
+        </tr>
+        <tr>
+        <tr>
+          <th>
+            <code>parentContainer: any</code>
+          </th>
+          <td>The parent container to add the drawer to. See Examples tab.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
-            <code>size: number = 100</code>
+            <code>size: number = 80</code>
           </th>
           <td>The width and height of the component, as a percentage value.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
             <code>template: TemplateRef&lt;any&gt;</code>
           </th>
-          <td>Custom template to render in the component.</td>
+          <td>The custom template to render in the component.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
-            <code>zIndex: number</code>
+            <code>zIndex: number = 995</code>
           </th>
           <td>The value for the CSS <i>z-index</i> property to be applied to the component.</td>
         </tr>
       </tbody>
     </table>
     <hr>
-    <h3 class="style-header" id="outputs">Component Outputs</h3>
-    <table class="table">
+    
+    <h3 class="style-header" id="methods">DrawerService Methods</h3>
+    <table class="table methods-table">
       <thead>
         <tr>
           <th>Name</th>
           <th>Description</th>
+          <th>Parameters</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th>
-            <code class="component-type">@Output()</code>
-            <code>close: EventEmitter&lt;boolean | void&gt;</code>
+            <code>create</code>
           </th>
-          <td>Event emitted when the component is destroyed.</td>
+          <td>Creates an instance of the <i>DrawerComponent</i> and returns a <i>ComponentRef&lt;DrawerComponent&gt;</i>.</td>
+          <td>
+            <code>options: DrawerOptions</code>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code>destroy</code>
+          </th>
+          <td>Destroys an instance of the <i>DrawerComponent</i>.</td>
+          <td>
+            <code>component: ComponentRef&lt;DrawerComponent&gt;</code>
+          </td>
         </tr>
       </tbody>
     </table>

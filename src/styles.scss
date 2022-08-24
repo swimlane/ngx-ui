@@ -34,6 +34,7 @@ code {
   font-size: 15px;
 }
 
-.component-type {
+th > code.component-type {
   color: $color-blue-200;
+  display: block;
 }

@@ -234,6 +234,7 @@
   <ngx-tab label="API">
     <h3>Table of Contents</h3>
     <a class="content" (click)="scrollTo('options')">Component Options</a>
+    <a class="content" (click)="scrollTo('methods')">NotificationService Methods</a>
     <hr>
 
     <p>The Notification component is created using the <i>NotificationService</i>.</p>
@@ -292,6 +293,29 @@
             <code>type: NotificationType = NotificationType.html</code>
           </th>
           <td>The type of the component, either <i>html</i> or <i>native</i>. See Examples tab.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+
+    <h3 class="style-header" id="methods">NotificationService Methods</h3>
+    <table class="table methods-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Parameters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code>create</code>
+          </th>
+          <td>Creates an instance of the <i>NotificationComponent</i> and returns a <i>ComponentRef&lt;NotificationComponent&gt;</i>.</td>
+          <td>
+            <code>bindings: Partial&lt;NotificationOptions&gt;</code>
+          </td>
         </tr>
       </tbody>
     </table>
