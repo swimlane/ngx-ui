@@ -73,7 +73,7 @@
     <ngx-section class="shadow" [sectionTitle]="'Template'">
       <ng-template #dialogTmpl let-context="context">
         <p>Malware Detected. Found:
-          <i>{{context.count}}</i>
+          <code>{{context.count}}</code>
         </p>
         <button type="button" class="btn" (click)="openDialog({ title: 'Alert!', context: { count: 33 }, template: dialogTmpl })">
           Open Incident
@@ -91,7 +91,7 @@
         <ngx-tab label="Markup">
           <app-prism>
     <![CDATA[<ng-template #dialogTmpl let-context="context">
-      <p>Malware Detected. Found: <i>{ {context.count} }</i></p>
+      <p>Malware Detected. Found: <code>{ {context.count} }</code></p>
       <button
         type="button"
         class="btn"
@@ -199,14 +199,14 @@
       <div class="ngx-dialog-footer">
         <div class="wizard-nav">
           <button type="button" class="btn btn-bordered">
-            <i class="ngx-icon ngx-arrow-left has-text"></i>Prev
+            <i class="ngx-icon ngx-arrow-left has-text"></code>Prev
           </button>
           <button type="button" class="btn btn-bordered">
-            Next <i class="ngx-icon ngx-arrow-right"></i>
+            Next <i class="ngx-icon ngx-arrow-right"></code>
           </button>
         </div>
         <button type="button" class="btn btn-primary">
-          <i class="ngx-icon ngx-check has-text"></i>Save
+          <i class="ngx-icon ngx-check has-text"></code>Save
         </button>
       </div>
     </ng-template>
@@ -292,7 +292,7 @@
     <ngx-section class="shadow" [sectionTitle]="'closeOnBlur & closeOnEscape'">
       <ng-template #dirtyDialogTmpl let-context="context">
         <p>
-          Can close the dialog on esc or blur: <i>{{ canClose | json }}</i>
+          Can close the dialog on esc or blur: <code>{{ canClose | json }}</code>
         </p>
     
         <button type="button" class="btn" (click)="canClose = !canClose">Toggle canClose</button>
@@ -355,9 +355,9 @@
     <a class="documentation-content" (click)="scrollTo('methods')">DialogService Methods</a>
     <hr>
 
-    <p>The Dialog component is created using the <i>DialogService</i>.</p>
+    <p>The Dialog component is created using the <code>DialogService</code>.</p>
     
-    <p>Listed below are the customization options that can be provided to the <i>DialogService</i> when calling the <i>create()</i> method.</p> 
+    <p>Listed below are the customization options that can be provided to the <code>DialogService</code> when calling the <code>create()</code> method.</p> 
     
     <p>See Examples tab for more information.</p>
 
@@ -374,7 +374,7 @@
           <th>
             <code>class: string</code>
           </th>
-          <td>The CSS class to add to the root <i>&lt;div&gt;</i> of the component.</td>
+          <td>The CSS class to add to the root <code>&lt;div&gt;</code> of the component.</td>
         </tr>
         <tr>
           <th>
@@ -386,7 +386,7 @@
           <th>
             <code>closeOnBlur: boolean = true</code>
           </th>
-          <td>Whether the component should close when a <i>blur</i> event is registered.</td>
+          <td>Whether the component should close when a <code>blur</code> event is registered.</td>
         </tr>
         <tr>
           <th>
@@ -422,7 +422,7 @@
           <th>
             <code>format: DialogFormat = DialogFormat.Regular</code>
           </th>
-          <td>The format for the component, either <i>Regular</i> or <i>Large</i>.</td>
+          <td>The format for the component, either <code>Regular</code> or <code>Large</code>.</td>
         </tr>
         <tr>
           <th>
@@ -440,7 +440,7 @@
           <th>
             <code>title: string</code>
           </th>
-          <td>DEPRECATED. The title for the component. Use the <i>dialogTitle</i> Input instead.</td>
+          <td>DEPRECATED. The title for the component. Use the <code>dialogTitle</code> Input instead.</td>
         </tr>
         <tr>
           <th>
@@ -452,7 +452,7 @@
           <th>
             <code>zIndex: number = 991</code>
           </th>
-          <td>The value for the CSS <i>z-index</i> property to be applied to the component.</td>
+          <td>The value for the CSS <code>z-index</code> property to be applied to the component.</td>
         </tr>
       </tbody>
     </table>
@@ -472,7 +472,7 @@
           <th>
             <code>create</code>
           </th>
-          <td>Creates an instance of the <i>DialogComponent</i> and returns a <i>ComponentRef&lt;T&gt;</i>.</td>
+          <td>Creates an instance of the <code>DialogComponent</code> and returns a <code>ComponentRef&lt;T&gt;</code>.</td>
           <td>
             <code>options: DialogOptions</code>
           </td>
@@ -481,7 +481,7 @@
           <th>
             <code>destroy</code>
           </th>
-          <td>Destroys an instance of the <i>DialogComponent</i>.</td>
+          <td>Destroys an instance of the <code>DialogComponent</code>.</td>
           <td>
             <code>component: ComponentRef&lt;T&gt;</code>
           </td>

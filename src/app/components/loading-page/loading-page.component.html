@@ -101,37 +101,62 @@
   </ngx-tab>
   <ngx-tab label="API">
     <h3>Table of Contents</h3>
-    <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
-    <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <a class="documentation-content" (click)="scrollTo('methods')">LoadingService Methods</a>
     <hr>
 
-    <h3 class="style-header" id="inputs">Component Inputs</h3>
-    <table class="table documentation-table">
+    <p>The <code>LoadingBarComponent</code> is created using the <code>LoadingService</code>.</p> 
+
+    <p>Listed below are the methods that can be called to create an instance of the <code>LoadingBarComponent</code>.</p>
+
+    <p>See Examples tab for more information.</p>
+    
+    <hr>
+
+    <h3 class="style-header" id="methods">LoadingService Methods</h3>
+    <table class="table methods-table">
       <thead>
         <tr>
           <th>Name</th>
           <th>Description</th>
+          <th>Parameters</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
-            <code>progress: number = 0</code>
+            <code>complete</code>
           </th>
-          <td>The numerical value for the progress of the component.</td>
+          <td>Forces the current instance of the <code>LoadingBarComponent</code> to finish and be removed from the DOM.</td>
+          <td>
+            <code>all: boolean</code>
+          </td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
-            <code>visible: boolean</code>
+            <code>reset</code>
           </th>
-          <td>Whether the component is visible.</td>
+          <td>Forces the current instance of the <code>LoadingBarComponent</code> to reset its progress to the numerical state provided as an argument.</td>
+          <td>
+            <code>num: number = 0</code>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code>start</code>
+          </th>
+          <td>Creates an instance of the <code>LoadingBarComponent</code> and starts the progress bar.</td>
+          <td>
+            <code>autoIncrement: boolean = true</code>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code>stop</code>
+          </th>
+          <td>Stops the current instance of the <code>LoadingBarComponent</code>.</td>
+          <td></td>
         </tr>
       </tbody>
     </table>
-    <hr>
-    <h3 class="style-header" id="outputs">Component Outputs</h3>
-    <h4>No component outputs to display.</h4>
   </ngx-tab>
 </ngx-tabs>

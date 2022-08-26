@@ -181,11 +181,12 @@
   <ngx-tab label="API">
     <h3>Table of Contents</h3>
     <a class="documentation-content" (click)="scrollTo('options')">Component Options</a>
+    <a class="documentation-content" (click)="scrollTo('methods')">AlertService Methods</a>
     <hr>
 
-    <p>The Alert/Confirm component is created using the <i>AlertService</i>.</p> 
+    <p>The <code>AlertComponent</code> is created using the <code>AlertService</code>.</p> 
 
-    <p>Listed below are the customization options that can be provided to the <i>AlertService</i> when calling the <i>alert()</i>, <i>confirm()</i>, and <i>prompt()</i> methods. </p>
+    <p>Listed below are the customization options that can be provided to the <code>AlertService</code> when calling the <code>alert()</code>, <code>confirm()</code>, and <code>prompt()</code> methods. </p>
 
     <p>See Examples tab for more information.</p>
     
@@ -246,6 +247,47 @@
             <code>title: string</code>
           </th>
           <td>The title for the component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+
+    <h3 class="style-header" id="methods">AlertService Methods</h3>
+    <table class="table methods-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Parameters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code>alert</code>
+          </th>
+          <td>Creates an instance of the <code>AlertComponent</code> with the type of <code>Alert</code> and returns a <code>Subject&lt;&#123; type: string, data: any &#125;&gt;</code>.</td>
+          <td>
+            <code>options: DialogOptions</code>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code>confirm</code>
+          </th>
+          <td>Creates an instance of the <code>AlertComponent</code> with the type of <code>Confirm</code> and returns a <code>Subject&lt;&#123; type: string, data: any &#125;&gt;</code>.</td>
+          <td>
+            <code>options: DialogOptions</code>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code>prompt</code>
+          </th>
+          <td>Creates an instance of the <code>AlertComponent</code> with the type of <code>Prompt</code> and returns a <code>Subject&lt;&#123; type: string, data: any &#125;&gt;</code>.</td>
+          <td>
+            <code>options: DialogOptions</code>
+          </td>
         </tr>
       </tbody>
     </table>

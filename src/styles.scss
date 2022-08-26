@@ -28,6 +28,12 @@ $ngx-font-path: '../projects/swimlane/ngx-ui/src/lib/assets/icons/iconfont/fonts
 
 code {
   font-size: 14px;
+  display: inline-block;
+  font-weight: 700;
+}
+
+th > code {
+  color: $color-blue-grey-050;
 }
 
 th > code.component-type {
@@ -52,6 +58,16 @@ th > code.component-type {
 .documentation-table {
   th,
   td {
+    width: 50%;
+  }
+}
+
+.methods-table {
+  th {
+    width: 20%;
+  }
+
+  td:first-of-type {
     width: 50%;
   }
 }
