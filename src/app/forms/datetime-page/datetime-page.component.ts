@@ -8,7 +8,6 @@ const MOON_LANDING = '1969-07-20T20:17:43Z';
 @Component({
   selector: 'app-datetime-page',
   templateUrl: './datetime-page.component.html',
-  styleUrls: ['./datetime-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DatetimePageComponent {

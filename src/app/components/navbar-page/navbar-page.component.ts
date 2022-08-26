@@ -10,21 +10,6 @@ import { Router } from '@angular/router';
         display: flex;
         justify-content: center;
       }
-
-      .content {
-        cursor: pointer;
-        display: block;
-        margin-block: 1rem;
-      }
-
-      .content:last-of-type {
-        margin-bottom: 2rem;
-      }
-
-      th,
-      td {
-        width: 50%;
-      }
     `
   ],
   changeDetection: ChangeDetectionStrategy.OnPush

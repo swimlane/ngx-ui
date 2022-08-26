@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'app-nag-page',
   templateUrl: './nag-page.component.html',
-  styleUrls: ['./nag-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NagPageComponent {

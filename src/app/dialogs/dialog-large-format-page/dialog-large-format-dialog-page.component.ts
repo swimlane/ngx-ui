@@ -19,21 +19,6 @@ import { BehaviorSubject } from 'rxjs';
         border-left: 0.25rem solid;
       }
 
-      .content {
-        cursor: pointer;
-        display: block;
-        margin-block: 1rem;
-      }
-
-      .content:last-of-type {
-        margin-bottom: 2rem;
-      }
-
-      th,
-      td {
-        width: 50%;
-      }
-
       .input-name {
         color: #ebedf2;
         display: block;

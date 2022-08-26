@@ -5,7 +5,6 @@ import { FileUploader } from '@swimlane/ng2-file-upload';
 @Component({
   selector: 'app-dropzone-page',
   templateUrl: './dropzone-page.component.html',
-  styleUrls: ['./dropzone-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropzonePageComponent {

@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'app-tabs-page',
   templateUrl: './tabs-page.component.html',
-  styleUrls: ['./tabs-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TabsPageComponent {
@@ -12,7 +11,7 @@ export class TabsPageComponent {
   tab3Disabled = true;
 
   handleTabChange(event: any) {
-    this.showExamples = event.tabId === 'tab-2' ? false : true;
+    this.showExamples = event.label === 'API' ? false : true;
   }
 
   scrollTo(id: string) {

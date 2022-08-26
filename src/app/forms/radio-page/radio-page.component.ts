@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-radio-page',
   templateUrl: './radio-page.component.html',
-  styleUrls: ['./radio-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class RadioPageComponent {

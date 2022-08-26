@@ -30,11 +30,28 @@ code {
   font-size: 14px;
 }
 
+th > code.component-type {
+  color: $color-blue-200;
+  display: block;
+}
+
 .component-description {
   font-size: 15px;
 }
 
-th > code.component-type {
-  color: $color-blue-200;
+.documentation-content {
+  cursor: pointer;
   display: block;
+  margin-block: 1rem;
+
+  &:last-of-type {
+    margin-bottom: 2rem;
+  }
+}
+
+.documentation-table {
+  th,
+  td {
+    width: 50%;
+  }
 }

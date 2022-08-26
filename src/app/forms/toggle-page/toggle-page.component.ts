@@ -3,7 +3,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 @Component({
   selector: 'app-toggle-page',
   templateUrl: './toggle-page.component.html',
-  styleUrls: ['./toggle-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TogglePageComponent {
