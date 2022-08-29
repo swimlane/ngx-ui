@@ -31,7 +31,7 @@ describe('Date/Time', () => {
         .should('contain.text', 'Date of attack')
         .should('have.css', 'color', UNFOCUSED)
         .should('have.css', 'font-size', '11.2px')
-        .should('have.css', 'top', '-11.2px');
+        .should('have.css', 'top', '-13.44px'); // -1.2em
 
       // Without Value
       cy.get('@CUT').ngxFill('');
@@ -50,7 +50,7 @@ describe('Date/Time', () => {
         .should('contain.text', 'Date of attack')
         .should('have.css', 'color', FOCUSED)
         .should('have.css', 'font-size', '11.2px')
-        .should('have.css', 'top', '-11.2px');
+        .should('have.css', 'top', '-13.44px'); // -1.2em
     });
 
     it('enters text', () => {
