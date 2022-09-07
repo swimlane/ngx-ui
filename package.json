@@ -50,7 +50,7 @@
     "ajv": "^6.12.6",
     "codemirror": "5.65.5",
     "d3-color": "3.1.0",
-    "moment-timezone": "0.5.34",
+    "moment-timezone": "0.5.35",
     "mousetrap": "^1.6.5",
     "ng-in-viewport": "^6.1.5",
     "normalize.css": "^8.0.0",
