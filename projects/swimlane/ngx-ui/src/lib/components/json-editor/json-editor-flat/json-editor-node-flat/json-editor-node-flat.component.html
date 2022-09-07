@@ -27,8 +27,8 @@
         </div>
 
         <div *ngIf="!schemaBuilderMode" class="node-input">
-          <ng-container *ngIf="inputControlTemplate && schema?.type !== 'object' && schema?.type !== 'array'">
-            <ng-container *ngTemplateOutlet="inputControlTemplate; context: { nodeModel: model, nodeSchema: schema, nodeChangeValue$: nodeChangeValue$ }"></ng-container>
+          <ng-container *ngIf="inputControlTemplate">
+            <ng-container *ngTemplateOutlet="inputControlTemplate; context: { nodeModel: model, nodeSchema: schema, nodePath: path, nodeChangeValue$: nodeChangeValue$, nodeContext: contextItem, nodeExpandTrigger$: nodeExpandTrigger$}"></ng-container>
           </ng-container>
           <ng-container *ngIf="!inputControlTemplate">
             <!-- Number | Integer -->

@@ -14,9 +14,10 @@ import {
 import { JsonEditorNode } from '../../json-editor-node';
 
 import { DialogService } from '../../../dialog/dialog.service';
-import { JSONEditorSchema, JsonSchemaDataType } from '../../json-editor.helper';
+import { JSONEditorSchema, JSONEditorTemplateProperty, JsonSchemaDataType } from '../../json-editor.helper';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { JSONSchema7TypeName } from 'json-schema';
 
 @Component({
   selector: 'ngx-json-editor-node-flat',
@@ -64,7 +65,10 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   nextLevel = 0;
 
+  contextItem: JSONEditorTemplateProperty = {};
+
   nodeChangeValue$ = new Subject();
+  nodeExpandTrigger$ = new Subject<boolean>();
   private readonly unsub$: Subject<void> = new Subject();
 
   constructor(public dialogMngr: DialogService) {
@@ -74,12 +78,23 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
   ngOnInit(): void {
     super.ngOnInit();
     this.nodeChangeValue$.pipe(takeUntil(this.unsub$)).subscribe((value: any) => this.updateModel(value));
+    this.nodeExpandTrigger$.pipe(takeUntil(this.unsub$)).subscribe((value: boolean) => this.triggerExpand(value));
   }
 
   ngOnChanges(changes: SimpleChanges) {
     super.ngOnChanges(changes);
     if ('level' in changes || 'hideRoot' in changes) {
       this.nextLevel = this.level === undefined ? (this.hideRoot ? -1 : 0) : this.level + 1;
+    }
+    if ('schema' in changes || 'model' in changes) {
+      const tempContext: JSONEditorTemplateProperty = {
+        key: this.schema.propertyName,
+        keyFieldType: this.schema.type as JSONSchema7TypeName,
+        keyFieldFormat: this.schema.format,
+        enum: this.schema.enum,
+        value: this.model
+      };
+      this.contextItem = { ...tempContext };
     }
   }
 
@@ -90,5 +105,11 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
 
   updatePropertyName(id: string | number, name: string): void {
     this.updatePropertyNameEvent.emit({ id, name });
+  }
+
+  triggerExpand(value: boolean): void {
+    if (this.expanded !== value) {
+      this.expanded = value;
+    }
   }
 }

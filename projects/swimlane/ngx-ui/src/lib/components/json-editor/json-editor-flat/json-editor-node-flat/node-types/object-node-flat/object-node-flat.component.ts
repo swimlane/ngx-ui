@@ -84,7 +84,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
   }
 
   onUpdatePropertyName(options: { id: string; name: string }): void {
-    let schema = this.schemaBuilderMode ? this.schemaRef : this.schema;
+    let schema = this.schemaRef || this.schema;
 
     schema ||= {};
     schema.properties ||= {};
@@ -167,7 +167,7 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
 
     const index = this.propertyId - 1;
     const property = this.propertyIndex[index];
-    if (this.schemaBuilderMode) this.updateSchemaRefProperty(property);
+    this.updateSchemaRefProperty(property);
     this.schemaUpdate.emit();
 
     if (this.schemaBuilderMode) {
@@ -176,15 +176,9 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
   }
 
   deleteProperty(propName: string): void {
-    if (!this.schemaBuilderMode) {
-      this.schemaUpdate.emit();
-      super.deleteProperty(propName);
-      return;
-    }
-
+    delete this.schemaRef.properties[propName];
     if (this.schemaBuilderMode) {
       delete this.schema.properties[propName];
-      delete this.schemaRef.properties[propName];
       this.toggleRequiredValue(false, propName);
     } else if (!this.schema.required?.includes(propName) && !(propName in this.schema.properties)) {
       delete this.schemaRef.properties[propName];
