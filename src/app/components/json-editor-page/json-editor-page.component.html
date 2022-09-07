@@ -1,6 +1,6 @@
 <h3 class="style-header">JSON Editor</h3>
 
-<!-- <ngx-section class="shadow" [sectionTitle]="'JSON Editor'">
+<ngx-section class="shadow" [sectionTitle]="'JSON Editor'">
   <ngx-tabs>
     <ngx-tab label="Editor">
       <ngx-json-editor
@@ -84,32 +84,113 @@
   </ngx-tabs>
 </ngx-section>
 
-<br />
-
 <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat with custom template for input control'">
-
+  <section>
+    This component exposes the below variables to the template:
+    <ul>
+      <li><b>nodeModel: </b>the model of the current node</li>
+      <li><b>nodeSchema: </b>the schema of the current node</li>
+      <li><b>nodeContext: </b>an object of JSONEditorTemplateProperty type that has some information about the current node</li>
+      <li><b>nodePath: </b>the path of the current node (the root property does not have path)</li>
+      <li><b>nodeChangeValue$: </b>subject that is used to update the model of the current node</li>
+      <li><b>nodeExpandTrigger$: </b>subject that is used to collapse/expand the current node</li>
+    </ul>
+  </section>
   <ngx-json-editor-flat
-    [(model)]="jsonEditorModelFlat"
-    [schema]="jsonEditorSchema"
+    [(model)]="jsonEditorFlatWithTemplateModel"
+    [schema]="schemaWithTemplate"
     label="Model"
     [hideRoot]="hideRoot"
     [showKnownProperties]="showKnownProperties"
     [passwordToggleEnabled]="true"
     [inputControlTemplate]="myInputControl"
     [enableSchemaValidation]="false"
+    (schemaUpdate)="schemaWithTemplate = $event"
   >
   </ngx-json-editor-flat>
 
-  <ng-template #myInputControl let-nodeModel="nodeModel" let-nodeSchema="nodeSchema" let-nodeChangeValue$="nodeChangeValue$">
-    <input type="text" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/>
+  <ng-template #myInputControl let-nodeModel="nodeModel" let-nodeSchema="nodeSchema" let-nodePath="nodePath" let-nodeExpandTrigger$="nodeExpandTrigger$" let-nodeChangeValue$="nodeChangeValue$" let-nodeContext="nodeContext">
+    <div class="myInputControlNodeContainer">
+      <ngx-tabs>
+        <ngx-tab label="Value">
+          <ng-container [ngSwitch]="nodeContext.keyFieldType">
+            <input type="number" *ngSwitchCase="'integer'" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/>
+            <input type="text" *ngSwitchCase="'string'" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/>
+            <ngx-button *ngSwitchCase="'object'" class="btn btn-primary" (click)="expanded = !expanded; nodeExpandTrigger$.next(expanded)">{{ expanded ? 'Collapse' : 'Expand' }} me!</ngx-button>
+          </ng-container>
+        </ngx-tab>
+        <ngx-tab label="NodeModel">
+          <div class="myInputControlNodeContainer__scrollable">
+            {{ nodeModel | json }}
+          </div>
+        </ngx-tab>
+        <ngx-tab label="NodeSchema">
+          <div class="myInputControlNodeContainer__scrollable">
+            {{ nodeSchema | json }}
+          </div>
+        </ngx-tab>
+        <ngx-tab label="NodeContext">
+          {{ nodeContext | json }}
+        </ngx-tab>
+        <ngx-tab label="NodePath">
+          {{ nodePath }}
+        </ngx-tab>
+      </ngx-tabs>
+    </div>
+    
   </ng-template>
 
   <hr />
   <h3>Model</h3>
-  <pre>{{ jsonEditorModelFlat | json }}</pre>
+  <pre>{{ jsonEditorFlatWithTemplateModel | json }}</pre>
   <h3>Schema</h3>
-  <pre>{{ modelSchemaRef | json }}</pre>
+  <pre>{{ schemaWithTemplate | json }}</pre>
 
+  <ngx-tabs>
+    <ngx-tab label="Markup">
+      <app-prism language="html">
+      <![CDATA[<ngx-json-editor-flat
+        [(model)]="jsonEditorFlatWithTemplateModel"
+        [schema]="schemaWithTemplate"
+        label="Model"
+        [hideRoot]="hideRoot"
+        [showKnownProperties]="showKnownProperties"
+        [passwordToggleEnabled]="true"
+        [inputControlTemplate]="myInputControl"
+        [enableSchemaValidation]="false"
+        (schemaUpdate)="schemaWithTemplate = $event"
+      >
+      </ngx-json-editor-flat>
+      <ng-template #myInputControl let-nodeModel="nodeModel" let-nodeSchema="nodeSchema" let-nodePath="nodePath" let-nodeExpandTrigger$="nodeExpandTrigger$" let-nodeChangeValue$="nodeChangeValue$" let-nodeContext="nodeContext">
+        <div class="myInputControlNodeContainer">
+          <ngx-tabs>
+            <ngx-tab label="Value">
+              <ng-container [ngSwitch]="nodeContext.keyFieldType">
+                <input type="number" *ngSwitchCase="'integer'" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/>
+                <input type="text" *ngSwitchCase="'string'" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/>
+                <ngx-button *ngSwitchCase="'object'" class="btn btn-primary" (click)="expanded = !expanded; nodeExpandTrigger$.next(expanded)">{{ expanded ? 'Collapse' : 'Expand' }} me!</ngx-button>
+              </ng-container>
+            </ngx-tab>
+            <ngx-tab label="NodeModel">
+              <div class="myInputControlNodeContainer__scrollable">
+              </div>
+            </ngx-tab>
+            <ngx-tab label="NodeSchema">
+              <div class="myInputControlNodeContainer__scrollable">
+              </div>
+            </ngx-tab>
+            <ngx-tab label="NodeContext">
+            </ngx-tab>
+            <ngx-tab label="NodePath">
+            </ngx-tab>
+          </ngx-tabs>
+        </div>
+        
+      </ng-template>
+      ]]>
+      </app-prism>
+    </ngx-tab>
+  </ngx-tabs>
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'Schema Builder Mode'">
@@ -143,23 +224,4 @@
       </app-prism>
     </ngx-tab>
   </ngx-tabs>
-</ngx-section> -->
-
-
-<ngx-json-editor-flat
-[(model)]="jsonEditorModel2"
-[schema]="jsonEditorSchema2"
-label="Model"
-[typeCheckOverrides]="false"
-[hideRoot]="hideRoot"
-[showKnownProperties]="showKnownProperties"
-[passwordToggleEnabled]="passwordToggleEnabled"
-(schemaUpdate)="modelschemaUpdate($event)"
->
-</ngx-json-editor-flat>
-
-<hr />
-<h3>Model</h3>
-<pre>{{ jsonEditorModel2 | json }}</pre>
-<h3>Schema</h3>
-<pre>{{ jsonEditorSchema2 | json }}</pre>
+</ngx-section>
