@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 42.3.1 (2022-9-7)
+
 - Feature (`ngx-json-editor-flat`): Allow custom template for nodes
 
 ## 42.2.1 (2022-8-31)
