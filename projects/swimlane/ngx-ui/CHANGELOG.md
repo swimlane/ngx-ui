@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Feature (`ngx-json-editor-flat`): Allow custom template for nodes
+
 ## 42.2.1 (2022-8-31)
 
 - Fix (`ngx-button`): Allow overflow-y so that text is not cut off.
