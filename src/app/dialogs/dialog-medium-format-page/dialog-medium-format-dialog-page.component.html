@@ -1,18 +1,24 @@
+<h3 class="style-header">Dialog - Large Format</h3>
+<p>
+  Medium Format Dialog is a regular Dialog whose content is wrapped inside of <code>NgxMediumFormatDialogContent</code>
+  component
+</p>
+
 <ngx-section class="shadow" sectionTitle="Basic">
   <ng-template #mediumFormatDialog let-context="context">
     <ngx-medium-format-dialog-content 
       dialogTitle="Title"
       (closeOrCancel)="onCloseOrCancel()">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut laoreet lobortis nisi non ultrices. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus faucibus metus diam, non pulvinar orci maximus sit amet. Maecenas dui felis, tempor sit amet magna quis, ornare fermentum mauris. In quis nibh et erat semper sagittis ut quis risus. Proin malesuada eleifend risus ut mattis. Maecenas scelerisque nibh eu elit sagittis, a egestas leo posuere. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent ornare vulputate semper. Nullam in justo in tortor interdum ultrices nec eget nisl.
-        Maecenas vel volutpat ligula. Suspendisse blandit ac felis non tempor. Integer tincidunt lorem nunc, non vulputate nisi bibendum quis. Fusce sapien erat, eleifend sit amet mi vitae, posuere malesuada ex. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce tempus venenatis eros. Mauris volutpat neque vel elementum dignissim. Nulla facilisi. Cras vulputate arcu et nulla tincidunt, eu efficitur nisi iaculis.
-        Nulla euismod sem ut purus fermentum, non venenatis turpis blandit. Donec ut bibendum odio, vel mollis dui. Suspendisse suscipit lacus eu odio egestas tempus in ut quam. Maecenas iaculis tristique vehicula. Aliquam nisl mauris, lobortis et porttitor id, egestas sed nunc. Nulla nec gravida magna. Donec at est sit amet justo tempor semper. Praesent vel sollicitudin dolor, eget tempus nisi. Ut et arcu vitae nunc dignissim fringilla. Proin maximus bibendum egestas. Morbi a velit risus. Suspendisse luctus arcu non tortor fermentum suscipit. Aenean id hendrerit orci.
-      </p>
+      <p> {{ content }} </p>
     </ngx-medium-format-dialog-content>
   </ng-template>
 
-  <button type="button" class="btn" (click)="openDialog({ template: mediumFormatDialog, format: 'medium', closeOnEscape: true })">
+  <button type="button" class="btn" (click)="openDialog({ template: mediumFormatDialog })">
     Open Medium Dialog
+  </button>
+
+  <button type="button" class="btn" (click)="openDialog({ template: mediumFormatDialog }, true)">
+    Open Medium Dialog with Content
   </button>
 
   <app-prism>
@@ -33,18 +39,7 @@
 
   <ng-template  #mediumFormatWithFooter>
     <ngx-medium-format-dialog-content dialogTitle="Title" (closeOrCancel)="onCloseOrCancel()">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut laoreet lobortis nisi non ultrices. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus faucibus metus diam, non pulvinar orci maximus sit amet. Maecenas dui felis, tempor sit amet magna quis, ornare fermentum mauris. In quis nibh et erat semper sagittis ut quis risus. Proin malesuada eleifend risus ut mattis. Maecenas scelerisque nibh eu elit sagittis, a egestas leo posuere. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent ornare vulputate semper. Nullam in justo in tortor interdum ultrices nec eget nisl.
-        Maecenas vel volutpat ligula. Suspendisse blandit ac felis non tempor. Integer tincidunt lorem nunc, non vulputate nisi bibendum quis. Fusce sapien erat, eleifend sit amet mi vitae, posuere malesuada ex. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce tempus venenatis eros. Mauris volutpat neque vel elementum dignissim. Nulla facilisi. Cras vulputate arcu et nulla tincidunt, eu efficitur nisi iaculis.
-        Nulla euismod sem ut purus fermentum, non venenatis turpis blandit. Donec ut bibendum odio, vel mollis dui. Suspendisse suscipit lacus eu odio egestas tempus in ut quam. Maecenas iaculis tristique vehicula. Aliquam nisl mauris, lobortis et porttitor id, egestas sed nunc. Nulla nec gravida magna. Donec at est sit amet justo tempor semper. Praesent vel sollicitudin dolor, eget tempus nisi. Ut et arcu vitae nunc dignissim fringilla. Proin maximus bibendum egestas. Morbi a velit risus. Suspendisse luctus arcu non tortor fermentum suscipit. Aenean id hendrerit orci.
-        Donec tempus ac orci at scelerisque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras maximus tincidunt arcu ac lobortis. Morbi sit amet interdum justo. Fusce in dignissim massa. Proin vitae libero vel diam mattis convallis eu sit amet erat. Morbi semper ornare dui, ut accumsan diam aliquam vel. Donec tristique mattis mi, hendrerit imperdiet tellus dignissim sed. Vestibulum at felis pellentesque, ornare ex vel, sodales ante.
-        Praesent a blandit lectus, a aliquam magna. Mauris placerat auctor nisl elementum pharetra. Phasellus dictum aliquam neque porta molestie. Morbi accumsan eleifend leo sed tempus. Donec fermentum enim nulla, id pharetra neque efficitur eu. Praesent quam lectus, dapibus ac erat non, sagittis vehicula tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque vitae erat id enim posuere tempus. Duis vitae malesuada est. Nam pellentesque ultricies nibh ac pulvinar. Fusce quis ullamcorper ipsum. Ut sed rutrum velit. Vestibulum metus velit, porta sed hendrerit sed, scelerisque ac mi.
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut laoreet lobortis nisi non ultrices. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Phasellus faucibus metus diam, non pulvinar orci maximus sit amet. Maecenas dui felis, tempor sit amet magna quis, ornare fermentum mauris. In quis nibh et erat semper sagittis ut quis risus. Proin malesuada eleifend risus ut mattis. Maecenas scelerisque nibh eu elit sagittis, a egestas leo posuere. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Praesent ornare vulputate semper. Nullam in justo in tortor interdum ultrices nec eget nisl.
-        Maecenas vel volutpat ligula. Suspendisse blandit ac felis non tempor. Integer tincidunt lorem nunc, non vulputate nisi bibendum quis. Fusce sapien erat, eleifend sit amet mi vitae, posuere malesuada ex. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Fusce tempus venenatis eros. Mauris volutpat neque vel elementum dignissim. Nulla facilisi. Cras vulputate arcu et nulla tincidunt, eu efficitur nisi iaculis.
-        Nulla euismod sem ut purus fermentum, non venenatis turpis blandit. Donec ut bibendum odio, vel mollis dui. Suspendisse suscipit lacus eu odio egestas tempus in ut quam. Maecenas iaculis tristique vehicula. Aliquam nisl mauris, lobortis et porttitor id, egestas sed nunc. Nulla nec gravida magna. Donec at est sit amet justo tempor semper. Praesent vel sollicitudin dolor, eget tempus nisi. Ut et arcu vitae nunc dignissim fringilla. Proin maximus bibendum egestas. Morbi a velit risus. Suspendisse luctus arcu non tortor fermentum suscipit. Aenean id hendrerit orci.
-        Donec tempus ac orci at scelerisque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras maximus tincidunt arcu ac lobortis. Morbi sit amet interdum justo. Fusce in dignissim massa. Proin vitae libero vel diam mattis convallis eu sit amet erat. Morbi semper ornare dui, ut accumsan diam aliquam vel. Donec tristique mattis mi, hendrerit imperdiet tellus dignissim sed. Vestibulum at felis pellentesque, ornare ex vel, sodales ante.
-        Praesent a blandit lectus, a aliquam magna. Mauris placerat auctor nisl elementum pharetra. Phasellus dictum aliquam neque porta molestie. Morbi accumsan eleifend leo sed tempus. Donec fermentum enim nulla, id pharetra neque efficitur eu. Praesent quam lectus, dapibus ac erat non, sagittis vehicula tellus. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque vitae erat id enim posuere tempus. Duis vitae malesuada est. Nam pellentesque ultricies nibh ac pulvinar. Fusce quis ullamcorper ipsum. Ut sed rutrum velit. Vestibulum metus velit, porta sed hendrerit sed, scelerisque ac mi.
-      </p>
+      <p> {{ content }} </p>
       <ngx-medium-format-dialog-footer [style.--item-gap.rem]="1">
         <button type="button" class="btn btn-primary">Button</button>
         <button type="button" class="btn btn-primary">Second Button</button>
@@ -52,8 +47,12 @@
     </ngx-medium-format-dialog-content>
   </ng-template>
 
-  <button type="button" class="btn" (click)="openDialog({ template: mediumFormatWithFooter, format: 'medium' })">
+  <button type="button" class="btn" (click)="openDialog({ template: mediumFormatWithFooter })">
     Open Large Dialog w/ Footer
+  </button>
+
+  <button type="button" class="btn" (click)="openDialog({ template: mediumFormatWithFooter }, true)">
+    Open Large Dialog w/ Footer and Content
   </button>
 
   <app-prism>
@@ -78,3 +77,7 @@
   <p><code>ngx-large-format-dialog-footer</code> applies some default styles to set the children to the center with a default <code>gap</code> of <code>0.5rem</code>. The <code>gap</code> can be customized by using <code>--item-gap</code> CSS variable</p>
   <p>You can pass in <code>[styleClass]</code> to completely nullify the default styles.</p>
 </ngx-section>
+
+<dialog open>
+  Hey, this is an HTML dialog!
+</dialog>
