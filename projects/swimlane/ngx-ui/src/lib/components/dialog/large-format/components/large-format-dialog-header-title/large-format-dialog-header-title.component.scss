@@ -1,5 +1,15 @@
 @import 'colors/variables';
 
+.ngx-large-format-dialog-header-title {
+  --title-font-size: 1.75rem;
+  --title-font-line-height: 2rem;
+}
+
+.ngx-medium-format-dialog-header-title {
+  --title-font-size: 1.375rem;
+  --title-font-line-height: 1.625rem;
+}
+
 .ngx-medium-format-dialog-header-title,
 .ngx-large-format-dialog-header-title {
   display: flex;
@@ -60,8 +70,8 @@
 
     h1 {
       color: $color-white;
-      font-size: 1.75rem;
-      line-height: 2rem;
+      font-size: var(--title-font-size, 1.75rem);
+      line-height: var(--title-font-line-height, 2rem);
     }
 
     h4 {
@@ -69,12 +79,5 @@
       font-size: 1rem;
       line-height: 0.75rem;
     }
-  }
-}
-
-.ngx-medium-format-dialog-header-title {
-  .ngx-large-format-dialog-header-title__text-wrapper h1 {
-    font-size: 1.375rem;
-    line-height: 1.625rem;
   }
 }
