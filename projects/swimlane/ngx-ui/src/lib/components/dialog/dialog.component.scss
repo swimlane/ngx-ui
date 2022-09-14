@@ -31,6 +31,16 @@ $dialog-body-color: $color-grey-300;
       padding: 0;
       height: calc(100% - 7.25rem); // 50px top and bottom
       width: calc(100% - 7.5rem); // 60px right and left
+      max-height: calc(100% - 7.25rem);
+    }
+
+    &--medium {
+      padding: 0;
+      height: auto; // 50px top and bottom
+      width: calc(100% - 7.5rem); // 60px right and left
+      min-height: 340px;
+      max-height: 75vh;
+      max-width: 900px;
     }
 
     .close {

@@ -1,5 +1,6 @@
 @import 'colors/variables';
 
+.ngx-medium-format-dialog-header-title,
 .ngx-large-format-dialog-header-title {
   display: flex;
   flex-direction: row;
@@ -45,8 +46,8 @@
       align-items: center;
     }
 
-    & h1,
-    & h4 {
+    h1,
+    h4 {
       margin: 0;
 
       /**
@@ -57,16 +58,23 @@
       overflow: hidden;
     }
 
-    & h1 {
+    h1 {
       color: $color-white;
       font-size: 1.75rem;
       line-height: 2rem;
     }
 
-    & h4 {
+    h4 {
       color: $color-blue-grey-250;
       font-size: 1rem;
       line-height: 0.75rem;
     }
+  }
+}
+
+.ngx-medium-format-dialog-header-title {
+  .ngx-large-format-dialog-header-title__text-wrapper h1 {
+    font-size: 1.375rem;
+    line-height: 1.625rem;
   }
 }

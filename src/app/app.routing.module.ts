@@ -55,6 +55,13 @@ const routes: Routes = [
       )
   },
   {
+    path: 'dialog-medium-format',
+    loadChildren: () =>
+      import('./dialogs/dialog-medium-format-page/dialog-medium-format-page.module').then(
+        m => m.DialogMediumFormatPageModule
+      )
+  },
+  {
     path: 'drawer',
     loadChildren: () => import('./dialogs/drawer-page/drawer-page.module').then(m => m.DrawerPageModule)
   },
