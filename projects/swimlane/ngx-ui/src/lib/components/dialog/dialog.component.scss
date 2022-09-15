@@ -30,15 +30,13 @@ $dialog-body-color: $color-grey-300;
     &--large,
     &--medium {
       padding: 0;
-      width: calc(100vw - 120px); // 60px right and left
-      background: $bg-linear-3;
-      box-shadow: 0 0 100px rgba(0, 0, 0, 0.25);
-      border-radius: 0.125rem;
+      width: calc(100vw - 120px);
+      background-color: transparent;
     }
 
     &--large {
-      height: calc(100vh - 100px); // 50px top and bottom
-      max-height: calc(100vh - 100px);
+      height: calc(100vh - 120px);
+      max-height: calc(100vh - 120px);
     }
 
     &--medium {
