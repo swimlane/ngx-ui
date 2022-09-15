@@ -28,13 +28,14 @@
   flex-direction: column;
   flex: 1;
   padding: 50px;
-  overflow: hidden;
+  // overflow: hidden;
 
   .file-over {
     .ngx-dropzone--label {
       .ngx-dropzone--rings {
         path {
           animation: soundWave 1s infinite;
+          transform-origin: center;
 
           @for $i from 0 through 8 {
             &.ngx-dropzone--ring-#{$i + 1} {
@@ -64,6 +65,7 @@
     .ngx-dropzone--rings {
       fill: none;
       width: 100%;
+      overflow: visible;
 
       path {
         clip-rule: evenodd;
