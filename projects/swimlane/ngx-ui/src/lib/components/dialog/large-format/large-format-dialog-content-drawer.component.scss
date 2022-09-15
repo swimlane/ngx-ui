@@ -1,7 +1,7 @@
 @import 'colors/variables';
 
 .ngx-large-format-dialog-content {
-  & ngx-drawer.ngx-drawer {
+  ngx-drawer.ngx-drawer {
     &.large-format-dialog-drawer {
       min-height: calc(100% - 2rem);
       max-height: calc(100% - 2rem);

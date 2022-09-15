@@ -34,6 +34,7 @@
   </ng-template>
 
   <ng-content select="ngx-large-format-dialog-footer"></ng-content>
+  <ng-content select="ngx-medium-format-dialog-footer"></ng-content>
 </main>
 
 <ng-template #myTemplate>
@@ -45,6 +46,7 @@
 
 <ng-template #header>
   <ngx-large-format-dialog-header-title
+    [format]="format"
     [dialogTitle]="dialogTitle"
     [dialogSubtitle]="dialogSubtitle"
     [imageTemplate]="imageTemplate"
