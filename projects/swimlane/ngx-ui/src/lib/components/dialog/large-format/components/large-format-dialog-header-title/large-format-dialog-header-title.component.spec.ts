@@ -37,7 +37,7 @@ describe(LargeFormatDialogHeaderTitleComponent.name, () => {
     component.dialogTitle = 'Title';
     fixture.detectChanges();
 
-    expect(nativeElement.querySelector('h1').textContent).toContain(component.dialogTitle);
+    expect(nativeElement.querySelector('h1')?.textContent).toContain(component.dialogTitle);
   });
 
   describe('subtitle', () => {
@@ -54,7 +54,7 @@ describe(LargeFormatDialogHeaderTitleComponent.name, () => {
       component.dialogSubtitle = 'subtitle';
       fixture.detectChanges();
 
-      expect(nativeElement.querySelector('h4').textContent).toContain(component.dialogSubtitle);
+      expect(nativeElement.querySelector('h4')?.textContent).toContain(component.dialogSubtitle);
     });
   });
 });

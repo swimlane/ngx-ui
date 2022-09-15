@@ -9,7 +9,9 @@
     <ngx-medium-format-dialog-content 
       dialogTitle="Title"
       (closeOrCancel)="onCloseOrCancel()">
+      <a class="anchor-top"></a>
       <p> {{ content }} </p>
+      <a class="anchor-bottom"></a>
     </ngx-medium-format-dialog-content>
   </ng-template>
 
@@ -18,7 +20,7 @@
   </button>
 
   <button type="button" class="btn" (click)="openDialog({ template: mediumFormatDialog }, true)">
-    Open Medium Dialog with Content
+    Open Medium Dialog and Content
   </button>
 
   <app-prism>
@@ -29,17 +31,19 @@
 </ng-template>
 
 <button type="button" class="btn" (click)="openDialog({ template: largeFormat, format: 'large' })">
-  Open Large Dialog
+  Open Medium Dialog
 </button>]]>
   </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Basic w/ Footer">
-  <p>Large Format Dialog can also have a <strong>Footer</strong> by rendering <code>ngx-large-format-dialog-footer</code> component as its content</p>
+  <p>Medium Format Dialog can also have a <strong>Footer</strong> by rendering <code>ngx-large-format-dialog-footer</code> component as its content</p>
 
   <ng-template  #mediumFormatWithFooter>
     <ngx-medium-format-dialog-content dialogTitle="Title" (closeOrCancel)="onCloseOrCancel()">
+      <a class="anchor-top"></a>
       <p> {{ content }} </p>
+      <a class="anchor-bottom"></a>
       <ngx-medium-format-dialog-footer [style.--item-gap.rem]="1">
         <button type="button" class="btn btn-primary">Button</button>
         <button type="button" class="btn btn-primary">Second Button</button>
@@ -48,11 +52,11 @@
   </ng-template>
 
   <button type="button" class="btn" (click)="openDialog({ template: mediumFormatWithFooter })">
-    Open Large Dialog w/ Footer
+    Open Medium Dialog w/ Footer
   </button>
 
   <button type="button" class="btn" (click)="openDialog({ template: mediumFormatWithFooter }, true)">
-    Open Large Dialog w/ Footer and Content
+    Open Medium Dialog w/ Footer and Content
   </button>
 
   <app-prism>
@@ -69,7 +73,7 @@
 </ng-template>
 
 <button type="button" class="btn" (click)="openDialog({ template: largeFormatWithFooter, format: 'large' })">
-  Open Large Dialog w/ Footer
+  Open Medium Dialog w/ Footer
 </button>]]>
   </app-prism>
 </ngx-section>

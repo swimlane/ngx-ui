@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Feature (`ngx-medium-format-dialog-content`): Add medium sizes variant of large format dialog.
+
 ## 42.3.1 (2022-9-7)
 
 - Feature (`ngx-json-editor-flat`): Allow custom template for nodes
