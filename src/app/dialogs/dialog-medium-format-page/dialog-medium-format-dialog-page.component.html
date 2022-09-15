@@ -1,7 +1,6 @@
 <h3 class="style-header">Dialog - Medium Format</h3>
 <p>
-  Medium Format Dialog is a regular Dialog whose content is wrapped inside of <code>NgxMediumFormatDialogContent</code>
-  component
+  Medium Format Dialog is a regular Dialog whose content is wrapped inside of a <code>ngx-medium-format-dialog-content</code> component
 </p>
 
 <ngx-section class="shadow" sectionTitle="Basic">
@@ -37,14 +36,14 @@
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Basic w/ Footer">
-  <p>Medium Format Dialog can also have a <strong>Footer</strong> by rendering <code>ngx-large-format-dialog-footer</code> component as its content</p>
+  <p>Medium Format Dialog can also have a <strong>Footer</strong> by adding a <code>ngx-medium-format-dialog-footer</code> component as its content</p>
 
   <ng-template  #mediumFormatWithFooter>
     <ngx-medium-format-dialog-content dialogTitle="Title" (closeOrCancel)="onCloseOrCancel()">
       <a class="anchor-top"></a>
       <p> {{ content }} </p>
       <a class="anchor-bottom"></a>
-      <ngx-medium-format-dialog-footer [style.--item-gap.rem]="1">
+      <ngx-medium-format-dialog-footer>
         <button type="button" class="btn btn-primary">Button</button>
         <button type="button" class="btn btn-primary">Second Button</button>
       </ngx-medium-format-dialog-footer>
@@ -64,7 +63,7 @@
   <ngx-medium-format-dialog-content dialogTitle="Title" (closeOrCancel)="onCloseOrCancel()">
     <p>Lorem ipsum...</p>
 
-    <ngx-medium-format-dialog-footer [style.--item-gap.rem]="1">
+    <ngx-medium-format-dialog-footer>
       <button type="button" class="btn btn-primary">Button</button>
       <button type="button" class="btn btn-primary">Second Button</button>
     </ngx-medium-format-dialog-footer>
