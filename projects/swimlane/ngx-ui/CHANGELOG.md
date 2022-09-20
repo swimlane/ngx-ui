@@ -3,6 +3,9 @@
 ## HEAD (unreleased)
 
 - Fix (`ngx-dropzone`): fix dropzone animation
+
+## 42.4.0 (2022-9-15)
+
 - Feature (`ngx-medium-format-dialog-content`): Add medium sizes variant of large format dialog.
 
 ## 42.3.1 (2022-9-7)
