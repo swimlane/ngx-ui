@@ -2,6 +2,7 @@
   <div
     class="ngx-dialog-content {{ cssClass }}"
     [class.ngx-dialog-content--large]="format === DialogFormat.Large"
+    [class.ngx-dialog-content--medium]="format === DialogFormat.Medium"
     [@visibilityTransition]="visibleState"
     [style.zIndex]="contentzIndex"
     tabindex="-1"

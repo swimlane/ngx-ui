@@ -1,0 +1,78 @@
+<h3 class="style-header">Dialog - Medium Format</h3>
+<p>
+  Medium Format Dialog is a regular Dialog whose content is wrapped inside of a <code>ngx-medium-format-dialog-content</code> component
+</p>
+
+<ngx-section class="shadow" sectionTitle="Basic">
+  <ng-template #mediumFormatDialog let-context="context">
+    <ngx-medium-format-dialog-content 
+      dialogTitle="Title"
+      (closeOrCancel)="onCloseOrCancel()">
+      <a class="anchor-top"></a>
+      <p> {{ content }} </p>
+      <a class="anchor-bottom"></a>
+    </ngx-medium-format-dialog-content>
+  </ng-template>
+
+  <button type="button" class="btn" (click)="openDialog({ template: mediumFormatDialog })">
+    Open Medium Dialog
+  </button>
+
+  <button type="button" class="btn" (click)="openDialog({ template: mediumFormatDialog }, true)">
+    Open Medium Dialog and Content
+  </button>
+
+  <app-prism>
+<![CDATA[<ng-template  #mediumFormatDialog>
+  <ngx-medium-format-dialog-content dialogSubtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
+    <p>Lorem ipsum dolor...</p>
+  </ngx-medium-format-dialog-content>
+</ng-template>
+
+<button type="button" class="btn" (click)="openDialog({ template: largeFormat, format: 'large' })">
+  Open Medium Dialog
+</button>]]>
+  </app-prism>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Basic w/ Footer">
+  <p>Medium Format Dialog can also have a <strong>Footer</strong> by adding a <code>ngx-medium-format-dialog-footer</code> component as its content</p>
+
+  <ng-template  #mediumFormatWithFooter>
+    <ngx-medium-format-dialog-content dialogTitle="Title" (closeOrCancel)="onCloseOrCancel()">
+      <a class="anchor-top"></a>
+      <p> {{ content }} </p>
+      <a class="anchor-bottom"></a>
+      <ngx-medium-format-dialog-footer>
+        <button type="button" class="btn btn-primary">Button</button>
+        <button type="button" class="btn btn-primary">Second Button</button>
+      </ngx-medium-format-dialog-footer>
+    </ngx-medium-format-dialog-content>
+  </ng-template>
+
+  <button type="button" class="btn" (click)="openDialog({ template: mediumFormatWithFooter })">
+    Open Medium Dialog w/ Footer
+  </button>
+
+  <button type="button" class="btn" (click)="openDialog({ template: mediumFormatWithFooter }, true)">
+    Open Medium Dialog w/ Footer and Content
+  </button>
+
+  <app-prism>
+<![CDATA[<ng-template  #mediumFormatWithFooter>
+  <ngx-medium-format-dialog-content dialogTitle="Title" (closeOrCancel)="onCloseOrCancel()">
+    <p>Lorem ipsum...</p>
+
+    <ngx-medium-format-dialog-footer>
+      <button type="button" class="btn btn-primary">Button</button>
+      <button type="button" class="btn btn-primary">Second Button</button>
+    </ngx-medium-format-dialog-footer>
+
+  </ngx-medium-format-dialog-content>
+</ng-template>
+
+<button type="button" class="btn" (click)="openDialog({ template: largeFormatWithFooter, format: 'large' })">
+  Open Medium Dialog w/ Footer
+</button>]]>
+  </app-prism>
+</ngx-section>

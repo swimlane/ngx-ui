@@ -1,4 +1,5 @@
 import { Input, EventEmitter, Output, OnChanges, SimpleChanges, Directive } from '@angular/core';
+import { JSONSchema7TypeName } from 'json-schema';
 
 import {
   createValueForSchema,
@@ -156,6 +157,25 @@ export class ArrayNode implements OnChanges {
     this.updateIcons();
   }
 
+  private getTypeFromSchemaProperty(index: number): JSONSchema7TypeName {
+    if (this.schema == null || this.schema.items == null) {
+      return undefined;
+    }
+
+    if (Array.isArray(this.schema.items)) {
+      if (this.schema.items.length === 0) {
+        return undefined;
+      }
+      return this.schema.items[index];
+    }
+
+    if (this.schema.items.type !== undefined) {
+      return this.schema.items as JSONSchema7TypeName;
+    }
+
+    return undefined;
+  }
+
   /**
    * Infers the schema type for each item in the array
    */
@@ -164,7 +184,7 @@ export class ArrayNode implements OnChanges {
     this.schemas = [];
     if (Array.isArray(this.model)) {
       this.model.forEach((value, index) => {
-        const inferedSchema = inferType(value, this.typeCheckOverrides);
+        const inferedSchema = this.getTypeFromSchemaProperty(index) ?? inferType(value, this.typeCheckOverrides);
         let schema;
 
         if (inferedSchema.type === 'null' && prevSchemas[index]) {

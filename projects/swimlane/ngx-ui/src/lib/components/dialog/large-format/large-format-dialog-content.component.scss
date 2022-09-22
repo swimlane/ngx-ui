@@ -8,23 +8,50 @@
   --header-item-max-width-lg: 250px;
   --header-item-max-width-md: 150px;
 
+  --max-height: calc(100vh - 7.25rem);
+  --header-height: 90px;
+  --footer-height: 4rem;
+  --max-body-height: auto;
+
+  --body-padding: 2rem;
+}
+
+.ngx-medium-format-dialog-content {
+  --stepper-header-custom-offset: 0px;
+  --stepper-bar-track-offset: 12px;
+  --tabs-header-gap: 1.25rem;
+  --header-item-max-width: 400px;
+  --header-item-max-width-lg: 250px;
+  --header-item-max-width-md: 150px;
+
+  --max-height: 75vh;
+  --header-height: 60px;
+  --footer-height: 4rem;
+  --max-body-height: calc(var(--max-height) - var(--header-height));
+
+  --body-padding: 2rem;
+}
+
+.ngx-medium-format-dialog-content,
+.ngx-large-format-dialog-content {
   display: block;
   width: 100%;
   height: 100%;
   position: relative;
   overflow: hidden;
 
-  & .dialog-container {
+  .dialog-container {
     display: flex;
     flex-direction: column;
     height: 100%;
+    max-height: var(--max-height, 75vh);
     background: $bg-linear-3;
     box-shadow: 0 0 100px rgba(0, 0, 0, 0.25);
     border-radius: 0.125rem;
 
     &__header {
-      max-height: 90px;
-      height: 90px;
+      flex: 0 0 var(--header-height, 60px);
+      height: var(--header-height, 60px);
       border-bottom: 2px solid $color-blue-grey-700;
       display: flex;
       align-items: center;
@@ -33,64 +60,66 @@
     }
 
     &__body {
-      flex: 1;
+      flex: 1 1 auto;
+      min-height: 215px;
+      max-height: var(--max-body-height, auto);
       overflow: auto;
-      padding: 0 2rem;
+      padding: 0 var(--body-padding, 2rem);
     }
 
-    & .ngx-large-format-dialog-footer {
-      max-height: 4rem;
-      flex: 0 0 4rem;
-      height: 4rem;
+    .ngx-medium-format-dialog-footer,
+    .ngx-large-format-dialog-footer {
+      flex: 0 0 var(--footer-height, 4rem);
+      height: var(--footer-height, 4rem);
       border-top: 2px solid $color-blue-grey-700;
     }
 
-    & .dialog-stepper,
-    & .dialog-tabs {
+    .dialog-stepper,
+    .dialog-tabs {
       flex: 1;
       position: relative;
       overflow: hidden;
 
       &__header {
-        & ngx-large-format-dialog-header-title.ngx-large-format-dialog-header-title,
+        ngx-large-format-dialog-header-title.ngx-large-format-dialog-header-title,
         ngx-large-format-dialog-header-action.ngx-large-format-dialog-header-action {
-          max-width: var(--header-item-max-width);
-          min-width: var(--header-item-max-width);
+          max-width: var(--header-item-max-width, 400px);
+          min-width: var(--header-item-max-width, 400px);
         }
 
-        & ngx-large-format-dialog-header-action.ngx-large-format-dialog-header-action {
+        ngx-large-format-dialog-header-action.ngx-large-format-dialog-header-action {
           position: relative;
           z-index: 1;
         }
 
         @media screen and (max-width: 1319px) {
-          & ngx-large-format-dialog-header-title.ngx-large-format-dialog-header-title,
+          ngx-large-format-dialog-header-title.ngx-large-format-dialog-header-title,
           ngx-large-format-dialog-header-action.ngx-large-format-dialog-header-action {
-            max-width: var(--header-item-max-width-lg);
-            min-width: var(--header-item-max-width-lg);
+            max-width: var(--header-item-max-width-lg, 250px);
+            min-width: var(--header-item-max-width-lg, 250px);
           }
         }
 
         @media screen and (max-width: 959px) {
-          & ngx-large-format-dialog-header-title.ngx-large-format-dialog-header-title,
+          ngx-large-format-dialog-header-title.ngx-large-format-dialog-header-title,
           ngx-large-format-dialog-header-action.ngx-large-format-dialog-header-action {
-            max-width: var(--header-item-max-width-md);
-            min-width: var(--header-item-max-width-md);
+            max-width: var(--header-item-max-width-md, 150px);
+            min-width: var(--header-item-max-width-md, 150px);
           }
         }
       }
 
-      & .ngx-tabs.tabs-horizontal button.ngx-tab {
+      .ngx-tabs.tabs-horizontal button.ngx-tab {
         height: 100%;
       }
 
-      & .ngx-tabs.tabs-horizontal button.ngx-tab::after {
+      .ngx-tabs.tabs-horizontal button.ngx-tab::after {
         bottom: 1px;
       }
     }
 
-    & .dialog-stepper {
-      & ngx-stepper.ngx-stepper:not(.dialog-stepper--sub) {
+    .dialog-stepper {
+      ngx-stepper.ngx-stepper:not(.dialog-stepper--sub) {
         padding: 1rem 0 0;
         margin-top: -5.5rem;
         height: 100%;
@@ -103,12 +132,12 @@
         - 8rem (outside padding + gap between HeaderTitle, HeaderAction, and the Steps)
         - A custom offset (from both side) that the consumers can pass in to shrink additional width of the steps without increasing the HeaderTitle and HeaderAction max-width
          */
-        & > .ngx-stepper--steps {
+        > .ngx-stepper--steps {
           margin: auto;
           min-width: calc(100% - ((var(--header-item-max-width) + var(--stepper-header-custom-offset)) * 2) - 8rem);
 
-          & ngx-step.ngx-step {
-            & .ngx-step--title {
+          ngx-step.ngx-step {
+            .ngx-step--title {
               padding-top: 0.5rem;
             }
           }
@@ -117,42 +146,42 @@
         /**
           The BarTrack has its own offset (default to 12px)
          */
-        & > .ngx-stepper--bar-track {
+        > .ngx-stepper--bar-track {
           margin: auto;
 
           /* prettier-ignore */
           min-width: calc(100% - ((var(--header-item-max-width) + var(--stepper-header-custom-offset)) * 2) - 8rem + var(--stepper-bar-track-offset));
 
-          & .ngx-stepper--bar {
+          .ngx-stepper--bar {
             top: 32px;
           }
         }
 
-        & > .ngx-stepper--content {
+        > .ngx-stepper--content {
           margin-top: 1.25rem;
           overflow: auto;
           padding: 0 2rem;
         }
 
         @media screen and (max-width: 1319px) {
-          & > .ngx-stepper--steps {
+          > .ngx-stepper--steps {
             /* prettier-ignore */
             min-width: calc(100% - ((var(--header-item-max-width-lg) + var(--stepper-header-custom-offset)) * 2) - 8rem);
           }
 
-          & > .ngx-stepper--bar-track {
+          > .ngx-stepper--bar-track {
             /* prettier-ignore */
             min-width: calc(100% - ((var(--header-item-max-width-lg) + var(--stepper-header-custom-offset)) * 2) - 8rem + var(--stepper-bar-track-offset));
           }
         }
 
         @media screen and (max-width: 959px) {
-          & > .ngx-stepper--steps {
+          > .ngx-stepper--steps {
             /* prettier-ignore */
             min-width: calc(100% - ((var(--header-item-max-width-md) + var(--stepper-header-custom-offset)) * 2) - 8rem);
           }
 
-          & > .ngx-stepper--bar-track {
+          > .ngx-stepper--bar-track {
             /* prettier-ignore */
             min-width: calc(100% - ((var(--header-item-max-width-md) + var(--stepper-header-custom-offset)) * 2) - 8rem + var(--stepper-bar-track-offset));
           }
@@ -160,12 +189,12 @@
       }
     }
 
-    & .dialog-tabs {
-      & ngx-tabs.ngx-tabs:not(.dialog-tabs--sub) {
+    .dialog-tabs {
+      ngx-tabs.ngx-tabs:not(.dialog-tabs--sub) {
         height: 100%;
         margin: 0;
 
-        & > section {
+        > section {
           height: 100%;
 
           /**
@@ -174,7 +203,7 @@
         - HeaderTitle + HeaderAction max-width (400px by default)
         - 8rem (outside padding + gap between HeaderTitle, HeaderAction, and the Steps)
          */
-          & > .ngx-tabs-list {
+          > .ngx-tabs-list {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -188,8 +217,8 @@
             gap: var(--tabs-header-gap);
             max-width: calc(100% - (var(--header-item-max-width) * 2) - 8rem);
 
-            & .ngx-tab {
-              & button {
+            .ngx-tab {
+              button {
                 text-transform: uppercase;
                 font-size: 0.8125rem;
                 font-weight: bold;
@@ -209,20 +238,20 @@
             }
           }
 
-          & > .ngx-tab-content {
+          > .ngx-tab-content {
             padding: 0 2rem;
             overflow: auto;
             height: calc(100% - 5.5rem);
           }
 
           @media screen and (max-width: 1319px) {
-            & > .ngx-tabs-list {
+            > .ngx-tabs-list {
               max-width: calc(100% - (var(--header-item-max-width-lg) * 2) - 8rem);
             }
           }
 
           @media screen and (max-width: 959px) {
-            & > .ngx-tabs-list {
+            > .ngx-tabs-list {
               max-width: calc(100% - (var(--header-item-max-width-md) * 2) - 8rem);
             }
           }

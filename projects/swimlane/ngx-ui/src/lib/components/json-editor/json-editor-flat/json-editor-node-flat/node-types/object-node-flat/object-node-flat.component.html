@@ -11,6 +11,7 @@
     class="object-node-content"
     *ngFor="let prop of propertyIndex | objectValues; let index = index; trackBy: trackBy"
   >
+
     <ngx-json-editor-node-flat
       [model]="model[prop.propertyName]"
       (modelChange)="updateProp(prop.id, $event)"
@@ -28,6 +29,7 @@
       [indentationArray]="indentationArray"
       [showKnownProperties]="showKnownProperties"
       [passwordToggleEnabled]="passwordToggleEnabled"
+      [inputControlTemplate]="inputControlTemplate"
       [isDuplicated]="duplicatedFields.has(prop.id)"
       (schemaUpdate)="schemaUpdate.emit(schemaRef)"
       (updatePropertyNameEvent)="onUpdatePropertyName($event)"

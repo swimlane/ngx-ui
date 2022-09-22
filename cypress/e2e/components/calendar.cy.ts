@@ -214,7 +214,7 @@ describe('Calendar', () => {
   describe('Year View', () => {
     beforeEach(() => {
       cy.get('ngx-section').first().as('SUT');
-      cy.getByName('calendar6').as('CUT').scrollIntoView();
+      cy.getByName('calendar6').as('CUT').scrollIntoView().focus();
     });
 
     it('shows a calendar', () => {
@@ -246,10 +246,7 @@ describe('Calendar', () => {
 
         cy.get('.title').should('contain.text', '2021 - 2041');
 
-        cy.realPress('Tab');
-        cy.realPress('Tab');
-        cy.realPress('Tab');
-        cy.realPress('Tab'); // On date
+        cy.get('.year.focus').focus();
 
         // Moving Year
         cy.get('.year.focus').should('contain.text', focusedDate.year());

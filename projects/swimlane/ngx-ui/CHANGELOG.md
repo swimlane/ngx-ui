@@ -2,7 +2,20 @@
 
 ## HEAD (unreleased)
 
+## 42.4.0 (2022-9-15)
+
+- Feature (`ngx-medium-format-dialog-content`): Add medium sizes variant of large format dialog.
+
+## 42.3.1 (2022-9-7)
+
+- Feature (`ngx-json-editor-flat`): Allow custom template for nodes
+
+## 42.2.1 (2022-8-31)
+
 - Fix (`ngx-button`): Allow overflow-y so that text is not cut off.
+- Fix (`ngx-select`): Vertically aligned clear and caret buttons. Clear and caret button sizes change with parent text size.
+- Fix (`ngx-input`, others): Adjust input label position.
+- Bump to Cypress version 10.6.0
 
 ## 42.1.1 (2022-7-18)
 
