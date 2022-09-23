@@ -22,7 +22,7 @@ describe('Tabs', () => {
     });
 
     it('shows tabs', () => {
-      cy.get('@CUT').within(() => {
+      cy.get('@SUT').within(() => {
         cy.get('.ngx-tab').eq(0).should('contain', 'Tab 1');
         cy.get('.ngx-tab').eq(1).should('contain', 'Tab 2');
         cy.get('.ngx-tab').eq(2).should('contain', 'Tab 3');
@@ -31,7 +31,7 @@ describe('Tabs', () => {
     });
 
     it('starts on first tab and should select other tabs on click', () => {
-      cy.get('@CUT').within(() => {
+      cy.get('@SUT').within(() => {
         cy.get('.ngx-tab-content ngx-tab').eq(0).should('be.visible').should('contain', 'Tab 1 contents.');
         cy.get('.ngx-tab').eq(1).click();
         cy.get('.ngx-tab-content ngx-tab').eq(1).should('be.visible').should('contain', 'Tab 2 contents.');
@@ -43,7 +43,7 @@ describe('Tabs', () => {
     });
 
     it('selects tabs using ngxSelectTab', () => {
-      cy.get('@CUT').within(() => {
+      cy.get('@SUT').within(() => {
         cy.get('.ngx-tab-content ngx-tab').eq(0).should('be.visible').should('contain', 'Tab 1 contents.');
         cy.root().ngxSelectTab('Tab 2');
         cy.get('.ngx-tab-content ngx-tab').eq(1).should('be.visible').should('contain', 'Tab 2 contents.');
