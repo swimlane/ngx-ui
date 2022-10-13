@@ -36,6 +36,8 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit, OnChang
 
   @Input() passwordToggleEnabled = false;
 
+  @Input() inputControlTemplate: TemplateRef<unknown>;
+
   indentationArray: number[] = [];
 
   constructor(private dialogService: DialogService) {

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { SectionModule, SelectModule, StepperModule } from '@swimlane/ngx-ui';
+import { SectionModule, SelectModule, StepperModule, TabsModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
 
 import { StepperPageRoutingModule } from './stepper-page-routing.module';
@@ -17,7 +17,8 @@ import { StepperPageComponent } from './stepper-page.component';
     SectionModule,
     StepperModule,
     SelectModule,
-    StepperPageRoutingModule
+    StepperPageRoutingModule,
+    TabsModule
   ]
 })
 export class StepperPageModule {}

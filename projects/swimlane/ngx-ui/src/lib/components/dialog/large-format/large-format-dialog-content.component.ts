@@ -20,8 +20,7 @@ import { LargeFormatDialogFooterComponent } from './components/large-format-dial
 import { LargeFormatDialogStepperDirective } from './directives/large-format-dialog-stepper/large-format-dialog-stepper.directive';
 import { LargeFormatDialogTabsDirective } from './directives/large-format-dialog-tabs/large-format-dialog-tabs.directive';
 @Component({
-  selector: 'ngx-large-format-dialog-content',
-  exportAs: 'ngxLargeFormatDialogContent',
+  selector: 'ngx-large-format-dialog-content, ngx-medium-format-dialog-content',
   templateUrl: './large-format-dialog-content.component.html',
   styleUrls: ['./large-format-dialog-content.component.scss', './large-format-dialog-content-drawer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,6 +33,7 @@ export class LargeFormatDialogContentComponent implements OnInit {
   @Input() imgSrc?: string | SafeUrl;
   @Input() logoTemplate?: TemplateRef<unknown>;
   @Input() dialogSubtitleTemplate?: TemplateRef<unknown>;
+  @Input() format: 'large' | 'medium' = 'large';
 
   // header-action inputs
   @Input() dialogActionTitle = 'Close';
@@ -47,7 +47,15 @@ export class LargeFormatDialogContentComponent implements OnInit {
   // header-action outputs
   @Output() closeOrCancel = new EventEmitter<boolean>();
 
-  @HostBinding('class.ngx-large-format-dialog-content') hostClass = true;
+  @HostBinding('class.ngx-large-format-dialog-content')
+  get isLargeFormat() {
+    return this.format === 'large';
+  }
+
+  @HostBinding('class.ngx-medium-format-dialog-content')
+  get isMediumFormat() {
+    return this.format === 'medium';
+  }
 
   @ContentChild(LargeFormatDialogFooterComponent) footerComponent?: LargeFormatDialogFooterComponent;
 
@@ -56,8 +64,13 @@ export class LargeFormatDialogContentComponent implements OnInit {
   @ContentChild(LargeFormatDialogTabsDirective, { read: TemplateRef }) tabsTemplate?: TemplateRef<unknown>;
 
   @ViewChild('myTemplate', { static: true }) myTemplate: ElementRef;
-  constructor(public elementRef: ElementRef, private readonly alertService: AlertService) {}
   imageTemplate = {};
+
+  constructor(public elementRef: ElementRef, private readonly alertService: AlertService) {
+    if (elementRef.nativeElement.tagName.toLowerCase() === 'ngx-medium-format-dialog-content') {
+      this.format = 'medium';
+    }
+  }
 
   ngOnInit() {
     if (this.myTemplate) {

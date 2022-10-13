@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { CheckboxModule, SectionModule } from '@swimlane/ngx-ui';
+import { CheckboxModule, SectionModule, TabsModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
 
 import { CheckboxPageRoutingModule } from './checkbox-page-routing.module';
@@ -18,7 +18,8 @@ import { CheckboxPageComponent } from './checkbox-page.component';
     SectionModule,
     CheckboxModule,
     CheckboxPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TabsModule
   ]
 })
 export class CheckboxPageModule {}

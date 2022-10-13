@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { DateTimeModule, SectionModule } from '@swimlane/ngx-ui';
+import { DateTimeModule, SectionModule, TabsModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
 
 import { DatetimePageRoutingModule } from './datetime-page-routing.module';
@@ -17,7 +17,8 @@ import { DatetimePageComponent } from './datetime-page.component';
     PrismModule,
     SectionModule,
     DateTimeModule,
-    DatetimePageRoutingModule
+    DatetimePageRoutingModule,
+    TabsModule
   ]
 })
 export class DatetimePageModule {}

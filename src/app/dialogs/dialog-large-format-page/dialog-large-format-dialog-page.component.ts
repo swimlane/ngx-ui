@@ -18,6 +18,16 @@ import { BehaviorSubject } from 'rxjs';
         margin-left: 0;
         border-left: 0.25rem solid;
       }
+
+      .input-name {
+        color: #ebedf2;
+        display: block;
+        white-space: pre-line;
+      }
+
+      .margin-left-12 {
+        margin-left: 12px;
+      }
     `
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -80,5 +90,9 @@ export class DialogLargeFormatDialogPageComponent {
       size: context.size - 10,
       context: { size: context.size - 10 }
     });
+  }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
 }

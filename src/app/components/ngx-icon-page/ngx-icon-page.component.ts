@@ -17,4 +17,8 @@ export class NgxIconPageComponent {
     iconRegistryService.add('app:edit', 'edit-app');
     iconRegistryService.add('app:copy', 'copy-app');
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

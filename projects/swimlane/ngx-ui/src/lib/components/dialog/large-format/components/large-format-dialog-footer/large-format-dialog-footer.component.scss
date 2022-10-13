@@ -1,7 +1,9 @@
+.ngx-medium-format-dialog-footer,
 .ngx-large-format-dialog-footer {
   --item-gap: 0.5rem;
 
-  &--default {
+  &.ngx-medium-format-dialog-footer--default,
+  &.ngx-large-format-dialog-footer--default {
     display: flex;
     justify-content: center;
     align-items: center;

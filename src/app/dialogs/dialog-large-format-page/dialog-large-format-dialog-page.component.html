@@ -1,135 +1,117 @@
 <h3 class="style-header">Dialog - Large Format</h3>
-<p>
-  Large Format Dialog is a regular Dialog whose content is wrapped inside of <code>NgxLargeFormatDialogContent</code>
-  component
-</p>
 
-<p>Large Format Dialog has the following styles:</p>
-
-<ul>
-  <li>
-    Top/bottom spacing: <code>50px</code>
-  </li>
-  <li>
-    Left/Right spacing: <code>60px</code>
-  </li>
-  <li>
-    Header height: <code>90px</code>
-  </li>
-  <li>
-    Footer height: <code>64px</code>
-  </li>
-  <li>
-    Body Left/Right spacing: <code>32px</code> each side
-  </li>
-</ul>
-
-<p>There are two requirements to use Large Format Dialog:</p>
-<ul>
-  <li>Wrap your content inside of <code>ngx-large-format-dialog-content</code></li>
-  <li>Provide <code>format: DialogFormat.Large</code> to the options object when invoking <code>DialogService#create</code></li>
-</ul>
-
-<ngx-section class="shadow" sectionTitle="CSS Variables">
-  <p>Available CSS variables are as followed:</p>
-
-  <ul>
-    <li><code>--header-item-max-width</code>: Max width of Header Title and Header Action sections (default to <code>400px</code>)</li>
-    <li><code>--header-item-max-width-lg</code>: Max width of Header Title and Header Action sections below <code>lg</code> breakpoint (default to <code>250px</code>)</li>
-    <li><code>--header-item-max-width-md</code>: Max width of Header Title and Header Action sections below <code>md</code> breakpoint (default to <code>150px</code>)</li>
-  </ul>
-
-  <p>For Stepper variant:</p>
-  <ul>
-    <li><code>--stepper-header-custom-offset</code>: Additional white space between the steps to the Header Title and Header Action sections (default to <code>0px</code>)</li>
-  </ul>
-
-  <p>For Tabs variant:</p>
-  <ul>
-    <li><code>--tabs-header-gap</code>: The spacing <strong>between</strong> the tabs' labels (default to <code>1.25rem</code>)</li>
-  </ul>
-  <blockquote>For <code>--tabs-header-gap</code>, the consumers need to handle responsiveness (different values for <code>--tabs-header-gap</code> at different breakpoints) on their own.</blockquote>
-
-  <ngx-tabs>
-    <ngx-tab title="Markup">
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <p>
+      Large Format Dialog is a regular Dialog whose content is wrapped inside of <code>NgxLargeFormatDialogContent</code>
+      component
+    </p>
+    
+    <p>Large Format Dialog has the following styles:</p>
+    
+    <ul>
+      <li>
+        Top/bottom spacing: <code>50px</code>
+      </li>
+      <li>
+        Left/Right spacing: <code>60px</code>
+      </li>
+      <li>
+        Header height: <code>90px</code>
+      </li>
+      <li>
+        Footer height: <code>64px</code>
+      </li>
+      <li>
+        Body Left/Right spacing: <code>32px</code> each side
+      </li>
+    </ul>
+    
+    <p>There are two requirements to use Large Format Dialog:</p>
+    <ul>
+      <li>Wrap your content inside of <code>ngx-large-format-dialog-content</code></li>
+      <li>Provide <code>format: DialogFormat.Large</code> to the options object when invoking <code>DialogService#create</code></li>
+    </ul>
+    
+    <ngx-section class="shadow" sectionTitle="CSS Variables">
+      <p>Available CSS variables are as followed:</p>
+    
+      <ul>
+        <li><code>--header-item-max-width</code>: Max width of Header Title and Header Action sections (default to <code>400px</code>)</li>
+        <li><code>--header-item-max-width-lg</code>: Max width of Header Title and Header Action sections below <code>lg</code> breakpoint (default to <code>250px</code>)</li>
+        <li><code>--header-item-max-width-md</code>: Max width of Header Title and Header Action sections below <code>md</code> breakpoint (default to <code>150px</code>)</li>
+      </ul>
+    
+      <p>For Stepper variant:</p>
+      <ul>
+        <li><code>--stepper-header-custom-offset</code>: Additional white space between the steps to the Header Title and Header Action sections (default to <code>0px</code>)</li>
+      </ul>
+    
+      <p>For Tabs variant:</p>
+      <ul>
+        <li><code>--tabs-header-gap</code>: The spacing <strong>between</strong> the tabs' labels (default to <code>1.25rem</code>)</li>
+      </ul>
+      <blockquote>For <code>--tabs-header-gap</code>, the consumers need to handle responsiveness (different values for <code>--tabs-header-gap</code> at different breakpoints) on their own.</blockquote>
+    
+      <ngx-tabs>
+        <ngx-tab title="Markup">
+          <app-prism>
+    <![CDATA[<ng-template>
+      <ngx-large-format-dialog-content class="custom-gaps">
+        <!-- content goes here -->
+      </ngx-large-format-dialog-content>
+    </ng-template>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab title="SCSS">
+          <app-prism language="css">
+    <![CDATA[
+    .custom-gaps {
+      --tabs-header-gap: 2rem;
+    
+      @media screen and (max-width: 1319px) {
+        --tabs-header-gap: 1.5rem;
+      }
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Basic">
+      <ng-template #largeFormat let-context="context">
+        <ngx-large-format-dialog-content 
+          imgSrc="data:image/png;base64,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"
+          dialogTitle="Title"
+          dialogSubtitle="Optional Subtitle" 
+          (closeOrCancel)="onCloseOrCancel()">
+          <p>Content</p>
+        </ngx-large-format-dialog-content>
+      </ng-template>
+    
+      <button type="button" class="btn" (click)="openDialog({ template: largeFormat, format: 'large', closeOnEscape: true })">
+        Open Large Dialog
+      </button>
+    
       <app-prism>
-<![CDATA[<ng-template>
-  <ngx-large-format-dialog-content class="custom-gaps">
-    <!-- content goes here -->
-  </ngx-large-format-dialog-content>
-</ng-template>]]>
+    <![CDATA[<ng-template #largeFormatDialog>
+      <ngx-large-format-dialog-content dialogTitle="Dialog Title" dialogSubtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
+        <p>Content</p>
+      </ngx-large-format-dialog-content>
+    </ng-template>
+    
+    <button type="button" class="btn" (click)="openDialog({ template: largeFormat, format: 'large' })">
+      Open Large Dialog
+    </button>]]>
       </app-prism>
-    </ngx-tab>
-    <ngx-tab title="SCSS">
-      <app-prism language="css">
-<![CDATA[
-.custom-gaps {
-  --tabs-header-gap: 2rem;
-
-  @media screen and (max-width: 1319px) {
-    --tabs-header-gap: 1.5rem;
-  }
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Basic">
-  <ng-template #largeFormat let-context="context">
-    <ngx-large-format-dialog-content 
-      imgSrc="data:image/png;base64,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"
-      dialogTitle="Title"
-      dialogSubtitle="Optional Subtitle" 
-      (closeOrCancel)="onCloseOrCancel()">
-      <p>Content</p>
-    </ngx-large-format-dialog-content>
-  </ng-template>
-
-  <button type="button" class="btn" (click)="openDialog({ template: largeFormat, format: 'large', closeOnEscape: true })">
-    Open Large Dialog
-  </button>
-
-  <app-prism>
-<![CDATA[<ng-template #largeFormatDialog>
-  <ngx-large-format-dialog-content dialogTitle="Dialog Title" dialogSubtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
-    <p>Content</p>
-  </ngx-large-format-dialog-content>
-</ng-template>
-
-<button type="button" class="btn" (click)="openDialog({ template: largeFormat, format: 'large' })">
-  Open Large Dialog
-</button>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="With custom template for subtitle and top corner logo">
-  <ng-template #largeFormatCustomSubtitle let-context="context">
-    <ngx-large-format-dialog-content 
-      dialogTitle="Title"
-      [dialogSubtitleTemplate]="myCustomTemplateSubtitle" 
-      [logoTemplate]="myCustomTemplateLogo"
-      (closeOrCancel)="onCloseOrCancel()">
-      <p>Content</p>
-    </ngx-large-format-dialog-content>
-  </ng-template>
-  <ng-template #myCustomTemplateSubtitle>
-    <span>Hi <i class="ngx-icon ngx-trend-level"></i> <i class="ngx-icon ngx-hand"></i></span>
-  </ng-template>
-  <ng-template #myCustomTemplateLogo>
-    <ngx-card-avatar>PLAY</ngx-card-avatar>
-  </ng-template>
-
-  <button type="button" class="btn" (click)="openDialog({ template: largeFormatCustomSubtitle, format: 'large', closeOnEscape: true })">
-    Open Dialog with Custom Template for SubTitle and logo
-  </button>
-
-  <app-prism>
-      <![CDATA[<ng-template #largeFormatCustomSubtitle let-context="context">
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="With custom template for subtitle and top corner logo">
+      <ng-template #largeFormatCustomSubtitle let-context="context">
         <ngx-large-format-dialog-content 
           dialogTitle="Title"
-          [dialogSubtitleTemplate]="myCustomTemplateSubtitle"
-          [logoTemplate]="myCustomTemplateLogo" 
+          [dialogSubtitleTemplate]="myCustomTemplateSubtitle" 
+          [logoTemplate]="myCustomTemplateLogo"
           (closeOrCancel)="onCloseOrCancel()">
           <p>Content</p>
         </ngx-large-format-dialog-content>
@@ -143,974 +125,1135 @@
     
       <button type="button" class="btn" (click)="openDialog({ template: largeFormatCustomSubtitle, format: 'large', closeOnEscape: true })">
         Open Dialog with Custom Template for SubTitle and logo
-      </button>]]>
-    </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Basic w/ Footer">
-  <p>Large Format Dialog can also have a <strong>Footer</strong> by rendering <code>ngx-large-format-dialog-footer</code> component as its content</p>
-
-  <ng-template #largeFormatWithFooter>
-    <ngx-large-format-dialog-content dialogTitle="Title" dialogSubtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
-      <p>Content</p>
-      <ngx-large-format-dialog-footer [style.--item-gap.rem]="1">
-        <button type="button" class="btn btn-primary">Button</button>
-        <button type="button" class="btn btn-primary">Second Button</button>
-      </ngx-large-format-dialog-footer>
-    </ngx-large-format-dialog-content>
-  </ng-template>
-
-  <button type="button" class="btn" (click)="openDialog({ template: largeFormatWithFooter, format: 'large' })">
-    Open Large Dialog w/ Footer
-  </button>
-
-  <app-prism>
-<![CDATA[<ng-template #largeFormatWithFooter>
-  <ngx-large-format-dialog-content dialogTitle="Title" dialogSubtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
-    <p>Content</p>
-
-    <ngx-large-format-dialog-footer [style.--item-gap.rem]="1">
-      <button type="button" class="btn btn-primary">Button</button>
-      <button type="button" class="btn btn-primary">Second Button</button>
-    </ngx-large-format-dialog-footer>
-
-  </ngx-large-format-dialog-content>
-</ng-template>
-
-<button type="button" class="btn" (click)="openDialog({ template: largeFormatWithFooter, format: 'large' })">
-  Open Large Dialog w/ Footer
-</button>]]>
-  </app-prism>
-
-  <p><code>ngx-large-format-dialog-footer</code> will always be at the bottom of the Dialog with the max height of <code>64px</code></p>
-  <p><code>ngx-large-format-dialog-footer</code> applies some default styles to set the children to the center with a default <code>gap</code> of <code>0.5rem</code>. The <code>gap</code> can be customized by using <code>--item-gap</code> CSS variable</p>
-  <p>You can pass in <code>[styleClass]</code> to completely nullify the default styles.</p>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Basic w/ Custom Action Button Text">
-  <p>The semantic of the <strong>Action Button</strong> is that it has a concept of <code>dirty</code> state</p>
-
-  <p>
-    In <code>dirty</code> state, the <strong>Action Button</strong> will mean "<em>Cancelling out everything and close the Dialog</em>".
-    While in <code>clean</code> state, the <strong>Action Button</strong> will mean "<em>Just close the dialog</em>".
-  </p>
-
-  <p>
-    <strong>Action Button</strong> text will change based on this state. By default, <code>Close</code> for <code>clean</code> state
-    and <code>Cancel</code> for <code>dirty</code> state. The text can be customized via <code>Input</code>. However, the consumers need to determine what to do when, upon invoking <strong>Action Button</strong>,
-    the state is <code>dirty</code> or <code>clean</code>
-  </p>
-
-  <ng-template #largeFormatWithDirty>
-    <ng-container *ngIf="{dirty: dirty$ | async, skipDirty: skipDirty$ | async} as vm">
+      </button>
+    
+      <app-prism>
+          <![CDATA[<ng-template #largeFormatCustomSubtitle let-context="context">
+            <ngx-large-format-dialog-content 
+              dialogTitle="Title"
+              [dialogSubtitleTemplate]="myCustomTemplateSubtitle"
+              [logoTemplate]="myCustomTemplateLogo" 
+              (closeOrCancel)="onCloseOrCancel()">
+              <p>Content</p>
+            </ngx-large-format-dialog-content>
+          </ng-template>
+          <ng-template #myCustomTemplateSubtitle>
+            <span>Hi <i class="ngx-icon ngx-trend-level"></i> <i class="ngx-icon ngx-hand"></i></span>
+          </ng-template>
+          <ng-template #myCustomTemplateLogo>
+            <ngx-card-avatar>PLAY</ngx-card-avatar>
+          </ng-template>
+        
+          <button type="button" class="btn" (click)="openDialog({ template: largeFormatCustomSubtitle, format: 'large', closeOnEscape: true })">
+            Open Dialog with Custom Template for SubTitle and logo
+          </button>]]>
+        </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Basic w/ Footer">
+      <p>Large Format Dialog can also have a <strong>Footer</strong> by rendering <code>ngx-large-format-dialog-footer</code> component as its content</p>
+    
+      <ng-template #largeFormatWithFooter>
+        <ngx-large-format-dialog-content dialogTitle="Title" dialogSubtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
+          <p>Content</p>
+          <ngx-large-format-dialog-footer [style.--item-gap.rem]="1">
+            <button type="button" class="btn btn-primary">Button</button>
+            <button type="button" class="btn btn-primary">Second Button</button>
+          </ngx-large-format-dialog-footer>
+        </ngx-large-format-dialog-content>
+      </ng-template>
+    
+      <button type="button" class="btn" (click)="openDialog({ template: largeFormatWithFooter, format: 'large' })">
+        Open Large Dialog w/ Footer
+      </button>
+    
+      <app-prism>
+    <![CDATA[<ng-template #largeFormatWithFooter>
+      <ngx-large-format-dialog-content dialogTitle="Title" dialogSubtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
+        <p>Content</p>
+    
+        <ngx-large-format-dialog-footer [style.--item-gap.rem]="1">
+          <button type="button" class="btn btn-primary">Button</button>
+          <button type="button" class="btn btn-primary">Second Button</button>
+        </ngx-large-format-dialog-footer>
+    
+      </ngx-large-format-dialog-content>
+    </ng-template>
+    
+    <button type="button" class="btn" (click)="openDialog({ template: largeFormatWithFooter, format: 'large' })">
+      Open Large Dialog w/ Footer
+    </button>]]>
+      </app-prism>
+    
+      <p><code>ngx-large-format-dialog-footer</code> will always be at the bottom of the Dialog with the max height of <code>64px</code></p>
+      <p><code>ngx-large-format-dialog-footer</code> applies some default styles to set the children to the center with a default <code>gap</code> of <code>0.5rem</code>. The <code>gap</code> can be customized by using <code>--item-gap</code> CSS variable</p>
+      <p>You can pass in <code>[styleClass]</code> to completely nullify the default styles.</p>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Basic w/ Custom Action Button Text">
+      <p>The semantic of the <strong>Action Button</strong> is that it has a concept of <code>dirty</code> state</p>
+    
+      <p>
+        In <code>dirty</code> state, the <strong>Action Button</strong> will mean "<em>Cancelling out everything and close the Dialog</em>".
+        While in <code>clean</code> state, the <strong>Action Button</strong> will mean "<em>Just close the dialog</em>".
+      </p>
+    
+      <p>
+        <strong>Action Button</strong> text will change based on this state. By default, <code>Close</code> for <code>clean</code> state
+        and <code>Cancel</code> for <code>dirty</code> state. The text can be customized via <code>Input</code>. However, the consumers need to determine what to do when, upon invoking <strong>Action Button</strong>,
+        the state is <code>dirty</code> or <code>clean</code>
+      </p>
+    
+      <ng-template #largeFormatWithDirty>
+        <ng-container *ngIf="{dirty: dirty$ | async, skipDirty: skipDirty$ | async} as vm">
+          <ngx-large-format-dialog-content
+            dialogTitle="Title"
+            dialogSubtitle="Optional Subtitle"
+            [dirty]="vm.dirty"
+            dialogActionTitle="Custom Close"
+            dialogDirtyActionTitle="Custom Cancel"
+            [dirtyAlertOptions]="{title: 'You have CUSTOM unsaved changes'}"
+            [skipDirtyAlert]="vm.skipDirty"
+            (closeOrCancel)="onCloseOrCancel2($event)"
+          >
+            <p>Content</p>
+            <pre>Is dirty: {{ vm.dirty }}</pre>
+            <pre>Will skip dirty alert? {{vm.skipDirty}}</pre>
+            <button type="button" class="btn btn-bordered" (click)="dirty$.next(!dirty$.value)">Toggle dirty</button>
+            <ngx-large-format-dialog-footer>
+              <button type="button" class="btn btn-primary">Button</button>
+            </ngx-large-format-dialog-footer>
+          </ngx-large-format-dialog-content>
+        </ng-container>
+      </ng-template>
+    
+      <button type="button" class="btn" (click)="openDialog({ template: largeFormatWithDirty, format: 'large' })">
+        Open Large Dialog w/ Custom Action Button Text
+      </button>
+    
+      <ngx-tabs>
+        <ngx-tab title="Markup">
+          <app-prism>
+    <![CDATA[<ng-template #largeFormatWithDirty>
       <ngx-large-format-dialog-content
         dialogTitle="Title"
         dialogSubtitle="Optional Subtitle"
-        [dirty]="vm.dirty"
+        [dirty]="dirty$ | async"
         dialogActionTitle="Custom Close"
         dialogDirtyActionTitle="Custom Cancel"
         [dirtyAlertOptions]="{title: 'You have CUSTOM unsaved changes'}"
-        [skipDirtyAlert]="vm.skipDirty"
-        (closeOrCancel)="onCloseOrCancel2($event)"
+        [skipDirtyAlert]="skipDirty$ | async"
       >
         <p>Content</p>
-        <pre>Is dirty: {{ vm.dirty }}</pre>
-        <pre>Will skip dirty alert? {{vm.skipDirty}}</pre>
+        <pre>Is dirty: {{ dirty$ | async }}</pre>
         <button type="button" class="btn btn-bordered" (click)="dirty$.next(!dirty$.value)">Toggle dirty</button>
+    
         <ngx-large-format-dialog-footer>
           <button type="button" class="btn btn-primary">Button</button>
         </ngx-large-format-dialog-footer>
+    
       </ngx-large-format-dialog-content>
-    </ng-container>
-  </ng-template>
-
-  <button type="button" class="btn" (click)="openDialog({ template: largeFormatWithDirty, format: 'large' })">
-    Open Large Dialog w/ Custom Action Button Text
-  </button>
-
-  <ngx-tabs>
-    <ngx-tab title="Markup">
-      <app-prism>
-<![CDATA[<ng-template #largeFormatWithDirty>
-  <ngx-large-format-dialog-content
-    dialogTitle="Title"
-    dialogSubtitle="Optional Subtitle"
-    [dirty]="dirty$ | async"
-    dialogActionTitle="Custom Close"
-    dialogDirtyActionTitle="Custom Cancel"
-    [dirtyAlertOptions]="{title: 'You have CUSTOM unsaved changes'}"
-    [skipDirtyAlert]="skipDirty$ | async"
-  >
-    <p>Content</p>
-    <pre>Is dirty: {{ dirty$ | async }}</pre>
-    <button type="button" class="btn btn-bordered" (click)="dirty$.next(!dirty$.value)">Toggle dirty</button>
-
-    <ngx-large-format-dialog-footer>
-      <button type="button" class="btn btn-primary">Button</button>
-    </ngx-large-format-dialog-footer>
-
-  </ngx-large-format-dialog-content>
-</ng-template>
-
-<button type="button" class="btn" (click)="openDialog({ template: largeFormatWithDirty, format: 'large' })">
-  Open Large Dialog w/ Custom Action Button Text
-</button>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab title="TypeScript">
-      <app-prism language="js">
-<![CDATA[export class SomeComponent {
-  dirty$ = new BehaviorSubject(false);
-
-  openDialog(config) {
-    this.dialogRef = this.dialogService.create(config);
-  }
-
-  onCloseOrCancel2(isDirty: boolean) {
-    alert('isDirty: ' + isDirty);
-    this.dialogRef?.destroy();
-  }
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-
-  <p>When the users attempt to close the Dialog while in <code>dirty</code> state, <code>LargeFormatDialogContent</code> will display a <strong>Confirmation</strong> on close to ensure the users indeed want to close the dialog and discard their changes.</p>
-  <p>You can pass in <code>[dirtyAlertOptions]</code> to customize the content of the <strong>Confirmation</strong></p>
-
-  <p>You can also skip the <strong>Confirmation</strong> altogether by setting <code>[skipDirtyAlert]</code> to <code>true</code>. Try toggling the button below then open the Dialog again</p>
-  <button type="button" class="btn" (click)="skipDirty$.next(!skipDirty$.value)">Toggle <code>skipDirtyAlert</code>: {{skipDirty$ | async}}</button>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="With Stepper">
-  <p>
-    <code>ngx-large-format-dialog-content</code> will be switched to <strong>Stepper Variant</strong> when it finds a <code>LargeFormatDialogStepperDirective</code> instance.
-    If there is a <code>ngx-stepper</code>, custom styles will be applied to this Stepper.
-  </p>
-
-  <ng-template #largeFormatStepper>
-    <ngx-large-format-dialog-content
-      dialogTitle="Another Title"
-      dialogSubtitle="Another Optional Subtitle"
-      (closeOrCancel)="onCloseOrCancel()"
-    >
-      <ng-template largeFormatDialogStepper>
-        <ngx-stepper [readonly]="false" [(active)]="stepIndex">
-          <ngx-step label="Initial Selections">
-            <ng-template ngxStepContent>
-              <p>
-                Ut fusce consectetur tempor per tristique odio lorem adipiscing, litora sodales cursus molestie cras
-                auctor ornare augue, primis massa class interdum nisl conubia quis. Commodo posuere porttitor eleifend hac
-                proin senectus dictum non, aenean iaculis ut venenatis laoreet habitant volutpat, auctor conubia maximus
-                in lobortis nam luctus. Arcu neque dictumst vestibulum feugiat habitant hac habitasse litora enim ad,
-                interdum inceptos aliquet etiam rhoncus ante pulvinar nunc diam conubia sapien, fames posuere nascetur eu
-                commodo turpis velit congue viverra. Curae libero vulputate tristique ipsum tempus, tincidunt habitant
-                iaculis arcu id vitae, quis auctor nisi primis. Etiam nisl imperdiet penatibus nostra ultrices pharetra
-                nascetur nam, nullam varius curae parturient eros sit eu quisque, proin lacinia a ligula egestas senectus
-                malesuada. Viverra curabitur cras amet purus congue imperdiet elit, nec justo per laoreet nisi rhoncus
-                lacus accumsan, leo potenti fusce turpis consectetur blandit. Duis ultricies egestas urna dignissim
-                dictumst cursus, vehicula penatibus mollis euismod quam rutrum, vestibulum vivamus ultrices cubilia
-                malesuada. Proin ad elementum nascetur penatibus dictum accumsan aenean, phasellus quisque convallis odio
-                aptent lectus euismod, hendrerit iaculis nam mattis rhoncus feugiat. Imperdiet mollis lorem risus placerat
-                cursus orci eu viverra donec duis, ligula amet adipiscing elit nec pretium ultrices at vulputate, et
-                sapien praesent felis dui lectus cras taciti nascetur. Amet odio urna sit ex ligula massa tempus consequat
-                augue purus condimentum erat molestie, felis integer placerat mauris aptent orci ultricies laoreet
-                fringilla efficitur ornare in. Curae facilisis et habitasse class ac sem rhoncus varius ad phasellus eget
-                montes fusce est, vel primis commodo suscipit iaculis volutpat sit lacinia nostra tortor porta torquent.
-                Dignissim eros nascetur praesent libero habitant inceptos, natoque efficitur taciti venenatis lacinia
-                lorem finibus, laoreet volutpat quis suspendisse metus. Ultricies facilisi morbi parturient litora
-                hendrerit lobortis, fringilla purus congue nisi cubilia ipsum, commodo ornare himenaeos fermentum
-                ultrices. Adipiscing habitant viverra nibh nulla aliquam ultrices auctor, erat lacinia ridiculus malesuada
-                scelerisque tempor ultricies, curae senectus sit faucibus dapibus tincidunt. Congue tincidunt sodales
-                aptent eleifend dis duis integer quis id semper tempor tellus, tortor platea porta cras ornare odio
-                sagittis netus suscipit adipiscing metus. Inceptos at aliquet purus malesuada tempus, lobortis ac dui
-                platea a facilisis, sem vestibulum potenti dignissim phasellus, etiam vel viverra fringilla. Fringilla
-                mattis turpis magnis sociosqu curae ac, arcu magna scelerisque nibh dictumst dapibus montes, nisi primis
-                eget faucibus vulputate. Porta parturient natoque mattis turpis molestie habitasse condimentum, fermentum
-                porttitor urna ut nisl consectetur pharetra eu, venenatis id rutrum primis facilisi enim. Vehicula
-                ultrices mollis suspendisse velit non, purus egestas class neque faucibus ipsum, mi vivamus arcu felis.
-                Purus taciti laoreet dolor dis a orci platea quam inceptos nostra sapien, luctus porta habitasse ridiculus
-                leo fusce natoque hendrerit ultrices. Dis mattis aptent massa semper sed commodo sociosqu est iaculis
-                fusce, id nam dolor mi malesuada elit vivamus neque ridiculus orci, erat facilisi pharetra suscipit amet
-                lobortis nisl interdum aenean. Vitae turpis commodo per condimentum feugiat lacus tempor et euismod a
-                phasellus nibh, eros ipsum vel orci tincidunt venenatis dictum donec imperdiet erat montes. Fermentum
-                adipiscing integer taciti hendrerit et scelerisque torquent maximus velit ut iaculis, tortor habitant
-                mollis enim facilisi donec sodales semper nec elementum. Iaculis suspendisse aenean torquent nisi
-                facilisis tincidunt pharetra montes tristique, quam sit nascetur commodo diam dictumst faucibus nunc, enim
-                metus pellentesque maximus finibus praesent accumsan hac. Ac curabitur ante sem massa per ut lobortis
-                senectus quam venenatis elit efficitur, vestibulum turpis quis praesent laoreet fames metus ligula cras
-                porta sapien. Nisi taciti sagittis iaculis volutpat primis mattis curabitur ad laoreet tincidunt
-                elementum, posuere curae facilisis et malesuada cursus enim maximus aliquet. Dapibus malesuada rutrum
-                ridiculus dui ultricies eleifend, rhoncus consectetur ac sit posuere, primis aliquet vulputate augue
-                magnis. Blandit per porttitor quam purus vivamus orci, sit potenti hac ante integer ornare, pellentesque
-                sociosqu consectetur suspendisse posuere elementum, nisl tincidunt ultricies in lectus. Suscipit integer
-                morbi nunc elit scelerisque primis ipsum proin lobortis nullam, posuere fringilla id aliquet dui mattis
-                libero non quis convallis urna, ullamcorper aenean mollis ligula blandit vestibulum nostra ridiculus
-                volutpat. Himenaeos neque dis etiam tellus dolor cubilia mattis bibendum mi cursus sodales eu, semper nam
-                rhoncus congue magna nascetur purus ultrices dignissim amet. Varius netus platea egestas volutpat finibus
-                augue elementum, imperdiet facilisis pretium sociosqu justo ornare velit, ultrices pharetra montes
-                maecenas tempor iaculis. Ultrices at etiam ac pellentesque auctor ut, purus ultricies nulla dis hendrerit
-                primis, inceptos ornare ad praesent fringilla. Aliquet aenean id massa fames dapibus tincidunt
-                pellentesque venenatis fermentum, rhoncus magna cras eget morbi mus nascetur natoque, quis luctus torquent
-                augue urna tempus interdum dictum. Vivamus libero facilisis risus netus platea ligula aptent nostra leo
-                finibus habitant, per quisque suscipit lorem penatibus vel duis venenatis dictumst a, eget lacinia augue
-                sollicitudin semper pretium maximus nisi diam montes. Dignissim hac ornare elit turpis posuere venenatis
-                integer, dis himenaeos quam ullamcorper fermentum vivamus sociosqu, ante nunc aliquam purus fames nam.
-                Sollicitudin orci fames rutrum diam adipiscing, arcu ex conubia blandit malesuada purus, fusce quisque
-                rhoncus sed. Volutpat magna nibh id dolor auctor a cubilia, metus risus lacinia et accumsan turpis nam
-                viverra, ornare ut varius ad litora torquent. Venenatis fringilla faucibus integer parturient dis fames
-                scelerisque tempus pretium mattis fermentum felis dolor, viverra ac taciti vehicula conubia eu class
-                senectus tellus sem mi. Vivamus mi class hac venenatis lacus sed dis, netus ad leo lobortis volutpat
-                facilisis condimentum, litora elit tortor tempor rutrum eleifend. Nam scelerisque aenean hac sociosqu
-                fames rutrum taciti mollis eros tempus risus, tortor quam tellus vivamus cras phasellus diam tincidunt nec
-                hendrerit, finibus gravida nullam ridiculus at volutpat felis netus odio fringilla. Hendrerit magnis duis
-                neque maximus aliquet phasellus hac magna curae orci finibus, eleifend pulvinar dapibus sed sollicitudin
-                porttitor pharetra fusce sapien. Inceptos augue tempus gravida dapibus platea fermentum pellentesque risus
-                velit, lacus tristique magna purus suscipit mus ipsum in aliquam, quam facilisis vel sociosqu mi elementum
-                montes euismod. Eu cras metus inceptos magnis pellentesque non lobortis finibus arcu facilisi tincidunt
-                velit tempus, nibh dis class proin lectus feugiat per conubia penatibus bibendum fringilla. Nec efficitur
-                est vehicula condimentum cursus maecenas tempor convallis, sit leo tristique ullamcorper pulvinar lacus
-                in. Parturient ut sit nam et volutpat pulvinar dapibus, iaculis neque magna lectus himenaeos eu
-                pellentesque, dolor finibus tellus ipsum dignissim nisi. Quis lectus nibh rutrum neque phasellus per,
-                aptent auctor quam magnis platea scelerisque vehicula, turpis ut etiam adipiscing fermentum. Dictumst
-                proin varius mauris metus nisi himenaeos nisl, lobortis ultricies malesuada vulputate porta fusce cubilia
-                facilisis, mollis mi hendrerit erat sociosqu ex. Condimentum nascetur fusce habitant non per montes orci
-                elit, sed eu aliquet consectetur ipsum mattis elementum ornare, duis inceptos neque magnis facilisis
-                auctor efficitur. Feugiat semper vehicula nulla eleifend sociosqu lorem diam sem non nisl, ad facilisis
-                libero varius curabitur malesuada in blandit elit inceptos, porttitor fusce conubia ex habitasse aliquam
-                ipsum tempor sagittis. Imperdiet est magna vitae ullamcorper per consectetur sit eget eu, vivamus etiam
-                nullam suspendisse risus pellentesque nibh hac donec, ultrices viverra cras sem felis tempor vestibulum
-                neque. Dictumst nascetur nec purus eu nullam conubia sodales ullamcorper urna massa blandit non malesuada
-                ad, morbi porta interdum sagittis maximus pellentesque tristique libero quis semper a volutpat sit. Magna
-                hac lacinia lacus class nulla torquent, elementum eu augue mi nam risus, a orci ligula vestibulum curae.
-                Lectus hendrerit felis quisque velit conubia dapibus augue nunc imperdiet praesent dictumst vehicula
-                vivamus, nostra aptent penatibus inceptos mus metus nibh donec mollis molestie sodales id. Et varius orci
-                accumsan a netus risus gravida eget dolor habitant, sapien platea cras ex adipiscing hac ac felis
-                phasellus, euismod blandit semper morbi rhoncus torquent suspendisse porttitor tellus. Aenean porttitor ut
-                viverra imperdiet feugiat vehicula, rutrum condimentum erat varius vel, vestibulum donec amet efficitur
-                dictum. Commodo non magnis netus imperdiet, in nullam primis lobortis hac, ultricies justo enim. Praesent
-                nec inceptos ultricies sodales consequat fringilla class venenatis augue faucibus, metus in primis per
-                euismod habitasse aliquet magna. In montes porttitor praesent egestas sollicitudin ridiculus semper
-                senectus donec, sem penatibus sociosqu lobortis conubia condimentum aliquam facilisis, fames nullam
-                torquent ipsum litora proin tristique duis. Dictum a dolor adipiscing vestibulum condimentum facilisis
-                taciti euismod mollis in, efficitur auctor pharetra ut tortor rhoncus malesuada purus arcu scelerisque,
-                nullam vulputate vel donec justo maecenas suspendisse pretium aptent. Conubia risus cubilia neque ut ac
-                ridiculus facilisi sem, eget donec tempus quis ipsum dapibus nam scelerisque, amet rhoncus magnis quam
-                dignissim litora mi. In sit luctus varius nostra nulla ornare platea, parturient ipsum facilisis justo
-                duis mattis viverra phasellus, dictumst quisque quam lacus cursus finibus. Proin ligula potenti magna
-                nullam elementum gravida nam, fusce ante torquent finibus litora tortor imperdiet eget, iaculis pharetra
-                habitasse ac inceptos euismod. Ornare venenatis dignissim mi porttitor fringilla duis, magna lectus
-                inceptos nostra massa. Nostra pharetra cursus consectetur donec pulvinar dictum malesuada convallis
-                fermentum pellentesque nascetur maecenas orci purus fusce natoque, quis augue sociosqu fringilla dictumst
-                duis scelerisque cubilia sem arcu et congue taciti montes. Integer elit commodo mollis tempus nibh morbi
-                torquent nisl dolor, vestibulum eget facilisi eu lectus ultrices dapibus aliquam, platea interdum nam
-                suspendisse lacinia finibus eros fermentum.
-              </p>
-            </ng-template>
-          </ngx-step>
-          <ngx-step label="Conditions">
-            <ng-template ngxStepContent>
-              Step Two
-            </ng-template>
-          </ngx-step>
-          <ngx-step label="Outputs">
-            <ng-template ngxStepContent>
-              Step Three
-            </ng-template>
-          </ngx-step>
-          <ngx-step label="Finish">
-            <ng-template ngxStepContent>
-              Step Four
-            </ng-template>
-          </ngx-step>
-        </ngx-stepper>
-      </ng-template>
-
-      <ngx-large-format-dialog-footer>
-        <button type="button" class="btn btn-bordered">Save and Close</button>
-        <button type="button" class="btn btn-primary">Save and Continue</button>
-      </ngx-large-format-dialog-footer>
-    </ngx-large-format-dialog-content>
-  </ng-template>
-
-  <ng-template #largeFormatStepperWrap>
-    <ngx-large-format-dialog-content
-      dialogTitle="Another Title"
-      dialogSubtitle="Another Optional Subtitle"
-      (closeOrCancel)="onCloseOrCancel()"
-    >
-      <ng-template largeFormatDialogStepper>
-        <app-nested-stepper [stepIndex]="stepIndex"></app-nested-stepper>
-      </ng-template>
-
-      <ngx-large-format-dialog-footer>
-        <button type="button" class="btn btn-bordered">Save and Close</button>
-        <button type="button" class="btn btn-primary">Save and Continue</button>
-      </ngx-large-format-dialog-footer>
-    </ngx-large-format-dialog-content>
-  </ng-template>
-
-  <ng-template #largeFormatStepperNested>
-    <ngx-large-format-dialog-content
-      dialogTitle="Another Title"
-      dialogSubtitle="Another Optional Subtitle"
-      (closeOrCancel)="onCloseOrCancel()"
-    >
-      <ng-template largeFormatDialogStepper>
-        <ngx-stepper [readonly]="false" [(active)]="stepIndex">
-          <ngx-step label="Initial Selections">
-            <ng-template ngxStepContent>
-              <p>Some nested stepper</p>
-              <ngx-stepper [readonly]="false" largeFormatDialogSubStepper>
-                <ngx-step label="Nested One">
-                  <ng-template ngxStepContent>
-                    Nested Step One
-                  </ng-template>
-                </ngx-step>
-                <ngx-step label="Nested Two">
-                  <ng-template ngxStepContent>
-                    Nested Step Two
-                  </ng-template>
-                </ngx-step>
-                <ngx-step label="Nested Three">
-                  <ng-template ngxStepContent>
-                    Nested Step Three
-                  </ng-template>
-                </ngx-step>
-              </ngx-stepper>
-            </ng-template>
-          </ngx-step>
-          <ngx-step label="Conditions">
-            <ng-template ngxStepContent>
-              Step Two
-            </ng-template>
-          </ngx-step>
-          <ngx-step label="Outputs">
-            <ng-template ngxStepContent>
-              Step Three
-            </ng-template>
-          </ngx-step>
-          <ngx-step label="Finish">
-            <ng-template ngxStepContent>
-              Step Four
-            </ng-template>
-          </ngx-step>
-        </ngx-stepper>
-      </ng-template>
-
-      <ngx-large-format-dialog-footer>
-        <button type="button" class="btn btn-bordered">Save and Close</button>
-        <button type="button" class="btn btn-primary">Save and Continue</button>
-      </ngx-large-format-dialog-footer>
-    </ngx-large-format-dialog-content>
-  </ng-template>
-
-  <button type="button" class="btn" (click)="openDialog({ template: largeFormatStepper, format: 'large' })">
-    Open Large Dialog Stepper
-  </button>
-
-  <app-prism>
-<![CDATA[<ng-template #largeFormatStepper>
-  <ngx-large-format-dialog-content
-    dialogTitle="Another Title"
-    dialogSubtitle="Another Optional Subtitle"
-    [style.--stepper-header-custom-offset.px]="200"
-    (closeOrCancel)="onCloseOrCancel()"
-  >
-    <!-- add      👇👇 largeFormatDialogStepper directive -->
-    <ng-template largeFormatDialogStepper>
-      <ngx-stepper [readonly]="false" [(active)]="stepIndex">
-        <ngx-step label="Initial Selections">
-          <ng-template ngxStepContent>
-            Step One
-          </ng-template>
-        </ngx-step>
-        <ngx-step label="Conditions">
-          <ng-template ngxStepContent>
-            Step Two
-          </ng-template>
-        </ngx-step>
-        <ngx-step label="Outputs">
-          <ng-template ngxStepContent>
-            Step Three
-          </ng-template>
-        </ngx-step>
-        <ngx-step label="Finish">
-          <ng-template ngxStepContent>
-            Step Four
-          </ng-template>
-        </ngx-step>
-      </ngx-stepper>
     </ng-template>
-
-    <ngx-large-format-dialog-footer>
-      <button type="button" class="btn btn-bordered">Save and Close</button>
-      <button type="button" class="btn btn-primary">Save and Continue</button>
-    </ngx-large-format-dialog-footer>
-
-  </ngx-large-format-dialog-content>
-</ng-template>
-
-<button type="button" class="btn" (click)="openDialog({ template: largeFormatStepper, format: 'large' })">
-  Open Large Dialog Stepper
-</button>]]>
-  </app-prism>
-
-  <p>You can also wrap <code>ngx-stepper</code> inside a custom component for clean template purposes</p>
-  <button type="button" class="btn" (click)="openDialog({ template: largeFormatStepperWrap, format: 'large' })">
-    Open Large Dialog Stepper Nested
-  </button>
-
-  <app-prism>
-<![CDATA[<ng-template #largeFormatStepperWrap>
-  <ngx-large-format-dialog-content
-    dialogTitle="Another Title"
-    dialogSubtitle="Another Optional Subtitle"
-    [style.--stepper-header-custom-offset.px]="200"
-    (closeOrCancel)="onCloseOrCancel()"
-  >
-    <ng-template largeFormatDialogStepper>
-      <app-nested-stepper [stepIndex]="stepIndex"></app-nested-stepper>
-    </ng-template>
-
-    <ngx-large-format-dialog-footer>
-      <button type="button" class="btn btn-bordered">Save and Close</button>
-      <button type="button" class="btn btn-primary">Save and Continue</button>
-    </ngx-large-format-dialog-footer>
-
-  </ngx-large-format-dialog-content>
-</ng-template>
-
-<button type="button" class="btn" (click)="openDialog({ template: largeFormatStepper, format: 'large' })">
-  Open Large Dialog Stepper Nested
-</button>]]>
-  </app-prism>
-
-  <p>
-    If you want to have sub-Stepper inside of the main Stepper, while triggering <strong>Stepper Variant</strong>, you can put <code>largeFormatDialogSubStepper</code> on the sub <code>ngx-stepper</code>.
-    This will tell the <code>LargeFormatDialogContent</code> to <strong>NOT</strong> apply the custom stepper styles to this sub Stepper.
-  </p>
-  <button type="button" class="btn" (click)="openDialog({ template: largeFormatStepperNested, format: 'large' })">
-    Open Large Dialog Stepper with sub Stepper
-  </button>
-
-  <app-prism>
-<![CDATA[<ng-template #largeFormatStepperNested>
-  <ngx-large-format-dialog-content
-    dialogTitle="Another Title"
-    dialogSubtitle="Another Optional Subtitle"
-    [style.--stepper-header-custom-offset.px]="200"
-    (closeOrCancel)="onCloseOrCancel()"
-  >
-
-    <ng-template largeFormatDialogStepper>
-      <ngx-stepper [readonly]="false" [(active)]="stepIndex">
-        <ngx-step label="Initial Selections">
-          <ng-template ngxStepContent>
-            <p>Some nested stepper</p>
-            <!-- add      👇👇 largeFormatDialogSubStepper directive -->
-            <ngx-stepper largeFormatDialogSubStepper [readonly]="false">
-              <ngx-step label="Nested One">
+    
+    <button type="button" class="btn" (click)="openDialog({ template: largeFormatWithDirty, format: 'large' })">
+      Open Large Dialog w/ Custom Action Button Text
+    </button>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab title="TypeScript">
+          <app-prism language="js">
+    <![CDATA[export class SomeComponent {
+      dirty$ = new BehaviorSubject(false);
+    
+      openDialog(config) {
+        this.dialogRef = this.dialogService.create(config);
+      }
+    
+      onCloseOrCancel2(isDirty: boolean) {
+        alert('isDirty: ' + isDirty);
+        this.dialogRef?.destroy();
+      }
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    
+      <p>When the users attempt to close the Dialog while in <code>dirty</code> state, <code>LargeFormatDialogContent</code> will display a <strong>Confirmation</strong> on close to ensure the users indeed want to close the dialog and discard their changes.</p>
+      <p>You can pass in <code>[dirtyAlertOptions]</code> to customize the content of the <strong>Confirmation</strong></p>
+    
+      <p>You can also skip the <strong>Confirmation</strong> altogether by setting <code>[skipDirtyAlert]</code> to <code>true</code>. Try toggling the button below then open the Dialog again</p>
+      <button type="button" class="btn" (click)="skipDirty$.next(!skipDirty$.value)">Toggle <code>skipDirtyAlert</code>: {{skipDirty$ | async}}</button>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="With Stepper">
+      <p>
+        <code>ngx-large-format-dialog-content</code> will be switched to <strong>Stepper Variant</strong> when it finds a <code>LargeFormatDialogStepperDirective</code> instance.
+        If there is a <code>ngx-stepper</code>, custom styles will be applied to this Stepper.
+      </p>
+    
+      <ng-template #largeFormatStepper>
+        <ngx-large-format-dialog-content
+          dialogTitle="Another Title"
+          dialogSubtitle="Another Optional Subtitle"
+          (closeOrCancel)="onCloseOrCancel()"
+        >
+          <ng-template largeFormatDialogStepper>
+            <ngx-stepper [readonly]="false" [(active)]="stepIndex">
+              <ngx-step label="Initial Selections">
                 <ng-template ngxStepContent>
-                  Nested Step One
+                  <p>
+                    Ut fusce consectetur tempor per tristique odio lorem adipiscing, litora sodales cursus molestie cras
+                    auctor ornare augue, primis massa class interdum nisl conubia quis. Commodo posuere porttitor eleifend hac
+                    proin senectus dictum non, aenean iaculis ut venenatis laoreet habitant volutpat, auctor conubia maximus
+                    in lobortis nam luctus. Arcu neque dictumst vestibulum feugiat habitant hac habitasse litora enim ad,
+                    interdum inceptos aliquet etiam rhoncus ante pulvinar nunc diam conubia sapien, fames posuere nascetur eu
+                    commodo turpis velit congue viverra. Curae libero vulputate tristique ipsum tempus, tincidunt habitant
+                    iaculis arcu id vitae, quis auctor nisi primis. Etiam nisl imperdiet penatibus nostra ultrices pharetra
+                    nascetur nam, nullam varius curae parturient eros sit eu quisque, proin lacinia a ligula egestas senectus
+                    malesuada. Viverra curabitur cras amet purus congue imperdiet elit, nec justo per laoreet nisi rhoncus
+                    lacus accumsan, leo potenti fusce turpis consectetur blandit. Duis ultricies egestas urna dignissim
+                    dictumst cursus, vehicula penatibus mollis euismod quam rutrum, vestibulum vivamus ultrices cubilia
+                    malesuada. Proin ad elementum nascetur penatibus dictum accumsan aenean, phasellus quisque convallis odio
+                    aptent lectus euismod, hendrerit iaculis nam mattis rhoncus feugiat. Imperdiet mollis lorem risus placerat
+                    cursus orci eu viverra donec duis, ligula amet adipiscing elit nec pretium ultrices at vulputate, et
+                    sapien praesent felis dui lectus cras taciti nascetur. Amet odio urna sit ex ligula massa tempus consequat
+                    augue purus condimentum erat molestie, felis integer placerat mauris aptent orci ultricies laoreet
+                    fringilla efficitur ornare in. Curae facilisis et habitasse class ac sem rhoncus varius ad phasellus eget
+                    montes fusce est, vel primis commodo suscipit iaculis volutpat sit lacinia nostra tortor porta torquent.
+                    Dignissim eros nascetur praesent libero habitant inceptos, natoque efficitur taciti venenatis lacinia
+                    lorem finibus, laoreet volutpat quis suspendisse metus. Ultricies facilisi morbi parturient litora
+                    hendrerit lobortis, fringilla purus congue nisi cubilia ipsum, commodo ornare himenaeos fermentum
+                    ultrices. Adipiscing habitant viverra nibh nulla aliquam ultrices auctor, erat lacinia ridiculus malesuada
+                    scelerisque tempor ultricies, curae senectus sit faucibus dapibus tincidunt. Congue tincidunt sodales
+                    aptent eleifend dis duis integer quis id semper tempor tellus, tortor platea porta cras ornare odio
+                    sagittis netus suscipit adipiscing metus. Inceptos at aliquet purus malesuada tempus, lobortis ac dui
+                    platea a facilisis, sem vestibulum potenti dignissim phasellus, etiam vel viverra fringilla. Fringilla
+                    mattis turpis magnis sociosqu curae ac, arcu magna scelerisque nibh dictumst dapibus montes, nisi primis
+                    eget faucibus vulputate. Porta parturient natoque mattis turpis molestie habitasse condimentum, fermentum
+                    porttitor urna ut nisl consectetur pharetra eu, venenatis id rutrum primis facilisi enim. Vehicula
+                    ultrices mollis suspendisse velit non, purus egestas class neque faucibus ipsum, mi vivamus arcu felis.
+                    Purus taciti laoreet dolor dis a orci platea quam inceptos nostra sapien, luctus porta habitasse ridiculus
+                    leo fusce natoque hendrerit ultrices. Dis mattis aptent massa semper sed commodo sociosqu est iaculis
+                    fusce, id nam dolor mi malesuada elit vivamus neque ridiculus orci, erat facilisi pharetra suscipit amet
+                    lobortis nisl interdum aenean. Vitae turpis commodo per condimentum feugiat lacus tempor et euismod a
+                    phasellus nibh, eros ipsum vel orci tincidunt venenatis dictum donec imperdiet erat montes. Fermentum
+                    adipiscing integer taciti hendrerit et scelerisque torquent maximus velit ut iaculis, tortor habitant
+                    mollis enim facilisi donec sodales semper nec elementum. Iaculis suspendisse aenean torquent nisi
+                    facilisis tincidunt pharetra montes tristique, quam sit nascetur commodo diam dictumst faucibus nunc, enim
+                    metus pellentesque maximus finibus praesent accumsan hac. Ac curabitur ante sem massa per ut lobortis
+                    senectus quam venenatis elit efficitur, vestibulum turpis quis praesent laoreet fames metus ligula cras
+                    porta sapien. Nisi taciti sagittis iaculis volutpat primis mattis curabitur ad laoreet tincidunt
+                    elementum, posuere curae facilisis et malesuada cursus enim maximus aliquet. Dapibus malesuada rutrum
+                    ridiculus dui ultricies eleifend, rhoncus consectetur ac sit posuere, primis aliquet vulputate augue
+                    magnis. Blandit per porttitor quam purus vivamus orci, sit potenti hac ante integer ornare, pellentesque
+                    sociosqu consectetur suspendisse posuere elementum, nisl tincidunt ultricies in lectus. Suscipit integer
+                    morbi nunc elit scelerisque primis ipsum proin lobortis nullam, posuere fringilla id aliquet dui mattis
+                    libero non quis convallis urna, ullamcorper aenean mollis ligula blandit vestibulum nostra ridiculus
+                    volutpat. Himenaeos neque dis etiam tellus dolor cubilia mattis bibendum mi cursus sodales eu, semper nam
+                    rhoncus congue magna nascetur purus ultrices dignissim amet. Varius netus platea egestas volutpat finibus
+                    augue elementum, imperdiet facilisis pretium sociosqu justo ornare velit, ultrices pharetra montes
+                    maecenas tempor iaculis. Ultrices at etiam ac pellentesque auctor ut, purus ultricies nulla dis hendrerit
+                    primis, inceptos ornare ad praesent fringilla. Aliquet aenean id massa fames dapibus tincidunt
+                    pellentesque venenatis fermentum, rhoncus magna cras eget morbi mus nascetur natoque, quis luctus torquent
+                    augue urna tempus interdum dictum. Vivamus libero facilisis risus netus platea ligula aptent nostra leo
+                    finibus habitant, per quisque suscipit lorem penatibus vel duis venenatis dictumst a, eget lacinia augue
+                    sollicitudin semper pretium maximus nisi diam montes. Dignissim hac ornare elit turpis posuere venenatis
+                    integer, dis himenaeos quam ullamcorper fermentum vivamus sociosqu, ante nunc aliquam purus fames nam.
+                    Sollicitudin orci fames rutrum diam adipiscing, arcu ex conubia blandit malesuada purus, fusce quisque
+                    rhoncus sed. Volutpat magna nibh id dolor auctor a cubilia, metus risus lacinia et accumsan turpis nam
+                    viverra, ornare ut varius ad litora torquent. Venenatis fringilla faucibus integer parturient dis fames
+                    scelerisque tempus pretium mattis fermentum felis dolor, viverra ac taciti vehicula conubia eu class
+                    senectus tellus sem mi. Vivamus mi class hac venenatis lacus sed dis, netus ad leo lobortis volutpat
+                    facilisis condimentum, litora elit tortor tempor rutrum eleifend. Nam scelerisque aenean hac sociosqu
+                    fames rutrum taciti mollis eros tempus risus, tortor quam tellus vivamus cras phasellus diam tincidunt nec
+                    hendrerit, finibus gravida nullam ridiculus at volutpat felis netus odio fringilla. Hendrerit magnis duis
+                    neque maximus aliquet phasellus hac magna curae orci finibus, eleifend pulvinar dapibus sed sollicitudin
+                    porttitor pharetra fusce sapien. Inceptos augue tempus gravida dapibus platea fermentum pellentesque risus
+                    velit, lacus tristique magna purus suscipit mus ipsum in aliquam, quam facilisis vel sociosqu mi elementum
+                    montes euismod. Eu cras metus inceptos magnis pellentesque non lobortis finibus arcu facilisi tincidunt
+                    velit tempus, nibh dis class proin lectus feugiat per conubia penatibus bibendum fringilla. Nec efficitur
+                    est vehicula condimentum cursus maecenas tempor convallis, sit leo tristique ullamcorper pulvinar lacus
+                    in. Parturient ut sit nam et volutpat pulvinar dapibus, iaculis neque magna lectus himenaeos eu
+                    pellentesque, dolor finibus tellus ipsum dignissim nisi. Quis lectus nibh rutrum neque phasellus per,
+                    aptent auctor quam magnis platea scelerisque vehicula, turpis ut etiam adipiscing fermentum. Dictumst
+                    proin varius mauris metus nisi himenaeos nisl, lobortis ultricies malesuada vulputate porta fusce cubilia
+                    facilisis, mollis mi hendrerit erat sociosqu ex. Condimentum nascetur fusce habitant non per montes orci
+                    elit, sed eu aliquet consectetur ipsum mattis elementum ornare, duis inceptos neque magnis facilisis
+                    auctor efficitur. Feugiat semper vehicula nulla eleifend sociosqu lorem diam sem non nisl, ad facilisis
+                    libero varius curabitur malesuada in blandit elit inceptos, porttitor fusce conubia ex habitasse aliquam
+                    ipsum tempor sagittis. Imperdiet est magna vitae ullamcorper per consectetur sit eget eu, vivamus etiam
+                    nullam suspendisse risus pellentesque nibh hac donec, ultrices viverra cras sem felis tempor vestibulum
+                    neque. Dictumst nascetur nec purus eu nullam conubia sodales ullamcorper urna massa blandit non malesuada
+                    ad, morbi porta interdum sagittis maximus pellentesque tristique libero quis semper a volutpat sit. Magna
+                    hac lacinia lacus class nulla torquent, elementum eu augue mi nam risus, a orci ligula vestibulum curae.
+                    Lectus hendrerit felis quisque velit conubia dapibus augue nunc imperdiet praesent dictumst vehicula
+                    vivamus, nostra aptent penatibus inceptos mus metus nibh donec mollis molestie sodales id. Et varius orci
+                    accumsan a netus risus gravida eget dolor habitant, sapien platea cras ex adipiscing hac ac felis
+                    phasellus, euismod blandit semper morbi rhoncus torquent suspendisse porttitor tellus. Aenean porttitor ut
+                    viverra imperdiet feugiat vehicula, rutrum condimentum erat varius vel, vestibulum donec amet efficitur
+                    dictum. Commodo non magnis netus imperdiet, in nullam primis lobortis hac, ultricies justo enim. Praesent
+                    nec inceptos ultricies sodales consequat fringilla class venenatis augue faucibus, metus in primis per
+                    euismod habitasse aliquet magna. In montes porttitor praesent egestas sollicitudin ridiculus semper
+                    senectus donec, sem penatibus sociosqu lobortis conubia condimentum aliquam facilisis, fames nullam
+                    torquent ipsum litora proin tristique duis. Dictum a dolor adipiscing vestibulum condimentum facilisis
+                    taciti euismod mollis in, efficitur auctor pharetra ut tortor rhoncus malesuada purus arcu scelerisque,
+                    nullam vulputate vel donec justo maecenas suspendisse pretium aptent. Conubia risus cubilia neque ut ac
+                    ridiculus facilisi sem, eget donec tempus quis ipsum dapibus nam scelerisque, amet rhoncus magnis quam
+                    dignissim litora mi. In sit luctus varius nostra nulla ornare platea, parturient ipsum facilisis justo
+                    duis mattis viverra phasellus, dictumst quisque quam lacus cursus finibus. Proin ligula potenti magna
+                    nullam elementum gravida nam, fusce ante torquent finibus litora tortor imperdiet eget, iaculis pharetra
+                    habitasse ac inceptos euismod. Ornare venenatis dignissim mi porttitor fringilla duis, magna lectus
+                    inceptos nostra massa. Nostra pharetra cursus consectetur donec pulvinar dictum malesuada convallis
+                    fermentum pellentesque nascetur maecenas orci purus fusce natoque, quis augue sociosqu fringilla dictumst
+                    duis scelerisque cubilia sem arcu et congue taciti montes. Integer elit commodo mollis tempus nibh morbi
+                    torquent nisl dolor, vestibulum eget facilisi eu lectus ultrices dapibus aliquam, platea interdum nam
+                    suspendisse lacinia finibus eros fermentum.
+                  </p>
                 </ng-template>
               </ngx-step>
-              <ngx-step label="Nested Two">
+              <ngx-step label="Conditions">
                 <ng-template ngxStepContent>
-                  Nested Step Two
+                  Step Two
                 </ng-template>
               </ngx-step>
-              <ngx-step label="Nested Three">
+              <ngx-step label="Outputs">
                 <ng-template ngxStepContent>
-                  Nested Step Three
+                  Step Three
+                </ng-template>
+              </ngx-step>
+              <ngx-step label="Finish">
+                <ng-template ngxStepContent>
+                  Step Four
                 </ng-template>
               </ngx-step>
             </ngx-stepper>
           </ng-template>
-        </ngx-step>
-        <ngx-step label="Conditions">
-          <ng-template ngxStepContent>
-            Step Two
+    
+          <ngx-large-format-dialog-footer>
+            <button type="button" class="btn btn-bordered">Save and Close</button>
+            <button type="button" class="btn btn-primary">Save and Continue</button>
+          </ngx-large-format-dialog-footer>
+        </ngx-large-format-dialog-content>
+      </ng-template>
+    
+      <ng-template #largeFormatStepperWrap>
+        <ngx-large-format-dialog-content
+          dialogTitle="Another Title"
+          dialogSubtitle="Another Optional Subtitle"
+          (closeOrCancel)="onCloseOrCancel()"
+        >
+          <ng-template largeFormatDialogStepper>
+            <app-nested-stepper [stepIndex]="stepIndex"></app-nested-stepper>
           </ng-template>
-        </ngx-step>
-        <ngx-step label="Outputs">
-          <ng-template ngxStepContent>
-            Step Three
+    
+          <ngx-large-format-dialog-footer>
+            <button type="button" class="btn btn-bordered">Save and Close</button>
+            <button type="button" class="btn btn-primary">Save and Continue</button>
+          </ngx-large-format-dialog-footer>
+        </ngx-large-format-dialog-content>
+      </ng-template>
+    
+      <ng-template #largeFormatStepperNested>
+        <ngx-large-format-dialog-content
+          dialogTitle="Another Title"
+          dialogSubtitle="Another Optional Subtitle"
+          (closeOrCancel)="onCloseOrCancel()"
+        >
+          <ng-template largeFormatDialogStepper>
+            <ngx-stepper [readonly]="false" [(active)]="stepIndex">
+              <ngx-step label="Initial Selections">
+                <ng-template ngxStepContent>
+                  <p>Some nested stepper</p>
+                  <ngx-stepper [readonly]="false" largeFormatDialogSubStepper>
+                    <ngx-step label="Nested One">
+                      <ng-template ngxStepContent>
+                        Nested Step One
+                      </ng-template>
+                    </ngx-step>
+                    <ngx-step label="Nested Two">
+                      <ng-template ngxStepContent>
+                        Nested Step Two
+                      </ng-template>
+                    </ngx-step>
+                    <ngx-step label="Nested Three">
+                      <ng-template ngxStepContent>
+                        Nested Step Three
+                      </ng-template>
+                    </ngx-step>
+                  </ngx-stepper>
+                </ng-template>
+              </ngx-step>
+              <ngx-step label="Conditions">
+                <ng-template ngxStepContent>
+                  Step Two
+                </ng-template>
+              </ngx-step>
+              <ngx-step label="Outputs">
+                <ng-template ngxStepContent>
+                  Step Three
+                </ng-template>
+              </ngx-step>
+              <ngx-step label="Finish">
+                <ng-template ngxStepContent>
+                  Step Four
+                </ng-template>
+              </ngx-step>
+            </ngx-stepper>
           </ng-template>
-        </ngx-step>
-        <ngx-step label="Finish">
-          <ng-template ngxStepContent>
-            Step Four
-          </ng-template>
-        </ngx-step>
-      </ngx-stepper>
+    
+          <ngx-large-format-dialog-footer>
+            <button type="button" class="btn btn-bordered">Save and Close</button>
+            <button type="button" class="btn btn-primary">Save and Continue</button>
+          </ngx-large-format-dialog-footer>
+        </ngx-large-format-dialog-content>
+      </ng-template>
+    
+      <button type="button" class="btn" (click)="openDialog({ template: largeFormatStepper, format: 'large' })">
+        Open Large Dialog Stepper
+      </button>
+    
+      <app-prism>
+    <![CDATA[<ng-template #largeFormatStepper>
+      <ngx-large-format-dialog-content
+        dialogTitle="Another Title"
+        dialogSubtitle="Another Optional Subtitle"
+        [style.--stepper-header-custom-offset.px]="200"
+        (closeOrCancel)="onCloseOrCancel()"
+      >
+        <!-- add      👇👇 largeFormatDialogStepper directive -->
+        <ng-template largeFormatDialogStepper>
+          <ngx-stepper [readonly]="false" [(active)]="stepIndex">
+            <ngx-step label="Initial Selections">
+              <ng-template ngxStepContent>
+                Step One
+              </ng-template>
+            </ngx-step>
+            <ngx-step label="Conditions">
+              <ng-template ngxStepContent>
+                Step Two
+              </ng-template>
+            </ngx-step>
+            <ngx-step label="Outputs">
+              <ng-template ngxStepContent>
+                Step Three
+              </ng-template>
+            </ngx-step>
+            <ngx-step label="Finish">
+              <ng-template ngxStepContent>
+                Step Four
+              </ng-template>
+            </ngx-step>
+          </ngx-stepper>
+        </ng-template>
+    
+        <ngx-large-format-dialog-footer>
+          <button type="button" class="btn btn-bordered">Save and Close</button>
+          <button type="button" class="btn btn-primary">Save and Continue</button>
+        </ngx-large-format-dialog-footer>
+    
+      </ngx-large-format-dialog-content>
     </ng-template>
-
-    <ngx-large-format-dialog-footer>
-      <button type="button" class="btn btn-bordered">Save and Close</button>
-      <button type="button" class="btn btn-primary">Save and Continue</button>
-    </ngx-large-format-dialog-footer>
-
-  </ngx-large-format-dialog-content>
-</ng-template>
-
-<button type="button" class="btn" (click)="openDialog({ template: largeFormatStepper, format: 'large' })">
-  Open Large Dialog Stepper Nested
-</button>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="With Tabs">
-  <p>
-    <code>ngx-large-format-dialog-content</code> will be switched to <strong>Tabs Variant</strong> when it finds a <code>LargeFormatDialogTabsDirective</code> instance.
-    If there is a <code>ngx-tabs</code>, custom styles will be applied to this Tabs.
-  </p>
-
-  <ng-template #largeFormatTabs>
-    <ngx-large-format-dialog-content
-      dialogTitle="Another Title Tabs"
-      dialogSubtitle="Another Optional Subtitle Tabs"
-      (closeOrCancel)="onCloseOrCancel()"
-    >
-      <ng-template largeFormatDialogTabs>
-        <ngx-tabs>
-          <ngx-tab label="Initial Selections">
-            <ng-template ngxIfTabActive>
-              <p>
-                Ut fusce consectetur tempor per tristique odio lorem adipiscing, litora sodales cursus molestie cras
-                auctor ornare augue, primis massa class interdum nisl conubia quis. Commodo posuere porttitor eleifend hac
-                proin senectus dictum non, aenean iaculis ut venenatis laoreet habitant volutpat, auctor conubia maximus
-                in lobortis nam luctus. Arcu neque dictumst vestibulum feugiat habitant hac habitasse litora enim ad,
-                interdum inceptos aliquet etiam rhoncus ante pulvinar nunc diam conubia sapien, fames posuere nascetur eu
-                commodo turpis velit congue viverra. Curae libero vulputate tristique ipsum tempus, tincidunt habitant
-                iaculis arcu id vitae, quis auctor nisi primis. Etiam nisl imperdiet penatibus nostra ultrices pharetra
-                nascetur nam, nullam varius curae parturient eros sit eu quisque, proin lacinia a ligula egestas senectus
-                malesuada. Viverra curabitur cras amet purus congue imperdiet elit, nec justo per laoreet nisi rhoncus
-                lacus accumsan, leo potenti fusce turpis consectetur blandit. Duis ultricies egestas urna dignissim
-                dictumst cursus, vehicula penatibus mollis euismod quam rutrum, vestibulum vivamus ultrices cubilia
-                malesuada. Proin ad elementum nascetur penatibus dictum accumsan aenean, phasellus quisque convallis odio
-                aptent lectus euismod, hendrerit iaculis nam mattis rhoncus feugiat. Imperdiet mollis lorem risus placerat
-                cursus orci eu viverra donec duis, ligula amet adipiscing elit nec pretium ultrices at vulputate, et
-                sapien praesent felis dui lectus cras taciti nascetur. Amet odio urna sit ex ligula massa tempus consequat
-                augue purus condimentum erat molestie, felis integer placerat mauris aptent orci ultricies laoreet
-                fringilla efficitur ornare in. Curae facilisis et habitasse class ac sem rhoncus varius ad phasellus eget
-                montes fusce est, vel primis commodo suscipit iaculis volutpat sit lacinia nostra tortor porta torquent.
-                Dignissim eros nascetur praesent libero habitant inceptos, natoque efficitur taciti venenatis lacinia
-                lorem finibus, laoreet volutpat quis suspendisse metus. Ultricies facilisi morbi parturient litora
-                hendrerit lobortis, fringilla purus congue nisi cubilia ipsum, commodo ornare himenaeos fermentum
-                ultrices. Adipiscing habitant viverra nibh nulla aliquam ultrices auctor, erat lacinia ridiculus malesuada
-                scelerisque tempor ultricies, curae senectus sit faucibus dapibus tincidunt. Congue tincidunt sodales
-                aptent eleifend dis duis integer quis id semper tempor tellus, tortor platea porta cras ornare odio
-                sagittis netus suscipit adipiscing metus. Inceptos at aliquet purus malesuada tempus, lobortis ac dui
-                platea a facilisis, sem vestibulum potenti dignissim phasellus, etiam vel viverra fringilla. Fringilla
-                mattis turpis magnis sociosqu curae ac, arcu magna scelerisque nibh dictumst dapibus montes, nisi primis
-                eget faucibus vulputate. Porta parturient natoque mattis turpis molestie habitasse condimentum, fermentum
-                porttitor urna ut nisl consectetur pharetra eu, venenatis id rutrum primis facilisi enim. Vehicula
-                ultrices mollis suspendisse velit non, purus egestas class neque faucibus ipsum, mi vivamus arcu felis.
-                Purus taciti laoreet dolor dis a orci platea quam inceptos nostra sapien, luctus porta habitasse ridiculus
-                leo fusce natoque hendrerit ultrices. Dis mattis aptent massa semper sed commodo sociosqu est iaculis
-                fusce, id nam dolor mi malesuada elit vivamus neque ridiculus orci, erat facilisi pharetra suscipit amet
-                lobortis nisl interdum aenean. Vitae turpis commodo per condimentum feugiat lacus tempor et euismod a
-                phasellus nibh, eros ipsum vel orci tincidunt venenatis dictum donec imperdiet erat montes. Fermentum
-                adipiscing integer taciti hendrerit et scelerisque torquent maximus velit ut iaculis, tortor habitant
-                mollis enim facilisi donec sodales semper nec elementum. Iaculis suspendisse aenean torquent nisi
-                facilisis tincidunt pharetra montes tristique, quam sit nascetur commodo diam dictumst faucibus nunc, enim
-                metus pellentesque maximus finibus praesent accumsan hac. Ac curabitur ante sem massa per ut lobortis
-                senectus quam venenatis elit efficitur, vestibulum turpis quis praesent laoreet fames metus ligula cras
-                porta sapien. Nisi taciti sagittis iaculis volutpat primis mattis curabitur ad laoreet tincidunt
-                elementum, posuere curae facilisis et malesuada cursus enim maximus aliquet. Dapibus malesuada rutrum
-                ridiculus dui ultricies eleifend, rhoncus consectetur ac sit posuere, primis aliquet vulputate augue
-                magnis. Blandit per porttitor quam purus vivamus orci, sit potenti hac ante integer ornare, pellentesque
-                sociosqu consectetur suspendisse posuere elementum, nisl tincidunt ultricies in lectus. Suscipit integer
-                morbi nunc elit scelerisque primis ipsum proin lobortis nullam, posuere fringilla id aliquet dui mattis
-                libero non quis convallis urna, ullamcorper aenean mollis ligula blandit vestibulum nostra ridiculus
-                volutpat. Himenaeos neque dis etiam tellus dolor cubilia mattis bibendum mi cursus sodales eu, semper nam
-                rhoncus congue magna nascetur purus ultrices dignissim amet. Varius netus platea egestas volutpat finibus
-                augue elementum, imperdiet facilisis pretium sociosqu justo ornare velit, ultrices pharetra montes
-                maecenas tempor iaculis. Ultrices at etiam ac pellentesque auctor ut, purus ultricies nulla dis hendrerit
-                primis, inceptos ornare ad praesent fringilla. Aliquet aenean id massa fames dapibus tincidunt
-                pellentesque venenatis fermentum, rhoncus magna cras eget morbi mus nascetur natoque, quis luctus torquent
-                augue urna tempus interdum dictum. Vivamus libero facilisis risus netus platea ligula aptent nostra leo
-                finibus habitant, per quisque suscipit lorem penatibus vel duis venenatis dictumst a, eget lacinia augue
-                sollicitudin semper pretium maximus nisi diam montes. Dignissim hac ornare elit turpis posuere venenatis
-                integer, dis himenaeos quam ullamcorper fermentum vivamus sociosqu, ante nunc aliquam purus fames nam.
-                Sollicitudin orci fames rutrum diam adipiscing, arcu ex conubia blandit malesuada purus, fusce quisque
-                rhoncus sed. Volutpat magna nibh id dolor auctor a cubilia, metus risus lacinia et accumsan turpis nam
-                viverra, ornare ut varius ad litora torquent. Venenatis fringilla faucibus integer parturient dis fames
-                scelerisque tempus pretium mattis fermentum felis dolor, viverra ac taciti vehicula conubia eu class
-                senectus tellus sem mi. Vivamus mi class hac venenatis lacus sed dis, netus ad leo lobortis volutpat
-                facilisis condimentum, litora elit tortor tempor rutrum eleifend. Nam scelerisque aenean hac sociosqu
-                fames rutrum taciti mollis eros tempus risus, tortor quam tellus vivamus cras phasellus diam tincidunt nec
-                hendrerit, finibus gravida nullam ridiculus at volutpat felis netus odio fringilla. Hendrerit magnis duis
-                neque maximus aliquet phasellus hac magna curae orci finibus, eleifend pulvinar dapibus sed sollicitudin
-                porttitor pharetra fusce sapien. Inceptos augue tempus gravida dapibus platea fermentum pellentesque risus
-                velit, lacus tristique magna purus suscipit mus ipsum in aliquam, quam facilisis vel sociosqu mi elementum
-                montes euismod. Eu cras metus inceptos magnis pellentesque non lobortis finibus arcu facilisi tincidunt
-                velit tempus, nibh dis class proin lectus feugiat per conubia penatibus bibendum fringilla. Nec efficitur
-                est vehicula condimentum cursus maecenas tempor convallis, sit leo tristique ullamcorper pulvinar lacus
-                in. Parturient ut sit nam et volutpat pulvinar dapibus, iaculis neque magna lectus himenaeos eu
-                pellentesque, dolor finibus tellus ipsum dignissim nisi. Quis lectus nibh rutrum neque phasellus per,
-                aptent auctor quam magnis platea scelerisque vehicula, turpis ut etiam adipiscing fermentum. Dictumst
-                proin varius mauris metus nisi himenaeos nisl, lobortis ultricies malesuada vulputate porta fusce cubilia
-                facilisis, mollis mi hendrerit erat sociosqu ex. Condimentum nascetur fusce habitant non per montes orci
-                elit, sed eu aliquet consectetur ipsum mattis elementum ornare, duis inceptos neque magnis facilisis
-                auctor efficitur. Feugiat semper vehicula nulla eleifend sociosqu lorem diam sem non nisl, ad facilisis
-                libero varius curabitur malesuada in blandit elit inceptos, porttitor fusce conubia ex habitasse aliquam
-                ipsum tempor sagittis. Imperdiet est magna vitae ullamcorper per consectetur sit eget eu, vivamus etiam
-                nullam suspendisse risus pellentesque nibh hac donec, ultrices viverra cras sem felis tempor vestibulum
-                neque. Dictumst nascetur nec purus eu nullam conubia sodales ullamcorper urna massa blandit non malesuada
-                ad, morbi porta interdum sagittis maximus pellentesque tristique libero quis semper a volutpat sit. Magna
-                hac lacinia lacus class nulla torquent, elementum eu augue mi nam risus, a orci ligula vestibulum curae.
-                Lectus hendrerit felis quisque velit conubia dapibus augue nunc imperdiet praesent dictumst vehicula
-                vivamus, nostra aptent penatibus inceptos mus metus nibh donec mollis molestie sodales id. Et varius orci
-                accumsan a netus risus gravida eget dolor habitant, sapien platea cras ex adipiscing hac ac felis
-                phasellus, euismod blandit semper morbi rhoncus torquent suspendisse porttitor tellus. Aenean porttitor ut
-                viverra imperdiet feugiat vehicula, rutrum condimentum erat varius vel, vestibulum donec amet efficitur
-                dictum. Commodo non magnis netus imperdiet, in nullam primis lobortis hac, ultricies justo enim. Praesent
-                nec inceptos ultricies sodales consequat fringilla class venenatis augue faucibus, metus in primis per
-                euismod habitasse aliquet magna. In montes porttitor praesent egestas sollicitudin ridiculus semper
-                senectus donec, sem penatibus sociosqu lobortis conubia condimentum aliquam facilisis, fames nullam
-                torquent ipsum litora proin tristique duis. Dictum a dolor adipiscing vestibulum condimentum facilisis
-                taciti euismod mollis in, efficitur auctor pharetra ut tortor rhoncus malesuada purus arcu scelerisque,
-                nullam vulputate vel donec justo maecenas suspendisse pretium aptent. Conubia risus cubilia neque ut ac
-                ridiculus facilisi sem, eget donec tempus quis ipsum dapibus nam scelerisque, amet rhoncus magnis quam
-                dignissim litora mi. In sit luctus varius nostra nulla ornare platea, parturient ipsum facilisis justo
-                duis mattis viverra phasellus, dictumst quisque quam lacus cursus finibus. Proin ligula potenti magna
-                nullam elementum gravida nam, fusce ante torquent finibus litora tortor imperdiet eget, iaculis pharetra
-                habitasse ac inceptos euismod. Ornare venenatis dignissim mi porttitor fringilla duis, magna lectus
-                inceptos nostra massa. Nostra pharetra cursus consectetur donec pulvinar dictum malesuada convallis
-                fermentum pellentesque nascetur maecenas orci purus fusce natoque, quis augue sociosqu fringilla dictumst
-                duis scelerisque cubilia sem arcu et congue taciti montes. Integer elit commodo mollis tempus nibh morbi
-                torquent nisl dolor, vestibulum eget facilisi eu lectus ultrices dapibus aliquam, platea interdum nam
-                suspendisse lacinia finibus eros fermentum.
-              </p>
-            </ng-template>
-          </ngx-tab>
-          <ngx-tab label="Conditions">
-            Conditions
-          </ngx-tab>
-          <ngx-tab label="Outputs">
-            Outputs
-          </ngx-tab>
-          <ngx-tab label="Finish">
-            Finish
-          </ngx-tab>
-        </ngx-tabs>
-      </ng-template>
-
-      <ngx-large-format-dialog-footer>
-        <button type="button" class="btn btn-bordered">Save and Close</button>
-        <button type="button" class="btn btn-primary">Save and Continue</button>
-      </ngx-large-format-dialog-footer>
-    </ngx-large-format-dialog-content>
-  </ng-template>
-
-  <ng-template #largeFormatTabsWrap>
-    <ngx-large-format-dialog-content
-      dialogTitle="Another Title Tabs"
-      dialogSubtitle="Another Optional Subtitle Tabs"
-      (closeOrCancel)="onCloseOrCancel()"
-    >
-      <ng-template largeFormatDialogTabs>
-        <app-nested-tabs></app-nested-tabs>
-      </ng-template>
-
-      <ngx-large-format-dialog-footer>
-        <button type="button" class="btn btn-bordered">Save and Close</button>
-        <button type="button" class="btn btn-primary">Save and Continue</button>
-      </ngx-large-format-dialog-footer>
-    </ngx-large-format-dialog-content>
-  </ng-template>
-
-  <ng-template #largeFormatTabsNested>
-    <ngx-large-format-dialog-content
-      dialogTitle="Another Title Tabs"
-      dialogSubtitle="Another Optional Subtitle Tabs"
-      (closeOrCancel)="onCloseOrCancel()"
-    >
-      <ng-template largeFormatDialogTabs>
-        <ngx-tabs>
-          <ngx-tab label="Initial Selections">
-            Initial Selections
-          </ngx-tab>
-          <ngx-tab label="Conditions">
-            <p>Some nested tabs</p>
-            <ngx-tabs largeFormatDialogSubTabs>
-              <ngx-tab label="Nested Tab One">
-                Nested Tab One
+    
+    <button type="button" class="btn" (click)="openDialog({ template: largeFormatStepper, format: 'large' })">
+      Open Large Dialog Stepper
+    </button>]]>
+      </app-prism>
+    
+      <p>You can also wrap <code>ngx-stepper</code> inside a custom component for clean template purposes</p>
+      <button type="button" class="btn" (click)="openDialog({ template: largeFormatStepperWrap, format: 'large' })">
+        Open Large Dialog Stepper Nested
+      </button>
+    
+      <app-prism>
+    <![CDATA[<ng-template #largeFormatStepperWrap>
+      <ngx-large-format-dialog-content
+        dialogTitle="Another Title"
+        dialogSubtitle="Another Optional Subtitle"
+        [style.--stepper-header-custom-offset.px]="200"
+        (closeOrCancel)="onCloseOrCancel()"
+      >
+        <ng-template largeFormatDialogStepper>
+          <app-nested-stepper [stepIndex]="stepIndex"></app-nested-stepper>
+        </ng-template>
+    
+        <ngx-large-format-dialog-footer>
+          <button type="button" class="btn btn-bordered">Save and Close</button>
+          <button type="button" class="btn btn-primary">Save and Continue</button>
+        </ngx-large-format-dialog-footer>
+    
+      </ngx-large-format-dialog-content>
+    </ng-template>
+    
+    <button type="button" class="btn" (click)="openDialog({ template: largeFormatStepper, format: 'large' })">
+      Open Large Dialog Stepper Nested
+    </button>]]>
+      </app-prism>
+    
+      <p>
+        If you want to have sub-Stepper inside of the main Stepper, while triggering <strong>Stepper Variant</strong>, you can put <code>largeFormatDialogSubStepper</code> on the sub <code>ngx-stepper</code>.
+        This will tell the <code>LargeFormatDialogContent</code> to <strong>NOT</strong> apply the custom stepper styles to this sub Stepper.
+      </p>
+      <button type="button" class="btn" (click)="openDialog({ template: largeFormatStepperNested, format: 'large' })">
+        Open Large Dialog Stepper with sub Stepper
+      </button>
+    
+      <app-prism>
+    <![CDATA[<ng-template #largeFormatStepperNested>
+      <ngx-large-format-dialog-content
+        dialogTitle="Another Title"
+        dialogSubtitle="Another Optional Subtitle"
+        [style.--stepper-header-custom-offset.px]="200"
+        (closeOrCancel)="onCloseOrCancel()"
+      >
+    
+        <ng-template largeFormatDialogStepper>
+          <ngx-stepper [readonly]="false" [(active)]="stepIndex">
+            <ngx-step label="Initial Selections">
+              <ng-template ngxStepContent>
+                <p>Some nested stepper</p>
+                <!-- add      👇👇 largeFormatDialogSubStepper directive -->
+                <ngx-stepper largeFormatDialogSubStepper [readonly]="false">
+                  <ngx-step label="Nested One">
+                    <ng-template ngxStepContent>
+                      Nested Step One
+                    </ng-template>
+                  </ngx-step>
+                  <ngx-step label="Nested Two">
+                    <ng-template ngxStepContent>
+                      Nested Step Two
+                    </ng-template>
+                  </ngx-step>
+                  <ngx-step label="Nested Three">
+                    <ng-template ngxStepContent>
+                      Nested Step Three
+                    </ng-template>
+                  </ngx-step>
+                </ngx-stepper>
+              </ng-template>
+            </ngx-step>
+            <ngx-step label="Conditions">
+              <ng-template ngxStepContent>
+                Step Two
+              </ng-template>
+            </ngx-step>
+            <ngx-step label="Outputs">
+              <ng-template ngxStepContent>
+                Step Three
+              </ng-template>
+            </ngx-step>
+            <ngx-step label="Finish">
+              <ng-template ngxStepContent>
+                Step Four
+              </ng-template>
+            </ngx-step>
+          </ngx-stepper>
+        </ng-template>
+    
+        <ngx-large-format-dialog-footer>
+          <button type="button" class="btn btn-bordered">Save and Close</button>
+          <button type="button" class="btn btn-primary">Save and Continue</button>
+        </ngx-large-format-dialog-footer>
+    
+      </ngx-large-format-dialog-content>
+    </ng-template>
+    
+    <button type="button" class="btn" (click)="openDialog({ template: largeFormatStepper, format: 'large' })">
+      Open Large Dialog Stepper Nested
+    </button>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="With Tabs">
+      <p>
+        <code>ngx-large-format-dialog-content</code> will be switched to <strong>Tabs Variant</strong> when it finds a <code>LargeFormatDialogTabsDirective</code> instance.
+        If there is a <code>ngx-tabs</code>, custom styles will be applied to this Tabs.
+      </p>
+    
+      <ng-template #largeFormatTabs>
+        <ngx-large-format-dialog-content
+          dialogTitle="Another Title Tabs"
+          dialogSubtitle="Another Optional Subtitle Tabs"
+          (closeOrCancel)="onCloseOrCancel()"
+        >
+          <ng-template largeFormatDialogTabs>
+            <ngx-tabs>
+              <ngx-tab label="Initial Selections">
+                <ng-template ngxIfTabActive>
+                  <p>
+                    Ut fusce consectetur tempor per tristique odio lorem adipiscing, litora sodales cursus molestie cras
+                    auctor ornare augue, primis massa class interdum nisl conubia quis. Commodo posuere porttitor eleifend hac
+                    proin senectus dictum non, aenean iaculis ut venenatis laoreet habitant volutpat, auctor conubia maximus
+                    in lobortis nam luctus. Arcu neque dictumst vestibulum feugiat habitant hac habitasse litora enim ad,
+                    interdum inceptos aliquet etiam rhoncus ante pulvinar nunc diam conubia sapien, fames posuere nascetur eu
+                    commodo turpis velit congue viverra. Curae libero vulputate tristique ipsum tempus, tincidunt habitant
+                    iaculis arcu id vitae, quis auctor nisi primis. Etiam nisl imperdiet penatibus nostra ultrices pharetra
+                    nascetur nam, nullam varius curae parturient eros sit eu quisque, proin lacinia a ligula egestas senectus
+                    malesuada. Viverra curabitur cras amet purus congue imperdiet elit, nec justo per laoreet nisi rhoncus
+                    lacus accumsan, leo potenti fusce turpis consectetur blandit. Duis ultricies egestas urna dignissim
+                    dictumst cursus, vehicula penatibus mollis euismod quam rutrum, vestibulum vivamus ultrices cubilia
+                    malesuada. Proin ad elementum nascetur penatibus dictum accumsan aenean, phasellus quisque convallis odio
+                    aptent lectus euismod, hendrerit iaculis nam mattis rhoncus feugiat. Imperdiet mollis lorem risus placerat
+                    cursus orci eu viverra donec duis, ligula amet adipiscing elit nec pretium ultrices at vulputate, et
+                    sapien praesent felis dui lectus cras taciti nascetur. Amet odio urna sit ex ligula massa tempus consequat
+                    augue purus condimentum erat molestie, felis integer placerat mauris aptent orci ultricies laoreet
+                    fringilla efficitur ornare in. Curae facilisis et habitasse class ac sem rhoncus varius ad phasellus eget
+                    montes fusce est, vel primis commodo suscipit iaculis volutpat sit lacinia nostra tortor porta torquent.
+                    Dignissim eros nascetur praesent libero habitant inceptos, natoque efficitur taciti venenatis lacinia
+                    lorem finibus, laoreet volutpat quis suspendisse metus. Ultricies facilisi morbi parturient litora
+                    hendrerit lobortis, fringilla purus congue nisi cubilia ipsum, commodo ornare himenaeos fermentum
+                    ultrices. Adipiscing habitant viverra nibh nulla aliquam ultrices auctor, erat lacinia ridiculus malesuada
+                    scelerisque tempor ultricies, curae senectus sit faucibus dapibus tincidunt. Congue tincidunt sodales
+                    aptent eleifend dis duis integer quis id semper tempor tellus, tortor platea porta cras ornare odio
+                    sagittis netus suscipit adipiscing metus. Inceptos at aliquet purus malesuada tempus, lobortis ac dui
+                    platea a facilisis, sem vestibulum potenti dignissim phasellus, etiam vel viverra fringilla. Fringilla
+                    mattis turpis magnis sociosqu curae ac, arcu magna scelerisque nibh dictumst dapibus montes, nisi primis
+                    eget faucibus vulputate. Porta parturient natoque mattis turpis molestie habitasse condimentum, fermentum
+                    porttitor urna ut nisl consectetur pharetra eu, venenatis id rutrum primis facilisi enim. Vehicula
+                    ultrices mollis suspendisse velit non, purus egestas class neque faucibus ipsum, mi vivamus arcu felis.
+                    Purus taciti laoreet dolor dis a orci platea quam inceptos nostra sapien, luctus porta habitasse ridiculus
+                    leo fusce natoque hendrerit ultrices. Dis mattis aptent massa semper sed commodo sociosqu est iaculis
+                    fusce, id nam dolor mi malesuada elit vivamus neque ridiculus orci, erat facilisi pharetra suscipit amet
+                    lobortis nisl interdum aenean. Vitae turpis commodo per condimentum feugiat lacus tempor et euismod a
+                    phasellus nibh, eros ipsum vel orci tincidunt venenatis dictum donec imperdiet erat montes. Fermentum
+                    adipiscing integer taciti hendrerit et scelerisque torquent maximus velit ut iaculis, tortor habitant
+                    mollis enim facilisi donec sodales semper nec elementum. Iaculis suspendisse aenean torquent nisi
+                    facilisis tincidunt pharetra montes tristique, quam sit nascetur commodo diam dictumst faucibus nunc, enim
+                    metus pellentesque maximus finibus praesent accumsan hac. Ac curabitur ante sem massa per ut lobortis
+                    senectus quam venenatis elit efficitur, vestibulum turpis quis praesent laoreet fames metus ligula cras
+                    porta sapien. Nisi taciti sagittis iaculis volutpat primis mattis curabitur ad laoreet tincidunt
+                    elementum, posuere curae facilisis et malesuada cursus enim maximus aliquet. Dapibus malesuada rutrum
+                    ridiculus dui ultricies eleifend, rhoncus consectetur ac sit posuere, primis aliquet vulputate augue
+                    magnis. Blandit per porttitor quam purus vivamus orci, sit potenti hac ante integer ornare, pellentesque
+                    sociosqu consectetur suspendisse posuere elementum, nisl tincidunt ultricies in lectus. Suscipit integer
+                    morbi nunc elit scelerisque primis ipsum proin lobortis nullam, posuere fringilla id aliquet dui mattis
+                    libero non quis convallis urna, ullamcorper aenean mollis ligula blandit vestibulum nostra ridiculus
+                    volutpat. Himenaeos neque dis etiam tellus dolor cubilia mattis bibendum mi cursus sodales eu, semper nam
+                    rhoncus congue magna nascetur purus ultrices dignissim amet. Varius netus platea egestas volutpat finibus
+                    augue elementum, imperdiet facilisis pretium sociosqu justo ornare velit, ultrices pharetra montes
+                    maecenas tempor iaculis. Ultrices at etiam ac pellentesque auctor ut, purus ultricies nulla dis hendrerit
+                    primis, inceptos ornare ad praesent fringilla. Aliquet aenean id massa fames dapibus tincidunt
+                    pellentesque venenatis fermentum, rhoncus magna cras eget morbi mus nascetur natoque, quis luctus torquent
+                    augue urna tempus interdum dictum. Vivamus libero facilisis risus netus platea ligula aptent nostra leo
+                    finibus habitant, per quisque suscipit lorem penatibus vel duis venenatis dictumst a, eget lacinia augue
+                    sollicitudin semper pretium maximus nisi diam montes. Dignissim hac ornare elit turpis posuere venenatis
+                    integer, dis himenaeos quam ullamcorper fermentum vivamus sociosqu, ante nunc aliquam purus fames nam.
+                    Sollicitudin orci fames rutrum diam adipiscing, arcu ex conubia blandit malesuada purus, fusce quisque
+                    rhoncus sed. Volutpat magna nibh id dolor auctor a cubilia, metus risus lacinia et accumsan turpis nam
+                    viverra, ornare ut varius ad litora torquent. Venenatis fringilla faucibus integer parturient dis fames
+                    scelerisque tempus pretium mattis fermentum felis dolor, viverra ac taciti vehicula conubia eu class
+                    senectus tellus sem mi. Vivamus mi class hac venenatis lacus sed dis, netus ad leo lobortis volutpat
+                    facilisis condimentum, litora elit tortor tempor rutrum eleifend. Nam scelerisque aenean hac sociosqu
+                    fames rutrum taciti mollis eros tempus risus, tortor quam tellus vivamus cras phasellus diam tincidunt nec
+                    hendrerit, finibus gravida nullam ridiculus at volutpat felis netus odio fringilla. Hendrerit magnis duis
+                    neque maximus aliquet phasellus hac magna curae orci finibus, eleifend pulvinar dapibus sed sollicitudin
+                    porttitor pharetra fusce sapien. Inceptos augue tempus gravida dapibus platea fermentum pellentesque risus
+                    velit, lacus tristique magna purus suscipit mus ipsum in aliquam, quam facilisis vel sociosqu mi elementum
+                    montes euismod. Eu cras metus inceptos magnis pellentesque non lobortis finibus arcu facilisi tincidunt
+                    velit tempus, nibh dis class proin lectus feugiat per conubia penatibus bibendum fringilla. Nec efficitur
+                    est vehicula condimentum cursus maecenas tempor convallis, sit leo tristique ullamcorper pulvinar lacus
+                    in. Parturient ut sit nam et volutpat pulvinar dapibus, iaculis neque magna lectus himenaeos eu
+                    pellentesque, dolor finibus tellus ipsum dignissim nisi. Quis lectus nibh rutrum neque phasellus per,
+                    aptent auctor quam magnis platea scelerisque vehicula, turpis ut etiam adipiscing fermentum. Dictumst
+                    proin varius mauris metus nisi himenaeos nisl, lobortis ultricies malesuada vulputate porta fusce cubilia
+                    facilisis, mollis mi hendrerit erat sociosqu ex. Condimentum nascetur fusce habitant non per montes orci
+                    elit, sed eu aliquet consectetur ipsum mattis elementum ornare, duis inceptos neque magnis facilisis
+                    auctor efficitur. Feugiat semper vehicula nulla eleifend sociosqu lorem diam sem non nisl, ad facilisis
+                    libero varius curabitur malesuada in blandit elit inceptos, porttitor fusce conubia ex habitasse aliquam
+                    ipsum tempor sagittis. Imperdiet est magna vitae ullamcorper per consectetur sit eget eu, vivamus etiam
+                    nullam suspendisse risus pellentesque nibh hac donec, ultrices viverra cras sem felis tempor vestibulum
+                    neque. Dictumst nascetur nec purus eu nullam conubia sodales ullamcorper urna massa blandit non malesuada
+                    ad, morbi porta interdum sagittis maximus pellentesque tristique libero quis semper a volutpat sit. Magna
+                    hac lacinia lacus class nulla torquent, elementum eu augue mi nam risus, a orci ligula vestibulum curae.
+                    Lectus hendrerit felis quisque velit conubia dapibus augue nunc imperdiet praesent dictumst vehicula
+                    vivamus, nostra aptent penatibus inceptos mus metus nibh donec mollis molestie sodales id. Et varius orci
+                    accumsan a netus risus gravida eget dolor habitant, sapien platea cras ex adipiscing hac ac felis
+                    phasellus, euismod blandit semper morbi rhoncus torquent suspendisse porttitor tellus. Aenean porttitor ut
+                    viverra imperdiet feugiat vehicula, rutrum condimentum erat varius vel, vestibulum donec amet efficitur
+                    dictum. Commodo non magnis netus imperdiet, in nullam primis lobortis hac, ultricies justo enim. Praesent
+                    nec inceptos ultricies sodales consequat fringilla class venenatis augue faucibus, metus in primis per
+                    euismod habitasse aliquet magna. In montes porttitor praesent egestas sollicitudin ridiculus semper
+                    senectus donec, sem penatibus sociosqu lobortis conubia condimentum aliquam facilisis, fames nullam
+                    torquent ipsum litora proin tristique duis. Dictum a dolor adipiscing vestibulum condimentum facilisis
+                    taciti euismod mollis in, efficitur auctor pharetra ut tortor rhoncus malesuada purus arcu scelerisque,
+                    nullam vulputate vel donec justo maecenas suspendisse pretium aptent. Conubia risus cubilia neque ut ac
+                    ridiculus facilisi sem, eget donec tempus quis ipsum dapibus nam scelerisque, amet rhoncus magnis quam
+                    dignissim litora mi. In sit luctus varius nostra nulla ornare platea, parturient ipsum facilisis justo
+                    duis mattis viverra phasellus, dictumst quisque quam lacus cursus finibus. Proin ligula potenti magna
+                    nullam elementum gravida nam, fusce ante torquent finibus litora tortor imperdiet eget, iaculis pharetra
+                    habitasse ac inceptos euismod. Ornare venenatis dignissim mi porttitor fringilla duis, magna lectus
+                    inceptos nostra massa. Nostra pharetra cursus consectetur donec pulvinar dictum malesuada convallis
+                    fermentum pellentesque nascetur maecenas orci purus fusce natoque, quis augue sociosqu fringilla dictumst
+                    duis scelerisque cubilia sem arcu et congue taciti montes. Integer elit commodo mollis tempus nibh morbi
+                    torquent nisl dolor, vestibulum eget facilisi eu lectus ultrices dapibus aliquam, platea interdum nam
+                    suspendisse lacinia finibus eros fermentum.
+                  </p>
+                </ng-template>
               </ngx-tab>
-              <ngx-tab label="Nested Tab Two">
-                Nested Tab Two
+              <ngx-tab label="Conditions">
+                Conditions
               </ngx-tab>
-              <ngx-tab label="Nested Tab Three">
-                Nested Tab Three
+              <ngx-tab label="Outputs">
+                Outputs
+              </ngx-tab>
+              <ngx-tab label="Finish">
+                Finish
               </ngx-tab>
             </ngx-tabs>
-          </ngx-tab>
-          <ngx-tab label="Outputs">
-            Outputs
-          </ngx-tab>
-          <ngx-tab label="Finish">
-            Finish
-          </ngx-tab>
-        </ngx-tabs>
+          </ng-template>
+    
+          <ngx-large-format-dialog-footer>
+            <button type="button" class="btn btn-bordered">Save and Close</button>
+            <button type="button" class="btn btn-primary">Save and Continue</button>
+          </ngx-large-format-dialog-footer>
+        </ngx-large-format-dialog-content>
       </ng-template>
-
-      <ngx-large-format-dialog-footer>
-        <button type="button" class="btn btn-bordered">Save and Close</button>
-        <button type="button" class="btn btn-primary">Save and Continue</button>
-      </ngx-large-format-dialog-footer>
-    </ngx-large-format-dialog-content>
-  </ng-template>
-
-  <button type="button" class="btn" (click)="openDialog({ template: largeFormatTabs, format: 'large' })">
-    Open Large Dialog Tabs
-  </button>
-
-  <app-prism>
-<![CDATA[<ng-template #largeFormatTabs>
-  <ngx-large-format-dialog-content
-    dialogTitle="Another Title"
-    dialogSubtitle="Another Optional Subtitle"
-    (closeOrCancel)="onCloseOrCancel()"
-  >
-    <!-- add      👇👇 largeFormatDialogTabs directive -->
-    <ng-template largeFormatDialogTabs>
-      <ngx-tabs>
-        <ngx-tab label="Initial Selections">
-          Initial Selections
-        </ngx-tab>
-        <ngx-tab label="Conditions">
-          Conditions
-        </ngx-tab>
-        <ngx-tab label="Outputs">
-          Outputs
-        </ngx-tab>
-        <ngx-tab label="Finish">
-          Finish
-        </ngx-tab>
-      </ngx-tabs>
-    </ng-template>
-
-    <ngx-large-format-dialog-footer>
-      <button type="button" class="btn btn-bordered">Save and Close</button>
-      <button type="button" class="btn btn-primary">Save and Continue</button>
-    </ngx-large-format-dialog-footer>
-
-  </ngx-large-format-dialog-content>
-</ng-template>
-
-<button type="button" class="btn" (click)="openDialog({ template: largeFormatTabs, format: 'large' })">
-  Open Large Dialog Tabs
-</button>]]>
-  </app-prism>
-
-  <p>You can also wrap <code>ngx-tabs</code> in a custom component for clean template purposes</p>
-  <button type="button" class="btn" (click)="openDialog({ template: largeFormatTabsWrap, format: 'large' })">
-    Open Large Dialog Tabs Wrap
-  </button>
-
-  <app-prism>
-<![CDATA[<ng-template #largeFormatTabsWrap>
-  <ngx-large-format-dialog-content
-    dialogTitle="Another Title"
-    dialogSubtitle="Another Optional Subtitle"
-    (closeOrCancel)="onCloseOrCancel()"
-  >
-    <ng-template largeFormatDialogTabs>
-      <app-nested-tabs></app-nested-tabs>
-    </ng-template>
-
-    <ngx-large-format-dialog-footer>
-      <button type="button" class="btn btn-bordered">Save and Close</button>
-      <button type="button" class="btn btn-primary">Save and Continue</button>
-    </ngx-large-format-dialog-footer>
-
-  </ngx-large-format-dialog-content>
-</ng-template>
-
-<button type="button" class="btn" (click)="openDialog({ template: largeFormatTabsWrap, format: 'large' })">
-  Open Large Dialog Tabs Wrap
-</button>]]>
-  </app-prism>
-
-  <p>
-    If you want to have sub-Tabs inside of the main Tabs, while triggering <strong>Tabs Variant</strong>, you can put <code>largeFormatDialogSubTabs</code> on the sub <code>ngx-tabs</code>.
-    This will tell the <code>LargeFormatDialogContent</code> to <strong>NOT</strong> apply the custom tabs styles to this sub Tabs.
-  </p>
-  <button type="button" class="btn" (click)="openDialog({ template: largeFormatTabsNested, format: 'large' })">
-    Open Large Dialog Tabs with sub Tabs
-  </button>
-
-  <app-prism>
-<![CDATA[<ng-template #largeFormatTabsNested>
-  <ngx-large-format-dialog-content
-    dialogTitle="Another Title"
-    dialogSubtitle="Another Optional Subtitle"
-    (closeOrCancel)="onCloseOrCancel()"
-  >
-    <ng-template largeFormatDialogTabs>
-      <ngx-tabs>
-        <ngx-tab label="Initial Selections">
-          Initial Selections
-        </ngx-tab>
-        <ngx-tab label="Conditions">
-          <p>Some nested tabs</p>
-          <!-- add      👇👇 largeFormatDialogSubTabs directive -->
-          <ngx-tabs largeFormatDialogSubTabs>
-            <ngx-tab label="Nested Tab One">
-              Nested Tab One
+    
+      <ng-template #largeFormatTabsWrap>
+        <ngx-large-format-dialog-content
+          dialogTitle="Another Title Tabs"
+          dialogSubtitle="Another Optional Subtitle Tabs"
+          (closeOrCancel)="onCloseOrCancel()"
+        >
+          <ng-template largeFormatDialogTabs>
+            <app-nested-tabs></app-nested-tabs>
+          </ng-template>
+    
+          <ngx-large-format-dialog-footer>
+            <button type="button" class="btn btn-bordered">Save and Close</button>
+            <button type="button" class="btn btn-primary">Save and Continue</button>
+          </ngx-large-format-dialog-footer>
+        </ngx-large-format-dialog-content>
+      </ng-template>
+    
+      <ng-template #largeFormatTabsNested>
+        <ngx-large-format-dialog-content
+          dialogTitle="Another Title Tabs"
+          dialogSubtitle="Another Optional Subtitle Tabs"
+          (closeOrCancel)="onCloseOrCancel()"
+        >
+          <ng-template largeFormatDialogTabs>
+            <ngx-tabs>
+              <ngx-tab label="Initial Selections">
+                Initial Selections
+              </ngx-tab>
+              <ngx-tab label="Conditions">
+                <p>Some nested tabs</p>
+                <ngx-tabs largeFormatDialogSubTabs>
+                  <ngx-tab label="Nested Tab One">
+                    Nested Tab One
+                  </ngx-tab>
+                  <ngx-tab label="Nested Tab Two">
+                    Nested Tab Two
+                  </ngx-tab>
+                  <ngx-tab label="Nested Tab Three">
+                    Nested Tab Three
+                  </ngx-tab>
+                </ngx-tabs>
+              </ngx-tab>
+              <ngx-tab label="Outputs">
+                Outputs
+              </ngx-tab>
+              <ngx-tab label="Finish">
+                Finish
+              </ngx-tab>
+            </ngx-tabs>
+          </ng-template>
+    
+          <ngx-large-format-dialog-footer>
+            <button type="button" class="btn btn-bordered">Save and Close</button>
+            <button type="button" class="btn btn-primary">Save and Continue</button>
+          </ngx-large-format-dialog-footer>
+        </ngx-large-format-dialog-content>
+      </ng-template>
+    
+      <button type="button" class="btn" (click)="openDialog({ template: largeFormatTabs, format: 'large' })">
+        Open Large Dialog Tabs
+      </button>
+    
+      <app-prism>
+    <![CDATA[<ng-template #largeFormatTabs>
+      <ngx-large-format-dialog-content
+        dialogTitle="Another Title"
+        dialogSubtitle="Another Optional Subtitle"
+        (closeOrCancel)="onCloseOrCancel()"
+      >
+        <!-- add      👇👇 largeFormatDialogTabs directive -->
+        <ng-template largeFormatDialogTabs>
+          <ngx-tabs>
+            <ngx-tab label="Initial Selections">
+              Initial Selections
             </ngx-tab>
-            <ngx-tab label="Nested Tab Two">
-              Nested Tab Two
+            <ngx-tab label="Conditions">
+              Conditions
             </ngx-tab>
-            <ngx-tab label="Nested Tab Three">
-              Nested Tab Three
+            <ngx-tab label="Outputs">
+              Outputs
+            </ngx-tab>
+            <ngx-tab label="Finish">
+              Finish
             </ngx-tab>
           </ngx-tabs>
+        </ng-template>
+    
+        <ngx-large-format-dialog-footer>
+          <button type="button" class="btn btn-bordered">Save and Close</button>
+          <button type="button" class="btn btn-primary">Save and Continue</button>
+        </ngx-large-format-dialog-footer>
+    
+      </ngx-large-format-dialog-content>
+    </ng-template>
+    
+    <button type="button" class="btn" (click)="openDialog({ template: largeFormatTabs, format: 'large' })">
+      Open Large Dialog Tabs
+    </button>]]>
+      </app-prism>
+    
+      <p>You can also wrap <code>ngx-tabs</code> in a custom component for clean template purposes</p>
+      <button type="button" class="btn" (click)="openDialog({ template: largeFormatTabsWrap, format: 'large' })">
+        Open Large Dialog Tabs Wrap
+      </button>
+    
+      <app-prism>
+    <![CDATA[<ng-template #largeFormatTabsWrap>
+      <ngx-large-format-dialog-content
+        dialogTitle="Another Title"
+        dialogSubtitle="Another Optional Subtitle"
+        (closeOrCancel)="onCloseOrCancel()"
+      >
+        <ng-template largeFormatDialogTabs>
+          <app-nested-tabs></app-nested-tabs>
+        </ng-template>
+    
+        <ngx-large-format-dialog-footer>
+          <button type="button" class="btn btn-bordered">Save and Close</button>
+          <button type="button" class="btn btn-primary">Save and Continue</button>
+        </ngx-large-format-dialog-footer>
+    
+      </ngx-large-format-dialog-content>
+    </ng-template>
+    
+    <button type="button" class="btn" (click)="openDialog({ template: largeFormatTabsWrap, format: 'large' })">
+      Open Large Dialog Tabs Wrap
+    </button>]]>
+      </app-prism>
+    
+      <p>
+        If you want to have sub-Tabs inside of the main Tabs, while triggering <strong>Tabs Variant</strong>, you can put <code>largeFormatDialogSubTabs</code> on the sub <code>ngx-tabs</code>.
+        This will tell the <code>LargeFormatDialogContent</code> to <strong>NOT</strong> apply the custom tabs styles to this sub Tabs.
+      </p>
+      <button type="button" class="btn" (click)="openDialog({ template: largeFormatTabsNested, format: 'large' })">
+        Open Large Dialog Tabs with sub Tabs
+      </button>
+    
+      <app-prism>
+    <![CDATA[<ng-template #largeFormatTabsNested>
+      <ngx-large-format-dialog-content
+        dialogTitle="Another Title"
+        dialogSubtitle="Another Optional Subtitle"
+        (closeOrCancel)="onCloseOrCancel()"
+      >
+        <ng-template largeFormatDialogTabs>
+          <ngx-tabs>
+            <ngx-tab label="Initial Selections">
+              Initial Selections
+            </ngx-tab>
+            <ngx-tab label="Conditions">
+              <p>Some nested tabs</p>
+              <!-- add      👇👇 largeFormatDialogSubTabs directive -->
+              <ngx-tabs largeFormatDialogSubTabs>
+                <ngx-tab label="Nested Tab One">
+                  Nested Tab One
+                </ngx-tab>
+                <ngx-tab label="Nested Tab Two">
+                  Nested Tab Two
+                </ngx-tab>
+                <ngx-tab label="Nested Tab Three">
+                  Nested Tab Three
+                </ngx-tab>
+              </ngx-tabs>
+            </ngx-tab>
+            <ngx-tab label="Outputs">
+              Outputs
+            </ngx-tab>
+            <ngx-tab label="Finish">
+              Finish
+            </ngx-tab>
+          </ngx-tabs>
+        </ng-template>
+    
+        <ngx-large-format-dialog-footer>
+          <button type="button" class="btn btn-bordered">Save and Close</button>
+          <button type="button" class="btn btn-primary">Save and Continue</button>
+        </ngx-large-format-dialog-footer>
+    
+      </ngx-large-format-dialog-content>
+    </ng-template>
+    
+    <button type="button" class="btn" (click)="openDialog({ template: largeFormatTabsNested, format: 'large' })">
+      Open Large Dialog Tabs with sub Tabs
+    </button>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="With Drawer (Contextual)">
+      <p>
+        When <code>NgxLargeFormatDialogContent#ElementRef</code> is used as the root for <code>DrawerComponent</code>,
+        custom styles will be applied to the <code>DrawerComponent</code>
+      </p>
+    
+      <p>
+        <code>DrawerComponent</code> will have a spacing of <code>32px</code> from its top to the <code>NgxLargeFormatDialogContent</code> top.
+        <code>DrawerComponent</code> width will have an inset of <code>16px</code> on each side.
+      </p>
+    
+      <p>
+        There is a helper component <code>ngx-dialog-drawer-content</code> that you can use to wrap your Drawer content that will give you some custom styles for Drawer header
+      </p>
+    
+      <ng-template #largeFormatDialogWithDrawer>
+        <ngx-large-format-dialog-content #dialogContent dialogTitle="Title" dialogSubtitle="Optional Subtitle"
+                                         (closeOrCancel)="onCloseOrCancel()">
+          <p>Open drawer</p>
+          <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef)">Open Drawer</button>
+        </ngx-large-format-dialog-content>
+      </ng-template>
+    
+      <button class="btn" (click)="openDialog({template: largeFormatDialogWithDrawer, format: 'large'})">
+        Open Large Dialog w/ Drawer
+      </button>
+    
+      <p>
+        <code>DrawerComponent</code> in <code>NgxLargeFormatDialogContent</code> has 3 size variants:
+      </p>
+      <ul>
+        <li>100% width (default)</li>
+        <li>50% width (use class <code>large-format-dialog-drawer--1/2</code> with <code>DrawerService#create</code>)</li>
+        <li>33% width (use class <code>large-format-dialog-drawer--1/3</code> with <code>DrawerService#create</code>)</li>
+      </ul>
+    
+      <ng-template #largeFormatDialogWithDrawerVariants>
+        <ngx-large-format-dialog-content #dialogContent dialogTitle="Title" dialogSubtitle="Optional Subtitle"
+                                         (closeOrCancel)="onCloseOrCancel()">
+          <p>Open drawer</p>
+          <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef )">Open Drawer</button>
+          <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef, 'half')">Open Drawer Half</button>
+          <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef, 'third')">Open Drawer Third</button>
+        </ngx-large-format-dialog-content>
+      </ng-template>
+    
+      <button class="btn" (click)="openDialog({template: largeFormatDialogWithDrawerVariants, format: 'large'})">
+        Open Large Dialog w/ Drawer w/ Size Variants
+      </button>
+    
+      <ngx-tabs>
+        <ngx-tab title="Markup">
+          <app-prism>
+    <![CDATA[<ng-template #largeFormatDialogDrawer>
+      <ngx-large-format-dialog-content #dialogContent dialogTitle="Title" dialogSubtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
+        <p>Open drawer</p>
+        <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef )">Open Drawer</button>
+        <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef, 'half')">Open Drawer Half</button>
+        <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef, 'third')">Open Drawer Third</button>
+      </ngx-large-format-dialog-content>
+    </ng-template>
+    
+    <button class="btn" (click)="openDialog({template: largeFormatDialogDrawer, format: 'large'})">
+      Open Large Dialog w/ Drawer
+    </button>
+    
+    <ng-template #drawerTemplate let-close="close">
+      <ngx-dialog-drawer-content>
+        <p>
+          Iaculis pellentesque in curae purus accumsan ac nostra semper, scelerisque lorem quam ad aenean nulla turpis,
+          proin metus ligula luctus sociosqu sapien aliquet. Class dui arcu metus tristique conubia rhoncus varius feugiat,
+          ligula rutrum elit molestie accumsan facilisis augue amet lobortis, condimentum nostra dapibus torquent sit
+          fermentum nisl. Vel ornare porttitor vestibulum metus vitae non volutpat augue sit lacus, eros maecenas pharetra
+          ipsum leo congue adipiscing natoque iaculis, consectetur rhoncus imperdiet justo maximus per vehicula aliquet
+          quisque. Mattis imperdiet eros pretium sed eleifend cubilia ipsum, elit dictumst faucibus interdum massa orci
+          quam, congue odio vitae bibendum inceptos sapien. Tempus dignissim amet fermentum class tempor suspendisse orci
+          nunc curae, risus in mi sem urna ridiculus potenti aptent, porta scelerisque vel posuere ligula natoque pulvinar
+          faucibus. Odio varius vitae inceptos quis blandit, penatibus conubia pharetra eros, cursus rutrum praesent
+          aliquam. Montes tortor sapien natoque vivamus placerat potenti fermentum facilisis, pretium tempor ac imperdiet
+          praesent dictum viverra blandit in, tellus orci sem eget nullam ad platea. Vivamus in nascetur commodo habitasse
+          finibus luctus massa sed, erat integer donec efficitur purus ullamcorper metus. Nulla suscipit eleifend curae
+          tempus congue mus justo, sagittis facilisi luctus non blandit lectus metus leo, placerat mi ultrices dapibus
+          rutrum et. Euismod nam taciti maecenas vulputate dictumst mi ornare, elementum laoreet gravida porttitor fames
+          tempus integer sociosqu, tincidunt lorem hendrerit nullam consectetur ex.
+        </p>
+        <button class="btn" (click)="close.emit()">Close</button>
+      </ngx-dialog-drawer-content>
+    </ng-template>]]>
+          </app-prism>
         </ngx-tab>
-        <ngx-tab label="Outputs">
-          Outputs
-        </ngx-tab>
-        <ngx-tab label="Finish">
-          Finish
+        <ngx-tab title="TypeScript">
+          <app-prism language="js">
+    <![CDATA[export class SomeComponent {
+      @ViewChild('drawerTemplate') drawerTemplate: TemplateRef<unknown>;
+    
+      openDrawer(elementRef: ElementRef<HTMLElement>, size: 'full' | 'half' | 'third' = 'full') {
+        let cssClass = 'large-format-dialog-drawer';
+    
+        if (size === 'half') {
+          cssClass = cssClass.concat(' large-format-dialog-drawer--1/2');
+        } else if (size === 'third') {
+          cssClass = cssClass.concat(' large-format-dialog-drawer--1/3');
+        }
+    
+        this.drawerService.create({
+          isRoot: false,
+          parentContainer: elementRef.nativeElement,
+          direction: DrawerDirection.Bottom,
+          template: this.drawerTemplate,
+          cssClass: `${cssClass} shadow-3`,
+          size: 100
+        });
+      }
+    }]]>
+          </app-prism>
         </ngx-tab>
       </ngx-tabs>
+    </ngx-section>
+    
+    <ng-template #dialogDrawerTemplate let-close="close" let-context="context">
+      <app-parent-drawer (dismiss)="close.emit()"></app-parent-drawer>
     </ng-template>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('ngx-large-format-dialog-content-inputs')">ngx-large-format-dialog-content Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-large-format-dialog-content-outputs')">ngx-large-format-dialog-content Outputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-large-format-dialog-footer-inputs')">ngx-large-format-dialog-footer Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-large-format-dialog-footer-outputs')">ngx-large-format-dialog-footer Outputs</a>
+    <hr>
 
-    <ngx-large-format-dialog-footer>
-      <button type="button" class="btn btn-bordered">Save and Close</button>
-      <button type="button" class="btn btn-primary">Save and Continue</button>
-    </ngx-large-format-dialog-footer>
+    <h3 class="style-header" id="ngx-large-format-dialog-content-inputs">ngx-large-format-dialog-content Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code class="input-name">dialogActionTitle: string = 'Close'</code>
+          </th>
+          <td>The text to display for the action button when the component is in a pristine state.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code class="input-name">dialogDirtyActionTitle: string = 'Cancel'</code>
+          </th>
+          <td>The text to display for the action button when the component is in a dirty state.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code class="input-name">dialogSubtitle: string</code>
+          </th>
+          <td>The subtitle for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code class="input-name">dialogSubtitleTemplate: TemplateRef&lt;unknown&gt;</code>
+          </th>
+          <td>The custom template to display for the component subtitle.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code class="input-name">dialogTitle: string</code>
+          </th>
+          <td>The title for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code class="input-name">dirty: boolean</code>
+          </th>
+          <td>Whether the component is in a dirty state.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code class="input-name">dirtyAlertOptions: DialogOptions = &#123;</code>
+              <code class="input-name margin-left-12">title: 'You Have Unsaved Changes',</code>
+              <code class="input-name margin-left-12">content: 'Are you sure you want to discard your changes?',</code>
+              <code class="input-name margin-left-12">cancelButtonText: 'Discard',</code>
+              <code class="input-name margin-left-12">cancelButtonClass: 'btn-bordered',</code>
+              <code class="input-name margin-left-12">confirmButtonText: 'Cancel'</code>
+              <code class="input-name">&#125;</code>
+          </th>
+          <td>Options for customizing the alert displayed to the user when the component is closed in a dirty state.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code class="input-name">imgSrc: string | SafeUrl</code>
+          </th>
+          <td>The source of an image to be displayed at the top of the component. This can be used instead of a logo.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code class="input-name">logoTemplate: TemplateRef&lt;unknown&gt;</code>
+          </th>
+          <td>The custom template to display as a logo. This can be used instead of an image.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code class="input-name">skipDirtyAlert: boolean</code>
+          </th>
+          <td>Whether the component should skip alerting the user when the component is closed in a dirty state.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="ngx-large-format-dialog-content-outputs">ngx-large-format-dialog-content Outputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code class="input-name">closeOrCancel: EventEmitter&lt;boolean&gt;</code>
+          </th>
+          <td>Event emitted when the Close/Cancel button is clicked.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
 
-  </ngx-large-format-dialog-content>
-</ng-template>
-
-<button type="button" class="btn" (click)="openDialog({ template: largeFormatTabsNested, format: 'large' })">
-  Open Large Dialog Tabs with sub Tabs
-</button>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="With Drawer (Contextual)">
-  <p>
-    When <code>NgxLargeFormatDialogContent#ElementRef</code> is used as the root for <code>DrawerComponent</code>,
-    custom styles will be applied to the <code>DrawerComponent</code>
-  </p>
-
-  <p>
-    <code>DrawerComponent</code> will have a spacing of <code>32px</code> from its top to the <code>NgxLargeFormatDialogContent</code> top.
-    <code>DrawerComponent</code> width will have an inset of <code>16px</code> on each side.
-  </p>
-
-  <p>
-    There is a helper component <code>ngx-dialog-drawer-content</code> that you can use to wrap your Drawer content that will give you some custom styles for Drawer header
-  </p>
-
-  <ng-template #largeFormatDialogWithDrawer>
-    <ngx-large-format-dialog-content #dialogContent dialogTitle="Title" dialogSubtitle="Optional Subtitle"
-                                     (closeOrCancel)="onCloseOrCancel()">
-      <p>Open drawer</p>
-      <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef)">Open Drawer</button>
-    </ngx-large-format-dialog-content>
-  </ng-template>
-
-  <button class="btn" (click)="openDialog({template: largeFormatDialogWithDrawer, format: 'large'})">
-    Open Large Dialog w/ Drawer
-  </button>
-
-  <p>
-    <code>DrawerComponent</code> in <code>NgxLargeFormatDialogContent</code> has 3 size variants:
-  </p>
-  <ul>
-    <li>100% width (default)</li>
-    <li>50% width (use class <code>large-format-dialog-drawer--1/2</code> with <code>DrawerService#create</code>)</li>
-    <li>33% width (use class <code>large-format-dialog-drawer--1/3</code> with <code>DrawerService#create</code>)</li>
-  </ul>
-
-  <ng-template #largeFormatDialogWithDrawerVariants>
-    <ngx-large-format-dialog-content #dialogContent dialogTitle="Title" dialogSubtitle="Optional Subtitle"
-                                     (closeOrCancel)="onCloseOrCancel()">
-      <p>Open drawer</p>
-      <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef )">Open Drawer</button>
-      <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef, 'half')">Open Drawer Half</button>
-      <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef, 'third')">Open Drawer Third</button>
-    </ngx-large-format-dialog-content>
-  </ng-template>
-
-  <button class="btn" (click)="openDialog({template: largeFormatDialogWithDrawerVariants, format: 'large'})">
-    Open Large Dialog w/ Drawer w/ Size Variants
-  </button>
-
-  <ngx-tabs>
-    <ngx-tab title="Markup">
-      <app-prism>
-<![CDATA[<ng-template #largeFormatDialogDrawer>
-  <ngx-large-format-dialog-content #dialogContent dialogTitle="Title" dialogSubtitle="Optional Subtitle" (closeOrCancel)="onCloseOrCancel()">
-    <p>Open drawer</p>
-    <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef )">Open Drawer</button>
-    <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef, 'half')">Open Drawer Half</button>
-    <button class="btn btn-primary" (click)="openDrawer(dialogContent.elementRef, 'third')">Open Drawer Third</button>
-  </ngx-large-format-dialog-content>
-</ng-template>
-
-<button class="btn" (click)="openDialog({template: largeFormatDialogDrawer, format: 'large'})">
-  Open Large Dialog w/ Drawer
-</button>
-
-<ng-template #drawerTemplate let-close="close">
-  <ngx-dialog-drawer-content>
-    <p>
-      Iaculis pellentesque in curae purus accumsan ac nostra semper, scelerisque lorem quam ad aenean nulla turpis,
-      proin metus ligula luctus sociosqu sapien aliquet. Class dui arcu metus tristique conubia rhoncus varius feugiat,
-      ligula rutrum elit molestie accumsan facilisis augue amet lobortis, condimentum nostra dapibus torquent sit
-      fermentum nisl. Vel ornare porttitor vestibulum metus vitae non volutpat augue sit lacus, eros maecenas pharetra
-      ipsum leo congue adipiscing natoque iaculis, consectetur rhoncus imperdiet justo maximus per vehicula aliquet
-      quisque. Mattis imperdiet eros pretium sed eleifend cubilia ipsum, elit dictumst faucibus interdum massa orci
-      quam, congue odio vitae bibendum inceptos sapien. Tempus dignissim amet fermentum class tempor suspendisse orci
-      nunc curae, risus in mi sem urna ridiculus potenti aptent, porta scelerisque vel posuere ligula natoque pulvinar
-      faucibus. Odio varius vitae inceptos quis blandit, penatibus conubia pharetra eros, cursus rutrum praesent
-      aliquam. Montes tortor sapien natoque vivamus placerat potenti fermentum facilisis, pretium tempor ac imperdiet
-      praesent dictum viverra blandit in, tellus orci sem eget nullam ad platea. Vivamus in nascetur commodo habitasse
-      finibus luctus massa sed, erat integer donec efficitur purus ullamcorper metus. Nulla suscipit eleifend curae
-      tempus congue mus justo, sagittis facilisi luctus non blandit lectus metus leo, placerat mi ultrices dapibus
-      rutrum et. Euismod nam taciti maecenas vulputate dictumst mi ornare, elementum laoreet gravida porttitor fames
-      tempus integer sociosqu, tincidunt lorem hendrerit nullam consectetur ex.
-    </p>
-    <button class="btn" (click)="close.emit()">Close</button>
-  </ngx-dialog-drawer-content>
-</ng-template>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab title="TypeScript">
-      <app-prism language="js">
-<![CDATA[export class SomeComponent {
-  @ViewChild('drawerTemplate') drawerTemplate: TemplateRef<unknown>;
-
-  openDrawer(elementRef: ElementRef<HTMLElement>, size: 'full' | 'half' | 'third' = 'full') {
-    let cssClass = 'large-format-dialog-drawer';
-
-    if (size === 'half') {
-      cssClass = cssClass.concat(' large-format-dialog-drawer--1/2');
-    } else if (size === 'third') {
-      cssClass = cssClass.concat(' large-format-dialog-drawer--1/3');
-    }
-
-    this.drawerService.create({
-      isRoot: false,
-      parentContainer: elementRef.nativeElement,
-      direction: DrawerDirection.Bottom,
-      template: this.drawerTemplate,
-      cssClass: `${cssClass} shadow-3`,
-      size: 100
-    });
-  }
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-</ngx-section>
-
-<ng-template #dialogDrawerTemplate let-close="close" let-context="context">
-  <app-parent-drawer (dismiss)="close.emit()"></app-parent-drawer>
-</ng-template>
+    <h3 class="style-header" id="ngx-large-format-dialog-footer-inputs">ngx-large-format-dialog-footer Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code class="input-name">styleClass: string</code>
+          </th>
+          <td>The CSS class provided to override the default styles for this component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="ngx-large-format-dialog-footer-outputs">ngx-large-format-dialog-footer Outputs</h3>
+    <h4>No component outputs to display.</h4>
+  </ngx-tab>
+</ngx-tabs>
