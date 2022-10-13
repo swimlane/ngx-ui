@@ -5,4 +5,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   templateUrl: './overlay-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class OverlayPageComponent {}
+export class OverlayPageComponent {
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
+}

@@ -33,4 +33,8 @@ export class SplitPageComponent {
       this.direction = 'row';
     }
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

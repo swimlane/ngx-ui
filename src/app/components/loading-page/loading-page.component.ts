@@ -9,4 +9,8 @@ import { LoadingService } from '@swimlane/ngx-ui';
 })
 export class LoadingPageComponent {
   constructor(public loadingService: LoadingService) {}
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

@@ -27,4 +27,8 @@ export class AlertPageComponent {
       complete: () => console.log('Complete')
     });
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

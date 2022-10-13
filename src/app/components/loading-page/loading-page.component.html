@@ -1,97 +1,162 @@
 <h3 class="style-header">Loading Bar</h3>
-<ngx-section class="shadow" [sectionTitle]="'Demo'">
-  <button type="button" (click)="loadingService.start()">Start</button>
-  <button type="button" (click)="loadingService.stop()">Stop</button>
-  <button type="button" (click)="loadingService.reset()">Reset</button>
-  <button type="button" (click)="loadingService.complete()">Complete</button>
 
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
-      <app-prism>
-<![CDATA[<button type="button" (click)="loadingService.start()">Start</button>
-<button type="button" (click)="loadingService.stop()">Stop</button>
-<button type="button" (click)="loadingService.reset()">Reset</button>
-<button type="button" (click)="loadingService.complete()">Complete</button>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" [sectionTitle]="'Demo'">
+      <button type="button" (click)="loadingService.start()">Start</button>
+      <button type="button" (click)="loadingService.stop()">Stop</button>
+      <button type="button" (click)="loadingService.reset()">Reset</button>
+      <button type="button" (click)="loadingService.complete()">Complete</button>
+    
+      <br />
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<button type="button" (click)="loadingService.start()">Start</button>
+    <button type="button" (click)="loadingService.stop()">Stop</button>
+    <button type="button" (click)="loadingService.reset()">Reset</button>
+    <button type="button" (click)="loadingService.complete()">Complete</button>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[import { LoadingService } from '@swimlane/ngx-ui';
+    
+    @Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      constructor(public loadingService: LoadingService) { }
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+    
+    <ngx-section class="shadow" [sectionTitle]="'UI Router'">
+      <p>Integrate with ui-router state transitions</p>
+    
       <app-prism language="js">
-<![CDATA[import { LoadingService } from '@swimlane/ngx-ui';
-
-@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  constructor(public loadingService: LoadingService) { }
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-</ngx-section>
-
-<ngx-section class="shadow" [sectionTitle]="'UI Router'">
-  <p>Integrate with ui-router state transitions</p>
-
-  <app-prism language="js">
-<![CDATA[import { Component } from '@angular/core';
-import { TransitionService } from 'ui-router-ng2';
-import { LoadingService } from '@swimlane/ngx-ui';
-
-@Component({
-  selector: 'app',
-  template: `
-    <main>
-      <ui-view></ui-view>
-    </main>
-  `
-})
-export class AppComponent {
-
-  constructor(transitionService: TransitionService, loadingService: LoadingService) {
-    transitionService.onStart({ to: '*' }, () => {
-      loadingService.start();
-    });
-
-    transitionService.onFinish({ to: '*' }, () => {
-      loadingService.complete();
-    });
-  }
-
-}]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" [sectionTitle]="'Angular Router'">
-  <p>Integrate with Angular Router transitions</p>
-
-  <app-prism language="js">
-<![CDATA[import { Component } from '@angular/core';
-import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
-import { LoadingService } from '@swimlane/ngx-ui';
-
-@Component({
-  selector: 'app',
-  template: `
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-  `
-})
-export class AppComponent {
-  constructor(router: Router) {
-    router.events.subscribe((event: Event) => {
-      if(event instanceof NavigationStart) {
-        loadingService.start();
-      } else if(event instanceof NavigationEnd) {
-        loadingService.complete();
-        drawerService.destroyAll();
+    <![CDATA[import { Component } from '@angular/core';
+    import { TransitionService } from 'ui-router-ng2';
+    import { LoadingService } from '@swimlane/ngx-ui';
+    
+    @Component({
+      selector: 'app',
+      template: `
+        <main>
+          <ui-view></ui-view>
+        </main>
+      `
+    })
+    export class AppComponent {
+    
+      constructor(transitionService: TransitionService, loadingService: LoadingService) {
+        transitionService.onStart({ to: '*' }, () => {
+          loadingService.start();
+        });
+    
+        transitionService.onFinish({ to: '*' }, () => {
+          loadingService.complete();
+        });
       }
-    });
-  }
-}]]>
-  </app-prism>
-</ngx-section>
+    
+    }]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" [sectionTitle]="'Angular Router'">
+      <p>Integrate with Angular Router transitions</p>
+    
+      <app-prism language="js">
+    <![CDATA[import { Component } from '@angular/core';
+    import { Router, Event, NavigationStart, NavigationEnd } from '@angular/router';
+    import { LoadingService } from '@swimlane/ngx-ui';
+    
+    @Component({
+      selector: 'app',
+      template: `
+        <main>
+          <router-outlet></router-outlet>
+        </main>
+      `
+    })
+    export class AppComponent {
+      constructor(router: Router) {
+        router.events.subscribe((event: Event) => {
+          if(event instanceof NavigationStart) {
+            loadingService.start();
+          } else if(event instanceof NavigationEnd) {
+            loadingService.complete();
+            drawerService.destroyAll();
+          }
+        });
+      }
+    }]]>
+      </app-prism>
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('methods')">LoadingService Methods</a>
+    <hr>
+
+    <p>The <code>LoadingBarComponent</code> is created using the <code>LoadingService</code>.</p> 
+
+    <p>Listed below are the methods that can be called to create an instance of the <code>LoadingBarComponent</code>.</p>
+
+    <p>See Examples tab for more information.</p>
+    
+    <hr>
+
+    <h3 class="style-header" id="methods">LoadingService Methods</h3>
+    <table class="table methods-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Parameters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code>complete</code>
+          </th>
+          <td>Forces the current instance of the <code>LoadingBarComponent</code> to finish and be removed from the DOM.</td>
+          <td>
+            <code>all: boolean</code>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code>reset</code>
+          </th>
+          <td>Forces the current instance of the <code>LoadingBarComponent</code> to reset its progress to the numerical state provided as an argument.</td>
+          <td>
+            <code>num: number = 0</code>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code>start</code>
+          </th>
+          <td>Creates an instance of the <code>LoadingBarComponent</code> and starts the progress bar.</td>
+          <td>
+            <code>autoIncrement: boolean = true</code>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code>stop</code>
+          </th>
+          <td>Stops the current instance of the <code>LoadingBarComponent</code>.</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>

@@ -11,4 +11,8 @@ const TOHOKU_EARTHQUAKE = '2011-03-11T05:46:24Z';
 export class TimeDisplayPageComponent {
   date = TOHOKU_EARTHQUAKE;
   localString = moment(TOHOKU_EARTHQUAKE).tz(moment.tz.guess()).format('MMMM D, YYYY h:mm:ss A');
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

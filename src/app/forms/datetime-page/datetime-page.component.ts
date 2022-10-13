@@ -56,4 +56,8 @@ export class DatetimePageComponent {
   onSubmit() {
     console.warn(this.form.value);
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

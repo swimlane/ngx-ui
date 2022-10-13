@@ -19,4 +19,8 @@ export class TipPageComponent {
   status: TipStatus;
   text: string = text;
   showTip = true;
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

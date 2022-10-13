@@ -56,4 +56,8 @@ export class ButtonsPageComponent {
       this.buttonPromise = buttonPromise;
     }
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }
