@@ -8,7 +8,7 @@ describe('Tabs', () => {
   describe('Basic Tabs', () => {
     beforeEach(() => {
       cy.get('ngx-section').first().as('SUT');
-      cy.get('ngx-tabs').first().as('CUT');
+      cy.get('@SUT').find('ngx-tabs').first().as('CUT');
     });
 
     afterEach(() => {
@@ -39,11 +39,13 @@ describe('Tabs', () => {
         cy.get('.ngx-tab-content ngx-tab').eq(2).should('be.visible').should('contain', 'Tab 3 contents.');
         cy.get('.ngx-tab').eq(3).click();
         cy.get('.ngx-tab-content ngx-tab').eq(3).should('be.visible').should('contain', 'Tab 4 contents.');
+        cy.get('.ngx-tab').eq(0).click();
+        cy.get('.ngx-tab-content ngx-tab').eq(0).should('be.visible').should('contain', 'Tab 1 contents.');
       });
     });
 
     it('selects tabs using ngxSelectTab', () => {
-      cy.get('@SUT').within(() => {
+      cy.get('@CUT').within(() => {
         cy.get('.ngx-tab-content ngx-tab').eq(0).should('be.visible').should('contain', 'Tab 1 contents.');
         cy.root().ngxSelectTab('Tab 2');
         cy.get('.ngx-tab-content ngx-tab').eq(1).should('be.visible').should('contain', 'Tab 2 contents.');
