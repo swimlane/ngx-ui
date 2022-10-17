@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+## 42.5.0 (2022-10-17)
+
+- Added angular cli schematics for installing ngx-ui
 - Fix (`ngx-dropzone`): fix dropzone animation
 
 ## 42.4.0 (2022-9-15)
