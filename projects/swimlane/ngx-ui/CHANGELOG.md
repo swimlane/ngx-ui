@@ -2,6 +2,11 @@
 
 ## HEAD (unreleased)
 
+- Feature: Create `ButtonGroupComponent`
+- Fix: Add `cursor: pointer` to `ngx-button` class
+- Feature: `ngx-button` now accepts a `type` input
+- Breaking: `ngx-button` now defaults to `type="button"`
+
 ## 42.5.0 (2022-10-17)
 
 - Added angular cli schematics for installing ngx-ui

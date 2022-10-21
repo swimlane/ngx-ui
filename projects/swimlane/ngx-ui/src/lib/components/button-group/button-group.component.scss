@@ -1,0 +1,186 @@
+@import '../../styles/colors/variables.scss';
+@import '../../styles/components/buttons.scss';
+
+.ngx-button-group {
+  display: inline-flex;
+  position: relative;
+
+  // default colors
+  --button-bg: #{$color-blue-grey-600};
+  --button-border: #{$color-blue-grey-600};
+  --button-text: white;
+  --button-hover: #{$color-blue-grey-700};
+
+  &.ngx-button-group--contained--primary {
+    --button-bg: #{$color-blue-400};
+    --button-border: #{$color-blue-400};
+    --button-text: white;
+    --button-hover: #{$color-blue};
+  }
+
+  > ngx-dropdown {
+    padding-bottom: 0;
+    position: unset; // align dropdown menu with button group
+
+    > ngx-dropdown-toggle {
+      height: 100%;
+      width: 100%;
+
+      > ngx-button {
+        height: 100%;
+        width: 100%;
+
+        button {
+          padding-top: 0.32em;
+        }
+      }
+    }
+
+    > ngx-dropdown-menu {
+      margin-top: 6px !important;
+
+      button {
+        // matching button style in dropdown menu
+        padding: 5px 20px;
+        white-space: nowrap;
+        width: 100%;
+        text-align: left;
+        font-size: 0.9em;
+      }
+    }
+  }
+
+  // unify all the button colors
+  &.ngx-button-group--contained {
+    button:not(ngx-dropdown-menu *),
+    ngx-button:not(ngx-dropdown-menu *) {
+      background: var(--button-bg) !important;
+      border-color: var(--button-border) !important;
+      color: var(--button-text) !important;
+      box-shadow: unset !important;
+
+      &:active:hover:focus:not([disabled]),
+      &:active:hover:focus:not(.disabled) {
+        background-color: var(--button-hover) !important;
+        border-color: var(--button-hover) !important;
+      }
+
+      &::after {
+        border-color: var(--button-border) !important;
+      }
+    }
+  }
+
+  &.ngx-button-group--horizontal {
+    align-items: center;
+
+    &.ngx-button-group--contained {
+      > * {
+        &:first-child {
+          border-top-right-radius: unset;
+          border-bottom-right-radius: unset;
+
+          > ngx-dropdown-toggle > * {
+            border-top-right-radius: unset;
+            border-bottom-right-radius: unset;
+          }
+        }
+
+        &:last-child {
+          border-top-left-radius: unset;
+          border-bottom-left-radius: unset;
+
+          > ngx-dropdown-toggle > * {
+            border-top-left-radius: unset;
+            border-bottom-left-radius: unset;
+          }
+        }
+
+        &:not(:first-child):not(:last-child) {
+          border-radius: unset;
+
+          > ngx-dropdown-toggle > * {
+            border-radius: unset;
+          }
+        }
+
+        &:not(:first-child) {
+          border-left: 0;
+
+          > ngx-dropdown-toggle > * {
+            border-left: 0;
+          }
+        }
+
+        &:not(:last-child) {
+          margin-right: 1px;
+        }
+      }
+    } // end of horizontal contained
+
+    &.ngx-button-group--text {
+      > * {
+        &:not(:last-child) {
+          border-right: 1px solid white;
+        }
+      }
+    }
+  } // end of horizontal
+
+  &.ngx-button-group--vertical {
+    flex-direction: column;
+    align-items: unset;
+
+    &.ngx-button-group--contained {
+      > * {
+        &:first-child {
+          border-bottom-left-radius: unset;
+          border-bottom-right-radius: unset;
+
+          > ngx-dropdown-toggle > * {
+            border-bottom-left-radius: unset;
+            border-bottom-right-radius: unset;
+          }
+        }
+
+        &:last-child {
+          border-top-left-radius: unset;
+          border-top-right-radius: unset;
+
+          > ngx-dropdown-toggle > * {
+            border-top-left-radius: unset;
+            border-top-right-radius: unset;
+          }
+        }
+
+        &:not(:first-child):not(:last-child) {
+          border-radius: unset;
+
+          > ngx-dropdown-toggle > * {
+            border-radius: unset;
+          }
+        }
+
+        &:not(:first-child) {
+          border-top: 0;
+
+          > ngx-dropdown-toggle > * {
+            border-top: 0;
+          }
+        }
+
+        &:not(:last-child) {
+          margin-bottom: 1px;
+        }
+      }
+    } // end of vertical contained
+
+    &.ngx-button-group--text {
+      > * {
+        &:not(:last-child) {
+          border-bottom: 1px solid white;
+        }
+      }
+    }
+  } // end of vertical
+}

@@ -7,6 +7,7 @@ import { InjectionService } from './services/injection/injection.service';
 import { PipesModule } from './pipes/pipes.module';
 
 import { ButtonModule } from './components/button/button.module';
+import { ButtonGroupModule } from './components/button-group/button-group.module';
 import { CalendarModule } from './components/calendar/calendar.module';
 import { CardModule } from './components/card/card.module';
 import { CheckboxModule } from './components/checkbox/checkbox.module';
@@ -48,6 +49,7 @@ import { TimeDisplayModule } from './components/time-display/time-display.module
  */
 const modules = [
   ButtonModule,
+  ButtonGroupModule,
   CalendarModule,
   CardModule,
   CheckboxModule,
