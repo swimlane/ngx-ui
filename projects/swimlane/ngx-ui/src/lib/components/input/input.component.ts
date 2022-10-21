@@ -56,7 +56,7 @@ const MIN_WIDTH = 60;
   host: {
     class: 'ngx-input',
     '[class.legacy]': 'appearance === "legacy"',
-    '[class.fill]': 'appearance === "fill"',
+    '[class.fill]': 'appearance === "fill" && !readonly',
     '[class.sm]': 'size === "sm"',
     '[class.md]': 'size === "md"',
     '[class.lg]': 'size === "lg"',
@@ -92,6 +92,14 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   }
   set disabled(disabled: boolean) {
     this._disabled = coerceBooleanProperty(disabled);
+  }
+
+  @Input()
+  get readonly() {
+    return this._readonly;
+  }
+  set readonly(readonly: boolean) {
+    this._readonly = coerceBooleanProperty(readonly);
   }
 
   @Input()
@@ -197,6 +205,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   @Output() keyup = new EventEmitter<KeyboardEvent>();
   @Output() click = new EventEmitter<Event>();
   @Output() select = new EventEmitter<FocusEvent>();
+  @Output() lockChange = new EventEmitter<boolean>();
 
   @ViewChild('inputControl') readonly inputControl: ElementRef<HTMLInputElement>;
   @ViewChild('inputModel') readonly inputModel: NgModel;
@@ -248,8 +257,14 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     return this.inputModel ? this.inputModel.touched : false;
   }
 
-  get labelState(): string {
-    return this.placeholder || this.focusedOrDirty || this.appearance === Appearance.Fill ? 'outside' : 'inside';
+  @HostBinding('class.has-placeholder')
+  get hasPlaceholder(): boolean {
+    return !!this.placeholder;
+  }
+
+  @HostBinding('class.active')
+  get labelState(): boolean {
+    return this.focusedOrDirty;
   }
 
   get underlineState(): string {
@@ -268,6 +283,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   private _type: InputTypes = InputTypes.text;
   private _passwordTextVisible = false;
   private _disabled = false;
+  private _readonly = false;
   private _required = false;
   private _autoSelect = false;
   private _autofocus = false;
@@ -370,6 +386,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
       this.value = '';
     }
     this.disabled = false;
+    this.lockChange.emit(false);
     this.updateInputType();
   }
 

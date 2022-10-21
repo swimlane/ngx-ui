@@ -8,7 +8,8 @@ import {
   OnDestroy,
   ChangeDetectionStrategy,
   TemplateRef,
-  OnInit
+  OnInit,
+  ElementRef
 } from '@angular/core';
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 import { trigger } from '@angular/animations';
@@ -92,9 +93,12 @@ export class DrawerComponent implements OnInit, OnDestroy {
   private _zIndex: number;
   private _closeOnOutsideClick: boolean;
 
+  constructor(private readonly elementRef: ElementRef) {}
+
   ngOnInit() {
     this.position = this.isRoot ? DrawerPosition.fixed : DrawerPosition.absolute;
     this.setDimensions(this.size);
+    this.elementRef.nativeElement.focus();
   }
 
   ngOnDestroy() {

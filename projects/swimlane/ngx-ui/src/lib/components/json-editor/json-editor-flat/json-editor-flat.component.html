@@ -12,6 +12,7 @@
     [schemaBuilderMode]="schemaBuilderMode"
     [showKnownProperties]="showKnownProperties"
     [passwordToggleEnabled]="passwordToggleEnabled"
+    [inputControlTemplate]="inputControlTemplate"
     (schemaUpdate)="schemaUpdate.emit($event)"
   >
     <div class="node-options" node-options>
@@ -29,7 +30,7 @@
     [schema]="context.schema"
     [formats]="context.formats"
     [rootItem]="true"
-    (updateSchema)="updateSchema($event)"
+    (updateProperty)="context.apply($event)"
   >
   </ngx-property-config>
 </ng-template>

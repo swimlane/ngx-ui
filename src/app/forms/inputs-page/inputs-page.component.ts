@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { lorem } from 'faker';
 
 @Component({
   selector: 'app-inputs-page',
@@ -20,8 +21,13 @@ export class InputsPageComponent {
   secretValue = 'secret';
   output: any;
   patternValue = 'Has space';
+  readonlyTextareaValue = lorem.words(100);
 
   onClick(event: any) {
     console.log({ event });
+  }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
 }

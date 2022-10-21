@@ -30,4 +30,8 @@ export class ToolbarPageComponent {
   menuClicked(event) {
     console.log('Menu clicked', event);
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

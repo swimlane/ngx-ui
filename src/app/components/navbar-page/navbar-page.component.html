@@ -1,63 +1,174 @@
 <h3 class="style-header">Navbar</h3>
 
-<ngx-section class="shadow" sectionTitle="Navbar">
-  <h3>Active bar on bottom</h3>
-  <div class="navbar-page--container">
-    <ngx-navbar [(active)]="activeBottom">
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" sectionTitle="Navbar">
+      <h3>Active bar on bottom</h3>
+      <div class="navbar-page--container">
+        <ngx-navbar [(active)]="activeBottom">
+          <ngx-navbar-item><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
+          <ngx-navbar-item><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
+          <ngx-navbar-item><ngx-icon fontIcon="database"></ngx-icon></ngx-navbar-item>
+          <ngx-navbar-item><ngx-icon fontIcon="commandline"></ngx-icon></ngx-navbar-item>
+        </ngx-navbar>
+      </div>
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-navbar [(active)]="activeBottom">
+      <ngx-navbar-item><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
+      <ngx-navbar-item><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
+      <ngx-navbar-item><ngx-icon fontIcon="database"></ngx-icon></ngx-navbar-item>
+      <ngx-navbar-item><ngx-icon fontIcon="commandline"></ngx-icon></ngx-navbar-item>
+    </ngx-navbar>]]>
+        </app-prism>
+      <br />
+    
+      <h3>Active bar on top</h3>
+      <div class="navbar-page--container">
+        <ngx-navbar [(active)]="activeTop" [barAtTop]="true" #navbar>
+          <ngx-navbar-item><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
+          <ngx-navbar-item><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
+          <ngx-navbar-item><ngx-icon fontIcon="database"></ngx-icon></ngx-navbar-item>
+          <ngx-navbar-item><ngx-icon fontIcon="commandline"></ngx-icon></ngx-navbar-item>
+        </ngx-navbar>
+      </div>
+    
+      <button class="btn btn-default" (click)="navbar.goTo(3)">Activate 4th nav item</button>
+      <br /><br />
+      <app-prism>
+    <![CDATA[<ngx-navbar [(active)]="activeTop" [barAtTop]="true" #navbar>
       <ngx-navbar-item><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
       <ngx-navbar-item><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
       <ngx-navbar-item><ngx-icon fontIcon="database"></ngx-icon></ngx-navbar-item>
       <ngx-navbar-item><ngx-icon fontIcon="commandline"></ngx-icon></ngx-navbar-item>
     </ngx-navbar>
-  </div>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-navbar [(active)]="activeBottom">
-  <ngx-navbar-item><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
-  <ngx-navbar-item><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
-  <ngx-navbar-item><ngx-icon fontIcon="database"></ngx-icon></ngx-navbar-item>
-  <ngx-navbar-item><ngx-icon fontIcon="commandline"></ngx-icon></ngx-navbar-item>
-</ngx-navbar>]]>
-    </app-prism>
-  <br />
-
-  <h3>Active bar on top</h3>
-  <div class="navbar-page--container">
-    <ngx-navbar [(active)]="activeTop" [barAtTop]="true" #navbar>
-      <ngx-navbar-item><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
-      <ngx-navbar-item><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
-      <ngx-navbar-item><ngx-icon fontIcon="database"></ngx-icon></ngx-navbar-item>
-      <ngx-navbar-item><ngx-icon fontIcon="commandline"></ngx-icon></ngx-navbar-item>
-    </ngx-navbar>
-  </div>
-
-  <button class="btn btn-default" (click)="navbar.goTo(3)">Activate 4th nav item</button>
-  <br /><br />
-  <app-prism>
-<![CDATA[<ngx-navbar [(active)]="activeTop" [barAtTop]="true" #navbar>
-  <ngx-navbar-item><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
-  <ngx-navbar-item><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
-  <ngx-navbar-item><ngx-icon fontIcon="database"></ngx-icon></ngx-navbar-item>
-  <ngx-navbar-item><ngx-icon fontIcon="commandline"></ngx-icon></ngx-navbar-item>
-</ngx-navbar>
-<button class="btn btn-default" (click)="navbar.goTo(3)">Activate 4th nav item</button>]]>
-    </app-prism>
-  <br />
-
-  <h3>Navbar with angular routing</h3>
-  <div class="navbar-page--container">
-    <ngx-navbar [active]="activeRoute">
+    <button class="btn btn-default" (click)="navbar.goTo(3)">Activate 4th nav item</button>]]>
+        </app-prism>
+      <br />
+    
+      <h3>Navbar with angular routing</h3>
+      <div class="navbar-page--container">
+        <ngx-navbar [active]="activeRoute">
+          <ngx-navbar-item routerLink="child-1"><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
+          <ngx-navbar-item routerLink="child-2"><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
+        </ngx-navbar>
+      </div>
+      <router-outlet></router-outlet>
+      <br />
+    
+      <app-prism>
+    <![CDATA[<ngx-navbar [active]="activeRoute">
       <ngx-navbar-item routerLink="child-1"><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
       <ngx-navbar-item routerLink="child-2"><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
-    </ngx-navbar>
-  </div>
-  <router-outlet></router-outlet>
-  <br />
+    </ngx-navbar> <router-outlet></router-outlet>]]>
+        </app-prism>
+    </ngx-section>
 
-  <app-prism>
-<![CDATA[<ngx-navbar [active]="activeRoute">
-  <ngx-navbar-item routerLink="child-1"><ngx-icon fontIcon="apps"></ngx-icon></ngx-navbar-item>
-  <ngx-navbar-item routerLink="child-2"><ngx-icon fontIcon="chart-scatter"></ngx-icon></ngx-navbar-item>
-</ngx-navbar> <router-outlet></router-outlet>]]>
-    </app-prism>
-</ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('ngx-navbar-inputs')">ngx-navbar Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-navbar-outputs')">ngx-navbar Outputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-navbar-item-inputs')">ngx-navbar-item Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-navbar-item-outputs')">ngx-navbar-item Outputs</a>
+    <hr>
+
+    <h3 class="style-header" id="ngx-navbar-inputs">ngx-navbar Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>active: number = 0</code>
+          </th>
+          <td>The active route by index, zero indexed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>barAtTop: boolean</code>
+          </th>
+          <td>Whether the bar indicating the active route is on top of the child <code>ngx-navbar-item</code> component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="ngx-navbar-outputs">ngx-navbar Outputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>activeChange: EventEmitter&lt;number&gt;</code>
+          </th>
+          <td>Event emitted when the active <code>ngx-navbar-item</code> changes.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+
+    <h3 class="style-header" id="ngx-navbar-item-inputs">ngx-navbar-item Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>active: number = 0</code>
+          </th>
+          <td>The active route by index, zero indexed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>index: number</code>
+          </th>
+          <td>The index of this component, zero indexed. If the index and <code>active</code> Inputs match, appropriate styling will be applied automatically.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>total: number</code>
+          </th>
+          <td>The total number of navigation items.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="ngx-navbar-item-outputs">ngx-navbar-item Outputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>activeChange: EventEmitter&lt;number&gt;</code>
+          </th>
+          <td>Event emitted when the <code>active</code> Input value changes.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>

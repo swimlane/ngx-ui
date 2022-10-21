@@ -1,23 +1,8 @@
 @import 'colors/variables';
-@import 'forms/inputs';
+@import 'forms/variables';
 
 .ngx-input {
-  display: block;
-  max-width: 100%;
-  margin-top: 16px;
-  margin-bottom: 8px;
-  padding-top: 20px;
-  padding-top: calc(0.7em + 8px);
-  padding-bottom: 0;
-
-  &.marginless {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  &.no-label {
-    padding-top: 0;
-  }
+  @include input-box;
 
   &.md {
     .ngx-input-box,
@@ -120,6 +105,7 @@
       position: relative;
       width: 100%;
       display: flex;
+      min-height: 1.75em;
 
       &:focus {
         outline: none;
@@ -222,45 +208,25 @@
     }
 
     .ngx-input-label {
-      pointer-events: none;
-      position: absolute;
-      font-size: 13px;
-      font-weight: 600;
-      transition: color 0.2s ease-in-out;
-      color: $input-label-color;
-      white-space: nowrap;
-      max-width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      @include input-label;
     }
 
     .ngx-input-underline {
-      width: 100%;
-      height: 1px;
-      background-color: $input-inactive-underline-fill;
+      @include input-underline;
 
-      .underline-fill {
-        background-color: $input-active-underline-fill;
-        width: 100%;
-        height: 2px;
-        margin: 0 auto;
+      &__visibility-hidden {
+        visibility: hidden;
       }
     }
 
     .ngx-input-hint {
-      font-size: 12px;
-      color: $input-hint-color;
-      margin-top: 2px;
-      min-height: 1em;
-      line-height: 14px;
-      transition: color 0.2s ease-in-out;
+      @include input-hint;
     }
   }
 
   &.fill {
     .ngx-input-flex-wrap {
-      background-color: $color-fill-input-bg;
-      mix-blend-mode: exclusion;
+      @include input-fill-background;
     }
 
     .ngx-input-label {
@@ -299,6 +265,15 @@
 
     ngx-input-suffix {
       padding-right: 10px;
+    }
+  }
+
+  &.active,
+  &.fill,
+  &.has-placeholder {
+    .ngx-input-wrap .ngx-input-label {
+      font-size: $input-label-font-size-active;
+      top: -1.2em;
     }
   }
 }

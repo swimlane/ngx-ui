@@ -18,4 +18,8 @@ export class CheckboxPageComponent {
       physical: false
     });
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

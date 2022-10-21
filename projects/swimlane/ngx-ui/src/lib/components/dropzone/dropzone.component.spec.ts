@@ -8,6 +8,7 @@ import { FileUploader } from '@swimlane/ng2-file-upload';
 
 const uploader = new FileUploader({});
 const acceptedFileFormats = ['.txt', '.json'];
+const oneAcceptedFileFormat = ['.csv'];
 
 describe('DropzoneComponent', () => {
   let shallow: Shallow<DropzoneComponent>;
@@ -43,6 +44,12 @@ describe('DropzoneComponent', () => {
       rendering.instance.acceptedFileFormats = acceptedFileFormats;
       rendering.instance.ngOnInit();
       expect(rendering.instance.acceptedFileFormatsTextDisplay).toEqual('.txt and .json');
+    });
+
+    it('display proper message when only one file format is added ', () => {
+      rendering.instance.acceptedFileFormats = oneAcceptedFileFormat;
+      rendering.instance.ngOnInit();
+      expect(rendering.instance.acceptedFileFormatsTextDisplay).toEqual('.csv');
     });
   });
 });

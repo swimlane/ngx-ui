@@ -34,7 +34,7 @@ import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DropdownComponent implements AfterContentInit, OnDestroy {
-  destroy$ = new Subject();
+  destroy$ = new Subject<void>();
   private _positionAdjusted = false;
   public get positionAdjusted() {
     return this._positionAdjusted;
@@ -176,7 +176,14 @@ export class DropdownComponent implements AfterContentInit, OnDestroy {
     }
   }
 
-  private close() {
+  /**
+   * @function close
+   *
+   * Programmatically closes the dropdown menu. This method provides the same behavior as clicking off of the dropdown menu.
+   *
+   * @returns void
+   */
+  close(): void {
     if (this.dropdownMenu) {
       this.renderer.removeClass(this.dropdownMenu.element, 'ngx-dropdown-menu--upwards');
     }

@@ -16,6 +16,15 @@
     outline-offset: 2px;
     border-radius: 2px;
 
+    > .content {
+      text-overflow: ellipsis;
+      overflow-x: clip;
+      overflow-y: visible;
+      width: 100%;
+      display: block;
+      white-space: nowrap;
+    }
+
     &:focus,
     &:focus-within {
       outline: none;

@@ -12,4 +12,8 @@ export class TogglePageComponent {
     // eslint-disable-next-line no-console
     console.log('check?', event);
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

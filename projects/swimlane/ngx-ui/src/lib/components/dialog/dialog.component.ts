@@ -112,6 +112,8 @@ export class DialogComponent implements OnInit, OnDestroy {
     this._zIndex = coerceNumberProperty(zIndex);
   }
 
+  @Input() beforeClose: () => boolean;
+
   @Output() open = new EventEmitter<boolean | void>();
   @Output() close = new EventEmitter<boolean | void>();
 
@@ -121,6 +123,10 @@ export class DialogComponent implements OnInit, OnDestroy {
 
   get visibleState() {
     return this.visible ? 'active' : 'inactive';
+  }
+
+  get canClose(): boolean {
+    return this.beforeClose ? this.beforeClose() : true;
   }
 
   readonly DialogFormat = DialogFormat;
@@ -134,7 +140,10 @@ export class DialogComponent implements OnInit, OnDestroy {
   constructor(private readonly element: ElementRef, private readonly renderer2: Renderer2) {}
 
   ngOnInit(): void {
-    if (this.visible) this.show();
+    if (this.visible) {
+      this.show();
+      this.element.nativeElement?.focus();
+    }
     // backwards compatibility
     if (this.title) {
       this.dialogTitle = this.title;
@@ -156,18 +165,9 @@ export class DialogComponent implements OnInit, OnDestroy {
     this.close.emit();
   }
 
-  containsTarget(target: any): boolean {
-    return this.closeOnBlur && target.classList.contains('dialog');
-  }
-
   @HostListener('keydown.esc')
-  onEscapeKeyDown(): void {
-    if (this.closeOnEscape) this.hide();
-  }
-
-  @HostListener('document:click', ['$event.target'])
-  onDocumentClick(target: any): void {
-    if (this.containsTarget(target)) {
+  onEscapeKeyDown() {
+    if (this.closeOnEscape && this.canClose) {
       this.hide();
     }
   }

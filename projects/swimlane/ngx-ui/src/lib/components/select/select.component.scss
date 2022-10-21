@@ -1,5 +1,5 @@
 @import 'colors/variables';
-@import 'forms/inputs';
+@import 'forms/variables';
 @import '../input/input.component';
 
 // general
@@ -19,28 +19,8 @@ $color-chip-bg: $color-blue-grey-600;
 $color-chip-text: #fff;
 
 .ngx-select {
-  position: relative;
-  display: block;
-  min-width: 300px;
-  line-height: 1.4em;
-  margin-top: 16px;
-  margin-bottom: 8px;
-  padding-top: 20px;
-  padding-top: calc(0.7em + 8px);
-  padding-bottom: 0;
-
-  &.autosize {
-    .ngx-select-dropdown {
-      width: fit-content;
-      min-width: 190px;
-      max-width: 100%;
-    }
-
-    .ngx-select-flex-wrap {
-      max-width: 100%;
-      width: fit-content;
-    }
-  }
+  @include input-box;
+  min-width: $input-min-width;
 
   .ngx-select-flex-wrap {
     flex-direction: row;
@@ -60,11 +40,7 @@ $color-chip-text: #fff;
     width: 100%;
 
     .ngx-select-hint {
-      font-size: 12px;
-      color: $input-hint-color;
-      margin-top: 2px;
-      line-height: 1.4em;
-      min-height: 1em;
+      @include input-hint;
     }
   }
 
@@ -75,32 +51,30 @@ $color-chip-text: #fff;
     margin-bottom: 0;
     width: 100%;
 
+    .ngx-select-input-box-outer-wrap {
+      align-items: center;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+
     .ngx-select-input-box {
+      align-items: center;
+      position: relative;
       background: transparent;
       outline: none;
       margin-bottom: 0;
       padding-left: 0;
       width: 100%;
-      min-height: 1em;
+      min-height: 1.75em;
       min-width: 60px;
       cursor: pointer;
-      display: inline-block;
+      display: flex;
       vertical-align: bottom;
     }
 
     .ngx-select-input-underline {
-      width: 100%;
-      height: 1px;
-      margin-top: 2px;
-      background-color: $input-inactive-underline-fill;
-
-      .underline-fill {
-        background-color: $input-active-underline-fill;
-        transition: width 250ms ease-out;
-        width: 0;
-        height: 2px;
-        margin: 0 auto;
-      }
+      @include input-underline;
     }
 
     &:focus-within,
@@ -111,53 +85,58 @@ $color-chip-text: #fff;
     }
 
     .ngx-select-input-list {
-      padding: 0 40px 0 0;
+      padding: 0;
       color: $color-input-text;
       min-height: 1.4em;
       max-width: 100%;
     }
 
+    &--has-controls .ngx-select-input-list {
+      padding: 0 10px 0 0;
+    }
+
     .ngx-select-label {
-      pointer-events: none;
-      position: absolute;
-      top: -3px;
-      transition: 150ms ease-out;
-      color: $input-label-color;
-      text-overflow: ellipsis;
-      max-width: 100%;
-      font-weight: 600;
+      @include input-label;
     }
 
     .ngx-select-placeholder {
+      position: absolute;
       display: block;
       cursor: pointer;
       color: $color-placeholder-text;
-      padding: 0 25px 0 0;
-      overflow-x: hidden;
+      overflow-x: clip;
       white-space: nowrap;
       text-overflow: ellipsis;
       max-width: 100%;
+      padding-right: 25px; // room for caret
     }
 
     .ngx-select-input-box__controls {
-      position: absolute;
-      top: 0;
-      right: 5px;
-      z-index: 500;
-      font-size: 0.6em;
       color: $color-caret-bg;
+      display: flex;
+      flex-wrap: nowrap;
+      min-height: 1.75em;
+      padding-right: 5px;
 
       button {
         padding: 0 2px;
         cursor: pointer;
+        min-height: 1em;
 
         &:hover {
           color: $color-blue-400;
         }
       }
 
+      .ngx-select-clear,
+      .ngx-select-caret {
+        align-items: center;
+        display: flex;
+        font-size: 0.6em;
+      }
+
       .ngx-select-clear {
-        font-size: 0.8em;
+        margin-right: 5px;
       }
 
       .ngx-select-caret {
@@ -171,6 +150,7 @@ $color-chip-text: #fff;
     // Specific style for links in tagging options
     > a {
       color: $color-blue-grey-050;
+
       > .ngx-icon {
         color: $color-blue-grey-200;
         font-size: 0.55em;
@@ -187,15 +167,11 @@ $color-chip-text: #fff;
   // multi-select
   &.tagging-selection,
   &.multi-selection {
-    .ngx-select-input-list {
-      margin-bottom: -5px;
-    }
-
     .ngx-select-input-option {
       background: $color-chip-bg;
       color: $color-chip-text;
       border-radius: 2px;
-      margin: 0 5px 5px 0;
+      margin: 3px;
       white-space: nowrap;
       overflow: visible;
       text-overflow: ellipsis;
@@ -205,15 +181,18 @@ $color-chip-text: #fff;
       top: 0;
       padding: 0 0.5em;
       font-size: 1em;
+      line-height: 1.4em;
+      max-width: 300px;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 5px;
 
-      .ngx-select-input-name {
-        text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
-        max-width: 300px;
+      > * {
+        flex: 0 1 100%;
         overflow: hidden;
-        display: inline-block;
-        white-space: nowrap;
         text-overflow: ellipsis;
-        vertical-align: top;
+        white-space: nowrap;
+        text-shadow: 2px 4px 2px rgba(0, 0, 0, 0.1);
       }
 
       .ngx-select-clear {
@@ -221,11 +200,13 @@ $color-chip-text: #fff;
         cursor: pointer;
         font-size: 0.5em;
         color: $color-caret-bg;
-        line-height: 0.5em;
-        height: 0.5em;
+        line-height: 1em;
+        height: 1em;
         z-index: 500;
         top: -1px;
         text-shadow: none;
+        flex: 0 0 auto;
+
         &:hover {
           color: $color-blue-400;
         }
@@ -242,21 +223,22 @@ $color-chip-text: #fff;
     .ngx-select-input {
       .ngx-select-input-box {
         cursor: text;
+        flex: 1;
       }
 
       .ngx-select-input-box-wrapper {
-        position: relative;
-
         .ngx-select-text-box {
           background-color: transparent;
           border: none;
           outline: none;
           -webkit-appearance: none;
           color: $color-input-text;
-          line-height: 20px;
+          line-height: 1em;
           display: inline-block;
-          font-size: 1rem;
+          font-size: 1em;
           vertical-align: bottom;
+          padding: 0;
+          margin: 5px;
 
           &::-webkit-search-decoration,
           &::-webkit-search-cancel-button,
@@ -285,12 +267,23 @@ $color-chip-text: #fff;
         }
       }
     }
+
+    &:not(.active) .ngx-select-input-list.no-selections {
+      position: absolute;
+      bottom: 0;
+    }
+
+    &.active .ngx-select-placeholder {
+      display: none;
+    }
   }
 
   // single-select
   &.single-selection {
     .ngx-select-input {
       .ngx-select-input-list {
+        // padding-top: 3px;
+
         .ngx-select-input-option {
           width: 100%;
           white-space: nowrap;
@@ -517,21 +510,6 @@ $color-chip-text: #fff;
     }
   }
 
-  // active selections
-  &.active-selections,
-  &.has-placeholder,
-  &.active {
-    .ngx-select-input {
-      .ngx-select-label {
-        position: absolute;
-        font-size: 0.7em;
-        top: -21px;
-        left: 0;
-        line-height: 1.875em;
-      }
-    }
-  }
-
   // Validation
   &.ng-invalid.ng-touched,
   &.ng-invalid.ng-dirty,
@@ -551,83 +529,24 @@ $color-chip-text: #fff;
     }
   }
 
-  &.autosize,
   &.fill {
-    .ngx-select-label {
-      white-space: nowrap;
-      max-width: 100%;
-      overflow-x: hidden;
-      text-overflow: ellipsis;
-      padding-right: 25px;
-      position: initial;
-    }
-  }
-
-  &.fill {
-    .ngx-select-input-list {
-      padding-left: 5px;
-    }
-
     &.single-selection .ngx-select-input-list {
       padding-left: 10px;
     }
 
-    .ngx-select-flex-wrap .ngx-select-input-box {
-      margin: -4px 0 0;
-      padding: 3px 0;
-      top: 3px;
-      min-height: 1.75rem;
-      position: relative;
-      color: $color-blue-grey-050;
-      position: relative;
-
-      &::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background-color: $color-fill-input-bg;
-        mix-blend-mode: exclusion;
-        pointer-events: none;
+    .ngx-select-flex-wrap {
+      .ngx-select-input-box-outer-wrap {
+        @include input-fill-background;
       }
-    }
 
-    .ngx-select-input .ngx-select-label {
-      top: -18px;
-      padding: 0;
-      position: absolute;
-      font-size: 0.7em;
-      padding: 0;
-      line-height: 1.875em;
-    }
-
-    .ngx-select-label {
-      padding-left: 10px;
-      line-height: 0;
+      .ngx-select-input-box {
+        min-height: 1.75em;
+        color: $color-blue-grey-050;
+      }
     }
 
     .ngx-select-placeholder {
       padding-left: 10px;
-    }
-
-    .ngx-select-input-box__controls {
-      padding-top: 0.3em;
-    }
-
-    &.active-selections,
-    &.has-placeholder,
-    &.active {
-      .ngx-select-label {
-        padding: 0;
-        line-height: 1.875em;
-      }
-    }
-
-    &.tagging-selection:not(.active) .ngx-select-input-list.no-selections {
-      position: absolute;
-      bottom: 0;
     }
   }
 
@@ -659,6 +578,34 @@ $color-chip-text: #fff;
     }
     100% {
       transform: translateY(0px);
+    }
+  }
+
+  &.autosize {
+    .ngx-select-dropdown {
+      width: fit-content;
+      min-width: 190px;
+      max-width: 100%;
+    }
+
+    .ngx-select-flex-wrap {
+      max-width: 100%;
+      width: fit-content;
+    }
+
+    .ngx-select-input .ngx-select-label {
+      padding-right: 25px; // space for the caret
+    }
+  }
+
+  &.active-selections,
+  &.has-placeholder,
+  &.active,
+  &.fill {
+    .ngx-select-input .ngx-select-label {
+      font-size: $input-label-font-size-active;
+      top: -1.2em;
+      padding-right: 0;
     }
   }
 }

@@ -13,6 +13,7 @@
           [name]="name"
           [placeholder]="placeholder"
           [disabled]="disabled"
+          [readonly]="readonly"
           [attr.tabindex]="tabindex"
           [attr.autocomplete]="autocomplete"
           [attr.autocorrect]="autocorrect"
@@ -38,6 +39,7 @@
           [name]="name"
           [placeholder]="placeholder"
           [disabled]="disabled"
+          [readonly]="readonly"
           [attr.tabindex]="tabindex"
           [attr.autocomplete]="autocomplete"
           [attr.autocorrect]="autocorrect"
@@ -95,7 +97,7 @@
           <i class="ngx-icon ngx-lock"></i>
         </button>
       </div>
-      <label class="ngx-input-label" [@labelState]="labelState" [attr.for]="id">
+      <label class="ngx-input-label" [attr.for]="id">
         <span>{{ label }}</span
         >&nbsp;
         <span *ngIf="required && requiredIndicator" [innerHTML]="requiredIndicator"></span>
@@ -103,7 +105,7 @@
     </div>
     <ng-content select="ngx-input-suffix"></ng-content>
   </div>
-  <div class="ngx-input-underline">
+  <div class="ngx-input-underline" [ngClass]="{ 'ngx-input-underline__visibility-hidden': readonly }">
     <div class="underline-fill" [@underlineState]="underlineState"></div>
   </div>
   <div class="ngx-input-hint">
@@ -126,6 +128,7 @@
     [name]="name"
     [placeholder]="placeholder"
     [disabled]="disabled"
+    [readonly]="readonly"
     [type]="type$ | async"
     [min]="min"
     [max]="max"
@@ -153,6 +156,7 @@
     [name]="name"
     [placeholder]="placeholder"
     [disabled]="disabled"
+    [readonly]="readonly"
     [type]="type$ | async"
     [min]="min"
     [max]="max"

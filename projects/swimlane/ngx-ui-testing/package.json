@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui-testing",
-  "version": "36.0.0-beta0",
+  "version": "42.4.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,5 +13,8 @@
   "license": "MIT",
   "devDependencies": {
     "typescript": "^4.3.5"
+  },
+  "peerDependencies": {
+    "cypress": ">=9.0.0"
   }
 }

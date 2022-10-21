@@ -6,7 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./controls-page.component.scss']
 })
 export class ControlsPageComponent {
-  inputValue: any = 'A Value';
+  inputValue = 'Breach';
+  selectValue = ['Breach'];
+
   minValue = 0;
   maxValue = 100;
   prefix = '$USD';
@@ -22,7 +24,22 @@ export class ControlsPageComponent {
   curDate2: any = new Date('10/10/2016');
   favoriteSeason = 'Spring';
 
-  dateChanged(val) {
+  appearances = ['legacy', 'fill'];
+  appearance = 'legacy';
+
+  alignments = ['top', 'baseline', 'middle', 'bottom'];
+  alignment = 'baseline';
+
+  fontSizes = ['16px', '13px', '21px', '10px'];
+  fontSize = '16px';
+
+  showOutline = false;
+
+  dateChanged(val: any) {
     console.log('date changed!', val);
+  }
+
+  onSubmit() {
+    alert('Form Submit');
   }
 }

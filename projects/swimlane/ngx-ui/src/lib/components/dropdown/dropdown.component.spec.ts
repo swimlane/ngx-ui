@@ -13,13 +13,11 @@ describe('DropdownComponent', () => {
   let fixture: ComponentFixture<DropdownComponentFixture>;
   let debugElement: DebugElement;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [DropdownComponent, DropdownMenuDirective, DropdownToggleDirective, DropdownComponentFixture]
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [DropdownComponent, DropdownMenuDirective, DropdownToggleDirective, DropdownComponentFixture]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DropdownComponentFixture);
@@ -120,5 +118,13 @@ describe('DropdownComponent', () => {
       tick(1200);
       expect(component.dropdown.open).toBe(false);
     }));
+  });
+
+  describe('closeDropdownWhenCloseMethodIsCalled', () => {
+    it('should close the dropdown when the close method is called', () => {
+      component.dropdown.open = true;
+      component.dropdown.close();
+      expect(component.dropdown.open).toBe(false);
+    });
   });
 });

@@ -80,7 +80,7 @@ describe('SelectDropdownComponent', () => {
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();
         done();
-      }, 5);
+      }, 50);
     });
   });
 

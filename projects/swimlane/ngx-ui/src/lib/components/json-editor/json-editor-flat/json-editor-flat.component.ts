@@ -47,6 +47,10 @@ export class JsonEditorFlatComponent extends JsonEditor implements OnInit, OnCha
 
   @Input() passwordToggleEnabled = false;
 
+  @Input() enableSchemaValidation = true;
+
+  @Input() inputControlTemplate: TemplateRef<unknown>;
+
   @ContentChildren(JsonEditorNodeFlatComponent) nodeElms: QueryList<JsonEditorNodeFlatComponent>;
 
   @ViewChild('propertyConfigTmpl') propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;
@@ -77,18 +81,27 @@ export class JsonEditorFlatComponent extends JsonEditor implements OnInit, OnCha
   }
 
   onPropertyConfig(): void {
-    this.dialogService.create({
+    const dialog = this.dialogService.create({
       template: this.propertyConfigTmpl,
       context: {
         property: this.schema,
         schema: this.schema,
-        formats: this.customFormats
+        formats: this.customFormats,
+        apply: (options: PropertyConfigOptions) => {
+          dialog.destroy();
+          this.updateSchemaProperty(options);
+        }
       },
       class: 'property-config-dialog'
     });
   }
 
-  updateSchema(options: PropertyConfigOptions): void {
+  // Override
+  validate(schema: any, model: any): boolean {
+    return this.enableSchemaValidation ? super.validate(schema, model) : false;
+  }
+
+  updateSchemaProperty(options: PropertyConfigOptions): void {
     const editedSchema = options.newProperty;
 
     if (editedSchema.title) {

@@ -1,4 +1,7 @@
 .appearance-table {
+  td {
+    max-width: 100px;
+  }
   ngx-button {
     width: 100%;
   }

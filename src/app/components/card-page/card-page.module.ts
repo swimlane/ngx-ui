@@ -7,6 +7,7 @@ import {
   IconModule,
   ResizeObserverModule,
   SectionModule,
+  TabsModule,
   ToggleModule
 } from '@swimlane/ngx-ui';
 import { CardPageComponent } from './card-page.component';
@@ -25,7 +26,8 @@ import { PrismModule } from '../../common/prism/prism.module';
     DropdownModule,
     ResizeObserverModule,
     ToggleModule,
-    PrismModule
+    PrismModule,
+    TabsModule
   ]
 })
 export class CardPageModule {}

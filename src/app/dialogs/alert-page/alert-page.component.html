@@ -1,176 +1,295 @@
 <h3 class="style-header">Alert/Confirm</h3>
-<ngx-section class="shadow" [sectionTitle]="'Alerts'">
 
-  <button type="button" class="btn"
-    (click)="alertService.alert({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
-    Info
-  </button>
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" [sectionTitle]="'Alerts'">
+    
+      <button type="button" class="btn"
+        (click)="alertService.alert({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+        Info
+      </button>
+    
+      <button type="button" class="btn" (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Danger })">
+        Danger
+      </button>
+    
+      <button type="button" class="btn"
+        (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Warning, content: 'Intrusion Happened!!!' })">
+        Warning
+      </button>
+    
+      <button type="button" class="btn"
+        (click)="alertService.alert({ title: 'Rainbows!!!', cssClass: 'rainbows' })">
+        Custom CSS
+      </button>
+    
+      <br />
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<button
+      type="button"
+      (click)="alertService.alert({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+      Info
+    </button>
+    
+    <button
+      type="button"
+      (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Danger })">
+      Danger
+    </button>
+    
+    <button
+      type="button"
+      (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Warning, content: 'Intrusion Happened!!!' })">
+      Warning
+    </button>
+    
+    <button type="button" class="btn"
+      (click)="alertService.alert({ title: 'Rainbows!!!', cssClass: 'rainbows' })">
+      Custom CSS
+    </button>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[import { AlertService } from '@swimlane/ngx-ui';
+    
+    @Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      constructor(public alertService: AlertService) { }
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    
+    </ngx-section>
+    
+    <ngx-section class="shadow" [sectionTitle]="'Confirm'">
+    
+      <button type="button" class="btn"
+        (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+        Confirm
+      </button>
+    
+      <button type="button" class="btn"
+        (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!', longPress: true })">
+        Confirm with Long Press
+      </button>
+    
+      <button type="button" class="btn"
+        (click)="alertService.confirm({ title: 'Save your pending changes?', confirmButtonText: 'Yes!', cancelButtonText: 'Dismiss' })">
+        Custom actions text
+      </button>
+    
+      <br />
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<button
+      type="button"
+      (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
+      Confirm
+    </button>
+    
+    <button
+      type="button"
+      (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!',  longPress: true })">
+      Confirm with Long Press
+    </button>
+    
+    <button type="button" class="btn"
+      (click)="alertService.confirm({ title: 'Save your pending changes?', confirmButtonText: 'Yes!', cancelButtonText: 'Dismiss' })">
+      Custom actions text
+    </button>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[import { AlertService } from '@swimlane/ngx-ui';
+    
+    @Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      constructor(public alertService: AlertService) { }
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    
+    </ngx-section>
+    
+    <ngx-section class="shadow" [sectionTitle]="'Prompt'">
+    
+      <button type="button" class="btn" (click)="onPromptClick()">
+        Prompt
+      </button>
+    
+      <br />
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<button
+      type="button"
+      (click)="onPromptClick()">
+      Prompt
+    </button>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[import { AlertService } from '@swimlane/ngx-ui';
+    
+    @Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      constructor(public alertService: AlertService) { }
+    
+      onPromptClick() {
+        const subject = this.alertService.prompt({
+          title: 'Alert SOC',
+          content: 'What type of compromise?'
+        });
+    
+        console.log('Prompt subject', subject);
+    
+        subject.subscribe({
+          next: (v) => console.log('Prompt next', v),
+          error: (err) => console.log('Prompt err', err),
+          complete: (v) => console.log('Complete', v)
+        });
+      }
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('options')">Component Options</a>
+    <a class="documentation-content" (click)="scrollTo('methods')">AlertService Methods</a>
+    <hr>
 
-  <button type="button" class="btn" (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Danger })">
-    Danger
-  </button>
+    <p>The <code>AlertComponent</code> is created using the <code>AlertService</code>.</p> 
 
-  <button type="button" class="btn"
-    (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Warning, content: 'Intrusion Happened!!!' })">
-    Warning
-  </button>
+    <p>Listed below are the customization options that can be provided to the <code>AlertService</code> when calling the <code>alert()</code>, <code>confirm()</code>, and <code>prompt()</code> methods. </p>
 
-  <button type="button" class="btn"
-    (click)="alertService.alert({ title: 'Rainbows!!!', cssClass: 'rainbows' })">
-    Custom CSS
-  </button>
+    <p>See Examples tab for more information.</p>
+    
+    <h3 class="style-header" id="options">Component Options</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code>cancelButtonClass: string | string[]</code>
+          </th>
+          <td>The custom CSS class to add to the cancel button.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>cancelButtonText: string = 'Cancel'</code>
+          </th>
+          <td>The text to display on the cancel button.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>confirmButtonClass: string | string[]</code>
+          </th>
+          <td>The custom CSS class to add to the confirmation button.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>confirmButtonText: string = 'Ok'</code>
+          </th>
+          <td>The text to display on the confirmation button.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>content: string</code>
+          </th>
+          <td>The content to display in the component. See Examples tab.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>cssClass: string</code>
+          </th>
+          <td>The custom CSS class to add to the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>longPress: boolean</code>
+          </th>
+          <td>Whether closing the component requires a long press. See Examples tab.</td>
+        </tr>
+        <tr>
+        <tr>
+          <th>
+            <code>title: string</code>
+          </th>
+          <td>The title for the component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
 
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
-      <app-prism>
-<![CDATA[<button
-  type="button"
-  (click)="alertService.alert({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
-  Info
-</button>
-
-<button
-  type="button"
-  (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Danger })">
-  Danger
-</button>
-
-<button
-  type="button"
-  (click)="alertService.alert({ title: 'Alert SOC', style: AlertStyles.Warning, content: 'Intrusion Happened!!!' })">
-  Warning
-</button>
-
-<button type="button" class="btn"
-  (click)="alertService.alert({ title: 'Rainbows!!!', cssClass: 'rainbows' })">
-  Custom CSS
-</button>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[import { AlertService } from '@swimlane/ngx-ui';
-
-@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  constructor(public alertService: AlertService) { }
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-
-</ngx-section>
-
-<ngx-section class="shadow" [sectionTitle]="'Confirm'">
-
-  <button type="button" class="btn"
-    (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
-    Confirm
-  </button>
-
-  <button type="button" class="btn"
-    (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!', longPress: true })">
-    Confirm with Long Press
-  </button>
-
-  <button type="button" class="btn"
-    (click)="alertService.confirm({ title: 'Save your pending changes?', confirmButtonText: 'Yes!', cancelButtonText: 'Dismiss' })">
-    Custom actions text
-  </button>
-
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
-      <app-prism>
-<![CDATA[<button
-  type="button"
-  (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!' })">
-  Confirm
-</button>
-
-<button
-  type="button"
-  (click)="alertService.confirm({ title: 'Alert SOC', content: 'Intrusion Happened!!!',  longPress: true })">
-  Confirm with Long Press
-</button>
-
-<button type="button" class="btn"
-  (click)="alertService.confirm({ title: 'Save your pending changes?', confirmButtonText: 'Yes!', cancelButtonText: 'Dismiss' })">
-  Custom actions text
-</button>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[import { AlertService } from '@swimlane/ngx-ui';
-
-@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  constructor(public alertService: AlertService) { }
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-
-</ngx-section>
-
-<ngx-section class="shadow" [sectionTitle]="'Prompt'">
-
-  <button type="button" class="btn" (click)="onPromptClick()">
-    Prompt
-  </button>
-
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
-      <app-prism>
-<![CDATA[<button
-  type="button"
-  (click)="onPromptClick()">
-  Prompt
-</button>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[import { AlertService } from '@swimlane/ngx-ui';
-
-@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  constructor(public alertService: AlertService) { }
-
-  onPromptClick() {
-    const subject = this.alertService.prompt({
-      title: 'Alert SOC',
-      content: 'What type of compromise?'
-    });
-
-    console.log('Prompt subject', subject);
-
-    subject.subscribe({
-      next: (v) => console.log('Prompt next', v),
-      error: (err) => console.log('Prompt err', err),
-      complete: (v) => console.log('Complete', v)
-    });
-  }
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-</ngx-section>
+    <h3 class="style-header" id="methods">AlertService Methods</h3>
+    <table class="table methods-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Parameters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code>alert</code>
+          </th>
+          <td>Creates an instance of the <code>AlertComponent</code> with the type of <code>Alert</code> and returns a <code>Subject&lt;&#123; type: string, data: any &#125;&gt;</code>.</td>
+          <td>
+            <code>options: DialogOptions</code>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code>confirm</code>
+          </th>
+          <td>Creates an instance of the <code>AlertComponent</code> with the type of <code>Confirm</code> and returns a <code>Subject&lt;&#123; type: string, data: any &#125;&gt;</code>.</td>
+          <td>
+            <code>options: DialogOptions</code>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code>prompt</code>
+          </th>
+          <td>Creates an instance of the <code>AlertComponent</code> with the type of <code>Prompt</code> and returns a <code>Subject&lt;&#123; type: string, data: any &#125;&gt;</code>.</td>
+          <td>
+            <code>options: DialogOptions</code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>

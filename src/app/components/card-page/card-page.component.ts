@@ -37,4 +37,8 @@ export class CardPageComponent implements AfterViewInit {
   onActionClick() {
     console.log('Card action clicked');
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

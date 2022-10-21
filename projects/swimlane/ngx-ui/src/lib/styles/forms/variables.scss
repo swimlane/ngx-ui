@@ -1,0 +1,110 @@
+$color-input-bg: $color-blue-grey-700;
+$color-input-border: $color-blue-grey-600;
+$color-input-text: $color-blue-grey-050;
+$color-input-text-placeholder: $color-blue-grey-450;
+$color-input-text-disabled: $color-blue-grey-400;
+
+$input-invalid-color: $color-red;
+$input-icon-color: $color-grey-300;
+$input-icon-color-hover: $color-grey-100;
+$input-placeholder-color: $color-blue-grey-350;
+
+$color-fill-input-bg: $color-blue-grey-875;
+
+$input-underline-height: 1px;
+$input-underline-height-fill: 2px;
+$input-active-underline-fill: $color-blue;
+$input-inactive-underline-fill: $color-blue-grey-600;
+
+$input-label-color: $color-blue-grey-350;
+$input-label-color-active: $color-blue-500;
+$input-label-font-size: 1em;
+$input-label-font-size-active: 0.7rem;
+$input-label-font-weight: 600;
+
+$input-hint-color: $color-blue-grey-350;
+$input-hint-font-size: 12px;
+$input-hint-margin-top: 2px;
+$input-hint-min-height: 1em;
+$input-hint-line-height: 14px;
+
+$input-min-width: 300px;
+$input-line-height: calc(1em + 0.7rem);
+$input-margin-top: 16px;
+$input-margin-bottom: 8px;
+$input-padding-top: calc(#{$input-label-font-size-active} + 8px);
+
+$input-animation-duration: 150ms;
+
+@mixin input-box {
+  display: block;
+  max-width: 100%;
+  margin-top: $input-margin-top;
+  margin-bottom: $input-margin-bottom;
+  line-height: $input-line-height;
+  padding-top: $input-padding-top;
+  padding-bottom: 0;
+
+  &.marginless {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &.no-label {
+    padding-top: 0;
+  }
+}
+
+@mixin input-label {
+  position: absolute;
+  top: 0.4em;
+  line-height: 1em;
+  pointer-events: none;
+  font-size: $input-label-font-size;
+  font-weight: $input-label-font-weight;
+  color: $input-label-color;
+  white-space: nowrap;
+  overflow-x: clip;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  transition: color 0.2s ease-out, font-size $input-animation-duration ease-out, top $input-animation-duration ease-out;
+}
+
+@mixin input-hint {
+  font-size: $input-hint-font-size;
+  color: $input-hint-color;
+  margin-top: 2px;
+  min-height: 1em;
+  line-height: $input-hint-line-height;
+  transition: color 0.2s ease-in-out;
+}
+
+@mixin input-underline {
+  width: 100%;
+  height: $input-underline-height;
+  background-color: $input-inactive-underline-fill;
+
+  .underline-fill {
+    background-color: $input-active-underline-fill;
+    transition: width 250ms ease-out;
+    width: 0;
+    height: $input-underline-height-fill;
+    margin: 0 auto;
+  }
+}
+
+@mixin input-fill-background {
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $color-fill-input-bg;
+    mix-blend-mode: exclusion;
+    pointer-events: none;
+  }
+}

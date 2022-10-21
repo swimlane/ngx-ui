@@ -19,4 +19,8 @@ export class RadioPageComponent {
       season: 'Spring'
     });
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

@@ -16,15 +16,13 @@ describe('AlertComponent', () => {
   let component: AlertComponent;
   let fixture: ComponentFixture<AlertComponent>;
 
-  beforeEach(
-    waitForAsync(() => {
-      TestBed.configureTestingModule({
-        declarations: [AlertComponent],
-        providers: [IconRegistryService],
-        imports: [FormsModule, HttpClientTestingModule, NoopAnimationsModule, InputModule, LongPressButtonModule]
-      }).compileComponents();
-    })
-  );
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      declarations: [AlertComponent],
+      providers: [IconRegistryService],
+      imports: [FormsModule, HttpClientTestingModule, NoopAnimationsModule, InputModule, LongPressButtonModule]
+    }).compileComponents();
+  }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AlertComponent);

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { ButtonModule, CheckboxModule, SectionModule, SplitModule } from '@swimlane/ngx-ui';
+import { ButtonModule, CheckboxModule, SectionModule, SplitModule, TabsModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
 
 import { SplitPageRoutingModule } from './split-page-routing.module';
@@ -18,7 +18,8 @@ import { SplitPageComponent } from './split-page.component';
     SplitModule,
     ButtonModule,
     CheckboxModule,
-    SplitPageRoutingModule
+    SplitPageRoutingModule,
+    TabsModule
   ]
 })
 export class SplitPageModule {}

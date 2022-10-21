@@ -1,486 +1,811 @@
 <h3 class="style-header">Inputs</h3>
+<ngx-tabs>
+  <ngx-tab label="Examples">
 
-<ngx-section class="shadow" sectionTitle="Text">
-  <ngx-input type="text" name="input1" [label]="'Name'" [ngModel]="inputValue" [autofocus]="true" [minlength]="4"
-    [hint]="'Enter your first and last name'" (change)="output = $event">
-  </ngx-input>
+    <ngx-section class="shadow" sectionTitle="Text">
+      <ngx-input type="text" name="input1" [label]="'Name'" [ngModel]="inputValue" [autofocus]="true" [minlength]="4"
+        [hint]="'Enter your first and last name'" (change)="output = $event">
+      </ngx-input>
 
-  <p>Output: {{output | json}}</p>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-input
-  type="text"
-  [label]="'Name'"
-  [autofocus]="true"
-  [ngModel]="inputValue"
-  [hint]="'Enter your first and last name'"
-  (change)="inputValue = $event">
-</ngx-input>]]>
-  </app-prism>
-  <br />
+      <p>Output: {{output | json}}</p>
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-input
+      type="text"
+      [label]="'Name'"
+      [autofocus]="true"
+      [ngModel]="inputValue"
+      [hint]="'Enter your first and last name'"
+      (change)="inputValue = $event">
+    </ngx-input>]]>
+      </app-prism>
+      <br />
 
-  <ngx-input type="text" name="input2" [ngModel]="inputValue1" [placeholder]="'Enter your first and last name'">
-  </ngx-input>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-input
-  type="text"
-  [ngModel]="inputValue1"
-  [placeholder]="'Enter your first and last name'"
-  (change)="inputValue = $event">
-</ngx-input>]]>
-  </app-prism>
-  <br />
+      <ngx-input type="text" name="input2" [ngModel]="inputValue1" [placeholder]="'Enter your first and last name'">
+      </ngx-input>
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-input
+      type="text"
+      [ngModel]="inputValue1"
+      [placeholder]="'Enter your first and last name'"
+      (change)="inputValue = $event">
+    </ngx-input>]]>
+      </app-prism>
+      <br />
 
-  <ngx-input type="text" name="input22" label="Prefix Suffix Input" [ngModel]="inputValue1">
-    <ngx-input-prefix>
-      <i class="icon-add-new"></i>
-    </ngx-input-prefix>
-    <ngx-input-suffix>
-      <button class="btn btn-primary" (click)="onClick($event)">Clear</button>
-    </ngx-input-suffix>
-  </ngx-input>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-input
-  type="text"
-  name="input22"
-  label="Prefix Suffix Input"
-  [ngModel]="inputValue1">
-  <ngx-input-prefix>
-    <i class="icon-add-new"></i>
-  </ngx-input-prefix>
-  <ngx-input-suffix>
-    <ngx-button class="btn btn-primary">Clear</ngx-button>
-  </ngx-input-suffix>
-</ngx-input>]]>
-  </app-prism>
-  <br />
-
-  <ngx-input type="text" name="input3" [label]="'Disabled Example'" [disabled]="true" [ngModel]="'Disabled value'"
-    (change)="inputValue1 = $event">
-  </ngx-input>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-input
-  type="text"
-  [label]="'Disabled Example'"
-  [disabled]="true"
-  [ngModel]="'Disabled value'"
-  (change)="inputValue1 = $event">
-</ngx-input>]]>
-  </app-prism>
-  <br />
-
-  <ngx-input type="text" label="Disabled With Unlock Button" [unlockable]="true" [ngModel]="'Click the button to unlock'">
-  </ngx-input>
-  <br />
-  <app-prism>
-<![CDATA[
-  <ngx-input
-    type="text"
-    label="Disabled With Unlock Button"
-    [unlockable]="true"
-    [ngModel]="'Click the button to unlock'">
-  </ngx-input>
-]]>
-  </app-prism>
-
-  <br />
-
-  <ngx-input [label]="'Required Input Example Of The Day'" type="text" name="input4" [required]="true"
-    (change)="inputValue3 = $event">
-  </ngx-input>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-input
-  [label]="'Required Input Example Of The Day'"
-  type="text"
-  [required]="true"
-  (change)="inputValue3 = $event">
-</ngx-input>]]>
-  </app-prism>
-
-  <br />
-
-  <ngx-input [label]="'Default value'" type="text" [autoSelect]="true" [ngModel]="inputDefaultVal" name="input44">
-  </ngx-input>
-  <br />
-  <app-prism>
-<![CDATA[<ngx-input
-  [label]="'Default value'"
-  type="text"
-  [ngModel]="inputDefaultVal"
-  name="input44">
-</ngx-input>]]>
-  </app-prism>
-
-</ngx-section>
-
-<ngx-section class="shadow" [sectionTitle]="'Search - demo'">
-
-  <div class="demo-search-box">
-    <ngx-input #searchInput [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)" placeholder="Search"
-      type="text" name="searchInputValue" [(ngModel)]="searchInputValue" (focus)="searchInput.focused = true"
-      (blur)="searchInput.focused = false">
+      <ngx-input type="text" name="input22" label="Prefix Suffix Input" [ngModel]="inputValue1">
+        <ngx-input-prefix>
+          <i class="icon-add-new"></i>
+        </ngx-input-prefix>
+        <ngx-input-suffix>
+          <button class="btn btn-primary" (click)="onClick($event)">Clear</button>
+        </ngx-input-suffix>
+      </ngx-input>
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-input
+      type="text"
+      name="input22"
+      label="Prefix Suffix Input"
+      [ngModel]="inputValue1">
       <ngx-input-prefix>
-        <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
+        <i class="icon-add-new"></code>
       </ngx-input-prefix>
       <ngx-input-suffix>
-        <button class="btn btn-link pull-right" *ngIf="searchInputValue?.length > 0" (click)="searchInputValue = ''">
-          <ngx-icon fontIcon="x"></ngx-icon>
-        </button>
+        <ngx-button class="btn btn-primary">Clear</ngx-button>
       </ngx-input-suffix>
-    </ngx-input>
-  </div>
+    </ngx-input>]]>
+      </app-prism>
+      <br />
 
-  <ngx-tabs>
-    <ngx-tab label="TypeScript">
+      <ngx-input type="text" name="input3" [label]="'Disabled Example'" [disabled]="true" [ngModel]="'Disabled value'"
+        (change)="inputValue1 = $event">
+      </ngx-input>
+      <br />
       <app-prism>
-<![CDATA[<div lass="demo-search-box">
-  <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
-  <button class="btn btn-link pull-right"
-    *ngIf="searchInputValue?.length > 0"
-    (click)="searchInputValue = ''">
-      <ngx-icon fontIcon="x"></ngx-icon>
-  </button>
-  <ngx-input
-    #searchInput
-    [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)"
-    placeholder="Search"
-    type="text"
-    name="searchInputValue"
-    [(ngModel)]="searchInputValue"
-    (focus)="searchInput.focused = true"
-    (blur)="searchInput.focused = false">
-  </ngx-input>
-</div>]]>
+    <![CDATA[<ngx-input
+      type="text"
+      [label]="'Disabled Example'"
+      [disabled]="true"
+      [ngModel]="'Disabled value'"
+      (change)="inputValue1 = $event">
+    </ngx-input>]]>
       </app-prism>
-    </ngx-tab>
-    <ngx-tab label="SCSS">
-      <app-prism language="css">
-<![CDATA[.demo-search-box {
-  width: 300px;
-  height: 50px;
+      <br />
 
-  ngx-icon.search-icon {
-    margin-top: 5px;
-  }
-
-  ngx-input[hidden] {
-    display: block !important;
-    width: 0px;
-    transition: width 0.5s;
-  }
-
-  ngx-input, &:hover ngx-input {
-    margin: 0 40px 0 20px;
-    width: 240px;
-    transition: width 0.5s;
-  }
-}]]>
+      <ngx-input type="text" label="Disabled With Unlock Button" [unlockable]="true" [ngModel]="'Click the button to unlock'">
+      </ngx-input>
+      <br />
+      <app-prism>
+    <![CDATA[
+      <ngx-input
+        type="text"
+        label="Disabled With Unlock Button"
+        [unlockable]="true"
+        [ngModel]="'Click the button to unlock'">
+      </ngx-input>
+    ]]>
       </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-</ngx-section>
+      <br />
 
-<ngx-section class="shadow" [sectionTitle]="'Password'">
-  <form action="#">
-    <ngx-input type="text" label="Username" [(ngModel)]="usernameValue" name="input5" [required]="true"
-      [requiredIndicator]="false" hint="Enter a Username between four and 12 characters" [minlength]="4"
-      [maxlength]="12">
+      <ngx-input type="text" name="input3" [label]="'Readonly Example'" [readonly]="true" [ngModel]="'Readonly value'"
+        (change)="inputValue1 = $event">
+      </ngx-input>
+      <br />
+      <app-prism>
+    <![CDATA[
+      <ngx-input
+        type="text"
+        [label]="'Readonly Example'"
+        [readonly]="true"
+        [ngModel]="'Readonly value'">
+      </ngx-input>
+    ]]>
+      </app-prism>
+      <br />
+
+      <ngx-input type="text" name="input3" [label]="'Readonly Example With Hint'" [readonly]="true" [ngModel]="'Readonly value'"
+        [hint]="'A brief bit of help text'" (change)="inputValue1 = $event">
+      </ngx-input>
+      <br />
+      <app-prism>
+    <![CDATA[
+      <ngx-input
+        type="text"
+        [label]="'Readonly Example with Hint'"
+        [readonly]="true"
+        [ngModel]="'Readonly value'"
+        [hint]="'A brief bit of help text'">
+      </ngx-input>
+    ]]>
+      </app-prism>
+      <br />
+
+      <ngx-input [label]="'Required Input Example Of The Day'" type="text" name="input4" [required]="true"
+        (change)="inputValue3 = $event">
+      </ngx-input>
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-input
+      [label]="'Required Input Example Of The Day'"
+      type="text"
+      [required]="true"
+      (change)="inputValue3 = $event">
+    </ngx-input>]]>
+      </app-prism>
+
+      <br />
+
+      <ngx-input [label]="'Default value'" type="text" [autoSelect]="true" [ngModel]="inputDefaultVal" name="input44">
+      </ngx-input>
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-input
+      [label]="'Default value'"
+      type="text"
+      [ngModel]="inputDefaultVal"
+      name="input44">
+    </ngx-input>]]>
+      </app-prism>
+
+    </ngx-section>
+
+    <ngx-section class="shadow" [sectionTitle]="'Search - demo'">
+
+      <div class="demo-search-box">
+        <ngx-input #searchInput [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)" placeholder="Search"
+          type="text" name="searchInputValue" [(ngModel)]="searchInputValue" (focus)="searchInput.focused = true"
+          (blur)="searchInput.focused = false">
+          <ngx-input-prefix>
+            <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
+          </ngx-input-prefix>
+          <ngx-input-suffix>
+            <button class="btn btn-link pull-right" *ngIf="searchInputValue?.length > 0" (click)="searchInputValue = ''">
+              <ngx-icon fontIcon="x"></ngx-icon>
+            </button>
+          </ngx-input-suffix>
+        </ngx-input>
+      </div>
+
+      <ngx-tabs>
+        <ngx-tab label="TypeScript">
+          <app-prism>
+    <![CDATA[<div lass="demo-search-box">
+      <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
+      <button class="btn btn-link pull-right"
+        *ngIf="searchInputValue?.length > 0"
+        (click)="searchInputValue = ''">
+          <ngx-icon fontIcon="x"></ngx-icon>
+      </button>
+      <ngx-input
+        #searchInput
+        [hidden]="!(searchInput?.focused || searchInputValue?.length > 0)"
+        placeholder="Search"
+        type="text"
+        name="searchInputValue"
+        [(ngModel)]="searchInputValue"
+        (focus)="searchInput.focused = true"
+        (blur)="searchInput.focused = false">
+      </ngx-input>
+    </div>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="SCSS">
+          <app-prism language="css">
+    <![CDATA[.demo-search-box {
+      width: 300px;
+      height: 50px;
+
+      ngx-icon.search-icon {
+        margin-top: 5px;
+      }
+
+      ngx-input[hidden] {
+        display: block !important;
+        width: 0px;
+        transition: width 0.5s;
+      }
+
+      ngx-input, &:hover ngx-input {
+        margin: 0 40px 0 20px;
+        width: 240px;
+        transition: width 0.5s;
+      }
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+
+    <ngx-section class="shadow" [sectionTitle]="'Password'">
+      <form action="#">
+        <ngx-input type="text" label="Username" [(ngModel)]="usernameValue" name="input5" [required]="true"
+          [requiredIndicator]="false" hint="Enter a Username between four and 12 characters" [minlength]="4"
+          [maxlength]="12">
+        </ngx-input>
+        <ngx-input type="password" [label]="'Password'" [(ngModel)]="passwordValue" name="input6" [required]="true"
+          hint="Enter a password" [passwordToggleEnabled]="true">
+        </ngx-input>
+        <button class="btn" type="submit">Login</button>
+      </form>
+
+      <br />
+      <app-prism>
+    <![CDATA[<form action="#">
+      <ngx-input
+        type="text"
+        [label]="'Username'"
+        [(ngModel)]="usernameValue"
+        name="input5"
+        [required]="true"
+        [requiredIndicator]="false"
+        [hint]="'Enter a Username'">
+      </ngx-input>
+      <ngx-input
+        type="password"
+        [label]="'Password'"
+        [(ngModel)]="passwordValue"
+        name="input6"
+        [required]="true"
+        [passwordToggleEnabled]="true"
+        [hint]="'Enter a password'">
+      </ngx-input>
+      <br />
+      <button class="btn" type="submit">Login</button>
+    </form>]]>
+      </app-prism>
+      <ngx-input type="password" [label]="'Unlockable Secret'" [(ngModel)]="secretValue" [unlockable]="true" [passwordToggleEnabled]="true" name="input6b">
+      </ngx-input>
+      <app-prism>
+    <![CDATA[<ngx-input
+      type="password"
+      [label]="'Unlockable Secret'"
+      [(ngModel)]="secretValue"
+      [unlockable]="true"
+      [passwordToggleEnabled]="true"
+      name="input6b">]]>
+      </app-prism>
+    </ngx-section>
+
+    <ngx-section class="shadow" [sectionTitle]="'Numeric'">
+      <ngx-input type="number" label="Number">
+      </ngx-input>
+
+      <br />
+      <app-prism>
+    <![CDATA[
+    <ngx-input type="number" label="Number">
     </ngx-input>
-    <ngx-input type="password" [label]="'Password'" [(ngModel)]="passwordValue" name="input6" [required]="true"
-      hint="Enter a password" [passwordToggleEnabled]="true">
-    </ngx-input>
-    <button class="btn" type="submit">Login</button>
-  </form>
+    ]]>
+      </app-prism>
 
-  <br />
-  <app-prism>
-<![CDATA[<form action="#">
-  <ngx-input
-    type="text"
-    [label]="'Username'"
-    [(ngModel)]="usernameValue"
-    name="input5"
-    [required]="true"
-    [requiredIndicator]="false"
-    [hint]="'Enter a Username'">
-  </ngx-input>
-  <ngx-input
-    type="password"
-    [label]="'Password'"
-    [(ngModel)]="passwordValue"
-    name="input6"
-    [required]="true"
-    [passwordToggleEnabled]="true"
-    [hint]="'Enter a password'">
-  </ngx-input>
-  <br />
-  <button class="btn" type="submit">Login</button>
-</form>]]>
-  </app-prism>
-  <ngx-input type="password" [label]="'Unlockable Secret'" [(ngModel)]="secretValue" [unlockable]="true" [passwordToggleEnabled]="true" name="input6b">
-  </ngx-input>
-  <app-prism>
-<![CDATA[<ngx-input
-  type="password"
-  [label]="'Unlockable Secret'"
-  [(ngModel)]="secretValue"
-  [unlockable]="true"
-  [passwordToggleEnabled]="true"
-  name="input6b">]]>
-  </app-prism>
-</ngx-section>
+      <ngx-input type="number" label="Age" [(ngModel)]="numericValue" name="numeric-input" min="0" max="122">
+      </ngx-input>
 
-<ngx-section class="shadow" [sectionTitle]="'Numeric'">
-  <ngx-input type="number" label="Number">
-  </ngx-input>
+      Value: {{ numericValue }}
 
-  <br />
-  <app-prism>
-<![CDATA[
-<ngx-input type="number" label="Number">
-</ngx-input>
-]]>
-  </app-prism>
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-input
+      type="number"
+      label="Age"
+      [(ngModel)]="numericValue"
+      name="numeric-input"
+      min="0"
+      max="122"
+    >
+    </ngx-input>]]>
+      </app-prism>
 
-  <ngx-input type="number" label="Age" [(ngModel)]="numericValue" name="numeric-input" min="0" max="122">
-  </ngx-input>
+      <ngx-input type="number" label="Pi" [disabled]="true" [ngModel]="3.14159">
+      </ngx-input>
 
-  Value: {{ numericValue }}
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-input
+      type="number"
+      label="Pi"
+      [disabled]="true"
+      [ngModel]="3.14159">
+    </ngx-input>]]>
+      </app-prism>
+    </ngx-section>
 
-  <br />
-  <app-prism>
-<![CDATA[<ngx-input
-  type="number"
-  label="Age"
-  [(ngModel)]="numericValue"
-  name="numeric-input"
-  min="0"
-  max="122"
->
-</ngx-input>]]>
-  </app-prism>
+    <ngx-section class="shadow" [sectionTitle]="'Validators'">
+      <ngx-input type="text" label="Pattern validation" [(ngModel)]="patternValue" name="patern-input" [pattern]="'^\\w+$'"
+        hint="Pattern: ^\\w+$">
+      </ngx-input>
 
-  <ngx-input type="number" label="Pi" [disabled]="true" [ngModel]="3.14159">
-  </ngx-input>
+      <br />
+      <app-prism>
+    <![CDATA[<ngx-input
+      type="text"
+      label="Pattern validation"
+      [(ngModel)]="patternValue"
+      name="patern-input"
+      [pattern]="'^\\w+$'"
+      hint="Pattern: ^\\w+$">
+    </ngx-input>]]>
+      </app-prism>
+    </ngx-section>
 
-  <br />
-  <app-prism>
-<![CDATA[<ngx-input
-  type="number"
-  label="Pi"
-  [disabled]="true"
-  [ngModel]="3.14159">
-</ngx-input>]]>
-  </app-prism>
-</ngx-section>
+    <ngx-section class="shadow" [sectionTitle]="'Types'">
+      <ngx-input type="email" name="input1111" [label]="'Email'" [ngModel]="inputValue">
+        <ngx-input-hint>
+          Enter a valid email
+        </ngx-input-hint>
+      </ngx-input>
 
-<ngx-section class="shadow" [sectionTitle]="'Validators'">
-  <ngx-input type="text" label="Pattern validation" [(ngModel)]="patternValue" name="patern-input" [pattern]="'^\\w+$'"
-    hint="Pattern: ^\\w+$">
-  </ngx-input>
+      <ngx-input type="url" name="input1112" [label]="'Url'" [ngModel]="inputValue">
+      </ngx-input>
 
-  <br />
-  <app-prism>
-<![CDATA[<ngx-input
-  type="text"
-  label="Pattern validation"
-  [(ngModel)]="patternValue"
-  name="patern-input"
-  [pattern]="'^\\w+$'"
-  hint="Pattern: ^\\w+$">
-</ngx-input>]]>
-  </app-prism>
-</ngx-section>
+      <ngx-input type="tel" name="input1113" [label]="'Tel'" [ngModel]="inputValue">
+      </ngx-input>
+    </ngx-section>
 
-<ngx-section class="shadow" [sectionTitle]="'Types'">
-  <ngx-input type="email" name="input1111" [label]="'Email'" [ngModel]="inputValue">
-    <ngx-input-hint>
-      Enter a valid email
-    </ngx-input-hint>
-  </ngx-input>
+    <ngx-section class="shadow" [sectionTitle]="'Textarea'">
+      <ngx-input type="textarea" name="input111" [label]="'Name'" [ngModel]="inputValue" [textareaRows]="3">
+      </ngx-input>
 
-  <ngx-input type="url" name="input1112" [label]="'Url'" [ngModel]="inputValue">
-  </ngx-input>
+      <ngx-input type="textarea" [label]="'Readonly Name'" [readonly]="true" [ngModel]="readonlyTextareaValue" [textareaRows]="3">
+      </ngx-input>
+    </ngx-section>
 
-  <ngx-input type="tel" name="input1113" [label]="'Tel'" [ngModel]="inputValue">
-  </ngx-input>
-</ngx-section>
+    <ngx-section class="shadow" sectionTitle="Native">
+      <label for="native">Text</label>
+      <input type="text" class="form-input" id="native" />
+      <input type="text" class="form-input" value="pre populated" />
+      <input type="text" class="form-input" placeholder="A placeholder" />
+      <input type="text" class="form-input" value="disabled" disabled />
+      <input type="tel" class="form-input" value="555-555-5555" />
+      <br />
+      <app-prism>
+    <![CDATA[<input type="text" class="form-input" />
+    <input type="text" class="form-input" value="pre populated" />
+    <input type="text" class="form-input" placeholder="A placeholder" />
+    <input type="text" class="form-input" value="disabled" disabled />
+    <input type="tel" class="form-input" value="555-555-5555" />]]>
+      </app-prism>
 
-<ngx-section class="shadow" [sectionTitle]="'Textarea'">
-  <ngx-input type="textarea" name="input111" [label]="'Name'" [ngModel]="inputValue" [textareaRows]="3">
-  </ngx-input>
-</ngx-section>
+      <br />
+      <br />
 
-<ngx-section class="shadow" sectionTitle="Native">
-  <label for="native">Text</label>
-  <input type="text" class="form-input" id="native" />
-  <input type="text" class="form-input" value="pre populated" />
-  <input type="text" class="form-input" placeholder="A placeholder" />
-  <input type="text" class="form-input" value="disabled" disabled />
-  <input type="tel" class="form-input" value="555-555-5555" />
-  <br />
-  <app-prism>
-<![CDATA[<input type="text" class="form-input" />
-<input type="text" class="form-input" value="pre populated" />
-<input type="text" class="form-input" placeholder="A placeholder" />
-<input type="text" class="form-input" value="disabled" disabled />
-<input type="tel" class="form-input" value="555-555-5555" />]]>
-  </app-prism>
+      <h4>Textarea</h4>
+      <textarea class="form-input"></textarea>
+      <br />
+      <app-prism>
+    <![CDATA[<textarea class="form-input"></textarea>]]>
+      </app-prism>
 
-  <br />
-  <br />
+      <br />
+      <br />
 
-  <h4>Textarea</h4>
-  <textarea class="form-input"></textarea>
-  <br />
-  <app-prism>
-<![CDATA[<textarea class="form-input"></textarea>]]>
-  </app-prism>
+      <h4>Number</h4>
+      <input type="number" class="form-input" min="0" />
+      <br />
+      <app-prism>
+    <![CDATA[<input type="number" class="form-input" />]]>
+      </app-prism>
+    </ngx-section>
 
-  <br />
-  <br />
+    <ngx-section class="shadow" sectionTitle="Sizes">
+      <ngx-input size="md" label="Medium" ngModel="Medium Input" hint="example of a medium input"></ngx-input>
 
-  <h4>Number</h4>
-  <input type="number" class="form-input" min="0" />
-  <br />
-  <app-prism>
-<![CDATA[<input type="number" class="form-input" />]]>
-  </app-prism>
-</ngx-section>
+      <br />
 
-<ngx-section class="shadow" sectionTitle="Sizes">
-  <ngx-input size="md" label="Medium" ngModel="Medium Input" hint="example of a medium input"></ngx-input>
+      <ngx-input size="lg" label="Large" ngModel="Large Input" hint="example of a large input"></ngx-input>
 
-  <br />
+      <br />
 
-  <ngx-input size="lg" label="Large" ngModel="Large Input" hint="example of a large input"></ngx-input>
+      <app-prism>
+    <![CDATA[<ngx-input size="lg" label="Large" ngModel="Large Input" hint="example of a large input"></ngx-input>]]>
+      </app-prism>
+    </ngx-section>
 
-  <br />
+    <ngx-section class="shadow" sectionTitle="Auto Size">
+      <ngx-input [(ngModel)]="longInputValue" autosize label="Resize Input"></ngx-input>
 
-  <app-prism>
-<![CDATA[<ngx-input size="lg" label="Large" ngModel="Large Input" hint="example of a large input"></ngx-input>]]>
-  </app-prism>
-</ngx-section>
+      <br />
 
-<ngx-section class="shadow" sectionTitle="Auto Size">
-  <ngx-input [(ngModel)]="longInputValue" autosize label="Resize Input"></ngx-input>
+      <app-prism>
+    <![CDATA[<ngx-input autosize label="Resize Input" placeholder="enter your text here..." hint="example of a resize input"></ngx-input>]]>
+      </app-prism>
 
-  <br />
+      <br />
+      <br />
 
-  <app-prism>
-<![CDATA[<ngx-input autosize label="Resize Input" placeholder="enter your text here..." hint="example of a resize input"></ngx-input>]]>
-  </app-prism>
+      <ngx-input autosize appearance="fill" type="number" label="Fill Resize Input"></ngx-input>
 
-  <br />
-  <br />
+      <br />
 
-  <ngx-input autosize appearance="fill" type="number" label="Fill Resize Input"></ngx-input>
+      <app-prism>
+    <![CDATA[<ngx-input autosize appearance="fill" type="number" label="Fill Resize Input"></ngx-input>]]>
+      </app-prism>
+    </ngx-section>
 
-  <br />
+    <ngx-section class="shadow" sectionTitle="Appearances">
+      <table class="appearance-table">
+        <tr>
+          <th></th>
+          <th>
+            Default
+          </th>
+          <th>
+            Fill
+          </th>
+        </tr>
+        <tr>
+          <td>Filled</td>
+          <td><ngx-input label="Label" ngModel="Value" hint="A brief bit of help text"></ngx-input></td>
+          <td><ngx-input label="Label" appearance="fill" ngModel="Value" hint="A brief bit of help text"></ngx-input></td>
+        </tr>
+        <tr>
+          <td>Empty w/o Placeholder</td>
+          <td><ngx-input label="Label" hint="A brief bit of help text"></ngx-input></td>
+          <td><ngx-input label="Label" appearance="fill" hint="A brief bit of help text"></ngx-input></td>
+        </tr>
+        <tr>
+          <td>Empty w/ Placeholder</td>
+          <td><ngx-input label="Label" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+          <td><ngx-input label="Label" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+        </tr>
+        <tr>
+          <td>Numeric</td>
+          <td><ngx-input label="Label" type="number" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+          <td><ngx-input label="Label" type="number" appearance="fill" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+        </tr>
+        <tr>
+          <td>Text Area</td>
+          <td><ngx-input type="textarea" label="Label" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+          <td><ngx-input type="textarea" appearance="fill" label="Label" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
+        </tr>
+        <tr>
+          <td>Prefix Suffix</td>
+          <td>
+            <ngx-input label="Label" type="number" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text">
+              <ngx-input-prefix>$</ngx-input-prefix>
+              <ngx-input-suffix>USD</ngx-input-suffix>
+            </ngx-input>
+          </td>
+          <td>
+            <ngx-input label="Label" type="number" appearance="fill" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text">
+              <ngx-input-prefix>$</ngx-input-prefix>
+              <ngx-input-suffix>USD</ngx-input-suffix>
+            </ngx-input>
+          </td>
+        </tr>
+        <tr>
+          <td>Error</td>
+          <td>
+            <ngx-input label="Label" type="number" ngModel="10" max="5" placeholder="Placeholder Text" hint="A brief bit of help text">
+            </ngx-input>
+          </td>
+          <td>
+            <ngx-input label="Label" type="number" appearance="fill" ngModel="10" max="5" placeholder="Placeholder Text" hint="A brief bit of help text">
+            </ngx-input>
+          </td>
+        </tr>
+        <tr>
+          <td>Password</td>
+          <td>
+            <ngx-input label="Label" type="password" ngModel="secret" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
+            </ngx-input>
+          </td>
+          <td>
+            <ngx-input label="Label" type="password" appearance="fill" ngModel="secret" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
+            </ngx-input>
+          </td>
+        </tr>
+        <tr>
+          <td>Unlockable</td>
+          <td>
+            <ngx-input label="Label" type="text" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text">
+            </ngx-input>
+          </td>
+          <td>
+            <ngx-input label="Label" type="text" appearance="fill" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text">
+            </ngx-input>
+          </td>
+        </tr>
+        <tr>
+          <td>Secret</td>
+          <td>
+            <ngx-input label="Label" type="password" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
+            </ngx-input>
+          </td>
+          <td>
+            <ngx-input label="Label" type="password" appearance="fill" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
+            </ngx-input>
+          </td>
+        </tr>
+        <tr>
+          <td>Readonly</td>
+          <td>
+            <ngx-input label="Label" [readonly]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text">
+            </ngx-input>
+          </td>
+          <td>
+            <ngx-input label="Label" [readonly]="true" appearance="fill" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text">
+            </ngx-input>
+          </td>
+        </tr>
+      </table>
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <hr>
 
-  <app-prism>
-<![CDATA[<ngx-input autosize appearance="fill" type="number" label="Fill Resize Input"></ngx-input>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Appearances">
-  <table class="appearance-table">
-    <tr>
-      <th></th>
-      <th>
-        Default
-      </th>
-      <th>
-        Fill
-      </th>
-    </tr>
-    <tr>
-      <td>Filled</td>
-      <td><ngx-input label="Label" ngModel="Value" hint="A brief bit of help text"></ngx-input></td>
-      <td><ngx-input label="Label" appearance="fill" ngModel="Value" hint="A brief bit of help text"></ngx-input></td>
-    </tr>
-    <tr>
-      <td>Empty w/o Placeholder</td>
-      <td><ngx-input label="Label" hint="A brief bit of help text"></ngx-input></td>
-      <td><ngx-input label="Label" appearance="fill" hint="A brief bit of help text"></ngx-input></td>
-    </tr>
-    <tr>
-      <td>Empty w/ Placeholder</td>
-      <td><ngx-input label="Label" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
-      <td><ngx-input label="Label" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
-    </tr>
-    <tr>
-      <td>Numeric</td>
-      <td><ngx-input label="Label" type="number" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
-      <td><ngx-input label="Label" type="number" appearance="fill" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
-    </tr>
-    <tr>
-      <td>Text Area</td>
-      <td><ngx-input type="textarea" label="Label" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
-      <td><ngx-input type="textarea" appearance="fill" label="Label" placeholder="Placeholder Text" hint="A brief bit of help text"></ngx-input></td>
-    </tr>
-    <tr>
-      <td>Prefix Suffix</td>
-      <td>
-        <ngx-input label="Label" type="number" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text">
-          <ngx-input-prefix>$</ngx-input-prefix>
-          <ngx-input-suffix>USD</ngx-input-suffix>
-        </ngx-input>
-      </td>
-      <td>
-        <ngx-input label="Label" type="number" appearance="fill" ngModel="0" placeholder="Placeholder Text" hint="A brief bit of help text">
-          <ngx-input-prefix>$</ngx-input-prefix>
-          <ngx-input-suffix>USD</ngx-input-suffix>
-        </ngx-input>
-      </td>
-    </tr>
-    <tr>
-      <td>Error</td>
-      <td>
-        <ngx-input label="Label" type="number" ngModel="10" max="5" placeholder="Placeholder Text" hint="A brief bit of help text">
-        </ngx-input>
-      </td>
-      <td>
-        <ngx-input label="Label" type="number" appearance="fill" ngModel="10" max="5" placeholder="Placeholder Text" hint="A brief bit of help text">
-        </ngx-input>
-      </td>
-    </tr>
-    <tr>
-      <td>Password</td>
-      <td>
-        <ngx-input label="Label" type="password" ngModel="secret" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
-        </ngx-input>
-      </td>
-      <td>
-        <ngx-input label="Label" type="password" appearance="fill" ngModel="secret" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
-        </ngx-input>
-      </td>
-    </tr>
-    <tr>
-      <td>Unlockable</td>
-      <td>
-        <ngx-input label="Label" type="text" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text">
-        </ngx-input>
-      </td>
-      <td>
-        <ngx-input label="Label" type="text" appearance="fill" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text">
-        </ngx-input>
-      </td>
-    </tr>
-    <tr>
-      <td>Secret</td>
-      <td>
-        <ngx-input label="Label" type="password" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
-        </ngx-input>
-      </td>
-      <td>
-        <ngx-input label="Label" type="password" appearance="fill" [unlockable]="true" ngModel="Value" placeholder="Placeholder Text" hint="A brief bit of help text" [passwordToggleEnabled]="true">
-        </ngx-input>
-      </td>
-    </tr>
-  </table>
-</ngx-section>
+    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>appearance: 'fill' | 'legacy' = 'legacy'</code>
+          </th>
+          <td>The appearance style of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>autocomplete: boolean</code>
+          </th>
+          <td>Whether the component should allow auto-complete.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>autocorrect: boolean</code>
+          </th>
+          <td>Whether the component should allow auto-correct.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>autofocus: boolean</code>
+          </th>
+          <td>Whether the component is auto-focused.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>autoSelect: boolean</code>
+          </th>
+          <td>Whether the component should allow auto-select.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>autosize: boolean</code>
+          </th>
+          <td>Whether the component is autosized.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>disabled: boolean</code>
+          </th>
+          <td>Whether the component is disabled.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>hint: string</code>
+          </th>
+          <td>The hint to display beneath the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>id: string = 'input-1'</code>
+          </th>
+          <td>The ID for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>label: string</code>
+          </th>
+          <td class="component-description">The label for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input</code>
+            <code>min: number</code>
+          </th>
+          <td class="component-description">The minimum number allowed for the user's input value. Applicable when <code>type</code> is set to <code>number</code>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>max: number</code>
+          </th>
+          <td class="component-description">The maximum number allowed for the user's input value. Applicable when <code>type</code> is set to <code>number</code>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>minlength: number</code>
+          </th>
+          <td class="component-description">The minimum length allowed for the user's input value.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>maxlength: number</code>
+          </th>
+          <td class="component-description">The maximum length allowed for the user's input value.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>minWidth: number</code>
+          </th>
+          <td class="component-description">The minimum width of the component, in pixels.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>name: string</code>
+          </th>
+          <td class="component-description">The name for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>passwordTextVisible: boolean</code>
+          </th>
+          <td class="component-description">Whether the password text is visible.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>placeholder: string</code>
+          </th>
+          <td class="component-description">The placeholder for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>readonly: boolean</code>
+          </th>
+          <td class="component-description">Whether the component is readonly.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>required: boolean</code>
+          </th>
+          <td class="component-description">Whether the user's input is required.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>size: 'sm' | 'md' | 'lg' = 'sm'</code>
+          </th>
+          <td class="component-description">The size of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>spellcheck: boolean</code>
+          </th>
+          <td class="component-description">Whether the component should perform spellcheck on user input.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tabindex: number</code>
+          </th>
+          <td class="component-description">The tab index for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>textareaRows: number = 1</code>
+          </th>
+          <td class="component-description">The number of rows displayed when the component's <code>type</code> is set to <code>textarea</code>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>type: text | number | password | textarea</code>
+          </th>
+          <td class="component-description">The type of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>unlockable: boolean</code>
+          </th>
+          <td class="component-description">Whether the component is unlockable.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>unlockableTooltip: boolean = 'Click to unlock'</code>
+          </th>
+          <td class="component-description">The tooltip for the lock icon. Applicable when <code>unlockable</code> is enabled.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>withMargin: boolean = true</code>
+          </th>
+          <td class="component-description">Whether the component is displayed with default margins.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="outputs">Component Outputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>blur: EventEmitter&lt;Event&gt;</code>
+          </th>
+          <td>Event emitted on component <code>blur</code>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>change: EventEmitter&lt;string | number&gt;</code>
+          </th>
+          <td>Event emitted when the component's input value is changed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>click: EventEmitter&lt;Event&gt;</code>
+          </th>
+          <td>Event emitted when the component is clicked.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>focus: EventEmitter&lt;FocusEvent&gt;</code>
+          </th>
+          <td>Event emitted when the component receives <code>focus</code>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>keyup: EventEmitter&lt;KeyboardEvent&gt;</code>
+          </th>
+          <td>Event emitted when a key is released.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>lockChange: EventEmitter&lt;boolean&gt;</code>
+          </th>
+          <td>Event emitted when the lock on the component is unlocked.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>select: EventEmitter&lt;FocusEvent&gt;</code>
+          </th>
+          <td>Event emitted when the component is auto-selected.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>

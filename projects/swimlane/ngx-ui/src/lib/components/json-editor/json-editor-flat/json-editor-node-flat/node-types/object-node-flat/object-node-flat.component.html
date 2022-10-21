@@ -11,6 +11,7 @@
     class="object-node-content"
     *ngFor="let prop of propertyIndex | objectValues; let index = index; trackBy: trackBy"
   >
+
     <ngx-json-editor-node-flat
       [model]="model[prop.propertyName]"
       (modelChange)="updateProp(prop.id, $event)"
@@ -28,6 +29,7 @@
       [indentationArray]="indentationArray"
       [showKnownProperties]="showKnownProperties"
       [passwordToggleEnabled]="passwordToggleEnabled"
+      [inputControlTemplate]="inputControlTemplate"
       [isDuplicated]="duplicatedFields.has(prop.id)"
       (schemaUpdate)="schemaUpdate.emit(schemaRef)"
       (updatePropertyNameEvent)="onUpdatePropertyName($event)"
@@ -55,7 +57,7 @@
                   (click)="deleteProperty(prop.propertyName)"
                   [disabled]="requiredCache[prop.propertyName] && !schemaBuilderMode"
                 >
-                  {{ !schema.properties[prop.propertyName] ? 'Delete' : 'Remove' }}
+                  {{ !schema.properties?.[prop.propertyName] ? 'Delete' : 'Remove' }}
                 </button>
               </li>
               <ng-container *ngIf="prop?.$meta?.type && !schemaBuilderMode">
@@ -129,16 +131,12 @@
     *ngIf="!showKnownProperties || schema.additionalProperties !== false"
   >
     <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
-    <div
-      class="indented-content"
-      [style.marginLeft]="hideRoot && level === 0 ? '15px' : '1'"
-      [style.backgroundColor]="level === 0 ? '' : 'rgba(49,56,71,0.5)'"
-    >
+    <div class="indented-content" [class.indented-content--root]="isRoot" [class.indented-content--indent]="indentAdd">
       <ngx-dropdown [showCaret]="true">
         <ngx-dropdown-toggle [disabled]="isDuplicated">
           <button type="button">
             <i class="ngx-icon ngx-tree-expand"></i>
-            <span class="dropdown-text">Add {{ objectKeys(propertyIndex).length ? 'a' : 'your first' }} property</span>
+            <span class="dropdown-text">Add a property</span>
           </button>
         </ngx-dropdown-toggle>
         <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
@@ -148,7 +146,7 @@
           >
             <li *ngFor="let prop of schema.properties | keyvalue" (click)="addSchemaProperty(prop.key)">
               <button [disabled]="model[prop.key] !== undefined" type="button">
-                {{ prop.value.title ? prop.value.title : prop.key }}
+                {{ prop?.value?.title ? prop.value.title : prop.key }}
               </button>
             </li>
           </ul>
@@ -178,7 +176,8 @@
     [index]="context.index"
     [schema]="context.schema"
     [formats]="context.formats"
-    (updateSchema)="updateSchema($event)"
+    [isNew]="context.isNew"
+    (updateProperty)="context.apply($event)"
   >
   </ngx-property-config>
 </ng-template>

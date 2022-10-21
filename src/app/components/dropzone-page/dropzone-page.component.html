@@ -1,58 +1,170 @@
 <h3 class="style-header">Dropzone</h3>
-<ngx-section class="shadow" sectionTitle="Dropzone">
-  <ngx-dropzone
-    [uploader]="uploaderInstance"
-    [acceptedFileFormats]="acceptedFileFormats"
-    [multiple]="true"
-    (afterAddingFile)="onAfterAddingFile($event)"
-  >
-  </ngx-dropzone>
-  <app-prism>
-    <![CDATA[
-    <ngx-dropzone
-      [uploader]="uploaderInstance"
-      [acceptedFileFormats]="acceptedFileFormats"
-    >
-    </ngx-dropzone>
-    ]]>
-  </app-prism>
-</ngx-section>
 
-<ngx-section class="shadow" sectionTitle="Dropzone Small">
-  <ngx-dropzone
-    [uploader]="uploaderInstance"
-    [acceptedFileFormats]="acceptedFileFormats"
-    [multiple]="true"
-    size="small"
-    (afterAddingFile)="onAfterAddingFile($event)"
-  >
-  </ngx-dropzone>
-  <app-prism>
-    <![CDATA[
-    <ngx-dropzone
-      [uploader]="uploaderInstance"
-      [acceptedFileFormats]="acceptedFileFormats"
-      size="small"
-    >
-    </ngx-dropzone>
-    ]]>
-  </app-prism>
-</ngx-section>
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" sectionTitle="Dropzone">
+      <ngx-dropzone
+        [uploader]="uploaderInstance"
+        [acceptedFileFormats]="acceptedFileFormats"
+        [multiple]="true"
+        (afterAddingFile)="onAfterAddingFile($event)"
+      >
+      </ngx-dropzone>
+      <app-prism>
+        <![CDATA[
+        <ngx-dropzone
+          [uploader]="uploaderInstance"
+          [acceptedFileFormats]="acceptedFileFormats"
+        >
+        </ngx-dropzone>
+        ]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Dropzone Small">
+      <ngx-dropzone
+        [uploader]="uploaderInstance"
+        [acceptedFileFormats]="acceptedFileFormats"
+        [multiple]="true"
+        size="small"
+        (afterAddingFile)="onAfterAddingFile($event)"
+      >
+      </ngx-dropzone>
+      <app-prism>
+        <![CDATA[
+        <ngx-dropzone
+          [uploader]="uploaderInstance"
+          [acceptedFileFormats]="acceptedFileFormats"
+          size="small"
+        >
+        </ngx-dropzone>
+        ]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section sectionTitle="Dropzone in dialog">
+      <button type="button" class="btn" (click)="openDialog({ template: uploadTpl })">
+        Open Upload Dialog
+      </button>
+    
+      <app-prism>
+        <![CDATA[
+          <ng-template #uploadTpl>
+            <ngx-dropzone [uploader]="uploaderInstance"></ngx-dropzone>
+          </ng-template>
+        ]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ng-template #uploadTpl>
+      <ngx-dropzone [uploader]="uploaderInstance"></ngx-dropzone>
+    </ng-template>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <hr>
 
-<ngx-section sectionTitle="Dropzone in dialog">
-  <button type="button" class="btn" (click)="openDialog({ template: uploadTpl })">
-    Open Upload Dialog
-  </button>
-
-  <app-prism>
-    <![CDATA[
-      <ng-template #uploadTpl>
-        <ngx-dropzone [uploader]="uploaderInstance"></ngx-dropzone>
-      </ng-template>
-    ]]>
-  </app-prism>
-</ngx-section>
-
-<ng-template #uploadTpl>
-  <ngx-dropzone [uploader]="uploaderInstance"></ngx-dropzone>
-</ng-template>
+    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>acceptedFileFormats: string[]</code>
+          </th>
+          <td>The acceptable formats for file uploads.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>id: string = `input-$&#123;id()&#125;`</code>
+          </th>
+          <td>The ID of the component. The <code>'id()'</code> in the default value is a random, 5-character alphanumeric sequence.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>multiple: boolean</code>
+          </th>
+          <td>Whether the component allows multiple file selections for upload.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>options: FileUploaderOptions</code>
+          </th>
+          <td>The upload options for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>size: DropzoneSize = DropzoneSize.Large</code>
+          </th>
+          <td>The size of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>uploader: FileUploader</code>
+          </th>
+          <td>The uploader instance for the component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="outputs">Component Outputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>afterAddingFile: EventEmitter&lt;&#123; fileItem: FileItem &#125;&gt;</code>
+          </th>
+          <td>Event emitted when a file has been selected for upload.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>beforeUploadItem: EventEmitter&lt;&#123; fileItem: FileItem &#125;&gt;</code>
+          </th>
+          <td>Event emitted before a file is uploaded.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>errorItem: EventEmitter&lt;&#123; response: string, status: number, headers: any &#125;&gt;</code>
+          </th>
+          <td>Event emitted when an error occurs during file upload.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>progressAll: EventEmitter&lt;&#123; progress: number &#125;&gt;</code>
+          </th>
+          <td>Event emitted when the progress of a file upload changes.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>successItem: EventEmitter&lt;&#123; item: any, response: string, status: number, headers: any &#125;&gt;</code>
+          </th>
+          <td>Event emitted when a file has been successfully uploaded.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>

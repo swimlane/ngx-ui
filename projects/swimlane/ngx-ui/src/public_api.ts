@@ -20,8 +20,8 @@ export * from './lib/services/injection-registry/injection-registry.service';
 
 // pipes
 export * from './lib/pipes/pipes.module';
-export * from './lib/pipes/cammel-to-snake/cammel-to-snake.module';
-export * from './lib/pipes/cammel-to-snake/cammel-to-snake.pipe';
+export * from './lib/pipes/camel-to-snake/camel-to-snake.module';
+export * from './lib/pipes/camel-to-snake/camel-to-snake.pipe';
 export * from './lib/pipes/decamelize/decamelize.module';
 export * from './lib/pipes/decamelize/decamelize.pipe';
 export * from './lib/pipes/filter/filter.module';

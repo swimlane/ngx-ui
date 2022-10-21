@@ -7,40 +7,145 @@
 - Feature: `ngx-button` now accepts a `type` input
 - Breaking: `ngx-button` now defaults to `type="button"`
 
+## 42.5.0 (2022-10-17)
+
+- Added angular cli schematics for installing ngx-ui
+- Fix (`ngx-dropzone`): fix dropzone animation
+
+## 42.4.0 (2022-9-15)
+
+- Feature (`ngx-medium-format-dialog-content`): Add medium sizes variant of large format dialog.
+
+## 42.3.1 (2022-9-7)
+
+- Feature (`ngx-json-editor-flat`): Allow custom template for nodes
+
+## 42.2.1 (2022-8-31)
+
+- Fix (`ngx-button`): Allow overflow-y so that text is not cut off.
+- Fix (`ngx-select`): Vertically aligned clear and caret buttons. Clear and caret button sizes change with parent text size.
+- Fix (`ngx-input`, others): Adjust input label position.
+- Bump to Cypress version 10.6.0
+
+## 42.1.1 (2022-7-18)
+
+- Fix (`ngx-select`): Filter input doesn't consistently autofocus on open
+- Fix (`ngx-json-editor-flat`): Fix bugs on json editor flat to allow to create array of objects
+- Enhancement (`ngx-dropdown`): Improve styles and behavior of dividers
+
+## 42.1.0 (2022-7-12)
+
+- Feature (`ngx-input`): Added `readonly` input
+
+## 42.0.9 (2022-7-12)
+
+- Enhancement (`ngx-dialog`): Dialog close behavior can be controlled by `beforeClose` method when `closeOnEscape` or `closeOnBlur` are `true`
+
+## 42.0.8 (2022-6-24)
+
+- Fix (`ngx-json-editor-flat`): Applying titlecase pipe to type value in html.
+
+## 42.0.7 (2022-6-24)
+
+- Enhancement (`ngx-select`): Add option values as `data-value` attribute.
+- Enhancement (`ngx-json-editor-flat`): Add support for binary format properties.
+
+## 42.0.6 (2022-6-8)
+
+- Fix (`ngx-json-editor-flat`): "Add a property" has correct indention when `hideRoot = false`
+- Ensure object types have `required` object when adding children
+
+## 42.0.5 (2022-6-8)
+
+- Fix (`ngx-json-editor-flat`): Ensure top level object "Add a property" has correct color when `hideRoot = true`
+- Fix (`ngx-json-editor-flat`): Ensure object types have `properties` object when adding children
+- Fix (`ngx-json-editor-flat`): Replace "Add your first property" with "Add a property" per design
+
+## 42.0.4 (2022-6-1)
+
+- Enhancement (`ngx-large-format-dialog-content`): Template for custom logo
+- Enhancement (`ngx-large-format-dialog-content`): Active tab indicator (blue line) position
+
+## 42.0.3 (2022-5-17)
+
+- Enhancement (`ngx-property-config`): names generated from title are now Snake_Case
+- BREAKING (`PipesModule`): Rename `cammeltosnake` to `cameltosnake`
+
+## 41.0.0 (2022-5-12)
+
+- Enhancement (`ngx-large-format-dialog-content`): Changing Active tab indicator (blue line) to the header bottom line level
+- Fix (`ngx-select`): Tagging option width is not correct
+- Fix (`ngx-property-config`): Apply button no longer closes all dialogs
+- Fix (`ngx-json-editor-flat`): Long name and descriptions now display properly
+- Feature (`ngx-property-config`): When a new property is added (in schema builder mode):
+  - the property dialog is shown
+  - the property name is generated from the title
+  - the property type is editable
+- Feature (`ngx-input`): Now emits `lockChange` even when an input is unlocked
+- Enhancement: Added webhook icons
+- BREAKING (`ngx-property-config`): Type is not editable once a property is added
+
+## 40.4.0 (2022-4-12)
+
+- Feature (`ngx-tooltip`): Added overall max width of 600px
+- Fix (`ngx-tooltip`): Ensure unbroken strings can wrap
+- Fix (`ngx-large-format-dialog-content`): Display subtitle container only when there is subtitle
+
+## 40.3.0 (2022-4-12)
+
+- Fix (`ngx-button`): Don't wrap text, show ellipsis when text is too long
+- Chore: Bumped dependencies
+
+## 40.2.0 (2022-4-5)
+
+- Feature (`ngx-large-format-dialog-content`): Custom template support for subtitle
+- Fix (`ngx-select`): More overflow issues
+
+## 40.1.0 (2022-3-30)
+
+- Fix: Display proper supports message with only one allowed file format on `Dropzone` component
+- Fix: Fix various alignment issues in selects
+- Fix: select box with tagging enabled triggers form submit on enter
+
+## 40.0.0 (2022-3-23)
+
+- BREAKING (`ngx-button`): now defaults to `type="button"` @a11y
+- Feature (`ngx-button`): now accepts a `type` input @a11y
+
 ## 39.2.0 (2022-3-11)
 
 - Feature: Add small style variant to Dropzone component
-- Fix: Stle fixes for JSON editor component
+- Fix: Style fixes for JSON editor component
 
 ## 39.1.0 (2022-3-8)
 
 - Fix: Issues with the json Editor
 - Fix: change the JsonEditor errors
 - Fix: Add an array inside an array in json editor works
-- Fix: Adding a code , date , date-time or password inside an Array in the json Editor works
+- Fix: Adding a code, date, date-time or password inside an Array in the json Editor works
 - Fix: add vertical margin between rows of tags in select component
 
 ## 39.0.0 (2022-2-28)
 
-- Breaking: Updated json-editor-flat component styles. Removed the `compact` input
-- Fix: `ngx-select` control alignment
-- Fix: `ngx-select` clear button position when dropdown is disabled
-- Enhancement: use current ngx-ui icons for `ngx-select` buttons
-- Fix: move `ngx-select` background in fill appearance to avoid saturation issue
-- Fix: stop propagation on button click inside `ngx-select`
+- BREAKING (`json-editor-flat`): Updated `json-editor-flat` component styles. Removed the `compact` input
+- Enhancement (`ngx-select`): use current ngx-ui icons for buttons
+- Fix (`ngx-select`): control alignment
+- Fix (`ngx-select`): clear button position when dropdown is disabled
+- Fix (`ngx-select`): background in fill appearance to avoid saturation issue @ally
+- Fix (`ngx-select`): stop propagation on button click inside `ngx-select`
 
 ## 38.1.0 (2022-2-23)
 
+- Enhancement (`ngx-date-time`):disable popup when input has focus
 - Fix: Hover states now work on hover
-- Fix: Success and failed states for primary gradient now show background
+- Fix (`ngx-button`): Success and failed states for primary gradient now show background @a11y
 - Fix: Removed border for success and failed states
-- Fix: `ngx-date-time` input changes when focused causing partial user input to be lost
-- Enhancement: `ngx-date-time` disable popup when input has focus
+- Fix (`ngx-date-time`): input changes when focused causing partial user input to be lost
 - Fix: Escape special character on select filter regex
 
 ## 38.0.0 (2022-2-16)
 
-- Breaking: escape HTML in labels of input, select and date time components
+- BREAKING: escape HTML in labels of input, select and date time components
 
 ## 37.1.1 (2022-2-8)
 
@@ -48,100 +153,100 @@
 
 ## 37.1.0 (2022-2-1)
 
-- Enhancement: add ability to display an image in `ngx-large-format-dialog` header
+- Enhancement (`ngx-large-format-dialog`): add ability to display an image in `ngx-large-format-dialog` header
 - Enhancement: adding additional information for installation in README.md
 - Fix: cypress calendar test
 
 ## 37.0.0 (2022-1-20)
 
+- BREAKING: (`ngx-date-time`): no longer displays it's own validation messages
+- BREAKING: (`ngx-select`): now deselects an selected option when the user clicks on the same option
+- Feature (`ngx-date-time`): added timezone popup
+- Feature (`ngx-time`): added `ngx-time` component
 - Enhancement: `ngx-date-time` now sets default formats based on precision
-- Enhancement: Improved keyboard accessibility for `ngx-radiobutton` and `ngx-radiobutton-group`
-- Fix: Fixed issues on `ngx-radiobutton` and `ngx-radiobutton-group` with form controls
-- Fix: `ngx-date-time` now works with form controls
-- Fix: `ngx-select` now displays correctly with form controls validations
-- Fix: `ngx-select` no longer displays focus and allows clearing when disabled
-- Breaking: `ngx-date-time` no longer displays it's own validation messages
-- Breaking: `ngx-select` now deselects an selected option when the user clicks on the same option
-- Feature: added timezone popup to `ngx-date-time`
-- Feature: added `ngx-time` component
-- Enhancement: `ngx-date-time` now sets default formats based on precision
-- Enhancement: Improved keyboard accessibility for `ngx-radiobutton` and `ngx-radiobutton-group`
-- Enhancement: Improved keyboard accessibility for `ngx-select`
-- Enhancement: Add ability to unlock `ngx-input` for passwords
-- Enhancement: Add `checked` and `checkedChange` to `ngx-checkbox`
-- Enhancement: Keyboard accessibility for `ngx-checkbox`
-- Enhancement: Keyboard accessibility for `ngx-calendar`
-- Fix: Fixed issues on `ngx-radiobutton` and `ngx-radiobutton-group` with form controls
-- Fix: `ngx-date-time` now works with form controls
-- Fix: `ngx-select` now displays correctly with form controls validations
-- Fix: `ngx-select` no longer displays focus and allows clearing when disabled
+- Enhancement (`ngx-radiobutton`, `ngx-radiobutton-group`): improved keyboard accessibility @a11y
+- Enhancement (`ngx-select`): Improved keyboard accessibility @a11y
+- Enhancement (`ngx-input`): Add ability to unlock `ngx-input` for passwords
+- Enhancement ( `ngx-checkbox`): Add `checked` and `checkedChange`
+- Enhancement ( `ngx-checkbox`): Keyboard accessibility @a11y
+- Enhancement (`ngx-calendar`): Keyboard accessibility @a11y
+- Enhancement ( `ngx-date-time`): now sets default formats based on precision
+- Enhancement (`ngx-radiobutton`, `ngx-radiobutton-group`): Improved keyboard accessibility @a11y
+- Fix (`ngx-radiobutton`, `ngx-radiobutton-group`): Fixed issues with form controls
+- Fix (`ngx-date-time`): now works with form controls
+- Fix (`ngx-select`): now displays correctly with form controls validations
+- Fix (`ngx-select`): no longer displays focus and allows clearing when disabled
+- Fix (`ngx-radiobutton`, `ngx-radiobutton-group`): Fixed issues with form controls
+- Fix (`ngx-date-time`): `ngx-date-time` now works with form controls @a11y
+- Fix (`ngx-select`): `ngx-select` now displays correctly with form controls validations
+- Fix (`ngx-select`): `ngx-select` no longer displays focus and allows clearing when disabled
 
 ## 36.1.0 (2021-12-10)
 
 - Enhancement: allow exponential notation for number inputs
-- Enhancement: add aria labels for unlock and reveal password buttons
+- Enhancement (`ngx-input`): add aria labels for unlock and reveal password buttons @a11y
 
 ## 36.0.0 (2021-12-03)
 
+- BREAKING (`ngx-tabs`): Improve semantic HTML @a11y
+- BREAKING: Fixed spelling error in exported enum (`SectionApperance` -> `SectionAppearance`)
+- Feature: Added focus rings to `ngx-tabs` buttons @a11y
 - Enhancement: Add vertical alignment for `ngx-tabs`
-- Breaking: Improve semantic HTML in `ngx-tabs`
-- Enhancement: Added ARIA role attribute to `ngx-tabs`
-- Feature: Added focus rings to `ngx-tabs` buttons
-- Enhancement: `ngx-select` with `headerToggle` enable is noy keyboard accessible
-- Enhancement: Added ARIA controls and expanded attribute to `ngx-section`
-- Breaking: Fixed spelling error in exported enum (`SectionApperance` -> `SectionAppearance`)
-- Enhancement: Added 'light' appearance to `ngx-tabs`
+- Enhancement (`ngx-tabs`): Added ARIA role attributes @a11y
+- Enhancement (`ngx-section`): `headerToggle` is now keyboard accessible @a11y
+- Enhancement (`ngx-section`): Added ARIA controls and expanded attribute @a11y
+- Enhancement (`ngx-tabs`): Added 'light' appearance
 
 ## 35.9.0 (2021-11-29)
 
-- Feature: add `forceDownwardOpening` input to `ngx-dropdown`
-- Fix: set default `forceDownwardOpening` on `ngx-dropdown` to false
+- Feature (`ngx-dropdown`): add `forceDownwardOpening` input
+- Fix (`ngx-dropdown`): set default `forceDownwardOpening` to false
 
 ## 35.8.1 (2021-10-26)
 
-- Fix: prevent `ngx-input` buttons from submitting forms
+- Fix: prevent `ngx-input` buttons from submitting forms @a11y
 - Fix: Buttons should not have outline on click
 - Fix: Fix error thrown from `ngx-select` on destroy
 
 ## 35.8.0 (2021-10-15)
 
-- Enhancement: Add optional forceDownwardOpening option to `ngx-select`
-- Enhancement: Keep `ngx-select` opening downwards when intersecting viewport top
+- Enhancement (`ngx-select`): Add optional forceDownwardOpening option to `ngx-select`
+- Enhancement (`ngx-select`): Keep opening downwards when intersecting viewport top
 
 ## 35.7.2 (2021-10-14)
 
-- Fix(ngx-select): Fix issue where `active` class was not updated when the dropdown was closed
+- Fix (`ngx-select`): Fix issue where `active` class was not updated when the dropdown was closed
 
 ## 35.7.1 (2021-10-13)
 
-- Fix(buttons): Fix issue where buttons were reported as covered by Cypress
+- Fix (buttons): Fix issue where buttons were reported as covered by Cypress
 
 ## 35.7.0 (2021-10-07)
 
-- Enhancement(Dropdown): Add viewport intersection to support opening select dropdowns if hidden by viewport.
-- Feature: Added focus rings to buttons
+- Feature (`Dropdown`): Add viewport intersection to support opening select dropdowns if hidden by viewport.
+- Feature (`ngx-button`): Added focus rings to buttons @a11y
 - Feature: Add `passwordToggleEnabled` input to JSON editor.
-- Enhancement: Improve semantic HTML in `ngx-input` and `ngx-select`
-- Enhancement: Added `for` attribute to `ngx-input` labels
-- Enhancement: Added ARIA role attribute to `ngx-plus-menu`
+- Enhancement (`ngx-select`): Improve semantic HTML in `ngx-input` @a11y
+- Enhancement (`ngx-input`): Added `for` attribute to labels @a11y
+- Enhancement (`ngx-plus-menu`): Added ARIA role attributes @a11y
 - Enhancement: Added 'light' appearance to `ngx-section`
+- Enhancement (`ngx-tabs`): Improve active tab contrast @a11y
+- Enhancement: Add input, `textareaRows` to allow setting `row` attribute of `ngx-input` textarea
 - Fix: Toggle going out of bounds when disabled in `ngx-toggle`
-- Enhancement: Improve active tab contrast in `ngx-tabs`
 - Fix: Use input password type for password fields in JSON editor.
 - Fix: Call to `onTouchedCallback()` should be executed on blur, per `ControlValueAccessor.registerOnTouched` docs
-- Fix: Tabs in `ngx-tabs` are now `type="button"`
+- Fix (`ngx-tabs`): Tabs are now `type="button"` @a11y
 - Fix: Adjust label position and background of `ngx-input` fill appearance
-- Enhancement: Add input, `textareaRows` to allow setting `row` attribute of `ngx-input` textarea
 - Fix: Add capability of disabling `ngx-select` elements using its `FormControl` when used inside a reactive form.
 
 ## 35.6.8 (2021-07-16)
 
+- BREAKING: Upgrade to Angular 12 (#633)
 - Revert to `master` branch
-- Breaking: Upgrade to Angular 12 (#633)
 
 ## 35.6.7 (2021-06-29)
 
-- Fix: `ngx-select` not populating selected options once `options` changes
+- Fix (`ngx-select`): not populating selected options once `options` changes
 
 ## 35.6.6 (2021-06-08)
 
@@ -167,13 +272,13 @@
 
 ## 35.6.1 (2021-05-03)
 
+- Feature: Add `skipDirtyAlert` input to `LargeFormatDialogContent`
 - Fix: LargeFormatDialog title layout when `subtitle` does not have value.
 - Fix: Change `LargeFormatDialogContentComponent` background to a gradient background
 - Fix: Expose `LargeFormatDialogContentComponent` on public API
 - Fix: Change `DialogDrawerContentComponent#title` to `drawerTitle`
-- Feat: Add `skipDirtyAlert` input to `LargeFormatDialogContent`
+- Feature: Add `$bg-linear3` to Gradients
 - Docs: Add usage of `DialogDrawerContentComponent` to demo
-- Feat: Add `$bg-linear3` to Gradients
 - Fix: change events emitted inside a select field are propagated to the select component.
 
 ## 35.6.0 (2021-04-28)
@@ -209,7 +314,7 @@
 
   - This change also allows for nesting Stepper and Tabs
 
-- Enhancement: apply default styles to `ngx-large-format-dialog-footer`. Items will be center by default with a `0.5rem`
+- Enhancement (`ngx-large-format-dialog-footer`): apply default styles. Items will be center by default with a `0.5rem`
   gap. `[styleClass]` input nullifies the default.
 - Fix: Export `DialogFormat` from `public_api`
 
@@ -224,78 +329,78 @@
 
 ## 35.4.0 (2021-04-22)
 
-- Feature(CardComponent): add error outline
-- Fix(DropzoneComponent): addressing minor design review feedback
-- Feature(JsonEditor): add support multiline support for string nodes
-- Fix: add label color to ToggleComponent, RadioButtonComponent, CheckboxComponent
-- Fix(TipComponent): change error color
+- Feature (`CardComponent`): add error outline
+- Feature (`JsonEditor`): add support multiline support for string nodes
+- Feature (`LargeFormatDialogContentComponent`): add new component as wrapper for Dialog content
 - Enhancement: Add `$color-error` css var
-- Feat(LargeFormatDialogContentComponent): add new component as wrapper for Dialog content
+- Fix (`DropzoneComponent`): addressing minor design review feedback
+- Fix: add label color to ToggleComponent, RadioButtonComponent, CheckboxComponent
+- Fix (`TipComponent`): change error color
 
 ## 35.3.1 (2021-03-29)
 
-- Fix(DropzoneComponent): addressing minor design review feedback
+- Fix (`DropzoneComponent`): addressing minor design review feedback
 
 ## 35.3.0 (2021-03-23)
 
-- Fix(PlusMenuComponent): use inline style instead of HostBinding to be compatible when Ivy is off
-- Fix(ProgressSpinnerComponent): use inline style instead of HostBinding to be compatible when Ivy is off
+- Fix (`PlusMenuComponent`): use inline style instead of HostBinding to be compatible when Ivy is off
+- Fix (`ProgressSpinnerComponent`): use inline style instead of HostBinding to be compatible when Ivy is off
 
 ## 35.2.0 (2021-03-16)
 
 - Enhancement: Add Dropzone component
-- Fix(FileButtonComponent): change id to be unique
 - Enhancement: Provide services in root injector
+- Fix (`FileButtonComponent`): change id to be unique
 
 ## 35.1.2 (2021-03-15)
 
-- Re-publish master on npm `latest` channel. No changes
+- Chore: Re-publish master on npm `latest` channel. No changes
 
 ## 35.1.1 (2021-03-10)
 
-- Bug(ngx-progress-spinner): Fix issue with later versions of SASS
+- Bug (`ngx-progress-spinner`): Fix issue with later versions of SASS
 
 ## 35.1.0 (2021-02-26)
 
-- Bug(ngx-section): Make toggle on header click optional
-- Feature(ngx-section): Add `None` toggle position
+- Feature (`ngx-section`): Add `None` toggle position
 - Feature: Add `appearance` to `ProgressSpinnerComponent` where default is no icon
 - Feature: Add failure state and failure icon to `ProgressSpinnerComponent`
 - Feature: Add an option to add label to `ProgressSpinnerComponent`
+- Fix: Bug (`ngx-section`): Make toggle on header click optional
 
 ## 35.0.1 (2021-02-24)
 
-- Fix(ngx-card/ngx-section): User supplied classes are not preserved in some cases using `HostBinding`
+- Fix (`ngx-card`/`ngx-section`): User supplied classes are not preserved in some cases using `HostBinding`
 
 ## 35.0.0 (2021-02-22)
 
 - Feature: Add an option to add `color` to `items` in `PlusMenuComponent`
 - Feature: Add `appearance` input to CardComponent
-- Enhancement: Add `hideAccent` input to CardComponent
 - Feature: Add `appearance` and `togglePosition` inputs to `SectionComponent`
+- Feature: Add `timeout` option to `ButtonComponent`
+- Enhancement: Add `hideAccent` input to CardComponent
 - Enhancement: When `sectionCollapsible` in `SectionComponent` is true, make the section header clickable to expand and
   collapse
-- Feature: Add `timeout` option to `ButtonComponent`
-- Fix(ngx-input): Make the lockpad button clickable when the textbox appearance is set to "Fill" and
+- Fix (`ngx-input`): Make the lockpad button clickable when the textbox appearance is set to "Fill" and
   has `[unlockable] = "true"` set. Also fix vertical alignment.
 
 ## 34.1.0 (2021-01-20)
 
 - Enhancement: Add `blur` and `dateTimeSelected` outputs to `DateTimeComponent`.
 - Enhancement: Add `showIcons` input to `ToggleComponent` to display optional icons.
-- Fix(JsonEditor): Remove unnecessary `onModelChange` event emissions on init.
-- Fix(json-editor): allow 'null' type in schema.
+- Fix (`JsonEditor`): Remove unnecessary `onModelChange` event emissions on init.
+- Fix (`json-editor`): allow 'null' type in schema.
 
 ## 34.0.1 (2020-12-17)
 
-- Fix(ngx-plus-menu): classes not set correctly in some cases.
+- Fix (`ngx-plus-menu`): classes not set correctly in some cases.
 
 ## 34.0.0 (2020-12-17)
 
-- Fix(DateTime): Component no longer emits a `(change)` event when input value is invalid.
-- Fix(DateTime): Display value not updated correctly.
-- Breaking(ngx-plus-menu): items now contain `title` and `subtitle`. Does not setup it's own hotkeys.
-- Fix(ngx-plus-menu): no popup us shown if `menuTitle` is not passed as an input to `ngx-plus-menu`
+- Fix (`DateTime`): Component no longer emits a `(change)` event when input value is invalid.
+- Fix (Da`teTime): Display value not updated correctly.
+- BREAKING (`ngx-plus-menu`): items now contain `title` and `subtitle`. Does not setup it's own hotkeys.
+- Fix (`ngx-plus-menu`): no popup us shown if `menuTitle` is not passed as an input to `ngx-plus-menu`
 
 ## 33.1.0 (2020-12-14)
 
@@ -304,16 +409,16 @@
 
 ## 33.0.0 (2020-12-8)
 
+- BREAKING: An empty value will no longer cause the `DateTimeComponent` to become invalid, unless it is explicitly
 - Feature: add `ngx-plus-menu`
 - Enhancement: Add `required` and `requiredIndicator` inputs to `DateTimeComponent`.
-- Breaking: An empty value will no longer cause the `DateTimeComponent` to become invalid, unless it is explicitly
   marked as `required`.
-- Feature(Stepper): Add `[large]` input to increase the default icon size.
-- Feature(Stepper): Add `[trackBar]` input to make track bar optional.
-- Feature(Stepper): Add `[progress]` input to show a progress indicator on the active step.
-- Feature(Stepper): Add `[removeHighlight]` input to remove highlight color for the completed steps.
-- Feature(Stepper): Add `[icon]` input to show an icon instead of the step number.
-- Feature(Stepper): Add `.complete()` method to complete every step (including the last one).
+- Enhancement (`Stepper`): Add `[large]` input to increase the default icon size.
+- Enhancement (`Stepper`): Add `[trackBar]` input to make track bar optional.
+- Enhancement (`Stepper`): Add `[progress]` input to show a progress indicator on the active step.
+- AdEnhancementded (`Stepper`): Add `[removeHighlight]` input to remove highlight color for the completed steps.
+- Enhancement (`Stepper`): Add `[icon]` input to show an icon instead of the step number.
+- Enhancement (`Stepper`): Add `.complete()` method to complete every step (including the last one).
 - Fix: remove hover state on ngx-card and fix minor style issues
 
 ## 32.0.0 (2020-11-24)
@@ -345,13 +450,13 @@
 
 ## 31.0.0 (2020-10-29)
 
+- BREAKING: `JsonEditor` components `@Output() schemaChange` was renamed to `schemaUpdate`.
 - Feature: Add `confirmButtonText` and `cancelButtonText` config options (`<ngx-alert-dialog />`).
 - Enhancement: Performance improvements.
 - Enhancement: Add `[unlockable]` option to InputComponent.
 - Fix: Select not auto-collapse when click on caret.
 - Fix: DateTimeComponent displaValue.
 - Fix: Protect against unwanted schema changes when using Two-way binding outside of schema-builder mode.
-- Breaking: `JsonEditor` components `@Output() schemaChange` was renamed to `schemaUpdate`.
 
 ## 30.1.0 (2020-09-22)
 
@@ -359,20 +464,20 @@
 
 ## 30.0.0 (2020-09-18)
 
-- Bug: Fix ngx-select issue when using the filter and arrow keys/enter to selecting a dropdown option (#494)
+- BREAKING: Upgrade to Angular 10
 - Chore: Removed ngx-datatable from demo page
 - Enhancement: Added icons; update icon style for `calendar-clock` and `calendar` icons (#491)
-- Breaking: Upgrade to Angular 10
 - Enhancement: replace the default chrome accessibility number spinner with a styled one for number type ngx-inputs
 - Enhancement: added a minWidth input property to ngx-input
+- Enhancement: Updated ngx-date-time component to have fill variants and autosize option
+- Fix: Fix ngx-select issue when using the filter and arrow keys/enter to selecting a dropdown option (#494)
 - Fix: rework the way autosize works on ngx-input so that it sizes to its content correctly. Now using
   ngx-autosize-input library.
-- Enhancement: Updated ngx-date-time component to have fill variants and autosize option
 
 ## 29.3.0 (2020-08-17)
 
-- enhancement: update ngx-select focus underline to be clearer. clicking the input box now also toggles dropdown
-- Bug: fix ngx-select so that clicking the caret closes the dropdown
+- Enhancement: update `ngx-select` focus underline to be clearer. clicking the input box now also toggles dropdown
+- Bug: fix `ngx-select` so that clicking the caret closes the dropdown
 
 ## 29.2.3 (2020-08-14)
 
@@ -407,7 +512,7 @@
 
 ## 29.0.0 (2020-06-15)
 
-- Breaking: `ngxSplit` directives no longer require, nor support, `@angular/flex-layout` directives
+- BREAKING: `ngxSplit` directives no longer require, nor support, `@angular/flex-layout` directives
 - Enhancement: Remove @angular/flex-layout
 - Enhancement: Added `ngx-flex` classes for easy flex layouts
 
@@ -474,7 +579,7 @@
 
 ## 28.5.0 (2020-03-20)
 
-- Added automation and automation-related icons #415
+- Feature automation and automation-related icons #415
   (#413)
 
 ## 28.4.3 (2020-03-19)
@@ -545,7 +650,7 @@
 
 ## 28.0.0-rc.4 (2020-01-09)
 
-- Breaking: Change components to ChangeDetectionStrategy.OnPush
+- BREAKING: Change components to ChangeDetectionStrategy.OnPush
 
 ## 28.0.0-rc.3 (2019-12-02)
 
@@ -557,10 +662,10 @@
 
 ## 28.0.0-rc.1 (2019-11-29)
 
-- Breaking: Update angular to 9.0.0-rc.4
-- Breaking: Change Input component to ChangeDetectionStrategy.OnPush (#317)
-- Breaking: Change Checkbox component to ChangeDetectionStrategy.OnPush (#308)
-- Breaking: Change Code editor component to ChangeDetectionStrategy.OnPush (#316)
+- BREAKING: Update angular to 9.0.0-rc.4
+- BREAKING: Change Input component to ChangeDetectionStrategy.OnPush (#317)
+- BREAKING: Change Checkbox component to ChangeDetectionStrategy.OnPush (#308)
+- BREAKING: Change Code editor component to ChangeDetectionStrategy.OnPush (#316)
 - Feature: Add token hints to `ngx-codemirror`
 - Feature: Add ability to define custom template for tab header (#303)
 - Bug: Fix bugg for look that failed to manipulate array properly (#313)
@@ -574,7 +679,7 @@
 
 ## 27.0.0 (2019-09-30)
 
-- Breaking: Update to be compatible with Ivy (#304)
+- BREAKING: Update to be compatible with Ivy (#304)
 - Feature: Codemirror hint (#298)
 - Fix: Update scrollbars (#300)
 - Chore Remove iterable-map, fix decamelize typo, add pipes demo page (#293)
@@ -587,7 +692,7 @@
 
 ## 26.0.0 (2019-06-10)
 
-- Breaking: Upgrade to angular 8 (#288)
+- BREAKING: Upgrade to angular 8 (#288)
 - Enhancement: Support allowIn in hotkeys (#291)
 
 ## 25.11.0 (2019-05-29)
@@ -700,7 +805,7 @@
 
 ## 25.0.0 (2019-01-28)
 
-- Breaking: @angular/flex-layout must be imported in the modules it's used in - it is no longer imported in the
+- BREAKING: @angular/flex-layout must be imported in the modules it's used in - it is no longer imported in the
   main `NgxUIModule` (#217)
 - Fix: Fixes circular dependency warnings and the AoT build (#217)
 - Fix: Fixes an error in the splitter component (#219)
@@ -725,14 +830,14 @@
 
 ## 24.0.0 (2019-01-14)
 
-- Breaking: now requires `moment-timezone`
+- BREAKING: now requires `moment-timezone`
 - Feature: Add `amTimeZone` pipe for timezone display
 - Feature: Support timezone input for `ngx-date-time`
 - Feature: Support timezone input for `ngx-calendar`
 
 ## 23.0.0 (2018-12-31)
 
-- Breaking: ngx-select filtering is now case sensitive (#211)
+- BREAKING: ngx-select filtering is now case sensitive (#211)
 - Feature: added `[filterCaseSensitive]` input to ngx-select
 - Feature: added code editor component to JSON editor (#212)
 - Bug: Fixed several issues in JSON editor (#212)
@@ -760,7 +865,7 @@
 
 ## 22.0.0 (2018-10-29)
 
-- Breaking: Upgrade to Angular 7
+- BREAKING: Upgrade to Angular 7
 
 ## 21.7.0 (2018-10-16)
 
@@ -831,7 +936,7 @@
 
 # 21.0.0 (2018-05-06)
 
-- Breaking: Upgrade to Angular 6
+- BREAKING: Upgrade to Angular 6
 
 # 20.2.1 (2018-04-27)
 
@@ -863,7 +968,7 @@
 
 # 20.0.0 (2018-02-06)
 
-- Breaking: Changed icon classes (#150)
+- BREAKING: Changed icon classes (#150)
 - Enhancement: Added new icons (#150)
 - Bug: Added `nullcheck` in `showTooltip` to check whether element still exists (#152)
 - Bug: Fixed undefined values in selection model (#153)
@@ -903,7 +1008,7 @@
 
 ## 19.0.0 (2017-11-14)
 
-- Breaking: Upgraded to angular 5 (#135)
+- BREAKING: Upgraded to angular 5 (#135)
 - Feature: Added light and light italic fonts (#134)
 - Improvement: Update tooltip styles (#130
 - Improvement:
@@ -1036,7 +1141,7 @@
 ## 17.0.0 (2017-07-06)
 
 - Feature: support px basis for `ngx-splitter`
-- Breaking: `[minAreaPct]` and `[maxAreaPct]` inputs on `ngxSplitArea` are now `[minBasis]` and `[maxBasis]`
+- BREAKING: `[minAreaPct]` and `[maxAreaPct]` inputs on `ngxSplitArea` are now `[minBasis]` and `[maxBasis]`
 
 ## 16.7.0 (2017-07-05)
 
@@ -1126,7 +1231,7 @@
 
 ## 16.0.0
 
-- Breaking: Update `AlertService` to return type in addition to data
+- BREAKING: Update `AlertService` to return type in addition to data
 - Feature: Add `[minAreaPct]` and `[maxAreaPct]` inputs to `ngxSplitArea`
 - Feature: Add double-click event to ngx-split-handle component
 - Feature: Add double click split handle to snap to extremes
@@ -1153,7 +1258,7 @@
 
 ## 15.0.0
 
-- Breaking: New color weight system and shade definitions
+- BREAKING: New color weight system and shade definitions
 - Enhancement: Added extra icons
 - Style: Fix various styles to be consistent w/ designs
 

@@ -1,0 +1,18 @@
+{
+  "$schema": "http://json-schema.org/schema",
+  "$id": "ngx-ui-schematics",
+  "title": "add ngx-ui",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "default": "",
+      "description": "project name"
+    },
+    "addNgxUITesting": {
+      "type": "boolean",
+      "description": "Cypress Helper commands for testing application that utilize ngx-ui.",
+      "x-prompt": "Would you like to use @swimlane/ngx-ui-testing package?"
+    }
+  }
+}

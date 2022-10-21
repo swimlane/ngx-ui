@@ -36,6 +36,8 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit, OnChang
 
   @Input() passwordToggleEnabled = false;
 
+  @Input() inputControlTemplate: TemplateRef<unknown>;
+
   indentationArray: number[] = [];
 
   constructor(private dialogService: DialogService) {
@@ -62,19 +64,23 @@ export class ArrayNodeFlatComponent extends ArrayNode implements OnInit, OnChang
   }
 
   onPropertyConfig(item: JSONEditorSchema, index: number): void {
-    this.dialogService.create({
+    const dialog = this.dialogService.create({
       template: this.propertyConfigTmpl,
       context: {
         property: item,
         index,
         schema: this.schema,
-        formats: this.formats
+        formats: this.formats,
+        apply: (options: PropertyConfigOptions) => {
+          dialog.destroy();
+          this.updateSchemaProperty(options);
+        }
       },
       class: 'property-config-dialog'
     });
   }
 
-  updateSchema(options: PropertyConfigOptions): void {
+  updateSchemaProperty(options: PropertyConfigOptions): void {
     this.schema.items = options.newProperty;
     this.schemaRef.items = options.newProperty;
     this.schemaUpdate.emit();

@@ -11,6 +11,7 @@ import { InputTypes } from './input-types.enum';
       [(ngModel)]="value"
       [type]="type$ | async"
       [disabled]="disabled$ | async"
+      [readonly]="readonly$ | async"
       [required]="required$ | async"
       [passwordTextVisible]="passwordTextVisible$ | async"
       [autofocus]="autofocus$ | async"
@@ -31,6 +32,7 @@ export class InputComponentFixture {
 
   readonly type$ = new BehaviorSubject(InputTypes.text);
   readonly disabled$ = new BehaviorSubject(false);
+  readonly readonly$ = new BehaviorSubject(false);
   readonly passwordTextVisible$ = new BehaviorSubject(false);
   readonly required$ = new BehaviorSubject(false);
   readonly autofocus$ = new BehaviorSubject(false);

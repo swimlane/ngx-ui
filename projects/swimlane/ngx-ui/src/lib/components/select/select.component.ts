@@ -67,7 +67,8 @@ const _InputMixinBase = sizeMixin(InputBase);
     '[class.has-placeholder]': 'hasPlaceholder',
     '[class.autosize]': 'autosize',
     '[style.min-width]': 'autosize ? autosizeMinWidth : undefined',
-    '[attr.aria-expanded]': 'dropdownActive'
+    '[attr.aria-expanded]': 'dropdownActive',
+    '[class.no-label]': '!label'
   },
   providers: [SELECT_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,

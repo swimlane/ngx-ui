@@ -1,9 +1,9 @@
 /**
  * Debounce a function
  *
- * @param func      function to executoe
+ * @param func      function to execute
  * @param wait      wait duration
- * @param immediate wait or immediate executue
+ * @param immediate wait or immediate execute
  */
 export const debounce = (func: () => void, wait: number, immediate?: boolean): (() => any) => {
   let timeout: any;
@@ -13,6 +13,7 @@ export const debounce = (func: () => void, wait: number, immediate?: boolean): (
   let result: any;
 
   return function () {
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     context = this;
     // eslint-disable-next-line prefer-rest-params
     args = arguments;

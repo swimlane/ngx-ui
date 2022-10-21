@@ -11,4 +11,8 @@ export class NotificationPageComponent {
   readonly NotificationStyleType = NotificationStyleType;
 
   constructor(readonly notificationService: NotificationService) {}
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

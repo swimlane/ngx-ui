@@ -22,6 +22,7 @@ import {
   PropertyIndex
 } from '../json-editor.helper';
 import { JSONSchema7TypeName } from 'json-schema';
+import camelCase from 'camelcase';
 
 @Directive()
 export class ObjectNode implements OnInit, OnChanges {
@@ -77,7 +78,7 @@ export class ObjectNode implements OnInit, OnChanges {
   update(): void {
     setTimeout(() => {
       for (const prop in this.schema.properties) {
-        if (Array.isArray(this.schema.properties[prop].type) && this.schema.properties[prop].type.length > 0) {
+        if (Array.isArray(this.schema.properties[prop]?.type) && this.schema.properties[prop]?.type.length > 0) {
           if (!this.schema.properties[prop].$meta) {
             this.schema.properties[prop].$meta = {};
           }
@@ -145,14 +146,26 @@ export class ObjectNode implements OnInit, OnChanges {
    * Adds a new property to the model
    */
   addProperty(dataType: JsonSchemaDataType): void {
-    const propName = `${dataType.name} ${this.propertyCounter}`;
-    this.propertyCounter++;
-    const schema = JSON.parse(JSON.stringify(dataType.schema));
+    let propertyCounter = 1;
+    let propTitle = `${dataType.name}`;
+    let propName = camelCase(propTitle);
 
-    this.model = { ...this.model };
-    this.model[propName] = createValueForSchema(dataType.schema as JSONEditorSchema);
+    // Find a unique name
+    while (propName in this.model) {
+      propTitle = `${dataType.name} ${propertyCounter}`;
+      propName = camelCase(propTitle);
+      propertyCounter++;
+    }
+
+    const schema = JSON.parse(JSON.stringify(dataType.schema)) as JSONEditorSchema;
+
+    this.model = {
+      ...this.model,
+      [propName]: createValueForSchema(schema)
+    };
     schema.nameEditable = !this.schemaBuilderMode;
     schema.propertyName = propName;
+    schema.title = propTitle;
 
     schema.id = this.propertyId++;
     this.propertyIndex[schema.id] = schema;
@@ -313,7 +326,7 @@ export class ObjectNode implements OnInit, OnChanges {
         delete this.propertyIndex[id];
       } else {
         const model = this.model[schema.propertyName];
-        const { type } = inferType(model);
+        const { type } = schema.type ? schema : inferType(model);
         if (schema.type !== type && type !== 'null') {
           this.propertyIndex[schema.id].type = type;
         }

@@ -27,10 +27,23 @@ $dialog-body-color: $color-grey-300;
     font-size: 0.9rem;
     color: $dialog-body-color;
 
-    &--large {
+    &--large,
+    &--medium {
       padding: 0;
-      height: calc(100% - 7.25rem); // 50px top and bottom
-      width: calc(100% - 7.5rem); // 60px right and left
+      width: calc(100vw - 120px);
+      background-color: transparent;
+    }
+
+    &--large {
+      height: calc(100vh - 120px);
+      max-height: calc(100vh - 120px);
+    }
+
+    &--medium {
+      height: auto;
+      min-height: 340px;
+      max-height: 75vh;
+      max-width: 900px;
     }
 
     .close {

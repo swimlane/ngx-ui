@@ -12,6 +12,9 @@ export class ButtonsPageComponent {
 
   promises: any = {};
 
+  aLongString = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
+  anUnbrokenString = this.aLongString.replace(/\s/, '_');
+
   uploadOptions = {
     url: 'https://evening-anchorage-3159.herokuapp.com/api/',
     autoUpload: true
@@ -52,5 +55,9 @@ export class ButtonsPageComponent {
     } else {
       this.buttonPromise = buttonPromise;
     }
+  }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
 }

@@ -35,34 +35,47 @@ ngx-json-editor-node-info {
     overflow: hidden;
   }
 
-  .required,
   .info-type,
-  .property-name {
-    font-size: 12px;
-  }
-
-  .description {
-    font-size: 14px;
-  }
-
-  .required {
-    color: $color-red-400;
-  }
-
-  .property-name,
-  .dot-separator,
   .description {
     color: $color-blue-grey-250;
   }
 
-  .dot-separator {
-    font-size: 0.2em;
-    margin: 0 5px;
-    vertical-align: middle;
+  .info-type {
+    display: inline-flex;
+    font-size: 12px;
+    color: $color-blue-grey-250;
+    white-space: nowrap;
+
+    > * {
+      flex: 0 1 auto;
+      overflow: clip;
+      text-overflow: ellipsis;
+    }
+
+    .type {
+      flex: 0 0 auto;
+      color: #f0f1f6;
+    }
+
+    .dot-separator {
+      flex: 0 0 auto;
+      font-size: 0.2em;
+      margin: 0 5px;
+      vertical-align: middle;
+      line-height: 20px;
+    }
   }
 
-  .type {
-    color: #f0f1f6;
+  .description {
+    font-size: 14px;
+    color: $color-blue-grey-250;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: clip;
+  }
+
+  .required {
+    color: $color-red-400;
   }
 
   .editable-name {

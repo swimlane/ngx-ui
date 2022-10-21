@@ -31,7 +31,7 @@ export function throttle(func: () => void, wait: number, options?: ThrottleOptio
     }
 
     const remaining = wait - (now - previous);
-    // eslint-disable-next-line consistent-this
+    // eslint-disable-next-line @typescript-eslint/no-this-alias
     context = this;
     // eslint-disable-next-line prefer-rest-params
     args = arguments;

@@ -7,9 +7,10 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { DialogService } from '../../../../../dialog/dialog.service';
-import { JSONEditorSchema, propTypes, JsonSchemaDataType } from '../../../../json-editor.helper';
 import { JSONSchema7TypeName } from 'json-schema';
+
+import { JSONEditorSchema, propTypes, JsonSchemaDataType } from '../../../../json-editor.helper';
+import { snakeCase } from '../../../../../../utils/strings/snake-case';
 
 export interface PropertyConfigOptions {
   required: boolean;
@@ -38,7 +39,9 @@ export class PropertyConfigComponent implements OnInit {
 
   @Input() rootItem? = false;
 
-  @Output() updateSchema = new EventEmitter<PropertyConfigOptions>();
+  @Input() isNew = false;
+
+  @Output() updateProperty = new EventEmitter<PropertyConfigOptions>();
 
   propTypes: string[] = propTypes;
 
@@ -46,12 +49,16 @@ export class PropertyConfigComponent implements OnInit {
 
   required = false;
 
-  newEnumValue = '';
+  isNameLocked = true;
 
-  constructor(private dialogService: DialogService) {}
+  canChangeType = false;
+
+  newEnumValue = '';
 
   ngOnInit() {
     this.editableProperty = JSON.parse(JSON.stringify(this.property));
+    this.isNameLocked = this.isNew;
+    this.canChangeType = this.isNew;
 
     if (!this.arrayItem) {
       this.setRequired();
@@ -59,8 +66,7 @@ export class PropertyConfigComponent implements OnInit {
   }
 
   applyChanges(): void {
-    this.dialogService.destroyAll();
-    this.updateSchema.emit({
+    this.updateProperty.emit({
       required: this.required,
       index: this.index,
       newProperty: this.editableProperty,
@@ -125,6 +131,12 @@ export class PropertyConfigComponent implements OnInit {
     }
   }
 
+  onTitleChange(title: string): void {
+    if (this.isNameLocked) {
+      this.editableProperty.propertyName = snakeCase(title);
+    }
+  }
+
   private cleanUpPropertyConstrains(): void {
     delete this.editableProperty.enum;
     delete this.editableProperty.properties;
@@ -140,6 +152,7 @@ export class PropertyConfigComponent implements OnInit {
   }
 
   private setRequired(): void {
+    this.schema.required ||= [];
     this.required = this.schema.required.includes(this.property.propertyName);
   }
 }
