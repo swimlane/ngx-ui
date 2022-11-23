@@ -28,6 +28,7 @@
       [isDuplicated]="isDuplicated"
       [passwordToggleEnabled]="passwordToggleEnabled"
       [inputControlTemplate]="inputControlTemplate"
+      (schemaUpdate)="schemaUpdate.emit(schemaRef)"
     >
       <div class="node-options" node-options>
         <button
