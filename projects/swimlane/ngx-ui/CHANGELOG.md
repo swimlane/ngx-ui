@@ -6,6 +6,7 @@
 - Fix: Add `cursor: pointer` to `ngx-button` class
 - Feature: `ngx-button` now accepts a `type` input
 - Breaking: `ngx-button` now defaults to `type="button"`
+- Fix: (`ngx-json-editor-flat`) nodes inside array nodes will emit `schemaUpdate` events
 
 ## 42.5.0 (2022-10-17)
 
