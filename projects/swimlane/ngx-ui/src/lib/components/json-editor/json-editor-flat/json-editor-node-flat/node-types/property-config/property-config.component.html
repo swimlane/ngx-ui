@@ -119,9 +119,9 @@
         </div>
 
         <div class="constrain-row" *ngIf="editableProperty.type === 'integer'">
-          <ngx-input type="number" [(ngModel)]="editableProperty.minimum" [label]="'MINIMUM'" [pattern]="'^[0-9]*$'"></ngx-input>
+          <ngx-input type="number" [(ngModel)]="editableProperty.minimum" [label]="'MINIMUM'" [pattern]="'^[1-9][0-9]*$'"></ngx-input>
 
-          <ngx-input type="number" [(ngModel)]="editableProperty.maximum" [label]="'MAXIMUM'" [pattern]="'^[1-9]*$'"></ngx-input>
+          <ngx-input type="number" [(ngModel)]="editableProperty.maximum" [label]="'MAXIMUM'" [pattern]="'^[1-9][0-9]*$'"></ngx-input>
         </div>
 
         <div class="constrain-row" *ngIf="editableProperty.type === 'string'">
