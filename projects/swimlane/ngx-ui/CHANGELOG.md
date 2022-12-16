@@ -8,6 +8,10 @@
 - Breaking: `ngx-button` now defaults to `type="button"`
 - Fix: `ngx-json-editor-flat` array nodes will forward `schemaUpdate` events from nested nodes
 
+## 42.6.0 (2022-12-16)
+
+- feature (`ngx-input`): add pattern for integer validation on playbook inputs
+
 ## 42.5.0 (2022-10-17)
 
 - Added angular cli schematics for installing ngx-ui
