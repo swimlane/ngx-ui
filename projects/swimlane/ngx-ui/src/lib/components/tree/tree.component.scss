@@ -87,4 +87,24 @@ $color-tree-text: #b3b6bd;
       left: -3px;
     }
   }
+
+  .virtual-container {
+    width: 100%;
+
+    .cdk-virtual-scroll-content-wrapper {
+      width: max-content;
+    }
+  }
+
+  .node-container {
+    display: flex;
+  }
+
+  .depth-indicator {
+    margin-top: -6px;
+    --thickness: 1px;
+    --gap: 20px;
+    --dashes: 5.3px;
+    background: conic-gradient(at var(--thickness) 50%, #0000 75%, $color-tree-line 0) 0 / var(--gap) var(--dashes);
+  }
 }

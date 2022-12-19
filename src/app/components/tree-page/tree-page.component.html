@@ -129,6 +129,62 @@ export class AppComponent {
   </app-prism>
 </ngx-section>
 
+<ngx-section class="shadow" sectionTitle="Tree Composition - Virtual Scrolling">
+  <ngx-tree [virtualScrolling]="true" [virtualScrollHeight]="210">
+    <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
+      <ngx-tree>
+        <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+        <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+        <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+      </ngx-tree>
+    </ngx-tree-node>
+    <ngx-tree-node [label]="'Node 3'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
+    <ngx-tree-node [label]="'Node 4'" [selectable]="true" (selectNode)="selectNode($event)" [expandable]="true" [expanded]="false">
+      <ngx-tree>
+        <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+        <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
+          <ngx-tree>
+            <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+            <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+            <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+          </ngx-tree>
+        </ngx-tree-node>
+        <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+      </ngx-tree>
+    </ngx-tree-node>
+    <ngx-tree-node [label]="'Node 1'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
+    <ngx-tree-node [label]="'Node 5'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
+  </ngx-tree>
+
+  <app-prism>
+<![CDATA[<ngx-tree [virtualScrolling]="true" [virtualScrollHeight]="210">
+  <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
+    <ngx-tree>
+      <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+      <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+      <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+    </ngx-tree>
+  </ngx-tree-node>
+  <ngx-tree-node [label]="'Node 3'" [selectable]="true"></ngx-tree-node>
+  <ngx-tree-node [label]="'Node 4'" [selectable]="true" [expandable]="true" [expanded]="false">
+    <ngx-tree>
+      <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+      <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
+        <ngx-tree>
+          <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+          <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+          <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+        </ngx-tree>
+      </ngx-tree-node>
+      <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+    </ngx-tree>
+  </ngx-tree-node>
+  <ngx-tree-node [label]="'Node 1'" [selectable]="true"></ngx-tree-node>
+  <ngx-tree-node [label]="'Node 5'" [selectable]="true"></ngx-tree-node>
+</ngx-tree>]]>
+  </app-prism>
+</ngx-section>
+
 <ngx-section class="shadow" sectionTitle="Templates and Icons">
   <ngx-tree class="hide-vr" [nodes]="nodes1" [icons]="{ collapse: 'ngx-icon ngx-chevron-bold-down', expand: 'ngx-icon ngx-chevron-bold-right' }">
     <ng-template let-label="label" let-model="model">
@@ -195,7 +251,7 @@ export class AppComponent {
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="JSON Tree">
-  <ngx-tree [nodes]="jsonObject | jsonTree">
+  <ngx-tree [nodes]="shortJsonObject | jsonTree">
     <ng-template let-label="label" let-node let-model="model" let-expandable="expandable">
       <div class="ngx-node-label" [ngClass]="model.type">
         <code><strong>{{label}}:</strong> <span *ngIf="!node.expandable">{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span></code>
@@ -209,7 +265,72 @@ export class AppComponent {
   <ngx-tabs>
     <ngx-tab label="Markup">
       <app-prism>
-<![CDATA[<ngx-tree [nodes]="jsonObject | jsonTree">
+<![CDATA[<ngx-tree [nodes]="shortJsonObject | jsonTree">
+  <ng-template let-label="label" let-model="model" let-expandable="expandable">
+    <div class="ngx-node-label" [ngClass]="model.type">
+      <code><strong>{ {label} }:</strong> <span *ngIf="!model.expandable">{ {model.value | json} } <span class="tag tag-small" style="text-transform: capitalize">[{ {model.type} }]</span></span></code>
+    </div>
+  </ng-template>
+</ngx-tree>]]>
+      </app-prism>
+    </ngx-tab>
+    <ngx-tab label="TypeScript">
+      <app-prism language="js">
+<![CDATA[@Component({
+  selector: 'app',
+  templateUrl: './app.template.html'
+})
+export class AppComponent {
+  jsonObject = JSON.parse(`{
+    "firstName": "John",
+    "lastName": "Smith",
+    "isAlive": true,
+    "age": 25,
+    "address": {
+      "streetAddress": "21 2nd Street",
+      "city": "New York",
+      "state": "NY",
+      "postalCode": "10021-3100"
+    },
+    "phoneNumbers": [
+      {
+        "type": "home",
+        "number": "212 555-1234"
+      },
+      {
+        "type": "office",
+        "number": "646 555-4567"
+      },
+      {
+        "type": "mobile",
+        "number": "123 456-7890"
+      }
+    ],
+    "children": [],
+    "spouse": null
+  }`);
+}]]>
+      </app-prism>
+    </ngx-tab>
+  </ngx-tabs>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="JSON Tree - Virtual Scrolling">
+  <ngx-tree [nodes]="longJsonObject | jsonTree" [virtualScrolling]="true" [virtualScrollHeight]="500">
+    <ng-template let-label="label" let-node let-model="model" let-expandable="expandable">
+      <div class="ngx-node-label" [ngClass]="model.type">
+        <code><strong>{{label}}:</strong> <span *ngIf="!node.expandable">{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span></code>
+      </div>
+    </ng-template>
+  </ngx-tree>
+
+  <br />
+  <br />
+
+  <ngx-tabs>
+    <ngx-tab label="Markup">
+      <app-prism>
+<![CDATA[<ngx-tree [nodes]="longJsonObject | jsonTree" [virtualScrolling]="true" [virtualScrollHeight]="500">
   <ng-template let-label="label" let-model="model" let-expandable="expandable">
     <div class="ngx-node-label" [ngClass]="model.type">
       <code><strong>{ {label} }:</strong> <span *ngIf="!model.expandable">{ {model.value | json} } <span class="tag tag-small" style="text-transform: capitalize">[{ {model.type} }]</span></span></code>

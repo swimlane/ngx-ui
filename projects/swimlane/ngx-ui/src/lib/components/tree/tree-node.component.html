@@ -18,7 +18,7 @@
   <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="data"> </ng-template>
   <ng-content *ngIf="expanded"></ng-content>
   <ngx-tree
-    *ngIf="children?.length && expandable && expanded"
+    *ngIf="!virtualScrolling && children?.length && expandable && expanded"
     class="ngx-sub-tree"
     [nodes]="children"
     [template]="template"

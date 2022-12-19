@@ -1,25 +1,54 @@
-<div class="ngx-tree" [class.one-leaf]="hasOneLeaf">
-  <ul class="vertical-list">
-    <ngx-tree-node
-      *ngFor="let node of nodes"
-      [node]="node"
-      [disabled]="node.disabled"
-      [expandable]="node.expandable"
-      [expanded]="node.expanded"
-      [selectable]="node.selectable"
-      [icons]="icons"
-      [label]="node.label"
-      [model]="node.model"
-      [children]="node.children"
-      [template]="template"
-      (expand)="expand.emit($event)"
-      (collapse)="collapse.emit($event)"
-      (activate)="activate.emit($event)"
-      (deactivate)="deactivate.emit($event)"
-      (selectNode)="selectNode.emit($event)"
+<div class="ngx-tree" [class.one-leaf]="!virtualScrolling && hasOneLeaf">
+  <ul class="vertical-list">   
+    <cdk-virtual-scroll-viewport 
+      #virtualTree 
+      *ngIf="treeStructure && virtualScrolling" 
+      [itemSize]="nodeHeight" 
+      [minBufferPx]="virtualScrollHeight*2" 
+      [maxBufferPx]="virtualScrollHeight*4" 
+      class="virtual-container"
+      [style.height]="virtualScrollHeight + 'px'"
     >
-    </ngx-tree-node>
-    <ng-content *ngIf="!nodes"></ng-content>
+      <ng-container *cdkVirtualFor="let node of filteredTree; trackBy: trackBy;">
+        <div class="node-container">
+          <div 
+            class="depth-indicator" 
+            [style.width]="((node.depth - 1) * depthPadding) + 'px'"
+            [style.background-position-x]="node.depth - 1 > 0 ? '5px' : '0px'"
+          ></div>
+          <div [style.height]="nodeHeight + 'px'">
+            <ng-container [ngTemplateOutlet]="ngxTreeNode" [ngTemplateOutletContext]="{ node }"></ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </cdk-virtual-scroll-viewport>
+    <ng-container *ngIf="nodes?.length && !nodeElms?.length && !virtualScrolling">
+      <ng-container *ngFor="let node of nodes">
+        <ng-container [ngTemplateOutlet]="ngxTreeNode" [ngTemplateOutletContext]="{ node }"></ng-container>
+      </ng-container>
+    </ng-container>
+    <ng-content *ngIf="!nodes?.length && nodeElms?.length && !virtualScrolling"></ng-content>
   </ul>
-  <div class="ngx-tree-vr" *ngIf="nodes?.length || nodeElms?.length"></div>
+  <div class="ngx-tree-vr" *ngIf="(nodes?.length || nodeElms?.length) && !virtualScrolling"></div>
 </div>
+<ng-template #ngxTreeNode let-node="node">
+  <ngx-tree-node
+    [node]="node"
+    [disabled]="node.disabled"
+    [expandable]="node.expandable"
+    [expanded]="node.expanded"
+    [selectable]="node.selectable"
+    [icons]="icons"
+    [label]="node.label"
+    [model]="node.model"
+    [children]="node.children"
+    [template]="template"
+    [virtualScrolling]="virtualScrolling"
+    (expand)="onExpand($event)"
+    (collapse)="onCollapse($event)"
+    (activate)="activate.emit($event)"
+    (deactivate)="deactivate.emit($event)"
+    (selectNode)="selectNode.emit($event)"
+  >
+  </ngx-tree-node>
+</ng-template>

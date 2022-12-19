@@ -32,6 +32,7 @@ export class TreeNodeComponent implements OnChanges {
     collapse: 'icon-tree-collapse',
     expand: 'icon-tree-expand'
   };
+  @Input() virtualScrolling = false;
 
   @Output() activate = new EventEmitter();
   @Output() deactivate = new EventEmitter();
@@ -43,6 +44,7 @@ export class TreeNodeComponent implements OnChanges {
   @Output() collapse = new EventEmitter();
 
   data: any;
+  depth = 0;
 
   ngOnChanges(): void {
     this.data = {

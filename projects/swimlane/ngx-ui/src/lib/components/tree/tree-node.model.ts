@@ -1,4 +1,5 @@
 export interface TreeNode {
+  id?: number;
   label: string;
   children?: TreeNode[];
   model: {
@@ -8,4 +9,6 @@ export interface TreeNode {
   expandable?: boolean;
   expanded?: boolean;
   selectable?: boolean;
+  depth?: number;
+  display?: boolean;
 }
