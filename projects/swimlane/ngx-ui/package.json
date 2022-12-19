@@ -9,12 +9,6 @@
     "url": "git+https://github.com/swimlane/ngx-ui.git"
   },
   "author": "Swimlane",
-  "maintainers": [
-    "Marjan Georgiev",
-    "Jayson Harshbarger",
-    "Antonio Vazquez",
-    "Haemin Park"
-  ],
   "license": "MIT",
   "keywords": [
     "angular",
