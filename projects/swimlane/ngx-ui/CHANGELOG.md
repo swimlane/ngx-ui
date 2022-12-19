@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 43.0.0 (2022-11-28)
+
 - Feature: Create `ButtonGroupComponent`
 - Fix: Add `cursor: pointer` to `ngx-button` class
 - Feature: `ngx-button` now accepts a `type` input
