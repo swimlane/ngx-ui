@@ -13,6 +13,11 @@ const routes: Routes = [
     loadChildren: () => import('./forms/buttons-page/buttons-page.module').then(m => m.ButtonsPageModule)
   },
   {
+    path: 'button-group',
+    loadChildren: () =>
+      import('./components/button-group-page/button-group-page.module').then(m => m.ButtonGroupPageModule)
+  },
+  {
     path: 'calendar',
     loadChildren: () => import('./forms/calendar-page/calendar-page.module').then(m => m.CalendarPageModule)
   },
@@ -52,6 +57,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./dialogs/dialog-large-format-page/dialog-large-format-page.module').then(
         m => m.DialogLargeFormatPageModule
+      )
+  },
+  {
+    path: 'dialog-medium-format',
+    loadChildren: () =>
+      import('./dialogs/dialog-medium-format-page/dialog-medium-format-page.module').then(
+        m => m.DialogMediumFormatPageModule
       )
   },
   {

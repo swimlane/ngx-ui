@@ -24,4 +24,8 @@ export class DropzonePageComponent {
   onAfterAddingFile(fileItem): void {
     console.log('file added', fileItem);
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

@@ -1,381 +1,604 @@
 <h3 class="style-header">Tree</h3>
 
-<ngx-section class="shadow" sectionTitle="Tree Object">
-  <ngx-tree [nodes]="nodes">
-  </ngx-tree>
-
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
-      <app-prism>
-<![CDATA[<ngx-tree
-  [nodes]="nodes">
-</ngx-tree>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  nodes: any[] = [
-    { label: 'Node 1' },
-    {
-        label: 'Node 2',
-        expandable: true,
-        expanded: true,
-        children: [
-          { label: 'Node 1' },
-          { label: 'Node 2' },
-          {
-            label: 'Node 3',
-            expanded: false,
-            expandable: true,
-            children: [
-              { label: 'Node 1' },
-              { label: 'Node 2' },
-              { label: 'Node 3' },
-              { label: 'Node 4' }
-            ]
-          },
-          {
-            label: 'Node 4',
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" sectionTitle="Tree Object">
+      <ngx-tree [nodes]="nodes">
+      </ngx-tree>
+    
+      <br />
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<ngx-tree
+      [nodes]="nodes">
+    </ngx-tree>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[@Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      nodes: any[] = [
+        { label: 'Node 1' },
+        {
+            label: 'Node 2',
             expandable: true,
             expanded: true,
             children: [
               { label: 'Node 1' },
               { label: 'Node 2' },
-              { label: 'Node 3' },
-              { label: 'Node 4' }
+              {
+                label: 'Node 3',
+                expanded: false,
+                expandable: true,
+                children: [
+                  { label: 'Node 1' },
+                  { label: 'Node 2' },
+                  { label: 'Node 3' },
+                  { label: 'Node 4' }
+                ]
+              },
+              {
+                label: 'Node 4',
+                expandable: true,
+                expanded: true,
+                children: [
+                  { label: 'Node 1' },
+                  { label: 'Node 2' },
+                  { label: 'Node 3' },
+                  { label: 'Node 4' }
+                ]
+              }
             ]
-          }
-        ]
-    },
-    { label: 'Node 3' },
-    {
-      label: 'Node 4',
-      children: [
-        { label: 'Node 1' },
-        { label: 'Node 2' },
+        },
         { label: 'Node 3' },
-        { label: 'Node 4' }
-      ],
-      expandable: true
-    }
-  ];
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Tree Composition">
-  <ngx-tree>
-    <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
+        {
+          label: 'Node 4',
+          children: [
+            { label: 'Node 1' },
+            { label: 'Node 2' },
+            { label: 'Node 3' },
+            { label: 'Node 4' }
+          ],
+          expandable: true
+        }
+      ];
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Tree Composition">
       <ngx-tree>
-        <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-        <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
-        <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
-      </ngx-tree>
-    </ngx-tree-node>
-    <ngx-tree-node [label]="'Node 3'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
-    <ngx-tree-node [label]="'Node 4'" [selectable]="true" (selectNode)="selectNode($event)" [expandable]="true" [expanded]="false">
-      <ngx-tree>
-        <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-        <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
+        <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
           <ngx-tree>
             <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
             <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
             <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
           </ngx-tree>
         </ngx-tree-node>
-        <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
-      </ngx-tree>
-    </ngx-tree-node>
-    <ngx-tree-node [label]="'Node 1'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
-    <ngx-tree-node [label]="'Node 5'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
-  </ngx-tree>
-
-  <app-prism>
-<![CDATA[<ngx-tree>
-  <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
-    <ngx-tree>
-      <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-      <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
-      <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
-    </ngx-tree>
-  </ngx-tree-node>
-  <ngx-tree-node [label]="'Node 3'" [selectable]="true"></ngx-tree-node>
-  <ngx-tree-node [label]="'Node 4'" [selectable]="true" [expandable]="true" [expanded]="false">
-    <ngx-tree>
-      <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-      <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
-        <ngx-tree>
-          <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-          <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
-          <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
-        </ngx-tree>
-      </ngx-tree-node>
-      <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
-    </ngx-tree>
-  </ngx-tree-node>
-  <ngx-tree-node [label]="'Node 1'" [selectable]="true"></ngx-tree-node>
-  <ngx-tree-node [label]="'Node 5'" [selectable]="true"></ngx-tree-node>
-</ngx-tree>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Tree Composition - Virtual Scrolling">
-  <ngx-tree [virtualScrolling]="true" [virtualScrollHeight]="210">
-    <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
-      <ngx-tree>
-        <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-        <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
-        <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
-      </ngx-tree>
-    </ngx-tree-node>
-    <ngx-tree-node [label]="'Node 3'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
-    <ngx-tree-node [label]="'Node 4'" [selectable]="true" (selectNode)="selectNode($event)" [expandable]="true" [expanded]="false">
-      <ngx-tree>
-        <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-        <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
+        <ngx-tree-node [label]="'Node 3'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
+        <ngx-tree-node [label]="'Node 4'" [selectable]="true" (selectNode)="selectNode($event)" [expandable]="true" [expanded]="false">
           <ngx-tree>
             <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-            <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+            <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
+              <ngx-tree>
+                <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+                <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+                <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+              </ngx-tree>
+            </ngx-tree-node>
             <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
           </ngx-tree>
         </ngx-tree-node>
-        <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+        <ngx-tree-node [label]="'Node 1'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
+        <ngx-tree-node [label]="'Node 5'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
       </ngx-tree>
-    </ngx-tree-node>
-    <ngx-tree-node [label]="'Node 1'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
-    <ngx-tree-node [label]="'Node 5'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
-  </ngx-tree>
-
-  <app-prism>
-<![CDATA[<ngx-tree [virtualScrolling]="true" [virtualScrollHeight]="210">
-  <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
-    <ngx-tree>
-      <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-      <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
-      <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
-    </ngx-tree>
-  </ngx-tree-node>
-  <ngx-tree-node [label]="'Node 3'" [selectable]="true"></ngx-tree-node>
-  <ngx-tree-node [label]="'Node 4'" [selectable]="true" [expandable]="true" [expanded]="false">
-    <ngx-tree>
-      <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-      <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
-        <ngx-tree>
-          <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
-          <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
-          <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
-        </ngx-tree>
-      </ngx-tree-node>
-      <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
-    </ngx-tree>
-  </ngx-tree-node>
-  <ngx-tree-node [label]="'Node 1'" [selectable]="true"></ngx-tree-node>
-  <ngx-tree-node [label]="'Node 5'" [selectable]="true"></ngx-tree-node>
-</ngx-tree>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Templates and Icons">
-  <ngx-tree class="hide-vr" [nodes]="nodes1" [icons]="{ collapse: 'ngx-icon ngx-chevron-bold-down', expand: 'ngx-icon ngx-chevron-bold-right' }">
-    <ng-template let-label="label" let-model="model">
-      <code><strong>{{label}}</strong> | {{model.type}}</code>
-    </ng-template>
-  </ngx-tree>
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
+    
       <app-prism>
-<![CDATA[<ngx-tree class="hide-vr" [nodes]="nodes1" [icons]="{ collapse: 'ngx-icon ngx-chevron-bold-down', expand: 'ngx-icon ngx-chevron-bold-right' }">
-  <ng-template let-label="label" let-model="model">
-    <code><strong>{ {label} }</strong> | { {model.type} }</code>
-  </ng-template>
-</ngx-tree>]]>
+    <![CDATA[<ngx-tree>
+      <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
+        <ngx-tree>
+          <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+          <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+          <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+        </ngx-tree>
+      </ngx-tree-node>
+      <ngx-tree-node [label]="'Node 3'" [selectable]="true"></ngx-tree-node>
+      <ngx-tree-node [label]="'Node 4'" [selectable]="true" [expandable]="true" [expanded]="false">
+        <ngx-tree>
+          <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+          <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
+            <ngx-tree>
+              <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+              <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+              <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+            </ngx-tree>
+          </ngx-tree-node>
+          <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+        </ngx-tree>
+      </ngx-tree-node>
+      <ngx-tree-node [label]="'Node 1'" [selectable]="true"></ngx-tree-node>
+      <ngx-tree-node [label]="'Node 5'" [selectable]="true"></ngx-tree-node>
+    </ngx-tree>]]>
       </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  nodes1: any[] = [
-    {
-      label: 'Node1', model: { type: 'Array', count: 1 }
-    },
-    {
-      label: 'Node2',
-      expandable: true,
-      model: { type: 'Object' },
-      children: [
+    </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="Tree Composition - Virtual Scrolling">
+      <ngx-tree [virtualScrolling]="true" [virtualScrollHeight]="210">
+        <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
+          <ngx-tree>
+            <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+            <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+            <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+          </ngx-tree>
+        </ngx-tree-node>
+        <ngx-tree-node [label]="'Node 3'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
+        <ngx-tree-node [label]="'Node 4'" [selectable]="true" (selectNode)="selectNode($event)" [expandable]="true" [expanded]="false">
+          <ngx-tree>
+            <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+            <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
+              <ngx-tree>
+                <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+                <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+                <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+              </ngx-tree>
+            </ngx-tree-node>
+            <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+          </ngx-tree>
+        </ngx-tree-node>
+        <ngx-tree-node [label]="'Node 1'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
+        <ngx-tree-node [label]="'Node 5'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
+      </ngx-tree>
+    
+      <app-prism>
+    <![CDATA[<ngx-tree [virtualScrolling]="true" [virtualScrollHeight]="210">
+      <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
+        <ngx-tree>
+          <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+          <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+          <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+        </ngx-tree>
+      </ngx-tree-node>
+      <ngx-tree-node [label]="'Node 3'" [selectable]="true"></ngx-tree-node>
+      <ngx-tree-node [label]="'Node 4'" [selectable]="true" [expandable]="true" [expanded]="false">
+        <ngx-tree>
+          <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+          <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
+            <ngx-tree>
+              <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+              <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+              <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+            </ngx-tree>
+          </ngx-tree-node>
+          <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+        </ngx-tree>
+      </ngx-tree-node>
+      <ngx-tree-node [label]="'Node 1'" [selectable]="true"></ngx-tree-node>
+      <ngx-tree-node [label]="'Node 5'" [selectable]="true"></ngx-tree-node>
+    </ngx-tree>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Templates and Icons">
+      <ngx-tree class="hide-vr" [nodes]="nodes1" [icons]="{ collapse: 'ngx-icon ngx-chevron-bold-down', expand: 'ngx-icon ngx-chevron-bold-right' }">
+        <ng-template let-label="label" let-model="model">
+          <code><strong>{{label}}</strong> | {{model.type}}</code>
+        </ng-template>
+      </ngx-tree>
+      <br />
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<ngx-tree class="hide-vr" [nodes]="nodes1" [icons]="{ collapse: 'ngx-icon ngx-chevron-bold-down', expand: 'ngx-icon ngx-chevron-bold-right' }">
+      <ng-template let-label="label" let-model="model">
+        <code><strong>{ {label} }</strong> | { {model.type} }</code>
+      </ng-template>
+    </ngx-tree>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[@Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      nodes1: any[] = [
         {
           label: 'Node1', model: { type: 'Array', count: 1 }
+        },
+        {
+          label: 'Node2',
+          expandable: true,
+          model: { type: 'Object' },
+          children: [
+            {
+              label: 'Node1', model: { type: 'Array', count: 1 }
+            }
+          ]
+        },
+        {
+          label: 'Node3', model: { type: 'Array', count: 1 }
         }
-      ]
-    },
-    {
-      label: 'Node3', model: { type: 'Array', count: 1 }
-    }
-  ];
-}]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="Style">
-      <app-prism language="css">
-<![CDATA[.hide-vr ::ng-deep {
-  .ngx-tree {
-    .ngx-tree-vr {
-      display: none;
-    }
-    .ngx-tree-node .ngx-expander {
-      top: 6px;
-    }    
-  }
-}]]>
-      </app-prism>
-    </ngx-tab>
-
-  </ngx-tabs>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="JSON Tree">
-  <ngx-tree [nodes]="shortJsonObject | jsonTree">
-    <ng-template let-label="label" let-node let-model="model" let-expandable="expandable">
-      <div class="ngx-node-label" [ngClass]="model.type">
-        <code><strong>{{label}}:</strong> <span *ngIf="!node.expandable">{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span></code>
-      </div>
-    </ng-template>
-  </ngx-tree>
-
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
-      <app-prism>
-<![CDATA[<ngx-tree [nodes]="shortJsonObject | jsonTree">
-  <ng-template let-label="label" let-model="model" let-expandable="expandable">
-    <div class="ngx-node-label" [ngClass]="model.type">
-      <code><strong>{ {label} }:</strong> <span *ngIf="!model.expandable">{ {model.value | json} } <span class="tag tag-small" style="text-transform: capitalize">[{ {model.type} }]</span></span></code>
-    </div>
-  </ng-template>
-</ngx-tree>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  jsonObject = JSON.parse(`{
-    "firstName": "John",
-    "lastName": "Smith",
-    "isAlive": true,
-    "age": 25,
-    "address": {
-      "streetAddress": "21 2nd Street",
-      "city": "New York",
-      "state": "NY",
-      "postalCode": "10021-3100"
-    },
-    "phoneNumbers": [
-      {
-        "type": "home",
-        "number": "212 555-1234"
-      },
-      {
-        "type": "office",
-        "number": "646 555-4567"
-      },
-      {
-        "type": "mobile",
-        "number": "123 456-7890"
+      ];
+    }]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="Style">
+          <app-prism language="css">
+    <![CDATA[.hide-vr ::ng-deep {
+      .ngx-tree {
+        .ngx-tree-vr {
+          display: none;
+        }
+        .ngx-tree-node .ngx-expander {
+          top: 6px;
+        }    
       }
-    ],
-    "children": [],
-    "spouse": null
-  }`);
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-</ngx-section>
+    }]]>
+          </app-prism>
+        </ngx-tab>
+    
+      </ngx-tabs>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="JSON Tree">
+      <ngx-tree [nodes]="shortJsonObject | jsonTree">
+        <ng-template let-label="label" let-node let-model="model" let-expandable="expandable">
+          <div class="ngx-node-label" [ngClass]="model.type">
+            <code><strong>{{label}}:</strong> <span *ngIf="!node.expandable">{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span></code>
+          </div>
+        </ng-template>
+      </ngx-tree>
+    
+      <br />
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<ngx-tree [nodes]="shortJsonObject | jsonTree">
+      <ng-template let-label="label" let-model="model" let-expandable="expandable">
+        <div class="ngx-node-label" [ngClass]="model.type">
+          <code><strong>{ {label} }:</strong> <span *ngIf="!model.expandable">{ {model.value | json} } <span class="tag tag-small" style="text-transform: capitalize">[{ {model.type} }]</span></span></code>
+        </div>
+      </ng-template>
+    </ngx-tree>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[@Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      jsonObject = JSON.parse(`{
+        "firstName": "John",
+        "lastName": "Smith",
+        "isAlive": true,
+        "age": 25,
+        "address": {
+          "streetAddress": "21 2nd Street",
+          "city": "New York",
+          "state": "NY",
+          "postalCode": "10021-3100"
+        },
+        "phoneNumbers": [
+          {
+            "type": "home",
+            "number": "212 555-1234"
+          },
+          {
+            "type": "office",
+            "number": "646 555-4567"
+          },
+          {
+            "type": "mobile",
+            "number": "123 456-7890"
+          }
+        ],
+        "children": [],
+        "spouse": null
+      }`);
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
 
-<ngx-section class="shadow" sectionTitle="JSON Tree - Virtual Scrolling">
-  <ngx-tree [nodes]="longJsonObject | jsonTree" [virtualScrolling]="true" [virtualScrollHeight]="500">
-    <ng-template let-label="label" let-node let-model="model" let-expandable="expandable">
-      <div class="ngx-node-label" [ngClass]="model.type">
-        <code><strong>{{label}}:</strong> <span *ngIf="!node.expandable">{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span></code>
-      </div>
-    </ng-template>
-  </ngx-tree>
+    <ngx-section class="shadow" sectionTitle="JSON Tree - Virtual Scrolling">
+      <ngx-tree [nodes]="longJsonObject | jsonTree" [virtualScrolling]="true" [virtualScrollHeight]="500">
+        <ng-template let-label="label" let-node let-model="model" let-expandable="expandable">
+          <div class="ngx-node-label" [ngClass]="model.type">
+            <code><strong>{{label}}:</strong> <span *ngIf="!node.expandable">{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span></code>
+          </div>
+        </ng-template>
+      </ngx-tree>
+    
+      <br />
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<ngx-tree [nodes]="longJsonObject | jsonTree" [virtualScrolling]="true" [virtualScrollHeight]="500">
+      <ng-template let-label="label" let-model="model" let-expandable="expandable">
+        <div class="ngx-node-label" [ngClass]="model.type">
+          <code><strong>{ {label} }:</strong> <span *ngIf="!model.expandable">{ {model.value | json} } <span class="tag tag-small" style="text-transform: capitalize">[{ {model.type} }]</span></span></code>
+        </div>
+      </ng-template>
+    </ngx-tree>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[@Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      jsonObject = JSON.parse(`{
+        "firstName": "John",
+        "lastName": "Smith",
+        "isAlive": true,
+        "age": 25,
+        "address": {
+          "streetAddress": "21 2nd Street",
+          "city": "New York",
+          "state": "NY",
+          "postalCode": "10021-3100"
+        },
+        "phoneNumbers": [
+          {
+            "type": "home",
+            "number": "212 555-1234"
+          },
+          {
+            "type": "office",
+            "number": "646 555-4567"
+          },
+          {
+            "type": "mobile",
+            "number": "123 456-7890"
+          }
+        ],
+        "children": [],
+        "spouse": null
+      }`);
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
 
-  <br />
-  <br />
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('ngx-tree-inputs')">ngx-tree Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-tree-outputs')">ngx-tree Outputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-tree-node-inputs')">ngx-tree-node Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-tree-node-outputs')">ngx-tree-node Outputs</a>
+    <hr>
 
-  <ngx-tabs>
-    <ngx-tab label="Markup">
-      <app-prism>
-<![CDATA[<ngx-tree [nodes]="longJsonObject | jsonTree" [virtualScrolling]="true" [virtualScrollHeight]="500">
-  <ng-template let-label="label" let-model="model" let-expandable="expandable">
-    <div class="ngx-node-label" [ngClass]="model.type">
-      <code><strong>{ {label} }:</strong> <span *ngIf="!model.expandable">{ {model.value | json} } <span class="tag tag-small" style="text-transform: capitalize">[{ {model.type} }]</span></span></code>
-    </div>
-  </ng-template>
-</ngx-tree>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  jsonObject = JSON.parse(`{
-    "firstName": "John",
-    "lastName": "Smith",
-    "isAlive": true,
-    "age": 25,
-    "address": {
-      "streetAddress": "21 2nd Street",
-      "city": "New York",
-      "state": "NY",
-      "postalCode": "10021-3100"
-    },
-    "phoneNumbers": [
-      {
-        "type": "home",
-        "number": "212 555-1234"
-      },
-      {
-        "type": "office",
-        "number": "646 555-4567"
-      },
-      {
-        "type": "mobile",
-        "number": "123 456-7890"
-      }
-    ],
-    "children": [],
-    "spouse": null
-  }`);
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-</ngx-section>
+    <h3 class="style-header" id="ngx-tree-inputs">ngx-tree Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>icons: &#123; collapse: string, expand: string &#125; = <br>&#123; collapse: 'icon-tree-collapse', expand: 'icon-tree-expand' &#125;</code>
+          </th>
+          <td>The icons to display for expanding and collapsing the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>nodes: TreeNode[]</code>
+          </th>
+          <td>The child nodes to display. Will render as <code>ngx-tree-node</code> components. See Examples tab.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>template: TemplateRef&lt;any&gt;</code>
+          </th>
+          <td>The custom template to display as part of a child <code>ngx-tree-node</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="ngx-tree-outputs">ngx-tree Outputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>activate: EventEmitter&lt;any&gt;</code>
+          </th>
+          <td>Event emitted when a child <code>ngx-tree-node</code> component receives focus.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>collapse: EventEmitter&lt;any&gt;</code>
+          </th>
+          <td>Event emitted when a child <code>ngx-tree-node</code> component is collapsed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>deactivate: EventEmitter&lt;any&gt;</code>
+          </th>
+          <td>Event emitted when a child <code>ngx-tree-node</code> component emits a blur event.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>expand: EventEmitter&lt;any&gt;</code>
+          </th>
+          <td>Event emitted when a child <code>ngx-tree-node</code> component is expanded.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>selectNode: EventEmitter&lt;any&gt;</code>
+          </th>
+          <td>Event emitted when a child <code>ngx-tree-node</code> component registers a click event.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+
+    <h3 class="style-header" id="ngx-tree-node-inputs">ngx-tree-node Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>children: any[]</code>
+          </th>
+          <td>The child nodes to display. Applicable if another <code>ngx-tree</code> component is rendered as a child of this comoponent.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>disabled: boolean</code>
+          </th>
+          <td>Whether the component is disabled.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>expandable: boolean</code>
+          </th>
+          <td>Whether the component is expandable.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>expanded: boolean</code>
+          </th>
+          <td>Whether the component is initially expanded.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>icons: &#123; collapse: string, expand: string &#125; = <br>&#123; collapse: 'icon-tree-collapse', expand: 'icon-tree-expand' &#125;</code>
+          </th>
+          <td>The icons to display for expanding and collapsing the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>label: string</code>
+          </th>
+          <td>The label for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>model: any</code>
+          </th>
+          <td>The data for the custom template.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>node: TreeNode</code>
+          </th>
+          <td>The node to display for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>selectable: boolean</code>
+          </th>
+          <td>Whether the component is selectable.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>template: TemplateRef&lt;any&gt;</code>
+          </th>
+          <td>The custom template to display for the component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="ngx-tree-node-outputs">ngx-tree-node Outputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>activate: EventEmitter&lt;any&gt;</code>
+          </th>
+          <td>Event emitted when the component receives focus.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>collapse: EventEmitter&lt;any&gt;</code>
+          </th>
+          <td>Event emitted when the component is collapsed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>deactivate: EventEmitter&lt;any&gt;</code>
+          </th>
+          <td>Event emitted when the component emits a blur event.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>expand: EventEmitter&lt;any&gt;</code>
+          </th>
+          <td>Event emitted when the component is expanded.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>selectNode: EventEmitter&lt;any&gt;</code>
+          </th>
+          <td>Event emitted when the component registers a click event.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>

@@ -2,8 +2,37 @@
 
 ## HEAD (unreleased)
 
+## 44.0.0 (2022-12-19)
+
+- feature (`ngx-input`): add pattern for integer validation on playbook inputs
+
+## 43.0.0 (2022-12-16)
+
+- Feature: Create `ButtonGroupComponent`
+- Fix: Add `cursor: pointer` to `ngx-button` class
+- Feature: `ngx-button` now accepts a `type` input
+- Breaking: `ngx-button` now defaults to `type="button"`
+- Fix: `ngx-json-editor-flat` array nodes will forward `schemaUpdate` events from nested nodes
+
+## 42.5.0 (2022-10-17)
+
+- Added angular cli schematics for installing ngx-ui
+- Fix (`ngx-dropzone`): fix dropzone animation
+
+## 42.4.0 (2022-9-15)
+
+- Feature (`ngx-medium-format-dialog-content`): Add medium sizes variant of large format dialog.
+
+## 42.3.1 (2022-9-7)
+
+- Feature (`ngx-json-editor-flat`): Allow custom template for nodes
+
+## 42.2.1 (2022-8-31)
+
 - Fix (`ngx-button`): Allow overflow-y so that text is not cut off.
 - Fix (`ngx-select`): Vertically aligned clear and caret buttons. Clear and caret button sizes change with parent text size.
+- Fix (`ngx-input`, others): Adjust input label position.
+- Bump to Cypress version 10.6.0
 
 ## 42.1.1 (2022-7-18)
 

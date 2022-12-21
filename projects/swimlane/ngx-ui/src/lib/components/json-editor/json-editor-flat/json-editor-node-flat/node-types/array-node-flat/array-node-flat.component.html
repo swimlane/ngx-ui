@@ -1,4 +1,4 @@
-<div class="array-node-flat" [hidden]="!expanded">
+<div class="array-node-flat" [hidden]="!expanded" *ngIf="model.length !== undefined">
   <div
     class="array-node-content"
     [class.no-margin]="schemaBuilderMode"
@@ -27,6 +27,8 @@
       [showKnownProperties]="showKnownProperties"
       [isDuplicated]="isDuplicated"
       [passwordToggleEnabled]="passwordToggleEnabled"
+      [inputControlTemplate]="inputControlTemplate"
+      (schemaUpdate)="schemaUpdate.emit(schemaRef)"
     >
       <div class="node-options" node-options>
         <button

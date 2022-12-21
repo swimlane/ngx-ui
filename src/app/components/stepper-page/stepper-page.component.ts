@@ -41,4 +41,8 @@ export class StepperPageComponent {
       icon: 'ngx-icon ngx-bug'
     });
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

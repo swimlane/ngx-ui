@@ -1,220 +1,336 @@
 <h3 class="style-header">Drawer</h3>
 
-<ngx-section class="shadow" [sectionTitle]="'Default'">
-  <button type="button" class="btn" (click)="openDrawer(DrawerDirection.Left, 70)">
-    Open Left Drawer
-  </button>
-
-  <button type="button" class="btn" (click)="openDrawer(DrawerDirection.Bottom)">
-    Open Bottom Drawer
-  </button>
-
-  <ng-template #editTmpl let-context="context">
-    <ngx-toolbar [mainTitle]="context">
-    </ngx-toolbar>
-    <section class="section">
-      <h1>Attack Type: Malware</h1>
-      <button type="button" class="btn" (click)="openDrawer()">
-        Open Details
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" [sectionTitle]="'Default'">
+      <button type="button" class="btn" (click)="openDrawer(DrawerDirection.Left, 70)">
+        Open Left Drawer
       </button>
-
-      <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
-      </ngx-date-time>
-    </section>
-  </ng-template>
-
-  <br />
-  <br />
-  <br />
-  <ngx-tabs>
-    <ngx-tab label="Markup">
-      <app-prism>
-<![CDATA[<button
-  type="button"
-  (click)="openDrawer('bottom')">
-  Open Bottom Drawer
-</button>
-
-<ng-template #editTmpl>
-  <ngx-toolbar
-    [mainTitle]="'Attack Alert!'">
-  </ngx-toolbar>
-  <section class="section">
-    <h1>Attack Type: Malware</h1>
-    <button
+    
+      <button type="button" class="btn" (click)="openDrawer(DrawerDirection.Bottom)">
+        Open Bottom Drawer
+      </button>
+    
+      <ng-template #editTmpl let-context="context">
+        <ngx-toolbar [mainTitle]="context">
+        </ngx-toolbar>
+        <section class="section">
+          <h1>Attack Type: Malware</h1>
+          <button type="button" class="btn" (click)="openDrawer()">
+            Open Details
+          </button>
+    
+          <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
+          </ngx-date-time>
+        </section>
+      </ng-template>
+    
+      <br />
+      <br />
+      <br />
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<button
       type="button"
-      class="btn"
-      (click)="openDrawer()">
-      Open Details
-    </button>
-  </section>
-</ng-template>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[@Component({ selector: 'app' })
-class MyComponent {
-  @ViewChild('editTmpl', { static: false }) editTmpl: TemplateRef<any>;
-
-  constructor(private drawerService: DrawerService) { }
-
-  openDrawer(direction = 'left', size?, closeOnOutsideClick = true, template = this.editTmpl, isRoot = true, parentContainer?: any) {
-    this.drawerService.create({
-      direction,
-      template,
-      size,
-      context: 'Alert Everyone!',
-      closeOnOutsideClick,
-      parentContainer,
-      isRoot
-    });
-  }
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-</ngx-section>
-
-<ngx-section class="shadow" [sectionTitle]="'Disabling close on outside click'">
-    <button type="button" class="btn" (click)="openDrawer(DrawerDirection.Left, 70, false, editTmpl2)">
-      Open Left Drawer
-    </button>
-
-    <button type="button" class="btn" (click)="openDrawer(DrawerDirection.Bottom, undefined, false, editTmpl2)">
+      (click)="openDrawer('bottom')">
       Open Bottom Drawer
     </button>
-
-    <ng-template #editTmpl2 let-context="context" let-close="close">
-      <ngx-toolbar [mainTitle]="context">
+    
+    <ng-template #editTmpl>
+      <ngx-toolbar
+        [mainTitle]="'Attack Alert!'">
       </ngx-toolbar>
       <section class="section">
-        <h1>Attack Type: Malware </h1>
-        <button type="button" class="btn" (click)="openDrawer(undefined, undefined, false, editTmpl2)">
+        <h1>Attack Type: Malware</h1>
+        <button
+          type="button"
+          class="btn"
+          (click)="openDrawer()">
           Open Details
         </button>
-
-        <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
-        </ngx-date-time>
+      </section>
+    </ng-template>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[@Component({ selector: 'app' })
+    class MyComponent {
+      @ViewChild('editTmpl', { static: false }) editTmpl: TemplateRef<any>;
+    
+      constructor(private drawerService: DrawerService) { }
+    
+      openDrawer(direction = 'left', size?, closeOnOutsideClick = true, template = this.editTmpl, isRoot = true, parentContainer?: any) {
+        this.drawerService.create({
+          direction,
+          template,
+          size,
+          context: 'Alert Everyone!',
+          closeOnOutsideClick,
+          parentContainer,
+          isRoot
+        });
+      }
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+    
+    <ngx-section class="shadow" [sectionTitle]="'Disabling close on outside click'">
+        <button type="button" class="btn" (click)="openDrawer(DrawerDirection.Left, 70, false, editTmpl2)">
+          Open Left Drawer
+        </button>
+    
+        <button type="button" class="btn" (click)="openDrawer(DrawerDirection.Bottom, undefined, false, editTmpl2)">
+          Open Bottom Drawer
+        </button>
+    
+        <ng-template #editTmpl2 let-context="context" let-close="close">
+          <ngx-toolbar [mainTitle]="context">
+          </ngx-toolbar>
+          <section class="section">
+            <h1>Attack Type: Malware </h1>
+            <button type="button" class="btn" (click)="openDrawer(undefined, undefined, false, editTmpl2)">
+              Open Details
+            </button>
+    
+            <ngx-date-time name="calendar-input1" [label]="'Date of attack'" [(ngModel)]="curDate2" (change)="dateChanged($event)">
+            </ngx-date-time>
+            <button type="button" class="btn" (click)="close.emit(true)">
+              Close
+            </button>
+          </section>
+        </ng-template>
+    
+        <br />
+        <br />
+        <br />
+        <ngx-tabs>
+          <ngx-tab label="Markup">
+            <app-prism>
+    <![CDATA[<button
+      type="button"
+      (click)="openDrawer('bottom', undefined, false, editTmpl2)">
+      Open Bottom Drawer
+    </button>
+    
+    <ng-template #editTmpl2 let-context="context" let-close="close">
+      <ngx-toolbar
+        [mainTitle]="'Attack Alert!'">
+      </ngx-toolbar>
+      <section class="section">
+        <h1>Attack Type: Malware</h1>
+        <button
+          type="button"
+          class="btn"
+          (click)="openDrawer(undefined, undefined, false, editTmpl2)">
+          Open Details
+        </button>
         <button type="button" class="btn" (click)="close.emit(true)">
           Close
         </button>
       </section>
-    </ng-template>
+    </ng-template>]]>
+            </app-prism>
+          </ngx-tab>
+          <ngx-tab label="TypeScript">
+            <app-prism language="js">
+    <![CDATA[@Component({ selector: 'app' })
+    class MyComponent {
+      @ViewChild('editTmpl', { static: false }) editTmpl: TemplateRef<any>;
+    
+      constructor(private drawerService: DrawerService) { }
+    
+      openDrawer(direction = 'left', size?, closeOnOutsideClick = true, template = this.editTmpl, isRoot = true, parentContainer?: any) {
+        this.drawerService.create({
+          direction,
+          template,
+          size,
+          context: 'Alert Everyone!',
+          closeOnOutsideClick,
+          parentContainer,
+          isRoot
+        });
+      }
+    }]]>
+            </app-prism>
+          </ngx-tab>
+        </ngx-tabs>
+      </ngx-section>
+    
+      <ngx-section class="shadow" sectionTitle="Adding drawer to parent component instead of root">
+        <app-drawer-container-example [template]="editTmpl2"></app-drawer-container-example>
+    
+        <br />
+        <br />
+        <br />
+        <ngx-tabs>
+          <ngx-tab label="Markup">
+            <app-prism>
+    <![CDATA[<button type="button" class="btn" (click)="open(DrawerDirection.Left)">Open Left</button>
+    <button type="button" class="btn" (click)="open(DrawerDirection.Bottom)">Open Bottom</button>]]>
+            </app-prism>
+          </ngx-tab>
+          <ngx-tab label="TypeScript">
+            <app-prism language="js">
+    <![CDATA[import { Component, ChangeDetectionStrategy, ElementRef, Input, TemplateRef } from '@angular/core';
+    import { DrawerService, DrawerDirection } from '@swimlane/ngx-ui';
+    
+    @Component({
+      selector: 'app-drawer-container-example',
+      templateUrl: './drawer-container-example.component.html',
+      styleUrls: ['./drawer-container-example.component.scss'],
+      changeDetection: ChangeDetectionStrategy.OnPush
+    })
+    export class DrawerContainerExampleComponent {
+      @Input() template: TemplateRef<any>;
+    
+      readonly DrawerDirection = DrawerDirection;
+    
+      constructor(
+        private readonly drawerService: DrawerService,
+        private readonly el: ElementRef<HTMLElement>
+      ) { }
+    
+      open(direction: DrawerDirection) {
+        this.drawerService.create({
+          direction,
+          template: this.template,
+          context: 'Alert Everyone!',
+          closeOnOutsideClick: true,
+          parentContainer: this.el.nativeElement,
+          isRoot: false
+        });
+      }
+    }]]>
+            </app-prism>
+          </ngx-tab>
+          <ngx-tab label="Styles">
+            <app-prism language="css">
+    <![CDATA[:host {
+      display: block;
+      position: relative;
+      background-color: #272936;
+      height: 500px;
+      overflow: hidden;
+    }]]>
+            </app-prism>
+          </ngx-tab>
+        </ngx-tabs>
+      </ngx-section>
 
-    <br />
-    <br />
-    <br />
-    <ngx-tabs>
-      <ngx-tab label="Markup">
-        <app-prism>
-<![CDATA[<button
-  type="button"
-  (click)="openDrawer('bottom', undefined, false, editTmpl2)">
-  Open Bottom Drawer
-</button>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('options')">Component Options</a>
+    <a class="documentation-content" (click)="scrollTo('methods')">DrawerService Methods</a>
+    <hr>
 
-<ng-template #editTmpl2 let-context="context" let-close="close">
-  <ngx-toolbar
-    [mainTitle]="'Attack Alert!'">
-  </ngx-toolbar>
-  <section class="section">
-    <h1>Attack Type: Malware</h1>
-    <button
-      type="button"
-      class="btn"
-      (click)="openDrawer(undefined, undefined, false, editTmpl2)">
-      Open Details
-    </button>
-    <button type="button" class="btn" (click)="close.emit(true)">
-      Close
-    </button>
-  </section>
-</ng-template>]]>
-        </app-prism>
-      </ngx-tab>
-      <ngx-tab label="TypeScript">
-        <app-prism language="js">
-<![CDATA[@Component({ selector: 'app' })
-class MyComponent {
-  @ViewChild('editTmpl', { static: false }) editTmpl: TemplateRef<any>;
+    <p>The <code>DrawerComponent</code> is created using the <code>DrawerService</code>.</p>
+    
+    <p>Listed below are the customization options that can be provided to the <code>DrawerService</code> when calling the <code>create()</code> method.</p> 
+    
+    <p>See Examples tab for more information.</p>
 
-  constructor(private drawerService: DrawerService) { }
-
-  openDrawer(direction = 'left', size?, closeOnOutsideClick = true, template = this.editTmpl, isRoot = true, parentContainer?: any) {
-    this.drawerService.create({
-      direction,
-      template,
-      size,
-      context: 'Alert Everyone!',
-      closeOnOutsideClick,
-      parentContainer,
-      isRoot
-    });
-  }
-}]]>
-        </app-prism>
-      </ngx-tab>
-    </ngx-tabs>
-  </ngx-section>
-
-  <ngx-section class="shadow" sectionTitle="Adding drawer to parent component instead of root">
-    <app-drawer-container-example [template]="editTmpl2"></app-drawer-container-example>
-
-    <br />
-    <br />
-    <br />
-    <ngx-tabs>
-      <ngx-tab label="Markup">
-        <app-prism>
-<![CDATA[<button type="button" class="btn" (click)="open(DrawerDirection.Left)">Open Left</button>
-<button type="button" class="btn" (click)="open(DrawerDirection.Bottom)">Open Bottom</button>]]>
-        </app-prism>
-      </ngx-tab>
-      <ngx-tab label="TypeScript">
-        <app-prism language="js">
-<![CDATA[import { Component, ChangeDetectionStrategy, ElementRef, Input, TemplateRef } from '@angular/core';
-import { DrawerService, DrawerDirection } from '@swimlane/ngx-ui';
-
-@Component({
-  selector: 'app-drawer-container-example',
-  templateUrl: './drawer-container-example.component.html',
-  styleUrls: ['./drawer-container-example.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
-})
-export class DrawerContainerExampleComponent {
-  @Input() template: TemplateRef<any>;
-
-  readonly DrawerDirection = DrawerDirection;
-
-  constructor(
-    private readonly drawerService: DrawerService,
-    private readonly el: ElementRef<HTMLElement>
-  ) { }
-
-  open(direction: DrawerDirection) {
-    this.drawerService.create({
-      direction,
-      template: this.template,
-      context: 'Alert Everyone!',
-      closeOnOutsideClick: true,
-      parentContainer: this.el.nativeElement,
-      isRoot: false
-    });
-  }
-}]]>
-        </app-prism>
-      </ngx-tab>
-      <ngx-tab label="Styles">
-        <app-prism language="css">
-<![CDATA[:host {
-  display: block;
-  position: relative;
-  background-color: #272936;
-  height: 500px;
-  overflow: hidden;
-}]]>
-        </app-prism>
-      </ngx-tab>
-    </ngx-tabs>
-  </ngx-section>
+    <h3 class="style-header" id="options">Component Options</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code>closeOnOutsideClick: boolean</code>
+          </th>
+          <td>Whether the component should close when a click outside is registered.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>context: any</code>
+          </th>
+          <td>The custom object to provide to the custom template.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>cssClass: string</code>
+          </th>
+          <td>The custom CSS class to add to the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>direction: DrawerDirection = DrawerDirection.Left</code>
+          </th>
+          <td>The direction that the component should open, either <code>Left</code> or <code>Bottom</code>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>isRoot: boolean = true</code>
+          </th>
+          <td>By default, the component has <code>fixed</code> positioning. If this variable is set to <code>false</code>, the component will have <code>absolute</code> positioning.</td>
+        </tr>
+        <tr>
+        <tr>
+          <th>
+            <code>parentContainer: any</code>
+          </th>
+          <td>The parent container to add the drawer to. See Examples tab.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>size: number = 80</code>
+          </th>
+          <td>The width and height of the component, as a percentage value.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>template: TemplateRef&lt;any&gt;</code>
+          </th>
+          <td>The custom template to render in the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code>zIndex: number = 995</code>
+          </th>
+          <td>The value for the CSS <code>z-index</code> property to be applied to the component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    
+    <h3 class="style-header" id="methods">DrawerService Methods</h3>
+    <table class="table methods-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Parameters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code>create</code>
+          </th>
+          <td>Creates an instance of the <code>DrawerComponent</code> and returns a <code>ComponentRef&lt;DrawerComponent&gt;</code>.</td>
+          <td>
+            <code>options: DrawerOptions</code>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code>destroy</code>
+          </th>
+          <td>Destroys an instance of the <code>DrawerComponent</code>.</td>
+          <td>
+            <code>component: ComponentRef&lt;DrawerComponent&gt;</code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>

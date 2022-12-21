@@ -150,6 +150,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   @CoerceBooleanProperty()
   disabled = false;
 
+  @Input()
   @CoerceNumberProperty()
   minWidth: number = MIN_WIDTH;
 

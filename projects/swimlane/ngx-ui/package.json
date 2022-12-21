@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "42.1.1",
+  "version": "44.0.0",
   "engines": {
     "node": ">=12.0.0"
   },
@@ -9,12 +9,6 @@
     "url": "git+https://github.com/swimlane/ngx-ui.git"
   },
   "author": "Swimlane",
-  "maintainers": [
-    "Marjan Georgiev",
-    "Jayson Harshbarger",
-    "Antonio Vazquez",
-    "Haemin Park"
-  ],
   "license": "MIT",
   "keywords": [
     "angular",
@@ -35,7 +29,7 @@
     "@angular/platform-browser": ">=12.2.2",
     "@types/json-schema": "^7.0.9",
     "ajv": "^6.12.6",
-    "codemirror": "5.65.5",
+    "codemirror": "5.65.8",
     "core-js": "^3.6.5",
     "json-schema": "*",
     "moment": "^2.29.1",
@@ -67,7 +61,8 @@
     "moment": "^2.29.1",
     "ngx-moment": "^5.0.0",
     "resize-observer-polyfill": "^1.5.1",
-    "rxjs": "7.5.5",
+    "rxjs": "7.5.6",
     "zone.js": "^0.11.4"
-  }
+  },
+  "schematics": "./lib/schematics/collection.json"
 }

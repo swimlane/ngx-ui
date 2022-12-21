@@ -50,4 +50,8 @@ export class PlusMenuPageComponent {
   onClick($event) {
     console.log($event);
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

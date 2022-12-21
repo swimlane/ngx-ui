@@ -21,4 +21,8 @@ export class ProgressSpinnerPageComponent {
     failLabel: 'Upload Failed',
     completeLabel: 'Upload Successful'
   };
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

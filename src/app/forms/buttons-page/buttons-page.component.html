@@ -1,573 +1,744 @@
 <h3 class="style-header">Buttons</h3>
+<ngx-tabs>
+  <ngx-tab label="Examples">
 
-<ngx-section class="shadow" sectionTitle="ngx-button">
-  <ngx-button #defaultButton [promise]="promises['defaultButton']" (click)="onClick('Default', 'defaultButton', 1)"
-    class="btn">Default</ngx-button>
-  <ngx-button #primaryButton [promise]="promises['primaryButton']" (click)="onClick('Primary', 'primaryButton', 0)"
-    class="btn btn-primary">Primary</ngx-button>
-  <ngx-button #gradientButton [promise]="promises['gradientButton']" (click)="onClick('button click', 'gradientButton')"
-    class="btn btn-primary btn-primary-gradient">Primary Gradient</ngx-button>
-  <ngx-button #failButton [promise]="promises['failButton']" (click)="onClick('button click', 'failButton')"
-    class="btn btn-warning" (click)="failButton.state = 'fail'; failButton.updateState()">Warning</ngx-button>
-  <ngx-button #successButton [promise]="promises['successButton']" (click)="onClick('button click', 'successButton')"
-    class="btn btn-danger" (click)="successButton.state = 'success'; successButton.updateState()">Danger</ngx-button>
-  <ngx-button #borderButton [promise]="promises['borderButton']" (click)="onClick('button click', 'borderButton')"
-    class="btn btn-bordered">Bordered</ngx-button>
-  <ngx-button #linkButton [promise]="promises['linkButton']" (click)="onClick('button click', 'linkButton')"
-    class="btn btn-link">Link</ngx-button>
-  <ngx-button #noTimeoutButton [promise]="promises['noTimeoutButton']" [timeout]="0" (click)="onClick('button click', 'noTimeoutButton')"
-    class="btn">No Timeout</ngx-button>
-  <p></p>
-  <ngx-button (click)="onClick('button click')" class="btn" disabled="true">Default</ngx-button>
-  <ngx-button state="inProgress" class="btn btn-primary" disabled="true">Primary</ngx-button>
-  <ngx-button state="inProgress" class="btn btn-primary btn-primary-gradient" disabled="true">Primary Gradient
-  </ngx-button>
-  <ngx-button state="fail" class="btn btn-warning" disabled="true">Warning</ngx-button>
-  <ngx-button state="success" class="btn btn-danger" disabled="true">Danger</ngx-button>
-  <ngx-button class="btn btn-bordered" disabled="true">Bordered</ngx-button>
-  <ngx-button class="btn btn-link" disabled="true">Link</ngx-button>
-  <ngx-button [timeout]="0" disabled="true" class="btn">No Timeout</ngx-button>
+    <ngx-section class="shadow" sectionTitle="ngx-button">
+      <ngx-button #defaultButton [promise]="promises['defaultButton']" (click)="onClick('Default', 'defaultButton', 1)"
+        class="btn">Default</ngx-button>
+      <ngx-button #primaryButton [promise]="promises['primaryButton']" (click)="onClick('Primary', 'primaryButton', 0)"
+        class="btn btn-primary">Primary</ngx-button>
+      <ngx-button #gradientButton [promise]="promises['gradientButton']" (click)="onClick('button click', 'gradientButton')"
+        class="btn btn-primary btn-primary-gradient">Primary Gradient</ngx-button>
+      <ngx-button #failButton [promise]="promises['failButton']" (click)="onClick('button click', 'failButton')"
+        class="btn btn-warning" (click)="failButton.state = 'fail'; failButton.updateState()">Warning</ngx-button>
+      <ngx-button #successButton [promise]="promises['successButton']" (click)="onClick('button click', 'successButton')"
+        class="btn btn-danger" (click)="successButton.state = 'success'; successButton.updateState()">Danger</ngx-button>
+      <ngx-button #borderButton [promise]="promises['borderButton']" (click)="onClick('button click', 'borderButton')"
+        class="btn btn-bordered">Bordered</ngx-button>
+      <ngx-button #linkButton [promise]="promises['linkButton']" (click)="onClick('button click', 'linkButton')"
+        class="btn btn-link">Link</ngx-button>
+      <ngx-button #noTimeoutButton [promise]="promises['noTimeoutButton']" [timeout]="0" (click)="onClick('button click', 'noTimeoutButton')"
+        class="btn">No Timeout</ngx-button>
+      <p></p>
+      <ngx-button (click)="onClick('button click')" class="btn" disabled="true">Default</ngx-button>
+      <ngx-button state="inProgress" class="btn btn-primary" disabled="true">Primary</ngx-button>
+      <ngx-button state="inProgress" class="btn btn-primary btn-primary-gradient" disabled="true">Primary Gradient
+      </ngx-button>
+      <ngx-button state="fail" class="btn btn-warning" disabled="true">Warning</ngx-button>
+      <ngx-button state="success" class="btn btn-danger" disabled="true">Danger</ngx-button>
+      <ngx-button class="btn btn-bordered" disabled="true">Bordered</ngx-button>
+      <ngx-button class="btn btn-link" disabled="true">Link</ngx-button>
+      <ngx-button [timeout]="0" disabled="true" class="btn">No Timeout</ngx-button>
 
-  <app-prism>
-<![CDATA[<ngx-button #defaultButton [promise]="promises['defaultButton']" (click)="onClick('button click', 'defaultButton')"
-  class="btn">Default</ngx-button>
-<ngx-button #primaryButton [promise]="promises['primaryButton']" (click)="onClick('button click', 'primaryButton')"
-  class="btn btn-primary">Primary</ngx-button>
-<ngx-button #gradientButton [promise]="promises['gradientButton']" (click)="onClick('button click', 'gradientButton')"
-  class="btn btn-primary btn-primary-gradient">Primary Gradient</ngx-button>
-<ngx-button #failButton [promise]="promises['failButton']" (click)="onClick('button click', 'failButton')"
-  class="btn btn-warning" (click)="failButton.state = 'fail'; failButton.updateState()">Warning</ngx-button>
-<ngx-button #successButton [promise]="promises['successButton']" (click)="onClick('button click', 'successButton')"
-  class="btn btn-danger" (click)="successButton.state = 'success'; successButton.updateState()">Danger</ngx-button>
-<ngx-button #borderButton [promise]="promises['borderButton']" (click)="onClick('button click', 'borderButton')"
-  class="btn btn-bordered">Bordered</ngx-button>
-<ngx-button #linkButton [promise]="promises['linkButton']" (click)="onClick('button click', 'linkButton')"
-  class="btn btn-link">Link</ngx-button>
-<ngx-button #noTimeoutButton [promise]="promises['noTimeoutButton']" [timeout]="0" (click)="onClick('button click', 'noTimeoutButton')"
-  class="btn">No Timeout</ngx-button>
-<p></p>
-<ngx-button (click)="onClick('button click')" class="btn" disabled="true">Default</ngx-button>
-<ngx-button state="inProgress" class="btn btn-primary" disabled="true">Primary</ngx-button>
-<ngx-button state="inProgress" class="btn btn-primary btn-primary-gradient" disabled="true">Primary Gradient
-</ngx-button>
-<ngx-button state="fail" class="btn btn-warning" disabled="true">Warning</ngx-button>
-<ngx-button state="success" class="btn btn-danger" disabled="true">Danger</ngx-button>
-<ngx-button class="btn btn-bordered" disabled="true">Bordered</ngx-button>
-<ngx-button class="btn btn-link" disabled="true">Link</ngx-button>
-<ngx-button [timeout]="0" disabled="true" class="btn">No Timeout</ngx-button>
-]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Buttons">
-  <button type="button" class="btn" (click)="onBtnClick('Default')">Default</button>
-  <button type="button" class="btn btn-primary" (click)="onBtnClick('Primary')">Primary</button>
-  <button type="button" class="btn btn-primary btn-primary-gradient">Primary Gradient</button>
-  <button type="button" class="btn btn-warning">Warning</button>
-  <button type="button" class="btn btn-danger">Danger</button>
-  <button type="button" class="btn btn-bordered">Bordered</button>
-  <button type="button" class="btn btn-link">Link</button>
-  <p></p>
-  <button type="button" class="btn" disabled>Default</button>
-  <button type="button" class="btn btn-primary" disabled>Primary</button>
-  <button type="button" class="btn btn-primary btn-primary-gradient" disabled>Primary Gradient</button>
-  <button type="button" class="btn btn-warning" disabled>Warning</button>
-  <button type="button" class="btn btn-danger" disabled>Danger</button>
-  <button type="button" class="btn btn-bordered" disabled>Bordered</button>
-  <button type="button" class="btn btn-link" disabled>Link</button>
-  <br />
-  <app-prism>
-<![CDATA[<button type="button" class="btn">Default</button>
-<button type="button" class="btn btn-primary">Primary</button>
-<button type="button" class="btn btn-primary btn-primary-gradient">Primary Gradient</button>
-<button type="button" class="btn btn-warning">Warning</button>
-<button type="button" class="btn btn-danger">Danger</button>
-<button type="button" class="btn btn-bordered">Bordered</button>
-<button type="button" class="btn btn-link">Link</button>
-<p></p>
-<button type="button" class="btn" disabled>Default</button>
-<button type="button" class="btn btn-primary" disabled>Primary</button>
-<button type="button" class="btn btn-primary btn-primary-gradient" disabled>Primary Gradient</button>
-<button type="button" class="btn btn-warning" disabled>Warning</button>
-<button type="button" class="btn btn-danger" disabled>Danger</button>
-<button type="button" class="btn btn-bordered" disabled>Bordered</button>
-<button type="button" class="btn btn-link" disabled>Link</button>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Links">
-  <a class="btn" href="/">Default</a>
-  <a class="btn btn-primary" href="/">Primary</a>
-  <a class="btn btn-primary btn-primary-gradient" href="/">Primary Gradient</a>
-  <a class="btn btn-warning" href="/">Warning</a>
-  <a class="btn btn-danger" href="/">Danger</a>
-  <a class="btn btn-bordered" href="/">Bordered</a>
-  <p></p>
-  <a class="btn disabled" href="/">Default</a>
-  <a class="btn btn-primary disabled" href="/">Primary</a>
-  <a class="btn btn-primary btn-primary-gradient disabled" href="/">Primary Gradient</a>
-  <a class="btn btn-warning disabled" href="/">Warning</a>
-  <a class="btn btn-danger disabled" href="/">Danger</a>
-  <a class="btn btn-bordered disabled" href="/">Bordered</a>
-  <br />
-  <app-prism>
-<![CDATA[<a class="btn" href="/">Default</a>
-<a class="btn btn-primary" href="/">Primary</a>
-<a class="btn btn-primary btn-primary-gradient" href="/">Primary Gradient</a>
-<a class="btn btn-warning" href="/">Warning</a>
-<a class="btn btn-danger" href="/">Danger</a>
-<a class="btn btn-bordered" href="/">Bordered</a>
-<p></p>
-<a class="btn disabled" href="/">Default</a>
-<a class="btn btn-primary disabled" href="/">Primary</a>
-<a class="btn btn-primary btn-primary-gradient disabled" href="/">Primary Gradient</a>
-<a class="btn btn-warning disabled" href="/">Warning</a>
-<a class="btn btn-danger disabled" href="/">Danger</a>
-<a class="btn btn-bordered disabled" href="/">Bordered</a>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Buttons with Icons">
-  <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
-  <button type="button" class="btn btn-primary">
-    Text
-    <i class="ngx-icon ngx-plus has-text-left"></i>
-  </button>
-  <button type="button" class="btn btn-primary">
-    <i class="ngx-icon ngx-plus"></i>
-  </button>
-  <button type="button" class="btn btn-primary btn-primary-gradient">
-    <i class="ngx-icon ngx-plus has-text"></i> Text
-  </button>
-  <button type="button" class="btn btn-primary btn-primary-gradient">
-    Text
-    <i class="ngx-icon ngx-plus has-text-left"></i>
-  </button>
-  <button type="button" class="btn btn-primary btn-primary-gradient">
-    <i class="ngx-icon ngx-plus"></i>
-  </button>
-  <button type="button" class="btn btn-bordered"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
-  <button type="button" class="btn btn-bordered">
-    Text
-    <i class="ngx-icon ngx-plus has-text-left"></i>
-  </button>
-  <button type="button" class="btn btn-bordered">
-    <i class="ngx-icon ngx-plus"></i>
-  </button>
-  <button type="button" class="btn btn-link"><i class="ngx-icon ngx-plus has-text"></i> Link</button>
-  <button type="button" class="btn btn-link">
-    Link
-    <i class="ngx-icon ngx-plus has-text-left"></i>
-  </button>
-  <button type="button" class="btn btn-link">
-    <i class="ngx-icon ngx-plus"></i>
-  </button>
-  <p></p>
-  <button type="button" class="btn btn-primary" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
-  <button type="button" class="btn btn-primary" disabled>
-    Text
-    <i class="ngx-icon ngx-plus has-text-left"></i>
-  </button>
-  <button type="button" class="btn btn-primary" disabled>
-    <i class="ngx-icon ngx-plus"></i>
-  </button>
-  <button type="button" class="btn btn-primary btn-primary-gradient" disabled>
-    <i class="ngx-icon ngx-plus has-text"></i> Text
-  </button>
-  <button type="button" class="btn btn-primary btn-primary-gradient" disabled>
-    Text
-    <i class="ngx-icon ngx-plus has-text-left"></i>
-  </button>
-  <button type="button" class="btn btn-primary btn-primary-gradient" disabled>
-    <i class="ngx-icon ngx-plus"></i>
-  </button>
-  <button type="button" class="btn btn-bordered" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
-  <button type="button" class="btn btn-bordered" disabled>
-    Text
-    <i class="ngx-icon ngx-plus has-text-left"></i>
-  </button>
-  <button type="button" class="btn btn-bordered" disabled>
-    <i class="ngx-icon ngx-plus"></i>
-  </button>
-  <button type="button" class="btn btn-link" disabled><i class="ngx-icon ngx-plus has-text"></i> Link</button>
-  <button type="button" class="btn btn-link" disabled>
-    Link
-    <i class="ngx-icon ngx-plus has-text-left"></i>
-  </button>
-  <button type="button" class="btn btn-link" disabled>
-    <i class="ngx-icon ngx-plus"></i>
-  </button>
-  <br />
-  <app-prism>
-<![CDATA[<button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
-<button type="button" class="btn btn-primary">Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
-<button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus"></i></button>
-<button type="button" class="btn btn-primary btn-primary-gradient"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
-<button type="button" class="btn btn-primary btn-primary-gradient">Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
-<button type="button" class="btn btn-primary btn-primary-gradient"><i class="ngx-icon ngx-plus"></i></button>
-<button type="button" class="btn btn-bordered"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
-<button type="button" class="btn btn-bordered">Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
-<button type="button" class="btn btn-bordered"><i class="ngx-icon ngx-plus"></i></button>
-<button type="button" class="btn btn-link"><i class="ngx-icon ngx-plus has-text"></i> Link</button>
-<button type="button" class="btn btn-link">Link <i class="ngx-icon ngx-plus has-text-left"></i></button>
-<button type="button" class="btn btn-link"><i class="ngx-icon ngx-plus"></i></button>
-<p></p>
-<button type="button" class="btn btn-primary" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
-<button type="button" class="btn btn-primary" disabled>Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
-<button type="button" class="btn btn-primary" disabled><i class="ngx-icon ngx-plus"></i></button>
-<button type="button" class="btn btn-primary btn-primary-gradient" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
-<button type="button" class="btn btn-primary btn-primary-gradient" disabled>Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
-<button type="button" class="btn btn-primary btn-primary-gradient" disabled><i class="ngx-icon ngx-plus"></i></button>
-<button type="button" class="btn btn-bordered" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
-<button type="button" class="btn btn-bordered" disabled>Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
-<button type="button" class="btn btn-bordered" disabled><i class="ngx-icon ngx-plus"></i></button>
-<button type="button" class="btn btn-link" disabled><i class="ngx-icon ngx-plus has-text"></i> Link</button>
-<button type="button" class="btn btn-link" disabled>Link <i class="ngx-icon ngx-plus has-text-left"></i></button>
-<button type="button" class="btn btn-link" disabled><i class="ngx-icon ngx-plus"></i></button>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Buttons sizes">
-  <button type="button" class="btn btn-primary small"><i class="ngx-icon ngx-plus has-text"></i> Small</button>
-  <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Default</button>
-  <button type="button" class="btn btn-primary large"><i class="ngx-icon ngx-plus has-text"></i> Large</button>
-  <button type="button" class="btn btn-primary btn-primary-gradient small">
-    <i class="ngx-icon ngx-plus has-text"></i> Small
-  </button>
-  <button type="button" class="btn btn-primary btn-primary-gradient">
-    <i class="ngx-icon ngx-plus has-text"></i> Default
-  </button>
-  <button type="button" class="btn btn-primary btn-primary-gradient large">
-    <i class="ngx-icon ngx-plus has-text"></i> Large
-  </button>
-  <br />
-  <app-prism>
-<![CDATA[<button type="button" class="btn btn-primary small"><i class="ngx-icon ngx-plus has-text"></i> Small</button>
-<button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Default</button>
-<button type="button" class="btn btn-primary large"><i class="ngx-icon ngx-plus has-text"></i> Large</button>
-<button type="button" class="btn btn-primary btn-primary-gradient small"><i class="ngx-icon ngx-plus has-text"></i> Small</button>
-<button type="button" class="btn btn-primary btn-primary-gradient"><i class="ngx-icon ngx-plus has-text"></i> Default</button>
-<button type="button" class="btn btn-primary btn-primary-gradient large"><i class="ngx-icon ngx-plus has-text"></i> Large</button>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="States and Appearances">
-  <table class="appearance-table">
-    <tr>
-      <th>Class</th>
-      <th>Active</th>
-      <th>In Progress</th>
-      <th>Success</th>
-      <th>Fail</th>
-      <th>Disabled</th>
-      <th>Focus</th>
-      <th>Hover</th>
-    </tr>
-    <tr>
-      <th>Default</th>
-      <td><ngx-button class="btn">Default</ngx-button></td>
-      <td><ngx-button class="btn" state="in-progress" timeout="0">Default</ngx-button></td>
-      <td><ngx-button class="btn" state="success" timeout="0">Default</ngx-button></td>
-      <td><ngx-button class="btn" state="fail" timeout="0">Default</ngx-button></td>
-      <td><ngx-button class="btn" disabled>Default</ngx-button></td>
-      <td><ngx-button class="btn focus-visible">Default</ngx-button></td>
-      <td><ngx-button class="btn focus-hover">Default</ngx-button></td>
-    </tr>
-    <tr>
-      <th>Primary</th>
-      <td><ngx-button class="btn btn-primary">Primary</ngx-button></td>
-      <td><ngx-button class="btn btn-primary" state="in-progress" timeout="0">Primary</ngx-button></td>
-      <td><ngx-button class="btn btn-primary" state="success" timeout="0">Primary</ngx-button></td>
-      <td><ngx-button class="btn btn-primary" state="fail" timeout="0">Primary</ngx-button></td>
-      <td><ngx-button class="btn btn-primary" disabled>Primary</ngx-button></td>
-      <td><ngx-button class="btn btn-primary focus-visible">Primary</ngx-button></td>
-      <td><ngx-button class="btn btn-primary focus-hover">Primary</ngx-button></td>
-    </tr>
-    <tr>
-      <th>Primary Gradient</th>
-      <td><ngx-button class="btn btn-primary btn-primary-gradient">Gradient</ngx-button></td>
-      <td><ngx-button class="btn btn-primary btn-primary-gradient" state="in-progress" timeout="0">Gradient</ngx-button></td>
-      <td><ngx-button class="btn btn-primary btn-primary-gradient" state="success" timeout="0">Gradient</ngx-button></td>
-      <td><ngx-button class="btn btn-primary btn-primary-gradient" state="fail" timeout="0">Gradient</ngx-button></td>
-      <td><ngx-button class="btn btn-primary btn-primary-gradient" disabled>Gradient</ngx-button></td>
-      <td><ngx-button class="btn btn-primary btn-primary-gradient focus-visible">Default</ngx-button></td>
-      <td><ngx-button class="btn btn-primary btn-primary-gradient focus-hover">Default</ngx-button></td>
-    </tr>
-    <tr>
-      <th>Bordered</th>
-      <td><ngx-button class="btn btn-bordered">Bordered</ngx-button></td>
-      <td><ngx-button class="btn btn-bordered" state="in-progress" timeout="0">Bordered</ngx-button></td>
-      <td><ngx-button class="btn btn-bordered" state="success" timeout="0">Bordered</ngx-button></td>
-      <td><ngx-button class="btn btn-bordered" state="fail" timeout="0">Bordered</ngx-button></td>
-      <td><ngx-button class="btn btn-bordered" disabled>Bordered</ngx-button></td>
-      <td><ngx-button class="btn btn-bordered focus-visible">Default</ngx-button></td>
-      <td><ngx-button class="btn btn-bordered focus-hover">Default</ngx-button></td>
-    </tr>
-    <tr>
-      <th>Link</th>
-      <td><ngx-button class="btn btn-link">Link</ngx-button></td>
-      <td><ngx-button class="btn btn-link" state="in-progress" timeout="0">Link</ngx-button></td>
-      <td><ngx-button class="btn btn-link" state="success" timeout="0">Link</ngx-button></td>
-      <td><ngx-button class="btn btn-link" state="fail" timeout="0">Link</ngx-button></td>
-      <td><ngx-button class="btn btn-link" disabled>Link</ngx-button></td>
-      <td><ngx-button class="btn btn-link focus-visible">Default</ngx-button></td>
-      <td><ngx-button class="btn btn-link focus-hover">Default</ngx-button></td>
-    </tr>
-    <tr>
-      <th>Long Text</th>
-      <td><ngx-button class="btn">{{ anUnbrokenString }}</ngx-button></td>
-      <td><ngx-button class="btn" state="in-progress" timeout="0">{{ anUnbrokenString }}</ngx-button></td>
-      <td><ngx-button class="btn" state="success" timeout="0">{{ anUnbrokenString }}</ngx-button></td>
-      <td><ngx-button class="btn" state="fail" timeout="0">{{ anUnbrokenString }}</ngx-button></td>
-      <td><ngx-button class="btn" disabled>{{ anUnbrokenString }}</ngx-button></td>
-      <td><ngx-button class="btn focus-visible">{{ anUnbrokenString }}</ngx-button></td>
-      <td><ngx-button class="btn focus-hover">{{ anUnbrokenString }}</ngx-button></td>
-    </tr>
-  </table>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="File Upload">
-  <h3>Standard Autoupload</h3>
-  <ngx-file-button name="uper" [styleType]="'standard'" [options]="uploadOptions">
-    Choose File
-  </ngx-file-button>
-
-  <ngx-file-button name="uper1" [disabled]="true" [styleType]="'standard'" [options]="uploadOptions">
-    Choose File
-  </ngx-file-button>
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
       <app-prism>
-<![CDATA[<ngx-file-button
-  name="uper"
-  [styleType]="'standard'"
-  [options]="uploadOptions">
-  Choose File
-</ngx-file-button>
-<ngx-file-button
-  name="uper1"
-  [disabled]="true"
-  [styleType]="'standard'"
-  [options]="uploadOptions">
-  Choose File
-</ngx-file-button>]]>
+    <![CDATA[<ngx-button #defaultButton [promise]="promises['defaultButton']" (click)="onClick('button click', 'defaultButton')"
+      class="btn">Default</ngx-button>
+    <ngx-button #primaryButton [promise]="promises['primaryButton']" (click)="onClick('button click', 'primaryButton')"
+      class="btn btn-primary">Primary</ngx-button>
+    <ngx-button #gradientButton [promise]="promises['gradientButton']" (click)="onClick('button click', 'gradientButton')"
+      class="btn btn-primary btn-primary-gradient">Primary Gradient</ngx-button>
+    <ngx-button #failButton [promise]="promises['failButton']" (click)="onClick('button click', 'failButton')"
+      class="btn btn-warning" (click)="failButton.state = 'fail'; failButton.updateState()">Warning</ngx-button>
+    <ngx-button #successButton [promise]="promises['successButton']" (click)="onClick('button click', 'successButton')"
+      class="btn btn-danger" (click)="successButton.state = 'success'; successButton.updateState()">Danger</ngx-button>
+    <ngx-button #borderButton [promise]="promises['borderButton']" (click)="onClick('button click', 'borderButton')"
+      class="btn btn-bordered">Bordered</ngx-button>
+    <ngx-button #linkButton [promise]="promises['linkButton']" (click)="onClick('button click', 'linkButton')"
+      class="btn btn-link">Link</ngx-button>
+    <ngx-button #noTimeoutButton [promise]="promises['noTimeoutButton']" [timeout]="0" (click)="onClick('button click', 'noTimeoutButton')"
+      class="btn">No Timeout</ngx-button>
+    <p></p>
+    <ngx-button (click)="onClick('button click')" class="btn" disabled="true">Default</ngx-button>
+    <ngx-button state="inProgress" class="btn btn-primary" disabled="true">Primary</ngx-button>
+    <ngx-button state="inProgress" class="btn btn-primary btn-primary-gradient" disabled="true">Primary Gradient
+    </ngx-button>
+    <ngx-button state="fail" class="btn btn-warning" disabled="true">Warning</ngx-button>
+    <ngx-button state="success" class="btn btn-danger" disabled="true">Danger</ngx-button>
+    <ngx-button class="btn btn-bordered" disabled="true">Bordered</ngx-button>
+    <ngx-button class="btn btn-link" disabled="true">Link</ngx-button>
+    <ngx-button [timeout]="0" disabled="true" class="btn">No Timeout</ngx-button>
+    ]]>
       </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
+    </ngx-section>
 
-@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  uploadOptions = {
-    url: 'https://evening-anchorage-3159.herokuapp.com/api/',
-    autoUpload: true
-  };
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-
-  <br />
-  <br />
-
-  <h3>Standard Manual</h3>
-  <ngx-file-button name="uper2" [styleType]="'standard'" [uploader]="uploaderInstance">
-    Choose File
-  </ngx-file-button>
-  <a href="/" style="margin-left:100px" (click)="uploaderInstance.uploadAll()">Send</a>
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
+    <ngx-section class="shadow" sectionTitle="Buttons">
+      <button type="button" class="btn" (click)="onBtnClick('Default')">Default</button>
+      <button type="button" class="btn btn-primary" (click)="onBtnClick('Primary')">Primary</button>
+      <button type="button" class="btn btn-primary btn-primary-gradient">Primary Gradient</button>
+      <button type="button" class="btn btn-warning">Warning</button>
+      <button type="button" class="btn btn-danger">Danger</button>
+      <button type="button" class="btn btn-bordered">Bordered</button>
+      <button type="button" class="btn btn-link">Link</button>
+      <p></p>
+      <button type="button" class="btn" disabled>Default</button>
+      <button type="button" class="btn btn-primary" disabled>Primary</button>
+      <button type="button" class="btn btn-primary btn-primary-gradient" disabled>Primary Gradient</button>
+      <button type="button" class="btn btn-warning" disabled>Warning</button>
+      <button type="button" class="btn btn-danger" disabled>Danger</button>
+      <button type="button" class="btn btn-bordered" disabled>Bordered</button>
+      <button type="button" class="btn btn-link" disabled>Link</button>
+      <br />
       <app-prism>
-<![CDATA[<ngx-file-button
-  name="uper2"
-  [styleType]="'standard'"
-  [uploader]="uploaderInstance">
-  Choose File
-</ngx-file-button>
-<a href="/" (click)="uploaderInstance.uploadAll()">Send</a>]]>
+    <![CDATA[<button type="button" class="btn">Default</button>
+    <button type="button" class="btn btn-primary">Primary</button>
+    <button type="button" class="btn btn-primary btn-primary-gradient">Primary Gradient</button>
+    <button type="button" class="btn btn-warning">Warning</button>
+    <button type="button" class="btn btn-danger">Danger</button>
+    <button type="button" class="btn btn-bordered">Bordered</button>
+    <button type="button" class="btn btn-link">Link</button>
+    <p></p>
+    <button type="button" class="btn" disabled>Default</button>
+    <button type="button" class="btn btn-primary" disabled>Primary</button>
+    <button type="button" class="btn btn-primary btn-primary-gradient" disabled>Primary Gradient</button>
+    <button type="button" class="btn btn-warning" disabled>Warning</button>
+    <button type="button" class="btn btn-danger" disabled>Danger</button>
+    <button type="button" class="btn btn-bordered" disabled>Bordered</button>
+    <button type="button" class="btn btn-link" disabled>Link</button>]]>
       </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
+    </ngx-section>
 
-@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  uploadOptions = {
-    url: 'https://evening-anchorage-3159.herokuapp.com/api/',
-    autoUpload: true
-  };
-  uploaderInstance = new FileUploader({
-    url: 'https://evening-anchorage-3159.herokuapp.com/api/',
-    autoUpload: false
-  });
-}]]>
+    <ngx-section class="shadow" sectionTitle="Links">
+      <a class="btn" href="/">Default</a>
+      <a class="btn btn-primary" href="/">Primary</a>
+      <a class="btn btn-primary btn-primary-gradient" href="/">Primary Gradient</a>
+      <a class="btn btn-warning" href="/">Warning</a>
+      <a class="btn btn-danger" href="/">Danger</a>
+      <a class="btn btn-bordered" href="/">Bordered</a>
+      <p></p>
+      <a class="btn disabled" href="/">Default</a>
+      <a class="btn btn-primary disabled" href="/">Primary</a>
+      <a class="btn btn-primary btn-primary-gradient disabled" href="/">Primary Gradient</a>
+      <a class="btn btn-warning disabled" href="/">Warning</a>
+      <a class="btn btn-danger disabled" href="/">Danger</a>
+      <a class="btn btn-bordered disabled" href="/">Bordered</a>
+      <br />
+      <app-prism>
+    <![CDATA[<a class="btn" href="/">Default</a>
+    <a class="btn btn-primary" href="/">Primary</a>
+    <a class="btn btn-primary btn-primary-gradient" href="/">Primary Gradient</a>
+    <a class="btn btn-warning" href="/">Warning</a>
+    <a class="btn btn-danger" href="/">Danger</a>
+    <a class="btn btn-bordered" href="/">Bordered</a>
+    <p></p>
+    <a class="btn disabled" href="/">Default</a>
+    <a class="btn btn-primary disabled" href="/">Primary</a>
+    <a class="btn btn-primary btn-primary-gradient disabled" href="/">Primary Gradient</a>
+    <a class="btn btn-warning disabled" href="/">Warning</a>
+    <a class="btn btn-danger disabled" href="/">Danger</a>
+    <a class="btn btn-bordered disabled" href="/">Bordered</a>]]>
       </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
+    </ngx-section>
 
-  <br />
-  <br />
+    <ngx-section class="shadow" sectionTitle="Buttons with Icons">
+      <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+      <button type="button" class="btn btn-primary">
+        Text
+        <i class="ngx-icon ngx-plus has-text-left"></i>
+      </button>
+      <button type="button" class="btn btn-primary">
+        <i class="ngx-icon ngx-plus"></i>
+      </button>
+      <button type="button" class="btn btn-primary btn-primary-gradient">
+        <i class="ngx-icon ngx-plus has-text"></i> Text
+      </button>
+      <button type="button" class="btn btn-primary btn-primary-gradient">
+        Text
+        <i class="ngx-icon ngx-plus has-text-left"></i>
+      </button>
+      <button type="button" class="btn btn-primary btn-primary-gradient">
+        <i class="ngx-icon ngx-plus"></i>
+      </button>
+      <button type="button" class="btn btn-bordered"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+      <button type="button" class="btn btn-bordered">
+        Text
+        <i class="ngx-icon ngx-plus has-text-left"></i>
+      </button>
+      <button type="button" class="btn btn-bordered">
+        <i class="ngx-icon ngx-plus"></i>
+      </button>
+      <button type="button" class="btn btn-link"><i class="ngx-icon ngx-plus has-text"></i> Link</button>
+      <button type="button" class="btn btn-link">
+        Link
+        <i class="ngx-icon ngx-plus has-text-left"></i>
+      </button>
+      <button type="button" class="btn btn-link">
+        <i class="ngx-icon ngx-plus"></i>
+      </button>
+      <p></p>
+      <button type="button" class="btn btn-primary" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+      <button type="button" class="btn btn-primary" disabled>
+        Text
+        <i class="ngx-icon ngx-plus has-text-left"></i>
+      </button>
+      <button type="button" class="btn btn-primary" disabled>
+        <i class="ngx-icon ngx-plus"></i>
+      </button>
+      <button type="button" class="btn btn-primary btn-primary-gradient" disabled>
+        <i class="ngx-icon ngx-plus has-text"></i> Text
+      </button>
+      <button type="button" class="btn btn-primary btn-primary-gradient" disabled>
+        Text
+        <i class="ngx-icon ngx-plus has-text-left"></i>
+      </button>
+      <button type="button" class="btn btn-primary btn-primary-gradient" disabled>
+        <i class="ngx-icon ngx-plus"></i>
+      </button>
+      <button type="button" class="btn btn-bordered" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+      <button type="button" class="btn btn-bordered" disabled>
+        Text
+        <i class="ngx-icon ngx-plus has-text-left"></i>
+      </button>
+      <button type="button" class="btn btn-bordered" disabled>
+        <i class="ngx-icon ngx-plus"></i>
+      </button>
+      <button type="button" class="btn btn-link" disabled><i class="ngx-icon ngx-plus has-text"></i> Link</button>
+      <button type="button" class="btn btn-link" disabled>
+        Link
+        <i class="ngx-icon ngx-plus has-text-left"></i>
+      </button>
+      <button type="button" class="btn btn-link" disabled>
+        <i class="ngx-icon ngx-plus"></i>
+      </button>
+      <br />
+      <app-prism>
+    <![CDATA[<button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+    <button type="button" class="btn btn-primary">Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+    <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus"></i></button>
+    <button type="button" class="btn btn-primary btn-primary-gradient"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+    <button type="button" class="btn btn-primary btn-primary-gradient">Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+    <button type="button" class="btn btn-primary btn-primary-gradient"><i class="ngx-icon ngx-plus"></i></button>
+    <button type="button" class="btn btn-bordered"><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+    <button type="button" class="btn btn-bordered">Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+    <button type="button" class="btn btn-bordered"><i class="ngx-icon ngx-plus"></i></button>
+    <button type="button" class="btn btn-link"><i class="ngx-icon ngx-plus has-text"></i> Link</button>
+    <button type="button" class="btn btn-link">Link <i class="ngx-icon ngx-plus has-text-left"></i></button>
+    <button type="button" class="btn btn-link"><i class="ngx-icon ngx-plus"></i></button>
+    <p></p>
+    <button type="button" class="btn btn-primary" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+    <button type="button" class="btn btn-primary" disabled>Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+    <button type="button" class="btn btn-primary" disabled><i class="ngx-icon ngx-plus"></i></button>
+    <button type="button" class="btn btn-primary btn-primary-gradient" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+    <button type="button" class="btn btn-primary btn-primary-gradient" disabled>Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+    <button type="button" class="btn btn-primary btn-primary-gradient" disabled><i class="ngx-icon ngx-plus"></i></button>
+    <button type="button" class="btn btn-bordered" disabled><i class="ngx-icon ngx-plus has-text"></i> Text</button>
+    <button type="button" class="btn btn-bordered" disabled>Text <i class="ngx-icon ngx-plus has-text-left"></i></button>
+    <button type="button" class="btn btn-bordered" disabled><i class="ngx-icon ngx-plus"></i></button>
+    <button type="button" class="btn btn-link" disabled><i class="ngx-icon ngx-plus has-text"></i> Link</button>
+    <button type="button" class="btn btn-link" disabled>Link <i class="ngx-icon ngx-plus has-text-left"></i></button>
+    <button type="button" class="btn btn-link" disabled><i class="ngx-icon ngx-plus"></i></button>]]>
+      </app-prism>
+    </ngx-section>
 
-  <h3>Dropzone Template</h3>
-  <ngx-file-button [uploader]="uploaderInstance">
-    <ng-template #dropzoneTemplate let-uploader>
-      <div style="height: 200px; border: 2px dashed #666;">
-        <div style="position: relative; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-          DRAG & DROP YOUR FILE
-          <br />
-          <div class="ngx-file-button">
-            <button type="button" class="ngx-file-button-button" [disabled]="uploader.isUploading">
-              <input ng2FileSelect type="file" class="ngx-file-button-input" id="file-input" [uploader]="uploader" />
-              <label for="file-input" class="btn btn-link ngx-file-button-label" style="border-bottom: 1px dashed #fff">
-                Or click to choose
-              </label>
-            </button>
+    <ngx-section class="shadow" sectionTitle="Buttons sizes">
+      <button type="button" class="btn btn-primary small"><i class="ngx-icon ngx-plus has-text"></i> Small</button>
+      <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Default</button>
+      <button type="button" class="btn btn-primary large"><i class="ngx-icon ngx-plus has-text"></i> Large</button>
+      <button type="button" class="btn btn-primary btn-primary-gradient small">
+        <i class="ngx-icon ngx-plus has-text"></i> Small
+      </button>
+      <button type="button" class="btn btn-primary btn-primary-gradient">
+        <i class="ngx-icon ngx-plus has-text"></i> Default
+      </button>
+      <button type="button" class="btn btn-primary btn-primary-gradient large">
+        <i class="ngx-icon ngx-plus has-text"></i> Large
+      </button>
+      <br />
+      <app-prism>
+    <![CDATA[<button type="button" class="btn btn-primary small"><i class="ngx-icon ngx-plus has-text"></i> Small</button>
+    <button type="button" class="btn btn-primary"><i class="ngx-icon ngx-plus has-text"></i> Default</button>
+    <button type="button" class="btn btn-primary large"><i class="ngx-icon ngx-plus has-text"></i> Large</button>
+    <button type="button" class="btn btn-primary btn-primary-gradient small"><i class="ngx-icon ngx-plus has-text"></i> Small</button>
+    <button type="button" class="btn btn-primary btn-primary-gradient"><i class="ngx-icon ngx-plus has-text"></i> Default</button>
+    <button type="button" class="btn btn-primary btn-primary-gradient large"><i class="ngx-icon ngx-plus has-text"></i> Large</button>]]>
+      </app-prism>
+    </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="States and Appearances">
+      <table class="appearance-table">
+        <tr>
+          <th>Class</th>
+          <th>Active</th>
+          <th>In Progress</th>
+          <th>Success</th>
+          <th>Fail</th>
+          <th>Disabled</th>
+          <th>Focus</th>
+          <th>Hover</th>
+        </tr>
+        <tr>
+          <th>Default</th>
+          <td><ngx-button class="btn">Default</ngx-button></td>
+          <td><ngx-button class="btn" state="in-progress" timeout="0">Default</ngx-button></td>
+          <td><ngx-button class="btn" state="success" timeout="0">Default</ngx-button></td>
+          <td><ngx-button class="btn" state="fail" timeout="0">Default</ngx-button></td>
+          <td><ngx-button class="btn" disabled>Default</ngx-button></td>
+          <td><ngx-button class="btn focus-visible">Default</ngx-button></td>
+          <td><ngx-button class="btn focus-hover">Default</ngx-button></td>
+        </tr>
+        <tr>
+          <th>Primary</th>
+          <td><ngx-button class="btn btn-primary">Primary</ngx-button></td>
+          <td><ngx-button class="btn btn-primary" state="in-progress" timeout="0">Primary</ngx-button></td>
+          <td><ngx-button class="btn btn-primary" state="success" timeout="0">Primary</ngx-button></td>
+          <td><ngx-button class="btn btn-primary" state="fail" timeout="0">Primary</ngx-button></td>
+          <td><ngx-button class="btn btn-primary" disabled>Primary</ngx-button></td>
+          <td><ngx-button class="btn btn-primary focus-visible">Primary</ngx-button></td>
+          <td><ngx-button class="btn btn-primary focus-hover">Primary</ngx-button></td>
+        </tr>
+        <tr>
+          <th>Primary Gradient</th>
+          <td><ngx-button class="btn btn-primary btn-primary-gradient">Gradient</ngx-button></td>
+          <td><ngx-button class="btn btn-primary btn-primary-gradient" state="in-progress" timeout="0">Gradient</ngx-button></td>
+          <td><ngx-button class="btn btn-primary btn-primary-gradient" state="success" timeout="0">Gradient</ngx-button></td>
+          <td><ngx-button class="btn btn-primary btn-primary-gradient" state="fail" timeout="0">Gradient</ngx-button></td>
+          <td><ngx-button class="btn btn-primary btn-primary-gradient" disabled>Gradient</ngx-button></td>
+          <td><ngx-button class="btn btn-primary btn-primary-gradient focus-visible">Default</ngx-button></td>
+          <td><ngx-button class="btn btn-primary btn-primary-gradient focus-hover">Default</ngx-button></td>
+        </tr>
+        <tr>
+          <th>Bordered</th>
+          <td><ngx-button class="btn btn-bordered">Bordered</ngx-button></td>
+          <td><ngx-button class="btn btn-bordered" state="in-progress" timeout="0">Bordered</ngx-button></td>
+          <td><ngx-button class="btn btn-bordered" state="success" timeout="0">Bordered</ngx-button></td>
+          <td><ngx-button class="btn btn-bordered" state="fail" timeout="0">Bordered</ngx-button></td>
+          <td><ngx-button class="btn btn-bordered" disabled>Bordered</ngx-button></td>
+          <td><ngx-button class="btn btn-bordered focus-visible">Default</ngx-button></td>
+          <td><ngx-button class="btn btn-bordered focus-hover">Default</ngx-button></td>
+        </tr>
+        <tr>
+          <th>Link</th>
+          <td><ngx-button class="btn btn-link">Link</ngx-button></td>
+          <td><ngx-button class="btn btn-link" state="in-progress" timeout="0">Link</ngx-button></td>
+          <td><ngx-button class="btn btn-link" state="success" timeout="0">Link</ngx-button></td>
+          <td><ngx-button class="btn btn-link" state="fail" timeout="0">Link</ngx-button></td>
+          <td><ngx-button class="btn btn-link" disabled>Link</ngx-button></td>
+          <td><ngx-button class="btn btn-link focus-visible">Default</ngx-button></td>
+          <td><ngx-button class="btn btn-link focus-hover">Default</ngx-button></td>
+        </tr>
+        <tr>
+          <th>Long Text</th>
+          <td><ngx-button class="btn">{{ anUnbrokenString }}</ngx-button></td>
+          <td><ngx-button class="btn" state="in-progress" timeout="0">{{ anUnbrokenString }}</ngx-button></td>
+          <td><ngx-button class="btn" state="success" timeout="0">{{ anUnbrokenString }}</ngx-button></td>
+          <td><ngx-button class="btn" state="fail" timeout="0">{{ anUnbrokenString }}</ngx-button></td>
+          <td><ngx-button class="btn" disabled>{{ anUnbrokenString }}</ngx-button></td>
+          <td><ngx-button class="btn focus-visible">{{ anUnbrokenString }}</ngx-button></td>
+          <td><ngx-button class="btn focus-hover">{{ anUnbrokenString }}</ngx-button></td>
+        </tr>
+      </table>
+    </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="File Upload">
+      <h3>Standard Autoupload</h3>
+      <ngx-file-button name="uper" [styleType]="'standard'" [options]="uploadOptions" [multiple]="true">
+        Choose File
+      </ngx-file-button>
+
+      <ngx-file-button name="uper1" [disabled]="true" [styleType]="'standard'" [options]="uploadOptions">
+        Choose File
+      </ngx-file-button>
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<ngx-file-button
+      name="uper"
+      [styleType]="'standard'"
+      [options]="uploadOptions">
+      Choose File
+    </ngx-file-button>
+    <ngx-file-button
+      name="uper1"
+      [disabled]="true"
+      [styleType]="'standard'"
+      [options]="uploadOptions">
+      Choose File
+    </ngx-file-button>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
+
+    @Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      uploadOptions = {
+        url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+        autoUpload: true
+      };
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+
+      <br />
+      <br />
+
+      <h3>Standard Manual</h3>
+      <ngx-file-button name="uper2" [styleType]="'standard'" [uploader]="uploaderInstance">
+        Choose File
+      </ngx-file-button>
+      <a href="/" style="margin-left:100px" (click)="uploaderInstance.uploadAll()">Send</a>
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<ngx-file-button
+      name="uper2"
+      [styleType]="'standard'"
+      [uploader]="uploaderInstance">
+      Choose File
+    </ngx-file-button>
+    <a href="/" (click)="uploaderInstance.uploadAll()">Send</a>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
+
+    @Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      uploadOptions = {
+        url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+        autoUpload: true
+      };
+      uploaderInstance = new FileUploader({
+        url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+        autoUpload: false
+      });
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+
+      <br />
+      <br />
+
+      <h3>Dropzone Template</h3>
+      <ngx-file-button [uploader]="uploaderInstance">
+        <ng-template #dropzoneTemplate let-uploader>
+          <div style="height: 200px; border: 2px dashed #666;">
+            <div style="position: relative; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+              DRAG & DROP YOUR FILE
+              <br />
+              <div class="ngx-file-button">
+                <button type="button" class="ngx-file-button-button" [disabled]="uploader.isUploading">
+                  <input ng2FileSelect type="file" class="ngx-file-button-input" id="file-input" [uploader]="uploader" />
+                  <label for="file-input" class="btn btn-link ngx-file-button-label" style="border-bottom: 1px dashed #fff">
+                    Or click to choose
+                  </label>
+                </button>
+              </div>
+            </div>
+          </div>
+        </ng-template>
+      </ngx-file-button>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<ngx-file-button
+      [uploader]="uploaderInstance">
+
+      <ng-template #dropzoneTemplate let-uploader>
+        <div style="height: 200px; border: 2px dashed #666;">
+          <div style="position: relative; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+            DRAG & DROP YOUR FILE
+            <br />
+            <div class="ngx-file-button">
+              <button
+                type="button"
+                class="ngx-file-button-button"
+                [disabled]="uploader.isUploading">
+                <input
+                  ng2FileSelect
+                  type="file"
+                  class="ngx-file-button-input"
+                  id="file-input"
+                  [uploader]="uploader"
+                />
+                <label
+                  for="file-input"
+                  class="btn btn-link ngx-file-button-label"
+                  style="border-bottom: 1px dashed #fff">
+                  Or click to choose
+                </label>
+              </button>
+            </div>
+
           </div>
         </div>
-      </div>
-    </ng-template>
-  </ngx-file-button>
+      </ng-template>
 
-  <br />
-  <br />
+    </ngx-file-button>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 
-  <ngx-tabs>
-    <ngx-tab label="Markup">
+    @Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      uploadOptions = {
+        url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+        autoUpload: true
+      };
+      uploaderInstance = new FileUploader({
+        url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+        autoUpload: false
+      });
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+
+      <br />
+      <br />
+
+      <h3>Progress Upload</h3>
+      <ngx-file-button name="uper3" [styleType]="'progress'" [options]="uploadOptions">
+        Progress
+      </ngx-file-button>
+
+      <ngx-file-button name="uper4" disabled="true" [styleType]="'progress'" [options]="uploadOptions">
+        Progress Disabled
+      </ngx-file-button>
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<ngx-file-button
+      name="uper3"
+      [styleType]="'progress'"
+      [options]="uploadOptions">
+      Progress
+    </ngx-file-button>
+
+    <ngx-file-button
+      name="uper4"
+      disabled="true"
+      [styleType]="'progress'"
+      [options]="uploadOptions">
+      Progress Disabled
+    </ngx-file-button>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
+
+    @Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      uploadOptions = {
+        url: 'https://evening-anchorage-3159.herokuapp.com/api/',
+        autoUpload: true
+      };
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="Long Press">
+      <h3>Default</h3>
+      <ngx-long-press-button (longPress)="onClick('button click')"></ngx-long-press-button>
       <app-prism>
-<![CDATA[<ngx-file-button
-  [uploader]="uploaderInstance">
-
-  <ng-template #dropzoneTemplate let-uploader>
-    <div style="height: 200px; border: 2px dashed #666;">
-      <div style="position: relative; text-align: center; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-        DRAG & DROP YOUR FILE
-        <br />
-        <div class="ngx-file-button">
-          <button
-            type="button"
-            class="ngx-file-button-button"
-            [disabled]="uploader.isUploading">
-            <input
-              ng2FileSelect
-              type="file"
-              class="ngx-file-button-input"
-              id="file-input"
-              [uploader]="uploader"
-            />
-            <label
-              for="file-input"
-              class="btn btn-link ngx-file-button-label"
-              style="border-bottom: 1px dashed #fff">
-              Or click to choose
-            </label>
-          </button>
-        </div>
-
-      </div>
-    </div>
-  </ng-template>
-
-</ngx-file-button>]]>
+    <![CDATA[<ngx-long-press-button (longPress)="onClick('button click')"></ngx-long-press-button>]]>
       </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
 
-@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  uploadOptions = {
-    url: 'https://evening-anchorage-3159.herokuapp.com/api/',
-    autoUpload: true
-  };
-  uploaderInstance = new FileUploader({
-    url: 'https://evening-anchorage-3159.herokuapp.com/api/',
-    autoUpload: false
-  });
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-
-  <br />
-  <br />
-
-  <h3>Progress Upload</h3>
-  <ngx-file-button name="uper3" [styleType]="'progress'" [options]="uploadOptions">
-    Progress
-  </ngx-file-button>
-
-  <ngx-file-button name="uper4" disabled="true" [styleType]="'progress'" [options]="uploadOptions">
-    Progress Disabled
-  </ngx-file-button>
-  <br />
-  <br />
-
-  <ngx-tabs>
-    <ngx-tab label="Markup">
+      <h3>Configuration</h3>
+      <ngx-long-press-button (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press-button>
       <app-prism>
-<![CDATA[<ngx-file-button
-  name="uper3"
-  [styleType]="'progress'"
-  [options]="uploadOptions">
-  Progress
-</ngx-file-button>
-
-<ngx-file-button
-  name="uper4"
-  disabled="true"
-  [styleType]="'progress'"
-  [options]="uploadOptions">
-  Progress Disabled
-</ngx-file-button>]]>
+    <![CDATA[<ngx-long-press-button (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press-button>]]>
       </app-prism>
-    </ngx-tab>
-    <ngx-tab label="TypeScript">
-      <app-prism language="js">
-<![CDATA[import { FileUploaderOptions, FileUploader } from 'ng2-file-upload';
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('ngx-button-inputs')">ngx-button Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-button-outputs')">ngx-button Outputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-file-button-inputs')">ngx-file-button Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-file-button-outputs')">ngx-file-button Outputs</a>
+    <hr>
 
-@Component({
-  selector: 'app',
-  templateUrl: './app.template.html'
-})
-export class AppComponent {
-  uploadOptions = {
-    url: 'https://evening-anchorage-3159.herokuapp.com/api/',
-    autoUpload: true
-  };
-}]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
-</ngx-section>
+    <h3 class="style-header" id="ngx-button-inputs">ngx-button Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>disabled: boolean</code>
+          </th>
+          <td>Whether the component is disabled.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>promise: Promise&lt;any&gt;</code>
+          </th>
+          <td>Automatically sets component state to <code>'in-progress'</code>. Once <code>promise</code> is resolved, component state is updated to reflect success/error state of <code>promise</code>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>state: 'active' | 'in-progress' | 'fail' | 'success'</code>
+          </th>
+          <td>The state of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>timeout: number = 3000</code>
+          </th>
+          <td>The time until the component state is updated, in milliseconds.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>type: string = 'button'</code>
+          </th>
+          <td>The type of the component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="ngx-button-outputs">ngx-button Outputs</h3>
+    <h4>No component outputs to display.</h4>
+    <hr>
 
-<ngx-section class="shadow" sectionTitle="Long Press">
-  <h3>Default</h3>
-  <ngx-long-press-button (longPress)="onClick('button click')"></ngx-long-press-button>
-  <app-prism>
-<![CDATA[<ngx-long-press-button (longPress)="onClick('button click')"></ngx-long-press-button>]]>
-  </app-prism>
-
-  <h3>Configuration</h3>
-  <ngx-long-press-button (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press-button>
-  <app-prism>
-<![CDATA[<ngx-long-press-button (longPress)="onClick('button click')" icon="alert" duration="1000"></ngx-long-press-button>]]>
-  </app-prism>
-</ngx-section>
+    <h3 class="style-header" id="ngx-file-button-inputs">ngx-file-button Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>disabled: boolean</code>
+          </th>
+          <td>Whether the component is disabled.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>id: string = `input-$&#123;id()&#125;`</code>
+          </th>
+          <td>The ID of the component. The <code>'id()'</code> in the default value is a random, 5-character alphanumeric sequence. </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>multiple: boolean</code>
+          </th>
+          <td>Whether the component allows multiple file selections for upload.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>name: string</code>
+          </th>
+          <td>The name for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>options: FileUploaderOptions</code>
+          </th>
+          <td>The upload options for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>styleType: FileButtonStyleType = FileButtonStyleType.standard</code>
+          </th>
+          <td>The style type of the component. Either <code>standard</code> or <code>progress</code>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>uploader: FileUploader</code>
+          </th>
+          <td>The uploader instance for the component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="ngx-file-button-outputs">ngx-file-button Outputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>afterAddingFile: EventEmitter&lt;&#123; fileItem: FileItem &#125;&gt;</code>
+          </th>
+          <td>Event emitted when a file has been selected for upload.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>beforeUploadItem: EventEmitter&lt;&#123; fileItem: FileItem &#125;&gt;</code>
+          </th>
+          <td>Event emitted before a file is uploaded.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>errorItem: EventEmitter&lt;&#123; response: string, status: number, headers: any &#125;&gt;</code>
+          </th>
+          <td>Event emitted when an error occurs during file upload.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>progressAll: EventEmitter&lt;&#123; progress: number &#125;&gt;</code>
+          </th>
+          <td>Event emitted when the progress of a file upload changes.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>successItem: EventEmitter&lt;&#123; item: any, response: string, status: number, headers: any &#125;&gt;</code>
+          </th>
+          <td>Event emitted when a file has been successfully uploaded.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>

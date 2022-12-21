@@ -82,4 +82,8 @@ export class SelectsPageComponent implements OnInit {
       formControl.enable();
     }
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

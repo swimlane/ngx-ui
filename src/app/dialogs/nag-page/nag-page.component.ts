@@ -14,4 +14,8 @@ export class NagPageComponent {
       id: Math.trunc(Math.random() * 10000)
     });
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

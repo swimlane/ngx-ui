@@ -22,4 +22,8 @@ export class DialogPageComponent {
   beforeClose = (): boolean => {
     return this.canClose;
   };
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

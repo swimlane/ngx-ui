@@ -110,4 +110,8 @@ export class TreePageComponent {
   selectNode(e: Event) {
     console.log({ e });
   }
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }

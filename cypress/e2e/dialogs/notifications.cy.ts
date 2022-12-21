@@ -5,6 +5,10 @@ describe('Notifications', () => {
     cy.get('.page-loader').should('not.exist', { timeout: 20000 });
   });
 
+  beforeEach(() => {
+    cy.get('ngx-tabs').first().ngxSelectTab(0);
+  });
+
   afterEach(() => {
     cy.ngxCloseNotifications();
   });

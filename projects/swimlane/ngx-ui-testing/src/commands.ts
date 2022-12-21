@@ -409,6 +409,7 @@ Cypress_Commands_add_Subject(
       case NGX.DROPDOWN:
       case NGX.PLUS_MENU:
       case NGX.LFD:
+      case NGX.MFD:
       case NGX.NOTIFICATION:
       case NGX.NAG:
       case NGX.ALERT:

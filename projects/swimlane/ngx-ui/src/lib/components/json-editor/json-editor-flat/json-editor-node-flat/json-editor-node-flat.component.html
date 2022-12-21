@@ -27,80 +27,15 @@
         </div>
 
         <div *ngIf="!schemaBuilderMode" class="node-input">
-          <!-- Number | Integer -->
-          <div *ngIf="schema?.type === 'number' || schema?.type === 'integer'">
-            <ngx-input
-              appearance="fill"
-              type="number"
-              [ngModel]="model"
-              (ngModelChange)="updateModel($event)"
-              [requiredIndicator]="false"
-              [required]="required"
-              [disabled]="isDuplicated"
-            ></ngx-input>
-          </div>
-
-          <!-- Boolean -->
-          <div *ngIf="schema?.type === 'boolean'">
-            <ngx-toggle
-              class="toggle-input"
-              [ngModel]="model"
-              (ngModelChange)="updateModel($event)"
-              [label]="model | json"
-              [disabled]="isDuplicated"
-            >
-            </ngx-toggle>
-          </div>
-
-          <!-- String -->
-          <ng-container *ngIf="schema?.type === 'string'">
-            <!-- No format -->
-            <div *ngIf="!schema.format || schema.format === 'binary'">
+          <ng-container *ngIf="inputControlTemplate">
+            <ng-container *ngTemplateOutlet="inputControlTemplate; context: { nodeModel: model, nodeSchema: schema, nodePath: path, nodeChangeValue$: nodeChangeValue$, nodeContext: contextItem, nodeExpandTrigger$: nodeExpandTrigger$}"></ng-container>
+          </ng-container>
+          <ng-container *ngIf="!inputControlTemplate">
+            <!-- Number | Integer -->
+            <div *ngIf="schema?.type === 'number' || schema?.type === 'integer'">
               <ngx-input
                 appearance="fill"
-                *ngIf="!schema?.enum"
-                type="textarea"
-                [ngModel]="model"
-                (ngModelChange)="updateModel($event)"
-                [requiredIndicator]="false"
-                [required]="required"
-                [disabled]="isDuplicated"
-                [autosize]="false"
-              >
-              </ngx-input>
-
-              <ngx-select
-                appearance="fill"
-                [filterable]="false"
-                *ngIf="schema?.enum"
-                [ngModel]="[model]"
-                (ngModelChange)="updateModel($event[0])"
-                [required]="required"
-                [disabled]="isDuplicated"
-              >
-                <ngx-select-option *ngFor="let option of schema.enum" [name]="option" [value]="option">
-                </ngx-select-option>
-              </ngx-select>
-            </div>
-
-            <!-- Password -->
-            <div *ngIf="schema.format === 'password'">
-              <ngx-input
-                appearance="fill"
-                type="password"
-                [ngModel]="model"
-                (ngModelChange)="updateModel($event)"
-                [requiredIndicator]="false"
-                [required]="required"
-                [disabled]="isDuplicated"
-                [passwordToggleEnabled]="passwordToggleEnabled"
-              ></ngx-input>
-            </div>
-
-            <!-- Date -->
-            <div *ngIf="schema.format === 'date'">
-              <ngx-input
-                type="date"
+                type="number"
                 [ngModel]="model"
                 (ngModelChange)="updateModel($event)"
                 [requiredIndicator]="false"
@@ -109,68 +44,139 @@
               ></ngx-input>
             </div>
 
-            <!-- DateTime -->
-            <div *ngIf="schema.format === 'date-time'">
-              <ngx-input
-                type="datetime-local"
+            <!-- Boolean -->
+            <div *ngIf="schema?.type === 'boolean'">
+              <ngx-toggle
+                class="toggle-input"
                 [ngModel]="model"
                 (ngModelChange)="updateModel($event)"
-                [requiredIndicator]="false"
-                [required]="required"
+                [label]="model | json"
                 [disabled]="isDuplicated"
-              ></ngx-input>
-            </div>
-
-            <!-- Code -->
-            <div *ngIf="schema.format === 'code'" class="code">
-              <ngx-input
-                type="text"
-                [ngModel]="model"
-                [requiredIndicator]="false"
-                [required]="required"
-                [disabled]="true"
               >
-                <ngx-input-suffix>
-                  <button [disabled]="isDuplicated" (click)="openCodeEditor()">
-                    <ngx-icon fontIcon="edit" class="edit-code-icon" ngx-tooltip tooltipTitle="Edit Code"> </ngx-icon>
-                  </button>
-                </ngx-input-suffix>
-              </ngx-input>
+              </ngx-toggle>
             </div>
 
-            <ng-template #codeEditorTpl>
-              <div class="code-editor">
-                <ngx-select
-                  label="Language Mode"
-                  [ngModel]="[editorConfig.mode.name]"
-                  (ngModelChange)="selectEditorMode($event[0])"
+            <!-- String -->
+            <ng-container *ngIf="schema?.type === 'string'">
+              <!-- No format -->
+              <div *ngIf="!schema.format || schema.format === 'binary'">
+                <ngx-input
+                  appearance="fill"
+                  *ngIf="!schema?.enum"
+                  type="textarea"
+                  [ngModel]="model"
+                  (ngModelChange)="updateModel($event)"
+                  [requiredIndicator]="false"
+                  [required]="required"
+                  [disabled]="isDuplicated"
+                  [autosize]="false"
                 >
-                  <ngx-select-option *ngFor="let mode of editorModes" [name]="mode.label" [value]="mode.name">
+                </ngx-input>
+
+                <ngx-select
+                  appearance="fill"
+                  [filterable]="false"
+                  *ngIf="schema?.enum"
+                  [ngModel]="[model]"
+                  (ngModelChange)="updateModel($event[0])"
+                  [required]="required"
+                  [disabled]="isDuplicated"
+                >
+                  <ngx-select-option *ngFor="let option of schema.enum" [name]="option" [value]="option">
                   </ngx-select-option>
                 </ngx-select>
-
-                <ngx-button
-                  class="btn btn-primary save-code-button"
-                  (click)="updateModel(editorModel); closeCodeEditor()"
-                >
-                  Save</ngx-button
-                >
-
-                <ngx-codemirror
-                  *ngIf="editorVisible"
-                  [ngModel]="editorModel"
-                  (ngModelChange)="editorModel = $event"
-                  [config]="editorConfig"
-                  class="code-editor"
-                >
-                </ngx-codemirror>
               </div>
-            </ng-template>
-          </ng-container>
 
-          <div class="input-error">
-            <span *ngFor="let error of ownErrors">{{ error.message }}</span>
-          </div>
+              <!-- Password -->
+              <div *ngIf="schema.format === 'password'">
+                <ngx-input
+                  appearance="fill"
+                  type="password"
+                  [ngModel]="model"
+                  (ngModelChange)="updateModel($event)"
+                  [requiredIndicator]="false"
+                  [required]="required"
+                  [disabled]="isDuplicated"
+                  [passwordToggleEnabled]="passwordToggleEnabled"
+                ></ngx-input>
+              </div>
+
+              <!-- Date -->
+              <div *ngIf="schema.format === 'date'">
+                <ngx-input
+                  type="date"
+                  [ngModel]="model"
+                  (ngModelChange)="updateModel($event)"
+                  [requiredIndicator]="false"
+                  [required]="required"
+                  [disabled]="isDuplicated"
+                ></ngx-input>
+              </div>
+
+              <!-- DateTime -->
+              <div *ngIf="schema.format === 'date-time'">
+                <ngx-input
+                  type="datetime-local"
+                  [ngModel]="model"
+                  (ngModelChange)="updateModel($event)"
+                  [requiredIndicator]="false"
+                  [required]="required"
+                  [disabled]="isDuplicated"
+                ></ngx-input>
+              </div>
+
+              <!-- Code -->
+              <div *ngIf="schema.format === 'code'" class="code">
+                <ngx-input
+                  type="text"
+                  [ngModel]="model"
+                  [requiredIndicator]="false"
+                  [required]="required"
+                  [disabled]="true"
+                >
+                  <ngx-input-suffix>
+                    <button [disabled]="isDuplicated" (click)="openCodeEditor()">
+                      <ngx-icon fontIcon="edit" class="edit-code-icon" ngx-tooltip tooltipTitle="Edit Code"> </ngx-icon>
+                    </button>
+                  </ngx-input-suffix>
+                </ngx-input>
+              </div>
+
+              <ng-template #codeEditorTpl>
+                <div class="code-editor">
+                  <ngx-select
+                    label="Language Mode"
+                    [ngModel]="[editorConfig.mode.name]"
+                    (ngModelChange)="selectEditorMode($event[0])"
+                  >
+                    <ngx-select-option *ngFor="let mode of editorModes" [name]="mode.label" [value]="mode.name">
+                    </ngx-select-option>
+                  </ngx-select>
+
+                  <ngx-button
+                    class="btn btn-primary save-code-button"
+                    (click)="updateModel(editorModel); closeCodeEditor()"
+                  >
+                    Save</ngx-button
+                  >
+
+                  <ngx-codemirror
+                    *ngIf="editorVisible"
+                    [ngModel]="editorModel"
+                    (ngModelChange)="editorModel = $event"
+                    [config]="editorConfig"
+                    class="code-editor"
+                  >
+                  </ngx-codemirror>
+                </div>
+              </ng-template>
+            </ng-container>
+
+            <div class="input-error">
+              <span *ngFor="let error of ownErrors">{{ error.message }}</span>
+            </div>
+          </ng-container>
+          
         </div>
 
         <div *ngIf="schemaBuilderMode" class="node-constrains">
@@ -205,6 +211,7 @@
       [formats]="formats"
       [showKnownProperties]="showKnownProperties"
       [passwordToggleEnabled]="passwordToggleEnabled"
+      [inputControlTemplate]="inputControlTemplate"
       (schemaUpdate)="schemaUpdate.emit(schemaRef)"
     >
     </ngx-json-object-node-flat>
@@ -228,6 +235,7 @@
       [schemaBuilderMode]="schemaBuilderMode"
       [showKnownProperties]="showKnownProperties"
       [passwordToggleEnabled]="passwordToggleEnabled"
+      [inputControlTemplate]="inputControlTemplate"
       (schemaUpdate)="schemaUpdate.emit(schemaRef)"
     >
     </ngx-json-array-node-flat>

@@ -1,80 +1,191 @@
 <h3 class="style-header">Checkbox</h3>
 
-<ngx-section class="shadow" sectionTitle="Demo">
-  <h3>Simple</h3>
-  <ngx-checkbox name="chk1" [ngModel]="true">
-    Alert the SOC
-  </ngx-checkbox>
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section class="shadow" sectionTitle="Demo">
+      <h3>Simple</h3>
+      <ngx-checkbox name="chk1" [ngModel]="true">
+        Alert the SOC
+      </ngx-checkbox>
+    
+      <app-prism>
+    <![CDATA[<ngx-checkbox
+      name="chk1"
+      [ngModel]="true"
+    >
+      Alert the SOC
+    </ngx-checkbox>]]>
+      </app-prism>
+    
+      <br />
+      <br />
+    
+      <ngx-checkbox name="chk2" [ngModel]="true" disabled>
+        Alert the SOC
+      </ngx-checkbox>
+    
+      <app-prism>
+    <![CDATA[<ngx-checkbox
+      name="chk2"
+      [ngModel]="true"
+      disabled
+    >
+      Alert the SOC
+    </ngx-checkbox>]]>
+      </app-prism>
+    
+      <br />
+      <br />
+    
+      <h3>Large Label</h3>
+      <ngx-checkbox name="chk3" [ngModel]="false">
+        System continue gobble error headers protocol gc exception leet ip alloc epoch less xss overflow mainframe
+        concurrently perl
+        tera. *.* bit interpreter gurfle firewall salt brute force double if spoof back door fopen wombat hexadecimal
+        nak
+        client pwned. Leapfrog root boolean rm -rf port Trojan horse finally linux mountain dew new bypass while
+        terminal
+        sudo /dev/null float.
+      </ngx-checkbox>
+    </ngx-section>
+    
+    <ngx-section sectionTitle="Round">
+      <ngx-checkbox round diameter="25px" name="chk4">
+        Round Checkbox
+      </ngx-checkbox>
+    
+      <app-prism>
+    <![CDATA[<ngx-checkbox round diameter="25px">
+      Round Checkbox
+    </ngx-checkbox>]]>
+      </app-prism>
+    </ngx-section>
+    
+    <ngx-section class="shadow" sectionTitle="Events and FormGroup">
+      <ngx-checkbox name="chk5" [(checked)]="checked">
+        Alert the SOC
+      </ngx-checkbox>
+    
+      <p>Checked: <code>{{ checked}}</code></p>
+    
+      <div data-cy="form-group" [formGroup]="alertType">
+        <h4>Select Alert Type:</h4>
+        <p><ngx-checkbox formControlName="breach">Breach</ngx-checkbox></p>
+        <p><ngx-checkbox formControlName="ddos">DDOS</ngx-checkbox></p>
+        <p><ngx-checkbox formControlName="physical">Physical</ngx-checkbox></p>
+      </div>
+      
+      <div [formGroup]="alertType">
+        <h4>You chose:</h4>
+        <code>{{alertType.value | json}}</code>
+      </div>
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <hr>
 
-  <app-prism>
-<![CDATA[<ngx-checkbox
-  name="chk1"
-  [ngModel]="true"
->
-  Alert the SOC
-</ngx-checkbox>]]>
-  </app-prism>
-
-  <br />
-  <br />
-
-  <ngx-checkbox name="chk2" [ngModel]="true" disabled>
-    Alert the SOC
-  </ngx-checkbox>
-
-  <app-prism>
-<![CDATA[<ngx-checkbox
-  name="chk2"
-  [ngModel]="true"
-  disabled
->
-  Alert the SOC
-</ngx-checkbox>]]>
-  </app-prism>
-
-  <br />
-  <br />
-
-  <h3>Large Label</h3>
-  <ngx-checkbox name="chk3" [ngModel]="false">
-    System continue gobble error headers protocol gc exception leet ip alloc epoch less xss overflow mainframe
-    concurrently perl
-    tera. *.* bit interpreter gurfle firewall salt brute force double if spoof back door fopen wombat hexadecimal
-    nak
-    client pwned. Leapfrog root boolean rm -rf port Trojan horse finally linux mountain dew new bypass while
-    terminal
-    sudo /dev/null float.
-  </ngx-checkbox>
-</ngx-section>
-
-<ngx-section sectionTitle="Round">
-  <ngx-checkbox round diameter="25px" name="chk4">
-    Round Checkbox
-  </ngx-checkbox>
-
-  <app-prism>
-<![CDATA[<ngx-checkbox round diameter="25px">
-  Round Checkbox
-</ngx-checkbox>]]>
-  </app-prism>
-</ngx-section>
-
-<ngx-section class="shadow" sectionTitle="Events and FormGroup">
-  <ngx-checkbox name="chk5" [(checked)]="checked">
-    Alert the SOC
-  </ngx-checkbox>
-
-  <p>Checked: <code>{{ checked}}</code></p>
-
-  <div data-cy="form-group" [formGroup]="alertType">
-    <h4>Select Alert Type:</h4>
-    <p><ngx-checkbox formControlName="breach">Breach</ngx-checkbox></p>
-    <p><ngx-checkbox formControlName="ddos">DDOS</ngx-checkbox></p>
-    <p><ngx-checkbox formControlName="physical">Physical</ngx-checkbox></p>
-  </div>
-  
-  <div [formGroup]="alertType">
-    <h4>You chose:</h4>
-    <code>{{alertType.value | json}}</code>
-  </div>
-</ngx-section>
+    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>checked: boolean</code>
+          </th>
+          <td>Whether the component should be checked.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>diameter: string = '18px'</code>
+          </th>
+          <td>The width and height of the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>disabled: boolean</code>
+          </th>
+          <td>Whether the component is disabled.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>id: string = 'checkbox-1'</code>
+          </th>
+          <td>The ID for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>name: string</code>
+          </th>
+          <td>The name for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>round: boolean</code>
+          </th>
+          <td>Whether the component should display as a circle instead of a square.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tabindex: number = 0</code>
+          </th>
+          <td>The tab index for the component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="outputs">Component Outputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>blur: EventEmitter&lt;FocusEvent&gt;</code>
+          </th>
+          <td>Event emitted when the native input emits a <code>blur</code> event.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>change: EventEmitter&lt;Event&gt;</code>
+          </th>
+          <td>Event emitted when the native input emits a <code>change</code> event.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>focus: EventEmitter&lt;FocusEvent&gt;</code>
+          </th>
+          <td>Event emitted when the native input emits a <code>focus</code> event.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>checkedChange: EventEmitter&lt;boolean&gt;</code>
+          </th>
+          <td>Event emitted when the value of the <code>checked</code> Input is changed.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>

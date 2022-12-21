@@ -1,90 +1,150 @@
 <section class="ngx-icon-section">
   <h3 class="style-header">Icon</h3>
 
-  <ngx-section class="shadow" [sectionTitle]="'Stacking'">
-    <span class="large-icons">
-      <ngx-icon fontSet="ngx" fontIcon="square-filled"></ngx-icon>
-      <ngx-icon fontSet="ngx" fontIcon="x fx-spinning"></ngx-icon>
-      <ngx-icon fontSet="ngx" [fontIcon]="['square-filled', 'x :text-red :icon-fx-spinning']"></ngx-icon>
-      <ngx-icon fontSet="ngx" [fontIcon]="['field-users', 'circle-filled :text-red :icon-fx-badge']"></ngx-icon>
-    </span>
-    <app-prism>
-<![CDATA[<ngx-icon fontIcon="square-filled"></ngx-icon>
-<ngx-icon fontIcon="x fx-spinning"></ngx-icon>
-<ngx-icon [fontIcon]="['square-filled', 'x :text-red fx-spinning']"></ngx-icon>
-<ngx-icon [fontIcon]="['field-users', 'circle-filled :text-red fx-badge']"></ngx-icon>]]>
-    </app-prism>
-  </ngx-section>
-
-  <ngx-section class="shadow" [sectionTitle]="'Registry'">
-    <span class="large-icons">
-      <ngx-icon fontIcon="x-spinning"></ngx-icon>
-      <ngx-icon fontIcon="x-spinning-red"></ngx-icon>
-      <ngx-icon fontIcon="turbine"></ngx-icon>
-    </span>
-    <ngx-tabs>
-      <ngx-tab label="TypeScript">
-        <app-prism language="js">
-<![CDATA[iconRegisteryService.add('x-spinning', 'x fx-spinning');
-iconRegisteryService.add('x-spinning-red', 'x-spinning :text-red');
-iconRegisteryService.add('turbine', ['square-filled', 'x-spinning-red']);]]>
-        </app-prism>
-      </ngx-tab>
-      <ngx-tab label="Markup">
+  <ngx-tabs>
+    <ngx-tab label="Examples">
+      <ngx-section class="shadow" [sectionTitle]="'Stacking'">
+        <span class="large-icons">
+          <ngx-icon fontSet="ngx" fontIcon="square-filled"></ngx-icon>
+          <ngx-icon fontSet="ngx" fontIcon="x fx-spinning"></ngx-icon>
+          <ngx-icon fontSet="ngx" [fontIcon]="['square-filled', 'x :text-red :icon-fx-spinning']"></ngx-icon>
+          <ngx-icon fontSet="ngx" [fontIcon]="['field-users', 'circle-filled :text-red :icon-fx-badge']"></ngx-icon>
+        </span>
         <app-prism>
-<![CDATA[<ngx-icon fontIcon="x-spinning"></ngx-icon>
-<ngx-icon fontIcon="x-spinning-inverse"></ngx-icon>
-<ngx-icon fontIcon="turbine"></ngx-icon>]]>
+    <![CDATA[<ngx-icon fontIcon="square-filled"></ngx-icon>
+    <ngx-icon fontIcon="x fx-spinning"></ngx-icon>
+    <ngx-icon [fontIcon]="['square-filled', 'x :text-red fx-spinning']"></ngx-icon>
+    <ngx-icon [fontIcon]="['field-users', 'circle-filled :text-red fx-badge']"></ngx-icon>]]>
         </app-prism>
-      </ngx-tab>
-    </ngx-tabs>
-  </ngx-section>
-
-  <ngx-section class="shadow" [sectionTitle]="'Namespace'">
-    <span class="large-icons">
-      <ngx-icon fontSet="app" fontIcon="create"></ngx-icon>
-      <ngx-icon fontSet="app" fontIcon="edit"></ngx-icon>
-      <ngx-icon fontSet="app" fontIcon="copy"></ngx-icon>
-    </span>
-    <ngx-tabs>
-      <ngx-tab label="TypeScript">
-        <app-prism language="js">
-<![CDATA[iconRegisteryService.add('app:create', 'new-app');
-iconRegisteryService.add('app:edit', 'edit-app');
-iconRegisteryService.add('app:copy', 'copy-app');]]>
-        </app-prism>
-      </ngx-tab>
-      <ngx-tab label="Markup">
+      </ngx-section>
+    
+      <ngx-section class="shadow" [sectionTitle]="'Registry'">
+        <span class="large-icons">
+          <ngx-icon fontIcon="x-spinning"></ngx-icon>
+          <ngx-icon fontIcon="x-spinning-red"></ngx-icon>
+          <ngx-icon fontIcon="turbine"></ngx-icon>
+        </span>
+        <ngx-tabs>
+          <ngx-tab label="TypeScript">
+            <app-prism language="js">
+    <![CDATA[iconRegisteryService.add('x-spinning', 'x fx-spinning');
+    iconRegisteryService.add('x-spinning-red', 'x-spinning :text-red');
+    iconRegisteryService.add('turbine', ['square-filled', 'x-spinning-red']);]]>
+            </app-prism>
+          </ngx-tab>
+          <ngx-tab label="Markup">
+            <app-prism>
+    <![CDATA[<ngx-icon fontIcon="x-spinning"></ngx-icon>
+    <ngx-icon fontIcon="x-spinning-inverse"></ngx-icon>
+    <ngx-icon fontIcon="turbine"></ngx-icon>]]>
+            </app-prism>
+          </ngx-tab>
+        </ngx-tabs>
+      </ngx-section>
+    
+      <ngx-section class="shadow" [sectionTitle]="'Namespace'">
+        <span class="large-icons">
+          <ngx-icon fontSet="app" fontIcon="create"></ngx-icon>
+          <ngx-icon fontSet="app" fontIcon="edit"></ngx-icon>
+          <ngx-icon fontSet="app" fontIcon="copy"></ngx-icon>
+        </span>
+        <ngx-tabs>
+          <ngx-tab label="TypeScript">
+            <app-prism language="js">
+    <![CDATA[iconRegisteryService.add('app:create', 'new-app');
+    iconRegisteryService.add('app:edit', 'edit-app');
+    iconRegisteryService.add('app:copy', 'copy-app');]]>
+            </app-prism>
+          </ngx-tab>
+          <ngx-tab label="Markup">
+            <app-prism>
+    <![CDATA[<ngx-icon fontSet="app" fontIcon="create"></ngx-icon>
+    <ngx-icon fontSet="app" fontIcon="edit"></ngx-icon>
+    <ngx-icon fontSet="app" fontIcon="copy"></ngx-icon>]]>
+            </app-prism>
+          </ngx-tab>
+        </ngx-tabs>
+      </ngx-section>
+    
+      <ngx-section class="shadow" [sectionTitle]="'Third Party Fonts'">
+        <span class="large-icons">
+          <ngx-icon fontSet="fa" fontIcon="snowflake-o"></ngx-icon>
+          <ngx-icon fontSet="fa" fontIcon="snowflake-o :text-red"></ngx-icon>
+          <ngx-icon fontIcon="fa:snowflake-o :text-red fx-spinning"></ngx-icon>
+          <ngx-icon [fontIcon]="['square-filled', 'fa:snowflake-o :text-red fx-spinning fx-inverse']"></ngx-icon>
+        </span>
         <app-prism>
-<![CDATA[<ngx-icon fontSet="app" fontIcon="create"></ngx-icon>
-<ngx-icon fontSet="app" fontIcon="edit"></ngx-icon>
-<ngx-icon fontSet="app" fontIcon="copy"></ngx-icon>]]>
+    <![CDATA[<ngx-icon fontSet="fa" fontIcon="snowflake-o"></ngx-icon>
+    <ngx-icon fontSet="fa" fontIcon="snowflake-o :text-red"></ngx-icon>
+    <ngx-icon fontIcon="fa:snowflake-o :text-red fx-spinning"></ngx-icon>
+    <ngx-icon [fontIcon]="['square-filled', 'fa:snowflake-o :text-red fx-spinning fx-inverse']"></ngx-icon>]]>
         </app-prism>
-      </ngx-tab>
-    </ngx-tabs>
-  </ngx-section>
+      </ngx-section>
+    
+      <ngx-section class="shadow" [sectionTitle]="'SVGs'">
+        <ngx-icon svgSrc="chart-scatter"></ngx-icon>
+        <ngx-icon svgSrc="chart-scatter" class="text-red"></ngx-icon>
+        <app-prism>
+    <![CDATA[<ngx-icon svgSrc="chart-scatter"></ngx-icon>
+    <ngx-icon svgSrc="chart-scatter" class="text-red"></ngx-icon>]]>
+        </app-prism>
+      </ngx-section>
+    </ngx-tab>
+    <ngx-tab label="API">
+      <h3>Table of Contents</h3>
+      <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
+      <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
+      <hr>
 
-  <ngx-section class="shadow" [sectionTitle]="'Third Party Fonts'">
-    <span class="large-icons">
-      <ngx-icon fontSet="fa" fontIcon="snowflake-o"></ngx-icon>
-      <ngx-icon fontSet="fa" fontIcon="snowflake-o :text-red"></ngx-icon>
-      <ngx-icon fontIcon="fa:snowflake-o :text-red fx-spinning"></ngx-icon>
-      <ngx-icon [fontIcon]="['square-filled', 'fa:snowflake-o :text-red fx-spinning fx-inverse']"></ngx-icon>
-    </span>
-    <app-prism>
-<![CDATA[<ngx-icon fontSet="fa" fontIcon="snowflake-o"></ngx-icon>
-<ngx-icon fontSet="fa" fontIcon="snowflake-o :text-red"></ngx-icon>
-<ngx-icon fontIcon="fa:snowflake-o :text-red fx-spinning"></ngx-icon>
-<ngx-icon [fontIcon]="['square-filled', 'fa:snowflake-o :text-red fx-spinning fx-inverse']"></ngx-icon>]]>
-    </app-prism>
-  </ngx-section>
-
-  <ngx-section class="shadow" [sectionTitle]="'SVGs'">
-    <ngx-icon svgSrc="chart-scatter"></ngx-icon>
-    <ngx-icon svgSrc="chart-scatter" class="text-red"></ngx-icon>
-    <app-prism>
-<![CDATA[<ngx-icon svgSrc="chart-scatter"></ngx-icon>
-<ngx-icon svgSrc="chart-scatter" class="text-red"></ngx-icon>]]>
-    </app-prism>
-  </ngx-section>
+      <h3 class="style-header" id="inputs">Component Inputs</h3>
+      <table class="table documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <code class="component-type">@Input()</code>
+              <code>alt: string</code>
+            </th>
+            <td>Alt text for accessibility.</td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">@Input()</code>
+              <code>defaultPath: string = 'assets/svgs'</code>
+            </th>
+            <td>The default path to load assets from.</td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">@Input()</code>
+              <code>fontIcon: string | string[]</code>
+            </th>
+            <td>The icon(s) to display.</td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">@Input()</code>
+              <code>fontSet: string = 'ngx'</code>
+            </th>
+            <td>The font set to render icons from.</td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">@Input()</code>
+              <code>svgSrc: string</code>
+            </th>
+            <td>The source of the SVG to render.</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <h3 class="style-header" id="outputs">Component Outputs</h3>
+      <h4>No component outputs to display.</h4>
+    </ngx-tab>
+  </ngx-tabs>
 </section>

@@ -1,104 +1,249 @@
-<ngx-section sectionTitle="Basic">
-  <div class="example">
-    <h4>Default Date-Time</h4>
-    <ngx-time [datetime]="date"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date"></ngx-time>]]></app-prism>
-  </div>
-</ngx-section>
+<h3 class="style-header">Date/Time Display</h3>
 
-<ngx-section sectionTitle="Formats">
-  <div class="example">
-    <h4>Format</h4>
-    <ngx-time [datetime]="date" format="dateTime"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" format="fullDateTime"></ngx-time>]]></app-prism>  
-  </div>
-  
-  <div class="example">
-    <h4>Custom format</h4>
-    <ngx-time [datetime]="date" format="YYYY MMM"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" format="YYYY MMM"></ngx-time>]]></app-prism>    
-  </div>
-</ngx-section>
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section sectionTitle="Basic">
+      <div class="example">
+        <h4>Default Date-Time</h4>
+        <ngx-time [datetime]="date"></ngx-time>
+        <app-prism><![CDATA[<ngx-time [datetime]="date"></ngx-time>]]></app-prism>
+      </div>
+    </ngx-section>
+    
+    <ngx-section sectionTitle="Formats">
+      <div class="example">
+        <h4>Format</h4>
+        <ngx-time [datetime]="date" format="dateTime"></ngx-time>
+        <app-prism><![CDATA[<ngx-time [datetime]="date" format="fullDateTime"></ngx-time>]]></app-prism>  
+      </div>
+      
+      <div class="example">
+        <h4>Custom format</h4>
+        <ngx-time [datetime]="date" format="YYYY MMM"></ngx-time>
+        <app-prism><![CDATA[<ngx-time [datetime]="date" format="YYYY MMM"></ngx-time>]]></app-prism>    
+      </div>
+    </ngx-section>
+    
+    <ngx-section sectionTitle="Modes">
+      <div class="example">
+        <h4>Human Readable Date-Time</h4>
+        <ngx-time [datetime]="date" mode="human"></ngx-time>
+        <app-prism><![CDATA[<ngx-time [datetime]="date" mode="human"></ngx-time>]]></app-prism> 
+      </div>
+    
+      <div class="example">
+        <h4>Local</h4>
+        <ngx-time [datetime]="date" mode="local"></ngx-time>
+        <app-prism><![CDATA[<ngx-time [datetime]="date" mode="local"></ngx-time>]]></app-prism> 
+      </div>
+    </ngx-section>
+    
+    <ngx-section sectionTitle="Types">
+      <div class="example">
+        <h4>Time</h4>
+        <ngx-time [datetime]="date" type="time"></ngx-time>
+        <app-prism><![CDATA[<ngx-time [datetime]="date" type="time"></ngx-time>]]></app-prism> 
+      </div>
+    
+      <div class="example">
+        <h4>Date</h4>
+        <ngx-time [datetime]="date" type="date"></ngx-time>
+        <app-prism><![CDATA[<ngx-time [datetime]="date" type="date"></ngx-time>]]></app-prism> 
+      </div>
+    </ngx-section>
+    
+    <ngx-section sectionTitle="Time Zones">
+      <output>{{ localString | json }}</output>
+      
+      <div class="example">
+        <h4>Input and display TZ can be defined</h4>
+        <ngx-time datetime="March 11, 2011 2:46:24 PM" timezone="Asia/Tokyo"></ngx-time>
+        <app-prism><![CDATA[<ngx-time [datetime]="'March 11, 2011 2:46:24 PM'" timezone="Asia/Tokyo"></ngx-time>]]></app-prism> 
+      </div>
+    
+      <div class="example">
+        <h4>Default input timezone can be specified separately from display</h4>
+        <ngx-time datetime="March 11, 2011 2:46:24 PM" defaultInputTimeZone="Asia/Tokyo"></ngx-time>
+        <app-prism><![CDATA[<ngx-time [datetime]="March 11, 2011 2:46:24 PM" defaultInputTimeZone="Asia/Tokyo"></ngx-time>]]></app-prism>
+      </div>
+    
+      <div class="example">
+        <h4>Explicit timezone in input value overrides default input timezone</h4>
+        <ngx-time datetime="03/10/2011 9:46:24 PM -08:00" defaultInputTimeZone="Asia/Tokyo"></ngx-time>
+        <app-prism><![CDATA[<ngx-time [datetime]="Thu, Mar 10, 2011 9:46 PM -08:00" defaultInputTimeZone="Asia/Tokyo"></ngx-time>]]></app-prism>
+      </div>
+    </ngx-section>
+    
+    <ngx-section sectionTitle="Popup">
+      <div class="example">
+        <h4>Native Tooltip</h4>
+        <ngx-time [datetime]="date" tooltipDisabled="true"></ngx-time>
+        <app-prism><![CDATA[<ngx-time [datetime]="date" tooltipDisabled="true"></ngx-time>]]></app-prism>
+      </div>
+    
+      <div class="example">
+        <h4>Defined Timezones</h4>
+        <ngx-time [datetime]="date" [timezones]="{ 'Local': '', 'GMT': 'Etc/UTC', 'Tokyo': 'Asia/Tokyo' }"></ngx-time>
+        <app-prism><![CDATA[<ngx-time [datetime]="date" [timezones]="{ 'Local': '', 'GMT': 'Etc/UTC', 'Tokyo': 'Asia/Tokyo' }"></ngx-time>]]></app-prism>
+      </div>
+    
+      <div class="example">
+        <h4>Popup Format</h4>
+        <ngx-time [datetime]="date" tooltipFormat="localeTime"></ngx-time>
+        <app-prism><![CDATA[<ngx-time [datetime]="date" tooltipFormat="localeTime"></ngx-time>]]></app-prism>
+      </div>
+    
+      <div class="example">
+        <h4>Custom Popup Format</h4>
+        <ngx-time [datetime]="date" tooltipFormat="YYYY MMM"></ngx-time>
+        <app-prism><![CDATA[<ngx-time [datetime]="date" tooltipFormat="YYYY MMM"></ngx-time>]]></app-prism>
+      </div>
+    </ngx-section>
+    
+    <ngx-section sectionTitle="Invalid">
+      <div class="example">
+        <ngx-time [datetime]="'1/1/1/1970'"></ngx-time>
+      </div>
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <hr>
 
-<ngx-section sectionTitle="Modes">
-  <div class="example">
-    <h4>Human Readable Date-Time</h4>
-    <ngx-time [datetime]="date" mode="human"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" mode="human"></ngx-time>]]></app-prism> 
-  </div>
-
-  <div class="example">
-    <h4>Local</h4>
-    <ngx-time [datetime]="date" mode="local"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" mode="local"></ngx-time>]]></app-prism> 
-  </div>
-</ngx-section>
-
-<ngx-section sectionTitle="Types">
-  <div class="example">
-    <h4>Time</h4>
-    <ngx-time [datetime]="date" type="time"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" type="time"></ngx-time>]]></app-prism> 
-  </div>
-
-  <div class="example">
-    <h4>Date</h4>
-    <ngx-time [datetime]="date" type="date"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" type="date"></ngx-time>]]></app-prism> 
-  </div>
-</ngx-section>
-
-<ngx-section sectionTitle="Time Zones">
-  <output>{{ localString | json }}</output>
-  
-  <div class="example">
-    <h4>Input and display TZ can be defined</h4>
-    <ngx-time datetime="March 11, 2011 2:46:24 PM" timezone="Asia/Tokyo"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="'March 11, 2011 2:46:24 PM'" timezone="Asia/Tokyo"></ngx-time>]]></app-prism> 
-  </div>
-
-  <div class="example">
-    <h4>Default input timezone can be specified separately from display</h4>
-    <ngx-time datetime="March 11, 2011 2:46:24 PM" defaultInputTimeZone="Asia/Tokyo"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="March 11, 2011 2:46:24 PM" defaultInputTimeZone="Asia/Tokyo"></ngx-time>]]></app-prism>
-  </div>
-
-  <div class="example">
-    <h4>Explicit timezone in input value overrides default input timezone</h4>
-    <ngx-time datetime="03/10/2011 9:46:24 PM -08:00" defaultInputTimeZone="Asia/Tokyo"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="Thu, Mar 10, 2011 9:46 PM -08:00" defaultInputTimeZone="Asia/Tokyo"></ngx-time>]]></app-prism>
-  </div>
-</ngx-section>
-
-<ngx-section sectionTitle="Popup">
-  <div class="example">
-    <h4>Native Tooltip</h4>
-    <ngx-time [datetime]="date" tooltipDisabled="true"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" tooltipDisabled="true"></ngx-time>]]></app-prism>
-  </div>
-
-  <div class="example">
-    <h4>Defined Timezones</h4>
-    <ngx-time [datetime]="date" [timezones]="{ 'Local': '', 'GMT': 'Etc/UTC', 'Tokyo': 'Asia/Tokyo' }"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" [timezones]="{ 'Local': '', 'GMT': 'Etc/UTC', 'Tokyo': 'Asia/Tokyo' }"></ngx-time>]]></app-prism>
-  </div>
-
-  <div class="example">
-    <h4>Popup Format</h4>
-    <ngx-time [datetime]="date" tooltipFormat="localeTime"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" tooltipFormat="localeTime"></ngx-time>]]></app-prism>
-  </div>
-
-  <div class="example">
-    <h4>Custom Popup Format</h4>
-    <ngx-time [datetime]="date" tooltipFormat="YYYY MMM"></ngx-time>
-    <app-prism><![CDATA[<ngx-time [datetime]="date" tooltipFormat="YYYY MMM"></ngx-time>]]></app-prism>
-  </div>
-</ngx-section>
-
-<ngx-section sectionTitle="Invalid">
-  <div class="example">
-    <ngx-time [datetime]="'1/1/1/1970'"></ngx-time>
-  </div>
-</ngx-section>
-
+    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>clickable: boolean</code>
+          </th>
+          <td>Whether the component allows clicking. If enabled, the date/time will be copied to the user's clipboard.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>clipFormat: string</code>
+          </th>
+          <td>NEEDS DOCUMENTATION.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>datetime: Datelike = new Date()</code>
+          </th>
+          <td>The date/time for the component to display.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>defaultCopyKey: string = 'Local'</code>
+          </th>
+          <td>NEEDS DOCUMENTATION.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>defaultInputTimeZone: string</code>
+          </th>
+          <td>The default timezone for the component to display times in. Overrides the <code>timezone</code> Input.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>format: string</code>
+          </th>
+          <td>The format to display the provided Date object in. See Examples tab.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>invalidDateMessage: string = 'Invalid date'</code>
+          </th>
+          <td>The message displayed if the provided Date object is invalid.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>mode: DATE_DISPLAY_TYPES</code>
+          </th>
+          <td>The mode for the component to display dates and times. See Examples tab.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>precision: moment.unitOfTime.StartOf</code>
+          </th>
+          <td>Mutates the original moment by setting it to the start of a unit of time.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>timezone: string = moment.tz.guess()</code>
+          </th>
+          <td>The timezone for the component to display times in.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>timezones: Record&lt;string, string&gt; = &#123; UTC: 'Etc/UTC', Local: '' &#125;</code>
+          </th>
+          <td>Used to display dates in other timezones.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipCssClass: string = 'date-tip-tooltip'</code>
+          </th>
+          <td>The CSS class for styling the component tooltip.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipDisabled: boolean</code>
+          </th>
+          <td>Whether the component tooltip is disabled.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipFormat: string</code>
+          </th>
+          <td>The format to display the provided Date object in on the component tooltip.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipPlacement: string = 'top'</code>
+          </th>
+          <td>The placement of the component tooltip.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipTemplate: string</code>
+          </th>
+          <td>The template to render in the component tooltip.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>type: string</code>
+          </th>
+          <td>The type of the component e.g. date, time, dateTime. See Examples tab.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="outputs">Component Outputs</h3>
+    <h4>No component outputs to display.</h4>
+  </ngx-tab>
+</ngx-tabs>

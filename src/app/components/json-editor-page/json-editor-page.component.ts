@@ -4,6 +4,7 @@ import { JSONSchema7 } from 'json-schema';
 @Component({
   selector: 'app-json-editor-page',
   templateUrl: './json-editor-page.component.html',
+  styleUrls: ['./json-editor-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JsonEditorPageComponent {
@@ -103,6 +104,7 @@ export class JsonEditorPageComponent {
   hideRoot = false;
   showKnownProperties = false;
   passwordToggleEnabled = false;
+  expanded = true;
 
   _jsonEditorSchema: any = {};
 
@@ -114,10 +116,12 @@ export class JsonEditorPageComponent {
     metaData: "<< console.log('this should be of type code') >>"
   };
 
+  jsonEditorFlatWithTemplateModel: any = {};
   jsonEditorSchemaBuilderModel: any = {};
 
   schemaRef: JSONSchema7 = {};
   modelSchemaRef: JSONSchema7 = {};
+  schemaWithTemplate: JSONSchema7 = {};
 
   customFormats = ['password', 'code', 'date', 'date-time', 'custom'];
 

@@ -15,6 +15,7 @@ export const enum NGX {
   DROPDOWN = 'ngx-dropdown',
   PLUS_MENU = 'ngx-plus-menu',
   LFD = 'ngx-large-format-dialog-content',
+  MFD = 'ngx-medium-format-dialog-content',
   NOTIFICATION = 'ngx-notification',
   NAG = 'ngx-nag',
   ALERT = 'ngx-alert-dialog',
@@ -287,6 +288,7 @@ export function close(element: JQuery<Element>): Cypress.Chainable<JQuery<Elemen
       }
       return;
     case NGX.LFD:
+    case NGX.MFD:
       element.find('.dialog-container__header button').trigger('click');
       return;
     case NGX.NOTIFICATION:
