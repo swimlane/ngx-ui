@@ -1,7 +1,6 @@
 <div class="ngx-tree" [class.one-leaf]="!virtualScrolling && hasOneLeaf">
   <ul class="vertical-list">   
     <cdk-virtual-scroll-viewport 
-      #virtualTree 
       *ngIf="treeStructure && virtualScrolling" 
       [itemSize]="nodeHeight" 
       [minBufferPx]="virtualScrollHeight*2" 
@@ -9,14 +8,20 @@
       class="virtual-container"
       [style.height]="virtualScrollHeight + 'px'"
     >
-      <ng-container *cdkVirtualFor="let node of filteredTree; trackBy: trackBy;">
-        <div class="node-container">
+      <ng-container *cdkVirtualFor="let node of filteredTree; let i = index; let c = count; trackBy: trackBy;">
+        <div class="node-container" [style.height]="nodeHeight + 'px'" >
           <div 
-            class="depth-indicator" 
+            [class]="i === c - 1 && c > 1 ? 'filled' : 'depth-indicator'" 
             [style.width]="((node.depth - 1) * depthPadding) + 'px'"
             [style.background-position-x]="node.depth - 1 > 0 ? '5px' : '0px'"
+            [style.height]="nodeHeight + 'px'" 
           ></div>
-          <div [style.height]="nodeHeight + 'px'">
+          <div 
+          [class.empty]="empty(node, filteredTree)"
+          [class.filled]="filled(node, filteredTree) === 2"
+          [class.filled-single]="filled(node, filteredTree) === 1"
+          [class.dots]="dots(node, filteredTree)"
+          >
             <ng-container [ngTemplateOutlet]="ngxTreeNode" [ngTemplateOutletContext]="{ node }"></ng-container>
           </div>
         </div>

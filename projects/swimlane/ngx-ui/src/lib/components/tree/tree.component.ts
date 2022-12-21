@@ -78,10 +78,11 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
       this.allNodeElms.forEach(node => node.depth++);
     }
     if (this.virtualScrolling && !this.nodes?.length && this.allNodeElms) {
-      const tmpTree = this.elementsToNodes(this.allNodeElms);
+      let tmpTree = this.elementsToNodes(this.allNodeElms);
       this.treeStructure = tmpTree;
-      this.filteredTree = tmpTree.filter(node => node.display);
-      this._cdr.detectChanges();
+      tmpTree = tmpTree.filter(node => node.display);
+      this.generateAditionalTreeInfo(tmpTree);
+      this.filteredTree = tmpTree;
     }
   }
 
@@ -91,37 +92,48 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.nodes) {
-      const newTree = this.generateTreeStructure(changes.nodes.currentValue);
-      this.treeStructure = newTree;
-      this.filteredTree = newTree.filter(node => node.display);
-      this._cdr.detectChanges();
+    if ((changes.nodes && this.virtualScrolling) || changes.virtualScrolling?.currentValue) {
+      if (changes.nodes?.currentValue || this.nodes) {
+        let tmpTree = this.generateTreeStructure(changes.nodes?.currentValue || this.nodes);
+        this.treeStructure = tmpTree;
+        tmpTree = tmpTree.filter(node => node.display);
+        this.generateAditionalTreeInfo(tmpTree);
+        this.filteredTree = tmpTree;
+      }
     }
   }
 
   onExpand(event: any): void {
-    const currentTreeStructure = [...this.treeStructure];
-    currentTreeStructure.find(node => node.id === event.$implicit.id).expanded = true;
-    const tmpTree = this.applyExpandChange(currentTreeStructure);
-    this.treeStructure = tmpTree;
-    this.filteredTree = tmpTree.filter(node => node.display);
+    if (this.virtualScrolling) {
+      const currentTreeStructure = [...this.treeStructure];
+      currentTreeStructure.find(node => node.id === event.$implicit.id).expanded = true;
+      let tmpTree = this.applyExpandChange(currentTreeStructure);
+      this.treeStructure = tmpTree;
+      tmpTree = tmpTree.filter(node => node.display);
+      this.generateAditionalTreeInfo(tmpTree);
+      this.filteredTree = tmpTree;
+    }
     this._cdr.detectChanges();
     this.expand.emit(event);
   }
 
   onCollapse(event: any): void {
-    const currentTreeStructure = [...this.treeStructure];
-    currentTreeStructure.find(node => node.id === event.$implicit.id).expanded = false;
-    const tmpTree = this.applyExpandChange(currentTreeStructure);
-    this.treeStructure = tmpTree;
-    this.filteredTree = tmpTree.filter(node => node.display);
+    if (this.virtualScrolling) {
+      const currentTreeStructure = [...this.treeStructure];
+      currentTreeStructure.find(node => node.id === event.$implicit.id).expanded = false;
+      let tmpTree = this.applyExpandChange(currentTreeStructure);
+      this.treeStructure = tmpTree;
+      tmpTree = tmpTree.filter(node => node.display);
+      this.generateAditionalTreeInfo(tmpTree);
+      this.filteredTree = tmpTree;
+    }
     this._cdr.detectChanges();
     this.collapse.emit(event);
   }
 
   generateTreeStructure(nodes: TreeNode[]): TreeNode[] {
     const finalStructure: TreeNode[] = [];
-    let id = 1;
+    let id = 0;
     const processNodes = (currentNodes: TreeNode[], depth: number, display: boolean) => {
       currentNodes.forEach(node => {
         finalStructure.push({
@@ -169,8 +181,32 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
     });
   }
 
+  generateAditionalTreeInfo(nodes: TreeNode[]): void {
+    const depthReference = {};
+    nodes.forEach((node, index) => {
+      node.childNodesCount = 0;
+      // update the children count of the current node parents
+      Object.keys(depthReference).forEach(key => {
+        const depth = parseInt(key);
+        const parent = nodes.find(n => n.id === depthReference[key].id);
+        if (depth === node.depth) {
+          delete depthReference[key];
+        }
+        if (depth < node.depth) {
+          if (!parent.childNodesCount) parent.childNodesCount = 0;
+          parent.childNodesCount++;
+        }
+      });
+      depthReference[node.depth] = { id: node.id };
+      if (node.depth - 1 > 0) {
+        node.parentId = depthReference[node.depth - 1].id;
+      }
+      node.index = index;
+    });
+  }
+
   elementsToNodes(nodes: QueryList<TreeNodeComponent>): TreeNode[] {
-    let id = 1;
+    let id = 0;
     const tmpTree = nodes.map(
       node =>
         ({
@@ -190,5 +226,33 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
 
   trackBy(_index: number, node: any): number {
     return node.id;
+  }
+
+  filled(node: TreeNode, filteredTree: TreeNode[]) {
+    if (node.parentId === undefined) return false; // always avoid first element
+    let isFirst = false;
+    let isLast = false;
+    const parent = filteredTree.find(n => n.id === node.parentId);
+    isFirst = parent.index + 1 < filteredTree.length && filteredTree[parent.index + 1].id === node.id;
+    isLast = filteredTree[parent.id + parent.childNodesCount].id === node.id;
+    return isFirst && isLast ? 1 : isLast ? 2 : false; // 1: single element - 2: last of several items
+  }
+
+  empty(node: TreeNode, filteredTree: TreeNode[]) {
+    if (node.parentId === undefined) {
+      if (node.childNodesCount) return true; // always return true when the first element has childs
+      return false; // ignore when the first element doen't has childs
+    }
+    let isFirst = false;
+    let isLast = false;
+    const parent = filteredTree.find(n => n.id === node.parentId);
+    isFirst = parent.index + 1 < filteredTree.length && filteredTree[parent.index + 1].id === node.id;
+    isLast = filteredTree[parent.id + parent.childNodesCount].id === node.id;
+    return isFirst && !isLast; // is only true when there is more than one element and this is the first one
+  }
+
+  dots(node: TreeNode, filteredTree: TreeNode[]) {
+    if (node.index + 1 === filteredTree.length || node.index === 0) return false;
+    return !this.filled(node, filteredTree) && !this.empty(node, filteredTree);
   }
 }

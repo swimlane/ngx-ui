@@ -11,4 +11,7 @@ export interface TreeNode {
   selectable?: boolean;
   depth?: number;
   display?: boolean;
+  childNodesCount?: number;
+  parentId?: number;
+  index?: number;
 }
