@@ -17,10 +17,10 @@
             [style.height]="nodeHeight + 'px'" 
           ></div>
           <div 
-          [class.empty]="empty(node, filteredTree)"
-          [class.filled]="filled(node, filteredTree) === 2"
-          [class.filled-single]="filled(node, filteredTree) === 1"
-          [class.dots]="dots(node, filteredTree)"
+          [class.empty]="empty | memoize: node:filteredTree"
+          [class.filled]="filled | memoize: node:filteredTree"
+          [class.filled-single]="filled | memoize: node:filteredTree:true"
+          [class.dots]="dots | memoize: node:filteredTree"
           >
             <ng-container [ngTemplateOutlet]="ngxTreeNode" [ngTemplateOutletContext]="{ node }"></ng-container>
           </div>

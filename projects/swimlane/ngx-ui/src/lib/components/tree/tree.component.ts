@@ -65,7 +65,7 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
 
   treeStructure: TreeNode[] = null;
   filteredTree: TreeNode[] = null;
-  depthPadding = 20;
+  depthPadding = 28;
   nodeHeight = 26;
 
   private readonly _destroy$ = new Subject<void>();
@@ -78,11 +78,9 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
       this.allNodeElms.forEach(node => node.depth++);
     }
     if (this.virtualScrolling && !this.nodes?.length && this.allNodeElms) {
-      let tmpTree = this.elementsToNodes(this.allNodeElms);
+      const tmpTree = this.elementsToNodes(this.allNodeElms);
       this.treeStructure = tmpTree;
-      tmpTree = tmpTree.filter(node => node.display);
-      this.generateAditionalTreeInfo(tmpTree);
-      this.filteredTree = tmpTree;
+      this.filterTree(tmpTree);
     }
   }
 
@@ -94,11 +92,9 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if ((changes.nodes && this.virtualScrolling) || changes.virtualScrolling?.currentValue) {
       if (changes.nodes?.currentValue || this.nodes) {
-        let tmpTree = this.generateTreeStructure(changes.nodes?.currentValue || this.nodes);
+        const tmpTree = this.generateTreeStructure(changes.nodes?.currentValue || this.nodes);
         this.treeStructure = tmpTree;
-        tmpTree = tmpTree.filter(node => node.display);
-        this.generateAditionalTreeInfo(tmpTree);
-        this.filteredTree = tmpTree;
+        this.filterTree(tmpTree);
       }
     }
   }
@@ -107,11 +103,7 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
     if (this.virtualScrolling) {
       const currentTreeStructure = [...this.treeStructure];
       currentTreeStructure.find(node => node.id === event.$implicit.id).expanded = true;
-      let tmpTree = this.applyExpandChange(currentTreeStructure);
-      this.treeStructure = tmpTree;
-      tmpTree = tmpTree.filter(node => node.display);
-      this.generateAditionalTreeInfo(tmpTree);
-      this.filteredTree = tmpTree;
+      this.applyTreeChanges(currentTreeStructure);
     }
     this._cdr.detectChanges();
     this.expand.emit(event);
@@ -121,14 +113,22 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
     if (this.virtualScrolling) {
       const currentTreeStructure = [...this.treeStructure];
       currentTreeStructure.find(node => node.id === event.$implicit.id).expanded = false;
-      let tmpTree = this.applyExpandChange(currentTreeStructure);
-      this.treeStructure = tmpTree;
-      tmpTree = tmpTree.filter(node => node.display);
-      this.generateAditionalTreeInfo(tmpTree);
-      this.filteredTree = tmpTree;
+      this.applyTreeChanges(currentTreeStructure);
     }
     this._cdr.detectChanges();
     this.collapse.emit(event);
+  }
+
+  applyTreeChanges(tree: TreeNode[]) {
+    const tmpTree = this.applyExpandChange(tree);
+    this.treeStructure = tmpTree;
+    this.filterTree(tmpTree);
+  }
+
+  filterTree(tree: TreeNode[]) {
+    const tmpTree = tree.filter(node => node.display);
+    this.generateAditionalTreeInfo(tmpTree);
+    this.filteredTree = tmpTree;
   }
 
   generateTreeStructure(nodes: TreeNode[]): TreeNode[] {
@@ -228,31 +228,32 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
     return node.id;
   }
 
-  filled(node: TreeNode, filteredTree: TreeNode[]) {
+  filled(node: TreeNode, filteredTree: TreeNode[], isSingle = false) {
     if (node.parentId === undefined) return false; // always avoid first element
-    let isFirst = false;
-    let isLast = false;
     const parent = filteredTree.find(n => n.id === node.parentId);
-    isFirst = parent.index + 1 < filteredTree.length && filteredTree[parent.index + 1].id === node.id;
-    isLast = filteredTree[parent.id + parent.childNodesCount].id === node.id;
-    return isFirst && isLast ? 1 : isLast ? 2 : false; // 1: single element - 2: last of several items
+    const isFirst = parent.index + 1 < filteredTree.length && filteredTree[parent.index + 1].id === node.id;
+    const isLast = filteredTree[parent.index + parent.childNodesCount].id === node.id;
+    return isSingle ? isFirst && isLast : !isFirst && isLast;
   }
 
   empty(node: TreeNode, filteredTree: TreeNode[]) {
-    if (node.parentId === undefined) {
-      if (node.childNodesCount) return true; // always return true when the first element has childs
-      return false; // ignore when the first element doen't has childs
+    let parent = filteredTree.find(n => n.id === node.parentId);
+    // simulate a parent when dealing with depth 1 elements
+    if (!parent) {
+      parent = {
+        index: -1,
+        childNodesCount: filteredTree.length
+      } as TreeNode;
     }
-    let isFirst = false;
-    let isLast = false;
-    const parent = filteredTree.find(n => n.id === node.parentId);
-    isFirst = parent.index + 1 < filteredTree.length && filteredTree[parent.index + 1].id === node.id;
-    isLast = filteredTree[parent.id + parent.childNodesCount].id === node.id;
+    const isFirst = parent.index + 1 < filteredTree.length && filteredTree[parent.index + 1].id === node.id;
+    const isLast = filteredTree[parent.index + parent.childNodesCount].id === node.id;
     return isFirst && !isLast; // is only true when there is more than one element and this is the first one
   }
 
   dots(node: TreeNode, filteredTree: TreeNode[]) {
     if (node.index + 1 === filteredTree.length || node.index === 0) return false;
-    return !this.filled(node, filteredTree) && !this.empty(node, filteredTree);
+    return (
+      !(this.filled(node, filteredTree) || this.filled(node, filteredTree, true)) && !this.empty(node, filteredTree)
+    );
   }
 }

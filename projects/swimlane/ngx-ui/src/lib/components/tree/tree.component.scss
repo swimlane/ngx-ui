@@ -3,6 +3,10 @@
 $color-tree-line: #667080;
 $color-tree-text: #b3b6bd;
 
+$thickness: 1px;
+$gap: 28px;
+$dashes: 5.3px;
+
 .ngx-tree {
   position: relative;
 
@@ -101,10 +105,6 @@ $color-tree-text: #b3b6bd;
   }
 
   .depth-indicator {
-    --thickness: 1px;
-    --gap: 20px;
-    --dashes: 5.3px;
-    background: conic-gradient(at var(--thickness) 50%, #0000 75%, $color-tree-line 0) 0 / var(--gap) var(--dashes);
     background-position-y: -5px;
   }
 
@@ -114,76 +114,56 @@ $color-tree-text: #b3b6bd;
     position: relative;
   }
 
-  .empty::before {
+  .empty::before,
+  .filled::after,
+  .filled-single::after {
     content: ' ';
+    position: absolute;
     width: 5px;
     height: 5px;
-    border-radius: 5px;
-    background: none;
-    border: 1px solid $color-tree-line;
-    position: absolute;
     left: 3px;
     top: 30%;
+    border-radius: 5px;
+  }
+
+  .empty::before {
+    background: none;
+    border: 1px solid $color-tree-line;
+  }
+
+  .depth-indicator,
+  .empty::after,
+  .filled::before,
+  .dots {
+    background: conic-gradient(at $thickness 50%, #0000 75%, $color-tree-line 0) 0 / ($gap $dashes);
+  }
+
+  .empty::after,
+  .filled::before {
+    content: ' ';
+    position: absolute;
+    width: 10px;
+    background-repeat: repeat-y;
+    background-position-x: 5px;
   }
 
   .empty::after {
-    content: ' ';
-    --thickness: 1px;
-    --gap: 20px;
-    --dashes: 5.3px;
-    background: conic-gradient(at var(--thickness) 50%, #0000 75%, $color-tree-line 0) 0 / var(--gap) var(--dashes)
-      repeat-y;
-    background-position-x: 5px;
-
-    position: absolute;
-    width: 10px;
-    height: calc(100% - 14px);
-    top: 13px;
+    height: 13px;
+    top: 12px;
   }
 
   .filled::before {
-    content: ' ';
-    --thickness: 1px;
-    --gap: 20px;
-    --dashes: 5.3px;
-    background: conic-gradient(at var(--thickness) 50%, #0000 75%, $color-tree-line 0) 0 / var(--gap) var(--dashes)
-      repeat-y;
-    background-position-x: 5px;
-
-    position: absolute;
-    width: 10px;
-    height: calc(100% - 15px);
-    bottom: 18px;
-  }
-
-  .filled::after {
-    content: ' ';
-    width: 5px;
     height: 5px;
-    border-radius: 5px;
-    background: $color-tree-line;
-    position: absolute;
-    left: 3px;
-    top: 30%;
+    top: 1px;
   }
 
+  .filled::after,
   .filled-single::after {
-    content: ' ';
-    width: 5px;
-    height: 5px;
-    border-radius: 5px;
     background: $color-tree-line;
-    position: absolute;
-    left: 3px;
-    top: 30%;
   }
 
   .dots {
-    --thickness: 1px;
-    --gap: 20px;
-    --dashes: 5.3px;
-    background: conic-gradient(at var(--thickness) 50%, #0000 75%, $color-tree-line 0) 0 / var(--gap) var(--dashes)
-      repeat-y;
+    background-repeat: repeat-y;
     background-position-x: 5px;
   }
 }
