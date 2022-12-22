@@ -106,6 +106,12 @@ $dashes: 5.3px;
 
   .depth-indicator {
     background-position-y: -5px;
+    &_filled {
+      height: 13px !important;
+      background: radial-gradient(at 5.5px 30%, $color-tree-line, 2.3px, transparent 0) 0/28px 32px,
+        conic-gradient(at 1px 50%, #0000 75%, $color-tree-line 0) 5px 0/28px 5.1px;
+      background-position-y: 1.1px;
+    }
   }
 
   .empty,
@@ -135,7 +141,7 @@ $dashes: 5.3px;
   .empty::after,
   .filled::before,
   .dots {
-    background: conic-gradient(at $thickness 50%, #0000 75%, $color-tree-line 0) 0 / ($gap $dashes);
+    background: conic-gradient(at $thickness 50%, #0000 75%, $color-tree-line 0) 5px 0 / ($gap $dashes);
   }
 
   .empty::after,
@@ -153,7 +159,7 @@ $dashes: 5.3px;
   }
 
   .filled::before {
-    height: 5px;
+    height: 10px;
     top: 1px;
   }
 
