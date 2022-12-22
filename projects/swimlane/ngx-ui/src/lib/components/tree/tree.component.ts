@@ -229,8 +229,14 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
   }
 
   filled(node: TreeNode, filteredTree: TreeNode[], isSingle = false) {
-    if (node.parentId === undefined) return false; // always avoid first element
-    const parent = filteredTree.find(n => n.id === node.parentId);
+    let parent = filteredTree.find(n => n.id === node.parentId);
+    // simulate a parent when dealing with depth 1 elements
+    if (!parent) {
+      parent = {
+        index: -1,
+        childNodesCount: filteredTree.length
+      } as TreeNode;
+    }
     const isFirst = parent.index + 1 < filteredTree.length && filteredTree[parent.index + 1].id === node.id;
     const isLast = filteredTree[parent.index + parent.childNodesCount].id === node.id;
     return isSingle ? isFirst && isLast : !isFirst && isLast;

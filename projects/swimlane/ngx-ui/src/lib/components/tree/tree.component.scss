@@ -106,6 +106,7 @@ $dashes: 5.3px;
 
   .depth-indicator {
     background-position-y: -5px;
+
     &_filled {
       height: 13px !important;
       background: radial-gradient(at 5.5px 30%, $color-tree-line, 2.3px, transparent 0) 0/28px 32px,
