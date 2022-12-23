@@ -155,8 +155,8 @@ $dashes: 5.3px;
   }
 
   .empty::after {
-    height: calc(100% - 11px);
-    top: 13px;
+    height: calc(100% - 5px);
+    top: 15px;
   }
 
   .filled::before {
