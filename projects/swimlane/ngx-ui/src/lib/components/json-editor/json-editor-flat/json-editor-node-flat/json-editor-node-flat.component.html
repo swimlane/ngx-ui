@@ -78,7 +78,7 @@
                   [filterable]="false"
                   *ngIf="schema?.enum"
                   [ngModel]="[model]"
-                  (ngModelChange)="updateModel($event[0])"
+                  (ngModelChange)="updateModel($event[0] || [''])"
                   [required]="required"
                   [disabled]="isDuplicated"
                 >
