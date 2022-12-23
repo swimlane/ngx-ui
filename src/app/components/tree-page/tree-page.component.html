@@ -132,7 +132,7 @@
     </ngx-section>
 
     <ngx-section class="shadow" sectionTitle="Tree Composition - Virtual Scrolling">
-      <ngx-tree [virtualScrolling]="true" [virtualScrollHeight]="210">
+      <ngx-tree [virtualScrolling]="true" [maxVirtualScrollHeight]="500">
         <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
           <ngx-tree>
             <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
@@ -159,7 +159,7 @@
       </ngx-tree>
     
       <app-prism>
-    <![CDATA[<ngx-tree [virtualScrolling]="true" [virtualScrollHeight]="210">
+    <![CDATA[<ngx-tree [virtualScrolling]="true" [maxVirtualScrollHeight]="500">
       <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
         <ngx-tree>
           <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
@@ -318,7 +318,7 @@
     </ngx-section>
 
     <ngx-section class="shadow" sectionTitle="JSON Tree - Virtual Scrolling">
-      <ngx-tree [nodes]="longJsonObject | jsonTree" [virtualScrolling]="true" [virtualScrollHeight]="500">
+      <ngx-tree [nodes]="longJsonObject | jsonTree" [virtualScrolling]="true" [maxVirtualScrollHeight]="500">
         <ng-template let-label="label" let-node let-model="model" let-expandable="expandable">
           <div class="ngx-node-label" [ngClass]="model.type">
             <code><strong>{{label}}:</strong> <span *ngIf="!node.expandable">{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span></code>
@@ -332,7 +332,7 @@
       <ngx-tabs>
         <ngx-tab label="Markup">
           <app-prism>
-    <![CDATA[<ngx-tree [nodes]="longJsonObject | jsonTree" [virtualScrolling]="true" [virtualScrollHeight]="500">
+    <![CDATA[<ngx-tree [nodes]="longJsonObject | jsonTree" [virtualScrolling]="true" [maxVirtualScrollHeight]="500">
       <ng-template let-label="label" let-model="model" let-expandable="expandable">
         <div class="ngx-node-label" [ngClass]="model.type">
           <code><strong>{ {label} }:</strong> <span *ngIf="!model.expandable">{ {model.value | json} } <span class="tag tag-small" style="text-transform: capitalize">[{ {model.type} }]</span></span></code>
@@ -473,6 +473,27 @@
             <code>template: TemplateRef&lt;any&gt;</code>
           </th>
           <td>The custom template to display as part of a child <code>ngx-tree-node</code>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>virtualScrolling: boolean = false</code>
+          </th>
+          <td>The option to enable/disable virtual scrolling.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>maxVirtualScrollHeight: number = 500</code>
+          </th>
+          <td>The maximum height in pixels of the container when virtual scrolling is activated.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>nodeHeight: number = 26</code>
+          </th>
+          <td>The fixed height in pixels of each rendered node when virtual scrolling is activated.</td>
         </tr>
       </tbody>
     </table>

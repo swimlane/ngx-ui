@@ -30,9 +30,10 @@ import { TreeNode } from './tree-node.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
-  @Input() virtualScrolling = false;
   @Input() nodes: TreeNode[];
-  @Input() virtualScrollHeight = 500;
+  @Input() virtualScrolling = false;
+  @Input() maxVirtualScrollHeight = 500;
+  @Input() nodeHeight = 26;
 
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('template')
@@ -66,7 +67,6 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
   treeStructure: TreeNode[] = null;
   filteredTree: TreeNode[] = null;
   depthPadding = 28;
-  nodeHeight = 26;
 
   private readonly _destroy$ = new Subject<void>();
 

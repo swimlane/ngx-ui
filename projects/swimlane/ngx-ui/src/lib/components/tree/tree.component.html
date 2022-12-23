@@ -3,10 +3,10 @@
     <cdk-virtual-scroll-viewport 
       *ngIf="treeStructure && virtualScrolling" 
       [itemSize]="nodeHeight" 
-      [minBufferPx]="virtualScrollHeight*2" 
-      [maxBufferPx]="virtualScrollHeight*4" 
+      [minBufferPx]="nodeHeight * filteredTree.length > maxVirtualScrollHeight ? maxVirtualScrollHeight*2 : (nodeHeight * filteredTree.length)*2" 
+      [maxBufferPx]="nodeHeight * filteredTree.length > maxVirtualScrollHeight ? maxVirtualScrollHeight*4 : (nodeHeight * filteredTree.length)*4" 
       class="virtual-container"
-      [style.height]="virtualScrollHeight + 'px'"
+      [style.height]="nodeHeight * filteredTree.length > maxVirtualScrollHeight ? maxVirtualScrollHeight + 'px' : (nodeHeight * filteredTree.length) + 'px'"
     >
       <ng-container *cdkVirtualFor="let node of filteredTree; let i = index; let c = count; trackBy: trackBy;">
         <div class="node-container" [style.height]="nodeHeight + 'px'" >
