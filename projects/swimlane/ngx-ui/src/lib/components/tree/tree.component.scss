@@ -3,6 +3,10 @@
 $color-tree-line: #667080;
 $color-tree-text: #b3b6bd;
 
+$thickness: 1px;
+$gap: 28px;
+$dashes: 5.3px;
+
 .ngx-tree {
   position: relative;
 
@@ -86,5 +90,87 @@ $color-tree-text: #b3b6bd;
       top: -5px;
       left: -3px;
     }
+  }
+
+  .virtual-container {
+    width: 100%;
+
+    .cdk-virtual-scroll-content-wrapper {
+      width: max-content;
+    }
+  }
+
+  .node-container {
+    display: flex;
+  }
+
+  .depth-indicator {
+    background-position-y: -5px;
+
+    &_filled {
+      height: 13px !important;
+      background: radial-gradient(at 5.5px 30%, $color-tree-line, 2.5px, transparent 0) 0/28px 32px,
+        conic-gradient(at 1px 50%, #0000 75%, $color-tree-line 0) 5px 0/28px 5.1px;
+      background-position-y: 1.1px;
+    }
+  }
+
+  .empty,
+  .filled,
+  .filled-single {
+    position: relative;
+  }
+
+  .empty::before,
+  .filled::after,
+  .filled-single::after {
+    content: ' ';
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    left: 3px;
+    top: 8px;
+    border-radius: 5px;
+  }
+
+  .empty::before {
+    background: none;
+    border: 1px solid $color-tree-line;
+  }
+
+  .depth-indicator,
+  .empty::after,
+  .filled::before,
+  .dots {
+    background: conic-gradient(at $thickness 50%, #0000 75%, $color-tree-line 0) 5px 0 / ($gap $dashes);
+  }
+
+  .empty::after,
+  .filled::before {
+    content: ' ';
+    position: absolute;
+    width: 10px;
+    background-repeat: repeat-y;
+    background-position-x: 5px;
+  }
+
+  .empty::after {
+    height: calc(100% - 5px);
+    top: 15px;
+  }
+
+  .filled::before {
+    height: 10px;
+    top: 1px;
+  }
+
+  .filled::after,
+  .filled-single::after {
+    background: $color-tree-line;
+  }
+
+  .dots {
+    background-repeat: repeat-y;
+    background-position-x: 5px;
   }
 }

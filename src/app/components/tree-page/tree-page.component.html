@@ -130,6 +130,62 @@
     </ngx-tree>]]>
       </app-prism>
     </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="Tree Composition - Virtual Scrolling">
+      <ngx-tree [virtualScrolling]="true" [maxVirtualScrollHeight]="500">
+        <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
+          <ngx-tree>
+            <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+            <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+            <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+          </ngx-tree>
+        </ngx-tree-node>
+        <ngx-tree-node [label]="'Node 3'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
+        <ngx-tree-node [label]="'Node 4'" [selectable]="true" (selectNode)="selectNode($event)" [expandable]="true" [expanded]="false">
+          <ngx-tree>
+            <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+            <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
+              <ngx-tree>
+                <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+                <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+                <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+              </ngx-tree>
+            </ngx-tree-node>
+            <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+          </ngx-tree>
+        </ngx-tree-node>
+        <ngx-tree-node [label]="'Node 1'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
+        <ngx-tree-node [label]="'Node 5'" [selectable]="true" (selectNode)="selectNode($event)"></ngx-tree-node>
+      </ngx-tree>
+    
+      <app-prism>
+    <![CDATA[<ngx-tree [virtualScrolling]="true" [maxVirtualScrollHeight]="500">
+      <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [selectable]="true">
+        <ngx-tree>
+          <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+          <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+          <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+        </ngx-tree>
+      </ngx-tree-node>
+      <ngx-tree-node [label]="'Node 3'" [selectable]="true"></ngx-tree-node>
+      <ngx-tree-node [label]="'Node 4'" [selectable]="true" [expandable]="true" [expanded]="false">
+        <ngx-tree>
+          <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+          <ngx-tree-node [label]="'Node 2'" [expandable]="true" [expanded]="true" [disabled]="true">
+            <ngx-tree>
+              <ngx-tree-node [label]="'Node 1'"></ngx-tree-node>
+              <ngx-tree-node [label]="'Node 2'"></ngx-tree-node>
+              <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+            </ngx-tree>
+          </ngx-tree-node>
+          <ngx-tree-node [label]="'Node 3'"></ngx-tree-node>
+        </ngx-tree>
+      </ngx-tree-node>
+      <ngx-tree-node [label]="'Node 1'" [selectable]="true"></ngx-tree-node>
+      <ngx-tree-node [label]="'Node 5'" [selectable]="true"></ngx-tree-node>
+    </ngx-tree>]]>
+      </app-prism>
+    </ngx-section>
     
     <ngx-section class="shadow" sectionTitle="Templates and Icons">
       <ngx-tree class="hide-vr" [nodes]="nodes1" [icons]="{ collapse: 'ngx-icon ngx-chevron-bold-down', expand: 'ngx-icon ngx-chevron-bold-right' }">
@@ -197,7 +253,7 @@
     </ngx-section>
     
     <ngx-section class="shadow" sectionTitle="JSON Tree">
-      <ngx-tree [nodes]="jsonObject | jsonTree">
+      <ngx-tree [nodes]="shortJsonObject | jsonTree">
         <ng-template let-label="label" let-node let-model="model" let-expandable="expandable">
           <div class="ngx-node-label" [ngClass]="model.type">
             <code><strong>{{label}}:</strong> <span *ngIf="!node.expandable">{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span></code>
@@ -211,7 +267,7 @@
       <ngx-tabs>
         <ngx-tab label="Markup">
           <app-prism>
-    <![CDATA[<ngx-tree [nodes]="jsonObject | jsonTree">
+    <![CDATA[<ngx-tree [nodes]="shortJsonObject | jsonTree">
       <ng-template let-label="label" let-model="model" let-expandable="expandable">
         <div class="ngx-node-label" [ngClass]="model.type">
           <code><strong>{ {label} }:</strong> <span *ngIf="!model.expandable">{ {model.value | json} } <span class="tag tag-small" style="text-transform: capitalize">[{ {model.type} }]</span></span></code>
@@ -227,7 +283,7 @@
       templateUrl: './app.template.html'
     })
     export class AppComponent {
-      jsonObject = JSON.parse(`{
+      shortJsonObject = JSON.parse(`{
         "firstName": "John",
         "lastName": "Smith",
         "isAlive": true,
@@ -260,6 +316,125 @@
         </ngx-tab>
       </ngx-tabs>
     </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="JSON Tree - Virtual Scrolling">
+      <ngx-tree [nodes]="longJsonObject | jsonTree" [virtualScrolling]="true" [maxVirtualScrollHeight]="500">
+        <ng-template let-label="label" let-node let-model="model" let-expandable="expandable">
+          <div class="ngx-node-label" [ngClass]="model.type">
+            <code><strong>{{label}}:</strong> <span *ngIf="!node.expandable">{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span></code>
+          </div>
+        </ng-template>
+      </ngx-tree>
+    
+      <br />
+      <br />
+    
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+    <![CDATA[<ngx-tree [nodes]="longJsonObject | jsonTree" [virtualScrolling]="true" [maxVirtualScrollHeight]="500">
+      <ng-template let-label="label" let-model="model" let-expandable="expandable">
+        <div class="ngx-node-label" [ngClass]="model.type">
+          <code><strong>{ {label} }:</strong> <span *ngIf="!model.expandable">{ {model.value | json} } <span class="tag tag-small" style="text-transform: capitalize">[{ {model.type} }]</span></span></code>
+        </div>
+      </ng-template>
+    </ngx-tree>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <app-prism language="js">
+    <![CDATA[@Component({
+      selector: 'app',
+      templateUrl: './app.template.html'
+    })
+    export class AppComponent {
+      longJsonObject = JSON.parse(`{
+        "found": "call",
+        "hundred": ["slightly", false, [false, false, 848653068.1462421]],
+        "treated": {
+          "her": [
+            "obtain",
+            "bicycle",
+            {
+              "past": [387958629.8448715, "effect", 725873074],
+              "wish": {
+                "toy": false,
+                "blow": {
+                  "play": [
+                    -1250254033,
+                    {
+                      "chief": 859994406.8547816,
+                      "still": "those",
+                      "plus": {
+                        "lie": "weight",
+                        "soil": "opportunity",
+                        "care": true
+                      }
+                    },
+                    1000768478
+                  ],
+                  "we": false,
+                  "mixture": -2070423534
+                },
+                "mile": true
+              },
+              "shoulder": [
+                {
+                  "gold": "well",
+                  "struck": [-61650591.096767426, false, false],
+                  "least": "stock"
+                },
+                false,
+                {
+                  "man": "poem",
+                  "camera": false,
+                  "wheat": "fire"
+                }
+              ]
+            }
+          ],
+          "increase": [
+            1524345868,
+            [
+              {
+                "home": {
+                  "market": -606332605.3996677,
+                  "surprise": [
+                    [
+                      {
+                        "perfectly": false,
+                        "slope": {
+                          "needle": -393673202.65928555,
+                          "was": true,
+                          "available": 1948602169
+                        },
+                        "lying": false
+                      },
+                      "teach",
+                      -1585901181.3043509
+                    ],
+                    false,
+                    "discovery"
+                  ],
+                  "sale": "plan"
+                },
+                "noun": true,
+                "control": 167137148.3357134
+              },
+              1440311090,
+              -1272041921
+            ],
+            "carbon"
+          ],
+          "press": "closely"
+        }
+      }`);
+    }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+
   </ngx-tab>
   <ngx-tab label="API">
     <h3>Table of Contents</h3>
@@ -298,6 +473,27 @@
             <code>template: TemplateRef&lt;any&gt;</code>
           </th>
           <td>The custom template to display as part of a child <code>ngx-tree-node</code>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>virtualScrolling: boolean = false</code>
+          </th>
+          <td>The option to enable/disable virtual scrolling.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>maxVirtualScrollHeight: number = 500</code>
+          </th>
+          <td>The maximum height in pixels of the container when virtual scrolling is activated.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>nodeHeight: number = 26</code>
+          </th>
+          <td>The fixed height in pixels of each rendered node when virtual scrolling is activated.</td>
         </tr>
       </tbody>
     </table>

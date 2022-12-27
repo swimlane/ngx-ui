@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import longJsonObject from './shared/long-json-object.json';
 
 @Component({
   selector: 'app-tree-page',
@@ -62,11 +63,24 @@ export class TreePageComponent {
     }
   ];
 
-  jsonObject = JSON.parse(`{
+  shortJsonObject = JSON.parse(`{
     "firstName": "John",
     "lastName": "Smith",
     "isAlive": true,
     "age": 25,
+    "addres2": {
+      "city": "New York"
+    },
+    "addres3": {
+      "city": "New York",
+      "city2": "New York"
+    },
+    "addres4": {
+      "city": "New York",
+      "city2": "New York",
+      "city4": {},
+      "city3": "New York"
+    },
     "address": {
       "streetAddress": "21 2nd Street",
       "city": "New York",
@@ -90,6 +104,8 @@ export class TreePageComponent {
     "children": [],
     "spouse": null
   }`);
+
+  longJsonObject = longJsonObject;
 
   selectNode(e: Event) {
     console.log({ e });
