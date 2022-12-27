@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 44.2.0 (2022-12-27)
+
+- Feature: `ngx-tree` now support virtual scrolling
+
 ## 44.1.0 (2022-12-23)
 
 - Fix (`ngx-json-editor-flat`): node redraws at bottom of JSON tree when previous value is cleared from `ngx-select`
