@@ -5,12 +5,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class SchemaValidatorService {
-  ajv: Ajv.Ajv;
+  ajv = new Ajv({
+    allErrors: true
+  });
 
   constructor() {
-    this.ajv = new Ajv({
-      allErrors: true
-    });
     this.ajv.addFormat('password', '.*');
     this.ajv.addFormat('code', '.*');
     this.ajv.addFormat('binary', '.*');
