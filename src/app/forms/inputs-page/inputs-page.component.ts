@@ -22,6 +22,7 @@ export class InputsPageComponent {
   output: any;
   patternValue = 'Has space';
   readonlyTextareaValue = lorem.words(100);
+  longInputValueTextarea = lorem.paragraphs(2);
 
   onClick(event: any) {
     console.log({ event });

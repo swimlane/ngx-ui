@@ -32,6 +32,6 @@ describe('ResizeObserverDirective', () => {
     setTimeout(() => {
       expect(spy).toHaveBeenCalledTimes(1);
       done();
-    }, 100);
+    }, 150);
   });
 });

@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 44.2.1 (2022-12-27)
+
+- Fix(`ngx-input`): textarea autosize directive respects the value and adjusts the height accordingly
+
 ## 44.2.0 (2022-12-27)
 
 - Feature: `ngx-tree` now support virtual scrolling
