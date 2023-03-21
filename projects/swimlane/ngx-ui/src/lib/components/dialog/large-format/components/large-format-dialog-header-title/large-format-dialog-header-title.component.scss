@@ -29,6 +29,10 @@
 
   &__img {
     background-color: white;
+
+    &__remove-background {
+      background-color: transparent;
+    }
   }
 
   &__clear {
