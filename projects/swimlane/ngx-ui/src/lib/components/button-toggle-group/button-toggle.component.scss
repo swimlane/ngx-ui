@@ -1,0 +1,23 @@
+@import '../../styles/colors/variables.scss';
+
+.ngx-button-toggle {
+  position: relative;
+  z-index: 3;
+  padding: 2px 10px;
+  border-radius: 2px;
+  color: $color-blue-grey-350;
+
+  &.checked {
+    color: $color-blue-grey-050;
+    background: $color-blue-grey-700;
+    transition: all 0.3s ease-out;
+  }
+
+  &:hover:not(.checked):not([disabled]) {
+    background: rgba($color-blue-grey-650, 0.25);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-blue-grey-500;
+  }
+}

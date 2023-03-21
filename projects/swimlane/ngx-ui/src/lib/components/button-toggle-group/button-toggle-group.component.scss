@@ -1,0 +1,23 @@
+@import '../../styles/colors/variables.scss';
+
+.ngx-button-toggle-group {
+  display: inline-flex;
+
+  &__container {
+    &__label {
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 12px;
+      color: $color-blue-grey-350;
+    }
+
+    &__toggle-buttons {
+      position: relative;
+      border: 1px solid $color-blue-grey-600;
+      border-radius: 4px;
+
+      padding: 4px;
+      gap: 2px;
+    }
+  }
+}

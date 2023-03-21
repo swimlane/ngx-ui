@@ -1,0 +1,183 @@
+<h3 class="style-header">Button Toggle</h3>
+
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-section sectionTitle="Button Toggle">
+      <ngx-button-toggle-group [ngModel]="'sequential'" label="Process">
+        <ngx-button-toggle value="sequential"> Sequential </ngx-button-toggle>
+        <ngx-button-toggle value="parallel"> Parallel </ngx-button-toggle>
+      </ngx-button-toggle-group>
+
+      <app-prism>
+        <![CDATA[<ngx-button-toggle-group [ngModel]="'sequential'" label="Process"> <ngx-button-toggle
+        value="sequential"> Sequential </ngx-button-toggle> <ngx-button-toggle value="parallel"> Parallel
+        </ngx-button-toggle> </ngx-button-toggle-group>]]>
+      </app-prism>
+
+      <br />
+
+      <ngx-button-toggle-group [(ngModel)]="favoriteSeason">
+        <ngx-button-toggle *ngFor="let season of seasons" [value]="season">
+          {{ season }}
+        </ngx-button-toggle>
+      </ngx-button-toggle-group>
+      <div class="example-selected-value">Your favorite season is: {{ favoriteSeason }}</div>
+
+      <app-prism>
+        <![CDATA[<ngx-button-toggle-group [(ngModel)]="favoriteSeason"> <ngx-button-toggle *ngFor="let season of
+        seasons" [value]="season">
+        {{ season }}
+        </ngx-button-toggle> </ngx-button-toggle-group>]]>
+      </app-prism>
+
+      <br />
+      <h3>Disabled Button Toggles</h3>
+      <ngx-button-toggle-group [(ngModel)]="secondFavoriteSeason">
+        <ngx-button-toggle *ngFor="let season of seasons; index as i" [value]="season" [disabled]="i % 2 === 0">
+          {{ season }}
+        </ngx-button-toggle>
+      </ngx-button-toggle-group>
+      <div class="example-selected-value">Your favorite season is: {{ secondFavoriteSeason }}</div>
+
+      <app-prism>
+        <![CDATA[<ngx-button-toggle-group [(ngModel)]="secondFavoriteSeason"> <ngx-button-toggle *ngFor="let season of
+        seasons; index as i" [value]="season" [disabled]="i % 2 === 0">
+        {{ season }}
+        </ngx-button-toggle> </ngx-button-toggle-group>]]>
+      </app-prism>
+
+      <br />
+      <h3>Disabled Group</h3>
+      <ngx-button-toggle-group [disabled]="true">
+        <ngx-button-toggle *ngFor="let season of seasons; index as i" [value]="season">
+          {{ season }}
+        </ngx-button-toggle>
+      </ngx-button-toggle-group>
+
+      <app-prism>
+        <![CDATA[<ngx-button-toggle-group [disabled]="true"> <ngx-button-toggle *ngFor="let season of seasons; index as
+        i" [value]="season">
+        {{ season }}
+        </ngx-button-toggle> </ngx-button-toggle-group>]]>
+      </app-prism>
+    </ngx-section>
+
+    <ngx-section sectionTitle="Button Toggle with Forms">
+      <form [formGroup]="form">
+        <ngx-button-toggle-group formControlName="season">
+          <ngx-button-toggle *ngFor="let season of seasons" [value]="season">
+            {{ season }}
+          </ngx-button-toggle>
+        </ngx-button-toggle-group>
+      </form>
+
+      <div class="example-selected-value">{{ form.value | json }}</div>
+
+      <app-prism>
+        <![CDATA[<form [formGroup]="form"> <ngx-button-toggle-group formControlName="season"> <ngx-button-toggle
+        *ngFor="let season of seasons" [value]="season"> { season }} </ngx-button-toggle> </ngx-button-toggle-group>
+        </form>]]>
+      </app-prism>
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <hr />
+
+    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>checked: boolean</code>
+          </th>
+          <td>Whether the component is selected.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>disabled: boolean</code>
+          </th>
+          <td>Whether the component is disabled.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>id: string = 'ngx-radio-1'</code>
+          </th>
+          <td>The ID for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>name: string = 'ngx-radio-2'</code>
+          </th>
+          <td>The name for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>radioId: string = 'ngx-radio-3-radio'</code>
+          </th>
+          <td>The unique identifier for the native <code>&lt;label&gt;</code> <code>for</code> attribute.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tabindex: number = 0</code>
+          </th>
+          <td>The tab index for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>value: any</code>
+          </th>
+          <td>The value for the component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h3 class="style-header" id="outputs">Component Outputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>blur: EventEmitter&lt;Event&gt;</code>
+          </th>
+          <td>Event emitted when the native input emits a <code>blur</code> event.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>change: EventEmitter&lt;any&gt;</code>
+          </th>
+          <td>Event emitted when the value of the <code>checked</code> Input is changed.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Output()</code>
+            <code>focus: EventEmitter&lt;FocusEvent&gt;</code>
+          </th>
+          <td>Event emitted when the native input emits a <code>focus</code> event.</td>
+        </tr>
+      </tbody>
+    </table>
+  </ngx-tab>
+</ngx-tabs>
