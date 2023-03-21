@@ -31,6 +31,7 @@ export class LargeFormatDialogContentComponent implements OnInit {
   @Input() dialogTitle = '';
   @Input() dialogSubtitle?: string;
   @Input() imgSrc?: string | SafeUrl;
+  @Input() removeImageBackground?: boolean;
   @Input() logoTemplate?: TemplateRef<unknown>;
   @Input() dialogSubtitleTemplate?: TemplateRef<unknown>;
   @Input() format: 'large' | 'medium' = 'large';

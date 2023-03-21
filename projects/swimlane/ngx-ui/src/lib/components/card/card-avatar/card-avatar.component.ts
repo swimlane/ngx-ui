@@ -17,4 +17,5 @@ import { CardStatus } from '../card-status.enum';
 export class CardAvatarComponent {
   @Input() src: string | SafeUrl;
   @Input() status: CardStatus;
+  @Input() removeImageBackground?: boolean;
 }
