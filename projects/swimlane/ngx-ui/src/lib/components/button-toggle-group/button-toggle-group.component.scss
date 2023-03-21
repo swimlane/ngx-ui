@@ -12,7 +12,9 @@
     }
 
     &__toggle-buttons {
-      position: relative;
+      display: flex;
+      flex-wrap: nowrap;
+
       border: 1px solid $color-blue-grey-600;
       border-radius: 4px;
 
