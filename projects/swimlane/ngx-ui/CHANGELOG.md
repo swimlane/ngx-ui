@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 44.3.1 (2023-3-23)
+
 - Fix (`ngx-input`): textarea autosize directive respects the initial value and adjusts the height accordingly
 
 ## 44.3.0 (2023-3-21)
