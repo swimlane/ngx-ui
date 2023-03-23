@@ -1,7 +1,13 @@
 <div class="ngx-card-avatar--avatar" [ngClass]="{'has-status': status}">
   <div class="inner-logo">
     <div *ngIf="status" class="status" [ngClass]="status"></div>
-    <img *ngIf="src" class="ngx-card-avatar--img" [src]="src" draggable="false" />
+    <img 
+      *ngIf="src" 
+      class="ngx-card-avatar--img"
+      [class.ngx-card-avatar--img__default-background]="removeImageBackground" 
+      [src]="src" 
+      draggable="false" 
+    />
     <div class="ngx-card-avatar--content">
       <ng-content></ng-content>
     </div>

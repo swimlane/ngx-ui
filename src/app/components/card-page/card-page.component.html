@@ -829,6 +829,8 @@
       <a class="documentation-content" (click)="scrollTo('ngx-card-footer-outputs')">ngx-card-footer Outputs</a>
       <a class="documentation-content" (click)="scrollTo('ngx-card-placeholder-inputs')">ngx-card-placeholder Inputs</a>
       <a class="documentation-content" (click)="scrollTo('ngx-card-placeholder-outputs')">ngx-card-placeholder Outputs</a>
+      <a class="documentation-content" (click)="scrollTo('ngx-card-avatar-inputs')">ngx-card-avatar Inputs</a>
+      <a class="documentation-content" (click)="scrollTo('ngx-card-avatar-outputs')">ngx-card-avatar Outputs</a>
       <hr>
 
       <h3 class="style-header" id="ngx-card-inputs">ngx-card Inputs</h3>
@@ -1006,6 +1008,42 @@
       </table>
       <hr>
       <h3 class="style-header" id="ngx-card-placeholder-outputs">ngx-card-placeholder Outputs</h3>
+      <h4>No component outputs to display.</h4>
+
+      <h3 class="style-header" id="ngx-card-avatar-inputs">ngx-card-avatar Inputs</h3>
+      <table class="table documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <code class="component-type">@Input()</code>
+              <code>src: string | SafeUrl</code>
+            </th>
+            <td>The source for the image.</td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">@Input()</code>
+              <code>status: CardStatus</code>
+            </th>
+            <td>The status to display the card in, either <code>Success</code>, <code>Error</code> or <code>Disabled</code>.</td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">@Input()</code>
+              <code>removeImageBackground: boolean</code>
+            </th>
+            <td>Whether the default white background for the image is removed.</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr>
+      <h3 class="style-header" id="ngx-card-avatar-outputs">ngx-card-avatar Outputs</h3>
       <h4>No component outputs to display.</h4>
     </ngx-tab>
   </ngx-tabs>

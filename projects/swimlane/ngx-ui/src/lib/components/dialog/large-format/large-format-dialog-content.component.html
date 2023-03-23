@@ -38,7 +38,13 @@
 </main>
 
 <ng-template #myTemplate>
-  <img *ngIf="imgSrc && !logoTemplate" class="ngx-large-format-dialog-header-title__img" [src]="imgSrc" draggable="false" />
+  <img 
+    *ngIf="imgSrc && !logoTemplate" 
+    class="ngx-large-format-dialog-header-title__img" 
+    [class.ngx-large-format-dialog-header-title__img__default-background]="removeImageBackground"
+    [src]="imgSrc" 
+    draggable="false" 
+  />
   <div *ngIf="!imgSrc && logoTemplate" class="ngx-large-format-dialog-header-title__clear">
     <ng-container *ngTemplateOutlet="logoTemplate"></ng-container>
   </div>

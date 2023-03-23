@@ -2,6 +2,15 @@
 
 ## HEAD (unreleased)
 
+## 44.3.1 (2023-3-23)
+
+- Fix (`ngx-input`): textarea autosize directive respects the initial value and adjusts the height accordingly
+
+## 44.3.0 (2023-3-21)
+
+- Feature (`ngx-large-format-dialog-content`): now accepts a `removeImageBackground` input to allow the removal of the default, white background
+- Feature (`ngx-card-avatar`): now accepts a `removeImageBackground` input to allow the removal of the default, white background
+
 ## 44.2.0 (2022-12-27)
 
 - Feature: `ngx-tree` now support virtual scrolling
@@ -12,7 +21,7 @@
 
 ## 44.0.0 (2022-12-19)
 
-- feature (`ngx-input`): add pattern for integer validation on playbook inputs
+- Feature (`ngx-input`): add pattern for integer validation on playbook inputs
 
 ## 43.0.0 (2022-12-16)
 

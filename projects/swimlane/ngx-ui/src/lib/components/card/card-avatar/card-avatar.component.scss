@@ -49,6 +49,10 @@ $color-background-grey: $color-blue-grey-750;
         width: 100%;
         height: 100%;
         border-radius: 100%;
+
+        &__default-background {
+          background-color: transparent;
+        }
       }
 
       .ngx-card-avatar--content {
