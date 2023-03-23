@@ -14,7 +14,8 @@ import {
   OnDestroy
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { ButtonToggleComponent } from './button-toggle.component';
 
 const BUTTON_TOGGLE_GROUP_VALUE_ACCESSOR = {
