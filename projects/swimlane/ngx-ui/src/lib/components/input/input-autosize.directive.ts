@@ -1,5 +1,7 @@
-import { ElementRef, Directive, Input } from '@angular/core';
+import { ElementRef, Directive, Input, AfterContentInit } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { NgModel } from '@angular/forms';
+import { delay, filter, take } from 'rxjs/operators';
 
 @Directive({
   exportAs: 'ngxAutosize',
@@ -9,7 +11,7 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
     '(input)': 'onInput()'
   }
 })
-export class AutosizeDirective {
+export class AutosizeDirective implements AfterContentInit {
   @Input('autosize')
   get enabled() {
     return this._enabled;
@@ -23,7 +25,24 @@ export class AutosizeDirective {
     return this.element.nativeElement.nodeName as 'TEXTAREA' | 'INPUT';
   }
 
-  constructor(readonly element: ElementRef<HTMLInputElement | HTMLTextAreaElement>) {}
+  constructor(
+    readonly element: ElementRef<HTMLInputElement | HTMLTextAreaElement>,
+    private readonly ngModel: NgModel
+  ) {}
+
+  ngAfterContentInit(): void {
+    if (this.ngModel) {
+      this.ngModel.valueChanges
+        .pipe(
+          filter(value => !!value && value?.length > 0),
+          take(1),
+          delay(0) // delay is added as the scrollHeight of textarea is 0 even though there is value
+        )
+        .subscribe(() => {
+          this.onInput();
+        });
+    }
+  }
 
   onInput() {
     if (this._enabled) {
