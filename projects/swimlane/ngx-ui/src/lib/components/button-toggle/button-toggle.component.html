@@ -1,0 +1,11 @@
+<button
+  [id]="id"
+  class="ngx-button-toggle"
+  [class.checked]="checked"
+  [disabled]="disabled"
+  (click)="handleClick($event)"
+>
+  <div class="ngx-button-toggle__content">
+    <ng-content></ng-content>
+  </div>
+</button>

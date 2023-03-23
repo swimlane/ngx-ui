@@ -9,7 +9,8 @@ import {
   EventEmitter,
   Output,
   Optional,
-  Inject
+  Inject,
+  ElementRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { ButtonToggleGroupComponent } from './button-toggle-group.component';
@@ -39,8 +40,6 @@ export class ButtonToggleComponent implements ControlValueAccessor {
 
   @Input() id: string = this.UNIQUE_ID;
   @Input() name: string = this.UNIQUE_ID;
-
-  @Input() radioId = `${this.id}-button-toggle`;
 
   get checked() {
     return this._checked;
@@ -93,6 +92,7 @@ export class ButtonToggleComponent implements ControlValueAccessor {
 
   constructor(
     @Optional() @Inject(ButtonToggleGroupComponent) buttonToggleGroup: ButtonToggleGroupComponent,
+    readonly element: ElementRef, // this is accessed in toggle-group to calculate animation
     private readonly cdr: ChangeDetectorRef
   ) {
     this.buttonToggleGroup = buttonToggleGroup;
@@ -102,7 +102,7 @@ export class ButtonToggleComponent implements ControlValueAccessor {
     incomingEvent.preventDefault();
     incomingEvent.stopPropagation();
 
-    if (this.disabled) {
+    if (this.disabled || this.checked) {
       return;
     }
 

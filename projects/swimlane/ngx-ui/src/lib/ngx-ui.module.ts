@@ -43,7 +43,7 @@ import { ToolbarModule } from './components/toolbar/toolbar.module';
 import { TooltipModule } from './components/tooltip/tooltip.module';
 import { TreeModule } from './components/tree/tree.module';
 import { TimeDisplayModule } from './components/time-display/time-display.module';
-import { ButtonToggleGroupModule } from './components/button-toggle-group/button-toggle-group.module';
+import { ButtonToggleModule } from './components/button-toggle/button-toggle.module';
 
 /**
  * Exported Modules
@@ -90,7 +90,7 @@ const modules = [
   ToolbarModule,
   TooltipModule,
   TreeModule,
-  ButtonToggleGroupModule
+  ButtonToggleModule
 ];
 
 const services = [InjectionService];

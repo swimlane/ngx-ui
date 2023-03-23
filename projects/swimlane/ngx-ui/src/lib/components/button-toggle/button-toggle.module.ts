@@ -8,4 +8,4 @@ import { ButtonToggleGroupComponent } from './button-toggle-group.component';
   exports: [ButtonToggleComponent, ButtonToggleGroupComponent],
   imports: [CommonModule]
 })
-export class ButtonToggleGroupModule {}
+export class ButtonToggleModule {}

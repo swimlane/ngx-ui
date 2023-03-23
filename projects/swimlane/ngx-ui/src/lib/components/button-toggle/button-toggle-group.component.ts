@@ -10,10 +10,9 @@ import {
   ContentChildren,
   QueryList,
   AfterViewInit,
-  OnDestroy
+  ChangeDetectorRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
 import { ButtonToggleComponent } from './button-toggle.component';
 
 const BUTTON_TOGGLE_GROUP_VALUE_ACCESSOR = {
@@ -36,13 +35,12 @@ let nextId = 0;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
+export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterViewInit {
   readonly UNIQUE_ID = `ngx-button-toggle-group-${++nextId}`;
   private _value = false;
   private _disabled;
 
   @Input() id: string = this.UNIQUE_ID;
-  @Input() name: string = this.UNIQUE_ID;
   @Input() label;
 
   @Input()
@@ -92,26 +90,19 @@ export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterVi
     this.disabled = isDisabled;
   }
 
-  readonly destroy$ = new Subject<void>();
+  leftPosition: number | undefined;
+  animationHolderWidth = 0;
+
+  get itemCount(): number {
+    return this.buttonToggles?.length || 0;
+  }
+
+  constructor(private readonly cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
     if (this.value) {
       this.selectButtonToggle(this.value);
     }
-
-    this.listenButtonToggleChanges();
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-  }
-
-  listenButtonToggleChanges() {
-    this.buttonToggles?.forEach(toggle =>
-      toggle.valueChange.pipe(takeUntil(this.destroy$)).subscribe(toggleChangeValue => {
-        this.notifyChange(toggleChangeValue);
-      })
-    );
   }
 
   notifyChange(selectedToggleValue: any) {
@@ -119,6 +110,8 @@ export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterVi
 
     this.valueChange.emit(selectedToggleValue);
     this.onChangeCallback(selectedToggleValue);
+
+    this.cdr.detectChanges();
   }
 
   selectButtonToggle(incomingValue: any): void {
@@ -126,12 +119,15 @@ export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterVi
       return;
     }
 
+    //before changing the active selection, calculate animation dimensions
+    this.calcAnimationDimensions(incomingValue);
+
     this.clearButtonToggles();
-    this.buttonToggles
-      .filter(toggle => toggle.value !== undefined && toggle.value === incomingValue)
-      .forEach(toggle => {
+    this.buttonToggles.forEach(toggle => {
+      if (toggle.value !== undefined && toggle.value === incomingValue) {
         toggle.checked = true;
-      });
+      }
+    });
   }
 
   clearButtonToggles() {
@@ -143,6 +139,29 @@ export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterVi
   checkChildren() {
     this.buttonToggles?.forEach(toggle => {
       toggle.markForCheck();
+    });
+  }
+
+  private calcAnimationDimensions(selectedToggleValue: any) {
+    const newIncomingIndex = this.getToggleIndex(selectedToggleValue);
+
+    let leftPosition = 0;
+    this.buttonToggles.toArray().forEach((toggle, index) => {
+      if (index < newIncomingIndex) {
+        leftPosition += toggle.element?.nativeElement?.clientWidth || 0;
+      }
+
+      if (index === newIncomingIndex) {
+        this.animationHolderWidth = toggle.element?.nativeElement.clientWidth - 4;
+      }
+    });
+
+    this.leftPosition = leftPosition + (newIncomingIndex + 0.5) * 2;
+  }
+
+  private getToggleIndex(incomingValue) {
+    return this.buttonToggles?.toArray().findIndex(toggle => {
+      return toggle.value === incomingValue;
     });
   }
 }
