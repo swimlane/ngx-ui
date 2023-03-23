@@ -1,7 +1,11 @@
+import { InjectionToken, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ButtonToggleGroupComponent } from './button-toggle-group.component';
 import { ButtonToggleComponent } from './button-toggle.component';
+import { ButtonToggleGroupComponentFixture } from './button-toggle-group.component.fixture';
+
+export const TOGGLE_GROUP = new InjectionToken<ButtonToggleGroupComponent>('ButtonToggleGroupComponent');
 
 describe('ButtonToggleGroupComponent', () => {
   let component: ButtonToggleGroupComponent;
@@ -9,7 +13,9 @@ describe('ButtonToggleGroupComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ButtonToggleGroupComponent, ButtonToggleComponent]
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [ButtonToggleComponent, ButtonToggleGroupComponent, ButtonToggleGroupComponentFixture],
+      providers: [{ provide: TOGGLE_GROUP, useExisting: ButtonToggleGroupComponent }]
     }).compileComponents();
   });
 

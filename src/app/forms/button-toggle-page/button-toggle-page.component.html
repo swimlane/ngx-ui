@@ -31,28 +31,15 @@
       </app-prism>
 
       <br />
-      <h3>Disabled Button Toggles</h3>
-      <ngx-button-toggle-group [(ngModel)]="secondFavoriteSeason">
-        <ngx-button-toggle *ngFor="let season of seasons; index as i" [value]="season" [disabled]="i % 2 === 0">
-          {{ season }}
-        </ngx-button-toggle>
-      </ngx-button-toggle-group>
-      <div class="example-selected-value">Your favorite season is: {{ secondFavoriteSeason }}</div>
-
-      <app-prism>
-        <![CDATA[<ngx-button-toggle-group [(ngModel)]="secondFavoriteSeason"> <ngx-button-toggle *ngFor="let season of
-        seasons; index as i" [value]="season" [disabled]="i % 2 === 0">
-        {{ season }}
-        </ngx-button-toggle> </ngx-button-toggle-group>]]>
-      </app-prism>
-
-      <br />
       <h3>Disabled Group</h3>
-      <ngx-button-toggle-group [disabled]="true">
+      <ngx-button-toggle-group [disabled]="groupDisabled">
         <ngx-button-toggle *ngFor="let season of seasons; index as i" [value]="season">
           {{ season }}
         </ngx-button-toggle>
       </ngx-button-toggle-group>
+      <ngx-button type="button" class="btn" (click)="groupDisabled = !groupDisabled">{{
+        groupDisabled ? 'Disabled' : 'Enabled'
+      }}</ngx-button>
 
       <app-prism>
         <![CDATA[<ngx-button-toggle-group [disabled]="true"> <ngx-button-toggle *ngFor="let season of seasons; index as

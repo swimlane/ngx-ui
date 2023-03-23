@@ -10,9 +10,11 @@ import {
   ContentChildren,
   QueryList,
   AfterViewInit,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  OnDestroy
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import { ButtonToggleComponent } from './button-toggle.component';
 
 const BUTTON_TOGGLE_GROUP_VALUE_ACCESSOR = {
@@ -35,7 +37,7 @@ let nextId = 0;
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterViewInit {
+export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
   readonly UNIQUE_ID = `ngx-button-toggle-group-${++nextId}`;
   private _value = false;
   private _disabled;
@@ -61,7 +63,7 @@ export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterVi
   set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
 
-    this.checkChildren();
+    this.checkChildren(this._disabled);
   }
 
   @Output() readonly valueChange = new EventEmitter();
@@ -97,12 +99,30 @@ export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterVi
     return this.buttonToggles?.length || 0;
   }
 
+  readonly destroy$ = new Subject<void>();
+
   constructor(private readonly cdr: ChangeDetectorRef) {}
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+  }
 
   ngAfterViewInit(): void {
     if (this.value) {
       this.selectButtonToggle(this.value);
     }
+
+    this.checkChildren(this.disabled);
+
+    this.listenChildren();
+  }
+
+  listenChildren() {
+    this.buttonToggles?.forEach(toggle => {
+      toggle.valueChange.pipe(takeUntil(this.destroy$)).subscribe(selectedToggleValue => {
+        this.notifyChange(selectedToggleValue);
+      });
+    });
   }
 
   notifyChange(selectedToggleValue: any) {
@@ -136,8 +156,9 @@ export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterVi
     });
   }
 
-  checkChildren() {
+  checkChildren(disabled: boolean) {
     this.buttonToggles?.forEach(toggle => {
+      toggle.disabled = disabled;
       toggle.markForCheck();
     });
   }

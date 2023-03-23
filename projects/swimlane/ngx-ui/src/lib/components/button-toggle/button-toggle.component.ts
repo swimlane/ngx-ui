@@ -8,12 +8,9 @@ import {
   ChangeDetectorRef,
   EventEmitter,
   Output,
-  Optional,
-  Inject,
   ElementRef
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { ButtonToggleGroupComponent } from './button-toggle-group.component';
 
 let nextId = 0;
 const selector = 'ngx-button-toggle';
@@ -61,7 +58,7 @@ export class ButtonToggleComponent implements ControlValueAccessor {
 
   @Input()
   get disabled(): boolean {
-    return this._disabled || (this.buttonToggleGroup && this.buttonToggleGroup.disabled);
+    return this._disabled; //|| (this.buttonToggleGroup && this.buttonToggleGroup.disabled);
   }
   set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
@@ -88,14 +85,14 @@ export class ButtonToggleComponent implements ControlValueAccessor {
     this.disabled = isDisabled;
   }
 
-  buttonToggleGroup: ButtonToggleGroupComponent;
+  // buttonToggleGroup: ButtonToggleGroupComponent;
 
   constructor(
-    @Optional() @Inject(ButtonToggleGroupComponent) buttonToggleGroup: ButtonToggleGroupComponent,
+    // @Optional() @Inject(ButtonToggleGroupComponent) buttonToggleGroup: ButtonToggleGroupComponent,
     readonly element: ElementRef, // this is accessed in toggle-group to calculate animation
     private readonly cdr: ChangeDetectorRef
   ) {
-    this.buttonToggleGroup = buttonToggleGroup;
+    // this.buttonToggleGroup = buttonToggleGroup;
   }
 
   handleClick(incomingEvent: Event): void {
@@ -106,13 +103,13 @@ export class ButtonToggleComponent implements ControlValueAccessor {
       return;
     }
 
-    if (this.buttonToggleGroup) {
-      this.buttonToggleGroup.notifyChange(this.value);
-    } else {
-      this.checked = true;
-      this.onChangeCallback(this.value);
-      this.valueChange.emit(this.value);
-    }
+    // if (this.buttonToggleGroup) {
+    //   this.buttonToggleGroup.notifyChange(this.value);
+    // } else {
+    this.checked = true;
+    this.onChangeCallback(this.value);
+    this.valueChange.emit(this.value);
+    // }
   }
 
   markForCheck() {

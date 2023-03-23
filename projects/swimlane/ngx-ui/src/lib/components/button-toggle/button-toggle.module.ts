@@ -4,8 +4,8 @@ import { ButtonToggleComponent } from './button-toggle.component';
 import { ButtonToggleGroupComponent } from './button-toggle-group.component';
 
 @NgModule({
-  declarations: [ButtonToggleComponent, ButtonToggleGroupComponent],
-  exports: [ButtonToggleComponent, ButtonToggleGroupComponent],
+  declarations: [ButtonToggleGroupComponent, ButtonToggleComponent],
+  exports: [ButtonToggleGroupComponent, ButtonToggleComponent],
   imports: [CommonModule]
 })
 export class ButtonToggleModule {}

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonTogglePageComponent } from './button-toggle-page.component';
 import { ButtonTogglePageRoutingModule } from './button-toggle-routing.module';
 import { PrismModule } from '../../common/prism/prism.module';
-import { ButtonToggleModule, SectionModule, TabsModule } from '@swimlane/ngx-ui';
+import { ButtonModule, ButtonToggleModule, SectionModule, TabsModule } from '@swimlane/ngx-ui';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     SectionModule,
     FormsModule,
     ReactiveFormsModule,
+    ButtonModule,
     TabsModule,
     ButtonToggleModule,
     ButtonTogglePageRoutingModule

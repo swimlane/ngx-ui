@@ -17,6 +17,8 @@ export class ButtonTogglePageComponent {
     season: new FormControl(this.seasons[1])
   });
 
+  groupDisabled = true;
+
   addSeason() {
     this.seasons.push('Holiday');
   }
