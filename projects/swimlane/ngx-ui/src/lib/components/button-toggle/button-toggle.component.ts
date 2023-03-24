@@ -58,7 +58,7 @@ export class ButtonToggleComponent implements ControlValueAccessor {
 
   @Input()
   get disabled(): boolean {
-    return this._disabled; //|| (this.buttonToggleGroup && this.buttonToggleGroup.disabled);
+    return this._disabled;
   }
   set disabled(value: BooleanInput) {
     this._disabled = coerceBooleanProperty(value);
@@ -85,15 +85,10 @@ export class ButtonToggleComponent implements ControlValueAccessor {
     this.disabled = isDisabled;
   }
 
-  // buttonToggleGroup: ButtonToggleGroupComponent;
-
   constructor(
-    // @Optional() @Inject(ButtonToggleGroupComponent) buttonToggleGroup: ButtonToggleGroupComponent,
     readonly element: ElementRef, // this is accessed in toggle-group to calculate animation
     private readonly cdr: ChangeDetectorRef
-  ) {
-    // this.buttonToggleGroup = buttonToggleGroup;
-  }
+  ) {}
 
   handleClick(incomingEvent: Event): void {
     incomingEvent.preventDefault();
@@ -103,13 +98,9 @@ export class ButtonToggleComponent implements ControlValueAccessor {
       return;
     }
 
-    // if (this.buttonToggleGroup) {
-    //   this.buttonToggleGroup.notifyChange(this.value);
-    // } else {
     this.checked = true;
     this.onChangeCallback(this.value);
     this.valueChange.emit(this.value);
-    // }
   }
 
   markForCheck() {

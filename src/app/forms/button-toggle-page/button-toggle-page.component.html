@@ -85,9 +85,9 @@
         <tr>
           <th>
             <code class="component-type">@Input()</code>
-            <code>checked: boolean</code>
+            <code>value: any</code>
           </th>
-          <td>Whether the component is selected.</td>
+          <td>Selects the toggle button which matches the value</td>
         </tr>
         <tr>
           <th>
@@ -102,20 +102,6 @@
             <code>id: string = 'ngx-button-toggle-1'</code>
           </th>
           <td>The ID for the component.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">@Input()</code>
-            <code>name: string = 'ngx-button-toggle-1'</code>
-          </th>
-          <td>The name for the component.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">@Input()</code>
-            <code>value: any</code>
-          </th>
-          <td>The value for the component.</td>
         </tr>
       </tbody>
     </table>
@@ -134,7 +120,7 @@
             <code class="component-type">@Output()</code>
             <code>valueChange: EventEmitter&lt;any&gt;</code>
           </th>
-          <td>Event emitted when the value of the <code>checked</code> Input is changed.</td>
+          <td>Event emitted when the toggle button is clicked.</td>
         </tr>
       </tbody>
     </table>

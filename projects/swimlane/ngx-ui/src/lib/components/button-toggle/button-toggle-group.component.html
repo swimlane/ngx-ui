@@ -2,9 +2,9 @@
   <label class="ngx-button-toggle-group__container__label" *ngIf="label">{{ label }}</label>
   <div class="ngx-button-toggle-group__container__toggle-buttons">
     <div
-      [style.--left]="leftPosition + 'px'"
-      [style.--width]="animationHolderWidth + 'px'"
       class="ngx-button-toggle-group__container__toggle-buttons__animation-holder"
+      [style.left.px]="animationHolderLeft"
+      [style.width.px]="animationHolderWidth"
     ></div>
     <ng-content></ng-content>
   </div>

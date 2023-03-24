@@ -93,7 +93,7 @@ export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterVi
     this.disabled = isDisabled;
   }
 
-  leftPosition: number | undefined;
+  animationHolderLeft: number | undefined;
   animationHolderWidth = 0;
 
   get itemCount(): number {
@@ -178,7 +178,7 @@ export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterVi
       }
     });
 
-    this.leftPosition = leftPosition + (newIncomingIndex + 0.5) * 2;
+    this.animationHolderLeft = leftPosition + (newIncomingIndex + 0.5) * 2;
   }
 
   private getToggleIndex(incomingValue) {

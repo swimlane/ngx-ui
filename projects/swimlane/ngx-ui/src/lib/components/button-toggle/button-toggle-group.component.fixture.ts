@@ -1,17 +1,26 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { ButtonToggleModule } from './button-toggle.module';
 
 @Component({
   selector: 'ngx-button-toggle-group-fixture',
   template: `
-    <ngx-button-toggle-group [(ngModel)]="favoriteSeason">
-      <ngx-button-toggle *ngFor="let season of seasons" [value]="season">
-        {{ season }}
+    <ngx-button-toggle-group [(value)]="value" [disabled]="disabled">
+      <ngx-button-toggle *ngFor="let item of items" [value]="item">
+        {{ item }}
       </ngx-button-toggle>
     </ngx-button-toggle-group>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ButtonToggleGroupComponentFixture {
-  seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];
-  favoriteSeason;
+  @Input() items: string[] = [];
+  @Input() value: string;
+  @Input() disabled = false;
 }
+
+@NgModule({
+  declarations: [ButtonToggleGroupComponentFixture],
+  imports: [FormsModule, ButtonToggleModule]
+})
+export class ButtonToggleGroupTestModule {}
