@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 44.4.0 (2023-3-25)
+
 - Feature (`ngx-button-toggle-group`): A new component which provides ability to toggle buttons
 
 ## 44.3.1 (2023-3-23)
