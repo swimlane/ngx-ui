@@ -64,6 +64,10 @@ export class AppComponent {
           route: 'buttons'
         },
         {
+          name: 'Button Toggle',
+          route: 'button-toggle'
+        },
+        {
           name: 'Selects',
           route: 'selects'
         },

@@ -13,6 +13,11 @@ const routes: Routes = [
     loadChildren: () => import('./forms/buttons-page/buttons-page.module').then(m => m.ButtonsPageModule)
   },
   {
+    path: 'button-toggle',
+    loadChildren: () =>
+      import('./forms/button-toggle-page/button-toggle-page.module').then(m => m.ButtonTogglePageModule)
+  },
+  {
     path: 'button-group',
     loadChildren: () =>
       import('./components/button-group-page/button-group-page.module').then(m => m.ButtonGroupPageModule)

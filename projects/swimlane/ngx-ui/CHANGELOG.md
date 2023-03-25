@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Feature (`ngx-button-toggle-group`): A new component which provides ability to toggle buttons
+
 ## 44.3.1 (2023-3-23)
 
 - Fix (`ngx-input`): textarea autosize directive respects the initial value and adjusts the height accordingly

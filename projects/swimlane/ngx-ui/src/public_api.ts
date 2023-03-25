@@ -55,6 +55,10 @@ export * from './lib/components/button/file-button-style.type';
 export * from './lib/components/button-group/button-group.module';
 export * from './lib/components/button-group/button-group.component';
 
+export * from './lib/components/button-toggle/button-toggle.component';
+export * from './lib/components/button-toggle/button-toggle-group.component';
+export * from './lib/components/button-toggle/button-toggle.module';
+
 export * from './lib/components/calendar/calendar.module';
 export * from './lib/components/calendar/calendar.component';
 export * from './lib/components/calendar/calendar-day.interface';
