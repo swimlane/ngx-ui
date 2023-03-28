@@ -18,6 +18,7 @@ export class ButtonTogglePageComponent {
   });
 
   groupDisabled = true;
+  value = 'And';
 
   addSeason() {
     this.seasons.push('Holiday');
