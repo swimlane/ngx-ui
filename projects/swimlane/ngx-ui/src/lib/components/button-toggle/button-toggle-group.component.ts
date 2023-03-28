@@ -55,6 +55,9 @@ export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterVi
       this._value = newValue;
       this.selectButtonToggle(newValue);
     }
+
+    this.animationHolderLeft = 0;
+    this.animationHolderWidth = 0;
   }
 
   @Input()
@@ -147,6 +150,7 @@ export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterVi
     this.buttonToggles.forEach(toggle => {
       if (toggle.value !== undefined && toggle.value === incomingValue) {
         toggle.checked = true;
+        toggle.markForCheck();
       }
     });
   }

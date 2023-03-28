@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-button-toggle-group`): reset/correct animation dimensions
+
 ## 44.4.0 (2023-3-25)
 
 - Feature (`ngx-button-toggle-group`): A new component which provides ability to toggle buttons
