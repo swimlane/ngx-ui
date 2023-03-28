@@ -3,16 +3,6 @@
 <ngx-tabs>
   <ngx-tab label="Examples">
     <ngx-section sectionTitle="Button Toggle">
-      <ngx-button-toggle-group [(ngModel)]="value">
-        <ngx-button-toggle value="And"> And </ngx-button-toggle>
-        <ngx-button-toggle value="Or"> Or </ngx-button-toggle>
-      </ngx-button-toggle-group>
-
-      <ngx-button type="button" class="btn" (click)="value = value === 'And' ? 'Or' : 'And'">{{ value }}</ngx-button>
-
-      <br />
-      <br />
-
       <ngx-button-toggle-group [ngModel]="'sequential'" label="Process">
         <ngx-button-toggle value="sequential"> Sequential </ngx-button-toggle>
         <ngx-button-toggle value="parallel"> Parallel </ngx-button-toggle>
