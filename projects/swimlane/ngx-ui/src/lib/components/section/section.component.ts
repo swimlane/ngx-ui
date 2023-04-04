@@ -12,7 +12,7 @@ import {
 import { SectionHeaderComponent } from './section-header.component';
 import { SectionAppearance } from './section-appearance.enum';
 import { TogglePosition } from './section-toggle-position.enum';
-import { debounceable } from '@swimlane/ngx-ui/decorators/debounceable/debounceable.decorator';
+import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 
 let nextId = 0;
 
