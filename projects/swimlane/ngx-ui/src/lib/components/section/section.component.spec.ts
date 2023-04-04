@@ -51,8 +51,7 @@ describe('SectionComponent', () => {
 
   it('onSectionClicked collapses section and triggers toggle emit', () => {
     spyOn(component.toggle, 'emit');
-    const event = new PointerEvent('pointerdown');
-    component.onSectionClicked(event);
+    component.onSectionClicked();
 
     expect(component.sectionCollapsed).toEqual(true);
     expect(component.toggle.emit).toHaveBeenCalled();
