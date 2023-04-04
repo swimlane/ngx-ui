@@ -908,11 +908,13 @@
   </ngx-tab>
   <ngx-tab label="API">
     <h3>Table of Contents</h3>
-    <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
-    <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-select-inputs')">ngx-select Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-select-outputs')">ngx-select Outputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-select-option-inputs')">ngx-select-option Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-select-option-outputs')">ngx-select-option Outputs</a>
     <hr>
 
-    <h3 class="style-header" id="inputs">Component Inputs</h3>
+    <h3 class="style-header" id="ngx-select-inputs">ngx-select Inputs</h3>
     <table class="table documentation-table">
       <thead>
         <tr>
@@ -1155,7 +1157,7 @@
       </tbody>
     </table>
     <hr>
-    <h3 class="style-header" id="outputs">Component Outputs</h3>
+    <h3 class="style-header" id="ngx-select-outputs">ngx-select Outputs</h3>
     <table class="table documentation-table">
       <thead>
         <tr>
@@ -1187,6 +1189,119 @@
         </tr>
       </tbody>
     </table>
+    <hr>
+    <h3 class="style-header" id="ngx-select-option-inputs">ngx-select-option Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>disabled: boolean</code>
+          </th>
+          <td>Whether the component is disabled.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>hidden: boolean</code>
+          </th>
+          <td>Whether the component is hidden.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>name: string</code>
+          </th>
+          <td>The name of the component. This is what is displayed to the user.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipAlignment: AlignmentTypes = AlignmentTypes.center</code>
+          </th>
+          <td>The alignment of the component's tooltip.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipContext: any</code>
+          </th>
+          <td>The context object provided to the component's tooltip for displaying dynamic data.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipCssClass: string = ''</code>
+          </th>
+          <td>The custom CSS class to add to the component's tooltip.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipDisabled: boolean</code>
+          </th>
+          <td>Whether the component's tooltip is disabled. If the <code>tooltipTitle</code> Input is not provided, the tooltip will be disabled by default.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipPlacement: PlacementTypes = PlacementTypes.top</code>
+          </th>
+          <td>The placement of the component's tooltip.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipShowEvent: ShowTypes = ShowTypes.all</code>
+          </th>
+          <td>The setting for determining when the component's tooltip is shown. Options include <code>all</code>, <code>focus</code>, or <code>mouseover</code>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipShowTimeout: number = 100</code>
+          </th>
+          <td>The duration between when the mouse hovers on the component and the component's tooltip is shown, in milliseconds.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipTemplate: TemplateRef&lt;&#123;any&#125;&gt;</code>
+          </th>
+          <td>The custom template to provide to the component's tooltip</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipTitle: string = ''</code>
+          </th>
+          <td>The content to display in the component's tooltip.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>tooltipType: StyleTypes = StyleTypes.popover</code>
+          </th>
+          <td>The style type of the component's tooltip, either <code>popover</code> or <code>tooltip</code>.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">@Input()</code>
+            <code>value: any</code>
+          </th>
+          <td>The value of the component.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3 class="style-header" id="ngx-select-option-outputs">ngx-select-option Outputs</h3>
+    <h4>No component outputs to display.</h4>
   </ngx-tab>
 </ngx-tabs>
 

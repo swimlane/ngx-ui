@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { InViewportModule } from 'ng-in-viewport';
+import { TooltipModule } from '@swimlane/ngx-ui';
 import { SelectDropdownComponent } from './select-dropdown.component';
 import { SelectInputComponent } from './select-input.component';
 import { SelectOptionInputTemplateDirective } from './select-option-input-template.directive';
@@ -19,6 +20,6 @@ import { SelectComponent } from './select.component';
     SelectOptionInputTemplateDirective
   ],
   exports: [SelectComponent, SelectOptionDirective, SelectOptionTemplateDirective, SelectOptionInputTemplateDirective],
-  imports: [CommonModule, InViewportModule]
+  imports: [CommonModule, InViewportModule, TooltipModule]
 })
 export class SelectModule {}

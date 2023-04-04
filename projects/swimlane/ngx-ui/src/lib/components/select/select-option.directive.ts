@@ -1,5 +1,6 @@
 import { Directive, Input, TemplateRef, ContentChild } from '@angular/core';
 
+import { AlignmentTypes, PlacementTypes, ShowTypes, StyleTypes } from '@swimlane/ngx-ui';
 import { SelectOptionTemplateDirective } from './select-option-template.directive';
 import { SelectOptionInputTemplateDirective } from './select-option-input-template.directive';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
@@ -12,6 +13,17 @@ import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 export class SelectOptionDirective implements SelectDropdownOption {
   @Input() name = '';
   @Input() value: any;
+
+  @Input() tooltipAlignment: AlignmentTypes = AlignmentTypes.center;
+  @Input() tooltipContext: any;
+  @Input() tooltipCssClass = '';
+  @Input() tooltipDisabled: boolean;
+  @Input() tooltipPlacement: PlacementTypes = PlacementTypes.top;
+  @Input() tooltipShowEvent: ShowTypes = ShowTypes.all;
+  @Input() tooltipShowTimeout = 100;
+  @Input() tooltipTemplate: TemplateRef<any>;
+  @Input() tooltipTitle = '';
+  @Input() tooltipType: StyleTypes = StyleTypes.popover;
 
   @Input()
   @CoerceBooleanProperty()
