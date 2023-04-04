@@ -28,6 +28,7 @@ describe('Sections', () => {
           .should('have.attr', 'aria-expanded', 'true');
         cy.root().ngxClose();
         cy.get('.ngx-section-toggle').should('have.attr', 'aria-expanded', 'false');
+        cy.wait(100);
         cy.root().ngxOpen();
         cy.get('.ngx-section-toggle').should('have.attr', 'aria-expanded', 'true');
       });
@@ -66,6 +67,7 @@ describe('Sections', () => {
 
         cy.realPress('Space'); // Presses the button
         cy.get('@CUT').find('.ngx-section-header').should('have.class', 'section-collapsed');
+        cy.wait(100);
 
         cy.realPress('Space'); // Presses the button
         cy.get('@CUT').find('.ngx-section-header').should('not.have.class', 'section-collapsed');
