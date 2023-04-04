@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 44.4.1 (2023-4-4)
+
 - Fix (`ngx-button-toggle-group`): reset/correct animation dimensions
 - Fix (`ngx-section`): toggle with both header and button now works correctly
 
