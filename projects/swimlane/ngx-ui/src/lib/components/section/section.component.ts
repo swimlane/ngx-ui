@@ -1,17 +1,18 @@
 import {
-  Component,
-  Input,
-  ContentChild,
-  Output,
-  EventEmitter,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
-  HostBinding
+  Component,
+  ContentChild,
+  EventEmitter,
+  HostBinding,
+  Input,
+  Output,
+  ViewEncapsulation
 } from '@angular/core';
 
 import { SectionHeaderComponent } from './section-header.component';
 import { SectionAppearance } from './section-appearance.enum';
 import { TogglePosition } from './section-toggle-position.enum';
+import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
 
 let nextId = 0;
 
@@ -53,6 +54,7 @@ export class SectionComponent {
 
   readonly TogglePosition = TogglePosition;
 
+  @debounceable(100, true)
   onSectionClicked(): void {
     this.sectionCollapsed = !this.sectionCollapsed;
     this.toggle.emit(this.sectionCollapsed);
