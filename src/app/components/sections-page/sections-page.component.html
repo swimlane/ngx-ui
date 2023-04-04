@@ -12,7 +12,7 @@
       </ngx-section>
       <app-prism>
     <![CDATA[<ngx-section
-      id="attack-details" 
+      id="attack-details"
       class="shadow"
       sectionTitle="Attack Details"
     >
@@ -20,7 +20,7 @@
     </ngx-section>]]>
       </app-prism>
     </ngx-section>
-    
+
     <ngx-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
       <ngx-section class="shadow">
         <ngx-section-header>
@@ -43,7 +43,7 @@
     </ngx-section>]]>
         </app-prism>
     </ngx-section>
-    
+
     <ngx-section class="shadow" [sectionTitle]="'Custom Template and Shadow'">
       <ngx-section class="shadow" [sectionTitle]="'Attack Details'" [sectionCollapsible]="false">
         Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
@@ -62,7 +62,7 @@
     </ngx-section>]]>
         </app-prism>
     </ngx-section>
-    
+
     <ngx-section class="shadow" [sectionTitle]="'No Title and Shadow'">
       <ngx-section class="shadow">
         Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
@@ -77,7 +77,7 @@
     </ngx-section>]]>
         </app-prism>
     </ngx-section>
-    
+
     <ngx-section [sectionTitle]="'Outline'">
       <ngx-section [sectionTitle]="'Attack Details'" appearance="outline">
         Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
@@ -95,7 +95,7 @@
     </ngx-section>]]>
         </app-prism>
     </ngx-section>
-    
+
     <ngx-section [sectionTitle]="'Outline and Toggle Right'">
       <ngx-section [sectionTitle]="'Attack Details'" appearance="outline" togglePosition="right">
         Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
@@ -114,7 +114,7 @@
     </ngx-section>]]>
         </app-prism>
     </ngx-section>
-    
+
     <ngx-section [sectionTitle]="'Light'">
       <ngx-section [sectionTitle]="'Light'" appearance="light">
         Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
@@ -132,7 +132,7 @@
     </ngx-section>]]>
         </app-prism>
     </ngx-section>
-    
+
     <ngx-section [sectionTitle]="'Hide toggle use Header'">
       <ngx-section sectionTitle="Attack Details" togglePosition="none" [headerToggle]="true">
         Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
@@ -149,6 +149,24 @@
       Some Content
     </ngx-section>]]>
         </app-prism>
+    </ngx-section>
+
+    <ngx-section [sectionTitle]="'Hide toggle use Header'">
+      <ngx-section sectionTitle="Multiple toggle triggers" togglePosition="right" [headerToggle]="true">
+        Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
+        bytes ban headers
+        gnu brute force. All your base are belong to us semaphore exception giga highjack system mailbomb eaten by a
+        grue
+        error fopen null. James T. Kirk firewall recursively hello world man pages protected. uwu
+      </ngx-section>
+      <app-prism>
+        <![CDATA[<ngx-section
+        sectionTitle="Attack Details"
+        togglePosition="none"
+        [headerToggle]="true">
+        Some Content
+      </ngx-section>]]>
+      </app-prism>
     </ngx-section>
   </ngx-tab>
   <ngx-tab label="API">
