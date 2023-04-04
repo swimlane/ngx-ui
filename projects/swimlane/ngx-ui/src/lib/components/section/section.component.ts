@@ -53,7 +53,8 @@ export class SectionComponent {
 
   readonly TogglePosition = TogglePosition;
 
-  onSectionClicked(): void {
+  onSectionClicked(event: PointerEvent): void {
+    event.stopPropagation();
     this.sectionCollapsed = !this.sectionCollapsed;
     this.toggle.emit(this.sectionCollapsed);
   }

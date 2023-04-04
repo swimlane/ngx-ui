@@ -7,9 +7,9 @@
     [class.header-toggle]="headerToggle"
     class="ngx-section-header"
     [attr.tabindex]="headerToggle && 0"
-    (keyup.space)="headerToggle && sectionCollapsible && onSectionClicked()"
-    (keyup.enter)="headerToggle && sectionCollapsible && onSectionClicked()"
-    (click)="headerToggle && sectionCollapsible && onSectionClicked()"
+    (keyup.space)="headerToggle && sectionCollapsible && onSectionClicked($event)"
+    (keyup.enter)="headerToggle && sectionCollapsible && onSectionClicked($event)"
+    (click)="headerToggle && sectionCollapsible && onSectionClicked($event)"
   >
     <button
       *ngIf="sectionCollapsible && togglePosition !== TogglePosition.None"
@@ -18,10 +18,10 @@
       title="Toggle Content Visibility"
       [attr.aria-controls]="id"
       [attr.aria-expanded]="!sectionCollapsed"
-      (keyup.space)="sectionCollapsible && onSectionClicked()"
-      (click)="sectionCollapsible && onSectionClicked()"
+      (keyup.space)="sectionCollapsible && onSectionClicked($event)"
+      (click)="sectionCollapsible && onSectionClicked($event)"
     >
-      <ngx-icon 
+      <ngx-icon
         [fontIcon]="sectionCollapsed ? 'chevron-bold-right' : 'chevron-bold-down'">
       </ngx-icon>
     </button>
