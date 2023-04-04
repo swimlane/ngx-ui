@@ -1,32 +1,18 @@
-import { Directive, Input, TemplateRef, ContentChild } from '@angular/core';
+import { Directive, Input, TemplateRef, ContentChild, OnChanges, SimpleChanges } from '@angular/core';
 
-import { AlignmentTypes } from '../../utils/position/alignment-types.enum';
-import { PlacementTypes } from '../../utils/position/placement-type.enum';
-import { ShowTypes } from '../tooltip/show-types.enum';
-import { StyleTypes } from '../tooltip/style-types.enum';
 import { SelectOptionTemplateDirective } from './select-option-template.directive';
 import { SelectOptionInputTemplateDirective } from './select-option-input-template.directive';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
-
+import { TooltipConfig, DEFAULT_TOOLTIP_CONFIG } from '../tooltip/tooltip-config.interface';
 @Directive({
   exportAs: 'ngxSelectOption',
   selector: 'ngx-select-option'
 })
-export class SelectOptionDirective implements SelectDropdownOption {
+export class SelectOptionDirective implements SelectDropdownOption, OnChanges {
   @Input() name = '';
   @Input() value: any;
-
-  @Input() tooltipAlignment: AlignmentTypes = AlignmentTypes.center;
-  @Input() tooltipContext: any;
-  @Input() tooltipCssClass = '';
-  @Input() tooltipDisabled: boolean;
-  @Input() tooltipPlacement: PlacementTypes = PlacementTypes.top;
-  @Input() tooltipShowEvent: ShowTypes = ShowTypes.all;
-  @Input() tooltipShowTimeout = 100;
-  @Input() tooltipTemplate: TemplateRef<any>;
-  @Input() tooltipTitle = '';
-  @Input() tooltipType: StyleTypes = StyleTypes.popover;
+  @Input() tooltipConfig: TooltipConfig = DEFAULT_TOOLTIP_CONFIG;
 
   @Input()
   @CoerceBooleanProperty()
@@ -56,5 +42,12 @@ export class SelectOptionDirective implements SelectDropdownOption {
 
   get inputTemplate(): TemplateRef<any> {
     return this._inputTemplateInput || this._inputTemplateQuery;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.tooltipConfig?.currentValue) {
+      // Use default values then override with provided custom options
+      this.tooltipConfig = { ...DEFAULT_TOOLTIP_CONFIG, ...changes.tooltipConfig.currentValue };
+    }
   }
 }

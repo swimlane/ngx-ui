@@ -411,6 +411,77 @@
     </ng-template>
     <!-- `allowAdditionsText` and `selectCaret` both accept strings or template references -->]]>
     </app-prism>
+
+    <br />
+    <br />
+    <br />
+
+    <h4>Select Options with Tooltip</h4>
+    <ngx-select [filterable]="false" [label]="'Attack Type'" [required]="true" data-cy="attackTypeRequired">
+      <ngx-select-option 
+        name="Breach" 
+        value="breach" 
+        [tooltipConfig]="{
+          tooltipPlacement: 'top',
+          tooltipTitle: 'Breach tooltip on top',
+          tooltipType: 'tooltip'
+        }"
+      ></ngx-select-option>
+      <ngx-select-option 
+        name="DDOS" 
+        value="ddos"
+        [tooltipConfig]="{
+          tooltipPlacement: 'right',
+          tooltipTitle: 'DDOS tooltip on right',
+          tooltipType: 'tooltip'
+        }"
+      ></ngx-select-option>
+      <ngx-select-option 
+        name="Physical" 
+        value="physical"
+        [tooltipConfig]="{
+          tooltipPlacement: 'bottom',
+          tooltipTitle: 'Physical tooltip on bottom',
+          tooltipType: 'tooltip'
+        }"
+      ></ngx-select-option>
+    </ngx-select>
+    <app-prism>
+      <![CDATA[<ngx-select 
+        [filterable]="false" 
+        [label]="'Attack Type'" 
+        [required]="true" 
+        data-cy="attackTypeRequired"
+      >
+        <ngx-select-option 
+          name="Breach" 
+          value="breach" 
+          [tooltipConfig]="{
+            tooltipPlacement: 'top',
+            tooltipTitle: 'Breach tooltip on top',
+            tooltipType: 'tooltip'
+          }"
+        ></ngx-select-option>
+        <ngx-select-option 
+          name="DDOS" 
+          value="ddos"
+          [tooltipConfig]="{
+            tooltipPlacement: 'right',
+            tooltipTitle: 'DDOS tooltip on right',
+            tooltipType: 'tooltip'
+          }"
+        ></ngx-select-option>
+        <ngx-select-option 
+          name="Physical" 
+          value="physical"
+          [tooltipConfig]="{
+            tooltipPlacement: 'bottom',
+            tooltipTitle: 'Physical tooltip on bottom',
+            tooltipType: 'tooltip'
+          }"
+        ></ngx-select-option>
+      </ngx-select>]]>
+    </app-prism>
     </ngx-section>
     
     <ngx-section class="shadow" sectionTitle="Form Controls">
@@ -1223,72 +1294,9 @@
         <tr>
           <th>
             <code class="component-type">@Input()</code>
-            <code>tooltipAlignment: AlignmentTypes = AlignmentTypes.center</code>
+            <code>tooltipConfig: TooltipConfig = DEFAULT_TOOLTIP_CONFIG</code>
           </th>
-          <td>The alignment of the component's tooltip.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">@Input()</code>
-            <code>tooltipContext: any</code>
-          </th>
-          <td>The context object provided to the component's tooltip for displaying dynamic data.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">@Input()</code>
-            <code>tooltipCssClass: string = ''</code>
-          </th>
-          <td>The custom CSS class to add to the component's tooltip.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">@Input()</code>
-            <code>tooltipDisabled: boolean</code>
-          </th>
-          <td>Whether the component's tooltip is disabled. If the <code>tooltipTitle</code> Input is not provided, the tooltip will be disabled by default.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">@Input()</code>
-            <code>tooltipPlacement: PlacementTypes = PlacementTypes.top</code>
-          </th>
-          <td>The placement of the component's tooltip.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">@Input()</code>
-            <code>tooltipShowEvent: ShowTypes = ShowTypes.all</code>
-          </th>
-          <td>The setting for determining when the component's tooltip is shown. Options include <code>all</code>, <code>focus</code>, or <code>mouseover</code>.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">@Input()</code>
-            <code>tooltipShowTimeout: number = 100</code>
-          </th>
-          <td>The duration between when the mouse hovers on the component and the component's tooltip is shown, in milliseconds.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">@Input()</code>
-            <code>tooltipTemplate: TemplateRef&lt;&#123;any&#125;&gt;</code>
-          </th>
-          <td>The custom template to provide to the component's tooltip</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">@Input()</code>
-            <code>tooltipTitle: string = ''</code>
-          </th>
-          <td>The content to display in the component's tooltip.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">@Input()</code>
-            <code>tooltipType: StyleTypes = StyleTypes.popover</code>
-          </th>
-          <td>The style type of the component's tooltip, either <code>popover</code> or <code>tooltip</code>.</td>
+          <td>The tooltip configuration object required by the component to display a tooltip. See Examples tab.</td>
         </tr>
         <tr>
           <th>

@@ -238,6 +238,7 @@ export * from './lib/components/tooltip/tooltip.directive';
 export * from './lib/components/tooltip/tooltip.service';
 export * from './lib/components/tooltip/style-types.enum';
 export * from './lib/components/tooltip/show-types.enum';
+export * from './lib/components/tooltip/tooltip-config.interface';
 
 export * from './lib/components/tree/tree.module';
 export * from './lib/components/tree/tree.component';
