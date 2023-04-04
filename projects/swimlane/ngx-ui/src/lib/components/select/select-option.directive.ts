@@ -1,6 +1,9 @@
 import { Directive, Input, TemplateRef, ContentChild } from '@angular/core';
 
-import { AlignmentTypes, PlacementTypes, ShowTypes, StyleTypes } from '@swimlane/ngx-ui';
+import { AlignmentTypes } from '../../utils/position/alignment-types.enum';
+import { PlacementTypes } from '../../utils/position/placement-type.enum';
+import { ShowTypes } from '../tooltip/show-types.enum';
+import { StyleTypes } from '../tooltip/style-types.enum';
 import { SelectOptionTemplateDirective } from './select-option-template.directive';
 import { SelectOptionInputTemplateDirective } from './select-option-input-template.directive';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
