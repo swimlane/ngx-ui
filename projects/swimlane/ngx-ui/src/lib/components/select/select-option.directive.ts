@@ -1,17 +1,18 @@
-import { Directive, Input, TemplateRef, ContentChild } from '@angular/core';
+import { Directive, Input, TemplateRef, ContentChild, OnChanges, SimpleChanges } from '@angular/core';
 
 import { SelectOptionTemplateDirective } from './select-option-template.directive';
 import { SelectOptionInputTemplateDirective } from './select-option-input-template.directive';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
-
+import { TooltipConfig, DEFAULT_TOOLTIP_CONFIG } from '../tooltip/tooltip-config.interface';
 @Directive({
   exportAs: 'ngxSelectOption',
   selector: 'ngx-select-option'
 })
-export class SelectOptionDirective implements SelectDropdownOption {
+export class SelectOptionDirective implements SelectDropdownOption, OnChanges {
   @Input() name = '';
   @Input() value: any;
+  @Input() tooltipConfig: TooltipConfig = DEFAULT_TOOLTIP_CONFIG;
 
   @Input()
   @CoerceBooleanProperty()
@@ -41,5 +42,12 @@ export class SelectOptionDirective implements SelectDropdownOption {
 
   get inputTemplate(): TemplateRef<any> {
     return this._inputTemplateInput || this._inputTemplateQuery;
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.tooltipConfig?.currentValue) {
+      // Use default values then override with provided custom options
+      this.tooltipConfig = { ...DEFAULT_TOOLTIP_CONFIG, ...changes.tooltipConfig.currentValue };
+    }
   }
 }
