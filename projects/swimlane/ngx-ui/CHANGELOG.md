@@ -2,11 +2,14 @@
 
 ## HEAD (unreleased)
 
+## 44.5.0 (2023-4-6)
+
+- Enhancement (`ngx-select-option`): added support for displaying tooltips
+
 ## 44.4.1 (2023-4-4)
 
 - Fix (`ngx-button-toggle-group`): reset/correct animation dimensions
 - Fix (`ngx-section`): toggle with both header and button now works correctly
-- Enhancement (`ngx-select-option`): added support for displaying tooltips
 
 ## 44.4.0 (2023-3-25)
 
