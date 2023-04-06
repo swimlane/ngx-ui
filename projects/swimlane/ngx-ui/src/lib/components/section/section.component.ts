@@ -54,7 +54,7 @@ export class SectionComponent {
 
   readonly TogglePosition = TogglePosition;
 
-  @debounceable(100, true)
+  @debounceable(75, true)
   onSectionClicked(): void {
     this.sectionCollapsed = !this.sectionCollapsed;
     this.toggle.emit(this.sectionCollapsed);
