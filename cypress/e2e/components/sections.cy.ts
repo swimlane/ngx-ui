@@ -13,6 +13,7 @@ describe('Sections', () => {
 
     afterEach(() => {
       cy.get('@CUT').ngxOpen();
+      cy.wait(100);
     });
 
     it('has no detectable a11y violations on load', () => {
@@ -39,6 +40,7 @@ describe('Sections', () => {
         cy.get('.ngx-section-header').first().should('not.have.class', 'section-collapsed');
         cy.get('.ngx-section-content').first().should('exist');
         cy.get('.ngx-section-toggle').first().click();
+        cy.wait(100);
         cy.get('.ngx-section-header').first().should('have.class', 'section-collapsed');
         cy.get('.ngx-section-content').should('not.exist');
       });
