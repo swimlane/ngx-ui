@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-button-toggle-group`): change should be detected upon new incoming value
+
 ## 44.5.0 (2023-4-6)
 
 - Enhancement (`ngx-select-option`): added support for displaying tooltips

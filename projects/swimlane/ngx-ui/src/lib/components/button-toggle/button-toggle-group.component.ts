@@ -51,13 +51,13 @@ export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterVi
     return this._value;
   }
   set value(newValue: any) {
-    if (newValue !== this._value) {
-      this._value = newValue;
-      this.selectButtonToggle(newValue);
-    }
+    this._value = newValue;
+    this.selectButtonToggle(newValue);
 
     this.animationHolderLeft = 0;
     this.animationHolderWidth = 0;
+
+    this.cdr.markForCheck();
   }
 
   @Input()
