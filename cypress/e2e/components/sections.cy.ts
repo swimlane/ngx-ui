@@ -13,6 +13,7 @@ describe('Sections', () => {
 
     afterEach(() => {
       cy.get('@CUT').ngxOpen();
+      cy.wait(100);
     });
 
     it('has no detectable a11y violations on load', () => {
@@ -28,6 +29,7 @@ describe('Sections', () => {
           .should('have.attr', 'aria-expanded', 'true');
         cy.root().ngxClose();
         cy.get('.ngx-section-toggle').should('have.attr', 'aria-expanded', 'false');
+        cy.wait(100);
         cy.root().ngxOpen();
         cy.get('.ngx-section-toggle').should('have.attr', 'aria-expanded', 'true');
       });
@@ -38,6 +40,7 @@ describe('Sections', () => {
         cy.get('.ngx-section-header').first().should('not.have.class', 'section-collapsed');
         cy.get('.ngx-section-content').first().should('exist');
         cy.get('.ngx-section-toggle').first().click();
+        cy.wait(100);
         cy.get('.ngx-section-header').first().should('have.class', 'section-collapsed');
         cy.get('.ngx-section-content').should('not.exist');
       });
@@ -66,6 +69,7 @@ describe('Sections', () => {
 
         cy.realPress('Space'); // Presses the button
         cy.get('@CUT').find('.ngx-section-header').should('have.class', 'section-collapsed');
+        cy.wait(100);
 
         cy.realPress('Space'); // Presses the button
         cy.get('@CUT').find('.ngx-section-header').should('not.have.class', 'section-collapsed');
