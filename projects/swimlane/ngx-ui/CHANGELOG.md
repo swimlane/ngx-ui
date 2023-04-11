@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 44.5.1 (2023-4-11)
+
 - Fix (`ngx-button-toggle-group`): change should be detected upon new incoming value
 
 ## 44.5.0 (2023-4-6)
