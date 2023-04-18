@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-json-object-node-flat`): Remove pre-check for schema property when updating a property name. `schemaBuilderMode` determines which schema to update, `schemaRef` or `schema`
+
 ## 44.5.1 (2023-4-11)
 
 - Fix (`ngx-button-toggle-group`): change should be detected upon new incoming value
