@@ -130,6 +130,7 @@ export class SelectDropdownComponent implements AfterViewInit {
         this.filterInput.nativeElement.focus();
       }, 50);
     } else {
+      // focusIndex has to be set to 0, because arrows won't work if it's set to -1.
       this.focusIndex = 0;
     }
   }
