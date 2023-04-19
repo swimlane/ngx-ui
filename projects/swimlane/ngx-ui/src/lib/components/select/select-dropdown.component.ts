@@ -129,6 +129,8 @@ export class SelectDropdownComponent implements AfterViewInit {
       setTimeout(() => {
         this.filterInput.nativeElement.focus();
       }, 50);
+    } else {
+      this.focusIndex = 0;
     }
   }
 
