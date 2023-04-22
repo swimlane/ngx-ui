@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-select-dropdown`): focus should be on the items of dropdown and should be navigatable through keyboard arrows
+
 ## 44.5.1 (2023-4-11)
 
 - Fix (`ngx-button-toggle-group`): change should be detected upon new incoming value
