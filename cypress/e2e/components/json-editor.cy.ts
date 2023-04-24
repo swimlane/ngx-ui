@@ -460,4 +460,93 @@ describe('Json Editor', () => {
       });
     });
   });
+
+  describe('Schema Builder Mode', () => {
+    beforeEach(() => {
+      cy.get('ngx-section').eq(3).as('schemaBuilderMode');
+    });
+    it('should have data', () => {
+      cy.get('@schemaBuilderMode').within(() => {
+        cy.get('header h1').should('have.text', 'Schema Builder Mode');
+      });
+    });
+
+    it('should allow adding a property', () => {
+      cy.get('@schemaBuilderMode').within(() => {
+        cy.get('ngx-json-editor-flat').as('jsonEditorFlat');
+        cy.get('@jsonEditorFlat').within(() => {
+          cy.get('.add-button')
+            .last()
+            .within(() => {
+              cy.get('ngx-dropdown').as('addPropDropdown').scrollIntoView().should('be.visible');
+              cy.get('@addPropDropdown').find('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
+              cy.get('@addPropDropdown').find('ngx-dropdown-menu').should('exist');
+              cy.contains('li', 'Object').click();
+            });
+        });
+      });
+    });
+
+    it('should allow modifying the property title', () => {
+      cy.get('ngx-property-config').as('propertyConfig');
+      cy.get('@propertyConfig').within(() => {
+        cy.get('div.header>span').should('have.text', 'Property Configuration');
+        cy.get('ngx-input').first().should('exist').ngxFill('obj_1');
+        cy.get('button').contains('Apply').click();
+      });
+      cy.get('@schemaBuilderMode').within(() => {
+        cy.get('ngx-json-editor-flat').as('jsonEditorFlat');
+        cy.get('@jsonEditorFlat').within(() => {
+          cy.get('.info-name>span').first().should('contain.text', 'obj_1');
+        });
+      });
+    });
+
+    it('should allow adding a nested property', () => {
+      cy.get('@schemaBuilderMode').within(() => {
+        cy.get('ngx-json-editor-flat').first().as('jsonEditorFlat');
+        cy.get('@jsonEditorFlat').within(() => {
+          cy.get('.add-button')
+            .first()
+            .within(() => {
+              cy.get('ngx-dropdown').as('addPropDropdown').scrollIntoView().should('be.visible');
+              cy.get('@addPropDropdown').find('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
+              cy.get('@addPropDropdown').find('ngx-dropdown-menu').should('exist');
+              cy.contains('li', 'String').click();
+            });
+        });
+      });
+    });
+
+    it('should allow modifying the nested property title', () => {
+      cy.get('ngx-property-config').as('propertyConfig');
+      cy.get('@propertyConfig').within(() => {
+        cy.get('div.header>span').should('have.text', 'Property Configuration');
+        cy.get('ngx-input').first().should('exist').ngxFill('str_1');
+        cy.get('button').contains('Apply').click();
+      });
+      cy.get('@schemaBuilderMode').within(() => {
+        cy.get('ngx-json-editor-flat').as('jsonEditorFlat');
+        cy.get('@jsonEditorFlat').within(() => {
+          cy.get('.info-name>span').last().should('contain.text', 'str_1');
+        });
+      });
+    });
+
+    it('should allow deleting nested a property', () => {
+      cy.get('@schemaBuilderMode').within(() => {
+        cy.get('.node-options')
+          .last()
+          .should('be.visible')
+          .within(() => {
+            cy.get('ngx-dropdown-toggle').should('be.visible').click();
+            cy.contains('li', 'Remove').click();
+          });
+        cy.get('ngx-json-editor-flat').as('jsonEditorFlat');
+        cy.get('@jsonEditorFlat').within(() => {
+          cy.get('.info-name>span').last().should('not.contain.text', 'str_1');
+        });
+      });
+    });
+  });
 });
