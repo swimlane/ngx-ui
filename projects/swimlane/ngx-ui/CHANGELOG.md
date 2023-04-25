@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-select-dropdown`): focus should be on the items of dropdown and should be navigatable through keyboard arrows
+
 ## 44.5.2 (2023-4-19)
 
 - Fix (`ngx-json-object-node-flat`): Remove pre-check for schema property when updating a property name. `schemaBuilderMode` determines which schema to update, `schemaRef` or `schema`
