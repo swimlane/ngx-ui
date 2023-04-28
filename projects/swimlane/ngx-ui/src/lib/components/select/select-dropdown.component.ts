@@ -250,6 +250,12 @@ export class SelectDropdownComponent implements AfterViewInit {
     }
   }
 
+  //  tab has to focus on the input field of filterable dropdown as earlier it was losing focus and selecting next dropdown
+  onTabKeyDown(event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   focusOn(index: number): void {
     if (index < 0) index = this.options.length + index;
     this.focusIndex = index;
