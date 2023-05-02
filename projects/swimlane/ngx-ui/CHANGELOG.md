@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Fix (`ngx-select-dropdown`): When the filterable select input has focus, tab event should not open the next popover if the next control is ngx-select.
+
 ## 44.5.3 (2023-4-25)
 
 - Fix (`ngx-select-dropdown`): focus should be on the items of dropdown and should be navigable through keyboard arrows

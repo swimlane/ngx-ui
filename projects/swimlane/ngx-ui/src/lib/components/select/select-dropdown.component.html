@@ -12,6 +12,7 @@
       [placeholder]="filterPlaceholder"
       (keyup)="onInputKeyUp($event)"
       (keydown.shift.Enter)="onShiftEnterKeyDown($event)"
+      (keydown.tab)="onTabKeyDown($event)"
       (change)="$event.stopPropagation()"
     />
     <i [hidden]="!filterInput.value" class="ngx-icon ngx-x" (click)="clearFilter(filterInput)"></i>

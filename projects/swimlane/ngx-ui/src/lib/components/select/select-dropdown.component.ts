@@ -250,6 +250,12 @@ export class SelectDropdownComponent implements AfterViewInit {
     }
   }
 
+  //  When the filterable select input has focus, tab event opens the next popover if the next control is ngx-select.
+  onTabKeyDown(event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
   focusOn(index: number): void {
     if (index < 0) index = this.options.length + index;
     this.focusIndex = index;
