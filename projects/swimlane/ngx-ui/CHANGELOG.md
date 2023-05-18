@@ -1,6 +1,8 @@
 # CHANGELOG
 
-- Feature (`ngx-select-dropdown`): A new event is triggered when the X button is pressed to clear the filter query.
+## 44.6.0 (2023-5-18)
+
+- Enhancement (`ngx-select-dropdown`): A new event is triggered when the X button is pressed to clear the filter query.
 
 ## 44.5.4 (2023-5-2)
 
