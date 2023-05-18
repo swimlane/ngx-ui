@@ -99,6 +99,7 @@ export class SelectDropdownComponent implements AfterViewInit {
   @Output() keyboardSelection = new EventEmitter<SelectDropdownOption>();
   @Output() keyboardDeselection = new EventEmitter<SelectDropdownOption>();
   @Output() close = new EventEmitter<boolean | undefined>();
+  @Output() clearQueryFilter = new EventEmitter<void>();
 
   @ViewChild('filterInput')
   readonly filterInput?: ElementRef<HTMLInputElement>;
@@ -158,6 +159,7 @@ export class SelectDropdownComponent implements AfterViewInit {
     this.filterQuery = '';
     this.updateFilterQueryIsInOptions();
     this.cdr.markForCheck();
+    this.clearQueryFilter.emit();
   }
 
   onInputKeyUp(event: KeyboardEvent): void {

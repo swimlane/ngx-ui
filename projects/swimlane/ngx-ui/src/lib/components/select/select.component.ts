@@ -168,6 +168,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   @Output() change = new EventEmitter<any[]>();
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
   @Output() toggle = new EventEmitter<boolean>();
+  @Output() clearQueryFilter = new EventEmitter<void>();
 
   @ViewChild(SelectInputComponent, { static: true })
   readonly inputComponent: SelectInputComponent;
