@@ -47,6 +47,7 @@
     [options]="options"
     (keyup)="keyup.emit($event)"
     (close)="onClose(true)"
+    (clearQueryFilter)="clearQueryFilter.emit()"
     (selection)="onDropdownSelection($event)"
     (deselection)="onDropdownDeselection($event)"
     (keyboardSelection)="onDropdownSelection($event, false)"

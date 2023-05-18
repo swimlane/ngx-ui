@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Feature (`ngx-select-dropdown`): A new event is triggered when the X button is pressed to clear the filter query.
+
 ## 44.5.4 (2023-5-2)
 
 - Fix (`ngx-select-dropdown`): When the filterable select input has focus, tab event should not open the next popover if the next control is ngx-select.
