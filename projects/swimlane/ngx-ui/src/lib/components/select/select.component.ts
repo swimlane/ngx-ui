@@ -89,7 +89,7 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   @Input() selectCaret: string;
   @Input() requiredIndicator: string | boolean = '*';
 
-  @Input() options: SelectDropdownOption[] = [];
+  @Input() options: SelectDropdownOption[];
   @Input() identifier: string;
   @Input() appearance = Appearance.Legacy;
 
@@ -191,15 +191,10 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   }
 
   set optionTemplates(val: QueryList<SelectOptionDirective>) {
+    if (!this._optionTemplates && this.options) return;
+
     this._optionTemplates = val;
-
-    if (val) {
-      const arr = val.toArray();
-
-      if (arr.length) {
-        this.options = arr;
-      }
-    }
+    this.options = val.toArray();
 
     this._cdr.markForCheck();
   }

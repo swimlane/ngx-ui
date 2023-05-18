@@ -33,6 +33,8 @@
 
 - Fix (`ngx-input`): textarea autosize directive respects the initial value and adjusts the height accordingly
 
+- Fix #945: `ngx-select` doesn't react to zero option
+
 ## 44.3.0 (2023-3-21)
 
 - Feature (`ngx-large-format-dialog-content`): now accepts a `removeImageBackground` input to allow the removal of the default, white background
