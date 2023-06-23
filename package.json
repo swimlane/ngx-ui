@@ -56,7 +56,7 @@
     "d3-color": "3.1.0",
     "moment-timezone": "0.5.37",
     "mousetrap": "^1.6.5",
-    "ng-in-viewport": "^6.1.5",
+    "ng-in-viewport": "^15.0.0",
     "normalize.css": "^8.0.0",
     "prismjs": "1.29.0",
     "resize-observer-polyfill": "^1.5.1",

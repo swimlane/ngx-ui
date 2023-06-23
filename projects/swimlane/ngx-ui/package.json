@@ -34,7 +34,7 @@
     "json-schema": "*",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
-    "ng-in-viewport": "^6.1.5",
+    "ng-in-viewport": "^6.1.5 || ^15.0.0",
     "ngx-autosize-input": "^2.3.7",
     "rxjs": "^6.6.7|| ^7.4.0",
     "zone.js": "^0.11.4"
