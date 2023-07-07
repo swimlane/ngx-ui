@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 45.0.0 (2023-7-7)
+
 - Breaking style changes (`ngx-card`): Background change from gradient to solid color. Removing left border from ngx-section.
 
 ## 44.6.0 (2023-5-18)
