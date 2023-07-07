@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## HEAD (unreleased)
+
+- Breaking style changes (`ngx-card`): Background change from gradient to solid color. Removing left border from ngx-section.
+
 ## 44.6.0 (2023-5-18)
 
 - Enhancement (`ngx-select-dropdown`): A new event is triggered when the X button is pressed to clear the filter query.

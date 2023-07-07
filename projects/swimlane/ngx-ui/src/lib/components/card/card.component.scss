@@ -4,6 +4,7 @@ $color-accent-grey: linear-gradient(180deg, $color-blue-grey-100 0%, $color-blue
 $card-accent-thickness: 4px;
 
 $color-background-grey: linear-gradient(180deg, $color-blue-grey-750 0%, $color-blue-grey-800 100%);
+$color-flat-background: $color-blue-grey-800;
 
 $card-outline-border-thickness: 3px;
 
@@ -29,7 +30,7 @@ $card-vertical-gutter: 20px;
 
 .ngx-card {
   display: flex;
-  background: $color-background-grey;
+  background: $color-flat-background;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   border-radius: 2px;
 
@@ -177,7 +178,6 @@ $card-vertical-gutter: 20px;
     justify-content: center;
     height: 100%;
     padding: 0 $card-horizontal-gutter;
-    border-left: 1px #313847 solid;
 
     &--description {
       flex-basis: 28%;
