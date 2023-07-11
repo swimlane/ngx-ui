@@ -18,10 +18,7 @@
             [propertyName]="arrayName ? arrayName : schema?.propertyName"
             (propertyNameChange)="updatePropertyName(schema.id, $event)"
             [title]="schema?.title || label || (arrayItem ? 'Items' : schema?.propertyName)"
-            [type]="
-              ((schema?.format && schema?.format !== 'binary' ? schema?.format : schema?.type) | titlecase) +
-              (schema?.enum?.length ? ' + Enum' : '')
-            "
+            [type]="((schema?.format && schema?.format !== 'binary' ? schema?.format : schema?.type) | titlecase) + (schema?.enum?.length ? ' + Enum' : '')"
             [description]="schema?.description"
             [examples]="schema?.examples"
             [required]="required"
@@ -31,19 +28,7 @@
 
         <div *ngIf="!schemaBuilderMode" class="node-input">
           <ng-container *ngIf="inputControlTemplate">
-            <ng-container
-              *ngTemplateOutlet="
-                inputControlTemplate;
-                context: {
-                  nodeModel: model,
-                  nodeSchema: schema,
-                  nodePath: path,
-                  nodeChangeValue$: nodeChangeValue$,
-                  nodeContext: contextItem,
-                  nodeExpandTrigger$: nodeExpandTrigger$
-                }
-              "
-            ></ng-container>
+            <ng-container *ngTemplateOutlet="inputControlTemplate; context: { nodeModel: model, nodeSchema: schema, nodePath: path, nodeChangeValue$: nodeChangeValue$, nodeContext: contextItem, nodeExpandTrigger$: nodeExpandTrigger$}"></ng-container>
           </ng-container>
           <ng-container *ngIf="!inputControlTemplate">
             <!-- Number | Integer -->
@@ -191,6 +176,7 @@
               <span *ngFor="let error of ownErrors">{{ error.message }}</span>
             </div>
           </ng-container>
+          
         </div>
 
         <div *ngIf="schemaBuilderMode" class="node-constrains">
