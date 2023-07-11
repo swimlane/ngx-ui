@@ -12,6 +12,7 @@ import {
   OnDestroy
 } from '@angular/core';
 import { JsonEditorNode } from '../../json-editor-node';
+import { DateFormatPipe } from 'ngx-moment';
 
 import { DialogService } from '../../../dialog/dialog.service';
 import { JSONEditorSchema, JSONEditorTemplateProperty, JsonSchemaDataType } from '../../json-editor.helper';
@@ -23,6 +24,7 @@ import { JSONSchema7TypeName } from 'json-schema';
   selector: 'ngx-json-editor-node-flat',
   templateUrl: './json-editor-node-flat.component.html',
   styleUrls: ['./json-editor-node-flat.component.scss'],
+  providers: [DateFormatPipe],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -71,7 +73,7 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
   nodeExpandTrigger$ = new Subject<boolean>();
   private readonly unsub$: Subject<void> = new Subject();
 
-  constructor(public dialogMngr: DialogService) {
+  constructor(public dialogMngr: DialogService, private dateFormat: DateFormatPipe) {
     super(dialogMngr);
   }
 
@@ -111,5 +113,9 @@ export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnIni
     if (this.expanded !== value) {
       this.expanded = value;
     }
+  }
+
+  updateDateTime(value: any): void {
+    this.updateDateTimeModel(value, this.dateFormat);
   }
 }

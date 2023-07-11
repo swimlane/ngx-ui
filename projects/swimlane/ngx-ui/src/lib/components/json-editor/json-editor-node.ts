@@ -14,6 +14,9 @@ import {
 import { createValueForSchema, inferType, JSONEditorSchema } from './json-editor.helper';
 import { DialogComponent } from '../dialog/dialog.component';
 import { DialogService } from '../dialog/dialog.service';
+import { DateFormatPipe } from 'ngx-moment';
+
+const DATETIME_FORMAT = 'YYYY-MM-DD[T]HH:mm:ss';
 
 @Directive()
 export class JsonEditorNode implements OnInit, OnChanges {
@@ -175,6 +178,10 @@ export class JsonEditorNode implements OnInit, OnChanges {
   updateModel(value: any): void {
     this.model = value;
     this.modelChange.emit(this.model);
+  }
+
+  updateDateTimeModel(value: any, format: DateFormatPipe): void {
+    this.updateModel(format.transform(value, DATETIME_FORMAT));
   }
 
   /**
