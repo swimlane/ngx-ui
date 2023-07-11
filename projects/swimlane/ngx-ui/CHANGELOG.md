@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 45.0.1 (2023-7-11)
+
+- Fix (`json-editor`): When we added a datetime input you weren't able set a value because the model value didn't have the correct format.
+
 ## 45.0.0 (2023-7-7)
 
 - Breaking style changes (`ngx-card`): Background change from gradient to solid color. Removing left border from ngx-section.
