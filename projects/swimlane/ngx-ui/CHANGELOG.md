@@ -4,7 +4,7 @@
 
 ## 45.0.1 (2023-7-11)
 
-- Fix (`json-editor`): Datetime input now uses the correct format
+- Fix (`json-editor`): Datetime input now uses the correct format.
 
 ## 45.0.0 (2023-7-7)
 
