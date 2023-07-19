@@ -234,7 +234,7 @@ export function inferType(value: any, overrides?: any, allowedTypes?: string[]):
   if (!type) {
     type = dataTypeMap.object.schema;
   }
-  return type;
+  return { ...type };
 }
 
 /**
