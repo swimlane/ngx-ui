@@ -4,7 +4,7 @@
 
 ## 45.0.2 (2023-7-20)
 
-- Fix (`json-editor-helper`): Repair dataTypeMap overwrite
+- Fix (`json-editor-helper`): Fix input type overwrite.
 
 ## 45.0.1 (2023-7-11)
 
