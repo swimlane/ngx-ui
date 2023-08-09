@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 45.0.3 (2023-8-8)
+
+- Enhancement (`icons`): New set of icons added.
+
 ## 45.0.2 (2023-7-20)
 
 - Fix (`json-editor-helper`): Fix input type overwrite.
