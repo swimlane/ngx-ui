@@ -112,7 +112,7 @@
     "eslint-plugin-prefer-arrow": "1.2.3",
     "eslint-plugin-security": "1.5.0",
     "faker": "^5.1.0",
-    "gh-pages": "4.0.0",
+    "gh-pages": "5.0.0",
     "husky": "8.0.1",
     "jasmine-core": "4.4.0",
     "jasmine-spec-reporter": "7.0.0",
