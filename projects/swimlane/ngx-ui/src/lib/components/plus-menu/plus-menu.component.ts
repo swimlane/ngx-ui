@@ -44,7 +44,7 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
   }
 
   get itemColor1() {
-    return this.items[1].color || this.menuColor;
+    return this.items[1]?.color || this.menuColor;
   }
 
   get itemColor2() {
@@ -59,10 +59,22 @@ export class PlusMenuComponent implements OnInit, OnDestroy {
   @HostBinding('class.open')
   open = false;
 
+  @HostBinding('class.has-one')
+  @Input()
+  get hasOne(): boolean {
+    return this.items.length == 1;
+  }
+
+  @HostBinding('class.has-two')
+  @Input()
+  get hasTwo(): boolean {
+    return this.items.length == 2;
+  }
+
   @HostBinding('class.has-three')
   @Input()
   get hasThree(): boolean {
-    return this.items.length > 2;
+    return this.items.length == 3;
   }
 
   uid = '';

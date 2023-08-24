@@ -2,6 +2,20 @@
 
 <ngx-tabs>
   <ngx-tab label="Examples">
+    <ngx-section class="shadow" sectionTitle="Plus Menu - Right - One Item">
+      <div class="container-right">
+        <ngx-plus-menu [items]="[create]" (clickItem)="onClick($event)"></ngx-plus-menu>
+      </div>
+      <app-prism>
+        <![CDATA[
+        <ngx-plus-menu
+          [items]="[create]"
+          menuTitle="Install a Plugin"
+          (clickItem)="onClick($event)">
+        </ngx-plus-menu> ]]>
+      </app-prism>
+    </ngx-section>
+
     <ngx-section class="shadow" sectionTitle="Plus Menu - Right - Two Items">
       <div class="container-right">
         <ngx-plus-menu class="my-class" [items]="[upload, create]" (clickItem)="onClick($event)"></ngx-plus-menu>
@@ -25,6 +39,21 @@
         <ngx-plus-menu
           [items]="[upload, create, search]"
           menuColor="#CDD2DD"
+          menuTitle="Install a Plugin"
+          (clickItem)="onClick($event)">
+        </ngx-plus-menu> ]]>
+      </app-prism>
+    </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="Plus Menu - Bottom - One Item">
+      <div class="container-bottom">
+        <ngx-plus-menu [items]="[create]" position="bottom" menuColor="#01E1B9" menuTitle="Install a Plugin" (clickItem)="onClick($event)"></ngx-plus-menu>
+      </div>
+      <app-prism>
+        <![CDATA[
+        <ngx-plus-menu
+          [items]="[create]"
+          position="bottom"
           menuTitle="Install a Plugin"
           (clickItem)="onClick($event)">
         </ngx-plus-menu> ]]>
@@ -55,6 +84,21 @@
         <ngx-plus-menu
           [items]="[upload, create, search]"
           position="bottom"
+          menuTitle="Install a Plugin"
+          (clickItem)="onClick($event)">
+        </ngx-plus-menu> ]]>
+      </app-prism>
+    </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="Plus Menu - Top - One Item">
+      <div class="container-top">
+        <ngx-plus-menu [items]="[create]" position="top" menuTitle="Install a Plugin" (clickItem)="onClick($event)"></ngx-plus-menu>
+      </div>
+      <app-prism>
+        <![CDATA[
+        <ngx-plus-menu
+          [items]="[create]"
+          position="top"
           menuTitle="Install a Plugin"
           (clickItem)="onClick($event)">
         </ngx-plus-menu> ]]>
@@ -93,6 +137,20 @@
     
     <h3> Menu Items with Custom Colors </h3>
     
+    <ngx-section class="shadow" sectionTitle="Plus Menu - Right - One Item Custom Color">
+      <div class="container-right">
+        <ngx-plus-menu class="my-class" [items]="[createCustomColor]" (clickItem)="onClick($event)"></ngx-plus-menu>
+      </div>
+      <app-prism>
+        <![CDATA[
+        <ngx-plus-menu
+          [items]="[createCustomColor]"
+          menuTitle="Install a Plugin"
+          (clickItem)="onClick($event)">
+        </ngx-plus-menu> ]]>
+      </app-prism>
+    </ngx-section>
+
     <ngx-section class="shadow" sectionTitle="Plus Menu - Right - Two Items Custom Color">
       <div class="container-right">
         <ngx-plus-menu class="my-class" [items]="[upload, createCustomColor]" (clickItem)="onClick($event)"></ngx-plus-menu>
@@ -116,6 +174,21 @@
         <ngx-plus-menu
           [items]="[upload, create, searchCustomColor]"
           menuColor="#01E1B9"
+          menuTitle="Install a Plugin"
+          (clickItem)="onClick($event)">
+        </ngx-plus-menu> ]]>
+      </app-prism>
+    </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="Plus Menu - Bottom - One Item Custom Color">
+      <div class="container-bottom">
+        <ngx-plus-menu [items]="[uploadCustomColor]" position="bottom" menuColor="#01E1B9" menuTitle="Install a Plugin" (clickItem)="onClick($event)"></ngx-plus-menu>
+      </div>
+      <app-prism>
+        <![CDATA[
+        <ngx-plus-menu
+          [items]="[uploadCustomColor]"
+          position="bottom"
           menuTitle="Install a Plugin"
           (clickItem)="onClick($event)">
         </ngx-plus-menu> ]]>
@@ -146,6 +219,21 @@
         <ngx-plus-menu
           [items]="[uploadCustomColor, create, searchCustomColor]"
           position="bottom"
+          menuTitle="Install a Plugin"
+          (clickItem)="onClick($event)">
+        </ngx-plus-menu> ]]>
+      </app-prism>
+    </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="Plus Menu - Top - One Item Custom Color">
+      <div class="container-top">
+        <ngx-plus-menu [items]="[createCustomColor]" position="top" menuTitle="Install a Plugin" (clickItem)="onClick($event)"></ngx-plus-menu>
+      </div>
+      <app-prism>
+        <![CDATA[
+        <ngx-plus-menu
+          [items]="[createCustomColor]"
+          position="top"
           menuTitle="Install a Plugin"
           (clickItem)="onClick($event)">
         </ngx-plus-menu> ]]>

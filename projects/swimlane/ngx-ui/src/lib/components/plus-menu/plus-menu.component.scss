@@ -142,6 +142,30 @@
       border-radius: var(--button-radius) var(--button-radius) var(--button-radius) var(--radial-size);
     }
 
+    .ngx-plus-menu--items-container {
+      position: absolute;
+      top: var(--button-size);
+      right: var(--button-size);
+    }
+  }
+
+  &.position-right.has-one {
+    .ngx-plus-menu--item {
+      &-0 {
+        top: 150px;
+        right: 166px;
+      }
+    }
+
+    .ngx-plus-menu--icon {
+      &-0 {
+        top: 97px;
+        right: 97px;
+      }
+    }
+  }
+
+  &.position-right.has-two {
     .ngx-plus-menu--content-container > svg {
       position: absolute;
       top: -21px;
@@ -248,22 +272,6 @@
       height: 200px;
       text-align: center;
       bottom: 40px;
-
-      > svg {
-        left: auto;
-        right: auto;
-        bottom: 0;
-
-        .bottom {
-          &.two {
-            display: unset;
-          }
-
-          &.three {
-            display: none;
-          }
-        }
-      }
     }
 
     .ngx-plus-menu--circle-container {
@@ -300,6 +308,42 @@
       background: rgba(var(--background-color), var(--background-opacity));
       box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur) rgba(var(--background-color), var(--background-opacity));
       border-radius: var(--radial-radius) var(--radial-radius) var(--button-radius) var(--button-radius);
+    }
+  }
+
+  &.position-bottom.has-one {
+    .ngx-plus-menu--item {
+      &-0 {
+        top: unset;
+        bottom: 8px;
+        right: 206px;
+      }
+    }
+
+    .ngx-plus-menu--icon {
+      &-0 {
+        top: unset;
+        bottom: 124px;
+        right: 218px;
+      }
+    }
+  }
+
+  &.position-bottom.has-two {
+    .ngx-plus-menu--content-container > svg {
+      left: auto;
+      right: auto;
+      bottom: 0;
+
+      .bottom {
+        &.two {
+          display: unset;
+        }
+
+        &.three {
+          display: none;
+        }
+      }
     }
 
     .ngx-plus-menu--item {
@@ -399,18 +443,6 @@
       height: var(--size);
       text-align: center;
       top: 40px;
-
-      > svg {
-        .top {
-          &.two {
-            display: unset;
-          }
-
-          &.three {
-            display: none;
-          }
-        }
-      }
     }
 
     .ngx-plus-menu--circle-container {
@@ -447,6 +479,36 @@
       background: rgba(var(--background-color), var(--background-opacity));
       box-shadow: 0 0 var(--shadow-blur) var(--shadow-blur) rgba(var(--background-color), var(--background-opacity));
       border-radius: var(--button-radius) var(--button-radius) var(--radial-radius) var(--radial-radius);
+    }
+  }
+
+  &.position-top.has-one {
+    .ngx-plus-menu--item {
+      &-0 {
+        top: 133px;
+        right: 206px;
+      }
+    }
+
+    .ngx-plus-menu--icon {
+      &-0 {
+        top: 50px;
+        right: 220px;
+      }
+    }
+  }
+
+  &.position-top.has-two {
+    .ngx-plus-menu--content-container > svg {
+      .top {
+        &.two {
+          display: unset;
+        }
+
+        &.three {
+          display: none;
+        }
+      }
     }
 
     .ngx-plus-menu--item {
