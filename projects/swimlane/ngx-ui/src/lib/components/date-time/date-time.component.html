@@ -40,7 +40,7 @@
       'icon-clock': inputType === 'time'
     }"
     class="calendar-dialog-btn"
-  ></button>  
+  ></button>
 </div>
 
 <ng-template #dialogTpl>
@@ -95,6 +95,33 @@
         max="59"
         (change)="minuteChanged($event)"
         [disabled]="isTimeDisabled('minute')"
+      >
+      </ngx-input>
+    </div>
+    <div>
+      <ngx-input
+        type="number"
+        hint="Second"
+        [id]="id + '-second'"
+        [ngModel]="second"
+        min="0"
+        max="59"
+        (change)="secondChanged($event)"
+        [disabled]="isTimeDisabled('second')"
+      >
+      </ngx-input>
+    </div>
+    <div>
+      <ngx-input
+        type="number"
+        hint="Millisecond"
+        [id]="id + '-millisecond'"
+        [ngModel]="millisecond"
+        min="0"
+        max="999"
+        (change)="millisecondChanged($event)"
+        [disabled]="isTimeDisabled('millisecond')"
+        class="milliseconds"
       >
       </ngx-input>
     </div>

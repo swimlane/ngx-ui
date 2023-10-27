@@ -4,7 +4,7 @@
     <ngx-section class="shadow" sectionTitle="Date Input">
       <label>Current Value:</label>
       <output>{{ date | json }}</output>
-    
+
       <ngx-date-time
         name="date-input1"
         label="Date of attack"
@@ -14,9 +14,9 @@
         (dateTimeSelected)="dateTimeSelected($event)"
       >
       </ngx-date-time>
-    
+
       <br />
-    
+
       <app-prism>
     <![CDATA[<ngx-date-time
       name="date-input1"
@@ -29,10 +29,10 @@
     >
     </ngx-date-time>]]>
       </app-prism>
-    
+
       <br />
       <br />
-    
+
       <ngx-date-time name="date-input2" label="Disabled" [disabled]="true" [(value)]="date2">
       </ngx-date-time>
       <br />
@@ -45,13 +45,13 @@
     >
     </ngx-date-time>]]>
       </app-prism>
-    
+
       <br />
       <br />
-    
+
       <label>Current Value:</label>
       <output>{{ date3 | json }}</output>
-    
+
       <ngx-date-time name="date-input3" label="Custom Format" [(value)]="date3" [format]="'M/Y'">
       </ngx-date-time>
       <br />
@@ -63,10 +63,10 @@
     >
     </ngx-date-time>]]>
       </app-prism>
-    
+
       <br />
       <br />
-    
+
       <ngx-date-time
         name="date-input4"
         label="Min/Max Dates"
@@ -88,22 +88,22 @@
     </ngx-date-time>]]>
       </app-prism>
     </ngx-section>
-    
+
     <ngx-section class="shadow" sectionTitle="Form Control">
       Form Control Value: {{ dateControl.value | json }}
-    
+
       <ngx-date-time label="Form Control" [formControl]="dateControl"></ngx-date-time>
-    
+
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <ngx-date-time label="Form Control Name" formControlName="date"></ngx-date-time>
         <ngx-date-time label="Disabled" formControlName="disabledDate"></ngx-date-time>
       </form>
     </ngx-section>
-    
+
     <ngx-section class="shadow" sectionTitle="Date/Time Input">
       <label>Value: </label>
       <output>{{ dateTime | json }}</output>
-    
+
       <ngx-date-time
         name="datetime-input"
         inputType="datetime"
@@ -122,11 +122,11 @@
     </ngx-date-time>]]>
       </app-prism>
     </ngx-section>
-    
+
     <ngx-section class="shadow" sectionTitle="TimeZones">
       <label>Current Value:</label>
       <output>{{ eventDate | json }}</output>
-    
+
       <ngx-date-time
         name="timezone-local"
         inputType="datetime"
@@ -135,7 +135,7 @@
         [(value)]="eventDate"
       >
       </ngx-date-time>
-    
+
       <ngx-date-time
         name="timezone-utc"
         inputType="datetime"
@@ -144,7 +144,7 @@
         [(value)]="eventDate"
       >
       </ngx-date-time>
-    
+
       <ngx-date-time
         name="timezone-jst"
         inputType="datetime"
@@ -153,7 +153,7 @@
         [(value)]="eventDate"
       >
       </ngx-date-time>
-    
+
       <app-prism>
     <![CDATA[ <ngx-date-time
       name="timezone-local"
@@ -163,7 +163,7 @@
       [(value)]="eventDate"
     >
     </ngx-date-time>
-    
+
       <ngx-date-time
       name="timezone-utc"
       inputType="datetime"
@@ -172,7 +172,7 @@
       [(value)]="eventDate"
     >
     </ngx-date-time>
-    
+
     <ngx-date-time
       name="timezone-jst"
       inputType="datetime"
@@ -183,11 +183,11 @@
     </ngx-date-time>]]>
       </app-prism>
     </ngx-section>
-    
+
     <ngx-section class="shadow" sectionTitle="Time Input">
       <label>Current Value:</label>
       <output>{{ time | json }}</output>
-    
+
       <ngx-date-time
         name="time-input1"
         inputType="time"
@@ -205,7 +205,7 @@
     >
     </ngx-date-time>]]>
       </app-prism>
-    
+
       <ngx-date-time
       name="time-input2"
       inputType="time"
@@ -214,7 +214,7 @@
       [(value)]="time"
       >
       </ngx-date-time>
-    
+
       <ngx-date-time
       name="time-input2"
       inputType="time"
@@ -223,7 +223,7 @@
       [(value)]="time"
       >
       </ngx-date-time>
-    
+
       <ngx-date-time
       name="time-input2"
       inputType="time"
@@ -233,39 +233,39 @@
       >
       </ngx-date-time>
     </ngx-section>
-    
+
     <ngx-section class="shadow" sectionTitle="Precision">
       <label>Current Value:</label>
       <output>{{ precisionDate | json }}</output>
-    
+
       <ngx-date-time
         label="Year"
         precision="year"
         [(value)]="precisionDate"
       >
       </ngx-date-time>
-    
+
       <ngx-date-time
         label="Month"
         precision="month"
         [(value)]="precisionDate"
       >
       </ngx-date-time>
-    
+
       <ngx-date-time
         label="Hour"
         precision="hour"
         [(value)]="precisionDate"
       >
       </ngx-date-time>
-    
+
       <ngx-date-time
         label="Minutes"
         precision="minute"
         [(value)]="precisionDate"
       >
       </ngx-date-time>
-    
+
       <app-prism>
     <![CDATA[<ngx-date-time
       label="Year"
@@ -273,21 +273,21 @@
       [(value)]="precisionDate"
     >
     </ngx-date-time>
-    
+
       <ngx-date-time
       label="Month"
       precision="month"
       [(value)]="precisionDate"
     >
     </ngx-date-time>
-    
+
       <ngx-date-time
       label="Hour"
       precision="hour"
       [(value)]="precisionDate"
     >
     </ngx-date-time>
-    
+
       <ngx-date-time
       label="Minutes"
       precision="minute"
@@ -296,13 +296,13 @@
     </ngx-date-time>]]>
       </app-prism>
     </ngx-section>
-    
+
     <ngx-section class="shadow" sectionTitle="Autosize">
       <label>Current Value:</label>
       <output>{{ curDate2 | json }}</output>
-    
+
       <br />
-    
+
       <ngx-date-time
         autosize="true"
         inputType="date"
@@ -312,9 +312,9 @@
         format="YYYY"
       >
       </ngx-date-time>
-    
+
       <br />
-    
+
       <ngx-date-time
         autosize="true"
         inputType="date"
@@ -324,9 +324,9 @@
         format="MMM YYYY"
       >
       </ngx-date-time>
-    
+
       <br />
-    
+
       <ngx-date-time
         autosize="true"
         appearance="fill"
@@ -337,9 +337,9 @@
         format="MMM DD, YYYY, hh:mm"
       >
       </ngx-date-time>
-    
+
       <br />
-    
+
       <ngx-date-time
         autosize="true"
         appearance="fill"
@@ -350,9 +350,9 @@
         format="MMM DD, YYYY, hh:mm:ss"
       >
       </ngx-date-time>
-    
+
       <br />
-    
+
       <ngx-date-time
         autosize="true"
         appearance="fill"
@@ -365,18 +365,18 @@
       >
       </ngx-date-time>
     </ngx-section>
-    
+
     <ngx-section sectionTitle="Native">
       <label>Date</label>
       <input type="date" value="2018-07-22" min="2018-01-01">
-    
+
       <br />
       <br />
-    
+
       <label>Date/Time Local</label>
       <input type="datetime-local" value="2018-07-22" min="2018-01-01">
     </ngx-section>
-    
+
     <ngx-section class="shadow" sectionTitle="Appearances">
       <table class="appearance-table">
         <tr>
@@ -417,6 +417,11 @@
           <td>Date/Time</td>
           <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
           <td><ngx-date-time [ngModel]="curDate2" inputType="datetime" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+        </tr>
+        <tr class="full-datetime">
+          <td>Date/Time with seconds & milliseconds</td>
+          <td><ngx-date-time [ngModel]="fullDate" format="DD/MM/YYYY hh:mm:ss:SSS Z" displayMode="custom" inputType="datetime" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text"></ngx-date-time></td>
+          <td><ngx-date-time [ngModel]="fullDate" format="DD/MM/YYYY hh:mm:ss:SSS Z" displayMode="custom" inputType="datetime" appearance="fill" label="Label" hint="A brief bit of help text" placeholder="Placeholder Text" ></ngx-date-time></td>
         </tr>
         <tr>
           <td>Invalid</td>
