@@ -431,7 +431,6 @@ describe('DateTimeComponent', () => {
       expect(component.hour).toBe(+LOCAL_HOUR);
       expect(component.minute).toBe(LOCAL_MIN);
       expect(component.second).toBe(LOCAL_SEC);
-      // expect(component.millisecond).toBe(LOCAL_MIN);
       expect(component.amPmVal).toBe(LOCAL_AM_PM);
       expect(component.isCurrent()).toBe(false);
 
