@@ -440,7 +440,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
         now.millisecond() === this.dialogModel.millisecond()
       );
     }
-    return now.isSame(this.dialogModel, 'millisecond');
+    return now.isSame(this.dialogModel, this.inputType === 'datetime' ? 'millisecond' : 'minute');
   }
 
   clear(): void {
