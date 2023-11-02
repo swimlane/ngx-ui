@@ -8,6 +8,7 @@ const MOON_LANDING = '1969-07-20T20:17:43Z';
 @Component({
   selector: 'app-datetime-page',
   templateUrl: './datetime-page.component.html',
+  styleUrls: ['./datetime-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DatetimePageComponent {
@@ -27,6 +28,7 @@ export class DatetimePageComponent {
 
   curDate: any = new Date(TOHOKU_EARTHQUAKE);
   curDate2: any = new Date('10/10/2016 2:35 PM');
+  fullDate = new Date();
 
   dateControl: FormControl;
   disabledDateControl: FormControl;

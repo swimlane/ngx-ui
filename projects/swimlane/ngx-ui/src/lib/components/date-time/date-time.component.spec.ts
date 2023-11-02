@@ -27,6 +27,7 @@ const LOCAL_YEAR = '' + MOON_LANDING_DATE.toLocaleDateString('en-US', { year: 'n
 
 const LOCAL_HOUR = LOCAL_TIME.split(':')[0];
 const LOCAL_MIN = MOON_LANDING_DATE.toLocaleTimeString('en-US', { minute: 'numeric' });
+const LOCAL_SEC = MOON_LANDING_DATE.toLocaleTimeString('en-US', { second: 'numeric' });
 const LOCAL_AM_PM = LOCAL_TIME.slice(-2);
 
 describe('DateTimeComponent', () => {
@@ -337,6 +338,20 @@ describe('DateTimeComponent', () => {
         expect(typeof component.displayValue === 'string').toBeTruthy();
         expect(component.displayValue).toEqual('Jul 21, 1969 05:17:43 +09:00 (JST)');
       });
+
+      it('should support seconds & milliseconds', () => {
+        component.format = 'MMM DD, YYYY HH:mm:ss:SSS';
+        component.timezone = 'Asia/Tokyo';
+
+        const isoDateString = '2023-10-27T05:57:12.890Z';
+        component.writeValue(new Date(isoDateString));
+        fixture.detectChanges();
+
+        expect(component.value).toBeTruthy();
+        expect(component.value instanceof Date).toBeTruthy();
+        expect(typeof component.displayValue === 'string').toBeTruthy();
+        expect(component.displayValue).toEqual('Oct 27, 2023 14:57:12:890');
+      });
     });
   });
 
@@ -415,6 +430,7 @@ describe('DateTimeComponent', () => {
       expect(component.dialogModel.isSame(MOON_LANDING_DATE)).toBeTruthy();
       expect(component.hour).toBe(+LOCAL_HOUR);
       expect(component.minute).toBe(LOCAL_MIN);
+      expect(component.second).toBe(LOCAL_SEC);
       expect(component.amPmVal).toBe(LOCAL_AM_PM);
       expect(component.isCurrent()).toBe(false);
 
@@ -456,6 +472,59 @@ describe('DateTimeComponent', () => {
 
       component.apply();
       expect(component.displayValue).toEqual(`${LOCAL_DATE} 11:${LOCAL_MIN} ${LOCAL_AM_PM}`);
+    });
+
+    it('should update seconds', () => {
+      component.format = 'MM/DD/YYYY hh:mm:ss:SSS';
+      expect(component.dialogModel).toBeTruthy();
+      expect(moment.isMoment(component.dialogModel)).toBeTruthy();
+
+      expect(component.hour).toBe(+LOCAL_HOUR);
+      expect(component.minute).toBe(LOCAL_MIN);
+      expect(component.amPmVal).toBe(LOCAL_AM_PM);
+      expect(component.isCurrent()).toBe(false);
+      component.apply();
+
+      expect(component.displayValue).toEqual(`${LOCAL_DATE} 0${LOCAL_HOUR}:${LOCAL_MIN}:${LOCAL_SEC}:000`);
+
+      const SECONDS_VALUE = 55;
+      component.secondChanged(SECONDS_VALUE);
+
+      expect(component.isCurrent()).toBe(false);
+      expect(component.second).toBe(SECONDS_VALUE + '');
+
+      component.apply();
+      expect(component.displayValue).toEqual(`${LOCAL_DATE} 0${LOCAL_HOUR}:${LOCAL_MIN}:${SECONDS_VALUE}:000`);
+    });
+
+    it('should update milliseconds', () => {
+      component.format = 'MM/DD/YYYY hh:mm:ss:SSS';
+      expect(component.dialogModel).toBeTruthy();
+      expect(moment.isMoment(component.dialogModel)).toBeTruthy();
+
+      expect(component.hour).toBe(+LOCAL_HOUR);
+      expect(component.minute).toBe(LOCAL_MIN);
+      expect(component.second).toBe(LOCAL_SEC);
+      expect(component.amPmVal).toBe(LOCAL_AM_PM);
+      expect(component.isCurrent()).toBe(false);
+      component.apply();
+
+      expect(component.displayValue).toEqual(`${LOCAL_DATE} 0${LOCAL_HOUR}:${LOCAL_MIN}:${LOCAL_SEC}:000`);
+
+      const MILLISECONDS_VALUE = 786;
+      component.millisecondChanged(MILLISECONDS_VALUE);
+
+      expect(component.hour).toBe(+LOCAL_HOUR);
+      expect(component.minute).toBe(LOCAL_MIN);
+      expect(component.second).toBe(LOCAL_SEC);
+      expect(component.millisecond).toBe(MILLISECONDS_VALUE + '');
+      expect(component.amPmVal).toBe(LOCAL_AM_PM);
+      expect(component.isCurrent()).toBe(false);
+
+      component.apply();
+      expect(component.displayValue).toEqual(
+        `${LOCAL_DATE} 0${LOCAL_HOUR}:${LOCAL_MIN}:${LOCAL_SEC}:${MILLISECONDS_VALUE}`
+      );
     });
 
     it('should update am/pm', () => {

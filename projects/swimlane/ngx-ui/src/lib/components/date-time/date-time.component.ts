@@ -320,6 +320,8 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   dialogModel: moment.Moment;
   hour: number;
   minute: string;
+  second: string;
+  millisecond: string;
   amPmVal: string;
   modes = ['millisecond', 'second', 'minute', 'hour', 'date', 'month', 'year'];
   timeValues = {};
@@ -395,12 +397,24 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
     this.dialogModel = this.createMoment(date);
     this.hour = +this.dialogModel.format('hh');
     this.minute = this.dialogModel.format('mm');
+    this.second = this.dialogModel.format('ss');
+    this.millisecond = this.dialogModel.format('SSS');
     this.amPmVal = this.dialogModel.format('A');
   }
 
   minuteChanged(newVal: number): void {
     this.dialogModel = this.dialogModel.clone().minute(newVal);
     this.minute = this.dialogModel.format('mm');
+  }
+
+  secondChanged(newVal: number): void {
+    this.dialogModel = this.dialogModel.clone().second(newVal);
+    this.second = this.dialogModel.format('ss');
+  }
+
+  millisecondChanged(newVal: number): void {
+    this.dialogModel = this.dialogModel.clone().millisecond(newVal);
+    this.millisecond = this.dialogModel.format('SSS');
   }
 
   hourChanged(newVal: number): void {
@@ -419,9 +433,14 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   isCurrent() {
     const now = this.createMoment(new Date());
     if (this.inputType === 'time') {
-      return now.hour() === this.dialogModel.hour() && now.minute() === this.dialogModel.minute();
+      return (
+        now.hour() === this.dialogModel.hour() &&
+        now.minute() === this.dialogModel.minute() &&
+        now.second() === this.dialogModel.second() &&
+        now.millisecond() === this.dialogModel.millisecond()
+      );
     }
-    return now.isSame(this.dialogModel, 'minute');
+    return now.isSame(this.dialogModel, this.inputType === 'datetime' ? 'millisecond' : 'minute');
   }
 
   clear(): void {

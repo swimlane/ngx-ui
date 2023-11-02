@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-datetime`): Supports seconds and milliseconds in the time picker.
+
 ## 45.0.4 (2023-8-9)
 
 - Enhancement (`fonts`): New set of fonts added.

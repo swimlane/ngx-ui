@@ -168,12 +168,17 @@ $input-invalid-color: $color-red;
     justify-content: space-between;
 
     > * {
-      flex: 0 0 calc(33% - 6px);
+      flex: 0 0 calc(15% - 6px);
     }
 
     .ngx-input {
       margin-top: 0;
       padding-top: 0;
+      width: 35px;
+
+      &.milliseconds {
+        width: 55px;
+      }
 
       .ngx-input-underline {
         background-color: $color-input-text;
