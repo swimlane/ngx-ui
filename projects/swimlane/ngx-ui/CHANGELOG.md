@@ -2,7 +2,9 @@
 
 ## HEAD (unreleased)
 
-- Enhancement (`ngx-datetime`): Supports seconds and milliseconds in the time picker.
+## 45.1.0 (2023-2-11)
+
+- Enhancement (`ngx-date-time`): Supports seconds and milliseconds in the time picker.
 
 ## 45.0.4 (2023-8-9)
 
