@@ -596,6 +596,7 @@ describe('DateTimeComponent', () => {
       expect(component.dialogModel).toBeTruthy();
       expect(moment.isMoment(component.dialogModel)).toBeTruthy();
 
+      component.inputType = 'date';
       component.selectCurrent();
       expect(component.isCurrent()).toBe(true);
     });
