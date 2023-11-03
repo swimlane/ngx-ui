@@ -2,7 +2,11 @@
 
 ## HEAD (unreleased)
 
-## 45.1.0 (2023-2-11)
+## 45.1.1 (2023-11-3)
+
+- Fix (`ngx-select`): Remove dropdown options when the iterable is set to an empty array.
+
+## 45.1.0 (2023-11-2)
 
 - Enhancement (`ngx-date-time`): Supports seconds and milliseconds in the time picker.
 
