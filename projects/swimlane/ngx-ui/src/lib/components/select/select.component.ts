@@ -199,6 +199,8 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
       if (arr.length) {
         this.options = arr;
+      } else {
+        this.options = [];
       }
     }
 
