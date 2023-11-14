@@ -189,7 +189,7 @@ describe('Inputs', () => {
     });
 
     it('adds a prefix', () => {
-      cy.get('@CUT').find('ngx-input-prefix i').should('have.class', 'icon-add-new');
+      cy.get('@CUT').find('ngx-input-prefix i').should('have.class', 'ngx-add-new');
     });
 
     it('adds a suffix', () => {
