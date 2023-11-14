@@ -1,3 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32">
-  <path d="M16 0C7.2 0 0 7.2 0 16s7.2 16 16 16 16-7.2 16-16S24.8 0 16 0zm2.2 25.2l-1.9-1.8 5.8-6.1H5.6v-2.7h16.5l-5.8-6.1 1.9-1.8 8.9 9.3-8.9 9.2z" fill-rule="evenodd" clip-rule="evenodd"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><title>forward arrow filled</title><g fill="#212121" class="nc-icon-wrapper"><g fill="#212121"><path transform="scale(1,-1) translate(0,-32)" d="M 16 32 C 7.2 32 0 24.8 0 16 S 7.2 0 16 0 S 32 7.2 32 16 S 24.8 32 16 32 z M 18.2 6.8 L 16.3 8.6 L 22.1 14.7 H 5.6 V 17.4 H 22.1 L 16.3 23.5 L 18.2 25.3 L 27.1 16 L 18.2 6.8 z"></path></g></g></svg>

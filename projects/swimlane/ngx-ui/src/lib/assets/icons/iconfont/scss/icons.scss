@@ -1,50 +1,51 @@
-/* --------------------------------
+/*--------------------------------
 
-ngx-icon Web Font
+ngx-icon icon font
 Generated using nucleoapp.com
 
 -------------------------------- */
 
+$ngx-font-path: "../fonts" !default;
 
-/*------------------------
-	base class definition
--------------------------*/
+@font-face {
+  font-family: 'ngx-icon';
+  src: url('#{$ngx-font-path}/ngx-icon.eot');
+  src: url('#{$ngx-font-path}/ngx-icon.eot') format('embedded-opentype'),
+       url('#{$ngx-font-path}/ngx-icon.woff2') format('woff2'),
+       url('#{$ngx-font-path}/ngx-icon.woff') format('woff'),
+       url('#{$ngx-font-path}/ngx-icon.ttf') format('truetype'),
+       url('#{$ngx-font-path}/ngx-icon.svg') format('svg');
+}
 
+/* base class */
 .ngx-icon {
   display: inline-block;
   font: normal normal normal 1em/1 'ngx-icon';
-  //color: inherit;
+  // color: inherit;
   flex-shrink: 0;
-  speak: none;
-  text-transform: none;
-  /* Better Font Rendering */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/*------------------------
-  change icon size
--------------------------*/
-
-/* relative units */
+/* size examples - relative units */
 .ngx-icon-sm {
   font-size: 0.8em;
 }
+
 .ngx-icon-lg {
   font-size: 1.2em;
 }
-/* absolute units */
+
+/* size examples - absolute units */
 .ngx-icon-16 {
   font-size: 16px;
 }
+
 .ngx-icon-32 {
   font-size: 32px;
 }
 
-/*------------------------
-  spinning icons
--------------------------*/
-
+/* rotate the icon infinitely */
 .ngx-icon-is-spinning {
   animation: ngx-icon-spin 1s infinite linear;
 }
@@ -58,10 +59,7 @@ Generated using nucleoapp.com
   }
 }
 
-/*------------------------
-  rotated/flipped icons
--------------------------*/
-
+/* transform */
 .ngx-icon-rotate-90  {
 	transform: rotate(90deg);
 }
@@ -77,13 +75,12 @@ Generated using nucleoapp.com
 .ngx-icon-flip-y {
 	transform: scaleY(-1);
 }
+
 .ngx-icon-flip-x {
 	transform: scaleX(-1);
 }
 
-/*------------------------
-	icons
--------------------------*/
+/* icons */
 $icons: (
   '3d-rotate': 'ea01',
   'action': 'ea02',
@@ -402,109 +399,110 @@ $icons: (
   'runner': 'eb3b',
   'runs-outline': 'eb3c',
   'runs-outline-small': 'eb3d',
-  'save': 'eb3e',
-  'save-outline': 'eb3f',
-  'save-outline-large': 'eb40',
-  'save-outline-small': 'eb41',
-  'screen': 'eb42',
-  'screen-1': 'eb43',
-  'search': 'eb44',
-  'section': 'eb45',
-  'select-all': 'eb46',
-  'select-user': 'eb47',
-  'select-users': 'eb48',
-  'sensor-outline': 'eb49',
-  'sensor-outline-small': 'eb4a',
-  'server': 'eb4b',
-  'shield': 'eb4c',
-  'shrink': 'eb4d',
-  'skip': 'eb4e',
-  'slide-left': 'eb4f',
-  'slide-right': 'eb50',
-  'sliders': 'eb51',
-  'smartphone': 'eb52',
-  'smiley-frown': 'eb53',
-  'snapshot': 'eb54',
-  'solution': 'eb55',
-  'sort-ascending': 'eb56',
-  'sort-descending': 'eb57',
-  'spaces': 'eb58',
-  'spaces-list': 'eb59',
-  'spaces-outline': 'eb5a',
-  'spaces-outline-large': 'eb5b',
-  'speedometer': 'eb5c',
-  'split-handle': 'eb5d',
-  'square': 'eb5e',
-  'square-filled': 'eb5f',
-  'star': 'eb60',
-  'star-filled': 'eb61',
-  'stars': 'eb62',
-  'stopwatch': 'eb63',
-  'superscript': 'eb64',
-  'swap': 'eb65',
-  'switch': 'eb66',
-  'system-diagnostics': 'eb67',
-  'system-diagnostics-2': 'eb68',
-  'table': 'eb69',
-  'tabs': 'eb6a',
-  'tag-filled': 'eb6b',
-  'tags-outline': 'eb6c',
-  'target': 'eb6d',
-  'task-outline': 'eb6e',
-  'thumb-down-filled': 'eb6f',
-  'thumb-down-outline': 'eb70',
-  'thumb-down-outline-large': 'eb71',
-  'thumb-up-filled': 'eb72',
-  'thumb-up-outline': 'eb73',
-  'thumb-up-outline-large': 'eb74',
-  'tracking-id': 'eb75',
-  'transfer': 'eb76',
-  'trash': 'eb77',
-  'tree': 'eb78',
-  'tree-collapse': 'eb79',
-  'tree-expand': 'eb7a',
-  'trend-down': 'eb7b',
-  'trend-level': 'eb7c',
-  'trend-up': 'eb7d',
-  'trending': 'eb7e',
-  'underline': 'eb7f',
-  'undo': 'eb80',
-  'undo-all': 'eb81',
-  'unlink': 'eb82',
-  'upload-outline': 'eb83',
-  'upload-outline-large': 'eb84',
-  'upload-outline-small': 'eb85',
-  'user': 'eb86',
-  'user-add': 'eb87',
-  'user-circle': 'eb88',
-  'user-groups': 'eb89',
-  'users': 'eb8a',
-  'version': 'eb8b',
-  'vert-bar-graph-grouped': 'eb8c',
-  'vert-full-stack-bar': 'eb8d',
-  'view-code': 'eb8e',
-  'view-designer': 'eb8f',
-  'view-split': 'eb90',
-  'wand': 'eb91',
-  'warning-filled': 'eb92',
-  'warning-filled-sm': 'eb93',
-  'warning-thin': 'eb94',
-  'web-api': 'eb95',
-  'webhook-outline': 'eb96',
-  'webhook-outline-large': 'eb97',
-  'webhook-outline-small': 'eb98',
-  'widget': 'eb99',
-  'worker': 'eb9a',
-  'workflow': 'eb9b',
-  'workflow-alternate': 'eb9c',
-  'workflow-alternate-large': 'eb9d',
-  'workflow-alternate-small': 'eb9e',
-  'workspaces': 'eb9f',
-  'workstation': 'eba0',
-  'wrench': 'eba1',
-  'x': 'eba2',
-  'x-filled': 'eba3',
-  'x-small': 'eba4',
+  'sankey': 'eb3e',
+  'save': 'eb3f',
+  'save-outline': 'eb40',
+  'save-outline-large': 'eb41',
+  'save-outline-small': 'eb42',
+  'screen': 'eb43',
+  'screen-1': 'eb44',
+  'search': 'eb45',
+  'section': 'eb46',
+  'select-all': 'eb47',
+  'select-user': 'eb48',
+  'select-users': 'eb49',
+  'sensor-outline': 'eb4a',
+  'sensor-outline-small': 'eb4b',
+  'server': 'eb4c',
+  'shield': 'eb4d',
+  'shrink': 'eb4e',
+  'skip': 'eb4f',
+  'slide-left': 'eb50',
+  'slide-right': 'eb51',
+  'sliders': 'eb52',
+  'smartphone': 'eb53',
+  'smiley-frown': 'eb54',
+  'snapshot': 'eb55',
+  'solution': 'eb56',
+  'sort-ascending': 'eb57',
+  'sort-descending': 'eb58',
+  'spaces': 'eb59',
+  'spaces-list': 'eb5a',
+  'spaces-outline': 'eb5b',
+  'spaces-outline-large': 'eb5c',
+  'speedometer': 'eb5d',
+  'split-handle': 'eb5e',
+  'square': 'eb5f',
+  'square-filled': 'eb60',
+  'star': 'eb61',
+  'star-filled': 'eb62',
+  'stars': 'eb63',
+  'stopwatch': 'eb64',
+  'superscript': 'eb65',
+  'swap': 'eb66',
+  'switch': 'eb67',
+  'system-diagnostics': 'eb68',
+  'system-diagnostics-2': 'eb69',
+  'table': 'eb6a',
+  'tabs': 'eb6b',
+  'tag-filled': 'eb6c',
+  'tags-outline': 'eb6d',
+  'target': 'eb6e',
+  'task-outline': 'eb6f',
+  'thumb-down-filled': 'eb70',
+  'thumb-down-outline': 'eb71',
+  'thumb-down-outline-large': 'eb72',
+  'thumb-up-filled': 'eb73',
+  'thumb-up-outline': 'eb74',
+  'thumb-up-outline-large': 'eb75',
+  'tracking-id': 'eb76',
+  'transfer': 'eb77',
+  'trash': 'eb78',
+  'tree': 'eb79',
+  'tree-collapse': 'eb7a',
+  'tree-expand': 'eb7b',
+  'trend-down': 'eb7c',
+  'trend-level': 'eb7d',
+  'trend-up': 'eb7e',
+  'trending': 'eb7f',
+  'underline': 'eb80',
+  'undo': 'eb81',
+  'undo-all': 'eb82',
+  'unlink': 'eb83',
+  'upload-outline': 'eb84',
+  'upload-outline-large': 'eb85',
+  'upload-outline-small': 'eb86',
+  'user': 'eb87',
+  'user-add': 'eb88',
+  'user-circle': 'eb89',
+  'user-groups': 'eb8a',
+  'users': 'eb8b',
+  'version': 'eb8c',
+  'vert-bar-graph-grouped': 'eb8d',
+  'vert-full-stack-bar': 'eb8e',
+  'view-code': 'eb8f',
+  'view-designer': 'eb90',
+  'view-split': 'eb91',
+  'wand': 'eb92',
+  'warning-filled': 'eb93',
+  'warning-filled-sm': 'eb94',
+  'warning-thin': 'eb95',
+  'web-api': 'eb96',
+  'webhook-outline': 'eb97',
+  'webhook-outline-large': 'eb98',
+  'webhook-outline-small': 'eb99',
+  'widget': 'eb9a',
+  'worker': 'eb9b',
+  'workflow': 'eb9c',
+  'workflow-alternate': 'eb9d',
+  'workflow-alternate-large': 'eb9e',
+  'workflow-alternate-small': 'eb9f',
+  'workspaces': 'eba0',
+  'workstation': 'eba1',
+  'wrench': 'eba2',
+  'x': 'eba3',
+  'x-filled': 'eba4',
+  'x-small': 'eba5',
 );
 
 @function unicode($str) {
@@ -516,6 +514,3 @@ $icons: (
     content: unicode($code);
   }
 }
-
-
-
