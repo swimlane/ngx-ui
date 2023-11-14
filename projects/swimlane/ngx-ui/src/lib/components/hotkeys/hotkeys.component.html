@@ -9,14 +9,9 @@
       </div>
     </div>
   </div>
+  <div class="close-icon ngx-icon ngx-x-filled" *ngIf="visible" (click)="hide()" [@iconAnimationState]="'active'"></div>
   <div
-    class="close-icon icon icon-x-filled"
-    *ngIf="visible"
-    (click)="hide()"
-    [@iconAnimationState]="'active'"
-  ></div>
-  <div
-    class="hotkeys-icon icon icon-keyboard"
+    class="hotkeys-icon ngx-icon ngx-keyboard"
     *ngIf="!visible"
     (click)="show()"
     [@iconAnimationState]="'active'"

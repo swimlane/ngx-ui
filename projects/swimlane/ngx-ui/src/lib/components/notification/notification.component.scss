@@ -9,7 +9,7 @@
     }
   }
 
-  .icon-container .icon {
+  .icon-container .ngx-icon {
     color: $color;
   }
 }
@@ -68,12 +68,12 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    padding: 0 1em;
-    height: 2.5rem;
+    padding: 0 1.25em;
+    height: 2rem;
 
-    .icon {
-      font-size: 2.5rem;
-      line-height: 2.5rem;
+    .ngx-icon {
+      font-size: 2rem;
+      line-height: 2rem;
     }
   }
 
