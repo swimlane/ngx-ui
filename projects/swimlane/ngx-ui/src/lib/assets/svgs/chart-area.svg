@@ -1,3 +1,1 @@
-<svg fill="#000000" height="512" width="512" id="icon-chart-area" viewBox="0 0 512 512">
-  <path d="m436 234l-50 25-61-92-125 121-53-25-58-48-73 135 0 18 480 0 0-39z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><title>chart area</title><g fill="#212121" class="nc-icon-wrapper"><g fill="#212121"><path transform="scale(1,-1) translate(0,-32)" d="M 28 18.333 L 24.667 16.592 L 20.6 23 L 12.267 14.572 L 8.733 16.313 L 4.867 19.657 L 0 10.254 V 9 H 32 V 11.716 L 28 18.333 z"></path></g></g></svg>

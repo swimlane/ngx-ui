@@ -47,8 +47,8 @@
       cursor: pointer;
     }
 
-    &.icon-tree-collapse::before,
-    &.icon-tree-expand::before {
+    &.ngx-tree-collapse::before,
+    &.ngx-tree-expand::before {
       background: $color-blue-grey-800;
       border-radius: 50%;
     }

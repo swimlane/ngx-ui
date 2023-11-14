@@ -19,7 +19,7 @@
     </g>
   </svg>
   <button [disabled]="disabled">
-    <ngx-icon *ngIf="state === LongPressButtonState.Active" class="icon" [fontIcon]="icon"></ngx-icon>
-    <ngx-icon *ngIf="state === LongPressButtonState.Submitted" class="icon" fontIcon="check"></ngx-icon>
+    <ngx-icon *ngIf="state === LongPressButtonState.Active" [fontIcon]="icon"></ngx-icon>
+    <ngx-icon *ngIf="state === LongPressButtonState.Submitted" fontIcon="check"></ngx-icon>
   </button>
 </div>

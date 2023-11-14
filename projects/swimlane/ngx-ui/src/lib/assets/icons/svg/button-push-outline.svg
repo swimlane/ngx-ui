@@ -1,11 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 24.2.3, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill-rule:evenodd;clip-rule:evenodd;}
-</style>
-<path class="st0" d="M29.7,3H2.2C1,3,0,4,0,5.2v15.3c0,1.2,1,2.2,2.2,2.2H10l2,6.3l0.9,3l1.3-2.8l3-6.3l7.6,7.6l1.7-1.7L18.7,21
-	l6.5-3.5l2.5-1.3L25,15.3L7.7,9.2L5.4,8.4l0.7,2.3l3,9.6H2.5V5.5h27.1v14.8h-3.7v2.5h3.9c1.2,0,2.2-1,2.2-2.2V5.2C32,4,31,3,29.7,3z
-	 M21.6,16.7l-5.2,2.8L16,19.6L15.8,20l-2.5,5.3l-4.1-13L21.6,16.7z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><title>button push outline</title><g fill="#212121" class="nc-icon-wrapper"><g fill="#212121"><path transform="scale(1,-1) translate(0,-32)" d="M 2.45 26.55 V 11.703 H 9.184 L 6.161 21.303 L 5.425 23.641 L 7.738 22.825 L 25.035 16.72 L 27.67 15.79 L 25.2 14.483 L 18.683 11.033 L 26.511 3.204 L 24.779 1.472 L 17.159 9.092 L 14.203 2.832 L 12.867 0.002 L 11.927 2.987 L 9.955 9.253 H 2.225 A 2.225 2.225 0 0 0 0 11.478 V 26.775 C 0 28.004 0.996 29 2.225 29 H 29.732 C 30.961 29 31.95700000000001 28.004 31.95700000000001 26.775 V 11.478 A 2.225 2.225 0 0 0 29.732 9.253 H 25.814 V 11.703 H 29.507000000000012 V 26.55 z M 13.324 6.708 L 9.234 19.698 L 21.584 15.34 L 16.366 12.578 L 16.006 12.387 L 15.832 12.018 z"></path></g></g></svg>

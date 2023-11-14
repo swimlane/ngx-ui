@@ -1,10 +1,1 @@
-<svg width="12" height="14" viewBox="0 0 12 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="Canvas" transform="translate(-6863 11827)">
-<g id="user">
-<use xlink:href="#path0_fill" transform="translate(6863 -11827)" fill="#FFFFFF"/>
-</g>
-</g>
-<defs>
-<path id="path0_fill" fill-rule="evenodd" d="M 2.71582 3.16797C 2.71582 1.44824 4.16406 0 5.88428 0C 7.604 0 9.05225 1.44824 9.05225 3.16797C 9.05225 4.88867 7.604 6.33691 5.88428 6.33691C 4.16406 6.33691 2.71582 4.88867 2.71582 3.16797ZM 0 11.7686C 0 11.7686 1.44824 8.14746 5.88379 8.14746C 10.3198 8.14746 11.7681 11.7686 11.7681 11.7686L 11.7681 13.5791L 0 13.5791L 0 11.7686Z"/>
-</defs>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><title>user</title><g fill="#212121" class="nc-icon-wrapper"><g fill="#212121"><path transform="scale(1,-1) translate(0,-32)" d="M 8.4 24.534 C 8.4 28.587 11.813 32 15.867 32 C 19.919 32 23.332 28.587 23.332 24.534 C 23.332 20.48 19.919 17.067 15.867 17.067 C 11.813 17.067 8.4 20.479 8.4 24.534 z M 2 4.267 S 5.413 12.8 15.866 12.8 S 29.732 4.267 29.732 4.267 V 0 H 2 V 4.267 z"></path></g></g></svg>

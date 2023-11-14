@@ -1,12 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="4px" height="35px" viewBox="0 0 4 35" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.707427536">
-        <g id="App-Builder" transform="translate(-1271.000000, -263.000000)" fill-rule="nonzero" fill="#455066">
-            <g id="resize-handle" transform="translate(1271.000000, 263.000000)">
-                <polygon id="Line-Copy-12" points="3 0 3 35 4 35 4 0"></polygon>
-                <polygon id="Line" points="0 0 0 35 1 35 1 0"></polygon>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><title>split handle</title><g fill="#212121" class="nc-icon-wrapper"><g fill="#212121"><path transform="scale(1,-1) translate(0,-32)" d="M 16.742999999999938 32 V 0 H 17.656999999999936 V 32 H 16.742999999999938 z M 14 32 V 0 H 14.914 V 32 H 14 z"></path></g></g></svg>

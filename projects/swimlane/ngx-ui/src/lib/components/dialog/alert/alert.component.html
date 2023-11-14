@@ -12,7 +12,7 @@
   >
     <div class="ngx-dialog-header" *ngIf="title || closeButton">
       <button *ngIf="closeButton" type="button" class="close" (click)="hide()">
-        <span class="icon-x"></span>
+        <span class="ngx-icon ngx-x"></span>
       </button>
       <button *ngIf="type === AlertTypes.Alert" type="button" class="btn close-button" (click)="onOkClick()">
         <ng-container *ngTemplateOutlet="okBtnContentTmpl"></ng-container>

@@ -1,3 +1,1 @@
-<svg fill="#000000" height="512" width="512" id="icon-bars" viewBox="0 0 512 512">
-  <path d="m384 512c0 0 0-512 0-512 0 0 110 0 110 0 0 0 0 512 0 512 0 0-110 0-110 0z m-183-512c0 0 110 0 110 0 0 0 0 512 0 512 0 0-110 0-110 0 0 0 0-512 0-512z m-183 0c0 0 110 0 110 0 0 0 0 512 0 512 0 0-110 0-110 0 0 0 0-512 0-512z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><title>bars</title><g fill="#212121" class="nc-icon-wrapper"><g fill="#212121"><path transform="scale(1,-1) translate(0,-32)" d="M 24.067 0 V 32 H 31 V 0 H 24.067 z M 12.534 32 H 19.466 V 0 H 12.534 V 32 z M 1 32 H 7.933 V 0 H 1 V 32 z"></path></g></g></svg>

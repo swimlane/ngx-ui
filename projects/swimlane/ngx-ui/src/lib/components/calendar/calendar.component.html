@@ -3,13 +3,13 @@
     <div *ngSwitchCase="CalendarView.Date">
       <div class="title-row">
         <button type="button" tabindex="0" class="prev-month" [disabled]="disabled" title="Previous Month" (click)="prevMonth()">
-          <span class="icon-arrow-left"></span>
+          <span class="ngx-icon ngx-arrow-left"></span>
         </button>
         <button type="button" class="title" tabindex="0" (click)="changeViews()">
           {{ focusDate | amTimeZone: timezone | amDateFormat: 'MMMM YYYY' }}
         </button>
         <button type="button" tabindex="0" class="next-month" title="Next Month" [disabled]="disabled" (click)="nextMonth()">
-          <span class="icon-arrow-right"></span>
+          <span class="ngx-icon  ngx-arrow-right"></span>
         </button>
       </div>
       <div class="day-name-row">
@@ -44,13 +44,13 @@
     <div *ngSwitchCase="CalendarView.Month">
       <div class="title-row">
         <button type="button" class="prev-month" [disabled]="disabled" title="Previous Year" (click)="prevYear()">
-          <span class="icon-arrow-left"></span>
+          <span class="ngx-icon ngx-arrow-left"></span>
         </button>
         <button class="title" (click)="changeViews()">
           {{ focusDate | amTimeZone: timezone | amDateFormat: 'YYYY' }}
         </button>
         <button type="button" class="next-month" title="Next Year" [disabled]="disabled" (click)="nextYear()">
-          <span class="icon-arrow-right"></span>
+          <span class="ngx-icon ngx-arrow-right"></span>
         </button>
       </div>
       <table class="months-container" role="grid">
@@ -83,7 +83,7 @@
           title="Previous Two Decades"
           (click)="prevTwoDecades()"
         >
-          <span class="icon-arrow-left"></span>
+          <span class="ngx-icon ngx-arrow-left"></span>
         </button>
         <button class="title" (click)="changeViews()"> {{ startYear }} - {{ startYear + 20 }} </button>
         <button
@@ -93,7 +93,7 @@
           [disabled]="disabled"
           (click)="nextTwoDecades()"
         >
-          <span class="icon-arrow-right"></span>
+          <span class="ngx-icon ngx-arrow-right"></span>
         </button>
       </div>
       <table class="years-container" role="grid">

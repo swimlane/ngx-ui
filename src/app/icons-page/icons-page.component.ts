@@ -8,7 +8,15 @@ import iconsData from '@swimlane/ngx-ui/assets/icons/json/icons.json';
 })
 export class IconsPageComponent {
   // @ts-ignore
-  icons = iconsData.icons.reverse();
+  icons = iconsData.icons.sort((a, b) => {
+    if (a.name < b.name) {
+      return -1;
+    }
+    if (b.name > a.name) {
+      return 1;
+    }
+    return 0;
+  });
   iconFx = [
     'inverse',
     'rotate-90',

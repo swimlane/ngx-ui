@@ -6,12 +6,12 @@
 >
   <span
     *ngIf="schema?.type === 'object' || schema?.type === 'array'"
-    class="ngx-expander"
+    class="ngx-expander ngx-icon"
     (click)="onExpandClick()"
     [class.invalid]="!childrenValid || isDuplicated"
     [ngClass]="{
-      'icon-tree-collapse': expanded,
-      'icon-tree-expand': !expanded
+      'ngx-tree-collapse': expanded,
+      'ngx-tree-expand': !expanded
     }"
   >
   </span>

@@ -1,12 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 26.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#212121;}
-</style>
-<path class="st0" d="M29.4,7.6L16.6,0.2c-0.4-0.2-0.8-0.2-1.2,0L2.6,7.6C2.2,7.8,2,8.2,2,8.6v14.7c0,0.4,0.2,0.8,0.6,1.1l12.8,7.4
-	c0.4,0.2,0.9,0.2,1.2,0l12.7-7.4c0.4-0.2,0.6-0.6,0.6-1.1V8.6C30,8.2,29.7,7.8,29.4,7.6z M16,2.7l10.6,6.1l-4.2,2.4L12.1,4.9L16,2.7
-	z M14.8,28.6l-10.3-6V11.5l10.3,6V28.6z M15.7,15.1L5,9l4.6-2.7c0,0,0.1,0,0.1,0.1L20,12.6L15.7,15.1z M27.5,22.7l-10.3,6V17.1
-	l10.3-6V22.7z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><title>plugin outline small</title><g fill="#212121" class="nc-icon-wrapper"><g fill="#212121"><path transform="scale(1,-1) translate(0,-32)" d="M 29.4 24.4 L 16.6 31.8 C 16.2 32 15.8 32 15.4 31.8 L 2.6 24.4 C 2.2 24.2 2 23.8 2 23.4 V 8.7 C 2 8.3 2.2 7.9 2.6 7.6 L 15.4 0.2 C 15.8 0 16.3 0 16.6 0.2 L 29.3 7.6 C 29.7 7.8 29.9 8.2 29.9 8.7 V 23.4 C 30.000000000000014 23.8 29.7 24.2 29.4 24.4 z M 16 29.3 L 26.6 23.2 L 22.4 20.8 L 12.1 27.1 L 16 29.3 z M 14.8 3.4 L 4.5 9.4 V 20.5 L 14.8 14.5 V 3.4 z M 15.7 16.9 L 5 23 L 9.6 25.7 S 9.7 25.7 9.7 25.6 L 20 19.4 L 15.7 16.9 z M 27.5 9.3 L 17.2 3.3 V 14.9 L 27.5 20.9 V 9.3 z"></path></g></g></svg>

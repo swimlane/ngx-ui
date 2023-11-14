@@ -6,11 +6,11 @@
   right: 20px;
   z-index: 2000;
 
-  .icon {
+  .ngx-icon {
     cursor: pointer;
     width: 40px;
     height: 40px;
-    line-height: 43px;
+    line-height: 40px;
     text-align: center;
     border-radius: 20px;
     position: absolute;
@@ -27,11 +27,11 @@
 
   .hotkeys-icon {
     color: $color-blue-grey-300;
-    font-size: 14px;
+    font-size: 21px;
     background-color: black;
   }
 
-  .icon:hover {
+  .ngx-icon:hover {
     color: $color-blue-grey-100;
   }
 }
