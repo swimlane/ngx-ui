@@ -10,7 +10,7 @@
   >
     <ng-container *ngIf="format === DialogFormat.Regular; else largeFormat">
       <button *ngIf="closeButton" type="button" class="close" (click)="hide()">
-        <span class="icon-x"></span>
+        <span class="ngx-icon ngx-x"></span>
       </button>
       <div class="ngx-dialog-header" *ngIf="dialogTitle">
         <h2 *ngIf="dialogTitle" class="ngx-dialog-title" [innerHTML]="dialogTitle"></h2>

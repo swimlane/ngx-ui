@@ -6,11 +6,19 @@ Generated using nucleoapp.com
 -------------------------------- */
 
 /* base class */
-.ngx-icon, .icon {
+.ngx-icon {
   display: inline-block;
   font: normal normal normal 1em/1 'ngx-icon';
   // color: inherit;
   flex-shrink: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^='icon-']:before,
+[class*='icon-']:before {
+  line-height: 1;
+  font: normal normal normal 1em/1 'ngx-icon';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -498,7 +506,7 @@ $icons: (
 }
 
 @each $name, $code in $icons {
-  .ngx-icon.ngx-#{""+$name}::before, .icon.icon-#{""+$name}::before {
+  .ngx-icon.ngx-#{""+$name}::before, .icon-#{""+$name}::before {
     content: unicode($code);
   }
 }
