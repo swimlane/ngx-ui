@@ -1,3 +1,1 @@
-<svg fill="#000000" height="512" width="512" id="icon-check" viewBox="0 0 512 512">
-  <path d="m176 464l-176-176l80-83l112 107l248-248l72 72z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><title>check</title><g fill="#212121" class="nc-icon-wrapper"><g fill="#212121"><path transform="scale(1,-1) translate(0,-32)" d="M 11 4 L 0 15 L 5 20.188 L 12 13.5 L 27.5 29 L 32 24.5 L 11 4 z"></path></g></g></svg>

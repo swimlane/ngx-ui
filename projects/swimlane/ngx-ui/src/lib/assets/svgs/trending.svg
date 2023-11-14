@@ -1,3 +1,1 @@
-<svg fill="#000000" height="512" width="512" id="icon-trending" viewBox="0 0 512 512">
-  <path d="m341 128l49 49-104 104-85-85-158 158 30 30 128-128 85 85 134-134 49 49 0-128z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><title>trending</title><g fill="#212121" class="nc-icon-wrapper"><g fill="#212121"><path transform="scale(1,-1) translate(0,-32)" d="M 22.385 26 L 26.065 22.325 L 18.253 14.525 L 11.868 20.9 L 0 9.05 L 2.254 6.8 L 11.868 16.4 L 18.253 10.025 L 28.319 20.075 L 32 16.4 V 26 H 22.385 z"></path></g></g></svg>

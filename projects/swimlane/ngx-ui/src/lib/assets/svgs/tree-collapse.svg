@@ -1,7 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg width="11px" height="11px" viewBox="0 0 11 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <path d="M3.00000458,6.1000412 L8.00000458,6.09999542 L7.99999542,5.09999542 L2.99999542,5.1000412 L3.00000458,6.1000412 Z M5.5,11 C2.46243388,11 0,8.53756612 0,5.5 C0,2.46243388 2.46243388,0 5.5,0 C8.53756612,0 11,2.46243388 11,5.5 C11,8.53756612 8.53756612,11 5.5,11 Z M5.5,10 C7.98528137,10 10,7.98528137 10,5.5 C10,3.01471863 7.98528137,1 5.5,1 C3.01471863,1 1,3.01471863 1,5.5 C1,7.98528137 3.01471863,10 5.5,10 Z" id="exp-circle" fill="#8A96A8" fill-rule="nonzero"></path>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><title>tree collapse</title><g fill="#212121" class="nc-icon-wrapper"><g fill="#212121"><path transform="scale(1,-1) translate(0,-32)" d="M 8.724 14.254 H 23.264 V 17.164 H 8.723 V 14.254 z M 15.994 0 C 7.16 0 0 7.163 0 16 S 7.16 32 15.993 32 S 31.987 24.837 31.987 16 S 24.827 0 15.993 0 z M 15.994 2.91 C 23.22 2.91 29.079 8.77 29.079 16 C 29.079 23.23 23.22 29.09 15.993 29.09 S 2.908 23.23 2.908 16 C 2.908 8.77 8.766 2.91 15.993 2.91 z"></path></g></g></svg>

@@ -1,3 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-    <path d="M 7 3 L 7 7 L 3 7 L 3 10 L 7 10 L 7 14 L 3 14 L 3 17 L 7 17 L 7 21 L 10 21 L 10 17 L 14 17 L 14 21 L 17 21 L 17 17 L 21 17 L 21 14 L 17 14 L 17 10 L 21 10 L 21 7 L 17 7 L 17 3 L 14 3 L 14 7 L 10 7 L 10 3 L 7 3 z M 10 10 L 14 10 L 14 14 L 10 14 L 10 10 z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><title>field numeric</title><g fill="#212121" class="nc-icon-wrapper"><g fill="#212121"><path transform="scale(1,-1) translate(0,-32)" d="M 7.111 32 V 24.889 H 0 V 19.556 H 7.111 V 12.444 H 0 V 7.111 H 7.111 V 0 H 12.444 V 7.111 H 19.556 V 0 H 24.889 V 7.111 H 32 V 12.444 H 24.889 V 19.556 H 32 V 24.889 H 24.889 V 32 H 19.556 V 24.889 H 12.444 V 32 H 7.111 z M 12.444 19.556 H 19.556 V 12.444 H 12.444 V 19.556 z"></path></g></g></svg>

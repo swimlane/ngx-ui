@@ -1,3 +1,1 @@
-<svg fill="#000000" height="512" width="512" id="icon-play" viewBox="0 0 512 512">
-  <path d="m185 413c-2 2-6 3-9 3c-9 0-16-8-16-17l0-286c0-9 7-17 16-17c3 0 6 1 8 3l3 2l156 136c5 5 9 11 9 19c0 8-4 14-9 19l-156 136z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><title>play</title><g fill="#212121" class="nc-icon-wrapper"><g fill="#212121"><path transform="scale(1,-1) translate(0,-32)" d="M 8.5 0.3 C 8.3 0.1 7.9 0 7.6 0 C 6.7 0 6 0.8 6 1.7 V 30.3 C 6 31.2 6.7 32 7.6 32 C 7.9 32 8.2 31.9 8.4 31.7 L 8.7 31.5 L 24.3 17.9 C 24.8 17.4 25.2 16.8 25.2 16 C 25.2 15.2 24.8 14.6 24.3 14.1 L 8.7 0.5 L 8.5 0.3 z"></path></g></g></svg>

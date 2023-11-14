@@ -5,18 +5,6 @@ Generated using nucleoapp.com
 
 -------------------------------- */
 
-$ngx-font-path: "../fonts" !default;
-
-@font-face {
-  font-family: 'ngx-icon';
-  src: url('#{$ngx-font-path}/ngx-icon.eot');
-  src: url('#{$ngx-font-path}/ngx-icon.eot') format('embedded-opentype'),
-       url('#{$ngx-font-path}/ngx-icon.woff2') format('woff2'),
-       url('#{$ngx-font-path}/ngx-icon.woff') format('woff'),
-       url('#{$ngx-font-path}/ngx-icon.ttf') format('truetype'),
-       url('#{$ngx-font-path}/ngx-icon.svg') format('svg');
-}
-
 /* base class */
 .ngx-icon {
   display: inline-block;

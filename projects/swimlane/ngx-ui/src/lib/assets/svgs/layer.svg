@@ -1,3 +1,1 @@
-<svg fill="#000000" height="512" width="512" id="icon-layer" viewBox="0 0 512 512">
-  <path d="m256 396l-157-123-35 27 192 149 192-149-35-27z m0-55l157-122 35-27-192-149-192 149 35 27z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><title>layer</title><g fill="#212121" class="nc-icon-wrapper"><g fill="#212121"><path transform="scale(1,-1) translate(0,-32)" d="M 16.133 4.177 L 3.759 13.872 L 1 11.744 L 16.133 0 L 31.266 11.744 L 28.507 13.872 L 16.133 4.177 z M 16.133 8.512 L 28.507 18.128 L 31.266 20.256 L 16.133 32 L 1 20.256 L 3.759 18.128 L 16.133 8.512 z"></path></g></g></svg>
