@@ -1,4 +1,4 @@
-import { ElementRef, Directive, Inject, PLATFORM_ID, EventEmitter } from '@angular/core';
+import { ElementRef, Directive, Inject, PLATFORM_ID, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { InViewportDirective, InViewportService } from 'ng-in-viewport';
 
 @Directive({
@@ -11,10 +11,11 @@ export class DropdownMenuDirective extends InViewportDirective {
 
   constructor(
     @Inject(PLATFORM_ID) readonly _platformIdentifier: any,
+    readonly _cd: ChangeDetectorRef,
     readonly _elementReference: ElementRef,
     readonly _insideViewport: InViewportService
   ) {
-    super(_platformIdentifier, _elementReference, _insideViewport);
+    super(_platformIdentifier, _cd, _elementReference, _insideViewport, undefined);
     this.element = this._elementReference.nativeElement;
   }
 
