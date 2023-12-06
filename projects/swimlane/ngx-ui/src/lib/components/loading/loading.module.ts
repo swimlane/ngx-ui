@@ -8,7 +8,6 @@ import { LoadingComponent } from './loading.component';
   declarations: [LoadingComponent],
   providers: [InjectionService],
   exports: [LoadingComponent],
-  imports: [CommonModule],
-  entryComponents: [LoadingComponent]
+  imports: [CommonModule]
 })
 export class LoadingModule {}

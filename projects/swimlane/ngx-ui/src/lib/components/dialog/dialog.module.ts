@@ -42,7 +42,6 @@ import { LargeFormatDialogContentComponent } from './large-format/large-format-d
     LargeFormatDialogSubTabsDirective
   ],
   providers: [InjectionService],
-  imports: [CommonModule, OverlayModule, InputModule, FormsModule, LongPressButtonModule],
-  entryComponents: [DialogComponent, AlertComponent]
+  imports: [CommonModule, OverlayModule, InputModule, FormsModule, LongPressButtonModule]
 })
 export class DialogModule {}

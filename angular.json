@@ -165,7 +165,6 @@
       }
     }
   },
-  "defaultProject": "ngx-ui",
   "cli": {
     "analytics": false
   }

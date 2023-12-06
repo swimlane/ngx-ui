@@ -10,7 +10,6 @@ import { InjectionService } from '../../services/injection/injection.service';
   declarations: [TooltipContentComponent, TooltipDirective],
   providers: [InjectionService],
   exports: [TooltipContentComponent, TooltipDirective],
-  imports: [CommonModule],
-  entryComponents: [TooltipContentComponent]
+  imports: [CommonModule]
 })
 export class TooltipModule {}
