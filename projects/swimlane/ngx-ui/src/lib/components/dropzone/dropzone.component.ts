@@ -8,7 +8,7 @@ import {
   EventEmitter
 } from '@angular/core';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
-import { FileUploaderOptions, FileUploader, FileItem } from '@swimlane/ng2-file-upload';
+import { FileUploaderOptions, FileUploader, FileItem } from 'ng2-file-upload';
 import { id } from '../../utils/id/id.util';
 import { listFormatter } from '../../utils/list-format/list-format.util';
 

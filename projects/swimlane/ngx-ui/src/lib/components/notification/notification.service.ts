@@ -19,7 +19,7 @@ import { NotificationOptions } from './notification-options.interface';
   providedIn: 'root'
 })
 export class NotificationService extends InjectionRegistryService<NotificationComponent> {
-  static readonly limit: number | boolean = 10;
+  static readonly limit = 10;
   readonly defaults: NotificationOptions = {
     inputs: {
       timeout: 3000,

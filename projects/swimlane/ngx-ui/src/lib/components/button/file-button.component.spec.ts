@@ -1,12 +1,12 @@
 import { Shallow } from 'shallow-render';
 import { Rendering } from 'shallow-render/dist/lib/models/rendering';
-import { FileUploader } from '@swimlane/ng2-file-upload';
+import { FileUploader } from 'ng2-file-upload';
 
 import { FileButtonComponent } from './file-button.component';
 import { ButtonModule } from './button.module';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-const uploader = new FileUploader({});
+const uploader = new FileUploader({} as any);
 
 describe('FileButtonComponent', () => {
   let shallow: Shallow<FileButtonComponent>;
@@ -113,7 +113,7 @@ describe('FileButtonComponent', () => {
     beforeEach(async () => {
       rendering = await shallow.render(
         `
-        <ngx-file-button [uploader]="uploader"> 
+        <ngx-file-button [uploader]="uploader">
           <ng-template #dropzoneTemplate let-uploader>
             <input
               [id]="id"

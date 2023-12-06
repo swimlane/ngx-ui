@@ -19,7 +19,7 @@ import type { QueryList } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
-import { TreeNodeComponent } from './tree-node.component';
+// import type { TreeNodeComponent } from './tree-node.component';
 import { TreeNode } from './tree-node.model';
 
 @Component({
@@ -47,8 +47,8 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
   @ContentChild(TemplateRef, { static: true })
   _templateQuery: TemplateRef<any>;
 
-  @ContentChildren(TreeNodeComponent) readonly nodeElms: QueryList<TreeNodeComponent>;
-  @ContentChildren(TreeNodeComponent, { descendants: true }) readonly allNodeElms: QueryList<TreeNodeComponent>;
+  @ContentChildren('ngxTreeNodeCmp') readonly nodeElms: QueryList<any>;
+  @ContentChildren('ngxTreeNodeCmp', { descendants: true }) readonly allNodeElms: QueryList<any>;
 
   @Output() expand = new EventEmitter();
   @Output() collapse = new EventEmitter();
@@ -205,7 +205,7 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
     });
   }
 
-  elementsToNodes(nodes: QueryList<TreeNodeComponent>): TreeNode[] {
+  elementsToNodes(nodes: QueryList<any>): TreeNode[] {
     let id = 0;
     const tmpTree = nodes.map(
       node =>

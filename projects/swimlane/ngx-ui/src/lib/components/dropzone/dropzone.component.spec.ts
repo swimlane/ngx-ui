@@ -4,9 +4,9 @@ import { Shallow } from 'shallow-render';
 import { DropzoneComponent, DropzoneSize } from './dropzone.component';
 import { DropzoneModule } from './dropzone.module';
 import { Rendering } from 'shallow-render/dist/lib/models/rendering';
-import { FileUploader } from '@swimlane/ng2-file-upload';
+import { FileUploader } from 'ng2-file-upload';
 
-const uploader = new FileUploader({});
+const uploader = new FileUploader({} as any);
 const acceptedFileFormats = ['.txt', '.json'];
 const oneAcceptedFileFormat = ['.csv'];
 
