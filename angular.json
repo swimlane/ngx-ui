@@ -23,7 +23,7 @@
             "allowedCommonJsDependencies": ["moment-timezone", "mousetrap", "ajv", "codemirror"],
             "aot": true,
             "preserveSymlinks": true,
-            "outputPath": "dist/ngx-ui",
+            "outputPath": "dist/ngx-ui/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,6 +68,9 @@
                   "maximumWarning": "6kb"
                 }
               ]
+            },
+            "development": {
+              "sourceMap": true
             }
           }
         },
@@ -108,6 +111,77 @@
           "options": {
             "lintFilePatterns": ["src/**/*.ts", "src/**/*.html", "cypress/**/*.js"]
           }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/ngx-ui/server",
+            "main": "server.ts",
+            "tsConfig": "tsconfig.server.json",
+            "sourceMap": {
+              "scripts": true,
+              "styles": true,
+              "vendor": true
+            },
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "dist/swimlane/ngx-ui/lib/styles",
+                "dist/swimlane/ngx-ui/lib/assets"
+              ]
+            },
+            "preserveSymlinks": true
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "sourceMap": false,
+              "extractLicenses": true
+            },
+            "development": {
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "ngx-ui:build:development",
+              "serverTarget": "ngx-ui:server:development"
+            },
+            "production": {
+              "browserTarget": "ngx-ui:build:production",
+              "serverTarget": "ngx-ui:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-ui:build:production",
+              "serverTarget": "ngx-ui:server:production"
+            },
+            "development": {
+              "browserTarget": "ngx-ui:build:development",
+              "serverTarget": "ngx-ui:server:development"
+            }
+          },
+          "defaultConfiguration": "production"
         }
       }
     },
