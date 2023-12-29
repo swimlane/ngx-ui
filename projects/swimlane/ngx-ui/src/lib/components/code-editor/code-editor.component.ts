@@ -28,7 +28,7 @@ const CODEMIRROR_VALUE_ACCESSOR = {
 };
 
 let codeMirror: typeof import('codemirror') = null;
-if (window && document) {
+if (typeof window !== 'undefined') {
   import('codemirror').then(e => {
     // @ts-ignore
     codeMirror = e.default ?? e;
@@ -162,12 +162,12 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
 
     if (isPlatformBrowser(this.platformId)) {
       this.instance = codeMirror.fromTextArea(this.host.nativeElement, this.config);
-    }
-    this.instance.on('change', this.onChange.bind(this));
-    this.instance.on('blur', this.onBlur.bind(this));
+      this.instance.on('change', this.onChange.bind(this));
+      this.instance.on('blur', this.onBlur.bind(this));
 
-    if (this.autocompleteTokens) {
-      this.instance.on('keyup', this.onKeyUp.bind(this));
+      if (this.autocompleteTokens) {
+        this.instance.on('keyup', this.onKeyUp.bind(this));
+      }
     }
   }
 
@@ -205,6 +205,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
   }
 
   onVisible(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     // hidden on init will cause incorrect sizing
     this.instance.refresh();
   }
