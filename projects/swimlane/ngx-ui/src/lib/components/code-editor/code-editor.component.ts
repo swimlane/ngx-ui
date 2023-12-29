@@ -1,50 +1,61 @@
 import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
-  Input,
-  Output,
-  ViewChild,
-  OnInit,
-  Renderer2,
   EventEmitter,
   forwardRef,
-  AfterViewInit,
-  ViewEncapsulation,
-  ChangeDetectionStrategy
+  Inject,
+  Input,
+  OnInit,
+  Output,
+  PLATFORM_ID,
+  Renderer2,
+  ViewChild,
+  ViewEncapsulation
 } from '@angular/core';
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
 
-import * as CodeMirror from 'codemirror';
-
-// code extensions
-import 'codemirror/mode/yaml/yaml.js';
-import 'codemirror/mode/python/python.js';
-import 'codemirror/mode/powershell/powershell.js';
-import 'codemirror/mode/javascript/javascript.js';
-import 'codemirror/mode/htmlmixed/htmlmixed.js';
-import 'codemirror/mode/spreadsheet/spreadsheet.js';
-import 'codemirror/mode/handlebars/handlebars.js';
-import './mustache';
-
-// add-ons
-import 'codemirror/addon/lint/lint.js';
-import 'codemirror/addon/search/search.js';
-import 'codemirror/addon/search/searchcursor.js';
-import 'codemirror/addon/search/jump-to-line.js';
-import 'codemirror/addon/dialog/dialog.js';
-import 'codemirror/addon/fold/foldcode.js';
-import 'codemirror/addon/fold/foldgutter.js';
-import 'codemirror/addon/fold/indent-fold.js';
-import 'codemirror/addon/hint/show-hint.js';
-import 'codemirror/addon/mode/overlay.js';
+import type * as CodeMirror from 'codemirror';
 
 import { HintCompletion } from './hint-completion.interface';
+import { isPlatformBrowser } from '@angular/common';
 
 const CODEMIRROR_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
   useExisting: forwardRef(() => CodeEditorComponent),
   multi: true
 };
+
+let codeMirror: typeof import('codemirror') = null;
+if (window && document) {
+  import('codemirror').then(e => {
+    // @ts-ignore
+    codeMirror = e.default ?? e;
+  });
+
+  // code extensions
+  import('codemirror/mode/yaml/yaml.js');
+  import('codemirror/mode/python/python.js');
+  import('codemirror/mode/powershell/powershell.js');
+  import('codemirror/mode/javascript/javascript.js');
+  import('codemirror/mode/htmlmixed/htmlmixed.js');
+  import('codemirror/mode/spreadsheet/spreadsheet.js');
+  import('codemirror/mode/handlebars/handlebars.js');
+  import('./mustache');
+
+  // add-ons
+  import('codemirror/addon/lint/lint.js');
+  import('codemirror/addon/search/search.js');
+  import('codemirror/addon/search/searchcursor.js');
+  import('codemirror/addon/search/jump-to-line.js');
+  import('codemirror/addon/dialog/dialog.js');
+  import('codemirror/addon/fold/foldcode.js');
+  import('codemirror/addon/fold/foldgutter.js');
+  import('codemirror/addon/fold/indent-fold.js');
+  import('codemirror/addon/hint/show-hint.js');
+  import('codemirror/addon/mode/overlay.js');
+}
 
 @Component({
   exportAs: 'ngxCodemirror',
@@ -113,7 +124,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
   private _autofocus = false;
   private _lineNumbers = false;
 
-  constructor(private readonly renderer: Renderer2) {}
+  constructor(private readonly renderer: Renderer2, @Inject(PLATFORM_ID) private readonly platformId: any) {}
 
   ngOnInit(): void {
     this.config = {
@@ -149,7 +160,9 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
       this.host.nativeElement.value = this.cleanCode(code);
     }
 
-    this.instance = CodeMirror.fromTextArea(this.host.nativeElement, this.config);
+    if (isPlatformBrowser(this.platformId)) {
+      this.instance = codeMirror.fromTextArea(this.host.nativeElement, this.config);
+    }
     this.instance.on('change', this.onChange.bind(this));
     this.instance.on('blur', this.onBlur.bind(this));
 
@@ -198,7 +211,7 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
 
   onKeyUp(cm: CodeMirror.EditorFromTextArea, event: KeyboardEvent) {
     if ((!cm.state.completionActive && event.keyCode > 64 && event.keyCode < 91) || event.keyCode === 219) {
-      (CodeMirror.commands as any).autocomplete(cm, null, { completeSingle: false });
+      (codeMirror.commands as any).autocomplete(cm, null, { completeSingle: false });
     }
   }
 
@@ -259,8 +272,8 @@ export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueA
 
     return {
       list,
-      from: CodeMirror.Pos(cur.line, start),
-      to: CodeMirror.Pos(cur.line, end)
+      from: codeMirror.Pos(cur.line, start),
+      to: codeMirror.Pos(cur.line, end)
     };
   }
 }
