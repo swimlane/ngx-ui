@@ -1,15 +1,18 @@
 import {
-  Component,
-  Input,
   ChangeDetectionStrategy,
+  Component,
   ElementRef,
+  Inject,
+  Input,
   OnChanges,
   OnInit,
+  PLATFORM_ID,
   ViewEncapsulation
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { IconRegistryService } from '../../services/icon-registry/icon-registry.service';
+import { isPlatformServer } from '@angular/common';
 
 @Component({
   exportAs: 'ngxIcon',
@@ -35,7 +38,8 @@ export class IconComponent implements OnChanges, OnInit {
   constructor(
     private http: HttpClient,
     private elementRef: ElementRef,
-    private iconRegisteryService: IconRegistryService
+    private iconRegisteryService: IconRegistryService,
+    @Inject(PLATFORM_ID) private platformId: any
   ) {}
 
   ngOnChanges() {
@@ -53,6 +57,7 @@ export class IconComponent implements OnChanges, OnInit {
   }
 
   loadSvg(val: string): void {
+    if (isPlatformServer(this.platformId)) return;
     const opts: any = { responseType: 'text' };
     this.http.get<string>(`${this.defaultPath}/${val}.svg`, opts).subscribe(
       /* istanbul ignore next */

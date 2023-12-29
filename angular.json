@@ -119,11 +119,8 @@
             "outputPath": "dist/ngx-ui/server",
             "main": "server.ts",
             "tsConfig": "tsconfig.server.json",
-            "sourceMap": {
-              "scripts": true,
-              "styles": true,
-              "vendor": true
-            },
+            "sourceMap": true,
+            "optimization": false,
             "stylePreprocessorOptions": {
               "includePaths": ["dist/swimlane/ngx-ui/lib/styles", "dist/swimlane/ngx-ui/lib/assets"]
             },
@@ -143,6 +140,7 @@
               "extractLicenses": true
             },
             "development": {
+              "optimization": false,
               "sourceMap": true
             }
           },

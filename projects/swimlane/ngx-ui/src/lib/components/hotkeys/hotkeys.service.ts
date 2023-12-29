@@ -7,7 +7,7 @@ import { HotkeyStatus } from './hotkey-status.enum';
 
 let hotkeys: { [combo: string]: Hotkey[] } = {};
 const hotkeyChangedSource = new Subject<{ [combo: string]: Hotkey[] }>();
-const isMac = /Mac|iPod|iPhone|iPad/.test(window.navigator.platform);
+const isMac = typeof window !== 'undefined' ? /Mac|iPod|iPhone|iPad/.test(window.navigator.platform) : false;
 const tags = ['INPUT', 'SELECT', 'TEXTAREA'];
 
 /* eslint-disable */
