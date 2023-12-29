@@ -34,11 +34,8 @@
               "includePaths": ["dist/swimlane/ngx-ui/lib/styles", "dist/swimlane/ngx-ui/lib/assets"]
             },
             "scripts": [],
-            "sourceMap": {
-              "scripts": true,
-              "styles": true,
-              "vendor": true
-            }
+            "sourceMap": true,
+            "optimization": false
           },
           "configurations": {
             "production": {
@@ -70,7 +67,8 @@
               ]
             },
             "development": {
-              "sourceMap": true
+              "sourceMap": true,
+              "optimization": false
             }
           }
         },
@@ -82,6 +80,9 @@
           "configurations": {
             "production": {
               "browserTarget": "ngx-ui:build:production"
+            },
+            "development": {
+              "browserTarget": "ngx-ui:build:development"
             }
           }
         },
@@ -124,10 +125,7 @@
               "vendor": true
             },
             "stylePreprocessorOptions": {
-              "includePaths": [
-                "dist/swimlane/ngx-ui/lib/styles",
-                "dist/swimlane/ngx-ui/lib/assets"
-              ]
+              "includePaths": ["dist/swimlane/ngx-ui/lib/styles", "dist/swimlane/ngx-ui/lib/assets"]
             },
             "preserveSymlinks": true
           },
@@ -167,9 +165,7 @@
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "routes": [
-              "/"
-            ]
+            "routes": ["/"]
           },
           "configurations": {
             "production": {
