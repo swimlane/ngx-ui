@@ -74,6 +74,7 @@ export * from './lib/components/checkbox/checkbox.component';
 export * from './lib/components/code-editor/code-editor.module';
 export * from './lib/components/code-editor/code-editor.component';
 export * from './lib/components/code-editor/hint-completion.interface';
+export * from './lib/components/code-editor/mustache';
 
 export * from './lib/components/date-time/date-time.module';
 export * from './lib/components/date-time/date-time.component';

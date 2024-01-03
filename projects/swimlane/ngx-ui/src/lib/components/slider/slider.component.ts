@@ -1,14 +1,14 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  OnInit,
-  HostListener,
-  forwardRef,
-  ViewEncapsulation,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  forwardRef,
+  HostListener,
+  Input,
+  OnInit,
+  Output,
+  ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
@@ -20,7 +20,7 @@ const SLIDER_VALUE_ACCESSOR: any = {
   multi: true
 };
 
-const edge = window.navigator.userAgent.indexOf('Edge') > -1;
+const edge = typeof window !== 'undefined' ? window.navigator.userAgent.indexOf('Edge') > -1 : false;
 
 @Component({
   selector: 'ngx-slider',
