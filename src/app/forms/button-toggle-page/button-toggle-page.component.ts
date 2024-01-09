@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-button-toggle-page',
@@ -13,8 +13,8 @@ export class ButtonTogglePageComponent {
   favoriteSeason = this.seasons[1];
   secondFavoriteSeason;
   disabled = false;
-  form = new FormGroup({
-    season: new FormControl(this.seasons[1])
+  form = new UntypedFormGroup({
+    season: new UntypedFormControl(this.seasons[1])
   });
 
   groupDisabled = true;

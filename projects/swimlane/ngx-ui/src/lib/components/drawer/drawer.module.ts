@@ -11,7 +11,6 @@ import { DrawerComponent } from './drawer.component';
   declarations: [DrawerComponent, DrawerContainerDirective, DialogDrawerContentComponent],
   exports: [DrawerComponent, DrawerContainerDirective, DialogDrawerContentComponent],
   providers: [InjectionService],
-  imports: [CommonModule, OverlayModule],
-  entryComponents: [DrawerComponent]
+  imports: [CommonModule, OverlayModule]
 })
 export class DrawerModule {}

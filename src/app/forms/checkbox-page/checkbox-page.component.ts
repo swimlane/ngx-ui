@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-checkbox-page',
@@ -9,9 +9,9 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class CheckboxPageComponent {
   checked = false;
 
-  alertType: FormGroup;
+  alertType: UntypedFormGroup;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: UntypedFormBuilder) {
     this.alertType = fb.group({
       breach: false,
       ddos: false,
