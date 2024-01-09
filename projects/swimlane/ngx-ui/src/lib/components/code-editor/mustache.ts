@@ -1,4 +1,4 @@
-import * as CodeMirror from 'codemirror';
+import CodeMirror from 'codemirror';
 
 // Adds mustache as an overlay to text/html
 CodeMirror.defineMode(
