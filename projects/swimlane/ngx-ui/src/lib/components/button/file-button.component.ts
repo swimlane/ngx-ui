@@ -12,7 +12,7 @@ import {
   ElementRef,
   ChangeDetectionStrategy
 } from '@angular/core';
-import { FileUploaderOptions, FileUploader, FileItem } from '@swimlane/ng2-file-upload';
+import { FileUploaderOptions, FileUploader, FileItem } from 'ng2-file-upload';
 import { id } from '../../utils/id/id.util';
 import { FileButtonStyleType } from './file-button-style.type';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
