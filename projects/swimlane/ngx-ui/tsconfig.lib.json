@@ -24,7 +24,6 @@
     "strictInjectionParameters": true,
     "enableResourceInlining": true,
     "preserveWhitespaces": true,
-    "enableIvy": true,
     "compilationMode": "partial"
   },
   "exclude": ["src/test.ts", "**/*.spec.ts"]

@@ -21,7 +21,8 @@ describe('TooltipContentComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TooltipContentComponent],
-      imports: [TooltipModule]
+      imports: [TooltipModule],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
 

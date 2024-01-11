@@ -24,7 +24,8 @@ describe('TooltipDirective', () => {
             destroyAll: () => undefined
           }
         }
-      ]
+      ],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
 

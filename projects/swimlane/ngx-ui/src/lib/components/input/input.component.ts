@@ -307,6 +307,11 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
         this.cdr.markForCheck();
       });
     }
+
+    // ControlValueAccessor setDisabledState is invoked after unlockable prop setter which makes again disable to false
+    if (this.unlockable) {
+      this.disabled = true;
+    }
   }
 
   ngOnDestroy(): void {

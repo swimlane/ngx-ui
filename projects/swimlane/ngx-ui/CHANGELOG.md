@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Angular 17 support
+
 ## 46.0.0 (2023-11-14)
 
 - Breaking style change: The `icon` class styles were updated. Icon fonts were removed from the assets/icons folder

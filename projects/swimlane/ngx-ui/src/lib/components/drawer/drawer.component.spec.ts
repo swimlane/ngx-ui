@@ -11,7 +11,8 @@ describe('DrawerComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [DrawerComponent],
-      imports: [NoopAnimationsModule]
+      imports: [NoopAnimationsModule],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   }));
 

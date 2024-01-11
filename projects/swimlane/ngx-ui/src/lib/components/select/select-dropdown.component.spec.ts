@@ -75,7 +75,7 @@ describe('SelectDropdownComponent', () => {
     });
 
     it('should focus filter input', done => {
-      const spy = spyOn(component.filterInput.nativeElement, 'focus');
+      const spy = spyOn(component.filterInput?.nativeElement, 'focus');
       component.ngAfterViewInit();
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();

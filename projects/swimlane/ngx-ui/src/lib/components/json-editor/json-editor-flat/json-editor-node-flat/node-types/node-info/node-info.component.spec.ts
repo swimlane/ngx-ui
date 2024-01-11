@@ -10,7 +10,8 @@ describe('JsonEditorNodeInfoComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [JsonEditorNodeInfoComponent],
-      imports: [TooltipModule]
+      imports: [TooltipModule],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   }));
 

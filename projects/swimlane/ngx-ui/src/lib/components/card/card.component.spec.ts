@@ -30,7 +30,8 @@ describe('Card', () => {
         CardSubtitleDirective,
         CardSectionDirective
       ],
-      imports: [CardModule, FormsModule, TooltipModule]
+      imports: [CardModule, FormsModule, TooltipModule],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
 
