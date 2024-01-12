@@ -125,15 +125,6 @@ export class SelectDropdownComponent implements AfterViewInit {
 
   constructor(private readonly elementRef: ElementRef, private readonly cdr: ChangeDetectorRef) {}
 
-  // ngOnChanges(changes: SimpleChanges): void {
-  //   if ('options' in changes || 'groupBy' in changes) {
-  //     this.groups = this.calculateGroups(
-  //       changes['groupBy'].currentValue || this.groupBy,
-  //       changes['options'].currentValue || this.options
-  //     );
-  //   }
-  // }
-
   ngAfterViewInit(): void {
     if (this.filterable && !this.tagging) {
       setTimeout(() => {
