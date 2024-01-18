@@ -32,7 +32,7 @@
     "predeploy": "npm run build:lib && npm run build:deploy",
     "deploy": "angular-cli-ghpages --dir ./dist/ngx-ui --name=Swimlane --email=developer@swimlane.com",
     "prepublish:lib": "npm run package",
-    "publish:lib": "npm publish ./dist/swimlane/ngx-ui --ignore-scripts --tag beta",
+    "publish:lib": "npm publish ./dist/swimlane/ngx-ui --ignore-scripts",
     "prepack": "npm run package",
     "pack": "npm pack ./dist/swimlane/ngx-ui",
     "prepare": "husky install"
