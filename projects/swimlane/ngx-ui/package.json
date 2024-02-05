@@ -28,7 +28,7 @@
     "@angular/forms": ">=12.2.2",
     "@angular/platform-browser": ">=12.2.2",
     "@types/json-schema": "^7.0.9",
-    "ajv": "^6.12.6",
+    "ajv": "^6.12.6 || ^8.0.0",
     "codemirror": "5.65.8",
     "core-js": "^3.6.5",
     "json-schema": "*",
