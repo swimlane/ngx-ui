@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { DialogService } from '@swimlane/ngx-ui';
-import { FileUploader } from '@swimlane/ng2-file-upload';
+import { FileUploader } from 'ng2-file-upload';
 
 @Component({
   selector: 'app-dropzone-page',

@@ -1,7 +1,7 @@
 name: Build, Test, and Deploy
 
 env:
-  NODE_LATEST: 16.x
+  NODE_LATEST: 18.x
   NODE_OPTIONS: --max_old_space_size=6144
 
 on: [push]
@@ -12,9 +12,9 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Use Node.js ${{ env.NODE_LATEST }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_LATEST }}
 

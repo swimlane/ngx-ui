@@ -12,7 +12,8 @@ describe('OverlayService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [OverlayModule]
+      imports: [OverlayModule],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
 
     component = TestBed.createComponent(OverlayComponent);

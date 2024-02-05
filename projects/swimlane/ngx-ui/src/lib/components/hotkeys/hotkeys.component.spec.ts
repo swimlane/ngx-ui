@@ -29,7 +29,8 @@ describe('HotkeysComponent', () => {
     TestBed.configureTestingModule({
       imports: [NoopAnimationsModule],
       declarations: [HotkeysComponent],
-      providers: [HotkeysService]
+      providers: [HotkeysService],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   }));
 

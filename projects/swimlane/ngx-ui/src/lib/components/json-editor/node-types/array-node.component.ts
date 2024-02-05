@@ -170,7 +170,7 @@ export class ArrayNode implements OnChanges {
     }
 
     if (this.schema.items.type !== undefined) {
-      return this.schema.items as JSONSchema7TypeName;
+      return this.schema.items as unknown as JSONSchema7TypeName;
     }
 
     return undefined;

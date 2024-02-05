@@ -12,7 +12,8 @@ describe('DialogComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [DialogComponent],
-      imports: [NoopAnimationsModule]
+      imports: [NoopAnimationsModule],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   }));
 

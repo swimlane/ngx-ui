@@ -12,7 +12,8 @@ describe('ToolbarComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [ToolbarFixtureComponent],
-      imports: [ToolbarModule]
+      imports: [ToolbarModule],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
 

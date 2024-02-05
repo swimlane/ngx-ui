@@ -85,7 +85,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngx-ui:build"
+            "buildTarget": "ngx-ui:build"
           }
         },
         "test": {
@@ -165,7 +165,6 @@
       }
     }
   },
-  "defaultProject": "ngx-ui",
   "cli": {
     "analytics": false
   }

@@ -13,7 +13,8 @@ describe('TabsComponent', () => {
     beforeEach(done => {
       TestBed.configureTestingModule({
         declarations: [TabsFixtureComponent],
-        imports: [TabsModule]
+        imports: [TabsModule],
+        teardown: { destroyAfterEach: false }
       }).compileComponents();
 
       fixture = TestBed.createComponent(TabsFixtureComponent);
@@ -72,7 +73,8 @@ describe('TabsComponent', () => {
     beforeEach(done => {
       TestBed.configureTestingModule({
         declarations: [TabsLabeltemplateFixtureComponent],
-        imports: [TabsModule]
+        imports: [TabsModule],
+        teardown: { destroyAfterEach: false }
       }).compileComponents();
 
       fixture = TestBed.createComponent(TabsLabeltemplateFixtureComponent);
@@ -97,7 +99,8 @@ describe('TabsComponent', () => {
     beforeEach(done => {
       TestBed.configureTestingModule({
         declarations: [TabsMultipleActiveFixtureComponent],
-        imports: [TabsModule]
+        imports: [TabsModule],
+        teardown: { destroyAfterEach: false }
       }).compileComponents();
 
       spyOn(console, 'error');

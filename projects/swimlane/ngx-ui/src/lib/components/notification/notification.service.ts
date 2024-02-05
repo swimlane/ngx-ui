@@ -53,7 +53,7 @@ export class NotificationService extends InjectionRegistryService<NotificationCo
     // if limit reached, remove the first one
     const compsByType = this.getByType();
 
-    if (compsByType && compsByType.length >= NotificationService.limit) {
+    if (compsByType && (compsByType.length as any) >= NotificationService.limit) {
       this.destroy(compsByType[0]);
     }
 

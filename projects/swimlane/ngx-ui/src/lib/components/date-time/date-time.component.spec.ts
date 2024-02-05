@@ -39,7 +39,8 @@ describe('DateTimeComponent', () => {
       declarations: [DateTimeComponent],
       imports: [MomentModule, PipesModule, DialogModule],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [InjectionService]
+      providers: [InjectionService],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   }));
 

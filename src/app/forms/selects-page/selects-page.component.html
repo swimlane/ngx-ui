@@ -1,16 +1,16 @@
 <h3 class="style-header">Select</h3>
 <ngx-tabs>
   <ngx-tab label="Examples">
-    
+
     <ngx-section class="shadow" sectionTitle="Single Select">
-    
+
       <h4>Basic</h4>
       <ngx-select [filterable]="false" [label]="'Attack Type'" data-cy="attackType">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [filterable]="false" [label]="'Attack Type'">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
@@ -19,18 +19,18 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Required</h4>
       <ngx-select [filterable]="false" [label]="'Attack Type'" [required]="true" data-cy="attackTypeRequired">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [filterable]="false" [label]="'Attack Type'" [required]="true">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
@@ -39,11 +39,11 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Filtering</h4>
       <ngx-select name="filtering" [filterable]="true" [label]="'Attack Type'" (keyup)="onSelectKeyUp($event)" (change)="onEvent('change', $event)">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
@@ -51,7 +51,7 @@
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
@@ -60,18 +60,18 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Filtering (Case Sensitive)</h4>
       <ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)" [filterCaseSensitive]="true">
         <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
         <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)" [filterCaseSensitive]="true">
       <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
@@ -80,11 +80,11 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Add New</h4>
       <ngx-select
         [filterable]="true" [allowAdditions]="true" [allowAdditionsText]="'Add New Value (Shift + ⏎)'" hint="Users can add new value by clicking on Add New Value or by pressing Shift + ⏎">
@@ -92,7 +92,7 @@
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select
       [filterable]="true"
@@ -105,11 +105,11 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Long Values</h4>
       <ngx-select style="max-width: 300px"
                   [ngModel]="['supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious']">
@@ -120,7 +120,7 @@
         <ngx-select-option name="supe rcalifragilist icexpialidocious" value="s2344"></ngx-select-option>
         <ngx-select-option name="super califragilisticex pialidoc ious" value="s3121"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select
       style="max-width: 300px"
@@ -135,17 +135,17 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Large ngFor with Default Selections</h4>
       <ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]" label="Select a value...">
         <ngx-select-option *ngFor="let option of selects" [name]="option.name" [value]="option">
         </ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]" label="Select a value...">
       <ngx-select-option
@@ -156,17 +156,17 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Single select value</h4>
       <ngx-select [ngModel]="[singleSelectModel]" (ngModelChange)="singleSelectModel = $event[0]" label="Select a value...">
         <ngx-select-option *ngFor="let option of selects" [name]="option.name" [value]="option">
         </ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [ngModel]="[singleSelectModel]" (ngModelChange)="singleSelectModel = $event[0]"
                 label="Select a value...">
@@ -178,7 +178,7 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <h4>Input and Option Templates</h4>
       <ngx-select data-cy="templates">
         <ngx-select-option value="breach">
@@ -196,7 +196,7 @@
           </ng-template>
         </ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select>
       <ngx-select-option value="breach">
@@ -216,18 +216,18 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Objects with Grouping</h4>
       <ngx-select [groupBy]="'type'">
         <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
         <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
         <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [groupBy]="'type'">
       <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
@@ -236,11 +236,11 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Objects with Grouping - with custom template</h4>
       <ngx-select [groupBy]="'type'" [groupByTemplate]="groupByTemplate">
         <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
@@ -254,7 +254,7 @@
           <ng-container *ngSwitchDefault>🎄🎄🎄</ng-container>
         </ng-container>
       </ng-template>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [groupBy]="'type'" [groupByTemplate]="groupByTemplate">
       <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
@@ -270,18 +270,18 @@
     </ng-template>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Disabled Options with Placeholder</h4>
       <ngx-select [placeholder]="'Select incident type...'">
         <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
         <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
         <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="false"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [placeholder]="'Select incident type...'">
       <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
@@ -290,18 +290,18 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4> Hidden Disabled Options </h4>
       <ngx-select [placeholder]="'Select incident type...'">
         <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
         <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true" [hidden]="false"></ngx-select-option>
         <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="false" [hidden]="true"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [placeholder]="'Select incident type...'">
       <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
@@ -310,18 +310,18 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Disabled Select with Preselected Value</h4>
       <ngx-select [disabled]="true" [ngModel]="['Breach']">
         <ngx-select-option [name]="'Breach'" [value]="'Breach'"></ngx-select-option>
         <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
         <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="false"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [disabled]="true" [ngModel]="['Breach']">
       <ngx-select-option [name]="'Breach'" [value]="'Breach'"></ngx-select-option>
@@ -330,18 +330,18 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4> Preselected Value as Hidden Option </h4>
       <ngx-select [ngModel]="['Breach']">
         <ngx-select-option [name]="'Breach'" [value]="'Breach'" [hidden]="true"></ngx-select-option>
         <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
         <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="false"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [ngModel]="['Breach']">
       <ngx-select-option [name]="'Breach'" [value]="'Breach'" [hidden]="true"></ngx-select-option>
@@ -350,22 +350,22 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>No Options</h4>
       <ngx-select [filterable]="false"></ngx-select>
     <app-prism>
     <![CDATA[<ngx-select [filterable]="false"></ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Events</h4>
       <ngx-select [filterable]="true" label="Attack Type" (change)="onEvent('ngx-select change', $event)"
                   (keyup)="onEvent('ngx-select change', $event)" (toggle)="onEvent('ngx-select toggle', $event)">
@@ -373,16 +373,16 @@
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [filterable]="false"></ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Customization</h4>
       <ngx-select [filterable]="true" [allowAdditions]="true" [allowAdditionsText]="'Add New Value'"
                   [selectCaret]="doubleDown">
@@ -390,11 +390,11 @@
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
-    
+
       <ng-template #doubleDown>
         <ngx-icon fontIcon="double-down"></ngx-icon>
       </ng-template>
-    
+
     <app-prism>
     <![CDATA[<ngx-select
       [filterable]="true"
@@ -405,7 +405,7 @@
       <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
       <ngx-select-option name="Physical" value="physical"></ngx-select-option>
     </ngx-select>
-    
+
     <ng-template #doubleDown>
       <ngx-icon fontIcon="double-down"></ngx-icon>
     </ng-template>
@@ -418,17 +418,17 @@
 
     <h4>Select Options with Tooltip</h4>
     <ngx-select [filterable]="false" [label]="'Attack Type'" [required]="true">
-      <ngx-select-option 
-        name="Breach" 
-        value="breach" 
+      <ngx-select-option
+        name="Breach"
+        value="breach"
         [tooltipConfig]="{
           tooltipPlacement: 'top',
           tooltipTitle: 'Breach tooltip on top',
           tooltipType: 'tooltip'
         }"
       ></ngx-select-option>
-      <ngx-select-option 
-        name="DDOS" 
+      <ngx-select-option
+        name="DDOS"
         value="ddos"
         [tooltipConfig]="{
           tooltipPlacement: 'right',
@@ -436,8 +436,8 @@
           tooltipType: 'tooltip'
         }"
       ></ngx-select-option>
-      <ngx-select-option 
-        name="Physical" 
+      <ngx-select-option
+        name="Physical"
         value="physical"
         [tooltipConfig]="{
           tooltipPlacement: 'bottom',
@@ -447,23 +447,23 @@
       ></ngx-select-option>
     </ngx-select>
     <app-prism>
-      <![CDATA[<ngx-select 
-        [filterable]="false" 
-        [label]="'Attack Type'" 
-        [required]="true" 
+      <![CDATA[<ngx-select
+        [filterable]="false"
+        [label]="'Attack Type'"
+        [required]="true"
         data-cy="attackTypeRequired"
       >
-        <ngx-select-option 
-          name="Breach" 
-          value="breach" 
+        <ngx-select-option
+          name="Breach"
+          value="breach"
           [tooltipConfig]="{
             tooltipPlacement: 'top',
             tooltipTitle: 'Breach tooltip on top',
             tooltipType: 'tooltip'
           }"
         ></ngx-select-option>
-        <ngx-select-option 
-          name="DDOS" 
+        <ngx-select-option
+          name="DDOS"
           value="ddos"
           [tooltipConfig]="{
             tooltipPlacement: 'right',
@@ -471,8 +471,8 @@
             tooltipType: 'tooltip'
           }"
         ></ngx-select-option>
-        <ngx-select-option 
-          name="Physical" 
+        <ngx-select-option
+          name="Physical"
           value="physical"
           [tooltipConfig]="{
             tooltipPlacement: 'bottom',
@@ -483,7 +483,7 @@
       </ngx-select>]]>
     </app-prism>
     </ngx-section>
-    
+
     <ngx-section class="shadow" sectionTitle="Form Controls">
       <h4>Enabled state can be changed using reactive forms</h4>
       <form [formGroup]="form">
@@ -497,9 +497,9 @@
           Toggle form control state
         </button>
       </form>
-    
+
       <br />
-    
+
       <h4>Disabled by default using reactive forms</h4>
       <form [formGroup]="form">
         <ngx-select label="Attack Type" formControlName="formCtrl2" name="formCtrl2">
@@ -509,9 +509,9 @@
         </ngx-select>
         <br />
       </form>
-    
+
       <br />
-    
+
       <h4>Invalid state can be changed using reactive forms</h4>
       <form [formGroup]="form">
         <ngx-select label="Attack Type" formControlName="formCtrl3" name="formCtrl3">
@@ -521,7 +521,7 @@
         </ngx-select>
       </form>
     </ngx-section>
-    
+
     <ngx-section class="shadow" sectionTitle="Multi Select">
       <h4>Basic</h4>
       <ngx-select [filterable]="false" [multiple]="true" label="Multi Select">
@@ -529,7 +529,7 @@
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [filterable]="false" [multiple]="true">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
@@ -538,19 +538,19 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
-    
+
+
       <br />
       <br />
       <br />
-    
+
       <h4>Min/Max Selections</h4>
       <ngx-select label="Select one or two" [filterable]="false" [multiple]="true" [minSelections]="1" [maxSelections]="2">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select label="Select one or two" [filterable]="false" [multiple]="true" [minSelections]="1"
                 [maxSelections]="2">
@@ -560,18 +560,18 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Auto Close on Select</h4>
       <ngx-select [filterable]="false" [multiple]="true" [closeOnSelect]="true">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [filterable]="false" [multiple]="true" [closeOnSelect]="true">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
@@ -580,11 +580,11 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Several Default Selections</h4>
       <ngx-select [multiple]="true" [identifier]="'attr'"
                   [ngModel]="[selects[0], selects[1], selects[2], selects[3], selects[4], selects[5], selects[6], selects[7], selects[8]]">
@@ -592,7 +592,7 @@
                            [value]="option">
         </ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select
       [multiple]="true"
@@ -607,11 +607,11 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>Templates</h4>
       <ngx-select [multiple]="true" (keyup)="onSelectKeyUp($event)" [identifier]="'attr'" [ngModel]="[selects[0]]">
         <ngx-select-option *ngFor="let option of selects" [name]="option.name" [disabled]="option.disabled"
@@ -622,7 +622,7 @@
         </ngx-select-option>
       </ngx-select>
     </ngx-section>
-    
+
     <ngx-section class="shadow" data-cy="tagging" sectionTitle="Tagging">
       <h4>Basic</h4>
       <ngx-select [label]="'Tagging'" [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)" (change)="onEvent('change', $event)">
@@ -630,7 +630,7 @@
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
@@ -639,15 +639,15 @@
     </ngx-select>
     ]]>
     </app-prism>
-    
+
       <br />
       <br />
       <br />
-    
+
       <h4>No Options</h4>
       <ngx-select [filterable]="false" [tagging]="true">
       </ngx-select>
-    
+
     <app-prism>
     <![CDATA[<ngx-select
       [filterable]="false"
@@ -656,7 +656,7 @@
     ]]>
     </app-prism>
     </ngx-section>
-    
+
     <ngx-section class="shadow" sectionTitle="Native">
       <select>
         <option>Red</option>
@@ -675,7 +675,7 @@
     </select>
     ]]>
     </app-prism>
-    
+
     <select multiple style="height: 200px">
       <option>Red</option>
       <option>Blue</option>
@@ -694,7 +694,7 @@
     ]]>
     </app-prism>
     </ngx-section>
-    
+
     <ngx-section class="shadow" sectionTitle="Async">
       <ngx-select (keyup)="search($event.value)">
         <ngx-select-option
@@ -705,16 +705,16 @@
         ></ngx-select-option>
       </ngx-select>
     </ngx-section>
-    
+
     <ngx-section class="shadow" sectionTitle="Autosize">
       <ngx-select [filterable]="false" appearance="legacy" label="Legacy input">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
-    
+
       <br />
-    
+
       <ngx-select [filterable]="false" appearance="legacy" label="Legacy input with autosize" autosize="true">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
@@ -722,61 +722,61 @@
         <ngx-select-option name="Really long option to show autosize of the component when autosize is selected"
                            value="Really long option to show autosize of the component when autosize is selected"></ngx-select-option>
       </ngx-select>
-    
+
       <br />
-    
+
       <ngx-select [filterable]="false" appearance="fill" label="Fill Input" hint="im a hint" placeholder="Select a value..."
                   autosize="true">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical" disabled></ngx-select-option>
       </ngx-select>
-    
+
       <br />
-    
+
       <ngx-select [filterable]="true" appearance="fill" label="Fill With Search" autosize="true">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
-    
+
       <br />
-    
+
       <ngx-select [filterable]="false" [multiple]="true" appearance="fill" label="Fill With Multiple Selections"
                   autosize="true">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
-    
+
       <br />
-    
+
       <ngx-select [filterable]="false" [tagging]="true" appearance="fill" label="Fill With Tagging" autosize="true">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
-    
+
       <br />
-    
+
       <ngx-select [filterable]="false" [tagging]="true" appearance="fill" label="Fill Tagging With No Options"
                   autosize="true">
       </ngx-select>
-    
+
       <br />
-    
+
       <ngx-select [filterable]="false" [tagging]="true" appearance="fill" label="Fill With Grouping" groupBy="type"
                   autosize="true">
         <ngx-select-option name="Breach" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
         <ngx-select-option name="DDOS" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
         <ngx-select-option name="Physical" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
       </ngx-select>
-    
+
       <br />
-    
+
       <br />
     </ngx-section>
-    
+
     <ngx-section class="shadow" sectionTitle="Appearances">
       <table class="appearance-table">
         <tr>
@@ -996,231 +996,231 @@
       <tbody>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>allowAdditions: boolean</code>
           </th>
           <td>NEEDS DOCUMENTATION.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>allowAdditionsText: string = 'Add Value'</code>
           </th>
           <td>Accepts string or template reference. NEEDS DOCUMENTATION.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>allowClear: boolean = true</code>
           </th>
           <td>Whether the component should allow the clearing of a selected value.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>appearance: 'fill' | 'legacy' = 'legacy'</code>
           </th>
           <td>The appearance style of the component.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>autofocus: boolean</code>
           </th>
           <td>Whether the component is auto-focused.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>autosize: boolean</code>
           </th>
           <td>Whether the component is autosized.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>autosizeMinWidth: number | string</code>
           </th>
           <td>The minimum width of the component when autosize is enabled, in pixels.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>closeOnBodyClick: boolean = true</code>
           </th>
           <td>Whether the component dropdown should close when a click outside of the dropdown is registered.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>closeOnSelect: boolean</code>
           </th>
           <td>Whether the component dropdown should close when an option has been selected.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>disabled: boolean</code>
           </th>
           <td>Whether the component is disabled.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>disableDropdown: boolean</code>
           </th>
           <td>Whether the component dropdown is disabled.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>emptyPlaceholder: string = 'No options available'</code>
           </th>
           <td>Placeholder to display when the component has no selectable options.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>filterable: boolean = true</code>
           </th>
           <td>Whether the component is filterable.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>filterCaseSensitive: boolean</code>
           </th>
           <td>Whether the component's filter is case-sensitive.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>filterEmptyPlaceholder: string = 'No matches...'</code>
           </th>
           <td>Placeholder to display when the component has no selectable options that match the user's filter term.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>filterPlaceholder: string = 'Filter options...'</code>
           </th>
           <td>Placeholder to display for the component's filter text input.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>forceDownwardOpening: boolean</code>
           </th>
           <td>Whether to force the component to open beneath itself.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>groupBy: string</code>
           </th>
           <td>NEEDS DOCUMENTATION.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>groupByTemplate: TemplateRef&lt;unknown&gt;</code>
           </th>
           <td>NEEDS DOCUMENTATION.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>hint: string</code>
           </th>
           <td>The hint to display beneath the component.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>id: string = 'select-1'</code>
           </th>
           <td>The ID for the component.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>identifier: string</code>
           </th>
           <td>NEEDS DOCUMENTATION.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>label: string</code>
           </th>
           <td class="component-description">The label for the component.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>minSelections: number</code>
           </th>
           <td class="component-description">The mininum number of selections to display.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>maxSelections: number</code>
           </th>
           <td class="component-description">The maximum number of selections to display.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>multiple: boolean</code>
           </th>
           <td class="component-description">Whether multiple selection is allowed.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>name: string</code>
           </th>
           <td class="component-description">The name for the component.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>options: SelectDropdownOption[] = []</code>
           </th>
           <td class="component-description">The options to display for the component.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>placeholder: string</code>
           </th>
           <td class="component-description">The placeholder for the component.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>required: boolean</code>
           </th>
           <td class="component-description">Whether the user's input is required.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>requiredIndicator: string | boolean = '*'</code>
           </th>
           <td class="component-description">The indicator displayed to inform the user that input is required.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>selectCaret: string</code>
           </th>
           <td class="component-description">Accepts string or template reference. The select caret to display in place of the default caret, typically an icon.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>tagging: boolean</code>
           </th>
           <td class="component-description">Whether selected options are displayed as tags.</td>
@@ -1239,28 +1239,28 @@
       <tbody>
         <tr>
           <th>
-            <code class="component-type">@Output()</code>
+            <code class="component-type">&#64;Output()</code>
             <code>change: EventEmitter&lt;any[]&gt;</code>
           </th>
           <td>Event emitted when an option is selected.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Output()</code>
+            <code class="component-type">&#64;Output()</code>
             <code>keyup: EventEmitter&lt;&#123; event: KeyboardEvent; value?: string &#125;&gt;</code>
           </th>
           <td>Event emitted when a key is released.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Output()</code>
+            <code class="component-type">&#64;Output()</code>
             <code>toggle: EventEmitter&lt;boolean&gt;</code>
           </th>
           <td>Event emitted when the dropdown is toggled open or closed.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Output()</code>
+            <code class="component-type">&#64;Output()</code>
             <code>clearQueryFilter: EventEmitter&lt;void&gt;</code>
           </th>
           <td>Event emitted when the query filter is cleared.</td>
@@ -1279,35 +1279,35 @@
       <tbody>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>disabled: boolean</code>
           </th>
           <td>Whether the component is disabled.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>hidden: boolean</code>
           </th>
           <td>Whether the component is hidden.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>name: string</code>
           </th>
           <td>The name of the component. This is what is displayed to the user.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>tooltipConfig: TooltipConfig = DEFAULT_TOOLTIP_CONFIG</code>
           </th>
           <td>The tooltip configuration object required by the component to display a tooltip. See Examples tab.</td>
         </tr>
         <tr>
           <th>
-            <code class="component-type">@Input()</code>
+            <code class="component-type">&#64;Input()</code>
             <code>value: any</code>
           </th>
           <td>The value of the component.</td>

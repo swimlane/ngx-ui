@@ -18,7 +18,8 @@ describe('CalendarComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CalendarComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [MomentModule, PipesModule]
+      imports: [MomentModule, PipesModule],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   }));
 

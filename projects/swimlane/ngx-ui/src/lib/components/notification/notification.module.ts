@@ -10,7 +10,6 @@ import { NotificationContainerComponent } from './notification-container.compone
   declarations: [NotificationComponent, NotificationContainerComponent],
   exports: [NotificationComponent, NotificationContainerComponent],
   providers: [InjectionService],
-  imports: [CommonModule],
-  entryComponents: [NotificationComponent, NotificationContainerComponent]
+  imports: [CommonModule]
 })
 export class NotificationModule {}

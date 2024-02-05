@@ -11,7 +11,8 @@ describe('ResizeOverlayComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [OverlayModule, HttpClientTestingModule, NoopAnimationsModule]
+      imports: [OverlayModule, HttpClientTestingModule, NoopAnimationsModule],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
 
     fixture = TestBed.createComponent(ResizeOverlayComponent);

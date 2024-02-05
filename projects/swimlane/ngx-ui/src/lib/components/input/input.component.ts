@@ -19,7 +19,7 @@ import {
   NG_VALUE_ACCESSOR,
   NG_VALIDATORS,
   NgModel,
-  FormControl,
+  UntypedFormControl,
   Validators,
   ValidationErrors
 } from '@angular/forms';
@@ -307,6 +307,11 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
         this.cdr.markForCheck();
       });
     }
+
+    // ControlValueAccessor setDisabledState is invoked after unlockable prop setter which makes again disable to false
+    if (this.unlockable) {
+      this.disabled = true;
+    }
   }
 
   ngOnDestroy(): void {
@@ -344,7 +349,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
     this.onTouchedCallback();
   }
 
-  validate(c: FormControl): ValidationErrors | null {
+  validate(c: UntypedFormControl): ValidationErrors | null {
     if (this.type !== InputTypes.number) {
       return null;
     }

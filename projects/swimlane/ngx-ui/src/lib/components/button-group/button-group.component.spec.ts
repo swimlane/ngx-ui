@@ -7,7 +7,8 @@ describe('Button Group', () => {
     TestBed.resetTestingModule();
     TestBed.configureTestingModule({
       declarations: [ButtonGroupComponent],
-      imports: [ButtonGroupModule]
+      imports: [ButtonGroupModule],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
 

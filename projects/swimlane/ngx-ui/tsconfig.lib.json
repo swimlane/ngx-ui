@@ -2,7 +2,6 @@
   "extends": "../../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../../out-tsc/lib",
-    "target": "es2015",
     "declarationMap": false,
     "module": "es2015",
     "moduleResolution": "node",
@@ -25,7 +24,6 @@
     "strictInjectionParameters": true,
     "enableResourceInlining": true,
     "preserveWhitespaces": true,
-    "enableIvy": true,
     "compilationMode": "partial"
   },
   "exclude": ["src/test.ts", "**/*.spec.ts"]

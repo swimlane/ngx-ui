@@ -8,7 +8,6 @@ import { NagComponent } from './nag.component';
 @NgModule({
   declarations: [NagComponent],
   exports: [NagComponent],
-  imports: [CommonModule, ToolbarModule, IconModule],
-  entryComponents: [NagComponent]
+  imports: [CommonModule, ToolbarModule, IconModule]
 })
 export class NagModule {}

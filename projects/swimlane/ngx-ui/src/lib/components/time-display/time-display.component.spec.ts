@@ -367,7 +367,8 @@ describe('NgxTimeDisplayComponent', () => {
       imports: [MomentModule, ClipboardModule, TimeZoneModule],
       declarations: [TestComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      providers: [InjectionService]
+      providers: [InjectionService],
+      teardown: { destroyAfterEach: false }
     }).compileComponents();
   }));
 

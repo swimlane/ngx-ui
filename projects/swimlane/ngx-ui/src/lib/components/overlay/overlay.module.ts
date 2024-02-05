@@ -11,7 +11,6 @@ import { IconModule } from '../icon/icon.module';
   declarations: [OverlayComponent, ResizeOverlayComponent],
   providers: [InjectionService],
   exports: [OverlayComponent, ResizeOverlayComponent],
-  imports: [CommonModule, IconModule, LayoutModule],
-  entryComponents: [OverlayComponent, ResizeOverlayComponent]
+  imports: [CommonModule, IconModule, LayoutModule]
 })
 export class OverlayModule {}

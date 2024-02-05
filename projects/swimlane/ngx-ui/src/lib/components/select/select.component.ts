@@ -43,6 +43,10 @@ class InputBase {}
 
 const _InputMixinBase = sizeMixin(InputBase);
 
+function arrayEquals(a, b) {
+  return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((val, index) => val === b[index]);
+}
+
 @Component({
   exportAs: 'ngxSelect',
   selector: 'ngx-select',
@@ -196,6 +200,11 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
 
     if (val) {
       const arr = val.toArray();
+
+      // In some circumstances, ngx-select-option-template and *ngFor under options cause infinite change detection
+      if (arr && arr.length > 0 && this.options && this.options?.length > 0 && arrayEquals(arr, this.options)) {
+        return;
+      }
 
       if (arr.length) {
         this.options = arr;
