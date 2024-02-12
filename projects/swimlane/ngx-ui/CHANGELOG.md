@@ -2,7 +2,10 @@
 
 ## HEAD (unreleased)
 
-- Angular 17 support
+## 47.0.0 (2023-02-12)
+
+- Breaking: Angular 17 support
+- Breaking: Rename `ngxSplit` inpit of SplitDirective to `splitDirection`
 
 ## 46.0.0 (2023-11-14)
 
