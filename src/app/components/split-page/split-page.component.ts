@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { SplitDirection } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-split-page',
@@ -10,7 +11,7 @@ export class SplitPageComponent {
   hideAlertArea = false;
   hideFixedSidebar = false;
 
-  direction = 'row';
+  direction = SplitDirection.Row;
 
   constructor() {
     this.getPanelState();
@@ -27,10 +28,10 @@ export class SplitPageComponent {
   }
 
   toggleDirection() {
-    if (this.direction === 'row') {
-      this.direction = 'column';
+    if (this.direction === SplitDirection.Row) {
+      this.direction = SplitDirection.Column;
     } else {
-      this.direction = 'row';
+      this.direction = SplitDirection.Row;
     }
   }
 

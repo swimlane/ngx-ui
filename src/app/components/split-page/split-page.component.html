@@ -4,19 +4,19 @@
   <ngx-tab label="Examples">
     <ngx-section class="shadow" sectionTitle="Split Areas">
       <div class="split-example">
-        <div ngxSplit ngxSplit="row">
+        <div ngxSplit splitDirection="row">
           <div ngxSplitArea>
             <!--- This will fill available space -->
-            <div ngxSplit ngxSplit="column">
+            <div ngxSplit splitDirection="column">
               <div class="fixed-header">Fixed header</div>
               <div ngxSplitArea="1 1 50%" class="security-panel">
                 <!-- start as 50% -->
                 <h1>Security Dashboard</h1>
                 <p>
-                  Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for mutex
-                  daemon todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python
-                  bin big-endian break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script
-                  kiddies.
+                  Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for
+                  mutex daemon todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void
+                  python bin big-endian break tcp ddos emacs public frack. Over clock headers data private *.* pwned
+                  fork script kiddies.
                 </p>
               </div>
               <div ngxSplitHandle="5px">
@@ -51,34 +51,29 @@
               <li>Admin</li>
             </ul>
           </div>
-          <div class="fixed-panel" *ngIf="!hideFixedSidebar">
-            Fixed Sidebar
-          </div>
+          <div class="fixed-panel" *ngIf="!hideFixedSidebar">Fixed Sidebar</div>
         </div>
       </div>
-    
-      <ngx-checkbox [(ngModel)]="hideAlertArea" (change)="panelStateChanged()">
-        Hide Alert Area
-      </ngx-checkbox>
-      <ngx-checkbox [(ngModel)]="hideFixedSidebar" (change)="panelStateChanged()">
-        Hide Fixed Sidebar
-      </ngx-checkbox>
+
+      <ngx-checkbox [(ngModel)]="hideAlertArea" (change)="panelStateChanged()"> Hide Alert Area </ngx-checkbox>
+      <ngx-checkbox [(ngModel)]="hideFixedSidebar" (change)="panelStateChanged()"> Hide Fixed Sidebar </ngx-checkbox>
     </ngx-section>
-    
+
     <ngx-section class="shadow" [sectionTitle]="'Switching Layout Direction'">
       <h3>Current Direction: {{ direction }}</h3>
       <ngx-button class="btn btn-primary" (click)="toggleDirection()">Toggle Direction</ngx-button>
       <br />
       <br />
-    
+
       <div class="split-example">
-        <div ngxSplit [ngxSplit]="direction">
+        <div ngxSplit [splitDirection]="direction">
           <div ngxSplitArea class="security-panel">
             <h1>Security Dashboard</h1>
             <p>
               Haxx0r ipsum cd ctl-c Starcraft concurrently salt unix baz class bar linux January 1, 1970 syn for mutex
-              daemon todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python bin
-              big-endian break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script kiddies.
+              daemon todo mountain dew recursively. Mainframe wannabee machine code hack the mainframe do void python
+              bin big-endian break tcp ddos emacs public frack. Over clock headers data private *.* pwned fork script
+              kiddies.
             </p>
           </div>
           <div ngxSplitHandle></div>
@@ -93,13 +88,12 @@
         </div>
       </div>
     </ngx-section>
-
   </ngx-tab>
   <ngx-tab label="API">
     <h3>Table of Contents</h3>
     <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
     <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
-    <hr>
+    <hr />
 
     <h3 class="style-header" id="inputs">Component Inputs</h3>
     <table class="table documentation-table">
@@ -115,11 +109,14 @@
             <code class="component-type">&#64;Input()</code>
             <code>ngxSplitHandle: string = '0 0 15px'</code>
           </th>
-          <td>The CSS <code>flex</code> property's value. Determines how big the gap is between split areas. The value provided must be valid CSS syntax.</td>
+          <td>
+            The CSS <code>flex</code> property's value. Determines how big the gap is between split areas. The value
+            provided must be valid CSS syntax.
+          </td>
         </tr>
       </tbody>
     </table>
-    <hr>
+    <hr />
     <h3 class="style-header" id="outputs">Component Outputs</h3>
     <table class="table documentation-table">
       <thead>
