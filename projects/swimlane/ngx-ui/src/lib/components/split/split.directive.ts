@@ -34,15 +34,15 @@ import { Subscription } from 'rxjs/internal/Subscription';
 })
 export class SplitDirective implements AfterContentInit, OnChanges, OnDestroy {
   @HostBinding('style.flex-direction')
-  @Input('ngxSplit')
-  direction = SplitDirection.Row;
+  @Input()
+  splitDirection = SplitDirection.Row;
 
   get rowCss() {
-    return this.direction === SplitDirection.Row;
+    return this.splitDirection === SplitDirection.Row;
   }
 
   get columnCss() {
-    return this.direction === SplitDirection.Column;
+    return this.splitDirection === SplitDirection.Column;
   }
 
   @ContentChildren(SplitHandleComponent, { descendants: false })
@@ -62,8 +62,8 @@ export class SplitDirective implements AfterContentInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges() {
-    if (!this.direction) {
-      this.direction = SplitDirection.Row;
+    if (!this.splitDirection) {
+      this.splitDirection = SplitDirection.Row;
     }
     this.updateHandles();
   }
@@ -90,7 +90,7 @@ export class SplitDirective implements AfterContentInit, OnChanges, OnDestroy {
 
   private updateHandles() {
     if (this.handles) {
-      this.handles.forEach(d => (d.direction = this.direction));
+      this.handles.forEach(d => (d.direction = this.splitDirection));
     }
   }
 
@@ -135,7 +135,7 @@ export class SplitDirective implements AfterContentInit, OnChanges, OnDestroy {
   }
 
   private onDrag({ movementX, movementY }: MouseEvent): void {
-    const deltaPx = this.direction === SplitDirection.Row ? movementX : movementY;
+    const deltaPx = this.splitDirection === SplitDirection.Row ? movementX : movementY;
     this.resize(deltaPx);
   }
 }

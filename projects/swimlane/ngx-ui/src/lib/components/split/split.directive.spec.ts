@@ -50,7 +50,7 @@ describe('SplitDirective', () => {
 
     it('should resize column on double click', () => {
       const spy = spyOn(component.split as any, 'resize');
-      component.split.direction = SplitDirection.Column;
+      component.split.splitDirection = SplitDirection.Column;
       (component.split as any).onDblClick();
       expect(spy).toHaveBeenCalled();
     });
@@ -72,7 +72,7 @@ describe('SplitDirective', () => {
 
     it('should resize vertical', () => {
       const spy = spyOn(component.split as any, 'resize');
-      component.split.direction = SplitDirection.Column;
+      component.split.splitDirection = SplitDirection.Column;
       (component.split as any).onDrag({ movementX: 10, movementY: 20 } as any);
       expect(spy).toHaveBeenCalledWith(20);
     });
@@ -85,7 +85,7 @@ describe('SplitDirective', () => {
     });
 
     it('should resize splitAreas as column', () => {
-      component.split.direction = SplitDirection.Column;
+      component.split.splitDirection = SplitDirection.Column;
       (component.split as any).resize(10);
       expect(true).toBeTrue();
     });
