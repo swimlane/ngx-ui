@@ -29,12 +29,12 @@
     "@angular/platform-browser": ">=12.2.2",
     "@types/json-schema": "^7.0.9",
     "ajv": "^8.12.0",
-    "codemirror": "5.65.8",
+    "codemirror": "5.65.16",
     "core-js": "^3.6.5",
     "json-schema": "*",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.33",
-    "ng-in-viewport": "13.0.0",
+    "ng-in-viewport": "13.0.1",
     "ngx-autosize-input": "^2.3.7"
   },
   "dependencies": {
@@ -59,7 +59,7 @@
     "moment": "^2.29.1",
     "ngx-moment": "^6.0.2",
     "resize-observer-polyfill": "^1.5.1",
-    "rxjs": "7.5.6",
+    "rxjs": "7.8.1",
     "zone.js": "^0.11.4"
   },
   "schematics": "./lib/schematics/collection.json"
