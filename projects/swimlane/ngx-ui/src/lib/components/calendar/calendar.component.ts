@@ -78,8 +78,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   @Output() change = new EventEmitter<Date>();
-  @Output() startChange = new EventEmitter<Date>();
-  @Output() endChange = new EventEmitter<Date>();
+  @Output() onRangeSelect = new EventEmitter<{ startDate: Date; endDate: Date }>();
   @Output() dayKeyEnter = new EventEmitter<Date>();
 
   @HostBinding('attr.tabindex')
@@ -315,26 +314,25 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
       this.rangeStart = this.focusDate.toDate();
       this.rangeStart.setHours(this.startHour);
       this.rangeStart.setMinutes(+this.startMinute);
-      this.startChange.emit(this.rangeStart);
+      this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
     } else if (this.rangeEnd === undefined) {
       if (this.focusDate.toDate() > this.rangeStart) {
         this.rangeEnd = this.focusDate.toDate();
         this.rangeEnd.setHours(this.endHour);
         this.rangeEnd.setMinutes(+this.endMinute);
-        this.endChange.emit(this.rangeEnd);
+        this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
       } else {
         this.rangeStart = this.focusDate.toDate();
         this.rangeStart.setHours(this.startHour);
         this.rangeStart.setMinutes(+this.startMinute);
-        this.startChange.emit(this.rangeStart);
+        this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
       }
     } else {
       this.rangeStart = this.focusDate.toDate();
       this.rangeStart.setHours(this.startHour);
       this.rangeStart.setMinutes(+this.startMinute);
       this.rangeEnd = undefined;
-      this.startChange.emit(this.rangeStart);
-      this.endChange.emit(this.rangeEnd);
+      this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
     }
     if (day.prevMonth || day.nextMonth) {
       this.weeks = getMonth(this.focusDate);
@@ -373,14 +371,14 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
       if (this.rangeStart) {
         if (this.startAmPmVal === 'PM') newVal = 12 + newVal;
         this.rangeStart.setHours(newVal);
-        this.startChange.emit(this.rangeStart);
+        this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
       }
       this.startHour = newVal % 12;
     } else {
       if (this.rangeEnd) {
         if (this.endAmPmVal === 'PM') newVal = 12 + newVal;
         this.rangeEnd.setHours(newVal);
-        this.endChange.emit(this.rangeEnd);
+        this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
       }
       this.endHour = newVal % 12;
     }
@@ -389,11 +387,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     if (type === 'start') {
       if (this.rangeStart) this.rangeStart.setMinutes(newVal);
       this.startMinute = newVal;
-      this.startChange.emit(this.rangeStart);
+      this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
     } else {
       if (this.rangeEnd) this.rangeEnd.setMinutes(newVal);
       this.endMinute = newVal;
-      this.endChange.emit(this.rangeEnd);
+      this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
     }
   }
   onAmPmChange(newVal, type) {
@@ -402,10 +400,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
         const hourClone = this.rangeStart.getHours();
         if (newVal === 'AM' && this.startAmPmVal === 'PM') {
           this.rangeStart.setHours(hourClone - 12);
-          this.startChange.emit(this.rangeStart);
+          this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
         } else if (newVal === 'PM' && this.startAmPmVal === 'AM') {
           this.rangeStart.setHours(hourClone + 12);
-          this.startChange.emit(this.rangeStart);
+          this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
         }
       }
       this.startAmPmVal = newVal;
@@ -414,10 +412,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
         const hourClone = this.rangeEnd.getHours();
         if (newVal === 'AM' && this.endAmPmVal === 'PM') {
           this.rangeEnd.setHours(hourClone - 12);
-          this.endChange.emit(this.rangeEnd);
+          this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
         } else if (newVal === 'PM' && this.endAmPmVal === 'AM') {
           this.rangeEnd.setHours(hourClone + 12);
-          this.endChange.emit(this.rangeEnd);
+          this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
         }
       }
       this.endAmPmVal = newVal;
@@ -697,12 +695,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   formatDate(date: Date): string {
-    const months: string[] = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-    const month: string = months[date.getMonth()];
-    const day: number = date.getDate();
-    const year: number = date.getFullYear();
+    const moment = this.createMoment(date);
 
-    return `${month} ${day}, ${year}`;
+    return moment.format('MMM D YYYY');
   }
 
   private onChangeCallback: (_: any) => void = () => {
