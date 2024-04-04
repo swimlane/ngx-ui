@@ -30,8 +30,6 @@ export class CalendarPageComponent {
     console.log(val);
   }
 
-
-
   scrollTo(id: string) {
     (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }

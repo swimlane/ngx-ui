@@ -314,26 +314,24 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
       this.rangeStart = this.focusDate.toDate();
       this.rangeStart.setHours(this.startHour);
       this.rangeStart.setMinutes(+this.startMinute);
-      this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
     } else if (this.rangeEnd === undefined) {
       if (this.focusDate.toDate() > this.rangeStart) {
         this.rangeEnd = this.focusDate.toDate();
         this.rangeEnd.setHours(this.endHour);
         this.rangeEnd.setMinutes(+this.endMinute);
-        this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
       } else {
         this.rangeStart = this.focusDate.toDate();
         this.rangeStart.setHours(this.startHour);
         this.rangeStart.setMinutes(+this.startMinute);
-        this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
       }
     } else {
       this.rangeStart = this.focusDate.toDate();
       this.rangeStart.setHours(this.startHour);
       this.rangeStart.setMinutes(+this.startMinute);
       this.rangeEnd = undefined;
-      this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
     }
+    this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
+
     if (day.prevMonth || day.nextMonth) {
       this.weeks = getMonth(this.focusDate);
     }
@@ -371,28 +369,26 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
       if (this.rangeStart) {
         if (this.startAmPmVal === 'PM') newVal = 12 + newVal;
         this.rangeStart.setHours(newVal);
-        this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
       }
       this.startHour = newVal % 12;
     } else {
       if (this.rangeEnd) {
         if (this.endAmPmVal === 'PM') newVal = 12 + newVal;
         this.rangeEnd.setHours(newVal);
-        this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
       }
       this.endHour = newVal % 12;
     }
+    this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
   }
   minuteChanged(newVal: number, type: string) {
     if (type === 'start') {
       if (this.rangeStart) this.rangeStart.setMinutes(newVal);
       this.startMinute = newVal;
-      this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
     } else {
       if (this.rangeEnd) this.rangeEnd.setMinutes(newVal);
       this.endMinute = newVal;
-      this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
     }
+    this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
   }
   onAmPmChange(newVal, type) {
     if (type === 'start') {
@@ -400,10 +396,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
         const hourClone = this.rangeStart.getHours();
         if (newVal === 'AM' && this.startAmPmVal === 'PM') {
           this.rangeStart.setHours(hourClone - 12);
-          this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
         } else if (newVal === 'PM' && this.startAmPmVal === 'AM') {
           this.rangeStart.setHours(hourClone + 12);
-          this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
         }
       }
       this.startAmPmVal = newVal;
@@ -412,14 +406,13 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
         const hourClone = this.rangeEnd.getHours();
         if (newVal === 'AM' && this.endAmPmVal === 'PM') {
           this.rangeEnd.setHours(hourClone - 12);
-          this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
         } else if (newVal === 'PM' && this.endAmPmVal === 'AM') {
           this.rangeEnd.setHours(hourClone + 12);
-          this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
         }
       }
       this.endAmPmVal = newVal;
     }
+    this.onRangeSelect.emit({ startDate: this.rangeStart, endDate: this.rangeEnd });
   }
 
   prevMonth() {
