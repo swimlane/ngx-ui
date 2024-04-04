@@ -326,7 +326,7 @@ describe('CalendarComponent', () => {
     });
   });
 
-  fdescribe('Time Functions', () => {
+  describe('Time Functions', () => {
     it('should update hour correctly', () => {
       component.rangeStart = new Date();
       component.startAmPmVal = 'PM';
@@ -351,7 +351,7 @@ describe('CalendarComponent', () => {
     });
   });
 
-  fdescribe('initializeTime', () => {
+  describe('initializeTime', () => {
     it('should initialize time properties based on rangeStart and rangeEnd', () => {
       const rangeStart = new Date('2024-04-04T10:30:00');
       const rangeEnd = new Date('2024-04-04T15:45:00');
@@ -381,7 +381,7 @@ describe('CalendarComponent', () => {
     });
   });
 
-  fdescribe('onDaySelectRange', () => {
+  describe('onDaySelectRange', () => {
     it('should set rangeStart if both rangeStart and rangeEnd are undefined', () => {
       const day = { date: moment('2024-04-04'), nextMonth: true, prevMonth: true } as CalendarDay;
       component.focusDate = moment('2024-04-04');
