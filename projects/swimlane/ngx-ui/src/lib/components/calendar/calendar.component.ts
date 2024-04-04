@@ -174,19 +174,22 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
    * Initializes the values for initial time
    */
   initializeTime(): void {
-    this.startHour = this.rangeStart ? this.rangeStart.getHours() : +moment('2001-01-01T00:00:00').format('hh') % 12;
-    this.endHour = this.rangeEnd ? this.rangeEnd.getHours() : +moment('2001-01-01T00:00:00').format('hh') % 12;
+    this.startHour = this.rangeStart
+      ? this.rangeStart.getHours() % 12
+      : +moment('2001-01-01T00:00:00').format('hh') % 12;
+    this.endHour = this.rangeEnd ? this.rangeEnd.getHours() % 12 : +moment('2001-01-01T00:00:00').format('hh') % 12;
+
     this.startMinute = this.rangeStart ? this.rangeStart.getMinutes() : +moment('2001-01-01T00:00:00').format('mm');
-    this.endMinute = this.rangeEnd ? this.rangeEnd.getHours() : +moment('2001-01-01T00:00:00').format('mm');
+    this.endMinute = this.rangeEnd ? this.rangeEnd.getMinutes() : +moment('2001-01-01T00:00:00').format('mm');
     this.startAmPmVal = this.rangeStart
       ? this.rangeStart.getHours() >= 12
-        ? 'AM'
-        : 'PM'
+        ? 'PM'
+        : 'AM'
       : moment('2001-01-01T00:00:00').format('A');
     this.endAmPmVal = this.rangeEnd
       ? this.rangeEnd.getHours() >= 12
-        ? 'AM'
-        : 'PM'
+        ? 'PM'
+        : 'AM'
       : moment('2001-01-01T00:00:00').format('A');
   }
 
