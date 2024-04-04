@@ -25,6 +25,12 @@ export class CalendarPageComponent {
   dateChanged(val) {
     console.log('date changed!', val);
   }
+  startDateChanged(val) {
+    console.log('start date changed!', val);
+  }
+  endDateChanged(val) {
+    console.log('end date changed!', val);
+  }
 
   scrollTo(id: string) {
     (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
