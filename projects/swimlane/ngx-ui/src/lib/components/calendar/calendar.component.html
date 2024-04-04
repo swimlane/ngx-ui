@@ -35,7 +35,7 @@
         <tr *ngFor="let week of weeks" class="day-row" role="row">
           <td *ngFor="let day of week" class="day-cell text-center" role="gridcell">
             <button
-              *ngIf="day.num && selectType == CalendarSelect.Single"
+              *ngIf="day.num && selectType === CalendarSelect.Single"
               class="day"
               type="button"
               (focus)="onDayFocus(day)"
@@ -51,7 +51,7 @@
               {{ day.num }}
             </button>
             <button
-              *ngIf="day.num && selectType == CalendarSelect.Range"
+              *ngIf="day.num && selectType === CalendarSelect.Range"
               class="day"
               type="button"
               (focus)="onDayFocus(day)"
