@@ -688,9 +688,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   formatDate(date: Date): string {
-    const moment = this.createMoment(date);
+    const customMoment = this.createMoment(date);
 
-    return moment.format('MMM D YYYY');
+    return customMoment.format('MMM D YYYY');
   }
 
   private onChangeCallback: (_: any) => void = () => {
