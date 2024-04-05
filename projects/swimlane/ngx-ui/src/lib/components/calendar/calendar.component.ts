@@ -55,7 +55,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() timezone: string;
   @Input() inputFormats: Array<string | MomentBuiltinFormat> = ['L', 'LT', 'L LT', moment.ISO_8601];
   @Input() selectType: string = CalendarSelect.Single;
-  @Input() formatString: string = 'MMM D YYYY';
 
   @Input() rangeStart: Date = undefined;
   @Input() rangeEnd: Date = undefined;
@@ -688,10 +687,10 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     this.cdr.detectChanges();
   }
 
-  formatDate(date: Date): string {
+  formatDate(date: Date, formatString): string {
     const customMoment = this.createMoment(date);
 
-    return customMoment.format(this.formatString);
+    return customMoment.format(formatString);
   }
 
   private onChangeCallback: (_: any) => void = () => {

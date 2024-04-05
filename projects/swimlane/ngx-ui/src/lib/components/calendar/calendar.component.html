@@ -157,7 +157,7 @@
         <ngx-input
           type="number"
           hint="Hour"
-          label="{{ formatDate(rangeStart) }}"
+          label="{{ formatDate(rangeStart, 'MMM D YYYY') }}"
           [ngModel]="startHour"
           min="1"
           max="12"
@@ -200,7 +200,7 @@
         <ngx-input
           type="number"
           hint="Hour"
-          label="{{ formatDate(rangeEnd) }}"
+          label="{{ formatDate(rangeEnd, 'MMM D YYYY') }}"
           [ngModel]="endHour"
           min="1"
           max="12"
