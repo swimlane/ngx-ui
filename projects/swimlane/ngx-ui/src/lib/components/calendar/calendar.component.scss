@@ -73,6 +73,10 @@ $calendar-month-current: $color-blue-grey-750;
     }
   }
 
+  td {
+    padding: 0px;
+  }
+
   .day-name,
   .day-cell {
     margin: 0.1rem 0.2rem;
@@ -80,6 +84,14 @@ $calendar-month-current: $color-blue-grey-750;
     text-align: center;
     width: 1.8rem;
     height: 1.8rem;
+  }
+  .day-name,
+  .day-cell2 {
+    line-height: 1.8rem;
+    text-align: center;
+    width: 1.8rem;
+    height: 1.8rem;
+    margin: 0.1rem 0.2rem;
   }
 
   .day-container {
@@ -90,6 +102,10 @@ $calendar-month-current: $color-blue-grey-750;
       display: flex;
       .day-cell {
         flex: 1 0 30px;
+      }
+      .day-cell2 {
+        flex: 1 0 30px;
+        margin: 0rem 0rem;
       }
     }
 
@@ -128,7 +144,9 @@ $calendar-month-current: $color-blue-grey-750;
         color: $calendar-active-text;
         border-radius: 0%;
         opacity: 50%;
-        margin: 0 -px;
+        margin: 0rem 0rem;
+        max-width: initial;
+        flex: 1 1 30px;
       }
 
       &:hover:not(.active) {
