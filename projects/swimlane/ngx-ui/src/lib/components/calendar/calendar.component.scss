@@ -211,8 +211,9 @@ $calendar-month-current: $color-blue-grey-750;
 
 .time-row {
   background: $calendar-bg;
-  border: 1px solid $calendar-border;
-  padding: 8px 18px;
+  border-top: 1px solid $calendar-border;
+  border-bottom: 1px solid $calendar-border;
+  padding: 20px 10px;
 
   flex-direction: row;
   box-sizing: border-box;
@@ -228,7 +229,7 @@ $calendar-month-current: $color-blue-grey-750;
   .ngx-input {
     margin-top: 0;
     padding-top: 0;
-    width: 35px;
+    width: 73px;
 
     .ngx-input-underline {
       background-color: $color-input-text;
@@ -240,6 +241,8 @@ $calendar-month-current: $color-blue-grey-750;
 
     &.selected {
       color: $color-white;
+      background-color: #818fa933;
+      opacity: 20;
     }
   }
 }
