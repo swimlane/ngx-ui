@@ -178,11 +178,11 @@ $calendar-month-current: $color-blue-grey-750;
         &::before {
           content: '';
           position: absolute;
-          top: 0%; // adjust as needed
-          left: 50%; // adjust as needed
-          right: -14%; // adjust as needed
-          bottom: 0%; // adjust as needed
-          background: $calendar-range-bg; // replace with the color you want
+          top: 0%;
+          left: 50%;
+          right: -14%;
+          bottom: 0%;
+          background: $calendar-range-bg;
           z-index: 1;
           opacity: 50%;
           text-align: center;
@@ -205,11 +205,11 @@ $calendar-month-current: $color-blue-grey-750;
         &::before {
           content: '';
           position: absolute;
-          top: 0%; // adjust as needed
-          left: -14%; // adjust as needed
-          right: 50%; // adjust as needed
-          bottom: 0%; // adjust as needed
-          background: $calendar-range-bg; // replace with the color you want
+          top: 0%;
+          left: -14%;
+          right: 50%;
+          bottom: 0%;
+          background: $calendar-range-bg;
           z-index: 1;
           opacity: 50%;
         }
@@ -226,13 +226,22 @@ $calendar-month-current: $color-blue-grey-750;
         }
       }
       &.range {
-        background: $calendar-range-bg;
         color: $calendar-active-text;
-        border-radius: 0%;
-        opacity: 50%;
         margin: 0rem 0rem;
         max-width: initial;
         flex: 1 1 30px;
+        &::before {
+          content: '';
+          position: absolute;
+          top: -0%;
+          left: -0%;
+          right: -0%;
+          bottom: -0%;
+          background: $calendar-range-bg;
+          z-index: 1;
+          opacity: 50%;
+          text-align: center;
+        }
       }
       .day-num {
         position: relative;
