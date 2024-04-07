@@ -89,8 +89,8 @@ $calendar-month-current: $color-blue-grey-750;
   .day-cell2 {
     line-height: 1.8rem;
     text-align: center;
-    width: 1.8rem;
-    height: 1.8rem;
+    width: 34px;
+    height: 32px;
     margin: 0.1rem 0.2rem;
   }
 
@@ -149,8 +149,8 @@ $calendar-month-current: $color-blue-grey-750;
       color: $calendar-active-text;
       height: 100%;
       width: 100%;
-      max-height: 30px;
-      max-width: 30px;
+      max-height: 34px;
+      max-width: 32px;
       line-height: 100%;
       border-radius: 50%;
       text-align: center;
@@ -180,7 +180,7 @@ $calendar-month-current: $color-blue-grey-750;
           position: absolute;
           top: 0%;
           left: 50%;
-          right: -14%;
+          right: -10%;
           bottom: 0%;
           background: $calendar-range-bg;
           z-index: 1;
@@ -206,7 +206,7 @@ $calendar-month-current: $color-blue-grey-750;
           content: '';
           position: absolute;
           top: 0%;
-          left: -14%;
+          left: -10%;
           right: 50%;
           bottom: 0%;
           background: $calendar-range-bg;
@@ -220,7 +220,9 @@ $calendar-month-current: $color-blue-grey-750;
           left: 0;
           right: 0;
           bottom: 0;
-          background: $calendar-active-bg;
+          background: $calendar-bg;
+          outline: 2px solid #1483ff;
+          outline-offset: 1px;
           border-radius: 50%;
           z-index: 2;
         }
@@ -330,7 +332,7 @@ $calendar-month-current: $color-blue-grey-750;
   background: $calendar-bg;
   border-top: 1px solid $calendar-border;
   border-bottom: 1px solid $calendar-border;
-  padding: 24px 18px 12px 18px;
+  padding: 24px 18px 6px 18px;
 
   flex-direction: row;
   box-sizing: border-box;
@@ -345,8 +347,10 @@ $calendar-month-current: $color-blue-grey-750;
 
   .ngx-input {
     margin-top: 0;
+    margin-bottom: 0;
     padding-top: 0;
     width: 73px;
+    height: 46px;
 
     .ngx-input-underline {
       background-color: $color-input-text;
