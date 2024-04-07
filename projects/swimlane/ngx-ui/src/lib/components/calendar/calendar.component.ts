@@ -203,11 +203,14 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   /**
    * Checks if `date` matches the extreme ends of range
    */
-  isDayRangeExtreme(date: Moment): boolean {
-    if (this.rangeStart && this.rangeEnd)
-      return date.isSame(this.rangeStart, 'day') || date.isSame(this.rangeEnd, 'day');
+  isDayRangeEnd(date: Moment): boolean {
+    if (this.rangeEnd) return date.isSame(this.rangeEnd, 'day');
+  }
+  isDayRangeStart(date: Moment): boolean {
+    if (this.rangeStart && this.rangeEnd) return date.isSame(this.rangeStart, 'day');
+  }
+  isRangeStartActive(date: Moment): boolean {
     if (this.rangeStart) return date.isSame(this.rangeStart, 'day');
-    else return false;
   }
 
   /**

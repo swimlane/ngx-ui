@@ -21,7 +21,7 @@ $calendar-month-current: $color-blue-grey-750;
   display: inline-block;
   border: 1px solid $calendar-border;
   width: 270px;
-  padding: 0.5rem;
+  padding: 0.5rem 0rem;
 
   .ngx-calendar-wrap {
     flex: 1 1 100%;
@@ -135,9 +135,95 @@ $calendar-month-current: $color-blue-grey-750;
         background: $calendar-active-bg;
         color: $calendar-active-text;
       }
-      &.extremes {
-        outline: 2px solid $color-blue-200;
-        outline-offset: 1px;
+
+      &:hover:not(.active) {
+        &:hover:not([disabled]) {
+          background: $calendar-hover-bg;
+          color: $calendar-active-text;
+          opacity: 1;
+        }
+      }
+    }
+
+    .day2 {
+      color: $calendar-active-text;
+      height: 100%;
+      width: 100%;
+      max-height: 30px;
+      max-width: 30px;
+      line-height: 100%;
+      border-radius: 50%;
+      text-align: center;
+      transition: background 200ms;
+      padding: 0;
+      position: relative;
+
+      &.prev-month,
+      &.next-month {
+        color: $calendar-day-text;
+        opacity: 0.2;
+      }
+
+      &.today {
+        background: $calendar-today-bg;
+      }
+
+      &.active {
+        background: $calendar-active-bg;
+        color: $calendar-active-text;
+      }
+
+      &.extreme1 {
+        position: relative;
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0%; // adjust as needed
+          left: 50%; // adjust as needed
+          right: -14%; // adjust as needed
+          bottom: 0%; // adjust as needed
+          background: $calendar-range-bg; // replace with the color you want
+          z-index: 1;
+          opacity: 50%;
+          text-align: center;
+        }
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: $calendar-active-bg;
+          border-radius: 50%;
+          z-index: 2;
+          text-align: center;
+        }
+      }
+      &.extreme2 {
+        position: relative;
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0%; // adjust as needed
+          left: -14%; // adjust as needed
+          right: 50%; // adjust as needed
+          bottom: 0%; // adjust as needed
+          background: $calendar-range-bg; // replace with the color you want
+          z-index: 1;
+          opacity: 50%;
+        }
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background: $calendar-active-bg;
+          border-radius: 50%;
+          z-index: 2;
+        }
       }
       &.range {
         background: $calendar-range-bg;
@@ -148,12 +234,16 @@ $calendar-month-current: $color-blue-grey-750;
         max-width: initial;
         flex: 1 1 30px;
       }
-
-      &:hover:not(.active) {
+      .day-num {
+        position: relative;
+        z-index: 4;
+        color: $calendar-active-text;
+      }
+      &:hover:not(.extremes) {
         &:hover:not([disabled]) {
-          background: $calendar-hover-bg;
-          color: $calendar-active-text;
-          opacity: 1;
+          outline: 2px solid #1483ff;
+          outline-offset: 1px;
+          border-radius: 50%;
         }
       }
     }
@@ -231,7 +321,7 @@ $calendar-month-current: $color-blue-grey-750;
   background: $calendar-bg;
   border-top: 1px solid $calendar-border;
   border-bottom: 1px solid $calendar-border;
-  padding: 20px 10px;
+  padding: 24px 18px 12px 18px;
 
   flex-direction: row;
   box-sizing: border-box;

@@ -58,11 +58,13 @@
           <td *ngFor="let day of week" class="day-cell2 text-center" role="gridcell">
             <button
               *ngIf="day.num"
-              class="day"
+              class="day2"
               type="button"
               (focus)="onDayFocus(day)"
               [title]="day.date | amTimeZone: timezone | amDateFormat: 'LL'"
-              [class.extremes]="isDayRangeExtreme(day.date)"
+              [class.active]="isRangeStartActive(day.date)"
+              [class.extreme1]="isDayRangeStart(day.date)"
+              [class.extreme2]="isDayRangeEnd(day.date)"
               [class.focus]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day')"
               [class.range]="isDayInRange(day.date)"
               [attr.tabindex]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day') ? 0 : -1"
@@ -70,8 +72,8 @@
               [disabled]="isDisabled(day.date, 'day')"
               (click)="onDaySelectRange(day)"
             >
-              {{ day.num }}
-            </button>
+            <span class="day-num">{{ day.num }}</span>
+          </button>
           </td>
         </tr>
       </table>
@@ -191,6 +193,8 @@
         >
           AM
         </button>
+      </div>
+       <div>
         <button
           class="ampm"
           type="button"
@@ -229,6 +233,8 @@
         <button class="ampm" type="button" [class.selected]="endAmPmVal === 'AM'" (click)="onAmPmChange('AM', 'end')">
           AM
         </button>
+      </div>
+      <div>
         <button class="ampm" type="button" [class.selected]="endAmPmVal === 'PM'" (click)="onAmPmChange('PM', 'end')">
           PM
         </button>
