@@ -208,6 +208,20 @@
           </th>
           <td>The format in which the date should be displayed in the inputs label of range selection.</td>
         </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>rangeStart: Date</code>
+          </th>
+          <td>The format in which the date should be sent for start of range.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>rangeEnd: Date</code>
+          </th>
+          <td>The format in which the date should be sent for end of range.</td>
+        </tr>
       </tbody>
     </table>
     <hr>
@@ -233,6 +247,13 @@
             <code>dayKeyEnter: EventEmitter&lt;Date&gt;</code>
           </th>
           <td>Event emitted when a date is selected using keyboard navigation via the Enter key.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Output()</code>
+            <code>onRangeSelect: EventEmitter&lt; startDate: Date; endDate: Date &gt;</code>
+          </th>
+          <td>Event emitted when start date or end Date is changed.</td>
         </tr>
       </tbody>
     </table>
