@@ -232,6 +232,7 @@ $calendar-month-current: $color-blue-grey-750;
         margin: 0rem 0rem;
         max-width: initial;
         flex: 1 1 30px;
+        position: relative;
         &::before {
           content: '';
           position: absolute;
@@ -244,13 +245,35 @@ $calendar-month-current: $color-blue-grey-750;
           opacity: 50%;
           text-align: center;
         }
+        &:hover {
+          &:hover:not([disabled]) {
+            outline: 2px solid #1483ff;
+            outline-offset: 1px;
+            z-index: 2;
+            border-radius: 50%;
+            max-width: 32px;
+            max-height: 34px;
+            &::before {
+              content: '';
+              position: absolute;
+              top: -0%;
+              left: -9.9%;
+              right: -10%;
+              bottom: -0%;
+              background: $calendar-range-bg;
+              z-index: 1;
+              opacity: 50%;
+              text-align: center;
+            }
+          }
+        }
       }
       .day-num {
         position: relative;
         z-index: 4;
         color: $calendar-active-text;
       }
-      &:hover:not(.extremes) {
+      &:hover:not(.range) {
         &:hover:not([disabled]) {
           outline: 2px solid #1483ff;
           outline-offset: 1px;
