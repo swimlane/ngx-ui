@@ -26,6 +26,10 @@ export class CalendarPageComponent {
     console.log('date changed!', val);
   }
 
+  onRangeSelect(val) {
+    console.log(val);
+  }
+
   scrollTo(id: string) {
     (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
