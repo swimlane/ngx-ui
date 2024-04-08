@@ -267,6 +267,24 @@ $calendar-month-current: $color-blue-grey-750;
             }
           }
         }
+        &.today {
+          border-radius: 50%;
+          max-width: 32px;
+          max-height: 34px;
+          background: $calendar-today-bg;
+          &::before {
+            content: '';
+            position: absolute;
+            top: -0%;
+            left: -9.9%;
+            right: -10%;
+            bottom: -0%;
+            background: $calendar-range-bg;
+            z-index: 1;
+            opacity: 50%;
+            text-align: center;
+          }
+        }
       }
       .day-num {
         position: relative;
