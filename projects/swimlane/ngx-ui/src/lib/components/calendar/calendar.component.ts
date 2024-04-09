@@ -60,7 +60,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() timezone: string;
   @Input() inputFormats: Array<string | MomentBuiltinFormat> = ['L', 'LT', 'L LT', moment.ISO_8601];
   @Input() selectType: string = CalendarSelect.Single;
-  @Input() dateLabelFormat: string = 'MMM D YYYY';
+  @Input() dateLabelFormat = 'MMM D YYYY';
   @Input() range: CalendarDateRange = { startDate: undefined, endDate: undefined };
 
   @Input('minView')
