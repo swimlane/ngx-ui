@@ -160,12 +160,12 @@
     </div>
   </div>
   <div *ngIf="selectType === 'range'" class="time-inputs">
-    <div class="time-row" *ngIf="rangeStart">
+    <div class="time-row" *ngIf="range.startDate">
       <div>
         <ngx-input
           type="number"
           hint="Hour"
-          label="{{ formatDate(rangeStart) }}"
+          label="{{ formatDate(range.startDate) }}"
           [ngModel]="startHour"
           min="1"
           max="12"
@@ -205,12 +205,12 @@
         </button>
       </div>
     </div>
-    <div class="time-row" *ngIf="rangeEnd">
+    <div class="time-row" *ngIf="range.endDate">
       <div>
         <ngx-input
           type="number"
           hint="Hour"
-          label="{{ formatDate(rangeEnd) }}"
+          label="{{ formatDate(range.endDate) }}"
           [ngModel]="endHour"
           min="1"
           max="12"

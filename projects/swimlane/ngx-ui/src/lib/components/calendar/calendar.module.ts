@@ -7,6 +7,8 @@ import { CalendarComponent } from './calendar.component';
 import { PipesModule } from '../../pipes/pipes.module';
 import { InputModule } from '../input/input.module';
 
+export { CalendarDateRange } from './calendar.component';
+
 @NgModule({
   declarations: [CalendarComponent],
   exports: [CalendarComponent],
