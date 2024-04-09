@@ -5,10 +5,13 @@ import { MomentModule } from 'ngx-moment';
 
 import { CalendarComponent } from './calendar.component';
 import { PipesModule } from '../../pipes/pipes.module';
+import { InputModule } from '../input/input.module';
+
+export { CalendarDateRange } from './calendar.component';
 
 @NgModule({
   declarations: [CalendarComponent],
   exports: [CalendarComponent],
-  imports: [CommonModule, FormsModule, MomentModule, PipesModule]
+  imports: [CommonModule, FormsModule, MomentModule, PipesModule, InputModule]
 })
 export class CalendarModule {}

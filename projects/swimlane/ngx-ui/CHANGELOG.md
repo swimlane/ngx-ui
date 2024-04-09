@@ -2,6 +2,13 @@
 
 ## HEAD (unreleased)
 
+- Enhancement(`ngx-calendar`): Supports selecting a range of dates with hours and minutes
+
+## 46.0.0 (2023-11-14)
+
+- Breaking style change: The `icon` class styles were updated. Icon fonts were removed from the assets/icons folder
+- Enhancement (`icons`): Added `sankey` icon
+
 ## 45.1.1 (2023-11-3)
 
 - Fix (`ngx-select`): Remove dropdown options when the iterable is set to an empty array.
