@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## HEAD (unreleased)
+
 ## 47.1.0 (2023-04-11)
 
 - Enhancement(`ngx-calendar`): Supports selecting a range of dates with hours and minutes
