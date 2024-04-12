@@ -2,14 +2,28 @@
   <div class="text-center" [ngSwitch]="currentView">
     <div *ngSwitchCase="CalendarView.Date">
       <div class="title-row">
-        <button type="button" tabindex="0" class="prev-month" [disabled]="disabled" title="Previous Month" (click)="prevMonth()">
+        <button
+          type="button"
+          tabindex="0"
+          class="prev-month"
+          [disabled]="disabled"
+          title="Previous Month"
+          (click)="prevMonth()"
+        >
           <span class="ngx-icon ngx-arrow-left"></span>
         </button>
         <button type="button" class="title" tabindex="0" (click)="changeViews()">
           {{ focusDate | amTimeZone: timezone | amDateFormat: 'MMMM YYYY' }}
         </button>
-        <button type="button" tabindex="0" class="next-month" title="Next Month" [disabled]="disabled" (click)="nextMonth()">
-          <span class="ngx-icon  ngx-arrow-right"></span>
+        <button
+          type="button"
+          tabindex="0"
+          class="next-month"
+          title="Next Month"
+          [disabled]="disabled"
+          (click)="nextMonth()"
+        >
+          <span class="ngx-icon ngx-arrow-right"></span>
         </button>
       </div>
       <div class="day-name-row">
@@ -17,7 +31,7 @@
           {{ d }}
         </div>
       </div>
-      <table class="day-container" role="grid">
+      <table class="day-container" role="grid" *ngIf="selectType === CalendarSelect.Single">
         <tr *ngFor="let week of weeks" class="day-row" role="row">
           <td *ngFor="let day of week" class="day-cell text-center" role="gridcell">
             <button
@@ -35,6 +49,30 @@
               (keydown)="onDayDown($event)"
             >
               {{ day.num }}
+            </button>
+          </td>
+        </tr>
+      </table>
+      <table class="day-container" role="grid" *ngIf="selectType === CalendarSelect.Range">
+        <tr *ngFor="let week of weeks" class="day-row" role="row">
+          <td *ngFor="let day of week" class="day-cell2 text-center" role="gridcell">
+            <button
+              *ngIf="day.num"
+              class="day2"
+              type="button"
+              (focus)="onDayFocus(day)"
+              [title]="day.date | amTimeZone: timezone | amDateFormat: 'LL'"
+              [class.active]="isRangeStartActive(day.date)"
+              [class.extreme1]="isDayRangeStart(day.date)"
+              [class.extreme2]="isDayRangeEnd(day.date)"
+              [class.focus]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day')"
+              [class.range]="isDayInRange(day.date)"
+              [attr.tabindex]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day') ? 0 : -1"
+              [ngClass]="day.classes"
+              [disabled]="isDisabled(day.date, 'day')"
+              (click)="onDaySelectRange(day)"
+            >
+              <span class="day-num">{{ day.num }}</span>
             </button>
           </td>
         </tr>
@@ -68,7 +106,7 @@
               (keydown)="onMonthDown($event)"
             >
               {{ month }}
-            </button>            
+            </button>
           </td>
         </tr>
       </table>
@@ -85,7 +123,7 @@
         >
           <span class="ngx-icon ngx-arrow-left"></span>
         </button>
-        <button class="title" (click)="changeViews()"> {{ startYear }} - {{ startYear + 20 }} </button>
+        <button class="title" (click)="changeViews()">{{ startYear }} - {{ startYear + 20 }}</button>
         <button
           type="button"
           class="next-month"
@@ -98,7 +136,11 @@
       </div>
       <table class="years-container" role="grid">
         <tr class="years-row" role="row">
-          <td class="year-cell text-center" role="gridcell" *ngFor="let dummy of ' '.repeat(20).split(''); let x = index;">
+          <td
+            class="year-cell text-center"
+            role="gridcell"
+            *ngFor="let dummy of ' '.repeat(20).split(''); let x = index"
+          >
             <button
               class="year"
               type="button"
@@ -115,6 +157,88 @@
           </td>
         </tr>
       </table>
+    </div>
+  </div>
+  <div *ngIf="selectType === 'range'" class="time-inputs">
+    <div class="time-row" *ngIf="range.startDate">
+      <div>
+        <ngx-input
+          type="number"
+          hint="Hour"
+          label="{{ formatDate(range.startDate) }}"
+          [ngModel]="startHour"
+          min="1"
+          max="12"
+          (change)="hourChanged($event, 'start')"
+        >
+        </ngx-input>
+      </div>
+      <div>
+        <ngx-input
+          type="number"
+          hint="Minute"
+          [ngModel]="startMinute"
+          min="0"
+          max="59"
+          (change)="minuteChanged($event, 'start')"
+        >
+        </ngx-input>
+      </div>
+      <div>
+        <button
+          class="ampm"
+          type="button"
+          [class.selected]="startAmPmVal === 'AM'"
+          (click)="onAmPmChange('AM', 'start')"
+        >
+          AM
+        </button>
+      </div>
+      <div>
+        <button
+          class="ampm"
+          type="button"
+          [class.selected]="startAmPmVal === 'PM'"
+          (click)="onAmPmChange('PM', 'start')"
+        >
+          PM
+        </button>
+      </div>
+    </div>
+    <div class="time-row" *ngIf="range.endDate">
+      <div>
+        <ngx-input
+          type="number"
+          hint="Hour"
+          label="{{ formatDate(range.endDate) }}"
+          [ngModel]="endHour"
+          min="1"
+          max="12"
+          (change)="hourChanged($event, 'end')"
+        >
+        </ngx-input>
+      </div>
+      <div>
+        <ngx-input
+          type="number"
+          hint="Minute"
+          [ngModel]="endMinute"
+          min="0"
+          max="59"
+          (change)="minuteChanged($event, 'end')"
+        >
+        </ngx-input>
+      </div>
+      <div>
+        <button class="ampm" type="button" [class.selected]="endAmPmVal === 'AM'" (click)="onAmPmChange('AM', 'end')">
+          AM
+        </button>
+      </div>
+      <div>
+        <button class="ampm" type="button" [class.selected]="endAmPmVal === 'PM'" (click)="onAmPmChange('PM', 'end')">
+          PM
+        </button>
+      </div>
     </div>
   </div>
 </div>

@@ -1,4 +1,5 @@
 @import 'colors/variables';
+@import 'forms/inputs';
 
 $calendar-bg: $color-blue-grey-800;
 $calendar-border: $color-blue-grey-700;
@@ -8,6 +9,7 @@ $calendar-hover-bg: $color-blue-400;
 $calendar-today-bg: $color-blue-grey-750;
 $calendar-active-bg: $color-blue-400;
 $calendar-active-text: $color-grey-050;
+$calendar-range-bg: $color-blue-700;
 $calendar-day-text: $color-blue-grey-350;
 $calendar-month-current: $color-blue-grey-750;
 
@@ -19,8 +21,7 @@ $calendar-month-current: $color-blue-grey-750;
   display: inline-block;
   border: 1px solid $calendar-border;
   width: 270px;
-  padding: 0.5rem;
-  height: 270px;
+  padding: 0.5rem 0rem;
 
   .ngx-calendar-wrap {
     flex: 1 1 100%;
@@ -72,6 +73,10 @@ $calendar-month-current: $color-blue-grey-750;
     }
   }
 
+  td {
+    padding: 0px;
+  }
+
   .day-name,
   .day-cell {
     margin: 0.1rem 0.2rem;
@@ -80,6 +85,14 @@ $calendar-month-current: $color-blue-grey-750;
     width: 1.8rem;
     height: 1.8rem;
   }
+  .day-name,
+  .day-cell2 {
+    line-height: 1.8rem;
+    text-align: center;
+    width: 34px;
+    height: 32px;
+    margin: 0.1rem 0.2rem;
+  }
 
   .day-container {
     margin-top: 0;
@@ -87,9 +100,12 @@ $calendar-month-current: $color-blue-grey-750;
 
     .day-row {
       display: flex;
-
       .day-cell {
         flex: 1 0 30px;
+      }
+      .day-cell2 {
+        flex: 1 0 30px;
+        margin: 0.1rem 0rem;
       }
     }
 
@@ -125,6 +141,165 @@ $calendar-month-current: $color-blue-grey-750;
           background: $calendar-hover-bg;
           color: $calendar-active-text;
           opacity: 1;
+        }
+      }
+    }
+
+    button.day2 {
+      color: $calendar-active-text;
+      height: 100%;
+      width: 100%;
+      max-height: 34px;
+      max-width: 32px;
+      line-height: 100%;
+      border-radius: 50%;
+      text-align: center;
+      transition: background 200ms;
+      padding: 0;
+      position: relative;
+
+      &.prev-month,
+      &.next-month {
+        color: $calendar-day-text;
+        opacity: 0.2;
+      }
+
+      &.today {
+        background: $calendar-today-bg;
+      }
+
+      &.active {
+        background: $calendar-active-bg;
+        color: $calendar-active-text;
+      }
+
+      &.extreme1 {
+        position: relative;
+        &:not(.extreme2) {
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0%;
+            left: 50%;
+            right: -10%;
+            bottom: 0%;
+            background: $calendar-range-bg;
+            z-index: 1;
+            opacity: 50%;
+            text-align: center;
+          }
+          &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: $calendar-active-bg;
+            border-radius: 50%;
+            z-index: 2;
+            text-align: center;
+          }
+        }
+      }
+      &.extreme2 {
+        position: relative;
+        outline: 2px solid transparent;
+        &:not(.extreme1) {
+          &:before {
+            content: '';
+            position: absolute;
+            top: 0%;
+            left: -9.9%;
+            right: 50%;
+            bottom: 0%;
+            background: $calendar-range-bg;
+            z-index: 1;
+            opacity: 50%;
+          }
+          &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: $calendar-bg;
+            outline: 2px solid #1483ff;
+            outline-offset: -1px;
+            border-radius: 50%;
+            z-index: 2;
+          }
+        }
+      }
+      &.range {
+        color: $calendar-active-text;
+        margin: 0rem 0rem;
+        max-width: initial;
+        flex: 1 1 30px;
+        &:before {
+          content: '';
+          position: absolute;
+          top: -0%;
+          left: -0%;
+          right: -0%;
+          bottom: -0%;
+          background: $calendar-range-bg;
+          z-index: 1;
+          opacity: 50%;
+          text-align: center;
+        }
+        &:hover {
+          &:not([disabled]) {
+            outline: 2px solid #1483ff;
+            outline-offset: 1px;
+            z-index: 2;
+            border-radius: 50%;
+            max-width: 32px;
+            max-height: 34px;
+            &:before {
+              content: '';
+              position: absolute;
+              top: -0%;
+              left: -9.9%;
+              right: -10%;
+              bottom: -0%;
+              background: $calendar-range-bg;
+              z-index: 1;
+              opacity: 50%;
+              text-align: center;
+            }
+          }
+        }
+        &.today {
+          border-radius: 50%;
+          max-width: 32px;
+          max-height: 34px;
+          background: $calendar-today-bg;
+          &:before {
+            content: '';
+            position: absolute;
+            top: -0%;
+            left: -9.9%;
+            right: -10%;
+            bottom: -0%;
+            background: $calendar-range-bg;
+            z-index: 1;
+            opacity: 50%;
+            text-align: center;
+          }
+        }
+      }
+      .day-num {
+        position: relative;
+        z-index: 4;
+        color: $calendar-active-text;
+      }
+      &:hover:not(.extremes) {
+        &:hover:not([disabled]) {
+          outline: 2px solid #1483ff;
+          outline-offset: 1px;
+          border-radius: 50%;
         }
       }
     }
@@ -194,6 +369,46 @@ $calendar-month-current: $color-blue-grey-750;
       &:nth-child(4n) {
         border-right: 0;
       }
+    }
+  }
+}
+
+.time-row {
+  background: $calendar-bg;
+  border-top: 1px solid $calendar-border;
+  border-bottom: 1px solid $calendar-border;
+  padding: 24px 18px 6px 18px;
+
+  flex-direction: row;
+  box-sizing: border-box;
+  display: flex;
+  place-content: stretch center;
+  align-items: baseline;
+  justify-content: space-between;
+
+  > * {
+    flex: 0 0 calc(15% - 6px);
+  }
+
+  .ngx-input {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    width: 73px;
+    height: 46px;
+
+    .ngx-input-underline {
+      background-color: $color-input-text;
+    }
+  }
+
+  button.ampm {
+    color: $color-blue-grey-500;
+
+    &.selected {
+      color: $color-white;
+      background-color: #818fa933;
+      opacity: 20;
     }
   }
 }

@@ -20,6 +20,7 @@ import { getDecadeStartYear } from './utils/get-decade-start-year/get-decade-sta
 import { CalendarDay } from './calendar-day.interface';
 import { CalendarMonth } from './calendar-month.type';
 import { CalendarView } from './calendar-view.enum';
+import { CalendarSelect } from './calendar-select.enum';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
 
 const CALENDAR_VALUE_ACCESSOR = {
@@ -27,6 +28,11 @@ const CALENDAR_VALUE_ACCESSOR = {
   useExisting: forwardRef(() => CalendarComponent),
   multi: true
 };
+
+export interface CalendarDateRange {
+  startDate: Date | undefined;
+  endDate: Date | undefined;
+}
 
 @Component({
   selector: 'ngx-calendar',
@@ -53,6 +59,9 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() daysOfWeek: string[] = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
   @Input() timezone: string;
   @Input() inputFormats: Array<string | MomentBuiltinFormat> = ['L', 'LT', 'L LT', moment.ISO_8601];
+  @Input() selectType: string = CalendarSelect.Single;
+  @Input() dateLabelFormat: string = 'MMM D YYYY';
+  @Input() range: CalendarDateRange = { startDate: undefined, endDate: undefined };
 
   @Input('minView')
   get minView() {
@@ -73,6 +82,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   @Output() change = new EventEmitter<Date>();
+  @Output() onRangeSelect = new EventEmitter<CalendarDateRange>();
   @Output() dayKeyEnter = new EventEmitter<Date>();
 
   @HostBinding('attr.tabindex')
@@ -104,7 +114,15 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   monthsList = moment.monthsShort();
   startYear: number;
 
+  startHour: number;
+  endHour: number;
+  startMinute: number;
+  endMinute: number;
+  startAmPmVal: string;
+  endAmPmVal: string;
+
   readonly CalendarView = CalendarView;
+  readonly CalendarSelect = CalendarSelect;
 
   private _value: Date;
   private _current: Moment;
@@ -119,6 +137,7 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     this.monthsList = moment.monthsShort();
     this._current = this.focusDate;
     this.startYear = getDecadeStartYear(this._current.year());
+    this.initializeTime();
     this.validateView();
   }
 
@@ -155,10 +174,58 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
 
   /**
+   * Initializes the values for initial time
+   */
+  initializeTime(): void {
+    this.startHour = this.range.startDate
+      ? this.range.startDate.getHours() % 12
+      : +moment('2001-01-01T00:00:00').format('hh') % 12;
+    this.endHour = this.range.endDate
+      ? this.range.endDate.getHours() % 12
+      : +moment('2001-01-01T00:00:00').format('hh') % 12;
+
+    this.startMinute = this.range.startDate
+      ? this.range.startDate.getMinutes()
+      : +moment('2001-01-01T00:00:00').format('mm');
+    this.endMinute = this.range.endDate ? this.range.endDate.getMinutes() : +moment('2001-01-01T00:00:00').format('mm');
+    this.startAmPmVal = this.range.startDate
+      ? this.range.startDate.getHours() >= 12
+        ? 'PM'
+        : 'AM'
+      : moment('2001-01-01T00:00:00').format('A');
+    this.endAmPmVal = this.range.endDate
+      ? this.range.endDate.getHours() >= 12
+        ? 'PM'
+        : 'AM'
+      : moment('2001-01-01T00:00:00').format('A');
+  }
+
+  /**
    * Checks if `date` matches selected value
    */
   isDayActive(date: Moment): boolean {
     return date.isSame(this.value, 'day');
+  }
+
+  /**
+   * Checks if `date` matches the extreme ends of range
+   */
+  isDayRangeEnd(date: Moment): boolean {
+    if (this.range.endDate) return date.isSame(this.range.endDate, 'day');
+  }
+  isDayRangeStart(date: Moment): boolean {
+    if (this.range.startDate && this.range.endDate) return date.isSame(this.range.startDate, 'day');
+  }
+  isRangeStartActive(date: Moment): boolean {
+    if (this.range.startDate) return date.isSame(this.range.startDate, 'day');
+  }
+
+  /**
+   * Checks if `date` matches the extreme ends of range
+   */
+  isDayInRange(date: Moment): boolean {
+    if (this.range.startDate && this.range.endDate)
+      return date.isBetween(this.range.startDate, this.range.endDate, 'day', '()');
   }
 
   /**
@@ -252,6 +319,36 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     }
   }
 
+  onDaySelectRange(day: CalendarDay) {
+    this.focusDate = day.date.clone();
+
+    if (this.range.startDate === undefined && this.range.endDate === undefined) {
+      this.range.startDate = this.focusDate.toDate();
+      this.range.startDate.setHours(this.startHour);
+      this.range.startDate.setMinutes(+this.startMinute);
+    } else if (this.range.endDate === undefined) {
+      if (this.focusDate.toDate() > this.range.startDate) {
+        this.range.endDate = this.focusDate.toDate();
+        this.range.endDate.setHours(this.endHour);
+        this.range.endDate.setMinutes(+this.endMinute);
+      } else {
+        this.range.startDate = this.focusDate.toDate();
+        this.range.startDate.setHours(this.startHour);
+        this.range.startDate.setMinutes(+this.startMinute);
+      }
+    } else {
+      this.range.startDate = this.focusDate.toDate();
+      this.range.startDate.setHours(this.startHour);
+      this.range.startDate.setMinutes(+this.startMinute);
+      this.range.endDate = undefined;
+    }
+    this.onRangeSelect.emit({ startDate: this.range.startDate, endDate: this.range.endDate });
+
+    if (day.prevMonth || day.nextMonth) {
+      this.weeks = getMonth(this.focusDate);
+    }
+  }
+
   onDayFocus(day: CalendarDay) {
     this.focusDate = day.date.clone();
     this.cdr.detectChanges();
@@ -276,6 +373,58 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
       this.currentView = CalendarView.Month;
       this.weeks = getMonth(this.focusDate);
     }
+  }
+
+  hourChanged(newVal: number, type: string) {
+    newVal = +newVal % 12;
+    if (type === 'start') {
+      if (this.range.startDate) {
+        if (this.startAmPmVal === 'PM') newVal = 12 + newVal;
+        this.range.startDate.setHours(newVal);
+      }
+      this.startHour = newVal % 12;
+    } else {
+      if (this.range.endDate) {
+        if (this.endAmPmVal === 'PM') newVal = 12 + newVal;
+        this.range.endDate.setHours(newVal);
+      }
+      this.endHour = newVal % 12;
+    }
+    this.onRangeSelect.emit({ startDate: this.range.startDate, endDate: this.range.endDate });
+  }
+  minuteChanged(newVal: number, type: string) {
+    if (type === 'start') {
+      if (this.range.startDate) this.range.startDate.setMinutes(newVal);
+      this.startMinute = newVal;
+    } else {
+      if (this.range.endDate) this.range.endDate.setMinutes(newVal);
+      this.endMinute = newVal;
+    }
+    this.onRangeSelect.emit({ startDate: this.range.startDate, endDate: this.range.endDate });
+  }
+  onAmPmChange(newVal, type) {
+    if (type === 'start') {
+      if (this.range.startDate) {
+        const hourClone = this.range.startDate.getHours();
+        if (newVal === 'AM' && this.startAmPmVal === 'PM') {
+          this.range.startDate.setHours(hourClone - 12);
+        } else if (newVal === 'PM' && this.startAmPmVal === 'AM') {
+          this.range.startDate.setHours(hourClone + 12);
+        }
+      }
+      this.startAmPmVal = newVal;
+    } else {
+      if (this.range.endDate) {
+        const hourClone = this.range.endDate.getHours();
+        if (newVal === 'AM' && this.endAmPmVal === 'PM') {
+          this.range.endDate.setHours(hourClone - 12);
+        } else if (newVal === 'PM' && this.endAmPmVal === 'AM') {
+          this.range.endDate.setHours(hourClone + 12);
+        }
+      }
+      this.endAmPmVal = newVal;
+    }
+    this.onRangeSelect.emit({ startDate: this.range.startDate, endDate: this.range.endDate });
   }
 
   prevMonth() {
@@ -548,6 +697,12 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     }
 
     this.cdr.detectChanges();
+  }
+
+  formatDate(date: Date): string {
+    const customMoment = this.createMoment(date);
+
+    return customMoment.format(this.dateLabelFormat);
   }
 
   private onChangeCallback: (_: any) => void = () => {

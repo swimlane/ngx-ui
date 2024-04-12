@@ -7,6 +7,7 @@ import moment from 'moment-timezone';
 import { PipesModule } from '../../pipes/pipes.module';
 import { CalendarView } from './calendar-view.enum';
 import { CalendarComponent } from './calendar.component';
+import { CalendarDay } from './calendar-day.interface';
 
 (moment as any).suppressDeprecationWarnings = true;
 
@@ -322,6 +323,114 @@ describe('CalendarComponent', () => {
       const now = new Date();
       now.setDate(now.getDate() + 1);
       component.value = now;
+    });
+  });
+
+  describe('Time Functions', () => {
+    it('should update hour correctly', () => {
+      component.range = { startDate: new Date(), endDate: undefined };
+      component.startAmPmVal = 'PM';
+      component.startHour = 5;
+      component.hourChanged(3, 'start');
+      expect(component.range?.startDate?.getHours()).toBe(15);
+    });
+
+    it('should update minute correctly', () => {
+      component.range = { startDate: new Date(), endDate: undefined };
+      component.startMinute = 30;
+      component.minuteChanged(45, 'start');
+      expect(component.range?.startDate?.getMinutes()).toBe(45);
+    });
+
+    it('should update AM/PM correctly', () => {
+      component.range = { startDate: new Date(), endDate: undefined };
+      component.startAmPmVal = 'AM';
+      component.range?.startDate?.setHours(2);
+      component.onAmPmChange('PM', 'start');
+      expect(component.range?.startDate?.getHours()).toBe(14);
+    });
+  });
+
+  describe('initializeTime', () => {
+    it('should initialize time properties based on range start and range end', () => {
+      const rangeStart = new Date('2024-04-04T10:30:00');
+      const rangeEnd = new Date('2024-04-04T15:45:00');
+
+      component.range = { startDate: rangeStart, endDate: rangeEnd };
+      component.initializeTime();
+
+      expect(component.startHour).toBe(10);
+      expect(component.startMinute).toBe(30);
+      expect(component.startAmPmVal).toBe('AM');
+
+      expect(component.endHour).toBe(3);
+      expect(component.endMinute).toBe(45);
+      expect(component.endAmPmVal).toBe('PM');
+    });
+
+    it('should initialize time properties with default values if range start and rangeEnd are not provided', () => {
+      component.initializeTime();
+
+      expect(component.startHour).toBe(0);
+      expect(component.endHour).toBe(0);
+      expect(component.startMinute).toBe(0);
+      expect(component.endMinute).toBe(0);
+      expect(component.startAmPmVal).toBe('AM');
+      expect(component.endAmPmVal).toBe('AM');
+    });
+  });
+
+  describe('onDaySelectRange', () => {
+    it('should set range start if both range start and range end are undefined', () => {
+      const day = { date: moment('2024-04-04'), nextMonth: true, prevMonth: true } as CalendarDay;
+      component.focusDate = moment('2024-04-04');
+      component.range = { startDate: undefined, endDate: undefined };
+      component.startHour = 10;
+      component.startMinute = 30;
+
+      component.onDaySelectRange(day);
+
+      expect(component.range?.startDate).toEqual(new Date('2024-04-04T10:30:00'));
+      expect(component.range?.endDate).toBeUndefined();
+    });
+
+    it('should set range end if range start is set and focusDate is greater than range start', () => {
+      const day = { date: moment('2024-04-10'), nextMonth: true, prevMonth: true } as CalendarDay;
+      component.focusDate = moment('2024-04-10');
+      component.range = { startDate: new Date('2024-04-04T10:30:00'), endDate: undefined };
+      component.endHour = 15;
+      component.endMinute = 45;
+
+      component.onDaySelectRange(day);
+
+      expect(component.range?.startDate).toEqual(new Date('2024-04-04T10:30:00'));
+      expect(component.range?.endDate).toEqual(new Date('2024-04-10T15:45:00'));
+    });
+
+    it('should update range start if range start is set and focusDate is less than or equal to range start', () => {
+      const day = { date: moment('2024-04-01'), nextMonth: true, prevMonth: true } as CalendarDay;
+      component.focusDate = moment('2024-04-01');
+      component.range = { startDate: new Date('2024-04-04T10:30:00'), endDate: undefined };
+      component.startHour = 8;
+      component.startMinute = 15;
+
+      component.onDaySelectRange(day);
+
+      expect(component.range?.startDate).toEqual(new Date('2024-04-01T08:15:00'));
+      expect(component.range?.endDate).toBeUndefined();
+    });
+
+    it('should reset range start and range end if both are already set', () => {
+      const day = { date: moment('2024-04-04'), nextMonth: true, prevMonth: true } as CalendarDay;
+      component.focusDate = moment('2024-04-04');
+      component.range = { startDate: new Date('2024-04-01T08:15:00'), endDate: new Date('2024-04-10T15:45:00') };
+      component.startHour = 12;
+      component.startMinute = 0;
+
+      component.onDaySelectRange(day);
+
+      expect(component.range?.startDate).toEqual(new Date('2024-04-04T12:00:00'));
+      expect(component.range?.endDate).toBeUndefined();
     });
   });
 });
