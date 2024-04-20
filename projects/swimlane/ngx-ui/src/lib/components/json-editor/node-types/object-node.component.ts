@@ -264,7 +264,7 @@ export class ObjectNode implements OnInit, OnChanges {
       return `['${propName}']`;
     }
 
-    return `.${propName}`;
+    return `/${propName}`;
   }
 
   /**

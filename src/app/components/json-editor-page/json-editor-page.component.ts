@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Format, KeywordDefinition } from 'ajv';
 import { JSONSchema7 } from 'json-schema';
 
 @Component({
@@ -100,7 +101,11 @@ export class JsonEditorPageComponent {
     },
     required: ['productId', 'productName', 'price', 'availability', 'onSale', 'dimensions', 'userApiKey', 'file']
   };
-
+  formats: Map<string, Format> = new Map([
+    ['test', 'test'],
+    ['test2', 'test2']
+  ]);
+  keywords: Array<string | KeywordDefinition> = ['test3', 'test4', 'test5'];
   hideRoot = false;
   showKnownProperties = false;
   passwordToggleEnabled = false;
