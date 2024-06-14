@@ -4,7 +4,8 @@ import {
   ViewEncapsulation,
   forwardRef,
   ChangeDetectionStrategy,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  HostListener
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -31,6 +32,13 @@ let nextId = 0;
   }
 })
 export class ToggleComponent implements ControlValueAccessor {
+  @HostListener('click', ['$event']) onClick(ev: Event) {
+    ev.preventDefault();
+    if (!this.disabled) {
+      this.toggle();
+    }
+  }
+
   @Input() id = `toggle-${++nextId}`;
   @Input() name: string = null;
   @Input() label: string;

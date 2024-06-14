@@ -7,7 +7,8 @@ import {
   forwardRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  ElementRef
+  ElementRef,
+  HostListener
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
@@ -36,6 +37,13 @@ let nextId = 0;
 })
 export class RadioButtonComponent implements ControlValueAccessor {
   readonly UNIQUE_ID = `ngx-radio-${++nextId}`;
+
+  @HostListener('click', ['$event']) onClick(ev: Event) {
+    ev.preventDefault();
+    if (!this.disabled) {
+      this.toggle();
+    }
+  }
 
   @Input() id: string = this.UNIQUE_ID;
   @Input() name: string = this.UNIQUE_ID;
@@ -125,6 +133,10 @@ export class RadioButtonComponent implements ControlValueAccessor {
     ev.stopPropagation();
     ev.preventDefault();
     this.checked = true;
+  }
+
+  toggle(): void {
+    this.checked = !this.checked;
   }
 
   private onChangeCallback(value: any) {

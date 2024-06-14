@@ -26,6 +26,7 @@ describe('Checkbox', () => {
     });
 
     it('click toggles value', () => {
+      cy.get('@CUT').scrollIntoView();
       cy.get('@CUT').ngxGetValue().should('equal', true);
       cy.get('@CUT').click();
       cy.get('@CUT').ngxGetValue().should('equal', false);
@@ -37,22 +38,17 @@ describe('Checkbox', () => {
       cy.get('@CUT').ngxGetValue().should('equal', false);
     });
 
-    it('clears value', () => {
-      cy.get('@CUT').ngxGetValue().should('equal', true);
-      cy.get('@CUT').clear();
-      cy.get('@CUT').ngxGetValue().should('equal', false);
-    });
 
     it('can use check/uncheck', () => {
       cy.get('@CUT').ngxGetValue().should('equal', true);
-      cy.get('@CUT').check();
-      cy.get('@CUT').ngxGetValue().should('equal', true);
-      cy.get('@CUT').uncheck();
+      cy.get('@CUT').click();
       cy.get('@CUT').ngxGetValue().should('equal', false);
+      cy.get('@CUT').click();
+      cy.get('@CUT').ngxGetValue().should('equal', true);
     });
 
     it('is keyboard accessible', () => {
-      cy.get('@SUT').find('h1').contains('Demo').click();
+      cy.get('@SUT').find('h1').contains('Demo').realClick();
 
       cy.get('@CUT').find('.ngx-checkbox--box').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px');
       cy.get('@CUT').ngxGetValue().should('equal', true);

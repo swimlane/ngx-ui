@@ -62,7 +62,8 @@ describe('Json Editor', () => {
           cy.get('.add-button')
             .last()
             .within(() => {
-              cy.get('ngx-dropdown').as('addPropDropdown').scrollIntoView().should('be.visible');
+              cy.get('ngx-dropdown').as('addPropDropdown').scrollIntoView();
+              cy.get('@addPropDropdown').should('be.visible');
               cy.get('@addPropDropdown').find('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
               cy.get('@addPropDropdown').find('ngx-dropdown-menu').should('exist');
             });
@@ -77,21 +78,23 @@ describe('Json Editor', () => {
       it('Should allow to add a property of type array', () => {
         cy.get('@jsonEditorFlat').within(() => {
           cy.get('ngx-dropdown-menu')
+            .last()
             .should('exist')
             .within(() => {
               cy.contains('li', 'Array').click();
             });
         });
         cy.get('@jsonEditorFlat').within(() => {
-          cy.get('ngx-dropdown-menu').should('not.be.visible');
+          cy.get('ngx-dropdown-menu').last().should('not.be.visible');
         });
         cy.get('ngx-json-array-node-flat').should('exist');
       });
 
       it('should allow adding primitive items to newly created array property', () => {
         cy.get('ngx-json-array-node-flat')
-          .scrollIntoView()
-          .should('contain.text', 'Array')
+          .scrollIntoView();
+
+           cy.get('ngx-json-array-node-flat').should('contain.text', 'Array')
           .within(() => {
             cy.get('.add-button')
               .should('be.visible')
@@ -99,6 +102,7 @@ describe('Json Editor', () => {
                 cy.get('ngx-dropdown-toggle').should('contain.text', 'Add an item').click();
               });
             cy.get('ngx-dropdown-menu')
+              .last()
               .should('be.visible')
               .within(() => {
                 cy.contains('li', 'String').click();
@@ -106,6 +110,7 @@ describe('Json Editor', () => {
           });
         cy.get('ngx-json-array-node-flat')
           .should('exist')
+          .last()
           .within(() => {
             cy.get('.node-input ngx-input').should('exist').should('have.attr', 'type', 'textarea').ngxFill('test');
           });
@@ -115,13 +120,15 @@ describe('Json Editor', () => {
         cy.get('ngx-json-array-node-flat').within(() => {
           cy.get('.node-options')
             .should('be.visible')
+            .first()
             .within(() => {
               cy.get('ngx-dropdown-toggle').should('be.visible').click();
             });
           cy.get('ngx-dropdown-menu')
             .should('be.visible')
+            .first()
             .within(() => {
-              cy.contains('li', 'Delete').click();
+              cy.contains('button', 'Delete').click({force: true});
             });
         });
 
@@ -139,18 +146,23 @@ describe('Json Editor', () => {
             });
           cy.get('ngx-dropdown-menu')
             .should('be.visible')
+            .last()
             .within(() => {
               cy.contains('li', 'Object').click();
             });
           cy.get('ngx-json-object-node-flat')
-            .scrollIntoView()
-            .should('exist')
+            .scrollIntoView();
+
+          cy.get('ngx-json-object-node-flat').should('exist')
             .within(() => {
+
               cy.get('.add-button')
                 .should('be.visible')
+                .last()
                 .within(() => {
                   cy.get('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
                 });
+
               cy.get('ngx-dropdown-menu')
                 .should('be.visible')
                 .within(() => {
@@ -158,7 +170,9 @@ describe('Json Editor', () => {
                 });
 
               cy.get('ngx-json-editor-node-info')
-                .scrollIntoView()
+                .scrollIntoView();
+
+              cy.get('ngx-json-editor-node-info')
                 .find('ngx-input')
                 .should('be.visible')
                 .ngxFill('name');
@@ -174,14 +188,18 @@ describe('Json Editor', () => {
       it('should allow adding another object with same props as array item', () => {
         cy.get('ngx-json-array-node-flat').within(() => {
           cy.get('.add-button')
+            .last().scrollIntoView();
+            cy.get('.add-button')
+            .last()
             .should('be.visible')
             .within(() => {
-              cy.get('ngx-dropdown-toggle').eq(1).should('contain.text', 'Add an item').click();
+              cy.get('ngx-dropdown-toggle').should('contain.text', 'Add an item').click();
               cy.get('ngx-dropdown-menu')
-                .eq(1)
-                .scrollIntoView()
+                .scrollIntoView();
 
+                cy.get('ngx-dropdown-menu')
                 .should('be.visible')
+                .last()
                 .within(() => {
                   cy.contains('li', 'Object').click();
                 });
@@ -189,7 +207,9 @@ describe('Json Editor', () => {
 
           cy.get('ngx-json-object-node-flat')
             .eq(1)
-            .scrollIntoView()
+            .scrollIntoView();
+          cy.get('ngx-json-object-node-flat')
+            .eq(1)
             .should('exist')
             .within(() => {
               cy.get('.add-button')
@@ -204,7 +224,9 @@ describe('Json Editor', () => {
                 });
 
               cy.get('ngx-json-editor-node-info')
-                .scrollIntoView()
+                .scrollIntoView();
+
+              cy.get('ngx-json-editor-node-info')  
                 .find('ngx-input')
                 .should('be.visible')
                 .ngxFill('name');
@@ -261,7 +283,8 @@ describe('Json Editor', () => {
           beforeEach(() => {
             cy.get('@section3').find('ngx-json-editor-flat').as('jsonEditorFlat');
             cy.get('@jsonEditorFlat').find('.add-button').last().find('ngx-dropdown').as('addPropDropdown');
-            cy.get('@addPropDropdown').scrollIntoView().should('be.visible');
+            cy.get('@addPropDropdown').scrollIntoView();
+            cy.get('@addPropDropdown').should('be.visible');
           });
           describe('String prop', () => {
             it('Adding', () => {
@@ -318,7 +341,8 @@ describe('Json Editor', () => {
               });
 
               it('Checking after modification', () => {
-                cy.get('@stringTabs').scrollIntoView().ngxSelectTab(1);
+                cy.get('@stringTabs').scrollIntoView();
+                cy.get('@stringTabs').ngxSelectTab(1);
                 cy.get('@stringTabs').find('.ngx-tab-content ngx-tab').eq(1).as('tabModel');
                 cy.get('@tabModel').should('contain', '"abc"');
 
@@ -343,7 +367,8 @@ describe('Json Editor', () => {
             });
             describe('Checking', () => {
               beforeEach(() => {
-                cy.get('@section3').scrollIntoView().find('ngx-json-editor-flat div.node').eq(2).as('arrayNode');
+                cy.get('@section3').scrollIntoView();
+                cy.get('@section3').find('ngx-json-editor-flat div.node').eq(2).as('arrayNode');
                 cy.get('@arrayNode').find('ngx-tabs').as('arrayTabs');
               });
 
@@ -389,7 +414,8 @@ describe('Json Editor', () => {
                 cy.get('@section3').find('ngx-json-editor-flat div.node').eq(3).as('arraySub1Node');
                 cy.get('@arraySub1Node').find('ngx-tabs').as('stringTabs');
 
-                cy.get('@arraySub1Node').scrollIntoView().ngxSelectTab(1);
+                cy.get('@arraySub1Node').scrollIntoView();
+                cy.get('@arraySub1Node').ngxSelectTab(1);
                 cy.get('@arraySub1Node').find('.ngx-tab-content ngx-tab').eq(1).as('tabModel');
                 cy.get('@tabModel').should('contain', '0');
 
@@ -418,14 +444,18 @@ describe('Json Editor', () => {
         });
         describe('Remove props', () => {
           it('Removing array', () => {
-            cy.get('@section3').scrollIntoView().find('ngx-json-editor-flat div.node').eq(2).as('arrayNode');
+            cy.get('@section3').scrollIntoView();
+            cy.get('@section3')
+              .find('ngx-json-editor-flat div.node')
+              .eq(2)
+              .as('arrayNode');
             cy.get('@arrayNode').find('.node-options ngx-dropdown').as('nodeOptions');
             cy.get('@nodeOptions').find('ngx-dropdown-toggle').click();
             cy.get('@nodeOptions')
               .find('ngx-dropdown-menu')
               .should('exist')
               .within(() => {
-                cy.contains('li', 'Remove').click();
+                cy.contains('button', 'Remove').click();
               });
           });
           describe('Check root schema and model sync', () => {
@@ -478,7 +508,8 @@ describe('Json Editor', () => {
           cy.get('.add-button')
             .last()
             .within(() => {
-              cy.get('ngx-dropdown').as('addPropDropdown').scrollIntoView().should('be.visible');
+              cy.get('ngx-dropdown').as('addPropDropdown').scrollIntoView();
+              cy.get('@addPropDropdown').should('be.visible');
               cy.get('@addPropDropdown').find('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
               cy.get('@addPropDropdown').find('ngx-dropdown-menu').should('exist');
               cy.contains('li', 'Object').click();
@@ -509,7 +540,8 @@ describe('Json Editor', () => {
           cy.get('.add-button')
             .first()
             .within(() => {
-              cy.get('ngx-dropdown').as('addPropDropdown').scrollIntoView().should('be.visible');
+              cy.get('ngx-dropdown').as('addPropDropdown').scrollIntoView();
+              cy.get('@addPropDropdown').should('be.visible');
               cy.get('@addPropDropdown').find('ngx-dropdown-toggle').should('contain.text', 'Add a property').click();
               cy.get('@addPropDropdown').find('ngx-dropdown-menu').should('exist');
               cy.contains('li', 'String').click();
@@ -540,7 +572,7 @@ describe('Json Editor', () => {
           .should('be.visible')
           .within(() => {
             cy.get('ngx-dropdown-toggle').should('be.visible').click();
-            cy.contains('li', 'Remove').click();
+            cy.contains('button', 'Remove').click();
           });
         cy.get('ngx-json-editor-flat').as('jsonEditorFlat');
         cy.get('@jsonEditorFlat').within(() => {

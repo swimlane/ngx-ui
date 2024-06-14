@@ -7,7 +7,9 @@
     "paths": {
       "@swimlane/ngx-ui-testing": ["projects/swimlane/ngx-ui-testing/index"],
       "@swimlane/ngx-ui-testing/*": ["projects/swimlane/ngx-ui-testing/*"]
-    }
+    },
+    "moduleResolution": "nodenext",
+    "module": "nodenext"
   },
   "include": ["**/*.ts"]
 }

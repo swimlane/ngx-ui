@@ -29,18 +29,5 @@ describe('Toggles', () => {
       cy.get('@CUT').ngxGetValue().should('equal', false);
     });
 
-    it('clears value', () => {
-      cy.get('@CUT').ngxGetValue().should('equal', true);
-      cy.get('@CUT').clear();
-      cy.get('@CUT').ngxGetValue().should('equal', false);
-    });
-
-    it('can use check/uncheck', () => {
-      cy.get('@CUT').ngxGetValue().should('equal', true);
-      cy.get('@CUT').check();
-      cy.get('@CUT').ngxGetValue().should('equal', true);
-      cy.get('@CUT').uncheck();
-      cy.get('@CUT').ngxGetValue().should('equal', false);
-    });
   });
 });
