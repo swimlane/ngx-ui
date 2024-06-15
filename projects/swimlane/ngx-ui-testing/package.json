@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui-testing",
-  "version": "42.4.0",
+  "version": "43.0.0",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
