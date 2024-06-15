@@ -28,6 +28,5 @@ describe('Toggles', () => {
       cy.get('@CUT').ngxFindLabel().click();
       cy.get('@CUT').ngxGetValue().should('equal', false);
     });
-
   });
 });

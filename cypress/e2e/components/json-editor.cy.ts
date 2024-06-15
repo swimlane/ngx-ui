@@ -91,10 +91,10 @@ describe('Json Editor', () => {
       });
 
       it('should allow adding primitive items to newly created array property', () => {
-        cy.get('ngx-json-array-node-flat')
-          .scrollIntoView();
+        cy.get('ngx-json-array-node-flat').scrollIntoView();
 
-           cy.get('ngx-json-array-node-flat').should('contain.text', 'Array')
+        cy.get('ngx-json-array-node-flat')
+          .should('contain.text', 'Array')
           .within(() => {
             cy.get('.add-button')
               .should('be.visible')
@@ -128,7 +128,7 @@ describe('Json Editor', () => {
             .should('be.visible')
             .first()
             .within(() => {
-              cy.contains('button', 'Delete').click({force: true});
+              cy.contains('button', 'Delete').click({ force: true });
             });
         });
 
@@ -150,12 +150,11 @@ describe('Json Editor', () => {
             .within(() => {
               cy.contains('li', 'Object').click();
             });
+          cy.get('ngx-json-object-node-flat').scrollIntoView();
+
           cy.get('ngx-json-object-node-flat')
-            .scrollIntoView();
-
-          cy.get('ngx-json-object-node-flat').should('exist')
+            .should('exist')
             .within(() => {
-
               cy.get('.add-button')
                 .should('be.visible')
                 .last()
@@ -169,13 +168,9 @@ describe('Json Editor', () => {
                   cy.contains('li', 'String').click();
                 });
 
-              cy.get('ngx-json-editor-node-info')
-                .scrollIntoView();
+              cy.get('ngx-json-editor-node-info').scrollIntoView();
 
-              cy.get('ngx-json-editor-node-info')
-                .find('ngx-input')
-                .should('be.visible')
-                .ngxFill('name');
+              cy.get('ngx-json-editor-node-info').find('ngx-input').should('be.visible').ngxFill('name');
 
               cy.get('.node-input ngx-input')
                 .should('exist')
@@ -187,17 +182,15 @@ describe('Json Editor', () => {
 
       it('should allow adding another object with same props as array item', () => {
         cy.get('ngx-json-array-node-flat').within(() => {
+          cy.get('.add-button').last().scrollIntoView();
           cy.get('.add-button')
-            .last().scrollIntoView();
-            cy.get('.add-button')
             .last()
             .should('be.visible')
             .within(() => {
               cy.get('ngx-dropdown-toggle').should('contain.text', 'Add an item').click();
-              cy.get('ngx-dropdown-menu')
-                .scrollIntoView();
+              cy.get('ngx-dropdown-menu').scrollIntoView();
 
-                cy.get('ngx-dropdown-menu')
+              cy.get('ngx-dropdown-menu')
                 .should('be.visible')
                 .last()
                 .within(() => {
@@ -205,9 +198,7 @@ describe('Json Editor', () => {
                 });
             });
 
-          cy.get('ngx-json-object-node-flat')
-            .eq(1)
-            .scrollIntoView();
+          cy.get('ngx-json-object-node-flat').eq(1).scrollIntoView();
           cy.get('ngx-json-object-node-flat')
             .eq(1)
             .should('exist')
@@ -223,13 +214,9 @@ describe('Json Editor', () => {
                     });
                 });
 
-              cy.get('ngx-json-editor-node-info')
-                .scrollIntoView();
+              cy.get('ngx-json-editor-node-info').scrollIntoView();
 
-              cy.get('ngx-json-editor-node-info')  
-                .find('ngx-input')
-                .should('be.visible')
-                .ngxFill('name');
+              cy.get('ngx-json-editor-node-info').find('ngx-input').should('be.visible').ngxFill('name');
 
               cy.get('.node-input ngx-input')
                 .should('exist')
@@ -445,10 +432,7 @@ describe('Json Editor', () => {
         describe('Remove props', () => {
           it('Removing array', () => {
             cy.get('@section3').scrollIntoView();
-            cy.get('@section3')
-              .find('ngx-json-editor-flat div.node')
-              .eq(2)
-              .as('arrayNode');
+            cy.get('@section3').find('ngx-json-editor-flat div.node').eq(2).as('arrayNode');
             cy.get('@arrayNode').find('.node-options ngx-dropdown').as('nodeOptions');
             cy.get('@nodeOptions').find('ngx-dropdown-toggle').click();
             cy.get('@nodeOptions')

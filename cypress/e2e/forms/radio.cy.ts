@@ -26,7 +26,7 @@ describe('Radio', () => {
       cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false');
 
       cy.get('@CUT').scrollIntoView();
-      cy.get('@CUT').click({force: true});
+      cy.get('@CUT').click({ force: true });
 
       cy.get('@CUT').ngxGetValue().should('equal', true);
       cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true');

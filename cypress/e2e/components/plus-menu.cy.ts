@@ -16,13 +16,12 @@ describe('Plus Menu', () => {
     it('Opens and closes sections with click', () => {
       cy.get('@CUT').within(() => {
         cy.get('.ngx-plus-menu--items-container').should('not.be.visible');
-        cy.get('@CUT').click('center',{scrollBehavior: false});
+        cy.get('@CUT').click('center', { scrollBehavior: false });
         cy.get('.ngx-plus-menu--items-container').should('be.visible');
-        cy.get('@CUT').click('topRight', {scrollBehavior: false});
+        cy.get('@CUT').click('topRight', { scrollBehavior: false });
         cy.get('.ngx-plus-menu--items-container').should('not.be.visible');
       });
     });
-
 
     it('Opens and closes sections with testing lib', () => {
       cy.get('@CUT').within(() => {
@@ -33,6 +32,5 @@ describe('Plus Menu', () => {
         cy.get('.ngx-plus-menu--items-container').should('not.be.visible');
       });
     });
-
   });
 });

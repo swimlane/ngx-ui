@@ -55,7 +55,7 @@ describe('Inputs', () => {
     });
 
     it('underlines active input', () => {
-      cy.get('@CUT').click({waitForAnimations: true});
+      cy.get('@CUT').click({ waitForAnimations: true });
 
       cy.get('@CUT')
         .find('.ngx-input-underline .underline-fill')

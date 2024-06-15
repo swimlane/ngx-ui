@@ -38,7 +38,6 @@ describe('Checkbox', () => {
       cy.get('@CUT').ngxGetValue().should('equal', false);
     });
 
-
     it('can use check/uncheck', () => {
       cy.get('@CUT').ngxGetValue().should('equal', true);
       cy.get('@CUT').click();

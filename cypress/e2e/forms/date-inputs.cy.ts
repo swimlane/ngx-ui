@@ -26,25 +26,16 @@ describe('Date/Time', () => {
 
     it('has a label', () => {
       // With Value
-      cy.get('@CUT')
-        .ngxFindLabel()
-        .should('contain.text', 'Date of attack')
-        .should('have.css', 'color', UNFOCUSED);
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Date of attack').should('have.css', 'color', UNFOCUSED);
 
       // Without Value
       cy.get('@CUT').ngxFill('');
       cy.get('@SUT').find('h1').click(); // blur
-      cy.get('@CUT')
-        .ngxFindLabel()
-        .should('contain.text', 'Date of attack')
-        .should('have.css', 'color', UNFOCUSED);
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Date of attack').should('have.css', 'color', UNFOCUSED);
 
       // with focus
       cy.get('@CUT').ngxFindNativeInput().focus().click();
-      cy.get('@CUT')
-        .ngxFindLabel()
-        .should('contain.text', 'Date of attack')
-        .should('have.css', 'color', FOCUSED);
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Date of attack').should('have.css', 'color', FOCUSED);
     });
 
     it('enters text', () => {
@@ -179,9 +170,7 @@ describe('Date/Time', () => {
         cy.get('ngx-date-time').eq(2).ngxGetValue().should('equal', '03/11/2011 2:46 PM +09:00');
       });
     });
-
   });
-
 
   describe('Popups', () => {
     beforeEach(() => {
@@ -227,6 +216,5 @@ describe('Date/Time', () => {
         .should('contain.text', '2:46 pm');
       cy.get('body').click();
     });
-
   });
 });

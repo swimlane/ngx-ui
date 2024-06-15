@@ -242,7 +242,6 @@ describe('Selects', () => {
 
       // Clears with backspace
       cy.focused().type('{backspace}{backspace}{backspace}'); // For some reason needs three backspaces in testing
- 
     });
   });
 
@@ -327,7 +326,7 @@ describe('Selects', () => {
 
     it('is keyboard accessible', () => {
       cy.get('@SUT').find('h4').contains('Basic').realClick();
-   
+
       // Starts out not focused not open
       shouldBeNotFocused();
       shouldBeNotActive();
@@ -382,14 +381,13 @@ describe('Selects', () => {
       cy.realPress('ArrowUp');
       cy.get('.ngx-select-dropdown-options li li').first().should('have.class', 'active'); // active
       cy.get('.ngx-select-dropdown-options li li').last().should('not.have.class', 'active'); // not active
-        
+
       // Enter selects an option and leaves list open
       cy.realPress('Enter');
       cy.get('@CUT').within(() => {
         shouldBeFocused();
         shouldBeActive();
       });
-
 
       cy.get('@CUT').ngxGetValue().should('deep.equal', ['Breach']);
 
@@ -407,7 +405,6 @@ describe('Selects', () => {
         cy.realPress('Space');
       });
 
-
       cy.get('@CUT').ngxGetValue().should('deep.equal', ['DDOS']);
 
       cy.get('@CUT').within(() => {
@@ -417,12 +414,11 @@ describe('Selects', () => {
 
       cy.get('@CUT').ngxClose();
       cy.realPress('Tab');
-      
+
       cy.get('@CUT').within(() => {
         shouldBeNotFocused();
         shouldBeNotActive();
       });
-
     });
   });
 

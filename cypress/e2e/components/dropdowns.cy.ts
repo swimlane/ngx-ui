@@ -22,7 +22,6 @@ describe('Dropdowns', () => {
         cy.get('button').contains('Button 2').click();
         cy.get('.ngx-dropdown-menu').first().should('not.be.visible');
       });
-
     });
 
     it('Opens and closes dropdowns with testing lib', () => {
