@@ -8,7 +8,7 @@
     "start": "ng serve --port 4200",
     "prestart-prod": "npm run build:lib",
     "start-prod": "ng serve --configuration production --port 4200",
-    "build": "npm run build:lib && ng build --configuration production",
+    "build": "npm run build:lib && ng build ngx-ui --configuration production",
     "build:demo": "cross-env NODE_ENV=production ng build --configuration production --statsJson=true",
     "build:deploy": "cross-env NODE_ENV=production ng build --configuration production --base-href=\"/ngx-ui/\"",
     "build:lib": "ng build @swimlane/ngx-ui --configuration production && npm run build:css",
