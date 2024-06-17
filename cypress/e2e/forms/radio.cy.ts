@@ -25,7 +25,8 @@ describe('Radio', () => {
       cy.get('@CUT').ngxGetValue().should('equal', false);
       cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false');
 
-      cy.get('@CUT').click();
+      cy.get('@CUT').scrollIntoView();
+      cy.get('@CUT').click({ force: true });
 
       cy.get('@CUT').ngxGetValue().should('equal', true);
       cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'true');
@@ -44,7 +45,7 @@ describe('Radio', () => {
     it('keyboard accessible', () => {
       // Without a radio group, the radio button are accessible via tab
 
-      cy.get('@SUT').find('h1').click();
+      cy.get('@SUT').find('h1').realClick();
       cy.get('@CUT').find('.checkmark').should('have.css', 'outline', 'rgb(148, 198, 255) none 0px'); // not focused
       cy.get('@CUT').find('input').should('have.attr', 'aria-checked', 'false'); // not checked
 
@@ -94,7 +95,7 @@ describe('Radio', () => {
     it('keyboard accessible', () => {
       // Within a radio group, the radio button are selectable via arrows
 
-      cy.get('@SUT').find('h1').click();
+      cy.get('@SUT').find('h1').realClick();
       cy.get('@CUT').find('.checkmark').eq(2).should('have.css', 'outline', 'rgb(148, 198, 255) none 0px'); // not focused
       cy.get('@CUT').find('input').eq(2).should('have.attr', 'aria-checked', 'true'); // checked
       cy.get('@CUT').ngxGetValue().should('equal', 'Summer');

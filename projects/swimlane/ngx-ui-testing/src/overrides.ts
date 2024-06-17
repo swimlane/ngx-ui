@@ -147,16 +147,20 @@ Cypress_Commands_overwrite_Subject(
  */
 Cypress_Commands_overwrite_Subject(
   'click',
-  (originalFn: Function, subject: JQuery<Element>, options?: Partial<Cypress.ClickOptions>, ...args: any[]) => {
+  (
+    originalFn: Function,
+    subject: JQuery<Element>,
+    positionOrX?: number,
+    y?: number,
+    options?: Partial<Cypress.ClickOptions>
+  ) => {
     switch (subject.prop('tagName').toLowerCase()) {
       case NGX.TOGGLE:
       case NGX.CHECKBOX:
-        return cy.wrap(subject, LOG).each(el => {
-          // TODO: support `.click(position:, options)
-          originalFn(findInput(el), { ...options, force: true }, ...args);
-        });
+      case NGX.RADIOBUTTON:
+        return originalFn(findInput(subject), positionOrX, y, { ...options, force: true });
     }
-    return originalFn(subject, options, ...args);
+    return originalFn(subject, positionOrX, y, { ...options, force: true });
   }
 );
 
@@ -188,6 +192,7 @@ Cypress_Commands_overwrite_Subject(
     switch (subject.prop('tagName').toLowerCase()) {
       case NGX.TOGGLE:
       case NGX.CHECKBOX:
+      case NGX.RADIOBUTTON:
         // TODO: support `.uncheck(value, options)`
         return cy.wrap(subject, LOG).each(el => {
           originalFn(findInput(el) as JQuery<HTMLElement>, { ...options, force: true }, ...args);

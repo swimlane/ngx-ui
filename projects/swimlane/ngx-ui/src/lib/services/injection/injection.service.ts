@@ -35,7 +35,7 @@ export class InjectionService {
    *
    * @param container
    */
-  static setGlobalRootViewContainer(container: ViewContainerRef): void {
+  static setGlobalRootViewContainer(container?: ViewContainerRef): void {
     InjectionService.globalRootViewContainer = container;
   }
 
@@ -110,7 +110,7 @@ export class InjectionService {
    *
    * @memberOf InjectionService
    */
-  projectComponentBindings(component: ComponentRef<any>, bindings: Record<string, any>): ComponentRef<any> {
+  projectComponentBindings(component: ComponentRef<any>, bindings?: Record<string, any>): ComponentRef<any> {
     if (bindings) {
       if (bindings.inputs !== undefined) {
         const bindingKeys = Object.getOwnPropertyNames(bindings.inputs);

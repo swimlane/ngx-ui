@@ -16,9 +16,9 @@ describe('Plus Menu', () => {
     it('Opens and closes sections with click', () => {
       cy.get('@CUT').within(() => {
         cy.get('.ngx-plus-menu--items-container').should('not.be.visible');
-        cy.root().click('topRight');
+        cy.get('@CUT').click('center', { scrollBehavior: false });
         cy.get('.ngx-plus-menu--items-container').should('be.visible');
-        cy.root().click('topRight');
+        cy.get('@CUT').click('topRight', { scrollBehavior: false });
         cy.get('.ngx-plus-menu--items-container').should('not.be.visible');
       });
     });
