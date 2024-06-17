@@ -40,7 +40,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^18.0.3",
-    "@angular/cdk": "17.0.4",
+    "@angular/cdk": "^18.0.3",
     "@angular/common": "^18.0.3",
     "@angular/compiler": "^18.0.3",
     "@angular/core": "^18.0.3",
@@ -59,7 +59,7 @@
     "normalize.css": "^8.0.0",
     "prismjs": "1.29.0",
     "resize-observer-polyfill": "^1.5.1",
-    "rxjs": "7.5.6",
+    "rxjs": "7.8.1",
     "tslib": "2.4.0"
   },
   "devDependencies": {
@@ -67,11 +67,11 @@
     "@angular-devkit/build-angular": "^18.0.4",
     "@angular-devkit/core": "^18.0.3",
     "@angular-devkit/schematics": "^18.0.3",
-    "@angular-eslint/builder": "17.2.0",
-    "@angular-eslint/eslint-plugin": "17.2.0",
-    "@angular-eslint/eslint-plugin-template": "17.2.0",
+    "@angular-eslint/builder": "^18.0.0",
+    "@angular-eslint/eslint-plugin": "^18.0.0",
+    "@angular-eslint/eslint-plugin-template": "^18.0.0",
     "@angular-eslint/schematics": "^18.0.0",
-    "@angular-eslint/template-parser": "17.2.0",
+    "@angular-eslint/template-parser": "^18.0.0",
     "@angular/cli": "^18.0.4",
     "@angular/compiler-cli": "^18.0.3",
     "@angular/language-service": "^18.0.3",
@@ -89,6 +89,7 @@
     "@types/prismjs": "1.26.0",
     "@typescript-eslint/eslint-plugin": "6.18.1",
     "@typescript-eslint/parser": "6.18.1",
+    "@typescript-eslint/utils": "^7.13.0",
     "angular-cli-ghpages": "1.0.3",
     "autoprefixer": "10.4.11",
     "axe-core": "4.4.3",
@@ -115,11 +116,11 @@
     "husky": "8.0.1",
     "jasmine-core": "4.4.0",
     "jasmine-spec-reporter": "7.0.0",
-    "karma": "6.4.0",
-    "karma-chrome-launcher": "3.1.1",
-    "karma-coverage": "2.2.0",
+    "karma": "6.4.3",
+    "karma-chrome-launcher": "3.2.0",
+    "karma-coverage": "2.2.1",
     "karma-jasmine": "5.1.0",
-    "karma-jasmine-html-reporter": "2.0.0",
+    "karma-jasmine-html-reporter": "2.1.0",
     "moment": "2.29.4",
     "moment-locales-webpack-plugin": "^1.2.0",
     "moment-timezone-data-webpack-plugin": "1.5.1",
@@ -136,7 +137,7 @@
     "typescript": "5.4.5",
     "webpack": "5.74.0",
     "webpack-bundle-analyzer": "4.6.1",
-    "zone.js": "~0.14.2"
+    "zone.js": "~0.14.7"
   },
   "volta": {
     "node": "20.14.0"
