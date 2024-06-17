@@ -4,6 +4,12 @@
 
 - Enhancement(`ngx-calendar`): Supports selecting a range of dates with hours and minutes
 
+## 48.0.0 (2023-06-17)
+
+- Breaking: Angular 18 support
+- Breaking: ngx-ui-testing package `iff` method may behave differently given `within` call is move internally
+- Enhancement (`ngx-radiobutton`): Added `toggle` method to align with ngx-checkbox and ngx-toggle
+
 ## 47.0.0 (2023-02-12)
 
 - Breaking: Angular 17 support

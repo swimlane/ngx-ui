@@ -2,9 +2,9 @@
   "name": "@swimlane/ngx-ui-testing",
   "version": "43.0.0",
   "description": "",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
+  "main": "esm2022/index.mjs",
+  "types": "esm2022/index.d.ts",
+  "typings": "esm2022/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "tsc"
