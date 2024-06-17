@@ -242,40 +242,40 @@ describe('Calendar', () => {
 
     // TODO: flaky in CI, works in Open Mode.
 
-    // it('is keyboard accessible', () => {
-    //   cy.get('@CUT').prev('h4').realClick();
-    //   cy.get('@CUT').within(() => {
-    //     cy.root().scrollIntoView();
-    //     const focusedDate = today.clone();
-    //     cy.get('.title').should('contain.text', '2021 - 2041');
+    xit('is keyboard accessible', () => {
+      cy.get('@CUT').prev('h4').realClick();
+      cy.get('@CUT').within(() => {
+        cy.root().scrollIntoView();
+        const focusedDate = today.clone();
+        cy.get('.title').should('contain.text', '2021 - 2041');
 
-    //     cy.get('.year.focus').focus();
+        cy.get('.year.focus').focus();
 
-    //     // Moving Year
-    //     cy.get('.year.focus').should('contain.text', focusedDate.year());
-    //     cy.realPress('ArrowLeft');
-    //     cy.get('.year.focus').should('contain.text', focusedDate.add(-1, 'year').year());
-    //     cy.realPress('ArrowLeft');
-    //     cy.realPress('ArrowLeft');
-    //     cy.realPress('ArrowDown');
-    //     cy.get('.year.focus').should('contain.text', focusedDate.add(2, 'year').year());
-    //     cy.realPress('ArrowUp');
-    //     cy.get('.year.focus').should('contain.text', focusedDate.add(-4, 'year').year());
-    //     cy.realPress('ArrowDown');
-    //     cy.realPress('ArrowDown');
-    //     cy.get('.year.focus').should('contain.text', focusedDate.add(8, 'year').year());
-    //     cy.get('.title').should('contain.text', '2021 - 2041');
+        // Moving Year
+        cy.get('.year.focus').should('contain.text', focusedDate.year());
+        cy.realPress('ArrowLeft');
+        cy.get('.year.focus').should('contain.text', focusedDate.add(-1, 'year').year());
+        cy.realPress('ArrowLeft');
+        cy.realPress('ArrowLeft');
+        cy.realPress('ArrowDown');
+        cy.get('.year.focus').should('contain.text', focusedDate.add(2, 'year').year());
+        cy.realPress('ArrowUp');
+        cy.get('.year.focus').should('contain.text', focusedDate.add(-4, 'year').year());
+        cy.realPress('ArrowDown');
+        cy.realPress('ArrowDown');
+        cy.get('.year.focus').should('contain.text', focusedDate.add(8, 'year').year());
+        cy.get('.title').should('contain.text', '2021 - 2041');
 
-    //     // Moving Decade
-    //     cy.realPress('PageUp');
-    //     cy.get('.title').should('contain.text', '2001 - 2021');
-    //     cy.realPress('PageDown');
-    //     cy.realPress('PageDown');
-    //     cy.get('.title').should('contain.text', '2041 - 2061');
+        // Moving Decade
+        cy.realPress('PageUp');
+        cy.get('.title').should('contain.text', '2001 - 2021');
+        cy.realPress('PageDown');
+        cy.realPress('PageDown');
+        cy.get('.title').should('contain.text', '2041 - 2061');
 
-    //     cy.realPress('Space');
-    //     cy.get('.title').should('contain.text', focusedDate.add(20, 'year').year());
-    //   });
-    // });
+        cy.realPress('Space');
+        cy.get('.title').should('contain.text', focusedDate.add(20, 'year').year());
+      });
+    });
   });
 });
