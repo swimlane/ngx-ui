@@ -1,10 +1,20 @@
-import { Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef, Directive } from '@angular/core';
+import {
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+  ChangeDetectorRef,
+  Directive,
+  OnInit
+} from '@angular/core';
 import { SchemaValidatorService } from './schema-validator.service';
 import { JSONEditorSchema } from './json-editor.helper';
 import { debounceable } from '../../decorators/debounceable/debounceable.decorator';
+import { Format, InstanceOptions, KeywordDefinition } from 'ajv';
 
 @Directive()
-export class JsonEditor implements OnChanges {
+export class JsonEditor implements OnInit, OnChanges {
   @Input() model: any;
 
   @Input() schema: JSONEditorSchema;
@@ -17,6 +27,12 @@ export class JsonEditor implements OnChanges {
 
   @Input() showKnownProperties = false;
 
+  @Input() ajvOptions?: InstanceOptions;
+
+  @Input() additionalKeywords?: Array<string | KeywordDefinition>;
+
+  @Input() additionalFormats?: Map<string, Format>;
+
   @Output() modelChange: EventEmitter<any> = new EventEmitter();
 
   @Output() schemaUpdate: EventEmitter<JSONEditorSchema> = new EventEmitter();
@@ -24,6 +40,21 @@ export class JsonEditor implements OnChanges {
   errors: any[];
 
   constructor(protected schemaValidatorService: SchemaValidatorService, protected cdr: ChangeDetectorRef) {}
+
+  /**
+   * On component initialization, set Ajv options if provided
+   */
+  ngOnInit() {
+    if (!this.schemaValidator && this.ajvOptions) {
+      this.schemaValidatorService.setAjvOptions(this.ajvOptions);
+    }
+    if (this.additionalKeywords) {
+      this.schemaValidatorService.addAjvKeywords(this.additionalKeywords);
+    }
+    if (this.additionalFormats) {
+      this.schemaValidatorService.addAjvFormats(this.additionalFormats);
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.schema) {

@@ -22,6 +22,7 @@ import {
 } from './json-editor-node-flat/node-types/property-config/property-config.component';
 
 import type { QueryList } from '@angular/core';
+import { Format, InstanceOptions, KeywordDefinition } from 'ajv';
 
 @Component({
   selector: 'ngx-json-editor-flat',
@@ -51,6 +52,12 @@ export class JsonEditorFlatComponent extends JsonEditor implements OnInit, OnCha
 
   @Input() inputControlTemplate: TemplateRef<unknown>;
 
+  @Input() ajvOptions: InstanceOptions;
+
+  @Input() additionalKeywords?: Array<string | KeywordDefinition>;
+
+  @Input() additionalFormats?: Map<string, Format>;
+
   @ContentChildren(JsonEditorNodeFlatComponent) nodeElms: QueryList<JsonEditorNodeFlatComponent>;
 
   @ViewChild('propertyConfigTmpl') propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;
@@ -70,6 +77,15 @@ export class JsonEditorFlatComponent extends JsonEditor implements OnInit, OnCha
   ngOnInit() {
     if (this.formats.length && this.schemaBuilderMode) {
       this.buildCustomFormats();
+    }
+    if (!this.schemaValidator && this.ajvOptions) {
+      this.schemaValidatorService.setAjvOptions(this.ajvOptions);
+    }
+    if (this.additionalKeywords) {
+      this.schemaValidatorService.addAjvKeywords(this.additionalKeywords);
+    }
+    if (this.additionalFormats) {
+      this.schemaValidatorService.addAjvFormats(this.additionalFormats);
     }
   }
 

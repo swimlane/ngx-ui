@@ -3,6 +3,7 @@
 ## HEAD (unreleased)
 
 - Enhancement(`ngx-calendar`): Supports selecting a range of dates with hours and minutes
+- Enhancement(`ngx-json-editor`): Fixes Ajv breaking changes unaccounted for in 47.1.0. Adds enhancements to allow for overriding the default Ajv options, and adding extra formats and keywords
 
 ## 48.0.0 (2023-06-17)
 
