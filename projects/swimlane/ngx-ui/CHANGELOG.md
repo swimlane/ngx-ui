@@ -5,6 +5,12 @@
 - Enhancement(`ngx-calendar`): Supports selecting a range of dates with hours and minutes
 - Enhancement(`ngx-json-editor`): Fixes Ajv breaking changes unaccounted for in 47.1.0. Adds enhancements to allow for overriding the default Ajv options, and adding extra formats and keywords
 
+## 48.0.0 (2023-06-17)
+
+- Breaking: Angular 18 support
+- Breaking: ngx-ui-testing package `iff` method may behave differently given `within` call is move internally
+- Enhancement (`ngx-radiobutton`): Added `toggle` method to align with ngx-checkbox and ngx-toggle
+
 ## 47.0.0 (2023-02-12)
 
 - Breaking: Angular 17 support

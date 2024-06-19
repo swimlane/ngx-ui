@@ -78,7 +78,7 @@ describe('Selects', () => {
     });
 
     it('is keyboard accessible', () => {
-      cy.get('@SUT').find('h4').contains('Basic').click();
+      cy.get('@SUT').find('h4').contains('Basic').realClick();
 
       cy.get('@CUT').within(() => {
         // Starts out not focused not open
@@ -95,14 +95,11 @@ describe('Selects', () => {
         shouldBeFocused();
         shouldBeActive();
 
-        cy.get('.ngx-select-dropdown-options li li').within(() => {
-          cy.root().first().should('have.class', 'active'); // active
-          cy.root().last().should('not.have.class', 'active'); // not active
-
-          cy.realPress('ArrowDown').realPress('ArrowDown');
-          cy.root().first().should('not.have.class', 'active'); // not active
-          cy.root().last().should('have.class', 'active'); // active
-        });
+        cy.get('.ngx-select-dropdown-options li li').first().should('have.class', 'active');
+        cy.get('.ngx-select-dropdown-options li li').last().should('not.have.class', 'active');
+        cy.realPress('ArrowDown').realPress('ArrowDown');
+        cy.get('.ngx-select-dropdown-options li li').first().should('not.have.class', 'active');
+        cy.get('.ngx-select-dropdown-options li li').last().should('have.class', 'active');
 
         // Escape to close list
         cy.realPress('Escape');
@@ -117,17 +114,14 @@ describe('Selects', () => {
         // eslint-disable-next-line cypress/no-unnecessary-waiting
         cy.wait(10); // Needed for testing!!!
 
-        cy.get('.ngx-select-dropdown-options li li').within(() => {
-          cy.root().first().should('not.have.class', 'active'); // not active
-          cy.root().last().should('have.class', 'active'); // active
-
-          cy.realPress('ArrowUp');
-          // eslint-disable-next-line cypress/no-unnecessary-waiting
-          cy.wait(10); // Needed for testing!!!
-          cy.realPress('ArrowUp');
-          cy.root().first().should('have.class', 'active'); // active
-          cy.root().last().should('not.have.class', 'active'); // not active
-        });
+        cy.get('.ngx-select-dropdown-options li li').first().should('not.have.class', 'active');
+        cy.get('.ngx-select-dropdown-options li li').last().should('have.class', 'active');
+        cy.realPress('ArrowUp');
+        // eslint-disable-next-line cypress/no-unnecessary-waiting
+        cy.wait(10); // Needed for testing!!!
+        cy.realPress('ArrowUp');
+        cy.get('.ngx-select-dropdown-options li li').first().should('have.class', 'active');
+        cy.get('.ngx-select-dropdown-options li li').last().should('not.have.class', 'active');
 
         // Enter selects an option and closes the list
         cy.realPress('Enter');
@@ -208,7 +202,7 @@ describe('Selects', () => {
     });
 
     it('is keyboard accessible', () => {
-      cy.get('@SUT').find('h4').contains('Basic').click();
+      cy.get('@SUT').find('h4').contains('Basic').realClick();
 
       cy.get('@CUT').within(() => {
         // Starts out not focused not open
@@ -219,34 +213,35 @@ describe('Selects', () => {
         cy.realPress('Tab');
         shouldBeFocused();
         shouldBeActive();
+      });
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(100); // Wait for element to refocus
 
-        // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(100); // Wait for element to refocus
+      cy.focused().type('Other{enter}'); // Input should be focused
 
-        cy.focused().type('Other{enter}'); // Input should be focused
+      cy.get('@CUT').ngxGetValue().should('contain', 'Other');
 
-        cy.root().ngxGetValue().should('contain', 'Other');
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(100); // Wait for element to refocus
 
-        // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(100); // Wait for element to refocus
+      // Down arrow to select second item, closes list, stays active
+      cy.realPress('ArrowDown');
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(100); // Needed for testing!!!
+      cy.realPress('Enter');
 
-        // Down arrow to select second item, closes list, stays active
-        cy.realPress('ArrowDown');
-        // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(100); // Needed for testing!!!
-        cy.realPress('Enter');
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(120); // Wait for element to refocus on input
 
-        // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(120); // Wait for element to refocus on input
-
+      cy.get('@CUT').within(() => {
         shouldBeFocused();
         shouldBeActive();
-
-        cy.root().ngxGetValue().should('contain', 'Other').should('contain', 'DDOS');
-
-        // Clears with backspace
-        cy.focused().type('{backspace}{backspace}{backspace}'); // For some reason needs three backspaces in testing
       });
+
+      cy.get('@CUT').ngxGetValue().should('contain', 'Other').should('contain', 'DDOS');
+
+      // Clears with backspace
+      cy.focused().type('{backspace}{backspace}{backspace}'); // For some reason needs three backspaces in testing
     });
   });
 
@@ -324,83 +319,103 @@ describe('Selects', () => {
       cy.get('@CUT').select('DDOS').ngxGetValue().should('deep.equal', ['DDOS']);
       cy.get('@CUT').select(['DDOS', 'Physical']).ngxGetValue().should('deep.equal', ['DDOS', 'Physical']);
 
-      cy.get('@CUT').clear().ngxGetValue().should('deep.equal', []);
+      cy.get('@CUT').find('.ngx-select-clear').first().click();
+      cy.get('@CUT').find('.ngx-select-clear').last().click();
+      cy.get('@CUT').ngxGetValue().should('deep.equal', []);
     });
 
     it('is keyboard accessible', () => {
-      cy.get('@SUT').find('h4').contains('Basic').click();
+      cy.get('@SUT').find('h4').contains('Basic').realClick();
+
+      // Starts out not focused not open
+      shouldBeNotFocused();
+      shouldBeNotActive();
+
+      // Tab into the select, now focused but still closed
+      cy.realPress('Tab');
 
       cy.get('@CUT').within(() => {
-        // Starts out not focused not open
-        shouldBeNotFocused();
-        shouldBeNotActive();
-
-        // Tab into the select, now focused but still closed
-        cy.realPress('Tab');
         shouldBeFocused();
         shouldBeNotActive();
+      });
 
-        // Down arrow to open and select first item
-        cy.realPress('ArrowDown');
+      // Down arrow to open and select first item
+      cy.realPress('ArrowDown');
+
+      cy.get('@CUT').within(() => {
         shouldBeFocused();
         shouldBeActive();
+      });
 
-        cy.get('.ngx-select-dropdown-options li li').within(() => {
-          cy.root().first().should('have.class', 'active'); // active
-          cy.root().last().should('not.have.class', 'active'); // not active
+      cy.get('.ngx-select-dropdown-options li li').first().should('have.class', 'active'); // active
+      cy.get('.ngx-select-dropdown-options li li').last().should('not.have.class', 'active'); // not active
 
-          cy.realPress('ArrowDown').realPress('ArrowDown');
-          cy.root().first().should('not.have.class', 'active'); // not active
-          cy.root().last().should('have.class', 'active'); // active
-        });
+      cy.realPress('ArrowDown').realPress('ArrowDown');
+      cy.get('.ngx-select-dropdown-options li li').first().should('not.have.class', 'active'); // not active
+      cy.get('.ngx-select-dropdown-options li li').last().should('have.class', 'active'); // active
 
-        // Escape to close list
-        cy.realPress('Escape');
+      // Escape to close list
+      cy.realPress('Escape');
+
+      cy.get('@CUT').within(() => {
         shouldBeFocused();
         shouldBeNotActive();
+      });
 
-        //  Arrow up to open and select last item
-        cy.realPress('ArrowUp');
+      //  Arrow up to open and select last item
+      cy.realPress('ArrowUp');
+      cy.get('@CUT').within(() => {
         shouldBeFocused();
         shouldBeActive();
+      });
 
-        // eslint-disable-next-line cypress/no-unnecessary-waiting
-        cy.wait(10); // Needed for testing!!!
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(10); // Needed for testing!!!
 
-        cy.get('.ngx-select-dropdown-options li li').within(() => {
-          cy.root().first().should('not.have.class', 'active'); // not active
-          cy.root().last().should('have.class', 'active'); // active
+      cy.get('.ngx-select-dropdown-options li li').first().should('not.have.class', 'active'); // not active
+      cy.get('.ngx-select-dropdown-options li li').last().should('have.class', 'active'); // active
 
-          cy.realPress('ArrowUp');
-          // eslint-disable-next-line cypress/no-unnecessary-waiting
-          cy.wait(10); // Needed for testing!!!
-          cy.realPress('ArrowUp');
-          cy.root().first().should('have.class', 'active'); // active
-          cy.root().last().should('not.have.class', 'active'); // not active
-        });
+      cy.realPress('ArrowUp');
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.wait(10); // Needed for testing!!!
+      cy.realPress('ArrowUp');
+      cy.get('.ngx-select-dropdown-options li li').first().should('have.class', 'active'); // active
+      cy.get('.ngx-select-dropdown-options li li').last().should('not.have.class', 'active'); // not active
 
-        // Enter selects an option and leaves list open
-        cy.realPress('Enter');
+      // Enter selects an option and leaves list open
+      cy.realPress('Enter');
+      cy.get('@CUT').within(() => {
         shouldBeFocused();
         shouldBeActive();
-        cy.root().ngxGetValue().should('deep.equal', ['Breach']);
+      });
 
-        // Space selects an option but leaves list open
-        cy.realPress('ArrowDown');
-        cy.realPress('Space');
-        cy.root().ngxGetValue().should('deep.equal', ['Breach', 'DDOS']);
+      cy.get('@CUT').ngxGetValue().should('deep.equal', ['Breach']);
+
+      // Space selects an option but leaves list open
+      cy.realPress('ArrowDown');
+      cy.realPress('Space');
+      cy.get('@CUT').ngxGetValue().should('deep.equal', ['Breach', 'DDOS']);
+
+      cy.get('@CUT').within(() => {
         shouldBeFocused();
         shouldBeActive();
 
         // Can deselect an option
         cy.realPress('ArrowUp');
         cy.realPress('Space');
-        cy.root().ngxGetValue().should('deep.equal', ['DDOS']);
+      });
+
+      cy.get('@CUT').ngxGetValue().should('deep.equal', ['DDOS']);
+
+      cy.get('@CUT').within(() => {
         shouldBeFocused();
         shouldBeActive();
+      });
 
-        cy.root().ngxClose();
-        cy.realPress('Tab');
+      cy.get('@CUT').ngxClose();
+      cy.realPress('Tab');
+
+      cy.get('@CUT').within(() => {
         shouldBeNotFocused();
         shouldBeNotActive();
       });

@@ -441,7 +441,7 @@ describe('DateTimeComponent', () => {
 
     it('should get input type time', () => {
       component.inputType = 'time';
-      component.dialogModel = moment(new Date());
+      component.setDialogDate(moment(new Date()));
       expect(component.isCurrent()).toBeTruthy();
     });
 

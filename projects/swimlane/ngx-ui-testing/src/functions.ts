@@ -102,6 +102,16 @@ export function findInput(element: JQuery<Element>): JQuery<Element> {
   return element;
 }
 
+export function findHiddenLabel(element: JQuery<Element>): JQuery<Element> {
+  switch (getTagName(element)) {
+    case NGX.TOGGLE:
+      return element.find('.ngx-toggle-label');
+    case NGX.CHECKBOX:
+      return element.find('.ngx-checkbox--box');
+  }
+  return element;
+}
+
 export function findLabel(element: JQuery<Element>): JQuery<Element> {
   switch (getTagName(element)) {
     case NGX.INPUT:
@@ -229,7 +239,12 @@ export function iff(
     // check if subject is still in DOM
     const $el = selector ? element.find(selector) : element;
     if ($el.length) {
-      return cy.wrap($el, LOG).within(LOG, fn);
+      if ($el.length > 1) {
+        cy.wrap($el, LOG).each($e => cy.wrap($e, LOG).within(LOG, fn));
+      } else {
+        cy.wrap($el, LOG).within(LOG, fn);
+      }
+      return cy.wrap($el, LOG);
     }
   }
 }

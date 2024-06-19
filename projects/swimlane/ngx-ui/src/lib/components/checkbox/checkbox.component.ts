@@ -7,7 +7,8 @@ import {
   ViewEncapsulation,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  HostBinding
+  HostBinding,
+  HostListener
 } from '@angular/core';
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
@@ -37,6 +38,13 @@ let nextId = 0;
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CheckboxComponent implements ControlValueAccessor {
+  @HostListener('click', ['$event']) onClick(ev: Event) {
+    ev.preventDefault();
+    if (!this.disabled) {
+      this.toggle();
+    }
+  }
+
   @HostBinding()
   @Input()
   id = `checkbox-${++nextId}`;

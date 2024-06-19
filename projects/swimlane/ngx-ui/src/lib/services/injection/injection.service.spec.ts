@@ -23,13 +23,11 @@ describe('InjectionService', () => {
     const viewContainerRefStub = {};
     const typeStub = {};
 
-    appRef = { components: [{}] };
     componentRef = { instance: {} };
 
     TestBed.configureTestingModule({
       providers: [
         InjectionService,
-        { provide: ApplicationRef, useValue: appRef },
         {
           provide: ComponentFactoryResolver,
           useValue: componentFactoryResolverStub
@@ -40,7 +38,8 @@ describe('InjectionService', () => {
         { provide: Type, useValue: typeStub }
       ]
     });
-
+    appRef = TestBed.inject(ApplicationRef) as ApplicationRef;
+    appRef.components = [{}];
     service = TestBed.inject(InjectionService);
   });
 

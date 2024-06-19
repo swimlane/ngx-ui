@@ -1,7 +1,7 @@
 /* eslint-disable security/detect-non-literal-fs-filename */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { DialogFormat } from '@swimlane/ngx-ui/components/dialog/dialog-format.enum';
+import { DialogFormat } from '../../components/dialog/dialog-format.enum';
 
 import { DialogComponent } from './dialog.component';
 

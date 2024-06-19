@@ -111,6 +111,26 @@
         }
       }
     },
+    "@swimlane/ngx-ui-testing": {
+      "root": "",
+      "sourceRoot": "projects/swimlane/ngx-ui-testing/src",
+      "projectType": "library",
+      "prefix": "ngx",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/swimlane/ngx-ui-testing/tsconfig.json",
+            "project": "projects/swimlane/ngx-ui-testing/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/swimlane/ngx-ui-testing/tsconfig.json"
+            }
+          }
+        }
+      }
+    },
     "@swimlane/ngx-ui": {
       "root": "projects/swimlane/ngx-ui",
       "sourceRoot": "projects/swimlane/ngx-ui/src",

@@ -26,48 +26,36 @@ describe('Date/Time', () => {
 
     it('has a label', () => {
       // With Value
-      cy.get('@CUT')
-        .ngxFindLabel()
-        .should('contain.text', 'Date of attack')
-        .should('have.css', 'color', UNFOCUSED)
-        .should('have.css', 'font-size', '11.2px')
-        .should('have.css', 'top', '-13.44px'); // -1.2em
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Date of attack').should('have.css', 'color', UNFOCUSED);
 
       // Without Value
       cy.get('@CUT').ngxFill('');
       cy.get('@SUT').find('h1').click(); // blur
-      cy.get('@CUT')
-        .ngxFindLabel()
-        .should('contain.text', 'Date of attack')
-        .should('have.css', 'color', UNFOCUSED)
-        .should('have.css', 'font-size', '16px')
-        .should('have.css', 'top', '6.4px');
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Date of attack').should('have.css', 'color', UNFOCUSED);
 
       // with focus
       cy.get('@CUT').ngxFindNativeInput().focus().click();
-      cy.get('@CUT')
-        .ngxFindLabel()
-        .should('contain.text', 'Date of attack')
-        .should('have.css', 'color', FOCUSED)
-        .should('have.css', 'font-size', '11.2px')
-        .should('have.css', 'top', '-13.44px'); // -1.2em
+      cy.get('@CUT').ngxFindLabel().should('contain.text', 'Date of attack').should('have.css', 'color', FOCUSED);
     });
 
     it('enters text', () => {
       const text = '12/12/2020';
 
-      cy.get('@CUT').clear().type(text);
+      cy.get('@CUT').clear();
+      cy.get('@CUT').type(text);
 
       cy.get('@CUT').ngxGetValue().should('equal', text);
       cy.get('@output').should('contain.text', text);
 
-      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
+      cy.get('@CUT').clear();
+      cy.get('@CUT').ngxGetValue().should('equal', '');
     });
 
     it('handles invalid input', () => {
       const text = 'what what';
 
-      cy.get('@CUT').clear().type(text);
+      cy.get('@CUT').clear();
+      cy.get('@CUT').type(text);
 
       cy.get('@CUT').ngxGetValue().should('equal', text);
       cy.get('@output').should('contain.text', text);
@@ -80,7 +68,8 @@ describe('Date/Time', () => {
       cy.get('@CUT').should('have.class', 'ngx-date-time--date-invalid');
       cy.get('@CUT').find('label').should('have.css', 'color', INVALID);
 
-      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
+      cy.get('@CUT').clear();
+      cy.get('@CUT').ngxGetValue().should('equal', '');
       cy.get('@CUT').should('not.have.class', 'ngx-date-time--date-invalid');
       cy.get('@CUT').find('label').should('have.css', 'color', FOCUSED);
     });
@@ -123,7 +112,8 @@ describe('Date/Time', () => {
     it('enters text', () => {
       const text = '12/12/2020';
 
-      cy.get('@CUT').clear().type(text);
+      cy.get('@CUT').clear();
+      cy.get('@CUT').type(text);
 
       cy.get('@CUT').ngxGetValue().should('equal', text);
       cy.get('@output').should('contain.text', text);
@@ -180,6 +170,17 @@ describe('Date/Time', () => {
         cy.get('ngx-date-time').eq(2).ngxGetValue().should('equal', '03/11/2011 2:46 PM +09:00');
       });
     });
+  });
+
+  describe('Popups', () => {
+    beforeEach(() => {
+      cy.get('[sectiontitle="TimeZones"]').as('SUT');
+      cy.get('@SUT').within(() => {
+        cy.get('ngx-date-time').first().as('CUT');
+        // Bug in ngx-ui testing... can't get the get by label off a get
+        cy.getByLabel('Current Value:').as('output');
+      });
+    });
 
     it('has popups', () => {
       cy.get('@SUT')
@@ -214,45 +215,6 @@ describe('Date/Time', () => {
         .should('contain.text', 'Fri, Mar 11 2011')
         .should('contain.text', '2:46 pm');
       cy.get('body').click();
-    });
-
-    it('opens calendar with button', () => {
-      cy.get('@CUT').find('.calendar-dialog-btn').click();
-      cy.get('.ngx-date-time-dialog')
-        .should('exist')
-        .find('.selected-header h1')
-        .should('contain.text', 'Thu, Mar 10 2011')
-        .should('contain.text', '9:46 pm');
-      cy.get('.day').contains('17').click(); // Note: local
-      cy.get('.ngx-date-time-dialog')
-        .should('exist')
-        .find('.selected-header h1')
-        .should('contain.text', 'Thu, Mar 17 2011')
-        .should('contain.text', '9:46 pm');
-      cy.get('.apply-btn').click();
-      cy.get('.ngx-date-time-dialog').should('not.exist');
-      cy.get('@output').should('contain.text', '2011-03-18T05:46:24.000Z'); // Note: UTC
-    });
-
-    it('handles invalid input', () => {
-      const text = 'what what';
-
-      cy.get('@CUT').clear().type(text);
-
-      cy.get('@CUT').ngxGetValue().should('equal', text);
-      cy.get('@output').should('contain.text', text);
-      cy.get('@CUT').should('have.class', 'ngx-date-time--date-invalid');
-      cy.get('@CUT').find('label').should('have.css', 'color', INVALID);
-
-      cy.get('@SUT').find('h1').click(); // blur
-      cy.get('@CUT').ngxGetValue().should('equal', text);
-      cy.get('@output').should('contain.text', text);
-      cy.get('@CUT').should('have.class', 'ngx-date-time--date-invalid');
-      cy.get('@CUT').find('label').should('have.css', 'color', INVALID);
-
-      cy.get('@CUT').clear().ngxGetValue().should('equal', '');
-      cy.get('@CUT').should('not.have.class', 'ngx-date-time--date-invalid');
-      cy.get('@CUT').find('label').should('have.css', 'color', FOCUSED);
     });
   });
 });

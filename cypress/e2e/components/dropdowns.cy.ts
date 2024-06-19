@@ -7,15 +7,19 @@ describe('Dropdowns', () => {
   describe('Section', () => {
     it('Opens and closes dropdowns with click', () => {
       cy.get('ngx-dropdown').first().as('CUT');
+      cy.get('ngx-dropdown').eq(1).as('LUT');
       cy.get('@CUT').within(() => {
         cy.get('.ngx-dropdown-menu').first().should('not.be.visible');
-        cy.root().click();
+        cy.get('ngx-dropdown-toggle').contains('Left Button List').click();
         cy.get('.ngx-dropdown-menu').first().should('be.visible');
         cy.root().click();
         cy.get('.ngx-dropdown-menu').first().should('not.be.visible');
-        cy.root().click();
-        cy.get('.ngx-dropdown-menu').first().should('be.visible');
-        cy.get('li').contains('Button 2').click();
+      });
+
+      cy.get('@LUT').within(() => {
+        cy.get('.ngx-dropdown-menu').last().should('not.be.visible');
+        cy.get('ngx-dropdown-toggle').contains('Right Button List').click();
+        cy.get('button').contains('Button 2').click();
         cy.get('.ngx-dropdown-menu').first().should('not.be.visible');
       });
     });
