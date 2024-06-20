@@ -1,5 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/triple-slash-reference
-/// <reference path='./commands.d.ts'/>
+import './cypress';
 
 import { LOG, NGX, clear, findInput } from './functions';
 
@@ -160,7 +160,7 @@ Cypress_Commands_overwrite_Subject(
       case NGX.RADIOBUTTON:
         return originalFn(findInput(subject), positionOrX, y, { ...options, force: true });
     }
-    return originalFn(subject, positionOrX, y, { ...options, force: true });
+    return originalFn(subject, positionOrX, y, { ...options });
   }
 );
 

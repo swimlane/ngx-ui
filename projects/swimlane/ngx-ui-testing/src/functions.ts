@@ -1,5 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/triple-slash-reference
-/// <reference path='./commands.d.ts'/>
+import './cypress';
 
 export const enum NGX {
   CODEMIRROR = 'ngx-codemirror',

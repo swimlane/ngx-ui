@@ -10,5 +10,5 @@
     "outDir": "dist",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "**/*.d.ts"]
 }
