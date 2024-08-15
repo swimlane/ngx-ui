@@ -10,7 +10,7 @@
     "start-prod": "ng serve --configuration production --port 4200",
     "build": "npm run build:lib && ng build ngx-ui --configuration production",
     "build:demo": "cross-env NODE_ENV=production ng build --configuration production --statsJson=true",
-    "build:deploy": "cross-env NODE_ENV=production ng build --configuration production --base-href=\"/ngx-ui/\"",
+    "build:deploy": "cross-env NODE_ENV=production npm run build:lib && ng build ngx-ui --configuration production --base-href=\"/ngx-ui/\"",
     "build:lib": "ng build @swimlane/ngx-ui --configuration production && npm run build:css",
     "build:testing-lib": "ng build @swimlane/ngx-ui-testing --configuration production",
     "build:css": "node scripts/prep-global-styles.js && npm run copy-files",
