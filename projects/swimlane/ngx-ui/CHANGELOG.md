@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix: Emitting change event when clicking the ngx-checkbox
+
 ## 48.0.1 (2023-08-13)
 
 - Enhancement: Provide normalize css internally to support esbuild.
