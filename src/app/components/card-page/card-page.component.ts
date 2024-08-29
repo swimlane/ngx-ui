@@ -10,7 +10,8 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, V
 })
 export class CardPageComponent implements AfterViewInit {
   cardWidth: number;
-  isSelected = true;
+  isSelected = false;
+  onSelectValue = false;
   constructor(private readonly cdr: ChangeDetectorRef) {}
 
   ngAfterViewInit(): void {
@@ -32,6 +33,7 @@ export class CardPageComponent implements AfterViewInit {
 
   onSelect(isSelected: boolean) {
     console.log('Card select', isSelected);
+    this.onSelectValue = isSelected;
   }
 
   onActionClick() {
