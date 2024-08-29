@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 48.0.2 (2024-08-29)
+
 - Fix: Emitting change event when clicking the ngx-checkbox
 
 ## 48.0.1 (2023-08-13)
