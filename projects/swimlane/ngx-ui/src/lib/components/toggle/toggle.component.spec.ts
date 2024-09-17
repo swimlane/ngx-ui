@@ -131,4 +131,12 @@ describe('ToggleComponent', () => {
 
     expect(component.value).toEqual(false);
   });
+
+  it('emitChange should emit the change event', () => {
+    spyOn(component.change, 'emit');
+
+    component['emitChange']();
+
+    expect(component.change.emit).toHaveBeenCalled();
+  });
 });

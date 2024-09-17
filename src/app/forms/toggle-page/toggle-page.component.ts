@@ -16,4 +16,8 @@ export class TogglePageComponent {
   scrollTo(id: string) {
     (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
+
+  confirmChange(event: Event) {
+    console.log(event);
+  }
 }
