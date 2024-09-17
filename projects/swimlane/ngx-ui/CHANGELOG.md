@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 48.0.3 (2024-09-17)
+
+- Enhancement (`ngx-toggle`): Added `change` output to align with `ngx-checkbox`
+
 ## 48.0.2 (2024-08-29)
 
 - Fix: Emitting change event when clicking the ngx-checkbox
