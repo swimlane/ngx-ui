@@ -5,7 +5,9 @@ import {
   forwardRef,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
-  HostListener
+  HostListener,
+  Output,
+  EventEmitter
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coercion';
@@ -36,6 +38,7 @@ export class ToggleComponent implements ControlValueAccessor {
     ev.preventDefault();
     if (!this.disabled) {
       this.toggle();
+      this.emitChange();
     }
   }
 
@@ -75,6 +78,8 @@ export class ToggleComponent implements ControlValueAccessor {
   set tabIndex(tabIndex: number) {
     this._tabIndex = coerceNumberProperty(tabIndex);
   }
+
+  @Output() change = new EventEmitter<Event>();
 
   get value(): boolean {
     return this._value;
@@ -138,4 +143,8 @@ export class ToggleComponent implements ControlValueAccessor {
   private onChangeCallback = (_: unknown) => {
     // placeholder
   };
+
+  private emitChange() {
+    this.change.emit({ stopPropagation: () => {}, target: { checked: this._value } } as any);
+  }
 }
