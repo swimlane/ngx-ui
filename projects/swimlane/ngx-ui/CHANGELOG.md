@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-toggle`): Added `timeStamp` when emiting `change`
+- Enhancement (`ngx-checkbox`): Added `timeStamp` when emiting `change`
+
 ## 48.0.3 (2024-09-17)
 
 - Enhancement (`ngx-toggle`): Added `change` output to align with `ngx-checkbox`

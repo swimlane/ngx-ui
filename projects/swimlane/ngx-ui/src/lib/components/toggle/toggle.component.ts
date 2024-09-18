@@ -145,6 +145,10 @@ export class ToggleComponent implements ControlValueAccessor {
   };
 
   private emitChange() {
-    this.change.emit({ stopPropagation: () => {}, target: { checked: this._value } } as any);
+    this.change.emit({
+      stopPropagation: () => {},
+      timeStamp: new CustomEvent('change').timeStamp,
+      target: { checked: this._value }
+    } as any);
   }
 }
