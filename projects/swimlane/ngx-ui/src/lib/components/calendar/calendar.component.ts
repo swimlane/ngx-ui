@@ -34,11 +34,6 @@ export interface CalendarDateRange {
   endDate: Date | undefined;
 }
 
-interface CalendarDateRangeSelection {
-  startDateSelection: boolean;
-  endDateSelection: boolean;
-}
-
 @Component({
   selector: 'ngx-calendar',
   exportAs: 'ngxCalendar',
@@ -128,10 +123,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   endMinute: string;
   startAmPmVal = 'AM';
   endAmPmVal = 'AM';
-  dateRangeSelection: CalendarDateRangeSelection = {
-    startDateSelection: false,
-    endDateSelection: false
-  };
 
   readonly CalendarView = CalendarView;
   readonly CalendarSelect = CalendarSelect;
@@ -328,14 +319,15 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
 
   onDaySelectRange(day: CalendarDay) {
     this.focusDate = day.date.clone();
-
     if (this.range.startDate === undefined && this.range.endDate === undefined) {
       this.range.startDate = this.focusDate.toDate();
       this.range.startDate.setHours(Number(this.startHour));
       this.range.startDate.setMinutes(Number(this.startMinute));
-      this.dateRangeSelection.startDateSelection = true;
     } else if (this.range.endDate === undefined) {
-      if (this.focusDate.toDate() > this.range.startDate) {
+      if (
+        this.compareCalendarDays(this.focusDate.toDate(), this.range.startDate) ||
+        this.focusDate.toDate() > this.range.startDate
+      ) {
         this.range.endDate = this.focusDate.toDate();
         this.range.endDate.setHours(Number(this.endHour));
         this.range.endDate.setMinutes(Number(this.endMinute));
@@ -343,20 +335,11 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
         this.range.startDate = this.focusDate.toDate();
         this.range.startDate.setHours(Number(this.startHour));
         this.range.startDate.setMinutes(Number(this.startMinute));
-        this.dateRangeSelection.startDateSelection = true;
       }
     } else {
       this.range.startDate = this.focusDate.toDate();
       this.range.startDate.setHours(Number(this.startHour));
       this.range.startDate.setMinutes(Number(this.startMinute));
-      this.dateRangeSelection.endDateSelection = false;
-      this.range.endDate = undefined;
-    }
-
-    if (this.dateRangeSelection.startDateSelection && this.dateRangeSelection.endDateSelection) {
-      this.dateRangeSelection.startDateSelection = false;
-      this.dateRangeSelection.endDateSelection = false;
-      this.range.startDate = undefined;
       this.range.endDate = undefined;
     }
 
@@ -724,8 +707,21 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
 
   formatDate(date: Date): string {
     const customMoment = this.createMoment(date);
-
     return customMoment.format(this.dateLabelFormat);
+  }
+
+  compareCalendarDays(date1: Date, date2: Date) {
+    // Get the year, month, and day components of each date
+    const year1 = date1.getFullYear();
+    const month1 = date1.getMonth();
+    const day1 = date1.getDate();
+
+    const year2 = date2.getFullYear();
+    const month2 = date2.getMonth();
+    const day2 = date2.getDate();
+
+    // Check if the year, month, and day are the same
+    return year1 === year2 && month1 === month2 && day1 === day2;
   }
 
   private onChangeCallback: (_: any) => void = () => {

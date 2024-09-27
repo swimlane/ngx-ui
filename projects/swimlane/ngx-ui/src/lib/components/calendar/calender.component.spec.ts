@@ -407,6 +407,19 @@ describe('CalendarComponent', () => {
       expect(component.range?.endDate).toEqual(new Date('2024-04-10T15:45:00'));
     });
 
+    it('should set range end if range start is set and focusDate is same as range start', () => {
+      const day = { date: moment('2024-04-10'), nextMonth: true, prevMonth: true } as CalendarDay;
+      component.focusDate = moment('2024-04-10');
+      component.range = { startDate: new Date('2024-04-10T10:30:00'), endDate: undefined };
+      component.endHour = '15';
+      component.endMinute = '45';
+
+      component.onDaySelectRange(day);
+
+      expect(component.range?.startDate).toEqual(new Date('2024-04-10T10:30:00'));
+      expect(component.range?.endDate).toEqual(new Date('2024-04-10T15:45:00'));
+    });
+
     it('should update range start if range start is set and focusDate is less than or equal to range start', () => {
       const day = { date: moment('2024-04-01'), nextMonth: true, prevMonth: true } as CalendarDay;
       component.focusDate = moment('2024-04-01');
