@@ -319,7 +319,6 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
 
   onDaySelectRange(day: CalendarDay) {
     this.focusDate = day.date.clone();
-    console.log(this.focusDate.toDate().getTime(), this.range.startDate ? this.range.startDate.getTime() : undefined);
     if (this.range.startDate === undefined && this.range.endDate === undefined) {
       this.range.startDate = this.focusDate.toDate();
       this.range.startDate.setHours(Number(this.startHour));
