@@ -2,6 +2,11 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-calendar`): Should initialize with Date when `range` Input is used
+- Enhancement (`ngx-calendar`): Validation for time in date range selection
+- Fix (`ngx-calendar`): Possible bug when emitting date range selection and selecting AM/PM
+- Fix (`ngx-calendar`): Possible bug where time could appear `0` when selecting a date range
+
 ## 48.0.4 (2024-09-18)
 
 - Enhancement (`ngx-toggle`): Added `timeStamp` when emiting `change`
