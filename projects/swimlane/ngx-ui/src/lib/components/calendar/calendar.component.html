@@ -163,23 +163,25 @@
     <div class="time-row" *ngIf="range.startDate">
       <div>
         <ngx-input
-          type="number"
+          type="text"
           hint="Hour"
           label="{{ formatDate(range.startDate) }}"
           [ngModel]="startHour"
-          min="1"
-          max="12"
+          [minlength]="1"
+          [maxlength]="2"
+          [pattern]="'^([0-9]|0[0-9]|1[0-2])$'"
           (change)="hourChanged($event, 'start')"
         >
         </ngx-input>
       </div>
       <div>
         <ngx-input
-          type="number"
+          type="text"
           hint="Minute"
           [ngModel]="startMinute"
-          min="0"
-          max="59"
+          [minlength]="2"
+          [maxlength]="2"
+          [pattern]="'^[0-5]?[0-9]$'"
           (change)="minuteChanged($event, 'start')"
         >
         </ngx-input>
@@ -208,23 +210,25 @@
     <div class="time-row" *ngIf="range.endDate">
       <div>
         <ngx-input
-          type="number"
+          type="text"
           hint="Hour"
           label="{{ formatDate(range.endDate) }}"
           [ngModel]="endHour"
-          min="1"
-          max="12"
+          [minlength]="1"
+          [maxlength]="2"
+          [pattern]="'^([0-9]|0[0-9]|1[0-2])$'"
           (change)="hourChanged($event, 'end')"
         >
         </ngx-input>
       </div>
       <div>
         <ngx-input
-          type="number"
+          type="text"
           hint="Minute"
           [ngModel]="endMinute"
-          min="0"
-          max="59"
+          [minlength]="2"
+          [maxlength]="2"
+          [pattern]="'^[0-5]?[0-9]$'"
           (change)="minuteChanged($event, 'end')"
         >
         </ngx-input>
