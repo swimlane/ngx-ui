@@ -67,8 +67,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   @Input() selectType: string = CalendarSelect.Single;
   @Input() dateLabelFormat: string = 'MMM D YYYY';
   @Input() range: CalendarDateRange = {
-    startDate: new Date(new Date().setHours(0, 0, 0, 0)),
-    endDate: new Date(new Date().setHours(0, 0, 0, 0))
+    startDate: undefined,
+    endDate: undefined
   };
 
   @Input('minView')
@@ -188,12 +188,23 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
    * Initializes the values for initial time
    */
   initializeTime(): void {
-    this.startHour = moment(this.range.startDate).format('hh');
-    this.endHour = moment(this.range.endDate).format('hh');
-    this.startMinute = moment(this.range.startDate).format('mm');
-    this.endMinute = moment(this.range.endDate).format('mm');
-    this.startAmPmVal = moment(this.range.startDate).format('a').toUpperCase();
-    this.endAmPmVal = moment(this.range.endDate).format('a').toUpperCase();
+    let startDate: Date | undefined, endDate: Date | undefined;
+    if (!this.range.startDate) {
+      startDate = new Date(new Date().setHours(0, 0, 0, 0));
+    } else {
+      startDate = this.range.startDate;
+    }
+    if (!this.range.endDate) {
+      endDate = new Date(new Date().setHours(0, 0, 0, 0));
+    } else {
+      endDate = this.range.endDate;
+    }
+    this.startHour = moment(startDate).format('hh');
+    this.startMinute = moment(startDate).format('mm');
+    this.startAmPmVal = moment(startDate).format('a').toUpperCase();
+    this.endHour = moment(endDate).format('hh');
+    this.endMinute = moment(endDate).format('mm');
+    this.endAmPmVal = moment(endDate).format('a').toUpperCase();
   }
 
   /**
@@ -318,33 +329,35 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   onDaySelectRange(day: CalendarDay) {
     this.focusDate = day.date.clone();
 
-    if (this.dateRangeSelection.startDateSelection === false && this.dateRangeSelection.endDateSelection === false) {
+    if (this.range.startDate === undefined && this.range.endDate === undefined) {
       this.range.startDate = this.focusDate.toDate();
       this.range.startDate.setHours(Number(this.startHour));
-      this.range.startDate.setMinutes(+this.startMinute);
+      this.range.startDate.setMinutes(Number(this.startMinute));
       this.dateRangeSelection.startDateSelection = true;
-    } else if (this.dateRangeSelection.endDateSelection === false) {
+    } else if (this.range.endDate === undefined) {
       if (this.focusDate.toDate() > this.range.startDate) {
         this.range.endDate = this.focusDate.toDate();
         this.range.endDate.setHours(Number(this.endHour));
-        this.range.endDate.setMinutes(+this.endMinute);
-        this.dateRangeSelection.endDateSelection = true;
+        this.range.endDate.setMinutes(Number(this.endMinute));
       } else {
         this.range.startDate = this.focusDate.toDate();
         this.range.startDate.setHours(Number(this.startHour));
-        this.range.startDate.setMinutes(+this.startMinute);
+        this.range.startDate.setMinutes(Number(this.startMinute));
         this.dateRangeSelection.startDateSelection = true;
       }
     } else {
       this.range.startDate = this.focusDate.toDate();
       this.range.startDate.setHours(Number(this.startHour));
-      this.range.startDate.setMinutes(+this.startMinute);
+      this.range.startDate.setMinutes(Number(this.startMinute));
       this.dateRangeSelection.endDateSelection = false;
+      this.range.endDate = undefined;
     }
 
     if (this.dateRangeSelection.startDateSelection && this.dateRangeSelection.endDateSelection) {
       this.dateRangeSelection.startDateSelection = false;
       this.dateRangeSelection.endDateSelection = false;
+      this.range.startDate = undefined;
+      this.range.endDate = undefined;
     }
 
     this.onRangeSelect.emit({ startDate: this.range.startDate, endDate: this.range.endDate });
@@ -382,17 +395,21 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
 
   hourChanged(newVal: string, type: string) {
     if (type === 'start') {
-      if (this.endAmPmVal === 'PM') {
-        this.range.startDate.setHours(12 + Number(newVal));
-      } else {
-        this.range.startDate.setHours(Number(newVal));
+      if (this.range.startDate) {
+        if (this.endAmPmVal === 'PM') {
+          this.range.startDate.setHours(12 + Number(newVal));
+        } else {
+          this.range.startDate.setHours(Number(newVal));
+        }
       }
       this.startHour = newVal;
     } else {
-      if (this.endAmPmVal === 'PM') {
-        this.range.endDate.setHours(12 + Number(newVal));
-      } else {
-        this.range.endDate.setHours(Number(newVal));
+      if (this.range.endDate) {
+        if (this.endAmPmVal === 'PM') {
+          this.range.endDate.setHours(12 + Number(newVal));
+        } else {
+          this.range.endDate.setHours(Number(newVal));
+        }
       }
       this.endHour = newVal;
     }
@@ -400,10 +417,14 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
   }
   minuteChanged(newVal: string, type: string) {
     if (type === 'start') {
-      this.range.startDate.setMinutes(Number(newVal));
+      if (this.range.startDate) {
+        this.range.startDate.setMinutes(Number(newVal));
+      }
       this.startMinute = newVal;
     } else {
-      this.range.endDate.setMinutes(Number(newVal));
+      if (this.range.endDate) {
+        this.range.endDate.setMinutes(Number(newVal));
+      }
       this.endMinute = newVal;
     }
     this.onRangeSelect.emit({ startDate: this.range.startDate, endDate: this.range.endDate });
