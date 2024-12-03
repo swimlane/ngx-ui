@@ -82,7 +82,7 @@
     "@swimlane/prettier-config-swimlane": "^3.0.2",
     "@types/codemirror": "5.60.5",
     "@types/faker": "^4.1.11",
-    "@types/jasmine": "4.3.0",
+    "@types/jasmine": "5.1.5",
     "@types/moment-timezone": "^0.5.13",
     "@types/mousetrap": "1.6.9",
     "@types/node": "16.11.59",
