@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+- Feature (`ngx-tooltip`): Added new ShowTypes 'click' which can open/close the popover when clicking the component
+
+## 48.0.5 (2024-09-27)
+
 - Enhancement (`ngx-calendar`): Should initialize with Date when `range` Input is used
 - Enhancement (`ngx-calendar`): Validation for time in date range selection
 - Fix (`ngx-calendar`): Possible bug when emitting date range selection and selecting AM/PM

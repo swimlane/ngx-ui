@@ -150,6 +150,52 @@
     </a>]]>
       </app-prism>
     </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="Popover shown on click">
+
+      <ngx-button
+        #customTooltip=ngxTooltip 
+        ngx-tooltip
+        class="btn btn-primary"
+        [tooltipContext]="{ foo: 'YAZ' }"
+        [tooltipType]="'popover'"
+        [tooltipPlacement]="'bottom'"
+        [tooltipShowCaret]="false"
+        [tooltipCssClass]="'popover-custom'"
+        [tooltipSpacing]="5"
+        [tooltipTemplate]="popoverMenuTemplate"
+        [tooltipShowEvent]="'click'"
+        data-cy="popover-click"
+        >Click me to open</ngx-button>
+      <ng-template #popoverMenuTemplate let-model="model">
+          <ul class="vertical-list">
+            <li><button type="button" (click)="closeTooltip()">Click me to close</button></li>
+            <li class="disabled"><button type="button">You can't click me</button></li>
+        </ul>
+      </ng-template>
+
+      <app-prism>
+        <![CDATA[<ngx-button
+          #customTooltip=ngxTooltip 
+          ngx-tooltip
+          class="btn btn-primary"
+          [tooltipContext]="{ foo: 'YAZ' }"
+          [tooltipType]="'popover'"
+          [tooltipPlacement]="'bottom'"
+          [tooltipShowCaret]="false"
+          [tooltipCssClass]="'popover-custom'"
+          [tooltipSpacing]="5"
+          [tooltipTemplate]="popoverMenuTemplate"
+          [tooltipShowEvent]="'click'"
+        >Click me to open</ngx-button>
+      <ng-template #popoverMenuTemplate let-model="model">
+          <ul class="vertical-list">
+            <li><button type="button" (click)="closeTooltip()">Click me to close</button></li>
+            <li class="disabled"><button type="button">You can't click me</button></li>
+        </ul>
+      </ng-template>]]>
+          </app-prism>
+    </ngx-section>
     
     <ngx-section class="shadow" sectionTitle="Appearances">
       <table class="appearance-table" style="max-width: 100%">

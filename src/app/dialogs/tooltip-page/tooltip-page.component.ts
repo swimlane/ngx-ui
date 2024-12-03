@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
+import { TooltipDirective } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-tooltip-page',
@@ -7,6 +8,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrls: ['./tooltip-page.component.scss']
 })
 export class TooltipPageComponent {
+  @ViewChild('customTooltip', { static: true }) customTooltip: TooltipDirective;
+
   tooltipModel = {
     text: 'foo'
   };
@@ -19,5 +22,9 @@ export class TooltipPageComponent {
 
   scrollTo(id: string) {
     (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  closeTooltip(): void {
+    this.customTooltip.hideTooltip(true);
   }
 }

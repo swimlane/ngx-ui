@@ -114,6 +114,23 @@ describe('TooltipDirective', () => {
       directive.onMouseClick();
       expect(spy).not.toHaveBeenCalled();
     });
+
+    it('should show tooltip - ShowTypes.click', () => {
+      const spy = spyOn(directive, 'showTooltip');
+      directive.tooltipShowEvent = ShowTypes.click;
+      directive.onMouseClick();
+      expect(spy).toHaveBeenCalled();
+    });
+
+    it('should hide tooltip - ShowTypes.click', () => {
+      const spy = spyOn(directive, 'hideTooltip');
+      directive.tooltipShowEvent = ShowTypes.click;
+      // open tooltip
+      directive.onMouseClick();
+      // close tooltip
+      directive.onMouseClick();
+      expect(spy).toHaveBeenCalled();
+    });
   });
 
   describe('showTooltip', () => {

@@ -103,6 +103,7 @@ export class TooltipDirective implements OnDestroy {
   private _tooltipCloseOnMouseLeave = true;
   private _tooltipHideTimeout = 300;
   private _tooltipShowTimeout = 100;
+  private _tooltipIsOpenFromClick = false;
 
   private get listensForFocus(): boolean {
     return this.tooltipShowEvent === ShowTypes.all || this.tooltipShowEvent === ShowTypes.focus;
@@ -112,11 +113,19 @@ export class TooltipDirective implements OnDestroy {
     return this.tooltipShowEvent === ShowTypes.all || this.tooltipShowEvent === ShowTypes.mouseover;
   }
 
+  private get listensForClick(): boolean {
+    return this.tooltipShowEvent === ShowTypes.all || this.tooltipShowEvent === ShowTypes.click;
+  }
+
   private component: ComponentRef<TooltipContentComponent>;
   private timeout: any;
   private mouseLeaveContentEvent: () => void;
   private mouseEnterContentEvent: () => void;
   private documentClickEvent: () => void;
+
+  get tooltipIsOpenFromClick(): boolean {
+    return this._tooltipIsOpenFromClick;
+  }
 
   constructor(
     private readonly ngZone: NgZone,
@@ -153,7 +162,7 @@ export class TooltipDirective implements OnDestroy {
 
   @HostListener('mouseleave', ['$event'])
   onMouseLeave(event: { toElement: Node }): void {
-    if (this.listensForHover && this.tooltipCloseOnMouseLeave) {
+    if ((this.listensForHover && this.tooltipCloseOnMouseLeave) || this.listensForClick) {
       clearTimeout(this.timeout);
 
       /* istanbul ignore if */
@@ -171,6 +180,13 @@ export class TooltipDirective implements OnDestroy {
   onMouseClick(): void {
     if (this.tooltipShowEvent === ShowTypes.mouseover) {
       this.hideTooltip(true);
+    } else if (this.listensForClick) {
+      if (this._tooltipIsOpenFromClick) {
+        this.hideTooltip(true);
+      } else {
+        this._tooltipIsOpenFromClick = true;
+        this.showTooltip(true);
+      }
     }
   }
 
@@ -224,6 +240,8 @@ export class TooltipDirective implements OnDestroy {
     } else {
       destroyFn();
     }
+
+    this._tooltipIsOpenFromClick = false;
   }
 
   addHideListeners(tooltip: HTMLElement): void {
