@@ -22,7 +22,6 @@ import { Appearance } from '../../mixins/appearance/appearance.enum';
 import { InViewportMetadata } from 'ng-in-viewport';
 import { take } from 'rxjs/operators';
 import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
-import { sizeMixin } from '../../mixins/size/size.mixin';
 import { SelectDropdownOption } from '../select/select-dropdown-option.interface';
 import { SelectDropdownComponent } from '../select/select-dropdown.component';
 
@@ -36,10 +35,6 @@ const FILTER_VALUE_ACCESSOR = {
   useExisting: forwardRef(() => FilterSelectComponent),
   multi: true
 };
-
-class InputBase {}
-
-const _InputMixinBase = sizeMixin(InputBase);
 
 function arrayEquals(a, b) {
   return Array.isArray(a) && Array.isArray(b) && a.length === b.length && a.every((val, index) => val === b[index]);
@@ -69,7 +64,7 @@ function arrayEquals(a, b) {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FilterSelectComponent extends _InputMixinBase implements ControlValueAccessor, OnDestroy {
+export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() id = `filter-select-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
@@ -202,6 +197,7 @@ export class FilterSelectComponent extends _InputMixinBase implements ControlVal
   set value(val: any[]) {
     if (val !== this._value) {
       this._value = val;
+      this._selection = this.options?.filter(o => this._value.includes(o.value));
       this.onChangeCallback(this._value);
       this.change.emit(this._value);
       this._cdr.markForCheck();
@@ -229,9 +225,7 @@ export class FilterSelectComponent extends _InputMixinBase implements ControlVal
     private readonly _element: ElementRef,
     private readonly _renderer: Renderer2,
     private readonly _cdr: ChangeDetectorRef
-  ) {
-    super();
-  }
+  ) {}
 
   ngOnDestroy(): void {
     this.toggleDropdown(false);
@@ -244,7 +238,6 @@ export class FilterSelectComponent extends _InputMixinBase implements ControlVal
 
     if (idx === -1) {
       this.value = this.multiple ? [...this.value, selection.value] : [selection.value];
-      this._selection = this.multiple ? [...this._selection, selection] : [selection];
     }
     this.afterSelect(shouldClose);
   }
@@ -256,7 +249,6 @@ export class FilterSelectComponent extends _InputMixinBase implements ControlVal
 
     if (idx > -1) {
       this.value = this.value.filter((_, i) => i !== idx);
-      this._selection = this._selection.filter((_, i) => i !== idx);
     }
     this.afterSelect(shouldClose);
   }
@@ -288,7 +280,7 @@ export class FilterSelectComponent extends _InputMixinBase implements ControlVal
 
   onClear(): void {
     this.value = [];
-    this._selection = [];
+    // this._selection = [];
   }
 
   onBodyClick(event: Event): void {
@@ -372,6 +364,7 @@ export class FilterSelectComponent extends _InputMixinBase implements ControlVal
     /* istanbul ignore else */
     if (val !== this._value) {
       this._value = val;
+      this._selection = this.options?.filter(o => this._value.includes(o.value));
       this._cdr.markForCheck();
     }
   }
