@@ -21,6 +21,7 @@ $max-width: 300px;
 .ngx-filter-select {
   max-width: $max-width;
   margin-right: 8px;
+  display: inline-block;
 
   .ngx-select-flex-wrap {
     flex-direction: row;
@@ -172,6 +173,7 @@ $max-width: 300px;
     left: 0;
     z-index: 1000;
     width: 100%;
+    min-width: 300px;
     background: $color-dropdown-bg;
     border: 1px solid $color-blue-grey-550;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);

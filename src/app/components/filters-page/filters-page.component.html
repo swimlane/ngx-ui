@@ -3,44 +3,89 @@
   <ngx-tab label="Examples">
     <ngx-section class="shadow" sectionTitle="Dropdown Filter">
       <h4>Basic</h4>
-
-      <ngx-filter-select [filterable]="false" label="Category">
-        <ngx-select-option name="Selection" value="breach asd asd ajsdh sf sajdf asjkfhasd lkasd "></ngx-select-option>
+      <ngx-filter-select [filterable]="false" label="Category" style="display: inline-block">
+        <ngx-select-option name="Selection" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-filter-select>
+      <app-prism>
+        <![CDATA[<ngx-filter-select [filterable]="false" label="Category" style="display: inline-block">
+          <ngx-select-option name="Selection" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-filter-select> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
 
       <h4>No Label</h4>
-
       <ngx-filter-select [filterable]="false">
         <ngx-select-option name="Selection" value="breach "></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-filter-select>
+      <app-prism>
+        <![CDATA[<ngx-filter-select [filterable]="false">
+          <ngx-select-option name="Selection" value="breach "></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-filter-select> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
 
       <h4>Custom placeholder for no selection</h4>
-
       <ngx-filter-select [filterable]="false" [placeholder]="'No Selection'" label="Category">
         <ngx-select-option name="Selection" value="breach asd asd ajsdh sf sajdf asjkfhasd lkasd "></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-filter-select>
+      <app-prism>
+        <![CDATA[<ngx-filter-select [filterable]="false" [placeholder]="'No Selection'" label="Category">
+          <ngx-select-option name="Selection" value="breach asd asd ajsdh sf sajdf asjkfhasd lkasd "></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-filter-select> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
 
       <h4>Multi-select</h4>
-
       <ngx-filter-select [filterable]="false" label="Categories" multiple="true">
         <ngx-select-option name="Selection" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-filter-select>
+      <app-prism>
+        <![CDATA[<ngx-filter-select [filterable]="false" label="Categories" multiple="true">
+          <ngx-select-option name="Selection" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-filter-select> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
 
       <h4>Dropdown filter</h4>
-
       <ngx-filter-select [filterable]="true" label="Categories" multiple="true">
         <ngx-select-option name="Selection" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-filter-select>
+      <app-prism>
+        <![CDATA[<ngx-filter-select [filterable]="true" label="Categories" multiple="true">
+          <ngx-select-option name="Selection" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-filter-select> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
 
       <h4>Objects with Grouping</h4>
       <ngx-filter-select [groupBy]="'type'">
@@ -48,28 +93,48 @@
         <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
         <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
       </ngx-filter-select>
+      <app-prism>
+        <![CDATA[<ngx-filter-select [groupBy]="'type'">
+          <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
+          <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
+          <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
+        </ngx-filter-select> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
 
       <h4>Disabled</h4>
-
       <ngx-filter-select label="Category" [disabled]="true">
         <ngx-select-option name="Selection" value="breach "></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-filter-select>
-
-      <ngx-select [filterable]="true" [label]="'Category'" data-cy="attackType">
-        <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-        <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-        <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-      </ngx-select>
+      <app-prism>
+        <![CDATA[<ngx-filter-select label="Category" [disabled]="true">
+          <ngx-select-option name="Selection" value="breach "></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-filter-select> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
 
       <h4>Large ngFor with Default Selections</h4>
       <ngx-filter-select [identifier]="'attr'" [ngModel]="[selects[0]]" label="Selection">
         <ngx-select-option *ngFor="let option of selects" [name]="option.name" [value]="option"> </ngx-select-option>
       </ngx-filter-select>
+      <app-prism>
+        <![CDATA[<ngx-filter-select [identifier]="'attr'" [ngModel]="[selects[0]]" label="Selection">
+          <ngx-select-option *ngFor="let option of selects" [name]="option.name" [value]="option"> </ngx-select-option>
+        </ngx-filter-select> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
 
       <h4>Async options</h4>
-
       <ngx-filter-select (keyup)="search($event.value)">
         <ngx-select-option
           *ngFor="let option of asyncOptions$ | async"
@@ -78,13 +143,16 @@
           [disabled]="option.disabled"
         ></ngx-select-option>
       </ngx-filter-select>
-
       <app-prism>
-        <![CDATA[<ngx-select [filterable]="false" [label]="'Attack Type'"> <ngx-select-option name="Breach"
-        value="breach"></ngx-select-option> <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-        <ngx-select-option name="Physical" value="physical"></ngx-select-option> </ngx-select> ]]>
+        <![CDATA[<ngx-filter-select (keyup)="search($event.value)">
+          <ngx-select-option
+            *ngFor="let option of asyncOptions$ | async"
+            [name]="option.title"
+            [value]="option"
+            [disabled]="option.disabled"
+          ></ngx-select-option>
+        </ngx-filter-select>]]>
       </app-prism>
-
       <br />
       <br />
       <br />
