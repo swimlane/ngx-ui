@@ -280,7 +280,6 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
 
   onClear(): void {
     this.value = [];
-    // this._selection = [];
   }
 
   onBodyClick(event: Event): void {
