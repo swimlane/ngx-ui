@@ -19,6 +19,13 @@
   </div>
   <ul class="vertical-list ngx-select-dropdown-options" role="listbox">
     <li
+      *ngIf="showSelectAll && hasAvailableOptions"
+      class="ngx-select-dropdown-option ngx-select-all-option"
+      (click)="selectAll.emit()"
+    >
+      <span>Select All</span>
+    </li>
+    <li
       *ngFor="let group of groups; let i = index; let first = first; let last = last; let odd = odd; let even = even"
       class="ngx-select-option-group"
     >

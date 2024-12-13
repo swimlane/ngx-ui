@@ -19,7 +19,14 @@ import { SelectComponent } from './select.component';
     SelectDropdownComponent,
     SelectOptionInputTemplateDirective
   ],
-  exports: [SelectComponent, SelectOptionDirective, SelectOptionTemplateDirective, SelectOptionInputTemplateDirective],
+  exports: [
+    SelectComponent,
+    SelectDropdownComponent,
+    SelectInputComponent,
+    SelectOptionDirective,
+    SelectOptionTemplateDirective,
+    SelectOptionInputTemplateDirective
+  ],
   imports: [CommonModule, InViewportModule, TooltipModule]
 })
 export class SelectModule {}
