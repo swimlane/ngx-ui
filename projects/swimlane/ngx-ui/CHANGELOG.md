@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Feature (`ngx-filter-select`): Added a new filter select component
+
 ## 48.1.0 (2024-12-03)
 
 - Feature (`ngx-tooltip`): Added new ShowTypes 'click' which can open/close the popover when clicking the component
