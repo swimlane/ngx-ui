@@ -28,7 +28,6 @@ import { SelectDropdownComponent } from '../select/select-dropdown.component';
 
 import { SelectOptionDirective } from '../select/select-option.directive';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
-import { CoerceNumberProperty } from '../../utils/coerce/coerce-number';
 
 let nextId = 0;
 
@@ -55,7 +54,6 @@ function arrayEquals(a, b) {
     class: 'ngx-filter-select',
     '[id]': 'id',
     '[attr.name]': 'name',
-    '[class.tagging-selection]': 'tagging',
     '[class.multi-selection]': 'multiple',
     '[class.single-selection]': 'isSingleSelect',
     '[class.disabled]': 'disabled',
@@ -75,27 +73,16 @@ export class FilterSelectComponent extends _InputMixinBase implements ControlVal
   @Input() id = `filter-select-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
-  @Input() hint: string;
   @Input() placeholder = 'All';
   @Input() emptyPlaceholder = 'No options available';
   @Input() filterEmptyPlaceholder = 'No matches...';
   @Input() filterPlaceholder = 'Search';
   @Input() forceDownwardOpening = false;
-  @Input() allowAdditionsText = 'Add Value';
   @Input() groupBy: string;
-  @Input() selectCaret: string;
 
   @Input() options: SelectDropdownOption[] = [];
   @Input() identifier: string;
   @Input() appearance = Appearance.Legacy;
-
-  @Input()
-  @CoerceNumberProperty()
-  minSelections?: number;
-
-  @Input()
-  @CoerceNumberProperty()
-  maxSelections?: number;
 
   @Input()
   get autosizeMinWidth(): number | string {
@@ -116,10 +103,6 @@ export class FilterSelectComponent extends _InputMixinBase implements ControlVal
   @Input()
   @CoerceBooleanProperty()
   autosize = false;
-
-  @Input()
-  @CoerceBooleanProperty()
-  allowAdditions = false;
 
   @Input()
   @CoerceBooleanProperty()
@@ -144,10 +127,6 @@ export class FilterSelectComponent extends _InputMixinBase implements ControlVal
   @Input()
   @CoerceBooleanProperty()
   showSelectAll = true;
-
-  @Input()
-  @CoerceBooleanProperty()
-  tagging = false;
 
   @Input()
   @CoerceBooleanProperty()
@@ -202,7 +181,7 @@ export class FilterSelectComponent extends _InputMixinBase implements ControlVal
   }
 
   get isSingleSelect() {
-    return !this.multiple && !this.tagging;
+    return !this.multiple;
   }
 
   get hasSelections() {
@@ -231,7 +210,7 @@ export class FilterSelectComponent extends _InputMixinBase implements ControlVal
 
   get dropdownVisible() {
     if (this.disableDropdown) return false;
-    if (this.tagging && (!this.options || !this.options.length)) return false;
+    if (!this.options || !this.options.length) return false;
     return this.dropdownActive;
   }
 
@@ -260,13 +239,12 @@ export class FilterSelectComponent extends _InputMixinBase implements ControlVal
 
   onDropdownSelection(selection: SelectDropdownOption, shouldClose = this.closeOnSelect || !this.multiple): void {
     if (selection.disabled) return;
-    if (this.value.length === this.maxSelections) return;
 
     const idx = this.findIndex(selection);
 
     if (idx === -1) {
-      this.value = this.multiple || this.tagging ? [...this.value, selection.value] : [selection.value];
-      this._selection = this.multiple || this.tagging ? [...this._selection, selection] : [selection];
+      this.value = this.multiple ? [...this.value, selection.value] : [selection.value];
+      this._selection = this.multiple ? [...this._selection, selection] : [selection];
     }
     this.afterSelect(shouldClose);
   }
@@ -364,11 +342,11 @@ export class FilterSelectComponent extends _InputMixinBase implements ControlVal
   get caretVisible(): boolean {
     if (this.hasSelections) return false;
     if (this.disableDropdown) return false;
-    return !(this.tagging && (!this.options || !this.options.length));
+    return !(!this.options || !this.options.length);
   }
 
   get clearVisible() {
-    return !this.tagging && this.value?.length > 0;
+    return this.value?.length > 0;
   }
 
   get hasControls(): boolean {

@@ -160,13 +160,13 @@
   </ngx-tab>
   <ngx-tab label="API">
     <h3>Table of Contents</h3>
-    <a class="documentation-content" (click)="scrollTo('ngx-select-inputs')">ngx-select Inputs</a>
-    <a class="documentation-content" (click)="scrollTo('ngx-select-outputs')">ngx-select Outputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-filter-select-inputs')">ngx-filter-select Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-filter-select-outputs')">ngx-filter-select Outputs</a>
     <a class="documentation-content" (click)="scrollTo('ngx-select-option-inputs')">ngx-select-option Inputs</a>
     <a class="documentation-content" (click)="scrollTo('ngx-select-option-outputs')">ngx-select-option Outputs</a>
     <hr />
 
-    <h3 class="style-header" id="ngx-select-inputs">ngx-select Inputs</h3>
+    <h3 class="style-header" id="ngx-filter-select-inputs">ngx-filter-select Inputs</h3>
     <table class="table documentation-table">
       <thead>
         <tr>
@@ -181,27 +181,6 @@
             <code>allowAdditions: boolean</code>
           </th>
           <td>NEEDS DOCUMENTATION.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>allowAdditionsText: string = 'Add Value'</code>
-          </th>
-          <td>Accepts string or template reference. NEEDS DOCUMENTATION.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>allowClear: boolean = true</code>
-          </th>
-          <td>Whether the component should allow the clearing of a selected value.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>appearance: 'fill' | 'legacy' = 'legacy'</code>
-          </th>
-          <td>The appearance style of the component.</td>
         </tr>
         <tr>
           <th>
@@ -285,7 +264,7 @@
         <tr>
           <th>
             <code class="component-type">&#64;Input()</code>
-            <code>filterPlaceholder: string = 'Filter options...'</code>
+            <code>filterPlaceholder: string = 'Search'</code>
           </th>
           <td>Placeholder to display for the component's filter text input.</td>
         </tr>
@@ -313,13 +292,6 @@
         <tr>
           <th>
             <code class="component-type">&#64;Input()</code>
-            <code>hint: string</code>
-          </th>
-          <td>The hint to display beneath the component.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
             <code>id: string = 'select-1'</code>
           </th>
           <td>The ID for the component.</td>
@@ -337,20 +309,6 @@
             <code>label: string</code>
           </th>
           <td class="component-description">The label for the component.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>minSelections: number</code>
-          </th>
-          <td class="component-description">The mininum number of selections to display.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>maxSelections: number</code>
-          </th>
-          <td class="component-description">The maximum number of selections to display.</td>
         </tr>
         <tr>
           <th>
@@ -383,38 +341,14 @@
         <tr>
           <th>
             <code class="component-type">&#64;Input()</code>
-            <code>required: boolean</code>
+            <code>showSelectAll: boolean</code>
           </th>
-          <td class="component-description">Whether the user's input is required.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>requiredIndicator: string | boolean = '*'</code>
-          </th>
-          <td class="component-description">The indicator displayed to inform the user that input is required.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>selectCaret: string</code>
-          </th>
-          <td class="component-description">
-            Accepts string or template reference. The select caret to display in place of the default caret, typically
-            an icon.
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>tagging: boolean</code>
-          </th>
-          <td class="component-description">Whether selected options are displayed as tags.</td>
+          <td class="component-description">Displays a "Select All" item in the dropdown</td>
         </tr>
       </tbody>
     </table>
     <hr />
-    <h3 class="style-header" id="ngx-select-outputs">ngx-select Outputs</h3>
+    <h3 class="style-header" id="ngx-filter-select-outputs">ngx-filter-select Outputs</h3>
     <table class="table documentation-table">
       <thead>
         <tr>
