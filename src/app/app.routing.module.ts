@@ -84,6 +84,10 @@ const routes: Routes = [
     loadChildren: () => import('./components/dropzone-page/dropzone-page.module').then(m => m.DropzonePageModule)
   },
   {
+    path: 'filters',
+    loadChildren: () => import('./components/filters-page/filters-page.module').then(m => m.FiltersPageModule)
+  },
+  {
     path: 'hotkeys',
     loadChildren: () => import('./components/hotkeys-page/hotkeys-page.module').then(m => m.HotkeysPageModule)
   },

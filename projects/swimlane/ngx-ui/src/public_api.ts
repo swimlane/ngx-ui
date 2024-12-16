@@ -125,6 +125,9 @@ export * from './lib/components/dropdown/dropdown.show-types.enum';
 export * from './lib/components/dropzone/dropzone.module';
 export * from './lib/components/dropzone/dropzone.component';
 
+export * from './lib/components/filter/filter-select.module';
+export * from './lib/components/filter/filter-select.component';
+
 export * from './lib/components/hotkeys/hotkeys.module';
 export * from './lib/components/hotkeys/hotkeys.component';
 export * from './lib/components/hotkeys/hotkeys.service';

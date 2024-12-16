@@ -17,6 +17,7 @@ import { DialogModule } from './components/dialog/dialog.module';
 import { DrawerModule } from './components/drawer/drawer.module';
 import { DropdownModule } from './components/dropdown/dropdown.module';
 import { DropzoneModule } from './components/dropzone/dropzone.module';
+import { FilterSelectModule } from './components/filter/filter-select.module';
 import { HotkeysModule } from './components/hotkeys/hotkeys.module';
 import { IconModule } from './components/icon/icon.module';
 import { InputModule } from './components/input/input.module';
@@ -63,6 +64,7 @@ const modules = [
   DrawerModule,
   DropdownModule,
   DropzoneModule,
+  FilterSelectModule,
   FormsModule,
   HotkeysModule,
   IconModule,

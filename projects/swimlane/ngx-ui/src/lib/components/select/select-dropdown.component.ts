@@ -55,6 +55,10 @@ export class SelectDropdownComponent implements AfterViewInit {
   filterCaseSensitive = false;
 
   @Input()
+  @CoerceBooleanProperty()
+  showSelectAll = false;
+
+  @Input()
   get focusIndex() {
     return this._focusIndex;
   }
@@ -95,6 +99,7 @@ export class SelectDropdownComponent implements AfterViewInit {
 
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
   @Output() selection = new EventEmitter<SelectDropdownOption>();
+  @Output() selectAll = new EventEmitter<void>();
   @Output() deselection = new EventEmitter<SelectDropdownOption>();
   @Output() keyboardSelection = new EventEmitter<SelectDropdownOption>();
   @Output() keyboardDeselection = new EventEmitter<SelectDropdownOption>();
@@ -113,6 +118,10 @@ export class SelectDropdownComponent implements AfterViewInit {
 
   get isNotTemplate() {
     return !(typeof this.allowAdditionsText === 'object' && this.allowAdditionsText instanceof TemplateRef);
+  }
+
+  get hasAvailableOptions(): boolean {
+    return this.groups.some(group => group.options.length > 0);
   }
 
   groups: any[];

@@ -186,6 +186,10 @@ export class AppComponent {
           route: 'time-display'
         },
         {
+          name: 'Filters',
+          route: 'filters'
+        },
+        {
           name: 'Loading',
           route: 'loading'
         },
