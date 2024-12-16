@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 48.2.0 (2024-12-17)
+
 - Feature (`ngx-filter-select`): Added a new filter select component
 
 ## 48.1.0 (2024-12-03)
