@@ -18,7 +18,8 @@ const guessTimeZone = moment.tz.guess();
   selector: 'ngx-time',
   templateUrl: './time-display.component.html',
   styleUrls: ['./time-display.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   @Input()

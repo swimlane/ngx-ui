@@ -32,7 +32,8 @@ export interface SpinnerLabel {
     '[class.ngx-progress-spinner--indeterminate]': 'mode === ProgressSpinnerMode.Indeterminate'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class ProgressSpinnerComponent {
   @Input() mode = ProgressSpinnerMode.Indeterminate;

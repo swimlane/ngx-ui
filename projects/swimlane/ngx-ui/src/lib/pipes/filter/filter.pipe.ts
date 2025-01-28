@@ -26,7 +26,8 @@ import { filterDefault } from '../../utils/filter/filter-default/filter-default.
  */
 @Pipe({
   name: 'filterBy',
-  pure: false
+  pure: false,
+  standalone: false
 })
 export class FilterPipe implements PipeTransform {
   transform(array: any[], filter: unknown): any[] {

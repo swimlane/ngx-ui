@@ -14,7 +14,8 @@ import { NgModel } from '@angular/forms';
 import { filter, take } from 'rxjs/operators';
 
 @Directive({
-  selector: '[autoSizeInput]'
+  selector: '[autoSizeInput]',
+  standalone: false
 })
 export class AutoSizeInputDirective implements AfterContentChecked, AfterViewInit {
   @Input() extraWidth = 0;

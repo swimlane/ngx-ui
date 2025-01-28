@@ -2,7 +2,8 @@ import { ChangeDetectorRef, EmbeddedViewRef, Pipe, PipeTransform, Type } from '@
 
 @Pipe({
   name: 'memoize',
-  pure: true
+  pure: true,
+  standalone: false
 })
 export class MemoizePipe implements PipeTransform {
   context: any;

@@ -24,7 +24,8 @@ import { TooltipContentComponent } from './tooltip.component';
 
 @Directive({
   selector: '[ngx-tooltip]',
-  exportAs: 'ngxTooltip'
+  exportAs: 'ngxTooltip',
+  standalone: false
 })
 export class TooltipDirective implements OnDestroy {
   @Input() tooltipCssClass = '';

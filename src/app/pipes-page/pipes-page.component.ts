@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-pipes-page',
-  templateUrl: './pipes-page.component.html'
+  templateUrl: './pipes-page.component.html',
+  standalone: false
 })
 export class PipesPageComponent {
   jsonObject = JSON.parse(`{

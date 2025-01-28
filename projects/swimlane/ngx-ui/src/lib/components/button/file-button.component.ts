@@ -23,7 +23,8 @@ import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
   templateUrl: './file-button.component.html',
   styleUrls: ['./file-button.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class FileButtonComponent implements OnInit {
   @Input() id = `input-${id()}`;

@@ -57,7 +57,8 @@ import { AlertTypes } from './alert-types.enum';
     tabindex: '-1'
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class AlertComponent extends DialogComponent implements AfterViewInit, OnInit {
   @Input() type: AlertTypes;

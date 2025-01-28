@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'decamelize'
+  name: 'decamelize',
+  standalone: false
 })
 export class DecamelizePipe implements PipeTransform {
   transform(input: unknown): string {

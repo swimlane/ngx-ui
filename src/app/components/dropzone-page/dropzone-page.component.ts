@@ -5,7 +5,8 @@ import { FileUploader } from 'ng2-file-upload';
 @Component({
   selector: 'app-dropzone-page',
   templateUrl: './dropzone-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class DropzonePageComponent {
   acceptedFileFormats = ['.txt', '.ssp', '.json', '.png', '.jpg', '.csv'];

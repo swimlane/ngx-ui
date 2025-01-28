@@ -9,7 +9,8 @@ const MOON_LANDING = '1969-07-20T20:17:43Z';
   selector: 'app-datetime-page',
   templateUrl: './datetime-page.component.html',
   styleUrls: ['./datetime-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class DatetimePageComponent {
   date = new Date('10/10/2016');

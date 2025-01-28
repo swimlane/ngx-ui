@@ -62,7 +62,8 @@ function arrayEquals(a, b) {
   },
   providers: [FILTER_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() id = `filter-select-${++nextId}`;

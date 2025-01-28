@@ -5,7 +5,8 @@ import { DrawerDirection, DrawerService } from '@swimlane/ngx-ui';
   selector: 'app-drawer-container-example',
   templateUrl: './drawer-container-example.component.html',
   styleUrls: ['./drawer-container-example.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class DrawerContainerExampleComponent {
   @Input() template: TemplateRef<any>;

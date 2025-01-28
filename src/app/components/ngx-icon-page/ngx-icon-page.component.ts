@@ -4,7 +4,8 @@ import { IconRegistryService } from '@swimlane/ngx-ui';
 @Component({
   selector: 'app-ngx-icon-page',
   templateUrl: './ngx-icon-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class NgxIconPageComponent {
   constructor(public iconRegistryService: IconRegistryService) {

@@ -5,7 +5,8 @@ import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, Vie
   template: ' <ng-content></ng-content> ',
   styleUrls: ['./large-format-dialog-footer.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class LargeFormatDialogFooterComponent {
   @Input() styleClass?: string;

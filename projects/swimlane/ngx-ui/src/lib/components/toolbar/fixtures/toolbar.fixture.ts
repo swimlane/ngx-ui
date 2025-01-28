@@ -6,7 +6,8 @@ import { ToolbarComponent } from '../toolbar.component';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'toolbar-fixture',
   templateUrl: 'toolbar.fixture.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ToolbarFixtureComponent {
   @ViewChild('toolbar1', { static: true })

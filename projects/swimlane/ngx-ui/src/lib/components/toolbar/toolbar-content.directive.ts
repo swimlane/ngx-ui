@@ -5,5 +5,8 @@ import { Directive } from '@angular/core';
  * See: https://github.com/angular/angular/issues/11251
  */
 
-@Directive({ selector: 'ngx-toolbar-content' })
+@Directive({
+  selector: 'ngx-toolbar-content',
+  standalone: false
+})
 export class ToolbarContentDirective {}

@@ -4,7 +4,8 @@ import { StepperPosition } from '@swimlane/ngx-ui';
 @Component({
   selector: 'app-stepper-page',
   templateUrl: './stepper-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class StepperPageComponent {
   readonly StepperPosition = StepperPosition;

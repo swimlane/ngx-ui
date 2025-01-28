@@ -4,7 +4,8 @@ import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 @Component({
   selector: 'app-button-toggle-page',
   templateUrl: './button-toggle-page.component.html',
-  styleUrls: ['./button-toggle-page.component.scss']
+  styleUrls: ['./button-toggle-page.component.scss'],
+  standalone: false
 })
 export class ButtonTogglePageComponent {
   seasons = ['Winter', 'Spring', 'Summer', 'Autumn'];

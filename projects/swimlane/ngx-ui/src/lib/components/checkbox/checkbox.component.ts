@@ -35,7 +35,8 @@ let nextId = 0;
   },
   providers: [CHECKBOX_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class CheckboxComponent implements ControlValueAccessor {
   @HostListener('click', ['$event']) onClick(ev: Event) {

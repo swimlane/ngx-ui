@@ -6,7 +6,8 @@ import { TooltipDirective } from '../tooltip.directive';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'tooltip-fixture',
   templateUrl: 'tooltip.fixture.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ToolTipFixtureComponent {
   @ViewChild(TooltipDirective, { static: true })

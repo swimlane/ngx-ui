@@ -12,7 +12,8 @@ import { CardStatus } from '../card-status.enum';
     '[class.ngx-card-avatar-img]': '!!src'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class CardAvatarComponent {
   @Input() src: string | SafeUrl;

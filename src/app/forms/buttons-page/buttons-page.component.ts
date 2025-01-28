@@ -5,7 +5,8 @@ import { FileUploader } from 'ng2-file-upload';
   selector: 'app-buttons-page',
   templateUrl: './buttons-page.component.html',
   styleUrls: ['./buttons-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ButtonsPageComponent {
   buttonPromise: any = undefined;

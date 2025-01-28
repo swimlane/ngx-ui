@@ -33,7 +33,8 @@ const enum State {
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./nag.component.scss'],
-  animations: [trigger('bounce', bounceAnimation())]
+  animations: [trigger('bounce', bounceAnimation())],
+  standalone: false
 })
 export class NagComponent implements OnDestroy, OnChanges {
   @Input() cssClass = '';

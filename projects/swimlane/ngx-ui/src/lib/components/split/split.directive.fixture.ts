@@ -15,7 +15,8 @@ import { SplitHandleComponent } from './split-handle.component';
       <div ngxSplitArea="1 1 50%"></div>
     </div>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class SplitDirectiveFixture {

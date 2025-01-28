@@ -5,7 +5,8 @@ import { Directive, Output, EventEmitter, HostListener, ElementRef } from '@angu
   // eslint-disable-next-line @angular-eslint/no-host-metadata-property
   host: {
     title: 'Double click to copy to clipboard'
-  }
+  },
+  standalone: false
 })
 export class DblClickCopyDirective {
   // eslint-disable-next-line @angular-eslint/no-output-on-prefix

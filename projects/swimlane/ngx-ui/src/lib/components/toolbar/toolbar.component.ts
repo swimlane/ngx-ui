@@ -23,7 +23,8 @@ import { ToolbarMenuItem } from './toolbar-menu-item.interface';
   styleUrls: ['./toolbar.component.scss'],
   host: {
     class: 'ngx-toolbar'
-  }
+  },
+  standalone: false
 })
 export class ToolbarComponent implements OnInit {
   @Input() title: string;

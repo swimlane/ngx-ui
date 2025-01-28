@@ -18,7 +18,8 @@ import { HotkeyStatus } from './hotkey-status.enum';
     trigger('containerAnimationState', slideDownFadeOutAnimation()),
     trigger('iconAnimationState', fadeInAnimation())
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class HotkeysComponent implements OnInit, OnDestroy {
   readonly hotkeys$ = new BehaviorSubject<Hotkey[]>([]);

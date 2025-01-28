@@ -24,7 +24,8 @@ export enum BottonGroupStyle {
     class: 'ngx-button-group'
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ButtonGroupComponent {
   @Input()

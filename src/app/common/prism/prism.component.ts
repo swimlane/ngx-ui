@@ -11,7 +11,8 @@ import * as Prism from 'prismjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: {
     class: 'app-prism'
-  }
+  },
+  standalone: false
 })
 export class PrismComponent implements AfterViewInit {
   @Input() language = 'html';

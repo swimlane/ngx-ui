@@ -6,7 +6,8 @@ import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, V
   templateUrl: './card-page.component.html',
   styleUrls: ['./card-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class CardPageComponent implements AfterViewInit {
   cardWidth: number;

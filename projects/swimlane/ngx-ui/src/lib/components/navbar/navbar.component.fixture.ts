@@ -16,7 +16,8 @@ import { NavbarComponent } from './navbar.component';
       <ngx-navbar-item><ngx-icon fontIcon="database"></ngx-icon></ngx-navbar-item>
       <ngx-navbar-item><ngx-icon fontIcon="commandline"></ngx-icon></ngx-navbar-item>
     </ngx-navbar>
-  `
+  `,
+  standalone: false
 })
 export class NavbarComponentFixture {
   @ViewChild('navbar1') readonly navbar: NavbarComponent;

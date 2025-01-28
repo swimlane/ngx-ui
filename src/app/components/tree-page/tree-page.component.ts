@@ -5,7 +5,8 @@ import longJsonObject from './shared/long-json-object.json';
   selector: 'app-tree-page',
   templateUrl: './tree-page.component.html',
   styleUrls: ['./tree-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class TreePageComponent {
   activeNode = null;

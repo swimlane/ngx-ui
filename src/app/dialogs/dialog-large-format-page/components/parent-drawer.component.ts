@@ -97,7 +97,8 @@ import { DrawerDirection, DrawerService } from '@swimlane/ngx-ui';
       <app-child-drawer (dismiss)="close.emit()"></app-child-drawer>
     </ng-template>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ParentDrawerComponent {
   @Output() dismiss = new EventEmitter();

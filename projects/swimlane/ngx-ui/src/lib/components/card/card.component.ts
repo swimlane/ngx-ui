@@ -19,7 +19,8 @@ import { CardAppearance } from './card-appearance.enum';
   styleUrls: ['./card.component.scss'],
   host: { class: 'ngx-card' },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class CardComponent {
   @HostBinding('class.ngx-card-horizontal')

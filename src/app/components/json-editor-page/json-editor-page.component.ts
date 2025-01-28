@@ -5,7 +5,8 @@ import { JSONSchema7 } from 'json-schema';
   selector: 'app-json-editor-page',
   templateUrl: './json-editor-page.component.html',
   styleUrls: ['./json-editor-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class JsonEditorPageComponent {
   jsonEditorSchema = {

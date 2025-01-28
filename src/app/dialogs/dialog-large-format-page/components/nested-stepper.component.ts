@@ -140,7 +140,8 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
       </ngx-step>
     </ngx-stepper>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class NestedStepperComponent {
   @Input() stepIndex: number;

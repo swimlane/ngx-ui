@@ -17,7 +17,8 @@ import { IconRegistryService } from '../../services/icon-registry/icon-registry.
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class IconComponent implements OnChanges, OnInit {
   @Input() fontIcon: string | string[];

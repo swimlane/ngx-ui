@@ -6,7 +6,8 @@ import { ChangeDetectionStrategy, Component, HostBinding, Input, ViewEncapsulati
   templateUrl: './large-format-dialog-header-title.component.html',
   styleUrls: ['./large-format-dialog-header-title.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class LargeFormatDialogHeaderTitleComponent {
   @Input() format: 'large' | 'medium' = 'large';

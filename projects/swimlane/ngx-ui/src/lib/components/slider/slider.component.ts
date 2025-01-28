@@ -38,7 +38,8 @@ const edge = window.navigator.userAgent.indexOf('Edge') > -1;
     '[class.active]': 'active',
     '[class.vertical]': 'isVertical',
     '[class.horizontal]': 'isHorizontal'
-  }
+  },
+  standalone: false
 })
 export class SliderComponent implements ControlValueAccessor, OnInit {
   @Input() id = `range-${++nextId}`;

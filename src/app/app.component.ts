@@ -11,7 +11,8 @@ import pkg from '../../projects/swimlane/ngx-ui/package.json';
   selector: 'app',
   styleUrls: ['./app.component.scss'],
   templateUrl: './app.template.html',
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class AppComponent {
   version = pkg.version;

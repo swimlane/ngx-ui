@@ -30,7 +30,8 @@ import { BehaviorSubject } from 'rxjs';
       }
     `
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class DialogLargeFormatDialogPageComponent {
   stepIndex = 0;

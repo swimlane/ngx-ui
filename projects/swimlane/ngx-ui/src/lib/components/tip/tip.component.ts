@@ -33,7 +33,8 @@ function getIcon(status: TipStatus): string {
     '[class.ngx-tip--error]': 'status === TipStatus.Error',
     '[class.ngx-tip--notice]': 'status === TipStatus.Notice',
     '[class.ngx-tip--warning]': 'status === TipStatus.Warning'
-  }
+  },
+  standalone: false
 })
 export class TipComponent implements OnChanges, OnDestroy {
   @Input() status: TipStatus;

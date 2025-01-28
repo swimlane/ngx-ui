@@ -8,7 +8,8 @@ import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation } from '@a
     class: 'ngx-card-header'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class CardHeaderComponent {
   @Input() label: string; // used for vertical card

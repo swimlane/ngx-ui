@@ -9,7 +9,8 @@ import { DropdownShowTypes } from './dropdown.show-types.enum';
   host: {
     class: 'ngx-dropdown-toggle',
     '[class.disabled]': 'disabled'
-  }
+  },
+  standalone: false
 })
 export class DropdownToggleDirective {
   @Input() showEvent: DropdownShowTypes = DropdownShowTypes.Click;
