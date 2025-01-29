@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+- Enhancement: Support Angular 19, `standalone` now required in all `@Component`
+- Enhancement: Update SASS `include` to `use` and `forward` and update for latest standard libraries
+- Fix: CSS styles scoped to `webkit` that are now standardized
+
 ## 48.3.0 (2024-12-17)
 
 - Enhancement (`icons`): Added `percent-gauge` icon
