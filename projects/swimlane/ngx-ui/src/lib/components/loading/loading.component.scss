@@ -1,4 +1,4 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
 
 .ngx-loading-bar {
   display: block;
@@ -13,8 +13,8 @@
     z-index: 99999;
 
     .ngx-loading-bar--bar {
-      background-color: $color-blue-300;
-      color: $color-blue-300;
+      background-color: colors.$color-blue-300;
+      color: colors.$color-blue-300;
       height: 2px;
       opacity: 1;
       z-index: 99998;

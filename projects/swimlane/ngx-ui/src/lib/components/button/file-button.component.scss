@@ -1,10 +1,10 @@
-@import 'colors/variables';
-@import 'components/buttons';
+@use 'colors/colors' as colors;
+@use 'components/buttons' as buttons;
 
-$upload-button-text-color: $color-grey-100;
-$upload-button-progress-fill: $color-blue-400;
-$upload-button-progress-bg: $color-grey-500;
-$upload-button-success-fill: $color-blue-400;
+$upload-button-text-color: colors.$color-grey-100;
+$upload-button-progress-fill: colors.$color-blue-400;
+$upload-button-progress-bg: colors.$color-grey-500;
+$upload-button-success-fill: colors.$color-blue-400;
 
 /**
  * File upload button
@@ -49,7 +49,7 @@ $upload-button-success-fill: $color-blue-400;
 
     .ngx-file-button-button {
       width: 100%;
-      background: $button-fill-color;
+      background: buttons.$button-fill-color;
       border: none;
       border-radius: 50px;
       padding: 5px 0;
@@ -61,7 +61,7 @@ $upload-button-success-fill: $color-blue-400;
       &:focus:not([disabled]),
       &:hover:not(.disabled),
       &:focus:not(.disabled) {
-        background: $button-fill-active-color;
+        background: buttons.$button-fill-active-color;
       }
 
       .ngx-file-button-label {
@@ -101,7 +101,7 @@ $upload-button-success-fill: $color-blue-400;
 
     .icon-check {
       font-size: 25px;
-      color: $color-grey-100;
+      color: colors.$color-grey-100;
       position: absolute;
       top: 0;
       left: 0;

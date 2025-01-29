@@ -1,9 +1,9 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
 
 .ngx-alert-dialog {
   .ngx-dialog-content {
     padding: 0;
-    background: $color-blue-grey-725;
+    background: colors.$color-blue-grey-725;
 
     .ngx-dialog-header {
       padding: 1.4rem 2rem 0 2rem;
@@ -18,7 +18,7 @@
 
     .ngx-dialog-body {
       padding: 0.5rem 2rem;
-      color: $color-blue-grey-300;
+      color: colors.$color-blue-grey-300;
     }
 
     .ngx-dialog-footer {
@@ -30,12 +30,12 @@
     .ngx-dialog-content {
       .ngx-dialog-header {
         padding: 1.4rem 2rem;
-        border-left: 5px solid $color-blue-500;
-        background: $color-blue-grey-750;
+        border-left: 5px solid colors.$color-blue-500;
+        background: colors.$color-blue-grey-750;
 
         .close-button {
           float: right;
-          background: $color-blue-500;
+          background: colors.$color-blue-500;
           color: white;
         }
       }
@@ -46,10 +46,10 @@
 
       &.ngx-alert-danger {
         .ngx-dialog-header {
-          border-left-color: $color-error;
+          border-left-color: colors.$color-error;
 
           .close-button {
-            background: $color-error;
+            background: colors.$color-error;
             color: white;
           }
         }
@@ -57,11 +57,11 @@
 
       &.ngx-alert-warning {
         .ngx-dialog-header {
-          border-left-color: $color-orange-500;
+          border-left-color: colors.$color-orange-500;
 
           .close-button {
-            background: $color-orange-500;
-            color: $color-blue-grey-800;
+            background: colors.$color-orange-500;
+            color: colors.$color-blue-grey-800;
           }
         }
       }

@@ -1,3 +1,3 @@
-@import 'colors';
-@import 'gradient-colors';
-@import 'shadow-variables';
+@forward 'colors';
+@forward 'gradient-colors';
+@forward 'shadow-variables';

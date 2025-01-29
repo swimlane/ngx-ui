@@ -1,4 +1,4 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
 
 .ngx-checkbox {
   display: flex;
@@ -27,11 +27,11 @@
     .ngx-checkbox--box {
       border-radius: 2px;
       background-color: transparent;
-      border: 2px solid $color-blue-grey-600;
+      border: 2px solid colors.$color-blue-grey-600;
       transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
       user-select: none;
       margin: auto 10px auto 0;
-      outline: 0px none $color-blue-200;
+      outline: 0px none colors.$color-blue-200;
       outline-offset: 1px;
 
       &:after {
@@ -41,17 +41,17 @@
         width: 6px;
         height: 12px;
         content: '';
-        border: solid $color-white;
+        border: solid colors.$color-white;
         border-width: 0 2px 2px 0;
         transform: rotate(0deg) scale(0);
         transition: all 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
       }
 
       &.checked {
-        background-color: $color-blue-400;
+        background-color: colors.$color-blue-400;
         border-radius: 2px;
         opacity: 1;
-        border: 2px solid $color-blue-400;
+        border: 2px solid colors.$color-blue-400;
         transform: rotate(0deg) scale(1);
 
         &:after {
@@ -62,14 +62,14 @@
 
     .ngx-checkbox--content {
       margin: auto 0;
-      color: $color-blue-grey-100;
+      color: colors.$color-blue-grey-100;
     }
 
     &:focus-visible {
       outline: none;
 
       .ngx-checkbox--box {
-        outline: 2px solid $color-blue-200;
+        outline: 2px solid colors.$color-blue-200;
       }
     }
   }

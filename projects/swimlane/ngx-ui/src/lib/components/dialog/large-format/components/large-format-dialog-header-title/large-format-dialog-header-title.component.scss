@@ -1,4 +1,4 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
 
 .ngx-large-format-dialog-header-title {
   --title-font-size: 1.75rem;
@@ -73,13 +73,13 @@
     }
 
     h1 {
-      color: $color-white;
+      color: colors.$color-white;
       font-size: var(--title-font-size, 1.75rem);
       line-height: var(--title-font-line-height, 2rem);
     }
 
     h4 {
-      color: $color-blue-grey-250;
+      color: colors.$color-blue-grey-250;
       font-size: 1rem;
       line-height: 0.75rem;
     }

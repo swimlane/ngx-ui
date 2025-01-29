@@ -1,5 +1,5 @@
-@import 'colors/index.scss';
-@import './progress-spinner';
+@use 'colors/colors' as colors;
+@use './progress-spinner';
 
 .ngx-progress-spinner {
   display: flex;
@@ -75,7 +75,7 @@
           display: block;
           transform: translate(calc(50% - 35px), calc(50% - 36px));
           fill: none;
-          stroke: $color-blue-500;
+          stroke: colors.$color-blue-500;
           animation: icon-progress-spinner--check 1s linear forwards;
         }
 
@@ -83,7 +83,7 @@
           display: block;
           transform: translate(calc(50% - 35px), calc(50% - 28px));
           fill: none;
-          stroke: $color-error;
+          stroke: colors.$color-error;
           animation: icon-progress-spinner--check 1s linear forwards;
         }
       }

@@ -1,5 +1,6 @@
-@import 'colors/variables';
-@import '../../json-editor.extensions.scss';
+@use 'colors/colors' as colors;
+@use '../../json-editor.extensions';
+
 .code-editor .ngx-select .ngx-select-input .ngx-select-input-box__controls {
   .ngx-select-caret,
   .ngx-select-clear {
@@ -11,10 +12,10 @@
   font-size: 12px;
   line-height: 13px;
   max-width: 300px;
-  color: $color-blue-grey-800;
+  color: colors.$color-blue-grey-800;
 
   .label {
-    color: $color-blue-grey-550;
+    color: colors.$color-blue-grey-550;
     font-size: 10px;
     font-weight: bold;
     text-transform: uppercase;
@@ -42,7 +43,7 @@ ngx-json-editor-node-flat {
   }
 
   .node {
-    background-color: $color-blue-grey-700;
+    background-color: colors.$color-blue-grey-700;
     box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
     border-radius: 2px;
     display: flex;
@@ -59,7 +60,7 @@ ngx-json-editor-node-flat {
       border-radius: 2px;
       top: 0;
       left: 0;
-      border: 2px solid $color-error;
+      border: 2px solid colors.$color-error;
     }
 
     .left-options {
@@ -67,7 +68,7 @@ ngx-json-editor-node-flat {
       flex-direction: column;
       justify-content: center;
       margin-right: 10px;
-      color: $color-blue-grey-400;
+      color: colors.$color-blue-grey-400;
       flex: 0 0 15px;
 
       .required-indicator {
@@ -79,8 +80,8 @@ ngx-json-editor-node-flat {
           display: flex;
 
           svg path {
-            fill: $color-blue-grey-400;
-            stroke: $color-blue-grey-400;
+            fill: colors.$color-blue-grey-400;
+            stroke: colors.$color-blue-grey-400;
           }
 
           &.not-required {
@@ -91,8 +92,8 @@ ngx-json-editor-node-flat {
 
           &.invalid {
             svg path {
-              fill: $color-error;
-              stroke: $color-error;
+              fill: colors.$color-error;
+              stroke: colors.$color-error;
             }
           }
         }
@@ -143,17 +144,17 @@ ngx-json-editor-node-flat {
           }
 
           input {
-            color: $color-blue-grey-100;
+            color: colors.$color-blue-grey-100;
           }
 
           button {
             display: none;
-            color: $color-blue-grey-400;
+            color: colors.$color-blue-grey-400;
           }
         }
 
         .input-error {
-          color: $color-error;
+          color: colors.$color-error;
           min-height: 1.2em; // min height keeps input from shifting when error is shown
           text-transform: capitalize;
           font-size: 12px;

@@ -1,31 +1,31 @@
-@import 'gradient-colors';
+@use 'gradient-colors' as gradients;
 
 /**
  * Gradients
  */
 
 .gradient-blue {
-  background-image: $gradient-blue;
+  background-image: gradients.$gradient-blue;
 }
 
 .gradient-blue-green {
-  background-image: $gradient-blue-green;
+  background-image: gradients.$gradient-blue-green;
 }
 
 .gradient-blue-red {
-  background-image: $gradient-blue-red;
+  background-image: gradients.$gradient-blue-red;
 }
 
 .gradient-blue-purple {
-  background-image: $gradient-blue-purple;
+  background-image: gradients.$gradient-blue-purple;
 }
 
 .gradient-red-orange {
-  background-image: $gradient-red-orange;
+  background-image: gradients.$gradient-red-orange;
 }
 
 .gradient-orange-purple {
-  background-image: $gradient-orange-purple;
+  background-image: gradients.$gradient-orange-purple;
 }
 
 /**
@@ -33,21 +33,21 @@
  */
 
 .bg-linear-1 {
-  background-image: $bg-linear-1;
+  background-image: gradients.$bg-linear-1;
 }
 
 .bg-linear-2 {
-  background-image: $bg-linear-2;
+  background-image: gradients.$bg-linear-2;
 }
 
 .bg-linear-3 {
-  background-image: $bg-linear-3;
+  background-image: gradients.$bg-linear-3;
 }
 
 .bg-radial-1 {
-  background-image: $bg-radial-1;
+  background-image: gradients.$bg-radial-1;
 }
 
 .bg-radial-2 {
-  background-image: $bg-radial-2;
+  background-image: gradients.$bg-radial-2;
 }

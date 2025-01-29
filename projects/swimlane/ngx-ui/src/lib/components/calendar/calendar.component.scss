@@ -1,22 +1,23 @@
-@import 'colors/variables';
-@import 'forms/inputs';
+@use 'colors/colors' as colors;
+@use 'colors/shadow-variables' as shadows;
+@use 'forms/variables' as inputs;
 
-$calendar-bg: $color-blue-grey-800;
-$calendar-border: $color-blue-grey-700;
-$calendar-title-bg: $color-blue-grey-800;
-$calendar-title-btn: $color-blue-grey-350;
-$calendar-hover-bg: $color-blue-400;
-$calendar-today-bg: $color-blue-grey-750;
-$calendar-active-bg: $color-blue-400;
-$calendar-active-text: $color-grey-050;
-$calendar-range-bg: $color-blue-700;
-$calendar-day-text: $color-blue-grey-350;
-$calendar-month-current: $color-blue-grey-750;
+$calendar-bg: colors.$color-blue-grey-800;
+$calendar-border: colors.$color-blue-grey-700;
+$calendar-title-bg: colors.$color-blue-grey-800;
+$calendar-title-btn: colors.$color-blue-grey-350;
+$calendar-hover-bg: colors.$color-blue-400;
+$calendar-today-bg: colors.$color-blue-grey-750;
+$calendar-active-bg: colors.$color-blue-400;
+$calendar-active-text: colors.$color-grey-050;
+$calendar-range-bg: colors.$color-blue-700;
+$calendar-day-text: colors.$color-blue-grey-350;
+$calendar-month-current: colors.$color-blue-grey-750;
 
 .ngx-calendar {
   position: relative;
   font-size: 0.9rem;
-  box-shadow: $shadow-3;
+  box-shadow: shadows.$shadow-3;
   background: $calendar-bg;
   display: inline-block;
   border: 1px solid $calendar-border;
@@ -32,10 +33,10 @@ $calendar-month-current: $color-blue-grey-750;
   }
 
   button {
-    outline: 0px auto $color-blue-200;
+    outline: 0px auto colors.$color-blue-200;
 
     &:focus-within {
-      outline: 2px solid $color-blue-200;
+      outline: 2px solid colors.$color-blue-200;
       outline-offset: 1px;
     }
   }
@@ -398,15 +399,15 @@ $calendar-month-current: $color-blue-grey-750;
     height: 46px;
 
     .ngx-input-underline {
-      background-color: $color-input-text;
+      background-color: inputs.$color-input-text;
     }
   }
 
   button.ampm {
-    color: $color-blue-grey-500;
+    color: colors.$color-blue-grey-500;
 
     &.selected {
-      color: $color-white;
+      color: colors.$color-white;
       background-color: #818fa933;
       opacity: 20;
     }

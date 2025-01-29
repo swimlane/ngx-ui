@@ -1,4 +1,5 @@
-@import 'colors/variables';
+@use 'sass:color';
+@use 'colors/colors' as colors;
 
 section {
   margin: 40px 0;
@@ -9,7 +10,7 @@ code {
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
-  background-color: $color-blue-grey-775;
+  background-color: colors.$color-blue-grey-775;
   border-radius: 3px;
 }
 
@@ -17,7 +18,7 @@ code {
 .ngx-flex--wrap-fluid,
 .ngx-flex--wrap-fixed {
   margin: 40px 0;
-  border: 1px solid $color-blue-grey-725;
+  border: 1px solid colors.$color-blue-grey-725;
   position: relative;
 
   &:before {
@@ -30,7 +31,7 @@ code {
 }
 
 .ngx-flex--row {
-  background-color: rgba($color-green, 0.1);
+  background-color: rgba(colors.$color-green, 0.1);
   margin-top: 20px;
   position: relative;
   box-sizing: border-box;
@@ -49,9 +50,9 @@ code {
   }
 
   > * {
-    background-color: rgba($color-light-blue, 0.15);
+    background-color: rgba(colors.$color-light-blue, 0.15);
     position: relative;
-    border: 1px solid rgba($color-light-blue, 0.06);
+    border: 1px solid rgba(colors.$color-light-blue, 0.06);
     box-sizing: border-box;
 
     &:before {
@@ -71,7 +72,7 @@ code {
 
     &:hover:before {
       font-size: 12px;
-      background-color: $color-blue-grey-800;
+      background-color: colors.$color-blue-grey-800;
       overflow: visible;
       z-index: 1000;
       width: auto;
@@ -82,7 +83,7 @@ code {
 .box {
   margin: 5px 0;
   padding: 0 5px;
-  background: $color-blue-500;
+  background: colors.$color-blue-500;
   border-radius: 5px;
   overflow: hidden;
   text-align: center;

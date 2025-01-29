@@ -1,4 +1,4 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
 
 .input-item,
 .add-examples {
@@ -8,14 +8,14 @@
 }
 
 .input-item {
-  background: $color-blue-grey-650;
+  background: colors.$color-blue-grey-650;
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
   margin-bottom: 13px;
 
   .drag-drop-handle,
   .remove-item {
-    color: $color-blue-grey-350;
+    color: colors.$color-blue-grey-350;
   }
 
   .drag-drop-handle {
@@ -40,8 +40,8 @@
 .add-examples {
   cursor: pointer;
   height: 45px;
-  border: 1px dashed $color-blue-400;
-  color: $color-blue-400;
+  border: 1px dashed colors.$color-blue-400;
+  color: colors.$color-blue-400;
   display: flex;
   align-items: center;
   justify-content: center;

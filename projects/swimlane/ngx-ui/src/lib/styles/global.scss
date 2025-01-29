@@ -1,8 +1,11 @@
+@use 'fonts/source-sans' as source-sans;
+@use 'typography/font' as font;
+
 html,
 body {
-  font-family: $source-sans-stack;
-  font-size: $font-size;
-  line-height: $line-height;
+  font-family: source-sans.$source-sans-stack;
+  font-size: font.$font-size;
+  line-height: font.$line-height;
 
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

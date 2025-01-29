@@ -1,8 +1,8 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
 
 .property-config {
   .header {
-    background: linear-gradient(180deg, $color-blue-grey-650 0%, $color-blue-grey-750 100%);
+    background: linear-gradient(180deg, colors.$color-blue-grey-650 0%, colors.$color-blue-grey-750 100%);
     height: 75px;
     display: flex;
     align-items: center;
@@ -27,7 +27,7 @@
 
   .new-enum-input {
     button {
-      color: $color-grey-500;
+      color: colors.$color-grey-500;
     }
 
     .ngx-input-hint {
@@ -70,7 +70,7 @@
   }
 
   .examples-container {
-    border: 1px solid $color-blue-grey-550;
+    border: 1px solid colors.$color-blue-grey-550;
     padding: 14px;
   }
 }

@@ -1,16 +1,18 @@
+@use 'sass:color';
+@use '../colors/colors' as colors;
 /**
  * Font colors
  */
 @if true {
   $colors: (
-    'blue': $color-blue,
-    'light-blue': $color-light-blue,
-    'green': $color-green,
-    'orange': $color-orange,
-    'red': $color-red,
-    'purple': $color-purple,
-    'blue-grey': $color-blue-grey,
-    'grey': $color-grey
+    'blue': colors.$color-blue,
+    'light-blue': colors.$color-light-blue,
+    'green': colors.$color-green,
+    'orange': colors.$color-orange,
+    'red': colors.$color-red,
+    'purple': colors.$color-purple,
+    'blue-grey': colors.$color-blue-grey,
+    'grey': colors.$color-grey
   );
 
   $palette: (
@@ -34,15 +36,15 @@
     900: 40%
   );
 
-  @each $name, $hex in $colors {
-    @each $weight, $percentage in $palette {
+  @each $name, $hex in colors.$colors {
+    @each $weight, $percentage in colors.$palette {
       @if $weight < 500 {
         .text-#{'' + $name}-#{$weight} {
-          color: lighten($hex, $percentage);
+          color: color.adjust($hex, $lightness: $percentage);
         }
       } @else if $weight > 500 {
         .text-#{'' + $name}-#{$weight} {
-          color: darken($hex, $percentage);
+          color: color.adjust($hex, $lightness: -$percentage);
         }
       } @else {
         .text-#{'' + $name} {

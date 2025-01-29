@@ -1,4 +1,4 @@
-@import '../../styles/colors/variables.scss';
+@use 'colors/colors' as colors;
 
 .ngx-button-toggle-group {
   display: inline-flex;
@@ -9,7 +9,7 @@
       font-weight: 600;
       font-size: 12px;
       line-height: 12px;
-      color: $color-blue-grey-350;
+      color: colors.$color-blue-grey-350;
     }
 
     &__toggle-buttons {
@@ -17,7 +17,7 @@
       display: flex;
       flex-wrap: nowrap;
 
-      border: 1px solid $color-blue-grey-600;
+      border: 1px solid colors.$color-blue-grey-600;
       border-radius: 4px;
 
       padding: 2px;
@@ -32,7 +32,7 @@
         height: calc(100% - 4px);
 
         border-radius: 2px;
-        background-color: $color-blue-grey-700;
+        background-color: colors.$color-blue-grey-700;
         transition: all 0.25s cubic-bezier(0.35, 0, 0.25, 1);
       }
     }

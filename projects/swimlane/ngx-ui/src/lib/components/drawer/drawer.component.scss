@@ -1,4 +1,4 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
 
 .ngx-drawer {
   display: block;
@@ -6,7 +6,7 @@
   overflow-x: hidden;
   text-align: left;
   z-index: 998;
-  background: $color-blue-grey-800;
+  background: colors.$color-blue-grey-800;
 
   &.left-drawer {
     top: 0;

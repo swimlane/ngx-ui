@@ -1,6 +1,6 @@
-@import 'vendor/index';
-@import 'colors/variables';
-@import 'components/index';
+@use 'vendor/index' as vendor;
+@use 'colors/colors' as colors;
+@use 'components/index' as components;
 
 .appearance-table {
   max-width: 100%;

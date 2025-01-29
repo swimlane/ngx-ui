@@ -1,13 +1,14 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
+@use 'colors/shadow-variables' as shadows;
 
-$tooltip-bg: $color-blue-grey-200;
-$tooltip-color: $color-blue-grey-700;
+$tooltip-bg: colors.$color-blue-grey-200;
+$tooltip-color: colors.$color-blue-grey-700;
 $tooltip-caret-bg: $tooltip-bg;
 $tooltip-border: transparent;
 $tooltip-spacing: 10px;
 
-$popover-bg: $color-blue-grey-200;
-$popover-color: $color-blue-grey-700;
+$popover-bg: colors.$color-blue-grey-200;
+$popover-color: colors.$color-blue-grey-700;
 $popover-caret-bg: $popover-bg;
 $popover-border: transparent;
 $popover-spacing: 10px;
@@ -28,7 +29,7 @@ $popover-spacing: 10px;
   &.type-popover {
     background: $popover-bg;
     color: $popover-color;
-    box-shadow: $shadow-3;
+    box-shadow: shadows.$shadow-3;
     font-size: 13px;
     padding: 10px;
 

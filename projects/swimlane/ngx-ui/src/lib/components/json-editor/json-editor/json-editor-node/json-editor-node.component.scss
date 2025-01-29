@@ -1,4 +1,6 @@
-@import '../json-editor.variables.scss';
+@use 'sass:color';
+@use 'colors/colors' as colors;
+@use '../json-editor.variables' as json-editor;
 
 .json-tree-node {
   padding: 0px;
@@ -18,7 +20,7 @@
       content: '=';
       left: -19px;
       font-size: 20px;
-      color: $color-blue-grey-500;
+      color: colors.$color-blue-grey-500;
     }
 
     &.inline {
@@ -36,7 +38,7 @@
 
   .ngx-expander {
     font-size: 0.75rem;
-    color: $color-blue-grey-200;
+    color: colors.$color-blue-grey-200;
     position: absolute;
     top: -25px;
     left: -26px;
@@ -49,12 +51,12 @@
 
     &.ngx-tree-collapse::before,
     &.ngx-tree-expand::before {
-      background: $color-blue-grey-800;
+      background: colors.$color-blue-grey-800;
       border-radius: 50%;
     }
 
     &.invalid {
-      color: $color-error;
+      color: colors.$color-error;
     }
   }
 
@@ -64,10 +66,10 @@
     width: 21px;
     height: 21px;
     padding: 2px 3px;
-    background: $color-blue-grey-300;
+    background: colors.$color-blue-grey-300;
 
     ngx-icon {
-      color: $color-blue-grey-800;
+      color: colors.$color-blue-grey-800;
     }
 
     &::before {
@@ -76,7 +78,7 @@
       height: 1px;
       border-radius: 5px;
       background: none;
-      border-top: dashed 1px $color-tree-line;
+      border-top: dashed 1px json-editor.$color-tree-line;
       position: absolute;
       top: 50%;
       left: -15px;
@@ -88,17 +90,17 @@
     top: -4px;
     bottom: 14px;
     left: 5px;
-    border-left: dashed 1px $color-tree-line;
+    border-left: dashed 1px json-editor.$color-tree-line;
     width: 1px;
   }
 
   .property-def {
-    border: 1px solid $color-node-item-border;
+    border: 1px solid json-editor.$color-node-item-border;
     height: 30px;
     display: inline-block;
     margin-left: 20px;
     position: relative;
-    background: $color-node-item-bg;
+    background: json-editor.$color-node-item-bg;
 
     &::before {
       content: ' ';
@@ -106,7 +108,7 @@
       height: 1px;
       border-radius: 5px;
       background: none;
-      border-top: dashed 1px $color-tree-line;
+      border-top: dashed 1px json-editor.$color-tree-line;
       position: absolute;
       top: 50%;
       left: -15px;
@@ -116,9 +118,9 @@
       width: 28px;
       height: 28px;
       position: relative;
-      background: $color-icon-type-bg;
+      background: json-editor.$color-icon-type-bg;
       ngx-icon {
-        color: $color-icon-type;
+        color: json-editor.$color-icon-type;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -130,7 +132,7 @@
       display: inline-block;
 
       &:hover {
-        background: opacify($color-icon-type-bg, 0.1);
+        background: color.adjust(json-editor.$color-icon-type-bg, $alpha: 0.1);
       }
     }
 
@@ -144,7 +146,7 @@
 
       .title {
         display: inline-block;
-        color: $color-blue-grey-400;
+        color: colors.$color-blue-grey-400;
         width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -156,7 +158,7 @@
       input {
         border: none;
         background: transparent;
-        color: $color-blue-grey-150;
+        color: colors.$color-blue-grey-150;
         width: calc(100% - 5px);
         line-height: 20px;
         font-size: 14px;
@@ -168,14 +170,14 @@
     position: absolute;
     top: -28px;
     left: 205px;
-    color: $color-error;
+    color: colors.$color-error;
   }
 
   *:not(ngx-input).value-input,
   ngx-input.value-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {
-    border: 1px solid $color-node-item-border;
-    background: $color-node-item-bg;
-    color: $color-blue-grey-150;
+    border: 1px solid json-editor.$color-node-item-border;
+    background: json-editor.$color-node-item-bg;
+    color: colors.$color-blue-grey-150;
     width: 100%;
     height: 30px;
     padding: 5px;
@@ -183,7 +185,7 @@
     margin: 0;
 
     &.select * {
-      background-color: $color-blue-grey-700;
+      background-color: colors.$color-blue-grey-700;
     }
 
     &.code {
@@ -216,7 +218,7 @@
         min-height: 30px;
         position: absolute;
         z-index: 20;
-        background: $color-blue-grey-775;
+        background: colors.$color-blue-grey-775;
 
         .edit-code-icon {
           display: inline;
@@ -240,13 +242,13 @@
     line-height: 30px;
 
     .ngx-toggle-text {
-      color: $color-blue-grey-150;
+      color: colors.$color-blue-grey-150;
     }
   }
 
   .invalid {
     > div > .value-input {
-      border: 1px solid $color-error;
+      border: 1px solid colors.$color-error;
     }
   }
 }

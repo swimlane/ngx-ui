@@ -1,11 +1,14 @@
+@use 'colors/colors' as colors;
+@use 'colors/gradient-colors' as gradients;
+
 .night-theme,
 .moonlight-theme {
-  background: $color-blue-grey-850;
-  color: $color-blue-grey-050;
+  background: colors.$color-blue-grey-850;
+  color: colors.$color-blue-grey-050;
 }
 
 .moonlight-theme {
-  background: $bg-radial-2;
+  background: gradients.$bg-radial-2;
   background-size: cover;
   background-repeat: no-repeat;
 }

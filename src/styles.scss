@@ -1,9 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../dist/swimlane/ngx-ui/index.css';
+@use '../dist/swimlane/ngx-ui/index.css';
 
 // prism theme
-@import './app/common/prism/prism.css';
-@import 'colors/variables';
+@use './app/common/prism/prism.css';
+@use 'colors/colors' as colors;
 
 .appearance-table {
   max-width: 500px;
@@ -33,11 +33,11 @@ code {
 }
 
 th > code {
-  color: $color-blue-grey-050;
+  color: colors.$color-blue-grey-050;
 }
 
 th > code.component-type {
-  color: $color-blue-200;
+  color: colors.$color-blue-200;
   display: block;
 }
 

@@ -2,13 +2,13 @@
  * Core
  */
 
-@import 'vendor/index';
-@import 'colors/index';
-@import 'fonts/index';
-@import 'typography/index';
-@import 'forms/index';
-@import 'components/index';
-@import 'themes/index';
-@import 'global';
-@import 'layouts/index';
-@import '../assets/icons/index';
+@forward 'vendor/index';
+@forward 'colors/index';
+@forward 'fonts/index';
+@forward 'typography/index';
+@forward 'forms/index';
+@forward 'components/index';
+@forward 'themes/index';
+@forward 'global';
+@forward 'layouts/index';
+@forward '../assets/icons/index';

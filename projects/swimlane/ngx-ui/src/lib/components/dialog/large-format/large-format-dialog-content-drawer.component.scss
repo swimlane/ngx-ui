@@ -1,4 +1,4 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
 
 .ngx-large-format-dialog-content {
   ngx-drawer.ngx-drawer {
@@ -7,7 +7,7 @@
       max-height: calc(100% - 2rem);
       margin-left: 1rem;
       max-width: calc(100% - 2rem);
-      background-color: $color-blue-grey-750;
+      background-color: colors.$color-blue-grey-750;
       overflow: hidden;
 
       &--1\/2 {

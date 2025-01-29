@@ -1,4 +1,5 @@
-@import 'colors/variables';
+@use 'sass:color';
+@use 'colors/colors' as colors;
 
 /**
  * Theme Styles
@@ -27,15 +28,15 @@
 
     .search-box {
       border: 1px solid transparent;
-      color: $color-blue-grey-400;
-      background: $color-blue-grey-700;
+      color: colors.$color-blue-grey-400;
+      background: colors.$color-blue-grey-700;
       height: 40px;
       padding: 8px;
       line-height: 1em;
       margin: 0;
 
       ngx-input-suffix .btn {
-        color: $color-blue-grey-400;
+        color: colors.$color-blue-grey-400;
 
         &:hover {
           color: #ffffff;
@@ -108,7 +109,7 @@
  */
 .style-header {
   text-transform: uppercase;
-  color: $color-grey-300;
+  color: colors.$color-grey-300;
   font-size: 1rem;
   position: relative;
   padding-bottom: 5px;
@@ -123,7 +124,7 @@
     content: '';
     width: 25px;
     height: 1px;
-    background: $color-grey-300;
+    background: colors.$color-grey-300;
     position: absolute;
     bottom: 0;
     left: 0;
@@ -142,11 +143,11 @@
     padding: 10px 5px;
     text-align: center;
     margin: 10px;
-    border: solid 1px $color-blue-grey-800;
+    border: solid 1px colors.$color-blue-grey-800;
     border-radius: 2px;
 
     .icon-name {
-      color: $color-blue-grey-600;
+      color: colors.$color-blue-grey-600;
       font-size: 0.9rem;
       line-height: 1rem;
     }
@@ -250,14 +251,14 @@
 }
 
 $colors: (
-  'blue': $color-blue,
-  'light-blue': $color-light-blue,
-  'green': $color-green,
-  'orange': $color-orange,
-  'red': $color-red,
-  'purple': $color-purple,
-  'blue-grey': $color-blue-grey,
-  'grey': $color-grey
+  'blue': colors.$color-blue,
+  'light-blue': colors.$color-light-blue,
+  'green': colors.$color-green,
+  'orange': colors.$color-orange,
+  'red': colors.$color-red,
+  'purple': colors.$color-purple,
+  'blue-grey': colors.$color-blue-grey,
+  'grey': colors.$color-grey
 );
 
 $palette: (
@@ -289,15 +290,15 @@ $palette: (
   @each $weight, $percentage in $palette {
     @if $weight < 100 {
       .color-#{'' + $name}-#{'0' + $weight} {
-        background-color: lighten($hex, $percentage);
+        background-color: color.adjust($hex, $lightness: $percentage);
       }
     } @else if $weight < 500 {
       .color-#{'' + $name}-#{$weight} {
-        background-color: lighten($hex, $percentage);
+        background-color: color.adjust($hex, $lightness: $percentage);
       }
     } @else if $weight > 500 {
       .color-#{'' + $name}-#{$weight} {
-        background-color: darken($hex, $percentage);
+        background-color: color.adjust($hex, $lightness: -$percentage);
       }
     } @else {
       .color-#{'' + $name}-#{$weight} {
@@ -313,7 +314,7 @@ $palette: (
 }
 
 .glow-demo {
-  background: $color-blue-grey-850;
+  background: colors.$color-blue-grey-850;
   margin: 20px;
   text-align: center;
   padding: 20px 10px;

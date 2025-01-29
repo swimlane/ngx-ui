@@ -1,26 +1,27 @@
-@import 'colors/variables';
-@import 'forms/variables';
-@import '../input/input.component';
+@use 'sass:color';
+@use 'colors/colors' as colors;
+@use 'forms/variables' as forms;
+@forward '../input/input.component';
 
 // general
-$color-group-bg: darken($color-blue-grey-700, 5%);
-$color-dropdown-bg: $color-blue-grey-700;
-$color-hover-bg: $color-blue-grey-725;
-$color-placeholder-text: $color-blue-grey-350;
-$color-caret-bg: $color-blue-grey-350;
+$color-group-bg: color.adjust(colors.$color-blue-grey-700, $lightness: -5%);
+$color-dropdown-bg: colors.$color-blue-grey-700;
+$color-hover-bg: colors.$color-blue-grey-725;
+$color-placeholder-text: colors.$color-blue-grey-350;
+$color-caret-bg: colors.$color-blue-grey-350;
 
 // filter
-$color-filter-bg: $color-blue-grey-600;
-$color-filter-text: $color-blue-grey-050;
-$color-empty-text: $color-blue-grey-150;
+$color-filter-bg: colors.$color-blue-grey-600;
+$color-filter-text: colors.$color-blue-grey-050;
+$color-empty-text: colors.$color-blue-grey-150;
 
 // chips
-$color-chip-bg: $color-blue-grey-600;
-$color-chip-text: #fff;
+$color-chip-bg: colors.$color-blue-grey-600;
+$color-chip-text: #ffffff;
 
 .ngx-select {
-  @include input-box;
-  min-width: $input-min-width;
+  @include forms.input-box;
+  min-width: forms.$input-min-width;
 
   .ngx-select-flex-wrap {
     flex-direction: row;
@@ -40,7 +41,7 @@ $color-chip-text: #fff;
     width: 100%;
 
     .ngx-select-hint {
-      @include input-hint;
+      @include forms.input-hint;
     }
   }
 
@@ -74,7 +75,7 @@ $color-chip-text: #fff;
     }
 
     .ngx-select-input-underline {
-      @include input-underline;
+      @include forms.input-underline;
     }
 
     &:focus-within,
@@ -86,7 +87,7 @@ $color-chip-text: #fff;
 
     .ngx-select-input-list {
       padding: 0;
-      color: $color-input-text;
+      color: forms.$color-input-text;
       min-height: 1.4em;
       max-width: 100%;
     }
@@ -96,7 +97,7 @@ $color-chip-text: #fff;
     }
 
     .ngx-select-label {
-      @include input-label;
+      @include forms.input-label;
     }
 
     .ngx-select-placeholder {
@@ -124,7 +125,7 @@ $color-chip-text: #fff;
         min-height: 1em;
 
         &:hover {
-          color: $color-blue-400;
+          color: colors.$color-blue-400;
         }
       }
 
@@ -149,10 +150,10 @@ $color-chip-text: #fff;
   .ngx-select-input-option {
     // Specific style for links in tagging options
     > a {
-      color: $color-blue-grey-050;
+      color: colors.$color-blue-grey-050;
 
       > .ngx-icon {
-        color: $color-blue-grey-200;
+        color: colors.$color-blue-grey-200;
         font-size: 0.55em;
       }
       &:hover {
@@ -208,7 +209,7 @@ $color-chip-text: #fff;
         flex: 0 0 auto;
 
         &:hover {
-          color: $color-blue-400;
+          color: colors.$color-blue-400;
         }
       }
 
@@ -232,7 +233,8 @@ $color-chip-text: #fff;
           border: none;
           outline: none;
           -webkit-appearance: none;
-          color: $color-input-text;
+          appearance: none;
+          color: forms.$color-input-text;
           line-height: 1em;
           display: inline-block;
           font-size: 1em;
@@ -263,7 +265,7 @@ $color-chip-text: #fff;
         z-index: 500;
         top: -1px;
         &:hover {
-          color: $color-blue-400;
+          color: colors.$color-blue-400;
         }
       }
     }
@@ -289,7 +291,7 @@ $color-chip-text: #fff;
           white-space: nowrap;
           text-overflow: ellipsis;
           display: block;
-          color: $color-input-text;
+          color: forms.$color-input-text;
           overflow-x: hidden;
           overflow-y: visible;
         }
@@ -351,7 +353,7 @@ $color-chip-text: #fff;
     z-index: 1000;
     width: 100%;
     background: $color-dropdown-bg;
-    border: 1px solid $color-blue-grey-650;
+    border: 1px solid colors.$color-blue-grey-650;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 10px;
     opacity: 0;
@@ -364,11 +366,11 @@ $color-chip-text: #fff;
       position: relative;
 
       &:not(:last-child) {
-        border-bottom: 1px solid $color-blue-grey-650;
+        border-bottom: 1px solid colors.$color-blue-grey-650;
       }
 
       .ngx-check {
-        color: $color-blue-400;
+        color: colors.$color-blue-400;
         position: absolute;
         right: 15px;
         top: 50%;
@@ -388,7 +390,7 @@ $color-chip-text: #fff;
         text-overflow: ellipsis;
 
         &.disabled {
-          color: $color-blue-grey-450;
+          color: colors.$color-blue-grey-450;
           opacity: 1;
         }
 
@@ -404,7 +406,7 @@ $color-chip-text: #fff;
         }
 
         &.selected {
-          background: $color-blue-grey-750;
+          background: colors.$color-blue-grey-750;
 
           &:not(.disabled) {
             &.active,
@@ -424,7 +426,7 @@ $color-chip-text: #fff;
           display: block;
           font-weight: 600;
           line-height: 20px;
-          color: $color-blue-grey-300;
+          color: colors.$color-blue-grey-300;
           overflow-x: hidden;
           text-overflow: ellipsis;
         }
@@ -446,7 +448,7 @@ $color-chip-text: #fff;
       .ngx-x {
         position: absolute;
         top: 50%;
-        color: $color-blue-grey-350;
+        color: colors.$color-blue-grey-350;
       }
 
       .ngx-search {
@@ -462,7 +464,7 @@ $color-chip-text: #fff;
         cursor: pointer;
 
         &:hover {
-          color: $color-blue-grey-300;
+          color: colors.$color-blue-grey-300;
         }
       }
 
@@ -484,7 +486,7 @@ $color-chip-text: #fff;
         }
 
         &::placeholder {
-          color: $color-blue-grey-350;
+          color: colors.$color-blue-grey-350;
         }
       }
     }
@@ -516,16 +518,16 @@ $color-chip-text: #fff;
   &.invalid {
     .ngx-select-label {
       font-weight: 600;
-      color: $color-red;
+      color: colors.$color-red;
     }
 
     .ngx-select-caret,
     .ngx-select-hint {
-      color: $color-red;
+      color: colors.$color-red;
     }
 
     .ngx-select-input-underline {
-      background-color: $color-red;
+      background-color: colors.$color-red;
     }
   }
 
@@ -536,12 +538,12 @@ $color-chip-text: #fff;
 
     .ngx-select-flex-wrap {
       .ngx-select-input-box-outer-wrap {
-        @include input-fill-background;
+        @include forms.input-fill-background;
       }
 
       .ngx-select-input-box {
         min-height: 1.75em;
-        color: $color-blue-grey-050;
+        color: colors.$color-blue-grey-050;
       }
     }
 
@@ -555,10 +557,10 @@ $color-chip-text: #fff;
     .ngx-select-label,
     .ngx-select-caret,
     &.single-selection .ngx-select-clear {
-      color: $input-label-color-active;
+      color: forms.$input-label-color-active;
 
       &:hover {
-        color: $color-blue-400;
+        color: colors.$color-blue-400;
       }
     }
   }
@@ -603,7 +605,7 @@ $color-chip-text: #fff;
   &.active,
   &.fill {
     .ngx-select-input .ngx-select-label {
-      font-size: $input-label-font-size-active;
+      font-size: forms.$input-label-font-size-active;
       top: -1.2em;
       padding-right: 0;
     }

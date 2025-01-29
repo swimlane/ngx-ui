@@ -1,5 +1,5 @@
-@import 'colors/index.scss';
-@import './stepper';
+@use 'colors/colors' as colors;
+@use './stepper' as stepper;
 
 .ngx-step {
   flex: 1 1 auto;
@@ -16,21 +16,25 @@
 
   &.ngx-step--active {
     .ngx-step--title {
-      color: $color-blue-500;
+      color: colors.$color-blue-500;
     }
 
     .ngx-step--step {
       &:after {
-        background-image: linear-gradient(to right, $color-blue-500 0%, $color-blue-grey-600 75%) !important;
+        background-image: linear-gradient(
+          to right,
+          colors.$color-blue-500 0%,
+          colors.$color-blue-grey-600 75%
+        ) !important;
       }
 
       .ngx-step--circle {
-        border: 1.75px solid $color-blue-500;
-        color: $color-blue-500;
+        border: 1.75px solid colors.$color-blue-500;
+        color: colors.$color-blue-500;
         box-shadow: 0px 0px 9.59842px rgba(20, 131, 255, 0.8);
 
         .marker-path {
-          fill: $color-blue-500;
+          fill: colors.$color-blue-500;
         }
       }
     }
@@ -39,8 +43,8 @@
   &.ngx-step--complete {
     .ngx-step--circle {
       &:hover {
-        border: 1.75px solid $color-blue-500;
-        color: $color-blue-500;
+        border: 1.75px solid colors.$color-blue-500;
+        color: colors.$color-blue-500;
         box-shadow: 0px 0px 9.59842px rgba(20, 131, 255, 0.8);
 
         .ngx-step--indicator {
@@ -52,28 +56,28 @@
         }
 
         .marker-path {
-          fill: $color-blue-500;
+          fill: colors.$color-blue-500;
         }
       }
     }
 
     &:not(.ngx-step--complete-last) {
       .ngx-step--title {
-        color: $color-green-500;
+        color: colors.$color-green-500;
       }
 
       .ngx-step--step {
         &:after {
-          background-color: $color-green-500 !important;
+          background-color: colors.$color-green-500 !important;
         }
 
         .ngx-step--circle {
-          border: 1.75px solid $color-green-500;
-          color: $color-green-500;
+          border: 1.75px solid colors.$color-green-500;
+          color: colors.$color-green-500;
           box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
 
           .marker-path {
-            fill: $color-green-500;
+            fill: colors.$color-green-500;
           }
 
           .ngx-step--indicator {
@@ -89,21 +93,21 @@
 
     &.ngx-step--complete-last {
       .ngx-step--title {
-        color: $color-green-500;
+        color: colors.$color-green-500;
       }
 
       .ngx-step--step {
         &:after {
-          background-image: linear-gradient(to right, #1edeb6 0%, $color-blue-500 75%) !important;
+          background-image: linear-gradient(to right, #1edeb6 0%, colors.$color-blue-500 75%) !important;
         }
 
         .ngx-step--circle {
-          border: 1.75px solid $color-green-500;
-          color: $color-green-500;
+          border: 1.75px solid colors.$color-green-500;
+          color: colors.$color-green-500;
           box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
 
           .marker-path {
-            fill: $color-green-500;
+            fill: colors.$color-green-500;
           }
 
           .ngx-step--indicator {
@@ -126,8 +130,8 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 22px;
-    color: $color-blue-grey-600;
-    transition: color $transition-speed ease-in-out;
+    color: colors.$color-blue-grey-600;
+    transition: color stepper.$transition-speed ease-in-out;
   }
 
   .ngx-step--step {
@@ -138,8 +142,9 @@
     &:after {
       flex: 1 1 auto;
       height: 1.4px;
-      background-color: $color-blue-grey-600;
-      transition: background-color $transition-speed ease-in-out, background-image $transition-speed ease-in-out;
+      background-color: colors.$color-blue-grey-600;
+      transition: background-color stepper.$transition-speed ease-in-out,
+        background-image stepper.$transition-speed ease-in-out;
       content: '';
     }
 
@@ -148,15 +153,15 @@
       justify-content: center;
       align-items: center;
       position: relative;
-      width: $stepper-size;
-      height: $stepper-size;
-      background: linear-gradient(180deg, $color-blue-grey-750 0%, $color-blue-grey-850 100%);
+      width: stepper.$stepper-size;
+      height: stepper.$stepper-size;
+      background: linear-gradient(180deg, colors.$color-blue-grey-750 0%, colors.$color-blue-grey-850 100%);
       border-radius: 50%;
-      border: 1.75px solid $color-blue-grey-600;
-      color: $color-blue-grey-600;
-      font-size: $stepper-size * 0.5;
+      border: 1.75px solid colors.$color-blue-grey-600;
+      color: colors.$color-blue-grey-600;
+      font-size: stepper.$stepper-size * 0.5;
       font-weight: bold;
-      transition: border-color $transition-speed ease-in-out, color $transition-speed ease-in-out;
+      transition: border-color stepper.$transition-speed ease-in-out, color stepper.$transition-speed ease-in-out;
       user-select: none;
       cursor: pointer;
 
@@ -174,7 +179,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        transition: opacity $transition-speed ease-in-out;
+        transition: opacity stepper.$transition-speed ease-in-out;
       }
     }
   }

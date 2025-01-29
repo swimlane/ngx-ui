@@ -1,4 +1,5 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
+@use 'colors/shadow-variables' as shadows;
 
 .resize-overlay {
   .ngx-overlay {
@@ -17,7 +18,7 @@
       font-size: 14px;
       line-height: 17px;
       max-width: 250px;
-      color: $color-blue-grey-100;
+      color: colors.$color-blue-grey-100;
 
       h3 {
         font-size: 18px !important;
@@ -26,13 +27,13 @@
       }
 
       .ngx-icon.ngx-browser-size {
-        color: $color-red;
+        color: colors.$color-red;
         font-size: 46px;
         line-height: 46px;
       }
 
       .ngx-icon.ngx-question {
-        color: $color-blue-grey-100;
+        color: colors.$color-blue-grey-100;
         font-size: 1.5rem;
         line-height: 1.5rem;
         margin-top: 1rem;
@@ -58,7 +59,7 @@
             background-color: #d1d5e1;
             border-radius: 3px;
             padding: 3px;
-            box-shadow: $shadow-2;
+            box-shadow: shadows.$shadow-2;
           }
         }
       }

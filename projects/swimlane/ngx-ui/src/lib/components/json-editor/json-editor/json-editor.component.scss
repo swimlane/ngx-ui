@@ -1,13 +1,14 @@
-@import './json-editor.variables.scss';
+@use 'colors/colors' as colors;
+@use './json-editor.variables' as json-editor;
 
 .ngx-json-editor {
   .editor-title {
-    border: 1px solid $color-node-item-border;
+    border: 1px solid json-editor.$color-node-item-border;
     height: 30px;
     display: inline-block;
     margin-left: 20px;
     position: relative;
-    background: $color-node-item-bg;
+    background: json-editor.$color-node-item-bg;
 
     &::before {
       content: ' ';
@@ -15,7 +16,7 @@
       height: 1px;
       border-radius: 5px;
       background: none;
-      border-top: dashed 1px $color-tree-line;
+      border-top: dashed 1px json-editor.$color-tree-line;
       position: absolute;
       top: 50%;
       left: -15px;
@@ -25,9 +26,9 @@
       width: 28px;
       height: 28px;
       position: relative;
-      background: $color-icon-type-bg;
+      background: json-editor.$color-icon-type-bg;
       ngx-icon {
-        color: $color-icon-type;
+        color: json-editor.$color-icon-type;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -50,7 +51,7 @@
       .title {
         display: inline-block;
         width: 100%;
-        color: $color-blue-grey-400;
+        color: colors.$color-blue-grey-400;
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -70,7 +71,7 @@
       min-width: 150px;
 
       &:nth-child(2) {
-        border-left: 1px solid $color-blue-grey-550;
+        border-left: 1px solid colors.$color-blue-grey-550;
       }
     }
   }

@@ -1,7 +1,7 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
 
-$color-default: $color-blue-grey-350; // default icon and border left
-$color-border: $color-blue-grey-650;
+$color-default: colors.$color-blue-grey-350; // default icon and border left
+$color-border: colors.$color-blue-grey-650;
 
 .ngx-tip {
   .tip-container {
@@ -40,7 +40,7 @@ $color-border: $color-blue-grey-650;
         font-size: 14px;
         line-height: 18px;
         margin: 0 10px;
-        color: $color-blue-grey-250;
+        color: colors.$color-blue-grey-250;
       }
     }
 
@@ -48,7 +48,7 @@ $color-border: $color-blue-grey-650;
       margin-top: -2px;
 
       .ngx-icon {
-        color: $color-blue-grey-400;
+        color: colors.$color-blue-grey-400;
         font-size: 10px;
       }
 
@@ -59,13 +59,13 @@ $color-border: $color-blue-grey-650;
   &.ngx-tip--success {
     .tip-container {
       &::before {
-        background: $color-green-500;
+        background: colors.$color-green-500;
       }
 
       .tip-content {
         &--icon {
           .ngx-icon {
-            color: $color-green-500;
+            color: colors.$color-green-500;
           }
         }
       }
@@ -75,12 +75,12 @@ $color-border: $color-blue-grey-650;
   &.ngx-tip--error {
     .tip-container {
       &::before {
-        background: $color-error;
+        background: colors.$color-error;
       }
 
       .tip-content {
         &--icon .ngx-icon {
-          color: $color-error;
+          color: colors.$color-error;
         }
       }
     }
@@ -89,12 +89,12 @@ $color-border: $color-blue-grey-650;
   &.ngx-tip--warning {
     .tip-container {
       &::before {
-        background: $color-orange-400;
+        background: colors.$color-orange-400;
       }
 
       .tip-content {
         &--icon .ngx-icon {
-          color: $color-orange-400;
+          color: colors.$color-orange-400;
         }
       }
     }

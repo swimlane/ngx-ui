@@ -1,0 +1,52 @@
+@use 'sass:color';
+
+// Base
+$color-white: #fff;
+$color-black: #000;
+
+// Define all the base colors
+$color-blue: #1483ff;
+$color-light-blue: #22befb;
+$color-green: #1ddeb6;
+$color-red: #ff4514;
+$color-orange: #ffa814;
+$color-purple: #8a65e8;
+$color-blue-grey: #5a6884;
+$color-grey: #696969;
+
+// Create the color and palette maps
+$colors: (
+  'blue': colors.$color-blue,
+  'light-blue': colors.$color-light-blue,
+  'green': colors.$color-green,
+  'orange': colors.$color-orange,
+  'red': colors.$color-red,
+  'purple': colors.$color-purple,
+  'blue-grey': colors.$color-blue-grey,
+  'grey': colors.$color-grey
+);
+
+$palette: (
+  050: 50%,
+  100: 40%,
+  150: 35%,
+  200: 30%,
+  250: 25%,
+  300: 20%,
+  350: 15%,
+  400: 10%,
+  450: 5%,
+  500: 0,
+  550: 5%,
+  600: 10%,
+  650: 15%,
+  700: 20%,
+  725: 22.5%,
+  750: 25%,
+  775: 27.5%,
+  800: 30%,
+  825: 32.5%,
+  850: 35%,
+  875: 37.5%,
+  900: 40%
+);

@@ -1,4 +1,5 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
+@use 'colors/shadow-variables' as shadow;
 
 .hotkeys-container {
   position: fixed;
@@ -20,35 +21,35 @@
 
   .close-icon {
     font-size: 40px;
-    color: $color-blue-grey-300;
+    color: colors.$color-blue-grey-300;
     float: right;
     line-height: 1em;
   }
 
   .hotkeys-icon {
-    color: $color-blue-grey-300;
+    color: colors.$color-blue-grey-300;
     font-size: 21px;
     background-color: black;
   }
 
   .ngx-icon:hover {
-    color: $color-blue-grey-100;
+    color: colors.$color-blue-grey-100;
   }
 }
 
 .hotkeys {
-  background: $color-blue-grey-850;
-  border: 1px solid $color-blue-grey-500;
+  background: colors.$color-blue-grey-850;
+  border: 1px solid colors.$color-blue-grey-500;
   padding: 15px;
-  box-shadow: $shadow-1;
-  color: $color-blue-grey-300;
+  box-shadow: shadow.$shadow-1;
+  color: colors.$color-blue-grey-300;
   font-size: 14px;
   border-radius: 2px;
   margin-bottom: 45px;
 
   .hotkey-row {
     padding: 10px 0;
-    border-bottom: 1px solid $color-blue-grey-600;
+    border-bottom: 1px solid colors.$color-blue-grey-600;
 
     &:first-child {
       padding-top: 0px;
@@ -64,8 +65,8 @@
       margin-left: 30px;
 
       .key {
-        background: $color-blue-grey-500;
-        color: $color-blue-grey-850;
+        background: colors.$color-blue-grey-500;
+        color: colors.$color-blue-grey-850;
         padding: 2px 7px;
         border-radius: 2px;
       }

@@ -1,4 +1,6 @@
-@import '../../../json-editor.extensions.scss';
+@use 'sass:color';
+@use 'colors/colors' as colors;
+@use '../../../json-editor.extensions';
 
 %node-type {
   display: flex;
@@ -28,7 +30,7 @@
   }
 
   &.background {
-    border-left: 1px solid $color-blue-grey-650;
+    border-left: 1px solid colors.$color-blue-grey-650;
     height: 96px;
     padding-left: 0px;
     padding-top: 2px;
@@ -38,7 +40,13 @@
   }
 
   .indented-content {
-    border: 2px dotted rgba(red($color-blue-grey-650), green($color-blue-grey-650), blue($color-blue-grey-650), 0.5);
+    border: 2px dotted
+      rgba(
+        color.channel(colors.$color-blue-grey-650, 'red', $space: rgb),
+        color.channel(colors.$color-blue-grey-650, 'green', $space: rgb),
+        color.channel(colors.$color-blue-grey-650, 'blue', $space: rgb),
+        0.5
+      );
     width: 100%;
     display: flex;
     justify-content: center;
@@ -57,7 +65,7 @@
 
     button {
       display: flex;
-      color: $color-blue-400;
+      color: colors.$color-blue-400;
       i {
         font-size: 18px;
       }

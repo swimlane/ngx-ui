@@ -1,6 +1,6 @@
 /**
- * Typography
- */
-@import 'font';
-@import 'code';
-@import 'colors';
+* Typography
+*/
+@forward 'font';
+@forward 'code';
+@forward 'colors';

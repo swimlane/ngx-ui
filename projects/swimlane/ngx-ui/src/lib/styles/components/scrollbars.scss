@@ -1,3 +1,4 @@
+@use 'colors/colors' as colors;
 /** 
  * Scroll bars
  */
@@ -39,11 +40,11 @@
 .ngx-scroll *,
 .ngx-scroll-overlay {
   &::-webkit-scrollbar-thumb {
-    background-color: rgba($color-blue-grey-550, 0.5);
+    background-color: rgba(colors.$color-blue-grey-550, 0.5);
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background-color: rgba($color-blue-grey-550, 1);
+    background-color: rgba(colors.$color-blue-grey-550, 1);
   }
 }
 
@@ -66,14 +67,14 @@
   overflow: overlay;
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba($color-blue-grey-550, 0.3);
+    background-color: rgba(colors.$color-blue-grey-550, 0.3);
   }
 
   &:hover::-webkit-scrollbar-thumb {
-    background-color: rgba($color-blue-grey-550, 0.5);
+    background-color: rgba(colors.$color-blue-grey-550, 0.5);
   }
 
   &:hover::-webkit-scrollbar-thumb:hover {
-    background-color: rgba($color-blue-grey-550, 1);
+    background-color: rgba(colors.$color-blue-grey-550, 1);
   }
 }

@@ -1,3 +1,5 @@
+@use '../colors/colors' as colors;
+
 /**
  * Fonts
  */
@@ -15,7 +17,7 @@ h6 {
   font-weight: normal;
 
   small {
-    color: $color-grey-300;
+    color: colors.$color-grey-300;
     font-size: 0.75em;
   }
 }
@@ -30,7 +32,7 @@ span,
 p,
 a {
   &.hint {
-    color: $color-grey-300;
+    color: colors.$color-grey-300;
     font-style: italic;
     font-size: 0.85em;
   }
@@ -45,6 +47,6 @@ a {
 }
 
 a {
-  color: $color-blue-400;
+  color: colors.$color-blue-400;
   text-decoration: none;
 }

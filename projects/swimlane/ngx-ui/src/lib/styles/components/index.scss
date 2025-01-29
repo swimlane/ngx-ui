@@ -1,12 +1,12 @@
 /**
  * Components
  */
-@import 'section';
-@import 'tags';
-@import 'lists';
-@import 'loading';
-@import 'table';
-@import 'buttons';
-@import 'hr';
-@import 'scrollbars';
-@import 'datatable';
+@forward 'section';
+@forward 'tags';
+@forward 'lists';
+@forward 'loading';
+@forward 'table';
+@forward 'buttons';
+@forward 'hr';
+@forward 'scrollbars';
+@forward 'datatable';

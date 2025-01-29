@@ -1,31 +1,18 @@
-
 module.exports = {
-  'root': true,
+  root: true,
 
-  ignorePatterns: [
-    'projects/**/*',
-    'dist/**/*',
-    'cypress/**/*'
-  ],
+  ignorePatterns: ['projects/**/*', 'dist/**/*', 'cypress/**/*'],
 
-  extends: [
-    '@swimlane',
-    'prettier'
-  ],
+  extends: ['@swimlane', 'prettier'],
 
-  rules: {
-  },
+  rules: {},
 
   overrides: [
     {
-      files: [
-        '*.ts'
-      ],
+      files: ['*.ts'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
-        project: [
-          'tsconfig.json'
-        ],
+        project: ['tsconfig.json'],
         createDefaultProgram: true
       },
       extends: [
@@ -37,26 +24,22 @@ module.exports = {
       rules: {
         // off for demo packages
         'no-console': 'off',
-        
+
         // fix these in this repo, off for now
         'guard-for-in': 'off',
-        '@angular-eslint/no-host-metadata-property': 'off',
         '@angular-eslint/no-output-native': 'off',
         '@angular-eslint/component-class-suffix': 'off',
         '@angular-eslint/directive-class-suffix': 'off',
         '@angular-eslint/no-output-on-prefix': 'off',
+        '@angular-eslint/prefer-standalone': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
-        '@typescript-eslint/no-explicit-any': 'off',
+        '@typescript-eslint/no-explicit-any': 'off'
       }
     },
     {
-      'files': [
-        '*.html'
-      ],
-      'extends': [
-        'plugin:@angular-eslint/template/recommended'
-      ],
-      'rules': {}
+      files: ['*.html'],
+      extends: ['plugin:@angular-eslint/template/recommended'],
+      rules: {}
     }
   ]
 };
