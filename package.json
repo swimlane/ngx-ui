@@ -91,6 +91,7 @@
     "@typescript-eslint/eslint-plugin": "6.18.1",
     "@typescript-eslint/parser": "6.18.1",
     "@typescript-eslint/utils": "^7.13.0",
+    "@web/test-runner": "^0.19.0",
     "angular-cli-ghpages": "1.0.3",
     "autoprefixer": "10.4.11",
     "axe-core": "4.4.3",

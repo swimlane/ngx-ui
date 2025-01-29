@@ -40,13 +40,7 @@
   }
 
   .indented-content {
-    border: 2px dotted
-      rgba(
-        color.channel(colors.$color-blue-grey-650, 'red', $space: rgb),
-        color.channel(colors.$color-blue-grey-650, 'green', $space: rgb),
-        color.channel(colors.$color-blue-grey-650, 'blue', $space: rgb),
-        0.5
-      );
+    border: 2px dotted color.change(colors.$color-blue-grey-650, $alpha: 0.5);
     width: 100%;
     display: flex;
     justify-content: center;
