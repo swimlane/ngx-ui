@@ -1,5 +1,5 @@
 @use 'colors/colors' as colors;
-@use 'colors/gradient-colors' as gradients;
+@use 'colors/gradient-variables' as gradients;
 
 .ngx-large-format-dialog-content {
   --stepper-header-custom-offset: 0px;
