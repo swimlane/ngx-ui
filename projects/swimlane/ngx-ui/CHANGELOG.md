@@ -2,9 +2,15 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-checkbox`): a new look is available that displays the `indeterminate` state.
+- Enhancement (`ngx-checkbox`): new `@Input` named `indeterminate` set to a `boolean`.
+- Enhancement (`ngx-checkbox`): implements an `EventEmitter` when `indeterminate` changes.
 - Enhancement: Support Angular 19, `standalone` now required in all `@Component`
-- Enhancement: Update SASS `include` to `use` and `forward` and update for latest standard libraries
-- Fix: CSS styles scoped to `webkit` that are now standardized
+- Fix: CSS styles previously scoped to `webkit` now standardized have been updated
+- Breaking: Updated SASS `@include` to `@use` and `@forward` and updated SASS for latest standard libraries
+
+Breaking: If your project depends on SASS exported from ngx-ui and your project still uses`@include`,
+you must update your SASS to fully comply with `@use`.
 
 ## 48.3.0 (2024-12-17)
 
