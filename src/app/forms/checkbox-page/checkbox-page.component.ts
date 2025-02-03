@@ -25,11 +25,9 @@ export class CheckboxPageComponent {
     (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
   }
 
-  onChange(event) {
-    console.log('CheckboxPageComponent.onChange', event);
+  onChange() {
     this.isIndeterminate = false;
     this.isChecked = true;
-    // this.isChecked = event.
   }
 
   onIndeterminateChange(event) {
