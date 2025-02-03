@@ -19,7 +19,8 @@
     
       <br />
       <br />
-    
+
+      <h3>Disabled</h3>
       <ngx-checkbox name="chk2" [ngModel]="true" disabled>
         Alert the SOC
       </ngx-checkbox>
@@ -36,6 +37,26 @@
     
       <br />
       <br />
+
+      <h3>Indeterminate</h3>
+      <ngx-checkbox name="chk6" [ngModel]="isChecked" [indeterminate]="isIndeterminate" (change)="onChange($event)" (indeterminateChange)="onIndeterminateChange($event)">
+        Alert the SOC
+      </ngx-checkbox>
+    
+      <app-prism>
+    <![CDATA[<ngx-checkbox
+      name="chk6"
+      [ngModel]="true"
+      [indeterminate]="true"
+    >
+      Alert the SOC
+    </ngx-checkbox>]]>
+      </app-prism>
+    
+      <br />
+      <br />
+
+      
     
       <h3>Large Label</h3>
       <ngx-checkbox name="chk3" [ngModel]="false">
