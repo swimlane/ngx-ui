@@ -37,6 +37,24 @@ describe('CheckboxComponent', () => {
       component.value = true;
       expect(component.value).toBe(true);
     });
+
+    it('should set value if indeterminate is false', () => {
+      component.indeterminate = false;
+      component.value = false;
+      expect(component.value).toBe(false);
+    });
+  });
+
+  describe('indeterminate', () => {
+    it('should set indeterminate', () => {
+      component.indeterminate = false;
+      expect(component.indeterminate).toBe(false);
+    });
+
+    it('should not set indeterminate if is equal to _indeterminate', () => {
+      component.indeterminate = true;
+      expect(component.indeterminate).toBe(true);
+    });
   });
 
   describe('onBlur', () => {

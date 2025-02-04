@@ -37,7 +37,7 @@
       &:after {
         position: absolute;
         top: calc(50% - 7px);
-        left: calc(50% - 2px);
+        left: calc(50% - 3px);
         width: 6px;
         height: 12px;
         content: '';
@@ -47,7 +47,7 @@
         transition: all 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
       }
 
-      &.checked {
+      &.indeterminate {
         background-color: colors.$color-blue-400;
         border-radius: 2px;
         opacity: 1;
@@ -55,7 +55,25 @@
         transform: rotate(0deg) scale(1);
 
         &:after {
+          width: 12px;
+          height: 2px;
+          top: calc(50% - 1px);
+          left: calc(50% - 6px);
+          border: none;
+          transform: rotate(0deg) scale(1);
+          background-color: colors.$color-white;
+        }
+      }
+
+      &.checked {
+        background-color: colors.$color-blue-400;
+        border-radius: 2px;
+        opacity: 1;
+        border: 2px solid colors.$color-blue-400;
+        transform: rotate(0deg) scale(1);
+        &:after {
           transform: rotate(45deg) scale(1);
+          background-color: transparent;
         }
       }
     }

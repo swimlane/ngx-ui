@@ -15,6 +15,7 @@ describe('Checkbox', () => {
     beforeEach(() => {
       cy.get('#section-1').as('SUT');
       cy.getByName('chk1').as('CUT');
+      cy.getByName('chk6').as('INDETERMINATE_CUT');
     });
 
     afterEach(() => {
@@ -44,6 +45,13 @@ describe('Checkbox', () => {
       cy.get('@CUT').ngxGetValue().should('equal', false);
       cy.get('@CUT').click();
       cy.get('@CUT').ngxGetValue().should('equal', true);
+    });
+
+    it('can uncheck from indeterminate state', () => {
+      cy.get('@INDETERMINATE_CUT').click();
+      cy.get('@INDETERMINATE_CUT').ngxGetValue().should('equal', false);
+      cy.get('@INDETERMINATE_CUT').click();
+      cy.get('@INDETERMINATE_CUT').ngxGetValue().should('equal', true);
     });
 
     it('is keyboard accessible', () => {
