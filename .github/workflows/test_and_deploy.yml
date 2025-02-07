@@ -31,13 +31,13 @@ jobs:
 
       - name: Test
         run: |
-          yarn test
+          npm run test
         env:
           CI: true
 
       - name: Prepare and deploy
         run: |
-          yarn deploy -- --name="Swimlane" --email="swimlane-devops@swimlane.com"
+          npm run deploy -- --name="Swimlane" --email="swimlane-devops@swimlane.com"
         if: ${{ github.ref == 'refs/heads/master' }}
         env:
           CI: true
