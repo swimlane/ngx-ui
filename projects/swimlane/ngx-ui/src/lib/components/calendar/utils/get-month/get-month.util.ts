@@ -1,4 +1,4 @@
-import type { Moment } from 'moment';
+import type { Moment } from 'moment-timezone';
 
 import { getWeeksForDays } from '../get-weeks-for-days/get-weeks-for-days.util';
 import { getDaysForMonth } from '../get-days-for-month/get-days-for-month.util';
