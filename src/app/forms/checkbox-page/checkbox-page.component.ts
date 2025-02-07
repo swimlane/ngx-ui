@@ -9,8 +9,9 @@ import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 })
 export class CheckboxPageComponent {
   checked = false;
-
   alertType: UntypedFormGroup;
+  isChecked = true;
+  isIndeterminate = true;
 
   constructor(fb: UntypedFormBuilder) {
     this.alertType = fb.group({
@@ -22,5 +23,14 @@ export class CheckboxPageComponent {
 
   scrollTo(id: string) {
     (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  onChange() {
+    this.isIndeterminate = false;
+    this.isChecked = true;
+  }
+
+  onIndeterminateChange(event) {
+    console.log('CheckboxPageComponent.onIndeterminateChange', event);
   }
 }
