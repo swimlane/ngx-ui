@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "49.0.0-alpha.0",
+  "version": "49.0.0-alpha.1",
   "engines": {
     "node": ">=18.0.0"
   },
@@ -39,7 +39,7 @@
     "rxjs": "7.x"
   },
   "dependencies": {
-    "ng2-file-upload": "5.0.0",
+    "ng2-file-upload": "8.0.0",
     "mousetrap": "^1.6.2",
     "tslib": "^2.3.1"
   },
