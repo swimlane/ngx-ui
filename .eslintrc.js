@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
 
-  ignorePatterns: ['projects/**/*', 'dist/**/*', 'cypress/**/*'],
+  ignorePatterns: ['dist/**/*', 'cypress/**/*'],
 
   extends: ['@swimlane', 'prettier'],
 
@@ -10,15 +10,16 @@ module.exports = {
   overrides: [
     {
       files: ['*.ts'],
-      parser: '@typescript-eslint/parser',
       parserOptions: {
-        project: ['tsconfig.json'],
-        createDefaultProgram: true
+        allowAutomaticSingleRunInference: true,
+        project: ['tsconfig.json', 'tsconfig.app.json', 'tsconfig.spec.json', 'cypress/tsconfig.json'],
+        tsconfigRootDir: __dirname
       },
       extends: [
         '@swimlane/eslint-config/typescript',
         'plugin:@angular-eslint/recommended',
         'plugin:@angular-eslint/template/process-inline-templates',
+        'plugin:@typescript-eslint/recommended',
         'prettier'
       ],
       rules: {
