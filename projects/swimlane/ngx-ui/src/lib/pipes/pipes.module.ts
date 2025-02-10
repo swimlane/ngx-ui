@@ -8,7 +8,6 @@ import { TimeZoneModule } from './time-zone/time-zone.module';
 import { CamelToSnakeModule } from './camel-to-snake/camel-to-snake.module';
 import { MemoizeModule } from './memoize/memoize.module';
 
-NgModule;
 @NgModule({
   exports: [TimeZoneModule, DecamelizeModule, FilterModule, JSONTreeModule, CamelToSnakeModule, MemoizeModule],
   imports: [

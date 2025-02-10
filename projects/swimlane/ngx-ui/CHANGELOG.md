@@ -8,9 +8,19 @@
 - Enhancement: Support Angular 19, `standalone` now required in all `@Component`
 - Fix: CSS styles previously scoped to `webkit` now standardized have been updated
 - Breaking: Updated SASS `@include` to `@use` and `@forward` and updated SASS for latest standard libraries
+- Breaking (`ngx-time`): internally uses moment-timezone instead of moment, defaults to user's current timezone when timezone not specified.
 
-Breaking: If your project depends on SASS exported from ngx-ui and your project still uses`@include`,
-you must update your SASS to fully comply with `@use`.
+Breaking: If your project depends on SASS exported from ngx-ui and your project uses `@include` statements
+you must update your SASS to fully comply with `@use`. Below is an example of how to import SCSS with the changes that scopes the variables exported from each file as `colors` and `effects`:
+
+```
+@use '@swimlane/ngx-ui/lib/styles/colors/colors' as colors;
+@use '@swimlane/ngx-ui/lib/styles/colors/effects' as effects;
+```
+
+Internally `glow` was renamed to `effects` to scale this section in the future.
+
+Breaking (`ngx-time`): There could be a potential breaking change due to how `ngx-time` now uses moment-timezone internally. If you experience a behavioral change in this component, explicitly specify the timezone you wish to display.
 
 ## 48.3.0 (2024-12-17)
 

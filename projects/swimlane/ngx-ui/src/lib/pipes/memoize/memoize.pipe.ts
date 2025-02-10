@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, EmbeddedViewRef, Pipe, PipeTransform, Type } from '@angular/core';
+import { ChangeDetectorRef, EmbeddedViewRef, Pipe, PipeTransform, Type, inject } from '@angular/core';
 
 @Pipe({
   name: 'memoize',
@@ -7,9 +7,10 @@ import { ChangeDetectorRef, EmbeddedViewRef, Pipe, PipeTransform, Type } from '@
 })
 export class MemoizePipe implements PipeTransform {
   context: any;
+  cdRef = inject(ChangeDetectorRef);
 
-  constructor(cdRef: ChangeDetectorRef) {
-    this.context = (cdRef as EmbeddedViewRef<Type<any>>).context;
+  constructor() {
+    this.context = (this.cdRef as EmbeddedViewRef<Type<any>>).context;
   }
 
   transform(fn: any, ...args: any[]): any {

@@ -11,27 +11,26 @@ Component & Style Library for Angular by Swimlane.
 
 ## Building ngx-ui
 
-Run `npm run build:lib` to build ngx-ui. This must be done prior to building the demo.
+Run `yarn build:lib` to build ngx-ui. This must be done prior to building the demo.
 
 ## Development server
 
-Run `npm run start` to serve the demo at `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `yarn start` to serve the demo at `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Building
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `yarn build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Running tests
 
-- Run `npm run test` to execute unit tests
-- Run `ng cypress` to execute the end-to-end tests via Cypress.
+- Run `yarn test` to execute the linter, prettier check, unit and end-to-end tests.
 
 ## Release
 
 - Checkout master (`git checkout master`)
 - Pull master (`git pull`)
 - Refresh node modules (`npm ci`)
-- Run tests (`npm test`)
+- Run tests (`yarn test`)
 - Examine log to determine next version (X.Y.Z)
 - Run `git checkout -b release/X.Y.Z`
 - Update version in `projects/swimlane/ngx-ui/package.json`.

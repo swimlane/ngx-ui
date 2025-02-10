@@ -15,3 +15,26 @@ export class TimeZonePipe implements PipeTransform {
     return m.isValid() ? m : '' + value;
   }
 }
+
+@Pipe({
+  name: 'amTimeZoneFormat',
+  standalone: false
+})
+export class TimeZoneFormatPipe implements PipeTransform {
+  transform(value: Date | moment.Moment | string | number, timezone?: string, format?: string): moment.Moment | string {
+    if (!value) {
+      return '';
+    }
+    let m: moment.Moment;
+    if (timezone) {
+      m = moment(value).tz(timezone);
+    } else {
+      m = moment(value);
+    }
+    if (format) {
+      return m.format(format);
+    } else {
+      return m.isValid() ? m : '' + value;
+    }
+  }
+}

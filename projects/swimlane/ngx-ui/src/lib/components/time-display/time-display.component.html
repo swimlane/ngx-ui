@@ -15,15 +15,17 @@
         {{ internalDatetime | amTimeAgo }}
       </ng-container>
       <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.TIMEZONE">
-        {{ internalDatetime | amTimeZone: timezone | amDateFormat: format  }}
+        {{ internalDatetime | amTimeZoneFormat: timezone:format }}
       </ng-container>
-      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.CUSTOM">{{ datetime | amDateFormat: format }}</ng-container>
-      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.LOCAL">{{ datetime | amDateFormat: format }}</ng-container>
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.CUSTOM">{{
+        datetime | amTimeZoneFormat: timezone:format
+      }}</ng-container>
+      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.LOCAL">{{
+        internalDatetime | amTimeZoneFormat: timezone:format
+      }}</ng-container>
     </ng-container>
   </ng-container>
-  <ng-container *ngIf="dateInvalid">
-    {{ invalidDateMessage }} "{{ datetime }}"
-  </ng-container>
+  <ng-container *ngIf="dateInvalid"> {{ invalidDateMessage }} "{{ datetime }}" </ng-container>
 </time>
 
 <ng-template #defaultTooltipTemplate>

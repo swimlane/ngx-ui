@@ -182,16 +182,16 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
       return;
     }
 
+    const localTimezone = this.timezone || guessTimeZone;
+    const inputTimezone = this.defaultInputTimeZone || localTimezone;
+
     if (DATE_DISPLAY_TYPES.LOCAL === this.mode) {
-      const mdate = moment(this.datetime);
+      const mdate = moment.tz(this.datetime as string, DATE_DISPLAY_INPUT_FORMATS, inputTimezone);
       this.dateInvalid = !mdate.isValid();
       this.internalDatetime = this.dateInvalid ? undefined : mdate.toDate();
       this.utcDatetime = this.dateInvalid ? '' : mdate.format('YYYY-MM-DD[T]HH:mm:ss.SSS');
       return;
     }
-
-    const localTimezone = this.timezone || guessTimeZone;
-    const inputTimezone = this.defaultInputTimeZone || localTimezone;
 
     const mdate = moment.tz(this.datetime as string, DATE_DISPLAY_INPUT_FORMATS, inputTimezone);
     this.dateInvalid = !mdate.isValid();

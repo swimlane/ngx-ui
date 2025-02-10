@@ -110,7 +110,8 @@ export class AutoSizeInputDirective implements AfterContentChecked, AfterViewIni
   private _getProperty(property: 'value' | 'placeholder') {
     try {
       return this.element.nativeElement[property];
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error: unknown) {
       return '';
     }
   }
