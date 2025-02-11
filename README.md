@@ -29,14 +29,15 @@ Run `yarn build` to build the project. The build artifacts will be stored in the
 
 - Checkout master (`git checkout master`)
 - Pull master (`git pull`)
-- Refresh node modules (`npm ci`)
+- Refresh node modules (`yarn install --frozen-lockfile`)
 - Run tests (`yarn test`)
 - Examine log to determine next version (X.Y.Z)
 - Run `git checkout -b release/X.Y.Z`
 - Update version in `projects/swimlane/ngx-ui/package.json`.
 - Update changelog in `projects/swimlane/ngx-ui/CHANGELOG.md`
+- Run `yarn package` to build the package
 - Run `git commit -am "(release): X.Y.Z"`
 - Run `git tag X.Y.Z`
 - Run `git push origin HEAD --tags`
-- Run `npm run publish:lib`
+- Run `yarn publish`
 - Submit PR
