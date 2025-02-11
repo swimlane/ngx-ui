@@ -45,3 +45,4 @@ cypress/screenshots
 
 .angular/*
 .nx/*
+.yarn/*

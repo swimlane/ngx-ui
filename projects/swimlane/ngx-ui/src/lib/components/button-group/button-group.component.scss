@@ -1,21 +1,21 @@
-@import '../../styles/colors/variables.scss';
-@import '../../styles/components/buttons.scss';
+@use 'colors/colors' as colors;
+@use 'components/buttons' as buttons;
 
 .ngx-button-group {
   display: inline-flex;
   position: relative;
 
   // default colors
-  --button-bg: #{$color-blue-grey-600};
-  --button-border: #{$color-blue-grey-600};
+  --button-bg: #{colors.$color-blue-grey-600};
+  --button-border: #{colors.$color-blue-grey-600};
   --button-text: white;
-  --button-hover: #{$color-blue-grey-700};
+  --button-hover: #{colors.$color-blue-grey-700};
 
   &.ngx-button-group--contained--primary {
-    --button-bg: #{$color-blue-400};
-    --button-border: #{$color-blue-400};
+    --button-bg: #{colors.$color-blue-400};
+    --button-border: #{colors.$color-blue-400};
     --button-text: white;
-    --button-hover: #{$color-blue};
+    --button-hover: #{colors.$color-blue};
   }
 
   > ngx-dropdown {

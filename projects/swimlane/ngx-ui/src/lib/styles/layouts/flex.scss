@@ -1,7 +1,7 @@
 /* CSS based on flexboxgrid Copyright 2013 Kristofer Joseph */
 
-@import './_mixins.scss';
-@import './_flex-vars.scss';
+@use './_mixins.scss' as mixins;
+@use './_flex-vars.scss' as flex-vars;
 
 /* --- CSS Variables --- */
 
@@ -17,7 +17,7 @@
   --half-gutter-width: calc((var(--gutter-width) * 0.5));
 
   // containers
-  @each $modifier, $width in $container-widths {
+  @each $modifier, $width in flex-vars.$container-widths {
     --container#{$modifier}: calc(#{$width} + var(--gutter-width));
   }
 }
@@ -25,22 +25,22 @@
 /* --- Containers --- */
 
 // default container is fluid
-#{$container-class},
-#{$container-class}-fluid {
+#{flex-vars.$container-class},
+#{flex-vars.$container-class}-fluid {
   padding-right: var(--outer-margin, 2rem);
   padding-left: var(--outer-margin, 2rem);
 }
 
-#{$container-class},
-#{$container-class}-fluid,
-#{$container-class}-fixed {
+#{flex-vars.$container-class},
+#{flex-vars.$container-class}-fluid,
+#{flex-vars.$container-class}-fixed {
   margin-right: auto;
   margin-left: auto;
 }
 
 /* --- Rows --- */
 
-#{$row-class} {
+#{flex-vars.$row-class} {
   box-sizing: border-box;
   display: flex;
   flex: 0 1 auto;
@@ -53,14 +53,14 @@
     flex-direction: row-reverse;
   }
 
-  @include modifiers('');
+  @include mixins.modifiers('');
 
   // defualt columns
   & > * {
-    @include col-base();
+    @include mixins.col-base();
     flex: 1 1 auto;
 
-    @include modifiers('');
+    @include mixins.modifiers('');
 
     &.reverse {
       flex-direction: column-reverse;
@@ -70,14 +70,14 @@
 
 /* --- Columns --- */
 
-@each $modifier, $breakpoint in $breakpoints {
+@each $modifier, $breakpoint in flex-vars.$breakpoints {
   @media screen and (min-width: $breakpoint) {
-    #{$container-class}-fixed {
+    #{flex-vars.$container-class}-fixed {
       width: var(--container#{$modifier});
     }
 
-    #{$row-class} > {
-      @include create-col-classes($modifier);
+    #{flex-vars.$row-class} > {
+      @include mixins.create-col-classes($modifier);
     }
   }
 }

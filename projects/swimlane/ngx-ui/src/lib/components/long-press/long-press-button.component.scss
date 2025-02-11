@@ -1,9 +1,9 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
 
 $outerSize: 60px;
 $innerSize: 46px;
 $borderWidth: 3px;
-$background-color: $color-blue-grey-850;
+$background-color: colors.$color-blue-grey-850;
 
 .ngx-long-press {
   border-radius: 50%;

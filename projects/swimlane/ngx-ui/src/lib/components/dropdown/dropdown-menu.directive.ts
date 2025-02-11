@@ -4,7 +4,8 @@ import { InViewportDirective, InViewportService } from 'ng-in-viewport';
 @Directive({
   exportAs: 'ngxDropdownMenu',
   selector: 'ngx-dropdown-menu',
-  host: { class: 'ngx-dropdown-menu' }
+  host: { class: 'ngx-dropdown-menu' },
+  standalone: false
 })
 export class DropdownMenuDirective extends InViewportDirective {
   readonly element: HTMLElement;

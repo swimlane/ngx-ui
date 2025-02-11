@@ -6,7 +6,8 @@ import { DrawerDirection, DrawerService } from '@swimlane/ngx-ui';
   selector: 'app-drawer-page',
   templateUrl: './drawer-page.component.html',
   styleUrls: ['./drawer-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class DrawerPageComponent {
   @ViewChild('editTmpl', { static: true })

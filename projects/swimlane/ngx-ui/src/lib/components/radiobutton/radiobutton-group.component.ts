@@ -47,7 +47,8 @@ function mod(v: number, n: number): number {
     '[class.disabled]': 'disabled'
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class RadioButtonGroupComponent implements ControlValueAccessor, OnDestroy, OnChanges, AfterContentInit {
   readonly UNIQUE_ID = `ngx-radio-group-${++nextId}`;

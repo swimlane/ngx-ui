@@ -25,7 +25,8 @@ import { InputTypes } from './input-types.enum';
       [unlockable]="unlockable$ | async"
     ></ngx-input>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class InputComponentFixture {
   value: string | number = 'test';

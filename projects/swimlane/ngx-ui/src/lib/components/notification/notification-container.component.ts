@@ -5,6 +5,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   selector: 'ngx-notification-container',
   template: ' <div class="notification-container"></div> ',
   host: { class: 'ngx-notification-container' },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class NotificationContainerComponent {}

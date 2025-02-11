@@ -18,7 +18,8 @@ export function validateBasis(basis: string, grow = '1', shrink = '1'): FlexPart
   host: {
     class: 'ngx-split-area',
     '[style.overflow]': 'overflow'
-  }
+  },
+  standalone: false
 })
 export class SplitAreaDirective implements OnChanges {
   @Input() ngxSplitArea: string = DEFAULT_BASIS;

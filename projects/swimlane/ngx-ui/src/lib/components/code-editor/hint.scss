@@ -1,9 +1,10 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
+@use 'colors/shadow-variables' as shadows;
 
-$dropdown-bg: $color-blue-grey-700;
-$dropdown-bg-active: $color-blue-grey-750;
-$dropdown-bg-hover: $color-blue-grey-800;
-$dropdown-color: $color-blue-grey-150;
+$dropdown-bg: colors.$color-blue-grey-700;
+$dropdown-bg-active: colors.$color-blue-grey-750;
+$dropdown-bg-hover: colors.$color-blue-grey-800;
+$dropdown-color: colors.$color-blue-grey-150;
 
 .CodeMirror-hints {
   position: absolute;
@@ -18,7 +19,7 @@ $dropdown-color: $color-blue-grey-150;
   font-family: monospace;
 
   background: $dropdown-bg;
-  box-shadow: $shadow-3;
+  box-shadow: shadows.$shadow-3;
 
   max-height: 20em;
   overflow-y: auto;

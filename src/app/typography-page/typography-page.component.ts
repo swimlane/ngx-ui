@@ -6,7 +6,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 @Component({
   selector: 'app-typography-page',
   templateUrl: './typography-page.component.html',
-  styleUrls: ['./typography-page.component.scss']
+  styleUrls: ['./typography-page.component.scss'],
+  standalone: false
 })
 export class TypographyPageComponent {
   fontStyles = {

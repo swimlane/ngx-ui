@@ -4,7 +4,8 @@ import iconsData from '@swimlane/ngx-ui/assets/icons/json/icons.json';
 
 @Component({
   selector: 'app-icons-page',
-  templateUrl: './icons-page.component.html'
+  templateUrl: './icons-page.component.html',
+  standalone: false
 })
 export class IconsPageComponent {
   // @ts-ignore

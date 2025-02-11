@@ -18,7 +18,8 @@ enum CardPlaceholderSize {
     '[class.large]': 'size === CardPlaceholderSize.Large'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class CardPlaceholderComponent {
   @Input() size = CardPlaceholderSize.Medium;

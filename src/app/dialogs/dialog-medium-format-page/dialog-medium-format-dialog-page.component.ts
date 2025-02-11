@@ -5,7 +5,8 @@ import { DialogComponent, DialogFormat, DialogOptions, DialogService } from '@sw
   selector: 'app-dialog-medium-format-dialog-page',
   templateUrl: './dialog-medium-format-dialog-page.component.html',
   styleUrls: ['./dialog-medium-format-dialog-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class DialogMediumFormatDialogPageComponent {
   private dialogRef?: ComponentRef<DialogComponent>;

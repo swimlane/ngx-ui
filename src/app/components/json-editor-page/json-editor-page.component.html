@@ -90,7 +90,10 @@
     <ul>
       <li><b>nodeModel: </b>the model of the current node</li>
       <li><b>nodeSchema: </b>the schema of the current node</li>
-      <li><b>nodeContext: </b>an object of JSONEditorTemplateProperty type that has some information about the current node</li>
+      <li>
+        <b>nodeContext: </b>an object of JSONEditorTemplateProperty type that has some information about the current
+        node
+      </li>
       <li><b>nodePath: </b>the path of the current node (the root property does not have path)</li>
       <li><b>nodeChangeValue$: </b>subject that is used to update the model of the current node</li>
       <li><b>nodeExpandTrigger$: </b>subject that is used to collapse/expand the current node</li>
@@ -109,14 +112,37 @@
   >
   </ngx-json-editor-flat>
 
-  <ng-template #myInputControl let-nodeModel="nodeModel" let-nodeSchema="nodeSchema" let-nodePath="nodePath" let-nodeExpandTrigger$="nodeExpandTrigger$" let-nodeChangeValue$="nodeChangeValue$" let-nodeContext="nodeContext">
+  <ng-template
+    #myInputControl
+    let-nodeModel="nodeModel"
+    let-nodeSchema="nodeSchema"
+    let-nodePath="nodePath"
+    let-nodeExpandTrigger$="nodeExpandTrigger$"
+    let-nodeChangeValue$="nodeChangeValue$"
+    let-nodeContext="nodeContext"
+  >
     <div class="myInputControlNodeContainer">
       <ngx-tabs>
         <ngx-tab label="Value">
           <ng-container [ngSwitch]="nodeContext.keyFieldType">
-            <input type="number" *ngSwitchCase="'integer'" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/>
-            <input type="text" *ngSwitchCase="'string'" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/>
-            <ngx-button *ngSwitchCase="'object'" class="btn btn-primary" (click)="expanded = !expanded; nodeExpandTrigger$.next(expanded)">{{ expanded ? 'Collapse' : 'Expand' }} me!</ngx-button>
+            <input
+              type="number"
+              *ngSwitchCase="'integer'"
+              [ngModel]="nodeModel"
+              (ngModelChange)="nodeChangeValue$.next($event)"
+            />
+            <input
+              type="text"
+              *ngSwitchCase="'string'"
+              [ngModel]="nodeModel"
+              (ngModelChange)="nodeChangeValue$.next($event)"
+            />
+            <ngx-button
+              *ngSwitchCase="'object'"
+              class="btn btn-primary"
+              (click)="expanded = !expanded; nodeExpandTrigger$.next(expanded)"
+              >{{ expanded ? 'Collapse' : 'Expand' }} me!</ngx-button
+            >
           </ng-container>
         </ngx-tab>
         <ngx-tab label="NodeModel">
@@ -137,7 +163,6 @@
         </ngx-tab>
       </ngx-tabs>
     </div>
-    
   </ng-template>
 
   <hr />
@@ -149,45 +174,20 @@
   <ngx-tabs>
     <ngx-tab label="Markup">
       <app-prism language="html">
-      <![CDATA[<ngx-json-editor-flat
-        [(model)]="jsonEditorFlatWithTemplateModel"
-        [schema]="schemaWithTemplate"
-        label="Model"
-        [hideRoot]="hideRoot"
-        [showKnownProperties]="showKnownProperties"
-        [passwordToggleEnabled]="true"
-        [inputControlTemplate]="myInputControl"
-        [enableSchemaValidation]="false"
-        (schemaUpdate)="schemaWithTemplate = $event"
-      >
-      </ngx-json-editor-flat>
-      <ng-template #myInputControl let-nodeModel="nodeModel" let-nodeSchema="nodeSchema" let-nodePath="nodePath" let-nodeExpandTrigger$="nodeExpandTrigger$" let-nodeChangeValue$="nodeChangeValue$" let-nodeContext="nodeContext">
-        <div class="myInputControlNodeContainer">
-          <ngx-tabs>
-            <ngx-tab label="Value">
-              <ng-container [ngSwitch]="nodeContext.keyFieldType">
-                <input type="number" *ngSwitchCase="'integer'" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/>
-                <input type="text" *ngSwitchCase="'string'" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/>
-                <ngx-button *ngSwitchCase="'object'" class="btn btn-primary" (click)="expanded = !expanded; nodeExpandTrigger$.next(expanded)">{{ expanded ? 'Collapse' : 'Expand' }} me!</ngx-button>
-              </ng-container>
-            </ngx-tab>
-            <ngx-tab label="NodeModel">
-              <div class="myInputControlNodeContainer__scrollable">
-              </div>
-            </ngx-tab>
-            <ngx-tab label="NodeSchema">
-              <div class="myInputControlNodeContainer__scrollable">
-              </div>
-            </ngx-tab>
-            <ngx-tab label="NodeContext">
-            </ngx-tab>
-            <ngx-tab label="NodePath">
-            </ngx-tab>
-          </ngx-tabs>
-        </div>
-        
-      </ng-template>
-      ]]>
+        <![CDATA[<ngx-json-editor-flat [(model)]="jsonEditorFlatWithTemplateModel" [schema]="schemaWithTemplate"
+        label="Model" [hideRoot]="hideRoot" [showKnownProperties]="showKnownProperties" [passwordToggleEnabled]="true"
+        [inputControlTemplate]="myInputControl" [enableSchemaValidation]="false" (schemaUpdate)="schemaWithTemplate =
+        $event" > </ngx-json-editor-flat> <ng-template #myInputControl let-nodeModel="nodeModel"
+        let-nodeSchema="nodeSchema" let-nodePath="nodePath" let-nodeExpandTrigger$="nodeExpandTrigger$"
+        let-nodeChangeValue$="nodeChangeValue$" let-nodeContext="nodeContext"> <div class="myInputControlNodeContainer">
+        <ngx-tabs> <ngx-tab label="Value"> <ng-container [ngSwitch]="nodeContext.keyFieldType"> <input type="number"
+        *ngSwitchCase="'integer'" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/> <input
+        type="text" *ngSwitchCase="'string'" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/>
+        <ngx-button *ngSwitchCase="'object'" class="btn btn-primary" (click)="expanded = !expanded;
+        nodeExpandTrigger$.next(expanded)">{{ expanded ? 'Collapse' : 'Expand' }} me!</ngx-button> </ng-container>
+        </ngx-tab> <ngx-tab label="NodeModel"> <div class="myInputControlNodeContainer__scrollable"> </div> </ngx-tab>
+        <ngx-tab label="NodeSchema"> <div class="myInputControlNodeContainer__scrollable"> </div> </ngx-tab> <ngx-tab
+        label="NodeContext"> </ngx-tab> <ngx-tab label="NodePath"> </ngx-tab> </ngx-tabs> </div> </ng-template> ]]>
       </app-prism>
     </ngx-tab>
   </ngx-tabs>

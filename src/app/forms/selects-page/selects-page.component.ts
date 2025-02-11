@@ -15,7 +15,8 @@ export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
 @Component({
   selector: 'app-selects-page',
   templateUrl: './selects-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class SelectsPageComponent implements OnInit {
   selects = this._results;

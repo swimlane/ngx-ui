@@ -12,7 +12,8 @@ const text = 'Validate and submit the form to the left to view the method’s re
   templateUrl: './tip-page.component.html',
   styleUrls: ['./tip-page.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class TipPageComponent {
   readonly TipStatus = TipStatus;

@@ -44,7 +44,8 @@ import { stepperAnimations } from './stepper.animation';
     stepperAnimations.verticalBarTransition
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class StepperComponent implements OnDestroy {
   @Input() position = StepperPosition.Top;

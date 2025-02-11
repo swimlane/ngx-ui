@@ -1,3 +1,4 @@
+@use "sass:string";
 /*--------------------------------
 
 ngx-icon icon font
@@ -503,7 +504,7 @@ $icons: (
 );
 
 @function unicode($str) {
-  @return unquote("\"\\#{$str}\"");
+  @return string.unquote("\"\\#{$str}\"");
 }
 
 

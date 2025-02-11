@@ -1,7 +1,10 @@
+@use 'colors' as colors;
+@use 'forms/variables' as forms;
+
 select {
-  background: $color-input-bg;
-  border: solid 1px $color-input-border;
-  color: $color-input-text;
+  background: forms.$color-input-bg;
+  border: solid 1px forms.$color-input-border;
+  color: forms.$color-input-text;
   border-radius: 2px;
   height: 32px;
   line-height: 32px;
@@ -14,6 +17,6 @@ select {
 
   &[disabled] {
     cursor: not-allowed;
-    color: $color-blue-grey-300;
+    color: colors.$color-blue-grey-300;
   }
 }

@@ -6,7 +6,8 @@ import { AlertService, AlertStyles } from '@swimlane/ngx-ui';
   templateUrl: './alert-page.component.html',
   styleUrls: ['./alert-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class AlertPageComponent {
   readonly AlertStyles = AlertStyles;

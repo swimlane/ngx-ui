@@ -1,4 +1,4 @@
-@import 'shadow-variables.scss';
+@use 'shadow-variables' as shadows;
 
 /**
  * Shadow Presets
@@ -6,82 +6,82 @@
  */
 
 .shadow-1 {
-  box-shadow: $shadow-1;
+  box-shadow: shadows.$shadow-1;
 }
 .shadow-2 {
-  box-shadow: $shadow-2;
+  box-shadow: shadows.$shadow-2;
 }
 .shadow-3 {
-  box-shadow: $shadow-3;
+  box-shadow: shadows.$shadow-3;
 }
 .shadow-4 {
-  box-shadow: $shadow-4;
+  box-shadow: shadows.$shadow-4;
 }
 .shadow-5 {
-  box-shadow: $shadow-5;
+  box-shadow: shadows.$shadow-5;
 }
 .shadow-6 {
-  box-shadow: $shadow-6;
+  box-shadow: shadows.$shadow-6;
 }
 .shadow-7 {
-  box-shadow: $shadow-7;
+  box-shadow: shadows.$shadow-7;
 }
 .shadow-8 {
-  box-shadow: $shadow-8;
+  box-shadow: shadows.$shadow-8;
 }
 .shadow-9 {
-  box-shadow: $shadow-9;
+  box-shadow: shadows.$shadow-9;
 }
 .shadow-10 {
-  box-shadow: $shadow-10;
+  box-shadow: shadows.$shadow-10;
 }
 .shadow-11 {
-  box-shadow: $shadow-11;
+  box-shadow: shadows.$shadow-11;
 }
 .shadow-12 {
-  box-shadow: $shadow-12;
+  box-shadow: shadows.$shadow-12;
 }
 .shadow-13 {
-  box-shadow: $shadow-13;
+  box-shadow: shadows.$shadow-13;
 }
 .shadow-14 {
-  box-shadow: $shadow-14;
+  box-shadow: shadows.$shadow-14;
 }
 .shadow-15 {
-  box-shadow: $shadow-15;
+  box-shadow: shadows.$shadow-15;
 }
 .shadow-16 {
-  box-shadow: $shadow-16;
+  box-shadow: shadows.$shadow-16;
 }
 .shadow-17 {
-  box-shadow: $shadow-17;
+  box-shadow: shadows.$shadow-17;
 }
 .shadow-18 {
-  box-shadow: $shadow-18;
+  box-shadow: shadows.$shadow-18;
 }
 .shadow-19 {
-  box-shadow: $shadow-19;
+  box-shadow: shadows.$shadow-19;
 }
 .shadow-20 {
-  box-shadow: $shadow-20;
+  box-shadow: shadows.$shadow-20;
 }
 .shadow-21 {
-  box-shadow: $shadow-21;
+  box-shadow: shadows.$shadow-21;
 }
 .shadow-22 {
-  box-shadow: $shadow-22;
+  box-shadow: shadows.$shadow-22;
 }
 .shadow-23 {
-  box-shadow: $shadow-23;
+  box-shadow: shadows.$shadow-23;
 }
 .shadow-24 {
-  box-shadow: $shadow-24;
+  box-shadow: shadows.$shadow-24;
 }
 
 .shadow-fx {
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   &:hover {
-    box-shadow: $shadow-20;
+    box-shadow: shadows.$shadow-20;
   }
 }

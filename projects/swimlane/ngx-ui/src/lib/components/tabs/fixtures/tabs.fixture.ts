@@ -5,7 +5,8 @@ import { TabsComponent } from '../tabs.component';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'tabs-fixture',
   templateUrl: 'tabs.fixture.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class TabsFixtureComponent {
   @ViewChild('tabs', { static: true }) tabsComponent: TabsComponent;

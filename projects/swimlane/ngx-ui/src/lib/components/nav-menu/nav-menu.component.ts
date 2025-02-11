@@ -11,7 +11,8 @@ import { coerceBooleanProperty } from '@angular/cdk/coercion';
     '[class.expanded]': 'expanded'
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class NavMenuComponent {
   @Input()

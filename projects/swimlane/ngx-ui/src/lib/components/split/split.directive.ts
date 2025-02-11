@@ -30,7 +30,8 @@ import { Subscription } from 'rxjs/internal/Subscription';
     '[style.display]': '"flex"',
     '[style.height]': '"100%"',
     '[style.width]': '"100%"'
-  }
+  },
+  standalone: false
 })
 export class SplitDirective implements AfterContentInit, OnChanges, OnDestroy {
   @HostBinding('style.flex-direction')

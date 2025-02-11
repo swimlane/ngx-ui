@@ -5,6 +5,7 @@
     "baseUrl": "./",
     "importHelpers": true,
     "outDir": "./dist/out-tsc",
+    "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
     "module": "es2020",
@@ -42,7 +43,6 @@
         "node_modules/tslib"
       ]
     },
-    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "useDefineForClassFields": false
   },

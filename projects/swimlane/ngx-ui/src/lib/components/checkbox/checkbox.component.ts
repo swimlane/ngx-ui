@@ -35,7 +35,8 @@ let nextId = 0;
   },
   providers: [CHECKBOX_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class CheckboxComponent implements ControlValueAccessor {
   @HostListener('click', ['$event']) onClick(ev: Event) {
@@ -56,7 +57,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('checked')
   set value(value: boolean) {
-    if (this._value !== value) {
+    if (this._value !== value && !this.indeterminate) {
       this._value = value;
       this.cdr.markForCheck();
       this.onChangeCallback(this._value);
@@ -65,6 +66,18 @@ export class CheckboxComponent implements ControlValueAccessor {
   }
   get value(): boolean {
     return this._value;
+  }
+
+  @Input()
+  set indeterminate(value: boolean) {
+    if (this._indeterminate !== value) {
+      this._indeterminate = value;
+      this.cdr.markForCheck();
+      this.indeterminateChange.emit(this.indeterminate);
+    }
+  }
+  get indeterminate(): boolean {
+    return this._indeterminate;
   }
 
   @Input()
@@ -81,10 +94,12 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   @Output() change = new EventEmitter<Event>();
   @Output() checkedChange = new EventEmitter<boolean>();
+  @Output() indeterminateChange = new EventEmitter<boolean>();
   @Output() blur = new EventEmitter<FocusEvent>();
   @Output() focus = new EventEmitter<FocusEvent>();
 
   private _value = false;
+  private _indeterminate = false;
 
   constructor(private readonly cdr: ChangeDetectorRef) {}
 

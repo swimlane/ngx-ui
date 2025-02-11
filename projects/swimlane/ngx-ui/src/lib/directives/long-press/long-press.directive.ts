@@ -2,7 +2,8 @@ import { Directive, Input, Output, EventEmitter, HostListener } from '@angular/c
 import { coerceNumberProperty, coerceBooleanProperty } from '@angular/cdk/coercion';
 
 @Directive({
-  selector: '[long-press]'
+  selector: '[long-press]',
+  standalone: false
 })
 export class LongPressDirective {
   @Input()

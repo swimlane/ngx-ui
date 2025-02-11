@@ -5,7 +5,8 @@ import { SplitDirection } from '@swimlane/ngx-ui';
   selector: 'app-split-page',
   templateUrl: './split-page.component.html',
   styleUrls: ['./split-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class SplitPageComponent {
   hideAlertArea = false;

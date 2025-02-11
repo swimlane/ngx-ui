@@ -11,7 +11,8 @@ import { patternValidator } from './pattern.validator';
       useExisting: PatternValidatorDirective,
       multi: true
     }
-  ]
+  ],
+  standalone: false
 })
 export class PatternValidatorDirective implements Validator {
   @Input() pattern: string;

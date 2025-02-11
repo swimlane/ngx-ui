@@ -4,6 +4,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   exportAs: 'ngxInputSuffix',
   selector: 'ngx-input-suffix',
   template: ' <ng-content></ng-content> ',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class InputSuffixComponent {}

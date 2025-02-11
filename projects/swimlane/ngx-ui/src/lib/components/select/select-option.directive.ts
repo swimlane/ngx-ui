@@ -7,7 +7,8 @@ import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { TooltipConfig, DEFAULT_TOOLTIP_CONFIG } from '../tooltip/tooltip-config.interface';
 @Directive({
   exportAs: 'ngxSelectOption',
-  selector: 'ngx-select-option'
+  selector: 'ngx-select-option',
+  standalone: false
 })
 export class SelectOptionDirective implements SelectDropdownOption, OnChanges {
   @Input() name = '';

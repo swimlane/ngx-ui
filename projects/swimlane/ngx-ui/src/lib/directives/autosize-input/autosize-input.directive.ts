@@ -14,7 +14,8 @@ import { NgModel } from '@angular/forms';
 import { filter, take } from 'rxjs/operators';
 
 @Directive({
-  selector: '[autoSizeInput]'
+  selector: '[autoSizeInput]',
+  standalone: false
 })
 export class AutoSizeInputDirective implements AfterContentChecked, AfterViewInit {
   @Input() extraWidth = 0;
@@ -109,7 +110,8 @@ export class AutoSizeInputDirective implements AfterContentChecked, AfterViewIni
   private _getProperty(property: 'value' | 'placeholder') {
     try {
       return this.element.nativeElement[property];
-    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error: unknown) {
       return '';
     }
   }

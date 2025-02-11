@@ -1,8 +1,8 @@
-@import 'colors/variables';
-@import 'forms/variables';
+@use 'colors/colors' as colors;
+@use 'forms/variables' as forms;
 
 .ngx-input {
-  @include input-box;
+  @include forms.input-box;
 
   &.md {
     .ngx-input-box,
@@ -21,7 +21,7 @@
   &.focused {
     &:not(.ng-invalid) {
       .ngx-input-label {
-        color: $input-label-color-active !important;
+        color: forms.$input-label-color-active !important;
       }
     }
   }
@@ -30,24 +30,24 @@
   &.ng-invalid.ng-touched,
   &.ng-invalid.ng-dirty {
     .ngx-input-underline {
-      background-color: $input-invalid-color !important;
+      background-color: forms.$input-invalid-color !important;
 
       .underline-fill {
-        background-color: $input-invalid-color !important;
+        background-color: forms.$input-invalid-color !important;
       }
     }
 
     .ngx-input-label {
-      color: $input-invalid-color;
+      color: forms.$input-invalid-color;
     }
 
     .ngx-input-hint {
-      color: $input-invalid-color;
+      color: forms.$input-invalid-color;
     }
 
     .ngx-input-box,
     .ngx-input-textarea {
-      caret-color: $input-invalid-color !important;
+      caret-color: forms.$input-invalid-color !important;
     }
   }
 
@@ -61,7 +61,7 @@
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: $color-grey-100 !important;
+    -webkit-text-fill-color: colors.$color-grey-100 !important;
   }
 
   .ngx-input-flex-wrap {
@@ -121,15 +121,15 @@
         padding-left: 0px;
         width: 100%;
         max-width: 100%;
-        color: $color-input-text;
+        color: forms.$color-input-text;
         font-size: 1em;
         line-height: 1.25em;
         min-height: 0px;
         font-family: inherit;
-        caret-color: $input-label-color-active;
+        caret-color: forms.$input-label-color-active;
 
         &::placeholder {
-          color: $input-placeholder-color;
+          color: forms.$input-placeholder-color;
         }
 
         &:focus {
@@ -138,7 +138,7 @@
         }
 
         &:disabled {
-          color: $color-input-text-disabled;
+          color: forms.$color-input-text-disabled;
           user-select: none;
         }
       }
@@ -165,13 +165,13 @@
         right: 10px;
         cursor: pointer;
         font-size: 0.8rem;
-        color: $input-icon-color;
+        color: forms.$input-icon-color;
         transition: color 100ms;
         padding: 0;
         z-index: 1;
 
         &:hover {
-          color: $color-input-text;
+          color: forms.$color-input-text;
         }
       }
 
@@ -188,11 +188,11 @@
 
         i {
           font-size: 0.625rem;
-          color: $input-icon-color;
+          color: forms.$input-icon-color;
           cursor: pointer;
 
           &:hover {
-            color: $input-icon-color-hover;
+            color: forms.$input-icon-color-hover;
           }
 
           &:active {
@@ -208,11 +208,11 @@
     }
 
     .ngx-input-label {
-      @include input-label;
+      @include forms.input-label;
     }
 
     .ngx-input-underline {
-      @include input-underline;
+      @include forms.input-underline;
 
       &__visibility-hidden {
         visibility: hidden;
@@ -220,13 +220,13 @@
     }
 
     .ngx-input-hint {
-      @include input-hint;
+      @include forms.input-hint;
     }
   }
 
   &.fill {
     .ngx-input-flex-wrap {
-      @include input-fill-background;
+      @include forms.input-fill-background;
     }
 
     .ngx-input-label {
@@ -256,7 +256,7 @@
 
     ngx-input-prefix,
     ngx-input-suffix {
-      color: $input-label-color;
+      color: forms.$input-label-color;
     }
 
     ngx-input-prefix {
@@ -272,7 +272,7 @@
   &.fill,
   &.has-placeholder {
     .ngx-input-wrap .ngx-input-label {
-      font-size: $input-label-font-size-active;
+      font-size: forms.$input-label-font-size-active;
       top: -1.2em;
     }
   }

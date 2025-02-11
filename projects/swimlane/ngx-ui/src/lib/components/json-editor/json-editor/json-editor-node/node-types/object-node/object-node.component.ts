@@ -5,7 +5,8 @@ import { ObjectNode } from '../../../../node-types/object-node.component';
   selector: 'ngx-json-object-node',
   templateUrl: 'object-node.component.html',
   styleUrls: ['object-node.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ObjectNodeComponent extends ObjectNode {
   @Input() isDuplicated = false;

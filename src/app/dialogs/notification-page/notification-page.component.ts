@@ -4,7 +4,8 @@ import { NotificationService, NotificationStyleType, NotificationType } from '@s
 @Component({
   selector: 'app-notification-page',
   templateUrl: './notification-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class NotificationPageComponent {
   readonly NotificationType = NotificationType;

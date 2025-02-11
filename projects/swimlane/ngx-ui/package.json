@@ -1,6 +1,6 @@
 {
   "name": "@swimlane/ngx-ui",
-  "version": "48.3.0",
+  "version": "49.0.0-alpha.1",
   "engines": {
     "node": ">=18.0.0"
   },
@@ -21,36 +21,37 @@
   "homepage": "https://github.com/swimlane/ngx-ui#readme",
   "sideEffects": true,
   "peerDependencies": {
-    "@angular/animations": ">=12.2.2",
-    "@angular/cdk": ">=12.2.2",
-    "@angular/common": ">=12.2.16",
-    "@angular/core": ">=12.2.6",
-    "@angular/forms": ">=12.2.2",
-    "@angular/platform-browser": ">=12.2.2",
+    "@angular/animations": "17.x || 18.x || 19.x",
+    "@angular/common": "17.x || 18.x || 19.x",
+    "@angular/core": "17.x || 18.x || 19.x",
+    "@angular/cdk": "117.x || 18.x || 19.x",
+    "@angular/forms": "17.x || 18.x || 19.x",
+    "@angular/platform-browser": "17.x || 18.x || 19.x",
     "@types/json-schema": "^7.0.9",
     "ajv": "^8.12.0",
     "codemirror": "5.65.8",
     "core-js": "^3.6.5",
     "json-schema": "*",
-    "moment": "^2.29.1",
-    "moment-timezone": "^0.5.33",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.37",
     "ng-in-viewport": "13.0.0",
-    "ngx-autosize-input": "^2.3.7"
+    "ngx-autosize-input": "^2.3.7",
+    "rxjs": "7.x"
   },
   "dependencies": {
-    "ng2-file-upload": "5.0.0",
+    "ng2-file-upload": "8.0.0",
     "mousetrap": "^1.6.2",
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@angular/animations": ">=12.2.2",
-    "@angular/cdk": ">=12.2.2",
-    "@angular/common": ">=12.2.16",
-    "@angular/compiler": ">=12.2.2",
-    "@angular/core": ">=12.2.6",
-    "@angular/forms": ">=12.2.2",
-    "@angular/platform-browser": ">=12.2.2",
-    "@angular/platform-browser-dynamic": ">=12.2.6",
+    "@angular/animations": ">=17.0.0",
+    "@angular/cdk": ">=17.0.0",
+    "@angular/common": ">=17.0.0",
+    "@angular/compiler": ">=17.0.0",
+    "@angular/core": ">=17.0.0",
+    "@angular/forms": ">=17.0.0",
+    "@angular/platform-browser": ">=17.0.0",
+    "@angular/platform-browser-dynamic": ">=17.0.0",
     "@types/faker": "^4.1.11",
     "codemirror": "^5.63.0",
     "core-js": "^3.17.3",
@@ -58,8 +59,8 @@
     "moment": "^2.29.1",
     "ngx-moment": "^6.0.2",
     "resize-observer-polyfill": "^1.5.1",
-    "rxjs": "7.5.6",
-    "zone.js": "^0.11.4"
+    "rxjs": "7.8.1",
+    "zone.js": "~0.15.0"
   },
   "schematics": "./lib/schematics/collection.json"
 }

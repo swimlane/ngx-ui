@@ -76,7 +76,8 @@ function arrayEquals(a, b) {
   },
   providers: [SELECT_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class SelectComponent extends _InputMixinBase implements ControlValueAccessor, OnDestroy {
   @Input() id = `select-${++nextId}`;

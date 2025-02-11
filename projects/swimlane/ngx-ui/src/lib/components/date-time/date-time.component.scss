@@ -1,10 +1,10 @@
-@import 'colors/variables';
-@import 'forms/inputs';
+@use 'colors/colors' as colors;
+@use 'forms/variables' as forms;
 
-$calendar-bg: $color-blue-grey-800;
+$calendar-bg: colors.$color-blue-grey-800;
 $calender-border: #2d3544;
 $animation-timing: 200ms;
-$input-invalid-color: $color-red;
+$input-invalid-color: colors.$color-red;
 
 .ngx-date-time {
   position: relative;
@@ -30,7 +30,7 @@ $input-invalid-color: $color-red;
     right: 5px;
     top: 50%;
     transform: translateY(-50%);
-    color: $color-blue-grey-200;
+    color: colors.$color-blue-grey-200;
     z-index: 2;
   }
 
@@ -104,25 +104,25 @@ $input-invalid-color: $color-red;
   &.ng-invalid.ng-touched,
   &.ng-invalid.ng-dirty {
     .ngx-input-underline {
-      background-color: $input-invalid-color !important;
+      background-color: forms.$input-invalid-color !important;
 
       .underline-fill {
-        background-color: $input-invalid-color !important;
+        background-color: forms.$input-invalid-color !important;
       }
     }
 
     .ngx-input .ngx-input-label,
     .ngx-input.focused .ngx-input-label {
-      color: $input-invalid-color !important;
+      color: forms.$input-invalid-color !important;
     }
 
     .ngx-input-hint {
-      color: $input-invalid-color !important;
+      color: forms.$input-invalid-color !important;
     }
 
     .ngx-input-box,
     .ngx-input-textarea {
-      caret-color: $input-invalid-color !important;
+      caret-color: forms.$input-invalid-color !important;
     }
   }
 
@@ -144,14 +144,14 @@ $input-invalid-color: $color-red;
     white-space: nowrap;
 
     small {
-      color: $color-grey-100;
+      color: colors.$color-grey-100;
     }
   }
 
   .selected-header {
     padding: 5px 20px;
-    background: $color-blue;
-    color: $color-grey-100;
+    background: colors.$color-blue;
+    color: colors.$color-grey-100;
   }
 
   .time-row {
@@ -181,15 +181,15 @@ $input-invalid-color: $color-red;
       }
 
       .ngx-input-underline {
-        background-color: $color-input-text;
+        background-color: forms.$color-input-text;
       }
     }
 
     button.ampm {
-      color: $color-blue-grey-500;
+      color: colors.$color-blue-grey-500;
 
       &.selected {
-        color: $color-white;
+        color: colors.$color-white;
       }
     }
   }
@@ -220,7 +220,7 @@ $input-invalid-color: $color-red;
 
     .btn {
       font-size: 1em;
-      color: $color-blue-grey-400;
+      color: colors.$color-blue-grey-400;
       margin: 0;
       padding: 0;
     }
@@ -238,7 +238,7 @@ $input-invalid-color: $color-red;
 
     .apply-btn {
       margin-right: 15px;
-      color: $color-blue-400;
+      color: colors.$color-blue-400;
     }
 
     .clear-btn {
@@ -253,7 +253,7 @@ $input-invalid-color: $color-red;
   .date-zone-display {
     font-weight: bold;
     font-size: 15px;
-    color: $color-blue-grey-700;
+    color: colors.$color-blue-grey-700;
 
     > span {
       display: inline-block;
@@ -265,7 +265,7 @@ $input-invalid-color: $color-red;
       line-height: 16px;
       font-size: 11px;
       text-transform: uppercase;
-      color: $color-blue-grey-700;
+      color: colors.$color-blue-grey-700;
       background: #dee1ea;
       margin-left: 5px;
       padding: 0 6px;

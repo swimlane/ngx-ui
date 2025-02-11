@@ -4,7 +4,8 @@ import { lorem } from 'faker';
 @Component({
   selector: 'app-inputs-page',
   templateUrl: './inputs-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class InputsPageComponent {
   searchInputValue = '';

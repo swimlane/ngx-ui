@@ -54,7 +54,8 @@ import { DialogFormat } from './dialog-format.enum';
   ],
   host: { tabindex: '-1' },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class DialogComponent implements OnInit, OnDestroy {
   @Input() id: string;

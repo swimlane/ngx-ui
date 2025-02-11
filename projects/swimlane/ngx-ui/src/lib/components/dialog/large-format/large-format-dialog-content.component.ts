@@ -24,7 +24,8 @@ import { LargeFormatDialogTabsDirective } from './directives/large-format-dialog
   templateUrl: './large-format-dialog-content.component.html',
   styleUrls: ['./large-format-dialog-content.component.scss', './large-format-dialog-content-drawer.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class LargeFormatDialogContentComponent implements OnInit {
   // header-title inputs

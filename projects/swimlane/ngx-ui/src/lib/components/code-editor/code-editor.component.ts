@@ -62,7 +62,8 @@ const CODEMIRROR_VALUE_ACCESSOR = {
     './dracula.css',
     './hint.scss',
     './code-editor.component.scss'
-  ]
+  ],
+  standalone: false
 })
 export class CodeEditorComponent implements OnInit, AfterViewInit, ControlValueAccessor {
   @Input() config: any = { lineWrapping: true };

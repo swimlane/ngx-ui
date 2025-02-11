@@ -28,7 +28,8 @@ import { TabsAppearance } from './tabs-appearance.enum';
   },
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./tabs.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class TabsComponent implements AfterContentInit, OnDestroy {
   @HostBinding('class.light')

@@ -35,7 +35,8 @@ import { DrawerPosition } from './drawer-position.enum';
     '[@drawerTransition]': 'direction'
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class DrawerComponent implements OnInit, OnDestroy {
   @Input() cssClass = '';

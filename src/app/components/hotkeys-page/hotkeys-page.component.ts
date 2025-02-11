@@ -4,7 +4,8 @@ import { DialogService, Hotkey, HotkeysService } from '@swimlane/ngx-ui';
 @Component({
   selector: 'app-hotkeys-page',
   templateUrl: './hotkeys-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class HotkeysPageComponent implements OnInit, OnDestroy {
   currentTheme = 'night';

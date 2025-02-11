@@ -28,7 +28,8 @@ import type { QueryList } from '@angular/core';
   templateUrl: './json-editor-flat.component.html',
   styleUrls: ['./json-editor-flat.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class JsonEditorFlatComponent extends JsonEditor implements OnInit, OnChanges {
   @Input() model: any;

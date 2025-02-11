@@ -1,4 +1,4 @@
-@import 'colors/variables';
+@use 'colors/colors';
 
 .ngx-plus-menu {
   --menu-color: #9fce36;
@@ -97,7 +97,7 @@
         font-weight: 600;
         font-size: 13px;
         line-height: 30px;
-        color: $color-blue-grey-200;
+        color: colors.$color-blue-grey-200;
       }
     }
 

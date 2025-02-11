@@ -1,4 +1,4 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
 
 .ngx-large-format-dialog-header-action {
   flex: 0 0 20%;
@@ -8,7 +8,7 @@
   justify-content: flex-end;
 
   &__button {
-    color: $color-blue-grey-400;
+    color: colors.$color-blue-grey-400;
     font-size: 0.8125rem;
     line-height: 1rem;
     padding-right: 0;
@@ -19,7 +19,7 @@
     }
 
     &:hover {
-      color: $color-white;
+      color: colors.$color-white;
     }
   }
 }

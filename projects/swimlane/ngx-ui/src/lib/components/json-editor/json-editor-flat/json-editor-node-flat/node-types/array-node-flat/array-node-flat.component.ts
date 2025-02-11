@@ -19,7 +19,8 @@ import { PropertyConfigOptions, PropertyConfigComponent } from '../property-conf
   templateUrl: './array-node-flat.component.html',
   styleUrls: ['./array-node-flat.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ArrayNodeFlatComponent extends ArrayNode implements OnInit, OnChanges {
   @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;

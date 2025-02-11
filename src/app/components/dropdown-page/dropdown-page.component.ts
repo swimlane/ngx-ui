@@ -4,7 +4,8 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'app-dropdown-page',
   templateUrl: './dropdown-page.component.html',
   styleUrls: ['./dropdown-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class DropdownPageComponent {
   scrollTo(id: string) {

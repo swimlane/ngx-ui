@@ -20,7 +20,8 @@ import { HotkeysService } from '../hotkeys/hotkeys.service';
   templateUrl: './resize-overlay.component.html',
   styleUrls: ['./resize-overlay.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class ResizeOverlayComponent implements OnInit, OnDestroy {
   @Input() combo = 'ctrl+shift+o';

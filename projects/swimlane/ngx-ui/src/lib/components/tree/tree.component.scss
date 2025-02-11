@@ -1,4 +1,5 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
+@use '../json-editor/json-editor/json-editor.variables' as json-editor;
 
 $color-tree-line: #667080;
 $color-tree-text: #b3b6bd;
@@ -31,7 +32,7 @@ $dashes: 5.3px;
 
       &.icon-tree-collapse::before,
       &.icon-tree-expand::before {
-        background: $color-blue-grey-800;
+        background: colors.$color-blue-grey-800;
         border-radius: 50%;
       }
     }
@@ -65,7 +66,7 @@ $dashes: 5.3px;
     top: 17px;
     bottom: 12px;
     left: 5px;
-    border-left: dashed 1px $color-tree-line;
+    border-left: dashed 1px json-editor.$color-tree-line;
     width: 1px;
 
     &::after {
@@ -73,7 +74,7 @@ $dashes: 5.3px;
       width: 5px;
       height: 5px;
       border-radius: 5px;
-      background: $color-tree-line;
+      background: json-editor.$color-tree-line;
       position: absolute;
       bottom: -3px;
       left: -3px;
@@ -85,7 +86,7 @@ $dashes: 5.3px;
       height: 5px;
       border-radius: 5px;
       background: none;
-      border: 1px solid $color-tree-line;
+      border: 1px solid json-editor.$color-tree-line;
       position: absolute;
       top: -5px;
       left: -3px;
@@ -109,8 +110,8 @@ $dashes: 5.3px;
 
     &_filled {
       height: 13px !important;
-      background: radial-gradient(at 5.5px 30%, $color-tree-line, 2.5px, transparent 0) 0/28px 32px,
-        conic-gradient(at 1px 50%, #0000 75%, $color-tree-line 0) 5px 0/28px 5.1px;
+      background: radial-gradient(at 5.5px 30%, json-editor.$color-tree-line, 2.5px, transparent 0) 0/28px 32px,
+        conic-gradient(at 1px 50%, #0000 75%, json-editor.$color-tree-line 0) 5px 0/28px 5.1px;
       background-position-y: 1.1px;
     }
   }
@@ -135,14 +136,14 @@ $dashes: 5.3px;
 
   .empty::before {
     background: none;
-    border: 1px solid $color-tree-line;
+    border: 1px solid json-editor.$color-tree-line;
   }
 
   .depth-indicator,
   .empty::after,
   .filled::before,
   .dots {
-    background: conic-gradient(at $thickness 50%, #0000 75%, $color-tree-line 0) 5px 0 / ($gap $dashes);
+    background: conic-gradient(at $thickness 50%, #0000 75%, json-editor.$color-tree-line 0) 5px 0 / ($gap $dashes);
   }
 
   .empty::after,
@@ -166,7 +167,7 @@ $dashes: 5.3px;
 
   .filled::after,
   .filled-single::after {
-    background: $color-tree-line;
+    background: json-editor.$color-tree-line;
   }
 
   .dots {

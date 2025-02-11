@@ -27,7 +27,8 @@ import { TreeNode } from './tree-node.model';
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
   @Input() nodes: TreeNode[];

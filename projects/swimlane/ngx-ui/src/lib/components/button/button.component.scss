@@ -1,5 +1,5 @@
-@import '../../styles/colors/variables.scss';
-@import '../../styles/components/buttons.scss';
+@use 'colors/colors' as colors;
+@use 'components/buttons' as buttons;
 
 .ngx-button {
   cursor: pointer;
@@ -32,7 +32,7 @@
 
     // Focus ring on native button
     &:focus-visible {
-      outline: 2px solid $button-fill-color;
+      outline: 2px solid buttons.$button-fill-color;
     }
   }
 
@@ -46,19 +46,19 @@
   }
 
   &.in-progress {
-    color: $color-white !important;
+    color: colors.$color-white !important;
   }
 
   &.success {
-    background-color: $color-green !important;
-    background: $color-green !important;
-    border: 1px solid $color-green !important;
+    background-color: colors.$color-green !important;
+    background: colors.$color-green !important;
+    border: 1px solid colors.$color-green !important;
   }
 
   &.fail {
-    background-color: $color-red !important;
-    background: $color-red !important;
-    border: 1px solid $color-red !important;
+    background-color: colors.$color-red !important;
+    background: colors.$color-red !important;
+    border: 1px solid colors.$color-red !important;
   }
 
   &.in-progress,
@@ -99,7 +99,7 @@
         height: 1em;
         width: 1em;
         font-weight: bold;
-        color: $color-white;
+        color: colors.$color-white;
         overflow: hidden;
         font-size: 1em;
       }
@@ -108,21 +108,21 @@
 
   // focus ring colors
   &.btn-primary button {
-    outline-color: $color-blue;
+    outline-color: colors.$color-blue;
   }
 
   &.btn-warning button {
-    outline-color: $color-orange;
+    outline-color: colors.$color-orange;
   }
 
   &.btn-danger button {
-    outline-color: $color-red-400;
+    outline-color: colors.$color-red-400;
   }
 
   &.btn-bordered,
   &.btn-primary.btn-bordered {
     button {
-      outline-color: $color-blue-400;
+      outline-color: colors.$color-blue-400;
     }
   }
 }

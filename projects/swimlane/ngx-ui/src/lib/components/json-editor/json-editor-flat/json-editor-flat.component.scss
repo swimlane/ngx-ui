@@ -1,4 +1,4 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
 
 .ngx-json-editor-flat {
   position: relative;
@@ -8,7 +8,7 @@
     flex: 0 0 80px;
 
     .node-options-btn {
-      color: $color-blue-grey-400;
+      color: colors.$color-blue-grey-400;
       padding: 1px 3px 2px;
     }
 

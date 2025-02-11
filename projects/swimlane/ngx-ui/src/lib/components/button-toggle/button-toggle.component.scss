@@ -1,25 +1,26 @@
-@import '../../styles/colors/variables.scss';
+@use 'sass:color';
+@use 'colors/colors' as colors;
 
 .ngx-button-toggle {
   position: relative;
   z-index: 3;
   padding: 1px 10px;
   border-radius: 2px;
-  color: $color-blue-grey-350;
+  color: colors.$color-blue-grey-350;
   white-space: nowrap;
   transition: background-color 0.25s cubic-bezier(0.35, 0, 0.25, 1), font-weight 0.25s ease-in;
 
   &.checked {
     font-weight: 600;
-    color: $color-blue-grey-050;
-    background-color: $color-blue-grey-700;
+    color: colors.$color-blue-grey-050;
+    background-color: colors.$color-blue-grey-700;
   }
 
   &:hover:not(.checked):not([disabled]) {
-    background: rgba($color-blue-grey-650, 0.1);
+    background: rgba(colors.$color-blue-grey-650, 0.1);
   }
 
   &:focus-visible {
-    outline: 2px solid $color-blue-grey-500;
+    outline: 2px solid colors.$color-blue-grey-500;
   }
 }

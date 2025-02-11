@@ -28,7 +28,8 @@ import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
     '[class.disabled-button]': 'disabled'
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ButtonComponent implements OnInit, OnChanges {
   @Input() promise?: Promise<any>;

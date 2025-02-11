@@ -4,7 +4,8 @@ import { Component, Input, ViewEncapsulation, Output, EventEmitter } from '@angu
   selector: 'ngx-json-editor-node-info',
   templateUrl: './node-info.component.html',
   styleUrls: ['./node-info.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class JsonEditorNodeInfoComponent {
   @Input()

@@ -28,7 +28,8 @@ import { StepContentDirective } from './step-content.directive';
     '[class.ngx-step--complete]': 'step < active'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class StepComponent implements OnInit {
   @Input() label?: string;

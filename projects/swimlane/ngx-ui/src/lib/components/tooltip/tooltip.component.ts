@@ -29,7 +29,8 @@ import { StyleTypes } from './style-types.enum';
   templateUrl: './tooltip.component.html',
   styleUrls: ['./tooltip.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class TooltipContentComponent implements AfterViewInit {
   @ViewChild('caretElm', { static: true })

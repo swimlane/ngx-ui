@@ -9,7 +9,8 @@ import { delay, filter, take } from 'rxjs/operators';
   host: {
     class: 'ngx-autosize',
     '(input)': 'onInput()'
-  }
+  },
+  standalone: false
 })
 export class AutosizeDirective implements AfterContentInit {
   @Input('autosize')

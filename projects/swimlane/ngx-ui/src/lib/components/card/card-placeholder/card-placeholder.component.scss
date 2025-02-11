@@ -1,8 +1,8 @@
-@import 'colors/index.scss';
+@use 'colors/colors' as colors;
 
 .ngx-card-placeholder {
   display: inline-block;
-  background-color: $color-blue-grey-700;
+  background-color: colors.$color-blue-grey-700;
   border-radius: 11px;
 
   &.small {

@@ -28,7 +28,8 @@ let nextId = 0;
   host: {
     class: 'ngx-tab'
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class TabComponent implements OnInit, OnChanges {
   @HostBinding('attr.id')

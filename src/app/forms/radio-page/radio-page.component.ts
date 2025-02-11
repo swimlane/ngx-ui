@@ -4,7 +4,8 @@ import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
 @Component({
   selector: 'app-radio-page',
   templateUrl: './radio-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class RadioPageComponent {
   favoriteSeason = 'Spring';

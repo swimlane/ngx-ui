@@ -29,7 +29,8 @@ import type { QueryList } from '@angular/core';
   host: { class: 'ngx-navbar' },
   animations: [navbarAnimations.horizontalBarTransition],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class NavbarComponent implements AfterViewInit, OnDestroy {
   @Input()

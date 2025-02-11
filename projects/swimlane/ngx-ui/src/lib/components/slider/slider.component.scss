@@ -1,10 +1,10 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
 
-$slider-bg: $color-blue-400;
-$slider-bg-fill: $color-blue-400;
+$slider-bg: colors.$color-blue-400;
+$slider-bg-fill: colors.$color-blue-400;
 
-$slider-thumb: $color-blue-400;
-$slider-focus-bg: $color-blue-400;
+$slider-thumb: colors.$color-blue-400;
+$slider-focus-bg: colors.$color-blue-400;
 
 $slider-track-width: 2px;
 $slider-fill-width: 4px;

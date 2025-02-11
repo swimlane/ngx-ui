@@ -19,7 +19,8 @@ interface DataValue {
   templateUrl: './orderable-inputs-list.component.html',
   styleUrls: ['./orderable-inputs-list.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class OrderableInputsListComponent implements OnInit {
   @Input() data: string[];

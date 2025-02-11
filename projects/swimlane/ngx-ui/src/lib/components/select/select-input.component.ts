@@ -24,7 +24,8 @@ import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
     class: 'ngx-select-input',
     '[class.ngx-select-input--has-controls]': 'hasControls'
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class SelectInputComponent implements AfterViewInit, OnChanges {
   @Input() selectId: string;

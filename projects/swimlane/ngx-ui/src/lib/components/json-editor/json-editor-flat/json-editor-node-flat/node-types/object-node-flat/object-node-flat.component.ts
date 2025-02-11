@@ -26,7 +26,8 @@ import { PropertyConfigOptions, PropertyConfigComponent } from '../property-conf
   templateUrl: './object-node-flat.component.html',
   styleUrls: ['./object-node-flat.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnChanges {
   @ViewChild('propertyConfigTmpl', { static: false }) propertyConfigTmpl: TemplateRef<PropertyConfigComponent>;

@@ -23,7 +23,8 @@ let nextId = 0;
   host: { class: 'ngx-section' },
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./section.component.scss']
+  styleUrls: ['./section.component.scss'],
+  standalone: false
 })
 export class SectionComponent {
   @HostBinding('id')

@@ -8,7 +8,8 @@ import { Component, Input, ChangeDetectionStrategy, ViewEncapsulation } from '@a
     class: 'ngx-card-footer'
   },
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class CardFooterComponent {
   @Input() label: string; // used for vertical card

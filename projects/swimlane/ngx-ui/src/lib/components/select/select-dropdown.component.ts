@@ -28,7 +28,8 @@ import { SelectDropdownOption } from './select-dropdown-option.interface';
     class: 'ngx-select-dropdown',
     '[class.groupings]': 'groupBy'
   },
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class SelectDropdownComponent implements AfterViewInit {
   @Input() selected: any[];

@@ -1,10 +1,12 @@
+@use 'colors/colors' as colors;
+@use 'colors/shadow-variables' as shadows;
 /**
  * Button styling
  */
 
-$button-text-color: $color-white;
-$button-fill-color: $color-blue-grey-600;
-$button-fill-active-color: $color-blue-grey-700;
+$button-text-color: colors.$color-white;
+$button-fill-color: colors.$color-blue-grey-600;
+$button-fill-active-color: colors.$color-blue-grey-700;
 
 button {
   box-sizing: border-box;
@@ -50,7 +52,7 @@ button {
   background: $button-fill-color;
   border: solid 1px transparent;
   border-radius: 2px;
-  box-shadow: $shadow-1;
+  box-shadow: shadows.$shadow-1;
   transition: background-color 200ms, box-shadow 200ms;
 
   .ngx-icon,
@@ -99,23 +101,23 @@ button {
     outline-color: $button-fill-active-color;
 
     &.btn-primary {
-      background-color: $color-blue;
+      background-color: colors.$color-blue;
     }
 
     &.btn-warning {
-      background-color: $color-orange;
+      background-color: colors.$color-orange;
     }
 
     &.btn-danger {
-      background-color: $color-red;
+      background-color: colors.$color-red;
     }
     &.btn-link {
       background-color: transparent;
     }
 
     &.btn-bordered {
-      border-color: $color-blue-200;
-      color: $color-blue-200;
+      border-color: colors.$color-blue-200;
+      color: colors.$color-blue-200;
     }
   }
 
@@ -135,27 +137,27 @@ button {
   }
 
   &.btn-primary {
-    background-color: $color-blue-400;
-    outline-color: $color-blue;
+    background-color: colors.$color-blue-400;
+    outline-color: colors.$color-blue;
 
     &.btn-primary-gradient {
-      background-color: $color-blue-600;
-      background: linear-gradient(350.57deg, $color-blue-600 14.42%, $color-light-blue-600 100%);
+      background-color: colors.$color-blue-600;
+      background: linear-gradient(350.57deg, colors.$color-blue-600 14.42%, colors.$color-light-blue-600 100%);
       box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-      border: 1px solid $color-blue-600;
+      border: 1px solid colors.$color-blue-600;
     }
   }
 
   &.btn-warning {
-    background-color: $color-orange-400;
-    color: $color-blue-grey-900;
-    outline-color: $color-orange;
+    background-color: colors.$color-orange-400;
+    color: colors.$color-blue-grey-900;
+    outline-color: colors.$color-orange;
   }
 
   &.btn-danger {
-    background-color: $color-red-400;
-    outline-color: $color-red-400;
+    background-color: colors.$color-red-400;
+    outline-color: colors.$color-red-400;
   }
 
   &.btn-link {
@@ -165,11 +167,11 @@ button {
 
   &.btn-bordered,
   &.btn-primary.btn-bordered {
-    border: 1px solid $color-blue-400;
-    color: $color-blue-400;
+    border: 1px solid colors.$color-blue-400;
+    color: colors.$color-blue-400;
     background-color: transparent;
     box-shadow: none;
-    outline-color: $color-blue-400;
+    outline-color: colors.$color-blue-400;
 
     &.disabled-button {
       opacity: 0.5;
@@ -187,8 +189,8 @@ button {
     box-shadow: none;
 
     &:hover {
-      border-color: $color-blue !important;
-      color: $color-blue !important;
+      border-color: colors.$color-blue !important;
+      color: colors.$color-blue !important;
     }
 
     &.disabled-button {

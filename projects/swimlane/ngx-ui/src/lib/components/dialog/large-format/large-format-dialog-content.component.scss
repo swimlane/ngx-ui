@@ -1,4 +1,5 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
+@use 'colors/gradient-variables' as gradients;
 
 .ngx-large-format-dialog-content {
   --stepper-header-custom-offset: 0px;
@@ -45,14 +46,14 @@
     flex-direction: column;
     height: 100%;
     max-height: var(--max-height, 75vh);
-    background: $bg-linear-3;
+    background: gradients.$bg-linear-3;
     box-shadow: 0 0 100px rgba(0, 0, 0, 0.25);
     border-radius: 0.125rem;
 
     &__header {
       flex: 0 0 var(--header-height, 60px);
       height: var(--header-height, 60px);
-      border-bottom: 2px solid $color-blue-grey-700;
+      border-bottom: 2px solid colors.$color-blue-grey-700;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -71,7 +72,7 @@
     .ngx-large-format-dialog-footer {
       flex: 0 0 var(--footer-height, 4rem);
       height: var(--footer-height, 4rem);
-      border-top: 2px solid $color-blue-grey-700;
+      border-top: 2px solid colors.$color-blue-grey-700;
     }
 
     .dialog-stepper,
@@ -223,7 +224,7 @@
                 font-size: 0.8125rem;
                 font-weight: bold;
                 line-height: 1rem;
-                color: $color-blue-grey-400;
+                color: colors.$color-blue-grey-400;
 
                 &::after {
                   top: 3.5rem;
@@ -232,7 +233,7 @@
 
               &.active {
                 button {
-                  color: $color-white;
+                  color: colors.$color-white;
                 }
               }
             }

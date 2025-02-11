@@ -176,7 +176,8 @@ import { DrawerDirection, DrawerService } from '@swimlane/ngx-ui';
       </ngx-dialog-drawer-content>
     </ng-template>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ChildDrawerComponent {
   @Output() dismiss = new EventEmitter();

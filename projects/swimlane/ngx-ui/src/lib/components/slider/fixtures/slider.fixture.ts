@@ -4,7 +4,8 @@ import { SliderComponent } from '../slider.component';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'slider-fixture',
-  templateUrl: 'slider.fixture.html'
+  templateUrl: 'slider.fixture.html',
+  standalone: false
 })
 export class SliderFixtureComponent {
   @ViewChild('defaultSlider', { static: true }) defaultSlider: SliderComponent;

@@ -3,7 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-controls-page',
   templateUrl: './controls-page.component.html',
-  styleUrls: ['./controls-page.component.scss']
+  styleUrls: ['./controls-page.component.scss'],
+  standalone: false
 })
 export class ControlsPageComponent {
   inputValue = 'Breach';

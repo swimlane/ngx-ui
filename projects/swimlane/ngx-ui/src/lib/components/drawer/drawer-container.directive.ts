@@ -6,6 +6,7 @@ import { Directive } from '@angular/core';
   host: {
     '[style.position]': '"relative"',
     '[style.overflow]': '"hidden"'
-  }
+  },
+  standalone: false
 })
 export class DrawerContainerDirective {}

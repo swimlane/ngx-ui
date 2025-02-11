@@ -22,7 +22,8 @@ export enum DropzoneSize {
   templateUrl: './dropzone.component.html',
   styleUrls: ['./dropzone.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class DropzoneComponent implements OnInit {
   @Input() id = `input-${id()}`;

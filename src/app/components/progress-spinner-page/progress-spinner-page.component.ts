@@ -4,7 +4,8 @@ import { ProgressSpinnerMode } from '@swimlane/ngx-ui';
 @Component({
   selector: 'app-progress-spinner-page',
   templateUrl: './progress-spinner-page.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ProgressSpinnerPageComponent {
   diameter = 100;

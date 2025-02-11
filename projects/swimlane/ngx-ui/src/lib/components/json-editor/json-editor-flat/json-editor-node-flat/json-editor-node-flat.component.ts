@@ -26,7 +26,8 @@ import { JSONSchema7TypeName } from 'json-schema';
   styleUrls: ['./json-editor-node-flat.component.scss'],
   providers: [DateFormatPipe],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class JsonEditorNodeFlatComponent extends JsonEditorNode implements OnInit, OnChanges, OnDestroy {
   @Input() model: any;

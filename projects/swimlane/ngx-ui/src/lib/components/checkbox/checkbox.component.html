@@ -1,6 +1,9 @@
-<label class="ngx-checkbox--label" [attr.for]="id + '-chk'"
+<label
+  class="ngx-checkbox--label"
+  [attr.for]="id + '-chk'"
   [tabIndex]="disabled ? -1 : tabindex"
-  (keydown.space)="onKeyup($event)">
+  (keydown.space)="onKeyup($event)"
+>
   <input
     type="checkbox"
     [id]="id + '-chk'"
@@ -15,7 +18,8 @@
 
   <div
     class="ngx-checkbox--box"
-    [class.checked]="value"
+    [class.checked]="!indeterminate && value"
+    [class.indeterminate]="indeterminate"
     [style.width]="diameter"
     [style.height]="diameter"
     [style.min-width]="diameter"

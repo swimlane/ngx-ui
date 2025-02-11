@@ -4,7 +4,8 @@ import { getComputedStyle, rgb2hex } from '../app.utils';
 @Component({
   selector: 'app-colors-page',
   templateUrl: './colors-page.component.html',
-  styleUrls: ['./colors-page.component.scss']
+  styleUrls: ['./colors-page.component.scss'],
+  standalone: false
 })
 export class ColorsPageComponent {
   chartColorsOrdinal = [

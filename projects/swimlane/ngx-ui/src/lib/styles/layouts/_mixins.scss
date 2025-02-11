@@ -1,3 +1,5 @@
+@use '_flex-vars' as flex-vars;
+
 /* --- Mixins -- */
 
 @mixin modifiers($modifier) {
@@ -69,22 +71,22 @@
 }
 
 @mixin create-col-classes($modifier) {
-  #{$column-class}#{$modifier} {
+  #{flex-vars.$column-class}#{$modifier} {
     @include col-base();
     @include modifiers($modifier);
 
     flex: 1 1 auto;
   }
 
-  #{$column-class}#{$modifier}-auto {
+  #{flex-vars.$column-class}#{$modifier}-auto {
     @include col-base();
     @include modifiers($modifier);
 
     flex: none;
   }
 
-  @for $i from 1 through $max-columns {
-    #{$column-class}#{$modifier}-#{$i} {
+  @for $i from 1 through flex-vars.$max-columns {
+    #{flex-vars.$column-class}#{$modifier}-#{$i} {
       @include col-base();
       @include modifiers($modifier);
 
@@ -93,7 +95,7 @@
       max-width: calc(var(--column-width, 100% / 12) * #{$i});
     }
 
-    #{$column-class}#{$modifier}-offset-#{$i - 1} {
+    #{flex-vars.$column-class}#{$modifier}-offset-#{$i - 1} {
       flex: 0 0 auto;
       margin-left: calc(var(--column-width, 100% / 12) * (#{$i} - 1));
 

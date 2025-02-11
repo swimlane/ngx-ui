@@ -5,7 +5,8 @@ import { TooltipDirective } from '@swimlane/ngx-ui';
   selector: 'app-tooltip-page',
   templateUrl: './tooltip-page.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./tooltip-page.component.scss']
+  styleUrls: ['./tooltip-page.component.scss'],
+  standalone: false
 })
 export class TooltipPageComponent {
   @ViewChild('customTooltip', { static: true }) customTooltip: TooltipDirective;

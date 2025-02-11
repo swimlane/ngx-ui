@@ -29,7 +29,8 @@ const DEFAULT_BASIS = '0 0 15px';
     '[style.box-sizing]': '"border-box"'
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class SplitHandleComponent implements OnChanges {
   @Input() ngxSplitHandle = DEFAULT_BASIS;

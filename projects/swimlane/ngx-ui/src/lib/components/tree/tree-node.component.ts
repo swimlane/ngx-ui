@@ -16,7 +16,8 @@ import { TreeNode } from './tree-node.model';
   selector: 'ngx-tree-node',
   templateUrl: './tree-node.component.html',
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class TreeNodeComponent implements OnChanges {
   @Input() label: string;

@@ -21,7 +21,8 @@ import { InputTypes } from './input-types.enum';
       [autosize]="enabled$ | async"
     ></textarea>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class AutosizeDirectiveFixture {
   value = 'test';

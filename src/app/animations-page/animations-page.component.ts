@@ -26,7 +26,8 @@ import {
     trigger('slideTop', slideTopAnimation(250)),
     trigger('slideBottom', slideBottomAnimation(250))
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class AnimationsPageComponent {
   count = 0;

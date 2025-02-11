@@ -47,7 +47,8 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
     ])
   ],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class OverlayComponent {
   @Input()

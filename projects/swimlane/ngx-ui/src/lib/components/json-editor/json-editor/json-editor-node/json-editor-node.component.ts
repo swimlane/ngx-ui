@@ -11,7 +11,8 @@ import { DateFormatPipe } from 'ngx-moment';
   styleUrls: ['./json-editor-node.component.scss'],
   providers: [DateFormatPipe],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class JsonEditorNodeComponent extends JsonEditorNode implements OnInit {
   @Input() model: any;

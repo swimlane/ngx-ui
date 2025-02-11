@@ -43,7 +43,8 @@ import { LongPressButtonState } from './long-press-button-state.enum';
     ])
   ],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class LongPressButtonComponent implements OnInit, OnChanges {
   @Input() state = LongPressButtonState.Active;

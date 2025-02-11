@@ -1,8 +1,10 @@
-@import 'colors/variables';
+@use 'sass:color';
+@use 'colors/colors' as colors;
+@use 'colors/shadow-variables' as shadows;
 
-$dropdown-bg: $color-blue-grey-700;
-$dropdown-bg-hover: darken($color-blue-grey-700, 5%);
-$dropdown-color: $color-grey-100;
+$dropdown-bg: colors.$color-blue-grey-700;
+$dropdown-bg-hover: color.adjust(colors.$color-blue-grey-700, $lightness: -5%);
+$dropdown-color: colors.$color-grey-100;
 
 /**
  * Dropdown Component
@@ -66,7 +68,7 @@ $dropdown-color: $color-grey-100;
     z-index: 1000;
     min-width: 180px;
     background: $dropdown-bg;
-    box-shadow: $shadow-3;
+    box-shadow: shadows.$shadow-3;
     margin-top: 0;
     opacity: 0;
     display: none;
@@ -124,7 +126,7 @@ $dropdown-color: $color-grey-100;
         padding: 0 20px;
         overflow: hidden;
         background-color: initial !important;
-        color: $color-blue-grey-400 !important;
+        color: colors.$color-blue-grey-400 !important;
       }
 
       // Floating dividers are hidden
@@ -210,7 +212,7 @@ $dropdown-color: $color-grey-100;
         }
 
         &.divider hr {
-          border-bottom: 1px solid $color-blue-grey-700;
+          border-bottom: 1px solid colors.$color-blue-grey-700;
         }
       }
     }
@@ -219,8 +221,8 @@ $dropdown-color: $color-grey-100;
   // Styles
   .ngx-dropdown-menu {
     &.ngx-dropdown-light-outline {
-      $menu-color: $color-blue-grey-750;
-      $menu-border: $color-blue-grey-550;
+      $menu-color: colors.$color-blue-grey-750;
+      $menu-border: colors.$color-blue-grey-550;
       $item-active: #479eff;
       $item-hover: #1f242f;
       $item-color: #fff;
@@ -230,9 +232,9 @@ $dropdown-color: $color-grey-100;
 
     &.ngx-dropdown-dark-outline {
       $menu-color: #222732;
-      $menu-border: $color-blue-grey-550;
+      $menu-border: colors.$color-blue-grey-550;
       $item-active: #479eff;
-      $item-hover: $color-blue-grey-750;
+      $item-hover: colors.$color-blue-grey-750;
       $item-color: #afb7c8;
 
       @include ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color);

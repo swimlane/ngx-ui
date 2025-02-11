@@ -27,7 +27,8 @@ export interface PlusMenuItem {
   templateUrl: './plus-menu.component.html',
   styleUrls: ['./plus-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  standalone: false
 })
 export class PlusMenuComponent implements OnInit, OnDestroy {
   @Input() items: PlusMenuItem[] = [];

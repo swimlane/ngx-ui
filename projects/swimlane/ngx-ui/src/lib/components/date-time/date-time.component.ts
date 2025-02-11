@@ -82,7 +82,8 @@ const guessTimeZone = moment.tz.guess();
     '[class.autosize]': 'autosize',
     '[class.marginless]': '!withMargin',
     '[class.no-label]': '!label'
-  }
+  },
+  standalone: false
 })
 export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAccessor, Validator {
   @Input() id = `datetime-${++nextId}`;

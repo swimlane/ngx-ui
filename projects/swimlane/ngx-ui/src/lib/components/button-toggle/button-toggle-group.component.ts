@@ -36,7 +36,8 @@ let nextId = 0;
     class: 'ngx-button-toggle-group'
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ButtonToggleGroupComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
   readonly UNIQUE_ID = `ngx-button-toggle-group-${++nextId}`;

@@ -1,8 +1,9 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
+@use 'colors/shadow-variables' as shadow;
 
-$dialog-bg: $color-blue-grey-800;
-$dialog-header-color: $color-grey-100;
-$dialog-body-color: $color-blue-grey-200;
+$dialog-bg: colors.$color-blue-grey-800;
+$dialog-header-color: colors.$color-grey-100;
+$dialog-body-color: colors.$color-blue-grey-200;
 
 .ngx-dialog {
   position: fixed;
@@ -18,7 +19,7 @@ $dialog-body-color: $color-blue-grey-200;
   .ngx-dialog-content {
     pointer-events: auto;
     border-radius: 2px;
-    box-shadow: $shadow-3;
+    box-shadow: shadow.$shadow-3;
     background: $dialog-bg;
     padding: 1.4rem;
     position: relative;
@@ -76,11 +77,11 @@ $dialog-body-color: $color-blue-grey-200;
   &.wizard {
     .ngx-dialog-content {
       padding: 0;
-      background: $color-blue-grey-725;
+      background: colors.$color-blue-grey-725;
 
       .ngx-dialog-header {
         padding: 1.4rem;
-        background: $color-blue-grey-750;
+        background: colors.$color-blue-grey-750;
 
         h1 {
           margin: 0;
@@ -104,11 +105,11 @@ $dialog-body-color: $color-blue-grey-200;
 
         .ngx-tabs-list {
           padding: 0 20px;
-          background: $color-blue-grey-775;
-          border-bottom: 2px solid $color-blue-grey-775;
+          background: colors.$color-blue-grey-775;
+          border-bottom: 2px solid colors.$color-blue-grey-775;
 
           .ngx-tab {
-            background: $color-blue-grey-775;
+            background: colors.$color-blue-grey-775;
 
             button {
               padding: 0.6em 0.75em;
@@ -116,7 +117,7 @@ $dialog-body-color: $color-blue-grey-200;
             }
 
             &.active {
-              background: $color-blue-grey-700;
+              background: colors.$color-blue-grey-700;
             }
           }
         }

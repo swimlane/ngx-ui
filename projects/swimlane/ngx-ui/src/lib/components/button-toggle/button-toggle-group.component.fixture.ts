@@ -11,7 +11,8 @@ import { ButtonToggleModule } from './button-toggle.module';
       </ngx-button-toggle>
     </ngx-button-toggle-group>
   `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class ButtonToggleGroupComponentFixture {
   @Input() items: string[] = [];

@@ -1,4 +1,5 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
+@use 'colors/shadow-variables' as shadows;
 
 @mixin notification($color) {
   .notification-bar {
@@ -27,10 +28,10 @@
   display: block;
   margin-top: 0.5rem;
   position: relative;
-  box-shadow: $shadow-15;
-  color: $color-white;
+  box-shadow: shadows.$shadow-15;
+  color: colors.$color-white;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
-  background: $color-blue-grey-700;
+  background: colors.$color-blue-grey-700;
 
   @include notification(#455066);
 
@@ -79,13 +80,13 @@
 
   .notification-content {
     padding: 1.5rem;
-    color: $color-blue-grey-100;
+    color: colors.$color-blue-grey-100;
     overflow: auto;
     max-height: 300px;
 
     &.has-icon {
       margin-left: 4.5rem;
-      border-left: 1px solid $color-blue-grey-650;
+      border-left: 1px solid colors.$color-blue-grey-650;
     }
   }
 
@@ -94,19 +95,19 @@
   }
 
   &.ngx-notification-info {
-    @include notification($color-blue);
+    @include notification(colors.$color-blue);
   }
 
   &.ngx-notification-error {
-    @include notification($color-red);
+    @include notification(colors.$color-red);
   }
 
   &.ngx-notification-warning {
-    @include notification($color-orange);
+    @include notification(colors.$color-orange);
   }
 
   &.ngx-notification-success {
-    @include notification($color-green);
+    @include notification(colors.$color-green);
   }
 
   .ngx-notification-title {

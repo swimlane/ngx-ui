@@ -68,7 +68,8 @@ const MIN_WIDTH = 60;
   animations: INPUT_ANIMATIONS,
   providers: [INPUT_VALUE_ACCESSOR, INPUT_VALIDATORS],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAccessor, Validator {
   @Input() id = `input-${++nextId}`;

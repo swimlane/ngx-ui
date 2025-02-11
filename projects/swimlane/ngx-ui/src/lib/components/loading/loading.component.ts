@@ -8,7 +8,8 @@ import { coerceBooleanProperty, coerceNumberProperty } from '@angular/cdk/coerci
   styleUrls: ['./loading.component.scss'],
   host: { class: 'ngx-loading-bar' },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class LoadingComponent {
   @Input()

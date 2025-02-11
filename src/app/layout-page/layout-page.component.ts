@@ -4,7 +4,8 @@ import { Component, ViewEncapsulation } from '@angular/core';
   selector: 'app-layout-page',
   templateUrl: './layout-page.component.html',
   styleUrls: ['./layout-page.component.scss'],
-  encapsulation: ViewEncapsulation.Emulated
+  encapsulation: ViewEncapsulation.Emulated,
+  standalone: false
 })
 export class LayoutPageComponent {
   containerClass = 'ngx-flex--wrap';

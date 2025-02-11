@@ -1,11 +1,11 @@
-@import 'colors/variables';
+@use 'colors/colors' as colors;
 
 .card-page-container {
   .ngx-card {
     margin-bottom: 20px;
 
     .date-display {
-      color: $color-blue-grey-400;
+      color: colors.$color-blue-grey-400;
     }
 
     .card-gutter {
@@ -21,13 +21,13 @@
     .card-action {
       justify-content: space-between;
       padding-right: 0 !important;
-      color: $color-blue-grey-350;
+      color: colors.$color-blue-grey-350;
     }
   }
 
   .playbook-card {
     &.border {
-      border: solid 2px $color-blue-grey-650;
+      border: solid 2px colors.$color-blue-grey-650;
       border-radius: 2px;
     }
 
@@ -99,16 +99,16 @@
           text-align: center;
 
           .ngx-icon {
-            color: $color-blue-grey-350;
+            color: colors.$color-blue-grey-350;
           }
 
           .card-stat--value {
-            color: $color-blue-grey-100;
+            color: colors.$color-blue-grey-100;
             font-size: 21px;
           }
 
           .card-stat--label {
-            color: $color-blue-grey-350;
+            color: colors.$color-blue-grey-350;
             font-size: 12px;
             font-weight: 600;
           }
@@ -122,7 +122,7 @@
       .date-display {
         display: inline-block;
         align-items: center;
-        color: $color-blue-grey-400;
+        color: colors.$color-blue-grey-400;
         font-size: 14px;
       }
     }

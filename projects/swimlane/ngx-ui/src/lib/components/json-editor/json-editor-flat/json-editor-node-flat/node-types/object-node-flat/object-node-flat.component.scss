@@ -1,6 +1,7 @@
-@import 'colors/variables';
-@import '../node-types.extensions.scss';
-@import '../../../../json-editor.extensions.scss';
+@use 'sass:color';
+@use 'colors/colors' as colors;
+@use '../node-types.extensions';
+@use '../../../../json-editor.extensions';
 
 .object-node-flat {
   margin-top: 4px;
@@ -26,7 +27,7 @@
       justify-content: unset !important;
       opacity: 0.2;
       cursor: pointer;
-      outline: 2px dotted rgba(red($color-blue-grey-650), green($color-blue-grey-650), blue($color-blue-grey-650), 0.5);
+      outline: 2px dotted color.change(colors.$color-blue-grey-650, $alpha: 0.5);
       outline-offset: -2px;
 
       &:hover {
@@ -53,7 +54,7 @@
   .add-button {
     display: none;
     padding-left: 1rem;
-    border-left: 1px solid $color-blue-grey-650;
+    border-left: 1px solid colors.$color-blue-grey-650;
   }
 }
 

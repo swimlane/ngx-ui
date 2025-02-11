@@ -1,7 +1,9 @@
 /**
  * Form Element Inputs
  */
-@import 'variables';
+@use 'variables';
+@use '../forms/variables' as forms;
+@use '../colors/shadow-variables' as shadows;
 
 input[type='number'],
 input[type='tel'],
@@ -14,9 +16,9 @@ textarea {
 }
 
 .form-input {
-  background: $color-input-bg;
-  border: solid 1px $color-input-border;
-  color: $color-input-text;
+  background: forms.$color-input-bg;
+  border: solid 1px forms.$color-input-border;
+  color: forms.$color-input-text;
   transition: box-shadow 200ms;
   border-radius: 0;
   font-size: 13px;
@@ -27,19 +29,19 @@ textarea {
   margin-bottom: 1em;
 
   &::placeholder {
-    color: $color-input-text-placeholder;
+    color: forms.$color-input-text-placeholder;
   }
 
   &:focus {
-    box-shadow: $shadow-2;
-    // border-color: $color-blue;
+    box-shadow: shadows.$shadow-2;
+    // border-color: colors.$color-blue;
     // box-shadow: 0 3px 25px rgba(31, 137, 255, 0.25),
     //             0 3px 6px rgba(31, 137, 255, 0.12);
   }
 
   &[disabled] {
     cursor: not-allowed;
-    color: $color-input-text-disabled;
+    color: forms.$color-input-text-disabled;
   }
 }
 

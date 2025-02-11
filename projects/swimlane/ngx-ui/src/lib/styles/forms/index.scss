@@ -1,6 +1,6 @@
 /**
  * Forms
  */
-@import 'inputs';
-@import 'selects';
-@import 'variables';
+@forward 'inputs';
+@forward 'selects';
+@forward 'variables';

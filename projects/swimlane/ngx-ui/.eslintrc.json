@@ -5,12 +5,11 @@
     {
       "files": ["*.ts"],
       "parserOptions": {
-        "project": ["projects/swimlane/ngx-ui/tsconfig.eslint.json"],
-        "createDefaultProgram": true
+        "project": ["projects/swimlane/ngx-ui/tsconfig.eslint.json"]
       },
       "rules": {
         "@angular-eslint/component-selector": [
-          "error",
+          "off",
           {
             "type": "element",
             "prefix": "ngx",
@@ -24,13 +23,8 @@
             "prefix": "ngx",
             "style": "camelCase"
           }
-        ],
-        "no-console": "error"
+        ]
       }
-    },
-    {
-      "files": ["*.html"],
-      "rules": {}
     }
   ]
 }

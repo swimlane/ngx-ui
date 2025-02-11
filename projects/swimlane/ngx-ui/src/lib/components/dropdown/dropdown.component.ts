@@ -31,7 +31,8 @@ import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
     '[class.has-caret]': 'showCaret'
   },
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: false
 })
 export class DropdownComponent implements AfterContentInit, OnDestroy {
   destroy$ = new Subject<void>();

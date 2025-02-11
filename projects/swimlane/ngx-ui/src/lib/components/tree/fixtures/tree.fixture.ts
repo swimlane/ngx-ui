@@ -5,7 +5,8 @@ import { TreeNode } from '../tree-node.model';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'tree-fixture',
-  templateUrl: 'tree.fixture.html'
+  templateUrl: 'tree.fixture.html',
+  standalone: false
 })
 export class TreeFixtureComponent {
   @ViewChild('tree1', { static: true }) treeComponent1: TreeComponent;

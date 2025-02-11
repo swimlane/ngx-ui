@@ -1,6 +1,9 @@
-$color-table-caption: $color-grey-200;
-$color-table-border: $color-blue-grey-600;
-$color-table-stripe: darken($color-blue-grey-800, 3%);
+@use 'sass:color';
+@use '../colors/colors' as colors;
+
+$color-table-caption: colors.$color-grey-200;
+$color-table-border: colors.$color-blue-grey-600;
+$color-table-stripe: color.adjust(colors.$color-blue-grey-800, $lightness: -3%);
 
 table {
   border-collapse: collapse;

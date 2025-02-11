@@ -31,7 +31,8 @@ let nextId = 0;
   host: {
     class: 'ngx-toggle',
     '[class.disabled]': 'getDisabled'
-  }
+  },
+  standalone: false
 })
 export class ToggleComponent implements ControlValueAccessor {
   @HostListener('click', ['$event']) onClick(ev: Event) {
