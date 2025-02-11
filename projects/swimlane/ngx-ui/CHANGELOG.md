@@ -2,7 +2,9 @@
 
 ## HEAD (unreleased)
 
-- Enhancement (`ngx-checkbox`): a new look is available that displays the `indeterminate` state.
+## 49.0.0 (2025-02-11)
+
+- Enhancement (`ngx-checkbox`): a new look is available that displays `indeterminate` state.
 - Enhancement (`ngx-checkbox`): new `@Input` named `indeterminate` set to a `boolean`.
 - Enhancement (`ngx-checkbox`): implements an `EventEmitter` when `indeterminate` changes.
 - Enhancement: Support Angular 19, `standalone` now required in all `@Component`
@@ -20,7 +22,7 @@ you must update your SASS to fully comply with `@use`. Below is an example of ho
 
 Internally `glow` was renamed to `effects` to scale this section in the future.
 
-Breaking (`ngx-time`): There could be a potential breaking change due to how `ngx-time` now uses moment-timezone internally. If you experience a behavioral change in this component, explicitly specify the timezone you wish to display.
+Breaking (`ngx-time`): There could be a potential breaking change due to how `ngx-time` now uses moment-timezone internally. If you experience a behavioral change in this component, explicitly specify the timezone you wish to display. If type definitions are erroring, make sure your implementation references types from moment-timezone and not moment.
 
 ## 48.3.0 (2024-12-17)
 
