@@ -166,6 +166,12 @@ export * from './lib/components/json-editor/json-editor-flat/json-editor-node-fl
 export * from './lib/components/json-editor/json-editor-flat/json-editor-node-flat/json-editor-node-flat.component';
 
 export * from './lib/components/list/list.module';
+export * from './lib/components/list/list.component';
+export * from './lib/components/list/list-header/list-header.component';
+export * from './lib/components/list/list-header/list-header-template.directive';
+export * from './lib/components/list/list-row/list-row.component';
+export * from './lib/components/list/list-column/list-column.component';
+export * from './lib/components/list/list-column/list-column-template.directive';
 
 export * from './lib/components/loading/loading.module';
 export * from './lib/components/loading/loading.component';
