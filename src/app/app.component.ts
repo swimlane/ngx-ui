@@ -249,6 +249,10 @@ export class AppComponent {
         {
           name: 'ButtonGroup',
           route: 'button-group'
+        },
+        {
+          name: 'List',
+          route: 'list'
         }
       ]
     }

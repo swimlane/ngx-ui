@@ -1,0 +1,23 @@
+@use 'colors/colors' as colors;
+
+ngx-list.ngx-list {
+  hr {
+    border-top: 1px solid colors.$color-blue-grey-600;
+    border-bottom: 1px solid colors.$color-blue-grey-600;
+    opacity: 0.75;
+    margin: 0.75rem 0 0.5rem 0;
+  }
+
+  .example-viewport {
+    width: 100%;
+    height: 200px;
+  }
+
+  .example-item {
+    height: 40px;
+  }
+
+  .example-header {
+    height: 100px;
+  }
+}

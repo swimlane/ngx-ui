@@ -1,0 +1,7 @@
+<ng-container [ngTemplateOutlet]="template"></ng-container>
+
+<ng-template #template>
+  @if (header) {
+  <ng-container [ngTemplateOutlet]="header.headerTemplate"></ng-container>
+  }
+</ng-template>

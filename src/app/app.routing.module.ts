@@ -101,6 +101,10 @@ const routes: Routes = [
     loadChildren: () =>
       import('./components/json-editor-page/json-editor-page.module').then(m => m.JsonEditorPageModule)
   },
+  {
+    path: 'list',
+    loadChildren: () => import('./components/list-page/list-page.module').then(m => m.ListPageModule)
+  },
   { path: 'lists', loadChildren: () => import('./elements/lists-page/lists-page.module').then(m => m.ListsPageModule) },
   {
     path: 'loading',

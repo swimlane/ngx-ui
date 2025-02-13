@@ -165,6 +165,8 @@ export * from './lib/components/json-editor/node-types/object-node.component';
 export * from './lib/components/json-editor/json-editor-flat/json-editor-node-flat/node-types/node-info/node-info.component';
 export * from './lib/components/json-editor/json-editor-flat/json-editor-node-flat/json-editor-node-flat.component';
 
+export * from './lib/components/list/list.module';
+
 export * from './lib/components/loading/loading.module';
 export * from './lib/components/loading/loading.component';
 export * from './lib/components/loading/loading.service';
