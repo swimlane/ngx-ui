@@ -1,0 +1,36 @@
+<ngx-list [dataSource]="data">
+  <ngx-list-header>
+    <ng-template ngx-list-header-template>Alert</ng-template>
+  </ngx-list-header>
+  <ngx-list-header>
+    <ng-template ngx-list-header-template>Time of Alert</ng-template>
+  </ngx-list-header>
+  <ngx-list-header>
+    <ng-template ngx-list-header-template>Info</ng-template>
+  </ngx-list-header>
+  <ngx-list-header>
+    <ng-template ngx-list-header-template>Details</ng-template>
+  </ngx-list-header>
+
+  <ngx-list-column>
+    <ng-template ngx-list-column-template let-row="row">{{ row.alert }}</ng-template>
+  </ngx-list-column>
+  <ngx-list-column>
+    <ng-template ngx-list-column-template let-row="row">{{ row.timestamp }}</ng-template>
+  </ngx-list-column>
+  <ngx-list-column>
+    <ng-template ngx-list-column-template let-row="row"
+      ><i
+        style="font-size: 16px; margin-left: 2px; color: #72819f; position: relative; top: 3px"
+        class="ngx-icon ngx-documentation"
+      ></i
+    ></ng-template>
+  </ngx-list-column>
+  <ngx-list-column>
+    <ng-template ngx-list-column-template let-row="row"
+      ><a>{{ row.details.text }} <i style="font-size: 10px; margin-left: 2px" class="ngx-icon ngx-open"></i></a
+    ></ng-template>
+  </ngx-list-column>
+
+  <ngx-list-row></ngx-list-row>
+</ngx-list>
