@@ -57,7 +57,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   // eslint-disable-next-line @angular-eslint/no-input-rename
   @Input('checked')
   set value(value: boolean) {
-    if (this._value !== value && !this.indeterminate) {
+    if (this._value !== value) {
       this._value = value;
       this.cdr.markForCheck();
       this.onChangeCallback(this._value);
