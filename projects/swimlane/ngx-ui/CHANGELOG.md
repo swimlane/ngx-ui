@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix: Removing the `indeterminate state value validation` in the 'checked' input of the checkbox component
+
 ## 49.0.0 (2025-02-11)
 
 - Enhancement (`ngx-checkbox`): a new look is available that displays `indeterminate` state.
