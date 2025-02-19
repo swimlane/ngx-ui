@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 49.0.1 (2025-02-19)
+
 - Fix: Removing the `indeterminate state value validation` in the 'checked' input of the checkbox component
 
 ## 49.0.0 (2025-02-11)
