@@ -1,0 +1,14 @@
+@use 'colors/colors' as colors;
+
+ngx-list-column.ngx-list-column {
+  color: colors.$color-blue-grey-050;
+  font-size: 1rem;
+  line-height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  &:last-child {
+    margin-right: 1rem;
+  }
+}
