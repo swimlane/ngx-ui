@@ -1,4 +1,12 @@
-<ngx-list [dataSource]="data">
+<!-- <h3 class="style-header">List</h3> -->
+
+<ngx-list
+  [dataSource]="data"
+  [height]="300"
+  [columnLayout]="layout"
+  [paginationConfig]="paginationConfig"
+  (onPageChange)="onPageChange($event)"
+>
   <ngx-list-header>
     <ng-template ngx-list-header-template>Alert</ng-template>
   </ngx-list-header>
@@ -11,15 +19,20 @@
   <ngx-list-header>
     <ng-template ngx-list-header-template>Details</ng-template>
   </ngx-list-header>
+  <!-- <ngx-list-header>
+<ng-template ngx-list-header-template></ng-template>
+</ngx-list-header> -->
 
   <ngx-list-column>
-    <ng-template ngx-list-column-template let-row="row">{{ row.alert }}</ng-template>
+    <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex"
+      >{{ rowIndex + 1 }}{{ row?.alert }}</ng-template
+    >
   </ngx-list-column>
   <ngx-list-column>
-    <ng-template ngx-list-column-template let-row="row">{{ row.timestamp }}</ng-template>
+    <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex">{{ row.timestamp }}</ng-template>
   </ngx-list-column>
   <ngx-list-column>
-    <ng-template ngx-list-column-template let-row="row"
+    <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex"
       ><i
         style="font-size: 16px; margin-left: 2px; color: #72819f; position: relative; top: 3px"
         class="ngx-icon ngx-documentation"
@@ -27,10 +40,196 @@
     ></ng-template>
   </ngx-list-column>
   <ngx-list-column>
-    <ng-template ngx-list-column-template let-row="row"
+    <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex"
       ><a>{{ row.details.text }} <i style="font-size: 10px; margin-left: 2px" class="ngx-icon ngx-open"></i></a
     ></ng-template>
   </ngx-list-column>
+  <!-- <ngx-list-column>
+<ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex">
+  <button class="ngx-list-row__ellipse-menu">
+    <span class="ngx-icon ngx-dots-vert-round"></span>
+  </button>
+</ng-template>
+</ngx-list-column> -->
 
-  <ngx-list-row></ngx-list-row>
+  <ngx-list-row [status]="rowStatus"></ngx-list-row>
 </ngx-list>
+
+<ngx-tabs>
+  <ngx-tab label="Examples">
+    <ngx-list
+      [dataSource]="data"
+      [height]="300"
+      [columnLayout]="layout"
+      [paginationConfig]="paginationConfig"
+      (onPageChange)="onPageChange($event)"
+    >
+      <ngx-list-header>
+        <ng-template ngx-list-header-template>Alert</ng-template>
+      </ngx-list-header>
+      <ngx-list-header>
+        <ng-template ngx-list-header-template>Time of Alert</ng-template>
+      </ngx-list-header>
+      <ngx-list-header>
+        <ng-template ngx-list-header-template>Info</ng-template>
+      </ngx-list-header>
+      <ngx-list-header>
+        <ng-template ngx-list-header-template>Details</ng-template>
+      </ngx-list-header>
+
+      <ngx-list-column>
+        <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex"
+          >{{ rowIndex + 1 }}{{ row?.alert }}</ng-template
+        >
+      </ngx-list-column>
+      <ngx-list-column>
+        <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex">{{ row.timestamp }}</ng-template>
+      </ngx-list-column>
+      <ngx-list-column>
+        <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex"
+          ><i
+            style="font-size: 16px; margin-left: 2px; color: #72819f; position: relative; top: 3px"
+            class="ngx-icon ngx-documentation"
+          ></i
+        ></ng-template>
+      </ngx-list-column>
+      <ngx-list-column>
+        <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex"
+          ><a>{{ row.details.text }} <i style="font-size: 10px; margin-left: 2px" class="ngx-icon ngx-open"></i></a
+        ></ng-template>
+      </ngx-list-column>
+
+      <ngx-list-row [status]="rowStatus"></ngx-list-row>
+    </ngx-list>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <div *ngxIfTabActive>
+      <h3>Table of Contents</h3>
+      <a class="documentation-content" (click)="scrollTo('ngx-list-inputs')">ngx-list Inputs</a>
+      <a class="documentation-content" (click)="scrollTo('ngx-list-outputs')">ngx-list Outputs</a>
+      <a class="documentation-content" (click)="scrollTo('ngx-list-header-inputs')">ngx-list-header Inputs</a>
+      <a class="documentation-content" (click)="scrollTo('ngx-list-header-outputs')">ngx-list-header Outputs</a>
+      <a class="documentation-content" (click)="scrollTo('ngx-list-row-inputs')">ngx-list-row Inputs</a>
+      <a class="documentation-content" (click)="scrollTo('ngx-list-row-outputs')">ngx-list-row Outputs</a>
+      <a class="documentation-content" (click)="scrollTo('ngx-list-column-inputs')">ngx-list-column Inputs</a>
+      <a class="documentation-content" (click)="scrollTo('ngx-list-column-outputs')">ngx-list-column Outputs</a>
+      <hr />
+
+      <h3 class="style-header" id="ngx-list-inputs">ngx-list Inputs</h3>
+      <table class="table documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <code class="component-type">&#64;Input()</code>
+              <code>columnLayout: Partial&lt;CSSStyleDeclaration&gt;</code>
+            </th>
+            <td>
+              The layout of the columns using CSS grid. If this input is not provided, each column will take up
+              <code>1fr</code> of the available space. See Examples tab for more information.
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">&#64;Input()</code>
+              <code>dataSource: Array&lt;Record&lt;string, unknown&gt;&gt; = []</code>
+            </th>
+            <td>The list's source of data where each object in the array represents one list row.</td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">&#64;Input()</code>
+              <code>height: number = 500</code>
+            </th>
+            <td>The height of the scrollable content in pixels.</td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">&#64;Input()</code>
+              <code>paginationConfig: ListPaginationConfig</code>
+            </th>
+            <td>
+              The configuration object for scroll-based pagination. Configuring this input will enable the component to
+              emit page changes based on page size and the user's scroll position. See Examples tab for more
+              information.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+      <h3 class="style-header" id="ngx-list-outputs">ngx-list Outputs</h3>
+      <table class="table documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <code class="component-type">&#64;Output()</code>
+              <code>onPageChange: EventEmitter&lt;number&gt;</code>
+            </th>
+            <td>
+              Event emitted when the page changes as a result of scrolling. The <code>paginationConfig</code> Input must
+              be provided for this event to emit.
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">&#64;Output()</code>
+              <code>onScroll: EventEmitter&lt;number&gt;</code>
+            </th>
+            <td>
+              Event emitted when the list is scrolled. The number emitted is the <code>scrollTop</code> value of the
+              scroll container. This output is provided for implementing a custom pagination solution.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+
+      <h3 class="style-header" id="ngx-list-header-inputs">ngx-list-header Inputs</h3>
+      <h4>No component inputs to display.</h4>
+      <hr />
+      <h3 class="style-header" id="ngx-list-header-outputs">ngx-list-header Outputs</h3>
+      <h4>No component outputs to display.</h4>
+      <hr />
+
+      <h3 class="style-header" id="ngx-list-row-inputs">ngx-list-row Inputs</h3>
+      <table class="table documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <code class="component-type">&#64;Input()</code>
+              <code>status: ListRowStatus</code>
+            </th>
+            <td>The status indicator for the row.</td>
+          </tr>
+        </tbody>
+      </table>
+      <hr />
+      <h3 class="style-header" id="ngx-list-row-outputs">ngx-list-row Outputs</h3>
+      <h4>No component outputs to display.</h4>
+      <hr />
+
+      <h3 class="style-header" id="ngx-list-column-inputs">ngx-list-column Inputs</h3>
+      <h4>No component inputs to display.</h4>
+      <hr />
+      <h3 class="style-header" id="ngx-list-column-outputs">ngx-list-column Outputs</h3>
+      <h4>No component outputs to display.</h4>
+    </div>
+  </ngx-tab>
+</ngx-tabs>

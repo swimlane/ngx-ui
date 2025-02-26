@@ -20,7 +20,8 @@ export class ListColumnComponent {
   @ViewChild('template', { static: true }) template: TemplateRef<any>;
 
   @Input() column: ListColumnInput;
-  @Input() row: Record<string, unknown>;
+  @Input() data: Record<string, unknown>;
+  @Input() rowIndex: number;
 
   @ContentChild(ListColumnTemplateDirective, { read: TemplateRef, static: true })
   columnTemplate: TemplateRef<ListColumnTemplateDirective>;

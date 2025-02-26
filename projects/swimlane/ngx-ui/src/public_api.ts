@@ -167,6 +167,8 @@ export * from './lib/components/json-editor/json-editor-flat/json-editor-node-fl
 
 export * from './lib/components/list/list.module';
 export * from './lib/components/list/list.component';
+export * from './lib/components/list/models/list-row-status.enum';
+export * from './lib/components/list/models/list-pagination-config';
 export * from './lib/components/list/list-header/list-header.component';
 export * from './lib/components/list/list-header/list-header-template.directive';
 export * from './lib/components/list/list-row/list-row.component';

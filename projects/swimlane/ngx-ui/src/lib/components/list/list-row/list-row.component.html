@@ -1,8 +1,5 @@
-<div style="display: grid; grid-template-columns: 4fr 1fr 1fr 1fr; gap: 1rem">
+<div [ngStyle]="columnLayout">
   @for (column of columns; track column) {
-  <ng-container *ngComponentOutlet="columnComponent; inputs: { row: row, column: column }"></ng-container>
+  <ng-container *ngComponentOutlet="columnComponent; inputs: { column, data, rowIndex: index }"></ng-container>
   }
 </div>
-<button class="ngx-list-row__ellipse-menu">
-  <span class="ngx-icon ngx-dots-vert-round"></span>
-</button>

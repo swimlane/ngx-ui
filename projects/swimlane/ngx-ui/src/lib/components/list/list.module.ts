@@ -14,8 +14,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     ListRowComponent,
     ListColumnComponent,
     ListHeaderComponent,
-    ListColumnTemplateDirective,
-    ListHeaderTemplateDirective
+    ListHeaderTemplateDirective,
+    ListColumnTemplateDirective
   ],
   imports: [CommonModule, ScrollingModule],
   exports: [
@@ -23,8 +23,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     ListRowComponent,
     ListColumnComponent,
     ListHeaderComponent,
-    ListColumnTemplateDirective,
-    ListHeaderTemplateDirective
+    ListHeaderTemplateDirective,
+    ListColumnTemplateDirective
   ]
 })
 export class ListModule {}

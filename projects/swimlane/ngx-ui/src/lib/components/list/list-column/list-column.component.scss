@@ -7,8 +7,4 @@ ngx-list-column.ngx-list-column {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-
-  &:last-child {
-    margin-right: 1rem;
-  }
 }

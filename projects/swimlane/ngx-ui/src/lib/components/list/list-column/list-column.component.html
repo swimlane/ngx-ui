@@ -1,7 +1,7 @@
-<ng-container *ngTemplateOutlet="template"></ng-container>
+<ng-container [ngTemplateOutlet]="template"></ng-container>
 
 <ng-template #template>
   @if (column) {
-  <ng-container *ngTemplateOutlet="column.columnTemplate; context: { row: row }"></ng-container>
+  <ng-container *ngTemplateOutlet="column.columnTemplate; context: { row: data, rowIndex }"></ng-container>
   }
 </ng-template>
