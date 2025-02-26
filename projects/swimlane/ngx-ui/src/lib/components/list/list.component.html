@@ -1,0 +1,26 @@
+<div
+  [ngStyle]="_columnLayout"
+  class="ngx-list__headers-container"
+  [class.ngx-list__headers-container__scrollable]="hasScrollbar"
+>
+  @for (header of headers; track header) {
+  <ng-container *ngComponentOutlet="headerComponent; inputs: { header: header }"></ng-container>
+  }
+</div>
+<hr />
+<cdk-virtual-scroll-viewport
+  #virtualScrollViewport
+  [style.height.px]="height"
+  itemSize="40"
+  minBufferPx="200"
+  maxBufferPx="800"
+>
+  <div *cdkVirtualFor="let data of dataSource; index as i" class="ngx-list__virtual-scroll__item">
+    <ng-container
+      *ngComponentOutlet="
+        rowComponent;
+        inputs: { columnLayout: _columnLayout, columns, data, row, index: i, status: row.status }
+      "
+    ></ng-container>
+  </div>
+</cdk-virtual-scroll-viewport>
