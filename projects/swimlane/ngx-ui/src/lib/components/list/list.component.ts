@@ -56,6 +56,7 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
   };
   hasScrollbar = false;
   page = 1;
+  rowHeight = 44;
 
   private destroy$ = new Subject<void>();
 
@@ -79,8 +80,7 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
           const { index, pageSize } = this.paginationConfig;
           if (index > 1 && pageSize > 0) {
             this.page = index - 1;
-            const rowHeight = 44;
-            const scrollTo = rowHeight * (pageSize * this.page);
+            const scrollTo = this.rowHeight * (pageSize * this.page);
             this.listRowsContainer.nativeElement.scrollTo({ top: scrollTo });
           }
         }
@@ -107,8 +107,7 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
 
     const pageSize = this.paginationConfig?.pageSize;
     if (pageSize) {
-      const rowHeight = this.virtualScroll ? 40 : 44;
-      const currentRow = Math.floor(scrollY / rowHeight);
+      const currentRow = Math.floor(scrollY / this.rowHeight);
       const page = Math.floor(currentRow / pageSize) + 1;
 
       if (page !== this.page) {

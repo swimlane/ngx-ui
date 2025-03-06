@@ -155,8 +155,12 @@ export class ListPageComponent {
 
   rowStatus: ListRowStatus = ListRowStatus.Error;
 
+  onPageChangeVirtualScroll(event: number) {
+    console.log('VIRTUALIZED EXAMPLE PAGE NUMBER: ', event);
+  }
+
   onPageChange(event: number) {
-    console.log('PAGE NUMBER: ', event);
+    console.log('NON-VIRTUALIZED EXAMPLE PAGE NUMBER: ', event);
   }
 
   scrollTo(id: string) {

@@ -72,8 +72,7 @@ describe('ListComponent', () => {
       };
       const pageSize = component.paginationConfig.pageSize;
       const index = component.paginationConfig.index as number;
-      const rowHeight = 44;
-      const expectedTopValue = rowHeight * (pageSize * (index - 1));
+      const expectedTopValue = component.rowHeight * (pageSize * (index - 1));
 
       component.ngAfterViewInit();
 
