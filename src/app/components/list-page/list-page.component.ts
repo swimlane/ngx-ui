@@ -8,322 +8,140 @@ import { ListRowStatus } from '@swimlane/ngx-ui';
   standalone: false
 })
 export class ListPageComponent {
-  data = [
+  data: Array<Record<string, unknown>> = [
     {
-      id: 1,
-      alert: 'Playbook B has failed',
-      timestamp: '11:00:00 UTC',
-      info: 'Critical error in execution step',
-      details: {
-        link: '/playbook/B',
-        text: 'Open playbook'
-      }
+      type: 'Malware',
+      date: '1/1/2025',
+      origin: 'China'
     },
     {
-      id: 2,
-      alert: 'Flow A in Playbook C has failed',
-      timestamp: '10:45:23 UTC',
-      info: 'Network timeout',
-      details: {
-        link: '/run/sdjhfkakkjsdfh',
-        text: 'Run ID: sdjhfkakkjsdfh',
-        runId: 'sdjhfkakkjsdfh'
-      }
+      type: 'DDOS',
+      date: '1/5/2025',
+      origin: 'China'
     },
     {
-      id: 3,
-      alert: 'Playbook E was disabled due to infinite loop',
-      timestamp: '10:30:15 UTC',
-      info: 'Automation safety trigger',
-      details: {
-        link: '/playbook/E',
-        text: 'Open playbook'
-      }
+      type: 'DDOS',
+      date: '1/5/2025',
+      origin: 'Russia'
     },
     {
-      id: 4,
-      alert: 'Playbook A has failed',
-      timestamp: '10:15:45 UTC',
-      info: 'Missing required parameters',
-      details: {
-        link: '/playbook/A',
-        text: 'Open playbook'
-      }
+      type: 'XSS',
+      date: '1/6/2025',
+      origin: 'North Korea'
     },
     {
-      id: 5,
-      alert: 'Playbook D has timed out',
-      timestamp: '10:00:00 UTC',
-      info: 'Execution exceeded 30min limit',
-      details: {
-        link: '/playbook/D',
-        text: 'Open playbook'
-      }
+      type: 'DDOS',
+      date: '1/6/2025',
+      origin: 'North Korea'
     },
     {
-      id: 6,
-      alert: 'Flow C in Playbook A has failed',
-      timestamp: '09:45:30 UTC',
-      info: 'API rate limit exceeded',
-      details: {
-        link: '/run/kdjfh3kjhsdf',
-        text: 'Run ID: kdjfh3kjhsdf',
-        runId: 'kdjfh3kjhsdf'
-      }
+      type: 'Ransomware',
+      date: '1/8/2025',
+      origin: 'China'
     },
     {
-      id: 7,
-      alert: 'Playbook F execution cancelled',
-      timestamp: '09:30:00 UTC',
-      info: 'Manual cancellation',
-      details: {
-        link: '/playbook/F',
-        text: 'Open playbook'
-      }
+      type: 'DDOS',
+      date: '1/9/2025',
+      origin: 'China'
     },
     {
-      id: 8,
-      alert: 'Flow B in Playbook D has failed',
-      timestamp: '09:15:45 UTC',
-      info: 'Invalid input data',
-      details: {
-        link: '/run/sdkjfh45kjhsdf',
-        text: 'Run ID: sdkjfh45kjhsdf',
-        runId: 'sdkjfh45kjhsdf'
-      }
+      type: 'SQL injection',
+      date: '1/10/2025',
+      origin: 'North Korea'
     },
     {
-      id: 9,
-      alert: 'Playbook G has failed',
-      timestamp: '09:00:00 UTC',
-      info: 'Database connection error',
-      details: {
-        link: '/playbook/G',
-        text: 'Open playbook'
-      }
+      type: 'Malware',
+      date: '1/11/2025',
+      origin: 'Russia'
     },
     {
-      id: 10,
-      alert: 'Scheduled execution of Playbook H failed',
-      timestamp: '08:45:15 UTC',
-      info: 'Environment configuration error',
-      details: {
-        link: '/playbook/H',
-        text: 'Open playbook'
-      }
-    },
-    {
-      id: 1,
-      alert: 'Playbook B has failed',
-      timestamp: '11:00:00 UTC',
-      info: 'Critical error in execution step',
-      details: {
-        link: '/playbook/B',
-        text: 'Open playbook'
-      }
-    },
-    {
-      id: 2,
-      alert: 'Flow A in Playbook C has failed',
-      timestamp: '10:45:23 UTC',
-      info: 'Network timeout',
-      details: {
-        link: '/run/sdjhfkakkjsdfh',
-        text: 'Run ID: sdjhfkakkjsdfh',
-        runId: 'sdjhfkakkjsdfh'
-      }
-    },
-    {
-      id: 3,
-      alert: 'Playbook E was disabled due to infinite loop',
-      timestamp: '10:30:15 UTC',
-      info: 'Automation safety trigger',
-      details: {
-        link: '/playbook/E',
-        text: 'Open playbook'
-      }
-    },
-    {
-      id: 4,
-      alert: 'Playbook A has failed',
-      timestamp: '10:15:45 UTC',
-      info: 'Missing required parameters',
-      details: {
-        link: '/playbook/A',
-        text: 'Open playbook'
-      }
-    },
-    {
-      id: 5,
-      alert: 'Playbook D has timed out',
-      timestamp: '10:00:00 UTC',
-      info: 'Execution exceeded 30min limit',
-      details: {
-        link: '/playbook/D',
-        text: 'Open playbook'
-      }
-    },
-    {
-      id: 6,
-      alert: 'Flow C in Playbook A has failed',
-      timestamp: '09:45:30 UTC',
-      info: 'API rate limit exceeded',
-      details: {
-        link: '/run/kdjfh3kjhsdf',
-        text: 'Run ID: kdjfh3kjhsdf',
-        runId: 'kdjfh3kjhsdf'
-      }
-    },
-    {
-      id: 7,
-      alert: 'Playbook F execution cancelled',
-      timestamp: '09:30:00 UTC',
-      info: 'Manual cancellation',
-      details: {
-        link: '/playbook/F',
-        text: 'Open playbook'
-      }
-    },
-    {
-      id: 8,
-      alert: 'Flow B in Playbook D has failed',
-      timestamp: '09:15:45 UTC',
-      info: 'Invalid input data',
-      details: {
-        link: '/run/sdkjfh45kjhsdf',
-        text: 'Run ID: sdkjfh45kjhsdf',
-        runId: 'sdkjfh45kjhsdf'
-      }
-    },
-    {
-      id: 9,
-      alert: 'Playbook G has failed',
-      timestamp: '09:00:00 UTC',
-      info: 'Database connection error',
-      details: {
-        link: '/playbook/G',
-        text: 'Open playbook'
-      }
-    },
-    {
-      id: 10,
-      alert: 'Scheduled execution of Playbook H failed',
-      timestamp: '08:45:15 UTC',
-      info: 'Environment configuration error',
-      details: {
-        link: '/playbook/H',
-        text: 'Open playbook'
-      }
-    },
-    {
-      id: 1,
-      alert: 'Playbook B has failed',
-      timestamp: '11:00:00 UTC',
-      info: 'Critical error in execution step',
-      details: {
-        link: '/playbook/B',
-        text: 'Open playbook'
-      }
-    },
-    {
-      id: 2,
-      alert: 'Flow A in Playbook C has failed',
-      timestamp: '10:45:23 UTC',
-      info: 'Network timeout',
-      details: {
-        link: '/run/sdjhfkakkjsdfh',
-        text: 'Run ID: sdjhfkakkjsdfh',
-        runId: 'sdjhfkakkjsdfh'
-      }
-    },
-    {
-      id: 3,
-      alert: 'Playbook E was disabled due to infinite loop',
-      timestamp: '10:30:15 UTC',
-      info: 'Automation safety trigger',
-      details: {
-        link: '/playbook/E',
-        text: 'Open playbook'
-      }
-    },
-    {
-      id: 4,
-      alert: 'Playbook A has failed',
-      timestamp: '10:15:45 UTC',
-      info: 'Missing required parameters',
-      details: {
-        link: '/playbook/A',
-        text: 'Open playbook'
-      }
-    },
-    {
-      id: 5,
-      alert: 'Playbook D has timed out',
-      timestamp: '10:00:00 UTC',
-      info: 'Execution exceeded 30min limit',
-      details: {
-        link: '/playbook/D',
-        text: 'Open playbook'
-      }
-    },
-    {
-      id: 6,
-      alert: 'Flow C in Playbook A has failed',
-      timestamp: '09:45:30 UTC',
-      info: 'API rate limit exceeded',
-      details: {
-        link: '/run/kdjfh3kjhsdf',
-        text: 'Run ID: kdjfh3kjhsdf',
-        runId: 'kdjfh3kjhsdf'
-      }
-    },
-    {
-      id: 7,
-      alert: 'Playbook F execution cancelled',
-      timestamp: '09:30:00 UTC',
-      info: 'Manual cancellation',
-      details: {
-        link: '/playbook/F',
-        text: 'Open playbook'
-      }
-    },
-    {
-      id: 8,
-      alert: 'Flow B in Playbook D has failed',
-      timestamp: '09:15:45 UTC',
-      info: 'Invalid input data',
-      details: {
-        link: '/run/sdkjfh45kjhsdf',
-        text: 'Run ID: sdkjfh45kjhsdf',
-        runId: 'sdkjfh45kjhsdf'
-      }
-    },
-    {
-      id: 9,
-      alert: 'Playbook G has failed',
-      timestamp: '09:00:00 UTC',
-      info: 'Database connection error',
-      details: {
-        link: '/playbook/G',
-        text: 'Open playbook'
-      }
-    },
-    {
-      id: 10,
-      alert: 'Scheduled execution of Playbook H failed',
-      timestamp: '08:45:15 UTC',
-      info: 'Environment configuration error',
-      details: {
-        link: '/playbook/H',
-        text: 'Open playbook'
-      }
+      type: 'DDOS',
+      date: '1/11/2025',
+      origin: 'Russia'
     }
   ];
 
-  layout: Partial<CSSStyleDeclaration> = {
-    // display: 'grid',
-    gridTemplateColumns: '4fr 1fr 1fr 1fr'
-    // gap: '1rem'
+  largeData = [
+    ...this.data,
+    ...this.data,
+    ...this.data,
+    ...this.data,
+    ...this.data,
+    ...this.data,
+    ...this.data,
+    ...this.data,
+    ...this.data
+  ];
+
+  dataWithStatus: Array<Record<string, unknown>> = [
+    {
+      type: 'Malware',
+      date: '1/1/2025',
+      origin: 'China',
+      status: ListRowStatus.Error
+    },
+    {
+      type: 'DDOS',
+      date: '1/5/2025',
+      origin: 'China',
+      status: ListRowStatus.Warning
+    },
+    {
+      type: 'DDOS',
+      date: '1/5/2025',
+      origin: 'Russia',
+      status: ListRowStatus.Warning
+    },
+    {
+      type: 'XSS',
+      date: '1/6/2025',
+      origin: 'North Korea',
+      status: ListRowStatus.Success
+    },
+    {
+      type: 'DDOS',
+      date: '1/6/2025',
+      origin: 'North Korea',
+      status: ListRowStatus.Warning
+    },
+    {
+      type: 'Ransomware',
+      date: '1/8/2025',
+      origin: 'China',
+      status: ListRowStatus.Error
+    },
+    {
+      type: 'DDOS',
+      date: '1/9/2025',
+      origin: 'China',
+      status: ListRowStatus.Warning
+    },
+    {
+      type: 'SQL injection',
+      date: '1/10/2025',
+      origin: 'North Korea',
+      status: ListRowStatus.Success
+    },
+    {
+      type: 'Malware',
+      date: '1/11/2025',
+      origin: 'Russia',
+      status: ListRowStatus.Error
+    },
+    {
+      type: 'XSS',
+      date: '1/11/2025',
+      origin: 'Russia',
+      status: ListRowStatus.Success
+    }
+  ];
+
+  columnLayout: Partial<CSSStyleDeclaration> = {
+    gridTemplateColumns: '3fr 2fr 1fr'
+  };
+
+  paginationColumnLayout: Partial<CSSStyleDeclaration> = {
+    gridTemplateColumns: '5rem 1fr 1fr 1fr'
   };
 
   paginationConfig = {
@@ -333,8 +151,14 @@ export class ListPageComponent {
 
   rowStatus: ListRowStatus = ListRowStatus.Error;
 
+  statuses = [ListRowStatus.Error, ListRowStatus.Success, ListRowStatus.Warning];
+
   onPageChange(event: number) {
-    console.log(event);
+    console.log('PAGE NUMBER: ', event);
+  }
+
+  onScroll(event: number) {
+    console.log('SCROLL TOP: ', event);
   }
 
   scrollTo(id: string) {
