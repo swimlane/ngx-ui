@@ -145,20 +145,18 @@ export class ListPageComponent {
   };
 
   paginationConfig = {
-    pageSize: 10,
-    index: 2
+    pageSize: 10
+  };
+
+  paginationConfigPage5 = {
+    index: 5,
+    pageSize: 10
   };
 
   rowStatus: ListRowStatus = ListRowStatus.Error;
 
-  statuses = [ListRowStatus.Error, ListRowStatus.Success, ListRowStatus.Warning];
-
   onPageChange(event: number) {
     console.log('PAGE NUMBER: ', event);
-  }
-
-  onScroll(event: number) {
-    console.log('SCROLL TOP: ', event);
   }
 
   scrollTo(id: string) {

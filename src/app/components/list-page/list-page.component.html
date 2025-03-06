@@ -1,7 +1,7 @@
 <h3 class="style-header">List</h3>
 
 <ngx-tabs>
-  <ngx-tab label="Examples">
+  <ngx-tab label="Examples" [active]="true">
     <ngx-section class="shadow" sectionTitle="List">
       <ngx-list [dataSource]="data">
         <ngx-list-header>
@@ -158,7 +158,7 @@
           <!-- prettier-ignore -->
           <app-prism ngNonBindable>
   <![CDATA[
-  <ngx-list [dataSource]="data" [columnLayout]="columnLayout">
+  <ngx-list [columnLayout]="columnLayout" [dataSource]="data">
     <ngx-list-header>
       <ng-template ngx-list-header-template>Attack Type</ng-template>
     </ngx-list-header>
@@ -252,15 +252,14 @@
         </ngx-tab>
       </ngx-tabs>
     </ngx-section>
-    <ngx-section class="shadow" sectionTitle="Virtualized Scroll-Based Pagination Starting on Page 2">
+    <ngx-section class="shadow" sectionTitle="Virtualized Scroll-Based Pagination">
       <ngx-list
-        [dataSource]="largeData"
         [columnLayout]="paginationColumnLayout"
+        [dataSource]="largeData"
         [height]="400"
         [paginationConfig]="paginationConfig"
         [virtualScroll]="true"
         (onPageChange)="onPageChange($event)"
-        (onScroll)="onScroll($event)"
       >
         <ngx-list-header>
           <ng-template ngx-list-header-template>No.</ng-template>
@@ -276,7 +275,7 @@
         </ngx-list-header>
 
         <ngx-list-column>
-          <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex">{{ rowIndex + 1 }}.</ng-template>
+          <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex">{{ rowIndex + 1 }}</ng-template>
         </ngx-list-column>
         <ngx-list-column>
           <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
@@ -300,14 +299,16 @@
           <app-prism ngNonBindable>
   <![CDATA[
   <ngx-list 
-    [dataSource]="data" 
     [columnLayout]="columnLayout"
+    [dataSource]="data" 
     [height]="400" 
     [paginationConfig]="paginationConfig"
     [virtualScroll]="true"
     (onPageChange)="onPageChange($event)"
-    (onScroll)="onScroll($event)"
   >
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>No.</ng-template>
+    </ngx-list-header>
     <ngx-list-header>
       <ng-template ngx-list-header-template>Attack Type</ng-template>
     </ngx-list-header>
@@ -318,6 +319,9 @@
       <ng-template ngx-list-header-template>Origin of Attack</ng-template>
     </ngx-list-header>
 
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex">{{ rowIndex + 1 }}.</ng-template>
+    </ngx-list-column>
     <ngx-list-column>
       <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
     </ngx-list-column>
@@ -389,7 +393,7 @@
         date: '1/11/2025',
         origin: 'Russia'
       },
-      ...20 more entries
+      // ...80 more rows
     ];
 
     columnLayout: Partial<CSSStyleDeclaration> = {
@@ -397,8 +401,7 @@
     };
 
     paginationConfig = {
-      pageSize: 10, // number of items per page
-      index: 2 // the page to start on when the list is rendered
+      pageSize: 10 // Number of rows per page
     };
     
     rowStatus = ListRowStatus.Error;
@@ -406,16 +409,178 @@
     onPageChange(event: number) {
       console.log('PAGE NUMBER: ', event);
     }
+  }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+    <ngx-section class="shadow" sectionTitle="Scroll-Based Pagination Starting on Page 5">
+      <ngx-list
+        [columnLayout]="paginationColumnLayout"
+        [dataSource]="largeData"
+        [height]="400"
+        [paginationConfig]="paginationConfigPage5"
+        (onPageChange)="onPageChange($event)"
+      >
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>No.</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Attack Type</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Date of Attack</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+        </ngx-list-header>
 
-    onScroll(event: number) {
-      console.log('SCROLL TOP: ', event);
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex">{{ rowIndex + 1 }}.</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+        </ngx-list-column>
+
+        <ngx-list-row [status]="rowStatus"></ngx-list-row>
+      </ngx-list>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-list 
+    [columnLayout]="columnLayout"
+    [dataSource]="data"
+    [height]="400"
+    [paginationConfig]="paginationConfig"
+    (onPageChange)="onPageChange($event)"
+  >
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>No.</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Attack Type</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Date of Attack</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+    </ngx-list-header>
+
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex">{{ rowIndex + 1 }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+    </ngx-list-column>
+
+    <ngx-list-row></ngx-list-row>
+  </ngx-list>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <!-- prettier-ignore -->
+          <app-prism language="js">
+<![CDATA[import { ListRowStatus } from '@swimlane/ngx-ui';
+
+  @Component({
+    selector: 'app',
+    templateUrl: './app.template.html'
+  })
+  export class AppComponent {
+    data: Array<Record<string, unknown>> = [
+      {
+        type: 'Malware',
+        date: '1/1/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'Russia'
+      },
+      {
+        type: 'XSS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'DDOS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Ransomware',
+        date: '1/8/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/9/2025',
+        origin: 'China'
+      },
+      {
+        type: 'SQL injection',
+        date: '1/10/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Malware',
+        date: '1/11/2025',
+        origin: 'Russia'
+      },
+      {
+        type: 'DDOS',
+        date: '1/11/2025',
+        origin: 'Russia'
+      },
+      // ...80 more rows
+    ];
+
+    columnLayout: Partial<CSSStyleDeclaration> = {
+      gridTemplateColumns: '5rem 1fr 1fr 1fr'
+    };
+
+    paginationConfig = {
+      pageSize: 10, // Number of rows per page
+      index: 5 // Start on page 5 the list is rendered, only supported when virtual scroll is disabled
+    };
+      
+    rowStatus = ListRowStatus.Error;
+
+    onPageChange(event: number) {
+      console.log('PAGE NUMBER: ', event);
     }
   }]]>
           </app-prism>
         </ngx-tab>
       </ngx-tabs>
     </ngx-section>
-    <ngx-section class="shadow" sectionTitle="Rows With Different Status">
+    <ngx-section class="shadow" sectionTitle="Rows with Different Status">
       <ngx-list [dataSource]="dataWithStatus">
         <ngx-list-header>
           <ng-template ngx-list-header-template>Attack Type</ng-template>
@@ -485,67 +650,67 @@
   })
   export class AppComponent {
     data: Array<Record<string, unknown>> = [
-    {
-      type: 'Malware',
-      date: '1/1/2025',
-      origin: 'China',
-      status: ListRowStatus.Error
-    },
-    {
-      type: 'DDOS',
-      date: '1/5/2025',
-      origin: 'China',
-      status: ListRowStatus.Warning
-    },
-    {
-      type: 'DDOS',
-      date: '1/5/2025',
-      origin: 'Russia',
-      status: ListRowStatus.Warning
-    },
-    {
-      type: 'XSS',
-      date: '1/6/2025',
-      origin: 'North Korea',
-      status: ListRowStatus.Success
-    },
-    {
-      type: 'DDOS',
-      date: '1/6/2025',
-      origin: 'North Korea',
-      status: ListRowStatus.Warning
-    },
-    {
-      type: 'Ransomware',
-      date: '1/8/2025',
-      origin: 'China',
-      status: ListRowStatus.Error
-    },
-    {
-      type: 'DDOS',
-      date: '1/9/2025',
-      origin: 'China',
-      status: ListRowStatus.Warning
-    },
-    {
-      type: 'SQL injection',
-      date: '1/10/2025',
-      origin: 'North Korea',
-      status: ListRowStatus.Success
-    },
-    {
-      type: 'Malware',
-      date: '1/11/2025',
-      origin: 'Russia',
-      status: ListRowStatus.Error
-    },
-    {
-      type: 'DDOS',
-      date: '1/11/2025',
-      origin: 'Russia',
-      status: ListRowStatus.Warning
-    }
-  ];
+      {
+        type: 'Malware',
+        date: '1/1/2025',
+        origin: 'China',
+        status: ListRowStatus.Error
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'China',
+        status: ListRowStatus.Warning
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'Russia',
+        status: ListRowStatus.Warning
+      },
+      {
+        type: 'XSS',
+        date: '1/6/2025',
+        origin: 'North Korea',
+        status: ListRowStatus.Success
+      },
+      {
+        type: 'DDOS',
+        date: '1/6/2025',
+        origin: 'North Korea',
+        status: ListRowStatus.Warning
+      },
+      {
+        type: 'Ransomware',
+        date: '1/8/2025',
+        origin: 'China',
+        status: ListRowStatus.Error
+      },
+      {
+        type: 'DDOS',
+        date: '1/9/2025',
+        origin: 'China',
+        status: ListRowStatus.Warning
+      },
+      {
+        type: 'SQL injection',
+        date: '1/10/2025',
+        origin: 'North Korea',
+        status: ListRowStatus.Success
+      },
+      {
+        type: 'Malware',
+        date: '1/11/2025',
+        origin: 'Russia',
+        status: ListRowStatus.Error
+      },
+      {
+        type: 'DDOS',
+        date: '1/11/2025',
+        origin: 'Russia',
+        status: ListRowStatus.Success
+      }
+    ];
   }]]>
           </app-prism>
         </ngx-tab>

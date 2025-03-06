@@ -39,9 +39,11 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
   @Output() onPageChange = new EventEmitter<number>();
   @Output() onScroll = new EventEmitter<number>();
 
+  @ContentChild(ListRowComponent) row: ListRowComponent;
+
   @ContentChildren(ListColumnComponent) columns: QueryList<ListColumnComponent>;
   @ContentChildren(ListHeaderComponent) headers: QueryList<ListHeaderComponent>;
-  @ContentChild(ListRowComponent) row: ListRowComponent;
+
   @ViewChild('listRowsContainer') listRowsContainer: ElementRef<HTMLDivElement>;
   @ViewChild('virtualScrollViewport') virtualScrollViewport: CdkVirtualScrollViewport;
 
@@ -63,6 +65,8 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
 
   ngAfterViewInit(): void {
     setTimeout(() => {
+      this.initScrollListener();
+
       if (this.virtualScroll) {
         this.hasScrollbar =
           this.virtualScrollViewport.elementRef.nativeElement.scrollHeight >
@@ -70,20 +74,13 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
       } else {
         this.hasScrollbar =
           this.listRowsContainer.nativeElement.scrollHeight > this.listRowsContainer.nativeElement.clientHeight;
-      }
 
-      this.initScrollListener();
-
-      if (this.paginationConfig) {
-        const { index, pageSize } = this.paginationConfig;
-        if (index > 1 && pageSize > 0) {
-          this.page = index - 1;
-          const rowHeight = 40;
-          const scrollTo = rowHeight * (pageSize * (index - 1)) + rowHeight;
-
-          if (this.virtualScroll) {
-            this.virtualScrollViewport.elementRef.nativeElement.scrollTo({ top: scrollTo });
-          } else {
+        if (this.paginationConfig) {
+          const { index, pageSize } = this.paginationConfig;
+          if (index > 1 && pageSize > 0) {
+            this.page = index - 1;
+            const rowHeight = 44;
+            const scrollTo = rowHeight * (pageSize * this.page);
             this.listRowsContainer.nativeElement.scrollTo({ top: scrollTo });
           }
         }
@@ -96,6 +93,37 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
     this.destroy$.complete();
   }
 
+  /**
+   * @function emitScrollChanges
+   *
+   * @description
+   * Emits the `onScroll` event. Additionally, if the `paginationConfig` input is provided, emits the `onPageChange` event.
+   *
+   * @param {Event} event - the scroll event
+   */
+  emitScrollChanges(event: Event): void {
+    const scrollY = (event.target as HTMLDivElement).scrollTop;
+    this.onScroll.emit(scrollY);
+
+    const pageSize = this.paginationConfig?.pageSize;
+    if (pageSize) {
+      const rowHeight = this.virtualScroll ? 40 : 44;
+      const currentRow = Math.floor(scrollY / rowHeight);
+      const page = Math.floor(currentRow / pageSize) + 1;
+
+      if (page !== this.page) {
+        this.page = page;
+        this.onPageChange.emit(this.page);
+      }
+    }
+  }
+
+  /**
+   * @function generateLayout
+   *
+   * @description
+   * Generates the column layout styling.
+   */
   generateLayout(): void {
     if (!this.columnLayout || Object.keys(this.columnLayout).length === 0) {
       this._columnLayout = {
@@ -110,6 +138,12 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
     }
   }
 
+  /**
+   * @function initScrollListener
+   *
+   * @description
+   * Initializes the appropriate scroll listener.
+   */
   initScrollListener(): void {
     if (this.virtualScroll) {
       this.virtualScrollViewport
@@ -120,22 +154,6 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
       fromEvent(this.listRowsContainer.nativeElement, 'scroll')
         .pipe(takeUntil(this.destroy$))
         .subscribe(event => this.emitScrollChanges(event));
-    }
-  }
-
-  emitScrollChanges(event: Event) {
-    const scrollY = (event.target as HTMLDivElement).scrollTop;
-    this.onScroll.emit(scrollY);
-
-    const pageSize = this.paginationConfig?.pageSize;
-    if (pageSize) {
-      const currentRow = Math.floor(scrollY / 40);
-      const page = Math.floor(currentRow / pageSize) + 1;
-
-      if (page !== this.page) {
-        this.page = page;
-        this.onPageChange.emit(this.page);
-      }
     }
   }
 }
