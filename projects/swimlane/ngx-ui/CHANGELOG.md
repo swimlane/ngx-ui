@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Feature (`ngx-list`): Added a new list component
+
 ## 49.0.0 (2025-02-11)
 
 - Enhancement (`ngx-checkbox`): a new look is available that displays `indeterminate` state.
@@ -45,8 +47,8 @@ Breaking (`ngx-time`): There could be a potential breaking change due to how `ng
 
 ## 48.0.4 (2024-09-18)
 
-- Enhancement (`ngx-toggle`): Added `timeStamp` when emiting `change`
-- Enhancement (`ngx-checkbox`): Added `timeStamp` when emiting `change`
+- Enhancement (`ngx-toggle`): Added `timeStamp` when emitting `change`
+- Enhancement (`ngx-checkbox`): Added `timeStamp` when emitting `change`
 
 ## 48.0.3 (2024-09-17)
 
