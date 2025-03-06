@@ -4,7 +4,6 @@ import { ListRowStatus } from '@swimlane/ngx-ui';
 @Component({
   selector: 'app-list-page',
   templateUrl: './list-page.component.html',
-  styleUrls: ['./list-page.component.scss'],
   standalone: false
 })
 export class ListPageComponent {
