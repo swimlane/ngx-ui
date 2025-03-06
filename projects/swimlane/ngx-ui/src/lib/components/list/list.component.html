@@ -21,7 +21,7 @@
 </cdk-virtual-scroll-viewport>
 } @else {
 <div #listRowsContainer [style.height.px]="height" class="ngx-list__rows-container">
-  @for (data of dataSource; track data.id; let idx = $index) {
+  @for (data of dataSource; track data; let idx = $index) {
   <ng-container
     *ngComponentOutlet="
       rowComponent;
