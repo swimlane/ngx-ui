@@ -878,9 +878,12 @@
         <tr>
           <th>
             <code class="component-type">&#64;Input()</code>
-            <code>height: number = 500</code>
+            <code>height: number</code>
           </th>
-          <td>The height of the scrollable content in pixels.</td>
+          <td>
+            The height of the containing block for the list's rows. If the content exceeds this height, it will become
+            scrollable.
+          </td>
         </tr>
         <tr>
           <th>
@@ -891,6 +894,13 @@
             The configuration object for scroll-based pagination. Configuring this input will enable the component to
             emit page changes based on page size and the user's scroll position. See Examples tab for more information.
           </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>virtualScroll: boolean = false</code>
+          </th>
+          <td>Whether virtual scrolling is enabled.</td>
         </tr>
       </tbody>
     </table>
