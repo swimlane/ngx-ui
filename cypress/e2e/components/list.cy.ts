@@ -5,7 +5,7 @@ describe('List', () => {
   });
 
   describe('List', () => {
-    it('displays list the correct number of headers, columns and rows', () => {
+    it('displays the correct number of headers, columns and rows', () => {
       cy.get('ngx-list').first().as('CUT');
       cy.get('@CUT').find('ngx-list-header').should('have.length', 3);
       cy.get('@CUT').find('ngx-list-row').should('have.length', 10);
