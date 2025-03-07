@@ -1,0 +1,977 @@
+<h3 class="style-header">List</h3>
+
+<ngx-tabs>
+  <ngx-tab label="Examples" [active]="true">
+    <ngx-section class="shadow" sectionTitle="List">
+      <ngx-list [dataSource]="data">
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Attack Type</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Date of Attack</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+        </ngx-list-header>
+
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+        </ngx-list-column>
+
+        <ngx-list-row [status]="rowStatus"></ngx-list-row>
+      </ngx-list>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-list [dataSource]="data">
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Attack Type</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Date of Attack</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+    </ngx-list-header>
+
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+    </ngx-list-column>
+
+    <ngx-list-row [status]="rowStatus"></ngx-list-row>
+  </ngx-list>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <!-- prettier-ignore -->
+          <app-prism language="js">
+<![CDATA[import { ListRowStatus } from '@swimlane/ngx-ui';
+
+  @Component({
+    selector: 'app',
+    templateUrl: './app.template.html'
+  })
+  export class AppComponent {
+    data: Array<Record<string, unknown>> = [
+      {
+        type: 'Malware',
+        date: '1/1/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'Russia'
+      },
+      {
+        type: 'XSS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'DDOS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Ransomware',
+        date: '1/8/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/9/2025',
+        origin: 'China'
+      },
+      {
+        type: 'SQL injection',
+        date: '1/10/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Malware',
+        date: '1/11/2025',
+        origin: 'Russia'
+      }
+    ];
+
+    rowStatus = ListRowStatus.Error;
+  }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+    <ngx-section class="shadow" sectionTitle="Custom Column Layout">
+      <ngx-list [dataSource]="data" [columnLayout]="columnLayout">
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Attack Type</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Date of Attack</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+        </ngx-list-header>
+
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+        </ngx-list-column>
+
+        <ngx-list-row [status]="rowStatus"></ngx-list-row>
+      </ngx-list>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-list [columnLayout]="columnLayout" [dataSource]="data">
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Attack Type</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Date of Attack</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+    </ngx-list-header>
+
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+    </ngx-list-column>
+
+    <ngx-list-row [status]="rowStatus"></ngx-list-row>
+  </ngx-list>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <!-- prettier-ignore -->
+          <app-prism language="js">
+<![CDATA[import { ListRowStatus } from '@swimlane/ngx-ui';
+
+  @Component({
+    selector: 'app',
+    templateUrl: './app.template.html'
+  })
+  export class AppComponent {
+    data: Array<Record<string, unknown>> = [
+      {
+        type: 'Malware',
+        date: '1/1/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'Russia'
+      },
+      {
+        type: 'XSS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'DDOS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Ransomware',
+        date: '1/8/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/9/2025',
+        origin: 'China'
+      },
+      {
+        type: 'SQL injection',
+        date: '1/10/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Malware',
+        date: '1/11/2025',
+        origin: 'Russia'
+      }
+    ];
+
+    columnLayout: Partial<CSSStyleDeclaration> = {
+      gridTemplateColumns: '3fr 2fr 1fr'
+    };
+
+    rowStatus = ListRowStatus.Error;
+  }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+    <ngx-section class="shadow" sectionTitle="Virtualized Scroll-Based Pagination">
+      <ngx-list
+        [columnLayout]="paginationColumnLayout"
+        [dataSource]="largeData"
+        [height]="400"
+        [paginationConfig]="paginationConfig"
+        [virtualScroll]="true"
+        (onPageChange)="onPageChangeVirtualScroll($event)"
+      >
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>No.</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Attack Type</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Date of Attack</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+        </ngx-list-header>
+
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex">{{ rowIndex + 1 }}.</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+        </ngx-list-column>
+
+        <ngx-list-row [status]="rowStatus"></ngx-list-row>
+      </ngx-list>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-list 
+    [columnLayout]="columnLayout"
+    [dataSource]="data" 
+    [height]="400" 
+    [paginationConfig]="paginationConfig"
+    [virtualScroll]="true"
+    (onPageChange)="onPageChange($event)"
+  >
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>No.</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Attack Type</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Date of Attack</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+    </ngx-list-header>
+
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex">{{ rowIndex + 1 }}.</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+    </ngx-list-column>
+
+    <ngx-list-row [status]="rowStatus"></ngx-list-row>
+  </ngx-list>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <!-- prettier-ignore -->
+          <app-prism language="js">
+<![CDATA[import { ListRowStatus } from '@swimlane/ngx-ui';
+
+  @Component({
+    selector: 'app',
+    templateUrl: './app.template.html'
+  })
+  export class AppComponent {
+    data: Array<Record<string, unknown>> = [
+      {
+        type: 'Malware',
+        date: '1/1/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'Russia'
+      },
+      {
+        type: 'XSS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'DDOS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Ransomware',
+        date: '1/8/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/9/2025',
+        origin: 'China'
+      },
+      {
+        type: 'SQL injection',
+        date: '1/10/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Malware',
+        date: '1/11/2025',
+        origin: 'Russia'
+      },
+      // ...80 more rows
+    ];
+
+    columnLayout: Partial<CSSStyleDeclaration> = {
+      gridTemplateColumns: '5rem 1fr 1fr 1fr'
+    };
+
+    paginationConfig = {
+      pageSize: 10 // Number of rows per page
+    };
+    
+    rowStatus = ListRowStatus.Error;
+
+    onPageChange(event: number) {
+      console.log('VIRTUALIZED EXAMPLE PAGE NUMBER: ', event);
+    }
+  }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+    <ngx-section class="shadow" sectionTitle="Scroll-Based Pagination Starting on Page 5">
+      <ngx-list
+        [columnLayout]="paginationColumnLayout"
+        [dataSource]="largeData"
+        [height]="400"
+        [paginationConfig]="paginationConfigPage5"
+        (onPageChange)="onPageChange($event)"
+      >
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>No.</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Attack Type</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Date of Attack</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+        </ngx-list-header>
+
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex">{{ rowIndex + 1 }}.</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+        </ngx-list-column>
+
+        <ngx-list-row [status]="rowStatus"></ngx-list-row>
+      </ngx-list>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-list 
+    [columnLayout]="columnLayout"
+    [dataSource]="data"
+    [height]="400"
+    [paginationConfig]="paginationConfig"
+    (onPageChange)="onPageChange($event)"
+  >
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>No.</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Attack Type</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Date of Attack</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+    </ngx-list-header>
+
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row" let-rowIndex="rowIndex">{{ rowIndex + 1 }}.</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+    </ngx-list-column>
+
+    <ngx-list-row [status]="rowStatus"></ngx-list-row>
+  </ngx-list>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <!-- prettier-ignore -->
+          <app-prism language="js">
+<![CDATA[import { ListRowStatus } from '@swimlane/ngx-ui';
+
+  @Component({
+    selector: 'app',
+    templateUrl: './app.template.html'
+  })
+  export class AppComponent {
+    data: Array<Record<string, unknown>> = [
+      {
+        type: 'Malware',
+        date: '1/1/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'Russia'
+      },
+      {
+        type: 'XSS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'DDOS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Ransomware',
+        date: '1/8/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/9/2025',
+        origin: 'China'
+      },
+      {
+        type: 'SQL injection',
+        date: '1/10/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Malware',
+        date: '1/11/2025',
+        origin: 'Russia'
+      },
+      {
+        type: 'DDOS',
+        date: '1/11/2025',
+        origin: 'Russia'
+      },
+      // ...80 more rows
+    ];
+
+    columnLayout: Partial<CSSStyleDeclaration> = {
+      gridTemplateColumns: '5rem 1fr 1fr 1fr'
+    };
+
+    paginationConfig = {
+      index: 5, // Start on page 5 when the list is rendered, only supported when virtual scroll is disabled
+      pageSize: 10 // Number of rows per page
+    };
+      
+    rowStatus = ListRowStatus.Error;
+
+    onPageChange(event: number) {
+      console.log('NON-VIRTUALIZED EXAMPLE PAGE NUMBER: ', event);
+    }
+  }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+    <ngx-section class="shadow" sectionTitle="Rows with Different Status">
+      <ngx-list [dataSource]="dataWithStatus">
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Attack Type</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Date of Attack</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+        </ngx-list-header>
+
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+        </ngx-list-column>
+
+        <ngx-list-row></ngx-list-row>
+      </ngx-list>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-list [dataSource]="data">
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Attack Type</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Date of Attack</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+    </ngx-list-header>
+
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+    </ngx-list-column>
+
+    <ngx-list-row></ngx-list-row>
+  </ngx-list>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <!-- prettier-ignore -->
+          <app-prism language="js">
+<![CDATA[import { ListRowStatus } from '@swimlane/ngx-ui';
+
+  @Component({
+    selector: 'app',
+    templateUrl: './app.template.html'
+  })
+  export class AppComponent {
+    data: Array<Record<string, unknown>> = [
+      {
+        type: 'Malware',
+        date: '1/1/2025',
+        origin: 'China',
+        status: ListRowStatus.Error
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'China',
+        status: ListRowStatus.Warning
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'Russia',
+        status: ListRowStatus.Warning
+      },
+      {
+        type: 'XSS',
+        date: '1/6/2025',
+        origin: 'North Korea',
+        status: ListRowStatus.Success
+      },
+      {
+        type: 'DDOS',
+        date: '1/6/2025',
+        origin: 'North Korea',
+        status: ListRowStatus.Warning
+      },
+      {
+        type: 'Ransomware',
+        date: '1/8/2025',
+        origin: 'China',
+        status: ListRowStatus.Error
+      },
+      {
+        type: 'DDOS',
+        date: '1/9/2025',
+        origin: 'China',
+        status: ListRowStatus.Warning
+      },
+      {
+        type: 'SQL injection',
+        date: '1/10/2025',
+        origin: 'North Korea',
+        status: ListRowStatus.Success
+      },
+      {
+        type: 'Malware',
+        date: '1/11/2025',
+        origin: 'Russia',
+        status: ListRowStatus.Error
+      },
+      {
+        type: 'DDOS',
+        date: '1/11/2025',
+        origin: 'Russia',
+        status: ListRowStatus.Success
+      }
+    ];
+  }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+    <ngx-section class="shadow" sectionTitle="Rows with No Status">
+      <ngx-list [dataSource]="data">
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Attack Type</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Date of Attack</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+        </ngx-list-header>
+
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+        </ngx-list-column>
+
+        <ngx-list-row></ngx-list-row>
+      </ngx-list>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-list [dataSource]="data">
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Attack Type</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Date of Attack</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+    </ngx-list-header>
+
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+    </ngx-list-column>
+
+    <ngx-list-row></ngx-list-row>
+  </ngx-list>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <!-- prettier-ignore -->
+          <app-prism language="js">
+<![CDATA[
+  @Component({
+    selector: 'app',
+    templateUrl: './app.template.html'
+  })
+  export class AppComponent {
+    data: Array<Record<string, unknown>> = [
+      {
+        type: 'Malware',
+        date: '1/1/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'Russia'
+      },
+      {
+        type: 'XSS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'DDOS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Ransomware',
+        date: '1/8/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/9/2025',
+        origin: 'China'
+      },
+      {
+        type: 'SQL injection',
+        date: '1/10/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Malware',
+        date: '1/11/2025',
+        origin: 'Russia'
+      }
+    ];
+  }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('ngx-list-inputs')">ngx-list Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-list-outputs')">ngx-list Outputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-list-header-inputs')">ngx-list-header Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-list-header-outputs')">ngx-list-header Outputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-list-row-inputs')">ngx-list-row Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-list-row-outputs')">ngx-list-row Outputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-list-column-inputs')">ngx-list-column Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-list-column-outputs')">ngx-list-column Outputs</a>
+    <hr />
+
+    <h3 class="style-header" id="ngx-list-inputs">ngx-list Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>columnLayout: Partial&lt;CSSStyleDeclaration&gt;</code>
+          </th>
+          <td>
+            The layout of the columns using CSS grid. If this input is not provided, each column will take up
+            <code>1fr</code> of the available space. See Examples tab for more information.
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>dataSource: Array&lt;Record&lt;string, unknown&gt;&gt; = []</code>
+          </th>
+          <td>The list's source of data where each object in the array represents one list row.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>height: number</code>
+          </th>
+          <td>
+            The height of the containing block for the list's rows. If the content exceeds this height, it will become
+            scrollable.
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>paginationConfig: ListPaginationConfig</code>
+          </th>
+          <td>
+            The configuration object for scroll-based pagination. Configuring this input will enable the component to
+            emit page changes based on page size and the user's scroll position. See Examples tab for more information.
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>virtualScroll: boolean = false</code>
+          </th>
+          <td>Whether virtual scrolling is enabled.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h3 class="style-header" id="ngx-list-outputs">ngx-list Outputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Output()</code>
+            <code>onPageChange: EventEmitter&lt;number&gt;</code>
+          </th>
+          <td>
+            Event emitted when the page changes as a result of scrolling. The <code>paginationConfig</code> Input must
+            be provided for this event to emit.
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Output()</code>
+            <code>onScroll: EventEmitter&lt;number&gt;</code>
+          </th>
+          <td>
+            Event emitted when the list is scrolled. The number emitted is the <code>scrollTop</code> value of the
+            scroll container. This output is provided for implementing a custom pagination solution.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+
+    <h3 class="style-header" id="ngx-list-header-inputs">ngx-list-header Inputs</h3>
+    <h4>No component inputs to display.</h4>
+    <hr />
+    <h3 class="style-header" id="ngx-list-header-outputs">ngx-list-header Outputs</h3>
+    <h4>No component outputs to display.</h4>
+    <hr />
+
+    <h3 class="style-header" id="ngx-list-row-inputs">ngx-list-row Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>status: ListRowStatus</code>
+          </th>
+          <td>The status indicator for the row.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h3 class="style-header" id="ngx-list-row-outputs">ngx-list-row Outputs</h3>
+    <h4>No component outputs to display.</h4>
+    <hr />
+
+    <h3 class="style-header" id="ngx-list-column-inputs">ngx-list-column Inputs</h3>
+    <h4>No component inputs to display.</h4>
+    <hr />
+    <h3 class="style-header" id="ngx-list-column-outputs">ngx-list-column Outputs</h3>
+    <h4>No component outputs to display.</h4>
+  </ngx-tab>
+</ngx-tabs>

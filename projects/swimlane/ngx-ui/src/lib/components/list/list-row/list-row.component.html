@@ -1,0 +1,5 @@
+<div [ngStyle]="columnLayout">
+  @for (column of columns; track column) {
+  <ng-container *ngComponentOutlet="columnComponent; inputs: { column, data, rowIndex: index }"></ng-container>
+  }
+</div>

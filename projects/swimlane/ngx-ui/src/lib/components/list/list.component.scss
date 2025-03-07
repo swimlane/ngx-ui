@@ -1,0 +1,31 @@
+@use 'colors/colors' as colors;
+
+ngx-list.ngx-list {
+  .ngx-list {
+    &__headers-container {
+      padding-inline: 1rem;
+      margin-inline: 1rem;
+
+      &__scrollable {
+        margin-right: 1.75rem; // Account for scrollbar to maintain column header alignment
+      }
+    }
+
+    &__rows-container {
+      overflow-y: auto;
+    }
+
+    &__virtual-scroll {
+      &__item {
+        height: 40px;
+      }
+    }
+  }
+
+  hr {
+    border-top: 1px solid colors.$color-blue-grey-600;
+    border-bottom: 1px solid colors.$color-blue-grey-600;
+    opacity: 0.75;
+    margin: 0.75rem 0 0.5rem 0;
+  }
+}
