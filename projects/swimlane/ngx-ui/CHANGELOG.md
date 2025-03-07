@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 49.1.0 (2025-03-07)
+
 - Feature (`ngx-list`): Added a new list component
 
 ## 49.0.1 (2025-02-19)
