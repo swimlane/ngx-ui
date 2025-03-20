@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 49.2.0 (2025-03-20)
+
 - Enhancement (`icons`): Added `field-dynamic` icon
 
 ## 49.1.0 (2025-03-07)
