@@ -248,6 +248,11 @@ $max-width: 300px;
       }
     }
 
+    .ngx-select-option-group .ngx-select-dropdown-options {
+      max-height: none !important;
+      overflow-y: visible !important;
+    }
+
     &.groupings {
       .ngx-select-option-group {
         .ngx-select-option-group-name {
