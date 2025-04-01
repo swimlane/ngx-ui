@@ -249,8 +249,8 @@ $max-width: 300px;
     }
 
     .ngx-select-option-group .ngx-select-dropdown-options {
-      max-height: none !important;
-      overflow-y: visible !important;
+      max-height: none;
+      overflow-y: visible;
     }
 
     &.groupings {
