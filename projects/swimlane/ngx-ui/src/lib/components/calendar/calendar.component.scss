@@ -33,7 +33,7 @@ $calendar-month-current: colors.$color-blue-grey-750;
   }
 
   button {
-    outline: 0px auto colors.$color-blue-200;
+    outline: 0px none colors.$color-blue-200;
 
     &:focus-within {
       outline: 2px solid colors.$color-blue-200;
