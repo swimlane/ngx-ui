@@ -1,0 +1,23 @@
+<h3 class="style-header">Column</h3>
+
+<ngx-tabs>
+  <ngx-tab label="Examples" [active]="true">
+    <ngx-section class="shadow" sectionTitle="Column">
+      <ngx-columns [column]="column"></ngx-columns>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-columns></ngx-columns>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
+  </ngx-tab>
+</ngx-tabs>

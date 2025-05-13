@@ -1,0 +1,101 @@
+@use 'colors/colors' as colors;
+
+.ngx-column {
+  min-width: 170px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 44px auto;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  header {
+    display: flex;
+    align-items: center;
+    height: 44px;
+    width: 100%;
+    padding: 6px 16px;
+    color: colors.$color-blue-grey-250;
+    border-bottom: 1px solid colors.$color-blue-grey-700;
+    border-right: 1px solid colors.$color-blue-grey-700;
+    h4 {
+      font-family: 'Source Sans Pro';
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 18px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+  }
+  .column {
+    display: flex;
+    min-height: 100%;
+    width: 100%;
+  }
+  section.column-list {
+    min-width: 170px;
+    max-height: calc(400px - 44px);
+    overflow-y: scroll;
+    padding: 6px 2px 6px 8px;
+    border-right: 1px solid colors.$color-blue-grey-700;
+    .search {
+      position: sticky;
+      margin-top: 6px;
+      margin-bottom: 6px;
+      ngx-input {
+        margin: 0px 2px 0px 8px;
+      }
+      .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {
+        margin: 0px 0px 0px 4px;
+      }
+      ngx-icon {
+        color: colors.$color-blue-grey-300;
+        margin-top: 5px;
+        margin-left: 8px;
+      }
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      display: grid;
+      gap: 4px;
+      li {
+        display: block;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 4px 6px 4px;
+        height: 40px;
+        cursor: pointer;
+        span {
+          overflow: hidden;
+          color: colors.$color-blue-grey-150;
+          text-overflow: ellipsis;
+          font-family: Source Sans Pro, Open Sans, Arial, sans-serif;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 18px;
+        }
+        svg {
+          fill: colors.$color-blue-grey-100;
+        }
+        &.active {
+          border-radius: 6px;
+          background-color: colors.$color-blue-grey-650;
+          span {
+            color: colors.$color-white;
+          }
+          svg {
+            fill: colors.$color-white;
+          }
+        }
+      }
+    }
+  }
+  section.column-expanded {
+    min-width: 640px;
+  }
+}

@@ -1,0 +1,16 @@
+.ngx-column {
+  max-width: 154px;
+  overflow: hidden;
+  section {
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style-type: none;
+      li {
+        margin: 0;
+        padding: 0;
+        display: block;
+      }
+    }
+  }
+}
