@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-calendar`): Improved Firefox compatibility by replacing outline: auto with outline: none
+
 ## 49.2.0 (2025-03-20)
 
 - Enhancement (`icons`): Added `field-dynamic` icon
