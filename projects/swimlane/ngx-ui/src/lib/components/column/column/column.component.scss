@@ -34,13 +34,13 @@
   section.column-list {
     min-width: 170px;
     max-height: calc(400px - 44px);
-    overflow-y: scroll;
-    padding: 6px 2px 6px 8px;
+    overflow: hidden;
+    padding: 6px 8px 6px 8px;
     border-right: 1px solid colors.$color-blue-grey-700;
     .search {
       position: sticky;
       margin-top: 6px;
-      margin-bottom: 6px;
+      margin-bottom: 0px;
       ngx-input {
         margin: 0px 2px 0px 8px;
       }
@@ -53,13 +53,16 @@
         margin-left: 8px;
       }
     }
-    ul {
-      margin: 0;
+    cdk-virtual-scroll-viewport {
+      margin-left: 4px;
+      margin-right: -10px;
       padding: 0;
       list-style-type: none;
       display: grid;
       gap: 4px;
-      li {
+      overflow-x: hidden;
+      overflow-y: scroll;
+      .ngx-list__virtual-scroll__item {
         display: block;
         margin: 0;
         padding: 0;

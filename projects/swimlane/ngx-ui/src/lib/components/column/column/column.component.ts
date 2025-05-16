@@ -20,6 +20,7 @@ export class ColumnComponent implements OnChanges {
   columnWrapperComponent = ColumnWrapperComponent;
   activeChild: Column = null;
   list: Column[] = [];
+  searchInputValue = '';
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.column) {
       if (changes.column.currentValue.children) {

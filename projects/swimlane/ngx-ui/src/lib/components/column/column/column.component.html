@@ -14,17 +14,17 @@
       <ngx-input
         #searchInput
         name="searchInputValue"
-        [(ngModel)]="searchInputValue"
         placeholder="Search"
         (keyup)="onInputChange($event)"
         [disabled]="!column.children.length"
       ></ngx-input>
     </div>
     @if (list) {
-    <ul>
-      @for (child of list; track child) {
 
-      <li
+    <cdk-virtual-scroll-viewport #virtualScrollViewport [style.height.px]="'300'" itemSize="40">
+      <div
+        *cdkVirtualFor="let child of list; index as i"
+        class="ngx-list__virtual-scroll__item"
         (click)="onChildClick(child.id)"
         (keyup)="onChildKeyup($event, child.id)"
         [ngClass]="{ active: child.active }"
@@ -39,23 +39,20 @@
             fill="#CDD2DD"
           />
         </svg>
-      </li>
-
-      }
-    </ul>
+      </div>
+    </cdk-virtual-scroll-viewport>
     }
   </section>
-  @if (activeChild && activeChild.content) {
+  } @if (activeChild && activeChild.content) {
   <section class="column-expanded">
     <ng-container
       *ngComponentOutlet="
         activeChild.content.component;
         inputs: activeChild.content.inputs ? activeChild.content.inputs : {};
         outputs: activeChild.content.outputs ? activeChild.content.outputs : {};
-        content: activeChild.content.inputs ? activeChild.content.content : {};
         module: activeChild.content.module ? activeChild.content.module : {}
       "
     ></ng-container>
   </section>
-  } }
+  }
 </div>

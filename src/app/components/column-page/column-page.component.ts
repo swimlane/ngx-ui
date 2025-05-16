@@ -408,6 +408,94 @@ export class ColumnPageComponent {
             ]
           }
         ]
+      },
+      {
+        id: '9a',
+        active: false,
+        title: 'Column 9a',
+        children: [
+          {
+            id: '9b',
+            active: false,
+            title: 'Column 9b',
+            children: [
+              {
+                id: '9c',
+                active: false,
+                title: 'Column 9c',
+                content: {
+                  component: ColumnTestContentComponent
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: '10a',
+        active: false,
+        title: 'Column 10a',
+        children: [
+          {
+            id: '10b',
+            active: false,
+            title: 'Column 10b',
+            children: [
+              {
+                id: '10c',
+                active: false,
+                title: 'Column 10c',
+                content: {
+                  component: ColumnTestContentComponent
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: '11',
+        active: false,
+        title: 'Column 11a',
+        children: [
+          {
+            id: '11b',
+            active: false,
+            title: 'Column 11b',
+            children: [
+              {
+                id: '11c',
+                active: false,
+                title: 'Column 11c',
+                content: {
+                  component: ColumnTestContentComponent
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: '12',
+        active: false,
+        title: 'Column 12a',
+        children: [
+          {
+            id: '12b',
+            active: false,
+            title: 'Column 12b',
+            children: [
+              {
+                id: '12c',
+                active: false,
+                title: 'Column 12c',
+                content: {
+                  component: ColumnTestContentComponent
+                }
+              }
+            ]
+          }
+        ]
       }
     ]
   };
