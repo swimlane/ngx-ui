@@ -5,7 +5,7 @@ describe('Calendar', () => {
   // TODO: replace date with static date instead of today.
   const today = moment();
 
-  const NOT_FOCUSED = 'rgb(148, 198, 255) none 0px';
+  const NOT_FOCUSED = 'rgb(148, 198, 255) 0px';
   const FOCUSED = 'rgb(148, 198, 255) solid 2px';
 
   before(() => {
