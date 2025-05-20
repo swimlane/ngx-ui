@@ -1,3 +1,3 @@
 @if (columns) { @for (column of columns; track column) {
-<ngx-column [column]="column" (tabClick)="onColumnNavigation($event)"></ngx-column>
+<ngx-column [column]="column" [height]="columnHeight()" (tabClick)="onColumnNavigation($event)"></ngx-column>
 } }

@@ -170,6 +170,7 @@ export class ColumnPageComponent {
                         active: false,
                         title: 'Column 3t',
                         content: {
+                          width: '1200px',
                           component: ColumnTestContentComponent
                         }
                       }

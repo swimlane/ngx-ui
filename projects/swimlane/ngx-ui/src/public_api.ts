@@ -253,7 +253,6 @@ export * from './lib/components/column/columns.component';
 export * from './lib/components/column/column/column.module';
 export * from './lib/components/column/column/column.component';
 export * from './lib/components/column/column/column.types';
-export * from './lib/components/column/column/column-wrapper.component';
 
 export * from './lib/components/toggle/toggle.module';
 export * from './lib/components/toggle/toggle.component';

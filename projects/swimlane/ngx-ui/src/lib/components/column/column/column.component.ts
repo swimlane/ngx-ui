@@ -1,5 +1,13 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { ColumnWrapperComponent } from './column-wrapper.component';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  signal,
+  SimpleChanges,
+  ViewEncapsulation
+} from '@angular/core';
 import { Column } from './column.types';
 
 @Component({
@@ -15,12 +23,14 @@ import { Column } from './column.types';
 })
 export class ColumnComponent implements OnChanges {
   @Input() column: Column = null;
+  @Input() height: string;
   @Output() tabClick = new EventEmitter<{ columnId: string }>();
+  scrollerHeight = signal('300');
 
-  columnWrapperComponent = ColumnWrapperComponent;
   activeChild: Column = null;
   list: Column[] = [];
   searchInputValue = '';
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.column) {
       if (changes.column.currentValue.children) {
@@ -31,6 +41,9 @@ export class ColumnComponent implements OnChanges {
           ? changes.column.currentValue.children?.find(child => child.active)
           : null;
       }
+    }
+    if (changes.height) {
+      this.scrollerHeight.set(String(changes.height.currentValue.split(/(px)/g)[0] - 110));
     }
   }
 

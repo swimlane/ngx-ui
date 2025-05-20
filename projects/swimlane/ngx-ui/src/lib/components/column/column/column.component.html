@@ -21,7 +21,7 @@
     </div>
     @if (list) {
 
-    <cdk-virtual-scroll-viewport #virtualScrollViewport [style.height.px]="'300'" itemSize="40">
+    <cdk-virtual-scroll-viewport #virtualScrollViewport [style.height.px]="scrollerHeight()" itemSize="40">
       <div
         *cdkVirtualFor="let child of list; index as i"
         class="ngx-list__virtual-scroll__item"
@@ -44,7 +44,7 @@
     }
   </section>
   } @if (activeChild && activeChild.content) {
-  <section class="column-expanded">
+  <section class="column-expanded" #expandedSection [ngStyle]="{ width: activeChild.content.width }">
     <ng-container
       *ngComponentOutlet="
         activeChild.content.component;

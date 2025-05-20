@@ -1,7 +1,6 @@
 @use 'colors/colors' as colors;
 
 .ngx-column {
-  min-width: 170px;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 44px auto;
@@ -32,8 +31,8 @@
     width: 100%;
   }
   section.column-list {
-    min-width: 170px;
-    max-height: calc(400px - 44px);
+    min-width: 186px;
+    // max-height: calc(400px - 44px);
     overflow: hidden;
     padding: 6px 8px 6px 8px;
     border-right: 1px solid colors.$color-blue-grey-700;
@@ -99,6 +98,15 @@
     }
   }
   section.column-expanded {
-    min-width: 640px;
+    overflow: auto;
+  }
+  &:not(.expanded) {
+    flex: 0 0 186px;
+  }
+  &.expanded {
+    flex: 1 1 0%;
+    header {
+      border-right: none;
+    }
   }
 }

@@ -5,6 +5,7 @@ export interface Column {
   templateRef?: string;
   children?: Array<Column>;
   content?: {
+    width?: string;
     component: any;
     inputs?: any;
     outputs?: any;
