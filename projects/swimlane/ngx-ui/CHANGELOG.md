@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix(`ngx-filter-select`): Removed duplicate scrollbar inside the `FilterSelectComponent` by eliminating the height restriction.
+
 ## 49.2.0 (2025-03-20)
 
 - Enhancement (`icons`): Added `field-dynamic` icon
