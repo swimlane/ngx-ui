@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 49.3.0 (2025-05-21)
+
 - Fix(`ngx-filter-select`): Removed duplicate scrollbar inside the `FilterSelectComponent` by eliminating the height restriction.
 
 ## 49.2.0 (2025-03-20)
