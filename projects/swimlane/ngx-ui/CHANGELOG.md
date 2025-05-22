@@ -2,6 +2,7 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-calendar`): Improved Firefox compatibility by replacing outline: auto with outline: none
 - Fix(`ngx-filter-select`): Removed duplicate scrollbar inside the `FilterSelectComponent` by eliminating the height restriction.
 
 ## 49.2.0 (2025-03-20)
