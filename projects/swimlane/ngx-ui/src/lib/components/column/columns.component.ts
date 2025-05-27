@@ -22,10 +22,10 @@ export class ColumnsComponent implements OnChanges {
   columnHeight = signal('');
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.column.currentValue) {
+    if (changes.column?.currentValue) {
       this.columns = this.getCurrentColumns();
     }
-    if (changes.height) {
+    if (changes.height?.currentValue) {
       this.columnHeight.set(changes.height.currentValue);
     }
   }

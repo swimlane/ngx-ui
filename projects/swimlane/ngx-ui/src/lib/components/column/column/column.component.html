@@ -1,10 +1,10 @@
-@if (!column.content) {
+@if (!column?.content) {
 <header>
-  <h4>{{ column.title }}</h4>
+  <h4>{{ column?.title }}</h4>
 </header>
 }
 <div class="column">
-  @if (column.children) {
+  @if (column?.children) {
   <section class="column-list">
     <div class="search">
       <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
@@ -43,7 +43,7 @@
     </cdk-virtual-scroll-viewport>
     }
   </section>
-  } @if (activeChild && activeChild.content) {
+  } @if (activeChild?.content) {
   <section class="column-expanded" #expandedSection [ngStyle]="{ width: activeChild.content.width }">
     <ng-container
       *ngComponentOutlet="
