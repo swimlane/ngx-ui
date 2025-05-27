@@ -6,6 +6,7 @@
   grid-template-rows: 44px auto;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+
   header {
     display: flex;
     align-items: center;
@@ -15,6 +16,7 @@
     color: colors.$color-blue-grey-250;
     border-bottom: 1px solid colors.$color-blue-grey-700;
     border-right: 1px solid colors.$color-blue-grey-700;
+
     h4 {
       font-family: 'Source Sans Pro';
       font-size: 14px;
@@ -25,32 +27,37 @@
       margin-bottom: 0px;
     }
   }
+
   .column {
     display: flex;
     min-height: 100%;
     width: 100%;
   }
+
   section.column-list {
     min-width: 186px;
     overflow: hidden;
     padding: 6px 8px 6px 8px;
     border-right: 1px solid colors.$color-blue-grey-700;
+
     .search {
       position: sticky;
       margin-top: 6px;
-      margin-bottom: 0px;
-      ngx-input {
+      margin-bottom: 0px ngx-input {
         margin: 0px 2px 0px 8px;
       }
+
       .ngx-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {
         margin: 0px 0px 0px 4px;
       }
+
       ngx-icon {
         color: colors.$color-blue-grey-300;
         margin-top: 5px;
         margin-left: 8px;
       }
     }
+
     cdk-virtual-scroll-viewport {
       margin-left: 4px;
       margin-right: -10px;
@@ -60,6 +67,7 @@
       gap: 4px;
       overflow-x: hidden;
       overflow-y: scroll;
+
       .ngx-list__virtual-scroll__item {
         display: block;
         margin: 0;
@@ -70,6 +78,7 @@
         padding: 6px 4px 6px 4px;
         height: 40px;
         cursor: pointer;
+
         span {
           overflow: hidden;
           color: colors.$color-blue-grey-150;
@@ -80,15 +89,19 @@
           font-weight: 400;
           line-height: 18px;
         }
+
         svg {
           fill: colors.$color-blue-grey-100;
         }
+
         &.active {
           border-radius: 6px;
           background-color: colors.$color-blue-grey-650;
+
           span {
             color: colors.$color-white;
           }
+
           svg {
             fill: colors.$color-white;
           }
@@ -96,14 +109,18 @@
       }
     }
   }
+
   section.column-expanded {
     overflow: auto;
   }
+
   &:not(.expanded) {
     flex: 0 0 186px;
   }
+
   &.expanded {
     flex: 1 1 0%;
+
     header {
       border-right: none;
     }

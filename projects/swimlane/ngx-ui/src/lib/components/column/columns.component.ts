@@ -43,9 +43,9 @@ export class ColumnsComponent implements OnChanges {
 
     if (activeChild) {
       return this.traverseActivePath(activeChild, columns);
-    } else {
-      return columns;
     }
+
+    return columns;
   }
 
   deactivatePath(column: Column | undefined): void {

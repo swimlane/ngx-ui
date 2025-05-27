@@ -32,7 +32,7 @@ export class ColumnComponent implements OnChanges {
   searchInputValue = '';
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes.column) {
+    if (changes.column?.currentValue) {
       if (changes.column.currentValue.children) {
         this.list = changes.column.currentValue.children;
       }
@@ -42,7 +42,7 @@ export class ColumnComponent implements OnChanges {
           : null;
       }
     }
-    if (changes.height) {
+    if (changes.height?.currentValue) {
       this.scrollerHeight.set(String(changes.height.currentValue.split(/(px)/g)[0] - 110));
     }
   }
