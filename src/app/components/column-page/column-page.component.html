@@ -13,11 +13,106 @@
           <!-- prettier-ignore -->
           <app-prism ngNonBindable>
   <![CDATA[
-  <ngx-columns></ngx-columns>
+  <ngx-columns [column]="column"></ngx-columns>
   ]]>
           </app-prism>
+
+          <hr />
+          <h3>Model</h3>
+          <pre>{{ column | json }}</pre>
         </ngx-tab>
       </ngx-tabs>
     </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('ngx-columns-inputs')">ngx-columns Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-columns-column')">ngx-columns Column</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-columns-column-spec')">ngx-columns Column</a>
+    <h3 class="style-header" id="ngx-columns-inputs">ngx-columns Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>column: Partial&lt;Column&gt;</code>
+          </th>
+          <td>
+            Single Column that either displays a list of options for the user to interact with or custom content. This
+            column should include the entire nested structure of the columns and should have the `active` property set
+            to `true`. See Examples tab for more information.
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>height: string</code>
+          </th>
+          <td>Change the overall height of the columns by providing a <code>string</code> value in pixels.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+    <h3 class="style-header" id="ngx-columns-column-spec">ngx-columns Column</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>column: Partial&lt;Column&gt;</code>
+          </th>
+          <td>
+            <p>
+              Single Column that either displays a list of options for the user to interact with or custom content. This
+              column should include the entire nested structure of the columns and should have the `active` property set
+              to `true`. Below is an example.
+            </p>
+
+            <pre>{{ columnExample | json }}</pre>
+
+            <p>
+              Notice how each Column requires a unique identifier (id), active property, title which displays the label
+              when the Column is in a list or when active, the name of the adjacent Column.
+            </p>
+            <p>
+              The first Column should always have an active property set to true to be displayed correctly. Any Column
+              you wish to open on load that is descendant to this Column should also have it's active property set to
+              true.
+            </p>
+            <p>
+              Column can either accept a list of Columns set on the children property or a custom template set on the
+              content property. Internally ngx-columns will display either a list of options or the custom content
+              specified. The content property model maps to the same interface used by *ngComponentOutlet. When content
+              is specified, use component, inputs, and outputs to pass models to the internal view.
+            </p>
+
+            <p>
+              width is an additional property on content that allows you to specify a custom width for the content area,
+              otherwise the ColumnsComponent will try to auto layout the content area to fill the remaining width.
+            </p>
+
+            <p>
+              In the above example, the component is referenced as a string for visibility. In practice, pass the
+              reference to the Component you want to display in the custom content area.
+            </p>
+
+            <p></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
   </ngx-tab>
 </ngx-tabs>

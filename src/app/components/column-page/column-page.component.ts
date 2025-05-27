@@ -500,4 +500,59 @@ export class ColumnPageComponent {
       }
     ]
   };
+
+  columnExample: Column = {
+    id: '1a',
+    active: true,
+    title: 'Column 1a',
+    children: [
+      {
+        id: '1b',
+        active: true,
+        title: 'Column 1b',
+        children: [
+          {
+            id: '1c',
+            active: true,
+            title: 'Column 1c',
+            content: {
+              component: 'ColumnTestContentComponent',
+              inputs: {},
+              outputs: {},
+              module: {}
+            }
+          }
+        ]
+      },
+      {
+        id: '2a',
+        active: false,
+        title: 'Column 2a',
+        children: [
+          {
+            id: '2b',
+            active: false,
+            title: 'Column 2b',
+            children: [
+              {
+                id: '2c',
+                active: false,
+                title: 'Column 2c',
+                content: {
+                  component: 'ColumnTestContentComponent',
+                  inputs: {},
+                  outputs: {},
+                  module: {}
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  };
+
+  scrollTo(id: string) {
+    (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
 }
