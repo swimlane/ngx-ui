@@ -15,7 +15,7 @@ describe('Columns', () => {
       cy.get('ngx-column').should('have.length', 3);
     });
 
-    it('displays the row number using the row index', () => {
+    it('displays custom content when the row is clicked', () => {
       cy.get('ngx-column').eq(2).as('CUT');
       cy.get('@CUT').find('.ngx-list__virtual-scroll__item').first().click();
       cy.get('.column-expanded').find('h1').should('contain.text', 'Column Test Content');
