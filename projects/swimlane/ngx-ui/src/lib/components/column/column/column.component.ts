@@ -13,7 +13,7 @@ import { Column } from './column.types';
 @Component({
   selector: 'ngx-column',
   templateUrl: './column.component.html',
-  styleUrl: './column.component.scss',
+  styleUrls: ['./column.component.scss'],
   standalone: false,
   encapsulation: ViewEncapsulation.None,
   host: {

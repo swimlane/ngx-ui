@@ -5,7 +5,7 @@ import { Column } from './column/column.types';
 @Component({
   selector: 'ngx-columns',
   templateUrl: './columns.component.html',
-  styleUrl: './columns.component.scss',
+  styleUrls: ['./columns.component.scss'],
   standalone: false,
   encapsulation: ViewEncapsulation.None,
   host: {
@@ -48,7 +48,7 @@ export class ColumnsComponent implements OnChanges {
     }
   }
 
-  deactivatePath(column: Column | undefined): Array<Column> {
+  deactivatePath(column: Column | undefined): void {
     if (!column) {
       return;
     }
@@ -60,7 +60,7 @@ export class ColumnsComponent implements OnChanges {
     const activeChild = column.children?.find(child => child.active);
 
     if (activeChild) {
-      return this.deactivatePath(activeChild);
+      this.deactivatePath(activeChild);
     }
   }
 
