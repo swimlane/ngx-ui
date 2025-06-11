@@ -28,15 +28,15 @@
 
     .search-box {
       border: 1px solid transparent;
-      color: colors.$color-blue-grey-400;
-      background: colors.$color-blue-grey-700;
+      color: var(--color-grey-400);
+      background: var(--color-grey-700);
       height: 40px;
       padding: 8px;
       line-height: 1em;
       margin: 0;
 
       ngx-input-suffix .btn {
-        color: colors.$color-blue-grey-400;
+        color: var(--color-grey-400);
 
         &:hover {
           color: #ffffff;
@@ -109,7 +109,7 @@
  */
 .style-header {
   text-transform: uppercase;
-  color: colors.$color-grey-300;
+  color: var(--color-grey-300);
   font-size: 1rem;
   position: relative;
   padding-bottom: 5px;
@@ -124,7 +124,7 @@
     content: '';
     width: 25px;
     height: 1px;
-    background: colors.$color-grey-300;
+    background: var(--color-grey-300);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -143,11 +143,11 @@
     padding: 10px 5px;
     text-align: center;
     margin: 10px;
-    border: solid 1px colors.$color-blue-grey-800;
+    border: solid 1px var(--color-grey-800);
     border-radius: 2px;
 
     .icon-name {
-      color: colors.$color-blue-grey-600;
+      color: var(--color-grey-600);
       font-size: 0.9rem;
       line-height: 1rem;
     }
@@ -314,7 +314,7 @@ $palette: (
 }
 
 .glow-demo {
-  background: colors.$color-blue-grey-850;
+  background: var(--color-grey-850);
   margin: 20px;
   text-align: center;
   padding: 20px 10px;

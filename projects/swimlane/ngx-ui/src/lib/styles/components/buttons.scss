@@ -4,9 +4,9 @@
  * Button styling
  */
 
-$button-text-color: colors.$color-white;
-$button-fill-color: colors.$color-blue-grey-600;
-$button-fill-active-color: colors.$color-blue-grey-700;
+$button-text-color: var(--color-white);
+$button-fill-color: var(--color-grey-600);
+$button-fill-active-color: var(--color-grey-700);
 
 button {
   box-sizing: border-box;
@@ -101,23 +101,23 @@ button {
     outline-color: $button-fill-active-color;
 
     &.btn-primary {
-      background-color: colors.$color-blue;
+      background-color: var(--color-blue);
     }
 
     &.btn-warning {
-      background-color: colors.$color-orange;
+      background-color: var(--color-orange);
     }
 
     &.btn-danger {
-      background-color: colors.$color-red;
+      background-color: var(--color-red);
     }
     &.btn-link {
       background-color: transparent;
     }
 
     &.btn-bordered {
-      border-color: colors.$color-blue-200;
-      color: colors.$color-blue-200;
+      border-color: var(--color-blue-200);
+      color: var(--color-blue-200);
     }
   }
 
@@ -137,27 +137,27 @@ button {
   }
 
   &.btn-primary {
-    background-color: colors.$color-blue-400;
-    outline-color: colors.$color-blue;
+    background-color: var(--color-blue-400);
+    outline-color: var(--color-blue);
 
     &.btn-primary-gradient {
-      background-color: colors.$color-blue-600;
-      background: linear-gradient(350.57deg, colors.$color-blue-600 14.42%, colors.$color-light-blue-600 100%);
+      background-color: var(--color-blue-600);
+      background: linear-gradient(350.57deg, var(--color-blue-600) 14.42%, var(--color-light-blue-600) 100%);
       box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-      border: 1px solid colors.$color-blue-600;
+      border: 1px solid var(--color-blue-600);
     }
   }
 
   &.btn-warning {
-    background-color: colors.$color-orange-400;
-    color: colors.$color-blue-grey-900;
-    outline-color: colors.$color-orange;
+    background-color: var(--color-orange-400);
+    color: var(--color-grey-900);
+    outline-color: var(--color-orange);
   }
 
   &.btn-danger {
-    background-color: colors.$color-red-400;
-    outline-color: colors.$color-red-400;
+    background-color: var(--color-red-400);
+    outline-color: var(--color-red-400);
   }
 
   &.btn-link {
@@ -167,11 +167,11 @@ button {
 
   &.btn-bordered,
   &.btn-primary.btn-bordered {
-    border: 1px solid colors.$color-blue-400;
-    color: colors.$color-blue-400;
+    border: 1px solid var(--color-blue-400);
+    color: var(--color-blue-400);
     background-color: transparent;
     box-shadow: none;
-    outline-color: colors.$color-blue-400;
+    outline-color: var(--color-blue-400);
 
     &.disabled-button {
       opacity: 0.5;
@@ -189,8 +189,8 @@ button {
     box-shadow: none;
 
     &:hover {
-      border-color: colors.$color-blue !important;
-      color: colors.$color-blue !important;
+      border-color: var(--color-blue) !important;
+      color: var(--color-blue) !important;
     }
 
     &.disabled-button {

@@ -7,7 +7,7 @@
       max-height: calc(100% - 2rem);
       margin-left: 1rem;
       max-width: calc(100% - 2rem);
-      background-color: colors.$color-blue-grey-750;
+      background-color: var(--color-grey-750);
       overflow: hidden;
 
       &--1\/2 {

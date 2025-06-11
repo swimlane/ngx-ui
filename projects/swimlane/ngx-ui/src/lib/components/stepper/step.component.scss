@@ -16,25 +16,25 @@
 
   &.ngx-step--active {
     .ngx-step--title {
-      color: colors.$color-blue-500;
+      color: var(--color-blue-500);
     }
 
     .ngx-step--step {
       &:after {
         background-image: linear-gradient(
           to right,
-          colors.$color-blue-500 0%,
-          colors.$color-blue-grey-600 75%
+          var(--color-blue-500) 0%,
+          var(--color-grey-600) 75%
         ) !important;
       }
 
       .ngx-step--circle {
-        border: 1.75px solid colors.$color-blue-500;
-        color: colors.$color-blue-500;
+        border: 1.75px solid var(--color-blue-500);
+        color: var(--color-blue-500);
         box-shadow: 0px 0px 9.59842px rgba(20, 131, 255, 0.8);
 
         .marker-path {
-          fill: colors.$color-blue-500;
+          fill: var(--color-blue-500);
         }
       }
     }
@@ -43,8 +43,8 @@
   &.ngx-step--complete {
     .ngx-step--circle {
       &:hover {
-        border: 1.75px solid colors.$color-blue-500;
-        color: colors.$color-blue-500;
+        border: 1.75px solid var(--color-blue-500);
+        color: var(--color-blue-500);
         box-shadow: 0px 0px 9.59842px rgba(20, 131, 255, 0.8);
 
         .ngx-step--indicator {
@@ -56,28 +56,28 @@
         }
 
         .marker-path {
-          fill: colors.$color-blue-500;
+          fill: var(--color-blue-500);
         }
       }
     }
 
     &:not(.ngx-step--complete-last) {
       .ngx-step--title {
-        color: colors.$color-green-500;
+        color: var(--color-green-500);
       }
 
       .ngx-step--step {
         &:after {
-          background-color: colors.$color-green-500 !important;
+          background-color: var(--color-green-500) !important;
         }
 
         .ngx-step--circle {
-          border: 1.75px solid colors.$color-green-500;
-          color: colors.$color-green-500;
+          border: 1.75px solid var(--color-green-500);
+          color: var(--color-green-500);
           box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
 
           .marker-path {
-            fill: colors.$color-green-500;
+            fill: var(--color-green-500);
           }
 
           .ngx-step--indicator {
@@ -93,21 +93,21 @@
 
     &.ngx-step--complete-last {
       .ngx-step--title {
-        color: colors.$color-green-500;
+        color: var(--color-green-500);
       }
 
       .ngx-step--step {
         &:after {
-          background-image: linear-gradient(to right, #1edeb6 0%, colors.$color-blue-500 75%) !important;
+          background-image: linear-gradient(to right, #1edeb6 0%, var(--color-blue-500) 75%) !important;
         }
 
         .ngx-step--circle {
-          border: 1.75px solid colors.$color-green-500;
-          color: colors.$color-green-500;
+          border: 1.75px solid var(--color-green-500);
+          color: var(--color-green-500);
           box-shadow: 0px 0px 9.59842px rgba(122, 185, 255, 0.7);
 
           .marker-path {
-            fill: colors.$color-green-500;
+            fill: var(--color-green-500);
           }
 
           .ngx-step--indicator {
@@ -130,7 +130,7 @@
     font-weight: 600;
     font-size: 16px;
     line-height: 22px;
-    color: colors.$color-blue-grey-600;
+    color: var(--color-grey-600);
     transition: color stepper.$transition-speed ease-in-out;
   }
 
@@ -142,7 +142,7 @@
     &:after {
       flex: 1 1 auto;
       height: 1.4px;
-      background-color: colors.$color-blue-grey-600;
+      background-color: var(--color-grey-600);
       transition: background-color stepper.$transition-speed ease-in-out,
         background-image stepper.$transition-speed ease-in-out;
       content: '';
@@ -155,10 +155,10 @@
       position: relative;
       width: stepper.$stepper-size;
       height: stepper.$stepper-size;
-      background: linear-gradient(180deg, colors.$color-blue-grey-750 0%, colors.$color-blue-grey-850 100%);
+      background: linear-gradient(180deg, var(--color-grey-750) 0%, var(--color-grey-850) 100%);
       border-radius: 50%;
-      border: 1.75px solid colors.$color-blue-grey-600;
-      color: colors.$color-blue-grey-600;
+      border: 1.75px solid var(--color-grey-600);
+      color: var(--color-grey-600);
       font-size: stepper.$stepper-size * 0.5;
       font-weight: bold;
       transition: border-color stepper.$transition-speed ease-in-out, color stepper.$transition-speed ease-in-out;

@@ -3,7 +3,8 @@
 
 // prism theme
 @use './app/common/prism/prism.css';
-@use 'colors/colors' as colors;
+//@use 'colors/colors' as colors;
+@import '../projects/swimlane/ngx-ui/src/lib/styles/colors/colors';
 
 .appearance-table {
   max-width: 500px;
@@ -33,11 +34,11 @@ code {
 }
 
 th > code {
-  color: colors.$color-blue-grey-050;
+  color: var(--color-grey-050);
 }
 
 th > code.component-type {
-  color: colors.$color-blue-200;
+  color: var(--color-blue-200);
   display: block;
 }
 

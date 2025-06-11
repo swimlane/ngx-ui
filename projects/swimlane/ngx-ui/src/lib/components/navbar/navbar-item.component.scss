@@ -3,7 +3,7 @@
 .ngx-navbar-item {
   display: flex;
   font-size: 15pt;
-  color: colors.$color-blue-grey-400;
+  color: var(--color-grey-400);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   padding: 8px 10px 0 10px;
@@ -14,6 +14,6 @@
 
   &:hover,
   &.active {
-    color: colors.$color-blue-400;
+    color: var(--color-blue-400);
   }
 }

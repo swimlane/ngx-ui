@@ -1,12 +1,12 @@
 @use 'colors/colors' as colors;
 @use 'colors/shadow-variables' as shadows;
 
-$section-header-bg: colors.$color-blue-grey-775;
-$section-header-color: colors.$color-blue-grey-100;
+$section-header-bg: var(--color-grey-775);
+$section-header-color: var(--color-grey-100);
 $section-shadow: shadows.$shadow-3;
 
 @mixin focus-ring {
-  outline: 2px solid colors.$color-blue-200;
+  outline: 2px solid var(--color-blue-200);
   border-radius: 2px;
   outline-offset: 1px;
 }
@@ -14,7 +14,7 @@ $section-shadow: shadows.$shadow-3;
 .ngx-section {
   display: block;
   margin-bottom: 2em;
-  background: colors.$color-blue-grey-825;
+  background: var(--color-grey-825);
 
   .ngx-section-header {
     background: $section-header-bg;
@@ -88,7 +88,7 @@ $section-shadow: shadows.$shadow-3;
     .ngx-section-header,
     .ngx-section-content {
       background: none;
-      border: 1px solid colors.$color-blue-grey-600;
+      border: 1px solid var(--color-grey-600);
     }
 
     .ngx-section-header {
@@ -106,15 +106,15 @@ $section-shadow: shadows.$shadow-3;
   }
 
   &.light {
-    background: colors.$color-blue-grey-775;
+    background: var(--color-grey-775);
 
     .ngx-section-header,
     .ngx-section-content {
-      border: 2px solid colors.$color-blue-grey-700;
+      border: 2px solid var(--color-grey-700);
     }
 
     .ngx-section-header {
-      background: colors.$color-blue-grey-700;
+      background: var(--color-grey-700);
       border-radius: 0;
 
       &.section-collapsed {

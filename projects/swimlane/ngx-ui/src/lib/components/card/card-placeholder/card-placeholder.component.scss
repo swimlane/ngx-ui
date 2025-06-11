@@ -2,7 +2,7 @@
 
 .ngx-card-placeholder {
   display: inline-block;
-  background-color: colors.$color-blue-grey-700;
+  background-color: var(--color-grey-700);
   border-radius: 11px;
 
   &.small {

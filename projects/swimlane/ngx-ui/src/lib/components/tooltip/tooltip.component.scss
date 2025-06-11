@@ -1,14 +1,14 @@
 @use 'colors/colors' as colors;
 @use 'colors/shadow-variables' as shadows;
 
-$tooltip-bg: colors.$color-blue-grey-200;
-$tooltip-color: colors.$color-blue-grey-700;
+$tooltip-bg: var(--color-grey-200);
+$tooltip-color: var(--color-grey-700);
 $tooltip-caret-bg: $tooltip-bg;
 $tooltip-border: transparent;
 $tooltip-spacing: 10px;
 
-$popover-bg: colors.$color-blue-grey-200;
-$popover-color: colors.$color-blue-grey-700;
+$popover-bg: var(--color-grey-200);
+$popover-color: var(--color-grey-700);
 $popover-caret-bg: $popover-bg;
 $popover-border: transparent;
 $popover-spacing: 10px;

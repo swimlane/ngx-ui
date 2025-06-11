@@ -2,18 +2,18 @@
 @use 'forms/variables' as forms;
 
 // general
-$color-dropdown-bg: colors.$color-blue-grey-775;
-$color-hover-bg: colors.$color-blue-grey-750;
-$color-placeholder-text: colors.$color-blue-grey-350;
-$color-caret-bg: colors.$color-blue-grey-350;
+$color-dropdown-bg: var(--color-grey-775);
+$color-hover-bg: var(--color-grey-750);
+$color-placeholder-text: var(--color-grey-350);
+$color-caret-bg: var(--color-grey-350);
 
 // filter
-$color-filter-bg: colors.$color-blue-grey-800;
-$color-filter-text: colors.$color-blue-grey-200;
-$color-empty-text: colors.$color-blue-grey-150;
+$color-filter-bg: var(--color-grey-800);
+$color-filter-text: var(--color-grey-200);
+$color-empty-text: var(--color-grey-150);
 
 // chips
-$color-chip-bg: colors.$color-blue-grey-600;
+$color-chip-bg: var(--color-grey-600);
 $color-chip-text: #fff;
 
 $max-width: 300px;
@@ -46,7 +46,7 @@ $max-width: 300px;
   }
 
   .ngx-chip {
-    border: 1px solid colors.$color-blue-grey-500;
+    border: 1px solid var(--color-grey-500);
     border-radius: 4px;
     height: 30px;
     padding: 0px;
@@ -79,7 +79,7 @@ $max-width: 300px;
       }
 
       .ngx-chip-label {
-        color: colors.$color-blue-grey-250;
+        color: var(--color-grey-250);
         margin-right: 3px;
       }
     }
@@ -115,12 +115,12 @@ $max-width: 300px;
 
   &.active {
     .ngx-chip {
-      border: 1px solid colors.$color-blue-500;
+      border: 1px solid var(--color-blue-500);
       background-color: #313847;
 
       .ngx-chip__controls {
         .ngx-chip-caret {
-          color: colors.$color-blue-400;
+          color: var(--color-blue-400);
           transition: transform 200ms ease-in-out;
           transform: rotate(180deg) translateY(1px);
         }
@@ -130,14 +130,14 @@ $max-width: 300px;
 
   &.active-selections {
     .ngx-chip {
-      background-color: colors.$color-blue-800;
-      border: 1px solid colors.$color-blue-800;
+      background-color: var(--color-blue-800);
+      border: 1px solid var(--color-blue-800);
 
       .ngx-chip__contents:hover {
-        background-color: colors.$color-blue-900;
+        background-color: var(--color-blue-900);
       }
       .ngx-chip__controls:hover {
-        background-color: colors.$color-blue-900;
+        background-color: var(--color-blue-900);
       }
     }
   }
@@ -179,7 +179,7 @@ $max-width: 300px;
     width: 100%;
     min-width: 300px;
     background: $color-dropdown-bg;
-    border: 1px solid colors.$color-blue-grey-550;
+    border: 1px solid var(--color-grey-550);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: 10px;
     opacity: 0;
@@ -192,11 +192,11 @@ $max-width: 300px;
       position: relative;
 
       &:not(:last-child) {
-        border-bottom: 1px solid colors.$color-blue-grey-700;
+        border-bottom: 1px solid var(--color-grey-700);
       }
 
       .ngx-check {
-        color: colors.$color-blue-400;
+        color: var(--color-blue-400);
         position: absolute;
         right: 20px;
         top: 50%;
@@ -221,7 +221,7 @@ $max-width: 300px;
         text-overflow: ellipsis;
 
         &.disabled {
-          color: colors.$color-blue-grey-450;
+          color: var(--color-grey-450);
           opacity: 1;
         }
 
@@ -237,11 +237,11 @@ $max-width: 300px;
         }
 
         &.ngx-select-all-option {
-          color: colors.$color-blue-400;
+          color: var(--color-blue-400);
         }
 
         &.selected {
-          background: colors.$color-blue-grey-800;
+          background: var(--color-grey-800);
 
           &:not(.disabled) {
             &.active,
@@ -261,10 +261,10 @@ $max-width: 300px;
           display: block;
           font-weight: 600;
           line-height: 20px;
-          color: colors.$color-blue-grey-300;
+          color: var(--color-grey-300);
           overflow-x: hidden;
           text-overflow: ellipsis;
-          border-bottom: 1px solid colors.$color-blue-grey-700;
+          border-bottom: 1px solid var(--color-grey-700);
         }
       }
 
@@ -284,7 +284,7 @@ $max-width: 300px;
       .ngx-x {
         position: absolute;
         top: 50%;
-        color: colors.$color-blue-grey-350;
+        color: var(--color-grey-350);
       }
 
       .ngx-search {
@@ -299,7 +299,7 @@ $max-width: 300px;
         cursor: pointer;
 
         &:hover {
-          color: colors.$color-blue-grey-300;
+          color: var(--color-grey-300);
         }
       }
 
@@ -321,7 +321,7 @@ $max-width: 300px;
         }
 
         &::placeholder {
-          color: colors.$color-blue-grey-350;
+          color: var(--color-grey-350);
         }
       }
     }

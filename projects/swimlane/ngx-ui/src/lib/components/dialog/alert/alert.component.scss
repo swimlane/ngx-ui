@@ -3,7 +3,7 @@
 .ngx-alert-dialog {
   .ngx-dialog-content {
     padding: 0;
-    background: colors.$color-blue-grey-725;
+    background: var(--color-grey-725);
 
     .ngx-dialog-header {
       padding: 1.4rem 2rem 0 2rem;
@@ -18,7 +18,7 @@
 
     .ngx-dialog-body {
       padding: 0.5rem 2rem;
-      color: colors.$color-blue-grey-300;
+      color: var(--color-grey-300);
     }
 
     .ngx-dialog-footer {
@@ -30,12 +30,12 @@
     .ngx-dialog-content {
       .ngx-dialog-header {
         padding: 1.4rem 2rem;
-        border-left: 5px solid colors.$color-blue-500;
-        background: colors.$color-blue-grey-750;
+        border-left: 5px solid var(--color-blue-500);
+        background: var(--color-grey-750);
 
         .close-button {
           float: right;
-          background: colors.$color-blue-500;
+          background: var(--color-blue-500);
           color: white;
         }
       }
@@ -57,11 +57,11 @@
 
       &.ngx-alert-warning {
         .ngx-dialog-header {
-          border-left-color: colors.$color-orange-500;
+          border-left-color: var(--color-orange-500);
 
           .close-button {
-            background: colors.$color-orange-500;
-            color: colors.$color-blue-grey-800;
+            background: var(--color-orange-500);
+            color: var(--color-grey-800);
           }
         }
       }

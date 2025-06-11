@@ -1,30 +1,30 @@
 @use '../colors/colors' as colors;
 
-$color-input-bg: colors.$color-blue-grey-700;
-$color-input-border: colors.$color-blue-grey-600;
-$color-input-text: colors.$color-blue-grey-050;
-$color-input-text-placeholder: colors.$color-blue-grey-450;
-$color-input-text-disabled: colors.$color-blue-grey-400;
+$color-input-bg: var(--color-grey-700);
+$color-input-border: var(--color-grey-600);
+$color-input-text: var(--color-grey-050);
+$color-input-text-placeholder: var(--color-grey-450);
+$color-input-text-disabled: var(--color-grey-400);
 
-$input-invalid-color: colors.$color-red;
-$input-icon-color: colors.$color-grey-300;
-$input-icon-color-hover: colors.$color-grey-100;
-$input-placeholder-color: colors.$color-blue-grey-350;
+$input-invalid-color: var(--color-red);
+$input-icon-color: var(--color-grey-300);
+$input-icon-color-hover: var(--color-grey-100);
+$input-placeholder-color: var(--color-grey-350);
 
-$color-fill-input-bg: colors.$color-blue-grey-875;
+$color-fill-input-bg: var(--color-grey-875);
 
 $input-underline-height: 1px;
 $input-underline-height-fill: 2px;
-$input-active-underline-fill: colors.$color-blue;
-$input-inactive-underline-fill: colors.$color-blue-grey-600;
+$input-active-underline-fill: var(--color-blue);
+$input-inactive-underline-fill: var(--color-grey-600);
 
-$input-label-color: colors.$color-blue-grey-350;
-$input-label-color-active: colors.$color-blue-500;
+$input-label-color: var(--color-grey-350);
+$input-label-color-active: var(--color-blue-500);
 $input-label-font-size: 1em;
 $input-label-font-size-active: 0.7rem;
 $input-label-font-weight: 600;
 
-$input-hint-color: colors.$color-blue-grey-350;
+$input-hint-color: var(--color-grey-350);
 $input-hint-font-size: 12px;
 $input-hint-margin-top: 2px;
 $input-hint-min-height: 1em;

@@ -2,8 +2,8 @@
 
 ngx-list-row {
   &.ngx-list-row {
-    background-color: colors.$color-blue-grey-800;
-    border: 1px solid colors.$color-blue-grey-600;
+    background-color: var(--color-grey-800);
+    border: 1px solid var(--color-grey-600);
     border-radius: 0.25rem;
     display: grid;
     align-items: center;
@@ -23,15 +23,15 @@ ngx-list-row {
     }
 
     &--error::before {
-      background-color: colors.$color-red-500;
+      background-color: var(--color-red-500);
     }
 
     &--success::before {
-      background-color: colors.$color-green-500;
+      background-color: var(--color-green-500);
     }
 
     &--warning::before {
-      background-color: colors.$color-orange-400;
+      background-color: var(--color-orange-400);
     }
   }
 }

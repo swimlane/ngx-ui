@@ -10,7 +10,7 @@ ngx-json-editor-node-info {
     align-items: baseline;
 
     .info-btn {
-      color: colors.$color-blue-grey-350;
+      color: var(--color-grey-350);
       font-size: 12px;
       margin-left: 5px;
       position: relative;
@@ -37,13 +37,13 @@ ngx-json-editor-node-info {
 
   .info-type,
   .description {
-    color: colors.$color-blue-grey-250;
+    color: var(--color-grey-250);
   }
 
   .info-type {
     display: inline-flex;
     font-size: 12px;
-    color: colors.$color-blue-grey-250;
+    color: var(--color-grey-250);
     white-space: nowrap;
 
     > * {
@@ -68,14 +68,14 @@ ngx-json-editor-node-info {
 
   .description {
     font-size: 14px;
-    color: colors.$color-blue-grey-250;
+    color: var(--color-grey-250);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: clip;
   }
 
   .required {
-    color: colors.$color-red-400;
+    color: var(--color-red-400);
   }
 
   .editable-name {

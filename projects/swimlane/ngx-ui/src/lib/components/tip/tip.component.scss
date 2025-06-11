@@ -1,7 +1,7 @@
 @use 'colors/colors' as colors;
 
-$color-default: colors.$color-blue-grey-350; // default icon and border left
-$color-border: colors.$color-blue-grey-650;
+$color-default: var(--color-grey-350); // default icon and border left
+$color-border: var(--color-grey-650);
 
 .ngx-tip {
   .tip-container {
@@ -40,7 +40,7 @@ $color-border: colors.$color-blue-grey-650;
         font-size: 14px;
         line-height: 18px;
         margin: 0 10px;
-        color: colors.$color-blue-grey-250;
+        color: var(--color-grey-250);
       }
     }
 
@@ -48,7 +48,7 @@ $color-border: colors.$color-blue-grey-650;
       margin-top: -2px;
 
       .ngx-icon {
-        color: colors.$color-blue-grey-400;
+        color: var(--color-grey-400);
         font-size: 10px;
       }
 
@@ -59,13 +59,13 @@ $color-border: colors.$color-blue-grey-650;
   &.ngx-tip--success {
     .tip-container {
       &::before {
-        background: colors.$color-green-500;
+        background: var(--color-green-500);
       }
 
       .tip-content {
         &--icon {
           .ngx-icon {
-            color: colors.$color-green-500;
+            color: var(--color-green-500);
           }
         }
       }
@@ -89,12 +89,12 @@ $color-border: colors.$color-blue-grey-650;
   &.ngx-tip--warning {
     .tip-container {
       &::before {
-        background: colors.$color-orange-400;
+        background: var(--color-orange-400);
       }
 
       .tip-content {
         &--icon .ngx-icon {
-          color: colors.$color-orange-400;
+          color: var(--color-orange-400);
         }
       }
     }
