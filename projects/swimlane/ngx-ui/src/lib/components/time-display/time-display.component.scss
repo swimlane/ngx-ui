@@ -28,7 +28,7 @@ ngx-time {
 
     &:active {
       transform: translate(1px, 1px);
-      color: colors.$color-blue-grey-350;
+      color: var(--color-grey-350);
     }
   }
 }
@@ -39,7 +39,7 @@ ngx-time {
   .date-zone-display {
     font-weight: bold;
     font-size: 15px;
-    color: colors.$color-blue-grey-700;
+    color: var(--color-grey-700);
 
     > span {
       display: inline-block;
@@ -51,7 +51,7 @@ ngx-time {
       line-height: 16px;
       font-size: 11px;
       text-transform: uppercase;
-      color: colors.$color-blue-grey-700;
+      color: var(--color-grey-700);
       background: #dee1ea;
       margin-left: 5px;
       padding: 0 6px;

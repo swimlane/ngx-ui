@@ -1,10 +1,10 @@
 @use 'colors/colors' as colors;
 @use 'colors/shadow-variables' as shadows;
 
-$dropdown-bg: colors.$color-blue-grey-700;
-$dropdown-bg-active: colors.$color-blue-grey-750;
-$dropdown-bg-hover: colors.$color-blue-grey-800;
-$dropdown-color: colors.$color-blue-grey-150;
+$dropdown-bg: var(--color-grey-700);
+$dropdown-bg-active: var(--color-grey-750);
+$dropdown-bg-hover: var(--color-grey-800);
+$dropdown-color: var(--color-grey-150);
 
 .CodeMirror-hints {
   position: absolute;

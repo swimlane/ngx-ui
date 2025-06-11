@@ -7,7 +7,7 @@
   height: 100%;
 
   &__header {
-    background-color: colors.$color-blue-grey-700;
+    background-color: var(--color-grey-700);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -16,18 +16,18 @@
   }
 
   &__header-title {
-    color: colors.$color-blue-grey-350;
+    color: var(--color-grey-350);
     margin: 0;
     font-size: 1.125rem;
   }
 
   &__dismiss-btn {
-    color: colors.$color-blue-grey-350;
+    color: var(--color-grey-350);
     font-size: 0.875rem;
     padding-right: 0;
 
     &:hover {
-      color: colors.$color-white;
+      color: var(--color-white);
     }
   }
 

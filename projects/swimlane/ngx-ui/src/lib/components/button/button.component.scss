@@ -46,19 +46,19 @@
   }
 
   &.in-progress {
-    color: colors.$color-white !important;
+    color: var(--color-white) !important;
   }
 
   &.success {
-    background-color: colors.$color-green !important;
-    background: colors.$color-green !important;
-    border: 1px solid colors.$color-green !important;
+    background-color: var(--color-green) !important;
+    background: var(--color-green) !important;
+    border: 1px solid var(--color-green) !important;
   }
 
   &.fail {
-    background-color: colors.$color-red !important;
-    background: colors.$color-red !important;
-    border: 1px solid colors.$color-red !important;
+    background-color: var(--color-red) !important;
+    background: var(--color-red) !important;
+    border: 1px solid var(--color-red) !important;
   }
 
   &.in-progress,
@@ -99,7 +99,7 @@
         height: 1em;
         width: 1em;
         font-weight: bold;
-        color: colors.$color-white;
+        color: var(--color-white);
         overflow: hidden;
         font-size: 1em;
       }
@@ -108,21 +108,21 @@
 
   // focus ring colors
   &.btn-primary button {
-    outline-color: colors.$color-blue;
+    outline-color: var(--color-blue);
   }
 
   &.btn-warning button {
-    outline-color: colors.$color-orange;
+    outline-color: var(--color-orange);
   }
 
   &.btn-danger button {
-    outline-color: colors.$color-red-400;
+    outline-color: var(--color-red-400);
   }
 
   &.btn-bordered,
   &.btn-primary.btn-bordered {
     button {
-      outline-color: colors.$color-blue-400;
+      outline-color: var(--color-blue-400);
     }
   }
 }

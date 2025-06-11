@@ -6,16 +6,16 @@
   position: relative;
 
   // default colors
-  --button-bg: #{colors.$color-blue-grey-600};
-  --button-border: #{colors.$color-blue-grey-600};
+  --button-bg: var(--color-grey-600);
+  --button-border: var(--color-grey-600);
   --button-text: white;
-  --button-hover: #{colors.$color-blue-grey-700};
+  --button-hover: var(--color-grey-700);
 
   &.ngx-button-group--contained--primary {
-    --button-bg: #{colors.$color-blue-400};
-    --button-border: #{colors.$color-blue-400};
+    --button-bg: var(--color-blue-400);
+    --button-border: var(--color-blue-400);
     --button-text: white;
-    --button-hover: #{colors.$color-blue};
+    --button-hover: var(--color-blue);
   }
 
   > ngx-dropdown {

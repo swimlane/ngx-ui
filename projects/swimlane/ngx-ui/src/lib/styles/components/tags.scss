@@ -1,6 +1,6 @@
 @use '../colors/colors' as colors;
 
-$tag-background: colors.$color-blue-grey-600;
+$tag-background: var(--color-grey-600);
 $tag-color: white;
 
 .tag {
@@ -24,12 +24,12 @@ $tag-color: white;
   }
 
   &.tag-filled {
-    background-color: colors.$color-blue-grey-050;
-    color: colors.$color-blue-grey-800;
+    background-color: var(--color-grey-050);
+    color: var(--color-grey-800);
   }
 
   &.tag-bordered {
-    border: 1px solid colors.$color-light-blue-400;
+    border: 1px solid var(--color-light-blue-400);
     color: white;
     background-color: transparent;
   }

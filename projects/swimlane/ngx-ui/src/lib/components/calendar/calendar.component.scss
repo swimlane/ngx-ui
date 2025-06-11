@@ -2,17 +2,17 @@
 @use 'colors/shadow-variables' as shadows;
 @use 'forms/variables' as inputs;
 
-$calendar-bg: colors.$color-blue-grey-800;
-$calendar-border: colors.$color-blue-grey-700;
-$calendar-title-bg: colors.$color-blue-grey-800;
-$calendar-title-btn: colors.$color-blue-grey-350;
-$calendar-hover-bg: colors.$color-blue-400;
-$calendar-today-bg: colors.$color-blue-grey-750;
-$calendar-active-bg: colors.$color-blue-400;
-$calendar-active-text: colors.$color-grey-050;
-$calendar-range-bg: colors.$color-blue-700;
-$calendar-day-text: colors.$color-blue-grey-350;
-$calendar-month-current: colors.$color-blue-grey-750;
+$calendar-bg: var(--color-grey-800);
+$calendar-border: var(--color-grey-700);
+$calendar-title-bg: var(--color-grey-800);
+$calendar-title-btn: var(--color-grey-350);
+$calendar-hover-bg: var(--color-blue-400);
+$calendar-today-bg: var(--color-grey-750);
+$calendar-active-bg: var(--color-blue-400);
+$calendar-active-text: var(--color-grey-050);
+$calendar-range-bg: var(--color-blue-700);
+$calendar-day-text: var(--color-grey-350);
+$calendar-month-current: var(--color-grey-750);
 
 .ngx-calendar {
   position: relative;
@@ -33,10 +33,10 @@ $calendar-month-current: colors.$color-blue-grey-750;
   }
 
   button {
-    outline: 0px colors.$color-blue-200;
+    outline: 0px var(--color-blue-200);
 
     &:focus-within {
-      outline: 2px solid colors.$color-blue-200;
+      outline: 2px solid var(--color-blue-200);
       outline-offset: 1px;
     }
   }
@@ -404,10 +404,10 @@ $calendar-month-current: colors.$color-blue-grey-750;
   }
 
   button.ampm {
-    color: colors.$color-blue-grey-500;
+    color: var(--color-grey-500);
 
     &.selected {
-      color: colors.$color-white;
+      color: var(--color-white);
       background-color: #818fa933;
       opacity: 20;
     }

@@ -17,6 +17,6 @@ select {
 
   &[disabled] {
     cursor: not-allowed;
-    color: colors.$color-blue-grey-300;
+    color: var(--color-grey-300);
   }
 }

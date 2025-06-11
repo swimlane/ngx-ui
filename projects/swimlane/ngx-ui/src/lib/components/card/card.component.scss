@@ -1,10 +1,10 @@
 @use 'colors/colors' as colors;
 
-$color-accent-grey: linear-gradient(180deg, colors.$color-blue-grey-100 0%, colors.$color-blue-grey-200 100%);
+$color-accent-grey: linear-gradient(180deg, var(--color-grey-100) 0%, var(--color-grey-200) 100%);
 $card-accent-thickness: 4px;
 
-$color-background-grey: linear-gradient(180deg, colors.$color-blue-grey-750 0%, colors.$color-blue-grey-800 100%);
-$color-flat-background: colors.$color-blue-grey-800;
+$color-background-grey: linear-gradient(180deg, var(--color-grey-750) 0%, var(--color-grey-800) 100%);
+$color-flat-background: var(--color-grey-800);
 
 $card-outline-border-thickness: 3px;
 
@@ -46,11 +46,11 @@ $card-vertical-gutter: 20px;
 
   &--status {
     display: block;
-    background-color: colors.$color-blue-grey-550;
+    background-color: var(--color-grey-550);
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    box-shadow: inset 0 -2px 2px colors.$color-blue-grey-600;
+    box-shadow: inset 0 -2px 2px var(--color-grey-600);
 
     &.success {
       background-color: #b0e53c;
@@ -73,7 +73,7 @@ $card-vertical-gutter: 20px;
     width: 3px;
     height: 3px;
     border-radius: 50%;
-    background-color: colors.$color-blue-grey-400;
+    background-color: var(--color-grey-400);
     margin: 3px 5px;
   }
 
@@ -163,7 +163,7 @@ $card-vertical-gutter: 20px;
         display: inline-block;
         font-weight: 600;
         font-size: 14px;
-        color: colors.$color-blue-grey-300;
+        color: var(--color-grey-300);
 
         > span {
           display: inline-block;
@@ -185,7 +185,7 @@ $card-vertical-gutter: 20px;
       padding-bottom: $card-horizontal-description-padding;
 
       > p {
-        color: colors.$color-blue-grey-350;
+        color: var(--color-grey-350);
         font-size: 14px;
         line-height: 18px;
         display: -webkit-box;
@@ -226,7 +226,7 @@ $card-vertical-gutter: 20px;
 
     .view-details {
       display: flex;
-      color: colors.$color-blue-400;
+      color: var(--color-blue-400);
       font-size: 15px;
       font-weight: 600;
       white-space: nowrap;
@@ -250,7 +250,7 @@ $card-vertical-gutter: 20px;
     right: -5px;
     left: -5px;
     bottom: -5px;
-    border: $card-outline-border-thickness solid colors.$color-blue-400;
+    border: $card-outline-border-thickness solid var(--color-blue-400);
     border-radius: 5px;
 
     &.error {
@@ -260,14 +260,14 @@ $card-vertical-gutter: 20px;
 
   .ngx-card--outline-text {
     pointer-events: none;
-    color: colors.$color-blue-400;
+    color: var(--color-blue-400);
     white-space: nowrap;
     position: absolute;
     top: -5px;
     right: -5px;
     left: -5px;
     bottom: -5px;
-    border: $card-outline-border-thickness solid colors.$color-blue-400;
+    border: $card-outline-border-thickness solid var(--color-blue-400);
     border-bottom: 0;
     border-radius: 5px;
 
@@ -286,7 +286,7 @@ $card-vertical-gutter: 20px;
       &::after {
         content: '';
         height: $card-outline-border-thickness;
-        background: colors.$color-blue-400;
+        background: var(--color-blue-400);
       }
 
       &::before {
@@ -322,7 +322,7 @@ $card-vertical-gutter: 20px;
   min-width: 347px;
   max-width: 850px;
   height: 418px;
-  color: colors.$color-blue-grey-350;
+  color: var(--color-grey-350);
 
   .ngx-card--status {
     margin: $card-vertical-header-padding auto 0 auto;
@@ -341,7 +341,7 @@ $card-vertical-gutter: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: 2px colors.$color-blue-grey-700;
+    border-bottom: 2px var(--color-grey-700);
 
     .ngx-card-avatar {
       margin: $card-vertical-header-padding 0 $card-vertical-gutter 0;
@@ -364,7 +364,7 @@ $card-vertical-gutter: 20px;
       &::after {
         content: '';
         height: 2px;
-        background: colors.$color-blue-grey-700;
+        background: var(--color-grey-700);
         width: 100%;
       }
 
@@ -405,14 +405,14 @@ $card-vertical-gutter: 20px;
     }
 
     .ngx-card-subtitle {
-      color: colors.$color-blue-grey-200;
+      color: var(--color-grey-200);
       font-size: 13px;
     }
   }
 
   .ngx-card-footer {
     position: relative;
-    border-bottom: 2px colors.$color-blue-grey-700;
+    border-bottom: 2px var(--color-grey-700);
     height: 50px;
     padding: $card-vertical-gutter 0;
     margin-bottom: $card-accent-thickness;
@@ -437,7 +437,7 @@ $card-vertical-gutter: 20px;
       &::after {
         content: '';
         height: 2px;
-        background: colors.$color-blue-grey-700;
+        background: var(--color-grey-700);
         width: 100%;
       }
 

@@ -3,8 +3,8 @@
 
 .night-theme,
 .moonlight-theme {
-  background: colors.$color-blue-grey-850;
-  color: colors.$color-blue-grey-050;
+  background: var(--color-grey-850);
+  color: var(--color-grey-050);
 }
 
 .moonlight-theme {

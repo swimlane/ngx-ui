@@ -1,9 +1,9 @@
 @use 'sass:color';
 @use 'colors/colors' as colors;
 
-$datatable-bg: colors.$color-blue-grey-800;
-$datatable-border: colors.$color-blue-grey-700;
-$datatable-color: colors.$color-grey-100;
+$datatable-bg: var(--color-grey-800);
+$datatable-border: var(--color-grey-700);
+$datatable-color: var(--color-grey-100);
 $datatable-row-hover: color.adjust($datatable-bg, $lightness: -2%);
 
 .ngx-datatable {
@@ -52,15 +52,15 @@ $datatable-row-hover: color.adjust($datatable-bg, $lightness: -2%);
       }
 
       &.active {
-        background-color: colors.$color-blue;
-        color: colors.$color-grey-100;
+        background-color: var(--color-blue);
+        color: var(--color-grey-100);
       }
     }
   }
 
   .datatable-footer {
-    background: colors.$color-blue-grey-700;
-    color: colors.$color-grey-300;
+    background: var(--color-grey-700);
+    color: var(--color-grey-300);
     margin-top: -1px;
 
     .page-count {
@@ -87,13 +87,13 @@ $datatable-row-hover: color.adjust($datatable-bg, $lightness: -2%);
             text-align: center;
             text-decoration: none;
             vertical-align: bottom;
-            color: colors.$color-grey-300;
+            color: var(--color-grey-300);
           }
 
           &:not(.disabled) {
             &.active a,
             &:hover a {
-              background-color: colors.$color-blue-grey-600;
+              background-color: var(--color-grey-600);
               font-weight: bold;
             }
           }
