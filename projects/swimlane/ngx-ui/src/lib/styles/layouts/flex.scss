@@ -6,6 +6,32 @@
 /* --- CSS Variables --- */
 
 :root {
+
+  // Spacing Gaps
+  --spacing-default-gap: 4px;
+  --spacing-tight-gap: 2px;
+  --spacing-loose-gap: 8px;
+
+
+  // breakpoints
+  --breakpoint: 0px; //default breakpoint
+  --breakpoint-xs: 0px;
+  --breakpoint-sm: 600px;
+  --breakpoint-md: 960px;
+  --breakpoint-lg: 1320px;
+  --breakpoint-xl: 1680px;
+  --breakpoint-xxl: 1920px;
+
+  // container
+  --container: 480px; //default container width
+  --container-xs: 480px;
+  --container-sm: 550px;
+  --container-md: 920px;
+  --container-lg: 1270px;
+  --container-xl: 1630px;
+  --container-xxl: 1870px;
+  
+  
   // columns
   --columns: 12;
   --column-width: calc(100% / var(--columns));
@@ -46,6 +72,15 @@
   flex: 0 1 auto;
   flex-direction: row;
   flex-wrap: wrap;
+  gap: var(--spacing-default-gap, 4px); // Add this line for default gap
+
+  &.tight {
+    gap: var(--spacing-tight-gap, 2px);
+  }
+  &.loose {
+    gap: var(--spacing-loose-gap, 8px);
+  }
+
   margin-right: var(--gutter-compensation, -0.5rem);
   margin-left: var(--gutter-compensation, -0.5rem);
 

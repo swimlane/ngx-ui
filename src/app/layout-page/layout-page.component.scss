@@ -31,7 +31,7 @@ code {
 }
 
 .ngx-flex--row {
-  background-color: rgba(var(--color-green-rgb), 0.1);
+  background-color: rgba(var(--color-green), 0.1);
   margin-top: 20px;
   position: relative;
   box-sizing: border-box;
@@ -50,9 +50,9 @@ code {
   }
 
   > * {
-    background-color: rgba(var(--color-light-blue-rgb), 0.15);
+    background-color: rgba(var(--color-light-blue), 0.15);
     position: relative;
-    border: 1px solid rgba(var(--color-light-blue-rgb), 0.06);
+    border: 1px solid rgba(var(--color-light-blue), 0.06);
     box-sizing: border-box;
 
     &:before {
