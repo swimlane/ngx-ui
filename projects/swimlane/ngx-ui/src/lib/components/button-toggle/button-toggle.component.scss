@@ -17,7 +17,7 @@
   }
 
   &:hover:not(.checked):not([disabled]) {
-    background: rgba(var(--color-grey-650-rgb), 0.1);
+    background: rgba(var(--color-grey-650), 0.1);
   }
 
   &:focus-visible {

@@ -40,11 +40,11 @@
 .ngx-scroll *,
 .ngx-scroll-overlay {
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(var(--color-grey-550-rgb), 0.5);
+    background-color: rgba(var(--color-grey-550), 0.5);
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(var(--color-grey-550-rgb), 1);
+    background-color: rgba(var(--color-grey-550), 1);
   }
 }
 
@@ -67,14 +67,14 @@
   overflow: overlay;
 
   &::-webkit-scrollbar-thumb {
-    background-color: rgba(var(--color-grey-550-rgb), 0.3);
+    background-color: rgba(var(--color-grey-550), 0.3);
   }
 
   &:hover::-webkit-scrollbar-thumb {
-    background-color: rgba(var(--color-grey-550-rgb), 0.5);
+    background-color: rgba(var(--color-grey-550), 0.5);
   }
 
   &:hover::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(var(--color-grey-550-rgb), 1);
+    background-color: rgba(var(--color-grey-550), 1);
   }
 }
