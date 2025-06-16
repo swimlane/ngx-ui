@@ -67,6 +67,8 @@ export class CalendarComponent implements OnInit, AfterViewInit, ControlValueAcc
     endDate: undefined
   };
 
+  @Input() showStartTimeInputs: boolean = true;
+  @Input() showEndTimeInputs: boolean = true;
   @Input('minView')
   get minView() {
     return this._minView ? this._minView : CalendarView.Date;
