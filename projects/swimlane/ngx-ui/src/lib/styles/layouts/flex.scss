@@ -8,29 +8,54 @@
 :root {
 
   // Spacing Gaps
-  --spacing-default-gap: 4px;
-  --spacing-tight-gap: 2px;
-  --spacing-loose-gap: 8px;
+  --spacing-2: 2px;
+  --spacing-4: 4px;
+  --spacing-8: 8px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-20: 20px;
+  --spacing-24: 24px;
+  --spacing-36: 36px;
+  --spacing-48: 48px;
+
+  // Radius Gaps
+  --radius-3: 3px;
+  --radius-6: 6px;
+  --radius-9: 9px;
+  --radius-1000: 1000px;
 
 
-  // breakpoints
-  --breakpoint: 0px; //default breakpoint
-  --breakpoint-xs: 0px;
-  --breakpoint-sm: 600px;
-  --breakpoint-md: 960px;
-  --breakpoint-lg: 1320px;
-  --breakpoint-xl: 1680px;
-  --breakpoint-xxl: 1920px;
+  // Swimlane New Spacing Styles
+  /* Swimlane Pool House - Default */
+  --spacing-xs: var(--spacing-2);
+  --spacing-s: var(--spacing-4);
+  --spacing-m: var(--spacing-8);
+  --spacing-l: var(--spacing-12);
+  --spacing-xl: var(--spacing-16);
+  --spacing-xxl: var(--spacing-20);
+  --spacing-3xl: var(--spacing-24);
+  --spacing-4xl: var(--spacing-36);
 
-  // container
-  --container: 480px; //default container width
-  --container-xs: 480px;
-  --container-sm: 550px;
-  --container-md: 920px;
-  --container-lg: 1270px;
-  --container-xl: 1630px;
-  --container-xxl: 1870px;
-  
+  /* Swimlane Pool House - Tight */
+  --spacing-xs: 0px;
+  --spacing-s: var(--spacing-2);
+  --spacing-m: var(--spacing-4);
+  --spacing-l: var(--spacing-8);
+  --spacing-xl: var(--spacing-12);
+  --spacing-xxl: var(--spacing-16);
+  --spacing-3xl: var(--spacing-20);
+  --spacing-4xl: var(--spacing-24);
+
+  /* Swimlane Pool House - Loose */
+  --spacing-xs: var(--spacing-4);
+  --spacing-s: var(--spacing-8);
+  --spacing-m: var(--spacing-12);
+  --spacing-l: var(--spacing-16);
+  --spacing-xl: var(--spacing-20);
+  --spacing-xxl: var(--spacing-24);
+  --spacing-3xl: var(--spacing-36);
+  --spacing-4xl: var(--spacing-48);
+
   
   // columns
   --columns: 12;
@@ -72,14 +97,6 @@
   flex: 0 1 auto;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: var(--spacing-default-gap, 4px); // Add this line for default gap
-
-  &.tight {
-    gap: var(--spacing-tight-gap, 2px);
-  }
-  &.loose {
-    gap: var(--spacing-loose-gap, 8px);
-  }
 
   margin-right: var(--gutter-compensation, -0.5rem);
   margin-left: var(--gutter-compensation, -0.5rem);

@@ -13,7 +13,7 @@ $dashes: 5.3px;
 
   .ngx-tree-node {
     position: relative;
-    padding-left: 20px;
+    padding-left: var(--spacing-20);
     line-height: 25px;
     min-height: 25px;
 

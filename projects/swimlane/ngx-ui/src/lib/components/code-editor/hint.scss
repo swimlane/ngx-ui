@@ -27,7 +27,7 @@ $dropdown-color: var(--color-grey-150);
 
 .CodeMirror-hint {
   margin: 0;
-  padding: 5px 20px;
+  padding: 5px var(--spacing-20);
   white-space: pre;
   background: transparent;
   box-shadow: none;

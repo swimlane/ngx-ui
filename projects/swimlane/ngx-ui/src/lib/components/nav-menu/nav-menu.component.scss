@@ -167,7 +167,7 @@ ngx-nav-menu.expanded,
     display: block;
     background: var(--color-grey-800);
     margin-bottom: 0px;
-    padding: 16px 18px;
+    padding: var(--spacing-16) 18px;
     font-size: 0.9rem;
     color: var(--color-grey-350);
     cursor: pointer;

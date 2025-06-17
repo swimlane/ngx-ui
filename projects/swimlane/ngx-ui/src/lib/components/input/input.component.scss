@@ -244,7 +244,7 @@
       .ngx-input-box,
       .ngx-input-textarea {
         margin: 0;
-        padding: 4px 10px;
+        padding: var(--spacing-4) 10px;
         position: relative;
         z-index: 1;
       }

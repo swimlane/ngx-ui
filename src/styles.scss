@@ -4,7 +4,12 @@
 // prism theme
 @use './app/common/prism/prism.css';
 //@use 'colors/colors' as colors;
+
+// Import for adding the css variables for color
 @import '../projects/swimlane/ngx-ui/src/lib/styles/colors/colors';
+
+// Import for adding the css variables for spacing
+@import '../projects/swimlane/ngx-ui/src/lib/styles/layouts/flex.scss';
 
 .appearance-table {
   max-width: 500px;

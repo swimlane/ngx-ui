@@ -56,7 +56,7 @@ $section-shadow: shadows.$shadow-3;
     }
 
     &.ngx-section-collapsible {
-      padding: 0 20px 0 35px;
+      padding: 0 var(--spacing-20) 0 35px;
 
       &.header-toggle {
         cursor: pointer;
@@ -69,7 +69,7 @@ $section-shadow: shadows.$shadow-3;
 
     &.toggle-right {
       &.ngx-section-collapsible {
-        padding: 0 20px 0 15px;
+        padding: 0 var(--spacing-20) 0 15px;
       }
 
       .ngx-section-toggle {

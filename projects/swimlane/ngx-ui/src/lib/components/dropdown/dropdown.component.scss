@@ -102,7 +102,7 @@ $dropdown-color: var(--color-grey-100);
     > ul > li {
       > a,
       > button {
-        padding: 5px 20px;
+        padding: 5px var(--spacing-20);
         clear: both;
         line-height: 1.42857143;
         white-space: nowrap;
@@ -122,8 +122,8 @@ $dropdown-color: var(--color-grey-100);
       &.divider,
       &.divider-label {
         height: initial;
-        margin: 8px 0;
-        padding: 0 20px;
+        margin: var(--spacing-8) 0;
+        padding: 0 var(--spacing-20);
         overflow: hidden;
         background-color: initial !important;
         color: var(--color-grey-400) !important;
@@ -135,7 +135,7 @@ $dropdown-color: var(--color-grey-100);
         padding: 0;
 
         hr {
-          margin: 2px 0;
+          margin: var(--spacing-2) 0;
         }
 
         &:first-child,
@@ -177,7 +177,7 @@ $dropdown-color: var(--color-grey-100);
 
     > ul {
       padding: 9.5px 0;
-      margin: 2px 0 0;
+      margin: var(--spacing-2) 0 0;
       list-style: none;
 
       > li {

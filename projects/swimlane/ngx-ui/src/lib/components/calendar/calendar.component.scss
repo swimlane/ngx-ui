@@ -53,14 +53,14 @@ $calendar-month-current: var(--color-grey-750);
       min-width: 100px;
       padding: 9px;
       cursor: pointer;
-      border-radius: 3px;
+      border-radius: var(--radius-3);
     }
 
     .prev-month,
     .next-month {
       color: $calendar-title-btn;
       font-size: 0.6rem;
-      border-radius: 3px;
+      border-radius: var(--radius-3);
     }
   }
 
@@ -378,7 +378,7 @@ $calendar-month-current: var(--color-grey-750);
   background: $calendar-bg;
   border-top: 1px solid $calendar-border;
   border-bottom: 1px solid $calendar-border;
-  padding: 24px 18px 6px 18px;
+  padding: var(--spacing-24) 18px 6px 18px;
 
   flex-direction: row;
   box-sizing: border-box;

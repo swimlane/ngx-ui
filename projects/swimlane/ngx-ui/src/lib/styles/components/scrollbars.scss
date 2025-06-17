@@ -23,7 +23,7 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    border-radius: 6px;
+    border-radius: var(--radius-6);
     background-clip: padding-box;
     border: 4px solid transparent;
   }

@@ -173,7 +173,7 @@ pre[data-line] {
 .line-highlight::before,
 .line-highlight[data-end]::after {
   background-color: hsl(215, 15%, 59%); /* #8794A6 */
-  border-radius: 999px;
+  border-radius: var(--radius-1000);
   box-shadow: 0 1px white;
   color: hsl(24, 20%, 95%); /* #F5F2F0 */
   content: attr(data-start);

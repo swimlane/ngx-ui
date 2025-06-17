@@ -148,7 +148,7 @@ $max-width: 300px;
       opacity: 1;
       bottom: 100%;
       top: auto;
-      margin-bottom: 24px;
+      margin-bottom: var(--spacing-24);
       animation: openUpwardsAnimation 0.25s;
     }
 
@@ -214,7 +214,7 @@ $max-width: 300px;
       overflow-y: auto;
 
       .ngx-select-dropdown-option {
-        padding: 9px 40px 9px 20px;
+        padding: 9px 40px 9px var(--spacing-20);
         font-size: 14px;
         overflow-x: hidden;
         overflow-y: visible;
@@ -276,7 +276,7 @@ $max-width: 300px;
     }
 
     .ngx-select-filter {
-      padding: 10px 20px;
+      padding: 10px var(--spacing-20);
       background: $color-filter-bg;
       position: relative;
 
@@ -311,7 +311,7 @@ $max-width: 300px;
         display: block;
         font-size: 13px;
         width: 100%;
-        padding-left: 24px;
+        padding-left: var(--spacing-24);
 
         &::-webkit-search-decoration,
         &::-webkit-search-cancel-button,
