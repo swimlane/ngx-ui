@@ -356,30 +356,28 @@ describe('CalendarComponent', () => {
       component.range = { startDate: new Date(), endDate: new Date() };
       component.showStartTimeInputs = true;
       component.showEndTimeInputs = true;
-      component.hourChanged('03', 'start');
+      component.selectType = 'range';
+      fixture.detectChanges();
       const timeRows = fixture.nativeElement.querySelectorAll('.time-row');
       expect(timeRows.length).toBe(2);
     });
 
     it('should hide start time input if showStartTimeInputs is false', () => {
+      component.range = { startDate: new Date(), endDate: new Date() };
       component.showStartTimeInputs = false;
       component.showEndTimeInputs = true;
-      component.range = { startDate: new Date(), endDate: new Date() };
-      component.value = new Date();
-      component.hourChanged('03', 'start');
+      component.selectType = 'range';
+      fixture.detectChanges();
       const timeRows = fixture.nativeElement.querySelectorAll('.time-row');
       expect(timeRows.length).toBe(1); // only end input shown
     });
 
     it('should hide end time input if showEndTimeInputs is false', () => {
+      component.range = { startDate: new Date(), endDate: new Date() };
       component.showStartTimeInputs = true;
       component.showEndTimeInputs = false;
-      component.range = {
-        startDate: new Date('2024-06-01T10:00:00'),
-        endDate: new Date('2024-06-02T18:00:00')
-      };
-      component.value = new Date();
-      component.hourChanged('03', 'start');
+      component.selectType = 'range';
+      fixture.detectChanges();
       const timeRows = fixture.nativeElement.querySelectorAll('.time-row');
       expect(timeRows.length).toBe(1); // only start input shown
     });
@@ -391,7 +389,8 @@ describe('CalendarComponent', () => {
         startDate: new Date('2024-06-01T10:00:00'),
         endDate: new Date('2024-06-02T18:00:00')
       };
-      component.hourChanged('03', 'start');
+      component.selectType = 'range';
+      fixture.detectChanges();
       const timeRows = fixture.nativeElement.querySelectorAll('.time-row');
       expect(timeRows.length).toBe(0); // nothing rendered
     });
