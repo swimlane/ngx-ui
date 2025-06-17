@@ -65,7 +65,7 @@
     left: 20px;
     width: 21px;
     height: 21px;
-    padding: 2px 3px;
+    padding: var(--spacing-2) 3px;
     background: var(--color-grey-300);
 
     ngx-icon {
@@ -98,7 +98,7 @@
     border: 1px solid json-editor.$color-node-item-border;
     height: 30px;
     display: inline-block;
-    margin-left: 20px;
+    margin-left: var(--spacing-20);
     position: relative;
     background: json-editor.$color-node-item-bg;
 

@@ -114,7 +114,7 @@
       }
 
       .ngx-dropzone--supporting-files {
-        margin-top: 20px;
+        margin-top: var(--spacing-20);
         color: var(--color-grey-350);
         font-size: 12px;
         padding: 0 10px;

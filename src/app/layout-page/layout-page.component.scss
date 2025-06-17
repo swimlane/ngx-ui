@@ -11,7 +11,7 @@ code {
   margin: 0;
   font-size: 85%;
   background-color: var(--color-grey-775);
-  border-radius: 3px;
+  border-radius: var(--radius-3);
 }
 
 .ngx-flex--wrap,
@@ -32,7 +32,7 @@ code {
 
 .ngx-flex--row {
   background-color: rgba(var(--color-green), 0.1);
-  margin-top: 20px;
+  margin-top: var(--spacing-20);
   position: relative;
   box-sizing: border-box;
 
@@ -67,7 +67,7 @@ code {
       width: calc(100% - 15px);
       left: 10px;
       padding: 0 5px;
-      border-radius: 3px;
+      border-radius: var(--radius-3);
     }
 
     &:hover:before {

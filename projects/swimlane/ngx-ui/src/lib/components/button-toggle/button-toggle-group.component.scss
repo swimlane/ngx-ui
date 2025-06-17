@@ -20,15 +20,15 @@
       border: 1px solid var(--color-grey-600);
       border-radius: 4px;
 
-      padding: 2px;
-      gap: 2px;
+      padding: var(--spacing-2);
+      gap: var(--spacing-2);
 
       &__animation-holder {
         position: absolute;
 
         top: 0;
 
-        margin: 2px;
+        margin: var(--spacing-2);
         height: calc(100% - 4px);
 
         border-radius: 2px;

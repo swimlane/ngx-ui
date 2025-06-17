@@ -104,7 +104,7 @@ $dialog-body-color: var(--color-grey-200);
         margin-bottom: 0;
 
         .ngx-tabs-list {
-          padding: 0 20px;
+          padding: 0 var(--spacing-20);
           background: var(--color-grey-775);
           border-bottom: 2px solid var(--color-grey-775);
 

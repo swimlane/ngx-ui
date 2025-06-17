@@ -120,7 +120,7 @@ $color-chip-text: #ffffff;
       padding-right: 5px;
 
       button {
-        padding: 0 2px;
+        padding: 0 var(--spacing-2);
         cursor: pointer;
         min-height: 1em;
 
@@ -197,7 +197,7 @@ $color-chip-text: #ffffff;
       }
 
       .ngx-select-clear {
-        padding: 0 0 0 2px;
+        padding: 0 0 0 var(--spacing-2);
         cursor: pointer;
         font-size: 0.5em;
         color: $color-caret-bg;
@@ -256,7 +256,7 @@ $color-chip-text: #ffffff;
       }
 
       .ngx-select-clear-tagging-input {
-        padding: 0 0 0 2px;
+        padding: 0 0 0 var(--spacing-2);
         cursor: pointer;
         font-size: 0.5em;
         color: $color-caret-bg;

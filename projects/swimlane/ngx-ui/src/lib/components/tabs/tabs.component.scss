@@ -100,7 +100,7 @@ $tabs-button-height--vertical: 53px;
 
       .ngx-tab {
         height: $tabs-button-height--light;
-        padding: 8px 1.25em;
+        padding: var(--spacing-8) 1.25em;
       }
     }
 

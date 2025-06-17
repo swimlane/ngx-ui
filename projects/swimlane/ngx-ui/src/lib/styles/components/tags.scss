@@ -5,7 +5,7 @@ $tag-color: white;
 
 .tag {
   cursor: default;
-  border-radius: 3px;
+  border-radius: var(--radius-3);
   display: inline-block;
   margin: 0 8px 0 0;
   box-sizing: border-box;

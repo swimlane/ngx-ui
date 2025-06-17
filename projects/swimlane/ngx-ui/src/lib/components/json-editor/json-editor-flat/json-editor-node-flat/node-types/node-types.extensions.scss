@@ -33,10 +33,10 @@
     border-left: 1px solid var(--color-grey-650);
     height: 96px;
     padding-left: 0px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    margin-top: -2px;
-    margin-bottom: -2px;
+    padding-top: var(--spacing-2);
+    padding-bottom: var(--spacing-2);
+    margin-top: -var(--spacing-2);
+    margin-bottom: -var(--spacing-2);
   }
 
   .indented-content {

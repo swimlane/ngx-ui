@@ -57,7 +57,7 @@
           margin-left: 5px;
           .key {
             background-color: #d1d5e1;
-            border-radius: 3px;
+            border-radius: var(--radius-3);
             padding: 3px;
             box-shadow: shadows.$shadow-2;
           }
@@ -71,7 +71,7 @@
       }
 
       .continue {
-        margin-top: 20px;
+        margin-top: var(--spacing-20);
         color: white;
         border-color: white;
       }

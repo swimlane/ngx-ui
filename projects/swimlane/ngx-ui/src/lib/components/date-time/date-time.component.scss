@@ -149,7 +149,7 @@ $input-invalid-color: var(--color-red);
   }
 
   .selected-header {
-    padding: 5px 20px;
+    padding: 5px var(--spacing-20);
     background: var(--color-blue);
     color: var(--color-grey-100);
   }
@@ -157,7 +157,7 @@ $input-invalid-color: var(--color-red);
   .time-row {
     background: $calendar-bg;
     border: 1px solid $calender-border;
-    padding: 8px 18px;
+    padding: var(--spacing-8) 18px;
     margin-top: 0;
 
     flex-direction: row;

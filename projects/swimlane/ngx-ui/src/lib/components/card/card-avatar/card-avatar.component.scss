@@ -39,7 +39,7 @@ $color-background-grey: var(--color-grey-750);
         left: 0;
         width: 10px;
         height: 10px;
-        padding: 4px;
+        padding: var(--spacing-4);
         border-radius: 50%;
         border: $border-width solid $color-background-grey;
         background-color: white;

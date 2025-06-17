@@ -31,7 +31,7 @@
       color: var(--color-grey-400);
       background: var(--color-grey-700);
       height: 40px;
-      padding: 8px;
+      padding: var(--spacing-8);
       line-height: 1em;
       margin: 0;
 
@@ -113,7 +113,7 @@
   font-size: 1rem;
   position: relative;
   padding-bottom: 5px;
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-20);
   font-weight: 600;
 
   &:not(:first-of-type) {
@@ -189,8 +189,8 @@
 .icons-preview-code {
   li {
     list-style-type: none;
-    padding: 20px;
-    margin-top: 20px;
+    padding: var(--spacing-20);
+    margin-top: var(--spacing-20);
 
     .ngx-icon,
     .icon-fx-stacked,
@@ -209,7 +209,7 @@
 .inputs-section {
   input {
     display: block;
-    margin: 8px 0;
+    margin: var(--spacing-8) 0;
   }
 }
 
@@ -219,7 +219,7 @@
 }
 
 .CodeMirror {
-  margin-top: 20px;
+  margin-top: var(--spacing-20);
 }
 
 .fa,
@@ -244,7 +244,7 @@
 
   ngx-input,
   &:hover ngx-input {
-    margin: 0 40px 0 20px;
+    margin: 0 40px 0 var(--spacing-20);
     width: 240px;
     transition: width 0.5s;
   }
@@ -315,9 +315,9 @@ $palette: (
 
 .glow-demo {
   background: var(--color-grey-850);
-  margin: 20px;
+  margin: var(--spacing-20);
   text-align: center;
-  padding: 20px 10px;
+  padding: var(--spacing-20) 10px;
 }
 
 .badge {

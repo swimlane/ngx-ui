@@ -14,7 +14,7 @@ $card-horizontal-description-padding: 15px;
 
 $card-vertical-header-padding: 15px;
 $card-vertical-body-padding: 27px;
-$card-vertical-gutter: 20px;
+$card-vertical-gutter: var(--spacing-20);
 
 @keyframes cardSlideIn {
   0% {
@@ -298,7 +298,7 @@ $card-vertical-gutter: 20px;
       &::after {
         margin-left: 15px;
         border-radius: 0 0 2px 0;
-        width: 20px;
+        width: var(--spacing-20);
       }
     }
 
@@ -369,11 +369,11 @@ $card-vertical-gutter: 20px;
       }
 
       &::before {
-        margin-right: 20px;
+        margin-right: var(--spacing-20);
       }
 
       &::after {
-        margin-left: 20px;
+        margin-left: var(--spacing-20);
       }
     }
   }
@@ -442,11 +442,11 @@ $card-vertical-gutter: 20px;
       }
 
       &::before {
-        margin-right: 20px;
+        margin-right: var(--spacing-20);
       }
 
       &::after {
-        margin-left: 20px;
+        margin-left: var(--spacing-20);
       }
     }
 

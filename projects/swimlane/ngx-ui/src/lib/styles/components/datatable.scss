@@ -82,7 +82,7 @@ $datatable-row-hover: color.adjust($datatable-bg, $lightness: -2%);
             min-width: 24px;
             line-height: 22px;
             padding: 0;
-            border-radius: 3px;
+            border-radius: var(--radius-3);
             margin: 0 3px;
             text-align: center;
             text-decoration: none;
