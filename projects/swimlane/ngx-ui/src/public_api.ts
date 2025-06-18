@@ -248,6 +248,12 @@ export * from './lib/components/tabs/tabs.component';
 export * from './lib/components/tabs/tab.component';
 export * from './lib/components/tabs/if-tab-active.directive';
 
+export * from './lib/components/column/columns.module';
+export * from './lib/components/column/columns.component';
+export * from './lib/components/column/column/column.module';
+export * from './lib/components/column/column/column.component';
+export * from './lib/components/column/column/column.types';
+
 export * from './lib/components/toggle/toggle.module';
 export * from './lib/components/toggle/toggle.component';
 
