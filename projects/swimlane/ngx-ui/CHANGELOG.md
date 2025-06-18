@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 49.3.0 (2025-06-18)
+
 - Fix: (`ngx-calendar`) : Added new `@Input` named `showStartTimeInputs` and `showEndTimeInputs` set to a `boolean`.
 - Feature (`ngx-column`): Added a new column component
 
