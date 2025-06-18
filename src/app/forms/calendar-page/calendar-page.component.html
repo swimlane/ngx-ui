@@ -71,6 +71,24 @@
         (onRangeSelect)="onRangeSelect($event)"> </ngx-calendar>]]>
       </app-prism>
 
+      <h3>Select Range - Configure ‘From’ and ‘To’ timestamps in Select Range using input flags.</h3>
+
+      <ngx-calendar
+      name="calendar-range"
+      [selectType]="'range'"
+      [dateLabelFormat]="'YYYY MMM D'"
+      (onRangeSelect)="onRangeSelect($event)"
+      [showStartTimeInputs] = "true"
+      [showEndTimeInputs] = "false"
+    >
+    </ngx-calendar>
+
+    <app-prism>
+      <![CDATA[<ngx-calendar name="calendar-range" [selectType]="'range'" [dateLabelFormat]="'YYYY MMM D'"
+      (onRangeSelect)="onRangeSelect($event)" [showStartTimeInputs] = "true"
+      [showEndTimeInputs] = "true"> </ngx-calendar>]]>
+    </app-prism>
+
       <h3>Min view and Default view</h3>
 
       <h4>Min view: "date" default view: "date"</h4>
