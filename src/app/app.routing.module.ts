@@ -42,6 +42,10 @@ const routes: Routes = [
   },
   { path: 'colors', loadChildren: () => import('./colors-page/colors-page.module').then(m => m.ColorsPageModule) },
   {
+    path: 'columns',
+    loadChildren: () => import('./components/column-page/column-page.module').then(m => m.ColumnPageModule)
+  },
+  {
     path: 'controls',
     loadChildren: () => import('./controls-page/controls-page.module').then(m => m.ControlsPageModule)
   },
