@@ -2,6 +2,11 @@
 
 ## HEAD (unreleased)
 
+## 49.2.1 (2025-06-18)
+
+- Fix (`ngx-calendar`): Improved Firefox compatibility by replacing outline: auto with outline: none
+- Fix(`ngx-filter-select`): Removed duplicate scrollbar inside the `FilterSelectComponent` by eliminating the height restriction.
+
 ## 49.2.0 (2025-03-20)
 
 - Enhancement (`icons`): Added `field-dynamic` icon
