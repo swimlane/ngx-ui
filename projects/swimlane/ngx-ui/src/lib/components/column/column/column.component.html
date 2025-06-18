@@ -1,0 +1,58 @@
+@if (!column?.content) {
+<header>
+  <h4>{{ column?.title }}</h4>
+</header>
+}
+<div class="column">
+  @if (column?.children) {
+  <section class="column-list">
+    <div class="search">
+      <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
+      <button class="btn btn-link pull-right" *ngIf="searchInputValue?.length > 0" (click)="searchInputValue = ''">
+        <ngx-icon fontIcon="x"></ngx-icon>
+      </button>
+      <ngx-input
+        #searchInput
+        name="searchInputValue"
+        placeholder="Search"
+        (keyup)="onInputChange($event)"
+        [disabled]="!column.children.length"
+      ></ngx-input>
+    </div>
+    @if (list) {
+
+    <cdk-virtual-scroll-viewport #virtualScrollViewport [style.height.px]="scrollerHeight()" itemSize="40">
+      <div
+        *cdkVirtualFor="let child of list; index as i"
+        class="ngx-list__virtual-scroll__item"
+        (click)="onChildClick(child.id)"
+        (keyup)="onChildKeyup($event, child.id)"
+        [ngClass]="{ active: child.active }"
+        tabindex="0"
+      >
+        <span>{{ child.title }}</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
+          <path
+            fill-rule="evenodd"
+            clip-rule="evenodd"
+            d="M3.36127 1.55979C3.65416 1.26689 4.12904 1.26689 4.42193 1.55979L8.6719 5.80976C8.9648 6.10265 8.9648 6.57753 8.6719 6.87042L4.42193 11.1204C4.12904 11.4133 3.65416 11.4133 3.36127 11.1204C3.06838 10.8275 3.06838 10.3527 3.36127 10.0598L7.08094 6.34009L3.36127 2.62039C3.06838 2.32749 3.06838 1.85269 3.36127 1.55979Z"
+            fill="#CDD2DD"
+          />
+        </svg>
+      </div>
+    </cdk-virtual-scroll-viewport>
+    }
+  </section>
+  } @if (activeChild?.content) {
+  <section class="column-expanded" #expandedSection [ngStyle]="{ width: activeChild.content.width }">
+    <ng-container
+      *ngComponentOutlet="
+        activeChild.content.component;
+        inputs: activeChild.content.inputs ? activeChild.content.inputs : {};
+        outputs: activeChild.content.outputs ? activeChild.content.outputs : {};
+        module: activeChild.content.module ? activeChild.content.module : {}
+      "
+    ></ng-container>
+  </section>
+  }
+</div>
