@@ -2,6 +2,11 @@
 
 ## HEAD (unreleased)
 
+- Fix: (`ngx-calendar`) : Added new `@Input` named `showStartTimeInputs` and `showEndTimeInputs` set to a `boolean`.
+- Feature (`ngx-column`): Added a new column component
+
+## 49.2.1 (2025-06-18)
+
 - Fix (`ngx-calendar`): Improved Firefox compatibility by replacing outline: auto with outline: none
 - Fix(`ngx-filter-select`): Removed duplicate scrollbar inside the `FilterSelectComponent` by eliminating the height restriction.
 

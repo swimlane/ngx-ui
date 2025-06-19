@@ -160,7 +160,7 @@
     </div>
   </div>
   <div *ngIf="selectType === 'range'" class="time-inputs">
-    <div class="time-row" *ngIf="range.startDate">
+    <div class="time-row" *ngIf="range.startDate && showStartTimeInputs">
       <div>
         <ngx-input
           type="text"
@@ -207,7 +207,7 @@
         </button>
       </div>
     </div>
-    <div class="time-row" *ngIf="range.endDate">
+    <div class="time-row" *ngIf="range.endDate && showEndTimeInputs">
       <div>
         <ngx-input
           type="text"
@@ -234,7 +234,7 @@
         </ngx-input>
       </div>
       <div>
-        <button class="ampm" type="button" [class.selected]="endAmPmVal === 'AM'" (click)="onAmPmChange('AM', 'end')">
+        <button  class="ampm" type="button" [class.selected]="endAmPmVal === 'AM'" (click)="onAmPmChange('AM', 'end')">
           AM
         </button>
       </div>

@@ -251,6 +251,10 @@ export class AppComponent {
           route: 'dropzone'
         },
         {
+          name: 'Columns',
+          route: 'columns'
+        },
+        {
           name: 'ButtonGroup',
           route: 'button-group'
         },
