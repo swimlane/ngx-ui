@@ -74,17 +74,16 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() emptyPlaceholder = 'No options available';
   @Input() filterEmptyPlaceholder = 'No matches...';
   @Input() filterPlaceholder = 'Search';
-  @Input()
-  @CoerceBooleanProperty()
-  forceDownwardOpening = false;
   @Input() groupBy: string;
-
   @Input() options: SelectDropdownOption[] = [];
   @Input() identifier: string;
   @Input() appearance = Appearance.Legacy;
   @Input() itemsPosition = FilterSelectItemPositionTypes.Left;
   @Input() ngxIconClass: string;
 
+  @Input()
+  @CoerceBooleanProperty()
+  forceDownwardOpening = false;
   @Input()
   @CoerceBooleanProperty()
   autoSelectAll = false;
