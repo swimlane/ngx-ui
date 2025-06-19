@@ -1,0 +1,22 @@
+<div class="ngx-filter-button" [class.active-selections]="hasFilters" (click)="onClick()">
+  <div class="ngx-select-wrap">
+    <button type="button" class="ngx-chip" [disabled]="disabled" (click)="onClick()">
+      <div class="ngx-chip__contents">
+        <ng-container *ngIf="showIcon && iconPosition === 'left'">
+          <i class="ngx-icon ngx-filter"></i>
+        </ng-container>
+
+        <span class="ngx-chip-value">{{ label }}</span>
+
+        <ng-container *ngIf="showIcon && iconPosition === 'right'">
+          <i class="ngx-icon ngx-filter"></i>
+        </ng-container>
+      </div>
+      <div class="ngx-chip__controls" *ngIf="hasFilters && showCount">
+        <span class="ngx-chip-count">
+          <span class="count-badge">{{ filterCount }}</span>
+        </span>
+      </div>
+    </button>
+  </div>
+</div>

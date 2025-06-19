@@ -191,6 +191,10 @@ export class AppComponent {
           route: 'filters'
         },
         {
+          name: 'Filters Button',
+          route: 'filters-button'
+        },
+        {
           name: 'Loading',
           route: 'loading'
         },

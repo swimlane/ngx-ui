@@ -1,0 +1,175 @@
+<h3 class="style-header">Filter Button</h3>
+<ngx-tabs>
+  <ngx-tab label="Filter Button">
+    <ngx-section class="shadow" sectionTitle="Filter Button">
+      <h4>No Filters Applied</h4>
+      <ngx-filter-button
+        [label]="'All Filters'"
+        [hasFilters]="false"
+        [filterCount]="0"
+        style="display: inline-block"
+      ></ngx-filter-button>
+      <app-prism>
+        <![CDATA[<ngx-filter-button [label]="'All Filters'" [hasFilters]="false" [filterCount]="0"
+        style="display:inline-block"> </ngx-filter-button> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
+
+      <h4>No Filters, Icon on Right</h4>
+      <ngx-filter-button
+        [label]="'All Filters'"
+        [hasFilters]="false"
+        [filterCount]="0"
+        [iconPosition]="'right'"
+        style="display: inline-block"
+      >
+      </ngx-filter-button>
+
+      <app-prism>
+        <![CDATA[ <ngx-filter-button [label]="'All Filters'" [hasFilters]="false" [filterCount]="0"
+        [iconPosition]="'right'" style="display: inline-block"> </ngx-filter-button> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
+
+      <h4>Filters Applied, Count Showing, Icon on Left</h4>
+      <ngx-filter-button
+        [label]="'Filtered Results'"
+        [hasFilters]="true"
+        [filterCount]="5"
+        style="display: inline-block"
+      >
+      </ngx-filter-button>
+
+      <app-prism>
+        <![CDATA[ <ngx-filter-button [label]="'Filtered Results'" [hasFilters]="true" [filterCount]="5" style="display:
+        inline-block"> </ngx-filter-button> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
+
+      <h4>Filters Applied, Count Hidden, Icon on Right</h4>
+      <ngx-filter-button
+        [label]="'Filtered Data'"
+        [hasFilters]="true"
+        [filterCount]="3"
+        [showCount]="false"
+        [iconPosition]="'right'"
+        style="display: inline-block"
+      >
+      </ngx-filter-button>
+
+      <app-prism>
+        <![CDATA[ <ngx-filter-button [label]="'Filtered Data'" [hasFilters]="true" [filterCount]="3" [showCount]="false"
+        [iconPosition]="'right'" style="display: inline-block"> </ngx-filter-button> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
+
+      <h4>Icon Hidden, Only Label Visible</h4>
+      <ngx-filter-button
+        [label]="'Basic Filter'"
+        [hasFilters]="true"
+        [filterCount]="1"
+        [showIcon]="false"
+        style="display: inline-block"
+      >
+      </ngx-filter-button>
+
+      <app-prism>
+        <![CDATA[ <ngx-filter-button [label]="'Basic Filter'" [hasFilters]="true" [filterCount]="1" [showIcon]="false"
+        style="display: inline-block"> </ngx-filter-button> ]]>
+      </app-prism>
+    </ngx-section>
+  </ngx-tab>
+  <ngx-tab label="API">
+    <h3>Table of Contents</h3>
+    <a class="documentation-content" (click)="scrollTo('ngx-filter-button-inputs')">ngx-filter-button Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-filter-button-outputs')">ngx-filter-button Outputs</a>
+    <hr />
+    <h3 class="style-header" id="ngx-filter-button-inputs">ngx-filter-button Inputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>label: string = 'All Filters'</code>
+          </th>
+          <td>The text label to display inside the filter button.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>hasFilters: boolean = false</code>
+          </th>
+          <td>Whether any filters are currently applied.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>filterCount: number = 0</code>
+          </th>
+          <td>The number of filters applied; shown in a count badge.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>disabled: boolean = false</code>
+          </th>
+          <td>Disables the filter button and prevents interaction.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>showCount: boolean = true</code>
+          </th>
+          <td>Whether to show the filter count badge when filters are applied.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>iconPosition: 'left' | 'right' = 'left'</code>
+          </th>
+          <td>Controls whether the filter icon appears on the left or right side of the label.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>showIcon: boolean = true</code>
+          </th>
+          <td>Whether to display the filter icon.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 class="style-header" id="ngx-filter-button-outputs">ngx-filter-button Outputs</h3>
+    <table class="table documentation-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Output()</code>
+            <code>click: EventEmitter&lt;void&gt;</code>
+          </th>
+          <td>Emits when the filter button is clicked.</td>
+        </tr>
+      </tbody>
+    </table>
+    <hr />
+  </ngx-tab>
+</ngx-tabs>

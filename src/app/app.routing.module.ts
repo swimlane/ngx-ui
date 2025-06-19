@@ -88,6 +88,11 @@ const routes: Routes = [
     loadChildren: () => import('./components/filters-page/filters-page.module').then(m => m.FiltersPageModule)
   },
   {
+    path: 'filters-button',
+    loadChildren: () =>
+      import('./components/filters-button-page/filters-button-page.module').then(m => m.FiltersButtonPageModule)
+  },
+  {
     path: 'hotkeys',
     loadChildren: () => import('./components/hotkeys-page/hotkeys-page.module').then(m => m.HotkeysPageModule)
   },

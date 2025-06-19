@@ -1,11 +1,10 @@
 @use 'colors/colors' as colors;
 @use 'forms/variables' as forms;
+@import '../filter-styles.scss';
 
 // general
 $color-dropdown-bg: colors.$color-blue-grey-775;
 $color-hover-bg: colors.$color-blue-grey-750;
-$color-placeholder-text: colors.$color-blue-grey-350;
-$color-caret-bg: colors.$color-blue-grey-350;
 
 // filter
 $color-filter-bg: colors.$color-blue-grey-800;
@@ -13,7 +12,6 @@ $color-filter-text: colors.$color-blue-grey-200;
 $color-empty-text: colors.$color-blue-grey-150;
 
 // chips
-$color-chip-bg: colors.$color-blue-grey-600;
 $color-chip-text: #fff;
 
 $max-width: 300px;
@@ -45,74 +43,6 @@ $max-width: 300px;
     }
   }
 
-  .ngx-chip {
-    border: 1px solid colors.$color-blue-grey-500;
-    border-radius: 4px;
-    height: 30px;
-    padding: 0px;
-    line-height: 0;
-    display: flex;
-    flex-wrap: nowrap;
-
-    &:hover {
-      background-color: #313847;
-      cursor: pointer;
-    }
-
-    .ngx-chip__contents {
-      padding: 0px 10px;
-      border-top-left-radius: 4px;
-      border-bottom-left-radius: 4px;
-      max-width: calc($max-width - 33px);
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      user-select: none;
-
-      .ngx-chip-label,
-      .ngx-chip-value {
-        font-family: Source Sans Pro;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 28px;
-        text-align: left;
-      }
-
-      .ngx-chip-label {
-        color: colors.$color-blue-grey-250;
-        margin-right: 3px;
-      }
-    }
-
-    .ngx-chip__controls {
-      color: $color-caret-bg;
-      border-top-right-radius: 4px;
-      border-bottom-right-radius: 4px;
-      display: flex;
-      flex-wrap: nowrap;
-      min-height: 1.75em;
-      padding: 0px;
-
-      button {
-        padding: 0 10px;
-        cursor: pointer;
-        min-height: 1em;
-      }
-
-      .ngx-chip-clear,
-      .ngx-chip-caret {
-        align-items: center;
-        display: flex;
-        font-size: 0.7em;
-      }
-
-      .ngx-chip-caret {
-        transition: transform 200ms ease-in-out;
-        transform: rotate(0deg) translateY(1px);
-      }
-    }
-  }
-
   &.active {
     .ngx-chip {
       border: 1px solid colors.$color-blue-500;
@@ -124,20 +54,6 @@ $max-width: 300px;
           transition: transform 200ms ease-in-out;
           transform: rotate(180deg) translateY(1px);
         }
-      }
-    }
-  }
-
-  &.active-selections {
-    .ngx-chip {
-      background-color: colors.$color-blue-800;
-      border: 1px solid colors.$color-blue-800;
-
-      .ngx-chip__contents:hover {
-        background-color: colors.$color-blue-900;
-      }
-      .ngx-chip__controls:hover {
-        background-color: colors.$color-blue-900;
       }
     }
   }

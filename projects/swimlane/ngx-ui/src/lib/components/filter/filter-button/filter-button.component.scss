@@ -1,0 +1,26 @@
+@use 'colors/colors' as colors;
+@import '../filter-styles.scss';
+
+$color-chip-bg: colors.$color-blue-grey-500;
+$max-width: 300px;
+
+.ngx-filter-button {
+  max-width: $max-width;
+  margin-right: 8px;
+  display: inline-block;
+
+  .ngx-select-wrap {
+    position: relative;
+    display: block;
+    width: 100%;
+
+    .ngx-chip {
+      .ngx-chip__contents {
+        color: $color-chip-bg;
+      }
+      .ngx-chip__controls {
+        padding-right: 8px;
+      }
+    }
+  }
+}
