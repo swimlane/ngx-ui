@@ -20,6 +20,7 @@ export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
 })
 export class FiltersPageComponent implements OnInit {
   selects = this._results;
+  selectsSmall = this.selects.slice(0, 5);
   selectsModel = [this.selects[0]];
   singleSelectModel = this.selects[0];
   asyncOptions$: Observable<any>;

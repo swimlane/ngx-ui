@@ -68,6 +68,8 @@ $max-width: 300px;
       text-overflow: ellipsis;
       white-space: nowrap;
       user-select: none;
+      display: flex;
+      align-items: center;
 
       .ngx-chip-label,
       .ngx-chip-value {
@@ -82,7 +84,19 @@ $max-width: 300px;
         color: colors.$color-blue-grey-250;
         margin-right: 3px;
       }
+
+      .ngx-chip-icon {
+        padding-right: 10px;
+        padding-left: 0;
+        color: colors.$color-blue-grey-250;
+      }
     }
+
+    // .ngx-chip__controls,
+    // .ngx-chip__icon {
+    //   color: $color-caret-bg;
+    //   display: flex;
+    // }
 
     .ngx-chip__controls {
       color: $color-caret-bg;
@@ -174,7 +188,6 @@ $max-width: 300px;
     position: absolute;
     clear: left;
     top: 100%;
-    left: 0;
     z-index: 1000;
     width: 100%;
     min-width: 300px;
@@ -344,6 +357,14 @@ $max-width: 300px;
           display: block;
         }
       }
+    }
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
     }
   }
 
