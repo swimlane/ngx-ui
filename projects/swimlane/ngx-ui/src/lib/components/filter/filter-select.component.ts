@@ -27,6 +27,7 @@ import { SelectDropdownComponent } from '../select/select-dropdown.component';
 
 import { SelectOptionDirective } from '../select/select-option.directive';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
+import { FilterSelectItemPositionTypes } from './filter-select.items-position-types.enum';
 
 let nextId = 0;
 
@@ -73,12 +74,20 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
   @Input() emptyPlaceholder = 'No options available';
   @Input() filterEmptyPlaceholder = 'No matches...';
   @Input() filterPlaceholder = 'Search';
-  @Input() forceDownwardOpening = false;
+  @Input()
+  @CoerceBooleanProperty()
+  forceDownwardOpening = false;
   @Input() groupBy: string;
 
   @Input() options: SelectDropdownOption[] = [];
   @Input() identifier: string;
   @Input() appearance = Appearance.Legacy;
+  @Input() itemsPosition = FilterSelectItemPositionTypes.Left;
+  @Input() ngxIconClass: string;
+
+  @Input()
+  @CoerceBooleanProperty()
+  autoSelectAll = false;
 
   @Input()
   get autosizeMinWidth(): number | string {
@@ -139,6 +148,8 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
 
   @ViewChild(SelectDropdownComponent, { static: false })
   readonly selectDropdown: SelectDropdownComponent;
+
+  readonly FilterSelectItemPositionTypes = FilterSelectItemPositionTypes;
 
   /**
    * Custom Template for groupBy
@@ -241,6 +252,10 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
       this.value = this.multiple ? [...this.value, selection.value] : [selection.value];
     }
     this.afterSelect(shouldClose);
+
+    if (this.autoSelectAll && this.multiple && this.showSelectAll && this.value?.length === this.options?.length) {
+      this.onSelectAll();
+    }
   }
 
   onDropdownDeselection(selection: SelectDropdownOption, shouldClose = this.closeOnSelect || !this.multiple): void {
