@@ -28,7 +28,6 @@ describe('FilterSelectComponent', () => {
 
   describe('AutoSelectAll', () => {
     it('onDropdownSelection should call OnSelectAll', () => {
-      debugger;
       component.autoSelectAll = true;
       component.multiple = true;
       component.showSelectAll = true;
