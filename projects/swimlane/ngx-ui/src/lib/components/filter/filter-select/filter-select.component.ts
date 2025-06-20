@@ -18,15 +18,15 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import type { QueryList } from '@angular/core';
 
-import { Appearance } from '../../mixins/appearance/appearance.enum';
+import { Appearance } from '../../../mixins/appearance/appearance.enum';
 import { InViewportMetadata } from 'ng-in-viewport';
 import { take } from 'rxjs/operators';
-import { KeyboardKeys } from '../../enums/keyboard-keys.enum';
-import { SelectDropdownOption } from '../select/select-dropdown-option.interface';
-import { SelectDropdownComponent } from '../select/select-dropdown.component';
+import { KeyboardKeys } from '../../../enums/keyboard-keys.enum';
+import { SelectDropdownOption } from '../../select/select-dropdown-option.interface';
+import { SelectDropdownComponent } from '../../select/select-dropdown.component';
 
-import { SelectOptionDirective } from '../select/select-option.directive';
-import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
+import { SelectOptionDirective } from '../../select/select-option.directive';
+import { CoerceBooleanProperty } from '../../../utils/coerce/coerce-boolean';
 
 let nextId = 0;
 

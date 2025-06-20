@@ -1,0 +1,137 @@
+@use 'colors/colors' as colors;
+
+$max-width: 300px;
+
+$color-chip-border: colors.$color-blue-grey-500;
+$color-chip-bg: transparent;
+$color-chip-hover-bg: colors.$color-blue-grey-700;
+$color-chip-value-label: colors.$color-blue-grey-250;
+$color-chip-controls: colors.$color-blue-grey-350;
+$color-chip-count-bg: colors.$color-blue-600;
+$color-chip-count-text: #fff;
+
+// Active Selections
+$color-chip-active-bg: colors.$color-blue-800;
+$color-chip-active-hover-bg: colors.$color-blue-900;
+
+.ngx-chip {
+  border: 1px solid $color-chip-border;
+  border-radius: 4px;
+  height: 30px;
+  padding: 0px;
+  line-height: 0;
+  display: flex;
+  flex-wrap: nowrap;
+
+  &:hover {
+    background-color: $color-chip-hover-bg;
+    cursor: pointer;
+  }
+
+  .ngx-chip__contents {
+    padding: 0px 10px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    max-width: calc($max-width - 33px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .ngx-chip-label,
+    .ngx-chip-value {
+      font-family: Source Sans Pro;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 28px;
+      color: $color-chip-value-label;
+    }
+
+    .ngx-chip-label {
+      margin-right: 3px;
+    }
+  }
+
+  .ngx-chip__controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 0px;
+    min-height: 1.75em;
+
+    color: $color-chip-controls;
+
+    .ngx-chip-count {
+      background-color: $color-chip-count-bg;
+      border-radius: 25px;
+      min-width: 16px;
+      height: 17px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+
+      .count-badge {
+        color: $color-chip-count-text;
+        font-size: 12px;
+        line-height: 20px;
+        font-weight: 500;
+      }
+    }
+
+    .ngx-chip-clear,
+    .ngx-chip-caret {
+      align-items: center;
+      display: flex;
+      font-size: 0.7em;
+    }
+
+    .ngx-chip-caret {
+      transition: transform 200ms ease-in-out;
+      transform: rotate(0deg) translateY(1px);
+    }
+
+    button {
+      padding: 0 10px;
+      cursor: pointer;
+      min-height: 1em;
+    }
+  }
+}
+
+.active-selections {
+  .ngx-chip {
+    background-color: $color-chip-active-bg;
+    border: 1px solid $color-chip-active-bg;
+
+    .ngx-chip__contents {
+      // For button style
+      .ngx-chip-value {
+        color: $color-chip-value-label;
+      }
+
+      // For select style (hover behavior)
+      &:hover {
+        background-color: $color-chip-active-hover-bg;
+      }
+    }
+
+    .ngx-chip__controls {
+      // For button style
+      .ngx-chip-count {
+        color: $color-chip-count-text;
+      }
+
+      // For select style (hover behavior)
+      &:hover {
+        background-color: $color-chip-active-hover-bg;
+      }
+    }
+
+    &:hover {
+      background-color: $color-chip-active-hover-bg;
+    }
+  }
+}

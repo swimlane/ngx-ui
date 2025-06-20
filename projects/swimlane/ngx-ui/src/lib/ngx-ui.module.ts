@@ -17,7 +17,7 @@ import { DialogModule } from './components/dialog/dialog.module';
 import { DrawerModule } from './components/drawer/drawer.module';
 import { DropdownModule } from './components/dropdown/dropdown.module';
 import { DropzoneModule } from './components/dropzone/dropzone.module';
-import { FilterSelectModule } from './components/filter/filter-select.module';
+import { FilterSelectModule } from './components/filter/filter-select/filter-select.module';
 import { HotkeysModule } from './components/hotkeys/hotkeys.module';
 import { IconModule } from './components/icon/icon.module';
 import { InputModule } from './components/input/input.module';
@@ -45,6 +45,7 @@ import { TooltipModule } from './components/tooltip/tooltip.module';
 import { TreeModule } from './components/tree/tree.module';
 import { TimeDisplayModule } from './components/time-display/time-display.module';
 import { ButtonToggleModule } from './components/button-toggle/button-toggle.module';
+import { FilterButtonModule } from './components/filter/filter-button/filter-button.module';
 
 /**
  * Exported Modules
@@ -65,6 +66,7 @@ const modules = [
   DropdownModule,
   DropzoneModule,
   FilterSelectModule,
+  FilterButtonModule,
   FormsModule,
   HotkeysModule,
   IconModule,
