@@ -156,6 +156,58 @@
       <br />
       <br />
       <br />
+
+      <h4>Items popup position</h4>
+      <div class="div-options-position">
+        <ngx-filter-select label="Selection" [filterable]="false" [itemsPosition]="'right'">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-filter-select> 
+      </div>
+      
+      <app-prism>
+        <![CDATA[<ngx-filter-select label="Selection" [filterable]="false" [itemsPosition]="'right'">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-filter-select> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
+
+      <h4>Auto Select All</h4>
+
+       <ngx-filter-select [identifier]="'attr'" [ngModel]="selectsModel" label="Selection" [filterable]="true" [multiple]="true" [autoSelectAll]="true">
+          <ngx-select-option *ngFor="let option of selectsSmall" [name]="option.name" [value]="option"> </ngx-select-option>
+        </ngx-filter-select> 
+      <app-prism>
+        <![CDATA[ <ngx-filter-select [identifier]="'attr'" [ngModel]="selectsModel" label="Selection" [filterable]="true" [multiple]="true" [autoSelectAll]="true">
+          <ngx-select-option *ngFor="let option of selectsSmall" [name]="option.name" [value]="option"> </ngx-select-option>
+        </ngx-filter-select>   ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
+
+      <h4>Icon</h4>
+        <ngx-filter-select label="Selection" [filterable]="false" [ngxIconClass]="'ngx-calendar'">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-filter-select>  
+      
+      <app-prism>
+        <![CDATA[<ngx-filter-select label="Selection" [filterable]="false" [ngxIconClass]="'ngx-calendar'">
+          <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+          <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+          <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-filter-select> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
     </ngx-section>
   </ngx-tab>
   <ngx-tab label="API">
@@ -188,6 +240,13 @@
             <code>autofocus: boolean</code>
           </th>
           <td>Whether the component is auto-focused.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">>&#64;Input()</code>
+            <code>autoSelectAll: boolean</code>
+          </th>
+          <td>Sets the 'Select All' when all options are selected. Requires 'multiple', and 'showSelectAll' as true. False in the default value for this property.</td>
         </tr>
         <tr>
           <th>
@@ -305,6 +364,13 @@
         </tr>
         <tr>
           <th>
+            <code class="component-type">>&#64;Input()</code>
+            <code>itemsPosition: FilterSelectItemPositionTypes</code>
+          </th>
+          <td>The position where the items popup is going to be displayed ('left', 'right'). 'Left' is the default value.</td>
+        </tr>
+        <tr>
+          <th>
             <code class="component-type">&#64;Input()</code>
             <code>label: string</code>
           </th>
@@ -323,6 +389,13 @@
             <code>name: string</code>
           </th>
           <td class="component-description">The name for the component.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">>&#64;Input()</code>
+            <code>ngxIconClass: string</code>
+          </th>
+          <td>The ngx-class name that represents an icon.</td>
         </tr>
         <tr>
           <th>

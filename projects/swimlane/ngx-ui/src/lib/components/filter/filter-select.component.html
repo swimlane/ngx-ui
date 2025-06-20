@@ -3,6 +3,9 @@
     <div class="ngx-select-flex-wrap-inner">
       <div class="ngx-chip" (click)="onToggle()" [class.has-controls]="hasControls">
         <div class="ngx-chip__contents">
+          <button *ngIf="ngxIconClass" type="button" aria-label="Filter Icon" class="ngx-chip-icon">
+            <i class="ngx-icon" [ngClass]="ngxIconClass"></i>
+          </button>
           <span *ngIf="label" class="ngx-chip-label"> {{ label }}: </span>
 
           <span class="ngx-chip-value">
@@ -33,6 +36,8 @@
 
   <ngx-select-dropdown
     *ngIf="dropdownVisible"
+    [class.ngx-select-dropdown--left]="itemsPosition === FilterSelectItemPositionTypes.Left"
+    [class.ngx-select-dropdown--right]="itemsPosition === FilterSelectItemPositionTypes.Right"
     [focusIndex]="focusIndex"
     [filterQuery]="filterQuery"
     [filterPlaceholder]="filterPlaceholder"
