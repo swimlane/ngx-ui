@@ -1,5 +1,5 @@
-import { Injectable, ComponentRef, Inject, Type } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
+import { Injectable, ComponentRef, Inject, Type, DOCUMENT } from '@angular/core';
+
 import { Subscription } from 'rxjs';
 
 import { InjectionService } from '../../services/injection/injection.service';
