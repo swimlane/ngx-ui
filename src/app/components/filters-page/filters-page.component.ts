@@ -19,6 +19,12 @@ export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
   standalone: false
 })
 export class FiltersPageComponent implements OnInit {
+  buttonClicks = 0;
+  dropdownClicks = 0;
+  dropdownChange = null;
+  dropdownKeyUp = null;
+  dropdownToggle = false;
+  dropdownClearQueryFilter = 0;
   selects = this._results;
   selectsSmall = this.selects.slice(0, 5);
   selectsModel = [this.selects[0]];
@@ -87,5 +93,29 @@ export class FiltersPageComponent implements OnInit {
 
   scrollTo(id: string) {
     (document.getElementById(id) as HTMLElement)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  onButtonClick() {
+    this.buttonClicks++;
+  }
+
+  onDropdownClick() {
+    this.dropdownClicks++;
+  }
+
+  onDropdownChange(event: any) {
+    this.dropdownChange = event;
+  }
+
+  onDropdownKeyup(event: any) {
+    this.dropdownKeyUp = event;
+  }
+
+  onDropdownToggle(event: any) {
+    this.dropdownToggle = event;
+  }
+
+  onDropDownClearQuery() {
+    this.dropdownClearQueryFilter++;
   }
 }

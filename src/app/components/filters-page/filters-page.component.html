@@ -180,8 +180,9 @@
       <h4>Auto Select All</h4>
 
        <ngx-filter-select [identifier]="'attr'" [ngModel]="selectsModel" label="Selection" [filterable]="true" [multiple]="true" [autoSelectAll]="true">
-          <ngx-select-option *ngFor="let option of selectsSmall" [name]="option.name" [value]="option"> </ngx-select-option>
-        </ngx-filter-select> 
+        <ngx-select-option *ngFor="let option of selectsSmall" [name]="option.name" [value]="option"> </ngx-select-option>
+       </ngx-filter-select> 
+
       <app-prism>
         <![CDATA[ <ngx-filter-select [identifier]="'attr'" [ngModel]="selectsModel" label="Selection" [filterable]="true" [multiple]="true" [autoSelectAll]="true">
           <ngx-select-option *ngFor="let option of selectsSmall" [name]="option.name" [value]="option"> </ngx-select-option>
@@ -204,6 +205,113 @@
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
         </ngx-filter-select> ]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
+
+      <h4>Event emitters</h4>
+      <ngx-filter-select [filterable]="true" label="Category" style="display: inline-block" (click)="onDropdownClick()" 
+        (change)="onDropdownChange($event)" (keyup)="onDropdownKeyup($event)" (toggle)="onDropdownToggle($event)"
+        (clearQueryFilter)="onDropDownClearQuery()">
+        <ngx-select-option name="Selection" value="breach"></ngx-select-option>
+        <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+        <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+      </ngx-filter-select>
+       <p>Click: {{dropdownClicks}}</p>
+       <p>Change: {{ dropdownChange }}</p>
+       <p>Keyup: {{ dropdownKeyUp | json }}</p>
+       <p>ClearQueryFilter: {{ dropdownClearQueryFilter }}</p>
+       <p>Toggle: {{ dropdownToggle }}</p>
+
+      <app-prism>
+        <![CDATA[<ngx-filter-select [filterable]="true" label="Category" style="display: inline-block" 
+          (click)="onDropdownClick()" (change)="onDropdownChange($event)" (keyup)="onDropdownKeyup($event)" 
+          (toggle)="onDropdownToggle($event)" (clearQueryFilter)="onDropDownClearQuery()">
+            <ngx-select-option name="Selection" value="breach"></ngx-select-option>
+            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+        </ngx-filter-select>]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
+    </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="Button Filter">
+      <h4>Basic</h4>
+      <ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" >
+      </ngx-filter-select>  
+
+      <app-prism>
+        <![CDATA[<ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" >
+        </ngx-filter-select>]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
+
+      <h4>Disabled</h4>
+      <ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [disabled]="true" >
+      </ngx-filter-select>  
+      <app-prism>
+        <![CDATA[<ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [disabled]="true">
+        </ngx-filter-select>]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
+
+      <h4>Icon Position</h4>
+      <div class="div-options-position">
+        <ngx-filter-select label="Selection 1" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'">
+        </ngx-filter-select>  
+        <ngx-filter-select label="Selection 2" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'right'">
+        </ngx-filter-select>  
+      </div>
+
+      <app-prism>
+        <![CDATA[<ngx-filter-select label="Selection 1" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'">
+        </ngx-filter-select>  
+        <ngx-filter-select label="Selection 2" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'right'">
+        </ngx-filter-select>]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
+
+      <h4>Count badge visible</h4>
+      <ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="3">
+      </ngx-filter-select> 
+      
+      <app-prism>
+        <![CDATA[<ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="3">
+        </ngx-filter-select>]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
+
+      <h4>Count badge hidden</h4>
+      <ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="3" [showCount]="false">
+      </ngx-filter-select> 
+      
+      <app-prism>
+        <![CDATA[<ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="3" [showCount]="false">
+        </ngx-filter-select>]]>
+      </app-prism>
+      <br />
+      <br />
+      <br />
+
+      <h4>Event emitters</h4>
+      <ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="1" (click)="onButtonClick()">
+      </ngx-filter-select> 
+      <p>Click: {{buttonClicks}}</p>
+      
+      <app-prism>
+        <![CDATA[<ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="1" (click)="onButtonClick()">
+      </ngx-filter-select>]]>
       </app-prism>
       <br />
       <br />
@@ -314,6 +422,13 @@
         <tr>
           <th>
             <code class="component-type">&#64;Input()</code>
+            <code>filterCount: number</code>
+          </th>
+          <td>Tne number of filters applied.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
             <code>filterEmptyPlaceholder: string = 'No matches...'</code>
           </th>
           <td>
@@ -347,6 +462,13 @@
             <code>groupByTemplate: TemplateRef&lt;unknown&gt;</code>
           </th>
           <td>NEEDS DOCUMENTATION.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>hasFilters: boolean</code>
+          </th>
+          <td>Whether the component has filter or not.</td>
         </tr>
         <tr>
           <th>
@@ -399,6 +521,13 @@
         </tr>
         <tr>
           <th>
+            <code class="component-type">>&#64;Input()</code>
+            <code>ngxIconPosition: FilterIconPositionTypes</code>
+          </th>
+          <td>The position where ngxIcon is going to be displayed ('left', 'right'). 'Left' is the default value.</td>
+        </tr>
+        <tr>
+          <th>
             <code class="component-type">&#64;Input()</code>
             <code>options: SelectDropdownOption[] = []</code>
           </th>
@@ -418,6 +547,13 @@
           </th>
           <td class="component-description">Displays a "Select All" item in the dropdown</td>
         </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>type: FilterType</code>
+          </th>
+          <td class="component-description">Sets the type of filter based-on the enum FilterType ('dropdown', 'button'). Dropdown is the default.</td>
+        </tr>
       </tbody>
     </table>
     <hr />
@@ -436,6 +572,13 @@
             <code>change: EventEmitter&lt;any[]&gt;</code>
           </th>
           <td>Event emitted when an option is selected.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Output()</code>
+            <code>click: EventEmitter&lt;void&gt;</code>
+          </th>
+          <td>Event emitted when the component is clicked.</td>
         </tr>
         <tr>
           <th>

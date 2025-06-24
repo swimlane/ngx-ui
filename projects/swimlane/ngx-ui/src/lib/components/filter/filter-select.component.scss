@@ -59,6 +59,24 @@ $max-width: 300px;
       cursor: pointer;
     }
 
+    .ngx-chip__count {
+      display: flex;
+      align-items: center;
+      padding-right: 10px;
+
+      &-circle {
+        color: $color-chip-text;
+        background-color: colors.$color-blue-500;
+        font-size: 12px;
+        border-radius: 25px;
+        min-width: 16px;
+        height: 16px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
     .ngx-chip__contents {
       padding: 0px 10px;
       border-top-left-radius: 4px;
@@ -85,10 +103,19 @@ $max-width: 300px;
         margin-right: 3px;
       }
 
-      .ngx-chip-icon {
+      .ngx-chip-icon-left,
+      .ngx-chip-icon-right {
+        color: colors.$color-blue-grey-250;
+      }
+
+      .ngx-chip-icon-left {
         padding-right: 10px;
         padding-left: 0;
-        color: colors.$color-blue-grey-250;
+      }
+
+      .ngx-chip-icon-right {
+        padding-left: 10px;
+        padding-right: 0;
       }
     }
 
@@ -147,6 +174,10 @@ $max-width: 300px;
       .ngx-chip__controls:hover {
         background-color: colors.$color-blue-900;
       }
+    }
+
+    .ngx-filter-button > button:hover {
+      background-color: colors.$color-blue-900;
     }
   }
 
