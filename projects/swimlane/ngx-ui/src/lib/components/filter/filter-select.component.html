@@ -1,18 +1,23 @@
 <div class="ngx-select-wrap">
-  <div class="ngx-select-flex-wrap" [style.min-width]="autosize ? autosizeMinWidth : undefined">
+  <ng-container *ngIf="type === FilterType.Dropdown">
+    <div class="ngx-select-flex-wrap" [style.min-width]="autosize ? autosizeMinWidth : undefined">
     <div class="ngx-select-flex-wrap-inner">
-      <div class="ngx-chip" (click)="onToggle()" [class.has-controls]="hasControls">
+      <div class="ngx-chip" (click)="onToggle($event)" [class.has-controls]="hasControls">
         <div class="ngx-chip__contents">
-          <button *ngIf="ngxIconClass" type="button" aria-label="Filter Icon" class="ngx-chip-icon">
+          <button *ngIf="ngxIconClass && ngxIconPosition === FilterIconPositionTypes.Left" type="button" aria-label="Filter Icon" class="ngx-chip-icon-left">
             <i class="ngx-icon" [ngClass]="ngxIconClass"></i>
           </button>
           <span *ngIf="label" class="ngx-chip-label"> {{ label }}: </span>
-
           <span class="ngx-chip-value">
             <span *ngIf="!value?.length">{{ placeholder }} </span>
-            <span *ngIf="value?.length > 1">{{ value.length }} Selected</span>
-            <span *ngIf="value?.length === 1" [innerHTML]="selection"></span>
+            <ng-container *ngIf="showCount">
+              <span *ngIf="value?.length > 1">{{ value.length }} Selected</span>
+              <span *ngIf="value?.length === 1" [innerHTML]="selection"></span>
+            </ng-container>
           </span>
+          <button *ngIf="ngxIconClass && ngxIconPosition === FilterIconPositionTypes.Right" type="button" aria-label="Filter Icon" class="ngx-chip-icon-right">
+            <i class="ngx-icon" [ngClass]="ngxIconClass"></i>
+          </button>
         </div>
 
         <div class="ngx-chip__controls" *ngIf="hasControls">
@@ -63,4 +68,27 @@
     (keyboardDeselection)="onDropdownDeselection($event, false)"
   >
   </ngx-select-dropdown>
+  </ng-container>
+  <ng-container *ngIf="type === FilterType.Button">
+    <div class="ngx-filter-button">
+    <button type="button" class="ngx-chip" (click)="onButtonFilterClick($event)">
+      <div class="ngx-chip__contents">
+        <ng-container *ngIf="ngxIconClass && ngxIconPosition === FilterIconPositionTypes.Left">
+          <i class="ngx-icon ngx-chip-icon-left" [ngClass]="ngxIconClass"></i>
+        </ng-container>
+
+        <span class="ngx-chip-label">{{ label }}</span>
+
+        <ng-container *ngIf="ngxIconClass && ngxIconPosition === FilterIconPositionTypes.Right">
+          <i class="ngx-icon ngx-chip-icon-right" [ngClass]="ngxIconClass"></i>
+        </ng-container>
+      </div>
+      <div class="ngx-chip__count" *ngIf="hasSelections && showCount">
+        <span class="ngx-chip__count-circle">
+          <span class="count-badge">{{ filterCount }}</span>
+        </span>
+      </div>
+    </button>
+  </div>
+  </ng-container>
 </div>
