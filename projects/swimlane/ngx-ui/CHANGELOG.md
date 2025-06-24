@@ -7,7 +7,7 @@
 - Enhancement (`ngx-filter-select`): Added support to display the options popup at the right or left of the select
 - Enhancement (`ngx-filter-select`): Added support to select the SelectAll option automatically when all the options are selected
 - Enhancement (`ngx-filter-select`): Added support to set a filter type (button and dropdown)
-- Added a new output to emit an event when the filter is clicked
+- Enhancement (`ngx-filter-select`): Added a new output to emit an event when the filter is clicked
 
 ## 49.2.1 (2025-06-18)
 
