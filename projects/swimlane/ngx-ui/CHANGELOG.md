@@ -2,6 +2,11 @@
 
 ## HEAD (unreleased)
 
+## 50.0.0-alpha.0 (2025-06-24)
+
+- Feature: Added support for Angular 20
+- Breaking: Removed support for Angular 17
+
 ## 49.3.0 (2025-06-18)
 
 - Feature (`ngx-calendar`): Added new `@Input` named `showStartTimeInputs` and `showEndTimeInputs` set to a `boolean`
