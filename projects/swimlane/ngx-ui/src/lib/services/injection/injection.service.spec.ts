@@ -1,11 +1,4 @@
-import {
-  ApplicationRef,
-  ComponentFactoryResolver,
-  ComponentRef,
-  Injector,
-  Type,
-  ViewContainerRef
-} from '@angular/core';
+import { ApplicationRef, ComponentRef, Injector, Type, ViewContainerRef } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { InjectionService } from './injection.service';
@@ -16,9 +9,6 @@ describe('InjectionService', () => {
   let componentRef: any;
 
   beforeEach(() => {
-    const componentFactoryResolverStub = {
-      resolveComponentFactory: () => ({ create: () => ({}) })
-    };
     const injectorStub = {};
     const viewContainerRefStub = {};
     const typeStub = {};
@@ -28,10 +18,6 @@ describe('InjectionService', () => {
     TestBed.configureTestingModule({
       providers: [
         InjectionService,
-        {
-          provide: ComponentFactoryResolver,
-          useValue: componentFactoryResolverStub
-        },
         { provide: ComponentRef, useValue: componentRef },
         { provide: Injector, useValue: injectorStub },
         { provide: ViewContainerRef, useValue: viewContainerRefStub },
