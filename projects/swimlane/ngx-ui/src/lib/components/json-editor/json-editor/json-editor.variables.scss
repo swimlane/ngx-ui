@@ -1,10 +1,10 @@
 @use 'sass:color';
 @use 'colors/colors' as colors;
 
-$color-tree-line: var(--color-grey-500);
-$color-node-item-bg: rgba(var(--color-blue-200), 0.05);
-$color-node-item-border: rgba(var(--color-blue-200), 0.07);
+$color-tree-line: var(--grey-500);
+$color-node-item-bg: rgba(var(--blue-200), 0.05);
+$color-node-item-border: rgba(var(--blue-200), 0.07);
 $color-icon-type-bg: $color-node-item-border;
-$color-icon-type: var(--color-grey-200);
-$color-error: var(--color-red-600);
-$color-tree-line: var(--color-grey-500);
+$color-icon-type: var(--grey-200);
+$color-error: var(--red-600);
+$color-tree-line: var(--grey-500);

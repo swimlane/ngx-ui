@@ -1,10 +1,10 @@
 @use 'colors/colors' as colors;
 
-$slider-bg: var(--color-blue-400);
-$slider-bg-fill: var(--color-blue-400);
+$slider-bg: var(--blue-400);
+$slider-bg-fill: var(--blue-400);
 
-$slider-thumb: var(--color-blue-400);
-$slider-focus-bg: var(--color-blue-400);
+$slider-thumb: var(--blue-400);
+$slider-focus-bg: var(--blue-400);
 
 $slider-track-width: 2px;
 $slider-fill-width: 4px;

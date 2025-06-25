@@ -21,35 +21,35 @@
 
   .close-icon {
     font-size: 40px;
-    color: var(--color-grey-300);
+    color: var(--grey-300);
     float: right;
     line-height: 1em;
   }
 
   .hotkeys-icon {
-    color: var(--color-grey-300);
+    color: var(--grey-300);
     font-size: 21px;
     background-color: black;
   }
 
   .ngx-icon:hover {
-    color: var(--color-grey-100);
+    color: var(--grey-100);
   }
 }
 
 .hotkeys {
-  background: var(--color-grey-850);
-  border: 1px solid var(--color-grey-500);
+  background: var(--grey-850);
+  border: 1px solid var(--grey-500);
   padding: 15px;
   box-shadow: shadow.$shadow-1;
-  color: var(--color-grey-300);
+  color: var(--grey-300);
   font-size: 14px;
   border-radius: 2px;
   margin-bottom: 45px;
 
   .hotkey-row {
     padding: 10px 0;
-    border-bottom: 1px solid var(--color-grey-600);
+    border-bottom: 1px solid var(--grey-600);
 
     &:first-child {
       padding-top: 0px;
@@ -65,8 +65,8 @@
       margin-left: 30px;
 
       .key {
-        background: var(--color-grey-500);
-        color: var(--color-grey-850);
+        background: var(--grey-500);
+        color: var(--grey-850);
         padding: var(--spacing-2) 7px;
         border-radius: 2px;
       }

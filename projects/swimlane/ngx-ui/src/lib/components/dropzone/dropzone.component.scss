@@ -2,7 +2,7 @@
 
 @keyframes soundWave {
   100% {
-    stroke: var(--color-blue-500);
+    stroke: var(--blue-500);
     scale: 1.2;
   }
 }
@@ -70,7 +70,7 @@
       path {
         clip-rule: evenodd;
         fill-rule: evenodd;
-        stroke: var(--color-grey-650);
+        stroke: var(--grey-650);
         stroke-width: 2;
         stroke-linejoin: round;
         transition: stroke 0.2s ease-in-out;
@@ -86,7 +86,7 @@
 
       .ngx-dropzone--icon {
         font-size: 30px;
-        color: var(--color-grey-100);
+        color: var(--grey-100);
       }
 
       .ngx-dropzone--title {
@@ -94,18 +94,18 @@
         line-height: 25px;
         font-weight: 600;
         margin-bottom: 5px;
-        color: var(--color-grey-100);
+        color: var(--grey-100);
       }
 
       .ngx-dropzone--sub-title {
-        color: var(--color-blue-400);
+        color: var(--blue-400);
         font-size: 12px;
         font-weight: bold;
         transition: color 0.2s ease-in-out;
 
         &:hover,
         &:focus {
-          color: var(--color-blue-300)
+          color: var(--blue-300)
         }
 
         .underline {
@@ -115,7 +115,7 @@
 
       .ngx-dropzone--supporting-files {
         margin-top: var(--spacing-20);
-        color: var(--color-grey-350);
+        color: var(--grey-350);
         font-size: 12px;
         padding: 0 10px;
       }
@@ -125,8 +125,8 @@
   &--small {
     box-sizing: border-box;
     height: 120px;
-    background-color: var(--color-grey-800);
-    border: 1px dashed var(--color-grey-500);
+    background-color: var(--grey-800);
+    border: 1px dashed var(--grey-500);
     padding: 0;
     justify-content: center;
 

@@ -27,7 +27,7 @@
       justify-content: unset !important;
       opacity: 0.2;
       cursor: pointer;
-      border: 2px dotted rgba(var(--color-grey-650), 0.5);
+      border: 2px dotted rgba(var(--grey-650), 0.5);
       outline-offset: -2px;
 
       &:hover {
@@ -54,7 +54,7 @@
   .add-button {
     display: none;
     padding-left: 1rem;
-    border-left: 1px solid var(--color-grey-650);
+    border-left: 1px solid var(--grey-650);
   }
 }
 

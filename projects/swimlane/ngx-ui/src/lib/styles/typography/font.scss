@@ -17,7 +17,7 @@ h6 {
   font-weight: normal;
 
   small {
-    color: var(--color-grey-300);
+    color: var(--grey-300);
     font-size: 0.75em;
   }
 }
@@ -32,7 +32,7 @@ span,
 p,
 a {
   &.hint {
-    color: var(--color-grey-300);
+    color: var(--grey-300);
     font-style: italic;
     font-size: 0.85em;
   }
@@ -47,6 +47,6 @@ a {
 }
 
 a {
-  color: var(--color-blue-400);
+  color: var(--blue-400);
   text-decoration: none;
 }

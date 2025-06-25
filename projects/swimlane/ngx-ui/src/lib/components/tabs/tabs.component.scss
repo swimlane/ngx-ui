@@ -1,11 +1,11 @@
 @use 'colors/colors' as colors;
 
-$tabs-border-color: var(--color-grey-700);
-$tabs-active-fill: var(--color-blue);
-$tabs-text-color: var(--color-grey-250);
-$tabs-active-text-color: var(--color-white);
+$tabs-border-color: var(--grey-700);
+$tabs-active-fill: var(--blue-500);
+$tabs-text-color: var(--grey-250);
+$tabs-active-text-color: var(--white);
 
-$tabs-fill--light: var(--color-grey-700);
+$tabs-fill--light: var(--grey-700);
 $tabs-shadow--light: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
 $tabs-content-color--light: #1b1e27;
 
@@ -75,7 +75,7 @@ $tabs-button-height--vertical: 53px;
       }
 
       &:focus-visible {
-        outline: 2px solid var(--color-blue-200);
+        outline: 2px solid var(--blue-200);
         border-radius: 2px;
         outline-offset: 1px;
       }
@@ -125,7 +125,7 @@ $tabs-button-height--vertical: 53px;
         font-size: 13px;
         line-height: 45px;
         border: none !important;
-        border-bottom: 1px solid var(--color-grey-700) !important;
+        border-bottom: 1px solid var(--grey-700) !important;
         padding-left: 19px;
         font-weight: 600;
 
@@ -142,7 +142,7 @@ $tabs-button-height--vertical: 53px;
 
   &.tabs-vertical.light {
     .ngx-tabs-list {
-      background-color: var(--color-grey-750);
+      background-color: var(--grey-750);
       border-right: 2px solid $tabs-fill--light;
       border-left: 2px solid $tabs-fill--light;
 
@@ -157,7 +157,7 @@ $tabs-button-height--vertical: 53px;
     }
 
     .ngx-tab-content {
-      background-color: var(--color-grey-750);
+      background-color: var(--grey-750);
     }
   }
 }

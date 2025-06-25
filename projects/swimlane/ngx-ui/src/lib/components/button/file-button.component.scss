@@ -1,10 +1,10 @@
 @use 'colors/colors' as colors;
 @use 'components/buttons' as buttons;
 
-$upload-button-text-color: var(--color-grey-100);
-$upload-button-progress-fill: var(--color-blue-400);
-$upload-button-progress-bg: var(--color-grey-500);
-$upload-button-success-fill: var(--color-blue-400);
+$upload-button-text-color: var(--grey-100);
+$upload-button-progress-fill: var(--blue-400);
+$upload-button-progress-bg: var(--grey-500);
+$upload-button-success-fill: var(--blue-400);
 
 /**
  * File upload button
@@ -101,7 +101,7 @@ $upload-button-success-fill: var(--color-blue-400);
 
     .icon-check {
       font-size: 25px;
-      color: var(--color-grey-100);
+      color: var(--grey-100);
       position: absolute;
       top: 0;
       left: 0;
