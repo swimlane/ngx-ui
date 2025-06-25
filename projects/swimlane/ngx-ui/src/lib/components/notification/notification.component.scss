@@ -29,9 +29,9 @@
   margin-top: 0.5rem;
   position: relative;
   box-shadow: shadows.$shadow-15;
-  color: var(--color-white);
+  color: var(--white);
   text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
-  background: var(--color-grey-700);
+  background: var(--grey-700);
 
   @include notification(#455066);
 
@@ -80,13 +80,13 @@
 
   .notification-content {
     padding: 1.5rem;
-    color: var(--color-grey-100);
+    color: var(--grey-100);
     overflow: auto;
     max-height: 300px;
 
     &.has-icon {
       margin-left: 4.5rem;
-      border-left: 1px solid var(--color-grey-650);
+      border-left: 1px solid var(--grey-650);
     }
   }
 
@@ -95,19 +95,19 @@
   }
 
   &.ngx-notification-info {
-    @include notification(var(--color-blue));
+    @include notification(var(--blue-500));
   }
 
   &.ngx-notification-error {
-    @include notification(var(--color-red));
+    @include notification(var(--red-500));
   }
 
   &.ngx-notification-warning {
-    @include notification(var(--color-orange));
+    @include notification(var(--orange-500));
   }
 
   &.ngx-notification-success {
-    @include notification(var(--color-green));
+    @include notification(var(--green-500));
   }
 
   .ngx-notification-title {

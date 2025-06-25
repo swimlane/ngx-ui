@@ -1,7 +1,7 @@
 @use 'colors/colors' as colors;
 
 $border-width: 3px;
-$color-background-grey: var(--color-grey-750);
+$color-background-grey: var(--grey-750);
 
 .ngx-card-avatar {
   width: 54px;
@@ -16,7 +16,7 @@ $color-background-grey: var(--color-grey-750);
   }
 
   &--avatar {
-    border: 2px solid var(--color-grey-100);
+    border: 2px solid var(--grey-100);
     box-shadow: 0 0 15px rgba(122, 185, 255, 0.4);
     border-radius: 100%;
     width: 100%;
@@ -58,7 +58,7 @@ $color-background-grey: var(--color-grey-750);
       .ngx-card-avatar--content {
         margin: auto;
         font-size: 0.95rem;
-        color: var(--color-grey-100);
+        color: var(--grey-100);
         font-weight: bold;
       }
     }

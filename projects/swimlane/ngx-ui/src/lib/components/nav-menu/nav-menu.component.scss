@@ -3,7 +3,7 @@
 ngx-nav-menu {
   width: 60px;
   height: 100%;
-  background: var(--color-grey-800);
+  background: var(--grey-800);
   padding: 0;
   user-select: none;
 
@@ -22,7 +22,7 @@ ngx-nav-menu {
     left: 23px;
 
     svg {
-      fill: var(--color-grey-400);
+      fill: var(--grey-400);
     }
 
     &.bottom {
@@ -31,7 +31,7 @@ ngx-nav-menu {
 
     &:hover {
       svg {
-        fill: var(--color-blue-500);
+        fill: var(--blue-500);
       }
     }
   }
@@ -84,16 +84,16 @@ ngx-nav-menu.expanded,
   overflow: auto;
 
   .nav-item-container {
-    background: var(--color-grey-750);
+    background: var(--grey-750);
   }
 
   .nav-item {
     display: block;
     margin: 1px 0;
-    background: var(--color-grey-750);
+    background: var(--grey-750);
     width: 100%;
-    color: var(--color-white);
-    border-left-color: var(--color-grey-750);
+    color: var(--white);
+    border-left-color: var(--grey-750);
     border-left-width: 3px;
     border-left-style: solid;
 
@@ -107,7 +107,7 @@ ngx-nav-menu.expanded,
       vertical-align: middle;
       font-size: 20px;
       line-height: 20px;
-      color: var(--color-grey-350);
+      color: var(--grey-350);
 
       svg {
         fill: none;
@@ -121,14 +121,14 @@ ngx-nav-menu.expanded,
       text-transform: uppercase;
       margin-left: 15px;
       font-size: 14px;
-      color: var(--color-grey-350);
+      color: var(--grey-350);
       font-weight: 600;
     }
 
     .toggle-icon {
       display: none;
       float: right;
-      color: var(--color-grey-350);
+      color: var(--grey-350);
       font-size: 12px;
       margin-top: 5px;
       margin-right: 10px;
@@ -141,10 +141,10 @@ ngx-nav-menu.expanded,
     &:hover,
     &.active {
       border-image: linear-gradient(to bottom, #02aaff 0%, #00fff4 100%) 1 100%;
-      border-color: var(--color-blue-500);
+      border-color: var(--blue-500);
 
       ngx-icon {
-        color: var(--color-grey-050);
+        color: var(--grey-050);
 
         svg {
           filter: none;
@@ -161,22 +161,22 @@ ngx-nav-menu.expanded,
   margin: 0px;
   max-height: 263px;
   overflow: auto;
-  background: var(--color-grey-800);
+  background: var(--grey-800);
 
   .sub-nav-item {
     display: block;
-    background: var(--color-grey-800);
+    background: var(--grey-800);
     margin-bottom: 0px;
     padding: var(--spacing-16) 18px;
     font-size: 0.9rem;
-    color: var(--color-grey-350);
+    color: var(--grey-350);
     cursor: pointer;
 
     .active-indicator {
       display: none;
       float: right;
       margin-top: 4px;
-      color: var(--color-blue-500);
+      color: var(--blue-500);
     }
 
     &:focus {
@@ -192,12 +192,12 @@ ngx-nav-menu.expanded,
   }
 
   .sub-nav-item:not(:first-child) {
-    border-top: 1px solid var(--color-grey-750);
+    border-top: 1px solid var(--grey-750);
   }
 }
 
 .nav-logo {
-  background: var(--color-grey-900);
+  background: var(--grey-900);
   height: 50px;
   position: relative;
 
@@ -242,7 +242,7 @@ ngx-nav-menu.expanded,
 
 .nav-popover {
   width: 200px;
-  background: var(--color-grey-750) !important;
+  background: var(--grey-750) !important;
   margin-top: 7px;
   box-shadow: none !important;
   padding: 0 !important;
@@ -259,12 +259,12 @@ ngx-nav-menu.expanded,
 
   .title {
     height: 50px;
-    background: var(--color-grey-750);
+    background: var(--grey-750);
     padding: 15px 0px 14px 15px;
     text-transform: uppercase;
     margin-left: -1px;
     font-size: 14px;
-    color: var(--color-grey-350);
+    color: var(--grey-350);
     font-weight: 600;
   }
 }

@@ -2,9 +2,9 @@
 @use 'colors/colors' as colors;
 @use 'colors/shadow-variables' as shadows;
 
-$dropdown-bg: var(--color-grey-700);
+$dropdown-bg: var(--grey-700);
 $dropdown-bg-hover: #232837; // Color 705 custom color
-$dropdown-color: var(--color-grey-100);
+$dropdown-color: var(--grey-100);
 
 /**
  * Dropdown Component
@@ -126,7 +126,7 @@ $dropdown-color: var(--color-grey-100);
         padding: 0 var(--spacing-20);
         overflow: hidden;
         background-color: initial !important;
-        color: var(--color-grey-400) !important;
+        color: var(--grey-400) !important;
       }
 
       // Floating dividers are hidden
@@ -212,7 +212,7 @@ $dropdown-color: var(--color-grey-100);
         }
 
         &.divider hr {
-          border-bottom: 1px solid var(--color-grey-700);
+          border-bottom: 1px solid var(--grey-700);
         }
       }
     }
@@ -221,8 +221,8 @@ $dropdown-color: var(--color-grey-100);
   // Styles
   .ngx-dropdown-menu {
     &.ngx-dropdown-light-outline {
-      $menu-color: var(--color-grey-750);
-      $menu-border: var(--color-grey-550);
+      $menu-color: var(--grey-750);
+      $menu-border: var(--grey-550);
       $item-active: #479eff;
       $item-hover: #1f242f;
       $item-color: #fff;
@@ -232,9 +232,9 @@ $dropdown-color: var(--color-grey-100);
 
     &.ngx-dropdown-dark-outline {
       $menu-color: #222732;
-      $menu-border: var(--color-grey-550);
+      $menu-border: var(--grey-550);
       $item-active: #479eff;
-      $item-hover: var(--color-grey-750);
+      $item-hover: var(--grey-750);
       $item-color: #afb7c8;
 
       @include ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color);

@@ -10,7 +10,7 @@ code {
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
-  background-color: var(--color-grey-775);
+  background-color: var(--grey-775);
   border-radius: var(--radius-3);
 }
 
@@ -18,7 +18,7 @@ code {
 .ngx-flex--wrap-fluid,
 .ngx-flex--wrap-fixed {
   margin: 40px 0;
-  border: 1px solid var(--color-grey-725);
+  border: 1px solid var(--grey-725);
   position: relative;
 
   &:before {
@@ -31,7 +31,7 @@ code {
 }
 
 .ngx-flex--row {
-  background-color: rgba(var(--color-green), 0.1);
+  background-color: rgba(var(--green-500), 0.1);
   margin-top: var(--spacing-20);
   position: relative;
   box-sizing: border-box;
@@ -50,9 +50,9 @@ code {
   }
 
   > * {
-    background-color: rgba(var(--color-light-blue), 0.15);
+    background-color: rgba(var(--lightblue-500), 0.15);
     position: relative;
-    border: 1px solid rgba(var(--color-light-blue), 0.06);
+    border: 1px solid rgba(var(--lightblue-500), 0.06);
     box-sizing: border-box;
 
     &:before {
@@ -72,7 +72,7 @@ code {
 
     &:hover:before {
       font-size: 12px;
-      background-color: var(--color-grey-800);
+      background-color: var(--grey-800);
       overflow: visible;
       z-index: 1000;
       width: auto;
@@ -83,7 +83,7 @@ code {
 .box {
   margin: 5px 0;
   padding: 0 5px;
-  background: var(--color-blue-500);
+  background: var(--blue-500);
   border-radius: 5px;
   overflow: hidden;
   text-align: center;

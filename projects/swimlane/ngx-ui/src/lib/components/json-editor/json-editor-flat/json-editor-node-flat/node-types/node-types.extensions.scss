@@ -30,7 +30,7 @@
   }
 
   &.background {
-    border-left: 1px solid var(--color-grey-650);
+    border-left: 1px solid var(--grey-650);
     height: 96px;
     padding-left: 0px;
     padding-top: var(--spacing-2);
@@ -40,7 +40,7 @@
   }
 
   .indented-content {
-    border: 2px dotted rgba(var(--color-grey-650), 0.5);
+    border: 2px dotted rgba(var(--grey-650), 0.5);
     width: 100%;
     display: flex;
     justify-content: center;
@@ -59,7 +59,7 @@
 
     button {
       display: flex;
-      color: var(--color-blue-400);
+      color: var(--blue-400);
       i {
         font-size: 18px;
       }

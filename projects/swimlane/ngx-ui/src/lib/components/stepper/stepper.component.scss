@@ -103,7 +103,7 @@
         &.ngx-step--complete-last {
           .ngx-step--step {
             &:after {
-              background-image: linear-gradient(to bottom, #1edeb6 0%, var(--color-blue-500) 75%) !important;
+              background-image: linear-gradient(to bottom, #1edeb6 0%, var(--blue-500) 75%) !important;
             }
           }
         }
@@ -113,8 +113,8 @@
             &:after {
               background-image: linear-gradient(
                 to bottom,
-                var(--color-blue-500) 0%,
-                var(--color-grey-600) 75%
+                var(--blue-500) 0%,
+                var(--grey-600) 75%
               ) !important;
             }
           }
@@ -197,8 +197,8 @@
               animation: 1.5s linear infinite spinner;
               animation-play-state: inherit;
               border: solid 1px transparent;
-              border-bottom-color: var(--color-blue-500);
-              border-right-color: var(--color-blue-500);
+              border-bottom-color: var(--blue-500);
+              border-right-color: var(--blue-500);
               border-radius: 50%;
               content: '';
               height: 100%;
@@ -224,7 +224,7 @@
 
     .ngx-stepper--bar {
       position: absolute;
-      background-color: var(--color-blue-500);
+      background-color: var(--blue-500);
     }
   }
 
@@ -289,20 +289,20 @@
         &.ngx-step--complete {
           &:not(.ngx-step--complete-last) {
             .ngx-step--title {
-              color: var(--color-blue-500);
+              color: var(--blue-500);
             }
 
             .ngx-step--step {
               &:after {
-                background-color: var(--color-blue-500) !important;
+                background-color: var(--blue-500) !important;
               }
 
               .ngx-step--circle {
-                border-color: var(--color-blue-500);
-                color: var(--color-blue-500);
+                border-color: var(--blue-500);
+                color: var(--blue-500);
 
                 .marker-path {
-                  fill: var(--color-blue-500);
+                  fill: var(--blue-500);
                 }
               }
             }
@@ -310,24 +310,24 @@
 
           &.ngx-step--complete-last {
             .ngx-step--title {
-              color: var(--color-blue-500);
+              color: var(--blue-500);
             }
 
             .ngx-step--step {
               &:after {
                 background-image: linear-gradient(
                   to right,
-                  var(--color-blue-500) 0%,
-                  var(--color-blue-500) 75%
+                  var(--blue-500) 0%,
+                  var(--blue-500) 75%
                 ) !important;
               }
 
               .ngx-step--circle {
-                border-color: var(--color-blue-500);
-                color: var(--color-blue-500);
+                border-color: var(--blue-500);
+                color: var(--blue-500);
 
                 .marker-path {
-                  fill: var(--color-blue-500);
+                  fill: var(--blue-500);
                 }
               }
             }

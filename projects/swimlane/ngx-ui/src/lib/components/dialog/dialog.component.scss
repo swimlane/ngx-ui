@@ -1,9 +1,9 @@
 @use 'colors/colors' as colors;
 @use 'colors/shadow-variables' as shadow;
 
-$dialog-bg: var(--color-grey-800);
-$dialog-header-color: var(--color-grey-100);
-$dialog-body-color: var(--color-grey-200);
+$dialog-bg: var(--grey-800);
+$dialog-header-color: var(--grey-100);
+$dialog-body-color: var(--grey-200);
 
 .ngx-dialog {
   position: fixed;
@@ -77,11 +77,11 @@ $dialog-body-color: var(--color-grey-200);
   &.wizard {
     .ngx-dialog-content {
       padding: 0;
-      background: var(--color-grey-725);
+      background: var(--grey-725);
 
       .ngx-dialog-header {
         padding: 1.4rem;
-        background: var(--color-grey-750);
+        background: var(--grey-750);
 
         h1 {
           margin: 0;
@@ -105,11 +105,11 @@ $dialog-body-color: var(--color-grey-200);
 
         .ngx-tabs-list {
           padding: 0 var(--spacing-20);
-          background: var(--color-grey-775);
-          border-bottom: 2px solid var(--color-grey-775);
+          background: var(--grey-775);
+          border-bottom: 2px solid var(--grey-775);
 
           .ngx-tab {
-            background: var(--color-grey-775);
+            background: var(--grey-775);
 
             button {
               padding: 0.6em 0.75em;
@@ -117,7 +117,7 @@ $dialog-body-color: var(--color-grey-200);
             }
 
             &.active {
-              background: var(--color-grey-700);
+              background: var(--grey-700);
             }
           }
         }

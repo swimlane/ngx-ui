@@ -8,14 +8,14 @@
 }
 
 .input-item {
-  background: var(--color-grey-650);
+  background: var(--grey-650);
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
   border-radius: 2px;
   margin-bottom: 13px;
 
   .drag-drop-handle,
   .remove-item {
-    color: var(--color-grey-350);
+    color: var(--grey-350);
   }
 
   .drag-drop-handle {
@@ -40,8 +40,8 @@
 .add-examples {
   cursor: pointer;
   height: 45px;
-  border: 1px dashed var(--color-blue-400);
-  color: var(--color-blue-400);
+  border: 1px dashed var(--blue-400);
+  color: var(--blue-400);
   display: flex;
   align-items: center;
   justify-content: center;

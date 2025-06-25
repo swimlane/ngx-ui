@@ -6,99 +6,99 @@
 :root {
 
   // Blue
-  --color-blue-100: rgba(224, 239, 255, 1);
-  --color-blue-200: rgba(173, 212, 255, 1);
-  --color-blue-300: rgba(122, 185, 255, 1);
-  --color-blue-400: rgba(71, 158, 255, 1);
-  --color-blue-500: rgba(20, 131, 255, 1);
-  --color-blue-600: rgba(0, 106, 224, 1);
-  --color-blue-700: rgba(0, 82, 173, 1);
-  --color-blue-800: rgba(0, 58, 122, 1);
-  --color-blue-900: rgba(0, 34, 71, 1);
+  --blue-100: rgba(224, 239, 255, 1);
+  --blue-200: rgba(173, 212, 255, 1);
+  --blue-300: rgba(122, 185, 255, 1);
+  --blue-400: rgba(71, 158, 255, 1);
+  --blue-500: rgba(20, 131, 255, 1);
+  --blue-600: rgba(0, 106, 224, 1);
+  --blue-700: rgba(0, 82, 173, 1);
+  --blue-800: rgba(0, 58, 122, 1);
+  --blue-900: rgba(0, 34, 71, 1);
 
   // Light Blue
-  --color-light-blue-100: rgba(234, 249, 255, 1);
-  --color-light-blue-200: rgba(184, 234, 254, 1);
-  --color-light-blue-300: rgba(134, 219, 253, 1);
-  --color-light-blue-400: rgba(84, 205, 252, 1);
-  --color-light-blue-500: rgba(34, 190, 251, 1);
-  --color-light-blue-600: rgba(4, 166, 230, 1);
-  --color-light-blue-700: rgba(3, 130, 180, 1);
-  --color-light-blue-800: rgba(2, 94, 130, 1);
-  --color-light-blue-900: rgba(1, 58, 80, 1);
+  --lightblue-100: rgba(234, 249, 255, 1);
+  --lightblue-200: rgba(184, 234, 254, 1);
+  --lightblue-300: rgba(134, 219, 253, 1);
+  --lightblue-400: rgba(84, 205, 252, 1);
+  --lightblue-500: rgba(34, 190, 251, 1);
+  --lightblue-600: rgba(4, 166, 230, 1);
+  --lightblue-700: rgba(3, 130, 180, 1);
+  --lightblue-800: rgba(2, 94, 130, 1);
+  --lightblue-900: rgba(1, 58, 80, 1);
 
   //Green
-  --color-green-100: rgba(206, 249, 240, 1);
-  --color-green-200: rgba(161, 243, 226, 1);
-  --color-green-300: rgba(116, 237, 212, 1);
-  --color-green-400: rgba(71, 231, 198, 1);
-  --color-green-500: rgba(29, 222, 182, 1);
-  --color-green-600: rgba(23, 177, 145, 1);
-  --color-green-700: rgba(17, 132, 108, 1);
-  --color-green-800: rgba(11, 87, 71, 1);
-  --color-green-900: rgba(5, 42, 34, 1);
+  --green-100: rgba(206, 249, 240, 1);
+  --green-200: rgba(161, 243, 226, 1);
+  --green-300: rgba(116, 237, 212, 1);
+  --green-400: rgba(71, 231, 198, 1);
+  --green-500: rgba(29, 222, 182, 1);
+  --green-600: rgba(23, 177, 145, 1);
+  --green-700: rgba(17, 132, 108, 1);
+  --green-800: rgba(11, 87, 71, 1);
+  --green-900: rgba(5, 42, 34, 1);
 
   //Orange
-  --color-orange-100: rgba(255, 244, 224, 1);
-  --color-orange-200: rgba(255, 225, 173, 1);
-  --color-orange-300: rgba(255, 206, 122, 1);
-  --color-orange-400: rgba(255, 187, 71, 1);
-  --color-orange-500: rgba(255, 168, 20, 1);
-  --color-orange-600: rgba(224, 141, 0, 1);
-  --color-orange-700: rgba(173, 109, 0, 1);
-  --color-orange-800: rgba(122, 77, 0, 1);
-  --color-orange-900: rgba(71, 45, 0, 1);
+  --orange-100: rgba(255, 244, 224, 1);
+  --orange-200: rgba(255, 225, 173, 1);
+  --orange-300: rgba(255, 206, 122, 1);
+  --orange-400: rgba(255, 187, 71, 1);
+  --orange-500: rgba(255, 168, 20, 1);
+  --orange-600: rgba(224, 141, 0, 1);
+  --orange-700: rgba(173, 109, 0, 1);
+  --orange-800: rgba(122, 77, 0, 1);
+  --orange-900: rgba(71, 45, 0, 1);
  
   // Base
-  --color-white: rgba(255, 255, 255, 1);
-  --color-black: rgba(0, 0, 0, 1);
+  --white: rgba(255, 255, 255, 1);
+  --black: rgba(0, 0, 0, 1);
 
   // Red
-  --color-red-100: rgba(255, 230, 224, 1);
-  --color-red-200: rgba(255, 190, 173, 1);
-  --color-red-300: rgba(255, 150, 122, 1);
-  --color-red-400: rgba(255, 109, 71, 1);
-  --color-red-500: rgba(255, 69, 20, 1);
-  --color-red-600: rgba(224, 47, 0, 1);
-  --color-red-700: rgba(173, 36, 0, 1);
-  --color-red-800: rgba(122, 25, 0, 1);
-  --color-red-900: rgba(71, 15, 0, 1);
+  --red-100: rgba(255, 230, 224, 1);
+  --red-200: rgba(255, 190, 173, 1);
+  --red-300: rgba(255, 150, 122, 1);
+  --red-400: rgba(255, 109, 71, 1);
+  --red-500: rgba(255, 69, 20, 1);
+  --red-600: rgba(224, 47, 0, 1);
+  --red-700: rgba(173, 36, 0, 1);
+  --red-800: rgba(122, 25, 0, 1);
+  --red-900: rgba(71, 15, 0, 1);
 
   // Purple
-  --color-purple-100: rgba(255, 255, 255, 1);
-  --color-purple-200: rgba(239, 234, 252, 1);
-  --color-purple-300: rgba(205, 190, 245, 1);
-  --color-purple-400: rgba(172, 145, 239, 1);
-  --color-purple-500: rgba(138, 101, 232, 1);
-  --color-purple-600: rgba(104, 57, 225, 1);
-  --color-purple-700: rgba(78, 30, 201, 1);
-  --color-purple-800: rgba(61, 23, 157, 1);
-  --color-purple-900: rgba(44, 17, 112, 1);
+  --purple-100: rgba(255, 255, 255, 1);
+  --purple-200: rgba(239, 234, 252, 1);
+  --purple-300: rgba(205, 190, 245, 1);
+  --purple-400: rgba(172, 145, 239, 1);
+  --purple-500: rgba(138, 101, 232, 1);
+  --purple-600: rgba(104, 57, 225, 1);
+  --purple-700: rgba(78, 30, 201, 1);
+  --purple-800: rgba(61, 23, 157, 1);
+  --purple-900: rgba(44, 17, 112, 1);
 
   // Grey
   // This is the old blue-grey color
-  --color-grey-50: rgba(235, 237, 242, 1);
-  --color-grey-100: rgba(205, 210, 221, 1);
-  --color-grey-150: rgba(190, 197, 211, 1);
-  --color-grey-200: rgba(175, 183, 200, 1);
-  --color-grey-250: rgba(160, 170, 190, 1);
-  --color-grey-300: rgba(144, 156, 180, 1);
-  --color-grey-350: rgba(129, 143, 169, 1);
-  --color-grey-400: rgba(114, 129, 159, 1);
-  --color-grey-450: rgba(100, 116, 147, 1);
-  --color-grey-500: rgba(90, 104, 132, 1);
-  --color-grey-550: rgba(80, 92, 117, 1);
-  --color-grey-600: rgba(69, 80, 102, 1);
-  --color-grey-650: rgba(59, 68, 87, 1);
-  --color-grey-700: rgba(49, 56, 71, 1);
-  --color-grey-725: rgba(43, 50, 64, 1);
-  --color-grey-750: rgba(38, 44, 56, 1);
-  --color-grey-775: rgba(33, 38, 49, 1);
-  --color-grey-800: rgba(28, 32, 41, 1);
-  --color-grey-825: rgba(23, 26, 33, 1);
-  --color-grey-850: rgba(18, 20, 26, 1);
-  --color-grey-875: rgba(12, 14, 18, 1);
-  --color-grey-900: rgba(7, 8, 11, 1);
+  --grey-50: rgba(235, 237, 242, 1);
+  --grey-100: rgba(205, 210, 221, 1);
+  --grey-150: rgba(190, 197, 211, 1);
+  --grey-200: rgba(175, 183, 200, 1);
+  --grey-250: rgba(160, 170, 190, 1);
+  --grey-300: rgba(144, 156, 180, 1);
+  --grey-350: rgba(129, 143, 169, 1);
+  --grey-400: rgba(114, 129, 159, 1);
+  --grey-450: rgba(100, 116, 147, 1);
+  --grey-500: rgba(90, 104, 132, 1);
+  --grey-550: rgba(80, 92, 117, 1);
+  --grey-600: rgba(69, 80, 102, 1);
+  --grey-650: rgba(59, 68, 87, 1);
+  --grey-700: rgba(49, 56, 71, 1);
+  --grey-725: rgba(43, 50, 64, 1);
+  --grey-750: rgba(38, 44, 56, 1);
+  --grey-775: rgba(33, 38, 49, 1);
+  --grey-800: rgba(28, 32, 41, 1);
+  --grey-825: rgba(23, 26, 33, 1);
+  --grey-850: rgba(18, 20, 26, 1);
+  --grey-875: rgba(12, 14, 18, 1);
+  --grey-900: rgba(7, 8, 11, 1);
 
   // Error
   --color-error: #ff4514;
