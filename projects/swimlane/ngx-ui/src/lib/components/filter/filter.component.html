@@ -2,7 +2,7 @@
   <ng-container *ngIf="type === FilterType.Select">
     <div class="ngx-select-flex-wrap" [style.min-width]="autosize ? autosizeMinWidth : undefined">
     <div class="ngx-select-flex-wrap-inner">
-      <div class="ngx-chip" (click)="onToggle($event)" [class.has-controls]="hasControls">
+      <div class="ngx-chip" (click)="onToggle()" [class.has-controls]="hasControls">
         <div class="ngx-chip__contents">
           <button *ngIf="ngxIconClass && ngxIconPosition === FilterIconPositionTypes.Left" type="button" aria-label="Filter Icon" class="ngx-chip-icon-left">
             <i class="ngx-icon" [ngClass]="ngxIconClass"></i>
