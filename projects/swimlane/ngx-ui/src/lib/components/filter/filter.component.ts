@@ -281,6 +281,7 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
 
   ngOnDestroy(): void {
     this.toggleDropdown(false);
+    this.dynamicContainer?.clear();
   }
 
   onDropdownSelection(selection: SelectDropdownOption, shouldClose = this.closeOnSelect || !this.multiple): void {
