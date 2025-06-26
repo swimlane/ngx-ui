@@ -10,8 +10,7 @@ import {
   outputBinding
 } from '@angular/core';
 import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { TreeComponent } from '@swimlane/ngx-ui';
-import { FilterCustomDropdown } from '@swimlane/ngx-ui/components/filter/filter.custom-component.interface';
+import { FilterCustomDropdown, TreeComponent } from '@swimlane/ngx-ui';
 import { Observable } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
 import { switchMap } from 'rxjs/operators';
