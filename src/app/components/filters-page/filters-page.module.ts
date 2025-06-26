@@ -6,10 +6,10 @@ import { FilterSelectModule, SectionModule, SelectModule, TabsModule } from '@sw
 import { PrismModule } from '../../common/prism/prism.module';
 
 import { SelectsPageRoutingModule } from './filters-page-routing.module';
-import { FiltersPageComponent } from './filters-page.component';
+import { FiltersPageComponent, MyCustomComponent } from './filters-page.component';
 
 @NgModule({
-  declarations: [FiltersPageComponent],
+  declarations: [FiltersPageComponent, MyCustomComponent],
   imports: [
     CommonModule,
     FormsModule,

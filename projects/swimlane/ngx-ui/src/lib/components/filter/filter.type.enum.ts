@@ -1,4 +1,5 @@
 export enum FilterType {
-  Dropdown = 'dropdown',
-  Button = 'button'
+  Select = 'select',
+  Button = 'button',
+  CustomDropdown = 'customDropdown'
 }

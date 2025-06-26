@@ -1,5 +1,5 @@
 <div class="ngx-select-wrap">
-  <ng-container *ngIf="type === FilterType.Dropdown">
+  <ng-container *ngIf="type === FilterType.Select">
     <div class="ngx-select-flex-wrap" [style.min-width]="autosize ? autosizeMinWidth : undefined">
     <div class="ngx-select-flex-wrap-inner">
       <div class="ngx-chip" (click)="onToggle($event)" [class.has-controls]="hasControls">
@@ -71,24 +71,42 @@
   </ng-container>
   <ng-container *ngIf="type === FilterType.Button">
     <div class="ngx-filter-button">
-    <button type="button" class="ngx-chip" (click)="onButtonFilterClick($event)">
-      <div class="ngx-chip__contents">
-        <ng-container *ngIf="ngxIconClass && ngxIconPosition === FilterIconPositionTypes.Left">
-          <i class="ngx-icon ngx-chip-icon-left" [ngClass]="ngxIconClass"></i>
-        </ng-container>
-
-        <span class="ngx-chip-label">{{ label }}</span>
-
-        <ng-container *ngIf="ngxIconClass && ngxIconPosition === FilterIconPositionTypes.Right">
-          <i class="ngx-icon ngx-chip-icon-right" [ngClass]="ngxIconClass"></i>
-        </ng-container>
-      </div>
-      <div class="ngx-chip__count" *ngIf="hasSelections && showCount">
-        <span class="ngx-chip__count-circle">
-          <span class="count-badge">{{ filterCount }}</span>
-        </span>
-      </div>
-    </button>
-  </div>
+      <ng-container *ngTemplateOutlet="buttonControlTemplate"></ng-container>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="type === FilterType.CustomDropdown && customDropdownConfig?.component?.type" >
+    <ngx-dropdown [closeOnClick]="customDropdownConfig.closeOnClick ?? true" [closeOnOutsideClick]="customDropdownConfig.closeOnOutsideClick ?? true" [showCaret]="customDropdownConfig.showCaret">
+      <ngx-dropdown-toggle (toggle)="onCustomDropdownToggle()" [disabled]="disabled">
+        <ng-container *ngTemplateOutlet="buttonControlTemplate"></ng-container>
+      </ngx-dropdown-toggle>
+      <ngx-dropdown-menu [class.align-right]="itemsPosition === FilterSelectItemPositionTypes.Right">
+        <div class="ngx-filter-dynamic-wrapper" [ngClass]="customDropdownConfig.containerClasses">
+          <ng-container #dynamicContainer></ng-container>
+        </div>
+      </ngx-dropdown-menu>
+    </ngx-dropdown>
   </ng-container>
 </div>
+
+<ng-template #buttonControlTemplate>
+  <div class="ngx-filter-button">
+      <button type="button" class="ngx-chip" (click)="onFilterButtonClick()" [disabled]="disabled" aria-label="Filter Button">
+        <div class="ngx-chip__contents">
+          <ng-container *ngIf="ngxIconClass && ngxIconPosition === FilterIconPositionTypes.Left">
+            <i class="ngx-icon ngx-chip-icon-left" [ngClass]="ngxIconClass" aria-label="Button Icon"></i>
+          </ng-container>
+
+          <span class="ngx-chip-label">{{ label }}</span>
+
+          <ng-container *ngIf="ngxIconClass && ngxIconPosition === FilterIconPositionTypes.Right">
+            <i class="ngx-icon ngx-chip-icon-right" [ngClass]="ngxIconClass" aria-label="Button Icon"></i>
+          </ng-container>
+        </div>
+        <div class="ngx-chip__count" *ngIf="hasSelections && showCount">
+          <span class="ngx-chip__count-circle">
+            <span class="count-badge">{{ filterCount }}</span>
+          </span>
+        </div>
+      </button>
+    </div>
+</ng-template>

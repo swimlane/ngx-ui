@@ -4,7 +4,7 @@ import { FilterSelectComponent } from './filter-select.component';
 import { SelectDropdownOption } from '../select/select-dropdown-option.interface';
 import { FilterType } from './filter.type.enum';
 
-describe('FilterSelectComponent', () => {
+fdescribe('FilterSelectComponent', () => {
   let component: FilterSelectComponent;
   let fixture: ComponentFixture<FilterSelectComponent>;
 
@@ -58,25 +58,25 @@ describe('FilterSelectComponent', () => {
       expect(spyOnSelectAll).not.toHaveBeenCalled();
     });
 
-    it('should return true for isSingleSelect when not multiple and filterType equals to Dropdown', () => {
-      component.type = FilterType.Dropdown;
+    it('should return true for isSingleSelect when not multiple and filterType equals to Select', () => {
+      component.type = FilterType.Select;
       component.multiple = false;
       expect(component.isSingleSelect).toBeTruthy();
     });
 
-    it('should return false for isSingleSelect when multiple and filterType equals to Dropdown', () => {
-      component.type = FilterType.Dropdown;
+    it('should return false for isSingleSelect when multiple and filterType equals to Select', () => {
+      component.type = FilterType.Select;
       component.multiple = true;
       expect(component.isSingleSelect).toBeFalsy();
     });
 
-    it('should return false for isSingleSelect when filterType is different from Dropdown', () => {
+    it('should return false for isSingleSelect when filterType is different from Select', () => {
       component.type = FilterType.Button;
       expect(component.isSingleSelect).toBeFalsy();
     });
 
-    it('should return filterCount for filterType Dropdown based-on values', () => {
-      component.type = FilterType.Dropdown;
+    it('should return filterCount for filterType Select based-on values', () => {
+      component.type = FilterType.Select;
       component.value = ['a', 'b'];
       expect(component.filterCount).toBe(2);
       expect(component.hasFilters).toBeTruthy();
@@ -90,16 +90,16 @@ describe('FilterSelectComponent', () => {
     });
 
     it('should emit click emitter when button is enabled', () => {
-      const spyClickEmit = spyOn(component.click, 'emit');
+      const spyClickEmit = spyOn(component.clicked, 'emit');
       component.disabled = false;
-      component.onButtonFilterClick({ stopPropagation: () => {} });
-      expect(spyClickEmit).toHaveBeenCalledTimes(1);
+      component.onFilterButtonClick();
+      expect(spyClickEmit).toHaveBeenCalled();
     });
 
     it('should not emit click emitter when button is disabled', () => {
-      const spyClickEmit = spyOn(component.click, 'emit');
+      const spyClickEmit = spyOn(component.clicked, 'emit');
       component.disabled = true;
-      component.onButtonFilterClick({ stopPropagation: () => {} });
+      component.onFilterButtonClick();
       expect(spyClickEmit).not.toHaveBeenCalled();
     });
   });

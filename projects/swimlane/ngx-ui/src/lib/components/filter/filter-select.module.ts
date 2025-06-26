@@ -5,10 +5,11 @@ import { TooltipModule } from '../tooltip/tooltip.module';
 
 import { FilterSelectComponent } from './filter-select.component';
 import { SelectModule } from '../select/select.module';
+import { DropdownModule } from '../dropdown/dropdown.module';
 
 @NgModule({
   declarations: [FilterSelectComponent],
   exports: [FilterSelectComponent],
-  imports: [CommonModule, InViewportModule, TooltipModule, SelectModule]
+  imports: [CommonModule, InViewportModule, TooltipModule, SelectModule, DropdownModule]
 })
 export class FilterSelectModule {}
