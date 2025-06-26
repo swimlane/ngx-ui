@@ -1,12 +1,12 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FilterSelectComponent } from './filter.component';
+import { FilterComponent } from './filter.component';
 import { SelectDropdownOption } from '../select/select-dropdown-option.interface';
 import { FilterType } from './filter.type.enum';
 
-fdescribe('FilterSelectComponent', () => {
-  let component: FilterSelectComponent;
-  let fixture: ComponentFixture<FilterSelectComponent>;
+describe('FilterSelectComponent', () => {
+  let component: FilterComponent;
+  let fixture: ComponentFixture<FilterComponent>;
 
   const options: SelectDropdownOption[] = [
     { name: 'Option1', value: '1' },
@@ -17,12 +17,12 @@ fdescribe('FilterSelectComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [FilterSelectComponent]
+      declarations: [FilterComponent]
     });
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FilterSelectComponent);
+    fixture = TestBed.createComponent(FilterComponent);
     component = fixture.componentInstance;
     component.options = options;
   });
