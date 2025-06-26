@@ -3,155 +3,155 @@
   <ngx-tab label="Examples">
     <ngx-section class="shadow" sectionTitle="Select Filter">
       <h4>Basic</h4>
-      <ngx-filter-select [filterable]="false" label="Category" style="display: inline-block">
+      <ngx-filter [filterable]="false" label="Category" style="display: inline-block">
         <ngx-select-option name="Selection" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-      </ngx-filter-select>
+      </ngx-filter>
       <app-prism>
-        <![CDATA[<ngx-filter-select [filterable]="false" label="Category" style="display: inline-block">
+        <![CDATA[<ngx-filter [filterable]="false" label="Category" style="display: inline-block">
           <ngx-select-option name="Selection" value="breach"></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter-select> ]]>
+        </ngx-filter> ]]>
       </app-prism>
       <br />
       <br />
       <br />
 
       <h4>No Label</h4>
-      <ngx-filter-select [filterable]="false">
+      <ngx-filter [filterable]="false">
         <ngx-select-option name="Selection" value="breach "></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-      </ngx-filter-select>
+      </ngx-filter>
       <app-prism>
-        <![CDATA[<ngx-filter-select [filterable]="false">
+        <![CDATA[<ngx-filter [filterable]="false">
           <ngx-select-option name="Selection" value="breach "></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter-select> ]]>
+        </ngx-filter> ]]>
       </app-prism>
       <br />
       <br />
       <br />
 
       <h4>Custom placeholder for no selection</h4>
-      <ngx-filter-select [filterable]="false" [placeholder]="'No Selection'" label="Category">
+      <ngx-filter [filterable]="false" [placeholder]="'No Selection'" label="Category">
         <ngx-select-option name="Selection" value="breach asd asd ajsdh sf sajdf asjkfhasd lkasd "></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-      </ngx-filter-select>
+      </ngx-filter>
       <app-prism>
-        <![CDATA[<ngx-filter-select [filterable]="false" [placeholder]="'No Selection'" label="Category">
+        <![CDATA[<ngx-filter [filterable]="false" [placeholder]="'No Selection'" label="Category">
           <ngx-select-option name="Selection" value="breach asd asd ajsdh sf sajdf asjkfhasd lkasd "></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter-select> ]]>
+        </ngx-filter> ]]>
       </app-prism>
       <br />
       <br />
       <br />
 
       <h4>Multi-select</h4>
-      <ngx-filter-select [filterable]="false" label="Categories" multiple="true">
+      <ngx-filter [filterable]="false" label="Categories" multiple="true">
         <ngx-select-option name="Selection" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-      </ngx-filter-select>
+      </ngx-filter>
       <app-prism>
-        <![CDATA[<ngx-filter-select [filterable]="false" label="Categories" multiple="true">
+        <![CDATA[<ngx-filter [filterable]="false" label="Categories" multiple="true">
           <ngx-select-option name="Selection" value="breach"></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter-select> ]]>
+        </ngx-filter> ]]>
       </app-prism>
       <br />
       <br />
       <br />
 
-      <h4>Dropdown filter</h4>
-      <ngx-filter-select [filterable]="true" label="Categories" multiple="true">
+      <h4>Filter</h4>
+      <ngx-filter [filterable]="true" label="Categories" multiple="true">
         <ngx-select-option name="Selection" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-      </ngx-filter-select>
+      </ngx-filter>
       <app-prism>
-        <![CDATA[<ngx-filter-select [filterable]="true" label="Categories" multiple="true">
+        <![CDATA[<ngx-filter [filterable]="true" label="Categories" multiple="true">
           <ngx-select-option name="Selection" value="breach"></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter-select> ]]>
+        </ngx-filter> ]]>
       </app-prism>
       <br />
       <br />
       <br />
 
       <h4>Objects with Grouping</h4>
-      <ngx-filter-select [groupBy]="'type'">
+      <ngx-filter [groupBy]="'type'">
         <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
         <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
         <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
-      </ngx-filter-select>
+      </ngx-filter>
       <app-prism>
-        <![CDATA[<ngx-filter-select [groupBy]="'type'">
+        <![CDATA[<ngx-filter [groupBy]="'type'">
           <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
           <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
           <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
-        </ngx-filter-select> ]]>
+        </ngx-filter> ]]>
       </app-prism>
       <br />
       <br />
       <br />
 
       <h4>Disabled</h4>
-      <ngx-filter-select label="Category" [disabled]="true">
+      <ngx-filter label="Category" [disabled]="true">
         <ngx-select-option name="Selection" value="breach "></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-      </ngx-filter-select>
+      </ngx-filter>
       <app-prism>
-        <![CDATA[<ngx-filter-select label="Category" [disabled]="true">
+        <![CDATA[<ngx-filter label="Category" [disabled]="true">
           <ngx-select-option name="Selection" value="breach "></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter-select> ]]>
+        </ngx-filter> ]]>
       </app-prism>
       <br />
       <br />
       <br />
 
       <h4>Large ngFor with Default Selections</h4>
-      <ngx-filter-select [identifier]="'attr'" [ngModel]="[selects[0]]" label="Selection">
+      <ngx-filter [identifier]="'attr'" [ngModel]="[selects[0]]" label="Selection">
         <ngx-select-option *ngFor="let option of selects" [name]="option.name" [value]="option"> </ngx-select-option>
-      </ngx-filter-select>
+      </ngx-filter>
       <app-prism>
-        <![CDATA[<ngx-filter-select [identifier]="'attr'" [ngModel]="[selects[0]]" label="Selection">
+        <![CDATA[<ngx-filter [identifier]="'attr'" [ngModel]="[selects[0]]" label="Selection">
           <ngx-select-option *ngFor="let option of selects" [name]="option.name" [value]="option"> </ngx-select-option>
-        </ngx-filter-select> ]]>
+        </ngx-filter> ]]>
       </app-prism>
       <br />
       <br />
       <br />
 
       <h4>Async options</h4>
-      <ngx-filter-select (keyup)="search($event.value)">
+      <ngx-filter (keyup)="search($event.value)">
         <ngx-select-option
           *ngFor="let option of asyncOptions$ | async"
           [name]="option.title"
           [value]="option"
           [disabled]="option.disabled"
         ></ngx-select-option>
-      </ngx-filter-select>
+      </ngx-filter>
       <app-prism>
-        <![CDATA[<ngx-filter-select (keyup)="search($event.value)">
+        <![CDATA[<ngx-filter (keyup)="search($event.value)">
           <ngx-select-option
             *ngFor="let option of asyncOptions$ | async"
             [name]="option.title"
             [value]="option"
             [disabled]="option.disabled"
           ></ngx-select-option>
-        </ngx-filter-select>]]>
+        </ngx-filter>]]>
       </app-prism>
       <br />
       <br />
@@ -159,19 +159,19 @@
 
       <h4>Items popup position</h4>
       <div class="div-options-position">
-        <ngx-filter-select label="Selection" [filterable]="false" [itemsPosition]="'right'">
+        <ngx-filter label="Selection" [filterable]="false" [itemsPosition]="'right'">
           <ngx-select-option name="Breach" value="breach"></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter-select> 
+        </ngx-filter> 
       </div>
       
       <app-prism>
-        <![CDATA[<ngx-filter-select label="Selection" [filterable]="false" [itemsPosition]="'right'">
+        <![CDATA[<ngx-filter label="Selection" [filterable]="false" [itemsPosition]="'right'">
           <ngx-select-option name="Breach" value="breach"></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter-select> ]]>
+        </ngx-filter> ]]>
       </app-prism>
       <br />
       <br />
@@ -179,45 +179,45 @@
 
       <h4>Auto Select All</h4>
 
-       <ngx-filter-select [identifier]="'attr'" [ngModel]="selectsModel" label="Selection" [filterable]="true" [multiple]="true" [autoSelectAll]="true">
+       <ngx-filter [identifier]="'attr'" [ngModel]="selectsModel" label="Selection" [filterable]="true" [multiple]="true" [autoSelectAll]="true">
         <ngx-select-option *ngFor="let option of selectsSmall" [name]="option.name" [value]="option"> </ngx-select-option>
-       </ngx-filter-select> 
+       </ngx-filter> 
 
       <app-prism>
-        <![CDATA[ <ngx-filter-select [identifier]="'attr'" [ngModel]="selectsModel" label="Selection" [filterable]="true" [multiple]="true" [autoSelectAll]="true">
+        <![CDATA[ <ngx-filter [identifier]="'attr'" [ngModel]="selectsModel" label="Selection" [filterable]="true" [multiple]="true" [autoSelectAll]="true">
           <ngx-select-option *ngFor="let option of selectsSmall" [name]="option.name" [value]="option"> </ngx-select-option>
-        </ngx-filter-select>   ]]>
+        </ngx-filter>   ]]>
       </app-prism>
       <br />
       <br />
       <br />
 
       <h4>Icon</h4>
-        <ngx-filter-select label="Selection" [filterable]="false" [ngxIconClass]="'ngx-calendar'">
+        <ngx-filter label="Selection" [filterable]="false" [ngxIconClass]="'ngx-calendar'">
           <ngx-select-option name="Breach" value="breach"></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter-select>  
+        </ngx-filter>  
       
       <app-prism>
-        <![CDATA[<ngx-filter-select label="Selection" [filterable]="false" [ngxIconClass]="'ngx-calendar'">
+        <![CDATA[<ngx-filter label="Selection" [filterable]="false" [ngxIconClass]="'ngx-calendar'">
           <ngx-select-option name="Breach" value="breach"></ngx-select-option>
           <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter-select> ]]>
+        </ngx-filter> ]]>
       </app-prism>
       <br />
       <br />
       <br />
 
       <h4>Event emitters</h4>
-      <ngx-filter-select [filterable]="true" label="Category" style="display: inline-block" (clicked)="onDropdownClick()" 
+      <ngx-filter [filterable]="true" label="Category" style="display: inline-block" (clicked)="onDropdownClick()" 
         (change)="onDropdownChange($event)" (keyup)="onDropdownKeyup($event)" (toggle)="onDropdownToggle($event)"
         (clearQueryFilter)="onDropDownClearQuery()">
         <ngx-select-option name="Selection" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-      </ngx-filter-select>
+      </ngx-filter>
        <p>Click: {{dropdownClicks}}</p>
        <p>Change: {{ dropdownChange }}</p>
        <p>Keyup: {{ dropdownKeyUp | json }}</p>
@@ -225,13 +225,13 @@
        <p>Toggle: {{ dropdownToggle }}</p>
 
       <app-prism>
-        <![CDATA[<ngx-filter-select [filterable]="true" label="Category" style="display: inline-block" 
+        <![CDATA[<ngx-filter [filterable]="true" label="Category" style="display: inline-block" 
           (clicked)="onDropdownClick()" (change)="onDropdownChange($event)" (keyup)="onDropdownKeyup($event)" 
           (toggle)="onDropdownToggle($event)" (clearQueryFilter)="onDropDownClearQuery()">
             <ngx-select-option name="Selection" value="breach"></ngx-select-option>
             <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
             <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-        </ngx-filter-select>]]>
+        </ngx-filter>]]>
       </app-prism>
       <br />
       <br />
@@ -240,13 +240,13 @@
 
     <ngx-section class="shadow" sectionTitle="Custom Dropdown">
       <h4>Basic</h4>
-      <ngx-filter-select label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig"></ngx-filter-select>
+      <ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig"></ngx-filter>
       <br />
       <br />
       <ngx-tabs>
         <ngx-tab label="Markup">
           <app-prism>
-            <![CDATA[<ngx-filter-select label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig"></ngx-filter-select>]]>
+            <![CDATA[<ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig"></ngx-filter>]]>
           </app-prism>
         </ngx-tab>
         <ngx-tab label="Typescript">
@@ -264,14 +264,14 @@
 
       <h4>Items popup position</h4>
       <div class="div-options-position">
-        <ngx-filter-select label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig" [itemsPosition]="'right'"></ngx-filter-select>
+        <ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig" [itemsPosition]="'right'"></ngx-filter>
       </div>
       <br />
       <br />
       <ngx-tabs>
         <ngx-tab label="Markup">
           <app-prism>
-            <![CDATA[<ngx-filter-select label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig" [itemsPosition]="'right'"></ngx-filter-select>]]>
+            <![CDATA[<ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig" [itemsPosition]="'right'"></ngx-filter>]]>
           </app-prism>
         </ngx-tab>
         <ngx-tab label="Typescript">
@@ -288,13 +288,13 @@
       <br/>
 
       <h4>Show Dropdown Caret</h4>
-      <ngx-filter-select label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterCaretConfig"></ngx-filter-select>
+      <ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterCaretConfig"></ngx-filter>
       <br />
       <br />
       <ngx-tabs>
         <ngx-tab label="Markup">
           <app-prism>
-            <![CDATA[<ngx-filter-select label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterCaretConfig"></ngx-filter-select>]]>
+            <![CDATA[<ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterCaretConfig"></ngx-filter>]]>
           </app-prism>
         </ngx-tab>
         <ngx-tab label="Typescript">
@@ -312,13 +312,13 @@
       <br/>
 
       <h4>Disabled</h4>
-      <ngx-filter-select label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig" [disabled]="true"></ngx-filter-select>
+      <ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig" [disabled]="true"></ngx-filter>
       <br />
       <br />
       <ngx-tabs>
         <ngx-tab label="Markup">
           <app-prism>
-            <![CDATA[<ngx-filter-select label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig" [disabled]="true"></ngx-filter-select>]]>
+            <![CDATA[<ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig" [disabled]="true"></ngx-filter>]]>
           </app-prism>
         </ngx-tab>
         <ngx-tab label="Typescript">
@@ -335,13 +335,13 @@
       <br/>
 
       <h4>CloseOnClick and CloseOnOutsideClick</h4>
-      <ngx-filter-select label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterCloseConfig"></ngx-filter-select>
+      <ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterCloseConfig"></ngx-filter>
       <br />
       <br />
       <ngx-tabs>
         <ngx-tab label="Markup">
           <app-prism>
-            <![CDATA[<ngx-filter-select label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterCloseConfig"></ngx-filter-select>]]>
+            <![CDATA[<ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterCloseConfig"></ngx-filter>]]>
           </app-prism>
         </ngx-tab>
         <ngx-tab label="Typescript">
@@ -360,18 +360,18 @@
       <br/>
 
       <h4>&#64;Inputs and &#64;Outputs of custom component</h4>
-      <ngx-filter-select label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterConfig" 
+      <ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterConfig" 
         [filterCount]="customDropdownFilterCount" [ngxIconClass]="'ngx-repeat'" [ngxIconPosition]="'left'">
-      </ngx-filter-select>
+      </ngx-filter>
       <p>Emitted by myCustomComponentOutput1: {{ customDropdownText }}</p>
       <p>Emitted by myCustomComponentOutput2: {{ customDropdownFilterCount }}</p>
       <br />
       <ngx-tabs>
         <ngx-tab label="Markup">
           <app-prism>
-            <![CDATA[<ngx-filter-select label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterConfig" 
+            <![CDATA[<ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterConfig" 
               [filterCount]="customDropdownFilterCount" [ngxIconClass]="'ngx-repeat'" [ngxIconPosition]="'left'">
-            </ngx-filter-select>]]>
+            </ngx-filter>]]>
           </app-prism>
         </ngx-tab>
         <ngx-tab label="Typescript">
@@ -419,14 +419,14 @@
       <br/>
 
       <h4>Custom Css Class</h4>
-      <ngx-filter-select label="Region" [type]="'customDropdown'" [customDropdownConfig]="customDropdownConfigTreeCss" [ngxIconClass]="'ngx-map'"
-      ></ngx-filter-select>
+      <ngx-filter label="Region" [type]="'customDropdown'" [customDropdownConfig]="customDropdownConfigTreeCss" [ngxIconClass]="'ngx-map'"
+      ></ngx-filter>
       <br/>
       <ngx-tabs>
         <ngx-tab label="Markup">
           <app-prism>
-            <![CDATA[<ngx-filter-select label="Region" [type]="'customDropdown'" [customDropdownConfig]="customDropdownConfigTreeCss" [ngxIconClass]="'ngx-map'"
-            ></ngx-filter-select>]]>
+            <![CDATA[<ngx-filter label="Region" [type]="'customDropdown'" [customDropdownConfig]="customDropdownConfigTreeCss" [ngxIconClass]="'ngx-map'"
+            ></ngx-filter>]]>
           </app-prism>
         </ngx-tab>
         <ngx-tab label="Typescript">
@@ -445,18 +445,18 @@
       </ngx-tabs>
 
       <h4>Event Emitters</h4>
-      <ngx-filter-select label="Region" [type]="'customDropdown'" [customDropdownConfig]="customDropdownConfigTree" [ngxIconClass]="'ngx-map'"
+      <ngx-filter label="Region" [type]="'customDropdown'" [customDropdownConfig]="customDropdownConfigTree" [ngxIconClass]="'ngx-map'"
         (clicked)="onCustomDropdownClick()" (toggle)="onCustomDropdownToggle($event)">
-      </ngx-filter-select>
+      </ngx-filter>
       <p>Clicked: {{ customDropdownClicks }}</p>
       <p>Toggle: {{ customDropdownToggle }}</p>
       <br/>
       <ngx-tabs>
         <ngx-tab label="Markup">
           <app-prism>
-            <![CDATA[<ngx-filter-select label="Region" [type]="'customDropdown'" [customDropdownConfig]="customDropdownConfigTree" [ngxIconClass]="'ngx-map'"
+            <![CDATA[<ngx-filter label="Region" [type]="'customDropdown'" [customDropdownConfig]="customDropdownConfigTree" [ngxIconClass]="'ngx-map'"
               (clicked)="onCustomDropdownClick()" (toggle)="onCustomDropdownToggle($event)">
-            </ngx-filter-select>]]>
+            </ngx-filter>]]>
           </app-prism>
         </ngx-tab>
         <ngx-tab label="Typescript">
@@ -478,23 +478,23 @@
 
     <ngx-section class="shadow" sectionTitle="Button Filter">
       <h4>Basic</h4>
-      <ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" >
-      </ngx-filter-select>  
+      <ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" >
+      </ngx-filter>  
 
       <app-prism>
-        <![CDATA[<ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" >
-        </ngx-filter-select>]]>
+        <![CDATA[<ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" >
+        </ngx-filter>]]>
       </app-prism>
       <br />
       <br />
       <br />
 
       <h4>Disabled</h4>
-      <ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [disabled]="true" >
-      </ngx-filter-select>  
+      <ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [disabled]="true" >
+      </ngx-filter>  
       <app-prism>
-        <![CDATA[<ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [disabled]="true">
-        </ngx-filter-select>]]>
+        <![CDATA[<ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [disabled]="true">
+        </ngx-filter>]]>
       </app-prism>
       <br />
       <br />
@@ -502,54 +502,54 @@
 
       <h4>Icon Position</h4>
       <div class="div-options-position">
-        <ngx-filter-select label="Selection 1" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'">
-        </ngx-filter-select>  
-        <ngx-filter-select label="Selection 2" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'right'">
-        </ngx-filter-select>  
+        <ngx-filter label="Selection 1" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'">
+        </ngx-filter>  
+        <ngx-filter label="Selection 2" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'right'">
+        </ngx-filter>  
       </div>
 
       <app-prism>
-        <![CDATA[<ngx-filter-select label="Selection 1" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'">
-        </ngx-filter-select>  
-        <ngx-filter-select label="Selection 2" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'right'">
-        </ngx-filter-select>]]>
+        <![CDATA[<ngx-filter label="Selection 1" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'">
+        </ngx-filter>  
+        <ngx-filter label="Selection 2" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'right'">
+        </ngx-filter>]]>
       </app-prism>
       <br />
       <br />
       <br />
 
       <h4>Count badge visible</h4>
-      <ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="3">
-      </ngx-filter-select> 
+      <ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="3">
+      </ngx-filter> 
       
       <app-prism>
-        <![CDATA[<ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="3">
-        </ngx-filter-select>]]>
+        <![CDATA[<ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="3">
+        </ngx-filter>]]>
       </app-prism>
       <br />
       <br />
       <br />
 
       <h4>Count badge hidden</h4>
-      <ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="3" [showCount]="false">
-      </ngx-filter-select> 
+      <ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="3" [showCount]="false">
+      </ngx-filter> 
       
       <app-prism>
-        <![CDATA[<ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="3" [showCount]="false">
-        </ngx-filter-select>]]>
+        <![CDATA[<ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="3" [showCount]="false">
+        </ngx-filter>]]>
       </app-prism>
       <br />
       <br />
       <br />
 
       <h4>Event emitters</h4>
-      <ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="1" (clicked)="onButtonClick()">
-      </ngx-filter-select> 
+      <ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="1" (clicked)="onButtonClick()">
+      </ngx-filter> 
       <p>Click: {{buttonClicks}}</p>
       
       <app-prism>
-        <![CDATA[<ngx-filter-select label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="1" (clicked)="onButtonClick()">
-      </ngx-filter-select>]]>
+        <![CDATA[<ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'" [filterCount]="1" (clicked)="onButtonClick()">
+      </ngx-filter>]]>
       </app-prism>
       <br />
       <br />
@@ -559,13 +559,13 @@
   </ngx-tab>
   <ngx-tab label="API">
     <h3>Table of Contents</h3>
-    <a class="documentation-content" (click)="scrollTo('ngx-filter-select-inputs')">ngx-filter-select Inputs</a>
-    <a class="documentation-content" (click)="scrollTo('ngx-filter-select-outputs')">ngx-filter-select Outputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-filter-inputs')">ngx-filter Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-filter-outputs')">ngx-filter Outputs</a>
     <a class="documentation-content" (click)="scrollTo('ngx-select-option-inputs')">ngx-select-option Inputs</a>
     <a class="documentation-content" (click)="scrollTo('ngx-select-option-outputs')">ngx-select-option Outputs</a>
     <hr />
 
-    <h3 class="style-header" id="ngx-filter-select-inputs">ngx-filter-select Inputs</h3>
+    <h3 class="style-header" id="ngx-filter-inputs">ngx-filter Inputs</h3>
     <table class="table documentation-table">
       <thead>
         <tr>
@@ -734,7 +734,7 @@
         <tr>
           <th>
             <code class="component-type">>&#64;Input()</code>
-            <code>itemsPosition: FilterSelectItemPositionTypes</code>
+            <code>itemsPosition: FilterItemPositionTypes</code>
           </th>
           <td>The position where the items popup is going to be displayed ('left', 'right'). 'Left' is the default value.</td>
         </tr>
@@ -804,7 +804,7 @@
       </tbody>
     </table>
     <hr />
-    <h3 class="style-header" id="ngx-filter-select-outputs">ngx-filter-select Outputs</h3>
+    <h3 class="style-header" id="ngx-filter-outputs">ngx-filter Outputs</h3>
     <table class="table documentation-table">
       <thead>
         <tr>

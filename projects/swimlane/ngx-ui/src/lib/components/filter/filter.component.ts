@@ -28,7 +28,7 @@ import { SelectDropdownComponent } from '../select/select-dropdown.component';
 
 import { SelectOptionDirective } from '../select/select-option.directive';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
-import { FilterSelectItemPositionTypes } from './filter-select.items-position-types.enum';
+import { FilterItemPositionTypes } from './filter.items-position-types.enum';
 import { FilterType } from './filter.type.enum';
 import { FilterIconPositionTypes } from './filter.icon-position-types.enum';
 import { FilterCustomDropDown } from './filter.custom-component.interface';
@@ -38,7 +38,7 @@ let nextId = 0;
 
 const FILTER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => FilterSelectComponent),
+  useExisting: forwardRef(() => FilterComponent),
   multi: true
 };
 
@@ -47,12 +47,12 @@ function arrayEquals(a, b) {
 }
 
 @Component({
-  exportAs: 'ngxFilterSelect',
-  selector: 'ngx-filter-select',
-  templateUrl: './filter-select.component.html',
-  styleUrls: ['./filter-select.component.scss'],
+  exportAs: 'ngxFilter',
+  selector: 'ngx-filter',
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.scss'],
   host: {
-    class: 'ngx-filter-select',
+    class: 'ngx-filter',
     '[id]': 'id',
     '[attr.name]': 'name',
     '[class.multi-selection]': 'multiple',
@@ -71,8 +71,8 @@ function arrayEquals(a, b) {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false
 })
-export class FilterSelectComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
-  @Input() id = `filter-select-${++nextId}`;
+export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
+  @Input() id = `filter-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
   @Input() placeholder = 'All';
@@ -83,7 +83,7 @@ export class FilterSelectComponent implements ControlValueAccessor, AfterViewIni
   @Input() options: SelectDropdownOption[] = [];
   @Input() identifier: string;
   @Input() appearance = Appearance.Legacy;
-  @Input() itemsPosition = FilterSelectItemPositionTypes.Left;
+  @Input() itemsPosition = FilterItemPositionTypes.Left;
   @Input() ngxIconPosition = FilterIconPositionTypes.Left;
   @Input() ngxIconClass: string;
   @Input() type = FilterType.Select;
@@ -170,7 +170,7 @@ export class FilterSelectComponent implements ControlValueAccessor, AfterViewIni
   @ViewChild('dynamicContainer', { read: ViewContainerRef })
   dynamicContainer: ViewContainerRef;
 
-  readonly FilterSelectItemPositionTypes = FilterSelectItemPositionTypes;
+  readonly FilterItemPositionTypes = FilterItemPositionTypes;
   readonly FilterType = FilterType;
   readonly FilterIconPositionTypes = FilterIconPositionTypes;
 

@@ -41,8 +41,8 @@
 
   <ngx-select-dropdown
     *ngIf="dropdownVisible"
-    [class.ngx-select-dropdown--left]="itemsPosition === FilterSelectItemPositionTypes.Left"
-    [class.ngx-select-dropdown--right]="itemsPosition === FilterSelectItemPositionTypes.Right"
+    [class.ngx-select-dropdown--left]="itemsPosition === FilterItemPositionTypes.Left"
+    [class.ngx-select-dropdown--right]="itemsPosition === FilterItemPositionTypes.Right"
     [focusIndex]="focusIndex"
     [filterQuery]="filterQuery"
     [filterPlaceholder]="filterPlaceholder"
@@ -79,7 +79,7 @@
       <ngx-dropdown-toggle (toggle)="onCustomDropdownToggle()" [disabled]="disabled">
         <ng-container *ngTemplateOutlet="buttonControlTemplate"></ng-container>
       </ngx-dropdown-toggle>
-      <ngx-dropdown-menu [class.align-right]="itemsPosition === FilterSelectItemPositionTypes.Right">
+      <ngx-dropdown-menu [class.align-right]="itemsPosition === FilterItemPositionTypes.Right">
         <div class="ngx-filter-dynamic-wrapper" [ngClass]="customDropdownConfig.containerClasses">
           <ng-container #dynamicContainer></ng-container>
         </div>

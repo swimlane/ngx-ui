@@ -1,6 +1,6 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FilterSelectComponent } from './filter-select.component';
+import { FilterSelectComponent } from './filter.component';
 import { SelectDropdownOption } from '../select/select-dropdown-option.interface';
 import { FilterType } from './filter.type.enum';
 
