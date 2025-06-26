@@ -359,7 +359,7 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
 
     this.toggleDropdown(!this.dropdownActive);
     this.onTouchedCallback();
-    console.log(event);
+
     this.clicked.emit();
   }
 
