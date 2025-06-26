@@ -6,16 +6,17 @@
 
 - Feature: Added support for Angular 20
 - Breaking: Removed support for Angular 17
+- Breaking: Renamed ngx-filter-select to ngx-filter
+- Enhancement (`ngx-filter`): Added support to render an icon and set its position
+- Enhancement (`ngx-filter`): Added support to display the options popup at the right or left of the select
+- Enhancement (`ngx-filter`): Added support to select the SelectAll option automatically when all the options are selected
+- Enhancement (`ngx-filter`): Added support to set a filter type (select, button and customDropdown)
+- Enhancement (`ngx-filter`): Added a new output to emit an event when the filter is clicked
 
 ## 49.3.0 (2025-06-18)
 
 - Feature (`ngx-calendar`): Added new `@Input` named `showStartTimeInputs` and `showEndTimeInputs` set to a `boolean`
 - Feature (`ngx-column`): Added a new column component
-- Enhancement (`ngx-filter-select`): Added support to render an icon and its position
-- Enhancement (`ngx-filter-select`): Added support to display the options popup at the right or left of the select
-- Enhancement (`ngx-filter-select`): Added support to select the SelectAll option automatically when all the options are selected
-- Enhancement (`ngx-filter-select`): Added support to set a filter type (button and dropdown)
-- Enhancement (`ngx-filter-select`): Added a new output to emit an event when the filter is clicked
 
 ## 49.2.1 (2025-06-18)
 
