@@ -4,7 +4,7 @@ import { FilterComponent } from './filter.component';
 import { SelectDropdownOption } from '../select/select-dropdown-option.interface';
 import { FilterType } from './filter.type.enum';
 
-describe('FilterSelectComponent', () => {
+describe('FilterComponent', () => {
   let component: FilterComponent;
   let fixture: ComponentFixture<FilterComponent>;
 
