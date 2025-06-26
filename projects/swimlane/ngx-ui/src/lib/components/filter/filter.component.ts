@@ -31,7 +31,7 @@ import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
 import { FilterItemPositionTypes } from './filter.items-position-types.enum';
 import { FilterType } from './filter.type.enum';
 import { FilterIconPositionTypes } from './filter.icon-position-types.enum';
-import { FilterCustomDropDown } from './filter.custom-component.interface';
+import { FilterCustomDropdown } from './filter.custom-component.interface';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 
 let nextId = 0;
@@ -90,7 +90,7 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   @Input() set filterCount(value: number) {
     this._filterCount = value;
   }
-  @Input() customDropdownConfig: FilterCustomDropDown = null;
+  @Input() customDropdownConfig: FilterCustomDropdown = null;
 
   @Input()
   @CoerceBooleanProperty()

@@ -7,6 +7,7 @@ import { FilterComponent } from './filter.component';
 import { SelectModule } from '../select/select.module';
 import { DropdownModule } from '../dropdown/dropdown.module';
 
+export { FilterCustomDropdown } from './filter.custom-component.interface';
 @NgModule({
   declarations: [FilterComponent],
   exports: [FilterComponent],

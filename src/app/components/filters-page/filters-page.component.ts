@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { TreeComponent } from '@swimlane/ngx-ui';
-import { FilterCustomDropDown } from '@swimlane/ngx-ui/components/filter/filter.custom-component.interface';
+import { FilterCustomDropdown } from '@swimlane/ngx-ui/components/filter/filter.custom-component.interface';
 import { Observable } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
 import { switchMap } from 'rxjs/operators';
@@ -51,12 +51,12 @@ export class FiltersPageComponent implements OnInit {
     formCtrl2: new UntypedFormControl({ value: [], disabled: true }),
     formCtrl3: new UntypedFormControl(['ddos'], [forbiddenNameValidator(/ddos/)])
   });
-  customDropdownCounterBasicConfig: FilterCustomDropDown;
-  customDropdownCounterCaretConfig: FilterCustomDropDown;
-  customDropdownCounterCloseConfig: FilterCustomDropDown;
-  customDropdownCounterConfig: FilterCustomDropDown;
-  customDropdownConfigTreeCss: FilterCustomDropDown;
-  customDropdownConfigTree: FilterCustomDropDown;
+  customDropdownCounterBasicConfig: FilterCustomDropdown;
+  customDropdownCounterCaretConfig: FilterCustomDropdown;
+  customDropdownCounterCloseConfig: FilterCustomDropdown;
+  customDropdownCounterConfig: FilterCustomDropdown;
+  customDropdownConfigTreeCss: FilterCustomDropdown;
+  customDropdownConfigTree: FilterCustomDropdown;
 
   aLongString = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
   aVeryLongString =

@@ -15,7 +15,7 @@ export interface FilterCustomDropdownConfig {
   options?: FilterCustomDropdownComponentOptions;
 }
 
-export interface FilterCustomDropDown {
+export interface FilterCustomDropdown {
   component: FilterCustomDropdownConfig;
   closeOnClick?: boolean;
   closeOnOutsideClick?: boolean;
