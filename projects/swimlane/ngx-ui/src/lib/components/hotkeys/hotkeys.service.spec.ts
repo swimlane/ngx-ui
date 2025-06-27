@@ -32,7 +32,7 @@ describe('HotkeysService', () => {
         description: 'test'
       });
 
-      expect(service.hotkeys['ctrl+h']).toBeDefined();
+      expect(service.hotKeys['ctrl+h']).toBeDefined();
     });
 
     it('should add hotkey with allowIn filter', () => {
@@ -43,7 +43,7 @@ describe('HotkeysService', () => {
         allowIn: ['input']
       });
 
-      expect(service.hotkeys['mod+h']).toBeDefined();
+      expect(service.hotKeys['mod+h']).toBeDefined();
     });
 
     it('should add hotkey to arrow if one already exists for combo', () => {
@@ -61,7 +61,7 @@ describe('HotkeysService', () => {
         visible: true
       });
 
-      expect(service.hotkeys['ctrl+h'].length).toBe(2);
+      expect(service.hotKeys['ctrl+h'].length).toBe(2);
     });
   });
 
@@ -75,8 +75,8 @@ describe('HotkeysService', () => {
         description: 'test'
       });
 
-      expect(service.hotkeys['ctrl+h'].length).toBe(1);
-      service.hotkeys['ctrl+h'][0].callback();
+      expect(service.hotKeys['ctrl+h'].length).toBe(1);
+      service.hotKeys['ctrl+h'][0].callback();
     });
   });
 
@@ -97,7 +97,7 @@ describe('HotkeysService', () => {
 
     it('should suspend hotkey', () => {
       service.suspend('test');
-      expect(service.hotkeys['ctrl+h'][0].status).toEqual(HotkeyStatus.Suspended);
+      expect(service.hotKeys['ctrl+h'][0].status).toEqual(HotkeyStatus.Suspended);
     });
   });
 
@@ -118,7 +118,7 @@ describe('HotkeysService', () => {
 
     it('should pause hotkey', () => {
       service.pauseOthers('test');
-      expect(service.hotkeys['ctrl+h'][1].status).toContain('*');
+      expect(service.hotKeys['ctrl+h'][1].status).toContain('*');
     });
   });
 
@@ -139,9 +139,9 @@ describe('HotkeysService', () => {
 
     it('should unpause hotkey', () => {
       service.pauseOthers('test');
-      expect(service.hotkeys['ctrl+h'][1].status).toContain('*');
+      expect(service.hotKeys['ctrl+h'][1].status).toContain('*');
       service.unpauseOthers('test');
-      expect(service.hotkeys['ctrl+h'][1].status).not.toContain('*');
+      expect(service.hotKeys['ctrl+h'][1].status).not.toContain('*');
     });
   });
 
@@ -163,7 +163,7 @@ describe('HotkeysService', () => {
 
     it('should activate all hotkeys of component', () => {
       service.activate('test');
-      expect(service.hotkeys['ctrl+h'][0].status).toEqual(HotkeyStatus.Active);
+      expect(service.hotKeys['ctrl+h'][0].status).toEqual(HotkeyStatus.Active);
     });
   });
 
@@ -190,13 +190,13 @@ describe('HotkeysService', () => {
 
     it('should remove hotkey from list', () => {
       service.deregister('test');
-      expect(service.hotkeys['ctrl+h'].length).toBe(1);
+      expect(service.hotKeys['ctrl+h'].length).toBe(1);
     });
 
     it('should unregister combination if no hotkeys in list', () => {
       service.deregister('test');
       service.deregister('test2');
-      expect(service.hotkeys['ctrl+h']).toEqual([]);
+      expect(service.hotKeys['ctrl+h']).toEqual([]);
     });
   });
 
@@ -205,29 +205,29 @@ describe('HotkeysService', () => {
     let target: any;
 
     beforeEach(() => {
-      fn = hk.Hotkey('ctrl+c', 'test');
+      fn = hk.HotKey('ctrl+c', 'test');
       target = {};
     });
 
     it('should add hotkey on init and remove on destroy', () => {
       fn(target, 'test');
       target.ngOnInit();
-      expect(service.hotkeys['ctrl+c'].length).toBe(1);
+      expect(service.hotKeys['ctrl+c'].length).toBe(1);
       target.ngOnDestroy();
-      expect(service.hotkeys['ctrl+c'].length).toBe(0);
+      expect(service.hotKeys['ctrl+c'].length).toBe(0);
     });
 
     it('should call original oninit and ondestroy of component', () => {
       target.ngOnInit = () => ({});
       target.ngOnDestroy = () => {
-        expect(service.hotkeys['ctrl+c'].length).toBe(1);
+        expect(service.hotKeys['ctrl+c'].length).toBe(1);
       };
 
       fn(target, 'test');
       target.ngOnInit();
-      expect(service.hotkeys['ctrl+c'].length).toBe(1);
+      expect(service.hotKeys['ctrl+c'].length).toBe(1);
       target.ngOnDestroy();
-      expect(service.hotkeys['ctrl+c'].length).toBe(0);
+      expect(service.hotKeys['ctrl+c'].length).toBe(0);
     });
   });
 });

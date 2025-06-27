@@ -33,6 +33,7 @@ module.exports = {
         '@angular-eslint/directive-class-suffix': 'off',
         '@angular-eslint/no-output-on-prefix': 'off',
         '@angular-eslint/prefer-standalone': 'off',
+        '@angular-eslint/prefer-inject': 'off',
         '@typescript-eslint/explicit-module-boundary-types': 'off',
         '@typescript-eslint/no-explicit-any': 'off'
       }

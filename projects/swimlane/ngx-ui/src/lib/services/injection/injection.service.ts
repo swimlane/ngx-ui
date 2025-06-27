@@ -4,7 +4,6 @@ import {
   Injectable,
   ViewContainerRef,
   ApplicationRef,
-  ComponentFactoryResolver,
   ComponentRef,
   Injector,
   EmbeddedViewRef,
@@ -39,11 +38,7 @@ export class InjectionService {
     InjectionService.globalRootViewContainer = container;
   }
 
-  constructor(
-    private applicationRef: ApplicationRef,
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private injector: Injector
-  ) {}
+  constructor(private applicationRef: ApplicationRef, private injector: Injector) {}
 
   /**
    * Gets the root view container to inject the component to.
@@ -149,12 +144,7 @@ export class InjectionService {
     const appendLocation =
       bindings.inputs && bindings.inputs.isRoot === false ? location : this.getComponentRootNode(location);
 
-    const portalHost = new DomPortalOutlet(
-      appendLocation as Element,
-      this.componentFactoryResolver,
-      this.applicationRef,
-      this.injector
-    );
+    const portalHost = new DomPortalOutlet(appendLocation as Element, this.applicationRef, this.injector);
 
     const portal = new ComponentPortal(componentClass);
 

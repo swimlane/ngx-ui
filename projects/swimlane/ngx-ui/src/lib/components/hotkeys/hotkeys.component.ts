@@ -31,7 +31,7 @@ export class HotkeysComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this._hotkeysService.changeEvent.pipe(takeUntil(this._destroy)).subscribe(this.updateHotkeys.bind(this));
-    this.updateHotkeys(this._hotkeysService.hotkeys);
+    this.updateHotkeys(this._hotkeysService.hotKeys);
   }
 
   ngOnDestroy(): void {

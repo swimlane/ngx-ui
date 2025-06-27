@@ -12,11 +12,12 @@ import {
   Renderer2,
   TemplateRef,
   ViewChild,
+  ViewContainerRef,
   ViewEncapsulation
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import type { QueryList } from '@angular/core';
+import type { AfterViewInit, QueryList } from '@angular/core';
 
 import { Appearance } from '../../mixins/appearance/appearance.enum';
 import { InViewportMetadata } from 'ng-in-viewport';
@@ -27,12 +28,17 @@ import { SelectDropdownComponent } from '../select/select-dropdown.component';
 
 import { SelectOptionDirective } from '../select/select-option.directive';
 import { CoerceBooleanProperty } from '../../utils/coerce/coerce-boolean';
+import { FilterItemPositionTypes } from './filter.items-position-types.enum';
+import { FilterType } from './filter.type.enum';
+import { FilterIconPositionTypes } from './filter.icon-position-types.enum';
+import { FilterCustomDropdown } from './filter.custom-component.interface';
+import { DropdownComponent } from '../dropdown/dropdown.component';
 
 let nextId = 0;
 
 const FILTER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,
-  useExisting: forwardRef(() => FilterSelectComponent),
+  useExisting: forwardRef(() => FilterComponent),
   multi: true
 };
 
@@ -41,12 +47,12 @@ function arrayEquals(a, b) {
 }
 
 @Component({
-  exportAs: 'ngxFilterSelect',
-  selector: 'ngx-filter-select',
-  templateUrl: './filter-select.component.html',
-  styleUrls: ['./filter-select.component.scss'],
+  exportAs: 'ngxFilter',
+  selector: 'ngx-filter',
+  templateUrl: './filter.component.html',
+  styleUrls: ['./filter.component.scss'],
   host: {
-    class: 'ngx-filter-select',
+    class: 'ngx-filter',
     '[id]': 'id',
     '[attr.name]': 'name',
     '[class.multi-selection]': 'multiple',
@@ -65,20 +71,33 @@ function arrayEquals(a, b) {
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false
 })
-export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
-  @Input() id = `filter-select-${++nextId}`;
+export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnDestroy {
+  @Input() id = `filter-${++nextId}`;
   @Input() name: string;
   @Input() label: string;
   @Input() placeholder = 'All';
   @Input() emptyPlaceholder = 'No options available';
   @Input() filterEmptyPlaceholder = 'No matches...';
   @Input() filterPlaceholder = 'Search';
-  @Input() forceDownwardOpening = false;
   @Input() groupBy: string;
-
   @Input() options: SelectDropdownOption[] = [];
   @Input() identifier: string;
   @Input() appearance = Appearance.Legacy;
+  @Input() itemsPosition = FilterItemPositionTypes.Left;
+  @Input() ngxIconPosition = FilterIconPositionTypes.Left;
+  @Input() ngxIconClass: string;
+  @Input() type = FilterType.Select;
+  @Input() set filterCount(value: number) {
+    this._filterCount = value;
+  }
+  @Input() customDropdownConfig: FilterCustomDropdown = null;
+
+  @Input()
+  @CoerceBooleanProperty()
+  forceDownwardOpening = false;
+  @Input()
+  @CoerceBooleanProperty()
+  autoSelectAll = false;
 
   @Input()
   get autosizeMinWidth(): number | string {
@@ -132,13 +151,28 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
   @CoerceBooleanProperty()
   disabled = false;
 
+  @Input()
+  @CoerceBooleanProperty()
+  showCount = true;
+
   @Output() change = new EventEmitter<any[]>();
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
   @Output() toggle = new EventEmitter<boolean>();
   @Output() clearQueryFilter = new EventEmitter<void>();
+  @Output() clicked = new EventEmitter<void>();
 
   @ViewChild(SelectDropdownComponent, { static: false })
   readonly selectDropdown: SelectDropdownComponent;
+
+  @ViewChild(DropdownComponent, { static: false })
+  readonly dropdownComponent: DropdownComponent;
+
+  @ViewChild('dynamicContainer', { read: ViewContainerRef })
+  dynamicContainer: ViewContainerRef;
+
+  readonly FilterItemPositionTypes = FilterItemPositionTypes;
+  readonly FilterType = FilterType;
+  readonly FilterIconPositionTypes = FilterIconPositionTypes;
 
   /**
    * Custom Template for groupBy
@@ -177,11 +211,15 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
   }
 
   get isSingleSelect() {
-    return !this.multiple;
+    return this.type === FilterType.Select && !this.multiple;
   }
 
   get hasSelections() {
-    return this.value && this.value.length > 0 && typeof this.value[0] !== 'undefined';
+    if (this.type === FilterType.Select) {
+      return this.value && this.value.length > 0 && typeof this.value[0] !== 'undefined';
+    } else {
+      return this.filterCount !== null && this.filterCount > 0;
+    }
   }
 
   get hasPlaceholder() {
@@ -211,16 +249,25 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
     return this.dropdownActive;
   }
 
+  get filterCount(): number {
+    return this.type === FilterType.Select ? this.value?.length : this._filterCount;
+  }
+
+  get dropdownActive(): boolean {
+    return this.type === FilterType.CustomDropdown ? this.dropdownComponent?.open : this._dropdownActive;
+  }
+
   toggleListener?: () => void;
   filterQuery: string;
   focusIndex = -1;
-  dropdownActive = false;
+  _dropdownActive = false;
   touched = false;
 
   private _optionTemplates: QueryList<SelectOptionDirective>;
   private _value: any[] = [];
   private _selection: any[] = [];
   private _autosizeMinWidth = '60px';
+  private _filterCount: number | null = null;
 
   constructor(
     private readonly _element: ElementRef,
@@ -228,8 +275,13 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
     private readonly _cdr: ChangeDetectorRef
   ) {}
 
+  ngAfterViewInit(): void {
+    this.createDynamicComponent();
+  }
+
   ngOnDestroy(): void {
     this.toggleDropdown(false);
+    this.dynamicContainer?.clear();
   }
 
   onDropdownSelection(selection: SelectDropdownOption, shouldClose = this.closeOnSelect || !this.multiple): void {
@@ -241,6 +293,10 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
       this.value = this.multiple ? [...this.value, selection.value] : [selection.value];
     }
     this.afterSelect(shouldClose);
+
+    if (this.autoSelectAll && this.multiple && this.showSelectAll && this.value?.length === this.options?.length) {
+      this.onSelectAll();
+    }
   }
 
   onDropdownDeselection(selection: SelectDropdownOption, shouldClose = this.closeOnSelect || !this.multiple): void {
@@ -303,12 +359,14 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
 
     this.toggleDropdown(!this.dropdownActive);
     this.onTouchedCallback();
+
+    this.clicked.emit();
   }
 
   toggleDropdown(state: boolean): void {
     if (this.dropdownActive === state) return;
 
-    this.dropdownActive = state;
+    this._dropdownActive = state;
 
     if (this.toggleListener) this.toggleListener();
     this.toggle.emit(this.dropdownActive);
@@ -327,7 +385,6 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
           .subscribe({ next: this.adjustMenuDirection.bind(this) });
       }
     }
-
     this._cdr.markForCheck();
   }
 
@@ -345,6 +402,14 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
     return this.caretVisible || this.clearVisible;
   }
 
+  get hasFilters(): boolean {
+    if (this.type === FilterType.Select) {
+      return this.value?.length > 0;
+    } else {
+      return this.filterCount !== null && this.filterCount > 0;
+    }
+  }
+
   onKeyUp({ event, value }: { event: KeyboardEvent; value?: string }): void {
     if (event && event.key === (KeyboardKeys.ARROW_DOWN as any) && this.focusIndex < this.options.length) {
       ++this.focusIndex;
@@ -358,6 +423,14 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
   onSelectAll() {
     this.onClear();
     this.onClose();
+  }
+
+  onFilterButtonClick(): void {
+    if (!this.disabled) this.clicked.emit();
+  }
+
+  onCustomDropdownToggle(): void {
+    this.toggle.emit(!this.dropdownComponent.open);
   }
 
   writeValue(val: any[]): void {
@@ -382,6 +455,15 @@ export class FilterSelectComponent implements ControlValueAccessor, OnDestroy {
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  createDynamicComponent(): void {
+    if (!this.dynamicContainer || !this.customDropdownConfig?.component || this.type !== FilterType.CustomDropdown)
+      return;
+    this.dynamicContainer?.createComponent(
+      this.customDropdownConfig.component.type,
+      this.customDropdownConfig.component.options ?? {}
+    );
   }
 
   private findIndex(selection: SelectDropdownOption) {

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { DialogService, Hotkey, HotkeysService } from '@swimlane/ngx-ui';
+import { DialogService, HotKey, HotkeysService } from '@swimlane/ngx-ui';
 
 @Component({
   selector: 'app-hotkeys-page',
@@ -27,14 +27,14 @@ export class HotkeysPageComponent implements OnInit, OnDestroy {
     this.hotkeysService.deregister('mod+h');
   }
 
-  @Hotkey('mod+alt+s', 'Switch themes')
+  @HotKey('mod+alt+s', 'Switch themes')
   switchThemes() {
     let idx = this.themes.indexOf(this.currentTheme);
     idx = (idx + 1) % 3;
     this.setTheme(this.themes[idx]);
   }
 
-  @Hotkey('up up down down left right left right b a enter', 'Do some magic!', {
+  @HotKey('up up down down left right left right b a enter', 'Do some magic!', {
     visible: false
   })
   onKey() {

@@ -163,7 +163,7 @@ export function _deregister(comp: any) {
   hotkeyChangedSource.next(hotkeys);
 }
 
-export function Hotkey(key: string, description: string, options?: Partial<Hotkey>) {
+export function HotKey(key: string, description: string, options?: Partial<Hotkey>) {
   return (target: any, name: string) => {
     const oldInit = target.ngOnInit;
     target.ngOnInit = function () {
@@ -199,7 +199,7 @@ export class HotkeysService {
   readonly unpauseOthers = _unpauseOthers;
   readonly changeEvent = hotkeyChangedSource.asObservable();
 
-  get hotkeys() {
+  get hotKeys() {
     return hotkeys;
   }
 

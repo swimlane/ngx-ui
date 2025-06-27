@@ -53,8 +53,8 @@ export class ResizeOverlayComponent implements OnInit, OnDestroy {
   private _query = '(min-width: 959px) and (min-height: 650px)';
 
   get keys(): string[] {
-    if (this.hotkeysService.hotkeys && this.hotkeysService.hotkeys[this.combo]) {
-      return this.hotkeysService.hotkeys[this.combo][0].keys;
+    if (this.hotkeysService.hotKeys && this.hotkeysService.hotKeys[this.combo]) {
+      return this.hotkeysService.hotKeys[this.combo][0].keys;
     } else {
       return [];
     }
