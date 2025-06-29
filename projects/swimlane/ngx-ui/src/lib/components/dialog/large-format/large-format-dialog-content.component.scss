@@ -57,7 +57,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 2rem;
+      padding: var(--spacing-0) 2rem;
     }
 
     &__body {
@@ -65,7 +65,7 @@
       min-height: 215px;
       max-height: var(--max-body-height, auto);
       overflow: auto;
-      padding: 0 var(--body-padding, 2rem);
+      padding: var(--spacing-0) var(--body-padding, 2rem);
     }
 
     .ngx-medium-format-dialog-footer,
@@ -121,7 +121,7 @@
 
     .dialog-stepper {
       ngx-stepper.ngx-stepper:not(.dialog-stepper--sub) {
-        padding: 1rem 0 0;
+        padding: 1rem var(--spacing-0) var(--spacing-0);
         margin-top: -5.5rem;
         height: 100%;
 
@@ -161,7 +161,7 @@
         > .ngx-stepper--content {
           margin-top: 1.25rem;
           overflow: auto;
-          padding: 0 2rem;
+          padding: var(--spacing-0) 2rem;
         }
 
         @media screen and (max-width: 1319px) {
@@ -193,7 +193,7 @@
     .dialog-tabs {
       ngx-tabs.ngx-tabs:not(.dialog-tabs--sub) {
         height: 100%;
-        margin: 0;
+        margin: var(--spacing-0);
 
         > section {
           height: 100%;
@@ -240,7 +240,7 @@
           }
 
           > .ngx-tab-content {
-            padding: 0 2rem;
+            padding: var(--spacing-0) 2rem;
             overflow: auto;
             height: calc(100% - 5.5rem);
           }

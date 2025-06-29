@@ -25,12 +25,12 @@
     }
 
     .ngx-checkbox--box {
-      border-radius: 2px;
+      border-radius: var(--radius-2);
       background-color: transparent;
       border: 2px solid var(--grey-600);
       transition: transform 0.4s cubic-bezier(0.45, 1.8, 0.5, 0.75);
       user-select: none;
-      margin: auto 10px auto 0;
+      margin: auto 10px auto var(--spacing-0);
       outline: 0px none var(--blue-200);
       outline-offset: 1px;
 
@@ -49,7 +49,7 @@
 
       &.indeterminate {
         background-color: var(--blue-400);
-        border-radius: 2px;
+        border-radius: var(--radius-2);
         opacity: 1;
         border: 2px solid var(--blue-400);
         transform: rotate(0deg) scale(1);
@@ -67,7 +67,7 @@
 
       &.checked {
         background-color: var(--blue-400);
-        border-radius: 2px;
+        border-radius: var(--radius-2);
         opacity: 1;
         border: 2px solid var(--blue-400);
         transform: rotate(0deg) scale(1);
@@ -79,7 +79,7 @@
     }
 
     .ngx-checkbox--content {
-      margin: auto 0;
+      margin: auto var(--spacing-0);
       color: var(--grey-100);
     }
 

@@ -6,12 +6,12 @@
 .CodeMirror-lint-tooltip {
   background-color: #ffd;
   border: 1px solid black;
-  border-radius: 4px 4px 4px 4px;
+  border-radius: var(--radius-4) var(--radius-4) var(--radius-4) var(--radius-4);
   color: black;
   font-family: monospace;
   font-size: 10pt;
   overflow: hidden;
-  padding: var(--spacing-2) 5px;
+  padding: var(--spacing-2) var(--spacing-4);
   position: fixed;
   white-space: pre;
   white-space: pre-wrap;

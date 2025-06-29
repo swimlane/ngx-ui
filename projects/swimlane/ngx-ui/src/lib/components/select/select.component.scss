@@ -86,14 +86,14 @@ $color-chip-text: #ffffff;
     }
 
     .ngx-select-input-list {
-      padding: 0;
+      padding: var(--spacing-0);
       color: forms.$color-input-text;
       min-height: 1.4em;
       max-width: 100%;
     }
 
     &--has-controls .ngx-select-input-list {
-      padding: 0 10px 0 0;
+      padding: var(--spacing-0) 10px var(--spacing-0) var(--spacing-0);
     }
 
     .ngx-select-label {
@@ -120,7 +120,7 @@ $color-chip-text: #ffffff;
       padding-right: 5px;
 
       button {
-        padding: 0 var(--spacing-2);
+        padding: var(--spacing-0) var(--spacing-2);
         cursor: pointer;
         min-height: 1em;
 
@@ -171,7 +171,7 @@ $color-chip-text: #ffffff;
     .ngx-select-input-option {
       background: $color-chip-bg;
       color: $color-chip-text;
-      border-radius: 2px;
+      border-radius: var(--radius-2);
       margin: 3px;
       white-space: nowrap;
       overflow: visible;
@@ -180,13 +180,13 @@ $color-chip-text: #ffffff;
       transition: background 100ms ease-in;
       position: relative;
       top: 0;
-      padding: 0 0.5em;
+      padding: var(--spacing-0) 0.5em;
       font-size: 1em;
       line-height: 1.4em;
       max-width: 300px;
       display: inline-flex;
       align-items: baseline;
-      gap: 5px;
+      gap: var(--spacing-4);
 
       > * {
         flex: 0 1 100%;
@@ -197,7 +197,7 @@ $color-chip-text: #ffffff;
       }
 
       .ngx-select-clear {
-        padding: 0 0 0 var(--spacing-2);
+        padding: var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-2);
         cursor: pointer;
         font-size: 0.5em;
         color: $color-caret-bg;
@@ -239,8 +239,8 @@ $color-chip-text: #ffffff;
           display: inline-block;
           font-size: 1em;
           vertical-align: bottom;
-          padding: 0;
-          margin: 5px;
+          padding: var(--spacing-0);
+          margin: var(--spacing-4);
 
           &::-webkit-search-decoration,
           &::-webkit-search-cancel-button,
@@ -256,7 +256,7 @@ $color-chip-text: #ffffff;
       }
 
       .ngx-select-clear-tagging-input {
-        padding: 0 0 0 var(--spacing-2);
+        padding: var(--spacing-0) var(--spacing-0) var(--spacing-0) var(--spacing-2);
         cursor: pointer;
         font-size: 0.5em;
         color: $color-caret-bg;

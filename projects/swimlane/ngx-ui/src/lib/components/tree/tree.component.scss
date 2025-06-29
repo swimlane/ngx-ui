@@ -73,7 +73,7 @@ $dashes: 5.3px;
       content: ' ';
       width: 5px;
       height: 5px;
-      border-radius: 5px;
+      border-radius: var(--radius-6);
       background: json-editor.$color-tree-line;
       position: absolute;
       bottom: -3px;
@@ -84,7 +84,7 @@ $dashes: 5.3px;
       content: ' ';
       width: 5px;
       height: 5px;
-      border-radius: 5px;
+      border-radius: var(--radius-6);
       background: none;
       border: 1px solid json-editor.$color-tree-line;
       position: absolute;
@@ -131,7 +131,7 @@ $dashes: 5.3px;
     height: 5px;
     left: 3px;
     top: 8px;
-    border-radius: 5px;
+    border-radius: var(--radius-6);
   }
 
   .empty::before {

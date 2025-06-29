@@ -33,7 +33,7 @@
       height: 40px;
       padding: var(--spacing-8);
       line-height: 1em;
-      margin: 0;
+      margin: var(--spacing-0);
 
       ngx-input-suffix .btn {
         color: var(--grey-400);
@@ -140,11 +140,11 @@
     overflow: hidden;
     width: 150px;
     display: inline-block;
-    padding: 10px 5px;
+    padding: 10px var(--spacing-4);
     text-align: center;
     margin: 10px;
     border: solid 1px var(--grey-800);
-    border-radius: 2px;
+    border-radius: var(--radius-2);
 
     .icon-name {
       color: var(--grey-600);
@@ -209,7 +209,7 @@
 .inputs-section {
   input {
     display: block;
-    margin: var(--spacing-8) 0;
+    margin: var(--spacing-8) var(--spacing-0);
   }
 }
 
@@ -244,7 +244,7 @@
 
   ngx-input,
   &:hover ngx-input {
-    margin: 0 40px 0 var(--spacing-20);
+    margin: var(--spacing-0) 40px var(--spacing-0) var(--spacing-20);
     width: 240px;
     transition: width 0.5s;
   }
@@ -326,7 +326,7 @@ $palette: (
   display: block;
   background-color: blue;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: var(--radius-6);
   color: white;
   user-select: none;
 }

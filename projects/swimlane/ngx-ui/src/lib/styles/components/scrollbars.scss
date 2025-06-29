@@ -15,7 +15,7 @@
   &::-webkit-scrollbar-track {
     background-color: transparent;
     border-radius: 10px;
-    margin: 0;
+    margin: var(--spacing-0);
   }
 
   &::-webkit-scrollbar-corner {

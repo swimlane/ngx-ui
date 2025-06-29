@@ -7,7 +7,7 @@ $color-border: var(--grey-650);
   .tip-container {
     border: 2px solid $color-border;
     box-sizing: border-box;
-    border-radius: 2px;
+    border-radius: var(--radius-2);
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -20,8 +20,8 @@ $color-border: var(--grey-650);
       top: -2px;
       bottom: -2px;
       background: $color-default;
-      border-top-left-radius: 2px;
-      border-bottom-left-radius: 2px;
+      border-top-left-radius: var(--radius-2);
+      border-bottom-left-radius: var(--radius-2);
       width: 2px;
       left: -2px;
     }
@@ -39,7 +39,7 @@ $color-border: var(--grey-650);
       &--template {
         font-size: 14px;
         line-height: 18px;
-        margin: 0 10px;
+        margin: var(--spacing-0) 10px;
         color: var(--grey-250);
       }
     }

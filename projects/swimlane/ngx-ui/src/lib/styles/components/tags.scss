@@ -5,15 +5,15 @@ $tag-color: white;
 
 .tag {
   cursor: default;
-  border-radius: var(--radius-3);
+  border-radius: var(--radius-4);
   display: inline-block;
-  margin: 0 8px 0 0;
+  margin: var(--spacing-0) var(--spacing-8) var(--spacing-0) var(--spacing-0);
   box-sizing: border-box;
   position: relative;
   background: $tag-background;
   color: $tag-color;
   font-size: 14px;
-  padding: 0 0.3rem;
+  padding: var(--spacing-0) 0.3rem;
 
   &.tag-small {
     font-size: 0.7rem;

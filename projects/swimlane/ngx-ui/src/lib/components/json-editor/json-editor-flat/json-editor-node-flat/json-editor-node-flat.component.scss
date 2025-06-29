@@ -45,9 +45,9 @@ ngx-json-editor-node-flat {
   .node {
     background-color: var(--grey-700);
     box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
-    border-radius: 2px;
+    border-radius: var(--radius-2);
     display: flex;
-    padding: 25px 10px;
+    padding: var(--spacing-24) 10px;
     position: relative;
     flex: 0 1 100%;
     height: 96px;
@@ -57,7 +57,7 @@ ngx-json-editor-node-flat {
       position: absolute;
       width: 100%;
       height: 100%;
-      border-radius: 2px;
+      border-radius: var(--radius-2);
       top: 0;
       left: 0;
       border: 2px solid colors.$color-error;
@@ -128,8 +128,8 @@ ngx-json-editor-node-flat {
         margin-bottom: 2px;
 
         ngx-input {
-          padding: 0;
-          margin: 0;
+          padding: var(--spacing-0);
+          margin: var(--spacing-0);
 
           .ngx-input-hint {
             min-height: 0;

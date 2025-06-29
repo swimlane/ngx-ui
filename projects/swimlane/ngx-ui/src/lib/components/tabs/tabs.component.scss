@@ -28,7 +28,7 @@ $tabs-button-height--vertical: 53px;
       box-shadow: none;
       font-size: 1.1rem;
       box-sizing: border-box;
-      margin: 0;
+      margin: var(--spacing-0);
       padding: 0.35em 0.75em;
       position: relative;
       text-align: center;
@@ -76,7 +76,7 @@ $tabs-button-height--vertical: 53px;
 
       &:focus-visible {
         outline: 2px solid var(--blue-200);
-        border-radius: 2px;
+        border-radius: var(--radius-2);
         outline-offset: 1px;
       }
     }

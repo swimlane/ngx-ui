@@ -91,7 +91,7 @@ $input-animation-duration: 150ms;
     transition: width 250ms ease-out;
     width: 0;
     height: $input-underline-height-fill;
-    margin: 0 auto;
+    margin: var(--spacing-0) auto;
   }
 }
 

@@ -2,7 +2,7 @@
 
 .ngx-alert-dialog {
   .ngx-dialog-content {
-    padding: 0;
+    padding: var(--spacing-0);
     background: var(--grey-725);
 
     .ngx-dialog-header {
@@ -10,7 +10,7 @@
 
       h1 {
         font-size: 18px;
-        margin: 0;
+        margin: var(--spacing-0);
         color: white;
         font-weight: 600;
       }

@@ -55,7 +55,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    margin: 0;
+    margin: var(--spacing-0);
     font-weight: normal;
     cursor: pointer;
     animation: popIn 0.35s ease-in-out;
@@ -117,7 +117,7 @@
         margin-top: var(--spacing-20);
         color: var(--grey-350);
         font-size: 12px;
-        padding: 0 10px;
+        padding: var(--spacing-0) 10px;
       }
     }
   }
@@ -127,7 +127,7 @@
     height: 120px;
     background-color: var(--grey-800);
     border: 1px dashed var(--grey-500);
-    padding: 0;
+    padding: var(--spacing-0);
     justify-content: center;
 
     .file-over {

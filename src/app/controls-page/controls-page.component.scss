@@ -13,7 +13,7 @@ table.alignment-test {
   }
 
   td {
-    padding: 05px;
+    padding: var(--spacing-0) 5px;
     border: 10px solid #34282c;
   }
 

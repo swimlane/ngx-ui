@@ -10,7 +10,7 @@
 .input-item {
   background: var(--grey-650);
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
-  border-radius: 2px;
+  border-radius: var(--radius-2);
   margin-bottom: 13px;
 
   .drag-drop-handle,
@@ -19,7 +19,7 @@
   }
 
   .drag-drop-handle {
-    margin: 0 9px;
+    margin: var(--spacing-0) var(--spacing-8);
     height: 17px;
     font-size: 14.5px;
     cursor: grab;
@@ -27,12 +27,12 @@
 
   .ngx-input {
     flex: 1;
-    margin: 0;
+    margin: var(--spacing-0);
   }
 
   .remove-item {
     font-size: 8px;
-    margin: 0 5px;
+    margin: var(--spacing-0) var(--spacing-4);
     height: 8px;
   }
 }

@@ -8,16 +8,16 @@ section {
 code {
   display: inline;
   padding: 0.2em 0.4em;
-  margin: 0;
+  margin: var(--spacing-0);
   font-size: 85%;
   background-color: var(--grey-775);
-  border-radius: var(--radius-3);
+  border-radius: var(--radius-4);
 }
 
 .ngx-flex--wrap,
 .ngx-flex--wrap-fluid,
 .ngx-flex--wrap-fixed {
-  margin: 40px 0;
+  margin: 40px var(--spacing-0);
   border: 1px solid var(--grey-725);
   position: relative;
 
@@ -66,8 +66,8 @@ code {
       top: 10px;
       width: calc(100% - 15px);
       left: 10px;
-      padding: 0 5px;
-      border-radius: var(--radius-3);
+      padding: var(--spacing-0) 5px;
+      border-radius: var(--radius-4);
     }
 
     &:hover:before {
@@ -81,10 +81,10 @@ code {
 }
 
 .box {
-  margin: 5px 0;
-  padding: 0 5px;
+  margin: var(--spacing-4) var(--spacing-0);
+  padding: var(--spacing-0) 5px;
   background: var(--blue-500);
-  border-radius: 5px;
+  border-radius: var(--radius-6);
   overflow: hidden;
   text-align: center;
   color: black;

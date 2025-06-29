@@ -66,24 +66,24 @@ $datatable-row-hover: color.adjust($datatable-bg, $lightness: -2%);
     .page-count {
       line-height: 50px;
       height: 50px;
-      padding: 0 1.2rem;
+      padding: var(--spacing-0) 1.2rem;
     }
 
     .datatable-pager {
-      margin: 0 10px;
+      margin: var(--spacing-0) 10px;
       vertical-align: top;
 
       ul {
         li {
-          margin: 10px 0;
+          margin: 10px var(--spacing-0);
 
           a {
             height: 22px;
             min-width: 24px;
             line-height: 22px;
-            padding: 0;
-            border-radius: var(--radius-3);
-            margin: 0 3px;
+            padding: var(--spacing-0);
+            border-radius: var(--radius-4);
+            margin: var(--spacing-0) 3px;
             text-align: center;
             text-decoration: none;
             vertical-align: bottom;
@@ -106,7 +106,7 @@ $datatable-row-hover: color.adjust($datatable-bg, $lightness: -2%);
       .icon-prev {
         font-size: 18px;
         line-height: 27px;
-        padding: 0 3px;
+        padding: var(--spacing-0) 3px;
       }
     }
   }

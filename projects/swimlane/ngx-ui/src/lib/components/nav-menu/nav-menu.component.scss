@@ -4,7 +4,7 @@ ngx-nav-menu {
   width: 60px;
   height: 100%;
   background: var(--grey-800);
-  padding: 0;
+  padding: var(--spacing-0);
   user-select: none;
 
   .nav-menu {
@@ -89,7 +89,7 @@ ngx-nav-menu.expanded,
 
   .nav-item {
     display: block;
-    margin: 1px 0;
+    margin: 1px var(--spacing-0);
     background: var(--grey-750);
     width: 100%;
     color: var(--white);
@@ -97,7 +97,7 @@ ngx-nav-menu.expanded,
     border-left-width: 3px;
     border-left-style: solid;
 
-    padding: 13px 0px 14px 0px;
+    padding: 13px var(--spacing-0) 14px var(--spacing-0);
     cursor: pointer;
 
     ngx-icon {
@@ -158,7 +158,7 @@ ngx-nav-menu.expanded,
 .sub-nav {
   display: none;
   padding-left: 0px;
-  margin: 0px;
+  margin: var(--spacing-0);
   max-height: 263px;
   overflow: auto;
   background: var(--grey-800);
@@ -245,7 +245,7 @@ ngx-nav-menu.expanded,
   background: var(--grey-750) !important;
   margin-top: 7px;
   box-shadow: none !important;
-  padding: 0 !important;
+  padding: var(--spacing-0) !important;
 
   transition: opacity 0.3s, transform 0s !important;
 
@@ -254,13 +254,13 @@ ngx-nav-menu.expanded,
     overflow: auto;
   }
   .sub-nav-item {
-    margin: 0px 1px 1px 1px;
+    margin: var(--spacing-0) 1px 1px 1px;
   }
 
   .title {
     height: 50px;
     background: var(--grey-750);
-    padding: 15px 0px 14px 15px;
+    padding: 15px var(--spacing-0) 14px 15px;
     text-transform: uppercase;
     margin-left: -1px;
     font-size: 14px;

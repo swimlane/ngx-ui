@@ -8,7 +8,7 @@ $background-color: var(--grey-850);
 .ngx-long-press {
   border-radius: 50%;
   border: $borderWidth solid $background-color;
-  padding: 0px;
+  padding: var(--spacing-0);
   width: $outerSize;
   height: $outerSize;
   overflow: hidden;
@@ -18,7 +18,7 @@ $background-color: var(--grey-850);
   cursor: pointer;
 
   button {
-    padding: 0;
+    padding: var(--spacing-0);
     position: absolute;
     top: 50%;
     left: 50%;

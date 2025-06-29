@@ -33,9 +33,9 @@ pre[class*='language-'],
 /* Code blocks */
 pre[class*='language-'] {
   border-radius: 0.5em;
-  margin: 0.5em 0;
+  margin: 0.5em var(--spacing-0);
   overflow: auto;
-  padding: 0 1rem;
+  padding: var(--spacing-0) 1rem;
 }
 
 pre[class*='language-']::-moz-selection {
@@ -137,7 +137,7 @@ code[class*='language-'] ::selection {
 }
 
 pre[data-line] {
-  padding: 1em 0 1em 3em;
+  padding: 1em var(--spacing-0) 1em 3em;
   position: relative;
 }
 
@@ -162,7 +162,7 @@ pre[data-line] {
   left: 0;
   line-height: inherit;
   margin-top: 0.75em; /* Same as .prism’s padding-top */
-  padding: inherit 0;
+  padding: inherit var(--spacing-0);
   pointer-events: none;
   position: absolute;
   right: 0;
@@ -180,7 +180,7 @@ pre[data-line] {
   font: bold 65%/1.5 sans-serif;
   left: 0.6em;
   min-width: 1em;
-  padding: 0 0.5em;
+  padding: var(--spacing-0) 0.5em;
   position: absolute;
   text-align: center;
   text-shadow: none;
