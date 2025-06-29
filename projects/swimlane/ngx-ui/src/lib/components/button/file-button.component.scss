@@ -52,10 +52,10 @@ $upload-button-success-fill: var(--blue-400);
       background: buttons.$button-fill-color;
       border: none;
       border-radius: 50px;
-      padding: 5px 0;
+      padding: var(--spacing-4) var(--spacing-0);
       transition: 0.3s all ease;
       position: relative;
-      margin: 0;
+      margin: var(--spacing-0);
 
       &:hover:not([disabled]),
       &:focus:not([disabled]),
@@ -112,7 +112,7 @@ $upload-button-success-fill: var(--blue-400);
     }
 
     &.active {
-      padding: 0;
+      padding: var(--spacing-0);
 
       .ngx-file-button-button {
         background: $upload-button-progress-bg;
@@ -132,8 +132,8 @@ $upload-button-success-fill: var(--blue-400);
 
     &.success {
       .ngx-file-button-button {
-        margin: 0;
-        padding: 25px;
+        margin: var(--spacing-0);
+        padding: var(--spacing-24);
         width: 50px;
         background: $upload-button-success-fill;
       }

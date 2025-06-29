@@ -9,7 +9,7 @@
 
     .node-options-btn {
       color: var(--grey-400);
-      padding: 1px 3px 2px;
+      padding: 1px 3px var(--spacing-2);
     }
 
     .ngx-dropdown {
@@ -20,7 +20,7 @@
 
 .property-config-dialog {
   .ngx-dialog-content {
-    padding: 0 !important;
+    padding: var(--spacing-0) !important;
     min-width: 500px !important;
   }
 }

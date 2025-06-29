@@ -144,7 +144,7 @@
       }
 
       .ngx-input-box {
-        margin: 3px 0;
+        margin: 3px var(--spacing-0);
 
         &[type='number'] {
           &::-webkit-inner-spin-button {
@@ -167,7 +167,7 @@
         font-size: 0.8rem;
         color: forms.$input-icon-color;
         transition: color 100ms;
-        padding: 0;
+        padding: var(--spacing-0);
         z-index: 1;
 
         &:hover {
@@ -243,7 +243,7 @@
 
       .ngx-input-box,
       .ngx-input-textarea {
-        margin: 0;
+        margin: var(--spacing-0);
         padding: var(--spacing-4) 10px;
         position: relative;
         z-index: 1;

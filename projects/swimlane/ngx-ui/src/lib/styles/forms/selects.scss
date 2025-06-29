@@ -5,7 +5,7 @@ select {
   background: forms.$color-input-bg;
   border: solid 1px forms.$color-input-border;
   color: forms.$color-input-text;
-  border-radius: 2px;
+  border-radius: var(--radius-2);
   height: 32px;
   line-height: 32px;
   font-size: 13px;

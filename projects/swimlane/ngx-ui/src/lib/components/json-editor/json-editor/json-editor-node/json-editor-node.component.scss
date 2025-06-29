@@ -3,7 +3,7 @@
 @use '../json-editor.variables' as json-editor;
 
 .json-tree-node {
-  padding: 0px;
+  padding: var(--spacing-0);
   margin-left: 25px;
   margin-bottom: 0px;
   position: relative;
@@ -76,7 +76,7 @@
       content: ' ';
       width: 15px;
       height: 1px;
-      border-radius: 5px;
+      border-radius: var(--radius-6);
       background: none;
       border-top: dashed 1px json-editor.$color-tree-line;
       position: absolute;
@@ -106,7 +106,7 @@
       content: ' ';
       width: 15px;
       height: 1px;
-      border-radius: 5px;
+      border-radius: var(--radius-6);
       background: none;
       border-top: dashed 1px json-editor.$color-tree-line;
       position: absolute;
@@ -139,7 +139,7 @@
     .property-name {
       display: inline-block;
       width: 170px;
-      padding: 0px 5px;
+      padding: var(--spacing-0) var(--spacing-4);
       position: relative;
       transform: translateY(-50%);
       vertical-align: middle;
@@ -180,9 +180,9 @@
     color: var(--grey-150);
     width: 100%;
     height: 30px;
-    padding: 5px;
-    border-radius: 0;
-    margin: 0;
+    padding: var(--spacing-4);
+    border-radius: var(--radius-0);
+    margin: var(--spacing-0);
 
     &.select * {
       background-color: var(--grey-700);
@@ -228,7 +228,7 @@
   }
 
   ngx-input.value-input {
-    margin: 0;
+    margin: var(--spacing-0);
 
     .ngx-input-label,
     .ngx-input-underline,
@@ -238,7 +238,7 @@
   }
 
   .ngx-toggle {
-    margin: 0;
+    margin: var(--spacing-0);
     line-height: 30px;
 
     .ngx-toggle-text {

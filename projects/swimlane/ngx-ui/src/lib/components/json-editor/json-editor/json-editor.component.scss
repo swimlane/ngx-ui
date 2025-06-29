@@ -14,7 +14,7 @@
       content: ' ';
       width: 15px;
       height: 1px;
-      border-radius: 5px;
+      border-radius: var(--radius-6);
       background: none;
       border-top: dashed 1px json-editor.$color-tree-line;
       position: absolute;
@@ -43,7 +43,7 @@
     .name {
       display: inline-block;
       width: 170px;
-      padding: 0px 5px;
+      padding: var(--spacing-0) var(--spacing-4);
       position: relative;
       transform: translateY(-50%);
       vertical-align: middle;

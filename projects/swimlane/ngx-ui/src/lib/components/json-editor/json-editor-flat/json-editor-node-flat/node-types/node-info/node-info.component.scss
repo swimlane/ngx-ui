@@ -60,7 +60,7 @@ ngx-json-editor-node-info {
     .dot-separator {
       flex: 0 0 auto;
       font-size: 0.2em;
-      margin: 0 5px;
+      margin: var(--spacing-0) var(--spacing-4);
       vertical-align: middle;
       line-height: 20px;
     }
@@ -79,7 +79,7 @@ ngx-json-editor-node-info {
   }
 
   .editable-name {
-    margin: 0;
+    margin: var(--spacing-0);
     padding-top: 15px;
 
     .ngx-input-hint {

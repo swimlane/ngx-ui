@@ -32,7 +32,7 @@ $card-vertical-gutter: var(--spacing-20);
   display: flex;
   background: $color-flat-background;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  border-radius: 2px;
+  border-radius: var(--radius-2);
 
   // disabled
   &.disabled {
@@ -74,11 +74,11 @@ $card-vertical-gutter: var(--spacing-20);
     height: 3px;
     border-radius: 50%;
     background-color: var(--grey-400);
-    margin: 3px 5px;
+    margin: 3px var(--spacing-4);
   }
 
   .ngx-dropdown.ellipsis {
-    padding: 0;
+    padding: var(--spacing-0);
   }
 
   &.flat {
@@ -116,14 +116,14 @@ $card-vertical-gutter: var(--spacing-20);
     min-width: $card-accent-thickness;
     right: 0;
     height: 100%;
-    border-radius: 0 2px 2px 0;
+    border-radius: var(--radius-0) var(--radius-2) var(--radius-2) var(--radius-0);
   }
 
   // horizontal header
   .ngx-card-header {
     display: flex;
     align-items: center;
-    padding: 0 $card-horizontal-header-padding;
+    padding: var(--spacing-0) $card-horizontal-header-padding;
     flex-grow: 1;
     overflow: hidden;
     cursor: pointer;
@@ -177,7 +177,7 @@ $card-vertical-gutter: var(--spacing-20);
     align-items: center;
     justify-content: center;
     height: 100%;
-    padding: 0 $card-horizontal-gutter;
+    padding: var(--spacing-0) $card-horizontal-gutter;
 
     &--description {
       flex-basis: 28%;
@@ -251,7 +251,7 @@ $card-vertical-gutter: var(--spacing-20);
     left: -5px;
     bottom: -5px;
     border: $card-outline-border-thickness solid var(--blue-400);
-    border-radius: 5px;
+    border-radius: var(--radius-6);
 
     &.error {
       border-color: colors.$color-error;
@@ -269,7 +269,7 @@ $card-vertical-gutter: var(--spacing-20);
     bottom: -5px;
     border: $card-outline-border-thickness solid var(--blue-400);
     border-bottom: 0;
-    border-radius: 5px;
+    border-radius: var(--radius-6);
 
     .inner-text {
       font-size: 14px;
@@ -291,13 +291,13 @@ $card-vertical-gutter: var(--spacing-20);
 
       &::before {
         margin-right: 15px;
-        border-radius: 0 0 0 2px;
+        border-radius: var(--radius-0) var(--radius-0) var(--radius-0) var(--radius-2);
         flex: 1;
       }
 
       &::after {
         margin-left: 15px;
-        border-radius: 0 0 2px 0;
+        border-radius: var(--radius-0) var(--radius-0) var(--radius-2) var(--radius-0);
         width: var(--spacing-20);
       }
     }
@@ -325,7 +325,7 @@ $card-vertical-gutter: var(--spacing-20);
   color: var(--grey-350);
 
   .ngx-card--status {
-    margin: $card-vertical-header-padding auto 0 auto;
+    margin: $card-vertical-header-padding auto var(--spacing-0) auto;
   }
 
   .ngx-card--accent {
@@ -333,7 +333,7 @@ $card-vertical-gutter: var(--spacing-20);
     bottom: 0;
     width: 100%;
     height: $card-accent-thickness;
-    border-radius: 0 2px 2px 0;
+    border-radius: var(--radius-0) var(--radius-2) var(--radius-2) var(--radius-0);
   }
 
   .ngx-card-header {
@@ -344,7 +344,7 @@ $card-vertical-gutter: var(--spacing-20);
     border-bottom: 2px var(--grey-700);
 
     .ngx-card-avatar {
-      margin: $card-vertical-header-padding 0 $card-vertical-gutter 0;
+      margin: $card-vertical-header-padding var(--spacing-0) $card-vertical-gutter var(--spacing-0);
     }
 
     &--label {
@@ -383,7 +383,7 @@ $card-vertical-gutter: var(--spacing-20);
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
-    padding: $card-vertical-gutter 0;
+    padding: $card-vertical-gutter var(--spacing-0);
     padding-left: $card-vertical-body-padding;
     padding-right: $card-vertical-body-padding;
 
@@ -414,7 +414,7 @@ $card-vertical-gutter: var(--spacing-20);
     position: relative;
     border-bottom: 2px var(--grey-700);
     height: 50px;
-    padding: $card-vertical-gutter 0;
+    padding: $card-vertical-gutter var(--spacing-0);
     margin-bottom: $card-accent-thickness;
     display: flex;
     align-items: center;

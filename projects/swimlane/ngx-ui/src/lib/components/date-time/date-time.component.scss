@@ -26,7 +26,7 @@ $input-invalid-color: var(--red-500);
   .calendar-dialog-btn {
     display: inline-flex;
     position: absolute;
-    padding: 0;
+    padding: var(--spacing-0);
     right: 5px;
     top: 50%;
     transform: translateY(-50%);
@@ -136,7 +136,7 @@ $input-invalid-color: var(--red-500);
 }
 
 .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog {
-  padding: 0 !important;
+  padding: var(--spacing-0) !important;
   width: auto;
 
   h1 {
@@ -149,7 +149,7 @@ $input-invalid-color: var(--red-500);
   }
 
   .selected-header {
-    padding: 5px var(--spacing-20);
+    padding: var(--spacing-4) var(--spacing-20);
     background: var(--blue);
     color: var(--grey-100);
   }
@@ -209,7 +209,7 @@ $input-invalid-color: var(--red-500);
   .ngx-dialog-footer {
     border: 1px solid $calender-border;
     border-top: 0;
-    padding: 0.5rem 0;
+    padding: 0.5rem var(--spacing-0);
     flex-direction: row;
     box-sizing: border-box;
     display: flex;
@@ -221,8 +221,8 @@ $input-invalid-color: var(--red-500);
     .btn {
       font-size: 1em;
       color: var(--grey-400);
-      margin: 0;
-      padding: 0;
+      margin: var(--spacing-0);
+      padding: var(--spacing-0);
     }
 
     .today-btn {
@@ -248,7 +248,7 @@ $input-invalid-color: var(--red-500);
 }
 
 .ngx-tooltip-content.date-tip-tooltip {
-  padding: 5px;
+  padding: var(--spacing-4);
 
   .date-zone-display {
     font-weight: bold;
@@ -268,7 +268,7 @@ $input-invalid-color: var(--red-500);
       color: var(--grey-700);
       background: #dee1ea;
       margin-left: 5px;
-      padding: 0 6px;
+      padding: var(--spacing-0) 6px;
       vertical-align: text-top;
       text-align: left;
       min-width: 70px;

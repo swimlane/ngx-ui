@@ -10,10 +10,10 @@
 /* PADDING */
 
 .CodeMirror-lines {
-  padding: var(--spacing-4) 0; /* Vertical padding around content */
+  padding: var(--spacing-4) var(--spacing-0); /* Vertical padding around content */
 }
 .CodeMirror pre {
-  padding: 0 var(--spacing-4); /* Horizontal padding of content */
+  padding: var(--spacing-0) var(--spacing-4); /* Horizontal padding of content */
 }
 
 .CodeMirror-scrollbar-filler,
@@ -31,7 +31,7 @@
 .CodeMirror-linenumbers {
 }
 .CodeMirror-linenumber {
-  padding: 0 3px 0 5px;
+  padding: var(--spacing-0) 3px var(--spacing-0) 5px;
   min-width: 20px;
   text-align: right;
   color: #999;
@@ -339,14 +339,14 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 }
 .CodeMirror pre {
   /* Reset some styles that the rest of the page might have set */
-  -moz-border-radius: 0;
-  -webkit-border-radius: 0;
-  border-radius: 0;
+  -moz-border-radius: var(--radius-0);
+  -webkit-border-radius: var(--radius-0);
+  border-radius: var(--radius-0);
   border-width: 0;
   background: transparent;
   font-family: inherit;
   font-size: inherit;
-  margin: 0;
+  margin: var(--spacing-0);
   white-space: pre;
   word-wrap: normal;
   line-height: inherit;

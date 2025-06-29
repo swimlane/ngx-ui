@@ -28,7 +28,7 @@
   .playbook-card {
     &.border {
       border: solid 2px var(--grey-650);
-      border-radius: 2px;
+      border-radius: var(--radius-2);
     }
 
     .ngx-card-header {
@@ -84,18 +84,18 @@
 
     .ngx-card-body {
       .card-stat-container {
-        margin: var(--spacing-20) 0;
+        margin: var(--spacing-20) var(--spacing-0);
         display: flex;
         width: 100%;
         height: 68px;
         background: linear-gradient(180deg, #2b3240 0%, #262c38 100%);
         opacity: 0.7;
         box-shadow: 0 2px 15px rgba(7, 8, 11, 0.2);
-        border-radius: 2px;
+        border-radius: var(--radius-2);
 
         .card-stat {
           width: 50%;
-          margin: auto 0;
+          margin: auto var(--spacing-0);
           text-align: center;
 
           .ngx-icon {

@@ -7,7 +7,7 @@ $section-shadow: shadows.$shadow-3;
 
 @mixin focus-ring {
   outline: 2px solid var(--blue-200);
-  border-radius: 2px;
+  border-radius: var(--radius-2);
   outline-offset: 1px;
 }
 
@@ -22,7 +22,7 @@ $section-shadow: shadows.$shadow-3;
     width: auto;
     height: 40px;
     line-height: 40px;
-    padding: 0 10px;
+    padding: var(--spacing-0) 10px;
     color: $section-header-color;
     position: relative;
 
@@ -35,7 +35,7 @@ $section-shadow: shadows.$shadow-3;
       background: none;
       border: none;
       box-shadow: none;
-      padding: 0 10px;
+      padding: var(--spacing-0) 10px;
       left: 5px;
 
       &:focus-visible {
@@ -51,12 +51,12 @@ $section-shadow: shadows.$shadow-3;
       font-size: 1.1em;
       font-weight: 600;
       line-height: 40px;
-      padding: 0;
-      margin: 0;
+      padding: var(--spacing-0);
+      margin: var(--spacing-0);
     }
 
     &.ngx-section-collapsible {
-      padding: 0 var(--spacing-20) 0 35px;
+      padding: var(--spacing-0) var(--spacing-20) var(--spacing-0) 35px;
 
       &.header-toggle {
         cursor: pointer;
@@ -69,7 +69,7 @@ $section-shadow: shadows.$shadow-3;
 
     &.toggle-right {
       &.ngx-section-collapsible {
-        padding: 0 var(--spacing-20) 0 15px;
+        padding: var(--spacing-0) var(--spacing-20) var(--spacing-0) 15px;
       }
 
       .ngx-section-toggle {
@@ -92,16 +92,16 @@ $section-shadow: shadows.$shadow-3;
     }
 
     .ngx-section-header {
-      border-radius: 2px 2px 0 0;
+      border-radius: var(--radius-2) var(--radius-2) var(--radius-0) var(--radius-0);
 
       &.section-collapsed {
-        border-radius: 2px;
+        border-radius: var(--radius-2);
       }
     }
 
     .ngx-section-content {
       border-top: 0;
-      border-radius: 0 0 2px 2px;
+      border-radius: var(--radius-0) var(--radius-0) var(--radius-2) var(--radius-2);
     }
   }
 
@@ -115,15 +115,15 @@ $section-shadow: shadows.$shadow-3;
 
     .ngx-section-header {
       background: var(--grey-700);
-      border-radius: 0;
+      border-radius: var(--radius-0);
 
       &.section-collapsed {
-        border-radius: 0;
+        border-radius: var(--radius-0);
       }
     }
 
     .ngx-section-content {
-      border-radius: 0;
+      border-radius: var(--radius-0);
     }
   }
 

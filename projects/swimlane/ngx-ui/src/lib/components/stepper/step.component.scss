@@ -123,7 +123,7 @@
   }
 
   .ngx-step--title {
-    padding: 0 5px;
+    padding: var(--spacing-0) var(--spacing-4);
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -174,7 +174,7 @@
       }
 
       .center {
-        margin: 0;
+        margin: var(--spacing-0);
         position: absolute;
         top: 50%;
         left: 50%;

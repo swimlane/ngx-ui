@@ -20,7 +20,7 @@ textarea {
   border: solid 1px forms.$color-input-border;
   color: forms.$color-input-text;
   transition: box-shadow 200ms;
-  border-radius: 0;
+  border-radius: var(--radius-0);
   font-size: 13px;
   height: 32px;
   line-height: 32px;

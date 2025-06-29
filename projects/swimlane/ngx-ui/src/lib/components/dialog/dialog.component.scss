@@ -18,7 +18,7 @@ $dialog-body-color: var(--grey-200);
 
   .ngx-dialog-content {
     pointer-events: auto;
-    border-radius: 2px;
+    border-radius: var(--radius-2);
     box-shadow: shadow.$shadow-3;
     background: $dialog-bg;
     padding: 1.4rem;
@@ -30,7 +30,7 @@ $dialog-body-color: var(--grey-200);
 
     &--large,
     &--medium {
-      padding: 0;
+      padding: var(--spacing-0);
       width: calc(100vw - 120px);
       background-color: transparent;
     }
@@ -60,7 +60,7 @@ $dialog-body-color: var(--grey-200);
       h1 {
         font-size: 1.8rem;
         font-weight: 500;
-        margin: 0 0 1.4rem 0;
+        margin: var(--spacing-0) var(--spacing-0) 1.4rem var(--spacing-0);
         color: $dialog-header-color;
       }
     }
@@ -76,7 +76,7 @@ $dialog-body-color: var(--grey-200);
 
   &.wizard {
     .ngx-dialog-content {
-      padding: 0;
+      padding: var(--spacing-0);
       background: var(--grey-725);
 
       .ngx-dialog-header {
@@ -84,7 +84,7 @@ $dialog-body-color: var(--grey-200);
         background: var(--grey-750);
 
         h1 {
-          margin: 0;
+          margin: var(--spacing-0);
         }
       }
 
@@ -95,7 +95,7 @@ $dialog-body-color: var(--grey-200);
           float: left;
 
           .btn {
-            margin: 0 5px 0 0;
+            margin: var(--spacing-0) var(--spacing-4) var(--spacing-0) var(--spacing-0);
           }
         }
       }
@@ -104,7 +104,7 @@ $dialog-body-color: var(--grey-200);
         margin-bottom: 0;
 
         .ngx-tabs-list {
-          padding: 0 var(--spacing-20);
+          padding: var(--spacing-0) var(--spacing-20);
           background: var(--grey-775);
           border-bottom: 2px solid var(--grey-775);
 

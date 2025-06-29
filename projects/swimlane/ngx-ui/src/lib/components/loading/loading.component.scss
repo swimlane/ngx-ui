@@ -5,8 +5,8 @@
 
   .ngx-loading-bar--container {
     position: fixed;
-    margin: 0;
-    padding: 0;
+    margin: var(--spacing-0);
+    padding: var(--spacing-0);
     top: 0;
     left: 0;
     right: 0;

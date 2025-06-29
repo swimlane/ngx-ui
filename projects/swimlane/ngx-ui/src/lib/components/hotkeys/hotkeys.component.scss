@@ -44,11 +44,11 @@
   box-shadow: shadow.$shadow-1;
   color: var(--grey-300);
   font-size: 14px;
-  border-radius: 2px;
+  border-radius: var(--radius-2);
   margin-bottom: 45px;
 
   .hotkey-row {
-    padding: 10px 0;
+    padding: 10px var(--spacing-0);
     border-bottom: 1px solid var(--grey-600);
 
     &:first-child {
@@ -68,7 +68,7 @@
         background: var(--grey-500);
         color: var(--grey-850);
         padding: var(--spacing-2) 7px;
-        border-radius: 2px;
+        border-radius: var(--radius-2);
       }
     }
   }

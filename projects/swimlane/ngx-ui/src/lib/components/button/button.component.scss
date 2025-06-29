@@ -7,14 +7,14 @@
   &,
   &.btn {
     transition: background-color 0.25s ease-out;
-    padding: 0;
+    padding: var(--spacing-0);
   }
 
   button {
     padding: 0.35em 0.55em;
     width: 100%;
     outline-offset: 2px;
-    border-radius: 2px;
+    border-radius: var(--radius-2);
 
     > .content {
       text-overflow: ellipsis;

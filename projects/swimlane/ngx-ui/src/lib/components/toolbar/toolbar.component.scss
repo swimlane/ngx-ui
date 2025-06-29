@@ -30,13 +30,13 @@ $toolbar-color: var(--grey-250);
   }
 
   // grid is overriding this
-  padding: 0 var(--spacing-20) !important;
+  padding: var(--spacing-0) var(--spacing-20) !important;
   .ngx-toolbar-title-col {
     overflow: hidden;
   }
 
   .ngx-toolbar-title {
-    margin: 0;
+    margin: var(--spacing-0);
     font-weight: 500;
     text-overflow: ellipsis;
     overflow: hidden;

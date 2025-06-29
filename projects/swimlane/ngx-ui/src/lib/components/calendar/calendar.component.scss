@@ -22,7 +22,7 @@ $calendar-month-current: var(--grey-750);
   display: inline-block;
   border: 1px solid $calendar-border;
   width: 270px;
-  padding: 0.5rem 0rem;
+  padding: 0.5rem var(--spacing-0);
 
   .ngx-calendar-wrap {
     flex: 1 1 100%;
@@ -44,23 +44,23 @@ $calendar-month-current: var(--grey-750);
   .title-row {
     background: $calendar-title-bg;
     color: $calendar-active-text;
-    padding: 0.69rem 0;
+    padding: 0.69rem var(--spacing-0);
     font-weight: 600;
     line-height: 0;
 
     .title {
       color: $calendar-active-bg;
       min-width: 100px;
-      padding: 9px;
+      padding: var(--spacing-9);
       cursor: pointer;
-      border-radius: var(--radius-3);
+      border-radius: var(--radius-4);
     }
 
     .prev-month,
     .next-month {
       color: $calendar-title-btn;
       font-size: 0.6rem;
-      border-radius: var(--radius-3);
+      border-radius: var(--radius-4);
     }
   }
 
@@ -75,7 +75,7 @@ $calendar-month-current: var(--grey-750);
   }
 
   td {
-    padding: 0px;
+    padding: var(--spacing-0);
   }
 
   .day-name,
@@ -106,7 +106,7 @@ $calendar-month-current: var(--grey-750);
       }
       .day-cell2 {
         flex: 1 0 30px;
-        margin: 0.1rem 0rem;
+        margin: 0.1rem var(--spacing-0);
       }
     }
 
@@ -120,7 +120,7 @@ $calendar-month-current: var(--grey-750);
       border-radius: 50%;
       text-align: center;
       transition: background 200ms;
-      padding: 0;
+      padding: var(--spacing-0);
 
       &.prev-month,
       &.next-month {
@@ -156,7 +156,7 @@ $calendar-month-current: var(--grey-750);
       border-radius: 50%;
       text-align: center;
       transition: background 200ms;
-      padding: 0;
+      padding: var(--spacing-0);
       position: relative;
 
       &.prev-month,
@@ -235,7 +235,7 @@ $calendar-month-current: var(--grey-750);
       }
       &.range {
         color: $calendar-active-text;
-        margin: 0rem 0rem;
+        margin: var(--spacing-0) var(--spacing-0);
         max-width: initial;
         flex: 1 1 30px;
         &:before {
@@ -321,7 +321,7 @@ $calendar-month-current: var(--grey-750);
 
     .month-cell,
     .year-cell {
-      padding: 0;
+      padding: var(--spacing-0);
       border: 1px solid $calendar-border;
     }
 

@@ -51,7 +51,7 @@ button {
 
   background: $button-fill-color;
   border: solid 1px transparent;
-  border-radius: 2px;
+  border-radius: var(--radius-2);
   box-shadow: shadows.$shadow-1;
   transition: background-color 200ms, box-shadow 200ms;
 
@@ -78,7 +78,7 @@ button {
 
   &::-moz-focus-inner {
     border: 0;
-    padding: 0;
+    padding: var(--spacing-0);
   }
 
   &:focus,
@@ -204,7 +204,7 @@ button {
 
   &.btn-file {
     cursor: pointer;
-    padding: 0;
+    padding: var(--spacing-0);
 
     label {
       display: block;

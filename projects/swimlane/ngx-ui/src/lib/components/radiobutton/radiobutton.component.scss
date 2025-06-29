@@ -7,7 +7,7 @@
     display: block;
     position: relative;
     padding-left: 1.5em;
-    margin: 0 0.8rem 0 0;
+    margin: var(--spacing-0) 0.8rem var(--spacing-0) var(--spacing-0);
     cursor: pointer;
     user-select: none;
 
