@@ -27,7 +27,7 @@
   position: relative;
   flex-direction: column;
   flex: 1;
-  padding: 50px;
+  padding: var(--spacing-48);
   // overflow: hidden;
 
   .file-over {
@@ -93,7 +93,7 @@
         font-size: 20px;
         line-height: 25px;
         font-weight: 600;
-        margin-bottom: 5px;
+        margin-bottom: var(--spacing-4);
         color: var(--grey-100);
       }
 
@@ -156,7 +156,7 @@
         .ngx-dropzone--title {
           font-size: 12px;
           line-height: 15px;
-          margin-bottom: 0;
+          margin-bottom: var(--spacing-0);
         }
 
         .ngx-dropzone--sub-title {

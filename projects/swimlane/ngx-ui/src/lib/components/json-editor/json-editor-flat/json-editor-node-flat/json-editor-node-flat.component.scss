@@ -39,7 +39,7 @@ ngx-json-editor-node-flat {
 
   .node-container {
     display: flex;
-    padding-bottom: 0px;
+    padding-bottom: var(--spacing-0);
   }
 
   .node {
@@ -67,7 +67,7 @@ ngx-json-editor-node-flat {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      margin-right: 10px;
+      margin-right: var(--spacing-10);
       color: var(--grey-400);
       flex: 0 0 15px;
 
@@ -117,15 +117,15 @@ ngx-json-editor-node-flat {
 
       .node-info {
         flex: 0 0 40%;
-        padding-right: 25px;
+        padding-right: var(--spacing-24);
         overflow: hidden;
         padding-top: 3px;
       }
 
       .node-input {
         flex: 0 1 60%;
-        padding-top: 5px;
-        margin-bottom: 2px;
+        padding-top: var(--spacing-4);
+        margin-bottom: var(--spacing-2);
 
         ngx-input {
           padding: var(--spacing-0);

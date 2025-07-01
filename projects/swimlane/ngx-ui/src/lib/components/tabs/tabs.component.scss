@@ -83,7 +83,7 @@ $tabs-button-height--vertical: 53px;
   }
 
   .ngx-tab-content {
-    padding: 10px;
+    padding: var(--spacing-10);
   }
 
   &.light {
@@ -126,7 +126,7 @@ $tabs-button-height--vertical: 53px;
         line-height: 45px;
         border: none !important;
         border-bottom: 1px solid var(--grey-700) !important;
-        padding-left: 19px;
+        padding-left: var(--spacing-20);
         font-weight: 600;
 
         &::after {

@@ -43,7 +43,7 @@ $dashes: 5.3px;
     }
 
     .ngx-tree {
-      margin-left: 5px;
+      margin-left: var(--spacing-4);
     }
 
     &.selectable {

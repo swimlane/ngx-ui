@@ -18,7 +18,7 @@
   .ngx-checkbox--label {
     display: flex;
     cursor: pointer;
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-0);
 
     input {
       display: none;

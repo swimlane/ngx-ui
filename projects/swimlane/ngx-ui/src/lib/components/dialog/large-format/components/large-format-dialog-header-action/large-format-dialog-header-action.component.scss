@@ -11,7 +11,7 @@
     color: var(--grey-400);
     font-size: 0.8125rem;
     line-height: 1rem;
-    padding-right: 0;
+    padding-right: var(--spacing-0);
 
     & i.ngx-icon {
       font-size: 0.625rem;

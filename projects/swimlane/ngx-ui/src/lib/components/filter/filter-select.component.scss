@@ -20,7 +20,7 @@ $max-width: 300px;
 
 .ngx-filter-select {
   max-width: $max-width;
-  margin-right: 8px;
+  margin-right: var(--spacing-8);
   display: inline-block;
 
   .ngx-select-flex-wrap {
@@ -37,7 +37,7 @@ $max-width: 300px;
   .ngx-select-wrap {
     position: relative;
     display: block;
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-0);
     width: 100%;
 
     .ngx-select-hint {
@@ -181,7 +181,7 @@ $max-width: 300px;
     background: $color-dropdown-bg;
     border: 1px solid var(--grey-550);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    margin-top: 10px;
+    margin-top: var(--spacing-10);
     opacity: 0;
     display: none;
     transition: visibility 0s, opacity 0.25s ease-out;
@@ -276,7 +276,7 @@ $max-width: 300px;
     }
 
     .ngx-select-filter {
-      padding: 10px var(--spacing-20);
+      padding: var(--spacing-10) var(--spacing-20);
       background: $color-filter-bg;
       position: relative;
 

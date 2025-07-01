@@ -40,7 +40,7 @@
 .hotkeys {
   background: var(--grey-850);
   border: 1px solid var(--grey-500);
-  padding: 15px;
+  padding: var(--spacing-16);
   box-shadow: shadow.$shadow-1;
   color: var(--grey-300);
   font-size: 14px;
@@ -48,16 +48,16 @@
   margin-bottom: 45px;
 
   .hotkey-row {
-    padding: 10px var(--spacing-0);
+    padding: var(--spacing-10) var(--spacing-0);
     border-bottom: 1px solid var(--grey-600);
 
     &:first-child {
-      padding-top: 0px;
+      padding-top: var(--spacing-0);
     }
 
     &:last-child {
       border-bottom: none;
-      padding-bottom: 0px;
+      padding-bottom: var(--spacing-0);
     }
 
     .combination {

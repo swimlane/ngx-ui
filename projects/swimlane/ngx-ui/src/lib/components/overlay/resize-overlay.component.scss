@@ -54,7 +54,7 @@
         padding: 7px;
 
         .combination {
-          margin-left: 5px;
+          margin-left: var(--spacing-4);
           .key {
             background-color: #d1d5e1;
             border-radius: var(--radius-4);

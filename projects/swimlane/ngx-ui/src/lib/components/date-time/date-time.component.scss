@@ -35,7 +35,7 @@ $input-invalid-color: var(--red-500);
   }
 
   .ngx-input-box-wrap {
-    padding-right: 25px;
+    padding-right: var(--spacing-24);
   }
 
   &.no-label {
@@ -158,7 +158,7 @@ $input-invalid-color: var(--red-500);
     background: $calendar-bg;
     border: 1px solid $calender-border;
     padding: var(--spacing-8) 18px;
-    margin-top: 0;
+    margin-top: var(--spacing-0);
 
     flex-direction: row;
     box-sizing: border-box;
@@ -172,8 +172,8 @@ $input-invalid-color: var(--red-500);
     }
 
     .ngx-input {
-      margin-top: 0;
-      padding-top: 0;
+      margin-top: var(--spacing-0);
+      padding-top: var(--spacing-0);
       width: 35px;
 
       &.milliseconds {
@@ -202,7 +202,7 @@ $input-invalid-color: var(--red-500);
     }
 
     .day-name-row {
-      margin-top: 0;
+      margin-top: var(--spacing-0);
     }
   }
 
@@ -226,7 +226,7 @@ $input-invalid-color: var(--red-500);
     }
 
     .today-btn {
-      margin-left: 15px;
+      margin-left: var(--spacing-16);
       opacity: 1;
       transition: opacity $animation-timing;
 
@@ -237,12 +237,12 @@ $input-invalid-color: var(--red-500);
     }
 
     .apply-btn {
-      margin-right: 15px;
+      margin-right: var(--spacing-16);
       color: var(--blue-400);
     }
 
     .clear-btn {
-      margin-right: 15px;
+      margin-right: var(--spacing-16);
     }
   }
 }
@@ -267,14 +267,14 @@ $input-invalid-color: var(--red-500);
       text-transform: uppercase;
       color: var(--grey-700);
       background: #dee1ea;
-      margin-left: 5px;
+      margin-left: var(--spacing-4);
       padding: var(--spacing-0) 6px;
       vertical-align: text-top;
       text-align: left;
       min-width: 70px;
 
       ngx-icon {
-        padding-right: 5px;
+        padding-right: var(--spacing-4);
       }
 
       &:hover,

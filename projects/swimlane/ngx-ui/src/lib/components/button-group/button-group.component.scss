@@ -19,7 +19,7 @@
   }
 
   > ngx-dropdown {
-    padding-bottom: 0;
+    padding-bottom: var(--spacing-0);
     position: unset; // align dropdown menu with button group
 
     > ngx-dropdown-toggle {

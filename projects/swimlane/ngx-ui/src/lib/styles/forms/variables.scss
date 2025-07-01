@@ -26,14 +26,14 @@ $input-label-font-weight: 600;
 
 $input-hint-color: var(--grey-350);
 $input-hint-font-size: 12px;
-$input-hint-margin-top: 2px;
+$input-hint-margin-top: var(--spacing-2);
 $input-hint-min-height: 1em;
 $input-hint-line-height: 14px;
 
 $input-min-width: 300px;
 $input-line-height: calc(1em + 0.7rem);
-$input-margin-top: 16px;
-$input-margin-bottom: 8px;
+$input-margin-top: var(--spacing-16);
+$input-margin-bottom: var(--spacing-8);
 $input-padding-top: calc(#{$input-label-font-size-active} + 8px);
 
 $input-animation-duration: 150ms;
@@ -45,15 +45,15 @@ $input-animation-duration: 150ms;
   margin-bottom: $input-margin-bottom;
   line-height: $input-line-height;
   padding-top: $input-padding-top;
-  padding-bottom: 0;
+  padding-bottom: var(--spacing-0);
 
   &.marginless {
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-0);
   }
 
   &.no-label {
-    padding-top: 0;
+    padding-top: var(--spacing-0);
   }
 }
 
@@ -75,7 +75,7 @@ $input-animation-duration: 150ms;
 @mixin input-hint {
   font-size: $input-hint-font-size;
   color: $input-hint-color;
-  margin-top: 2px;
+  margin-top: var(--spacing-0);
   min-height: 1em;
   line-height: $input-hint-line-height;
   transition: color 0.2s ease-in-out;

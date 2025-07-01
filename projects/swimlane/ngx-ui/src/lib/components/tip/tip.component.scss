@@ -10,7 +10,7 @@ $color-border: var(--grey-650);
     border-radius: var(--radius-2);
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: var(--spacing-10);
     position: relative;
 
     // rounded left border

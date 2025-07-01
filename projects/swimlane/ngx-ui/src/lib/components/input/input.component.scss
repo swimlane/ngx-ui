@@ -88,17 +88,17 @@
   }
 
   ngx-input-prefix {
-    margin-right: 8px;
+    margin-right: var(--spacing-8);
   }
 
   ngx-input-suffix {
-    margin-left: 8px;
+    margin-left: var(--spacing-8);
   }
 
   .ngx-input-wrap {
     position: relative;
     display: block;
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-0);
     width: 100%;
 
     .ngx-input-box-wrap {
@@ -117,8 +117,8 @@
         display: block;
         background: transparent;
         border: none;
-        margin-bottom: 0px;
-        padding-left: 0px;
+        margin-bottom: var(--spacing-0);
+        padding-left: var(--spacing-0);
         width: 100%;
         max-width: 100%;
         color: forms.$color-input-text;
@@ -260,11 +260,11 @@
     }
 
     ngx-input-prefix {
-      padding-left: 10px;
+      padding-left: var(--spacing-10);
     }
 
     ngx-input-suffix {
-      padding-right: 10px;
+      padding-right: var(--spacing-10);
     }
   }
 

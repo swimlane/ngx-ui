@@ -8,7 +8,7 @@
   position: relative;
 
   &:last-child {
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-0);
   }
 
   ngx-json-editor-node-flat {
@@ -20,9 +20,9 @@
   height: 100px;
   position: relative;
   display: flex;
-  padding-top: 0px;
+  padding-top: var(--spacing-0);
   ngx-dropdown {
-    padding-bottom: 0;
+    padding-bottom: var(--spacing-0);
   }
 
   &.compressed {
@@ -32,7 +32,7 @@
   &.background {
     border-left: 1px solid var(--grey-650);
     height: 96px;
-    padding-left: 0px;
+    padding-left: var(--spacing-0);
     padding-top: var(--spacing-2);
     padding-bottom: var(--spacing-2);
     margin-top: -var(--spacing-2);
@@ -46,7 +46,7 @@
     justify-content: center;
     align-items: center;
     border-radius: var(--radius-4);
-    margin-bottom: 0px;
+    margin-bottom: var(--spacing-0);
     background-color: rgba(49, 56, 71, 0.5);
 
     &.indented-content--root {
@@ -54,7 +54,7 @@
     }
 
     &.indented-content--indent {
-      margin-left: 15px;
+      margin-left: var(--spacing-16);
     }
 
     button {
@@ -66,7 +66,7 @@
 
       span {
         font-size: 14px;
-        margin-left: 10px;
+        margin-left: var(--spacing-10);
       }
     }
 

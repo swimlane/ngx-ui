@@ -45,7 +45,7 @@
 
       ngx-input {
         margin-top: -3px;
-        padding-top: 0;
+        padding-top: var(--spacing-0);
 
         .ngx-input-underline {
           display: none;
@@ -84,7 +84,7 @@
     right: 0;
     overflow: auto;
     width: 100%;
-    padding-top: 50px;
+    padding-top: var(--spacing-48);
 
     .main-toolbar {
       position: absolute;
@@ -112,7 +112,7 @@
   color: var(--grey-300);
   font-size: 1rem;
   position: relative;
-  padding-bottom: 5px;
+  padding-bottom: var(--spacing-4);
   margin-bottom: var(--spacing-20);
   font-weight: 600;
 
@@ -140,9 +140,9 @@
     overflow: hidden;
     width: 150px;
     display: inline-block;
-    padding: 10px var(--spacing-4);
+    padding: var(--spacing-10) var(--spacing-4);
     text-align: center;
-    margin: 10px;
+    margin: var(--spacing-10);
     border: solid 1px var(--grey-800);
     border-radius: var(--radius-2);
 
@@ -181,7 +181,7 @@
 .large-icon-section {
   .large-icon {
     font-size: 50px;
-    margin-right: 10px;
+    margin-right: var(--spacing-10);
     line-height: 50px;
   }
 }
@@ -201,7 +201,7 @@
     .large-icon {
       display: block;
       font-size: 50px;
-      margin: 10px;
+      margin: var(--spacing-10);
     }
   }
 }
@@ -233,7 +233,7 @@
   height: 50px;
 
   ngx-icon.search-icon {
-    margin-top: 5px;
+    margin-top: var(--spacing-4);
   }
 
   ngx-input[hidden] {
@@ -309,7 +309,7 @@ $palette: (
 }
 
 .list-unstyled {
-  padding-left: 0;
+  padding-left: var(--spacing-0);
   list-style: none;
 }
 
@@ -325,7 +325,7 @@ $palette: (
   margin-top: 30px;
   display: block;
   background-color: blue;
-  padding: 10px;
+  padding: var(--spacing-10);
   border-radius: var(--radius-6);
   color: white;
   user-select: none;
