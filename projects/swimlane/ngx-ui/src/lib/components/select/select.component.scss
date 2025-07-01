@@ -37,7 +37,7 @@ $color-chip-text: #ffffff;
   .ngx-select-wrap {
     position: relative;
     display: block;
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-0);
     width: 100%;
 
     .ngx-select-hint {
@@ -49,7 +49,7 @@ $color-chip-text: #ffffff;
   .ngx-select-input {
     display: block;
     position: relative;
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-0);
     width: 100%;
 
     .ngx-select-input-box-outer-wrap {
@@ -64,8 +64,8 @@ $color-chip-text: #ffffff;
       position: relative;
       background: transparent;
       outline: none;
-      margin-bottom: 0;
-      padding-left: 0;
+      margin-bottom: var(--spacing-0);
+      padding-left: var(--spacing-0);
       width: 100%;
       min-height: 1.75em;
       min-width: 60px;
@@ -109,7 +109,7 @@ $color-chip-text: #ffffff;
       white-space: nowrap;
       text-overflow: ellipsis;
       max-width: 100%;
-      padding-right: 25px; // room for caret
+      padding-right: var(--spacing-24); // room for caret
     }
 
     .ngx-select-input-box__controls {
@@ -117,7 +117,7 @@ $color-chip-text: #ffffff;
       display: flex;
       flex-wrap: nowrap;
       min-height: 1.75em;
-      padding-right: 5px;
+      padding-right: var(--spacing-4);
 
       button {
         padding: var(--spacing-0) var(--spacing-2);
@@ -137,7 +137,7 @@ $color-chip-text: #ffffff;
       }
 
       .ngx-select-clear {
-        margin-right: 5px;
+        margin-right: var(--spacing-4);
       }
 
       .ngx-select-caret {
@@ -214,7 +214,7 @@ $color-chip-text: #ffffff;
       }
 
       &.disabled {
-        padding-right: 10px;
+        padding-right: var(--spacing-10);
       }
     }
   }
@@ -318,7 +318,7 @@ $color-chip-text: #ffffff;
       opacity: 1;
       bottom: 100%;
       top: auto;
-      margin-bottom: 24px;
+      margin-bottom: var(--spacing-24);
       animation: openUpwardsAnimation 0.25s;
     }
 
@@ -355,7 +355,7 @@ $color-chip-text: #ffffff;
     background: $color-dropdown-bg;
     border: 1px solid var(--grey-650);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    margin-top: 10px;
+    margin-top: var(--spacing-10);
     opacity: 0;
     display: none;
     transition: visibility 0s, opacity 0.25s ease-out;
@@ -440,7 +440,7 @@ $color-chip-text: #ffffff;
     }
 
     .ngx-select-filter {
-      padding: 10px;
+      padding: var(--spacing-10);
       background: $color-filter-bg;
       position: relative;
 
@@ -476,7 +476,7 @@ $color-chip-text: #ffffff;
         display: block;
         font-size: 15px;
         width: 100%;
-        padding-left: 19px;
+        padding-left: var(--spacing-20);
 
         &::-webkit-search-decoration,
         &::-webkit-search-cancel-button,
@@ -533,7 +533,7 @@ $color-chip-text: #ffffff;
 
   &.fill {
     &.single-selection .ngx-select-input-list {
-      padding-left: 10px;
+      padding-left: var(--spacing-10);
     }
 
     .ngx-select-flex-wrap {
@@ -548,7 +548,7 @@ $color-chip-text: #ffffff;
     }
 
     .ngx-select-placeholder {
-      padding-left: 10px;
+      padding-left: var(--spacing-10);
     }
   }
 
@@ -596,7 +596,7 @@ $color-chip-text: #ffffff;
     }
 
     .ngx-select-input .ngx-select-label {
-      padding-right: 25px; // space for the caret
+      padding-right: var(--spacing-24); // space for the caret
     }
   }
 
@@ -607,7 +607,7 @@ $color-chip-text: #ffffff;
     .ngx-select-input .ngx-select-label {
       font-size: forms.$input-label-font-size-active;
       top: -1.2em;
-      padding-right: 0;
+      padding-right: var(--spacing-0);
     }
   }
 }

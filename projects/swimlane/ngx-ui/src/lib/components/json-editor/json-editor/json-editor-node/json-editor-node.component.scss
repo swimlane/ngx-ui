@@ -4,14 +4,14 @@
 
 .json-tree-node {
   padding: var(--spacing-0);
-  margin-left: 25px;
-  margin-bottom: 0px;
+  margin-left: var(--spacing-24);
+  margin-bottom: var(--spacing-0);
   position: relative;
   white-space: nowrap;
 
   &.inline {
     display: inline-block;
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-0);
     vertical-align: top;
     width: calc(100% - 290px);
 
@@ -128,7 +128,7 @@
         width: 16px;
         height: 16px;
       }
-      margin-left: 0px;
+      margin-left: var(--spacing-0);
       display: inline-block;
 
       &:hover {

@@ -11,7 +11,7 @@
   background: var(--grey-650);
   box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
   border-radius: var(--radius-2);
-  margin-bottom: 13px;
+  margin-bottom: var(--spacing-12);
 
   .drag-drop-handle,
   .remove-item {

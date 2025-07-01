@@ -24,7 +24,7 @@
   &__dismiss-btn {
     color: var(--grey-350);
     font-size: 0.875rem;
-    padding-right: 0;
+    padding-right: var(--spacing-0);
 
     &:hover {
       color: var(--white);
@@ -38,7 +38,7 @@
   }
 
   & ~ ngx-drawer.ngx-drawer.large-format-dialog-drawer {
-    margin-left: 0;
+    margin-left: var(--spacing-0);
     max-width: 100%;
     min-height: calc(100% - 3.5rem - 4px);
     max-height: calc(100% - 3.5rem - 4px);

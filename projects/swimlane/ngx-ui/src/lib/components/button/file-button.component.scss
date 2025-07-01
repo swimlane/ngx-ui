@@ -35,7 +35,7 @@ $upload-button-success-fill: var(--blue-400);
 
     .ngx-file-button-text {
       font-size: 0.9rem;
-      margin-left: 8px;
+      margin-left: var(--spacing-8);
       color: $upload-button-progress-bg;
     }
   }
@@ -116,12 +116,12 @@ $upload-button-success-fill: var(--blue-400);
 
       .ngx-file-button-button {
         background: $upload-button-progress-bg;
-        margin-top: 25px;
+        margin-top: var(--spacing-24);
       }
 
       .ngx-file-button-fill {
         display: block;
-        margin-top: 25px;
+        margin-top: var(--spacing-24);
         transition: 100ms all ease 100ms;
       }
 

@@ -6,7 +6,7 @@
     border: 1px solid json-editor.$color-node-item-border;
     height: 30px;
     display: inline-block;
-    margin-left: 20px;
+    margin-left: var(--spacing-20);
     position: relative;
     background: json-editor.$color-node-item-bg;
 
@@ -36,7 +36,7 @@
         width: 16px;
         height: 16px;
       }
-      margin-left: 0px;
+      margin-left: var(--spacing-0);
       display: inline-block;
     }
 

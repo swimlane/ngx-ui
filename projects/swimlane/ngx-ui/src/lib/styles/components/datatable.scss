@@ -75,7 +75,7 @@ $datatable-row-hover: color.adjust($datatable-bg, $lightness: -2%);
 
       ul {
         li {
-          margin: 10px var(--spacing-0);
+          margin: var(--spacing-10) var(--spacing-0);
 
           a {
             height: 22px;

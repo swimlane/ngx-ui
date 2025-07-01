@@ -107,10 +107,10 @@
 .icon {
   &.has-text,
   &.has-text-right {
-    margin-right: 5px;
+    margin-right: var(--spacing-4);
   }
 
   &.has-text-left {
-    margin-left: 5px;
+    margin-left: var(--spacing-4);
   }
 }

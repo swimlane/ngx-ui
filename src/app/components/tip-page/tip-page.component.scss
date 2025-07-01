@@ -1,7 +1,7 @@
 .tip-example {
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-20);
 
   .ngx-tip .tip-container {
-    margin-bottom: 10px;
+    margin-bottom: var(--spacing-10);
   }
 }

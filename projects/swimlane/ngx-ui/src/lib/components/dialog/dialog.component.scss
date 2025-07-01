@@ -69,7 +69,7 @@ $dialog-body-color: var(--grey-200);
       text-align: right;
 
       .btn {
-        margin-left: 5px;
+        margin-left: var(--spacing-4);
       }
     }
   }
@@ -101,7 +101,7 @@ $dialog-body-color: var(--grey-200);
       }
 
       .ngx-tabs {
-        margin-bottom: 0;
+        margin-bottom: var(--spacing-0);
 
         .ngx-tabs-list {
           padding: var(--spacing-0) var(--spacing-20);

@@ -106,7 +106,7 @@ $card-vertical-gutter: var(--spacing-20);
     margin-left: $card-horizontal-header-padding;
 
     .ngx-checkbox--label .ngx-checkbox--box {
-      margin-right: 0;
+      margin-right: var(--spacing-0);
     }
   }
 
@@ -202,11 +202,11 @@ $card-vertical-gutter: var(--spacing-20);
       flex-basis: 20%;
 
       .ngx-card-placeholder {
-        margin-bottom: 10px;
+        margin-bottom: var(--spacing-10);
         width: 100%; // section placeholders takes up entire width
 
         &:last-child {
-          margin-bottom: 0;
+          margin-bottom: var(--spacing-0);
         }
       }
 
@@ -233,13 +233,13 @@ $card-vertical-gutter: var(--spacing-20);
       cursor: pointer;
 
       i {
-        margin-top: 5px;
-        margin-right: 5px;
+        margin-top: var(--spacing-4);
+        margin-right: var(--spacing-4);
       }
     }
 
     .ngx-dropdown.ellipsis {
-      margin-right: 12px;
+      margin-right: var(--spacing-12);
     }
   }
 
@@ -290,13 +290,13 @@ $card-vertical-gutter: var(--spacing-20);
       }
 
       &::before {
-        margin-right: 15px;
+        margin-right: var(--spacing-16);
         border-radius: var(--radius-0) var(--radius-0) var(--radius-0) var(--radius-2);
         flex: 1;
       }
 
       &::after {
-        margin-left: 15px;
+        margin-left: var(--spacing-16);
         border-radius: var(--radius-0) var(--radius-0) var(--radius-2) var(--radius-0);
         width: var(--spacing-20);
       }
@@ -401,7 +401,7 @@ $card-vertical-gutter: var(--spacing-20);
       font-weight: 600;
       font-size: 21px;
       color: #f0f1f6;
-      margin-bottom: 5px;
+      margin-bottom: var(--spacing-4);
     }
 
     .ngx-card-subtitle {
@@ -453,7 +453,7 @@ $card-vertical-gutter: var(--spacing-20);
     .action {
       // footer action button
       cursor: pointer;
-      margin-right: 25px;
+      margin-right: var(--spacing-24);
     }
   }
 }

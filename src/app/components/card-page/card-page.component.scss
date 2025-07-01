@@ -20,7 +20,7 @@
 
     .card-action {
       justify-content: space-between;
-      padding-right: 0 !important;
+      padding-right: var(--spacing-0) !important;
       color: var(--grey-350);
     }
   }
@@ -48,8 +48,8 @@
     .ngx-card-header {
       .ngx-card-subtitle {
         i {
-          margin-right: 5px;
-          margin-top: 5px;
+          margin-right: var(--spacing-4);
+          margin-top: var(--spacing-4);
         }
       }
 

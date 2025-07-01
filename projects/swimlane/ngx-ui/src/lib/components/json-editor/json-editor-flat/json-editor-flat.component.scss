@@ -13,7 +13,7 @@
     }
 
     .ngx-dropdown {
-      margin-left: 10px;
+      margin-left: var(--spacing-10);
     }
   }
 }

@@ -31,7 +31,7 @@ $popover-spacing: 10px;
     color: $popover-color;
     box-shadow: shadows.$shadow-3;
     font-size: 13px;
-    padding: 10px;
+    padding: var(--spacing-10);
 
     .tooltip-caret {
       position: absolute;

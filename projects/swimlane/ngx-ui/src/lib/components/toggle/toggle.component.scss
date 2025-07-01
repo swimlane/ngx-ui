@@ -84,7 +84,7 @@
 
   .ngx-toggle-text {
     cursor: pointer;
-    padding-left: 5px;
+    padding-left: var(--spacing-4);
     color: var(--grey-100);
   }
 }

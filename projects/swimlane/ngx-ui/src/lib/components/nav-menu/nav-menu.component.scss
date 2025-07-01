@@ -17,7 +17,7 @@ ngx-nav-menu {
   .expand-icon {
     font-size: 12px;
     cursor: pointer;
-    margin-top: 2px;
+    margin-top: var(--spacing-2);
     position: absolute;
     left: 23px;
 
@@ -103,7 +103,7 @@ ngx-nav-menu.expanded,
     ngx-icon {
       width: 20px;
       height: 20px;
-      margin-left: 17px;
+      margin-left: var(--spacing-16);
       vertical-align: middle;
       font-size: 20px;
       line-height: 20px;
@@ -119,7 +119,7 @@ ngx-nav-menu.expanded,
     .nav-label {
       display: none;
       text-transform: uppercase;
-      margin-left: 15px;
+      margin-left: var(--spacing-16);
       font-size: 14px;
       color: var(--grey-350);
       font-weight: 600;
@@ -130,8 +130,8 @@ ngx-nav-menu.expanded,
       float: right;
       color: var(--grey-350);
       font-size: 12px;
-      margin-top: 5px;
-      margin-right: 10px;
+      margin-top: var(--spacing-4);
+      margin-right: var(--spacing-10);
     }
 
     &:focus {
@@ -157,7 +157,7 @@ ngx-nav-menu.expanded,
 
 .sub-nav {
   display: none;
-  padding-left: 0px;
+  padding-left: var(--spacing-0);
   margin: var(--spacing-0);
   max-height: 263px;
   overflow: auto;
@@ -166,7 +166,7 @@ ngx-nav-menu.expanded,
   .sub-nav-item {
     display: block;
     background: var(--grey-800);
-    margin-bottom: 0px;
+    margin-bottom: var(--spacing-0);
     padding: var(--spacing-16) 18px;
     font-size: 0.9rem;
     color: var(--grey-350);
@@ -175,7 +175,7 @@ ngx-nav-menu.expanded,
     .active-indicator {
       display: none;
       float: right;
-      margin-top: 4px;
+      margin-top: var(--spacing-4);
       color: var(--blue-500);
     }
 
@@ -222,7 +222,7 @@ ngx-nav-menu.expanded,
   .logo-text {
     display: none;
     height: 20px;
-    margin-left: 25px;
+    margin-left: var(--spacing-24);
   }
 
   &:hover {
@@ -243,7 +243,7 @@ ngx-nav-menu.expanded,
 .nav-popover {
   width: 200px;
   background: var(--grey-750) !important;
-  margin-top: 7px;
+  margin-top: var(--spacing-8);
   box-shadow: none !important;
   padding: var(--spacing-0) !important;
 
@@ -260,7 +260,7 @@ ngx-nav-menu.expanded,
   .title {
     height: 50px;
     background: var(--grey-750);
-    padding: 15px var(--spacing-0) 14px 15px;
+    padding: var(--spacing-16) var(--spacing-0) 14px var(--spacing-16);
     text-transform: uppercase;
     margin-left: -1px;
     font-size: 14px;

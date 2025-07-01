@@ -53,14 +53,14 @@ ngx-time {
       text-transform: uppercase;
       color: var(--grey-700);
       background: #dee1ea;
-      margin-left: 5px;
+      margin-left: var(--spacing-4);
       padding: var(--spacing-0) 6px;
       vertical-align: text-top;
       text-align: left;
       min-width: 70px;
 
       ngx-icon {
-        padding-right: 5px;
+        padding-right: var(--spacing-4);
       }
 
       &:hover,
