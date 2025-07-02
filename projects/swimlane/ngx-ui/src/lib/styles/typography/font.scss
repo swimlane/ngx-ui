@@ -6,6 +6,27 @@
 $font-size: 16px;
 $line-height: 1.4;
 
+:root{
+  
+  --font-size-x-small: 10px;
+  --font-size-small: 12px;
+  --font-size-base: 13px;
+  --font-size-medium: 14px;
+  --font-size-large: 16px;
+  --font-size-x-large: 18px;
+  --font-size-h1: 50px;
+  --font-size-h2: 36px;
+  --font-size-h3: 32px;
+  --font-size-h4: 28px;
+  --font-size-h5: 24px;
+  --font-size-h6: 20px;
+  --font-weight-light: 300px;
+  --font-weight-regular: 400px;
+  --font-weight-semibold: 600px;
+  --font-weight-bold: 700px;
+
+}
+
 h1,
 h2,
 h3,
