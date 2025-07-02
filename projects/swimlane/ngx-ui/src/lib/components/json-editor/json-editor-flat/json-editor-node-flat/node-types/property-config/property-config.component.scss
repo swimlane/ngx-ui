@@ -49,7 +49,7 @@
       flex-basis: 50%;
 
       &:first-child {
-        margin-right: 30px;
+        margin-right: var(--spacing-30);
       }
     }
   }

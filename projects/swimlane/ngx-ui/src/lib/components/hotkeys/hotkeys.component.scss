@@ -62,7 +62,7 @@
 
     .combination {
       float: right;
-      margin-left: 30px;
+      margin-left: var(--spacing-30);
 
       .key {
         background: var(--grey-500);
