@@ -2,7 +2,7 @@
 
 ## HEAD (unreleased)
 
-- Enhancement (`ngx-dropdown`): Updated background color for dark outline 
+- Enhancement (`ngx-dropdown`): Updated background color for dark outline
 
 ## 49.3.0 (2025-06-18)
 
