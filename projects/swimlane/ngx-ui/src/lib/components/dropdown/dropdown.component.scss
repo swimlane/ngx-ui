@@ -231,7 +231,7 @@ $dropdown-color: colors.$color-grey-100;
     }
 
     &.ngx-dropdown-dark-outline {
-      $menu-color: #222732;
+      $menu-color: colors.$color-blue-grey-775;
       $menu-border: colors.$color-blue-grey-550;
       $item-active: #479eff;
       $item-hover: colors.$color-blue-grey-750;
