@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-dropdown`): Updated background color for dark outline 
+
 ## 49.3.0 (2025-06-18)
 
 - Feature (`ngx-calendar`): Added new `@Input` named `showStartTimeInputs` and `showEndTimeInputs` set to a `boolean`
