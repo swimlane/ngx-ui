@@ -1,0 +1,223 @@
+@use 'colors/colors' as colors;
+
+date-range-picker {
+  display: inline-block;
+  margin: 6px;
+
+  .time-range-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px; // spacing between label and icon
+    font-size: 14px;
+    color: white;
+
+    .calendar-dialog-btn {
+      font-size: 16px;
+      cursor: pointer;
+      line-height: 1;
+
+      &:hover {
+        color: white;
+      }
+    }
+  }
+
+  .btn-primary .time-range-label {
+    .calendar-dialog-btn {
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      line-height: 1;
+    }
+  }
+
+  .btn.btn-bordered,
+  .btn-primary {
+    display: flex;
+    padding: 6px 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .date-range-selection {
+    display: flex;
+    font-size: 16px;
+    font-weight: 600;
+    color: colors.$color-blue-grey-250;
+    padding: 12px 20px;
+    align-items: center;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.07);
+    font-family: 'Source Sans Pro';
+    font-style: normal;
+    line-height: 22px;
+    justify-content: flex-start;
+  }
+
+  .ngx-input-box {
+    height: 33px;
+  }
+
+  .date-range-picker {
+    display: flex;
+    flex-direction: row;
+    background-color: colors.$color-blue-grey-800;
+    color: white;
+    border: 1px solid var(--blue-grey-color-blue-grey-700, #313847);
+    width: 100%;
+  }
+
+  .sidebar {
+    width: 160px;
+    border-right: 1px solid colors.$color-blue-grey-700;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    height: 350px;
+    font-size: 14px;
+    text-align: left;
+    font-weight: 600;
+  }
+
+  .sidebar p {
+    cursor: pointer;
+    padding: 12px 20px;
+    flex-direction: column;
+    color: var(--blue-grey-color-blue-grey-100, #cdd2dd);
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.07);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 114.286% */
+    margin-bottom: 0px;
+  }
+
+  .sidebar p:hover,
+  .sidebar .active {
+    background-color: colors.$color-blue-grey-700;
+    color: white;
+  }
+
+  .calendar-panel {
+    padding: 0px 20px;
+  }
+
+  .input-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    ngx-input {
+      color: white;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20.1px;
+      font-family: 'Source Sans Pro';
+    }
+
+    .input-with-icon {
+      flex: 1;
+      position: relative;
+
+      ngx-input {
+        width: 100%;
+      }
+
+      .calendar-dialog-btn {
+        position: absolute;
+        top: 50%;
+        right: 12px;
+        transform: translateY(-50%);
+        font-size: 16px;
+        color: colors.$color-blue-grey-350;
+
+        &:hover {
+          color: white;
+        }
+      }
+    }
+
+    span {
+      font-size: 14px;
+      color: white;
+      white-space: nowrap;
+    }
+  }
+
+  .dual-calendar-wrapper {
+    display: flex;
+    gap: 32px;
+    justify-content: flex-start;
+
+    .ngx-calendar {
+      box-shadow: none;
+      border: none;
+    }
+    .ngx-calendar .time-inputs {
+      display: none;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    height: 46px;
+    padding: 0px 20px;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    justify-content: space-between;
+    margin: 4px 0px;
+
+    ngx-button {
+      font-size: 14px;
+    }
+  }
+
+  .left,
+  .right {
+    display: flex;
+    ngx-button.btn {
+      height: 33px !important;
+    }
+  }
+
+  .left {
+    ngx-button.btn.btn-bordered {
+      margin-left: 0px;
+    }
+  }
+
+  .right {
+    gap: 8px;
+  }
+
+  .validation-error {
+    color: colors.$color-red-500;
+    min-height: 1.5em;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    height: 10px;
+    ngx-icon {
+      color: white;
+    }
+  }
+
+  .hide {
+    visibility: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .date-range-picker {
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+    }
+
+    .dual-calendar-wrapper {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+}

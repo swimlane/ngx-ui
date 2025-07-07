@@ -7,6 +7,7 @@ import { PrismModule } from '../../common/prism/prism.module';
 
 import { SelectsPageRoutingModule } from './filters-page-routing.module';
 import { FiltersPageComponent, MyCustomComponent } from './filters-page.component';
+import { DateRangePickerModule } from '@swimlane/ngx-ui/components/date-range-calendar/date-range.module';
 
 @NgModule({
   declarations: [FiltersPageComponent, MyCustomComponent],
@@ -20,7 +21,7 @@ import { FiltersPageComponent, MyCustomComponent } from './filters-page.componen
     SelectsPageRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    TabsModule
+    TabsModule, DateRangePickerModule
   ]
 })
 export class FiltersPageModule {}
