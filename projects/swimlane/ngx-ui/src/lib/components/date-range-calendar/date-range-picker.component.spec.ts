@@ -23,13 +23,6 @@ describe('DateRangePickerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should toggle the dropdown', () => {
-    expect(component.showPicker).toBe(false);
-    component.toggleDropdown();
-    expect(component.showPicker).toBe(true);
-    component.toggleDropdown();
-    expect(component.showPicker).toBe(false);
-  });
 
   it('should emit cancel on cancel button', () => {
     spyOn(component.cancel, 'emit');
@@ -45,7 +38,7 @@ describe('DateRangePickerComponent', () => {
     component.form.endDate = end;
     spyOn(component.apply, 'emit');
     component.onApply();
-    expect(component.apply.emit).toHaveBeenCalledWith({ start, end });
+    expect(component.apply.emit).toHaveBeenCalledWith({ start, end, label: component.selectedLabel });
     expect(component.showPicker).toBe(false);
   });
 
@@ -70,7 +63,7 @@ describe('DateRangePickerComponent', () => {
       startDate: new Date('2023-01-01'),
       endDate: new Date('2023-01-05')
     };
-    component.onRangeSelect(range, 'left');
+    component.onRangeSelect(range);
     expect(component.rangeModel.startDate).toEqual(range.startDate);
     expect(component.rangeModel.endDate).toEqual(range.endDate);
   });

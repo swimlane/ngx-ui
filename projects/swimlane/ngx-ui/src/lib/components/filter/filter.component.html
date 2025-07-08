@@ -2,7 +2,7 @@
   @if (type === FilterType.Select) {
     <div class="ngx-select-flex-wrap" [style.min-width]="autosize ? autosizeMinWidth : undefined">
       <div class="ngx-select-flex-wrap-inner">
-        <div class="ngx-chip" (click)="onToggle()" [class.has-controls]="hasControls">
+        <div class="ngx-chip" (click)="onToggle($event)" [class.has-controls]="hasControls">
           <div class="ngx-chip__contents">
             @if (ngxIconClass && ngxIconPosition === FilterIconPositionTypes.Left) {
               <button type="button" aria-label="Filter Icon" class="ngx-chip-icon-left">
@@ -105,7 +105,7 @@
 </div>
 <ng-template #buttonControlTemplate>
   <div class="ngx-filter-button">
-    <button type="button" class="ngx-chip" (click)="onFilterButtonClick()" [disabled]="disabled" aria-label="Filter Button">
+    <button type="button" class="ngx-chip" (click)="onFilterButtonClick($event)" [disabled]="disabled" aria-label="Filter Button">
       <div class="ngx-chip__contents">
         @if (ngxIconClass && ngxIconPosition === FilterIconPositionTypes.Left) {
           <i class="ngx-icon ngx-chip-icon-left" [ngClass]="ngxIconClass" aria-label="Button Icon"></i>

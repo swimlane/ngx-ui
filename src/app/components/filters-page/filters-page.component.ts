@@ -63,6 +63,10 @@ export class FiltersPageComponent implements OnInit {
   @ViewChild('filterRef', { static: false })
   filterRef: FilterComponent;
 
+  @ViewChild('dateRangeComponent', { static: false })
+  dateRangeComponent: DateRangePickerComponent;
+
+
   aLongString = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
   aVeryLongString =
     'Lorem_ipsum_dolor_sit_amet,_consectetur_adipiscing_elit._Sed_lectus_elit,_malesuada_quis_blandit_nec,_sodales_vel_quam._Sed_id_justo_est._Nullam_ut_tortor_urna._Nullam_nec_nibh_lobortis,_pellentesque_ex_at,_mollis_lectus._Sed_vehicula_imperdiet_pulvinar._Donec_ante_orci,_imperdiet_scelerisque_elit_a,_cursus_consectetur_ipsum._Etiam_tristique_orci_id_tortor_sodales,_at_molestie_nunc_porta._Etiam_fermentum_semper_libero_ut_feugiat._Praesent_tincidunt_laoreet_urna,_eget_iaculis_libero_condimentum_ac._Integer_porta_arcu_a_diam_dictum_suscipit.';
@@ -247,6 +251,11 @@ export class FiltersPageComponent implements OnInit {
     if (this.customDropdownDateRangeConfig?.closeOnClick) {
       this.filterRef.onClose();  // closes the dropdown properly
     }
+  }
+
+  onClearSelection(){
+    this.filterRef.dynamicComponentRef?.instance.resetForm();
+  // this.dateRangeComponent?.resetForm();
   }
 
   onCustomDropdownClickedButton(event: any) {
