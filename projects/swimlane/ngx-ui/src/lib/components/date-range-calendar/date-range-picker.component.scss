@@ -1,8 +1,6 @@
 @use 'colors/colors' as colors;
 
 date-range-picker {
-  display: inline-block;
-  margin: 6px;
 
   .time-range-label {
     display: inline-flex;
@@ -73,7 +71,7 @@ date-range-picker {
     display: flex;
     flex-direction: column;
     overflow-y: auto;
-    height: 350px;
+    height: 392px;
     font-size: 14px;
     text-align: left;
     font-weight: 600;

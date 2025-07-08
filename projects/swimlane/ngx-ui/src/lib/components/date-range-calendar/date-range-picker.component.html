@@ -1,24 +1,4 @@
 <ngx-dropdown [closeOnClick]="false" [closeOnOutsideClick]="true" #wrapperRef>
-  <ngx-dropdown-toggle>
-    <button
-      type="button"
-      [tooltipPlacement]="'top'"
-      [tooltipType]="'tooltip'"
-      [tooltipTitle]="tooltipText"
-      ngx-tooltip
-      class="range-picker-trigger"
-      class="btn"
-      [ngClass]="{
-        'btn-primary': form.startDate && form.endDate
-      }"
-    >
-      <span class="time-range-label">
-        <span class="calendar-dialog-btn icon icon-calendar"></span>
-        {{ selectedLabel }}
-        <i class="ngx-icon ngx-x has-text-left" (click)="resetForm()"></i>
-      </span>
-    </button>
-  </ngx-dropdown-toggle>
   <ngx-dropdown-menu class="ngx-dropdown-menu ngx-dropdown-dark-outline" (click)="$event.stopPropagation()">
     <div class="date-range-selection"><span>Date range selection </span></div>
     <div class="date-range-picker">

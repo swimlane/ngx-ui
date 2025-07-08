@@ -7,7 +7,6 @@
 
     <date-range-picker></date-range-picker>
 
-
       <h4>Basic</h4>
       <ngx-filter [filterable]="false" label="Category" style="display: inline-block">
         <ngx-select-option name="Selection" value="breach"></ngx-select-option>
@@ -267,6 +266,30 @@
       </ngx-tabs>
       <br/>
       <br/>
+
+
+
+      <h4>Basic Date Range Selection Calendar</h4>
+      <ngx-filter #filterRef [label]=labelForRange [type]="'customDropdown'" [customDropdownConfig]="customDropdownDateRangeConfig" ></ngx-filter>
+      <br />
+      <br />
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <app-prism>
+            <![CDATA[<ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig"></ngx-filter>]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="Typescript">
+          <app-prism language="js">
+            <![CDATA[const customDropdownCounterBasicConfig: FilterCustomDropDown = {
+              component: {
+                type: MyCustomComponent
+              }
+            };]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+
 
       <h4>Items popup position</h4>
       <div class="div-options-position">

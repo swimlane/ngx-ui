@@ -368,6 +368,11 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
 
     this._dropdownActive = state;
 
+     // explicitly close inner dropdownComponent if custom
+  if (this.type === FilterType.CustomDropdown && this.dropdownComponent) {
+    this.dropdownComponent.open = state;
+  }
+
     if (this.toggleListener) this.toggleListener();
     this.toggle.emit(this.dropdownActive);
 

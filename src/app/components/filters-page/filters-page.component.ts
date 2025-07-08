@@ -7,10 +7,12 @@ import {
   inputBinding,
   OnInit,
   Output,
-  outputBinding
+  outputBinding,
+  ViewChild
 } from '@angular/core';
 import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { FilterCustomDropdown, TreeComponent } from '@swimlane/ngx-ui';
+import { FilterComponent, FilterCustomDropdown, TreeComponent } from '@swimlane/ngx-ui';
+import { DateRangePickerComponent } from '@swimlane/ngx-ui/components/date-range-calendar/date-range-picker.component';
 import { Observable } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
 import { switchMap } from 'rxjs/operators';
@@ -56,6 +58,10 @@ export class FiltersPageComponent implements OnInit {
   customDropdownCounterConfig: FilterCustomDropdown;
   customDropdownConfigTreeCss: FilterCustomDropdown;
   customDropdownConfigTree: FilterCustomDropdown;
+  customDropdownDateRangeConfig: FilterCustomDropdown;
+
+  @ViewChild('filterRef', { static: false })
+  filterRef: FilterComponent;
 
   aLongString = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.';
   aVeryLongString =
@@ -117,6 +123,8 @@ export class FiltersPageComponent implements OnInit {
       ]
     }
   ];
+
+  labelForRange: string = 'Select a range';
 
   private get _results() {
     let i = 50;
@@ -190,6 +198,22 @@ export class FiltersPageComponent implements OnInit {
       closeOnOutsideClick: true
     };
 
+  this.customDropdownDateRangeConfig = {
+      component: {
+        type: DateRangePickerComponent,
+        options: {
+          bindings: [
+            inputBinding('counter', () => 0),
+            outputBinding('apply', event => this.onCustomDropdownDateRangeApply(event as string)),
+            outputBinding('cancel', event => this.onCustomDropdownDateRangeCancel(event as string))
+          ]
+        }
+      },
+      closeOnClick: true,
+      closeOnOutsideClick: true
+    };
+
+
     this.customDropdownConfigTreeCss = {
       component: {
         type: TreeComponent,
@@ -209,6 +233,20 @@ export class FiltersPageComponent implements OnInit {
       },
       containerClasses: ['custom-container-css-class']
     };
+  }
+
+  onCustomDropdownDateRangeApply(event: any) {
+    this.labelForRange = event.label ? event.label : 'Select a range';
+    if (this.customDropdownDateRangeConfig?.closeOnClick) {
+      this.filterRef.onClose();  // closes the dropdown properly
+    }
+  }
+
+  onCustomDropdownDateRangeCancel(event: any) {
+    this.labelForRange = event ? event : 'Select a range';
+    if (this.customDropdownDateRangeConfig?.closeOnClick) {
+      this.filterRef.onClose();  // closes the dropdown properly
+    }
   }
 
   onCustomDropdownClickedButton(event: any) {

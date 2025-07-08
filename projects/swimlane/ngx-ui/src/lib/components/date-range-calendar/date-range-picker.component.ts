@@ -40,8 +40,8 @@ export class DateRangePickerComponent {
   @Input() showTooltip = true;
   @Input() placeholders = { start: 'Start (e.g., now-7d)', end: 'End (e.g., now)' };
 
-  @Output() apply = new EventEmitter<{ start: Date; end: Date }>();
-  @Output() cancel = new EventEmitter<void>();
+  @Output() apply = new EventEmitter<{ start: Date; end: Date; label: string }>();
+  @Output() cancel = new EventEmitter<string>();
   @ViewChild('wrapperRef', { static: false }) wrapperRef!: DropdownComponent;
 
   private readonly dateFormat: string = 'yyyy-MM-dd HH:mm:ss';
@@ -155,13 +155,12 @@ export class DateRangePickerComponent {
 
   onApply() {
     if (this.form.startDate && this.form.endDate) {
-      this.apply.emit({ start: this.form.startDate, end: this.form.endDate });
       this.lastConfirmedRange = {
         startDate: this.form.startDate,
         endDate: this.form.endDate
       };
       this.updateSelectedLabel();
-      // this.showPicker = false;
+      this.apply.emit({ start: this.form.startDate, end: this.form.endDate, label: this.selectedLabel });
       this.wrapperRef.open = false;
     }
   }
@@ -190,7 +189,7 @@ export class DateRangePickerComponent {
 
     this.validationError = null;
     this.updateSelectedLabel();
-    this.cancel.emit();
+    this.cancel.emit(this.selectedLabel);
     this.wrapperRef.open = false;
   }
 
@@ -206,7 +205,7 @@ export class DateRangePickerComponent {
     this.selectedPreset = 'Custom range';
     this.selectedLabel = 'Select a range';
     this.cdr.detectChanges();
-    this.apply.emit({ start: null, end: null });
+    this.apply.emit({ start: null, end: null, label: this.selectedLabel });
   }
 
   openSearchStringDocPage() {

@@ -128,6 +128,9 @@ export * from './lib/components/dropzone/dropzone.component';
 export * from './lib/components/filter/filter.module';
 export * from './lib/components/filter/filter.component';
 
+export * from './lib/components/date-range-calendar/date-range.module';
+export * from './lib/components/date-range-calendar/date-range-picker.component';
+
 export * from './lib/components/hotkeys/hotkeys.module';
 export * from './lib/components/hotkeys/hotkeys.component';
 export * from './lib/components/hotkeys/hotkeys.service';
