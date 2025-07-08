@@ -159,7 +159,7 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
   @Output() toggle = new EventEmitter<boolean>();
   @Output() clearQueryFilter = new EventEmitter<void>();
-  @Output() clicked = new EventEmitter<{ event: KeyboardEvent, isIconClicked:boolean }>();
+  @Output() clicked = new EventEmitter<any>();
   dynamicComponentRef: ComponentRef<any>;
 
   @ViewChild(SelectDropdownComponent, { static: false })
@@ -362,7 +362,8 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     this.toggleDropdown(!this.dropdownActive);
     this.onTouchedCallback();
 
-    this.clicked.emit({event, isIconClicked: false});
+    console.log(event);
+    this.clicked.emit(event);
   }
 
   toggleDropdown(state: boolean): void {
@@ -370,10 +371,10 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
 
     this._dropdownActive = state;
 
-     // explicitly close inner dropdownComponent if custom
-  if (this.type === FilterType.CustomDropdown && this.dropdownComponent) {
-    this.dropdownComponent.open = state;
-  }
+    // explicitly close inner dropdownComponent if custom
+    if (this.type === FilterType.CustomDropdown && this.dropdownComponent) {
+      this.dropdownComponent.open = state;
+    }
 
     if (this.toggleListener) this.toggleListener();
     this.toggle.emit(this.dropdownActive);
@@ -432,12 +433,11 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     this.onClose();
   }
 
-  onFilterButtonClick(event:any): void {
-    if (!this.disabled) this.clicked.emit({event, isIconClicked: false });
-  }
-
-  onIconClicked(event:any): void {
-    if (!this.disabled) this.clicked.emit({event, isIconClicked: true });
+  onFilterButtonClick(event: any): void {
+    if (!this.disabled) {
+      console.log(event);
+      this.clicked.emit(event);
+    }
   }
 
   onCustomDropdownToggle(): void {
@@ -471,11 +471,10 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   createDynamicComponent(): void {
     if (!this.dynamicContainer || !this.customDropdownConfig?.component || this.type !== FilterType.CustomDropdown)
       return;
-   this.dynamicComponentRef =  this.dynamicContainer?.createComponent(
+    this.dynamicComponentRef = this.dynamicContainer?.createComponent(
       this.customDropdownConfig.component.type,
       this.customDropdownConfig.component.options ?? {}
     );
-
   }
 
   private findIndex(selection: SelectDropdownOption) {

@@ -268,7 +268,7 @@
       <h4>Basic Date Range Selection Calendar</h4>
       <ngx-filter #filterRef [label]=labelForRange
        [ngClass] ="labelForRange !== 'Select a range' ? 'active-selections' : ''"
-       [type]="'customDropdown'" [customDropdownConfig]="customDropdownDateRangeConfig" [ngxIconClass]="'ngx-x'" [ngxIconPosition]="'right'" (clicked)="onClearSelection()"></ngx-filter>
+       [type]="'customDropdown'" [customDropdownConfig]="customDropdownDateRangeConfig" [ngxIconClass]="'ngx-x'" [ngxIconPosition]="'right'" (clicked)="onClearSelection($event)"></ngx-filter>
       <br />
       <br />
       <ngx-tabs>
