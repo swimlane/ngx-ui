@@ -190,17 +190,6 @@ date-range-picker {
     gap: 8px;
   }
 
-  .validation-error {
-    color: colors.$color-red-500;
-    min-height: 1.5em;
-    font-size: 12px;
-    display: flex;
-    align-items: center;
-    height: 10px;
-    ngx-icon {
-      color: white;
-    }
-  }
 
   .hide {
     visibility: hidden;

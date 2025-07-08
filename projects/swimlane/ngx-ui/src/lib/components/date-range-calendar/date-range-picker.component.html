@@ -24,6 +24,7 @@
               type="text"
               name="searchInputValue"
               [placeholder]="placeholders?.start || 'Start'"
+              [class.ng-invalid]="validationError"
             ></ngx-input>
 
             <span class="calendar-dialog-btn icon icon-calendar"></span>
@@ -36,16 +37,10 @@
               (ngModelChange)="onCustomInputChange()"
               type="text"
               [placeholder]="placeholders?.end || 'End'"
+              [class.ng-invalid]="validationError"
             ></ngx-input>
             <span class="calendar-dialog-btn icon icon-calendar"></span>
           </div>
-        </div>
-
-        <div class="validation-error">
-          <span [class.hide]="!validationError">
-            <ngx-icon icon="error_outline"></ngx-icon>
-            {{ validationError || ' ' }}
-          </span>
         </div>
 
         <!-- Dual Calendar View -->
