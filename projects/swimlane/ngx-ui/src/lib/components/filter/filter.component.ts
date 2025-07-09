@@ -437,8 +437,7 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     if (!this.disabled) {
       console.log(event);
       this.clicked.emit(event);
-    }
-  }
+    }}
 
   onCustomDropdownToggle(): void {
     this.toggle.emit(!this.dropdownComponent.open);
