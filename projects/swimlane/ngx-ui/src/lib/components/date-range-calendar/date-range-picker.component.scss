@@ -1,7 +1,6 @@
 @use 'colors/colors' as colors;
 
 ngx-date-range-picker {
-
   .time-range-label {
     display: inline-flex;
     align-items: center;
@@ -86,8 +85,8 @@ ngx-date-range-picker {
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
-    line-height: 16px; /* 114.286% */
-    margin-bottom: 0px;
+    line-height: 16px;
+    margin: 0px;
   }
 
   .sidebar p:hover,
@@ -127,7 +126,7 @@ ngx-date-range-picker {
         top: 50%;
         right: 12px;
         transform: translateY(-50%);
-        font-size: 16px;
+        font-size: 14px;
         color: colors.$color-blue-grey-350;
 
         &:hover {
@@ -136,10 +135,17 @@ ngx-date-range-picker {
       }
     }
 
-    span {
-      font-size: 14px;
+    span.range-label {
+      display: flex;
+      width: 14px;
+      flex-direction: column;
+      justify-content: center;
+      align-self: stretch;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
       color: white;
-      white-space: nowrap;
+      padding-bottom: 6px;
     }
   }
 
@@ -148,15 +154,12 @@ ngx-date-range-picker {
     gap: 32px;
     justify-content: flex-start;
 
-    .ngx-input-hint {
-      display:none
-    }
-
     .ngx-calendar {
       box-shadow: none;
       border: none;
       padding: 0px 8px 4px 8px;
     }
+
     .ngx-calendar .time-inputs {
       display: none;
     }
@@ -180,6 +183,7 @@ ngx-date-range-picker {
   .left,
   .right {
     display: flex;
+
     ngx-button.btn {
       height: 33px !important;
     }
@@ -194,7 +198,6 @@ ngx-date-range-picker {
   .right {
     gap: 8px;
   }
-
 
   .hide {
     visibility: hidden;
