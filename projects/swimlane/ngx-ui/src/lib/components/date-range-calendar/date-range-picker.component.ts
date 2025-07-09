@@ -4,14 +4,14 @@
  * A fully configurable, Angular component to pick and emit a date range.
  *
  *  Usage:
- * <date-range-picker
+ * <ngx-date-range-picker
  *   [presets]="customPresets"                     // Optional: override default presets
  *   [parseFn]="customParseFunction"               // Optional: function to parse expressions like now-7d
  *   [showTooltip]="true"                          // Optional: toggle tooltip
  *   [placeholders]="{ start: 'Start...', end: 'End...' }" // Optional: custom input placeholders
  *   (apply)="handleApply($event)"
  *   (cancel)="handleCancel()"
- * ></date-range-picker>
+ * ></ngx-date-range-picker>
  *
  * This component is designed for reusability and composability in libraries and apps.
  */
@@ -24,7 +24,7 @@ import { DropdownComponent } from '../dropdown/dropdown.component';
 import { DateUtils } from './services/date-utils.service';
 
 @Component({
-  selector: 'date-range-picker',
+  selector: 'ngx-date-range-picker',
   templateUrl: './date-range-picker.component.html',
   styleUrls: ['./date-range-picker.component.scss'],
   encapsulation: ViewEncapsulation.None,
