@@ -92,14 +92,14 @@ describe('FilterComponent', () => {
     it('should emit click emitter when button is enabled', () => {
       const spyClickEmit = spyOn(component.clicked, 'emit');
       component.disabled = false;
-      component.onFilterButtonClick();
+      component.onFilterButtonClick(new Event('click'));
       expect(spyClickEmit).toHaveBeenCalled();
     });
 
     it('should not emit click emitter when button is disabled', () => {
       const spyClickEmit = spyOn(component.clicked, 'emit');
       component.disabled = true;
-      component.onFilterButtonClick();
+      component.onFilterButtonClick(new Event('click'));
       expect(spyClickEmit).not.toHaveBeenCalled();
     });
   });
