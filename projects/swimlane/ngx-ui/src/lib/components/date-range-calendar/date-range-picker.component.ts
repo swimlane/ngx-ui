@@ -45,7 +45,7 @@ export class DateRangePickerComponent {
   @ViewChild('wrapperRef', { static: false }) wrapperRef!: DropdownComponent;
 
   private readonly dateFormat: string = 'yyyy-MM-dd HH:mm:ss';
-  private lastConfirmedRange: { startDate: Date; endDate: Date } = null;
+  lastConfirmedRange: { startDate: Date; endDate: Date } = null;
 
   form: DateRangeForm = { startRaw: '', endRaw: '', startDate: null, endDate: null };
 
