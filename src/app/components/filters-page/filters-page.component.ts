@@ -253,9 +253,11 @@ export class FiltersPageComponent implements OnInit {
     }
   }
 
-  onClearSelection(){
-    this.filterRef.dynamicComponentRef?.instance.resetForm();
-  // this.dateRangeComponent?.resetForm();
+  onClearSelection(event: any) {
+    if (event.target && ['ngx-icon', 'ngx-x'].every(ngxClass => event.target.classList.contains(ngxClass))) {
+      event.stopPropagation();
+      this.filterRef.dynamicComponentRef?.instance.resetForm();
+    }
   }
 
   onCustomDropdownClickedButton(event: any) {
