@@ -11,8 +11,7 @@ import {
   ViewChild
 } from '@angular/core';
 import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { FilterComponent, FilterCustomDropdown, TreeComponent } from '@swimlane/ngx-ui';
-import { DateRangePickerComponent } from '@swimlane/ngx-ui/components/date-range-calendar/date-range-picker.component';
+import { DateRangePickerComponent, FilterComponent, FilterCustomDropdown, TreeComponent } from '@swimlane/ngx-ui';
 import { Observable } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
 import { switchMap } from 'rxjs/operators';
