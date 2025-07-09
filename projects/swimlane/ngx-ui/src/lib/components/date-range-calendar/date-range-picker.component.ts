@@ -213,11 +213,4 @@ export class DateRangePickerComponent {
     window.open('https://docs.swimlane.com/turbine/workspaces-and-dashboards/date-range.htm', '_blank');
   }
 
-  get tooltipText(): string {
-    if (!this.showTooltip) return '';
-    if (this.form.startDate && this.form.endDate) {
-      return `From: ${format(this.form.startDate, this.dateFormat)}\nTo: ${format(this.form.endDate, this.dateFormat)}`;
-    }
-    return 'Select a range';
-  }
 }
