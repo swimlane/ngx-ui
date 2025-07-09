@@ -212,5 +212,4 @@ export class DateRangePickerComponent {
   openSearchStringDocPage() {
     window.open('https://docs.swimlane.com/turbine/workspaces-and-dashboards/date-range.htm', '_blank');
   }
-
 }

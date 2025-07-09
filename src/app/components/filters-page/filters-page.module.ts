@@ -20,7 +20,8 @@ import { FiltersPageComponent, MyCustomComponent } from './filters-page.componen
     SelectsPageRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    TabsModule, DateRangePickerModule
+    TabsModule,
+    DateRangePickerModule
   ]
 })
 export class FiltersPageModule {}

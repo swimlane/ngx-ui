@@ -23,7 +23,6 @@ describe('DateRangePickerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-
   it('should emit cancel on cancel button', () => {
     spyOn(component.cancel, 'emit');
     component.onCancel();

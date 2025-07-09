@@ -16,7 +16,14 @@ import { CalendarModule } from '../calendar/calendar.module';
   ],
   providers: [], // No specific providers needed for this component
   imports: [
-    InputModule,DropdownModule, ButtonModule, IconModule, TooltipModule, CommonModule, FormsModule, CalendarModule
+    InputModule,
+    DropdownModule,
+    ButtonModule,
+    IconModule,
+    TooltipModule,
+    CommonModule,
+    FormsModule,
+    CalendarModule
   ]
 })
 export class DateRangePickerModule {}
