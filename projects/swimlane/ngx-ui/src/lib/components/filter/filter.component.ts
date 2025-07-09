@@ -434,7 +434,6 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
 
   onFilterButtonClick(event: any): void {
     if (!this.disabled) {
-      console.log(event);
       this.clicked.emit(event);
     }
   }
