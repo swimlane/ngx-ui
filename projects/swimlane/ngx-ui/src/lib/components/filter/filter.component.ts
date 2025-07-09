@@ -159,7 +159,7 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
   @Output() toggle = new EventEmitter<boolean>();
   @Output() clearQueryFilter = new EventEmitter<void>();
-  @Output() clicked = new EventEmitter<{ event: KeyboardEvent, isIconClicked:boolean }>();
+  @Output() clicked = new EventEmitter<{ event: KeyboardEvent; isIconClicked: boolean }>();
   dynamicComponentRef: ComponentRef<any>;
 
   @ViewChild(SelectDropdownComponent, { static: false })
@@ -362,7 +362,7 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     this.toggleDropdown(!this.dropdownActive);
     this.onTouchedCallback();
 
-    this.clicked.emit({event, isIconClicked: false});
+    this.clicked.emit({ event, isIconClicked: false });
   }
 
   toggleDropdown(state: boolean): void {
@@ -370,10 +370,10 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
 
     this._dropdownActive = state;
 
-     // explicitly close inner dropdownComponent if custom
-  if (this.type === FilterType.CustomDropdown && this.dropdownComponent) {
-    this.dropdownComponent.open = state;
-  }
+    // explicitly close inner dropdownComponent if custom
+    if (this.type === FilterType.CustomDropdown && this.dropdownComponent) {
+      this.dropdownComponent.open = state;
+    }
 
     if (this.toggleListener) this.toggleListener();
     this.toggle.emit(this.dropdownActive);
@@ -436,7 +436,8 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     if (!this.disabled) {
       console.log(event);
       this.clicked.emit(event);
-    }}
+    }
+  }
 
   onCustomDropdownToggle(): void {
     this.toggle.emit(!this.dropdownComponent.open);
@@ -469,11 +470,10 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   createDynamicComponent(): void {
     if (!this.dynamicContainer || !this.customDropdownConfig?.component || this.type !== FilterType.CustomDropdown)
       return;
-   this.dynamicComponentRef =  this.dynamicContainer?.createComponent(
+    this.dynamicComponentRef = this.dynamicContainer?.createComponent(
       this.customDropdownConfig.component.type,
       this.customDropdownConfig.component.options ?? {}
     );
-
   }
 
   private findIndex(selection: SelectDropdownOption) {

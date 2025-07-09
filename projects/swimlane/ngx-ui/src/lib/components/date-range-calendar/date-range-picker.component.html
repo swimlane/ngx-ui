@@ -4,13 +4,14 @@
     <div class="date-range-picker">
       <!-- Sidebar Presets -->
       <div class="sidebar">
-        <p
-          *ngFor="let preset of presets"
-          [class.active]="selectedPreset === preset.label"
-          (click)="selectPreset(preset)"
-        >
-          {{ preset.label }}
-        </p>
+        @for (preset of presets; track preset) {
+          <p
+            [class.active]="selectedPreset === preset.label"
+            (click)="selectPreset(preset)"
+          >
+            {{ preset.label }}
+          </p>
+        }
       </div>
 
       <!-- Main Calendar + Inputs -->
