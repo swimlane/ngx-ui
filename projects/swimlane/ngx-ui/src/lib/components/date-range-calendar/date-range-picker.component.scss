@@ -148,9 +148,14 @@ ngx-date-range-picker {
     gap: 32px;
     justify-content: flex-start;
 
+    .ngx-input-hint {
+      display:none
+    }
+
     .ngx-calendar {
       box-shadow: none;
       border: none;
+      padding: 0px 8px 4px 8px;
     }
     .ngx-calendar .time-inputs {
       display: none;
