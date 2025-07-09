@@ -267,8 +267,8 @@
         [ngClass]="labelForRange !== 'Select a range' ? 'active-selections' : ''"
         [type]="'customDropdown'"
         [customDropdownConfig]="customDropdownDateRangeConfig"
-        [ngxIconClass]="'ngx-x'"
-        [ngxIconPosition]="'right'"
+        [ngxIconClass]="labelForRange !== 'Select a range' ? 'ngx-x' : null"
+        [ngxIconPosition]="labelForRange !== 'Select a range' ? 'right' : null"
         (clicked)="onClearSelection($event)"
       ></ngx-filter>
       <br />
