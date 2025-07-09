@@ -432,13 +432,11 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     this.onClose();
   }
 
-  onFilterButtonClick(event:any): void {
-    if (!this.disabled) this.clicked.emit({event, isIconClicked: false });
-  }
-
-  onIconClicked(event:any): void {
-    if (!this.disabled) this.clicked.emit({event, isIconClicked: true });
-  }
+  onFilterButtonClick(event: any): void {
+    if (!this.disabled) {
+      console.log(event);
+      this.clicked.emit(event);
+    }}
 
   onCustomDropdownToggle(): void {
     this.toggle.emit(!this.dropdownComponent.open);

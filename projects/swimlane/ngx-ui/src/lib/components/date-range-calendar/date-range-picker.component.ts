@@ -206,6 +206,7 @@ export class DateRangePickerComponent {
     this.selectedLabel = 'Select a range';
     this.cdr.detectChanges();
     this.apply.emit({ start: null, end: null, label: this.selectedLabel });
+    this.lastConfirmedRange = null;
   }
 
   openSearchStringDocPage() {
