@@ -125,12 +125,8 @@
 
       <h4>Async options</h4>
       <ngx-filter (keyup)="search($event.value)">
-        <ngx-select-option
-          *ngFor="let option of asyncOptions$ | async"
-          [name]="option.title"
-          [value]="option"
-          [disabled]="option.disabled"
-        ></ngx-select-option>
+        <ngx-select-option *ngFor="let option of asyncOptions$ | async" [name]="option.title" [value]="option"
+          [disabled]="option.disabled"></ngx-select-option>
       </ngx-filter>
       <app-prism>
         <![CDATA[<ngx-filter (keyup)="search($event.value)"> <ngx-select-option *ngFor="let option of asyncOptions$ |
@@ -162,14 +158,8 @@
 
       <h4>Auto Select All</h4>
 
-      <ngx-filter
-        [identifier]="'attr'"
-        [ngModel]="selectsModel"
-        label="Selection"
-        [filterable]="true"
-        [multiple]="true"
-        [autoSelectAll]="true"
-      >
+      <ngx-filter [identifier]="'attr'" [ngModel]="selectsModel" label="Selection" [filterable]="true" [multiple]="true"
+        [autoSelectAll]="true">
         <ngx-select-option *ngFor="let option of selectsSmall" [name]="option.name" [value]="option">
         </ngx-select-option>
       </ngx-filter>
@@ -201,16 +191,9 @@
       <br />
 
       <h4>Event emitters</h4>
-      <ngx-filter
-        [filterable]="true"
-        label="Category"
-        style="display: inline-block"
-        (clicked)="onDropdownClick()"
-        (change)="onDropdownChange($event)"
-        (keyup)="onDropdownKeyup($event)"
-        (toggle)="onDropdownToggle($event)"
-        (clearQueryFilter)="onDropDownClearQuery()"
-      >
+      <ngx-filter [filterable]="true" label="Category" style="display: inline-block" (clicked)="onDropdownClick()"
+        (change)="onDropdownChange($event)" (keyup)="onDropdownKeyup($event)" (toggle)="onDropdownToggle($event)"
+        (clearQueryFilter)="onDropDownClearQuery()">
         <ngx-select-option name="Selection" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -236,11 +219,8 @@
 
     <ngx-section class="shadow" sectionTitle="Custom Dropdown">
       <h4>Basic</h4>
-      <ngx-filter
-        label="Repeat"
-        [type]="'customDropdown'"
-        [customDropdownConfig]="customDropdownCounterBasicConfig"
-      ></ngx-filter>
+      <ngx-filter label="Repeat" [type]="'customDropdown'"
+        [customDropdownConfig]="customDropdownCounterBasicConfig"></ngx-filter>
       <br />
       <br />
       <ngx-tabs>
@@ -261,16 +241,12 @@
       <br />
 
       <h4>Date Range Selection Calendar</h4>
-      <ngx-filter
-        #filterRef
-        [label]="labelForRange"
-        [ngClass]="labelForRange !== 'Select a range' ? 'active-selections' : ''"
-        [type]="'customDropdown'"
+      <ngx-filter #filterRef [label]="labelForRange"
+        [ngClass]="labelForRange !== 'Select a range' ? 'active-selections' : ''" [type]="'customDropdown'"
         [customDropdownConfig]="customDropdownDateRangeConfig"
         [ngxIconClass]="labelForRange !== 'Select a range' ? 'ngx-x' : null"
         [ngxIconPosition]="labelForRange !== 'Select a range' ? 'right' : null"
-        (clicked)="onClearSelection($event)"
-      ></ngx-filter>
+        (clicked)="onClearSelection($event)"></ngx-filter>
       <br />
       <br />
       <ngx-tabs>
@@ -284,12 +260,8 @@
 
       <h4>Items popup position</h4>
       <div class="div-options-position">
-        <ngx-filter
-          label="Repeat"
-          [type]="'customDropdown'"
-          [customDropdownConfig]="customDropdownCounterBasicConfig"
-          [itemsPosition]="'right'"
-        ></ngx-filter>
+        <ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig"
+          [itemsPosition]="'right'"></ngx-filter>
       </div>
       <br />
       <br />
@@ -311,11 +283,8 @@
       <br />
 
       <h4>Show Dropdown Caret</h4>
-      <ngx-filter
-        label="Repeat"
-        [type]="'customDropdown'"
-        [customDropdownConfig]="customDropdownCounterCaretConfig"
-      ></ngx-filter>
+      <ngx-filter label="Repeat" [type]="'customDropdown'"
+        [customDropdownConfig]="customDropdownCounterCaretConfig"></ngx-filter>
       <br />
       <br />
       <ngx-tabs>
@@ -336,12 +305,8 @@
       <br />
 
       <h4>Disabled</h4>
-      <ngx-filter
-        label="Repeat"
-        [type]="'customDropdown'"
-        [customDropdownConfig]="customDropdownCounterBasicConfig"
-        [disabled]="true"
-      ></ngx-filter>
+      <ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterBasicConfig"
+        [disabled]="true"></ngx-filter>
       <br />
       <br />
       <ngx-tabs>
@@ -362,11 +327,8 @@
       <br />
 
       <h4>CloseOnClick and CloseOnOutsideClick</h4>
-      <ngx-filter
-        label="Repeat"
-        [type]="'customDropdown'"
-        [customDropdownConfig]="customDropdownCounterCloseConfig"
-      ></ngx-filter>
+      <ngx-filter label="Repeat" [type]="'customDropdown'"
+        [customDropdownConfig]="customDropdownCounterCloseConfig"></ngx-filter>
       <br />
       <br />
       <ngx-tabs>
@@ -387,14 +349,8 @@
       <br />
 
       <h4>&#64;Inputs and &#64;Outputs of custom component</h4>
-      <ngx-filter
-        label="Repeat"
-        [type]="'customDropdown'"
-        [customDropdownConfig]="customDropdownCounterConfig"
-        [filterCount]="customDropdownFilterCount"
-        [ngxIconClass]="'ngx-repeat'"
-        [ngxIconPosition]="'left'"
-      >
+      <ngx-filter label="Repeat" [type]="'customDropdown'" [customDropdownConfig]="customDropdownCounterConfig"
+        [filterCount]="customDropdownFilterCount" [ngxIconClass]="'ngx-repeat'" [ngxIconPosition]="'left'">
       </ngx-filter>
       <p>Emitted by myCustomComponentOutput1: {{ customDropdownText }}</p>
       <p>Emitted by myCustomComponentOutput2: {{ customDropdownFilterCount }}</p>
@@ -427,12 +383,8 @@
       <br />
 
       <h4>Custom Css Class</h4>
-      <ngx-filter
-        label="Region"
-        [type]="'customDropdown'"
-        [customDropdownConfig]="customDropdownConfigTreeCss"
-        [ngxIconClass]="'ngx-map'"
-      ></ngx-filter>
+      <ngx-filter label="Region" [type]="'customDropdown'" [customDropdownConfig]="customDropdownConfigTreeCss"
+        [ngxIconClass]="'ngx-map'"></ngx-filter>
       <br />
       <ngx-tabs>
         <ngx-tab label="Markup">
@@ -451,14 +403,8 @@
       </ngx-tabs>
 
       <h4>Event Emitters</h4>
-      <ngx-filter
-        label="Region"
-        [type]="'customDropdown'"
-        [customDropdownConfig]="customDropdownConfigTree"
-        [ngxIconClass]="'ngx-map'"
-        (clicked)="onCustomDropdownClick()"
-        (toggle)="onCustomDropdownToggle($event)"
-      >
+      <ngx-filter label="Region" [type]="'customDropdown'" [customDropdownConfig]="customDropdownConfigTree"
+        [ngxIconClass]="'ngx-map'" (clicked)="onCustomDropdownClick()" (toggle)="onCustomDropdownToggle($event)">
       </ngx-filter>
       <p>Clicked: {{ customDropdownClicks }}</p>
       <p>Toggle: {{ customDropdownToggle }}</p>
@@ -520,13 +466,8 @@
       <br />
 
       <h4>Count badge visible</h4>
-      <ngx-filter
-        label="Selection"
-        [type]="'button'"
-        [ngxIconClass]="'ngx-filter'"
-        [ngxIconPosition]="'left'"
-        [filterCount]="3"
-      >
+      <ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'"
+        [filterCount]="3">
       </ngx-filter>
 
       <app-prism>
@@ -538,14 +479,8 @@
       <br />
 
       <h4>Count badge hidden</h4>
-      <ngx-filter
-        label="Selection"
-        [type]="'button'"
-        [ngxIconClass]="'ngx-filter'"
-        [ngxIconPosition]="'left'"
-        [filterCount]="3"
-        [showCount]="false"
-      >
+      <ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'"
+        [filterCount]="3" [showCount]="false">
       </ngx-filter>
 
       <app-prism>
@@ -557,14 +492,8 @@
       <br />
 
       <h4>Event emitters</h4>
-      <ngx-filter
-        label="Selection"
-        [type]="'button'"
-        [ngxIconClass]="'ngx-filter'"
-        [ngxIconPosition]="'left'"
-        [filterCount]="1"
-        (clicked)="onButtonClick()"
-      >
+      <ngx-filter label="Selection" [type]="'button'" [ngxIconClass]="'ngx-filter'" [ngxIconPosition]="'left'"
+        [filterCount]="1" (clicked)="onButtonClick()">
       </ngx-filter>
       <p>Click: {{ buttonClicks }}</p>
 
