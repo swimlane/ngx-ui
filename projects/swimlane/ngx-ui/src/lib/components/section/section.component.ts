@@ -41,6 +41,11 @@ export class SectionComponent {
     return this.appearance === SectionAppearance.Light;
   }
 
+  @HostBinding('class.minimal')
+  get minimal() {
+    return this.appearance === SectionAppearance.Minimal;
+  }
+
   @Input() sectionCollapsed = false;
   @Input() sectionCollapsible = true;
   @Input() headerToggle = false;
