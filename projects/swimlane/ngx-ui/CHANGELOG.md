@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Feature (`ngx-date-range-picker`): Added a date range component
+- Enhancement (`ngx-filter`): Updated output click event to handle icon click
+- Enhancement (`ngx-filter`): Explicitly sync dropdownComponent.open for CustomDropdown type
 - Enhancement (`ngx-dropdown`): Updated background color for dark outline
 - Enhancement (`ngx-section`): New 'minimal' SectionAppearance displays ngx-section without border or background
 

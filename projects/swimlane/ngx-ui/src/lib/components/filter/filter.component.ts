@@ -17,7 +17,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-import type { AfterViewInit, QueryList } from '@angular/core';
+import type { AfterViewInit, ComponentRef, QueryList } from '@angular/core';
 
 import { Appearance } from '../../mixins/appearance/appearance.enum';
 import { InViewportMetadata } from 'ng-in-viewport';
@@ -159,7 +159,8 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
   @Output() toggle = new EventEmitter<boolean>();
   @Output() clearQueryFilter = new EventEmitter<void>();
-  @Output() clicked = new EventEmitter<void>();
+  @Output() clicked = new EventEmitter<{ event: KeyboardEvent; isIconClicked: boolean }>();
+  dynamicComponentRef: ComponentRef<any>;
 
   @ViewChild(SelectDropdownComponent, { static: false })
   readonly selectDropdown: SelectDropdownComponent;
@@ -282,6 +283,7 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   ngOnDestroy(): void {
     this.toggleDropdown(false);
     this.dynamicContainer?.clear();
+    this.dynamicComponentRef?.destroy();
   }
 
   onDropdownSelection(selection: SelectDropdownOption, shouldClose = this.closeOnSelect || !this.multiple): void {
@@ -354,19 +356,24 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     this.toggleDropdown(false);
   }
 
-  onToggle(): void {
+  onToggle(event: any): void {
     if (this.disabled) return;
 
     this.toggleDropdown(!this.dropdownActive);
     this.onTouchedCallback();
 
-    this.clicked.emit();
+    this.clicked.emit({ event, isIconClicked: false });
   }
 
   toggleDropdown(state: boolean): void {
     if (this.dropdownActive === state) return;
 
     this._dropdownActive = state;
+
+    // explicitly close inner dropdownComponent if custom
+    if (this.type === FilterType.CustomDropdown && this.dropdownComponent) {
+      this.dropdownComponent.open = state;
+    }
 
     if (this.toggleListener) this.toggleListener();
     this.toggle.emit(this.dropdownActive);
@@ -425,8 +432,10 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     this.onClose();
   }
 
-  onFilterButtonClick(): void {
-    if (!this.disabled) this.clicked.emit();
+  onFilterButtonClick(event: any): void {
+    if (!this.disabled) {
+      this.clicked.emit(event);
+    }
   }
 
   onCustomDropdownToggle(): void {
@@ -460,7 +469,7 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   createDynamicComponent(): void {
     if (!this.dynamicContainer || !this.customDropdownConfig?.component || this.type !== FilterType.CustomDropdown)
       return;
-    this.dynamicContainer?.createComponent(
+    this.dynamicComponentRef = this.dynamicContainer?.createComponent(
       this.customDropdownConfig.component.type,
       this.customDropdownConfig.component.options ?? {}
     );

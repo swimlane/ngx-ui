@@ -1,0 +1,90 @@
+<ngx-dropdown [closeOnClick]="false" [closeOnOutsideClick]="true" #wrapperRef>
+  <ngx-dropdown-menu class="ngx-dropdown-menu ngx-dropdown-dark-outline" (click)="$event.stopPropagation()">
+    <div class="date-range-selection"><span>Date range selection </span></div>
+    <div class="date-range-picker">
+      <!-- Sidebar Presets -->
+      <div class="sidebar">
+        @for (preset of presets; track preset) {
+          <p
+            [class.active]="selectedPreset === preset.label"
+            (click)="selectPreset(preset)"
+          >
+            {{ preset.label }}
+          </p>
+        }
+      </div>
+
+      <!-- Main Calendar + Inputs -->
+      <div class="calendar-panel">
+        <div class="input-row">
+          <div class="input-with-icon">
+            <ngx-input
+              appearance="fill"
+              [(ngModel)]="form.startRaw"
+              (ngModelChange)="onCustomInputChange()"
+              type="text"
+              [placeholder]="placeholders?.start || 'Start'"
+              [class.ng-invalid]="validationError"
+            ></ngx-input>
+
+            <span class="calendar-dialog-btn icon icon-calendar"></span>
+          </div>
+          <span class="range-label">to</span>
+          <div class="input-with-icon">
+            <ngx-input
+              appearance="fill"
+              [(ngModel)]="form.endRaw"
+              (ngModelChange)="onCustomInputChange()"
+              type="text"
+              [placeholder]="placeholders?.end || 'End'"
+              [class.ng-invalid]="validationError"
+            ></ngx-input>
+            <span class="calendar-dialog-btn icon icon-calendar"></span>
+          </div>
+        </div>
+
+        <!-- Dual Calendar View -->
+        <div class="dual-calendar-wrapper">
+          <div class="calendar-container">
+            <ngx-calendar
+              name="calendar-range-left"
+              [selectType]="'range'"
+              [range]="rangeModel"
+              [dateLabelFormat]="'YYYY MMM D'"
+              [minDate]="leftMinDate"
+              [maxDate]="leftMaxDate"
+              [(ngModel)]="leftViewDate"
+              (onRangeSelect)="onRangeSelect($event)"
+            ></ngx-calendar>
+          </div>
+
+          <div class="calendar-container">
+            <ngx-calendar
+              name="calendar-range-right"
+              [selectType]="'range'"
+              [range]="rangeModel"
+              [dateLabelFormat]="'YYYY MMM D'"
+              [minDate]="rightMinDate"
+              [maxDate]="rightMaxDate"
+              [(ngModel)]="rightViewDate"
+              (onRangeSelect)="onRangeSelect($event)"
+            ></ngx-calendar>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Buttons -->
+    <div class="buttons">
+      <div class="left">
+        <ngx-button class="btn btn-bordered" (click)="openSearchStringDocPage()">
+          Read about relative time ranges
+        </ngx-button>
+      </div>
+      <div class="right">
+        <ngx-button class="btn btn-bordered" (click)="onCancel()">Cancel</ngx-button>
+        <ngx-button class="btn btn-primary" [disabled]="!!validationError" (click)="onApply()"> Apply </ngx-button>
+      </div>
+    </div>
+  </ngx-dropdown-menu>
+</ngx-dropdown>

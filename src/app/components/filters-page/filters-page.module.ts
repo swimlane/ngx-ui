@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { FiltersModule, SectionModule, SelectModule, TabsModule } from '@swimlane/ngx-ui';
+import { DateRangePickerModule, FiltersModule, SectionModule, SelectModule, TabsModule } from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
 
 import { SelectsPageRoutingModule } from './filters-page-routing.module';
@@ -20,7 +20,8 @@ import { FiltersPageComponent, MyCustomComponent } from './filters-page.componen
     SelectsPageRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    TabsModule
+    TabsModule,
+    DateRangePickerModule
   ]
 })
 export class FiltersPageModule {}
