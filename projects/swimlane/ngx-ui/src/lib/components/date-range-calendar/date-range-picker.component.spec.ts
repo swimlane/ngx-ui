@@ -1,68 +1,40 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ControlValueAccessor, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Input, NO_ERRORS_SCHEMA } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { DateRangePickerComponent } from './date-range-picker.component';
-
-import { Component, forwardRef } from '@angular/core';
-import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { InputModule } from '../input/input.module';
+import { DropdownModule } from '../dropdown/dropdown.module';
+import { ButtonModule } from '../button/button.module';
+import { IconModule } from '../icon/icon.module';
+import { TooltipModule } from '../tooltip/tooltip.module';
+import { CommonModule } from '@angular/common';
+import { CalendarModule } from '../calendar/calendar.module';
 
 describe('DateRangePickerComponent', () => {
   let component: DateRangePickerComponent;
   let fixture: ComponentFixture<DateRangePickerComponent>;
 
-  @Component({
-    selector: 'ngx-input',
-    template: '',
-    standalone: true,
-    providers: [
-      {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => NgxInputStubComponent),
-        multi: true
-      }
-    ]
-  })
-  class NgxInputStubComponent {
-    writeValue(_: any) {}
-    registerOnChange(_: any) {}
-    registerOnTouched(_: any) {}
-    setDisabledState?(_: boolean) {}
-  }
-
-  @Component({
-    selector: 'ngx-calendar',
-    template: '',
-    standalone: true,
-    providers: [
-      {
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => NgxCalendarStubComponent),
-        multi: true
-      }
-    ]
-  })
-  class NgxCalendarStubComponent implements ControlValueAccessor {
-    @Input() name: string;
-    @Input() range: any;
-    @Input() dateLabelFormat: string;
-    @Input() minDate: Date;
-    @Input() maxDate: Date;
-    @Input() selectType: string;
-
-    writeValue(): void {}
-    registerOnChange(): void {}
-    registerOnTouched(): void {}
-  }
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [DateRangePickerComponent],
-      imports: [FormsModule, ReactiveFormsModule, NgxInputStubComponent, NgxCalendarStubComponent],
+      imports: [
+        InputModule,
+        DropdownModule,
+        ButtonModule,
+        IconModule,
+        TooltipModule,
+        CommonModule,
+        FormsModule,
+        CalendarModule
+      ],
       schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
 
     fixture = TestBed.createComponent(DateRangePickerComponent);
     component = fixture.componentInstance;
+    component.wrapperRef = {
+      open: true
+    } as any;
     fixture.detectChanges();
   });
 
