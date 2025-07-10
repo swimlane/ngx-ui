@@ -126,4 +126,26 @@ $section-shadow: shadows.$shadow-3;
       border-radius: 0;
     }
   }
+
+  &.minimal {
+    background: none;
+
+    .ngx-section-header,
+    .ngx-section-content {
+      border: none;
+    }
+
+    .ngx-section-header {
+      background: none;
+      border-radius: 0;
+
+      &.section-collapsed {
+        border-radius: 0;
+      }
+    }
+
+    .ngx-section-content {
+      border-radius: 0;
+    }
+  }
 }

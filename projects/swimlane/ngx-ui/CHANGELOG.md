@@ -3,6 +3,7 @@
 ## HEAD (unreleased)
 
 - Enhancement (`ngx-dropdown`): Updated background color for dark outline
+- Enhancement (`ngx-section`): New 'minimal' SectionAppearance displays ngx-section without border or background
 
 ## 50.0.0-alpha.1 (2025-07-03)
 

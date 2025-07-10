@@ -1,5 +1,6 @@
 export enum SectionAppearance {
   Legacy = 'legacy',
   Outline = 'outline',
-  Light = 'light'
+  Light = 'light',
+  Minimal = 'minimal'
 }
