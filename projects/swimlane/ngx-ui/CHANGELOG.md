@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-dropdown`): Updated background color for dark outline
+
 ## 50.0.0-alpha.1 (2025-07-03)
 
 - Breaking: Renamed ngx-filter-select to ngx-filter
