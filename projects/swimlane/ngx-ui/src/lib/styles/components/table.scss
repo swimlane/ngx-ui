@@ -3,7 +3,7 @@
 
 $color-table-caption: var(--grey-200);
 $color-table-border: var(--grey-600);
-$color-table-stripe: color.adjust(var(--grey-800), $lightness: -3%);
+$color-table-stripe: color-mix(in srgb, var(--blue-500), black 5%);
 
 table {
   border-collapse: collapse;

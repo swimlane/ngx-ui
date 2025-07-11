@@ -57,7 +57,7 @@
     }
 
     &.invalid {
-      color: colors.$color-error;
+      color: var(--color-error);
     }
   }
 
@@ -171,7 +171,7 @@
     position: absolute;
     top: -28px;
     left: 205px;
-    color: colors.$color-error;
+    color: var(--color-error);
   }
 
   *:not(ngx-input).value-input,
@@ -249,7 +249,7 @@
 
   .invalid {
     > div > .value-input {
-      border: 1px solid colors.$color-error;
+      border: 1px solid var(--color-error);
     }
   }
 }

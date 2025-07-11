@@ -4,7 +4,7 @@
 $datatable-bg: var(--grey-800);
 $datatable-border: var(--grey-700);
 $datatable-color: var(--grey-100);
-$datatable-row-hover: color.adjust($datatable-bg, $lightness: -2%);
+$datatable-row-hover: color-mix(in srgb, var(--grey-800), black 2%);
 
 .ngx-datatable {
   box-shadow: none;
