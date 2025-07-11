@@ -68,7 +68,7 @@ $upload-button-success-fill: var(--blue-400);
         color: $upload-button-text-color;
         font-size: var(--font-size-l);
         font-weight: var(--font-weight-regular);
-        line-height: 40px;
+        line-height: var(--font-line-height-400);
         max-height: 40px;
         transition: 0.3s all ease;
         cursor: pointer;
