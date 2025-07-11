@@ -11805,12 +11805,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"husky@npm:8.0.1":
-  version: 8.0.1
-  resolution: "husky@npm:8.0.1"
+"husky@npm:9.1.7":
+  version: 9.1.7
+  resolution: "husky@npm:9.1.7"
   bin:
-    husky: lib/bin.js
-  checksum: 10c0/58c0e87c37f0aaea4e0ea02499444df11adb9ec182fd42735385045b51a55cbdcca48afeea337801e50435fbeb0e77c57c2b430695663774afb279bb0e8aa25f
+    husky: bin.js
+  checksum: 10c0/35bb110a71086c48906aa7cd3ed4913fb913823715359d65e32e0b964cb1e255593b0ae8014a5005c66a68e6fa66c38dcfa8056dbbdfb8b0187c0ffe7ee3a58f
   languageName: node
   linkType: hard
 
@@ -14656,7 +14656,7 @@ __metadata:
     eslint-plugin-security: "npm:1.5.0"
     faker: "npm:^5.1.0"
     gh-pages: "npm:4.0.0"
-    husky: "npm:8.0.1"
+    husky: "npm:9.1.7"
     jasmine-core: "npm:5.5.0"
     jasmine-spec-reporter: "npm:7.0.0"
     karma: "npm:6.4.4"
