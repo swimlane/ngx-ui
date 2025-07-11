@@ -17,7 +17,7 @@ $popover-spacing: 10px;
   position: fixed;
   z-index: 5000;
   display: block;
-  font-weight: normal;
+  font-weight: var(--font-weight-regular);
   opacity: 0;
   max-width: 600px;
   overflow-wrap: anywhere;
@@ -30,7 +30,7 @@ $popover-spacing: 10px;
     background: $popover-bg;
     color: $popover-color;
     box-shadow: shadows.$shadow-3;
-    font-size: 13px;
+    font-size: var(--font-size-xs);
     padding: var(--spacing-10);
 
     .tooltip-caret {
@@ -68,7 +68,7 @@ $popover-spacing: 10px;
   &.type-tooltip {
     color: $tooltip-color;
     background: $tooltip-bg;
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     padding: var(--spacing-4);
     text-align: center;
 

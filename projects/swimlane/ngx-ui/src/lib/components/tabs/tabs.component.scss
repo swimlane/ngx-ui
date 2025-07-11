@@ -34,8 +34,8 @@ $tabs-button-height--vertical: 53px;
       text-align: center;
       user-select: none;
       font: inherit;
-      font-size: 1em;
-      font-weight: bold;
+      font-size: var(--font-size-m);
+      font-weight: var(--font-weight-bold);
       bottom: -1px;
 
       &::after {
@@ -93,9 +93,9 @@ $tabs-button-height--vertical: 53px;
     .ngx-tabs-list {
       background-color: $tabs-fill--light;
       border-bottom: 2px solid $tabs-fill--light;
-      font-size: 13px;
+      font-size: var(--font-size-xs);
       line-height: 15px;
-      font-weight: 600;
+      font-weight: var(--font-weight-semibold);
       margin-left: -2px; // align tabs to the left border
 
       .ngx-tab {
@@ -122,12 +122,12 @@ $tabs-button-height--vertical: 53px;
         height: $tabs-button-height--vertical;
         width: 100%;
         text-align: left;
-        font-size: 13px;
+        font-size: var(--font-size-xs);
         line-height: 45px;
         border: none !important;
         border-bottom: 1px solid var(--grey-700) !important;
         padding-left: var(--spacing-20);
-        font-weight: 600;
+        font-weight: var(--font-weight-semibold);
 
         &::after {
           display: none;

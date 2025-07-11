@@ -34,7 +34,7 @@ $upload-button-success-fill: var(--blue-400);
     }
 
     .ngx-file-button-text {
-      font-size: 0.9rem;
+      font-size: var(--font-size-m);
       margin-left: var(--spacing-8);
       color: $upload-button-progress-bg;
     }
@@ -66,8 +66,8 @@ $upload-button-success-fill: var(--blue-400);
 
       .ngx-file-button-label {
         color: $upload-button-text-color;
-        font-size: 18px;
-        font-weight: 400;
+        font-size: var(--font-size-l);
+        font-weight: var(--font-weight-regular);
         line-height: 40px;
         max-height: 40px;
         transition: 0.3s all ease;
@@ -100,7 +100,7 @@ $upload-button-success-fill: var(--blue-400);
     }
 
     .icon-check {
-      font-size: 25px;
+      font-size: var(--font-size-2xl);
       color: var(--grey-100);
       position: absolute;
       top: 0;

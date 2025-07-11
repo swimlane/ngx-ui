@@ -15,13 +15,13 @@
       transform: translate(-50%, -50%);
       top: 50%;
       left: 50%;
-      font-size: 14px;
+      font-size: var(--font-size-s);
       line-height: 17px;
       max-width: 250px;
       color: var(--grey-100);
 
       h3 {
-        font-size: 18px !important;
+        font-size: var(--font-size-l) !important;
         line-height: 28px;
         color: white;
       }
@@ -50,7 +50,7 @@
         color: #060709;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
         border-radius: var(--radius-0);
-        font-size: 13px;
+        font-size: var(--font-size-xs);
         padding: 7px;
 
         .combination {

@@ -45,7 +45,7 @@ $toolbar-color: var(--grey-250);
 
     small {
       color: var(--grey-500);
-      font-size: 0.9rem;
+      font-size: var(--font-size-m);
       line-height: 50px;
       vertical-align: top;
     }

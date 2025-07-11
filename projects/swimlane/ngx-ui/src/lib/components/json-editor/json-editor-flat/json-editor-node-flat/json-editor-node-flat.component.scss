@@ -8,16 +8,16 @@
   }
 }
 .json-editor--popover-template {
-  font-weight: 600;
-  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-xs);
   line-height: 13px;
   max-width: 300px;
   color: var(--grey-800);
 
   .label {
     color: var(--grey-550);
-    font-size: 10px;
-    font-weight: bold;
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-bold);
     text-transform: uppercase;
   }
 
@@ -157,7 +157,7 @@ ngx-json-editor-node-flat {
           color: colors.$color-error;
           min-height: 1.2em; // min height keeps input from shifting when error is shown
           text-transform: capitalize;
-          font-size: 12px;
+          font-size: var(--font-size-xs);
           font-family: Source Sans Pro, Open Sans, Arial, sans-serif;
         }
       }

@@ -6,8 +6,8 @@
 
   &__container {
     &__label {
-      font-weight: 600;
-      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-xs);
       line-height: 12px;
       color: var(--grey-350);
     }

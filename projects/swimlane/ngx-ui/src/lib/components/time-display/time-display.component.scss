@@ -37,8 +37,8 @@ ngx-time {
   padding: var(--spacing-4);
 
   .date-zone-display {
-    font-weight: bold;
-    font-size: 15px;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-m);
     color: var(--grey-700);
 
     > span {
@@ -47,9 +47,9 @@ ngx-time {
 
     button {
       float: right;
-      font-weight: bold;
+      font-weight: var(--font-weight-bold);
       line-height: 16px;
-      font-size: 11px;
+      font-size: var(--font-size-xs);
       text-transform: uppercase;
       color: var(--grey-700);
       background: #dee1ea;

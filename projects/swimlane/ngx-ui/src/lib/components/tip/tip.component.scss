@@ -32,12 +32,12 @@ $color-border: var(--grey-650);
 
       &--icon {
         color: $color-default;
-        font-size: 14px;
+        font-size: var(--font-size-s);
         padding-top: 3px;
       }
 
       &--template {
-        font-size: 14px;
+        font-size: var(--font-size-s);
         line-height: 18px;
         margin: var(--spacing-0) 10px;
         color: var(--grey-250);
@@ -49,7 +49,7 @@ $color-border: var(--grey-650);
 
       .ngx-icon {
         color: var(--grey-400);
-        font-size: 10px;
+        font-size: var(--font-size-xxs);
       }
 
       cursor: pointer;

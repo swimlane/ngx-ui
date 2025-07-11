@@ -32,7 +32,7 @@
       background: var(--grey-700);
       height: 40px;
       padding: var(--spacing-8);
-      line-height: 1em;
+      line-height: var(--font-line-height-100);
       margin: var(--spacing-0);
 
       ngx-input-suffix .btn {
@@ -66,7 +66,7 @@
 
         .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {
           &::placeholder {
-            font-size: 14px !important;
+            font-size: var(--font-size-s) !important;
           }
         }
       }
@@ -110,11 +110,11 @@
 .style-header {
   text-transform: uppercase;
   color: var(--grey-300);
-  font-size: 1rem;
+  font-size: var(--font-size-m);
   position: relative;
   padding-bottom: var(--spacing-4);
   margin-bottom: var(--spacing-20);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 
   &:not(:first-of-type) {
     margin-top: 6rem;
@@ -148,19 +148,19 @@
 
     .icon-name {
       color: var(--grey-600);
-      font-size: 0.9rem;
-      line-height: 1rem;
+      font-size: var(--font-size-m);
+      line-height: var(--font-line-height-100);
     }
 
     .ngx-icon,
     .large-icon {
       display: block;
-      font-size: 50px;
-      line-height: 1em;
+      font-size: var(--font-size-6xl);
+      line-height: var(--font-line-height-100);
     }
 
     .icon-loading {
-      font-size: 50px;
+      font-size: var(--font-size-6xl);
       height: 50px;
       line-height: 0;
     }
@@ -172,7 +172,7 @@
 }
 
 .large-icons {
-  font-size: 50px;
+  font-size: var(--font-size-6xl);
   line-height: 50px;
 }
 
@@ -180,7 +180,7 @@
 .icon-stacking-section,
 .large-icon-section {
   .large-icon {
-    font-size: 50px;
+    font-size: var(--font-size-6xl);
     margin-right: var(--spacing-10);
     line-height: 50px;
   }
@@ -195,12 +195,12 @@
     .ngx-icon,
     .icon-fx-stacked,
     .large-icon {
-      font-size: 50px;
+      font-size: var(--font-size-6xl);
     }
 
     .large-icon {
       display: block;
-      font-size: 50px;
+      font-size: var(--font-size-6xl);
       margin: var(--spacing-10);
     }
   }

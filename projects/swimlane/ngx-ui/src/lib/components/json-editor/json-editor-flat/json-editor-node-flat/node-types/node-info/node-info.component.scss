@@ -11,7 +11,7 @@ ngx-json-editor-node-info {
 
     .info-btn {
       color: var(--grey-350);
-      font-size: 12px;
+      font-size: var(--font-size-xs);
       margin-left: var(--spacing-4);
       position: relative;
       z-index: 1;
@@ -21,8 +21,8 @@ ngx-json-editor-node-info {
 
   .name,
   .editable-name input {
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-l);
     line-height: 23px;
     color: #f0f1f6;
   }
@@ -42,7 +42,7 @@ ngx-json-editor-node-info {
 
   .info-type {
     display: inline-flex;
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     color: var(--grey-250);
     white-space: nowrap;
 
@@ -62,12 +62,12 @@ ngx-json-editor-node-info {
       font-size: 0.2em;
       margin: var(--spacing-0) var(--spacing-4);
       vertical-align: middle;
-      line-height: 20px;
+      line-height: var(--font-line-height-300);
     }
   }
 
   .description {
-    font-size: 14px;
+    font-size: var(--font-size-s);
     color: var(--grey-250);
     white-space: nowrap;
     text-overflow: ellipsis;

@@ -141,7 +141,7 @@
 }
 .cm-header,
 .cm-strong {
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }
 .cm-em {
   font-style: italic;

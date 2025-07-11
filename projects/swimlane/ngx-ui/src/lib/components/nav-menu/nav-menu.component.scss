@@ -15,7 +15,7 @@ ngx-nav-menu {
   }
 
   .expand-icon {
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     cursor: pointer;
     margin-top: var(--spacing-2);
     position: absolute;
@@ -105,8 +105,8 @@ ngx-nav-menu.expanded,
       height: 20px;
       margin-left: var(--spacing-16);
       vertical-align: middle;
-      font-size: 20px;
-      line-height: 20px;
+      font-size: var(--font-size-xl);
+      line-height: var(--font-line-height-300);
       color: var(--grey-350);
 
       svg {
@@ -120,16 +120,16 @@ ngx-nav-menu.expanded,
       display: none;
       text-transform: uppercase;
       margin-left: var(--spacing-16);
-      font-size: 14px;
+      font-size: var(--font-size-s);
       color: var(--grey-350);
-      font-weight: 600;
+      font-weight: var(--font-weight-semibold);
     }
 
     .toggle-icon {
       display: none;
       float: right;
       color: var(--grey-350);
-      font-size: 12px;
+      font-size: var(--font-size-xs);
       margin-top: var(--spacing-4);
       margin-right: var(--spacing-10);
     }
@@ -168,7 +168,7 @@ ngx-nav-menu.expanded,
     background: var(--grey-800);
     margin-bottom: var(--spacing-0);
     padding: var(--spacing-16) 18px;
-    font-size: 0.9rem;
+    font-size: var(--font-size-m);
     color: var(--grey-350);
     cursor: pointer;
 
@@ -263,8 +263,8 @@ ngx-nav-menu.expanded,
     padding: var(--spacing-16) var(--spacing-0) 14px var(--spacing-16);
     text-transform: uppercase;
     margin-left: -1px;
-    font-size: 14px;
+    font-size: var(--font-size-s);
     color: var(--grey-350);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
   }
 }

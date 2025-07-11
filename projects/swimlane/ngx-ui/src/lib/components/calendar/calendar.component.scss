@@ -16,7 +16,7 @@ $calendar-month-current: var(--grey-750);
 
 .ngx-calendar {
   position: relative;
-  font-size: 0.9rem;
+  font-size: var(--font-size-m);
   box-shadow: shadows.$shadow-3;
   background: $calendar-bg;
   display: inline-block;
@@ -45,7 +45,7 @@ $calendar-month-current: var(--grey-750);
     background: $calendar-title-bg;
     color: $calendar-active-text;
     padding: 0.69rem var(--spacing-0);
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     line-height: 0;
 
     .title {
@@ -59,14 +59,14 @@ $calendar-month-current: var(--grey-750);
     .prev-month,
     .next-month {
       color: $calendar-title-btn;
-      font-size: 0.6rem;
+      font-size: var(--font-size-xxs);
       border-radius: var(--radius-4);
     }
   }
 
   .day-name-row {
     color: $calendar-day-text;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     display: flex;
 
     .day-name {
@@ -330,7 +330,7 @@ $calendar-month-current: var(--grey-750);
       grid-auto-rows: auto;
       text-transform: uppercase;
       text-align: center;
-      font-size: 14px;
+      font-size: var(--font-size-s);
       width: 100%;
 
       &.active {

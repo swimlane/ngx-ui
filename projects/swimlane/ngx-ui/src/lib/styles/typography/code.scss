@@ -20,7 +20,7 @@ pre {
   margin: 0.5rem var(--spacing-0);
   font-family: $code-font-family;
   overflow-x: auto;
-  line-height: 1.45;
+  line-height: var(--font-line-height-200);
   tab-size: 2;
   -webkit-font-smoothing: auto;
   -webkit-text-size-adjust: none;

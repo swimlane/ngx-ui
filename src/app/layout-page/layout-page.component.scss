@@ -23,8 +23,8 @@ code {
 
   &:before {
     content: attr(class);
-    font-size: 16px;
-    font-weight: bold;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-bold);
     position: absolute;
     top: -20px;
   }
@@ -38,7 +38,7 @@ code {
 
   &:before {
     content: attr(class);
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     position: absolute;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -57,7 +57,7 @@ code {
 
     &:before {
       content: attr(class);
-      font-size: 10px;
+      font-size: var(--font-size-xxs);
       position: absolute;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -71,7 +71,7 @@ code {
     }
 
     &:hover:before {
-      font-size: 12px;
+      font-size: var(--font-size-xs);
       background-color: var(--grey-800);
       overflow: visible;
       z-index: 1000;
@@ -88,8 +88,8 @@ code {
   overflow: hidden;
   text-align: center;
   color: black;
-  font-size: 10px;
-  font-weight: bold;
+  font-size: var(--font-size-xxs);
+  font-weight: var(--font-weight-bold);
   min-height: 30px;
   line-height: 30px;
   vertical-align: middle;

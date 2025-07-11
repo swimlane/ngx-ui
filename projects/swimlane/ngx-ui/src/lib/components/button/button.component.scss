@@ -98,10 +98,10 @@
       .icon {
         height: 1em;
         width: 1em;
-        font-weight: bold;
+        font-weight: var(--font-weight-bold);
         color: var(--white);
         overflow: hidden;
-        font-size: 1em;
+        font-size: var(--font-size-m);
       }
     }
   }

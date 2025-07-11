@@ -12,11 +12,11 @@ $tag-color: white;
   position: relative;
   background: $tag-background;
   color: $tag-color;
-  font-size: 14px;
+  font-size: var(--font-size-s);
   padding: var(--spacing-0) 0.3rem;
 
   &.tag-small {
-    font-size: 0.7rem;
+    font-size: var(--font-size-xs);
   }
 
   &.tag-large {

@@ -60,7 +60,7 @@
 
     .card-toggle {
       color: #8f9db7;
-      font-size: 14px;
+      font-size: var(--font-size-s);
     }
   }
 
@@ -104,13 +104,13 @@
 
           .card-stat--value {
             color: var(--grey-100);
-            font-size: 21px;
+            font-size: var(--font-size-xl);
           }
 
           .card-stat--label {
             color: var(--grey-350);
-            font-size: 12px;
-            font-weight: 600;
+            font-size: var(--font-size-xs);
+            font-weight: var(--font-weight-semibold);
           }
 
           &:first-child {
@@ -123,7 +123,7 @@
         display: inline-block;
         align-items: center;
         color: var(--grey-400);
-        font-size: 14px;
+        font-size: var(--font-size-s);
       }
     }
   }

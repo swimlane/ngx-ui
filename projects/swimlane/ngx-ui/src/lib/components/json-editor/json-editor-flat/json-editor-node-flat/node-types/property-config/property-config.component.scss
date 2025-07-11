@@ -10,12 +10,12 @@
     padding: var(--spacing-0) 35px;
 
     span {
-      font-size: 19px;
+      font-size: var(--font-size-xl);
       color: white;
     }
 
     button {
-      font-size: 14px;
+      font-size: var(--font-size-s);
       line-height: 18px;
     }
   }
@@ -37,7 +37,7 @@
 
   .enum-edit {
     button {
-      font-size: 9px;
+      font-size: var(--font-size-xxs);
       padding-right: var(--spacing-0);
     }
   }

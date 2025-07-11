@@ -57,9 +57,9 @@ $color-background-grey: var(--grey-750);
 
       .ngx-card-avatar--content {
         margin: auto;
-        font-size: 0.95rem;
+        font-size: var(--font-size-m);
         color: var(--grey-100);
-        font-weight: bold;
+        font-weight: var(--font-weight-bold);
       }
     }
   }
