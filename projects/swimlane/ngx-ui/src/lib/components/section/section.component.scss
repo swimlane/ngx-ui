@@ -21,7 +21,7 @@ $section-shadow: shadows.$shadow-3;
     display: block;
     width: auto;
     height: 40px;
-    line-height: 40px;
+    line-height: var(--font-line-height-400);
     padding: var(--spacing-0) 10px;
     color: $section-header-color;
     position: relative;
@@ -30,7 +30,7 @@ $section-shadow: shadows.$shadow-3;
       font-size: 8px;
       vertical-align: top;
       display: inline-block;
-      line-height: 40px;
+      line-height: var(--font-line-height-400);
       position: absolute;
       background: none;
       border: none;
@@ -50,7 +50,7 @@ $section-shadow: shadows.$shadow-3;
     h1 {
       font-size: 1.1em;
       font-weight: var(--font-weight-semibold);
-      line-height: 40px;
+      line-height: var(--font-line-height-400);
       padding: var(--spacing-0);
       margin: var(--spacing-0);
     }
