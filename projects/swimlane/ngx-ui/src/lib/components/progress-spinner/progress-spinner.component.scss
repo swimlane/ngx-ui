@@ -83,7 +83,7 @@
           display: block;
           transform: translate(calc(50% - 35px), calc(50% - 28px));
           fill: none;
-          stroke: colors.$color-error;
+          stroke: var(--color-error);
           animation: icon-progress-spinner--check 1s linear forwards;
         }
       }

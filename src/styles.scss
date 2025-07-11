@@ -5,14 +5,14 @@
 @use './app/common/prism/prism.css';
 //@use 'colors/colors' as colors;
 
-// Import for adding the css variables for color
-@import '../projects/swimlane/ngx-ui/src/lib/styles/colors/colors';
+// // Import for adding the css variables for color
+// @import '../projects/swimlane/ngx-ui/src/lib/styles/colors/colors';
 
-// Import for adding the css variables for spacing
-@import '../projects/swimlane/ngx-ui/src/lib/styles/layouts/flex.scss';
+// // Import for adding the css variables for spacing
+// @import '../projects/swimlane/ngx-ui/src/lib/styles/layouts/flex.scss';
 
-// Import for adding the css variables for typography
-@import '../projects/swimlane/ngx-ui/src/lib/styles/typography/font.scss';
+// // Import for adding the css variables for typography
+// @import '../projects/swimlane/ngx-ui/src/lib/styles/typography/font.scss';
 
 .appearance-table {
   max-width: 500px;

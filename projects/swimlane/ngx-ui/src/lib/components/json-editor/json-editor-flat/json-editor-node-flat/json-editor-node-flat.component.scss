@@ -60,7 +60,7 @@ ngx-json-editor-node-flat {
       border-radius: var(--radius-2);
       top: 0;
       left: 0;
-      border: 2px solid colors.$color-error;
+      border: 2px solid var(--color-error);
     }
 
     .left-options {
@@ -92,8 +92,8 @@ ngx-json-editor-node-flat {
 
           &.invalid {
             svg path {
-              fill: colors.$color-error;
-              stroke: colors.$color-error;
+              fill: var(--color-error);
+              stroke: var(--color-error);
             }
           }
         }
@@ -154,7 +154,7 @@ ngx-json-editor-node-flat {
         }
 
         .input-error {
-          color: colors.$color-error;
+          color: var(--color-error);
           min-height: 1.2em; // min height keeps input from shifting when error is shown
           text-transform: capitalize;
           font-size: var(--font-size-xs);

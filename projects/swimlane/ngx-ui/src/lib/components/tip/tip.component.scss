@@ -75,12 +75,12 @@ $color-border: var(--grey-650);
   &.ngx-tip--error {
     .tip-container {
       &::before {
-        background: colors.$color-error;
+        background: var(--color-error);
       }
 
       .tip-content {
         &--icon .ngx-icon {
-          color: colors.$color-error;
+          color: var(--color-error);
         }
       }
     }

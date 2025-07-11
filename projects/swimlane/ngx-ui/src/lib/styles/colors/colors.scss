@@ -105,167 +105,167 @@
 }
 
 
-// // Base
-// $color-white: #fff;
-// $color-black: #000;
+// Base
+$color-white: #fff;
+$color-black: #000;
 
-// // Blue
-// $color-blue: #1483ff;
-// $color-blue-100: color.adjust($color-blue, $lightness: 30%);
-// $color-blue-200: color.adjust($color-blue, $lightness: 25%);
-// $color-blue-300: color.adjust($color-blue, $lightness: 20%);
-// $color-blue-400: color.adjust($color-blue, $lightness: 10%);
-// $color-blue-500: $color-blue;
-// $color-blue-600: color.adjust($color-blue, $lightness: -10%);
-// $color-blue-700: color.adjust($color-blue, $lightness: -20%);
-// $color-blue-800: color.adjust($color-blue, $lightness: -30%);
-// $color-blue-900: color.adjust($color-blue, $lightness: -35%);
+// Blue
+$color-blue: #1483ff;
+$color-blue-100: color.adjust($color-blue, $lightness: 30%);
+$color-blue-200: color.adjust($color-blue, $lightness: 25%);
+$color-blue-300: color.adjust($color-blue, $lightness: 20%);
+$color-blue-400: color.adjust($color-blue, $lightness: 10%);
+$color-blue-500: $color-blue;
+$color-blue-600: color.adjust($color-blue, $lightness: -10%);
+$color-blue-700: color.adjust($color-blue, $lightness: -20%);
+$color-blue-800: color.adjust($color-blue, $lightness: -30%);
+$color-blue-900: color.adjust($color-blue, $lightness: -35%);
 
-// // Light Blue
-// $color-light-blue: #22befb;
-// $color-light-blue-100: color.adjust($color-light-blue, $lightness: 30%);
-// $color-light-blue-200: color.adjust($color-light-blue, $lightness: 25%);
-// $color-light-blue-300: color.adjust($color-light-blue, $lightness: 20%);
-// $color-light-blue-400: color.adjust($color-light-blue, $lightness: 10%);
-// $color-light-blue-500: $color-light-blue;
-// $color-light-blue-600: color.adjust($color-light-blue, $lightness: -10%);
-// $color-light-blue-700: color.adjust($color-light-blue, $lightness: -20%);
-// $color-light-blue-800: color.adjust($color-light-blue, $lightness: -30%);
-// $color-light-blue-900: color.adjust($color-light-blue, $lightness: -35%);
+// Light Blue
+$color-light-blue: #22befb;
+$color-light-blue-100: color.adjust($color-light-blue, $lightness: 30%);
+$color-light-blue-200: color.adjust($color-light-blue, $lightness: 25%);
+$color-light-blue-300: color.adjust($color-light-blue, $lightness: 20%);
+$color-light-blue-400: color.adjust($color-light-blue, $lightness: 10%);
+$color-light-blue-500: $color-light-blue;
+$color-light-blue-600: color.adjust($color-light-blue, $lightness: -10%);
+$color-light-blue-700: color.adjust($color-light-blue, $lightness: -20%);
+$color-light-blue-800: color.adjust($color-light-blue, $lightness: -30%);
+$color-light-blue-900: color.adjust($color-light-blue, $lightness: -35%);
 
-// // Green
-// $color-green: #1ddeb6;
-// $color-green-100: color.adjust($color-green, $lightness: 30%);
-// $color-green-200: color.adjust($color-green, $lightness: 25%);
-// $color-green-300: color.adjust($color-green, $lightness: 20%);
-// $color-green-400: color.adjust($color-green, $lightness: 10%);
-// $color-green-500: $color-green;
-// $color-green-600: color.adjust($color-green, $lightness: -10%);
-// $color-green-700: color.adjust($color-green, $lightness: -20%);
-// $color-green-800: color.adjust($color-green, $lightness: -30%);
-// $color-green-900: color.adjust($color-green, $lightness: -35%);
+// Green
+$color-green: #1ddeb6;
+$color-green-100: color.adjust($color-green, $lightness: 30%);
+$color-green-200: color.adjust($color-green, $lightness: 25%);
+$color-green-300: color.adjust($color-green, $lightness: 20%);
+$color-green-400: color.adjust($color-green, $lightness: 10%);
+$color-green-500: $color-green;
+$color-green-600: color.adjust($color-green, $lightness: -10%);
+$color-green-700: color.adjust($color-green, $lightness: -20%);
+$color-green-800: color.adjust($color-green, $lightness: -30%);
+$color-green-900: color.adjust($color-green, $lightness: -35%);
 
-// // Red
-// $color-red: #ff4514;
-// $color-red-100: color.adjust($color-red, $lightness: 30%);
-// $color-red-200: color.adjust($color-red, $lightness: 25%);
-// $color-red-300: color.adjust($color-red, $lightness: 20%);
-// $color-red-400: color.adjust($color-red, $lightness: 10%);
-// $color-red-500: $color-red;
-// $color-red-600: color.adjust($color-red, $lightness: -10%);
-// $color-red-700: color.adjust($color-red, $lightness: -20%);
-// $color-red-800: color.adjust($color-red, $lightness: -30%);
-// $color-red-900: color.adjust($color-red, $lightness: -35%);
+// Red
+$color-red: #ff4514;
+$color-red-100: color.adjust($color-red, $lightness: 30%);
+$color-red-200: color.adjust($color-red, $lightness: 25%);
+$color-red-300: color.adjust($color-red, $lightness: 20%);
+$color-red-400: color.adjust($color-red, $lightness: 10%);
+$color-red-500: $color-red;
+$color-red-600: color.adjust($color-red, $lightness: -10%);
+$color-red-700: color.adjust($color-red, $lightness: -20%);
+$color-red-800: color.adjust($color-red, $lightness: -30%);
+$color-red-900: color.adjust($color-red, $lightness: -35%);
 
-// // Orange
-// $color-orange: #ffa814;
-// $color-orange-100: color.adjust($color-orange, $lightness: 30%);
-// $color-orange-200: color.adjust($color-orange, $lightness: 25%);
-// $color-orange-300: color.adjust($color-orange, $lightness: 20%);
-// $color-orange-400: color.adjust($color-orange, $lightness: 10%);
-// $color-orange-500: $color-orange;
-// $color-orange-600: color.adjust($color-orange, $lightness: -10%);
-// $color-orange-700: color.adjust($color-orange, $lightness: -20%);
-// $color-orange-800: color.adjust($color-orange, $lightness: -30%);
-// $color-orange-900: color.adjust($color-orange, $lightness: -35%);
+// Orange
+$color-orange: #ffa814;
+$color-orange-100: color.adjust($color-orange, $lightness: 30%);
+$color-orange-200: color.adjust($color-orange, $lightness: 25%);
+$color-orange-300: color.adjust($color-orange, $lightness: 20%);
+$color-orange-400: color.adjust($color-orange, $lightness: 10%);
+$color-orange-500: $color-orange;
+$color-orange-600: color.adjust($color-orange, $lightness: -10%);
+$color-orange-700: color.adjust($color-orange, $lightness: -20%);
+$color-orange-800: color.adjust($color-orange, $lightness: -30%);
+$color-orange-900: color.adjust($color-orange, $lightness: -35%);
 
-// // Purple
-// $color-purple: #8a65e8;
-// $color-purple-100: color.adjust($color-purple, $lightness: 30%);
-// $color-purple-200: color.adjust($color-purple, $lightness: 25%);
-// $color-purple-300: color.adjust($color-purple, $lightness: 20%);
-// $color-purple-400: color.adjust($color-purple, $lightness: 10%);
-// $color-purple-500: $color-purple;
-// $color-purple-600: color.adjust($color-purple, $lightness: -10%);
-// $color-purple-700: color.adjust($color-purple, $lightness: -20%);
-// $color-purple-800: color.adjust($color-purple, $lightness: -30%);
-// $color-purple-900: color.adjust($color-purple, $lightness: -35%);
+// Purple
+$color-purple: #8a65e8;
+$color-purple-100: color.adjust($color-purple, $lightness: 30%);
+$color-purple-200: color.adjust($color-purple, $lightness: 25%);
+$color-purple-300: color.adjust($color-purple, $lightness: 20%);
+$color-purple-400: color.adjust($color-purple, $lightness: 10%);
+$color-purple-500: $color-purple;
+$color-purple-600: color.adjust($color-purple, $lightness: -10%);
+$color-purple-700: color.adjust($color-purple, $lightness: -20%);
+$color-purple-800: color.adjust($color-purple, $lightness: -30%);
+$color-purple-900: color.adjust($color-purple, $lightness: -35%);
 
-// // Blue Grey
-// $color-blue-grey: #5a6884;
-// $color-blue-grey-050: color.adjust($color-blue-grey, $lightness: 50%);
-// $color-blue-grey-100: color.adjust($color-blue-grey, $lightness: 40%);
-// $color-blue-grey-150: color.adjust($color-blue-grey, $lightness: 35%);
-// $color-blue-grey-200: color.adjust($color-blue-grey, $lightness: 30%);
-// $color-blue-grey-250: color.adjust($color-blue-grey, $lightness: 25%);
-// $color-blue-grey-300: color.adjust($color-blue-grey, $lightness: 20%);
-// $color-blue-grey-350: color.adjust($color-blue-grey, $lightness: 15%);
-// $color-blue-grey-400: color.adjust($color-blue-grey, $lightness: 10%);
-// $color-blue-grey-450: color.adjust($color-blue-grey, $lightness: 5%);
-// $color-blue-grey-500: $color-blue-grey;
-// $color-blue-grey-550: color.adjust($color-blue-grey, $lightness: -5%);
-// $color-blue-grey-600: color.adjust($color-blue-grey, $lightness: -10%);
-// $color-blue-grey-650: color.adjust($color-blue-grey, $lightness: -15%);
-// $color-blue-grey-700: color.adjust($color-blue-grey, $lightness: -20%);
-// $color-blue-grey-725: color.adjust($color-blue-grey, $lightness: -22.5%);
-// $color-blue-grey-750: color.adjust($color-blue-grey, $lightness: -25%);
-// $color-blue-grey-775: color.adjust($color-blue-grey, $lightness: -27.5%);
-// $color-blue-grey-800: color.adjust($color-blue-grey, $lightness: -30%);
-// $color-blue-grey-825: color.adjust($color-blue-grey, $lightness: -32.5%);
-// $color-blue-grey-850: color.adjust($color-blue-grey, $lightness: -35%);
-// $color-blue-grey-875: color.adjust($color-blue-grey, $lightness: -37.5%);
-// $color-blue-grey-900: color.adjust($color-blue-grey, $lightness: -40%);
+// Blue Grey
+$color-blue-grey: #5a6884;
+$color-blue-grey-050: color.adjust($color-blue-grey, $lightness: 50%);
+$color-blue-grey-100: color.adjust($color-blue-grey, $lightness: 40%);
+$color-blue-grey-150: color.adjust($color-blue-grey, $lightness: 35%);
+$color-blue-grey-200: color.adjust($color-blue-grey, $lightness: 30%);
+$color-blue-grey-250: color.adjust($color-blue-grey, $lightness: 25%);
+$color-blue-grey-300: color.adjust($color-blue-grey, $lightness: 20%);
+$color-blue-grey-350: color.adjust($color-blue-grey, $lightness: 15%);
+$color-blue-grey-400: color.adjust($color-blue-grey, $lightness: 10%);
+$color-blue-grey-450: color.adjust($color-blue-grey, $lightness: 5%);
+$color-blue-grey-500: $color-blue-grey;
+$color-blue-grey-550: color.adjust($color-blue-grey, $lightness: -5%);
+$color-blue-grey-600: color.adjust($color-blue-grey, $lightness: -10%);
+$color-blue-grey-650: color.adjust($color-blue-grey, $lightness: -15%);
+$color-blue-grey-700: color.adjust($color-blue-grey, $lightness: -20%);
+$color-blue-grey-725: color.adjust($color-blue-grey, $lightness: -22.5%);
+$color-blue-grey-750: color.adjust($color-blue-grey, $lightness: -25%);
+$color-blue-grey-775: color.adjust($color-blue-grey, $lightness: -27.5%);
+$color-blue-grey-800: color.adjust($color-blue-grey, $lightness: -30%);
+$color-blue-grey-825: color.adjust($color-blue-grey, $lightness: -32.5%);
+$color-blue-grey-850: color.adjust($color-blue-grey, $lightness: -35%);
+$color-blue-grey-875: color.adjust($color-blue-grey, $lightness: -37.5%);
+$color-blue-grey-900: color.adjust($color-blue-grey, $lightness: -40%);
 
-// // Light Grey
-// $color-grey: #696969;
-// $color-grey-050: color.adjust($color-grey, $lightness: 50%);
-// $color-grey-100: color.adjust($color-grey, $lightness: 40%);
-// $color-grey-150: color.adjust($color-grey, $lightness: 35%);
-// $color-grey-200: color.adjust($color-grey, $lightness: 30%);
-// $color-grey-250: color.adjust($color-grey, $lightness: 25%);
-// $color-grey-300: color.adjust($color-grey, $lightness: 20%);
-// $color-grey-350: color.adjust($color-grey, $lightness: 15%);
-// $color-grey-400: color.adjust($color-grey, $lightness: 10%);
-// $color-grey-450: color.adjust($color-grey, $lightness: 5%);
-// $color-grey-500: $color-grey;
-// $color-grey-550: color.adjust($color-grey, $lightness: -5%);
-// $color-grey-600: color.adjust($color-grey, $lightness: -10%);
-// $color-grey-650: color.adjust($color-grey, $lightness: -15%);
-// $color-grey-700: color.adjust($color-grey, $lightness: -20%);
-// $color-grey-725: color.adjust($color-grey, $lightness: -22.5%);
-// $color-grey-750: color.adjust($color-grey, $lightness: -25%);
-// $color-grey-775: color.adjust($color-grey, $lightness: -27.5%);
-// $color-grey-800: color.adjust($color-grey, $lightness: -30%);
-// $color-grey-825: color.adjust($color-grey, $lightness: -32.5%);
-// $color-grey-850: color.adjust($color-grey, $lightness: -35%);
-// $color-grey-875: color.adjust($color-grey, $lightness: -37.5%);
-// $color-grey-900: color.adjust($color-grey, $lightness: -40%);
+// Light Grey
+$color-grey: #696969;
+$color-grey-050: color.adjust($color-grey, $lightness: 50%);
+$color-grey-100: color.adjust($color-grey, $lightness: 40%);
+$color-grey-150: color.adjust($color-grey, $lightness: 35%);
+$color-grey-200: color.adjust($color-grey, $lightness: 30%);
+$color-grey-250: color.adjust($color-grey, $lightness: 25%);
+$color-grey-300: color.adjust($color-grey, $lightness: 20%);
+$color-grey-350: color.adjust($color-grey, $lightness: 15%);
+$color-grey-400: color.adjust($color-grey, $lightness: 10%);
+$color-grey-450: color.adjust($color-grey, $lightness: 5%);
+$color-grey-500: $color-grey;
+$color-grey-550: color.adjust($color-grey, $lightness: -5%);
+$color-grey-600: color.adjust($color-grey, $lightness: -10%);
+$color-grey-650: color.adjust($color-grey, $lightness: -15%);
+$color-grey-700: color.adjust($color-grey, $lightness: -20%);
+$color-grey-725: color.adjust($color-grey, $lightness: -22.5%);
+$color-grey-750: color.adjust($color-grey, $lightness: -25%);
+$color-grey-775: color.adjust($color-grey, $lightness: -27.5%);
+$color-grey-800: color.adjust($color-grey, $lightness: -30%);
+$color-grey-825: color.adjust($color-grey, $lightness: -32.5%);
+$color-grey-850: color.adjust($color-grey, $lightness: -35%);
+$color-grey-875: color.adjust($color-grey, $lightness: -37.5%);
+$color-grey-900: color.adjust($color-grey, $lightness: -40%);
 
-// $colors: (
-//   'blue': $color-blue,
-//   'light-blue': $color-light-blue,
-//   'green': $color-green,
-//   'orange': $color-orange,
-//   'red': $color-red,
-//   'purple': $color-purple,
-//   'blue-grey': $color-blue-grey,
-//   'grey': $color-grey
-// );
+$colors: (
+  'blue': $color-blue,
+  'light-blue': $color-light-blue,
+  'green': $color-green,
+  'orange': $color-orange,
+  'red': $color-red,
+  'purple': $color-purple,
+  'blue-grey': $color-blue-grey,
+  'grey': $color-grey
+);
 
-// $palette: (
-//   050: 50%,
-//   100: 40%,
-//   150: 35%,
-//   200: 30%,
-//   250: 25%,
-//   300: 20%,
-//   350: 15%,
-//   400: 10%,
-//   450: 5%,
-//   500: 0,
-//   550: 5%,
-//   600: 10%,
-//   650: 15%,
-//   700: 20%,
-//   725: 22.5%,
-//   750: 25%,
-//   775: 27.5%,
-//   800: 30%,
-//   825: 32.5%,
-//   850: 35%,
-//   875: 37.5%,
-//   900: 40%
-// );
+$palette: (
+  050: 50%,
+  100: 40%,
+  150: 35%,
+  200: 30%,
+  250: 25%,
+  300: 20%,
+  350: 15%,
+  400: 10%,
+  450: 5%,
+  500: 0,
+  550: 5%,
+  600: 10%,
+  650: 15%,
+  700: 20%,
+  725: 22.5%,
+  750: 25%,
+  775: 27.5%,
+  800: 30%,
+  825: 32.5%,
+  850: 35%,
+  875: 37.5%,
+  900: 40%
+);
 
-// // error state color
-// $color-error: $color-red-500;
+// error state color
+$color-error: $color-red-500;

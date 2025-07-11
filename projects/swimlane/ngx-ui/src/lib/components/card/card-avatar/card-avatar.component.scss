@@ -73,7 +73,7 @@ $color-background-grey: var(--grey-750);
       }
 
       &.error {
-        background-color: colors.$color-error;
+        background-color: var(--color-error);
       }
     }
   }

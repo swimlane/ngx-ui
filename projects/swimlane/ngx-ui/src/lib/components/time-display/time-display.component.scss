@@ -12,7 +12,7 @@ ngx-time {
   }
 
   &.ngx-time--date-invalid .ngx-time__container {
-    color: colors.$color-error;
+    color: var(--color-error);
   }
 
   &.ngx-time--has-popup .ngx-time__container {

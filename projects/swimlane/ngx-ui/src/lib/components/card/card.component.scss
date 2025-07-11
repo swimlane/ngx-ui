@@ -58,8 +58,8 @@ $card-vertical-gutter: var(--spacing-20);
     }
 
     &.error {
-      background-color: colors.$color-error;
-      box-shadow: 0 0 7px colors.$color-error;
+      background-color: var(--color-error);
+      box-shadow: 0 0 7px var(--color-error);
     }
   }
 
@@ -254,7 +254,7 @@ $card-vertical-gutter: var(--spacing-20);
     border-radius: var(--radius-6);
 
     &.error {
-      border-color: colors.$color-error;
+      border-color: var(--color-error);
     }
   }
 
@@ -303,13 +303,13 @@ $card-vertical-gutter: var(--spacing-20);
     }
 
     &.error {
-      color: colors.$color-error;
-      border-color: colors.$color-error;
+      color: var(--color-error);
+      border-color: var(--color-error);
 
       .inner-text {
         &::before,
         &::after {
-          background: colors.$color-error;
+          background: var(--color-error);
         }
       }
     }
