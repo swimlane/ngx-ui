@@ -8,7 +8,7 @@ select {
   border-radius: var(--radius-2);
   height: 32px;
   line-height: 32px;
-  font-size: 13px;
+  font-size: var(--font-size-xs);
   width: 100%;
 
   &:focus {

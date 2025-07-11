@@ -133,7 +133,7 @@ $color-chip-text: #ffffff;
       .ngx-select-caret {
         align-items: center;
         display: flex;
-        font-size: 0.6em;
+        font-size: var(--font-size-xxs);
       }
 
       .ngx-select-clear {
@@ -181,7 +181,7 @@ $color-chip-text: #ffffff;
       position: relative;
       top: 0;
       padding: var(--spacing-0) 0.5em;
-      font-size: 1em;
+      font-size: var(--font-size-m);
       line-height: 1.4em;
       max-width: 300px;
       display: inline-flex;
@@ -201,7 +201,7 @@ $color-chip-text: #ffffff;
         cursor: pointer;
         font-size: 0.5em;
         color: $color-caret-bg;
-        line-height: 1em;
+        line-height: var(--font-line-height-100);
         height: 1em;
         z-index: 500;
         top: -1px;
@@ -235,9 +235,9 @@ $color-chip-text: #ffffff;
           -webkit-appearance: none;
           appearance: none;
           color: forms.$color-input-text;
-          line-height: 1em;
+          line-height: var(--font-line-height-100);
           display: inline-block;
-          font-size: 1em;
+          font-size: var(--font-size-m);
           vertical-align: bottom;
           padding: var(--spacing-0);
           margin: var(--spacing-4);
@@ -384,7 +384,7 @@ $color-chip-text: #ffffff;
 
       .ngx-select-dropdown-option {
         padding: 7px 35px 7px 15px;
-        font-size: 15px;
+        font-size: var(--font-size-m);
         overflow-x: hidden;
         overflow-y: visible;
         text-overflow: ellipsis;
@@ -422,10 +422,10 @@ $color-chip-text: #ffffff;
       .ngx-select-option-group {
         .ngx-select-option-group-name {
           padding: 7px 15px;
-          font-size: 1rem;
+          font-size: var(--font-size-m);
           display: block;
-          font-weight: 600;
-          line-height: 20px;
+          font-weight: var(--font-weight-semibold);
+          line-height: var(--font-line-height-300);
           color: var(--grey-300);
           overflow-x: hidden;
           text-overflow: ellipsis;
@@ -453,7 +453,7 @@ $color-chip-text: #ffffff;
 
       .ngx-search {
         left: 10px;
-        font-size: 0.75rem;
+        font-size: var(--font-size-xs);
         margin-top: -6px;
       }
 
@@ -474,7 +474,7 @@ $color-chip-text: #ffffff;
         border: none;
         outline: none;
         display: block;
-        font-size: 15px;
+        font-size: var(--font-size-m);
         width: 100%;
         padding-left: var(--spacing-20);
 
@@ -494,7 +494,7 @@ $color-chip-text: #ffffff;
     .ngx-select-empty-placeholder {
       color: $color-empty-text;
       padding: 7px 15px;
-      font-size: 15px;
+      font-size: var(--font-size-m);
       font-style: italic;
 
       .ngx-select-empty-placeholder-add {
@@ -517,7 +517,7 @@ $color-chip-text: #ffffff;
   &.ng-invalid.ng-dirty,
   &.invalid {
     .ngx-select-label {
-      font-weight: 600;
+      font-weight: var(--font-weight-semibold);
       color: var(--red-500);
     }
 

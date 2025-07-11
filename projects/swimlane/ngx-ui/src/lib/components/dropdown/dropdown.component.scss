@@ -104,14 +104,14 @@ $dropdown-color: var(--grey-100);
       > button {
         padding: var(--spacing-4) var(--spacing-20);
         clear: both;
-        line-height: 1.42857143;
+        line-height: var(--font-line-height-200);
         white-space: nowrap;
         width: 100%;
         text-align: left;
         background: transparent;
         box-shadow: none;
         color: $dropdown-color;
-        font-size: 0.9em;
+        font-size: var(--font-size-m);
         display: block;
       }
 
@@ -162,7 +162,7 @@ $dropdown-color: var(--grey-100);
   @mixin ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color) {
     background: $menu-color;
     min-width: 130px;
-    font-size: 13px;
+    font-size: var(--font-size-xs);
     border: 1px solid $menu-border;
     background: $menu-color;
 
@@ -190,10 +190,10 @@ $dropdown-color: var(--grey-100);
           height: 26px;
           display: block;
           clear: both;
-          font-weight: 400;
-          line-height: 1.42857;
+          font-weight: var(--font-weight-regular);
+          line-height: var(--font-line-height-200);
           white-space: nowrap;
-          font-size: 13px;
+          font-size: var(--font-size-xs);
           color: $item-color;
         }
 

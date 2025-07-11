@@ -125,7 +125,7 @@ code[class*='language-'] ::selection {
 
 .prism--token.prism--important,
 .prism--token.prism--bold {
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }
 
 .prism--token.prism--italic {

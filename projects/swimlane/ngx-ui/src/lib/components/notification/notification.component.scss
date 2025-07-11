@@ -73,7 +73,7 @@
     height: 2rem;
 
     .ngx-icon {
-      font-size: 2rem;
+      font-size: var(--font-size-4xl);
       line-height: 2rem;
     }
   }
@@ -117,7 +117,7 @@
   }
 
   .ngx-notification-body {
-    font-size: 0.9rem;
+    font-size: var(--font-size-m);
     margin: var(--spacing-0);
     line-height: 1rem;
   }
@@ -128,7 +128,7 @@
     top: 0.5rem;
     line-height: 1em;
     padding: var(--spacing-0);
-    font-size: 16px;
+    font-size: var(--font-size-m);
     height: 16px;
   }
 }

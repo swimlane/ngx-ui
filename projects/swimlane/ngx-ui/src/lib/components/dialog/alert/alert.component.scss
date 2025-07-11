@@ -9,10 +9,10 @@
       padding: 1.4rem 2rem 0 2rem;
 
       h1 {
-        font-size: 18px;
+        font-size: var(--font-size-l);
         margin: var(--spacing-0);
         color: white;
-        font-weight: 600;
+        font-weight: var(--font-weight-semibold);
       }
     }
 

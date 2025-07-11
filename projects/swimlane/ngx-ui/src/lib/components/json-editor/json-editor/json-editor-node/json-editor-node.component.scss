@@ -19,7 +19,8 @@
       position: absolute;
       content: '=';
       left: -19px;
-      font-size: 20px;
+      font-size: var(--font-size-xl);
+
       color: var(--grey-500);
     }
 
@@ -37,7 +38,7 @@
   }
 
   .ngx-expander {
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     color: var(--grey-200);
     position: absolute;
     top: -25px;
@@ -160,8 +161,8 @@
         background: transparent;
         color: var(--grey-150);
         width: calc(100% - 5px);
-        line-height: 20px;
-        font-size: 14px;
+        line-height: var(--font-line-height-300);
+        font-size: var(--font-size-s);
       }
     }
   }
@@ -195,7 +196,7 @@
       .code-display {
         white-space: pre-wrap;
         font-family: 'Courier New', Courier, monospace;
-        font-size: 14px;
+        font-size: var(--font-size-s);
       }
 
       .edit-code-icon {

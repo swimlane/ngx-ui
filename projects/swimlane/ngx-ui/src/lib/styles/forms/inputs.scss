@@ -21,7 +21,7 @@ textarea {
   color: forms.$color-input-text;
   transition: box-shadow 200ms;
   border-radius: var(--radius-0);
-  font-size: 13px;
+  font-size: var(--font-size-xs);
   height: 32px;
   line-height: 32px;
   width: 100%;

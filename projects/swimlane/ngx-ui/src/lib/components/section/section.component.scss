@@ -49,7 +49,7 @@ $section-shadow: shadows.$shadow-3;
 
     h1 {
       font-size: 1.1em;
-      font-weight: 600;
+      font-weight: var(--font-weight-semibold);
       line-height: 40px;
       padding: var(--spacing-0);
       margin: var(--spacing-0);

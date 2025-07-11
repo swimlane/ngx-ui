@@ -11,7 +11,7 @@
   transition: background-color 0.25s cubic-bezier(0.35, 0, 0.25, 1), font-weight 0.25s ease-in;
 
   &.checked {
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     color: var(--grey-050);
     background-color: var(--grey-700);
   }

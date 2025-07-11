@@ -20,12 +20,12 @@ $input-inactive-underline-fill: var(--grey-600);
 
 $input-label-color: var(--grey-350);
 $input-label-color-active: var(--blue-500);
-$input-label-font-size: 1em;
+$input-label-font-size: var(--font-size-m);
 $input-label-font-size-active: 0.7rem;
-$input-label-font-weight: 600;
+$input-label-font-weight: var(--font-weight-semibold);
 
 $input-hint-color: var(--grey-350);
-$input-hint-font-size: 12px;
+$input-hint-font-size: var(--font-size-xs);
 $input-hint-margin-top: var(--spacing-2);
 $input-hint-min-height: 1em;
 $input-hint-line-height: 14px;
@@ -60,7 +60,7 @@ $input-animation-duration: 150ms;
 @mixin input-label {
   position: absolute;
   top: 0.4em;
-  line-height: 1em;
+  line-height: var(--font-line-height-100);
   pointer-events: none;
   font-size: $input-label-font-size;
   font-weight: $input-label-font-weight;

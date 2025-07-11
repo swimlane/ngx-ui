@@ -19,9 +19,9 @@
 
     h4 {
       font-family: 'Source Sans Pro';
-      font-size: 14px;
+      font-size: var(--font-size-s);
       font-style: normal;
-      font-weight: 600;
+      font-weight: var(--font-weight-semibold);
       line-height: 18px;
       margin-top: 0px;
       margin-bottom: 0px;
@@ -84,9 +84,9 @@
           color: colors.$color-blue-grey-150;
           text-overflow: ellipsis;
           font-family: Source Sans Pro, Open Sans, Arial, sans-serif;
-          font-size: 14px;
+          font-size: var(--font-size-s);
           font-style: normal;
-          font-weight: 400;
+          font-weight: var(--font-weight-regular);
           line-height: 18px;
         }
 

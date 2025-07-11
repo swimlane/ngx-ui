@@ -9,7 +9,7 @@
  */
 
 html {
-  line-height: 1.15; /* 1 */
+  line-height: var(--font-line-height-100); /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 
@@ -38,7 +38,7 @@ main {
  */
 
 h1 {
-  font-size: 2em;
+  font-size: var(--font-size-4xl);
   margin: 0.67em var(--spacing-0);
 }
 
@@ -63,7 +63,7 @@ hr {
 
 pre {
   font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-size: var(--font-size-m); /* 2 */
 }
 
 /* Text-level semantics
@@ -106,7 +106,7 @@ code,
 kbd,
 samp {
   font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-size: var(--font-size-m); /* 2 */
 }
 
 /**
@@ -164,7 +164,7 @@ select,
 textarea {
   font-family: inherit; /* 1 */
   font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
+  line-height: var(--font-line-height-100); /* 1 */
   margin: var(--spacing-0); /* 2 */
 }
 

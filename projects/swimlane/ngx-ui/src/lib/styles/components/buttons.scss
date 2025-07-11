@@ -43,10 +43,10 @@ button {
   text-decoration: none;
   user-select: none;
   font: inherit;
-  font-size: 0.9em;
-  font-weight: bold;
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-bold);
   outline: none;
-  line-height: 1em;
+  line-height: var(--font-line-height-100);
   outline-offset: 1px;
 
   background: $button-fill-color;
@@ -57,10 +57,10 @@ button {
 
   .ngx-icon,
   .icon {
-    font-weight: normal;
+    font-weight: var(--font-weight-regular);
     vertical-align: middle;
-    line-height: 1em;
-    font-size: 0.9em;
+    line-height: var(--font-line-height-100);
+    font-size: var(--font-size-m);
 
     &:before {
       font-weight: inherit;
@@ -129,7 +129,7 @@ button {
 
   // sizes
   &.small {
-    font-size: 0.6em;
+    font-size: var(--font-size-xxs);
   }
 
   &.large {

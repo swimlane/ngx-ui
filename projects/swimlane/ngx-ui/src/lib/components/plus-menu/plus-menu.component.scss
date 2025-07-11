@@ -47,14 +47,14 @@
   &--circle-container {
     color: var(--menu-color);
     cursor: pointer;
-    font-size: 29px;
+    font-size: var(--font-size-3xl);
     user-select: none;
   }
 
   &--menu-title {
     display: none;
     vertical-align: top;
-    font-size: 18px;
+    font-size: var(--font-size-l);
     color: white;
     margin-left: var(--spacing-4);
     line-height: var(--button-size);
@@ -87,15 +87,15 @@
       width: 90px;
       height: auto;
       text-align: right;
-      font-size: 18px;
-      line-height: 19px;
-      font-weight: 600;
+      font-size: var(--font-size-l);
+      line-height: var(--font-line-height-300);
+      font-weight: var(--font-weight-semibold);
       cursor: pointer;
 
       .subtitle {
         font-style: normal;
-        font-weight: 600;
-        font-size: 13px;
+        font-weight: var(--font-weight-semibold);
+        font-size: var(--font-size-xs);
         line-height: 30px;
         color: var(--grey-200);
       }
@@ -104,8 +104,8 @@
     .ngx-plus-menu--icon {
       position: absolute;
       text-align: center;
-      font-size: 25px;
-      font-weight: bold;
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
       border-radius: 50%;
       background: var(--icon-background);
       border: 2px solid var(--menu-color);

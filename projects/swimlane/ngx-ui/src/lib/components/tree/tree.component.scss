@@ -18,7 +18,7 @@ $dashes: 5.3px;
     min-height: 25px;
 
     .ngx-expander {
-      font-size: 0.75rem;
+      font-size: var(--font-size-xs);
       color: $color-tree-text;
       position: absolute;
       left: 0;
@@ -39,7 +39,7 @@ $dashes: 5.3px;
 
     .ngx-node-label {
       color: $color-tree-text;
-      font-size: 0.9rem;
+      font-size: var(--font-size-m);
     }
 
     .ngx-tree {

@@ -32,7 +32,7 @@ $dropdown-color: var(--grey-150);
   background: transparent;
   box-shadow: none;
   color: $dropdown-color;
-  font-size: 0.9em;
+  font-size: var(--font-size-m);
   cursor: pointer;
 }
 

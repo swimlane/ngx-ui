@@ -10,11 +10,11 @@
   &__button {
     color: var(--grey-400);
     font-size: 0.8125rem;
-    line-height: 1rem;
+    line-height: var(--font-line-height-100);
     padding-right: var(--spacing-0);
 
     & i.ngx-icon {
-      font-size: 0.625rem;
+      font-size: var(--font-size-xxs);
       margin-right: 0.5rem;
     }
 

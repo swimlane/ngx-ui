@@ -72,8 +72,8 @@ $max-width: 300px;
       .ngx-chip-label,
       .ngx-chip-value {
         font-family: Source Sans Pro;
-        font-size: 16px;
-        font-weight: 400;
+        font-size: var(--font-size-m);
+        font-weight: var(--font-weight-regular);
         line-height: 28px;
         text-align: left;
       }
@@ -103,7 +103,7 @@ $max-width: 300px;
       .ngx-chip-caret {
         align-items: center;
         display: flex;
-        font-size: 0.7em;
+        font-size: var(--font-size-xs);
       }
 
       .ngx-chip-caret {
@@ -215,7 +215,7 @@ $max-width: 300px;
 
       .ngx-select-dropdown-option {
         padding: 9px 40px 9px var(--spacing-20);
-        font-size: 14px;
+        font-size: var(--font-size-s);
         overflow-x: hidden;
         overflow-y: visible;
         text-overflow: ellipsis;
@@ -257,10 +257,10 @@ $max-width: 300px;
       .ngx-select-option-group {
         .ngx-select-option-group-name {
           padding: 7px 15px;
-          font-size: 1rem;
+          font-size: var(--font-size-m);
           display: block;
-          font-weight: 600;
-          line-height: 20px;
+          font-weight: var(--font-weight-semibold);
+          line-height: var(--font-line-height-300);
           color: var(--grey-300);
           overflow-x: hidden;
           text-overflow: ellipsis;
@@ -288,7 +288,7 @@ $max-width: 300px;
       }
 
       .ngx-search {
-        font-size: 1.1rem;
+        font-size: var(--font-size-m);
         margin-top: -9px;
       }
 
@@ -309,7 +309,7 @@ $max-width: 300px;
         border: none;
         outline: none;
         display: block;
-        font-size: 13px;
+        font-size: var(--font-size-xs);
         width: 100%;
         padding-left: var(--spacing-24);
 
@@ -329,7 +329,7 @@ $max-width: 300px;
     .ngx-select-empty-placeholder {
       color: $color-empty-text;
       padding: 7px 15px;
-      font-size: 15px;
+      font-size: var(--font-size-m);
       font-style: italic;
 
       .ngx-select-empty-placeholder-add {

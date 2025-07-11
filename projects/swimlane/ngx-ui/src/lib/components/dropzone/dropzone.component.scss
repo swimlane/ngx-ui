@@ -56,7 +56,7 @@
     flex-direction: column;
     position: relative;
     margin: var(--spacing-0);
-    font-weight: normal;
+    font-weight: var(--font-weight-regular);
     cursor: pointer;
     animation: popIn 0.35s ease-in-out;
     height: 500px;
@@ -90,17 +90,17 @@
       }
 
       .ngx-dropzone--title {
-        font-size: 20px;
+        font-size: var(--font-size-xl);
         line-height: 25px;
-        font-weight: 600;
+        font-weight: var(--font-weight-semibold);
         margin-bottom: var(--spacing-4);
         color: var(--grey-100);
       }
 
       .ngx-dropzone--sub-title {
         color: var(--blue-400);
-        font-size: 12px;
-        font-weight: bold;
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-bold);
         transition: color 0.2s ease-in-out;
 
         &:hover,
@@ -116,7 +116,7 @@
       .ngx-dropzone--supporting-files {
         margin-top: var(--spacing-20);
         color: var(--grey-350);
-        font-size: 12px;
+        font-size: var(--font-size-xs);
         padding: var(--spacing-0) 10px;
       }
     }
@@ -154,13 +154,13 @@
         transform: none;
 
         .ngx-dropzone--title {
-          font-size: 12px;
+          font-size: var(--font-size-xs);
           line-height: 15px;
           margin-bottom: var(--spacing-0);
         }
 
         .ngx-dropzone--sub-title {
-          font-size: 10px;
+          font-size: var(--font-size-xxs);
         }
       }
     }

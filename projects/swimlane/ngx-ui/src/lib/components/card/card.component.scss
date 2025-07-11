@@ -148,21 +148,21 @@ $card-vertical-gutter: var(--spacing-20);
       }
 
       .ngx-card-tag {
-        font-weight: bold;
-        font-size: 10px;
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-xxs);
         line-height: 12px;
       }
 
       .ngx-card-title {
-        font-weight: 600;
+        font-weight: var(--font-weight-semibold);
         font-size: 22px;
         color: #f0f1f6;
       }
 
       .ngx-card-subtitle {
         display: inline-block;
-        font-weight: 600;
-        font-size: 14px;
+        font-weight: var(--font-weight-semibold);
+        font-size: var(--font-size-s);
         color: var(--grey-300);
 
         > span {
@@ -186,7 +186,7 @@ $card-vertical-gutter: var(--spacing-20);
 
       > p {
         color: var(--grey-350);
-        font-size: 14px;
+        font-size: var(--font-size-s);
         line-height: 18px;
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -227,8 +227,8 @@ $card-vertical-gutter: var(--spacing-20);
     .view-details {
       display: flex;
       color: var(--blue-400);
-      font-size: 15px;
-      font-weight: 600;
+      font-size: var(--font-size-m);
+      font-weight: var(--font-weight-semibold);
       white-space: nowrap;
       cursor: pointer;
 
@@ -272,7 +272,7 @@ $card-vertical-gutter: var(--spacing-20);
     border-radius: var(--radius-6);
 
     .inner-text {
-      font-size: 14px;
+      font-size: var(--font-size-s);
       width: 100%;
       text-align: center;
       position: absolute;
@@ -348,8 +348,8 @@ $card-vertical-gutter: var(--spacing-20);
     }
 
     &--label {
-      font-weight: 600;
-      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-xs);
       border-bottom: 0;
       white-space: nowrap;
       width: 100%;
@@ -389,7 +389,7 @@ $card-vertical-gutter: var(--spacing-20);
 
     .ngx-card-title,
     .ngx-card-subtitle {
-      font-weight: 600;
+      font-weight: var(--font-weight-semibold);
       width: 100%;
       white-space: nowrap;
       overflow: hidden;
@@ -398,15 +398,15 @@ $card-vertical-gutter: var(--spacing-20);
     }
 
     .ngx-card-title {
-      font-weight: 600;
-      font-size: 21px;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-xl);
       color: #f0f1f6;
       margin-bottom: var(--spacing-4);
     }
 
     .ngx-card-subtitle {
       color: var(--grey-200);
-      font-size: 13px;
+      font-size: var(--font-size-xs);
     }
   }
 
@@ -421,8 +421,8 @@ $card-vertical-gutter: var(--spacing-20);
     justify-content: center;
 
     &--label {
-      font-weight: 600;
-      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-xs);
       border-bottom: 0;
       white-space: nowrap;
       width: 100%;

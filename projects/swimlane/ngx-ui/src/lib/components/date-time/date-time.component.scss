@@ -13,13 +13,13 @@ $input-invalid-color: var(--red-500);
 
   &.md {
     .ngx-input {
-      font-size: 18px !important;
+      font-size: var(--font-size-l) !important;
     }
   }
 
   &.lg {
     .ngx-input {
-      font-size: 21px !important;
+      font-size: var(--font-size-xl) !important;
     }
   }
 
@@ -219,7 +219,7 @@ $input-invalid-color: var(--red-500);
     }
 
     .btn {
-      font-size: 1em;
+      font-size: var(--font-size-m);
       color: var(--grey-400);
       margin: var(--spacing-0);
       padding: var(--spacing-0);
@@ -251,8 +251,8 @@ $input-invalid-color: var(--red-500);
   padding: var(--spacing-4);
 
   .date-zone-display {
-    font-weight: bold;
-    font-size: 15px;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-m);
     color: var(--grey-700);
 
     > span {
@@ -261,9 +261,9 @@ $input-invalid-color: var(--red-500);
 
     button {
       float: right;
-      font-weight: bold;
+      font-weight: var(--font-weight-bold);
       line-height: 16px;
-      font-size: 11px;
+      font-size: var(--font-size-xs);
       text-transform: uppercase;
       color: var(--grey-700);
       background: #dee1ea;

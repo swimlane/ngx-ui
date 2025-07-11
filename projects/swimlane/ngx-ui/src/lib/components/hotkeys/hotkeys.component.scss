@@ -23,12 +23,12 @@
     font-size: 40px;
     color: var(--grey-300);
     float: right;
-    line-height: 1em;
+    line-height: var(--font-line-height-100);
   }
 
   .hotkeys-icon {
     color: var(--grey-300);
-    font-size: 21px;
+    font-size: var(--font-size-xl);
     background-color: black;
   }
 
@@ -43,7 +43,7 @@
   padding: var(--spacing-16);
   box-shadow: shadow.$shadow-1;
   color: var(--grey-300);
-  font-size: 14px;
+  font-size: var(--font-size-s);
   border-radius: var(--radius-2);
   margin-bottom: 45px;
 

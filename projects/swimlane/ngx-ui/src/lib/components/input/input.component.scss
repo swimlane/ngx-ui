@@ -7,14 +7,14 @@
   &.md {
     .ngx-input-box,
     .ngx-input-textarea {
-      font-size: 18px !important;
+      font-size: var(--font-size-l) !important;
     }
   }
 
   &.lg {
     .ngx-input-box,
     .ngx-input-textarea {
-      font-size: 21px !important;
+      font-size: var(--font-size-xl) !important;
     }
   }
 
@@ -122,7 +122,7 @@
         width: 100%;
         max-width: 100%;
         color: forms.$color-input-text;
-        font-size: 1em;
+        font-size: var(--font-size-m);
         line-height: 1.25em;
         min-height: 0px;
         font-family: inherit;
@@ -187,7 +187,7 @@
         transition: all 0.1s ease-out;
 
         i {
-          font-size: 0.625rem;
+          font-size: var(--font-size-xxs);
           color: forms.$input-icon-color;
           cursor: pointer;
 

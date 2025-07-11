@@ -127,8 +127,8 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    font-weight: 600;
-    font-size: 16px;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-m);
     line-height: 22px;
     color: var(--grey-600);
     transition: color stepper.$transition-speed ease-in-out;
@@ -160,7 +160,7 @@
       border: 1.75px solid var(--grey-600);
       color: var(--grey-600);
       font-size: stepper.$stepper-size * 0.5;
-      font-weight: bold;
+      font-weight: var(--font-weight-bold);
       transition: border-color stepper.$transition-speed ease-in-out, color stepper.$transition-speed ease-in-out;
       user-select: none;
       cursor: pointer;
