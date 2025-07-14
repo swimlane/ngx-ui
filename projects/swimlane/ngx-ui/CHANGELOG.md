@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 50.0.0-alpha.3 (2025-07-14)
+
 - Feature: Added new CSS Variables for colors, spacing, and typography
 
 ## 50.0.0-alpha.2 (2025-07-11)
