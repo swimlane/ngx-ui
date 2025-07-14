@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Feature: Added new CSS Variables for colors, spacing, and typography
+
 ## 50.0.0-alpha.2 (2025-07-11)
 
 - Feature (`ngx-date-range-picker`): Added a date range component
