@@ -19,7 +19,7 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DateRangeForm } from './models/date-range.model';
 
-import { addMonths, endOfMonth, format, startOfMonth } from 'date-fns';
+import { addMonths, endOfMonth, format, isValid, startOfMonth } from 'date-fns';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { DateUtils } from './services/date-utils.service';
 
@@ -94,12 +94,18 @@ export class DateRangePickerComponent {
     this.form.endRaw = this.form.endDate ? format(this.form.endDate, this.dateFormat) : '';
 
     this.updateSelectedPresetByValue();
+    this.validationError = null;
     this.cdr.detectChanges();
   }
 
   onCustomInputChange() {
     const start = this.parseFn(this.form.startRaw);
     const end = this.parseFn(this.form.endRaw);
+
+    if (!start || !end || !isValid(start) || !isValid(end)) {
+      this.validationError = `Invalid date expression`;
+      return;
+    }
 
     if (start && end && start <= end) {
       this.validationError = null;

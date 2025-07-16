@@ -240,7 +240,7 @@
       <br />
       <br />
       <h4>Date Range Selection Calendar</h4>
-      <ngx-filter #filterRef [label]="labelForRange"
+      <ngx-filter #filterRef [label]="labelForRange" [autosize]="true"
         [ngClass]="labelForRange !== 'Select a range' ? 'active-selections' : ''" [type]="'customDropdown'"
         [customDropdownConfig]="customDropdownDateRangeConfig"
         [ngxIconClass]="labelForRange !== 'Select a range' ? 'ngx-x' : null"
