@@ -9,6 +9,7 @@ import { IconModule } from '../icon/icon.module';
 import { TooltipModule } from '../tooltip/tooltip.module';
 import { CommonModule } from '@angular/common';
 import { CalendarModule } from '../calendar/calendar.module';
+import { endOfMonth, startOfMonth } from 'date-fns';
 
 describe('DateRangePickerComponent', () => {
   let component: DateRangePickerComponent;
@@ -32,11 +33,17 @@ describe('DateRangePickerComponent', () => {
 
     fixture = TestBed.createComponent(DateRangePickerComponent);
     component = fixture.componentInstance;
-    component.wrapperRef = {
-      open: true
-    } as any;
+    component.wrapperRef = { open: true } as any;
     fixture.detectChanges();
   });
+
+  function expectValidRange(start: Date | null, end: Date | null) {
+    expect(start).not.toBeNull();
+    expect(end).not.toBeNull();
+    if (start && end) {
+      expect(start <= end).toBeTrue();
+    }
+  }
 
   it('should create the component', () => {
     expect(component).toBeTruthy();
@@ -76,6 +83,27 @@ describe('DateRangePickerComponent', () => {
     expect(component.validationError).toBe(`"From" can't be after "To"`);
   });
 
+  it('should set validation error when custom input contains invalid dates', () => {
+    component.form.startRaw = 'invalid-start';
+    component.form.endRaw = 'invalid-end';
+    component.onCustomInputChange();
+    expect(component.validationError).toBe(`Invalid date string entered`);
+    expect(component.form.startDate).toBeNull();
+    expect(component.form.endDate).toBeNull();
+  });
+
+  it('should handle invalid range selection where endDate < startDate', () => {
+    const invalidStart = new Date('2025-07-20');
+    const invalidEnd = new Date('2025-07-15'); // earlier than start
+
+    component.onRangeSelect({ startDate: invalidStart, endDate: invalidEnd });
+
+    expect(component.form.startDate).toEqual(invalidStart);
+    expect(component.form.endDate).toBeNull(); // reset because invalid
+    expect(component.rangeModel.startDate).toEqual(invalidStart);
+    expect(component.rangeModel.endDate).toEqual(invalidStart);
+  });
+
   it('should update selected label based on preset match', () => {
     const preset = component.presets.find(p => p.label === 'Last 7 days');
     const [start, end] = preset.range();
@@ -86,8 +114,8 @@ describe('DateRangePickerComponent', () => {
   });
 
   it('should set default label when no preset matched', () => {
-    const start = new Date('2022-01-01T00:00:00');
-    const end = new Date('2022-01-02T00:00:00');
+    const start = new Date('2022-01-01');
+    const end = new Date('2022-01-02');
     component.form.startDate = start;
     component.form.endDate = end;
     component.updateSelectedLabel();
@@ -118,25 +146,88 @@ describe('DateRangePickerComponent', () => {
     const first = new Date('2024-01-01');
     const second = new Date('2024-01-05');
     const third = new Date('2024-01-10');
-
     component.form.startDate = first;
     component.form.endDate = second;
-
     component.onRangeSelect({ startDate: third, endDate: third });
-
     expect(component.form.startDate).toEqual(third);
     expect(component.form.endDate).toBeNull();
   });
 
   it('should update label with custom range if no preset matches', () => {
-    const start = new Date('2022-01-01T00:00:00Z');
-    const end = new Date('2022-01-02T00:00:00Z');
-
+    const start = new Date('2022-01-01');
+    const end = new Date('2022-01-02');
     component.form.startDate = start;
     component.form.endDate = end;
-
     component.updateSelectedLabel();
-
     expect(component.selectedLabel).toContain('2022');
+  });
+
+  it('should select the entire month for "This month" preset', () => {
+    const preset = component.presets.find(p => p.label === 'This month');
+    expect(preset).toBeTruthy();
+    const [start, end] = preset.range();
+    expect(start).toEqual(startOfMonth(new Date()));
+    expect(end).toEqual(endOfMonth(new Date()));
+  });
+
+  it('should have valid start and end for each preset', () => {
+    for (const preset of component.presets) {
+      const [start, end] = preset.range();
+      expectValidRange(start, end);
+      expect(preset.label).toBeTruthy();
+    }
+  });
+
+  it('should correctly set range for "This Week So Far"', () => {
+    const preset = component.presets.find(p => p.label === 'This Week So Far');
+    expect(preset).toBeTruthy();
+    const [start, end] = preset.range();
+    expect(start.getDay()).toBe(0); // Sunday
+    expect(end <= new Date()).toBeTrue();
+    expectValidRange(start, end);
+  });
+
+  it('should correctly set range for "Last Week"', () => {
+    const preset = component.presets.find(p => p.label === 'Last Week');
+    expect(preset).toBeTruthy();
+    const [start, end] = preset.range();
+    expect(start.getDay()).toBe(0); // Sunday
+    expect(end.getDay()).toBe(6); // Saturday
+    expect(end < new Date()).toBeTrue();
+    expectValidRange(start, end);
+  });
+
+  it('should correctly set range for "This Quarter"', () => {
+    const preset = component.presets.find(p => p.label === 'This Quarter');
+    expect(preset).toBeTruthy();
+    const [start, end] = preset.range();
+    expect(start.getMonth() % 3).toBe(0);
+    expectValidRange(start, end);
+  });
+
+  it('should correctly set range for "Last Quarter"', () => {
+    const preset = component.presets.find(p => p.label === 'Last Quarter');
+    expect(preset).toBeTruthy();
+    const [start, end] = preset.range();
+    expect(start.getMonth() % 3).toBe(0);
+    expectValidRange(start, end);
+  });
+
+  it('should correctly set range for "This Year So Far"', () => {
+    const preset = component.presets.find(p => p.label === 'This Year So Far');
+    expect(preset).toBeTruthy();
+    const [start, end] = preset.range();
+    expect(start.getMonth()).toBe(0);
+    expect(end <= new Date()).toBeTrue();
+    expectValidRange(start, end);
+  });
+
+  it('should correctly set range for "Today"', () => {
+    const preset = component.presets.find(p => p.label === 'Today');
+    expect(preset).toBeTruthy();
+    const [start, end] = preset.range();
+    expect(start.getDate()).toBe(new Date().getDate());
+    expect(end.getDate()).toBe(new Date().getDate());
+    expectValidRange(start, end);
   });
 });
