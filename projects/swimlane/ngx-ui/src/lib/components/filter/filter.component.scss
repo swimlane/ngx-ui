@@ -82,7 +82,7 @@ $max-width: 300px;
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
       overflow: hidden;
-      max-width: $max-width;
+      max-width: calc($max-width - 33px);
       text-overflow: ellipsis;
       white-space: nowrap;
       user-select: none;
@@ -421,6 +421,10 @@ $max-width: 300px;
     .ngx-select-flex-wrap {
       max-width: 100%;
       width: fit-content;
+    }
+
+    .ngx-chip__contents {
+      max-width: none;
     }
   }
 }
