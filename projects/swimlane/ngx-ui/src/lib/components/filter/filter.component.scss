@@ -82,6 +82,7 @@ $max-width: 300px;
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
       overflow: hidden;
+      max-width: $max-width;
       text-overflow: ellipsis;
       white-space: nowrap;
       user-select: none;
