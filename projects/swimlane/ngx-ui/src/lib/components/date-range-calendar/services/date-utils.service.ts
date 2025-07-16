@@ -183,7 +183,7 @@ export class DateUtils {
       {
         label: 'This month',
         expression: 'now/M to now',
-        range: () => [DateUtils.parseExpression('now/M'), DateUtils.parseExpression('now')]
+        range: () => [DateUtils.parseExpression('now/M'), endOfMonth(new Date())]
       },
       {
         label: 'Last month',
