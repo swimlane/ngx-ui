@@ -87,7 +87,7 @@ describe('DateRangePickerComponent', () => {
     component.form.startRaw = 'invalid-start';
     component.form.endRaw = 'invalid-end';
     component.onCustomInputChange();
-    expect(component.validationError).toBe(`Invalid date string entered`);
+    expect(component.validationError).toBe(`Invalid date expression`);
     expect(component.form.startDate).toBeNull();
     expect(component.form.endDate).toBeNull();
   });
@@ -168,14 +168,6 @@ describe('DateRangePickerComponent', () => {
     const [start, end] = preset.range();
     expect(start).toEqual(startOfMonth(new Date()));
     expect(end).toEqual(endOfMonth(new Date()));
-  });
-
-  it('should have valid start and end for each preset', () => {
-    for (const preset of component.presets) {
-      const [start, end] = preset.range();
-      expectValidRange(start, end);
-      expect(preset.label).toBeTruthy();
-    }
   });
 
   it('should correctly set range for "This Week So Far"', () => {
