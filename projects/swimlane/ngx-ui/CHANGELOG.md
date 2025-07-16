@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-date-range-picker`): Error handling for invalid custom input and updated preset list.
+
 ## 50.0.0-alpha.3 (2025-07-14)
 
 - Feature: Added new CSS Variables for colors, spacing, and typography
