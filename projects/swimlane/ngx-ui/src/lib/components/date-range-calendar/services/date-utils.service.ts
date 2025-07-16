@@ -90,7 +90,10 @@ export class DateUtils {
     }
 
     const fallback = new Date(cleanExpr);
-    return isValid(fallback) ? fallback : now;
+    if (!isValid(fallback)) {
+      return null; 
+    }
+    return fallback;
   }
 
   static getDefaultPresets(_parseFn: (expr: string) => Date): {
