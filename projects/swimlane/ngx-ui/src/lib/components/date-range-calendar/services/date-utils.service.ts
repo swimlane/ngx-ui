@@ -91,7 +91,7 @@ export class DateUtils {
 
     const fallback = new Date(cleanExpr);
     if (!isValid(fallback)) {
-      return null; 
+      return null;
     }
     return fallback;
   }
