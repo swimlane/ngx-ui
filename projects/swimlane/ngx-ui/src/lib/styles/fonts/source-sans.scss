@@ -23,7 +23,7 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
 
 @font-face {
   font-family: $font-name;
-  font-weight: var(--font-weight-light);
+  font-weight: 300;
   font-style: normal;
   src: url('#{$font-src}/#{$font-filename}-Light.ttf') format('truetype');
   font-display: swap;
@@ -31,7 +31,7 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
 
 @font-face {
   font-family: $font-name;
-  font-weight: var(--font-weight-light);
+  font-weight: 300;
   font-style: italic;
   src: url('#{$font-src}/#{$font-filename}-LightItalic.ttf') format('truetype');
   font-display: swap;
@@ -39,7 +39,7 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
 
 @font-face {
   font-family: $font-name;
-  font-weight: var(--font-weight-semibold);
+  font-weight: 600;
   font-style: normal;
   src: url('#{$font-src}/#{$font-filename}-Semibold.ttf') format('truetype');
   font-display: swap;
@@ -47,7 +47,7 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
 
 @font-face {
   font-family: $font-name;
-  font-weight: var(--font-weight-semibold);
+  font-weight: 600;
   font-style: italic;
   src: url('#{$font-src}/#{$font-filename}-SemiboldItalic.ttf') format('truetype');
   font-display: swap;
@@ -55,7 +55,7 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
 
 @font-face {
   font-family: $font-name;
-  font-weight: var(--font-weight-bold);
+  font-weight: bold;
   font-style: normal;
   src: url('#{$font-src}/#{$font-filename}-Bold.ttf') format('truetype');
   font-display: swap;
@@ -63,7 +63,7 @@ $source-sans-stack: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
 
 @font-face {
   font-family: $font-name;
-  font-weight: var(--font-weight-bold);
+  font-weight: bold;
   font-style: italic;
   src: url('#{$font-src}/#{$font-filename}-BoldItalic.ttf') format('truetype');
   font-display: swap;
