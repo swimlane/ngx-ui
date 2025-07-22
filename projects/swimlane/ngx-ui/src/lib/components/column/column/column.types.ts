@@ -1,3 +1,15 @@
+import { Binding, EnvironmentInjector, Injector } from '@angular/core';
+
+export interface ColumnCustomComponentOptions {
+  index?: number;
+  injector?: Injector;
+  ngModuleRef?: any;
+  environmentInjector?: EnvironmentInjector | any;
+  projectableNodes?: Node[][];
+  directives?: any[];
+  bindings?: Binding[];
+}
+
 export interface Column {
   id: string;
   active: boolean;
@@ -7,8 +19,6 @@ export interface Column {
   content?: {
     width?: string;
     component: any;
-    inputs?: any;
-    outputs?: any;
-    module?: any;
+    options?: ColumnCustomComponentOptions;
   };
 }

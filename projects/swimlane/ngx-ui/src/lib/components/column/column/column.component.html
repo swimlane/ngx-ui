@@ -1,10 +1,10 @@
-@if (!column?.content) {
+@if (!column()?.content) {
 <header>
   <h4>{{ column?.title }}</h4>
 </header>
 }
 <div class="column">
-  @if (column?.children) {
+  @if (column()?.children) {
   <section class="column-list">
     <div class="search">
       <ngx-icon fontIcon="search" class="search-icon pull-left"></ngx-icon>
@@ -16,7 +16,7 @@
         name="searchInputValue"
         placeholder="Search"
         (keyup)="onInputChange($event)"
-        [disabled]="!column.children.length"
+        [disabled]="!column().children.length"
       ></ngx-input>
     </div>
     @if (list) {
@@ -43,15 +43,12 @@
     </cdk-virtual-scroll-viewport>
     }
   </section>
-  } @if (activeChild?.content) {
-  <section class="column-expanded" #expandedSection [ngStyle]="{ width: activeChild.content.width }">
-    <ng-container
-      *ngComponentOutlet="
-        activeChild.content.component;
-        inputs: activeChild.content.inputs ? activeChild.content.inputs : {};
-        module: activeChild.content.module ? activeChild.content.module : {}
-      "
-    ></ng-container>
-  </section>
   }
+  <section
+    class="column-expanded"
+    [ngStyle]="{ width: activeChild?.content?.width }"
+    [ngClass]="{ hidden: !activeChild?.content }"
+  >
+    <ng-container #expandedSection></ng-container>
+  </section>
 </div>
