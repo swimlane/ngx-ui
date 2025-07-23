@@ -2,7 +2,9 @@
 
 ## HEAD (unreleased)
 
-- Breaking (`ngx-column`): Dynamic Components now follow declarative syntax to support outputs, two-way data binding
+## 50.0.0-alpha.4 (2025-07-23)
+
+- Breaking (`ngx-column`): Setting Dynamic Components in `content` now follow declarative syntax to support outputs, two-way data binding
 - Fix (`ngx-date-range-picker`): Error handling for invalid custom input and updated preset list.
 
 ## 50.0.0-alpha.3 (2025-07-14)
