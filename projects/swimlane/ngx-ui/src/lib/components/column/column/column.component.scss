@@ -112,6 +112,9 @@
 
   section.column-expanded {
     overflow: auto;
+    &.hidden {
+      display: none;
+    }
   }
 
   &:not(.expanded) {

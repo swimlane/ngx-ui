@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, signal, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { Component, input, OnChanges, signal, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { ColumnComponent } from './column/column.component';
 import { Column } from './column/column.types';
 
@@ -15,8 +15,8 @@ import { Column } from './column/column.types';
   }
 })
 export class ColumnsComponent implements OnChanges {
-  @Input() column: Column;
-  @Input() height: string;
+  column = input<Column | null>(null);
+  height = input<string>('');
   columns: Array<Column>;
   columnComponent = ColumnComponent;
   columnHeight = signal('');
@@ -66,7 +66,7 @@ export class ColumnsComponent implements OnChanges {
 
   getCurrentColumns(): Array<Column> {
     const columns = [];
-    return this.traverseActivePath(this.column, columns);
+    return this.traverseActivePath(this.column(), columns);
   }
 
   onColumnNavigation(col: { columnId: string }): void {

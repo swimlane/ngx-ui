@@ -53,10 +53,10 @@ describe('ColumnsComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ColumnsComponent);
-    component = fixture.componentInstance;
-    component.column = column;
-    component.columns = [];
+    fixture.componentRef?.setInput('column', column);
     fixture.detectChanges();
+    component = fixture.componentInstance;
+    component.columns = [];
   });
 
   it('should be defined', () => {

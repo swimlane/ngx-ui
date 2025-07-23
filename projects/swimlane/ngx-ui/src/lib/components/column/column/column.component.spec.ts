@@ -122,13 +122,20 @@ describe('ColumnComponent', () => {
   describe('column events', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(ColumnComponent);
-      component = fixture.componentInstance;
-      component.column = column;
+      fixture.componentRef?.setInput('column', column);
       fixture.detectChanges();
+      component = fixture.componentInstance;
     });
 
     it('should emit column id on click', () => {
-      const activeColumn = column.children[0].children[0];
+      const activeColumn = {
+        id: '3o',
+        active: false,
+        title: 'Column 3o',
+        content: {
+          component: ColumnTestContentComponent
+        }
+      };
       spyOn(component.tabClick, 'emit');
       component.ngOnChanges({
         column: {
@@ -151,7 +158,14 @@ describe('ColumnComponent', () => {
     });
 
     it('should emit column id on keyup', () => {
-      const activeColumn = column.children[0].children[0];
+      const activeColumn = {
+        id: '3o',
+        active: false,
+        title: 'Column 3o',
+        content: {
+          component: ColumnTestContentComponent
+        }
+      };
       spyOn(component.tabClick, 'emit');
       component.ngOnChanges({
         column: {
@@ -174,7 +188,14 @@ describe('ColumnComponent', () => {
     });
 
     it('should emit column id on keyup with space bar', () => {
-      const activeColumn = column.children[0].children[0];
+      const activeColumn = {
+        id: '3o',
+        active: false,
+        title: 'Column 3o',
+        content: {
+          component: ColumnTestContentComponent
+        }
+      };
       spyOn(component.tabClick, 'emit');
       component.ngOnChanges({
         column: {
