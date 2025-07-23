@@ -94,8 +94,10 @@
             <p>
               Column can either accept a list of Columns set on the children property or a custom template set on the
               content property. Internally ngx-columns will display either a list of options or the custom content
-              specified. The content property model maps to the same interface used by *ngComponentOutlet. When content
-              is specified, use component, inputs, and outputs to pass models to the internal view.
+              specified. The content property model maps to the same interface used by vcr().createComponent(). When
+              content is specified, set a component property to the Component reference you wish to dynamically
+              generate. The component property is passed in the first argument of createComponent internally. Pass any
+              option to the second argument of createComponent using the options property.
             </p>
 
             <p>
