@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 50.0.0-alpha.5 (2025-07-24)
+
 - Fix (`ngx-column`): Content should display when column child is active on load.
 
 ## 50.0.0-alpha.4 (2025-07-23)
