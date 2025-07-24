@@ -25,7 +25,7 @@ export class ColumnPageComponent {
             children: [
               {
                 id: '1d',
-                active: false,
+                active: true,
                 title: 'Column 1d',
                 content: {
                   component: ColumnTestContentComponent,

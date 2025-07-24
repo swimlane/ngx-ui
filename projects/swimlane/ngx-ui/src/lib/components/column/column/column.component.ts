@@ -43,6 +43,9 @@ export class ColumnComponent implements OnChanges {
         this.activeChild = changes.column.currentValue.children
           ? changes.column.currentValue.children?.find(child => child.active)
           : null;
+        if (this.activeChild?.content && this.activeChild?.content.component) {
+          this.displayContent();
+        }
       }
     }
     if (changes.height?.currentValue) {
@@ -54,11 +57,7 @@ export class ColumnComponent implements OnChanges {
     this.activeChild = this.column().children.find(child => child.id === columnId);
     this.tabClick.emit({ columnId });
     if (this.activeChild?.content && this.activeChild?.content.component) {
-      this.vcr()?.clear();
-      this.componentRef = this.vcr()?.createComponent(
-        this.activeChild.content.component,
-        this.activeChild.content.options || {}
-      );
+      this.displayContent();
     }
   }
 
@@ -67,13 +66,20 @@ export class ColumnComponent implements OnChanges {
       this.activeChild = this.column().children.find(child => child.id === columnId);
       this.tabClick.emit({ columnId });
       if (this.activeChild?.content && this.activeChild?.content.component) {
-        this.vcr()?.clear();
-        this.componentRef = this.vcr()?.createComponent(
-          this.activeChild.content.component,
-          this.activeChild.content.options || {}
-        );
+        this.displayContent();
       }
     }
+  }
+
+  displayContent() {
+    if (!this.activeChild || !this.activeChild.content?.component) {
+      return;
+    }
+    this.vcr()?.clear();
+    this.componentRef = this.vcr()?.createComponent(
+      this.activeChild.content.component,
+      this.activeChild.content.options || {}
+    );
   }
 
   onInputChange(event: KeyboardEvent) {
