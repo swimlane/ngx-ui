@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-column`): Content should display when column child is active on load.
+
 ## 50.0.0-alpha.4 (2025-07-23)
 
 - Breaking (`ngx-column`): Setting Dynamic Components in `content` now follow declarative syntax to support outputs, two-way data binding

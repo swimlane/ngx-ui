@@ -106,6 +106,43 @@ describe('ColumnComponent', () => {
       });
     });
 
+    it('should display active child with content', () => {
+      const contentChild = {
+        id: '3m',
+        active: true,
+        title: 'Column 3m',
+        children: [
+          {
+            id: '3p',
+            active: true,
+            title: 'Column 3p',
+            content: {
+              component: ColumnTestContentComponent
+            }
+          }
+        ]
+      };
+      spyOn(component, 'displayContent').and.callThrough();
+      component.ngOnChanges({
+        column: {
+          currentValue: contentChild,
+          previousValue: undefined,
+          firstChange: true,
+          isFirstChange: () => true
+        }
+      });
+      expect(component.activeChild).toEqual({
+        id: '3p',
+        active: true,
+        title: 'Column 3p',
+        content: {
+          component: ColumnTestContentComponent
+        }
+      });
+      expect(component.displayContent).toHaveBeenCalled();
+      expect(component.componentRef).toBeDefined();
+    });
+
     it('should set height of scrollable view', () => {
       component.ngOnChanges({
         height: {
@@ -215,6 +252,66 @@ describe('ColumnComponent', () => {
         }
       });
       expect(component.tabClick.emit).toHaveBeenCalledWith({ columnId: activeColumn.id });
+    });
+
+    it('should display content on click', () => {
+      const activeColumn = {
+        id: '3o',
+        active: true,
+        title: 'Column 3o',
+        children: [
+          {
+            id: '3p',
+            active: true,
+            title: 'Column 3p',
+            content: {
+              component: ColumnTestContentComponent
+            }
+          }
+        ]
+      };
+      spyOn(component, 'displayContent').and.callThrough();
+      component.ngOnChanges({
+        column: {
+          currentValue: activeColumn,
+          previousValue: undefined,
+          firstChange: true,
+          isFirstChange: () => true
+        }
+      });
+      component.onChildClick('3p');
+      expect(component.displayContent).toHaveBeenCalled();
+      expect(component.componentRef).toBeDefined();
+    });
+
+    it('should display content on keyup', () => {
+      const activeColumn = {
+        id: '3o',
+        active: true,
+        title: 'Column 3o',
+        children: [
+          {
+            id: '3p',
+            active: true,
+            title: 'Column 3p',
+            content: {
+              component: ColumnTestContentComponent
+            }
+          }
+        ]
+      };
+      spyOn(component, 'displayContent').and.callThrough();
+      component.ngOnChanges({
+        column: {
+          currentValue: activeColumn,
+          previousValue: undefined,
+          firstChange: true,
+          isFirstChange: () => true
+        }
+      });
+      component.onChildKeyup({ key: ' ' } as any, '3p');
+      expect(component.displayContent).toHaveBeenCalled();
+      expect(component.componentRef).toBeDefined();
     });
 
     it('should modify the list on input change', () => {
