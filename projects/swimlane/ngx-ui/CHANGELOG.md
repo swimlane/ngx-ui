@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-filter`): Added new inputs to show tooltip for customDropdown
+- Enhancement (`ngx-date-range-picker`): Added tooltip
+
 ## 50.0.0-alpha.5 (2025-07-24)
 
 - Fix (`ngx-column`): Content should display when column child is active on load.
