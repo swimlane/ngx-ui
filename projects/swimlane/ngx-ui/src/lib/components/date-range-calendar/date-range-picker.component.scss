@@ -216,3 +216,43 @@ ngx-date-range-picker {
     }
   }
 }
+
+.ngx-tooltip-content.date-tip-tooltip {
+  padding: 5px;
+
+  .date-zone-display {
+    font-weight: bold;
+    font-size: 15px;
+    color: colors.$color-blue-grey-700;
+
+    > span {
+      display: inline-block;
+    }
+
+    button {
+      float: right;
+      font-weight: bold;
+      line-height: 16px;
+      font-size: 11px;
+      text-transform: uppercase;
+      color: colors.$color-blue-grey-700;
+      background: #dee1ea;
+      margin-left: 5px;
+      padding: 0 6px;
+      vertical-align: text-top;
+      text-align: left;
+      min-width: 70px;
+
+      ngx-icon {
+        padding-right: 5px;
+      }
+
+      &:hover,
+      &:active,
+      &:active:hover:focus:not(.disabled),
+      &:active:hover:focus:not([disabled]) {
+        background: #fff;
+      }
+    }
+  }
+}

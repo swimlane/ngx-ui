@@ -5,12 +5,9 @@
       <!-- Sidebar Presets -->
       <div class="sidebar">
         @for (preset of presets; track preset) {
-          <p
-            [class.active]="selectedPreset === preset.label"
-            (click)="selectPreset(preset)"
-          >
-            {{ preset.label }}
-          </p>
+        <p [class.active]="selectedPreset === preset.label" (click)="selectPreset(preset)">
+          {{ preset.label }}
+        </p>
         }
       </div>
 
@@ -19,6 +16,10 @@
         <div class="input-row">
           <div class="input-with-icon">
             <ngx-input
+              ngx-tooltip
+              [tooltipDisabled]="!showTooltip || !form.startRaw"
+              [tooltipTemplate]="startdefaultTooltipTemplate"
+              [tooltipCssClass]="'date-tip-tooltip'"
               appearance="fill"
               [(ngModel)]="form.startRaw"
               (ngModelChange)="onCustomInputChange()"
@@ -32,6 +33,10 @@
           <span class="range-label">to</span>
           <div class="input-with-icon">
             <ngx-input
+              ngx-tooltip
+              [tooltipDisabled]="!showTooltip || !form.endRaw"
+              [tooltipTemplate]="enddefaultTooltipTemplate"
+              [tooltipCssClass]="'date-tip-tooltip'"
               appearance="fill"
               [(ngModel)]="form.endRaw"
               (ngModelChange)="onCustomInputChange()"
@@ -88,3 +93,17 @@
     </div>
   </ngx-dropdown-menu>
 </ngx-dropdown>
+
+<ng-template #startdefaultTooltipTemplate>
+  <div *ngFor="let item of timeValueStart | keyvalue" class="date-zone-display">
+    <span>{{ item.value.display }}</span>
+    <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
+  </div>
+</ng-template>
+
+<ng-template #enddefaultTooltipTemplate>
+  <div *ngFor="let item of timeValueEnd | keyvalue" class="date-zone-display">
+    <span>{{ item.value.display }}</span>
+    <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
+  </div>
+</ng-template>

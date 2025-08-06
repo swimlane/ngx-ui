@@ -22,6 +22,11 @@ import { DateRangeForm } from './models/date-range.model';
 import { addMonths, endOfMonth, format, isValid, startOfMonth } from 'date-fns';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { DateUtils } from './services/date-utils.service';
+import moment from 'moment-timezone';
+import { DATE_DISPLAY_FORMATS, Datelike, NotificationService, NotificationStyleType } from '@swimlane/ngx-ui';
+import { Clipboard } from '@angular/cdk/clipboard';
+
+const guessTimeZone = moment.tz.guess();
 
 @Component({
   selector: 'ngx-date-range-picker',
@@ -43,6 +48,11 @@ export class DateRangePickerComponent {
   @Output() apply = new EventEmitter<{ start: Date; end: Date; label: string }>();
   @Output() cancel = new EventEmitter<string>();
   @ViewChild('wrapperRef', { static: false }) wrapperRef!: DropdownComponent;
+  @Input()
+  timezones: Record<string, string> = {
+    UTC: 'Etc/UTC',
+    Local: ''
+  };
 
   private readonly dateFormat: string = 'yyyy-MM-dd HH:mm:ss';
   lastConfirmedRange: { startDate: Date; endDate: Date } = null;
@@ -68,8 +78,14 @@ export class DateRangePickerComponent {
   nextMonth: Date = addMonths(new Date(), 1);
   rightMinDate = startOfMonth(this.nextMonth);
   rightMaxDate = null; // No upper limit or set manually
+  timeValueStart = {};
+  timeValueEnd = {};
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private readonly clipboard: Clipboard,
+    private readonly notificationService: NotificationService
+  ) {}
 
   onRangeSelect(range: { startDate: Date; endDate: Date }) {
     // If both dates already exist & user clicks again → reset to new start
@@ -132,12 +148,20 @@ export class DateRangePickerComponent {
     }
   }
 
+  private createMoment(date: Datelike): moment.Moment {
+    let m = moment(date).clone();
+    const timezone = guessTimeZone;
+    m = timezone ? m.tz(timezone) : m;
+    return m;
+  }
+
   updateSelectedPresetByValue() {
     const { startDate, endDate } = this.form;
     const matched = this.presets.find(p => {
       const [s, e] = p.range();
       return s && e && this.isEqual(s, startDate) && this.isEqual(e, endDate);
     });
+    this.setTooltipDate(this.form.startDate, this.form.endDate);
     this.selectedPreset = matched?.label || 'Custom range';
   }
 
@@ -217,5 +241,46 @@ export class DateRangePickerComponent {
 
   openSearchStringDocPage() {
     window.open('https://docs.swimlane.com/turbine/workspaces-and-dashboards/date-range.htm', '_blank');
+  }
+
+  setTooltipDate(start: Date, end: Date) {
+    this.timeValueEnd = {};
+    this.timeValueStart = {};
+    if (start) {
+      const mStartDate = this.createMoment(start);
+      this.timeValueStart = Object.keys(this.timezones).reduce((acc, key) => {
+        const tz = this.timezones[key] || guessTimeZone;
+        const date = mStartDate.clone().tz(tz);
+        acc[key] = {
+          key,
+          clip: date.format(DATE_DISPLAY_FORMATS.fullDateTime),
+          display: date.format(DATE_DISPLAY_FORMATS.fullDateTime)
+        };
+        return acc;
+      }, {} as Record<string, { key: string; clip: string; display: string }>);
+    }
+    if (end) {
+      const mStartEnd = this.createMoment(end);
+      this.timeValueEnd = Object.keys(this.timezones).reduce((acc, key) => {
+        const tz = this.timezones[key] || guessTimeZone;
+        const date = mStartEnd.clone().tz(tz);
+        acc[key] = {
+          key,
+          clip: date.format(DATE_DISPLAY_FORMATS.fullDateTime),
+          display: date.format(DATE_DISPLAY_FORMATS.fullDateTime)
+        };
+        return acc;
+      }, {} as Record<string, { key: string; clip: string; display: string }>);
+    }
+    this.cdr.detectChanges();
+  }
+
+  onClick(item: any) {
+    this.clipboard.copy(item.value.clip);
+    this.notificationService.create({
+      body: `${item.key} date copied to clipboard`,
+      styleType: NotificationStyleType.success,
+      timeout: 3000
+    });
   }
 }
