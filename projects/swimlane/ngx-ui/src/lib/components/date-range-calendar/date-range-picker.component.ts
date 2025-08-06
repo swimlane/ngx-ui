@@ -35,7 +35,7 @@ import moment from 'moment-timezone';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { NotificationService } from '../notification/notification.service';
 import { Datelike } from '../date-time/date-like.type';
-import { DATE_DISPLAY_FORMATS } from '@swimlane/ngx-ui/enums/date-formats.enum';
+import { DATE_DISPLAY_FORMATS } from '../../enums/date-formats.enum';
 import { NotificationStyleType } from '../notification/notification-style-type.enum';
 
 const guessTimeZone = moment.tz.guess();
