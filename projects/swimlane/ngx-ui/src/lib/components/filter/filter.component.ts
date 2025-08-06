@@ -33,6 +33,7 @@ import { FilterType } from './filter.type.enum';
 import { FilterIconPositionTypes } from './filter.icon-position-types.enum';
 import { FilterCustomDropdown } from './filter.custom-component.interface';
 import { DropdownComponent } from '../dropdown/dropdown.component';
+import { PlacementTypes } from '../../utils/position/placement-type.enum';
 
 let nextId = 0;
 
@@ -93,7 +94,7 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   @Input() customDropdownConfig: FilterCustomDropdown = null;
   @Input() showTooltip = false;
   @Input() tooltipTemplate: TemplateRef<unknown> | null = null;
-  @Input() tooltipPosition: 'top' | 'bottom' | 'left' | 'right' = 'top';
+  @Input() tooltipPosition: PlacementTypes = PlacementTypes.top;
 
   @Input()
   @CoerceBooleanProperty()
