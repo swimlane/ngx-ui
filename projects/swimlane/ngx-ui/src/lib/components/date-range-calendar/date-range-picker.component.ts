@@ -16,7 +16,16 @@
  * This component is designed for reusability and composability in libraries and apps.
  */
 
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
 import { DateRangeForm } from './models/date-range.model';
 
 import { addMonths, endOfMonth, format, isValid, startOfMonth } from 'date-fns';
@@ -35,7 +44,7 @@ const guessTimeZone = moment.tz.guess();
   encapsulation: ViewEncapsulation.None,
   standalone: false
 })
-export class DateRangePickerComponent {
+export class DateRangePickerComponent implements OnInit {
   @Input() presets: {
     label: string;
     range: () => [Date | null, Date | null];
@@ -44,6 +53,12 @@ export class DateRangePickerComponent {
   @Input() parseFn: (expr: string) => Date = DateUtils.parseExpression;
   @Input() showTooltip = true;
   @Input() placeholders = { start: 'Start (e.g., now-7d)', end: 'End (e.g., now)' };
+  @Input()
+  timezones: Record<string, string> = {
+    UTC: 'Etc/UTC',
+    Local: ''
+  };
+  @Input() selectedRange: { start: string; end: string } | null = null;
 
   @Output() apply = new EventEmitter<{
     start: Date;
@@ -58,11 +73,6 @@ export class DateRangePickerComponent {
   }>();
   @Output() cancel = new EventEmitter<string>();
   @ViewChild('wrapperRef', { static: false }) wrapperRef!: DropdownComponent;
-  @Input()
-  timezones: Record<string, string> = {
-    UTC: 'Etc/UTC',
-    Local: ''
-  };
 
   private readonly dateFormat: string = 'yyyy-MM-dd HH:mm:ss';
   lastConfirmedRange: { startDate: Date; endDate: Date } = null;
@@ -116,6 +126,15 @@ export class DateRangePickerComponent {
     private readonly clipboard: Clipboard,
     private readonly notificationService: NotificationService
   ) {}
+
+  ngOnInit() {
+    if (this.selectedRange) {
+      this.form.startRaw = this.selectedRange.start;
+      this.form.endRaw = this.selectedRange.end;
+      this.form.startDate = this.parseFn(this.selectedRange.start);
+      this.form.endDate = this.parseFn(this.selectedRange.end);
+    }
+  }
 
   onRangeSelect(range: { startDate: Date; endDate: Date }) {
     // If both dates already exist & user clicks again → reset to new start
