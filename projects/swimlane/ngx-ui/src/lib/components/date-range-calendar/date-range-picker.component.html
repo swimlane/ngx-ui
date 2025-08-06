@@ -88,7 +88,7 @@
       </div>
       <div class="right">
         <ngx-button class="btn btn-bordered" (click)="onCancel()">Cancel</ngx-button>
-        <ngx-button class="btn btn-primary" [disabled]="!!validationError" (click)="onApply()"> Apply </ngx-button>
+        <ngx-button class="btn btn-primary" [disabled]="isApplyDisabled" (click)="onApply()"> Apply </ngx-button>
       </div>
     </div>
   </ngx-dropdown-menu>

@@ -39,7 +39,7 @@ export class DateRangePickerComponent {
   @Input() presets: {
     label: string;
     range: () => [Date | null, Date | null];
-    expression?: string;
+    expression?: { start: string; end: string };
   }[] = DateUtils.getDefaultPresets(DateUtils.parseExpression);
   @Input() parseFn: (expr: string) => Date = DateUtils.parseExpression;
   @Input() showTooltip = true;
@@ -53,6 +53,8 @@ export class DateRangePickerComponent {
       startTime: Record<string, { key: string; clip: string; display: string }>;
       endTime: Record<string, { key: string; clip: string; display: string }>;
     };
+    startExpression: string;
+    endExpression: string;
   }>();
   @Output() cancel = new EventEmitter<string>();
   @ViewChild('wrapperRef', { static: false }) wrapperRef!: DropdownComponent;
@@ -88,6 +90,26 @@ export class DateRangePickerComponent {
   rightMaxDate = null; // No upper limit or set manually
   timeValueStart = {};
   timeValueEnd = {};
+
+  get isApplyDisabled(): boolean {
+    if (this.validationError) return true;
+
+    if (!this.form.startRaw?.trim() || !this.form.endRaw?.trim()) return true;
+
+    // If no start or end date selected
+    if (!this.form.startDate || !this.form.endDate) return true;
+
+    // If nothing changed compared to last confirmed range
+    if (
+      this.lastConfirmedRange &&
+      this.lastConfirmedRange.startDate?.getTime() === this.form.startDate.getTime() &&
+      this.lastConfirmedRange.endDate?.getTime() === this.form.endDate.getTime()
+    ) {
+      return true;
+    }
+
+    return false;
+  }
 
   constructor(
     private cdr: ChangeDetectorRef,
@@ -173,14 +195,25 @@ export class DateRangePickerComponent {
     this.selectedPreset = matched?.label || 'Custom range';
   }
 
-  selectPreset(preset: { label: string; range: () => [Date | null, Date | null] }) {
+  selectPreset(preset: {
+    label: string;
+    range: () => [Date | null, Date | null];
+    expression?: { start: string; end: string };
+  }) {
     const [start, end] = preset.range();
     if (start && end) {
       this.form.startDate = start;
       this.form.endDate = end;
-      this.form.startRaw = format(start, this.dateFormat);
-      this.form.endRaw = format(end, this.dateFormat);
       this.rangeModel = { startDate: start, endDate: end };
+
+      if (preset.expression) {
+        this.form.startRaw = preset.expression.start;
+        this.form.endRaw = preset.expression.end;
+      } else {
+        this.form.startRaw = format(start, this.dateFormat);
+        this.form.endRaw = format(end, this.dateFormat);
+      }
+
       this.validationError = null;
       this.selectedPreset = preset.label;
       this.cdr.detectChanges();
@@ -202,7 +235,9 @@ export class DateRangePickerComponent {
         start: this.form.startDate,
         end: this.form.endDate,
         label: this.selectedLabel,
-        tooltipValues: { startTime: this.timeValueStart, endTime: this.timeValueEnd }
+        tooltipValues: { startTime: this.timeValueStart, endTime: this.timeValueEnd },
+        startExpression: this.form.startRaw,
+        endExpression: this.form.endRaw
       });
       this.wrapperRef.open = false;
     }
@@ -252,7 +287,9 @@ export class DateRangePickerComponent {
       start: null,
       end: null,
       label: this.selectedLabel,
-      tooltipValues: { startTime: {}, endTime: {} }
+      tooltipValues: { startTime: {}, endTime: {} },
+      startExpression: null,
+      endExpression: null
     });
     this.lastConfirmedRange = null;
   }
