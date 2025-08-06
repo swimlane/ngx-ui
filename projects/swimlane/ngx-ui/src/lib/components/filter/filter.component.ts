@@ -91,6 +91,9 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     this._filterCount = value;
   }
   @Input() customDropdownConfig: FilterCustomDropdown = null;
+  @Input() showTooltip = false;
+  @Input() tooltipTemplate: TemplateRef<unknown> | null = null;
+  @Input() tooltipPosition: 'top' | 'bottom' | 'left' | 'right' = 'top';
 
   @Input()
   @CoerceBooleanProperty()

@@ -45,7 +45,15 @@ export class DateRangePickerComponent {
   @Input() showTooltip = true;
   @Input() placeholders = { start: 'Start (e.g., now-7d)', end: 'End (e.g., now)' };
 
-  @Output() apply = new EventEmitter<{ start: Date; end: Date; label: string }>();
+  @Output() apply = new EventEmitter<{
+    start: Date;
+    end: Date;
+    label: string;
+    tooltipValues: {
+      startTime: Record<string, { key: string; clip: string; display: string }>;
+      endTime: Record<string, { key: string; clip: string; display: string }>;
+    };
+  }>();
   @Output() cancel = new EventEmitter<string>();
   @ViewChild('wrapperRef', { static: false }) wrapperRef!: DropdownComponent;
   @Input()
@@ -190,7 +198,12 @@ export class DateRangePickerComponent {
         endDate: this.form.endDate
       };
       this.updateSelectedLabel();
-      this.apply.emit({ start: this.form.startDate, end: this.form.endDate, label: this.selectedLabel });
+      this.apply.emit({
+        start: this.form.startDate,
+        end: this.form.endDate,
+        label: this.selectedLabel,
+        tooltipValues: { startTime: this.timeValueStart, endTime: this.timeValueEnd }
+      });
       this.wrapperRef.open = false;
     }
   }
@@ -235,7 +248,12 @@ export class DateRangePickerComponent {
     this.selectedPreset = 'Custom range';
     this.selectedLabel = 'Select a range';
     this.cdr.detectChanges();
-    this.apply.emit({ start: null, end: null, label: this.selectedLabel });
+    this.apply.emit({
+      start: null,
+      end: null,
+      label: this.selectedLabel,
+      tooltipValues: { startTime: {}, endTime: {} }
+    });
     this.lastConfirmedRange = null;
   }
 
