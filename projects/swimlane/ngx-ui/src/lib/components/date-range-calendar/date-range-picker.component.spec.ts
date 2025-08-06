@@ -63,8 +63,18 @@ describe('DateRangePickerComponent', () => {
     component.form.endDate = end;
     spyOn(component.apply, 'emit');
     component.onApply();
-    expect(component.apply.emit).toHaveBeenCalledWith({ start, end, label: component.selectedLabel });
-    expect(component.showPicker).toBe(false);
+    expect(component.apply.emit).toHaveBeenCalledWith({
+      start: start,
+      end: end,
+      label: component.selectedLabel,
+      tooltipValues:
+        component.timeValueStart && component.timeValueEnd
+          ? { startTime: component.timeValueStart, endTime: component.timeValueEnd }
+          : { startTime: {}, endTime: {} },
+      startExpression: component.form.startRaw,
+      endExpression: component.form.endRaw
+    });
+    expect(component.wrapperRef.open).toBe(false);
   });
 
   it('should update form and range model on valid custom input change', () => {
