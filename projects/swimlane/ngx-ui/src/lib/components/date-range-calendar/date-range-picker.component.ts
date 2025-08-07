@@ -101,8 +101,8 @@ export class DateRangePickerComponent implements OnInit {
   nextMonth: Date = addMonths(new Date(), 1);
   rightMinDate = startOfMonth(this.nextMonth);
   rightMaxDate = null; // No upper limit or set manually
-  timeValueStart = {};
-  timeValueEnd = {};
+  timeValueStart: Record<string, { key: string; clip: string; display: string }> = {};
+  timeValueEnd: Record<string, { key: string; clip: string; display: string }> = {};
 
   get isApplyDisabled(): boolean {
     if (this.validationError) return true;
