@@ -163,17 +163,17 @@ export class DateUtils {
         range: () => [DateUtils.parseExpression('now-7d'), DateUtils.parseExpression('now')]
       },
       {
-        label: 'This Week',
+        label: 'This week',
         expression: 'now/w to now/w',
         range: () => [startOfWeek(new Date(), { weekStartsOn: 0 }), endOfWeek(new Date(), { weekStartsOn: 0 })]
       },
       {
-        label: 'This Week So Far',
+        label: 'This week so far',
         expression: 'now/w to now',
         range: () => [startOfWeek(new Date(), { weekStartsOn: 0 }), new Date()]
       },
       {
-        label: 'Last Week',
+        label: 'Last week',
         expression: 'now-1w/w to now-1w/w',
         range: () => {
           const lastWeek = subWeeks(new Date(), 1);
@@ -186,17 +186,27 @@ export class DateUtils {
         range: () => [DateUtils.parseExpression('now/M'), endOfMonth(new Date())]
       },
       {
+        label: 'This month so far',
+        expression: 'now/M to now',
+        range: () => [DateUtils.parseExpression('now/M'), DateUtils.parseExpression('now')]
+      },
+      {
         label: 'Last month',
         expression: 'now-1M/M to now-1M/M',
         range: () => [DateUtils.parseExpression('now-1M/M'), endOfMonth(DateUtils.parseExpression('now-1M/M'))]
       },
       {
-        label: 'This Quarter',
+        label: 'This quarter',
         expression: 'now/Q to now',
         range: () => [startOfQuarter(new Date()), endOfQuarter(new Date())]
       },
       {
-        label: 'Last Quarter',
+        label: 'This quarter so far',
+        expression: 'now/Q to now',
+        range: () => [DateUtils.parseExpression('now/Q'), DateUtils.parseExpression('now')]
+      },
+      {
+        label: 'Last quarter',
         expression: 'now-1Q/Q to end of last quarter',
         range: () => {
           const lastQuarterStart = startOfQuarter(subQuarters(new Date(), 1));
@@ -210,9 +220,41 @@ export class DateUtils {
         range: () => [DateUtils.parseExpression('now/Y'), endOfYear(new Date())]
       },
       {
-        label: 'This Year So Far',
+        label: 'This year so far',
         expression: 'now/Y to now',
         range: () => [startOfYear(new Date()), new Date()]
+      },
+      {
+        label: 'Next 15 min',
+        expression: 'now to now+15m',
+        range: () => [DateUtils.parseExpression('now'), DateUtils.parseExpression('now+15m')]
+      },
+      {
+        label: 'Next 30 min',
+        expression: 'now to now+30m',
+        range: () => [DateUtils.parseExpression('now'), DateUtils.parseExpression('now+30m')]
+      },
+      {
+        label: 'Next 1 hour',
+        expression: 'now to now+1h',
+        range: () => [DateUtils.parseExpression('now'), DateUtils.parseExpression('now+1h')]
+      },
+      {
+        label: 'Tomorrow',
+        expression: 'now+1d/d to now+1d/d',
+        range: () => {
+          const tomorrowStart = DateUtils.parseExpression('now+1d/d');
+          return [tomorrowStart, endOfDay(tomorrowStart)];
+        }
+      },
+      {
+        label: 'Next week',
+        expression: 'start of next week to end of next week',
+        range: () => {
+          const nextSunday = addWeeks(startOfWeek(new Date(), { weekStartsOn: 0 }), 1); // Sunday next week
+          const nextSaturday = addDays(nextSunday, 6); // Saturday next week
+          return [nextSunday, endOfDay(nextSaturday)];
+        }
       },
       { label: 'Custom range', range: () => [null, null] }
     ];
