@@ -167,17 +167,17 @@ export class DateUtils {
         range: () => [DateUtils.parseExpression('now-7d'), DateUtils.parseExpression('now')]
       },
       {
-        label: 'This Week',
+        label: 'This week',
         expression: { start: 'now/w', end: 'endOfWeek' },
         range: () => [startOfWeek(new Date(), { weekStartsOn: 0 }), endOfWeek(new Date(), { weekStartsOn: 0 })]
       },
       {
-        label: 'This Week So Far',
+        label: 'This week so far',
         expression: { start: 'now/w', end: 'now' },
         range: () => [startOfWeek(new Date(), { weekStartsOn: 0 }), new Date()]
       },
       {
-        label: 'Last Week',
+        label: 'Last week',
         expression: { start: 'now-1w/w', end: 'now-1w/w' },
         range: () => {
           const lastWeek = subWeeks(new Date(), 1);
@@ -190,7 +190,7 @@ export class DateUtils {
         range: () => [DateUtils.parseExpression('now/M'), endOfMonth(new Date())]
       },
       {
-        label: 'This Month So Far',
+        label: 'This month so far',
         expression: { start: 'now/M', end: 'now' },
         range: () => [DateUtils.parseExpression('now/M'), new Date()]
       },
@@ -200,17 +200,17 @@ export class DateUtils {
         range: () => [DateUtils.parseExpression('now-1M/M'), endOfMonth(DateUtils.parseExpression('now-1M/M'))]
       },
       {
-        label: 'This Quarter',
+        label: 'This quarter',
         expression: { start: 'now/Q', end: 'endOfQuarter' },
         range: () => [startOfQuarter(new Date()), endOfQuarter(new Date())]
       },
       {
-        label: 'This Quarter So Far',
+        label: 'This quarter so far',
         expression: { start: 'now/Q', end: 'now' },
         range: () => [startOfQuarter(new Date()), new Date()]
       },
       {
-        label: 'Last Quarter',
+        label: 'Last quarter',
         expression: { start: 'now-1Q/Q', end: 'now-1Q/Q' },
         range: () => {
           const lastQuarterStart = startOfQuarter(subQuarters(new Date(), 1));
@@ -224,7 +224,7 @@ export class DateUtils {
         range: () => [DateUtils.parseExpression('now/Y'), endOfYear(new Date())]
       },
       {
-        label: 'This Year So Far',
+        label: 'This year so far',
         expression: { start: 'now/Y', end: 'now' },
         range: () => [startOfYear(new Date()), new Date()]
       },
@@ -249,7 +249,7 @@ export class DateUtils {
         range: () => [DateUtils.parseExpression('now+1d/d'), DateUtils.parseExpression('now+1d/d')]
       },
       {
-        label: 'Next Week',
+        label: 'Next week',
         expression: { start: 'now+1w/w', end: 'now+1w/w-end' },
         range: () => [
           startOfWeek(addWeeks(new Date(), 1), { weekStartsOn: 0 }),

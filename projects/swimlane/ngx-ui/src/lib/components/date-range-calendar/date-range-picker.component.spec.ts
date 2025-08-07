@@ -180,8 +180,8 @@ describe('DateRangePickerComponent', () => {
     expect(end).toEqual(endOfMonth(new Date()));
   });
 
-  it('should correctly set range for "This Week So Far"', () => {
-    const preset = component.presets.find(p => p.label === 'This Week So Far');
+  it('should correctly set range for "This week so far"', () => {
+    const preset = component.presets.find(p => p.label === 'This week so far');
     expect(preset).toBeTruthy();
     const [start, end] = preset.range();
     expect(start.getDay()).toBe(0); // Sunday
@@ -189,8 +189,8 @@ describe('DateRangePickerComponent', () => {
     expectValidRange(start, end);
   });
 
-  it('should correctly set range for "Last Week"', () => {
-    const preset = component.presets.find(p => p.label === 'Last Week');
+  it('should correctly set range for "Last week"', () => {
+    const preset = component.presets.find(p => p.label === 'Last week');
     expect(preset).toBeTruthy();
     const [start, end] = preset.range();
     expect(start.getDay()).toBe(0); // Sunday
@@ -199,24 +199,24 @@ describe('DateRangePickerComponent', () => {
     expectValidRange(start, end);
   });
 
-  it('should correctly set range for "This Quarter"', () => {
-    const preset = component.presets.find(p => p.label === 'This Quarter');
+  it('should correctly set range for "This quarter"', () => {
+    const preset = component.presets.find(p => p.label === 'This quarter');
     expect(preset).toBeTruthy();
     const [start, end] = preset.range();
     expect(start.getMonth() % 3).toBe(0);
     expectValidRange(start, end);
   });
 
-  it('should correctly set range for "Last Quarter"', () => {
-    const preset = component.presets.find(p => p.label === 'Last Quarter');
+  it('should correctly set range for "Last quarter"', () => {
+    const preset = component.presets.find(p => p.label === 'Last quarter');
     expect(preset).toBeTruthy();
     const [start, end] = preset.range();
     expect(start.getMonth() % 3).toBe(0);
     expectValidRange(start, end);
   });
 
-  it('should correctly set range for "This Year So Far"', () => {
-    const preset = component.presets.find(p => p.label === 'This Year So Far');
+  it('should correctly set range for "This year so far"', () => {
+    const preset = component.presets.find(p => p.label === 'This year so far');
     expect(preset).toBeTruthy();
     const [start, end] = preset.range();
     expect(start.getMonth()).toBe(0);
