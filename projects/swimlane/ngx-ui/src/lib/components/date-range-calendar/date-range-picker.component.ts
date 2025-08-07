@@ -16,12 +16,29 @@
  * This component is designed for reusability and composability in libraries and apps.
  */
 
-import { ChangeDetectorRef, Component, EventEmitter, Input, Output, ViewChild, ViewEncapsulation } from '@angular/core';
-import { DateRangeForm } from './models/date-range.model';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+  ViewEncapsulation
+} from '@angular/core';
+import { DateRangeForm, TooltipDateItem } from './models/date-range.model';
 
 import { addMonths, endOfMonth, format, isValid, startOfMonth } from 'date-fns';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { DateUtils } from './services/date-utils.service';
+import moment from 'moment-timezone';
+import { Clipboard } from '@angular/cdk/clipboard';
+import { NotificationService } from '../notification/notification.service';
+import { Datelike } from '../date-time/date-like.type';
+import { DATE_DISPLAY_FORMATS } from '../../enums/date-formats.enum';
+import { NotificationStyleType } from '../notification/notification-style-type.enum';
+
+const guessTimeZone = moment.tz.guess();
 
 @Component({
   selector: 'ngx-date-range-picker',
@@ -30,17 +47,33 @@ import { DateUtils } from './services/date-utils.service';
   encapsulation: ViewEncapsulation.None,
   standalone: false
 })
-export class DateRangePickerComponent {
+export class DateRangePickerComponent implements OnInit {
   @Input() presets: {
     label: string;
     range: () => [Date | null, Date | null];
-    expression?: string;
+    expression?: { start: string; end: string };
   }[] = DateUtils.getDefaultPresets(DateUtils.parseExpression);
   @Input() parseFn: (expr: string) => Date = DateUtils.parseExpression;
   @Input() showTooltip = true;
   @Input() placeholders = { start: 'Start (e.g., now-7d)', end: 'End (e.g., now)' };
+  @Input()
+  timezones: Record<string, string> = {
+    UTC: 'Etc/UTC',
+    Local: ''
+  };
+  @Input() selectedRange: { start: string; end: string } | null = null;
 
-  @Output() apply = new EventEmitter<{ start: Date; end: Date; label: string }>();
+  @Output() apply = new EventEmitter<{
+    start: Date;
+    end: Date;
+    label: string;
+    tooltipValues: {
+      startTime: Record<string, { key: string; clip: string; display: string }>;
+      endTime: Record<string, { key: string; clip: string; display: string }>;
+    };
+    startExpression: string;
+    endExpression: string;
+  }>();
   @Output() cancel = new EventEmitter<string>();
   @ViewChild('wrapperRef', { static: false }) wrapperRef!: DropdownComponent;
 
@@ -68,8 +101,43 @@ export class DateRangePickerComponent {
   nextMonth: Date = addMonths(new Date(), 1);
   rightMinDate = startOfMonth(this.nextMonth);
   rightMaxDate = null; // No upper limit or set manually
+  timeValueStart: Record<string, { key: string; clip: string; display: string }> = {};
+  timeValueEnd: Record<string, { key: string; clip: string; display: string }> = {};
 
-  constructor(private cdr: ChangeDetectorRef) {}
+  get isApplyDisabled(): boolean {
+    if (this.validationError) return true;
+
+    if (!this.form.startRaw?.trim() || !this.form.endRaw?.trim()) return true;
+
+    // If no start or end date selected
+    if (!this.form.startDate || !this.form.endDate) return true;
+
+    // If nothing changed compared to last confirmed range
+    if (
+      this.lastConfirmedRange &&
+      this.lastConfirmedRange.startDate?.getTime() === this.form.startDate.getTime() &&
+      this.lastConfirmedRange.endDate?.getTime() === this.form.endDate.getTime()
+    ) {
+      return true;
+    }
+
+    return false;
+  }
+
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private readonly clipboard: Clipboard,
+    private readonly notificationService: NotificationService
+  ) {}
+
+  ngOnInit() {
+    if (this.selectedRange) {
+      this.form.startRaw = this.selectedRange.start;
+      this.form.endRaw = this.selectedRange.end;
+      this.form.startDate = this.parseFn(this.selectedRange.start);
+      this.form.endDate = this.parseFn(this.selectedRange.end);
+    }
+  }
 
   onRangeSelect(range: { startDate: Date; endDate: Date }) {
     // If both dates already exist & user clicks again → reset to new start
@@ -132,23 +200,37 @@ export class DateRangePickerComponent {
     }
   }
 
+  private createMoment(date: Datelike): moment.Moment {
+    let momentDate = moment(date).clone();
+    const timezone = guessTimeZone;
+    momentDate = timezone ? momentDate.tz(timezone) : momentDate;
+    return momentDate;
+  }
+
   updateSelectedPresetByValue() {
     const { startDate, endDate } = this.form;
     const matched = this.presets.find(p => {
       const [s, e] = p.range();
       return s && e && this.isEqual(s, startDate) && this.isEqual(e, endDate);
     });
+    this.setTooltipDate(this.form.startDate, this.form.endDate);
     this.selectedPreset = matched?.label || 'Custom range';
   }
 
-  selectPreset(preset: { label: string; range: () => [Date | null, Date | null] }) {
+  selectPreset(preset: {
+    label: string;
+    range: () => [Date | null, Date | null];
+    expression?: { start: string; end: string };
+  }) {
     const [start, end] = preset.range();
     if (start && end) {
       this.form.startDate = start;
       this.form.endDate = end;
-      this.form.startRaw = format(start, this.dateFormat);
-      this.form.endRaw = format(end, this.dateFormat);
       this.rangeModel = { startDate: start, endDate: end };
+
+      this.form.startRaw = preset.expression?.start ?? format(start, this.dateFormat);
+      this.form.endRaw = preset.expression?.end ?? format(end, this.dateFormat);
+
       this.validationError = null;
       this.selectedPreset = preset.label;
       this.cdr.detectChanges();
@@ -166,7 +248,14 @@ export class DateRangePickerComponent {
         endDate: this.form.endDate
       };
       this.updateSelectedLabel();
-      this.apply.emit({ start: this.form.startDate, end: this.form.endDate, label: this.selectedLabel });
+      this.apply.emit({
+        start: this.form.startDate,
+        end: this.form.endDate,
+        label: this.selectedLabel,
+        tooltipValues: { startTime: this.timeValueStart, endTime: this.timeValueEnd },
+        startExpression: this.form.startRaw,
+        endExpression: this.form.endRaw
+      });
       this.wrapperRef.open = false;
     }
   }
@@ -211,11 +300,59 @@ export class DateRangePickerComponent {
     this.selectedPreset = 'Custom range';
     this.selectedLabel = 'Select a range';
     this.cdr.detectChanges();
-    this.apply.emit({ start: null, end: null, label: this.selectedLabel });
+    this.apply.emit({
+      start: null,
+      end: null,
+      label: this.selectedLabel,
+      tooltipValues: { startTime: {}, endTime: {} },
+      startExpression: null,
+      endExpression: null
+    });
     this.lastConfirmedRange = null;
   }
 
   openSearchStringDocPage() {
     window.open('https://docs.swimlane.com/turbine/workspaces-and-dashboards/date-range.htm', '_blank');
+  }
+
+  setTooltipDate(start: Date, end: Date) {
+    this.timeValueEnd = {};
+    this.timeValueStart = {};
+    if (start) {
+      const startMoment = this.createMoment(start);
+      this.timeValueStart = Object.keys(this.timezones).reduce((timezoneAcc, timezoneKey) => {
+        const timezoneValue = this.timezones[timezoneKey] || guessTimeZone;
+        const dateInTimezone = startMoment.clone().tz(timezoneValue);
+        timezoneAcc[timezoneKey] = {
+          key: timezoneKey,
+          clip: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime),
+          display: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime)
+        };
+        return timezoneAcc;
+      }, {} as Record<string, { key: string; clip: string; display: string }>);
+    }
+    if (end) {
+      const endMoment = this.createMoment(end);
+      this.timeValueEnd = Object.keys(this.timezones).reduce((timezoneAcc, timezoneKey) => {
+        const timezoneValue = this.timezones[timezoneKey] || guessTimeZone;
+        const dateInTimezone = endMoment.clone().tz(timezoneValue);
+        timezoneAcc[timezoneKey] = {
+          key: timezoneKey,
+          clip: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime),
+          display: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime)
+        };
+        return timezoneAcc;
+      }, {} as Record<string, { key: string; clip: string; display: string }>);
+    }
+    this.cdr.detectChanges();
+  }
+
+  onClick(item: TooltipDateItem) {
+    this.clipboard.copy(item.value.clip);
+    this.notificationService.create({
+      body: `${item.key} date copied to clipboard`,
+      styleType: NotificationStyleType.success,
+      timeout: 3000
+    });
   }
 }

@@ -5,12 +5,9 @@
       <!-- Sidebar Presets -->
       <div class="sidebar">
         @for (preset of presets; track preset) {
-          <p
-            [class.active]="selectedPreset === preset.label"
-            (click)="selectPreset(preset)"
-          >
-            {{ preset.label }}
-          </p>
+        <p [class.active]="selectedPreset === preset.label" (click)="selectPreset(preset)">
+          {{ preset.label }}
+        </p>
         }
       </div>
 
@@ -19,6 +16,10 @@
         <div class="input-row">
           <div class="input-with-icon">
             <ngx-input
+              ngx-tooltip
+              [tooltipDisabled]="!showTooltip || !form.startRaw"
+              [tooltipTemplate]="startdefaultTooltipTemplate"
+              [tooltipCssClass]="'date-tooltip'"
               appearance="fill"
               [(ngModel)]="form.startRaw"
               (ngModelChange)="onCustomInputChange()"
@@ -32,6 +33,10 @@
           <span class="range-label">to</span>
           <div class="input-with-icon">
             <ngx-input
+              ngx-tooltip
+              [tooltipDisabled]="!showTooltip || !form.endRaw"
+              [tooltipTemplate]="enddefaultTooltipTemplate"
+              [tooltipCssClass]="'date-tooltip'"
               appearance="fill"
               [(ngModel)]="form.endRaw"
               (ngModelChange)="onCustomInputChange()"
@@ -83,8 +88,26 @@
       </div>
       <div class="right">
         <ngx-button class="btn btn-bordered" (click)="onCancel()">Cancel</ngx-button>
-        <ngx-button class="btn btn-primary" [disabled]="!!validationError" (click)="onApply()"> Apply </ngx-button>
+        <ngx-button class="btn btn-primary" [disabled]="isApplyDisabled" (click)="onApply()"> Apply </ngx-button>
       </div>
     </div>
   </ngx-dropdown-menu>
 </ngx-dropdown>
+
+<ng-template #startdefaultTooltipTemplate>
+  @for (item of (timeValueStart | keyvalue); track item) {
+  <div class="date-zone-display">
+    <span>{{ item.value.display }}</span>
+    <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
+  </div>
+  }
+</ng-template>
+
+<ng-template #enddefaultTooltipTemplate>
+  @for (item of (timeValueEnd | keyvalue); track item) {
+  <div class="date-zone-display">
+    <span>{{ item.value.display }}</span>
+    <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
+  </div>
+  }
+</ng-template>

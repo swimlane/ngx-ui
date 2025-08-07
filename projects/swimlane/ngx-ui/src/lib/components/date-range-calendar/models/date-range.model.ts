@@ -10,3 +10,11 @@ export interface PresetConfig {
   expression?: string;
   range?: () => [Date | null, Date | null];
 }
+
+export interface TooltipDateItem {
+  key: string;
+  value: {
+    clip: string;
+    display: string;
+  };
+}

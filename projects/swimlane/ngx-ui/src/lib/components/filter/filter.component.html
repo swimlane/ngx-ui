@@ -29,8 +29,13 @@
         @if (hasControls) {
         <div class="ngx-chip__controls">
           @if (clearVisible) {
-          <button type="button" title="Clear Selections" aria-label="Clear Selections" class="ngx-chip-clear"
-            (click)="onClear()">
+          <button
+            type="button"
+            title="Clear Selections"
+            aria-label="Clear Selections"
+            class="ngx-chip-clear"
+            (click)="onClear()"
+          >
             <i class="ngx-icon ngx-x"></i>
           </button>
           } @if (caretVisible) {
@@ -44,25 +49,44 @@
     </div>
   </div>
   @if (dropdownVisible) {
-  <ngx-select-dropdown [class.ngx-select-dropdown--left]="itemsPosition === FilterItemPositionTypes.Left"
-    [class.ngx-select-dropdown--right]="itemsPosition === FilterItemPositionTypes.Right" [focusIndex]="focusIndex"
-    [filterQuery]="filterQuery" [filterPlaceholder]="filterPlaceholder" [filterCaseSensitive]="filterCaseSensitive"
-    [allowAdditions]="false" [showSelectAll]="multiple && showSelectAll" [selected]="value" [groupBy]="groupBy"
-    [groupByTemplate]="groupByTemplate" [emptyPlaceholder]="emptyPlaceholder" [tagging]="false"
-    [filterEmptyPlaceholder]="filterEmptyPlaceholder" [filterable]="filterable" [identifier]="identifier"
-    [options]="options" (keyup)="keyup.emit($event)" (close)="onClose()" (clearQueryFilter)="clearQueryFilter.emit()"
-    (selection)="onDropdownSelection($event)" (selectAll)="onSelectAll()" (deselection)="onDropdownDeselection($event)"
+  <ngx-select-dropdown
+    [class.ngx-select-dropdown--left]="itemsPosition === FilterItemPositionTypes.Left"
+    [class.ngx-select-dropdown--right]="itemsPosition === FilterItemPositionTypes.Right"
+    [focusIndex]="focusIndex"
+    [filterQuery]="filterQuery"
+    [filterPlaceholder]="filterPlaceholder"
+    [filterCaseSensitive]="filterCaseSensitive"
+    [allowAdditions]="false"
+    [showSelectAll]="multiple && showSelectAll"
+    [selected]="value"
+    [groupBy]="groupBy"
+    [groupByTemplate]="groupByTemplate"
+    [emptyPlaceholder]="emptyPlaceholder"
+    [tagging]="false"
+    [filterEmptyPlaceholder]="filterEmptyPlaceholder"
+    [filterable]="filterable"
+    [identifier]="identifier"
+    [options]="options"
+    (keyup)="keyup.emit($event)"
+    (close)="onClose()"
+    (clearQueryFilter)="clearQueryFilter.emit()"
+    (selection)="onDropdownSelection($event)"
+    (selectAll)="onSelectAll()"
+    (deselection)="onDropdownDeselection($event)"
     (keyboardSelection)="onDropdownSelection($event, false)"
-    (keyboardDeselection)="onDropdownDeselection($event, false)">
+    (keyboardDeselection)="onDropdownDeselection($event, false)"
+  >
   </ngx-select-dropdown>
   } } @if (type === FilterType.Button) {
   <div class="ngx-filter-button">
     <ng-container *ngTemplateOutlet="buttonControlTemplate"></ng-container>
   </div>
   } @if (type === FilterType.CustomDropdown && customDropdownConfig?.component?.type) {
-  <ngx-dropdown [closeOnClick]="customDropdownConfig.closeOnClick ?? true"
+  <ngx-dropdown
+    [closeOnClick]="customDropdownConfig.closeOnClick ?? true"
     [closeOnOutsideClick]="customDropdownConfig.closeOnOutsideClick ?? true"
-    [showCaret]="customDropdownConfig.showCaret">
+    [showCaret]="customDropdownConfig.showCaret"
+  >
     <ngx-dropdown-toggle (toggle)="onCustomDropdownToggle()" [disabled]="disabled">
       <ng-container *ngTemplateOutlet="buttonControlTemplate"></ng-container>
     </ngx-dropdown-toggle>
@@ -76,14 +100,26 @@
 </div>
 <ng-template #buttonControlTemplate>
   <div class="ngx-filter-button">
-    <button type="button" class="ngx-chip" (click)="onFilterButtonClick($event)" [disabled]="disabled"
-      aria-label="Filter Button">
+    <button
+      type="button"
+      class="ngx-chip"
+      (click)="onFilterButtonClick($event)"
+      [disabled]="disabled"
+      aria-label="Filter Button"
+    >
       <div class="ngx-chip__contents">
         @if (ngxIconClass && ngxIconPosition === FilterIconPositionTypes.Left) {
         <i class="ngx-icon ngx-chip-icon-left" [ngClass]="ngxIconClass" aria-label="Button Icon"></i>
         }
 
-        <span class="ngx-chip-label">{{ label }}</span>
+        <span
+          class="ngx-chip-label"
+          ngx-tooltip
+          [tooltipDisabled]="!showTooltip"
+          [tooltipTemplate]="tooltipTemplate"
+          [tooltipPlacement]="tooltipPosition"
+          >{{ label }}</span
+        >
 
         @if (ngxIconClass && ngxIconPosition === FilterIconPositionTypes.Right) {
         <i class="ngx-icon ngx-chip-icon-right" [ngClass]="ngxIconClass" aria-label="Button Icon"></i>
