@@ -3,6 +3,14 @@
 ## HEAD (unreleased)
 
 - Fix (`ngx-date-range-picker`): Added future preset values.
+
+## 50.0.0-alpha.5 (2025-07-24)
+
+- Fix (`ngx-column`): Content should display when column child is active on load.
+
+## 50.0.0-alpha.4 (2025-07-23)
+
+- Breaking (`ngx-column`): Setting Dynamic Components in `content` now follow declarative syntax to support outputs, two-way data binding
 - Fix (`ngx-date-range-picker`): Error handling for invalid custom input and updated preset list.
 
 ## 50.0.0-alpha.3 (2025-07-14)

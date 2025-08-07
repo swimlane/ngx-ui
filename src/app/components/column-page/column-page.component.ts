@@ -25,11 +25,11 @@ export class ColumnPageComponent {
             children: [
               {
                 id: '1d',
-                active: false,
+                active: true,
                 title: 'Column 1d',
                 content: {
                   component: ColumnTestContentComponent,
-                  inputs: {}
+                  options: {}
                 }
               },
               {
@@ -48,7 +48,7 @@ export class ColumnPageComponent {
                         title: 'Column 1g',
                         content: {
                           component: ColumnTestContentComponent,
-                          inputs: {}
+                          options: {}
                         }
                       },
                       {
@@ -57,7 +57,7 @@ export class ColumnPageComponent {
                         title: 'Column 1h',
                         content: {
                           component: ColumnTestContentComponent,
-                          inputs: {}
+                          options: {}
                         }
                       }
                     ]
@@ -116,7 +116,7 @@ export class ColumnPageComponent {
                         title: 'Column 3f',
                         content: {
                           component: ColumnTestContentComponent,
-                          inputs: {}
+                          options: {}
                         }
                       },
                       {
@@ -135,7 +135,7 @@ export class ColumnPageComponent {
                                 title: 'Column 3i',
                                 content: {
                                   component: ColumnTestContentComponent,
-                                  inputs: {}
+                                  options: {}
                                 }
                               },
                               {
@@ -144,7 +144,7 @@ export class ColumnPageComponent {
                                 title: 'Column 3j',
                                 content: {
                                   component: ColumnTestContentComponent,
-                                  inputs: {}
+                                  options: {}
                                 }
                               }
                             ]
@@ -517,9 +517,7 @@ export class ColumnPageComponent {
             title: 'Column 1c',
             content: {
               component: 'ColumnTestContentComponent',
-              inputs: {},
-              outputs: {},
-              module: {}
+              options: {}
             }
           }
         ]
@@ -540,9 +538,7 @@ export class ColumnPageComponent {
                 title: 'Column 2c',
                 content: {
                   component: 'ColumnTestContentComponent',
-                  inputs: {},
-                  outputs: {},
-                  module: {}
+                  options: {}
                 }
               }
             ]
