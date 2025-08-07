@@ -2,6 +2,7 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-date-range-picker`): Added future preset values.
 - Fix (`ngx-date-range-picker`): Error handling for invalid custom input and updated preset list.
 
 ## 50.0.0-alpha.3 (2025-07-14)
