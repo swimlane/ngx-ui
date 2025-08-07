@@ -95,15 +95,19 @@
 </ngx-dropdown>
 
 <ng-template #startdefaultTooltipTemplate>
-  <div *ngFor="let item of timeValueStart | keyvalue" class="date-zone-display">
+  @for (item of (timeValueStart | keyvalue); track item) {
+  <div class="date-zone-display">
     <span>{{ item.value.display }}</span>
     <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
   </div>
+  }
 </ng-template>
 
 <ng-template #enddefaultTooltipTemplate>
-  <div *ngFor="let item of timeValueEnd | keyvalue" class="date-zone-display">
+  @for (item of (timeValueEnd | keyvalue); track item) {
+  <div class="date-zone-display">
     <span>{{ item.value.display }}</span>
     <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
   </div>
+  }
 </ng-template>
