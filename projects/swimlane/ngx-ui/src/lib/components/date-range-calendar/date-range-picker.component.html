@@ -19,7 +19,7 @@
               ngx-tooltip
               [tooltipDisabled]="!showTooltip || !form.startRaw"
               [tooltipTemplate]="startdefaultTooltipTemplate"
-              [tooltipCssClass]="'date-tip-tooltip'"
+              [tooltipCssClass]="'date-tooltip'"
               appearance="fill"
               [(ngModel)]="form.startRaw"
               (ngModelChange)="onCustomInputChange()"
@@ -36,7 +36,7 @@
               ngx-tooltip
               [tooltipDisabled]="!showTooltip || !form.endRaw"
               [tooltipTemplate]="enddefaultTooltipTemplate"
-              [tooltipCssClass]="'date-tip-tooltip'"
+              [tooltipCssClass]="'date-tooltip'"
               appearance="fill"
               [(ngModel)]="form.endRaw"
               (ngModelChange)="onCustomInputChange()"

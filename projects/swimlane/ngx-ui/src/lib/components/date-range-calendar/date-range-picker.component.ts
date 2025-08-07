@@ -26,7 +26,7 @@ import {
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
-import { DateRangeForm } from './models/date-range.model';
+import { DateRangeForm, TooltipDateItem } from './models/date-range.model';
 
 import { addMonths, endOfMonth, format, isValid, startOfMonth } from 'date-fns';
 import { DropdownComponent } from '../dropdown/dropdown.component';
@@ -201,10 +201,10 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   private createMoment(date: Datelike): moment.Moment {
-    let m = moment(date).clone();
+    let momentDate = moment(date).clone();
     const timezone = guessTimeZone;
-    m = timezone ? m.tz(timezone) : m;
-    return m;
+    momentDate = timezone ? momentDate.tz(timezone) : momentDate;
+    return momentDate;
   }
 
   updateSelectedPresetByValue() {
@@ -228,13 +228,8 @@ export class DateRangePickerComponent implements OnInit {
       this.form.endDate = end;
       this.rangeModel = { startDate: start, endDate: end };
 
-      if (preset.expression) {
-        this.form.startRaw = preset.expression.start;
-        this.form.endRaw = preset.expression.end;
-      } else {
-        this.form.startRaw = format(start, this.dateFormat);
-        this.form.endRaw = format(end, this.dateFormat);
-      }
+      this.form.startRaw = preset.expression?.start ?? format(start, this.dateFormat);
+      this.form.endRaw = preset.expression?.end ?? format(end, this.dateFormat);
 
       this.validationError = null;
       this.selectedPreset = preset.label;
@@ -324,35 +319,35 @@ export class DateRangePickerComponent implements OnInit {
     this.timeValueEnd = {};
     this.timeValueStart = {};
     if (start) {
-      const mStartDate = this.createMoment(start);
-      this.timeValueStart = Object.keys(this.timezones).reduce((acc, key) => {
-        const tz = this.timezones[key] || guessTimeZone;
-        const date = mStartDate.clone().tz(tz);
-        acc[key] = {
-          key,
-          clip: date.format(DATE_DISPLAY_FORMATS.fullDateTime),
-          display: date.format(DATE_DISPLAY_FORMATS.fullDateTime)
+      const startMoment = this.createMoment(start);
+      this.timeValueStart = Object.keys(this.timezones).reduce((timezoneAcc, timezoneKey) => {
+        const timezoneValue = this.timezones[timezoneKey] || guessTimeZone;
+        const dateInTimezone = startMoment.clone().tz(timezoneValue);
+        timezoneAcc[timezoneKey] = {
+          key: timezoneKey,
+          clip: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime),
+          display: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime)
         };
-        return acc;
+        return timezoneAcc;
       }, {} as Record<string, { key: string; clip: string; display: string }>);
     }
     if (end) {
-      const mStartEnd = this.createMoment(end);
-      this.timeValueEnd = Object.keys(this.timezones).reduce((acc, key) => {
-        const tz = this.timezones[key] || guessTimeZone;
-        const date = mStartEnd.clone().tz(tz);
-        acc[key] = {
-          key,
-          clip: date.format(DATE_DISPLAY_FORMATS.fullDateTime),
-          display: date.format(DATE_DISPLAY_FORMATS.fullDateTime)
+      const endMoment = this.createMoment(end);
+      this.timeValueEnd = Object.keys(this.timezones).reduce((timezoneAcc, timezoneKey) => {
+        const timezoneValue = this.timezones[timezoneKey] || guessTimeZone;
+        const dateInTimezone = endMoment.clone().tz(timezoneValue);
+        timezoneAcc[timezoneKey] = {
+          key: timezoneKey,
+          clip: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime),
+          display: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime)
         };
-        return acc;
+        return timezoneAcc;
       }, {} as Record<string, { key: string; clip: string; display: string }>);
     }
     this.cdr.detectChanges();
   }
 
-  onClick(item: any) {
+  onClick(item: TooltipDateItem) {
     this.clipboard.copy(item.value.clip);
     this.notificationService.create({
       body: `${item.key} date copied to clipboard`,
