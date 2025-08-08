@@ -6,6 +6,7 @@
 - Enhancement (`ngx-date-range-picker`): Added tooltip
 - Enhancement (`ngx-date-range-picker`): Added future preset values
 - Enhancement (`ngx-date-range-picker`): Input Fields for preset values display relative expressions (e.g., now-2d to now) instead of converted date values for better clarity and editing.
+- Enhancement (`ngx-column`): Added output `onColumnChange` that emits an event whenever the user changes the active column.
 
 ## 50.0.0-alpha.5 (2025-07-24)
 

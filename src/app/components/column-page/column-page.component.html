@@ -26,9 +26,9 @@
   </ngx-tab>
   <ngx-tab label="API">
     <h3>Table of Contents</h3>
-    <a class="documentation-content" (click)="scrollTo('ngx-columns-inputs')">ngx-columns Inputs</a>
-    <a class="documentation-content" (click)="scrollTo('ngx-columns-column')">ngx-columns Column</a>
-    <a class="documentation-content" (click)="scrollTo('ngx-columns-column-spec')">ngx-columns Column</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-columns-inputs')">Inputs</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-columns-column')">Column</a>
+    <a class="documentation-content" (click)="scrollTo('ngx-columns-column-spec')">Spec</a>
     <h3 class="style-header" id="ngx-columns-inputs">ngx-columns Inputs</h3>
     <table class="table documentation-table">
       <thead>
@@ -55,6 +55,13 @@
             <code>height: string</code>
           </th>
           <td>Change the overall height of the columns by providing a <code>string</code> value in pixels.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>onColumnChange: ColumnTabClickEvent</code>
+          </th>
+          <td>Emits whenever there is user interaction that changes the active column.</td>
         </tr>
       </tbody>
     </table>
@@ -109,8 +116,6 @@
               In the above example, the component is referenced as a string for visibility. In practice, pass the
               reference to the Component you want to display in the custom content area.
             </p>
-
-            <p></p>
           </td>
         </tr>
       </tbody>
