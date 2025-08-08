@@ -12,6 +12,14 @@ import {
 } from '@angular/core';
 import { Column } from './column.types';
 
+export interface ColumnTabClickEvent {
+  columnId: string;
+  active: boolean;
+  title: string;
+  children?: Array<ColumnTabClickEvent>;
+  content?: boolean;
+}
+
 @Component({
   selector: 'ngx-column',
   templateUrl: './column.component.html',
@@ -26,10 +34,10 @@ import { Column } from './column.types';
 export class ColumnComponent implements OnChanges {
   column = input<Column | null>(null);
   height = input<string>('');
-  tabClick = output<{ columnId: string }>();
-  vcr = viewChild('expandedSection', { read: ViewContainerRef });
+  tabClick = output<ColumnTabClickEvent>();
   scrollerHeight = signal('300');
-  activeChild: Column = null;
+  vcr = viewChild('expandedSection', { read: ViewContainerRef });
+  activeChild: Column | null = null;
   list: Column[] = [];
   searchInputValue = '';
   componentRef: ComponentRef<any> | null = null;
@@ -53,9 +61,25 @@ export class ColumnComponent implements OnChanges {
     }
   }
 
+  toTabClickEvent(column: Column): ColumnTabClickEvent {
+    const event: ColumnTabClickEvent = {
+      columnId: column.id,
+      active: true,
+      title: column.title,
+      content: !!column.content
+    };
+
+    if (column.children && column.children.length) {
+      event.children = column.children.map(child => this.toTabClickEvent(child));
+    }
+
+    return event;
+  }
+
   onChildClick(columnId: string) {
     this.activeChild = this.column().children.find(child => child.id === columnId);
-    this.tabClick.emit({ columnId });
+    const tabClickEvent = this.toTabClickEvent(this.activeChild);
+    this.tabClick.emit(tabClickEvent);
     if (this.activeChild?.content && this.activeChild?.content.component) {
       this.displayContent();
     }
@@ -64,7 +88,8 @@ export class ColumnComponent implements OnChanges {
   onChildKeyup(event: KeyboardEvent, columnId: string) {
     if (event.key === 'Enter' || event.key === ' ') {
       this.activeChild = this.column().children.find(child => child.id === columnId);
-      this.tabClick.emit({ columnId });
+      const tabClickEvent = this.toTabClickEvent(this.activeChild);
+      this.tabClick.emit(tabClickEvent);
       if (this.activeChild?.content && this.activeChild?.content.component) {
         this.displayContent();
       }
