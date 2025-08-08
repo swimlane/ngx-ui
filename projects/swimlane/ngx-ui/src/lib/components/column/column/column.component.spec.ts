@@ -167,11 +167,26 @@ describe('ColumnComponent', () => {
     it('should emit column id on click', () => {
       const activeColumn = {
         id: '3o',
-        active: false,
+        active: true,
         title: 'Column 3o',
-        content: {
-          component: ColumnTestContentComponent
-        }
+        children: [
+          {
+            id: '3p',
+            active: false,
+            title: 'Column 3p',
+            content: {
+              component: ColumnTestContentComponent
+            }
+          },
+          {
+            id: '3q',
+            active: false,
+            title: 'Column 3q',
+            content: {
+              component: ColumnTestContentComponent
+            }
+          }
+        ]
       };
       spyOn(component.tabClick, 'emit');
       component.ngOnChanges({
@@ -182,26 +197,38 @@ describe('ColumnComponent', () => {
           isFirstChange: () => true
         }
       });
-      component.onChildClick(activeColumn.id);
-      expect(activeColumn).toEqual({
-        id: '3o',
-        active: false,
-        title: 'Column 3o',
-        content: {
-          component: ColumnTestContentComponent
-        }
+      component.onChildClick('3p');
+      expect(component.tabClick.emit).toHaveBeenCalledWith({
+        columnId: '3p',
+        active: true,
+        title: 'Column 3p',
+        content: true
       });
-      expect(component.tabClick.emit).toHaveBeenCalledWith({ columnId: activeColumn.id });
     });
 
     it('should emit column id on keyup', () => {
       const activeColumn = {
         id: '3o',
-        active: false,
+        active: true,
         title: 'Column 3o',
-        content: {
-          component: ColumnTestContentComponent
-        }
+        children: [
+          {
+            id: '3p',
+            active: false,
+            title: 'Column 3p',
+            content: {
+              component: ColumnTestContentComponent
+            }
+          },
+          {
+            id: '3q',
+            active: false,
+            title: 'Column 3q',
+            content: {
+              component: ColumnTestContentComponent
+            }
+          }
+        ]
       };
       spyOn(component.tabClick, 'emit');
       component.ngOnChanges({
@@ -212,26 +239,38 @@ describe('ColumnComponent', () => {
           isFirstChange: () => true
         }
       });
-      component.onChildKeyup({ key: 'Enter' } as any, activeColumn.id);
-      expect(activeColumn).toEqual({
-        id: '3o',
-        active: false,
-        title: 'Column 3o',
-        content: {
-          component: ColumnTestContentComponent
-        }
+      component.onChildKeyup({ key: 'Enter' } as any, '3p');
+      expect(component.tabClick.emit).toHaveBeenCalledWith({
+        columnId: '3p',
+        active: true,
+        title: 'Column 3p',
+        content: true
       });
-      expect(component.tabClick.emit).toHaveBeenCalledWith({ columnId: activeColumn.id });
     });
 
     it('should emit column id on keyup with space bar', () => {
       const activeColumn = {
         id: '3o',
-        active: false,
+        active: true,
         title: 'Column 3o',
-        content: {
-          component: ColumnTestContentComponent
-        }
+        children: [
+          {
+            id: '3p',
+            active: false,
+            title: 'Column 3p',
+            content: {
+              component: ColumnTestContentComponent
+            }
+          },
+          {
+            id: '3q',
+            active: false,
+            title: 'Column 3q',
+            content: {
+              component: ColumnTestContentComponent
+            }
+          }
+        ]
       };
       spyOn(component.tabClick, 'emit');
       component.ngOnChanges({
@@ -242,16 +281,13 @@ describe('ColumnComponent', () => {
           isFirstChange: () => true
         }
       });
-      component.onChildKeyup({ key: ' ' } as any, activeColumn.id);
-      expect(activeColumn).toEqual({
-        id: '3o',
-        active: false,
-        title: 'Column 3o',
-        content: {
-          component: ColumnTestContentComponent
-        }
+      component.onChildKeyup({ key: ' ' } as any, '3p');
+      expect(component.tabClick.emit).toHaveBeenCalledWith({
+        columnId: '3p',
+        active: true,
+        title: 'Column 3p',
+        content: true
       });
-      expect(component.tabClick.emit).toHaveBeenCalledWith({ columnId: activeColumn.id });
     });
 
     it('should display content on click', () => {

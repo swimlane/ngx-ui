@@ -23,7 +23,7 @@
 
     <cdk-virtual-scroll-viewport #virtualScrollViewport [style.height.px]="scrollerHeight()" itemSize="40">
       <div
-        *cdkVirtualFor="let child of list; index as i"
+        *cdkVirtualFor="let child of list"
         class="ngx-list__virtual-scroll__item"
         (click)="onChildClick(child.id)"
         (keyup)="onChildKeyup($event, child.id)"

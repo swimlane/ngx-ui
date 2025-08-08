@@ -193,7 +193,19 @@ describe('ColumnsComponent', () => {
       }
     ];
     spyOn(component, 'deactivatePath').and.callThrough();
-    component.onColumnNavigation({ columnId });
+    component.onColumnNavigation({
+      columnId,
+      active: false,
+      title: 'Child Column 1-1-1',
+      children: [
+        {
+          columnId: '1-1-1-1',
+          active: false,
+          title: 'Child Column 1-1-1',
+          content: true
+        }
+      ]
+    });
 
     expect(component.columns.length).toBe(3);
     expect(component.columns[0].id).toBe('1');
