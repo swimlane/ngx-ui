@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 50.0.0-alpha.6 (2025-08-08)
+
 - Enhancement (`ngx-filter`): Added new inputs to show tooltip for customDropdown
 - Enhancement (`ngx-date-range-picker`): Added tooltip
 - Enhancement (`ngx-date-range-picker`): Added future preset values
