@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-date-range-picker`): Tooltip fix for preset values.
+
 ## 50.0.0-alpha.6 (2025-08-08)
 
 - Enhancement (`ngx-filter`): Added new inputs to show tooltip for customDropdown
