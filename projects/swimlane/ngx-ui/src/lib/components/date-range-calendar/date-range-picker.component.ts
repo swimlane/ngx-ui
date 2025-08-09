@@ -230,6 +230,7 @@ export class DateRangePickerComponent implements OnInit {
 
       this.form.startRaw = preset.expression?.start ?? format(start, this.dateFormat);
       this.form.endRaw = preset.expression?.end ?? format(end, this.dateFormat);
+      this.setTooltipDate(this.form.startDate, this.form.endDate);
 
       this.validationError = null;
       this.selectedPreset = preset.label;
