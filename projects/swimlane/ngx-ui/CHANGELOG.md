@@ -2,10 +2,15 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-date-range-picker`): Tooltip fix for preset values.
+
+## 50.0.0-alpha.6 (2025-08-08)
+
 - Enhancement (`ngx-filter`): Added new inputs to show tooltip for customDropdown
 - Enhancement (`ngx-date-range-picker`): Added tooltip
 - Enhancement (`ngx-date-range-picker`): Added future preset values
 - Enhancement (`ngx-date-range-picker`): Input Fields for preset values display relative expressions (e.g., now-2d to now) instead of converted date values for better clarity and editing.
+- Enhancement (`ngx-column`): Added output `onColumnChange` that emits an event whenever the user changes the active column.
 
 ## 50.0.0-alpha.5 (2025-07-24)
 

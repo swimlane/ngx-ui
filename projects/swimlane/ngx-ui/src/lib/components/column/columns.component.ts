@@ -1,5 +1,5 @@
-import { Component, input, OnChanges, signal, SimpleChanges, ViewEncapsulation } from '@angular/core';
-import { ColumnComponent } from './column/column.component';
+import { Component, input, OnChanges, output, signal, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { ColumnComponent, ColumnTabClickEvent } from './column/column.component';
 import { Column } from './column/column.types';
 
 @Component({
@@ -17,9 +17,10 @@ import { Column } from './column/column.types';
 export class ColumnsComponent implements OnChanges {
   column = input<Column | null>(null);
   height = input<string>('');
+  onColumnChange = output<ColumnTabClickEvent>();
+  columnHeight = signal('');
   columns: Array<Column>;
   columnComponent = ColumnComponent;
-  columnHeight = signal('');
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.column?.currentValue) {
@@ -69,15 +70,16 @@ export class ColumnsComponent implements OnChanges {
     return this.traverseActivePath(this.column(), columns);
   }
 
-  onColumnNavigation(col: { columnId: string }): void {
-    const parentColumn = this.columns.find(parent => parent.children?.find(column => column.id === col.columnId));
-    const selectedColumn = parentColumn?.children?.find(column => column.id === col.columnId);
+  onColumnNavigation(event: ColumnTabClickEvent): void {
+    const parentColumn = this.columns.find(parent => parent.children?.find(column => column.id === event.columnId));
+    const selectedColumn = parentColumn?.children?.find(column => column.id === event.columnId);
 
     if (parentColumn && parentColumn.children) {
       parentColumn.children.forEach(child => this.deactivatePath(child));
       selectedColumn.active = true;
     }
 
+    this.onColumnChange.emit(event);
     this.columns = this.getCurrentColumns();
   }
 }
