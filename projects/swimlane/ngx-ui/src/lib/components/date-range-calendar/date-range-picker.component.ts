@@ -136,6 +136,7 @@ export class DateRangePickerComponent implements OnInit {
       this.form.endRaw = this.selectedRange.end;
       this.form.startDate = this.parseFn(this.selectedRange.start);
       this.form.endDate = this.parseFn(this.selectedRange.end);
+      this.setTooltipDate(this.form.startDate, this.form.endDate);
     }
   }
 
