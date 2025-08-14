@@ -21,8 +21,10 @@ import {
   Component,
   EventEmitter,
   Input,
+  OnChanges,
   OnInit,
   Output,
+  SimpleChanges,
   ViewChild,
   ViewEncapsulation
 } from '@angular/core';
@@ -47,7 +49,7 @@ const guessTimeZone = moment.tz.guess();
   encapsulation: ViewEncapsulation.None,
   standalone: false
 })
-export class DateRangePickerComponent implements OnInit {
+export class DateRangePickerComponent implements OnInit, OnChanges {
   @Input() presets: {
     label: string;
     range: () => [Date | null, Date | null];
@@ -131,11 +133,26 @@ export class DateRangePickerComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.initializeFromSelectedRange();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['selectedRange'] && changes['selectedRange'].currentValue) {
+      this.initializeFromSelectedRange();
+    }
+  }
+
+  private initializeFromSelectedRange() {
     if (this.selectedRange) {
+      this.lastConfirmedRange = {
+        startDate: new Date(this.selectedRange.start),
+        endDate: new Date(this.selectedRange.end)
+      };
       this.form.startRaw = this.selectedRange.start;
       this.form.endRaw = this.selectedRange.end;
       this.form.startDate = this.parseFn(this.selectedRange.start);
       this.form.endDate = this.parseFn(this.selectedRange.end);
+      this.setTooltipDate(this.form.startDate, this.form.endDate);
     }
   }
 
@@ -313,7 +330,7 @@ export class DateRangePickerComponent implements OnInit {
   }
 
   openSearchStringDocPage() {
-    window.open('https://docs.swimlane.com/turbine/workspaces-and-dashboards/date-range.htm', '_blank');
+    window.open('https://docs.swimlane.com/custom-and-relative-date-ranges-with-time-units', '_blank');
   }
 
   setTooltipDate(start: Date, end: Date) {
