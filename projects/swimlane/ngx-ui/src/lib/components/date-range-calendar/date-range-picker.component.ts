@@ -330,7 +330,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
   }
 
   openSearchStringDocPage() {
-    window.open('https://docs.swimlane.com/turbine/workspaces-and-dashboards/date-range.htm', '_blank');
+    window.open('https://docs.swimlane.com/custom-and-relative-date-ranges-with-time-units', '_blank');
   }
 
   setTooltipDate(start: Date, end: Date) {
