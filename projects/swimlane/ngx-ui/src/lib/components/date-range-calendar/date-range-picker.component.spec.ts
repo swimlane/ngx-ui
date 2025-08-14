@@ -116,11 +116,15 @@ describe('DateRangePickerComponent', () => {
 
   it('should update selected label based on preset match', () => {
     const preset = component.presets.find(p => p.label === 'Last 7 days');
-    const [start, end] = preset.range();
-    component.form.startDate = start;
-    component.form.endDate = end;
-    component.updateSelectedLabel();
-    expect(component.selectedLabel).toBe('Last 7 days');
+    if (preset) {
+      const [start, end] = preset.range();
+      component.form.startDate = start;
+      component.form.endDate = end;
+      component.updateSelectedLabel();
+      expect(component.selectedLabel).toBe('Last 7 days');
+    } else {
+      fail('Preset "Last 7 days" not found');
+    }
   });
 
   it('should set default label when no preset matched', () => {
@@ -147,7 +151,7 @@ describe('DateRangePickerComponent', () => {
     spyOn(window, 'open');
     component.openSearchStringDocPage();
     expect(window.open).toHaveBeenCalledWith(
-      'https://docs.swimlane.com/turbine/workspaces-and-dashboards/date-range.htm',
+      'https://docs.swimlane.com/custom-and-relative-date-ranges-with-time-units',
       '_blank'
     );
   });
@@ -175,61 +179,83 @@ describe('DateRangePickerComponent', () => {
   it('should select the entire month for "This month" preset', () => {
     const preset = component.presets.find(p => p.label === 'This month');
     expect(preset).toBeTruthy();
-    const [start, end] = preset.range();
-    expect(start).toEqual(startOfMonth(new Date()));
-    expect(end).toEqual(endOfMonth(new Date()));
+    if (preset) {
+      const [start, end] = preset.range();
+      expect(start).toEqual(startOfMonth(new Date()));
+      expect(end).toEqual(endOfMonth(new Date()));
+    }
   });
 
   it('should correctly set range for "This week so far"', () => {
     const preset = component.presets.find(p => p.label === 'This week so far');
     expect(preset).toBeTruthy();
-    const [start, end] = preset.range();
-    expect(start.getDay()).toBe(0); // Sunday
-    expect(end <= new Date()).toBeTrue();
-    expectValidRange(start, end);
+    if (preset) {
+      const [start, end] = preset.range();
+      expect(start !== null && start.getDay()).toBe(0); // Sunday
+      expect(end !== null && end <= new Date()).toBeTrue();
+      expectValidRange(start, end);
+    } else {
+      fail('Preset "This week so far" not found');
+    }
   });
 
   it('should correctly set range for "Last week"', () => {
     const preset = component.presets.find(p => p.label === 'Last week');
     expect(preset).toBeTruthy();
-    const [start, end] = preset.range();
-    expect(start.getDay()).toBe(0); // Sunday
-    expect(end.getDay()).toBe(6); // Saturday
-    expect(end < new Date()).toBeTrue();
-    expectValidRange(start, end);
+    if (preset) {
+      const [start, end] = preset.range();
+      if (start) {
+        expect(start.getDay()).toBe(0); // Sunday
+      }
+      if (end) {
+        expect(end.getDay()).toBe(6); // Saturday
+        expect(end < new Date()).toBeTrue();
+      }
+      expectValidRange(start, end);
+    }
   });
 
   it('should correctly set range for "This quarter"', () => {
     const preset = component.presets.find(p => p.label === 'This quarter');
     expect(preset).toBeTruthy();
-    const [start, end] = preset.range();
-    expect(start.getMonth() % 3).toBe(0);
-    expectValidRange(start, end);
+    if (preset) {
+      const [start, end] = preset.range();
+      expect(start && start.getMonth() % 3).toBe(0);
+      expectValidRange(start, end);
+    }
   });
 
   it('should correctly set range for "Last quarter"', () => {
     const preset = component.presets.find(p => p.label === 'Last quarter');
     expect(preset).toBeTruthy();
-    const [start, end] = preset.range();
-    expect(start.getMonth() % 3).toBe(0);
-    expectValidRange(start, end);
+    if (preset) {
+      const [start, end] = preset.range();
+      expect(start && start.getMonth() % 3).toBe(0);
+      expectValidRange(start, end);
+    } else {
+      fail('Preset "Last quarter" not found');
+    }
   });
 
   it('should correctly set range for "This year so far"', () => {
     const preset = component.presets.find(p => p.label === 'This year so far');
     expect(preset).toBeTruthy();
-    const [start, end] = preset.range();
-    expect(start.getMonth()).toBe(0);
-    expect(end <= new Date()).toBeTrue();
-    expectValidRange(start, end);
+    if (preset) {
+      const [start, end] = preset.range();
+      expect(start && start.getMonth()).toBe(0);
+      expect(end && end <= new Date()).toBeTrue();
+      expectValidRange(start, end);
+    }
   });
 
   it('should correctly set range for "Today"', () => {
     const preset = component.presets.find(p => p.label === 'Today');
     expect(preset).toBeTruthy();
-    const [start, end] = preset.range();
-    expect(start.getDate()).toBe(new Date().getDate());
-    expect(end.getDate()).toBe(new Date().getDate());
-    expectValidRange(start, end);
+    if (preset) {
+      const [start, end] = preset.range();
+      expect(start && start.getDate()).toBe(new Date().getDate());
+      expect(end && end.getDate()).toBe(new Date().getDate());
+      expectValidRange(start, end);
+    }
   });
 });
