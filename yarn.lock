@@ -8708,10 +8708,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"core-js@npm:^2.4.0, core-js@npm:^2.6.11":
+"core-js@npm:^2.4.0":
   version: 2.6.12
   resolution: "core-js@npm:2.6.12"
   checksum: 10c0/00128efe427789120a06b819adc94cc72b96955acb331cb71d09287baf9bd37bebd191d91f1ee4939c893a050307ead4faea08876f09115112612b6a05684b63
+  languageName: node
+  linkType: hard
+
+"core-js@npm:^3.0.0":
+  version: 3.45.0
+  resolution: "core-js@npm:3.45.0"
+  checksum: 10c0/118350f9f1d81f42a1276590d6c217dca04c789fdb8074c82e53056b1a784948769a62b16b98493fd73e8a988545432f302bca798571e56ad881b9c039a5a83c
   languageName: node
   linkType: hard
 
@@ -14637,7 +14644,7 @@ __metadata:
     axe-core: "npm:4.4.3"
     clean-css: "npm:5.3.1"
     codemirror: "npm:5.65.8"
-    core-js: "npm:^2.6.11"
+    core-js: "npm:^3.0.0"
     cpx: "npm:^1.5.0"
     cross-env: "npm:^7.0.2"
     cypress: "npm:^13.11.0"
