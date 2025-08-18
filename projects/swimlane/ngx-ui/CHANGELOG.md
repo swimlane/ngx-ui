@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 50.0.0-alpha.7 (2025-08-18)
+
 - Fix (`ngx-date-range-picker`): Tooltip fix for preset values.
 - Fix (`ngx-date-range-picker`): Apply Button should be in disabled state initially
 - Docs (`ngx-date-range-picker`): Added documentation link for relative time range expressions
