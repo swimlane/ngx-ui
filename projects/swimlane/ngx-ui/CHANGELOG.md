@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-date-range-picker`): Applied dynamic min/max date constraints to left and right calendars based on the selected start date.
+
 ## 50.0.0-alpha.7 (2025-08-18)
 
 - Fix (`ngx-date-range-picker`): Tooltip fix for preset values.
