@@ -5,5 +5,5 @@
     "entryFile": "src/public_api.ts",
     "styleIncludePaths": ["src/lib/components", "src/lib/styles", "src/lib/assets"]
   },
-  "allowedNonPeerDependencies": ["mousetrap", "ng2-file-upload"]
+  "allowedNonPeerDependencies": ["mousetrap", "ng2-file-upload", "date-fns"]
 }
