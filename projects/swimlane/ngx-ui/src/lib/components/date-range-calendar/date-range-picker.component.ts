@@ -177,10 +177,21 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
 
     this.form.startRaw = this.form.startDate ? format(this.form.startDate, this.dateFormat) : '';
     this.form.endRaw = this.form.endDate ? format(this.form.endDate, this.dateFormat) : '';
-
+    this.updateCalendarConstraints(this.form.startDate);
     this.updateSelectedPresetByValue();
     this.validationError = null;
     this.cdr.detectChanges();
+  }
+
+  updateCalendarConstraints(selectedDate: Date) {
+    // Left calendar: allow dates in the selected month and earlier
+    this.leftMinDate = null;
+    this.leftMaxDate = endOfMonth(selectedDate);
+
+    // Right calendar: allow dates from the start of next month onward
+    const nextMonth = addMonths(startOfMonth(selectedDate), 1);
+    this.rightMinDate = nextMonth;
+    this.rightMaxDate = null; // No upper limit unless needed
   }
 
   onCustomInputChange() {
@@ -197,6 +208,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
       this.form.startDate = start;
       this.form.endDate = end;
       this.rangeModel = { startDate: start, endDate: end };
+      this.updateCalendarConstraints(this.form.startDate);
       this.updateSelectedPresetByValue();
       this.cdr.detectChanges();
     } else {
@@ -251,6 +263,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
 
       this.validationError = null;
       this.selectedPreset = preset.label;
+      this.updateCalendarConstraints(this.form.startDate);
       this.cdr.detectChanges();
     }
   }
