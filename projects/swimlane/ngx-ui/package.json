@@ -39,7 +39,6 @@
     "rxjs": "7.x"
   },
   "dependencies": {
-    "date-fns": "4.1.0",
     "ng2-file-upload": "8.0.0",
     "mousetrap": "^1.6.2",
     "tslib": "^2.3.1"
@@ -56,6 +55,7 @@
     "@types/faker": "^4.1.11",
     "codemirror": "^5.63.0",
     "core-js": "^3.17.3",
+    "date-fns": "4.1.0",
     "faker": "^5.5.3",
     "moment": "^2.29.1",
     "ngx-moment": "^6.0.2",
