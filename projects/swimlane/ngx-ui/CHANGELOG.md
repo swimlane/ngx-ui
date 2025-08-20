@@ -2,9 +2,13 @@
 
 ## HEAD (unreleased)
 
+## 50.0.3 (2025-08-20)
+
+- Fix: Moved date-fns to project dependencies
+
 ## 50.0.2 (2025-08-20)
 
-- Chore: Moved date-fns to project dependencies
+- Chore: Moved date-fns to project peer dependencies
 
 ## 50.0.1 (2025-08-20)
 
