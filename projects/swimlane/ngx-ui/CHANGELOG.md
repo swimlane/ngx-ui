@@ -2,7 +2,34 @@
 
 ## HEAD (unreleased)
 
+## 50.0.0 (2025-08-20)
+
+- Breaking: Removed support for Angular 17
+- Breaking (`ngx-column`): Setting Dynamic Components in `content` now follow declarative syntax to support outputs, two-way data binding
+- Breaking: Renamed ngx-filter-select to ngx-filter
+- Feature: Added new CSS Variables for colors, spacing, and typography
+- Feature (`ngx-date-range-picker`): Added a date range component
+- Feature: Added support for Angular 20
+- Enhancement (`ngx-column`): Added output `onColumnChange` that emits an event whenever the user changes the active column.
+- Enhancement (`ngx-date-range-picker`): Added tooltip
+- Enhancement (`ngx-date-range-picker`): Added future preset values
+- Enhancement (`ngx-date-range-picker`): Input Fields for preset values display relative expressions (e.g., now-2d to now) instead of converted date values for better clarity and editing.
+- Enhancement (`ngx-dropdown`): Updated background color for dark outline
+- Enhancement (`ngx-filter`): Added new inputs to show tooltip for customDropdown
+- Enhancement (`ngx-filter`): Updated output click event to handle icon click
+- Enhancement (`ngx-filter`): Explicitly sync dropdownComponent.open for CustomDropdown type
+- Enhancement (`ngx-filter`): Added support to render an icon and set its position
+- Enhancement (`ngx-filter`): Added support to display the options popup at the right or left of the select
+- Enhancement (`ngx-filter`): Added support to select the SelectAll option automatically when all the options are selected
+- Enhancement (`ngx-filter`): Added support to set a filter type (select, button and customDropdown)
+- Enhancement (`ngx-filter`): Added a new output to emit an event when the filter is clicked
+- Enhancement (`ngx-section`): New 'minimal' SectionAppearance displays ngx-section without border or background
+- Fix (`ngx-column`): Content should display when column child is active on load.
 - Fix (`ngx-date-range-picker`): Applied dynamic min/max date constraints to left and right calendars based on the selected start date.
+- Fix (`ngx-date-range-picker`): Tooltip fix for preset values.
+- Fix (`ngx-date-range-picker`): Apply Button should be in disabled state initially
+- Fix (`ngx-date-range-picker`): Error handling for invalid custom input and updated preset list.
+- Docs (`ngx-date-range-picker`): Added documentation link for relative time range expressions
 
 ## 50.0.0-alpha.7 (2025-08-18)
 
