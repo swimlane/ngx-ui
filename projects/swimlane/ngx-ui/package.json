@@ -39,6 +39,7 @@
     "rxjs": "7.x"
   },
   "dependencies": {
+    "date-fns": "4.1.0",
     "ng2-file-upload": "8.0.0",
     "mousetrap": "^1.6.2",
     "tslib": "^2.3.1"
