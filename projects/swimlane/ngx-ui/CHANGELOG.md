@@ -8,7 +8,7 @@
 
 ## 50.0.1 (2025-08-20)
 
-- Chore: Added date-fns to project dependencies
+- Chore: Added date-fns to dev dependencies
 
 ## 50.0.0 (2025-08-20)
 
