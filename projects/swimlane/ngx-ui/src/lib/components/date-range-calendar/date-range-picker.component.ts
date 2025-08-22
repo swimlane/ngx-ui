@@ -144,15 +144,23 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
 
   private initializeFromSelectedRange() {
     if (this.selectedRange) {
+      const startDate =
+        typeof this.selectedRange.start === 'string'
+          ? DateUtils.parseExpression(this.selectedRange.start)
+          : this.selectedRange.start;
+      const endDate =
+        typeof this.selectedRange.end === 'string'
+          ? DateUtils.parseExpression(this.selectedRange.end)
+          : this.selectedRange.end;
       this.lastConfirmedRange = {
-        startDate: new Date(this.selectedRange.start),
-        endDate: new Date(this.selectedRange.end)
+        startDate,
+        endDate
       };
       this.form.startRaw = this.selectedRange.start;
       this.form.endRaw = this.selectedRange.end;
-      this.form.startDate = this.parseFn(this.selectedRange.start);
-      this.form.endDate = this.parseFn(this.selectedRange.end);
-      this.setTooltipDate(this.form.startDate, this.form.endDate);
+      this.form.startDate = startDate;
+      this.form.endDate = endDate;
+      this.setTooltipDate(startDate, endDate);
     }
   }
 
