@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-date-range-picker`): Support string or Date input for `selectedRange`.
+
 ## 50.0.3 (2025-08-20)
 
 - Fix: Moved date-fns to project dependencies
