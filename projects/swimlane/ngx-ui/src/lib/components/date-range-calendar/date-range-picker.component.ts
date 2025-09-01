@@ -55,7 +55,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
     range: () => [Date | null, Date | null];
     expression?: { start: string; end: string };
   }[] = DateUtils.getDefaultPresets(DateUtils.parseExpression);
-  @Input() parseFn: (expr: string) => Date = DateUtils.parseExpression;
+  @Input() parseFn: (expr: string, context?: 'start' | 'end') => Date = DateUtils.parseExpression;
   @Input() showTooltip = true;
   @Input() placeholders = { start: 'Start (e.g., now-7d)', end: 'End (e.g., now)' };
   @Input()
