@@ -386,4 +386,25 @@ describe('SelectComponent', () => {
       expect(component.select.disabled).toBeFalse();
     });
   });
+
+  describe('optionsTemplate', () => {
+    it('do not override items when they were bound by the "options" input', () => {
+      component.select.items = [
+        selectDropdownOptionMock({ value: { value: 'test' } }),
+        selectDropdownOptionMock({ value: { value: 'test1' } }),
+        selectDropdownOptionMock({ value: { value: 'test2' } })
+      ];
+      component.select.optionTemplates = { toArray: () => [] } as any;
+      fixture.detectChanges();
+      expect(component.select.options.length).toBe(3);
+    });
+
+    it('override items when they were not bound by the "options" input', () => {
+      component.select.items = [selectDropdownOptionMock({ value: { value: 'test' } })];
+      component.select['_boundByOptionsInput'] = false;
+      component.select.optionTemplates = { toArray: () => [] } as any;
+      fixture.detectChanges();
+      expect(component.select.options.length).toBe(0);
+    });
+  });
 });
