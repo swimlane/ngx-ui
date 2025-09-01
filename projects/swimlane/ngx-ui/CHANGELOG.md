@@ -2,7 +2,7 @@
 
 ## HEAD (unreleased)
 
-- Fix (`ngx-date-range-picker`): Fix End Expression for presets values
+- Fix (`ngx-date-range-picker`): Fix end expression for presets values
 - Fix (`ngx-date-range-picker`): Support string or Date input for `selectedRange`.
 
 ## 50.0.3 (2025-08-20)
