@@ -27,21 +27,41 @@ import {
 } from 'date-fns';
 
 export class DateUtils {
-  static parseExpression(expr: string): Date {
+  static parseExpression(expr: string, context: 'start' | 'end' = 'start'): Date {
     const now = new Date();
     if (!expr) return now;
     const cleanExpr = expr.trim();
 
     if (cleanExpr === 'now') return now;
     if (cleanExpr === 'now/d') return startOfDay(now);
-    if (cleanExpr === 'now/M') return startOfMonth(now);
-    if (cleanExpr === 'now/Y') return startOfYear(now);
-    if (cleanExpr === 'now/w') return startOfWeek(now, { weekStartsOn: 0 });
-    if (cleanExpr === 'now/Q') return startOfQuarter(now);
-    if (cleanExpr === 'endOfMonth') return endOfMonth(now);
-    if (cleanExpr === 'endOfQuarter') return endOfQuarter(now);
-    if (cleanExpr === 'endOfYear') return endOfYear(now);
-    if (cleanExpr === 'endOfWeek') return endOfWeek(now, { weekStartsOn: 0 });
+    if (cleanExpr === 'now/M') return context === 'end' ? endOfMonth(now) : startOfMonth(now);
+    if (cleanExpr === 'now/Y') return context === 'end' ? endOfYear(now) : startOfYear(now);
+    if (cleanExpr === 'now/w')
+      return context === 'end' ? endOfWeek(now, { weekStartsOn: 0 }) : startOfWeek(now, { weekStartsOn: 0 });
+    if (cleanExpr === 'now/Q') return context === 'end' ? endOfQuarter(now) : startOfQuarter(now);
+
+    // Last week
+    if (cleanExpr === 'now-1w/w') {
+      const lastWeek = subWeeks(now, 1);
+      return context === 'end' ? endOfWeek(lastWeek, { weekStartsOn: 0 }) : startOfWeek(lastWeek, { weekStartsOn: 0 });
+    }
+
+    // Last quarter
+    if (cleanExpr === 'now-1Q/Q') {
+      const lastQuarter = subQuarters(now, 1);
+      return context === 'end' ? endOfQuarter(lastQuarter) : startOfQuarter(lastQuarter);
+    }
+
+    // Last month
+    if (cleanExpr === 'now-1M/M') {
+      const lastMonth = subMonths(now, 1);
+      return context === 'end' ? endOfMonth(lastMonth) : startOfMonth(lastMonth);
+    }
+
+    if (cleanExpr === 'now+1w/w') {
+      const nextWeek = addWeeks(now, 1);
+      return context === 'end' ? endOfWeek(nextWeek, { weekStartsOn: 0 }) : startOfWeek(nextWeek, { weekStartsOn: 0 });
+    }
 
     const match = cleanExpr.match(/^now([+-])(\d+)([mhdMywQ])(?:\/(\w))?$/);
     if (match) {
@@ -168,7 +188,7 @@ export class DateUtils {
       },
       {
         label: 'This week',
-        expression: { start: 'now/w', end: 'endOfWeek' },
+        expression: { start: 'now/w', end: 'now/w' },
         range: () => [startOfWeek(new Date(), { weekStartsOn: 0 }), endOfWeek(new Date(), { weekStartsOn: 0 })]
       },
       {
@@ -186,7 +206,7 @@ export class DateUtils {
       },
       {
         label: 'This month',
-        expression: { start: 'now/M', end: 'endOfMonth' },
+        expression: { start: 'now/M', end: 'now/M' },
         range: () => [DateUtils.parseExpression('now/M'), endOfMonth(new Date())]
       },
       {
@@ -201,7 +221,7 @@ export class DateUtils {
       },
       {
         label: 'This quarter',
-        expression: { start: 'now/Q', end: 'endOfQuarter' },
+        expression: { start: 'now/Q', end: 'now/Q' },
         range: () => [startOfQuarter(new Date()), endOfQuarter(new Date())]
       },
       {
@@ -220,7 +240,7 @@ export class DateUtils {
       },
       {
         label: 'This year',
-        expression: { start: 'now/Y', end: 'endOfYear' },
+        expression: { start: 'now/Y', end: 'now/Y' },
         range: () => [DateUtils.parseExpression('now/Y'), endOfYear(new Date())]
       },
       {
