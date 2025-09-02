@@ -3,7 +3,7 @@
 ## HEAD (unreleased)
 
 - Fix (`ngx-select`): Only overwrite the `options` input if a value is provided in the template.
-- Fix (`ngx-date-range-picker`): Fix end expression for presets values.
+- Fix (`ngx-date-range-picker`): Fix end expression for preset values.
 - Fix (`ngx-date-range-picker`): Support string or Date input for `selectedRange`.
 
 ## 50.0.3 (2025-08-20)
