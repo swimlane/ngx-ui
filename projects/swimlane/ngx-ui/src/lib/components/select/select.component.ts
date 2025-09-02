@@ -94,7 +94,13 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   @Input() selectCaret: string;
   @Input() requiredIndicator: string | boolean = '*';
 
-  @Input() options: SelectDropdownOption[] = [];
+  @Input() set options(options: SelectDropdownOption[]) {
+    this._boundByOptionsInput = true;
+    this._options = options;
+  }
+  get options(): SelectDropdownOption[] {
+    return this._options;
+  }
   @Input() identifier: string;
   @Input() appearance = Appearance.Legacy;
 
@@ -208,9 +214,9 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
       }
 
       if (arr.length) {
-        this.options = arr;
-      } else {
-        this.options = [];
+        this._options = arr;
+      } else if (!this._boundByOptionsInput) {
+        this._options = [];
       }
     }
 
@@ -273,6 +279,8 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   private _optionTemplates: QueryList<SelectOptionDirective>;
   private _value: any[] = [];
   private _autosizeMinWidth = '60px';
+  private _options: SelectDropdownOption[] = [];
+  private _boundByOptionsInput = false;
 
   constructor(
     private readonly _element: ElementRef,
