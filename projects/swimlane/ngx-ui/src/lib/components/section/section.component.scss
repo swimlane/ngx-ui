@@ -1,41 +1,46 @@
 @use 'colors/colors' as colors;
 @use 'colors/shadow-variables' as shadows;
 
-$section-header-bg: colors.$color-blue-grey-775;
-$section-header-color: colors.$color-blue-grey-100;
+$section-header-bg: var(--grey-775);
+$section-header-color: var(--grey-100);
 $section-shadow: shadows.$shadow-3;
 
 @mixin focus-ring {
-  outline: 2px solid colors.$color-blue-200;
-  border-radius: 2px;
+  outline: 2px solid var(--blue-200);
+  border-radius: var(--radius-2);
   outline-offset: 1px;
 }
 
 .ngx-section {
   display: block;
   margin-bottom: 2em;
-  background: colors.$color-blue-grey-825;
+  background: var(--grey-825);
 
   .ngx-section-header {
     background: $section-header-bg;
     display: block;
     width: auto;
     height: 40px;
-    line-height: 40px;
-    padding: 0 10px;
+    line-height: var(--font-line-height-400);
+    padding: var(--spacing-0) 10px;
     color: $section-header-color;
     position: relative;
+    border-radius: var(--radius-4) var(--radius-4) var(--radius-0) var(--radius-0);
+
+    &.section-collapsed {
+      border-radius: var(--radius-4);
+    }
 
     .ngx-section-toggle {
       font-size: 8px;
       vertical-align: top;
       display: inline-block;
-      line-height: 40px;
+      line-height: var(--font-line-height-400);
       position: absolute;
       background: none;
       border: none;
       box-shadow: none;
-      padding: 0 10px;
+      padding: var(--spacing-0) 10px;
       left: 5px;
 
       &:focus-visible {
@@ -49,14 +54,14 @@ $section-shadow: shadows.$shadow-3;
 
     h1 {
       font-size: 1.1em;
-      font-weight: 600;
-      line-height: 40px;
-      padding: 0;
-      margin: 0;
+      font-weight: var(--font-weight-semibold);
+      line-height: var(--font-line-height-400);
+      padding: var(--spacing-0);
+      margin: var(--spacing-0);
     }
 
     &.ngx-section-collapsible {
-      padding: 0 20px 0 35px;
+      padding: var(--spacing-0) var(--spacing-20) var(--spacing-0) 35px;
 
       &.header-toggle {
         cursor: pointer;
@@ -69,13 +74,17 @@ $section-shadow: shadows.$shadow-3;
 
     &.toggle-right {
       &.ngx-section-collapsible {
-        padding: 0 20px 0 15px;
+        padding: var(--spacing-0) var(--spacing-20) var(--spacing-0) 15px;
       }
 
       .ngx-section-toggle {
         left: calc(100% - 30px);
       }
     }
+  }
+
+  .ngx-section-content {
+    border-radius: var(--radius-0) var(--radius-0) var(--radius-4) var(--radius-4);
   }
 
   &.shadow {
@@ -88,64 +97,42 @@ $section-shadow: shadows.$shadow-3;
     .ngx-section-header,
     .ngx-section-content {
       background: none;
-      border: 1px solid colors.$color-blue-grey-600;
+      border: 1px solid var(--grey-600);
     }
 
     .ngx-section-header {
-      border-radius: 2px 2px 0 0;
+      border-radius: var(--radius-4) var(--radius-4) var(--radius-0) var(--radius-0);
 
       &.section-collapsed {
-        border-radius: 2px;
+        border-radius: var(--radius-4);
       }
     }
 
     .ngx-section-content {
       border-top: 0;
-      border-radius: 0 0 2px 2px;
+      border-radius: var(--radius-0) var(--radius-0) var(--radius-4) var(--radius-4);
     }
   }
 
   &.light {
-    background: colors.$color-blue-grey-775;
+    background: var(--grey-775);
 
     .ngx-section-header,
     .ngx-section-content {
-      border: 2px solid colors.$color-blue-grey-700;
+      border: 2px solid var(--grey-700);
     }
 
     .ngx-section-header {
-      background: colors.$color-blue-grey-700;
-      border-radius: 0;
+      background: var(--grey-700);
+      border-radius: var(--radius-4) var(--radius-4) var(--radius-0) var(--radius-0);
 
       &.section-collapsed {
-        border-radius: 0;
+        border-radius: var(--radius-0);
       }
     }
 
     .ngx-section-content {
-      border-radius: 0;
-    }
-  }
-
-  &.minimal {
-    background: none;
-
-    .ngx-section-header,
-    .ngx-section-content {
-      border: none;
-    }
-
-    .ngx-section-header {
-      background: none;
-      border-radius: 0;
-
-      &.section-collapsed {
-        border-radius: 0;
-      }
-    }
-
-    .ngx-section-content {
-      border-radius: 0;
+      border-radius: var(--radius-0) var(--radius-0) var(--radius-4) var(--radius-4);
     }
   }
 }

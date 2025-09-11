@@ -1,102 +1,108 @@
 @use 'colors/colors' as colors;
 
 ngx-date-range-picker {
+  .ngx-dropdown-menu {
+    border-radius: var(--radius-6);
+  }
   .time-range-label {
     display: inline-flex;
     align-items: center;
-    gap: 6px; // spacing between label and icon
-    font-size: 14px;
-    color: white;
+    gap: var(--spacing-8); // spacing between label and icon
+    font-size: var(--font-size-m);
+    color: var(--white);
 
     .calendar-dialog-btn {
-      font-size: 16px;
+      font-size: var(--font-size-m);
       cursor: pointer;
-      line-height: 1;
+      line-height: var(--font-line-height-100);
 
       &:hover {
-        color: white;
+        color: var(--white);
       }
     }
   }
 
   .btn-primary .time-range-label {
     .calendar-dialog-btn {
-      font-size: 16px;
-      color: white;
+      font-size: var(--font-size-m);
+      color: var(--white);
       cursor: pointer;
-      line-height: 1;
+      line-height: var(--font-line-height-100);
     }
   }
 
   .btn.btn-bordered,
   .btn-primary {
     display: flex;
-    padding: 6px 10px;
+    padding: var(--spacing-8) var(--spacing-10);
     justify-content: center;
     align-items: center;
-    gap: 6px;
+    gap: var(--spacing-8);
   }
 
   .date-range-selection {
     display: flex;
-    font-size: 16px;
-    font-weight: 600;
-    color: colors.$color-blue-grey-250;
-    padding: 12px 20px;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-semibold);
+    color: var(--grey-250);
+    padding: var(--spacing-12) var(--spacing-20);
     align-items: center;
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.07);
     font-family: 'Source Sans Pro';
     font-style: normal;
-    line-height: 22px;
+    line-height: var(--font-line-height-300);
     justify-content: flex-start;
   }
 
   .ngx-input-box {
-    height: 33px;
+    height: var(--input-height);
   }
 
   .date-range-picker {
     display: flex;
     flex-direction: row;
-    background-color: colors.$color-blue-grey-800;
+    background-color: var(--grey-800);
     color: white;
-    border: 1px solid var(--blue-grey-color-blue-grey-700, #313847);
+    border: 1px solid var(--grey-700);
     width: 100%;
   }
 
-  .sidebar {
+  ul.sidebar {
+    list-style: none;
     width: 160px;
-    border-right: 1px solid colors.$color-blue-grey-700;
+    border-right: 1px solid var(--grey-700);
     display: flex;
     flex-direction: column;
     overflow-y: auto;
     height: 392px;
-    font-size: 14px;
+    font-size: var(--font-size-s);
     text-align: left;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
+    padding-left: var(--spacing-4);
   }
 
-  .sidebar p {
+  ul.sidebar li {
     cursor: pointer;
-    padding: 12px 20px;
+    padding: var(--spacing-12) var(--spacing-20);
+    border-radius: var(--radius-6);
     flex-direction: column;
-    color: var(--blue-grey-color-blue-grey-100, #cdd2dd);
+    color: var(--grey-100);
     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.07);
-    font-size: 14px;
+    font-size: var(--font-size-s);
     font-style: normal;
-    font-weight: 400;
-    line-height: 16px;
+    font-weight: var(--font-weight-regular);
+    line-height: var(--font-line-height-100);
     margin: 0px;
   }
 
-  .sidebar p:hover,
-  .sidebar .active {
-    background-color: colors.$color-blue-grey-700;
-    color: white;
+  ul.sidebar li:hover,
+  ul.sidebar .active {
+    background-color: var(--grey-700);
+    color: var(--white);
   }
 
   .calendar-panel {
-    padding: 0px 20px;
+    padding: 0px var(--spacing-20);
   }
 
   .input-row {
@@ -105,11 +111,11 @@ ngx-date-range-picker {
     gap: 12px;
 
     ngx-input {
-      color: white;
-      font-size: 16px;
+      color: var(--white);
+      font-size: var(--font-size-m);
       font-style: normal;
-      font-weight: 400;
-      line-height: 20.1px;
+      font-weight: var(--font-weight-regular);
+      line-height: var(--font-line-height-300);
       font-family: 'Source Sans Pro';
     }
 
@@ -127,10 +133,10 @@ ngx-date-range-picker {
         right: 12px;
         transform: translateY(-50%);
         font-size: 14px;
-        color: colors.$color-blue-grey-350;
+        color: var(--grey-300);
 
         &:hover {
-          color: white;
+          color: var(--white);
         }
       }
     }
@@ -141,23 +147,24 @@ ngx-date-range-picker {
       flex-direction: column;
       justify-content: center;
       align-self: stretch;
-      font-size: 16px;
+      font-size: var(--font-size-s);
       font-style: normal;
-      font-weight: 400;
-      color: white;
-      padding-bottom: 6px;
+      font-weight: var(--font-weight-regular);
+      line-height: var(--font-line-height-100);
+      color: var(--white);
+      padding-bottom: var(--spacing-8);
     }
   }
 
   .dual-calendar-wrapper {
     display: flex;
-    gap: 32px;
+    gap: var(--spacing-30);
     justify-content: flex-start;
 
     .ngx-calendar {
       box-shadow: none;
       border: none;
-      padding: 0px 8px 4px 8px;
+      padding: 0px var(--spacing-8) var(--spacing-4) var(--spacing-8);
     }
 
     .ngx-calendar .time-inputs {
@@ -168,15 +175,15 @@ ngx-date-range-picker {
   .buttons {
     display: flex;
     height: 46px;
-    padding: 0px 20px;
+    padding: 0px var(--spacing-20);
     align-items: center;
-    gap: 8px;
+    gap: var(--spacing-8);
     align-self: stretch;
     justify-content: space-between;
-    margin: 4px 0px;
+    margin: var(--spacing-4) 0px;
 
     ngx-button {
-      font-size: 14px;
+      font-size: var(--font-size-s);
     }
   }
 
@@ -185,7 +192,7 @@ ngx-date-range-picker {
     display: flex;
 
     ngx-button.btn {
-      height: 33px !important;
+      height: var(--input-height) !important;
     }
   }
 
@@ -196,7 +203,7 @@ ngx-date-range-picker {
   }
 
   .right {
-    gap: 8px;
+    gap: var(--spacing-8);
   }
 
   .hide {
@@ -218,12 +225,12 @@ ngx-date-range-picker {
 }
 
 .ngx-tooltip-content.date-tooltip {
-  padding: 5px;
+  padding: var(--spacing-4);
 
   .date-zone-display {
     font-weight: bold;
     font-size: 15px;
-    color: colors.$color-blue-grey-700;
+    color: var(--grey-700);
 
     > span {
       display: inline-block;
@@ -231,14 +238,14 @@ ngx-date-range-picker {
 
     button {
       float: right;
-      font-weight: bold;
-      line-height: 16px;
+      font-weight: var(--font-weight-bold);
+      line-height: var(--font-line-height-100);
       font-size: 11px;
       text-transform: uppercase;
-      color: colors.$color-blue-grey-700;
+      color: var(--grey-700);
       background: #dee1ea;
       margin-left: 5px;
-      padding: 0 6px;
+      padding: 0 var(--spacing-8);
       vertical-align: text-top;
       text-align: left;
       min-width: 70px;
