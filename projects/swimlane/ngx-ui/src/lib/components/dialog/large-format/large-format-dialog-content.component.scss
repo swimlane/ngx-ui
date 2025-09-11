@@ -48,7 +48,7 @@
     max-height: var(--max-height, 75vh);
     background: gradients.$bg-linear-3;
     box-shadow: 0 0 100px rgba(0, 0, 0, 0.25);
-    border-radius: 0.125rem;
+    border-radius: var(--radius-8);
 
     &__header {
       flex: 0 0 var(--header-height, 60px);

@@ -8,6 +8,8 @@
   z-index: 998;
   background: colors.$color-blue-grey-800;
   background: #313847;
+  border-top-left-radius: var(--radius-6);
+  border-top-right-radius: var(--radius-6);
 
   &.ngx-nag-bottom {
     left: 20%;
