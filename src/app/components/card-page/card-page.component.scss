@@ -28,7 +28,7 @@
   .playbook-card {
     &.border {
       border: solid 2px colors.$color-blue-grey-650;
-      border-radius: 2px;
+      border-radius: var(--radius-6);
     }
 
     .ngx-card-header {

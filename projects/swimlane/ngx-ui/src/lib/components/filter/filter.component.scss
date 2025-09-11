@@ -48,7 +48,7 @@ $max-width: 300px;
   .ngx-chip {
     border: 1px solid colors.$color-blue-grey-500;
     border-radius: 4px;
-    height: 30px;
+    height: 33px;
     padding: 0px;
     line-height: 0;
     display: flex;
@@ -82,7 +82,7 @@ $max-width: 300px;
       border-top-left-radius: 4px;
       border-bottom-left-radius: 4px;
       overflow: hidden;
-      max-width: calc($max-width - 33px);
+      max-width: calc($max-width - var(--input-height));
       text-overflow: ellipsis;
       white-space: nowrap;
       user-select: none;
@@ -239,14 +239,15 @@ $max-width: 300px;
     top: 100%;
     z-index: 1000;
     width: 100%;
-    min-width: 300px;
     background: $color-dropdown-bg;
-    border: 1px solid colors.$color-blue-grey-550;
+    border: 1px solid transparent;
+    border-radius: var(--radius-6);
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-    margin-top: 10px;
+    margin-top: -1em;
     opacity: 0;
     display: none;
     transition: visibility 0s, opacity 0.25s ease-out;
+    overflow: hidden;
 
     li {
       max-width: 100%;
@@ -341,6 +342,8 @@ $max-width: 300px;
       padding: 10px 20px;
       background: $color-filter-bg;
       position: relative;
+      border-top-left-radius: var(--radius-6);
+      border-top-right-radius: var(--radius-6);
 
       .ngx-search,
       .ngx-x {

@@ -3,13 +3,13 @@
     <div class="date-range-selection"><span>Date range selection </span></div>
     <div class="date-range-picker">
       <!-- Sidebar Presets -->
-      <div class="sidebar">
+      <ul class="sidebar">
         @for (preset of presets; track preset) {
-        <p [class.active]="selectedPreset === preset.label" (click)="selectPreset(preset)">
+        <li [class.active]="selectedPreset === preset.label" (click)="selectPreset(preset)">
           {{ preset.label }}
-        </p>
+        </li>
         }
-      </div>
+      </ul>
 
       <!-- Main Calendar + Inputs -->
       <div class="calendar-panel">
