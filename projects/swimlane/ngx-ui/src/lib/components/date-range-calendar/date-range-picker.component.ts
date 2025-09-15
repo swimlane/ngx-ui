@@ -160,6 +160,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
       this.form.endRaw = this.selectedRange.end;
       this.form.startDate = startDate;
       this.form.endDate = endDate;
+      this.rangeModel = { startDate, endDate };
       this.setTooltipDate(startDate, endDate);
     }
   }
