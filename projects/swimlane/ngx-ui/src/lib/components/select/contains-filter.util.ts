@@ -11,10 +11,6 @@ export function containsFilter(
   }
 
   if (typeof value === 'string') {
-    if (!isNaN(+value)) {
-      return value === keyword;
-    }
-
     const escapedKeyword = escapeRegExp(keyword);
     // eslint-disable-next-line
     const idx = options.filterCaseSensitive ? value.indexOf(keyword) : value.search(new RegExp(escapedKeyword, 'i'));
