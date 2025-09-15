@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-column`): Set column-expanded width to 100%.
+
 ## 50.0.4 (2025-09-02)
 
 - Fix (`ngx-select`): Only overwrite the `options` input if a value is provided in the template.
