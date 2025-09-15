@@ -34,6 +34,9 @@ import { FilterIconPositionTypes } from './filter.icon-position-types.enum';
 import { FilterCustomDropdown } from './filter.custom-component.interface';
 import { DropdownComponent } from '../dropdown/dropdown.component';
 import { PlacementTypes } from '../../utils/position/placement-type.enum';
+import { SelectionList } from '../multi-dimension-selection/types/selection-list';
+import { SelectionListOption } from '../multi-dimension-selection/types/selection-list-option';
+import { MultiDimensionSelectionComponent } from '../multi-dimension-selection/multi-dimension-selection.component';
 
 let nextId = 0;
 
@@ -59,12 +62,12 @@ function arrayEquals(a, b) {
     '[class.multi-selection]': 'multiple',
     '[class.single-selection]': 'isSingleSelect',
     '[class.disabled]': 'disabled',
-    '[class.active]': 'dropdownActive',
+    '[class.active]': 'dropdownActive || multiDimensionDropdownActive',
     '[class.active-selections]': 'hasSelections',
     '[class.has-placeholder]': 'hasPlaceholder',
     '[class.autosize]': 'autosize',
     '[style.min-width]': 'autosize ? autosizeMinWidth : undefined',
-    '[attr.aria-expanded]': 'dropdownActive',
+    '[attr.aria-expanded]': 'dropdownActive || multiDimensionDropdownActive',
     '[class.no-label]': '!label'
   },
   providers: [FILTER_VALUE_ACCESSOR],
@@ -95,10 +98,12 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   @Input() showTooltip = false;
   @Input() tooltipTemplate: TemplateRef<unknown> | null = null;
   @Input() tooltipPosition: PlacementTypes = PlacementTypes.top;
+  @Input() selectionList: SelectionList;
 
   @Input()
   @CoerceBooleanProperty()
   forceDownwardOpening = false;
+
   @Input()
   @CoerceBooleanProperty()
   autoSelectAll = false;
@@ -159,6 +164,10 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   @CoerceBooleanProperty()
   showCount = true;
 
+  @Input()
+  @CoerceBooleanProperty()
+  multiDimension = false;
+
   @Output() change = new EventEmitter<any[]>();
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();
   @Output() toggle = new EventEmitter<boolean>();
@@ -174,6 +183,9 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
 
   @ViewChild('dynamicContainer', { read: ViewContainerRef })
   dynamicContainer: ViewContainerRef;
+
+  @ViewChild(MultiDimensionSelectionComponent, { static: false })
+  readonly multiDimensionDropdown: MultiDimensionSelectionComponent;
 
   readonly FilterItemPositionTypes = FilterItemPositionTypes;
   readonly FilterType = FilterType;
@@ -235,13 +247,24 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     return this._selection.map(o => o.name || o.value).join(', ');
   }
 
+  get multiDimensionDropdownValue(): Array<string> {
+    if (this.value && Array.isArray(this.value)) {
+      return this.value.map(v => v.value);
+    }
+    return [];
+  }
+
   get value() {
     return this._value;
   }
   set value(val: any[]) {
     if (val !== this._value) {
       this._value = val;
-      this._selection = this.options?.filter(o => this._value.includes(o.value));
+      if (this.multiDimension) {
+        this._selection = this._value;
+      } else {
+        this._selection = this.options?.filter(o => this._value.includes(o.value));
+      }
       this.onChangeCallback(this._value);
       this.change.emit(this._value);
       this._cdr.markForCheck();
@@ -254,6 +277,11 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     return this.dropdownActive;
   }
 
+  get multiDimensionDropdownVisible() {
+    if (this.disableDropdown) return false;
+    return this.multiDimensionDropdownActive;
+  }
+
   get filterCount(): number {
     return this.type === FilterType.Select ? this.value?.length : this._filterCount;
   }
@@ -262,10 +290,15 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     return this.type === FilterType.CustomDropdown ? this.dropdownComponent?.open : this._dropdownActive;
   }
 
+  get multiDimensionDropdownActive(): boolean {
+    return this._multiDimensionDropdownActive;
+  }
+
   toggleListener?: () => void;
   filterQuery: string;
   focusIndex = -1;
   _dropdownActive = false;
+  _multiDimensionDropdownActive = false;
   touched = false;
 
   private _optionTemplates: QueryList<SelectOptionDirective>;
@@ -316,6 +349,11 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     this.afterSelect(shouldClose);
   }
 
+  onMultiDimensionDropdownChange(selection: Array<SelectionListOption>): void {
+    this.value = selection;
+    this.afterSelect(!this.multiple);
+  }
+
   private afterSelect(shouldClose: boolean = this.closeOnSelect || !this.multiple) {
     if (shouldClose) this.onClose();
   }
@@ -346,12 +384,16 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   }
 
   onBodyClick(event: Event): void {
-    if (this.dropdownActive) {
+    if (this.dropdownActive || this.multiDimensionDropdownActive) {
       const contains = this._element.nativeElement.contains(event.target);
 
       /* istanbul ignore else */
       if (!contains) {
-        this.toggleDropdown(false);
+        if (this.multiDimension) {
+          this.toggleMultiDimensionDropdown(false);
+        } else {
+          this.toggleDropdown(false);
+        }
       }
     }
   }
@@ -363,10 +405,15 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   onToggle(event: any): void {
     if (this.disabled) return;
 
-    this.toggleDropdown(!this.dropdownActive);
-    this.onTouchedCallback();
+    if (this.multiDimension) {
+      this.toggleMultiDimensionDropdown(!this.multiDimensionDropdownActive);
+      this.onTouchedCallback();
+    } else {
+      this.toggleDropdown(!this.dropdownActive);
+      this.onTouchedCallback();
 
-    this.clicked.emit({ event, isIconClicked: false });
+      this.clicked.emit({ event, isIconClicked: false });
+    }
   }
 
   toggleDropdown(state: boolean): void {
@@ -396,6 +443,32 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
           .subscribe({ next: this.adjustMenuDirection.bind(this) });
       }
     }
+    this._cdr.markForCheck();
+  }
+
+  toggleMultiDimensionDropdown(state: boolean): void {
+    if (this.multiDimensionDropdownActive === state) return;
+
+    this._multiDimensionDropdownActive = state;
+
+    if (this.toggleListener) this.toggleListener();
+    this.toggle.emit(this.dropdownActive);
+
+    if (this.multiDimensionDropdownActive) {
+      if (this.closeOnBodyClick) {
+        this.toggleListener = this._renderer.listen(document.body, 'click', this.onBodyClick.bind(this));
+      }
+
+      this._cdr.detectChanges();
+
+      if (this.multiDimensionDropdown?.inViewport()) {
+        this.multiDimensionDropdown
+          .inViewport()
+          .inViewportAction.pipe(take(1))
+          .subscribe({ next: this.adjustMenuDirection.bind(this) });
+      }
+    }
+
     this._cdr.markForCheck();
   }
 
@@ -450,7 +523,11 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     /* istanbul ignore else */
     if (val !== this._value) {
       this._value = val;
-      this._selection = this.options?.filter(o => this._value.includes(o.value));
+      if (this.multiDimension) {
+        this._selection = this._value;
+      } else {
+        this._selection = this.options?.filter(o => this._value.includes(o.value));
+      }
       this._cdr.markForCheck();
     }
   }
@@ -495,9 +572,17 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   }): void {
     const { entry } = event[InViewportMetadata];
     if (!this.forceDownwardOpening && this.isIntersectingBottom(entry) && !this.isIntersectingTop(entry)) {
-      this._renderer.addClass(this.selectDropdown.element, 'ngx-select-dropdown--upwards');
+      if (this.multiDimension) {
+        this._renderer.addClass(this.multiDimensionDropdown.element, 'ngx-multi-dimension-selection--upwards');
+      } else {
+        this._renderer.addClass(this.selectDropdown.element, 'ngx-select-dropdown--upwards');
+      }
     } else {
-      this._renderer.addClass(this.selectDropdown.element, 'ngx-select-dropdown--downwards');
+      if (this.multiDimension) {
+        this._renderer.addClass(this.multiDimensionDropdown.element, 'ngx-multi-dimension-selection--downwards');
+      } else {
+        this._renderer.addClass(this.selectDropdown.element, 'ngx-select-dropdown--downwards');
+      }
     }
   }
 

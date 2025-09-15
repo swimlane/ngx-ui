@@ -115,6 +115,7 @@ export class CheckboxComponent implements ControlValueAccessor {
 
   toggle() {
     this.value = !this.value;
+    this.emitChange();
     this.cdr.markForCheck();
   }
 
