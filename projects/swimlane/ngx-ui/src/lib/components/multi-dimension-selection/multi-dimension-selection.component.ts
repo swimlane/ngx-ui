@@ -48,14 +48,15 @@ export class MultiDimensionSelectionComponent implements OnChanges, AfterViewIni
   parentMap = new Map<string, string>();
   searchTerm = '';
   selectedSet: Set<string>;
+  selectionListModel: SelectionList;
   selectionLists: SelectionList[] = [];
   selectionMap = new Map<string, SelectionList>();
-  selectionListModel: SelectionList;
 
   // View children
   filterInput = viewChild(InputComponent);
   inViewport = viewChild(InViewportDirective);
 
+  // Host listeners
   @HostListener('document:keydown.escape', ['$event'])
   onKeydownEscape() {
     this.onClose.emit();
@@ -380,7 +381,7 @@ export class MultiDimensionSelectionComponent implements OnChanges, AfterViewIni
    * @function traverseActivePath
    *
    * @description
-   * Recursively traverses the active path of the provided `list` and its children, building the array of selection lists.
+   * Recursively traverses the active path of the provided `selectionList` and its children, building the array of selection lists.
    *
    * @param {SelectionList | undefined} selectionList - the current selection list being processed
    * @param {Array<SelectionList>} activeLists - the array to append selection lists to

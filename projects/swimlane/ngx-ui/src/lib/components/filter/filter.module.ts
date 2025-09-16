@@ -7,7 +7,6 @@ import { FilterComponent } from './filter.component';
 import { SelectModule } from '../select/select.module';
 import { DropdownModule } from '../dropdown/dropdown.module';
 import { DateRangePickerModule } from '../date-range-calendar/date-range.module';
-import { InputModule } from '../input/input.module';
 import { MultiDimensionSelectionModule } from '../multi-dimension-selection/multi-dimension-selection.module';
 
 export { FilterCustomDropdown } from './filter.custom-component.interface';
@@ -21,7 +20,6 @@ export { FilterCustomDropdown } from './filter.custom-component.interface';
     SelectModule,
     DropdownModule,
     DateRangePickerModule,
-    InputModule,
     MultiDimensionSelectionModule
   ]
 })

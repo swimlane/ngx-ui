@@ -2,7 +2,7 @@
 
 <ngx-tabs>
   <ngx-tab label="Examples" [active]="true">
-    <ngx-section class="shadow" sectionTitle="Multi Dimension Selection - Integrated with Filters Component">
+    <ngx-section class="shadow" sectionTitle="Multi Dimension Selection - Integrated with Filter Component">
       <ngx-filter
         label="Multi Dimension Filter"
         [multiDimension]="true"
@@ -445,13 +445,10 @@
         </ngx-tab>
       </ngx-tabs>
     </ngx-section>
-    <ngx-section
-      class="shadow"
-      sectionTitle="Multi Dimension with Disabled Options - Integrated with Filters Component"
-    >
+    <ngx-section class="shadow" sectionTitle="Multi Dimension with Disabled Options - Integrated with Filter Component">
       <ngx-filter
         data-cy="multi-dimension-filter-disabled-options"
-        label="Multi Dimension Filter"
+        label="Disabled Options Filter"
         [multiDimension]="true"
         [multiple]="true"
         [selectionList]="disabledSelectionListExample"
@@ -468,7 +465,7 @@
           <app-prism ngNonBindable>
   <![CDATA[
   <ngx-filter
-    label="Multi Dimension Filter"
+    label="Disabled Options Filter"
     [multiDimension]="true"
     [multiple]="true"
     [selectionList]="disabledSelectionListExample"
@@ -842,9 +839,9 @@
         </ngx-tab>
       </ngx-tabs>
     </ngx-section>
-    <ngx-section class="shadow" sectionTitle="Multi Dimension Single Selection - Integrated with Filters Component">
+    <ngx-section class="shadow" sectionTitle="Multi Dimension Single Selection - Integrated with Filter Component">
       <ngx-filter
-        label="Multi Dimension Filter"
+        label="Single Selection Filter"
         [multiDimension]="true"
         [multiple]="false"
         [selectionList]="selectionListExample"
@@ -861,7 +858,7 @@
           <app-prism ngNonBindable>
   <![CDATA[
   <ngx-filter
-    label="Multi Dimension Filter"
+    label="Single Selection Filter"
     [multiDimension]="true"
     [multiple]="false"
     [selectionList]="selectionListExample"
