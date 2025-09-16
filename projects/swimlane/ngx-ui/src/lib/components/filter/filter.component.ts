@@ -407,13 +407,12 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
 
     if (this.multiDimension) {
       this.toggleMultiDimensionDropdown(!this.multiDimensionDropdownActive);
-      this.onTouchedCallback();
     } else {
       this.toggleDropdown(!this.dropdownActive);
-      this.onTouchedCallback();
-
-      this.clicked.emit({ event, isIconClicked: false });
     }
+
+    this.onTouchedCallback();
+    this.clicked.emit({ event, isIconClicked: false });
   }
 
   toggleDropdown(state: boolean): void {

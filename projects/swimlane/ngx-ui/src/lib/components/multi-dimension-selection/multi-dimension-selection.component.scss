@@ -9,7 +9,7 @@ ngx-multi-dimension-selection.ngx-multi-dimension-selection {
   transition: visibility 0s, opacity 0.25s ease-out;
   z-index: 1000;
 
-  &__standalone {
+  &__detached {
     opacity: 1;
     position: initial;
     transition: none;

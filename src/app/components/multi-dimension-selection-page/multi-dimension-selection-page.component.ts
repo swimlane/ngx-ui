@@ -12,40 +12,7 @@ export class MultiDimensionSelectionPageComponent implements OnInit {
 
   selectionListExampleValue = exampleSelectionListValue;
 
-  disabledSelectionListExampleValue: SelectionListOption[] = [
-    {
-      name: 'Option 2',
-      value: 'option2'
-    },
-    {
-      name: 'Option 2B',
-      value: 'option2b'
-    },
-    {
-      name: 'Option 6',
-      value: 'option6'
-    },
-    {
-      name: 'Option 6A',
-      value: 'option6a'
-    },
-    {
-      name: 'Option 6E',
-      value: 'option6e'
-    },
-    {
-      name: 'Option 6E-1',
-      value: 'option6e1'
-    },
-    {
-      name: 'Option 6E-4 With a Very Long Title',
-      value: 'option6e4'
-    },
-    {
-      name: 'Option 6E-7',
-      value: 'option6e7'
-    }
-  ];
+  disabledSelectionListExampleValue: Array<SelectionListOption> = [];
 
   singleSelectionListExampleValue: SelectionListOption[] = [
     {

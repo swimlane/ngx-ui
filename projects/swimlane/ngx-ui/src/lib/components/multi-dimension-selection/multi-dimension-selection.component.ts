@@ -27,18 +27,18 @@ import { InputComponent } from '../input/input.component';
   encapsulation: ViewEncapsulation.None,
   host: {
     class: 'ngx-multi-dimension-selection',
-    '[class.ngx-multi-dimension-selection__standalone]': 'standalone()'
+    '[class.ngx-multi-dimension-selection__detached]': 'detached()'
   }
 })
 export class MultiDimensionSelectionComponent implements OnChanges, AfterViewInit {
   // Inputs
+  detached = input<boolean>(false);
   emptyPlaceholder = input<string>('No options available');
   filterable = input<boolean>(true);
   filterEmptyPlaceholder = input<string>('No matches...');
   multiple = input<boolean>(true);
   selected = input<Array<string>>([]);
   selectionList = input<SelectionList>();
-  standalone = input<boolean>(false);
 
   // Outputs
   onClose = output<void>();
@@ -85,7 +85,7 @@ export class MultiDimensionSelectionComponent implements OnChanges, AfterViewIni
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      if (this.filterInput()?.element?.nativeElement) {
+      if (!this.detached() && this.filterInput()?.element?.nativeElement) {
         this.filterInput().element.nativeElement.focus();
       }
     }, 50);
