@@ -5,7 +5,6 @@ import { exampleSelectionList, exampleSelectionListValue } from './examples/mock
 @Component({
   selector: 'app-multi-dimension-selection-page',
   templateUrl: './multi-dimension-selection-page.component.html',
-  styleUrl: './multi-dimension-selection-page.component.scss',
   standalone: false
 })
 export class MultiDimensionSelectionPageComponent implements OnInit {

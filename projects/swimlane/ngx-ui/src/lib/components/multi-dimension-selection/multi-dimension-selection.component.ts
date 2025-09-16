@@ -103,9 +103,9 @@ export class MultiDimensionSelectionComponent implements OnChanges, AfterViewIni
     if (event.active) {
       event.selectionList.active = event.active;
     }
+
     const parentList = this.selectionLists.find(list => list.id === event.listId);
     const activeSibling = parentList?.children?.find(child => child.active && child.id !== event.selectionList.id);
-
     if (activeSibling) {
       // If it's a `mouseenter` event, deactivate the active sibling element
       // If it's a `mouseleave` event, deactivate the provided option
@@ -337,7 +337,7 @@ export class MultiDimensionSelectionComponent implements OnChanges, AfterViewIni
    * @function deactivatePath
    *
    * @description
-   * Recursively deactivates the active path for the provided `list` and any active children.
+   * Recursively deactivates the active path for the provided `selectionList` and any active children.
    *
    * @param {SelectionList | undefined} selectionList - the list to deactivate
    */

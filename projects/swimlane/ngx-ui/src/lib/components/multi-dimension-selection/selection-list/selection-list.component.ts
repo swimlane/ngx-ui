@@ -176,6 +176,7 @@ export class SelectionListComponent {
   private selectDeselectAllChildren(selected: boolean, children: SelectionList[]): void {
     children.forEach(child => {
       if (child.disabled) return;
+
       if (selected) {
         this.selected().add(child.id);
         this.selectAllAncestors(child.id);
