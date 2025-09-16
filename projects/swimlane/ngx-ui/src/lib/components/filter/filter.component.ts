@@ -319,6 +319,7 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
 
   ngOnDestroy(): void {
     this.toggleDropdown(false);
+    this.toggleMultiDimensionDropdown(false);
     this.dynamicContainer?.clear();
     this.dynamicComponentRef?.destroy();
   }
@@ -451,7 +452,7 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
     this._multiDimensionDropdownActive = state;
 
     if (this.toggleListener) this.toggleListener();
-    this.toggle.emit(this.dropdownActive);
+    this.toggle.emit(this.multiDimensionDropdownActive);
 
     if (this.multiDimensionDropdownActive) {
       if (this.closeOnBodyClick) {
