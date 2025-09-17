@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 50.1.0 (2025-09-17)
+
 - Feature (`ngx-multi-dimension-selection`): Added a new multi-dimension selection component
 - Feature (`ngx-filter`): Added new inputs to support multi-dimension filtering
 - Fix (`ngx-checkbox`): Emit change event when spacebar key is used to toggle checkbox
