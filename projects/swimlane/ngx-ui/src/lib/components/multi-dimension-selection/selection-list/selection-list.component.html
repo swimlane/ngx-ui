@@ -1,0 +1,49 @@
+@if (selectionList().label) {
+  <h3 
+    class="label" 
+    ngx-tooltip 
+    [tooltipTitle]="selectionList().label" 
+    [tooltipShowTimeout]="500"
+    >
+      {{ selectionList().label }}
+    </h3>
+}
+@if (multiple()) {
+<button class="select-deselect-all-btn" (click)="handleSelectDeselectAll()">
+  {{ selectDeselectText }}
+</button>
+}
+<ul class="options-list">
+  @if (selectionList().children) {
+  <cdk-virtual-scroll-viewport [style.height.px]="300" itemSize="40">
+    <li
+      *cdkVirtualFor="let option of selectionList().children"
+      class="options-list__option"
+      [class.options-list__option__active]="(option.active && option.children?.length > 0) || (!multiple() && selected().has(option.id))"
+      role="button"
+      tabindex="0"
+      [attr.disabled]="option.disabled"
+      (click)="handleSelectOption(option)"
+      (keyup.enter)="handleSelectOption(option)"
+      (mouseenter)="handleListNavigation(option, true)"
+      (mouseleave)="handleListNavigation(option, false)"
+    >
+      @if (multiple()) {
+      <ngx-checkbox
+        [ngModel]="selected().has(option.id)"
+        [disabled]="option.disabled"
+        (change)="handleSelectionChange($event, option)"
+      />
+      }
+      <span ngx-tooltip [tooltipTitle]="option.title" [tooltipShowTimeout]="500">{{ option.title }}</span>
+      @if (!multiple() && selected().has(option.id)) {
+      <i class="ngx-icon ngx-check options-list__option__selected-icon"></i>
+      } @if (option.children) {
+      <button (keyup.enter)="handleListNavigation(option, true)">
+        <i class="ngx-icon ngx-arrow-right"></i>
+      </button>
+      }
+    </li>
+  </cdk-virtual-scroll-viewport>
+  }
+</ul>

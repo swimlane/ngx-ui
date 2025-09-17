@@ -186,6 +186,13 @@ export * from './lib/components/long-press/long-press-button.module';
 export * from './lib/components/long-press/long-press-button.component';
 export * from './lib/components/long-press/long-press-button-state.enum';
 
+export * from './lib/components/multi-dimension-selection/multi-dimension-selection.module';
+export * from './lib/components/multi-dimension-selection/multi-dimension-selection.component';
+export * from './lib/components/multi-dimension-selection/selection-list/selection-list.module';
+export * from './lib/components/multi-dimension-selection/selection-list/selection-list.component';
+export * from './lib/components/multi-dimension-selection/types/selection-list';
+export * from './lib/components/multi-dimension-selection/types/selection-list-option';
+
 export * from './lib/components/nag/nag.module';
 export * from './lib/components/nag/nag.component';
 

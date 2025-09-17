@@ -257,6 +257,10 @@ export class AppComponent {
         {
           name: 'List',
           route: 'list'
+        },
+        {
+          name: 'Selection - Multi Dimension',
+          route: 'multi-dimension-selection'
         }
       ]
     }

@@ -1,0 +1,84 @@
+ngx-selection-list.ngx-selection-list {
+  display: block;
+  width: 200px;
+
+  &:not(:last-of-type) {
+    border-right: 1px solid var(--grey-700);
+  }
+
+  .label {
+    color: var(--grey-050);
+    font-size: var(--font-size-s);
+    margin-left: var(--spacing-12);
+    margin-top: var(--spacing-12);
+    max-width: 90%;
+    overflow: hidden;
+    padding-left: var(--spacing-4);
+    padding-right: var(--spacing-8);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .select-deselect-all-btn {
+    color: var(--blue-400);
+    font-size: var(--font-size-s);
+    margin-left: var(--spacing-12);
+    margin-top: var(--spacing-8);
+    padding-inline: var(--spacing-4);
+  }
+
+  .options-list {
+    list-style-type: none;
+    margin-top: var(--spacing-8);
+    margin-bottom: 0;
+    padding-left: 0;
+    width: 100%;
+
+    &__wrapper {
+      height: 40px;
+    }
+
+    &__option {
+      color: var(--grey-100);
+      cursor: pointer;
+      font-size: var(--font-size-s);
+      display: flex;
+      align-items: center;
+      height: 40px;
+      padding-left: var(--spacing-16);
+
+      &:hover:not(:disabled) {
+        background-color: var(--grey-750);
+      }
+
+      &__active {
+        background-color: var(--grey-800);
+      }
+
+      &__selected-icon {
+        color: var(--blue-400);
+        margin-left: auto;
+        margin-right: var(--spacing-12);
+      }
+
+      & > span {
+        max-width: 140px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      & > button {
+        display: flex;
+        align-items: center;
+        margin-left: auto;
+        padding-block: var(--spacing-4);
+
+        i.ngx-arrow-right {
+          color: var(--grey-200);
+          font-size: var(--font-size-xs);
+        }
+      }
+    }
+  }
+}

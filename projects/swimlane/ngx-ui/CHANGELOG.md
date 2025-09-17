@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+- Feature (`ngx-multi-dimension-selection`): Added a new multi-dimension selection component
+- Feature (`ngx-filter`): Added new inputs to support multi-dimension filtering
+- Fix (`ngx-checkbox`): Emit change event when spacebar key is used to toggle checkbox
+
 ## 50.0.4 (2025-09-02)
 
 - Fix (`ngx-select`): Only overwrite the `options` input if a value is provided in the template.
