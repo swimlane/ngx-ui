@@ -42,7 +42,7 @@ export class SelectionListComponent {
    * @param {boolean} active - whether the list option is active
    */
   handleListNavigation(selectionList: SelectionList, active: boolean): void {
-    if (!selectionList.children || selectionList.children.length === 0 || selectionList.disabled) {
+    if (selectionList.disabled) {
       return;
     }
 

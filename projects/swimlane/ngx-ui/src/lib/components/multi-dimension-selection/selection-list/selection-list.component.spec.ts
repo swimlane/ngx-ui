@@ -36,18 +36,6 @@ describe('SelectionListComponent', () => {
   });
 
   describe('handleListNavigation', () => {
-    it('should return if the selection list has no children', () => {
-      const onListNavigationSpy = spyOn(component.onListNavigation, 'emit');
-      const selectionList: SelectionList = {
-        id: '1',
-        title: 'Selection List 1'
-      };
-
-      component.handleListNavigation(selectionList, true);
-
-      expect(onListNavigationSpy).not.toHaveBeenCalled();
-    });
-
     it('should return if the selection list is disabled', () => {
       const onListNavigationSpy = spyOn(component.onListNavigation, 'emit');
       const selectionList: SelectionList = {
