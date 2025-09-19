@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-filter`): Show caret when `multiDimension` is enabled and no values are selected
+
 ## 50.1.0 (2025-09-17)
 
 - Feature (`ngx-multi-dimension-selection`): Added a new multi-dimension selection component

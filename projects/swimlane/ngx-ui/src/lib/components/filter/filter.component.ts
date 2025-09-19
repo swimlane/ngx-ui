@@ -475,7 +475,7 @@ export class FilterComponent implements ControlValueAccessor, AfterViewInit, OnD
   get caretVisible(): boolean {
     if (this.hasSelections) return false;
     if (this.disableDropdown) return false;
-    return !(!this.options || !this.options.length);
+    return !(!this.options || !this.options.length) || !!this.selectionList;
   }
 
   get clearVisible() {
