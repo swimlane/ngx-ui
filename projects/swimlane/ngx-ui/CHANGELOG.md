@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 50.1.1 (2025-09-19)
+
 - Fix (`ngx-filter`): Show caret when `multiDimension` is enabled and no values are selected
 
 ## 50.1.0 (2025-09-17)
