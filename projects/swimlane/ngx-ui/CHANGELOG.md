@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 50.1.2 (2025-09-22)
+
 - Fix (`ngx-multi-dimension-selection`): Set max-width on `cdk-virtual-scroll-viewport` wrapper to prevent overflow
 
 ## 50.1.1 (2025-09-19)
