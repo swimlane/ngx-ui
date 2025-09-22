@@ -27,15 +27,18 @@ ngx-selection-list.ngx-selection-list {
     padding-inline: var(--spacing-4);
   }
 
+  .cdk-virtual-scroll-orientation-vertical .cdk-virtual-scroll-content-wrapper {
+    max-width: 100%;
+  }
+
   .options-list {
     list-style-type: none;
     margin-top: var(--spacing-8);
     margin-bottom: 0;
     padding-left: 0;
-    width: 100%;
 
-    &__wrapper {
-      height: 40px;
+    &__viewport {
+      width: 200px;
     }
 
     &__option {

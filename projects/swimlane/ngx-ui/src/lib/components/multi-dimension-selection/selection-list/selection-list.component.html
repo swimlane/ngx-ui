@@ -15,7 +15,7 @@
 }
 <ul class="options-list">
   @if (selectionList().children) {
-  <cdk-virtual-scroll-viewport [style.height.px]="300" itemSize="40">
+  <cdk-virtual-scroll-viewport [style.height.px]="300" class="options-list__viewport" itemSize="40">
     <li
       *cdkVirtualFor="let option of selectionList().children"
       class="options-list__option"

@@ -7,7 +7,7 @@ export const exampleSelectionList: SelectionList = {
   children: [
     {
       id: 'option1',
-      title: 'Option 1',
+      title: 'Option 1 With a Very Long Title',
       model: {
         id: 'd3cf72f1-2be8-47aa-be77-a94df8092116',
         name: 'Option 1'
