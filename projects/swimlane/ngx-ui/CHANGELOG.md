@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-multi-dimension-selection`): Set max-width on `cdk-virtual-scroll-viewport` wrapper to prevent overflow
+
 ## 50.1.1 (2025-09-19)
 
 - Fix (`ngx-filter`): Show caret when `multiDimension` is enabled and no values are selected
