@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 50.1.3 (2025-09-23)
+
 - Fix (`ngx-multi-dimension-selection`): Show children of items matching search term
 
 ## 50.1.2 (2025-09-22)
