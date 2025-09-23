@@ -48,6 +48,7 @@ ngx-selection-list.ngx-selection-list {
       display: flex;
       align-items: center;
       height: 40px;
+      max-width: calc(100% - 1px); // Account for border-right of 1px from the parent `ngx-selection-list`
       padding-left: var(--spacing-16);
 
       &:hover:not(:disabled) {

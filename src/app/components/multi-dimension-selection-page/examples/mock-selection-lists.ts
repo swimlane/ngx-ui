@@ -340,6 +340,24 @@ export const exampleSelectionList: SelectionList = {
           }
         }
       ]
+    },
+    {
+      id: 'option12',
+      title: 'Option 12',
+      model: {
+        id: '812f9ad5-c51e-43e1-9f4c-6c075a79d206',
+        name: 'Option 12'
+      },
+      children: [
+        {
+          id: 'option12a',
+          title: 'Child with Text Unrelated to the Parent',
+          model: {
+            id: '739b0ad0-4c79-4f44-9489-6f7b4e03f6c7',
+            name: 'Child with Text Unrelated to the Parent'
+          }
+        }
+      ]
     }
   ]
 };
