@@ -323,9 +323,6 @@ export class MultiDimensionSelectionComponent implements OnChanges, AfterViewIni
       if (hasMatchingDescendants) {
         // Only include children if we have matching descendants
         result.children = filteredChildren;
-      } else {
-        // Current selection list matches but no matching children, delete children
-        delete result.children;
       }
 
       return result;
@@ -367,6 +364,10 @@ export class MultiDimensionSelectionComponent implements OnChanges, AfterViewIni
    * @param {SelectionList} selectionList - the current selection list being processed
    */
   private setActivePath(selectionList: SelectionList): void {
+    if (selectionList.disabled) {
+      return;
+    }
+
     selectionList.active = true;
 
     if (selectionList.children && selectionList.children.length > 0) {
