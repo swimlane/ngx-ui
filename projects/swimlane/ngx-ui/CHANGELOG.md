@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-multi-dimension-selection`): Show children of items matching search term
+
 ## 50.1.2 (2025-09-22)
 
 - Fix (`ngx-multi-dimension-selection`): Set max-width on `cdk-virtual-scroll-viewport` wrapper to prevent overflow
