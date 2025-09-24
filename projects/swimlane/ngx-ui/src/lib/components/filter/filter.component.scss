@@ -187,7 +187,7 @@ $max-width: 300px;
       opacity: 1;
       bottom: 100%;
       top: auto;
-      margin-bottom: 24px;
+      margin-bottom: var(--spacing-10);
       animation: openUpwardsAnimation 0.25s;
     }
 
@@ -198,6 +198,30 @@ $max-width: 300px;
 
     .ngx-select-dropdown {
       display: block;
+    }
+
+    .ngx-multi-dimension-selection {
+      &--upwards {
+        animation: openUpwardsAnimation 0.25s;
+        opacity: 1;
+        margin-bottom: var(--spacing-10);
+        top: auto;
+        bottom: 100%;
+      }
+
+      &--downwards {
+        animation: openAnimation 0.25s;
+        opacity: 1;
+        margin-top: var(--spacing-10);
+      }
+
+      &--left {
+        left: 0;
+      }
+
+      &--right {
+        right: 0;
+      }
     }
   }
 

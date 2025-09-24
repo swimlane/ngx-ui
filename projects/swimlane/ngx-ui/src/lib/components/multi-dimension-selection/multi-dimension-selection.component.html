@@ -1,0 +1,43 @@
+<div inViewport>
+  @if (filterable()) {
+  <div class="search-input">
+    <ngx-input placeholder="Search" [ngModel]="searchTerm" (ngModelChange)="handleSearchTermChange($event)">
+      <ngx-input-prefix>
+        <i class="ngx-icon ngx-search search-input__icon"></i>
+      </ngx-input-prefix>
+    </ngx-input>
+    @if (searchTerm) {
+    <button
+      class="search-input__clear-btn"
+      (click)="handleSearchTermChange('', true)"
+      (keyup.enter)="handleSearchTermChange('', true)"
+    >
+      <i class="ngx-icon ngx-x"></i>
+    </button>
+    }
+  </div>
+  } @if (selectionLists.length > 0) {
+  <div
+    class="selection-lists"
+    [style.gridTemplateColumns]="`repeat(${selectionLists.length > 3 ? 3 : selectionLists.length}, 200px)`"
+  >
+    @for (list of selectionLists; track list.id) {
+    <ngx-selection-list
+      [multiple]="multiple()"
+      [parentMap]="parentMap"
+      [selected]="selectedSet"
+      [selectionList]="list"
+      [selectionLists]="selectionLists"
+      [selectionMap]="selectionMap"
+      (onClose)="onClose.emit()"
+      (onListNavigation)="handleListNavigation($event)"
+      (onSelectedChange)="handleSelectedChange()"
+    ></ngx-selection-list>
+    }
+  </div>
+  } @else { @if (searchTerm) {
+  <span class="selection-lists__no-results">{{ filterEmptyPlaceholder() }} </span>
+  } @else {
+  <span class="selection-lists__no-results">{{ emptyPlaceholder() }}</span>
+  } }
+</div>

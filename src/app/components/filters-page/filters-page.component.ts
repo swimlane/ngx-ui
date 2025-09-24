@@ -11,10 +11,18 @@ import {
   ViewChild
 } from '@angular/core';
 import { AbstractControl, UntypedFormControl, UntypedFormGroup, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { DateRangePickerComponent, FilterComponent, FilterCustomDropdown, TreeComponent } from '@swimlane/ngx-ui';
+import {
+  DateRangePickerComponent,
+  FilterComponent,
+  FilterCustomDropdown,
+  SelectionList,
+  SelectionListOption,
+  TreeComponent
+} from '@swimlane/ngx-ui';
 import { Observable } from 'rxjs';
 import { fromFetch } from 'rxjs/fetch';
 import { switchMap } from 'rxjs/operators';
+import { exampleSelectionList } from '../multi-dimension-selection-page/examples/mock-selection-lists';
 
 export function forbiddenNameValidator(nameRe: RegExp): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
@@ -126,6 +134,10 @@ export class FiltersPageComponent implements OnInit {
     }
   ];
 
+  selectionListExample: SelectionList = structuredClone(exampleSelectionList);
+
+  selectionListExampleValue: Array<SelectionListOption> = [];
+
   labelForRange: string = 'Select a range';
 
   private get _results() {
@@ -156,6 +168,10 @@ export class FiltersPageComponent implements OnInit {
         });
       })
     );
+  }
+
+  onMultiDimensionSelectionChange(event: SelectionListOption[]): void {
+    console.log('Multi-dimension selection change: ', event);
   }
 
   ngOnInit(): void {

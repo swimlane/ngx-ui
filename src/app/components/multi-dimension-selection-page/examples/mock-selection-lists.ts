@@ -1,0 +1,414 @@
+import { SelectionList, SelectionListOption } from '@swimlane/ngx-ui';
+
+export const exampleSelectionList: SelectionList = {
+  id: '751badfa-587e-4e9f-9b72-de05fab53aa1',
+  active: true,
+  title: '',
+  children: [
+    {
+      id: 'option1',
+      title: 'Option 1 With a Very Long Title',
+      model: {
+        id: 'd3cf72f1-2be8-47aa-be77-a94df8092116',
+        name: 'Option 1'
+      },
+      children: [
+        {
+          id: 'option1a',
+          title: 'Option 1A',
+          model: {
+            id: '8759986b-acfc-430b-bf3e-68ca0ce4bcff',
+            name: 'Option 1A'
+          }
+        },
+        {
+          id: 'option1b',
+          title: 'Option 1B',
+          model: {
+            id: '0bfeeeae-aa84-4a8f-8136-6fd1c461d06c',
+            name: 'Option 1B'
+          }
+        },
+        {
+          id: 'option1c',
+          title: 'Option 1C',
+          model: {
+            id: '63edb06d-e8e2-493c-893f-914320279302',
+            name: 'Option 1C'
+          }
+        },
+        {
+          id: 'option1d',
+          title: 'Option 1D',
+          model: {
+            id: '4672f2d6-0ca1-42c1-a7b6-51eccf51fa60',
+            name: 'Option 1D'
+          }
+        }
+      ]
+    },
+    {
+      id: 'option2',
+      title: 'Option 2',
+      model: {
+        id: '56066336-350d-4e44-b160-6cbbe4893971',
+        name: 'Option 2'
+      },
+      children: [
+        {
+          id: 'option2a',
+          title: 'Option 2A',
+          model: {
+            id: '674ec51c-ade0-4462-928d-34e461690521',
+            name: 'Option 2A'
+          }
+        },
+        {
+          id: 'option2b',
+          title: 'Option 2B',
+          model: {
+            id: '961ac331-73b6-46e7-839a-6a26eeabb22d',
+            name: 'Option 2B'
+          }
+        }
+      ]
+    },
+    {
+      id: 'option3',
+      title: 'Option 3',
+      model: {
+        id: 'c72b4039-bbd5-48e0-8c1e-219488f5a3df',
+        name: 'Option 3'
+      },
+      children: [
+        {
+          id: 'option3a',
+          title: 'Option 3A',
+          model: {
+            id: '06a2e280-56de-41dc-aa4a-c05685d9a2a6',
+            name: 'Option 3A'
+          }
+        }
+      ]
+    },
+    {
+      id: 'option4',
+      title: 'Option 4',
+      model: {
+        id: '84b1fe88-2745-4074-8b2c-9b3d0786afde',
+        name: 'Option 4'
+      }
+    },
+    {
+      id: 'option5',
+      title: 'Option 5',
+      model: {
+        id: 'c9d46c6e-5139-4ffa-860b-2b6338274fea',
+        name: 'Option 5'
+      }
+    },
+    {
+      id: 'option6',
+      title: 'Option 6',
+      model: {
+        id: '73b31272-fff2-45e3-86af-5c9adb64717e',
+        name: 'Option 6'
+      },
+      children: [
+        {
+          id: 'option6a',
+          title: 'Option 6A',
+          model: {
+            id: '22f8a2f9-71af-446a-ae13-e269ea77b3a7',
+            name: 'Option 6A'
+          }
+        },
+        {
+          id: 'option6b',
+          title: 'Option 6B',
+          model: {
+            id: 'f9cd8b08-76cd-48db-9246-99f2a9b58f12',
+            name: 'Option 6B'
+          }
+        },
+        {
+          id: 'option6c',
+          title: 'Option 6C',
+          model: {
+            id: '998855a9-208a-44f7-b20b-c51fbe830dd2',
+            name: 'Option 6C'
+          }
+        },
+        {
+          id: 'option6d',
+          title: 'Option 6D',
+          model: {
+            id: '87039692-09f7-4af6-9db7-d7373a6308fa',
+            name: 'Option 6D'
+          }
+        },
+        {
+          id: 'option6e',
+          title: 'Option 6E',
+          model: {
+            id: '030f2c7f-edce-46ab-86c8-c4f176dff755',
+            name: 'Option 6E'
+          },
+          children: [
+            {
+              id: 'option6e1',
+              title: 'Option 6E-1',
+              model: {
+                id: 'a56440af-6cd6-450a-9c54-91d65452dc58',
+                name: 'Option 6E-1'
+              }
+            },
+            {
+              id: 'option6e2',
+              title: 'Option 6E-2 With a Very Long Title',
+              model: {
+                id: 'a220b29f-55e2-4686-bb94-43c7fb7c7ec0',
+                name: 'Option 6E-2 With a Very Long Title'
+              }
+            },
+            {
+              id: 'option6e3',
+              title: 'Option 6E-3',
+              model: {
+                id: '37a80ad0-4f12-41d6-90bb-30c625415ce6',
+                name: 'Option 6E-3'
+              }
+            },
+            {
+              id: 'option6e4',
+              title: 'Option 6E-4 With a Very Long Title',
+              model: {
+                id: '08b46eb6-7b39-43e3-a521-e615d29b833b',
+                name: 'Option 6E-4 With a Very Long Title'
+              }
+            },
+            {
+              id: 'option6e5',
+              title: 'Option 6E-5 With a Very Long Title',
+              model: {
+                id: '2209b087-e59a-4e5b-9dd7-c15b4cf2537d',
+                name: 'Option 6E-5 With a Very Long Title'
+              }
+            },
+            {
+              id: 'option6e6',
+              title: 'Option 6E-6',
+              model: {
+                id: '30899449-ea56-499b-a495-0ea45c661a40',
+                name: 'Option 6E-6'
+              }
+            },
+            {
+              id: 'option6e7',
+              title: 'Option 6E-7',
+              model: {
+                id: '712896ac-472c-46cd-8eec-6d2f289fdbff',
+                name: 'Option 6E-7'
+              }
+            },
+            {
+              id: 'option6e8',
+              title: 'Option 6E-8 With a Very Long Title',
+              model: {
+                id: '16844679-ce3e-427c-9da4-63cc48fc2c08',
+                name: 'Option 6E-8 With a Very Long Title'
+              }
+            },
+            {
+              id: 'option6e9',
+              title: 'Option 6E-9',
+              model: {
+                id: '7b285629-bc87-4f9f-a3b7-d76f3bd9e355',
+                name: 'Option 6E-9'
+              }
+            }
+          ]
+        },
+        {
+          id: 'option6f',
+          title: 'Option 6F',
+          model: {
+            id: '241604bf-5bde-4322-8194-9fd90a62c430',
+            name: 'Option 6F'
+          }
+        }
+      ]
+    },
+    {
+      id: 'option7',
+      title: 'Option 7',
+      model: {
+        id: 'aed63636-fbc1-4eb5-a15a-cea960feb4e6',
+        name: 'Option 7'
+      }
+    },
+    {
+      id: 'option8',
+      title: 'Option 8',
+      model: {
+        id: '6a3c8e95-15b6-4759-b68c-8d69452c2b9d',
+        name: 'Option 8'
+      }
+    },
+    {
+      id: 'option9',
+      title: 'Option9',
+      model: {
+        id: '150efb58-567f-481e-abb4-c3d1f06ea6af',
+        name: 'Option 9'
+      },
+      children: [
+        {
+          id: 'option9a',
+          title: 'Option 9A',
+          model: {
+            id: '7678d687-7f44-4d7b-a820-f6eb68673108',
+            name: 'Option 9A'
+          }
+        },
+        {
+          id: 'option9b',
+          title: 'Option 9B',
+          model: {
+            id: '3071f34d-d6c1-4a1a-85c1-2e608f02c8d0',
+            name: 'Option 9B'
+          }
+        },
+        {
+          id: 'option9c',
+          title: 'Option 9C',
+          model: {
+            id: '5322f3f1-d841-41d6-8645-9b50d166124d',
+            name: 'Option 9C'
+          }
+        },
+        {
+          id: 'option9d',
+          title: 'Option 9D',
+          model: {
+            id: 'd98f48e9-adb0-4019-a046-3f0083b7b21e',
+            name: 'Option 9D'
+          }
+        }
+      ]
+    },
+    {
+      id: 'option10',
+      title: 'Option 10',
+      model: {
+        id: '50dd037a-2b25-4ef3-8893-df2ce115da4e',
+        name: 'Option 10'
+      },
+      children: [
+        {
+          id: 'option10a',
+          title: 'Option 10A',
+          model: {
+            id: 'ebbff0eb-7300-4fbe-9f96-47956b2e3f76',
+            name: 'Option 10A'
+          }
+        },
+        {
+          id: 'option10b',
+          title: 'Option 10B',
+          model: {
+            id: '9a42fb22-1020-4966-8cf0-bba20b8d8d16',
+            name: 'Option 10B'
+          }
+        }
+      ]
+    },
+    {
+      id: 'option11',
+      title: 'Option 11',
+      model: {
+        id: '812f9ad5-c51e-43e1-9f4c-6c075a79d205',
+        name: 'Option 11'
+      },
+      children: [
+        {
+          id: 'option11a',
+          title: 'Option 11A',
+          model: {
+            id: '739b0ad0-4c79-4f44-9489-6f7b4e03f6c6',
+            name: 'Option 11A'
+          }
+        }
+      ]
+    },
+    {
+      id: 'option12',
+      title: 'Option 12',
+      model: {
+        id: '812f9ad5-c51e-43e1-9f4c-6c075a79d206',
+        name: 'Option 12'
+      },
+      children: [
+        {
+          id: 'option12a',
+          title: 'Child with Text Unrelated to the Parent',
+          model: {
+            id: '739b0ad0-4c79-4f44-9489-6f7b4e03f6c7',
+            name: 'Child with Text Unrelated to the Parent'
+          }
+        }
+      ]
+    }
+  ]
+};
+
+export const exampleSelectionListValue: SelectionListOption[] = [
+  {
+    name: 'Option 1',
+    value: 'option1'
+  },
+  {
+    name: 'Option 1A',
+    value: 'option1a'
+  },
+  {
+    name: 'Option 1B',
+    value: 'option1b'
+  },
+  {
+    name: 'Option 2',
+    value: 'option2'
+  },
+  {
+    name: 'Option 2B',
+    value: 'option2b'
+  },
+  {
+    name: 'Option 5',
+    value: 'option5'
+  },
+  {
+    name: 'Option 6',
+    value: 'option6'
+  },
+  {
+    name: 'Option 6A',
+    value: 'option6a'
+  },
+  {
+    name: 'Option 6E',
+    value: 'option6e'
+  },
+  {
+    name: 'Option 6E-1',
+    value: 'option6e1'
+  },
+  {
+    name: 'Option 6E-4 With a Very Long Title',
+    value: 'option6e4'
+  },
+  {
+    name: 'Option 6E-7',
+    value: 'option6e7'
+  }
+];

@@ -1,0 +1,74 @@
+ngx-multi-dimension-selection.ngx-multi-dimension-selection {
+  background-color: var(--grey-775);
+  border: 1px solid var(--grey-550);
+  display: block;
+  min-width: 200px;
+  max-width: min-content;
+  opacity: 0;
+  position: absolute;
+  transition: visibility 0s, opacity 0.25s ease-out;
+  z-index: 1000;
+
+  &__detached {
+    opacity: 1;
+    position: initial;
+    transition: none;
+    z-index: unset;
+  }
+
+  .search-input {
+    background-color: var(--grey-800);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    ngx-input.ngx-input {
+      font-size: var(--font-size-s);
+      margin-top: 0;
+      margin-bottom: 0;
+      padding: var(--spacing-8) 0 var(--spacing-4) 0;
+
+      .ngx-input-wrap {
+        .ngx-input-hint {
+          min-height: 0;
+        }
+        .ngx-input-underline {
+          display: none;
+        }
+      }
+    }
+
+    &__icon {
+      color: var(--grey-350);
+      font-size: var(--font-size-l);
+      padding-left: var(--spacing-16);
+    }
+
+    &__clear-btn {
+      color: var(--grey-350);
+      margin-right: var(--spacing-4);
+
+      &:hover {
+        color: var(--grey-250);
+      }
+
+      & > i {
+        font-size: var(--font-size-xxs);
+      }
+    }
+  }
+
+  .selection-lists {
+    display: grid;
+    max-width: 600px;
+    overflow-x: auto;
+
+    &__no-results {
+      color: var(--grey-150);
+      display: inline-block;
+      font-size: var(--font-size-m);
+      font-style: italic;
+      padding: var(--spacing-8) var(--spacing-16);
+    }
+  }
+}
