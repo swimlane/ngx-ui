@@ -115,6 +115,13 @@ const routes: Routes = [
     loadChildren: () => import('./components/loading-page/loading-page.module').then(m => m.LoadingPageModule)
   },
   { path: 'layout', loadChildren: () => import('./layout-page/layout-page.module').then(m => m.LayoutPageModule) },
+  {
+    path: 'multi-dimension-selection',
+    loadChildren: () =>
+      import('./components/multi-dimension-selection-page/multi-dimension-selection-page.module').then(
+        m => m.MultiDimensionSelectionPageModule
+      )
+  },
   { path: 'nag', loadChildren: () => import('./dialogs/nag-page/nag-page.module').then(m => m.NagPageModule) },
   {
     path: 'navbar',

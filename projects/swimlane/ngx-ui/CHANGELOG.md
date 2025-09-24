@@ -4,6 +4,24 @@
 
 - Fix (`ngx-date-range-picker`): Fix highlight the date for given `selectedRange` values.
 
+## 50.1.3 (2025-09-23)
+
+- Fix (`ngx-multi-dimension-selection`): Show children of items matching search term
+
+## 50.1.2 (2025-09-22)
+
+- Fix (`ngx-multi-dimension-selection`): Set max-width on `cdk-virtual-scroll-viewport` wrapper to prevent overflow
+
+## 50.1.1 (2025-09-19)
+
+- Fix (`ngx-filter`): Show caret when `multiDimension` is enabled and no values are selected
+
+## 50.1.0 (2025-09-17)
+
+- Feature (`ngx-multi-dimension-selection`): Added a new multi-dimension selection component
+- Feature (`ngx-filter`): Added new inputs to support multi-dimension filtering
+- Fix (`ngx-checkbox`): Emit change event when spacebar key is used to toggle checkbox
+
 ## 50.0.4 (2025-09-02)
 
 - Fix (`ngx-select`): Only overwrite the `options` input if a value is provided in the template.

@@ -77,11 +77,24 @@
     (keyboardDeselection)="onDropdownDeselection($event, false)"
   >
   </ngx-select-dropdown>
-  } } @if (type === FilterType.Button) {
+  } @if (multiDimension && multiDimensionDropdownVisible) {
+  <ngx-multi-dimension-selection
+    [class.ngx-multi-dimension-selection--left]="itemsPosition === FilterItemPositionTypes.Left"
+    [class.ngx-multi-dimension-selection--right]="itemsPosition === FilterItemPositionTypes.Right"
+    [emptyPlaceholder]="emptyPlaceholder"
+    [filterable]="filterable"
+    [filterEmptyPlaceholder]="filterEmptyPlaceholder"
+    [multiple]="multiple"
+    [selected]="multiDimensionDropdownValue"
+    [selectionList]="selectionList"
+    (onClose)="toggleMultiDimensionDropdown(false)"
+    (onSelectedChange)="onMultiDimensionDropdownChange($event)"
+  ></ngx-multi-dimension-selection>
+  } } @else if (type === FilterType.Button) {
   <div class="ngx-filter-button">
     <ng-container *ngTemplateOutlet="buttonControlTemplate"></ng-container>
   </div>
-  } @if (type === FilterType.CustomDropdown && customDropdownConfig?.component?.type) {
+  } @else if (type === FilterType.CustomDropdown && customDropdownConfig?.component?.type) {
   <ngx-dropdown
     [closeOnClick]="customDropdownConfig.closeOnClick ?? true"
     [closeOnOutsideClick]="customDropdownConfig.closeOnOutsideClick ?? true"
