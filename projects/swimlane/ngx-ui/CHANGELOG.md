@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-select`): Fix filtering of numeric option values.
+
 ## 50.1.3 (2025-09-23)
 
 - Fix (`ngx-multi-dimension-selection`): Show children of items matching search term
