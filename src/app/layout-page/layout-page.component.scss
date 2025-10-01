@@ -2,43 +2,43 @@
 @use 'colors/colors' as colors;
 
 section {
-  margin: 40px 0;
+  margin: 40px var(--spacing-0);
 }
 
 code {
   display: inline;
   padding: 0.2em 0.4em;
-  margin: 0;
+  margin: var(--spacing-0);
   font-size: 85%;
-  background-color: colors.$color-blue-grey-775;
-  border-radius: 3px;
+  background-color: var(--grey-775);
+  border-radius: var(--radius-4);
 }
 
 .ngx-flex--wrap,
 .ngx-flex--wrap-fluid,
 .ngx-flex--wrap-fixed {
-  margin: 40px 0;
-  border: 1px solid colors.$color-blue-grey-725;
+  margin: 40px var(--spacing-0);
+  border: 1px solid var(--grey-725);
   position: relative;
 
   &:before {
     content: attr(class);
-    font-size: 16px;
-    font-weight: bold;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-bold);
     position: absolute;
     top: -20px;
   }
 }
 
 .ngx-flex--row {
-  background-color: rgba(colors.$color-green, 0.1);
-  margin-top: 20px;
+  background-color: rgba(var(--green-500), 0.1);
+  margin-top: var(--spacing-20);
   position: relative;
   box-sizing: border-box;
 
   &:before {
     content: attr(class);
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     position: absolute;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -50,14 +50,14 @@ code {
   }
 
   > * {
-    background-color: rgba(colors.$color-light-blue, 0.15);
+    background-color: rgba(var(--lightblue-500), 0.15);
     position: relative;
-    border: 1px solid rgba(colors.$color-light-blue, 0.06);
+    border: 1px solid rgba(var(--lightblue-500), 0.06);
     box-sizing: border-box;
 
     &:before {
       content: attr(class);
-      font-size: 10px;
+      font-size: var(--font-size-xxs);
       position: absolute;
       white-space: nowrap;
       text-overflow: ellipsis;
@@ -66,13 +66,13 @@ code {
       top: 10px;
       width: calc(100% - 15px);
       left: 10px;
-      padding: 0 5px;
-      border-radius: 3px;
+      padding: var(--spacing-0) 5px;
+      border-radius: var(--radius-4);
     }
 
     &:hover:before {
-      font-size: 12px;
-      background-color: colors.$color-blue-grey-800;
+      font-size: var(--font-size-xs);
+      background-color: var(--grey-800);
       overflow: visible;
       z-index: 1000;
       width: auto;
@@ -81,15 +81,15 @@ code {
 }
 
 .box {
-  margin: 5px 0;
-  padding: 0 5px;
-  background: colors.$color-blue-500;
-  border-radius: 5px;
+  margin: var(--spacing-4) var(--spacing-0);
+  padding: var(--spacing-0) var(--spacing-4);
+  background: var(--blue-500);
+  border-radius: var(--radius-6);
   overflow: hidden;
   text-align: center;
   color: black;
-  font-size: 10px;
-  font-weight: bold;
+  font-size: var(--font-size-xxs);
+  font-weight: var(--font-weight-bold);
   min-height: 30px;
   line-height: 30px;
   vertical-align: middle;

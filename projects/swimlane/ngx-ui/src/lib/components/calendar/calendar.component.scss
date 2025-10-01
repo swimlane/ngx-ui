@@ -2,27 +2,27 @@
 @use 'colors/shadow-variables' as shadows;
 @use 'forms/variables' as inputs;
 
-$calendar-bg: colors.$color-blue-grey-800;
-$calendar-border: colors.$color-blue-grey-700;
-$calendar-title-bg: colors.$color-blue-grey-800;
-$calendar-title-btn: colors.$color-blue-grey-350;
-$calendar-hover-bg: colors.$color-blue-400;
-$calendar-today-bg: colors.$color-blue-grey-750;
-$calendar-active-bg: colors.$color-blue-400;
-$calendar-active-text: colors.$color-grey-050;
-$calendar-range-bg: colors.$color-blue-700;
-$calendar-day-text: colors.$color-blue-grey-350;
-$calendar-month-current: colors.$color-blue-grey-750;
+$calendar-bg: var(--grey-800);
+$calendar-border: var(--grey-700);
+$calendar-title-bg: var(--grey-800);
+$calendar-title-btn: var(--grey-350);
+$calendar-hover-bg: var(--blue-400);
+$calendar-today-bg: var(--grey-750);
+$calendar-active-bg: var(--blue-400);
+$calendar-active-text: var(--grey-050);
+$calendar-range-bg: var(--blue-700);
+$calendar-day-text: var(--grey-350);
+$calendar-month-current: var(--grey-750);
 
 .ngx-calendar {
   position: relative;
-  font-size: 0.9rem;
+  font-size: var(--font-size-m);
   box-shadow: shadows.$shadow-3;
   background: $calendar-bg;
   display: inline-block;
   border: 1px solid $calendar-border;
   width: 270px;
-  padding: 0.5rem 0rem;
+  padding: 0.5rem var(--spacing-0);
 
   .ngx-calendar-wrap {
     flex: 1 1 100%;
@@ -33,10 +33,10 @@ $calendar-month-current: colors.$color-blue-grey-750;
   }
 
   button {
-    outline: 0px colors.$color-blue-200;
+    outline: 0px var(--blue-200);
 
     &:focus-within {
-      outline: 2px solid colors.$color-blue-200;
+      outline: 2px solid var(--blue-200);
       outline-offset: 1px;
     }
   }
@@ -44,29 +44,29 @@ $calendar-month-current: colors.$color-blue-grey-750;
   .title-row {
     background: $calendar-title-bg;
     color: $calendar-active-text;
-    padding: 0.69rem 0;
-    font-weight: 600;
+    padding: 0.69rem var(--spacing-0);
+    font-weight: var(--font-weight-semibold);
     line-height: 0;
 
     .title {
       color: $calendar-active-bg;
       min-width: 100px;
-      padding: 9px;
+      padding: var(--spacing-9);
       cursor: pointer;
-      border-radius: 3px;
+      border-radius: var(--radius-4);
     }
 
     .prev-month,
     .next-month {
       color: $calendar-title-btn;
-      font-size: 0.6rem;
-      border-radius: 3px;
+      font-size: var(--font-size-xxs);
+      border-radius: var(--radius-4);
     }
   }
 
   .day-name-row {
     color: $calendar-day-text;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
     display: flex;
 
     .day-name {
@@ -75,7 +75,7 @@ $calendar-month-current: colors.$color-blue-grey-750;
   }
 
   td {
-    padding: 0px;
+    padding: var(--spacing-0);
   }
 
   .day-name,
@@ -96,7 +96,7 @@ $calendar-month-current: colors.$color-blue-grey-750;
   }
 
   .day-container {
-    margin-top: 0;
+    margin-top: var(--spacing-0);
     width: 100%;
 
     .day-row {
@@ -106,7 +106,7 @@ $calendar-month-current: colors.$color-blue-grey-750;
       }
       .day-cell2 {
         flex: 1 0 30px;
-        margin: 0.1rem 0rem;
+        margin: 0.1rem var(--spacing-0);
       }
     }
 
@@ -120,7 +120,7 @@ $calendar-month-current: colors.$color-blue-grey-750;
       border-radius: 50%;
       text-align: center;
       transition: background 200ms;
-      padding: 0;
+      padding: var(--spacing-0);
 
       &.prev-month,
       &.next-month {
@@ -156,7 +156,7 @@ $calendar-month-current: colors.$color-blue-grey-750;
       border-radius: 50%;
       text-align: center;
       transition: background 200ms;
-      padding: 0;
+      padding: var(--spacing-0);
       position: relative;
 
       &.prev-month,
@@ -235,7 +235,7 @@ $calendar-month-current: colors.$color-blue-grey-750;
       }
       &.range {
         color: $calendar-active-text;
-        margin: 0rem 0rem;
+        margin: var(--spacing-0) var(--spacing-0);
         max-width: initial;
         flex: 1 1 30px;
         &:before {
@@ -321,7 +321,7 @@ $calendar-month-current: colors.$color-blue-grey-750;
 
     .month-cell,
     .year-cell {
-      padding: 0;
+      padding: var(--spacing-0);
       border: 1px solid $calendar-border;
     }
 
@@ -330,7 +330,7 @@ $calendar-month-current: colors.$color-blue-grey-750;
       grid-auto-rows: auto;
       text-transform: uppercase;
       text-align: center;
-      font-size: 14px;
+      font-size: var(--font-size-s);
       width: 100%;
 
       &.active {
@@ -378,7 +378,7 @@ $calendar-month-current: colors.$color-blue-grey-750;
   background: $calendar-bg;
   border-top: 1px solid $calendar-border;
   border-bottom: 1px solid $calendar-border;
-  padding: 24px 18px 6px 18px;
+  padding: var(--spacing-24) 18px 6px 18px;
 
   flex-direction: row;
   box-sizing: border-box;
@@ -392,9 +392,9 @@ $calendar-month-current: colors.$color-blue-grey-750;
   }
 
   .ngx-input {
-    margin-top: 0;
-    margin-bottom: 0;
-    padding-top: 0;
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-0);
+    padding-top: var(--spacing-0);
     width: 73px;
     height: 46px;
 
@@ -404,10 +404,10 @@ $calendar-month-current: colors.$color-blue-grey-750;
   }
 
   button.ampm {
-    color: colors.$color-blue-grey-500;
+    color: var(--grey-500);
 
     &.selected {
-      color: colors.$color-white;
+      color: var(--white);
       background-color: #818fa933;
       opacity: 20;
     }

@@ -6,13 +6,13 @@
   }
 
   .color {
-    padding: 15px 10px;
+    padding: var(--spacing-16) var(--spacing-10);
   }
 }
 
 .shadow-demo {
   height: 120px;
-  margin: 15px;
+  margin: var(--spacing-16);
   text-align: center;
   line-height: 120px;
 }

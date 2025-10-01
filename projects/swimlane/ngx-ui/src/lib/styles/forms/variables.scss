@@ -1,39 +1,39 @@
 @use '../colors/colors' as colors;
 
-$color-input-bg: colors.$color-blue-grey-700;
-$color-input-border: colors.$color-blue-grey-600;
-$color-input-text: colors.$color-blue-grey-050;
-$color-input-text-placeholder: colors.$color-blue-grey-450;
-$color-input-text-disabled: colors.$color-blue-grey-400;
+$color-input-bg: var(--grey-700);
+$color-input-border: var(--grey-600);
+$color-input-text: var(--grey-050);
+$color-input-text-placeholder: var(--grey-450);
+$color-input-text-disabled: var(--grey-400);
 
-$input-invalid-color: colors.$color-red;
-$input-icon-color: colors.$color-grey-300;
-$input-icon-color-hover: colors.$color-grey-100;
-$input-placeholder-color: colors.$color-blue-grey-350;
+$input-invalid-color: var(--red-500);
+$input-icon-color: var(--grey-300);
+$input-icon-color-hover: var(--grey-100);
+$input-placeholder-color: var(--grey-350);
 
-$color-fill-input-bg: colors.$color-blue-grey-875;
+$color-fill-input-bg: var(--grey-875);
 
 $input-underline-height: 1px;
 $input-underline-height-fill: 2px;
-$input-active-underline-fill: colors.$color-blue;
-$input-inactive-underline-fill: colors.$color-blue-grey-600;
+$input-active-underline-fill: var(--blue-500);
+$input-inactive-underline-fill: var(--grey-600);
 
-$input-label-color: colors.$color-blue-grey-350;
-$input-label-color-active: colors.$color-blue-500;
-$input-label-font-size: 1em;
+$input-label-color: var(--grey-350);
+$input-label-color-active: var(--blue-500);
+$input-label-font-size: var(--font-size-m);
 $input-label-font-size-active: 0.7rem;
-$input-label-font-weight: 600;
+$input-label-font-weight: var(--font-weight-semibold);
 
-$input-hint-color: colors.$color-blue-grey-350;
-$input-hint-font-size: 12px;
-$input-hint-margin-top: 2px;
+$input-hint-color: var(--grey-350);
+$input-hint-font-size: var(--font-size-xs);
+$input-hint-margin-top: var(--spacing-2);
 $input-hint-min-height: 1em;
 $input-hint-line-height: 14px;
 
 $input-min-width: 300px;
 $input-line-height: calc(1em + 0.7rem);
-$input-margin-top: 16px;
-$input-margin-bottom: 8px;
+$input-margin-top: var(--spacing-16);
+$input-margin-bottom: var(--spacing-8);
 $input-padding-top: calc(#{$input-label-font-size-active} + 8px);
 
 $input-animation-duration: 150ms;
@@ -45,22 +45,22 @@ $input-animation-duration: 150ms;
   margin-bottom: $input-margin-bottom;
   line-height: $input-line-height;
   padding-top: $input-padding-top;
-  padding-bottom: 0;
+  padding-bottom: var(--spacing-0);
 
   &.marginless {
-    margin-top: 0;
-    margin-bottom: 0;
+    margin-top: var(--spacing-0);
+    margin-bottom: var(--spacing-0);
   }
 
   &.no-label {
-    padding-top: 0;
+    padding-top: var(--spacing-0);
   }
 }
 
 @mixin input-label {
   position: absolute;
   top: 0.4em;
-  line-height: 1em;
+  line-height: var(--font-line-height-100);
   pointer-events: none;
   font-size: $input-label-font-size;
   font-weight: $input-label-font-weight;
@@ -75,7 +75,7 @@ $input-animation-duration: 150ms;
 @mixin input-hint {
   font-size: $input-hint-font-size;
   color: $input-hint-color;
-  margin-top: 2px;
+  margin-top: var(--spacing-0);
   min-height: 1em;
   line-height: $input-hint-line-height;
   transition: color 0.2s ease-in-out;
@@ -91,7 +91,7 @@ $input-animation-duration: 150ms;
     transition: width 250ms ease-out;
     width: 0;
     height: $input-underline-height-fill;
-    margin: 0 auto;
+    margin: var(--spacing-0) auto;
   }
 }
 

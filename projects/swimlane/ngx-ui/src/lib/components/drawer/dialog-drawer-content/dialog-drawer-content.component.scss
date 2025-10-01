@@ -7,7 +7,7 @@
   height: 100%;
 
   &__header {
-    background-color: colors.$color-blue-grey-700;
+    background-color: var(--grey-700);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -16,29 +16,29 @@
   }
 
   &__header-title {
-    color: colors.$color-blue-grey-350;
-    margin: 0;
+    color: var(--grey-350);
+    margin: var(--spacing-0);
     font-size: 1.125rem;
   }
 
   &__dismiss-btn {
-    color: colors.$color-blue-grey-350;
+    color: var(--grey-350);
     font-size: 0.875rem;
-    padding-right: 0;
+    padding-right: var(--spacing-0);
 
     &:hover {
-      color: colors.$color-white;
+      color: var(--white);
     }
   }
 
   &__content {
     height: 100%;
-    padding: 0 2rem;
+    padding: var(--spacing-0) 2rem;
     overflow: auto;
   }
 
   & ~ ngx-drawer.ngx-drawer.large-format-dialog-drawer {
-    margin-left: 0;
+    margin-left: var(--spacing-0);
     max-width: 100%;
     min-height: calc(100% - 3.5rem - 4px);
     max-height: calc(100% - 3.5rem - 4px);

@@ -15,25 +15,25 @@
       transform: translate(-50%, -50%);
       top: 50%;
       left: 50%;
-      font-size: 14px;
+      font-size: var(--font-size-s);
       line-height: 17px;
       max-width: 250px;
-      color: colors.$color-blue-grey-100;
+      color: var(--grey-100);
 
       h3 {
-        font-size: 18px !important;
+        font-size: var(--font-size-l) !important;
         line-height: 28px;
         color: white;
       }
 
       .ngx-icon.ngx-browser-size {
-        color: colors.$color-red;
+        color: var(--red-500);
         font-size: 46px;
         line-height: 46px;
       }
 
       .ngx-icon.ngx-question {
-        color: colors.$color-blue-grey-100;
+        color: var(--grey-100);
         font-size: 1.5rem;
         line-height: 1.5rem;
         margin-top: 1rem;
@@ -49,15 +49,15 @@
         background: #afb7c8;
         color: #060709;
         box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 2px 1px -1px rgba(0, 0, 0, 0.12);
-        border-radius: 0;
-        font-size: 13px;
+        border-radius: var(--radius-0);
+        font-size: var(--font-size-xs);
         padding: 7px;
 
         .combination {
-          margin-left: 5px;
+          margin-left: var(--spacing-4);
           .key {
             background-color: #d1d5e1;
-            border-radius: 3px;
+            border-radius: var(--radius-4);
             padding: 3px;
             box-shadow: shadows.$shadow-2;
           }
@@ -71,7 +71,7 @@
       }
 
       .continue {
-        margin-top: 20px;
+        margin-top: var(--spacing-20);
         color: white;
         border-color: white;
       }

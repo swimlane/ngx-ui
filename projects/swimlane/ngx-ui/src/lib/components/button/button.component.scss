@@ -7,14 +7,14 @@
   &,
   &.btn {
     transition: background-color 0.25s ease-out;
-    padding: 0;
+    padding: var(--spacing-0);
   }
 
   button {
     padding: 0.35em 0.55em;
     width: 100%;
     outline-offset: 2px;
-    border-radius: 2px;
+    border-radius: var(--radius-2);
 
     > .content {
       text-overflow: ellipsis;
@@ -46,19 +46,19 @@
   }
 
   &.in-progress {
-    color: colors.$color-white !important;
+    color: var(--white) !important;
   }
 
   &.success {
-    background-color: colors.$color-green !important;
-    background: colors.$color-green !important;
-    border: 1px solid colors.$color-green !important;
+    background-color: var(--green-500) !important;
+    background: var(--green-500) !important;
+    border: 1px solid var(--green-500) !important;
   }
 
   &.fail {
-    background-color: colors.$color-red !important;
-    background: colors.$color-red !important;
-    border: 1px solid colors.$color-red !important;
+    background-color: var(--red-500) !important;
+    background: var(--red-500) !important;
+    border: 1px solid var(--red-500) !important;
   }
 
   &.in-progress,
@@ -98,31 +98,31 @@
       .icon {
         height: 1em;
         width: 1em;
-        font-weight: bold;
-        color: colors.$color-white;
+        font-weight: var(--font-weight-bold);
+        color: var(--white);
         overflow: hidden;
-        font-size: 1em;
+        font-size: var(--font-size-m);
       }
     }
   }
 
   // focus ring colors
   &.btn-primary button {
-    outline-color: colors.$color-blue;
+    outline-color: var(--blue-500);
   }
 
   &.btn-warning button {
-    outline-color: colors.$color-orange;
+    outline-color: var(--orange-500);
   }
 
   &.btn-danger button {
-    outline-color: colors.$color-red-400;
+    outline-color: var(--red-400);
   }
 
   &.btn-bordered,
   &.btn-primary.btn-bordered {
     button {
-      outline-color: colors.$color-blue-400;
+      outline-color: var(--blue-400);
     }
   }
 }

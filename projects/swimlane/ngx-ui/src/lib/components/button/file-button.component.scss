@@ -1,10 +1,10 @@
 @use 'colors/colors' as colors;
 @use 'components/buttons' as buttons;
 
-$upload-button-text-color: colors.$color-grey-100;
-$upload-button-progress-fill: colors.$color-blue-400;
-$upload-button-progress-bg: colors.$color-grey-500;
-$upload-button-success-fill: colors.$color-blue-400;
+$upload-button-text-color: var(--grey-100);
+$upload-button-progress-fill: var(--blue-400);
+$upload-button-progress-bg: var(--grey-500);
+$upload-button-success-fill: var(--blue-400);
 
 /**
  * File upload button
@@ -34,8 +34,8 @@ $upload-button-success-fill: colors.$color-blue-400;
     }
 
     .ngx-file-button-text {
-      font-size: 0.9rem;
-      margin-left: 8px;
+      font-size: var(--font-size-m);
+      margin-left: var(--spacing-8);
       color: $upload-button-progress-bg;
     }
   }
@@ -52,10 +52,10 @@ $upload-button-success-fill: colors.$color-blue-400;
       background: buttons.$button-fill-color;
       border: none;
       border-radius: 50px;
-      padding: 5px 0;
+      padding: var(--spacing-4) var(--spacing-0);
       transition: 0.3s all ease;
       position: relative;
-      margin: 0;
+      margin: var(--spacing-0);
 
       &:hover:not([disabled]),
       &:focus:not([disabled]),
@@ -66,9 +66,9 @@ $upload-button-success-fill: colors.$color-blue-400;
 
       .ngx-file-button-label {
         color: $upload-button-text-color;
-        font-size: 18px;
-        font-weight: 400;
-        line-height: 40px;
+        font-size: var(--font-size-l);
+        font-weight: var(--font-weight-regular);
+        line-height: var(--font-line-height-400);
         max-height: 40px;
         transition: 0.3s all ease;
         cursor: pointer;
@@ -100,8 +100,8 @@ $upload-button-success-fill: colors.$color-blue-400;
     }
 
     .icon-check {
-      font-size: 25px;
-      color: colors.$color-grey-100;
+      font-size: var(--font-size-2xl);
+      color: var(--grey-100);
       position: absolute;
       top: 0;
       left: 0;
@@ -112,16 +112,16 @@ $upload-button-success-fill: colors.$color-blue-400;
     }
 
     &.active {
-      padding: 0;
+      padding: var(--spacing-0);
 
       .ngx-file-button-button {
         background: $upload-button-progress-bg;
-        margin-top: 25px;
+        margin-top: var(--spacing-24);
       }
 
       .ngx-file-button-fill {
         display: block;
-        margin-top: 25px;
+        margin-top: var(--spacing-24);
         transition: 100ms all ease 100ms;
       }
 
@@ -132,8 +132,8 @@ $upload-button-success-fill: colors.$color-blue-400;
 
     &.success {
       .ngx-file-button-button {
-        margin: 0;
-        padding: 25px;
+        margin: var(--spacing-0);
+        padding: var(--spacing-24);
         width: 50px;
         background: $upload-button-success-fill;
       }

@@ -2,8 +2,8 @@
 @use 'colors/shadow-variables' as shadows;
 
 $toolbar-height: 50px;
-$toolbar-bg: colors.$color-blue-grey-800;
-$toolbar-color: colors.$color-blue-grey-250;
+$toolbar-bg: var(--grey-800);
+$toolbar-color: var(--grey-250);
 
 .ngx-toolbar {
   display: block;
@@ -30,13 +30,13 @@ $toolbar-color: colors.$color-blue-grey-250;
   }
 
   // grid is overriding this
-  padding: 0 20px !important;
+  padding: var(--spacing-0) var(--spacing-20) !important;
   .ngx-toolbar-title-col {
     overflow: hidden;
   }
 
   .ngx-toolbar-title {
-    margin: 0;
+    margin: var(--spacing-0);
     font-weight: 500;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -44,8 +44,8 @@ $toolbar-color: colors.$color-blue-grey-250;
     white-space: nowrap;
 
     small {
-      color: colors.$color-blue-grey-500;
-      font-size: 0.9rem;
+      color: var(--grey-500);
+      font-size: var(--font-size-m);
       line-height: 50px;
       vertical-align: top;
     }

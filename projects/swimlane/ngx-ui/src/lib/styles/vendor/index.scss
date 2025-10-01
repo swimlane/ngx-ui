@@ -9,7 +9,7 @@
  */
 
 html {
-  line-height: 1.15; /* 1 */
+  line-height: var(--font-line-height-100); /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
 }
 
@@ -21,7 +21,7 @@ html {
  */
 
 body {
-  margin: 0;
+  margin: var(--spacing-0);
 }
 
 /**
@@ -38,8 +38,8 @@ main {
  */
 
 h1 {
-  font-size: 2em;
-  margin: 0.67em 0;
+  font-size: var(--font-size-4xl);
+  margin: 0.67em var(--spacing-0);
 }
 
 /* Grouping content
@@ -63,7 +63,7 @@ hr {
 
 pre {
   font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-size: var(--font-size-m); /* 2 */
 }
 
 /* Text-level semantics
@@ -106,7 +106,7 @@ code,
 kbd,
 samp {
   font-family: monospace, monospace; /* 1 */
-  font-size: 1em; /* 2 */
+  font-size: var(--font-size-m); /* 2 */
 }
 
 /**
@@ -164,8 +164,8 @@ select,
 textarea {
   font-family: inherit; /* 1 */
   font-size: 100%; /* 1 */
-  line-height: 1.15; /* 1 */
-  margin: 0; /* 2 */
+  line-height: var(--font-line-height-100); /* 1 */
+  margin: var(--spacing-0); /* 2 */
 }
 
 /**
@@ -210,7 +210,7 @@ button::-moz-focus-inner,
 [type='reset']::-moz-focus-inner,
 [type='submit']::-moz-focus-inner {
   border-style: none;
-  padding: 0;
+  padding: var(--spacing-0);
 }
 
 /**
@@ -244,7 +244,7 @@ legend {
   color: inherit; /* 2 */
   display: table; /* 1 */
   max-width: 100%; /* 1 */
-  padding: 0; /* 3 */
+  padding: var(--spacing-0); /* 3 */
   white-space: normal; /* 1 */
 }
 
@@ -272,7 +272,7 @@ textarea {
 [type='checkbox'],
 [type='radio'] {
   box-sizing: border-box; /* 1 */
-  padding: 0; /* 2 */
+  padding: var(--spacing-0); /* 2 */
 }
 
 /**

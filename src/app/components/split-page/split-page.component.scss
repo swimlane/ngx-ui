@@ -1,31 +1,31 @@
 .split-example {
   height: 500px;
-  margin: 20px 0;
+  margin: var(--spacing-20) var(--spacing-0);
 
   .right-panel {
     background: #2f3646;
-    padding: 10px;
+    padding: var(--spacing-10);
   }
 
   .fixed-panel {
     background: #3b4457;
-    padding: 10px;
+    padding: var(--spacing-10);
     flex: 0 0 20%;
   }
 
   .security-panel {
     background: #2f3646;
-    padding: 10px;
+    padding: var(--spacing-10);
   }
 
   .alerts-panel {
     background: #455066;
-    padding: 10px;
+    padding: var(--spacing-10);
   }
 
   .fixed-header {
     flex: 0 0 50px;
     background: #3b4457;
-    padding: 10px;
+    padding: var(--spacing-10);
   }
 }

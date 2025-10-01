@@ -3,10 +3,10 @@
 
   .ngx-split-button {
     line-height: 0;
-    font-size: 32px;
+    font-size: var(--font-size-4xl);
     position: absolute;
     display: block;
-    padding: 0;
+    padding: var(--spacing-0);
   }
 
   &.direction-row {

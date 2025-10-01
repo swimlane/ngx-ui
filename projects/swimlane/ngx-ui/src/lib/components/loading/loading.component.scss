@@ -5,16 +5,16 @@
 
   .ngx-loading-bar--container {
     position: fixed;
-    margin: 0;
-    padding: 0;
+    margin: var(--spacing-0);
+    padding: var(--spacing-0);
     top: 0;
     left: 0;
     right: 0;
     z-index: 99999;
 
     .ngx-loading-bar--bar {
-      background-color: colors.$color-blue-300;
-      color: colors.$color-blue-300;
+      background-color: var(--blue-300);
+      color: var(--blue-300);
       height: 2px;
       opacity: 1;
       z-index: 99998;

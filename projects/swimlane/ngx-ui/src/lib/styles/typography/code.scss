@@ -17,21 +17,21 @@ pre {
   padding: 1rem;
   background: $code-color-bg;
   color: $code-color-text;
-  margin: 0.5rem 0;
+  margin: 0.5rem var(--spacing-0);
   font-family: $code-font-family;
   overflow-x: auto;
-  line-height: 1.45;
+  line-height: var(--font-line-height-200);
   tab-size: 2;
   -webkit-font-smoothing: auto;
   -webkit-text-size-adjust: none;
   position: relative;
-  border-radius: 2px;
+  border-radius: var(--radius-2);
   font-size: 0.8rem;
 }
 
 code {
-  margin: 0;
-  padding: 0;
+  margin: var(--spacing-0);
+  padding: var(--spacing-0);
   overflow-wrap: break-word;
   white-space: pre-wrap;
 }

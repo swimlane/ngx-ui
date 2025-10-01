@@ -11,7 +11,7 @@
     cursor: pointer;
     width: 40px;
     height: 40px;
-    line-height: 40px;
+    line-height: var(--font-line-height-400);
     text-align: center;
     border-radius: 20px;
     position: absolute;
@@ -21,54 +21,54 @@
 
   .close-icon {
     font-size: 40px;
-    color: colors.$color-blue-grey-300;
+    color: var(--grey-300);
     float: right;
-    line-height: 1em;
+    line-height: var(--font-line-height-100);
   }
 
   .hotkeys-icon {
-    color: colors.$color-blue-grey-300;
-    font-size: 21px;
+    color: var(--grey-300);
+    font-size: var(--font-size-xl);
     background-color: black;
   }
 
   .ngx-icon:hover {
-    color: colors.$color-blue-grey-100;
+    color: var(--grey-100);
   }
 }
 
 .hotkeys {
-  background: colors.$color-blue-grey-850;
-  border: 1px solid colors.$color-blue-grey-500;
-  padding: 15px;
+  background: var(--grey-850);
+  border: 1px solid var(--grey-500);
+  padding: var(--spacing-16);
   box-shadow: shadow.$shadow-1;
-  color: colors.$color-blue-grey-300;
-  font-size: 14px;
-  border-radius: 2px;
+  color: var(--grey-300);
+  font-size: var(--font-size-s);
+  border-radius: var(--radius-2);
   margin-bottom: 45px;
 
   .hotkey-row {
-    padding: 10px 0;
-    border-bottom: 1px solid colors.$color-blue-grey-600;
+    padding: var(--spacing-10) var(--spacing-0);
+    border-bottom: 1px solid var(--grey-600);
 
     &:first-child {
-      padding-top: 0px;
+      padding-top: var(--spacing-0);
     }
 
     &:last-child {
       border-bottom: none;
-      padding-bottom: 0px;
+      padding-bottom: var(--spacing-0);
     }
 
     .combination {
       float: right;
-      margin-left: 30px;
+      margin-left: var(--spacing-30);
 
       .key {
-        background: colors.$color-blue-grey-500;
-        color: colors.$color-blue-grey-850;
-        padding: 2px 7px;
-        border-radius: 2px;
+        background: var(--grey-500);
+        color: var(--grey-850);
+        padding: var(--spacing-2) 7px;
+        border-radius: var(--radius-2);
       }
     }
   }

@@ -25,8 +25,8 @@ ul {
 
 .list-reset,
 .list-reset > li {
-  padding: 0;
-  margin: 0;
+  padding: var(--spacing-0);
+  margin: var(--spacing-0);
   list-style: none;
 }
 
@@ -46,8 +46,8 @@ ul {
 .vertical-list,
 .horizontal-list > li,
 .vertical-list > li {
-  padding: 0;
-  margin: 0;
+  padding: var(--spacing-0);
+  margin: var(--spacing-0);
   list-style: none;
 }
 
@@ -56,7 +56,7 @@ ul {
     display: inline-block;
 
     > button {
-      padding: 0 1rem;
+      padding: var(--spacing-0) 1rem;
     }
   }
 }

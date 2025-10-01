@@ -2,7 +2,7 @@
 
 @keyframes soundWave {
   100% {
-    stroke: colors.$color-blue-500;
+    stroke: var(--blue-500);
     scale: 1.2;
   }
 }
@@ -27,7 +27,7 @@
   position: relative;
   flex-direction: column;
   flex: 1;
-  padding: 50px;
+  padding: var(--spacing-48);
   // overflow: hidden;
 
   .file-over {
@@ -55,8 +55,8 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    margin: 0;
-    font-weight: normal;
+    margin: var(--spacing-0);
+    font-weight: var(--font-weight-regular);
     cursor: pointer;
     animation: popIn 0.35s ease-in-out;
     height: 500px;
@@ -70,7 +70,7 @@
       path {
         clip-rule: evenodd;
         fill-rule: evenodd;
-        stroke: colors.$color-blue-grey-650;
+        stroke: var(--grey-650);
         stroke-width: 2;
         stroke-linejoin: round;
         transition: stroke 0.2s ease-in-out;
@@ -86,26 +86,26 @@
 
       .ngx-dropzone--icon {
         font-size: 30px;
-        color: colors.$color-blue-grey-100;
+        color: var(--grey-100);
       }
 
       .ngx-dropzone--title {
-        font-size: 20px;
+        font-size: var(--font-size-xl);
         line-height: 25px;
-        font-weight: 600;
-        margin-bottom: 5px;
-        color: colors.$color-blue-grey-100;
+        font-weight: var(--font-weight-semibold);
+        margin-bottom: var(--spacing-4);
+        color: var(--grey-100);
       }
 
       .ngx-dropzone--sub-title {
-        color: colors.$color-blue-400;
-        font-size: 12px;
-        font-weight: bold;
+        color: var(--blue-400);
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-bold);
         transition: color 0.2s ease-in-out;
 
         &:hover,
         &:focus {
-          color: colors.$color-blue-300;
+          color: var(--blue-300)
         }
 
         .underline {
@@ -114,10 +114,10 @@
       }
 
       .ngx-dropzone--supporting-files {
-        margin-top: 20px;
-        color: colors.$color-blue-grey-350;
-        font-size: 12px;
-        padding: 0 10px;
+        margin-top: var(--spacing-20);
+        color: var(--grey-350);
+        font-size: var(--font-size-xs);
+        padding: var(--spacing-0) 10px;
       }
     }
   }
@@ -125,9 +125,9 @@
   &--small {
     box-sizing: border-box;
     height: 120px;
-    background-color: colors.$color-blue-grey-800;
-    border: 1px dashed colors.$color-blue-grey-500;
-    padding: 0;
+    background-color: var(--grey-800);
+    border: 1px dashed var(--grey-500);
+    padding: var(--spacing-0);
     justify-content: center;
 
     .file-over {
@@ -154,13 +154,13 @@
         transform: none;
 
         .ngx-dropzone--title {
-          font-size: 12px;
+          font-size: var(--font-size-xs);
           line-height: 15px;
-          margin-bottom: 0;
+          margin-bottom: var(--spacing-0);
         }
 
         .ngx-dropzone--sub-title {
-          font-size: 10px;
+          font-size: var(--font-size-xxs);
         }
       }
     }

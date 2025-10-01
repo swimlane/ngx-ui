@@ -1,6 +1,6 @@
 table.alignment-test {
-  margin-left: 20px;
-  margin-top: 20px;
+  margin-left: var(--spacing-20);
+  margin-top: var(--spacing-20);
   background: #171a21;
 
   tr,
@@ -13,7 +13,7 @@ table.alignment-test {
   }
 
   td {
-    padding: 05px;
+    padding: var(--spacing-0) 5px;
     border: 10px solid #34282c;
   }
 
@@ -28,7 +28,7 @@ table.alignment-test {
 
 .flex-container {
   display: flex;
-  gap: 12px;
+  gap: var(--spacing-12);
 
   > * {
     flex: 0 1 20%;

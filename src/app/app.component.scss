@@ -28,15 +28,15 @@
 
     .search-box {
       border: 1px solid transparent;
-      color: colors.$color-blue-grey-400;
-      background: colors.$color-blue-grey-700;
+      color: var(--grey-400);
+      background: var(--grey-700);
       height: 40px;
-      padding: 8px;
-      line-height: 1em;
-      margin: 0;
+      padding: var(--spacing-8);
+      line-height: var(--font-line-height-100);
+      margin: var(--spacing-0);
 
       ngx-input-suffix .btn {
-        color: colors.$color-blue-grey-400;
+        color: var(--grey-400);
 
         &:hover {
           color: #ffffff;
@@ -45,7 +45,7 @@
 
       ngx-input {
         margin-top: -3px;
-        padding-top: 0;
+        padding-top: var(--spacing-0);
 
         .ngx-input-underline {
           display: none;
@@ -66,7 +66,7 @@
 
         .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {
           &::placeholder {
-            font-size: 14px !important;
+            font-size: var(--font-size-s) !important;
           }
         }
       }
@@ -84,7 +84,7 @@
     right: 0;
     overflow: auto;
     width: 100%;
-    padding-top: 50px;
+    padding-top: var(--spacing-48);
 
     .main-toolbar {
       position: absolute;
@@ -109,12 +109,12 @@
  */
 .style-header {
   text-transform: uppercase;
-  color: colors.$color-grey-300;
-  font-size: 1rem;
+  color: var(--grey-300);
+  font-size: var(--font-size-m);
   position: relative;
-  padding-bottom: 5px;
-  margin-bottom: 20px;
-  font-weight: 600;
+  padding-bottom: var(--spacing-4);
+  margin-bottom: var(--spacing-20);
+  font-weight: var(--font-weight-semibold);
 
   &:not(:first-of-type) {
     margin-top: 6rem;
@@ -124,7 +124,7 @@
     content: '';
     width: 25px;
     height: 1px;
-    background: colors.$color-grey-300;
+    background: var(--grey-300);
     position: absolute;
     bottom: 0;
     left: 0;
@@ -140,27 +140,27 @@
     overflow: hidden;
     width: 150px;
     display: inline-block;
-    padding: 10px 5px;
+    padding: var(--spacing-10) var(--spacing-4);
     text-align: center;
-    margin: 10px;
-    border: solid 1px colors.$color-blue-grey-800;
-    border-radius: 2px;
+    margin: var(--spacing-10);
+    border: solid 1px var(--grey-800);
+    border-radius: var(--radius-2);
 
     .icon-name {
-      color: colors.$color-blue-grey-600;
-      font-size: 0.9rem;
-      line-height: 1rem;
+      color: var(--grey-600);
+      font-size: var(--font-size-m);
+      line-height: var(--font-line-height-100);
     }
 
     .ngx-icon,
     .large-icon {
       display: block;
-      font-size: 50px;
-      line-height: 1em;
+      font-size: var(--font-size-6xl);
+      line-height: var(--font-line-height-100);
     }
 
     .icon-loading {
-      font-size: 50px;
+      font-size: var(--font-size-6xl);
       height: 50px;
       line-height: 0;
     }
@@ -172,7 +172,7 @@
 }
 
 .large-icons {
-  font-size: 50px;
+  font-size: var(--font-size-6xl);
   line-height: 50px;
 }
 
@@ -180,8 +180,8 @@
 .icon-stacking-section,
 .large-icon-section {
   .large-icon {
-    font-size: 50px;
-    margin-right: 10px;
+    font-size: var(--font-size-6xl);
+    margin-right: var(--spacing-10);
     line-height: 50px;
   }
 }
@@ -189,19 +189,19 @@
 .icons-preview-code {
   li {
     list-style-type: none;
-    padding: 20px;
-    margin-top: 20px;
+    padding: var(--spacing-20);
+    margin-top: var(--spacing-20);
 
     .ngx-icon,
     .icon-fx-stacked,
     .large-icon {
-      font-size: 50px;
+      font-size: var(--font-size-6xl);
     }
 
     .large-icon {
       display: block;
-      font-size: 50px;
-      margin: 10px;
+      font-size: var(--font-size-6xl);
+      margin: var(--spacing-10);
     }
   }
 }
@@ -209,7 +209,7 @@
 .inputs-section {
   input {
     display: block;
-    margin: 8px 0;
+    margin: var(--spacing-8) var(--spacing-0);
   }
 }
 
@@ -219,7 +219,7 @@
 }
 
 .CodeMirror {
-  margin-top: 20px;
+  margin-top: var(--spacing-20);
 }
 
 .fa,
@@ -233,7 +233,7 @@
   height: 50px;
 
   ngx-icon.search-icon {
-    margin-top: 5px;
+    margin-top: var(--spacing-4);
   }
 
   ngx-input[hidden] {
@@ -244,7 +244,7 @@
 
   ngx-input,
   &:hover ngx-input {
-    margin: 0 40px 0 20px;
+    margin: var(--spacing-0) 40px var(--spacing-0) var(--spacing-20);
     width: 240px;
     transition: width 0.5s;
   }
@@ -309,24 +309,24 @@ $palette: (
 }
 
 .list-unstyled {
-  padding-left: 0;
+  padding-left: var(--spacing-0);
   list-style: none;
 }
 
 .glow-demo {
-  background: colors.$color-blue-grey-850;
-  margin: 20px;
+  background: var(--grey-850);
+  margin: var(--spacing-20);
   text-align: center;
-  padding: 20px 10px;
+  padding: var(--spacing-20) 10px;
 }
 
 .badge {
   clear: both;
-  margin-top: 30px;
+  margin-top: var(--spacing-30);
   display: block;
   background-color: blue;
-  padding: 10px;
-  border-radius: 5px;
+  padding: var(--spacing-10);
+  border-radius: var(--radius-6);
   color: white;
   user-select: none;
 }

@@ -1,9 +1,9 @@
 @use 'colors/colors' as colors;
 @use 'colors/shadow-variables' as shadow;
 
-$dialog-bg: colors.$color-blue-grey-800;
-$dialog-header-color: colors.$color-grey-100;
-$dialog-body-color: colors.$color-blue-grey-200;
+$dialog-bg: var(--grey-800);
+$dialog-header-color: var(--grey-100);
+$dialog-body-color: var(--grey-200);
 
 .ngx-dialog {
   position: fixed;
@@ -18,19 +18,19 @@ $dialog-body-color: colors.$color-blue-grey-200;
 
   .ngx-dialog-content {
     pointer-events: auto;
-    border-radius: 2px;
+    border-radius: var(--radius-2);
     box-shadow: shadow.$shadow-3;
     background: $dialog-bg;
     padding: 1.4rem;
     position: relative;
     animation-fill-mode: forwards;
     min-width: 250px;
-    font-size: 0.9rem;
+    font-size: var(--font-size-m);
     color: $dialog-body-color;
 
     &--large,
     &--medium {
-      padding: 0;
+      padding: var(--spacing-0);
       width: calc(100vw - 120px);
       background-color: transparent;
     }
@@ -49,7 +49,7 @@ $dialog-body-color: colors.$color-blue-grey-200;
 
     .close {
       position: absolute;
-      font-size: 14px;
+      font-size: var(--font-size-s);
       color: $dialog-header-color;
       right: -25px;
       top: -25px;
@@ -60,7 +60,7 @@ $dialog-body-color: colors.$color-blue-grey-200;
       h1 {
         font-size: 1.8rem;
         font-weight: 500;
-        margin: 0 0 1.4rem 0;
+        margin: var(--spacing-0) var(--spacing-0) 1.4rem var(--spacing-0);
         color: $dialog-header-color;
       }
     }
@@ -69,22 +69,22 @@ $dialog-body-color: colors.$color-blue-grey-200;
       text-align: right;
 
       .btn {
-        margin-left: 5px;
+        margin-left: var(--spacing-4);
       }
     }
   }
 
   &.wizard {
     .ngx-dialog-content {
-      padding: 0;
-      background: colors.$color-blue-grey-725;
+      padding: var(--spacing-0);
+      background: var(--grey-725);
 
       .ngx-dialog-header {
         padding: 1.4rem;
-        background: colors.$color-blue-grey-750;
+        background: var(--grey-750);
 
         h1 {
-          margin: 0;
+          margin: var(--spacing-0);
         }
       }
 
@@ -95,21 +95,21 @@ $dialog-body-color: colors.$color-blue-grey-200;
           float: left;
 
           .btn {
-            margin: 0 5px 0 0;
+            margin: var(--spacing-0) var(--spacing-4) var(--spacing-0) var(--spacing-0);
           }
         }
       }
 
       .ngx-tabs {
-        margin-bottom: 0;
+        margin-bottom: var(--spacing-0);
 
         .ngx-tabs-list {
-          padding: 0 20px;
-          background: colors.$color-blue-grey-775;
-          border-bottom: 2px solid colors.$color-blue-grey-775;
+          padding: var(--spacing-0) var(--spacing-20);
+          background: var(--grey-775);
+          border-bottom: 2px solid var(--grey-775);
 
           .ngx-tab {
-            background: colors.$color-blue-grey-775;
+            background: var(--grey-775);
 
             button {
               padding: 0.6em 0.75em;
@@ -117,7 +117,7 @@ $dialog-body-color: colors.$color-blue-grey-200;
             }
 
             &.active {
-              background: colors.$color-blue-grey-700;
+              background: var(--grey-700);
             }
           }
         }
@@ -146,7 +146,7 @@ $dialog-body-color: colors.$color-blue-grey-200;
 
       button.close {
         color: #afb7c8;
-        font-size: 16px;
+        font-size: var(--font-size-m);
         opacity: 1;
         top: 56px;
         right: 56px;

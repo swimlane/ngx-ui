@@ -9,7 +9,7 @@
 
 .icon-loading {
   animation: spin 1s infinite linear;
-  font-size: 32px;
+  font-size: var(--font-size-4xl);
   line-height: 0px;
   height: 32px;
   display: inline-block;
