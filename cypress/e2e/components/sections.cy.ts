@@ -55,7 +55,7 @@ describe('Sections', () => {
         cy.realPress('Tab'); // Navigates to first button
         cy.get('@toggle')
           .should('have.css', 'outline-style', 'solid')
-          .should('have.css', 'outline-color', 'rgb(148, 198, 255)');
+          .should('have.css', 'outline-color', 'rgb(173, 212, 255)');
       });
     });
 
