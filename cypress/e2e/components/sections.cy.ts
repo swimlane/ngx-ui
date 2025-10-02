@@ -46,6 +46,19 @@ describe('Sections', () => {
       });
     });
 
+    it('adds outline on focus', () => {
+      cy.get('@SUT').within(() => {
+        cy.get('.ngx-section-header').realClick({ x: 100, y: 10 });
+
+        cy.get('@CUT').find('.ngx-section-toggle').as('toggle').should('have.css', 'outline-style', 'none');
+
+        cy.realPress('Tab'); // Navigates to first button
+        cy.get('@toggle')
+          .should('have.css', 'outline-style', 'solid')
+          .should('have.css', 'outline-color', 'rgb(148, 198, 255)');
+      });
+    });
+
     it('sections work using the keyboard only', () => {
       cy.get('@SUT').within(() => {
         cy.get('.ngx-section-header').realClick({ x: 100, y: 10 }); // Navigates to first section
