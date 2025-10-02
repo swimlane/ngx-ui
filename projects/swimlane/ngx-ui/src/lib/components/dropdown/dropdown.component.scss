@@ -70,6 +70,7 @@ $dropdown-color: colors.$color-grey-100;
     min-width: 180px;
     background: $dropdown-bg;
     box-shadow: shadows.$shadow-3;
+    border-radius: var(--radius-8);
     margin-top: 0;
     opacity: 0;
     display: none;
@@ -101,6 +102,35 @@ $dropdown-color: colors.$color-grey-100;
     }
 
     > ul > li {
+      &:not(.divider) {
+        &:first-child {
+          border-top-left-radius: var(--radius-8);
+          border-top-right-radius: var(--radius-8);
+        }
+        &:last-child {
+          border-bottom-left-radius: var(--radius-8);
+          border-bottom-right-radius: var(--radius-8);
+        }
+      }
+
+      // Handle case where first child is a divider
+      &.divider:first-child + li {
+        border-top-left-radius: var(--radius-8);
+        border-top-right-radius: var(--radius-8);
+      }
+
+      // Handle case where last child is a divider - remove border radius from previous non-divider
+      &.divider:last-child {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+
+      // Apply border radius to the actual last non-divider when last child is a divider
+      &:not(.divider):last-of-type {
+        border-bottom-left-radius: var(--radius-8);
+        border-bottom-right-radius: var(--radius-8);
+      }
+
       > a,
       > button {
         padding: 5px 20px;
@@ -225,8 +255,8 @@ $dropdown-color: colors.$color-grey-100;
       $menu-color: colors.$color-blue-grey-750;
       $menu-border: colors.$color-blue-grey-550;
       $item-active: #479eff;
-      $item-hover: #1f242f;
-      $item-color: #fff;
+      $item-hover: var(--grey-850);
+      $item-color: var(--white);
 
       @include ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color);
     }
@@ -235,8 +265,8 @@ $dropdown-color: colors.$color-grey-100;
       $menu-color: colors.$color-blue-grey-775;
       $menu-border: colors.$color-blue-grey-550;
       $item-active: #479eff;
-      $item-hover: colors.$color-blue-grey-750;
-      $item-color: #afb7c8;
+      $item-hover: var(--grey-850);
+      $item-color: var(--white);
 
       @include ngx-dropdown-outline($menu-color, $menu-border, $item-active, $item-hover, $item-color);
     }

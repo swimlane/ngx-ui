@@ -17,12 +17,12 @@ $calendar-month-current: colors.$color-blue-grey-750;
 .ngx-calendar {
   position: relative;
   font-size: 0.9rem;
-  box-shadow: shadows.$shadow-3;
   background: $calendar-bg;
   display: inline-block;
   border: 1px solid $calendar-border;
   width: 270px;
   padding: 0.5rem 0rem;
+  border-radius: var(--radius-6);
 
   .ngx-calendar-wrap {
     flex: 1 1 100%;

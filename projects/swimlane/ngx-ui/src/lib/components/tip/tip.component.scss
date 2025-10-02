@@ -6,8 +6,9 @@ $color-border: var(--grey-650);
 .ngx-tip {
   .tip-container {
     border: 2px solid $color-border;
+    border-top-right-radius: var(--radius-8);
+    border-bottom-right-radius: var(--radius-8);
     box-sizing: border-box;
-    border-radius: var(--radius-4);
     display: flex;
     justify-content: space-between;
     padding: var(--spacing-10);
@@ -20,8 +21,6 @@ $color-border: var(--grey-650);
       top: -2px;
       bottom: -2px;
       background: $color-default;
-      border-top-left-radius: var(--radius-4);
-      border-bottom-left-radius: var(--radius-4);
       width: 2px;
       left: -2px;
     }

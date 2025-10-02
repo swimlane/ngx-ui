@@ -1,8 +1,12 @@
 @use 'colors/colors' as colors;
 
 .property-config {
+  border-top-left-radius: var(--radius-16);
+  border-top-right-radius: var(--radius-16);
   .header {
-    background: linear-gradient(180deg, colors.$color-blue-grey-650 0%, colors.$color-blue-grey-750 100%);
+    background: colors.$color-blue-grey-750;
+    border-top-left-radius: var(--radius-16);
+    border-top-right-radius: var(--radius-16);
     height: 75px;
     display: flex;
     align-items: center;

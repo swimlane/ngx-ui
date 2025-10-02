@@ -76,6 +76,16 @@
 
     &.ngx-button-group--contained {
       > * {
+        max-height: 30px;
+        &.ngx-dropdown {
+          .ngx-dropdown-toggle {
+            > * {
+              max-height: 30px;
+              overflow: hidden;
+            }
+          }
+        }
+
         &:first-child {
           border-top-right-radius: unset;
           border-bottom-right-radius: unset;
@@ -106,10 +116,6 @@
 
         &:not(:first-child) {
           border-left: 0;
-
-          > ngx-dropdown-toggle > * {
-            border-left: 0;
-          }
         }
 
         &:not(:last-child) {
