@@ -32,6 +32,7 @@
   color: colors.$color-white;
   text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
   background: colors.$color-blue-grey-700;
+  border-radius: var(--radius-8);
 
   @include notification(#455066);
 
@@ -39,27 +40,40 @@
     width: 5px;
     height: 100%;
     position: absolute;
-
+    border-top-left-radius: var(--radius-8);
+    border-bottom-left-radius: var(--radius-8);
     .bar {
       width: 5px;
       height: 100%;
       position: absolute;
       bottom: 0;
+      border-top-left-radius: var(--radius-8);
+      border-bottom-left-radius: var(--radius-8);
     }
 
     &.animated {
       .bar {
         height: 0%;
         animation: 1s ease-out 0s 1 heightBar;
+        border-top-left-radius: var(--radius-8);
+        border-bottom-left-radius: var(--radius-8);
       }
     }
 
     @keyframes heightBar {
       0% {
         height: 100%;
+        border-top-left-radius: var(--radius-8);
+      }
+      10% {
+        border-top-left-radius: var(--radius-0);
+      }
+      90% {
+        border-top-left-radius: var(--radius-0);
       }
       100% {
         height: 0%;
+        border-top-left-radius: var(--radius-0);
       }
     }
   }

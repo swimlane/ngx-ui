@@ -283,6 +283,12 @@ $max-width: 300px;
         overflow-y: visible;
         text-overflow: ellipsis;
 
+        .ngx-select-dropdown-selector {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-4);
+        }
+
         &.disabled {
           color: colors.$color-blue-grey-450;
           opacity: 1;

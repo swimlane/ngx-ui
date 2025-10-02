@@ -38,6 +38,7 @@ $dialog-body-color: var(--grey-200);
     &--large {
       height: calc(100vh - 120px);
       max-height: calc(100vh - 120px);
+      border-radius: var(--radius-64);
     }
 
     &--medium {
@@ -45,14 +46,15 @@ $dialog-body-color: var(--grey-200);
       min-height: 340px;
       max-height: 75vh;
       max-width: 900px;
+      border-radius: var(--radius-64);
     }
 
     .close {
       position: absolute;
       font-size: var(--font-size-s);
       color: var(--grey-400);
-      right: 6px;
-      top: 8px;
+      right: 0.5rem;
+      top: 0.5rem;
       &:hover,
       &:active {
         color: var(--white);
@@ -66,6 +68,20 @@ $dialog-body-color: var(--grey-200);
         font-weight: 500;
         margin: var(--spacing-0) var(--spacing-0) 1.4rem var(--spacing-0);
         color: $dialog-header-color;
+      }
+    }
+
+    &--medium {
+      .ngx-dialog-header {
+        border-top-left-radius: var(--radius-64);
+        border-top-right-radius: var(--radius-64);
+      }
+    }
+
+    &--large {
+      .ngx-dialog-header {
+        border-top-left-radius: var(--radius-64);
+        border-top-right-radius: var(--radius-64);
       }
     }
 
@@ -86,6 +102,8 @@ $dialog-body-color: var(--grey-200);
       .ngx-dialog-header {
         padding: 1.4rem;
         background: var(--grey-750);
+        border-top-left-radius: var(--radius-16);
+        border-top-right-radius: var(--radius-16);
 
         h1 {
           margin: var(--spacing-0);

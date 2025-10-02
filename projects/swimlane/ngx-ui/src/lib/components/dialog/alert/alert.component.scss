@@ -4,10 +4,10 @@
   .ngx-dialog-content {
     padding: var(--spacing-0);
     background: var(--grey-725);
-    border-radius: var(--radius-4);
 
     .ngx-dialog-header {
       padding: 1.4rem 2rem 0 2rem;
+      border-radius: var(--radius-4);
 
       h1 {
         font-size: var(--font-size-l);

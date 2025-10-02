@@ -9,6 +9,7 @@
     margin-left: 20px;
     position: relative;
     background: json-editor.$color-node-item-bg;
+    border-radius: var(--radius-4);
 
     &::before {
       content: ' ';

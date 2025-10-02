@@ -209,7 +209,7 @@ $color-chip-text: #ffffff;
         flex: 0 0 auto;
 
         &:hover {
-          color: var(--blue-400);
+          background: var(--grey-750);
         }
       }
 
@@ -371,11 +371,7 @@ $color-chip-text: #ffffff;
       }
 
       .ngx-check {
-        color: var(--blue-400);
-        position: absolute;
-        right: 15px;
-        top: 50%;
-        margin-top: -7.5px;
+        display: none;
       }
     }
 
@@ -390,6 +386,12 @@ $color-chip-text: #ffffff;
         overflow-y: visible;
         text-overflow: ellipsis;
 
+        .ngx-select-dropdown-selector {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-4);
+        }
+
         &.disabled {
           color: var(--grey-450);
           opacity: 1;
@@ -399,20 +401,27 @@ $color-chip-text: #ffffff;
           cursor: pointer;
 
           &:not(.selected) {
-            &.active,
-            &:hover {
+            &.active {
               background: $color-hover-bg;
+            }
+            &:hover {
+              background: var(--grey-750);
             }
           }
         }
 
         &.selected {
-          background: var(--grey-750);
+          &:not(.multiple):not(.tagging) {
+            background: var(--blue-600);
+          }
+          color: var(--white);
 
           &:not(.disabled) {
-            &.active,
+            &.active {
+              background: var(--blue-600);
+            }
             &:hover {
-              background: $color-hover-bg;
+              background: var(--grey-750);
             }
           }
         }

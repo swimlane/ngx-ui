@@ -47,7 +47,6 @@ $input-invalid-color: colors.$color-red;
 
   &.fill {
     .calendar-dialog-btn {
-      transform: translateY(-35%);
       right: 10px;
     }
 
@@ -149,6 +148,8 @@ $input-invalid-color: colors.$color-red;
   }
 
   .selected-header {
+    border-top-left-radius: var(--radius-6);
+    border-top-right-radius: var(--radius-6);
     padding: 5px 20px;
     background: colors.$color-blue;
     color: colors.$color-grey-100;
@@ -157,7 +158,7 @@ $input-invalid-color: colors.$color-red;
   .time-row {
     background: $calendar-bg;
     border: 1px solid $calender-border;
-    padding: 8px 18px;
+    padding: 8px 18px 24px 18px;
     margin-top: 0;
 
     flex-direction: row;
@@ -196,6 +197,7 @@ $input-invalid-color: colors.$color-red;
 
   .ngx-calendar {
     box-shadow: none;
+    border-radius: 0px;
 
     .title-row {
       background: none;
@@ -208,6 +210,8 @@ $input-invalid-color: colors.$color-red;
 
   .ngx-dialog-footer {
     border: 1px solid $calender-border;
+    border-bottom-left-radius: var(--radius-6);
+    border-bottom-right-radius: var(--radius-6);
     border-top: 0;
     padding: 0.5rem 0;
     flex-direction: row;
