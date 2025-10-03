@@ -7,14 +7,14 @@
   &.md {
     .ngx-input-box,
     .ngx-input-textarea {
-      font-size: 18px !important;
+      font-size: var(--font-size-l) !important;
     }
   }
 
   &.lg {
     .ngx-input-box,
     .ngx-input-textarea {
-      font-size: 21px !important;
+      font-size: var(--font-size-xl) !important;
     }
   }
 
@@ -61,7 +61,7 @@
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
     transition: background-color 5000s ease-in-out 0s;
-    -webkit-text-fill-color: colors.$color-grey-100 !important;
+    -webkit-text-fill-color: var(--grey-100) !important;
   }
 
   .ngx-input-flex-wrap {
@@ -88,17 +88,17 @@
   }
 
   ngx-input-prefix {
-    margin-right: 8px;
+    margin-right: var(--spacing-8);
   }
 
   ngx-input-suffix {
-    margin-left: 8px;
+    margin-left: var(--spacing-8);
   }
 
   .ngx-input-wrap {
     position: relative;
     display: block;
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-0);
     width: 100%;
 
     .ngx-input-box-wrap {
@@ -117,14 +117,14 @@
         display: block;
         background: transparent;
         border: none;
-        margin-bottom: 0px;
-        padding-left: 0px;
+        margin-bottom: var(--spacing-0);
+        padding-left: var(--spacing-0);
         width: 100%;
         max-width: 100%;
         color: forms.$color-input-text;
-        font-size: 1em;
+        font-size: var(--font-size-m);
         line-height: 1.25em;
-        min-height: 0px;
+        min-height: var(--input-height);
         font-family: inherit;
         caret-color: forms.$input-label-color-active;
 
@@ -144,7 +144,7 @@
       }
 
       .ngx-input-box {
-        margin: 3px 0;
+        margin: 3px var(--spacing-0);
 
         &[type='number'] {
           &::-webkit-inner-spin-button {
@@ -167,7 +167,7 @@
         font-size: 0.8rem;
         color: forms.$input-icon-color;
         transition: color 100ms;
-        padding: 0;
+        padding: var(--spacing-0);
         z-index: 1;
 
         &:hover {
@@ -187,7 +187,7 @@
         transition: all 0.1s ease-out;
 
         i {
-          font-size: 0.625rem;
+          font-size: var(--font-size-xxs);
           color: forms.$input-icon-color;
           cursor: pointer;
 
@@ -243,8 +243,8 @@
 
       .ngx-input-box,
       .ngx-input-textarea {
-        margin: 0;
-        padding: 4px 10px;
+        margin: var(--spacing-0);
+        padding: var(--spacing-4) 10px;
         position: relative;
         z-index: 1;
       }
@@ -260,11 +260,11 @@
     }
 
     ngx-input-prefix {
-      padding-left: 10px;
+      padding-left: var(--spacing-10);
     }
 
     ngx-input-suffix {
-      padding-right: 10px;
+      padding-right: var(--spacing-10);
     }
   }
 
@@ -273,7 +273,7 @@
   &.has-placeholder {
     .ngx-input-wrap .ngx-input-label {
       font-size: forms.$input-label-font-size-active;
-      top: -1.2em;
+      top: -1.4em;
     }
   }
 }

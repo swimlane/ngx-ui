@@ -4,9 +4,9 @@
  * Button styling
  */
 
-$button-text-color: colors.$color-white;
-$button-fill-color: colors.$color-blue-grey-600;
-$button-fill-active-color: colors.$color-blue-grey-700;
+$button-text-color: var(--white);
+$button-fill-color: var(--grey-600);
+$button-fill-active-color: var(--grey-700);
 
 button {
   box-sizing: border-box;
@@ -43,24 +43,24 @@ button {
   text-decoration: none;
   user-select: none;
   font: inherit;
-  font-size: 0.9em;
-  font-weight: bold;
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-bold);
   outline: none;
-  line-height: 1em;
+  line-height: var(--font-line-height-100);
   outline-offset: 1px;
 
   background: $button-fill-color;
   border: solid 1px transparent;
-  border-radius: 2px;
+  border-radius: var(--radius-4);
   box-shadow: shadows.$shadow-1;
   transition: background-color 200ms, box-shadow 200ms;
 
   .ngx-icon,
   .icon {
-    font-weight: normal;
+    font-weight: var(--font-weight-regular);
     vertical-align: middle;
-    line-height: 1em;
-    font-size: 0.9em;
+    line-height: var(--font-line-height-100);
+    font-size: var(--font-size-m);
 
     &:before {
       font-weight: inherit;
@@ -78,7 +78,7 @@ button {
 
   &::-moz-focus-inner {
     border: 0;
-    padding: 0;
+    padding: var(--spacing-0);
   }
 
   &:focus,
@@ -101,23 +101,23 @@ button {
     outline-color: $button-fill-active-color;
 
     &.btn-primary {
-      background-color: colors.$color-blue;
+      background-color: var(--blue-500);
     }
 
     &.btn-warning {
-      background-color: colors.$color-orange;
+      background-color: var(--orange-500);
     }
 
     &.btn-danger {
-      background-color: colors.$color-red;
+      background-color: var(--red-500);
     }
     &.btn-link {
       background-color: transparent;
     }
 
     &.btn-bordered {
-      border-color: colors.$color-blue-200;
-      color: colors.$color-blue-200;
+      border-color: var(--blue-200);
+      color: var(--blue-200);
     }
   }
 
@@ -129,7 +129,7 @@ button {
 
   // sizes
   &.small {
-    font-size: 0.6em;
+    font-size: var(--font-size-xxs);
   }
 
   &.large {
@@ -137,27 +137,27 @@ button {
   }
 
   &.btn-primary {
-    background-color: colors.$color-blue-400;
-    outline-color: colors.$color-blue;
+    background-color: var(--blue-400);
+    outline-color: var(--blue-500);
 
     &.btn-primary-gradient {
-      background-color: colors.$color-blue-600;
-      background: linear-gradient(350.57deg, colors.$color-blue-600 14.42%, colors.$color-light-blue-600 100%);
+      background-color: var(--blue-600);
+      background: linear-gradient(350.57deg, var(--blue-600) 14.42%, var(--lightblue-600) 100%);
       box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
       text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
-      border: 1px solid colors.$color-blue-600;
+      border: 1px solid var(--blue-600);
     }
   }
 
   &.btn-warning {
-    background-color: colors.$color-orange-400;
-    color: colors.$color-blue-grey-900;
-    outline-color: colors.$color-orange;
+    background-color: var(--orange-400);
+    color: var(--grey-900);
+    outline-color: var(--orange-500);
   }
 
   &.btn-danger {
-    background-color: colors.$color-red-400;
-    outline-color: colors.$color-red-400;
+    background-color: var(--red-400);
+    outline-color: var(--red-400);
   }
 
   &.btn-link {
@@ -167,11 +167,11 @@ button {
 
   &.btn-bordered,
   &.btn-primary.btn-bordered {
-    border: 1px solid colors.$color-blue-400;
-    color: colors.$color-blue-400;
+    border: 1px solid var(--blue-400);
+    color: var(--blue-400);
     background-color: transparent;
     box-shadow: none;
-    outline-color: colors.$color-blue-400;
+    outline-color: var(--blue-400);
 
     &.disabled-button {
       opacity: 0.5;
@@ -189,8 +189,8 @@ button {
     box-shadow: none;
 
     &:hover {
-      border-color: colors.$color-blue !important;
-      color: colors.$color-blue !important;
+      border-color: var(--blue-500) !important;
+      color: var(--blue-500) !important;
     }
 
     &.disabled-button {
@@ -204,7 +204,7 @@ button {
 
   &.btn-file {
     cursor: pointer;
-    padding: 0;
+    padding: var(--spacing-0);
 
     label {
       display: block;

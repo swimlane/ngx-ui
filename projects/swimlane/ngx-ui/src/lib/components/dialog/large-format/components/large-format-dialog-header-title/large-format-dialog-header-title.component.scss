@@ -49,7 +49,6 @@
   }
 
   &__text-wrapper {
-    height: 100%;
     display: flex;
 
     &--title {
@@ -73,14 +72,14 @@
     }
 
     h1 {
-      color: colors.$color-white;
+      color: var(--white);
       font-size: var(--title-font-size, 1.75rem);
       line-height: var(--title-font-line-height, 2rem);
     }
 
     h4 {
-      color: colors.$color-blue-grey-250;
-      font-size: 1rem;
+      color: var(--grey-250);
+      font-size: var(--font-size-m);
       line-height: 0.75rem;
     }
   }

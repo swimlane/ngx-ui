@@ -138,18 +138,23 @@ ngx-nav-menu.expanded,
       outline: none;
     }
 
-    &:hover,
+    &.active,
+    &:hover {
+      color: var(--white);
+      .active-indicator {
+        display: none;
+      }
+    }
+
+    &:hover {
+      background: var(--grey-600);
+    }
     &.active {
-      border-image: linear-gradient(to bottom, #02aaff 0%, #00fff4 100%) 1 100%;
-      border-color: colors.$color-blue-500;
-
-      ngx-icon {
-        color: colors.$color-blue-grey-050;
-
-        svg {
-          filter: none;
-          opacity: 1;
-        }
+      background: var(--grey-750);
+      color: var(--white);
+      &:hover {
+        background: var(--grey-750);
+        color: var(--white);
       }
     }
   }
@@ -157,7 +162,7 @@ ngx-nav-menu.expanded,
 
 .sub-nav {
   display: none;
-  padding-left: 0px;
+  padding-left: 4px;
   margin: 0px;
   max-height: 263px;
   overflow: auto;
@@ -185,8 +190,19 @@ ngx-nav-menu.expanded,
 
     &.active,
     &:hover {
+      color: var(--white);
       .active-indicator {
-        display: inline;
+        display: none;
+      }
+    }
+
+    &:hover {
+      background: var(--grey-600);
+    }
+    &.active {
+      background: var(--grey-750);
+      &:hover {
+        background: var(--grey-750);
       }
     }
   }
