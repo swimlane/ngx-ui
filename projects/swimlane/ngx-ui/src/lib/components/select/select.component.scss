@@ -411,15 +411,12 @@ $color-chip-text: #ffffff;
         }
 
         &.selected {
-          &:not(.multiple):not(.tagging) {
+          &:not(.multiple):not(.tagging):not(.disabled) {
             background: var(--blue-600);
           }
           color: var(--white);
 
           &:not(.disabled) {
-            &.active {
-              background: var(--blue-600);
-            }
             &:hover {
               background: var(--grey-750);
             }
