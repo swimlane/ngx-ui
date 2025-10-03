@@ -298,9 +298,11 @@ $max-width: 300px;
           cursor: pointer;
 
           &:not(.selected) {
-            &.active,
-            &:hover {
+            &.active {
               background: $color-hover-bg;
+            }
+            &:hover {
+              background: var(--grey-750);
             }
           }
         }
@@ -310,12 +312,14 @@ $max-width: 300px;
         }
 
         &.selected {
-          background: colors.$color-blue-grey-800;
+          &:not(.multiple):not(.tagging):not(.disabled) {
+            background: var(--blue-600);
+          }
+          color: var(--white);
 
           &:not(.disabled) {
-            &.active,
             &:hover {
-              background: $color-hover-bg;
+              background: var(--grey-750);
             }
           }
         }
