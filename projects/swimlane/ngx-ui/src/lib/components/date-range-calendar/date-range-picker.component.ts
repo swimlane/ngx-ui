@@ -312,9 +312,9 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
         startRaw: this.lastConfirmedRange.startRaw,
         endRaw: this.lastConfirmedRange.endRaw
       };
-      this.rangeModel = { 
-        startDate: this.lastConfirmedRange.startDate, 
-        endDate: this.lastConfirmedRange.endDate 
+      this.rangeModel = {
+        startDate: this.lastConfirmedRange.startDate,
+        endDate: this.lastConfirmedRange.endDate
       };
     } else {
       // First-time cancel before any apply: reset form
