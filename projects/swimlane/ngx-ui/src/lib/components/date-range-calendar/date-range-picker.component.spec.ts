@@ -139,7 +139,12 @@ describe('DateRangePickerComponent', () => {
   it('should reset to last confirmed range onCancel when present', () => {
     const confirmedStart = new Date('2023-01-01');
     const confirmedEnd = new Date('2023-01-10');
-    component.lastConfirmedRange = { startDate: confirmedStart, endDate: confirmedEnd };
+    component.lastConfirmedRange = {
+      startDate: confirmedStart,
+      endDate: confirmedEnd,
+      startRaw: '2023-01-01',
+      endRaw: '2023-01-10'
+    };
     spyOn(component.cancel, 'emit');
     component.onCancel();
     expect(component.form.startDate).toEqual(confirmedStart);
