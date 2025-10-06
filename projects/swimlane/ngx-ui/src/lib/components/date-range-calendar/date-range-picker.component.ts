@@ -80,7 +80,7 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
   @ViewChild('wrapperRef', { static: false }) wrapperRef!: DropdownComponent;
 
   private readonly dateFormat: string = 'yyyy-MM-dd HH:mm:ss';
-  lastConfirmedRange: { startDate: Date; endDate: Date } = null;
+  lastConfirmedRange: { startDate: Date; endDate: Date; startRaw: string; endRaw: string } = null;
 
   form: DateRangeForm = { startRaw: '', endRaw: '', startDate: null, endDate: null };
 
@@ -154,7 +154,9 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
           : this.selectedRange.end;
       this.lastConfirmedRange = {
         startDate,
-        endDate
+        endDate,
+        startRaw: this.selectedRange.start,
+        endRaw: this.selectedRange.end
       };
       this.form.startRaw = this.selectedRange.start;
       this.form.endRaw = this.selectedRange.end;
@@ -285,7 +287,9 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
     if (this.form.startDate && this.form.endDate) {
       this.lastConfirmedRange = {
         startDate: this.form.startDate,
-        endDate: this.form.endDate
+        endDate: this.form.endDate,
+        startRaw: this.form.startRaw,
+        endRaw: this.form.endRaw
       };
       this.updateSelectedLabel();
       this.apply.emit({
@@ -305,10 +309,13 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
       this.form = {
         startDate: this.lastConfirmedRange.startDate,
         endDate: this.lastConfirmedRange.endDate,
-        startRaw: format(this.lastConfirmedRange.startDate, this.dateFormat),
-        endRaw: format(this.lastConfirmedRange.endDate, this.dateFormat)
+        startRaw: this.lastConfirmedRange.startRaw,
+        endRaw: this.lastConfirmedRange.endRaw
       };
-      this.rangeModel = { ...this.lastConfirmedRange };
+      this.rangeModel = { 
+        startDate: this.lastConfirmedRange.startDate, 
+        endDate: this.lastConfirmedRange.endDate 
+      };
     } else {
       // First-time cancel before any apply: reset form
       this.form = {
