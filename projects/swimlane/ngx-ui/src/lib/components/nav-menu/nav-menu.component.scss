@@ -3,8 +3,8 @@
 ngx-nav-menu {
   width: 60px;
   height: 100%;
-  background: colors.$color-blue-grey-800;
-  padding: 0;
+  background: var(--grey-800);
+  padding: var(--spacing-0);
   user-select: none;
 
   .nav-menu {
@@ -15,14 +15,14 @@ ngx-nav-menu {
   }
 
   .expand-icon {
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     cursor: pointer;
-    margin-top: 2px;
+    margin-top: var(--spacing-2);
     position: absolute;
     left: 23px;
 
     svg {
-      fill: colors.$color-blue-grey-400;
+      fill: var(--grey-400);
     }
 
     &.bottom {
@@ -31,7 +31,7 @@ ngx-nav-menu {
 
     &:hover {
       svg {
-        fill: colors.$color-blue-500;
+        fill: var(--blue-500);
       }
     }
   }
@@ -84,30 +84,30 @@ ngx-nav-menu.expanded,
   overflow: auto;
 
   .nav-item-container {
-    background: colors.$color-blue-grey-750;
+    background: var(--grey-750);
   }
 
   .nav-item {
     display: block;
-    margin: 1px 0;
-    background: colors.$color-blue-grey-750;
+    margin: 1px var(--spacing-0);
+    background: var(--grey-750);
     width: 100%;
-    color: colors.$color-white;
-    border-left-color: colors.$color-blue-grey-750;
+    color: var(--white);
+    border-left-color: var(--grey-750);
     border-left-width: 3px;
     border-left-style: solid;
 
-    padding: 13px 0px 14px 0px;
+    padding: 13px var(--spacing-0) 14px var(--spacing-0);
     cursor: pointer;
 
     ngx-icon {
       width: 20px;
       height: 20px;
-      margin-left: 17px;
+      margin-left: var(--spacing-16);
       vertical-align: middle;
-      font-size: 20px;
-      line-height: 20px;
-      color: colors.$color-blue-grey-350;
+      font-size: var(--font-size-xl);
+      line-height: var(--font-line-height-300);
+      color: var(--grey-350);
 
       svg {
         fill: none;
@@ -119,19 +119,19 @@ ngx-nav-menu.expanded,
     .nav-label {
       display: none;
       text-transform: uppercase;
-      margin-left: 15px;
-      font-size: 14px;
-      color: colors.$color-blue-grey-350;
-      font-weight: 600;
+      margin-left: var(--spacing-16);
+      font-size: var(--font-size-s);
+      color: var(--grey-350);
+      font-weight: var(--font-weight-semibold);
     }
 
     .toggle-icon {
       display: none;
       float: right;
-      color: colors.$color-blue-grey-350;
-      font-size: 12px;
-      margin-top: 5px;
-      margin-right: 10px;
+      color: var(--grey-350);
+      font-size: var(--font-size-xs);
+      margin-top: var(--spacing-4);
+      margin-right: var(--spacing-10);
     }
 
     &:focus {
@@ -162,26 +162,26 @@ ngx-nav-menu.expanded,
 
 .sub-nav {
   display: none;
-  padding-left: 4px;
-  margin: 0px;
+  padding-left: var(--spacing-4);
+  margin: var(--spacing-0);
   max-height: 263px;
   overflow: auto;
-  background: colors.$color-blue-grey-800;
+  background: var(--grey-800);
 
   .sub-nav-item {
     display: block;
-    background: colors.$color-blue-grey-800;
-    margin-bottom: 0px;
-    padding: 16px 18px;
-    font-size: 0.9rem;
-    color: colors.$color-blue-grey-350;
+    background: var(--grey-800);
+    margin-bottom: var(--spacing-0);
+    padding: var(--spacing-16) 18px;
+    font-size: var(--font-size-m);
+    color: var(--grey-350);
     cursor: pointer;
 
     .active-indicator {
       display: none;
       float: right;
-      margin-top: 4px;
-      color: colors.$color-blue-500;
+      margin-top: var(--spacing-4);
+      color: var(--blue-500);
     }
 
     &:focus {
@@ -208,12 +208,12 @@ ngx-nav-menu.expanded,
   }
 
   .sub-nav-item:not(:first-child) {
-    border-top: 1px solid colors.$color-blue-grey-750;
+    border-top: 1px solid var(--grey-750);
   }
 }
 
 .nav-logo {
-  background: colors.$color-blue-grey-900;
+  background: var(--grey-900);
   height: 50px;
   position: relative;
 
@@ -238,7 +238,7 @@ ngx-nav-menu.expanded,
   .logo-text {
     display: none;
     height: 20px;
-    margin-left: 25px;
+    margin-left: var(--spacing-24);
   }
 
   &:hover {
@@ -258,10 +258,10 @@ ngx-nav-menu.expanded,
 
 .nav-popover {
   width: 200px;
-  background: colors.$color-blue-grey-750 !important;
-  margin-top: 7px;
+  background: var(--grey-750) !important;
+  margin-top: var(--spacing-8);
   box-shadow: none !important;
-  padding: 0 !important;
+  padding: var(--spacing-0) !important;
 
   transition: opacity 0.3s, transform 0s !important;
 
@@ -270,17 +270,17 @@ ngx-nav-menu.expanded,
     overflow: auto;
   }
   .sub-nav-item {
-    margin: 0px 1px 1px 1px;
+    margin: var(--spacing-0) 1px 1px 1px;
   }
 
   .title {
     height: 50px;
-    background: colors.$color-blue-grey-750;
-    padding: 15px 0px 14px 15px;
+    background: var(--grey-750);
+    padding: var(--spacing-16) var(--spacing-0) 14px var(--spacing-16);
     text-transform: uppercase;
     margin-left: -1px;
-    font-size: 14px;
-    color: colors.$color-blue-grey-350;
-    font-weight: 600;
+    font-size: var(--font-size-s);
+    color: var(--grey-350);
+    font-weight: var(--font-weight-semibold);
   }
 }

@@ -386,6 +386,16 @@ $color-chip-text: #ffffff;
         overflow-y: visible;
         text-overflow: ellipsis;
 
+        &:first-child {
+          border-top-left-radius: var(--radius-6);
+          border-top-right-radius: var(--radius-6);
+        }
+
+        &:last-child {
+          border-bottom-left-radius: var(--radius-6);
+          border-bottom-right-radius: var(--radius-6);
+        }
+
         .ngx-select-dropdown-selector {
           display: flex;
           align-items: center;

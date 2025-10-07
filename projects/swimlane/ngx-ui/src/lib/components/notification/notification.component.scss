@@ -29,9 +29,9 @@
   margin-top: 0.5rem;
   position: relative;
   box-shadow: shadows.$shadow-15;
-  color: colors.$color-white;
+  color: var(--white);
   text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
-  background: colors.$color-blue-grey-700;
+  background: var(--grey-700);
   border-radius: var(--radius-8);
 
   @include notification(#455066);
@@ -83,24 +83,24 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    padding: 0 1.25em;
+    padding: var(--spacing-0) 1.25em;
     height: 2rem;
 
     .ngx-icon {
-      font-size: 2rem;
-      line-height: 2rem;
+      font-size: var(--font-size-4xl);
+      line-height: var(--font-size-4xl);
     }
   }
 
   .notification-content {
     padding: 1.5rem;
-    color: colors.$color-blue-grey-100;
+    color: var(--grey-100);
     overflow: auto;
     max-height: 300px;
 
     &.has-icon {
       margin-left: 4.5rem;
-      border-left: 1px solid colors.$color-blue-grey-650;
+      border-left: 1px solid var(--grey-650);
     }
   }
 
@@ -109,30 +109,30 @@
   }
 
   &.ngx-notification-info {
-    @include notification(colors.$color-blue);
+    @include notification(var(--blue-500));
   }
 
   &.ngx-notification-error {
-    @include notification(colors.$color-red);
+    @include notification(var(--red-500));
   }
 
   &.ngx-notification-warning {
-    @include notification(colors.$color-orange);
+    @include notification(var(--orange-500));
   }
 
   &.ngx-notification-success {
-    @include notification(colors.$color-green);
+    @include notification(var(--green-500));
   }
 
   .ngx-notification-title {
-    margin: 0;
+    margin: var(--spacing-0);
     font-size: 1.2rem;
     color: white;
   }
 
   .ngx-notification-body {
-    font-size: 0.9rem;
-    margin: 0;
+    font-size: var(--font-size-m);
+    margin: var(--spacing-0);
     line-height: 1rem;
   }
 
@@ -141,8 +141,8 @@
     right: 0.5rem;
     top: 0.5rem;
     line-height: 1em;
-    padding: 0;
-    font-size: 16px;
+    padding: var(--spacing-0);
+    font-size: var(--font-size-m);
     height: 16px;
   }
 }

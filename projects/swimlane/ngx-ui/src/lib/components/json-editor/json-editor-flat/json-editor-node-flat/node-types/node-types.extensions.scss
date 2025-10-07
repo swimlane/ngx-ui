@@ -4,11 +4,11 @@
 
 %node-type {
   display: flex;
-  margin-bottom: 4px;
+  margin-bottom: var(--spacing-4);
   position: relative;
 
   &:last-child {
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-0);
   }
 
   ngx-json-editor-node-flat {
@@ -20,9 +20,9 @@
   height: 100px;
   position: relative;
   display: flex;
-  padding-top: 0px;
+  padding-top: var(--spacing-0);
   ngx-dropdown {
-    padding-bottom: 0;
+    padding-bottom: var(--spacing-0);
   }
 
   &.compressed {
@@ -30,23 +30,23 @@
   }
 
   &.background {
-    border-left: 1px solid colors.$color-blue-grey-650;
+    border-left: 1px solid var(--grey-650);
     height: 96px;
-    padding-left: 0px;
-    padding-top: 2px;
-    padding-bottom: 2px;
-    margin-top: -2px;
-    margin-bottom: -2px;
+    padding-left: var(--spacing-0);
+    padding-top: var(--spacing-2);
+    padding-bottom: var(--spacing-2);
+    margin-top: -var(--spacing-2);
+    margin-bottom: -var(--spacing-2);
   }
 
   .indented-content {
-    border: 2px dotted color.change(colors.$color-blue-grey-650, $alpha: 0.5);
+    border: 2px dotted rgba(var(--grey-650), 0.5);
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 4px;
-    margin-bottom: 0px;
+    border-radius: var(--radius-4);
+    margin-bottom: var(--spacing-0);
     background-color: rgba(49, 56, 71, 0.5);
 
     &.indented-content--root {
@@ -54,19 +54,19 @@
     }
 
     &.indented-content--indent {
-      margin-left: 15px;
+      margin-left: var(--spacing-16);
     }
 
     button {
       display: flex;
-      color: colors.$color-blue-400;
+      color: var(--blue-400);
       i {
-        font-size: 18px;
+        font-size: var(--font-size-l);
       }
 
       span {
-        font-size: 14px;
-        margin-left: 10px;
+        font-size: var(--font-size-s);
+        margin-left: var(--spacing-10);
       }
     }
 

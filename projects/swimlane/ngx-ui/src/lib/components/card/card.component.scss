@@ -31,7 +31,6 @@ $card-vertical-gutter: var(--spacing-20);
 .ngx-card {
   display: flex;
   background: $color-flat-background;
-  // box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   border-radius: var(--radius-6);
 
   // disabled
@@ -50,16 +49,13 @@ $card-vertical-gutter: var(--spacing-20);
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    // box-shadow: inset 0 -2px 2px var(--grey-600);
 
     &.success {
       background-color: #b0e53c;
-      // box-shadow: 0 0 7px #b0e53c;
     }
 
     &.error {
       background-color: var(--color-error);
-      // box-shadow: 0 0 7px var(--color-error);
     }
   }
 
