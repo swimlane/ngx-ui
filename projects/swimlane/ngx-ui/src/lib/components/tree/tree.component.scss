@@ -110,7 +110,8 @@ $dashes: 5.3px;
 
     &_filled {
       height: 13px !important;
-      background: radial-gradient(at 5.5px 30%, json-editor.$color-tree-line, 2.5px, transparent 0) 0/28px 32px,
+      background:
+        radial-gradient(at 5.5px 30%, json-editor.$color-tree-line, 2.5px, transparent 0) 0/28px 32px,
         conic-gradient(at 1px 50%, #0000 75%, json-editor.$color-tree-line 0) 5px 0/28px 5.1px;
       background-position-y: 1.1px;
     }

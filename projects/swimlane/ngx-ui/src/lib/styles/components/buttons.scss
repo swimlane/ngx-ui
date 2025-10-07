@@ -53,7 +53,9 @@ button {
   border: solid 1px transparent;
   border-radius: 2px;
   box-shadow: shadows.$shadow-1;
-  transition: background-color 200ms, box-shadow 200ms;
+  transition:
+    background-color 200ms,
+    box-shadow 200ms;
 
   .ngx-icon,
   .icon {

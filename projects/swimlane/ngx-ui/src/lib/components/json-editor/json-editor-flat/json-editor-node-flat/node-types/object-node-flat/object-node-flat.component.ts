@@ -60,7 +60,10 @@ export class ObjectNodeFlatComponent extends ObjectNode implements OnInit, OnCha
     return this.hideRoot && this.level === 0;
   }
 
-  constructor(private dialogService: DialogService, protected cdr: ChangeDetectorRef) {
+  constructor(
+    private dialogService: DialogService,
+    protected cdr: ChangeDetectorRef
+  ) {
     super(cdr);
   }
 
