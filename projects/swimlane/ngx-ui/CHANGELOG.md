@@ -2,6 +2,9 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-date-range-picker`): Preset values now retain their relative expressions when cancel is clicked, instead of being converted to timestamps
+- Fix (`ngx-date-range-picker`): Fix highlight the date for given `selectedRange` values.
+
 ## 50.1.3 (2025-09-23)
 
 - Fix (`ngx-multi-dimension-selection`): Show children of items matching search term
