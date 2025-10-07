@@ -67,7 +67,7 @@
       <br />
 
       <h4>Filtering (Numerics)</h4>
-      <ngx-select name="filtering" [filterable]="true" [label]="'Historical Events'" (keyup)="onSelectKeyUp($event)"
+      <ngx-select [filterable]="true" [label]="'Historical Events'" (keyup)="onSelectKeyUp($event)"
         (change)="onEvent('change', $event)">
         <ngx-select-option name="1969" value="Moon landing"></ngx-select-option>
         <ngx-select-option name="44 BC" value="Caesar death"></ngx-select-option>
