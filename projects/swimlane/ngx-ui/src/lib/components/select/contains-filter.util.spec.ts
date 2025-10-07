@@ -60,4 +60,24 @@ describe('containsFilter', () => {
     const res = containsFilter(123, '123', { filterCaseSensitive: true });
     expect(res).toBeTruthy();
   });
+
+  it('should handle alphanumeric string filtering with numbers', () => {
+    const res = containsFilter('ABC123', '123', {});
+    expect(res).toBeTruthy();
+  });
+
+  it('should handle alphanumeric string filtering with partial numbers', () => {
+    const res = containsFilter('ABC123', '12', {});
+    expect(res).toBeTruthy();
+  });
+
+  it('should handle alphanumeric string filtering with letters and numbers', () => {
+    const res = containsFilter('ABC123', 'BC1', {});
+    expect(res).toBeTruthy();
+  });
+
+  it('should return false for alphanumeric string when filter does not match', () => {
+    const res = containsFilter('ABC123', 'XYZ', {});
+    expect(res).toBeFalsy();
+  });
 });
