@@ -41,8 +41,23 @@ describe('containsFilter', () => {
     expect(res).toBeTruthy();
   });
 
-  it('should be undefined if value is not string or object', () => {
-    const res = containsFilter(1, '1', {});
-    expect(res).toBeUndefined();
+  it('should convert number to string and return true when filter matches', () => {
+    const res = containsFilter(123, '123', {});
+    expect(res).toBeTruthy();
+  });
+
+  it('should convert number to string and return true when filter matches partially', () => {
+    const res = containsFilter(123, '12', {});
+    expect(res).toBeTruthy();
+  });
+
+  it('should convert number to string and return false when filter does not match', () => {
+    const res = containsFilter(123, '456', {});
+    expect(res).toBeFalsy();
+  });
+
+  it('should handle number filtering with case sensitive option', () => {
+    const res = containsFilter(123, '123', { filterCaseSensitive: true });
+    expect(res).toBeTruthy();
   });
 });

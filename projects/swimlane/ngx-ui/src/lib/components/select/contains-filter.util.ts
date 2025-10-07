@@ -9,7 +9,9 @@ export function containsFilter(
   if (value === undefined || value === null || depth > 2) {
     return false;
   }
-
+  if (typeof value === 'number') {
+    value = String(value);
+  }
   if (typeof value === 'string') {
     const escapedKeyword = escapeRegExp(keyword);
     // eslint-disable-next-line

@@ -11,14 +11,14 @@
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [filterable]="false" [label]="'Attack Type'">
+      <app-prism>
+        <![CDATA[<ngx-select [filterable]="false" [label]="'Attack Type'">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
       <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
       <ngx-select-option name="Physical" value="physical"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -31,35 +31,59 @@
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [filterable]="false" [label]="'Attack Type'" [required]="true">
+      <app-prism>
+        <![CDATA[<ngx-select [filterable]="false" [label]="'Attack Type'" [required]="true">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
       <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
       <ngx-select-option name="Physical" value="physical"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
       <br />
 
       <h4>Filtering</h4>
-      <ngx-select name="filtering" [filterable]="true" [label]="'Attack Type'" (keyup)="onSelectKeyUp($event)" (change)="onEvent('change', $event)">
+      <ngx-select name="filtering" [filterable]="true" [label]="'Attack Type'" (keyup)="onSelectKeyUp($event)"
+        (change)="onEvent('change', $event)">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS and Breach" value="ddos_breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)">
+      <app-prism>
+        <![CDATA[<ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
       <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
       <ngx-select-option name="Physical" value="physical"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
+
+      <br />
+      <br />
+      <br />
+
+      <h4>Filtering(Numerics)</h4>
+      <ngx-select name="filtering" [filterable]="true" [label]="'Historical Events'" (keyup)="onSelectKeyUp($event)"
+        (change)="onEvent('change', $event)">
+        <ngx-select-option name="1969" value="Moon landing"></ngx-select-option>
+        <ngx-select-option name="44 BC" value="Caesar death"></ngx-select-option>
+        <ngx-select-option name="1066" value="Norman conquest"></ngx-select-option>
+        <ngx-select-option name="323 BC" value="Alexander death"></ngx-select-option>
+      </ngx-select>
+
+      <app-prism>
+        <![CDATA[<ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)">
+        <ngx-select-option name="1969" value="Moon landing"></ngx-select-option>
+        <ngx-select-option name="44 BC"value="Caesar death"></ngx-select-option>
+        <ngx-select-option name="1066" value="Norman conquest"></ngx-select-option>
+        <ngx-select-option name="323 BC" value="Alexander death"></ngx-select-option>
+      </ngx-select>
+      ]]>
+      </app-prism>
 
       <br />
       <br />
@@ -72,29 +96,29 @@
         <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)" [filterCaseSensitive]="true">
+      <app-prism>
+        <![CDATA[<ngx-select [filterable]="true" (keyup)="onSelectKeyUp($event)" [filterCaseSensitive]="true">
       <ngx-select-option name="Breach" value="Breach"></ngx-select-option>
       <ngx-select-option name="DDOS" value="DDOS"></ngx-select-option>
       <ngx-select-option name="Physical" value="Physical"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
       <br />
 
       <h4>Add New</h4>
-      <ngx-select
-        [filterable]="true" [allowAdditions]="true" [allowAdditionsText]="'Add New Value (Shift + ⏎)'" hint="Users can add new value by clicking on Add New Value or by pressing Shift + ⏎">
+      <ngx-select [filterable]="true" [allowAdditions]="true" [allowAdditionsText]="'Add New Value (Shift + ⏎)'"
+        hint="Users can add new value by clicking on Add New Value or by pressing Shift + ⏎">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select
+      <app-prism>
+        <![CDATA[<ngx-select
       [filterable]="true"
       [allowAdditions]="true"
       [allowAdditionsText]="'Add New Value (Shift + ⏎)'"
@@ -104,7 +128,7 @@
       <ngx-select-option name="Physical" value="physical"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -112,7 +136,7 @@
 
       <h4>Long Values</h4>
       <ngx-select style="max-width: 300px"
-                  [ngModel]="['supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious']">
+        [ngModel]="['supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious']">
         <ngx-select-option
           name="supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious"
           value="supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious">
@@ -121,8 +145,8 @@
         <ngx-select-option name="super califragilisticex pialidoc ious" value="s3121"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select
+      <app-prism>
+        <![CDATA[<ngx-select
       style="max-width: 300px"
       [filterable]="true"
       [ngModel]="['supercalifragilisticexpialidocioussupercalifragilisticexpialidocioussupercalifragilisticexpialidocious']">
@@ -134,7 +158,7 @@
       <ngx-select-option name="super califragilisticex pialidoc ious" value="s3121"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -146,8 +170,8 @@
         </ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]" label="Select a value...">
+      <app-prism>
+        <![CDATA[<ngx-select [identifier]="'attr'" [ngModel]="[selects[0]]" label="Select a value...">
       <ngx-select-option
         *ngFor="let option of selects"
         [name]="option.name"
@@ -155,20 +179,21 @@
       </ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
       <br />
 
       <h4>Single select value</h4>
-      <ngx-select [ngModel]="[singleSelectModel]" (ngModelChange)="singleSelectModel = $event[0]" label="Select a value...">
+      <ngx-select [ngModel]="[singleSelectModel]" (ngModelChange)="singleSelectModel = $event[0]"
+        label="Select a value...">
         <ngx-select-option *ngFor="let option of selects" [name]="option.name" [value]="option">
         </ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [ngModel]="[singleSelectModel]" (ngModelChange)="singleSelectModel = $event[0]"
+      <app-prism>
+        <![CDATA[<ngx-select [ngModel]="[singleSelectModel]" (ngModelChange)="singleSelectModel = $event[0]"
                 label="Select a value...">
       <ngx-select-option
         *ngFor="let option of selects"
@@ -177,7 +202,7 @@
       </ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <h4>Input and Option Templates</h4>
       <ngx-select data-cy="templates">
@@ -197,8 +222,8 @@
         </ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select>
+      <app-prism>
+        <![CDATA[<ngx-select>
       <ngx-select-option value="breach">
         <ng-template ngx-select-option-input-template let-option="option">
           <span class="tag">option.value</span>
@@ -215,7 +240,7 @@
       </ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -228,14 +253,14 @@
         <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [groupBy]="'type'">
+      <app-prism>
+        <![CDATA[<ngx-select [groupBy]="'type'">
       <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
       <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
       <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -255,8 +280,8 @@
         </ng-container>
       </ng-template>
 
-    <app-prism>
-    <![CDATA[<ngx-select [groupBy]="'type'" [groupByTemplate]="groupByTemplate">
+      <app-prism>
+        <![CDATA[<ngx-select [groupBy]="'type'" [groupByTemplate]="groupByTemplate">
       <ngx-select-option [name]="'Breach'" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
       <ngx-select-option [name]="'DDOS'" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
       <ngx-select-option [name]="'Physical'" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
@@ -269,7 +294,7 @@
       </ng-container>
     </ng-template>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -282,14 +307,14 @@
         <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="false"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [placeholder]="'Select incident type...'">
+      <app-prism>
+        <![CDATA[<ngx-select [placeholder]="'Select incident type...'">
       <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
       <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
       <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="false"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -302,14 +327,14 @@
         <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="false" [hidden]="true"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [placeholder]="'Select incident type...'">
+      <app-prism>
+        <![CDATA[<ngx-select [placeholder]="'Select incident type...'">
       <ngx-select-option [name]="'Breach'" [value]="'breach'"></ngx-select-option>
       <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true" [hidden]="false"></ngx-select-option>
       <ngx-select-option [name]="'Physical'" [value]="'pyhs'" [disabled]="false" [hidden]="true"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -322,14 +347,14 @@
         <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="false"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [disabled]="true" [ngModel]="['Breach']">
+      <app-prism>
+        <![CDATA[<ngx-select [disabled]="true" [ngModel]="['Breach']">
       <ngx-select-option [name]="'Breach'" [value]="'Breach'"></ngx-select-option>
       <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
       <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="false"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -342,14 +367,14 @@
         <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="false"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [ngModel]="['Breach']">
+      <app-prism>
+        <![CDATA[<ngx-select [ngModel]="['Breach']">
       <ngx-select-option [name]="'Breach'" [value]="'Breach'" [hidden]="true"></ngx-select-option>
       <ngx-select-option [name]="'DDOS'" [value]="'ddos'" [disabled]="true"></ngx-select-option>
       <ngx-select-option [name]="'Physical'" [value]="'Physical'" [disabled]="false"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -357,10 +382,10 @@
 
       <h4>No Options</h4>
       <ngx-select [filterable]="false"></ngx-select>
-    <app-prism>
-    <![CDATA[<ngx-select [filterable]="false"></ngx-select>
+      <app-prism>
+        <![CDATA[<ngx-select [filterable]="false"></ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -368,16 +393,16 @@
 
       <h4>Events</h4>
       <ngx-select [filterable]="true" label="Attack Type" (change)="onEvent('ngx-select change', $event)"
-                  (keyup)="onEvent('ngx-select change', $event)" (toggle)="onEvent('ngx-select toggle', $event)">
+        (keyup)="onEvent('ngx-select change', $event)" (toggle)="onEvent('ngx-select toggle', $event)">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [filterable]="false"></ngx-select>
+      <app-prism>
+        <![CDATA[<ngx-select [filterable]="false"></ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -385,7 +410,7 @@
 
       <h4>Customization</h4>
       <ngx-select [filterable]="true" [allowAdditions]="true" [allowAdditionsText]="'Add New Value'"
-                  [selectCaret]="doubleDown">
+        [selectCaret]="doubleDown">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -395,8 +420,8 @@
         <ngx-icon fontIcon="double-down"></ngx-icon>
       </ng-template>
 
-    <app-prism>
-    <![CDATA[<ngx-select
+      <app-prism>
+        <![CDATA[<ngx-select
       [filterable]="true"
       [allowAdditions]="true"
       [allowAdditionsText]="Add New Value'"
@@ -410,44 +435,32 @@
       <ngx-icon fontIcon="double-down"></ngx-icon>
     </ng-template>
     <!-- `allowAdditionsText` and `selectCaret` both accept strings or template references -->]]>
-    </app-prism>
+      </app-prism>
 
-    <br />
-    <br />
-    <br />
+      <br />
+      <br />
+      <br />
 
-    <h4>Select Options with Tooltip</h4>
-    <ngx-select [filterable]="false" [label]="'Attack Type'" [required]="true">
-      <ngx-select-option
-        name="Breach"
-        value="breach"
-        [tooltipConfig]="{
+      <h4>Select Options with Tooltip</h4>
+      <ngx-select [filterable]="false" [label]="'Attack Type'" [required]="true">
+        <ngx-select-option name="Breach" value="breach" [tooltipConfig]="{
           tooltipPlacement: 'top',
           tooltipTitle: 'Breach tooltip on top',
           tooltipType: 'tooltip'
-        }"
-      ></ngx-select-option>
-      <ngx-select-option
-        name="DDOS"
-        value="ddos"
-        [tooltipConfig]="{
+        }"></ngx-select-option>
+        <ngx-select-option name="DDOS" value="ddos" [tooltipConfig]="{
           tooltipPlacement: 'right',
           tooltipTitle: 'DDOS tooltip on right',
           tooltipType: 'tooltip'
-        }"
-      ></ngx-select-option>
-      <ngx-select-option
-        name="Physical"
-        value="physical"
-        [tooltipConfig]="{
+        }"></ngx-select-option>
+        <ngx-select-option name="Physical" value="physical" [tooltipConfig]="{
           tooltipPlacement: 'bottom',
           tooltipTitle: 'Physical tooltip on bottom',
           tooltipType: 'tooltip'
-        }"
-      ></ngx-select-option>
-    </ngx-select>
-    <app-prism>
-      <![CDATA[<ngx-select
+        }"></ngx-select-option>
+      </ngx-select>
+      <app-prism>
+        <![CDATA[<ngx-select
         [filterable]="false"
         [label]="'Attack Type'"
         [required]="true"
@@ -481,7 +494,7 @@
           }"
         ></ngx-select-option>
       </ngx-select>]]>
-    </app-prism>
+      </app-prism>
     </ngx-section>
 
     <ngx-section class="shadow" sectionTitle="Form Controls">
@@ -493,7 +506,8 @@
           <ngx-select-option name="Physical" value="physical"></ngx-select-option>
         </ngx-select>
         <br />
-        <button class="btn btn-primary" type="button" (click)="onToggleNgxSelectState()" data-cy="reactiveFormSelectToggleBtn">
+        <button class="btn btn-primary" type="button" (click)="onToggleNgxSelectState()"
+          data-cy="reactiveFormSelectToggleBtn">
           Toggle form control state
         </button>
       </form>
@@ -530,14 +544,14 @@
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [filterable]="false" [multiple]="true">
+      <app-prism>
+        <![CDATA[<ngx-select [filterable]="false" [multiple]="true">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
       <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
       <ngx-select-option name="Physical" value="physical"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
 
       <br />
@@ -545,21 +559,22 @@
       <br />
 
       <h4>Min/Max Selections</h4>
-      <ngx-select label="Select one or two" [filterable]="false" [multiple]="true" [minSelections]="1" [maxSelections]="2">
+      <ngx-select label="Select one or two" [filterable]="false" [multiple]="true" [minSelections]="1"
+        [maxSelections]="2">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select label="Select one or two" [filterable]="false" [multiple]="true" [minSelections]="1"
+      <app-prism>
+        <![CDATA[<ngx-select label="Select one or two" [filterable]="false" [multiple]="true" [minSelections]="1"
                 [maxSelections]="2">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
       <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
       <ngx-select-option name="Physical" value="physical"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -572,14 +587,14 @@
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [filterable]="false" [multiple]="true" [closeOnSelect]="true">
+      <app-prism>
+        <![CDATA[<ngx-select [filterable]="false" [multiple]="true" [closeOnSelect]="true">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
       <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
       <ngx-select-option name="Physical" value="physical"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -587,14 +602,14 @@
 
       <h4>Several Default Selections</h4>
       <ngx-select [multiple]="true" [identifier]="'attr'"
-                  [ngModel]="[selects[0], selects[1], selects[2], selects[3], selects[4], selects[5], selects[6], selects[7], selects[8]]">
+        [ngModel]="[selects[0], selects[1], selects[2], selects[3], selects[4], selects[5], selects[6], selects[7], selects[8]]">
         <ngx-select-option *ngFor="let option of selects" [name]="option.name" [disabled]="option.disabled"
-                           [value]="option">
+          [value]="option">
         </ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select
+      <app-prism>
+        <![CDATA[<ngx-select
       [multiple]="true"
       [identifier]="'attr'"
       [ngModel]="[selects[0], selects[1], selects[2], selects[3], selects[4], selects[5], selects[6], selects[7], selects[8]]">
@@ -606,7 +621,7 @@
       </ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -615,7 +630,7 @@
       <h4>Templates</h4>
       <ngx-select [multiple]="true" (keyup)="onSelectKeyUp($event)" [identifier]="'attr'" [ngModel]="[selects[0]]">
         <ngx-select-option *ngFor="let option of selects" [name]="option.name" [disabled]="option.disabled"
-                           [value]="option">
+          [value]="option">
           <ng-template ngx-select-option-input-template let-option="option">
             <span class="icon-bug"></span> {{option.value.name}}
           </ng-template>
@@ -625,20 +640,21 @@
 
     <ngx-section class="shadow" data-cy="tagging" sectionTitle="Tagging">
       <h4>Basic</h4>
-      <ngx-select [label]="'Tagging'" [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)" (change)="onEvent('change', $event)">
+      <ngx-select [label]="'Tagging'" [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)"
+        (change)="onEvent('change', $event)">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)">
+      <app-prism>
+        <![CDATA[<ngx-select [filterable]="false" [tagging]="true" (keyup)="onSelectKeyUp($event)">
       <ngx-select-option name="Breach" value="breach"></ngx-select-option>
       <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
       <ngx-select-option name="Physical" value="physical"></ngx-select-option>
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
 
       <br />
       <br />
@@ -648,13 +664,13 @@
       <ngx-select [filterable]="false" [tagging]="true">
       </ngx-select>
 
-    <app-prism>
-    <![CDATA[<ngx-select
+      <app-prism>
+        <![CDATA[<ngx-select
       [filterable]="false"
       [tagging]="true">
     </ngx-select>
     ]]>
-    </app-prism>
+      </app-prism>
     </ngx-section>
 
     <ngx-section class="shadow" sectionTitle="Native">
@@ -666,43 +682,39 @@
       </select>
       <br />
       <br />
-    <app-prism>
-    <![CDATA[<select>
+      <app-prism>
+        <![CDATA[<select>
       <option>Red</option>
       <option>Blue</option>
       <option>Blue-Green</option>
       <option>Green</option>
     </select>
     ]]>
-    </app-prism>
+      </app-prism>
 
-    <select multiple style="height: 200px">
-      <option>Red</option>
-      <option>Blue</option>
-      <option>Blue-Green</option>
-      <option>Green</option>
-    </select>
-    <br />
-    <br />
-    <app-prism>
-    <![CDATA[<select multiple>
+      <select multiple style="height: 200px">
+        <option>Red</option>
+        <option>Blue</option>
+        <option>Blue-Green</option>
+        <option>Green</option>
+      </select>
+      <br />
+      <br />
+      <app-prism>
+        <![CDATA[<select multiple>
       <option>Red</option>
       <option>Blue</option>
       <option>Green</option>
       <option>Blue-Green</option>
     </select>
     ]]>
-    </app-prism>
+      </app-prism>
     </ngx-section>
 
     <ngx-section class="shadow" sectionTitle="Async">
       <ngx-select (keyup)="search($event.value)">
-        <ngx-select-option
-          *ngFor="let option of asyncOptions$ | async"
-          [name]="option.title"
-          [value]="option"
-          [disabled]="option.disabled"
-        ></ngx-select-option>
+        <ngx-select-option *ngFor="let option of asyncOptions$ | async" [name]="option.title" [value]="option"
+          [disabled]="option.disabled"></ngx-select-option>
       </ngx-select>
     </ngx-section>
 
@@ -720,13 +732,13 @@
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
         <ngx-select-option name="Really long option to show autosize of the component when autosize is selected"
-                           value="Really long option to show autosize of the component when autosize is selected"></ngx-select-option>
+          value="Really long option to show autosize of the component when autosize is selected"></ngx-select-option>
       </ngx-select>
 
       <br />
 
-      <ngx-select [filterable]="false" appearance="fill" label="Fill Input" hint="im a hint" placeholder="Select a value..."
-                  autosize="true">
+      <ngx-select [filterable]="false" appearance="fill" label="Fill Input" hint="im a hint"
+        placeholder="Select a value..." autosize="true">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical" disabled></ngx-select-option>
@@ -743,7 +755,7 @@
       <br />
 
       <ngx-select [filterable]="false" [multiple]="true" appearance="fill" label="Fill With Multiple Selections"
-                  autosize="true">
+        autosize="true">
         <ngx-select-option name="Breach" value="breach"></ngx-select-option>
         <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
         <ngx-select-option name="Physical" value="physical"></ngx-select-option>
@@ -760,13 +772,13 @@
       <br />
 
       <ngx-select [filterable]="false" [tagging]="true" appearance="fill" label="Fill Tagging With No Options"
-                  autosize="true">
+        autosize="true">
       </ngx-select>
 
       <br />
 
       <ngx-select [filterable]="false" [tagging]="true" appearance="fill" label="Fill With Grouping" groupBy="type"
-                  autosize="true">
+        autosize="true">
         <ngx-select-option name="Breach" [value]="{ value: 'breach', type: 'IOS' }"></ngx-select-option>
         <ngx-select-option name="DDOS" [value]="{ value: 'ddos', type: 'IOS' }"></ngx-select-option>
         <ngx-select-option name="Physical" [value]="{ value: 'Physical', type: 'MOX' }"></ngx-select-option>
@@ -790,171 +802,172 @@
         </tr>
         <tr>
           <td>With Value</td>
-          <td><ngx-select label="Label" [ngModel]="['ddos']" hint="A brief bit of help text" (click)="onEvent('click', $event)">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="['ddos']" hint="A brief bit of help text"
+              (click)="onEvent('click', $event)">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select></td>
           <td><ngx-select label="Label" appearance="fill" [ngModel]="['ddos']" hint="A brief bit of help text">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select></td>
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select></td>
         </tr>
         <tr>
           <td>Disabled Dropdown</td>
-          <td><ngx-select label="Label" [ngModel]="['ddos']" hint="A brief bit of help text" [disableDropdown]="true" >
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select></td>
-          <td><ngx-select label="Label" appearance="fill" [ngModel]="['ddos']" hint="A brief bit of help text" [disableDropdown]="true">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="['ddos']" hint="A brief bit of help text" [disableDropdown]="true">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select></td>
+          <td><ngx-select label="Label" appearance="fill" [ngModel]="['ddos']" hint="A brief bit of help text"
+              [disableDropdown]="true">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select></td>
         </tr>
         <tr>
           <td>Required</td>
           <td><ngx-select label="Label" [ngModel]="['ddos']" hint="A brief bit of help text" required>
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select></td>
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select></td>
           <td><ngx-select label="Label" appearance="fill" [ngModel]="['ddos']" hint="A brief bit of help text" required>
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select></td>
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select></td>
         </tr>
         <tr>
           <td>Empty w/o Placeholder</td>
           <td><ngx-select label="Label" hint="A brief bit of help text">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select></td>
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select></td>
           <td><ngx-select label="Label" appearance="fill" hint="A brief bit of help text">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select></td>
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select></td>
         </tr>
         <tr>
           <td>Empty w/ Placeholder</td>
           <td><ngx-select label="Label" placeholder="Placeholder Text" hint="A brief bit of help text">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select></td>
-          <td><ngx-select label="Label" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select></td>
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select></td>
+          <td><ngx-select label="Label" appearance="fill" placeholder="Placeholder Text"
+              hint="A brief bit of help text">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select></td>
         </tr>
         <tr>
           <td>Multiple</td>
-          <td><ngx-select label="Label" [ngModel]="['ddos', 'physical']" placeholder="Placeholder Text" hint="A brief bit of help text"  [multiple]="true" (click)="onEvent('click', $event)">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select></td>
-          <td><ngx-select label="Label" [ngModel]="['ddos', 'physical']" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text"  [multiple]="true">
-            <ngx-select-option name="Breach" value="breach"></ngx-select-option>
-            <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
-            <ngx-select-option name="Physical" value="physical"></ngx-select-option>
-          </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="['ddos', 'physical']" placeholder="Placeholder Text"
+              hint="A brief bit of help text" [multiple]="true" (click)="onEvent('click', $event)">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="['ddos', 'physical']" appearance="fill"
+              placeholder="Placeholder Text" hint="A brief bit of help text" [multiple]="true">
+              <ngx-select-option name="Breach" value="breach"></ngx-select-option>
+              <ngx-select-option name="DDOS" value="ddos"></ngx-select-option>
+              <ngx-select-option name="Physical" value="physical"></ngx-select-option>
+            </ngx-select></td>
         </tr>
         <tr>
           <td>Tagging</td>
-          <td><ngx-select label="Label" [ngModel]="['ddos', 'physical']" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true" (click)="onEvent('click', $event)">
-          </ngx-select></td>
-          <td><ngx-select label="Label" [ngModel]="['ddos', 'physical']" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true">
-          </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="['ddos', 'physical']" placeholder="Placeholder Text"
+              hint="A brief bit of help text" [tagging]="true" (click)="onEvent('click', $event)">
+            </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="['ddos', 'physical']" appearance="fill"
+              placeholder="Placeholder Text" hint="A brief bit of help text" [tagging]="true">
+            </ngx-select></td>
         </tr>
         <tr>
           <td>Empty Tagging w/o Placeholder</td>
-          <td><ngx-select label="Label" [ngModel]="[]" hint="A brief bit of help text"  [tagging]="true" (click)="onEvent('click', $event)">
-          </ngx-select></td>
-          <td><ngx-select label="Label" [ngModel]="[]" appearance="fill" hint="A brief bit of help text"  [tagging]="true">
-          </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="[]" hint="A brief bit of help text" [tagging]="true"
+              (click)="onEvent('click', $event)">
+            </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="[]" appearance="fill" hint="A brief bit of help text"
+              [tagging]="true">
+            </ngx-select></td>
         </tr>
         <tr>
           <td>Empty Tagging w/ Placeholder</td>
-          <td><ngx-select label="Label" [ngModel]="[]" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true" (click)="onEvent('click', $event)">
-          </ngx-select></td>
-          <td><ngx-select label="Label" [ngModel]="[]" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true">
-          </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="[]" placeholder="Placeholder Text" hint="A brief bit of help text"
+              [tagging]="true" (click)="onEvent('click', $event)">
+            </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="[]" appearance="fill" placeholder="Placeholder Text"
+              hint="A brief bit of help text" [tagging]="true">
+            </ngx-select></td>
         </tr>
         <tr>
           <td>Select With Links</td>
-          <td><ngx-select label="Label" [ngModel]="['Physical']" placeholder="Placeholder Text" hint="A brief bit of help text">
-            <ngx-select-option
-              *ngFor="let option of ['Breach', 'DDOS', 'Physical']"
-              [name]="option"
-              [value]="option"
-            >
-              <ng-template ngx-select-option-input-template>
-                <a href="#">
-                  <i class="ngx-icon ngx-link"></i>
-                  {{ option }}
-                </a>
-              </ng-template>
-            </ngx-select-option>
-          </ngx-select></td>
-          <td><ngx-select label="Label" [ngModel]="['Physical']" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text">
-            <ngx-select-option
-              *ngFor="let option of ['Breach', 'DDOS', 'Physical']"
-              [name]="option"
-              [value]="option"
-            >
-              <ng-template ngx-select-option-input-template>
-                <a href="#">
-                  <i class="ngx-icon ngx-link"></i>
-                  {{ option }}
-                </a>
-              </ng-template>
-            </ngx-select-option>
-          </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="['Physical']" placeholder="Placeholder Text"
+              hint="A brief bit of help text">
+              <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
+                <ng-template ngx-select-option-input-template>
+                  <a href="#">
+                    <i class="ngx-icon ngx-link"></i>
+                    {{ option }}
+                  </a>
+                </ng-template>
+              </ngx-select-option>
+            </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="['Physical']" appearance="fill" placeholder="Placeholder Text"
+              hint="A brief bit of help text">
+              <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
+                <ng-template ngx-select-option-input-template>
+                  <a href="#">
+                    <i class="ngx-icon ngx-link"></i>
+                    {{ option }}
+                  </a>
+                </ng-template>
+              </ngx-select-option>
+            </ngx-select></td>
         </tr>
         <tr>
           <td>Tagging With Links</td>
-          <td><ngx-select label="Label" [ngModel]="['DDOS', 'Physical']" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true">
-            <ngx-select-option
-              *ngFor="let option of ['Breach', 'DDOS', 'Physical']"
-              [name]="option"
-              [value]="option"
-            >
-              <ng-template ngx-select-option-input-template>
-                <a href="#">
-                  <i class="ngx-icon ngx-link"></i>
-                  {{ option }}
-                </a>
-              </ng-template>
-            </ngx-select-option>
-          </ngx-select></td>
-          <td><ngx-select label="Label" [ngModel]="['DDOS', 'Physical']" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true">
-            <ngx-select-option
-              *ngFor="let option of ['Breach', 'DDOS', 'Physical']"
-              [name]="option"
-              [value]="option"
-            >
-              <ng-template ngx-select-option-input-template>
-                <a href="#">
-                  <i class="ngx-icon ngx-link"></i>
-                  {{ option }}
-                </a>
-              </ng-template>
-            </ngx-select-option>
-          </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="['DDOS', 'Physical']" placeholder="Placeholder Text"
+              hint="A brief bit of help text" [tagging]="true">
+              <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
+                <ng-template ngx-select-option-input-template>
+                  <a href="#">
+                    <i class="ngx-icon ngx-link"></i>
+                    {{ option }}
+                  </a>
+                </ng-template>
+              </ngx-select-option>
+            </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="['DDOS', 'Physical']" appearance="fill"
+              placeholder="Placeholder Text" hint="A brief bit of help text" [tagging]="true">
+              <ngx-select-option *ngFor="let option of ['Breach', 'DDOS', 'Physical']" [name]="option" [value]="option">
+                <ng-template ngx-select-option-input-template>
+                  <a href="#">
+                    <i class="ngx-icon ngx-link"></i>
+                    {{ option }}
+                  </a>
+                </ng-template>
+              </ngx-select-option>
+            </ngx-select></td>
         </tr>
         <tr>
           <td>Tagging With Long Values</td>
-          <td><ngx-select label="Label" [ngModel]="['Breach DDOS Physical', aLongString, aVeryLongString]" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true">
-          </ngx-select></td>
-          <td><ngx-select label="Label" [ngModel]="['Breach DDOS Physical', aLongString, aVeryLongString]" appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text"  [tagging]="true">
-          </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="['Breach DDOS Physical', aLongString, aVeryLongString]"
+              placeholder="Placeholder Text" hint="A brief bit of help text" [tagging]="true">
+            </ngx-select></td>
+          <td><ngx-select label="Label" [ngModel]="['Breach DDOS Physical', aLongString, aVeryLongString]"
+              appearance="fill" placeholder="Placeholder Text" hint="A brief bit of help text" [tagging]="true">
+            </ngx-select></td>
         </tr>
         <tr>
           <td>Grouping</td>
@@ -1097,7 +1110,8 @@
             <code class="component-type">&#64;Input()</code>
             <code>filterEmptyPlaceholder: string = 'No matches...'</code>
           </th>
-          <td>Placeholder to display when the component has no selectable options that match the user's filter term.</td>
+          <td>Placeholder to display when the component has no selectable options that match the user's filter term.
+          </td>
         </tr>
         <tr>
           <th>
@@ -1216,7 +1230,8 @@
             <code class="component-type">&#64;Input()</code>
             <code>selectCaret: string</code>
           </th>
-          <td class="component-description">Accepts string or template reference. The select caret to display in place of the default caret, typically an icon.</td>
+          <td class="component-description">Accepts string or template reference. The select caret to display in place
+            of the default caret, typically an icon.</td>
         </tr>
         <tr>
           <th>
@@ -1319,4 +1334,3 @@
     <h4>No component outputs to display.</h4>
   </ngx-tab>
 </ngx-tabs>
-
