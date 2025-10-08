@@ -32,38 +32,38 @@
   color: var(--white);
   text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
   background: var(--grey-700);
-  border-radius: var(--radius-8);
+  border-radius: var(--radius-4);
 
   @include notification(#455066);
 
   .notification-bar {
-    width: 5px;
+    width: var(--spacing-4);
     height: 100%;
     position: absolute;
-    border-top-left-radius: var(--radius-8);
-    border-bottom-left-radius: var(--radius-8);
+    border-top-left-radius: var(--radius-4);
+    border-bottom-left-radius: var(--radius-4);
     .bar {
       width: 5px;
       height: 100%;
       position: absolute;
       bottom: 0;
-      border-top-left-radius: var(--radius-8);
-      border-bottom-left-radius: var(--radius-8);
+      border-top-left-radius: var(--radius-4);
+      border-bottom-left-radius: var(--radius-4);
     }
 
     &.animated {
       .bar {
         height: 0%;
         animation: 1s ease-out 0s 1 heightBar;
-        border-top-left-radius: var(--radius-8);
-        border-bottom-left-radius: var(--radius-8);
+        border-top-left-radius: var(--radius-4);
+        border-bottom-left-radius: var(--radius-4);
       }
     }
 
     @keyframes heightBar {
       0% {
         height: 100%;
-        border-top-left-radius: var(--radius-8);
+        border-top-left-radius: var(--radius-4);
       }
       10% {
         border-top-left-radius: var(--radius-0);
@@ -83,7 +83,7 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    padding: var(--spacing-0) 1.25em;
+    padding: 0px 1.25em 0px calc(1.25em + var(--spacing-2));
     height: 2rem;
 
     .ngx-icon {
