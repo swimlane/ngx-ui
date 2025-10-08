@@ -6,20 +6,20 @@
   position: relative;
 
   // default colors
-  --button-bg: #{colors.$color-blue-grey-600};
-  --button-border: #{colors.$color-blue-grey-600};
+  --button-bg: var(--grey-600);
+  --button-border: var(--grey-600);
   --button-text: white;
-  --button-hover: #{colors.$color-blue-grey-700};
+  --button-hover: var(--grey-700);
 
   &.ngx-button-group--contained--primary {
-    --button-bg: #{colors.$color-blue-400};
-    --button-border: #{colors.$color-blue-400};
+    --button-bg: var(--blue-400);
+    --button-border: var(--blue-400);
     --button-text: white;
-    --button-hover: #{colors.$color-blue};
+    --button-hover: var(--blue-500);
   }
 
   > ngx-dropdown {
-    padding-bottom: 0;
+    padding-bottom: var(--spacing-0);
     position: unset; // align dropdown menu with button group
 
     > ngx-dropdown-toggle {
@@ -41,11 +41,11 @@
 
       button {
         // matching button style in dropdown menu
-        padding: 5px 20px;
+        padding: var(--spacing-4) var(--spacing-20);
         white-space: nowrap;
         width: 100%;
         text-align: left;
-        font-size: 0.9em;
+        font-size: var(--font-size-m);
       }
     }
   }
@@ -77,6 +77,7 @@
     &.ngx-button-group--contained {
       > * {
         max-height: 30px;
+
         &.ngx-dropdown {
           .ngx-dropdown-toggle {
             > * {

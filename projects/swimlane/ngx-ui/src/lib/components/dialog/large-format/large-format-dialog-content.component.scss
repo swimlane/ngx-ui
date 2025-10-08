@@ -77,7 +77,7 @@
     .ngx-large-format-dialog-footer {
       flex: 0 0 var(--footer-height, 4rem);
       height: var(--footer-height, 4rem);
-      border-top: 2px solid colors.$color-blue-grey-700;
+      border-top: 2px solid var(--grey-700);
     }
 
     .dialog-stepper,
@@ -229,7 +229,7 @@
                 font-size: 0.8125rem;
                 font-weight: bold;
                 line-height: 1rem;
-                color: colors.$color-blue-grey-400;
+                color: var(--grey-400);
 
                 &::after {
                   top: 3.5rem;
@@ -238,7 +238,7 @@
 
               &.active {
                 button {
-                  color: colors.$color-white;
+                  color: var(--white);
                 }
               }
             }
