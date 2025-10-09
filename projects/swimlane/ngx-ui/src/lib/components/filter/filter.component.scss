@@ -246,7 +246,9 @@ $max-width: 300px;
     margin-top: 10px;
     opacity: 0;
     display: none;
-    transition: visibility 0s, opacity 0.25s ease-out;
+    transition:
+      visibility 0s,
+      opacity 0.25s ease-out;
 
     li {
       max-width: 100%;

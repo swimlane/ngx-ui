@@ -52,7 +52,11 @@ export class TabComponent implements OnInit, OnChanges {
   @ContentChild(IfTabActiveDirective) template: IfTabActiveDirective;
   labelTemplate: TemplateRef<any>;
 
-  constructor(private cdr: ChangeDetectorRef, private renderer: Renderer2, private elRef: ElementRef) {}
+  constructor(
+    private cdr: ChangeDetectorRef,
+    private renderer: Renderer2,
+    private elRef: ElementRef
+  ) {}
 
   ngOnInit(): void {
     // backwards compatibility
