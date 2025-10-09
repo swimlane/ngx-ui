@@ -1,10 +1,10 @@
 @use 'colors/colors' as colors;
 
-$slider-bg: colors.$color-blue-400;
-$slider-bg-fill: colors.$color-blue-400;
+$slider-bg: var(--blue-400);
+$slider-bg-fill: var(--blue-400);
 
-$slider-thumb: colors.$color-blue-400;
-$slider-focus-bg: colors.$color-blue-400;
+$slider-thumb: var(--blue-400);
+$slider-focus-bg: var(--blue-400);
 
 $slider-track-width: 2px;
 $slider-fill-width: 4px;
@@ -136,7 +136,7 @@ $slider-thumb-width: 1em;
     background-repeat: no-repeat;
     background-image: linear-gradient($slider-bg-fill, $slider-bg-fill);
     position: absolute;
-    border-radius: 0;
+    border-radius: var(--radius-0);
     z-index: 99;
     pointer-events: none;
     height: $slider-fill-width;
@@ -193,7 +193,7 @@ $slider-thumb-width: 1em;
         background-color: transparent;
         border-color: $slider-thumb;
         appearance: initial;
-        border-radius: 0;
+        border-radius: var(--radius-0);
         height: 1px;
         width: 1px;
         border: 0.5em solid transparent;

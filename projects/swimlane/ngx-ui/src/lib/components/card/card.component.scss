@@ -1,10 +1,10 @@
 @use 'colors/colors' as colors;
 
-$color-accent-grey: linear-gradient(180deg, colors.$color-blue-grey-100 0%, colors.$color-blue-grey-200 100%);
+$color-accent-grey: linear-gradient(180deg, var(--grey-100) 0%, var(--grey-200) 100%);
 $card-accent-thickness: 4px;
 
-$color-background-grey: linear-gradient(180deg, colors.$color-blue-grey-750 0%, colors.$color-blue-grey-800 100%);
-$color-flat-background: colors.$color-blue-grey-800;
+$color-background-grey: linear-gradient(180deg, var(--grey-750) 0%, var(--grey-800) 100%);
+$color-flat-background: var(--grey-800);
 
 $card-outline-border-thickness: 3px;
 
@@ -14,7 +14,7 @@ $card-horizontal-description-padding: 15px;
 
 $card-vertical-header-padding: 15px;
 $card-vertical-body-padding: 27px;
-$card-vertical-gutter: 20px;
+$card-vertical-gutter: var(--spacing-20);
 
 @keyframes cardSlideIn {
   0% {
@@ -32,7 +32,7 @@ $card-vertical-gutter: 20px;
   display: flex;
   background: $color-flat-background;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-  border-radius: 2px;
+  border-radius: var(--radius-2);
 
   // disabled
   &.disabled {
@@ -46,11 +46,11 @@ $card-vertical-gutter: 20px;
 
   &--status {
     display: block;
-    background-color: colors.$color-blue-grey-550;
+    background-color: var(--grey-550);
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    box-shadow: inset 0 -2px 2px colors.$color-blue-grey-600;
+    box-shadow: inset 0 -2px 2px var(--grey-600);
 
     &.success {
       background-color: #b0e53c;
@@ -58,8 +58,8 @@ $card-vertical-gutter: 20px;
     }
 
     &.error {
-      background-color: colors.$color-error;
-      box-shadow: 0 0 7px colors.$color-error;
+      background-color: var(--color-error);
+      box-shadow: 0 0 7px var(--color-error);
     }
   }
 
@@ -73,12 +73,12 @@ $card-vertical-gutter: 20px;
     width: 3px;
     height: 3px;
     border-radius: 50%;
-    background-color: colors.$color-blue-grey-400;
-    margin: 3px 5px;
+    background-color: var(--grey-400);
+    margin: 3px var(--spacing-4);
   }
 
   .ngx-dropdown.ellipsis {
-    padding: 0;
+    padding: var(--spacing-0);
   }
 
   &.flat {
@@ -106,7 +106,7 @@ $card-vertical-gutter: 20px;
     margin-left: $card-horizontal-header-padding;
 
     .ngx-checkbox--label .ngx-checkbox--box {
-      margin-right: 0;
+      margin-right: var(--spacing-0);
     }
   }
 
@@ -116,14 +116,14 @@ $card-vertical-gutter: 20px;
     min-width: $card-accent-thickness;
     right: 0;
     height: 100%;
-    border-radius: 0 2px 2px 0;
+    border-radius: var(--radius-0) var(--radius-2) var(--radius-2) var(--radius-0);
   }
 
   // horizontal header
   .ngx-card-header {
     display: flex;
     align-items: center;
-    padding: 0 $card-horizontal-header-padding;
+    padding: var(--spacing-0) $card-horizontal-header-padding;
     flex-grow: 1;
     overflow: hidden;
     cursor: pointer;
@@ -148,22 +148,22 @@ $card-vertical-gutter: 20px;
       }
 
       .ngx-card-tag {
-        font-weight: bold;
-        font-size: 10px;
+        font-weight: var(--font-weight-bold);
+        font-size: var(--font-size-xxs);
         line-height: 12px;
       }
 
       .ngx-card-title {
-        font-weight: 600;
+        font-weight: var(--font-weight-semibold);
         font-size: 22px;
         color: #f0f1f6;
       }
 
       .ngx-card-subtitle {
         display: inline-block;
-        font-weight: 600;
-        font-size: 14px;
-        color: colors.$color-blue-grey-300;
+        font-weight: var(--font-weight-semibold);
+        font-size: var(--font-size-s);
+        color: var(--grey-300);
 
         > span {
           display: inline-block;
@@ -177,7 +177,7 @@ $card-vertical-gutter: 20px;
     align-items: center;
     justify-content: center;
     height: 100%;
-    padding: 0 $card-horizontal-gutter;
+    padding: var(--spacing-0) $card-horizontal-gutter;
 
     &--description {
       flex-basis: 28%;
@@ -185,8 +185,8 @@ $card-vertical-gutter: 20px;
       padding-bottom: $card-horizontal-description-padding;
 
       > p {
-        color: colors.$color-blue-grey-350;
-        font-size: 14px;
+        color: var(--grey-350);
+        font-size: var(--font-size-s);
         line-height: 18px;
         display: -webkit-box;
         -webkit-box-orient: vertical;
@@ -202,11 +202,11 @@ $card-vertical-gutter: 20px;
       flex-basis: 20%;
 
       .ngx-card-placeholder {
-        margin-bottom: 10px;
+        margin-bottom: var(--spacing-10);
         width: 100%; // section placeholders takes up entire width
 
         &:last-child {
-          margin-bottom: 0;
+          margin-bottom: var(--spacing-0);
         }
       }
 
@@ -226,20 +226,20 @@ $card-vertical-gutter: 20px;
 
     .view-details {
       display: flex;
-      color: colors.$color-blue-400;
-      font-size: 15px;
-      font-weight: 600;
+      color: var(--blue-400);
+      font-size: var(--font-size-m);
+      font-weight: var(--font-weight-semibold);
       white-space: nowrap;
       cursor: pointer;
 
       i {
-        margin-top: 5px;
-        margin-right: 5px;
+        margin-top: var(--spacing-4);
+        margin-right: var(--spacing-4);
       }
     }
 
     .ngx-dropdown.ellipsis {
-      margin-right: 12px;
+      margin-right: var(--spacing-12);
     }
   }
 
@@ -250,29 +250,29 @@ $card-vertical-gutter: 20px;
     right: -5px;
     left: -5px;
     bottom: -5px;
-    border: $card-outline-border-thickness solid colors.$color-blue-400;
-    border-radius: 5px;
+    border: $card-outline-border-thickness solid var(--blue-400);
+    border-radius: var(--radius-6);
 
     &.error {
-      border-color: colors.$color-error;
+      border-color: var(--color-error);
     }
   }
 
   .ngx-card--outline-text {
     pointer-events: none;
-    color: colors.$color-blue-400;
+    color: var(--blue-400);
     white-space: nowrap;
     position: absolute;
     top: -5px;
     right: -5px;
     left: -5px;
     bottom: -5px;
-    border: $card-outline-border-thickness solid colors.$color-blue-400;
+    border: $card-outline-border-thickness solid var(--blue-400);
     border-bottom: 0;
-    border-radius: 5px;
+    border-radius: var(--radius-6);
 
     .inner-text {
-      font-size: 14px;
+      font-size: var(--font-size-s);
       width: 100%;
       text-align: center;
       position: absolute;
@@ -286,30 +286,30 @@ $card-vertical-gutter: 20px;
       &::after {
         content: '';
         height: $card-outline-border-thickness;
-        background: colors.$color-blue-400;
+        background: var(--blue-400);
       }
 
       &::before {
-        margin-right: 15px;
-        border-radius: 0 0 0 2px;
+        margin-right: var(--spacing-16);
+        border-radius: var(--radius-0) var(--radius-0) var(--radius-0) var(--radius-2);
         flex: 1;
       }
 
       &::after {
-        margin-left: 15px;
-        border-radius: 0 0 2px 0;
-        width: 20px;
+        margin-left: var(--spacing-16);
+        border-radius: var(--radius-0) var(--radius-0) var(--radius-2) var(--radius-0);
+        width: var(--spacing-20);
       }
     }
 
     &.error {
-      color: colors.$color-error;
-      border-color: colors.$color-error;
+      color: var(--color-error);
+      border-color: var(--color-error);
 
       .inner-text {
         &::before,
         &::after {
-          background: colors.$color-error;
+          background: var(--color-error);
         }
       }
     }
@@ -322,10 +322,10 @@ $card-vertical-gutter: 20px;
   min-width: 347px;
   max-width: 850px;
   height: 418px;
-  color: colors.$color-blue-grey-350;
+  color: var(--grey-350);
 
   .ngx-card--status {
-    margin: $card-vertical-header-padding auto 0 auto;
+    margin: $card-vertical-header-padding auto var(--spacing-0) auto;
   }
 
   .ngx-card--accent {
@@ -333,7 +333,7 @@ $card-vertical-gutter: 20px;
     bottom: 0;
     width: 100%;
     height: $card-accent-thickness;
-    border-radius: 0 2px 2px 0;
+    border-radius: var(--radius-0) var(--radius-2) var(--radius-2) var(--radius-0);
   }
 
   .ngx-card-header {
@@ -341,15 +341,15 @@ $card-vertical-gutter: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-bottom: 2px colors.$color-blue-grey-700;
+    border-bottom: 2px var(--grey-700);
 
     .ngx-card-avatar {
-      margin: $card-vertical-header-padding 0 $card-vertical-gutter 0;
+      margin: $card-vertical-header-padding var(--spacing-0) $card-vertical-gutter var(--spacing-0);
     }
 
     &--label {
-      font-weight: 600;
-      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-xs);
       border-bottom: 0;
       white-space: nowrap;
       width: 100%;
@@ -364,16 +364,16 @@ $card-vertical-gutter: 20px;
       &::after {
         content: '';
         height: 2px;
-        background: colors.$color-blue-grey-700;
+        background: var(--grey-700);
         width: 100%;
       }
 
       &::before {
-        margin-right: 20px;
+        margin-right: var(--spacing-20);
       }
 
       &::after {
-        margin-left: 20px;
+        margin-left: var(--spacing-20);
       }
     }
   }
@@ -383,13 +383,13 @@ $card-vertical-gutter: 20px;
     flex-direction: column;
     align-items: center;
     flex-grow: 1;
-    padding: $card-vertical-gutter 0;
+    padding: $card-vertical-gutter var(--spacing-0);
     padding-left: $card-vertical-body-padding;
     padding-right: $card-vertical-body-padding;
 
     .ngx-card-title,
     .ngx-card-subtitle {
-      font-weight: 600;
+      font-weight: var(--font-weight-semibold);
       width: 100%;
       white-space: nowrap;
       overflow: hidden;
@@ -398,31 +398,31 @@ $card-vertical-gutter: 20px;
     }
 
     .ngx-card-title {
-      font-weight: 600;
-      font-size: 21px;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-xl);
       color: #f0f1f6;
-      margin-bottom: 5px;
+      margin-bottom: var(--spacing-4);
     }
 
     .ngx-card-subtitle {
-      color: colors.$color-blue-grey-200;
-      font-size: 13px;
+      color: var(--grey-200);
+      font-size: var(--font-size-xs);
     }
   }
 
   .ngx-card-footer {
     position: relative;
-    border-bottom: 2px colors.$color-blue-grey-700;
+    border-bottom: 2px var(--grey-700);
     height: 50px;
-    padding: $card-vertical-gutter 0;
+    padding: $card-vertical-gutter var(--spacing-0);
     margin-bottom: $card-accent-thickness;
     display: flex;
     align-items: center;
     justify-content: center;
 
     &--label {
-      font-weight: 600;
-      font-size: 12px;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-xs);
       border-bottom: 0;
       white-space: nowrap;
       width: 100%;
@@ -437,23 +437,23 @@ $card-vertical-gutter: 20px;
       &::after {
         content: '';
         height: 2px;
-        background: colors.$color-blue-grey-700;
+        background: var(--grey-700);
         width: 100%;
       }
 
       &::before {
-        margin-right: 20px;
+        margin-right: var(--spacing-20);
       }
 
       &::after {
-        margin-left: 20px;
+        margin-left: var(--spacing-20);
       }
     }
 
     .action {
       // footer action button
       cursor: pointer;
-      margin-right: 25px;
+      margin-right: var(--spacing-24);
     }
   }
 }

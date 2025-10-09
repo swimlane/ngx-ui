@@ -1,10 +1,10 @@
 @use 'colors/colors' as colors;
 @use 'colors/shadow-variables' as shadows;
 
-$dropdown-bg: colors.$color-blue-grey-700;
-$dropdown-bg-active: colors.$color-blue-grey-750;
-$dropdown-bg-hover: colors.$color-blue-grey-800;
-$dropdown-color: colors.$color-blue-grey-150;
+$dropdown-bg: var(--grey-700);
+$dropdown-bg-active: var(--grey-750);
+$dropdown-bg-hover: var(--grey-800);
+$dropdown-color: var(--grey-150);
 
 .CodeMirror-hints {
   position: absolute;
@@ -12,8 +12,8 @@ $dropdown-color: colors.$color-blue-grey-150;
   overflow: hidden;
   list-style: none;
 
-  margin: 0;
-  padding: 0;
+  margin: var(--spacing-0);
+  padding: var(--spacing-0);
 
   font-size: 90%;
   font-family: monospace;
@@ -26,13 +26,13 @@ $dropdown-color: colors.$color-blue-grey-150;
 }
 
 .CodeMirror-hint {
-  margin: 0;
-  padding: 5px 20px;
+  margin: var(--spacing-0);
+  padding: var(--spacing-4) var(--spacing-20);
   white-space: pre;
   background: transparent;
   box-shadow: none;
   color: $dropdown-color;
-  font-size: 0.9em;
+  font-size: var(--font-size-m);
   cursor: pointer;
 }
 

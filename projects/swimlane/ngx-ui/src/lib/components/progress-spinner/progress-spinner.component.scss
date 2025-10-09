@@ -41,11 +41,11 @@
   }
 
   &--label {
-    margin-top: 30px;
+    margin-top: var(--spacing-30);
 
     h4 {
-      font-weight: 600;
-      font-size: 24px;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-2xl);
       line-height: 30px;
       text-align: center;
       color: white;
@@ -75,7 +75,7 @@
           display: block;
           transform: translate(calc(50% - 35px), calc(50% - 36px));
           fill: none;
-          stroke: colors.$color-blue-500;
+          stroke: var(--blue-500);
           animation: icon-progress-spinner--check 1s linear forwards;
         }
 
@@ -83,7 +83,7 @@
           display: block;
           transform: translate(calc(50% - 35px), calc(50% - 28px));
           fill: none;
-          stroke: colors.$color-error;
+          stroke: var(--color-error);
           animation: icon-progress-spinner--check 1s linear forwards;
         }
       }

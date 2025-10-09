@@ -2,7 +2,7 @@
 
 %ngx-dropdown-menu {
   white-space: nowrap;
-  margin-top: 10px;
+  margin-top: var(--spacing-10);
 
   .dropdown-column {
     vertical-align: top;
@@ -10,31 +10,31 @@
     min-width: 150px;
 
     &:nth-child(2) {
-      border-left: 1px solid colors.$color-blue-grey-550;
+      border-left: 1px solid var(--grey-550);
     }
   }
 }
 
 %indentation {
-  border-radius: 0px;
+  border-radius: var(--radius-0);
   display: flex;
   align-items: center;
-  border-left: 1px solid colors.$color-blue-grey-650;
+  border-left: 1px solid var(--grey-650);
   line-height: 4px;
-  margin: -2px 0;
+  margin: -2px var(--spacing-0);
 }
 
 .json-editor--vertical-separator {
-  background-color: colors.$color-blue-grey-650;
-  border-radius: 2px;
+  background-color: var(--grey-650);
+  border-radius: var(--radius-2);
   width: 1px;
-  margin-right: 15px;
+  margin-right: var(--spacing-16);
   padding-right: 1px;
   margin-bottom: -2px;
   margin-top: -2px;
   height: calc(100% + 5px);
 
   &:first-child {
-    margin-left: 15px;
+    margin-left: var(--spacing-16);
   }
 }

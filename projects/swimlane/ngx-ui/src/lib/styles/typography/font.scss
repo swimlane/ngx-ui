@@ -6,6 +6,7 @@
 $font-size: 16px;
 $line-height: 1.4;
 
+
 h1,
 h2,
 h3,
@@ -14,25 +15,25 @@ h5,
 h6 {
   margin-bottom: 0.5rem;
   margin-top: 0.3em;
-  font-weight: normal;
+  font-weight: var(--font-weight-regular);
 
   small {
-    color: colors.$color-grey-300;
-    font-size: 0.75em;
+    color: var(--grey-300);
+    font-size: var(--font-size-xs);
   }
 }
 
 p {
   margin-bottom: 1rem;
   line-height: 1.75;
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
 }
 
 span,
 p,
 a {
   &.hint {
-    color: colors.$color-grey-300;
+    color: var(--grey-300);
     font-style: italic;
     font-size: 0.85em;
   }
@@ -47,6 +48,6 @@ a {
 }
 
 a {
-  color: colors.$color-blue-400;
+  color: var(--blue-400);
   text-decoration: none;
 }

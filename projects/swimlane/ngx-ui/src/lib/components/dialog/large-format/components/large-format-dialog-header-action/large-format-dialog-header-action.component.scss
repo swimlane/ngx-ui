@@ -8,18 +8,18 @@
   justify-content: flex-end;
 
   &__button {
-    color: colors.$color-blue-grey-400;
+    color: var(--grey-400);
     font-size: 0.8125rem;
-    line-height: 1rem;
-    padding-right: 0;
+    line-height: var(--font-line-height-100);
+    padding-right: var(--spacing-0);
 
     & i.ngx-icon {
-      font-size: 0.625rem;
+      font-size: var(--font-size-xxs);
       margin-right: 0.5rem;
     }
 
     &:hover {
-      color: colors.$color-white;
+      color: var(--white);
     }
   }
 }

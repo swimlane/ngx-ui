@@ -5,7 +5,7 @@
   align-items: center;
   min-height: 50px;
   position: relative;
-  background-color: colors.$color-blue-grey-825;
+  background-color: var(--grey-825);
 
   .ngx-navbar--nav-items {
     display: flex;
@@ -20,7 +20,7 @@
 
     .ngx-navbar--bar {
       position: absolute;
-      background-color: colors.$color-blue-500;
+      background-color: var(--blue-500);
 
       &.ngx-navbar--bottom {
         bottom: 0;

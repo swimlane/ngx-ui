@@ -3,15 +3,15 @@
 @use '../json-editor.variables' as json-editor;
 
 .json-tree-node {
-  padding: 0px;
-  margin-left: 25px;
-  margin-bottom: 0px;
+  padding: var(--spacing-0);
+  margin-left: var(--spacing-24);
+  margin-bottom: var(--spacing-0);
   position: relative;
   white-space: nowrap;
 
   &.inline {
     display: inline-block;
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-0);
     vertical-align: top;
     width: calc(100% - 290px);
 
@@ -19,8 +19,9 @@
       position: absolute;
       content: '=';
       left: -19px;
-      font-size: 20px;
-      color: colors.$color-blue-grey-500;
+      font-size: var(--font-size-xl);
+
+      color: var(--grey-500);
     }
 
     &.inline {
@@ -37,8 +38,8 @@
   }
 
   .ngx-expander {
-    font-size: 0.75rem;
-    color: colors.$color-blue-grey-200;
+    font-size: var(--font-size-xs);
+    color: var(--grey-200);
     position: absolute;
     top: -25px;
     left: -26px;
@@ -51,12 +52,12 @@
 
     &.ngx-tree-collapse::before,
     &.ngx-tree-expand::before {
-      background: colors.$color-blue-grey-800;
+      background: var(--grey-800);
       border-radius: 50%;
     }
 
     &.invalid {
-      color: colors.$color-error;
+      color: var(--color-error);
     }
   }
 
@@ -65,18 +66,18 @@
     left: 20px;
     width: 21px;
     height: 21px;
-    padding: 2px 3px;
-    background: colors.$color-blue-grey-300;
+    padding: var(--spacing-2) 3px;
+    background: var(--grey-300);
 
     ngx-icon {
-      color: colors.$color-blue-grey-800;
+      color: var(--grey-800);
     }
 
     &::before {
       content: ' ';
       width: 15px;
       height: 1px;
-      border-radius: 5px;
+      border-radius: var(--radius-6);
       background: none;
       border-top: dashed 1px json-editor.$color-tree-line;
       position: absolute;
@@ -98,7 +99,7 @@
     border: 1px solid json-editor.$color-node-item-border;
     height: 30px;
     display: inline-block;
-    margin-left: 20px;
+    margin-left: var(--spacing-20);
     position: relative;
     background: json-editor.$color-node-item-bg;
 
@@ -106,7 +107,7 @@
       content: ' ';
       width: 15px;
       height: 1px;
-      border-radius: 5px;
+      border-radius: var(--radius-6);
       background: none;
       border-top: dashed 1px json-editor.$color-tree-line;
       position: absolute;
@@ -128,25 +129,25 @@
         width: 16px;
         height: 16px;
       }
-      margin-left: 0px;
+      margin-left: var(--spacing-0);
       display: inline-block;
 
       &:hover {
-        background: color.adjust(json-editor.$color-icon-type-bg, $alpha: 0.1);
+        background: rgba(var(--blue-200), 0.1);
       }
     }
 
     .property-name {
       display: inline-block;
       width: 170px;
-      padding: 0px 5px;
+      padding: var(--spacing-0) var(--spacing-4);
       position: relative;
       transform: translateY(-50%);
       vertical-align: middle;
 
       .title {
         display: inline-block;
-        color: colors.$color-blue-grey-400;
+        color: var(--grey-400);
         width: 100%;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -158,10 +159,10 @@
       input {
         border: none;
         background: transparent;
-        color: colors.$color-blue-grey-150;
+        color: var(--grey-150);
         width: calc(100% - 5px);
-        line-height: 20px;
-        font-size: 14px;
+        line-height: var(--font-line-height-300);
+        font-size: var(--font-size-s);
       }
     }
   }
@@ -170,22 +171,22 @@
     position: absolute;
     top: -28px;
     left: 205px;
-    color: colors.$color-error;
+    color: var(--color-error);
   }
 
   *:not(ngx-input).value-input,
   ngx-input.value-input .ngx-input-wrap .ngx-input-box-wrap .ngx-input-box {
     border: 1px solid json-editor.$color-node-item-border;
     background: json-editor.$color-node-item-bg;
-    color: colors.$color-blue-grey-150;
+    color: var(--grey-150);
     width: 100%;
     height: 30px;
-    padding: 5px;
-    border-radius: 0;
-    margin: 0;
+    padding: var(--spacing-4);
+    border-radius: var(--radius-0);
+    margin: var(--spacing-0);
 
     &.select * {
-      background-color: colors.$color-blue-grey-700;
+      background-color: var(--grey-700);
     }
 
     &.code {
@@ -195,7 +196,7 @@
       .code-display {
         white-space: pre-wrap;
         font-family: 'Courier New', Courier, monospace;
-        font-size: 14px;
+        font-size: var(--font-size-s);
       }
 
       .edit-code-icon {
@@ -218,7 +219,7 @@
         min-height: 30px;
         position: absolute;
         z-index: 20;
-        background: colors.$color-blue-grey-775;
+        background: var(--grey-775);
 
         .edit-code-icon {
           display: inline;
@@ -228,7 +229,7 @@
   }
 
   ngx-input.value-input {
-    margin: 0;
+    margin: var(--spacing-0);
 
     .ngx-input-label,
     .ngx-input-underline,
@@ -238,17 +239,17 @@
   }
 
   .ngx-toggle {
-    margin: 0;
+    margin: var(--spacing-0);
     line-height: 30px;
 
     .ngx-toggle-text {
-      color: colors.$color-blue-grey-150;
+      color: var(--grey-150);
     }
   }
 
   .invalid {
     > div > .value-input {
-      border: 1px solid colors.$color-error;
+      border: 1px solid var(--color-error);
     }
   }
 }

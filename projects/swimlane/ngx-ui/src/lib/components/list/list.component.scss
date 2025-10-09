@@ -23,9 +23,9 @@ ngx-list.ngx-list {
   }
 
   hr {
-    border-top: 1px solid colors.$color-blue-grey-600;
-    border-bottom: 1px solid colors.$color-blue-grey-600;
+    border-top: 1px solid var(--grey-600);
+    border-bottom: 1px solid var(--grey-600);
     opacity: 0.75;
-    margin: 0.75rem 0 0.5rem 0;
+    margin: 0.75rem var(--spacing-0) 0.5rem var(--spacing-0);
   }
 }

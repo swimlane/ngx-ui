@@ -6,7 +6,7 @@
   overflow-x: hidden;
   text-align: left;
   z-index: 998;
-  background: colors.$color-blue-grey-800;
+  background: var(--grey-800);
 
   &.left-drawer {
     top: 0;

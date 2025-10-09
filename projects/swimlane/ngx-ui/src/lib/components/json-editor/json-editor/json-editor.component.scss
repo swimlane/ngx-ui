@@ -6,7 +6,7 @@
     border: 1px solid json-editor.$color-node-item-border;
     height: 30px;
     display: inline-block;
-    margin-left: 20px;
+    margin-left: var(--spacing-20);
     position: relative;
     background: json-editor.$color-node-item-bg;
 
@@ -14,7 +14,7 @@
       content: ' ';
       width: 15px;
       height: 1px;
-      border-radius: 5px;
+      border-radius: var(--radius-6);
       background: none;
       border-top: dashed 1px json-editor.$color-tree-line;
       position: absolute;
@@ -36,14 +36,14 @@
         width: 16px;
         height: 16px;
       }
-      margin-left: 0px;
+      margin-left: var(--spacing-0);
       display: inline-block;
     }
 
     .name {
       display: inline-block;
       width: 170px;
-      padding: 0px 5px;
+      padding: var(--spacing-0) var(--spacing-4);
       position: relative;
       transform: translateY(-50%);
       vertical-align: middle;
@@ -51,7 +51,7 @@
       .title {
         display: inline-block;
         width: 100%;
-        color: colors.$color-blue-grey-400;
+        color: var(--grey-400);
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
@@ -71,7 +71,7 @@
       min-width: 150px;
 
       &:nth-child(2) {
-        border-left: 1px solid colors.$color-blue-grey-550;
+        border-left: 1px solid var(--grey-550);
       }
     }
   }

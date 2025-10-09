@@ -1,6 +1,6 @@
 ngx-list-header.ngx-list-header {
   color: #fff;
-  font-size: 14px;
-  font-weight: 700;
+  font-size: var(--font-size-s);
+  font-weight: var(--font-weight-bold);
   line-height: 22px;
 }

@@ -3,6 +3,6 @@
 .ngx-columns {
   display: flex;
   border-radius: 6px;
-  border: 1px solid colors.$color-blue-grey-700;
+  border: 1px solid var(--grey-700);
   overflow-y: hidden;
 }

@@ -2,7 +2,7 @@
 @use 'colors' as colors;
 
 @mixin glow($color) {
-  border: 2px solid color.adjust($color, $lightness: -5%);
+  border: 2px solid color-mix(in srgb, var(--blue-500), black 5%);
   box-shadow: 0px 0px 10px 0px $color;
 }
 

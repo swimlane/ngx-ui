@@ -6,7 +6,7 @@
   overflow-x: hidden;
   text-align: left;
   z-index: 998;
-  background: colors.$color-blue-grey-800;
+  background: var(--grey-800);
   background: #313847;
 
   &.ngx-nag-bottom {
@@ -35,7 +35,7 @@
       border-radius: 15px;
       float: right;
       text-align: center;
-      margin-top: 10px;
+      margin-top: var(--spacing-10);
       line-height: 34px;
       cursor: pointer;
     }
@@ -47,7 +47,7 @@
 
   .ngx-nag-body {
     background-color: #313847;
-    margin-bottom: 0;
+    margin-bottom: var(--spacing-0);
     padding: 1.8em;
     max-height: 50vh;
     overflow-y: auto;

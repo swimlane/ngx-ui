@@ -2,13 +2,13 @@
 
 ngx-list-row {
   &.ngx-list-row {
-    background-color: colors.$color-blue-grey-800;
-    border: 1px solid colors.$color-blue-grey-600;
+    background-color: var(--grey-800);
+    border: 1px solid var(--grey-600);
     border-radius: 0.25rem;
     display: grid;
     align-items: center;
     height: 40px;
-    margin: 0.25rem 1rem 0rem 1rem;
+    margin: 0.25rem 1rem var(--spacing-0) 1rem;
     padding-inline: 1rem;
     position: relative;
 
@@ -23,15 +23,15 @@ ngx-list-row {
     }
 
     &--error::before {
-      background-color: colors.$color-red-500;
+      background-color: var(--red-500);
     }
 
     &--success::before {
-      background-color: colors.$color-green-500;
+      background-color: var(--green-500);
     }
 
     &--warning::before {
-      background-color: colors.$color-orange-400;
+      background-color: var(--orange-400);
     }
   }
 }

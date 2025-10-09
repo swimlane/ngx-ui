@@ -8,16 +8,16 @@
   }
 }
 .json-editor--popover-template {
-  font-weight: 600;
-  font-size: 12px;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-xs);
   line-height: 13px;
   max-width: 300px;
-  color: colors.$color-blue-grey-800;
+  color: var(--grey-800);
 
   .label {
-    color: colors.$color-blue-grey-550;
-    font-size: 10px;
-    font-weight: bold;
+    color: var(--grey-550);
+    font-size: var(--font-size-xxs);
+    font-weight: var(--font-weight-bold);
     text-transform: uppercase;
   }
 
@@ -39,15 +39,15 @@ ngx-json-editor-node-flat {
 
   .node-container {
     display: flex;
-    padding-bottom: 0px;
+    padding-bottom: var(--spacing-0);
   }
 
   .node {
-    background-color: colors.$color-blue-grey-700;
+    background-color: var(--grey-700);
     box-shadow: 0px 2px 7px rgba(0, 0, 0, 0.2);
-    border-radius: 2px;
+    border-radius: var(--radius-2);
     display: flex;
-    padding: 25px 10px;
+    padding: var(--spacing-24) 10px;
     position: relative;
     flex: 0 1 100%;
     height: 96px;
@@ -57,18 +57,18 @@ ngx-json-editor-node-flat {
       position: absolute;
       width: 100%;
       height: 100%;
-      border-radius: 2px;
+      border-radius: var(--radius-2);
       top: 0;
       left: 0;
-      border: 2px solid colors.$color-error;
+      border: 2px solid var(--color-error);
     }
 
     .left-options {
       display: flex;
       flex-direction: column;
       justify-content: center;
-      margin-right: 10px;
-      color: colors.$color-blue-grey-400;
+      margin-right: var(--spacing-10);
+      color: var(--grey-400);
       flex: 0 0 15px;
 
       .required-indicator {
@@ -80,8 +80,8 @@ ngx-json-editor-node-flat {
           display: flex;
 
           svg path {
-            fill: colors.$color-blue-grey-400;
-            stroke: colors.$color-blue-grey-400;
+            fill: var(--grey-400);
+            stroke: var(--grey-400);
           }
 
           &.not-required {
@@ -92,8 +92,8 @@ ngx-json-editor-node-flat {
 
           &.invalid {
             svg path {
-              fill: colors.$color-error;
-              stroke: colors.$color-error;
+              fill: var(--color-error);
+              stroke: var(--color-error);
             }
           }
         }
@@ -117,19 +117,19 @@ ngx-json-editor-node-flat {
 
       .node-info {
         flex: 0 0 40%;
-        padding-right: 25px;
+        padding-right: var(--spacing-24);
         overflow: hidden;
         padding-top: 3px;
       }
 
       .node-input {
         flex: 0 1 60%;
-        padding-top: 5px;
-        margin-bottom: 2px;
+        padding-top: var(--spacing-4);
+        margin-bottom: var(--spacing-2);
 
         ngx-input {
-          padding: 0;
-          margin: 0;
+          padding: var(--spacing-0);
+          margin: var(--spacing-0);
 
           .ngx-input-hint {
             min-height: 0;
@@ -144,20 +144,20 @@ ngx-json-editor-node-flat {
           }
 
           input {
-            color: colors.$color-blue-grey-100;
+            color: var(--grey-100);
           }
 
           button {
             display: none;
-            color: colors.$color-blue-grey-400;
+            color: var(--grey-400);
           }
         }
 
         .input-error {
-          color: colors.$color-error;
+          color: var(--color-error);
           min-height: 1.2em; // min height keeps input from shifting when error is shown
           text-transform: capitalize;
-          font-size: 12px;
+          font-size: var(--font-size-xs);
           font-family: Source Sans Pro, Open Sans, Arial, sans-serif;
         }
       }

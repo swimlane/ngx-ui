@@ -24,11 +24,11 @@
     display: none;
 
     &:checked ~ .ngx-toggle-label {
-      background: colors.$color-blue-700;
+      background: var(--blue-700);
 
       &:after {
         left: 16px;
-        background: colors.$color-blue;
+        background: var(--blue-500);
       }
     }
   }
@@ -38,7 +38,7 @@
     display: block;
     height: 14px;
     width: 36px;
-    background: colors.$color-blue-grey-900;
+    background: var(--grey-900);
     border-radius: 100px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -55,8 +55,8 @@
       height: 20px;
       width: 20px;
       border-radius: 100%;
-      background: colors.$color-blue-grey-400;
-      box-shadow: 0px 3px 3px colors.$color-blue-grey-900;
+      background: var(--grey-400);
+      box-shadow: 0px 3px 3px var(--grey-900);
       content: '';
       transition: all 0.3s ease;
     }
@@ -66,15 +66,15 @@
 
       &.ngx-check {
         opacity: 0.5;
-        color: colors.$color-white;
+        color: var(--white);
         padding: 2.5px 3.5px;
-        font-size: 9px;
+        font-size: var(--font-size-xxs);
       }
 
       &.ngx-x {
         flex-direction: row-reverse;
         opacity: 0.7;
-        color: colors.$color-blue-grey-400;
+        color: var(--grey-400);
         padding: 3.5px 4.5px;
         font-size: 7px;
         font-weight: 900;
@@ -84,7 +84,7 @@
 
   .ngx-toggle-text {
     cursor: pointer;
-    padding-left: 5px;
-    color: colors.$color-blue-grey-100;
+    padding-left: var(--spacing-4);
+    color: var(--grey-100);
   }
 }

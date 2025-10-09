@@ -10,9 +10,9 @@ ngx-json-editor-node-info {
     align-items: baseline;
 
     .info-btn {
-      color: colors.$color-blue-grey-350;
-      font-size: 12px;
-      margin-left: 5px;
+      color: var(--grey-350);
+      font-size: var(--font-size-xs);
+      margin-left: var(--spacing-4);
       position: relative;
       z-index: 1;
       white-space: nowrap;
@@ -21,8 +21,8 @@ ngx-json-editor-node-info {
 
   .name,
   .editable-name input {
-    font-weight: 600;
-    font-size: 18px;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-l);
     line-height: 23px;
     color: #f0f1f6;
   }
@@ -37,13 +37,13 @@ ngx-json-editor-node-info {
 
   .info-type,
   .description {
-    color: colors.$color-blue-grey-250;
+    color: var(--grey-250);
   }
 
   .info-type {
     display: inline-flex;
-    font-size: 12px;
-    color: colors.$color-blue-grey-250;
+    font-size: var(--font-size-xs);
+    color: var(--grey-250);
     white-space: nowrap;
 
     > * {
@@ -60,27 +60,27 @@ ngx-json-editor-node-info {
     .dot-separator {
       flex: 0 0 auto;
       font-size: 0.2em;
-      margin: 0 5px;
+      margin: var(--spacing-0) var(--spacing-4);
       vertical-align: middle;
-      line-height: 20px;
+      line-height: var(--font-line-height-300);
     }
   }
 
   .description {
-    font-size: 14px;
-    color: colors.$color-blue-grey-250;
+    font-size: var(--font-size-s);
+    color: var(--grey-250);
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: clip;
   }
 
   .required {
-    color: colors.$color-red-400;
+    color: var(--red-400);
   }
 
   .editable-name {
-    margin: 0;
-    padding-top: 15px;
+    margin: var(--spacing-0);
+    padding-top: var(--spacing-16);
 
     .ngx-input-hint {
       display: none;

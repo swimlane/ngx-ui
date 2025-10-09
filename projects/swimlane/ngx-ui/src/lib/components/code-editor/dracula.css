@@ -94,8 +94,8 @@
 }
 
 .cm-s-dracula span.cm-mustache {
-  border-radius: 5px;
+  border-radius: var(--radius-6);
   color: #cdd3dd;
   background-color: #455066;
-  padding: 0px 2px 2px 2px;
+  padding: var(--spacing-0) var(--spacing-2) var(--spacing-2) var(--spacing-2);
 }

@@ -7,12 +7,12 @@
     display: block;
     position: relative;
     padding-left: 1.5em;
-    margin: 0 0.8rem 0 0;
+    margin: var(--spacing-0) 0.8rem var(--spacing-0) var(--spacing-0);
     cursor: pointer;
     user-select: none;
 
     &--content {
-      color: colors.$color-blue-grey-100;
+      color: var(--grey-100);
     }
 
     /* Hide default radio button */
@@ -32,7 +32,7 @@
       border: 1px solid #6f809e;
       opacity: 1;
       transition: background-color 0.3s ease, opacity 0.3s ease;
-      outline: 0px none colors.$color-blue-200;
+      outline: 0px none var(--blue-200);
       outline-offset: 1px;
     }
 
@@ -40,7 +40,7 @@
       outline: none;
 
       .checkmark {
-        outline: 2px solid colors.$color-blue-200;
+        outline: 2px solid var(--blue-200);
       }
     }
 

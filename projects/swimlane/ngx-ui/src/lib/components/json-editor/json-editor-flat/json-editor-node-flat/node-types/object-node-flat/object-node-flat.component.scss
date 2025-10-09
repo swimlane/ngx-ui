@@ -4,7 +4,7 @@
 @use '../../../../json-editor.extensions';
 
 .object-node-flat {
-  margin-top: 4px;
+  margin-top: var(--spacing-4);
 
   .object-node-content {
     @extend %node-type;
@@ -15,19 +15,19 @@
   }
 
   .add-prop-button {
-    margin-bottom: 4px;
+    margin-bottom: var(--spacing-4);
     height: 96px;
     margin-left: -15px;
     &:last-child {
-      margin-bottom: 0;
+      margin-bottom: var(--spacing-0);
     }
 
     .node {
-      margin-bottom: 0;
+      margin-bottom: var(--spacing-0);
       justify-content: unset !important;
       opacity: 0.2;
       cursor: pointer;
-      outline: 2px dotted color.change(colors.$color-blue-grey-650, $alpha: 0.5);
+      border: 2px dotted rgba(var(--grey-650), 0.5);
       outline-offset: -2px;
 
       &:hover {
@@ -41,7 +41,7 @@
     }
 
     .node-input {
-      padding-top: 0 !important;
+      padding-top: var(--spacing-0) !important;
     }
   }
 }
@@ -54,7 +54,7 @@
   .add-button {
     display: none;
     padding-left: 1rem;
-    border-left: 1px solid colors.$color-blue-grey-650;
+    border-left: 1px solid var(--grey-650);
   }
 }
 
@@ -67,6 +67,6 @@
   @extend %indentation;
   position: relative;
   height: 117px;
-  margin-bottom: 5px;
+  margin-bottom: var(--spacing-4);
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
