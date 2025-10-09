@@ -1,10 +1,10 @@
 @use 'colors/colors' as colors;
 @use 'forms/variables' as forms;
 
-$calendar-bg: colors.$color-blue-grey-800;
+$calendar-bg: var(--grey-800);
 $calender-border: #2d3544;
 $animation-timing: 200ms;
-$input-invalid-color: colors.$color-red;
+$input-invalid-color: var(--red-500);
 
 .ngx-date-time {
   position: relative;
@@ -13,24 +13,24 @@ $input-invalid-color: colors.$color-red;
 
   &.md {
     .ngx-input {
-      font-size: 18px !important;
+      font-size: var(--font-size-l) !important;
     }
   }
 
   &.lg {
     .ngx-input {
-      font-size: 21px !important;
+      font-size: var(--font-size-xl) !important;
     }
   }
 
   .calendar-dialog-btn {
     display: inline-flex;
     position: absolute;
-    padding: 0;
+    padding: var(--spacing-0);
     right: 5px;
     top: 50%;
     transform: translateY(-50%);
-    color: colors.$color-blue-grey-200;
+    color: var(--grey-200);
     z-index: 2;
   }
 
@@ -47,7 +47,6 @@ $input-invalid-color: colors.$color-red;
 
   &.fill {
     .calendar-dialog-btn {
-      transform: translateY(-35%);
       right: 10px;
     }
 
@@ -136,7 +135,7 @@ $input-invalid-color: colors.$color-red;
 }
 
 .ngx-dialog .ngx-dialog-content.ngx-date-time-dialog {
-  padding: 0 !important;
+  padding: var(--spacing-0) !important;
   width: auto;
 
   h1 {
@@ -144,22 +143,29 @@ $input-invalid-color: colors.$color-red;
     white-space: nowrap;
 
     small {
-      color: colors.$color-grey-100;
+      color: var(--grey-100);
     }
   }
 
   .selected-header {
-    padding: 5px 20px;
-    background: colors.$color-blue;
-    color: colors.$color-grey-100;
+    border-top: 1px solid var(--grey-700);
+    border-left: 1px solid var(--grey-700);
+    border-right: 1px solid var(--grey-700);
+    border-top-left-radius: var(--radius-6);
+    border-top-right-radius: var(--radius-6);
+    padding: var(--spacing-4) var(--spacing-20);
+    background: var(--blue);
+    color: var(--grey-100);
   }
 
   .time-row {
     background: $calendar-bg;
-    border: 1px solid $calender-border;
-    padding: 8px 18px;
-    margin-top: 0;
-
+    border-left: 1px solid var(--grey-700);
+    border-right: 1px solid var(--grey-700);
+    border-bottom: 1px solid var(--grey-700);
+    padding: var(--spacing-8) var(--spacing-16) var(--spacing-8) var(--spacing-16);
+    margin-top: var(--spacing-0);
+    height: 94px;
     flex-direction: row;
     box-sizing: border-box;
     display: flex;
@@ -172,8 +178,8 @@ $input-invalid-color: colors.$color-red;
     }
 
     .ngx-input {
-      margin-top: 0;
-      padding-top: 0;
+      margin-top: var(--spacing-0);
+      padding-top: var(--spacing-0);
       width: 35px;
 
       &.milliseconds {
@@ -186,30 +192,33 @@ $input-invalid-color: colors.$color-red;
     }
 
     button.ampm {
-      color: colors.$color-blue-grey-500;
+      color: var(--grey-500);
 
       &.selected {
-        color: colors.$color-white;
+        color: var(--white);
       }
     }
   }
 
   .ngx-calendar {
     box-shadow: none;
+    border-radius: 0px;
 
     .title-row {
       background: none;
     }
 
     .day-name-row {
-      margin-top: 0;
+      margin-top: var(--spacing-0);
     }
   }
 
   .ngx-dialog-footer {
     border: 1px solid $calender-border;
+    border-bottom-left-radius: var(--radius-6);
+    border-bottom-right-radius: var(--radius-6);
     border-top: 0;
-    padding: 0.5rem 0;
+    padding: 0.5rem var(--spacing-0);
     flex-direction: row;
     box-sizing: border-box;
     display: flex;
@@ -219,14 +228,14 @@ $input-invalid-color: colors.$color-red;
     }
 
     .btn {
-      font-size: 1em;
-      color: colors.$color-blue-grey-400;
-      margin: 0;
-      padding: 0;
+      font-size: var(--font-size-m);
+      color: var(--grey-400);
+      margin: var(--spacing-0);
+      padding: var(--spacing-0);
     }
 
     .today-btn {
-      margin-left: 15px;
+      margin-left: var(--spacing-16);
       opacity: 1;
       transition: opacity $animation-timing;
 
@@ -237,23 +246,23 @@ $input-invalid-color: colors.$color-red;
     }
 
     .apply-btn {
-      margin-right: 15px;
-      color: colors.$color-blue-400;
+      margin-right: var(--spacing-16);
+      color: var(--blue-400);
     }
 
     .clear-btn {
-      margin-right: 15px;
+      margin-right: var(--spacing-16);
     }
   }
 }
 
 .ngx-tooltip-content.date-tip-tooltip {
-  padding: 5px;
+  padding: var(--spacing-4);
 
   .date-zone-display {
-    font-weight: bold;
-    font-size: 15px;
-    color: colors.$color-blue-grey-700;
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-m);
+    color: var(--grey-700);
 
     > span {
       display: inline-block;
@@ -261,20 +270,20 @@ $input-invalid-color: colors.$color-red;
 
     button {
       float: right;
-      font-weight: bold;
+      font-weight: var(--font-weight-bold);
       line-height: 16px;
-      font-size: 11px;
+      font-size: var(--font-size-xs);
       text-transform: uppercase;
-      color: colors.$color-blue-grey-700;
+      color: var(--grey-700);
       background: #dee1ea;
-      margin-left: 5px;
-      padding: 0 6px;
+      margin-left: var(--spacing-4);
+      padding: var(--spacing-0) 6px;
       vertical-align: text-top;
       text-align: left;
       min-width: 70px;
 
       ngx-icon {
-        padding-right: 5px;
+        padding-right: var(--spacing-4);
       }
 
       &:hover,

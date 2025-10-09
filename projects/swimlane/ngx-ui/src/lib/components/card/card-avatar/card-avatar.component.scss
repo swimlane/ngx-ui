@@ -1,7 +1,7 @@
 @use 'colors/colors' as colors;
 
 $border-width: 3px;
-$color-background-grey: colors.$color-blue-grey-750;
+$color-background-grey: var(--grey-750);
 
 .ngx-card-avatar {
   width: 54px;
@@ -16,8 +16,7 @@ $color-background-grey: colors.$color-blue-grey-750;
   }
 
   &--avatar {
-    border: 2px solid colors.$color-blue-grey-100;
-    box-shadow: 0 0 15px rgba(122, 185, 255, 0.4);
+    border: 2px solid var(--grey-100);
     border-radius: 100%;
     width: 100%;
     height: 100%;
@@ -39,7 +38,7 @@ $color-background-grey: colors.$color-blue-grey-750;
         left: 0;
         width: 10px;
         height: 10px;
-        padding: 4px;
+        padding: var(--spacing-4);
         border-radius: 50%;
         border: $border-width solid $color-background-grey;
         background-color: white;
@@ -57,9 +56,9 @@ $color-background-grey: colors.$color-blue-grey-750;
 
       .ngx-card-avatar--content {
         margin: auto;
-        font-size: 0.95rem;
-        color: colors.$color-blue-grey-100;
-        font-weight: bold;
+        font-size: var(--font-size-m);
+        color: var(--grey-100);
+        font-weight: var(--font-weight-bold);
       }
     }
   }
@@ -73,7 +72,7 @@ $color-background-grey: colors.$color-blue-grey-750;
       }
 
       &.error {
-        background-color: colors.$color-error;
+        background-color: var(--color-error);
       }
     }
   }

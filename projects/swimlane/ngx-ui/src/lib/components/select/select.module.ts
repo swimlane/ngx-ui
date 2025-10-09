@@ -9,6 +9,7 @@ import { SelectOptionTemplateDirective } from './select-option-template.directiv
 import { SelectOptionDirective } from './select-option.directive';
 
 import { SelectComponent } from './select.component';
+import { CheckboxModule } from '../checkbox/checkbox.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,6 @@ import { SelectComponent } from './select.component';
     SelectOptionTemplateDirective,
     SelectOptionInputTemplateDirective
   ],
-  imports: [CommonModule, InViewportModule, TooltipModule]
+  imports: [CommonModule, InViewportModule, TooltipModule, CheckboxModule]
 })
 export class SelectModule {}

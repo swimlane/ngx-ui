@@ -51,6 +51,8 @@
           [class.disabled]="kv.option.disabled"
           [class.active]="kv.index === focusIndex"
           [class.selected]="isSelected(kv.option)"
+          [class.multiple]="multiple"
+          [class.tagging]="tagging"
           [hidden]="kv.option.hidden"
           [attr.data-value]="kv.option.value"
           ngx-tooltip
@@ -74,11 +76,15 @@
             [ngTemplateOutletContext]="{ option: kv.option }"
           >
           </ng-template>
-          <span *ngIf="!kv.option.optionTemplate" [innerHTML]="kv.option.name"> </span>
-          <i
-            *ngIf="!kv.option.optionTemplate && isSelected(kv.option)"
-            class="ngx-icon ngx-check ngx-select-dropdown--selected-option"
-          ></i>
+          <div class="ngx-select-dropdown-selector" *ngIf="!kv.option.optionTemplate">
+            <ngx-checkbox
+              *ngIf="multiple"
+              (click)="onCheckboxClick($event, kv.option)"
+              [checked]="isSelected(kv.option)"
+              [disabled]="kv.option.disabled"
+            ></ngx-checkbox>
+            <span [innerHTML]="kv.option.name"> </span>
+          </div>
         </li>
         <li
           *ngIf="allowAdditions && filterQuery && group.options?.length && !filterQueryIsInOptions"

@@ -60,6 +60,10 @@ export class SelectDropdownComponent implements AfterViewInit {
   showSelectAll = false;
 
   @Input()
+  @CoerceBooleanProperty()
+  multiple = false;
+
+  @Input()
   get focusIndex() {
     return this._focusIndex;
   }
@@ -199,6 +203,11 @@ export class SelectDropdownComponent implements AfterViewInit {
     } else {
       this.selection.emit(option);
     }
+  }
+
+  onCheckboxClick(event: Event, option: SelectDropdownOption) {
+    event.stopPropagation();
+    this.onOptionClick(option);
   }
 
   onOptionKeyDown(event: KeyboardEvent, option?: SelectDropdownOption): void {

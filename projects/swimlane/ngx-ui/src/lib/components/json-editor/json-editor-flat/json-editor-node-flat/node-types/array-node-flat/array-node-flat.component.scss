@@ -2,13 +2,13 @@
 @use '../node-types.extensions';
 
 .array-node-flat {
-  margin-top: 4px;
+  margin-top: var(--spacing-4);
 
   .array-node-content {
     @extend %node-type;
 
     &.no-margin {
-      margin-bottom: 0;
+      margin-bottom: var(--spacing-0);
     }
   }
 

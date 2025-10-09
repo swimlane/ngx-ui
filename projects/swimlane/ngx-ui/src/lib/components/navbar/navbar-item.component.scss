@@ -1,12 +1,10 @@
-@use 'colors/colors' as colors;
-
 .ngx-navbar-item {
   display: flex;
   font-size: 15pt;
-  color: colors.$color-blue-grey-400;
+  color: var(--grey-400);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  padding: 8px 10px 0 10px;
+  padding: var(--spacing-8) 10px var(--spacing-0) 10px;
 
   &:focus {
     outline: none;
@@ -14,6 +12,6 @@
 
   &:hover,
   &.active {
-    color: colors.$color-blue-400;
+    color: var(--blue-400);
   }
 }

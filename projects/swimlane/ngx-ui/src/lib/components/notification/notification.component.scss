@@ -29,37 +29,51 @@
   margin-top: 0.5rem;
   position: relative;
   box-shadow: shadows.$shadow-15;
-  color: colors.$color-white;
+  color: var(--white);
   text-shadow: 1px 1px rgba(0, 0, 0, 0.1);
-  background: colors.$color-blue-grey-700;
+  background: var(--grey-700);
+  border-radius: var(--radius-4);
 
   @include notification(#455066);
 
   .notification-bar {
-    width: 5px;
+    width: var(--spacing-4);
     height: 100%;
     position: absolute;
-
+    border-top-left-radius: var(--radius-4);
+    border-bottom-left-radius: var(--radius-4);
     .bar {
       width: 5px;
       height: 100%;
       position: absolute;
       bottom: 0;
+      border-top-left-radius: var(--radius-4);
+      border-bottom-left-radius: var(--radius-4);
     }
 
     &.animated {
       .bar {
         height: 0%;
         animation: 1s ease-out 0s 1 heightBar;
+        border-top-left-radius: var(--radius-4);
+        border-bottom-left-radius: var(--radius-4);
       }
     }
 
     @keyframes heightBar {
       0% {
         height: 100%;
+        border-top-left-radius: var(--radius-4);
+      }
+      10% {
+        border-top-left-radius: var(--radius-0);
+      }
+      90% {
+        border-top-left-radius: var(--radius-0);
       }
       100% {
         height: 0%;
+        border-top-left-radius: var(--radius-0);
       }
     }
   }
@@ -69,24 +83,24 @@
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    padding: 0 1.25em;
+    padding: 0px 1.25em 0px calc(1.25em + var(--spacing-2));
     height: 2rem;
 
     .ngx-icon {
-      font-size: 2rem;
-      line-height: 2rem;
+      font-size: var(--font-size-4xl);
+      line-height: var(--font-size-4xl);
     }
   }
 
   .notification-content {
     padding: 1.5rem;
-    color: colors.$color-blue-grey-100;
+    color: var(--grey-100);
     overflow: auto;
     max-height: 300px;
 
     &.has-icon {
       margin-left: 4.5rem;
-      border-left: 1px solid colors.$color-blue-grey-650;
+      border-left: 1px solid var(--grey-650);
     }
   }
 
@@ -95,30 +109,30 @@
   }
 
   &.ngx-notification-info {
-    @include notification(colors.$color-blue);
+    @include notification(var(--blue-500));
   }
 
   &.ngx-notification-error {
-    @include notification(colors.$color-red);
+    @include notification(var(--red-500));
   }
 
   &.ngx-notification-warning {
-    @include notification(colors.$color-orange);
+    @include notification(var(--orange-500));
   }
 
   &.ngx-notification-success {
-    @include notification(colors.$color-green);
+    @include notification(var(--green-500));
   }
 
   .ngx-notification-title {
-    margin: 0;
+    margin: var(--spacing-0);
     font-size: 1.2rem;
     color: white;
   }
 
   .ngx-notification-body {
-    font-size: 0.9rem;
-    margin: 0;
+    font-size: var(--font-size-m);
+    margin: var(--spacing-0);
     line-height: 1rem;
   }
 
@@ -127,8 +141,8 @@
     right: 0.5rem;
     top: 0.5rem;
     line-height: 1em;
-    padding: 0;
-    font-size: 16px;
+    padding: var(--spacing-0);
+    font-size: var(--font-size-m);
     height: 16px;
   }
 }

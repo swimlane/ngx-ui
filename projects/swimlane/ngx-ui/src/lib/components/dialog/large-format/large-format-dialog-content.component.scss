@@ -15,6 +15,9 @@
   --max-body-height: auto;
 
   --body-padding: 2rem;
+  .dialog-container {
+    border-radius: var(--radius-16);
+  }
 }
 
 .ngx-medium-format-dialog-content {
@@ -31,6 +34,9 @@
   --max-body-height: calc(var(--max-height) - var(--header-height));
 
   --body-padding: 2rem;
+  .dialog-container {
+    border-radius: var(--radius-16);
+  }
 }
 
 .ngx-medium-format-dialog-content,
@@ -48,7 +54,6 @@
     max-height: var(--max-height, 75vh);
     background: gradients.$bg-linear-3;
     box-shadow: 0 0 100px rgba(0, 0, 0, 0.25);
-    border-radius: 0.125rem;
 
     &__header {
       flex: 0 0 var(--header-height, 60px);
@@ -72,7 +77,7 @@
     .ngx-large-format-dialog-footer {
       flex: 0 0 var(--footer-height, 4rem);
       height: var(--footer-height, 4rem);
-      border-top: 2px solid colors.$color-blue-grey-700;
+      border-top: 2px solid var(--grey-700);
     }
 
     .dialog-stepper,
@@ -224,7 +229,7 @@
                 font-size: 0.8125rem;
                 font-weight: bold;
                 line-height: 1rem;
-                color: colors.$color-blue-grey-400;
+                color: var(--grey-400);
 
                 &::after {
                   top: 3.5rem;
@@ -233,7 +238,7 @@
 
               &.active {
                 button {
-                  color: colors.$color-white;
+                  color: var(--white);
                 }
               }
             }

@@ -6,6 +6,18 @@
 - Fix (`ngx-date-range-picker`): Fix highlight the date for given `selectedRange` values.
 - Fix (`ngx-select`): Fix filtering of numeric option values.
 
+- Feat: New look and feel
+
+ngx-ui is getting a new look.
+
+- Feature: Softer look and feel for many components by incorporating border-radius
+- Feature: CSS variable for input style
+- Feature ('ngx-select'): New selection pattern
+- Feature ('ngx-select'): Multiselect with checkboxes
+- Feature: Updated several components to reference CSS variables instead of SASS
+- Fix: Button Group appeared misaligned when using a dropdown toggle
+- Fix: base font CSS variables should be rem
+
 ## 50.1.3 (2025-09-23)
 
 - Fix (`ngx-multi-dimension-selection`): Show children of items matching search term
