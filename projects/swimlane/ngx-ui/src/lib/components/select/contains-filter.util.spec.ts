@@ -41,8 +41,43 @@ describe('containsFilter', () => {
     expect(res).toBeTruthy();
   });
 
-  it('should be undefined if value is not string or object', () => {
-    const res = containsFilter(1, '1', {});
-    expect(res).toBeUndefined();
+  it('should convert number to string and return true when filter matches', () => {
+    const res = containsFilter(123, '123', {});
+    expect(res).toBeTruthy();
+  });
+
+  it('should convert number to string and return true when filter matches partially', () => {
+    const res = containsFilter(123, '12', {});
+    expect(res).toBeTruthy();
+  });
+
+  it('should convert number to string and return false when filter does not match', () => {
+    const res = containsFilter(123, '456', {});
+    expect(res).toBeFalsy();
+  });
+
+  it('should handle number filtering with case sensitive option', () => {
+    const res = containsFilter(123, '123', { filterCaseSensitive: true });
+    expect(res).toBeTruthy();
+  });
+
+  it('should handle alphanumeric string filtering with numbers', () => {
+    const res = containsFilter('ABC123', '123', {});
+    expect(res).toBeTruthy();
+  });
+
+  it('should handle alphanumeric string filtering with partial numbers', () => {
+    const res = containsFilter('ABC123', '12', {});
+    expect(res).toBeTruthy();
+  });
+
+  it('should handle alphanumeric string filtering with letters and numbers', () => {
+    const res = containsFilter('ABC123', 'BC1', {});
+    expect(res).toBeTruthy();
+  });
+
+  it('should return false for alphanumeric string when filter does not match', () => {
+    const res = containsFilter('ABC123', 'XYZ', {});
+    expect(res).toBeFalsy();
   });
 });
