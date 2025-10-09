@@ -21,6 +21,8 @@ ngx-multi-dimension-selection.ngx-multi-dimension-selection {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-top-left-radius: var(--radius-6);
+    border-top-right-radius: var(--radius-6);
 
     ngx-input.ngx-input {
       font-size: var(--font-size-s);

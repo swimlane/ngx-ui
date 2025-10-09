@@ -377,10 +377,12 @@ $calendar-month-current: var(--grey-750);
 
 .time-row {
   background: $calendar-bg;
-  border-top: 1px solid $calendar-border;
-  border-bottom: 1px solid $calendar-border;
-  padding: var(--spacing-24) 18px 6px 18px;
-
+  border-left: 1px solid var(--grey-700);
+  border-right: 1px solid var(--grey-700);
+  border-bottom: 1px solid var(--grey-700);
+  padding: var(--spacing-8) var(--spacing-16) var(--spacing-8) var(--spacing-16);
+  margin-top: var(--spacing-0);
+  height: 94px;
   flex-direction: row;
   box-sizing: border-box;
   display: flex;

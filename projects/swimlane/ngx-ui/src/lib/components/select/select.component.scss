@@ -454,6 +454,23 @@ $color-chip-text: #ffffff;
           padding: 7px 35px 7px 25px;
         }
       }
+
+      // Remove border radius from selected items that are in nested option groups
+      .ngx-select-option-group .ngx-select-dropdown-options .ngx-select-dropdown-option.selected:first-child,
+      .ngx-select-option-group .ngx-select-dropdown-options .ngx-select-dropdown-option:first-child:hover {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+      }
+      .ngx-select-option-group .ngx-select-dropdown-options .ngx-select-dropdown-option.selected:last-child,
+      .ngx-select-option-group .ngx-select-dropdown-options .ngx-select-dropdown-option:last-child:hover {
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+      .ngx-select-option-group:last-child .ngx-select-dropdown-options .ngx-select-dropdown-option.selected:last-child,
+      .ngx-select-option-group:last-child .ngx-select-dropdown-options .ngx-select-dropdown-option:last-child:hover {
+        border-bottom-left-radius: var(--radius-6);
+        border-bottom-right-radius: var(--radius-6);
+      }
     }
 
     .ngx-select-filter {
@@ -507,6 +524,13 @@ $color-chip-text: #ffffff;
         &::placeholder {
           color: var(--grey-350);
         }
+      }
+
+      // Remove border radius from selected items that are in nested option groups
+      & + .ngx-select-dropdown-options .ngx-select-dropdown-option.selected:first-child,
+      & + .ngx-select-dropdown-options .ngx-select-dropdown-option:first-child:hover {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
       }
     }
 

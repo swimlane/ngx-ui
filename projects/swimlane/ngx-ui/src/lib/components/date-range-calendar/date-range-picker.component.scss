@@ -52,6 +52,12 @@ ngx-date-range-picker {
     font-style: normal;
     line-height: var(--font-line-height-300);
     justify-content: flex-start;
+    border-top-left-radius: var(--radius-6);
+    border-top-right-radius: var(--radius-6);
+    background-color: var(--grey-800);
+    border-top: 1px solid var(--grey-700);
+    border-left: 1px solid var(--grey-700);
+    border-right: 1px solid var(--grey-700);
   }
 
   .ngx-input-box {
@@ -180,7 +186,13 @@ ngx-date-range-picker {
     gap: var(--spacing-8);
     align-self: stretch;
     justify-content: space-between;
-    margin: var(--spacing-4) 0px;
+    margin: 0px 0px;
+    border-bottom-left-radius: var(--radius-6);
+    border-bottom-right-radius: var(--radius-6);
+    background-color: var(--grey-800);
+    border-bottom: 1px solid var(--grey-700);
+    border-left: 1px solid var(--grey-700);
+    border-right: 1px solid var(--grey-700);
 
     ngx-button {
       font-size: var(--font-size-s);
