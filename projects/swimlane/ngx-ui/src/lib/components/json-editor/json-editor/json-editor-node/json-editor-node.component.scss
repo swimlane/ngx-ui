@@ -101,6 +101,7 @@
     margin-left: 20px;
     position: relative;
     background: json-editor.$color-node-item-bg;
+    border-radius: var(--radius-4);
 
     &::before {
       content: ' ';
@@ -183,6 +184,7 @@
     padding: 5px;
     border-radius: 0;
     margin: 0;
+    border-radius: var(--radius-4);
 
     &.select * {
       background-color: colors.$color-blue-grey-700;

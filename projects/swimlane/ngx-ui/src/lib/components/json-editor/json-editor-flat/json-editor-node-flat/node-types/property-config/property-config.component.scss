@@ -1,21 +1,25 @@
 @use 'colors/colors' as colors;
 
 .property-config {
+  border-top-left-radius: var(--radius-16);
+  border-top-right-radius: var(--radius-16);
   .header {
-    background: linear-gradient(180deg, colors.$color-blue-grey-650 0%, colors.$color-blue-grey-750 100%);
+    background: var(--grey-750);
+    border-top-left-radius: var(--radius-16);
+    border-top-right-radius: var(--radius-16);
     height: 75px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 35px;
+    padding: var(--spacing-0) 35px;
 
     span {
-      font-size: 19px;
+      font-size: var(--font-size-xl);
       color: white;
     }
 
     button {
-      font-size: 14px;
+      font-size: var(--font-size-s);
       line-height: 18px;
     }
   }
@@ -27,7 +31,7 @@
 
   .new-enum-input {
     button {
-      color: colors.$color-grey-500;
+      color: var(--grey-500);
     }
 
     .ngx-input-hint {
@@ -37,8 +41,8 @@
 
   .enum-edit {
     button {
-      font-size: 9px;
-      padding-right: 0;
+      font-size: var(--font-size-xxs);
+      padding-right: var(--spacing-0);
     }
   }
 
@@ -49,7 +53,7 @@
       flex-basis: 50%;
 
       &:first-child {
-        margin-right: 30px;
+        margin-right: var(--spacing-30);
       }
     }
   }
@@ -70,7 +74,7 @@
   }
 
   .examples-container {
-    border: 1px solid colors.$color-blue-grey-550;
+    border: 1px solid var(--grey-550);
     padding: 14px;
   }
 }
