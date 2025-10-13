@@ -2,7 +2,7 @@
 
 ## HEAD (unreleased)
 
-- Fix (`ngx-checkbox`): Fixed duplicate output event by removing emitChange() call from onClick().
+- Fix (`ngx-checkbox`): Removed duplicate output emission.
 
 - Fix (`ngx-date-range-picker`): Preset values now retain their relative expressions when cancel is clicked, instead of being converted to timestamps
 - Fix (`ngx-date-range-picker`): Fix highlight the date for given `selectedRange` values.
