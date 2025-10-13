@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Fix (`ngx-checkbox`): Removed duplicate output emission
+
 ## 51.0.0-alpha.0 (2025-10-13)
 
 ngx-ui has a new look!

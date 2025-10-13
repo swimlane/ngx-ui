@@ -44,7 +44,6 @@ export class CheckboxComponent implements ControlValueAccessor {
     if (!this.disabled) {
       this.toggle();
     }
-    this.emitChange();
   }
 
   @HostBinding()
