@@ -2,21 +2,20 @@
 
 ## HEAD (unreleased)
 
-- Fix (`ngx-date-range-picker`): Preset values now retain their relative expressions when cancel is clicked, instead of being converted to timestamps
-- Fix (`ngx-date-range-picker`): Fix highlight the date for given `selectedRange` values.
-- Fix (`ngx-select`): Fix filtering of numeric option values.
+## 51.0.0-alpha.0 (2025-10-13)
 
-- Feat: New look and feel
+ngx-ui has a new look!
 
-ngx-ui is getting a new look.
-
-- Feature: Softer look and feel for many components by incorporating border-radius
+- Feature: New look and feel for several components
 - Feature: CSS variable for input style
-- Feature ('ngx-select'): New selection pattern
-- Feature ('ngx-select'): Multiselect with checkboxes
+- Feature (`ngx-select`): New selection pattern
+- Feature (`ngx-select`): Multiselect with checkboxes
 - Feature: Updated several components to reference CSS variables instead of SASS
 - Fix: Button Group appeared misaligned when using a dropdown toggle
 - Fix: base font CSS variables should be rem
+- Fix (`ngx-date-range-picker`): Preset values now retain their relative expressions when cancel is clicked, instead of being converted to timestamps
+- Fix (`ngx-date-range-picker`): Fix highlight the date for given `selectedRange` values.
+- Fix (`ngx-select`): Fix filtering of numeric option values.
 
 ## 50.1.3 (2025-09-23)
 
