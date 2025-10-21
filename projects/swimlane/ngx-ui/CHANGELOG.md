@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 51.0.0-alpha.1 (2025-10-21)
+
 - Fix (`ngx-checkbox`): Removed duplicate output emission
 
 ## 51.0.0-alpha.0 (2025-10-13)
