@@ -70,8 +70,22 @@
       }
     }
 
-    .ngx-dropdown-menu {
-      @extend %ngx-dropdown-menu;
+    .ngx-dropdown {
+      .ngx-dropdown-menu {
+        button {
+          display: unset;
+          color: unset;
+
+          i {
+            font-size: unset;
+          }
+
+          span {
+            font-size: unset;
+            margin-left: unset;
+          }
+        }
+      }
     }
   }
 }

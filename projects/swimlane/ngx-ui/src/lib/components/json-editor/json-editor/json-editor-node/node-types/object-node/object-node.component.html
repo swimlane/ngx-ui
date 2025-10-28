@@ -1,13 +1,13 @@
 <div [hidden]="!expanded">
   <div *ngFor="let prop of propertyIndex | objectValues; trackBy: trackBy">
     <div class="property-def" [class.invalid]="duplicatedFields.has(prop.id)">
-      <ngx-dropdown [showCaret]="true">
+      <ngx-dropdown>
         <ngx-dropdown-toggle>
           <div class="type-icon">
             <ngx-icon [fontIcon]="prop.$meta.icon"></ngx-icon>
           </div>
         </ngx-dropdown-toggle>
-        <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+        <ngx-dropdown-menu class="ngx-dropdown-menu">
           <ul class="vertical-list">
             <li>
               <button
@@ -66,13 +66,13 @@
     </ngx-json-editor-node>
   </div>
 
-  <ngx-dropdown [showCaret]="true">
+  <ngx-dropdown>
     <ngx-dropdown-toggle [disabled]="isDuplicated">
       <div class="add-button">
         <ngx-icon fontIcon="plus-bold"></ngx-icon>
       </div>
     </ngx-dropdown-toggle>
-    <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+    <ngx-dropdown-menu class="ngx-dropdown">
       <ul class="vertical-list dropdown-column" *ngIf="schema.properties">
         <li *ngFor="let prop of schema.properties | keyvalue" (click)="addSchemaProperty(prop.key)">
           <button [disabled]="model[prop.key] !== undefined" type="button">

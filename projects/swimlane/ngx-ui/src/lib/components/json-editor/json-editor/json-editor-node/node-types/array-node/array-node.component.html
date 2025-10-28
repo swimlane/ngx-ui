@@ -1,13 +1,13 @@
 <div [hidden]="!expanded">
   <div *ngFor="let value of model; let i = index; trackBy: arrayTrackBy">
     <div class="property-def">
-      <ngx-dropdown [showCaret]="true">
+      <ngx-dropdown>
         <ngx-dropdown-toggle>
           <div class="type-icon" tooltipPlacement="top">
             <ngx-icon [fontIcon]="schemas[i]?.$meta.icon"> </ngx-icon>
           </div>
         </ngx-dropdown-toggle>
-        <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+        <ngx-dropdown-menu class="ngx-dropdown-menu">
           <ul class="vertical-list">
             <li><button type="button" (click)="deleteArrayItem(i)">Delete</button></li>
 
@@ -37,13 +37,13 @@
     </ngx-json-editor-node>
   </div>
 
-  <ngx-dropdown [showCaret]="true">
+  <ngx-dropdown>
     <ngx-dropdown-toggle [disabled]="isDuplicated">
       <div class="add-button">
         <ngx-icon fontIcon="plus-bold"></ngx-icon>
       </div>
     </ngx-dropdown-toggle>
-    <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+    <ngx-dropdown-menu class="ngx-dropdown">
       <ul class="vertical-list">
         <ng-template [ngIf]="!schema || !schema.items || !schema.items.type">
           <li *ngFor="let dataType of dataTypes" (click)="addArrayItem(dataType)">

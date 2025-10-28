@@ -11,7 +11,6 @@
     class="object-node-content"
     *ngFor="let prop of propertyIndex | objectValues; let index = index; trackBy: trackBy"
   >
-
     <ngx-json-editor-node-flat
       [model]="model[prop.propertyName]"
       (modelChange)="updateProp(prop.id, $event)"
@@ -43,13 +42,13 @@
         >
           <i class="ngx-icon ngx-cog"></i>
         </button>
-        <ngx-dropdown [showCaret]="true">
+        <ngx-dropdown>
           <ngx-dropdown-toggle>
             <button type="button" class="node-options-btn">
               <i class="ngx-icon ngx-dots-vert-round"></i>
             </button>
           </ngx-dropdown-toggle>
-          <ngx-dropdown-menu class="ngx-dropdown-dark-outline align-right">
+          <ngx-dropdown-menu class="ngx-dropdown-menu align-right">
             <ul class="vertical-list">
               <li>
                 <button
@@ -132,14 +131,14 @@
   >
     <span class="json-editor--vertical-separator" *ngFor="let separator of indentationArray"></span>
     <div class="indented-content" [class.indented-content--root]="isRoot" [class.indented-content--indent]="indentAdd">
-      <ngx-dropdown [showCaret]="true">
+      <ngx-dropdown>
         <ngx-dropdown-toggle [disabled]="isDuplicated">
           <button type="button">
             <i class="ngx-icon ngx-tree-expand"></i>
             <span class="dropdown-text">Add a property</span>
           </button>
         </ngx-dropdown-toggle>
-        <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+        <ngx-dropdown-menu class="ngx-dropdown-menu">
           <ul
             class="vertical-list dropdown-column"
             *ngIf="schema.properties && !schemaBuilderMode && !showKnownProperties"
