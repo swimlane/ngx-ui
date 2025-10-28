@@ -124,16 +124,17 @@ ngx-json-editor-node-flat {
 
       .node-input {
         flex: 0 1 60%;
-        padding-top: 5px;
-        margin-bottom: 2px;
 
         ngx-input {
           padding: var(--spacing-0);
-          margin: var(--spacing-0);
 
           .ngx-input-hint {
             min-height: 0;
           }
+        }
+
+        ngx-select {
+          margin-top: var(--spacing-36);
         }
 
         .code {
