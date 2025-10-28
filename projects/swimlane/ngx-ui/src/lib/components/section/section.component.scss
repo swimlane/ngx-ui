@@ -15,7 +15,7 @@ $section-shadow: shadows.$shadow-3;
   display: block;
   margin-bottom: 2em;
   background: var(--grey-825);
-  border-radius: var(--radius-0) var(--radius-0) var(--radius-8) var(--radius-8);
+  border-radius: var(--radius-8);
 
   .ngx-section-header {
     background: $section-header-bg;
