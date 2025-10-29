@@ -1,12 +1,12 @@
 @use 'colors/colors' as colors;
 
 .property-config {
-  border-top-left-radius: var(--radius-16);
-  border-top-right-radius: var(--radius-16);
+  border-top-left-radius: var(--radius-8);
+  border-top-right-radius: var(--radius-8);
   .header {
     background: var(--grey-750);
-    border-top-left-radius: var(--radius-16);
-    border-top-right-radius: var(--radius-16);
+    border-top-left-radius: var(--radius-8);
+    border-top-right-radius: var(--radius-8);
     height: 75px;
     display: flex;
     align-items: center;
