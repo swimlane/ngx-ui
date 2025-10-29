@@ -43,7 +43,7 @@
         <ngx-icon fontIcon="plus-bold"></ngx-icon>
       </div>
     </ngx-dropdown-toggle>
-    <ngx-dropdown-menu class="ngx-dropdown">
+    <ngx-dropdown-menu class="ngx-dropdown-menu">
       <ul class="vertical-list">
         <ng-template [ngIf]="!schema || !schema.items || !schema.items.type">
           <li *ngFor="let dataType of dataTypes" (click)="addArrayItem(dataType)">
