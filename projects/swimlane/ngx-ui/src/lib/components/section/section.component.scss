@@ -21,7 +21,7 @@ $section-shadow: shadows.$shadow-3;
     background: $section-header-bg;
     display: block;
     width: auto;
-    height: 40px;
+    height: 44px;
     line-height: var(--font-line-height-400);
     padding: var(--spacing-0) 10px;
     color: $section-header-color;
@@ -87,6 +87,13 @@ $section-shadow: shadows.$shadow-3;
   &.shadow {
     > section {
       box-shadow: none;
+    }
+  }
+
+  &.minimal {
+    background: transparent;
+    .ngx-section-header {
+      background: transparent;
     }
   }
 
