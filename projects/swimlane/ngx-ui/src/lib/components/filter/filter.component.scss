@@ -417,6 +417,7 @@ $max-width: 300px;
         display: block;
         width: 100%;
         padding-left: var(--spacing-24);
+        font-size: var(--font-size-m);
 
         &::-webkit-search-decoration,
         &::-webkit-search-cancel-button,
