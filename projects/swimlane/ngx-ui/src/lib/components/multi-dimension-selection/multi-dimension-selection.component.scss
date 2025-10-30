@@ -23,6 +23,8 @@ ngx-multi-dimension-selection.ngx-multi-dimension-selection {
     justify-content: space-between;
     border-top-left-radius: var(--radius-6);
     border-top-right-radius: var(--radius-6);
+    padding-top: 5px;
+    height: 37px;
 
     ngx-input.ngx-input {
       font-size: var(--font-size-s);
@@ -42,7 +44,7 @@ ngx-multi-dimension-selection.ngx-multi-dimension-selection {
 
     &__icon {
       color: var(--grey-350);
-      font-size: var(--font-size-l);
+      font-size: var(--font-size-m);
       padding-left: var(--spacing-16);
     }
 
