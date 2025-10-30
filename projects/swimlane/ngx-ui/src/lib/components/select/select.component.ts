@@ -72,7 +72,8 @@ function arrayEquals(a, b) {
     '[class.autosize]': 'autosize',
     '[style.min-width]': 'autosize ? autosizeMinWidth : undefined',
     '[attr.aria-expanded]': 'dropdownActive',
-    '[class.no-label]': '!label'
+    '[class.no-label]': '!label',
+    '[class.horizontal-scroll]': 'horizontalScroll'
   },
   providers: [SELECT_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
@@ -175,6 +176,10 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   @Input()
   @CoerceBooleanProperty()
   disabled = false;
+
+  @Input()
+  @CoerceBooleanProperty()
+  horizontalScroll = false;
 
   @Output() change = new EventEmitter<any[]>();
   @Output() keyup = new EventEmitter<{ event: KeyboardEvent; value?: string }>();

@@ -653,4 +653,36 @@ $color-chip-text: #ffffff;
       padding-right: var(--spacing-0);
     }
   }
+
+  &.horizontal-scroll {
+    .ngx-select-flex-wrap-inner {
+      max-width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+
+    .ngx-select-input-box {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+      max-width: 100%;
+    }
+
+    .ngx-select-input-list {
+      flex-wrap: nowrap;
+      overflow: visible;
+      white-space: nowrap;
+    }
+
+    &.tagging-selection,
+    &.multi-selection {
+      .ngx-select-input-option {
+        flex-shrink: 0;
+      }
+
+      .ngx-select-input-box-wrapper {
+        flex-shrink: 0;
+      }
+    }
+  }
 }

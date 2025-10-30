@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 51.0.0-alpha.2 (2025-10-30)
+
+- Feature (`ngx-select`): Added new input `horizontalScroll` to enable horizontal scrolling of the select options.
+
 ## 51.0.0-alpha.1 (2025-10-21)
 
 - Fix (`ngx-checkbox`): Removed duplicate output emission
