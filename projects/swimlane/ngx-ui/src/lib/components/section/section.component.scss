@@ -15,13 +15,13 @@ $section-shadow: shadows.$shadow-3;
   display: block;
   margin-bottom: 2em;
   background: var(--grey-825);
-  border-radius: var(--radius-0) var(--radius-0) var(--radius-8) var(--radius-8);
+  border-radius: var(--radius-8);
 
   .ngx-section-header {
     background: $section-header-bg;
     display: block;
     width: auto;
-    height: 40px;
+    height: 44px;
     line-height: var(--font-line-height-400);
     padding: var(--spacing-0) 10px;
     color: $section-header-color;
@@ -43,6 +43,7 @@ $section-shadow: shadows.$shadow-3;
       box-shadow: none;
       padding: var(--spacing-0) 10px;
       left: 5px;
+      height: 100%;
 
       &:focus-visible {
         @include focus-ring;
@@ -87,6 +88,13 @@ $section-shadow: shadows.$shadow-3;
   &.shadow {
     > section {
       box-shadow: none;
+    }
+  }
+
+  &.minimal {
+    background: transparent;
+    .ngx-section-header {
+      background: transparent;
     }
   }
 

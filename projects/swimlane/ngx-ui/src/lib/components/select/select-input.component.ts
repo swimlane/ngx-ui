@@ -37,6 +37,7 @@ export class SelectInputComponent implements AfterViewInit, OnChanges {
   @Input() selectCaret: string | TemplateRef<any>;
   @Input() requiredIndicator: string | boolean;
   @Input() tabindex = 0;
+  @Input() withHint = true;
 
   @Input()
   @CoerceBooleanProperty()

@@ -54,7 +54,13 @@
           (change)="$event.stopPropagation()"
           (blur)="clearInput()"
         />
-        <button type="button" aria-label="Clear" *ngIf="tagInput.value" class="ngx-select-clear-tagging-input" (click)="onClearTaggingInput($event)">
+        <button
+          type="button"
+          aria-label="Clear"
+          *ngIf="tagInput.value"
+          class="ngx-select-clear-tagging-input"
+          (click)="onClearTaggingInput($event)"
+        >
           <i class="ngx-icon ngx-x-small"></i>
         </button>
       </li>
@@ -89,7 +95,7 @@
 <div class="ngx-select-input-underline">
   <div class="underline-fill"></div>
 </div>
-<div class="ngx-select-hint">
+<div class="ngx-select-hint" [ngClass]="{ hidden: !withHint }">
   <span *ngIf="hint" [innerHTML]="hint"></span>
   <ng-content select="ngx-input-hint"></ng-content>
 </div>

@@ -39,13 +39,13 @@
         >
           <i class="ngx-icon ngx-cog"></i>
         </button>
-        <ngx-dropdown [showCaret]="true">
+        <ngx-dropdown>
           <ngx-dropdown-toggle>
             <button type="button" class="node-options-btn">
               <i class="ngx-icon ngx-dots-vert-round"></i>
             </button>
           </ngx-dropdown-toggle>
-          <ngx-dropdown-menu class="ngx-dropdown-dark-outline align-right">
+          <ngx-dropdown-menu class="ngx-dropdown-menu align-right">
             <ul class="vertical-list">
               <li><button type="button" (click)="deleteArrayItem(i)">Delete</button></li>
 
@@ -74,14 +74,14 @@
       [style.marginLeft]="hideRoot && level === 0 ? '15px' : '0'"
       [style.backgroundColor]="level === 0 ? '' : 'rgba(49,56,71,0.5)'"
     >
-      <ngx-dropdown [showCaret]="true">
+      <ngx-dropdown>
         <ngx-dropdown-toggle>
           <button [disabled]="isDuplicated" type="button">
             <i class="ngx-icon ngx-tree-expand"></i>
             <span>Add an item</span>
           </button>
         </ngx-dropdown-toggle>
-        <ngx-dropdown-menu class="ngx-dropdown-dark-outline">
+        <ngx-dropdown-menu class="ngx-dropdown-menu">
           <ul class="vertical-list">
             <ng-template [ngIf]="!schema || !schema.items || !schema.items.type">
               <li *ngFor="let dataType of dataTypes" (click)="addArrayItem(dataType)">

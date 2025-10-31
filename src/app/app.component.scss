@@ -31,7 +31,7 @@
       color: colors.$color-blue-grey-400;
       background: colors.$color-blue-grey-700;
       height: 40px;
-      padding: 8px;
+      padding-left: 20px;
       line-height: 1em;
       margin: 0;
 
@@ -44,8 +44,9 @@
       }
 
       ngx-input {
-        margin-top: -3px;
-        padding-top: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        height: 40px;
 
         .ngx-input-underline {
           display: none;

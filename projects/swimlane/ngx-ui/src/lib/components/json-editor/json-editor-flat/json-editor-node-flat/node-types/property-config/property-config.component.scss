@@ -1,17 +1,18 @@
 @use 'colors/colors' as colors;
 
 .property-config {
-  border-top-left-radius: var(--radius-16);
-  border-top-right-radius: var(--radius-16);
+  border-top-left-radius: var(--radius-8);
+  border-top-right-radius: var(--radius-8);
   .header {
     background: var(--grey-750);
-    border-top-left-radius: var(--radius-16);
-    border-top-right-radius: var(--radius-16);
+    border-top-left-radius: var(--radius-8);
+    border-top-right-radius: var(--radius-8);
     height: 75px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: var(--spacing-0) 35px;
+    justify-content: flex-start;
+    padding: var(--spacing-0) var(--spacing-12);
+    gap: var(--spacing-8);
 
     span {
       font-size: var(--font-size-xl);

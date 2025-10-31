@@ -79,6 +79,9 @@ $input-animation-duration: 150ms;
   min-height: 1em;
   line-height: $input-hint-line-height;
   transition: color 0.2s ease-in-out;
+  &.hidden {
+    display: none;
+  }
 }
 
 @mixin input-underline {

@@ -85,6 +85,7 @@ export class InputComponent implements AfterViewInit, OnDestroy, ControlValueAcc
   @Input() size: Size = Size.Small;
   @Input() appearance: Appearance = Appearance.Legacy;
   @Input() withMargin = true;
+  @Input() withHint = true;
   @Input() textareaRows = 1;
 
   @Input()

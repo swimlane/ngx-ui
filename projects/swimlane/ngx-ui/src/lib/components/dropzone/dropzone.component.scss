@@ -164,5 +164,9 @@
         }
       }
     }
+
+    &:has(.file-over) {
+      border: 1px dashed #04a6e6;
+    }
   }
 }

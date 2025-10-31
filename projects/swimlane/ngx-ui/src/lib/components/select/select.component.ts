@@ -72,7 +72,8 @@ function arrayEquals(a, b) {
     '[class.autosize]': 'autosize',
     '[style.min-width]': 'autosize ? autosizeMinWidth : undefined',
     '[attr.aria-expanded]': 'dropdownActive',
-    '[class.no-label]': '!label'
+    '[class.no-label]': '!label',
+    '[class.marginless]': '!withMargin'
   },
   providers: [SELECT_VALUE_ACCESSOR],
   encapsulation: ViewEncapsulation.None,
@@ -93,6 +94,8 @@ export class SelectComponent extends _InputMixinBase implements ControlValueAcce
   @Input() groupBy: string;
   @Input() selectCaret: string;
   @Input() requiredIndicator: string | boolean = '*';
+  @Input() withHint = true;
+  @Input() withMargin = true;
 
   @Input() set options(options: SelectDropdownOption[]) {
     this._boundByOptionsInput = true;

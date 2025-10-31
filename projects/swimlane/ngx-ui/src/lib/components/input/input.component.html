@@ -108,7 +108,7 @@
   <div class="ngx-input-underline" [ngClass]="{ 'ngx-input-underline__visibility-hidden': readonly }">
     <div class="underline-fill" [@underlineState]="underlineState"></div>
   </div>
-  <div class="ngx-input-hint">
+  <div class="ngx-input-hint" [ngClass]="{ hidden: !withHint }">
     <ng-content select="ngx-input-hint"></ng-content>
     <span *ngIf="hint" [innerHTML]="hint"></span>
   </div>

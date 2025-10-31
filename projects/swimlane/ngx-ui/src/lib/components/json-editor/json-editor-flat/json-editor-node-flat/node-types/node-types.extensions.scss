@@ -67,11 +67,26 @@
       span {
         font-size: var(--font-size-s);
         margin-left: var(--spacing-10);
+        line-height: var(--font-line-height-100);
       }
     }
 
-    .ngx-dropdown-menu {
-      @extend %ngx-dropdown-menu;
+    .ngx-dropdown {
+      .ngx-dropdown-menu {
+        button {
+          display: unset;
+          color: unset;
+
+          i {
+            font-size: unset;
+          }
+
+          span {
+            font-size: unset;
+            margin-left: unset;
+          }
+        }
+      }
     }
   }
 }
