@@ -2,8 +2,11 @@
 
 ## HEAD (unreleased)
 
+## 51.0.0-alpha.2 (2025-10-31)
+
 - Feat (`ngx-select`): `withMargin` input when set to false will display ngx-select marginless.
 - Feat (`ngx-select`, `ngx-input`): `withHint` input when set to false will not display a block element for the hint.
+- Fix: Design related issues in several components.
 
 ## 51.0.0-alpha.1 (2025-10-21)
 
