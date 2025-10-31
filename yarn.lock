@@ -5776,10 +5776,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jasmine@npm:4.3.0":
-  version: 4.3.0
-  resolution: "@types/jasmine@npm:4.3.0"
-  checksum: 10c0/6618059a559546e66537c085a2a75b096b2913f93deaf6b2c1586314836ecc0626968b395e0d2afb73f19869ae87a612e83648cbfd1c57ba28f1170e19d78978
+"@types/jasmine@npm:5.1.12":
+  version: 5.1.12
+  resolution: "@types/jasmine@npm:5.1.12"
+  checksum: 10c0/707c4eabc01f1be06a580868e044f7ee1aa2abfe0e59cd344c93d3c71916b54233d2745d107ddfbb9afecaf6faebea1784dd9c0763c354e723aa8a5d8098c605
   languageName: node
   linkType: hard
 
@@ -14620,7 +14620,7 @@ __metadata:
     "@swimlane/prettier-config-swimlane": "npm:^3.0.2"
     "@types/codemirror": "npm:5.60.5"
     "@types/faker": "npm:^4.1.11"
-    "@types/jasmine": "npm:4.3.0"
+    "@types/jasmine": "npm:5.1.12"
     "@types/json-schema": "npm:7.0.11"
     "@types/moment-timezone": "npm:^0.5.13"
     "@types/mousetrap": "npm:1.6.9"
