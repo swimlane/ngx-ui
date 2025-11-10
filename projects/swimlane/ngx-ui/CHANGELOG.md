@@ -2,7 +2,7 @@
 
 ## HEAD (unreleased)
 
-- Fix: Default border radius for dilopag could interfere with custom template.
+- Fix: Default border radius for dialog that could interfere with custom template.
 
 ## 51.0.0-alpha.2 (2025-10-31)
 
