@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@swimlane/lit-ui Demo</title>
+    <style>
+      :root {
+        /* Import color tokens */
+        --blue-100: rgb(224, 239, 255);
+        --blue-200: rgb(173, 212, 255);
+        --blue-300: rgb(122, 185, 255);
+        --blue-400: rgb(71, 158, 255);
+        --blue-500: rgb(20, 131, 255);
+        --blue-600: rgb(0, 106, 224);
+        --blue-700: rgb(0, 82, 173);
+        --blue-800: rgb(0, 58, 122);
+        --blue-900: rgb(0, 34, 71);
+        
+        --orange-100: rgb(255, 244, 224);
+        --orange-200: rgb(255, 225, 173);
+        --orange-300: rgb(255, 206, 122);
+        --orange-400: rgb(255, 187, 71);
+        --orange-500: rgb(255, 168, 20);
+        --orange-600: rgb(224, 141, 0);
+        
+        --red-100: rgb(255, 230, 224);
+        --red-200: rgb(255, 190, 173);
+        --red-300: rgb(255, 150, 122);
+        --red-400: rgb(255, 109, 71);
+        --red-500: rgb(255, 69, 20);
+        --red-600: rgb(224, 47, 0);
+        
+        --green-100: rgb(206, 249, 240);
+        --green-200: rgb(161, 243, 226);
+        --green-300: rgb(116, 237, 212);
+        --green-400: rgb(71, 231, 198);
+        --green-500: rgb(29, 222, 182);
+        --green-600: rgb(23, 177, 145);
+        
+        --grey-050: rgb(235, 237, 242);
+        --grey-100: rgb(205, 210, 221);
+        --grey-300: rgb(144, 156, 180);
+        --grey-600: rgb(69, 80, 102);
+        --grey-700: rgb(49, 56, 71);
+        --grey-800: rgb(28, 32, 41);
+        --grey-900: rgb(7, 8, 11);
+        
+        --white: rgb(255, 255, 255);
+        --black: rgb(0, 0, 0);
+        
+        --font-size-base: 16px;
+        --font-size-m: 1rem;
+        --font-weight-bold: 700;
+        --font-weight-semibold: 600;
+        
+        --spacing-8: 8px;
+        --spacing-16: 16px;
+        --spacing-24: 24px;
+        
+        --radius-4: 4px;
+        
+        --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        padding: 2rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        background: var(--grey-900);
+        color: var(--grey-050);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--white);
+      }
+
+      .subtitle {
+        font-size: 1.125rem;
+        color: var(--grey-300);
+        margin-bottom: 3rem;
+      }
+
+      .section {
+        margin-bottom: 3rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        font-weight: var(--font-weight-semibold);
+        margin-bottom: 1rem;
+        color: var(--blue-400);
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .demo-item {
+        padding: 1rem;
+        background: var(--grey-800);
+        border-radius: var(--radius-4);
+      }
+
+      .demo-label {
+        font-size: 0.875rem;
+        color: var(--grey-300);
+        margin-bottom: 0.5rem;
+        font-weight: var(--font-weight-semibold);
+      }
+
+      .demo-row {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      code {
+        background: var(--grey-800);
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-family: 'Monaco', 'Courier New', monospace;
+        font-size: 0.875em;
+      }
+
+      .controls {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>@swimlane/lit-ui</h1>
+      <p class="subtitle">Lit web component library matching Swimlane's ngx-ui design system</p>
+
+      <!-- Button Variants Section -->
+      <section class="section">
+        <h2 class="section-title">Button Variants</h2>
+        <div class="demo-grid">
+          <div class="demo-item">
+            <div class="demo-label">Default</div>
+            <swim-button>Default Button</swim-button>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Primary</div>
+            <swim-button variant="primary">Primary Button</swim-button>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Warning</div>
+            <swim-button variant="warning">Warning Button</swim-button>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Danger</div>
+            <swim-button variant="danger">Danger Button</swim-button>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Link</div>
+            <swim-button variant="link">Link Button</swim-button>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Bordered</div>
+            <swim-button variant="bordered">Bordered Button</swim-button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Button Sizes Section -->
+      <section class="section">
+        <h2 class="section-title">Button Sizes</h2>
+        <div class="demo-row">
+          <swim-button size="small" variant="primary">Small</swim-button>
+          <swim-button size="medium" variant="primary">Medium</swim-button>
+          <swim-button size="large" variant="primary">Large</swim-button>
+        </div>
+      </section>
+
+      <!-- Button States Section -->
+      <section class="section">
+        <h2 class="section-title">Button States</h2>
+        <div class="demo-grid">
+          <div class="demo-item">
+            <div class="demo-label">Active (default)</div>
+            <swim-button id="activeBtn" variant="primary">Active</swim-button>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">In Progress</div>
+            <swim-button state="in-progress" variant="primary">Loading...</swim-button>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Success</div>
+            <swim-button state="success" variant="primary">Success</swim-button>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Fail</div>
+            <swim-button state="fail" variant="primary">Failed</swim-button>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Disabled</div>
+            <swim-button disabled variant="primary">Disabled</swim-button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Demo Section -->
+      <section class="section">
+        <h2 class="section-title">Interactive Demo - Promise Handling</h2>
+        <p style="color: var(--grey-300); margin-bottom: 1rem;">
+          These buttons demonstrate automatic state management with promises.
+        </p>
+        <div class="demo-row">
+          <swim-button id="successBtn" variant="primary">Click for Success</swim-button>
+          <swim-button id="failBtn" variant="danger">Click for Failure</swim-button>
+          <swim-button id="slowBtn" variant="warning">Slow Operation (5s)</swim-button>
+        </div>
+      </section>
+
+      <!-- Combined Examples Section -->
+      <section class="section">
+        <h2 class="section-title">Combined Examples</h2>
+        <div class="demo-grid">
+          <div class="demo-item">
+            <div class="demo-label">Small Primary</div>
+            <swim-button size="small" variant="primary">Small Primary</swim-button>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Large Danger</div>
+            <swim-button size="large" variant="danger">Large Danger</swim-button>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Small Bordered</div>
+            <swim-button size="small" variant="bordered">Small Bordered</swim-button>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Disabled Primary</div>
+            <swim-button disabled variant="primary">Disabled</swim-button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Usage Section -->
+      <section class="section">
+        <h2 class="section-title">Usage</h2>
+        <p style="color: var(--grey-300); margin-bottom: 1rem;">
+          Import and use the button component in your application:
+        </p>
+        <pre style="background: var(--grey-800); padding: 1rem; border-radius: var(--radius-4); overflow-x: auto;"><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/button';
+&lt;/script&gt;
+
+&lt;swim-button variant="primary"&gt;Click Me&lt;/swim-button&gt;</code></pre>
+      </section>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+

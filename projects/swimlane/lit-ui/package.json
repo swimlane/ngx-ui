@@ -1,0 +1,56 @@
+{
+  "name": "@swimlane/lit-ui",
+  "version": "1.0.0",
+  "description": "Lit web component library matching Swimlane's ngx-ui design system",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./button": {
+      "types": "./dist/components/button/index.d.ts",
+      "default": "./dist/components/button/index.js"
+    },
+    "./styles": {
+      "default": "./dist/styles/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "custom-elements.json"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "build:lib": "tsc --project tsconfig.lib.json",
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint src/**/*.ts"
+  },
+  "keywords": [
+    "web-components",
+    "lit",
+    "components",
+    "design-system",
+    "ui-library"
+  ],
+  "author": "Swimlane",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swimlane/ngx-ui.git"
+  },
+  "dependencies": {
+    "lit": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.8.0",
+    "vite": "^5.4.0"
+  }
+}
+
