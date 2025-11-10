@@ -88,6 +88,10 @@ export class AppModule {}
 
 A versatile button component with multiple variants, sizes, and states.
 
+[Jump to Input Component](#input)
+
+---
+
 #### Properties
 
 | Property   | Type                                                            | Default     | Description                                      |
@@ -127,6 +131,148 @@ A versatile button component with multiple variants, sizes, and states.
   const btn = document.getElementById('asyncBtn');
   btn.addEventListener('click', () => {
     btn.promise = fetch('/api/data').then(res => res.json());
+  });
+</script>
+```
+
+---
+
+### Input
+
+A fully-featured input component with floating labels, validation, and multiple input types.
+
+#### Properties
+
+| Property                | Type                                                      | Default     | Description                                           |
+| ----------------------- | --------------------------------------------------------- | ----------- | ----------------------------------------------------- |
+| `type`                  | `'text' \| 'password' \| 'email' \| 'number' \| 'tel' \| 'url' \| 'textarea'` | `'text'`    | Type of input                                         |
+| `label`                 | `string`                                                  | `''`        | Floating label text                                   |
+| `placeholder`           | `string`                                                  | `''`        | Placeholder text                                      |
+| `hint`                  | `string`                                                  | `''`        | Hint text below input                                 |
+| `value`                 | `string`                                                  | `''`        | Input value                                           |
+| `name`                  | `string`                                                  | `''`        | Input name for forms                                  |
+| `disabled`              | `boolean`                                                 | `false`     | Whether the input is disabled                         |
+| `readonly`              | `boolean`                                                 | `false`     | Whether the input is readonly                         |
+| `required`              | `boolean`                                                 | `false`     | Whether the input is required                         |
+| `appearance`            | `'legacy' \| 'fill'`                                      | `'legacy'`  | Visual appearance style                               |
+| `size`                  | `'sm' \| 'md' \| 'lg'`                                    | `'sm'`      | Size of the input                                     |
+| `min`                   | `number`                                                  | `undefined` | Min value (for number type)                           |
+| `max`                   | `number`                                                  | `undefined` | Max value (for number type)                           |
+| `minlength`             | `number`                                                  | `undefined` | Minimum length                                        |
+| `maxlength`             | `number`                                                  | `undefined` | Maximum length                                        |
+| `passwordToggleEnabled` | `boolean`                                                 | `false`     | Show password visibility toggle (password type only)  |
+| `textareaRows`          | `number`                                                  | `3`         | Number of rows (for textarea type)                    |
+| `requiredIndicator`     | `string`                                                  | `'*'`       | Indicator shown for required fields                   |
+| `autofocus`             | `boolean`                                                 | `false`     | Whether to autofocus on load                          |
+| `autocomplete`          | `'on' \| 'off' \| 'new-password'`                         | `'off'`     | Autocomplete attribute                                |
+| `marginless`            | `boolean`                                                 | `false`     | Remove top/bottom margins                             |
+| `withHint`              | `boolean`                                                 | `true`      | Whether to show hint section                          |
+
+#### Slots
+
+| Slot     | Description                        |
+| -------- | ---------------------------------- |
+| `prefix` | Content before the input           |
+| `suffix` | Content after the input            |
+| `hint`   | Custom hint content below input    |
+
+#### Events
+
+| Event    | Description                     |
+| -------- | ------------------------------- |
+| `input`  | Fired on input changes          |
+| `change` | Fired when value changes        |
+| `focus`  | Fired when input gains focus    |
+| `blur`   | Fired when input loses focus    |
+
+#### Examples
+
+```html
+<!-- Basic text input -->
+<swim-input label="Username" placeholder="Enter username"></swim-input>
+
+<!-- Required input with validation -->
+<swim-input 
+  label="Email" 
+  type="email" 
+  required 
+  placeholder="user@example.com"
+  hint="We'll never share your email"
+></swim-input>
+
+<!-- Password with toggle -->
+<swim-input 
+  type="password" 
+  label="Password" 
+  password-toggle-enabled
+  minlength="8"
+></swim-input>
+
+<!-- Number input with constraints -->
+<swim-input 
+  type="number" 
+  label="Age" 
+  min="18" 
+  max="100"
+  hint="Must be between 18 and 100"
+></swim-input>
+
+<!-- Textarea -->
+<swim-input 
+  type="textarea" 
+  label="Comments" 
+  textarea-rows="4"
+  maxlength="500"
+></swim-input>
+
+<!-- Fill appearance -->
+<swim-input 
+  appearance="fill" 
+  label="Search" 
+  placeholder="Type to search..."
+></swim-input>
+
+<!-- With prefix and suffix -->
+<swim-input label="Website" appearance="fill">
+  <span slot="prefix">https://</span>
+  <span slot="suffix">.com</span>
+</swim-input>
+
+<!-- Different sizes -->
+<swim-input size="sm" label="Small Input"></swim-input>
+<swim-input size="md" label="Medium Input"></swim-input>
+<swim-input size="lg" label="Large Input"></swim-input>
+
+<!-- In a form -->
+<form>
+  <swim-input 
+    name="username" 
+    label="Username" 
+    required
+  ></swim-input>
+  <swim-input 
+    name="email" 
+    type="email" 
+    label="Email" 
+    required
+  ></swim-input>
+  <swim-button type="submit" variant="primary">Submit</swim-button>
+</form>
+
+<!-- Programmatic access -->
+<swim-input id="myInput" label="Name"></swim-input>
+<script>
+  const input = document.getElementById('myInput');
+  
+  // Get value
+  console.log(input.value);
+  
+  // Set value
+  input.value = 'John Doe';
+  
+  // Listen to changes
+  input.addEventListener('change', (e) => {
+    console.log('Value changed:', e.target.value);
   });
 </script>
 ```

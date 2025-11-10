@@ -15,6 +15,10 @@
       "types": "./dist/components/button/index.d.ts",
       "default": "./dist/components/button/index.js"
     },
+    "./input": {
+      "types": "./dist/components/input/index.d.ts",
+      "default": "./dist/components/input/index.js"
+    },
     "./styles": {
       "default": "./dist/styles/index.js"
     }

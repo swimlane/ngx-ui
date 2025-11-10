@@ -2,8 +2,9 @@
  * Demo application for @swimlane/lit-ui
  */
 
-// Import the button component
+// Import components
 import '../../src/components/button/button.component';
+import '../../src/components/input/input.component';
 
 // Helper function to create a promise that resolves after a delay
 function delay(ms: number): Promise<void> {
@@ -44,7 +45,26 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Form validation demo
+  const demoForm = document.getElementById('demoForm');
+  if (demoForm) {
+    demoForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const nameInput = document.getElementById('nameInput') as any;
+      const emailInput = document.getElementById('emailInput') as any;
+      const ageInput = document.getElementById('ageInput') as any;
+
+      console.log('Form submitted!');
+      console.log('Name:', nameInput.value);
+      console.log('Email:', emailInput.value);
+      console.log('Age:', ageInput.value);
+
+      alert(`Form submitted!\nName: ${nameInput.value}\nEmail: ${emailInput.value}\nAge: ${ageInput.value}`);
+    });
+  }
+
   console.log('✨ @swimlane/lit-ui demo loaded successfully!');
-  console.log('Button component is ready to use');
+  console.log('Button and Input components are ready to use');
 });
 

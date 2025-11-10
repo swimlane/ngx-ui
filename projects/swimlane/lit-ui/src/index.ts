@@ -4,6 +4,7 @@
  */
 
 export * from './components/button';
+export * from './components/input';
 export * from './styles';
 export * from './utils';
 
