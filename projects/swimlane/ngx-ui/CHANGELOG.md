@@ -2,7 +2,9 @@
 
 ## HEAD (unreleased)
 
-- Fix: Default border radius for dialog that could interfere with custom template.
+## 51.0.0-alpha.3 (2025-11-10)
+
+- Fix (`ngx-dialog`): Default border radius for dialog that could interfere with custom template.
 
 ## 51.0.0-alpha.2 (2025-10-31)
 
