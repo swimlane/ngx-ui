@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 51.0.0-alpha.4 (2025-11-13)
+
 - Feature: New spacing CSS variables
 
 ## 51.0.0-alpha.3 (2025-11-10)
