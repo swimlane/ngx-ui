@@ -14,12 +14,6 @@ ngx-list.ngx-list {
     &__rows-container {
       overflow-y: auto;
     }
-
-    &__virtual-scroll {
-      &__item {
-        height: 40px;
-      }
-    }
   }
 
   hr {
