@@ -11,7 +11,8 @@ import { ListRowStatus } from '../models/list-row-status.enum';
     class: 'ngx-list-row',
     '[class.ngx-list-row--error]': 'status === ListRowStatus.Error || data?.status === ListRowStatus.Error',
     '[class.ngx-list-row--success]': 'status === ListRowStatus.Success || data?.status === ListRowStatus.Success',
-    '[class.ngx-list-row--warning]': 'status === ListRowStatus.Warning || data?.status === ListRowStatus.Warning'
+    '[class.ngx-list-row--warning]': 'status === ListRowStatus.Warning || data?.status === ListRowStatus.Warning',
+    '[style.height.px]': 'rowHeight'
   },
   encapsulation: ViewEncapsulation.None
 })
@@ -21,6 +22,7 @@ export class ListRowComponent {
   @Input() data: Record<string, unknown>;
   @Input() index: number;
   @Input() status: ListRowStatus;
+  @Input() rowHeight: number | string;
 
   columnComponent = ListColumnComponent;
 

@@ -9,12 +9,12 @@
 </div>
 <hr />
 @if (virtualScroll) {
-<cdk-virtual-scroll-viewport #virtualScrollViewport [style.height.px]="height" itemSize="44">
+<cdk-virtual-scroll-viewport #virtualScrollViewport [style.height.px]="height" [itemSize]="rowHeight">
   <div *cdkVirtualFor="let data of dataSource; index as i" class="ngx-list__virtual-scroll__item">
     <ng-container
       *ngComponentOutlet="
         rowComponent;
-        inputs: { columnLayout: _columnLayout, columns, data, row, index: i, status: row.status }
+        inputs: { columnLayout: _columnLayout, columns, data, row, rowHeight, index: i, status: row.status }
       "
     ></ng-container>
   </div>
@@ -25,7 +25,7 @@
   <ng-container
     *ngComponentOutlet="
       rowComponent;
-      inputs: { columnLayout: _columnLayout, columns, data, row, index: idx, status: row.status }
+      inputs: { columnLayout: _columnLayout, columns, data, row, rowHeight, index: idx, status: row.status }
     "
   ></ng-container>
   }
