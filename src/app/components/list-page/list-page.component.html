@@ -888,6 +888,13 @@
         <tr>
           <th>
             <code class="component-type">&#64;Input()</code>
+            <code>rowHeight: number</code>
+          </th>
+          <td>The height of each row in the list must be static to support virtual scrolling. Default is 44px.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
             <code>paginationConfig: ListPaginationConfig</code>
           </th>
           <td>
@@ -901,6 +908,13 @@
             <code>virtualScroll: boolean = false</code>
           </th>
           <td>Whether virtual scrolling is enabled.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>dataSource: Array&lt;Record&lt;string, unknown&gt;&gt; = []</code>
+          </th>
+          <td>The list's source of data where each object in the array represents one list row.</td>
         </tr>
       </tbody>
     </table>
