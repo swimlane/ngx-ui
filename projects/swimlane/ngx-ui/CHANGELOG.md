@@ -2,7 +2,27 @@
 
 ## HEAD (unreleased)
 
-- Feature: (`ngx-list`): Make rowHeight configurable as Input.
+## 51.0.0 (2025-12-2)
+
+This release contains bugfixes and improvements, while introducing a new look for several components.
+
+- Feature: New look and feel for several components
+- Feature: CSS variable for input style
+- Feature (`ngx-select`): New selection pattern
+- Feature (`ngx-select`): Multiselect with checkboxes
+- Feature: Updated several components to reference CSS variables instead of SASS
+- Feature: New spacing CSS variables
+- Feature: (`ngx-list`): rowHeight is now configurable as Input.
+- Feature (`ngx-select`): `withMargin` input when set to false will display ngx-select marginless.
+- Feature (`ngx-select`, `ngx-input`): `withHint` input when set to false will not display a block element for the hint.
+- Fix (`ngx-dialog`): Default border radius for dialog that could interfere with custom template.
+- Fix (`ngx-checkbox`): Removed duplicate output emission
+- Fix (`ngx-date-range-picker`): Preset values now retain their relative expressions when cancel is clicked, instead of being converted to timestamps
+- Fix (`ngx-date-range-picker`): Fix highlight the date for given `selectedRange` values.
+- Fix (`ngx-select`): Fix filtering of numeric option values.
+- Fix: Design related issues in several components.
+- Fix: Button Group appeared misaligned when using a dropdown toggle
+- Fix: base font CSS variables should be rem
 
 ## 51.0.0-alpha.4 (2025-11-13)
 
