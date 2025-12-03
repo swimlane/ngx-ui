@@ -10,7 +10,7 @@
 <hr />
 @if (virtualScroll) {
 <cdk-virtual-scroll-viewport #virtualScrollViewport [style.height.px]="height" [itemSize]="rowHeight">
-  <div *cdkVirtualFor="let data of dataSource; index as i" class="ngx-list__virtual-scroll__item">
+  <div *cdkVirtualFor="let data of dataSource; index as i">
     <ng-container
       *ngComponentOutlet="
         rowComponent;
