@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Feature: (`ngx-list`): Make rowHeight configurable as Input.
+
 ## 51.0.0-alpha.4 (2025-11-13)
 
 - Feature: New spacing CSS variables

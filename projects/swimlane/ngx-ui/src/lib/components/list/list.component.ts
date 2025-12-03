@@ -35,6 +35,7 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
   @Input() height: number;
   @Input() paginationConfig: ListPaginationConfig;
   @Input() virtualScroll = false;
+  @Input() rowHeight = 40;
 
   @Output() onPageChange = new EventEmitter<number>();
   @Output() onScroll = new EventEmitter<number>();
@@ -56,7 +57,6 @@ export class ListComponent implements AfterContentInit, AfterViewInit, OnDestroy
   };
   hasScrollbar = false;
   page = 1;
-  rowHeight = 44;
 
   private destroy$ = new Subject<void>();
 
