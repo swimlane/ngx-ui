@@ -277,6 +277,154 @@ A fully-featured input component with floating labels, validation, and multiple 
 </script>
 ```
 
+---
+
+### Select
+
+A dropdown select component with filtering, multi-select support, and keyboard navigation.
+
+#### Properties
+
+| Property            | Type                      | Default                     | Description                               |
+| ------------------- | ------------------------- | --------------------------- | ----------------------------------------- |
+| `label`             | `string`                  | `''`                        | Floating label text                       |
+| `placeholder`       | `string`                  | `'Select...'`               | Placeholder text                          |
+| `hint`              | `string`                  | `''`                        | Hint text below select                    |
+| `emptyPlaceholder`  | `string`                  | `'No options available'`    | Text shown when no options                |
+| `filterPlaceholder` | `string`                  | `'Filter options...'`       | Placeholder for filter input              |
+| `options`           | `SelectOption[]`          | `[]`                        | Array of select options                   |
+| `value`             | `any \| any[]`            | `null`                      | Selected value(s)                         |
+| `name`              | `string`                  | `''`                        | Input name for forms                      |
+| `disabled`          | `boolean`                 | `false`                     | Whether the select is disabled            |
+| `required`          | `boolean`                 | `false`                     | Whether the select is required            |
+| `appearance`        | `'legacy' \| 'fill'`      | `'legacy'`                  | Visual appearance style                   |
+| `size`              | `'sm' \| 'md' \| 'lg'`    | `'sm'`                      | Size of the select                        |
+| `marginless`        | `boolean`                 | `false`                     | Remove top/bottom margins                 |
+| `withHint`          | `boolean`                 | `true`                      | Whether to show hint section              |
+| `filterable`        | `boolean`                 | `true`                      | Enable filtering/searching                |
+| `multiple`          | `boolean`                 | `false`                     | Allow multiple selection                  |
+| `allowClear`        | `boolean`                 | `true`                      | Show clear button                         |
+| `requiredIndicator` | `string`                  | `'*'`                       | Indicator shown for required fields       |
+
+#### SelectOption Interface
+
+```typescript
+interface SelectOption {
+  name: string;        // Display name
+  value: any;          // Value
+  disabled?: boolean;  // Whether option is disabled
+  group?: string;      // Group name (for future grouping)
+}
+```
+
+#### Events
+
+| Event    | Description                                     |
+| -------- | ----------------------------------------------- |
+| `change` | Fired when selection changes (detail: {value})  |
+| `open`   | Fired when dropdown opens                       |
+| `close`  | Fired when dropdown closes                      |
+
+#### Slots
+
+| Slot   | Description                     |
+| ------ | ------------------------------- |
+| `hint` | Custom hint content below input |
+
+#### Examples
+
+```html
+<!-- Basic select -->
+<swim-select id="mySelect" label="Choose an option" placeholder="Select..."></swim-select>
+<script>
+  const select = document.getElementById('mySelect');
+  select.options = [
+    { name: 'Option 1', value: 'opt1' },
+    { name: 'Option 2', value: 'opt2' },
+    { name: 'Option 3', value: 'opt3' }
+  ];
+</script>
+
+<!-- Required select -->
+<swim-select 
+  label="Category" 
+  required 
+  placeholder="Choose a category..."
+></swim-select>
+
+<!-- Multi-select -->
+<swim-select 
+  label="Choose tags" 
+  multiple 
+  placeholder="Select one or more..."
+></swim-select>
+
+<!-- With filtering -->
+<swim-select 
+  label="Search countries" 
+  filterable 
+  placeholder="Select a country..."
+  hint="Type to filter options"
+></swim-select>
+
+<!-- Fill appearance -->
+<swim-select 
+  appearance="fill" 
+  label="Select" 
+  placeholder="Choose..."
+></swim-select>
+
+<!-- Disabled option -->
+<swim-select label="Status"></swim-select>
+<script>
+  const statusSelect = document.querySelector('swim-select');
+  statusSelect.options = [
+    { name: 'Active', value: 'active' },
+    { name: 'Inactive', value: 'inactive', disabled: true },
+    { name: 'Pending', value: 'pending' }
+  ];
+</script>
+
+<!-- In a form -->
+<form>
+  <swim-select 
+    name="category" 
+    label="Category" 
+    required
+  ></swim-select>
+  <swim-button type="submit" variant="primary">Submit</swim-button>
+</form>
+
+<!-- Listening to changes -->
+<swim-select id="dynamicSelect" label="Selection"></swim-select>
+<script>
+  const select = document.getElementById('dynamicSelect');
+  
+  // Set options
+  select.options = [
+    { name: 'Apple', value: 'apple' },
+    { name: 'Banana', value: 'banana' },
+    { name: 'Orange', value: 'orange' }
+  ];
+  
+  // Get value
+  console.log(select.value);
+  
+  // Set value
+  select.value = 'banana';
+  
+  // Listen to changes
+  select.addEventListener('change', (e) => {
+    console.log('Selected:', e.detail.value);
+  });
+  
+  // For multiple selection
+  const multiSelect = document.querySelector('swim-select[multiple]');
+  multiSelect.value = ['apple', 'orange']; // Set multiple values
+  console.log(multiSelect.value); // Get array of values
+</script>
+```
+
 ## Development
 
 ### Setup
