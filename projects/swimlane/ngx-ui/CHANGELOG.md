@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 51.1.0 (2025-12-11)
+
+- Enhancement (`icons`): Added `ai-agent` icon
+
 ## 51.0.0 (2025-12-2)
 
 This release contains bugfixes and improvements, while introducing a new look for several components.
