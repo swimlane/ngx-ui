@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 51.2.0 (2025-12-12)
+
+- Enhancement (`icons`): Added `maximize` and `minimize` icons
+
 ## 51.1.0 (2025-12-11)
 
 - Enhancement (`icons`): Added `ai-agent` icon
