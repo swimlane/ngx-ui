@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 51.2.1 (2026-01-09)
+
+- Fix: Preserve scroll position on column tab change
+
 ## 51.2.0 (2025-12-12)
 
 - Enhancement (`icons`): Added `maximize` and `minimize` icons
