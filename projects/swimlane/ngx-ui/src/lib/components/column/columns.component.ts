@@ -9,8 +9,11 @@ import {
   ViewChildren,
   QueryList,
   AfterViewChecked,
+  OnDestroy,
   ElementRef,
-  inject
+  inject,
+  NgZone,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ColumnComponent, ColumnTabClickEvent } from './column/column.component';
 import { Column } from './column/column.types';
@@ -27,7 +30,7 @@ import { Column } from './column/column.types';
     '[style.maxHeight]': 'height ? height + "px" : "400px"'
   }
 })
-export class ColumnsComponent implements OnChanges, AfterViewChecked {
+export class ColumnsComponent implements OnChanges, AfterViewChecked, OnDestroy {
   column = input<Column | null>(null);
   height = input<string>('');
   onColumnChange = output<ColumnTabClickEvent>();
@@ -37,9 +40,15 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked {
 
   @ViewChildren(ColumnComponent) columnComponents!: QueryList<ColumnComponent>;
   private elementRef = inject(ElementRef);
+  private ngZone = inject(NgZone);
+  private cdr = inject(ChangeDetectorRef);
 
   private scrollPositions: Map<string, number> = new Map();
   private shouldRestoreScroll = false;
+  private rafId1: number | null = null;
+  private rafId2: number | null = null;
+  private restoreAttempts = 0;
+  private readonly MAX_RESTORE_ATTEMPTS = 2;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.column?.currentValue) {
@@ -50,7 +59,7 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked {
       }
 
       this.columns = this.getCurrentColumns();
-      this.shouldRestoreScroll = true;
+      this.scheduleScrollRestore();
     }
     if (changes.height?.currentValue) {
       this.columnHeight.set(changes.height.currentValue);
@@ -58,14 +67,77 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked {
   }
 
   ngAfterViewChecked(): void {
-    if (this.shouldRestoreScroll) {
-      // Use double requestAnimationFrame to ensure DOM and virtual scroll are fully rendered
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          this.restoreScrollPositions();
-          this.shouldRestoreScroll = false;
+    // Restore scroll positions after view updates
+    // Only restore if we have the expected number of column components
+    if (this.shouldRestoreScroll && this.columnComponents && this.columns) {
+      this.restoreScrollOnce();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.cancelPendingRestore();
+  }
+
+  /**
+   * Schedule scroll restoration using double requestAnimationFrame
+   * Runs outside Angular zone to prevent change detection cycles
+   */
+  private scheduleScrollRestore(): void {
+    this.shouldRestoreScroll = true;
+    this.restoreAttempts = 0;
+    // Mark for check to ensure view updates, but don't trigger change detection in RAF callbacks
+    this.cdr.markForCheck();
+  }
+
+  /**
+   * Restore scroll positions once, using double requestAnimationFrame
+   * Executes outside Angular zone to prevent change detection cycles
+   */
+  private restoreScrollOnce(): void {
+    if (!this.shouldRestoreScroll) {
+      return;
+    }
+
+    // Don't retry too many times
+    if (this.restoreAttempts >= this.MAX_RESTORE_ATTEMPTS) {
+      this.shouldRestoreScroll = false;
+      this.restoreAttempts = 0;
+      return;
+    }
+
+    this.restoreAttempts++;
+
+    // Cancel any pending restoration to avoid multiple queued operations
+    this.cancelPendingRestore();
+
+    // Run outside Angular zone to prevent Zone.js from triggering change detection
+    this.ngZone.runOutsideAngular(() => {
+      this.rafId1 = requestAnimationFrame(() => {
+        this.rafId2 = requestAnimationFrame(() => {
+          const restored = this.restoreScrollPositions();
+          // Only clear flag if restoration was successful or we've exhausted attempts
+          if (restored || this.restoreAttempts >= this.MAX_RESTORE_ATTEMPTS) {
+            this.shouldRestoreScroll = false;
+            this.restoreAttempts = 0;
+          }
+          this.rafId1 = null;
+          this.rafId2 = null;
         });
       });
+    });
+  }
+
+  /**
+   * Cancel any pending scroll restoration animations
+   */
+  private cancelPendingRestore(): void {
+    if (this.rafId2 !== null) {
+      cancelAnimationFrame(this.rafId2);
+      this.rafId2 = null;
+    }
+    if (this.rafId1 !== null) {
+      cancelAnimationFrame(this.rafId1);
+      this.rafId1 = null;
     }
   }
 
@@ -88,28 +160,39 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked {
     }
   }
 
-  restoreScrollPositions(): void {
-    if (!this.elementRef?.nativeElement || this.scrollPositions.size === 0) return;
+  restoreScrollPositions(): boolean {
+    if (!this.elementRef?.nativeElement || this.scrollPositions.size === 0) return false;
 
     // Match columns with viewports by column ID, not index
     // This ensures we restore to the correct column even if the order changes or components are recreated
-    if (this.columnComponents && this.columns) {
+    if (this.columnComponents && this.columns && this.columnComponents.length === this.columns.length) {
+      let restoredCount = 0;
+      let expectedRestoreCount = 0;
+
       this.columnComponents.forEach(columnComp => {
         const column = columnComp.column();
         if (column) {
           const savedScrollTop = this.scrollPositions.get(column.id);
           if (savedScrollTop !== undefined) {
+            expectedRestoreCount++;
             const viewport = columnComp.virtualScrollViewport();
             if (viewport) {
               const viewportElement = viewport.elementRef.nativeElement as HTMLElement;
+              // Check if viewport is ready (has content)
               if (viewportElement && viewportElement.scrollHeight > 0) {
                 viewportElement.scrollTop = savedScrollTop;
+                restoredCount++;
               }
             }
           }
         }
       });
+
+      // Return true if we restored all expected positions, false otherwise
+      return restoredCount > 0 && restoredCount === expectedRestoreCount;
     }
+
+    return false;
   }
 
   traverseActivePath(column: Column | undefined, columns: Array<Column>): Array<Column> {
@@ -165,6 +248,6 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked {
 
     this.onColumnChange.emit(event);
     this.columns = this.getCurrentColumns();
-    this.shouldRestoreScroll = true;
+    this.scheduleScrollRestore();
   }
 }
