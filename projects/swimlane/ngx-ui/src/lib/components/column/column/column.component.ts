@@ -8,8 +8,10 @@ import {
   SimpleChanges,
   viewChild,
   ViewContainerRef,
-  ViewEncapsulation
+  ViewEncapsulation,
+  AfterViewInit
 } from '@angular/core';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { Column } from './column.types';
 
 export interface ColumnTabClickEvent {
@@ -31,16 +33,18 @@ export interface ColumnTabClickEvent {
     '[class.expanded]': 'activeChild && activeChild.content'
   }
 })
-export class ColumnComponent implements OnChanges {
+export class ColumnComponent implements OnChanges, AfterViewInit {
   column = input<Column | null>(null);
   height = input<string>('');
   tabClick = output<ColumnTabClickEvent>();
   scrollerHeight = signal('300');
   vcr = viewChild('expandedSection', { read: ViewContainerRef });
+  virtualScrollViewport = viewChild<CdkVirtualScrollViewport>('virtualScrollViewport');
   activeChild: Column | null = null;
   list: Column[] = [];
   searchInputValue = '';
   componentRef: ComponentRef<any> | null = null;
+  private savedScrollTop: number = 0;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.column?.currentValue) {
@@ -58,6 +62,19 @@ export class ColumnComponent implements OnChanges {
     }
     if (changes.height?.currentValue) {
       this.scrollerHeight.set(String(changes.height.currentValue.split(/(px)/g)[0] - 110));
+    }
+  }
+
+  ngAfterViewInit(): void {
+    // Restore scroll position after view init if it was saved
+    if (this.savedScrollTop > 0 && this.virtualScrollViewport()) {
+      // Use setTimeout to ensure viewport is fully initialized
+      setTimeout(() => {
+        const viewport = this.virtualScrollViewport();
+        if (viewport) {
+          viewport.scrollToOffset(this.savedScrollTop);
+        }
+      }, 0);
     }
   }
 
@@ -125,6 +142,22 @@ export class ColumnComponent implements OnChanges {
           this.list.unshift(this.activeChild);
         }
       }
+    }
+  }
+
+  getScrollTop(): number {
+    const viewport = this.virtualScrollViewport();
+    if (viewport) {
+      return viewport.measureScrollOffset('top');
+    }
+    return 0;
+  }
+
+  setScrollTop(scrollTop: number): void {
+    this.savedScrollTop = scrollTop;
+    const viewport = this.virtualScrollViewport();
+    if (viewport) {
+      viewport.scrollToOffset(scrollTop);
     }
   }
 }
