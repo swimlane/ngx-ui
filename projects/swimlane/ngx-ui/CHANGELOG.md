@@ -4,7 +4,7 @@
 
 ## 51.2.1 (2026-01-09)
 
-- Fix: Preserve scroll position on column tab change
+- Fix: Preserve scroll position on column tab change for `ngx-columns` component
 
 ## 51.2.0 (2025-12-12)
 
