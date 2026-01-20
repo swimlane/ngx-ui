@@ -1,41 +1,43 @@
 <div [hidden]="!expanded">
-  <div *ngFor="let value of model; let i = index; trackBy: arrayTrackBy">
-    <div class="property-def">
-      <ngx-dropdown>
-        <ngx-dropdown-toggle>
-          <div class="type-icon" tooltipPlacement="top">
-            <ngx-icon [fontIcon]="schemas[i]?.$meta.icon"> </ngx-icon>
-          </div>
-        </ngx-dropdown-toggle>
-        <ngx-dropdown-menu class="ngx-dropdown-menu">
-          <ul class="vertical-list">
-            <li><button type="button" (click)="deleteArrayItem(i)">Delete</button></li>
-
-            <ng-container *ngIf="schemas[i]?.$meta?.type">
-              <li *ngFor="let type of schemas[i]?.$meta?.type">
-                <button type="button" (click)="changeItemType(i, type)" [disabled]="schemas[i].currentType === type">
-                  Change type to {{ dataTypeMap[type].name }}
-                </button>
-              </li>
-            </ng-container>
-          </ul>
-        </ngx-dropdown-menu>
-      </ngx-dropdown>
+  @for (value of model; track arrayTrackBy(i); let i = $index) {
+    <div>
+      <div class="property-def">
+        <ngx-dropdown>
+          <ngx-dropdown-toggle>
+            <div class="type-icon" tooltipPlacement="top">
+              <ngx-icon [fontIcon]="schemas[i]?.$meta.icon"> </ngx-icon>
+            </div>
+          </ngx-dropdown-toggle>
+          <ngx-dropdown-menu class="ngx-dropdown-menu">
+            <ul class="vertical-list">
+              <li><button type="button" (click)="deleteArrayItem(i)">Delete</button></li>
+              @if (schemas[i]?.$meta?.type) {
+                @for (type of schemas[i]?.$meta?.type; track type) {
+                  <li>
+                    <button type="button" (click)="changeItemType(i, type)" [disabled]="schemas[i].currentType === type">
+                      Change type to {{ dataTypeMap[type].name }}
+                    </button>
+                  </li>
+                }
+              }
+            </ul>
+          </ngx-dropdown-menu>
+        </ngx-dropdown>
+      </div>
+      <ngx-json-editor-node
+        [model]="value"
+        (modelChange)="updateArrayItem(i, $event)"
+        [schema]="schemas[i]"
+        [path]="path + '[' + i + ']'"
+        [errors]="errors"
+        [isDuplicated]="isDuplicated"
+        [typeCheckOverrides]="typeCheckOverrides"
+        [showKnownProperties]="showKnownProperties"
+        [passwordToggleEnabled]="passwordToggleEnabled"
+        >
+      </ngx-json-editor-node>
     </div>
-
-    <ngx-json-editor-node
-      [model]="value"
-      (modelChange)="updateArrayItem(i, $event)"
-      [schema]="schemas[i]"
-      [path]="path + '[' + i + ']'"
-      [errors]="errors"
-      [isDuplicated]="isDuplicated"
-      [typeCheckOverrides]="typeCheckOverrides"
-      [showKnownProperties]="showKnownProperties"
-      [passwordToggleEnabled]="passwordToggleEnabled"
-    >
-    </ngx-json-editor-node>
-  </div>
+  }
 
   <ngx-dropdown>
     <ngx-dropdown-toggle [disabled]="isDuplicated">
@@ -45,21 +47,27 @@
     </ngx-dropdown-toggle>
     <ngx-dropdown-menu class="ngx-dropdown-menu">
       <ul class="vertical-list">
-        <ng-template [ngIf]="!schema || !schema.items || !schema.items.type">
-          <li *ngFor="let dataType of dataTypes" (click)="addArrayItem(dataType)">
-            <button type="button">{{ dataType.name }}</button>
-          </li>
-        </ng-template>
-        <ng-container *ngIf="schema?.items?.type">
-          <li *ngIf="!_array.isArray(schema.items.type)">
-            <button [disabled]="isDuplicated" type="button" (click)="addArrayItem()">Add</button>
-          </li>
-          <ng-container *ngIf="_array.isArray(schema.items.type)">
-            <li *ngFor="let type of schema.items.type">
-              <button type="button" (click)="addArrayItem(dataTypeMap[type])">Add {{ dataTypeMap[type].name }}</button>
+        @if (!schema || !schema.items || !schema.items.type) {
+          @for (dataType of dataTypes; track dataType) {
+            <li (click)="addArrayItem(dataType)">
+              <button type="button">{{ dataType.name }}</button>
             </li>
-          </ng-container>
-        </ng-container>
+          }
+        }
+        @if (schema?.items?.type) {
+          @if (!_array.isArray(schema.items.type)) {
+            <li>
+              <button [disabled]="isDuplicated" type="button" (click)="addArrayItem()">Add</button>
+            </li>
+          }
+          @if (_array.isArray(schema.items.type)) {
+            @for (type of schema.items.type; track type) {
+              <li>
+                <button type="button" (click)="addArrayItem(dataTypeMap[type])">Add {{ dataTypeMap[type].name }}</button>
+              </li>
+            }
+          }
+        }
       </ul>
     </ngx-dropdown-menu>
   </ngx-dropdown>

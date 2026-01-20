@@ -1,6 +1,8 @@
 <div class="ngx-nag-content">
   <ngx-toolbar class="ngx-nag-toolbar" (click)="toggle()" [mainTitle]="nagTitle">
-    <ngx-toolbar-title *ngIf="!nagTitle"> <ng-content select="[ngx-nag-title]"></ng-content> </ngx-toolbar-title>
+    @if (!nagTitle) {
+      <ngx-toolbar-title> <ng-content select="[ngx-nag-title]"></ng-content> </ngx-toolbar-title>
+    }
     <ngx-toolbar-content><ngx-icon class="ngx-nag-icon" fontIcon="arrow-down"></ngx-icon></ngx-toolbar-content>
   </ngx-toolbar>
   <section class="ngx-nag-body ngx-section-content"><ng-content></ng-content></section>

@@ -6,9 +6,11 @@ import { ButtonToggleModule } from './button-toggle.module';
   selector: 'ngx-button-toggle-group-fixture',
   template: `
     <ngx-button-toggle-group [(value)]="value" [disabled]="disabled">
-      <ngx-button-toggle *ngFor="let item of items" [value]="item">
+      @for (item of items; track item) {
+      <ngx-button-toggle [value]="item">
         {{ item }}
       </ngx-button-toggle>
+      }
     </ngx-button-toggle-group>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

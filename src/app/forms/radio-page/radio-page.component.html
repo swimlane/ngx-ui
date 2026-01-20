@@ -3,32 +3,36 @@
 <ngx-tabs>
   <ngx-tab label="Examples">
     <ngx-section class="shadow" sectionTitle="Single Radio Buttons">
-      <ngx-radiobutton *ngFor="let season of seasons" [checked]="favoriteSeason === season" (change)="favoriteSeason = season">
-        {{season}}
-      </ngx-radiobutton>
-      <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
-    
-      <app-prism>
-    <![CDATA[<ngx-radiobutton
-      *ngFor="let season of seasons"
-      [checked]="favoriteSeason === season"
-      (change)="favoriteSeason = season">
-      {{season}}
-    </ngx-radiobutton>
-    <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>]]>
-      </app-prism>
-    </ngx-section>
-    
-    <ngx-section sectionTitle="Radio Button Group">
-      <ngx-radiobutton-group [(ngModel)]="secondFavoriteSeason" [disabled]="disabled">
-        <ngx-radiobutton *ngFor="let season of seasons" [value]="season">
+      @for (season of seasons; track season) {
+        <ngx-radiobutton [checked]="favoriteSeason === season" (change)="favoriteSeason = season">
           {{season}}
         </ngx-radiobutton>
-      </ngx-radiobutton-group>
-      <div class="example-selected-value">Your favorite season is: {{secondFavoriteSeason}}</div>
-    
+      }
+      <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
+
       <app-prism>
-    <![CDATA[<ngx-radiobutton-group
+        <![CDATA[<ngx-radiobutton
+        *ngFor="let season of seasons"
+        [checked]="favoriteSeason === season"
+        (change)="favoriteSeason = season">
+        {{season}}
+      </ngx-radiobutton>
+      <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>]]>
+    </app-prism>
+  </ngx-section>
+
+  <ngx-section sectionTitle="Radio Button Group">
+    <ngx-radiobutton-group [(ngModel)]="secondFavoriteSeason" [disabled]="disabled">
+      @for (season of seasons; track season) {
+        <ngx-radiobutton [value]="season">
+          {{season}}
+        </ngx-radiobutton>
+      }
+    </ngx-radiobutton-group>
+    <div class="example-selected-value">Your favorite season is: {{secondFavoriteSeason}}</div>
+
+    <app-prism>
+      <![CDATA[<ngx-radiobutton-group
       [(ngModel)]="favoriteSeason"
       [disabled]="disabled">
       <ngx-radiobutton
@@ -38,104 +42,114 @@
       </ngx-radiobutton>
     </ngx-radiobutton-group>
     <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>]]>
-      </app-prism>
-    
-      <br />
-      <h3>Disabled Buttons</h3>
-      <ngx-radiobutton-group [(ngModel)]="favoriteSeason" [disabled]="disabled">
-        <ngx-radiobutton *ngFor="let season of seasons; index as i" [value]="season" [disabled]="i % 2 === 0">
+  </app-prism>
+
+  <br />
+  <h3>Disabled Buttons</h3>
+  <ngx-radiobutton-group [(ngModel)]="favoriteSeason" [disabled]="disabled">
+    @for (season of seasons; track season; let i = $index) {
+      <ngx-radiobutton [value]="season" [disabled]="i % 2 === 0">
+        {{season}}
+      </ngx-radiobutton>
+    }
+  </ngx-radiobutton-group>
+  <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
+
+  <app-prism>
+    <![CDATA[<ngx-radiobutton-group
+    [(ngModel)]="favoriteSeason"
+    [disabled]="disabled">
+    <ngx-radiobutton
+      *ngFor="let season of seasons; index as i"
+      [value]="season"
+      [disabled]="i % 2 === 0">
+      {{season}}
+    </ngx-radiobutton>
+  </ngx-radiobutton-group>
+  <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>]]>
+</app-prism>
+
+<h3>Disabled Group</h3>
+<ngx-radiobutton-group [(ngModel)]="favoriteSeason" [disabled]="true">
+  @for (season of seasons; track season; let i = $index) {
+    <ngx-radiobutton [value]="season" [disabled]="i % 2 === 0">
+      {{season}}
+    </ngx-radiobutton>
+  }
+</ngx-radiobutton-group>
+<div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
+
+<app-prism>
+  <![CDATA[<ngx-radiobutton-group
+  [(ngModel)]="favoriteSeason"
+  [disabled]="true">
+  <ngx-radiobutton
+    *ngFor="let season of seasons; index as i"
+    [value]="season"
+    [disabled]="i % 2 === 0">
+    {{season}}
+  </ngx-radiobutton>
+</ngx-radiobutton-group>
+<div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>]]>
+</app-prism>
+</ngx-section>
+
+<ngx-section sectionTitle="FormGroup">
+  <form [formGroup]="form">
+    <ngx-radiobutton-group formControlName="season">
+      @for (season of seasons; track season) {
+        <ngx-radiobutton [value]="season">
           {{season}}
         </ngx-radiobutton>
-      </ngx-radiobutton-group>
-      <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
-    
-      <app-prism>
-    <![CDATA[<ngx-radiobutton-group
-      [(ngModel)]="favoriteSeason"
-      [disabled]="disabled">
-      <ngx-radiobutton
-        *ngFor="let season of seasons; index as i"
-        [value]="season"
-        [disabled]="i % 2 === 0">
+      }
+    </ngx-radiobutton-group>
+  </form>
+
+  <output>{{ form.value | json }}</output>
+
+  <app-prism>
+    <![CDATA[<form [formGroup]="form">
+    <ngx-radiobutton-group formControlName="season">
+      <ngx-radiobutton *ngFor="let season of seasons" [value]="season">
         {{season}}
       </ngx-radiobutton>
     </ngx-radiobutton-group>
-    <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>]]>
-      </app-prism>
-    
-      <h3>Disabled Group</h3>
-      <ngx-radiobutton-group [(ngModel)]="favoriteSeason" [disabled]="true">
-        <ngx-radiobutton *ngFor="let season of seasons; index as i" [value]="season" [disabled]="i % 2 === 0">
-          {{season}}
-        </ngx-radiobutton>
-      </ngx-radiobutton-group>
-      <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>
-    
-      <app-prism>
-    <![CDATA[<ngx-radiobutton-group
-      [(ngModel)]="favoriteSeason"
-      [disabled]="true">
-      <ngx-radiobutton
-        *ngFor="let season of seasons; index as i"
-        [value]="season"
-        [disabled]="i % 2 === 0">
-        {{season}}
-      </ngx-radiobutton>
-    </ngx-radiobutton-group>
-    <div class="example-selected-value">Your favorite season is: {{favoriteSeason}}</div>]]>
-      </app-prism>
-    </ngx-section>
-    
-    <ngx-section sectionTitle="FormGroup">
-      <form [formGroup]="form">
-        <ngx-radiobutton-group formControlName="season">
-          <ngx-radiobutton *ngFor="let season of seasons" [value]="season">
-            {{season}}
-          </ngx-radiobutton>
-        </ngx-radiobutton-group>
-      </form>
-    
-      <output>{{ form.value | json }}</output>
-    
-      <app-prism>
-        <![CDATA[<form [formGroup]="form">
-          <ngx-radiobutton-group formControlName="season">
-            <ngx-radiobutton *ngFor="let season of seasons" [value]="season">
-              {{season}}
-            </ngx-radiobutton>
-          </ngx-radiobutton-group>
-        </form>]]>
-          </app-prism>
-    </ngx-section>
-    
-    <ngx-section sectionTitle="Native">
-    
+  </form>]]>
+</app-prism>
+</ngx-section>
+
+<ngx-section sectionTitle="Native">
+
+  <div>
+    @for (season of seasons; track season; let i = $index) {
       <div>
-        <div *ngFor="let season of seasons; let i = index">
-          <input [id]="i + 'chk'" type="radio" [value]="season" name="season">
-          <label [attr.for]="i + 'chk'">{{ season }}</label>
-        </div>
+        <input [id]="i + 'chk'" type="radio" [value]="season" name="season">
+        <label [attr.for]="i + 'chk'">{{ season }}</label>
       </div>
-    
-      <p></p>
-    
-      <form [formGroup]="form">
-        <div *ngFor="let season of seasons; let i = index">
-           <input [id]="i + 'chk'" type="radio" [value]="season" formControlName="season">
-           <label [attr.for]="i + 'chk'">{{ season }}</label>
-        </div>
-     </form>
-    </ngx-section>
-    
-    <p>
-      <button class="btn btn-primary" (click)="seasons.push('Holiday')">Add Holiday Season</button>
-    </p>
-  </ngx-tab>
-  <ngx-tab label="API">
-    <h3>Table of Contents</h3>
-    <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
-    <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
-    <hr>
+    }
+  </div>
+
+  <p></p>
+
+  <form [formGroup]="form">
+    @for (season of seasons; track season; let i = $index) {
+      <div>
+        <input [id]="i + 'chk'" type="radio" [value]="season" formControlName="season">
+        <label [attr.for]="i + 'chk'">{{ season }}</label>
+      </div>
+    }
+  </form>
+</ngx-section>
+
+<p>
+  <button class="btn btn-primary" (click)="seasons.push('Holiday')">Add Holiday Season</button>
+</p>
+</ngx-tab>
+<ngx-tab label="API">
+  <h3>Table of Contents</h3>
+  <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
+  <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
+  <hr>
 
     <h3 class="style-header" id="inputs">Component Inputs</h3>
     <table class="table documentation-table">
@@ -198,37 +212,37 @@
       </tbody>
     </table>
     <hr>
-    <h3 class="style-header" id="outputs">Component Outputs</h3>
-    <table class="table documentation-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Output()</code>
-            <code>blur: EventEmitter&lt;Event&gt;</code>
-          </th>
-          <td>Event emitted when the native input emits a <code>blur</code> event.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Output()</code>
-            <code>change: EventEmitter&lt;any&gt;</code>
-          </th>
-          <td>Event emitted when the value of the <code>checked</code> Input is changed.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Output()</code>
-            <code>focus: EventEmitter&lt;FocusEvent&gt;</code>
-          </th>
-          <td>Event emitted when the native input emits a <code>focus</code> event.</td>
-        </tr>
-      </tbody>
-    </table>
-  </ngx-tab>
-</ngx-tabs>
+      <h3 class="style-header" id="outputs">Component Outputs</h3>
+      <table class="table documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <code class="component-type">&#64;Output()</code>
+              <code>blur: EventEmitter&lt;Event&gt;</code>
+            </th>
+            <td>Event emitted when the native input emits a <code>blur</code> event.</td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">&#64;Output()</code>
+              <code>change: EventEmitter&lt;any&gt;</code>
+            </th>
+            <td>Event emitted when the value of the <code>checked</code> Input is changed.</td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">&#64;Output()</code>
+              <code>focus: EventEmitter&lt;FocusEvent&gt;</code>
+            </th>
+            <td>Event emitted when the native input emits a <code>focus</code> event.</td>
+          </tr>
+        </tbody>
+      </table>
+    </ngx-tab>
+  </ngx-tabs>

@@ -325,7 +325,7 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
   millisecond: string;
   amPmVal: string;
   modes = ['millisecond', 'second', 'minute', 'hour', 'date', 'month', 'year'];
-  timeValues = {};
+  timeValues: any = {};
 
   private _value: Date | string;
   private _displayValue = '';

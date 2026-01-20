@@ -1,14 +1,18 @@
 <ngx-tree #tree1 [nodes]="nodes">
   <ng-template let-label="label" let-model="model" let-expandable="expandable">
     <div class="ngx-node-label" [ngClass]="model.type">
-      <code><strong>{{label}}:</strong> <span *ngIf="!model.expandable">{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span></code>
-    </div>
-  </ng-template>
+      <code><strong>{{label}}:</strong> @if (!model.expandable) {
+      <span>{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span>
+    }</code>
+  </div>
+</ng-template>
 </ngx-tree>
 
 <ngx-tree #tree2 [nodes]="nodes" [template]="nodeTemplate"></ngx-tree>
 <ng-template #nodeTemplate let-label="label" let-model="model" let-expandable="expandable">
   <div class="ngx-node-label" [ngClass]="model.type">
-    <code><strong>{{label}}:</strong> <span *ngIf="!model.expandable">{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span></code>
-  </div>
+    <code><strong>{{label}}:</strong> @if (!model.expandable) {
+    <span>{{model.value | json}} <span class="tag tag-small" style="text-transform: capitalize">[{{model.type}}]</span></span>
+  }</code>
+</div>
 </ng-template>

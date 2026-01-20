@@ -10,119 +10,125 @@
 
       <app-prism>
         <![CDATA[<ngx-button-toggle-group [ngModel]="'sequential'" label="Process"> <ngx-button-toggle
-        value="sequential"> Sequential </ngx-button-toggle> <ngx-button-toggle value="parallel"> Parallel
-        </ngx-button-toggle> </ngx-button-toggle-group>]]>
-      </app-prism>
+      value="sequential"> Sequential </ngx-button-toggle> <ngx-button-toggle value="parallel"> Parallel
+    </ngx-button-toggle> </ngx-button-toggle-group>]]>
+  </app-prism>
 
-      <br />
+  <br />
 
-      <ngx-button-toggle-group [(ngModel)]="favoriteSeason">
-        <ngx-button-toggle *ngFor="let season of seasons" [value]="season">
-          {{ season }}
-        </ngx-button-toggle>
-      </ngx-button-toggle-group>
-      <div class="example-selected-value">Your favorite season is: {{ favoriteSeason }}</div>
+  <ngx-button-toggle-group [(ngModel)]="favoriteSeason">
+    @for (season of seasons; track season) {
+      <ngx-button-toggle [value]="season">
+        {{ season }}
+      </ngx-button-toggle>
+    }
+  </ngx-button-toggle-group>
+  <div class="example-selected-value">Your favorite season is: {{ favoriteSeason }}</div>
 
-      <app-prism>
+  <app-prism>
         <![CDATA[<ngx-button-toggle-group [(ngModel)]="favoriteSeason"> <ngx-button-toggle *ngFor="let season of
         seasons" [value]="season">
-        {{ season }}
-        </ngx-button-toggle> </ngx-button-toggle-group>]]>
-      </app-prism>
+    {{ season }}
+  </ngx-button-toggle> </ngx-button-toggle-group>]]>
+</app-prism>
 
-      <br />
-      <h3>Disabled Group</h3>
-      <ngx-button-toggle-group [disabled]="groupDisabled">
-        <ngx-button-toggle *ngFor="let season of seasons; index as i" [value]="season">
-          {{ season }}
-        </ngx-button-toggle>
-      </ngx-button-toggle-group>
-      <ngx-button type="button" class="btn" (click)="groupDisabled = !groupDisabled">{{
-        groupDisabled ? 'Disabled' : 'Enabled'
-      }}</ngx-button>
+<br />
+<h3>Disabled Group</h3>
+<ngx-button-toggle-group [disabled]="groupDisabled">
+  @for (season of seasons; track season; let i = $index) {
+    <ngx-button-toggle [value]="season">
+      {{ season }}
+    </ngx-button-toggle>
+  }
+</ngx-button-toggle-group>
+<ngx-button type="button" class="btn" (click)="groupDisabled = !groupDisabled">{{
+  groupDisabled ? 'Disabled' : 'Enabled'
+}}</ngx-button>
 
-      <app-prism>
+<app-prism>
         <![CDATA[<ngx-button-toggle-group [disabled]="true"> <ngx-button-toggle *ngFor="let season of seasons; index as
         i" [value]="season">
-        {{ season }}
-        </ngx-button-toggle> </ngx-button-toggle-group>]]>
-      </app-prism>
-    </ngx-section>
+  {{ season }}
+</ngx-button-toggle> </ngx-button-toggle-group>]]>
+</app-prism>
+</ngx-section>
 
-    <ngx-section sectionTitle="Button Toggle with Forms">
-      <form [formGroup]="form">
-        <ngx-button-toggle-group formControlName="season">
-          <ngx-button-toggle *ngFor="let season of seasons" [value]="season">
-            {{ season }}
-          </ngx-button-toggle>
-        </ngx-button-toggle-group>
-      </form>
+<ngx-section sectionTitle="Button Toggle with Forms">
+  <form [formGroup]="form">
+    <ngx-button-toggle-group formControlName="season">
+      @for (season of seasons; track season) {
+        <ngx-button-toggle [value]="season">
+          {{ season }}
+        </ngx-button-toggle>
+      }
+    </ngx-button-toggle-group>
+  </form>
 
-      <div class="example-selected-value">{{ form.value | json }}</div>
+  <div class="example-selected-value">{{ form.value | json }}</div>
 
-      <app-prism>
-        <![CDATA[<form [formGroup]="form"> <ngx-button-toggle-group formControlName="season"> <ngx-button-toggle
-        *ngFor="let season of seasons" [value]="season"> { season }} </ngx-button-toggle> </ngx-button-toggle-group>
-        </form>]]>
-      </app-prism>
-    </ngx-section>
-  </ngx-tab>
-  <ngx-tab label="API">
-    <h3>Table of Contents</h3>
-    <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
-    <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
-    <hr />
+  <app-prism>
+    <![CDATA[<form [formGroup]="form"> <ngx-button-toggle-group formControlName="season"> <ngx-button-toggle
+  *ngFor="let season of seasons" [value]="season"> { season }} </ngx-button-toggle> </ngx-button-toggle-group>
+</form>]]>
+</app-prism>
+</ngx-section>
+</ngx-tab>
+<ngx-tab label="API">
+  <h3>Table of Contents</h3>
+  <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
+  <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
+  <hr />
 
-    <h3 class="style-header" id="inputs">Component Inputs</h3>
-    <table class="table documentation-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>value: any</code>
-          </th>
-          <td>Selects the toggle button which matches the value</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>disabled: boolean</code>
-          </th>
-          <td>Whether the component is disabled.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Input()</code>
-            <code>id: string = 'ngx-button-toggle-1'</code>
-          </th>
-          <td>The ID for the component.</td>
-        </tr>
-      </tbody>
-    </table>
-    <hr />
-    <h3 class="style-header" id="outputs">Component Outputs</h3>
-    <table class="table documentation-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Output()</code>
-            <code>valueChange: EventEmitter&lt;any&gt;</code>
-          </th>
-          <td>Event emitted when the toggle button is clicked.</td>
-        </tr>
-      </tbody>
-    </table>
-  </ngx-tab>
+  <h3 class="style-header" id="inputs">Component Inputs</h3>
+  <table class="table documentation-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>value: any</code>
+        </th>
+        <td>Selects the toggle button which matches the value</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>disabled: boolean</code>
+        </th>
+        <td>Whether the component is disabled.</td>
+      </tr>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Input()</code>
+          <code>id: string = 'ngx-button-toggle-1'</code>
+        </th>
+        <td>The ID for the component.</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr />
+  <h3 class="style-header" id="outputs">Component Outputs</h3>
+  <table class="table documentation-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th>
+          <code class="component-type">&#64;Output()</code>
+          <code>valueChange: EventEmitter&lt;any&gt;</code>
+        </th>
+        <td>Event emitted when the toggle button is clicked.</td>
+      </tr>
+    </tbody>
+  </table>
+</ngx-tab>
 </ngx-tabs>

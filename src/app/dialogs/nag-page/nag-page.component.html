@@ -6,49 +6,50 @@
       <button type="button" class="btn" (click)="addNag()">
         Add Nag Alert
       </button>
-    
+
       <button type="button" class="btn" (click)="nags.shift()">
         Remove Nag Alert
       </button>
-    
+
       <br />
       <br />
       <br />
       <app-prism>
-    <![CDATA[<ngx-nag [watch]="nags.length">
-      <h2 ngx-nag-title class="ngx-toolbar-title">
-        <ngx-icon fontIcon="alert"></ngx-icon> { {nags.length} } Alerts Detected
-      </h2>
+        <![CDATA[<ngx-nag [watch]="nags.length">
+        <h2 ngx-nag-title class="ngx-toolbar-title">
+          <ngx-icon fontIcon="alert"></ngx-icon> { {nags.length} } Alerts Detected
+        </h2>
+        <ngx-section
+          *ngFor="let nag of nags" class="shadow"
+          [sectionTitle]="nag.type + ' #' + nag.id"
+          [sectionCollapsible]="false"
+          [sectionCollapsed]="true">
+        </ngx-section>
+      </ngx-nag>]]>
+    </app-prism>
+  </ngx-section>
+
+  <ngx-nag [watch]="nags.length" [hide]="nags.length === 0">
+    <h2 ngx-nag-title class="ngx-toolbar-title">
+      <ngx-icon fontIcon="alert" style="color: #ff4514; font-size: small; margin-right: 10px;"></ngx-icon>
+      {{ nags.length }} Alerts Detected
+    </h2>
+    @for (nag of nags; track nag) {
       <ngx-section
-        *ngFor="let nag of nags" class="shadow"
-        [sectionTitle]="nag.type + ' #' + nag.id"
-        [sectionCollapsible]="false"
-        [sectionCollapsed]="true">
-      </ngx-section>
-    </ngx-nag>]]>
-      </app-prism>
-    </ngx-section>
-    
-    <ngx-nag [watch]="nags.length" [hide]="nags.length === 0">
-      <h2 ngx-nag-title class="ngx-toolbar-title">
-        <ngx-icon fontIcon="alert" style="color: #ff4514; font-size: small; margin-right: 10px;"></ngx-icon>
-        {{ nags.length }} Alerts Detected
-      </h2>
-      <ngx-section
-        *ngFor="let nag of nags"
         class="shadow"
         [sectionTitle]="nag.type + ' #' + nag.id"
         [sectionCollapsible]="false"
         [sectionCollapsed]="true"
-      >
+        >
       </ngx-section>
-    </ngx-nag>
-  </ngx-tab>
-  <ngx-tab label="API">
-    <h3>Table of Contents</h3>
-    <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
-    <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
-    <hr>
+    }
+  </ngx-nag>
+</ngx-tab>
+<ngx-tab label="API">
+  <h3>Table of Contents</h3>
+  <a class="documentation-content" (click)="scrollTo('inputs')">Component Inputs</a>
+  <a class="documentation-content" (click)="scrollTo('outputs')">Component Outputs</a>
+  <hr>
 
     <h3 class="style-header" id="inputs">Component Inputs</h3>
     <table class="table documentation-table">
@@ -104,23 +105,23 @@
       </tbody>
     </table>
     <hr>
-    <h3 class="style-header" id="outputs">Component Outputs</h3>
-    <table class="table documentation-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Output()</code>
-            <code>stateChanged: EventEmitter&lt;string&gt;</code>
-          </th>
-          <td>Event emitted when the state of the component changes.</td>
-        </tr>
-      </tbody>
-    </table>
-  </ngx-tab>
-</ngx-tabs>
+      <h3 class="style-header" id="outputs">Component Outputs</h3>
+      <table class="table documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <code class="component-type">&#64;Output()</code>
+              <code>stateChanged: EventEmitter&lt;string&gt;</code>
+            </th>
+            <td>Event emitted when the state of the component changes.</td>
+          </tr>
+        </tbody>
+      </table>
+    </ngx-tab>
+  </ngx-tabs>

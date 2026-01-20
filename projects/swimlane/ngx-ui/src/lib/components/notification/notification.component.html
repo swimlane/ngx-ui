@@ -3,26 +3,41 @@
     <div class="bar" [ngStyle]="{ 'animation-duration': animationDuration }"></div>
   </div>
 
-  <div *ngIf="styleType !== NotificationStyleType.none && !icon" class="icon-container">
-    <span *ngIf="styleType === NotificationStyleType.info" class="ngx-icon ngx-info-filled"></span>
-    <span *ngIf="styleType === NotificationStyleType.warning" class="ngx-icon ngx-warning-filled"></span>
-    <span *ngIf="styleType === NotificationStyleType.error" class="ngx-icon ngx-x-filled"></span>
-    <span *ngIf="styleType === NotificationStyleType.success" class="ngx-icon ngx-check-filled"></span>
-  </div>
+  @if (styleType !== NotificationStyleType.none && !icon) {
+    <div class="icon-container">
+      @if (styleType === NotificationStyleType.info) {
+        <span class="ngx-icon ngx-info-filled"></span>
+      }
+      @if (styleType === NotificationStyleType.warning) {
+        <span class="ngx-icon ngx-warning-filled"></span>
+      }
+      @if (styleType === NotificationStyleType.error) {
+        <span class="ngx-icon ngx-x-filled"></span>
+      }
+      @if (styleType === NotificationStyleType.success) {
+        <span class="ngx-icon ngx-check-filled"></span>
+      }
+    </div>
+  }
 
-  <div *ngIf="styleType === NotificationStyleType.none && icon" class="icon-container">
-    <span [class]="'ngx-icon ' + icon"></span>
-  </div>
+  @if (styleType === NotificationStyleType.none && icon) {
+    <div class="icon-container">
+      <span [class]="'ngx-icon ' + icon"></span>
+    </div>
+  }
 
   <div class="notification-content" [class.has-icon]="styleType !== NotificationStyleType.none || icon">
     <h2 class="ngx-notification-title" [innerHTML]="title"></h2>
     <p class="ngx-notification-body" [innerHTML]="body"></p>
-    <ng-template *ngIf="template" [ngTemplateOutlet]="template"> </ng-template>
-    <button
-      *ngIf="showClose"
-      type="button"
-      (click)="close.emit()"
-      class="ngx-icon ngx-x ngx-notification-close"
-    ></button>
+    @if (template) {
+      <ng-template [ngTemplateOutlet]="template"> </ng-template>
+    }
+    @if (showClose) {
+      <button
+        type="button"
+        (click)="close.emit()"
+        class="ngx-icon ngx-x ngx-notification-close"
+      ></button>
+    }
   </div>
 </div>
