@@ -36,7 +36,8 @@
     "publish": "npm publish ./dist/swimlane/ngx-ui --ignore-scripts",
     "prepack": "yarn package",
     "pack": "npm pack ./dist/swimlane/ngx-ui",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "update:browserslist-db": "yarn dlx update-browserslist-db@latest"
   },
   "private": true,
   "dependencies": {
@@ -77,6 +78,7 @@
     "@angular/compiler-cli": "^21.1.0",
     "@angular/language-service": "^21.1.0",
     "@angular/platform-browser-dynamic": "^21.1.0",
+    "@jsonjoy.com/util": "1.9.0",
     "@open-wc/semantic-dom-diff": "0.19.7",
     "@schematics/angular": "^20.0.3",
     "@swimlane/eslint-config": "^2.0.0",
