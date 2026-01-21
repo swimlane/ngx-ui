@@ -22,7 +22,7 @@
     "test:prettier": "prettier --check  \"{src,projects,cypress}/**/*.{js,ts,scss,css,md,json}\"",
     "test:lint": "ng lint",
     "test-vite": "ng test @swimlane/ngx-ui",
-    "test:unit": "TZ=America/Los_Angeles ng test @swimlane/ngx-ui --watch=false --progress=false --browsers=ChromeHeadlessCI --ts-config tsconfig.spec.json",
+    "test:unit": "TZ=America/Los_Angeles ng test @swimlane/ngx-ui --watch=false --progress=false --ts-config tsconfig.spec.json",
     "test:integration": "start-server-and-test start http-get://localhost:4200 cypress:run",
     "fix": "yarn fix:prettier && yarn fix:lint",
     "fix:prettier": "prettier --write \"{src,projects,cypress}/**/*.{js,ts,scss,css,md,json}\"",
@@ -139,6 +139,7 @@
     "ts-node": "10.9.1",
     "typescript": "5.9.3",
     "vitest": "4.0.17",
+    "webdriverio": "^9.0.0",
     "webpack": "5.74.0",
     "webpack-bundle-analyzer": "4.6.1",
     "zone.js": "~0.15.0"

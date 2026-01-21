@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { MomentModule } from 'ngx-moment';
@@ -15,21 +15,18 @@ describe('CalendarComponent', () => {
   let component: CalendarComponent;
   let fixture: ComponentFixture<CalendarComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [CalendarComponent],
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [MomentModule, PipesModule],
-      teardown: { destroyAfterEach: false }
-    }).compileComponents();
-  }));
-
-  beforeEach(() => {
+      imports: [MomentModule, PipesModule]
+    });
     fixture = TestBed.createComponent(CalendarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
+ 
   it('should create', () => {
     expect(component).toBeTruthy();
   });

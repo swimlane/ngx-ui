@@ -1,4 +1,4 @@
-import type { Mock } from 'vitest';
+import type { MockInstance } from 'vitest';
 import { NgZone } from '@angular/core';
 
 import { VisibilityDirective } from './visibility.directive';
@@ -43,7 +43,7 @@ describe('VisibilityDirective', () => {
   });
 
   describe('runCheck', () => {
-    let spy: Mock;
+    let spy: MockInstance<any>;
 
     beforeEach(() => {
       spy = vi.spyOn(directive, 'onVisibilityChange');

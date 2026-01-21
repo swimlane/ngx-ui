@@ -1,9 +1,9 @@
-import type { Mock } from 'vitest';
+import type { MockInstance } from 'vitest';
 /* eslint-disable no-console */
 import { debounce } from './debounce.util';
 
 describe('debounce', () => {
-  let spy: Mock;
+  let spy: MockInstance<any>;
 
   beforeEach(() => {
     spy = vi.spyOn(window.console, 'log').mockImplementation(() => undefined);

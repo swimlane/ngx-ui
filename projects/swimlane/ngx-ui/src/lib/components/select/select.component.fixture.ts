@@ -5,7 +5,7 @@ import { SelectComponent } from './select.component';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { selectDropdownOptionMock } from './select-dropdown-option.mock';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms/types/forms';
+import { FormsModule } from '@angular/forms';
 import { SelectModule } from './select.module';
 
 @Component({

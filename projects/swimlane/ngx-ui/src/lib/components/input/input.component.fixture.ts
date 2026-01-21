@@ -3,8 +3,8 @@ import { BehaviorSubject } from 'rxjs';
 
 import { InputComponent } from './input.component';
 import { InputTypes } from './input-types.enum';
-import { FormsModule } from '@angular/forms/types/forms';
-import { CommonModule } from '@angular/common/types/common';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { InputModule } from './input.module';
 
 @Component({
