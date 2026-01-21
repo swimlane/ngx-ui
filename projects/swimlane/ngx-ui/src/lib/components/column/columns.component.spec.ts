@@ -76,8 +76,8 @@ describe('ColumnsComponent', () => {
   });
 
   it('should set columns on ngOnChanges', fakeAsync(() => {
-    spyOn(component, 'getCurrentColumns').and.callThrough();
-    spyOn(component, 'traverseActivePath').and.callThrough();
+    vi.spyOn(component, 'getCurrentColumns');
+    vi.spyOn(component, 'traverseActivePath');
 
     component.ngOnChanges({
       column: {
@@ -192,7 +192,7 @@ describe('ColumnsComponent', () => {
         }
       }
     ];
-    spyOn(component, 'deactivatePath').and.callThrough();
+    vi.spyOn(component, 'deactivatePath');
     component.onColumnNavigation({
       columnId,
       active: false,
@@ -211,7 +211,7 @@ describe('ColumnsComponent', () => {
     expect(component.columns[0].id).toBe('1');
     expect(component.columns[1].id).toBe('1-1');
     expect(component.columns[2].id).toBe('1-1-1');
-    expect(component.columns[2].active).toBeTrue();
+    expect(component.columns[2].active).toBe(true);
     expect(component.deactivatePath).toHaveBeenCalledWith({
       id: '1-1-2',
       active: false,
@@ -248,7 +248,7 @@ describe('ColumnsComponent', () => {
         }
       ]
     };
-    spyOn(component, 'deactivatePath').and.callThrough();
+    vi.spyOn(component, 'deactivatePath');
     component.deactivatePath(activeColumn);
 
     expect(activeColumn.active).toBeFalsy();

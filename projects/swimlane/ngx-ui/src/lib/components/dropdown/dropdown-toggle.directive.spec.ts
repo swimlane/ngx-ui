@@ -1,12 +1,12 @@
+import type { Mock } from 'vitest';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 
 import { DropdownToggleDirective } from './dropdown-toggle.directive';
-import { DropdownComponent } from './dropdown.component';
-import { DropdownMenuDirective } from './dropdown-menu.directive';
 import { DropdownComponentFixture } from './fixtures/dropdown.component.fixture';
 import { DropdownShowTypes } from './dropdown.show-types.enum';
+import { DropdownModule } from './dropdown.module';
 
 describe('DropdownToggleDirective', () => {
   let directive: DropdownToggleDirective;
@@ -15,7 +15,7 @@ describe('DropdownToggleDirective', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [DropdownComponent, DropdownMenuDirective, DropdownToggleDirective, DropdownComponentFixture],
+      imports: [DropdownModule],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   }));
@@ -33,10 +33,10 @@ describe('DropdownToggleDirective', () => {
   });
 
   describe('show events', () => {
-    let spy: jasmine.Spy;
+    let spy: Mock;
 
     beforeEach(() => {
-      spy = spyOn(directive.toggle, 'emit');
+      spy = vi.spyOn(directive.toggle, 'emit');
     });
 
     describe('onClick', () => {

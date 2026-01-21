@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, ViewChild } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { DropdownComponent } from '../dropdown.component';
+import { DropdownModule } from '../dropdown.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ngx-dropdown-fixture',
@@ -18,7 +20,8 @@ import { DropdownComponent } from '../dropdown.component';
     </ngx-dropdown>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: true,
+  imports: [DropdownModule, CommonModule]
 })
 export class DropdownComponentFixture {
   @ViewChild(DropdownComponent, { static: false })

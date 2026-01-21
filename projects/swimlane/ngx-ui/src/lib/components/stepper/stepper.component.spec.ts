@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { StepperModule } from './stepper.module';
 import { StepperComponentFixture } from './stepper.component.fixture';
@@ -12,8 +11,7 @@ describe('StepperComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [StepperComponentFixture],
-      imports: [StepperModule, BrowserAnimationsModule]
+      imports: [StepperModule, StepperComponentFixture]
     });
   });
 
@@ -33,14 +31,13 @@ describe('StepperComponent', () => {
     expect(component.stepper.steps.first.completeIcon).toEqual(component.stepper.completeIcon);
   });
 
-  it('should set active when step active changed', done => {
-    const spy = spyOn(component.stepper.steps.first.activeChange, 'emit');
+  it('should set active when step active changed', async () => {
+    const spy = vi.spyOn(component.stepper.steps.first.activeChange, 'emit');
     const step: HTMLButtonElement = document.querySelector('ngx-step:first-child');
     step.click();
 
     setTimeout(() => {
       expect(spy).toHaveBeenCalled();
-      done();
     });
   });
 

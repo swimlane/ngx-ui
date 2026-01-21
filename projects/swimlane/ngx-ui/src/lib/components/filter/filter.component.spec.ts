@@ -33,7 +33,7 @@ describe('FilterComponent', () => {
       component.multiple = true;
       component.showSelectAll = true;
       component.value = [options[0], options[1]];
-      const spyOnSelectAll = spyOn(component, 'onSelectAll');
+      const spyOnSelectAll = vi.spyOn(component, 'onSelectAll');
       component.onDropdownSelection(options[2] as SelectDropdownOption);
       expect(spyOnSelectAll).toHaveBeenCalled();
     });
@@ -43,7 +43,7 @@ describe('FilterComponent', () => {
       component.multiple = true;
       component.showSelectAll = true;
       component.value = [options[0]];
-      const spyOnSelectAll = spyOn(component, 'onSelectAll');
+      const spyOnSelectAll = vi.spyOn(component, 'onSelectAll');
       component.onDropdownSelection(options[2] as SelectDropdownOption);
       expect(spyOnSelectAll).not.toHaveBeenCalled();
     });
@@ -53,7 +53,7 @@ describe('FilterComponent', () => {
       component.multiple = true;
       component.showSelectAll = true;
       component.value = [options[0], options[1]];
-      const spyOnSelectAll = spyOn(component, 'onSelectAll');
+      const spyOnSelectAll = vi.spyOn(component, 'onSelectAll');
       component.onDropdownSelection(options[2] as SelectDropdownOption);
       expect(spyOnSelectAll).not.toHaveBeenCalled();
     });
@@ -90,14 +90,14 @@ describe('FilterComponent', () => {
     });
 
     it('should emit click emitter when button is enabled', () => {
-      const spyClickEmit = spyOn(component.clicked, 'emit');
+      const spyClickEmit = vi.spyOn(component.clicked, 'emit');
       component.disabled = false;
       component.onFilterButtonClick(new Event('click'));
       expect(spyClickEmit).toHaveBeenCalled();
     });
 
     it('should not emit click emitter when button is disabled', () => {
-      const spyClickEmit = spyOn(component.clicked, 'emit');
+      const spyClickEmit = vi.spyOn(component.clicked, 'emit');
       component.disabled = true;
       component.onFilterButtonClick(new Event('click'));
       expect(spyClickEmit).not.toHaveBeenCalled();

@@ -3,6 +3,8 @@ import { BehaviorSubject } from 'rxjs';
 
 import { AutosizeDirective } from './input-autosize.directive';
 import { InputTypes } from './input-types.enum';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'ngx-input-autosize-fixture',
@@ -14,7 +16,8 @@ import { InputTypes } from './input-types.enum';
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: true,
+  imports: [CommonModule, FormsModule]
 })
 export class AutosizeDirectiveFixture {
   value = 'test';

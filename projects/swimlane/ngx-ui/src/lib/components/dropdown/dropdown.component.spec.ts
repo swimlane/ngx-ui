@@ -4,9 +4,8 @@ import { ComponentFixture, fakeAsync, TestBed, tick, waitForAsync } from '@angul
 import { By } from '@angular/platform-browser';
 
 import { DropdownComponent } from './dropdown.component';
-import { DropdownMenuDirective } from './dropdown-menu.directive';
-import { DropdownToggleDirective } from './dropdown-toggle.directive';
 import { DropdownComponentFixture } from './fixtures/dropdown.component.fixture';
+import { DropdownModule } from './dropdown.module';
 
 describe('DropdownComponent', () => {
   let component: DropdownComponentFixture;
@@ -15,7 +14,7 @@ describe('DropdownComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [DropdownComponent, DropdownMenuDirective, DropdownToggleDirective, DropdownComponentFixture],
+      imports: [DropdownModule],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   }));
@@ -32,7 +31,7 @@ describe('DropdownComponent', () => {
   });
 
   it('should toggle on click', () => {
-    const spy = spyOn(component.dropdown, 'onToggleClick');
+    const spy = vi.spyOn(component.dropdown, 'onToggleClick');
     component.dropdown.dropdownToggle.onClick({ preventDefault: () => undefined } as any);
     expect(spy).toHaveBeenCalled();
   });

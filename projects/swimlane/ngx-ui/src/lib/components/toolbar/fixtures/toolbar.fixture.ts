@@ -1,13 +1,16 @@
 import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { ToolbarComponent } from '../toolbar.component';
+import { ToolbarModule } from '../toolbar.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'toolbar-fixture',
   templateUrl: 'toolbar.fixture.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: true,
+  imports: [ToolbarModule, CommonModule]
 })
 export class ToolbarFixtureComponent {
   @ViewChild('toolbar1', { static: true })

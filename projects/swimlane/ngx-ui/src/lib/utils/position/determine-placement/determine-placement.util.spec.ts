@@ -4,8 +4,8 @@ import { AlignmentTypes } from '../alignment-types.enum';
 
 describe('determinePlacement', () => {
   beforeEach(() => {
-    spyOnProperty(window, 'innerWidth').and.returnValue(0);
-    spyOnProperty(window, 'innerHeight').and.returnValue(0);
+    vi.spyOn(window as any, 'innerWidth').mockReturnValue(0);
+    vi.spyOn(window as any, 'innerHeight').mockReturnValue(0);
   });
 
   it('should flip placement left', () => {

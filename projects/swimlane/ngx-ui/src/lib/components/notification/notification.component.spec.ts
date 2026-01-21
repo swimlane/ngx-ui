@@ -1,7 +1,9 @@
+import type { Mock } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { NotificationComponent } from './notification.component';
+import { NotificationModule } from './notification.module';
 
 describe('NotificationComponent', () => {
   let component: NotificationComponent;
@@ -10,7 +12,7 @@ describe('NotificationComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [NotificationComponent]
+      imports: [NotificationModule]
     });
   });
 
@@ -45,10 +47,10 @@ describe('NotificationComponent', () => {
   });
 
   describe('onMouseEnter', () => {
-    let spy: jasmine.Spy;
+    let spy: Mock;
 
     beforeEach(() => {
-      spy = spyOn(component.pause, 'emit');
+      spy = vi.spyOn(component.pause, 'emit');
     });
 
     it('should emit pause when pauseOnHover', () => {
@@ -65,10 +67,10 @@ describe('NotificationComponent', () => {
   });
 
   describe('onMouseLeave', () => {
-    let spy: jasmine.Spy;
+    let spy: Mock;
 
     beforeEach(() => {
-      spy = spyOn(component.resume, 'emit');
+      spy = vi.spyOn(component.resume, 'emit');
     });
 
     it('should emit resume when pauseOnHover', () => {

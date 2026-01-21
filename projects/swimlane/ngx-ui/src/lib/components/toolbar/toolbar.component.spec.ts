@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToolbarComponent } from './toolbar.component';
 import { ToolbarFixtureComponent } from './fixtures/toolbar.fixture';
-import { ToolbarModule } from './toolbar.module';
 
 describe('ToolbarComponent', () => {
   let component1: ToolbarComponent;
@@ -11,18 +10,17 @@ describe('ToolbarComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ToolbarFixtureComponent],
-      imports: [ToolbarModule],
+      imports: [ToolbarFixtureComponent],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
 
-  beforeEach(done => {
+  beforeEach(async () => {
     fixture = TestBed.createComponent(ToolbarFixtureComponent);
     component1 = fixture.componentInstance.toolbar1;
     component2 = fixture.componentInstance.toolbar2;
     fixture.autoDetectChanges();
-    fixture.whenStable().then(() => done());
+    await fixture.whenStable().then(() => {});
   });
 
   it('can load instance', () => {
@@ -50,7 +48,7 @@ describe('ToolbarComponent', () => {
   });
 
   it('clicking on a menu item that has a click function triggers it', () => {
-    const spy = spyOn(component1.toolbarItems[0], 'click');
+    const spy = vi.spyOn(component1.toolbarItems[0], 'click');
     const menuItemEl: HTMLButtonElement = document.querySelector('.ngx-toolbar-menu > li > button');
 
     menuItemEl.click();
@@ -61,7 +59,7 @@ describe('ToolbarComponent', () => {
     const menuItem = component1.toolbarItems[2];
     expect(menuItem.click).toBeUndefined();
 
-    spyOn(component1, 'onMenuClicked').and.callThrough();
+    vi.spyOn(component1, 'onMenuClicked');
 
     const menuItemEl: HTMLButtonElement = document.querySelector('.ngx-toolbar-menu > li:nth-child(2) > button');
     menuItemEl.click();

@@ -1,7 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import * as faker from 'faker/locale/en';
 
 import { AutosizeDirective } from './input-autosize.directive';
@@ -15,8 +13,8 @@ describe('AutosizeDirective', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      declarations: [AutosizeDirectiveFixture, AutosizeDirective],
-      imports: [FormsModule, BrowserAnimationsModule]
+      declarations: [AutosizeDirective],
+      imports: [AutosizeDirectiveFixture]
     });
   });
 

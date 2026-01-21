@@ -8,7 +8,7 @@ import { IconModule } from '../../icon/icon.module';
 
 @NgModule({
   declarations: [ColumnComponent],
-  imports: [CommonModule, InputModule, IconModule, ScrollingModule],
+  imports: [CommonModule, InputModule, IconModule, ScrollingModule, CommonModule],
   exports: [ColumnComponent]
 })
 export class ColumnModule {}

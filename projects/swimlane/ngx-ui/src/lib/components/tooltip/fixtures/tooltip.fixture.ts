@@ -1,13 +1,16 @@
 import { Component, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 
 import { TooltipDirective } from '../tooltip.directive';
+import { TooltipModule } from '../tooltip.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'tooltip-fixture',
   templateUrl: 'tooltip.fixture.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: false
+  standalone: true,
+  imports: [TooltipModule, CommonModule]
 })
 export class ToolTipFixtureComponent {
   @ViewChild(TooltipDirective, { static: true })

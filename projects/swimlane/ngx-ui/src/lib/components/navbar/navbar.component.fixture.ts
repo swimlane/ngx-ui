@@ -1,5 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavbarComponent } from './navbar.component';
+import { NavbarModule } from './navbar.module';
+import { CommonModule } from '@angular/common';
+import { IconModule } from '../icon/icon.module';
 
 @Component({
   selector: 'ngx-navbar-fixture',
@@ -17,7 +20,8 @@ import { NavbarComponent } from './navbar.component';
       <ngx-navbar-item><ngx-icon fontIcon="commandline"></ngx-icon></ngx-navbar-item>
     </ngx-navbar>
   `,
-  standalone: false
+  standalone: true,
+  imports: [NavbarModule, CommonModule, IconModule]
 })
 export class NavbarComponentFixture {
   @ViewChild('navbar1') readonly navbar: NavbarComponent;

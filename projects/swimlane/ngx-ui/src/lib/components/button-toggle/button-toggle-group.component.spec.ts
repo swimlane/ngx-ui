@@ -7,7 +7,7 @@ import {
 import { ButtonToggleGroupComponent } from './button-toggle-group.component';
 import { By } from '@angular/platform-browser';
 
-xdescribe('ButtonToggleGroupComponent', () => {
+describe.skip('ButtonToggleGroupComponent', () => {
   let shallow: Shallow<ButtonToggleGroupComponentFixture>;
   const items: string[] = ['toggle1', 'toggle2', 'toggle3'];
 
@@ -47,13 +47,15 @@ xdescribe('ButtonToggleGroupComponent', () => {
       stopPropagation: () => {}
     };
 
-    spyOn(buttonToggle1.componentInstance, 'onChangeCallback').and.callThrough();
+    vi.spyOn(buttonToggle1.componentInstance, 'onChangeCallback');
     buttonToggle1.query(By.css('button')).triggerEventHandler('click', mockEvent);
-    expect(buttonToggle1.componentInstance.onChangeCallback).toHaveBeenCalledOnceWith(items[0]);
+    expect(buttonToggle1.componentInstance.onChangeCallback).toHaveBeenCalledTimes(1);
+    expect(buttonToggle1.componentInstance.onChangeCallback).toHaveBeenCalledWith(items[0]);
 
-    spyOn(buttonToggle2.componentInstance, 'onChangeCallback').and.callThrough();
+    vi.spyOn(buttonToggle2.componentInstance, 'onChangeCallback');
     buttonToggle2.query(By.css('button')).triggerEventHandler('click', mockEvent);
-    expect(buttonToggle2.componentInstance.onChangeCallback).toHaveBeenCalledOnceWith(items[1]);
+    expect(buttonToggle2.componentInstance.onChangeCallback).toHaveBeenCalledTimes(1);
+    expect(buttonToggle2.componentInstance.onChangeCallback).toHaveBeenCalledWith(items[1]);
   });
 
   it('should disable the button group when disabled', async () => {

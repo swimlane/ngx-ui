@@ -1,9 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-
-import { RadioButtonGroupComponent } from './radiobutton-group.component';
-import { RadioButtonComponent } from './radiobutton.component';
 import { RadioButtonGroupComponentFixture } from './radiobutton-group.component.fixture';
 
 describe('RadioButtonGroupComponent', () => {
@@ -13,8 +9,7 @@ describe('RadioButtonGroupComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [FormsModule],
-      declarations: [RadioButtonGroupComponentFixture, RadioButtonGroupComponent, RadioButtonComponent]
+      imports: [RadioButtonGroupComponentFixture]
     });
   });
 
@@ -34,7 +29,7 @@ describe('RadioButtonGroupComponent', () => {
     });
 
     it('should not set name if not changed', () => {
-      const spy = spyOn(component.radioButtonGroup._radios, 'forEach');
+      const spy = vi.spyOn(component.radioButtonGroup._radios, 'forEach');
       component.radioButtonGroup.name = component.name$.value;
       expect(spy).not.toHaveBeenCalled();
     });
@@ -48,19 +43,18 @@ describe('RadioButtonGroupComponent', () => {
 
   describe('value', () => {
     it('should should not set value if unchanged', () => {
-      const spy = spyOn(component.radioButtonGroup.change, 'emit');
+      const spy = vi.spyOn(component.radioButtonGroup.change, 'emit');
       component.radioButtonGroup.value = component.value;
       expect(spy).not.toHaveBeenCalled();
     });
   });
 
   describe('onRadioSelected', () => {
-    it('should select radio button', done => {
+    it('should select radio button', async () => {
       component.radioButtonGroup.onRadioSelected('one');
 
       setTimeout(() => {
         expect(component.radioButtonGroup.selected.value).toEqual(component.value as any);
-        done();
       });
     });
   });

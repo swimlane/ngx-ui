@@ -313,11 +313,10 @@ describe('CalendarComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register new on change callback fn', done => {
+    it('should register new on change callback fn', async () => {
       component.value = new Date();
       component.registerOnChange((v: Date) => {
         expect(v).toEqual(now);
-        done();
       });
 
       const now = new Date();

@@ -1,7 +1,10 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "typeRoots": ["node_modules/@types", "node_modules"],
+    "types": ["vitest/globals", "node"]
+  },
   "include": [
-    "projects/**/test.ts",
     "projects/**/*.spec.ts"
   ],
   "exclude": [

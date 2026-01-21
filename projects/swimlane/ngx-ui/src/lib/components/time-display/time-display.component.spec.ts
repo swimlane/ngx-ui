@@ -1,12 +1,10 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ClipboardModule } from '@angular/cdk/clipboard';
 
 import { NgxTimeDisplayComponent as TestComponent } from './time-display.component';
-import { MomentModule } from 'ngx-moment';
+import { TimeDisplayModule } from './time-display.module';
 import moment from 'moment-timezone';
 import { InjectionService } from '../../services/injection/injection.service';
-import { TimeZoneModule } from '../../pipes/time-zone/time-zone.module';
 
 const MOON_LANDING = '1969-07-20T20:17:43Z';
 
@@ -364,8 +362,7 @@ describe('NgxTimeDisplayComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [MomentModule, ClipboardModule, TimeZoneModule],
-      declarations: [TestComponent],
+      imports: [TimeDisplayModule],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [InjectionService],
       teardown: { destroyAfterEach: false }
@@ -383,7 +380,7 @@ describe('NgxTimeDisplayComponent', () => {
   });
 
   it('should set defaults', () => {
-    expect(component.datetime).toBeDefined(Date);
+    expect(component.datetime).toBeDefined();
     expect(component.defaultInputTimeZone).toBeUndefined();
     expect(component.timezone).toEqual('America/Los_Angeles');
     expect(component.mode).toBe('timezone');

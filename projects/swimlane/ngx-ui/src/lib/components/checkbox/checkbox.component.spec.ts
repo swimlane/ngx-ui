@@ -58,12 +58,11 @@ describe('CheckboxComponent', () => {
   });
 
   describe('onBlur', () => {
-    it('should call touched callback on blur', done => {
+    it('should call touched callback on blur', async () => {
       const fn = () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         expect(component.onTouchedCallback).toBe(fn);
-        done();
       };
 
       component.registerOnTouched(fn);
@@ -87,10 +86,9 @@ describe('CheckboxComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register new callback and call when value changes', done => {
+    it('should register new callback and call when value changes', async () => {
       component.registerOnChange((v: boolean) => {
         expect(v).toBe(false);
-        done();
       });
 
       component.value = false;

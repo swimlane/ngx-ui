@@ -46,7 +46,7 @@ describe('DialogComponent', () => {
     });
 
     it('should show if visible', () => {
-      const spy = spyOn(component, 'show');
+      const spy = vi.spyOn(component, 'show');
       component.visible = true;
       fixture.detectChanges();
       expect(spy).toHaveBeenCalled();
@@ -61,7 +61,7 @@ describe('DialogComponent', () => {
 
   describe('show', () => {
     it('should be visible and emit open event', () => {
-      const spy = spyOn(component.open, 'emit');
+      const spy = vi.spyOn(component.open, 'emit');
       component.show();
       expect(component.visible).toBeTruthy();
       expect(spy).toHaveBeenCalled();
@@ -70,7 +70,7 @@ describe('DialogComponent', () => {
 
   describe('hide', () => {
     it('should not be visible and emit close event', () => {
-      const spy = spyOn(component.close, 'emit');
+      const spy = vi.spyOn(component.close, 'emit');
       component.hide();
       expect(component.visible).toBeFalsy();
       expect(spy).toHaveBeenCalled();
@@ -79,22 +79,22 @@ describe('DialogComponent', () => {
 
   describe('onEscapeKeyDown', () => {
     it('should call hide when closeOnEscape', () => {
-      const spy = spyOn(component, 'hide');
+      const spy = vi.spyOn(component, 'hide');
       component.closeOnEscape = true;
       component.onEscapeKeyDown();
       expect(spy).toHaveBeenCalled();
     });
 
     it('should not call hide when !closeOnEscape', () => {
-      const spy = spyOn(component, 'hide');
+      const spy = vi.spyOn(component, 'hide');
       component.closeOnEscape = false;
       component.onEscapeKeyDown();
       expect(spy).not.toHaveBeenCalled();
     });
 
     it('should not invoke .hide() if closeOnEscape is true but canClose is false', () => {
-      const hideSpy = spyOn(component, 'hide');
-      const beforeCloseSpy = jasmine.createSpy('beforeClose', () => false);
+      const hideSpy = vi.spyOn(component, 'hide');
+      const beforeCloseSpy = vi.fn(() => false);
       component.beforeClose = beforeCloseSpy;
       component.closeOnEscape = true;
       component.onEscapeKeyDown();

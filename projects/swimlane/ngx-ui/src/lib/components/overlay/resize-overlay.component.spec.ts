@@ -55,7 +55,7 @@ describe('ResizeOverlayComponent', () => {
 
       component.onClick(ev);
 
-      expect(component.disabled).toBeFalse();
+      expect(component.disabled).toBe(false);
     });
 
     it('should change disabled value if meta and shift key are pressed', () => {
@@ -64,7 +64,7 @@ describe('ResizeOverlayComponent', () => {
 
       component.onClick(ev);
 
-      expect(component.disabled).toBeTrue();
+      expect(component.disabled).toBe(true);
     });
   });
 });

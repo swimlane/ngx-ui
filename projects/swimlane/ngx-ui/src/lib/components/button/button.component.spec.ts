@@ -31,8 +31,8 @@ describe('ButtonComponent', () => {
   });
 
   it('should update state and promise on change', () => {
-    const stateSpy = spyOn(component, 'updateState');
-    const promiseSpy = spyOn(component, 'updatePromise');
+    const stateSpy = vi.spyOn(component, 'updateState');
+    const promiseSpy = vi.spyOn(component, 'updatePromise');
 
     component.ngOnChanges();
 
@@ -42,7 +42,7 @@ describe('ButtonComponent', () => {
 
   describe('state', () => {
     it('should set state', () => {
-      const spy = spyOn(component.fail$, 'next');
+      const spy = vi.spyOn(component.fail$, 'next');
       component.state = ButtonState.Fail;
       expect(spy).toHaveBeenCalledWith(true);
     });
@@ -50,13 +50,13 @@ describe('ButtonComponent', () => {
 
   describe('updatePromise', () => {
     it('should not update when undefined', () => {
-      const spy = spyOn(component, 'updateState');
+      const spy = vi.spyOn(component, 'updateState');
       component.updatePromise();
       expect(spy).not.toHaveBeenCalled();
     });
 
-    it('should update and resolve', done => {
-      const spy = spyOn(component, 'updateState');
+    it('should update and resolve', async () => {
+      const spy = vi.spyOn(component, 'updateState');
       component.promise = new Promise(resolve => {
         resolve('');
       });
@@ -64,12 +64,11 @@ describe('ButtonComponent', () => {
       component.updatePromise().finally(() => {
         expect(component.state).toBe(ButtonState.Success);
         expect(spy).toHaveBeenCalledTimes(1);
-        done();
       });
     });
 
-    it('should update and reject', done => {
-      const spy = spyOn(component, 'updateState');
+    it('should update and reject', async () => {
+      const spy = vi.spyOn(component, 'updateState');
       component.promise = new Promise(() => {
         throw new Error();
       });
@@ -77,7 +76,6 @@ describe('ButtonComponent', () => {
       component.updatePromise().finally(() => {
         expect(component.state).toBe(ButtonState.Fail);
         expect(spy).toHaveBeenCalledTimes(1);
-        done();
       });
     });
   });
@@ -90,7 +88,7 @@ describe('ButtonComponent', () => {
     });
 
     it('should reset state when not active', () => {
-      const spy = spyOn(window, 'setTimeout').and.callThrough();
+      const spy = vi.spyOn(window, 'setTimeout');
       component.state = ButtonState.InProgress;
       component.updateState();
       expect(spy).toHaveBeenCalled();

@@ -1,11 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { SliderComponent } from '../slider.component';
+import { SliderModule } from '../slider.module';
+import { FormsModule } from '@angular/forms/types/forms';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'slider-fixture',
   templateUrl: 'slider.fixture.html',
-  standalone: false
+  standalone: true,
+  imports: [SliderModule, FormsModule]
 })
 export class SliderFixtureComponent {
   @ViewChild('defaultSlider', { static: true }) defaultSlider: SliderComponent;

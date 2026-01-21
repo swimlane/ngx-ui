@@ -10,17 +10,16 @@ describe('SliderComponent', () => {
   let multiSlider: SliderComponent;
   let fixture: ComponentFixture<SliderFixtureComponent>;
 
-  beforeEach(done => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
-      declarations: [SliderFixtureComponent],
-      imports: [SliderModule, FormsModule]
+      imports: [SliderModule, FormsModule, SliderFixtureComponent]
     });
 
     fixture = TestBed.createComponent(SliderFixtureComponent);
     defaultSlider = fixture.componentInstance.defaultSlider;
     multiSlider = fixture.componentInstance.multiSlider;
     fixture.autoDetectChanges();
-    fixture.whenStable().then(() => done());
+    await fixture.whenStable().then(() => {});
   });
 
   it('can load instance', () => {
@@ -95,8 +94,8 @@ describe('SliderComponent', () => {
   });
 
   it("setting values to what's already in _values doesnt trigger a change emit", () => {
-    spyOn(defaultSlider.change, 'emit');
-    spyOn(defaultSlider, 'setValues');
+    vi.spyOn(defaultSlider.change, 'emit');
+    vi.spyOn(defaultSlider, 'setValues');
     defaultSlider.value = 0;
 
     expect(defaultSlider.change.emit).not.toHaveBeenCalled();
@@ -104,8 +103,8 @@ describe('SliderComponent', () => {
   });
 
   it('setting a specific value in multislider updates that value', () => {
-    spyOn(multiSlider.change, 'emit');
-    spyOn(multiSlider, 'setValues');
+    vi.spyOn(multiSlider.change, 'emit');
+    vi.spyOn(multiSlider, 'setValues');
     multiSlider.setValue(1, 0);
 
     expect(multiSlider.change.emit).toHaveBeenCalled();
@@ -114,8 +113,8 @@ describe('SliderComponent', () => {
   });
 
   it('setting a specific value in multislider to already set value doesnt trigger a change emit', () => {
-    spyOn(multiSlider.change, 'emit');
-    spyOn(multiSlider, 'setValues');
+    vi.spyOn(multiSlider.change, 'emit');
+    vi.spyOn(multiSlider, 'setValues');
     multiSlider.setValue(45, 0);
 
     expect(multiSlider.change.emit).not.toHaveBeenCalled();
@@ -123,14 +122,14 @@ describe('SliderComponent', () => {
   });
 
   it("writing a value to what's already in _values doesn't call setvalues", () => {
-    spyOn(defaultSlider, 'setValues');
+    vi.spyOn(defaultSlider, 'setValues');
     defaultSlider.writeValue(0);
 
     expect(defaultSlider.setValues).not.toHaveBeenCalled();
   });
 
   it('setting a value to a new value triggers a change emit', () => {
-    spyOn(defaultSlider.change, 'emit');
+    vi.spyOn(defaultSlider.change, 'emit');
     defaultSlider.value = 1;
 
     expect(defaultSlider.change.emit).toHaveBeenCalled();
@@ -157,7 +156,7 @@ describe('SliderComponent', () => {
   });
 
   it('onChange method triggers change emitter', () => {
-    spyOn(multiSlider.change, 'emit');
+    vi.spyOn(multiSlider.change, 'emit');
     multiSlider.onChange(new Event('change'));
 
     expect(multiSlider.change.emit).toHaveBeenCalled();
