@@ -120,8 +120,8 @@ export class DateTimeComponent implements OnDestroy, OnChanges, ControlValueAcce
         const sameDiff: moment.unitOfTime.StartOf = this.precision
           ? this.precision
           : this.inputType === DateTimeType.date
-          ? 'day'
-          : 'second';
+            ? 'day'
+            : 'second';
         isSame = this._value ? date.isSame(this._value, sameDiff) : false;
       }
     }

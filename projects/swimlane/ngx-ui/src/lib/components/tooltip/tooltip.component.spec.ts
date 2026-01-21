@@ -39,7 +39,7 @@ describe('TooltipContentComponent', () => {
           ({
             height: 10,
             width: 10
-          } as any)
+          }) as any
       } as any
     };
 

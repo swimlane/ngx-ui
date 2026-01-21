@@ -367,29 +367,35 @@ export class DateRangePickerComponent implements OnInit, OnChanges {
     this.timeValueStart = {};
     if (start) {
       const startMoment = this.createMoment(start);
-      this.timeValueStart = Object.keys(this.timezones).reduce((timezoneAcc, timezoneKey) => {
-        const timezoneValue = this.timezones[timezoneKey] || guessTimeZone;
-        const dateInTimezone = startMoment.clone().tz(timezoneValue);
-        timezoneAcc[timezoneKey] = {
-          key: timezoneKey,
-          clip: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime),
-          display: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime)
-        };
-        return timezoneAcc;
-      }, {} as Record<string, { key: string; clip: string; display: string }>);
+      this.timeValueStart = Object.keys(this.timezones).reduce(
+        (timezoneAcc, timezoneKey) => {
+          const timezoneValue = this.timezones[timezoneKey] || guessTimeZone;
+          const dateInTimezone = startMoment.clone().tz(timezoneValue);
+          timezoneAcc[timezoneKey] = {
+            key: timezoneKey,
+            clip: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime),
+            display: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime)
+          };
+          return timezoneAcc;
+        },
+        {} as Record<string, { key: string; clip: string; display: string }>
+      );
     }
     if (end) {
       const endMoment = this.createMoment(end);
-      this.timeValueEnd = Object.keys(this.timezones).reduce((timezoneAcc, timezoneKey) => {
-        const timezoneValue = this.timezones[timezoneKey] || guessTimeZone;
-        const dateInTimezone = endMoment.clone().tz(timezoneValue);
-        timezoneAcc[timezoneKey] = {
-          key: timezoneKey,
-          clip: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime),
-          display: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime)
-        };
-        return timezoneAcc;
-      }, {} as Record<string, { key: string; clip: string; display: string }>);
+      this.timeValueEnd = Object.keys(this.timezones).reduce(
+        (timezoneAcc, timezoneKey) => {
+          const timezoneValue = this.timezones[timezoneKey] || guessTimeZone;
+          const dateInTimezone = endMoment.clone().tz(timezoneValue);
+          timezoneAcc[timezoneKey] = {
+            key: timezoneKey,
+            clip: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime),
+            display: dateInTimezone.format(DATE_DISPLAY_FORMATS.fullDateTime)
+          };
+          return timezoneAcc;
+        },
+        {} as Record<string, { key: string; clip: string; display: string }>
+      );
     }
     this.cdr.detectChanges();
   }

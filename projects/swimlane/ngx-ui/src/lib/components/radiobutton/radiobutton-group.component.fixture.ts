@@ -10,9 +10,9 @@ import { CommonModule } from '@angular/common';
   template: `
     <ngx-radiobutton-group tabindex="0" [name]="name$ | async" [(ngModel)]="value" [disabled]="disabled$ | async">
       @for (option of options; track option) {
-      <ngx-radiobutton [value]="option">
-        {{ option }}
-      </ngx-radiobutton>
+        <ngx-radiobutton [value]="option">
+          {{ option }}
+        </ngx-radiobutton>
       }
     </ngx-radiobutton-group>
   `,

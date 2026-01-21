@@ -74,7 +74,9 @@ $dropdown-color: var(--grey-100);
     margin-top: 0;
     opacity: 0;
     display: none;
-    transition: visibility 0s, opacity 0.25s ease-out;
+    transition:
+      visibility 0s,
+      opacity 0.25s ease-out;
 
     &::before {
       z-index: -1;

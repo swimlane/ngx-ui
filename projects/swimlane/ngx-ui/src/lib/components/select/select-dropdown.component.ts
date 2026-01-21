@@ -137,7 +137,10 @@ export class SelectDropdownComponent implements AfterViewInit {
   private _filterQuery: string;
   private _focusIndex: number;
 
-  constructor(private readonly elementRef: ElementRef, private readonly cdr: ChangeDetectorRef) {}
+  constructor(
+    private readonly elementRef: ElementRef,
+    private readonly cdr: ChangeDetectorRef
+  ) {}
 
   ngAfterViewInit(): void {
     if (this.filterable && !this.tagging) {
