@@ -23,10 +23,7 @@ export class JsonEditor implements OnChanges {
 
   errors: any[];
 
-  constructor(
-    protected schemaValidatorService: SchemaValidatorService,
-    protected cdr: ChangeDetectorRef
-  ) {}
+  constructor(protected schemaValidatorService: SchemaValidatorService, protected cdr: ChangeDetectorRef) {}
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.schema) {

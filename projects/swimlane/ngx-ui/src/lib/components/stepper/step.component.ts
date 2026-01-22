@@ -109,10 +109,7 @@ export class StepComponent implements OnInit {
   private _icon?: string;
   private _completeIcon?: string;
 
-  constructor(
-    private readonly _cdr: ChangeDetectorRef,
-    private readonly _el: ElementRef<HTMLElement>
-  ) {}
+  constructor(private readonly _cdr: ChangeDetectorRef, private readonly _el: ElementRef<HTMLElement>) {}
 
   ngOnInit() {
     this._cdr.markForCheck();

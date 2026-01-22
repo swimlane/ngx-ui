@@ -65,10 +65,7 @@ export class NavbarItemComponent {
   private _total?: number;
   private _index?: number;
 
-  constructor(
-    private readonly _cdr: ChangeDetectorRef,
-    private readonly _el: ElementRef<HTMLElement>
-  ) {}
+  constructor(private readonly _cdr: ChangeDetectorRef, private readonly _el: ElementRef<HTMLElement>) {}
 
   setActive() {
     this.active = this.index;

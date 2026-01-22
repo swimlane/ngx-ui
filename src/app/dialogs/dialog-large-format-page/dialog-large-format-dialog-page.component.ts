@@ -44,10 +44,7 @@ export class DialogLargeFormatDialogPageComponent {
   private dialogRef?: ComponentRef<DialogComponent>;
   private elRef?: ElementRef<HTMLElement>;
 
-  constructor(
-    public dialogMngr: DialogService,
-    private drawerService: DrawerService
-  ) {}
+  constructor(public dialogMngr: DialogService, private drawerService: DrawerService) {}
 
   openDialog(options) {
     this.dialogRef = this.dialogMngr.create(options);

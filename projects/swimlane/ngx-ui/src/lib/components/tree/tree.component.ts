@@ -220,7 +220,7 @@ export class TreeComponent implements AfterContentInit, OnDestroy, OnChanges {
           expanded: node.expanded,
           selectable: node.selectable,
           depth: node.depth
-        }) as TreeNode
+        } as TreeNode)
     );
     return this.applyExpandChange(tmpTree);
   }

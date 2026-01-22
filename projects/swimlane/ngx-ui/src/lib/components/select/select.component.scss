@@ -359,9 +359,7 @@ $color-chip-text: #ffffff;
     margin-top: -1em;
     opacity: 0;
     display: none;
-    transition:
-      visibility 0s,
-      opacity 0.25s ease-out;
+    transition: visibility 0s, opacity 0.25s ease-out;
 
     li {
       max-width: 100%;

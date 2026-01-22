@@ -32,12 +32,12 @@ import { SelectModule } from './select.module';
       [disabled]="disabled$ | async"
     >
       @for (opt of options$ | async; track opt) {
-        <ngx-select-option
-          [name]="opt.name"
-          [value]="opt.value"
-          [disabled]="opt.disabled"
-          [hidden]="opt.hidden"
-        ></ngx-select-option>
+      <ngx-select-option
+        [name]="opt.name"
+        [value]="opt.value"
+        [disabled]="opt.disabled"
+        [hidden]="opt.hidden"
+      ></ngx-select-option>
       }
     </ngx-select>
   `,

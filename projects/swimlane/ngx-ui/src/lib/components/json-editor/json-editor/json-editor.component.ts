@@ -33,10 +33,7 @@ export class JsonEditorComponent extends JsonEditor {
   @ContentChildren(JsonEditorNodeComponent)
   nodeElms: QueryList<JsonEditorNodeComponent>;
 
-  constructor(
-    protected schemaValidatorService: SchemaValidatorService,
-    protected cdr: ChangeDetectorRef
-  ) {
+  constructor(protected schemaValidatorService: SchemaValidatorService, protected cdr: ChangeDetectorRef) {
     super(schemaValidatorService, cdr);
   }
 }

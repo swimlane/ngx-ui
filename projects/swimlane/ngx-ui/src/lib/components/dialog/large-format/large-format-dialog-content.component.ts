@@ -68,10 +68,7 @@ export class LargeFormatDialogContentComponent implements OnInit {
   @ViewChild('myTemplate', { static: true }) myTemplate: ElementRef;
   imageTemplate = {};
 
-  constructor(
-    public elementRef: ElementRef,
-    private readonly alertService: AlertService
-  ) {
+  constructor(public elementRef: ElementRef, private readonly alertService: AlertService) {
     if (elementRef.nativeElement.tagName.toLowerCase() === 'ngx-medium-format-dialog-content') {
       this.format = 'medium';
     }

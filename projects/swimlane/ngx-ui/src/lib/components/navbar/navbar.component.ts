@@ -111,10 +111,7 @@ export class NavbarComponent implements AfterViewInit, OnDestroy {
     return this._el.nativeElement.nodeName.toLowerCase();
   }
 
-  constructor(
-    private readonly _el: ElementRef<HTMLElement>,
-    private readonly _cdr: ChangeDetectorRef
-  ) {
+  constructor(private readonly _el: ElementRef<HTMLElement>, private readonly _cdr: ChangeDetectorRef) {
     this._el.nativeElement.classList.add(this._name);
   }
 

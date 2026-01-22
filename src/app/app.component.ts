@@ -269,11 +269,7 @@ export class AppComponent {
 
   navExpanded = true;
 
-  constructor(
-    private drawerService: DrawerService,
-    private loadingService: LoadingService,
-    private router: Router
-  ) {
+  constructor(private drawerService: DrawerService, private loadingService: LoadingService, private router: Router) {
     Prism.plugins.customClass.prefix('prism--');
 
     // Adding loading component in router
