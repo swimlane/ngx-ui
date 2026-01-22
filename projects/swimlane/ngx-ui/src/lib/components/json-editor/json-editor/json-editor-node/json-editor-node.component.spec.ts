@@ -42,7 +42,7 @@ describe('JsonEditorNodeComponent', () => {
   });
   describe('ngOnChanges', () => {
     it('makes expected calls', () => {
-      vi.spyOn(component, 'processErrors');
+      spyOn(component, 'processErrors');
       component.ngOnChanges({ errors: {} } as any);
       expect(component.processErrors).toHaveBeenCalled();
     });
@@ -50,7 +50,7 @@ describe('JsonEditorNodeComponent', () => {
   describe('openCodeEditor', () => {
     it('makes expected calls', () => {
       const dialogServiceStub: any = fixture.debugElement.injector.get(DialogService);
-      vi.spyOn(dialogServiceStub, 'create');
+      spyOn(dialogServiceStub, 'create');
       component.openCodeEditor();
       expect(dialogServiceStub.create).toHaveBeenCalled();
     });
@@ -58,7 +58,7 @@ describe('JsonEditorNodeComponent', () => {
   describe('closeCodeEditor', () => {
     it('makes expected calls', () => {
       const dialogServiceStub: any = fixture.debugElement.injector.get(DialogService);
-      vi.spyOn(dialogServiceStub, 'destroy');
+      spyOn(dialogServiceStub, 'destroy');
       component.closeCodeEditor();
       expect(dialogServiceStub.destroy).toHaveBeenCalled();
     });

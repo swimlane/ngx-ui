@@ -5,7 +5,7 @@ import { AlignmentTypes } from '../alignment-types.enum';
 describe('shouldFlip', () => {
   describe('left', () => {
     it('should flip placement left', () => {
-      vi.spyOn(window as any, 'innerWidth').mockReturnValue(0);
+      spyOnProperty(window, 'innerWidth').and.returnValue(0);
       expect(
         shouldFlip(
           { left: 0, right: 0, width: 10 },
@@ -32,7 +32,7 @@ describe('shouldFlip', () => {
 
   describe('right', () => {
     it('should flip placement right', () => {
-      vi.spyOn(window as any, 'innerWidth').mockReturnValue(0);
+      spyOnProperty(window, 'innerWidth').and.returnValue(0);
       expect(
         shouldFlip(
           { left: 0, right: 0, width: 10 },
@@ -59,7 +59,7 @@ describe('shouldFlip', () => {
 
   describe('top', () => {
     it('should flip placement top', () => {
-      vi.spyOn(window as any, 'innerHeight').mockReturnValue(0);
+      spyOnProperty(window, 'innerHeight').and.returnValue(0);
       expect(
         shouldFlip(
           { top: 0, bottom: 0, height: 10 },
@@ -86,7 +86,7 @@ describe('shouldFlip', () => {
 
   describe('bottom', () => {
     it('should flip placement bottom', () => {
-      vi.spyOn(window as any, 'innerHeight').mockReturnValue(0);
+      spyOnProperty(window, 'innerHeight').and.returnValue(0);
       expect(
         shouldFlip(
           { top: 0, bottom: 0, height: 10 },

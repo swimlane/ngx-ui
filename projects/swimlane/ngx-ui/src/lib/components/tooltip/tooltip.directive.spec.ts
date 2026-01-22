@@ -43,13 +43,13 @@ describe('TooltipDirective', () => {
 
   describe('onFocus', () => {
     it('should show tooltip', () => {
-      const spy = vi.spyOn(directive, 'showTooltip');
+      const spy = spyOn(directive, 'showTooltip');
       directive.onFocus();
       expect(spy).toHaveBeenCalled();
     });
 
     it('should not show tooltip', () => {
-      const spy = vi.spyOn(directive, 'showTooltip');
+      const spy = spyOn(directive, 'showTooltip');
       directive.tooltipShowEvent = ShowTypes.mouseover;
       directive.onFocus();
       expect(spy).not.toHaveBeenCalled();
@@ -58,13 +58,13 @@ describe('TooltipDirective', () => {
 
   describe('onBlur', () => {
     it('should hide tooltip', () => {
-      const spy = vi.spyOn(directive, 'hideTooltip');
+      const spy = spyOn(directive, 'hideTooltip');
       directive.onBlur();
       expect(spy).toHaveBeenCalled();
     });
 
     it('should not hide tooltip', () => {
-      const spy = vi.spyOn(directive, 'hideTooltip');
+      const spy = spyOn(directive, 'hideTooltip');
       directive.tooltipShowEvent = ShowTypes.mouseover;
       directive.onBlur();
       expect(spy).not.toHaveBeenCalled();
@@ -73,13 +73,13 @@ describe('TooltipDirective', () => {
 
   describe('onMouseEvent', () => {
     it('should show tooltip', () => {
-      const spy = vi.spyOn(directive, 'showTooltip');
+      const spy = spyOn(directive, 'showTooltip');
       directive.onMouseEnter();
       expect(spy).toHaveBeenCalled();
     });
 
     it('should not show tooltip', () => {
-      const spy = vi.spyOn(directive, 'showTooltip');
+      const spy = spyOn(directive, 'showTooltip');
       directive.tooltipShowEvent = ShowTypes.focus;
       directive.onMouseEnter();
       expect(spy).not.toHaveBeenCalled();
@@ -88,13 +88,13 @@ describe('TooltipDirective', () => {
 
   describe('onMouseLeave', () => {
     it('should hide tooltip', () => {
-      const spy = vi.spyOn(directive, 'hideTooltip');
+      const spy = spyOn(directive, 'hideTooltip');
       directive.onMouseLeave({ toElement: document.createElement('div') });
       expect(spy).toHaveBeenCalled();
     });
 
     it('should not hide tooltip', () => {
-      const spy = vi.spyOn(directive, 'hideTooltip');
+      const spy = spyOn(directive, 'hideTooltip');
       directive.tooltipShowEvent = ShowTypes.focus;
       directive.onMouseLeave({ toElement: document.createElement('div') });
       expect(spy).not.toHaveBeenCalled();
@@ -103,27 +103,27 @@ describe('TooltipDirective', () => {
 
   describe('onMouseClick', () => {
     it('should hide tooltip', () => {
-      const spy = vi.spyOn(directive, 'hideTooltip');
+      const spy = spyOn(directive, 'hideTooltip');
       directive.tooltipShowEvent = ShowTypes.mouseover;
       directive.onMouseClick();
       expect(spy).toHaveBeenCalled();
     });
 
     it('should not hide tooltip', () => {
-      const spy = vi.spyOn(directive, 'hideTooltip');
+      const spy = spyOn(directive, 'hideTooltip');
       directive.onMouseClick();
       expect(spy).not.toHaveBeenCalled();
     });
 
     it('should show tooltip - ShowTypes.click', () => {
-      const spy = vi.spyOn(directive, 'showTooltip');
+      const spy = spyOn(directive, 'showTooltip');
       directive.tooltipShowEvent = ShowTypes.click;
       directive.onMouseClick();
       expect(spy).toHaveBeenCalled();
     });
 
     it('should hide tooltip - ShowTypes.click', () => {
-      const spy = vi.spyOn(directive, 'hideTooltip');
+      const spy = spyOn(directive, 'hideTooltip');
       directive.tooltipShowEvent = ShowTypes.click;
       // open tooltip
       directive.onMouseClick();
@@ -134,18 +134,19 @@ describe('TooltipDirective', () => {
   });
 
   describe('showTooltip', () => {
-    it('should show tooltip', async () => {
-      const spy = vi.spyOn(directive.show, 'emit');
+    it('should show tooltip', done => {
+      const spy = spyOn(directive.show, 'emit');
       directive.showTooltip(true);
 
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();
+        done();
       });
     });
 
-    it('should add hide listeners to component if exists', async () => {
-      const spy = vi.spyOn(directive, 'addHideListeners');
-      vi.spyOn(service, 'create').mockReturnValue({
+    it('should add hide listeners to component if exists', done => {
+      const spy = spyOn(directive, 'addHideListeners').and.callThrough();
+      spyOn(service, 'create').and.returnValue({
         instance: {
           element: {
             nativeElement: document.createElement('div')
@@ -158,12 +159,13 @@ describe('TooltipDirective', () => {
 
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();
+        done();
       }, 20);
     });
 
-    it('should add hide listeners to component if exists without tooltipCloseOnMouseLeave', async () => {
-      const spy = vi.spyOn(directive, 'addHideListeners');
-      vi.spyOn(service, 'create').mockReturnValue({
+    it('should add hide listeners to component if exists without tooltipCloseOnMouseLeave', done => {
+      const spy = spyOn(directive, 'addHideListeners').and.callThrough();
+      spyOn(service, 'create').and.returnValue({
         instance: {
           element: {
             nativeElement: document.createElement('div')
@@ -176,12 +178,13 @@ describe('TooltipDirective', () => {
 
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();
+        done();
       }, 20);
     });
 
-    it('should add hide listeners to component if exists without tooltipCloseOnClickOutside', async () => {
-      const spy = vi.spyOn(directive, 'addHideListeners');
-      vi.spyOn(service, 'create').mockReturnValue({
+    it('should add hide listeners to component if exists without tooltipCloseOnClickOutside', done => {
+      const spy = spyOn(directive, 'addHideListeners').and.callThrough();
+      spyOn(service, 'create').and.returnValue({
         instance: {
           element: {
             nativeElement: document.createElement('div')
@@ -194,11 +197,12 @@ describe('TooltipDirective', () => {
 
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();
+        done();
       }, 20);
     });
 
     it('should not show tooltip when component exists', () => {
-      const spy = vi.spyOn(directive.show, 'emit');
+      const spy = spyOn(directive.show, 'emit');
       directive.tooltipDisabled = true;
       directive.showTooltip();
       expect(spy).not.toHaveBeenCalled();
@@ -206,9 +210,9 @@ describe('TooltipDirective', () => {
   });
 
   describe('hideTooltip', () => {
-    it('should hide tooltip with timeout set', async () => {
-      const spy = vi.spyOn(directive.hide, 'emit');
-      vi.spyOn(service, 'create').mockReturnValue({
+    it('should hide tooltip with timeout set', done => {
+      const spy = spyOn(directive.hide, 'emit');
+      spyOn(service, 'create').and.returnValue({
         instance: {
           element: {
             nativeElement: document.createElement('div')
@@ -223,6 +227,7 @@ describe('TooltipDirective', () => {
 
         setTimeout(() => {
           expect(spy).toHaveBeenCalled();
+          done();
         }, directive.tooltipHideTimeout);
       });
     });

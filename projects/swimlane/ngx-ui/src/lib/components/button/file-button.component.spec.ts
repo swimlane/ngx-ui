@@ -8,7 +8,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 const uploader = new FileUploader({ url: '' });
 
-describe.skip('FileButtonComponent', () => {
+xdescribe('FileButtonComponent', () => {
   let shallow: Shallow<FileButtonComponent>;
   let rendering: Rendering<FileButtonComponent, unknown>;
 

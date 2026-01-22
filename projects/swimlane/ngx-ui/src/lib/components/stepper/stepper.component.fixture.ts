@@ -3,7 +3,6 @@ import { Component, ChangeDetectionStrategy, ViewChild } from '@angular/core';
 
 import { StepperComponent } from './stepper.component';
 import { StepperPosition } from './stepper-position.enum';
-import { StepperModule } from './stepper.module';
 
 @Component({
   selector: 'ngx-stepper-fixture',
@@ -15,8 +14,7 @@ import { StepperModule } from './stepper.module';
     </ngx-stepper>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [StepperModule]
+  standalone: false
 })
 export class StepperComponentFixture {
   @ViewChild(StepperComponent, { static: false })

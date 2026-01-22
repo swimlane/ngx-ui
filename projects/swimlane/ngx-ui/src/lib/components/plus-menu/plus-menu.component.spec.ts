@@ -16,10 +16,10 @@ const expectHtmlEquals = (actual: string, expected: string, options?: any) => {
   actual = getDiffableHTML(actual, options);
   expected = getDiffableHTML(expected, options);
 
-  expect(actual).toEqual(expected);
+  expect(actual).toEqual(expected, 'Expected HTML to match');
 };
 
-describe.skip('PlusMenuComponent', () => {
+xdescribe('PlusMenuComponent', () => {
   let shallow: Shallow<PlusMenuComponent>;
 
   const upload = {
@@ -69,7 +69,7 @@ describe.skip('PlusMenuComponent', () => {
 
       it('starts closed', () => {
         expect(rendering.instance.open).toBe(false);
-        expect(rendering.element.nativeElement.classList.contains('open')).toBe(false);
+        expect(rendering.element.nativeElement).not.toHaveClass('open');
       });
 
       it('opens', fakeAsync(() => {
@@ -78,7 +78,7 @@ describe.skip('PlusMenuComponent', () => {
         rendering.fixture.detectChanges();
 
         expect(rendering.instance.open).toBe(true);
-        expect(rendering.element.nativeElement.classList.contains('open')).toBe(true);
+        expect(rendering.element.nativeElement).toHaveClass('open');
       }));
 
       it('renders correct item content', () => {

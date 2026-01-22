@@ -13,7 +13,7 @@ describe('calculateHorizontalAlignment', () => {
   });
 
   it('should get horizontal alignment when width exceeds window width', () => {
-    vi.spyOn(window as any, 'innerWidth').mockReturnValue(10);
+    spyOnProperty(window, 'innerWidth').and.returnValue(10);
     expect(
       calculateHorizontalAlignment(
         { height: 10, width: 10, left: 0 },

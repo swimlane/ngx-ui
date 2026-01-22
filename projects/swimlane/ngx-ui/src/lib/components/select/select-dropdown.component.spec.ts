@@ -74,11 +74,12 @@ describe('SelectDropdownComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should focus filter input', async () => {
-      const spy = vi.spyOn(component.filterInput?.nativeElement, 'focus');
+    it('should focus filter input', done => {
+      const spy = spyOn(component.filterInput?.nativeElement, 'focus');
       component.ngAfterViewInit();
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();
+        done();
       }, 50);
     });
   });
@@ -140,14 +141,14 @@ describe('SelectDropdownComponent', () => {
     });
 
     it('should emit event and value', () => {
-      const spy = vi.spyOn(component.keyup, 'emit');
+      const spy = spyOn(component.keyup, 'emit');
       component.onInputKeyUp(event);
       expect(spy).toHaveBeenCalledWith({ event, value: '' });
     });
 
     it('should close when escape pressed', () => {
       event.key = event.code = KeyboardKeys.ESCAPE;
-      const spy = vi.spyOn(component.close, 'emit');
+      const spy = spyOn(component.close, 'emit');
       component.onInputKeyUp(event);
       expect(spy).toHaveBeenCalled();
     });
@@ -166,7 +167,7 @@ describe('SelectDropdownComponent', () => {
     });
 
     it('should call updateFilterQueryIsInOptions', fakeAsync(() => {
-      const spy = vi.spyOn(component, 'updateFilterQueryIsInOptions');
+      const spy = spyOnProperty(component, 'updateFilterQueryIsInOptions').and.callThrough();
       component.onInputKeyUp(event);
       flush();
       fixture.detectChanges();
@@ -290,14 +291,14 @@ describe('SelectDropdownComponent', () => {
     });
 
     it('should select element on enter', () => {
-      const spy = vi.spyOn(component.selection, 'emit');
+      const spy = spyOn(component.selection, 'emit');
       event.key = event.code = KeyboardKeys.ENTER;
       component.onOptionKeyDown(event);
       expect(spy).toHaveBeenCalled();
     });
 
     it('should do nothing', () => {
-      const spy = vi.spyOn(component.selection, 'emit');
+      const spy = spyOn(component.selection, 'emit');
       const idx = component.focusIndex;
       component.onOptionKeyDown(event);
       expect(spy).not.toHaveBeenCalled();
@@ -318,8 +319,8 @@ describe('SelectDropdownComponent', () => {
     });
 
     it('should select element and close', () => {
-      const selectSpy = vi.spyOn(component.selection, 'emit');
-      const closeSpy = vi.spyOn(component.close, 'emit');
+      const selectSpy = spyOn(component.selection, 'emit');
+      const closeSpy = spyOn(component.close, 'emit');
       component.onAddClicked(event, '');
       expect(selectSpy).toHaveBeenCalled();
       expect(closeSpy).toHaveBeenCalled();

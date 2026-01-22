@@ -1,17 +1,17 @@
-import type { Mock } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { ToggleComponent } from './toggle.component';
-import { ToggleModule } from './toggle.module';
 
 describe('ToggleComponent', () => {
   let component: ToggleComponent;
   let fixture: ComponentFixture<ToggleComponent>;
-  let changeSpy: Mock;
+  let changeSpy: jasmine.Spy;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ToggleModule]
+      declarations: [ToggleComponent],
+      imports: [FormsModule]
     });
 
     fixture = TestBed.createComponent(ToggleComponent);
@@ -20,7 +20,7 @@ describe('ToggleComponent', () => {
 
   beforeEach(() => {
     const change = { onChange: () => undefined };
-    changeSpy = vi.spyOn(change, 'onChange');
+    changeSpy = spyOn(change, 'onChange').and.callThrough();
     component.registerOnChange(change.onChange);
   });
 
@@ -82,9 +82,10 @@ describe('ToggleComponent', () => {
     expect(component.value).toEqual(false);
   });
 
-  it('onBlur calls registered touch callback', async () => {
+  it('onBlur calls registered touch callback', done => {
     const touchCallback = () => {
       expect((component as any).onTouchedCallback).toBe(touchCallback);
+      done();
     };
 
     component.registerOnTouched(touchCallback);
@@ -132,7 +133,7 @@ describe('ToggleComponent', () => {
   });
 
   it('emitChange should emit the change event', () => {
-    vi.spyOn(component.change, 'emit');
+    spyOn(component.change, 'emit');
 
     component['emitChange']();
 

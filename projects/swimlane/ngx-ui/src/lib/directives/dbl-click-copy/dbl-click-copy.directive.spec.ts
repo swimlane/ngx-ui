@@ -16,8 +16,8 @@ describe('DblClickCopyDirective', () => {
   });
 
   it('should copy element content', () => {
-    const spyEvent = vi.spyOn(directive.onCopy, 'emit');
-    const spyExec = vi.spyOn(document, 'execCommand');
+    const spyEvent = spyOn(directive.onCopy, 'emit');
+    const spyExec = spyOn(document, 'execCommand');
 
     directive.onDblClick();
     expect(spyEvent).toHaveBeenCalled();

@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA, Component } from '@angular/core';
 
 import { ColumnComponent } from './column.component';
-import { ColumnModule } from './column.module';
 
 @Component({
   selector: 'app-column-test-content',
@@ -50,7 +49,7 @@ describe('ColumnComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [ColumnModule]
+      declarations: [ColumnComponent]
     });
   });
 
@@ -123,7 +122,7 @@ describe('ColumnComponent', () => {
           }
         ]
       };
-      vi.spyOn(component, 'displayContent');
+      spyOn(component, 'displayContent').and.callThrough();
       component.ngOnChanges({
         column: {
           currentValue: contentChild,
@@ -189,7 +188,7 @@ describe('ColumnComponent', () => {
           }
         ]
       };
-      vi.spyOn(component.tabClick, 'emit');
+      spyOn(component.tabClick, 'emit');
       component.ngOnChanges({
         column: {
           currentValue: activeColumn,
@@ -231,7 +230,7 @@ describe('ColumnComponent', () => {
           }
         ]
       };
-      vi.spyOn(component.tabClick, 'emit');
+      spyOn(component.tabClick, 'emit');
       component.ngOnChanges({
         column: {
           currentValue: activeColumn,
@@ -273,7 +272,7 @@ describe('ColumnComponent', () => {
           }
         ]
       };
-      vi.spyOn(component.tabClick, 'emit');
+      spyOn(component.tabClick, 'emit');
       component.ngOnChanges({
         column: {
           currentValue: activeColumn,
@@ -307,7 +306,7 @@ describe('ColumnComponent', () => {
           }
         ]
       };
-      vi.spyOn(component, 'displayContent');
+      spyOn(component, 'displayContent').and.callThrough();
       component.ngOnChanges({
         column: {
           currentValue: activeColumn,
@@ -337,7 +336,7 @@ describe('ColumnComponent', () => {
           }
         ]
       };
-      vi.spyOn(component, 'displayContent');
+      spyOn(component, 'displayContent').and.callThrough();
       component.ngOnChanges({
         column: {
           currentValue: activeColumn,

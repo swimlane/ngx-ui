@@ -38,9 +38,9 @@ describe('MultiDimensionSelectionComponent', () => {
     });
 
     it('should generate the selectionLists array from the selectionList input', () => {
-      const buildParentMapSpy = vi.spyOn(component as any, 'buildParentMap');
-      const buildSelectionMapSpy = vi.spyOn(component as any, 'buildSelectionMap');
-      const generateSelectionListsSpy = vi.spyOn(component as any, 'generateSelectionLists');
+      const buildParentMapSpy = spyOn(component as any, 'buildParentMap').and.callThrough();
+      const buildSelectionMapSpy = spyOn(component as any, 'buildSelectionMap').and.callThrough();
+      const generateSelectionListsSpy = spyOn(component as any, 'generateSelectionLists').and.callThrough();
       component['initSelectionLists']();
 
       expect(component.selectionLists).toEqual([
@@ -61,7 +61,7 @@ describe('MultiDimensionSelectionComponent', () => {
 
   describe('handleSelectedChange', () => {
     it('should handle the selection change and emit the event', () => {
-      const onSelectedChangeSpy = vi.spyOn(component.onSelectedChange, 'emit');
+      const onSelectedChangeSpy = spyOn(component.onSelectedChange, 'emit');
       component.selectedSet = new Set(['1', '1-1', '1-1-1']);
       component.selectionMap = mockSelectionMap;
 
@@ -87,8 +87,8 @@ describe('MultiDimensionSelectionComponent', () => {
     });
 
     it('should emit the close event when multiple is set to false', () => {
-      const onSelectedChangeSpy = vi.spyOn(component.onSelectedChange, 'emit');
-      const onCloseSpy = vi.spyOn(component.onClose, 'emit');
+      const onSelectedChangeSpy = spyOn(component.onSelectedChange, 'emit');
+      const onCloseSpy = spyOn(component.onClose, 'emit');
       fixture.componentRef.setInput('multiple', false);
       component.selectedSet = new Set(['1']);
       component.selectionMap = mockSelectionMap;

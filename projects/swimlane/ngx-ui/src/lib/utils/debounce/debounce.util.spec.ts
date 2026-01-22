@@ -1,12 +1,11 @@
-import type { Mock } from 'vitest';
 /* eslint-disable no-console */
 import { debounce } from './debounce.util';
 
 describe('debounce', () => {
-  let spy: Mock;
+  let spy: jasmine.Spy;
 
   beforeEach(() => {
-    spy = vi.spyOn(window.console, 'log').mockImplementation(() => undefined);
+    spy = spyOn(window.console, 'log').and.callFake(() => undefined);
   });
 
   it('should get debounce result', () => {
@@ -14,13 +13,14 @@ describe('debounce', () => {
     expect(spy).toHaveBeenCalled();
   });
 
-  it('should get debounce result with wait', async () => {
+  it('should get debounce result with wait', done => {
     const dbc = debounce(() => console.log('test'), 10);
     dbc();
 
     setTimeout(() => {
       dbc();
       expect(spy).not.toHaveBeenCalled();
+      done();
     }, 5);
   });
 });

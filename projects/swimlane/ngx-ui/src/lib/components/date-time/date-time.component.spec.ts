@@ -9,7 +9,6 @@ import { InjectionService } from '../../services/injection/injection.service';
 import { DialogModule } from '../dialog/dialog.module';
 
 import { DateTimeComponent } from './date-time.component';
-import { DateTimeModule } from './date-time.module';
 
 (moment as any).suppressDeprecationWarnings = true;
 
@@ -38,7 +37,7 @@ describe('DateTimeComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [DateTimeComponent],
-      imports: [MomentModule, PipesModule, DialogModule, DateTimeModule],
+      imports: [MomentModule, PipesModule, DialogModule],
       schemas: [NO_ERRORS_SCHEMA],
       providers: [InjectionService],
       teardown: { destroyAfterEach: false }
@@ -419,7 +418,7 @@ describe('DateTimeComponent', () => {
     });
 
     it('should open with now date if value invalid', () => {
-      const spy = vi.spyOn(component, 'setDialogDate');
+      const spy = spyOn(component, 'setDialogDate').and.callThrough();
       component.close();
       component.value = 'test';
       component.open();
@@ -752,11 +751,12 @@ describe('DateTimeComponent', () => {
   });
 
   describe('registerOnChange', () => {
-    it('should register onchange callback', async () => {
+    it('should register onchange callback', done => {
       const fn = () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore: private and only accessible within class
         expect(component.onChangeCallback).toBe(fn);
+        done();
       };
       component.registerOnChange(fn);
       component.value = new Date();
@@ -764,9 +764,10 @@ describe('DateTimeComponent', () => {
   });
 
   describe('registryOnTouched', () => {
-    it('should register ontouched callback', async () => {
+    it('should register ontouched callback', done => {
       const fn = () => {
         expect((component as any).onTouchedCallback).toBe(fn);
+        done();
       };
       component.registerOnTouched(fn);
       component.onBlur();
@@ -780,14 +781,14 @@ describe('DateTimeComponent', () => {
     });
 
     it('should NOT emit "change" event if value does not change', () => {
-      vi.spyOn(component.change, 'emit');
+      spyOn(component.change, 'emit');
       component.value = MOON_LANDING;
       component.value = MOON_LANDING_DATE;
       expect(component.change.emit).toHaveBeenCalledTimes(1);
     });
 
     it('should NOT emit "change" event if invalid', () => {
-      vi.spyOn(component.change, 'emit');
+      spyOn(component.change, 'emit');
       component.value = 'INVALID_DATE';
       expect(component.change.emit).not.toHaveBeenCalled();
     });

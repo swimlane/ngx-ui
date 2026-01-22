@@ -7,12 +7,13 @@ describe('debounceable', () => {
     fixture = new DebounceableFixture();
   });
 
-  it('should call debounceable fn', async () => {
-    const spy = vi.spyOn(fixture, 'doSomething');
+  it('should call debounceable fn', done => {
+    const spy = spyOn(fixture, 'doSomething');
     fixture.fn();
 
     setTimeout(() => {
       expect(spy).toHaveBeenCalled();
+      done();
     }, 10);
   });
 });

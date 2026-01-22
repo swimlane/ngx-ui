@@ -1,11 +1,12 @@
 import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormsModule, FormControl } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { InputComponent } from './input.component';
 import { InputTypes } from './input-types.enum';
 import { InputComponentFixture } from './input.component.fixture';
-import { vi } from 'vitest';
 
 const MOCK_EVENT: any = {
   target: {},
@@ -19,7 +20,8 @@ describe('InputComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [InputComponentFixture]
+      declarations: [InputComponentFixture, InputComponent],
+      imports: [FormsModule, BrowserAnimationsModule]
     });
   });
 
@@ -40,7 +42,7 @@ describe('InputComponent', () => {
   });
 
   it('should focus input', () => {
-    const spy = vi.spyOn(component.input.focus, 'emit');
+    const spy = spyOn(component.input.focus, 'emit');
     component.input.autoSelect = true;
     component.input.onFocus(MOCK_EVENT);
     expect(spy).toHaveBeenCalled();
@@ -65,25 +67,25 @@ describe('InputComponent', () => {
   });
 
   it('should emit changes', () => {
-    const spy = vi.spyOn(component.input.change, 'emit');
+    const spy = spyOn(component.input.change, 'emit');
     component.input.onChange(MOCK_EVENT);
     expect(spy).toHaveBeenCalledWith(component.input.value);
   });
 
   it('should emit keyup', () => {
-    const spy = vi.spyOn(component.input.keyup, 'emit');
+    const spy = spyOn(component.input.keyup, 'emit');
     component.input.onKeyUp(MOCK_EVENT);
     expect(spy).toHaveBeenCalledWith(MOCK_EVENT);
   });
 
   it('should blur', () => {
-    const spy = vi.spyOn(component.input.blur, 'emit');
+    const spy = spyOn(component.input.blur, 'emit');
     component.input.onBlur(MOCK_EVENT);
     expect(spy).toHaveBeenCalled();
   });
 
   it('should execute registered onTouchedCallback on blur', () => {
-    const onTouchedCallback = vi.fn();
+    const onTouchedCallback = jasmine.createSpy();
     component.input.registerOnTouched(onTouchedCallback);
     component.input.onBlur(MOCK_EVENT);
     expect(onTouchedCallback).toHaveBeenCalled();
@@ -156,7 +158,7 @@ describe('InputComponent', () => {
     it('should not change model if value is identical', () => {
       const cbs = { onChange: () => ({}) };
       component.input.registerOnChange(cbs.onChange);
-      const spy = vi.spyOn(cbs, 'onChange');
+      const spy = spyOn(cbs, 'onChange');
       component.input.value = '';
       fixture.detectChanges();
       expect(spy).not.toHaveBeenCalled();
@@ -180,18 +182,18 @@ describe('InputComponent', () => {
     });
 
     it('should preserve null', () => {
-      (component.input.value as any) = null;
+      component.input.value = null;
       fixture.detectChanges();
-      expect(component.input.value as any).toBeNull();
-      expect(component.input.valueAsNumber).toBeNull();
+      expect(component.input.value as any).toEqual(null);
+      expect(component.input.valueAsNumber).toEqual(null);
       expect(component.input.valueAsString).toEqual('');
     });
 
     it('should coerce other inputs to null', () => {
       component.input.value = '';
       fixture.detectChanges();
-      expect(component.input.value as any).toBeNull();
-      expect(component.input.valueAsNumber).toBeNull();
+      expect(component.input.value as any).toEqual(null);
+      expect(component.input.valueAsNumber).toEqual(null);
       expect(component.input.valueAsString).toEqual('');
     });
 
@@ -228,9 +230,9 @@ describe('InputComponent', () => {
     });
 
     it('should set to 1 if input value is falsy', () => {
-      (component.input.value as any) = undefined;
+      component.input.value = undefined;
       fixture.detectChanges();
-      expect(component.input.valueAsNumber).toBeNull();
+      expect(component.input.valueAsNumber).toEqual(null);
 
       component.input.incrementValue(new MouseEvent('mousedown'));
       component.input.clearSpinnerInterval();
@@ -270,9 +272,9 @@ describe('InputComponent', () => {
     });
 
     it('should set to -1 if input value is falsy', fakeAsync(() => {
-      (component.input.value as any) = undefined;
+      component.input.value = undefined;
       fixture.detectChanges();
-      expect(component.input.valueAsNumber).toBeNull();
+      expect(component.input.valueAsNumber).toEqual(null);
 
       component.input.decrementValue(new MouseEvent('mousedown'));
       component.input.clearSpinnerInterval();
@@ -308,12 +310,12 @@ describe('InputComponent', () => {
     });
 
     it('should be disabled by default', () => {
-      expect(component.input.disabled).toBe(true);
+      expect(component.input.disabled).toBeTrue();
     });
 
     it('should NOT be disabled when lock button clicked', () => {
       lockBtn.triggerEventHandler('click', null);
-      expect(component.input.disabled).toBe(false);
+      expect(component.input.disabled).toBeFalse();
     });
 
     it('should remove lock button from DOM when unlocked', () => {

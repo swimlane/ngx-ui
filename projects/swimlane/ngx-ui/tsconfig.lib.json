@@ -25,5 +25,5 @@
     "preserveWhitespaces": true,
     "compilationMode": "partial"
   },
-  "exclude": ["**/*.spec.ts"]
+  "exclude": ["src/test.ts", "**/*.spec.ts"]
 }

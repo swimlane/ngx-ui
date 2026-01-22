@@ -20,7 +20,7 @@ describe('OverlayService', () => {
     service = TestBed.inject(OverlayService);
     service.component = component.componentRef;
     injectionService = TestBed.inject(InjectionService);
-    vi.spyOn(injectionService, 'appendComponent').mockImplementation(() => {
+    spyOn(injectionService, 'appendComponent').and.callFake(() => {
       return component.componentRef;
     });
   });
@@ -47,15 +47,16 @@ describe('OverlayService', () => {
     expect(service.instance.visible).not.toEqual(false);
   });
 
-  it('calling destroy sets component to undefined', async () => {
+  it('calling destroy sets component to undefined', done => {
     service.destroy();
 
     setTimeout(() => {
       expect(service.component).toBeUndefined();
+      done();
     }, 101);
   });
 
-  it('calling destroy while triggered components exist will not destroy component ref', async () => {
+  it('calling destroy while triggered components exist will not destroy component ref', done => {
     service.show({ triggerComponent: component.componentInstance });
     expect(service.triggerComponents.length).toEqual(1);
 
@@ -63,6 +64,7 @@ describe('OverlayService', () => {
 
     setTimeout(() => {
       expect(service.component).toBeTruthy();
+      done();
     }, 101);
   });
 
@@ -89,7 +91,7 @@ describe('OverlayService', () => {
   });
 
   it('onClick with no triggered components does not emit click event', () => {
-    vi.spyOn(service.click, 'emit');
+    spyOn(service.click, 'emit');
     service.show({ triggerComponent: component.componentInstance });
     expect(service.triggerComponents.length).toEqual(1);
 
@@ -98,7 +100,7 @@ describe('OverlayService', () => {
   });
 
   it('onClick with some triggered components emits click event', () => {
-    vi.spyOn(service.click, 'emit');
+    spyOn(service.click, 'emit');
 
     service.onClick();
 
@@ -115,11 +117,12 @@ describe('OverlayService', () => {
     expect(service.triggerComponents.length).toEqual(1);
   });
 
-  it('removeTriggerComponent when no components have been triggered calls destroy and clears component', async () => {
+  it('removeTriggerComponent when no components have been triggered calls destroy and clears component', done => {
     service.removeTriggerComponent(component.componentInstance);
 
     setTimeout(() => {
       expect(service.component).toBeUndefined();
+      done();
     }, 101);
   });
 

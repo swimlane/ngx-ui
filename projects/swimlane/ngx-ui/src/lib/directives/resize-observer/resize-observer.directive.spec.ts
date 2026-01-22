@@ -23,14 +23,15 @@ describe('ResizeObserverDirective', () => {
     expect(directive).toBeDefined();
   });
 
-  it('should throttle resize event', async () => {
-    const spy = vi.spyOn(directive.resize, 'emit');
+  it('should throttle resize event', done => {
+    const spy = spyOn(directive.resize, 'emit');
 
     directive.onResize({});
     directive.onResize({});
 
     setTimeout(() => {
       expect(spy).toHaveBeenCalledTimes(1);
+      done();
     }, 1000);
   });
 });

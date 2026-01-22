@@ -54,7 +54,7 @@ describe('DrawerComponent', () => {
 
   describe('onEscapeKey', () => {
     it('should close', () => {
-      const spy = vi.spyOn(component.close, 'emit');
+      const spy = spyOn(component.close, 'emit');
       component.onEscapeKey();
       expect(spy).toHaveBeenCalled();
     });

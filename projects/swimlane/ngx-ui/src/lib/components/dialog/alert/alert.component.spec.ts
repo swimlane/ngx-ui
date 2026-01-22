@@ -59,7 +59,7 @@ describe('AlertComponent', () => {
     });
 
     it('should focus content if is !AlertTypes.Prompt', () => {
-      const spy = vi.spyOn(component.dialogElm.nativeElement, 'focus');
+      const spy = spyOn(component.dialogElm.nativeElement, 'focus');
       component.type = AlertTypes.Alert;
       fixture.detectChanges();
       expect(spy).toHaveBeenCalled();
@@ -75,8 +75,8 @@ describe('AlertComponent', () => {
 
   describe('onOkClick', () => {
     it('should emit ok and hide', () => {
-      const okSpy = vi.spyOn(component.ok, 'emit');
-      const hideSpy = vi.spyOn(component, 'hide');
+      const okSpy = spyOn(component.ok, 'emit');
+      const hideSpy = spyOn(component, 'hide');
       component.onOkClick();
       expect(okSpy).toHaveBeenCalled();
       expect(hideSpy).toHaveBeenCalled();
@@ -85,8 +85,8 @@ describe('AlertComponent', () => {
 
   describe('onCancelClick', () => {
     it('should emit cancel and hide', () => {
-      const cancelSpy = vi.spyOn(component.cancel, 'emit');
-      const hideSpy = vi.spyOn(component, 'hide');
+      const cancelSpy = spyOn(component.cancel, 'emit');
+      const hideSpy = spyOn(component, 'hide');
       component.onCancelClick();
       expect(cancelSpy).toHaveBeenCalled();
       expect(hideSpy).toHaveBeenCalled();
@@ -95,8 +95,8 @@ describe('AlertComponent', () => {
 
   describe('onKeydown', () => {
     it('should emit ok and hide when longPress', () => {
-      const okSpy = vi.spyOn(component.ok, 'emit');
-      const hideSpy = vi.spyOn(component, 'hide');
+      const okSpy = spyOn(component.ok, 'emit');
+      const hideSpy = spyOn(component, 'hide');
       component.longPress = true;
       component.onKeydown();
       expect(okSpy).not.toHaveBeenCalled();
@@ -104,8 +104,8 @@ describe('AlertComponent', () => {
     });
 
     it('should not emit ok or hide when !longPress', () => {
-      const okSpy = vi.spyOn(component.ok, 'emit');
-      const hideSpy = vi.spyOn(component, 'hide');
+      const okSpy = spyOn(component.ok, 'emit');
+      const hideSpy = spyOn(component, 'hide');
       component.longPress = false;
       component.onKeydown();
       expect(okSpy).toHaveBeenCalled();

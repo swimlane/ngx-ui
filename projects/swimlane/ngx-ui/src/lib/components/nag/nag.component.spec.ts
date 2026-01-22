@@ -3,7 +3,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NO_ERRORS_SCHEMA, SimpleChanges, SimpleChange } from '@angular/core';
 
 import { NagComponent } from './nag.component';
-import { NagModule } from './nag.module';
 
 describe('NagComponent', () => {
   let component: NagComponent;
@@ -13,7 +12,8 @@ describe('NagComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [NagModule, NoopAnimationsModule]
+      declarations: [NagComponent],
+      imports: [NoopAnimationsModule]
     });
     fixture = TestBed.createComponent(NagComponent);
     component = fixture.componentInstance;
@@ -37,7 +37,7 @@ describe('NagComponent', () => {
 
   it('toggle changes state and triggers stateChanged emitter', () => {
     component.state = 'peek';
-    vi.spyOn(component.stateChanged, 'emit');
+    spyOn(component.stateChanged, 'emit');
 
     component.toggle();
     expect(component.state).toEqual('open');

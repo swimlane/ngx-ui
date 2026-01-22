@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { SectionComponent } from './section.component';
 import { SectionFixtureComponent } from './fixtures/section.fixture';
@@ -8,15 +9,16 @@ describe('SectionComponent', () => {
   let component: SectionComponent;
   let fixture: ComponentFixture<SectionFixtureComponent>;
 
-  beforeEach(async () => {
+  beforeEach(done => {
     TestBed.configureTestingModule({
-      imports: [SectionModule, SectionFixtureComponent]
+      declarations: [SectionFixtureComponent],
+      imports: [SectionModule, HttpClientTestingModule]
     });
 
     fixture = TestBed.createComponent(SectionFixtureComponent);
     component = fixture.componentInstance.section;
     fixture.autoDetectChanges();
-    await fixture.whenStable().then(() => {});
+    fixture.whenStable().then(() => done());
   });
 
   it('can load instance', () => {
@@ -48,7 +50,7 @@ describe('SectionComponent', () => {
   });
 
   it('onSectionClicked collapses section and triggers toggle emit', () => {
-    vi.spyOn(component.toggle, 'emit');
+    spyOn(component.toggle, 'emit');
     component.onSectionClicked();
 
     expect(component.sectionCollapsed).toEqual(true);

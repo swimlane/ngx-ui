@@ -29,7 +29,7 @@ describe('LongPressButtonComponent', () => {
   });
 
   it('should call updateState on change', () => {
-    const spy = vi.spyOn(component, 'updateState');
+    const spy = spyOn(component, 'updateState');
     component.ngOnChanges();
     expect(spy).toHaveBeenCalled();
   });
@@ -41,7 +41,7 @@ describe('LongPressButtonComponent', () => {
       expect(component.state).toBe(LongPressButtonState.Active);
     });
 
-    it('should update state when state is submitted', async () => {
+    it('should update state when state is submitted', done => {
       component.state = LongPressButtonState.Submitted;
       component.updateState();
       expect(component.disabled).toBe(true);
@@ -49,6 +49,7 @@ describe('LongPressButtonComponent', () => {
       setTimeout(() => {
         expect(component.state).toBe(LongPressButtonState.Active);
         expect(component.disabled).toBe(false);
+        done();
       }, 3000);
     });
   });
@@ -77,7 +78,7 @@ describe('LongPressButtonComponent', () => {
     });
 
     it('should stop pressing and submit', () => {
-      const spy = vi.spyOn(component.longPress, 'emit');
+      const spy = spyOn(component.longPress, 'emit');
       component.onLongPressFinish(true);
       expect(component.pressed).toBe(false);
       expect(component.state).toBe(LongPressButtonState.Submitted);
@@ -86,7 +87,7 @@ describe('LongPressButtonComponent', () => {
 
     it('should not stop pressing or submit if disabled', () => {
       component.disabled = true;
-      const spy = vi.spyOn(component.longPress, 'emit');
+      const spy = spyOn(component.longPress, 'emit');
       component.onLongPressFinish(true);
       expect(component.pressed).toBe(true);
       expect(component.state).toBe(LongPressButtonState.Active);

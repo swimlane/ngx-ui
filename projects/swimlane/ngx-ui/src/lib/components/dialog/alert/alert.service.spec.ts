@@ -1,4 +1,3 @@
-import type { Mock } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { EventEmitter } from '@angular/core';
 
@@ -9,13 +8,8 @@ import { AlertService } from './alert.service';
 
 describe('AlertService', () => {
   let service: AlertService;
-  let spy: Mock;
-  let component: {
-    instance: {
-      ok: EventEmitter<void>;
-      cancel: EventEmitter<void>;
-    };
-  };
+  let spy: jasmine.Spy;
+  let component: { instance: { ok: EventEmitter<void>; cancel: EventEmitter<void> } };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -39,31 +33,33 @@ describe('AlertService', () => {
         cancel: new EventEmitter<void>()
       }
     };
-    spy = vi.spyOn(service, 'create').mockReturnValue(component as any);
+    spy = spyOn(service, 'create').and.returnValue(component as any);
   });
 
   it('can load instance', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should call ok', async () => {
+  it('should call ok', done => {
     const subject = service.alert({});
 
     subject.subscribe({
       next: () => {
-        expect(true).toBe(true);
+        expect(true).toBeTrue();
+        done();
       }
     });
 
     component.instance.ok.emit();
   });
 
-  it('should call cancel', async () => {
+  it('should call cancel', done => {
     const subject = service.alert({});
 
     subject.subscribe({
       next: () => {
-        expect(true).toBe(true);
+        expect(true).toBeTrue();
+        done();
       }
     });
 

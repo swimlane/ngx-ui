@@ -39,7 +39,7 @@ describe('Nav Item Component', () => {
     component.setActive();
     expect(component.active).toEqual(component.index);
 
-    const spy = vi.spyOn(component.activeChange, 'emit');
+    const spy = spyOn(component.activeChange, 'emit');
     component.setActive();
 
     expect(spy).not.toHaveBeenCalled();

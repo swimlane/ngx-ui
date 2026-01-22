@@ -83,13 +83,13 @@ describe('SelectComponent', () => {
     });
 
     it('should do nothing if option disabled', () => {
-      const spy = vi.spyOn(component.select, 'toggleDropdown');
+      const spy = spyOn(component.select, 'toggleDropdown');
       component.select.onDropdownSelection(selectDropdownOptionMock({ disabled: true }));
       expect(spy).not.toHaveBeenCalled();
     });
 
     it('should do nothing if max selection reached', () => {
-      const spy = vi.spyOn(component.select, 'toggleDropdown');
+      const spy = spyOn(component.select, 'toggleDropdown');
       component.select.value = component.options$.value.map(o => o.value);
       component.select.onDropdownSelection(selectDropdownOptionMock());
       expect(spy).not.toHaveBeenCalled();
@@ -104,7 +104,7 @@ describe('SelectComponent', () => {
       });
 
       it('should close dropdown', () => {
-        const spy = vi.spyOn(component.select, 'toggleDropdown');
+        const spy = spyOn(component.select, 'toggleDropdown');
         component.select.onDropdownSelection(selectDropdownOptionMock());
         expect(spy).toHaveBeenCalled();
       });
@@ -182,14 +182,14 @@ describe('SelectComponent', () => {
 
   describe('onFocus', () => {
     it('should do nothing if disabled', () => {
-      const spy = vi.spyOn(component.select, 'toggleDropdown');
+      const spy = spyOn(component.select, 'toggleDropdown');
       component.select.disabled = true;
       component.select.onFocus();
       expect(spy).not.toHaveBeenCalled();
     });
 
     it('should toggle dropdown', () => {
-      const spy = vi.spyOn(component.select, 'toggleDropdown');
+      const spy = spyOn(component.select, 'toggleDropdown');
       component.select.disabled = false;
       component.select.onFocus();
       expect(spy).toHaveBeenCalled();
@@ -221,14 +221,14 @@ describe('SelectComponent', () => {
     });
 
     it('should do nothing if not active', () => {
-      const spy = vi.spyOn(component.select, 'toggleDropdown');
+      const spy = spyOn(component.select, 'toggleDropdown');
       component.select.dropdownActive = false;
       component.select.onBodyClick(event);
       expect(spy).not.toHaveBeenCalled();
     });
 
     it('should toggle dropdown', () => {
-      const spy = vi.spyOn(component.select, 'toggleDropdown');
+      const spy = spyOn(component.select, 'toggleDropdown');
       component.select.onBodyClick(event);
       expect(spy).toHaveBeenCalled();
     });
@@ -236,7 +236,7 @@ describe('SelectComponent', () => {
 
   describe('onClose', () => {
     it('should toggle dropdown', () => {
-      const spy = vi.spyOn(component.select, 'toggleDropdown');
+      const spy = spyOn(component.select, 'toggleDropdown');
       component.select.onClose();
       expect(spy).toHaveBeenCalledWith(false);
     });
@@ -244,14 +244,14 @@ describe('SelectComponent', () => {
 
   describe('onToggle', () => {
     it('should do nothing if disabled', () => {
-      const spy = vi.spyOn(component.select, 'toggleDropdown');
+      const spy = spyOn(component.select, 'toggleDropdown');
       component.select.disabled = true;
       component.select.onToggle();
       expect(spy).not.toHaveBeenCalled();
     });
 
     it('should toggle dropdown', () => {
-      const spy = vi.spyOn(component.select, 'toggleDropdown');
+      const spy = spyOn(component.select, 'toggleDropdown');
       component.select.onToggle();
       expect(spy).toHaveBeenCalled();
     });
@@ -267,7 +267,7 @@ describe('SelectComponent', () => {
 
     it('should call toggle listener', () => {
       component.select.toggleDropdown(!component.select.dropdownActive);
-      const spy = vi.spyOn(component.select, 'toggleListener');
+      const spy = spyOn(component.select, 'toggleListener');
       component.select.toggleDropdown(!component.select.dropdownActive);
       expect(spy).toHaveBeenCalled();
     });
@@ -355,7 +355,7 @@ describe('SelectComponent', () => {
       component.autosize$.next(true);
       fixture.detectChanges();
       const select = fixture.nativeElement.querySelector('.ngx-select');
-      expect(select.classList.contains('autosize')).toBe(true);
+      expect(select).toHaveClass('autosize');
     });
   });
 
@@ -366,7 +366,7 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
       await fixture.whenStable();
 
-      expect(component.select.disabled).toBe(true);
+      expect(component.select.disabled).toBeTrue();
     });
 
     it('should enable select element accordingly', async () => {
@@ -376,14 +376,14 @@ describe('SelectComponent', () => {
       fixture.detectChanges();
       await fixture.whenStable();
 
-      expect(component.select.disabled).toBe(true);
+      expect(component.select.disabled).toBeTrue();
 
       component.select.setDisabledState(false);
 
       fixture.detectChanges();
       await fixture.whenStable();
 
-      expect(component.select.disabled).toBe(false);
+      expect(component.select.disabled).toBeFalse();
     });
   });
 

@@ -172,19 +172,28 @@
           "configurations": {
             "production": {
               "tsConfig": "projects/swimlane/ngx-ui/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/swimlane/ngx-ui/tsconfig.lib.json"
             }
           }
         },
         "test": {
-          "builder": "@angular/build:unit-test",
+          "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "main": "projects/swimlane/ngx-ui/src/test.ts",
             "tsConfig": "projects/swimlane/ngx-ui/tsconfig.spec.json",
-            "runner": "vitest",
-            "browsers": ["chrome"],
-            "runnerConfig": "projects/swimlane/ngx-ui/vitest.config.ts"
+            "karmaConfig": "projects/swimlane/ngx-ui/karma.conf.js",
+            "codeCoverage": true,
+            "codeCoverageExclude": [
+              "projects/swimlane/ngx-ui/src/lib/**/*.fixture.ts",
+              "projects/swimlane/ngx-ui/src/lib/services/injection-registry/**/*.ts",
+              "projects/swimlane/ngx-ui/src/lib/animations/**/*.ts"
+            ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "projects/swimlane/ngx-ui/src/lib/components",
+                "projects/swimlane/ngx-ui/src/lib/styles",
+                "projects/swimlane/ngx-ui/src/lib/assets"
+              ]
+            }
           }
         },
         "lint": {

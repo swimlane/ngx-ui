@@ -17,21 +17,21 @@ describe('LongPressDirective', () => {
 
   describe('onPress', () => {
     it('should do nothing when disabled', () => {
-      const spy = vi.spyOn(directive.longPressStart, 'emit');
+      const spy = spyOn(directive.longPressStart, 'emit');
       directive.disabled = true;
       directive.onPress(mockMouseEvent);
       expect(spy).not.toHaveBeenCalled();
     });
 
     it('should start pressing', () => {
-      const spy = vi.spyOn(directive.longPressStart, 'emit');
+      const spy = spyOn(directive.longPressStart, 'emit');
       directive.onPress(mockMouseEvent);
       expect(spy).toHaveBeenCalled();
     });
 
-    it('should start and finish after duration', async () => {
-      const spyStart = vi.spyOn(directive.longPressStart, 'emit');
-      const spyFinish = vi.spyOn(directive.longPressFinish, 'emit');
+    it('should start and finish after duration', done => {
+      const spyStart = spyOn(directive.longPressStart, 'emit');
+      const spyFinish = spyOn(directive.longPressFinish, 'emit');
 
       directive.duration = 0;
       directive.onPress(mockMouseEvent);
@@ -40,13 +40,14 @@ describe('LongPressDirective', () => {
 
       setTimeout(() => {
         expect(spyFinish).toHaveBeenCalled();
+        done();
       });
     });
 
-    it('should start and cancel before duration', async () => {
-      const spyStart = vi.spyOn(directive.longPressStart, 'emit');
-      const spyFinish = vi.spyOn(directive.longPressFinish, 'emit');
-      const spyCancel = vi.spyOn(directive.longPressCancel, 'emit');
+    it('should start and cancel before duration', done => {
+      const spyStart = spyOn(directive.longPressStart, 'emit');
+      const spyFinish = spyOn(directive.longPressFinish, 'emit');
+      const spyCancel = spyOn(directive.longPressCancel, 'emit');
 
       directive.duration = 50;
       directive.onPress(mockMouseEvent);
@@ -57,6 +58,7 @@ describe('LongPressDirective', () => {
 
       setTimeout(() => {
         expect(spyFinish).not.toHaveBeenCalled();
+        done();
       }, directive.duration);
     });
   });

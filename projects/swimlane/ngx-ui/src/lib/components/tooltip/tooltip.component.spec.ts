@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { TooltipModule } from './tooltip.module';
 import { TooltipContentComponent } from './tooltip.component';
 import { StyleTypes } from './style-types.enum';
 
@@ -19,7 +20,8 @@ describe('TooltipContentComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [TooltipContentComponent],
+      declarations: [TooltipContentComponent],
+      imports: [TooltipModule],
       teardown: { destroyAfterEach: false }
     }).compileComponents();
   });
@@ -43,7 +45,7 @@ describe('TooltipContentComponent', () => {
       } as any
     };
 
-    vi.spyOn(component.element.nativeElement, 'getBoundingClientRect').mockReturnValue({
+    spyOn(component.element.nativeElement, 'getBoundingClientRect').and.returnValue({
       wdith: 10,
       height: 10
     } as any);
@@ -57,7 +59,7 @@ describe('TooltipContentComponent', () => {
 
   describe('onWindowResize', () => {
     it('should reposition', () => {
-      const spy = vi.spyOn(component, 'position');
+      const spy = spyOn(component, 'position');
       component.onWindowResize();
       expect(spy).toHaveBeenCalled();
     });
@@ -65,14 +67,14 @@ describe('TooltipContentComponent', () => {
 
   describe('position', () => {
     it('should do nothing if no bounding box', () => {
-      const spy = vi.spyOn(position, 'positionContent');
+      const spy = spyOn(position, 'positionContent');
       component.host = { nativeElement: document.createElement('div') };
       component.position();
       expect(spy).not.toHaveBeenCalled();
     });
 
     it('should not position caret', () => {
-      const spy = vi.spyOn(position, 'positionCaret');
+      const spy = spyOn(position, 'positionCaret');
       component.showCaret = false;
       component.position();
       expect(spy).not.toHaveBeenCalled();

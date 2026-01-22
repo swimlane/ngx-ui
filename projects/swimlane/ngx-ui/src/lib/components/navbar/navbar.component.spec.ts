@@ -1,7 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+
+import { IconModule } from '../icon/icon.module';
 
 import { NavbarComponentFixture } from './navbar.component.fixture';
+import { NavbarModule } from './navbar.module';
 
 describe('Navbar Component', () => {
   let component: NavbarComponentFixture;
@@ -9,7 +14,8 @@ describe('Navbar Component', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NavbarComponentFixture]
+      declarations: [NavbarComponentFixture],
+      imports: [NavbarModule, IconModule, HttpClientModule, BrowserAnimationsModule]
     });
   });
 

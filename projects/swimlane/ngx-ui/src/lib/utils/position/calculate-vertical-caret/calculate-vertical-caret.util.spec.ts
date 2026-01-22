@@ -20,7 +20,7 @@ describe('calculateVerticalCaret', () => {
   });
 
   it('should get caret position when window width exceeded', () => {
-    vi.spyOn(window as any, 'innerHeight').mockReturnValue(0);
+    spyOnProperty(window, 'innerHeight').and.returnValue(0);
     expect(
       calculateVerticalCaret({ height: 100, top: 0 }, { height: 10 }, { height: 5 }, AlignmentTypes.top)
     ).toBeGreaterThan(0);

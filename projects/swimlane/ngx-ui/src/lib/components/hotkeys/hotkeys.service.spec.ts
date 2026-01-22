@@ -66,9 +66,11 @@ describe('HotkeysService', () => {
   });
 
   describe('Hotkey.callback', () => {
-    it('should call hotkey callback', async () => {
+    it('should call hotkey callback', done => {
       service.add('ctrl+h', {
-        callback: () => {},
+        callback: () => {
+          done();
+        },
         component: {},
         description: 'test'
       });

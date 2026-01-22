@@ -32,7 +32,7 @@ describe('IconComponent', () => {
   });
 
   it('should call update on change', () => {
-    const spy = vi.spyOn(component, 'update');
+    const spy = spyOn(component, 'update');
     component.ngOnChanges();
     expect(spy).toHaveBeenCalled();
   });
@@ -45,13 +45,13 @@ describe('IconComponent', () => {
   });
 
   it('should load svg src', () => {
-    const spy = vi.spyOn(component, 'loadSvg');
+    const spy = spyOn(component, 'loadSvg');
     component.svgSrc = 'test';
     expect(spy).toHaveBeenCalled();
   });
 
   it('should svg', () => {
-    const spy = vi.spyOn(httpClient, 'get');
+    const spy = spyOn(httpClient, 'get').and.callThrough();
     component.loadSvg('test');
     expect(spy).toHaveBeenCalled();
   });

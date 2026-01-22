@@ -63,7 +63,7 @@ describe('LoadingService', () => {
 
   describe('hide', () => {
     it('should hide without instance', () => {
-      const spy = vi.spyOn(service, 'stop');
+      const spy = spyOn(service, 'stop');
       service.hide();
       expect(spy).toHaveBeenCalled();
     });
@@ -96,11 +96,12 @@ describe('LoadingService', () => {
   });
 
   describe('Auto Increment', () => {
-    it('should increment progress threshold', async () => {
+    it('should increment progress threshold', done => {
       service.start();
 
       setTimeout(() => {
         expect(service.progress).toBeGreaterThan(0);
+        done();
       }, service.threshold * 5);
     });
   });

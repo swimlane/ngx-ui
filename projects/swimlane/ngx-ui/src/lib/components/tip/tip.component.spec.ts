@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TipComponent } from './tip.component';
-import { TipModule } from './tip.module';
 
 describe('TipComponent', () => {
   let component: TipComponent;
@@ -9,7 +8,7 @@ describe('TipComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
-      imports: [TipModule]
+      declarations: [TipComponent]
     });
     fixture = TestBed.createComponent(TipComponent);
     component = fixture.componentInstance;
@@ -53,7 +52,7 @@ describe('TipComponent', () => {
     expect(component.icon).toEqual(customIcon);
   });
   it('emits close', () => {
-    vi.spyOn(component.close, 'emit');
+    spyOn(component.close, 'emit');
     component.onClose();
     expect(component.close.emit).toHaveBeenCalled();
   });

@@ -1,19 +1,12 @@
-import { vi, type Mock } from 'vitest';
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { fakeAsync, tick } from '@angular/core/testing';
 import { ListComponent } from './list.component';
 import { of } from 'rxjs';
-import { ListModule } from './list.module';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('ListComponent', () => {
   let component: ListComponent;
   const mockScrollEvent = {} as Event;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      schemas: [NO_ERRORS_SCHEMA],
-      imports: [ListModule]
-    });
     component = new ListComponent();
     component.columnLayout = null as any;
     component.headers = null as any;
@@ -36,7 +29,7 @@ describe('ListComponent', () => {
   });
 
   it('ngAfterContentInit', () => {
-    const generateLayoutSpy = vi.spyOn(component, 'generateLayout');
+    const generateLayoutSpy = spyOn(component, 'generateLayout');
 
     component.ngAfterContentInit();
 
@@ -45,7 +38,7 @@ describe('ListComponent', () => {
 
   describe('ngAfterViewInit', () => {
     it('should call initScrollListener and determine there is no scrollbar', fakeAsync(() => {
-      const initScrollListenerSpy = vi.spyOn(component, 'initScrollListener');
+      const initScrollListenerSpy = spyOn(component, 'initScrollListener');
 
       component.ngAfterViewInit();
 
@@ -56,7 +49,7 @@ describe('ListComponent', () => {
     }));
 
     it('should call initScrollListener and determine there is a scrollbar', fakeAsync(() => {
-      const initScrollListenerSpy = vi.spyOn(component, 'initScrollListener');
+      const initScrollListenerSpy = spyOn(component, 'initScrollListener');
       (component.listRowsContainer.nativeElement as any).scrollHeight = 800;
 
       component.ngAfterViewInit();
@@ -68,8 +61,11 @@ describe('ListComponent', () => {
     }));
 
     it('should call initScrollListener and scroll to the correct page when the paginationConfig Input is provided', fakeAsync(() => {
-      const scrollToSpy: Mock = vi.spyOn(component.listRowsContainer.nativeElement, 'scrollTo');
-      const initScrollListenerSpy = vi.spyOn(component, 'initScrollListener');
+      const scrollToSpy: jasmine.Spy<{ (options: ScrollToOptions): void }> = spyOn(
+        component.listRowsContainer.nativeElement,
+        'scrollTo'
+      );
+      const initScrollListenerSpy = spyOn(component, 'initScrollListener');
       component.paginationConfig = {
         index: 5,
         pageSize: 10
@@ -89,8 +85,8 @@ describe('ListComponent', () => {
   });
 
   it('ngOnDestroy', () => {
-    const destroyNextSpy = vi.spyOn(component['destroy$'], 'next');
-    const destroyCompleteSpy = vi.spyOn(component['destroy$'], 'complete');
+    const destroyNextSpy = spyOn(component['destroy$'], 'next');
+    const destroyCompleteSpy = spyOn(component['destroy$'], 'complete');
 
     component.ngOnDestroy();
 
@@ -101,7 +97,7 @@ describe('ListComponent', () => {
   describe('emitScrollChanges', () => {
     it('should emit the scroll event', () => {
       const scrollEvent = { target: { scrollTop: 1000 } } as any;
-      const onScrollSpy = vi.spyOn(component.onScroll, 'emit');
+      const onScrollSpy = spyOn(component.onScroll, 'emit');
 
       component.emitScrollChanges(scrollEvent);
 
@@ -110,8 +106,8 @@ describe('ListComponent', () => {
 
     it('should emit the onScroll event and emit the onPageChange event when the pageSize is provided as part of the paginationConfig Input', () => {
       const scrollEvent = { target: { scrollTop: 1000 } } as any;
-      const onScrollSpy = vi.spyOn(component.onScroll, 'emit');
-      const onPageChangeSpy = vi.spyOn(component.onPageChange, 'emit');
+      const onScrollSpy = spyOn(component.onScroll, 'emit');
+      const onPageChangeSpy = spyOn(component.onPageChange, 'emit');
       component.paginationConfig = {
         pageSize: 10
       };
@@ -156,7 +152,7 @@ describe('ListComponent', () => {
 
   describe('initScrollListener', () => {
     it('should initialize the scroll listener for virtual scroll viewport', () => {
-      const emitScrollChangesSpy = vi.spyOn(component, 'emitScrollChanges');
+      const emitScrollChangesSpy = spyOn(component, 'emitScrollChanges');
       component.virtualScroll = true;
 
       component.initScrollListener();

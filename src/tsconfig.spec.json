@@ -2,10 +2,8 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "../out-tsc/spec",
-    "typeRoots": ["../node_modules/@types", "../node_modules"],
-    "types": ["vitest/globals", "node"]
+    "types": ["jasmine", "node"]
   },
   "files": ["test.ts", "polyfills.ts"],
-  "include": ["**/*.spec.ts", "**/*.d.ts"],
-  "exclude": ["node_modules"]
+  "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

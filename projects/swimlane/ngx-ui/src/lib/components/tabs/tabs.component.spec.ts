@@ -3,22 +3,26 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TabsComponent } from './tabs.component';
 import { TabsFixtureComponent } from './fixtures/tabs.fixture';
 import { TabsLabeltemplateFixtureComponent } from './fixtures/tabs-label-template.fixture';
+import { TabsModule } from './tabs.module';
 import { TabsMultipleActiveFixtureComponent } from './fixtures/tabs-multiple-active.fixture';
 
 describe('TabsComponent', () => {
   let component: TabsComponent;
   let fixture: ComponentFixture<TabsFixtureComponent>;
   describe('Standard Tabs', () => {
-    beforeEach(async () => {
+    beforeEach(done => {
       TestBed.configureTestingModule({
-        imports: [TabsFixtureComponent],
+        declarations: [TabsFixtureComponent],
+        imports: [TabsModule],
         teardown: { destroyAfterEach: false }
       }).compileComponents();
 
       fixture = TestBed.createComponent(TabsFixtureComponent);
       component = fixture.componentInstance.tabsComponent;
       fixture.autoDetectChanges();
-      await fixture.whenStable().then(() => {});
+      fixture.whenStable().then(() => {
+        done();
+      });
     });
 
     it('can load instance', () => {
@@ -35,7 +39,7 @@ describe('TabsComponent', () => {
 
     describe('next', () => {
       it('makes expected calls', () => {
-        vi.spyOn(component, 'move');
+        spyOn(component, 'move').and.callThrough();
         component.next();
         fixture.detectChanges();
         expect(component.move).toHaveBeenCalled();
@@ -45,7 +49,7 @@ describe('TabsComponent', () => {
 
     describe('prev', () => {
       it('makes expected calls', () => {
-        vi.spyOn(component, 'move');
+        spyOn(component, 'move');
         component.prev();
         expect(component.move).toHaveBeenCalled();
       });
@@ -66,16 +70,19 @@ describe('TabsComponent', () => {
   });
 
   describe('Tabs with specific tab set active', () => {
-    beforeEach(async () => {
+    beforeEach(done => {
       TestBed.configureTestingModule({
-        imports: [TabsLabeltemplateFixtureComponent],
+        declarations: [TabsLabeltemplateFixtureComponent],
+        imports: [TabsModule],
         teardown: { destroyAfterEach: false }
       }).compileComponents();
 
       fixture = TestBed.createComponent(TabsLabeltemplateFixtureComponent);
       component = fixture.componentInstance.tabsComponent;
       fixture.autoDetectChanges();
-      await fixture.whenStable().then(() => {});
+      fixture.whenStable().then(() => {
+        done();
+      });
     });
 
     it('4th tab is set to active on init', () => {
@@ -89,17 +96,20 @@ describe('TabsComponent', () => {
   });
 
   describe('Tabs with multiple active', () => {
-    beforeEach(async () => {
+    beforeEach(done => {
       TestBed.configureTestingModule({
-        imports: [TabsMultipleActiveFixtureComponent],
+        declarations: [TabsMultipleActiveFixtureComponent],
+        imports: [TabsModule],
         teardown: { destroyAfterEach: false }
       }).compileComponents();
 
-      vi.spyOn(console, 'error');
+      spyOn(console, 'error');
       fixture = TestBed.createComponent(TabsMultipleActiveFixtureComponent);
       component = fixture.componentInstance.tabsComponent;
       fixture.autoDetectChanges();
-      await fixture.whenStable().then(() => {});
+      fixture.whenStable().then(() => {
+        done();
+      });
     });
 
     it('Tabs with multiple active tabs throws error when initialized', () => {

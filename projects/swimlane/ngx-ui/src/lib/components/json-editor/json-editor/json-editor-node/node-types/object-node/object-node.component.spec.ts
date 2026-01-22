@@ -4,7 +4,6 @@ import { jsonSchemaDataTypes, dataTypeMap, jsonSchemaDataFormats } from '../../.
 import { ObjectNodeComponent } from './object-node.component';
 import { PipesModule } from '../../../../../../pipes/pipes.module';
 import { ObjectValuesPipe } from '../../../../object-values.pipe';
-import { JsonEditorModule } from '../../../../json-editor.module';
 
 describe('ObjectNodeComponent', () => {
   let component: ObjectNodeComponent;
@@ -13,7 +12,7 @@ describe('ObjectNodeComponent', () => {
     TestBed.configureTestingModule({
       schemas: [NO_ERRORS_SCHEMA],
       declarations: [ObjectNodeComponent, ObjectValuesPipe],
-      imports: [PipesModule, JsonEditorModule]
+      imports: [PipesModule]
     });
     fixture = TestBed.createComponent(ObjectNodeComponent);
     component = fixture.componentInstance;
@@ -38,14 +37,14 @@ describe('ObjectNodeComponent', () => {
   });
   describe('ngOnChanges', () => {
     it('makes expected calls', () => {
-      vi.spyOn(component, 'update');
+      spyOn(component, 'update');
       component.ngOnChanges({ model: {}, schema: {} } as any);
       expect(component.update).toHaveBeenCalled();
     });
   });
   describe('ngOnInit', () => {
     it('makes expected calls', () => {
-      vi.spyOn(component, 'update');
+      spyOn(component, 'update');
       component.ngOnInit();
       expect(component.update).toHaveBeenCalled();
     });

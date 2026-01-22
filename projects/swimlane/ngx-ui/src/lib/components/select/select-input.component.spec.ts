@@ -52,12 +52,13 @@ describe('SelectInputComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should focus input', async () => {
-      const spy = vi.spyOn(component.inputElement.nativeElement, 'focus');
+    it('should focus input', done => {
+      const spy = spyOn(component.inputElement.nativeElement, 'focus');
       component.ngAfterViewInit();
 
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();
+        done();
       }, 5);
     });
   });
@@ -75,7 +76,7 @@ describe('SelectInputComponent', () => {
     });
 
     it('should emit event and value', () => {
-      const spy = vi.spyOn(component.keyup, 'emit');
+      const spy = spyOn(component.keyup, 'emit');
       component.onInputKeyUp(event);
       expect(spy).toHaveBeenCalledWith({ event, value: '' });
     });
@@ -86,7 +87,7 @@ describe('SelectInputComponent', () => {
       });
 
       it('should select value when not selected', () => {
-        const spy = vi.spyOn(component.selection, 'emit');
+        const spy = spyOn(component.selection, 'emit');
         event.target.value = 'test';
         component.onInputKeyUp(event);
         expect(spy).toHaveBeenCalled();
@@ -94,14 +95,14 @@ describe('SelectInputComponent', () => {
 
       it('should not select value when already selected', () => {
         component.selected = ['test'];
-        const spy = vi.spyOn(component.selection, 'emit');
+        const spy = spyOn(component.selection, 'emit');
         event.target.value = 'test';
         component.onInputKeyUp(event);
         expect(spy).not.toHaveBeenCalled();
       });
 
       it('should do nothing if !value', () => {
-        const spy = vi.spyOn(component.selection, 'emit');
+        const spy = spyOn(component.selection, 'emit');
         component.onInputKeyUp(event);
         expect(spy).not.toHaveBeenCalled();
       });
@@ -113,7 +114,7 @@ describe('SelectInputComponent', () => {
       });
 
       it('should toggle', () => {
-        const spy = vi.spyOn(component.toggle, 'emit');
+        const spy = spyOn(component.toggle, 'emit');
         component.onInputKeyUp(event);
         expect(spy).toHaveBeenCalled();
       });
@@ -131,21 +132,21 @@ describe('SelectInputComponent', () => {
     });
 
     it('should do nothing if disableDropdown', () => {
-      const spy = vi.spyOn(event, 'stopPropagation');
+      const spy = spyOn(event, 'stopPropagation');
       component.disableDropdown = true;
       component.onKeyDown(event);
       expect(spy).not.toHaveBeenCalled();
     });
 
     it('should not emit event if tagging', () => {
-      const spy = vi.spyOn(component.keyup, 'emit');
+      const spy = spyOn(component.keyup, 'emit');
       component.tagging = true;
       component.onKeyDown(event);
       expect(spy).not.toHaveBeenCalled();
     });
 
     it('should emit event if !tagging', () => {
-      const spy = vi.spyOn(component.keyup, 'emit');
+      const spy = spyOn(component.keyup, 'emit');
       component.tagging = false;
       component.onKeyDown(event);
       expect(spy).toHaveBeenCalled();
@@ -168,28 +169,30 @@ describe('SelectInputComponent', () => {
     });
 
     it('should do nothing if disableDropdown', () => {
-      const spy = vi.spyOn(component.activate, 'emit');
+      const spy = spyOn(component.activate, 'emit');
       component.disableDropdown = true;
       component.onClick();
       expect(spy).not.toHaveBeenCalled();
     });
 
-    it('should focus input if tagging', async () => {
-      const spy = vi.spyOn(component.inputElement.nativeElement, 'focus');
+    it('should focus input if tagging', done => {
+      const spy = spyOn(component.inputElement.nativeElement, 'focus');
       component.onClick();
 
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();
+        done();
       }, 5);
     });
 
-    it('should emit activate but not focus is !tagging', async () => {
-      const spy = vi.spyOn(component.inputElement.nativeElement, 'focus');
+    it('should emit activate but not focus is !tagging', done => {
+      const spy = spyOn(component.inputElement.nativeElement, 'focus');
       component.tagging = false;
       component.onClick();
 
       setTimeout(() => {
         expect(spy).toHaveBeenCalled();
+        done();
       }, 5);
     });
   });
@@ -204,14 +207,14 @@ describe('SelectInputComponent', () => {
     });
 
     it('should remove value from selection', () => {
-      const spy = vi.spyOn(component.selection, 'emit');
+      const spy = spyOn(component.selection, 'emit');
       component.selected = ['test', 'test1', 'test2'];
       component.onOptionRemove(event, { name: 'test', value: 'test' });
       expect(spy).toHaveBeenCalledWith(['test1', 'test2']);
     });
 
     it('should remove value from selection with identifier', () => {
-      const spy = vi.spyOn(component.selection, 'emit');
+      const spy = spyOn(component.selection, 'emit');
       component.identifier = 'value';
       component.selected = [{ value: 'test' }, { value: 'test1' }, { value: 'test2' }];
       component.onOptionRemove(event, { name: 'test', value: { value: 'test' } });

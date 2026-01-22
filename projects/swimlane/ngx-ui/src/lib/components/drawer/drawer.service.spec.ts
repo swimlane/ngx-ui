@@ -50,8 +50,8 @@ describe('DrawerService', () => {
           size: 10
         }
       };
-      const spy = vi.spyOn(injectionService, 'appendComponent').mockReturnValue(component as any);
-      const destroySpy = vi.spyOn(service, 'destroy');
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
+      const destroySpy = spyOn(service, 'destroy');
 
       service.create({});
       expect(spy).toHaveBeenCalled();
@@ -68,8 +68,8 @@ describe('DrawerService', () => {
           isRoot: false
         }
       };
-      const spy = vi.spyOn(injectionService, 'appendComponent').mockReturnValue(component as any);
-      const destroySpy = vi.spyOn(service, 'destroy');
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
+      const destroySpy = spyOn(service, 'destroy');
 
       service.create({ isRoot: false });
       expect(spy).toHaveBeenCalled();
@@ -86,8 +86,8 @@ describe('DrawerService', () => {
           closeOnOutsideClick: true
         }
       };
-      const spy = vi.spyOn(injectionService, 'appendComponent').mockReturnValue(component as any);
-      const destroySpy = vi.spyOn(service, 'destroy');
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
+      const destroySpy = spyOn(service, 'destroy');
 
       service.create({
         zIndex: 10,
@@ -109,8 +109,8 @@ describe('DrawerService', () => {
           isRoot: false
         }
       };
-      const spy = vi.spyOn(injectionService, 'appendComponent').mockReturnValue(component as any);
-      const destroySpy = vi.spyOn(service, 'destroy');
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
+      const destroySpy = spyOn(service, 'destroy');
 
       const parentElement = document.createElement('div');
 
@@ -137,8 +137,8 @@ describe('DrawerService', () => {
           isRoot: false
         }
       };
-      const spy = vi.spyOn(injectionService, 'appendComponent').mockReturnValue(component as any);
-      const destroySpy = vi.spyOn(service, 'destroy');
+      const spy = spyOn(injectionService, 'appendComponent').and.returnValue(component as any);
+      const destroySpy = spyOn(service, 'destroy');
 
       const parentElement = document.createElement('div');
 
@@ -157,25 +157,27 @@ describe('DrawerService', () => {
   });
 
   describe('destroy', () => {
-    it('should destroy with overlay', async () => {
-      const spy = vi.spyOn(overlayService, 'removeTriggerComponent');
+    it('should destroy with overlay', done => {
+      const spy = spyOn(overlayService, 'removeTriggerComponent');
       const component: any = { instance: { size: 10 } };
       service.destroy(component);
 
       setTimeout(() => {
         expect(component.instance.size).toEqual(0);
         expect(spy).toHaveBeenCalled();
+        done();
       }, 10);
     });
 
-    it('should not set size to 0 if !component', async () => {
-      const spy = vi.spyOn(overlayService, 'removeTriggerComponent');
+    it('should not set size to 0 if !component', done => {
+      const spy = spyOn(overlayService, 'removeTriggerComponent');
       const component: any = {};
       service.destroy(component);
 
       setTimeout(() => {
         expect(component.instance).toBeUndefined();
         expect(spy).toHaveBeenCalled();
+        done();
       }, 10);
     });
   });

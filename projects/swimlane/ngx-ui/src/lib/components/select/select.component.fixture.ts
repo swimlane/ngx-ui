@@ -4,9 +4,6 @@ import { BehaviorSubject } from 'rxjs';
 import { SelectComponent } from './select.component';
 import { SelectDropdownOption } from './select-dropdown-option.interface';
 import { selectDropdownOptionMock } from './select-dropdown-option.mock';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms/types/forms';
-import { SelectModule } from './select.module';
 
 @Component({
   selector: 'ngx-select-fixture',
@@ -42,8 +39,7 @@ import { SelectModule } from './select.module';
     </ngx-select>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [SelectModule, CommonModule, FormsModule]
+  standalone: false
 })
 // eslint-disable-next-line @angular-eslint/component-class-suffix
 export class SelectComponentFixture {

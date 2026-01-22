@@ -5,7 +5,7 @@ describe('throttle', () => {
   let spy: any;
 
   beforeEach(() => {
-    spy = vi.fn();
+    spy = jasmine.createSpy('fn');
   });
 
   it('should get throttle result', fakeAsync(() => {

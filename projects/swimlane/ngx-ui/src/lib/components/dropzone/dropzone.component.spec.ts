@@ -10,7 +10,7 @@ const uploader = new FileUploader({ url: '' });
 const acceptedFileFormats = ['.txt', '.json'];
 const oneAcceptedFileFormat = ['.csv'];
 
-describe.skip('DropzoneComponent', () => {
+xdescribe('DropzoneComponent', () => {
   let shallow: Shallow<DropzoneComponent>;
   let rendering: Rendering<DropzoneComponent, unknown>;
 
@@ -28,8 +28,8 @@ describe.skip('DropzoneComponent', () => {
     });
 
     it('has correct class', () => {
-      expect(rendering.find('ngx-file-button').nativeElement.classList.contains('ngx-dropzone')).toBe(true);
-      expect(rendering.find('ngx-file-button').nativeElement.classList.contains('ngx-dropzone--large')).toBe(true);
+      expect(rendering.find('ngx-file-button').nativeElement).toHaveClass('ngx-dropzone');
+      expect(rendering.find('ngx-file-button').nativeElement).toHaveClass('ngx-dropzone--large');
     });
 
     it('multiple defaults to true', () => {

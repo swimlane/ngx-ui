@@ -3,9 +3,6 @@ import { BehaviorSubject } from 'rxjs';
 
 import { InputComponent } from './input.component';
 import { InputTypes } from './input-types.enum';
-import { FormsModule } from '@angular/forms/types/forms';
-import { CommonModule } from '@angular/common/types/common';
-import { InputModule } from './input.module';
 
 @Component({
   selector: 'ngx-input-fixture',
@@ -29,8 +26,7 @@ import { InputModule } from './input.module';
     ></ngx-input>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [CommonModule, FormsModule, InputModule]
+  standalone: false
 })
 export class InputComponentFixture {
   value: string | number = 'test';

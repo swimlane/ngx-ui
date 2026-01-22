@@ -2,8 +2,6 @@ import { ChangeDetectionStrategy, ViewChild, Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { RadioButtonGroupComponent } from './radiobutton-group.component';
-import { FormsModule } from '@angular/forms/types/forms';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'ngx-radiobutton-group-fixture',
@@ -17,8 +15,7 @@ import { CommonModule } from '@angular/common';
     </ngx-radiobutton-group>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [CommonModule, FormsModule]
+  standalone: false
 })
 export class RadioButtonGroupComponentFixture {
   value = 'one';

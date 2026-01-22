@@ -7,12 +7,13 @@ describe('throttleable', () => {
     fixture = new ThrottleableFixture();
   });
 
-  it('should call throttleable fn', async () => {
-    const spy = vi.spyOn(fixture, 'doSomething');
+  it('should call throttleable fn', done => {
+    const spy = spyOn(fixture, 'doSomething');
     fixture.fn();
 
     setTimeout(() => {
       expect(spy).toHaveBeenCalled();
+      done();
     }, 10);
   });
 });

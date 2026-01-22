@@ -1,15 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { TreeComponent } from '../tree.component';
 import { TreeNode } from '../tree-node.model';
-import { TreeModule } from '../tree.module';
-import { CommonModule } from '@angular/common';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'tree-fixture',
   templateUrl: 'tree.fixture.html',
-  standalone: true,
-  imports: [TreeModule, CommonModule]
+  standalone: false
 })
 export class TreeFixtureComponent {
   @ViewChild('tree1', { static: true }) treeComponent1: TreeComponent;
