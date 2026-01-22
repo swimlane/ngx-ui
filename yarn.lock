@@ -6440,12 +6440,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swimlane/prettier-config-swimlane@npm:^3.0.2":
-  version: 3.0.3
-  resolution: "@swimlane/prettier-config-swimlane@npm:3.0.3"
+"@swimlane/prettier-config-swimlane@npm:4.0.0-alpha.0":
+  version: 4.0.0-alpha.0
+  resolution: "@swimlane/prettier-config-swimlane@npm:4.0.0-alpha.0"
   peerDependencies:
-    prettier: ^2.0.4
-  checksum: 10c0/a4689a7726b1c28ea5caad687dfd2d7f1dbd64013f29c4d290a0d206d82cf684588d26981e43778b38a699f13a0408269a0bfdb1d0b197a992b968e50a4bc9e5
+    prettier: 3.3.3
+  checksum: 10c0/f552c95628010d6f1aaa8dbd094136b22fe1f643085c8e5b7b64443c741fb5287cecdcb426f0d7c47db57a7b562d4c698357532fb45c6b402b91088050a86f3d
   languageName: node
   linkType: hard
 
@@ -16127,7 +16127,7 @@ __metadata:
     "@open-wc/semantic-dom-diff": "npm:0.19.7"
     "@schematics/angular": "npm:^20.0.3"
     "@swimlane/eslint-config": "npm:^2.0.0"
-    "@swimlane/prettier-config-swimlane": "npm:^3.0.2"
+    "@swimlane/prettier-config-swimlane": "npm:4.0.0-alpha.0"
     "@types/codemirror": "npm:5.60.5"
     "@types/faker": "npm:^4.1.11"
     "@types/jasmine": "npm:4.3.0"

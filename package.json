@@ -82,7 +82,7 @@
     "@open-wc/semantic-dom-diff": "0.19.7",
     "@schematics/angular": "^20.0.3",
     "@swimlane/eslint-config": "^2.0.0",
-    "@swimlane/prettier-config-swimlane": "^3.0.2",
+    "@swimlane/prettier-config-swimlane": "4.0.0-alpha.0",
     "@types/codemirror": "5.60.5",
     "@types/faker": "^4.1.11",
     "@types/jasmine": "4.3.0",
