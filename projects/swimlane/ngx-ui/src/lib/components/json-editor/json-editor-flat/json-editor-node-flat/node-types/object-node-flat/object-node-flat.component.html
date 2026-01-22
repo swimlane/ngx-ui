@@ -95,7 +95,7 @@
     @for (prop of schema.properties | keyvalue; track prop) {
       @if (model[prop.key] === undefined) {
         <div class="node-container add-button add-prop-button">
-          @for (separator of indentationArray; track separator) {
+          @for (separator of indentationArray; track $index) {
             <span class="json-editor--vertical-separator"></span>
           }
           @if (level === 0) {
@@ -141,7 +141,7 @@
       class="add-button"
       [class.background]="hideRoot ? level > -1 : level"
       >
-      @for (separator of indentationArray; track separator) {
+      @for (separator of indentationArray; track $index) {
         <span class="json-editor--vertical-separator"></span>
       }
       <div class="indented-content" [class.indented-content--root]="isRoot" [class.indented-content--indent]="indentAdd">

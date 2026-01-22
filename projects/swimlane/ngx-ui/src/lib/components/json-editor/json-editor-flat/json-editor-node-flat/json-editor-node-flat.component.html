@@ -4,7 +4,7 @@
       <div class="node-container">
         @if (nextLevel > 0) {
           <div class="indentation" [style.left]="-1 * (nextLevel * 20) + 'px'">
-            @for (separator of indentationArray; track separator) {
+            @for (separator of indentationArray; track $index) {
               <span class="json-editor--vertical-separator"></span>
             }
           </div>
