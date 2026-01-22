@@ -251,7 +251,9 @@ $max-width: 300px;
     margin-top: -1em;
     opacity: 0;
     display: none;
-    transition: visibility 0s, opacity 0.25s ease-out;
+    transition:
+      visibility 0s,
+      opacity 0.25s ease-out;
     overflow: hidden;
 
     li {

@@ -8,9 +8,10 @@ import { InputTypes } from './input-types.enum';
   selector: 'ngx-input-autosize-fixture',
   template: `
     @if ((type$ | async) === 'text') {
-    <input #input [style.max-width.px]="maxWidth$ | async" [(ngModel)]="value" [autosize]="enabled$ | async" />
-    } @if ((type$ | async) === 'textarea') {
-    <textarea #textarea [(ngModel)]="value" [autosize]="enabled$ | async"></textarea>
+      <input #input [style.max-width.px]="maxWidth$ | async" [(ngModel)]="value" [autosize]="enabled$ | async" />
+    }
+    @if ((type$ | async) === 'textarea') {
+      <textarea #textarea [(ngModel)]="value" [autosize]="enabled$ | async"></textarea>
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
