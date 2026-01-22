@@ -71,7 +71,7 @@
         class="add-button"
         [class.background]="hideRoot ? level > -1 : level"
         >
-        @for (separator of indentationArray; track separator) {
+        @for (separator of indentationArray; track $index) {
           <span class="json-editor--vertical-separator"></span>
         }
         <div
