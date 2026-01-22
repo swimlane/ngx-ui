@@ -1,4 +1,4 @@
-import { vi, type MockInstance } from 'vitest';
+import { vi, type Mock } from 'vitest';
 import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { ListComponent } from './list.component';
 import { of } from 'rxjs';
@@ -68,7 +68,7 @@ describe('ListComponent', () => {
     }));
 
     it('should call initScrollListener and scroll to the correct page when the paginationConfig Input is provided', fakeAsync(() => {
-      const scrollToSpy: MockInstance<any> = vi.spyOn(component.listRowsContainer.nativeElement, 'scrollTo');
+      const scrollToSpy: Mock = vi.spyOn(component.listRowsContainer.nativeElement, 'scrollTo');
       const initScrollListenerSpy = vi.spyOn(component, 'initScrollListener');
       component.paginationConfig = {
         index: 5,

@@ -1,4 +1,4 @@
-import type { MockInstance } from 'vitest';
+import type { Mock } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ToggleComponent } from './toggle.component';
@@ -7,7 +7,7 @@ import { ToggleModule } from './toggle.module';
 describe('ToggleComponent', () => {
   let component: ToggleComponent;
   let fixture: ComponentFixture<ToggleComponent>;
-  let changeSpy: MockInstance<any>;
+  let changeSpy: Mock;
 
   beforeEach(() => {
     TestBed.configureTestingModule({

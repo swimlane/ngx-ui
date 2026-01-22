@@ -3,11 +3,7 @@
   "dest": "../../../dist/swimlane/ngx-ui",
   "lib": {
     "entryFile": "src/public_api.ts",
-    "styleIncludePaths": [
-      "projects/swimlane/ngx-ui/src/lib/components",
-      "projects/swimlane/ngx-ui/src/lib/styles",
-      "projects/swimlane/ngx-ui/src/lib/assets"
-    ]
+    "styleIncludePaths": ["src/lib/components", "src/lib/styles", "src/lib/assets"]
   },
   "allowedNonPeerDependencies": ["mousetrap", "ng2-file-upload", "date-fns"]
 }

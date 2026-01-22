@@ -1,4 +1,4 @@
-import type { MockInstance } from 'vitest';
+import type { Mock } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { EventEmitter } from '@angular/core';
 
@@ -9,7 +9,7 @@ import { AlertService } from './alert.service';
 
 describe('AlertService', () => {
   let service: AlertService;
-  let spy: MockInstance<any>;
+  let spy: Mock;
   let component: {
     instance: {
       ok: EventEmitter<void>;

@@ -1,4 +1,4 @@
-import { vi, type MockInstance } from 'vitest';
+import { vi, type Mock } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 import { ComponentRef, EventEmitter } from '@angular/core';
 
@@ -37,7 +37,7 @@ describe('NotificationService', () => {
   });
 
   describe('create', () => {
-    let spy: MockInstance<any>;
+    let spy: Mock;
 
     beforeEach(() => {
       const component = {
@@ -78,7 +78,7 @@ describe('NotificationService', () => {
   });
 
   describe('startTimer', () => {
-    let spy: MockInstance<any>;
+    let spy: Mock;
 
     beforeEach(() => {
       spy = vi.spyOn(service, 'destroy');
@@ -108,7 +108,7 @@ describe('NotificationService', () => {
   });
 
   describe('requestPermissions', () => {
-    let spy: MockInstance<any>;
+    let spy: Mock;
 
     beforeEach(() => {
       spy = vi.spyOn(Notification, 'requestPermission');
@@ -136,7 +136,7 @@ describe('NotificationService', () => {
   });
 
   describe('injectComponent', () => {
-    let spy: MockInstance<any>;
+    let spy: Mock;
 
     beforeEach(() => {
       spy = vi.spyOn(injectionService, 'appendComponent');

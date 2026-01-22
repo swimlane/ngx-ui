@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { SliderComponent } from '../slider.component';
 import { SliderModule } from '../slider.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms/types/forms';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector

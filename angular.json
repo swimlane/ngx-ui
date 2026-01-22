@@ -164,7 +164,7 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular/build:ng-packagr",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/swimlane/ngx-ui/tsconfig.lib.json",
             "project": "projects/swimlane/ngx-ui/ng-package.json"
@@ -183,7 +183,7 @@
           "options": {
             "tsConfig": "projects/swimlane/ngx-ui/tsconfig.spec.json",
             "runner": "vitest",
-            "browsers": ["firefox"],
+            "browsers": ["chrome"],
             "runnerConfig": "projects/swimlane/ngx-ui/vitest.config.ts"
           }
         },

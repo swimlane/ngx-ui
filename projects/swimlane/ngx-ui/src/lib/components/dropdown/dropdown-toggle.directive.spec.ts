@@ -1,4 +1,4 @@
-import { vi, type MockInstance } from 'vitest';
+import type { Mock } from 'vitest';
 import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
@@ -33,7 +33,7 @@ describe('DropdownToggleDirective', () => {
   });
 
   describe('show events', () => {
-    let spy: MockInstance<any>;
+    let spy: Mock;
 
     beforeEach(() => {
       spy = vi.spyOn(directive.toggle, 'emit');

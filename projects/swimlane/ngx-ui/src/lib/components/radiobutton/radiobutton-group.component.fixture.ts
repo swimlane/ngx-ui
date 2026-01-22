@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ViewChild, Component } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { RadioButtonGroupComponent } from './radiobutton-group.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms/types/forms';
 import { CommonModule } from '@angular/common';
 
 @Component({

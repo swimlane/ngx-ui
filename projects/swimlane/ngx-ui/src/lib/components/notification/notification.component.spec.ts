@@ -1,4 +1,4 @@
-import type { MockInstance } from 'vitest';
+import type { Mock } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
@@ -47,7 +47,7 @@ describe('NotificationComponent', () => {
   });
 
   describe('onMouseEnter', () => {
-    let spy: MockInstance<any>;
+    let spy: Mock;
 
     beforeEach(() => {
       spy = vi.spyOn(component.pause, 'emit');
@@ -67,7 +67,7 @@ describe('NotificationComponent', () => {
   });
 
   describe('onMouseLeave', () => {
-    let spy: MockInstance<any>;
+    let spy: Mock;
 
     beforeEach(() => {
       spy = vi.spyOn(component.resume, 'emit');
