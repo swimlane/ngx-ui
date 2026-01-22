@@ -1,8 +1,8 @@
 <div [hidden]="!expanded">
-  @for (value of model; track arrayTrackBy(i); let i = $index) {
+  @for (value of model; track arrayTrackBy($index); let i = $index) {
     <div>
       <div class="property-def">
-        <ngx-dropdown>
+        <ngx-dropdown>  
           <ngx-dropdown-toggle>
             <div class="type-icon" tooltipPlacement="top">
               <ngx-icon [fontIcon]="schemas[i]?.$meta.icon"> </ngx-icon>

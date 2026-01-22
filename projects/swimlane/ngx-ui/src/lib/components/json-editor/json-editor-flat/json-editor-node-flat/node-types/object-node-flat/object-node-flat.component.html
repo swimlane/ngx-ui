@@ -5,7 +5,7 @@
   [cdkDropListDisabled]="!schemaBuilderMode"
   (cdkDropListDropped)="drop($event)"
   >
-  @for (prop of propertyIndex | objectValues; track trackBy(index, prop); let index = $index) {
+  @for (prop of propertyIndex | objectValues; track trackBy($index, prop); let index = $index) {
     <div
       cdkDrag
       cdkDragLockAxis="y"

@@ -1,6 +1,6 @@
 @if (model.length !== undefined) {
   <div class="array-node-flat" [hidden]="!expanded">
-    @for (value of model; track arrayTrackBy(i); let i = $index) {
+    @for (value of model; track arrayTrackBy($index); let i = $index) {
       <div
         class="array-node-content"
         [class.no-margin]="schemaBuilderMode"
