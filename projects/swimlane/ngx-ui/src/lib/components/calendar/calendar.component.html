@@ -37,9 +37,9 @@
           </div>
           @if (selectType === CalendarSelect.Single) {
             <table class="day-container" role="grid">
-              @for (week of weeks; track week) {
+              @for (week of weeks; track $index) {
                 <tr class="day-row" role="row">
-                  @for (day of week; track day) {
+                  @for (day of week; track $index) {
                     <td class="day-cell text-center" role="gridcell">
                       @if (day.num) {
                         <button
@@ -66,9 +66,9 @@
           }
           @if (selectType === CalendarSelect.Range) {
             <table class="day-container" role="grid">
-              @for (week of weeks; track week) {
+              @for (week of weeks; track $index) {
                 <tr class="day-row" role="row">
-                  @for (day of week; track day) {
+                  @for (day of week; track $index) {
                     <td class="day-cell2 text-center" role="gridcell">
                       @if (day.num) {
                         <button
