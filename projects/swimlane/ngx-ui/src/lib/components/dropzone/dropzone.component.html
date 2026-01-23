@@ -1,5 +1,5 @@
-<ngx-file-button 
-  [uploader]="uploader" 
+<ngx-file-button
+  [uploader]="uploader"
   [options]="options"
   (afterAddingFile)="afterAddingFile.emit($event)"
   (beforeUploadItem)="beforeUploadItem.emit($event)"
@@ -8,7 +8,7 @@
   (progressAll)="progressAll.emit($event)"
   class="ngx-dropzone"
   [ngClass]="'ngx-dropzone--' + size"
->
+  >
   <ng-template #dropzoneTemplate let-uploader>
     <input
       [id]="'ngx-dropzone--input--' + id"
@@ -18,76 +18,82 @@
       [uploader]="uploader"
       [multiple]="multiple"
       [accept]="acceptedFileFormats?.length ? acceptedFileFormats : '*'"
-    />
-  
-    <label [attr.for]="'ngx-dropzone--input--' + id" class="ngx-dropzone--label">
-    <svg *ngIf="size === DropzoneSize.Large" class="ngx-dropzone--rings" viewBox="0 0 506 506" xmlns="http://www.w3.org/2000/svg">
-      <path
-        class="ngx-dropzone--ring-9"
-        opacity="0.2"
-        d="M252.743 504.196C391.58 504.196 504.129 391.732 504.129 253C504.129 114.268 391.58 1.8042 252.743 1.8042C113.907 1.8042 1.35742 114.268 1.35742 253C1.35742 391.732 113.907 504.196 252.743 504.196Z"
       />
-      <path
-        class="ngx-dropzone--ring-8"
-        opacity="0.3"
-        d="M252.743 489.063C383.216 489.063 488.985 383.374 488.985 253C488.985 122.626 383.216 16.9365 252.743 16.9365C122.27 16.9365 16.501 122.626 16.501 253C16.501 383.374 122.27 489.063 252.743 489.063Z"
-      />
-      <path
-        class="ngx-dropzone--ring-7"
-        opacity="0.4"
-        d="M252.744 475.444C375.689 475.444 475.356 375.853 475.356 253C475.356 130.147 375.689 30.5555 252.744 30.5555C129.798 30.5555 30.1309 130.147 30.1309 253C30.1309 375.853 129.798 475.444 252.744 475.444Z"
-      />
-      <path
-        class="ngx-dropzone--ring-6"
-        opacity="0.5"
-        d="M252.743 461.825C368.161 461.825 461.727 368.331 461.727 253C461.727 137.669 368.161 44.1746 252.743 44.1746C137.325 44.1746 43.7598 137.669 43.7598 253C43.7598 368.331 137.325 461.825 252.743 461.825Z"
-      />
-      <path
-        class="ngx-dropzone--ring-5"
-        opacity="0.6"
-        d="M252.744 448.206C360.635 448.206 448.098 360.809 448.098 253C448.098 145.19 360.635 57.7936 252.744 57.7936C144.853 57.7936 57.3896 145.19 57.3896 253C57.3896 360.809 144.853 448.206 252.744 448.206Z"
-      />
-      <path
-        class="ngx-dropzone--ring-4"
-        opacity="0.7"
-        d="M252.743 434.587C353.107 434.587 434.468 353.288 434.468 253C434.468 152.712 353.107 71.4127 252.743 71.4127C152.379 71.4127 71.0186 152.712 71.0186 253C71.0186 353.288 152.379 434.587 252.743 434.587Z"
-      />
-      <path
-        class="ngx-dropzone--ring-3"
-        opacity="0.8"
-        d="M252.743 420.968C345.579 420.968 420.838 345.766 420.838 253C420.838 160.234 345.579 85.0317 252.743 85.0317C159.906 85.0317 84.6475 160.234 84.6475 253C84.6475 345.766 159.906 420.968 252.743 420.968Z"
-      />
-      <path
-        class="ngx-dropzone--ring-2"
-        opacity="0.9"
-        d="M252.743 407.349C338.052 407.349 407.209 338.245 407.209 253C407.209 167.755 338.052 98.6508 252.743 98.6508C167.434 98.6508 98.2773 167.755 98.2773 253C98.2773 338.245 167.434 407.349 252.743 407.349Z"
-      />
-      <path
-        class="ngx-dropzone--ring-1"
-        d="M252.743 393.73C330.525 393.73 393.579 330.723 393.579 253C393.579 175.277 330.525 112.27 252.743 112.27C174.961 112.27 111.906 175.277 111.906 253C111.906 330.723 174.961 393.73 252.743 393.73Z"
-      />
-    </svg>
 
-    <div class="ngx-dropzone--btn">
-      <ng-container *ngIf="size === DropzoneSize.Large; else smallSizeTpl">
-        <ngx-icon class="ngx-dropzone--icon" fontIcon="upload-outline-large"></ngx-icon>
-        <div class="ngx-dropzone--title">Drag + Drop</div>
-        <div class="ngx-dropzone--sub-title">OR <span class="underline">BROWSE</span></div>
-        <div *ngIf="acceptedFileFormats?.length > 0" class="ngx-dropzone--supporting-files">
-          Supports: {{acceptedFileFormatsTextDisplay}}
+    <label [attr.for]="'ngx-dropzone--input--' + id" class="ngx-dropzone--label">
+      @if (size === DropzoneSize.Large) {
+        <svg class="ngx-dropzone--rings" viewBox="0 0 506 506" xmlns="http://www.w3.org/2000/svg">
+          <path
+            class="ngx-dropzone--ring-9"
+            opacity="0.2"
+            d="M252.743 504.196C391.58 504.196 504.129 391.732 504.129 253C504.129 114.268 391.58 1.8042 252.743 1.8042C113.907 1.8042 1.35742 114.268 1.35742 253C1.35742 391.732 113.907 504.196 252.743 504.196Z"
+            />
+          <path
+            class="ngx-dropzone--ring-8"
+            opacity="0.3"
+            d="M252.743 489.063C383.216 489.063 488.985 383.374 488.985 253C488.985 122.626 383.216 16.9365 252.743 16.9365C122.27 16.9365 16.501 122.626 16.501 253C16.501 383.374 122.27 489.063 252.743 489.063Z"
+            />
+          <path
+            class="ngx-dropzone--ring-7"
+            opacity="0.4"
+            d="M252.744 475.444C375.689 475.444 475.356 375.853 475.356 253C475.356 130.147 375.689 30.5555 252.744 30.5555C129.798 30.5555 30.1309 130.147 30.1309 253C30.1309 375.853 129.798 475.444 252.744 475.444Z"
+            />
+          <path
+            class="ngx-dropzone--ring-6"
+            opacity="0.5"
+            d="M252.743 461.825C368.161 461.825 461.727 368.331 461.727 253C461.727 137.669 368.161 44.1746 252.743 44.1746C137.325 44.1746 43.7598 137.669 43.7598 253C43.7598 368.331 137.325 461.825 252.743 461.825Z"
+            />
+          <path
+            class="ngx-dropzone--ring-5"
+            opacity="0.6"
+            d="M252.744 448.206C360.635 448.206 448.098 360.809 448.098 253C448.098 145.19 360.635 57.7936 252.744 57.7936C144.853 57.7936 57.3896 145.19 57.3896 253C57.3896 360.809 144.853 448.206 252.744 448.206Z"
+            />
+          <path
+            class="ngx-dropzone--ring-4"
+            opacity="0.7"
+            d="M252.743 434.587C353.107 434.587 434.468 353.288 434.468 253C434.468 152.712 353.107 71.4127 252.743 71.4127C152.379 71.4127 71.0186 152.712 71.0186 253C71.0186 353.288 152.379 434.587 252.743 434.587Z"
+            />
+          <path
+            class="ngx-dropzone--ring-3"
+            opacity="0.8"
+            d="M252.743 420.968C345.579 420.968 420.838 345.766 420.838 253C420.838 160.234 345.579 85.0317 252.743 85.0317C159.906 85.0317 84.6475 160.234 84.6475 253C84.6475 345.766 159.906 420.968 252.743 420.968Z"
+            />
+          <path
+            class="ngx-dropzone--ring-2"
+            opacity="0.9"
+            d="M252.743 407.349C338.052 407.349 407.209 338.245 407.209 253C407.209 167.755 338.052 98.6508 252.743 98.6508C167.434 98.6508 98.2773 167.755 98.2773 253C98.2773 338.245 167.434 407.349 252.743 407.349Z"
+            />
+          <path
+            class="ngx-dropzone--ring-1"
+            d="M252.743 393.73C330.525 393.73 393.579 330.723 393.579 253C393.579 175.277 330.525 112.27 252.743 112.27C174.961 112.27 111.906 175.277 111.906 253C111.906 330.723 174.961 393.73 252.743 393.73Z"
+            />
+        </svg>
+      }
+
+      <div class="ngx-dropzone--btn">
+        @if (size === DropzoneSize.Large) {
+          <ngx-icon class="ngx-dropzone--icon" fontIcon="upload-outline-large"></ngx-icon>
+          <div class="ngx-dropzone--title">Drag + Drop</div>
+          <div class="ngx-dropzone--sub-title">OR <span class="underline">BROWSE</span></div>
+          @if (acceptedFileFormats?.length > 0) {
+            <div class="ngx-dropzone--supporting-files">
+              Supports: {{acceptedFileFormatsTextDisplay}}
+            </div>
+          }
+        } @else {
+          <ngx-icon class="ngx-dropzone--icon" fontIcon="upload-outline-large"></ngx-icon>
+          <div class="ngx-dropzone--title">Drag + Drop</div>
+          @if (acceptedFileFormats?.length > 0) {
+            <div
+              ngx-tooltip
+              [tooltipTitle]="acceptedFileFormatsTextDisplay"
+              class="ngx-dropzone--sub-title">OR <span class="underline">BROWSE</span></div>
+            }
+            @if (!acceptedFileFormats || acceptedFileFormats.length === 0) {
+              <div class="ngx-dropzone--sub-title">OR <span class="underline">BROWSE</span></div>
+            }
+          }
         </div>
-      </ng-container>
-      <ng-template #smallSizeTpl>
-        <ngx-icon class="ngx-dropzone--icon" fontIcon="upload-outline-large"></ngx-icon>
-        <div class="ngx-dropzone--title">Drag + Drop</div>
-        <div 
-          *ngIf="acceptedFileFormats?.length > 0" 
-          ngx-tooltip 
-          [tooltipTitle]="acceptedFileFormatsTextDisplay" 
-          class="ngx-dropzone--sub-title">OR <span class="underline">BROWSE</span></div>
-        <div *ngIf="!acceptedFileFormats || acceptedFileFormats.length === 0" class="ngx-dropzone--sub-title">OR <span class="underline">BROWSE</span></div> 
-      </ng-template>
-    </div>      
-    </label>
-  </ng-template>
-</ngx-file-button>
+      </label>
+    </ng-template>
+  </ngx-file-button>

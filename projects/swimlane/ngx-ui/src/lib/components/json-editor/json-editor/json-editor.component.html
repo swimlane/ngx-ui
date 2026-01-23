@@ -4,8 +4,12 @@
       <ngx-icon fontIcon="integration"></ngx-icon>
     </div>
     <div class="name">
-      <div class="title" *ngIf="label">{{ label }}</div>
-      <div class="title" *ngIf="!label">{{ schema.title ? schema.title : 'Object' }}</div>
+      @if (label) {
+        <div class="title">{{ label }}</div>
+      }
+      @if (!label) {
+        <div class="title">{{ schema.title ? schema.title : 'Object' }}</div>
+      }
     </div>
   </div>
 
@@ -17,6 +21,6 @@
     [typeCheckOverrides]="typeCheckOverrides"
     [showKnownProperties]="showKnownProperties"
     [passwordToggleEnabled]="passwordToggleEnabled"
-  >
+    >
   </ngx-json-editor-node>
 </div>

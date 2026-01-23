@@ -1,32 +1,43 @@
-<div class="ngx-card--outline" *ngIf="selected && !outlineText && !error"></div>
-<div class="ngx-card--outline error" *ngIf="error && !outlineText"></div>
+@if (selected && !outlineText && !error) {
+  <div class="ngx-card--outline"></div>
+}
+@if (error && !outlineText) {
+  <div class="ngx-card--outline error"></div>
+}
 
-<div class="ngx-card--outline-text" [class.error]="error" *ngIf="outlineText">
-  <div class="inner-text" (click)="onOutlineClick($event)">{{outlineText}}</div>
-</div>
+@if (outlineText) {
+  <div class="ngx-card--outline-text" [class.error]="error">
+    <div class="inner-text" (click)="onOutlineClick($event)">{{outlineText}}</div>
+  </div>
+}
 
-<div
-  *ngIf="status && !statusTooltip"
-  class="ngx-card--status" 
-  [ngClass]="status"
-></div>
-<div
-  *ngIf="status && statusTooltip"
-  class="ngx-card--status"
-  ngx-tooltip
-  tooltipType="tooltip"
-  [tooltipTitle]="statusTooltip"
-  [ngClass]="status"
-></div>
+@if (status && !statusTooltip) {
+  <div
+    class="ngx-card--status"
+    [ngClass]="status"
+  ></div>
+}
+@if (status && statusTooltip) {
+  <div
+    class="ngx-card--status"
+    ngx-tooltip
+    tooltipType="tooltip"
+    [tooltipTitle]="statusTooltip"
+    [ngClass]="status"
+  ></div>
+}
 
-<ngx-checkbox 
-  *ngIf="selectable"
-  class="ngx-card--select"
-  round 
-  [(ngModel)]="selected"
-  (click)="$event.stopPropagation()"
-  (change)="onSelect($event)"
-></ngx-checkbox>
+@if (selectable) {
+  <ngx-checkbox
+    class="ngx-card--select"
+    round
+    [(ngModel)]="selected"
+    (click)="$event.stopPropagation()"
+    (change)="onSelect($event)"
+  ></ngx-checkbox>
+}
 
 <ng-content></ng-content>
-<div *ngIf="!hideAccent" class="ngx-card--accent"></div>
+@if (!hideAccent) {
+  <div class="ngx-card--accent"></div>
+}

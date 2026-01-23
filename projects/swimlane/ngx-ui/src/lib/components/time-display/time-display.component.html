@@ -8,29 +8,37 @@
   [tooltipPlacement]="tooltipPlacement"
   [tooltipShowTimeout]="400"
   [attr.title]="tooltipDisabled && hasPopup ? titleValue : null"
->
-  <ng-container *ngIf="!dateInvalid">
-    <ng-container [ngSwitch]="mode">
-      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.HUMAN">
+  >
+  @if (!dateInvalid) {
+    @switch (mode) {
+      @case (DATE_DISPLAY_TYPES.HUMAN) {
         {{ internalDatetime | amTimeAgo }}
-      </ng-container>
-      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.TIMEZONE">
+      }
+      @case (DATE_DISPLAY_TYPES.TIMEZONE) {
         {{ internalDatetime | amTimeZoneFormat: timezone:format }}
-      </ng-container>
-      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.CUSTOM">{{
+      }
+      @case (DATE_DISPLAY_TYPES.CUSTOM) {
+        {{
         datetime | amTimeZoneFormat: timezone:format
-      }}</ng-container>
-      <ng-container *ngSwitchCase="DATE_DISPLAY_TYPES.LOCAL">{{
+        }}
+      }
+      @case (DATE_DISPLAY_TYPES.LOCAL) {
+        {{
         internalDatetime | amTimeZoneFormat: timezone:format
-      }}</ng-container>
-    </ng-container>
-  </ng-container>
-  <ng-container *ngIf="dateInvalid"> {{ invalidDateMessage }} "{{ datetime }}" </ng-container>
+        }}
+      }
+    }
+  }
+  @if (dateInvalid) {
+    {{ invalidDateMessage }} "{{ datetime }}"
+  }
 </time>
 
 <ng-template #defaultTooltipTemplate>
-  <div *ngFor="let item of timeValues | keyvalue" class="date-zone-display">
-    <span>{{ item.value.display }}</span>
-    <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
-  </div>
+  @for (item of timeValues | keyvalue; track item) {
+    <div class="date-zone-display">
+      <span>{{ item.value.display }}</span>
+      <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
+    </div>
+  }
 </ng-template>

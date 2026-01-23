@@ -7,9 +7,11 @@ import { RadioButtonGroupComponent } from './radiobutton-group.component';
   selector: 'ngx-radiobutton-group-fixture',
   template: `
     <ngx-radiobutton-group tabindex="0" [name]="name$ | async" [(ngModel)]="value" [disabled]="disabled$ | async">
-      <ngx-radiobutton *ngFor="let option of options" [value]="option">
-        {{ option }}
-      </ngx-radiobutton>
+      @for (option of options; track option) {
+        <ngx-radiobutton [value]="option">
+          {{ option }}
+        </ngx-radiobutton>
+      }
     </ngx-radiobutton-group>
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

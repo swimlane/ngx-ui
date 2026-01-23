@@ -2,10 +2,12 @@
 
 <h3 class="style-header">Icons</h3>
 <ul class="icons-preview">
-  <li *ngFor="let icon of icons" class="shadow-2 shadow-fx">
-    <ngx-icon [fontIcon]="icon.name"></ngx-icon>
-    <span class="icon-name" dbl-click-copy>ngx-icon ngx-{{ icon.name }}</span>
-  </li>
+  @for (icon of icons; track icon) {
+    <li class="shadow-2 shadow-fx">
+      <ngx-icon [fontIcon]="icon.name"></ngx-icon>
+      <span class="icon-name" dbl-click-copy>ngx-icon ngx-{{ icon.name }}</span>
+    </li>
+  }
 </ul>
 
 <h3 class="style-header">Icons: effects</h3>
@@ -17,25 +19,28 @@
     <i class="icon-name">normal</i>
   </li>
 
-  <li *ngFor="let fx of iconFx" class="shadow-2 shadow-fx">
-    <span class="large-icon">
-      <i class="ngx-icon ngx-refresh icon-fx-{{ fx }}"></i>
-    </span>
-    <span class="icon-name" dbl-click-copy>icon-fx-{{ fx }}</span>
-  </li>
+  @for (fx of iconFx; track fx) {
+    <li class="shadow-2 shadow-fx">
+      <span class="large-icon">
+        <i class="ngx-icon ngx-refresh icon-fx-{{ fx }}"></i>
+      </span>
+      <span class="icon-name" dbl-click-copy>icon-fx-{{ fx }}</span>
+    </li>
+  }
 </ul>
 
 <h3 class="style-header">Icons: colors</h3>
 <ul class="icons-preview">
-  <li
-    *ngFor="let c of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple', 'blue-grey', 'grey']"
-    class="shadow-2 shadow-fx"
-  >
-    <span class="large-icon">
-      <i class="ngx-icon ngx-refresh text-{{ c }}"></i>
-    </span>
-    <span class="icon-name" dbl-click-copy>text-{{ c }}</span>
-  </li>
+  @for (c of ['blue', 'light-blue', 'green', 'orange', 'red', 'purple', 'blue-grey', 'grey']; track c) {
+    <li
+      class="shadow-2 shadow-fx"
+      >
+      <span class="large-icon">
+        <i class="ngx-icon ngx-refresh text-{{ c }}"></i>
+      </span>
+      <span class="icon-name" dbl-click-copy>text-{{ c }}</span>
+    </li>
+  }
 </ul>
 
 <h3 class="style-header">Icons: stacking</h3>

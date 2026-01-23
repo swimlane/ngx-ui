@@ -14,11 +14,13 @@
     [passwordToggleEnabled]="passwordToggleEnabled"
     [inputControlTemplate]="inputControlTemplate"
     (schemaUpdate)="schemaUpdate.emit($event)"
-  >
+    >
     <div class="node-options" node-options>
-      <button *ngIf="schemaBuilderMode" type="button" class="node-options-btn" (click)="onPropertyConfig()">
-        <i class="ngx-icon ngx-cog"></i>
-      </button>
+      @if (schemaBuilderMode) {
+        <button type="button" class="node-options-btn" (click)="onPropertyConfig()">
+          <i class="ngx-icon ngx-cog"></i>
+        </button>
+      }
     </div>
   </ngx-json-editor-node-flat>
 </div>
@@ -31,6 +33,6 @@
     [formats]="context.formats"
     [rootItem]="true"
     (updateProperty)="context.apply($event)"
-  >
+    >
   </ngx-property-config>
 </ng-template>

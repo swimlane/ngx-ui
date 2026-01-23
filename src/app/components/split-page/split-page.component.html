@@ -33,25 +33,30 @@
               </div>
             </div>
           </div>
-          <div ngxSplitHandle *ngIf="!hideAlertArea">
-            <!--- This will default to 15px wide -->
-          </div>
-          <div
-            ngxSplitArea
-            ngxSplitArea="400px"
-            maxBasis="600px"
-            minBasis="200px"
-            class="right-panel"
-            *ngIf="!hideAlertArea"
-          >
-            <!--- This start as flex width of 400px, with a range of 200 - 600px -->
-            <ul>
-              <li>Alerts</li>
-              <li>Search</li>
-              <li>Admin</li>
-            </ul>
-          </div>
-          <div class="fixed-panel" *ngIf="!hideFixedSidebar">Fixed Sidebar</div>
+          @if (!hideAlertArea) {
+            <div ngxSplitHandle>
+              <!--- This will default to 15px wide -->
+            </div>
+          }
+          @if (!hideAlertArea) {
+            <div
+              ngxSplitArea
+              ngxSplitArea="400px"
+              maxBasis="600px"
+              minBasis="200px"
+              class="right-panel"
+              >
+              <!--- This start as flex width of 400px, with a range of 200 - 600px -->
+              <ul>
+                <li>Alerts</li>
+                <li>Search</li>
+                <li>Admin</li>
+              </ul>
+            </div>
+          }
+          @if (!hideFixedSidebar) {
+            <div class="fixed-panel">Fixed Sidebar</div>
+          }
         </div>
       </div>
 

@@ -11,7 +11,10 @@ export class HotkeysPageComponent implements OnInit, OnDestroy {
   currentTheme = 'night';
   themes = ['day', 'night', 'moonlight'];
 
-  constructor(readonly hotkeysService: HotkeysService, readonly dialogMngr: DialogService) {}
+  constructor(
+    readonly hotkeysService: HotkeysService,
+    readonly dialogMngr: DialogService
+  ) {}
 
   ngOnInit() {
     this.hotkeysService.add('mod+h', {

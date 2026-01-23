@@ -1,248 +1,279 @@
 <div class="ngx-calendar-wrap">
-  <div class="text-center" [ngSwitch]="currentView">
-    <div *ngSwitchCase="CalendarView.Date">
-      <div class="title-row">
-        <button
-          type="button"
-          tabindex="0"
-          class="prev-month"
-          [disabled]="disabled"
-          title="Previous Month"
-          (click)="prevMonth()"
-        >
-          <span class="ngx-icon ngx-arrow-left"></span>
-        </button>
-        <button type="button" class="title" tabindex="0" (click)="changeViews()">
-          {{ focusDate | amTimeZone: timezone | amDateFormat: 'MMMM YYYY' }}
-        </button>
-        <button
-          type="button"
-          tabindex="0"
-          class="next-month"
-          title="Next Month"
-          [disabled]="disabled"
-          (click)="nextMonth()"
-        >
-          <span class="ngx-icon ngx-arrow-right"></span>
-        </button>
-      </div>
-      <div class="day-name-row">
-        <div class="day-name text-center" *ngFor="let d of daysOfWeek">
-          {{ d }}
+  <div class="text-center">
+    @switch (currentView) {
+      @case (CalendarView.Date) {
+        <div>
+          <div class="title-row">
+            <button
+              type="button"
+              tabindex="0"
+              class="prev-month"
+              [disabled]="disabled"
+              title="Previous Month"
+              (click)="prevMonth()"
+              >
+              <span class="ngx-icon ngx-arrow-left"></span>
+            </button>
+            <button type="button" class="title" tabindex="0" (click)="changeViews()">
+              {{ focusDate | amTimeZone: timezone | amDateFormat: 'MMMM YYYY' }}
+            </button>
+            <button
+              type="button"
+              tabindex="0"
+              class="next-month"
+              title="Next Month"
+              [disabled]="disabled"
+              (click)="nextMonth()"
+              >
+              <span class="ngx-icon ngx-arrow-right"></span>
+            </button>
+          </div>
+          <div class="day-name-row">
+            @for (d of daysOfWeek; track d) {
+              <div class="day-name text-center">
+                {{ d }}
+              </div>
+            }
+          </div>
+          @if (selectType === CalendarSelect.Single) {
+            <table class="day-container" role="grid">
+              @for (week of weeks; track $index) {
+                <tr class="day-row" role="row">
+                  @for (day of week; track $index) {
+                    <td class="day-cell text-center" role="gridcell">
+                      @if (day.num) {
+                        <button
+                          class="day"
+                          type="button"
+                          (focus)="onDayFocus(day)"
+                          [title]="day.date | amTimeZone: timezone | amDateFormat: 'LL'"
+                          [class.active]="isDayActive(day.date)"
+                          [class.focus]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day')"
+                          [attr.tabindex]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day') ? 0 : -1"
+                          [ngClass]="day.classes"
+                          [disabled]="isDisabled(day.date, 'day')"
+                          (click)="onDayClick(day)"
+                          (keydown)="onDayDown($event)"
+                          >
+                          {{ day.num }}
+                        </button>
+                      }
+                    </td>
+                  }
+                </tr>
+              }
+            </table>
+          }
+          @if (selectType === CalendarSelect.Range) {
+            <table class="day-container" role="grid">
+              @for (week of weeks; track $index) {
+                <tr class="day-row" role="row">
+                  @for (day of week; track $index) {
+                    <td class="day-cell2 text-center" role="gridcell">
+                      @if (day.num) {
+                        <button
+                          class="day2"
+                          type="button"
+                          (focus)="onDayFocus(day)"
+                          [title]="day.date | amTimeZone: timezone | amDateFormat: 'LL'"
+                          [class.active]="isRangeStartActive(day.date)"
+                          [class.extreme1]="isDayRangeStart(day.date)"
+                          [class.extreme2]="isDayRangeEnd(day.date)"
+                          [class.focus]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day')"
+                          [class.range]="isDayInRange(day.date)"
+                          [attr.tabindex]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day') ? 0 : -1"
+                          [ngClass]="day.classes"
+                          [disabled]="isDisabled(day.date, 'day')"
+                          (click)="onDaySelectRange(day)"
+                          >
+                          <span class="day-num">{{ day.num }}</span>
+                        </button>
+                      }
+                    </td>
+                  }
+                </tr>
+              }
+            </table>
+          }
         </div>
-      </div>
-      <table class="day-container" role="grid" *ngIf="selectType === CalendarSelect.Single">
-        <tr *ngFor="let week of weeks" class="day-row" role="row">
-          <td *ngFor="let day of week" class="day-cell text-center" role="gridcell">
-            <button
-              *ngIf="day.num"
-              class="day"
-              type="button"
-              (focus)="onDayFocus(day)"
-              [title]="day.date | amTimeZone: timezone | amDateFormat: 'LL'"
-              [class.active]="isDayActive(day.date)"
-              [class.focus]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day')"
-              [attr.tabindex]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day') ? 0 : -1"
-              [ngClass]="day.classes"
-              [disabled]="isDisabled(day.date, 'day')"
-              (click)="onDayClick(day)"
-              (keydown)="onDayDown($event)"
-            >
-              {{ day.num }}
+      }
+      @case (CalendarView.Month) {
+        <div>
+          <div class="title-row">
+            <button type="button" class="prev-month" [disabled]="disabled" title="Previous Year" (click)="prevYear()">
+              <span class="ngx-icon ngx-arrow-left"></span>
             </button>
-          </td>
-        </tr>
-      </table>
-      <table class="day-container" role="grid" *ngIf="selectType === CalendarSelect.Range">
-        <tr *ngFor="let week of weeks" class="day-row" role="row">
-          <td *ngFor="let day of week" class="day-cell2 text-center" role="gridcell">
-            <button
-              *ngIf="day.num"
-              class="day2"
-              type="button"
-              (focus)="onDayFocus(day)"
-              [title]="day.date | amTimeZone: timezone | amDateFormat: 'LL'"
-              [class.active]="isRangeStartActive(day.date)"
-              [class.extreme1]="isDayRangeStart(day.date)"
-              [class.extreme2]="isDayRangeEnd(day.date)"
-              [class.focus]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day')"
-              [class.range]="isDayInRange(day.date)"
-              [attr.tabindex]="!disabled && isDayFocus(day.date) && !isDisabled(day.date, 'day') ? 0 : -1"
-              [ngClass]="day.classes"
-              [disabled]="isDisabled(day.date, 'day')"
-              (click)="onDaySelectRange(day)"
-            >
-              <span class="day-num">{{ day.num }}</span>
+            <button class="title" (click)="changeViews()">
+              {{ focusDate | amTimeZone: timezone | amDateFormat: 'YYYY' }}
             </button>
-          </td>
-        </tr>
-      </table>
-    </div>
-
-    <div *ngSwitchCase="CalendarView.Month">
-      <div class="title-row">
-        <button type="button" class="prev-month" [disabled]="disabled" title="Previous Year" (click)="prevYear()">
-          <span class="ngx-icon ngx-arrow-left"></span>
-        </button>
-        <button class="title" (click)="changeViews()">
-          {{ focusDate | amTimeZone: timezone | amDateFormat: 'YYYY' }}
-        </button>
-        <button type="button" class="next-month" title="Next Year" [disabled]="disabled" (click)="nextYear()">
-          <span class="ngx-icon ngx-arrow-right"></span>
-        </button>
-      </div>
-      <table class="months-container" role="grid">
-        <tr class="months-row" role="row">
-          <td class="month-cell text-center" role="gridcell" *ngFor="let month of monthsList">
+            <button type="button" class="next-month" title="Next Year" [disabled]="disabled" (click)="nextYear()">
+              <span class="ngx-icon ngx-arrow-right"></span>
+            </button>
+          </div>
+          <table class="months-container" role="grid">
+            <tr class="months-row" role="row">
+              @for (month of monthsList; track month) {
+                <td class="month-cell text-center" role="gridcell">
+                  <button
+                    type="button"
+                    class="month"
+                    [class.active]="isMonthActive(month)"
+                    [class.current]="isCurrentMonth(month)"
+                    [class.focus]="isFocusMonth(month)"
+                    [attr.tabindex]="!disabled && isFocusMonth(month) && !isDisabled(month, 'month') ? 0 : -1"
+                    (click)="onMonthClick(month)"
+                    [disabled]="isDisabled(month, 'month')"
+                    (keydown)="onMonthDown($event)"
+                    >
+                    {{ month }}
+                  </button>
+                </td>
+              }
+            </tr>
+          </table>
+        </div>
+      }
+      @case (CalendarView.Year) {
+        <div>
+          <div class="title-row">
             <button
               type="button"
-              class="month"
-              [class.active]="isMonthActive(month)"
-              [class.current]="isCurrentMonth(month)"
-              [class.focus]="isFocusMonth(month)"
-              [attr.tabindex]="!disabled && isFocusMonth(month) && !isDisabled(month, 'month') ? 0 : -1"
-              (click)="onMonthClick(month)"
-              [disabled]="isDisabled(month, 'month')"
-              (keydown)="onMonthDown($event)"
-            >
-              {{ month }}
+              class="prev-month"
+              [disabled]="disabled"
+              title="Previous Two Decades"
+              (click)="prevTwoDecades()"
+              >
+              <span class="ngx-icon ngx-arrow-left"></span>
             </button>
-          </td>
-        </tr>
-      </table>
-    </div>
-
-    <div *ngSwitchCase="CalendarView.Year">
-      <div class="title-row">
-        <button
-          type="button"
-          class="prev-month"
-          [disabled]="disabled"
-          title="Previous Two Decades"
-          (click)="prevTwoDecades()"
-        >
-          <span class="ngx-icon ngx-arrow-left"></span>
-        </button>
-        <button class="title" (click)="changeViews()">{{ startYear }} - {{ startYear + 20 }}</button>
-        <button
-          type="button"
-          class="next-month"
-          title="Next Two Decades"
-          [disabled]="disabled"
-          (click)="nextTwoDecades()"
-        >
-          <span class="ngx-icon ngx-arrow-right"></span>
-        </button>
-      </div>
-      <table class="years-container" role="grid">
-        <tr class="years-row" role="row">
-          <td
-            class="year-cell text-center"
-            role="gridcell"
-            *ngFor="let dummy of ' '.repeat(20).split(''); let x = index"
-          >
+            <button class="title" (click)="changeViews()">{{ startYear }} - {{ startYear + 20 }}</button>
             <button
-              class="year"
               type="button"
-              [class.active]="isYearActive(x + startYear)"
-              [class.current]="isCurrentYear(x + startYear)"
-              [class.focus]="isFocusYear(x + startYear)"
-              [attr.tabindex]="!disabled && isFocusYear(x + startYear) && !isDisabled(x + startYear, 'year') ? 0 : -1"
-              (click)="onYearClick(x + startYear)"
-              [disabled]="isDisabled(x + startYear, 'year')"
-              (keydown)="onYearDown($event)"
-            >
-              {{ x + startYear }}
+              class="next-month"
+              title="Next Two Decades"
+              [disabled]="disabled"
+              (click)="nextTwoDecades()"
+              >
+              <span class="ngx-icon ngx-arrow-right"></span>
             </button>
-          </td>
-        </tr>
-      </table>
-    </div>
+          </div>
+          <table class="years-container" role="grid">
+            <tr class="years-row" role="row">
+              @for (dummy of ' '.repeat(20).split(''); track dummy; let x = $index) {
+                <td
+                  class="year-cell text-center"
+                  role="gridcell"
+                  >
+                  <button
+                    class="year"
+                    type="button"
+                    [class.active]="isYearActive(x + startYear)"
+                    [class.current]="isCurrentYear(x + startYear)"
+                    [class.focus]="isFocusYear(x + startYear)"
+                    [attr.tabindex]="!disabled && isFocusYear(x + startYear) && !isDisabled(x + startYear, 'year') ? 0 : -1"
+                    (click)="onYearClick(x + startYear)"
+                    [disabled]="isDisabled(x + startYear, 'year')"
+                    (keydown)="onYearDown($event)"
+                    >
+                    {{ x + startYear }}
+                  </button>
+                </td>
+              }
+            </tr>
+          </table>
+        </div>
+      }
+    }
   </div>
-  <div *ngIf="selectType === 'range'" class="time-inputs">
-    <div class="time-row" *ngIf="range.startDate && showStartTimeInputs">
-      <div>
-        <ngx-input
-          type="text"
-          hint="Hour"
-          label="{{ formatDate(range.startDate) }}"
-          [ngModel]="startHour"
-          [minlength]="1"
-          [maxlength]="2"
-          [pattern]="'^([0-9]|0[0-9]|1[0-2])$'"
-          (change)="hourChanged($event, 'start')"
-        >
-        </ngx-input>
-      </div>
-      <div>
-        <ngx-input
-          type="text"
-          hint="Minute"
-          [ngModel]="startMinute"
-          [minlength]="2"
-          [maxlength]="2"
-          [pattern]="'^[0-5]?[0-9]$'"
-          (change)="minuteChanged($event, 'start')"
-        >
-        </ngx-input>
-      </div>
-      <div>
-        <button
-          class="ampm"
-          type="button"
-          [class.selected]="startAmPmVal === 'AM'"
-          (click)="onAmPmChange('AM', 'start')"
-        >
-          AM
-        </button>
-      </div>
-      <div>
-        <button
-          class="ampm"
-          type="button"
-          [class.selected]="startAmPmVal === 'PM'"
-          (click)="onAmPmChange('PM', 'start')"
-        >
-          PM
-        </button>
-      </div>
+  @if (selectType === 'range') {
+    <div class="time-inputs">
+      @if (range.startDate && showStartTimeInputs) {
+        <div class="time-row">
+          <div>
+            <ngx-input
+              type="text"
+              hint="Hour"
+              label="{{ formatDate(range.startDate) }}"
+              [ngModel]="startHour"
+              [minlength]="1"
+              [maxlength]="2"
+              [pattern]="'^([0-9]|0[0-9]|1[0-2])$'"
+              (change)="hourChanged($event, 'start')"
+              >
+            </ngx-input>
+          </div>
+          <div>
+            <ngx-input
+              type="text"
+              hint="Minute"
+              [ngModel]="startMinute"
+              [minlength]="2"
+              [maxlength]="2"
+              [pattern]="'^[0-5]?[0-9]$'"
+              (change)="minuteChanged($event, 'start')"
+              >
+            </ngx-input>
+          </div>
+          <div>
+            <button
+              class="ampm"
+              type="button"
+              [class.selected]="startAmPmVal === 'AM'"
+              (click)="onAmPmChange('AM', 'start')"
+              >
+              AM
+            </button>
+          </div>
+          <div>
+            <button
+              class="ampm"
+              type="button"
+              [class.selected]="startAmPmVal === 'PM'"
+              (click)="onAmPmChange('PM', 'start')"
+              >
+              PM
+            </button>
+          </div>
+        </div>
+      }
+      @if (range.endDate && showEndTimeInputs) {
+        <div class="time-row">
+          <div>
+            <ngx-input
+              type="text"
+              hint="Hour"
+              label="{{ formatDate(range.endDate) }}"
+              [ngModel]="endHour"
+              [minlength]="1"
+              [maxlength]="2"
+              [pattern]="'^([0-9]|0[0-9]|1[0-2])$'"
+              (change)="hourChanged($event, 'end')"
+              >
+            </ngx-input>
+          </div>
+          <div>
+            <ngx-input
+              type="text"
+              hint="Minute"
+              [ngModel]="endMinute"
+              [minlength]="2"
+              [maxlength]="2"
+              [pattern]="'^[0-5]?[0-9]$'"
+              (change)="minuteChanged($event, 'end')"
+              >
+            </ngx-input>
+          </div>
+          <div>
+            <button  class="ampm" type="button" [class.selected]="endAmPmVal === 'AM'" (click)="onAmPmChange('AM', 'end')">
+              AM
+            </button>
+          </div>
+          <div>
+            <button class="ampm" type="button" [class.selected]="endAmPmVal === 'PM'" (click)="onAmPmChange('PM', 'end')">
+              PM
+            </button>
+          </div>
+        </div>
+      }
     </div>
-    <div class="time-row" *ngIf="range.endDate && showEndTimeInputs">
-      <div>
-        <ngx-input
-          type="text"
-          hint="Hour"
-          label="{{ formatDate(range.endDate) }}"
-          [ngModel]="endHour"
-          [minlength]="1"
-          [maxlength]="2"
-          [pattern]="'^([0-9]|0[0-9]|1[0-2])$'"
-          (change)="hourChanged($event, 'end')"
-        >
-        </ngx-input>
-      </div>
-      <div>
-        <ngx-input
-          type="text"
-          hint="Minute"
-          [ngModel]="endMinute"
-          [minlength]="2"
-          [maxlength]="2"
-          [pattern]="'^[0-5]?[0-9]$'"
-          (change)="minuteChanged($event, 'end')"
-        >
-        </ngx-input>
-      </div>
-      <div>
-        <button  class="ampm" type="button" [class.selected]="endAmPmVal === 'AM'" (click)="onAmPmChange('AM', 'end')">
-          AM
-        </button>
-      </div>
-      <div>
-        <button class="ampm" type="button" [class.selected]="endAmPmVal === 'PM'" (click)="onAmPmChange('PM', 'end')">
-          PM
-        </button>
-      </div>
-    </div>
-  </div>
+  }
 </div>

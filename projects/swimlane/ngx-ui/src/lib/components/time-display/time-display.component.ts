@@ -14,6 +14,14 @@ import { defaultDisplayFormat, defaultInputFormat } from '../../utils/date-forma
 
 const guessTimeZone = moment.tz.guess();
 
+interface ITimeValues {
+  [key: string]: {
+    key: string;
+    clip: string;
+    display: string;
+  };
+}
+
 @Component({
   selector: 'ngx-time',
   templateUrl: './time-display.component.html',
@@ -127,7 +135,7 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   @HostBinding('class.ngx-time--date-invalid')
   dateInvalid = true;
 
-  timeValues = {};
+  timeValues: ITimeValues = {};
   titleValue = '';
   internalDatetime: Date;
   utcDatetime: string;
@@ -142,7 +150,10 @@ export class NgxTimeDisplayComponent implements OnInit, OnChanges {
   private _clickable: boolean;
   private _type: string;
 
-  constructor(private readonly clipboard: Clipboard, private readonly notificationService: NotificationService) {}
+  constructor(
+    private readonly clipboard: Clipboard,
+    private readonly notificationService: NotificationService
+  ) {}
 
   ngOnInit() {
     this.update();

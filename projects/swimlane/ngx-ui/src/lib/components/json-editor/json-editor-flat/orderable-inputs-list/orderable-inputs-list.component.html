@@ -1,13 +1,15 @@
 <div class="orderable-inputs-list" cdkDropList (cdkDropListDropped)="drop($event)">
-  <div class="input-item" *ngFor="let item of dataValues; let index = index" cdkDrag cdkDragLockAxis="y">
-    <div class="drag-drop-handle" cdkDragHandle>
-      <i class="ngx-icon ngx-handle"></i>
+  @for (item of dataValues; track item; let index = $index) {
+    <div class="input-item" cdkDrag cdkDragLockAxis="y">
+      <div class="drag-drop-handle" cdkDragHandle>
+        <i class="ngx-icon ngx-handle"></i>
+      </div>
+      <ngx-input type="text" [(ngModel)]="item.value" (keyup)="update()"> </ngx-input>
+      <button type="button" class="remove-item" (click)="removeItem(index)">
+        <i class="ngx-icon ngx-x"></i>
+      </button>
     </div>
-    <ngx-input type="text" [(ngModel)]="item.value" (keyup)="update()"> </ngx-input>
-    <button type="button" class="remove-item" (click)="removeItem(index)">
-      <i class="ngx-icon ngx-x"></i>
-    </button>
-  </div>
+  }
   <div class="add-examples" (click)="addExample()">
     Add Example
   </div>

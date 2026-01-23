@@ -4,7 +4,7 @@
   {{ 'DecamelizePipe' | decamelize }}
 
   <app-prism language="js">
-<![CDATA[{ { 'DecamelizePipe' | decamelize } }]]>
+    <![CDATA[{ { 'DecamelizePipe' | decamelize } }]]>
   </app-prism>
 </ngx-section>
 
@@ -12,25 +12,27 @@
   {{ date | amTimeZone: 'America/Los_Angeles' }}
 
   <app-prism language="js">
-<![CDATA[{ { date | amTimeZone: 'America/Los_Angeles' } }]]>
+    <![CDATA[{ { date | amTimeZone: 'America/Los_Angeles' } }]]>
   </app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="FilterPipe">
   <ngx-input type="text" [(ngModel)]="stringFilter"></ngx-input>
   <ul>
-    <li *ngFor="let item of array | filterBy: stringFilter">
-      {{ item }}
-    </li>
+    @for (item of array | filterBy: stringFilter; track item) {
+      <li>
+        {{ item }}
+      </li>
+    }
   </ul>
-  
+
   <app-prism>
-<![CDATA[<ngx-input type="text" [(ngModel)]="stringFilter"></ngx-input>
-<ul>
-  <li *ngFor="let item of array | filterBy: stringFilter">
-    { { item } }
-  </li>
-</ul>]]>
+    <![CDATA[<ngx-input type="text" [(ngModel)]="stringFilter"></ngx-input>
+    <ul>
+      <li *ngFor="let item of array | filterBy: stringFilter">
+        { { item } }
+      </li>
+    </ul>]]>
   </app-prism>
 </ngx-section>
 
@@ -38,6 +40,6 @@
   <code><pre>{{ jsonObject | jsonTree | json }}</pre></code>
 
   <app-prism>
-<![CDATA[<code><pre>{ { jsonObject | jsonTree | json } }</pre></code>]]>
+    <![CDATA[<code><pre>{ { jsonObject | jsonTree | json } }</pre></code>]]>
   </app-prism>
 </ngx-section>

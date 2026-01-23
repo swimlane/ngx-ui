@@ -27,7 +27,7 @@
     (focus)="onFocus($event)"
     (blur)="onBlur($event)"
     (keydown)="onInputKeyDown($event)"
-  >
+    >
   </ngx-input>
   <button
     title="Show date/time selector"
@@ -46,106 +46,117 @@
 <ng-template #dialogTpl>
   <div class="selected-header text-center">
     <h1>
-      <span *ngIf="dialogModel && (inputType === 'datetime' || inputType === 'date')">
-        {{ dialogModel | amTimeZone: timezone | amDateFormat: 'ddd, MMM D YYYY' }}
-        <small *ngIf="inputType === 'datetime'">
+      @if (dialogModel && (inputType === 'datetime' || inputType === 'date')) {
+        <span>
+          {{ dialogModel | amTimeZone: timezone | amDateFormat: 'ddd, MMM D YYYY' }}
+          @if (inputType === 'datetime') {
+            <small>
+              {{ dialogModel | amTimeZone: timezone | amDateFormat: 'h:mm a' }}
+            </small>
+          }
+        </span>
+      }
+      @if (dialogModel && inputType === 'time') {
+        <span>
           {{ dialogModel | amTimeZone: timezone | amDateFormat: 'h:mm a' }}
-        </small>
-      </span>
-      <span *ngIf="dialogModel && inputType === 'time'">
-        {{ dialogModel | amTimeZone: timezone | amDateFormat: 'h:mm a' }}
-      </span>
-      <span *ngIf="!dialogModel">No value</span>
+        </span>
+      }
+      @if (!dialogModel) {
+        <span>No value</span>
+      }
     </h1>
   </div>
-  <ngx-calendar
-    [id]="id + '-cal'"
-    *ngIf="inputType === 'date' || inputType === 'datetime'"
-    (change)="setDialogDate($event)"
-    (dayKeyEnter)="apply()"
-    [minDate]="minDate"
-    [maxDate]="maxDate"
-    [ngModel]="dialogModel"
-    [timezone]="timezone"
-    [minView]="precision"
-    name="calendar"
-  >
-  </ngx-calendar>
-  <div class="time-row" *ngIf="inputType === 'time' || inputType === 'datetime'">
-    <div>
-      <ngx-input
-        type="number"
-        hint="Hour"
-        [id]="id + '-hour'"
-        [ngModel]="hour"
-        min="1"
-        max="12"
-        (change)="hourChanged($event)"
-        [disabled]="isTimeDisabled('hour')"
+  @if (inputType === 'date' || inputType === 'datetime') {
+    <ngx-calendar
+      [id]="id + '-cal'"
+      (change)="setDialogDate($event)"
+      (dayKeyEnter)="apply()"
+      [minDate]="minDate"
+      [maxDate]="maxDate"
+      [ngModel]="dialogModel"
+      [timezone]="timezone"
+      [minView]="precision"
+      name="calendar"
       >
-      </ngx-input>
+    </ngx-calendar>
+  }
+  @if (inputType === 'time' || inputType === 'datetime') {
+    <div class="time-row">
+      <div>
+        <ngx-input
+          type="number"
+          hint="Hour"
+          [id]="id + '-hour'"
+          [ngModel]="hour"
+          min="1"
+          max="12"
+          (change)="hourChanged($event)"
+          [disabled]="isTimeDisabled('hour')"
+          >
+        </ngx-input>
+      </div>
+      <div>
+        <ngx-input
+          type="number"
+          hint="Minute"
+          [id]="id + '-minute'"
+          [ngModel]="minute"
+          min="0"
+          max="59"
+          (change)="minuteChanged($event)"
+          [disabled]="isTimeDisabled('minute')"
+          >
+        </ngx-input>
+      </div>
+      <div>
+        <ngx-input
+          type="number"
+          hint="Second"
+          [id]="id + '-second'"
+          [ngModel]="second"
+          min="0"
+          max="59"
+          (change)="secondChanged($event)"
+          [disabled]="isTimeDisabled('second')"
+          >
+        </ngx-input>
+      </div>
+      <div>
+        <ngx-input
+          type="number"
+          hint="Millisecond"
+          [id]="id + '-millisecond'"
+          [ngModel]="millisecond"
+          min="0"
+          max="999"
+          (change)="millisecondChanged($event)"
+          [disabled]="isTimeDisabled('millisecond')"
+          class="milliseconds"
+          >
+        </ngx-input>
+      </div>
+      <div>
+        <button
+          class="ampm"
+          type="button"
+          [class.selected]="amPmVal === 'AM'"
+          (click)="onAmPmChange('AM')"
+          [disabled]="isTimeDisabled('hour')"
+          >
+          AM
+        </button>
+        <button
+          class="ampm"
+          type="button"
+          [class.selected]="amPmVal === 'PM'"
+          (click)="onAmPmChange('PM')"
+          [disabled]="isTimeDisabled('hour')"
+          >
+          PM
+        </button>
+      </div>
     </div>
-    <div>
-      <ngx-input
-        type="number"
-        hint="Minute"
-        [id]="id + '-minute'"
-        [ngModel]="minute"
-        min="0"
-        max="59"
-        (change)="minuteChanged($event)"
-        [disabled]="isTimeDisabled('minute')"
-      >
-      </ngx-input>
-    </div>
-    <div>
-      <ngx-input
-        type="number"
-        hint="Second"
-        [id]="id + '-second'"
-        [ngModel]="second"
-        min="0"
-        max="59"
-        (change)="secondChanged($event)"
-        [disabled]="isTimeDisabled('second')"
-      >
-      </ngx-input>
-    </div>
-    <div>
-      <ngx-input
-        type="number"
-        hint="Millisecond"
-        [id]="id + '-millisecond'"
-        [ngModel]="millisecond"
-        min="0"
-        max="999"
-        (change)="millisecondChanged($event)"
-        [disabled]="isTimeDisabled('millisecond')"
-        class="milliseconds"
-      >
-      </ngx-input>
-    </div>
-    <div>
-      <button
-        class="ampm"
-        type="button"
-        [class.selected]="amPmVal === 'AM'"
-        (click)="onAmPmChange('AM')"
-        [disabled]="isTimeDisabled('hour')"
-      >
-        AM
-      </button>
-      <button
-        class="ampm"
-        type="button"
-        [class.selected]="amPmVal === 'PM'"
-        (click)="onAmPmChange('PM')"
-        [disabled]="isTimeDisabled('hour')"
-      >
-        PM
-      </button>
-    </div>
-  </div>
+  }
   <nav role="navigation" class="ngx-dialog-footer">
     <div class="text-left">
       <button type="button" class="btn btn-link today-btn" (click)="selectCurrent()" [hidden]="isCurrent()">
@@ -160,8 +171,10 @@
 </ng-template>
 
 <ng-template #defaultTooltipTemplate>
-  <div *ngFor="let item of timeValues | keyvalue" class="date-zone-display">
-    <span>{{ item.value.display }}</span>
-    <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
-  </div>
+  @for (item of timeValues | keyvalue; track item) {
+    <div class="date-zone-display">
+      <span>{{ item.value.display }}</span>
+      <button class="btn small" (click)="onClick(item)"><ngx-icon fontIcon="copy"></ngx-icon> {{ item.key }}</button>
+    </div>
+  }
 </ng-template>

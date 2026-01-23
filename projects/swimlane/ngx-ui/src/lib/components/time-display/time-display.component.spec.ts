@@ -385,7 +385,8 @@ describe('NgxTimeDisplayComponent', () => {
   it('should set defaults', () => {
     expect(component.datetime).toBeDefined(Date);
     expect(component.defaultInputTimeZone).toBeUndefined();
-    expect(component.timezone).toEqual('America/Los_Angeles');
+    // Environment-dependent (moment guesses from runtime timezone).
+    expect(component.timezone).toEqual(moment.tz.guess());
     expect(component.mode).toBe('timezone');
     expect(component.tooltipFormat).toBe('llll Z [(]zz[)]');
     expect(component.clipFormat).toBe('L LT Z');
@@ -394,14 +395,17 @@ describe('NgxTimeDisplayComponent', () => {
   });
 
   it('should support all timezones', () => {
-    component.datetime = new Date();
-
-    component.timezones = allTimeZones.reduce((acc, curr, index) => {
-      acc[`Zone [${index}]`] = curr;
-      return acc;
-    }, {});
-
-    component.ngOnChanges();
+    fixture.componentRef.setInput('datetime', new Date());
+    fixture.componentRef.setInput(
+      'timezones',
+      allTimeZones.reduce(
+        (acc, curr, index) => {
+          acc[`Zone [${index}]`] = curr;
+          return acc;
+        },
+        {} as Record<string, string>
+      )
+    );
     fixture.detectChanges();
 
     expect(Object.keys(component.timeValues).length).toEqual(allTimeZones.length);
@@ -414,7 +418,6 @@ describe('NgxTimeDisplayComponent', () => {
 
   describe('should set timeValues and titleValue', () => {
     it('current date when no date provided', () => {
-      component.ngOnChanges();
       fixture.detectChanges();
 
       expect(component.internalDatetime).toBeDefined();
@@ -426,10 +429,8 @@ describe('NgxTimeDisplayComponent', () => {
 
     it('when user date provided', () => {
       const date = '2000-02-05 8:30 AM';
-      component.datetime = new Date(date); // note: browser timezone
-      component.tooltipFormat = 'fullDateTime';
-
-      component.ngOnChanges();
+      fixture.componentRef.setInput('datetime', new Date(date)); // note: browser timezone
+      fixture.componentRef.setInput('tooltipFormat', 'fullDateTime');
       fixture.detectChanges();
 
       expect(component.internalDatetime.toDateString()).toEqual('Sat Feb 05 2000');
@@ -448,10 +449,8 @@ describe('NgxTimeDisplayComponent', () => {
     });
 
     it('when iso date provided', () => {
-      component.datetime = new Date(MOON_LANDING); // note: browser UTC
-      component.tooltipFormat = 'fullDateTime';
-
-      component.ngOnChanges();
+      fixture.componentRef.setInput('datetime', new Date(MOON_LANDING)); // note: browser UTC
+      fixture.componentRef.setInput('tooltipFormat', 'fullDateTime');
       fixture.detectChanges();
 
       expect(component.internalDatetime.toDateString()).toEqual('Sun Jul 20 1969');
@@ -472,9 +471,7 @@ describe('NgxTimeDisplayComponent', () => {
   describe('should handle bad inputs', () => {
     it('should handle bad date', () => {
       (moment as any).suppressDeprecationWarnings = true;
-      component.datetime = 'Tomarrow';
-
-      component.ngOnChanges();
+      fixture.componentRef.setInput('datetime', 'Tomarrow' as any);
       fixture.detectChanges();
 
       expect(Object.keys(component.timeValues).length).toEqual(0);
@@ -482,14 +479,9 @@ describe('NgxTimeDisplayComponent', () => {
 
     it('should handle bad timezone', () => {
       (moment as any).suppressDeprecationWarnings = true;
-      component.datetime = new Date();
-      component.tooltipFormat = 'fullDateTime';
-
-      component.timezones = {
-        Test: 'Timbuktu'
-      };
-
-      component.ngOnChanges();
+      fixture.componentRef.setInput('datetime', new Date());
+      fixture.componentRef.setInput('tooltipFormat', 'fullDateTime');
+      fixture.componentRef.setInput('timezones', { Test: 'Timbuktu' });
       fixture.detectChanges();
 
       expect(component.timeValues['Test'].display).toContain('Coordinated Universal Time');

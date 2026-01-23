@@ -2,6 +2,11 @@
 
 ## HEAD (unreleased)
 
+## 52.0.0-alpha.0 (2026-01-22)
+
+- Feature: Added support for Angular 21
+- Feature: Migrating from control directives to control flow
+
 ## 51.2.1 (2026-01-09)
 
 - Fix: Preserve scroll position on column tab change for `ngx-columns` component

@@ -1,53 +1,54 @@
 <main class="dialog-container">
-  <ng-container *ngIf="!stepperTemplate && !tabsTemplate; else custom">
+  @if (!stepperTemplate && !tabsTemplate) {
     <header class="dialog-container__header">
       <ng-container *ngTemplateOutlet="header"></ng-container>
     </header>
     <section class="dialog-container__body">
       <ng-content></ng-content>
     </section>
-  </ng-container>
-
-  <ng-template #custom>
+  } @else {
     <section
       [ngClass]="{
         'dialog-container--stepper dialog-stepper': !!stepperTemplate,
         'dialog-container--tabs dialog-tabs': !!tabsTemplate
       }"
-    >
+      >
       <header
         class="dialog-container__header"
         [ngClass]="{
           'dialog-stepper__header': !!stepperTemplate,
           'dialog-tabs__header': !!tabsTemplate
         }"
-      >
+        >
         <ng-container *ngTemplateOutlet="header"></ng-container>
       </header>
-      <ng-container *ngIf="stepperTemplate">
+      @if (stepperTemplate) {
         <ng-container *ngTemplateOutlet="stepperTemplate"></ng-container>
-      </ng-container>
-      <ng-container *ngIf="tabsTemplate">
+      }
+      @if (tabsTemplate) {
         <ng-container *ngTemplateOutlet="tabsTemplate"></ng-container>
-      </ng-container>
+      }
     </section>
-  </ng-template>
+  }
 
   <ng-content select="ngx-large-format-dialog-footer"></ng-content>
   <ng-content select="ngx-medium-format-dialog-footer"></ng-content>
 </main>
 
 <ng-template #myTemplate>
-  <img 
-    *ngIf="imgSrc && !logoTemplate" 
-    class="ngx-large-format-dialog-header-title__img" 
-    [class.ngx-large-format-dialog-header-title__img__default-background]="removeImageBackground"
-    [src]="imgSrc" 
-    draggable="false" 
-  />
-  <div *ngIf="!imgSrc && logoTemplate" class="ngx-large-format-dialog-header-title__clear">
-    <ng-container *ngTemplateOutlet="logoTemplate"></ng-container>
-  </div>
+  @if (imgSrc && !logoTemplate) {
+    <img
+      class="ngx-large-format-dialog-header-title__img"
+      [class.ngx-large-format-dialog-header-title__img__default-background]="removeImageBackground"
+      [src]="imgSrc"
+      draggable="false"
+      />
+  }
+  @if (!imgSrc && logoTemplate) {
+    <div class="ngx-large-format-dialog-header-title__clear">
+      <ng-container *ngTemplateOutlet="logoTemplate"></ng-container>
+    </div>
+  }
 </ng-template>
 
 <ng-template #header>

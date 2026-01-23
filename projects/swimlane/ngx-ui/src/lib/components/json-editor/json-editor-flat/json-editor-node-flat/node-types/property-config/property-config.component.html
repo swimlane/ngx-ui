@@ -5,158 +5,169 @@
       <i class="ngx-icon ngx-check has-text"></i> Apply
     </button>
   </div>
-  <ngx-tabs *ngIf="property">
-    <ngx-tab label="GENERAL">
-      <!-- TITLE -->
-      <ngx-input
-        *ngIf="!arrayItem"
-        type="text"
-        [(ngModel)]="editableProperty.title"
-        (ngModelChange)="onTitleChange($event)"
-        [label]="'PROPERTY TITLE'"
-        [hint]="'A human-readable name for this property'"
-      >
-      </ngx-input>
-
-      <!-- PROPERTY NAME -->
-      <ngx-input
-        *ngIf="!arrayItem && !rootItem"
-        type="text"
-        name="propertyName"
-        [(ngModel)]="editableProperty.propertyName"
-        [label]="'PROPERTY NAME'"
-        [required]="true"
-        [unlockable]="true"
-        (lockChanged)="isNameLocked = $event"
-        hint="Must only contain A-Z, a-z, 0-9 or _"
-        pattern="[a-zA-Z0-9_]*"
-      >
-      </ngx-input>
-
-      <!-- DESCRIPTION -->
-      <ngx-input
-        *ngIf="!arrayItem"
-        type="text"
-        [(ngModel)]="editableProperty.description"
-        [label]="'PROPERTY DESCRIPTION'"
-        [hint]="'A description for the property'"
-      >
-      </ngx-input>
-
-      <ng-container *ngIf="!rootItem">
-        <!-- TYPE -->
-        <ngx-select
-          class="prop-types-formats"
-          [filterable]="false"
-          [ngModel]="[editableProperty.type]"
-          (ngModelChange)="updateType($event[0])"
-          [required]="true"
-          [label]="'TYPE'"
-          [disabled]="!canChangeType"
-        >
-          <ngx-select-option *ngFor="let propType of propTypes" [name]="propType" [value]="propType">
-          </ngx-select-option>
-        </ngx-select>
-
-        <!-- FORMAT -->
-        <ngx-select
-          class="prop-types-formats"
-          *ngIf="editableProperty.type === 'string' && formats?.length && !editableProperty.enum?.length"
-          [filterable]="false"
-          [ngModel]="[editableProperty.format]"
-          (ngModelChange)="updateFormat($event[0])"
-          [label]="'FORMAT'"
-        >
-          <ngx-select-option
-            *ngFor="let propFormat of formats"
-            [name]="propFormat.name"
-            [value]="propFormat.schema.format"
-          >
-          </ngx-select-option>
-        </ngx-select>
-
-        <!-- ENUM -->
-        <ngx-input
-          *ngIf="editableProperty.type === 'string' && !editableProperty.format"
-          type=" text"
-          class="new-enum-input"
-          [(ngModel)]="newEnumValue"
-          [label]="'ADD ENUM VALUE'"
-        >
-          <ngx-input-suffix>
-            <button (click)="addEnumValue()" [disabled]="!newEnumValue.length">
-              <i class="ngx-icon ngx-ngx-icon ngx-check"></i>
-            </button>
-          </ngx-input-suffix>
-        </ngx-input>
-
-        <ng-container *ngIf="editableProperty.enum?.length">
-          <div *ngIf="editableProperty.enum?.length" class="enum-edit">
-            <div class="tag" *ngFor="let value of editableProperty.enum">
-              <span>{{ value }}</span>
-              <button type="button" (click)="removeEnumValue(value)">
-                <i class="ngx-icon ngx-x"></i>
-              </button>
-            </div>
-          </div>
-
+  @if (property) {
+    <ngx-tabs>
+      <ngx-tab label="GENERAL">
+        <!-- TITLE -->
+        @if (!arrayItem) {
+          <ngx-input
+            type="text"
+            [(ngModel)]="editableProperty.title"
+            (ngModelChange)="onTitleChange($event)"
+            [label]="'PROPERTY TITLE'"
+            [hint]="'A human-readable name for this property'"
+            >
+          </ngx-input>
+        }
+        <!-- PROPERTY NAME -->
+        @if (!arrayItem && !rootItem) {
+          <ngx-input
+            type="text"
+            name="propertyName"
+            [(ngModel)]="editableProperty.propertyName"
+            [label]="'PROPERTY NAME'"
+            [required]="true"
+            [unlockable]="true"
+            (lockChanged)="isNameLocked = $event"
+            hint="Must only contain A-Z, a-z, 0-9 or _"
+            pattern="[a-zA-Z0-9_]*"
+            >
+          </ngx-input>
+        }
+        <!-- DESCRIPTION -->
+        @if (!arrayItem) {
+          <ngx-input
+            type="text"
+            [(ngModel)]="editableProperty.description"
+            [label]="'PROPERTY DESCRIPTION'"
+            [hint]="'A description for the property'"
+            >
+          </ngx-input>
+        }
+        @if (!rootItem) {
+          <!-- TYPE -->
           <ngx-select
+            class="prop-types-formats"
             [filterable]="false"
-            [ngModel]="[editableProperty.default]"
-            (ngModelChange)="updateDefault($event[0])"
-            [label]="'DEFAULT'"
-          >
-            <ngx-select-option *ngFor="let value of editableProperty.enum" [name]="value" [value]="value">
-            </ngx-select-option>
+            [ngModel]="[editableProperty.type]"
+            (ngModelChange)="updateType($event[0])"
+            [required]="true"
+            [label]="'TYPE'"
+            [disabled]="!canChangeType"
+            >
+            @for (propType of propTypes; track propType) {
+              <ngx-select-option [name]="propType" [value]="propType">
+              </ngx-select-option>
+            }
           </ngx-select>
-        </ng-container>
-
-        <!-- CONSTRAINS -->
-        <div class="constrain-row" *ngIf="editableProperty.type === 'number'">
-          <ngx-input type="number" [(ngModel)]="editableProperty.minimum" [label]="'MINIMUM'"></ngx-input>
-
-          <ngx-input type="number" [(ngModel)]="editableProperty.maximum" [label]="'MAXIMUM'"></ngx-input>
+          <!-- FORMAT -->
+          @if (editableProperty.type === 'string' && formats?.length && !editableProperty.enum?.length) {
+            <ngx-select
+              class="prop-types-formats"
+              [filterable]="false"
+              [ngModel]="[editableProperty.format]"
+              (ngModelChange)="updateFormat($event[0])"
+              [label]="'FORMAT'"
+              >
+              @for (propFormat of formats; track propFormat) {
+                <ngx-select-option
+                  [name]="propFormat.name"
+                  [value]="propFormat.schema.format"
+                  >
+                </ngx-select-option>
+              }
+            </ngx-select>
+          }
+          <!-- ENUM -->
+          @if (editableProperty.type === 'string' && !editableProperty.format) {
+            <ngx-input
+              type=" text"
+              class="new-enum-input"
+              [(ngModel)]="newEnumValue"
+              [label]="'ADD ENUM VALUE'"
+              >
+              <ngx-input-suffix>
+                <button (click)="addEnumValue()" [disabled]="!newEnumValue.length">
+                  <i class="ngx-icon ngx-ngx-icon ngx-check"></i>
+                </button>
+              </ngx-input-suffix>
+            </ngx-input>
+          }
+          @if (editableProperty.enum?.length) {
+            @if (editableProperty.enum?.length) {
+              <div class="enum-edit">
+                @for (value of editableProperty.enum; track value) {
+                  <div class="tag">
+                    <span>{{ value }}</span>
+                    <button type="button" (click)="removeEnumValue(value)">
+                      <i class="ngx-icon ngx-x"></i>
+                    </button>
+                  </div>
+                }
+              </div>
+            }
+            <ngx-select
+              [filterable]="false"
+              [ngModel]="[editableProperty.default]"
+              (ngModelChange)="updateDefault($event[0])"
+              [label]="'DEFAULT'"
+              >
+              @for (value of editableProperty.enum; track value) {
+                <ngx-select-option [name]="value" [value]="value">
+                </ngx-select-option>
+              }
+            </ngx-select>
+          }
+          <!-- CONSTRAINS -->
+          @if (editableProperty.type === 'number') {
+            <div class="constrain-row">
+              <ngx-input type="number" [(ngModel)]="editableProperty.minimum" [label]="'MINIMUM'"></ngx-input>
+              <ngx-input type="number" [(ngModel)]="editableProperty.maximum" [label]="'MAXIMUM'"></ngx-input>
+            </div>
+          }
+          @if (editableProperty.type === 'integer') {
+            <div class="constrain-row">
+              <ngx-input type="number" [(ngModel)]="editableProperty.minimum" [label]="'MINIMUM'" [pattern]="'^[1-9][0-9]*$'"></ngx-input>
+              <ngx-input type="number" [(ngModel)]="editableProperty.maximum" [label]="'MAXIMUM'" [pattern]="'^[1-9][0-9]*$'"></ngx-input>
+            </div>
+          }
+          @if (editableProperty.type === 'string') {
+            <div class="constrain-row">
+              <ngx-input type="number" [(ngModel)]="editableProperty.minLength" [label]="'MINIMUM LENGTH'"></ngx-input>
+              <ngx-input type="number" [(ngModel)]="editableProperty.maxLength" [label]="'MAXIMUM LENGTH'"></ngx-input>
+            </div>
+          }
+          @if (editableProperty.type === 'array') {
+            <div class="constrain-row">
+              <ngx-input type="number" [(ngModel)]="editableProperty.minItems" [label]="'MIN ITEMS'"></ngx-input>
+              <ngx-input type="number" [(ngModel)]="editableProperty.maxItems" [label]="'MAX ITEMS'"></ngx-input>
+            </div>
+          }
+          <!-- PATTERN -->
+          @if (['string', 'number', 'integer'].includes($any(editableProperty.type))) {
+            <ngx-input
+              type="text"
+              [(ngModel)]="editableProperty.pattern"
+              [label]="'PATTERN TO MATCH'"
+              >
+            </ngx-input>
+          }
+          <!-- REQUIRED -->
+          @if (!arrayItem) {
+            <ngx-checkbox [(ngModel)]="required">
+              Required
+            </ngx-checkbox>
+          }
+        }
+      </ngx-tab>
+      <ngx-tab label="EXAMPLE VALUES">
+        <div class="examples-container">
+          <ngx-orderable-inputs-list
+            [data]="editableProperty.examples"
+            (onUpdate)="updateExamples($event)"
+          ></ngx-orderable-inputs-list>
         </div>
-
-        <div class="constrain-row" *ngIf="editableProperty.type === 'integer'">
-          <ngx-input type="number" [(ngModel)]="editableProperty.minimum" [label]="'MINIMUM'" [pattern]="'^[1-9][0-9]*$'"></ngx-input>
-
-          <ngx-input type="number" [(ngModel)]="editableProperty.maximum" [label]="'MAXIMUM'" [pattern]="'^[1-9][0-9]*$'"></ngx-input>
-        </div>
-
-        <div class="constrain-row" *ngIf="editableProperty.type === 'string'">
-          <ngx-input type="number" [(ngModel)]="editableProperty.minLength" [label]="'MINIMUM LENGTH'"></ngx-input>
-
-          <ngx-input type="number" [(ngModel)]="editableProperty.maxLength" [label]="'MAXIMUM LENGTH'"></ngx-input>
-        </div>
-
-        <div class="constrain-row" *ngIf="editableProperty.type === 'array'">
-          <ngx-input type="number" [(ngModel)]="editableProperty.minItems" [label]="'MIN ITEMS'"></ngx-input>
-          <ngx-input type="number" [(ngModel)]="editableProperty.maxItems" [label]="'MAX ITEMS'"></ngx-input>
-        </div>
-
-        <!-- PATTERN -->
-        <ngx-input
-          type="text"
-          *ngIf="['string', 'number', 'integer'].includes($any(editableProperty.type))"
-          [(ngModel)]="editableProperty.pattern"
-          [label]="'PATTERN TO MATCH'"
-        >
-        </ngx-input>
-
-        <!-- REQUIRED -->
-        <ngx-checkbox *ngIf="!arrayItem" [(ngModel)]="required">
-          Required
-        </ngx-checkbox>
-      </ng-container>
-    </ngx-tab>
-    <ngx-tab label="EXAMPLE VALUES">
-      <div class="examples-container">
-        <ngx-orderable-inputs-list
-          [data]="editableProperty.examples"
-          (onUpdate)="updateExamples($event)"
-        ></ngx-orderable-inputs-list>
-      </div>
-    </ngx-tab>
-  </ngx-tabs>
+      </ngx-tab>
+    </ngx-tabs>
+  }
 </div>

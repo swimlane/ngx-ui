@@ -1,8 +1,19 @@
-<ng-container [ngSwitch]="cssClasses?.length">
-  <ng-content *ngSwitchCase=""></ng-content>
-  <ng-content *ngSwitchCase="0"></ng-content>
-  <i *ngSwitchCase="1" [ngClass]="cssClasses[0]"></i>
-  <span *ngSwitchDefault class="icon-fx-stacked">
-    <i *ngFor="let cssClass of cssClasses" [ngClass]="cssClass"></i>
-  </span>
-</ng-container>
+
+@switch (cssClasses?.length) {
+  @case ('') {
+    <ng-content></ng-content>
+  }
+  @case (0) {
+    <ng-content></ng-content>
+  }
+  @case (1) {
+    <i [ngClass]="cssClasses[0]"></i>
+  }
+  @default {
+    <span class="icon-fx-stacked">
+      @for (cssClass of cssClasses; track cssClass) {
+        <i [ngClass]="cssClass"></i>
+      }
+    </span>
+  }
+}

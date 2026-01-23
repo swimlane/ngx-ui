@@ -6,139 +6,141 @@
       <a href="#" [tooltipPlacement]="'top'" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="'Phishing Attack'">
         Top
       </a>
-    
+
       <span style="padding: 0 15px">|</span>
-    
+
       <a href="#" [tooltipPlacement]="'right'" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="'Phishing Attack'">
         Right
       </a>
-    
+
       <span style="padding: 0 15px">|</span>
-    
+
       <a href="#" [tooltipPlacement]="'bottom'" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="'Phishing Attack'">
         Bottom
       </a>
-    
+
       <span style="padding: 0 15px">|</span>
-    
+
       <a href="#" [tooltipPlacement]="'left'" [tooltipType]="'tooltip'" ngx-tooltip [tooltipTitle]="'Phishing Attack'">
         Left
       </a>
-    
+
       <span style="padding: 0 15px">|</span>
-    
+
       <a href="#" [tooltipPlacement]="'top'" [tooltipType]="'tooltip'" ngx-tooltip
         [tooltipTitle]="dynamicVal">
         Sibling
       </a>
-    
+
       <span style="padding: 0 15px">|</span>
-    
+
       <ng-template #toolTipTemplate>
         <strong style="color:red;">ALERT: High Priority</strong>
       </ng-template>
-    
+
       <a href="#" [tooltipPlacement]="'top'" [tooltipType]="'tooltip'" ngx-tooltip
         [tooltipTemplate]="toolTipTemplate">
         Template
       </a>
-    
+
       <span style="padding: 0 15px">|</span>
-    
+
       <a href="#" ngx-tooltip [tooltipPlacement]="'top'" [tooltipType]="'tooltip'"
         [tooltipTitle]="'Suitably small values long sudo bar giga mutex tarball race condition <strong>January 1, 1970</strong>. <br />Case d00dz bytes eaten by a grue linux script kiddies hack the mainframe mailbomb highjack Linus Torvalds <br />snarf firewall false. Wannabee printf wombat back door fail terminal for warez James T. <br />Kirk /dev/null private void Starcraft do big-endian break spoof.'">
         Large HTML
       </a>
-    
+
       <span style="padding: 0 15px">|</span>
-    
+
       <a href="#" ngx-tooltip [tooltipPlacement]="'top'" [tooltipType]="'tooltip'"
         [tooltipCssClass]="'demo-class demo-class2'" [tooltipTitle]="'Security breach!'">
         Custom Class
       </a>
-    
+
       <br />
       <br />
-    
+
       <app-prism>
-    <![CDATA[<a
-      href="#"
-      [tooltipPlacement]="'top'"
-      [tooltipType]="'tooltip'"
-      ngx-tooltip
-      [tooltipTitle]="'Phishing Attack'">
-      Top
-    </a>]]>
-      </app-prism>
-    
-    </ngx-section>
-    
-    <ngx-section class="shadow" sectionTitle="Popover">
-      <ng-template #popoverTemplate let-model="model">
-        <h3>Tool tip custom content defined inside a template</h3>
-        <p>With context binding: {{tooltipModel.text}}</p>
-        <p *ngIf="model">Outside Context {{model.foo}}</p>
-      </ng-template>
-    
-      <a href="#" ngx-tooltip [tooltipContext]="{ foo: 'YAZ' }" [tooltipType]="'popover'" [tooltipPlacement]="'top'"
-        [tooltipTemplate]="popoverTemplate">
+        <![CDATA[<a
+        href="#"
+        [tooltipPlacement]="'top'"
+        [tooltipType]="'tooltip'"
+        ngx-tooltip
+        [tooltipTitle]="'Phishing Attack'">
         Top
-      </a>
-    
-      <span style="padding: 0 15px">|</span>
-    
-      <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'right'" [tooltipTemplate]="popoverTemplate">
-        Right
-      </a>
-    
-      <span style="padding: 0 15px">|</span>
-    
-      <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'bottom'" [tooltipTemplate]="popoverTemplate">
-        Bottom
-      </a>
-    
-      <span style="padding: 0 15px">|</span>
-    
-      <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'left'" [tooltipTemplate]="popoverTemplate">
-        Left
-      </a>
-    
-      <span style="padding: 0 15px">|</span>
-    
-      <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipShowEvent]="'focus'"
-        [tooltipTemplate]="popoverTemplate">
-        Focus
-      </a>
-    
-      <span style="padding: 0 15px">|</span>
-    
-      <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipShowTimeout]="0"
-        [tooltipHideTimeout]="0" [tooltipTemplate]="popoverTemplate">
-        Immediate
-      </a>
-    
-      <span style="padding: 0 15px">|</span>
-    
-      <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipDisabled]="true"
-        [tooltipTemplate]="popoverTemplate">
-        Disabled
-      </a>
-    
-      <span style="padding: 0 15px">|</span>
-    
-      <a href="#" ngx-tooltip (onShow)="shown = 'Yay!'" (onHide)="shown = ''" [tooltipType]="'popover'"
-        [tooltipPlacement]="'top'" [tooltipShowCaret]="false" [tooltipTemplate]="popoverTemplate">
-        No Caret {{shown}}
-      </a>
-      <br />
-      <br />
-    
-      <app-prism>
-    <![CDATA[<ng-template #popoverTemplate let-model="model">
+      </a>]]>
+    </app-prism>
+
+  </ngx-section>
+
+  <ngx-section class="shadow" sectionTitle="Popover">
+    <ng-template #popoverTemplate let-model="model">
+      <h3>Tool tip custom content defined inside a template</h3>
+      <p>With context binding: {{tooltipModel.text}}</p>
+      @if (model) {
+        <p>Outside Context {{model.foo}}</p>
+      }
+    </ng-template>
+
+    <a href="#" ngx-tooltip [tooltipContext]="{ foo: 'YAZ' }" [tooltipType]="'popover'" [tooltipPlacement]="'top'"
+      [tooltipTemplate]="popoverTemplate">
+      Top
+    </a>
+
+    <span style="padding: 0 15px">|</span>
+
+    <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'right'" [tooltipTemplate]="popoverTemplate">
+      Right
+    </a>
+
+    <span style="padding: 0 15px">|</span>
+
+    <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'bottom'" [tooltipTemplate]="popoverTemplate">
+      Bottom
+    </a>
+
+    <span style="padding: 0 15px">|</span>
+
+    <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'left'" [tooltipTemplate]="popoverTemplate">
+      Left
+    </a>
+
+    <span style="padding: 0 15px">|</span>
+
+    <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipShowEvent]="'focus'"
+      [tooltipTemplate]="popoverTemplate">
+      Focus
+    </a>
+
+    <span style="padding: 0 15px">|</span>
+
+    <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipShowTimeout]="0"
+      [tooltipHideTimeout]="0" [tooltipTemplate]="popoverTemplate">
+      Immediate
+    </a>
+
+    <span style="padding: 0 15px">|</span>
+
+    <a href="#" ngx-tooltip [tooltipType]="'popover'" [tooltipPlacement]="'top'" [tooltipDisabled]="true"
+      [tooltipTemplate]="popoverTemplate">
+      Disabled
+    </a>
+
+    <span style="padding: 0 15px">|</span>
+
+    <a href="#" ngx-tooltip (onShow)="shown = 'Yay!'" (onHide)="shown = ''" [tooltipType]="'popover'"
+      [tooltipPlacement]="'top'" [tooltipShowCaret]="false" [tooltipTemplate]="popoverTemplate">
+      No Caret {{shown}}
+    </a>
+    <br />
+    <br />
+
+    <app-prism>
+      <![CDATA[<ng-template #popoverTemplate let-model="model">
       <h3>Tool tip custom content defined inside a template</h3>
       <p>With context binding: tooltipModel.text</p>
     </ng-template>
-    
+
     <a
       href="#"
       ngx-tooltip
@@ -148,106 +150,106 @@
       [tooltipTemplate]="popoverTemplate">
       Top
     </a>]]>
-      </app-prism>
-    </ngx-section>
+  </app-prism>
+</ngx-section>
 
-    <ngx-section class="shadow" sectionTitle="Popover shown on click">
+<ngx-section class="shadow" sectionTitle="Popover shown on click">
 
-      <ngx-button
-        #customTooltip=ngxTooltip 
-        ngx-tooltip
-        class="btn btn-primary"
-        [tooltipContext]="{ foo: 'YAZ' }"
-        [tooltipType]="'popover'"
-        [tooltipPlacement]="'bottom'"
-        [tooltipShowCaret]="false"
-        [tooltipCssClass]="'popover-custom'"
-        [tooltipSpacing]="5"
-        [tooltipTemplate]="popoverMenuTemplate"
-        [tooltipShowEvent]="'click'"
-        data-cy="popover-click"
-        >Click me to open</ngx-button>
-      <ng-template #popoverMenuTemplate let-model="model">
-          <ul class="vertical-list">
-            <li><button type="button" (click)="closeTooltip()">Click me to close</button></li>
-            <li class="disabled"><button type="button">You can't click me</button></li>
-        </ul>
-      </ng-template>
+  <ngx-button
+    #customTooltip=ngxTooltip
+    ngx-tooltip
+    class="btn btn-primary"
+    [tooltipContext]="{ foo: 'YAZ' }"
+    [tooltipType]="'popover'"
+    [tooltipPlacement]="'bottom'"
+    [tooltipShowCaret]="false"
+    [tooltipCssClass]="'popover-custom'"
+    [tooltipSpacing]="5"
+    [tooltipTemplate]="popoverMenuTemplate"
+    [tooltipShowEvent]="'click'"
+    data-cy="popover-click"
+  >Click me to open</ngx-button>
+  <ng-template #popoverMenuTemplate let-model="model">
+    <ul class="vertical-list">
+      <li><button type="button" (click)="closeTooltip()">Click me to close</button></li>
+      <li class="disabled"><button type="button">You can't click me</button></li>
+    </ul>
+  </ng-template>
 
-      <app-prism>
-        <![CDATA[<ngx-button
-          #customTooltip=ngxTooltip 
-          ngx-tooltip
-          class="btn btn-primary"
-          [tooltipContext]="{ foo: 'YAZ' }"
-          [tooltipType]="'popover'"
-          [tooltipPlacement]="'bottom'"
-          [tooltipShowCaret]="false"
-          [tooltipCssClass]="'popover-custom'"
-          [tooltipSpacing]="5"
-          [tooltipTemplate]="popoverMenuTemplate"
-          [tooltipShowEvent]="'click'"
-        >Click me to open</ngx-button>
-      <ng-template #popoverMenuTemplate let-model="model">
-          <ul class="vertical-list">
-            <li><button type="button" (click)="closeTooltip()">Click me to close</button></li>
-            <li class="disabled"><button type="button">You can't click me</button></li>
-        </ul>
-      </ng-template>]]>
-          </app-prism>
-    </ngx-section>
-    
-    <ngx-section class="shadow" sectionTitle="Appearances">
-      <table class="appearance-table" style="max-width: 100%">
-        <tr>
-          <th width="10%"></th>
-          <th width="45%">Tooltip</th>
-          <th width="45%">Popup</th>
-        </tr>
-        <tr>
-          <td>Default</td>
-          <td>
-            <ngx-tooltip-content type="tooltip" placement="top" title="Phishing" [showCaret]="true"></ngx-tooltip-content>
-          </td>
-          <td>
-            <ngx-tooltip-content type="popover" placement="top" title="Phishing" [showCaret]="false"></ngx-tooltip-content>
-          </td>
-        </tr>
-        <tr>
-          <td>Long String</td>
-          <td>
-            <ngx-tooltip-content type="tooltip" placement="top" [title]="aLongString" [showCaret]="false"></ngx-tooltip-content>
-          </td>
-          <td>
-            <ngx-tooltip-content type="popover" placement="top" [title]="aLongString" [showCaret]="false"></ngx-tooltip-content>
-          </td>
-        </tr>
-        <tr>
-          <td>Long String <code>.narrow</code></td>
-          <td>
-            <ngx-tooltip-content cssClass="narrow" type="tooltip" placement="top" [title]="aLongString" [showCaret]="false"></ngx-tooltip-content>
-          </td>
-          <td>
-            <ngx-tooltip-content cssClass="narrow" type="popover" placement="top" [title]="aLongString" [showCaret]="false"></ngx-tooltip-content>
-          </td>
-        </tr>
-        <tr>
-          <td>Unbroken String</td>
-          <td>
-            <ngx-tooltip-content type="tooltip" placement="top" [title]="aVeryLongString" [showCaret]="false"></ngx-tooltip-content>
-          </td>
-          <td>
-            <ngx-tooltip-content type="popover" placement="top" [title]="aVeryLongString" [showCaret]="false"></ngx-tooltip-content>
-          </td>
-        </tr>
-      </table>
-    </ngx-section>
-  </ngx-tab>
-  <ngx-tab label="API">
-    <h3>Table of Contents</h3>
-    <a class="documentation-content" (click)="scrollTo('inputs')">ngx-tooltip Directive Inputs</a>
-    <a class="documentation-content" (click)="scrollTo('outputs')">ngx-tooltip Directive Outputs</a>
-    <hr>
+  <app-prism>
+    <![CDATA[<ngx-button
+    #customTooltip=ngxTooltip
+    ngx-tooltip
+    class="btn btn-primary"
+    [tooltipContext]="{ foo: 'YAZ' }"
+    [tooltipType]="'popover'"
+    [tooltipPlacement]="'bottom'"
+    [tooltipShowCaret]="false"
+    [tooltipCssClass]="'popover-custom'"
+    [tooltipSpacing]="5"
+    [tooltipTemplate]="popoverMenuTemplate"
+    [tooltipShowEvent]="'click'"
+  >Click me to open</ngx-button>
+  <ng-template #popoverMenuTemplate let-model="model">
+    <ul class="vertical-list">
+      <li><button type="button" (click)="closeTooltip()">Click me to close</button></li>
+      <li class="disabled"><button type="button">You can't click me</button></li>
+    </ul>
+  </ng-template>]]>
+</app-prism>
+</ngx-section>
+
+<ngx-section class="shadow" sectionTitle="Appearances">
+  <table class="appearance-table" style="max-width: 100%">
+    <tr>
+      <th width="10%"></th>
+      <th width="45%">Tooltip</th>
+      <th width="45%">Popup</th>
+    </tr>
+    <tr>
+      <td>Default</td>
+      <td>
+        <ngx-tooltip-content type="tooltip" placement="top" title="Phishing" [showCaret]="true"></ngx-tooltip-content>
+      </td>
+      <td>
+        <ngx-tooltip-content type="popover" placement="top" title="Phishing" [showCaret]="false"></ngx-tooltip-content>
+      </td>
+    </tr>
+    <tr>
+      <td>Long String</td>
+      <td>
+        <ngx-tooltip-content type="tooltip" placement="top" [title]="aLongString" [showCaret]="false"></ngx-tooltip-content>
+      </td>
+      <td>
+        <ngx-tooltip-content type="popover" placement="top" [title]="aLongString" [showCaret]="false"></ngx-tooltip-content>
+      </td>
+    </tr>
+    <tr>
+      <td>Long String <code>.narrow</code></td>
+      <td>
+        <ngx-tooltip-content cssClass="narrow" type="tooltip" placement="top" [title]="aLongString" [showCaret]="false"></ngx-tooltip-content>
+      </td>
+      <td>
+        <ngx-tooltip-content cssClass="narrow" type="popover" placement="top" [title]="aLongString" [showCaret]="false"></ngx-tooltip-content>
+      </td>
+    </tr>
+    <tr>
+      <td>Unbroken String</td>
+      <td>
+        <ngx-tooltip-content type="tooltip" placement="top" [title]="aVeryLongString" [showCaret]="false"></ngx-tooltip-content>
+      </td>
+      <td>
+        <ngx-tooltip-content type="popover" placement="top" [title]="aVeryLongString" [showCaret]="false"></ngx-tooltip-content>
+      </td>
+    </tr>
+  </table>
+</ngx-section>
+</ngx-tab>
+<ngx-tab label="API">
+  <h3>Table of Contents</h3>
+  <a class="documentation-content" (click)="scrollTo('inputs')">ngx-tooltip Directive Inputs</a>
+  <a class="documentation-content" (click)="scrollTo('outputs')">ngx-tooltip Directive Outputs</a>
+  <hr>
     <h4>Selector: <code style="display: inline;">[ngx-tooltip]</code></h4>
     <h4>Exported as: <code style="display: inline;">ngxTooltip</code></h4>
 
@@ -368,30 +370,30 @@
       </tbody>
     </table>
     <hr>
-    <h3 class="style-header" id="outputs">ngx-tooltip Directive Outputs</h3>
-    <table class="table documentation-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Output()</code>
-            <code>hide: EventEmitter&lt;boolean&gt;</code>
-          </th>
-          <td>Event emitted when the component is hidden.</td>
-        </tr>
-        <tr>
-          <th>
-            <code class="component-type">&#64;Output()</code>
-            <code>show: EventEmitter&lt;boolean&gt;</code>
-          </th>
-          <td>Event emitted when the component is shown.</td>
-        </tr>
-      </tbody>
-    </table>
-  </ngx-tab>
-</ngx-tabs>
+      <h3 class="style-header" id="outputs">ngx-tooltip Directive Outputs</h3>
+      <table class="table documentation-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>
+              <code class="component-type">&#64;Output()</code>
+              <code>hide: EventEmitter&lt;boolean&gt;</code>
+            </th>
+            <td>Event emitted when the component is hidden.</td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">&#64;Output()</code>
+              <code>show: EventEmitter&lt;boolean&gt;</code>
+            </th>
+            <td>Event emitted when the component is shown.</td>
+          </tr>
+        </tbody>
+      </table>
+    </ngx-tab>
+  </ngx-tabs>

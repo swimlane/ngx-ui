@@ -6,6 +6,9 @@
 
 <h3 class="style-header">Dependencies</h3>
 <ul>
-  <li *ngFor="let dep of deps | keyvalue">
-    <a [attr.href]="'http://www.npmjs.com/package/' + dep.key">{{dep.key}} - {{dep.value}}</a>
-</ul>
+  @for (dep of deps | keyvalue; track dep) {
+    <li>
+      <a [attr.href]="'http://www.npmjs.com/package/' + dep.key">{{ dep.key}} - {{ dep.value }}</a>
+   </li>
+  }
+  </ul>
