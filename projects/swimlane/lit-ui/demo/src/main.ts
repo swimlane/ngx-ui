@@ -6,6 +6,8 @@
 import '../../src/components/button/button.component';
 import '../../src/components/input/input.component';
 import '../../src/components/select/select.component';
+import '../../src/components/tabs/tab.component';
+import '../../src/components/tabs/tabs.component';
 
 // Helper function to create a promise that resolves after a delay
 function delay(ms: number): Promise<void> {
@@ -49,9 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Form validation demo
   const demoForm = document.getElementById('demoForm');
   if (demoForm) {
-    demoForm.addEventListener('submit', (e) => {
+    demoForm.addEventListener('submit', e => {
       e.preventDefault();
-      
+
       const nameInput = document.getElementById('nameInput') as any;
       const emailInput = document.getElementById('emailInput') as any;
       const ageInput = document.getElementById('ageInput') as any;
@@ -71,9 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Select form demo
   const selectForm = document.getElementById('selectForm');
   if (selectForm) {
-    selectForm.addEventListener('submit', (e) => {
+    selectForm.addEventListener('submit', e => {
       e.preventDefault();
-      
+
       const categorySelect = document.getElementById('formSelect1') as any;
       const tagsSelect = document.getElementById('formSelect2') as any;
 
@@ -86,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   console.log('✨ @swimlane/lit-ui demo loaded successfully!');
-  console.log('Button, Input, and Select components are ready to use');
+  console.log('Button, Input, Select, and Tabs components are ready to use');
 });
 
 function setupSelectDemos() {
@@ -211,4 +213,3 @@ function setupSelectDemos() {
   const formSelect2 = document.getElementById('formSelect2') as any;
   if (formSelect2) formSelect2.options = tags;
 }
-
