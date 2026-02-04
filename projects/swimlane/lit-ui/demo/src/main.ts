@@ -4,6 +4,7 @@
 
 // Import components
 import '../../src/components/button/button.component';
+import '../../src/components/button-group/button-group.component';
 import '../../src/components/input/input.component';
 import '../../src/components/select/select.component';
 import '../../src/components/tabs/tab.component';
@@ -92,7 +93,14 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function setupSelectDemos() {
-  // Fruit options for basic select
+  // Attack Type options (match ngx-ui selects-page / controls-page)
+  const attackTypeOptions = [
+    { name: 'Breach', value: 'breach' },
+    { name: 'DDOS', value: 'ddos' },
+    { name: 'Physical', value: 'physical' }
+  ];
+
+  // Fruit options for other selects
   const fruits = [
     { name: 'Apple', value: 'apple' },
     { name: 'Banana', value: 'banana' },
@@ -104,12 +112,12 @@ function setupSelectDemos() {
     { name: 'Watermelon', value: 'watermelon' }
   ];
 
-  // Basic selects
+  // Basic / Required selects (mirror ngx-ui Single Select)
   const basicSelect = document.getElementById('basicSelect') as any;
-  if (basicSelect) basicSelect.options = fruits;
+  if (basicSelect) basicSelect.options = attackTypeOptions;
 
   const requiredSelect = document.getElementById('requiredSelect') as any;
-  if (requiredSelect) requiredSelect.options = fruits;
+  if (requiredSelect) requiredSelect.options = attackTypeOptions;
 
   // Appearance selects
   const legacySelect = document.getElementById('legacySelect') as any;

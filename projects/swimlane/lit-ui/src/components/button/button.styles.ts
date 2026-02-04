@@ -15,7 +15,7 @@ export const buttonStyles = css`
 
   button {
     box-sizing: border-box;
-    color: var(--white);
+    color: var(--button-text, var(--white));
     display: inline-block;
     padding: 0.35em 0.55em;
     position: relative;
@@ -31,10 +31,11 @@ export const buttonStyles = css`
     cursor: inherit;
     width: 100%;
 
-    background: var(--grey-600);
+    background: var(--button-bg, var(--grey-600));
     border: solid 1px transparent;
+    border-color: var(--button-border, transparent);
     border-radius: var(--radius-4);
-    box-shadow: var(--shadow-1);
+    box-shadow: var(--button-shadow, var(--shadow-1));
     transition: background-color 200ms, box-shadow 200ms;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.07);
   }
@@ -48,11 +49,11 @@ export const buttonStyles = css`
     outline: 2px solid var(--grey-600);
   }
 
-  /* Hover states */
+  /* Hover states (--button-hover set by swim-button-group when used inside a group) */
   :host(:not([disabled])) button:hover {
     cursor: pointer;
-    background: var(--grey-700);
-    outline-color: var(--grey-700);
+    background: var(--button-hover, var(--grey-700));
+    outline-color: var(--button-hover, var(--grey-700));
   }
 
   /* Size variants */
@@ -64,18 +65,21 @@ export const buttonStyles = css`
     font-size: 1.3em;
   }
 
-  /* Variant: Primary */
+  /* Variant: Primary (--button-* overrides when inside swim-button-group) */
   :host([variant='primary']) button {
-    background-color: var(--blue-400);
-    outline-color: var(--blue-500);
+    background-color: var(--button-bg, var(--blue-400));
+    border-color: var(--button-border, var(--blue-400));
+    color: var(--button-text, var(--white));
+    outline-color: var(--button-border, var(--blue-500));
   }
 
   :host([variant='primary']) button:focus-visible {
-    outline-color: var(--blue-500);
+    outline-color: var(--button-border, var(--blue-500));
   }
 
   :host([variant='primary']:not([disabled])) button:hover {
-    background-color: var(--blue-500);
+    background-color: var(--button-hover, var(--blue-500));
+    border-color: var(--button-hover, var(--blue-500));
   }
 
   /* Variant: Warning */
@@ -263,4 +267,3 @@ export const buttonStyles = css`
     content: '✕';
   }
 `;
-
