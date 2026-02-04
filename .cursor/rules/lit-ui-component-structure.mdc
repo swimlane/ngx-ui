@@ -1,0 +1,45 @@
+---
+globs: projects/swimlane/lit-ui/**/*.ts
+alwaysApply: false
+---
+# lit-ui Component Structure
+
+When adding or editing components in `@swimlane/lit-ui`, follow this structure and conventions.
+
+## Per-component layout
+
+Each component lives under `src/components/<name>/`:
+
+- `<name>.component.ts` — main Lit component (reactive properties, template, logic)
+- `<name>.styles.ts` — `css` template or style helpers (exported and used in component)
+- `<name>-*.enum.ts` — enums for variant/size/state (e.g. `button-state.enum.ts`, `input-types.enum.ts`)
+- `index.ts` — re-exports the component and public types
+
+## Shared assets
+
+- **Design tokens**: `src/styles/tokens/` — `colors.ts`, `typography.ts`, `spacing.ts`; import in component styles, do not hardcode values.
+- **Base styles**: `src/styles/base.ts` — CSS variables; components use these variables.
+- **Utils**: `src/utils/` — e.g. `coerce.ts` for coercion; use for shared logic.
+
+## Technical conventions
+
+- Use **Lit 3.x**: `@customElement`, `@property`, `@state`, `LitElement`, `html`, `css` from `lit`.
+- Use **Shadow DOM** and component-scoped styles (no global style leakage).
+- **TypeScript**: strict mode; export public types; no `any` for public APIs.
+- **Build**: code must be tree-shakeable; each component importable as `@swimlane/lit-ui/<name>`.
+
+## Example
+
+```ts
+// src/components/example/example.component.ts
+import { LitElement, html, css } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { exampleStyles } from './example.styles.js';
+
+@customElement('swim-example')
+export class SwimExample extends LitElement {
+  static styles = exampleStyles;
+  @property() label = '';
+  render() { return html`<span>${this.label}</span>`; }
+}
+```
