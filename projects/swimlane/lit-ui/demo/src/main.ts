@@ -23,8 +23,23 @@ function delayReject(ms: number): Promise<void> {
   return new Promise((_, reject) => setTimeout(() => reject(new Error('Failed')), ms));
 }
 
-// Set up interactive demo buttons
-document.addEventListener('DOMContentLoaded', () => {
+const SECTION_FILES = ['buttons', 'input', 'select', 'tabs', 'button-group', 'icons'];
+
+async function loadSections(): Promise<void> {
+  const container = document.getElementById('page-sections');
+  if (!container) return;
+  const parts: string[] = [];
+  for (const name of SECTION_FILES) {
+    const res = await fetch(`/sections/${name}.html`);
+    if (res.ok) parts.push(await res.text());
+  }
+  container.innerHTML = parts.join('');
+}
+
+// Set up interactive demo buttons and run after sections are loaded
+document.addEventListener('DOMContentLoaded', async () => {
+  await loadSections();
+
   // Success button demo
   const successBtn = document.getElementById('successBtn');
   if (successBtn) {
@@ -53,21 +68,38 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Form validation demo
-  const demoForm = document.getElementById('demoForm');
+  const demoForm = document.getElementById('demoForm') as HTMLFormElement | null;
   if (demoForm) {
+    // swim-button wraps a native button in Shadow DOM, so the form never receives
+    // a native submit/reset. Wire Submit and Reset buttons to the form explicitly.
+    const submitBtn = demoForm.querySelector('swim-button[type="submit"]');
+    const resetBtn = demoForm.querySelector('swim-button[type="reset"]');
+    if (submitBtn) {
+      submitBtn.addEventListener('click', e => {
+        e.preventDefault();
+        demoForm.requestSubmit();
+      });
+    }
+    if (resetBtn) {
+      resetBtn.addEventListener('click', e => {
+        e.preventDefault();
+        demoForm.reset();
+      });
+    }
+
     demoForm.addEventListener('submit', e => {
       e.preventDefault();
 
-      const nameInput = document.getElementById('nameInput') as any;
-      const emailInput = document.getElementById('emailInput') as any;
-      const ageInput = document.getElementById('ageInput') as any;
+      const nameInput = document.getElementById('nameInput') as (HTMLInputElement & { value: string }) | null;
+      const emailInput = document.getElementById('emailInput') as (HTMLInputElement & { value: string }) | null;
+      const ageInput = document.getElementById('ageInput') as (HTMLInputElement & { value: string }) | null;
 
-      console.log('Form submitted!');
-      console.log('Name:', nameInput.value);
-      console.log('Email:', emailInput.value);
-      console.log('Age:', ageInput.value);
+      const name = nameInput?.value ?? '';
+      const email = emailInput?.value ?? '';
+      const age = ageInput?.value ?? '';
 
-      alert(`Form submitted!\nName: ${nameInput.value}\nEmail: ${emailInput.value}\nAge: ${ageInput.value}`);
+      console.log('Form submitted!', { name, email, age });
+      alert(`Form submitted!\nName: ${name}\nEmail: ${email}\nAge: ${age}`);
     });
   }
 
@@ -111,24 +143,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Search: filter nav by link/label text
   const searchInput = document.getElementById('navSearch') as HTMLInputElement | null;
+  const containers = document.querySelectorAll<HTMLElement>('.nav-item-container');
+  const subNavItems = document.querySelectorAll<HTMLAnchorElement>('.sub-nav-item');
+
+  function filterNav() {
+    if (!searchInput) return;
+    const query = searchInput.value.trim().toLowerCase();
+    subNavItems.forEach(link => {
+      const text = link.textContent?.trim().toLowerCase() ?? '';
+      link.classList.toggle('nav-search-hidden', query.length > 0 && !text.includes(query));
+    });
+    containers.forEach(container => {
+      const label = container.querySelector('.nav-item-label');
+      const labelText = label?.textContent?.trim().toLowerCase() ?? '';
+      const visibleChildren = container.querySelectorAll('.sub-nav-item:not(.nav-search-hidden)').length;
+      const labelMatches = query.length === 0 || labelText.includes(query);
+      const hasVisibleChild = visibleChildren > 0;
+      container.classList.toggle('nav-search-hidden', query.length > 0 && !labelMatches && !hasVisibleChild);
+    });
+  }
+
   if (searchInput) {
-    const containers = document.querySelectorAll<HTMLElement>('.nav-item-container');
-    const subNavItems = document.querySelectorAll<HTMLAnchorElement>('.sub-nav-item');
-    function filterNav() {
-      const query = searchInput.value.trim().toLowerCase();
-      subNavItems.forEach(link => {
-        const text = link.textContent?.trim().toLowerCase() ?? '';
-        link.classList.toggle('nav-search-hidden', query.length > 0 && !text.includes(query));
-      });
-      containers.forEach(container => {
-        const label = container.querySelector('.nav-item-label');
-        const labelText = label?.textContent?.trim().toLowerCase() ?? '';
-        const visibleChildren = container.querySelectorAll('.sub-nav-item:not(.nav-search-hidden)').length;
-        const labelMatches = query.length === 0 || labelText.includes(query);
-        const hasVisibleChild = visibleChildren > 0;
-        container.classList.toggle('nav-search-hidden', query.length > 0 && !labelMatches && !hasVisibleChild);
-      });
-    }
     searchInput.addEventListener('input', filterNav);
     searchInput.addEventListener('keydown', e => {
       if (e.key === 'Escape') {

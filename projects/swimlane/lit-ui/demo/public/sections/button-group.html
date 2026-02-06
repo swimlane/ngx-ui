@@ -1,0 +1,139 @@
+      <hr style="border: none; border-top: 1px solid var(--grey-700); margin: 4rem 0;">
+
+      <!-- Button Group (mirrors ngx-ui button-group-page) -->
+      <h1 id="button-group" style="margin-top: 4rem;">Button Group</h1>
+      <p class="subtitle">Group buttons with shared styling, orientation, and variant (contained or text).</p>
+
+      <section class="section">
+        <h2 class="section-title">Color variants (button-group-style)</h2>
+        <p style="color: var(--grey-300); margin-bottom: 1rem;">All button group color styles: default (grey) and primary (blue).</p>
+        <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+          <div class="demo-item">
+            <div class="demo-label">Default (horizontal)</div>
+            <swim-button-group>
+              <swim-button type="button">One</swim-button>
+              <swim-button type="button">Two</swim-button>
+              <swim-button type="button">Three</swim-button>
+            </swim-button-group>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Primary (horizontal)</div>
+            <swim-button-group button-group-style="primary">
+              <swim-button type="button">One</swim-button>
+              <swim-button type="button">Two</swim-button>
+              <swim-button type="button">Three</swim-button>
+            </swim-button-group>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Default (vertical)</div>
+            <swim-button-group orientation="vertical">
+              <swim-button type="button">One</swim-button>
+              <swim-button type="button">Two</swim-button>
+              <swim-button type="button">Three</swim-button>
+            </swim-button-group>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Primary (vertical)</div>
+            <swim-button-group button-group-style="primary" orientation="vertical">
+              <swim-button type="button">One</swim-button>
+              <swim-button type="button">Two</swim-button>
+              <swim-button type="button">Three</swim-button>
+            </swim-button-group>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Variants (contained vs text)</h2>
+        <p style="color: var(--grey-300); margin-bottom: 1rem;">The <code>variant</code> attribute: contained (solid buttons) or text (link-style with dividers).</p>
+        <div class="demo-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+          <div class="demo-item">
+            <div class="demo-label">Contained (default, horizontal)</div>
+            <swim-button-group variant="contained">
+              <swim-button type="button">One</swim-button>
+              <swim-button type="button">Two</swim-button>
+              <swim-button type="button">Three</swim-button>
+            </swim-button-group>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Text (horizontal)</div>
+            <swim-button-group variant="text">
+              <swim-button type="button" variant="link">One</swim-button>
+              <swim-button type="button" variant="link">Two</swim-button>
+              <swim-button type="button" variant="link">Three</swim-button>
+            </swim-button-group>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Contained (vertical)</div>
+            <swim-button-group variant="contained" orientation="vertical">
+              <swim-button type="button">One</swim-button>
+              <swim-button type="button">Two</swim-button>
+              <swim-button type="button">Three</swim-button>
+            </swim-button-group>
+          </div>
+          <div class="demo-item">
+            <div class="demo-label">Text (vertical)</div>
+            <swim-button-group variant="text" orientation="vertical">
+              <swim-button type="button" variant="link">One</swim-button>
+              <swim-button type="button" variant="link">Two</swim-button>
+              <swim-button type="button" variant="link">Three</swim-button>
+            </swim-button-group>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Basic Button Group</h2>
+        <div class="demo-row" style="flex-direction: column; gap: 1.5rem;">
+          <div>
+            <div class="demo-label" style="margin-bottom: 0.5rem;">Horizontal default</div>
+            <swim-button-group>
+              <swim-button type="button">Default</swim-button>
+              <swim-button type="button">Default</swim-button>
+              <swim-button type="button">Default</swim-button>
+            </swim-button-group>
+          </div>
+          <div>
+            <div class="demo-label" style="margin-bottom: 0.5rem;">Horizontal primary</div>
+            <swim-button-group button-group-style="primary">
+              <swim-button type="button">Primary</swim-button>
+              <swim-button type="button">Primary</swim-button>
+              <swim-button type="button">Primary</swim-button>
+            </swim-button-group>
+          </div>
+          <div>
+            <div class="demo-label" style="margin-bottom: 0.5rem;">Vertical primary</div>
+            <swim-button-group button-group-style="primary" orientation="vertical">
+              <swim-button type="button">Primary</swim-button>
+              <swim-button type="button">Primary</swim-button>
+              <swim-button type="button">Primary</swim-button>
+            </swim-button-group>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Text variant</h2>
+        <swim-button-group variant="text">
+          <swim-button type="button" variant="link">Link 1</swim-button>
+          <swim-button type="button" variant="link">Link 2</swim-button>
+          <swim-button type="button" variant="link">Link 3</swim-button>
+          <swim-button type="button" variant="link">Link 4</swim-button>
+        </swim-button-group>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Button Group Usage</h2>
+        <p style="color: var(--grey-300); margin-bottom: 1rem;">
+          Import and use the button group component in your application:
+        </p>
+        <pre style="background: var(--grey-800); padding: 1rem; border-radius: var(--radius-4); overflow-x: auto;"><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/button-group';
+  import '@swimlane/lit-ui/button';
+&lt;/script&gt;
+
+&lt;swim-button-group button-group-style="primary"&gt;
+  &lt;swim-button type="button"&gt;Save&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Cancel&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;</code></pre>
+      </section>

@@ -11,16 +11,16 @@ import { coerceBooleanProperty } from '../../utils/coerce';
 
 /**
  * SwimInput - An input component matching @swimlane/ngx-ui design system
- * 
+ *
  * @slot prefix - Content to show before the input
  * @slot suffix - Content to show after the input
  * @slot hint - Hint text below the input
- * 
+ *
  * @fires change - Fired when the value changes
  * @fires input - Fired on input events
  * @fires focus - Fired when the input gains focus
  * @fires blur - Fired when the input loses focus
- * 
+ *
  * @csspart input - The native input/textarea element
  * @csspart label - The label element
  */
@@ -263,9 +263,14 @@ export class SwimInput extends LitElement {
     }
   }
 
+  /** Delegate focus to the internal input so form validation can focus invalid controls. */
+  override focus(options?: FocusOptions): void {
+    this.inputElement?.focus(options);
+  }
+
   updated(changedProperties: PropertyValues) {
     super.updated(changedProperties);
-    
+
     if (changedProperties.has('value')) {
       this._updateActiveState();
     }
@@ -288,46 +293,47 @@ export class SwimInput extends LitElement {
           <div class="input-flex-wrap-inner">
             <div class="input-box-wrap">
               ${isTextarea ? this._renderTextarea() : this._renderInput(inputType)}
-              
-              ${showSpinner ? html`
-                <div class="numeric-spinner">
-                  <button
-                    type="button"
-                    class="spinner-btn"
-                    @mousedown="${this._incrementValue}"
-                    @mouseup="${this._stopSpinner}"
-                    @mouseleave="${this._stopSpinner}"
-                    aria-label="Increment"
-                  >
-                    <span class="icon icon-chevron-up"></span>
-                  </button>
-                  <button
-                    type="button"
-                    class="spinner-btn"
-                    @mousedown="${this._decrementValue}"
-                    @mouseup="${this._stopSpinner}"
-                    @mouseleave="${this._stopSpinner}"
-                    aria-label="Decrement"
-                  >
-                    <span class="icon icon-chevron-down"></span>
-                  </button>
-                </div>
-              ` : nothing}
-
-              ${showPasswordToggle ? html`
-                <button
-                  type="button"
-                  class="password-toggle"
-                  @click="${this._togglePassword}"
-                  aria-label="Toggle password visibility"
-                >
-                  <span class="icon ${this._passwordVisible ? 'icon-eye-disabled' : 'icon-eye'}"></span>
-                </button>
-              ` : nothing}
+              ${showSpinner
+                ? html`
+                    <div class="numeric-spinner">
+                      <button
+                        type="button"
+                        class="spinner-btn"
+                        @mousedown="${this._incrementValue}"
+                        @mouseup="${this._stopSpinner}"
+                        @mouseleave="${this._stopSpinner}"
+                        aria-label="Increment"
+                      >
+                        <span class="icon icon-chevron-up"></span>
+                      </button>
+                      <button
+                        type="button"
+                        class="spinner-btn"
+                        @mousedown="${this._decrementValue}"
+                        @mouseup="${this._stopSpinner}"
+                        @mouseleave="${this._stopSpinner}"
+                        aria-label="Decrement"
+                      >
+                        <span class="icon icon-chevron-down"></span>
+                      </button>
+                    </div>
+                  `
+                : nothing}
+              ${showPasswordToggle
+                ? html`
+                    <button
+                      type="button"
+                      class="password-toggle"
+                      @click="${this._togglePassword}"
+                      aria-label="Toggle password visibility"
+                    >
+                      <span class="icon ${this._passwordVisible ? 'icon-eye-disabled' : 'icon-eye'}"></span>
+                    </button>
+                  `
+                : nothing}
             </div>
             <label class="input-label" part="label" for="${this.id}">
-              ${this.label}
-              ${this.required ? html`<span>${this.requiredIndicator}</span>` : nothing}
+              ${this.label} ${this.required ? html`<span>${this.requiredIndicator}</span>` : nothing}
             </label>
           </div>
           <slot name="suffix"></slot>
@@ -397,7 +403,7 @@ export class SwimInput extends LitElement {
   private _handleInput(e: Event) {
     const target = e.target as HTMLInputElement | HTMLTextAreaElement;
     this.value = target.value;
-    
+
     if (!this._dirty) {
       this._dirty = true;
       this.setAttribute('dirty', '');
@@ -420,7 +426,7 @@ export class SwimInput extends LitElement {
   private _handleBlur(_e: FocusEvent) {
     this._focused = false;
     this.removeAttribute('focused');
-    
+
     if (!this._touched) {
       this._touched = true;
       this.setAttribute('touched', '');
@@ -474,9 +480,9 @@ export class SwimInput extends LitElement {
     if (this.inputElement && this.type === InputTypes.number) {
       const input = this.inputElement as HTMLInputElement;
       const currentValue = parseFloat(input.value) || 0;
-      
+
       if (this.max !== undefined && currentValue >= this.max) return;
-      
+
       const newValue = currentValue + 1;
       this.value = newValue.toString();
       this.dispatchEvent(new Event('change', { bubbles: true, composed: true }));
@@ -487,9 +493,9 @@ export class SwimInput extends LitElement {
     if (this.inputElement && this.type === InputTypes.number) {
       const input = this.inputElement as HTMLInputElement;
       const currentValue = parseFloat(input.value) || 0;
-      
+
       if (this.min !== undefined && currentValue <= this.min) return;
-      
+
       const newValue = currentValue - 1;
       this.value = newValue.toString();
       this.dispatchEvent(new Event('change', { bubbles: true, composed: true }));
@@ -530,7 +536,7 @@ export class SwimInput extends LitElement {
     }
 
     this._invalid = !isValid;
-    
+
     if (this._invalid) {
       this.setAttribute('invalid', '');
       this._internals.setValidity({ customError: true }, 'Invalid input');
@@ -545,7 +551,7 @@ export class SwimInput extends LitElement {
   private _updateActiveState() {
     const hasValue = this.value && this.value.length > 0;
     const hasPlaceholder = !!this.placeholder;
-    
+
     if (this._focused || hasValue) {
       this.setAttribute('active', '');
     } else {
@@ -584,4 +590,3 @@ declare global {
     'swim-input': SwimInput;
   }
 }
-
