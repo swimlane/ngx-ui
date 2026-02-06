@@ -94,6 +94,87 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Section ids that have nav links (in document order for scroll spy)
+  const SECTION_IDS = ['buttons', 'input', 'select', 'tabs', 'button-group', 'icons'];
+
+  // Sync sidebar active state with section id (hash or scroll)
+  function setActiveNav(sectionId?: string) {
+    const id = sectionId ?? (window.location.hash.slice(1) || 'icons');
+    document.querySelectorAll('.sub-nav-item.active, .nav-item.active').forEach(el => el.classList.remove('active'));
+    document
+      .querySelectorAll(`.sub-nav-item[href="#${id}"], .nav-item[href="#${id}"]`)
+      .forEach(el => el.classList.add('active'));
+  }
+
+  setActiveNav();
+  window.addEventListener('hashchange', () => setActiveNav());
+
+  // Search: filter nav by link/label text
+  const searchInput = document.getElementById('navSearch') as HTMLInputElement | null;
+  if (searchInput) {
+    const containers = document.querySelectorAll<HTMLElement>('.nav-item-container');
+    const subNavItems = document.querySelectorAll<HTMLAnchorElement>('.sub-nav-item');
+    function filterNav() {
+      const query = searchInput.value.trim().toLowerCase();
+      subNavItems.forEach(link => {
+        const text = link.textContent?.trim().toLowerCase() ?? '';
+        link.classList.toggle('nav-search-hidden', query.length > 0 && !text.includes(query));
+      });
+      containers.forEach(container => {
+        const label = container.querySelector('.nav-item-label');
+        const labelText = label?.textContent?.trim().toLowerCase() ?? '';
+        const visibleChildren = container.querySelectorAll('.sub-nav-item:not(.nav-search-hidden)').length;
+        const labelMatches = query.length === 0 || labelText.includes(query);
+        const hasVisibleChild = visibleChildren > 0;
+        container.classList.toggle('nav-search-hidden', query.length > 0 && !labelMatches && !hasVisibleChild);
+      });
+    }
+    searchInput.addEventListener('input', filterNav);
+    searchInput.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        searchInput.value = '';
+        filterNav();
+        searchInput.blur();
+      }
+    });
+  }
+
+  // Scroll spy: highlight nav item for the section currently in view
+  function updateActiveFromScroll() {
+    const toolbarHeight = 50;
+    const viewTop = toolbarHeight + 80;
+    let current: string | null = null;
+    for (const id of SECTION_IDS) {
+      const el = document.getElementById(id);
+      if (!el) continue;
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= viewTop) current = id;
+    }
+    if (current) {
+      setActiveNav(current);
+      if (window.location.hash !== `#${current}`) {
+        history.replaceState(null, '', `#${current}`);
+      }
+    }
+  }
+
+  const mainEl = document.querySelector('.main');
+  if (mainEl) {
+    let ticking = false;
+    mainEl.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        updateActiveFromScroll();
+        ticking = false;
+      });
+    });
+    // Run once after load so highlight matches initial scroll position (e.g. after hash scroll)
+    requestAnimationFrame(() => {
+      requestAnimationFrame(updateActiveFromScroll);
+    });
+  }
+
   console.log('✨ @swimlane/lit-ui demo loaded successfully!');
   console.log('Button, Input, Select, and Tabs components are ready to use');
 });
@@ -103,6 +184,7 @@ function setupIconsDemo() {
   if (!container) return;
   for (const name of ICON_NAMES) {
     const li = document.createElement('li');
+    li.dataset.iconName = name;
     const icon = document.createElement('swim-icon');
     icon.setAttribute('font-icon', name);
     const label = document.createElement('span');
@@ -111,6 +193,23 @@ function setupIconsDemo() {
     li.appendChild(icon);
     li.appendChild(label);
     container.appendChild(li);
+  }
+  const searchInput = document.getElementById('iconSearch') as HTMLInputElement | null;
+  if (searchInput) {
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLowerCase();
+      container.querySelectorAll<HTMLElement>('li').forEach(li => {
+        const name = (li.dataset.iconName ?? '').toLowerCase();
+        li.classList.toggle('icon-search-hidden', query.length > 0 && !name.includes(query));
+      });
+    });
+    searchInput.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        searchInput.value = '';
+        container.querySelectorAll('li').forEach(li => li.classList.remove('icon-search-hidden'));
+        searchInput.blur();
+      }
+    });
   }
 }
 
