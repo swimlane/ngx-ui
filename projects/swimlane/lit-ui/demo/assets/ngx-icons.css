@@ -1,0 +1,40 @@
+/* Minimal ngx-icon font for demo. Full set in @swimlane/ngx-ui. */
+@font-face {
+  font-family: 'ngx-icon';
+  src: url('ngx-icon.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.ngx-icon {
+  display: inline-block;
+  font: normal normal normal 1em/1 'ngx-icon';
+  flex-shrink: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ngx-icon.ngx-arrow-left::before {
+  content: '\ea21';
+}
+.ngx-icon.ngx-check::before {
+  content: '\ea58';
+}
+.ngx-icon.ngx-circle-filled::before {
+  content: '\ea62';
+}
+.ngx-icon.ngx-field-users::before {
+  content: '\eab5';
+}
+.ngx-icon.ngx-plus::before {
+  content: '\eb1a';
+}
+.ngx-icon.ngx-refresh::before {
+  content: '\eb2d';
+}
+.ngx-icon.ngx-square-filled::before {
+  content: '\eb62';
+}
+.ngx-icon.ngx-x::before {
+  content: '\eba5';
+}

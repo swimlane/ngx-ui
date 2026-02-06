@@ -2,9 +2,12 @@
  * Demo application for @swimlane/lit-ui
  */
 
+import { ICON_NAMES } from '../icon-names';
+
 // Import components
 import '../../src/components/button/button.component';
 import '../../src/components/button-group/button-group.component';
+import '../../src/components/icon/icon.component';
 import '../../src/components/input/input.component';
 import '../../src/components/select/select.component';
 import '../../src/components/tabs/tab.component';
@@ -71,6 +74,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Select component demos
   setupSelectDemos();
 
+  // Icons demo: populate full icon grid (like src/app/icons-page)
+  setupIconsDemo();
+
   // Select form demo
   const selectForm = document.getElementById('selectForm');
   if (selectForm) {
@@ -91,6 +97,22 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('✨ @swimlane/lit-ui demo loaded successfully!');
   console.log('Button, Input, Select, and Tabs components are ready to use');
 });
+
+function setupIconsDemo() {
+  const container = document.getElementById('iconsPreview');
+  if (!container) return;
+  for (const name of ICON_NAMES) {
+    const li = document.createElement('li');
+    const icon = document.createElement('swim-icon');
+    icon.setAttribute('font-icon', name);
+    const label = document.createElement('span');
+    label.className = 'icon-name';
+    label.textContent = `ngx-icon ngx-${name}`;
+    li.appendChild(icon);
+    li.appendChild(label);
+    container.appendChild(li);
+  }
+}
 
 function setupSelectDemos() {
   // Attack Type options (match ngx-ui selects-page / controls-page)
