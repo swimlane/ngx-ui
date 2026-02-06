@@ -119,10 +119,18 @@
         gap: 0.5rem;
       }
 
+      .nav-logo .logo-swimlane {
+        width: 35px;
+        height: 35px;
+        flex-shrink: 0;
+        object-fit: contain;
+      }
+
       .nav-logo .logo-text {
-        font-size: 1.125rem;
+        font-size: 2rem;
         font-weight: var(--font-weight-semibold);
         color: var(--white);
+        letter-spacing: 0.02em;
       }
 
       .nav-logo .logo-lit-icon {
@@ -447,6 +455,7 @@
     <div class="app">
       <nav class="navigation">
         <div class="nav-logo">
+          <img src="assets/swimlane.svg" alt="Swimlane" class="logo-swimlane" />
           <span class="logo-text">NGX-UI</span>
           <img src="assets/lit-logo.svg" alt="Lit" class="logo-lit-icon" />
         </div>
@@ -460,6 +469,12 @@
           <li class="nav-item-container">
             <span class="nav-item nav-item-label">Style</span>
             <ul class="sub-nav">
+              <li><a class="sub-nav-item" href="#icons">Icons</a></li>
+            </ul>
+          </li>
+          <li class="nav-item-container">
+            <span class="nav-item nav-item-label">Forms</span>
+            <ul class="sub-nav">
               <li><a class="sub-nav-item" href="#buttons">Buttons</a></li>
               <li><a class="sub-nav-item" href="#input">Inputs</a></li>
               <li><a class="sub-nav-item" href="#select">Selects</a></li>
@@ -470,7 +485,6 @@
             <ul class="sub-nav">
               <li><a class="sub-nav-item" href="#tabs">Tabs</a></li>
               <li><a class="sub-nav-item" href="#button-group">Button Group</a></li>
-              <li><a class="sub-nav-item" href="#icons">Icons</a></li>
             </ul>
           </li>
         </ul>
