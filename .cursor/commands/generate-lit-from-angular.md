@@ -98,14 +98,15 @@ Keep components efficient and avoid unnecessary work:
 5. Add `index.ts` exports and update `projects/swimlane/lit-ui/src/index.ts`.
 6. Add a `declare global { interface HTMLElementTagNameMap { 'swim-<name>': ComponentClass; } }` block for TypeScript.
 7. **Add a demo for the new component** in `projects/swimlane/lit-ui/demo/index.html` and register it in `demo/src/main.ts`:
-   - In **index.html**: Add a new block after the last component demo (after the final Usage section), separated by an `<hr>`:
-     - Main heading: `<h1 style="margin-top: 4rem;">Component Name</h1>`
+   - **Avoid any inline styles**, even in demo templates. Use demo CSS classes from `index.html` (e.g. `.section-divider`, `.page-title`, `.section-desc`, `.demo-row--column`, `.demo-label--after`, `.demo-pre`).
+   - In **index.html**: Add a new block after the last component demo (after the final Usage section), separated by an `<hr class="section-divider">`:
+     - Main heading: `<h1 id="component-name" class="page-title">Component Name</h1>`
      - Subtitle: `<p class="subtitle">Short description</p>`
      - One or more `<section class="section">` blocks with `<h2 class="section-title">...</h2>` showing:
-       - Variants, sizes, or key props (use `.demo-grid`, `.demo-item`, `.demo-label`, `.demo-row` as in existing Button/Input/Select demos)
+       - Variants, sizes, or key props (use `.demo-grid`, `.demo-item`, `.demo-label`, `.demo-row`, `.demo-row--column` as in existing Button/Input/Select demos)
        - States (e.g. disabled, active) if applicable
        - Interactive example if useful
-     - A **Usage** section at the end with a `<pre><code>...</code></pre>` showing:
+     - A **Usage** section at the end with a `<pre class="demo-pre"><code>...</code></pre>` showing:
        - `<script type="module">` importing the component (e.g. `import '@swimlane/lit-ui/<name>';` or the main package)
        - Minimal HTML example of the component
    - In **demo/src/main.ts**:

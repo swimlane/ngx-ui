@@ -12,6 +12,8 @@ import '../../src/components/input/input.component';
 import '../../src/components/select/select.component';
 import '../../src/components/tabs/tab.component';
 import '../../src/components/tabs/tabs.component';
+import '../../src/components/button-toggle/button-toggle.component';
+import '../../src/components/button-toggle/button-toggle-group.component';
 
 // Helper function to create a promise that resolves after a delay
 function delay(ms: number): Promise<void> {
@@ -23,7 +25,7 @@ function delayReject(ms: number): Promise<void> {
   return new Promise((_, reject) => setTimeout(() => reject(new Error('Failed')), ms));
 }
 
-const SECTION_FILES = ['buttons', 'input', 'select', 'tabs', 'button-group', 'icons'];
+const SECTION_FILES = ['buttons', 'input', 'select', 'tabs', 'button-group', 'button-toggle', 'icons'];
 
 async function loadSections(): Promise<void> {
   const container = document.getElementById('page-sections');
@@ -106,6 +108,23 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Select component demos
   setupSelectDemos();
 
+  // Button toggle demos
+  const seasonToggleGroup = document.getElementById('seasonToggleGroup') as any;
+  const seasonValueEl = document.getElementById('seasonValue');
+  if (seasonToggleGroup && seasonValueEl) {
+    seasonToggleGroup.addEventListener('value-change', (e: CustomEvent<unknown>) => {
+      seasonValueEl.textContent = String(e.detail ?? '');
+    });
+  }
+  const disabledGroupDemo = document.getElementById('disabledGroupDemo') as any;
+  const toggleGroupDisabledBtn = document.getElementById('toggleGroupDisabledBtn');
+  if (disabledGroupDemo && toggleGroupDisabledBtn) {
+    toggleGroupDisabledBtn.addEventListener('click', () => {
+      disabledGroupDemo.disabled = !disabledGroupDemo.disabled;
+      toggleGroupDisabledBtn.textContent = disabledGroupDemo.disabled ? 'Enable group' : 'Disable group';
+    });
+  }
+
   // Icons demo: populate full icon grid (like src/app/icons-page)
   setupIconsDemo();
 
@@ -127,7 +146,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Section ids that have nav links (in document order for scroll spy)
-  const SECTION_IDS = ['buttons', 'input', 'select', 'tabs', 'button-group', 'icons'];
+  const SECTION_IDS = ['buttons', 'input', 'select', 'tabs', 'button-group', 'button-toggle', 'icons'];
 
   // Sync sidebar active state with section id (hash or scroll)
   function setActiveNav(sectionId?: string) {

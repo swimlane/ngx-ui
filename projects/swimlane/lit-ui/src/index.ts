@@ -5,6 +5,7 @@
 
 export * from './components/button';
 export * from './components/button-group';
+export * from './components/button-toggle';
 export * from './components/icon';
 export * from './components/input';
 export * from './components/select';

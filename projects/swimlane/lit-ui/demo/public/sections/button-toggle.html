@@ -1,0 +1,58 @@
+      <hr class="section-divider">
+
+      <!-- Button Toggle (mirrors ngx-ui button-toggle-page) -->
+      <h1 id="button-toggle" class="page-title">Button Toggle</h1>
+      <p class="subtitle">Single-selection toggle group. Use <code>swim-button-toggle-group</code> with <code>swim-button-toggle</code> children; value tracks the selected toggle.</p>
+
+      <section class="section">
+        <h2 class="section-title">Basic</h2>
+        <p class="section-desc">Label and two options (Process: Sequential / Parallel).</p>
+        <div class="demo-row demo-row--column">
+          <swim-button-toggle-group value="sequential" label="Process">
+            <swim-button-toggle value="sequential">Sequential</swim-button-toggle>
+            <swim-button-toggle value="parallel">Parallel</swim-button-toggle>
+          </swim-button-toggle-group>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">With selected value display</h2>
+        <p class="section-desc">Favorite season; selected value shown below.</p>
+        <div class="demo-row demo-row--column">
+          <swim-button-toggle-group id="seasonToggleGroup" value="Spring">
+            <swim-button-toggle value="Spring">Spring</swim-button-toggle>
+            <swim-button-toggle value="Summer">Summer</swim-button-toggle>
+            <swim-button-toggle value="Fall">Fall</swim-button-toggle>
+            <swim-button-toggle value="Winter">Winter</swim-button-toggle>
+          </swim-button-toggle-group>
+          <p class="demo-label demo-label--after">Your favorite season is: <strong id="seasonValue">Spring</strong></p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Disabled group</h2>
+        <p class="section-desc">Entire group can be disabled.</p>
+        <div class="demo-row demo-row--column">
+          <swim-button-toggle-group id="disabledGroupDemo" value="One" disabled>
+            <swim-button-toggle value="One">One</swim-button-toggle>
+            <swim-button-toggle value="Two">Two</swim-button-toggle>
+            <swim-button-toggle value="Three">Three</swim-button-toggle>
+          </swim-button-toggle-group>
+          <swim-button type="button" id="toggleGroupDisabledBtn">Enable group</swim-button>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-title">Button Toggle Usage</h2>
+        <p class="section-desc">
+          Import and use the button toggle components:
+        </p>
+        <pre class="demo-pre"><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/button-toggle';
+&lt;/script&gt;
+
+&lt;swim-button-toggle-group value="sequential" label="Process"&gt;
+  &lt;swim-button-toggle value="sequential"&gt;Sequential&lt;/swim-button-toggle&gt;
+  &lt;swim-button-toggle value="parallel"&gt;Parallel&lt;/swim-button-toggle&gt;
+&lt;/swim-button-toggle-group&gt;</code></pre>
+      </section>
