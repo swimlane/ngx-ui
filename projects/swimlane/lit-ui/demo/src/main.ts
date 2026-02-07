@@ -21,6 +21,9 @@ import '../../src/components/card/card-avatar.component';
 import '../../src/components/card/card-placeholder.component';
 import '../../src/components/card/card-body.component';
 import '../../src/components/checkbox/checkbox.component';
+import '../../src/components/radio/radio.component';
+import '../../src/components/radio/radio-group.component';
+import '../../src/components/toggle/toggle.component';
 import '../../src/components/section/section.component';
 import '../../src/components/section/section-header.component';
 
@@ -39,6 +42,8 @@ const SECTION_FILES = [
   'input',
   'select',
   'checkbox',
+  'radio',
+  'toggle',
   'tabs',
   'button-group',
   'button-toggle',
@@ -167,6 +172,53 @@ document.addEventListener('DOMContentLoaded', async () => {
     updateCheckboxDemo(); // initial state
   }
 
+  // Radio demos: single radios (sync checked state and update display)
+  const radioSingleValue = document.getElementById('radioSingleValue');
+  const radioIds = ['radioSeasonSpring', 'radioSeasonSummer', 'radioSeasonFall', 'radioSeasonWinter'];
+  radioIds.forEach(id => {
+    const el = document.getElementById(id) as any;
+    if (el && radioSingleValue) {
+      el.addEventListener('change', (e: CustomEvent<unknown>) => {
+        const value = e.detail;
+        radioIds.forEach(oid => {
+          const o = document.getElementById(oid) as any;
+          if (o) o.checked = o.value === value;
+        });
+        radioSingleValue.textContent = String(value ?? '');
+      });
+    }
+  });
+  // Radio group value display
+  const radioGroupDemo = document.getElementById('radioGroupDemo') as any;
+  const radioGroupValue = document.getElementById('radioGroupValue');
+  if (radioGroupDemo && radioGroupValue) {
+    radioGroupValue.textContent = String(radioGroupDemo.value ?? '—');
+    radioGroupDemo.addEventListener('change', (e: CustomEvent<unknown>) => {
+      radioGroupValue.textContent = String(e.detail ?? '—');
+    });
+  }
+
+  // Toggle demos
+  const toggleDemoEvent = document.getElementById('toggleDemoEvent') as any;
+  const toggleDemoChecked = document.getElementById('toggleDemoChecked');
+  const toggleDemoEventName = document.getElementById('toggleDemoEventName');
+  if (toggleDemoEvent && toggleDemoChecked && toggleDemoEventName) {
+    const updateToggleDemo = () => {
+      toggleDemoChecked!.textContent = String(toggleDemoEvent.checked);
+    };
+    toggleDemoEvent.addEventListener('change', () => {
+      toggleDemoChecked!.textContent = String(toggleDemoEvent.checked);
+      toggleDemoEventName!.textContent = 'change';
+    });
+    toggleDemoEvent.addEventListener('focus', () => {
+      toggleDemoEventName!.textContent = 'focus';
+    });
+    toggleDemoEvent.addEventListener('blur', () => {
+      toggleDemoEventName!.textContent = 'blur';
+    });
+    updateToggleDemo(); // initial state
+  }
+
   // Button toggle demos
   const seasonToggleGroup = document.getElementById('seasonToggleGroup') as any;
   const seasonValueEl = document.getElementById('seasonValue');
@@ -210,6 +262,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     'input',
     'select',
     'checkbox',
+    'radio',
+    'toggle',
     'tabs',
     'button-group',
     'button-toggle',
