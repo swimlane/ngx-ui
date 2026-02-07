@@ -26,6 +26,7 @@ import '../../src/components/radio/radio-group.component';
 import '../../src/components/toggle/toggle.component';
 import '../../src/components/section/section.component';
 import '../../src/components/section/section-header.component';
+import '../../src/components/slider/slider.component';
 
 // Helper function to create a promise that resolves after a delay
 function delay(ms: number): Promise<void> {
@@ -44,6 +45,7 @@ const SECTION_FILES = [
   'checkbox',
   'radio',
   'toggle',
+  'slider',
   'tabs',
   'button-group',
   'button-toggle',
@@ -198,6 +200,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
+  // Slider demos
+  const sliderDemoEvent = document.getElementById('sliderDemoEvent') as any;
+  const sliderDemoValue = document.getElementById('sliderDemoValue');
+  const sliderDemoPercent = document.getElementById('sliderDemoPercent');
+  if (sliderDemoEvent && sliderDemoValue && sliderDemoPercent) {
+    sliderDemoEvent.addEventListener('change', (e: CustomEvent<{ value: number | string; percent: string }>) => {
+      const d = e.detail;
+      sliderDemoValue!.textContent = String(d?.value ?? '');
+      sliderDemoPercent!.textContent = String(d?.percent ?? '');
+    });
+  }
+
   // Toggle demos
   const toggleDemoEvent = document.getElementById('toggleDemoEvent') as any;
   const toggleDemoChecked = document.getElementById('toggleDemoChecked');
@@ -264,6 +278,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     'checkbox',
     'radio',
     'toggle',
+    'slider',
     'tabs',
     'button-group',
     'button-toggle',

@@ -13,6 +13,7 @@ export * from './components/input';
 export * from './components/section';
 export * from './components/radio';
 export * from './components/select';
+export * from './components/slider';
 export * from './components/tabs';
 export * from './components/toggle';
 export * from './styles';
