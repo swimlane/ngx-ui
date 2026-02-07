@@ -5,15 +5,18 @@
       <p class="subtitle">Font icons and inline SVG, matching ngx-ui (see src/app/icons-page). Requires the ngx-icon font CSS (included in this demo).</p>
 
       <section class="section">
+        <swim-section section-title="Icons">
         <h3 class="style-header">Icons</h3>
         <div class="icon-search-wrap">
           <swim-icon class="icon-search-icon" font-icon="search"></swim-icon>
           <input type="text" id="iconSearch" class="icon-search-input" placeholder="Search icons by name..." aria-label="Search icons" />
         </div>
         <ul id="iconsPreview" class="icons-preview"></ul>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="Icons: stacking">
         <h2 class="section-title">Icons: stacking</h2>
         <div class="demo-grid">
           <div class="demo-item">
@@ -29,17 +32,21 @@
             <swim-icon font-icon='["field-users", "circle-filled :text-red :icon-fx-badge"]'></swim-icon>
           </div>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="With alt (accessibility)">
         <h2 class="section-title">With alt (accessibility)</h2>
         <div class="demo-item">
           <swim-icon font-icon="x" alt="Close"></swim-icon>
           <span style="margin-left: 0.5rem;">Icon with accessible name for screen readers</span>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="Icon Usage">
         <h2 class="section-title">Icon Usage</h2>
         <p style="color: var(--grey-300); margin-bottom: 1rem;">
           Import the icon component and ensure the ngx-icon font CSS is loaded (e.g. from ngx-ui or this demo's assets):
@@ -55,4 +62,5 @@
 &lt;swim-icon font-icon="x" alt="Close"&gt;&lt;/swim-icon&gt;
 &lt;!-- Inline SVG from URL (defaultPath + svg-src + .svg) --&gt;
 &lt;swim-icon svg-src="chart-scatter" default-path="assets/svgs"&gt;&lt;/swim-icon&gt;</code></pre>
+        </swim-section>
       </section>

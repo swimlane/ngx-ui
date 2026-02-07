@@ -4,6 +4,7 @@
       <p class="subtitle">Collapsible section with optional title and custom header. Use <code>swim-section</code> with <code>section-title</code> or <code>swim-section-header</code> for custom header content. Supports legacy, outline, light, and minimal appearances.</p>
 
       <section class="section">
+        <swim-section section-title="Title and content">
         <h2 class="section-title">Title and content</h2>
         <p class="section-desc">Default section with a title and body content.</p>
         <div class="demo-row demo-row--column">
@@ -13,9 +14,11 @@
             mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
           </swim-section>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="Custom header">
         <h2 class="section-title">Custom header</h2>
         <p class="section-desc">Use <code>swim-section-header</code> with <code>slot="header"</code> for custom title and links.</p>
         <div class="demo-row demo-row--column">
@@ -29,9 +32,11 @@
             mailbomb eaten by a grue error fopen null.
           </swim-section>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="Not collapsible">
         <h2 class="section-title">Not collapsible</h2>
         <p class="section-desc">Section with <code>section-collapsible="false"</code> — no toggle button.</p>
         <div class="demo-row demo-row--column">
@@ -39,9 +44,11 @@
             Content is always visible; no expand/collapse toggle.
           </swim-section>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="Appearances">
         <h2 class="section-title">Appearances</h2>
         <p class="section-desc">Legacy (default), outline, light, and minimal.</p>
         <div class="demo-row demo-row--column">
@@ -62,9 +69,11 @@
             No background or border.
           </swim-section>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="Toggle position">
         <h2 class="section-title">Toggle position</h2>
         <p class="section-desc">Toggle on the right with <code>toggle-position="right"</code>.</p>
         <div class="demo-row demo-row--column">
@@ -72,9 +81,11 @@
             Collapse/expand button is on the right side of the header.
           </swim-section>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="Header toggle">
         <h2 class="section-title">Header toggle</h2>
         <p class="section-desc">Click the header to expand/collapse (<code>header-toggle</code>). Toggle can be hidden with <code>toggle-position="none"</code>.</p>
         <div class="demo-row demo-row--column">
@@ -82,9 +93,11 @@
             No toggle button; click anywhere on the header to expand or collapse.
           </swim-section>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="Section usage">
         <h2 class="section-title">Section usage</h2>
         <p class="section-desc">Import and use the section components:</p>
         <pre class="demo-pre"><code>&lt;script type="module"&gt;
@@ -102,4 +115,5 @@
   &lt;/swim-section-header&gt;
   Body content.
 &lt;/swim-section&gt;</code></pre>
+        </swim-section>
       </section>

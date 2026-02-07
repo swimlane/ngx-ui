@@ -5,6 +5,7 @@
       <p class="subtitle">Single-selection toggle group. Use <code>swim-button-toggle-group</code> with <code>swim-button-toggle</code> children; value tracks the selected toggle.</p>
 
       <section class="section">
+        <swim-section section-title="Basic">
         <h2 class="section-title">Basic</h2>
         <p class="section-desc">Label and two options (Process: Sequential / Parallel).</p>
         <div class="demo-row demo-row--column">
@@ -13,9 +14,11 @@
             <swim-button-toggle value="parallel">Parallel</swim-button-toggle>
           </swim-button-toggle-group>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="With selected value display">
         <h2 class="section-title">With selected value display</h2>
         <p class="section-desc">Favorite season; selected value shown below.</p>
         <div class="demo-row demo-row--column">
@@ -27,9 +30,11 @@
           </swim-button-toggle-group>
           <p class="demo-label demo-label--after">Your favorite season is: <strong id="seasonValue">Spring</strong></p>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="Disabled group">
         <h2 class="section-title">Disabled group</h2>
         <p class="section-desc">Entire group can be disabled.</p>
         <div class="demo-row demo-row--column">
@@ -40,9 +45,11 @@
           </swim-button-toggle-group>
           <swim-button type="button" id="toggleGroupDisabledBtn">Enable group</swim-button>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="Button Toggle Usage">
         <h2 class="section-title">Button Toggle Usage</h2>
         <p class="section-desc">
           Import and use the button toggle components:
@@ -55,4 +62,5 @@
   &lt;swim-button-toggle value="sequential"&gt;Sequential&lt;/swim-button-toggle&gt;
   &lt;swim-button-toggle value="parallel"&gt;Parallel&lt;/swim-button-toggle&gt;
 &lt;/swim-button-toggle-group&gt;</code></pre>
+        </swim-section>
       </section>

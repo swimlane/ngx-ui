@@ -4,6 +4,7 @@
       <p class="subtitle">Checkbox control matching ngx-checkbox: checked, indeterminate, disabled, and round variants. Use <code>swim-checkbox</code> with slot content as the label. Supports form association and keyboard (Space to toggle).</p>
 
       <section class="section">
+        <swim-section section-title="Basic">
         <h2 class="section-title">Basic</h2>
         <p class="section-desc">Default checkbox with label slot.</p>
         <div class="demo-row demo-row--column">
@@ -18,17 +19,21 @@
             </div>
           </div>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="Indeterminate">
         <h2 class="section-title">Indeterminate</h2>
         <p class="section-desc">Indeterminate state (e.g. partial selection).</p>
         <div class="demo-row demo-row--column">
           <swim-checkbox indeterminate>Select all / partial</swim-checkbox>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="Disabled and round">
         <h2 class="section-title">Disabled and round</h2>
         <p class="section-desc">Disabled state and round (circular) box.</p>
         <div class="demo-row demo-row--column">
@@ -47,18 +52,22 @@
             </div>
           </div>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="With event display">
         <h2 class="section-title">With event display</h2>
         <p class="section-desc">Checked state and last event are shown below.</p>
         <div class="demo-row demo-row--column">
           <swim-checkbox id="checkboxDemoEvent">Toggle me</swim-checkbox>
           <p class="demo-label demo-label--after">Checked: <strong id="checkboxDemoChecked">false</strong>. Last event: <strong id="checkboxDemoEventName">—</strong></p>
         </div>
+        </swim-section>
       </section>
 
       <section class="section">
+        <swim-section section-title="Checkbox usage">
         <h2 class="section-title">Checkbox usage</h2>
         <p class="section-desc">Import and use the checkbox component:</p>
         <pre class="demo-pre"><code>&lt;script type="module"&gt;
@@ -70,4 +79,5 @@
 &lt;swim-checkbox indeterminate&gt;Indeterminate&lt;/swim-checkbox&gt;
 &lt;swim-checkbox disabled&gt;Disabled&lt;/swim-checkbox&gt;
 &lt;swim-checkbox round&gt;Round&lt;/swim-checkbox&gt;</code></pre>
+        </swim-section>
       </section>

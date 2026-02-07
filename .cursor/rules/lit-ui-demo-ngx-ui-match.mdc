@@ -32,6 +32,7 @@ When creating or updating the **lit-ui demo** (e.g. `projects/swimlane/lit-ui/de
 1. **Page/section layout**
    - Use a clear component title (e.g. "Button", "Input", "Select", "Tabs") then logical sections.
    - Each section: short heading (e.g. "Basic", "With Filtering", "Vertical Tabs") → live example(s) → code sample (e.g. `<pre><code>...</code></pre>` or prism-style block).
+   - **Collapsible panels**: Where ngx-ui uses `<ngx-section sectionTitle="...">` around a block, use **`<swim-section section-title="...">`** in the Lit demo so each subsection is a collapsible panel matching the Angular component demo. Wrap the content inside each `<section class="section">` with `<swim-section section-title="...">` (same title as the section heading). Omit or set `section-collapsible="false"` only when the Angular demo does.
 
 2. **Example content**
    - Where the same use case exists in ngx-ui, mirror it in lit-ui (e.g. same labels, same options, same variants).

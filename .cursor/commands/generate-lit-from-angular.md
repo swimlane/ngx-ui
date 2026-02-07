@@ -99,18 +99,21 @@ Keep components efficient and avoid unnecessary work:
 6. Add a `declare global { interface HTMLElementTagNameMap { 'swim-<name>': ComponentClass; } }` block for TypeScript.
 7. **Add a demo for the new component** in `projects/swimlane/lit-ui/demo/index.html` and register it in `demo/src/main.ts`:
    - **Avoid any inline styles**, even in demo templates. Use demo CSS classes from `index.html` (e.g. `.section-divider`, `.page-title`, `.section-desc`, `.demo-row--column`, `.demo-label--after`, `.demo-pre`).
+   - **Collapsible panels (swim-section)**: Match the Angular component demo structure. Where the Angular demo uses `<ngx-section sectionTitle="...">` to wrap a logical block (e.g. in `src/app/forms/buttons-page/`, `inputs-page/`, `selects-page/`, etc.), use **`<swim-section section-title="...">`** in the Lit demo so each subsection is a collapsible panel. Wrap the content inside each `<section class="section">` with `<swim-section section-title="...">` using the same title as the `<h2 class="section-title">`, so structure and behavior align with ngx-ui. Use `section-collapsible="false"` only when the Angular demo does (e.g. non-collapsible block). When using swim-section in demos, ensure `import '../../src/components/section';` (or the section component) is registered in `demo/src/main.ts` if not already loaded.
    - In **index.html**: Add a new block after the last component demo (after the final Usage section), separated by an `<hr class="section-divider">`:
      - Main heading: `<h1 id="component-name" class="page-title">Component Name</h1>`
      - Subtitle: `<p class="subtitle">Short description</p>`
      - One or more `<section class="section">` blocks with `<h2 class="section-title">...</h2>` showing:
+       - Wrap each block’s content in `<swim-section section-title="...">...</swim-section>` (matching Angular’s ngx-section usage) unless the component being demoed is section itself.
        - Variants, sizes, or key props (use `.demo-grid`, `.demo-item`, `.demo-label`, `.demo-row`, `.demo-row--column` as in existing Button/Input/Select demos)
        - States (e.g. disabled, active) if applicable
        - Interactive example if useful
      - A **Usage** section at the end with a `<pre class="demo-pre"><code>...</code></pre>` showing:
        - `<script type="module">` importing the component (e.g. `import '@swimlane/lit-ui/<name>';` or the main package)
-       - Minimal HTML example of the component
+       - Minimal HTML example of the component (and `import '@swimlane/lit-ui/section';` when swim-section is used in the demo).
    - In **demo/src/main.ts**:
      - Add `import '../../src/components/<name>/<name>.component';` (and any sibling components, e.g. tab + tabs).
+     - When the demo uses swim-section, add `import '../../src/components/section';` if not already present.
      - If the component needs runtime setup (e.g. options, event listeners), add DOMContentLoaded logic or a helper like `setupSelectDemos()` and call it from DOMContentLoaded.
 
 Produce a complete, usable Lit component that mirrors the Angular implementation with best quality. Components must be **accessible (WCAG 2.1)** and **efficient in performance**; ensure the demo page showcases the component.
