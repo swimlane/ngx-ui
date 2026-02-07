@@ -14,6 +14,15 @@ import '../../src/components/tabs/tab.component';
 import '../../src/components/tabs/tabs.component';
 import '../../src/components/button-toggle/button-toggle.component';
 import '../../src/components/button-toggle/button-toggle-group.component';
+import '../../src/components/card/card.component';
+import '../../src/components/card/card-header.component';
+import '../../src/components/card/card-footer.component';
+import '../../src/components/card/card-avatar.component';
+import '../../src/components/card/card-placeholder.component';
+import '../../src/components/card/card-body.component';
+import '../../src/components/checkbox/checkbox.component';
+import '../../src/components/section/section.component';
+import '../../src/components/section/section-header.component';
 
 // Helper function to create a promise that resolves after a delay
 function delay(ms: number): Promise<void> {
@@ -25,7 +34,18 @@ function delayReject(ms: number): Promise<void> {
   return new Promise((_, reject) => setTimeout(() => reject(new Error('Failed')), ms));
 }
 
-const SECTION_FILES = ['buttons', 'input', 'select', 'tabs', 'button-group', 'button-toggle', 'icons'];
+const SECTION_FILES = [
+  'buttons',
+  'input',
+  'select',
+  'checkbox',
+  'tabs',
+  'button-group',
+  'button-toggle',
+  'card',
+  'section',
+  'icons'
+];
 
 async function loadSections(): Promise<void> {
   const container = document.getElementById('page-sections');
@@ -108,6 +128,45 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Select component demos
   setupSelectDemos();
 
+  // Card demos
+  const selectableCardDemo = document.getElementById('selectableCardDemo') as any;
+  const cardSelectedValue = document.getElementById('cardSelectedValue');
+  if (selectableCardDemo && cardSelectedValue) {
+    selectableCardDemo.addEventListener('select', (e: CustomEvent<boolean>) => {
+      cardSelectedValue.textContent = String(e.detail ?? false);
+    });
+  }
+  const outlineCardDemo = document.getElementById('outlineCardDemo');
+  if (outlineCardDemo) {
+    outlineCardDemo.addEventListener('outline-click', () => {
+      console.log('Outline clicked');
+    });
+  }
+
+  // Checkbox demos
+  const checkboxDemoEvent = document.getElementById('checkboxDemoEvent') as any;
+  const checkboxDemoChecked = document.getElementById('checkboxDemoChecked');
+  const checkboxDemoEventName = document.getElementById('checkboxDemoEventName');
+  if (checkboxDemoEvent && checkboxDemoChecked && checkboxDemoEventName) {
+    const updateCheckboxDemo = () => {
+      checkboxDemoChecked!.textContent = String(checkboxDemoEvent.checked);
+    };
+    checkboxDemoEvent.addEventListener('checked-change', (e: CustomEvent<boolean>) => {
+      checkboxDemoChecked!.textContent = String(e.detail);
+      checkboxDemoEventName!.textContent = 'checked-change';
+    });
+    checkboxDemoEvent.addEventListener('change', () => {
+      checkboxDemoEventName!.textContent = 'change';
+    });
+    checkboxDemoEvent.addEventListener('focus', () => {
+      checkboxDemoEventName!.textContent = 'focus';
+    });
+    checkboxDemoEvent.addEventListener('blur', () => {
+      checkboxDemoEventName!.textContent = 'blur';
+    });
+    updateCheckboxDemo(); // initial state
+  }
+
   // Button toggle demos
   const seasonToggleGroup = document.getElementById('seasonToggleGroup') as any;
   const seasonValueEl = document.getElementById('seasonValue');
@@ -146,7 +205,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // Section ids that have nav links (in document order for scroll spy)
-  const SECTION_IDS = ['buttons', 'input', 'select', 'tabs', 'button-group', 'button-toggle', 'icons'];
+  const SECTION_IDS = [
+    'buttons',
+    'input',
+    'select',
+    'checkbox',
+    'tabs',
+    'button-group',
+    'button-toggle',
+    'card',
+    'section',
+    'icons'
+  ];
 
   // Sync sidebar active state with section id (hash or scroll)
   function setActiveNav(sectionId?: string) {

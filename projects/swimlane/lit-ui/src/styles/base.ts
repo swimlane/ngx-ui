@@ -132,14 +132,21 @@ export const baseStyles = css`
     --spacing-4: 4px;
     --spacing-8: 8px;
     --spacing-10: 10px;
+    --spacing-12: 12px;
     --spacing-16: 16px;
+    --spacing-20: 20px;
     --spacing-24: 24px;
     --spacing-32: 32px;
 
     /* Border Radius */
+    --radius-0: 0;
     --radius-2: 2px;
     --radius-4: 4px;
+    --radius-6: 6px;
     --radius-8: 8px;
+
+    /* Semantic colors */
+    --color-error: var(--red-500);
 
     /* Shadows */
     --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
@@ -155,4 +162,3 @@ export const globalStyles = css`
     box-sizing: border-box;
   }
 `;
-
