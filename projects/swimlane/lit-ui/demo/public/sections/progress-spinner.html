@@ -1,0 +1,107 @@
+      <hr class="section-divider">
+
+      <h1 id="progress-spinner" class="page-title">Progress Spinner</h1>
+      <p class="subtitle">Circular progress indicator matching ngx-progress-spinner: determinate or indeterminate mode, optional center icons (upload, success, failure), and optional labels.</p>
+
+      <section class="section">
+        <swim-section section-title="Progress Spinner">
+        <h2 class="section-title">Progress Spinner</h2>
+        <p class="section-desc">Default and determinate modes. Use value and total for progress; when value &gt;= total, the spinner shows complete (and optional icon).</p>
+        <div class="demo-row demo-row--column">
+          <div class="demo-grid">
+            <div class="demo-item">
+              <div class="demo-label">Indeterminate (default)</div>
+              <swim-progress-spinner mode="indeterminate" aria-label="Loading"></swim-progress-spinner>
+            </div>
+            <div class="demo-item">
+              <div class="demo-label">Determinate 50%</div>
+              <swim-progress-spinner mode="determinate" value="50" total="100" aria-label="Progress"></swim-progress-spinner>
+            </div>
+            <div class="demo-item">
+              <div class="demo-label">Complete (value = total)</div>
+              <swim-progress-spinner mode="determinate" value="100" total="100" aria-label="Complete"></swim-progress-spinner>
+            </div>
+          </div>
+        </div>
+        </swim-section>
+      </section>
+
+      <section class="section">
+        <swim-section section-title="With icon appearance">
+        <h2 class="section-title">With icon appearance</h2>
+        <p class="section-desc">appearance="icon" shows built-in center icons: upload while in progress, thumbs-up on success, thumbs-down on failure.</p>
+        <div class="demo-row demo-row--column">
+          <div class="demo-grid">
+            <div class="demo-item">
+              <div class="demo-label">In progress (icon)</div>
+              <swim-progress-spinner mode="determinate" value="30" total="100" appearance="icon" aria-label="Uploading"></swim-progress-spinner>
+            </div>
+            <div class="demo-item">
+              <div class="demo-label">Complete success</div>
+              <swim-progress-spinner mode="determinate" value="100" total="100" appearance="icon" aria-label="Done"></swim-progress-spinner>
+            </div>
+            <div class="demo-item">
+              <div class="demo-label">Complete failure</div>
+              <swim-progress-spinner mode="determinate" value="100" total="100" appearance="icon" is-failure aria-label="Failed"></swim-progress-spinner>
+            </div>
+          </div>
+        </div>
+        </swim-section>
+      </section>
+
+      <section class="section">
+        <swim-section section-title="Size and stroke">
+        <h2 class="section-title">Size and stroke</h2>
+        <p class="section-desc">Diameter and stroke-width control size and thickness.</p>
+        <div class="demo-row demo-row--column">
+          <div class="demo-grid">
+            <div class="demo-item">
+              <div class="demo-label">Small (diameter=50)</div>
+              <swim-progress-spinner mode="indeterminate" diameter="50" stroke-width="2" aria-label="Small"></swim-progress-spinner>
+            </div>
+            <div class="demo-item">
+              <div class="demo-label">Default (100)</div>
+              <swim-progress-spinner mode="indeterminate" aria-label="Default"></swim-progress-spinner>
+            </div>
+            <div class="demo-item">
+              <div class="demo-label">Large (150)</div>
+              <swim-progress-spinner mode="indeterminate" diameter="150" stroke-width="4" aria-label="Large"></swim-progress-spinner>
+            </div>
+          </div>
+        </div>
+        </swim-section>
+      </section>
+
+      <section class="section">
+        <swim-section section-title="With label">
+        <h2 class="section-title">With label</h2>
+        <p class="section-desc">spinner-label object provides inProgressLabel, completeLabel, and failLabel (set via property in script).</p>
+        <div class="demo-row demo-row--column">
+          <swim-progress-spinner
+            id="progressSpinnerWithLabel"
+            mode="determinate"
+            value="75"
+            total="100"
+            appearance="icon"
+            aria-label="With label"
+          ></swim-progress-spinner>
+          <p class="demo-label demo-label--after">Label text is set via spinnerLabel property in demo (see main.ts).</p>
+        </div>
+        </swim-section>
+      </section>
+
+      <section class="section">
+        <swim-section section-title="Progress Spinner usage">
+        <h2 class="section-title">Progress Spinner usage</h2>
+        <p class="section-desc">Import and use the progress spinner component:</p>
+        <pre class="demo-pre"><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/progress-spinner';
+  import '@swimlane/lit-ui/section';
+&lt;/script&gt;
+
+&lt;swim-progress-spinner mode="indeterminate" aria-label="Loading"&gt;&lt;/swim-progress-spinner&gt;
+&lt;swim-progress-spinner mode="determinate" value="50" total="100" aria-label="Progress"&gt;&lt;/swim-progress-spinner&gt;
+&lt;swim-progress-spinner mode="determinate" value="100" total="100" appearance="icon" aria-label="Complete"&gt;&lt;/swim-progress-spinner&gt;
+&lt;swim-progress-spinner mode="determinate" value="100" total="100" appearance="icon" is-failure aria-label="Failed"&gt;&lt;/swim-progress-spinner&gt;</code></pre>
+        </swim-section>
+      </section>

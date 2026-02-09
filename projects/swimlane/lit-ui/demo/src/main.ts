@@ -27,6 +27,7 @@ import '../../src/components/toggle/toggle.component';
 import '../../src/components/section/section.component';
 import '../../src/components/section/section-header.component';
 import '../../src/components/slider/slider.component';
+import '../../src/components/progress-spinner/progress-spinner.component';
 
 // Helper function to create a promise that resolves after a delay
 function delay(ms: number): Promise<void> {
@@ -50,6 +51,7 @@ const SECTION_FILES = [
   'button-group',
   'button-toggle',
   'card',
+  'progress-spinner',
   'section',
   'icons'
 ];
@@ -200,6 +202,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
+  // Progress spinner with label (set spinnerLabel object via JS)
+  const progressSpinnerWithLabel = document.getElementById('progressSpinnerWithLabel') as any;
+  if (progressSpinnerWithLabel) {
+    progressSpinnerWithLabel.spinnerLabel = {
+      inProgressLabel: 'Loading...',
+      completeLabel: 'Complete!',
+      failLabel: 'Failed'
+    };
+  }
+
   // Slider demos
   const sliderDemoEvent = document.getElementById('sliderDemoEvent') as any;
   const sliderDemoValue = document.getElementById('sliderDemoValue');
@@ -283,6 +295,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     'button-group',
     'button-toggle',
     'card',
+    'progress-spinner',
     'section',
     'icons'
   ];
