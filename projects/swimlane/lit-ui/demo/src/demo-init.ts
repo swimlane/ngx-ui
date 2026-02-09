@@ -33,15 +33,37 @@ const SECTION_FILES = [
   'icons'
 ];
 
-async function loadSections(): Promise<void> {
+const SECTION_SET = new Set(SECTION_FILES);
+const DEFAULT_SECTION = SECTION_FILES[0];
+
+const sectionCache = new Map<string, string>();
+
+async function loadSection(sectionId: string): Promise<string> {
+  const cached = sectionCache.get(sectionId);
+  if (cached) return cached;
+  const res = await fetch(`/sections/${sectionId}.html`);
+  if (!res.ok) throw new Error(`Failed to load section: ${sectionId}`);
+  const html = await res.text();
+  sectionCache.set(sectionId, html);
+  return html;
+}
+
+function getSectionIdFromHash(): string {
+  const hash = window.location.hash.slice(1).toLowerCase();
+  return SECTION_SET.has(hash) ? hash : DEFAULT_SECTION;
+}
+
+async function showSection(sectionId: string): Promise<void> {
   const container = document.getElementById('page-sections');
   if (!container) return;
-  const parts: string[] = [];
-  for (const name of SECTION_FILES) {
-    const res = await fetch(`/sections/${name}.html`);
-    if (res.ok) parts.push(await res.text());
+  try {
+    const html = await loadSection(sectionId);
+    container.innerHTML = html;
+    setupDemos();
+  } catch (err) {
+    console.error('Failed to load section:', sectionId, err);
+    container.innerHTML = `<p class="section-desc">Failed to load section: ${sectionId}</p>`;
   }
-  container.innerHTML = parts.join('');
 }
 
 function setupIconsDemo(): void {
@@ -200,11 +222,10 @@ function setupSelectDemos(): void {
 }
 
 /**
- * Load section HTML and attach all demo event handlers and setup.
+ * Attach demo event handlers and setup for the currently rendered section.
+ * Called after each section is injected into #page-sections.
  */
-export async function initDemos(): Promise<void> {
-  await loadSections();
-
+function setupDemos(): void {
   // Button demos (promise handling)
   const successBtn = document.getElementById('successBtn');
   if (successBtn) {
@@ -461,39 +482,50 @@ export async function initDemos(): Promise<void> {
       alert(`Form submitted!\nCategory: ${categorySelect.value}\nTags: ${JSON.stringify(tagsSelect.value)}`);
     });
   }
+}
 
-  // Nav: sync active state with section id (hash or scroll)
-  const SECTION_IDS = [
-    'buttons',
-    'input',
-    'select',
-    'checkbox',
-    'radio',
-    'toggle',
-    'slider',
-    'tabs',
-    'button-group',
-    'button-toggle',
-    'card',
-    'progress-spinner',
-    'section',
-    'tooltip',
-    'scrollbars',
-    'icons'
-  ];
+/**
+ * Initialize demo app: load section from URL hash (or first section), wire nav, and listen for hash changes.
+ */
+export async function initDemos(): Promise<void> {
+  // Intercept nav link clicks so we load section then update hash (avoids scrolling to missing content)
+  document.querySelectorAll<HTMLAnchorElement>('.sub-nav-item[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+      const href = link.getAttribute('href');
+      if (!href || href === '#') return;
+      const sectionId = href.slice(1).toLowerCase();
+      if (!SECTION_SET.has(sectionId)) return;
+      e.preventDefault();
+      if (window.location.hash !== href) {
+        window.location.hash = sectionId;
+      } else {
+        showSection(sectionId);
+      }
+    });
+  });
+
+  window.addEventListener('hashchange', () => {
+    const sectionId = getSectionIdFromHash();
+    setActiveNav(sectionId);
+    showSection(sectionId);
+  });
 
   function setActiveNav(sectionId?: string): void {
-    const id = sectionId ?? (window.location.hash.slice(1) || 'icons');
+    const id = sectionId ?? getSectionIdFromHash();
     document.querySelectorAll('.sub-nav-item.active, .nav-item.active').forEach(el => el.classList.remove('active'));
     document
       .querySelectorAll(`.sub-nav-item[href="#${id}"], .nav-item[href="#${id}"]`)
       .forEach(el => el.classList.add('active'));
   }
 
-  setActiveNav();
-  window.addEventListener('hashchange', () => setActiveNav());
+  const initialSection = getSectionIdFromHash();
+  if (window.location.hash.slice(1).toLowerCase() !== initialSection) {
+    history.replaceState(null, '', `#${initialSection}`);
+  }
+  setActiveNav(initialSection);
+  await showSection(initialSection);
 
-  // Search: filter nav by link/label text
+  // Search: filter nav by link/label text (once, nav is outside section content)
   const searchInput = document.getElementById('navSearch') as HTMLInputElement | null;
   const containers = document.querySelectorAll<HTMLElement>('.nav-item-container');
   const subNavItems = document.querySelectorAll<HTMLAnchorElement>('.sub-nav-item');
@@ -523,41 +555,6 @@ export async function initDemos(): Promise<void> {
         filterNav();
         searchInput.blur();
       }
-    });
-  }
-
-  // Scroll spy
-  function updateActiveFromScroll(): void {
-    const toolbarHeight = 50;
-    const viewTop = toolbarHeight + 80;
-    let current: string | null = null;
-    for (const id of SECTION_IDS) {
-      const el = document.getElementById(id);
-      if (!el) continue;
-      const rect = el.getBoundingClientRect();
-      if (rect.top <= viewTop) current = id;
-    }
-    if (current) {
-      setActiveNav(current);
-      if (window.location.hash !== `#${current}`) {
-        history.replaceState(null, '', `#${current}`);
-      }
-    }
-  }
-
-  const mainEl = document.querySelector('.main');
-  if (mainEl) {
-    let ticking = false;
-    mainEl.addEventListener('scroll', () => {
-      if (ticking) return;
-      ticking = true;
-      requestAnimationFrame(() => {
-        updateActiveFromScroll();
-        ticking = false;
-      });
-    });
-    requestAnimationFrame(() => {
-      requestAnimationFrame(updateActiveFromScroll);
     });
   }
 

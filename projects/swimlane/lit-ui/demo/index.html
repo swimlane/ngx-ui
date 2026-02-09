@@ -277,9 +277,18 @@
       }
 
       .page {
-        padding: 1.8rem;
+        padding: 0 1.8rem 1.8rem 1.8rem;
         max-width: 1400px;
         margin: 0 auto;
+      }
+
+      /* No leading gap or rule when section content loads (all sections consistent) */
+      #page-sections > hr:first-child,
+      #page-sections > .section-divider:first-child {
+        display: none;
+      }
+      #page-sections > *:first-child {
+        margin-top: 0 !important;
       }
 
       .page [id] {
@@ -772,8 +781,6 @@
         </header>
         <div class="page">
           <div class="container">
-      <h1>@swimlane/lit-ui</h1>
-      <p class="subtitle">Lit web component library matching Swimlane's ngx-ui design system. This demo mirrors ngx-ui usage from the root <code>src/app</code> (controls, forms/buttons-page, forms/inputs-page, forms/selects-page, components/tabs-page).</p>
       <div id="page-sections"></div>
           </div>
         </div>
