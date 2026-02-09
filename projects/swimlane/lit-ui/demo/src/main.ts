@@ -28,6 +28,7 @@ import '../../src/components/section/section.component';
 import '../../src/components/section/section-header.component';
 import '../../src/components/slider/slider.component';
 import '../../src/components/progress-spinner/progress-spinner.component';
+import '../../src/components/tooltip/tooltip.component';
 
 // Helper function to create a promise that resolves after a delay
 function delay(ms: number): Promise<void> {
@@ -53,6 +54,7 @@ const SECTION_FILES = [
   'card',
   'progress-spinner',
   'section',
+  'tooltip',
   'icons'
 ];
 
@@ -297,6 +299,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     'card',
     'progress-spinner',
     'section',
+    'tooltip',
     'icons'
   ];
 

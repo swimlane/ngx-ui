@@ -17,5 +17,6 @@ export * from './components/slider';
 export * from './components/progress-spinner';
 export * from './components/tabs';
 export * from './components/toggle';
+export * from './components/tooltip';
 export * from './styles';
 export * from './utils';
