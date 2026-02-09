@@ -29,6 +29,7 @@ const SECTION_FILES = [
   'section',
   'split',
   'tooltip',
+  'scrollbars',
   'icons'
 ];
 
@@ -477,6 +478,7 @@ export async function initDemos(): Promise<void> {
     'progress-spinner',
     'section',
     'tooltip',
+    'scrollbars',
     'icons'
   ];
 

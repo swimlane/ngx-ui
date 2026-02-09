@@ -84,6 +84,7 @@ export const baseStyles = css`
     --grey-450: rgb(100, 116, 147);
     --grey-500: rgb(90, 104, 132);
     --grey-550: rgb(80, 92, 117);
+    --grey-550-rgb: 80, 92, 117;
     --grey-600: rgb(69, 80, 102);
     --grey-650: rgb(59, 68, 87);
     --grey-700: rgb(49, 56, 71);
