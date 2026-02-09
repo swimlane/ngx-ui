@@ -2,6 +2,7 @@ import { LitElement, html, nothing, PropertyValues } from 'lit';
 import { customElement, property, state, query } from 'lit/decorators.js';
 import { live } from 'lit/directives/live.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import '../icon/icon.component';
 import { baseStyles } from '../../styles/base';
 import { inputStyles } from './input.styles';
 import { InputTypes } from './input-types.enum';
@@ -304,7 +305,7 @@ export class SwimInput extends LitElement {
                         @mouseleave="${this._stopSpinner}"
                         aria-label="Increment"
                       >
-                        <span class="icon icon-chevron-up"></span>
+                        <swim-icon font-icon="chevron-bold-up"></swim-icon>
                       </button>
                       <button
                         type="button"
@@ -314,7 +315,7 @@ export class SwimInput extends LitElement {
                         @mouseleave="${this._stopSpinner}"
                         aria-label="Decrement"
                       >
-                        <span class="icon icon-chevron-down"></span>
+                        <swim-icon font-icon="chevron-bold-down"></swim-icon>
                       </button>
                     </div>
                   `
@@ -327,7 +328,7 @@ export class SwimInput extends LitElement {
                       @click="${this._togglePassword}"
                       aria-label="Toggle password visibility"
                     >
-                      <span class="icon ${this._passwordVisible ? 'icon-eye-disabled' : 'icon-eye'}"></span>
+                      <swim-icon font-icon="${this._passwordVisible ? 'eye-disabled' : 'eye'}"></swim-icon>
                     </button>
                   `
                 : nothing}

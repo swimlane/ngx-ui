@@ -337,31 +337,10 @@ export const inputStyles = css`
     padding-right: var(--spacing-10);
   }
 
-  /* Icon styles for password and lock */
-  .icon {
+  /* swim-icon in spinner and password toggle */
+  .spinner-btn swim-icon,
+  .password-toggle swim-icon {
     display: inline-block;
-    width: 1em;
-    height: 1em;
-  }
-
-  .icon-eye::before {
-    content: '👁';
-  }
-
-  .icon-eye-disabled::before {
-    content: '👁‍🗨';
-  }
-
-  .icon-lock::before {
-    content: '🔒';
-  }
-
-  .icon-chevron-up::before {
-    content: '▲';
-  }
-
-  .icon-chevron-down::before {
-    content: '▼';
+    font-size: 1em;
   }
 `;
-
