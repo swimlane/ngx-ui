@@ -165,9 +165,14 @@ export class SwimTooltip extends LitElement {
 
   disconnectedCallback(): void {
     window.removeEventListener('resize', this._throttledPosition);
+    if (this._throttleTimeout != null) {
+      window.clearTimeout(this._throttleTimeout);
+      this._throttleTimeout = undefined;
+    }
     this._clearShowTimer();
     this._clearHideTimer();
     this._removeDocumentClick();
+    this._removePanelHideListeners();
     super.disconnectedCallback();
   }
 
@@ -226,6 +231,7 @@ export class SwimTooltip extends LitElement {
       this._animate = false;
       this._openFromClick = false;
       this._removeDocumentClick();
+      this._removePanelHideListeners();
       this.dispatchEvent(new CustomEvent('hide', { detail: true, bubbles: true }));
     };
     if (immediate) {
@@ -289,17 +295,30 @@ export class SwimTooltip extends LitElement {
     }, 100);
   };
 
+  private _panelForHideListeners: HTMLElement | null = null;
+  private _panelMouseEnterBound = (): void => this._clearHideTimer();
+  private _panelMouseLeaveBound = (e: MouseEvent): void => {
+    const related = (e as MouseEvent & { relatedTarget?: Node }).relatedTarget as Node | null;
+    if (related && this._triggerRef?.contains(related)) return;
+    this.hide();
+  };
+
+  private _removePanelHideListeners(): void {
+    if (!this._panelForHideListeners) return;
+    this._panelForHideListeners.removeEventListener('mouseenter', this._panelMouseEnterBound);
+    this._panelForHideListeners.removeEventListener('mouseleave', this._panelMouseLeaveBound);
+    this._panelForHideListeners = null;
+  }
+
   private _addHideListeners(): void {
-    const panel = this._panelRef ?? this.shadowRoot?.querySelector('.swim-tooltip__panel');
+    const panel = this._panelRef ?? (this.shadowRoot?.querySelector('.swim-tooltip__panel') as HTMLElement | null);
     if (!panel) return;
 
-    panel.addEventListener('mouseenter', () => this._clearHideTimer());
+    this._removePanelHideListeners();
+    this._panelForHideListeners = panel;
+    panel.addEventListener('mouseenter', this._panelMouseEnterBound);
     if (this.closeOnMouseLeave) {
-      panel.addEventListener('mouseleave', (e: MouseEvent) => {
-        const related = (e as MouseEvent & { relatedTarget?: Node }).relatedTarget as Node | null;
-        if (related && this._triggerRef?.contains(related)) return;
-        this.hide();
-      });
+      panel.addEventListener('mouseleave', this._panelMouseLeaveBound);
     }
     if (this.closeOnClickOutside) {
       this._boundDocumentClick = (e: MouseEvent) => {

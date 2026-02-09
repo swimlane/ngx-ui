@@ -466,6 +466,11 @@ export class SwimInput extends LitElement {
     }, 500);
   }
 
+  override disconnectedCallback(): void {
+    super.disconnectedCallback();
+    this._stopSpinner();
+  }
+
   private _stopSpinner() {
     if (this._spinnerTimeout !== undefined) {
       clearTimeout(this._spinnerTimeout);

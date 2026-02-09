@@ -83,6 +83,7 @@ export class SwimRadioGroup extends LitElement {
 
   private _radios: SwimRadio[] = [];
   private _changeHandler = (e: Event) => this._onRadioChange(e as CustomEvent<unknown>);
+  private _slotChangeBound = () => this._syncRadios();
 
   constructor() {
     super();
@@ -97,14 +98,15 @@ export class SwimRadioGroup extends LitElement {
   }
 
   disconnectedCallback() {
-    super.disconnectedCallback();
+    this._slot?.removeEventListener('slotchange', this._slotChangeBound);
     this.removeEventListener('change', this._changeHandler);
     this.removeEventListener('focus', this._onGroupFocus);
     this.removeEventListener('blur', this._onGroupBlur);
+    super.disconnectedCallback();
   }
 
   firstUpdated() {
-    this._slot?.addEventListener('slotchange', () => this._syncRadios());
+    this._slot?.addEventListener('slotchange', this._slotChangeBound);
     this._syncRadios();
   }
 

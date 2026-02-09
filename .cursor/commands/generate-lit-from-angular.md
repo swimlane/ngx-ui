@@ -84,10 +84,30 @@ Keep components efficient and avoid unnecessary work:
 - **Property vs state**: Use `@property()` for public API and `@state()` for internal UI state. Avoid reflecting internal state as attributes unless needed for styling or accessibility.
 - **Updates**: Only trigger `requestUpdate()` or change properties when data actually changes. In setters, guard with `if (this._x !== next)` before assigning and dispatching.
 - **Slot/children**: Prefer `slot.assignedElements()` / `slot.assignedNodes()` in `firstUpdated()` or in response to `slotchange`; avoid querying on every `render()` or in tight loops.
-- **Event listeners**: Attach in `firstUpdated()` or `connectedCallback()`; remove in `disconnectedCallback()` (e.g. `slotchange`, document click-outside, resize). Prefer one delegated listener over many per-item listeners where practical.
+- **Event listeners**: Attach in `firstUpdated()` or `connectedCallback()`; **always remove in `disconnectedCallback()`** (e.g. `slotchange`, document/window click-outside, resize, drag). Use bound handler references (e.g. `this._slotChangeBound = () => this._onSlotChange();`) so the same reference can be passed to `removeEventListener`. Prefer one delegated listener over many per-item listeners where practical.
 - **Heavy work**: Defer non-critical work (e.g. `requestAnimationFrame`, `setTimeout(..., 0)`) so initial render stays fast. Avoid synchronous layout thrash (e.g. reading then writing layout properties repeatedly).
 - **Styles**: Keep `static styles` as shared `css` template literals; avoid defining new style objects per instance. Reuse `baseStyles` and component-level `css` blocks.
 - **Re-renders**: Use `updated(changedProperties)` to run logic only when specific properties change; avoid side effects in `render()`.
+
+## Memory leaks: clean up in disconnectedCallback
+
+To avoid leaks when components are removed from the DOM (e.g. navigation, conditional rendering), **every** component must clean up in `disconnectedCallback()`:
+
+1. **Event listeners**
+   - Remove any listener added to **document**, **window**, or **other elements** (e.g. slot, child components): use the same bound reference for `addEventListener` and `removeEventListener`.
+   - Examples: document click-outside, window resize, slot `slotchange`, handle `drag`/`dblclick`, panel `mouseenter`/`mouseleave`.
+   - If you attach in `firstUpdated()` to a slot or element from `@query`, store the element and the bound handler so you can remove in `disconnectedCallback()`.
+
+2. **Timers**
+   - Clear any `setTimeout` or `setInterval` (and `requestAnimationFrame` if recurring): call `clearTimeout` / `clearInterval` and set the stored id to `undefined`.
+   - Clear throttle/debounce timeouts so no callback runs after disconnect.
+
+3. **Pattern**
+   - Store handlers as bound class fields (e.g. `private _slotChangeBound = () => this._onSlotChange();`) so the same reference is used for add and remove.
+   - In `disconnectedCallback()`, remove listeners and clear timers **before** calling `super.disconnectedCallback()`.
+
+4. **Components that add listeners on other elements**
+   - If the component adds listeners to slotted children or to elements created in `firstUpdated()` (e.g. overlay panel), keep a reference to that element and the bound handlers, and remove them in `disconnectedCallback()` (and optionally when the overlay closes, to avoid duplicate listeners on re-open).
 
 ## Demo design: match Angular demos
 
@@ -115,7 +135,7 @@ This way every component’s demo is found the same way and the command stays va
 2. Read its class, template, and styles; list all inputs, outputs, content projection, and behavior.
 3. **Read the corresponding Angular demo page** (see **Demo design: match Angular demos** above) to plan section titles, example content, and interactive behavior.
 4. Create the component folder under `projects/swimlane/lit-ui/src/components/<name>/`.
-5. Implement the Lit component, styles, and any enums/interfaces following the mapping, reference components, **Accessibility (WCAG)**, and **Performance** sections.
+5. Implement the Lit component, styles, and any enums/interfaces following the mapping, reference components, **Accessibility (WCAG)**, **Performance**, and **Memory leaks: clean up in disconnectedCallback** sections.
 6. Add `index.ts` exports and update `projects/swimlane/lit-ui/src/index.ts`.
 7. Add a `declare global { interface HTMLElementTagNameMap { 'swim-<name>': ComponentClass; } }` block for TypeScript.
 8. **Add a demo for the new component** so it is **very close to the Angular demo** (see **Demo design: match Angular demos**):

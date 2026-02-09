@@ -5,31 +5,8 @@
 
       <section class="section">
         <swim-section section-title="Configurable (live)">
-        <p class="section-desc">Change the options below to update the spinner. Matches the Angular demo controls.</p>
-        <div class="demo-row demo-row--column">
-          <div class="progress-spinner-configurable-preview">
-            <swim-progress-spinner
-              id="progressSpinnerConfigurable"
-              mode="indeterminate"
-              value="35"
-              total="100"
-              diameter="100"
-              stroke-width="5"
-              color="lime"
-              appearance="icon"
-              aria-label="Configurable"
-            ></swim-progress-spinner>
-          </div>
-          <pre class="demo-pre progress-spinner-configurable-code"><code id="progressSpinnerConfigurableCode">&lt;swim-progress-spinner
-  mode="indeterminate"
-  value="35"
-  total="100"
-  diameter="100"
-  stroke-width="5"
-  color="lime"
-  appearance="icon"
-  aria-label="..."
-&gt;&lt;/swim-progress-spinner&gt;</code></pre>
+        <p class="section-desc">Change the options to update the spinner. Controls on the left; live preview and code on the right.</p>
+        <div class="progress-spinner-configurable-layout">
           <div class="progress-spinner-configurable-controls">
             <div class="demo-configurable-grid">
               <div class="demo-configurable-item">
@@ -70,6 +47,31 @@
                 <swim-toggle id="progressSpinnerShowIcon" label="Show Icon" checked aria-label="Show icon"></swim-toggle>
               </div>
             </div>
+          </div>
+          <div class="progress-spinner-configurable-live">
+            <div class="progress-spinner-configurable-preview">
+              <swim-progress-spinner
+                id="progressSpinnerConfigurable"
+                mode="indeterminate"
+                value="35"
+                total="100"
+                diameter="100"
+                stroke-width="5"
+                color="lime"
+                appearance="icon"
+                aria-label="Configurable"
+              ></swim-progress-spinner>
+            </div>
+            <pre class="demo-pre progress-spinner-configurable-code"><code id="progressSpinnerConfigurableCode">&lt;swim-progress-spinner
+  mode="indeterminate"
+  value="35"
+  total="100"
+  diameter="100"
+  stroke-width="5"
+  color="lime"
+  appearance="icon"
+  aria-label="..."
+&gt;&lt;/swim-progress-spinner&gt;</code></pre>
           </div>
         </div>
         </swim-section>

@@ -114,6 +114,9 @@ export class SwimSection extends LitElement {
   @query('slot[name="header"]')
   private _headerSlot?: HTMLSlotElement;
 
+  private _headerSlotChangeBound = (): void => this._checkHeaderSlot();
+  private _headerSlotForCleanup?: HTMLSlotElement;
+
   private get _contentId(): string {
     return `${this.id}-content`;
   }
@@ -122,8 +125,17 @@ export class SwimSection extends LitElement {
     this._checkHeaderSlot();
     const slot = this.renderRoot?.querySelector?.('slot[name="header"]') ?? this._headerSlot;
     if (slot) {
-      slot.addEventListener('slotchange', () => this._checkHeaderSlot());
+      this._headerSlotForCleanup = slot;
+      slot.addEventListener('slotchange', this._headerSlotChangeBound);
     }
+  }
+
+  override disconnectedCallback(): void {
+    if (this._headerSlotForCleanup) {
+      this._headerSlotForCleanup.removeEventListener('slotchange', this._headerSlotChangeBound);
+      this._headerSlotForCleanup = undefined;
+    }
+    super.disconnectedCallback();
   }
 
   private _checkHeaderSlot(): void {

@@ -94,7 +94,14 @@ export class SwimButtonToggleGroup extends LitElement {
     }
   }
 
+  private _slotChangeBound = (): void => this._onSlotChange();
+  private _slotForCleanup: HTMLSlotElement | null = null;
+
   disconnectedCallback() {
+    if (this._slotForCleanup) {
+      this._slotForCleanup.removeEventListener('slotchange', this._slotChangeBound);
+      this._slotForCleanup = null;
+    }
     this.removeEventListener('value-change', this._boundValueChange);
     super.disconnectedCallback();
   }
@@ -103,7 +110,8 @@ export class SwimButtonToggleGroup extends LitElement {
     super.firstUpdated(changed);
     const slot = this._slot;
     if (slot) {
-      slot.addEventListener('slotchange', () => this._onSlotChange());
+      this._slotForCleanup = slot;
+      slot.addEventListener('slotchange', this._slotChangeBound);
     }
     this._onSlotChange();
   }
