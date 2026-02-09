@@ -4,8 +4,79 @@
       <p class="subtitle">Circular progress indicator matching ngx-progress-spinner: determinate or indeterminate mode, optional center icons (upload, success, failure), and optional labels.</p>
 
       <section class="section">
+        <swim-section section-title="Configurable (live)">
+        <p class="section-desc">Change the options below to update the spinner. Matches the Angular demo controls.</p>
+        <div class="demo-row demo-row--column">
+          <div class="progress-spinner-configurable-preview">
+            <swim-progress-spinner
+              id="progressSpinnerConfigurable"
+              mode="indeterminate"
+              value="35"
+              total="100"
+              diameter="100"
+              stroke-width="5"
+              color="lime"
+              appearance="icon"
+              aria-label="Configurable"
+            ></swim-progress-spinner>
+          </div>
+          <pre class="demo-pre progress-spinner-configurable-code"><code id="progressSpinnerConfigurableCode">&lt;swim-progress-spinner
+  mode="indeterminate"
+  value="35"
+  total="100"
+  diameter="100"
+  stroke-width="5"
+  color="lime"
+  appearance="icon"
+  aria-label="..."
+&gt;&lt;/swim-progress-spinner&gt;</code></pre>
+          <div class="progress-spinner-configurable-controls">
+            <div class="demo-configurable-grid">
+              <div class="demo-configurable-item">
+                <label for="progressSpinnerValue">Value</label>
+                <input type="number" id="progressSpinnerValue" min="0" value="35" aria-label="Value">
+              </div>
+              <div class="demo-configurable-item">
+                <label for="progressSpinnerTotal">Total</label>
+                <input type="number" id="progressSpinnerTotal" min="1" value="100" aria-label="Total">
+              </div>
+              <div class="demo-configurable-item">
+                <label for="progressSpinnerDiameter">Diameter</label>
+                <input type="number" id="progressSpinnerDiameter" min="20" value="100" aria-label="Diameter">
+              </div>
+              <div class="demo-configurable-item">
+                <label for="progressSpinnerStrokeWidth">Stroke Width</label>
+                <input type="number" id="progressSpinnerStrokeWidth" min="1" value="5" aria-label="Stroke width">
+              </div>
+              <div class="demo-configurable-item">
+                <label for="progressSpinnerColor">Color</label>
+                <input type="text" id="progressSpinnerColor" value="lime" placeholder="lime, var(--blue-500)..." aria-label="Color">
+              </div>
+              <div class="demo-configurable-item">
+                <label for="progressSpinnerMode">Mode</label>
+                <select id="progressSpinnerMode" aria-label="Mode">
+                  <option value="indeterminate">Indeterminate</option>
+                  <option value="determinate">Determinate</option>
+                </select>
+              </div>
+              <div class="demo-configurable-item">
+                <label for="progressSpinnerCompleteStatus">Complete Status</label>
+                <select id="progressSpinnerCompleteStatus" aria-label="Complete status">
+                  <option value="success">Success</option>
+                  <option value="fail">Fail</option>
+                </select>
+              </div>
+              <div class="demo-configurable-item demo-configurable-item--toggle">
+                <swim-toggle id="progressSpinnerShowIcon" label="Show Icon" checked aria-label="Show icon"></swim-toggle>
+              </div>
+            </div>
+          </div>
+        </div>
+        </swim-section>
+      </section>
+
+      <section class="section">
         <swim-section section-title="Progress Spinner">
-        <h2 class="section-title">Progress Spinner</h2>
         <p class="section-desc">Default and determinate modes. Use value and total for progress; when value &gt;= total, the spinner shows complete (and optional icon).</p>
         <div class="demo-row demo-row--column">
           <div class="demo-grid">
@@ -28,8 +99,7 @@
 
       <section class="section">
         <swim-section section-title="With icon appearance">
-        <h2 class="section-title">With icon appearance</h2>
-        <p class="section-desc">appearance="icon" shows built-in center icons: upload while in progress, thumbs-up on success, thumbs-down on failure.</p>
+        <p class="section-desc">appearance="icon" shows center swim-icons: cloud-upload while in progress, check on success, x on failure (or use slots/icon-name props to override).</p>
         <div class="demo-row demo-row--column">
           <div class="demo-grid">
             <div class="demo-item">
@@ -50,8 +120,31 @@
       </section>
 
       <section class="section">
+        <swim-section section-title="With swim-icon (icon name or slot)">
+        <p class="section-desc">Pass icon names to render swim-icon in the center, or slot custom content (e.g. <code>&lt;swim-icon slot="in-progress-icon" font-icon="upload"&gt;</code>). Import <code>@swimlane/lit-ui/icon</code> when using icon names.</p>
+        <div class="demo-row demo-row--column">
+          <div class="demo-grid">
+            <div class="demo-item">
+              <div class="demo-label">In progress (icon name)</div>
+              <swim-progress-spinner mode="determinate" value="40" total="100" appearance="icon" in-progress-icon-name="cloud-upload" aria-label="Uploading"></swim-progress-spinner>
+            </div>
+            <div class="demo-item">
+              <div class="demo-label">Complete (icon name)</div>
+              <swim-progress-spinner mode="determinate" value="100" total="100" appearance="icon" complete-icon-name="check" aria-label="Done"></swim-progress-spinner>
+            </div>
+            <div class="demo-item">
+              <div class="demo-label">Slotted swim-icon</div>
+              <swim-progress-spinner mode="determinate" value="60" total="100" appearance="icon" aria-label="Custom">
+                <swim-icon slot="in-progress-icon" font-icon="cloud-upload"></swim-icon>
+              </swim-progress-spinner>
+            </div>
+          </div>
+        </div>
+        </swim-section>
+      </section>
+
+      <section class="section">
         <swim-section section-title="Size and stroke">
-        <h2 class="section-title">Size and stroke</h2>
         <p class="section-desc">Diameter and stroke-width control size and thickness.</p>
         <div class="demo-row demo-row--column">
           <div class="demo-grid">
@@ -74,7 +167,6 @@
 
       <section class="section">
         <swim-section section-title="With label">
-        <h2 class="section-title">With label</h2>
         <p class="section-desc">spinner-label object provides inProgressLabel, completeLabel, and failLabel (set via property in script).</p>
         <div class="demo-row demo-row--column">
           <swim-progress-spinner
@@ -92,16 +184,23 @@
 
       <section class="section">
         <swim-section section-title="Progress Spinner usage">
-        <h2 class="section-title">Progress Spinner usage</h2>
         <p class="section-desc">Import and use the progress spinner component:</p>
         <pre class="demo-pre"><code>&lt;script type="module"&gt;
   import '@swimlane/lit-ui/progress-spinner';
+  import '@swimlane/lit-ui/icon';
   import '@swimlane/lit-ui/section';
 &lt;/script&gt;
 
 &lt;swim-progress-spinner mode="indeterminate" aria-label="Loading"&gt;&lt;/swim-progress-spinner&gt;
 &lt;swim-progress-spinner mode="determinate" value="50" total="100" aria-label="Progress"&gt;&lt;/swim-progress-spinner&gt;
 &lt;swim-progress-spinner mode="determinate" value="100" total="100" appearance="icon" aria-label="Complete"&gt;&lt;/swim-progress-spinner&gt;
-&lt;swim-progress-spinner mode="determinate" value="100" total="100" appearance="icon" is-failure aria-label="Failed"&gt;&lt;/swim-progress-spinner&gt;</code></pre>
+&lt;swim-progress-spinner mode="determinate" value="100" total="100" appearance="icon" is-failure aria-label="Failed"&gt;&lt;/swim-progress-spinner&gt;
+
+&lt;!-- With swim-icon by name (use ngx icon names, e.g. cloud-upload, check, x) --&gt;
+&lt;swim-progress-spinner mode="determinate" value="40" total="100" appearance="icon" in-progress-icon-name="cloud-upload"&gt;&lt;/swim-progress-spinner&gt;
+&lt;!-- Or slot a custom icon --&gt;
+&lt;swim-progress-spinner mode="determinate" value="60" total="100" appearance="icon"&gt;
+  &lt;swim-icon slot="in-progress-icon" font-icon="cloud-upload"&gt;&lt;/swim-icon&gt;
+&lt;/swim-progress-spinner&gt;</code></pre>
         </swim-section>
       </section>

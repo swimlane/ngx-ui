@@ -415,6 +415,33 @@
         overflow-x: auto;
       }
 
+      .split-example {
+        height: 500px;
+        margin: 20px 0;
+      }
+
+      .demo-split-panel-left {
+        background: var(--grey-700);
+        padding: var(--spacing-16);
+      }
+
+      .demo-split-panel-right {
+        background: var(--grey-600);
+        padding: var(--spacing-16);
+      }
+
+      .demo-split-panel-header {
+        flex: 0 0 50px;
+        background: var(--grey-750);
+        padding: var(--spacing-16);
+      }
+
+      .demo-split-nested-wrap {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
       code {
         background: var(--grey-800);
         padding: 0.2em 0.4em;
@@ -505,6 +532,58 @@
         line-height: 1em;
         color: var(--white);
       }
+
+      .progress-spinner-configurable-preview {
+        display: flex;
+        justify-content: center;
+        padding: var(--spacing-24, 24px) 0;
+      }
+      .progress-spinner-configurable-code {
+        margin-top: 0.5rem;
+      }
+      .progress-spinner-configurable-code code {
+        white-space: pre;
+        font-size: 0.8rem;
+      }
+      .progress-spinner-configurable-controls {
+        margin-top: 1.5rem;
+      }
+      .demo-configurable-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 1rem;
+        align-items: end;
+      }
+      .demo-configurable-item label {
+        display: block;
+        font-size: var(--font-size-s, 0.875rem);
+        color: var(--grey-300);
+        margin-bottom: 0.25rem;
+      }
+      .demo-configurable-item input,
+      .demo-configurable-item select {
+        width: 100%;
+        min-width: 0;
+        height: 36px;
+        padding: 0 0.5rem;
+        background: var(--grey-800);
+        border: 1px solid var(--grey-700);
+        border-radius: var(--radius-4);
+        color: var(--grey-050);
+        font-size: 0.9375rem;
+      }
+      .demo-configurable-item input:focus,
+      .demo-configurable-item select:focus {
+        outline: none;
+        border-color: var(--blue-500);
+      }
+      .demo-configurable-item--toggle {
+        display: flex;
+        align-items: center;
+      }
+      .demo-configurable-item--toggle swim-toggle {
+        margin-top: 0.5rem;
+      }
     </style>
   </head>
   <body>
@@ -549,6 +628,7 @@
               <li><a class="sub-nav-item" href="#card">Card</a></li>
               <li><a class="sub-nav-item" href="#progress-spinner">Progress Spinner</a></li>
               <li><a class="sub-nav-item" href="#section">Section</a></li>
+              <li><a class="sub-nav-item" href="#split">Split</a></li>
               <li><a class="sub-nav-item" href="#tooltip">Tooltip</a></li>
             </ul>
           </li>

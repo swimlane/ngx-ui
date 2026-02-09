@@ -27,6 +27,9 @@ import '../../src/components/toggle/toggle.component';
 import '../../src/components/section/section.component';
 import '../../src/components/section/section-header.component';
 import '../../src/components/slider/slider.component';
+import '../../src/components/split/split-area.component';
+import '../../src/components/split/split-handle.component';
+import '../../src/components/split/split.component';
 import '../../src/components/progress-spinner/progress-spinner.component';
 import '../../src/components/tooltip/tooltip.component';
 
@@ -54,6 +57,7 @@ const SECTION_FILES = [
   'card',
   'progress-spinner',
   'section',
+  'split',
   'tooltip',
   'icons'
 ];
@@ -212,6 +216,76 @@ document.addEventListener('DOMContentLoaded', async () => {
       completeLabel: 'Complete!',
       failLabel: 'Failed'
     };
+  }
+
+  // Progress spinner configurable (live controls)
+  const progressSpinnerConfigurable = document.getElementById('progressSpinnerConfigurable') as any;
+  const progressSpinnerCodeEl = document.getElementById('progressSpinnerConfigurableCode');
+  const configurableIds = [
+    'progressSpinnerValue',
+    'progressSpinnerTotal',
+    'progressSpinnerDiameter',
+    'progressSpinnerStrokeWidth',
+    'progressSpinnerColor',
+    'progressSpinnerMode',
+    'progressSpinnerCompleteStatus',
+    'progressSpinnerShowIcon'
+  ] as const;
+
+  function updateProgressSpinnerConfigurable(): void {
+    if (!progressSpinnerConfigurable) return;
+    const valueEl = document.getElementById('progressSpinnerValue') as HTMLInputElement | null;
+    const totalEl = document.getElementById('progressSpinnerTotal') as HTMLInputElement | null;
+    const diameterEl = document.getElementById('progressSpinnerDiameter') as HTMLInputElement | null;
+    const strokeWidthEl = document.getElementById('progressSpinnerStrokeWidth') as HTMLInputElement | null;
+    const colorEl = document.getElementById('progressSpinnerColor') as HTMLInputElement | null;
+    const modeEl = document.getElementById('progressSpinnerMode') as HTMLSelectElement | null;
+    const completeStatusEl = document.getElementById('progressSpinnerCompleteStatus') as HTMLSelectElement | null;
+    const showIconEl = document.getElementById('progressSpinnerShowIcon') as any;
+
+    const value = valueEl?.value ?? '35';
+    const total = totalEl?.value ?? '100';
+    const diameter = diameterEl?.value ?? '100';
+    const strokeWidth = strokeWidthEl?.value ?? '5';
+    const color = colorEl?.value ?? 'lime';
+    const mode = modeEl?.value ?? 'indeterminate';
+    const completeStatus = completeStatusEl?.value ?? 'success';
+    const showIcon = showIconEl?.checked !== false;
+
+    // Complete Status (Success/Fail) only shows when spinner is complete (value >= total).
+    // Use value = total when Fail or Success so the completed state is visible.
+    const effectiveValue = completeStatus === 'fail' || completeStatus === 'success' ? total : value;
+
+    progressSpinnerConfigurable.value = Number(effectiveValue);
+    progressSpinnerConfigurable.total = Number(total);
+    progressSpinnerConfigurable.diameter = Number(diameter);
+    progressSpinnerConfigurable.strokeWidth = Number(strokeWidth);
+    progressSpinnerConfigurable.color = color;
+    progressSpinnerConfigurable.mode = mode;
+    progressSpinnerConfigurable.isFailure = completeStatus === 'fail';
+    progressSpinnerConfigurable.appearance = showIcon ? 'icon' : 'default';
+
+    if (progressSpinnerCodeEl) {
+      const failAttr = completeStatus === 'fail' ? '\n  is-failure' : '';
+      progressSpinnerCodeEl.textContent = `<swim-progress-spinner\n  mode="${mode}"\n  value="${effectiveValue}"\n  total="${total}"\n  diameter="${diameter}"\n  stroke-width="${strokeWidth}"\n  color="${color}"\n  appearance="${
+        showIcon ? 'icon' : 'default'
+      }"${failAttr}\n  aria-label="...">\n</swim-progress-spinner>`;
+    }
+  }
+
+  if (progressSpinnerConfigurable) {
+    configurableIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', updateProgressSpinnerConfigurable);
+        el.addEventListener('change', updateProgressSpinnerConfigurable);
+      }
+    });
+    const showIconToggle = document.getElementById('progressSpinnerShowIcon');
+    if (showIconToggle) {
+      showIconToggle.addEventListener('change', updateProgressSpinnerConfigurable);
+    }
+    updateProgressSpinnerConfigurable();
   }
 
   // Slider demos

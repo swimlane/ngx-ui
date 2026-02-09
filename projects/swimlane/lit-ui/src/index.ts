@@ -14,6 +14,7 @@ export * from './components/section';
 export * from './components/radio';
 export * from './components/select';
 export * from './components/slider';
+export * from './components/split';
 export * from './components/progress-spinner';
 export * from './components/tabs';
 export * from './components/toggle';

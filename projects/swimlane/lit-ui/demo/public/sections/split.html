@@ -1,0 +1,124 @@
+      <hr class="section-divider">
+
+      <h1 id="split" class="page-title">Split</h1>
+      <p class="subtitle">Resizable split layout. Use <code>swim-split</code> with <code>swim-split-area</code> and <code>swim-split-handle</code> as direct children. Drag the handle to resize; double-click the handle to snap to min or max.</p>
+
+      <section class="section">
+        <swim-section section-title="Split areas (row)">
+        <p class="section-desc">Horizontal split with two areas. Left fills remaining space; right starts at 50% and cannot grow.</p>
+        <div class="split-example">
+          <swim-split direction="row">
+            <swim-split-area class="demo-split-panel-left">
+              <h2 class="section-title">Left panel</h2>
+              <p>Drag the handle to resize. Double-click the handle to snap to extremes.</p>
+            </swim-split-area>
+            <swim-split-handle></swim-split-handle>
+            <swim-split-area area-basis="0 1 50%" class="demo-split-panel-right">
+              <h2 class="section-title">Right panel (50%, cannot grow)</h2>
+              <ul>
+                <li>Alerts</li>
+                <li>Search</li>
+                <li>Admin</li>
+              </ul>
+            </swim-split-area>
+          </swim-split>
+        </div>
+        </swim-section>
+      </section>
+
+      <section class="section">
+        <swim-section section-title="Column (vertical) split">
+        <p class="section-desc">Vertical split with <code>direction="column"</code>.</p>
+        <div class="split-example">
+          <swim-split direction="column">
+            <swim-split-area class="demo-split-panel-left">
+              <h2 class="section-title">Top</h2>
+              <p>Content in the top area.</p>
+            </swim-split-area>
+            <swim-split-handle></swim-split-handle>
+            <swim-split-area area-basis="1 1 50%" class="demo-split-panel-right">
+              <h2 class="section-title">Bottom</h2>
+              <p>Content in the bottom area.</p>
+            </swim-split-area>
+          </swim-split>
+        </div>
+        </swim-section>
+      </section>
+
+      <section class="section">
+        <swim-section section-title="Fixed pixel range">
+        <p class="section-desc">Right area with min/max basis in pixels (200px–600px).</p>
+        <div class="split-example">
+          <swim-split direction="row">
+            <swim-split-area class="demo-split-panel-left">
+              <h2 class="section-title">Left</h2>
+              <p>Fills remaining space.</p>
+            </swim-split-area>
+            <swim-split-handle></swim-split-handle>
+            <swim-split-area area-basis="400px" min-basis="200px" max-basis="600px" class="demo-split-panel-right">
+              <h2 class="section-title">Right (400px, 200–600px)</h2>
+              <ul>
+                <li>Alerts</li>
+                <li>Search</li>
+                <li>Admin</li>
+              </ul>
+            </swim-split-area>
+          </swim-split>
+        </div>
+        </swim-section>
+      </section>
+
+      <section class="section">
+        <swim-section section-title="Nested split">
+        <p class="section-desc">A column split nested inside a row split area.</p>
+        <div class="split-example">
+          <swim-split direction="row">
+            <swim-split-area class="demo-split-panel-left">
+              <div class="demo-split-nested-wrap">
+                <div class="demo-split-panel-header">Header</div>
+                <swim-split direction="column">
+                <swim-split-area area-basis="1 1 50%" class="demo-split-panel-left">
+                  <h2 class="section-title">Top</h2>
+                  <p>Nested column split.</p>
+                </swim-split-area>
+                <swim-split-handle handle-basis="5px"></swim-split-handle>
+                <swim-split-area area-basis="1 0 50%" class="demo-split-panel-right">
+                  <h2 class="section-title">Bottom</h2>
+                  <ul>
+                    <li>Item 1</li>
+                    <li>Item 2</li>
+                  </ul>
+                </swim-split-area>
+              </swim-split>
+              </div>
+            </swim-split-area>
+            <swim-split-handle></swim-split-handle>
+            <swim-split-area area-basis="400px" min-basis="200px" max-basis="600px" class="demo-split-panel-right">
+              <h2 class="section-title">Sidebar</h2>
+              <ul>
+                <li>Alerts</li>
+                <li>Search</li>
+              </ul>
+            </swim-split-area>
+          </swim-split>
+        </div>
+        </swim-section>
+      </section>
+
+      <section class="section">
+        <swim-section section-title="Usage">
+        <p class="section-desc">Import the split components (and icon for the handle grip). Use <code>area-basis</code>, <code>min-basis</code>, <code>max-basis</code> on areas; <code>handle-basis</code> on the handle (default 15px).</p>
+        <pre class="demo-pre"><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/icon';
+  import '@swimlane/lit-ui/split';
+&lt;/script&gt;
+
+&lt;div class="split-example"&gt;
+  &lt;swim-split direction="row"&gt;
+    &lt;swim-split-area area-basis="1 1 50%"&gt;Left content&lt;/swim-split-area&gt;
+    &lt;swim-split-handle&gt;&lt;/swim-split-handle&gt;
+    &lt;swim-split-area area-basis="1 1 50%"&gt;Right content&lt;/swim-split-area&gt;
+  &lt;/swim-split&gt;
+&lt;/div&gt;</code></pre>
+        </swim-section>
+      </section>

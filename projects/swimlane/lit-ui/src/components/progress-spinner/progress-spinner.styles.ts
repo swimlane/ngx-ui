@@ -17,15 +17,6 @@ export const progressSpinnerStyles = css`
     }
   }
 
-  @keyframes swim-progress-spinner--check {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
   :host {
     display: flex;
     flex-direction: column;
@@ -53,12 +44,6 @@ export const progressSpinnerStyles = css`
     stroke: var(--spinner-color);
   }
 
-  .swim-progress-spinner__upload-icon,
-  .swim-progress-spinner__thumbs-up-icon,
-  .swim-progress-spinner__thumbs-down-icon {
-    display: none;
-  }
-
   .swim-progress-spinner__icon-in-progress,
   .swim-progress-spinner__icon-complete,
   .swim-progress-spinner__icon-failure {
@@ -66,6 +51,22 @@ export const progressSpinnerStyles = css`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  /* Size and color for slotted or property-driven swim-icon in center */
+  .swim-progress-spinner__icon-in-progress swim-icon,
+  .swim-progress-spinner__icon-complete swim-icon,
+  .swim-progress-spinner__icon-failure swim-icon {
+    font-size: 40px;
+    color: var(--spinner-color);
+  }
+
+  .swim-progress-spinner__icon-failure swim-icon {
+    color: var(--color-error, var(--red-500));
   }
 
   .swim-progress-spinner__label {
@@ -84,28 +85,5 @@ export const progressSpinnerStyles = css`
   /* Indeterminate: rotating circle */
   :host([mode='indeterminate']) .swim-progress-spinner__circle {
     animation: swim-progress-spinner--rotate 1s linear infinite;
-  }
-
-  /* Icon appearance: show built-in icons when not using slots */
-  :host([appearance='icon']) .swim-progress-spinner__upload-icon {
-    display: block;
-    transform: translate(calc(50% - 18.735px), calc(50% - 26.5px));
-    fill: var(--spinner-color);
-  }
-
-  :host([appearance='icon']) .swim-progress-spinner__thumbs-up-icon {
-    display: block;
-    transform: translate(calc(50% - 35px), calc(50% - 36px));
-    fill: none;
-    stroke: var(--blue-500);
-    animation: swim-progress-spinner--check 1s linear forwards;
-  }
-
-  :host([appearance='icon']) .swim-progress-spinner__thumbs-down-icon {
-    display: block;
-    transform: translate(calc(50% - 35px), calc(50% - 28px));
-    fill: none;
-    stroke: var(--color-error, var(--red-500));
-    animation: swim-progress-spinner--check 1s linear forwards;
   }
 `;
