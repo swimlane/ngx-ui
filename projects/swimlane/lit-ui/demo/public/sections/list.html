@@ -1,0 +1,86 @@
+<hr class="section-divider" />
+<h1 id="list" class="page-title">List</h1>
+<p class="subtitle">
+  List component with configurable columns, header labels, and row status (error/success/warning). Use
+  <code>swim-list</code> with <code>dataSource</code>, <code>headerLabels</code>, and <code>columns</code> set via JavaScript.
+  Supports scroll-based pagination and custom column layout.
+</p>
+
+<section class="section">
+  <swim-section section-title="List">
+    <h3 class="style-header">Basic list</h3>
+    <swim-list id="listBasic"></swim-list>
+    <p class="section-desc">Headers: Attack Type, Date of Attack, Origin of Attack. Default row status (error) applied to all rows.</p>
+    <pre class="demo-pre"><code>&lt;swim-list id="listBasic"&gt;&lt;/swim-list&gt;
+&lt;script&gt;
+  const list = document.getElementById('listBasic');
+  list.dataSource = [ { type: 'Malware', date: '1/1/2025', origin: 'China' }, ... ];
+  list.headerLabels = ['Attack Type', 'Date of Attack', 'Origin of Attack'];
+  list.columns = ['type', 'date', 'origin'];
+  list.defaultRowStatus = 'error';
+&lt;/script&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Custom Column Layout">
+    <h3 class="style-header">Custom grid columns (3fr 2fr 1fr)</h3>
+    <swim-list id="listColumnLayout"></swim-list>
+    <pre class="demo-pre"><code>list.columnLayout = '3fr 2fr 1fr';
+list.headerLabels = ['Attack Type', 'Date of Attack', 'Origin of Attack'];
+list.columns = ['type', 'date', 'origin'];</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Scroll-Based Pagination">
+    <h3 class="style-header">Fixed height with page-change on scroll</h3>
+    <swim-list id="listPagination"></swim-list>
+    <p class="section-desc">Current page (from scroll): <strong id="listPaginationPage">1</strong></p>
+    <pre class="demo-pre"><code>list.height = 400;
+list.paginationConfig = { pageSize: 10 };
+list.addEventListener('page-change', (e) =&gt; console.log('Page:', e.detail));</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Scroll-Based Pagination Starting on Page 5">
+    <h3 class="style-header">Start scrolled to page 5</h3>
+    <swim-list id="listPaginationPage5"></swim-list>
+    <p class="section-desc">Current page: <strong id="listPaginationPage5Value">5</strong></p>
+    <pre class="demo-pre"><code>list.paginationConfig = { index: 5, pageSize: 10 };</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Rows with Different Status">
+    <h3 class="style-header">Per-row status from data</h3>
+    <swim-list id="listWithStatus"></swim-list>
+    <p class="section-desc">Each row has a <code>status</code> field (error, success, warning). No default row status needed.</p>
+    <pre class="demo-pre"><code>list.dataSource = [
+  { type: 'Malware', date: '1/1/2025', origin: 'China', status: 'error' },
+  { type: 'DDOS', date: '1/5/2025', origin: 'China', status: 'warning' },
+  ...
+];</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Rows with No Status">
+    <h3 class="style-header">No status column; default row status</h3>
+    <swim-list id="listNoStatus"></swim-list>
+    <p class="section-desc">Same data without <code>status</code>; <code>defaultRowStatus</code> applies to all rows.</p>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Usage">
+    <h3 class="style-header">API</h3>
+    <p class="section-desc">
+      <strong>swim-list</strong>: Set <code>dataSource</code> (array of records), <code>headerLabels</code> (string[]),
+      <code>columns</code> (string[]; use <code>$index</code> for row number). Optional: <code>column-layout</code> (CSS grid-template-columns),
+      <code>height</code> (px), <code>default-row-status</code> (error | success | warning), <code>paginationConfig</code> ({ pageSize, index? }).
+      Fires <code>page-change</code> (detail: number) and <code>scroll</code> (detail: scrollTop).
+    </p>
+  </swim-section>
+</section>

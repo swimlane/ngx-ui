@@ -13,6 +13,48 @@ function delayReject(ms: number): Promise<void> {
   return new Promise((_, reject) => setTimeout(() => reject(new Error('Failed')), ms));
 }
 
+// List demo data (matches ngx-ui list-page)
+const LIST_DATA: Array<Record<string, unknown>> = [
+  { type: 'Malware', date: '1/1/2025', origin: 'China' },
+  { type: 'DDOS', date: '1/5/2025', origin: 'China' },
+  { type: 'DDOS', date: '1/5/2025', origin: 'Russia' },
+  { type: 'XSS', date: '1/6/2025', origin: 'North Korea' },
+  { type: 'DDOS', date: '1/6/2025', origin: 'North Korea' },
+  { type: 'Ransomware', date: '1/8/2025', origin: 'China' },
+  { type: 'DDOS', date: '1/9/2025', origin: 'China' },
+  { type: 'SQL injection', date: '1/10/2025', origin: 'North Korea' },
+  { type: 'Malware', date: '1/11/2025', origin: 'Russia' },
+  { type: 'DDOS', date: '1/11/2025', origin: 'Russia' }
+];
+
+const LIST_HEADERS = ['Attack Type', 'Date of Attack', 'Origin of Attack'];
+const LIST_COLUMNS = ['type', 'date', 'origin'];
+
+const LIST_DATA_WITH_STATUS: Array<Record<string, unknown>> = [
+  { type: 'Malware', date: '1/1/2025', origin: 'China', status: 'error' },
+  { type: 'DDOS', date: '1/5/2025', origin: 'China', status: 'warning' },
+  { type: 'DDOS', date: '1/5/2025', origin: 'Russia', status: 'warning' },
+  { type: 'XSS', date: '1/6/2025', origin: 'North Korea', status: 'success' },
+  { type: 'DDOS', date: '1/6/2025', origin: 'North Korea', status: 'warning' },
+  { type: 'Ransomware', date: '1/8/2025', origin: 'China', status: 'error' },
+  { type: 'DDOS', date: '1/9/2025', origin: 'China', status: 'warning' },
+  { type: 'SQL injection', date: '1/10/2025', origin: 'North Korea', status: 'success' },
+  { type: 'Malware', date: '1/11/2025', origin: 'Russia', status: 'error' },
+  { type: 'XSS', date: '1/11/2025', origin: 'Russia', status: 'success' }
+];
+
+const LIST_LARGE_DATA = [
+  ...LIST_DATA,
+  ...LIST_DATA,
+  ...LIST_DATA,
+  ...LIST_DATA,
+  ...LIST_DATA,
+  ...LIST_DATA,
+  ...LIST_DATA,
+  ...LIST_DATA,
+  ...LIST_DATA
+];
+
 const SECTION_FILES = [
   'buttons',
   'input',
@@ -30,6 +72,7 @@ const SECTION_FILES = [
   'split',
   'navbar',
   'tooltip',
+  'list',
   'scrollbars',
   'icons'
 ];
@@ -220,6 +263,82 @@ function setupSelectDemos(): void {
 
   const formSelect2 = document.getElementById('formSelect2') as any;
   if (formSelect2) formSelect2.options = tags;
+}
+
+function setupListDemos(): void {
+  type ListEl = HTMLElement & {
+    dataSource: Array<Record<string, unknown>>;
+    headerLabels: string[];
+    columns: string[];
+    columnLayout?: string;
+    defaultRowStatus?: string;
+    height?: number;
+    paginationConfig?: { pageSize: number; index?: number };
+  };
+
+  const listBasic = document.getElementById('listBasic') as ListEl | null;
+  if (listBasic) {
+    listBasic.dataSource = LIST_DATA;
+    listBasic.headerLabels = LIST_HEADERS;
+    listBasic.columns = LIST_COLUMNS;
+    listBasic.defaultRowStatus = 'error';
+  }
+
+  const listColumnLayout = document.getElementById('listColumnLayout') as ListEl | null;
+  if (listColumnLayout) {
+    listColumnLayout.dataSource = LIST_DATA;
+    listColumnLayout.headerLabels = LIST_HEADERS;
+    listColumnLayout.columns = LIST_COLUMNS;
+    listColumnLayout.columnLayout = '3fr 2fr 1fr';
+    listColumnLayout.defaultRowStatus = 'error';
+  }
+
+  const listPagination = document.getElementById('listPagination') as ListEl | null;
+  const listPaginationPage = document.getElementById('listPaginationPage');
+  if (listPagination) {
+    listPagination.dataSource = LIST_LARGE_DATA;
+    listPagination.headerLabels = LIST_HEADERS;
+    listPagination.columns = LIST_COLUMNS;
+    listPagination.columnLayout = '1fr 1fr 1fr';
+    listPagination.height = 400;
+    listPagination.paginationConfig = { pageSize: 10 };
+    listPagination.defaultRowStatus = 'error';
+    listPagination.addEventListener('page-change', (e: CustomEvent<number>) => {
+      if (listPaginationPage) listPaginationPage.textContent = String(e.detail ?? 1);
+    });
+    if (listPaginationPage) listPaginationPage.textContent = '1';
+  }
+
+  const listPaginationPage5 = document.getElementById('listPaginationPage5') as ListEl | null;
+  const listPaginationPage5Value = document.getElementById('listPaginationPage5Value');
+  if (listPaginationPage5) {
+    listPaginationPage5.dataSource = LIST_LARGE_DATA;
+    listPaginationPage5.headerLabels = ['No.', 'Attack Type', 'Date of Attack', 'Origin of Attack'];
+    listPaginationPage5.columns = ['$index', 'type', 'date', 'origin'];
+    listPaginationPage5.columnLayout = '5rem 1fr 1fr 1fr';
+    listPaginationPage5.height = 400;
+    listPaginationPage5.paginationConfig = { index: 5, pageSize: 10 };
+    listPaginationPage5.defaultRowStatus = 'error';
+    listPaginationPage5.addEventListener('page-change', (e: CustomEvent<number>) => {
+      if (listPaginationPage5Value) listPaginationPage5Value.textContent = String(e.detail ?? 5);
+    });
+    if (listPaginationPage5Value) listPaginationPage5Value.textContent = '5';
+  }
+
+  const listWithStatus = document.getElementById('listWithStatus') as ListEl | null;
+  if (listWithStatus) {
+    listWithStatus.dataSource = LIST_DATA_WITH_STATUS;
+    listWithStatus.headerLabels = LIST_HEADERS;
+    listWithStatus.columns = LIST_COLUMNS;
+  }
+
+  const listNoStatus = document.getElementById('listNoStatus') as ListEl | null;
+  if (listNoStatus) {
+    listNoStatus.dataSource = LIST_DATA;
+    listNoStatus.headerLabels = LIST_HEADERS;
+    listNoStatus.columns = LIST_COLUMNS;
+    listNoStatus.defaultRowStatus = 'error';
+  }
 }
 
 /**
@@ -471,6 +590,7 @@ function setupDemos(): void {
   }
 
   setupIconsDemo();
+  setupListDemos();
 
   // Navbar demo: programmatic goTo
   const navbarGoToFourthBtn = document.getElementById('navbarGoToFourthBtn');

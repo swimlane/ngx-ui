@@ -33,6 +33,7 @@ import '../../src/components/progress-spinner/progress-spinner.component';
 import '../../src/components/tooltip/tooltip.component';
 import '../../src/components/navbar/navbar.component';
 import '../../src/components/navbar/navbar-item.component';
+import '../../src/components/list/list.component';
 import { scrollbarStyles } from '../../src/styles';
 
 import { initDemos } from './demo-init';
