@@ -95,8 +95,7 @@ export const colors = {
 
   // Base
   white: 'rgb(255, 255, 255)',
-  black: 'rgb(0, 0, 0)',
+  black: 'rgb(0, 0, 0)'
 } as const;
 
 export type ColorToken = keyof typeof colors;
-

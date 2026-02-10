@@ -1,99 +1,111 @@
-      <hr class="section-divider">
+<hr class="section-divider" />
 
-      <h1 id="section" class="page-title">Section</h1>
-      <p class="subtitle">Collapsible section with optional title and custom header. Use <code>swim-section</code> with <code>section-title</code> or <code>swim-section-header</code> for custom header content. Supports legacy, outline, light, and minimal appearances.</p>
+<h1 id="section" class="page-title">Section</h1>
+<p class="subtitle">
+  Collapsible section with optional title and custom header. Use <code>swim-section</code> with
+  <code>section-title</code> or <code>swim-section-header</code> for custom header content. Supports legacy, outline,
+  light, and minimal appearances.
+</p>
 
-      <section class="section">
-        <swim-section section-title="Title and content">
-        <p class="section-desc">Default section with a title and body content.</p>
-        <div class="demo-row demo-row--column">
-          <swim-section id="section-demo-1" section-title="Attack Details">
-            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
-            bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system
-            mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
-          </swim-section>
-        </div>
-        </swim-section>
-      </section>
+<section class="section">
+  <swim-section section-title="Title and content">
+    <p class="section-desc">Default section with a title and body content.</p>
+    <div class="demo-row demo-row--column">
+      <swim-section id="section-demo-1" section-title="Attack Details">
+        Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
+        bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system
+        mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+      </swim-section>
+    </div>
+  </swim-section>
+</section>
 
-      <section class="section">
-        <swim-section section-title="Custom header">
-        <p class="section-desc">Use <code>swim-section-header</code> with <code>slot="header"</code> for custom title and links.</p>
-        <div class="demo-row demo-row--column">
-          <swim-section id="section-demo-2">
-            <swim-section-header slot="header">
-              <h3>Attack Found!</h3>
-              <a href="#section">List</a>
-            </swim-section-header>
-            Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
-            bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system
-            mailbomb eaten by a grue error fopen null.
-          </swim-section>
-        </div>
-        </swim-section>
-      </section>
+<section class="section">
+  <swim-section section-title="Custom header">
+    <p class="section-desc">
+      Use <code>swim-section-header</code> with <code>slot="header"</code> for custom title and links.
+    </p>
+    <div class="demo-row demo-row--column">
+      <swim-section id="section-demo-2">
+        <swim-section-header slot="header">
+          <h3>Attack Found!</h3>
+          <a href="#section">List</a>
+        </swim-section-header>
+        Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
+        bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system
+        mailbomb eaten by a grue error fopen null.
+      </swim-section>
+    </div>
+  </swim-section>
+</section>
 
-      <section class="section">
-        <swim-section section-title="Not collapsible" section-collapsible="false">
-        <p class="section-desc">Section with <code>section-collapsible="false"</code> — no toggle button.</p>
-        <div class="demo-row demo-row--column">
-          <swim-section id="section-demo-3" section-title="Attack Details" section-collapsible="false">
-            Content is always visible; no expand/collapse toggle.
-          </swim-section>
-        </div>
-        </swim-section>
-      </section>
+<section class="section">
+  <swim-section section-title="Not collapsible" section-collapsible="false">
+    <p class="section-desc">Section with <code>section-collapsible="false"</code> — no toggle button.</p>
+    <div class="demo-row demo-row--column">
+      <swim-section id="section-demo-3" section-title="Attack Details" section-collapsible="false">
+        Content is always visible; no expand/collapse toggle.
+      </swim-section>
+    </div>
+  </swim-section>
+</section>
 
-      <section class="section">
-        <swim-section section-title="Appearances">
-        <p class="section-desc">Legacy (default), outline, light, and minimal.</p>
-        <div class="demo-row demo-row--column">
-          <div class="demo-label">Legacy (default)</div>
-          <swim-section id="section-legacy" section-title="Legacy">
-            Default background and header style.
-          </swim-section>
-          <div class="demo-label">Outline</div>
-          <swim-section id="section-outline" section-title="Outline" appearance="outline">
-            Border-only style.
-          </swim-section>
-          <div class="demo-label">Light</div>
-          <swim-section id="section-light" section-title="Light" appearance="light">
-            Light border and header background.
-          </swim-section>
-          <div class="demo-label">Minimal</div>
-          <swim-section id="section-minimal" section-title="Minimal" appearance="minimal">
-            No background or border.
-          </swim-section>
-        </div>
-        </swim-section>
-      </section>
+<section class="section">
+  <swim-section section-title="Appearances">
+    <p class="section-desc">Legacy (default), outline, light, and minimal.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-label">Legacy (default)</div>
+      <swim-section id="section-legacy" section-title="Legacy"> Default background and header style. </swim-section>
+      <div class="demo-label">Outline</div>
+      <swim-section id="section-outline" section-title="Outline" appearance="outline">
+        Border-only style.
+      </swim-section>
+      <div class="demo-label">Light</div>
+      <swim-section id="section-light" section-title="Light" appearance="light">
+        Light border and header background.
+      </swim-section>
+      <div class="demo-label">Minimal</div>
+      <swim-section id="section-minimal" section-title="Minimal" appearance="minimal">
+        No background or border.
+      </swim-section>
+    </div>
+  </swim-section>
+</section>
 
-      <section class="section">
-        <swim-section section-title="Toggle position">
-        <p class="section-desc">Toggle on the right with <code>toggle-position="right"</code>.</p>
-        <div class="demo-row demo-row--column">
-          <swim-section id="section-toggle-right" section-title="Toggle on right" toggle-position="right">
-            Collapse/expand button is on the right side of the header.
-          </swim-section>
-        </div>
-        </swim-section>
-      </section>
+<section class="section">
+  <swim-section section-title="Toggle position">
+    <p class="section-desc">Toggle on the right with <code>toggle-position="right"</code>.</p>
+    <div class="demo-row demo-row--column">
+      <swim-section id="section-toggle-right" section-title="Toggle on right" toggle-position="right">
+        Collapse/expand button is on the right side of the header.
+      </swim-section>
+    </div>
+  </swim-section>
+</section>
 
-      <section class="section">
-        <swim-section section-title="Header toggle">
-        <p class="section-desc">Click the header to expand/collapse (<code>header-toggle</code>). Toggle can be hidden with <code>toggle-position="none"</code>.</p>
-        <div class="demo-row demo-row--column">
-          <swim-section id="section-header-toggle" section-title="Click header to toggle" toggle-position="none" header-toggle>
-            No toggle button; click anywhere on the header to expand or collapse.
-          </swim-section>
-        </div>
-        </swim-section>
-      </section>
+<section class="section">
+  <swim-section section-title="Header toggle">
+    <p class="section-desc">
+      Click the header to expand/collapse (<code>header-toggle</code>). Toggle can be hidden with
+      <code>toggle-position="none"</code>.
+    </p>
+    <div class="demo-row demo-row--column">
+      <swim-section
+        id="section-header-toggle"
+        section-title="Click header to toggle"
+        toggle-position="none"
+        header-toggle
+      >
+        No toggle button; click anywhere on the header to expand or collapse.
+      </swim-section>
+    </div>
+  </swim-section>
+</section>
 
-      <section class="section">
-        <swim-section section-title="Section usage">
-        <p class="section-desc">Import and use the section components:</p>
-        <pre class="demo-pre"><code>&lt;script type="module"&gt;
+<section class="section">
+  <swim-section section-title="Section usage">
+    <p class="section-desc">Import and use the section components:</p>
+    <pre class="demo-pre"><code>&lt;script type="module"&gt;
   import '@swimlane/lit-ui/section';
   import '@swimlane/lit-ui/icon';
 &lt;/script&gt;
@@ -108,5 +120,5 @@
   &lt;/swim-section-header&gt;
   Body content.
 &lt;/swim-section&gt;</code></pre>
-        </swim-section>
-      </section>
+  </swim-section>
+</section>

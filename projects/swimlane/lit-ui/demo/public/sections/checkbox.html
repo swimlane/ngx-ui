@@ -1,71 +1,77 @@
-      <hr class="section-divider">
+<hr class="section-divider" />
 
-      <h1 id="checkbox" class="page-title">Checkbox</h1>
-      <p class="subtitle">Checkbox control matching ngx-checkbox: checked, indeterminate, disabled, and round variants. Use <code>swim-checkbox</code> with slot content as the label. Supports form association and keyboard (Space to toggle).</p>
+<h1 id="checkbox" class="page-title">Checkbox</h1>
+<p class="subtitle">
+  Checkbox control matching ngx-checkbox: checked, indeterminate, disabled, and round variants. Use
+  <code>swim-checkbox</code> with slot content as the label. Supports form association and keyboard (Space to toggle).
+</p>
 
-      <section class="section">
-        <swim-section section-title="Basic">
-        <p class="section-desc">Default checkbox with label slot.</p>
-        <div class="demo-row demo-row--column">
-          <div class="demo-grid">
-            <div class="demo-item">
-              <div class="demo-label">Unchecked</div>
-              <swim-checkbox>Option A</swim-checkbox>
-            </div>
-            <div class="demo-item">
-              <div class="demo-label">Checked</div>
-              <swim-checkbox checked>Option B</swim-checkbox>
-            </div>
-          </div>
+<section class="section">
+  <swim-section section-title="Basic">
+    <p class="section-desc">Default checkbox with label slot.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="demo-label">Unchecked</div>
+          <swim-checkbox>Option A</swim-checkbox>
         </div>
-        </swim-section>
-      </section>
-
-      <section class="section">
-        <swim-section section-title="Indeterminate">
-        <p class="section-desc">Indeterminate state (e.g. partial selection).</p>
-        <div class="demo-row demo-row--column">
-          <swim-checkbox indeterminate>Select all / partial</swim-checkbox>
+        <div class="demo-item">
+          <div class="demo-label">Checked</div>
+          <swim-checkbox checked>Option B</swim-checkbox>
         </div>
-        </swim-section>
-      </section>
+      </div>
+    </div>
+  </swim-section>
+</section>
 
-      <section class="section">
-        <swim-section section-title="Disabled and round">
-        <p class="section-desc">Disabled state and round (circular) box.</p>
-        <div class="demo-row demo-row--column">
-          <div class="demo-grid">
-            <div class="demo-item">
-              <div class="demo-label">Disabled unchecked</div>
-              <swim-checkbox disabled>Disabled</swim-checkbox>
-            </div>
-            <div class="demo-item">
-              <div class="demo-label">Disabled checked</div>
-              <swim-checkbox checked disabled>Disabled checked</swim-checkbox>
-            </div>
-            <div class="demo-item">
-              <div class="demo-label">Round</div>
-              <swim-checkbox round>Round box</swim-checkbox>
-            </div>
-          </div>
+<section class="section">
+  <swim-section section-title="Indeterminate">
+    <p class="section-desc">Indeterminate state (e.g. partial selection).</p>
+    <div class="demo-row demo-row--column">
+      <swim-checkbox indeterminate>Select all / partial</swim-checkbox>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Disabled and round">
+    <p class="section-desc">Disabled state and round (circular) box.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="demo-label">Disabled unchecked</div>
+          <swim-checkbox disabled>Disabled</swim-checkbox>
         </div>
-        </swim-section>
-      </section>
-
-      <section class="section">
-        <swim-section section-title="With event display">
-        <p class="section-desc">Checked state and last event are shown below.</p>
-        <div class="demo-row demo-row--column">
-          <swim-checkbox id="checkboxDemoEvent">Toggle me</swim-checkbox>
-          <p class="demo-label demo-label--after">Checked: <strong id="checkboxDemoChecked">false</strong>. Last event: <strong id="checkboxDemoEventName">—</strong></p>
+        <div class="demo-item">
+          <div class="demo-label">Disabled checked</div>
+          <swim-checkbox checked disabled>Disabled checked</swim-checkbox>
         </div>
-        </swim-section>
-      </section>
+        <div class="demo-item">
+          <div class="demo-label">Round</div>
+          <swim-checkbox round>Round box</swim-checkbox>
+        </div>
+      </div>
+    </div>
+  </swim-section>
+</section>
 
-      <section class="section">
-        <swim-section section-title="Checkbox usage">
-        <p class="section-desc">Import and use the checkbox component:</p>
-        <pre class="demo-pre"><code>&lt;script type="module"&gt;
+<section class="section">
+  <swim-section section-title="With event display">
+    <p class="section-desc">Checked state and last event are shown below.</p>
+    <div class="demo-row demo-row--column">
+      <swim-checkbox id="checkboxDemoEvent">Toggle me</swim-checkbox>
+      <p class="demo-label demo-label--after">
+        Checked: <strong id="checkboxDemoChecked">false</strong>. Last event:
+        <strong id="checkboxDemoEventName">—</strong>
+      </p>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Checkbox usage">
+    <p class="section-desc">Import and use the checkbox component:</p>
+    <pre class="demo-pre"><code>&lt;script type="module"&gt;
   import '@swimlane/lit-ui/checkbox';
 &lt;/script&gt;
 
@@ -74,5 +80,5 @@
 &lt;swim-checkbox indeterminate&gt;Indeterminate&lt;/swim-checkbox&gt;
 &lt;swim-checkbox disabled&gt;Disabled&lt;/swim-checkbox&gt;
 &lt;swim-checkbox round&gt;Round&lt;/swim-checkbox&gt;</code></pre>
-        </swim-section>
-      </section>
+  </swim-section>
+</section>

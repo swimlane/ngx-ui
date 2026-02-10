@@ -1,137 +1,141 @@
-      <hr class="section-divider">
+<hr class="section-divider" />
 
-      <h1 id="card" class="page-title">Card</h1>
-      <p class="subtitle">Card container with horizontal or vertical layout, optional status, selection, and outline. Use <code>swim-card</code> with <code>swim-card-header</code>, <code>swim-card-footer</code>, <code>swim-card-avatar</code>, and <code>swim-card-placeholder</code>.</p>
+<h1 id="card" class="page-title">Card</h1>
+<p class="subtitle">
+  Card container with horizontal or vertical layout, optional status, selection, and outline. Use
+  <code>swim-card</code> with <code>swim-card-header</code>, <code>swim-card-footer</code>,
+  <code>swim-card-avatar</code>, and <code>swim-card-placeholder</code>.
+</p>
 
-      <section class="section">
-        <swim-section section-title="Horizontal card">
-        <p class="section-desc">Default orientation with header (avatar, title, subtitle) and accent bar.</p>
-        <div class="demo-row demo-row--column">
-          <div class="demo-card-container">
-          <swim-card orientation="horizontal">
-            <swim-card-header>
-              <swim-card-avatar slot="avatar">AB</swim-card-avatar>
-              <span slot="title">Horizontal Card Title</span>
-              <span slot="subtitle">Subtitle or description line</span>
-            </swim-card-header>
-          </swim-card>
-          </div>
-        </div>
-        </swim-section>
-      </section>
+<section class="section">
+  <swim-section section-title="Horizontal card">
+    <p class="section-desc">Default orientation with header (avatar, title, subtitle) and accent bar.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-card-container">
+        <swim-card orientation="horizontal">
+          <swim-card-header>
+            <swim-card-avatar slot="avatar">AB</swim-card-avatar>
+            <span slot="title">Horizontal Card Title</span>
+            <span slot="subtitle">Subtitle or description line</span>
+          </swim-card-header>
+        </swim-card>
+      </div>
+    </div>
+  </swim-section>
+</section>
 
-      <section class="section">
-        <swim-section section-title="Vertical card">
-        <p class="section-desc">Vertical layout with header label and footer.</p>
-        <div class="demo-row demo-row--column">
-          <swim-card orientation="vertical">
-            <swim-card-header orientation="vertical" label="Header label">
-              <swim-card-avatar slot="avatar" src="/assets/swimlane.svg">SW</swim-card-avatar>
-              <span slot="title">Vertical Card</span>
-              <span slot="subtitle">With label and footer</span>
-            </swim-card-header>
-            <swim-card-footer label="Footer label">
-              <swim-button variant="primary" size="small">Action</swim-button>
-            </swim-card-footer>
-          </swim-card>
-        </div>
-        </swim-section>
-      </section>
+<section class="section">
+  <swim-section section-title="Vertical card">
+    <p class="section-desc">Vertical layout with header label and footer.</p>
+    <div class="demo-row demo-row--column">
+      <swim-card orientation="vertical">
+        <swim-card-header orientation="vertical" label="Header label">
+          <swim-card-avatar slot="avatar" src="/assets/swimlane.svg">SW</swim-card-avatar>
+          <span slot="title">Vertical Card</span>
+          <span slot="subtitle">With label and footer</span>
+        </swim-card-header>
+        <swim-card-footer label="Footer label">
+          <swim-button variant="primary" size="small">Action</swim-button>
+        </swim-card-footer>
+      </swim-card>
+    </div>
+  </swim-section>
+</section>
 
-      <section class="section">
-        <swim-section section-title="Status and appearance">
-        <p class="section-desc">Status dot (success/error) and flat appearance.</p>
-        <div class="demo-row demo-row--column">
-          <div class="demo-grid">
-            <div class="demo-item">
-              <div class="demo-label">Status: success</div>
-              <div class="demo-card-container--narrow">
-              <swim-card orientation="horizontal" status="success">
-                <swim-card-header>
-                  <span slot="title">Success status</span>
-                </swim-card-header>
-              </swim-card>
-              </div>
-            </div>
-            <div class="demo-item">
-              <div class="demo-label">Status: error</div>
-              <div class="demo-card-container--narrow">
-              <swim-card orientation="horizontal" status="error">
-                <swim-card-header>
-                  <span slot="title">Error status</span>
-                </swim-card-header>
-              </swim-card>
-              </div>
-            </div>
-          </div>
-          <div class="demo-label demo-label--after">Flat appearance (no background)</div>
+<section class="section">
+  <swim-section section-title="Status and appearance">
+    <p class="section-desc">Status dot (success/error) and flat appearance.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="demo-label">Status: success</div>
           <div class="demo-card-container--narrow">
-          <swim-card orientation="horizontal" appearance="flat">
-            <swim-card-header>
-              <span slot="title">Flat card</span>
-            </swim-card-header>
-          </swim-card>
+            <swim-card orientation="horizontal" status="success">
+              <swim-card-header>
+                <span slot="title">Success status</span>
+              </swim-card-header>
+            </swim-card>
           </div>
         </div>
-        </swim-section>
-      </section>
-
-      <section class="section">
-        <swim-section section-title="Selectable and selected">
-        <p class="section-desc">Card with checkbox; listen to <code>select</code> event for selected state.</p>
-        <div class="demo-row demo-row--column">
-          <div class="demo-card-container">
-          <swim-card id="selectableCardDemo" orientation="horizontal" selectable selected>
-            <swim-card-header>
-              <span slot="title">Selectable card</span>
-              <span slot="subtitle">Checked by default</span>
-            </swim-card-header>
-          </swim-card>
-          </div>
-          <p class="demo-label demo-label--after">Selected: <strong id="cardSelectedValue">true</strong></p>
-        </div>
-        </swim-section>
-      </section>
-
-      <section class="section">
-        <swim-section section-title="Outline text and error">
-        <p class="section-desc">Outline with clickable label; error state.</p>
-        <div class="demo-row demo-row--column">
+        <div class="demo-item">
+          <div class="demo-label">Status: error</div>
           <div class="demo-card-container--narrow">
-          <swim-card id="outlineCardDemo" orientation="horizontal" outline-text="View details">
-            <swim-card-header>
-              <span slot="title">Outline text</span>
-            </swim-card-header>
-          </swim-card>
-          </div>
-          <div class="demo-card-container--narrow demo-card-container--spaced">
-          <swim-card orientation="horizontal" error outline-text="Error">
-            <swim-card-header>
-              <span slot="title">Error outline</span>
-            </swim-card-header>
-          </swim-card>
+            <swim-card orientation="horizontal" status="error">
+              <swim-card-header>
+                <span slot="title">Error status</span>
+              </swim-card-header>
+            </swim-card>
           </div>
         </div>
-        </swim-section>
-      </section>
+      </div>
+      <div class="demo-label demo-label--after">Flat appearance (no background)</div>
+      <div class="demo-card-container--narrow">
+        <swim-card orientation="horizontal" appearance="flat">
+          <swim-card-header>
+            <span slot="title">Flat card</span>
+          </swim-card-header>
+        </swim-card>
+      </div>
+    </div>
+  </swim-section>
+</section>
 
-      <section class="section">
-        <swim-section section-title="Placeholders">
-        <p class="section-desc">Skeleton placeholders (small, medium, large).</p>
-        <div class="demo-row demo-row--column">
-          <div class="demo-grid">
-            <swim-card-placeholder size="small"></swim-card-placeholder>
-            <swim-card-placeholder size="medium"></swim-card-placeholder>
-            <swim-card-placeholder size="large"></swim-card-placeholder>
-          </div>
-        </div>
-        </swim-section>
-      </section>
+<section class="section">
+  <swim-section section-title="Selectable and selected">
+    <p class="section-desc">Card with checkbox; listen to <code>select</code> event for selected state.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-card-container">
+        <swim-card id="selectableCardDemo" orientation="horizontal" selectable selected>
+          <swim-card-header>
+            <span slot="title">Selectable card</span>
+            <span slot="subtitle">Checked by default</span>
+          </swim-card-header>
+        </swim-card>
+      </div>
+      <p class="demo-label demo-label--after">Selected: <strong id="cardSelectedValue">true</strong></p>
+    </div>
+  </swim-section>
+</section>
 
-      <section class="section">
-        <swim-section section-title="Card usage">
-        <p class="section-desc">Import and use the card components:</p>
-        <pre class="demo-pre"><code>&lt;script type="module"&gt;
+<section class="section">
+  <swim-section section-title="Outline text and error">
+    <p class="section-desc">Outline with clickable label; error state.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-card-container--narrow">
+        <swim-card id="outlineCardDemo" orientation="horizontal" outline-text="View details">
+          <swim-card-header>
+            <span slot="title">Outline text</span>
+          </swim-card-header>
+        </swim-card>
+      </div>
+      <div class="demo-card-container--narrow demo-card-container--spaced">
+        <swim-card orientation="horizontal" error outline-text="Error">
+          <swim-card-header>
+            <span slot="title">Error outline</span>
+          </swim-card-header>
+        </swim-card>
+      </div>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Placeholders">
+    <p class="section-desc">Skeleton placeholders (small, medium, large).</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-grid">
+        <swim-card-placeholder size="small"></swim-card-placeholder>
+        <swim-card-placeholder size="medium"></swim-card-placeholder>
+        <swim-card-placeholder size="large"></swim-card-placeholder>
+      </div>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Card usage">
+    <p class="section-desc">Import and use the card components:</p>
+    <pre class="demo-pre"><code>&lt;script type="module"&gt;
   import '@swimlane/lit-ui/card';
 &lt;/script&gt;
 
@@ -142,5 +146,5 @@
     &lt;span slot="subtitle"&gt;Subtitle&lt;/span&gt;
   &lt;/swim-card-header&gt;
 &lt;/swim-card&gt;</code></pre>
-        </swim-section>
-      </section>
+  </swim-section>
+</section>

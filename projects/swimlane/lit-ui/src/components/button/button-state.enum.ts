@@ -7,4 +7,3 @@ export enum ButtonState {
   Success = 'success',
   Fail = 'fail'
 }
-

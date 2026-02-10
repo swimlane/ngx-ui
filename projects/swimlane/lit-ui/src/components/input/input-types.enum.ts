@@ -10,4 +10,3 @@ export enum InputTypes {
   url = 'url',
   textarea = 'textarea'
 }
-

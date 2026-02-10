@@ -18,4 +18,3 @@ export function coerceNumberProperty<D>(value: any, fallback: D): number | D;
 export function coerceNumberProperty(value: any, fallbackValue: number | null = null): number | null {
   return isNaN(parseFloat(value as any)) || isNaN(Number(value)) ? fallbackValue : Number(value);
 }
-

@@ -27,8 +27,7 @@ export const typography = {
   fontWeightLight: '300',
   fontWeightRegular: '400',
   fontWeightSemibold: '600',
-  fontWeightBold: '700',
+  fontWeightBold: '700'
 } as const;
 
 export type TypographyToken = keyof typeof typography;
-

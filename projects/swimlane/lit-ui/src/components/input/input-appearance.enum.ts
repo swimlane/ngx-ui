@@ -5,4 +5,3 @@ export enum InputAppearance {
   legacy = 'legacy',
   fill = 'fill'
 }
-
