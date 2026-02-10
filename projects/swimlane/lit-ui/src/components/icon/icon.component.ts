@@ -35,8 +35,17 @@ export class SwimIcon extends LitElement {
   @property({ type: String, attribute: 'font-set' })
   fontSet = 'ngx';
 
+  /**
+   * Optional CSS class(es) applied to the host and to the actual icon element (the inner <i> or icon part).
+   * Reflected to the host so selectors like .scrollbars-demo-icon work; inherited styles (e.g. font-size) apply to the icon.
+   */
+  @property({ type: String, attribute: 'icon-class' })
+  iconClass = '';
+
   @state()
   private _cssClasses: string[] = [];
+
+  private _iconClassTokensOnHost: string[] = [];
 
   connectedCallback(): void {
     super.connectedCallback();
@@ -48,6 +57,16 @@ export class SwimIcon extends LitElement {
     if (changedProperties.has('fontIcon') || changedProperties.has('fontSet')) {
       this._updateFontIcon();
     }
+    if (changedProperties.has('iconClass')) {
+      this._syncIconClassToHost();
+    }
+  }
+
+  private _syncIconClassToHost(): void {
+    const tokens = (this.iconClass?.trim() ?? '').split(/\s+/).filter(Boolean);
+    this._iconClassTokensOnHost.forEach(c => this.classList.remove(c));
+    tokens.forEach(c => this.classList.add(c));
+    this._iconClassTokensOnHost = tokens;
   }
 
   private _parseFontIcon(value: string | string[]): string[] {
@@ -78,9 +97,14 @@ export class SwimIcon extends LitElement {
     const classes = this._cssClasses;
     const hasAlt = Boolean(this.alt);
 
+    const iconClass = this.iconClass?.trim() ?? '';
+    const iconClassAttr = iconClass ? ` ${iconClass}` : '';
+
     if (!classes || classes.length === 0) {
       return html`
         <span
+          part="icon"
+          class="${iconClass}"
           role="${hasAlt ? 'img' : 'presentation'}"
           aria-label="${hasAlt ? this.alt : nothing}"
           aria-hidden="${hasAlt ? 'false' : 'true'}"
@@ -94,7 +118,7 @@ export class SwimIcon extends LitElement {
       return html`
         <i
           part="icon"
-          class="swim-icon__i ${classes[0]}"
+          class="swim-icon__i ${classes[0]}${iconClassAttr}"
           role="${hasAlt ? 'img' : 'presentation'}"
           aria-label="${hasAlt ? this.alt : nothing}"
           aria-hidden="${hasAlt ? 'false' : 'true'}"
@@ -109,7 +133,9 @@ export class SwimIcon extends LitElement {
         aria-label="${hasAlt ? this.alt : nothing}"
         aria-hidden="${hasAlt ? 'false' : 'true'}"
       >
-        ${classes.map((c, i) => html`<i part="icon icon-${i}" class="swim-icon__i swim-icon__i--${i} ${c}"></i>`)}
+        ${classes.map(
+          (c, i) => html`<i part="icon icon-${i}" class="swim-icon__i swim-icon__i--${i} ${c}${iconClassAttr}"></i>`
+        )}
       </span>
     `;
   }

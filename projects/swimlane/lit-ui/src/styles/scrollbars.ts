@@ -1,18 +1,28 @@
 import { css } from 'lit';
 
 /**
- * Scrollbar utility styles matching @swimlane/ngx-ui scrollbars.
- * Apply to scrollable elements (with overflow: auto) or to body for global scrollbars.
- * Uses explicit rgba values (grey-550: 80,92,117; grey-800: 28,32,41) so colors apply
- * in WebKit scrollbar pseudo-elements, which often do not inherit CSS variables.
+ * Scrollbar utility styles matching @swimlane/ngx-ui scrollbars (see ngx-ui
+ * src/lib/styles/components/scrollbars.scss). Apply to scrollable elements
+ * (overflow: auto) or to body for global scrollbars.
+ *
+ * Uses design-token CSS variables (--grey-550, --grey-550-rgb) so colors stay
+ * consistent with the rest of lit-ui and can be themed. Ensure :root or the
+ * scroll container has those tokens (e.g. from baseStyles or your app's theme).
+ * Fallbacks are provided for when variables are not set. (Some browsers do not
+ * resolve variables on scrollbar pseudo-elements; the fallbacks ensure colors
+ * still apply.)
  */
 export const scrollbarStyles = css`
-  .swim-scroll,
-  .swim-scroll-overlay,
-  .swim-scroll-muted,
-  .swim-scroll * {
-    scrollbar-width: thin;
-    scrollbar-color: rgb(80, 92, 117) rgba(28, 32, 41, 0.6);
+  /* Only set standard scrollbar props in browsers that don't support -webkit-scrollbar.
+   * Chrome 121+ disables ::-webkit-scrollbar (and thumb :hover) when scrollbar-color/width are set. */
+  @supports not selector(::-webkit-scrollbar) {
+    .swim-scroll,
+    .swim-scroll-overlay,
+    .swim-scroll-muted,
+    .swim-scroll * {
+      scrollbar-width: thin;
+      scrollbar-color: rgb(80, 92, 117) transparent;
+    }
   }
 
   /* Base: make element scrollable so scrollbar styling applies (matches overlay/muted) */
@@ -29,12 +39,12 @@ export const scrollbarStyles = css`
     height: 13px;
   }
 
-  /* Use explicit colors; scrollbar pseudo-elements often don't inherit CSS variables */
+  /* Track: transparent (matches ngx-ui scrollbars.scss) */
   .swim-scroll::-webkit-scrollbar-track,
   .swim-scroll-overlay::-webkit-scrollbar-track,
   .swim-scroll-muted::-webkit-scrollbar-track,
   .swim-scroll *::-webkit-scrollbar-track {
-    background-color: rgba(28, 32, 41, 0.6);
+    background-color: transparent;
     border-radius: 10px;
     margin: 0;
   }
@@ -74,7 +84,8 @@ export const scrollbarStyles = css`
     display: none;
   }
 
-  /* Default & overlay: thumb 50% opacity, 100% on hover (explicit grey-550: 80,92,117) */
+  /* Default & overlay: thumb 50% opacity (rest), full opacity on hover (matches ngx-ui). */
+  /* Use literal rgba for default so scrollbar pseudo-elements always get a distinct rest state. */
   .swim-scroll::-webkit-scrollbar-thumb,
   .swim-scroll *::-webkit-scrollbar-thumb,
   .swim-scroll-overlay::-webkit-scrollbar-thumb {
@@ -84,7 +95,7 @@ export const scrollbarStyles = css`
   .swim-scroll::-webkit-scrollbar-thumb:hover,
   .swim-scroll *::-webkit-scrollbar-thumb:hover,
   .swim-scroll-overlay::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(80, 92, 117, 1);
+    background-color: rgb(80, 92, 117);
   }
 
   /* Overlay: scrollbars hidden until hover */
@@ -102,7 +113,7 @@ export const scrollbarStyles = css`
     display: initial;
   }
 
-  /* Muted: thumb 30% → 50% on container hover → 100% on thumb hover */
+  /* Muted: thumb 30% → 50% on container hover → 100% on thumb hover (matches ngx-ui). Literal rgba for reliability. */
   .swim-scroll-muted {
     overflow: auto;
     overflow: overlay;
@@ -117,6 +128,6 @@ export const scrollbarStyles = css`
   }
 
   .swim-scroll-muted:hover::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(80, 92, 117, 1);
+    background-color: rgb(80, 92, 117);
   }
 `;
