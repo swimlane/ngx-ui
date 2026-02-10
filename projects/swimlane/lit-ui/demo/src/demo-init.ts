@@ -28,6 +28,7 @@ const SECTION_FILES = [
   'progress-spinner',
   'section',
   'split',
+  'navbar',
   'tooltip',
   'scrollbars',
   'icons'
@@ -470,6 +471,13 @@ function setupDemos(): void {
   }
 
   setupIconsDemo();
+
+  // Navbar demo: programmatic goTo
+  const navbarGoToFourthBtn = document.getElementById('navbarGoToFourthBtn');
+  const navbarTopDemo = document.getElementById('navbarTopDemo');
+  if (navbarGoToFourthBtn && navbarTopDemo && 'goTo' in navbarTopDemo) {
+    navbarGoToFourthBtn.addEventListener('click', () => (navbarTopDemo as { goTo(index: number): void }).goTo(3));
+  }
 
   // Select form demo
   const selectForm = document.getElementById('selectForm');
