@@ -145,6 +145,8 @@ export const baseStyles = css`
     --radius-4: 4px;
     --radius-6: 6px;
     --radius-8: 8px;
+    --radius-16: 16px;
+    --radius-64: 64px;
 
     /* Semantic colors */
     --color-error: var(--red-500);
@@ -152,6 +154,7 @@ export const baseStyles = css`
     /* Shadows */
     --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
     --shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    --shadow-3: 0 1px 8px 0 rgba(0, 0, 0, 0.2), 0 3px 4px 0 rgba(0, 0, 0, 0.14), 0 3px 3px -2px rgba(0, 0, 0, 0.12);
   }
 `;
 

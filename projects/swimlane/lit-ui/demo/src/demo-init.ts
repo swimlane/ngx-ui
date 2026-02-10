@@ -73,6 +73,7 @@ const SECTION_FILES = [
   'navbar',
   'tooltip',
   'list',
+  'dialog',
   'scrollbars',
   'icons'
 ];
@@ -591,6 +592,118 @@ function setupDemos(): void {
 
   setupIconsDemo();
   setupListDemos();
+
+  // Dialog demos
+  const dialogContentOpen = document.getElementById('dialogContentOpen');
+  const dialogContentDemo = document.getElementById('dialogContentDemo') as any;
+  if (dialogContentOpen && dialogContentDemo) {
+    dialogContentOpen.addEventListener('click', () => {
+      dialogContentDemo.visible = true;
+    });
+    dialogContentDemo.addEventListener('close', () => {
+      dialogContentDemo.visible = false;
+    });
+  }
+
+  const dialogComponentToggle = document.getElementById('dialogComponentToggle');
+  const dialogComponentDemo = document.getElementById('dialogComponentDemo') as any;
+  if (dialogComponentToggle && dialogComponentDemo) {
+    dialogComponentToggle.addEventListener('click', () => {
+      dialogComponentDemo.visible = !dialogComponentDemo.visible;
+    });
+    dialogComponentDemo.addEventListener('close', () => {
+      dialogComponentDemo.visible = false;
+    });
+  }
+
+  const dialogWizardOpen = document.getElementById('dialogWizardOpen');
+  const dialogWizardDemo = document.getElementById('dialogWizardDemo') as any;
+  if (dialogWizardOpen && dialogWizardDemo) {
+    dialogWizardOpen.addEventListener('click', () => {
+      dialogWizardDemo.visible = true;
+    });
+    dialogWizardDemo.addEventListener('close', () => {
+      dialogWizardDemo.visible = false;
+    });
+  }
+  const dialogWizardTabs = document.getElementById('dialogWizardTabs') as {
+    prev?: () => void;
+    next?: () => void;
+  } | null;
+  const dialogWizardPrev = document.getElementById('dialogWizardPrev');
+  const dialogWizardNext = document.getElementById('dialogWizardNext');
+  if (dialogWizardPrev && dialogWizardTabs?.prev) {
+    dialogWizardPrev.addEventListener('click', () => dialogWizardTabs.prev!());
+  }
+  if (dialogWizardNext && dialogWizardTabs?.next) {
+    dialogWizardNext.addEventListener('click', () => dialogWizardTabs.next!());
+  }
+
+  const dialogFullScreenOpen = document.getElementById('dialogFullScreenOpen');
+  const dialogFullScreenDemo = document.getElementById('dialogFullScreenDemo') as any;
+  if (dialogFullScreenOpen && dialogFullScreenDemo) {
+    dialogFullScreenOpen.addEventListener('click', () => {
+      dialogFullScreenDemo.visible = true;
+    });
+    dialogFullScreenDemo.addEventListener('close', () => {
+      dialogFullScreenDemo.visible = false;
+    });
+  }
+
+  const dialogLargeFormatOpen = document.getElementById('dialogLargeFormatOpen');
+  const dialogLargeFormatDemo = document.getElementById('dialogLargeFormatDemo') as any;
+  if (dialogLargeFormatOpen && dialogLargeFormatDemo) {
+    dialogLargeFormatOpen.addEventListener('click', () => {
+      dialogLargeFormatDemo.visible = true;
+    });
+    dialogLargeFormatDemo.addEventListener('close-or-cancel', () => {
+      dialogLargeFormatDemo.visible = false;
+    });
+  }
+
+  const dialogMediumFormatOpen = document.getElementById('dialogMediumFormatOpen');
+  const dialogMediumFormatDemo = document.getElementById('dialogMediumFormatDemo') as any;
+  if (dialogMediumFormatOpen && dialogMediumFormatDemo) {
+    dialogMediumFormatOpen.addEventListener('click', () => {
+      dialogMediumFormatDemo.visible = true;
+    });
+    dialogMediumFormatDemo.addEventListener('close-or-cancel', () => {
+      dialogMediumFormatDemo.visible = false;
+    });
+  }
+
+  const dialogMediumContentOpen = document.getElementById('dialogMediumContentOpen');
+  const dialogMediumContentDemo = document.getElementById('dialogMediumContentDemo') as any;
+  if (dialogMediumContentOpen && dialogMediumContentDemo) {
+    dialogMediumContentOpen.addEventListener('click', () => {
+      dialogMediumContentDemo.visible = true;
+    });
+    dialogMediumContentDemo.addEventListener('close-or-cancel', () => {
+      dialogMediumContentDemo.visible = false;
+    });
+  }
+
+  const dialogMediumFooterOpen = document.getElementById('dialogMediumFooterOpen');
+  const dialogMediumFooterDemo = document.getElementById('dialogMediumFooterDemo') as any;
+  if (dialogMediumFooterOpen && dialogMediumFooterDemo) {
+    dialogMediumFooterOpen.addEventListener('click', () => {
+      dialogMediumFooterDemo.visible = true;
+    });
+    dialogMediumFooterDemo.addEventListener('close-or-cancel', () => {
+      dialogMediumFooterDemo.visible = false;
+    });
+  }
+
+  const dialogMediumFooterContentOpen = document.getElementById('dialogMediumFooterContentOpen');
+  const dialogMediumFooterContentDemo = document.getElementById('dialogMediumFooterContentDemo') as any;
+  if (dialogMediumFooterContentOpen && dialogMediumFooterContentDemo) {
+    dialogMediumFooterContentOpen.addEventListener('click', () => {
+      dialogMediumFooterContentDemo.visible = true;
+    });
+    dialogMediumFooterContentDemo.addEventListener('close-or-cancel', () => {
+      dialogMediumFooterContentDemo.visible = false;
+    });
+  }
 
   // Navbar demo: programmatic goTo
   const navbarGoToFourthBtn = document.getElementById('navbarGoToFourthBtn');

@@ -122,6 +122,16 @@ export class SwimTabs extends LitElement {
     }
   }
 
+  /** Go to the previous tab. */
+  prev(): void {
+    this._move(-1);
+  }
+
+  /** Go to the next tab. */
+  next(): void {
+    this._move(1);
+  }
+
   private _handleKeyDown(e: KeyboardEvent) {
     const isVertical = this.vertical;
     const key = e.key;

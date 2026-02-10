@@ -34,6 +34,9 @@ import '../../src/components/tooltip/tooltip.component';
 import '../../src/components/navbar/navbar.component';
 import '../../src/components/navbar/navbar-item.component';
 import '../../src/components/list/list.component';
+import '../../src/components/dialog/dialog.component';
+import '../../src/components/dialog/large-format-dialog-content/large-format-dialog-content.component';
+import '../../src/components/dialog/large-format-dialog-footer/large-format-dialog-footer.component';
 import { scrollbarStyles } from '../../src/styles';
 
 import { initDemos } from './demo-init';

@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@swimlane/lit-ui Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="assets/ngx-icons.css" />
     <style>
       :root {
@@ -57,6 +60,8 @@
         --white: rgb(255, 255, 255);
         --black: rgb(0, 0, 0);
 
+        /* Typography – align with ngx-ui global.scss and typography/font.scss */
+        --font-family: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
         --font-size-base: 16px;
         --font-size-xs: 0.75rem;
         --font-size-s: 0.8125rem;
@@ -64,6 +69,7 @@
         --font-size-xl: 1.25rem;
         --font-weight-bold: 700;
         --font-weight-semibold: 600;
+        --font-line-height: 1.4;
         --font-line-height-400: 40px;
 
         --spacing-0: 0;
@@ -87,13 +93,20 @@
         box-sizing: border-box;
       }
 
+      html,
+      body {
+        font-family: var(--font-family);
+        font-size: var(--font-size-base);
+        line-height: var(--font-line-height);
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
       body {
         margin: 0;
         padding: 0;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         background: var(--grey-900);
         color: var(--grey-050);
-        line-height: 1.6;
       }
 
       /* App layout: sidebar + main (align with Angular demo) */
@@ -589,6 +602,7 @@
               <li><a class="sub-nav-item" href="#navbar">Navbar</a></li>
               <li><a class="sub-nav-item" href="#tooltip">Tooltip</a></li>
               <li><a class="sub-nav-item" href="#list">List</a></li>
+              <li><a class="sub-nav-item" href="#dialog">Dialog</a></li>
               <li><a class="sub-nav-item" href="#scrollbars">Scrollbars</a></li>
             </ul>
           </li>
