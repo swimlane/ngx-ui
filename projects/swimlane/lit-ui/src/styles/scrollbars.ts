@@ -3,7 +3,8 @@ import { css } from 'lit';
 /**
  * Scrollbar utility styles matching @swimlane/ngx-ui scrollbars.
  * Apply to scrollable elements (with overflow: auto) or to body for global scrollbars.
- * Uses design tokens (--grey-550, --grey-550-rgb) only.
+ * Uses explicit rgba values (grey-550: 80,92,117; grey-800: 28,32,41) so colors apply
+ * in WebKit scrollbar pseudo-elements, which often do not inherit CSS variables.
  */
 export const scrollbarStyles = css`
   .swim-scroll,
@@ -11,6 +12,13 @@ export const scrollbarStyles = css`
   .swim-scroll-muted,
   .swim-scroll * {
     scrollbar-width: thin;
+    scrollbar-color: rgb(80, 92, 117) rgba(28, 32, 41, 0.6);
+  }
+
+  /* Base: make element scrollable so scrollbar styling applies (matches overlay/muted) */
+  .swim-scroll {
+    overflow: auto;
+    overflow: overlay;
   }
 
   .swim-scroll::-webkit-scrollbar,
@@ -21,11 +29,12 @@ export const scrollbarStyles = css`
     height: 13px;
   }
 
+  /* Use explicit colors; scrollbar pseudo-elements often don't inherit CSS variables */
   .swim-scroll::-webkit-scrollbar-track,
   .swim-scroll-overlay::-webkit-scrollbar-track,
   .swim-scroll-muted::-webkit-scrollbar-track,
   .swim-scroll *::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: rgba(28, 32, 41, 0.6);
     border-radius: 10px;
     margin: 0;
   }
@@ -65,17 +74,17 @@ export const scrollbarStyles = css`
     display: none;
   }
 
-  /* Default & overlay: thumb 50% opacity, 100% on hover */
+  /* Default & overlay: thumb 50% opacity, 100% on hover (explicit grey-550: 80,92,117) */
   .swim-scroll::-webkit-scrollbar-thumb,
   .swim-scroll *::-webkit-scrollbar-thumb,
   .swim-scroll-overlay::-webkit-scrollbar-thumb {
-    background-color: rgba(var(--grey-550-rgb, 80, 92, 117), 0.5);
+    background-color: rgba(80, 92, 117, 0.5);
   }
 
   .swim-scroll::-webkit-scrollbar-thumb:hover,
   .swim-scroll *::-webkit-scrollbar-thumb:hover,
   .swim-scroll-overlay::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(var(--grey-550-rgb, 80, 92, 117), 1);
+    background-color: rgba(80, 92, 117, 1);
   }
 
   /* Overlay: scrollbars hidden until hover */
@@ -90,7 +99,7 @@ export const scrollbarStyles = css`
   }
 
   .swim-scroll-overlay:hover::-webkit-scrollbar {
-    display: block;
+    display: initial;
   }
 
   /* Muted: thumb 30% → 50% on container hover → 100% on thumb hover */
@@ -100,14 +109,14 @@ export const scrollbarStyles = css`
   }
 
   .swim-scroll-muted::-webkit-scrollbar-thumb {
-    background-color: rgba(var(--grey-550-rgb, 80, 92, 117), 0.3);
+    background-color: rgba(80, 92, 117, 0.3);
   }
 
   .swim-scroll-muted:hover::-webkit-scrollbar-thumb {
-    background-color: rgba(var(--grey-550-rgb, 80, 92, 117), 0.5);
+    background-color: rgba(80, 92, 117, 0.5);
   }
 
   .swim-scroll-muted:hover::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(var(--grey-550-rgb, 80, 92, 117), 1);
+    background-color: rgba(80, 92, 117, 1);
   }
 `;

@@ -16,7 +16,6 @@ export * from './components/select';
 export * from './components/slider';
 export * from './components/split';
 export * from './components/progress-spinner';
-export * from './components/scrollbars';
 export * from './components/tabs';
 export * from './components/toggle';
 export * from './components/tooltip';

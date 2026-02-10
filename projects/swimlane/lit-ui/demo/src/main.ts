@@ -31,9 +31,16 @@ import '../../src/components/split/split-handle.component';
 import '../../src/components/split/split.component';
 import '../../src/components/progress-spinner/progress-spinner.component';
 import '../../src/components/tooltip/tooltip.component';
+import { scrollbarStyles } from '../../src/styles';
 
 import { initDemos } from './demo-init';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Inject scrollbar utility styles globally so .main.swim-scroll and section demos work
+  const sheet = (scrollbarStyles as { styleSheet?: CSSStyleSheet }).styleSheet;
+  if (sheet) {
+    document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet];
+  }
+
   initDemos();
 });
