@@ -1,18 +1,17 @@
 import { LitElement, html, nothing } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import { unsafeSVG } from 'lit/directives/unsafe-svg.js';
 import { baseStyles } from '../../styles/base';
 import { iconStyles } from './icon.styles';
 import { iconRegistry } from '../../utils/icon-registry';
 
 /**
  * SwimIcon - Icon component matching @swimlane/ngx-ui design system.
- * Supports font icons (via fontIcon + fontSet), inline SVG (via svgSrc), or slotted content.
+ * Uses swim/ngx font icons only (via fontIcon + fontSet) or slotted content (e.g. another swim-icon).
  * The host app must load the ngx-icon font CSS and woff when using fontIcon.
  *
- * @slot - Default content when no fontIcon or svgSrc (e.g. custom SVG or image)
+ * @slot - Default content when no fontIcon (e.g. slotted swim-icon or image)
  *
- * @csspart icon - The icon element (i or span for font, wrapper for SVG)
+ * @csspart icon - The icon element (i or span)
  */
 @customElement('swim-icon')
 export class SwimIcon extends LitElement {
@@ -31,37 +30,13 @@ export class SwimIcon extends LitElement {
   alt = '';
 
   /**
-   * Base path for SVG loading when using svgSrc.
-   */
-  @property({ type: String, attribute: 'default-path' })
-  defaultPath = 'assets/svgs';
-
-  /**
    * Icon set name for font icons (e.g. "ngx"). Used to expand keys like "arrow-left" to "ngx:arrow-left".
    */
   @property({ type: String, attribute: 'font-set' })
   fontSet = 'ngx';
 
-  /**
-   * SVG filename (without .svg) to load from defaultPath and render inline.
-   */
-  @property({ type: String, attribute: 'svg-src' })
-  get svgSrc(): string {
-    return this._svgSrc;
-  }
-  set svgSrc(val: string) {
-    if (this._svgSrc !== val) {
-      this._svgSrc = val ?? '';
-      this._loadSvg(this._svgSrc);
-    }
-  }
-  private _svgSrc = '';
-
   @state()
   private _cssClasses: string[] = [];
-
-  @state()
-  private _svgContent = '';
 
   connectedCallback(): void {
     super.connectedCallback();
@@ -99,44 +74,7 @@ export class SwimIcon extends LitElement {
     this._cssClasses = iconRegistry.get(names, this.fontSet);
   }
 
-  private async _loadSvg(val: string): Promise<void> {
-    if (!val) {
-      this._svgContent = '';
-      return;
-    }
-    const url = `${this.defaultPath}/${val}.svg`;
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const text = await res.text();
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(text, 'image/svg+xml');
-      const svgEl = doc.documentElement;
-      if (svgEl && svgEl.tagName === 'svg') {
-        this._svgContent = svgEl.outerHTML;
-      } else {
-        this._svgContent = '';
-      }
-    } catch (err) {
-      console.error('[swim-icon] Failed to load SVG:', url, err);
-      this._svgContent = '';
-    }
-  }
-
   render() {
-    if (this._svgContent) {
-      return html`
-        <span
-          class="swim-icon__svg"
-          role="${this.alt ? 'img' : 'presentation'}"
-          aria-label="${this.alt || nothing}"
-          aria-hidden="${this.alt ? 'false' : 'true'}"
-        >
-          ${unsafeSVG(this._svgContent)}
-        </span>
-      `;
-    }
-
     const classes = this._cssClasses;
     const hasAlt = Boolean(this.alt);
 

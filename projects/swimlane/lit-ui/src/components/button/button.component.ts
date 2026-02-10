@@ -4,14 +4,15 @@ import { baseStyles } from '../../styles/base';
 import { buttonStyles } from './button.styles';
 import { ButtonState } from './button-state.enum';
 import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import '../icon/icon.component';
 
 /**
  * SwimButton - A button component matching @swimlane/ngx-ui design system
- * 
+ *
  * @slot - Button content
- * 
+ *
  * @fires click - Native click event (when not disabled or in progress)
- * 
+ *
  * @csspart button - The native button element
  */
 @customElement('swim-button')
@@ -109,31 +110,24 @@ export class SwimButton extends LitElement {
 
   render() {
     return html`
-      <button
-        part="button"
-        type="${this.type}"
-        ?disabled="${this.disabled}"
-        @click="${this._handleClick}"
-      >
+      <button part="button" type="${this.type}" ?disabled="${this.disabled}" @click="${this._handleClick}">
         <span class="content">
           <slot></slot>
         </span>
-        <span class="state-icon">
-          ${this._renderStateIcon()}
-        </span>
+        <span class="state-icon"> ${this._renderStateIcon()} </span>
       </button>
     `;
   }
 
   private _renderStateIcon() {
     if (this._inProgress) {
-      return html`<span class="icon icon-spinner"></span>`;
+      return html`<swim-icon class="state-icon" font-icon="loading"></swim-icon>`;
     }
     if (this._success) {
-      return html`<span class="icon icon-check"></span>`;
+      return html`<swim-icon class="state-icon" font-icon="check"></swim-icon>`;
     }
     if (this._fail) {
-      return html`<span class="icon icon-x"></span>`;
+      return html`<swim-icon class="state-icon" font-icon="x"></swim-icon>`;
     }
     return nothing;
   }
@@ -203,4 +197,3 @@ declare global {
     'swim-button': SwimButton;
   }
 }
-

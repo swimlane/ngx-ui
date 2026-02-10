@@ -28,9 +28,10 @@ export const sectionStyles = css`
     align-items: center;
     width: 100%;
     min-width: 0;
-    height: 44px;
-    line-height: var(--font-line-height-400);
-    padding: var(--spacing-0) var(--spacing-10);
+    min-height: 44px;
+    height: auto;
+    line-height: 1.25;
+    padding: var(--spacing-8) var(--spacing-10);
     color: var(--grey-100);
     position: relative;
     border-radius: var(--radius-8) var(--radius-8) var(--radius-0) var(--radius-0);
@@ -48,20 +49,44 @@ export const sectionStyles = css`
     gap: var(--spacing-16);
   }
 
+  /* When toggle is shown (left), reserve space so title isn’t cut off */
+  .swim-section__header--collapsible:not(.swim-section__header--toggle-right) .swim-section__header-content {
+    padding-left: 28px;
+  }
+
   .swim-section__header-content slot {
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex: 1;
     min-width: 0;
+    gap: var(--spacing-16);
   }
 
+  /* Custom header (e.g. swim-section-header): full-width row so title and link sit at start/end */
+  .swim-section__header-content ::slotted(swim-section-header) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    min-width: 0;
+    gap: var(--spacing-16);
+  }
+
+  /* Slotted headings match section title: same size/weight, no extra margin */
   .swim-section__header-content ::slotted(h1),
   .swim-section__header-content ::slotted(h2),
   .swim-section__header-content ::slotted(h3),
   .swim-section__header-content ::slotted(h4) {
     margin: 0;
     padding: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.25;
+  }
+
+  .swim-section__header-content ::slotted(a) {
+    flex-shrink: 0;
   }
 
   .swim-section__header.swim-section__header--collapsed {
@@ -69,32 +94,42 @@ export const sectionStyles = css`
   }
 
   .swim-section__toggle {
-    font-size: 8px;
-    vertical-align: top;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 28px;
+    height: 100%;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    line-height: var(--font-line-height-400);
-    position: absolute;
+    margin: 0;
+    padding: 0;
     background: none;
     border: none;
     box-shadow: none;
-    padding: var(--spacing-0) var(--spacing-10);
-    left: 5px;
-    height: 100%;
     cursor: pointer;
     color: var(--grey-100);
+    overflow: hidden; /* avoid chevron glyph artifacts */
   }
 
   .swim-section__toggle:focus-visible {
     outline: 2px solid var(--blue-200);
+    outline-offset: -2px;
     border-radius: var(--radius-2);
-    outline-offset: 1px;
+    z-index: 1;
   }
 
   .swim-section__toggle-icon {
-    font-size: 1rem;
+    font-size: 0.75rem;
     line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .swim-section__toggle swim-icon {
+    display: block;
+    font-size: 0.75rem;
   }
 
   .swim-section__header a {
@@ -112,16 +147,18 @@ export const sectionStyles = css`
   }
 
   .swim-section__header-title {
-    font-size: 1.1em;
-    font-weight: var(--font-weight-semibold);
-    line-height: var(--font-line-height-400);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.25;
     padding: var(--spacing-0);
     margin: var(--spacing-0);
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
   }
 
-  .swim-section__header.swim-section__header--collapsible {
-    padding: var(--spacing-0) var(--spacing-20) var(--spacing-0) 35px;
+  .swim-section__header.swim-section__header--collapsible:not(.swim-section__header--toggle-right) {
+    padding-left: 0; /* space for toggle is from header-content padding-left */
   }
 
   .swim-section__header.swim-section__header--header-toggle {
@@ -139,7 +176,9 @@ export const sectionStyles = css`
   }
 
   .swim-section__header.swim-section__header--toggle-right .swim-section__toggle {
-    left: calc(100% - 30px);
+    left: auto;
+    right: 0;
+    width: 28px;
   }
 
   .swim-section__header--empty {

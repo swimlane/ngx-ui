@@ -4,6 +4,7 @@ import { sectionComponentStyles } from './section.styles';
 import { SectionAppearance } from './section-appearance.enum';
 import { TogglePosition } from './section-toggle-position.enum';
 import { coerceBooleanProperty } from '../../utils/coerce';
+import '../icon/icon.component';
 
 /** Converter so attribute "false" is respected (Lit's default Boolean ignores attribute value). */
 const booleanAttrConverter = {
@@ -225,13 +226,11 @@ export class SwimSection extends LitElement {
                     }
                   }}"
                 >
-                  ${customElements.get('swim-icon')
-                    ? html`<swim-icon
-                        font-icon="${this.sectionCollapsed ? 'chevron-bold-right' : 'chevron-bold-down'}"
-                      ></swim-icon>`
-                    : html`<span class="swim-section__toggle-icon" aria-hidden="true"
-                        >${this.sectionCollapsed ? '›' : '∨'}</span
-                      >`}
+                  <swim-icon
+                    class="swim-section__toggle-icon"
+                    font-icon="${this.sectionCollapsed ? 'chevron-bold-right' : 'chevron-bold-down'}"
+                    aria-hidden="true"
+                  ></swim-icon>
                 </button>
               `
             : nothing}

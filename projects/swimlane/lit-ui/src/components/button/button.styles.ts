@@ -252,18 +252,9 @@ export const buttonStyles = css`
     animation: spin 1s linear infinite;
   }
 
-  /* Simple icon representations using Unicode */
-  .icon-spinner::before {
-    content: '◌';
+  /* State icons (swim-icon): loading spinner animation */
+  .state-icon[font-icon='loading'] {
     display: inline-block;
     animation: spin 1s linear infinite;
-  }
-
-  .icon-check::before {
-    content: '✓';
-  }
-
-  .icon-x::before {
-    content: '✕';
   }
 `;

@@ -376,17 +376,10 @@ export const selectStyles = css`
     left: 0;
   }
 
-  /* Icon styles */
-  .icon-chevron-down::before {
-    content: '▼';
-  }
-
-  .icon-x::before {
-    content: '✕';
+  /* swim-icon in clear and caret buttons */
+  .select-clear swim-icon,
+  .select-caret swim-icon {
+    display: block;
+    font-size: inherit;
   }
 `;
-
-
-
-
-

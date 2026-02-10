@@ -71,7 +71,6 @@
         --font-weight-bold: 700;
         --font-weight-semibold: 600;
 
-
         --radius-2: 2px;
         --radius-4: 4px;
 
@@ -614,10 +613,14 @@
         gap: 0;
       }
       @media (max-width: 1200px) {
-        .icons-preview { grid-template-columns: repeat(4, 1fr); }
+        .icons-preview {
+          grid-template-columns: repeat(4, 1fr);
+        }
       }
       @media (max-width: 768px) {
-        .icons-preview { grid-template-columns: repeat(3, 1fr); }
+        .icons-preview {
+          grid-template-columns: repeat(3, 1fr);
+        }
       }
       .icons-preview li {
         height: 150px;
@@ -776,12 +779,12 @@
       <div class="main swim-scroll">
         <header class="main-toolbar">
           <span>Lit Component Library v1.0.0</span>
-          <span style="margin: 0 0.5rem;">|</span>
+          <span style="margin: 0 0.5rem">|</span>
           <a href="https://github.com/swimlane/ngx-ui" target="_blank" rel="noopener">Github</a>
         </header>
         <div class="page">
           <div class="container">
-      <div id="page-sections"></div>
+            <div id="page-sections"></div>
           </div>
         </div>
       </div>
@@ -790,4 +793,3 @@
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
-

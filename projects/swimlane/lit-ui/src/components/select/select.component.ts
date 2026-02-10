@@ -7,17 +7,18 @@ import { SelectOption } from './select-option.interface';
 import { InputAppearance } from '../input/input-appearance.enum';
 import { InputSize } from '../input/input-size.enum';
 import { coerceBooleanProperty } from '../../utils/coerce';
+import '../icon/icon.component';
 
 /**
  * SwimSelect - A select/dropdown component matching @swimlane/ngx-ui design system
- * 
+ *
  * @slot - Default slot not used (options passed via property)
  * @slot hint - Custom hint content
- * 
+ *
  * @fires change - Fired when selection changes
  * @fires open - Fired when dropdown opens
  * @fires close - Fired when dropdown closes
- * 
+ *
  * @csspart select - The select input element
  * @csspart dropdown - The dropdown container
  */
@@ -75,16 +76,16 @@ export class SwimSelect extends LitElement {
    */
   @property()
   get value(): any | any[] {
-    return this.multiple ? this._value : (this._value[0] ?? null);
+    return this.multiple ? this._value : this._value[0] ?? null;
   }
   set value(val: any | any[]) {
     const oldValue = this._value;
     if (this.multiple) {
-      this._value = Array.isArray(val) ? val : (val ? [val] : []);
+      this._value = Array.isArray(val) ? val : val ? [val] : [];
     } else {
       this._value = val ? [val] : [];
     }
-    this._internals.setFormValue(this.multiple ? JSON.stringify(this._value) : (this._value[0] ?? ''));
+    this._internals.setFormValue(this.multiple ? JSON.stringify(this._value) : this._value[0] ?? '');
     this.requestUpdate('value', oldValue);
     this._updateActiveState();
   }
@@ -241,7 +242,7 @@ export class SwimSelect extends LitElement {
 
   updated(changedProperties: PropertyValues) {
     super.updated(changedProperties);
-    
+
     if (changedProperties.has('value')) {
       this._updateActiveState();
       this._validate();
@@ -289,33 +290,32 @@ export class SwimSelect extends LitElement {
                 @focus="${this._handleFocus}"
                 @blur="${this._handleBlur}"
               >
-                <div class="select-value">
-                  ${this._renderValue()}
-                </div>
+                <div class="select-value">${this._renderValue()}</div>
                 <div class="select-controls">
-                  ${showClear ? html`
-                    <button
-                      type="button"
-                      class="select-clear"
-                      aria-label="Clear selection"
-                      @click="${this._handleClear}"
-                    >
-                      <span class="icon-x"></span>
-                    </button>
-                  ` : nothing}
+                  ${showClear
+                    ? html`
+                        <button
+                          type="button"
+                          class="select-clear"
+                          aria-label="Clear selection"
+                          @click="${this._handleClear}"
+                        >
+                          <swim-icon font-icon="x"></swim-icon>
+                        </button>
+                      `
+                    : nothing}
                   <button
                     type="button"
                     class="select-caret"
                     aria-label="Toggle dropdown"
                     @click="${this._handleToggle}"
                   >
-                    <span class="icon-chevron-down"></span>
+                    <swim-icon font-icon="chevron-bold-down"></swim-icon>
                   </button>
                 </div>
               </div>
               <label class="select-label" for="${this.id}">
-                ${this.label}
-                ${this.required ? html`<span>${this.requiredIndicator}</span>` : nothing}
+                ${this.label} ${this.required ? html`<span>${this.requiredIndicator}</span>` : nothing}
               </label>
             </div>
           </div>
@@ -327,33 +327,37 @@ export class SwimSelect extends LitElement {
           <slot name="hint">${this.hint}</slot>
         </div>
 
-        ${this._open ? html`
-          <div class="select-dropdown" part="dropdown" role="listbox" id="${this.id}-listbox">
-            ${this.filterable ? html`
-              <div class="select-filter">
-                <input
-                  type="text"
-                  class="select-filter-input"
-                  placeholder="${this.filterPlaceholder}"
-                  .value="${this._filterQuery}"
-                  @input="${this._handleFilterInput}"
-                  @keydown="${this._handleFilterKeyDown}"
-                />
+        ${this._open
+          ? html`
+              <div class="select-dropdown" part="dropdown" role="listbox" id="${this.id}-listbox">
+                ${this.filterable
+                  ? html`
+                      <div class="select-filter">
+                        <input
+                          type="text"
+                          class="select-filter-input"
+                          placeholder="${this.filterPlaceholder}"
+                          .value="${this._filterQuery}"
+                          @input="${this._handleFilterInput}"
+                          @keydown="${this._handleFilterKeyDown}"
+                        />
+                      </div>
+                    `
+                  : nothing}
+                ${filteredOptions.length > 0
+                  ? html`
+                      <ul class="select-options">
+                        ${repeat(
+                          filteredOptions,
+                          option => this._getOptionValue(option),
+                          (option, index) => this._renderOption(option, index)
+                        )}
+                      </ul>
+                    `
+                  : html` <div class="select-empty">${this.emptyPlaceholder}</div> `}
               </div>
-            ` : nothing}
-            ${filteredOptions.length > 0 ? html`
-              <ul class="select-options">
-                ${repeat(
-                  filteredOptions,
-                  (option) => this._getOptionValue(option),
-                  (option, index) => this._renderOption(option, index)
-                )}
-              </ul>
-            ` : html`
-              <div class="select-empty">${this.emptyPlaceholder}</div>
-            `}
-          </div>
-        ` : nothing}
+            `
+          : nothing}
       </div>
     `;
   }
@@ -380,16 +384,18 @@ export class SwimSelect extends LitElement {
     return html`
       <div class="select-chip">
         <span class="select-chip-label">${option.name}</span>
-        ${!this.disabled ? html`
-          <button
-            type="button"
-            class="select-chip-remove"
-            aria-label="Remove ${option.name}"
-            @click="${(e: Event) => this._removeChip(e, option)}"
-          >
-            <span class="icon-x"></span>
-          </button>
-        ` : nothing}
+        ${!this.disabled
+          ? html`
+              <button
+                type="button"
+                class="select-chip-remove"
+                aria-label="Remove ${option.name}"
+                @click="${(e: Event) => this._removeChip(e, option)}"
+              >
+                <span class="icon-x"></span>
+              </button>
+            `
+          : nothing}
       </div>
     `;
   }
@@ -408,7 +414,7 @@ export class SwimSelect extends LitElement {
         ?disabled="${option.disabled}"
         aria-selected="${isSelected}"
         @click="${() => this._handleOptionClick(option)}"
-        @mouseenter="${() => this._focusedIndex = index}"
+        @mouseenter="${() => (this._focusedIndex = index)}"
       >
         ${option.name}
       </li>
@@ -443,12 +449,12 @@ export class SwimSelect extends LitElement {
   private _handleBlur() {
     this._focused = false;
     this.removeAttribute('focused');
-    
+
     if (!this._touched) {
       this._touched = true;
       this.setAttribute('touched', '');
     }
-    
+
     this._validate();
   }
 
@@ -523,13 +529,13 @@ export class SwimSelect extends LitElement {
     if (this.multiple) {
       const currentValues = [...this._value];
       const index = currentValues.indexOf(value);
-      
+
       if (index > -1) {
         currentValues.splice(index, 1);
       } else {
         currentValues.push(value);
       }
-      
+
       this.value = currentValues;
     } else {
       this.value = value;
@@ -568,15 +574,15 @@ export class SwimSelect extends LitElement {
   private _moveFocus(direction: number) {
     const filteredOptions = this._getFilteredOptions();
     const maxIndex = filteredOptions.length - 1;
-    
+
     let newIndex = this._focusedIndex + direction;
-    
+
     if (newIndex < 0) {
       newIndex = maxIndex;
     } else if (newIndex > maxIndex) {
       newIndex = 0;
     }
-    
+
     this._focusedIndex = newIndex;
   }
 
@@ -586,9 +592,7 @@ export class SwimSelect extends LitElement {
     }
 
     const query = this._filterQuery.toLowerCase();
-    return this.options.filter(option => 
-      option.name.toLowerCase().includes(query)
-    );
+    return this.options.filter(option => option.name.toLowerCase().includes(query));
   }
 
   private _getOptionValue(option: SelectOption): any {
@@ -600,11 +604,13 @@ export class SwimSelect extends LitElement {
   }
 
   private _dispatchChange() {
-    this.dispatchEvent(new CustomEvent('change', {
-      detail: { value: this.value },
-      bubbles: true,
-      composed: true
-    }));
+    this.dispatchEvent(
+      new CustomEvent('change', {
+        detail: { value: this.value },
+        bubbles: true,
+        composed: true
+      })
+    );
   }
 
   private _validate() {
@@ -615,7 +621,7 @@ export class SwimSelect extends LitElement {
     }
 
     this._invalid = !isValid;
-    
+
     if (this._invalid) {
       this.setAttribute('invalid', '');
       this._internals.setValidity({ valueMissing: true }, 'Please select an option');
@@ -630,7 +636,7 @@ export class SwimSelect extends LitElement {
   private _updateActiveState() {
     const hasValue = this._value.length > 0;
     const hasPlaceholder = !!this.placeholder;
-    
+
     if (this._focused || hasValue || this._open) {
       this.setAttribute('active', '');
     } else {
@@ -685,4 +691,3 @@ declare global {
     'swim-select': SwimSelect;
   }
 }
-
