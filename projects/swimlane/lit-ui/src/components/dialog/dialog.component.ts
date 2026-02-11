@@ -175,7 +175,10 @@ export class SwimDialog extends LitElement {
       .filter(Boolean)
       .join(' ');
 
-    const wrapperClasses = ['swim-dialog', 'swim-dialog--open', this.class].filter(Boolean).join(' ');
+    const isFullScreen = this.class.includes('swim-dialog--full-screen');
+    const wrapperClasses = ['swim-dialog', 'swim-dialog--open', this.class, isFullScreen ? 'swim-scroll' : '']
+      .filter(Boolean)
+      .join(' ');
 
     return html`
       <div class="${wrapperClasses}" style="--swim-dialog-z: ${this.zIndex}" role="presentation">

@@ -53,7 +53,9 @@ export const largeFormatDialogContentStyles = [
       align-items: center;
       justify-content: space-between;
       padding: 0 var(--swim-format-body-padding);
+      padding-right: 2.5rem;
       gap: 1.5rem;
+      overflow: visible;
     }
 
     /* Match ngx-large-format-dialog-header-title__wrapper: flex 0 0 20%, height 100%, justify-content center */
@@ -137,7 +139,6 @@ export const largeFormatDialogContentStyles = [
     .format-dialog-container__body {
       flex: 1 1 auto;
       min-height: 215px;
-      overflow: auto;
       padding: 0 var(--swim-format-body-padding);
       color: var(--grey-200);
     }

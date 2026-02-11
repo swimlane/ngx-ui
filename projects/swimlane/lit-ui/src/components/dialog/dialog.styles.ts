@@ -178,8 +178,8 @@ export const dialogStyles = [
 
     :host(.swim-dialog--full-screen) .swim-dialog__close,
     .swim-dialog.swim-dialog--full-screen .swim-dialog__close {
-      right: 6px;
-      top: 8px;
+      right: 1rem;
+      top: 2rem;
     }
 
     /* Wizard / custom header-footer variant (class="wizard" on root) - style slotted header/footer */
