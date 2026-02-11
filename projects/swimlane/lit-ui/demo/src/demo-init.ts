@@ -5,6 +5,7 @@
  */
 
 import { ICON_NAMES } from './icon-names';
+import { openDrawer } from '../../src/components/drawer/drawer-controller';
 
 function delay(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -75,6 +76,7 @@ const SECTION_FILES = [
   'tooltip',
   'list',
   'dialog',
+  'drawer',
   'scrollbars',
   'icons'
 ];
@@ -109,6 +111,104 @@ async function showSection(sectionId: string): Promise<void> {
   } catch (err) {
     console.error('Failed to load section:', sectionId, err);
     container.innerHTML = `<p class="section-desc">Failed to load section: ${sectionId}</p>`;
+  }
+}
+
+function setupDrawerDemos(): void {
+  type DrawerEl = HTMLElement & { show(): void; hide(): void; open: boolean };
+  const getDrawer = (id: string) => document.getElementById(id) as DrawerEl | null;
+
+  const drawerOpenLeft = document.getElementById('drawerOpenLeft');
+  const drawerOpenBottom = document.getElementById('drawerOpenBottom');
+  if (drawerOpenLeft && getDrawer('drawerDefaultLeft')) {
+    drawerOpenLeft.addEventListener('click', () => getDrawer('drawerDefaultLeft')!.show());
+  }
+  if (drawerOpenBottom && getDrawer('drawerDefaultBottom')) {
+    drawerOpenBottom.addEventListener('click', () => getDrawer('drawerDefaultBottom')!.show());
+  }
+  getDrawer('drawerDefaultLeft')?.addEventListener('close', () => {
+    const d = getDrawer('drawerDefaultLeft');
+    if (d) d.open = false;
+  });
+  getDrawer('drawerDefaultBottom')?.addEventListener('close', () => {
+    const d = getDrawer('drawerDefaultBottom');
+    if (d) d.open = false;
+  });
+
+  const drawerOpenDetails = document.getElementById('drawerOpenDetails');
+  const drawerOpenDetailsBottom = document.getElementById('drawerOpenDetailsBottom');
+  if (drawerOpenDetails || drawerOpenDetailsBottom) {
+    const openDetailsContent = `
+      <div class="drawer-demo-toolbar">Details</div>
+      <div class="drawer-demo-section">
+        <h1>Nested Drawer Content</h1>
+        <p>This drawer was opened programmatically via openDrawer().</p>
+      </div>
+    `;
+    drawerOpenDetails?.addEventListener('click', () =>
+      openDrawer({ direction: 'left', size: 50, content: openDetailsContent })
+    );
+    drawerOpenDetailsBottom?.addEventListener('click', () =>
+      openDrawer({ direction: 'bottom', size: 40, content: openDetailsContent })
+    );
+  }
+
+  const drawerNoCloseLeft = document.getElementById('drawerNoCloseLeft');
+  const drawerNoCloseBottom = document.getElementById('drawerNoCloseBottom');
+  if (drawerNoCloseLeft && getDrawer('drawerNoCloseLeft')) {
+    drawerNoCloseLeft.addEventListener('click', () => getDrawer('drawerNoCloseLeft')!.show());
+  }
+  if (drawerNoCloseBottom && getDrawer('drawerNoCloseBottom')) {
+    drawerNoCloseBottom.addEventListener('click', () => getDrawer('drawerNoCloseBottom')!.show());
+  }
+  document
+    .getElementById('drawerNoCloseBtnLeft')
+    ?.addEventListener('click', () => getDrawer('drawerNoCloseLeft')?.hide());
+  document
+    .getElementById('drawerNoCloseBtnBottom')
+    ?.addEventListener('click', () => getDrawer('drawerNoCloseBottom')?.hide());
+  getDrawer('drawerNoCloseLeft')?.addEventListener('close', () => {
+    const d = getDrawer('drawerNoCloseLeft');
+    if (d) d.open = false;
+  });
+  getDrawer('drawerNoCloseBottom')?.addEventListener('close', () => {
+    const d = getDrawer('drawerNoCloseBottom');
+    if (d) d.open = false;
+  });
+
+  const drawerContainerOpenLeft = document.getElementById('drawerContainerOpenLeft');
+  const drawerContainerOpenBottom = document.getElementById('drawerContainerOpenBottom');
+  if (drawerContainerOpenLeft && getDrawer('drawerContainerLeft')) {
+    drawerContainerOpenLeft.addEventListener('click', () => getDrawer('drawerContainerLeft')!.show());
+  }
+  if (drawerContainerOpenBottom && getDrawer('drawerContainerBottom')) {
+    drawerContainerOpenBottom.addEventListener('click', () => getDrawer('drawerContainerBottom')!.show());
+  }
+  getDrawer('drawerContainerLeft')?.addEventListener('close', () => {
+    const d = getDrawer('drawerContainerLeft');
+    if (d) d.open = false;
+  });
+  getDrawer('drawerContainerBottom')?.addEventListener('close', () => {
+    const d = getDrawer('drawerContainerBottom');
+    if (d) d.open = false;
+  });
+
+  const drawerImperativeLeft = document.getElementById('drawerImperativeLeft');
+  const drawerImperativeBottom = document.getElementById('drawerImperativeBottom');
+  if (drawerImperativeLeft || drawerImperativeBottom) {
+    const imperativeContent = `
+      <div class="drawer-demo-toolbar">Alert Everyone!</div>
+      <div class="drawer-demo-section">
+        <h1>Attack Type: Malware</h1>
+        <p>Opened via openDrawer().</p>
+      </div>
+    `;
+    drawerImperativeLeft?.addEventListener('click', () =>
+      openDrawer({ direction: 'left', size: 70, content: imperativeContent })
+    );
+    drawerImperativeBottom?.addEventListener('click', () =>
+      openDrawer({ direction: 'bottom', content: imperativeContent })
+    );
   }
 }
 
@@ -706,6 +806,9 @@ function setupDemos(): void {
     });
   }
 
+  // Drawer demos
+  setupDrawerDemos();
+
   // Navbar demo: programmatic goTo
   const navbarGoToFourthBtn = document.getElementById('navbarGoToFourthBtn');
   const navbarTopDemo = document.getElementById('navbarTopDemo');
@@ -730,21 +833,28 @@ function setupDemos(): void {
  * Initialize demo app: load section from URL hash (or first section), wire nav, and listen for hash changes.
  */
 export async function initDemos(): Promise<void> {
-  // Intercept nav link clicks so we load section then update hash (avoids scrolling to missing content)
-  document.querySelectorAll<HTMLAnchorElement>('.sub-nav-item[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
+  // Nav click: use delegation so every section link works (load section first, then update URL)
+  const nav = document.querySelector('.navigation');
+  if (nav) {
+    nav.addEventListener('click', async (e: Event) => {
+      const link = (e.target as HTMLElement)?.closest?.('a.sub-nav-item[href^="#"]') as HTMLAnchorElement | null;
+      if (!link) return;
       const href = link.getAttribute('href');
       if (!href || href === '#') return;
       const sectionId = href.slice(1).toLowerCase();
       if (!SECTION_SET.has(sectionId)) return;
       e.preventDefault();
-      if (window.location.hash !== href) {
-        window.location.hash = sectionId;
+      e.stopPropagation();
+      const currentId = window.location.hash.slice(1).toLowerCase();
+      if (currentId !== sectionId) {
+        await showSection(sectionId);
+        history.replaceState(null, '', '#' + sectionId);
+        setActiveNav(sectionId);
       } else {
         showSection(sectionId);
       }
     });
-  });
+  }
 
   window.addEventListener('hashchange', () => {
     const sectionId = getSectionIdFromHash();

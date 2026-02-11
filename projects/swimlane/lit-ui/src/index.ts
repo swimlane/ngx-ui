@@ -9,6 +9,7 @@ export * from './components/button-toggle';
 export * from './components/card';
 export * from './components/checkbox';
 export * from './components/dialog';
+export * from './components/drawer';
 export * from './components/icon';
 export * from './components/input';
 export * from './components/section';

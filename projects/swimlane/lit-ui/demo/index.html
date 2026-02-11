@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
     <title>@swimlane/lit-ui Demo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -439,6 +440,32 @@
         margin-top: 1rem;
       }
 
+      .drawer-page--parent-container {
+        display: block;
+        position: relative;
+        background-color: var(--grey-800);
+        height: 500px;
+        overflow: hidden;
+      }
+
+      .drawer-demo-toolbar {
+        padding: var(--spacing-16);
+        font-size: var(--font-size-l);
+        font-weight: var(--font-weight-semibold);
+        color: var(--grey-100);
+        border-bottom: 1px solid var(--grey-700);
+      }
+
+      .drawer-demo-section {
+        padding: var(--spacing-16);
+      }
+
+      .drawer-demo-section h1 {
+        font-size: var(--font-size-xl);
+        margin: 0 0 var(--spacing-16) 0;
+        color: var(--grey-050);
+      }
+
       .demo-pre {
         background: var(--grey-800);
         padding: 1rem;
@@ -603,6 +630,7 @@
               <li><a class="sub-nav-item" href="#tooltip">Tooltip</a></li>
               <li><a class="sub-nav-item" href="#list">List</a></li>
               <li><a class="sub-nav-item" href="#dialog">Dialog</a></li>
+              <li><a class="sub-nav-item" href="#drawer">Drawer</a></li>
               <li><a class="sub-nav-item" href="#scrollbars">Scrollbars</a></li>
             </ul>
           </li>
