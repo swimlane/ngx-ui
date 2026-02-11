@@ -56,18 +56,16 @@ export const largeFormatDialogContentStyles = [
       gap: 1.5rem;
     }
 
+    /* Match ngx-large-format-dialog-header-title__wrapper: flex 0 0 20%, height 100%, justify-content center */
     .format-dialog-container__header-title {
       display: flex;
       flex-direction: column;
-      gap: 0.5rem;
-      flex: 1;
+      gap: 2px;
+      flex: 0 0 20%;
+      height: 100%;
       min-width: 0;
       max-width: 50%;
       justify-content: center;
-    }
-
-    .format-dialog-container__header-title--center {
-      align-items: center;
     }
 
     .format-dialog-container__header-title--with-subtitle {

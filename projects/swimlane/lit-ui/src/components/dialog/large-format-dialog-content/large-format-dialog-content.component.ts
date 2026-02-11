@@ -48,9 +48,7 @@ export class SwimLargeFormatDialogContent extends LitElement {
   render() {
     const titleClasses = [
       'format-dialog-container__header-title',
-      this.dialogSubtitle
-        ? 'format-dialog-container__header-title--with-subtitle'
-        : 'format-dialog-container__header-title--center'
+      'format-dialog-container__header-title--with-subtitle'
     ].join(' ');
 
     return html`
