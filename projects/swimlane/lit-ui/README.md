@@ -19,6 +19,32 @@ npm install @swimlane/lit-ui
 yarn add @swimlane/lit-ui
 ```
 
+## CDN (GitHub Pages)
+
+You can load the library from the CDN for testing or use in a Lit app without installing from npm.
+
+**Publish to GitHub Pages** (manual, from this repo):
+
+```bash
+cd projects/swimlane/lit-ui && npm run deploy:gh-pages
+```
+
+Ensure GitHub Pages is enabled for the repo (Settings → Pages → Source: branch `gh-pages`). The bundle will be available at:
+
+```
+https://surya-pabbineedi.github.io/ngx-ui/lit-ui.js
+```
+
+**Use in an external Lit app:**
+
+```typescript
+// Side-effect: registers all custom elements
+import 'https://surya-pabbineedi.github.io/ngx-ui/lit-ui.js';
+// Then use <swim-button>, <swim-input>, etc. in your templates.
+```
+
+Your app must have `lit` as a dependency so the bundle’s `lit` imports resolve. Add the same CSS variables (design tokens) in your app’s root or styles so components match the design; include the icon font/CSS if you use `swim-icon`.
+
 ## Quick Start
 
 ### In HTML
@@ -94,15 +120,15 @@ A versatile button component with multiple variants, sizes, and states.
 
 #### Properties
 
-| Property   | Type                                                            | Default     | Description                                      |
-| ---------- | --------------------------------------------------------------- | ----------- | ------------------------------------------------ |
-| `variant`  | `'default' \| 'primary' \| 'warning' \| 'danger' \| 'link' \| 'bordered'` | `'default'` | Visual style of the button                       |
-| `size`     | `'small' \| 'medium' \| 'large'`                                | `'medium'`  | Size of the button                               |
-| `disabled` | `boolean`                                                       | `false`     | Whether the button is disabled                   |
-| `state`    | `'active' \| 'in-progress' \| 'success' \| 'fail'`             | `'active'`  | Current state of the button                      |
-| `type`     | `'button' \| 'submit' \| 'reset'`                               | `'button'`  | HTML button type                                 |
-| `timeout`  | `number`                                                        | `3000`      | Timeout (ms) before returning to active state    |
-| `promise`  | `Promise<any>`                                                  | `undefined` | Promise to track (auto-updates state)            |
+| Property   | Type                                                                      | Default     | Description                                   |
+| ---------- | ------------------------------------------------------------------------- | ----------- | --------------------------------------------- |
+| `variant`  | `'default' \| 'primary' \| 'warning' \| 'danger' \| 'link' \| 'bordered'` | `'default'` | Visual style of the button                    |
+| `size`     | `'small' \| 'medium' \| 'large'`                                          | `'medium'`  | Size of the button                            |
+| `disabled` | `boolean`                                                                 | `false`     | Whether the button is disabled                |
+| `state`    | `'active' \| 'in-progress' \| 'success' \| 'fail'`                        | `'active'`  | Current state of the button                   |
+| `type`     | `'button' \| 'submit' \| 'reset'`                                         | `'button'`  | HTML button type                              |
+| `timeout`  | `number`                                                                  | `3000`      | Timeout (ms) before returning to active state |
+| `promise`  | `Promise<any>`                                                            | `undefined` | Promise to track (auto-updates state)         |
 
 #### Examples
 
@@ -143,47 +169,47 @@ A fully-featured input component with floating labels, validation, and multiple 
 
 #### Properties
 
-| Property                | Type                                                      | Default     | Description                                           |
-| ----------------------- | --------------------------------------------------------- | ----------- | ----------------------------------------------------- |
-| `type`                  | `'text' \| 'password' \| 'email' \| 'number' \| 'tel' \| 'url' \| 'textarea'` | `'text'`    | Type of input                                         |
-| `label`                 | `string`                                                  | `''`        | Floating label text                                   |
-| `placeholder`           | `string`                                                  | `''`        | Placeholder text                                      |
-| `hint`                  | `string`                                                  | `''`        | Hint text below input                                 |
-| `value`                 | `string`                                                  | `''`        | Input value                                           |
-| `name`                  | `string`                                                  | `''`        | Input name for forms                                  |
-| `disabled`              | `boolean`                                                 | `false`     | Whether the input is disabled                         |
-| `readonly`              | `boolean`                                                 | `false`     | Whether the input is readonly                         |
-| `required`              | `boolean`                                                 | `false`     | Whether the input is required                         |
-| `appearance`            | `'legacy' \| 'fill'`                                      | `'legacy'`  | Visual appearance style                               |
-| `size`                  | `'sm' \| 'md' \| 'lg'`                                    | `'sm'`      | Size of the input                                     |
-| `min`                   | `number`                                                  | `undefined` | Min value (for number type)                           |
-| `max`                   | `number`                                                  | `undefined` | Max value (for number type)                           |
-| `minlength`             | `number`                                                  | `undefined` | Minimum length                                        |
-| `maxlength`             | `number`                                                  | `undefined` | Maximum length                                        |
-| `passwordToggleEnabled` | `boolean`                                                 | `false`     | Show password visibility toggle (password type only)  |
-| `textareaRows`          | `number`                                                  | `3`         | Number of rows (for textarea type)                    |
-| `requiredIndicator`     | `string`                                                  | `'*'`       | Indicator shown for required fields                   |
-| `autofocus`             | `boolean`                                                 | `false`     | Whether to autofocus on load                          |
-| `autocomplete`          | `'on' \| 'off' \| 'new-password'`                         | `'off'`     | Autocomplete attribute                                |
-| `marginless`            | `boolean`                                                 | `false`     | Remove top/bottom margins                             |
-| `withHint`              | `boolean`                                                 | `true`      | Whether to show hint section                          |
+| Property                | Type                                                                          | Default     | Description                                          |
+| ----------------------- | ----------------------------------------------------------------------------- | ----------- | ---------------------------------------------------- |
+| `type`                  | `'text' \| 'password' \| 'email' \| 'number' \| 'tel' \| 'url' \| 'textarea'` | `'text'`    | Type of input                                        |
+| `label`                 | `string`                                                                      | `''`        | Floating label text                                  |
+| `placeholder`           | `string`                                                                      | `''`        | Placeholder text                                     |
+| `hint`                  | `string`                                                                      | `''`        | Hint text below input                                |
+| `value`                 | `string`                                                                      | `''`        | Input value                                          |
+| `name`                  | `string`                                                                      | `''`        | Input name for forms                                 |
+| `disabled`              | `boolean`                                                                     | `false`     | Whether the input is disabled                        |
+| `readonly`              | `boolean`                                                                     | `false`     | Whether the input is readonly                        |
+| `required`              | `boolean`                                                                     | `false`     | Whether the input is required                        |
+| `appearance`            | `'legacy' \| 'fill'`                                                          | `'legacy'`  | Visual appearance style                              |
+| `size`                  | `'sm' \| 'md' \| 'lg'`                                                        | `'sm'`      | Size of the input                                    |
+| `min`                   | `number`                                                                      | `undefined` | Min value (for number type)                          |
+| `max`                   | `number`                                                                      | `undefined` | Max value (for number type)                          |
+| `minlength`             | `number`                                                                      | `undefined` | Minimum length                                       |
+| `maxlength`             | `number`                                                                      | `undefined` | Maximum length                                       |
+| `passwordToggleEnabled` | `boolean`                                                                     | `false`     | Show password visibility toggle (password type only) |
+| `textareaRows`          | `number`                                                                      | `3`         | Number of rows (for textarea type)                   |
+| `requiredIndicator`     | `string`                                                                      | `'*'`       | Indicator shown for required fields                  |
+| `autofocus`             | `boolean`                                                                     | `false`     | Whether to autofocus on load                         |
+| `autocomplete`          | `'on' \| 'off' \| 'new-password'`                                             | `'off'`     | Autocomplete attribute                               |
+| `marginless`            | `boolean`                                                                     | `false`     | Remove top/bottom margins                            |
+| `withHint`              | `boolean`                                                                     | `true`      | Whether to show hint section                         |
 
 #### Slots
 
-| Slot     | Description                        |
-| -------- | ---------------------------------- |
-| `prefix` | Content before the input           |
-| `suffix` | Content after the input            |
-| `hint`   | Custom hint content below input    |
+| Slot     | Description                     |
+| -------- | ------------------------------- |
+| `prefix` | Content before the input        |
+| `suffix` | Content after the input         |
+| `hint`   | Custom hint content below input |
 
 #### Events
 
-| Event    | Description                     |
-| -------- | ------------------------------- |
-| `input`  | Fired on input changes          |
-| `change` | Fired when value changes        |
-| `focus`  | Fired when input gains focus    |
-| `blur`   | Fired when input loses focus    |
+| Event    | Description                  |
+| -------- | ---------------------------- |
+| `input`  | Fired on input changes       |
+| `change` | Fired when value changes     |
+| `focus`  | Fired when input gains focus |
+| `blur`   | Fired when input loses focus |
 
 #### Examples
 
@@ -192,45 +218,25 @@ A fully-featured input component with floating labels, validation, and multiple 
 <swim-input label="Username" placeholder="Enter username"></swim-input>
 
 <!-- Required input with validation -->
-<swim-input 
-  label="Email" 
-  type="email" 
-  required 
+<swim-input
+  label="Email"
+  type="email"
+  required
   placeholder="user@example.com"
   hint="We'll never share your email"
 ></swim-input>
 
 <!-- Password with toggle -->
-<swim-input 
-  type="password" 
-  label="Password" 
-  password-toggle-enabled
-  minlength="8"
-></swim-input>
+<swim-input type="password" label="Password" password-toggle-enabled minlength="8"></swim-input>
 
 <!-- Number input with constraints -->
-<swim-input 
-  type="number" 
-  label="Age" 
-  min="18" 
-  max="100"
-  hint="Must be between 18 and 100"
-></swim-input>
+<swim-input type="number" label="Age" min="18" max="100" hint="Must be between 18 and 100"></swim-input>
 
 <!-- Textarea -->
-<swim-input 
-  type="textarea" 
-  label="Comments" 
-  textarea-rows="4"
-  maxlength="500"
-></swim-input>
+<swim-input type="textarea" label="Comments" textarea-rows="4" maxlength="500"></swim-input>
 
 <!-- Fill appearance -->
-<swim-input 
-  appearance="fill" 
-  label="Search" 
-  placeholder="Type to search..."
-></swim-input>
+<swim-input appearance="fill" label="Search" placeholder="Type to search..."></swim-input>
 
 <!-- With prefix and suffix -->
 <swim-input label="Website" appearance="fill">
@@ -245,17 +251,8 @@ A fully-featured input component with floating labels, validation, and multiple 
 
 <!-- In a form -->
 <form>
-  <swim-input 
-    name="username" 
-    label="Username" 
-    required
-  ></swim-input>
-  <swim-input 
-    name="email" 
-    type="email" 
-    label="Email" 
-    required
-  ></swim-input>
+  <swim-input name="username" label="Username" required></swim-input>
+  <swim-input name="email" type="email" label="Email" required></swim-input>
   <swim-button type="submit" variant="primary">Submit</swim-button>
 </form>
 
@@ -263,15 +260,15 @@ A fully-featured input component with floating labels, validation, and multiple 
 <swim-input id="myInput" label="Name"></swim-input>
 <script>
   const input = document.getElementById('myInput');
-  
+
   // Get value
   console.log(input.value);
-  
+
   // Set value
   input.value = 'John Doe';
-  
+
   // Listen to changes
-  input.addEventListener('change', (e) => {
+  input.addEventListener('change', e => {
     console.log('Value changed:', e.target.value);
   });
 </script>
@@ -285,45 +282,45 @@ A dropdown select component with filtering, multi-select support, and keyboard n
 
 #### Properties
 
-| Property            | Type                      | Default                     | Description                               |
-| ------------------- | ------------------------- | --------------------------- | ----------------------------------------- |
-| `label`             | `string`                  | `''`                        | Floating label text                       |
-| `placeholder`       | `string`                  | `'Select...'`               | Placeholder text                          |
-| `hint`              | `string`                  | `''`                        | Hint text below select                    |
-| `emptyPlaceholder`  | `string`                  | `'No options available'`    | Text shown when no options                |
-| `filterPlaceholder` | `string`                  | `'Filter options...'`       | Placeholder for filter input              |
-| `options`           | `SelectOption[]`          | `[]`                        | Array of select options                   |
-| `value`             | `any \| any[]`            | `null`                      | Selected value(s)                         |
-| `name`              | `string`                  | `''`                        | Input name for forms                      |
-| `disabled`          | `boolean`                 | `false`                     | Whether the select is disabled            |
-| `required`          | `boolean`                 | `false`                     | Whether the select is required            |
-| `appearance`        | `'legacy' \| 'fill'`      | `'legacy'`                  | Visual appearance style                   |
-| `size`              | `'sm' \| 'md' \| 'lg'`    | `'sm'`                      | Size of the select                        |
-| `marginless`        | `boolean`                 | `false`                     | Remove top/bottom margins                 |
-| `withHint`          | `boolean`                 | `true`                      | Whether to show hint section              |
-| `filterable`        | `boolean`                 | `true`                      | Enable filtering/searching                |
-| `multiple`          | `boolean`                 | `false`                     | Allow multiple selection                  |
-| `allowClear`        | `boolean`                 | `true`                      | Show clear button                         |
-| `requiredIndicator` | `string`                  | `'*'`                       | Indicator shown for required fields       |
+| Property            | Type                   | Default                  | Description                         |
+| ------------------- | ---------------------- | ------------------------ | ----------------------------------- |
+| `label`             | `string`               | `''`                     | Floating label text                 |
+| `placeholder`       | `string`               | `'Select...'`            | Placeholder text                    |
+| `hint`              | `string`               | `''`                     | Hint text below select              |
+| `emptyPlaceholder`  | `string`               | `'No options available'` | Text shown when no options          |
+| `filterPlaceholder` | `string`               | `'Filter options...'`    | Placeholder for filter input        |
+| `options`           | `SelectOption[]`       | `[]`                     | Array of select options             |
+| `value`             | `any \| any[]`         | `null`                   | Selected value(s)                   |
+| `name`              | `string`               | `''`                     | Input name for forms                |
+| `disabled`          | `boolean`              | `false`                  | Whether the select is disabled      |
+| `required`          | `boolean`              | `false`                  | Whether the select is required      |
+| `appearance`        | `'legacy' \| 'fill'`   | `'legacy'`               | Visual appearance style             |
+| `size`              | `'sm' \| 'md' \| 'lg'` | `'sm'`                   | Size of the select                  |
+| `marginless`        | `boolean`              | `false`                  | Remove top/bottom margins           |
+| `withHint`          | `boolean`              | `true`                   | Whether to show hint section        |
+| `filterable`        | `boolean`              | `true`                   | Enable filtering/searching          |
+| `multiple`          | `boolean`              | `false`                  | Allow multiple selection            |
+| `allowClear`        | `boolean`              | `true`                   | Show clear button                   |
+| `requiredIndicator` | `string`               | `'*'`                    | Indicator shown for required fields |
 
 #### SelectOption Interface
 
 ```typescript
 interface SelectOption {
-  name: string;        // Display name
-  value: any;          // Value
-  disabled?: boolean;  // Whether option is disabled
-  group?: string;      // Group name (for future grouping)
+  name: string; // Display name
+  value: any; // Value
+  disabled?: boolean; // Whether option is disabled
+  group?: string; // Group name (for future grouping)
 }
 ```
 
 #### Events
 
-| Event    | Description                                     |
-| -------- | ----------------------------------------------- |
-| `change` | Fired when selection changes (detail: {value})  |
-| `open`   | Fired when dropdown opens                       |
-| `close`  | Fired when dropdown closes                      |
+| Event    | Description                                    |
+| -------- | ---------------------------------------------- |
+| `change` | Fired when selection changes (detail: {value}) |
+| `open`   | Fired when dropdown opens                      |
+| `close`  | Fired when dropdown closes                     |
 
 #### Slots
 
@@ -346,33 +343,21 @@ interface SelectOption {
 </script>
 
 <!-- Required select -->
-<swim-select 
-  label="Category" 
-  required 
-  placeholder="Choose a category..."
-></swim-select>
+<swim-select label="Category" required placeholder="Choose a category..."></swim-select>
 
 <!-- Multi-select -->
-<swim-select 
-  label="Choose tags" 
-  multiple 
-  placeholder="Select one or more..."
-></swim-select>
+<swim-select label="Choose tags" multiple placeholder="Select one or more..."></swim-select>
 
 <!-- With filtering -->
-<swim-select 
-  label="Search countries" 
-  filterable 
+<swim-select
+  label="Search countries"
+  filterable
   placeholder="Select a country..."
   hint="Type to filter options"
 ></swim-select>
 
 <!-- Fill appearance -->
-<swim-select 
-  appearance="fill" 
-  label="Select" 
-  placeholder="Choose..."
-></swim-select>
+<swim-select appearance="fill" label="Select" placeholder="Choose..."></swim-select>
 
 <!-- Disabled option -->
 <swim-select label="Status"></swim-select>
@@ -387,11 +372,7 @@ interface SelectOption {
 
 <!-- In a form -->
 <form>
-  <swim-select 
-    name="category" 
-    label="Category" 
-    required
-  ></swim-select>
+  <swim-select name="category" label="Category" required></swim-select>
   <swim-button type="submit" variant="primary">Submit</swim-button>
 </form>
 
@@ -399,25 +380,25 @@ interface SelectOption {
 <swim-select id="dynamicSelect" label="Selection"></swim-select>
 <script>
   const select = document.getElementById('dynamicSelect');
-  
+
   // Set options
   select.options = [
     { name: 'Apple', value: 'apple' },
     { name: 'Banana', value: 'banana' },
     { name: 'Orange', value: 'orange' }
   ];
-  
+
   // Get value
   console.log(select.value);
-  
+
   // Set value
   select.value = 'banana';
-  
+
   // Listen to changes
-  select.addEventListener('change', (e) => {
+  select.addEventListener('change', e => {
     console.log('Selected:', e.detail.value);
   });
-  
+
   // For multiple selection
   const multiSelect = document.querySelector('swim-select[multiple]');
   multiSelect.value = ['apple', 'orange']; // Set multiple values
@@ -484,4 +465,3 @@ MIT
 ## Credits
 
 Built by [Swimlane](https://swimlane.com)
-
