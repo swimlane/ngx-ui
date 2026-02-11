@@ -1,5 +1,4 @@
 import { css } from 'lit';
-import { baseStyles } from '../../styles/base';
 
 /**
  * Radio button styles matching @swimlane/ngx-ui design system.

@@ -36,6 +36,7 @@
     "build": "tsc && vite build",
     "build:lib": "tsc --project tsconfig.lib.json",
     "build:cdn": "vite build --config vite.lib.config.ts",
+    "deploy:gh-pages": "npm run build && npm run build:cdn && cp dist-cdn/lit-ui.js dist-demo/ && npx gh-pages -d dist-demo -r https://github.com/surya-pabbineedi/lit-ui.git",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint src/**/*.ts"

@@ -124,7 +124,9 @@ export class SwimSection extends LitElement {
 
   override firstUpdated(): void {
     this._checkHeaderSlot();
-    const slot = this.renderRoot?.querySelector?.('slot[name="header"]') ?? this._headerSlot;
+    const slot = (this.renderRoot?.querySelector?.('slot[name="header"]') ?? this._headerSlot) as
+      | HTMLSlotElement
+      | undefined;
     if (slot) {
       this._headerSlotForCleanup = slot;
       slot.addEventListener('slotchange', this._headerSlotChangeBound);
@@ -140,9 +142,11 @@ export class SwimSection extends LitElement {
   }
 
   private _checkHeaderSlot(): void {
-    const slot = this.renderRoot?.querySelector?.('slot[name="header"]') ?? this._headerSlot;
+    const slot = (this.renderRoot?.querySelector?.('slot[name="header"]') ?? this._headerSlot) as
+      | HTMLSlotElement
+      | undefined;
     if (slot) {
-      const nodes = (slot as HTMLSlotElement).assignedNodes({ flatten: true });
+      const nodes = slot.assignedNodes({ flatten: true });
       const hasContent = nodes.some(
         n =>
           n.nodeType === Node.ELEMENT_NODE ||
@@ -185,8 +189,8 @@ export class SwimSection extends LitElement {
 
   render() {
     const collapsible = this.sectionCollapsible;
-    const showToggle = collapsible && this.togglePosition !== TogglePosition.None && this.togglePosition !== 'none';
-    const toggleRight = this.togglePosition === TogglePosition.Right || this.togglePosition === 'right';
+    const showToggle = collapsible && this.togglePosition !== TogglePosition.None;
+    const toggleRight = this.togglePosition === TogglePosition.Right;
 
     const headerClasses = [
       'swim-section__header',

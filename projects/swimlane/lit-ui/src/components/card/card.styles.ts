@@ -5,7 +5,6 @@ const cardAccentThickness = 4;
 const cardOutlineBorderThickness = 3;
 const cardHorizontalHeaderPadding = 25;
 const cardHorizontalGutter = 30;
-const cardHorizontalDescriptionPadding = 15;
 const cardVerticalHeaderPadding = 15;
 const cardVerticalBodyPadding = 27;
 

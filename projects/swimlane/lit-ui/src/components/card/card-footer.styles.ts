@@ -2,7 +2,6 @@ import { css } from 'lit';
 import { baseStyles } from '../../styles/base';
 
 const cardAccentThickness = 4;
-const cardVerticalGutter = 20;
 
 /**
  * Card footer styles. BEM: swim-card-footer, swim-card-footer__label.

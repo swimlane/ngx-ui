@@ -257,10 +257,6 @@ export class SwimSlider extends LitElement {
     }
   }
 
-  private _onInput(_e: Event) {
-    this._emitChange();
-  }
-
   private _onChange(_e: Event) {
     this._emitChange();
   }
@@ -291,7 +287,7 @@ export class SwimSlider extends LitElement {
     }
   }
 
-  override willUpdate(changedProperties: PropertyValues) {
+  override willUpdate(_changedProperties: PropertyValues) {
     this._ensureValuesLength();
   }
 

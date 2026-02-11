@@ -1,7 +1,6 @@
 import { css } from 'lit';
 import { baseStyles } from '../../styles/base';
 
-const cardVerticalGutter = 20;
 const cardVerticalBodyPadding = 27;
 
 /**
