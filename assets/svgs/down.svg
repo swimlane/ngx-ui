@@ -1,0 +1,13 @@
+<svg width="11" height="11" viewBox="0 0 11 11" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Canvas" transform="translate(-44 1627)">
+<g id="up">
+<use xlink:href="#path0_fill" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 55 -1616)" fill="#72819F"/>
+<use xlink:href="#path0_fill" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 55 -1616)" fill="#72819F"/>
+<use xlink:href="#path0_fill" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 55 -1616)" fill="#72819F"/>
+<use xlink:href="#path0_fill" transform="matrix(-1 1.22465e-16 -1.22465e-16 -1 55 -1616)" fill="#72819F"/>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 9.34778 3.84778L 6.66847 6.52709L 6.66847 0L 4.33153 0L 4.33153 6.52709L 1.65222 3.84778L 0 5.5L 5.5 11L 11 5.5L 9.34778 3.84778Z"/>
+</defs>
+</svg>

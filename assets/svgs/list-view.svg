@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="list-view" fill-rule="nonzero" fill="#459BF7">
+            <g id="Page-1">
+                <g id="Applications-2-&gt;-List">
+                    <g id="top-controls">
+                        <g id="view-controls-list">
+                            <g id="list-view">
+                                <path d="M0.61538462,2.01005048 L0,2.01005048 L0,0 L0.61538462,0 L15.3846154,0 L16,0 L16,2.01005048 L15.3846154,2.01005048 L0.61538462,2.01005048 Z M0.61538462,16 L0,16 L0,13.9899495 L0.61538462,13.9899495 L15.3846154,13.9899495 L16,13.9899495 L16,16 L15.3846154,16 L9.26875,16 L0.61538462,16 Z M0.61538462,8.8478099 L0,8.8478099 L0,6.8377594 L0.61538462,6.8377594 L15.3846154,6.8377594 L16,6.8377594 L16,8.8478099 L15.3846154,8.8478099 L0.61538462,8.8478099 Z" id="Shape"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

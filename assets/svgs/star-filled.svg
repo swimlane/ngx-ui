@@ -1,0 +1,10 @@
+<svg width="20" height="20" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Canvas" transform="translate(-6759 10091)">
+<g id="star-filled">
+<use xlink:href="#path0_fill" transform="translate(6759 -10091)" fill="#FFFFFF"/>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 10 0L 7.10379 6.86663L 0 7.63951L 5.31529 12.6562L 3.81975 20L 10 16.236L 16.1802 20L 14.6847 12.6562L 20 7.63951L 12.8962 6.86663L 10 0Z"/>
+</defs>
+</svg>

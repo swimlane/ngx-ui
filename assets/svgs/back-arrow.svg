@@ -1,0 +1,14 @@
+<svg width="22" height="22" viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="Canvas" transform="translate(-6857 10735)">
+<g id="back-arrow">
+<g id="Union">
+<use xlink:href="#path0_fill" transform="translate(6857.5 -10734.5)" fill="#FFFFFF"/>
+<use xlink:href="#path1_fill" transform="translate(6857.5 -10734.5)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 6.67188 9.72461L 17.0137 9.72461L 17.0137 11.3906L 6.68164 11.3906L 10.3242 15.1895L 9.11963 16.3408L 3.56641 10.5479L 9.11963 4.77441L 10.3242 5.92676L 6.67188 9.72461Z"/>
+<path id="path1_fill" fill-rule="evenodd" d="M 10.5 0C 4.70117 0 0 4.70117 0 10.5C 0 16.2988 4.70117 21 10.5 21C 16.2988 21 21 16.2988 21 10.5C 21 4.70117 16.2988 0 10.5 0ZM 1 10.5C 1 5.25293 5.25342 1 10.5 1C 15.7466 1 20 5.25293 20 10.5C 20 15.7471 15.7466 20 10.5 20C 5.25342 20 1 15.7471 1 10.5Z"/>
+</defs>
+</svg>
