@@ -12,7 +12,7 @@ export default defineConfig({
     outDir: 'dist-cdn',
     emptyOutDir: true,
     rollupOptions: {
-      external: id => id === 'lit' || id.startsWith('lit/'),
+      // Bundle lit so lit-ui.js is self-contained for CDN (no import map needed)
       output: {
         format: 'es',
         entryFileNames: 'lit-ui.js'

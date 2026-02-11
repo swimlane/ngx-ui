@@ -1,5 +1,5 @@
 import { LitElement, html, nothing } from 'lit';
-import { customElement, property, state, query } from 'lit/decorators.js';
+import { property, state, query } from 'lit/decorators.js';
 import { sectionComponentStyles } from './section.styles';
 import { SectionAppearance } from './section-appearance.enum';
 import { TogglePosition } from './section-toggle-position.enum';
@@ -28,7 +28,7 @@ let nextId = 0;
  *
  * @fires toggle - Fired when the section is expanded or collapsed (detail: boolean collapsed).
  */
-@customElement('swim-section')
+const SECTION_TAG = 'swim-section';
 export class SwimSection extends LitElement {
   static styles = sectionComponentStyles;
 
@@ -261,6 +261,10 @@ export class SwimSection extends LitElement {
       </div>
     `;
   }
+}
+
+if (!customElements.get(SECTION_TAG)) {
+  customElements.define(SECTION_TAG, SwimSection);
 }
 
 declare global {

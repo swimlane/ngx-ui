@@ -1,5 +1,5 @@
 import { LitElement, html, nothing } from 'lit';
-import { customElement, property, state, query } from 'lit/decorators.js';
+import { property, state, query } from 'lit/decorators.js';
 import { dialogStyles } from './dialog.styles';
 import { DialogFormat } from './dialog-format.enum';
 import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
@@ -16,7 +16,7 @@ import '../icon/icon.component';
  * @csspart content - The dialog content panel
  * @csspart close-button - The close button
  */
-@customElement('swim-dialog')
+const DIALOG_TAG = 'swim-dialog';
 export class SwimDialog extends LitElement {
   static styles = dialogStyles;
 
@@ -230,6 +230,10 @@ export class SwimDialog extends LitElement {
       </div>
     `;
   }
+}
+
+if (!customElements.get(DIALOG_TAG)) {
+  customElements.define(DIALOG_TAG, SwimDialog);
 }
 
 declare global {

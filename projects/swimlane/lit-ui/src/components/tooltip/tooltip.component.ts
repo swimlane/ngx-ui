@@ -1,5 +1,5 @@
 import { LitElement, html, nothing } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { tooltipContentStyles } from './tooltip.styles';
 import { PlacementType } from './placement-type.enum';
@@ -23,7 +23,7 @@ import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce'
  * @csspart panel - The tooltip/popover panel.
  * @csspart content - The content area inside the panel.
  */
-@customElement('swim-tooltip')
+const TOOLTIP_TAG = 'swim-tooltip';
 export class SwimTooltip extends LitElement {
   static styles = tooltipContentStyles;
 
@@ -442,6 +442,10 @@ export class SwimTooltip extends LitElement {
         : ''}
     `;
   }
+}
+
+if (!customElements.get(TOOLTIP_TAG)) {
+  customElements.define(TOOLTIP_TAG, SwimTooltip);
 }
 
 declare global {

@@ -1,5 +1,5 @@
 import { LitElement, html, nothing, PropertyValues } from 'lit';
-import { customElement, property, state, query } from 'lit/decorators.js';
+import { property, state, query } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { baseStyles } from '../../styles/base';
 import { selectStyles } from './select.styles';
@@ -22,7 +22,7 @@ import '../icon/icon.component';
  * @csspart select - The select input element
  * @csspart dropdown - The dropdown container
  */
-@customElement('swim-select')
+const SELECT_TAG = 'swim-select';
 export class SwimSelect extends LitElement {
   static styles = [baseStyles, selectStyles];
   static formAssociated = true;
@@ -684,6 +684,10 @@ export class SwimSelect extends LitElement {
   formDisabledCallback(disabled: boolean) {
     this.disabled = disabled;
   }
+}
+
+if (!customElements.get(SELECT_TAG)) {
+  customElements.define(SELECT_TAG, SwimSelect);
 }
 
 declare global {

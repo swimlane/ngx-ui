@@ -1,5 +1,5 @@
 import { LitElement, html, nothing } from 'lit';
-import { customElement, property, state, query } from 'lit/decorators.js';
+import { property, state, query } from 'lit/decorators.js';
 import { drawerStyles } from './drawer.styles';
 import { DrawerDirection } from './drawer-direction.enum';
 import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
@@ -15,7 +15,7 @@ import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce'
  *
  * @csspart content - The scrollable content panel
  */
-@customElement('swim-drawer')
+const DRAWER_TAG = 'swim-drawer';
 export class SwimDrawer extends LitElement {
   static styles = drawerStyles;
 
@@ -196,7 +196,7 @@ export class SwimDrawer extends LitElement {
     }
   }
 
-  protected willUpdate(changedProperties: Map<string, unknown>): void {
+  protected willUpdate(): void {
     // Apply BEM classes and z-index before render so CSS matches on first paint
     const classes = [
       'swim-drawer',
@@ -250,6 +250,10 @@ export class SwimDrawer extends LitElement {
       </div>
     `;
   }
+}
+
+if (!customElements.get(DRAWER_TAG)) {
+  customElements.define(DRAWER_TAG, SwimDrawer);
 }
 
 declare global {

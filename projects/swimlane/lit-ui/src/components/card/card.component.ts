@@ -1,5 +1,5 @@
 import { LitElement, html, nothing } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { cardComponentStyles } from './card.styles';
 import { CardStatus } from './card-status.enum';
 import { CardOrientation } from './card-orientation.enum';
@@ -16,7 +16,7 @@ import { coerceBooleanProperty } from '../../utils/coerce';
  *
  * @csspart outline-text - The clickable outline text inner element (when outlineText is set).
  */
-@customElement('swim-card')
+const CARD_TAG = 'swim-card';
 export class SwimCard extends LitElement {
   static styles = cardComponentStyles;
 
@@ -183,6 +183,10 @@ export class SwimCard extends LitElement {
       ${!this.hideAccent ? html`<div class="swim-card__accent" aria-hidden="true"></div>` : nothing}
     `;
   }
+}
+
+if (!customElements.get(CARD_TAG)) {
+  customElements.define(CARD_TAG, SwimCard);
 }
 
 declare global {

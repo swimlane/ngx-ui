@@ -1,5 +1,5 @@
 import { LitElement, html, PropertyValues } from 'lit';
-import { customElement, property, state, query } from 'lit/decorators.js';
+import { property, state, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { buttonToggleGroupStyles } from './button-toggle-group.styles';
 import { coerceBooleanProperty } from '../../utils/coerce';
@@ -16,7 +16,7 @@ let nextId = 0;
  *
  * @fires value-change - Fired when selection changes (detail: selected value)
  */
-@customElement('swim-button-toggle-group')
+const BUTTON_TOGGLE_GROUP_TAG = 'swim-button-toggle-group';
 export class SwimButtonToggleGroup extends LitElement {
   static styles = [baseStyles, buttonToggleGroupStyles];
   static formAssociated = true;
@@ -219,6 +219,10 @@ export class SwimButtonToggleGroup extends LitElement {
       </div>
     `;
   }
+}
+
+if (!customElements.get(BUTTON_TOGGLE_GROUP_TAG)) {
+  customElements.define(BUTTON_TOGGLE_GROUP_TAG, SwimButtonToggleGroup);
 }
 
 declare global {

@@ -1,5 +1,5 @@
 import { LitElement, html, nothing } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { progressSpinnerStyles } from './progress-spinner.styles';
 import { ProgressSpinnerMode } from './progress-spinner-mode.enum';
 import { SpinnerAppearance } from './spinner-appearance.enum';
@@ -33,7 +33,7 @@ const DEFAULT_FAIL_ICON = 'x';
  * @csspart container - The spinner container (circle wrapper)
  * @csspart label - The label container (when spinner-label is set)
  */
-@customElement('swim-progress-spinner')
+const PROGRESS_SPINNER_TAG = 'swim-progress-spinner';
 export class SwimProgressSpinner extends LitElement {
   static styles = progressSpinnerStyles;
 
@@ -298,6 +298,10 @@ export class SwimProgressSpinner extends LitElement {
         : nothing}
     `;
   }
+}
+
+if (!customElements.get(PROGRESS_SPINNER_TAG)) {
+  customElements.define(PROGRESS_SPINNER_TAG, SwimProgressSpinner);
 }
 
 declare global {

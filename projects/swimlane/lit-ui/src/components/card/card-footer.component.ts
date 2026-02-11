@@ -1,5 +1,5 @@
 import { LitElement, html, nothing } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { cardFooterComponentStyles } from './card-footer.styles';
 
 /**
@@ -7,7 +7,7 @@ import { cardFooterComponentStyles } from './card-footer.styles';
  *
  * @slot - Footer content (e.g. actions).
  */
-@customElement('swim-card-footer')
+const CARD_FOOTER_TAG = 'swim-card-footer';
 export class SwimCardFooter extends LitElement {
   static styles = cardFooterComponentStyles;
 
@@ -21,6 +21,10 @@ export class SwimCardFooter extends LitElement {
       <slot></slot>
     `;
   }
+}
+
+if (!customElements.get(CARD_FOOTER_TAG)) {
+  customElements.define(CARD_FOOTER_TAG, SwimCardFooter);
 }
 
 declare global {

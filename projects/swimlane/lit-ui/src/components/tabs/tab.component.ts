@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { tabStyles } from './tab.styles.js';
 import { coerceBooleanProperty } from '../../utils/coerce';
@@ -12,7 +12,7 @@ let nextId = 0;
  * @slot label - Custom label content (optional; if not used, the `label` property is shown in the tab list)
  * @slot - Tab panel content (shown when this tab is active)
  */
-@customElement('swim-tab')
+const TAB_TAG = 'swim-tab';
 export class SwimTab extends LitElement {
   static styles = [baseStyles, tabStyles];
 
@@ -105,6 +105,10 @@ export class SwimTab extends LitElement {
       </div>
     `;
   }
+}
+
+if (!customElements.get(TAB_TAG)) {
+  customElements.define(TAB_TAG, SwimTab);
 }
 
 declare global {

@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { buttonGroupStyles } from './button-group.styles';
 import { ButtonGroupOrientation } from './button-group-orientation.enum';
@@ -12,7 +12,7 @@ import { ButtonGroupStyle } from './button-group-style.enum';
  *
  * @slot - Button content (swim-button or native button elements)
  */
-@customElement('swim-button-group')
+const BUTTON_GROUP_TAG = 'swim-button-group';
 export class SwimButtonGroup extends LitElement {
   static styles = [baseStyles, buttonGroupStyles];
 
@@ -37,6 +37,10 @@ export class SwimButtonGroup extends LitElement {
   render() {
     return html`<slot></slot>`;
   }
+}
+
+if (!customElements.get(BUTTON_GROUP_TAG)) {
+  customElements.define(BUTTON_GROUP_TAG, SwimButtonGroup);
 }
 
 declare global {

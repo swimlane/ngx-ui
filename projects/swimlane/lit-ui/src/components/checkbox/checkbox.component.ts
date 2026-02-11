@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { property, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { checkboxStyles } from './checkbox.styles';
 import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
@@ -20,7 +20,7 @@ let nextId = 0;
  * @csspart box - The visual checkbox box
  * @csspart content - The label content wrapper
  */
-@customElement('swim-checkbox')
+const CHECKBOX_TAG = 'swim-checkbox';
 export class SwimCheckbox extends LitElement {
   static styles = [baseStyles, checkboxStyles];
   static formAssociated = true;
@@ -217,6 +217,10 @@ export class SwimCheckbox extends LitElement {
       </div>
     `;
   }
+}
+
+if (!customElements.get(CHECKBOX_TAG)) {
+  customElements.define(CHECKBOX_TAG, SwimCheckbox);
 }
 
 declare global {

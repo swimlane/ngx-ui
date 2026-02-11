@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property, state, query } from 'lit/decorators.js';
+import { property, state, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { tabsStyles } from './tabs.styles';
 import { SwimTab } from './tab.component';
@@ -17,7 +17,7 @@ import { coerceBooleanProperty } from '../../utils/coerce';
  * @csspart tablist - The tab list container (role=tablist)
  * @csspart tab-content - The container for tab panels
  */
-@customElement('swim-tabs')
+const TABS_TAG = 'swim-tabs';
 export class SwimTabs extends LitElement {
   static styles = [baseStyles, tabsStyles];
 
@@ -174,6 +174,10 @@ export class SwimTabs extends LitElement {
       </section>
     `;
   }
+}
+
+if (!customElements.get(TABS_TAG)) {
+  customElements.define(TABS_TAG, SwimTabs);
 }
 
 declare global {

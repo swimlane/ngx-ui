@@ -1,5 +1,5 @@
 import { LitElement, html, PropertyValues } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { sliderStyles } from './slider.styles';
 import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
@@ -21,7 +21,7 @@ export interface SliderChangeDetail {
  * @csspart fill - The filled portion of the track (when filled=true)
  * @csspart thumb - Each thumb indicator (when not using native thumb)
  */
-@customElement('swim-slider')
+const SLIDER_TAG = 'swim-slider';
 export class SwimSlider extends LitElement {
   static styles = [baseStyles, sliderStyles];
   static formAssociated = true;
@@ -372,6 +372,10 @@ export class SwimSlider extends LitElement {
       </div>
     `;
   }
+}
+
+if (!customElements.get(SLIDER_TAG)) {
+  customElements.define(SLIDER_TAG, SwimSlider);
 }
 
 declare global {

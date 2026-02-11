@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { navbarItemStyles } from './navbar-item.styles';
 import { coerceNumberProperty } from '../../utils/coerce';
@@ -11,7 +11,7 @@ import { coerceNumberProperty } from '../../utils/coerce';
  *
  * @fires active-change - Fired when this item becomes active (detail: number index)
  */
-@customElement('swim-navbar-item')
+const NAVBAR_ITEM_TAG = 'swim-navbar-item';
 export class SwimNavbarItem extends LitElement {
   static styles = [baseStyles, navbarItemStyles];
 
@@ -116,6 +116,10 @@ export class SwimNavbarItem extends LitElement {
       this.setActive();
     }
   }
+}
+
+if (!customElements.get(NAVBAR_ITEM_TAG)) {
+  customElements.define(NAVBAR_ITEM_TAG, SwimNavbarItem);
 }
 
 declare global {

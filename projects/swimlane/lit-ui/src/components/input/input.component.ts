@@ -1,5 +1,5 @@
 import { LitElement, html, nothing, PropertyValues } from 'lit';
-import { customElement, property, state, query } from 'lit/decorators.js';
+import { property, state, query } from 'lit/decorators.js';
 import { live } from 'lit/directives/live.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import '../icon/icon.component';
@@ -25,7 +25,7 @@ import { coerceBooleanProperty } from '../../utils/coerce';
  * @csspart input - The native input/textarea element
  * @csspart label - The label element
  */
-@customElement('swim-input')
+const INPUT_TAG = 'swim-input';
 export class SwimInput extends LitElement {
   static styles = [baseStyles, inputStyles];
   static formAssociated = true;
@@ -589,6 +589,10 @@ export class SwimInput extends LitElement {
   formDisabledCallback(disabled: boolean) {
     this.disabled = disabled;
   }
+}
+
+if (!customElements.get(INPUT_TAG)) {
+  customElements.define(INPUT_TAG, SwimInput);
 }
 
 declare global {

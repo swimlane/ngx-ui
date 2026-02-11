@@ -1,5 +1,5 @@
 import { LitElement, html, nothing } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { cardHeaderComponentStyles } from './card-header.styles';
 
 /**
@@ -11,7 +11,7 @@ import { cardHeaderComponentStyles } from './card-header.styles';
  * @slot title - Main title.
  * @slot subtitle - Subtitle below title.
  */
-@customElement('swim-card-header')
+const CARD_HEADER_TAG = 'swim-card-header';
 export class SwimCardHeader extends LitElement {
   static styles = cardHeaderComponentStyles;
 
@@ -35,6 +35,10 @@ export class SwimCardHeader extends LitElement {
       ${this.label ? html`<div class="swim-card-header__label">${this.label}</div>` : nothing}
     `;
   }
+}
+
+if (!customElements.get(CARD_HEADER_TAG)) {
+  customElements.define(CARD_HEADER_TAG, SwimCardHeader);
 }
 
 declare global {

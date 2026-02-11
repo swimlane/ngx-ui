@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { property, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { radioGroupStyles } from './radio.styles';
 import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
@@ -21,7 +21,7 @@ function mod(v: number, n: number): number {
  * @fires focus - Fired when the group or a child gains focus
  * @fires blur - Fired when focus leaves the group
  */
-@customElement('swim-radio-group')
+const RADIO_GROUP_TAG = 'swim-radio-group';
 export class SwimRadioGroup extends LitElement {
   static styles = [baseStyles, radioGroupStyles];
   static formAssociated = true;
@@ -250,6 +250,10 @@ export class SwimRadioGroup extends LitElement {
       </div>
     `;
   }
+}
+
+if (!customElements.get(RADIO_GROUP_TAG)) {
+  customElements.define(RADIO_GROUP_TAG, SwimRadioGroup);
 }
 
 declare global {

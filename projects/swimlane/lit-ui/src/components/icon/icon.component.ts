@@ -1,5 +1,5 @@
 import { LitElement, html, nothing } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { iconStyles } from './icon.styles';
 import { iconRegistry } from '../../utils/icon-registry';
@@ -13,7 +13,7 @@ import { iconRegistry } from '../../utils/icon-registry';
  *
  * @csspart icon - The icon element (i or span)
  */
-@customElement('swim-icon')
+const ICON_TAG = 'swim-icon';
 export class SwimIcon extends LitElement {
   static styles = [baseStyles, iconStyles];
 
@@ -139,6 +139,10 @@ export class SwimIcon extends LitElement {
       </span>
     `;
   }
+}
+
+if (!customElements.get(ICON_TAG)) {
+  customElements.define(ICON_TAG, SwimIcon);
 }
 
 declare global {

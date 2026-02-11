@@ -1,10 +1,12 @@
 import { LitElement, html, nothing } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { buttonStyles } from './button.styles';
 import { ButtonState } from './button-state.enum';
 import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
 import '../icon/icon.component';
+
+const BUTTON_TAG = 'swim-button';
 
 /**
  * SwimButton - A button component matching @swimlane/ngx-ui design system
@@ -15,7 +17,6 @@ import '../icon/icon.component';
  *
  * @csspart button - The native button element
  */
-@customElement('swim-button')
 export class SwimButton extends LitElement {
   static styles = [baseStyles, buttonStyles];
 
@@ -190,6 +191,10 @@ export class SwimButton extends LitElement {
       this._timer = undefined;
     }
   }
+}
+
+if (!customElements.get(BUTTON_TAG)) {
+  customElements.define(BUTTON_TAG, SwimButton);
 }
 
 declare global {

@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 import { listStyles } from './list.styles';
 import { ListRowStatus } from './list-row-status.enum';
 import type { ListPaginationConfig } from './list-pagination-config.interface';
@@ -14,7 +14,7 @@ const ROW_HEIGHT = 44;
  * @fires page-change - Fired when scroll-based pagination page changes (detail: page number).
  * @fires scroll - Fired when the list body is scrolled (detail: scrollTop).
  */
-@customElement('swim-list')
+const LIST_TAG = 'swim-list';
 export class SwimList extends LitElement {
   static styles = listStyles;
 
@@ -183,6 +183,10 @@ export class SwimList extends LitElement {
       </div>
     `;
   }
+}
+
+if (!customElements.get(LIST_TAG)) {
+  customElements.define(LIST_TAG, SwimList);
 }
 
 declare global {

@@ -1,5 +1,5 @@
 import { LitElement, html, nothing } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { largeFormatDialogContentStyles } from './large-format-dialog-content.styles';
 import { scrollbarStyles } from '../../../styles/scrollbars';
 import '../../icon/icon.component';
@@ -13,7 +13,7 @@ import '../../icon/icon.component';
  *
  * @fires close-or-cancel - Fired when the header close/cancel button is clicked (detail: boolean – true if dirty)
  */
-@customElement('swim-large-format-dialog-content')
+const LARGE_FORMAT_DIALOG_CONTENT_TAG = 'swim-large-format-dialog-content';
 export class SwimLargeFormatDialogContent extends LitElement {
   static styles = [scrollbarStyles, largeFormatDialogContentStyles];
 
@@ -79,6 +79,10 @@ export class SwimLargeFormatDialogContent extends LitElement {
       </main>
     `;
   }
+}
+
+if (!customElements.get(LARGE_FORMAT_DIALOG_CONTENT_TAG)) {
+  customElements.define(LARGE_FORMAT_DIALOG_CONTENT_TAG, SwimLargeFormatDialogContent);
 }
 
 declare global {

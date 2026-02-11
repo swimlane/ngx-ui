@@ -1,5 +1,5 @@
 import { LitElement, html, nothing } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { cardAvatarComponentStyles } from './card-avatar.styles';
 import { CardStatus } from './card-status.enum';
 
@@ -8,7 +8,7 @@ import { CardStatus } from './card-status.enum';
  *
  * @slot - Fallback content when no src (e.g. initials).
  */
-@customElement('swim-card-avatar')
+const CARD_AVATAR_TAG = 'swim-card-avatar';
 export class SwimCardAvatar extends LitElement {
   static styles = cardAvatarComponentStyles;
 
@@ -58,6 +58,10 @@ export class SwimCardAvatar extends LitElement {
       </div>
     `;
   }
+}
+
+if (!customElements.get(CARD_AVATAR_TAG)) {
+  customElements.define(CARD_AVATAR_TAG, SwimCardAvatar);
 }
 
 declare global {

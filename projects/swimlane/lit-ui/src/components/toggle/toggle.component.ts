@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { property, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { toggleStyles } from './toggle.styles';
 import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
@@ -26,7 +26,7 @@ let nextId = 0;
  * @csspart thumb - The sliding thumb
  * @csspart text - The label text wrapper
  */
-@customElement('swim-toggle')
+const TOGGLE_TAG = 'swim-toggle';
 export class SwimToggle extends LitElement {
   static styles = [baseStyles, toggleStyles];
   static formAssociated = true;
@@ -249,6 +249,10 @@ export class SwimToggle extends LitElement {
       </div>
     `;
   }
+}
+
+if (!customElements.get(TOGGLE_TAG)) {
+  customElements.define(TOGGLE_TAG, SwimToggle);
 }
 
 declare global {

@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property, state, query } from 'lit/decorators.js';
+import { property, state, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { navbarStyles } from './navbar.styles';
 import { SwimNavbarItem } from './navbar-item.component';
@@ -18,7 +18,7 @@ const BAR_SIZE = 40;
  * @csspart bar-track - Track for the active bar
  * @csspart bar - The active indicator bar
  */
-@customElement('swim-navbar')
+const NAVBAR_TAG = 'swim-navbar';
 export class SwimNavbar extends LitElement {
   static styles = [baseStyles, navbarStyles];
 
@@ -167,6 +167,10 @@ export class SwimNavbar extends LitElement {
       </div>
     `;
   }
+}
+
+if (!customElements.get(NAVBAR_TAG)) {
+  customElements.define(NAVBAR_TAG, SwimNavbar);
 }
 
 declare global {

@@ -1,12 +1,12 @@
 import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { cardPlaceholderComponentStyles } from './card-placeholder.styles';
 import { CardPlaceholderSize } from './card-placeholder-size.enum';
 
 /**
  * SwimCardPlaceholder - Skeleton placeholder bar for card content. Used inside swim-card sections.
  */
-@customElement('swim-card-placeholder')
+const CARD_PLACEHOLDER_TAG = 'swim-card-placeholder';
 export class SwimCardPlaceholder extends LitElement {
   static styles = cardPlaceholderComponentStyles;
 
@@ -17,6 +17,10 @@ export class SwimCardPlaceholder extends LitElement {
   render() {
     return html``;
   }
+}
+
+if (!customElements.get(CARD_PLACEHOLDER_TAG)) {
+  customElements.define(CARD_PLACEHOLDER_TAG, SwimCardPlaceholder);
 }
 
 declare global {

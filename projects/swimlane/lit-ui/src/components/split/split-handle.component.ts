@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { splitHandleBaseStyles } from './split-handle.styles';
 import { basisToParts, partsToStyle } from './utils';
 import type { FlexParts } from './utils';
@@ -16,7 +16,7 @@ const DEFAULT_BASIS = '0 0 15px';
  * @fires dragend - Fired on mouseup when drag ends
  * @fires dblclick - Fired on double-click (used by parent to snap to extremes)
  */
-@customElement('swim-split-handle')
+const SPLIT_HANDLE_TAG = 'swim-split-handle';
 export class SwimSplitHandle extends LitElement {
   static styles = splitHandleBaseStyles;
 
@@ -95,6 +95,10 @@ export class SwimSplitHandle extends LitElement {
       </button>
     `;
   }
+}
+
+if (!customElements.get(SPLIT_HANDLE_TAG)) {
+  customElements.define(SPLIT_HANDLE_TAG, SwimSplitHandle);
 }
 
 declare global {

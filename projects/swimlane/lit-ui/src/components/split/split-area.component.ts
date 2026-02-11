@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { property } from 'lit/decorators.js';
 import { splitAreaBaseStyles } from './split-area.styles';
 import { basisToParts, partsToStyle } from './utils';
 import type { FlexParts } from './utils';
@@ -13,7 +13,7 @@ const DEFAULT_BASIS = '1 1 1e-9px';
  *
  * @slot - Area content
  */
-@customElement('swim-split-area')
+const SPLIT_AREA_TAG = 'swim-split-area';
 export class SwimSplitArea extends LitElement implements ISplitArea {
   static styles = splitAreaBaseStyles;
 
@@ -86,6 +86,10 @@ export class SwimSplitArea extends LitElement implements ISplitArea {
   render() {
     return html`<slot></slot>`;
   }
+}
+
+if (!customElements.get(SPLIT_AREA_TAG)) {
+  customElements.define(SPLIT_AREA_TAG, SwimSplitArea);
 }
 
 declare global {

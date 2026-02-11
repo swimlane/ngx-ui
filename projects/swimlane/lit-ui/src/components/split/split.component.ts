@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { property, query } from 'lit/decorators.js';
 import { splitBaseStyles } from './split.styles';
 import { SplitDirection } from './split-direction.enum';
 import { resizeAreaBy } from './resize-area-by.util';
@@ -18,7 +18,7 @@ import type { SwimSplitHandle } from './split-handle.component';
  *
  * @fires resize - Fired when the user resizes (optional; areas update automatically)
  */
-@customElement('swim-split')
+const SPLIT_TAG = 'swim-split';
 export class SwimSplit extends LitElement {
   static styles = splitBaseStyles;
 
@@ -156,6 +156,10 @@ export class SwimSplit extends LitElement {
   render() {
     return html`<slot></slot>`;
   }
+}
+
+if (!customElements.get(SPLIT_TAG)) {
+  customElements.define(SPLIT_TAG, SwimSplit);
 }
 
 declare global {

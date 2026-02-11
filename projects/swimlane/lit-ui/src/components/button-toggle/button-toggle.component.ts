@@ -1,5 +1,5 @@
 import { LitElement, html } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { buttonToggleStyles } from './button-toggle.styles';
 import { coerceBooleanProperty } from '../../utils/coerce';
@@ -14,7 +14,7 @@ let nextId = 0;
  *
  * @fires value-change - Fired when the toggle is selected (detail: value)
  */
-@customElement('swim-button-toggle')
+const BUTTON_TOGGLE_TAG = 'swim-button-toggle';
 export class SwimButtonToggle extends LitElement {
   static styles = [baseStyles, buttonToggleStyles];
 
@@ -105,6 +105,10 @@ export class SwimButtonToggle extends LitElement {
       })
     );
   }
+}
+
+if (!customElements.get(BUTTON_TOGGLE_TAG)) {
+  customElements.define(BUTTON_TOGGLE_TAG, SwimButtonToggle);
 }
 
 declare global {
