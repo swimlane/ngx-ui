@@ -5,6 +5,9 @@ node_modules/
 dist/
 dist-demo/
 dist-cdn/
+demo/src/*.js
+demo/src/*.d.ts
+demo/src/*.d.ts.map
 
 # TypeScript
 *.tsbuildinfo

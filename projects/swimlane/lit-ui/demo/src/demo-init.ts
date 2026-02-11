@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 /**
  * Demo initialization: load section HTML and wire up all interactive demos.
  * Invoked from main.ts after DOMContentLoaded.
@@ -86,7 +87,7 @@ const sectionCache = new Map<string, string>();
 async function loadSection(sectionId: string): Promise<string> {
   const cached = sectionCache.get(sectionId);
   if (cached) return cached;
-  const res = await fetch(`/sections/${sectionId}.html`);
+  const res = await fetch(`${import.meta.env.BASE_URL}sections/${sectionId}.html`);
   if (!res.ok) throw new Error(`Failed to load section: ${sectionId}`);
   const html = await res.text();
   sectionCache.set(sectionId, html);
