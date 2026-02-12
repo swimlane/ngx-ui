@@ -17,6 +17,7 @@ export const cardFooterStyles = css`
   .swim-card-footer__label {
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-xs);
+    color: var(--blue-400);
     border-bottom: 0;
     white-space: nowrap;
     width: 100%;

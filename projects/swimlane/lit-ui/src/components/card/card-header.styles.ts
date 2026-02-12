@@ -23,7 +23,9 @@ export const cardHeaderStyles = css`
 
   :host([orientation='vertical']) {
     flex-direction: column;
+    flex-grow: 0;
     padding: var(--spacing-0);
+    margin-bottom: 15px;
     width: 100%;
     box-sizing: border-box;
     overflow: visible;
@@ -89,17 +91,14 @@ export const cardHeaderStyles = css`
   .swim-card-header__label {
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-xs);
-    color: var(--blue-400);
+    color: var(--card-status-success, #b0e53c);
     border-bottom: 0;
+    margin-bottom: 0.5rem;
     white-space: nowrap;
     width: 100%;
     text-align: center;
-    position: absolute;
     display: flex;
     align-items: center;
-    bottom: -15px;
-    left: 0;
-    z-index: 1;
   }
 
   .swim-card-header__label::before,

@@ -28,11 +28,11 @@ export class SwimCardHeader extends LitElement {
       <slot name="avatar"></slot>
       <div class="swim-card-header__title-group">
         <slot></slot>
+        ${this.label ? html`<div class="swim-card-header__label">${this.label}</div>` : nothing}
         <slot name="tag"></slot>
         <slot name="title"></slot>
         <slot name="subtitle"></slot>
       </div>
-      ${this.label ? html`<div class="swim-card-header__label">${this.label}</div>` : nothing}
     `;
   }
 }

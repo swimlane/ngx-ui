@@ -275,6 +275,7 @@ export const cardVerticalStyles = css`
     flex-shrink: 0;
     height: 50px;
     padding: var(--spacing-20) var(--spacing-0);
+    margin-top: 15px;
     margin-bottom: ${cardAccentThickness}px;
     display: flex;
     align-items: center;
