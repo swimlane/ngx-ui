@@ -27,10 +27,37 @@
 <section class="section">
   <swim-section section-title="Vertical card">
     <p class="section-desc">Vertical layout with header label and footer.</p>
-    <div class="demo-row demo-row--column">
+    <div class="demo-row" style="gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
+      <swim-card orientation="vertical" status="success">
+        <swim-card-header orientation="vertical" label="CARD">
+          <swim-card-avatar slot="avatar" status="success">AB</swim-card-avatar>
+          <span slot="title">Card Title</span>
+          <span slot="subtitle">Subtitle</span>
+        </swim-card-header>
+        <swim-card-body>
+          <div style="display: flex; gap: 1rem; width: 100%; margin-bottom: var(--spacing-20);">
+            <div style="flex: 1; background: var(--grey-750); border-radius: var(--radius-4); padding: 12px; text-align: center;">
+              <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); color: var(--grey-050);">&#x2197; 148</div>
+              <div style="font-size: var(--font-size-xxs); color: var(--grey-350); text-transform: uppercase;">Runs / 24hrs</div>
+            </div>
+            <div style="flex: 1; background: var(--grey-750); border-radius: var(--radius-4); padding: 12px; text-align: center;">
+              <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); color: var(--grey-050);">&#x2197; --:--</div>
+              <div style="font-size: var(--font-size-xxs); color: var(--grey-350); text-transform: uppercase;">Avg Runtime / 24hrs</div>
+            </div>
+          </div>
+          <div style="font-size: var(--font-size-s); color: var(--grey-350);">Created 80 days ago &bull; Edited 80 days ago</div>
+        </swim-card-body>
+        <swim-card-footer label="ACTIONS">
+          <div style="display: flex; gap: var(--spacing-16); align-items: center;">
+            <swim-icon font-icon="integrations" style="cursor: pointer; font-size: 1.2em; color: var(--grey-300);"></swim-icon>
+            <swim-icon font-icon="ellipsis-v" style="cursor: pointer; font-size: 1.2em; color: var(--grey-300);"></swim-icon>
+          </div>
+        </swim-card-footer>
+      </swim-card>
+
       <swim-card orientation="vertical">
         <swim-card-header orientation="vertical" label="Header label">
-          <swim-card-avatar slot="avatar" src="/assets/swimlane.svg">SW</swim-card-avatar>
+          <swim-card-avatar slot="avatar">SW</swim-card-avatar>
           <span slot="title">Vertical Card</span>
           <span slot="subtitle">With label and footer</span>
         </swim-card-header>
@@ -46,36 +73,26 @@
   <swim-section section-title="Status and appearance">
     <p class="section-desc">Status dot (success/error) and flat appearance.</p>
     <div class="demo-row demo-row--column">
-      <div class="demo-grid">
-        <div class="demo-item">
-          <div class="demo-label">Status: success</div>
-          <div class="demo-card-container--narrow">
-            <swim-card orientation="horizontal" status="success">
-              <swim-card-header>
-                <span slot="title">Success status</span>
-              </swim-card-header>
-            </swim-card>
-          </div>
-        </div>
-        <div class="demo-item">
-          <div class="demo-label">Status: error</div>
-          <div class="demo-card-container--narrow">
-            <swim-card orientation="horizontal" status="error">
-              <swim-card-header>
-                <span slot="title">Error status</span>
-              </swim-card-header>
-            </swim-card>
-          </div>
-        </div>
-      </div>
-      <div class="demo-label demo-label--after">Flat appearance (no background)</div>
-      <div class="demo-card-container--narrow">
-        <swim-card orientation="horizontal" appearance="flat">
-          <swim-card-header>
-            <span slot="title">Flat card</span>
-          </swim-card-header>
-        </swim-card>
-      </div>
+      <div class="demo-label">Status: success</div>
+      <swim-card orientation="horizontal" status="success">
+        <swim-card-header>
+          <span slot="title">Success status</span>
+        </swim-card-header>
+      </swim-card>
+
+      <div class="demo-label" style="margin-top: 1rem;">Status: error</div>
+      <swim-card orientation="horizontal" status="error">
+        <swim-card-header>
+          <span slot="title">Error status</span>
+        </swim-card-header>
+      </swim-card>
+
+      <div class="demo-label" style="margin-top: 1rem;">Flat appearance (no background)</div>
+      <swim-card orientation="horizontal" appearance="flat">
+        <swim-card-header>
+          <span slot="title">Flat card</span>
+        </swim-card-header>
+      </swim-card>
     </div>
   </swim-section>
 </section>
@@ -84,14 +101,13 @@
   <swim-section section-title="Selectable and selected">
     <p class="section-desc">Card with checkbox; listen to <code>select</code> event for selected state.</p>
     <div class="demo-row demo-row--column">
-      <div class="demo-card-container">
-        <swim-card id="selectableCardDemo" orientation="horizontal" selectable selected>
-          <swim-card-header>
-            <span slot="title">Selectable card</span>
-            <span slot="subtitle">Checked by default</span>
-          </swim-card-header>
-        </swim-card>
-      </div>
+      <swim-card id="selectableCardDemo" orientation="horizontal" selectable selected>
+        <swim-card-header>
+          <swim-card-avatar slot="avatar" src="/assets/swimlane.svg"></swim-card-avatar>
+          <span slot="title">Card Title</span>
+          <span slot="subtitle">card_subtitle · Created 80 days ago · Edited 80 days ago</span>
+        </swim-card-header>
+      </swim-card>
       <p class="demo-label demo-label--after">Selected: <strong id="cardSelectedValue">true</strong></p>
     </div>
   </swim-section>
@@ -101,34 +117,35 @@
   <swim-section section-title="Outline text and error">
     <p class="section-desc">Outline with clickable label; error state.</p>
     <div class="demo-row demo-row--column">
-      <div class="demo-card-container--narrow">
-        <swim-card id="outlineCardDemo" orientation="horizontal" outline-text="View details">
-          <swim-card-header>
-            <span slot="title">Outline text</span>
-          </swim-card-header>
-        </swim-card>
-      </div>
-      <div class="demo-card-container--narrow demo-card-container--spaced">
-        <swim-card orientation="horizontal" error outline-text="Error">
-          <swim-card-header>
-            <span slot="title">Error outline</span>
-          </swim-card-header>
-        </swim-card>
-      </div>
+      <swim-card id="outlineCardDemo" orientation="horizontal" outline-text="View details">
+        <swim-card-header>
+          <swim-card-avatar slot="avatar" src="/assets/swimlane.svg"></swim-card-avatar>
+          <span slot="title">Card Title</span>
+          <span slot="subtitle">card_subtitle · Created 80 days ago · Edited 80 days ago</span>
+        </swim-card-header>
+      </swim-card>
+
+      <swim-card style="margin-top: 1rem;" orientation="horizontal" error outline-text="Error">
+        <swim-card-header>
+          <swim-card-avatar slot="avatar" src="/assets/swimlane.svg"></swim-card-avatar>
+          <span slot="title">Card Title</span>
+          <span slot="subtitle">card_subtitle · Created 80 days ago · Edited 80 days ago</span>
+        </swim-card-header>
+      </swim-card>
     </div>
   </swim-section>
 </section>
 
 <section class="section">
   <swim-section section-title="Placeholders">
-    <p class="section-desc">Skeleton placeholders (small, medium, large).</p>
-    <div class="demo-row demo-row--column">
-      <div class="demo-grid">
-        <swim-card-placeholder size="small"></swim-card-placeholder>
-        <swim-card-placeholder size="medium"></swim-card-placeholder>
-        <swim-card-placeholder size="large"></swim-card-placeholder>
-      </div>
-    </div>
+    <p class="section-desc">Skeleton placeholders inside a card (loading state).</p>
+    <swim-card orientation="horizontal">
+      <swim-card-header class="no-click">
+        <swim-card-avatar slot="avatar" src="/assets/swimlane.svg"></swim-card-avatar>
+        <span slot="title"><swim-card-placeholder size="large"></swim-card-placeholder></span>
+        <span slot="subtitle"><swim-card-placeholder size="small"></swim-card-placeholder></span>
+      </swim-card-header>
+    </swim-card>
   </swim-section>
 </section>
 

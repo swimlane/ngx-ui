@@ -84,5 +84,23 @@ export const iconStyles = css`
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Loading spinner: animate only the inner glyph inside this shadow root */
+  @keyframes swim-icon-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  :host([font-icon='loading']) .swim-icon__i {
+    animation: swim-icon-spin 1s linear infinite;
+  }
+
+  :host([font-icon='loading']) span[part='icon'] {
+    animation: swim-icon-spin 1s linear infinite;
+  }
+
   ${iconFontGlyphs}
 `;

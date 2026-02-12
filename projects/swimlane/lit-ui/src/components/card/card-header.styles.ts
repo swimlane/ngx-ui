@@ -24,7 +24,6 @@ export const cardHeaderStyles = css`
   :host([orientation='vertical']) {
     flex-direction: column;
     padding: var(--spacing-0);
-    border-bottom: 2px solid var(--grey-700);
     width: 100%;
     box-sizing: border-box;
   }
@@ -63,6 +62,7 @@ export const cardHeaderStyles = css`
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+    color: var(--white);
   }
 
   ::slotted([slot='tag']) {
@@ -87,6 +87,7 @@ export const cardHeaderStyles = css`
   .swim-card-header__label {
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-xs);
+    color: var(--blue-400);
     border-bottom: 0;
     white-space: nowrap;
     width: 100%;
@@ -96,6 +97,7 @@ export const cardHeaderStyles = css`
     align-items: center;
     bottom: -15px;
     left: 0;
+    z-index: 1;
   }
 
   .swim-card-header__label::before,

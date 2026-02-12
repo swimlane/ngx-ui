@@ -5,6 +5,7 @@ import { CardStatus } from './card-status.enum';
 import { CardOrientation } from './card-orientation.enum';
 import { CardAppearance } from './card-appearance.enum';
 import { coerceBooleanProperty } from '../../utils/coerce';
+import '../checkbox/checkbox.component';
 
 /**
  * SwimCard - Card container matching @swimlane/ngx-ui design system.
@@ -95,10 +96,10 @@ export class SwimCard extends LitElement {
     this.dispatchEvent(new CustomEvent('outline-click', { bubbles: true, composed: true }));
   }
 
-  private _onSelectChange(e: Event) {
+  private _onSelectChange(e: CustomEvent) {
     e.stopPropagation();
-    const input = e.target as HTMLInputElement;
-    this.selected = input.checked;
+    const checked = e.detail?.target?.checked ?? false;
+    this.selected = checked;
     this.dispatchEvent(
       new CustomEvent('select', {
         detail: this.selected,
@@ -167,13 +168,13 @@ export class SwimCard extends LitElement {
       ${this.selectable
         ? html`
             <div class="swim-card__select" @click="${this._onCheckboxClick}">
-              <input
-                type="checkbox"
+              <swim-checkbox
+                round
                 .checked="${this.selected}"
                 ?disabled="${this.disabled}"
                 aria-label="Select card"
                 @change="${this._onSelectChange}"
-              />
+              ></swim-checkbox>
             </div>
           `
         : nothing}

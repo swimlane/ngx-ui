@@ -155,10 +155,10 @@ export const buttonStyles = css`
 
   .state-icon {
     position: absolute;
-    display: inline-block;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    inset: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
     pointer-events: none;
   }
@@ -249,12 +249,6 @@ export const buttonStyles = css`
   }
 
   .spinner {
-    animation: spin 1s linear infinite;
-  }
-
-  /* State icons (swim-icon): loading spinner animation */
-  .state-icon[font-icon='loading'] {
-    display: inline-block;
     animation: spin 1s linear infinite;
   }
 `;

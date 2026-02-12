@@ -35,14 +35,14 @@ export class SwimCardAvatar extends LitElement {
 
     return html`
       <div class="swim-card-avatar__avatar ${hasStatus ? 'has-status' : ''}">
+        ${hasStatus
+          ? html`<div
+              class="swim-card-avatar__status ${statusClass}"
+              role="status"
+              aria-label="${this.status || ''}"
+            ></div>`
+          : nothing}
         <div class="swim-card-avatar__inner">
-          ${hasStatus
-            ? html`<div
-                class="swim-card-avatar__status ${statusClass}"
-                role="status"
-                aria-label="${this.status || ''}"
-              ></div>`
-            : nothing}
           ${this.src
             ? html`
                 <img

@@ -26,6 +26,7 @@ export const cardStyles = css`
 
   :host {
     display: flex;
+    position: relative;
     background: var(--grey-800);
     border-radius: var(--radius-6);
     box-sizing: border-box;
@@ -51,7 +52,7 @@ export const cardStyles = css`
   }
 
   .swim-card__status--success {
-    background-color: var(--green-500);
+    background-color: var(--card-status-success, #b0e53c);
   }
 
   .swim-card__status--error {
@@ -72,7 +73,7 @@ export const cardStyles = css`
     margin: 3px var(--spacing-4);
   }
 
-  /* Outline (selected or error) */
+  /* Outline (selected or error) – match ngx-ui */
   .swim-card__outline {
     pointer-events: none;
     position: absolute;
@@ -143,18 +144,19 @@ export const cardStyles = css`
     background: var(--color-error);
   }
 
-  /* Select checkbox */
+  /* Select checkbox (swim-checkbox round) – match ngx-ui */
   .swim-card__select {
     display: flex;
     align-items: center;
   }
 
-  .swim-card__select input[type='checkbox'] {
-    width: 1rem;
-    height: 1rem;
+  .swim-card__select swim-checkbox {
+    --grey-600: var(--grey-750);
     margin: 0;
-    cursor: pointer;
-    accent-color: var(--blue-400);
+  }
+
+  .swim-card__select swim-checkbox::part(box) {
+    margin-right: 0;
   }
 `;
 
@@ -165,7 +167,7 @@ export const cardHorizontalStyles = css`
   :host([orientation='horizontal']) {
     position: relative;
     width: 100%;
-    min-width: 500px;
+    min-width: var(--swim-card-min-width, 500px);
     min-height: 80px;
     height: 80px;
     transition: all 0.2s ease-in-out;
@@ -232,7 +234,6 @@ export const cardVerticalStyles = css`
     max-width: 850px;
     height: 418px;
     color: var(--grey-350);
-    overflow: hidden;
   }
 
   :host([orientation='vertical']) .swim-card__status {
@@ -254,7 +255,6 @@ export const cardVerticalStyles = css`
     align-items: center;
     width: 100%;
     flex-shrink: 0;
-    border-bottom: 2px solid var(--grey-700);
   }
 
   :host([orientation='vertical']) ::slotted(swim-card-body) {
@@ -271,7 +271,6 @@ export const cardVerticalStyles = css`
     position: relative;
     width: 100%;
     flex-shrink: 0;
-    border-bottom: 2px solid var(--grey-700);
     height: 50px;
     padding: var(--spacing-20) var(--spacing-0);
     margin-bottom: ${cardAccentThickness}px;

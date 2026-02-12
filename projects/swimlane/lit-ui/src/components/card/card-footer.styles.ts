@@ -1,22 +1,17 @@
 import { css } from 'lit';
 import { baseStyles } from '../../styles/base';
 
-const cardAccentThickness = 4;
-
 /**
  * Card footer styles. BEM: swim-card-footer, swim-card-footer__label.
  */
 export const cardFooterStyles = css`
   :host {
     position: relative;
-    border-bottom: 2px solid var(--grey-700);
-    height: 50px;
-    padding: var(--spacing-20) var(--spacing-0);
-    margin-bottom: ${cardAccentThickness}px;
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    width: 100%;
   }
 
   .swim-card-footer__label {
@@ -47,6 +42,11 @@ export const cardFooterStyles = css`
 
   .swim-card-footer__label::after {
     margin-left: var(--spacing-20);
+  }
+
+  /* Center footer action (match ngx-ui); prevent slotted button from stretching */
+  ::slotted(swim-button) {
+    width: auto;
   }
 `;
 

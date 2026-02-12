@@ -44,19 +44,18 @@ export const cardAvatarStyles = css`
 
   .swim-card-avatar__status {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: -2px;
+    left: -2px;
     width: 10px;
     height: 10px;
-    padding: var(--spacing-4);
     border-radius: 50%;
-    border: ${borderWidth}px solid var(--grey-750);
+    border: ${borderWidth}px solid var(--grey-800);
     background-color: var(--white);
-    z-index: 1;
+    z-index: 2;
   }
 
   .swim-card-avatar__status--success {
-    background-color: var(--green-500);
+    background-color: var(--card-status-success, #b0e53c);
   }
 
   .swim-card-avatar__status--error {

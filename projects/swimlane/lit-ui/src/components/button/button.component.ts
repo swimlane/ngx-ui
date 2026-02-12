@@ -115,7 +115,7 @@ export class SwimButton extends LitElement {
         <span class="content">
           <slot></slot>
         </span>
-        <span class="state-icon"> ${this._renderStateIcon()} </span>
+        <span class="state-icon">${this._renderStateIcon()}</span>
       </button>
     `;
   }
