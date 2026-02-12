@@ -2,6 +2,7 @@ import { LitElement, html, nothing, PropertyValues } from 'lit';
 import { property, state, query } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { baseStyles } from '../../styles/base';
+import { scrollbarStyles } from '../../styles/scrollbars';
 import { selectStyles } from './select.styles';
 import { SelectOption } from './select-option.interface';
 import { InputAppearance } from '../input/input-appearance.enum';
@@ -24,7 +25,7 @@ import '../icon/icon.component';
  */
 const SELECT_TAG = 'swim-select';
 export class SwimSelect extends LitElement {
-  static styles = [baseStyles, selectStyles];
+  static styles = [baseStyles, scrollbarStyles, selectStyles];
   static formAssociated = true;
 
   private _internals: ElementInternals;
@@ -329,7 +330,7 @@ export class SwimSelect extends LitElement {
 
         ${this._open
           ? html`
-              <div class="select-dropdown" part="dropdown" role="listbox" id="${this.id}-listbox">
+              <div class="select-dropdown swim-scroll" part="dropdown" role="listbox" id="${this.id}-listbox">
                 ${this.filterable
                   ? html`
                       <div class="select-filter">

@@ -214,7 +214,6 @@ export const selectStyles = css`
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
     margin-top: var(--spacing-8);
     max-height: 300px;
-    overflow-y: auto;
     display: none;
   }
 
