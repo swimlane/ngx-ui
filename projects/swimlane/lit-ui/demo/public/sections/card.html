@@ -1,3 +1,63 @@
+<style>
+  .demo-row--cards {
+    gap: 2rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .demo-label--spaced {
+    margin-top: 1rem;
+  }
+
+  .card-demo-stats {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: var(--spacing-20);
+  }
+
+  .card-demo-stat-item {
+    flex: 1;
+    background: var(--grey-750);
+    border-radius: var(--radius-4);
+    padding: 12px;
+    text-align: center;
+  }
+
+  .card-demo-stat-value {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--grey-050);
+  }
+
+  .card-demo-stat-label {
+    font-size: var(--font-size-xxs);
+    color: var(--grey-350);
+    text-transform: uppercase;
+  }
+
+  .card-demo-meta {
+    font-size: var(--font-size-s);
+    color: var(--grey-350);
+  }
+
+  .card-demo-actions {
+    display: flex;
+    gap: var(--spacing-16);
+    align-items: center;
+  }
+
+  .card-demo-icon {
+    cursor: pointer;
+    font-size: 1.2em;
+    color: var(--grey-300);
+  }
+
+  .card-demo--mt {
+    margin-top: 1rem;
+  }
+</style>
+
 <hr class="section-divider" />
 
 <h1 id="card" class="page-title">Card</h1>
@@ -27,7 +87,7 @@
 <section class="section">
   <swim-section section-title="Vertical card">
     <p class="section-desc">Vertical layout with header label and footer.</p>
-    <div class="demo-row" style="gap: 2rem; align-items: flex-start; flex-wrap: wrap;">
+    <div class="demo-row demo-row--cards">
       <swim-card orientation="vertical" status="success">
         <swim-card-header orientation="vertical" label="CARD">
           <swim-card-avatar slot="avatar" status="success">AB</swim-card-avatar>
@@ -35,22 +95,22 @@
           <span slot="subtitle">Subtitle</span>
         </swim-card-header>
         <swim-card-body>
-          <div style="display: flex; gap: 1rem; width: 100%; margin-bottom: var(--spacing-20);">
-            <div style="flex: 1; background: var(--grey-750); border-radius: var(--radius-4); padding: 12px; text-align: center;">
-              <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); color: var(--grey-050);">&#x2197; 148</div>
-              <div style="font-size: var(--font-size-xxs); color: var(--grey-350); text-transform: uppercase;">Runs / 24hrs</div>
+          <div class="card-demo-stats">
+            <div class="card-demo-stat-item">
+              <div class="card-demo-stat-value">&#x2197; 148</div>
+              <div class="card-demo-stat-label">Runs / 24hrs</div>
             </div>
-            <div style="flex: 1; background: var(--grey-750); border-radius: var(--radius-4); padding: 12px; text-align: center;">
-              <div style="font-size: var(--font-size-xl); font-weight: var(--font-weight-semibold); color: var(--grey-050);">&#x2197; --:--</div>
-              <div style="font-size: var(--font-size-xxs); color: var(--grey-350); text-transform: uppercase;">Avg Runtime / 24hrs</div>
+            <div class="card-demo-stat-item">
+              <div class="card-demo-stat-value">&#x2197; --:--</div>
+              <div class="card-demo-stat-label">Avg Runtime / 24hrs</div>
             </div>
           </div>
-          <div style="font-size: var(--font-size-s); color: var(--grey-350);">Created 80 days ago &bull; Edited 80 days ago</div>
+          <div class="card-demo-meta">Created 80 days ago &bull; Edited 80 days ago</div>
         </swim-card-body>
         <swim-card-footer label="ACTIONS">
-          <div style="display: flex; gap: var(--spacing-16); align-items: center;">
-            <swim-icon font-icon="integrations" style="cursor: pointer; font-size: 1.2em; color: var(--grey-300);"></swim-icon>
-            <swim-icon font-icon="ellipsis-v" style="cursor: pointer; font-size: 1.2em; color: var(--grey-300);"></swim-icon>
+          <div class="card-demo-actions">
+            <swim-icon class="card-demo-icon" font-icon="integrations"></swim-icon>
+            <swim-icon class="card-demo-icon" font-icon="ellipsis-v"></swim-icon>
           </div>
         </swim-card-footer>
       </swim-card>
@@ -80,14 +140,14 @@
         </swim-card-header>
       </swim-card>
 
-      <div class="demo-label" style="margin-top: 1rem;">Status: error</div>
+      <div class="demo-label demo-label--spaced">Status: error</div>
       <swim-card orientation="horizontal" status="error">
         <swim-card-header>
           <span slot="title">Error status</span>
         </swim-card-header>
       </swim-card>
 
-      <div class="demo-label" style="margin-top: 1rem;">Flat appearance (no background)</div>
+      <div class="demo-label demo-label--spaced">Flat appearance (no background)</div>
       <swim-card orientation="horizontal" appearance="flat">
         <swim-card-header>
           <span slot="title">Flat card</span>
@@ -125,7 +185,7 @@
         </swim-card-header>
       </swim-card>
 
-      <swim-card style="margin-top: 1rem;" orientation="horizontal" error outline-text="Error">
+      <swim-card class="card-demo--mt" orientation="horizontal" error outline-text="Error">
         <swim-card-header>
           <swim-card-avatar slot="avatar" src="/assets/swimlane.svg"></swim-card-avatar>
           <span slot="title">Card Title</span>

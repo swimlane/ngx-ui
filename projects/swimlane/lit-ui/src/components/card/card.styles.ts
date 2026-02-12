@@ -255,6 +255,8 @@ export const cardVerticalStyles = css`
     align-items: center;
     width: 100%;
     flex-shrink: 0;
+    z-index: 1;
+    overflow: visible;
   }
 
   :host([orientation='vertical']) ::slotted(swim-card-body) {

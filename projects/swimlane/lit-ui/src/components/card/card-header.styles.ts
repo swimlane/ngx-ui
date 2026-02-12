@@ -26,6 +26,8 @@ export const cardHeaderStyles = css`
     padding: var(--spacing-0);
     width: 100%;
     box-sizing: border-box;
+    overflow: visible;
+    position: relative;
   }
 
   :host([orientation='vertical']) ::slotted(swim-card-avatar) {
