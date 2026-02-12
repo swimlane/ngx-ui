@@ -53,8 +53,8 @@ export const checkboxStyles = css`
 
   .swim-checkbox__box::after {
     position: absolute;
-    top: calc(50% - 7px);
-    left: calc(50% - 3px);
+    top: calc(50% - 9px);
+    left: calc(50% - 4px);
     width: 6px;
     height: 12px;
     content: '';

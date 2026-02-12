@@ -393,7 +393,7 @@ export class SwimSelect extends LitElement {
                 aria-label="Remove ${option.name}"
                 @click="${(e: Event) => this._removeChip(e, option)}"
               >
-                <span class="icon-x"></span>
+                <swim-icon font-icon="x"></swim-icon>
               </button>
             `
           : nothing}
