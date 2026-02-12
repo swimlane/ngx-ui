@@ -234,7 +234,7 @@ export class SwimDrawer extends LitElement {
         ? html` <div class="swim-drawer__backdrop" aria-hidden="true" @click="${this._backdropClickBound}"></div> `
         : nothing}
       <div
-        class="swim-drawer__panel"
+        class="swim-drawer__panel swim-scroll"
         style="width: ${this._widthSize}; height: ${this._heightSize}; z-index: ${this.zIndex};"
       >
         <div

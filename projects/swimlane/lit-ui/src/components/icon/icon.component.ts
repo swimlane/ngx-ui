@@ -3,11 +3,15 @@ import { property, state } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { iconStyles } from './icon.styles';
 import { iconRegistry } from '../../utils/icon-registry';
+import { ensureIconFontLoaded } from './icon-font-loader';
 
 /**
  * SwimIcon - Icon component matching @swimlane/ngx-ui design system.
  * Uses swim/ngx font icons only (via fontIcon + fontSet) or slotted content (e.g. another swim-icon).
- * The host app must load the ngx-icon font CSS and woff when using fontIcon.
+ *
+ * The icon font is self-contained: a base64-encoded woff2 font is automatically
+ * injected into the document head on first connection using a unique font-family
+ * name ('swim-ngx-icon') to avoid conflicts with the host application's icon font.
  *
  * @slot - Default content when no fontIcon (e.g. slotted swim-icon or image)
  *
@@ -49,6 +53,7 @@ export class SwimIcon extends LitElement {
 
   connectedCallback(): void {
     super.connectedCallback();
+    ensureIconFontLoaded();
     this._updateFontIcon();
   }
 

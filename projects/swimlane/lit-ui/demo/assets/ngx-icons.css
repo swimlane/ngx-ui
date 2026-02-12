@@ -1,4 +1,12 @@
-/* Minimal ngx-icon font for demo. Full set in @swimlane/ngx-ui. */
+/*
+ * This CSS is no longer required for swim-icon components.
+ * The swim-icon component now self-loads the icon font using an inline
+ * base64 data URI with a unique font-family name ('swim-ngx-icon') to
+ * avoid conflicts with the host application's 'ngx-icon' font.
+ *
+ * Kept here for reference and backward compatibility with any non-component
+ * usage of ngx-icon CSS classes.
+ */
 @font-face {
   font-family: 'ngx-icon';
   src: url('ngx-icon.woff') format('woff');

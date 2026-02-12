@@ -4,6 +4,7 @@ import { live } from 'lit/directives/live.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import '../icon/icon.component';
 import { baseStyles } from '../../styles/base';
+import { scrollbarStyles } from '../../styles/scrollbars';
 import { inputStyles } from './input.styles';
 import { InputTypes } from './input-types.enum';
 import { InputAppearance } from './input-appearance.enum';
@@ -27,7 +28,7 @@ import { coerceBooleanProperty } from '../../utils/coerce';
  */
 const INPUT_TAG = 'swim-input';
 export class SwimInput extends LitElement {
-  static styles = [baseStyles, inputStyles];
+  static styles = [baseStyles, scrollbarStyles, inputStyles];
   static formAssociated = true;
 
   private _internals: ElementInternals;
@@ -380,7 +381,7 @@ export class SwimInput extends LitElement {
     return html`
       <textarea
         part="input"
-        class="input-textarea"
+        class="input-textarea swim-scroll"
         id="${this.id}"
         name="${this.name}"
         .value="${live(this.value)}"
