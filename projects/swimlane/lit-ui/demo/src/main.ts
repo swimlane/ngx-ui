@@ -37,6 +37,7 @@ import '../../src/components/list/list.component';
 import '../../src/components/dialog/dialog.component';
 import '../../src/components/dialog/large-format-dialog-content/large-format-dialog-content.component';
 import '../../src/components/dialog/large-format-dialog-footer/large-format-dialog-footer.component';
+import '../../src/components/date-time/date-time.component';
 import '../../src/components/drawer/drawer.component';
 import { scrollbarStyles } from '../../src/styles';
 

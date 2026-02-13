@@ -5,7 +5,7 @@ export default defineConfig({
   base: process.env.NODE_ENV === 'production' ? '/lit-ui/' : '/',
   root: 'demo',
   build: {
-    outDir: '../dist-demo',
+    outDir: '../dist',
     emptyOutDir: true
   },
   resolve: {

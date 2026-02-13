@@ -61,6 +61,7 @@ const SECTION_FILES = [
   'buttons',
   'input',
   'select',
+  'datetime',
   'checkbox',
   'radio',
   'toggle',
@@ -81,7 +82,7 @@ const SECTION_FILES = [
   'icons'
 ];
 
-const SECTION_SET = new Set(SECTION_FILES);
+const SECTION_SET = new Set([...SECTION_FILES, 'datetime', 'drawer']);
 const DEFAULT_SECTION = SECTION_FILES[0];
 
 const sectionCache = new Map<string, string>();
@@ -367,6 +368,123 @@ function setupSelectDemos(): void {
   if (formSelect2) formSelect2.options = tags;
 }
 
+function setupDateTimeDemos(): void {
+  type DtEl = HTMLElement & { value: Date | string | null };
+  const TOHOKU_EARTHQUAKE = '2011-03-11T05:46:24Z';
+  const MOON_LANDING = '1969-07-20T20:17:43Z';
+  const appDate = new Date('10/10/2016 2:35 PM');
+
+  // --- Date Input section ---
+  const dateInput1 = document.getElementById('dateInput1') as DtEl | null;
+  const dateInput1Value = document.getElementById('dateInput1Value');
+  if (dateInput1) {
+    dateInput1.value = new Date('10/10/2016');
+    dateInput1.addEventListener('change', (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (dateInput1Value) dateInput1Value.textContent = JSON.stringify(detail);
+    });
+  }
+
+  const dateInput2 = document.getElementById('dateInput2') as DtEl | null;
+  if (dateInput2) dateInput2.value = new Date('10/10/2016');
+
+  const dateInput3 = document.getElementById('dateInput3') as DtEl | null;
+  const dateInput3Value = document.getElementById('dateInput3Value');
+  if (dateInput3) {
+    dateInput3.value = new Date('10/10/2016');
+    dateInput3.addEventListener('change', (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (dateInput3Value) dateInput3Value.textContent = JSON.stringify(detail);
+    });
+  }
+
+  const dateInput4 = document.getElementById('dateInput4') as DtEl | null;
+  if (dateInput4) dateInput4.value = new Date('10/10/2016');
+
+  // --- Date/Time Input ---
+  const dateTimeInput = document.getElementById('dateTimeInput') as DtEl | null;
+  const dateTimeInputValue = document.getElementById('dateTimeInputValue');
+  if (dateTimeInput) {
+    dateTimeInput.value = new Date(MOON_LANDING);
+    dateTimeInput.addEventListener('change', (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      if (dateTimeInputValue) dateTimeInputValue.textContent = JSON.stringify(detail);
+    });
+  }
+
+  // --- Timezones ---
+  const tzDate = new Date(TOHOKU_EARTHQUAKE);
+  const tzValue = document.getElementById('tzValue');
+  ['tzLocal', 'tzUtc', 'tzJst'].forEach(id => {
+    const el = document.getElementById(id) as DtEl | null;
+    if (el) {
+      el.value = tzDate;
+      el.addEventListener('change', (e: Event) => {
+        const detail = (e as CustomEvent).detail;
+        if (tzValue) tzValue.textContent = JSON.stringify(detail);
+      });
+    }
+  });
+
+  // --- Time Input ---
+  const moonDate = new Date(MOON_LANDING);
+  const timeInputValue = document.getElementById('timeInputValue');
+  ['timeInput1', 'timeInputTz', 'timeInputUtc', 'timeInputJst'].forEach(id => {
+    const el = document.getElementById(id) as DtEl | null;
+    if (el) {
+      el.value = moonDate;
+      el.addEventListener('change', (e: Event) => {
+        const detail = (e as CustomEvent).detail;
+        if (timeInputValue) timeInputValue.textContent = JSON.stringify(detail);
+      });
+    }
+  });
+
+  // --- Precision ---
+  const precisionValue = document.getElementById('precisionValue');
+  ['precisionYear', 'precisionMonth', 'precisionHour', 'precisionMinute'].forEach(id => {
+    const el = document.getElementById(id) as DtEl | null;
+    if (el) {
+      el.value = moonDate;
+      el.addEventListener('change', (e: Event) => {
+        const detail = (e as CustomEvent).detail;
+        if (precisionValue) precisionValue.textContent = JSON.stringify(detail);
+      });
+    }
+  });
+
+  // --- Autosize ---
+  const autosizeValue = document.getElementById('autosizeValue');
+  ['autosizeYear', 'autosizeMonth', 'autosizeHour', 'autosizeMinute', 'autosizeNoMargin'].forEach(id => {
+    const el = document.getElementById(id) as DtEl | null;
+    if (el) {
+      el.value = appDate;
+      el.addEventListener('change', (e: Event) => {
+        const detail = (e as CustomEvent).detail;
+        if (autosizeValue) autosizeValue.textContent = JSON.stringify(detail);
+      });
+    }
+  });
+
+  // --- Appearances table (set values on components that need one) ---
+  const appIds = [
+    'appFilled',
+    'appFilledFill',
+    'appRequired',
+    'appRequiredFill',
+    'appTime',
+    'appTimeFill',
+    'appDateTime',
+    'appDateTimeFill',
+    'appDisabled',
+    'appDisabledFill'
+  ];
+  appIds.forEach(id => {
+    const el = document.getElementById(id) as DtEl | null;
+    if (el) el.value = appDate;
+  });
+}
+
 function setupListDemos(): void {
   type ListEl = HTMLElement & {
     dataSource: Array<Record<string, unknown>>;
@@ -499,6 +617,7 @@ function setupDemos(): void {
   }
 
   setupSelectDemos();
+  setupDateTimeDemos();
 
   // Card demos
   const selectableCardDemo = document.getElementById('selectableCardDemo') as any;
