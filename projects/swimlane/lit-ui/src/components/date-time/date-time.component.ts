@@ -1,8 +1,9 @@
-import { LitElement, html, PropertyValues } from 'lit';
+import { LitElement, html, PropertyValues, nothing } from 'lit';
 import { property, state, query } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import '../input/input.component';
 import '../icon/icon.component';
+import '../calendar/calendar.component';
 import { baseStyles } from '../../styles/base';
 import { dateTimeStyles } from './date-time.styles';
 import { DateTimeType } from './date-time-type.enum';
@@ -15,7 +16,6 @@ import {
   roundToPrecision,
   resolveFormat,
   getEffectiveInputFormat,
-  toNativeInputValue,
   isOutOfRange,
   normalizeTimezone
 } from './date-format';
@@ -26,8 +26,8 @@ const DATE_TIME_TAG = 'swim-date-time';
 /**
  * SwimDateTime — A date/time picker component matching @swimlane/ngx-ui design system.
  *
- * Wraps a `swim-input` with a calendar/clock button that opens the native
- * browser date-picker. Supports date, time, and datetime modes, timezone-aware
+ * Wraps a `swim-input` with a calendar/clock button that opens a custom
+ * calendar dialog. Supports date, time, and datetime modes, timezone-aware
  * formatting, precision truncation, min/max validation, and form association.
  *
  * @fires change - Fired when the value changes to a valid date or is cleared.
@@ -45,9 +45,6 @@ export class SwimDateTime extends LitElement {
   static formAssociated = true;
 
   private _internals: ElementInternals;
-
-  @query('.swim-date-time__native-picker')
-  private _nativePicker!: HTMLInputElement;
 
   @query('swim-input')
   private _swimInput!: HTMLElement & { value: string };
@@ -264,6 +261,18 @@ export class SwimDateTime extends LitElement {
   @state() private _dateInvalid = false;
   @state() private _dateOutOfRange = false;
   @state() private _focused = false;
+  @state() private _dialogOpen = false;
+  @state() private _dialogModel: Date | null = null;
+  @state() private _dialogHour = 12;
+  @state() private _dialogMinute = '00';
+  @state() private _dialogSecond = '00';
+  @state() private _dialogMillisecond = '000';
+  @state() private _dialogAmPm: 'AM' | 'PM' = 'AM';
+  @state() private _dialogTop = 0;
+  @state() private _dialogLeft = 0;
+
+  // Precision modes in order from finest to coarsest
+  private _modes = ['millisecond', 'second', 'minute', 'hour', 'date', 'month', 'year'];
 
   // ---------------------------------------------------------------------------
   // Computed helpers
@@ -289,17 +298,6 @@ export class SwimDateTime extends LitElement {
     );
   }
 
-  private get _nativeInputType(): string {
-    switch (this._effectiveInputType) {
-      case DateTimeType.time:
-        return 'time';
-      case DateTimeType.datetime:
-        return 'datetime-local';
-      default:
-        return 'date';
-    }
-  }
-
   private get _iconName(): string {
     switch (this._effectiveInputType) {
       case DateTimeType.time:
@@ -309,6 +307,14 @@ export class SwimDateTime extends LitElement {
       default:
         return 'calendar';
     }
+  }
+
+  private get _showCalendar(): boolean {
+    return this._effectiveInputType === DateTimeType.date || this._effectiveInputType === DateTimeType.datetime;
+  }
+
+  private get _showTime(): boolean {
+    return this._effectiveInputType === DateTimeType.time || this._effectiveInputType === DateTimeType.datetime;
   }
 
   // ---------------------------------------------------------------------------
@@ -323,6 +329,12 @@ export class SwimDateTime extends LitElement {
   connectedCallback(): void {
     super.connectedCallback();
     this._update();
+    this._onDocumentClick = this._onDocumentClick.bind(this);
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    this._removeOverlayListeners();
   }
 
   firstUpdated(): void {
@@ -388,20 +400,6 @@ export class SwimDateTime extends LitElement {
   // ---------------------------------------------------------------------------
 
   render() {
-    const nativeVal = this._value instanceof Date ? toNativeInputValue(this._value, this._nativeInputType) : '';
-    const nativeMin =
-      this.minDate instanceof Date
-        ? toNativeInputValue(this.minDate, this._nativeInputType)
-        : typeof this.minDate === 'string'
-        ? toNativeInputValue(parseDate(this.minDate), this._nativeInputType)
-        : undefined;
-    const nativeMax =
-      this.maxDate instanceof Date
-        ? toNativeInputValue(this.maxDate, this._nativeInputType)
-        : typeof this.maxDate === 'string'
-        ? toNativeInputValue(parseDate(this.maxDate), this._nativeInputType)
-        : undefined;
-
     return html`
       <div class="swim-date-time__container">
         <swim-input
@@ -437,23 +435,385 @@ export class SwimDateTime extends LitElement {
         >
           <swim-icon font-icon="${this._iconName}"></swim-icon>
         </button>
+      </div>
 
-        <input
-          class="swim-date-time__native-picker"
-          type="${this._nativeInputType}"
-          .value="${nativeVal}"
-          min="${ifDefined(nativeMin)}"
-          max="${ifDefined(nativeMax)}"
-          tabindex="-1"
-          aria-hidden="true"
-          @change="${this._handleNativeChange}"
-        />
+      ${this._dialogOpen ? this._renderDialog() : nothing}
+    `;
+  }
+
+  private _renderDialog() {
+    const headerText = this._getDialogHeaderText();
+
+    return html`
+      <div class="swim-date-time__overlay" @click="${this._close}"></div>
+      <div
+        class="swim-date-time__dialog"
+        style="top: ${this._dialogTop}px; left: ${this._dialogLeft}px;"
+        @keydown="${this._onDialogKeyDown}"
+      >
+        <div class="swim-date-time__dialog-header">
+          <h1>${headerText}</h1>
+        </div>
+
+        ${this._showCalendar
+          ? html`
+              <swim-calendar
+                .value="${this._dialogModel}"
+                .minDate="${this.minDate}"
+                .maxDate="${this.maxDate}"
+                .disabled="${this.disabled}"
+                min-view="${this._calendarMinView}"
+                @change="${this._onCalendarChange}"
+                @day-key-enter="${this._apply}"
+              ></swim-calendar>
+            `
+          : nothing}
+        ${this._showTime ? this._renderTimeRow() : nothing}
+
+        <nav role="navigation" class="swim-date-time__dialog-footer">
+          <div class="text-left">
+            <button
+              type="button"
+              class="swim-date-time__footer-btn swim-date-time__footer-btn--current"
+              ?hidden="${this._isCurrent()}"
+              @click="${this._selectCurrent}"
+            >
+              Current
+            </button>
+          </div>
+          <div class="text-right">
+            <button
+              type="button"
+              class="swim-date-time__footer-btn swim-date-time__footer-btn--clear"
+              @click="${this._clear}"
+            >
+              Clear
+            </button>
+            <button
+              type="button"
+              class="swim-date-time__footer-btn swim-date-time__footer-btn--apply"
+              @click="${this._apply}"
+            >
+              Apply
+            </button>
+          </div>
+        </nav>
+      </div>
+    `;
+  }
+
+  private _renderTimeRow() {
+    const hourDisabled = this._isTimeDisabled('hour');
+    const minuteDisabled = this._isTimeDisabled('minute');
+    const secondDisabled = this._isTimeDisabled('second');
+    const msDisabled = this._isTimeDisabled('millisecond');
+
+    return html`
+      <div class="swim-date-time__time-row">
+        <div class="swim-date-time__time-field">
+          <input
+            type="number"
+            class="swim-date-time__time-input"
+            .value="${String(this._dialogHour)}"
+            min="1"
+            max="12"
+            ?disabled="${hourDisabled}"
+            @change="${this._onHourChange}"
+          />
+          <div class="swim-date-time__time-hint">Hour</div>
+        </div>
+        <div class="swim-date-time__time-field">
+          <input
+            type="number"
+            class="swim-date-time__time-input"
+            .value="${this._dialogMinute}"
+            min="0"
+            max="59"
+            ?disabled="${minuteDisabled}"
+            @change="${this._onMinuteChange}"
+          />
+          <div class="swim-date-time__time-hint">Minute</div>
+        </div>
+        <div class="swim-date-time__time-field">
+          <input
+            type="number"
+            class="swim-date-time__time-input"
+            .value="${this._dialogSecond}"
+            min="0"
+            max="59"
+            ?disabled="${secondDisabled}"
+            @change="${this._onSecondChange}"
+          />
+          <div class="swim-date-time__time-hint">Second</div>
+        </div>
+        <div class="swim-date-time__time-field">
+          <input
+            type="number"
+            class="swim-date-time__time-input swim-date-time__time-input--ms"
+            .value="${this._dialogMillisecond}"
+            min="0"
+            max="999"
+            ?disabled="${msDisabled}"
+            @change="${this._onMillisecondChange}"
+          />
+          <div class="swim-date-time__time-hint">Millisecond</div>
+        </div>
+        <div class="swim-date-time__ampm-group">
+          <button
+            type="button"
+            class="swim-date-time__ampm ${this._dialogAmPm === 'AM' ? 'selected' : ''}"
+            ?disabled="${hourDisabled}"
+            @click="${() => this._onAmPmChange('AM')}"
+          >
+            AM
+          </button>
+          <button
+            type="button"
+            class="swim-date-time__ampm ${this._dialogAmPm === 'PM' ? 'selected' : ''}"
+            ?disabled="${hourDisabled}"
+            @click="${() => this._onAmPmChange('PM')}"
+          >
+            PM
+          </button>
+        </div>
       </div>
     `;
   }
 
   // ---------------------------------------------------------------------------
-  // Event handlers
+  // Dialog helpers
+  // ---------------------------------------------------------------------------
+
+  private get _calendarMinView(): string {
+    if (this.precision === 'month') return 'month';
+    if (this.precision === 'year') return 'year';
+    return 'date';
+  }
+
+  private _getDialogHeaderText(): unknown {
+    if (!this._dialogModel) {
+      return 'No value';
+    }
+    const type = this._effectiveInputType;
+    const tz = normalizeTimezone(this.timezone);
+
+    if (type === DateTimeType.time) {
+      return formatDate(this._dialogModel, 'h:mm A', tz);
+    }
+    if (type === DateTimeType.datetime) {
+      const datePart = formatDate(this._dialogModel, 'ddd, MMM D YYYY', tz);
+      const timePart = formatDate(this._dialogModel, 'h:mm A', tz);
+      return html`${datePart}<small>${timePart}</small>`;
+    }
+    // date only
+    return formatDate(this._dialogModel, 'ddd, MMM D YYYY', tz);
+  }
+
+  private _setDialogDate(date: Date): void {
+    this._dialogModel = new Date(date);
+    const hours = this._dialogModel.getHours();
+    this._dialogHour = hours % 12 || 12;
+    this._dialogMinute = String(this._dialogModel.getMinutes()).padStart(2, '0');
+    this._dialogSecond = String(this._dialogModel.getSeconds()).padStart(2, '0');
+    this._dialogMillisecond = String(this._dialogModel.getMilliseconds()).padStart(3, '0');
+    this._dialogAmPm = hours >= 12 ? 'PM' : 'AM';
+  }
+
+  private _isTimeDisabled(mode: string): boolean {
+    if (!this.precision) return false;
+    return this._modes.indexOf(this.precision) > this._modes.indexOf(mode);
+  }
+
+  private _isCurrent(): boolean {
+    if (!this._dialogModel) return false;
+    const now = new Date();
+    const type = this._effectiveInputType;
+
+    if (type === DateTimeType.time) {
+      return (
+        now.getHours() === this._dialogModel.getHours() &&
+        now.getMinutes() === this._dialogModel.getMinutes() &&
+        now.getSeconds() === this._dialogModel.getSeconds() &&
+        now.getMilliseconds() === this._dialogModel.getMilliseconds()
+      );
+    }
+
+    if (type === DateTimeType.datetime) {
+      return (
+        now.getFullYear() === this._dialogModel.getFullYear() &&
+        now.getMonth() === this._dialogModel.getMonth() &&
+        now.getDate() === this._dialogModel.getDate() &&
+        now.getHours() === this._dialogModel.getHours() &&
+        now.getMinutes() === this._dialogModel.getMinutes() &&
+        now.getSeconds() === this._dialogModel.getSeconds() &&
+        now.getMilliseconds() === this._dialogModel.getMilliseconds()
+      );
+    }
+
+    // date only — compare to minute
+    return (
+      now.getFullYear() === this._dialogModel.getFullYear() &&
+      now.getMonth() === this._dialogModel.getMonth() &&
+      now.getDate() === this._dialogModel.getDate()
+    );
+  }
+
+  // ---------------------------------------------------------------------------
+  // Dialog actions
+  // ---------------------------------------------------------------------------
+
+  private _openPicker(): void {
+    if (this.disabled || this._dialogOpen) return;
+
+    const dateVal = this._value instanceof Date && isValidDate(this._value) ? this._value : new Date();
+    this._setDialogDate(dateVal);
+
+    // Compute position relative to the calendar button
+    const btn = this.shadowRoot?.querySelector('.swim-date-time__calendar-btn') as HTMLElement;
+    if (btn) {
+      const rect = btn.getBoundingClientRect();
+      this._dialogTop = rect.bottom + 4;
+      this._dialogLeft = Math.max(0, rect.right - 272); // 270px calendar width + 2px border
+    }
+
+    this._dialogOpen = true;
+    this._addOverlayListeners();
+  }
+
+  private _apply = (): void => {
+    if (this._dialogModel) {
+      this.value = this._dialogModel;
+      this._update();
+      this.dispatchEvent(new CustomEvent('date-time-selected', { detail: this.value, bubbles: true, composed: true }));
+      this.dispatchEvent(new CustomEvent('change', { detail: this.value, bubbles: true, composed: true }));
+    }
+    this._close();
+  };
+
+  private _clear = (): void => {
+    this.value = undefined;
+    this._update();
+    this.dispatchEvent(new CustomEvent('date-time-selected', { detail: undefined, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('change', { detail: undefined, bubbles: true, composed: true }));
+    this._close();
+  };
+
+  private _selectCurrent = (): void => {
+    this._setDialogDate(new Date());
+  };
+
+  private _close = (): void => {
+    this._dialogOpen = false;
+    this._removeOverlayListeners();
+    this._update();
+  };
+
+  private _onCalendarChange = (e: CustomEvent): void => {
+    e.stopPropagation();
+    const selectedDate = e.detail as Date;
+    if (selectedDate && isValidDate(selectedDate)) {
+      // Preserve time from dialog model if we have one
+      if (this._dialogModel && this._showTime) {
+        selectedDate.setHours(
+          this._dialogModel.getHours(),
+          this._dialogModel.getMinutes(),
+          this._dialogModel.getSeconds(),
+          this._dialogModel.getMilliseconds()
+        );
+      }
+      this._setDialogDate(selectedDate);
+    }
+  };
+
+  // ---------------------------------------------------------------------------
+  // Time input handlers
+  // ---------------------------------------------------------------------------
+
+  private _onHourChange = (e: Event): void => {
+    const val = +(e.target as HTMLInputElement).value % 12;
+    const hours = this._dialogAmPm === 'PM' ? 12 + val : val;
+    if (this._dialogModel) {
+      const d = new Date(this._dialogModel);
+      d.setHours(hours);
+      this._setDialogDate(d);
+    }
+  };
+
+  private _onMinuteChange = (e: Event): void => {
+    const val = +(e.target as HTMLInputElement).value;
+    if (this._dialogModel) {
+      const d = new Date(this._dialogModel);
+      d.setMinutes(val);
+      this._setDialogDate(d);
+    }
+  };
+
+  private _onSecondChange = (e: Event): void => {
+    const val = +(e.target as HTMLInputElement).value;
+    if (this._dialogModel) {
+      const d = new Date(this._dialogModel);
+      d.setSeconds(val);
+      this._setDialogDate(d);
+    }
+  };
+
+  private _onMillisecondChange = (e: Event): void => {
+    const val = +(e.target as HTMLInputElement).value;
+    if (this._dialogModel) {
+      const d = new Date(this._dialogModel);
+      d.setMilliseconds(val);
+      this._setDialogDate(d);
+    }
+  };
+
+  private _onAmPmChange(newVal: 'AM' | 'PM'): void {
+    if (!this._dialogModel) return;
+    const d = new Date(this._dialogModel);
+    const hours = d.getHours();
+    if (newVal === 'AM' && this._dialogAmPm === 'PM') {
+      d.setHours(hours - 12);
+    } else if (newVal === 'PM' && this._dialogAmPm === 'AM') {
+      d.setHours(hours + 12);
+    }
+    this._setDialogDate(d);
+  }
+
+  // ---------------------------------------------------------------------------
+  // Overlay management
+  // ---------------------------------------------------------------------------
+
+  private _addOverlayListeners(): void {
+    // Defer to allow the click event that opened the dialog to finish
+    setTimeout(() => {
+      document.addEventListener('keydown', this._onDocumentKeyDown);
+    }, 0);
+  }
+
+  private _removeOverlayListeners(): void {
+    document.removeEventListener('keydown', this._onDocumentKeyDown);
+  }
+
+  private _onDocumentClick = (_e: MouseEvent): void => {
+    // The overlay handles closing via its own click handler
+  };
+
+  private _onDocumentKeyDown = (e: KeyboardEvent): void => {
+    if (e.code === 'Escape') {
+      this._close();
+      e.stopPropagation();
+    }
+  };
+
+  private _onDialogKeyDown = (e: KeyboardEvent): void => {
+    if (e.code === 'Escape') {
+      this._close();
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  };
+
+  // ---------------------------------------------------------------------------
+  // Input event handlers
   // ---------------------------------------------------------------------------
 
   private _handleInput(e: Event): void {
@@ -522,44 +882,11 @@ export class SwimDateTime extends LitElement {
       e.preventDefault();
       this._openPicker();
     } else if (e.code === 'Escape') {
-      // Nothing to close in native-picker mode, but stop propagation
+      if (this._dialogOpen) {
+        this._close();
+      }
       e.stopPropagation();
     }
-  }
-
-  private _openPicker(): void {
-    if (this.disabled) return;
-    try {
-      this._nativePicker?.showPicker();
-    } catch {
-      // Fallback: programmatic click
-      this._nativePicker?.click();
-    }
-  }
-
-  private _handleNativeChange(e: Event): void {
-    e.stopPropagation();
-    const target = e.target as HTMLInputElement;
-    const raw = target.value;
-    if (!raw) return;
-
-    const parsed = new Date(this._nativeInputType === 'time' ? `1970-01-01T${raw}` : raw);
-
-    if (!isValidDate(parsed)) return;
-
-    // For time-only, if we have an existing date, preserve the date portion
-    if (this._effectiveInputType === DateTimeType.time && this._value instanceof Date) {
-      const existing = new Date(this._value);
-      existing.setHours(parsed.getHours(), parsed.getMinutes(), parsed.getSeconds());
-      this.value = existing;
-    } else {
-      this.value = parsed;
-    }
-
-    this._update();
-
-    this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: true, composed: true }));
-    this.dispatchEvent(new CustomEvent('date-time-selected', { detail: this._value, bubbles: true, composed: true }));
   }
 
   // ---------------------------------------------------------------------------
