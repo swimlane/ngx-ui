@@ -6,7 +6,7 @@ import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce'
 
 /**
  * SwimDrawer - Slide-in panel matching @swimlane/ngx-ui design system.
- * Can open from the left (right side of screen) or bottom.
+ * Can open from the left, right, or bottom.
  *
  * @slot - Drawer content (body).
  *
@@ -23,7 +23,7 @@ export class SwimDrawer extends LitElement {
   @property({ type: String, attribute: 'css-class' })
   cssClass = '';
 
-  /** Direction: left (slides from right) or bottom (slides from bottom) */
+  /** Direction: left, right, or bottom */
   @property({ type: String, reflect: true })
   direction: DrawerDirection | string = DrawerDirection.Left;
 
@@ -110,12 +110,16 @@ export class SwimDrawer extends LitElement {
     return this.direction === DrawerDirection.Left || this.direction === 'left';
   }
 
+  private get _isRight(): boolean {
+    return this.direction === DrawerDirection.Right || this.direction === 'right';
+  }
+
   private get _isBottom(): boolean {
     return this.direction === DrawerDirection.Bottom || this.direction === 'bottom';
   }
 
   private get _widthSize(): string {
-    return this._isLeft && this.size ? `${this.size}%` : '100%';
+    return (this._isLeft || this._isRight) && this.size ? `${this.size}%` : '100%';
   }
 
   private get _heightSize(): string {
@@ -198,11 +202,12 @@ export class SwimDrawer extends LitElement {
 
   protected willUpdate(): void {
     // Apply BEM classes and z-index before render so CSS matches on first paint
-    const classes = [
-      'swim-drawer',
-      this._isLeft ? 'swim-drawer--left' : 'swim-drawer--bottom',
-      this.isRoot ? 'swim-drawer--root' : 'swim-drawer--contained'
-    ];
+    const directionClass = this._isLeft
+      ? 'swim-drawer--left'
+      : this._isRight
+      ? 'swim-drawer--right'
+      : 'swim-drawer--bottom';
+    const classes = ['swim-drawer', directionClass, this.isRoot ? 'swim-drawer--root' : 'swim-drawer--contained'];
     if (this.open && !this._closing) classes.push('swim-drawer--open');
     if (this._closing) classes.push('swim-drawer--closing');
     if (this.cssClass) classes.push(...this.cssClass.trim().split(/\s+/).filter(Boolean));

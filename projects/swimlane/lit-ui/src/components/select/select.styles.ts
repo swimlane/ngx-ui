@@ -13,7 +13,7 @@ export const selectStyles = css`
     padding-top: calc(0.75rem + 8px);
     padding-bottom: 0;
     position: relative;
-    min-width: 300px;
+    min-width: 0;
   }
 
   :host([marginless]) {

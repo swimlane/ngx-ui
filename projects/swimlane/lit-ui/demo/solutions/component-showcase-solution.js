@@ -6,12 +6,13 @@
  *   <component-showcase-solution></component-showcase-solution>
  *
  * Imports:
- *   - SwimlaneElement, css, html → https://esm.sh/@swimlane/swimlane-element@1
- *   - swim-* elements must be registered by the host page (e.g. via the lit-ui bundle).
+ *   - SwimlaneElement, css, html → https://esm.sh/@swimlane/swimlane-element@2
+ *   - swim-* elements → https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/lit-ui.js?v=1
  *
  * No document/window listeners or recurring timers – no manual cleanup required.
  */
-import { SwimlaneElement, css, html } from 'https://esm.sh/@swimlane/swimlane-element@1';
+import { SwimlaneElement, css, html } from 'https://esm.sh/@swimlane/swimlane-element@2';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/lit-ui.js?v=1';
 
 /* ================================================================== */
 /*  Shared demo data                                                   */
@@ -58,7 +59,7 @@ const LIST_DATA = [
 /*  Component                                                          */
 /* ================================================================== */
 
-class ComponentShowcaseSolution extends SwimlaneElement {
+export default class ComponentShowcaseSolution extends SwimlaneElement {
   static get properties() {
     return {
       _promiseStatus: { type: String, state: true }
@@ -68,6 +69,10 @@ class ComponentShowcaseSolution extends SwimlaneElement {
   constructor() {
     super();
     this._promiseStatus = '';
+    // Cache promise-demo event handlers so they are not recreated on every render
+    this._handlePromiseSuccess = this._createPromiseHandler('success', 1500);
+    this._handlePromiseFail = this._createPromiseHandler('fail', 1500);
+    this._handlePromiseSlow = this._createPromiseHandler('success', 5000);
   }
 
   /* ---------------------------------------------------------------- */
@@ -127,7 +132,7 @@ class ComponentShowcaseSolution extends SwimlaneElement {
 
       .demo-grid-wide {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: var(--sp);
         padding: var(--sp) 0;
       }
@@ -188,8 +193,9 @@ class ComponentShowcaseSolution extends SwimlaneElement {
         padding: var(--sp) 0;
       }
 
-      .card-row > swim-card {
-        flex: 0 0 280px;
+      .card-row > swim-card,
+      .card-row > swim-card-placeholder {
+        flex: 1 1 280px;
       }
 
       /* Split demo container */
@@ -273,6 +279,34 @@ class ComponentShowcaseSolution extends SwimlaneElement {
         flex-direction: column;
         align-items: center;
         gap: 0.5rem;
+      }
+
+      /* Drawer demo container for contained drawer */
+      .drawer-contained-demo {
+        position: relative;
+        height: 300px;
+        background: var(--grey-800, #1b1e27);
+        border: 1px solid var(--grey-700, #313847);
+        border-radius: var(--r);
+        overflow: hidden;
+      }
+
+      .drawer-contained-demo .drawer-inner-content {
+        padding: var(--sp);
+        color: var(--grey-300, #72819f);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+      }
+
+      /* Prefix/suffix demo styling */
+      .input-addon {
+        display: flex;
+        align-items: center;
+        color: var(--grey-300, #72819f);
+        font-size: 0.85rem;
+        padding: 0 0.25rem;
       }
     `;
   }
@@ -381,17 +415,17 @@ class ComponentShowcaseSolution extends SwimlaneElement {
           <swim-section section-title="Interactive – Promise Handling">
             <p class="hint">Click to trigger a simulated async operation with automatic state transitions.</p>
             <div class="demo-row">
-              <swim-button variant="primary" aria-label="Simulate success" @click=${this._makePromise('success', 1500)}
+              <swim-button variant="primary" aria-label="Simulate success" @click=${this._handlePromiseSuccess}
                 >Click for Success</swim-button
               >
-              <swim-button variant="danger" aria-label="Simulate failure" @click=${this._makePromise('fail', 1500)}
+              <swim-button variant="danger" aria-label="Simulate failure" @click=${this._handlePromiseFail}
                 >Click for Failure</swim-button
               >
               <swim-button
                 variant="warning"
                 .timeout=${5000}
                 aria-label="Slow operation"
-                @click=${this._makePromise('success', 5000)}
+                @click=${this._handlePromiseSlow}
                 >Slow (5 s)</swim-button
               >
             </div>
@@ -518,8 +552,8 @@ class ComponentShowcaseSolution extends SwimlaneElement {
       <div class="panel">
         <h2 class="panel-title">Input</h2>
         <p class="panel-desc">
-          Text, number, password, email, textarea inputs with labels, hints, validation states, fill/legacy appearances,
-          and sizes.
+          Text, number, password, email, tel, url, textarea inputs with labels, hints, validation states, fill/legacy
+          appearances, sizes, and prefix/suffix slots.
         </p>
 
         <section class="sg">
@@ -534,6 +568,8 @@ class ComponentShowcaseSolution extends SwimlaneElement {
               ></swim-input>
               <swim-input type="email" label="Email" placeholder="user@example.com"></swim-input>
               <swim-input type="number" label="Age" placeholder="0" min="0" max="150"></swim-input>
+              <swim-input type="tel" label="Phone" placeholder="+1 (555) 000-0000"></swim-input>
+              <swim-input type="url" label="Website" placeholder="https://example.com"></swim-input>
             </div>
           </swim-section>
         </section>
@@ -547,6 +583,22 @@ class ComponentShowcaseSolution extends SwimlaneElement {
               textarea-rows="4"
               hint="Maximum 500 characters"
             ></swim-input>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Prefix / Suffix Slots">
+            <div class="demo-grid-wide">
+              <swim-input label="Amount" placeholder="0.00">
+                <span slot="prefix" class="input-addon">$</span>
+              </swim-input>
+              <swim-input label="Weight" placeholder="0">
+                <span slot="suffix" class="input-addon">kg</span>
+              </swim-input>
+              <swim-input label="Search" placeholder="Type to search…">
+                <swim-icon slot="prefix" font-icon="search" style="font-size:0.9rem;color:var(--grey-400)"></swim-icon>
+              </swim-input>
+            </div>
           </swim-section>
         </section>
 
@@ -587,6 +639,15 @@ class ComponentShowcaseSolution extends SwimlaneElement {
             </div>
           </swim-section>
         </section>
+
+        <section class="sg">
+          <swim-section section-title="Marginless">
+            <div class="demo-grid-wide">
+              <swim-input label="Normal margin" placeholder="Default spacing"></swim-input>
+              <swim-input label="Marginless" marginless placeholder="No bottom margin"></swim-input>
+            </div>
+          </swim-section>
+        </section>
       </div>
     `;
   }
@@ -599,16 +660,34 @@ class ComponentShowcaseSolution extends SwimlaneElement {
         <p class="panel-desc">Single and multi-select with filtering, groups, and clear support.</p>
 
         <section class="sg">
-          <swim-section section-title="Single Select">
+          <swim-section section-title="Single Select (no filter)">
             <div class="demo-grid-wide">
-              <swim-select label="Attack Type" placeholder="Select…" .options=${ATTACK_OPTIONS}></swim-select>
+              <swim-select
+                label="Attack Type"
+                placeholder="Select…"
+                .filterable=${false}
+                .options=${ATTACK_OPTIONS}
+              ></swim-select>
               <swim-select
                 label="Required"
                 required
                 placeholder="Please select…"
+                .filterable=${false}
                 .options=${ATTACK_OPTIONS}
               ></swim-select>
             </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Filterable">
+            <p class="hint">Type to filter the options list. Filtering is enabled by default.</p>
+            <swim-select
+              label="Search Attacks"
+              placeholder="Type to filter…"
+              filterable
+              .options=${ATTACK_OPTIONS}
+            ></swim-select>
           </swim-section>
         </section>
 
@@ -625,27 +704,42 @@ class ComponentShowcaseSolution extends SwimlaneElement {
         </section>
 
         <section class="sg">
-          <swim-section section-title="Filterable">
-            <swim-select
-              label="Search Attacks"
-              placeholder="Type to filter…"
-              filterable
-              .options=${ATTACK_OPTIONS}
-            ></swim-select>
-          </swim-section>
-        </section>
-
-        <section class="sg">
           <swim-section section-title="Appearances & Sizes">
             <div class="demo-grid-wide">
               <swim-select
                 appearance="fill"
                 label="Fill Appearance"
                 placeholder="Select…"
+                .filterable=${false}
                 .options=${ATTACK_OPTIONS}
               ></swim-select>
-              <swim-select size="md" label="Medium Size" placeholder="Select…" .options=${ATTACK_OPTIONS}></swim-select>
+              <swim-select
+                size="md"
+                label="Medium Size"
+                placeholder="Select…"
+                .filterable=${false}
+                .options=${ATTACK_OPTIONS}
+              ></swim-select>
+              <swim-select
+                size="lg"
+                label="Large Size"
+                placeholder="Select…"
+                .filterable=${false}
+                .options=${ATTACK_OPTIONS}
+              ></swim-select>
             </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Allow Clear Disabled">
+            <swim-select
+              label="No Clear"
+              placeholder="Select…"
+              .filterable=${false}
+              .allowClear=${false}
+              .options=${ATTACK_OPTIONS}
+            ></swim-select>
           </swim-section>
         </section>
 
@@ -694,6 +788,16 @@ class ComponentShowcaseSolution extends SwimlaneElement {
             <div class="demo-col">
               <swim-checkbox round>Round</swim-checkbox>
               <swim-checkbox round checked>Round Checked</swim-checkbox>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Custom Diameter">
+            <div class="demo-row">
+              <swim-checkbox diameter="14px" checked>14px</swim-checkbox>
+              <swim-checkbox diameter="18px" checked>18px (default)</swim-checkbox>
+              <swim-checkbox diameter="24px" checked>24px</swim-checkbox>
             </div>
           </swim-section>
         </section>
@@ -751,7 +855,7 @@ class ComponentShowcaseSolution extends SwimlaneElement {
         <p class="panel-desc">On/off toggle switch with optional check/x icons.</p>
 
         <section class="sg">
-          <swim-section section-title="Basic">
+          <swim-section section-title="Basic (label attribute)">
             <div class="demo-col">
               <swim-toggle label="Off"></swim-toggle>
               <swim-toggle label="On" checked></swim-toggle>
@@ -771,8 +875,8 @@ class ComponentShowcaseSolution extends SwimlaneElement {
         <section class="sg">
           <swim-section section-title="Without Icons">
             <div class="demo-col">
-              <swim-toggle label="No icons" .showIcons=${false}></swim-toggle>
-              <swim-toggle label="No icons (on)" .showIcons=${false} checked></swim-toggle>
+              <swim-toggle label="No icons" show-icons="false"></swim-toggle>
+              <swim-toggle label="No icons (on)" show-icons="false" checked></swim-toggle>
             </div>
           </swim-section>
         </section>
@@ -782,6 +886,14 @@ class ComponentShowcaseSolution extends SwimlaneElement {
             <div class="demo-col">
               <swim-toggle label="Disabled" disabled></swim-toggle>
               <swim-toggle label="Disabled on" checked disabled></swim-toggle>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Required (for forms)">
+            <div class="demo-col">
+              <swim-toggle label="Accept terms" required></swim-toggle>
             </div>
           </swim-section>
         </section>
@@ -934,13 +1046,40 @@ class ComponentShowcaseSolution extends SwimlaneElement {
         </section>
 
         <section class="sg">
-          <swim-section section-title="Flat Appearance">
+          <swim-section section-title="Flat Appearance & Accent">
             <div class="card-row">
               <swim-card appearance="flat">
                 <swim-card-header>
                   <span slot="title">Flat Card</span>
                 </swim-card-header>
                 <swim-card-body>Flat appearance, no shadow.</swim-card-body>
+              </swim-card>
+
+              <swim-card hide-accent>
+                <swim-card-header>
+                  <span slot="title">No Accent</span>
+                </swim-card-header>
+                <swim-card-body>Accent bar hidden via hide-accent.</swim-card-body>
+              </swim-card>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Outline Text">
+            <div class="card-row">
+              <swim-card outline-text="NEW" status="success">
+                <swim-card-header>
+                  <span slot="title">With Outline Text</span>
+                </swim-card-header>
+                <swim-card-body>Clickable outline label (outline-text).</swim-card-body>
+              </swim-card>
+
+              <swim-card outline-text="DRAFT">
+                <swim-card-header>
+                  <span slot="title">Draft Status</span>
+                </swim-card-header>
+                <swim-card-body>Outline text shows a subtle label.</swim-card-body>
               </swim-card>
             </div>
           </swim-section>
@@ -1210,6 +1349,19 @@ class ComponentShowcaseSolution extends SwimlaneElement {
             ></swim-list>
           </swim-section>
         </section>
+
+        <section class="sg">
+          <swim-section section-title="Success Row Status">
+            <swim-list
+              .dataSource=${LIST_DATA}
+              .headerLabels=${['Attack Type', 'Date', 'Origin']}
+              .columns=${['type', 'date', 'origin']}
+              column-layout="3fr 2fr 2fr"
+              default-row-status="success"
+              height="280"
+            ></swim-list>
+          </swim-section>
+        </section>
       </div>
     `;
   }
@@ -1219,11 +1371,19 @@ class ComponentShowcaseSolution extends SwimlaneElement {
     return html`
       <div class="panel">
         <h2 class="panel-title">Dialog</h2>
-        <p class="panel-desc">Modal dialogs — regular and large format with header, body, and footer.</p>
+        <p class="panel-desc">Modal dialogs — regular, medium, and large format with header, body, and footer.</p>
 
         <section class="sg">
           <swim-section section-title="Regular Dialog">
             <swim-button variant="primary" @click=${() => this._showOverlay('demoDialog')}>Open Dialog</swim-button>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Medium Format Dialog">
+            <swim-button variant="primary" @click=${() => this._showOverlay('demoMediumDialog')}
+              >Open Medium Dialog</swim-button
+            >
           </swim-section>
         </section>
 
@@ -1243,7 +1403,7 @@ class ComponentShowcaseSolution extends SwimlaneElement {
     return html`
       <div class="panel">
         <h2 class="panel-title">Drawer</h2>
-        <p class="panel-desc">Slide-in panels from left or right.</p>
+        <p class="panel-desc">Slide-in panels from left, right, or bottom.</p>
 
         <section class="sg">
           <swim-section section-title="Left Drawer">
@@ -1260,6 +1420,14 @@ class ComponentShowcaseSolution extends SwimlaneElement {
             >
           </swim-section>
         </section>
+
+        <section class="sg">
+          <swim-section section-title="Bottom Drawer">
+            <swim-button variant="primary" @click=${() => this._showOverlay('demoDrawerBottom')}
+              >Open Bottom Drawer</swim-button
+            >
+          </swim-section>
+        </section>
       </div>
     `;
   }
@@ -1269,10 +1437,10 @@ class ComponentShowcaseSolution extends SwimlaneElement {
     return html`
       <div class="panel">
         <h2 class="panel-title">Tooltip</h2>
-        <p class="panel-desc">Tooltips and popovers with configurable placement and trigger events.</p>
+        <p class="panel-desc">Tooltips and popovers with configurable placement, trigger events, and alignment.</p>
 
         <section class="sg">
-          <swim-section section-title="Tooltip Type">
+          <swim-section section-title="Tooltip Type – Placement">
             <div class="demo-row">
               <swim-tooltip content="Top tooltip" type="tooltip" placement="top">
                 <swim-button>Top</swim-button>
@@ -1285,6 +1453,28 @@ class ComponentShowcaseSolution extends SwimlaneElement {
               </swim-tooltip>
               <swim-tooltip content="Right tooltip" type="tooltip" placement="right">
                 <swim-button>Right</swim-button>
+              </swim-tooltip>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Show Events">
+            <p class="hint">
+              Control when the tooltip appears: hover+focus (all), click-only, focus-only, or mouseover-only.
+            </p>
+            <div class="demo-row">
+              <swim-tooltip content="All events (default)" type="tooltip" placement="top" show-event="all">
+                <swim-button>All</swim-button>
+              </swim-tooltip>
+              <swim-tooltip content="Click only" type="tooltip" placement="top" show-event="click">
+                <swim-button>Click</swim-button>
+              </swim-tooltip>
+              <swim-tooltip content="Focus only" type="tooltip" placement="top" show-event="focus">
+                <swim-button>Focus</swim-button>
+              </swim-tooltip>
+              <swim-tooltip content="Mouseover only" type="tooltip" placement="top" show-event="mouseover">
+                <swim-button>Mouseover</swim-button>
               </swim-tooltip>
             </div>
           </swim-section>
@@ -1306,8 +1496,16 @@ class ComponentShowcaseSolution extends SwimlaneElement {
 
         <section class="sg">
           <swim-section section-title="Without Caret">
-            <swim-tooltip content="No caret" type="tooltip" placement="top" .showCaret=${false}>
+            <swim-tooltip content="No caret" type="tooltip" placement="top" show-caret="false">
               <swim-button variant="bordered">No Caret</swim-button>
+            </swim-tooltip>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Disabled Tooltip">
+            <swim-tooltip content="You won't see me" type="tooltip" placement="top" disabled>
+              <swim-button variant="bordered">Disabled Tooltip</swim-button>
             </swim-tooltip>
           </swim-section>
         </section>
@@ -1478,6 +1676,37 @@ class ComponentShowcaseSolution extends SwimlaneElement {
             </div>
           </swim-section>
         </section>
+
+        <section class="sg">
+          <swim-section section-title="Custom Colors & Stroke">
+            <div class="spinner-row">
+              <div class="spinner-item">
+                <swim-progress-spinner
+                  mode="determinate"
+                  value="65"
+                  total="100"
+                  diameter="80"
+                  stroke-width="5"
+                  color="var(--green-500)"
+                  aria-label="Green spinner"
+                ></swim-progress-spinner>
+                <span class="demo-label">Green / thick</span>
+              </div>
+              <div class="spinner-item">
+                <swim-progress-spinner
+                  mode="determinate"
+                  value="40"
+                  total="100"
+                  diameter="80"
+                  stroke-width="2"
+                  color="var(--orange-500)"
+                  aria-label="Orange spinner"
+                ></swim-progress-spinner>
+                <span class="demo-label">Orange / thin</span>
+              </div>
+            </div>
+          </swim-section>
+        </section>
       </div>
     `;
   }
@@ -1491,8 +1720,23 @@ class ComponentShowcaseSolution extends SwimlaneElement {
       <!-- Regular dialog -->
       <swim-dialog id="demoDialog" dialog-title="Example Dialog" close-button>
         <p style="padding:1rem;color:var(--grey-200)">
-          This is a regular-format dialog with a title and close button. Click the X or the backdrop to close.
+          This is a regular-format dialog with a title and close button. Click the X to close.
         </p>
+      </swim-dialog>
+
+      <!-- Medium-format dialog -->
+      <swim-dialog id="demoMediumDialog" format="medium" close-button>
+        <swim-large-format-dialog-content
+          format="medium"
+          dialog-title="Medium Format Dialog"
+          dialog-subtitle="A mid-sized dialog layout"
+        >
+          <p style="padding:1rem;color:var(--grey-200)">Medium-format dialog with header, body, and footer.</p>
+          <swim-large-format-dialog-footer slot="footer" format="medium">
+            <swim-button variant="bordered" @click=${() => this._hideOverlay('demoMediumDialog')}>Cancel</swim-button>
+            <swim-button variant="primary" @click=${() => this._hideOverlay('demoMediumDialog')}>Confirm</swim-button>
+          </swim-large-format-dialog-footer>
+        </swim-large-format-dialog-content>
       </swim-dialog>
 
       <!-- Large-format dialog -->
@@ -1531,6 +1775,17 @@ class ComponentShowcaseSolution extends SwimlaneElement {
           >
         </div>
       </swim-drawer>
+
+      <!-- Bottom drawer -->
+      <swim-drawer id="demoDrawerBottom" direction="bottom" size="40">
+        <div style="padding:2rem">
+          <h3 style="margin:0 0 1rem;color:var(--blue-400)">Bottom Drawer</h3>
+          <p style="color:var(--grey-200)">Slide-in panel from the bottom edge.</p>
+          <swim-button variant="bordered" style="margin-top:1rem" @click=${() => this._hideOverlay('demoDrawerBottom')}
+            >Close</swim-button
+          >
+        </div>
+      </swim-drawer>
     `;
   }
 
@@ -1538,8 +1793,11 @@ class ComponentShowcaseSolution extends SwimlaneElement {
   /*  Interaction helpers                                              */
   /* ================================================================ */
 
-  /** Returns an event handler that sets a promise on the clicked button. */
-  _makePromise(outcome, delay) {
+  /**
+   * Creates a cached event handler that sets a promise on the clicked button.
+   * Called once in the constructor to avoid creating new closures each render.
+   */
+  _createPromiseHandler(outcome, delay) {
     return e => {
       const btn = e.currentTarget;
       this._promiseStatus = `Running ${outcome === 'fail' ? 'failure' : 'success'} demo…`;
@@ -1566,8 +1824,3 @@ class ComponentShowcaseSolution extends SwimlaneElement {
     this.renderRoot.querySelector(`#${id}`)?.hide();
   }
 }
-
-/* No document/window listeners or recurring timers.
-   Cleanup is handled automatically by SwimlaneElement and swim-* internals. */
-
-customElements.define('component-showcase-solution', ComponentShowcaseSolution);

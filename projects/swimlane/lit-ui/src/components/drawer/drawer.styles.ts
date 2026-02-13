@@ -64,8 +64,30 @@ export const drawerStyles = [
       pointer-events: auto;
     }
 
-    /* Left drawer: slides in from right side */
+    /* Left drawer: slides in from the left edge */
     :host(.swim-drawer--left) .swim-drawer__panel {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      min-width: 200px;
+      width: 100%;
+    }
+
+    :host(.swim-drawer--left:not(.swim-drawer--open):not(.swim-drawer--closing)) .swim-drawer__panel {
+      transform: translateX(-100%);
+    }
+
+    :host(.swim-drawer--left.swim-drawer--open) .swim-drawer__panel {
+      transform: translateX(0);
+    }
+
+    :host(.swim-drawer--left.swim-drawer--closing) .swim-drawer__panel {
+      transform: translateX(-100%);
+    }
+
+    /* Right drawer: slides in from the right edge */
+    :host(.swim-drawer--right) .swim-drawer__panel {
       position: absolute;
       top: 0;
       right: 0;
@@ -74,15 +96,15 @@ export const drawerStyles = [
       width: 100%;
     }
 
-    :host(.swim-drawer--left:not(.swim-drawer--open):not(.swim-drawer--closing)) .swim-drawer__panel {
+    :host(.swim-drawer--right:not(.swim-drawer--open):not(.swim-drawer--closing)) .swim-drawer__panel {
       transform: translateX(100%);
     }
 
-    :host(.swim-drawer--left.swim-drawer--open) .swim-drawer__panel {
+    :host(.swim-drawer--right.swim-drawer--open) .swim-drawer__panel {
       transform: translateX(0);
     }
 
-    :host(.swim-drawer--left.swim-drawer--closing) .swim-drawer__panel {
+    :host(.swim-drawer--right.swim-drawer--closing) .swim-drawer__panel {
       transform: translateX(100%);
     }
 

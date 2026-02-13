@@ -3,5 +3,6 @@
  */
 export enum DrawerDirection {
   Left = 'left',
+  Right = 'right',
   Bottom = 'bottom'
 }
