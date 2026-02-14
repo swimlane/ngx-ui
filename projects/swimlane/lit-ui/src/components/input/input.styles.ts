@@ -186,7 +186,7 @@ export const inputStyles = css`
 
   :host([active]) .input-label,
   :host([has-placeholder]) .input-label {
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     top: -1.4em;
   }
 
@@ -232,7 +232,7 @@ export const inputStyles = css`
     bottom: 0;
     right: 10px;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: var(--font-size-s);
     color: var(--grey-300);
     transition: color 100ms;
     padding: 0;

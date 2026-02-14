@@ -133,7 +133,7 @@ export const dialogStyles = [
     .swim-dialog__title,
     .swim-dialog__header h1,
     .swim-dialog__header h2 {
-      font-size: 1.8rem;
+      font-size: var(--font-size-3xl);
       font-weight: 400;
       margin: 0 0 1.4rem 0;
       color: var(--swim-dialog-header-color);

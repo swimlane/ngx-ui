@@ -98,7 +98,7 @@ export const tooltipStyles = css`
   .swim-tooltip__panel--type-tooltip {
     color: var(--grey-700);
     background: var(--grey-200);
-    font-size: var(--font-size-xs, 12px);
+    font-size: var(--font-size-xs);
     padding: var(--spacing-4, 4px);
     text-align: center;
   }
@@ -108,7 +108,7 @@ export const tooltipStyles = css`
     background: var(--grey-200);
     color: var(--grey-700);
     box-shadow: var(--shadow-2);
-    font-size: 13px;
+    font-size: var(--font-size-s);
     padding: var(--spacing-10, 10px);
   }
 

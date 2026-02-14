@@ -39,7 +39,7 @@ export const buttonToggleStyles = css`
   }
 
   :host(:not([disabled])) .swim-button-toggle:hover:not(.swim-button-toggle--checked) {
-    background: rgba(59, 68, 87, 0.1);
+    background: rgba(var(--grey-650-rgb), 0.1);
   }
 
   .swim-button-toggle:focus {

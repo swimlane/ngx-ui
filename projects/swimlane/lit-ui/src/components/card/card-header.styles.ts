@@ -77,7 +77,7 @@ export const cardHeaderStyles = css`
 
   ::slotted([slot='title']) {
     font-weight: var(--font-weight-semibold);
-    font-size: 22px;
+    font-size: var(--font-size-xl);
     color: var(--grey-050);
   }
 
@@ -91,7 +91,7 @@ export const cardHeaderStyles = css`
   .swim-card-header__label {
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-xs);
-    color: var(--card-status-success, #b0e53c);
+    color: var(--color-success);
     border-bottom: 0;
     margin-bottom: 0.5rem;
     white-space: nowrap;

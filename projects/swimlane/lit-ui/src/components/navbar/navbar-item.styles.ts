@@ -7,7 +7,7 @@ import { css } from 'lit';
 export const navbarItemStyles = css`
   :host {
     display: flex;
-    font-size: 15pt;
+    font-size: var(--font-size-xl);
     color: var(--grey-400);
     cursor: pointer;
     transition: color 0.2s ease-in-out;

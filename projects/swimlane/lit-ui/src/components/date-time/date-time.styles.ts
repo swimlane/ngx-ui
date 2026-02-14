@@ -51,7 +51,7 @@ export const dateTimeStyles = css`
     border: none;
     cursor: pointer;
     z-index: 2;
-    font-size: 1rem;
+    font-size: var(--font-size-m);
     line-height: 1;
   }
 
@@ -146,26 +146,26 @@ export const dateTimeStyles = css`
   /* ------------------------------------------------------------------ */
 
   .swim-date-time__dialog-header {
-    border-top: 1px solid var(--grey-700, #2d3544);
-    border-left: 1px solid var(--grey-700, #2d3544);
-    border-right: 1px solid var(--grey-700, #2d3544);
-    border-top-left-radius: var(--radius-6, 6px);
-    border-top-right-radius: var(--radius-6, 6px);
+    border-top: 1px solid var(--grey-700);
+    border-left: 1px solid var(--grey-700);
+    border-right: 1px solid var(--grey-700);
+    border-top-left-radius: var(--radius-6);
+    border-top-right-radius: var(--radius-6);
     padding: 4px 20px;
-    background: var(--blue, #0c6ed6);
-    color: var(--grey-100, #cdd2dd);
+    background: var(--blue-600);
+    color: var(--grey-100);
     text-align: center;
   }
 
   .swim-date-time__dialog-header h1 {
-    font-size: 1.2rem;
+    font-size: var(--font-size-xl);
     white-space: nowrap;
     margin: 0.5rem 0;
     font-weight: normal;
   }
 
   .swim-date-time__dialog-header h1 small {
-    color: var(--grey-100, #cdd2dd);
+    color: var(--grey-100);
     display: block;
     margin-top: 2px;
   }
@@ -178,9 +178,9 @@ export const dateTimeStyles = css`
     box-shadow: none;
     border-radius: 0;
     border: none;
-    border-left: 1px solid var(--grey-700, #2d3544);
-    border-right: 1px solid var(--grey-700, #2d3544);
-    border-bottom: 1px solid var(--grey-700, #2d3544);
+    border-left: 1px solid var(--grey-700);
+    border-right: 1px solid var(--grey-700);
+    border-bottom: 1px solid var(--grey-700);
     display: block;
     width: auto;
   }
@@ -190,10 +190,10 @@ export const dateTimeStyles = css`
   /* ------------------------------------------------------------------ */
 
   .swim-date-time__time-row {
-    background: var(--grey-800, #1a202e);
-    border-left: 1px solid var(--grey-700, #2d3544);
-    border-right: 1px solid var(--grey-700, #2d3544);
-    border-bottom: 1px solid var(--grey-700, #2d3544);
+    background: var(--grey-800);
+    border-left: 1px solid var(--grey-700);
+    border-right: 1px solid var(--grey-700);
+    border-bottom: 1px solid var(--grey-700);
     padding: 8px 16px;
     margin-top: 0;
     height: 80px;
@@ -212,15 +212,15 @@ export const dateTimeStyles = css`
     text-align: center;
     background: transparent;
     border: none;
-    border-bottom: 1px solid var(--grey-400, #566076);
-    color: var(--grey-050, #f0f3f8);
-    font-size: var(--font-size-m, 0.875rem);
+    border-bottom: 1px solid var(--grey-400);
+    color: var(--grey-050);
+    font-size: var(--font-size-m);
     font-family: inherit;
     outline: none;
   }
 
   .swim-date-time__time-input:focus {
-    border-bottom-color: var(--blue-400, #1483ff);
+    border-bottom-color: var(--blue-400);
   }
 
   .swim-date-time__time-input:disabled {
@@ -233,8 +233,8 @@ export const dateTimeStyles = css`
   }
 
   .swim-date-time__time-hint {
-    font-size: var(--font-size-xxs, 0.65rem);
-    color: var(--grey-400, #566076);
+    font-size: var(--font-size-xxs);
+    color: var(--grey-400);
     text-align: center;
     margin-top: 2px;
   }
@@ -254,12 +254,12 @@ export const dateTimeStyles = css`
   .swim-date-time__ampm {
     background: none;
     border: none;
-    color: var(--grey-500, #455066);
+    color: var(--grey-500);
     cursor: pointer;
     padding: 2px 6px;
-    font-size: var(--font-size-s, 0.8rem);
+    font-size: var(--font-size-s);
     font-family: inherit;
-    border-radius: var(--radius-2, 2px);
+    border-radius: var(--radius-2);
   }
 
   .swim-date-time__ampm:disabled {
@@ -268,8 +268,8 @@ export const dateTimeStyles = css`
   }
 
   .swim-date-time__ampm.selected {
-    color: var(--white, #fff);
-    background-color: rgba(129, 143, 169, 0.2);
+    color: var(--white);
+    background-color: rgba(var(--grey-350-rgb), 0.2);
   }
 
   /* ------------------------------------------------------------------ */
@@ -277,10 +277,10 @@ export const dateTimeStyles = css`
   /* ------------------------------------------------------------------ */
 
   .swim-date-time__dialog-footer {
-    background: var(--grey-800, #1a202e);
-    border: 1px solid var(--grey-700, #2d3544);
-    border-bottom-left-radius: var(--radius-6, 6px);
-    border-bottom-right-radius: var(--radius-6, 6px);
+    background: var(--grey-800);
+    border: 1px solid var(--grey-700);
+    border-bottom-left-radius: var(--radius-6);
+    border-bottom-right-radius: var(--radius-6);
     border-top: 0;
     padding: 0.5rem 0;
     flex-direction: row;
@@ -302,8 +302,8 @@ export const dateTimeStyles = css`
   }
 
   .swim-date-time__footer-btn {
-    font-size: var(--font-size-m, 0.875rem);
-    color: var(--grey-400, #566076);
+    font-size: var(--font-size-m);
+    color: var(--grey-400);
     margin: 0;
     padding: 0;
     background: none;
@@ -313,7 +313,7 @@ export const dateTimeStyles = css`
   }
 
   .swim-date-time__footer-btn:hover {
-    color: var(--grey-200, #8e99ae);
+    color: var(--grey-200);
   }
 
   .swim-date-time__footer-btn--current {
@@ -330,11 +330,11 @@ export const dateTimeStyles = css`
 
   .swim-date-time__footer-btn--apply {
     margin-right: 16px;
-    color: var(--blue-400, #1483ff);
+    color: var(--blue-400);
   }
 
   .swim-date-time__footer-btn--apply:hover {
-    color: var(--blue-300, #59a8ff);
+    color: var(--blue-300);
   }
 
   .swim-date-time__footer-btn--clear {

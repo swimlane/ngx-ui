@@ -22,7 +22,7 @@ export const buttonToggleGroupStyles = css`
 
   .swim-button-toggle-group__container__label {
     font-weight: var(--font-weight-semibold);
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     line-height: 12px;
     color: var(--grey-350);
   }

@@ -76,7 +76,7 @@ export const iconStyles = css`
 
   /* Modifier: red color for overlay icon (match ngx-ui) */
   .text-red {
-    color: var(--red-500, rgb(255, 69, 20));
+    color: var(--red-500);
   }
 
   /* Font icon base (glyphs in icon-font-glyphs.ts) */

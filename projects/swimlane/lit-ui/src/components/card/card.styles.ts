@@ -52,7 +52,7 @@ export const cardStyles = css`
   }
 
   .swim-card__status--success {
-    background-color: var(--card-status-success, #b0e53c);
+    background-color: var(--color-success);
   }
 
   .swim-card__status--error {

@@ -112,7 +112,7 @@ export const largeFormatDialogContentStyles = [
       background: none;
       border: none;
       color: var(--grey-400);
-      font-size: 0.8125rem;
+      font-size: var(--font-size-s);
       line-height: 1;
       padding: 0.25rem 0;
       cursor: pointer;

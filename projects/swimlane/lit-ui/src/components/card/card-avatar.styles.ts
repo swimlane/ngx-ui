@@ -55,7 +55,7 @@ export const cardAvatarStyles = css`
   }
 
   .swim-card-avatar__status--success {
-    background-color: var(--card-status-success, #b0e53c);
+    background-color: var(--color-success);
   }
 
   .swim-card-avatar__status--error {

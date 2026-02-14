@@ -166,7 +166,7 @@ export const selectStyles = css`
 
   :host([active]) .select-label,
   :host([has-placeholder]) .select-label {
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     top: -1.4em;
   }
 

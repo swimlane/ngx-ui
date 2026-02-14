@@ -80,6 +80,7 @@ export const baseStyles = css`
     --grey-250: rgb(160, 170, 190);
     --grey-300: rgb(144, 156, 180);
     --grey-350: rgb(129, 143, 169);
+    --grey-350-rgb: 129, 143, 169;
     --grey-400: rgb(114, 129, 159);
     --grey-450: rgb(100, 116, 147);
     --grey-500: rgb(90, 104, 132);
@@ -87,6 +88,7 @@ export const baseStyles = css`
     --grey-550-rgb: 80, 92, 117;
     --grey-600: rgb(69, 80, 102);
     --grey-650: rgb(59, 68, 87);
+    --grey-650-rgb: 59, 68, 87;
     --grey-700: rgb(49, 56, 71);
     --grey-725: rgb(43, 50, 64);
     --grey-750: rgb(38, 44, 56);
@@ -150,6 +152,7 @@ export const baseStyles = css`
 
     /* Semantic colors */
     --color-error: var(--red-500);
+    --color-success: #b0e53c;
 
     /* Shadows */
     --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);

@@ -10,7 +10,7 @@ export const splitHandleStyles = css`
 
   .swim-split-handle__grip {
     line-height: 0;
-    font-size: 32px;
+    font-size: var(--font-size-4xl);
     position: absolute;
     display: block;
     padding: 0;

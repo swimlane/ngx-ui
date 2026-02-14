@@ -22,7 +22,7 @@ export const listStyles = [
 
     .swim-list__header-cell {
       color: var(--white);
-      font-size: 14px;
+      font-size: var(--font-size-s);
       font-weight: var(--font-weight-bold);
       line-height: 22px;
     }

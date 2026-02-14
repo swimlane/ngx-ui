@@ -61,7 +61,7 @@ export const progressSpinnerStyles = css`
   .swim-progress-spinner__icon-in-progress swim-icon,
   .swim-progress-spinner__icon-complete swim-icon,
   .swim-progress-spinner__icon-failure swim-icon {
-    font-size: 40px;
+    font-size: var(--font-size-5xl);
     color: var(--spinner-color);
   }
 

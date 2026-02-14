@@ -80,7 +80,7 @@ export const sectionStyles = css`
   .swim-section__header-content ::slotted(h4) {
     margin: 0;
     padding: 0;
-    font-size: 1rem;
+    font-size: var(--font-size-m);
     font-weight: 400;
     line-height: 1.25;
   }
@@ -120,7 +120,7 @@ export const sectionStyles = css`
   }
 
   .swim-section__toggle-icon {
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
     line-height: 1;
     display: flex;
     align-items: center;
@@ -129,7 +129,7 @@ export const sectionStyles = css`
 
   .swim-section__toggle swim-icon {
     display: block;
-    font-size: 0.75rem;
+    font-size: var(--font-size-xs);
   }
 
   .swim-section__header a {
@@ -147,7 +147,7 @@ export const sectionStyles = css`
   }
 
   .swim-section__header-title {
-    font-size: 1rem;
+    font-size: var(--font-size-m);
     font-weight: 400;
     line-height: 1.25;
     padding: var(--spacing-0);

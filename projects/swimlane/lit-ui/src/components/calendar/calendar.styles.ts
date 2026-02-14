@@ -7,15 +7,15 @@ import { css } from 'lit';
 export const calendarStyles = css`
   :host {
     position: relative;
-    font-size: var(--font-size-m, 0.875rem);
-    background: var(--grey-800, #1a202e);
+    font-size: var(--font-size-m);
+    background: var(--grey-800);
     display: inline-block;
-    border: 1px solid var(--grey-700, #2d3544);
+    border: 1px solid var(--grey-700);
     width: 270px;
     padding: 0.5rem 0;
-    border-radius: var(--radius-6, 6px);
+    border-radius: var(--radius-6);
     box-sizing: border-box;
-    color: var(--grey-050, #f0f3f8);
+    color: var(--grey-050);
   }
 
   :host(:focus) {
@@ -30,35 +30,35 @@ export const calendarStyles = css`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--grey-800, #1a202e);
-    color: var(--grey-050, #f0f3f8);
+    background: var(--grey-800);
+    color: var(--grey-050);
     padding: 0.69rem 0;
-    font-weight: var(--font-weight-semibold, 600);
+    font-weight: var(--font-weight-semibold);
     line-height: 1;
   }
 
   .title-row .title {
-    color: var(--blue-400, #1483ff);
+    color: var(--blue-400);
     min-width: 100px;
     padding: 4px 8px;
     cursor: pointer;
-    border-radius: var(--radius-4, 4px);
+    border-radius: var(--radius-4);
     background: none;
     border: none;
     font: inherit;
-    font-weight: var(--font-weight-semibold, 600);
+    font-weight: var(--font-weight-semibold);
     font-size: inherit;
   }
 
   .title-row .title:hover {
-    background: var(--grey-750, #232a38);
+    background: var(--grey-750);
   }
 
   .title-row .prev-month,
   .title-row .next-month {
-    color: var(--grey-350, #72819f);
-    font-size: var(--font-size-xxs, 0.65rem);
-    border-radius: var(--radius-4, 4px);
+    color: var(--grey-350);
+    font-size: var(--font-size-xxs);
+    border-radius: var(--radius-4);
     background: none;
     border: none;
     cursor: pointer;
@@ -68,7 +68,7 @@ export const calendarStyles = css`
 
   .title-row .prev-month:hover,
   .title-row .next-month:hover {
-    color: var(--grey-050, #f0f3f8);
+    color: var(--grey-050);
   }
 
   .title-row .prev-month:disabled,
@@ -78,11 +78,11 @@ export const calendarStyles = css`
   }
 
   button {
-    outline: 0px var(--blue-200, #97c4ff);
+    outline: 0px var(--blue-200);
   }
 
   button:focus-visible {
-    outline: 2px solid var(--blue-200, #97c4ff);
+    outline: 2px solid var(--blue-200);
     outline-offset: 1px;
   }
 
@@ -91,8 +91,8 @@ export const calendarStyles = css`
   /* ------------------------------------------------------------------ */
 
   .day-name-row {
-    color: var(--grey-350, #72819f);
-    font-weight: var(--font-weight-semibold, 600);
+    color: var(--grey-350);
+    font-weight: var(--font-weight-semibold);
     display: flex;
   }
 
@@ -130,7 +130,7 @@ export const calendarStyles = css`
   }
 
   .day {
-    color: var(--grey-050, #f0f3f8);
+    color: var(--grey-050);
     height: 100%;
     width: 100%;
     max-height: 30px;
@@ -149,22 +149,22 @@ export const calendarStyles = css`
 
   .day.prev-month,
   .day.next-month {
-    color: var(--grey-350, #72819f);
+    color: var(--grey-350);
     opacity: 0.2;
   }
 
   .day.today {
-    background: var(--grey-750, #232a38);
+    background: var(--grey-750);
   }
 
   .day.active {
-    background: var(--blue-400, #1483ff);
-    color: var(--grey-050, #f0f3f8);
+    background: var(--blue-400);
+    color: var(--grey-050);
   }
 
   .day:hover:not(.active):not([disabled]) {
-    background: var(--blue-400, #1483ff);
-    color: var(--grey-050, #f0f3f8);
+    background: var(--blue-400);
+    color: var(--grey-050);
     opacity: 1;
   }
 
@@ -174,7 +174,7 @@ export const calendarStyles = css`
   }
 
   .day.focus:not([disabled]) {
-    outline: 2px solid var(--blue-200, #97c4ff);
+    outline: 2px solid var(--blue-200);
     outline-offset: 1px;
   }
 
@@ -184,7 +184,7 @@ export const calendarStyles = css`
 
   .months-container {
     margin: 0.5rem;
-    color: var(--grey-050, #f0f3f8);
+    color: var(--grey-050);
     width: calc(100% - 1rem);
     border-collapse: collapse;
   }
@@ -192,19 +192,19 @@ export const calendarStyles = css`
   .months-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    border: 1px solid var(--grey-700, #2d3544);
+    border: 1px solid var(--grey-700);
   }
 
   .month-cell {
     padding: 0;
-    border: 1px solid var(--grey-700, #2d3544);
+    border: 1px solid var(--grey-700);
   }
 
   .month {
     grid-auto-rows: auto;
     text-transform: uppercase;
     text-align: center;
-    font-size: var(--font-size-s, 0.8rem);
+    font-size: var(--font-size-s);
     width: 100%;
     padding: 0.75rem;
     background: none;
@@ -212,21 +212,21 @@ export const calendarStyles = css`
     color: inherit;
     cursor: pointer;
     font: inherit;
-    font-size: var(--font-size-s, 0.8rem);
+    font-size: var(--font-size-s);
     text-transform: uppercase;
   }
 
   .month.active {
-    background-color: var(--blue-400, #1483ff);
+    background-color: var(--blue-400);
   }
 
   .month.current:not(.active) {
-    background-color: var(--grey-750, #232a38);
+    background-color: var(--grey-750);
   }
 
   .month:hover:not(.active):not([disabled]) {
-    background: var(--blue-400, #1483ff);
-    color: var(--grey-050, #f0f3f8);
+    background: var(--blue-400);
+    color: var(--grey-050);
     opacity: 1;
   }
 
@@ -241,7 +241,7 @@ export const calendarStyles = css`
 
   .years-container {
     margin: 0.5rem;
-    color: var(--grey-050, #f0f3f8);
+    color: var(--grey-050);
     width: calc(100% - 1rem);
     border-collapse: collapse;
   }
@@ -249,19 +249,19 @@ export const calendarStyles = css`
   .years-row {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    border: 1px solid var(--grey-700, #2d3544);
+    border: 1px solid var(--grey-700);
   }
 
   .year-cell {
     padding: 0;
-    border: 1px solid var(--grey-700, #2d3544);
+    border: 1px solid var(--grey-700);
   }
 
   .year {
     grid-auto-rows: auto;
     text-transform: uppercase;
     text-align: center;
-    font-size: var(--font-size-s, 0.8rem);
+    font-size: var(--font-size-s);
     width: 100%;
     padding: 0.475rem;
     background: none;
@@ -269,20 +269,20 @@ export const calendarStyles = css`
     color: inherit;
     cursor: pointer;
     font: inherit;
-    font-size: var(--font-size-s, 0.8rem);
+    font-size: var(--font-size-s);
   }
 
   .year.active {
-    background-color: var(--blue-400, #1483ff);
+    background-color: var(--blue-400);
   }
 
   .year.current:not(.active) {
-    background-color: var(--grey-750, #232a38);
+    background-color: var(--grey-750);
   }
 
   .year:hover:not(.active):not([disabled]) {
-    background: var(--blue-400, #1483ff);
-    color: var(--grey-050, #f0f3f8);
+    background: var(--blue-400);
+    color: var(--grey-050);
     opacity: 1;
   }
 

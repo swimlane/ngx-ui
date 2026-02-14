@@ -122,14 +122,14 @@ export const toggleStyles = css`
   .swim-toggle__icon--on swim-icon {
     opacity: 0.5;
     color: var(--white);
-    font-size: 9px;
+    font-size: var(--font-size-xxs);
     padding: 2.5px 3.5px;
   }
 
   .swim-toggle__icon--off swim-icon {
     opacity: 0.7;
     color: var(--grey-400);
-    font-size: 7px;
+    font-size: var(--font-size-xxs);
     font-weight: 900;
     padding: 3.5px 4.5px;
   }

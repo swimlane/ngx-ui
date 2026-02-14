@@ -96,7 +96,7 @@ export const tabsStyles = css`
   :host([appearance='light']) .swim-tabs__list {
     background-color: var(--grey-700);
     border-bottom: 2px solid var(--grey-700);
-    font-size: 13px;
+    font-size: var(--font-size-s);
     line-height: 15px;
     font-weight: var(--font-weight-semibold);
     margin-left: -2px;
@@ -125,7 +125,7 @@ export const tabsStyles = css`
     height: 53px;
     width: 100%;
     text-align: left;
-    font-size: 13px;
+    font-size: var(--font-size-s);
     line-height: 45px;
     border: none !important;
     border-bottom: 1px solid var(--grey-700) !important;
