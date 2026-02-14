@@ -81,3 +81,35 @@
 &lt;swim-toggle disabled label="Disabled"&gt;&lt;/swim-toggle&gt;</code></pre>
   </swim-section>
 </section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-toggle&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>label</code></td><td><code>string</code></td><td><code>''</code></td><td>Label text (or use the default slot)</td></tr>
+            <tr><td><code>checked</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the toggle is on</td></tr>
+            <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Disables the toggle</td></tr>
+            <tr><td><code>required</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Marks as required for form validation</td></tr>
+            <tr><td><code>show-icons</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Shows check/x icons inside the track</td></tr>
+            <tr><td><code>name</code></td><td><code>string</code></td><td><code>''</code></td><td>Form control name</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="api-heading">Events</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Event</th><th>Detail</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>change</code></td><td><code>{ target: { checked } }</code></td><td>Fired when the toggle state changes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </swim-section>
+</section>

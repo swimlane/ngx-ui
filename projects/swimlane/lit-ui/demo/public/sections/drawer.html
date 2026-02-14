@@ -154,3 +154,34 @@ const { close, drawer } = openDrawer({ direction: 'left', size: 70, content: '..
 close(); // or drawer.hide();</code></pre>
   </swim-section>
 </section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-drawer&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>direction</code></td><td><code>'left' | 'right' | 'bottom'</code></td><td><code>'left'</code></td><td>Edge the drawer slides in from</td></tr>
+            <tr><td><code>size</code></td><td><code>number</code></td><td><code>80</code></td><td>Width/height as percentage of viewport</td></tr>
+            <tr><td><code>z-index</code></td><td><code>number</code></td><td><code>998</code></td><td>CSS z-index stacking order</td></tr>
+            <tr><td><code>close-on-outside-click</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Close drawer when clicking outside</td></tr>
+            <tr><td><code>open</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Controls visibility (or call show()/hide())</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="api-heading">Events</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Event</th><th>Detail</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>close</code></td><td>—</td><td>Fired when the drawer is closed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </swim-section>
+</section>

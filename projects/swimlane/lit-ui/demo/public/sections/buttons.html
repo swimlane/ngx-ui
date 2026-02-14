@@ -127,3 +127,36 @@
 &lt;swim-button variant="primary"&gt;Click Me&lt;/swim-button&gt;</code></pre>
   </swim-section>
 </section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-button&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>variant</code></td><td><code>'default' | 'primary' | 'warning' | 'danger' | 'link' | 'bordered'</code></td><td><code>'default'</code></td><td>Visual style variant</td></tr>
+            <tr><td><code>size</code></td><td><code>'small' | 'medium' | 'large'</code></td><td><code>'medium'</code></td><td>Button size</td></tr>
+            <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Disables the button</td></tr>
+            <tr><td><code>state</code></td><td><code>'active' | 'in-progress' | 'success' | 'fail'</code></td><td><code>'active'</code></td><td>Visual state of the button</td></tr>
+            <tr><td><code>type</code></td><td><code>'button' | 'submit' | 'reset'</code></td><td><code>'button'</code></td><td>HTML button type</td></tr>
+            <tr><td><code>.timeout</code></td><td><code>number</code></td><td><code>3000</code></td><td>Duration (ms) to show success/fail before returning to active</td></tr>
+            <tr><td><code>.promise</code></td><td><code>Promise</code></td><td><code>undefined</code></td><td>Bind a promise to auto-manage in-progress / success / fail states</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="api-heading">Events</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Event</th><th>Detail</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>click</code></td><td><code>MouseEvent</code></td><td>Fired when the button is clicked (suppressed when disabled or in-progress)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </swim-section>
+</section>

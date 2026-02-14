@@ -122,3 +122,36 @@
 &lt;/swim-section&gt;</code></pre>
   </swim-section>
 </section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-section&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>section-title</code></td><td><code>string</code></td><td><code>''</code></td><td>Section heading text</td></tr>
+            <tr><td><code>section-collapsed</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the section starts collapsed</td></tr>
+            <tr><td><code>section-collapsible</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Whether the section can be collapsed</td></tr>
+            <tr><td><code>appearance</code></td><td><code>'legacy' | 'outline' | 'light' | 'minimal'</code></td><td><code>'legacy'</code></td><td>Visual appearance variant</td></tr>
+            <tr><td><code>toggle-position</code></td><td><code>'left' | 'right' | 'none'</code></td><td><code>'left'</code></td><td>Position of the expand/collapse icon</td></tr>
+            <tr><td><code>header-toggle</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Makes entire header clickable to toggle</td></tr>
+            <tr><td><code>padding</code></td><td><code>string</code></td><td><code>'1.8em'</code></td><td>Content area padding</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="api-heading">Events</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Event</th><th>Detail</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>toggle</code></td><td><code>boolean</code></td><td>Fired when the section is expanded or collapsed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </swim-section>
+</section>

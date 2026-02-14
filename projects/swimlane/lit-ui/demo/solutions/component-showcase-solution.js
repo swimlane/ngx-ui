@@ -12,7 +12,7 @@
  * No document/window listeners or recurring timers – no manual cleanup required.
  */
 import { SwimlaneElement, css, html } from 'https://esm.sh/@swimlane/swimlane-element@2';
-import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/lit-ui.js?v=1';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/lit-ui.js?v=2';
 
 /* ================================================================== */
 /*  Shared demo data                                                   */
@@ -45,6 +45,10 @@ const COLOR_OPTIONS = [
   { name: 'Orange', value: 'orange' }
 ];
 
+const ATTACK_DATE = new Date('10/10/2016 2:35 PM');
+const MOON_LANDING = new Date('1969-07-20T20:17:43Z');
+const TOHOKU_EARTHQUAKE = new Date('2011-03-11T05:46:24Z');
+
 const LIST_DATA = [
   { type: 'Malware', date: '2025-01-10', origin: 'China', status: 'error' },
   { type: 'DDOS', date: '2025-01-15', origin: 'Russia', status: 'warning' },
@@ -54,6 +58,563 @@ const LIST_DATA = [
   { type: 'SQL Injection', date: '2025-03-20', origin: 'Brazil', status: 'warning' },
   { type: 'XSS', date: '2025-04-05', origin: 'India', status: 'success' }
 ];
+
+/* ================================================================== */
+/*  Component API documentation data                                   */
+/* ================================================================== */
+
+const COMPONENT_API = {
+  button: {
+    tag: 'swim-button',
+    summary:
+      'Versatile button with multiple variants, sizes, and automatic promise-based state management for async operations.',
+    properties: [
+      {
+        attr: 'variant',
+        type: "'default' | 'primary' | 'warning' | 'danger' | 'link' | 'bordered'",
+        default: "'default'",
+        desc: 'Visual style variant'
+      },
+      { attr: 'size', type: "'small' | 'medium' | 'large'", default: "'medium'", desc: 'Button size' },
+      { attr: 'disabled', type: 'boolean', default: 'false', desc: 'Disables the button' },
+      {
+        attr: 'state',
+        type: "'active' | 'in-progress' | 'success' | 'fail'",
+        default: "'active'",
+        desc: 'Visual state of the button'
+      },
+      { attr: 'type', type: "'button' | 'submit' | 'reset'", default: "'button'", desc: 'HTML button type' },
+      {
+        attr: '.timeout',
+        type: 'number',
+        default: '3000',
+        desc: 'Duration (ms) to show success/fail before returning to active'
+      },
+      {
+        attr: '.promise',
+        type: 'Promise',
+        default: 'undefined',
+        desc: 'Bind a promise to auto-manage in-progress → success/fail states'
+      }
+    ],
+    events: [
+      {
+        name: 'click',
+        detail: 'MouseEvent',
+        desc: 'Fired when the button is clicked (suppressed when disabled or in-progress)'
+      }
+    ]
+  },
+
+  buttonGroup: {
+    tag: 'swim-button-group',
+    summary:
+      'Container that groups buttons with shared styling. Supports horizontal/vertical orientation and contained/text variants.',
+    properties: [
+      {
+        attr: 'orientation',
+        type: "'horizontal' | 'vertical'",
+        default: "'horizontal'",
+        desc: 'Layout direction of the group'
+      },
+      { attr: 'variant', type: "'contained' | 'text'", default: "'contained'", desc: 'Button group visual variant' },
+      {
+        attr: 'button-group-style',
+        type: "'default' | 'primary'",
+        default: "'default'",
+        desc: 'Color style applied to the group'
+      }
+    ],
+    events: []
+  },
+
+  buttonToggle: {
+    tag: 'swim-button-toggle-group',
+    summary:
+      'Toggle button group for exclusive single selection. Use swim-button-toggle children for individual options.',
+    properties: [
+      { attr: 'value', type: 'unknown', default: 'undefined', desc: 'Currently selected toggle value' },
+      { attr: 'label', type: 'string', default: "''", desc: 'Accessible label for the group' },
+      { attr: 'disabled', type: 'boolean', default: 'false', desc: 'Disables all toggles in the group' }
+    ],
+    events: [{ name: 'value-change', detail: 'unknown', desc: 'Fired when the selected toggle changes' }],
+    childTag: 'swim-button-toggle',
+    childProperties: [
+      { attr: 'value', type: 'unknown', default: 'false', desc: 'Value associated with this toggle' },
+      { attr: 'checked', type: 'boolean', default: 'false', desc: 'Whether this toggle is currently selected' },
+      { attr: 'disabled', type: 'boolean', default: 'false', desc: 'Disables this individual toggle' }
+    ]
+  },
+
+  input: {
+    tag: 'swim-input',
+    summary:
+      'Full-featured text input supporting multiple types (text, password, email, number, tel, url, textarea), appearances, sizes, validation, and prefix/suffix slots.',
+    properties: [
+      {
+        attr: 'type',
+        type: "'text' | 'password' | 'email' | 'number' | 'tel' | 'url' | 'textarea'",
+        default: "'text'",
+        desc: 'Input type'
+      },
+      { attr: 'label', type: 'string', default: "''", desc: 'Label text displayed above the input' },
+      { attr: 'placeholder', type: 'string', default: "''", desc: 'Placeholder text' },
+      { attr: 'hint', type: 'string', default: "''", desc: 'Hint text displayed below the input' },
+      { attr: 'value', type: 'string', default: "''", desc: 'Current input value' },
+      { attr: 'appearance', type: "'legacy' | 'fill'", default: "'legacy'", desc: 'Visual appearance style' },
+      { attr: 'size', type: "'sm' | 'md' | 'lg'", default: "'sm'", desc: 'Input size' },
+      { attr: 'disabled', type: 'boolean', default: 'false', desc: 'Disables the input' },
+      { attr: 'readonly', type: 'boolean', default: 'false', desc: 'Makes the input read-only' },
+      { attr: 'required', type: 'boolean', default: 'false', desc: 'Marks the input as required' },
+      {
+        attr: 'password-toggle-enabled',
+        type: 'boolean',
+        default: 'false',
+        desc: 'Shows a toggle to reveal/hide password text'
+      },
+      { attr: 'marginless', type: 'boolean', default: 'false', desc: 'Removes bottom margin spacing' },
+      { attr: '.withHint', type: 'boolean', default: 'true', desc: 'Show or hide the hint area' },
+      { attr: 'min', type: 'number', default: '—', desc: 'Minimum value (number type)' },
+      { attr: 'max', type: 'number', default: '—', desc: 'Maximum value (number type)' },
+      { attr: 'textarea-rows', type: 'number', default: '3', desc: 'Number of visible rows (textarea type)' }
+    ],
+    events: [
+      { name: 'change', detail: 'string', desc: 'Fired when the value changes' },
+      { name: 'input', detail: 'Event', desc: 'Fired on every keystroke' },
+      { name: 'focus', detail: '', desc: 'Fired when the input gains focus' },
+      { name: 'blur', detail: '', desc: 'Fired when the input loses focus' }
+    ]
+  },
+
+  select: {
+    tag: 'swim-select',
+    summary:
+      'Dropdown select with single/multi-select modes, type-to-filter, clear button support, and customizable appearance.',
+    properties: [
+      { attr: 'label', type: 'string', default: "''", desc: 'Label text' },
+      { attr: 'placeholder', type: 'string', default: "'Select...'", desc: 'Placeholder when no value is selected' },
+      { attr: 'hint', type: 'string', default: "''", desc: 'Hint text below the select' },
+      { attr: '.options', type: 'Array<{name, value}>', default: '[]', desc: 'Array of selectable options' },
+      { attr: 'multiple', type: 'boolean', default: 'false', desc: 'Enable multi-select mode' },
+      { attr: 'filterable', type: 'boolean', default: 'true', desc: 'Enable type-to-filter in the dropdown' },
+      { attr: '.allowClear', type: 'boolean', default: 'true', desc: 'Show a clear button when a value is selected' },
+      { attr: 'appearance', type: "'legacy' | 'fill'", default: "'legacy'", desc: 'Visual appearance style' },
+      { attr: 'size', type: "'sm' | 'md' | 'lg'", default: "'sm'", desc: 'Select size' },
+      { attr: 'disabled', type: 'boolean', default: 'false', desc: 'Disables the select' },
+      { attr: 'required', type: 'boolean', default: 'false', desc: 'Marks the select as required' }
+    ],
+    events: [
+      { name: 'change', detail: 'any | any[]', desc: 'Fired when the selection changes' },
+      { name: 'open', detail: '', desc: 'Fired when the dropdown opens' },
+      { name: 'close', detail: '', desc: 'Fired when the dropdown closes' }
+    ]
+  },
+
+  dateTime: {
+    tag: 'swim-date-time',
+    summary:
+      'Date, time, and datetime picker with formatting, timezone support, precision control, min/max date constraints, and autosize mode.',
+    properties: [
+      { attr: 'label', type: 'string', default: "''", desc: 'Label text' },
+      { attr: 'hint', type: 'string', default: "''", desc: 'Hint text below the picker' },
+      { attr: '.value', type: 'Date | string | null', default: 'null', desc: 'Selected date/time value' },
+      {
+        attr: 'input-type',
+        type: "'date' | 'time' | 'datetime'",
+        default: "'date'",
+        desc: 'Type of picker to display'
+      },
+      { attr: 'format', type: 'string', default: 'auto', desc: 'Display format string (e.g. "M/Y", "MMM DD, YYYY")' },
+      {
+        attr: 'precision',
+        type: "'year' | 'month' | 'hour' | 'minute'",
+        default: 'auto',
+        desc: 'Date/time precision level'
+      },
+      { attr: 'timezone', type: 'string', default: 'local', desc: 'IANA timezone (e.g. "utc", "Asia/Tokyo")' },
+      {
+        attr: 'display-mode',
+        type: "'local' | 'timezone'",
+        default: 'auto',
+        desc: 'How the timezone label is displayed'
+      },
+      { attr: 'min-date', type: 'string | Date', default: '—', desc: 'Minimum selectable date' },
+      { attr: 'max-date', type: 'string | Date', default: '—', desc: 'Maximum selectable date' },
+      { attr: 'appearance', type: "'legacy' | 'fill'", default: "'legacy'", desc: 'Visual appearance style' },
+      { attr: 'autosize', type: 'boolean', default: 'false', desc: 'Auto-sizes input width to fit content' },
+      { attr: 'disabled', type: 'boolean', default: 'false', desc: 'Disables the picker' },
+      { attr: 'required', type: 'boolean', default: 'false', desc: 'Marks the picker as required' },
+      { attr: 'marginless', type: 'boolean', default: 'false', desc: 'Removes bottom margin spacing' }
+    ],
+    events: [
+      { name: 'change', detail: 'Date | null', desc: 'Fired when a valid date is selected or cleared' },
+      { name: 'value-change', detail: 'any', desc: 'Fired on any value change (valid or invalid)' },
+      { name: 'input-change', detail: 'string', desc: 'Fired when the user types in the text input' },
+      { name: 'date-time-selected', detail: 'Date', desc: 'Fired when a date is picked from the calendar' },
+      { name: 'blur', detail: '', desc: 'Fired when the component loses focus' },
+      { name: 'focus', detail: '', desc: 'Fired when the component gains focus' }
+    ]
+  },
+
+  checkbox: {
+    tag: 'swim-checkbox',
+    summary: 'Checkbox with checked, indeterminate, disabled, and round variants. Supports custom diameter sizing.',
+    properties: [
+      { attr: 'checked', type: 'boolean', default: 'false', desc: 'Whether the checkbox is checked' },
+      { attr: 'indeterminate', type: 'boolean', default: 'false', desc: 'Shows the indeterminate (partial) state' },
+      { attr: 'disabled', type: 'boolean', default: 'false', desc: 'Disables the checkbox' },
+      { attr: 'round', type: 'boolean', default: 'false', desc: 'Uses a circular shape instead of square' },
+      { attr: 'diameter', type: 'string', default: "'18px'", desc: 'Size of the checkbox' },
+      { attr: 'name', type: 'string', default: "''", desc: 'Form control name' }
+    ],
+    events: [
+      { name: 'change', detail: '{ target: { checked } }', desc: 'Fired when the checked state changes' },
+      { name: 'checked-change', detail: 'boolean', desc: 'Fired with the new checked boolean value' },
+      { name: 'indeterminate-change', detail: 'boolean', desc: 'Fired when the indeterminate state changes' }
+    ]
+  },
+
+  radio: {
+    tag: 'swim-radio-group',
+    summary:
+      'Radio group for single-selection with arrow-key keyboard navigation. Use swim-radio children for individual options.',
+    properties: [
+      { attr: 'name', type: 'string', default: "''", desc: 'Form name shared by all radios in the group' },
+      { attr: 'value', type: 'unknown', default: "''", desc: 'Currently selected radio value' },
+      { attr: 'disabled', type: 'boolean', default: 'false', desc: 'Disables all radios in the group' }
+    ],
+    events: [{ name: 'change', detail: 'string', desc: 'Fired when the selected radio changes' }],
+    childTag: 'swim-radio',
+    childProperties: [
+      { attr: 'value', type: 'string', default: "''", desc: 'Value for this radio option' },
+      { attr: 'disabled', type: 'boolean', default: 'false', desc: 'Disables this individual radio' }
+    ]
+  },
+
+  toggle: {
+    tag: 'swim-toggle',
+    summary: 'On/off switch toggle with optional check/x icons. Form-associated for native form submission.',
+    properties: [
+      {
+        attr: 'label',
+        type: 'string',
+        default: "''",
+        desc: 'Label text (attribute). Or use the default slot for label content.'
+      },
+      { attr: 'checked', type: 'boolean', default: 'false', desc: 'Whether the toggle is on' },
+      { attr: 'disabled', type: 'boolean', default: 'false', desc: 'Disables the toggle' },
+      { attr: 'required', type: 'boolean', default: 'false', desc: 'Marks the toggle as required for form validation' },
+      { attr: 'show-icons', type: 'boolean', default: 'true', desc: 'Shows check/x icons inside the track' },
+      { attr: 'name', type: 'string', default: "''", desc: 'Form control name' }
+    ],
+    events: [{ name: 'change', detail: '{ target: { checked } }', desc: 'Fired when the toggle state changes' }]
+  },
+
+  slider: {
+    tag: 'swim-slider',
+    summary:
+      'Range slider for single or dual-thumb value selection with optional filled track, tick marks, and vertical orientation.',
+    properties: [
+      {
+        attr: 'value',
+        type: 'string',
+        default: "'0'",
+        desc: 'Current value(s). Comma-separated for multiple thumbs (e.g. "25,75")'
+      },
+      { attr: 'min', type: 'number', default: '0', desc: 'Minimum value' },
+      { attr: 'max', type: 'number', default: '100', desc: 'Maximum value' },
+      { attr: 'step', type: 'number', default: '1', desc: 'Step increment' },
+      { attr: 'orientation', type: "'horizontal' | 'vertical'", default: "'horizontal'", desc: 'Slider direction' },
+      { attr: 'filled', type: 'boolean', default: 'false', desc: 'Show a filled track between min and thumb(s)' },
+      { attr: 'multiple', type: 'boolean', default: 'false', desc: 'Enable dual-thumb range mode' },
+      { attr: 'show-ticks', type: 'boolean', default: 'false', desc: 'Show tick marks along the track' },
+      { attr: 'tick-step', type: 'number', default: 'step', desc: 'Interval between tick marks' },
+      { attr: 'disabled', type: 'boolean', default: 'false', desc: 'Disables the slider' }
+    ],
+    events: [{ name: 'change', detail: '{ value, percent }', desc: 'Fired when the slider value changes' }]
+  },
+
+  card: {
+    tag: 'swim-card',
+    summary:
+      'Card container with header, body, footer, avatar, selectable checkbox, status indicators, and flat/outline appearance.',
+    properties: [
+      {
+        attr: 'orientation',
+        type: "'horizontal' | 'vertical'",
+        default: "'horizontal'",
+        desc: 'Card layout direction'
+      },
+      {
+        attr: 'status',
+        type: "'success' | 'error' | 'disabled'",
+        default: '—',
+        desc: 'Status color indicator on the accent bar'
+      },
+      { attr: 'selectable', type: 'boolean', default: 'false', desc: 'Shows a selection checkbox on the card' },
+      { attr: 'selected', type: 'boolean', default: 'false', desc: 'Whether the card is currently selected' },
+      { attr: 'disabled', type: 'boolean', default: 'false', desc: 'Disables the card' },
+      {
+        attr: 'appearance',
+        type: "'normal' | 'flat'",
+        default: "'normal'",
+        desc: 'Visual style (flat removes shadow)'
+      },
+      { attr: 'hide-accent', type: 'boolean', default: 'false', desc: 'Hides the top accent bar' },
+      { attr: 'outline-text', type: 'string', default: "''", desc: 'Text shown in an outline label overlay' }
+    ],
+    events: [
+      { name: 'select', detail: 'boolean', desc: 'Fired when the selection checkbox is toggled' },
+      { name: 'outline-click', detail: '', desc: 'Fired when the outline text label is clicked' }
+    ],
+    childTag: 'swim-card-header / swim-card-body / swim-card-footer',
+    childProperties: [
+      {
+        attr: 'orientation',
+        type: "'horizontal' | 'vertical'",
+        default: "'horizontal'",
+        desc: 'Header layout (swim-card-header)'
+      },
+      {
+        attr: 'slot="avatar"',
+        type: '—',
+        default: '—',
+        desc: 'Place swim-card-avatar in this slot (swim-card-header)'
+      },
+      { attr: 'slot="title"', type: '—', default: '—', desc: 'Title text slot (swim-card-header)' },
+      { attr: 'slot="subtitle"', type: '—', default: '—', desc: 'Subtitle text slot (swim-card-header)' }
+    ]
+  },
+
+  tabs: {
+    tag: 'swim-tabs',
+    summary:
+      'Tabbed container organizing content into switchable panels. Supports horizontal/vertical layout and light/legacy appearance.',
+    properties: [
+      { attr: 'vertical', type: 'boolean', default: 'false', desc: 'Switches to vertical tab layout' },
+      { attr: 'appearance', type: "'legacy' | 'light'", default: "'legacy'", desc: 'Visual appearance of the tab bar' }
+    ],
+    events: [{ name: 'select-tab', detail: '{ tab }', desc: 'Fired when the active tab changes' }],
+    childTag: 'swim-tab',
+    childProperties: [
+      { attr: 'label', type: 'string', default: "''", desc: 'Tab label text displayed in the tab bar' },
+      { attr: 'active', type: 'boolean', default: 'false', desc: 'Whether this tab is currently active' },
+      { attr: 'disabled', type: 'boolean', default: 'false', desc: 'Disables this tab' }
+    ]
+  },
+
+  section: {
+    tag: 'swim-section',
+    summary: 'Collapsible section panel with configurable title, toggle position, and multiple appearance variants.',
+    properties: [
+      { attr: 'section-title', type: 'string', default: "''", desc: 'Section heading text' },
+      { attr: 'section-collapsed', type: 'boolean', default: 'false', desc: 'Whether the section starts collapsed' },
+      {
+        attr: 'section-collapsible',
+        type: 'boolean',
+        default: 'true',
+        desc: 'Whether the section can be collapsed/expanded'
+      },
+      {
+        attr: 'appearance',
+        type: "'legacy' | 'outline' | 'light' | 'minimal'",
+        default: "'legacy'",
+        desc: 'Visual appearance variant'
+      },
+      {
+        attr: 'toggle-position',
+        type: "'left' | 'right' | 'none'",
+        default: "'left'",
+        desc: 'Position of the expand/collapse icon'
+      },
+      { attr: 'header-toggle', type: 'boolean', default: 'false', desc: 'Makes the entire header clickable to toggle' },
+      { attr: 'padding', type: 'string', default: "'1.8em'", desc: 'Content area padding' }
+    ],
+    events: [{ name: 'toggle', detail: 'boolean', desc: 'Fired when the section is expanded or collapsed' }]
+  },
+
+  navbar: {
+    tag: 'swim-navbar',
+    summary: 'Navigation bar with icon items and a sliding active indicator. Supports top/bottom bar placement.',
+    properties: [
+      {
+        attr: 'bar-at-top',
+        type: 'boolean',
+        default: 'false',
+        desc: 'Places the active indicator bar at the top instead of bottom'
+      },
+      { attr: 'active', type: 'number', default: '0', desc: 'Index of the currently active navigation item' }
+    ],
+    events: [{ name: 'active-change', detail: 'number', desc: 'Fired when the active item changes' }],
+    childTag: 'swim-navbar-item',
+    childProperties: [
+      { attr: '(slot content)', type: '—', default: '—', desc: 'Place icon or content inside each navbar item' }
+    ]
+  },
+
+  split: {
+    tag: 'swim-split',
+    summary: 'Resizable split-pane layout. Combine swim-split-area panels with swim-split-handle dividers as children.',
+    properties: [
+      {
+        attr: 'direction',
+        type: "'row' | 'column'",
+        default: "'row'",
+        desc: 'Split direction (row = horizontal, column = vertical)'
+      }
+    ],
+    events: [],
+    childTag: 'swim-split-area / swim-split-handle',
+    childProperties: [
+      {
+        attr: 'area-basis',
+        type: 'string',
+        default: "'1 1 1e-9px'",
+        desc: 'Flex shorthand (grow shrink basis) for each area'
+      }
+    ]
+  },
+
+  list: {
+    tag: 'swim-list',
+    summary:
+      'Data list with column headers, configurable row status colors, flexible column layout, and scroll-based pagination.',
+    properties: [
+      { attr: '.dataSource', type: 'Array<Record>', default: '[]', desc: 'Array of data objects to render as rows' },
+      { attr: '.headerLabels', type: 'string[]', default: '[]', desc: 'Array of header label strings' },
+      { attr: '.columns', type: 'string[]', default: '[]', desc: 'Data keys to display (use "$index" for row number)' },
+      { attr: 'column-layout', type: 'string', default: "''", desc: 'CSS grid-template-columns (e.g. "3fr 2fr 2fr")' },
+      {
+        attr: 'default-row-status',
+        type: "'error' | 'warning' | 'success'",
+        default: "'error'",
+        desc: 'Default row status indicator color'
+      },
+      { attr: 'height', type: 'number', default: '—', desc: 'Fixed height in pixels for the list container' }
+    ],
+    events: [
+      { name: 'page-change', detail: 'number', desc: 'Fired when scroll-based pagination page changes' },
+      { name: 'scroll', detail: 'number', desc: 'Fired when the list body is scrolled (detail: scrollTop)' }
+    ]
+  },
+
+  dialog: {
+    tag: 'swim-dialog',
+    summary: 'Modal dialog overlay with title, close button, backdrop, and regular/medium/large format sizes.',
+    properties: [
+      { attr: 'dialog-title', type: 'string', default: "''", desc: 'Title text displayed in the dialog header' },
+      { attr: 'format', type: "'regular' | 'medium' | 'large'", default: "'regular'", desc: 'Dialog size format' },
+      { attr: 'close-button', type: 'boolean', default: 'true', desc: 'Shows a close (X) button in the header' },
+      {
+        attr: 'visible',
+        type: 'boolean',
+        default: 'false',
+        desc: 'Controls dialog visibility (or call show()/hide())'
+      },
+      { attr: 'z-index', type: 'number', default: '991', desc: 'CSS z-index stacking order' }
+    ],
+    events: [
+      { name: 'open', detail: '', desc: 'Fired when the dialog is shown' },
+      { name: 'close', detail: '', desc: 'Fired when the dialog is closed' }
+    ]
+  },
+
+  drawer: {
+    tag: 'swim-drawer',
+    summary: 'Slide-in panel from left, right, or bottom edges with configurable size and outside-click-to-close.',
+    properties: [
+      {
+        attr: 'direction',
+        type: "'left' | 'right' | 'bottom'",
+        default: "'left'",
+        desc: 'Edge the drawer slides in from'
+      },
+      { attr: 'size', type: 'number', default: '80', desc: 'Width/height as a percentage of the viewport' },
+      { attr: 'z-index', type: 'number', default: '998', desc: 'CSS z-index stacking order' },
+      {
+        attr: 'close-on-outside-click',
+        type: 'boolean',
+        default: 'true',
+        desc: 'Close the drawer when clicking outside it'
+      },
+      { attr: 'open', type: 'boolean', default: 'false', desc: 'Controls visibility (or call show()/hide())' }
+    ],
+    events: [{ name: 'close', detail: '', desc: 'Fired when the drawer is closed' }]
+  },
+
+  tooltip: {
+    tag: 'swim-tooltip',
+    summary: 'Tooltip and popover wrapper with configurable placement, trigger events, caret, and alignment.',
+    properties: [
+      { attr: 'content', type: 'string', default: "''", desc: 'Tooltip text (or use slot="content" for rich HTML)' },
+      {
+        attr: 'type',
+        type: "'tooltip' | 'popover'",
+        default: "'popover'",
+        desc: 'Display mode — tooltip (text) or popover (rich content)'
+      },
+      {
+        attr: 'placement',
+        type: "'top' | 'bottom' | 'left' | 'right'",
+        default: "'top'",
+        desc: 'Position relative to the trigger element'
+      },
+      {
+        attr: 'show-event',
+        type: "'all' | 'click' | 'focus' | 'mouseover'",
+        default: "'all'",
+        desc: 'Event(s) that trigger the tooltip'
+      },
+      { attr: 'show-caret', type: 'boolean', default: 'true', desc: 'Shows the directional caret/arrow' },
+      { attr: 'disabled', type: 'boolean', default: 'false', desc: 'Disables the tooltip entirely' },
+      { attr: 'spacing', type: 'number', default: '10', desc: 'Gap in pixels between trigger and tooltip' },
+      { attr: 'css-class', type: 'string', default: "''", desc: 'Extra CSS class applied to the tooltip panel' }
+    ],
+    events: [
+      { name: 'show', detail: '', desc: 'Fired when the tooltip becomes visible' },
+      { name: 'hide', detail: '', desc: 'Fired when the tooltip is hidden' }
+    ]
+  },
+
+  icon: {
+    tag: 'swim-icon',
+    summary:
+      'Icon component rendering glyphs from the ngx icon font set. Specify the icon name via the font-icon attribute.',
+    properties: [
+      {
+        attr: 'font-icon',
+        type: 'string',
+        default: "''",
+        desc: 'Icon name from the ngx font (e.g. "search", "user", "check")'
+      },
+      { attr: 'alt', type: 'string', default: "''", desc: 'Alternative text for accessibility' },
+      { attr: 'font-set', type: 'string', default: "'ngx'", desc: 'Icon font set to use' }
+    ],
+    events: []
+  },
+
+  progressSpinner: {
+    tag: 'swim-progress-spinner',
+    summary:
+      'Circular progress indicator with indeterminate/determinate modes, optional center icons, custom colors, and configurable stroke width.',
+    properties: [
+      {
+        attr: 'mode',
+        type: "'indeterminate' | 'determinate'",
+        default: "'indeterminate'",
+        desc: 'Spinner animation mode'
+      },
+      { attr: 'value', type: 'number', default: '0', desc: 'Current progress value (determinate mode)' },
+      { attr: 'total', type: 'number', default: '100', desc: 'Maximum progress value' },
+      { attr: 'diameter', type: 'number', default: '100', desc: 'Spinner diameter in pixels' },
+      { attr: 'stroke-width', type: 'number', default: '3', desc: 'Thickness of the progress arc' },
+      { attr: 'color', type: 'string', default: 'var(--blue-500)', desc: 'Progress arc color' },
+      { attr: 'appearance', type: "'default' | 'icon'", default: "'default'", desc: 'Show center icon when "icon"' },
+      { attr: 'is-failure', type: 'boolean', default: 'false', desc: 'Shows the failure icon (icon appearance only)' }
+    ],
+    events: []
+  }
+};
 
 /* ================================================================== */
 /*  Component                                                          */
@@ -308,6 +869,146 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
         font-size: 0.85rem;
         padding: 0 0.25rem;
       }
+
+      /* Scrollbar demo boxes */
+      .scroll-box {
+        height: 250px;
+        width: 100%;
+        max-width: 300px;
+        border: 1px solid var(--grey-600, #454f63);
+        border-radius: var(--r);
+      }
+
+      .scroll-box-content {
+        min-height: 520px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--sp);
+        padding: var(--sp);
+      }
+
+      /* swim-scroll: always-visible styled scrollbar */
+      .scroll-default {
+        overflow: auto;
+      }
+      .scroll-default::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      .scroll-default::-webkit-scrollbar-thumb {
+        background: var(--grey-500, #5a6884);
+        border-radius: 3px;
+      }
+      .scroll-default::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      /* swim-scroll-overlay: show scrollbar on hover only */
+      .scroll-overlay {
+        overflow: hidden;
+      }
+      .scroll-overlay:hover {
+        overflow: auto;
+      }
+      .scroll-overlay::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      .scroll-overlay::-webkit-scrollbar-thumb {
+        background: var(--grey-500, #5a6884);
+        border-radius: 3px;
+      }
+      .scroll-overlay::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      /* swim-scroll-muted: muted opacity, brighter on hover */
+      .scroll-muted {
+        overflow: auto;
+      }
+      .scroll-muted::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      .scroll-muted::-webkit-scrollbar-thumb {
+        background: var(--grey-600, #454f63);
+        border-radius: 3px;
+      }
+      .scroll-muted::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .scroll-muted:hover::-webkit-scrollbar-thumb {
+        background: var(--grey-500, #5a6884);
+      }
+
+      /* API Reference section */
+      .api-ref {
+        margin-top: 0.5rem;
+      }
+
+      .api-tag-name {
+        display: inline-block;
+        background: var(--grey-800, #1b1e27);
+        padding: 0.25rem 0.6rem;
+        border-radius: var(--r);
+        color: var(--blue-300, #65b2ff);
+        font-family: monospace;
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .api-heading {
+        font-size: 0.75rem;
+        font-weight: var(--font-weight-bold, 700);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--grey-200, #a8b2c7);
+        margin: 1.25rem 0 0.5rem;
+      }
+
+      .api-table-wrap {
+        overflow-x: auto;
+        margin-bottom: 0.5rem;
+      }
+
+      .api-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.8rem;
+        line-height: 1.5;
+      }
+
+      .api-table th {
+        text-align: left;
+        padding: 0.5rem 0.75rem;
+        background: var(--grey-800, #1b1e27);
+        color: var(--grey-200, #a8b2c7);
+        font-weight: var(--font-weight-bold, 700);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        border-bottom: 1px solid var(--grey-700, #313847);
+        white-space: nowrap;
+      }
+
+      .api-table td {
+        padding: 0.4rem 0.75rem;
+        border-bottom: 1px solid var(--grey-800, #1b1e27);
+        color: var(--grey-300, #72819f);
+        vertical-align: top;
+      }
+
+      .api-table td code {
+        background: var(--grey-800, #1b1e27);
+        padding: 0.1rem 0.3rem;
+        border-radius: 3px;
+        color: var(--blue-300, #65b2ff);
+        font-size: 0.75rem;
+      }
+
+      .api-table tr:hover td {
+        background: rgba(255, 255, 255, 0.02);
+      }
     `;
   }
 
@@ -318,26 +1019,32 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
   render() {
     return html`
       <swim-tabs vertical appearance="light">
-        <swim-tab label="Button" active>${this._buttonDemo()}</swim-tab>
-        <swim-tab label="Button Group">${this._buttonGroupDemo()}</swim-tab>
-        <swim-tab label="Button Toggle">${this._buttonToggleDemo()}</swim-tab>
-        <swim-tab label="Input">${this._inputDemo()}</swim-tab>
-        <swim-tab label="Select">${this._selectDemo()}</swim-tab>
-        <swim-tab label="Checkbox">${this._checkboxDemo()}</swim-tab>
-        <swim-tab label="Radio">${this._radioDemo()}</swim-tab>
-        <swim-tab label="Toggle">${this._toggleDemo()}</swim-tab>
-        <swim-tab label="Slider">${this._sliderDemo()}</swim-tab>
-        <swim-tab label="Card">${this._cardDemo()}</swim-tab>
-        <swim-tab label="Tabs">${this._tabsDemo()}</swim-tab>
-        <swim-tab label="Section">${this._sectionDemo()}</swim-tab>
-        <swim-tab label="Navbar">${this._navbarDemo()}</swim-tab>
-        <swim-tab label="Split">${this._splitDemo()}</swim-tab>
-        <swim-tab label="List">${this._listDemo()}</swim-tab>
-        <swim-tab label="Dialog">${this._dialogDemo()}</swim-tab>
-        <swim-tab label="Drawer">${this._drawerDemo()}</swim-tab>
-        <swim-tab label="Tooltip">${this._tooltipDemo()}</swim-tab>
-        <swim-tab label="Icon">${this._iconDemo()}</swim-tab>
-        <swim-tab label="Progress Spinner">${this._spinnerDemo()}</swim-tab>
+        <swim-tab label="Button" active>${this._buttonDemo()}${this._apiRef(COMPONENT_API.button)}</swim-tab>
+        <swim-tab label="Button Group">${this._buttonGroupDemo()}${this._apiRef(COMPONENT_API.buttonGroup)}</swim-tab>
+        <swim-tab label="Button Toggle"
+          >${this._buttonToggleDemo()}${this._apiRef(COMPONENT_API.buttonToggle)}</swim-tab
+        >
+        <swim-tab label="Input">${this._inputDemo()}${this._apiRef(COMPONENT_API.input)}</swim-tab>
+        <swim-tab label="Select">${this._selectDemo()}${this._apiRef(COMPONENT_API.select)}</swim-tab>
+        <swim-tab label="Date Time">${this._dateTimeDemo()}${this._apiRef(COMPONENT_API.dateTime)}</swim-tab>
+        <swim-tab label="Checkbox">${this._checkboxDemo()}${this._apiRef(COMPONENT_API.checkbox)}</swim-tab>
+        <swim-tab label="Radio">${this._radioDemo()}${this._apiRef(COMPONENT_API.radio)}</swim-tab>
+        <swim-tab label="Toggle">${this._toggleDemo()}${this._apiRef(COMPONENT_API.toggle)}</swim-tab>
+        <swim-tab label="Slider">${this._sliderDemo()}${this._apiRef(COMPONENT_API.slider)}</swim-tab>
+        <swim-tab label="Card">${this._cardDemo()}${this._apiRef(COMPONENT_API.card)}</swim-tab>
+        <swim-tab label="Tabs">${this._tabsDemo()}${this._apiRef(COMPONENT_API.tabs)}</swim-tab>
+        <swim-tab label="Section">${this._sectionDemo()}${this._apiRef(COMPONENT_API.section)}</swim-tab>
+        <swim-tab label="Navbar">${this._navbarDemo()}${this._apiRef(COMPONENT_API.navbar)}</swim-tab>
+        <swim-tab label="Split">${this._splitDemo()}${this._apiRef(COMPONENT_API.split)}</swim-tab>
+        <swim-tab label="List">${this._listDemo()}${this._apiRef(COMPONENT_API.list)}</swim-tab>
+        <swim-tab label="Dialog">${this._dialogDemo()}${this._apiRef(COMPONENT_API.dialog)}</swim-tab>
+        <swim-tab label="Drawer">${this._drawerDemo()}${this._apiRef(COMPONENT_API.drawer)}</swim-tab>
+        <swim-tab label="Tooltip">${this._tooltipDemo()}${this._apiRef(COMPONENT_API.tooltip)}</swim-tab>
+        <swim-tab label="Icon">${this._iconDemo()}${this._apiRef(COMPONENT_API.icon)}</swim-tab>
+        <swim-tab label="Progress Spinner"
+          >${this._spinnerDemo()}${this._apiRef(COMPONENT_API.progressSpinner)}</swim-tab
+        >
+        <swim-tab label="Scrollbars">${this._scrollbarsDemo()}</swim-tab>
       </swim-tabs>
 
       <!-- Overlay elements rendered at root for proper z-index stacking -->
@@ -751,6 +1458,232 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
               placeholder="Cannot interact"
               .options=${ATTACK_OPTIONS}
             ></swim-select>
+          </swim-section>
+        </section>
+      </div>
+    `;
+  }
+
+  /* ---- Date Time ------------------------------------------------- */
+  _dateTimeDemo() {
+    return html`
+      <div class="panel">
+        <h2 class="panel-title">Date Time</h2>
+        <p class="panel-desc">
+          Date, time, and datetime picker with formatting, timezone support, precision, autosize, and form association.
+        </p>
+
+        <section class="sg">
+          <swim-section section-title="Date Input">
+            <div class="demo-col">
+              <swim-date-time label="Date of attack" .value=${ATTACK_DATE}></swim-date-time>
+              <swim-date-time label="Disabled" disabled .value=${ATTACK_DATE}></swim-date-time>
+              <swim-date-time label="Custom Format" format="M/Y" .value=${ATTACK_DATE}></swim-date-time>
+              <swim-date-time
+                label="Min/Max Dates"
+                min-date="2016-10-02"
+                max-date="2016-10-22"
+                hint="Select date between 10/2/2016 and 10/22/2016"
+                .value=${ATTACK_DATE}
+              ></swim-date-time>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Date/Time Input">
+            <swim-date-time label="Moon Landing" input-type="datetime" .value=${MOON_LANDING}></swim-date-time>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Timezones">
+            <div class="demo-col">
+              <swim-date-time
+                label="Local Time"
+                input-type="datetime"
+                display-mode="timezone"
+                .value=${TOHOKU_EARTHQUAKE}
+              ></swim-date-time>
+              <swim-date-time
+                label="UTC"
+                input-type="datetime"
+                timezone="utc"
+                .value=${TOHOKU_EARTHQUAKE}
+              ></swim-date-time>
+              <swim-date-time
+                label="JST"
+                input-type="datetime"
+                timezone="Asia/Tokyo"
+                .value=${TOHOKU_EARTHQUAKE}
+              ></swim-date-time>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Time Input">
+            <div class="demo-col">
+              <swim-date-time label="Time of attack" input-type="time" .value=${MOON_LANDING}></swim-date-time>
+              <swim-date-time
+                label="Time (Timezone)"
+                input-type="time"
+                display-mode="timezone"
+                .value=${MOON_LANDING}
+              ></swim-date-time>
+              <swim-date-time
+                label="Time (UTC)"
+                input-type="time"
+                timezone="utc"
+                .value=${MOON_LANDING}
+              ></swim-date-time>
+              <swim-date-time
+                label="Time (JST)"
+                input-type="time"
+                timezone="Asia/Tokyo"
+                .value=${MOON_LANDING}
+              ></swim-date-time>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Precision">
+            <div class="demo-col">
+              <swim-date-time label="Year" precision="year" .value=${MOON_LANDING}></swim-date-time>
+              <swim-date-time label="Month" precision="month" .value=${MOON_LANDING}></swim-date-time>
+              <swim-date-time label="Hour" precision="hour" .value=${MOON_LANDING}></swim-date-time>
+              <swim-date-time label="Minutes" precision="minute" .value=${MOON_LANDING}></swim-date-time>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Autosize">
+            <div class="demo-col">
+              <swim-date-time
+                autosize
+                input-type="date"
+                label="Year"
+                precision="year"
+                format="YYYY"
+                .value=${ATTACK_DATE}
+              ></swim-date-time>
+              <swim-date-time
+                autosize
+                input-type="date"
+                label="Month"
+                precision="month"
+                format="MMM YYYY"
+                .value=${ATTACK_DATE}
+              ></swim-date-time>
+              <swim-date-time
+                autosize
+                appearance="fill"
+                input-type="datetime"
+                label="Hour"
+                precision="hour"
+                format="MMM DD, YYYY, hh:mm"
+                .value=${ATTACK_DATE}
+              ></swim-date-time>
+              <swim-date-time
+                autosize
+                appearance="fill"
+                input-type="datetime"
+                label="Minutes"
+                precision="minute"
+                format="MMM DD, YYYY, hh:mm:ss"
+                .value=${ATTACK_DATE}
+              ></swim-date-time>
+              <swim-date-time
+                autosize
+                appearance="fill"
+                marginless
+                input-type="datetime"
+                label="Marginless"
+                precision="minute"
+                format="MMM DD, YYYY, hh:mm:ss"
+                .value=${ATTACK_DATE}
+              ></swim-date-time>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Appearances">
+            <div class="demo-grid-wide">
+              <swim-date-time
+                label="Legacy (default)"
+                .value=${ATTACK_DATE}
+                hint="A brief bit of help text"
+              ></swim-date-time>
+              <swim-date-time
+                appearance="fill"
+                label="Fill"
+                .value=${ATTACK_DATE}
+                hint="A brief bit of help text"
+              ></swim-date-time>
+            </div>
+            <div class="demo-grid-wide">
+              <swim-date-time
+                required
+                label="Required"
+                .value=${ATTACK_DATE}
+                hint="A brief bit of help text"
+              ></swim-date-time>
+              <swim-date-time
+                appearance="fill"
+                required
+                label="Required Fill"
+                .value=${ATTACK_DATE}
+                hint="A brief bit of help text"
+              ></swim-date-time>
+            </div>
+            <div class="demo-grid-wide">
+              <swim-date-time
+                input-type="time"
+                label="Time"
+                .value=${ATTACK_DATE}
+                hint="A brief bit of help text"
+              ></swim-date-time>
+              <swim-date-time
+                input-type="time"
+                appearance="fill"
+                label="Time Fill"
+                .value=${ATTACK_DATE}
+                hint="A brief bit of help text"
+              ></swim-date-time>
+            </div>
+            <div class="demo-grid-wide">
+              <swim-date-time
+                input-type="datetime"
+                label="Date/Time"
+                .value=${ATTACK_DATE}
+                hint="A brief bit of help text"
+              ></swim-date-time>
+              <swim-date-time
+                input-type="datetime"
+                appearance="fill"
+                label="Date/Time Fill"
+                .value=${ATTACK_DATE}
+                hint="A brief bit of help text"
+              ></swim-date-time>
+            </div>
+            <div class="demo-grid-wide">
+              <swim-date-time
+                disabled
+                label="Disabled"
+                .value=${ATTACK_DATE}
+                hint="A brief bit of help text"
+              ></swim-date-time>
+              <swim-date-time
+                disabled
+                appearance="fill"
+                label="Disabled Fill"
+                .value=${ATTACK_DATE}
+                hint="A brief bit of help text"
+              ></swim-date-time>
+            </div>
           </swim-section>
         </section>
       </div>
@@ -1704,6 +2637,169 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
                 ></swim-progress-spinner>
                 <span class="demo-label">Orange / thin</span>
               </div>
+            </div>
+          </swim-section>
+        </section>
+      </div>
+    `;
+  }
+
+  /* ---- Scrollbars ------------------------------------------------ */
+  _scrollbarsDemo() {
+    return html`
+      <div class="panel">
+        <h2 class="panel-title">Scrollbars</h2>
+        <p class="panel-desc">
+          Utility classes for styled scrollbars matching ngx-ui. Apply to scrollable elements (with overflow) or to body
+          for global scrollbars.
+        </p>
+
+        <section class="sg">
+          <swim-section section-title="swim-scroll">
+            <p class="hint">
+              The <code>.swim-scroll</code> class sets <code>overflow: auto</code> and styles the scrollbar. Apply it to
+              an element (e.g. a fixed-height container) or to <code>body</code> for global scrollbars.
+            </p>
+            <div class="scroll-box scroll-default">
+              <div class="scroll-box-content">
+                <swim-icon font-icon="graph" style="font-size:300px"></swim-icon>
+              </div>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="swim-scroll-overlay">
+            <p class="hint">The <code>.swim-scroll-overlay</code> class only shows scrollbars on hover.</p>
+            <div class="scroll-box scroll-overlay">
+              <div class="scroll-box-content">
+                <swim-icon font-icon="graph" style="font-size:300px"></swim-icon>
+              </div>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="swim-scroll-muted">
+            <p class="hint">
+              The <code>.swim-scroll-muted</code> class shows muted scrollbars that increase opacity on hover.
+            </p>
+            <div class="scroll-box scroll-muted">
+              <div class="scroll-box-content">
+                <swim-icon font-icon="graph" style="font-size:300px"></swim-icon>
+              </div>
+            </div>
+          </swim-section>
+        </section>
+      </div>
+    `;
+  }
+
+  /* ================================================================ */
+  /*  API Reference helper                                             */
+  /* ================================================================ */
+
+  _apiRef(data) {
+    if (!data) return '';
+    const { tag, summary, properties, events, childTag, childProperties } = data;
+    return html`
+      <div class="panel" style="padding-top:0">
+        <section class="sg">
+          <swim-section section-title="API Reference" section-collapsed>
+            <div class="api-ref">
+              ${summary ? html`<p class="panel-desc" style="margin-bottom:0.75rem">${summary}</p>` : ''}
+              <div><span class="api-tag-name">&lt;${tag}&gt;</span></div>
+
+              ${properties?.length
+                ? html`
+                    <h4 class="api-heading">Properties</h4>
+                    <div class="api-table-wrap">
+                      <table class="api-table">
+                        <thead>
+                          <tr>
+                            <th>Attribute</th>
+                            <th>Type</th>
+                            <th>Default</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          ${properties.map(
+                            p => html`
+                              <tr>
+                                <td><code>${p.attr}</code></td>
+                                <td><code>${p.type}</code></td>
+                                <td><code>${p.default}</code></td>
+                                <td>${p.desc}</td>
+                              </tr>
+                            `
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  `
+                : ''}
+              ${events?.length
+                ? html`
+                    <h4 class="api-heading">Events</h4>
+                    <div class="api-table-wrap">
+                      <table class="api-table">
+                        <thead>
+                          <tr>
+                            <th>Event</th>
+                            <th>Detail</th>
+                            <th>Description</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          ${events.map(
+                            e => html`
+                              <tr>
+                                <td><code>${e.name}</code></td>
+                                <td>${e.detail ? html`<code>${e.detail}</code>` : '—'}</td>
+                                <td>${e.desc}</td>
+                              </tr>
+                            `
+                          )}
+                        </tbody>
+                      </table>
+                    </div>
+                  `
+                : ''}
+              ${childTag
+                ? html`
+                    <div style="margin-top:1.25rem"><span class="api-tag-name">&lt;${childTag}&gt;</span></div>
+                    ${childProperties?.length
+                      ? html`
+                          <h4 class="api-heading">Child Properties</h4>
+                          <div class="api-table-wrap">
+                            <table class="api-table">
+                              <thead>
+                                <tr>
+                                  <th>Attribute</th>
+                                  <th>Type</th>
+                                  <th>Default</th>
+                                  <th>Description</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                ${childProperties.map(
+                                  p => html`
+                                    <tr>
+                                      <td><code>${p.attr}</code></td>
+                                      <td><code>${p.type}</code></td>
+                                      <td><code>${p.default}</code></td>
+                                      <td>${p.desc}</td>
+                                    </tr>
+                                  `
+                                )}
+                              </tbody>
+                            </table>
+                          </div>
+                        `
+                      : ''}
+                  `
+                : ''}
             </div>
           </swim-section>
         </section>
