@@ -177,7 +177,12 @@ export const dateTimeStyles = css`
   .swim-date-time__dialog swim-calendar {
     box-shadow: none;
     border-radius: 0;
+    border: none;
+    border-left: 1px solid var(--grey-700, #2d3544);
+    border-right: 1px solid var(--grey-700, #2d3544);
+    border-bottom: 1px solid var(--grey-700, #2d3544);
     display: block;
+    width: auto;
   }
 
   /* ------------------------------------------------------------------ */
@@ -272,6 +277,7 @@ export const dateTimeStyles = css`
   /* ------------------------------------------------------------------ */
 
   .swim-date-time__dialog-footer {
+    background: var(--grey-800, #1a202e);
     border: 1px solid var(--grey-700, #2d3544);
     border-bottom-left-radius: var(--radius-6, 6px);
     border-bottom-right-radius: var(--radius-6, 6px);
@@ -280,6 +286,7 @@ export const dateTimeStyles = css`
     flex-direction: row;
     box-sizing: border-box;
     display: flex;
+    align-items: center;
   }
 
   .swim-date-time__dialog-footer > * {
