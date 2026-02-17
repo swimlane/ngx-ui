@@ -118,25 +118,19 @@ export const dateTimeStyles = css`
   }
 
   /* ------------------------------------------------------------------ */
-  /* Dialog overlay (backdrop)                                          */
+  /* Dialog: override swim-dialog content padding                        */
   /* ------------------------------------------------------------------ */
 
-  .swim-date-time__overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 999;
+  swim-dialog::part(content) {
+    padding: 0 !important;
+    width: auto;
+    min-width: auto;
+    background: transparent;
+    box-shadow: none;
+    border-radius: 0;
   }
 
-  /* ------------------------------------------------------------------ */
-  /* Dialog container                                                    */
-  /* ------------------------------------------------------------------ */
-
   .swim-date-time__dialog {
-    position: fixed;
-    z-index: 1000;
     padding: 0;
     width: auto;
   }
@@ -152,13 +146,13 @@ export const dateTimeStyles = css`
     border-top-left-radius: var(--radius-6);
     border-top-right-radius: var(--radius-6);
     padding: 4px 20px;
-    background: var(--blue-600);
+    background: var(--grey-800);
     color: var(--grey-100);
     text-align: center;
   }
 
   .swim-date-time__dialog-header h1 {
-    font-size: var(--font-size-xl);
+    font-size: 1.2rem;
     white-space: nowrap;
     margin: 0.5rem 0;
     font-weight: normal;
@@ -166,8 +160,6 @@ export const dateTimeStyles = css`
 
   .swim-date-time__dialog-header h1 small {
     color: var(--grey-100);
-    display: block;
-    margin-top: 2px;
   }
 
   /* ------------------------------------------------------------------ */
@@ -196,14 +188,17 @@ export const dateTimeStyles = css`
     border-bottom: 1px solid var(--grey-700);
     padding: 8px 16px;
     margin-top: 0;
-    height: 80px;
+    height: 94px;
     flex-direction: row;
     box-sizing: border-box;
     display: flex;
     place-content: stretch center;
-    align-items: center;
+    align-items: baseline;
     justify-content: space-between;
-    gap: 6px;
+  }
+
+  .swim-date-time__time-row > * {
+    flex: 0 0 calc(15% - 6px);
   }
 
   .swim-date-time__time-input {

@@ -4,6 +4,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import '../input/input.component';
 import '../icon/icon.component';
 import '../calendar/calendar.component';
+import '../dialog/dialog.component';
 import { baseStyles } from '../../styles/base';
 import { dateTimeStyles } from './date-time.styles';
 import { DateTimeType } from './date-time-type.enum';
@@ -268,8 +269,6 @@ export class SwimDateTime extends LitElement {
   @state() private _dialogSecond = '00';
   @state() private _dialogMillisecond = '000';
   @state() private _dialogAmPm: 'AM' | 'PM' = 'AM';
-  @state() private _dialogTop = 0;
-  @state() private _dialogLeft = 0;
 
   // Precision modes in order from finest to coarsest
   private _modes = ['millisecond', 'second', 'minute', 'hour', 'date', 'month', 'year'];
@@ -329,12 +328,10 @@ export class SwimDateTime extends LitElement {
   connectedCallback(): void {
     super.connectedCallback();
     this._update();
-    this._onDocumentClick = this._onDocumentClick.bind(this);
   }
 
   disconnectedCallback(): void {
     super.disconnectedCallback();
-    this._removeOverlayListeners();
   }
 
   firstUpdated(): void {
@@ -437,7 +434,7 @@ export class SwimDateTime extends LitElement {
         </button>
       </div>
 
-      ${this._dialogOpen ? this._renderDialog() : nothing}
+      ${this._renderDialog()}
     `;
   }
 
@@ -445,60 +442,62 @@ export class SwimDateTime extends LitElement {
     const headerText = this._getDialogHeaderText();
 
     return html`
-      <div class="swim-date-time__overlay" @click="${this._close}"></div>
-      <div
-        class="swim-date-time__dialog"
-        style="top: ${this._dialogTop}px; left: ${this._dialogLeft}px;"
-        @keydown="${this._onDialogKeyDown}"
+      <swim-dialog
+        css-class="ngx-date-time-dialog"
+        .closeButton="${false}"
+        .visible="${this._dialogOpen}"
+        @close="${this._close}"
       >
-        <div class="swim-date-time__dialog-header">
-          <h1>${headerText}</h1>
+        <div class="swim-date-time__dialog" @keydown="${this._onDialogKeyDown}">
+          <div class="swim-date-time__dialog-header">
+            <h1>${headerText}</h1>
+          </div>
+
+          ${this._showCalendar
+            ? html`
+                <swim-calendar
+                  .value="${this._dialogModel}"
+                  .minDate="${this.minDate}"
+                  .maxDate="${this.maxDate}"
+                  .disabled="${this.disabled}"
+                  min-view="${this._calendarMinView}"
+                  @change="${this._onCalendarChange}"
+                  @day-key-enter="${this._apply}"
+                ></swim-calendar>
+              `
+            : nothing}
+          ${this._showTime ? this._renderTimeRow() : nothing}
+
+          <nav role="navigation" class="swim-date-time__dialog-footer">
+            <div class="text-left">
+              <button
+                type="button"
+                class="swim-date-time__footer-btn swim-date-time__footer-btn--current"
+                ?hidden="${this._isCurrent()}"
+                @click="${this._selectCurrent}"
+              >
+                Current
+              </button>
+            </div>
+            <div class="text-right">
+              <button
+                type="button"
+                class="swim-date-time__footer-btn swim-date-time__footer-btn--clear"
+                @click="${this._clear}"
+              >
+                Clear
+              </button>
+              <button
+                type="button"
+                class="swim-date-time__footer-btn swim-date-time__footer-btn--apply"
+                @click="${this._apply}"
+              >
+                Apply
+              </button>
+            </div>
+          </nav>
         </div>
-
-        ${this._showCalendar
-          ? html`
-              <swim-calendar
-                .value="${this._dialogModel}"
-                .minDate="${this.minDate}"
-                .maxDate="${this.maxDate}"
-                .disabled="${this.disabled}"
-                min-view="${this._calendarMinView}"
-                @change="${this._onCalendarChange}"
-                @day-key-enter="${this._apply}"
-              ></swim-calendar>
-            `
-          : nothing}
-        ${this._showTime ? this._renderTimeRow() : nothing}
-
-        <nav role="navigation" class="swim-date-time__dialog-footer">
-          <div class="text-left">
-            <button
-              type="button"
-              class="swim-date-time__footer-btn swim-date-time__footer-btn--current"
-              ?hidden="${this._isCurrent()}"
-              @click="${this._selectCurrent}"
-            >
-              Current
-            </button>
-          </div>
-          <div class="text-right">
-            <button
-              type="button"
-              class="swim-date-time__footer-btn swim-date-time__footer-btn--clear"
-              @click="${this._clear}"
-            >
-              Clear
-            </button>
-            <button
-              type="button"
-              class="swim-date-time__footer-btn swim-date-time__footer-btn--apply"
-              @click="${this._apply}"
-            >
-              Apply
-            </button>
-          </div>
-        </nav>
-      </div>
+      </swim-dialog>
     `;
   }
 
@@ -598,12 +597,12 @@ export class SwimDateTime extends LitElement {
     const tz = normalizeTimezone(this.timezone);
 
     if (type === DateTimeType.time) {
-      return formatDate(this._dialogModel, 'h:mm A', tz);
+      return formatDate(this._dialogModel, 'h:mm a', tz);
     }
     if (type === DateTimeType.datetime) {
       const datePart = formatDate(this._dialogModel, 'ddd, MMM D YYYY', tz);
-      const timePart = formatDate(this._dialogModel, 'h:mm A', tz);
-      return html`${datePart}<small>${timePart}</small>`;
+      const timePart = formatDate(this._dialogModel, 'h:mm a', tz);
+      return html`${datePart} <small>${timePart}</small>`;
     }
     // date only
     return formatDate(this._dialogModel, 'ddd, MMM D YYYY', tz);
@@ -668,16 +667,7 @@ export class SwimDateTime extends LitElement {
     const dateVal = this._value instanceof Date && isValidDate(this._value) ? this._value : new Date();
     this._setDialogDate(dateVal);
 
-    // Compute position relative to the calendar button
-    const btn = this.shadowRoot?.querySelector('.swim-date-time__calendar-btn') as HTMLElement;
-    if (btn) {
-      const rect = btn.getBoundingClientRect();
-      this._dialogTop = rect.bottom + 4;
-      this._dialogLeft = Math.max(0, rect.right - 272); // 270px calendar width + 2px border
-    }
-
     this._dialogOpen = true;
-    this._addOverlayListeners();
   }
 
   private _apply = (): void => {
@@ -704,7 +694,6 @@ export class SwimDateTime extends LitElement {
 
   private _close = (): void => {
     this._dialogOpen = false;
-    this._removeOverlayListeners();
     this._update();
   };
 
@@ -777,32 +766,6 @@ export class SwimDateTime extends LitElement {
     }
     this._setDialogDate(d);
   }
-
-  // ---------------------------------------------------------------------------
-  // Overlay management
-  // ---------------------------------------------------------------------------
-
-  private _addOverlayListeners(): void {
-    // Defer to allow the click event that opened the dialog to finish
-    setTimeout(() => {
-      document.addEventListener('keydown', this._onDocumentKeyDown);
-    }, 0);
-  }
-
-  private _removeOverlayListeners(): void {
-    document.removeEventListener('keydown', this._onDocumentKeyDown);
-  }
-
-  private _onDocumentClick = (_e: MouseEvent): void => {
-    // The overlay handles closing via its own click handler
-  };
-
-  private _onDocumentKeyDown = (e: KeyboardEvent): void => {
-    if (e.code === 'Escape') {
-      this._close();
-      e.stopPropagation();
-    }
-  };
 
   private _onDialogKeyDown = (e: KeyboardEvent): void => {
     if (e.code === 'Escape') {
