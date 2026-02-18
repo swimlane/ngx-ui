@@ -15,9 +15,30 @@
  * Standalone: Load lit-ui bundle (and ensure "lit" is mapped) before this script.
  *
  * Imports: SwimlaneElement, css, html from https://esm.sh/@swimlane/swimlane-element@1
- * All swim-* elements must be registered by the host or lit-ui bundle.
+ * swim-* elements: per-component CDN scripts (only what this workflow uses).
  */
 import { SwimlaneElement, css, html } from 'https://esm.sh/@swimlane/swimlane-element@1';
+
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/button.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/button-group.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/button-toggle.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/input.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/select.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/checkbox.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/radio.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/toggle.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/slider.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/card.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/tabs.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/section.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/navbar.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/split.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/list.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/dialog.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/drawer.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/tooltip.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/icon.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/progress-spinner.js';
 
 const ROLE_OPTIONS = [
   { name: 'Engineering', value: 'eng' },

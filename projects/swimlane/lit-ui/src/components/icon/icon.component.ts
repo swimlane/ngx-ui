@@ -11,7 +11,7 @@ import { ensureIconFontLoaded } from './icon-font-loader';
  *
  * The icon font is self-contained: a base64-encoded woff2 font is automatically
  * injected into the document head on first connection using a unique font-family
- * name ('swim-ngx-icon') to avoid conflicts with the host application's icon font.
+ * name ('swim-ngx-icon') to avoid conflicts with the host application's ngx-icon font.
  *
  * @slot - Default content when no fontIcon (e.g. slotted swim-icon or image)
  *

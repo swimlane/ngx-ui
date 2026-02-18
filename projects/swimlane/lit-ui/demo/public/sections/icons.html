@@ -82,8 +82,8 @@
 <!-- ICON COMPONENT DEMOS (last in nav order) -->
 <h1 id="icons" class="page-title">Icon</h1>
 <p class="subtitle">
-  Font icons and inline SVG, matching ngx-ui (see src/app/icons-page). Requires the ngx-icon font CSS (included in this
-  demo).
+  Font icons and inline SVG, matching ngx-ui (see src/app/icons-page). Uses swim-icon; the icon font is self-loaded by
+  the component (no separate ngx-icon CSS required).
 </p>
 
 <section class="section">
@@ -133,15 +133,13 @@
 <section class="section">
   <swim-section section-title="Icon Usage">
     <p style="color: var(--grey-300); margin-bottom: 1rem">
-      Import the icon component and ensure the ngx-icon font CSS is loaded (e.g. from ngx-ui or this demo's assets):
+      Import the icon component; the swim-icon font is self-loaded (no separate CSS required):
     </p>
     <pre
       style="background: var(--grey-800); padding: 1rem; border-radius: var(--radius-4); overflow-x: auto"
     ><code>&lt;script type="module"&gt;
   import '@swimlane/lit-ui/icon';
 &lt;/script&gt;
-&lt;!-- Load icon font CSS in your app --&gt;
-&lt;link rel="stylesheet" href="path/to/ngx-icons.css" /&gt;
 
 &lt;swim-icon font-icon="plus"&gt;&lt;/swim-icon&gt;
 &lt;swim-icon font-icon='["square-filled", "x :text-red"]'&gt;&lt;/swim-icon&gt;

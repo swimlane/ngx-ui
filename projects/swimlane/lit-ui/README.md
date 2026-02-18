@@ -29,13 +29,23 @@ You can load the library from the CDN for testing or use in a Lit app without in
 cd projects/swimlane/lit-ui && npm run deploy:gh-pages
 ```
 
-Ensure GitHub Pages is enabled for the repo (Settings → Pages → Source: branch `gh-pages`). The bundle will be available at:
+Ensure GitHub Pages is enabled for the repo (Settings → Pages → Source: branch `gh-pages`). Files are available under your Pages base URL (e.g. `https://surya-pabbineedi.github.io/ngx-ui/`).
 
-```
-https://surya-pabbineedi.github.io/ngx-ui/lit-ui.js
+**Load only what you need (per-component, faster):**
+
+Each component is built as a self-contained script. Import only the components you use:
+
+```typescript
+const base = 'https://surya-pabbineedi.github.io/ngx-ui';
+
+// Only button and input (registers <swim-button>, <swim-input>)
+import `${base}/button.js`;
+import `${base}/input.js`;
 ```
 
-**Use in an external Lit app:**
+Available files: `button.js`, `input.js`, `select.js`, `card.js`, `dialog.js`, `tabs.js`, `styles.js`, etc. (one per component plus `styles.js`). Each file includes Lit and its dependencies so no import map is required.
+
+**Load everything (full bundle):**
 
 ```typescript
 // Side-effect: registers all custom elements

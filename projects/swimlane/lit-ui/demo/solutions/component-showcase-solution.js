@@ -7,12 +7,33 @@
  *
  * Imports:
  *   - SwimlaneElement, css, html → https://esm.sh/@swimlane/swimlane-element@2
- *   - swim-* elements → https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/lit-ui.js?v=1
+ *   - swim-* elements → per-component scripts (only what this showcase uses)
  *
  * No document/window listeners or recurring timers – no manual cleanup required.
  */
 import { SwimlaneElement, css, html } from 'https://esm.sh/@swimlane/swimlane-element@2';
-import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/lit-ui.js?v=2';
+
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/button.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/button-group.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/button-toggle.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/input.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/select.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/date-time.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/checkbox.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/radio.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/toggle.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/slider.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/card.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/tabs.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/section.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/navbar.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/split.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/list.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/dialog.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/drawer.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/tooltip.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/icon.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/progress-spinner.js';
 
 /* ================================================================== */
 /*  Shared demo data                                                   */

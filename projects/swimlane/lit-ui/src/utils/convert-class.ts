@@ -1,6 +1,7 @@
 /**
  * Converts an icon key (e.g. "set:name" or "name") to the CSS class string
- * used by the ngx-icon font. Mirrors @swimlane/ngx-ui convert-class.util.ts
+ * used by the swim-icon font. Base class is 'swim-icon' to avoid collision
+ * with host app's ngx-icon. Mirrors @swimlane/ngx-ui convert-class.util.ts
  */
 export const convertClass = (input: string): string => {
   const classes = input
@@ -12,5 +13,5 @@ export const convertClass = (input: string): string => {
     })
     .join(' ');
 
-  return `ngx-icon ${classes}`;
+  return `swim-icon ${classes}`;
 };

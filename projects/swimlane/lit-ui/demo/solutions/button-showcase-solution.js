@@ -10,11 +10,16 @@
  *
  * Imports (full CDN URLs – no import map required):
  *   - SwimlaneElement, css, html  → https://esm.sh/@swimlane/swimlane-element@1
- *   - lit-ui bundle (swim-* registration) must be loaded by the host page,
- *     or imported before this module via:
- *     https://raw.githubusercontent.com/surya-pabbineedi/lit-ui/gh-pages/lit-ui.js
+ *   - lit-ui: either load the full bundle (lit-ui.js) or only the components used here:
+ *     e.g. button.js + section.js for minimal payload:
+ *     https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/button.js
+ *     https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/section.js
+ *     Or use lit-ui.js for all components.
  */
 import { SwimlaneElement, css, html } from 'https://esm.sh/@swimlane/swimlane-element@1';
+
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/button.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/section.js';
 
 /* ------------------------------------------------------------------ */
 /*  Data                                                               */

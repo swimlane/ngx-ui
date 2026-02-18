@@ -223,7 +223,7 @@ function setupIconsDemo(): void {
     icon.setAttribute('font-icon', name);
     const label = document.createElement('span');
     label.className = 'icon-name';
-    label.textContent = `ngx-icon ngx-${name}`;
+    label.textContent = `swim-icon ngx-${name}`;
     li.appendChild(icon);
     li.appendChild(label);
     container.appendChild(li);

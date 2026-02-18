@@ -3,7 +3,7 @@ import { NGX_ICON_WOFF2_BASE64 } from './icon-font-data';
 /**
  * Font family name used internally by lit-ui components.
  * Uses a unique name to avoid conflicts with the host application's
- * 'ngx-icon' font, which may be a different version with different
+ * host app's icon font, which may be a different version with different
  * glyph-to-unicode mappings.
  */
 export const SWIM_ICON_FONT_FAMILY = 'swim-ngx-icon';

@@ -25,6 +25,82 @@
     },
     "./styles": {
       "default": "./dist/styles/index.js"
+    },
+    "./button-group": {
+      "types": "./dist/components/button-group/index.d.ts",
+      "default": "./dist/components/button-group/index.js"
+    },
+    "./button-toggle": {
+      "types": "./dist/components/button-toggle/index.d.ts",
+      "default": "./dist/components/button-toggle/index.js"
+    },
+    "./calendar": {
+      "types": "./dist/components/calendar/index.d.ts",
+      "default": "./dist/components/calendar/index.js"
+    },
+    "./card": {
+      "types": "./dist/components/card/index.d.ts",
+      "default": "./dist/components/card/index.js"
+    },
+    "./checkbox": {
+      "types": "./dist/components/checkbox/index.d.ts",
+      "default": "./dist/components/checkbox/index.js"
+    },
+    "./date-time": {
+      "types": "./dist/components/date-time/index.d.ts",
+      "default": "./dist/components/date-time/index.js"
+    },
+    "./dialog": {
+      "types": "./dist/components/dialog/index.d.ts",
+      "default": "./dist/components/dialog/index.js"
+    },
+    "./drawer": {
+      "types": "./dist/components/drawer/index.d.ts",
+      "default": "./dist/components/drawer/index.js"
+    },
+    "./icon": {
+      "types": "./dist/components/icon/index.d.ts",
+      "default": "./dist/components/icon/index.js"
+    },
+    "./list": {
+      "types": "./dist/components/list/index.d.ts",
+      "default": "./dist/components/list/index.js"
+    },
+    "./navbar": {
+      "types": "./dist/components/navbar/index.d.ts",
+      "default": "./dist/components/navbar/index.js"
+    },
+    "./progress-spinner": {
+      "types": "./dist/components/progress-spinner/index.d.ts",
+      "default": "./dist/components/progress-spinner/index.js"
+    },
+    "./radio": {
+      "types": "./dist/components/radio/index.d.ts",
+      "default": "./dist/components/radio/index.js"
+    },
+    "./section": {
+      "types": "./dist/components/section/index.d.ts",
+      "default": "./dist/components/section/index.js"
+    },
+    "./slider": {
+      "types": "./dist/components/slider/index.d.ts",
+      "default": "./dist/components/slider/index.js"
+    },
+    "./split": {
+      "types": "./dist/components/split/index.d.ts",
+      "default": "./dist/components/split/index.js"
+    },
+    "./tabs": {
+      "types": "./dist/components/tabs/index.d.ts",
+      "default": "./dist/components/tabs/index.js"
+    },
+    "./toggle": {
+      "types": "./dist/components/toggle/index.d.ts",
+      "default": "./dist/components/toggle/index.js"
+    },
+    "./tooltip": {
+      "types": "./dist/components/tooltip/index.d.ts",
+      "default": "./dist/components/tooltip/index.js"
     }
   },
   "files": [
@@ -35,8 +111,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "build:lib": "tsc --project tsconfig.lib.json",
-    "build:cdn": "vite build --config vite.lib.config.ts",
-    "deploy:gh-pages": "npm run build && npm run build:cdn && cp dist-cdn/lit-ui.js dist-demo/ && npx gh-pages -d dist-demo -r https://github.com/surya-pabbineedi/lit-ui.git",
+    "build:cdn": "node scripts/build-cdn.mjs",
+    "deploy:gh-pages": "npm run build && npm run build:cdn && cp -r dist-cdn/* dist-demo/ && npx gh-pages -d dist-demo -r https://github.com/surya-pabbineedi/lit-ui.git",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint src/**/*.ts"

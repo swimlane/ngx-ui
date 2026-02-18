@@ -7,10 +7,10 @@ import { iconFontGlyphs } from './icon-font-glyphs';
  *
  * Font icon rules are included here because the component uses Shadow DOM;
  * document-level icon font CSS does not pierce the shadow boundary, so the
- * .ngx-icon and .ngx-icon.ngx-*::before rules must live in the component.
+ * .swim-icon and .swim-icon.ngx-*::before rules must live in the component.
  *
  * The font uses a unique family name ('swim-ngx-icon') to avoid conflicts
- * with the host application's 'ngx-icon' font, which may be a different
+ * with the host application's icon font, which may be a different
  * version with different glyph-to-unicode mappings. The @font-face with an
  * inline base64 data URI is injected into the document head on first use
  * by icon-font-loader.ts.
@@ -80,7 +80,7 @@ export const iconStyles = css`
   }
 
   /* Font icon base (glyphs in icon-font-glyphs.ts) */
-  .ngx-icon {
+  .swim-icon {
     display: inline-block;
     font: normal normal normal 1em/1 'swim-ngx-icon';
     flex-shrink: 0;
