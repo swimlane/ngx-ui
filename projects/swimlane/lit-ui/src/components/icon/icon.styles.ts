@@ -1,18 +1,23 @@
-import { css } from 'lit';
+import { css, unsafeCSS } from 'lit';
 import { iconFontGlyphs } from './icon-font-glyphs';
+import { ICON_FONT_BASE64 } from './icon-font-base64.generated.js';
 
 /**
  * Icon styles matching @swimlane/ngx-ui design system.
  * BEM: swim-icon (block), swim-icon__i, swim-icon__stack (elements).
  *
- * Font icon rules are included here because the component uses Shadow DOM;
- * document-level icon font CSS does not pierce the shadow boundary, so the
- * .swim-icon and .swim-icon.lit-*::before rules must live in the component.
- *
- * The host must load the icon font with font-family 'swim-lit-icon'
- * (SWIM_ICON_FONT_FAMILY) so that glyphs render; no font payload is bundled.
+ * The icon font is embedded as base64 (source: ngx-ui iconfont/fonts). No host @font-face needed.
+ * Run `npm run embed:icon-font` to regenerate from projects/swimlane/ngx-ui/.../ngx-icon.woff2.
  */
 export const iconStyles = css`
+  @font-face {
+    font-family: 'swim-lit-icon';
+    src: url('data:font/woff2;base64,${unsafeCSS(ICON_FONT_BASE64)}') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+
   :host {
     display: inline-block;
     vertical-align: baseline;
@@ -78,8 +83,7 @@ export const iconStyles = css`
     color: var(--red-500);
   }
 
-  /* Font icon base (glyphs in icon-font-glyphs.ts); family must match SWIM_ICON_FONT_FAMILY.
-   * Explicit font-family so host/global 'ngx-icon' does not override via inheritance. */
+  /* Font icon base (glyphs in icon-font-glyphs.ts); uses embedded swim-lit-icon font. */
   .swim-icon,
   .swim-icon__i.swim-icon {
     display: inline-flex;
