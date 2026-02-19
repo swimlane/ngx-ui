@@ -7,11 +7,11 @@ import { ensureIconFontLoaded } from './icon-font-loader';
 
 /**
  * SwimIcon - Icon component matching @swimlane/ngx-ui design system.
- * Uses swim/ngx font icons only (via fontIcon + fontSet) or slotted content (e.g. another swim-icon).
+ * Uses swim lit font icons only (via fontIcon + fontSet) or slotted content (e.g. another swim-icon).
  *
  * The icon font is self-contained: a base64-encoded woff2 font is automatically
  * injected into the document head on first connection using a unique font-family
- * name ('swim-ngx-icon') to avoid conflicts with the host application's ngx-icon font.
+ * name ('swim-lit-icon') to avoid conflicts with the host application's icon font.
  *
  * @slot - Default content when no fontIcon (e.g. slotted swim-icon or image)
  *
@@ -34,10 +34,10 @@ export class SwimIcon extends LitElement {
   alt = '';
 
   /**
-   * Icon set name for font icons (e.g. "ngx"). Used to expand keys like "arrow-left" to "ngx:arrow-left".
+   * Icon set name for font icons (e.g. "lit"). Used to expand keys like "arrow-left" to "lit:arrow-left".
    */
   @property({ type: String, attribute: 'font-set' })
-  fontSet = 'ngx';
+  fontSet = 'lit';
 
   /**
    * Optional CSS class(es) applied to the host and to the actual icon element (the inner <i> or icon part).

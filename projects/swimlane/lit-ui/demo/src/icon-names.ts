@@ -1,5 +1,5 @@
 /**
- * Sorted list of ngx-icon font icon names (from ngx-ui icons.scss $icons map).
+ * Sorted list of lit-icon font icon names (from lit-ui icon set, originally ngx-ui icons.scss $icons map).
  * Used by the demo to render the full icon grid like src/app/icons-page.
  */
 export const ICON_NAMES = [

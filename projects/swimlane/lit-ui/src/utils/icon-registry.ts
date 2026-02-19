@@ -3,10 +3,10 @@ import { convertClass } from './convert-class';
 /**
  * Static icon registry for swim-icon. Mirrors @swimlane/ngx-ui IconRegistryService.
  * When a key is not in the map, returns convertClass(expandedKey) so default
- * ngx set works without pre-registration.
+ * lit set works without pre-registration.
  */
 class IconRegistry {
-  private _defaultFontSetClass = 'ngx';
+  private _defaultFontSetClass = 'lit';
   private _iconMap = new Map<string, string[]>();
 
   setDefaultFontSetClass(iconSet: string): string {

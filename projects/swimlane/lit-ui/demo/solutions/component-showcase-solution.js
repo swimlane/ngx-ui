@@ -600,7 +600,7 @@ const COMPONENT_API = {
   icon: {
     tag: 'swim-icon',
     summary:
-      'Icon component (swim-icon) rendering glyphs from the self-loaded icon font. Specify the icon name via the font-icon attribute.',
+      'Icon component (swim-icon) rendering glyphs from the lit icon font set. Specify the icon name via the font-icon attribute. Host app loads the font.',
     properties: [
       {
         attr: 'font-icon',
@@ -609,7 +609,7 @@ const COMPONENT_API = {
         desc: 'Icon name from the ngx font (e.g. "search", "user", "check")'
       },
       { attr: 'alt', type: 'string', default: "''", desc: 'Alternative text for accessibility' },
-      { attr: 'font-set', type: 'string', default: "'ngx'", desc: 'Icon font set to use' }
+      { attr: 'font-set', type: 'string', default: "'lit'", desc: 'Icon font set to use' }
     ],
     events: []
   },
@@ -2472,7 +2472,7 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
     return html`
       <div class="panel">
         <h2 class="panel-title">Icon</h2>
-        <p class="panel-desc">Icons from the swim-icon font set (self-loaded by the component).</p>
+        <p class="panel-desc">Icons from the swim-icon lit font set (host loads the font).</p>
 
         <section class="sg">
           <swim-section section-title="Common Icons">
@@ -2671,7 +2671,7 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
       <div class="panel">
         <h2 class="panel-title">Scrollbars</h2>
         <p class="panel-desc">
-          Utility classes for styled scrollbars matching ngx-ui. Apply to scrollable elements (with overflow) or to body
+          Utility classes for styled scrollbars matching lit-ui. Apply to scrollable elements (with overflow) or to body
           for global scrollbars.
         </p>
 

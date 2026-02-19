@@ -7,9 +7,9 @@ import { iconFontGlyphs } from './icon-font-glyphs';
  *
  * Font icon rules are included here because the component uses Shadow DOM;
  * document-level icon font CSS does not pierce the shadow boundary, so the
- * .swim-icon and .swim-icon.ngx-*::before rules must live in the component.
+ * .swim-icon and .swim-icon.lit-*::before rules must live in the component.
  *
- * The font uses a unique family name ('swim-ngx-icon') to avoid conflicts
+ * The font uses a unique family name ('swim-lit-icon') to avoid conflicts
  * with the host application's icon font, which may be a different
  * version with different glyph-to-unicode mappings. The @font-face with an
  * inline base64 data URI is injected into the document head on first use
@@ -64,7 +64,7 @@ export const iconStyles = css`
     line-height: 1em;
   }
 
-  /* Modifier: badge overlay (small icon at top-right), match ngx-ui icons-effects.scss */
+  /* Modifier: badge overlay (small icon at top-right), match lit-ui icons-effects */
   .icon-fx-badge {
     font-size: 0.25em !important;
     position: relative;
@@ -74,7 +74,7 @@ export const iconStyles = css`
     height: auto;
   }
 
-  /* Modifier: red color for overlay icon (match ngx-ui) */
+  /* Modifier: red color for overlay icon (match lit-ui) */
   .text-red {
     color: var(--red-500);
   }
@@ -82,7 +82,7 @@ export const iconStyles = css`
   /* Font icon base (glyphs in icon-font-glyphs.ts) */
   .swim-icon {
     display: inline-block;
-    font: normal normal normal 1em/1 'swim-ngx-icon';
+    font: normal normal normal 1em/1 'swim-lit-icon';
     flex-shrink: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;

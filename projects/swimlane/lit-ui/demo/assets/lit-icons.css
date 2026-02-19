@@ -1,0 +1,23 @@
+/*
+ * This CSS is no longer required for swim-icon components.
+ * The swim-icon component now self-loads the icon font using an inline
+ * base64 data URI with a unique font-family name ('swim-lit-icon') to
+ * avoid conflicts with the host application's icon font.
+ *
+ * Kept here for reference and backward compatibility with any non-component
+ * usage of lit-icon CSS classes.
+ */
+@font-face {
+  font-family: 'lit-icon';
+  src: url('lit-icon.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.lit-icon {
+  display: inline-block;
+  font: normal normal normal 1em/1 'lit-icon';
+  flex-shrink: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

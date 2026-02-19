@@ -1769,7 +1769,7 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
     return html`
       <div class="panel">
         <h2 class="panel-title">Icon</h2>
-        <p class="panel-desc">Icons from the swim-icon font set (self-loaded by the component).</p>
+        <p class="panel-desc">Icons from the swim-icon lit font set (host loads the font).</p>
 
         <section class="sg">
           <swim-section section-title="All Icons">
