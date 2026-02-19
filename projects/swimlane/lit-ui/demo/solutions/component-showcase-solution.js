@@ -600,7 +600,7 @@ const COMPONENT_API = {
   icon: {
     tag: 'swim-icon',
     summary:
-      'Icon component rendering glyphs from the ngx icon font set. Specify the icon name via the font-icon attribute.',
+      'Icon component (swim-icon) rendering glyphs from the self-loaded icon font. Specify the icon name via the font-icon attribute.',
     properties: [
       {
         attr: 'font-icon',
@@ -2472,7 +2472,7 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
     return html`
       <div class="panel">
         <h2 class="panel-title">Icon</h2>
-        <p class="panel-desc">Icons from the ngx icon font set.</p>
+        <p class="panel-desc">Icons from the swim-icon font set (self-loaded by the component).</p>
 
         <section class="sg">
           <swim-section section-title="Common Icons">
@@ -2486,10 +2486,10 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
                 'lock',
                 'gear',
                 'trash',
-                'pencil',
+                'edit',
                 'copy',
-                'download',
-                'upload',
+                'cloud-download',
+                'cloud-upload',
                 'arrow-left',
                 'arrow-right',
                 'arrow-up',
@@ -2500,8 +2500,8 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
                 'chart-scatter',
                 'eye',
                 'eye-disabled',
-                'info-circle',
-                'warning-circle'
+                'info-filled',
+                'warning-filled'
               ].map(
                 name => html`
                   <div class="icon-item">

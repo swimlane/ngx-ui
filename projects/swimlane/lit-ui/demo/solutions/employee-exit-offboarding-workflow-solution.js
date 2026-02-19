@@ -518,9 +518,9 @@ class EmployeeExitOffboardingWorkflowSolution extends SwimlaneElement {
         <swim-section section-title="swim-tooltip + swim-icon" section-collapsible="false">
           <div class="demo-inline">
             <swim-tooltip content="Tooltip text" placement="top">
-              <swim-button type="button"><swim-icon font-icon="info" alt="Info"></swim-icon></swim-button>
+              <swim-button type="button"><swim-icon font-icon="info-filled" alt="Info"></swim-icon></swim-button>
             </swim-tooltip>
-            <swim-icon font-icon="person" alt="Person"></swim-icon>
+            <swim-icon font-icon="user" alt="Person"></swim-icon>
             <swim-icon font-icon="check" alt="Check"></swim-icon>
             <swim-icon font-icon="x" alt="Close"></swim-icon>
           </div>
@@ -728,7 +728,7 @@ class EmployeeExitOffboardingWorkflowSolution extends SwimlaneElement {
         <swim-button variant="bordered" @click=${this._openDrawer} aria-label="Open checklist details">
           Open details
           <swim-tooltip content="View checklist details in a drawer" placement="top">
-            <swim-icon font-icon="info" alt="Info"></swim-icon>
+            <swim-icon font-icon="info-filled" alt="Info"></swim-icon>
           </swim-tooltip>
         </swim-button>
       </swim-section>
