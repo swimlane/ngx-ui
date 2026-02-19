@@ -9,11 +9,8 @@ import { iconFontGlyphs } from './icon-font-glyphs';
  * document-level icon font CSS does not pierce the shadow boundary, so the
  * .swim-icon and .swim-icon.lit-*::before rules must live in the component.
  *
- * The font uses a unique family name ('swim-lit-icon') to avoid conflicts
- * with the host application's icon font, which may be a different
- * version with different glyph-to-unicode mappings. The @font-face with an
- * inline base64 data URI is injected into the document head on first use
- * by icon-font-loader.ts.
+ * The host must load the icon font with font-family 'swim-lit-icon'
+ * (SWIM_ICON_FONT_FAMILY) so that glyphs render; no font payload is bundled.
  */
 export const iconStyles = css`
   :host {
@@ -43,10 +40,12 @@ export const iconStyles = css`
     left: 0;
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-align: center;
     font-size: inherit;
     line-height: 1em;
-    display: block;
   }
 
   /* Later icons paint on top (e.g. x over square-filled) */
@@ -79,13 +78,23 @@ export const iconStyles = css`
     color: var(--red-500);
   }
 
-  /* Font icon base (glyphs in icon-font-glyphs.ts) */
+  /* Font icon base (glyphs in icon-font-glyphs.ts); family must match SWIM_ICON_FONT_FAMILY */
   .swim-icon {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
     font: normal normal normal 1em/1 'swim-lit-icon';
     flex-shrink: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Center the glyph regardless of font metrics (fixes vertical misalignment) */
+  .swim-icon::before {
+    display: block;
+    line-height: 1;
   }
 
   /* Loading spinner: animate only the inner glyph inside this shadow root */
