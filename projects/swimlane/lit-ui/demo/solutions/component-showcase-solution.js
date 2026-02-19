@@ -32,7 +32,7 @@ import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/list.js';
 import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/dialog.js';
 import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/drawer.js';
 import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/tooltip.js';
-import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/icon.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/icon.js?v=1.0.0';
 import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/progress-spinner.js';
 
 /* ================================================================== */

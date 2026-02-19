@@ -108,8 +108,9 @@
     "custom-elements.json"
   ],
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
+    "copy:icon-font": "node scripts/copy-icon-font.mjs",
+    "dev": "npm run copy:icon-font && vite",
+    "build": "npm run copy:icon-font && tsc && vite build",
     "build:lib": "tsc --project tsconfig.lib.json",
     "build:cdn": "node scripts/build-cdn.mjs",
     "deploy:gh-pages": "npm run build && npm run build:cdn && cp -r dist-cdn/* dist-demo/ && npx gh-pages -d dist-demo -r https://github.com/surya-pabbineedi/lit-ui.git",

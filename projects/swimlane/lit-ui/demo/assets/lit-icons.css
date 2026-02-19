@@ -3,6 +3,9 @@
  * the font with family name 'swim-lit-icon'; this file provides it via a
  * reference to the woff2 asset.
  *
+ * Font file: copied from ngx-ui (single source of truth) by scripts/copy-icon-font.mjs
+ * from projects/swimlane/ngx-ui/src/lib/assets/icons/iconfont/fonts/ngx-icon.woff2.
+ *
  * Legacy: lit-icon @font-face and .lit-icon class kept for non-component usage.
  */
 @font-face {
