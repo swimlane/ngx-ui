@@ -19,6 +19,9 @@ const BUTTON_TAG = 'swim-button';
  */
 export class SwimButton extends LitElement {
   static styles = [baseStyles, buttonStyles];
+  static formAssociated = true;
+
+  private _internals: ElementInternals;
 
   /**
    * Button variant/style
@@ -99,6 +102,11 @@ export class SwimButton extends LitElement {
 
   private _timer?: number;
 
+  constructor() {
+    super();
+    this._internals = this.attachInternals();
+  }
+
   connectedCallback() {
     super.connectedCallback();
     this._updateState();
@@ -111,7 +119,7 @@ export class SwimButton extends LitElement {
 
   render() {
     return html`
-      <button part="button" type="${this.type}" ?disabled="${this.disabled}" @click="${this._handleClick}">
+      <button part="button" type="button" ?disabled="${this.disabled}" @click="${this._handleClick}">
         <span class="content">
           <slot></slot>
         </span>
@@ -140,8 +148,14 @@ export class SwimButton extends LitElement {
       return;
     }
 
-    // Allow the click event to bubble naturally
-    // The component will dispatch the native click event
+    const form = this._internals.form;
+    if (form) {
+      if (this.type === 'submit') {
+        form.requestSubmit();
+      } else if (this.type === 'reset') {
+        form.reset();
+      }
+    }
   }
 
   private _updateStateFlags() {
