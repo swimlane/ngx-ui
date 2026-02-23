@@ -8,8 +8,8 @@ import { iconRegistry } from '../../utils/icon-registry';
  * SwimIcon - Icon component matching @swimlane/ngx-ui design system.
  * Uses swim lit font icons only (via fontIcon + fontSet) or slotted content (e.g. another swim-icon).
  *
- * The host application must load the icon font with font-family 'swim-lit-icon'
- * (see SWIM_ICON_FONT_FAMILY). No font payload is bundled; icons render using
+ * The host application must load the icon font with font-family 'ngx-icon'
+ * (see SWIM_ICON_FONT_FAMILY; same as ngx-ui so platform can inject once). Icons render using
  * the font loaded by the parent.
  *
  * @slot - Default content when no fontIcon (e.g. slotted swim-icon or image)

@@ -2,7 +2,7 @@
  * Demo application for @swimlane/lit-ui
  * Registers all components, then runs demo initialization when the DOM is ready.
  *
- * Icon font is loaded via assets/lit-icons.css (@font-face for swim-lit-icon).
+ * Icon font is loaded via assets/lit-icons.css (@font-face for ngx-icon).
  */
 
 // Import components (side effect: register custom elements)

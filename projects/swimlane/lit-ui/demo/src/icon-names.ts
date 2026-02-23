@@ -1,6 +1,6 @@
 /**
- * Sorted list of lit-icon font icon names (from lit-ui icon set, originally ngx-ui icons.scss $icons map).
- * Used by the demo to render the full icon grid like src/app/icons-page.
+ * Sorted list of font icon names (from ngx-ui icons.scss $icons map).
+ * Used by the demo to render the icon grid.
  */
 export const ICON_NAMES = [
   '3d-rotate',

@@ -1,32 +1,12 @@
 /*
- * Icon font for the demo. The swim-icon component expects the host to load
- * the font with family name 'swim-lit-icon'; this file provides it via a
- * reference to the woff2 asset.
- *
- * Font file: copied from ngx-ui (single source of truth) by scripts/copy-icon-font.mjs
- * from projects/swimlane/ngx-ui/src/lib/assets/icons/iconfont/fonts/ngx-icon.woff2.
- *
- * Legacy: lit-icon @font-face and .lit-icon class kept for non-component usage.
+ * Icon font for the demo. Injected via URL (no base64).
+ * Uses same family as ngx-ui ('ngx-icon') so platform can inject once for Angular and Lit.
+ * Font file: from scripts/copy-icon-font.mjs (npm run copy:icon-font) → ngx-icon.woff2.
  */
 @font-face {
-  font-family: 'swim-lit-icon';
-  src: url('swim-lit-icon.woff2') format('woff2');
+  font-family: 'ngx-icon';
+  src: url('ngx-icon.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: block;
-}
-
-@font-face {
-  font-family: 'lit-icon';
-  src: url('lit-icon.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
-
-.lit-icon {
-  display: inline-block;
-  font: normal normal normal 1em/1 'lit-icon';
-  flex-shrink: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }

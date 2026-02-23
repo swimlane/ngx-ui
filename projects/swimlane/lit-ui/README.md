@@ -118,6 +118,10 @@ export class AppModule {}
 <swim-button variant="primary">Click Me</swim-button>
 ```
 
+## Icon font
+
+`swim-icon` uses font family `ngx-icon` (same as ngx-ui). Codepoints come from `projects/swimlane/ngx-ui/src/lib/assets/icons/iconfont/scss/icons.scss` and match `ngx-icon.svg` / the woff2 built from it. The host must load **that same font** (e.g. the ngx-ui icon font) for correct glyphs. If icons appear shifted or wrong, the root cause is likely a different font file or build; ensure the platform uses the same icon font as ngx-ui (icons.scss / ngx-icon.svg).
+
 ## Components
 
 ### Button

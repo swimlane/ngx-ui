@@ -1,23 +1,14 @@
-import { css, unsafeCSS } from 'lit';
+import { css } from 'lit';
 import { iconFontGlyphs } from './icon-font-glyphs';
-import { ICON_FONT_BASE64 } from './icon-font-base64.generated.js';
 
 /**
  * Icon styles matching @swimlane/ngx-ui design system.
  * BEM: swim-icon (block), swim-icon__i, swim-icon__stack (elements).
  *
- * The icon font is embedded as base64 (source: ngx-ui iconfont/fonts). No host @font-face needed.
- * Run `npm run embed:icon-font` to regenerate from projects/swimlane/ngx-ui/.../ngx-icon.woff2.
+ * The host must load the icon font with family name 'ngx-icon' (same as ngx-ui) so
+ * the platform can inject once and both Angular and Lit use it. Demo loads font via assets/lit-icons.css.
  */
 export const iconStyles = css`
-  @font-face {
-    font-family: 'swim-lit-icon';
-    src: url('data:font/woff2;base64,${unsafeCSS(ICON_FONT_BASE64)}') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-    font-display: block;
-  }
-
   :host {
     display: inline-block;
     vertical-align: baseline;
@@ -83,16 +74,16 @@ export const iconStyles = css`
     color: var(--red-500);
   }
 
-  /* Font icon base (glyphs in icon-font-glyphs.ts); uses embedded swim-lit-icon font. */
+  /* Font icon base (glyphs in icon-font-glyphs.ts); uses same font as ngx-ui ('ngx-icon'). */
   .swim-icon,
   .swim-icon__i.swim-icon {
-    display: inline-flex;
+    display: inline-block;
     align-items: center;
     justify-content: center;
     width: 1em;
     height: 1em;
-    font: normal normal normal 1em/1 'swim-lit-icon';
-    font-family: 'swim-lit-icon', sans-serif;
+    font: normal normal normal 1em/1 'ngx-icon';
+    font-family: 'ngx-icon', sans-serif;
     flex-shrink: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -103,6 +94,14 @@ export const iconStyles = css`
   .swim-icon__i.swim-icon::before {
     display: block;
     line-height: 1;
+  }
+
+  [class^='icon-']:before,
+  [class*='icon-']:before {
+    line-height: 1;
+    font: normal normal normal 1em/1 'ngx-icon';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /* Loading spinner: animate only the inner glyph inside this shadow root */
