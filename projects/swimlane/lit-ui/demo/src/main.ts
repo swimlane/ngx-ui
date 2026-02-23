@@ -11,6 +11,7 @@ import '../../src/components/button-group/button-group.component';
 import '../../src/components/icon/icon.component';
 import '../../src/components/input/input.component';
 import '../../src/components/select/select.component';
+import '../../src/components/select/select-option.component';
 import '../../src/components/tabs/tab.component';
 import '../../src/components/tabs/tabs.component';
 import '../../src/components/button-toggle/button-toggle.component';

@@ -9,11 +9,20 @@ import { InputAppearance } from '../input/input-appearance.enum';
 import { InputSize } from '../input/input-size.enum';
 import { coerceBooleanProperty } from '../../utils/coerce';
 import '../icon/icon.component';
+import './select-option.component';
 
 /**
  * SwimSelect - A select/dropdown component matching @swimlane/ngx-ui design system
  *
- * @slot - Default slot not used (options passed via property)
+ * Options can be provided via the `options` property or declaratively with `<swim-option>` children:
+ * ```html
+ * <swim-select label="Attack Type">
+ *   <swim-option name="Breach" value="breach"></swim-option>
+ *   <swim-option name="DDOS" value="ddos"></swim-option>
+ * </swim-select>
+ * ```
+ *
+ * @slot - swim-option children for declarative options
  * @slot hint - Custom hint content
  *
  * @fires change - Fired when selection changes
@@ -207,6 +216,9 @@ export class SwimSelect extends LitElement {
   requiredIndicator = '*';
 
   @state()
+  private _slottedOptions: SelectOption[] = [];
+
+  @state()
   private _open = false;
 
   @state()
@@ -225,6 +237,18 @@ export class SwimSelect extends LitElement {
   private _focusedIndex = -1;
 
   private _clickOutsideListener?: (e: MouseEvent) => void;
+  private _childObserver?: MutationObserver;
+
+  /**
+   * Combined options from both the `options` property and slotted `swim-option` children.
+   * Slotted children take precedence when `options` property is empty.
+   */
+  private get _allOptions(): SelectOption[] {
+    if (this.options.length > 0 && this._slottedOptions.length > 0) {
+      return [...this.options, ...this._slottedOptions];
+    }
+    return this.options.length > 0 ? this.options : this._slottedOptions;
+  }
 
   constructor() {
     super();
@@ -233,12 +257,42 @@ export class SwimSelect extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
+    this._collectSlottedOptions();
+    this._setupChildObserver();
     this._updateActiveState();
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this._removeClickOutsideListener();
+    this._childObserver?.disconnect();
+  }
+
+  /** Called by swim-option children when they connect/disconnect/update */
+  _onSlottedOptionsChange() {
+    this._collectSlottedOptions();
+  }
+
+  private _collectSlottedOptions() {
+    const optionElements = Array.from(this.querySelectorAll(':scope > swim-option'));
+    this._slottedOptions = optionElements
+      .filter(el => !el.hasAttribute('hidden'))
+      .map(el => {
+        const name = el.getAttribute('name') || '';
+        const value = el.getAttribute('value');
+        return {
+          name,
+          value: value !== null ? value : name,
+          disabled: el.hasAttribute('disabled')
+        };
+      });
+  }
+
+  private _setupChildObserver() {
+    this._childObserver = new MutationObserver(() => {
+      this._collectSlottedOptions();
+    });
+    this._childObserver.observe(this, { childList: true, subtree: false });
   }
 
   updated(changedProperties: PropertyValues) {
@@ -371,12 +425,12 @@ export class SwimSelect extends LitElement {
     if (this.multiple) {
       return html`
         ${this._value.map(val => {
-          const option = this.options.find(opt => this._getOptionValue(opt) === val);
+          const option = this._allOptions.find(opt => this._getOptionValue(opt) === val);
           return this._renderChip(option || { name: val, value: val });
         })}
       `;
     } else {
-      const option = this.options.find(opt => this._getOptionValue(opt) === this._value[0]);
+      const option = this._allOptions.find(opt => this._getOptionValue(opt) === this._value[0]);
       return html`${option?.name || this._value[0]}`;
     }
   }
@@ -589,11 +643,11 @@ export class SwimSelect extends LitElement {
 
   private _getFilteredOptions(): SelectOption[] {
     if (!this._filterQuery) {
-      return this.options;
+      return this._allOptions;
     }
 
     const query = this._filterQuery.toLowerCase();
-    return this.options.filter(option => option.name.toLowerCase().includes(query));
+    return this._allOptions.filter(option => option.name.toLowerCase().includes(query));
   }
 
   private _getOptionValue(option: SelectOption): any {

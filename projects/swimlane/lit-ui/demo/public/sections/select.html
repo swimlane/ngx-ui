@@ -16,6 +16,43 @@
   </swim-section>
 </section>
 
+<!-- Declarative Options (swim-option children) -->
+<section class="section">
+  <swim-section section-title="Declarative Options (swim-option)">
+    <p style="color: var(--grey-300); margin-bottom: 1rem">
+      Options can be defined inline as <code>&lt;swim-option&gt;</code> children instead of setting the <code>.options</code> property via JavaScript.
+    </p>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select label="Attack Type" required filterable="false">
+        <swim-option name="Breach" value="breach"></swim-option>
+        <swim-option name="DDOS" value="ddos"></swim-option>
+        <swim-option name="Physical" value="physical"></swim-option>
+      </swim-select>
+
+      <swim-select label="Severity" placeholder="Select severity...">
+        <swim-option name="Critical" value="critical"></swim-option>
+        <swim-option name="High" value="high"></swim-option>
+        <swim-option name="Medium" value="medium"></swim-option>
+        <swim-option name="Low" value="low"></swim-option>
+      </swim-select>
+
+      <swim-select label="Multi-select with children" multiple placeholder="Choose colors...">
+        <swim-option name="Red" value="red"></swim-option>
+        <swim-option name="Green" value="green"></swim-option>
+        <swim-option name="Blue" value="blue"></swim-option>
+        <swim-option name="Yellow" value="yellow"></swim-option>
+      </swim-select>
+    </div>
+    <pre
+      style="background: var(--grey-800); padding: 1rem; border-radius: var(--radius-4); overflow-x: auto; margin-top: 1rem"
+    ><code>&lt;swim-select label="Attack Type" required filterable="false"&gt;
+  &lt;swim-option name="Breach" value="breach"&gt;&lt;/swim-option&gt;
+  &lt;swim-option name="DDOS" value="ddos"&gt;&lt;/swim-option&gt;
+  &lt;swim-option name="Physical" value="physical"&gt;&lt;/swim-option&gt;
+&lt;/swim-select&gt;</code></pre>
+  </swim-section>
+</section>
+
 <!-- Select Appearances Section -->
 <section class="section">
   <swim-section section-title="Select Appearances">
@@ -125,6 +162,14 @@
   import '@swimlane/lit-ui/select';
 &lt;/script&gt;
 
+&lt;!-- Option A: Declarative options via swim-option children --&gt;
+&lt;swim-select label="Attack Type" required&gt;
+  &lt;swim-option name="Breach" value="breach"&gt;&lt;/swim-option&gt;
+  &lt;swim-option name="DDOS" value="ddos"&gt;&lt;/swim-option&gt;
+  &lt;swim-option name="Physical" value="physical"&gt;&lt;/swim-option&gt;
+&lt;/swim-select&gt;
+
+&lt;!-- Option B: Programmatic options via .options property --&gt;
 &lt;script&gt;
   const select = document.querySelector('swim-select');
   select.options = [
@@ -159,6 +204,19 @@
             <tr><td><code>size</code></td><td><code>'sm' | 'md' | 'lg'</code></td><td><code>'sm'</code></td><td>Select size</td></tr>
             <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Disables the select</td></tr>
             <tr><td><code>required</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Marks as required</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top: 1.5rem"><span class="api-tag-name">&lt;swim-option&gt;</span></div>
+      <h4 class="api-heading">Properties (swim-option)</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>name</code></td><td><code>string</code></td><td><code>''</code></td><td>Display name of the option</td></tr>
+            <tr><td><code>value</code></td><td><code>any</code></td><td><code>undefined</code></td><td>Value of the option (defaults to name if not set)</td></tr>
+            <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the option is disabled</td></tr>
+            <tr><td><code>hidden</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the option is hidden from the list</td></tr>
           </tbody>
         </table>
       </div>
