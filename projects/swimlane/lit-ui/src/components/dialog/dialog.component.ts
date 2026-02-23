@@ -145,6 +145,17 @@ export class SwimDialog extends LitElement {
     this.visible = false;
   }
 
+  private _onBackdropClick(): void {
+    this.hide();
+  }
+
+  private _onKeydown(e: KeyboardEvent): void {
+    if (e.key === 'Escape') {
+      e.stopPropagation();
+      this.hide();
+    }
+  }
+
   protected firstUpdated(): void {
     if (this.visible && this._contentEl) {
       this._contentEl.focus({ preventScroll: true });
@@ -182,7 +193,9 @@ export class SwimDialog extends LitElement {
 
     return html`
       <div class="${wrapperClasses}" style="--swim-dialog-z: ${this.zIndex}" role="presentation">
-        ${this.showBackdrop ? html`<div class="swim-dialog__backdrop" aria-hidden="true"></div>` : nothing}
+        ${this.showBackdrop
+          ? html`<div class="swim-dialog__backdrop" aria-hidden="true" @click="${this._onBackdropClick}"></div>`
+          : nothing}
         <div
           part="content"
           class="${contentClasses}"
@@ -192,6 +205,7 @@ export class SwimDialog extends LitElement {
           aria-modal="true"
           aria-labelledby="${this.dialogTitle ? this._titleId : nothing}"
           id="${this._contentId}"
+          @keydown="${this._onKeydown}"
         >
           ${isRegular
             ? html`

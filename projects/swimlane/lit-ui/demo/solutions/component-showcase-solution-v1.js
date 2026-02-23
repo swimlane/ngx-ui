@@ -548,7 +548,7 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
       /* Tab content panel */
       .panel {
         padding: var(--spacing-24, 24px) var(--spacing-32, 32px);
-        max-width: 960px;
+        width: 100%;
       }
 
       .panel-title {
@@ -742,6 +742,7 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
         <swim-tab label="Radio">${this._radioDemo()}</swim-tab>
         <swim-tab label="Toggle">${this._toggleDemo()}</swim-tab>
         <swim-tab label="Slider">${this._sliderDemo()}</swim-tab>
+        <swim-tab label="Date / Time">${this._dateTimeDemo()}</swim-tab>
         <swim-tab label="Card">${this._cardDemo()}</swim-tab>
         <swim-tab label="Tabs">${this._tabsDemo()}</swim-tab>
         <swim-tab label="Section">${this._sectionDemo()}</swim-tab>
@@ -1289,63 +1290,271 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
     `;
   }
 
+  /* ---- Date / Time ----------------------------------------------- */
+  _dateTimeDemo() {
+    return html`
+      <div class="panel">
+        <h2 class="panel-title">Date / Time</h2>
+        <p class="panel-desc">
+          Date, time, and datetime picker with formatting, timezone support, precision levels, and form association.
+        </p>
+
+        <section class="sg">
+          <swim-section section-title="Date Input">
+            <div class="demo-grid-wide">
+              <swim-date-time label="Date of attack" .value=${new Date('2016-10-10')}></swim-date-time>
+              <swim-date-time label="Disabled" disabled .value=${new Date('2016-10-10')}></swim-date-time>
+              <swim-date-time
+                label="Custom Format (M/Y)"
+                format="M/Y"
+                .value=${new Date('2016-10-10')}
+              ></swim-date-time>
+              <swim-date-time
+                label="Min/Max Dates"
+                min-date="2016-10-02"
+                max-date="2016-10-22"
+                hint="Between 10/2/2016 and 10/22/2016"
+                .value=${new Date('2016-10-10')}
+              ></swim-date-time>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Date/Time Input">
+            <div class="demo-grid-wide">
+              <swim-date-time
+                input-type="datetime"
+                label="Moon Landing"
+                .value=${new Date('1969-07-20T20:17:43Z')}
+              ></swim-date-time>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Time Input">
+            <div class="demo-grid-wide">
+              <swim-date-time
+                input-type="time"
+                label="Time of attack"
+                .value=${new Date('2016-10-10T14:30:00')}
+              ></swim-date-time>
+              <swim-date-time
+                input-type="time"
+                display-mode="timezone"
+                label="Time (Timezone)"
+                .value=${new Date('2016-10-10T14:30:00')}
+              ></swim-date-time>
+              <swim-date-time
+                input-type="time"
+                timezone="utc"
+                label="Time (UTC)"
+                .value=${new Date('2016-10-10T14:30:00')}
+              ></swim-date-time>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="TimeZones">
+            <div class="demo-grid-wide">
+              <swim-date-time
+                input-type="datetime"
+                label="Local Time"
+                display-mode="timezone"
+                .value=${new Date('2016-10-10T14:30:00')}
+              ></swim-date-time>
+              <swim-date-time
+                input-type="datetime"
+                label="UTC"
+                timezone="utc"
+                .value=${new Date('2016-10-10T14:30:00')}
+              ></swim-date-time>
+              <swim-date-time
+                input-type="datetime"
+                label="JST"
+                timezone="Asia/Tokyo"
+                .value=${new Date('2016-10-10T14:30:00')}
+              ></swim-date-time>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Precision">
+            <div class="demo-grid-wide">
+              <swim-date-time label="Year" precision="year" .value=${new Date('2016-10-10')}></swim-date-time>
+              <swim-date-time label="Month" precision="month" .value=${new Date('2016-10-10')}></swim-date-time>
+              <swim-date-time
+                label="Hour"
+                precision="hour"
+                input-type="datetime"
+                .value=${new Date('2016-10-10T14:30:00')}
+              ></swim-date-time>
+              <swim-date-time
+                label="Minutes"
+                precision="minute"
+                input-type="datetime"
+                .value=${new Date('2016-10-10T14:30:00')}
+              ></swim-date-time>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Appearances">
+            <div class="demo-grid-wide">
+              <swim-date-time
+                label="Legacy (default)"
+                hint="A brief bit of help text"
+                .value=${new Date('2016-10-10')}
+              ></swim-date-time>
+              <swim-date-time
+                appearance="fill"
+                label="Fill"
+                hint="A brief bit of help text"
+                .value=${new Date('2016-10-10')}
+              ></swim-date-time>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Autosize">
+            <div class="demo-row">
+              <swim-date-time
+                autosize
+                input-type="date"
+                label="Year"
+                precision="year"
+                format="YYYY"
+                .value=${new Date('2016-10-10')}
+              ></swim-date-time>
+              <swim-date-time
+                autosize
+                input-type="date"
+                label="Month"
+                precision="month"
+                format="MMM YYYY"
+                .value=${new Date('2016-10-10')}
+              ></swim-date-time>
+              <swim-date-time
+                autosize
+                appearance="fill"
+                input-type="datetime"
+                label="Hour"
+                precision="hour"
+                format="MMM DD, YYYY, hh:mm"
+                .value=${new Date('2016-10-10T14:30:00')}
+              ></swim-date-time>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="States">
+            <div class="demo-grid-wide">
+              <swim-date-time label="Required" required hint="This field is required"></swim-date-time>
+              <swim-date-time label="With Placeholder" placeholder="Select a date…"></swim-date-time>
+              <swim-date-time label="Disabled" disabled .value=${new Date('2016-10-10')}></swim-date-time>
+            </div>
+          </swim-section>
+        </section>
+      </div>
+    `;
+  }
+
   /* ---- Card ------------------------------------------------------ */
   _cardDemo() {
     return html`
       <div class="panel">
         <h2 class="panel-title">Card</h2>
-        <p class="panel-desc">Cards with header, body, footer, avatar, selectable state, status, and placeholders.</p>
+        <p class="panel-desc">
+          Card container with horizontal or vertical layout, optional status, selection, outline, and placeholders.
+        </p>
 
         <section class="sg">
-          <swim-section section-title="Basic Cards">
-            <div class="card-row">
-              <swim-card>
+          <swim-section section-title="Horizontal Card">
+            <div class="demo-col">
+              <swim-card orientation="horizontal">
                 <swim-card-header>
-                  <span slot="title">Basic Card</span>
-                  <span slot="subtitle">Default orientation</span>
+                  <swim-card-avatar slot="avatar">AB</swim-card-avatar>
+                  <span slot="title">Horizontal Card Title</span>
+                  <span slot="subtitle">Subtitle or description line</span>
                 </swim-card-header>
-                <swim-card-body>Card body content goes here.</swim-card-body>
-                <swim-card-footer>
-                  <swim-button variant="primary" size="small">Action</swim-button>
-                </swim-card-footer>
-              </swim-card>
-
-              <swim-card orientation="vertical">
-                <swim-card-header orientation="vertical">
-                  <swim-card-avatar slot="avatar">VT</swim-card-avatar>
-                  <span slot="title">Vertical Card</span>
-                  <span slot="subtitle">With avatar</span>
-                </swim-card-header>
-                <swim-card-body>Vertical layout content.</swim-card-body>
               </swim-card>
             </div>
           </swim-section>
         </section>
 
         <section class="sg">
-          <swim-section section-title="Status">
+          <swim-section section-title="Vertical Card">
             <div class="card-row">
-              <swim-card status="success">
-                <swim-card-header>
-                  <swim-card-avatar slot="avatar" status="success">OK</swim-card-avatar>
-                  <span slot="title">Success</span>
+              <swim-card orientation="vertical" status="success">
+                <swim-card-header orientation="vertical" label="CARD">
+                  <swim-card-avatar slot="avatar" status="success">AB</swim-card-avatar>
+                  <span slot="title">Card Title</span>
+                  <span slot="subtitle">Subtitle</span>
                 </swim-card-header>
-                <swim-card-body>Status: success</swim-card-body>
+                <swim-card-body>
+                  <div style="text-align:center;color:var(--grey-350);font-size:0.9rem">
+                    <div
+                      style="font-size:var(--font-size-xl);font-weight:var(--font-weight-semibold);color:var(--grey-050)"
+                    >
+                      148
+                    </div>
+                    <div style="font-size:var(--font-size-xxs);text-transform:uppercase">Runs / 24hrs</div>
+                  </div>
+                </swim-card-body>
+                <swim-card-footer label="ACTIONS">
+                  <swim-icon font-icon="integrations" style="cursor:pointer;color:var(--grey-300)"></swim-icon>
+                </swim-card-footer>
               </swim-card>
 
-              <swim-card status="error">
-                <swim-card-header>
-                  <swim-card-avatar slot="avatar" status="error">ER</swim-card-avatar>
-                  <span slot="title">Error</span>
+              <swim-card orientation="vertical">
+                <swim-card-header orientation="vertical" label="Header label">
+                  <swim-card-avatar slot="avatar">SW</swim-card-avatar>
+                  <span slot="title">Vertical Card</span>
+                  <span slot="subtitle">With label and footer</span>
                 </swim-card-header>
-                <swim-card-body>Status: error</swim-card-body>
+                <swim-card-footer label="Footer label">
+                  <swim-button variant="primary" size="small">Action</swim-button>
+                </swim-card-footer>
+              </swim-card>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg">
+          <swim-section section-title="Status and Appearance">
+            <div class="demo-col">
+              <span class="demo-label">Status: success</span>
+              <swim-card orientation="horizontal" status="success">
+                <swim-card-header>
+                  <span slot="title">Success status</span>
+                </swim-card-header>
               </swim-card>
 
-              <swim-card disabled>
+              <span class="demo-label">Status: error</span>
+              <swim-card orientation="horizontal" status="error">
                 <swim-card-header>
-                  <span slot="title">Disabled</span>
+                  <span slot="title">Error status</span>
                 </swim-card-header>
-                <swim-card-body>Disabled card</swim-card-body>
+              </swim-card>
+
+              <span class="demo-label">Flat appearance</span>
+              <swim-card orientation="horizontal" appearance="flat">
+                <swim-card-header>
+                  <span slot="title">Flat card</span>
+                </swim-card-header>
+              </swim-card>
+
+              <span class="demo-label">Disabled</span>
+              <swim-card orientation="horizontal" disabled>
+                <swim-card-header>
+                  <span slot="title">Disabled card</span>
+                </swim-card-header>
               </swim-card>
             </div>
           </swim-section>
@@ -1353,33 +1562,43 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
 
         <section class="sg">
           <swim-section section-title="Selectable">
-            <div class="card-row">
-              <swim-card selectable>
+            <div class="demo-col">
+              <swim-card orientation="horizontal" selectable selected>
                 <swim-card-header>
-                  <span slot="title">Selectable</span>
-                  <span slot="subtitle">Click checkbox</span>
+                  <swim-card-avatar slot="avatar">SC</swim-card-avatar>
+                  <span slot="title">Selectable Card</span>
+                  <span slot="subtitle">Click checkbox to toggle selection</span>
                 </swim-card-header>
-                <swim-card-body>Toggle selection via checkbox.</swim-card-body>
               </swim-card>
 
-              <swim-card selectable selected>
+              <swim-card orientation="horizontal" selectable>
                 <swim-card-header>
-                  <span slot="title">Pre-selected</span>
+                  <swim-card-avatar slot="avatar">UN</swim-card-avatar>
+                  <span slot="title">Unselected Card</span>
+                  <span slot="subtitle">Not yet selected</span>
                 </swim-card-header>
-                <swim-card-body>This card starts selected.</swim-card-body>
               </swim-card>
             </div>
           </swim-section>
         </section>
 
         <section class="sg">
-          <swim-section section-title="Flat Appearance">
-            <div class="card-row">
-              <swim-card appearance="flat">
+          <swim-section section-title="Outline Text and Error">
+            <div class="demo-col">
+              <swim-card orientation="horizontal" outline-text="View details">
                 <swim-card-header>
-                  <span slot="title">Flat Card</span>
+                  <swim-card-avatar slot="avatar">OT</swim-card-avatar>
+                  <span slot="title">Outline Card</span>
+                  <span slot="subtitle">Click the outline label below</span>
                 </swim-card-header>
-                <swim-card-body>Flat appearance, no shadow.</swim-card-body>
+              </swim-card>
+
+              <swim-card orientation="horizontal" error outline-text="Error">
+                <swim-card-header>
+                  <swim-card-avatar slot="avatar">ER</swim-card-avatar>
+                  <span slot="title">Error Card</span>
+                  <span slot="subtitle">Error state with outline text</span>
+                </swim-card-header>
               </swim-card>
             </div>
           </swim-section>
@@ -1387,11 +1606,13 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
 
         <section class="sg">
           <swim-section section-title="Placeholders">
-            <div class="card-row">
-              <swim-card-placeholder size="small"></swim-card-placeholder>
-              <swim-card-placeholder size="medium"></swim-card-placeholder>
-              <swim-card-placeholder size="large"></swim-card-placeholder>
-            </div>
+            <swim-card orientation="horizontal">
+              <swim-card-header class="no-click">
+                <swim-card-avatar slot="avatar">...</swim-card-avatar>
+                <span slot="title"><swim-card-placeholder size="large"></swim-card-placeholder></span>
+                <span slot="subtitle"><swim-card-placeholder size="small"></swim-card-placeholder></span>
+              </swim-card-header>
+            </swim-card>
           </swim-section>
         </section>
       </div>

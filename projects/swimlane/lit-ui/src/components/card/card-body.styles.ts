@@ -10,21 +10,16 @@ export const cardBodyStyles = css`
   :host {
     display: flex;
     flex-direction: column;
-    align-items: center;
     flex-grow: 1;
-    padding: var(--spacing-20) var(--spacing-0);
-    padding-left: ${cardVerticalBodyPadding}px;
-    padding-right: ${cardVerticalBodyPadding}px;
+    gap: var(--spacing-8);
+    padding: var(--spacing-16) ${cardVerticalBodyPadding}px;
     box-sizing: border-box;
+    overflow: auto;
+    line-height: 1.5;
   }
 
   ::slotted(*) {
-    font-weight: var(--font-weight-semibold);
     width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    text-align: center;
   }
 `;
 

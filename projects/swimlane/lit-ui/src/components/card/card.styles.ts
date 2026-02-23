@@ -30,6 +30,8 @@ export const cardStyles = css`
     background: var(--grey-800);
     border-radius: var(--radius-6);
     box-sizing: border-box;
+    color: var(--grey-050);
+    font-size: var(--font-size-m);
   }
 
   :host([disabled]) {
@@ -169,7 +171,6 @@ export const cardHorizontalStyles = css`
     width: 100%;
     min-width: var(--swim-card-min-width, 500px);
     min-height: 80px;
-    height: 80px;
     transition: all 0.2s ease-in-out;
     animation: 0.2s ease-in-out cardSlideIn;
   }

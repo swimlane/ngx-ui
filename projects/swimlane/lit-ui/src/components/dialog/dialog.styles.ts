@@ -29,6 +29,10 @@ export const dialogStyles = [
       z-index: var(--swim-dialog-z, 991);
     }
 
+    .swim-dialog.swim-dialog--open {
+      pointer-events: auto;
+    }
+
     /* Matches ngx-overlay: black at 80% opacity when active */
     .swim-dialog__backdrop {
       position: absolute;
@@ -41,6 +45,8 @@ export const dialogStyles = [
 
     .swim-dialog.swim-dialog--open .swim-dialog__backdrop {
       opacity: 0.8;
+      pointer-events: auto;
+      cursor: default;
     }
 
     .swim-dialog__content {
