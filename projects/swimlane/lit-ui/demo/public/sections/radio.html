@@ -18,6 +18,10 @@
       </div>
       <p class="demo-label demo-label--after">Selected: <strong id="radioSingleValue">Summer</strong></p>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-radio value="Spring"&gt;Spring&lt;/swim-radio&gt;
+&lt;swim-radio value="Summer" checked&gt;Summer&lt;/swim-radio&gt;
+&lt;swim-radio value="Fall"&gt;Fall&lt;/swim-radio&gt;
+&lt;swim-radio value="Winter"&gt;Winter&lt;/swim-radio&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -33,6 +37,12 @@
       </swim-radio-group>
       <p class="demo-label demo-label--after">Your favorite season is: <strong id="radioGroupValue">—</strong></p>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-radio-group name="favorite-season" value="Summer"&gt;
+  &lt;swim-radio value="Spring"&gt;Spring&lt;/swim-radio&gt;
+  &lt;swim-radio value="Summer"&gt;Summer&lt;/swim-radio&gt;
+  &lt;swim-radio value="Fall"&gt;Fall&lt;/swim-radio&gt;
+  &lt;swim-radio value="Winter"&gt;Winter&lt;/swim-radio&gt;
+&lt;/swim-radio-group&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -59,6 +69,19 @@
         </swim-radio-group>
       </div>
     </div>
+    <pre class="demo-pre"><code>&lt;!-- Some options disabled --&gt;
+&lt;swim-radio-group name="season"&gt;
+  &lt;swim-radio value="Spring" disabled&gt;Spring (disabled)&lt;/swim-radio&gt;
+  &lt;swim-radio value="Summer"&gt;Summer&lt;/swim-radio&gt;
+  &lt;swim-radio value="Fall" disabled&gt;Fall (disabled)&lt;/swim-radio&gt;
+  &lt;swim-radio value="Winter"&gt;Winter&lt;/swim-radio&gt;
+&lt;/swim-radio-group&gt;
+
+&lt;!-- Entire group disabled --&gt;
+&lt;swim-radio-group name="season" disabled&gt;
+  &lt;swim-radio value="Spring"&gt;Spring&lt;/swim-radio&gt;
+  &lt;swim-radio value="Summer"&gt;Summer&lt;/swim-radio&gt;
+&lt;/swim-radio-group&gt;</code></pre>
   </swim-section>
 </section>
 

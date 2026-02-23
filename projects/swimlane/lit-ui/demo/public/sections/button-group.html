@@ -43,6 +43,20 @@
         </swim-button-group>
       </div>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;!-- Default (horizontal) --&gt;
+&lt;swim-button-group&gt;
+  &lt;swim-button type="button"&gt;One&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Two&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Three&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;
+
+&lt;!-- Primary (vertical) --&gt;
+&lt;swim-button-group button-group-style="primary" orientation="vertical"&gt;
+  &lt;swim-button type="button"&gt;One&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Two&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Three&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -85,6 +99,18 @@
         </swim-button-group>
       </div>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;!-- Contained (default) --&gt;
+&lt;swim-button-group variant="contained"&gt;
+  &lt;swim-button type="button"&gt;One&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Two&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;
+
+&lt;!-- Text variant --&gt;
+&lt;swim-button-group variant="text"&gt;
+  &lt;swim-button type="button" variant="link"&gt;One&lt;/swim-button&gt;
+  &lt;swim-button type="button" variant="link"&gt;Two&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -116,6 +142,18 @@
         </swim-button-group>
       </div>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;!-- Horizontal --&gt;
+&lt;swim-button-group&gt;
+  &lt;swim-button type="button"&gt;Default&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Default&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;
+
+&lt;!-- Vertical primary --&gt;
+&lt;swim-button-group button-group-style="primary" orientation="vertical"&gt;
+  &lt;swim-button type="button"&gt;Primary&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Primary&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -127,6 +165,12 @@
       <swim-button type="button" variant="link">Link 3</swim-button>
       <swim-button type="button" variant="link">Link 4</swim-button>
     </swim-button-group>
+    <pre class="demo-pre"
+    ><code>&lt;swim-button-group variant="text"&gt;
+  &lt;swim-button type="button" variant="link"&gt;Link 1&lt;/swim-button&gt;
+  &lt;swim-button type="button" variant="link"&gt;Link 2&lt;/swim-button&gt;
+  &lt;swim-button type="button" variant="link"&gt;Link 3&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -135,8 +179,7 @@
     <p style="color: var(--grey-300); margin-bottom: 1rem">
       Import and use the button group component in your application:
     </p>
-    <pre
-      style="background: var(--grey-800); padding: 1rem; border-radius: var(--radius-4); overflow-x: auto"
+    <pre class="demo-pre"
     ><code>&lt;script type="module"&gt;
   import '@swimlane/lit-ui/button-group';
   import '@swimlane/lit-ui/button';

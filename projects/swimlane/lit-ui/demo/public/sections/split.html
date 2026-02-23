@@ -53,6 +53,11 @@
         </swim-split-area>
       </swim-split>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-split direction="row"&gt;
+  &lt;swim-split-area&gt;Left panel&lt;/swim-split-area&gt;
+  &lt;swim-split-handle&gt;&lt;/swim-split-handle&gt;
+  &lt;swim-split-area area-basis="0 1 50%"&gt;Right panel (50%, cannot grow)&lt;/swim-split-area&gt;
+&lt;/swim-split&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -72,6 +77,11 @@
         </swim-split-area>
       </swim-split>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-split direction="column"&gt;
+  &lt;swim-split-area&gt;Top&lt;/swim-split-area&gt;
+  &lt;swim-split-handle&gt;&lt;/swim-split-handle&gt;
+  &lt;swim-split-area area-basis="1 1 50%"&gt;Bottom&lt;/swim-split-area&gt;
+&lt;/swim-split&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -95,6 +105,13 @@
         </swim-split-area>
       </swim-split>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-split direction="row"&gt;
+  &lt;swim-split-area&gt;Left&lt;/swim-split-area&gt;
+  &lt;swim-split-handle&gt;&lt;/swim-split-handle&gt;
+  &lt;swim-split-area area-basis="400px" min-basis="200px" max-basis="600px"&gt;
+    Right (400px, min 200px, max 600px)
+  &lt;/swim-split-area&gt;
+&lt;/swim-split&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -132,6 +149,19 @@
         </swim-split-area>
       </swim-split>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-split direction="row"&gt;
+  &lt;swim-split-area&gt;
+    &lt;swim-split direction="column"&gt;
+      &lt;swim-split-area area-basis="1 1 50%"&gt;Top&lt;/swim-split-area&gt;
+      &lt;swim-split-handle handle-basis="5px"&gt;&lt;/swim-split-handle&gt;
+      &lt;swim-split-area area-basis="1 0 50%"&gt;Bottom&lt;/swim-split-area&gt;
+    &lt;/swim-split&gt;
+  &lt;/swim-split-area&gt;
+  &lt;swim-split-handle&gt;&lt;/swim-split-handle&gt;
+  &lt;swim-split-area area-basis="400px" min-basis="200px" max-basis="600px"&gt;
+    Sidebar
+  &lt;/swim-split-area&gt;
+&lt;/swim-split&gt;</code></pre>
   </swim-section>
 </section>
 

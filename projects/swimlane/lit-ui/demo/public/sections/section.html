@@ -17,6 +17,9 @@
         mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
       </swim-section>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-section section-title="Attack Details"&gt;
+  Section body content here.
+&lt;/swim-section&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -36,6 +39,13 @@
         mailbomb eaten by a grue error fopen null.
       </swim-section>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-section&gt;
+  &lt;swim-section-header slot="header"&gt;
+    &lt;h3&gt;Attack Found!&lt;/h3&gt;
+    &lt;a href="#section"&gt;List&lt;/a&gt;
+  &lt;/swim-section-header&gt;
+  Section body content.
+&lt;/swim-section&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -47,6 +57,9 @@
         Content is always visible; no expand/collapse toggle.
       </swim-section>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-section section-title="Attack Details" section-collapsible="false"&gt;
+  Content is always visible; no expand/collapse toggle.
+&lt;/swim-section&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -69,6 +82,19 @@
         No background or border.
       </swim-section>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-section section-title="Legacy"&gt;Default style.&lt;/swim-section&gt;
+
+&lt;swim-section section-title="Outline" appearance="outline"&gt;
+  Border-only style.
+&lt;/swim-section&gt;
+
+&lt;swim-section section-title="Light" appearance="light"&gt;
+  Light border and header.
+&lt;/swim-section&gt;
+
+&lt;swim-section section-title="Minimal" appearance="minimal"&gt;
+  No background or border.
+&lt;/swim-section&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -80,6 +106,9 @@
         Collapse/expand button is on the right side of the header.
       </swim-section>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-section section-title="Toggle on right" toggle-position="right"&gt;
+  Content here.
+&lt;/swim-section&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -99,6 +128,13 @@
         No toggle button; click anywhere on the header to expand or collapse.
       </swim-section>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-section
+  section-title="Click header to toggle"
+  toggle-position="none"
+  header-toggle
+&gt;
+  Content toggles when header is clicked.
+&lt;/swim-section&gt;</code></pre>
   </swim-section>
 </section>
 

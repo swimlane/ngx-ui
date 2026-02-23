@@ -201,6 +201,11 @@
         </div>
       </div>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-progress-spinner mode="indeterminate"&gt;&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner mode="determinate" value="50" total="100"&gt;&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner mode="determinate" value="100" total="100"&gt;&lt;/swim-progress-spinner&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -245,6 +250,20 @@
         </div>
       </div>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-progress-spinner
+  mode="determinate" value="30" total="100"
+  appearance="icon"
+&gt;&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner
+  mode="determinate" value="100" total="100"
+  appearance="icon"
+&gt;&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner
+  mode="determinate" value="100" total="100"
+  appearance="icon" is-failure
+&gt;&lt;/swim-progress-spinner&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -287,6 +306,19 @@
         </div>
       </div>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-progress-spinner
+  mode="determinate" value="40" total="100"
+  appearance="icon" in-progress-icon-name="cloud-upload"
+&gt;&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner
+  mode="determinate" value="100" total="100"
+  appearance="icon" complete-icon-name="check"
+&gt;&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner mode="determinate" value="60" total="100" appearance="icon"&gt;
+  &lt;swim-icon slot="in-progress-icon" font-icon="cloud-upload"&gt;&lt;/swim-icon&gt;
+&lt;/swim-progress-spinner&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -319,6 +351,14 @@
         </div>
       </div>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-progress-spinner mode="indeterminate" diameter="50" stroke-width="2"&gt;
+&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner mode="indeterminate"&gt;
+&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner mode="indeterminate" diameter="150" stroke-width="4"&gt;
+&lt;/swim-progress-spinner&gt;</code></pre>
   </swim-section>
 </section>
 

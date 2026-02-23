@@ -20,6 +20,21 @@
         </swim-tooltip>
       </div>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-tooltip content="Phishing Attack" type="tooltip" placement="top"&gt;
+  &lt;a href="#"&gt;Top&lt;/a&gt;
+&lt;/swim-tooltip&gt;
+
+&lt;swim-tooltip content="Phishing Attack" type="tooltip" placement="right"&gt;
+  &lt;a href="#"&gt;Right&lt;/a&gt;
+&lt;/swim-tooltip&gt;
+
+&lt;swim-tooltip content="Phishing Attack" type="tooltip" placement="bottom"&gt;
+  &lt;a href="#"&gt;Bottom&lt;/a&gt;
+&lt;/swim-tooltip&gt;
+
+&lt;swim-tooltip content="Phishing Attack" type="tooltip" placement="left"&gt;
+  &lt;a href="#"&gt;Left&lt;/a&gt;
+&lt;/swim-tooltip&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -43,6 +58,13 @@
         <a href="#" class="demo-link">Left</a>
       </swim-tooltip>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-tooltip content="Popover on top" type="popover" placement="top"&gt;
+  &lt;a href="#"&gt;Top&lt;/a&gt;
+&lt;/swim-tooltip&gt;
+
+&lt;swim-tooltip content="Popover on bottom" type="popover" placement="bottom"&gt;
+  &lt;a href="#"&gt;Bottom&lt;/a&gt;
+&lt;/swim-tooltip&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -60,6 +82,15 @@
         <swim-button variant="primary">Click me to open</swim-button>
       </swim-tooltip>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-tooltip
+  type="popover"
+  placement="bottom"
+  show-event="click"
+  show-caret="false"
+  content="Click to open. Click outside to close."
+&gt;
+  &lt;swim-button variant="primary"&gt;Click me&lt;/swim-button&gt;
+&lt;/swim-tooltip&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -74,6 +105,10 @@
         <span slot="content"><strong>ALERT: High Priority</strong></span>
       </swim-tooltip>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-tooltip type="tooltip" placement="top"&gt;
+  &lt;a href="#"&gt;Template&lt;/a&gt;
+  &lt;span slot="content"&gt;&lt;strong&gt;ALERT: High Priority&lt;/strong&gt;&lt;/span&gt;
+&lt;/swim-tooltip&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -89,6 +124,13 @@
         <a href="#" class="demo-link">No caret</a>
       </swim-tooltip>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-tooltip content="Disabled tooltip" type="tooltip" placement="top" disabled&gt;
+  &lt;swim-button disabled&gt;Disabled&lt;/swim-button&gt;
+&lt;/swim-tooltip&gt;
+
+&lt;swim-tooltip content="No caret" type="popover" placement="top" show-caret="false"&gt;
+  &lt;a href="#"&gt;No caret&lt;/a&gt;
+&lt;/swim-tooltip&gt;</code></pre>
   </swim-section>
 </section>
 

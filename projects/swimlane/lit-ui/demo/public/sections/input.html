@@ -31,6 +31,11 @@
         <swim-input type="url" label="Website" placeholder="https://"></swim-input>
       </div>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-input label="Text Input" placeholder="Enter text"&gt;&lt;/swim-input&gt;
+&lt;swim-input type="password" label="Password" password-toggle-enabled&gt;&lt;/swim-input&gt;
+&lt;swim-input type="email" label="Email" placeholder="user@example.com"&gt;&lt;/swim-input&gt;
+&lt;swim-input type="number" label="Age" min="0" max="150"&gt;&lt;/swim-input&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -42,6 +47,10 @@
       <swim-input size="md" label="Medium Input" placeholder="Medium size"></swim-input>
       <swim-input size="lg" label="Large Input" placeholder="Large size"></swim-input>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-input size="sm" label="Small Input"&gt;&lt;/swim-input&gt;
+&lt;swim-input size="md" label="Medium Input"&gt;&lt;/swim-input&gt;
+&lt;swim-input size="lg" label="Large Input"&gt;&lt;/swim-input&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -52,6 +61,9 @@
       <swim-input appearance="legacy" label="Legacy Appearance" placeholder="Default style"></swim-input>
       <swim-input appearance="fill" label="Fill Appearance" placeholder="Filled background"></swim-input>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-input appearance="legacy" label="Legacy Appearance"&gt;&lt;/swim-input&gt;
+&lt;swim-input appearance="fill" label="Fill Appearance"&gt;&lt;/swim-input&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -67,6 +79,14 @@
         hint="Maximum 500 characters"
       ></swim-input>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-input
+  type="textarea"
+  label="Comments"
+  placeholder="Enter your comments here..."
+  textarea-rows="4"
+  hint="Maximum 500 characters"
+&gt;&lt;/swim-input&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -81,6 +101,13 @@
       <swim-input label="Readonly" readonly value="Read only value"></swim-input>
       <swim-input label="With Hint" placeholder="Type something" hint="This is a helpful hint text"></swim-input>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-input label="Normal" placeholder="Normal input"&gt;&lt;/swim-input&gt;
+&lt;swim-input label="With Value" value="Has a value"&gt;&lt;/swim-input&gt;
+&lt;swim-input label="Required Field" required&gt;&lt;/swim-input&gt;
+&lt;swim-input label="Disabled" disabled value="Cannot edit"&gt;&lt;/swim-input&gt;
+&lt;swim-input label="Readonly" readonly value="Read only value"&gt;&lt;/swim-input&gt;
+&lt;swim-input label="With Hint" hint="This is a helpful hint text"&gt;&lt;/swim-input&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -123,6 +150,15 @@
         <swim-button type="reset" variant="bordered" style="margin-left: 0.5rem">Reset</swim-button>
       </div>
     </form>
+    <pre class="demo-pre"
+    ><code>&lt;form&gt;
+  &lt;swim-input name="name" label="Name" required minlength="3"
+    hint="Minimum 3 characters"&gt;&lt;/swim-input&gt;
+  &lt;swim-input name="email" type="email" label="Email" required&gt;&lt;/swim-input&gt;
+  &lt;swim-input name="age" type="number" label="Age" required
+    min="18" max="100"&gt;&lt;/swim-input&gt;
+  &lt;swim-button type="submit" variant="primary"&gt;Submit&lt;/swim-button&gt;
+&lt;/form&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -151,6 +187,17 @@
         <span slot="suffix" style="color: var(--grey-300)">.com</span>
       </swim-input>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-input type="password" label="Password"
+  password-toggle-enabled&gt;&lt;/swim-input&gt;
+
+&lt;swim-input type="number" label="Number"
+  value="50" min="0" max="100"&gt;&lt;/swim-input&gt;
+
+&lt;swim-input appearance="fill" label="With Prefix/Suffix"&gt;
+  &lt;span slot="prefix"&gt;https://&lt;/span&gt;
+  &lt;span slot="suffix"&gt;.com&lt;/span&gt;
+&lt;/swim-input&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -158,8 +205,7 @@
 <section class="section">
   <swim-section section-title="Input Usage">
     <p style="color: var(--grey-300); margin-bottom: 1rem">Import and use the input component in your application:</p>
-    <pre
-      style="background: var(--grey-800); padding: 1rem; border-radius: var(--radius-4); overflow-x: auto"
+    <pre class="demo-pre"
     ><code>&lt;script type="module"&gt;
   import '@swimlane/lit-ui/input';
 &lt;/script&gt;

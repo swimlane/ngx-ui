@@ -81,6 +81,13 @@
         </swim-card>
       </div>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-card orientation="horizontal"&gt;
+  &lt;swim-card-header&gt;
+    &lt;swim-card-avatar slot="avatar"&gt;AB&lt;/swim-card-avatar&gt;
+    &lt;span slot="title"&gt;Horizontal Card Title&lt;/span&gt;
+    &lt;span slot="subtitle"&gt;Subtitle or description line&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -126,6 +133,17 @@
         </swim-card-footer>
       </swim-card>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-card orientation="vertical" status="success"&gt;
+  &lt;swim-card-header orientation="vertical" label="CARD"&gt;
+    &lt;swim-card-avatar slot="avatar" status="success"&gt;AB&lt;/swim-card-avatar&gt;
+    &lt;span slot="title"&gt;Card Title&lt;/span&gt;
+    &lt;span slot="subtitle"&gt;Subtitle&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+  &lt;swim-card-body&gt;Body content&lt;/swim-card-body&gt;
+  &lt;swim-card-footer label="ACTIONS"&gt;
+    &lt;swim-icon font-icon="ellipsis-v"&gt;&lt;/swim-icon&gt;
+  &lt;/swim-card-footer&gt;
+&lt;/swim-card&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -154,6 +172,23 @@
         </swim-card-header>
       </swim-card>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-card orientation="horizontal" status="success"&gt;
+  &lt;swim-card-header&gt;
+    &lt;span slot="title"&gt;Success status&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;
+
+&lt;swim-card orientation="horizontal" status="error"&gt;
+  &lt;swim-card-header&gt;
+    &lt;span slot="title"&gt;Error status&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;
+
+&lt;swim-card orientation="horizontal" appearance="flat"&gt;
+  &lt;swim-card-header&gt;
+    &lt;span slot="title"&gt;Flat card&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -170,6 +205,13 @@
       </swim-card>
       <p class="demo-label demo-label--after">Selected: <strong id="cardSelectedValue">true</strong></p>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-card orientation="horizontal" selectable selected&gt;
+  &lt;swim-card-header&gt;
+    &lt;swim-card-avatar slot="avatar" src="/assets/swimlane.svg"&gt;&lt;/swim-card-avatar&gt;
+    &lt;span slot="title"&gt;Card Title&lt;/span&gt;
+    &lt;span slot="subtitle"&gt;Subtitle text&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -193,6 +235,17 @@
         </swim-card-header>
       </swim-card>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-card orientation="horizontal" outline-text="View details"&gt;
+  &lt;swim-card-header&gt;
+    &lt;span slot="title"&gt;Card Title&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;
+
+&lt;swim-card orientation="horizontal" error outline-text="Error"&gt;
+  &lt;swim-card-header&gt;
+    &lt;span slot="title"&gt;Card Title&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -206,6 +259,13 @@
         <span slot="subtitle"><swim-card-placeholder size="small"></swim-card-placeholder></span>
       </swim-card-header>
     </swim-card>
+    <pre class="demo-pre"><code>&lt;swim-card orientation="horizontal"&gt;
+  &lt;swim-card-header class="no-click"&gt;
+    &lt;swim-card-avatar slot="avatar" src="/assets/swimlane.svg"&gt;&lt;/swim-card-avatar&gt;
+    &lt;span slot="title"&gt;&lt;swim-card-placeholder size="large"&gt;&lt;/swim-card-placeholder&gt;&lt;/span&gt;
+    &lt;span slot="subtitle"&gt;&lt;swim-card-placeholder size="small"&gt;&lt;/swim-card-placeholder&gt;&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;</code></pre>
   </swim-section>
 </section>
 

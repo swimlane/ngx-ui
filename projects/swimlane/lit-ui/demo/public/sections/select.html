@@ -13,6 +13,21 @@
     <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
       <swim-select id="requiredSelect" label="Attack Type" required placeholder="Please select..."></swim-select>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;!-- Basic --&gt;
+&lt;swim-select label="Attack Type" placeholder="Select..."&gt;&lt;/swim-select&gt;
+
+&lt;!-- Required --&gt;
+&lt;swim-select label="Attack Type" required placeholder="Please select..."&gt;&lt;/swim-select&gt;
+
+&lt;script&gt;
+  const options = [
+    { name: 'Breach', value: 'breach' },
+    { name: 'DDOS', value: 'ddos' },
+    { name: 'Physical', value: 'physical' }
+  ];
+  document.querySelector('swim-select').options = options;
+&lt;/script&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -43,8 +58,7 @@
         <swim-option name="Yellow" value="yellow"></swim-option>
       </swim-select>
     </div>
-    <pre
-      style="background: var(--grey-800); padding: 1rem; border-radius: var(--radius-4); overflow-x: auto; margin-top: 1rem"
+    <pre class="demo-pre"
     ><code>&lt;swim-select label="Attack Type" required filterable="false"&gt;
   &lt;swim-option name="Breach" value="breach"&gt;&lt;/swim-option&gt;
   &lt;swim-option name="DDOS" value="ddos"&gt;&lt;/swim-option&gt;
@@ -65,6 +79,10 @@
       ></swim-select>
       <swim-select id="fillSelect" appearance="fill" label="Fill Appearance" placeholder="Select..."></swim-select>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-select appearance="legacy" label="Legacy Appearance" placeholder="Select..."&gt;&lt;/swim-select&gt;
+
+&lt;swim-select appearance="fill" label="Fill Appearance" placeholder="Select..."&gt;&lt;/swim-select&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -76,6 +94,12 @@
       <swim-select id="mediumSelect" size="md" label="Medium Select" placeholder="Select..."></swim-select>
       <swim-select id="largeSelect" size="lg" label="Large Select" placeholder="Select..."></swim-select>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-select size="sm" label="Small Select" placeholder="Select..."&gt;&lt;/swim-select&gt;
+
+&lt;swim-select size="md" label="Medium Select" placeholder="Select..."&gt;&lt;/swim-select&gt;
+
+&lt;swim-select size="lg" label="Large Select" placeholder="Select..."&gt;&lt;/swim-select&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -91,6 +115,23 @@
         hint="You can select multiple options"
       ></swim-select>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-select
+  label="Choose multiple colors"
+  placeholder="Select colors..."
+  multiple
+  hint="You can select multiple options"
+&gt;&lt;/swim-select&gt;
+
+&lt;script&gt;
+  const select = document.querySelector('swim-select');
+  select.options = [
+    { name: 'Red', value: 'red' },
+    { name: 'Blue', value: 'blue' },
+    { name: 'Green', value: 'green' },
+    { name: 'Yellow', value: 'yellow' }
+  ];
+&lt;/script&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -107,6 +148,17 @@
       ></swim-select>
       <swim-select id="noFilterSelect" label="No Filter" placeholder="Select..." filterable="false"></swim-select>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;!-- Filterable (default: true) --&gt;
+&lt;swim-select
+  label="Search countries"
+  placeholder="Select a country..."
+  filterable
+  hint="Type to filter options"
+&gt;&lt;/swim-select&gt;
+
+&lt;!-- Filtering disabled --&gt;
+&lt;swim-select label="No Filter" placeholder="Select..." filterable="false"&gt;&lt;/swim-select&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -119,6 +171,18 @@
       <swim-select id="disabledSelect" label="Disabled" placeholder="Select..." disabled></swim-select>
       <swim-select id="noClearSelect" label="No Clear Button" placeholder="Select..." allow-clear="false"></swim-select>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;!-- Normal --&gt;
+&lt;swim-select label="Normal" placeholder="Select..."&gt;&lt;/swim-select&gt;
+
+&lt;!-- With pre-selected value --&gt;
+&lt;swim-select label="With Value" placeholder="Select..." value="option2"&gt;&lt;/swim-select&gt;
+
+&lt;!-- Disabled --&gt;
+&lt;swim-select label="Disabled" placeholder="Select..." disabled&gt;&lt;/swim-select&gt;
+
+&lt;!-- No clear button --&gt;
+&lt;swim-select label="No Clear Button" placeholder="Select..." allow-clear="false"&gt;&lt;/swim-select&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -149,6 +213,37 @@
         <swim-button type="reset" variant="bordered" style="margin-left: 0.5rem">Reset</swim-button>
       </div>
     </form>
+    <pre class="demo-pre"
+    ><code>&lt;form id="selectForm"&gt;
+  &lt;swim-select
+    name="category"
+    label="Category"
+    required
+    placeholder="Choose a category..."
+    hint="This field is required"
+  &gt;&lt;/swim-select&gt;
+
+  &lt;swim-select
+    name="tags"
+    label="Tags"
+    multiple
+    placeholder="Select tags..."
+    hint="Select one or more tags"
+  &gt;&lt;/swim-select&gt;
+
+  &lt;swim-button type="submit" variant="primary"&gt;Submit Form&lt;/swim-button&gt;
+  &lt;swim-button type="reset" variant="bordered"&gt;Reset&lt;/swim-button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+  const form = document.getElementById('selectForm');
+  const categorySelect = form.querySelector('[name="category"]');
+  categorySelect.options = [
+    { name: 'Technology', value: 'tech' },
+    { name: 'Business', value: 'business' },
+    { name: 'Science', value: 'science' }
+  ];
+&lt;/script&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -156,8 +251,7 @@
 <section class="section">
   <swim-section section-title="Select Usage">
     <p style="color: var(--grey-300); margin-bottom: 1rem">Import and use the select component in your application:</p>
-    <pre
-      style="background: var(--grey-800); padding: 1rem; border-radius: var(--radius-4); overflow-x: auto"
+    <pre class="demo-pre"
     ><code>&lt;script type="module"&gt;
   import '@swimlane/lit-ui/select';
 &lt;/script&gt;

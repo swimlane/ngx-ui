@@ -34,6 +34,13 @@
         <swim-button variant="bordered">Bordered Button</swim-button>
       </div>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-button&gt;Default Button&lt;/swim-button&gt;
+&lt;swim-button variant="primary"&gt;Primary Button&lt;/swim-button&gt;
+&lt;swim-button variant="warning"&gt;Warning Button&lt;/swim-button&gt;
+&lt;swim-button variant="danger"&gt;Danger Button&lt;/swim-button&gt;
+&lt;swim-button variant="link"&gt;Link Button&lt;/swim-button&gt;
+&lt;swim-button variant="bordered"&gt;Bordered Button&lt;/swim-button&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -45,6 +52,10 @@
       <swim-button size="medium" variant="primary">Medium</swim-button>
       <swim-button size="large" variant="primary">Large</swim-button>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-button size="small" variant="primary"&gt;Small&lt;/swim-button&gt;
+&lt;swim-button size="medium" variant="primary"&gt;Medium&lt;/swim-button&gt;
+&lt;swim-button size="large" variant="primary"&gt;Large&lt;/swim-button&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -73,6 +84,12 @@
         <swim-button disabled variant="primary">Disabled</swim-button>
       </div>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-button variant="primary"&gt;Active&lt;/swim-button&gt;
+&lt;swim-button state="in-progress" variant="primary"&gt;Loading...&lt;/swim-button&gt;
+&lt;swim-button state="success" variant="primary"&gt;Success&lt;/swim-button&gt;
+&lt;swim-button state="fail" variant="primary"&gt;Failed&lt;/swim-button&gt;
+&lt;swim-button disabled variant="primary"&gt;Disabled&lt;/swim-button&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -87,6 +104,16 @@
       <swim-button id="failBtn" variant="danger">Click for Failure</swim-button>
       <swim-button id="slowBtn" variant="warning">Slow Operation (5s)</swim-button>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-button id="myBtn" variant="primary"&gt;Click Me&lt;/swim-button&gt;
+
+&lt;script&gt;
+  const btn = document.getElementById('myBtn');
+  btn.addEventListener('click', () =&gt; {
+    btn.promise = fetch('/api/data')
+      .then(res =&gt; res.json());
+  });
+&lt;/script&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -111,6 +138,11 @@
         <swim-button disabled variant="primary">Disabled</swim-button>
       </div>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-button size="small" variant="primary"&gt;Small Primary&lt;/swim-button&gt;
+&lt;swim-button size="large" variant="danger"&gt;Large Danger&lt;/swim-button&gt;
+&lt;swim-button size="small" variant="bordered"&gt;Small Bordered&lt;/swim-button&gt;
+&lt;swim-button disabled variant="primary"&gt;Disabled&lt;/swim-button&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -118,8 +150,7 @@
 <section class="section">
   <swim-section section-title="Usage">
     <p style="color: var(--grey-300); margin-bottom: 1rem">Import and use the button component in your application:</p>
-    <pre
-      style="background: var(--grey-800); padding: 1rem; border-radius: var(--radius-4); overflow-x: auto"
+    <pre class="demo-pre"
     ><code>&lt;script type="module"&gt;
   import '@swimlane/lit-ui/button';
 &lt;/script&gt;
