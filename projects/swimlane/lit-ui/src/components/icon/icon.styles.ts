@@ -1,5 +1,5 @@
 import { css } from 'lit';
-import { iconFontGlyphs } from './icon-font-glyphs-platform';
+import { iconFontGlyphs } from './icon-font-glyphs';
 
 /**
  * Icon styles matching @swimlane/ngx-ui design system.

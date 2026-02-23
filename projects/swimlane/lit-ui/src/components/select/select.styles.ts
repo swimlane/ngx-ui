@@ -143,6 +143,7 @@ export const selectStyles = css`
   .select-caret {
     transition: transform 200ms ease-in-out;
     transform: rotate(0deg);
+    margin-right: var(--spacing-8);
   }
 
   :host([open]) .select-caret {
