@@ -953,7 +953,7 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
             <div class="demo-row">
               <swim-button-toggle value="bold">Bold</swim-button-toggle>
               <swim-button-toggle value="italic" checked>Italic</swim-button-toggle>
-              <swim-button-toggle value="underline" disabled>Underline</swim-button-toggle>
+              <swim-button-toggle value="underline">Underline</swim-button-toggle>
             </div>
           </swim-section>
         </section>

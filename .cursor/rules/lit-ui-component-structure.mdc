@@ -1,6 +1,7 @@
 ---
 globs: projects/swimlane/lit-ui/**/*.ts
 alwaysApply: false
+description: When adding or editing components in `@swimlane/lit-ui`, follow this structure and conventions.
 ---
 # lit-ui Component Structure
 

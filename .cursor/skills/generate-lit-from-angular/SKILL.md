@@ -1,3 +1,9 @@
+---
+name: generate-lit-from-angular
+description: Generate Lit Component from Angular Implementation
+disable-model-invocation: true
+---
+
 # Generate Lit Component from Angular Implementation
 
 Generate a Lit web component in `@swimlane/lit-ui` that mirrors the design and behavior of an Angular component from `@swimlane/ngx-ui`. The output must match existing Lit patterns and design system parity.
@@ -46,7 +52,7 @@ Apply these mappings consistently:
 
 ## CSS: Colors and Variables
 
-- **Do not copy hex or raw color values** from the Angular styles. Always use **CSS variables** from the ngx-ui design system. These are defined in `projects/swimlane/lit-ui/src/styles/base.ts` (and tokens) and mirror ngx-ui (e.g. `var(--blue-500)`, `var(--grey-600)`, `var(--red-500)`, `var(--radius-4)`, `var(--font-size-m)`). Refer to ngx-ui’s SCSS variables/tokens to pick the correct variable names.
+- **Do not copy hex or raw color values** from the Angular styles. Always use **CSS variables** from the ngx-ui design system. These are defined in `projects/swimlane/lit-ui/src/styles/base.ts` (and tokens) and mirror ngx-ui (e.g. `var(--blue-500)`, `var(--grey-600)`, `var(--red-500)`, `var(--radius-4)`, `var(--font-size-m)`). Refer to ngx-ui's SCSS variables/tokens to pick the correct variable names.
 - Never hardcode `#...`, `rgb(...)`, or `rgba(...)` for design tokens; use `var(--...)` so theming and consistency are preserved.
 
 ## CSS: BEM Naming
@@ -125,9 +131,9 @@ Do **not** rely on a fixed list of component paths. For the component you are co
 2. **Match to this component**: Find the demo that showcases the corresponding ngx component by either:
    - Matching folder name to the component (e.g. `checkbox` → `checkbox-page`, `button` → `buttons-page`, `button-group` → `button-group-page`, `tooltip` → `tooltip-page`), or
    - Searching for `ngx-<name>` (e.g. `ngx-checkbox`, `ngx-button`) in `*.component.html` files under `src/app/` and opening the file that contains it.
-3. Use that Angular demo page’s **template file** (e.g. `*-page.component.html`) as the single source for section structure, titles, and example content.
+3. Use that Angular demo page's **template file** (e.g. `*-page.component.html`) as the single source for section structure, titles, and example content.
 
-This way every component’s demo is found the same way and the command stays valid as new Angular demo pages are added.
+This way every component's demo is found the same way and the command stays valid as new Angular demo pages are added.
 
 ## Steps
 
@@ -140,7 +146,7 @@ This way every component’s demo is found the same way and the command stays va
 7. Add a `declare global { interface HTMLElementTagNameMap { 'swim-<name>': ComponentClass; } }` block for TypeScript.
 8. **Add a demo for the new component** so it is **very close to the Angular demo** (see **Demo design: match Angular demos**):
    - **Avoid any inline styles**, even in demo templates. Use demo CSS classes from `index.html` (e.g. `.section-divider`, `.page-title`, `.section-desc`, `.demo-row--column`, `.demo-label--after`, `.demo-pre`).
-   - **Collapsible panels (swim-section)**: Use **`<swim-section section-title="...">`** with the **same titles** as the Angular demo’s `<ngx-section sectionTitle="...">` blocks. Wrap each `<section class="section">` content in `<swim-section section-title="...">`. Use `section-collapsible="false"` only when the Angular demo does. Ensure section component is imported in `demo/src/main.ts` if used.
+   - **Collapsible panels (swim-section)**: Use **`<swim-section section-title="...">`** with the **same titles** as the Angular demo's `<ngx-section sectionTitle="...">` blocks. Wrap each `<section class="section">` content in `<swim-section section-title="...">`. Use `section-collapsible="false"` only when the Angular demo does. Ensure section component is imported in `demo/src/main.ts` if used.
    - In **demo**: Add the new component block in `projects/swimlane/lit-ui/demo/public/sections/<name>.html`. Start the file with `<hr class="section-divider">` then `<h1 id="component-id" class="page-title">...</h1>` and `<p class="subtitle">...</p>` so the nav link (e.g. `href="#checkbox"`) works. Add `<name>` to the SECTION_FILES array in `demo/src/main.ts`. Add a nav link in `demo/index.html` (e.g. `<a class="sub-nav-item" href="#component-id">Label</a>` under the appropriate group). Structure of the section file:
      - Divider, then main heading (with id for nav) and subtitle.
      - One or more `<section class="section">` with `<swim-section section-title="...">` matching Angular section titles, showing: basic usage, all variants/sizes, states (e.g. disabled), interactive example, then **Usage** with `<pre class="demo-pre"><code>...</code></pre>` (import + minimal HTML).
@@ -153,11 +159,11 @@ Produce a complete, usable Lit component that mirrors the Angular implementation
 
 After generating the component and demo:
 
-1. **Request or use browser access** to open the lit-ui demo app (e.g. the URL where the demo runs, such as the dev server for `projects/swimlane/lit-ui/demo`). If you have a way to open or inspect a browser tab (e.g. Cursor’s browser tools or user opening the page), use it.
-2. **Check every functionality** on the new component’s demo section:
+1. **Request or use browser access** to open the lit-ui demo app (e.g. the URL where the demo runs, such as the dev server for `projects/swimlane/lit-ui/demo`). If you have a way to open or inspect a browser tab (e.g. Cursor's browser tools or user opening the page), use it.
+2. **Check every functionality** on the new component's demo section:
    - Each variant/size/state renders correctly.
    - All interactive examples work (clicks, form changes, keyboard, toggles, selects, etc.).
    - Any demo logic in `demo/src/main.ts` (e.g. buttons that set `promise`, select options, event handlers) is wired correctly and runs without errors in the console.
 3. **Fix any issues** found: correct selectors (e.g. `getElementById`), event names, property names, or component API usage so the demo behaves as in the Angular version.
-4. **If browser access is not available or not granted**: Tell the user explicitly: *"Browser access was not provided, so I could not validate the demo in the browser. Please open the lit-ui demo page, go to the [Component Name] section, and verify that every example and interaction works. If something is broken, share what you see and I’ll fix it. You can also grant browser access so I can validate and fix issues directly."*
+4. **If browser access is not available or not granted**: Tell the user explicitly: *"Browser access was not provided, so I could not validate the demo in the browser. Please open the lit-ui demo page, go to the [Component Name] section, and verify that every example and interaction works. If something is broken, share what you see and I'll fix it. You can also grant browser access so I can validate and fix issues directly."*
 5. Do not mark the task complete until the demo has been validated (by you in the browser or by the user) and any reported issues are fixed.
