@@ -836,6 +836,126 @@
         </ngx-tab>
       </ngx-tabs>
     </ngx-section>
+    <ngx-section class="shadow" sectionTitle="Rows with Custom Row Height">
+      <ngx-list [dataSource]="data" [rowHeight]="100">
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Attack Type</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Date of Attack</ng-template>
+        </ngx-list-header>
+        <ngx-list-header>
+          <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+        </ngx-list-header>
+
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+        </ngx-list-column>
+        <ngx-list-column>
+          <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+        </ngx-list-column>
+
+        <ngx-list-row></ngx-list-row>
+      </ngx-list>
+
+      <br />
+      <br />
+
+      <ngx-tabs>
+        <ngx-tab label="Markup">
+          <!-- prettier-ignore -->
+          <app-prism ngNonBindable>
+  <![CDATA[
+  <ngx-list [dataSource]="data">
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Attack Type</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Date of Attack</ng-template>
+    </ngx-list-header>
+    <ngx-list-header>
+      <ng-template ngx-list-header-template>Origin of Attack</ng-template>
+    </ngx-list-header>
+
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.type }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.date }}</ng-template>
+    </ngx-list-column>
+    <ngx-list-column>
+      <ng-template ngx-list-column-template let-row="row">{{ row.origin }}</ng-template>
+    </ngx-list-column>
+
+    <ngx-list-row></ngx-list-row>
+  </ngx-list>
+  ]]>
+          </app-prism>
+        </ngx-tab>
+        <ngx-tab label="TypeScript">
+          <!-- prettier-ignore -->
+          <app-prism language="js">
+<![CDATA[
+  @Component({
+    selector: 'app',
+    templateUrl: './app.template.html'
+  })
+  export class AppComponent {
+    data: Array<Record<string, unknown>> = [
+      {
+        type: 'Malware',
+        date: '1/1/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/5/2025',
+        origin: 'Russia'
+      },
+      {
+        type: 'XSS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'DDOS',
+        date: '1/6/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Ransomware',
+        date: '1/8/2025',
+        origin: 'China'
+      },
+      {
+        type: 'DDOS',
+        date: '1/9/2025',
+        origin: 'China'
+      },
+      {
+        type: 'SQL injection',
+        date: '1/10/2025',
+        origin: 'North Korea'
+      },
+      {
+        type: 'Malware',
+        date: '1/11/2025',
+        origin: 'Russia'
+      }
+    ];
+  }]]>
+          </app-prism>
+        </ngx-tab>
+      </ngx-tabs>
+    </ngx-section>
   </ngx-tab>
   <ngx-tab label="API">
     <h3>Table of Contents</h3>
@@ -884,6 +1004,13 @@
             The height of the containing block for the list's rows. If the content exceeds this height, it will become
             scrollable.
           </td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code>rowHeight: number</code>
+          </th>
+          <td>The height of each row in the list must be static to support virtual scrolling. Default is 40px.</td>
         </tr>
         <tr>
           <th>

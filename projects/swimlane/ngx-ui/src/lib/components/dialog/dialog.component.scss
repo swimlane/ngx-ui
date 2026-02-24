@@ -38,7 +38,7 @@ $dialog-body-color: var(--grey-200);
     &--large {
       height: calc(100vh - 120px);
       max-height: calc(100vh - 120px);
-      border-radius: var(--radius-64);
+      border-radius: var(--radius-16);
     }
 
     &--medium {
@@ -46,7 +46,7 @@ $dialog-body-color: var(--grey-200);
       min-height: 340px;
       max-height: 75vh;
       max-width: 900px;
-      border-radius: var(--radius-64);
+      border-radius: var(--radius-16);
     }
 
     .close {
@@ -73,15 +73,15 @@ $dialog-body-color: var(--grey-200);
 
     &--medium {
       .ngx-dialog-header {
-        border-top-left-radius: var(--radius-64);
-        border-top-right-radius: var(--radius-64);
+        border-top-left-radius: var(--radius-16);
+        border-top-right-radius: var(--radius-16);
       }
     }
 
     &--large {
       .ngx-dialog-header {
-        border-top-left-radius: var(--radius-64);
-        border-top-right-radius: var(--radius-64);
+        border-top-left-radius: var(--radius-16);
+        border-top-right-radius: var(--radius-16);
       }
     }
 

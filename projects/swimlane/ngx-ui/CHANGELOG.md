@@ -2,10 +2,52 @@
 
 ## HEAD (unreleased)
 
+## 51.2.1 (2026-01-09)
+
+- Fix: Preserve scroll position on column tab change for `ngx-columns` component
+
+## 51.2.0 (2025-12-12)
+
+- Enhancement (`icons`): Added `maximize` and `minimize` icons
+
+## 51.1.0 (2025-12-11)
+
+- Enhancement (`icons`): Added `ai-agent` icon
+
+## 51.0.0 (2025-12-2)
+
+This release contains bugfixes and improvements, while introducing a new look for several components.
+
+- Feature: New look and feel for several components
+- Feature: CSS variable for input style
+- Feature (`ngx-select`): New selection pattern
+- Feature (`ngx-select`): Multiselect with checkboxes
+- Feature: Updated several components to reference CSS variables instead of SASS
+- Feature: New spacing CSS variables
+- Feature: (`ngx-list`): rowHeight is now configurable as Input.
+- Feature (`ngx-select`): `withMargin` input when set to false will display ngx-select marginless.
+- Feature (`ngx-select`, `ngx-input`): `withHint` input when set to false will not display a block element for the hint.
+- Fix (`ngx-dialog`): Default border radius for dialog that could interfere with custom template.
+- Fix (`ngx-checkbox`): Removed duplicate output emission
+- Fix (`ngx-date-range-picker`): Preset values now retain their relative expressions when cancel is clicked, instead of being converted to timestamps
+- Fix (`ngx-date-range-picker`): Fix highlight the date for given `selectedRange` values.
+- Fix (`ngx-select`): Fix filtering of numeric option values.
+- Fix: Design related issues in several components.
+- Fix: Button Group appeared misaligned when using a dropdown toggle
+- Fix: base font CSS variables should be rem
+
+## 51.0.0-alpha.4 (2025-11-13)
+
+- Feature: New spacing CSS variables
+
+## 51.0.0-alpha.3 (2025-11-10)
+
+- Fix (`ngx-dialog`): Default border radius for dialog that could interfere with custom template.
+
 ## 51.0.0-alpha.2 (2025-10-31)
 
-- Feat (`ngx-select`): `withMargin` input when set to false will display ngx-select marginless.
-- Feat (`ngx-select`, `ngx-input`): `withHint` input when set to false will not display a block element for the hint.
+- Feature (`ngx-select`): `withMargin` input when set to false will display ngx-select marginless.
+- Feature (`ngx-select`, `ngx-input`): `withHint` input when set to false will not display a block element for the hint.
 - Fix: Design related issues in several components.
 
 ## 51.0.0-alpha.1 (2025-10-21)
