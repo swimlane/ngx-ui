@@ -274,18 +274,53 @@ export function formatDate(date: Date, format: string, timezone?: string): strin
   // Expand locale presets
   let expanded = expandLocaleTokens(format);
 
-  // Extract escaped sequences [...]
+  // Extract escaped sequences [...] without regex to avoid ReDoS on uncontrolled format strings
   const escaped: string[] = [];
-  expanded = expanded.replace(/\[([^\]]*)\]/g, (_, content: string) => {
-    escaped.push(content);
-    return `\x00${escaped.length - 1}\x00`;
-  });
+  let pos = 0;
+  let expandedWithoutEscaped = '';
+  while (pos < expanded.length) {
+    const open = expanded.indexOf('[', pos);
+    if (open === -1) {
+      expandedWithoutEscaped += expanded.slice(pos);
+      break;
+    }
+    expandedWithoutEscaped += expanded.slice(pos, open);
+    const close = expanded.indexOf(']', open + 1);
+    if (close === -1) {
+      expandedWithoutEscaped += expanded.slice(open);
+      break;
+    }
+    escaped.push(expanded.slice(open + 1, close));
+    expandedWithoutEscaped += `\x00${escaped.length - 1}\x00`;
+    pos = close + 1;
+  }
+  expanded = expandedWithoutEscaped;
 
   const parts = getDateParts(date, tz);
   const result = expanded.replace(TOKEN_RE, token => formatToken(token, parts, date, tz));
 
-  // Restore escaped sequences
-  return result.replace(/\x00(\d+)\x00/g, (_, idx) => escaped[parseInt(idx, 10)]);
+  // Restore escaped sequences without regex to avoid ReDoS
+  let out = '';
+  let i = 0;
+  while (i < result.length) {
+    const placeholderStart = result.indexOf('\x00', i);
+    if (placeholderStart === -1) {
+      out += result.slice(i);
+      break;
+    }
+    out += result.slice(i, placeholderStart);
+    let j = placeholderStart + 1;
+    while (j < result.length && result[j] >= '0' && result[j] <= '9') j++;
+    if (result[j] === '\x00' && j > placeholderStart + 1) {
+      const idx = parseInt(result.slice(placeholderStart + 1, j), 10);
+      out += escaped[idx] ?? '';
+      i = j + 1;
+    } else {
+      out += result.slice(placeholderStart, j || placeholderStart + 1);
+      i = j || placeholderStart + 1;
+    }
+  }
+  return out;
 }
 
 /**
