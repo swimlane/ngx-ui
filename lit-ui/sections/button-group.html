@@ -43,6 +43,20 @@
         </swim-button-group>
       </div>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;!-- Default (horizontal) --&gt;
+&lt;swim-button-group&gt;
+  &lt;swim-button type="button"&gt;One&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Two&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Three&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;
+
+&lt;!-- Primary (vertical) --&gt;
+&lt;swim-button-group button-group-style="primary" orientation="vertical"&gt;
+  &lt;swim-button type="button"&gt;One&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Two&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Three&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -85,6 +99,18 @@
         </swim-button-group>
       </div>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;!-- Contained (default) --&gt;
+&lt;swim-button-group variant="contained"&gt;
+  &lt;swim-button type="button"&gt;One&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Two&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;
+
+&lt;!-- Text variant --&gt;
+&lt;swim-button-group variant="text"&gt;
+  &lt;swim-button type="button" variant="link"&gt;One&lt;/swim-button&gt;
+  &lt;swim-button type="button" variant="link"&gt;Two&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -116,6 +142,18 @@
         </swim-button-group>
       </div>
     </div>
+    <pre class="demo-pre"
+    ><code>&lt;!-- Horizontal --&gt;
+&lt;swim-button-group&gt;
+  &lt;swim-button type="button"&gt;Default&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Default&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;
+
+&lt;!-- Vertical primary --&gt;
+&lt;swim-button-group button-group-style="primary" orientation="vertical"&gt;
+  &lt;swim-button type="button"&gt;Primary&lt;/swim-button&gt;
+  &lt;swim-button type="button"&gt;Primary&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -127,6 +165,12 @@
       <swim-button type="button" variant="link">Link 3</swim-button>
       <swim-button type="button" variant="link">Link 4</swim-button>
     </swim-button-group>
+    <pre class="demo-pre"
+    ><code>&lt;swim-button-group variant="text"&gt;
+  &lt;swim-button type="button" variant="link"&gt;Link 1&lt;/swim-button&gt;
+  &lt;swim-button type="button" variant="link"&gt;Link 2&lt;/swim-button&gt;
+  &lt;swim-button type="button" variant="link"&gt;Link 3&lt;/swim-button&gt;
+&lt;/swim-button-group&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -135,8 +179,7 @@
     <p style="color: var(--grey-300); margin-bottom: 1rem">
       Import and use the button group component in your application:
     </p>
-    <pre
-      style="background: var(--grey-800); padding: 1rem; border-radius: var(--radius-4); overflow-x: auto"
+    <pre class="demo-pre"
     ><code>&lt;script type="module"&gt;
   import '@swimlane/lit-ui/button-group';
   import '@swimlane/lit-ui/button';
@@ -146,5 +189,25 @@
   &lt;swim-button type="button"&gt;Save&lt;/swim-button&gt;
   &lt;swim-button type="button"&gt;Cancel&lt;/swim-button&gt;
 &lt;/swim-button-group&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-button-group&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>orientation</code></td><td><code>'horizontal' | 'vertical'</code></td><td><code>'horizontal'</code></td><td>Layout direction of the group</td></tr>
+            <tr><td><code>variant</code></td><td><code>'contained' | 'text'</code></td><td><code>'contained'</code></td><td>Button group visual variant</td></tr>
+            <tr><td><code>button-group-style</code></td><td><code>'default' | 'primary'</code></td><td><code>'default'</code></td><td>Color style applied to the group</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </swim-section>
 </section>

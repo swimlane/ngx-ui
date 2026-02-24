@@ -53,6 +53,11 @@
         </swim-split-area>
       </swim-split>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-split direction="row"&gt;
+  &lt;swim-split-area&gt;Left panel&lt;/swim-split-area&gt;
+  &lt;swim-split-handle&gt;&lt;/swim-split-handle&gt;
+  &lt;swim-split-area area-basis="0 1 50%"&gt;Right panel (50%, cannot grow)&lt;/swim-split-area&gt;
+&lt;/swim-split&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -72,6 +77,11 @@
         </swim-split-area>
       </swim-split>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-split direction="column"&gt;
+  &lt;swim-split-area&gt;Top&lt;/swim-split-area&gt;
+  &lt;swim-split-handle&gt;&lt;/swim-split-handle&gt;
+  &lt;swim-split-area area-basis="1 1 50%"&gt;Bottom&lt;/swim-split-area&gt;
+&lt;/swim-split&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -95,6 +105,13 @@
         </swim-split-area>
       </swim-split>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-split direction="row"&gt;
+  &lt;swim-split-area&gt;Left&lt;/swim-split-area&gt;
+  &lt;swim-split-handle&gt;&lt;/swim-split-handle&gt;
+  &lt;swim-split-area area-basis="400px" min-basis="200px" max-basis="600px"&gt;
+    Right (400px, min 200px, max 600px)
+  &lt;/swim-split-area&gt;
+&lt;/swim-split&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -132,6 +149,19 @@
         </swim-split-area>
       </swim-split>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-split direction="row"&gt;
+  &lt;swim-split-area&gt;
+    &lt;swim-split direction="column"&gt;
+      &lt;swim-split-area area-basis="1 1 50%"&gt;Top&lt;/swim-split-area&gt;
+      &lt;swim-split-handle handle-basis="5px"&gt;&lt;/swim-split-handle&gt;
+      &lt;swim-split-area area-basis="1 0 50%"&gt;Bottom&lt;/swim-split-area&gt;
+    &lt;/swim-split&gt;
+  &lt;/swim-split-area&gt;
+  &lt;swim-split-handle&gt;&lt;/swim-split-handle&gt;
+  &lt;swim-split-area area-basis="400px" min-basis="200px" max-basis="600px"&gt;
+    Sidebar
+  &lt;/swim-split-area&gt;
+&lt;/swim-split&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -153,5 +183,33 @@
     &lt;swim-split-area area-basis="1 1 50%"&gt;Right content&lt;/swim-split-area&gt;
   &lt;/swim-split&gt;
 &lt;/div&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-split&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>direction</code></td><td><code>'row' | 'column'</code></td><td><code>'row'</code></td><td>Split direction (row = horizontal, column = vertical)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:1.25rem"><span class="api-tag-name">&lt;swim-split-area / swim-split-handle&gt;</span></div>
+      <h4 class="api-heading">Child Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>area-basis</code></td><td><code>string</code></td><td><code>'1 1 1e-9px'</code></td><td>Flex shorthand (grow shrink basis) for each area</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </swim-section>
 </section>

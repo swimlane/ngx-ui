@@ -60,7 +60,7 @@
         --white: rgb(255, 255, 255);
         --black: rgb(0, 0, 0);
 
-        /* Typography – align with ngx-ui global.scss and typography/font.scss */
+        /* Typography – align with lit-ui global and typography/font */
         --font-family: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
         --font-size-base: 16px;
         --font-size-xs: 0.75rem;
@@ -475,6 +475,7 @@
         padding: 1rem;
         border-radius: var(--radius-4);
         overflow-x: auto;
+        margin-top: 1rem;
       }
 
       /* Scrollbar utility: from styles/scrollbars.ts, injected by main.ts; fallback below so demo works before/without JS */
@@ -585,9 +586,78 @@
         margin-top: 1rem;
         flex-wrap: wrap;
       }
+
+      /* API Reference tables */
+      .api-ref {
+        margin-top: 0.5rem;
+      }
+
+      .api-tag-name {
+        display: inline-block;
+        background: var(--grey-800);
+        padding: 0.25rem 0.6rem;
+        border-radius: var(--radius-4);
+        color: var(--blue-300);
+        font-family: 'Monaco', 'Courier New', monospace;
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .api-heading {
+        font-size: 0.75rem;
+        font-weight: var(--font-weight-bold);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--grey-100);
+        margin: 1.25rem 0 0.5rem;
+      }
+
+      .api-table-wrap {
+        overflow-x: auto;
+        margin-bottom: 0.5rem;
+      }
+
+      .api-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.8rem;
+        line-height: 1.5;
+      }
+
+      .api-table th {
+        text-align: left;
+        padding: 0.5rem 0.75rem;
+        background: var(--grey-800);
+        color: var(--grey-100);
+        font-weight: var(--font-weight-bold);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        border-bottom: 1px solid var(--grey-700);
+        white-space: nowrap;
+      }
+
+      .api-table td {
+        padding: 0.4rem 0.75rem;
+        border-bottom: 1px solid var(--grey-800);
+        color: var(--grey-300);
+        vertical-align: top;
+      }
+
+      .api-table td code {
+        background: var(--grey-800);
+        padding: 0.1rem 0.3rem;
+        border-radius: 3px;
+        color: var(--blue-300);
+        font-size: 0.75rem;
+      }
+
+      .api-table tr:hover td {
+        background: rgba(255, 255, 255, 0.02);
+      }
     </style>
-    <script type="module" crossorigin src="/lit-ui/assets/index-vtNC0t5N.js"></script>
-    <link rel="stylesheet" crossorigin href="/lit-ui/assets/index-7heVtJ-w.css">
+    <script type="module" crossorigin src="/ngx-ui/lit-ui/assets/index-Bf4UCSKc.js"></script>
+    <link rel="stylesheet" crossorigin href="/ngx-ui/lit-ui/assets/index-CueTWIM0.css">
   </head>
   <body class="swim-scroll">
     <div class="app">
@@ -605,13 +675,11 @@
         </div>
         <ul class="nav-items">
           <li class="nav-item-container">
-            <span class="nav-item nav-item-label">Style</span>
             <ul class="sub-nav">
               <li><a class="sub-nav-item" href="#icons">Icons</a></li>
             </ul>
           </li>
           <li class="nav-item-container">
-            <span class="nav-item nav-item-label">Forms</span>
             <ul class="sub-nav">
               <li><a class="sub-nav-item" href="#buttons">Buttons</a></li>
               <li><a class="sub-nav-item" href="#input">Inputs</a></li>
@@ -624,7 +692,6 @@
             </ul>
           </li>
           <li class="nav-item-container">
-            <span class="nav-item nav-item-label">Elements</span>
             <ul class="sub-nav">
               <li><a class="sub-nav-item" href="#tabs">Tabs</a></li>
               <li><a class="sub-nav-item" href="#button-group">Button Group</a></li>

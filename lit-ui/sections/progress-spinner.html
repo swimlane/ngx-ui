@@ -81,7 +81,7 @@
 
 <h1 id="progress-spinner" class="page-title">Progress Spinner</h1>
 <p class="subtitle">
-  Circular progress indicator matching ngx-progress-spinner: determinate or indeterminate mode, optional center icons
+  Circular progress indicator matching swim-progress-spinner (lit-ui): determinate or indeterminate mode, optional center icons
   (upload, success, failure), and optional labels.
 </p>
 
@@ -201,6 +201,11 @@
         </div>
       </div>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-progress-spinner mode="indeterminate"&gt;&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner mode="determinate" value="50" total="100"&gt;&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner mode="determinate" value="100" total="100"&gt;&lt;/swim-progress-spinner&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -245,6 +250,20 @@
         </div>
       </div>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-progress-spinner
+  mode="determinate" value="30" total="100"
+  appearance="icon"
+&gt;&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner
+  mode="determinate" value="100" total="100"
+  appearance="icon"
+&gt;&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner
+  mode="determinate" value="100" total="100"
+  appearance="icon" is-failure
+&gt;&lt;/swim-progress-spinner&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -287,6 +306,19 @@
         </div>
       </div>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-progress-spinner
+  mode="determinate" value="40" total="100"
+  appearance="icon" in-progress-icon-name="cloud-upload"
+&gt;&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner
+  mode="determinate" value="100" total="100"
+  appearance="icon" complete-icon-name="check"
+&gt;&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner mode="determinate" value="60" total="100" appearance="icon"&gt;
+  &lt;swim-icon slot="in-progress-icon" font-icon="cloud-upload"&gt;&lt;/swim-icon&gt;
+&lt;/swim-progress-spinner&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -319,6 +351,14 @@
         </div>
       </div>
     </div>
+    <pre class="demo-pre"><code>&lt;swim-progress-spinner mode="indeterminate" diameter="50" stroke-width="2"&gt;
+&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner mode="indeterminate"&gt;
+&lt;/swim-progress-spinner&gt;
+
+&lt;swim-progress-spinner mode="indeterminate" diameter="150" stroke-width="4"&gt;
+&lt;/swim-progress-spinner&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -361,5 +401,30 @@
 &lt;swim-progress-spinner mode="determinate" value="60" total="100" appearance="icon"&gt;
   &lt;swim-icon slot="in-progress-icon" font-icon="cloud-upload"&gt;&lt;/swim-icon&gt;
 &lt;/swim-progress-spinner&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-progress-spinner&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>mode</code></td><td><code>'indeterminate' | 'determinate'</code></td><td><code>'indeterminate'</code></td><td>Spinner animation mode</td></tr>
+            <tr><td><code>value</code></td><td><code>number</code></td><td><code>0</code></td><td>Current progress value (determinate mode)</td></tr>
+            <tr><td><code>total</code></td><td><code>number</code></td><td><code>100</code></td><td>Maximum progress value</td></tr>
+            <tr><td><code>diameter</code></td><td><code>number</code></td><td><code>100</code></td><td>Spinner diameter in pixels</td></tr>
+            <tr><td><code>stroke-width</code></td><td><code>number</code></td><td><code>3</code></td><td>Thickness of the progress arc</td></tr>
+            <tr><td><code>color</code></td><td><code>string</code></td><td><code>var(--blue-500)</code></td><td>Progress arc color</td></tr>
+            <tr><td><code>appearance</code></td><td><code>'default' | 'icon'</code></td><td><code>'default'</code></td><td>Show center icon when "icon"</td></tr>
+            <tr><td><code>is-failure</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Shows failure icon (icon appearance)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </swim-section>
 </section>
