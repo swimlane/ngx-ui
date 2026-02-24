@@ -1,0 +1,429 @@
+<style>
+  .demo-row--cards {
+    gap: 2rem;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .demo-label--spaced {
+    margin-top: 1rem;
+  }
+
+  .card-demo-stats {
+    display: flex;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: var(--spacing-20);
+  }
+
+  .card-demo-stat-item {
+    flex: 1;
+    background: var(--grey-750);
+    border-radius: var(--radius-4);
+    padding: 12px;
+    text-align: center;
+  }
+
+  .card-demo-stat-value {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    color: var(--grey-050);
+  }
+
+  .card-demo-stat-label {
+    font-size: var(--font-size-xxs);
+    color: var(--grey-350);
+    text-transform: uppercase;
+  }
+
+  .card-demo-meta {
+    font-size: var(--font-size-s);
+    color: var(--grey-350);
+  }
+
+  .card-demo-actions {
+    display: flex;
+    gap: var(--spacing-16);
+    align-items: center;
+  }
+
+  .card-demo-icon {
+    cursor: pointer;
+    font-size: 1.2em;
+    color: var(--grey-300);
+  }
+
+  .card-demo--mt {
+    margin-top: 1rem;
+  }
+</style>
+
+<h1 id="card" class="page-title">Card</h1>
+<p class="subtitle">
+  Card container with horizontal or vertical layout, optional status, selection, and outline. Use
+  <code>swim-card</code> with <code>swim-card-header</code>, <code>swim-card-footer</code>,
+  <code>swim-card-avatar</code>, and <code>swim-card-placeholder</code>.
+</p>
+
+<section class="section">
+  <swim-section section-title="Horizontal card">
+    <p class="section-desc">Default orientation with header (avatar, title, subtitle) and accent bar.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-card-container">
+        <swim-card orientation="horizontal">
+          <swim-card-header>
+            <swim-card-avatar slot="avatar">AB</swim-card-avatar>
+            <span slot="title">Horizontal Card Title</span>
+            <span slot="subtitle">Subtitle or description line</span>
+          </swim-card-header>
+        </swim-card>
+      </div>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-card orientation="horizontal"&gt;
+  &lt;swim-card-header&gt;
+    &lt;swim-card-avatar slot="avatar"&gt;AB&lt;/swim-card-avatar&gt;
+    &lt;span slot="title"&gt;Horizontal Card Title&lt;/span&gt;
+    &lt;span slot="subtitle"&gt;Subtitle or description line&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Vertical card">
+    <p class="section-desc">Vertical layout with header label and footer.</p>
+    <div class="demo-row demo-row--cards">
+      <swim-card orientation="vertical" status="success">
+        <swim-card-header orientation="vertical" label="CARD">
+          <swim-card-avatar slot="avatar" status="success">AB</swim-card-avatar>
+          <span slot="title">Card Title</span>
+          <span slot="subtitle">Subtitle</span>
+        </swim-card-header>
+        <swim-card-body>
+          <div class="card-demo-stats">
+            <div class="card-demo-stat-item">
+              <div class="card-demo-stat-value">&#x2197; 148</div>
+              <div class="card-demo-stat-label">Runs / 24hrs</div>
+            </div>
+            <div class="card-demo-stat-item">
+              <div class="card-demo-stat-value">&#x2197; --:--</div>
+              <div class="card-demo-stat-label">Avg Runtime / 24hrs</div>
+            </div>
+          </div>
+          <div class="card-demo-meta">Created 80 days ago &bull; Edited 80 days ago</div>
+        </swim-card-body>
+        <swim-card-footer label="ACTIONS">
+          <div class="card-demo-actions">
+            <swim-icon class="card-demo-icon" font-icon="integrations"></swim-icon>
+            <swim-icon class="card-demo-icon" font-icon="ellipsis-v"></swim-icon>
+          </div>
+        </swim-card-footer>
+      </swim-card>
+
+      <swim-card orientation="vertical">
+        <swim-card-header orientation="vertical" label="Header label">
+          <swim-card-avatar slot="avatar">SW</swim-card-avatar>
+          <span slot="title">Vertical Card</span>
+          <span slot="subtitle">With label and footer</span>
+        </swim-card-header>
+        <swim-card-footer label="Footer label">
+          <swim-button variant="primary" size="small">Action</swim-button>
+        </swim-card-footer>
+      </swim-card>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-card orientation="vertical" status="success"&gt;
+  &lt;swim-card-header orientation="vertical" label="CARD"&gt;
+    &lt;swim-card-avatar slot="avatar" status="success"&gt;AB&lt;/swim-card-avatar&gt;
+    &lt;span slot="title"&gt;Card Title&lt;/span&gt;
+    &lt;span slot="subtitle"&gt;Subtitle&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+  &lt;swim-card-body&gt;Body content&lt;/swim-card-body&gt;
+  &lt;swim-card-footer label="ACTIONS"&gt;
+    &lt;swim-icon font-icon="ellipsis-v"&gt;&lt;/swim-icon&gt;
+  &lt;/swim-card-footer&gt;
+&lt;/swim-card&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Status and appearance">
+    <p class="section-desc">Status dot (success/error) and flat appearance.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-label">Status: success</div>
+      <swim-card orientation="horizontal" status="success">
+        <swim-card-header>
+          <span slot="title">Success status</span>
+        </swim-card-header>
+      </swim-card>
+
+      <div class="demo-label demo-label--spaced">Status: error</div>
+      <swim-card orientation="horizontal" status="error">
+        <swim-card-header>
+          <span slot="title">Error status</span>
+        </swim-card-header>
+      </swim-card>
+
+      <div class="demo-label demo-label--spaced">Flat appearance (no background)</div>
+      <swim-card orientation="horizontal" appearance="flat">
+        <swim-card-header>
+          <span slot="title">Flat card</span>
+        </swim-card-header>
+      </swim-card>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-card orientation="horizontal" status="success"&gt;
+  &lt;swim-card-header&gt;
+    &lt;span slot="title"&gt;Success status&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;
+
+&lt;swim-card orientation="horizontal" status="error"&gt;
+  &lt;swim-card-header&gt;
+    &lt;span slot="title"&gt;Error status&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;
+
+&lt;swim-card orientation="horizontal" appearance="flat"&gt;
+  &lt;swim-card-header&gt;
+    &lt;span slot="title"&gt;Flat card&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Selectable and selected">
+    <p class="section-desc">Card with checkbox; listen to <code>select</code> event for selected state.</p>
+    <div class="demo-row demo-row--column">
+      <swim-card id="selectableCardDemo" orientation="horizontal" selectable selected>
+        <swim-card-header>
+          <swim-card-avatar slot="avatar" src="/assets/swimlane.svg"></swim-card-avatar>
+          <span slot="title">Card Title</span>
+          <span slot="subtitle">card_subtitle · Created 80 days ago · Edited 80 days ago</span>
+        </swim-card-header>
+      </swim-card>
+      <p class="demo-label demo-label--after">Selected: <strong id="cardSelectedValue">true</strong></p>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-card orientation="horizontal" selectable selected&gt;
+  &lt;swim-card-header&gt;
+    &lt;swim-card-avatar slot="avatar" src="/assets/swimlane.svg"&gt;&lt;/swim-card-avatar&gt;
+    &lt;span slot="title"&gt;Card Title&lt;/span&gt;
+    &lt;span slot="subtitle"&gt;Subtitle text&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Outline text and error">
+    <p class="section-desc">Outline with clickable label; error state.</p>
+    <div class="demo-row demo-row--column">
+      <swim-card id="outlineCardDemo" orientation="horizontal" outline-text="View details">
+        <swim-card-header>
+          <swim-card-avatar slot="avatar" src="/assets/swimlane.svg"></swim-card-avatar>
+          <span slot="title">Card Title</span>
+          <span slot="subtitle">card_subtitle · Created 80 days ago · Edited 80 days ago</span>
+        </swim-card-header>
+      </swim-card>
+
+      <swim-card class="card-demo--mt" orientation="horizontal" error outline-text="Error">
+        <swim-card-header>
+          <swim-card-avatar slot="avatar" src="/assets/swimlane.svg"></swim-card-avatar>
+          <span slot="title">Card Title</span>
+          <span slot="subtitle">card_subtitle · Created 80 days ago · Edited 80 days ago</span>
+        </swim-card-header>
+      </swim-card>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-card orientation="horizontal" outline-text="View details"&gt;
+  &lt;swim-card-header&gt;
+    &lt;span slot="title"&gt;Card Title&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;
+
+&lt;swim-card orientation="horizontal" error outline-text="Error"&gt;
+  &lt;swim-card-header&gt;
+    &lt;span slot="title"&gt;Card Title&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Placeholders">
+    <p class="section-desc">Skeleton placeholders inside a card (loading state).</p>
+    <swim-card orientation="horizontal">
+      <swim-card-header class="no-click">
+        <swim-card-avatar slot="avatar" src="/assets/swimlane.svg"></swim-card-avatar>
+        <span slot="title"><swim-card-placeholder size="large"></swim-card-placeholder></span>
+        <span slot="subtitle"><swim-card-placeholder size="small"></swim-card-placeholder></span>
+      </swim-card-header>
+    </swim-card>
+    <pre class="demo-pre"><code>&lt;swim-card orientation="horizontal"&gt;
+  &lt;swim-card-header class="no-click"&gt;
+    &lt;swim-card-avatar slot="avatar" src="/assets/swimlane.svg"&gt;&lt;/swim-card-avatar&gt;
+    &lt;span slot="title"&gt;&lt;swim-card-placeholder size="large"&gt;&lt;/swim-card-placeholder&gt;&lt;/span&gt;
+    &lt;span slot="subtitle"&gt;&lt;swim-card-placeholder size="small"&gt;&lt;/swim-card-placeholder&gt;&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Card with body content (SOC signal)">
+    <p class="section-desc">
+      Card with <code>swim-card-body</code> containing free-form content — badges, multi-line text, and metadata.
+      Styled as a clickable SOC signal card from the AI SOC Platform.
+    </p>
+    <style>
+      .soc-card-demo { --swim-card-min-width: 0; cursor: pointer; }
+      .soc-card-demo:hover { filter: brightness(1.15); }
+      .soc-card-demo:focus-visible { outline: 2px solid var(--blue-500); outline-offset: 2px; border-radius: var(--radius-4); }
+      .soc-badge-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+      .soc-badge {
+        display: inline-flex; align-items: center;
+        padding: 2px 8px; border-radius: 3px;
+        font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold);
+        text-transform: uppercase; letter-spacing: 0.03em; white-space: nowrap;
+      }
+      .soc-badge--id { font-weight: var(--font-weight-semibold); }
+      .soc-badge--malicious { background: rgba(255, 69, 52, 0.15); color: var(--red-400); }
+      .soc-badge--suspicious { background: rgba(255, 168, 20, 0.15); color: var(--orange-400); }
+      .soc-badge--benign { background: rgba(46, 204, 113, 0.15); color: var(--green-400); }
+      .soc-badge--escalated { background: rgba(255, 69, 52, 0.12); color: var(--red-400); }
+      .soc-badge--new { background: rgba(20, 131, 255, 0.12); color: var(--blue-400); }
+      .soc-confidence { font-size: var(--font-size-xs); font-weight: var(--font-weight-semibold); }
+      .soc-meta { display: flex; align-items: center; gap: 12px; font-size: var(--font-size-xs); color: var(--grey-300); flex-wrap: wrap; }
+    </style>
+    <div class="demo-row demo-row--column">
+      <div class="demo-label">Malicious signal (escalated)</div>
+      <swim-card class="soc-card-demo" hide-accent role="button" tabindex="0"
+        aria-label="Signal SIG-10421: Malicious — Suspicious outbound traffic detected"
+        onclick="alert('Open signal detail: SIG-10421')"
+        onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();this.click()}">
+        <swim-card-body>
+          <div class="soc-badge-row">
+            <span class="soc-badge--id">SIG-10421</span>
+            <span class="soc-badge soc-badge--malicious">Malicious</span>
+            <span class="soc-confidence" style="color: var(--red-400)">92%</span>
+            <span class="soc-badge soc-badge--escalated">Escalated</span>
+          </div>
+          <div>Suspicious outbound traffic to 185.220.101.34 detected on finance-srv-02</div>
+          <div class="soc-meta">
+            <span>2024-01-15 14:30</span>
+            <span>2 observables</span>
+            <span>2 correlated</span>
+          </div>
+        </swim-card-body>
+      </swim-card>
+
+      <div class="demo-label demo-label--spaced">Suspicious signal (new)</div>
+      <swim-card class="soc-card-demo" hide-accent role="button" tabindex="0"
+        aria-label="Signal SIG-10427: Suspicious — Anomalous data transfer detected">
+        <swim-card-body>
+          <div class="soc-badge-row">
+            <span class="soc-badge--id">SIG-10427</span>
+            <span class="soc-badge soc-badge--suspicious">Suspicious</span>
+            <span class="soc-confidence" style="color: var(--orange-400)">72%</span>
+            <span class="soc-badge soc-badge--new">New</span>
+          </div>
+          <div>Anomalous data transfer of 2.3GB from database server DB-PROD-01 to external IP</div>
+          <div class="soc-meta">
+            <span>2024-01-16 09:30</span>
+            <span>2 observables</span>
+          </div>
+        </swim-card-body>
+      </swim-card>
+
+      <div class="demo-label demo-label--spaced">Benign signal</div>
+      <swim-card class="soc-card-demo" hide-accent role="button" tabindex="0"
+        aria-label="Signal SIG-10425: Benign — VPN connection verified">
+        <swim-card-body>
+          <div class="soc-badge-row">
+            <span class="soc-badge--id">SIG-10425</span>
+            <span class="soc-badge soc-badge--benign">Benign</span>
+            <span class="soc-confidence" style="color: var(--green-400)">88%</span>
+            <span class="soc-badge soc-badge--new">Triaged</span>
+          </div>
+          <div>VPN connection from user jsmith from location inconsistent with travel records</div>
+          <div class="soc-meta">
+            <span>2024-01-15 18:05</span>
+            <span>2 observables</span>
+          </div>
+        </swim-card-body>
+      </swim-card>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-card hide-accent role="button" tabindex="0"
+  style="--swim-card-min-width: 0; cursor: pointer"
+  aria-label="Signal SIG-10421: Malicious"&gt;
+  &lt;swim-card-body&gt;
+    &lt;div&gt;&lt;strong&gt;SIG-10421&lt;/strong&gt; &amp;middot; Malicious &amp;middot; 92% &amp;middot; Escalated&lt;/div&gt;
+    &lt;div&gt;Suspicious outbound traffic to 185.220.101.34&lt;/div&gt;
+    &lt;div&gt;&lt;small&gt;2024-01-15 14:30 &amp;middot; 2 observables&lt;/small&gt;&lt;/div&gt;
+  &lt;/swim-card-body&gt;
+&lt;/swim-card&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Card usage">
+    <p class="section-desc">Import and use the card components:</p>
+    <pre class="demo-pre"><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/card';
+&lt;/script&gt;
+
+&lt;swim-card orientation="horizontal"&gt;
+  &lt;swim-card-header&gt;
+    &lt;swim-card-avatar slot="avatar"&gt;AB&lt;/swim-card-avatar&gt;
+    &lt;span slot="title"&gt;Card Title&lt;/span&gt;
+    &lt;span slot="subtitle"&gt;Subtitle&lt;/span&gt;
+  &lt;/swim-card-header&gt;
+&lt;/swim-card&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-card&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>orientation</code></td><td><code>'horizontal' | 'vertical'</code></td><td><code>'horizontal'</code></td><td>Card layout direction</td></tr>
+            <tr><td><code>status</code></td><td><code>'success' | 'error' | 'disabled'</code></td><td><code>—</code></td><td>Status color indicator</td></tr>
+            <tr><td><code>selectable</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Shows a selection checkbox</td></tr>
+            <tr><td><code>selected</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the card is selected</td></tr>
+            <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Disables the card</td></tr>
+            <tr><td><code>appearance</code></td><td><code>'normal' | 'flat'</code></td><td><code>'normal'</code></td><td>Visual style (flat removes shadow)</td></tr>
+            <tr><td><code>hide-accent</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Hides the top accent bar</td></tr>
+            <tr><td><code>outline-text</code></td><td><code>string</code></td><td><code>''</code></td><td>Text shown in an outline label</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="api-heading">Events</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Event</th><th>Detail</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>select</code></td><td><code>boolean</code></td><td>Fired when the selection checkbox is toggled</td></tr>
+            <tr><td><code>outline-click</code></td><td>—</td><td>Fired when the outline text label is clicked</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:1.25rem"><span class="api-tag-name">&lt;swim-card-header / swim-card-body / swim-card-footer&gt;</span></div>
+      <h4 class="api-heading">Child Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>orientation</code></td><td><code>'horizontal' | 'vertical'</code></td><td><code>'horizontal'</code></td><td>Header layout (swim-card-header)</td></tr>
+            <tr><td><code>slot="avatar"</code></td><td>—</td><td>—</td><td>Place swim-card-avatar in this slot</td></tr>
+            <tr><td><code>slot="title"</code></td><td>—</td><td>—</td><td>Title text slot (swim-card-header)</td></tr>
+            <tr><td><code>slot="subtitle"</code></td><td>—</td><td>—</td><td>Subtitle text slot (swim-card-header)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </swim-section>
+</section>

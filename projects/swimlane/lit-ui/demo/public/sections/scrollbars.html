@@ -1,0 +1,119 @@
+<style>
+  .scrollbars-demo-box {
+    height: 300px;
+    width: 300px;
+    border: 1px solid var(--grey-600);
+  }
+  .scrollbars-demo-box--default {
+    overflow: auto;
+  }
+  .scrollbars-demo-content {
+    min-height: 520px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-16);
+    padding: var(--spacing-8);
+  }
+  /* icon-class is reflected to the host, so .scrollbars-demo-icon matches and font-size inherits into the icon */
+  .scrollbars-demo-icon {
+    font-size: 300px;
+  }
+</style>
+<hr class="section-divider" />
+<h1 id="scrollbars" class="page-title">Scrollbars</h1>
+<p class="subtitle">
+  Utility classes for styled scrollbars matching lit-ui. Apply to scrollable elements (with overflow) or to body for
+  global scrollbars.
+</p>
+
+<section class="section">
+  <swim-section section-title="swim-scroll">
+    <h3 class="style-header">swim-scroll</h3>
+    <div class="swim-scroll scrollbars-demo-box scrollbars-demo-box--default">
+      <div class="scrollbars-demo-content">
+        <swim-icon font-icon="graph" icon-class="scrollbars-demo-icon"></swim-icon>
+      </div>
+    </div>
+    <p class="section-desc">
+      The <code>.swim-scroll</code> class sets <code>overflow: auto</code> and styles the scrollbar. Apply it to an
+      element (e.g. a fixed-height container) or to <code>body</code> for global scrollbars.
+    </p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-label">Element</div>
+      <pre class="demo-pre"><code>&lt;div class="swim-scroll scrollbars-demo-box scrollbars-demo-box--default"&gt;
+  &lt;div class="scrollbars-demo-content"&gt;
+    &lt;swim-icon font-icon="graph" icon-class="scrollbars-demo-icon"&gt;&lt;/swim-icon&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <div class="demo-label demo-label--after">Page</div>
+      <pre class="demo-pre"><code>&lt;body class="swim-scroll"&gt;
+  ...
+  &lt;div class="scrollbars-demo-box scrollbars-demo-box--default"&gt;
+    &lt;swim-icon font-icon="graph" icon-class="scrollbars-demo-icon"&gt;&lt;/swim-icon&gt;
+  &lt;/div&gt;
+  ...
+&lt;/body&gt;</code></pre>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="swim-scroll-overlay">
+    <h3 class="style-header">swim-scroll-overlay</h3>
+    <div class="swim-scroll-overlay scrollbars-demo-box">
+      <div class="scrollbars-demo-content">
+        <swim-icon font-icon="graph" icon-class="scrollbars-demo-icon"></swim-icon>
+      </div>
+    </div>
+    <p class="section-desc">
+      The <code>.swim-scroll-overlay</code> class is applied per element to only show scrollbars on hover.
+    </p>
+    <pre class="demo-pre"><code>&lt;div class="swim-scroll-overlay scrollbars-demo-box"&gt;
+  &lt;div class="scrollbars-demo-content"&gt;
+    &lt;swim-icon font-icon="graph" icon-class="scrollbars-demo-icon"&gt;&lt;/swim-icon&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="swim-scroll-muted">
+    <h3 class="style-header">swim-scroll-muted</h3>
+    <div class="swim-scroll-muted scrollbars-demo-box">
+      <div class="scrollbars-demo-content">
+        <swim-icon font-icon="graph" icon-class="scrollbars-demo-icon"></swim-icon>
+      </div>
+    </div>
+    <p class="section-desc">
+      The <code>.swim-scroll-muted</code> class is applied per element to show muted scrollbars that increase opacity on
+      hover.
+    </p>
+    <pre class="demo-pre"><code>&lt;div class="swim-scroll-muted scrollbars-demo-box"&gt;
+  &lt;div class="scrollbars-demo-content"&gt;
+    &lt;swim-icon font-icon="graph" icon-class="scrollbars-demo-icon"&gt;&lt;/swim-icon&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <p style="color: var(--grey-300); margin-bottom: 0.75rem">
+        Scrollbar styling is applied via CSS utility classes. No custom element required — add the class to any scrollable container.
+      </p>
+      <h4 class="api-heading">CSS Classes</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Class</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>.swim-scroll</code></td><td>Always-visible styled scrollbar with themed track and thumb</td></tr>
+            <tr><td><code>.swim-scroll-overlay</code></td><td>Scrollbar shown only on hover (auto-hides when idle)</td></tr>
+            <tr><td><code>.swim-scroll-muted</code></td><td>Muted scrollbar that increases opacity on hover</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </swim-section>
+</section>

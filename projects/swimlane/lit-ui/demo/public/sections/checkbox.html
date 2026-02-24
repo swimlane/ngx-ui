@@ -1,0 +1,124 @@
+<hr class="section-divider" />
+
+<h1 id="checkbox" class="page-title">Checkbox</h1>
+<p class="subtitle">
+  Checkbox control matching swim-checkbox (lit-ui): checked, indeterminate, disabled, and round variants. Use
+  <code>swim-checkbox</code> with slot content as the label. Supports form association and keyboard (Space to toggle).
+</p>
+
+<section class="section">
+  <swim-section section-title="Basic">
+    <p class="section-desc">Default checkbox with label slot.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="demo-label">Unchecked</div>
+          <swim-checkbox>Option A</swim-checkbox>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Checked</div>
+          <swim-checkbox checked>Option B</swim-checkbox>
+        </div>
+      </div>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-checkbox&gt;Option A&lt;/swim-checkbox&gt;
+&lt;swim-checkbox checked&gt;Option B&lt;/swim-checkbox&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Indeterminate">
+    <p class="section-desc">Indeterminate state (e.g. partial selection).</p>
+    <div class="demo-row demo-row--column">
+      <swim-checkbox indeterminate>Select all / partial</swim-checkbox>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-checkbox indeterminate&gt;Select all / partial&lt;/swim-checkbox&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Disabled and round">
+    <p class="section-desc">Disabled state and round (circular) box.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="demo-label">Disabled unchecked</div>
+          <swim-checkbox disabled>Disabled</swim-checkbox>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Disabled checked</div>
+          <swim-checkbox checked disabled>Disabled checked</swim-checkbox>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Round</div>
+          <swim-checkbox round>Round box</swim-checkbox>
+        </div>
+      </div>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-checkbox disabled&gt;Disabled&lt;/swim-checkbox&gt;
+&lt;swim-checkbox checked disabled&gt;Disabled checked&lt;/swim-checkbox&gt;
+&lt;swim-checkbox round&gt;Round box&lt;/swim-checkbox&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="With event display">
+    <p class="section-desc">Checked state and last event are shown below.</p>
+    <div class="demo-row demo-row--column">
+      <swim-checkbox id="checkboxDemoEvent">Toggle me</swim-checkbox>
+      <p class="demo-label demo-label--after">
+        Checked: <strong id="checkboxDemoChecked">false</strong>. Last event:
+        <strong id="checkboxDemoEventName">—</strong>
+      </p>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Checkbox usage">
+    <p class="section-desc">Import and use the checkbox component:</p>
+    <pre class="demo-pre"><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/checkbox';
+&lt;/script&gt;
+
+&lt;swim-checkbox&gt;Label text&lt;/swim-checkbox&gt;
+&lt;swim-checkbox checked&gt;Checked by default&lt;/swim-checkbox&gt;
+&lt;swim-checkbox indeterminate&gt;Indeterminate&lt;/swim-checkbox&gt;
+&lt;swim-checkbox disabled&gt;Disabled&lt;/swim-checkbox&gt;
+&lt;swim-checkbox round&gt;Round&lt;/swim-checkbox&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-checkbox&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>checked</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the checkbox is checked</td></tr>
+            <tr><td><code>indeterminate</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Indeterminate (partial) state</td></tr>
+            <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Disables the checkbox</td></tr>
+            <tr><td><code>round</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Uses circular shape instead of square</td></tr>
+            <tr><td><code>diameter</code></td><td><code>string</code></td><td><code>'18px'</code></td><td>Size of the checkbox</td></tr>
+            <tr><td><code>name</code></td><td><code>string</code></td><td><code>''</code></td><td>Form control name</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="api-heading">Events</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Event</th><th>Detail</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>change</code></td><td><code>{ target: { checked } }</code></td><td>Fired when checked state changes</td></tr>
+            <tr><td><code>checked-change</code></td><td><code>boolean</code></td><td>Fired with the new checked value</td></tr>
+            <tr><td><code>indeterminate-change</code></td><td><code>boolean</code></td><td>Fired when indeterminate state changes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </swim-section>
+</section>

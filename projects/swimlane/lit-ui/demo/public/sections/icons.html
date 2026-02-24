@@ -1,0 +1,167 @@
+<style>
+  .icon-search-wrap {
+    position: relative;
+    max-width: 320px;
+    margin-bottom: 1.5rem;
+  }
+  .icon-search-wrap .icon-search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--grey-400);
+    font-size: 1.125rem;
+    width: 1.125rem;
+    height: 1.125rem;
+    pointer-events: none;
+  }
+  .icon-search-input {
+    width: 100%;
+    height: 40px;
+    padding: 0 0.75rem 0 2.25rem;
+    background: var(--grey-800);
+    border: 1px solid var(--grey-700);
+    border-radius: var(--radius-4);
+    color: var(--grey-050);
+    font-size: 0.9375rem;
+  }
+  .icon-search-input::placeholder {
+    color: var(--grey-400);
+  }
+  .icon-search-input:focus {
+    outline: none;
+    border-color: var(--blue-500);
+  }
+  .icons-preview li.icon-search-hidden {
+    display: none;
+  }
+  .icons-preview {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0;
+  }
+  @media (max-width: 1200px) {
+    .icons-preview {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  @media (max-width: 768px) {
+    .icons-preview {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .icons-preview li {
+    height: 150px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 5px;
+    text-align: center;
+    margin: 10px;
+    border: solid 1px var(--grey-800);
+    border-radius: var(--radius-2);
+    background: var(--grey-800);
+  }
+  .icons-preview li .icon-name {
+    color: var(--grey-400);
+    font-size: 0.9rem;
+    line-height: 1rem;
+    margin-top: 0.5rem;
+  }
+  .icons-preview li swim-icon {
+    font-size: 50px;
+    line-height: 1em;
+    color: var(--white);
+  }
+</style>
+<!-- ICON COMPONENT DEMOS (last in nav order) -->
+<h1 id="icons" class="page-title">Icon</h1>
+<p class="subtitle">
+  Font icons and inline SVG, matching lit-ui (see src/app/icons-page). Uses swim-icon; the icon font is self-loaded by
+  the component (no separate icon CSS required).
+</p>
+
+<section class="section">
+  <swim-section section-title="Icons">
+    <div class="icon-search-wrap">
+      <swim-icon class="icon-search-icon" font-icon="search"></swim-icon>
+      <input
+        type="text"
+        id="iconSearch"
+        class="icon-search-input"
+        placeholder="Search icons by name..."
+        aria-label="Search icons"
+      />
+    </div>
+    <ul id="iconsPreview" class="icons-preview"></ul>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Icons: stacking">
+    <div class="demo-grid">
+      <div class="demo-item">
+        <div class="demo-label">square + x</div>
+        <swim-icon font-icon='["square", "x"]'></swim-icon>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">square-filled + x (red x overlay)</div>
+        <swim-icon font-icon='["square-filled", "x :text-red"]'></swim-icon>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">field-users + circle-filled (badge)</div>
+        <swim-icon font-icon='["field-users", "circle-filled :text-red :icon-fx-badge"]'></swim-icon>
+      </div>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="With alt (accessibility)">
+    <div class="demo-item">
+      <swim-icon font-icon="x" alt="Close"></swim-icon>
+      <span style="margin-left: 0.5rem">Icon with accessible name for screen readers</span>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Icon Usage">
+    <p style="color: var(--grey-300); margin-bottom: 1rem">
+      Import the icon component; the swim-icon font is self-loaded (no separate CSS required):
+    </p>
+    <pre class="demo-pre"
+    ><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/icon';
+&lt;/script&gt;
+
+&lt;swim-icon font-icon="plus"&gt;&lt;/swim-icon&gt;
+&lt;swim-icon font-icon='["square-filled", "x :text-red"]'&gt;&lt;/swim-icon&gt;
+&lt;swim-icon font-icon="x" alt="Close"&gt;&lt;/swim-icon&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-icon&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>font-icon</code></td><td><code>string</code></td><td><code>''</code></td><td>Icon name (e.g. "search", "user")</td></tr>
+            <tr><td><code>alt</code></td><td><code>string</code></td><td><code>''</code></td><td>Alternative text for accessibility</td></tr>
+            <tr><td><code>font-set</code></td><td><code>string</code></td><td><code>'lit'</code></td><td>Icon font set to use</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </swim-section>
+</section>

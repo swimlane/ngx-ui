@@ -1,0 +1,189 @@
+<section id="tooltip" class="section">
+  <swim-section section-title="Tooltip">
+    <p class="section-desc">Compact tooltips by placement. Hover or focus to show.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-row">
+        <swim-tooltip content="Phishing Attack" type="tooltip" placement="top">
+          <a href="#" class="demo-link">Top</a>
+        </swim-tooltip>
+        <span class="demo-sep">|</span>
+        <swim-tooltip content="Phishing Attack" type="tooltip" placement="right">
+          <a href="#" class="demo-link">Right</a>
+        </swim-tooltip>
+        <span class="demo-sep">|</span>
+        <swim-tooltip content="Phishing Attack" type="tooltip" placement="bottom">
+          <a href="#" class="demo-link">Bottom</a>
+        </swim-tooltip>
+        <span class="demo-sep">|</span>
+        <swim-tooltip content="Phishing Attack" type="tooltip" placement="left">
+          <a href="#" class="demo-link">Left</a>
+        </swim-tooltip>
+      </div>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-tooltip content="Phishing Attack" type="tooltip" placement="top"&gt;
+  &lt;a href="#"&gt;Top&lt;/a&gt;
+&lt;/swim-tooltip&gt;
+
+&lt;swim-tooltip content="Phishing Attack" type="tooltip" placement="right"&gt;
+  &lt;a href="#"&gt;Right&lt;/a&gt;
+&lt;/swim-tooltip&gt;
+
+&lt;swim-tooltip content="Phishing Attack" type="tooltip" placement="bottom"&gt;
+  &lt;a href="#"&gt;Bottom&lt;/a&gt;
+&lt;/swim-tooltip&gt;
+
+&lt;swim-tooltip content="Phishing Attack" type="tooltip" placement="left"&gt;
+  &lt;a href="#"&gt;Left&lt;/a&gt;
+&lt;/swim-tooltip&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Popover">
+    <p class="section-desc">Larger popover style with shadow. Hover or focus to show.</p>
+    <div class="demo-row">
+      <swim-tooltip content="Popover on top" type="popover" placement="top">
+        <a href="#" class="demo-link">Top</a>
+      </swim-tooltip>
+      <span class="demo-sep">|</span>
+      <swim-tooltip content="Popover on right" type="popover" placement="right">
+        <a href="#" class="demo-link">Right</a>
+      </swim-tooltip>
+      <span class="demo-sep">|</span>
+      <swim-tooltip content="Popover on bottom" type="popover" placement="bottom">
+        <a href="#" class="demo-link">Bottom</a>
+      </swim-tooltip>
+      <span class="demo-sep">|</span>
+      <swim-tooltip content="Popover on left" type="popover" placement="left">
+        <a href="#" class="demo-link">Left</a>
+      </swim-tooltip>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-tooltip content="Popover on top" type="popover" placement="top"&gt;
+  &lt;a href="#"&gt;Top&lt;/a&gt;
+&lt;/swim-tooltip&gt;
+
+&lt;swim-tooltip content="Popover on bottom" type="popover" placement="bottom"&gt;
+  &lt;a href="#"&gt;Bottom&lt;/a&gt;
+&lt;/swim-tooltip&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Show on click">
+    <p class="section-desc">Open on click; close on outside click or toggle.</p>
+    <div class="demo-row">
+      <swim-tooltip
+        type="popover"
+        placement="bottom"
+        show-event="click"
+        show-caret="false"
+        content="Click me to open. Click outside or here again to close."
+      >
+        <swim-button variant="primary">Click me to open</swim-button>
+      </swim-tooltip>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-tooltip
+  type="popover"
+  placement="bottom"
+  show-event="click"
+  show-caret="false"
+  content="Click to open. Click outside to close."
+&gt;
+  &lt;swim-button variant="primary"&gt;Click me&lt;/swim-button&gt;
+&lt;/swim-tooltip&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Custom content (slot)">
+    <p class="section-desc">
+      Use the <code>content</code> slot for rich content. Hover the link to see the slotted content.
+    </p>
+    <div class="demo-row">
+      <swim-tooltip type="tooltip" placement="top">
+        <a href="#" class="demo-link">Template</a>
+        <span slot="content"><strong>ALERT: High Priority</strong></span>
+      </swim-tooltip>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-tooltip type="tooltip" placement="top"&gt;
+  &lt;a href="#"&gt;Template&lt;/a&gt;
+  &lt;span slot="content"&gt;&lt;strong&gt;ALERT: High Priority&lt;/strong&gt;&lt;/span&gt;
+&lt;/swim-tooltip&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="States">
+    <p class="section-desc">Disabled: tooltip does not show. No caret: tooltip shows without the arrow.</p>
+    <div class="demo-row">
+      <swim-tooltip content="Disabled tooltip" type="tooltip" placement="top" disabled>
+        <swim-button disabled>Disabled</swim-button>
+      </swim-tooltip>
+      <span class="demo-sep">|</span>
+      <swim-tooltip content="No caret" type="popover" placement="top" show-caret="false">
+        <a href="#" class="demo-link">No caret</a>
+      </swim-tooltip>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-tooltip content="Disabled tooltip" type="tooltip" placement="top" disabled&gt;
+  &lt;swim-button disabled&gt;Disabled&lt;/swim-button&gt;
+&lt;/swim-tooltip&gt;
+
+&lt;swim-tooltip content="No caret" type="popover" placement="top" show-caret="false"&gt;
+  &lt;a href="#"&gt;No caret&lt;/a&gt;
+&lt;/swim-tooltip&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Usage">
+    <p class="section-desc">Import and use the tooltip component.</p>
+    <pre class="demo-pre"><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/tooltip';
+&lt;/script&gt;
+
+&lt;swim-tooltip content="Phishing Attack" type="tooltip" placement="top"&gt;
+  &lt;a href="#"&gt;Top&lt;/a&gt;
+&lt;/swim-tooltip&gt;
+
+&lt;!-- Custom content via slot --&gt;
+&lt;swim-tooltip type="popover" placement="bottom"&gt;
+  &lt;swim-button variant="primary"&gt;Open&lt;/swim-button&gt;
+  &lt;div slot="content"&gt;Custom content here.&lt;/div&gt;
+&lt;/swim-tooltip&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-tooltip&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>content</code></td><td><code>string</code></td><td><code>''</code></td><td>Tooltip text (or use slot="content" for rich HTML)</td></tr>
+            <tr><td><code>type</code></td><td><code>'tooltip' | 'popover'</code></td><td><code>'popover'</code></td><td>Display mode</td></tr>
+            <tr><td><code>placement</code></td><td><code>'top' | 'bottom' | 'left' | 'right'</code></td><td><code>'top'</code></td><td>Position relative to trigger</td></tr>
+            <tr><td><code>show-event</code></td><td><code>'all' | 'click' | 'focus' | 'mouseover'</code></td><td><code>'all'</code></td><td>Event(s) that trigger the tooltip</td></tr>
+            <tr><td><code>show-caret</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Shows the directional caret/arrow</td></tr>
+            <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Disables the tooltip</td></tr>
+            <tr><td><code>spacing</code></td><td><code>number</code></td><td><code>10</code></td><td>Gap in pixels between trigger and tooltip</td></tr>
+            <tr><td><code>css-class</code></td><td><code>string</code></td><td><code>''</code></td><td>Extra CSS class for the tooltip panel</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="api-heading">Events</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Event</th><th>Detail</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>show</code></td><td>—</td><td>Fired when the tooltip becomes visible</td></tr>
+            <tr><td><code>hide</code></td><td>—</td><td>Fired when the tooltip is hidden</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </swim-section>
+</section>

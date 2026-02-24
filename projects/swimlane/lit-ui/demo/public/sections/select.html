@@ -1,0 +1,330 @@
+<hr class="section-divider" />
+<h1 id="select" class="page-title">Select Component</h1>
+<p class="subtitle">Dropdown select with filtering and multi-select support</p>
+
+<!-- Single Select (mirrors ngx-ui selects-page: Basic, Required) -->
+<section class="section">
+  <swim-section section-title="Single Select">
+    <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--grey-300)">Basic</h4>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select id="basicSelect" label="Attack Type" placeholder="Select..."></swim-select>
+    </div>
+    <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--grey-300)">Required</h4>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select id="requiredSelect" label="Attack Type" required placeholder="Please select..."></swim-select>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;!-- Basic --&gt;
+&lt;swim-select label="Attack Type" placeholder="Select..."&gt;&lt;/swim-select&gt;
+
+&lt;!-- Required --&gt;
+&lt;swim-select label="Attack Type" required placeholder="Please select..."&gt;&lt;/swim-select&gt;
+
+&lt;script&gt;
+  const options = [
+    { name: 'Breach', value: 'breach' },
+    { name: 'DDOS', value: 'ddos' },
+    { name: 'Physical', value: 'physical' }
+  ];
+  document.querySelector('swim-select').options = options;
+&lt;/script&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Declarative Options (swim-option children) -->
+<section class="section">
+  <swim-section section-title="Declarative Options (swim-option)">
+    <p style="color: var(--grey-300); margin-bottom: 1rem">
+      Options can be defined inline as <code>&lt;swim-option&gt;</code> children instead of setting the <code>.options</code> property via JavaScript.
+    </p>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select label="Attack Type" required filterable="false">
+        <swim-option name="Breach" value="breach"></swim-option>
+        <swim-option name="DDOS" value="ddos"></swim-option>
+        <swim-option name="Physical" value="physical"></swim-option>
+      </swim-select>
+
+      <swim-select label="Severity" placeholder="Select severity...">
+        <swim-option name="Critical" value="critical"></swim-option>
+        <swim-option name="High" value="high"></swim-option>
+        <swim-option name="Medium" value="medium"></swim-option>
+        <swim-option name="Low" value="low"></swim-option>
+      </swim-select>
+
+      <swim-select label="Multi-select with children" multiple placeholder="Choose colors...">
+        <swim-option name="Red" value="red"></swim-option>
+        <swim-option name="Green" value="green"></swim-option>
+        <swim-option name="Blue" value="blue"></swim-option>
+        <swim-option name="Yellow" value="yellow"></swim-option>
+      </swim-select>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-select label="Attack Type" required filterable="false"&gt;
+  &lt;swim-option name="Breach" value="breach"&gt;&lt;/swim-option&gt;
+  &lt;swim-option name="DDOS" value="ddos"&gt;&lt;/swim-option&gt;
+  &lt;swim-option name="Physical" value="physical"&gt;&lt;/swim-option&gt;
+&lt;/swim-select&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Select Appearances Section -->
+<section class="section">
+  <swim-section section-title="Select Appearances">
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select
+        id="legacySelect"
+        appearance="legacy"
+        label="Legacy Appearance"
+        placeholder="Select..."
+      ></swim-select>
+      <swim-select id="fillSelect" appearance="fill" label="Fill Appearance" placeholder="Select..."></swim-select>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-select appearance="legacy" label="Legacy Appearance" placeholder="Select..."&gt;&lt;/swim-select&gt;
+
+&lt;swim-select appearance="fill" label="Fill Appearance" placeholder="Select..."&gt;&lt;/swim-select&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Select Sizes Section -->
+<section class="section">
+  <swim-section section-title="Select Sizes">
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select id="smallSelect" size="sm" label="Small Select" placeholder="Select..."></swim-select>
+      <swim-select id="mediumSelect" size="md" label="Medium Select" placeholder="Select..."></swim-select>
+      <swim-select id="largeSelect" size="lg" label="Large Select" placeholder="Select..."></swim-select>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-select size="sm" label="Small Select" placeholder="Select..."&gt;&lt;/swim-select&gt;
+
+&lt;swim-select size="md" label="Medium Select" placeholder="Select..."&gt;&lt;/swim-select&gt;
+
+&lt;swim-select size="lg" label="Large Select" placeholder="Select..."&gt;&lt;/swim-select&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Multiple Selection Section -->
+<section class="section">
+  <swim-section section-title="Multiple Selection">
+    <div style="max-width: 500px">
+      <swim-select
+        id="multiSelect"
+        label="Choose multiple colors"
+        placeholder="Select colors..."
+        multiple
+        hint="You can select multiple options"
+      ></swim-select>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-select
+  label="Choose multiple colors"
+  placeholder="Select colors..."
+  multiple
+  hint="You can select multiple options"
+&gt;&lt;/swim-select&gt;
+
+&lt;script&gt;
+  const select = document.querySelector('swim-select');
+  select.options = [
+    { name: 'Red', value: 'red' },
+    { name: 'Blue', value: 'blue' },
+    { name: 'Green', value: 'green' },
+    { name: 'Yellow', value: 'yellow' }
+  ];
+&lt;/script&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Filtering Section -->
+<section class="section">
+  <swim-section section-title="With Filtering">
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select
+        id="filterableSelect"
+        label="Search countries"
+        placeholder="Select a country..."
+        filterable
+        hint="Type to filter options"
+      ></swim-select>
+      <swim-select id="noFilterSelect" label="No Filter" placeholder="Select..." filterable="false"></swim-select>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;!-- Filterable (default: true) --&gt;
+&lt;swim-select
+  label="Search countries"
+  placeholder="Select a country..."
+  filterable
+  hint="Type to filter options"
+&gt;&lt;/swim-select&gt;
+
+&lt;!-- Filtering disabled --&gt;
+&lt;swim-select label="No Filter" placeholder="Select..." filterable="false"&gt;&lt;/swim-select&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Select States Section -->
+<section class="section">
+  <swim-section section-title="Select States">
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select id="normalSelect" label="Normal" placeholder="Select..."></swim-select>
+      <swim-select id="withValueSelect" label="With Value" placeholder="Select..." value="option2"></swim-select>
+      <swim-select id="disabledSelect" label="Disabled" placeholder="Select..." disabled></swim-select>
+      <swim-select id="noClearSelect" label="No Clear Button" placeholder="Select..." allow-clear="false"></swim-select>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;!-- Normal --&gt;
+&lt;swim-select label="Normal" placeholder="Select..."&gt;&lt;/swim-select&gt;
+
+&lt;!-- With pre-selected value --&gt;
+&lt;swim-select label="With Value" placeholder="Select..." value="option2"&gt;&lt;/swim-select&gt;
+
+&lt;!-- Disabled --&gt;
+&lt;swim-select label="Disabled" placeholder="Select..." disabled&gt;&lt;/swim-select&gt;
+
+&lt;!-- No clear button --&gt;
+&lt;swim-select label="No Clear Button" placeholder="Select..." allow-clear="false"&gt;&lt;/swim-select&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Form Integration Section -->
+<section class="section">
+  <swim-section section-title="Form Integration">
+    <form id="selectForm" style="max-width: 500px">
+      <swim-select
+        id="formSelect1"
+        name="category"
+        label="Category"
+        required
+        placeholder="Choose a category..."
+        hint="This field is required"
+      ></swim-select>
+
+      <swim-select
+        id="formSelect2"
+        name="tags"
+        label="Tags"
+        multiple
+        placeholder="Select tags..."
+        hint="Select one or more tags"
+      ></swim-select>
+
+      <div style="margin-top: 1rem">
+        <swim-button type="submit" variant="primary">Submit Form</swim-button>
+        <swim-button type="reset" variant="bordered" style="margin-left: 0.5rem">Reset</swim-button>
+      </div>
+    </form>
+    <pre class="demo-pre"
+    ><code>&lt;form id="selectForm"&gt;
+  &lt;swim-select
+    name="category"
+    label="Category"
+    required
+    placeholder="Choose a category..."
+    hint="This field is required"
+  &gt;&lt;/swim-select&gt;
+
+  &lt;swim-select
+    name="tags"
+    label="Tags"
+    multiple
+    placeholder="Select tags..."
+    hint="Select one or more tags"
+  &gt;&lt;/swim-select&gt;
+
+  &lt;swim-button type="submit" variant="primary"&gt;Submit Form&lt;/swim-button&gt;
+  &lt;swim-button type="reset" variant="bordered"&gt;Reset&lt;/swim-button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+  const form = document.getElementById('selectForm');
+  const categorySelect = form.querySelector('[name="category"]');
+  categorySelect.options = [
+    { name: 'Technology', value: 'tech' },
+    { name: 'Business', value: 'business' },
+    { name: 'Science', value: 'science' }
+  ];
+&lt;/script&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Select Usage Section -->
+<section class="section">
+  <swim-section section-title="Select Usage">
+    <p style="color: var(--grey-300); margin-bottom: 1rem">Import and use the select component in your application:</p>
+    <pre class="demo-pre"
+    ><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/select';
+&lt;/script&gt;
+
+&lt;!-- Option A: Declarative options via swim-option children --&gt;
+&lt;swim-select label="Attack Type" required&gt;
+  &lt;swim-option name="Breach" value="breach"&gt;&lt;/swim-option&gt;
+  &lt;swim-option name="DDOS" value="ddos"&gt;&lt;/swim-option&gt;
+  &lt;swim-option name="Physical" value="physical"&gt;&lt;/swim-option&gt;
+&lt;/swim-select&gt;
+
+&lt;!-- Option B: Programmatic options via .options property --&gt;
+&lt;script&gt;
+  const select = document.querySelector('swim-select');
+  select.options = [
+    { name: 'Option 1', value: 'opt1' },
+    { name: 'Option 2', value: 'opt2' },
+    { name: 'Option 3', value: 'opt3' }
+  ];
+&lt;/script&gt;
+
+&lt;swim-select label="Choose an option" placeholder="Select..."&gt;&lt;/swim-select&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-select&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>label</code></td><td><code>string</code></td><td><code>''</code></td><td>Label text</td></tr>
+            <tr><td><code>placeholder</code></td><td><code>string</code></td><td><code>'Select...'</code></td><td>Placeholder when no value selected</td></tr>
+            <tr><td><code>hint</code></td><td><code>string</code></td><td><code>''</code></td><td>Hint text below the select</td></tr>
+            <tr><td><code>.options</code></td><td><code>Array&lt;{name, value}&gt;</code></td><td><code>[]</code></td><td>Array of selectable options</td></tr>
+            <tr><td><code>multiple</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Enable multi-select mode</td></tr>
+            <tr><td><code>filterable</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Enable type-to-filter</td></tr>
+            <tr><td><code>allow-clear</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Show clear button when value selected</td></tr>
+            <tr><td><code>appearance</code></td><td><code>'legacy' | 'fill'</code></td><td><code>'legacy'</code></td><td>Visual appearance style</td></tr>
+            <tr><td><code>size</code></td><td><code>'sm' | 'md' | 'lg'</code></td><td><code>'sm'</code></td><td>Select size</td></tr>
+            <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Disables the select</td></tr>
+            <tr><td><code>required</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Marks as required</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top: 1.5rem"><span class="api-tag-name">&lt;swim-option&gt;</span></div>
+      <h4 class="api-heading">Properties (swim-option)</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>name</code></td><td><code>string</code></td><td><code>''</code></td><td>Display name of the option</td></tr>
+            <tr><td><code>value</code></td><td><code>any</code></td><td><code>undefined</code></td><td>Value of the option (defaults to name if not set)</td></tr>
+            <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the option is disabled</td></tr>
+            <tr><td><code>hidden</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the option is hidden from the list</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="api-heading">Events</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Event</th><th>Detail</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>change</code></td><td><code>any | any[]</code></td><td>Fired when the selection changes</td></tr>
+            <tr><td><code>open</code></td><td>—</td><td>Fired when the dropdown opens</td></tr>
+            <tr><td><code>close</code></td><td>—</td><td>Fired when the dropdown closes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </swim-section>
+</section>

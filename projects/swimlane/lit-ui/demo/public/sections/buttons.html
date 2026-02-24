@@ -1,0 +1,193 @@
+<hr class="section-divider" />
+<h1 id="buttons" class="page-title">Buttons</h1>
+<p class="subtitle">
+  Button component with variants (default, primary, warning, danger, link, bordered), sizes, and states (active,
+  in-progress, success, fail, disabled). Supports promise-based loading state.
+</p>
+
+<!-- Button variants (mirrors ngx-ui buttons-page) -->
+<section class="section">
+  <swim-section section-title="Variants">
+    <div class="demo-grid">
+      <div class="demo-item">
+        <div class="demo-label">Default</div>
+        <swim-button>Default Button</swim-button>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Primary</div>
+        <swim-button variant="primary">Primary Button</swim-button>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Warning</div>
+        <swim-button variant="warning">Warning Button</swim-button>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Danger</div>
+        <swim-button variant="danger">Danger Button</swim-button>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Link</div>
+        <swim-button variant="link">Link Button</swim-button>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Bordered</div>
+        <swim-button variant="bordered">Bordered Button</swim-button>
+      </div>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-button&gt;Default Button&lt;/swim-button&gt;
+&lt;swim-button variant="primary"&gt;Primary Button&lt;/swim-button&gt;
+&lt;swim-button variant="warning"&gt;Warning Button&lt;/swim-button&gt;
+&lt;swim-button variant="danger"&gt;Danger Button&lt;/swim-button&gt;
+&lt;swim-button variant="link"&gt;Link Button&lt;/swim-button&gt;
+&lt;swim-button variant="bordered"&gt;Bordered Button&lt;/swim-button&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Button Sizes Section -->
+<section class="section">
+  <swim-section section-title="Button Sizes">
+    <div class="demo-row">
+      <swim-button size="small" variant="primary">Small</swim-button>
+      <swim-button size="medium" variant="primary">Medium</swim-button>
+      <swim-button size="large" variant="primary">Large</swim-button>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-button size="small" variant="primary"&gt;Small&lt;/swim-button&gt;
+&lt;swim-button size="medium" variant="primary"&gt;Medium&lt;/swim-button&gt;
+&lt;swim-button size="large" variant="primary"&gt;Large&lt;/swim-button&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Button States Section -->
+<section class="section">
+  <swim-section section-title="Button States">
+    <div class="demo-grid">
+      <div class="demo-item">
+        <div class="demo-label">Active (default)</div>
+        <swim-button id="activeBtn" variant="primary">Active</swim-button>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">In Progress</div>
+        <swim-button state="in-progress" variant="primary">Loading...</swim-button>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Success</div>
+        <swim-button state="success" variant="primary">Success</swim-button>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Fail</div>
+        <swim-button state="fail" variant="primary">Failed</swim-button>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Disabled</div>
+        <swim-button disabled variant="primary">Disabled</swim-button>
+      </div>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-button variant="primary"&gt;Active&lt;/swim-button&gt;
+&lt;swim-button state="in-progress" variant="primary"&gt;Loading...&lt;/swim-button&gt;
+&lt;swim-button state="success" variant="primary"&gt;Success&lt;/swim-button&gt;
+&lt;swim-button state="fail" variant="primary"&gt;Failed&lt;/swim-button&gt;
+&lt;swim-button disabled variant="primary"&gt;Disabled&lt;/swim-button&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Interactive Demo Section -->
+<section class="section">
+  <swim-section section-title="Interactive Demo - Promise Handling">
+    <p style="color: var(--grey-300); margin-bottom: 1rem">
+      These buttons demonstrate automatic state management with promises.
+    </p>
+    <div class="demo-row">
+      <swim-button id="successBtn" variant="primary">Click for Success</swim-button>
+      <swim-button id="failBtn" variant="danger">Click for Failure</swim-button>
+      <swim-button id="slowBtn" variant="warning">Slow Operation (5s)</swim-button>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-button id="myBtn" variant="primary"&gt;Click Me&lt;/swim-button&gt;
+
+&lt;script&gt;
+  const btn = document.getElementById('myBtn');
+  btn.addEventListener('click', () =&gt; {
+    btn.promise = fetch('/api/data')
+      .then(res =&gt; res.json());
+  });
+&lt;/script&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Combined Examples Section -->
+<section class="section">
+  <swim-section section-title="Combined Examples">
+    <div class="demo-grid">
+      <div class="demo-item">
+        <div class="demo-label">Small Primary</div>
+        <swim-button size="small" variant="primary">Small Primary</swim-button>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Large Danger</div>
+        <swim-button size="large" variant="danger">Large Danger</swim-button>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Small Bordered</div>
+        <swim-button size="small" variant="bordered">Small Bordered</swim-button>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Disabled Primary</div>
+        <swim-button disabled variant="primary">Disabled</swim-button>
+      </div>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;swim-button size="small" variant="primary"&gt;Small Primary&lt;/swim-button&gt;
+&lt;swim-button size="large" variant="danger"&gt;Large Danger&lt;/swim-button&gt;
+&lt;swim-button size="small" variant="bordered"&gt;Small Bordered&lt;/swim-button&gt;
+&lt;swim-button disabled variant="primary"&gt;Disabled&lt;/swim-button&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Usage Section -->
+<section class="section">
+  <swim-section section-title="Usage">
+    <p style="color: var(--grey-300); margin-bottom: 1rem">Import and use the button component in your application:</p>
+    <pre class="demo-pre"
+    ><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/button';
+&lt;/script&gt;
+
+&lt;swim-button variant="primary"&gt;Click Me&lt;/swim-button&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-button&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>variant</code></td><td><code>'default' | 'primary' | 'warning' | 'danger' | 'link' | 'bordered'</code></td><td><code>'default'</code></td><td>Visual style variant</td></tr>
+            <tr><td><code>size</code></td><td><code>'small' | 'medium' | 'large'</code></td><td><code>'medium'</code></td><td>Button size</td></tr>
+            <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Disables the button</td></tr>
+            <tr><td><code>state</code></td><td><code>'active' | 'in-progress' | 'success' | 'fail'</code></td><td><code>'active'</code></td><td>Visual state of the button</td></tr>
+            <tr><td><code>type</code></td><td><code>'button' | 'submit' | 'reset'</code></td><td><code>'button'</code></td><td>HTML button type</td></tr>
+            <tr><td><code>.timeout</code></td><td><code>number</code></td><td><code>3000</code></td><td>Duration (ms) to show success/fail before returning to active</td></tr>
+            <tr><td><code>.promise</code></td><td><code>Promise</code></td><td><code>undefined</code></td><td>Bind a promise to auto-manage in-progress / success / fail states</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="api-heading">Events</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Event</th><th>Detail</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>click</code></td><td><code>MouseEvent</code></td><td>Fired when the button is clicked (suppressed when disabled or in-progress)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </swim-section>
+</section>

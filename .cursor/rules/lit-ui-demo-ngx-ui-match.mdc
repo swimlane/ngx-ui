@@ -1,0 +1,63 @@
+---
+description: When creating or updating lit-ui demos, match structure and usage from the ngx-ui demo app under root src/app.
+globs: projects/swimlane/lit-ui/demo/**/*
+---
+
+# lit-ui Demo: Match ngx-ui Demo Usage
+
+When creating or updating the **lit-ui demo** (e.g. `projects/swimlane/lit-ui/demo/index.html` and `demo/src/main.ts`), use the **ngx-ui demo app** under the repo root **`src/app`** as the reference so usage and structure stay aligned.
+
+## Where ngx-ui demos live
+
+- **Controls (input + select + button together):** `src/app/controls-page/`
+  - Alignment table (no labels / with labels / with hints / multiline hints)
+  - Flexbox and stacked layout examples
+  - Responsive validation
+- **Buttons:** `src/app/forms/buttons-page/`
+  - ngx-button (variants, promise/state, disabled), native buttons, links, with icons, sizes, states table, file upload, long-press
+  - Each block in `<ngx-section sectionTitle="...">` with `<app-prism>` code after
+- **Inputs:** `src/app/forms/inputs-page/`
+  - Text, prefix/suffix, disabled, readonly, unlockable, with hint; then types (number, textarea, etc.)
+  - Sections: "Text", "Number", "Textarea", etc., with example + prism per subsection
+- **Selects:** `src/app/forms/selects-page/`
+  - Single select: Basic, Required, Filtering, Filtering (numerics), Case sensitive, Add New, etc.
+  - Uses options like "Attack Type" (Breach, DDOS, Physical) for consistency
+  - Multi-select, tagging, appearances, sizes, states
+- **Tabs:** `src/app/components/tabs-page/`
+  - Examples tab: "Basic Tabs", "Tab Controls" (prev/next/select), "ngFor Tabs", "Custom Label Tabs", "Variants" (vertical, appearance light)
+  - Each section has live example then `<app-prism>` with markup
+
+## Structure to mirror
+
+1. **Page/section layout**
+   - Use a clear component title (e.g. "Button", "Input", "Select", "Tabs") then logical sections.
+   - Each section: short heading (e.g. "Basic", "With Filtering", "Vertical Tabs") → live example(s) → code sample (e.g. `<pre><code>...</code></pre>` or prism-style block).
+   - **Collapsible panels**: Where ngx-ui uses `<ngx-section sectionTitle="...">` around a block, use **`<swim-section section-title="...">`** in the Lit demo so each subsection is a collapsible panel matching the Angular component demo. Wrap the content inside each `<section class="section">` with `<swim-section section-title="...">` (same title as the section heading). Omit or set `section-collapsible="false"` only when the Angular demo does.
+
+2. **Example content**
+   - Where the same use case exists in ngx-ui, mirror it in lit-ui (e.g. same labels, same options, same variants).
+   - **Include all color/style variants** for each component: every option the component supports (e.g. Button Group: default and primary; Button: default, primary, warning, danger, bordered, link).
+   - Example: for Select, include a "Single Select" example with options like "Attack Type" / Breach, DDOS, Physical to match ngx-ui.
+   - Button: Default, Primary, Warning, Danger, Bordered, Link; sizes; states (active, in-progress, success, fail, disabled).
+   - Button Group: All color variants (default, primary) in a dedicated "Color variants" or equivalent section; show horizontal and vertical where applicable.
+   - Input: Text with label/hint, Disabled, Readonly, prefix/suffix when supported.
+   - Tabs: Basic tabs, Vertical, Light appearance, Disabled tab.
+
+3. **Code samples**
+   - Show the **Lit/HTML** equivalent of the ngx-ui snippet (e.g. `<swim-button>`, `<swim-input>`, `<swim-select>`, `<swim-tabs>` / `<swim-tab>` with the same attributes and structure as in the demo).
+
+4. **API / docs**
+   - ngx-ui pages often have an "API" tab with inputs/outputs tables. For lit-ui, either add a similar "Usage" or "API" section with props/attributes and events that match the component’s public API.
+
+## Quick reference paths
+
+| Component | ngx-ui demo path |
+|-----------|-------------------|
+| Controls (combined) | `src/app/controls-page/controls-page.component.html` |
+| Buttons | `src/app/forms/buttons-page/buttons-page.component.html` |
+| Inputs | `src/app/forms/inputs-page/inputs-page.component.html` |
+| Selects | `src/app/forms/selects-page/selects-page.component.html` |
+| Tabs | `src/app/components/tabs-page/tabs-page.component.html` |
+| Button Group | `src/app/components/button-group-page/button-group-page.component.html` |
+
+When adding a new component to the lit-ui demo, find the corresponding ngx-ui page under `src/app` and replicate the same sections and examples in Lit/HTML form. **Always include a section that shows all color or style variants** the component supports (e.g. default vs primary for Button Group).

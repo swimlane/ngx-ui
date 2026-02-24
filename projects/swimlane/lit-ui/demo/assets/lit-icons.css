@@ -1,0 +1,12 @@
+/*
+ * Icon font for the demo. Injected via URL (no base64).
+ * Uses same family as ngx-ui ('ngx-icon') so platform can inject once for Angular and Lit.
+ * Font file: from scripts/copy-icon-font.mjs (npm run copy:icon-font) → ngx-icon.woff2.
+ */
+@font-face {
+  font-family: 'ngx-icon';
+  src: url('ngx-icon.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}

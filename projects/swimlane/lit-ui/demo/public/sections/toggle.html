@@ -1,0 +1,121 @@
+<hr class="section-divider" />
+
+<h1 id="toggle" class="page-title">Toggle</h1>
+<p class="subtitle">
+  Toggle (switch) control matching swim-toggle (lit-ui): on/off state, optional check/x icons in the track, label or slot.
+  Supports form association and keyboard (Space/Enter to toggle).
+</p>
+
+<section class="section">
+  <swim-section section-title="Basic">
+    <p class="section-desc">Default toggle with label attribute or slot.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="demo-label">Unchecked</div>
+          <swim-toggle label="Option A"></swim-toggle>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Checked</div>
+          <swim-toggle label="Option B" checked></swim-toggle>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Label via slot</div>
+          <swim-toggle>Enable notifications</swim-toggle>
+        </div>
+      </div>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-toggle label="Option A"&gt;&lt;/swim-toggle&gt;
+&lt;swim-toggle label="Option B" checked&gt;&lt;/swim-toggle&gt;
+&lt;swim-toggle&gt;Enable notifications&lt;/swim-toggle&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Without icons">
+    <p class="section-desc">Toggle with <code>show-icons</code> set to false.</p>
+    <div class="demo-row demo-row--column">
+      <swim-toggle label="No check/x icons" show-icons="false"></swim-toggle>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-toggle label="No check/x icons" show-icons="false"&gt;&lt;/swim-toggle&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Disabled">
+    <p class="section-desc">Disabled state.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="demo-label">Disabled unchecked</div>
+          <swim-toggle label="Disabled" disabled></swim-toggle>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Disabled checked</div>
+          <swim-toggle label="Disabled on" checked disabled></swim-toggle>
+        </div>
+      </div>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-toggle label="Disabled" disabled&gt;&lt;/swim-toggle&gt;
+&lt;swim-toggle label="Disabled on" checked disabled&gt;&lt;/swim-toggle&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="With event display">
+    <p class="section-desc">Checked state and last event are shown below.</p>
+    <div class="demo-row demo-row--column">
+      <swim-toggle id="toggleDemoEvent" label="Toggle me"></swim-toggle>
+      <p class="demo-label demo-label--after">
+        Checked: <strong id="toggleDemoChecked">false</strong>. Last event: <strong id="toggleDemoEventName">—</strong>
+      </p>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Toggle usage">
+    <p class="section-desc">Import and use the toggle component:</p>
+    <pre class="demo-pre"><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/icon';
+  import '@swimlane/lit-ui/toggle';
+&lt;/script&gt;
+
+&lt;swim-toggle label="Enable feature"&gt;&lt;/swim-toggle&gt;
+&lt;swim-toggle checked&gt;Label via slot&lt;/swim-toggle&gt;
+&lt;swim-toggle show-icons="false" label="No icons"&gt;&lt;/swim-toggle&gt;
+&lt;swim-toggle disabled label="Disabled"&gt;&lt;/swim-toggle&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-toggle&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>label</code></td><td><code>string</code></td><td><code>''</code></td><td>Label text (or use the default slot)</td></tr>
+            <tr><td><code>checked</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the toggle is on</td></tr>
+            <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Disables the toggle</td></tr>
+            <tr><td><code>required</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Marks as required for form validation</td></tr>
+            <tr><td><code>show-icons</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Shows check/x icons inside the track</td></tr>
+            <tr><td><code>name</code></td><td><code>string</code></td><td><code>''</code></td><td>Form control name</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="api-heading">Events</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Event</th><th>Detail</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>change</code></td><td><code>{ target: { checked } }</code></td><td>Fired when the toggle state changes</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </swim-section>
+</section>
