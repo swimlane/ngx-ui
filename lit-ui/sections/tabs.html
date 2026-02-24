@@ -1,0 +1,87 @@
+<hr class="section-divider" />
+
+<!-- TABS COMPONENT DEMOS (mirrors ngx-ui components/tabs-page) -->
+<h1 id="tabs" class="page-title">Tabs Component</h1>
+<p class="subtitle">Tabbed content with legacy/light appearance and horizontal/vertical layout</p>
+
+<!-- Basic Tabs (mirrors ngx-ui Basic Tabs) -->
+<section class="section">
+  <swim-section section-title="Basic Tabs">
+    <div style="max-width: 600px">
+      <swim-tabs id="basicTabs">
+        <swim-tab label="Tab 1" active>Content for tab 1.</swim-tab>
+        <swim-tab label="Tab 2">Content for tab 2.</swim-tab>
+        <swim-tab label="Tab 3">Content for tab 3.</swim-tab>
+      </swim-tabs>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Light Appearance Section -->
+<section class="section">
+  <swim-section section-title="Light Appearance">
+    <div style="max-width: 600px">
+      <swim-tabs appearance="light">
+        <swim-tab label="Overview" active>Overview panel content.</swim-tab>
+        <swim-tab label="Details">Details panel content.</swim-tab>
+        <swim-tab label="Settings">Settings panel content.</swim-tab>
+      </swim-tabs>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Vertical Tabs Section -->
+<section class="section">
+  <swim-section section-title="Vertical Tabs">
+    <div style="max-width: 600px">
+      <swim-tabs vertical>
+        <swim-tab label="First" active>First tab content.</swim-tab>
+        <swim-tab label="Second">Second tab content.</swim-tab>
+        <swim-tab label="Third">Third tab content.</swim-tab>
+      </swim-tabs>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Vertical + Light Section -->
+<section class="section">
+  <swim-section section-title="Vertical + Light">
+    <div style="max-width: 600px">
+      <swim-tabs vertical appearance="light">
+        <swim-tab label="Item A" active>Item A content.</swim-tab>
+        <swim-tab label="Item B">Item B content.</swim-tab>
+        <swim-tab label="Item C" disabled>Item C (disabled).</swim-tab>
+      </swim-tabs>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Tabs with Disabled Section -->
+<section class="section">
+  <swim-section section-title="With Disabled Tab">
+    <div style="max-width: 600px">
+      <swim-tabs>
+        <swim-tab label="Active" active>This tab is active.</swim-tab>
+        <swim-tab label="Disabled" disabled>This tab is disabled.</swim-tab>
+        <swim-tab label="Another">Another tab.</swim-tab>
+      </swim-tabs>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Tabs Usage Section -->
+<section class="section">
+  <swim-section section-title="Tabs Usage">
+    <p style="color: var(--grey-300); margin-bottom: 1rem">Import and use the tabs component in your application:</p>
+    <pre
+      style="background: var(--grey-800); padding: 1rem; border-radius: var(--radius-4); overflow-x: auto"
+    ><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui';
+&lt;/script&gt;
+
+&lt;swim-tabs&gt;
+  &lt;swim-tab label="Tab 1" active&gt;Content 1&lt;/swim-tab&gt;
+  &lt;swim-tab label="Tab 2"&gt;Content 2&lt;/swim-tab&gt;
+&lt;/swim-tabs&gt;</code></pre>
+  </swim-section>
+</section>

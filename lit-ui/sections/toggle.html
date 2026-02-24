@@ -1,0 +1,83 @@
+<hr class="section-divider" />
+
+<h1 id="toggle" class="page-title">Toggle</h1>
+<p class="subtitle">
+  Toggle (switch) control matching ngx-toggle: on/off state, optional check/x icons in the track, label or slot.
+  Supports form association and keyboard (Space/Enter to toggle).
+</p>
+
+<section class="section">
+  <swim-section section-title="Basic">
+    <p class="section-desc">Default toggle with label attribute or slot.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="demo-label">Unchecked</div>
+          <swim-toggle label="Option A"></swim-toggle>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Checked</div>
+          <swim-toggle label="Option B" checked></swim-toggle>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Label via slot</div>
+          <swim-toggle>Enable notifications</swim-toggle>
+        </div>
+      </div>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Without icons">
+    <p class="section-desc">Toggle with <code>show-icons</code> set to false.</p>
+    <div class="demo-row demo-row--column">
+      <swim-toggle label="No check/x icons" show-icons="false"></swim-toggle>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Disabled">
+    <p class="section-desc">Disabled state.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="demo-label">Disabled unchecked</div>
+          <swim-toggle label="Disabled" disabled></swim-toggle>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">Disabled checked</div>
+          <swim-toggle label="Disabled on" checked disabled></swim-toggle>
+        </div>
+      </div>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="With event display">
+    <p class="section-desc">Checked state and last event are shown below.</p>
+    <div class="demo-row demo-row--column">
+      <swim-toggle id="toggleDemoEvent" label="Toggle me"></swim-toggle>
+      <p class="demo-label demo-label--after">
+        Checked: <strong id="toggleDemoChecked">false</strong>. Last event: <strong id="toggleDemoEventName">—</strong>
+      </p>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Toggle usage">
+    <p class="section-desc">Import and use the toggle component:</p>
+    <pre class="demo-pre"><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/icon';
+  import '@swimlane/lit-ui/toggle';
+&lt;/script&gt;
+
+&lt;swim-toggle label="Enable feature"&gt;&lt;/swim-toggle&gt;
+&lt;swim-toggle checked&gt;Label via slot&lt;/swim-toggle&gt;
+&lt;swim-toggle show-icons="false" label="No icons"&gt;&lt;/swim-toggle&gt;
+&lt;swim-toggle disabled label="Disabled"&gt;&lt;/swim-toggle&gt;</code></pre>
+  </swim-section>
+</section>

@@ -1,0 +1,139 @@
+<hr class="section-divider" />
+<h1 id="select" class="page-title">Select Component</h1>
+<p class="subtitle">Dropdown select with filtering and multi-select support</p>
+
+<!-- Single Select (mirrors ngx-ui selects-page: Basic, Required) -->
+<section class="section">
+  <swim-section section-title="Single Select">
+    <h4 style="font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--grey-300)">Basic</h4>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select id="basicSelect" label="Attack Type" placeholder="Select..."></swim-select>
+    </div>
+    <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--grey-300)">Required</h4>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select id="requiredSelect" label="Attack Type" required placeholder="Please select..."></swim-select>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Select Appearances Section -->
+<section class="section">
+  <swim-section section-title="Select Appearances">
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select
+        id="legacySelect"
+        appearance="legacy"
+        label="Legacy Appearance"
+        placeholder="Select..."
+      ></swim-select>
+      <swim-select id="fillSelect" appearance="fill" label="Fill Appearance" placeholder="Select..."></swim-select>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Select Sizes Section -->
+<section class="section">
+  <swim-section section-title="Select Sizes">
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select id="smallSelect" size="sm" label="Small Select" placeholder="Select..."></swim-select>
+      <swim-select id="mediumSelect" size="md" label="Medium Select" placeholder="Select..."></swim-select>
+      <swim-select id="largeSelect" size="lg" label="Large Select" placeholder="Select..."></swim-select>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Multiple Selection Section -->
+<section class="section">
+  <swim-section section-title="Multiple Selection">
+    <div style="max-width: 500px">
+      <swim-select
+        id="multiSelect"
+        label="Choose multiple colors"
+        placeholder="Select colors..."
+        multiple
+        hint="You can select multiple options"
+      ></swim-select>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Filtering Section -->
+<section class="section">
+  <swim-section section-title="With Filtering">
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select
+        id="filterableSelect"
+        label="Search countries"
+        placeholder="Select a country..."
+        filterable
+        hint="Type to filter options"
+      ></swim-select>
+      <swim-select id="noFilterSelect" label="No Filter" placeholder="Select..." filterable="false"></swim-select>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Select States Section -->
+<section class="section">
+  <swim-section section-title="Select States">
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select id="normalSelect" label="Normal" placeholder="Select..."></swim-select>
+      <swim-select id="withValueSelect" label="With Value" placeholder="Select..." value="option2"></swim-select>
+      <swim-select id="disabledSelect" label="Disabled" placeholder="Select..." disabled></swim-select>
+      <swim-select id="noClearSelect" label="No Clear Button" placeholder="Select..." allow-clear="false"></swim-select>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Form Integration Section -->
+<section class="section">
+  <swim-section section-title="Form Integration">
+    <form id="selectForm" style="max-width: 500px">
+      <swim-select
+        id="formSelect1"
+        name="category"
+        label="Category"
+        required
+        placeholder="Choose a category..."
+        hint="This field is required"
+      ></swim-select>
+
+      <swim-select
+        id="formSelect2"
+        name="tags"
+        label="Tags"
+        multiple
+        placeholder="Select tags..."
+        hint="Select one or more tags"
+      ></swim-select>
+
+      <div style="margin-top: 1rem">
+        <swim-button type="submit" variant="primary">Submit Form</swim-button>
+        <swim-button type="reset" variant="bordered" style="margin-left: 0.5rem">Reset</swim-button>
+      </div>
+    </form>
+  </swim-section>
+</section>
+
+<!-- Select Usage Section -->
+<section class="section">
+  <swim-section section-title="Select Usage">
+    <p style="color: var(--grey-300); margin-bottom: 1rem">Import and use the select component in your application:</p>
+    <pre
+      style="background: var(--grey-800); padding: 1rem; border-radius: var(--radius-4); overflow-x: auto"
+    ><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/select';
+&lt;/script&gt;
+
+&lt;script&gt;
+  const select = document.querySelector('swim-select');
+  select.options = [
+    { name: 'Option 1', value: 'opt1' },
+    { name: 'Option 2', value: 'opt2' },
+    { name: 'Option 3', value: 'opt3' }
+  ];
+&lt;/script&gt;
+
+&lt;swim-select label="Choose an option" placeholder="Select..."&gt;&lt;/swim-select&gt;</code></pre>
+  </swim-section>
+</section>

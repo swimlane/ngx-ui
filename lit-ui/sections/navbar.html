@@ -1,0 +1,64 @@
+<style>
+  .navbar-page--container {
+    display: flex;
+    justify-content: center;
+  }
+</style>
+<h1 id="navbar" class="page-title">Navbar</h1>
+<p class="subtitle">
+  Navbar with sliding active indicator. Use <code>swim-navbar</code> with <code>swim-navbar-item</code> children.
+  Set <code>bar-at-top</code> to show the bar above items; use <code>active</code> and <code>active-change</code> for two-way binding.
+</p>
+
+<section class="section">
+  <swim-section section-title="Navbar">
+    <h3 class="style-header">Active bar on bottom</h3>
+    <div class="navbar-page--container">
+      <swim-navbar id="navbarBottomDemo" active="1">
+        <swim-navbar-item><swim-icon font-icon="apps"></swim-icon></swim-navbar-item>
+        <swim-navbar-item><swim-icon font-icon="chart-scatter"></swim-icon></swim-navbar-item>
+        <swim-navbar-item><swim-icon font-icon="database"></swim-icon></swim-navbar-item>
+        <swim-navbar-item><swim-icon font-icon="commandline"></swim-icon></swim-navbar-item>
+      </swim-navbar>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-navbar&gt;
+  &lt;swim-navbar-item&gt;&lt;swim-icon font-icon="apps"&gt;&lt;/swim-icon&gt;&lt;/swim-navbar-item&gt;
+  &lt;swim-navbar-item&gt;&lt;swim-icon font-icon="chart-scatter"&gt;&lt;/swim-icon&gt;&lt;/swim-navbar-item&gt;
+  &lt;swim-navbar-item&gt;&lt;swim-icon font-icon="database"&gt;&lt;/swim-icon&gt;&lt;/swim-navbar-item&gt;
+  &lt;swim-navbar-item&gt;&lt;swim-icon font-icon="commandline"&gt;&lt;/swim-icon&gt;&lt;/swim-navbar-item&gt;
+&lt;/swim-navbar&gt;</code></pre>
+
+    <h3 class="style-header">Active bar on top</h3>
+    <div class="navbar-page--container">
+      <swim-navbar id="navbarTopDemo" bar-at-top>
+        <swim-navbar-item><swim-icon font-icon="apps"></swim-icon></swim-navbar-item>
+        <swim-navbar-item><swim-icon font-icon="chart-scatter"></swim-icon></swim-navbar-item>
+        <swim-navbar-item><swim-icon font-icon="database"></swim-icon></swim-navbar-item>
+        <swim-navbar-item><swim-icon font-icon="commandline"></swim-icon></swim-navbar-item>
+      </swim-navbar>
+    </div>
+    <p class="section-desc">Use <code>goTo(index)</code> to activate an item programmatically.</p>
+    <div class="demo-row">
+      <swim-button id="navbarGoToFourthBtn" variant="default">Activate 4th nav item</swim-button>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-navbar id="navbarTop" bar-at-top&gt;
+  &lt;swim-navbar-item&gt;&lt;swim-icon font-icon="apps"&gt;&lt;/swim-icon&gt;&lt;/swim-navbar-item&gt;
+  ...
+&lt;/swim-navbar&gt;
+&lt;swim-button id="btn"&gt;Activate 4th nav item&lt;/swim-button&gt;
+&lt;script&gt;
+  document.getElementById('btn').addEventListener('click', () =&gt; {
+    document.getElementById('navbarTop').goTo(3);
+  });
+&lt;/script&gt;</code></pre>
+
+    <h3 class="style-header">Usage</h3>
+    <p class="section-desc">
+      <strong>swim-navbar</strong>: <code>active</code> (number), <code>bar-at-top</code> (boolean).
+      Fires <code>active-change</code> (detail: number). Method <code>goTo(index)</code>.
+    </p>
+    <p class="section-desc">
+      <strong>swim-navbar-item</strong>: Content in default slot (e.g. icon). Index/total/active are set by the parent navbar.
+    </p>
+  </swim-section>
+</section>

@@ -1,0 +1,112 @@
+<section id="tooltip" class="section">
+  <swim-section section-title="Tooltip">
+    <p class="section-desc">Compact tooltips by placement. Hover or focus to show.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-row">
+        <swim-tooltip content="Phishing Attack" type="tooltip" placement="top">
+          <a href="#" class="demo-link">Top</a>
+        </swim-tooltip>
+        <span class="demo-sep">|</span>
+        <swim-tooltip content="Phishing Attack" type="tooltip" placement="right">
+          <a href="#" class="demo-link">Right</a>
+        </swim-tooltip>
+        <span class="demo-sep">|</span>
+        <swim-tooltip content="Phishing Attack" type="tooltip" placement="bottom">
+          <a href="#" class="demo-link">Bottom</a>
+        </swim-tooltip>
+        <span class="demo-sep">|</span>
+        <swim-tooltip content="Phishing Attack" type="tooltip" placement="left">
+          <a href="#" class="demo-link">Left</a>
+        </swim-tooltip>
+      </div>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Popover">
+    <p class="section-desc">Larger popover style with shadow. Hover or focus to show.</p>
+    <div class="demo-row">
+      <swim-tooltip content="Popover on top" type="popover" placement="top">
+        <a href="#" class="demo-link">Top</a>
+      </swim-tooltip>
+      <span class="demo-sep">|</span>
+      <swim-tooltip content="Popover on right" type="popover" placement="right">
+        <a href="#" class="demo-link">Right</a>
+      </swim-tooltip>
+      <span class="demo-sep">|</span>
+      <swim-tooltip content="Popover on bottom" type="popover" placement="bottom">
+        <a href="#" class="demo-link">Bottom</a>
+      </swim-tooltip>
+      <span class="demo-sep">|</span>
+      <swim-tooltip content="Popover on left" type="popover" placement="left">
+        <a href="#" class="demo-link">Left</a>
+      </swim-tooltip>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Show on click">
+    <p class="section-desc">Open on click; close on outside click or toggle.</p>
+    <div class="demo-row">
+      <swim-tooltip
+        type="popover"
+        placement="bottom"
+        show-event="click"
+        show-caret="false"
+        content="Click me to open. Click outside or here again to close."
+      >
+        <swim-button variant="primary">Click me to open</swim-button>
+      </swim-tooltip>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Custom content (slot)">
+    <p class="section-desc">
+      Use the <code>content</code> slot for rich content. Hover the link to see the slotted content.
+    </p>
+    <div class="demo-row">
+      <swim-tooltip type="tooltip" placement="top">
+        <a href="#" class="demo-link">Template</a>
+        <span slot="content"><strong>ALERT: High Priority</strong></span>
+      </swim-tooltip>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="States">
+    <p class="section-desc">Disabled: tooltip does not show. No caret: tooltip shows without the arrow.</p>
+    <div class="demo-row">
+      <swim-tooltip content="Disabled tooltip" type="tooltip" placement="top" disabled>
+        <swim-button disabled>Disabled</swim-button>
+      </swim-tooltip>
+      <span class="demo-sep">|</span>
+      <swim-tooltip content="No caret" type="popover" placement="top" show-caret="false">
+        <a href="#" class="demo-link">No caret</a>
+      </swim-tooltip>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Usage">
+    <p class="section-desc">Import and use the tooltip component.</p>
+    <pre class="demo-pre"><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/tooltip';
+&lt;/script&gt;
+
+&lt;swim-tooltip content="Phishing Attack" type="tooltip" placement="top"&gt;
+  &lt;a href="#"&gt;Top&lt;/a&gt;
+&lt;/swim-tooltip&gt;
+
+&lt;!-- Custom content via slot --&gt;
+&lt;swim-tooltip type="popover" placement="bottom"&gt;
+  &lt;swim-button variant="primary"&gt;Open&lt;/swim-button&gt;
+  &lt;div slot="content"&gt;Custom content here.&lt;/div&gt;
+&lt;/swim-tooltip&gt;</code></pre>
+  </swim-section>
+</section>

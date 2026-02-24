@@ -1,0 +1,82 @@
+<hr class="section-divider" />
+
+<h1 id="radio" class="page-title">Radio Buttons</h1>
+<p class="subtitle">
+  Radio controls matching ngx-radiobutton: use <code>swim-radio</code> alone (controlled by parent) or inside
+  <code>swim-radio-group</code>. Arrow keys move focus and selection in a group. Supports form association on the group.
+</p>
+
+<section class="section">
+  <swim-section section-title="Single radio buttons">
+    <p class="section-desc">Standalone radios with parent-controlled checked/change (e.g. favorite season).</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-grid">
+        <swim-radio id="radioSeasonSpring" value="Spring">Spring</swim-radio>
+        <swim-radio id="radioSeasonSummer" value="Summer" checked>Summer</swim-radio>
+        <swim-radio id="radioSeasonFall" value="Fall">Fall</swim-radio>
+        <swim-radio id="radioSeasonWinter" value="Winter">Winter</swim-radio>
+      </div>
+      <p class="demo-label demo-label--after">Selected: <strong id="radioSingleValue">Summer</strong></p>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Radio button group">
+    <p class="section-desc">Group manages value; arrow keys move focus and selection.</p>
+    <div class="demo-row demo-row--column">
+      <swim-radio-group id="radioGroupDemo" name="favorite-season" value="Summer">
+        <swim-radio value="Spring">Spring</swim-radio>
+        <swim-radio value="Summer">Summer</swim-radio>
+        <swim-radio value="Fall">Fall</swim-radio>
+        <swim-radio value="Winter">Winter</swim-radio>
+      </swim-radio-group>
+      <p class="demo-label demo-label--after">Your favorite season is: <strong id="radioGroupValue">—</strong></p>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Disabled options and disabled group">
+    <p class="section-desc">Some options disabled; then entire group disabled.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-item">
+        <div class="demo-label">Some options disabled</div>
+        <swim-radio-group id="radioGroupSomeDisabled" name="season-some-disabled">
+          <swim-radio value="Spring" disabled>Spring (disabled)</swim-radio>
+          <swim-radio value="Summer">Summer</swim-radio>
+          <swim-radio value="Fall" disabled>Fall (disabled)</swim-radio>
+          <swim-radio value="Winter">Winter</swim-radio>
+        </swim-radio-group>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Group disabled</div>
+        <swim-radio-group id="radioGroupDisabled" name="season-group-disabled" disabled>
+          <swim-radio value="Spring">Spring</swim-radio>
+          <swim-radio value="Summer">Summer</swim-radio>
+          <swim-radio value="Fall">Fall</swim-radio>
+          <swim-radio value="Winter">Winter</swim-radio>
+        </swim-radio-group>
+      </div>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Radio usage">
+    <p class="section-desc">Import and use the radio components:</p>
+    <pre class="demo-pre"><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/radio';
+&lt;/script&gt;
+
+&lt;!-- Standalone (parent controls state) --&gt;
+&lt;swim-radio value="A" .checked="${selected === 'A'}" @change="${e =&gt; selected = e.detail}"&gt;Option A&lt;/swim-radio&gt;
+
+&lt;!-- Group --&gt;
+&lt;swim-radio-group name="choice" @change="${e =&gt; console.log(e.detail)}"&gt;
+  &lt;swim-radio value="one"&gt;One&lt;/swim-radio&gt;
+  &lt;swim-radio value="two"&gt;Two&lt;/swim-radio&gt;
+  &lt;swim-radio value="three"&gt;Three&lt;/swim-radio&gt;
+&lt;/swim-radio-group&gt;</code></pre>
+  </swim-section>
+</section>

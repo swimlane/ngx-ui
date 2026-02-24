@@ -1,0 +1,171 @@
+<hr class="section-divider" />
+<h1 id="input" class="page-title">Input Component</h1>
+<p class="subtitle">Text inputs with floating labels and validation</p>
+
+<!-- Input Types (mirrors ngx-ui inputs-page: Text and type variants) -->
+<section class="section">
+  <swim-section section-title="Input Types">
+    <div class="demo-grid">
+      <div class="demo-item">
+        <div class="demo-label">Text Input</div>
+        <swim-input label="Text Input" placeholder="Enter text"></swim-input>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Password</div>
+        <swim-input type="password" label="Password" password-toggle-enabled></swim-input>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Email</div>
+        <swim-input type="email" label="Email" placeholder="user@example.com"></swim-input>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Number</div>
+        <swim-input type="number" label="Age" min="0" max="150"></swim-input>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">Tel</div>
+        <swim-input type="tel" label="Phone" placeholder="555-1234"></swim-input>
+      </div>
+      <div class="demo-item">
+        <div class="demo-label">URL</div>
+        <swim-input type="url" label="Website" placeholder="https://"></swim-input>
+      </div>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Input Sizes Section -->
+<section class="section">
+  <swim-section section-title="Input Sizes">
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-input size="sm" label="Small Input" placeholder="Small size"></swim-input>
+      <swim-input size="md" label="Medium Input" placeholder="Medium size"></swim-input>
+      <swim-input size="lg" label="Large Input" placeholder="Large size"></swim-input>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Input Appearances Section -->
+<section class="section">
+  <swim-section section-title="Input Appearances">
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-input appearance="legacy" label="Legacy Appearance" placeholder="Default style"></swim-input>
+      <swim-input appearance="fill" label="Fill Appearance" placeholder="Filled background"></swim-input>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Textarea Section -->
+<section class="section">
+  <swim-section section-title="Textarea">
+    <div style="max-width: 500px">
+      <swim-input
+        type="textarea"
+        label="Comments"
+        placeholder="Enter your comments here..."
+        textarea-rows="4"
+        hint="Maximum 500 characters"
+      ></swim-input>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Input States Section -->
+<section class="section">
+  <swim-section section-title="Input States">
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-input label="Normal" placeholder="Normal input"></swim-input>
+      <swim-input label="With Value" value="Has a value"></swim-input>
+      <swim-input label="Required Field" required placeholder="This is required"></swim-input>
+      <swim-input label="Disabled" disabled value="Cannot edit"></swim-input>
+      <swim-input label="Readonly" readonly value="Read only value"></swim-input>
+      <swim-input label="With Hint" placeholder="Type something" hint="This is a helpful hint text"></swim-input>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Form Validation Section -->
+<section class="section">
+  <swim-section section-title="Form Validation">
+    <form id="demoForm" style="max-width: 500px">
+      <swim-input
+        id="nameInput"
+        name="name"
+        label="Name"
+        required
+        minlength="3"
+        placeholder="Enter your name"
+        hint="Minimum 3 characters"
+      ></swim-input>
+
+      <swim-input
+        id="emailInput"
+        name="email"
+        type="email"
+        label="Email"
+        required
+        placeholder="user@example.com"
+      ></swim-input>
+
+      <swim-input
+        id="ageInput"
+        name="age"
+        type="number"
+        label="Age"
+        required
+        min="18"
+        max="100"
+        hint="Must be between 18 and 100"
+      ></swim-input>
+
+      <div style="margin-top: 1rem">
+        <swim-button type="submit" variant="primary">Submit Form</swim-button>
+        <swim-button type="reset" variant="bordered" style="margin-left: 0.5rem">Reset</swim-button>
+      </div>
+    </form>
+  </swim-section>
+</section>
+
+<!-- Advanced Features Section -->
+<section class="section">
+  <swim-section section-title="Advanced Features">
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-input
+        type="password"
+        label="Password with Toggle"
+        password-toggle-enabled
+        hint="Click the eye icon to show/hide"
+      ></swim-input>
+
+      <swim-input
+        type="number"
+        label="Number with Spinners"
+        value="50"
+        min="0"
+        max="100"
+        hint="Hover to see increment/decrement buttons"
+      ></swim-input>
+
+      <swim-input appearance="fill" label="Fill with Prefix/Suffix" value="example">
+        <span slot="prefix" style="color: var(--grey-300)">https://</span>
+        <span slot="suffix" style="color: var(--grey-300)">.com</span>
+      </swim-input>
+    </div>
+  </swim-section>
+</section>
+
+<!-- Input Usage Section -->
+<section class="section">
+  <swim-section section-title="Input Usage">
+    <p style="color: var(--grey-300); margin-bottom: 1rem">Import and use the input component in your application:</p>
+    <pre
+      style="background: var(--grey-800); padding: 1rem; border-radius: var(--radius-4); overflow-x: auto"
+    ><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/input';
+&lt;/script&gt;
+
+&lt;swim-input label="Username" required&gt;&lt;/swim-input&gt;</code></pre>
+  </swim-section>
+</section>
+
+<hr style="border: none; border-top: 1px solid var(--grey-700); margin: 4rem 0" />

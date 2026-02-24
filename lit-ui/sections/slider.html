@@ -1,0 +1,111 @@
+<hr class="section-divider" />
+
+<h1 id="slider" class="page-title">Slider</h1>
+<p class="subtitle">
+  Range slider matching ngx-slider: single or multiple thumbs, optional filled track and tick marks, horizontal or
+  vertical. Form-associated; supports min, max, step, and change events.
+</p>
+
+<section class="section">
+  <swim-section section-title="Basic">
+    <p class="section-desc">Default horizontal slider with default min (0), max (100), step (1).</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-grid">
+        <div class="demo-item">
+          <div class="demo-label">Default</div>
+          <swim-slider aria-label="Volume"></swim-slider>
+        </div>
+        <div class="demo-item">
+          <div class="demo-label">With initial value</div>
+          <swim-slider value="50" aria-label="Level"></swim-slider>
+        </div>
+      </div>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Filled">
+    <p class="section-desc">Filled track shows the selected range from the start to the thumb(s).</p>
+    <div class="demo-row demo-row--column">
+      <swim-slider filled value="40" aria-label="Progress"></swim-slider>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Multiple (range)">
+    <p class="section-desc">Two thumbs for a range. Value is comma-separated (e.g. "20,80").</p>
+    <div class="demo-row demo-row--column">
+      <swim-slider multiple filled value="25,75" min="0" max="100" aria-label="Range"></swim-slider>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="With ticks">
+    <p class="section-desc">Tick marks at step intervals (or tick-step when set).</p>
+    <div class="demo-row demo-row--column">
+      <swim-slider show-ticks step="10" value="50" aria-label="Steps"></swim-slider>
+      <div class="demo-label demo-label--after">step=10, show-ticks</div>
+      <swim-slider
+        show-ticks
+        filled
+        multiple
+        value="20,80"
+        min="10"
+        max="200"
+        step="5"
+        tick-step="20"
+        aria-label="Range with ticks"
+      ></swim-slider>
+      <div class="demo-label demo-label--after">min=10, max=200, step=5, tick-step=20</div>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Disabled">
+    <p class="section-desc">Disabled state.</p>
+    <div class="demo-row demo-row--column">
+      <swim-slider disabled value="60" aria-label="Disabled"></swim-slider>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Vertical">
+    <p class="section-desc">Vertical orientation (transform-based, same behavior as horizontal).</p>
+    <div class="demo-row">
+      <swim-slider orientation="vertical" value="30" aria-label="Vertical"></swim-slider>
+      <swim-slider orientation="vertical" filled value="70" aria-label="Vertical filled"></swim-slider>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="With event display">
+    <p class="section-desc">Value and percent from the change event are shown below.</p>
+    <div class="demo-row demo-row--column">
+      <swim-slider id="sliderDemoEvent" filled value="25" aria-label="Demo slider"></swim-slider>
+      <p class="demo-label demo-label--after">
+        Value: <strong id="sliderDemoValue">25</strong>. Percent: <strong id="sliderDemoPercent">25</strong>
+      </p>
+    </div>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Slider usage">
+    <p class="section-desc">Import and use the slider component:</p>
+    <pre class="demo-pre"><code>&lt;script type="module"&gt;
+  import '@swimlane/lit-ui/slider';
+&lt;/script&gt;
+
+&lt;swim-slider aria-label="Volume"&gt;&lt;/swim-slider&gt;
+&lt;swim-slider filled value="50" aria-label="Level"&gt;&lt;/swim-slider&gt;
+&lt;swim-slider multiple filled value="20,80" min="0" max="100" aria-label="Range"&gt;&lt;/swim-slider&gt;
+&lt;swim-slider show-ticks step="10" value="50" aria-label="Steps"&gt;&lt;/swim-slider&gt;
+&lt;swim-slider orientation="vertical" value="30" aria-label="Vertical"&gt;&lt;/swim-slider&gt;</code></pre>
+  </swim-section>
+</section>
