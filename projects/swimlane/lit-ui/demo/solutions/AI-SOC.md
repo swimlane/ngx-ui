@@ -296,5 +296,3 @@ This entire process, which might take hours manually, happens in seconds with Tu
 - **Scalability**: Handle thousands of alerts without adding more analysts
 
 ---
-
-Is there a specific aspect of the platform you'd like me to explain in more detail?

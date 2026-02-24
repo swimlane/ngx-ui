@@ -149,9 +149,9 @@ Plain CSS equivalent (adjust the path to your node_modules or asset URL):
 }
 ```
 
-When the font is loaded from the ngx-ui package this way, the default `icon-font-glyphs.ts` (generated from `icons.scss`) is correct. If your deployment serves a **different** woff2 (e.g. from another build), use `npm run generate:icon-glyphs:from-font` with that font to generate `icon-font-glyphs-platform.ts` and alias the icon component to it.
+When the font is loaded from the ngx-ui package this way, the default `icon-font-glyphs.ts` (generated from `icons.scss`) is correct. The CDN build embeds the font as base64, so no external font loading is required.
 
-**How the font is deployed from the Angular lib:** The ngx-ui library’s `ng-package.json` includes an `assets` entry that copies `src/lib/assets/icons/iconfont/fonts/*` (eot, woff2, woff, ttf, svg) into the built package at `lib/assets/icons/iconfont/fonts/`. So when you install `@swimlane/ngx-ui` from npm, those files in `node_modules/@swimlane/ngx-ui/lib/assets/icons/iconfont/fonts/` are the **same files** as in the repo—no transformation, just copy. If your app (e.g. the platform) then bundles that URL, the build may rename the file for cache-busting (e.g. `ngx-icon-SWYRP4SX.woff2`); the content is still the same font file. If codepoints don’t match, see [icon-font-platform-diff.md](docs/icon-font-platform-diff.md).
+**How the font is deployed from the Angular lib:** The ngx-ui library’s `ng-package.json` includes an `assets` entry that copies `src/lib/assets/icons/iconfont/fonts/*` (eot, woff2, woff, ttf, svg) into the built package at `lib/assets/icons/iconfont/fonts/`. So when you install `@swimlane/ngx-ui` from npm, those files in `node_modules/@swimlane/ngx-ui/lib/assets/icons/iconfont/fonts/` are the **same files** as in the repo—no transformation, just copy.
 
 ## Components
 
