@@ -87,10 +87,18 @@ const DEFAULT_SECTION = SECTION_FILES[0];
 
 const sectionCache = new Map<string, string>();
 
+function getDemoBasePath(): string {
+  const pathname = window.location.pathname;
+  return pathname.endsWith('/') ? pathname : pathname + '/';
+}
+
 async function loadSection(sectionId: string): Promise<string> {
   const cached = sectionCache.get(sectionId);
   if (cached) return cached;
-  const res = await fetch(`${import.meta.env.BASE_URL}sections/${sectionId}.html`);
+  // Resolve sections from the app root so it works with or without trailing slash (e.g. /ngx-ui/lit-ui/)
+  const basePath = getDemoBasePath();
+  const url = `${basePath}sections/${sectionId}.html`;
+  const res = await fetch(url);
   if (!res.ok) throw new Error(`Failed to load section: ${sectionId}`);
   const html = await res.text();
   sectionCache.set(sectionId, html);
