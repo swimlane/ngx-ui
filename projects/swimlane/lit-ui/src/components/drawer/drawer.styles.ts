@@ -131,6 +131,7 @@ export const drawerStyles = [
     }
 
     .swim-drawer__content {
+      box-sizing: border-box;
       height: 100%;
       overflow: auto;
       padding: var(--spacing-16);

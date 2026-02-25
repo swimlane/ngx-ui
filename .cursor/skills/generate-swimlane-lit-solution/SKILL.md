@@ -6,7 +6,7 @@ disable-model-invocation: true
 
 # Generate Swimlane Lit Element Solution (CDN)
 
-Generate a **standalone Lit-based solution** (custom widget or small app) that uses **SwimlaneElement** (wrapper for Lit) and **Swimlane custom Lit elements** (`swim-*`) from `@swimlane/lit-ui`, with all dependencies loaded from **CDN**. The solution must be professional, consistent, accessible (WCAG), and free of memory leaks. You may use **HTML**, **vanilla JavaScript**, and **Swimlane Lit custom elements** only.
+Generate a **standalone Lit-based solution** (custom widget or small app) that uses **SwimlaneElement** (wrapper for Lit) and **Swimlane custom Lit elements** (`swim-*`) from `@swimlane/lit-ui`, with all dependencies loaded from **CDN**. Use **lit-elements as-is** — do not add additional styling for the elements (no custom colors, borders, shadows, typography on components); **only layout styling** (flex, grid, spacing, positioning) is allowed. The solution must be professional, consistent, accessible (WCAG), and free of memory leaks. You may use **HTML**, **vanilla JavaScript**, and **Swimlane Lit custom elements** only.
 
 **Base library**: All custom elements must extend **SwimlaneElement** and use its exports (`css`, `html`, `svg`, `unsafeCSS`) — not raw LitElement.
 
@@ -108,8 +108,9 @@ Refer to the component APIs in `projects/swimlane/lit-ui/src/components/<name>/`
 
 ## Design and Consistency
 
-- **CSS variables**: Reuse the same design tokens as the lit-ui demo where possible (e.g. `--blue-500`, `--grey-600`, `--radius-4`, `--font-size-m`, `--spacing-16`). You can copy a minimal `:root` block from `projects/swimlane/lit-ui/demo/index.html` so the solution looks consistent with Swimlane's design system.
-- **No hardcoded colors**: Prefer `var(--...)` for colors, spacing, and typography.
+- **Use lit-elements as-is**: Use Swimlane Lit custom elements (`swim-*`) **without adding additional styling** for the elements themselves. Do not override or layer custom colors, borders, shadows, typography, or other visual styling on `swim-*` components. **Layout-only styling is allowed**: e.g. flexbox, grid, spacing, positioning, alignment, and containment (e.g. `display`, `gap`, `margin`, `padding` on wrappers, `align-items`, `justify-content`) to arrange and space the components. Rely on each component’s built-in appearance.
+- **CSS variables**: When layout or wrapper styling needs tokens, reuse the same design tokens as the lit-ui demo where possible (e.g. `--spacing-16`, `--radius-4`). You can copy a minimal `:root` block from `projects/swimlane/lit-ui/demo/index.html` so the solution looks consistent with Swimlane's design system.
+- **No hardcoded colors**: Prefer `var(--...)` for any layout/spacing tokens you use; do not add custom colors or visual styling to the `swim-*` elements.
 - **Structure**: Use semantic HTML (`main`, `section`, `header`, `form`, `label`, etc.) and keep the DOM clear and minimal so the solution is maintainable and accessible.
 
 ## Accessibility (WCAG 2.1)
@@ -151,6 +152,7 @@ If the solution is **only** HTML and uses `swim-*` elements without adding its o
 ## What Not to Do
 
 - Do **not** use Angular, React, Vue, or any other framework. Only **SwimlaneElement** (for any custom element you write) and Swimlane's `swim-*` components. Do not use raw LitElement.
+- Do **not** add additional styling to `swim-*` elements (e.g. custom colors, borders, shadows, typography). Use lit-elements as-is; only layout-related CSS (flex, grid, spacing, positioning) is allowed.
 - Do **not** use components or patterns from other design systems or from the custom-widgets site that are not part of `@swimlane/lit-ui`. Use only the `swim-*` elements listed in this command.
 - Do **not** assume a build step (e.g. bundling or npm install) unless the user explicitly asks for it. Default is runnable in the browser via CDN.
 - Do **not** call `customElements.define()` to register the solution class — the Swimlane platform handles registration. Always **export default** the class instead.

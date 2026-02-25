@@ -51,7 +51,11 @@ export class SwimDrawer extends LitElement {
   @property({
     type: Boolean,
     attribute: 'close-on-outside-click',
-    reflect: true
+    reflect: true,
+    converter: {
+      fromAttribute: (value: string | null) => value !== null && value !== 'false' && value !== '0',
+      toAttribute: (value: boolean) => (value ? '' : 'false')
+    }
   })
   get closeOnOutsideClick(): boolean {
     return this._closeOnOutsideClick;
@@ -62,7 +66,15 @@ export class SwimDrawer extends LitElement {
   private _closeOnOutsideClick = true;
 
   /** When true, drawer uses fixed positioning (viewport). When false, absolute within parent. */
-  @property({ type: Boolean, attribute: 'is-root', reflect: true })
+  @property({
+    type: Boolean,
+    attribute: 'is-root',
+    reflect: true,
+    converter: {
+      fromAttribute: (value: string | null) => value !== null && value !== 'false' && value !== '0',
+      toAttribute: (value: boolean) => (value ? '' : 'false')
+    }
+  })
   get isRoot(): boolean {
     return this._isRoot;
   }

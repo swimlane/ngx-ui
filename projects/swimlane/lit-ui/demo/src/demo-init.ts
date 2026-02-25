@@ -87,6 +87,9 @@ const DEFAULT_SECTION = SECTION_FILES[0];
 
 const sectionCache = new Map<string, string>();
 
+/** Cleared when leaving the buttons section so the cycling state interval does not leak. */
+let cyclingStateIntervalId: ReturnType<typeof setInterval> | null = null;
+
 function getDemoBasePath(): string {
   const pathname = window.location.pathname;
   return pathname.endsWith('/') ? pathname : pathname + '/';
@@ -113,6 +116,10 @@ function getSectionIdFromHash(): string {
 async function showSection(sectionId: string): Promise<void> {
   const container = document.getElementById('page-sections');
   if (!container) return;
+  if (cyclingStateIntervalId !== null) {
+    clearInterval(cyclingStateIntervalId);
+    cyclingStateIntervalId = null;
+  }
   try {
     const html = await loadSection(sectionId);
     container.innerHTML = html;
@@ -162,13 +169,13 @@ function setupDrawerDemos(): void {
     );
   }
 
-  const drawerNoCloseLeft = document.getElementById('drawerNoCloseLeft');
-  const drawerNoCloseBottom = document.getElementById('drawerNoCloseBottom');
-  if (drawerNoCloseLeft && getDrawer('drawerNoCloseLeft')) {
-    drawerNoCloseLeft.addEventListener('click', () => getDrawer('drawerNoCloseLeft')!.show());
+  const drawerNoCloseOpenLeft = document.getElementById('drawerNoCloseOpenLeft');
+  const drawerNoCloseOpenBottom = document.getElementById('drawerNoCloseOpenBottom');
+  if (drawerNoCloseOpenLeft && getDrawer('drawerNoCloseLeft')) {
+    drawerNoCloseOpenLeft.addEventListener('click', () => getDrawer('drawerNoCloseLeft')!.show());
   }
-  if (drawerNoCloseBottom && getDrawer('drawerNoCloseBottom')) {
-    drawerNoCloseBottom.addEventListener('click', () => getDrawer('drawerNoCloseBottom')!.show());
+  if (drawerNoCloseOpenBottom && getDrawer('drawerNoCloseBottom')) {
+    drawerNoCloseOpenBottom.addEventListener('click', () => getDrawer('drawerNoCloseBottom')!.show());
   }
   document
     .getElementById('drawerNoCloseBtnLeft')
@@ -193,6 +200,12 @@ function setupDrawerDemos(): void {
   if (drawerContainerOpenBottom && getDrawer('drawerContainerBottom')) {
     drawerContainerOpenBottom.addEventListener('click', () => getDrawer('drawerContainerBottom')!.show());
   }
+  document
+    .getElementById('drawerContainerBtnLeft')
+    ?.addEventListener('click', () => getDrawer('drawerContainerLeft')?.hide());
+  document
+    .getElementById('drawerContainerBtnBottom')
+    ?.addEventListener('click', () => getDrawer('drawerContainerBottom')?.hide());
   getDrawer('drawerContainerLeft')?.addEventListener('close', () => {
     const d = getDrawer('drawerContainerLeft');
     if (d) d.open = false;
@@ -592,6 +605,22 @@ function setupDemos(): void {
     slowBtn.addEventListener('click', () => {
       (slowBtn as any).promise = delay(5000);
     });
+  }
+
+  // Button state cycling (driven by a JS variable that changes periodically)
+  const cyclingStateBtn = document.getElementById('cyclingStateBtn') as (HTMLElement & { state?: string }) | null;
+  const cyclingStateLabel = document.getElementById('cyclingStateLabel');
+  if (cyclingStateBtn && cyclingStateLabel) {
+    const states = ['active', 'in-progress', 'success', 'fail'] as const;
+    let index = 0;
+    const applyState = () => {
+      const state = states[index];
+      cyclingStateBtn.setAttribute('state', state);
+      cyclingStateLabel.textContent = state;
+      index = (index + 1) % states.length;
+    };
+    applyState(); // set initial state
+    cyclingStateIntervalId = setInterval(applyState, 2000);
   }
 
   // Form validation demo

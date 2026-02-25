@@ -1,4 +1,4 @@
-import { LitElement, html, nothing } from 'lit';
+import { LitElement, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import { cardAvatarComponentStyles } from './card-avatar.styles';
 import { CardStatus } from './card-status.enum';
@@ -25,23 +25,21 @@ export class SwimCardAvatar extends LitElement {
   removeImageBackground = false;
 
   render() {
-    const hasStatus = Boolean(this.status);
-    const statusClass =
+    const avatarStatusClass =
       this.status === CardStatus.Success
-        ? 'swim-card-avatar__status--success'
+        ? 'swim-card-avatar__avatar--success'
         : this.status === CardStatus.Error
-        ? 'swim-card-avatar__status--error'
+        ? 'swim-card-avatar__avatar--error'
+        : this.status === CardStatus.Disabled
+        ? 'swim-card-avatar__avatar--disabled'
         : '';
 
     return html`
-      <div class="swim-card-avatar__avatar ${hasStatus ? 'has-status' : ''}">
-        ${hasStatus
-          ? html`<div
-              class="swim-card-avatar__status ${statusClass}"
-              role="status"
-              aria-label="${this.status || ''}"
-            ></div>`
-          : nothing}
+      <div
+        class="swim-card-avatar__avatar ${avatarStatusClass}"
+        role="${this.status ? 'status' : 'presentation'}"
+        aria-label="${this.status || ''}"
+      >
         <div class="swim-card-avatar__inner">
           ${this.src
             ? html`

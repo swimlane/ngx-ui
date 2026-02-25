@@ -32,6 +32,19 @@ export const cardAvatarStyles = css`
     box-sizing: border-box;
   }
 
+  /* Avatar circle border reflects status: success (green), error (red), disabled (grey) */
+  .swim-card-avatar__avatar--success {
+    border-color: var(--color-success);
+  }
+
+  .swim-card-avatar__avatar--error {
+    border-color: var(--color-error);
+  }
+
+  .swim-card-avatar__avatar--disabled {
+    border-color: var(--grey-500);
+  }
+
   .swim-card-avatar__inner {
     display: flex;
     height: 100%;
@@ -40,30 +53,6 @@ export const cardAvatarStyles = css`
     border-radius: 100%;
     overflow: hidden;
     position: relative;
-  }
-
-  .swim-card-avatar__status {
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: ${borderWidth}px solid var(--grey-800);
-    background-color: var(--white);
-    z-index: 2;
-  }
-
-  .swim-card-avatar__status--success {
-    background-color: var(--color-success);
-  }
-
-  .swim-card-avatar__status--error {
-    background-color: var(--color-error);
-  }
-
-  .swim-card-avatar__avatar.has-status .swim-card-avatar__status {
-    box-shadow: none;
   }
 
   .swim-card-avatar__img {

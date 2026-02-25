@@ -152,6 +152,7 @@
       <div class="demo-label">Status: success</div>
       <swim-card orientation="horizontal" status="success">
         <swim-card-header>
+          <swim-card-avatar slot="avatar" status="success">SP</swim-card-avatar>
           <span slot="title">Success status</span>
         </swim-card-header>
       </swim-card>
@@ -159,6 +160,7 @@
       <div class="demo-label demo-label--spaced">Status: error</div>
       <swim-card orientation="horizontal" status="error">
         <swim-card-header>
+          <swim-card-avatar slot="avatar" status="error">SP</swim-card-avatar>
           <span slot="title">Error status</span>
         </swim-card-header>
       </swim-card>
@@ -166,24 +168,28 @@
       <div class="demo-label demo-label--spaced">Flat appearance (no background)</div>
       <swim-card orientation="horizontal" appearance="flat">
         <swim-card-header>
+          <swim-card-avatar slot="avatar">SP</swim-card-avatar>
           <span slot="title">Flat card</span>
         </swim-card-header>
       </swim-card>
     </div>
     <pre class="demo-pre"><code>&lt;swim-card orientation="horizontal" status="success"&gt;
   &lt;swim-card-header&gt;
+    &lt;swim-card-avatar slot="avatar" status="success"&gt;SP&lt;/swim-card-avatar&gt;
     &lt;span slot="title"&gt;Success status&lt;/span&gt;
   &lt;/swim-card-header&gt;
 &lt;/swim-card&gt;
 
 &lt;swim-card orientation="horizontal" status="error"&gt;
   &lt;swim-card-header&gt;
+    &lt;swim-card-avatar slot="avatar" status="error"&gt;SP&lt;/swim-card-avatar&gt;
     &lt;span slot="title"&gt;Error status&lt;/span&gt;
   &lt;/swim-card-header&gt;
 &lt;/swim-card&gt;
 
 &lt;swim-card orientation="horizontal" appearance="flat"&gt;
   &lt;swim-card-header&gt;
+    &lt;swim-card-avatar slot="avatar"&gt;SP&lt;/swim-card-avatar&gt;
     &lt;span slot="title"&gt;Flat card&lt;/span&gt;
   &lt;/swim-card-header&gt;
 &lt;/swim-card&gt;</code></pre>
