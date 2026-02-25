@@ -506,16 +506,36 @@ const LIST_DATA = [
 /*  Component                                                          */
 /* ================================================================== */
 
+const BUTTON_STATES = ['active', 'in-progress', 'success', 'fail'];
+
 export default class ComponentShowcaseSolution extends SwimlaneElement {
   static get properties() {
     return {
-      _promiseStatus: { type: String, state: true }
+      _promiseStatus: { type: String, state: true },
+      /** Bound to swim-button .state – update this to change the button (e.g. .state=${loadingStatus}) */
+      _loadingStatus: { type: String, state: true }
     };
   }
 
   constructor() {
     super();
     this._promiseStatus = '';
+    this._loadingStatus = 'active';
+    this._cyclingTimer = null;
+  }
+
+  connectedCallback() {
+    super.connectedCallback?.();
+    let idx = 0;
+    this._cyclingTimer = setInterval(() => {
+      idx = (idx + 1) % BUTTON_STATES.length;
+      this._loadingStatus = BUTTON_STATES[idx];
+    }, 2000);
+  }
+
+  disconnectedCallback() {
+    if (this._cyclingTimer) clearInterval(this._cyclingTimer);
+    super.disconnectedCallback?.();
   }
 
   /* ---------------------------------------------------------------- */
@@ -679,6 +699,22 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
         display: block;
       }
 
+      /* Code blocks under demos */
+      .demo-pre {
+        margin: 0.75rem 0 0;
+        padding: var(--sp);
+        background: var(--grey-800, #1b1e27);
+        border-radius: var(--r);
+        font-size: 0.8rem;
+        line-height: 1.4;
+        overflow-x: auto;
+        white-space: pre;
+        color: var(--grey-200, #8b96a8);
+      }
+      .demo-pre code {
+        font-family: ui-monospace, monospace;
+      }
+
       /* Icon grid */
       .icon-grid {
         display: grid;
@@ -732,7 +768,7 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
 
   render() {
     return html`
-      <swim-tabs vertical appearance="light">
+      <swim-tabs vertical>
         <swim-tab label="Button" active>${this._buttonDemo()}</swim-tab>
         <swim-tab label="Button Group">${this._buttonGroupDemo()}</swim-tab>
         <swim-tab label="Button Toggle">${this._buttonToggleDemo()}</swim-tab>
@@ -802,26 +838,48 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
 
         <section class="sg" aria-label="Button states">
           <swim-section section-title="States">
+            <p class="hint">
+              Static state examples; use <code>timeout="0"</code> so they do not auto-return to active.
+            </p>
             <div class="demo-grid">
               <div class="demo-item">
                 <span class="demo-label">Active</span>
-                <swim-button variant="primary">Active</swim-button>
+                <swim-button variant="primary" aria-label="Active state">Active</swim-button>
               </div>
               <div class="demo-item">
                 <span class="demo-label">In Progress</span>
-                <swim-button state="in-progress" variant="primary">Loading</swim-button>
+                <swim-button state="in-progress" timeout="0" variant="primary" aria-label="Loading state"
+                  >Loading</swim-button
+                >
               </div>
               <div class="demo-item">
                 <span class="demo-label">Success</span>
-                <swim-button state="success" variant="primary">Success</swim-button>
+                <swim-button state="success" timeout="0" variant="primary" aria-label="Success state"
+                  >Success</swim-button
+                >
               </div>
               <div class="demo-item">
                 <span class="demo-label">Fail</span>
-                <swim-button state="fail" variant="primary">Failed</swim-button>
+                <swim-button state="fail" timeout="0" variant="primary" aria-label="Fail state">Failed</swim-button>
               </div>
               <div class="demo-item">
                 <span class="demo-label">Disabled</span>
-                <swim-button disabled variant="primary">Disabled</swim-button>
+                <swim-button disabled variant="primary" aria-label="Disabled state">Disabled</swim-button>
+              </div>
+            </div>
+          </swim-section>
+        </section>
+
+        <section class="sg" aria-label="State from variable">
+          <swim-section section-title="State from variable">
+            <p class="hint">
+              Bind <code>state</code> to a variable (e.g. <code>.state=$${'{loadingStatus}'}</code> in your template);
+              when it changes, the button updates. Below: <code>_loadingStatus</code> cycles every 2s.
+            </p>
+            <div class="demo-row">
+              <div class="demo-item">
+                <span class="demo-label">Current: ${this._loadingStatus}</span>
+                <swim-button .state=${this._loadingStatus} timeout="0" variant="primary">Bound to variable</swim-button>
               </div>
             </div>
           </swim-section>
@@ -1840,6 +1898,32 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
 
   /* ---- List ------------------------------------------------------ */
   _listDemo() {
+    const basicListCode = `<swim-list id="listBasic"></swim-list>
+<script>
+  const list = document.getElementById('listBasic');
+  list.dataSource = [
+    { type: 'Malware', date: '2025-01-10', origin: 'China' },
+    { type: 'DDOS', date: '2025-01-15', origin: 'Russia' }
+  ];
+  list.headerLabels = ['Attack Type', 'Date', 'Origin'];
+  list.columns = ['type', 'date', 'origin'];
+  list.columnLayout = '3fr 2fr 2fr';
+  list.defaultRowStatus = 'error';
+  list.height = 280;
+</script>`;
+    const rowIndexCode = `<swim-list id="listWithIndex"></swim-list>
+<script>
+  const list = document.getElementById('listWithIndex');
+  list.dataSource = [
+    { type: 'Malware', date: '2025-01-10', origin: 'China' },
+    { type: 'DDOS', date: '2025-01-15', origin: 'Russia' }
+  ];
+  list.headerLabels = ['#', 'Attack Type', 'Date', 'Origin'];
+  list.columns = ['$index', 'type', 'date', 'origin'];
+  list.columnLayout = '0.5fr 3fr 2fr 2fr';
+  list.defaultRowStatus = 'warning';
+  list.height = 280;
+</script>`;
     return html`
       <div class="panel">
         <h2 class="panel-title">List</h2>
@@ -1855,6 +1939,7 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
               default-row-status="error"
               height="280"
             ></swim-list>
+            <pre class="demo-pre"><code>${basicListCode}</code></pre>
           </swim-section>
         </section>
 
@@ -1868,6 +1953,7 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
               default-row-status="warning"
               height="280"
             ></swim-list>
+            <pre class="demo-pre"><code>${rowIndexCode}</code></pre>
           </swim-section>
         </section>
       </div>

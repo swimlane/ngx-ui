@@ -14,7 +14,13 @@
     <pre class="demo-pre"><code>&lt;swim-list id="listBasic"&gt;&lt;/swim-list&gt;
 &lt;script&gt;
   const list = document.getElementById('listBasic');
-  list.dataSource = [ { type: 'Malware', date: '1/1/2025', origin: 'China' }, ... ];
+  list.dataSource = [
+    { type: 'Malware', date: '1/1/2025', origin: 'China' },
+    { type: 'DDOS', date: '1/5/2025', origin: 'China' },
+    { type: 'DDOS', date: '1/5/2025', origin: 'Russia' },
+    { type: 'XSS', date: '1/6/2025', origin: 'North Korea' },
+    { type: 'Ransomware', date: '1/8/2025', origin: 'China' }
+  ];
   list.headerLabels = ['Attack Type', 'Date of Attack', 'Origin of Attack'];
   list.columns = ['type', 'date', 'origin'];
   list.defaultRowStatus = 'error';
@@ -26,9 +32,17 @@
   <swim-section section-title="Custom Column Layout">
     <h3 class="style-header">Custom grid columns (3fr 2fr 1fr)</h3>
     <swim-list id="listColumnLayout"></swim-list>
-    <pre class="demo-pre"><code>list.columnLayout = '3fr 2fr 1fr';
-list.headerLabels = ['Attack Type', 'Date of Attack', 'Origin of Attack'];
-list.columns = ['type', 'date', 'origin'];</code></pre>
+    <pre class="demo-pre"><code>&lt;swim-list id="listColumnLayout"&gt;&lt;/swim-list&gt;
+&lt;script&gt;
+  const list = document.getElementById('listColumnLayout');
+  list.dataSource = [
+    { type: 'Malware', date: '1/1/2025', origin: 'China' },
+    { type: 'DDOS', date: '1/5/2025', origin: 'Russia' }
+  ];
+  list.columnLayout = '3fr 2fr 1fr';
+  list.headerLabels = ['Attack Type', 'Date of Attack', 'Origin of Attack'];
+  list.columns = ['type', 'date', 'origin'];
+&lt;/script&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -37,9 +51,19 @@ list.columns = ['type', 'date', 'origin'];</code></pre>
     <h3 class="style-header">Fixed height with page-change on scroll</h3>
     <swim-list id="listPagination"></swim-list>
     <p class="section-desc">Current page (from scroll): <strong id="listPaginationPage">1</strong></p>
-    <pre class="demo-pre"><code>list.height = 400;
-list.paginationConfig = { pageSize: 10 };
-list.addEventListener('page-change', (e) =&gt; console.log('Page:', e.detail));</code></pre>
+    <pre class="demo-pre"><code>&lt;swim-list id="listPagination"&gt;&lt;/swim-list&gt;
+&lt;p&gt;Current page: &lt;strong id="listPaginationPage"&gt;1&lt;/strong&gt;&lt;/p&gt;
+&lt;script&gt;
+  const list = document.getElementById('listPagination');
+  list.dataSource = [ /* many rows... */ ];
+  list.headerLabels = ['Attack Type', 'Date of Attack', 'Origin of Attack'];
+  list.columns = ['type', 'date', 'origin'];
+  list.height = 400;
+  list.paginationConfig = { pageSize: 10 };
+  list.addEventListener('page-change', (e) =&gt; {
+    document.getElementById('listPaginationPage').textContent = e.detail;
+  });
+&lt;/script&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -48,7 +72,19 @@ list.addEventListener('page-change', (e) =&gt; console.log('Page:', e.detail));<
     <h3 class="style-header">Start scrolled to page 5</h3>
     <swim-list id="listPaginationPage5"></swim-list>
     <p class="section-desc">Current page: <strong id="listPaginationPage5Value">5</strong></p>
-    <pre class="demo-pre"><code>list.paginationConfig = { index: 5, pageSize: 10 };</code></pre>
+    <pre class="demo-pre"><code>&lt;swim-list id="listPaginationPage5"&gt;&lt;/swim-list&gt;
+&lt;p&gt;Current page: &lt;strong id="listPaginationPage5Value"&gt;5&lt;/strong&gt;&lt;/p&gt;
+&lt;script&gt;
+  const list = document.getElementById('listPaginationPage5');
+  list.dataSource = [ /* many rows... */ ];
+  list.headerLabels = ['Attack Type', 'Date of Attack', 'Origin of Attack'];
+  list.columns = ['type', 'date', 'origin'];
+  list.height = 400;
+  list.paginationConfig = { index: 5, pageSize: 10 };
+  list.addEventListener('page-change', (e) =&gt; {
+    document.getElementById('listPaginationPage5Value').textContent = e.detail;
+  });
+&lt;/script&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -57,11 +93,18 @@ list.addEventListener('page-change', (e) =&gt; console.log('Page:', e.detail));<
     <h3 class="style-header">Per-row status from data</h3>
     <swim-list id="listWithStatus"></swim-list>
     <p class="section-desc">Each row has a <code>status</code> field (error, success, warning). No default row status needed.</p>
-    <pre class="demo-pre"><code>list.dataSource = [
-  { type: 'Malware', date: '1/1/2025', origin: 'China', status: 'error' },
-  { type: 'DDOS', date: '1/5/2025', origin: 'China', status: 'warning' },
-  ...
-];</code></pre>
+    <pre class="demo-pre"><code>&lt;swim-list id="listWithStatus"&gt;&lt;/swim-list&gt;
+&lt;script&gt;
+  const list = document.getElementById('listWithStatus');
+  list.dataSource = [
+    { type: 'Malware', date: '1/1/2025', origin: 'China', status: 'error' },
+    { type: 'DDOS', date: '1/5/2025', origin: 'China', status: 'warning' },
+    { type: 'Breach', date: '1/6/2025', origin: 'Russia', status: 'success' },
+    { type: 'Phishing', date: '1/8/2025', origin: 'Nigeria', status: 'error' }
+  ];
+  list.headerLabels = ['Attack Type', 'Date of Attack', 'Origin of Attack'];
+  list.columns = ['type', 'date', 'origin'];
+&lt;/script&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -70,6 +113,18 @@ list.addEventListener('page-change', (e) =&gt; console.log('Page:', e.detail));<
     <h3 class="style-header">No status column; default row status</h3>
     <swim-list id="listNoStatus"></swim-list>
     <p class="section-desc">Same data without <code>status</code>; <code>defaultRowStatus</code> applies to all rows.</p>
+    <pre class="demo-pre"><code>&lt;swim-list id="listNoStatus"&gt;&lt;/swim-list&gt;
+&lt;script&gt;
+  const list = document.getElementById('listNoStatus');
+  list.dataSource = [
+    { type: 'Malware', date: '1/1/2025', origin: 'China' },
+    { type: 'DDOS', date: '1/5/2025', origin: 'Russia' },
+    { type: 'XSS', date: '1/6/2025', origin: 'North Korea' }
+  ];
+  list.headerLabels = ['Attack Type', 'Date of Attack', 'Origin of Attack'];
+  list.columns = ['type', 'date', 'origin'];
+  list.defaultRowStatus = 'warning';
+&lt;/script&gt;</code></pre>
   </swim-section>
 </section>
 

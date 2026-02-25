@@ -67,14 +67,16 @@ export class SwimButton extends LitElement {
   type: 'button' | 'submit' | 'reset' = 'button';
 
   /**
-   * Timeout in milliseconds before returning to active state
+   * Timeout in milliseconds before returning to active state after success/fail.
+   * Only used when state is set by a promise. When undefined, promise-driven
+   * state still auto-resets after 3000ms; set to 0 to disable auto-reset.
    */
   @property({ type: Number })
-  get timeout(): number {
-    return this._timeout === undefined ? 3000 : this._timeout;
+  get timeout(): number | undefined {
+    return this._timeout;
   }
-  set timeout(value: number) {
-    this._timeout = coerceNumberProperty(value);
+  set timeout(value: number | undefined) {
+    this._timeout = value === undefined ? undefined : coerceNumberProperty(value);
   }
   private _timeout: number | undefined;
 
@@ -168,19 +170,15 @@ export class SwimButton extends LitElement {
     if (!this._state) {
       this.state = ButtonState.Active;
     }
+  }
 
-    if (
-      this.timeout &&
-      (this._state === ButtonState.Success ||
-        this._state === ButtonState.Fail ||
-        this._state === ButtonState.InProgress)
-    ) {
-      this._clearTimer();
-      this._timer = window.setTimeout(() => {
-        this.state = ButtonState.Active;
-        this._updateState();
-      }, this.timeout);
-    }
+  private _scheduleReturnToActive() {
+    const delay = this.timeout ?? 3000;
+    if (delay <= 0) return;
+    this._clearTimer();
+    this._timer = window.setTimeout(() => {
+      this.state = ButtonState.Active;
+    }, delay);
   }
 
   private _handlePromise() {
@@ -190,11 +188,11 @@ export class SwimButton extends LitElement {
       this._promise
         .then(() => {
           this.state = ButtonState.Success;
-          this._updateState();
+          this._scheduleReturnToActive();
         })
         .catch(() => {
           this.state = ButtonState.Fail;
-          this._updateState();
+          this._scheduleReturnToActive();
         });
     }
   }

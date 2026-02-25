@@ -11,6 +11,12 @@ export const buttonStyles = css`
 
   :host([disabled]) {
     pointer-events: none;
+    cursor: not-allowed;
+  }
+
+  :host([disabled]) button {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 
   button {
