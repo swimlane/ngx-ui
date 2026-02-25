@@ -679,6 +679,22 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
         display: block;
       }
 
+      /* Code blocks under demos */
+      .demo-pre {
+        margin: 0.75rem 0 0;
+        padding: var(--sp);
+        background: var(--grey-800, #1b1e27);
+        border-radius: var(--r);
+        font-size: 0.8rem;
+        line-height: 1.4;
+        overflow-x: auto;
+        white-space: pre;
+        color: var(--grey-200, #8b96a8);
+      }
+      .demo-pre code {
+        font-family: ui-monospace, monospace;
+      }
+
       /* Icon grid */
       .icon-grid {
         display: grid;
@@ -1840,6 +1856,32 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
 
   /* ---- List ------------------------------------------------------ */
   _listDemo() {
+    const basicListCode = `<swim-list id="listBasic"></swim-list>
+<script>
+  const list = document.getElementById('listBasic');
+  list.dataSource = [
+    { type: 'Malware', date: '2025-01-10', origin: 'China' },
+    { type: 'DDOS', date: '2025-01-15', origin: 'Russia' }
+  ];
+  list.headerLabels = ['Attack Type', 'Date', 'Origin'];
+  list.columns = ['type', 'date', 'origin'];
+  list.columnLayout = '3fr 2fr 2fr';
+  list.defaultRowStatus = 'error';
+  list.height = 280;
+</script>`;
+    const rowIndexCode = `<swim-list id="listWithIndex"></swim-list>
+<script>
+  const list = document.getElementById('listWithIndex');
+  list.dataSource = [
+    { type: 'Malware', date: '2025-01-10', origin: 'China' },
+    { type: 'DDOS', date: '2025-01-15', origin: 'Russia' }
+  ];
+  list.headerLabels = ['#', 'Attack Type', 'Date', 'Origin'];
+  list.columns = ['$index', 'type', 'date', 'origin'];
+  list.columnLayout = '0.5fr 3fr 2fr 2fr';
+  list.defaultRowStatus = 'warning';
+  list.height = 280;
+</script>`;
     return html`
       <div class="panel">
         <h2 class="panel-title">List</h2>
@@ -1855,6 +1897,7 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
               default-row-status="error"
               height="280"
             ></swim-list>
+            <pre class="demo-pre"><code>${basicListCode}</code></pre>
           </swim-section>
         </section>
 
@@ -1868,6 +1911,7 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
               default-row-status="warning"
               height="280"
             ></swim-list>
+            <pre class="demo-pre"><code>${rowIndexCode}</code></pre>
           </swim-section>
         </section>
       </div>
