@@ -154,6 +154,7 @@ $dialog-body-color: var(--grey-200);
   &.ngx-dialog-full-screen {
     width: 100vw;
     height: 100%;
+
     overflow-y: auto;
     position: fixed;
     top: 0;
@@ -163,7 +164,6 @@ $dialog-body-color: var(--grey-200);
 
     .ngx-dialog-content {
       box-shadow: none;
-      box-sizing: border-box;
       width: 100%;
       min-height: 100vh;
 
