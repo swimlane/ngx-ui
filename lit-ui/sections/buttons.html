@@ -96,6 +96,28 @@
   </swim-section>
 </section>
 
+<!-- Button state from JS variable (cycles periodically) -->
+<section class="section">
+  <swim-section section-title="Cycling state (JS variable)">
+    <p style="color: var(--grey-300); margin-bottom: 1rem">
+      The button below is bound to a variable that cycles through states every 2 seconds. Current state: <strong id="cyclingStateLabel">active</strong>.
+    </p>
+    <div class="demo-row">
+      <swim-button id="cyclingStateBtn" variant="primary" timeout="0">Cycling state</swim-button>
+    </div>
+    <pre class="demo-pre"
+    ><code>// Drive state from a JS variable (e.g. set by setInterval)
+const states = ['active', 'in-progress', 'success', 'fail'];
+let index = 0;
+setInterval(() =&gt; {
+  index = (index + 1) % states.length;
+  const state = states[index];
+  btn.setAttribute('state', state);
+  labelEl.textContent = state;
+}, 2000);</code></pre>
+  </swim-section>
+</section>
+
 <!-- Interactive Demo Section -->
 <section class="section">
   <swim-section section-title="Interactive Demo - Promise Handling">

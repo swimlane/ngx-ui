@@ -45,8 +45,8 @@
   <swim-section section-title="Disabling close on outside click">
     <p class="section-desc">When close-on-outside-click is false, use the Close button to dismiss.</p>
     <div class="demo-row">
-      <swim-button type="button" id="drawerNoCloseLeft">Open Left Drawer</swim-button>
-      <swim-button type="button" id="drawerNoCloseBottom">Open Bottom Drawer</swim-button>
+      <swim-button type="button" id="drawerNoCloseOpenLeft">Open Left Drawer</swim-button>
+      <swim-button type="button" id="drawerNoCloseOpenBottom">Open Bottom Drawer</swim-button>
     </div>
     <swim-drawer id="drawerNoCloseLeft" direction="left" size="70" close-on-outside-click="false">
       <div class="drawer-demo-toolbar">Alert Everyone!</div>
@@ -86,12 +86,14 @@
         <div class="drawer-demo-toolbar">Alert Everyone!</div>
         <div class="drawer-demo-section">
           <h1>Attack Type: Malware</h1>
+          <swim-button type="button" id="drawerContainerBtnLeft" variant="primary">Close</swim-button>
         </div>
       </swim-drawer>
       <swim-drawer id="drawerContainerBottom" direction="bottom" is-root="false">
         <div class="drawer-demo-toolbar">Alert Everyone!</div>
         <div class="drawer-demo-section">
           <h1>Attack Type: Malware (Bottom)</h1>
+          <swim-button type="button" id="drawerContainerBtnBottom" variant="primary">Close</swim-button>
         </div>
       </swim-drawer>
     </div>
@@ -100,7 +102,11 @@
   &lt;swim-button id="drawerContainerOpenLeft"&gt;Open Left&lt;/swim-button&gt;
   &lt;swim-button id="drawerContainerOpenBottom"&gt;Open Bottom&lt;/swim-button&gt;
   &lt;swim-drawer id="drawerContainer" direction="left" is-root="false"&gt;
-    ...
+    &lt;div class="drawer-demo-toolbar"&gt;Alert Everyone!&lt;/div&gt;
+    &lt;div class="drawer-demo-section"&gt;
+      &lt;h1&gt;Attack Type: Malware&lt;/h1&gt;
+      &lt;swim-button type="button" id="drawerContainerBtnLeft" variant="primary"&gt;Close&lt;/swim-button&gt;
+    &lt;/div&gt;
   &lt;/swim-drawer&gt;
 &lt;/div&gt;</code></pre>
   </swim-section>

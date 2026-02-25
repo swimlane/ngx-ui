@@ -22,14 +22,14 @@ let pe = class {
     return this.cssText;
   }
 };
-const _e = (i) => new pe(typeof i == "string" ? i : i + "", void 0, K), I = (i, ...e) => {
+const fe = (i) => new pe(typeof i == "string" ? i : i + "", void 0, K), I = (i, ...e) => {
   const t = i.length === 1 ? i[0] : e.reduce((s, r, n) => s + ((o) => {
     if (o._$cssResult$ === !0) return o.cssText;
     if (typeof o == "number") return o;
     throw Error("Value passed to 'css' function must be a 'css' function result: " + o + ". Use 'unsafeCSS' to pass non-literal values, but take care to ensure page security.");
   })(r) + i[n + 1], i[0]);
   return new pe(t, i, K);
-}, fe = (i, e) => {
+}, _e = (i, e) => {
   if (X) i.adoptedStyleSheets = e.map((t) => t instanceof CSSStyleSheet ? t : t.styleSheet);
   else for (const t of e) {
     const s = document.createElement("style"), r = H.litNonce;
@@ -38,14 +38,14 @@ const _e = (i) => new pe(typeof i == "string" ? i : i + "", void 0, K), I = (i, 
 }, Q = X ? (i) => i : (i) => i instanceof CSSStyleSheet ? ((e) => {
   let t = "";
   for (const s of e.cssRules) t += s.cssText;
-  return _e(t);
+  return fe(t);
 })(i) : i;
 /**
  * @license
  * Copyright 2017 Google LLC
  * SPDX-License-Identifier: BSD-3-Clause
  */
-const { is: ye, defineProperty: $e, getOwnPropertyDescriptor: ve, getOwnPropertyNames: Ae, getOwnPropertySymbols: xe, getPrototypeOf: ke } = Object, _ = globalThis, ee = _.trustedTypes, Ee = ee ? ee.emptyScript : "", D = _.reactiveElementPolyfillSupport, O = (i, e) => i, B = { toAttribute(i, e) {
+const { is: ye, defineProperty: $e, getOwnPropertyDescriptor: ve, getOwnPropertyNames: Ae, getOwnPropertySymbols: xe, getPrototypeOf: ke } = Object, f = globalThis, ee = f.trustedTypes, Ee = ee ? ee.emptyScript : "", D = f.reactiveElementPolyfillSupport, O = (i, e) => i, B = { toAttribute(i, e) {
   switch (e) {
     case Boolean:
       i = i ? Ee : null;
@@ -74,7 +74,7 @@ const { is: ye, defineProperty: $e, getOwnPropertyDescriptor: ve, getOwnProperty
   }
   return t;
 } }, G = (i, e) => !ye(i, e), te = { attribute: !0, type: String, converter: B, reflect: !1, useDefault: !1, hasChanged: G };
-Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), _.litPropertyMetadata ?? (_.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
+Symbol.metadata ?? (Symbol.metadata = Symbol("metadata")), f.litPropertyMetadata ?? (f.litPropertyMetadata = /* @__PURE__ */ new WeakMap());
 let x = class extends HTMLElement {
   static addInitializer(e) {
     this._$Ei(), (this.l ?? (this.l = [])).push(e);
@@ -159,7 +159,7 @@ let x = class extends HTMLElement {
   }
   createRenderRoot() {
     const e = this.shadowRoot ?? this.attachShadow(this.constructor.shadowRootOptions);
-    return fe(e, this.constructor.elementStyles), e;
+    return _e(e, this.constructor.elementStyles), e;
   }
   connectedCallback() {
     var e;
@@ -278,7 +278,7 @@ let x = class extends HTMLElement {
   firstUpdated(e) {
   }
 };
-x.elementStyles = [], x.shadowRootOptions = { mode: "open" }, x[O("elementProperties")] = /* @__PURE__ */ new Map(), x[O("finalized")] = /* @__PURE__ */ new Map(), D == null || D({ ReactiveElement: x }), (_.reactiveElementVersions ?? (_.reactiveElementVersions = [])).push("2.1.1");
+x.elementStyles = [], x.shadowRootOptions = { mode: "open" }, x[O("elementProperties")] = /* @__PURE__ */ new Map(), x[O("finalized")] = /* @__PURE__ */ new Map(), D == null || D({ ReactiveElement: x }), (f.reactiveElementVersions ?? (f.reactiveElementVersions = [])).push("2.1.1");
 /**
  * @license
  * Copyright 2017 Google LLC
@@ -577,7 +577,7 @@ const He = { attribute: !0, type: String, converter: B, reflect: !1, hasChanged:
   }
   throw Error("Unsupported decorator location: " + s);
 };
-function f(i) {
+function _(i) {
   return (e, t) => typeof t == "object" ? Be(i, e, t) : ((s, r, n) => {
     const o = r.hasOwnProperty(n);
     return r.constructor.createProperty(n, s), o ? Object.getOwnPropertyDescriptor(r, n) : void 0;
@@ -589,7 +589,7 @@ function f(i) {
  * SPDX-License-Identifier: BSD-3-Clause
  */
 function we(i) {
-  return f({ ...i, state: !0, attribute: !1 });
+  return _({ ...i, state: !0, attribute: !1 });
 }
 /**
  * @license
@@ -1016,6 +1016,7 @@ const De = I`
     }
 
     .swim-drawer__content {
+      box-sizing: border-box;
       height: 100%;
       overflow: auto;
       padding: var(--spacing-16);
@@ -1161,29 +1162,41 @@ const ce = "swim-drawer", J = class J extends P {
 J.styles = qe;
 let b = J;
 g([
-  f({ type: String, attribute: "css-class" })
+  _({ type: String, attribute: "css-class" })
 ], b.prototype, "cssClass", 2);
 g([
-  f({ type: String, reflect: !0 })
+  _({ type: String, reflect: !0 })
 ], b.prototype, "direction", 2);
 g([
-  f({ type: Number })
+  _({ type: Number })
 ], b.prototype, "size", 1);
 g([
-  f({ type: Number })
+  _({ type: Number })
 ], b.prototype, "zIndex", 1);
 g([
-  f({
+  _({
     type: Boolean,
     attribute: "close-on-outside-click",
-    reflect: !0
+    reflect: !0,
+    converter: {
+      fromAttribute: (i) => i !== null && i !== "false" && i !== "0",
+      toAttribute: (i) => i ? "" : "false"
+    }
   })
 ], b.prototype, "closeOnOutsideClick", 1);
 g([
-  f({ type: Boolean, attribute: "is-root", reflect: !0 })
+  _({
+    type: Boolean,
+    attribute: "is-root",
+    reflect: !0,
+    converter: {
+      fromAttribute: (i) => i !== null && i !== "false" && i !== "0",
+      toAttribute: (i) => i ? "" : "false"
+    }
+  })
 ], b.prototype, "isRoot", 1);
 g([
-  f({ type: Boolean, reflect: !0 })
+  _({ type: Boolean, reflect: !0 })
 ], b.prototype, "open", 1);
 g([
   we()
