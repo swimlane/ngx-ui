@@ -40,8 +40,8 @@ jobs:
       - name: Prepare and deploy
         run: |
           npm run deploy -- --name="Swimlane" --email="swimlane-devops@swimlane.com" --no-silent
-        if: ${{ github.ref == 'refs/heads/master' }}
+        if: github.ref == 'refs/heads/master' && github.repository == 'swimlane/ngx-ui'
         env:
           CI: true
-          # Use GH_TOKEN secret if set (PAT), otherwise GITHUB_TOKEN (auto, needs contents: write)
-          GH_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
+          # Use repo token so push has write access (avoid fork or contributor PAT with no access)
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -6,7 +6,7 @@
 set -e
 
 S3_BUCKET="${1:-sw-widgets-cloud-production-us-west-2}"
-SOURCE_DIR="${2:-projects/swimlane/swim-ui/dist-cdn}"
+SOURCE_DIR="${2:-dist-cdn}"
 CDN_PREFIX="swim-ui"
 
 # Derive package.json from source dir (parent of dist-cdn)
