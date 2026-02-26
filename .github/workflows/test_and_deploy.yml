@@ -4,6 +4,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # required for pushing to gh-pages
 
     steps:
       - name: Checkout
@@ -37,8 +39,9 @@ jobs:
 
       - name: Prepare and deploy
         run: |
-          npm run deploy -- --name="Swimlane" --email="swimlane-devops@swimlane.com"
+          npm run deploy -- --name="Swimlane" --email="swimlane-devops@swimlane.com" --no-silent
         if: ${{ github.ref == 'refs/heads/master' }}
         env:
           CI: true
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          # Use GH_TOKEN secret if set (PAT), otherwise GITHUB_TOKEN (auto, needs contents: write)
+          GH_TOKEN: ${{ secrets.GH_TOKEN || secrets.GITHUB_TOKEN }}
