@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+    <title>@swimlane/swim-ui Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        /* Color tokens (match src/styles/base.ts for demo shell and light DOM) */
+        --blue-100: rgb(224, 239, 255);
+        --blue-200: rgb(173, 212, 255);
+        --blue-300: rgb(122, 185, 255);
+        --blue-400: rgb(71, 158, 255);
+        --blue-500: rgb(20, 131, 255);
+        --blue-600: rgb(0, 106, 224);
+        --blue-700: rgb(0, 82, 173);
+        --blue-800: rgb(0, 58, 122);
+        --blue-900: rgb(0, 34, 71);
+
+        --orange-100: rgb(255, 244, 224);
+        --orange-200: rgb(255, 225, 173);
+        --orange-300: rgb(255, 206, 122);
+        --orange-400: rgb(255, 187, 71);
+        --orange-500: rgb(255, 168, 20);
+        --orange-600: rgb(224, 141, 0);
+
+        --red-100: rgb(255, 230, 224);
+        --red-200: rgb(255, 190, 173);
+        --red-300: rgb(255, 150, 122);
+        --red-400: rgb(255, 109, 71);
+        --red-500: rgb(255, 69, 20);
+        --red-600: rgb(224, 47, 0);
+
+        --green-100: rgb(206, 249, 240);
+        --green-200: rgb(161, 243, 226);
+        --green-300: rgb(116, 237, 212);
+        --green-400: rgb(71, 231, 198);
+        --green-500: rgb(29, 222, 182);
+        --green-600: rgb(23, 177, 145);
+
+        --grey-050: rgb(235, 237, 242);
+        --grey-100: rgb(205, 210, 221);
+        --grey-300: rgb(144, 156, 180);
+        --grey-350: rgb(118, 130, 153);
+        --grey-400: rgb(92, 104, 128);
+        --grey-550: rgb(80, 92, 117);
+        --grey-550-rgb: 80, 92, 117;
+        --grey-600: rgb(69, 80, 102);
+        --grey-700: rgb(49, 56, 71);
+        --grey-750: rgb(38, 44, 56);
+        --grey-775: rgb(33, 38, 49);
+        --grey-800: rgb(28, 32, 41);
+        --grey-825: rgb(23, 26, 33);
+        --grey-900: rgb(7, 8, 11);
+
+        --white: rgb(255, 255, 255);
+        --black: rgb(0, 0, 0);
+
+        /* Typography – align with swim-ui global and typography/font */
+        --font-family: 'Source Sans Pro', 'Open Sans', Arial, sans-serif;
+        --font-size-base: 16px;
+        --font-size-xs: 0.75rem;
+        --font-size-s: 0.8125rem;
+        --font-size-m: 1rem;
+        --font-size-xl: 1.25rem;
+        --font-weight-bold: 700;
+        --font-weight-semibold: 600;
+        --font-line-height: 1.4;
+        --font-line-height-400: 40px;
+
+        --spacing-0: 0;
+        --spacing-2: 2px;
+        --spacing-4: 4px;
+        --spacing-8: 8px;
+        --spacing-10: 10px;
+        --spacing-16: 16px;
+        --spacing-20: 20px;
+        --spacing-24: 24px;
+
+        --radius-0: 0;
+        --radius-2: 2px;
+        --radius-4: 4px;
+        --radius-8: 8px;
+
+        --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.3);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        font-family: var(--font-family);
+        font-size: var(--font-size-base);
+        line-height: var(--font-line-height);
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--grey-900);
+        color: var(--grey-050);
+      }
+
+      /* App layout: sidebar + main (align with Angular demo) */
+      .app {
+        display: flex;
+        flex-flow: row nowrap;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+
+      .navigation {
+        width: 255px;
+        flex-shrink: 0;
+        background: var(--grey-800);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        user-select: none;
+      }
+
+      .nav-logo {
+        background: var(--grey-900);
+        height: 50px;
+        padding: 0 var(--spacing-16);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .nav-logo .logo-swimlane {
+        width: 35px;
+        height: 35px;
+        flex-shrink: 0;
+        object-fit: contain;
+      }
+
+      .nav-logo .logo-text {
+        font-size: 2rem;
+        font-weight: var(--font-weight-semibold);
+        color: var(--white);
+        letter-spacing: 0.02em;
+      }
+
+      .nav-logo .logo-lit-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-left: 0.25rem;
+        object-fit: contain;
+        color: var(--blue-400);
+      }
+
+      .search-box {
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid var(--grey-750);
+      }
+
+      .search-box input {
+        width: 100%;
+        height: 40px;
+        padding: 0 0.75rem 0 2.25rem;
+        background: var(--grey-700);
+        border: 1px solid transparent;
+        border-radius: var(--radius-4);
+        color: var(--grey-050);
+        font-size: 14px;
+      }
+
+      .search-box input::placeholder {
+        color: var(--grey-400);
+      }
+
+      .search-box-wrap {
+        position: relative;
+      }
+
+      .search-box-wrap .search-icon {
+        position: absolute;
+        left: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--grey-400);
+        pointer-events: none;
+        font-size: 1.125rem;
+        width: 1.125rem;
+        height: 1.5rem;
+      }
+
+      .nav-items {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-height: calc(100vh - 140px);
+        overflow-y: auto;
+        text-align: left;
+      }
+
+      .nav-item-container {
+        background: var(--grey-750);
+      }
+
+      .nav-item {
+        display: block;
+        padding: 13px var(--spacing-16);
+        color: var(--grey-350);
+        text-decoration: none;
+        font-size: var(--font-size-s);
+        font-weight: var(--font-weight-semibold);
+        text-transform: uppercase;
+        border-left: 3px solid var(--grey-750);
+        cursor: pointer;
+      }
+
+      .nav-item:hover,
+      .nav-item.active {
+        background: var(--grey-750);
+        color: var(--white);
+      }
+
+      .nav-item.active {
+        border-left-color: var(--blue-500);
+      }
+
+      .nav-item-label {
+        cursor: default;
+      }
+
+      .nav-item-container.nav-search-hidden,
+      .sub-nav-item.nav-search-hidden {
+        display: none;
+      }
+
+      .sub-nav {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        background: var(--grey-800);
+      }
+
+      .sub-nav-item {
+        display: block;
+        padding: var(--spacing-16) 18px;
+        color: var(--grey-350);
+        text-decoration: none;
+        font-size: var(--font-size-m);
+        border-top: 1px solid var(--grey-750);
+      }
+
+      .sub-nav-item:hover,
+      .sub-nav-item.active {
+        color: var(--white);
+        background: var(--grey-600);
+      }
+
+      .sub-nav-item.active {
+        background: var(--grey-750);
+      }
+
+      .main {
+        flex: 1;
+        position: relative;
+        overflow: auto;
+        padding-top: 50px;
+      }
+
+      .main-toolbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--grey-800);
+        border-bottom: 1px solid var(--grey-750);
+        font-size: var(--font-size-s);
+        color: var(--grey-350);
+      }
+
+      .main-toolbar a {
+        color: var(--blue-400);
+        text-decoration: none;
+      }
+
+      .page {
+        padding: 0 1.8rem 1.8rem 1.8rem;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      /* No leading gap or rule when section content loads (all sections consistent) */
+      #page-sections > hr:first-child,
+      #page-sections > .section-divider:first-child {
+        display: none;
+      }
+      #page-sections > *:first-child {
+        margin-top: 0 !important;
+      }
+
+      .page [id] {
+        scroll-margin-top: 60px;
+      }
+
+      .style-header {
+        text-transform: uppercase;
+        color: var(--white);
+        font-size: 1rem;
+        font-weight: var(--font-weight-semibold);
+        position: relative;
+        padding-bottom: 5px;
+        margin-bottom: 20px;
+      }
+
+      .style-header:after {
+        content: '';
+        width: 25px;
+        height: 1px;
+        background: var(--grey-300);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+        color: var(--white);
+      }
+
+      .subtitle {
+        font-size: 1.125rem;
+        color: var(--grey-300);
+        margin-bottom: 3rem;
+      }
+
+      .section {
+        margin-bottom: 3rem;
+      }
+
+      .section-title {
+        font-size: 1.5rem;
+        font-weight: var(--font-weight-semibold);
+        margin-bottom: 1rem;
+        color: var(--blue-400);
+      }
+
+      .demo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .demo-item {
+        padding: 1rem;
+        background: var(--grey-800);
+        border-radius: var(--radius-4);
+      }
+
+      .demo-label {
+        font-size: 0.875rem;
+        color: var(--grey-300);
+        margin-bottom: 0.5rem;
+        font-weight: var(--font-weight-semibold);
+      }
+
+      .demo-row {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+
+      .demo-row--column {
+        flex-direction: column;
+      }
+
+      .demo-link {
+        color: var(--blue-400);
+        text-decoration: none;
+      }
+
+      .demo-link:hover {
+        text-decoration: underline;
+      }
+
+      .demo-sep {
+        padding: 0 var(--spacing-16);
+        color: var(--grey-500);
+      }
+
+      .section-divider {
+        border: none;
+        border-top: 1px solid var(--grey-700);
+        margin: 4rem 0;
+      }
+
+      .page-title {
+        margin-top: 4rem;
+      }
+
+      .section-desc {
+        color: var(--grey-300);
+        margin-bottom: 1rem;
+        max-width: 100%;
+        overflow-wrap: break-word;
+      }
+
+      .demo-label--after {
+        margin-top: 0.5rem;
+      }
+
+      .demo-card-container {
+        max-width: 600px;
+      }
+
+      .demo-card-container--narrow {
+        max-width: 400px;
+        overflow: hidden;
+      }
+
+      .demo-card-container--narrow swim-card {
+        --swim-card-min-width: 100%;
+      }
+
+      .demo-card-container--spaced {
+        margin-top: 1rem;
+      }
+
+      .drawer-page--parent-container {
+        display: block;
+        position: relative;
+        background-color: var(--grey-800);
+        height: 500px;
+        overflow: hidden;
+      }
+
+      .drawer-demo-toolbar {
+        padding: var(--spacing-16);
+        font-size: var(--font-size-l);
+        font-weight: var(--font-weight-semibold);
+        color: var(--grey-100);
+        border-bottom: 1px solid var(--grey-700);
+      }
+
+      .drawer-demo-section {
+        padding: var(--spacing-16);
+      }
+
+      .drawer-demo-section h1 {
+        font-size: var(--font-size-xl);
+        margin: 0 0 var(--spacing-16) 0;
+        color: var(--grey-050);
+      }
+
+      .demo-pre {
+        background: var(--grey-800);
+        padding: 1rem;
+        border-radius: var(--radius-4);
+        overflow-x: auto;
+        margin-top: 1rem;
+      }
+
+      /* Scrollbar utility: from styles/scrollbars.ts, injected by main.ts; fallback below so demo works before/without JS */
+      /* .swim-scroll,
+      .swim-scroll-overlay,
+      .swim-scroll-muted,
+      .swim-scroll * {
+        scrollbar-width: thin;
+        scrollbar-color: rgb(80, 92, 117) rgba(28, 32, 41, 0.6);
+      }
+      .swim-scroll {
+        overflow: auto;
+        overflow: overlay;
+      }
+      .swim-scroll::-webkit-scrollbar,
+      .swim-scroll-overlay::-webkit-scrollbar,
+      .swim-scroll-muted::-webkit-scrollbar,
+      .swim-scroll *::-webkit-scrollbar {
+        width: 13px;
+        height: 13px;
+      }
+      .swim-scroll::-webkit-scrollbar-track,
+      .swim-scroll-overlay::-webkit-scrollbar-track,
+      .swim-scroll-muted::-webkit-scrollbar-track,
+      .swim-scroll *::-webkit-scrollbar-track {
+        background-color: rgba(28, 32, 41, 0.6);
+        border-radius: 10px;
+        margin: 0;
+      }
+      .swim-scroll::-webkit-scrollbar-corner,
+      .swim-scroll-overlay::-webkit-scrollbar-corner,
+      .swim-scroll-muted::-webkit-scrollbar-corner,
+      .swim-scroll *::-webkit-scrollbar-corner {
+        background-color: transparent;
+      }
+      .swim-scroll::-webkit-scrollbar-thumb,
+      .swim-scroll-overlay::-webkit-scrollbar-thumb,
+      .swim-scroll-muted::-webkit-scrollbar-thumb,
+      .swim-scroll *::-webkit-scrollbar-thumb {
+        border-radius: 6px;
+        background-clip: padding-box;
+        border: 4px solid transparent;
+      }
+      .swim-scroll::-webkit-scrollbar-button,
+      .swim-scroll-overlay::-webkit-scrollbar-button,
+      .swim-scroll-muted::-webkit-scrollbar-button,
+      .swim-scroll *::-webkit-scrollbar-button,
+      .swim-scroll::-webkit-scrollbar-track-piece,
+      .swim-scroll-overlay::-webkit-scrollbar-track-piece,
+      .swim-scroll-muted::-webkit-scrollbar-track-piece,
+      .swim-scroll *::-webkit-scrollbar-track-piece,
+      .swim-scroll::-webkit-scrollbar-corner,
+      .swim-scroll-overlay::-webkit-scrollbar-corner,
+      .swim-scroll-muted::-webkit-scrollbar-corner,
+      .swim-scroll *::-webkit-scrollbar-corner,
+      .swim-scroll::-webkit-resizer,
+      .swim-scroll-overlay::-webkit-resizer,
+      .swim-scroll-muted::-webkit-resizer,
+      .swim-scroll *::-webkit-resizer {
+        display: none;
+      }
+      .swim-scroll::-webkit-scrollbar-thumb,
+      .swim-scroll *::-webkit-scrollbar-thumb,
+      .swim-scroll-overlay::-webkit-scrollbar-thumb {
+        background-color: rgba(80, 92, 117, 0.5);
+      }
+      .swim-scroll::-webkit-scrollbar-thumb:hover,
+      .swim-scroll *::-webkit-scrollbar-thumb:hover,
+      .swim-scroll-overlay::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(80, 92, 117, 1);
+      }
+      .swim-scroll-overlay {
+        overflow: auto;
+        overflow: overlay;
+        -ms-overflow-style: -ms-autohiding-scrollbar;
+      }
+      .swim-scroll-overlay::-webkit-scrollbar {
+        display: none;
+      }
+      .swim-scroll-overlay:hover::-webkit-scrollbar {
+        display: initial;
+      }
+      .swim-scroll-muted {
+        overflow: auto;
+        overflow: overlay;
+      }
+      .swim-scroll-muted::-webkit-scrollbar-thumb {
+        background-color: rgba(80, 92, 117, 0.3);
+      }
+      .swim-scroll-muted:hover::-webkit-scrollbar-thumb {
+        background-color: rgba(80, 92, 117, 0.5);
+      }
+      .swim-scroll-muted:hover::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(80, 92, 117, 1);
+      } */
+
+      code {
+        background: var(--grey-800);
+        padding: 0.2em 0.4em;
+        border-radius: 3px;
+        font-family: 'Monaco', 'Courier New', monospace;
+        font-size: 0.875em;
+      }
+
+      .controls {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+        flex-wrap: wrap;
+      }
+
+      /* API Reference tables */
+      .api-ref {
+        margin-top: 0.5rem;
+      }
+
+      .api-tag-name {
+        display: inline-block;
+        background: var(--grey-800);
+        padding: 0.25rem 0.6rem;
+        border-radius: var(--radius-4);
+        color: var(--blue-300);
+        font-family: 'Monaco', 'Courier New', monospace;
+        font-size: 0.85rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .api-heading {
+        font-size: 0.75rem;
+        font-weight: var(--font-weight-bold);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--grey-100);
+        margin: 1.25rem 0 0.5rem;
+      }
+
+      .api-table-wrap {
+        overflow-x: auto;
+        margin-bottom: 0.5rem;
+      }
+
+      .api-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.8rem;
+        line-height: 1.5;
+      }
+
+      .api-table th {
+        text-align: left;
+        padding: 0.5rem 0.75rem;
+        background: var(--grey-800);
+        color: var(--grey-100);
+        font-weight: var(--font-weight-bold);
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        border-bottom: 1px solid var(--grey-700);
+        white-space: nowrap;
+      }
+
+      .api-table td {
+        padding: 0.4rem 0.75rem;
+        border-bottom: 1px solid var(--grey-800);
+        color: var(--grey-300);
+        vertical-align: top;
+      }
+
+      .api-table td code {
+        background: var(--grey-800);
+        padding: 0.1rem 0.3rem;
+        border-radius: 3px;
+        color: var(--blue-300);
+        font-size: 0.75rem;
+      }
+
+      .api-table tr:hover td {
+        background: rgba(255, 255, 255, 0.02);
+      }
+    </style>
+    <script type="module" crossorigin src="/ngx-ui/swim-ui/assets/index-CVdafa5Z.js"></script>
+    <link rel="stylesheet" crossorigin href="/ngx-ui/swim-ui/assets/index-CNYdoD_X.css">
+  </head>
+  <body class="swim-scroll">
+    <div class="app">
+      <nav class="navigation">
+        <div class="nav-logo">
+          <img src="data:image/svg+xml,%3csvg%20width='68'%20height='102'%20viewBox='0%200%2068%20102'%20version='1.1'%20xmlns='http://www.w3.org/2000/svg'%20xmlns:xlink='http://www.w3.org/1999/xlink'%3e%3cg%20id='Canvas'%20transform='translate(498%2041)'%3e%3cg%20id='swimlane-logo'%3e%3cg%20id='sw-mark-color'%3e%3cg%20id='Fill%201'%3e%3cuse%20xlink:href='%23path0_fill'%20transform='translate(-465.873%20-12.2861)'%20fill='%2319CCC0'/%3e%3c/g%3e%3cg%20id='Fill%2023'%3e%3cuse%20xlink:href='%23path1_fill'%20transform='translate(-467.981%201.36508)'%20fill='%2300FFF4'/%3e%3c/g%3e%3cg%20id='Fill%2024'%3e%3cuse%20xlink:href='%23path2_fill'%20transform='translate(-455.056%201.35781)'%20fill='%2327AFA2'/%3e%3c/g%3e%3cg%20id='Fill%2025'%3e%3cuse%20xlink:href='%23path3_fill'%20transform='translate(-497.026%202.96538)'%20fill='%23028ACF'/%3e%3c/g%3e%3cg%20id='Fill%2026'%3e%3cuse%20xlink:href='%23path4_fill'%20transform='translate(-497.143%20-41)'%20fill='%2302AAFF'/%3e%3c/g%3e%3cg%20id='Fill%2027'%3e%3cuse%20xlink:href='%23path5_fill'%20transform='translate(-497.143%202.91528)'%20fill='%230578A5'/%3e%3c/g%3e%3c/g%3e%3c/g%3e%3c/g%3e%3cdefs%3e%3cpath%20id='path0_fill'%20fill-rule='evenodd'%20d='M%2019.6064%200.71555C%2018.4215%20-0.238517%2016.735%20-0.238517%2015.5502%200.71555L%201.21224%2012.2592C%20-0.404081%2013.56%20-0.404081%2016.0283%201.21224%2017.3296L%2016.0578%2029.2817C%2016.1226%2029.3337%2016.2155%2029.3337%2016.2803%2029.2817L%2035.5109%2013.7989C%2035.6%2013.7274%2035.6%2013.5919%2035.5109%2013.5204L%2019.6064%200.71555Z'/%3e%3cpath%20id='path1_fill'%20fill-rule='evenodd'%20d='M%203.32661%2059.1792L%2037.0372%2032.039C%2037.5211%2031.6494%2037.8024%2031.0611%2037.8024%2030.438L%2037.8024%200L%200.765769%2029.8188C%200.281898%2030.2078%200%2030.7967%200%2031.4192L%200%2057.5788C%200%2059.3016%201.98787%2060.2573%203.32661%2059.1792Z'/%3e%3cpath%20id='path2_fill'%20fill-rule='evenodd'%20d='M%2024.8778%200L%205.35174%2015.7277L%200%2011.4185L%2024.8778%200Z'/%3e%3cpath%20id='path3_fill'%20fill-rule='evenodd'%20d='M%2015.9714%2028.6051C%2017.1562%2029.5591%2018.8428%2029.5591%2020.0276%2028.6051L%2034.3655%2017.0614C%2035.9818%2015.7606%2035.9818%2013.2923%2034.3655%2011.9915L%2019.52%200.0394141C%2019.4551%20-0.013138%2019.3623%20-0.013138%2019.2975%200.0394141L%200.0668293%2015.5223C%20-0.0222764%2015.5932%20-0.0222764%2015.7287%200.0668293%2015.8002L%2015.9714%2028.6051Z'/%3e%3cpath%20id='path4_fill'%20fill-rule='evenodd'%20d='M%2034.4758%200.455635L%200.765229%2027.5959C%200.281358%2027.9854%200%2028.5743%200%2029.1968L%200%2059.6348L%2037.0366%2029.8166C%2037.5205%2029.4271%2037.8024%2028.8382%2037.8024%2028.2157L%2037.8024%202.05658C%2037.8024%200.333735%2035.8146%20-0.622498%2034.4758%200.455635Z'/%3e%3cpath%20id='path5_fill'%20fill-rule='evenodd'%20d='M%200%2015.7272L%2019.526%200L%2024.8778%204.30874L%200%2015.7272Z'/%3e%3c/defs%3e%3c/svg%3e" alt="Swimlane" class="logo-swimlane" />
+          <span class="logo-text">SWIM-UI</span>
+          <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%20fill='none'%20stroke='%2371a0ff'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%20aria-hidden='true'%3e%3cpath%20d='M8.5%2014.5A2.5%202.5%200%200%200%2011%2012c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054%202-6%20.5%202.5%202%204.9%204%206.5%202%201.6%203%203.5%203%205.5a7%207%200%201%201-14%200c0-1.153.433-2.294%201-3a2.5%202.5%200%200%200%202.5%202.5z'/%3e%3c/svg%3e" alt="Lit" class="logo-lit-icon" />
+        </div>
+        <div class="search-box">
+          <div class="search-box-wrap">
+            <swim-icon class="search-icon" font-icon="search"></swim-icon>
+            <input type="text" placeholder="Search Components" id="navSearch" />
+          </div>
+        </div>
+        <ul class="nav-items">
+          <li class="nav-item-container">
+            <ul class="sub-nav">
+              <li><a class="sub-nav-item" href="#icons">Icons</a></li>
+            </ul>
+          </li>
+          <li class="nav-item-container">
+            <ul class="sub-nav">
+              <li><a class="sub-nav-item" href="#buttons">Buttons</a></li>
+              <li><a class="sub-nav-item" href="#input">Inputs</a></li>
+              <li><a class="sub-nav-item" href="#select">Selects</a></li>
+              <li><a class="sub-nav-item" href="#datetime">Date Time</a></li>
+              <li><a class="sub-nav-item" href="#checkbox">Checkbox</a></li>
+              <li><a class="sub-nav-item" href="#radio">Radio</a></li>
+              <li><a class="sub-nav-item" href="#toggle">Toggle</a></li>
+              <li><a class="sub-nav-item" href="#slider">Slider</a></li>
+            </ul>
+          </li>
+          <li class="nav-item-container">
+            <ul class="sub-nav">
+              <li><a class="sub-nav-item" href="#tabs">Tabs</a></li>
+              <li><a class="sub-nav-item" href="#button-group">Button Group</a></li>
+              <li><a class="sub-nav-item" href="#button-toggle">Button Toggle</a></li>
+              <li><a class="sub-nav-item" href="#card">Card</a></li>
+              <li><a class="sub-nav-item" href="#progress-spinner">Progress Spinner</a></li>
+              <li><a class="sub-nav-item" href="#section">Section</a></li>
+              <li><a class="sub-nav-item" href="#split">Split</a></li>
+              <li><a class="sub-nav-item" href="#navbar">Navbar</a></li>
+              <li><a class="sub-nav-item" href="#tooltip">Tooltip</a></li>
+              <li><a class="sub-nav-item" href="#list">List</a></li>
+              <li><a class="sub-nav-item" href="#dialog">Dialog</a></li>
+              <li><a class="sub-nav-item" href="#drawer">Drawer</a></li>
+              <li><a class="sub-nav-item" href="#scrollbars">Scrollbars</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div class="main swim-scroll">
+        <header class="main-toolbar">
+          <span>Lit Component Library v1.0.0</span>
+          <span style="margin: 0 0.5rem">|</span>
+          <a href="https://github.com/swimlane/ngx-ui" target="_blank" rel="noopener">Github</a>
+        </header>
+        <div class="page">
+          <div class="container">
+            <div id="page-sections"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>
