@@ -1,0 +1,144 @@
+{
+  "name": "@swimlane/swim-ui",
+  "version": "1.0.0",
+  "description": "Swim web component library matching Swimlane's ngx-ui design system",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./button": {
+      "types": "./dist/components/button/index.d.ts",
+      "default": "./dist/components/button/index.js"
+    },
+    "./input": {
+      "types": "./dist/components/input/index.d.ts",
+      "default": "./dist/components/input/index.js"
+    },
+    "./select": {
+      "types": "./dist/components/select/index.d.ts",
+      "default": "./dist/components/select/index.js"
+    },
+    "./styles": {
+      "default": "./dist/styles/index.js"
+    },
+    "./button-group": {
+      "types": "./dist/components/button-group/index.d.ts",
+      "default": "./dist/components/button-group/index.js"
+    },
+    "./button-toggle": {
+      "types": "./dist/components/button-toggle/index.d.ts",
+      "default": "./dist/components/button-toggle/index.js"
+    },
+    "./calendar": {
+      "types": "./dist/components/calendar/index.d.ts",
+      "default": "./dist/components/calendar/index.js"
+    },
+    "./card": {
+      "types": "./dist/components/card/index.d.ts",
+      "default": "./dist/components/card/index.js"
+    },
+    "./checkbox": {
+      "types": "./dist/components/checkbox/index.d.ts",
+      "default": "./dist/components/checkbox/index.js"
+    },
+    "./date-time": {
+      "types": "./dist/components/date-time/index.d.ts",
+      "default": "./dist/components/date-time/index.js"
+    },
+    "./dialog": {
+      "types": "./dist/components/dialog/index.d.ts",
+      "default": "./dist/components/dialog/index.js"
+    },
+    "./drawer": {
+      "types": "./dist/components/drawer/index.d.ts",
+      "default": "./dist/components/drawer/index.js"
+    },
+    "./icon": {
+      "types": "./dist/components/icon/index.d.ts",
+      "default": "./dist/components/icon/index.js"
+    },
+    "./list": {
+      "types": "./dist/components/list/index.d.ts",
+      "default": "./dist/components/list/index.js"
+    },
+    "./navbar": {
+      "types": "./dist/components/navbar/index.d.ts",
+      "default": "./dist/components/navbar/index.js"
+    },
+    "./progress-spinner": {
+      "types": "./dist/components/progress-spinner/index.d.ts",
+      "default": "./dist/components/progress-spinner/index.js"
+    },
+    "./radio": {
+      "types": "./dist/components/radio/index.d.ts",
+      "default": "./dist/components/radio/index.js"
+    },
+    "./section": {
+      "types": "./dist/components/section/index.d.ts",
+      "default": "./dist/components/section/index.js"
+    },
+    "./slider": {
+      "types": "./dist/components/slider/index.d.ts",
+      "default": "./dist/components/slider/index.js"
+    },
+    "./split": {
+      "types": "./dist/components/split/index.d.ts",
+      "default": "./dist/components/split/index.js"
+    },
+    "./tabs": {
+      "types": "./dist/components/tabs/index.d.ts",
+      "default": "./dist/components/tabs/index.js"
+    },
+    "./toggle": {
+      "types": "./dist/components/toggle/index.d.ts",
+      "default": "./dist/components/toggle/index.js"
+    },
+    "./tooltip": {
+      "types": "./dist/components/tooltip/index.d.ts",
+      "default": "./dist/components/tooltip/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "custom-elements.json"
+  ],
+  "scripts": {
+    "copy:icon-font": "node scripts/copy-icon-font.mjs",
+    "generate:icon-glyphs": "node scripts/generate-icon-glyphs.mjs",
+    "dev": "npm run copy:icon-font && vite",
+    "build": "npm run copy:icon-font && tsc && vite build",
+    "build:lib": "tsc --project tsconfig.lib.json",
+    "build:cdn": "node scripts/build-cdn.mjs",
+    "deploy:gh-pages": "npm run build && npm run build:cdn && cp -r dist-cdn/* dist-demo/ && npx gh-pages -d dist-demo -r https://github.com/surya-pabbineedi/swim-ui.git",
+    "preview": "vite preview",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint src/**/*.ts"
+  },
+  "keywords": [
+    "web-components",
+    "lit",
+    "components",
+    "design-system",
+    "ui-library"
+  ],
+  "author": "Swimlane",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/swimlane/ngx-ui.git"
+  },
+  "dependencies": {
+    "lit": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "gh-pages": "^6.2.0",
+    "typescript": "^5.8.0",
+    "vite": "^5.4.0"
+  }
+}

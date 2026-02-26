@@ -1,0 +1,193 @@
+<h1 id="drawer" class="page-title">Drawer</h1>
+<p class="subtitle">
+  Slide-in panel from the right (left drawer) or bottom. Matches @swimlane/ngx-ui drawer design. Use declarative swim-drawer or imperative openDrawer().
+</p>
+
+<section class="section">
+  <swim-section section-title="Default">
+    <p class="section-desc">Open a drawer from the left (70% width) or bottom. Click outside or press Escape to close.</p>
+    <div class="demo-row">
+      <swim-button type="button" id="drawerOpenLeft">Open Left Drawer</swim-button>
+      <swim-button type="button" id="drawerOpenBottom">Open Bottom Drawer</swim-button>
+    </div>
+    <swim-drawer id="drawerDefaultLeft" direction="left" size="70">
+      <div class="drawer-demo-toolbar">Alert Everyone!</div>
+      <div class="drawer-demo-section">
+        <h1>Attack Type: Malware</h1>
+        <swim-button type="button" id="drawerOpenDetails">Open Details</swim-button>
+      </div>
+    </swim-drawer>
+    <swim-drawer id="drawerDefaultBottom" direction="bottom">
+      <div class="drawer-demo-toolbar">Alert Everyone!</div>
+      <div class="drawer-demo-section">
+        <h1>Attack Type: Malware</h1>
+        <swim-button type="button" id="drawerOpenDetailsBottom">Open Details</swim-button>
+      </div>
+    </swim-drawer>
+    <br /><br />
+    <pre class="demo-pre"><code>&lt;swim-button type="button" id="drawerOpenLeft"&gt;Open Left Drawer&lt;/swim-button&gt;
+&lt;swim-button type="button" id="drawerOpenBottom"&gt;Open Bottom Drawer&lt;/swim-button&gt;
+
+&lt;swim-drawer id="drawerDefault" direction="left" size="70"&gt;
+  &lt;div class="drawer-demo-toolbar"&gt;Alert Everyone!&lt;/div&gt;
+  &lt;div class="drawer-demo-section"&gt;
+    &lt;h1&gt;Attack Type: Malware&lt;/h1&gt;
+    &lt;swim-button&gt;Open Details&lt;/swim-button&gt;
+  &lt;/div&gt;
+&lt;/swim-drawer&gt;
+
+// In JS: drawerOpenLeft.click → drawerDefault.show();
+// drawerDefault.addEventListener('close', () => { drawerDefault.open = false; });</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Disabling close on outside click">
+    <p class="section-desc">When close-on-outside-click is false, use the Close button to dismiss.</p>
+    <div class="demo-row">
+      <swim-button type="button" id="drawerNoCloseOpenLeft">Open Left Drawer</swim-button>
+      <swim-button type="button" id="drawerNoCloseOpenBottom">Open Bottom Drawer</swim-button>
+    </div>
+    <swim-drawer id="drawerNoCloseLeft" direction="left" size="70" close-on-outside-click="false">
+      <div class="drawer-demo-toolbar">Alert Everyone!</div>
+      <div class="drawer-demo-section">
+        <h1>Attack Type: Malware</h1>
+        <swim-button type="button" id="drawerNoCloseDetailsLeft">Open Details</swim-button>
+        <swim-button type="button" id="drawerNoCloseBtnLeft" variant="primary">Close</swim-button>
+      </div>
+    </swim-drawer>
+    <swim-drawer id="drawerNoCloseBottom" direction="bottom" close-on-outside-click="false">
+      <div class="drawer-demo-toolbar">Alert Everyone!</div>
+      <div class="drawer-demo-section">
+        <h1>Attack Type: Malware</h1>
+        <swim-button type="button" id="drawerNoCloseDetailsBottom">Open Details</swim-button>
+        <swim-button type="button" id="drawerNoCloseBtnBottom" variant="primary">Close</swim-button>
+      </div>
+    </swim-drawer>
+    <br /><br />
+    <pre class="demo-pre"><code>&lt;swim-drawer close-on-outside-click="false"&gt;
+  ...
+  &lt;swim-button id="drawerCloseBtn"&gt;Close&lt;/swim-button&gt;
+&lt;/swim-drawer&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Adding drawer to parent component instead of root">
+    <p class="section-desc">Set is-root="false" and place the drawer inside a container with position: relative.</p>
+    <div class="drawer-page--parent-container" id="drawerContainerParent">
+      <div class="drawer-demo-section">
+        <div class="demo-row">
+          <swim-button type="button" id="drawerContainerOpenLeft">Open Left</swim-button>
+          <swim-button type="button" id="drawerContainerOpenBottom">Open Bottom</swim-button>
+        </div>
+      </div>
+      <swim-drawer id="drawerContainerLeft" direction="left" is-root="false">
+        <div class="drawer-demo-toolbar">Alert Everyone!</div>
+        <div class="drawer-demo-section">
+          <h1>Attack Type: Malware</h1>
+          <swim-button type="button" id="drawerContainerBtnLeft" variant="primary">Close</swim-button>
+        </div>
+      </swim-drawer>
+      <swim-drawer id="drawerContainerBottom" direction="bottom" is-root="false">
+        <div class="drawer-demo-toolbar">Alert Everyone!</div>
+        <div class="drawer-demo-section">
+          <h1>Attack Type: Malware (Bottom)</h1>
+          <swim-button type="button" id="drawerContainerBtnBottom" variant="primary">Close</swim-button>
+        </div>
+      </swim-drawer>
+    </div>
+    <br /><br />
+    <pre class="demo-pre"><code>&lt;div class="drawer-page--parent-container"&gt;
+  &lt;swim-button id="drawerContainerOpenLeft"&gt;Open Left&lt;/swim-button&gt;
+  &lt;swim-button id="drawerContainerOpenBottom"&gt;Open Bottom&lt;/swim-button&gt;
+  &lt;swim-drawer id="drawerContainer" direction="left" is-root="false"&gt;
+    &lt;div class="drawer-demo-toolbar"&gt;Alert Everyone!&lt;/div&gt;
+    &lt;div class="drawer-demo-section"&gt;
+      &lt;h1&gt;Attack Type: Malware&lt;/h1&gt;
+      &lt;swim-button type="button" id="drawerContainerBtnLeft" variant="primary"&gt;Close&lt;/swim-button&gt;
+    &lt;/div&gt;
+  &lt;/swim-drawer&gt;
+&lt;/div&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Imperative API (openDrawer)">
+    <p class="section-desc">Use openDrawer() to create drawers programmatically, similar to Angular DrawerService.</p>
+    <div class="demo-row">
+      <swim-button type="button" id="drawerImperativeLeft">Open Left (imperative)</swim-button>
+      <swim-button type="button" id="drawerImperativeBottom">Open Bottom (imperative)</swim-button>
+    </div>
+    <pre class="demo-pre"><code>import { openDrawer } from '@swimlane/swim-ui';
+
+openDrawer({
+  direction: 'left',
+  size: 70,
+  content: `
+    &lt;div class="drawer-demo-toolbar"&gt;Alert Everyone!&lt;/div&gt;
+    &lt;div class="drawer-demo-section"&gt;
+      &lt;h1&gt;Attack Type: Malware&lt;/h1&gt;
+    &lt;/div&gt;
+  `
+});</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Usage">
+    <pre class="demo-pre"><code>import '@swimlane/swim-ui/drawer';
+
+// Declarative
+&lt;swim-drawer
+  id="myDrawer"
+  direction="left"
+  size="70"
+  close-on-outside-click
+  is-root
+  z-index="998"
+&gt;
+  &lt;p&gt;Slot content&lt;/p&gt;
+&lt;/swim-drawer&gt;
+
+// Show: document.getElementById('myDrawer').show();
+// Hide: document.getElementById('myDrawer').hide();
+// Listen: myDrawer.addEventListener('close', () => { ... });
+
+// Imperative
+import { openDrawer } from '@swimlane/swim-ui';
+const { close, drawer } = openDrawer({ direction: 'left', size: 70, content: '...' });
+close(); // or drawer.hide();</code></pre>
+  </swim-section>
+</section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-drawer&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>direction</code></td><td><code>'left' | 'right' | 'bottom'</code></td><td><code>'left'</code></td><td>Edge the drawer slides in from</td></tr>
+            <tr><td><code>size</code></td><td><code>number</code></td><td><code>80</code></td><td>Width/height as percentage of viewport</td></tr>
+            <tr><td><code>z-index</code></td><td><code>number</code></td><td><code>998</code></td><td>CSS z-index stacking order</td></tr>
+            <tr><td><code>close-on-outside-click</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Close drawer when clicking outside</td></tr>
+            <tr><td><code>open</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Controls visibility (or call show()/hide())</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="api-heading">Events</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Event</th><th>Detail</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>close</code></td><td>—</td><td>Fired when the drawer is closed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </swim-section>
+</section>
