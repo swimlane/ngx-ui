@@ -45,6 +45,13 @@ export class SwimTab extends LitElement {
   label = '';
 
   /**
+   * Optional tooltip for the tab button (e.g. full text when label is truncated).
+   * Shown as the native title attribute on the tab button.
+   */
+  @property({ type: String, attribute: 'tab-title' })
+  tabTitle = '';
+
+  /**
    * Backwards compatibility alias for label
    */
   @property({ type: String })

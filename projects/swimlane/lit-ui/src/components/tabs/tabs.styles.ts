@@ -14,13 +14,17 @@ export const tabsStyles = css`
     display: block;
   }
 
-  /* Tab list – horizontal by default */
+  /* Tab list – horizontal by default, responsive to container */
   .swim-tabs__list {
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
     border-bottom: solid 2px var(--grey-700);
   }
 
   .swim-tabs__tab {
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 100%;
     display: inline-block;
     border: none;
     color: var(--grey-250);
@@ -37,6 +41,9 @@ export const tabsStyles = css`
     font-weight: var(--font-weight-bold);
     bottom: -1px;
     cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .swim-tabs__tab::after {
@@ -117,13 +124,17 @@ export const tabsStyles = css`
   }
 
   :host([vertical]) .swim-tabs__list {
-    flex: 0 0 160px;
+    flex: 0 1 var(--swim-tabs-list-width, 160px);
+    min-width: var(--swim-tabs-list-min-width, 120px);
+    max-width: var(--swim-tabs-list-max-width, 320px);
     border: none;
+    overflow: hidden;
   }
 
   :host([vertical]) .swim-tabs__tab {
     height: 53px;
     width: 100%;
+    min-width: 0;
     text-align: left;
     font-size: var(--font-size-s);
     line-height: 45px;
@@ -131,6 +142,9 @@ export const tabsStyles = css`
     border-bottom: 1px solid var(--grey-700) !important;
     padding-left: 19px;
     font-weight: var(--font-weight-semibold);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   :host([vertical]) .swim-tabs__tab::after {

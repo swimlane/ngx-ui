@@ -2210,14 +2210,24 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
   _overlayElements() {
     return html`
       <!-- Regular dialog -->
-      <swim-dialog id="demoDialog" dialog-title="Example Dialog" close-button>
+      <swim-dialog
+        id="demoDialog"
+        dialog-title="Example Dialog"
+        close-button
+        @close=${() => this._hideOverlay('demoDialog')}
+      >
         <p style="padding:1rem;color:var(--grey-200)">
           This is a regular-format dialog with a title and close button. Click the X or the backdrop to close.
         </p>
       </swim-dialog>
 
-      <!-- Large-format dialog -->
-      <swim-dialog id="demoLargeDialog" format="large" close-button>
+      <!-- Large-format dialog: header X fires close-or-cancel; listen so close actually hides the dialog -->
+      <swim-dialog
+        id="demoLargeDialog"
+        format="large"
+        close-button
+        @close-or-cancel=${() => this._hideOverlay('demoLargeDialog')}
+      >
         <swim-large-format-dialog-content
           format="large"
           dialog-title="Large Format Dialog"

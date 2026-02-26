@@ -161,6 +161,7 @@ export class SwimTabs extends LitElement {
                   ? 'swim-tabs__tab--disabled'
                   : ''}"
                 ?disabled="${tab.disabled}"
+                title="${tab.tabTitle || tab.label}"
                 @click="${() => this._tabClicked(tab)}"
               >
                 ${tab.label}

@@ -15,12 +15,16 @@ Use this skill when building **custom solutions** or **widgets** for [Swimlane T
 
 ## CDN usage (solutions without build)
 
+Import **individual component resources** from the lit-ui CDN (do not use the single `lit-ui.js` bundle). Base URL: `https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages` — use `{base}/{component}.js` with **no query parameters** (e.g. no `?v=1`).
+
 ```js
 import { SwimlaneElement, css, html } from '@swimlane/swimlane-element@2';  // or https://esm.sh/@swimlane/swimlane-element@2
-import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/lit-ui.js?v=1';
+// Import only the components you use (one file per component):
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/button.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/input.js';
 ```
 
-Ensure the `lit` specifier is available (e.g. via import map) so the lit-ui bundle resolves. Load SwimlaneElement (or Lit) before the lit-ui bundle.
+Available component files: `button.js`, `button-group.js`, `button-toggle.js`, `input.js`, `select.js`, `card.js`, `tabs.js`, `section.js`, `dialog.js`, `drawer.js`, `tooltip.js`, `icon.js`, `progress-spinner.js`, `checkbox.js`, `radio.js`, `toggle.js`, `slider.js`, `navbar.js`, `list.js`, `split.js`, `date-time.js`, `calendar.js`, `styles.js`. Load SwimlaneElement (or Lit) before any lit-ui component scripts. Ensure the `lit` specifier is available (e.g. via import map) so component scripts resolve.
 
 ## Attribute naming
 

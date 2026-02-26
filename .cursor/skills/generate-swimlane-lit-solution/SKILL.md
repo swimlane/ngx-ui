@@ -18,8 +18,9 @@ Example (solution file):
 
 ```js
 import { SwimlaneElement, css, html, svg, unsafeCSS } from '@swimlane/swimlane-element@2';
-import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/lit-ui.js?v=1';
-import { repeat } from 'lit-html@1/directives/repeat.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/button.js';
+import 'https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/input.js';
+import { repeat } from 'https://esm.sh/lit@2/directives/repeat.js';
 ```
 
 ## Input
@@ -39,10 +40,10 @@ import { repeat } from 'lit-html@1/directives/repeat.js';
 
 ## CDN Imports
 
-All runtime dependencies must be loaded from CDN (no npm install or bundling). Follow **use-lit-ui** for SwimlaneElement base and lit-ui bundle URL; ensure the `lit` specifier is available (e.g. import map). Solution-specific:
+All runtime dependencies must be loaded from CDN (no npm install or bundling). Follow **use-lit-ui** for SwimlaneElement base and for **individual lit-ui component URLs** (no single bundle; no query params like `?v=1`). Ensure the `lit` specifier is available (e.g. import map). Solution-specific:
 
-- In the solution file: import SwimlaneElement (or Lit) first, then the lit-ui bundle; use the same Lit instance.
-- For directives (e.g. `repeat`): `import { repeat } from 'https://esm.sh/lit-html@1/directives/repeat.js'` (or `lit-html@1/directives/repeat.js` with import map).
+- In the solution file: import SwimlaneElement (or Lit) first, then each lit-ui component script you need (e.g. `.../button.js`, `.../input.js`); use the same Lit instance.
+- For directives (e.g. `repeat`): use the **same Lit version as SwimlaneElement** so the directive works in templates — e.g. `import { repeat } from 'https://esm.sh/lit@2/directives/repeat.js'` (not lit-html@1, which can cause "repeat can only be used in text bindings" or garbage rendering).
 - The solution class must **extend `SwimlaneElement`**, use `html`, `css`, `svg`, `unsafeCSS` from that package, and **export as default** — do not call `customElements.define()`.
 - In the command output, list every import with exact CDN URLs or import-map specifiers so the solution is copy-paste runnable.
 
@@ -89,7 +90,7 @@ If the solution is **only** HTML and uses `swim-*` elements without adding its o
 - **HTML5**: Structure, semantics, and minimal inline or linked CSS (prefer CSS variables).
 - **Vanilla JavaScript (ES module)**: Logic, event handlers, and dynamic updates. Use `type="module"` and CDN imports.
 - **Swimlane Lit custom elements**: All UI components must be `swim-*` from `@swimlane/lit-ui` as listed in the **use-lit-ui** skill.
-- **Optional**: Custom Lit elements defined in the solution's own script (e.g. a wrapper or app shell) must **extend SwimlaneElement** and use `css`, `html`, `svg`, `unsafeCSS` from `@swimlane/swimlane-element@2`; use directives (e.g. `repeat`) from `lit-html@1/directives/` as needed. **The main solution class must be the default export** — do not call `customElements.define()` (registration is handled by the Swimlane platform). Follow the same accessibility and no–memory-leak rules.
+- **Optional**: Custom Lit elements defined in the solution's own script (e.g. a wrapper or app shell) must **extend SwimlaneElement** and use `css`, `html`, `svg`, `unsafeCSS` from `@swimlane/swimlane-element@2`; use directives (e.g. `repeat`) from `lit@2/directives/` (same Lit version as SwimlaneElement) as needed. **The main solution class must be the default export** — do not call `customElements.define()` (registration is handled by the Swimlane platform). Follow the same accessibility and no–memory-leak rules.
 
 ## What Not to Do
 
@@ -106,9 +107,9 @@ If the solution is **only** HTML and uses `swim-*` elements without adding its o
 2. **Get the goal**: If the user did not provide a goal or solution to build, **ask** for one and stop. Do not generate output until they specify what to build.
 3. **Determine create vs update**: If the user points to an existing file (e.g. a `.js` file in `projects/swimlane/lit-ui/demo/solutions`) or refers to the same solution they had before, **update** that file. Otherwise, **create** a new `.js` file with a unique name in `projects/swimlane/lit-ui/demo/solutions`.
 4. **Clarify scope**: From the user's request, determine the solution's purpose (e.g. single widget, form, dashboard), which `swim-*` components are needed (from use-lit-ui), and whether to add any custom Lit element.
-5. **Choose CDN URLs**: Decide exact CDN URLs (or import-map specifiers) for **SwimlaneElement** (`@swimlane/swimlane-element@2`), any lit-html directives (e.g. `lit-html@1/directives/repeat.js`), and for **lit-ui** use the bundle at `https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/lit-ui.js?v=1`. Ensure `lit` is provided (e.g. via import map) so the bundle resolves. Document the import URLs in a short comment at the top of the file if helpful.
+5. **Choose CDN URLs**: Decide exact CDN URLs (or import-map specifiers) for **SwimlaneElement** (`@swimlane/swimlane-element@2`), any Lit directives (e.g. `lit@2/directives/repeat.js` — must match SwimlaneElement’s Lit version), and for **lit-ui** use **individual component resources** at `https://cdn.jsdelivr.net/gh/surya-pabbineedi/lit-ui@gh-pages/<name>.js` (e.g. `button.js`, `input.js`, `card.js`) with **no query parameters** (no `?v=1`). Import only the components the solution uses. Ensure `lit` is provided (e.g. via import map) so component scripts resolve. Document the import URLs in a short comment at the top of the file if helpful.
 6. **Design structure**: Outline the structure (semantic sections, form groups, layout) and which Swimlane components go where (from **use-lit-ui** component list and reference.md). Reuse design tokens from the lit-ui demo for consistency (or inject minimal `:root` via the script if the solution is loaded standalone).
-7. **Implement**: Write the single `.js` file at `projects/swimlane/lit-ui/demo/solutions/<unique-name>.js`. The file must: import **SwimlaneElement**, `css`, `html`, `svg`, `unsafeCSS` from `@swimlane/swimlane-element@2`; import any needed directives (e.g. `repeat` from `lit-html@1/directives/repeat.js`); import lit-ui from CDN; **export a default class** extending **SwimlaneElement** (do not call `customElements.define()` — registration is handled by the Swimlane platform); compose the UI with `swim-*` elements and wire events using **use-lit-ui** API (properties, events, slots); ensure every interactive element is accessible; and have any custom element clean up in `disconnectedCallback()`. When updating an existing file, apply the user's changes while keeping the same file path and unique name.
+7. **Implement**: Write the single `.js` file at `projects/swimlane/lit-ui/demo/solutions/<unique-name>.js`. The file must: import **SwimlaneElement**, `css`, `html`, `svg`, `unsafeCSS` from `@swimlane/swimlane-element@2`; import any needed directives (e.g. `repeat` from `lit@2/directives/repeat.js`); import lit-ui from CDN; **export a default class** extending **SwimlaneElement** (do not call `customElements.define()` — registration is handled by the Swimlane platform); compose the UI with `swim-*` elements and wire events using **use-lit-ui** API (properties, events, slots); ensure every interactive element is accessible; and have any custom element clean up in `disconnectedCallback()`. When updating an existing file, apply the user's changes while keeping the same file path and unique name.
 8. **Verify**: Check that (a) all imports resolve (correct CDN URLs or import maps), (b) custom elements extend **SwimlaneElement** and use its exports, (c) only listed `swim-*` elements are used (per use-lit-ui), (d) labels/ARIA/keyboard/focus are in place, and (e) there are no listener/timer leaks.
 
 Deliver a **professional, consistent, accessible, leak-free** solution in **one `.js` file** under `projects/swimlane/lit-ui/demo/solutions` with a **unique name**, **exporting a default class** extending **SwimlaneElement** (from `@swimlane/swimlane-element@2`) — do **not** register it as a custom element (no `customElements.define()`), using **only** `swim-*` components from `@swimlane/lit-ui`, and loading **all dependencies from CDN**. When the user refers to the same solution or points to a file, **update** that file instead of creating a new one.
