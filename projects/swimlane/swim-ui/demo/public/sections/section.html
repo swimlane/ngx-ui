@@ -1,0 +1,193 @@
+<hr class="section-divider" />
+
+<h1 id="section" class="page-title">Section</h1>
+<p class="subtitle">
+  Collapsible section with optional title and custom header. Use <code>swim-section</code> with
+  <code>section-title</code> or <code>swim-section-header</code> for custom header content. Supports legacy, outline,
+  light, and minimal appearances.
+</p>
+
+<section class="section">
+  <swim-section section-title="Title and content">
+    <p class="section-desc">Default section with a title and body content.</p>
+    <div class="demo-row demo-row--column">
+      <swim-section id="section-demo-1" section-title="Attack Details">
+        Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
+        bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system
+        mailbomb eaten by a grue error fopen null. James T. Kirk firewall recursively hello world man pages protected.
+      </swim-section>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-section section-title="Attack Details"&gt;
+  Section body content here.
+&lt;/swim-section&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Custom header">
+    <p class="section-desc">
+      Use <code>swim-section-header</code> with <code>slot="header"</code> for custom title and links.
+    </p>
+    <div class="demo-row demo-row--column">
+      <swim-section id="section-demo-2">
+        <swim-section-header slot="header">
+          <h3>Attack Found!</h3>
+          <a href="#section">List</a>
+        </swim-section-header>
+        Hash rm -rf gc Starcraft continue *.* d00dz deadlock snarf endif wannabee tera perl less bar strlen tarball
+        bytes ban headers gnu brute force. All your base are belong to us semaphore exception giga highjack system
+        mailbomb eaten by a grue error fopen null.
+      </swim-section>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-section&gt;
+  &lt;swim-section-header slot="header"&gt;
+    &lt;h3&gt;Attack Found!&lt;/h3&gt;
+    &lt;a href="#section"&gt;List&lt;/a&gt;
+  &lt;/swim-section-header&gt;
+  Section body content.
+&lt;/swim-section&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Not collapsible" section-collapsible="false">
+    <p class="section-desc">Section with <code>section-collapsible="false"</code> — no toggle button.</p>
+    <div class="demo-row demo-row--column">
+      <swim-section id="section-demo-3" section-title="Attack Details" section-collapsible="false">
+        Content is always visible; no expand/collapse toggle.
+      </swim-section>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-section section-title="Attack Details" section-collapsible="false"&gt;
+  Content is always visible; no expand/collapse toggle.
+&lt;/swim-section&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Appearances">
+    <p class="section-desc">Legacy (default), outline, light, and minimal.</p>
+    <div class="demo-row demo-row--column">
+      <div class="demo-label">Legacy (default)</div>
+      <swim-section id="section-legacy" section-title="Legacy"> Default background and header style. </swim-section>
+      <div class="demo-label">Outline</div>
+      <swim-section id="section-outline" section-title="Outline" appearance="outline">
+        Border-only style.
+      </swim-section>
+      <div class="demo-label">Light</div>
+      <swim-section id="section-light" section-title="Light" appearance="light">
+        Light border and header background.
+      </swim-section>
+      <div class="demo-label">Minimal</div>
+      <swim-section id="section-minimal" section-title="Minimal" appearance="minimal">
+        No background or border.
+      </swim-section>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-section section-title="Legacy"&gt;Default style.&lt;/swim-section&gt;
+
+&lt;swim-section section-title="Outline" appearance="outline"&gt;
+  Border-only style.
+&lt;/swim-section&gt;
+
+&lt;swim-section section-title="Light" appearance="light"&gt;
+  Light border and header.
+&lt;/swim-section&gt;
+
+&lt;swim-section section-title="Minimal" appearance="minimal"&gt;
+  No background or border.
+&lt;/swim-section&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Toggle position">
+    <p class="section-desc">Toggle on the right with <code>toggle-position="right"</code>.</p>
+    <div class="demo-row demo-row--column">
+      <swim-section id="section-toggle-right" section-title="Toggle on right" toggle-position="right">
+        Collapse/expand button is on the right side of the header.
+      </swim-section>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-section section-title="Toggle on right" toggle-position="right"&gt;
+  Content here.
+&lt;/swim-section&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Header toggle">
+    <p class="section-desc">
+      Click the header to expand/collapse (<code>header-toggle</code>). Toggle can be hidden with
+      <code>toggle-position="none"</code>.
+    </p>
+    <div class="demo-row demo-row--column">
+      <swim-section
+        id="section-header-toggle"
+        section-title="Click header to toggle"
+        toggle-position="none"
+        header-toggle
+      >
+        No toggle button; click anywhere on the header to expand or collapse.
+      </swim-section>
+    </div>
+    <pre class="demo-pre"><code>&lt;swim-section
+  section-title="Click header to toggle"
+  toggle-position="none"
+  header-toggle
+&gt;
+  Content toggles when header is clicked.
+&lt;/swim-section&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Section usage">
+    <p class="section-desc">Import and use the section components:</p>
+    <pre class="demo-pre"><code>&lt;script type="module"&gt;
+  import '@swimlane/swim-ui/section';
+  import '@swimlane/swim-ui/icon';
+&lt;/script&gt;
+
+&lt;swim-section section-title="Attack Details"&gt;
+  Section body content here.
+&lt;/swim-section&gt;
+
+&lt;swim-section&gt;
+  &lt;swim-section-header slot="header"&gt;
+    &lt;h3&gt;Custom header&lt;/h3&gt;
+  &lt;/swim-section-header&gt;
+  Body content.
+&lt;/swim-section&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- API Reference -->
+<section class="section">
+  <swim-section section-title="API Reference" section-collapsed>
+    <div class="api-ref">
+      <div><span class="api-tag-name">&lt;swim-section&gt;</span></div>
+      <h4 class="api-heading">Properties</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Attribute</th><th>Type</th><th>Default</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>section-title</code></td><td><code>string</code></td><td><code>''</code></td><td>Section heading text</td></tr>
+            <tr><td><code>section-collapsed</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the section starts collapsed</td></tr>
+            <tr><td><code>section-collapsible</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Whether the section can be collapsed</td></tr>
+            <tr><td><code>appearance</code></td><td><code>'legacy' | 'outline' | 'light' | 'minimal'</code></td><td><code>'legacy'</code></td><td>Visual appearance variant</td></tr>
+            <tr><td><code>toggle-position</code></td><td><code>'left' | 'right' | 'none'</code></td><td><code>'left'</code></td><td>Position of the expand/collapse icon</td></tr>
+            <tr><td><code>header-toggle</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Makes entire header clickable to toggle</td></tr>
+            <tr><td><code>padding</code></td><td><code>string</code></td><td><code>'1.8em'</code></td><td>Content area padding</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="api-heading">Events</h4>
+      <div class="api-table-wrap">
+        <table class="api-table">
+          <thead><tr><th>Event</th><th>Detail</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>toggle</code></td><td><code>boolean</code></td><td>Fired when the section is expanded or collapsed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </swim-section>
+</section>
