@@ -26,7 +26,7 @@ You can load the library from the CDN for testing or use in a Lit app without in
 **Publish to GitHub Pages** (manual, from this repo):
 
 ```bash
-cd projects/swimlane/swim-ui && npm run deploy:gh-pages
+cd projects/swimlane/swim-ui && yarn deploy:gh-pages
 ```
 
 Ensure GitHub Pages is enabled for the repo (Settings → Pages → Source: branch `gh-pages`). Files are available under your Pages base URL (e.g. `https://surya-pabbineedi.github.io/ngx-ui/`).
@@ -457,13 +457,13 @@ interface SelectOption {
 
 ```bash
 cd projects/swimlane/swim-ui
-npm install
+yarn install
 ```
 
 ### Running the Demo
 
 ```bash
-npm run dev
+yarn dev
 ```
 
 Open http://localhost:4300 in your browser.
@@ -471,7 +471,7 @@ Open http://localhost:4300 in your browser.
 ### Building
 
 ```bash
-npm run build:lib
+yarn build:lib
 ```
 
 ### Project Structure
