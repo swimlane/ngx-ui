@@ -37,7 +37,7 @@ jobs:
 
       - name: Build swim-ui CDN
         run: |
-          cd projects/swimlane/swim-ui && npm run copy:icon-font && npm run build:cdn
+          cd projects/swimlane/swim-ui && yarn install --immutable && yarn copy:icon-font && yarn build:cdn
 
       - name: Publish swim-ui to S3 with SemVer support
         run: |

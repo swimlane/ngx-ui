@@ -45,7 +45,7 @@ mkdirSync(distCdn, { recursive: true });
 
 for (const name of CDN_ENTRY_NAMES) {
   const result = spawnSync(
-    'npx',
+    'yarn',
     ['vite', 'build', '--config', 'vite.lib.config.ts'],
     {
       env: { ...process.env, BUILD_CDN_ENTRY: name },

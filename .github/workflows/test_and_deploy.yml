@@ -21,7 +21,7 @@ jobs:
         run: corepack prepare yarn@4.9.2 --activate
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: yarn install --immutable && cd projects/swimlane/swim-ui && yarn install --immutable
 
       - name: Build
         run: |

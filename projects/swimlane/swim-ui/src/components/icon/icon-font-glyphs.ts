@@ -1,6 +1,6 @@
 import { css } from 'lit';
 
-/** Generated from ngx-ui icons.scss $icons. Run: npm run generate:icon-glyphs */
+/** Generated from ngx-ui icons.scss $icons. Run: yarn generate:icon-glyphs */
 export const iconFontGlyphs = css`
   .swim-icon.lit-3d-rotate::before {
     content: '\\ea02';

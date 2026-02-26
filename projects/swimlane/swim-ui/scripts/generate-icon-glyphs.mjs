@@ -3,7 +3,7 @@
  * Single source of truth: projects/swimlane/ngx-ui/src/lib/assets/icons/iconfont/scss/icons.scss
  * Same codepoints as ngx-icon.svg / icons.scss so the same font works for Angular and Lit.
  *
- * Run: npm run generate:icon-glyphs
+ * Run: yarn generate:icon-glyphs
  */
 import { readFileSync, writeFileSync } from 'fs';
 import { resolve, dirname } from 'path';
@@ -25,7 +25,7 @@ while ((m = re.exec(scss)) !== null) {
 const lines = [
   "import { css } from 'lit';",
   '',
-  '/** Generated from ngx-ui icons.scss $icons. Run: npm run generate:icon-glyphs */',
+  '/** Generated from ngx-ui icons.scss $icons. Run: yarn generate:icon-glyphs */',
   'export const iconFontGlyphs = css`',
   ...Object.entries(map).map(([name, code]) => {
     const className = `lit-${name}`;

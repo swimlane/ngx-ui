@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document describes how to publish the swim-ui CDN build to S3 with semantic versioning support. The output of the `build:cdn` npm script in the swim-ui project is uploaded to the same CDN bucket used for widgets.
+This document describes how to publish the swim-ui CDN build to S3 with semantic versioning support. The output of the `build:cdn` yarn script in the swim-ui project is uploaded to the same CDN bucket used for widgets.
 
 ## Script
 
@@ -47,7 +47,7 @@ The publishing script is run by the workflow [.github/workflows/publish-swim-ui-
 
 **Steps:**
 1. Checkout, setup Node/Yarn, install dependencies
-2. Build swim-ui CDN: `cd projects/swimlane/swim-ui && npm run copy:icon-font && npm run build:cdn`
+2. Build swim-ui CDN: `cd projects/swimlane/swim-ui && yarn install --immutable && yarn copy:icon-font && yarn build:cdn`
 3. Configure AWS credentials (uses `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` repo secrets)
 4. Run `publish-swim-ui-cdn.sh` with the default bucket and source directory
 
@@ -65,7 +65,7 @@ The publishing script is run by the workflow [.github/workflows/publish-swim-ui-
 From the repository root:
 
 ```bash
-cd projects/swimlane/swim-ui && npm run copy:icon-font && npm run build:cdn
+cd projects/swimlane/swim-ui && yarn copy:icon-font && yarn build:cdn
 ```
 
 Output is written to `projects/swimlane/swim-ui/dist-cdn/` (e.g. `swim-ui.js`, `button.js`, `styles.js`, and other component bundles).
