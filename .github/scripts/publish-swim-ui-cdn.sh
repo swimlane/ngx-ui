@@ -22,7 +22,7 @@ if [ ! -f "$PACKAGE_JSON" ]; then
   exit 1
 fi
 
-version=$(node -p "require('$PACKAGE_JSON').version" 2>/dev/null || echo "")
+version=$(node -p "require('./$PACKAGE_JSON').version" 2>/dev/null || echo "")
 if [ -z "$version" ]; then
   echo "Error: No version found in $PACKAGE_JSON"
   exit 1
