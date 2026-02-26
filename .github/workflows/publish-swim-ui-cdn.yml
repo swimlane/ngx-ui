@@ -1,0 +1,53 @@
+name: Publish swim-ui to CDN
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish-swim-ui-cdn:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.2.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22.16.0
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          role-to-assume: arn:aws:iam::361769581057:role/custom-widget-cicd
+          aws-region: us-west-2
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install Yarn
+        run: corepack prepare yarn@4.9.2 --activate
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Build swim-ui CDN
+        run: |
+          cd projects/swimlane/swim-ui && npm run copy:icon-font && npm run build:cdn
+
+      - name: Publish swim-ui to S3 with SemVer support
+        run: |
+          chmod +x .github/scripts/publish-swim-ui-cdn.sh
+          .github/scripts/publish-swim-ui-cdn.sh sw-widgets-cloud-production-us-west-2 projects/swimlane/swim-ui/dist-cdn
+      
+
+      - name: List s3 bucket objects
+        run: |
+          aws s3 ls --recursive s3://sw-widgets-cloud-production-us-west-2
+          echo "..."
+          echo "Total objects:"
+          aws s3 ls --recursive s3://sw-widgets-cloud-production-us-west-2 | wc -l
