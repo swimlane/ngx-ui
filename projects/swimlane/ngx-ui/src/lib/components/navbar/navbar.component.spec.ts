@@ -1,12 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 
 import { IconModule } from '../icon/icon.module';
 
 import { NavbarComponentFixture } from './navbar.component.fixture';
 import { NavbarModule } from './navbar.module';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('Navbar Component', () => {
   let component: NavbarComponentFixture;
@@ -15,7 +14,8 @@ describe('Navbar Component', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [NavbarComponentFixture],
-      imports: [NavbarModule, IconModule, HttpClientModule, BrowserAnimationsModule]
+      imports: [NavbarModule, IconModule],
+      providers: [provideHttpClientTesting()]
     });
   });
 
@@ -30,11 +30,15 @@ describe('Navbar Component', () => {
   });
 
   it('setting barAtTop moves bar to the top of component', () => {
-    component.navbar.barAtTop = true;
-    fixture.detectChanges();
+    // Create a fresh fixture so `barAtTop` is set before the first change detection
+    const localFixture = TestBed.createComponent(NavbarComponentFixture);
+    const localComponent = localFixture.componentInstance;
+    localComponent.barAtTop = true;
+    localFixture.detectChanges();
 
-    const bar = fixture.debugElement.query(By.css('ngx-navbar:first-child .ngx-navbar--bar'));
+    const bar = localFixture.debugElement.query(By.css('ngx-navbar:first-child .ngx-navbar--bar'));
 
+    expect(bar).toBeTruthy();
     expect(bar.classes['ngx-navbar--top']).toBeTruthy();
   });
 

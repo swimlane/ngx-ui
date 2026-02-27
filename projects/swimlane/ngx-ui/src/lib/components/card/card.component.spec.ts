@@ -13,6 +13,7 @@ import {
 import { CardComponent } from './card.component';
 import { CardHeaderComponent } from './card-header.component';
 import { CardFooterComponent } from './card-footer.component';
+import { CardOrientation } from './card-orientation.enum';
 
 const baseClass = 'ngx-card';
 
@@ -52,14 +53,14 @@ describe('Card', () => {
 
   it('Initializes vertical card', () => {
     const fixture = TestBed.createComponent(CardComponent);
+    fixture.componentRef.setInput('orientation', CardOrientation.Vertical);
     fixture.detectChanges();
     const component = fixture.componentInstance;
     const card = fixture.debugElement.nativeElement;
-    (component.orientation as any) = 'vertical';
-    fixture.detectChanges();
     expect(card).toHaveClass(`${baseClass}`);
     expect(card).not.toHaveClass('ngx-card-horizontal');
     expect(card).toHaveClass('ngx-card-vertical');
+    expect(component.orientation).toBe(CardOrientation.Vertical);
   });
 
   it('Initializes card header', () => {

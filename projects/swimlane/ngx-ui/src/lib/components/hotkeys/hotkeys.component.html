@@ -1,19 +1,32 @@
-<div class="hotkeys-container" *ngIf="(hotkeys$ | async).length > 0">
-  <div class="hotkeys" *ngIf="visible" [@containerAnimationState]="'active'">
-    <div *ngFor="let hotkey of hotkeys$ | async" class="hotkey-row">
-      {{ hotkey.description }}
-      <div class="combination">
-        <span *ngFor="let key of hotkey.keys; let i = index">
-          <span class="key">{{ key }}</span> <span *ngIf="i < hotkey.keys.length - 1"> + </span>
-        </span>
-      </div>
+@if ((hotkeys$ | async).length > 0) {
+  <div class="hotkeys-container">
+    @if (visible) {
+      <div class="hotkeys" [@containerAnimationState]="'active'">
+        @for (hotkey of hotkeys$ | async; track hotkey) {
+          <div class="hotkey-row">
+            {{ hotkey.description }}
+            <div class="combination">
+              @for (key of hotkey.keys; track key; let i = $index) {
+                <span>
+                  <span class="key">{{ key }}</span> @if (i < hotkey.keys.length - 1) {
+                  <span> + </span>
+                }
+              </span>
+            }
+          </div>
+        </div>
+      }
     </div>
-  </div>
-  <div class="close-icon ngx-icon ngx-x-filled" *ngIf="visible" (click)="hide()" [@iconAnimationState]="'active'"></div>
-  <div
-    class="hotkeys-icon ngx-icon ngx-keyboard"
-    *ngIf="!visible"
-    (click)="show()"
-    [@iconAnimationState]="'active'"
-  ></div>
+  }
+  @if (visible) {
+    <div class="close-icon ngx-icon ngx-x-filled" (click)="hide()" [@iconAnimationState]="'active'"></div>
+  }
+  @if (!visible) {
+    <div
+      class="hotkeys-icon ngx-icon ngx-keyboard"
+      (click)="show()"
+      [@iconAnimationState]="'active'"
+    ></div>
+  }
 </div>
+}

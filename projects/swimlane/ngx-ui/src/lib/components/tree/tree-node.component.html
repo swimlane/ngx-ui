@@ -4,28 +4,36 @@
   (focus)="activate.emit(this.data)"
   (blur)="deactivate.emit(this.data)"
   tabindex="-1"
->
-  <span
-    *ngIf="expandable"
-    class="ngx-expander"
-    (click)="onExpandClick($event)"
-    [class.disabled]="disabled"
-    [ngClass]="expanded ? icons.collapse : icons.expand"
   >
-  </span>
-  <span *ngIf="!template" [innerHTML]="label" [class.disabled]="disabled" class="ngx-node-label" (click)="onClick()">
-  </span>
-  <ng-template *ngIf="template" [ngTemplateOutlet]="template" [ngTemplateOutletContext]="data"> </ng-template>
-  <ng-content *ngIf="expanded"></ng-content>
-  <ngx-tree
-    *ngIf="!virtualScrolling && children?.length && expandable && expanded"
-    class="ngx-sub-tree"
-    [nodes]="children"
-    [template]="template"
-    [icons]="icons"
-    (selectNode)="selectNode.emit($event)"
-    (expand)="expand.emit($event)"
-    (collapse)="collapse.emit($event)"
-  >
-  </ngx-tree>
+  @if (expandable) {
+    <span
+      class="ngx-expander"
+      (click)="onExpandClick($event)"
+      [class.disabled]="disabled"
+      [ngClass]="expanded ? icons.collapse : icons.expand"
+      >
+    </span>
+  }
+  @if (!template) {
+    <span [innerHTML]="label" [class.disabled]="disabled" class="ngx-node-label" (click)="onClick()">
+    </span>
+  }
+  @if (template) {
+    <ng-template [ngTemplateOutlet]="template" [ngTemplateOutletContext]="data"> </ng-template>
+  }
+  @if (expanded) {
+    <ng-content></ng-content>
+  }
+  @if (!virtualScrolling && children?.length && expandable && expanded) {
+    <ngx-tree
+      class="ngx-sub-tree"
+      [nodes]="children"
+      [template]="template"
+      [icons]="icons"
+      (selectNode)="selectNode.emit($event)"
+      (expand)="expand.emit($event)"
+      (collapse)="collapse.emit($event)"
+      >
+    </ngx-tree>
+  }
 </li>

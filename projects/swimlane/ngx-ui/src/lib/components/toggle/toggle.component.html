@@ -10,13 +10,19 @@
     [disabled]="disabled"
     [name]="name"
     (blur)="onBlur()"
-  />
+    />
   <label [attr.for]="id" class="ngx-toggle-label">
-    <span *ngIf="showIcons && value" class="ngx-icon ngx-check"></span>
-    <span *ngIf="showIcons && !value" class="ngx-icon ngx-x"></span>
+    @if (showIcons && value) {
+      <span class="ngx-icon ngx-check"></span>
+    }
+    @if (showIcons && !value) {
+      <span class="ngx-icon ngx-x"></span>
+    }
   </label>
   <label [attr.for]="id" class="ngx-toggle-text">
-    <span *ngIf="label" [innerHTML]="label"></span>
+    @if (label) {
+      <span [innerHTML]="label"></span>
+    }
     <ng-content></ng-content>
   </label>
 </div>

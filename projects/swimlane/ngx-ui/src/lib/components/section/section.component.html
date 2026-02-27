@@ -1,34 +1,40 @@
 <section>
-  <header
-    *ngIf="headerComp || sectionTitle"
-    [class.ngx-section-collapsible]="sectionCollapsible"
-    [class.section-collapsed]="sectionCollapsed"
-    [class.toggle-right]="togglePosition === TogglePosition.Right"
-    [class.header-toggle]="headerToggle"
-    class="ngx-section-header"
-    [attr.tabindex]="headerToggle && 0"
-    (keyup.space)="headerToggle && sectionCollapsible && onSectionClicked()"
-    (keyup.enter)="headerToggle && sectionCollapsible && onSectionClicked()"
-    (click)="headerToggle && sectionCollapsible && onSectionClicked()"
-  >
-    <button
-      *ngIf="sectionCollapsible && togglePosition !== TogglePosition.None"
-      class="ngx-section-toggle"
-      type="button"
-      title="Toggle Content Visibility"
-      [attr.aria-controls]="id"
-      [attr.aria-expanded]="!sectionCollapsed"
-      (keyup.space)="sectionCollapsible && onSectionClicked()"
-      (click)="sectionCollapsible && onSectionClicked()"
-    >
-      <ngx-icon
-        [fontIcon]="sectionCollapsed ? 'chevron-bold-right' : 'chevron-bold-down'">
-      </ngx-icon>
-    </button>
-    <ng-content select="ngx-section-header"></ng-content>
-    <h1 *ngIf="sectionTitle" [innerHTML]="sectionTitle"></h1>
-  </header>
-  <div class="ngx-section-content" [style.padding]="padding" *ngIf="!sectionCollapsed">
-    <ng-content></ng-content>
-  </div>
+  @if (headerComp || sectionTitle) {
+    <header
+      [class.ngx-section-collapsible]="sectionCollapsible"
+      [class.section-collapsed]="sectionCollapsed"
+      [class.toggle-right]="togglePosition === TogglePosition.Right"
+      [class.header-toggle]="headerToggle"
+      class="ngx-section-header"
+      [attr.tabindex]="headerToggle && 0"
+      (keyup.space)="headerToggle && sectionCollapsible && onSectionClicked()"
+      (keyup.enter)="headerToggle && sectionCollapsible && onSectionClicked()"
+      (click)="headerToggle && sectionCollapsible && onSectionClicked()"
+      >
+      @if (sectionCollapsible && togglePosition !== TogglePosition.None) {
+        <button
+          class="ngx-section-toggle"
+          type="button"
+          title="Toggle Content Visibility"
+          [attr.aria-controls]="id"
+          [attr.aria-expanded]="!sectionCollapsed"
+          (keyup.space)="sectionCollapsible && onSectionClicked()"
+          (click)="sectionCollapsible && onSectionClicked()"
+          >
+          <ngx-icon
+            [fontIcon]="sectionCollapsed ? 'chevron-bold-right' : 'chevron-bold-down'">
+          </ngx-icon>
+        </button>
+      }
+      <ng-content select="ngx-section-header"></ng-content>
+      @if (sectionTitle) {
+        <h1 [innerHTML]="sectionTitle"></h1>
+      }
+    </header>
+  }
+  @if (!sectionCollapsed) {
+    <div class="ngx-section-content" [style.padding]="padding">
+      <ng-content></ng-content>
+    </div>
+  }
 </section>

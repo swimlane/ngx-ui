@@ -7,7 +7,9 @@
       <ng-content></ng-content>
     </div>
   </div>
-  <div *ngIf="isCloseable" class="tip-container--close" (click)="onClose()">
-    <ngx-icon fontIcon="x"></ngx-icon>
-  </div>
+  @if (isCloseable) {
+    <div class="tip-container--close" (click)="onClose()">
+      <ngx-icon fontIcon="x"></ngx-icon>
+    </div>
+  }
 </div>

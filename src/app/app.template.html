@@ -5,87 +5,100 @@
         <ngx-icon svgSrc="swimlane" class="logo-image"></ngx-icon>
         <ngx-icon svgSrc="ngx-ui" class="logo-text"></ngx-icon>
 
-        <ngx-icon *ngIf="!navExpanded" svgSrc="slide-right" (click)="navExpanded = true" class="expand-icon"></ngx-icon>
-        <ngx-icon *ngIf="navExpanded" svgSrc="slide-left" (click)="navExpanded = false" class="expand-icon"></ngx-icon>
+        @if (!navExpanded) {
+          <ngx-icon svgSrc="slide-right" (click)="navExpanded = true" class="expand-icon"></ngx-icon>
+        }
+        @if (navExpanded) {
+          <ngx-icon svgSrc="slide-left" (click)="navExpanded = false" class="expand-icon"></ngx-icon>
+        }
       </div>
-      <div class="search-box" *ngIf="navExpanded">
-        <ngx-input
-          #searchInput
-          type="text"
-          [autofocus]="true"
-          [(ngModel)]="searchValue"
-          [placeholder]="'Search Components'"
-          (ngModelChange)="updateSearchValue(searchValue)"
-        >
-          <ngx-input-prefix> <ngx-icon fontIcon="search"></ngx-icon> </ngx-input-prefix>
-          <ngx-input-suffix>
-            <button class="btn btn-link" [hidden]="!searchValue.length" (click)="searchValue = searchInput.value = ''">
-              <ngx-icon class="search-box__clear-btn" fontIcon="x"></ngx-icon>
-            </button>
-          </ngx-input-suffix>
-        </ngx-input>
-      </div>
-      <ul class="nav-items nav-main vertical-list ngx-scroll-muted">
-        <li *ngFor="let item of filteredNavigationTree; trackBy:trackByName" class="nav-item-container">
-          <a
-            *ngIf="!item.children"
-            class="nav-item"
-            ngx-tooltip
-            tooltipPlacement="right"
-            [tooltipTitle]="item.name"
-            routerLink="{{ item.route }}"
-            routerLinkActive="active"
-          >
-            <ngx-icon [fontIcon]="item.icon"></ngx-icon>
-            <span class="nav-label">{{ item.name }}</span>
-          </a>
-
-          <div
-            *ngIf="item.children"
-            class="nav-item"
-            ngx-tooltip
-            ngx-tooltip
-            [tooltipContext]="item.children"
-            [tooltipCssClass]="'nav-popover'"
-            tooltipType="popover"
-            tooltipPlacement="right"
-            [tooltipTemplate]="!navExpanded ? childrenTemplate : undefined"
-            [tooltipShowCaret]="false"
-            tooltipAlignment="top"
-            [tooltipSpacing]="1"
-            (click)="item.expanded = !item.expanded"
-          >
-            <ngx-icon [fontIcon]="item.icon"></ngx-icon>
-            <span class="nav-label">{{ item.name }}</span>
-          </div>
-
-          <ng-template #childrenTemplate let-model="model">
-            <div class="title">{{ item.name }}</div>
-            <ul *ngIf="item.children" class="sub-nav ngx-scroll-muted">
-              <a
-                *ngFor="let child of item.children"
-                class="sub-nav-item"
-                routerLink="{{ child.route }}"
-                routerLinkActive="active"
-              >
-                <span class="subnav-label">{{ child.name }}</span>
-                <ngx-icon fontIcon="check" class="active-indicator"></ngx-icon>
-              </a>
-            </ul>
-          </ng-template>
-
-          <ul *ngIf="item.children && navExpanded" class="sub-nav ngx-scroll-muted">
-            <a
-              *ngFor="let child of item.children"
-              class="sub-nav-item"
-              routerLink="{{ child.route }}"
-              routerLinkActive="active"
+      @if (navExpanded) {
+        <div class="search-box">
+          <ngx-input
+            #searchInput
+            type="text"
+            [autofocus]="true"
+            [(ngModel)]="searchValue"
+            [placeholder]="'Search Components'"
+            (ngModelChange)="updateSearchValue(searchValue)"
             >
-              <span class="subnav-label">{{ child.name }}</span>
-              <ngx-icon fontIcon="check" class="active-indicator"></ngx-icon>
-            </a>
-          </ul>
-        </li>
+            <ngx-input-prefix> <ngx-icon fontIcon="search"></ngx-icon> </ngx-input-prefix>
+            <ngx-input-suffix>
+              <button class="btn btn-link" [hidden]="!searchValue.length" (click)="searchValue = searchInput.value = ''">
+                <ngx-icon class="search-box__clear-btn" fontIcon="x"></ngx-icon>
+              </button>
+            </ngx-input-suffix>
+          </ngx-input>
+        </div>
+      }
+      <ul class="nav-items nav-main vertical-list ngx-scroll-muted">
+        @for (item of filteredNavigationTree; track trackByName($index, item)) {
+          <li class="nav-item-container">
+            @if (!item.children) {
+              <a
+                class="nav-item"
+                ngx-tooltip
+                tooltipPlacement="right"
+                [tooltipTitle]="item.name"
+                routerLink="{{ item.route }}"
+                routerLinkActive="active"
+                >
+                <ngx-icon [fontIcon]="item.icon"></ngx-icon>
+                <span class="nav-label">{{ item.name }}</span>
+              </a>
+            }
+            @if (item.children) {
+              <div
+                class="nav-item"
+                ngx-tooltip
+                ngx-tooltip
+                [tooltipContext]="item.children"
+                [tooltipCssClass]="'nav-popover'"
+                tooltipType="popover"
+                tooltipPlacement="right"
+                [tooltipTemplate]="!navExpanded ? childrenTemplate : undefined"
+                [tooltipShowCaret]="false"
+                tooltipAlignment="top"
+                [tooltipSpacing]="1"
+                (click)="item.expanded = !item.expanded"
+                >
+                <ngx-icon [fontIcon]="item.icon"></ngx-icon>
+                <span class="nav-label">{{ item.name }}</span>
+              </div>
+            }
+            <ng-template #childrenTemplate let-model="model">
+              <div class="title">{{ item.name }}</div>
+              @if (item.children) {
+                <ul class="sub-nav ngx-scroll-muted">
+                  @for (child of item.children; track child) {
+                    <a
+                      class="sub-nav-item"
+                      routerLink="{{ child.route }}"
+                      routerLinkActive="active"
+                      >
+                      <span class="subnav-label">{{ child.name }}</span>
+                      <ngx-icon fontIcon="check" class="active-indicator"></ngx-icon>
+                    </a>
+                  }
+                </ul>
+              }
+            </ng-template>
+            @if (item.children && navExpanded) {
+              <ul class="sub-nav ngx-scroll-muted">
+                @for (child of item.children; track child) {
+                  <a
+                    class="sub-nav-item"
+                    routerLink="{{ child.route }}"
+                    routerLinkActive="active"
+                    >
+                    <span class="subnav-label">{{ child.name }}</span>
+                    <ngx-icon fontIcon="check" class="active-indicator"></ngx-icon>
+                  </a>
+                }
+              </ul>
+            }
+          </li>
+        }
       </ul>
     </ngx-nav-menu>
   </div>

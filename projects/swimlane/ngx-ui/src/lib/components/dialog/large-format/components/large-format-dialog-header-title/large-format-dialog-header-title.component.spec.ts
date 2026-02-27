@@ -17,19 +17,21 @@ describe(LargeFormatDialogHeaderTitleComponent.name, () => {
         set: { changeDetection: ChangeDetectionStrategy.Default }
       })
       .compileComponents();
+  }));
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(LargeFormatDialogHeaderTitleComponent);
     component = fixture.componentInstance;
     nativeElement = fixture.nativeElement;
-
-    fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 
   it('should have host class', () => {
+    fixture.detectChanges();
     expect(nativeElement.classList.contains('ngx-large-format-dialog-header-title')).toEqual(true);
   });
 
@@ -42,11 +44,13 @@ describe(LargeFormatDialogHeaderTitleComponent.name, () => {
 
   describe('subtitle', () => {
     it('should not have subtitle', () => {
+      fixture.detectChanges();
       expect(nativeElement.querySelector('h4')).not.toBeTruthy();
     });
 
     it('should not have subtitle when dialogSubtitleTemplate is defined', () => {
       component.dialogSubtitleTemplate = null;
+      fixture.detectChanges();
       expect(nativeElement.querySelector('h4')).not.toBeTruthy();
     });
 

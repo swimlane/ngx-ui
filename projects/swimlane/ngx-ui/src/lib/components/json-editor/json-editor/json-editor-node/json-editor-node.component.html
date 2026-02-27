@@ -3,192 +3,215 @@
   [class.inline]="schema?.type !== 'object' && schema?.type !== 'array' && schema?.type !== 'null'"
   [class.invalid]="!valid || isDuplicated"
   [class.children-invalid]="!childrenValid || isDuplicated"
->
-  <span
-    *ngIf="schema?.type === 'object' || schema?.type === 'array'"
-    class="ngx-expander ngx-icon"
-    (click)="onExpandClick()"
-    [class.invalid]="!childrenValid || isDuplicated"
+  >
+  @if (schema?.type === 'object' || schema?.type === 'array') {
+    <span
+      class="ngx-expander ngx-icon"
+      (click)="onExpandClick()"
+      [class.invalid]="!childrenValid || isDuplicated"
     [ngClass]="{
       'ngx-tree-collapse': expanded,
       'ngx-tree-expand': !expanded
     }"
-  >
-  </span>
+      >
+    </span>
+  }
 
-  <ngx-icon
-    fontIcon="warning-filled"
-    *ngIf="ownErrors.length > 0"
-    class="error-icon"
-    ngx-tooltip
-    [tooltipTemplate]="errorsTemplate"
-    tooltipPlacement="top"
-  ></ngx-icon>
+  @if (ownErrors.length > 0) {
+    <ngx-icon
+      fontIcon="warning-filled"
+      class="error-icon"
+      ngx-tooltip
+      [tooltipTemplate]="errorsTemplate"
+      tooltipPlacement="top"
+    ></ngx-icon>
+  }
   <ng-template #errorsTemplate>
-    <div *ngFor="let error of ownErrors">{{ error.message }}</div>
+    @for (error of ownErrors; track error) {
+      <div>{{ error.message }}</div>
+    }
   </ng-template>
 
-  <div *ngIf="model !== undefined" [class.invalid]="!valid">
-    <!-- Object -->
-    <div *ngIf="schema?.type === 'object'">
-      <ngx-json-object-node
-        [schema]="schema"
-        [model]="model"
-        [expanded]="expanded"
-        [isDuplicated]="isDuplicated"
-        (modelChange)="updateModel($event)"
-        [path]="path"
-        [errors]="childrenErrors"
-        [typeCheckOverrides]="typeCheckOverrides"
-        [showKnownProperties]="showKnownProperties"
-        [passwordToggleEnabled]="passwordToggleEnabled"
-      ></ngx-json-object-node>
-    </div>
-
-    <!-- Array -->
-    <div *ngIf="schema?.type === 'array'">
-      <ngx-json-array-node
-        [schema]="schema"
-        [model]="model"
-        [expanded]="expanded"
-        [isDuplicated]="isDuplicated"
-        (modelChange)="updateModel($event)"
-        [path]="path"
-        [errors]="childrenErrors"
-        [typeCheckOverrides]="typeCheckOverrides"
-        [showKnownProperties]="showKnownProperties"
-        [passwordToggleEnabled]="passwordToggleEnabled"
-      ></ngx-json-array-node>
-    </div>
-
-    <!-- Number | Integer -->
-    <div *ngIf="schema?.type === 'number' || schema?.type === 'integer'">
-      <input
-        class="value-input"
-        type="number"
-        [placeholder]="placeholder"
-        [disabled]="isDuplicated"
-        [ngModel]="model"
-        (ngModelChange)="updateModel($event)"
-        [required]="required"
-      />
-    </div>
-
-    <!-- Boolean -->
-    <div *ngIf="schema?.type === 'boolean'">
-      <ngx-toggle
-        class="toggle-input"
-        [disabled]="isDuplicated"
-        [ngModel]="model"
-        (ngModelChange)="updateModel($event)"
-        [label]="model | json"
-      >
-      </ngx-toggle>
-    </div>
-
-    <!-- String -->
-    <ng-container *ngIf="schema?.type === 'string'">
-      <!-- No format -->
-      <div *ngIf="!schema.format || schema.format === 'binary'">
-        <textarea
-          *ngIf="!schema?.enum"
-          class="value-input"
-          type="text"
-          [placeholder]="placeholder"
-          [ngModel]="model"
-          [disabled]="isDuplicated"
-          (ngModelChange)="updateModel($event)"
-          [required]="required"
-        ></textarea>
-        <select *ngIf="schema?.enum" class="value-input select" [ngModel]="model" (ngModelChange)="updateModel($event)">
-          <option *ngFor="let option of schema.enum" [value]="option">{{ option }}</option>
-        </select>
-      </div>
-
-      <!-- Password -->
-      <div *ngIf="schema.format === 'password'">
-        <ngx-input
-          class="value-input"
-          type="password"
-          [placeholder]="placeholder"
-          [ngModel]="model"
-          [disabled]="isDuplicated"
-          (ngModelChange)="updateModel($event)"
-          [required]="required"
-          [passwordToggleEnabled]="passwordToggleEnabled"
-        ></ngx-input>
-      </div>
-
-      <!-- Date -->
-      <div *ngIf="schema.format === 'date'">
-        <input
-          class="value-input"
-          type="date"
-          [placeholder]="placeholder"
-          [ngModel]="model"
-          [disabled]="isDuplicated"
-          (ngModelChange)="updateModel($event)"
-          [required]="required"
-        />
-      </div>
-
-      <!-- DateTime -->
-      <div *ngIf="schema.format === 'date-time'">
-        <input
-          class="value-input"
-          type="datetime-local"
-          [placeholder]="placeholder"
-          [ngModel]="model"
-          [disabled]="isDuplicated"
-          (ngModelChange)="updateDateTime($event)"
-          [required]="required"
-        />
-      </div>
-
-      <!-- Code -->
-      <div *ngIf="schema.format === 'code'">
-        <div class="value-input code">
-          <ngx-icon
-            fontIcon="edit"
-            class="edit-code-icon"
-            ngx-tooltip
-            tooltipTitle="Edit Code"
-            (click)="openCodeEditor()"
-          ></ngx-icon>
-          <div class="code-display">{{ model }}</div>
+  @if (model !== undefined) {
+    <div [class.invalid]="!valid">
+      <!-- Object -->
+      @if (schema?.type === 'object') {
+        <div>
+          <ngx-json-object-node
+            [schema]="schema"
+            [model]="model"
+            [expanded]="expanded"
+            [isDuplicated]="isDuplicated"
+            (modelChange)="updateModel($event)"
+            [path]="path"
+            [errors]="childrenErrors"
+            [typeCheckOverrides]="typeCheckOverrides"
+            [showKnownProperties]="showKnownProperties"
+            [passwordToggleEnabled]="passwordToggleEnabled"
+          ></ngx-json-object-node>
         </div>
-      </div>
-
-      <ng-template #codeEditorTpl>
-        <div class="code-editor">
-          <ngx-select
-            class="mode-select"
-            label="Language Mode"
-            [disabled]="isDuplicated"
-            [ngModel]="[editorConfig.mode.name]"
-            (ngModelChange)="selectEditorMode($event[0])"
-          >
-            <ngx-select-option *ngFor="let mode of editorModes" [name]="mode.label" [value]="mode.name">
-            </ngx-select-option>
-          </ngx-select>
-
-          <ngx-button class="btn btn-primary save-code-button" (click)="updateModel(editorModel); closeCodeEditor()">
-            Save</ngx-button
-          >
-
-          <ngx-codemirror
-            *ngIf="editorVisible"
-            [ngModel]="editorModel"
-            [disabled]="isDuplicated"
-            (ngModelChange)="editorModel = $event"
-            [config]="editorConfig"
-            class="code-editor"
-          >
-          </ngx-codemirror>
+      }
+      <!-- Array -->
+      @if (schema?.type === 'array') {
+        <div>
+          <ngx-json-array-node
+            [schema]="schema"
+            [model]="model"
+            [expanded]="expanded"
+            [isDuplicated]="isDuplicated"
+            (modelChange)="updateModel($event)"
+            [path]="path"
+            [errors]="childrenErrors"
+            [typeCheckOverrides]="typeCheckOverrides"
+            [showKnownProperties]="showKnownProperties"
+            [passwordToggleEnabled]="passwordToggleEnabled"
+          ></ngx-json-array-node>
         </div>
-      </ng-template>
-    </ng-container>
+      }
+      <!-- Number | Integer -->
+      @if (schema?.type === 'number' || schema?.type === 'integer') {
+        <div>
+          <input
+            class="value-input"
+            type="number"
+            [placeholder]="placeholder"
+            [disabled]="isDuplicated"
+            [ngModel]="model"
+            (ngModelChange)="updateModel($event)"
+            [required]="required"
+            />
+        </div>
+      }
+      <!-- Boolean -->
+      @if (schema?.type === 'boolean') {
+        <div>
+          <ngx-toggle
+            class="toggle-input"
+            [disabled]="isDuplicated"
+            [ngModel]="model"
+            (ngModelChange)="updateModel($event)"
+            [label]="model | json"
+            >
+          </ngx-toggle>
+        </div>
+      }
+      <!-- String -->
+      @if (schema?.type === 'string') {
+        <!-- No format -->
+        @if (!schema.format || schema.format === 'binary') {
+          <div>
+            @if (!schema?.enum) {
+              <textarea
+                class="value-input"
+                type="text"
+                [placeholder]="placeholder"
+                [ngModel]="model"
+                [disabled]="isDuplicated"
+                (ngModelChange)="updateModel($event)"
+                [required]="required"
+              ></textarea>
+            }
+            @if (schema?.enum) {
+              <select class="value-input select" [ngModel]="model" (ngModelChange)="updateModel($event)">
+                @for (option of schema.enum; track option) {
+                  <option [value]="option">{{ option }}</option>
+                }
+              </select>
+            }
+          </div>
+        }
+        <!-- Password -->
+        @if (schema.format === 'password') {
+          <div>
+            <ngx-input
+              class="value-input"
+              type="password"
+              [placeholder]="placeholder"
+              [ngModel]="model"
+              [disabled]="isDuplicated"
+              (ngModelChange)="updateModel($event)"
+              [required]="required"
+              [passwordToggleEnabled]="passwordToggleEnabled"
+            ></ngx-input>
+          </div>
+        }
+        <!-- Date -->
+        @if (schema.format === 'date') {
+          <div>
+            <input
+              class="value-input"
+              type="date"
+              [placeholder]="placeholder"
+              [ngModel]="model"
+              [disabled]="isDuplicated"
+              (ngModelChange)="updateModel($event)"
+              [required]="required"
+              />
+          </div>
+        }
+        <!-- DateTime -->
+        @if (schema.format === 'date-time') {
+          <div>
+            <input
+              class="value-input"
+              type="datetime-local"
+              [placeholder]="placeholder"
+              [ngModel]="model"
+              [disabled]="isDuplicated"
+              (ngModelChange)="updateDateTime($event)"
+              [required]="required"
+              />
+          </div>
+        }
+        <!-- Code -->
+        @if (schema.format === 'code') {
+          <div>
+            <div class="value-input code">
+              <ngx-icon
+                fontIcon="edit"
+                class="edit-code-icon"
+                ngx-tooltip
+                tooltipTitle="Edit Code"
+                (click)="openCodeEditor()"
+              ></ngx-icon>
+              <div class="code-display">{{ model }}</div>
+            </div>
+          </div>
+        }
+        <ng-template #codeEditorTpl>
+          <div class="code-editor">
+            <ngx-select
+              class="mode-select"
+              label="Language Mode"
+              [disabled]="isDuplicated"
+              [ngModel]="[editorConfig.mode.name]"
+              (ngModelChange)="selectEditorMode($event[0])"
+              >
+              @for (mode of editorModes; track mode) {
+                <ngx-select-option [name]="mode.label" [value]="mode.name">
+                </ngx-select-option>
+              }
+            </ngx-select>
+            <ngx-button class="btn btn-primary save-code-button" (click)="updateModel(editorModel); closeCodeEditor()">
+              Save</ngx-button
+              >
+              @if (editorVisible) {
+                <ngx-codemirror
+                  [ngModel]="editorModel"
+                  [disabled]="isDuplicated"
+                  (ngModelChange)="editorModel = $event"
+                  [config]="editorConfig"
+                  class="code-editor"
+                  >
+                </ngx-codemirror>
+              }
+            </div>
+          </ng-template>
+        }
+      </div>
+    }
+
+    @if (schema?.type === 'object' || schema?.type === 'array') {
+      <div class="ngx-tree-vr"></div>
+    }
   </div>
-
-  <div class="ngx-tree-vr" *ngIf="schema?.type === 'object' || schema?.type === 'array'"></div>
-</div>

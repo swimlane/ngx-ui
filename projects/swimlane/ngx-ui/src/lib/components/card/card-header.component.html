@@ -7,5 +7,7 @@
   <ng-content select="ngx-card-subtitle"></ng-content>
 </div>
 
-<div *ngIf="label" class="ngx-card-header--label">{{label}}</div>
+@if (label) {
+  <div class="ngx-card-header--label">{{label}}</div>
+}
 

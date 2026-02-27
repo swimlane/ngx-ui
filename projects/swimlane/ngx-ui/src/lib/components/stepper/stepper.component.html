@@ -3,53 +3,57 @@
 </div>
 
 <div class="ngx-stepper--bar-track">
-  <div
-    *ngIf="trackBar && !vertical"
-    class="ngx-stepper--bar"
+  @if (trackBar && !vertical) {
+    <div
+      class="ngx-stepper--bar"
     [@stepperBarHorizontalTransition]="{
       value: barState,
       params: { xOffset: steps.first.width * completeSteps, width: steps.first.stepWidth }
     }"
-  ></div>
+    ></div>
+  }
 
-  <div
-    *ngIf="trackBar && vertical"
-    class="ngx-stepper--bar"
+  @if (trackBar && vertical) {
+    <div
+      class="ngx-stepper--bar"
     [@stepperBarVerticalTransition]="{
       value: barState,
       params: { yOffset: steps.first.height * completeSteps, height: steps.first.stepHeight }
     }"
-  ></div>
+    ></div>
+  }
 </div>
 
 <ng-container *ngTemplateOutlet="vertical ? verticalTpl : horizontalTpl"></ng-container>
 
 <ng-template #verticalTpl>
-  <div
-    *ngFor="let step of steps; let i = index"
-    class="ngx-stepper--content"
-    [class.active]="active === i"
-    [@stepVerticalTransition]="getStepState(i)"
-    (@stepVerticalTransition.start)="onStepAnimationStart(i)"
-    (@stepVerticalTransition.done)="onStepAnimationEnd(i)"
-  >
-    <ng-container *ngIf="active === i">
-      <ng-template [ngTemplateOutlet]="step.content?.first?.template"></ng-template>
-    </ng-container>
-  </div>
+  @for (step of steps; track step; let i = $index) {
+    <div
+      class="ngx-stepper--content"
+      [class.active]="active === i"
+      [@stepVerticalTransition]="getStepState(i)"
+      (@stepVerticalTransition.start)="onStepAnimationStart(i)"
+      (@stepVerticalTransition.done)="onStepAnimationEnd(i)"
+      >
+      @if (active === i) {
+        <ng-template [ngTemplateOutlet]="step.content?.first?.template"></ng-template>
+      }
+    </div>
+  }
 </ng-template>
 
 <ng-template #horizontalTpl>
-  <div
-    *ngFor="let step of steps; let i = index"
-    class="ngx-stepper--content"
-    [class.active]="active === i"
-    [@stepHorizontalTransition]="getStepState(i)"
-    (@stepHorizontalTransition.start)="onStepAnimationStart(i)"
-    (@stepHorizontalTransition.done)="onStepAnimationEnd(i)"
-  >
-    <ng-container *ngIf="active === i">
-      <ng-template [ngTemplateOutlet]="step.content?.first?.template"></ng-template>
-    </ng-container>
-  </div>
+  @for (step of steps; track step; let i = $index) {
+    <div
+      class="ngx-stepper--content"
+      [class.active]="active === i"
+      [@stepHorizontalTransition]="getStepState(i)"
+      (@stepHorizontalTransition.start)="onStepAnimationStart(i)"
+      (@stepHorizontalTransition.done)="onStepAnimationEnd(i)"
+      >
+      @if (active === i) {
+        <ng-template [ngTemplateOutlet]="step.content?.first?.template"></ng-template>
+      }
+    </div>
+  }
 </ng-template>

@@ -1,2 +1,4 @@
-<div *ngIf="label" class="ngx-card-footer--label">{{label}}</div>
+@if (label) {
+  <div class="ngx-card-footer--label">{{label}}</div>
+}
 <ng-content></ng-content>

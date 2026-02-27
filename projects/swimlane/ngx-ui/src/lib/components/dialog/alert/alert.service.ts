@@ -32,7 +32,10 @@ export class AlertService extends DialogService<AlertComponent> {
 
   protected type: any = AlertComponent;
 
-  constructor(readonly injectionService: InjectionService, readonly overlayService: OverlayService) {
+  constructor(
+    readonly injectionService: InjectionService,
+    readonly overlayService: OverlayService
+  ) {
     super(injectionService, overlayService);
   }
 
