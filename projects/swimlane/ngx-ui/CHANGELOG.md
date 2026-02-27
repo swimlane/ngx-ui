@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 51.3.0 (2025-02-27)
+
+- Enhancement (`icons`): Added `panel-expand` and `panel-collapse` icons
+
 ## 51.2.1 (2026-01-09)
 
 - Fix: Preserve scroll position on column tab change for `ngx-columns` component
