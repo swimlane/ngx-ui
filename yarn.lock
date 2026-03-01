@@ -5721,10 +5721,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/faker@npm:^4.1.11":
-  version: 4.1.12
-  resolution: "@types/faker@npm:4.1.12"
-  checksum: 10c0/7ebd392890b2394d20af7742fe9a27a263caa8d5693e23e8cf0beda9427972f62811d43c686e0367330b61652e0c9fc7005be846f90229e5d2895ad528d48e74
+"@types/faker@npm:^6.0.0":
+  version: 6.6.8
+  resolution: "@types/faker@npm:6.6.8"
+  dependencies:
+    faker: "npm:*"
+  checksum: 10c0/afd46dfb4c425b109acf5b09d3e15e9dea88a8da794c2090ae51dd7895e11015a69251bdb155117d518704189966eb15a556df4056e225a0ca7ffd15c658dded
   languageName: node
   linkType: hard
 
@@ -10582,10 +10584,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"faker@npm:^5.1.0":
-  version: 5.5.3
-  resolution: "faker@npm:5.5.3"
-  checksum: 10c0/55ee2fb6425df717253f237b4e952c94efe33da23a5826ca41c6ecb31ccfb49d06c5de64b82b6994ca9c76c05eab4dbf779cea047455fff6e62cc9d585c7d460
+"faker@npm:*, faker@npm:^6.0.0":
+  version: 6.6.6
+  resolution: "faker@npm:6.6.6"
+  checksum: 10c0/21f6a57adc921ffb61e5ff767024a699a414047264ff4bbb080bd4994ec5a8061e1828aae9a4be812f6f356f1b6fd082bc2d54df7c37163b943a421a8f7f7079
   languageName: node
   linkType: hard
 
@@ -14619,7 +14621,7 @@ __metadata:
     "@swimlane/eslint-config": "npm:^2.0.0"
     "@swimlane/prettier-config-swimlane": "npm:^3.0.2"
     "@types/codemirror": "npm:5.60.5"
-    "@types/faker": "npm:^4.1.11"
+    "@types/faker": "npm:^6.0.0"
     "@types/jasmine": "npm:4.3.0"
     "@types/json-schema": "npm:7.0.11"
     "@types/moment-timezone": "npm:^0.5.13"
@@ -14654,7 +14656,7 @@ __metadata:
     eslint-plugin-no-only-tests: "npm:3.0.0"
     eslint-plugin-prefer-arrow: "npm:1.2.3"
     eslint-plugin-security: "npm:1.5.0"
-    faker: "npm:^5.1.0"
+    faker: "npm:^6.0.0"
     gh-pages: "npm:4.0.0"
     husky: "npm:8.0.1"
     jasmine-core: "npm:5.5.0"
