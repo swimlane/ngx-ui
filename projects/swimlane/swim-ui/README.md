@@ -153,6 +153,17 @@ When the font is loaded from the ngx-ui package this way, the default `icon-font
 
 **How the font is deployed from the Angular lib:** The ngx-ui library’s `ng-package.json` includes an `assets` entry that copies `src/lib/assets/icons/iconfont/fonts/*` (eot, woff2, woff, ttf, svg) into the built package at `lib/assets/icons/iconfont/fonts/`. So when you install `@swimlane/ngx-ui` from npm, those files in `node_modules/@swimlane/ngx-ui/lib/assets/icons/iconfont/fonts/` are the **same files** as in the repo—no transformation, just copy.
 
+**Icon font scripts (swim-ui development):** From the swim-ui package directory, use:
+
+- **`yarn copy:icon-font`** — Copies the icon font files from ngx-ui into swim-ui (e.g. `demo/assets/`) so the demo and CDN build can use them.
+- **`yarn generate:icon-glyphs`** — Generates the glyph name-to-codepoint mappings (e.g. `src/components/icon/icon-font-glyphs.ts`) from the font so `swim-icon` has the correct icon set.
+
+```bash
+cd projects/swimlane/swim-ui
+yarn copy:icon-font
+yarn generate:icon-glyphs
+```
+
 ## Components
 
 ### Button
@@ -473,6 +484,13 @@ Open http://localhost:4300 in your browser.
 ```bash
 yarn build:lib
 ```
+
+### Icon font (development)
+
+When working on the icon component or after updating ngx-ui’s icon font:
+
+- **`yarn copy:icon-font`** — Copy icon font files from ngx-ui into swim-ui.
+- **`yarn generate:icon-glyphs`** — Regenerate glyph mappings from the font for `swim-icon`.
 
 ### Project Structure
 
