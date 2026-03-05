@@ -52,6 +52,13 @@ export class CardComponent {
   @Input() outlineText: string;
   @Input() appearance: CardAppearance = CardAppearance.Normal;
   @Input() hideAccent = false;
+  /** When true, card shows hover background and left accent on mouse hover. */
+  @Input() hoverEffect = false;
+
+  @HostBinding('class.ngx-card--hover-effect')
+  get hoverEffectClass(): boolean {
+    return this.hoverEffect;
+  }
 
   @Output() select = new EventEmitter<boolean>();
   @Output() outlineClick = new EventEmitter<void>();

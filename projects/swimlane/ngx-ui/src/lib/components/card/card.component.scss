@@ -81,6 +81,91 @@ $card-vertical-gutter: var(--spacing-20);
     background: none;
     box-shadow: none;
   }
+
+  // Hover effect when [hoverEffect]="true"
+  &.ngx-card--hover-effect {
+    background: $color-flat-background;
+    border-left: $card-accent-thickness solid transparent;
+    transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out;
+
+    &:hover {
+      background: var(--grey-825);
+      border-left-color: var(--grey-550);
+      border-radius: var(--radius-6);
+    }
+
+    &.flat {
+      background: none;
+      border-left-color: transparent;
+
+      &:hover {
+        background: none;
+        border-left-color: var(--grey-550);
+      }
+    }
+
+    &:hover .connector-card-default {
+      display: none;
+    }
+
+    &:hover .connector-card {
+      display: flex;
+    }
+
+    &:hover > .ngx-card-header,
+    &:hover > .ngx-card-section {
+      display: none !important;
+    }
+
+    & > .connector-card {
+      position: absolute;
+      inset: 0;
+      display: none;
+      border-radius: var(--radius-6);
+    }
+
+    &:hover > .connector-card {
+      display: flex;
+    }
+
+    .connector-card-default {
+      display: block;
+      width: 100%;
+    }
+
+    .connector-card {
+      display: none;
+      flex: 1 0 0;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--spacing-12);
+      min-height: 0;
+      padding: var(--spacing-18) var(--spacing-24);
+      width: 100%;
+    }
+
+    .connector-card__text {
+      margin: 0;
+      font-size: var(--font-size-s);
+      color: var(--grey-050);
+      line-height: 1.4;
+    }
+
+    .connector-card .ngx-button {
+      width: fit-content !important;
+      min-width: 0;
+
+      button {
+        padding: 0.5em 0.35em;
+        min-height: 0;
+        width: auto !important;
+
+        > .content {
+          width: auto !important;
+        }
+      }
+    }
+  }
 } // end of ngx-card
 
 .ngx-card-horizontal {
