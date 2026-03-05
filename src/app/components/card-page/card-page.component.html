@@ -554,8 +554,9 @@
       </ngx-section>
       <ngx-section class="shadow" sectionTitle="Card with hover effect">
         <p>
-          Cards with <code>[hoverEffect]="true"</code> show a darker background and left accent on hover. Hover to
-          reveal text and a button.
+          Cards with <code>[hoverEffect]="true"</code> show a darker background and left accent on hover. Use the
+          <code>ngx-card-hover-section</code> slot to show content (e.g. text and actions) in place of the default card
+          content when the user hovers. Hover over the card below to see the effect.
         </p>
         <ngx-card [hoverEffect]="true" (click)="onClick()">
           <ngx-card-header>
@@ -566,18 +567,21 @@
           </ngx-card-header>
           <ngx-card-section> Card Section </ngx-card-section>
           <ngx-card-section> Card Section </ngx-card-section>
-          <div class="connector-card">
-            <p class="connector-card__text">See more details about this card.</p>
-            <ngx-button class="btn btn-primary small" (click)="onActionClick(); $event.stopPropagation()"
-              >See Details</ngx-button
-            >
-          </div>
+          <ngx-card-hover-section>
+            <div class="connector-card">
+              <p class="connector-card__text">See more details about this card.</p>
+              <ngx-button class="btn btn-primary small" (click)="onActionClick(); $event.stopPropagation()"
+                >See Details</ngx-button
+              >
+            </div>
+          </ngx-card-hover-section>
         </ngx-card>
         <app-prism>
           <![CDATA[<ngx-card [hoverEffect]="true" (click)="onClick()"> <ngx-card-header>...</ngx-card-header>
-          <ngx-card-section>Card Section</ngx-card-section> <ngx-card-section>Card Section</ngx-card-section> <div
-          class="connector-card"> <p class="connector-card__text">See more details about this card.</p> <ngx-button
-          class="btn btn-primary">See Details</ngx-button> </div> </ngx-card>]]>
+          <ngx-card-section>Card Section</ngx-card-section> <ngx-card-section>Card Section</ngx-card-section>
+          <ngx-card-hover-section> <div class="connector-card"> <p class="connector-card__text">See more details about
+          this card.</p> <ngx-button class="btn btn-primary">See Details</ngx-button> </div> </ngx-card-hover-section>
+          </ngx-card>]]>
         </app-prism>
       </ngx-section>
       <ng-template #viewDetailsTpl>
@@ -603,6 +607,9 @@
     <ngx-tab label="API">
       <h3>Table of Contents</h3>
       <a class="documentation-content" (click)="scrollTo('ngx-card-inputs')">ngx-card Inputs</a>
+      <a class="documentation-content" (click)="scrollTo('ngx-card-hover-section-slot')"
+        >ngx-card-hover-section (slot)</a
+      >
       <a class="documentation-content" (click)="scrollTo('ngx-card-outputs')">ngx-card Outputs</a>
       <a class="documentation-content" (click)="scrollTo('ngx-card-header-inputs')">ngx-card-header Inputs</a>
       <a class="documentation-content" (click)="scrollTo('ngx-card-header-outputs')">ngx-card-header Outputs</a>
@@ -656,6 +663,17 @@
           <tr>
             <th>
               <code class="component-type">&#64;Input()</code>
+              <code>hoverEffect: boolean</code>
+            </th>
+            <td>
+              When <code>true</code>, the card shows a darker background and left accent on hover, and supports the
+              <code>ngx-card-hover-section</code> slot: default content (header and sections) is hidden on hover and the
+              hover slot content is shown instead. See “Card with hover effect” in the Examples tab.
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <code class="component-type">&#64;Input()</code>
               <code>orientation: CardOrientation = CardOrientation.Horizontal</code>
             </th>
             <td>The layout of the component, either <code>Horizontal</code> or <code>Vertical</code>.</td>
@@ -697,6 +715,16 @@
           </tr>
         </tbody>
       </table>
+
+      <h3 class="style-header" id="ngx-card-hover-section-slot">ngx-card-hover-section (slot)</h3>
+      <p>
+        <code>ngx-card-hover-section</code> is a structural slot for content that is shown when the card is hovered. It
+        is only used when <code>[hoverEffect]="true"</code>. On mouse enter, the default content (e.g.
+        <code>ngx-card-header</code> and <code>ngx-card-section</code>) is hidden and the content projected into
+        <code>ngx-card-hover-section</code> is shown in its place; on mouse leave, the default content is shown again
+        and the hover section is hidden. Use this slot for hover-specific actions or copy (e.g. “See details”, short
+        description, or buttons).
+      </p>
       <hr />
       <h3 class="style-header" id="ngx-card-outputs">ngx-card Outputs</h3>
       <table class="table documentation-table">

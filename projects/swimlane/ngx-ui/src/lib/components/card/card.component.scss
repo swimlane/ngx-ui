@@ -82,7 +82,7 @@ $card-vertical-gutter: var(--spacing-20);
     box-shadow: none;
   }
 
-  // Hover effect when [hoverEffect]="true"
+  // Hover effect when [hoverEffect]="true"; visibility driven by isHovered (ngx-card--hovered), not :hover
   &.ngx-card--hover-effect {
     background: $color-flat-background;
     border-left: $card-accent-thickness solid transparent;
@@ -104,36 +104,15 @@ $card-vertical-gutter: var(--spacing-20);
       }
     }
 
-    &:hover .connector-card-default {
+    // When hovered, hide default header/section; show hover slot (state-driven, no !important)
+    &.ngx-card--hovered > .ngx-card-header,
+    &.ngx-card--hovered > .ngx-card-section {
       display: none;
     }
 
-    &:hover .connector-card {
-      display: flex;
-    }
-
-    &:hover > .ngx-card-header,
-    &:hover > .ngx-card-section {
-      display: none !important;
-    }
-
-    & > .connector-card {
+    & > .ngx-card-hover-section {
       position: absolute;
       inset: 0;
-      display: none;
-      border-radius: var(--radius-6);
-    }
-
-    &:hover > .connector-card {
-      display: flex;
-    }
-
-    .connector-card-default {
-      display: block;
-      width: 100%;
-    }
-
-    .connector-card {
       display: none;
       flex: 1 0 0;
       flex-direction: column;
@@ -142,26 +121,31 @@ $card-vertical-gutter: var(--spacing-20);
       min-height: 0;
       padding: var(--spacing-18) var(--spacing-24);
       width: 100%;
+      border-radius: var(--radius-6);
     }
 
-    .connector-card__text {
+    &.ngx-card--hovered > .ngx-card-hover-section {
+      display: flex;
+    }
+
+    .ngx-card-hover-section p {
       margin: 0;
       font-size: var(--font-size-s);
       color: var(--grey-050);
       line-height: 1.4;
     }
 
-    .connector-card .ngx-button {
-      width: fit-content !important;
+    .ngx-card-hover-section .ngx-button {
+      width: fit-content;
       min-width: 0;
 
       button {
         padding: 0.5em 0.35em;
         min-height: 0;
-        width: auto !important;
+        width: auto;
 
         > .content {
-          width: auto !important;
+          width: auto;
         }
       }
     }
