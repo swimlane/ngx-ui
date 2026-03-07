@@ -32,10 +32,44 @@ describe('swim-dialog', () => {
     expect(el.format).toBe('regular');
   });
 
+  it('accepts closeButton property', async () => {
+    const el = await fixture<HTMLElement & { closeButton: boolean }>('swim-dialog', { closeButton: true });
+    expect(el.closeButton).toBe(true);
+  });
+
+  it('accepts showBackdrop property', async () => {
+    const el = await fixture<HTMLElement & { showBackdrop: boolean }>('swim-dialog', { showBackdrop: true });
+    expect(el.showBackdrop).toBe(true);
+  });
+
   it('has css parts content and close-button', async () => {
     const el = await fixture<HTMLElement>('swim-dialog', { visible: true });
     await (el as { updateComplete: Promise<void> }).updateComplete;
     expect(el.shadowRoot?.querySelector('[part="content"]')).toBeTruthy();
+  });
+
+  it('has default slot for body content', async () => {
+    const el = await fixture<HTMLElement>('swim-dialog', { visible: true });
+    await (el as { updateComplete: Promise<void> }).updateComplete;
+    const slot = el.shadowRoot?.querySelector('slot');
+    expect(slot).toBeTruthy();
+  });
+
+  it('show() and hide() methods control visibility', async () => {
+    const el = await fixture<HTMLElement & { visible: boolean; show: () => void; hide: () => void }>('swim-dialog', {
+      visible: false
+    });
+    const openPromise = oneEvent(el, 'open');
+    el.show();
+    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await openPromise;
+    expect(el.visible).toBe(true);
+
+    const closePromise = oneEvent(el, 'close');
+    el.hide();
+    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await closePromise;
+    expect(el.visible).toBe(false);
   });
 
   it('emits open exactly once when shown and close exactly once when hidden', async () => {
@@ -46,6 +80,46 @@ describe('swim-dialog', () => {
     await (el as { updateComplete: Promise<void> }).updateComplete;
     await expectEventOnce(el, 'close', () => {
       el.visible = false;
+    });
+  });
+
+  describe('dynamic property changes', () => {
+    it('changes dialogTitle after render', async () => {
+      const el = await fixture<HTMLElement & { dialogTitle: string }>('swim-dialog', { dialogTitle: 'Old' });
+      el.dialogTitle = 'New';
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.dialogTitle).toBe('New');
+    });
+
+    it('changes format after render', async () => {
+      const el = await fixture<HTMLElement & { format: string }>('swim-dialog', { format: 'regular' });
+      el.format = 'large';
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.format).toBe('large');
+    });
+  });
+
+  describe('composition with content', () => {
+    it('renders child content through slot', async () => {
+      const el = await fixture<HTMLElement & { visible: boolean }>('swim-dialog', { visible: true });
+      const p = document.createElement('p');
+      p.textContent = 'Dialog body text';
+      el.appendChild(p);
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.children.length).toBe(1);
+      expect(el.children[0].textContent).toBe('Dialog body text');
+    });
+  });
+
+  describe('edge cases', () => {
+    it('rapid open/close does not throw', async () => {
+      const el = await fixture<HTMLElement & { visible: boolean }>('swim-dialog', { visible: false });
+      el.visible = true;
+      el.visible = false;
+      el.visible = true;
+      el.visible = false;
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.visible).toBe(false);
     });
   });
 

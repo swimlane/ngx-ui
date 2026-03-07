@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, expectEventOnce, removeAndFlush, assertAccessible } from '../../test-utils.js';
+import {
+  fixture,
+  oneEvent,
+  expectEventOnce,
+  removeAndFlush,
+  assertAccessible,
+  createFormWithControl
+} from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/checkbox/index.js';
 
@@ -25,6 +32,16 @@ describe('swim-checkbox', () => {
   it('reflects disabled', async () => {
     const el = await fixture<HTMLElement & { disabled: boolean }>('swim-checkbox', { disabled: true });
     expect(el.disabled).toBe(true);
+  });
+
+  it('accepts name for form association', async () => {
+    const el = await fixture<HTMLElement & { name: string }>('swim-checkbox', { name: 'agree' });
+    expect(el.name).toBe('agree');
+  });
+
+  it('accepts round property', async () => {
+    const el = await fixture<HTMLElement & { round: boolean }>('swim-checkbox', { round: true });
+    expect(el.round).toBe(true);
   });
 
   it('fires change when clicked', async () => {
@@ -55,6 +72,72 @@ describe('swim-checkbox', () => {
     const el = await fixture<HTMLElement & { checked: boolean }>('swim-checkbox', { checked: false });
     const roving = el.shadowRoot!.querySelector('.swim-checkbox__roving')!;
     await expectEventOnce(el, 'checked-change', () => roving.dispatchEvent(new MouseEvent('click', { bubbles: true })));
+  });
+
+  it('has default slot for label content', async () => {
+    const el = await fixture<HTMLElement>('swim-checkbox', {});
+    const slot = el.shadowRoot?.querySelector('slot');
+    expect(slot).toBeTruthy();
+  });
+
+  describe('dynamic property changes', () => {
+    it('toggles checked after render', async () => {
+      const el = await fixture<HTMLElement & { checked: boolean }>('swim-checkbox', { checked: false });
+      el.checked = true;
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.checked).toBe(true);
+    });
+
+    it('changes disabled after render', async () => {
+      const el = await fixture<HTMLElement & { disabled: boolean }>('swim-checkbox', { disabled: false });
+      el.disabled = true;
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.disabled).toBe(true);
+    });
+
+    it('changes indeterminate after render', async () => {
+      const el = await fixture<HTMLElement & { indeterminate: boolean }>('swim-checkbox', { indeterminate: false });
+      el.indeterminate = true;
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.indeterminate).toBe(true);
+    });
+  });
+
+  describe('form integration', () => {
+    it('can be placed inside a form with a name', () => {
+      const { form, control } = createFormWithControl('swim-checkbox', { name: 'terms', checked: true });
+      expect(control.parentElement).toBe(form);
+      expect((control as HTMLElement & { name: string }).name).toBe('terms');
+    });
+  });
+
+  describe('edge cases', () => {
+    it('clicking when disabled does not toggle', async () => {
+      const el = await fixture<HTMLElement & { checked: boolean; disabled: boolean }>('swim-checkbox', {
+        checked: false,
+        disabled: true
+      });
+      const roving = el.shadowRoot?.querySelector('.swim-checkbox__roving');
+      let fired = false;
+      el.addEventListener('checked-change', () => {
+        fired = true;
+      });
+      if (roving) {
+        roving.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+      }
+      await new Promise(r => setTimeout(r, 30));
+      expect(fired).toBe(false);
+      expect(el.checked).toBe(false);
+    });
+
+    it('rapid checked toggling settles correctly', async () => {
+      const el = await fixture<HTMLElement & { checked: boolean }>('swim-checkbox', { checked: false });
+      el.checked = true;
+      el.checked = false;
+      el.checked = true;
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.checked).toBe(true);
+    });
   });
 
   it('cleans up on remove: can be removed without throwing', async () => {

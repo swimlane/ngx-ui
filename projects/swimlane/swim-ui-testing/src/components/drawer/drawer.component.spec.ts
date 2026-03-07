@@ -20,6 +20,15 @@ describe('swim-drawer', () => {
     expect(el.closeOnOutsideClick).toBe(false);
   });
 
+  it('accepts cssClass and zIndex', async () => {
+    const el = await fixture<HTMLElement & { cssClass: string; zIndex: number }>('swim-drawer', {
+      cssClass: 'custom-drawer',
+      zIndex: 999
+    });
+    expect(el.cssClass).toBe('custom-drawer');
+    expect(el.zIndex).toBe(999);
+  });
+
   it('show() and hide() update visibility', async () => {
     const el = await fixture<HTMLElement & { show: () => void; hide: () => void }>('swim-drawer', {});
     el.show();
@@ -35,6 +44,67 @@ describe('swim-drawer', () => {
     const closePromise = oneEvent(el, 'close');
     el.hide();
     await closePromise;
+  });
+
+  it('has css part content', async () => {
+    const el = await fixture<HTMLElement & { show: () => void }>('swim-drawer', {});
+    el.show();
+    await (el as { updateComplete: Promise<void> }).updateComplete;
+    const content = el.shadowRoot?.querySelector('[part="content"]');
+    expect(content).toBeTruthy();
+  });
+
+  it('has slot for content when visible', async () => {
+    const el = await fixture<HTMLElement & { show: () => void }>('swim-drawer', {});
+    el.show();
+    await (el as { updateComplete: Promise<void> }).updateComplete;
+    const slot = el.shadowRoot?.querySelector('slot');
+    expect(slot).toBeTruthy();
+  });
+
+  describe('composition with content', () => {
+    it('renders child content through slot', async () => {
+      const el = await fixture<HTMLElement & { show: () => void }>('swim-drawer', {});
+      const p = document.createElement('p');
+      p.textContent = 'Drawer content';
+      el.appendChild(p);
+      el.show();
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.children.length).toBe(1);
+      expect(el.children[0].textContent).toBe('Drawer content');
+    });
+  });
+
+  describe('dynamic property changes', () => {
+    it('changes direction after render', async () => {
+      const el = await fixture<HTMLElement & { direction: string }>('swim-drawer', { direction: 'left' });
+      el.direction = 'right';
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.direction).toBe('right');
+    });
+
+    it('changes size after render', async () => {
+      const el = await fixture<HTMLElement & { size: number }>('swim-drawer', { size: 200 });
+      el.size = 400;
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.size).toBe(400);
+    });
+  });
+
+  describe('edge cases', () => {
+    it('rapid show/hide does not throw', async () => {
+      const el = await fixture<HTMLElement & { show: () => void; hide: () => void }>('swim-drawer', {});
+      el.show();
+      el.hide();
+      el.show();
+      el.hide();
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+    });
+
+    it('hide() on already-hidden drawer does not throw', async () => {
+      const el = await fixture<HTMLElement & { hide: () => void }>('swim-drawer', {});
+      expect(() => el.hide()).not.toThrow();
+    });
   });
 
   it('cleans up on remove: can be removed without throwing', async () => {

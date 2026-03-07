@@ -1,7 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { fixture, removeAndFlush, assertAccessible } from '../../test-utils.js';
 
-// Register the component (relative to avoid package resolution winning over alias)
 import '../../../../swim-ui/src/components/icon/index.js';
 
 describe('swim-icon', () => {
@@ -37,6 +36,35 @@ describe('swim-icon', () => {
     expect(part).toBeTruthy();
   });
 
+  it('has default slot when no fontIcon', async () => {
+    const el = await fixture<HTMLElement>('swim-icon', {});
+    const slot = el.shadowRoot?.querySelector('slot');
+    expect(slot).toBeTruthy();
+  });
+
+  describe('dynamic property changes', () => {
+    it('changes fontIcon after render', async () => {
+      const el = await fixture<HTMLElement & { fontIcon: string }>('swim-icon', { fontIcon: 'check' });
+      el.fontIcon = 'close';
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.fontIcon).toBe('close');
+    });
+
+    it('changes alt after render', async () => {
+      const el = await fixture<HTMLElement & { alt: string }>('swim-icon', { alt: 'Old' });
+      el.alt = 'New';
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.alt).toBe('New');
+    });
+
+    it('changes fontSet after render', async () => {
+      const el = await fixture<HTMLElement & { fontSet: string }>('swim-icon', { fontSet: 'lit' });
+      el.fontSet = 'material';
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.fontSet).toBe('material');
+    });
+  });
+
   it('cleans up on remove: can be removed without throwing', async () => {
     const el = await fixture<HTMLElement>('swim-icon', {});
     await removeAndFlush(el);
@@ -46,5 +74,14 @@ describe('swim-icon', () => {
   it('is accessible: when alt is set, has role img and aria-label', async () => {
     const el = await fixture<HTMLElement & { alt: string }>('swim-icon', { alt: 'Close' });
     assertAccessible(el, { role: 'img', ariaLabel: 'Close' });
+  });
+
+  it('is decorative (role=presentation, aria-hidden) when alt is not set', async () => {
+    const el = await fixture<HTMLElement>('swim-icon', { fontIcon: 'star' });
+    await (el as { updateComplete: Promise<void> }).updateComplete;
+    const presentationEl = el.shadowRoot?.querySelector('[role="presentation"]');
+    expect(presentationEl).toBeTruthy();
+    const hiddenEl = el.shadowRoot?.querySelector('[aria-hidden="true"]');
+    expect(hiddenEl).toBeTruthy();
   });
 });

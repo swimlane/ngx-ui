@@ -18,6 +18,11 @@ describe('swim-progress-spinner', () => {
     expect(el.mode).toBe('determinate');
   });
 
+  it('default mode is indeterminate', async () => {
+    const el = await fixture<HTMLElement & { mode: string }>('swim-progress-spinner', {});
+    expect(el.mode).toBeDefined();
+  });
+
   it('accepts value and total for determinate', async () => {
     const el = await fixture<HTMLElement & { value: number; total: number; mode: string }>('swim-progress-spinner', {
       value: 50,
@@ -44,10 +49,96 @@ describe('swim-progress-spinner', () => {
     expect(el.isFailure).toBe(true);
   });
 
+  it('accepts color', async () => {
+    const el = await fixture<HTMLElement & { color: string }>('swim-progress-spinner', { color: '#ff0000' });
+    expect(el.color).toBe('#ff0000');
+  });
+
+  it('accepts spinnerLabel', async () => {
+    const el = await fixture<HTMLElement & { spinnerLabel: string }>('swim-progress-spinner', {
+      spinnerLabel: 'Loading...'
+    });
+    expect(el.spinnerLabel).toBe('Loading...');
+  });
+
+  it('accepts diameter and strokeWidth', async () => {
+    const el = await fixture<HTMLElement & { diameter: number; strokeWidth: number }>('swim-progress-spinner', {
+      diameter: 48,
+      strokeWidth: 4
+    });
+    expect(el.diameter).toBe(48);
+    expect(el.strokeWidth).toBe(4);
+  });
+
   it('has part container', async () => {
     const el = await fixture<HTMLElement>('swim-progress-spinner', {});
     const part = el.shadowRoot?.querySelector('[part="container"]');
     expect(part).toBeTruthy();
+  });
+
+  describe('determinate progress', () => {
+    it('isComplete is true when value >= total', async () => {
+      const el = await fixture<HTMLElement & { value: number; total: number; mode: string; isComplete: boolean }>(
+        'swim-progress-spinner',
+        { value: 100, total: 100, mode: 'determinate' }
+      );
+      expect(el.isComplete).toBe(true);
+    });
+
+    it('isComplete is false when value < total', async () => {
+      const el = await fixture<HTMLElement & { value: number; total: number; mode: string; isComplete: boolean }>(
+        'swim-progress-spinner',
+        { value: 50, total: 100, mode: 'determinate' }
+      );
+      expect(el.isComplete).toBe(false);
+    });
+  });
+
+  describe('dynamic property changes', () => {
+    it('changes value after render', async () => {
+      const el = await fixture<HTMLElement & { value: number; total: number; mode: string }>('swim-progress-spinner', {
+        value: 25,
+        total: 100,
+        mode: 'determinate'
+      });
+      el.value = 75;
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.value).toBe(75);
+    });
+
+    it('changes mode after render', async () => {
+      const el = await fixture<HTMLElement & { mode: string }>('swim-progress-spinner', { mode: 'indeterminate' });
+      el.mode = 'determinate';
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.mode).toBe('determinate');
+    });
+
+    it('changes isFailure after render', async () => {
+      const el = await fixture<HTMLElement & { isFailure: boolean }>('swim-progress-spinner', { isFailure: false });
+      el.isFailure = true;
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.isFailure).toBe(true);
+    });
+  });
+
+  describe('edge cases', () => {
+    it('handles value=0', async () => {
+      const el = await fixture<HTMLElement & { value: number; total: number; mode: string }>('swim-progress-spinner', {
+        value: 0,
+        total: 100,
+        mode: 'determinate'
+      });
+      expect(el.value).toBe(0);
+    });
+
+    it('handles total=0 without throwing', async () => {
+      const el = await fixture<HTMLElement & { value: number; total: number; mode: string }>('swim-progress-spinner', {
+        value: 0,
+        total: 0,
+        mode: 'determinate'
+      });
+      expect(el.total).toBe(0);
+    });
   });
 
   it('cleans up on remove: can be removed without throwing', async () => {

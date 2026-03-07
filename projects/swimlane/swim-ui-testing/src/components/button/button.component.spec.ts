@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, expectEventOnce, removeAndFlush, assertAccessible } from '../../test-utils.js';
+import {
+  fixture,
+  oneEvent,
+  expectEventOnce,
+  removeAndFlush,
+  assertAccessible,
+  createFormWithControl
+} from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/button/index.js';
 
@@ -87,7 +94,6 @@ describe('swim-button', () => {
     el.promise = neverResolve;
     await (el as { updateComplete: Promise<void> }).updateComplete;
     await removeAndFlush(el);
-    // If the component did not clean up its promise callback, we'd get an unhandled rejection or leak when it settles.
     expect(document.body.contains(el)).toBe(false);
   });
 
@@ -99,5 +105,61 @@ describe('swim-button', () => {
     const disabledEl = await fixture<HTMLElement & { disabled: boolean }>('swim-button', { disabled: true });
     const disabledBtn = disabledEl.shadowRoot!.querySelector('button');
     expect(disabledBtn?.hasAttribute('disabled')).toBe(true);
+  });
+
+  it('has default slot for content', async () => {
+    const el = await fixture<HTMLElement>('swim-button', {});
+    const slot = el.shadowRoot?.querySelector('slot');
+    expect(slot).toBeTruthy();
+  });
+
+  describe('dynamic property changes', () => {
+    it('changes variant after render', async () => {
+      const el = await fixture<HTMLElement & { variant: string }>('swim-button', { variant: 'primary' });
+      el.variant = 'warning';
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.variant).toBe('warning');
+      expect(el.getAttribute('variant')).toBe('warning');
+    });
+
+    it('changes disabled after render', async () => {
+      const el = await fixture<HTMLElement & { disabled: boolean }>('swim-button', { disabled: false });
+      el.disabled = true;
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.disabled).toBe(true);
+      const btn = el.shadowRoot?.querySelector('button');
+      expect(btn?.hasAttribute('disabled')).toBe(true);
+    });
+
+    it('changes state after render', async () => {
+      const el = await fixture<HTMLElement & { state: string }>('swim-button', { state: 'active' });
+      el.state = 'in-progress';
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.state).toBe('in-progress');
+    });
+  });
+
+  describe('form integration', () => {
+    it('can be placed inside a form', () => {
+      const { form, control } = createFormWithControl('swim-button', { type: 'submit' });
+      expect(control.parentElement).toBe(form);
+      expect(control.tagName.toLowerCase()).toBe('swim-button');
+    });
+  });
+
+  describe('edge cases', () => {
+    it('handles rapid enable/disable toggling', async () => {
+      const el = await fixture<HTMLElement & { disabled: boolean }>('swim-button', { disabled: false });
+      el.disabled = true;
+      el.disabled = false;
+      el.disabled = true;
+      await (el as { updateComplete: Promise<void> }).updateComplete;
+      expect(el.disabled).toBe(true);
+    });
+
+    it('handles unknown variant gracefully', async () => {
+      const el = await fixture<HTMLElement & { variant: string }>('swim-button', { variant: 'nonexistent' });
+      expect(el.variant).toBe('nonexistent');
+    });
   });
 });
