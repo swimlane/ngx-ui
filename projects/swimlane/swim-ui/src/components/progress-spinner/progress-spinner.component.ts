@@ -4,7 +4,7 @@ import { progressSpinnerStyles } from './progress-spinner.styles';
 import { ProgressSpinnerMode } from './progress-spinner-mode.enum';
 import { SpinnerAppearance } from './spinner-appearance.enum';
 import type { SpinnerLabel } from './spinner-label.interface';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, booleanAttributeConverter } from '../../utils/coerce';
 
 const INDETERMINATE_VALUE = 50;
 const INDETERMINATE_TOTAL = 100;
@@ -85,7 +85,7 @@ export class SwimProgressSpinner extends LitElement {
   /**
    * Whether the operation failed (shows fail icon/color when complete).
    */
-  @property({ type: Boolean, reflect: true, attribute: 'is-failure' })
+  @property({ type: Boolean, reflect: true, attribute: 'is-failure', converter: booleanAttributeConverter })
   get isFailure(): boolean {
     return this._isFailure;
   }

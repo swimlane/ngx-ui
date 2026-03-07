@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
 import { property } from 'lit/decorators.js';
+import { booleanAttributeConverter } from '../../utils/coerce';
 import { splitAreaBaseStyles } from './split-area.styles';
 import { basisToParts, partsToStyle } from './utils';
 import type { FlexParts } from './utils';
@@ -42,7 +43,7 @@ export class SwimSplitArea extends LitElement implements ISplitArea {
   maxBasis: string | undefined;
 
   /** When true, min-width/max-width are set from current basis (for edge cases). */
-  @property({ type: Boolean, attribute: 'should-adjust-max-min' })
+  @property({ type: Boolean, attribute: 'should-adjust-max-min', converter: booleanAttributeConverter })
   shouldAdjustMaxMin = false;
 
   initialFlexParts: FlexParts = basisToParts('1', '1', DEFAULT_BASIS);

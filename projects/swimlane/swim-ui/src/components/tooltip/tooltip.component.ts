@@ -8,7 +8,7 @@ import { StyleType } from './style-type.enum';
 import { ShowType } from './show-type.enum';
 import { positionContent, positionCaret, determinePlacement } from './position';
 import type { Dimensions } from './position';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, booleanAttributeConverter } from '../../utils/coerce';
 
 /**
  * SwimTooltip – tooltip and popover wrapper matching @swimlane/ngx-ui.
@@ -85,7 +85,7 @@ export class SwimTooltip extends LitElement {
   private _disabled = false;
 
   /** Close when clicking outside. */
-  @property({ type: Boolean, attribute: 'close-on-click-outside' })
+  @property({ type: Boolean, attribute: 'close-on-click-outside', converter: booleanAttributeConverter })
   get closeOnClickOutside(): boolean {
     return this._closeOnClickOutside;
   }
@@ -95,7 +95,7 @@ export class SwimTooltip extends LitElement {
   private _closeOnClickOutside = true;
 
   /** Close when mouse leaves trigger (and panel if applicable). */
-  @property({ type: Boolean, attribute: 'close-on-mouse-leave' })
+  @property({ type: Boolean, attribute: 'close-on-mouse-leave', converter: booleanAttributeConverter })
   get closeOnMouseLeave(): boolean {
     return this._closeOnMouseLeave;
   }

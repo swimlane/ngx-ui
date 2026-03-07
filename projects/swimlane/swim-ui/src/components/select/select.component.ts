@@ -7,7 +7,7 @@ import { selectStyles } from './select.styles';
 import { SelectOption } from './select-option.interface';
 import { InputAppearance } from '../input/input-appearance.enum';
 import { InputSize } from '../input/input-size.enum';
-import { coerceBooleanProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, booleanAttributeConverter } from '../../utils/coerce';
 import '../icon/icon.component';
 import './select-option.component';
 
@@ -152,7 +152,7 @@ export class SwimSelect extends LitElement {
   /**
    * Whether to show margin
    */
-  @property({ type: Boolean, reflect: true, attribute: 'marginless' })
+  @property({ type: Boolean, reflect: true, attribute: 'marginless', converter: booleanAttributeConverter })
   get marginless(): boolean {
     return !this._withMargin;
   }
@@ -200,7 +200,7 @@ export class SwimSelect extends LitElement {
   /**
    * Allow clearing selection
    */
-  @property({ type: Boolean, attribute: 'allow-clear' })
+  @property({ type: Boolean, attribute: 'allow-clear', converter: booleanAttributeConverter })
   get allowClear(): boolean {
     return this._allowClear;
   }

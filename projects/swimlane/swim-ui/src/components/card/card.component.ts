@@ -4,7 +4,7 @@ import { cardComponentStyles } from './card.styles';
 import { CardStatus } from './card-status.enum';
 import { CardOrientation } from './card-orientation.enum';
 import { CardAppearance } from './card-appearance.enum';
-import { coerceBooleanProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, booleanAttributeConverter } from '../../utils/coerce';
 import '../checkbox/checkbox.component';
 
 /**
@@ -82,7 +82,7 @@ export class SwimCard extends LitElement {
   appearance: CardAppearance | 'normal' | 'flat' = CardAppearance.Normal;
 
   /** When true, the accent bar is hidden. */
-  @property({ type: Boolean, attribute: 'hide-accent' })
+  @property({ type: Boolean, attribute: 'hide-accent', converter: booleanAttributeConverter })
   get hideAccent(): boolean {
     return this._hideAccent;
   }

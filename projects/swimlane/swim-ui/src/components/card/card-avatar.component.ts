@@ -1,5 +1,6 @@
 import { LitElement, html } from 'lit';
 import { property } from 'lit/decorators.js';
+import { booleanAttributeConverter } from '../../utils/coerce';
 import { cardAvatarComponentStyles } from './card-avatar.styles';
 import { CardStatus } from './card-status.enum';
 
@@ -21,7 +22,7 @@ export class SwimCardAvatar extends LitElement {
   status?: CardStatus | 'success' | 'error' | 'disabled';
 
   /** When true, image has transparent background instead of white. */
-  @property({ type: Boolean, attribute: 'remove-image-background' })
+  @property({ type: Boolean, attribute: 'remove-image-background', converter: booleanAttributeConverter })
   removeImageBackground = false;
 
   render() {
