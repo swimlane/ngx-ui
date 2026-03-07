@@ -5,7 +5,8 @@ import {
   expectEventOnce,
   removeAndFlush,
   assertAccessible,
-  createFormWithControl
+  createFormWithControl,
+  waitForUpdate
 } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/checkbox/index.js';
@@ -84,21 +85,21 @@ describe('swim-checkbox', () => {
     it('toggles checked after render', async () => {
       const el = await fixture<HTMLElement & { checked: boolean }>('swim-checkbox', { checked: false });
       el.checked = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.checked).toBe(true);
     });
 
     it('changes disabled after render', async () => {
       const el = await fixture<HTMLElement & { disabled: boolean }>('swim-checkbox', { disabled: false });
       el.disabled = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.disabled).toBe(true);
     });
 
     it('changes indeterminate after render', async () => {
       const el = await fixture<HTMLElement & { indeterminate: boolean }>('swim-checkbox', { indeterminate: false });
       el.indeterminate = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.indeterminate).toBe(true);
     });
   });
@@ -135,7 +136,7 @@ describe('swim-checkbox', () => {
       el.checked = true;
       el.checked = false;
       el.checked = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.checked).toBe(true);
     });
   });
@@ -150,7 +151,7 @@ describe('swim-checkbox', () => {
     const el = await fixture<HTMLElement & { checked: boolean }>('swim-checkbox', { checked: false });
     assertAccessible(el, { role: 'checkbox', ariaChecked: false, focusable: true });
     el.checked = true;
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     assertAccessible(el, { ariaChecked: true });
   });
 });

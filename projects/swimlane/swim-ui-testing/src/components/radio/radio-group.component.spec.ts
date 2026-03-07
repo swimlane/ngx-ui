@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, removeAndFlush, flush, assertAccessible } from '../../test-utils.js';
+import { fixture, removeAndFlush, flush, waitForUpdate } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/radio/index.js';
 
@@ -20,7 +20,7 @@ async function createRadioGroup(values: string[], opts: { selected?: string; dis
     el.appendChild(radio);
   }
 
-  await (el as { updateComplete: Promise<void> }).updateComplete;
+  await waitForUpdate(el);
   await flush();
   await new Promise(r => setTimeout(r, 20));
   return el;
@@ -66,14 +66,14 @@ describe('swim-radio-group', () => {
       const el = await createRadioGroup(['a', 'b', 'c'], { selected: 'a' });
       expect((el as HTMLElement & { value: string }).value).toBe('a');
       (el as HTMLElement & { value: string }).value = 'c';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect((el as HTMLElement & { value: string }).value).toBe('c');
     });
 
     it('disabling the group propagates to children', async () => {
       const el = await createRadioGroup(['a', 'b'], { disabled: false });
       (el as HTMLElement & { disabled: boolean }).disabled = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect((el as HTMLElement & { disabled: boolean }).disabled).toBe(true);
     });
   });

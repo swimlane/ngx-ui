@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, expectEventOnce, removeAndFlush } from '../../test-utils.js';
+import { fixture, oneEvent, removeAndFlush, waitForUpdate } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/card/index.js';
 
@@ -53,7 +53,7 @@ describe('swim-card', () => {
       selectable: true,
       selected: false
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const checkbox = el.shadowRoot?.querySelector('swim-checkbox') as HTMLElement;
     if (checkbox) {
       const selectPromise = oneEvent(el, 'select');
@@ -70,7 +70,7 @@ describe('swim-card', () => {
     const el = await fixture<HTMLElement & { outlineText: string }>('swim-card', {
       outlineText: 'Click me'
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const outlineEl = el.shadowRoot?.querySelector('[part="outline-text"]');
     if (outlineEl) {
       const clickPromise = oneEvent(el, 'outline-click');
@@ -90,7 +90,7 @@ describe('swim-card', () => {
       el.appendChild(header);
       el.appendChild(body);
       el.appendChild(footer);
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
 
       expect(el.children.length).toBe(3);
       expect(el.children[0].tagName.toLowerCase()).toBe('swim-card-header');
@@ -142,21 +142,21 @@ describe('swim-card', () => {
       selected: false
     });
     el.selected = true;
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     expect(el.selected).toBe(true);
   });
 
   it('dynamically changes disabled after render', async () => {
     const el = await fixture<HTMLElement & { disabled: boolean }>('swim-card', { disabled: false });
     el.disabled = true;
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     expect(el.disabled).toBe(true);
   });
 
   it('dynamically changes status after render', async () => {
     const el = await fixture<HTMLElement & { status: string }>('swim-card', { status: 'success' });
     el.status = 'error';
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     expect(el.status).toBe('error');
   });
 

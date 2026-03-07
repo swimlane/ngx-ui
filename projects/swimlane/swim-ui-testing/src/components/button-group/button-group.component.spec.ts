@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, removeAndFlush, flush } from '../../test-utils.js';
+import { fixture, removeAndFlush, flush, waitForUpdate } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/button-group/index.js';
 import '../../../../swim-ui/src/components/button/index.js';
@@ -53,7 +53,7 @@ describe('swim-button-group', () => {
       btn2.textContent = 'Cancel';
       el.appendChild(btn1);
       el.appendChild(btn2);
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       await flush();
 
       expect(el.children.length).toBe(2);
@@ -71,7 +71,7 @@ describe('swim-button-group', () => {
       secondary.textContent = 'Cancel';
       el.appendChild(primary);
       el.appendChild(secondary);
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
 
       expect((el.children[0] as HTMLElement & { variant: string }).variant).toBe('primary');
       expect((el.children[1] as HTMLElement & { variant: string }).variant).toBe('default');
@@ -84,7 +84,7 @@ describe('swim-button-group', () => {
         orientation: 'horizontal'
       });
       el.orientation = 'vertical';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.orientation).toBe('vertical');
       expect(el.getAttribute('orientation')).toBe('vertical');
     });
@@ -92,7 +92,7 @@ describe('swim-button-group', () => {
     it('changes variant after render', async () => {
       const el = await fixture<HTMLElement & { variant: string }>('swim-button-group', { variant: 'contained' });
       el.variant = 'text';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.variant).toBe('text');
     });
 
@@ -101,7 +101,7 @@ describe('swim-button-group', () => {
         buttonGroupStyle: 'default'
       });
       el.buttonGroupStyle = 'primary';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.buttonGroupStyle).toBe('primary');
     });
   });

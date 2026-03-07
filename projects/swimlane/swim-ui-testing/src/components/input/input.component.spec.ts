@@ -5,7 +5,8 @@ import {
   expectEventOnce,
   removeAndFlush,
   assertAccessible,
-  createFormWithControl
+  createFormWithControl,
+  waitForUpdate
 } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/input/index.js';
@@ -108,28 +109,28 @@ describe('swim-input', () => {
     it('changes value after render', async () => {
       const el = await fixture<HTMLElement & { value: string }>('swim-input', { value: 'old' });
       el.value = 'new';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.value).toBe('new');
     });
 
     it('changes disabled after render', async () => {
       const el = await fixture<HTMLElement & { disabled: boolean }>('swim-input', { disabled: false });
       el.disabled = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.disabled).toBe(true);
     });
 
     it('changes label after render', async () => {
       const el = await fixture<HTMLElement & { label: string }>('swim-input', { label: 'Old' });
       el.label = 'New';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.label).toBe('New');
     });
 
     it('changes placeholder after render', async () => {
       const el = await fixture<HTMLElement & { placeholder: string }>('swim-input', { placeholder: 'Before' });
       el.placeholder = 'After';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.placeholder).toBe('After');
     });
   });

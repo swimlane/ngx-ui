@@ -8,13 +8,16 @@ export async function fixture<T extends HTMLElement>(tag: string, props: Record<
     (element as Record<string, unknown>)[key] = value;
   }
   document.body.appendChild(element);
-  if (
-    'updateComplete' in element &&
-    typeof (element as { updateComplete: Promise<void> }).updateComplete?.then === 'function'
-  ) {
-    await (element as { updateComplete: Promise<void> }).updateComplete;
-  }
+  await waitForUpdate(element);
   return element;
+}
+
+/**
+ * Wait for a Lit element's updateComplete (safe for any HTMLElement).
+ */
+export async function waitForUpdate(el: HTMLElement): Promise<void> {
+  const lit = el as unknown as { updateComplete?: Promise<void> };
+  if (typeof lit.updateComplete?.then === 'function') await lit.updateComplete;
 }
 
 /**

@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, expectEventOnce, removeAndFlush, assertAccessible, createFormWithControl } from '../../test-utils.js';
+import {
+  fixture,
+  expectEventOnce,
+  removeAndFlush,
+  assertAccessible,
+  createFormWithControl,
+  waitForUpdate
+} from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/slider/index.js';
 
@@ -65,7 +72,7 @@ describe('swim-slider', () => {
     it('changes value after render', async () => {
       const el = await fixture<HTMLElement & { value: string | number }>('swim-slider', { value: 25 });
       el.value = 75;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(Number(el.value)).toBe(75);
     });
 
@@ -73,7 +80,7 @@ describe('swim-slider', () => {
       const el = await fixture<HTMLElement & { min: number; max: number }>('swim-slider', { min: 0, max: 100 });
       el.min = 10;
       el.max = 200;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(Number(el.min)).toBe(10);
       expect(Number(el.max)).toBe(200);
     });
@@ -81,7 +88,7 @@ describe('swim-slider', () => {
     it('changes disabled after render', async () => {
       const el = await fixture<HTMLElement & { disabled: boolean }>('swim-slider', { disabled: false });
       el.disabled = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.disabled).toBe(true);
     });
   });

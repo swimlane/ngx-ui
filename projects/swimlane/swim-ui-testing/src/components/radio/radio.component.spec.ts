@@ -5,7 +5,7 @@ import {
   expectEventOnce,
   removeAndFlush,
   assertAccessible,
-  createFormWithControl
+  waitForUpdate
 } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/radio/index.js';
@@ -74,21 +74,21 @@ describe('swim-radio', () => {
     it('changes checked after render', async () => {
       const el = await fixture<HTMLElement & { checked: boolean }>('swim-radio', { checked: false });
       el.checked = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.checked).toBe(true);
     });
 
     it('changes value after render', async () => {
       const el = await fixture<HTMLElement & { value: string }>('swim-radio', { value: 'a' });
       el.value = 'b';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.value).toBe('b');
     });
 
     it('changes disabled after render', async () => {
       const el = await fixture<HTMLElement & { disabled: boolean }>('swim-radio', { disabled: false });
       el.disabled = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.disabled).toBe(true);
     });
   });

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, removeAndFlush } from '../../test-utils.js';
+import { fixture, removeAndFlush, waitForUpdate } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/progress-spinner/index.js';
 
@@ -102,21 +102,21 @@ describe('swim-progress-spinner', () => {
         mode: 'determinate'
       });
       el.value = 75;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.value).toBe(75);
     });
 
     it('changes mode after render', async () => {
       const el = await fixture<HTMLElement & { mode: string }>('swim-progress-spinner', { mode: 'indeterminate' });
       el.mode = 'determinate';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.mode).toBe('determinate');
     });
 
     it('changes isFailure after render', async () => {
       const el = await fixture<HTMLElement & { isFailure: boolean }>('swim-progress-spinner', { isFailure: false });
       el.isFailure = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.isFailure).toBe(true);
     });
   });

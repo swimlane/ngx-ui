@@ -5,7 +5,8 @@ import {
   expectEventOnce,
   removeAndFlush,
   assertAccessible,
-  createFormWithControl
+  createFormWithControl,
+  waitForUpdate
 } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/button/index.js';
@@ -92,7 +93,7 @@ describe('swim-button', () => {
     const el = await fixture<HTMLElement & { promise?: Promise<unknown> }>('swim-button', {});
     const neverResolve = new Promise(() => {});
     el.promise = neverResolve;
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     await removeAndFlush(el);
     expect(document.body.contains(el)).toBe(false);
   });
@@ -117,7 +118,7 @@ describe('swim-button', () => {
     it('changes variant after render', async () => {
       const el = await fixture<HTMLElement & { variant: string }>('swim-button', { variant: 'primary' });
       el.variant = 'warning';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.variant).toBe('warning');
       expect(el.getAttribute('variant')).toBe('warning');
     });
@@ -125,7 +126,7 @@ describe('swim-button', () => {
     it('changes disabled after render', async () => {
       const el = await fixture<HTMLElement & { disabled: boolean }>('swim-button', { disabled: false });
       el.disabled = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.disabled).toBe(true);
       const btn = el.shadowRoot?.querySelector('button');
       expect(btn?.hasAttribute('disabled')).toBe(true);
@@ -134,7 +135,7 @@ describe('swim-button', () => {
     it('changes state after render', async () => {
       const el = await fixture<HTMLElement & { state: string }>('swim-button', { state: 'active' });
       el.state = 'in-progress';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.state).toBe('in-progress');
     });
   });
@@ -153,7 +154,7 @@ describe('swim-button', () => {
       el.disabled = true;
       el.disabled = false;
       el.disabled = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.disabled).toBe(true);
     });
 

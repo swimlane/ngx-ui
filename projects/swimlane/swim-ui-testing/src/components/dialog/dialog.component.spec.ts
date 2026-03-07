@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, expectEventOnce, removeAndFlush, assertAccessible } from '../../test-utils.js';
+import {
+  fixture,
+  oneEvent,
+  expectEventOnce,
+  removeAndFlush,
+  assertAccessible,
+  waitForUpdate
+} from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/dialog/index.js';
 
@@ -15,11 +22,11 @@ describe('swim-dialog', () => {
     expect(el.visible).toBe(false);
     const openPromise = oneEvent(el, 'open');
     el.visible = true;
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     await openPromise;
     const closePromise = oneEvent(el, 'close');
     el.visible = false;
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     await closePromise;
   });
 
@@ -44,13 +51,13 @@ describe('swim-dialog', () => {
 
   it('has css parts content and close-button', async () => {
     const el = await fixture<HTMLElement>('swim-dialog', { visible: true });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     expect(el.shadowRoot?.querySelector('[part="content"]')).toBeTruthy();
   });
 
   it('has default slot for body content', async () => {
     const el = await fixture<HTMLElement>('swim-dialog', { visible: true });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const slot = el.shadowRoot?.querySelector('slot');
     expect(slot).toBeTruthy();
   });
@@ -61,13 +68,13 @@ describe('swim-dialog', () => {
     });
     const openPromise = oneEvent(el, 'open');
     el.show();
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     await openPromise;
     expect(el.visible).toBe(true);
 
     const closePromise = oneEvent(el, 'close');
     el.hide();
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     await closePromise;
     expect(el.visible).toBe(false);
   });
@@ -77,7 +84,7 @@ describe('swim-dialog', () => {
     await expectEventOnce(el, 'open', () => {
       el.visible = true;
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     await expectEventOnce(el, 'close', () => {
       el.visible = false;
     });
@@ -87,14 +94,14 @@ describe('swim-dialog', () => {
     it('changes dialogTitle after render', async () => {
       const el = await fixture<HTMLElement & { dialogTitle: string }>('swim-dialog', { dialogTitle: 'Old' });
       el.dialogTitle = 'New';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.dialogTitle).toBe('New');
     });
 
     it('changes format after render', async () => {
       const el = await fixture<HTMLElement & { format: string }>('swim-dialog', { format: 'regular' });
       el.format = 'large';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.format).toBe('large');
     });
   });
@@ -105,7 +112,7 @@ describe('swim-dialog', () => {
       const p = document.createElement('p');
       p.textContent = 'Dialog body text';
       el.appendChild(p);
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.children.length).toBe(1);
       expect(el.children[0].textContent).toBe('Dialog body text');
     });
@@ -118,21 +125,21 @@ describe('swim-dialog', () => {
       el.visible = false;
       el.visible = true;
       el.visible = false;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.visible).toBe(false);
     });
   });
 
   it('cleans up on remove: can be removed when visible without throwing', async () => {
     const el = await fixture<HTMLElement & { visible: boolean }>('swim-dialog', { visible: true });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     await removeAndFlush(el);
     expect(document.body.contains(el)).toBe(false);
   });
 
   it('is accessible: has role dialog and aria-modal when visible', async () => {
     const el = await fixture<HTMLElement & { visible: boolean }>('swim-dialog', { visible: true });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     assertAccessible(el, { role: 'dialog', ariaModal: true, focusable: true });
   });
 });

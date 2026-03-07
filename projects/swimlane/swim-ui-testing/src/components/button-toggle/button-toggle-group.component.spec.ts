@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, removeAndFlush, flush } from '../../test-utils.js';
+import { fixture, removeAndFlush, flush, waitForUpdate } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/button-toggle/index.js';
 
@@ -16,7 +16,7 @@ async function createToggleGroup(values: string[], opts: { selected?: string; di
     el.appendChild(toggle);
   }
 
-  await (el as { updateComplete: Promise<void> }).updateComplete;
+  await waitForUpdate(el);
   await flush();
   await new Promise(r => setTimeout(r, 20));
   return el;
@@ -62,7 +62,7 @@ describe('swim-button-toggle-group', () => {
       const el = await createToggleGroup(['a', 'b', 'c'], { selected: 'a' });
       expect((el as HTMLElement & { value: string }).value).toBe('a');
       (el as HTMLElement & { value: string }).value = 'b';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect((el as HTMLElement & { value: string }).value).toBe('b');
     });
   });

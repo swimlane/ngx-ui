@@ -5,7 +5,8 @@ import {
   expectEventOnce,
   removeAndFlush,
   assertAccessible,
-  createFormWithControl
+  createFormWithControl,
+  waitForUpdate
 } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/toggle/index.js';
@@ -79,21 +80,21 @@ describe('swim-toggle', () => {
     it('toggles checked after render', async () => {
       const el = await fixture<HTMLElement & { checked: boolean }>('swim-toggle', { checked: false });
       el.checked = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.checked).toBe(true);
     });
 
     it('changes disabled after render', async () => {
       const el = await fixture<HTMLElement & { disabled: boolean }>('swim-toggle', { disabled: false });
       el.disabled = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.disabled).toBe(true);
     });
 
     it('changes label after render', async () => {
       const el = await fixture<HTMLElement & { label: string }>('swim-toggle', { label: 'Off' });
       el.label = 'On';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.label).toBe('On');
     });
   });
@@ -129,7 +130,7 @@ describe('swim-toggle', () => {
       el.checked = true;
       el.checked = false;
       el.checked = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.checked).toBe(true);
     });
   });
@@ -144,7 +145,7 @@ describe('swim-toggle', () => {
     const el = await fixture<HTMLElement & { checked: boolean }>('swim-toggle', { checked: false });
     assertAccessible(el, { role: 'switch', ariaChecked: false, focusable: true });
     el.checked = true;
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     assertAccessible(el, { ariaChecked: true });
   });
 });

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, removeAndFlush } from '../../test-utils.js';
+import { fixture, removeAndFlush, waitForUpdate } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/split/index.js';
 
@@ -31,7 +31,7 @@ describe('swim-split', () => {
     const el = await fixture<HTMLElement & { direction: string }>('swim-split', { direction: 'row' });
     expect(el.direction).toBe('row');
     el.direction = 'column';
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     expect(el.direction).toBe('column');
     expect(el.getAttribute('direction')).toBe('column');
   });
@@ -47,7 +47,7 @@ describe('swim-split', () => {
       el.appendChild(area1);
       el.appendChild(handle);
       el.appendChild(area2);
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
 
       expect(el.children.length).toBe(3);
       expect(el.children[0].tagName.toLowerCase()).toBe('swim-split-area');
@@ -84,7 +84,7 @@ describe('swim-split', () => {
         { areaBasis: '1 1 100px' }
       );
       el.updateBasis('200px');
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.areaBasis).toBe('1 1 100px');
     });
 

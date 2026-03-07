@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, removeAndFlush, assertAccessible, createFormWithControl } from '../../test-utils.js';
+import { fixture, removeAndFlush, assertAccessible, createFormWithControl, waitForUpdate } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/select/index.js';
 
@@ -105,14 +105,14 @@ describe('swim-select', () => {
         }
       );
       el.value = 'b';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.value).toBe('b');
     });
 
     it('changes disabled after render', async () => {
       const el = await fixture<HTMLElement & { disabled: boolean }>('swim-select', { disabled: false });
       el.disabled = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.disabled).toBe(true);
     });
 
@@ -124,7 +124,7 @@ describe('swim-select', () => {
         { name: 'X', value: 'x' },
         { name: 'Y', value: 'y' }
       ];
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.options).toHaveLength(2);
       expect(el.options[0].value).toBe('x');
     });

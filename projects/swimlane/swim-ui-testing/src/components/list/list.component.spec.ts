@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, removeAndFlush } from '../../test-utils.js';
+import { fixture, removeAndFlush, waitForUpdate } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/list/index.js';
 
@@ -27,7 +27,7 @@ describe('swim-list', () => {
       headerLabels: ['Name', 'Age', 'City'],
       columns: ['name', 'age', 'city']
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const headers = el.shadowRoot?.querySelectorAll('.swim-list__header-cell');
     expect(headers?.length).toBe(3);
     expect(headers?.[0]?.textContent).toBe('Name');
@@ -47,7 +47,7 @@ describe('swim-list', () => {
       columns: ['name', 'age'],
       headerLabels: ['Name', 'Age']
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const rows = el.shadowRoot?.querySelectorAll('.swim-list__row');
     expect(rows?.length).toBe(2);
   });
@@ -60,7 +60,7 @@ describe('swim-list', () => {
       columns: ['name', 'age'],
       headerLabels: ['Name', 'Age']
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const cells = el.shadowRoot?.querySelectorAll('.swim-list__cell');
     expect(cells?.[0]?.textContent?.trim()).toBe('Alice');
     expect(cells?.[1]?.textContent?.trim()).toBe('30');
@@ -74,7 +74,7 @@ describe('swim-list', () => {
       columns: ['$index', 'name'],
       headerLabels: ['#', 'Name']
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const cells = el.shadowRoot?.querySelectorAll('.swim-list__cell');
     expect(cells?.[0]?.textContent?.trim()).toBe('1.');
     expect(cells?.[2]?.textContent?.trim()).toBe('2.');
@@ -85,7 +85,7 @@ describe('swim-list', () => {
       dataSource: [{ name: null, missing: undefined }],
       columns: ['name', 'missing', 'nonexistent']
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const cells = el.shadowRoot?.querySelectorAll('.swim-list__cell');
     expect(cells?.[0]?.textContent?.trim()).toBe('');
     expect(cells?.[1]?.textContent?.trim()).toBe('');
@@ -100,7 +100,7 @@ describe('swim-list', () => {
       dataSource: [{ x: 1 }],
       columns: ['x']
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const row = el.shadowRoot?.querySelector('.swim-list__row');
     expect(row?.classList.contains('swim-list__row--success')).toBe(true);
   });
@@ -113,7 +113,7 @@ describe('swim-list', () => {
       dataSource: [{ x: 1, status: 'warning' }],
       columns: ['x']
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const row = el.shadowRoot?.querySelector('.swim-list__row');
     expect(row?.classList.contains('swim-list__row--warning')).toBe(true);
   });
@@ -128,11 +128,11 @@ describe('swim-list', () => {
       dataSource: [{ a: 1 }],
       columns: ['a']
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     expect(el.shadowRoot?.querySelectorAll('.swim-list__row')?.length).toBe(1);
 
     el.dataSource = [{ a: 1 }, { a: 2 }, { a: 3 }];
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     expect(el.shadowRoot?.querySelectorAll('.swim-list__row')?.length).toBe(3);
   });
 
@@ -144,7 +144,7 @@ describe('swim-list', () => {
       columns: ['a'],
       headerLabels: ['A']
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const rows = el.shadowRoot?.querySelectorAll('.swim-list__row');
     expect(rows?.length).toBe(0);
     const headers = el.shadowRoot?.querySelectorAll('.swim-list__header-cell');

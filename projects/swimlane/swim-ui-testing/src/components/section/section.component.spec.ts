@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, expectEventOnce, removeAndFlush, assertAccessible } from '../../test-utils.js';
+import {
+  fixture,
+  oneEvent,
+  expectEventOnce,
+  removeAndFlush,
+  assertAccessible,
+  waitForUpdate
+} from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/section/index.js';
 
@@ -62,7 +69,7 @@ describe('swim-section', () => {
       headerToggle: true,
       sectionTitle: 'Title'
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const header = el.shadowRoot?.querySelector('.swim-section__header');
     expect(header).toBeTruthy();
     await expectEventOnce(el, 'toggle', () => header!.dispatchEvent(new MouseEvent('click', { bubbles: true })));
@@ -82,7 +89,7 @@ describe('swim-section', () => {
       sectionTitle: 'Title',
       sectionCollapsed: false
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const header = el.shadowRoot?.querySelector('.swim-section__header');
     const togglePromise = oneEvent(el, 'toggle');
     header!.dispatchEvent(new MouseEvent('click', { bubbles: true }));
@@ -98,7 +105,7 @@ describe('swim-section', () => {
       const p = document.createElement('p');
       p.textContent = 'Section body';
       el.appendChild(p);
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.children.length).toBe(1);
     });
 
@@ -108,7 +115,7 @@ describe('swim-section', () => {
       header.setAttribute('slot', 'header');
       header.textContent = 'Custom Header';
       el.appendChild(header);
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.querySelector('swim-section-header')).toBeTruthy();
     });
   });
@@ -120,14 +127,14 @@ describe('swim-section', () => {
         { sectionCollapsed: false, sectionCollapsible: true }
       );
       el.sectionCollapsed = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.sectionCollapsed).toBe(true);
     });
 
     it('changes sectionTitle after render', async () => {
       const el = await fixture<HTMLElement & { sectionTitle: string }>('swim-section', { sectionTitle: 'Old' });
       el.sectionTitle = 'New';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.sectionTitle).toBe('New');
     });
   });
@@ -138,7 +145,7 @@ describe('swim-section', () => {
         sectionCollapsible: false,
         sectionTitle: 'Title'
       });
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       let fired = false;
       el.addEventListener('toggle', () => {
         fired = true;
@@ -163,7 +170,7 @@ describe('swim-section', () => {
       sectionCollapsible: true,
       sectionTitle: 'Section'
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     assertAccessible(el, { focusable: true });
   });
 });

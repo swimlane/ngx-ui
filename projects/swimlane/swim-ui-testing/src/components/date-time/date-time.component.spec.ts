@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, removeAndFlush, assertAccessible } from '../../test-utils.js';
+import { fixture, removeAndFlush, waitForUpdate } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/date-time/index.js';
 
@@ -77,7 +77,7 @@ describe('swim-date-time', () => {
 
   it('has css part input', async () => {
     const el = await fixture<HTMLElement>('swim-date-time', { label: 'Date' });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const part = el.shadowRoot?.querySelector('[part="input"]');
     expect(part).toBeTruthy();
   });
@@ -87,7 +87,7 @@ describe('swim-date-time', () => {
       value: '2024-01-15'
     });
     el.value = '2024-06-30';
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     expect(el.value).toBeDefined();
   });
 
@@ -95,7 +95,7 @@ describe('swim-date-time', () => {
     const el = await fixture<HTMLElement & { disabled: boolean }>('swim-date-time', { disabled: false });
     expect(el.disabled).toBe(false);
     el.disabled = true;
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     expect(el.disabled).toBe(true);
   });
 

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, removeAndFlush, assertNoEventAfterDestroy } from '../../test-utils.js';
+import { fixture, oneEvent, removeAndFlush, assertNoEventAfterDestroy, waitForUpdate } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/tooltip/index.js';
 
@@ -50,7 +50,7 @@ describe('swim-tooltip', () => {
     const el = await fixture<HTMLElement & { content: string; show: (imm?: boolean) => void }>('swim-tooltip', {
       content: 'Tip'
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const trigger = el.shadowRoot?.querySelector('[part="trigger"]');
     expect(trigger).toBeTruthy();
   });
@@ -59,7 +59,7 @@ describe('swim-tooltip', () => {
     const el = await fixture<
       HTMLElement & { content: string; show: (imm?: boolean) => void; hide: (imm?: boolean) => void }
     >('swim-tooltip', { content: 'Tip' });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
 
     const showPromise = oneEvent(el, 'show');
     el.show(true);
@@ -74,21 +74,21 @@ describe('swim-tooltip', () => {
     it('changes content after render', async () => {
       const el = await fixture<HTMLElement & { content: string }>('swim-tooltip', { content: 'Old' });
       el.content = 'New';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.content).toBe('New');
     });
 
     it('changes placement after render', async () => {
       const el = await fixture<HTMLElement & { placement: string }>('swim-tooltip', { placement: 'top' });
       el.placement = 'bottom';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.placement).toBe('bottom');
     });
 
     it('changes disabled after render', async () => {
       const el = await fixture<HTMLElement & { disabled: boolean }>('swim-tooltip', { disabled: false });
       el.disabled = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.disabled).toBe(true);
     });
   });
@@ -99,7 +99,7 @@ describe('swim-tooltip', () => {
       const btn = document.createElement('button');
       btn.textContent = 'Hover me';
       el.appendChild(btn);
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.children.length).toBe(1);
       expect(el.children[0].textContent).toBe('Hover me');
     });
@@ -115,9 +115,9 @@ describe('swim-tooltip', () => {
     const el = await fixture<HTMLElement & { content: string; show: (immediate?: boolean) => void }>('swim-tooltip', {
       content: 'Tip'
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     el.show(true);
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     await assertNoEventAfterDestroy(el, 'hide', () => window.dispatchEvent(new Event('resize')));
   });
 });

@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, removeAndFlush, assertNoEventAfterDestroy } from '../../test-utils.js';
+import { fixture, oneEvent, removeAndFlush, assertNoEventAfterDestroy, waitForUpdate } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/drawer/index.js';
 
@@ -32,15 +32,15 @@ describe('swim-drawer', () => {
   it('show() and hide() update visibility', async () => {
     const el = await fixture<HTMLElement & { show: () => void; hide: () => void }>('swim-drawer', {});
     el.show();
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     el.hide();
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
   });
 
   it('fires close when hidden', async () => {
     const el = await fixture<HTMLElement & { show: () => void; hide: () => void }>('swim-drawer', {});
     el.show();
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const closePromise = oneEvent(el, 'close');
     el.hide();
     await closePromise;
@@ -49,7 +49,7 @@ describe('swim-drawer', () => {
   it('has css part content', async () => {
     const el = await fixture<HTMLElement & { show: () => void }>('swim-drawer', {});
     el.show();
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const content = el.shadowRoot?.querySelector('[part="content"]');
     expect(content).toBeTruthy();
   });
@@ -57,7 +57,7 @@ describe('swim-drawer', () => {
   it('has slot for content when visible', async () => {
     const el = await fixture<HTMLElement & { show: () => void }>('swim-drawer', {});
     el.show();
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const slot = el.shadowRoot?.querySelector('slot');
     expect(slot).toBeTruthy();
   });
@@ -69,7 +69,7 @@ describe('swim-drawer', () => {
       p.textContent = 'Drawer content';
       el.appendChild(p);
       el.show();
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.children.length).toBe(1);
       expect(el.children[0].textContent).toBe('Drawer content');
     });
@@ -79,14 +79,14 @@ describe('swim-drawer', () => {
     it('changes direction after render', async () => {
       const el = await fixture<HTMLElement & { direction: string }>('swim-drawer', { direction: 'left' });
       el.direction = 'right';
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.direction).toBe('right');
     });
 
     it('changes size after render', async () => {
       const el = await fixture<HTMLElement & { size: number }>('swim-drawer', { size: 200 });
       el.size = 400;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.size).toBe(400);
     });
   });
@@ -98,7 +98,7 @@ describe('swim-drawer', () => {
       el.hide();
       el.show();
       el.hide();
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
     });
 
     it('hide() on already-hidden drawer does not throw', async () => {
@@ -116,7 +116,7 @@ describe('swim-drawer', () => {
   it('cleans up document keydown listener when destroyed: no close event after remove (no leak)', async () => {
     const el = await fixture<HTMLElement & { show: () => void }>('swim-drawer', {});
     el.show();
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     await assertNoEventAfterDestroy(el, 'close', () =>
       document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }))
     );

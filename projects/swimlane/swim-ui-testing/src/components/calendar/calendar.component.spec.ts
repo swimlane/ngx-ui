@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, removeAndFlush } from '../../test-utils.js';
+import { fixture, removeAndFlush, waitForUpdate } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/calendar/index.js';
 
@@ -44,7 +44,7 @@ describe('swim-calendar', () => {
 
   it('has grid of days', async () => {
     const el = await fixture<HTMLElement>('swim-calendar', {});
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const grid = el.shadowRoot?.querySelector('[role="grid"], .day-container, [class*="day"]');
     expect(grid).toBeTruthy();
   });
@@ -53,7 +53,7 @@ describe('swim-calendar', () => {
     const el = await fixture<HTMLElement & { value: Date }>('swim-calendar', {
       value: new Date(2024, 0, 15)
     });
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     const dayElements = el.shadowRoot?.querySelectorAll('button, [class*="day"]');
     expect(dayElements?.length).toBeGreaterThan(0);
   });
@@ -64,14 +64,14 @@ describe('swim-calendar', () => {
     });
     const newDate = new Date(2024, 5, 20);
     el.value = newDate;
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     expect(el.value).toEqual(newDate);
   });
 
   it('dynamically changes disabled after render', async () => {
     const el = await fixture<HTMLElement & { disabled: boolean }>('swim-calendar', { disabled: false });
     el.disabled = true;
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     expect(el.disabled).toBe(true);
   });
 

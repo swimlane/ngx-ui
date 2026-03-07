@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, expectEventOnce, removeAndFlush, flush } from '../../test-utils.js';
+import { fixture, oneEvent, removeAndFlush, flush, waitForUpdate } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/tabs/index.js';
 
@@ -23,10 +23,10 @@ async function createTabsWithPanels(labels: string[], opts: { disabledIndices?: 
     el.appendChild(tab);
   }
 
-  await (el as { updateComplete: Promise<void> }).updateComplete;
+  await waitForUpdate(el);
   await flush();
   await new Promise(r => setTimeout(r, 20));
-  await (el as { updateComplete: Promise<void> }).updateComplete;
+  await waitForUpdate(el);
   return el;
 }
 
@@ -165,7 +165,7 @@ describe('swim-tabs', () => {
     it('ArrowDown activates next tab (vertical mode)', async () => {
       const el = await createTabsWithPanels(['A', 'B', 'C']);
       (el as { vertical: boolean }).vertical = true;
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       const tablist = el.shadowRoot?.querySelector('[role="tablist"]') as HTMLElement;
       const selectPromise = oneEvent(el, 'select-tab');
       tablist.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
@@ -178,7 +178,7 @@ describe('swim-tabs', () => {
       (el as { vertical: boolean }).vertical = true;
       (el as { next: () => void }).next();
       await new Promise(r => setTimeout(r, 20));
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       const tablist = el.shadowRoot?.querySelector('[role="tablist"]') as HTMLElement;
       const selectPromise = oneEvent(el, 'select-tab');
       tablist.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowUp', bubbles: true }));
@@ -191,7 +191,7 @@ describe('swim-tabs', () => {
     const el = await fixture<HTMLElement & { vertical: boolean }>('swim-tabs', { vertical: false });
     expect(el.vertical).toBe(false);
     el.vertical = true;
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     expect(el.vertical).toBe(true);
   });
 

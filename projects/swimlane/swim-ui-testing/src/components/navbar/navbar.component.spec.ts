@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { fixture, oneEvent, expectEventOnce, removeAndFlush, flush } from '../../test-utils.js';
+import { fixture, removeAndFlush, flush, waitForUpdate } from '../../test-utils.js';
 
 import '../../../../swim-ui/src/components/navbar/index.js';
 
@@ -15,7 +15,7 @@ async function createNavbarWithItems(count = 3) {
     el.appendChild(item);
   }
 
-  await (el as { updateComplete: Promise<void> }).updateComplete;
+  await waitForUpdate(el);
   await flush();
   await new Promise(r => setTimeout(r, 50));
   return el;
@@ -67,7 +67,7 @@ describe('swim-navbar', () => {
     it('goTo changes active index', async () => {
       const el = await createNavbarWithItems(3);
       el.goTo(2);
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       await new Promise(r => setTimeout(r, 50));
       expect(el.active).toBe(2);
     });
@@ -75,14 +75,14 @@ describe('swim-navbar', () => {
     it('goTo is a no-op for out-of-range index', async () => {
       const el = await createNavbarWithItems(3);
       el.goTo(10);
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.active).toBe(0);
     });
 
     it('goTo is a no-op for the already-active index', async () => {
       const el = await createNavbarWithItems(3);
       el.goTo(0);
-      await (el as { updateComplete: Promise<void> }).updateComplete;
+      await waitForUpdate(el);
       expect(el.active).toBe(0);
     });
   });
@@ -91,7 +91,7 @@ describe('swim-navbar', () => {
     const el = await createNavbarWithItems(3);
     expect(el.active).toBe(0);
     el.active = 2;
-    await (el as { updateComplete: Promise<void> }).updateComplete;
+    await waitForUpdate(el);
     expect(el.active).toBe(2);
   });
 
