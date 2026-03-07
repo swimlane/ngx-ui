@@ -28,6 +28,7 @@ node_modules/
 /.sass-cache
 /connect.lock
 /coverage
+projects/swimlane/swim-ui-testing/coverage/
 /libpeerconnection.log
 npm-debug.log
 yarn-error.log
@@ -46,3 +47,4 @@ cypress/screenshots
 .angular/*
 .nx/*
 .yarn/*
+projects/swimlane/swim-ui-testing/.yarn/*

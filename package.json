@@ -23,6 +23,7 @@
     "test:prettier": "prettier --check  \"{src,projects,cypress}/**/*.{js,ts,scss,css,md,json}\"",
     "test:lint": "ng lint",
     "test:unit": "TZ=America/Los_Angeles ng test @swimlane/ngx-ui --watch=false --progress=false --browsers=ChromeHeadlessCI --ts-config tsconfig.spec.json",
+    "test:swim-ui": "cd projects/swimlane/swim-ui-testing && yarn test:run",
     "test:integration": "start-server-and-test start http-get://localhost:4200 cypress:run",
     "fix": "yarn fix:prettier && yarn fix:lint",
     "fix:prettier": "prettier --write \"{src,projects,cypress}/**/*.{js,ts,scss,css,md,json}\"",
