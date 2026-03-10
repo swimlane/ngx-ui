@@ -9,7 +9,7 @@ import { inputStyles } from './input.styles';
 import { InputTypes } from './input-types.enum';
 import { InputAppearance } from './input-appearance.enum';
 import { InputSize } from './input-size.enum';
-import { coerceBooleanProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, booleanAttributeConverter } from '../../utils/coerce';
 
 /**
  * SwimInput - An input component matching @swimlane/ngx-ui design system
@@ -157,7 +157,7 @@ export class SwimInput extends LitElement {
   /**
    * Whether to show margin
    */
-  @property({ type: Boolean, reflect: true, attribute: 'marginless' })
+  @property({ type: Boolean, reflect: true, attribute: 'marginless', converter: booleanAttributeConverter })
   get marginless(): boolean {
     return !this._withMargin;
   }
@@ -181,7 +181,7 @@ export class SwimInput extends LitElement {
   /**
    * Enable password toggle
    */
-  @property({ type: Boolean, attribute: 'password-toggle-enabled' })
+  @property({ type: Boolean, attribute: 'password-toggle-enabled', converter: booleanAttributeConverter })
   get passwordToggleEnabled(): boolean {
     return this._passwordToggleEnabled;
   }

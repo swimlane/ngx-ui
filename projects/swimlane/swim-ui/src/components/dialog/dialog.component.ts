@@ -2,7 +2,7 @@ import { LitElement, html, nothing } from 'lit';
 import { property, state, query } from 'lit/decorators.js';
 import { dialogStyles } from './dialog.styles';
 import { DialogFormat } from './dialog-format.enum';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, booleanAttributeConverter } from '../../utils/coerce';
 import '../icon/icon.component';
 
 /**
@@ -62,7 +62,7 @@ export class SwimDialog extends LitElement {
   showBackdrop = true;
 
   /** Whether to show the close button */
-  @property({ type: Boolean, attribute: 'close-button' })
+  @property({ type: Boolean, attribute: 'close-button', converter: booleanAttributeConverter })
   get closeButton(): boolean {
     return this._closeButton;
   }
@@ -167,6 +167,18 @@ export class SwimDialog extends LitElement {
       requestAnimationFrame(() => {
         this._contentEl?.focus({ preventScroll: true });
       });
+    }
+    // Sync close-button to large/medium format content so one attribute on the dialog controls the header close button
+    const isLargeOrMedium =
+      this.format === DialogFormat.Large ||
+      this.format === DialogFormat.Medium ||
+      this.format === 'large' ||
+      this.format === 'medium';
+    if (isLargeOrMedium) {
+      const content = this.querySelector('swim-large-format-dialog-content');
+      if (content instanceof HTMLElement) {
+        content.setAttribute('close-button', this.closeButton ? 'true' : 'false');
+      }
     }
   }
 

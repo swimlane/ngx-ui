@@ -11,6 +11,17 @@ export function coerceBooleanProperty(value: any): boolean {
 }
 
 /**
+ * Lit attribute converter so boolean attributes respect "false" in HTML.
+ * Use with @property({ converter: booleanAttributeConverter }) for any boolean
+ * that has an attribute (e.g. close-button="false"). Lit's default Boolean
+ * converter treats any present attribute as true.
+ */
+export const booleanAttributeConverter = {
+  fromAttribute: (value: string | null): boolean => coerceBooleanProperty(value),
+  toAttribute: (value: boolean): string => (value ? '' : 'false')
+};
+
+/**
  * Coerces a data-bound value (typically a string) to a number.
  */
 export function coerceNumberProperty(value: any): number;

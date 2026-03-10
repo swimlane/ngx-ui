@@ -3,7 +3,7 @@ import { property, state, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { navbarStyles } from './navbar.styles';
 import { SwimNavbarItem } from './navbar-item.component';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, booleanAttributeConverter } from '../../utils/coerce';
 
 const BAR_SIZE = 40;
 
@@ -28,7 +28,7 @@ export class SwimNavbar extends LitElement {
   /**
    * Whether the active indicator bar is on top of the items (default: false = bottom).
    */
-  @property({ type: Boolean, reflect: true, attribute: 'bar-at-top' })
+  @property({ type: Boolean, reflect: true, attribute: 'bar-at-top', converter: booleanAttributeConverter })
   get barAtTop(): boolean {
     return this._barAtTop;
   }

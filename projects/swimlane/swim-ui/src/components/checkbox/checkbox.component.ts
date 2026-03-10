@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { checkboxStyles } from './checkbox.styles';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, booleanAttributeConverter } from '../../utils/coerce';
 
 let nextId = 0;
 
@@ -51,7 +51,7 @@ export class SwimCheckbox extends LitElement {
   /**
    * Checked state (alias: value from ngx-ui)
    */
-  @property({ type: Boolean, reflect: true, attribute: 'checked' })
+  @property({ type: Boolean, reflect: true, attribute: 'checked', converter: booleanAttributeConverter })
   get checked(): boolean {
     return this._checked;
   }

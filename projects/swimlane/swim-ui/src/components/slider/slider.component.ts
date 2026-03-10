@@ -2,7 +2,7 @@ import { LitElement, html, PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { sliderStyles } from './slider.styles';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, booleanAttributeConverter } from '../../utils/coerce';
 
 let nextId = 0;
 
@@ -115,7 +115,7 @@ export class SwimSlider extends LitElement {
   /**
    * Whether to show tick marks
    */
-  @property({ type: Boolean, attribute: 'show-ticks' })
+  @property({ type: Boolean, attribute: 'show-ticks', converter: booleanAttributeConverter })
   get showTicks(): boolean {
     return this._showTicks;
   }

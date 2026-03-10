@@ -1,0 +1,22 @@
+{
+  "name": "@swimlane/swim-ui-testing",
+  "version": "1.0.0",
+  "description": "Unit tests for @swimlane/swim-ui",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "@swimlane/swim-ui": "file:../swim-ui"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^2.1.0",
+    "happy-dom": "^15.11.7",
+    "lit": "^3.2.0",
+    "typescript": "^5.8.0",
+    "vitest": "^2.1.0"
+  }
+}

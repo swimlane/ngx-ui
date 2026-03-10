@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { toggleStyles } from './toggle.styles';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, booleanAttributeConverter } from '../../utils/coerce';
 
 /** Converter so show-icons="false" is respected (Lit's default Boolean ignores attribute value). */
 const booleanAttrConverter = {
@@ -57,7 +57,7 @@ export class SwimToggle extends LitElement {
   /**
    * Checked (on) state. Reflects as attribute for styling.
    */
-  @property({ type: Boolean, reflect: true, attribute: 'checked' })
+  @property({ type: Boolean, reflect: true, attribute: 'checked', converter: booleanAttributeConverter })
   get checked(): boolean {
     return this._checked;
   }
