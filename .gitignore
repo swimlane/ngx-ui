@@ -48,5 +48,3 @@ cypress/screenshots
 .nx/*
 .yarn/*
 **/install-state.gz
-projects/swimlane/swim-ui/.yarn/*
-projects/swimlane/swim-ui-testing/.yarn/*

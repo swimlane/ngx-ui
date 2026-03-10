@@ -5,7 +5,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # required for pushing to gh-pages
+      contents: write # required for pushing to gh-pages
 
     steps:
       - name: Checkout
@@ -23,7 +23,10 @@ jobs:
         run: corepack prepare yarn@4.9.2 --activate
 
       - name: Install dependencies
-        run: yarn install --immutable && cd projects/swimlane/swim-ui && yarn install --immutable
+        run: |
+          yarn install --immutable
+          cd projects/swimlane/swim-ui && yarn install --immutable
+          cd ../swim-ui-testing && yarn install --immutable
 
       - name: Build
         run: |
