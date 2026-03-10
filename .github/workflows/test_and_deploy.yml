@@ -25,8 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           yarn install --immutable
-          cd projects/swimlane/swim-ui && yarn install --immutable
-          cd ../swim-ui-testing && yarn install --immutable
+          cd projects/swimlane/swim-ui && yarn install --immutable && cd ../swim-ui-testing && yarn install --immutable
 
       - name: Build
         run: |
