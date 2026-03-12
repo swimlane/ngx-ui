@@ -1,7 +1,15 @@
 import { NgModule } from '@angular/core';
 import { ColumnPageComponent } from './column-page.component';
 import { ColumnPageRoutingModule } from './column-page-routing.module';
-import { IconModule, ColumnsModule, SectionModule, TabsModule, TooltipModule, ToggleModule, ButtonModule } from '@swimlane/ngx-ui';
+import {
+  IconModule,
+  ColumnsModule,
+  SectionModule,
+  TabsModule,
+  TooltipModule,
+  ToggleModule,
+  ButtonModule
+} from '@swimlane/ngx-ui';
 import { PrismModule } from '../../common/prism/prism.module';
 import { CommonModule } from '@angular/common';
 
