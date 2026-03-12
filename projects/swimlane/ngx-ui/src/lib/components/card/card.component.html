@@ -24,7 +24,7 @@
   (change)="onSelect($event)"
 ></ngx-checkbox>
 
-<div *ngIf="hoverEffect" class="ngx-card-hover-section">
+<div *ngIf="allowHoverTemplate" class="ngx-card-hover-section">
   <ng-content select="ngx-card-hover-section"></ng-content>
 </div>
 <ng-content></ng-content>

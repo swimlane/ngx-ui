@@ -82,7 +82,7 @@ $card-vertical-gutter: var(--spacing-20);
     box-shadow: none;
   }
 
-  // Hover effect when [hoverEffect]="true"; visibility driven by isHovered (ngx-card--hovered), not :hover
+  // Hover effect when [allowHoverTemplate]="true"; visibility driven by isHovered (ngx-card--hovered), not :hover
   &.ngx-card--hover-effect {
     background: $color-flat-background;
     border-left: $card-accent-thickness solid transparent;

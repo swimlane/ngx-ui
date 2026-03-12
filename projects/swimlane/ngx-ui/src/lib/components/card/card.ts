@@ -36,7 +36,7 @@ export class CardSubtitleDirective {}
 export class CardSectionDirective {}
 
 /**
- * Structural slot for content shown when the card is hovered (requires [hoverEffect]="true").
+ * Structural slot for content shown when the card is hovered (requires [allowHoverTemplate]="true").
  * Project content into this element to display it in place of the default card content on hover.
  */
 @Directive({

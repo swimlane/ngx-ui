@@ -57,19 +57,19 @@ export class CardComponent {
   @Input() appearance: CardAppearance = CardAppearance.Normal;
   @Input() hideAccent = false;
   /** When true, card shows hover background and left accent on mouse hover. */
-  @Input() hoverEffect = false;
+  @Input() allowHoverTemplate = false;
 
   @HostBinding('class.ngx-card--hover-effect')
   get hoverEffectClass(): boolean {
-    return this.hoverEffect;
+    return this.allowHoverTemplate;
   }
 
   @HostBinding('class.ngx-card--hovered')
   get hoveredClass(): boolean {
-    return this.hoverEffect && this.isHovered;
+    return this.allowHoverTemplate && this.isHovered;
   }
 
-  /** True when the pointer is over the card; used with hoverEffect to show ngx-card-hover-section. */
+  /** True when the pointer is over the card; used with allowHoverTemplate to show ngx-card-hover-section. */
   isHovered = false;
 
   @Output() select = new EventEmitter<boolean>();
@@ -86,7 +86,7 @@ export class CardComponent {
   }
 
   onMouseEnter(): void {
-    if (this.hoverEffect) {
+    if (this.allowHoverTemplate) {
       this.isHovered = true;
     }
   }
