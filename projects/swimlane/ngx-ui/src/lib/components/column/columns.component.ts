@@ -5,6 +5,7 @@ import {
   output,
   signal,
   SimpleChanges,
+  TemplateRef,
   ViewEncapsulation,
   ViewChildren,
   QueryList,
@@ -33,6 +34,7 @@ import { Column } from './column/column.types';
 export class ColumnsComponent implements OnChanges, AfterViewChecked, OnDestroy {
   column = input<Column | null>(null);
   height = input<string>('');
+  headerTemplate = input<TemplateRef<any> | null>(null);
   onColumnChange = output<ColumnTabClickEvent>();
   columnHeight = signal('');
   columns: Array<Column>;
