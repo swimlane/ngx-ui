@@ -4,6 +4,21 @@
   .ngx-card {
     margin-bottom: 20px;
 
+    // Demo-only: layout for hover slot content (library uses generic ngx-card-hover-section; demo keeps "connector" names)
+    .connector-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--spacing-12);
+      width: 100%;
+    }
+    .connector-card__text {
+      margin: 0;
+      font-size: var(--font-size-s);
+      color: var(--grey-050);
+      line-height: 1.4;
+    }
+
     .date-display {
       color: colors.$color-blue-grey-400;
     }

@@ -8,7 +8,8 @@ import {
   CardTagDirective,
   CardTitleDirective,
   CardSubtitleDirective,
-  CardSectionDirective
+  CardSectionDirective,
+  CardHoverSectionDirective
 } from './card';
 import { CardComponent } from './card.component';
 import { CardHeaderComponent } from './card-header.component';
@@ -28,7 +29,8 @@ describe('Card', () => {
         CardTagDirective,
         CardTitleDirective,
         CardSubtitleDirective,
-        CardSectionDirective
+        CardSectionDirective,
+        CardHoverSectionDirective
       ],
       imports: [CardModule, FormsModule, TooltipModule],
       teardown: { destroyAfterEach: false }

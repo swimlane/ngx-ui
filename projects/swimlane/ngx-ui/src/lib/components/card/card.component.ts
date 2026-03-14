@@ -17,7 +17,11 @@ import { CardAppearance } from './card-appearance.enum';
   selector: 'ngx-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss'],
-  host: { class: 'ngx-card' },
+  host: {
+    class: 'ngx-card',
+    '(mouseenter)': 'onMouseEnter()',
+    '(mouseleave)': 'onMouseLeave()'
+  },
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
   standalone: false
@@ -52,6 +56,21 @@ export class CardComponent {
   @Input() outlineText: string;
   @Input() appearance: CardAppearance = CardAppearance.Normal;
   @Input() hideAccent = false;
+  /** When true, card shows hover background and left accent on mouse hover. */
+  @Input() allowHoverTemplate = false;
+
+  @HostBinding('class.ngx-card--hover-effect')
+  get hoverEffectClass(): boolean {
+    return this.allowHoverTemplate;
+  }
+
+  @HostBinding('class.ngx-card--hovered')
+  get hoveredClass(): boolean {
+    return this.allowHoverTemplate && this.isHovered;
+  }
+
+  /** True when the pointer is over the card; used with allowHoverTemplate to show ngx-card-hover-section. */
+  isHovered = false;
 
   @Output() select = new EventEmitter<boolean>();
   @Output() outlineClick = new EventEmitter<void>();
@@ -64,5 +83,15 @@ export class CardComponent {
   onSelect($event) {
     $event.stopPropagation();
     this.select.emit($event.target.checked);
+  }
+
+  onMouseEnter(): void {
+    if (this.allowHoverTemplate) {
+      this.isHovered = true;
+    }
+  }
+
+  onMouseLeave(): void {
+    this.isHovered = false;
   }
 }

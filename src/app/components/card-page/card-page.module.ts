@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
+  ButtonModule,
   CardModule,
   DropdownModule,
   IconModule,
@@ -19,6 +20,7 @@ import { PrismModule } from '../../common/prism/prism.module';
   imports: [
     CommonModule,
     FormsModule,
+    ButtonModule,
     CardModule,
     CardPageRoutingModule,
     SectionModule,
