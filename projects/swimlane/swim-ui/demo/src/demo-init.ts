@@ -58,6 +58,7 @@ const LIST_LARGE_DATA = [
 ];
 
 const SECTION_FILES = [
+  'home',
   'buttons',
   'input',
   'select',
@@ -83,7 +84,7 @@ const SECTION_FILES = [
 ];
 
 const SECTION_SET = new Set([...SECTION_FILES, 'datetime', 'drawer']);
-const DEFAULT_SECTION = SECTION_FILES[0];
+const DEFAULT_SECTION = 'home';
 
 const sectionCache = new Map<string, string>();
 
