@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+- Enhancement (`ngx-card`): Added a new input attribute in ngx-card to display content when we hover over the card.
+
 ## 51.3.1 (2026-03-12)
 
 - Enhancement (`ngx-column`): Added custom header template for each column
