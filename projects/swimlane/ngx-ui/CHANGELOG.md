@@ -2,6 +2,10 @@
 
 ## HEAD (unreleased)
 
+## 51.3.1 (2026-03-12)
+
+- Enhancement (`ngx-column`): Added custom header template for each column
+
 ## 51.3.0 (2026-02-27)
 
 - Enhancement (`icons`): Added `panel-expand` and `panel-collapse` icons

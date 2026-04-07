@@ -6,6 +6,7 @@ import {
   output,
   signal,
   SimpleChanges,
+  TemplateRef,
   viewChild,
   ViewContainerRef,
   ViewEncapsulation,
@@ -36,6 +37,7 @@ export interface ColumnTabClickEvent {
 export class ColumnComponent implements OnChanges, AfterViewInit {
   column = input<Column | null>(null);
   height = input<string>('');
+  headerTemplate = input<TemplateRef<any> | null>(null);
   tabClick = output<ColumnTabClickEvent>();
   scrollerHeight = signal('300');
   vcr = viewChild('expandedSection', { read: ViewContainerRef });

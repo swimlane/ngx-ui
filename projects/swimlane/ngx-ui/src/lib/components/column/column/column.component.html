@@ -1,6 +1,9 @@
 @if (!column()?.content) {
 <header>
   <h4>{{ column()?.title }}</h4>
+  @if (headerTemplate()) {
+    <ng-container *ngTemplateOutlet="headerTemplate(); context: { $implicit: column(), expanded: !!(activeChild?.content) }"></ng-container>
+  }
 </header>
 }
 <div class="column">
