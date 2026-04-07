@@ -11,7 +11,8 @@ import {
   CardTagDirective,
   CardTitleDirective,
   CardSubtitleDirective,
-  CardSectionDirective
+  CardSectionDirective,
+  CardHoverSectionDirective
 } from './card';
 import { CardAvatarComponent } from './card-avatar/card-avatar.component';
 import { CardPlaceholderComponent } from './card-placeholder/card-placeholder.component';
@@ -25,6 +26,7 @@ import { CardFooterComponent } from './card-footer.component';
     CardTitleDirective,
     CardSubtitleDirective,
     CardSectionDirective,
+    CardHoverSectionDirective,
     CardAvatarComponent,
     CardFooterComponent,
     CardPlaceholderComponent
@@ -37,6 +39,7 @@ import { CardFooterComponent } from './card-footer.component';
     CardTitleDirective,
     CardSubtitleDirective,
     CardSectionDirective,
+    CardHoverSectionDirective,
     CardAvatarComponent,
     CardFooterComponent,
     CardPlaceholderComponent
