@@ -4,6 +4,8 @@
 
 - Enhancement (`ngx-card`): Added a new input attribute in ngx-card to display content when we hover over the card.
 
+- Fix (`ngx-column`): Fix scroll position when changing columns after filtering.
+
 ## 51.3.1 (2026-03-12)
 
 - Enhancement (`ngx-column`): Added custom header template for each column
