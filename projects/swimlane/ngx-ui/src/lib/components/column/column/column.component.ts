@@ -13,6 +13,7 @@ import {
   AfterViewInit
 } from '@angular/core';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { InputComponent } from '../../input/input.component';
 import { Column } from './column.types';
 
 export interface ColumnTabClickEvent {
@@ -41,6 +42,7 @@ export class ColumnComponent implements OnChanges, AfterViewInit {
   tabClick = output<ColumnTabClickEvent>();
   scrollerHeight = signal('300');
   vcr = viewChild('expandedSection', { read: ViewContainerRef });
+  searchInput = viewChild<InputComponent>('searchInput');
   virtualScrollViewport = viewChild<CdkVirtualScrollViewport>('virtualScrollViewport');
   activeChild: Column | null = null;
   list: Column[] = [];
@@ -102,6 +104,7 @@ export class ColumnComponent implements OnChanges, AfterViewInit {
     if (this.activeChild?.content && this.activeChild?.content.component) {
       this.displayContent();
     }
+    this.clearFilter();
   }
 
   onChildKeyup(event: KeyboardEvent, columnId: string) {
@@ -112,6 +115,7 @@ export class ColumnComponent implements OnChanges, AfterViewInit {
       if (this.activeChild?.content && this.activeChild?.content.component) {
         this.displayContent();
       }
+      this.clearFilter();
     }
   }
 
@@ -127,7 +131,8 @@ export class ColumnComponent implements OnChanges, AfterViewInit {
   }
 
   onInputChange(event: KeyboardEvent) {
-    const change = (event.target as HTMLInputElement).value;
+    this.searchInputValue = (event.target as HTMLInputElement).value;
+    const change = this.searchInputValue;
     if (!change.length) {
       this.list = this.column().children ? this.column().children : [];
     } else {
@@ -147,6 +152,17 @@ export class ColumnComponent implements OnChanges, AfterViewInit {
     }
   }
 
+  clearFilter(): void {
+    this.searchInputValue = '';
+    this.list = this.column().children ? this.column().children : [];
+    this.activeChild = this.list.find(child => child.active);
+
+    const searchInputCmp = this.searchInput();
+    if (searchInputCmp) {
+      searchInputCmp.writeValue('');
+    }
+  }
+
   getScrollTop(): number {
     const viewport = this.virtualScrollViewport();
     if (viewport) {
@@ -161,5 +177,38 @@ export class ColumnComponent implements OnChanges, AfterViewInit {
     if (viewport) {
       viewport.scrollToOffset(scrollTop);
     }
+  }
+
+  scrollToChild(targetChildId: string | undefined, targetChildTitle: string | undefined): boolean {
+    if (!targetChildId && !targetChildTitle) {
+      return false;
+    }
+
+    const children = this.column()?.children;
+    const viewport = this.virtualScrollViewport();
+    if (!children?.length || !viewport) {
+      return false;
+    }
+
+    const viewportElement = viewport.elementRef.nativeElement as HTMLElement;
+    if (!viewportElement || viewportElement.scrollHeight <= 0) {
+      return false;
+    }
+
+    let childIndex = -1;
+    if (targetChildId) {
+      childIndex = children.findIndex(child => child.id === targetChildId);
+    }
+
+    if (childIndex === -1 && targetChildTitle) {
+      childIndex = children.findIndex(child => child.title === targetChildTitle);
+    }
+
+    if (childIndex === -1) {
+      return false;
+    }
+
+    viewport.scrollToIndex(childIndex);
+    return true;
   }
 }
