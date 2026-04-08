@@ -254,4 +254,55 @@ describe('ColumnsComponent', () => {
     expect(activeColumn.active).toBeFalsy();
     expect(activeColumn.children[0].active).toBeFalsy();
   });
+
+  it('should save selected child id/title when filter is active', () => {
+    const columnCompMock = {
+      column: () => ({
+        id: 'c1',
+        children: [
+          { id: 'c1-1', title: 'Child 1', active: true },
+          { id: 'c1-2', title: 'Child 2', active: false }
+        ]
+      }),
+      searchInputValue: 'abc',
+      virtualScrollViewport: () => null
+    };
+
+    component.columnComponents = {
+      length: 1,
+      forEach: cb => [columnCompMock].forEach(cb),
+      toArray: () => [columnCompMock]
+    } as any;
+
+    component.saveScrollState();
+
+    expect((component as any).selectedChildIds.get('c1')).toBe('c1-1');
+    expect((component as any).selectedChildTitles.get('c1')).toBe('Child 1');
+    expect((component as any).scrollPositions.has('c1')).toBeFalse();
+  });
+
+  it('should restore scroll using selected child id/title', () => {
+    const scrollToChild = jasmine.createSpy('scrollToChild').and.returnValue(true);
+    const columnCompMock = {
+      column: () => ({ id: 'c1' }),
+      scrollToChild,
+      virtualScrollViewport: () => null
+    };
+
+    component.columns = [{ id: 'c1', active: true, title: 'C1' } as any];
+    component.columnComponents = {
+      length: 1,
+      forEach: cb => [columnCompMock].forEach(cb),
+      toArray: () => [columnCompMock]
+    } as any;
+
+    (component as any).selectedChildIds.set('c1', 'c1-2');
+    (component as any).selectedChildTitles.set('c1', 'Child 2');
+
+    const restored = component.restoreScrollPositions();
+    expect(restored).toBeTrue();
+    expect(scrollToChild).toHaveBeenCalledWith('c1-2', 'Child 2');
+    expect((component as any).selectedChildIds.has('c1')).toBeFalse();
+    expect((component as any).selectedChildTitles.has('c1')).toBeFalse();
+  });
 });

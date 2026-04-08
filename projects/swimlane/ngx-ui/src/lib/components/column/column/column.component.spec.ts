@@ -14,6 +14,7 @@ export class ColumnTestContentComponent {}
 describe('ColumnComponent', () => {
   let component: ColumnComponent;
   let fixture: ComponentFixture<ColumnComponent>;
+  let searchInputWriteValueSpy: jasmine.Spy;
 
   const column = {
     id: '3m',
@@ -162,6 +163,8 @@ describe('ColumnComponent', () => {
       fixture.componentRef?.setInput('column', column);
       fixture.detectChanges();
       component = fixture.componentInstance;
+      searchInputWriteValueSpy = jasmine.createSpy('writeValue');
+      (component as any).searchInput = () => ({ writeValue: searchInputWriteValueSpy });
     });
 
     it('should emit column id on click', () => {
@@ -357,6 +360,7 @@ describe('ColumnComponent', () => {
         }
       } as unknown as KeyboardEvent;
       component.onInputChange(inputEvent);
+      expect(component.searchInputValue).toBe('Column 3n');
       expect(component.list).toEqual([
         {
           id: '3n',
@@ -383,6 +387,7 @@ describe('ColumnComponent', () => {
         }
       } as unknown as KeyboardEvent;
       component.onInputChange(inputEvent);
+      expect(component.searchInputValue).toBe('');
       expect(component.list).toEqual([
         {
           id: '3n',
@@ -506,6 +511,47 @@ describe('ColumnComponent', () => {
           }
         }
       ]);
+    });
+
+    it('should clear filter after child click selection', () => {
+      component.onInputChange({
+        target: { value: 'Column 3n' }
+      } as unknown as KeyboardEvent);
+      expect(component.searchInputValue).toBe('Column 3n');
+
+      component.onChildClick('3p');
+      expect(component.searchInputValue).toBe('');
+      expect(component.list).toEqual(column.children);
+      expect(searchInputWriteValueSpy).toHaveBeenCalledWith('');
+    });
+
+    it('should clear filter after child key selection', () => {
+      component.onInputChange({
+        target: { value: 'Column 3n' }
+      } as unknown as KeyboardEvent);
+      expect(component.searchInputValue).toBe('Column 3n');
+
+      component.onChildKeyup({ key: 'Enter' } as any, '3p');
+      expect(component.searchInputValue).toBe('');
+      expect(component.list).toEqual(column.children);
+      expect(searchInputWriteValueSpy).toHaveBeenCalledWith('');
+    });
+
+    it('should scroll to child by id first then title', () => {
+      const scrollToIndex = jasmine.createSpy('scrollToIndex');
+      (component as any).virtualScrollViewport = () => ({
+        elementRef: { nativeElement: { scrollHeight: 100 } },
+        scrollToIndex
+      });
+
+      const byId = component.scrollToChild('3p', 'does-not-matter');
+      expect(byId).toBeTrue();
+      expect(scrollToIndex).toHaveBeenCalledWith(1);
+
+      scrollToIndex.calls.reset();
+      const byTitle = component.scrollToChild(undefined, 'Column 3n');
+      expect(byTitle).toBeTrue();
+      expect(scrollToIndex).toHaveBeenCalledWith(0);
     });
   });
 });
