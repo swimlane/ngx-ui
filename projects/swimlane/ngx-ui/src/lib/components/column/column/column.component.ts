@@ -134,14 +134,14 @@ export class ColumnComponent implements OnChanges, AfterViewInit {
     this.searchInputValue = (event.target as HTMLInputElement).value;
     const change = this.searchInputValue;
     if (!change.length) {
-      this.list = this.column().children ? this.column().children : [];
+      this.list = this.column().children ?? [];
     } else {
       const query = change.toLowerCase();
       const results = this.column().children.filter((child: Column) => {
         return child.title.toLowerCase().includes(query);
       });
       if (!results.length) {
-        this.list = this.column().children ? this.column().children : [];
+        this.list = this.column().children ?? [];
         this.activeChild = this.list.find(child => child.active);
       } else {
         this.list = results;
@@ -154,7 +154,7 @@ export class ColumnComponent implements OnChanges, AfterViewInit {
 
   clearFilter(): void {
     this.searchInputValue = '';
-    this.list = this.column().children ? this.column().children : [];
+    this.list = this.column().children ?? [];
     this.activeChild = this.list.find(child => child.active);
 
     const searchInputCmp = this.searchInput();
