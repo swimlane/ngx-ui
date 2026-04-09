@@ -11,7 +11,6 @@ import {
   QueryList,
   AfterViewChecked,
   OnDestroy,
-  ElementRef,
   inject,
   NgZone,
   ChangeDetectorRef
@@ -41,23 +40,23 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked, OnDestroy 
   columnComponent = ColumnComponent;
 
   @ViewChildren(ColumnComponent) columnComponents!: QueryList<ColumnComponent>;
-  private elementRef = inject(ElementRef);
   private ngZone = inject(NgZone);
   private cdr = inject(ChangeDetectorRef);
 
   private scrollPositions: Map<string, number> = new Map();
+  private selectedChildIds: Map<string, string> = new Map();
+  private selectedChildTitles: Map<string, string> = new Map();
   private shouldRestoreScroll = false;
   private rafId1: number | null = null;
   private rafId2: number | null = null;
   private restoreAttempts = 0;
-  private readonly MAX_RESTORE_ATTEMPTS = 2;
+  private readonly MAX_RESTORE_ATTEMPTS = 6;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.column?.currentValue) {
-      // Save scroll positions before columns change, in case parent updates column input directly
-      // Only save if we have existing columns not initial load
+      // Save scroll state before columns change.
       if (this.columns && this.columns.length > 0) {
-        this.saveScrollPositions();
+        this.saveScrollState();
       }
 
       this.columns = this.getCurrentColumns();
@@ -143,27 +142,48 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked, OnDestroy 
     }
   }
 
-  saveScrollPositions(): void {
-    if (!this.elementRef?.nativeElement) return;
+  private hasActiveFilter(columnComp: ColumnComponent): boolean {
+    return !!columnComp.searchInputValue?.trim().length;
+  }
 
-    // Use component references to match by column ID (more reliable when components are recreated)
-    if (this.columnComponents && this.columns && this.columnComponents.length > 0) {
-      this.columnComponents.forEach(columnComp => {
-        const column = columnComp.column();
-        if (column) {
-          const viewportRef = columnComp.virtualScrollViewport();
-          if (viewportRef) {
-            const viewportElement = viewportRef.elementRef.nativeElement as HTMLElement;
-            const scrollTop = viewportElement.scrollTop ?? 0;
-            this.scrollPositions.set(column.id, scrollTop);
-          }
-        }
-      });
+  private getColumnComponentById(columnId: string): ColumnComponent | undefined {
+    return this.columnComponents?.toArray().find(columnComp => columnComp.column()?.id === columnId);
+  }
+
+  saveScrollState(): void {
+    if (!this.columnComponents || this.columnComponents.length === 0) {
+      return;
     }
+
+    this.columnComponents.forEach(columnComp => {
+      const column = columnComp.column();
+      if (!column) {
+        return;
+      }
+
+      if (this.hasActiveFilter(columnComp)) {
+        const selectedChild = column.children?.find(child => child.active);
+        if (selectedChild?.id) {
+          this.selectedChildIds.set(column.id, selectedChild.id);
+        }
+        if (selectedChild?.title) {
+          this.selectedChildTitles.set(column.id, selectedChild.title);
+        }
+        this.scrollPositions.delete(column.id);
+        return;
+      }
+
+      const viewport = columnComp.virtualScrollViewport();
+      if (viewport) {
+        this.scrollPositions.set(column.id, viewport.measureScrollOffset('top'));
+      }
+    });
   }
 
   restoreScrollPositions(): boolean {
-    if (!this.elementRef?.nativeElement || this.scrollPositions.size === 0) return false;
+    if (this.selectedChildTitles.size === 0 && this.scrollPositions.size === 0) {
+      return false;
+    }
 
     // Match columns with viewports by column ID, not index
     // This ensures we restore to the correct column even if the order changes or components are recreated
@@ -174,15 +194,26 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked, OnDestroy 
       this.columnComponents.forEach(columnComp => {
         const column = columnComp.column();
         if (column) {
+          const selectedChildId = this.selectedChildIds.get(column.id);
+          const selectedChildTitle = this.selectedChildTitles.get(column.id);
+          if (selectedChildId || selectedChildTitle) {
+            expectedRestoreCount++;
+            if (columnComp.scrollToChild(selectedChildId, selectedChildTitle)) {
+              restoredCount++;
+              this.selectedChildIds.delete(column.id);
+              this.selectedChildTitles.delete(column.id);
+            }
+            return;
+          }
+
           const savedScrollTop = this.scrollPositions.get(column.id);
           if (savedScrollTop !== undefined) {
             expectedRestoreCount++;
             const viewport = columnComp.virtualScrollViewport();
             if (viewport) {
               const viewportElement = viewport.elementRef.nativeElement as HTMLElement;
-              // Check if viewport is ready (has content)
               if (viewportElement && viewportElement.scrollHeight > 0) {
-                viewportElement.scrollTop = savedScrollTop;
+                viewport.scrollToOffset(savedScrollTop);
                 restoredCount++;
               }
             }
@@ -237,15 +268,21 @@ export class ColumnsComponent implements OnChanges, AfterViewChecked, OnDestroy 
   }
 
   onColumnNavigation(event: ColumnTabClickEvent): void {
-    // Save scroll positions BEFORE making any changes
-    this.saveScrollPositions();
+    // Save scroll state BEFORE making any changes.
+    this.saveScrollState();
 
     const parentColumn = this.columns.find(parent => parent.children?.find(column => column.id === event.columnId));
     const selectedColumn = parentColumn?.children?.find(column => column.id === event.columnId);
 
-    if (parentColumn && parentColumn.children) {
+    if (parentColumn && parentColumn.children && selectedColumn) {
       parentColumn.children.forEach(child => this.deactivatePath(child));
       selectedColumn.active = true;
+      const parentColumnComponent = this.getColumnComponentById(parentColumn.id);
+      if (parentColumnComponent && this.hasActiveFilter(parentColumnComponent)) {
+        this.selectedChildIds.set(parentColumn.id, selectedColumn.id);
+        this.selectedChildTitles.set(parentColumn.id, selectedColumn.title);
+        this.scrollPositions.delete(parentColumn.id);
+      }
     }
 
     this.onColumnChange.emit(event);
