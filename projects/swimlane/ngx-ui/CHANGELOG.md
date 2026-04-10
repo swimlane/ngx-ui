@@ -2,6 +2,8 @@
 
 ## HEAD (unreleased)
 
+## 51.4.0 (2026-04-10)
+
 - Enhancement (`ngx-card`): Added a new input attribute in ngx-card to display content when we hover over the card.
 
 - Fix (`ngx-column`): Fix scroll position when changing columns after filtering.
