@@ -68,6 +68,59 @@
   </swim-section>
 </section>
 
+<!-- Grouped options: group / category -->
+<section class="section">
+  <swim-section section-title="Grouped options">
+    <p style="color: var(--grey-300); margin-bottom: 1rem">
+      Enable section headers with the <code>grouped</code> attribute. Headers use each option’s <code>group</code> or
+      <code>category</code> (<code>.options</code> objects or <code>group</code> / <code>category</code> on
+      <code>&lt;swim-option&gt;</code>). When <code>grouped</code> is on and the list is filterable, the group name
+      participates in the filter. Without <code>grouped</code>, <code>group</code> / <code>category</code> are ignored
+      for the dropdown layout.
+    </p>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select
+        id="groupedSelectProgrammatic"
+        grouped
+        label="Food by aisle"
+        placeholder="Pick an item…"
+        hint="Options set via JavaScript with a group on each row"
+      ></swim-select>
+      <swim-select grouped label="Drinks (declarative)" placeholder="Select…" filterable="false">
+        <swim-option group="Cold" name="Iced tea" value="iced-tea"></swim-option>
+        <swim-option group="Cold" name="Soda" value="soda"></swim-option>
+        <swim-option group="Hot" name="Coffee" value="coffee"></swim-option>
+        <swim-option group="Hot" name="Tea" value="hot-tea"></swim-option>
+      </swim-select>
+      <swim-select
+        id="groupedSelectMulti"
+        grouped
+        label="Multi-select with groups"
+        placeholder="Choose tools…"
+        multiple
+        hint="Same grouping rules as single select"
+      ></swim-select>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;!-- Programmatic: `grouped` + group or category on each option --&gt;
+&lt;swim-select id="groupedSelectProgrammatic" grouped label="Food by aisle"&gt;&lt;/swim-select&gt;
+&lt;script&gt;
+  document.getElementById('groupedSelectProgrammatic').options = [
+    { name: 'Apples', value: 'apples', group: 'Produce' },
+    { name: 'Carrots', value: 'carrots', group: 'Produce' },
+    { name: 'Milk', value: 'milk', group: 'Dairy' },
+    { name: 'Cheddar', value: 'cheddar', group: 'Dairy' },
+  ];
+&lt;/script&gt;
+
+&lt;!-- Declarative: grouped + group on swim-option --&gt;
+&lt;swim-select grouped label="Drinks" filterable="false"&gt;
+  &lt;swim-option group="Cold" name="Soda" value="soda"&gt;&lt;/swim-option&gt;
+  &lt;swim-option group="Hot" name="Coffee" value="coffee"&gt;&lt;/swim-option&gt;
+&lt;/swim-select&gt;</code></pre>
+  </swim-section>
+</section>
+
 <!-- Select Appearances Section -->
 <section class="section">
   <swim-section section-title="Select Appearances">

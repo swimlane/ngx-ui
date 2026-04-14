@@ -1,4 +1,4 @@
-import { LitElement, html, nothing, PropertyValues } from 'lit';
+import { LitElement, html, nothing, PropertyValues, TemplateResult } from 'lit';
 import { property, state, query } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { baseStyles } from '../../styles/base';
@@ -14,7 +14,9 @@ import './select-option.component';
 /**
  * SwimSelect - A select/dropdown component matching @swimlane/ngx-ui design system
  *
- * Options can be provided via the `options` property or declaratively with `<swim-option>` children:
+ * Options can be provided via the `options` property or declaratively with `<swim-option>` children.
+ * Set the `grouped` attribute to show section headers from each option’s `group` or `category`
+ * (`SelectOption` fields or `<swim-option>` attributes). Without `grouped`, those fields are ignored for layout.
  * ```html
  * <swim-select label="Attack Type">
  *   <swim-option name="Breach" value="breach"></swim-option>
@@ -227,6 +229,18 @@ export class SwimSelect extends LitElement {
   private _filterable = true;
 
   /**
+   * When true, show `group` / `category` as section headers in the dropdown (and indent options).
+   */
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
+  get grouped(): boolean {
+    return this._grouped;
+  }
+  set grouped(value: boolean) {
+    this._grouped = coerceBooleanProperty(value);
+  }
+  private _grouped = false;
+
+  /**
    * Allow multiple selection
    */
   @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
@@ -327,10 +341,14 @@ export class SwimSelect extends LitElement {
       .map(el => {
         const name = el.getAttribute('name') || '';
         const value = el.getAttribute('value');
+        const groupAttr = el.getAttribute('group');
+        const categoryAttr = el.getAttribute('category');
         return {
           name,
           value: value !== null ? value : name,
-          disabled: el.hasAttribute('disabled')
+          disabled: el.hasAttribute('disabled'),
+          ...(groupAttr != null && groupAttr.trim() !== '' ? { group: groupAttr.trim() } : {}),
+          ...(categoryAttr != null && categoryAttr.trim() !== '' ? { category: categoryAttr.trim() } : {})
         };
       });
   }
@@ -469,12 +487,18 @@ export class SwimSelect extends LitElement {
                   : nothing}
                 ${showList
                   ? html`
-                      <ul class="select-options">
-                        ${repeat(
-                          filteredOptions,
-                          option => this._getOptionValue(option),
-                          (option, index) => this._renderOption(option, index)
-                        )}
+                      <ul
+                        class="select-options ${this.grouped && this._listHasGroupHeadings(filteredOptions)
+                          ? 'select-options--grouped'
+                          : ''}"
+                      >
+                        ${this.grouped
+                          ? this._renderGroupedOptionRows(filteredOptions)
+                          : repeat(
+                              filteredOptions,
+                              option => this._getOptionValue(option),
+                              (option, index) => this._renderOption(option, index)
+                            )}
                       </ul>
                     `
                   : html`<div class="select-empty">${this._emptyDropdownMessage()}</div>`}
@@ -510,6 +534,39 @@ export class SwimSelect extends LitElement {
       return String(t);
     }
     return option.name;
+  }
+
+  /** Non-empty section title from `group` (preferred) or `category`. */
+  private _groupHeading(option: SelectOption): string {
+    const raw = option.group ?? option.category;
+    return raw != null && String(raw).trim() !== '' ? String(raw).trim() : '';
+  }
+
+  private _listHasGroupHeadings(options: SelectOption[]): boolean {
+    return options.some(o => this._groupHeading(o).length > 0);
+  }
+
+  private _renderGroupedOptionRows(filteredOptions: SelectOption[]): TemplateResult[] {
+    let previousHeading = '';
+    const rows: TemplateResult[] = [];
+    for (let index = 0; index < filteredOptions.length; index++) {
+      const option = filteredOptions[index];
+      const heading = this._groupHeading(option);
+      if (heading) {
+        if (heading !== previousHeading) {
+          rows.push(html`
+            <li class="select-option-group" role="presentation">
+              <span class="select-option-group-label">${heading}</span>
+            </li>
+          `);
+          previousHeading = heading;
+        }
+      } else {
+        previousHeading = '';
+      }
+      rows.push(this._renderOption(option, index));
+    }
+    return rows;
   }
 
   private _emptyDropdownMessage(): string {
@@ -772,7 +829,13 @@ export class SwimSelect extends LitElement {
     return this._allOptions.filter(option => {
       const label = this._getOptionLabel(option).toLowerCase();
       const desc = (option.description ?? '').toLowerCase();
-      return option.name.toLowerCase().includes(query) || label.includes(query) || desc.includes(query);
+      const group = this.grouped ? this._groupHeading(option).toLowerCase() : '';
+      return (
+        option.name.toLowerCase().includes(query) ||
+        label.includes(query) ||
+        desc.includes(query) ||
+        (group && group.includes(query))
+      );
     });
   }
 

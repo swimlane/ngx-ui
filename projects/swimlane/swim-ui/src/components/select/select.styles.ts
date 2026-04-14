@@ -279,6 +279,29 @@ export const selectStyles = css`
     margin: 0;
   }
 
+  .select-options--grouped .select-option {
+    padding-left: 25px;
+  }
+
+  .select-option-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+  }
+
+  .select-option-group-label {
+    display: block;
+    padding: 7px 15px;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--font-line-height-100);
+    color: var(--grey-300);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
   .select-option {
     padding: 7px 15px;
     font-size: var(--font-size-m);

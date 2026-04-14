@@ -11,7 +11,7 @@ const OPTION_TAG = 'swim-option';
  * ```html
  * <swim-select label="Attack Type">
  *   <swim-option name="breach" value="breach" label="Breach"></swim-option>
- *   <swim-option name="ddos" value="ddos" title="DDOS"></swim-option>
+ *   <swim-option name="ddos" value="ddos" title="DDOS" group="Network"></swim-option>
  * </swim-select>
  * ```
  */

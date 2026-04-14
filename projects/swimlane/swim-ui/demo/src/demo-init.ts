@@ -290,6 +290,30 @@ function setupSelectDemos(): void {
   const basicSelect = document.getElementById('basicSelect') as any;
   if (basicSelect) basicSelect.options = attackTypeOptions;
 
+  const groupedSelectProgrammatic = document.getElementById('groupedSelectProgrammatic') as any;
+  if (groupedSelectProgrammatic) {
+    groupedSelectProgrammatic.options = [
+      { name: 'Apples', value: 'apples', group: 'Produce' },
+      { name: 'Carrots', value: 'carrots', group: 'Produce' },
+      { name: 'Spinach', value: 'spinach', group: 'Produce' },
+      { name: 'Milk', value: 'milk', group: 'Dairy' },
+      { name: 'Cheddar', value: 'cheddar', group: 'Dairy' },
+      { name: 'Yogurt', value: 'yogurt', group: 'Dairy' },
+      { name: 'Chips', value: 'chips', category: 'Pantry' },
+      { name: 'Rice', value: 'rice', category: 'Pantry' }
+    ];
+  }
+
+  const groupedSelectMulti = document.getElementById('groupedSelectMulti') as any;
+  if (groupedSelectMulti) {
+    groupedSelectMulti.options = [
+      { name: 'Drill', value: 'drill', group: 'Power tools' },
+      { name: 'Sander', value: 'sander', group: 'Power tools' },
+      { name: 'Hammer', value: 'hammer', group: 'Hand tools' },
+      { name: 'Wrench', value: 'wrench', group: 'Hand tools' }
+    ];
+  }
+
   const requiredSelect = document.getElementById('requiredSelect') as any;
   if (requiredSelect) requiredSelect.options = attackTypeOptions;
 
