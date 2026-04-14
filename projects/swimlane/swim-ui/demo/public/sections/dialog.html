@@ -101,25 +101,61 @@
 
 <section class="section">
   <swim-section section-title="Medium Format">
+    <p class="section-desc" style="margin-top: 0; max-width: 42rem; margin-left: auto; margin-right: auto; text-align: center">
+      This example uses the same <strong>Remote search (GitHub users)</strong> pattern as the Select demo: type at least
+      <strong>2 characters</strong> to query the
+      <a href="https://docs.github.com/en/rest/search/search#search-users" style="color: var(--blue-400)"
+        >Search users</a
+      >
+      API inside a medium-format dialog body.
+    </p>
     <swim-dialog id="dialogMediumFormatDemo" format="medium" close-button="false">
       <swim-large-format-dialog-content
         id="dialogMediumFormatContent"
         format="medium"
-        dialog-title="Medium Format Dialog"
-        dialog-subtitle="Optional subtitle"
+        dialog-title="Medium format dialog"
+        dialog-subtitle="Remote search (GitHub users)"
       >
-        <p>Medium format uses a smaller header and max height 75vh. Body is scrollable when content overflows.</p>
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; box-sizing: border-box">
+          <p style="color: var(--grey-300); margin: 0 0 1rem 0; text-align: center; max-width: 36rem">
+            Type at least <strong>2 characters</strong> to search public GitHub users.<br />
+            Results load after the default <strong>500ms</strong> debounce on <code>filter-change</code>.
+          </p>
+          <div style="display: flex; flex-direction: column; gap: 0.75rem; width: 100%; max-width: 500px; margin: 0 auto">
+            <swim-select
+              id="dialogMediumGithubUserSelect"
+              label="GitHub user"
+              placeholder="Pick a user…"
+              filter-placeholder="Search by login…"
+              empty-placeholder="Open the list and type to search GitHub users."
+              filter-empty-placeholder="No users match that search."
+              filter-searching-placeholder="Searching GitHub…"
+              async-filter
+              filter-min-length="2"
+              dropdown-align="center"
+              hint="Uses https://api.github.com/search/users (rate limits apply without auth)."
+            ></swim-select>
+            <p style="font-size: var(--font-size-s); color: var(--grey-350); margin: 0; text-align: center">
+              Selected: <code id="dialogMediumGithubUserSelectValue" style="color: var(--grey-200)">—</code>
+            </p>
+          </div>
+        </div>
         <swim-large-format-dialog-footer slot="footer">
           <swim-button variant="bordered">Cancel</swim-button>
           <swim-button variant="primary">Confirm</swim-button>
         </swim-large-format-dialog-footer>
       </swim-large-format-dialog-content>
     </swim-dialog>
-    <swim-button type="button" id="dialogMediumFormatOpen">Open Medium Format Dialog</swim-button>
+    <div style="text-align: center; margin-top: 0.5rem">
+      <swim-button type="button" id="dialogMediumFormatOpen">Open Medium Format Dialog</swim-button>
+    </div>
     <br /><br />
     <pre class="demo-pre"><code>&lt;swim-dialog format="medium" close-button="false"&gt;
-  &lt;swim-large-format-dialog-content format="medium" dialog-title="Title" dialog-subtitle="Subtitle"&gt;
-    &lt;p&gt;Body...&lt;/p&gt;
+  &lt;swim-large-format-dialog-content format="medium" dialog-title="..." dialog-subtitle="..."&gt;
+    &lt;div style="display:flex; flex-direction:column; align-items:center; width:100%"&gt;
+      &lt;!-- intro + max-width column for swim-select --&gt;
+      &lt;swim-select id="dialogMediumGithubUserSelect" label="GitHub user" async-filter filter-min-length="2" /&gt;
+    &lt;/div&gt;
     &lt;swim-large-format-dialog-footer slot="footer"&gt;...&lt;/swim-large-format-dialog-footer&gt;
   &lt;/swim-large-format-dialog-content&gt;
 &lt;/swim-dialog&gt;</code></pre>

@@ -37,6 +37,10 @@ import './select-option.component';
  */
 const SELECT_TAG = 'swim-select';
 
+/** Top-layer popover avoids clipping inside transformed / overflow:hidden ancestors (e.g. dialogs). */
+const SELECT_POPOVER_TOP_LAYER =
+  typeof HTMLElement !== 'undefined' && typeof HTMLElement.prototype.showPopover === 'function';
+
 export class SwimSelect extends LitElement {
   static styles = [baseStyles, scrollbarStyles, selectStyles];
   static formAssociated = true;
@@ -108,6 +112,13 @@ export class SwimSelect extends LitElement {
 
   @property({ type: Number, attribute: 'filter-min-length' })
   filterMinLength = 2;
+
+  /**
+   * With the popover top layer, `start` anchors the panel to the combobox; `center` uses the
+   * full host width and horizontal bounds so the menu lines up with centered columns (e.g. dialogs).
+   */
+  @property({ type: String, attribute: 'dropdown-align' })
+  dropdownAlign: 'start' | 'center' = 'start';
 
   @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get loading(): boolean {
@@ -294,6 +305,7 @@ export class SwimSelect extends LitElement {
   /** Debounce id from `window.setTimeout` (DOM lib uses `number`). */
   private _filterDebounceTimer: number | undefined;
   private _clickOutsideListener?: (e: MouseEvent) => void;
+  private _dropdownScrollOrResizeListener?: () => void;
   private _childObserver?: MutationObserver;
 
   /**
@@ -320,6 +332,10 @@ export class SwimSelect extends LitElement {
   }
 
   disconnectedCallback() {
+    const dd = this.shadowRoot?.querySelector('.select-dropdown') as
+      | (HTMLElement & { hidePopover?: () => void })
+      | null;
+    this._teardownDropdownTopLayer(dd);
     super.disconnectedCallback();
     this._removeClickOutsideListener();
     this._childObserver?.disconnect();
@@ -383,6 +399,7 @@ export class SwimSelect extends LitElement {
       if (this._open) {
         this.setAttribute('open', '');
         this._addClickOutsideListener();
+        this.updateComplete.then(() => this._layoutOpenDropdownPanel());
         // Focus filter input if available
         setTimeout(() => {
           if (this.filterable && this.filterInput && !this.disabled) {
@@ -399,6 +416,14 @@ export class SwimSelect extends LitElement {
           this._filterDebounceTimer = undefined;
         }
       }
+    }
+
+    if (
+      this._open &&
+      (changedProperties.has('options') || changedProperties.has('loading')) &&
+      !changedProperties.has('_open')
+    ) {
+      this.updateComplete.then(() => this._layoutOpenDropdownPanel());
     }
   }
 
@@ -465,7 +490,13 @@ export class SwimSelect extends LitElement {
 
         ${this._open
           ? html`
-              <div class="select-dropdown swim-scroll" part="dropdown" role="listbox" id="${this.id}-listbox">
+              <div
+                class="select-dropdown swim-scroll"
+                part="dropdown"
+                role="listbox"
+                id="${this.id}-listbox"
+                popover="${SELECT_POPOVER_TOP_LAYER ? 'manual' : nothing}"
+              >
                 ${this.filterable
                   ? html`
                       <div
@@ -798,6 +829,10 @@ export class SwimSelect extends LitElement {
   }
 
   private _closeDropdown() {
+    const dd = this.shadowRoot?.querySelector('.select-dropdown') as
+      | (HTMLElement & { hidePopover?: () => void })
+      | null;
+    this._teardownDropdownTopLayer(dd);
     this._open = false;
     this.dispatchEvent(new Event('close', { bubbles: true, composed: true }));
   }
@@ -902,7 +937,7 @@ export class SwimSelect extends LitElement {
 
   private _addClickOutsideListener() {
     this._clickOutsideListener = (e: MouseEvent) => {
-      if (!this.contains(e.target as Node)) {
+      if (!e.composedPath().includes(this)) {
         this._closeDropdown();
       }
     };
@@ -916,6 +951,97 @@ export class SwimSelect extends LitElement {
       document.removeEventListener('click', this._clickOutsideListener);
       this._clickOutsideListener = undefined;
     }
+  }
+
+  /** Manual popover + fixed geometry so the list escapes overflow/transform (e.g. medium dialog). */
+  private _layoutOpenDropdownPanel(): void {
+    if (!this._open || !SELECT_POPOVER_TOP_LAYER) return;
+    const dd = this.shadowRoot?.querySelector('.select-dropdown') as
+      | (HTMLElement & { showPopover?: () => void })
+      | null;
+    if (!dd || !this.selectInput || typeof dd.showPopover !== 'function') {
+      return;
+    }
+    this._applyDropdownPanelGeometry(dd, this.selectInput);
+    try {
+      dd.showPopover();
+    } catch {
+      /* already open or popover not available at runtime */
+    }
+    this._addDropdownScrollListener();
+  }
+
+  private _applyDropdownPanelGeometry(dd: HTMLElement, trigger: HTMLElement): void {
+    const tr = trigger.getBoundingClientRect();
+    const host = this.getBoundingClientRect();
+    const gap = 8;
+    const maxH = Math.min(300, Math.max(0, window.innerHeight - tr.bottom - gap - 8));
+    const useHost = this.dropdownAlign === 'center';
+    const panelW = useHost ? host.width : tr.width;
+    let leftPx = useHost ? host.left : tr.left;
+    if (useHost) {
+      const edge = 8;
+      leftPx = Math.min(Math.max(leftPx, edge), window.innerWidth - panelW - edge);
+    }
+    // UA `[popover]` uses `inset: 0; margin: auto` which centers the panel and fights our anchors.
+    dd.style.setProperty('inset', 'auto');
+    dd.style.setProperty('margin', '0');
+    dd.style.setProperty('height', 'auto');
+    dd.style.setProperty('position', 'fixed');
+    dd.style.setProperty('left', `${leftPx}px`);
+    dd.style.setProperty('top', `${tr.bottom + gap}px`);
+    dd.style.setProperty('width', `${panelW}px`);
+    dd.style.setProperty('max-height', `${maxH}px`);
+    dd.style.setProperty('z-index', '2147483646');
+    dd.style.setProperty('animation', 'none');
+    dd.style.setProperty('transform', 'none');
+  }
+
+  private _clearDropdownPanelGeometry(dd: HTMLElement): void {
+    [
+      'inset',
+      'margin',
+      'height',
+      'position',
+      'left',
+      'top',
+      'width',
+      'max-height',
+      'z-index',
+      'animation',
+      'transform'
+    ].forEach(p => dd.style.removeProperty(p));
+  }
+
+  private _teardownDropdownTopLayer(dd: (HTMLElement & { hidePopover?: () => void }) | null): void {
+    this._removeDropdownScrollListener();
+    if (!dd || !SELECT_POPOVER_TOP_LAYER) return;
+    try {
+      dd.hidePopover?.();
+    } catch {
+      /* not shown */
+    }
+    this._clearDropdownPanelGeometry(dd);
+  }
+
+  private _addDropdownScrollListener(): void {
+    if (!SELECT_POPOVER_TOP_LAYER || this._dropdownScrollOrResizeListener) return;
+    this._dropdownScrollOrResizeListener = () => {
+      if (!this._open) return;
+      const panel = this.shadowRoot?.querySelector('.select-dropdown') as HTMLElement | null;
+      if (panel && this.selectInput) {
+        this._applyDropdownPanelGeometry(panel, this.selectInput);
+      }
+    };
+    window.addEventListener('scroll', this._dropdownScrollOrResizeListener, true);
+    window.addEventListener('resize', this._dropdownScrollOrResizeListener);
+  }
+
+  private _removeDropdownScrollListener(): void {
+    if (!this._dropdownScrollOrResizeListener) return;
+    window.removeEventListener('scroll', this._dropdownScrollOrResizeListener, true);
+    window.removeEventListener('resize', this._dropdownScrollOrResizeListener);
+    this._dropdownScrollOrResizeListener = undefined;
   }
 
   // Form API
