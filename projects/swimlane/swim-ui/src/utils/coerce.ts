@@ -18,3 +18,17 @@ export function coerceNumberProperty<D>(value: any, fallback: D): number | D;
 export function coerceNumberProperty(value: any, fallbackValue: number | null = null): number | null {
   return isNaN(parseFloat(value as any)) || isNaN(Number(value)) ? fallbackValue : Number(value);
 }
+
+/**
+ * Lit `type: Boolean` uses `fromAttribute: (v) => v != null`, so `prop="false"` becomes true.
+ * Use these converters on `@property({ type: Boolean, converter: … })` so string `"false"` is honored.
+ */
+export const litBooleanAttrDefaultTrue = {
+  fromAttribute: (value: string | null): boolean => value !== 'false',
+  toAttribute: (value: boolean): string => (value ? 'true' : 'false')
+};
+
+export const litBooleanAttrDefaultFalse = {
+  fromAttribute: (value: string | null): boolean => value !== null && value !== 'false' && value !== '0',
+  toAttribute: (value: boolean): string => (value ? 'true' : 'false')
+};

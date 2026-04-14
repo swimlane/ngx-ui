@@ -1,6 +1,6 @@
 import { LitElement, html } from 'lit';
 import { property } from 'lit/decorators.js';
-import { coerceBooleanProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 
 const OPTION_TAG = 'swim-option';
 
@@ -10,8 +10,8 @@ const OPTION_TAG = 'swim-option';
  * Usage:
  * ```html
  * <swim-select label="Attack Type">
- *   <swim-option name="Breach" value="breach"></swim-option>
- *   <swim-option name="DDOS" value="ddos"></swim-option>
+ *   <swim-option name="breach" value="breach" label="Breach"></swim-option>
+ *   <swim-option name="ddos" value="ddos" title="DDOS"></swim-option>
  * </swim-select>
  * ```
  */
@@ -22,7 +22,24 @@ export class SwimOption extends LitElement {
   @property()
   value: any;
 
-  @property({ type: Boolean, reflect: true })
+  /** Display label when different from `name` */
+  @property({ type: String })
+  label = '';
+
+  /** Display title (alias of label for search / trigger) */
+  @property({ type: String })
+  title = '';
+
+  @property({ type: String })
+  description = '';
+
+  @property({ type: String })
+  group = '';
+
+  @property({ type: String })
+  category = '';
+
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }
@@ -31,7 +48,7 @@ export class SwimOption extends LitElement {
   }
   private _disabled = false;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get hidden(): boolean {
     return this._hidden;
   }

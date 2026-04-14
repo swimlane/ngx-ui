@@ -2,7 +2,12 @@ import { LitElement, html, nothing } from 'lit';
 import { property, state, query } from 'lit/decorators.js';
 import { dialogStyles } from './dialog.styles';
 import { DialogFormat } from './dialog-format.enum';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import {
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  litBooleanAttrDefaultFalse,
+  litBooleanAttrDefaultTrue
+} from '../../utils/coerce';
 import '../icon/icon.component';
 
 /**
@@ -62,7 +67,7 @@ export class SwimDialog extends LitElement {
   showBackdrop = true;
 
   /** Whether to show the close button */
-  @property({ type: Boolean, attribute: 'close-button' })
+  @property({ type: Boolean, attribute: 'close-button', converter: litBooleanAttrDefaultTrue })
   get closeButton(): boolean {
     return this._closeButton;
   }
@@ -72,7 +77,7 @@ export class SwimDialog extends LitElement {
   private _closeButton = true;
 
   /** Whether the dialog is visible */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get visible(): boolean {
     return this._visible;
   }

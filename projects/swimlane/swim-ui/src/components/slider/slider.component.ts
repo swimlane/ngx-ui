@@ -2,7 +2,7 @@ import { LitElement, html, PropertyValues } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { sliderStyles } from './slider.styles';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 
 let nextId = 0;
 
@@ -79,7 +79,7 @@ export class SwimSlider extends LitElement {
   /**
    * Whether to show the filled portion of the track
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get filled(): boolean {
     return this._filled;
   }
@@ -91,7 +91,7 @@ export class SwimSlider extends LitElement {
   /**
    * Whether to allow multiple thumbs (range)
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get multiple(): boolean {
     return this._multiple;
   }
@@ -103,7 +103,7 @@ export class SwimSlider extends LitElement {
   /**
    * Whether the slider is disabled
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }
@@ -115,7 +115,7 @@ export class SwimSlider extends LitElement {
   /**
    * Whether to show tick marks
    */
-  @property({ type: Boolean, attribute: 'show-ticks' })
+  @property({ type: Boolean, attribute: 'show-ticks', converter: litBooleanAttrDefaultFalse })
   get showTicks(): boolean {
     return this._showTicks;
   }

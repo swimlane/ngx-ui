@@ -9,7 +9,7 @@ import { inputStyles } from './input.styles';
 import { InputTypes } from './input-types.enum';
 import { InputAppearance } from './input-appearance.enum';
 import { InputSize } from './input-size.enum';
-import { coerceBooleanProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, litBooleanAttrDefaultFalse, litBooleanAttrDefaultTrue } from '../../utils/coerce';
 
 /**
  * SwimInput - An input component matching @swimlane/ngx-ui design system
@@ -91,7 +91,7 @@ export class SwimInput extends LitElement {
   /**
    * Whether the input is disabled
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }
@@ -103,7 +103,7 @@ export class SwimInput extends LitElement {
   /**
    * Whether the input is readonly
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get readonly(): boolean {
     return this._readonly;
   }
@@ -115,7 +115,7 @@ export class SwimInput extends LitElement {
   /**
    * Whether the input is required
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get required(): boolean {
     return this._required;
   }
@@ -127,7 +127,7 @@ export class SwimInput extends LitElement {
   /**
    * Whether to autofocus
    */
-  @property({ type: Boolean })
+  @property({ type: Boolean, converter: litBooleanAttrDefaultFalse })
   get autofocus(): boolean {
     return this._autofocus;
   }
@@ -157,7 +157,7 @@ export class SwimInput extends LitElement {
   /**
    * Whether to show margin
    */
-  @property({ type: Boolean, reflect: true, attribute: 'marginless' })
+  @property({ type: Boolean, reflect: true, attribute: 'marginless', converter: litBooleanAttrDefaultFalse })
   get marginless(): boolean {
     return !this._withMargin;
   }
@@ -169,7 +169,7 @@ export class SwimInput extends LitElement {
   /**
    * Whether to show hint
    */
-  @property({ type: Boolean })
+  @property({ type: Boolean, converter: litBooleanAttrDefaultTrue })
   get withHint(): boolean {
     return this._withHint;
   }
@@ -181,7 +181,7 @@ export class SwimInput extends LitElement {
   /**
    * Enable password toggle
    */
-  @property({ type: Boolean, attribute: 'password-toggle-enabled' })
+  @property({ type: Boolean, attribute: 'password-toggle-enabled', converter: litBooleanAttrDefaultFalse })
   get passwordToggleEnabled(): boolean {
     return this._passwordToggleEnabled;
   }

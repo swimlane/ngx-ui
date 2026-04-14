@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 import { property } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { tabStyles } from './tab.styles.js';
-import { coerceBooleanProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 
 let nextId = 0;
 
@@ -58,7 +58,7 @@ export class SwimTab extends LitElement {
   /**
    * Whether this tab is currently active
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get active(): boolean {
     return this._active;
   }
@@ -76,7 +76,7 @@ export class SwimTab extends LitElement {
   /**
    * Whether this tab is disabled
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }

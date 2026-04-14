@@ -343,6 +343,58 @@ function setupSelectDemos(): void {
   const filterableSelect = document.getElementById('filterableSelect') as any;
   if (filterableSelect) filterableSelect.options = countries;
 
+  const githubUserSelect = document.getElementById('githubUserSelect') as any;
+  const githubUserSelectValue = document.getElementById('githubUserSelectValue');
+  if (githubUserSelect) {
+    githubUserSelect.options = [];
+    let githubRequestId = 0;
+    githubUserSelect.addEventListener('filter-change', async (e: CustomEvent<{ query: string }>) => {
+      const q = (e.detail?.query ?? '').trim();
+      if (!q) {
+        githubUserSelect.options = [];
+        githubUserSelect.loading = false;
+        return;
+      }
+      const reqId = ++githubRequestId;
+      githubUserSelect.loading = true;
+      try {
+        const res = await fetch(`https://api.github.com/search/users?q=${encodeURIComponent(q)}&per_page=15`, {
+          headers: { Accept: 'application/vnd.github+json' }
+        });
+        if (!res.ok) {
+          throw new Error(`GitHub API ${res.status}`);
+        }
+        const data = (await res.json()) as {
+          items?: Array<{ login: string; type?: string }>;
+        };
+        if (reqId !== githubRequestId) {
+          return;
+        }
+        githubUserSelect.options = (data.items ?? []).map(u => ({
+          name: u.login,
+          value: u.login,
+          title: u.login,
+          description: u.type === 'Organization' ? 'Organization' : 'User'
+        }));
+      } catch (err) {
+        console.error('GitHub user search failed', err);
+        if (reqId === githubRequestId) {
+          githubUserSelect.options = [];
+        }
+      } finally {
+        if (reqId === githubRequestId) {
+          githubUserSelect.loading = false;
+        }
+      }
+    });
+    githubUserSelect.addEventListener('change', () => {
+      if (githubUserSelectValue) {
+        githubUserSelectValue.textContent =
+          githubUserSelect.value != null && githubUserSelect.value !== '' ? String(githubUserSelect.value) : '—';
+      }
+    });
+  }
+
   const noFilterSelect = document.getElementById('noFilterSelect') as any;
   if (noFilterSelect) noFilterSelect.options = fruits;
 

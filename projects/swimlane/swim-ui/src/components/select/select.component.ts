@@ -7,7 +7,7 @@ import { selectStyles } from './select.styles';
 import { SelectOption } from './select-option.interface';
 import { InputAppearance } from '../input/input-appearance.enum';
 import { InputSize } from '../input/input-size.enum';
-import { coerceBooleanProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, litBooleanAttrDefaultFalse, litBooleanAttrDefaultTrue } from '../../utils/coerce';
 import '../icon/icon.component';
 import './select-option.component';
 
@@ -28,11 +28,13 @@ import './select-option.component';
  * @fires change - Fired when selection changes
  * @fires open - Fired when dropdown opens
  * @fires close - Fired when dropdown closes
+ * @fires filter-change - With `async-filter`: debounced `detail.query` for remote search (empty string below min length)
  *
  * @csspart select - The select input element
  * @csspart dropdown - The dropdown container
  */
 const SELECT_TAG = 'swim-select';
+
 export class SwimSelect extends LitElement {
   static styles = [baseStyles, scrollbarStyles, selectStyles];
   static formAssociated = true;
@@ -76,6 +78,45 @@ export class SwimSelect extends LitElement {
   filterPlaceholder = 'Filter options...';
 
   /**
+   * When the filter matches nothing (sync) or async search returned no users
+   */
+  @property({ type: String, attribute: 'filter-empty-placeholder' })
+  filterEmptyPlaceholder = 'No matches';
+
+  /**
+   * Shown while `loading` is true during async search
+   */
+  @property({ type: String, attribute: 'filter-searching-placeholder' })
+  filterSearchingPlaceholder = 'Searching…';
+
+  /**
+   * Remote search: skip local filtering; parent updates `options` after `filter-change`
+   */
+  @property({ type: Boolean, attribute: 'async-filter', converter: litBooleanAttrDefaultFalse })
+  get asyncFilter(): boolean {
+    return this._asyncFilter;
+  }
+  set asyncFilter(value: boolean) {
+    this._asyncFilter = coerceBooleanProperty(value);
+  }
+  private _asyncFilter = false;
+
+  @property({ type: Number, attribute: 'filter-debounce-ms' })
+  filterDebounceMs = 500;
+
+  @property({ type: Number, attribute: 'filter-min-length' })
+  filterMinLength = 2;
+
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
+  get loading(): boolean {
+    return this._loading;
+  }
+  set loading(value: boolean) {
+    this._loading = coerceBooleanProperty(value);
+  }
+  private _loading = false;
+
+  /**
    * Select options
    */
   @property({ type: Array })
@@ -116,7 +157,7 @@ export class SwimSelect extends LitElement {
   /**
    * Whether the select is disabled
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }
@@ -128,7 +169,7 @@ export class SwimSelect extends LitElement {
   /**
    * Whether the select is required
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get required(): boolean {
     return this._required;
   }
@@ -152,7 +193,7 @@ export class SwimSelect extends LitElement {
   /**
    * Whether to show margin
    */
-  @property({ type: Boolean, reflect: true, attribute: 'marginless' })
+  @property({ type: Boolean, reflect: true, attribute: 'marginless', converter: litBooleanAttrDefaultFalse })
   get marginless(): boolean {
     return !this._withMargin;
   }
@@ -164,7 +205,7 @@ export class SwimSelect extends LitElement {
   /**
    * Whether to show hint
    */
-  @property({ type: Boolean })
+  @property({ type: Boolean, converter: litBooleanAttrDefaultTrue })
   get withHint(): boolean {
     return this._withHint;
   }
@@ -176,7 +217,7 @@ export class SwimSelect extends LitElement {
   /**
    * Enable filtering
    */
-  @property({ type: Boolean })
+  @property({ type: Boolean, converter: litBooleanAttrDefaultTrue })
   get filterable(): boolean {
     return this._filterable;
   }
@@ -188,7 +229,7 @@ export class SwimSelect extends LitElement {
   /**
    * Allow multiple selection
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get multiple(): boolean {
     return this._multiple;
   }
@@ -200,7 +241,7 @@ export class SwimSelect extends LitElement {
   /**
    * Allow clearing selection
    */
-  @property({ type: Boolean, attribute: 'allow-clear' })
+  @property({ type: Boolean, attribute: 'allow-clear', converter: litBooleanAttrDefaultTrue })
   get allowClear(): boolean {
     return this._allowClear;
   }
@@ -236,6 +277,8 @@ export class SwimSelect extends LitElement {
   @state()
   private _focusedIndex = -1;
 
+  /** Debounce id from `window.setTimeout` (DOM lib uses `number`). */
+  private _filterDebounceTimer: number | undefined;
   private _clickOutsideListener?: (e: MouseEvent) => void;
   private _childObserver?: MutationObserver;
 
@@ -266,6 +309,10 @@ export class SwimSelect extends LitElement {
     super.disconnectedCallback();
     this._removeClickOutsideListener();
     this._childObserver?.disconnect();
+    if (this._filterDebounceTimer !== undefined) {
+      clearTimeout(this._filterDebounceTimer);
+      this._filterDebounceTimer = undefined;
+    }
   }
 
   /** Called by swim-option children when they connect/disconnect/update */
@@ -303,13 +350,24 @@ export class SwimSelect extends LitElement {
       this._validate();
     }
 
+    if (changedProperties.has('loading')) {
+      const wasLoading = changedProperties.get('loading');
+      if (wasLoading === true && !this.loading && this._open && this.filterable && !this.disabled) {
+        this.updateComplete.then(() => {
+          if (this.filterInput && document.activeElement !== this.filterInput) {
+            this.filterInput.focus({ preventScroll: true });
+          }
+        });
+      }
+    }
+
     if (changedProperties.has('_open')) {
       if (this._open) {
         this.setAttribute('open', '');
         this._addClickOutsideListener();
         // Focus filter input if available
         setTimeout(() => {
-          if (this.filterable && this.filterInput) {
+          if (this.filterable && this.filterInput && !this.disabled) {
             this.filterInput.focus();
           }
         }, 100);
@@ -318,6 +376,10 @@ export class SwimSelect extends LitElement {
         this._removeClickOutsideListener();
         this._filterQuery = '';
         this._focusedIndex = -1;
+        if (this._filterDebounceTimer !== undefined) {
+          clearTimeout(this._filterDebounceTimer);
+          this._filterDebounceTimer = undefined;
+        }
       }
     }
   }
@@ -326,6 +388,7 @@ export class SwimSelect extends LitElement {
     const hasValue = this._value.length > 0;
     const filteredOptions = this._getFilteredOptions();
     const showClear = this.allowClear && hasValue && !this.disabled;
+    const showList = filteredOptions.length > 0 && !this.loading;
 
     return html`
       <div class="select-wrap">
@@ -387,11 +450,16 @@ export class SwimSelect extends LitElement {
               <div class="select-dropdown swim-scroll" part="dropdown" role="listbox" id="${this.id}-listbox">
                 ${this.filterable
                   ? html`
-                      <div class="select-filter">
+                      <div
+                        class="select-filter ${this.loading ? 'select-filter--loading' : ''}"
+                        aria-busy="${this.loading}"
+                      >
                         <input
                           type="text"
                           class="select-filter-input"
                           placeholder="${this.filterPlaceholder}"
+                          ?disabled="${this.disabled}"
+                          ?readonly="${this.loading}"
                           .value="${this._filterQuery}"
                           @input="${this._handleFilterInput}"
                           @keydown="${this._handleFilterKeyDown}"
@@ -399,7 +467,7 @@ export class SwimSelect extends LitElement {
                       </div>
                     `
                   : nothing}
-                ${filteredOptions.length > 0
+                ${showList
                   ? html`
                       <ul class="select-options">
                         ${repeat(
@@ -409,7 +477,7 @@ export class SwimSelect extends LitElement {
                         )}
                       </ul>
                     `
-                  : html` <div class="select-empty">${this.emptyPlaceholder}</div> `}
+                  : html`<div class="select-empty">${this._emptyDropdownMessage()}</div>`}
               </div>
             `
           : nothing}
@@ -431,20 +499,45 @@ export class SwimSelect extends LitElement {
       `;
     } else {
       const option = this._allOptions.find(opt => this._getOptionValue(opt) === this._value[0]);
-      return html`${option?.name || this._value[0]}`;
+      const label = option ? this._getOptionLabel(option) : String(this._value[0]);
+      return html`${label}`;
     }
   }
 
+  private _getOptionLabel(option: SelectOption): string {
+    const t = option.title ?? option.label;
+    if (t !== undefined && t !== null && String(t).length > 0) {
+      return String(t);
+    }
+    return option.name;
+  }
+
+  private _emptyDropdownMessage(): string {
+    if (this.loading) {
+      return this.filterSearchingPlaceholder;
+    }
+    if (this.asyncFilter && this._filterQuery.trim().length < this.filterMinLength) {
+      return this.emptyPlaceholder;
+    }
+    if (this._allOptions.length === 0) {
+      return this.asyncFilter && this._filterQuery.trim().length > 0
+        ? this.filterEmptyPlaceholder
+        : this.emptyPlaceholder;
+    }
+    return this.filterEmptyPlaceholder;
+  }
+
   private _renderChip(option: SelectOption) {
+    const label = this._getOptionLabel(option);
     return html`
       <div class="select-chip">
-        <span class="select-chip-label">${option.name}</span>
+        <span class="select-chip-label">${label}</span>
         ${!this.disabled
           ? html`
               <button
                 type="button"
                 class="select-chip-remove"
-                aria-label="Remove ${option.name}"
+                aria-label="Remove ${label}"
                 @click="${(e: Event) => this._removeChip(e, option)}"
               >
                 <swim-icon font-icon="x"></swim-icon>
@@ -471,7 +564,7 @@ export class SwimSelect extends LitElement {
         @click="${() => this._handleOptionClick(option)}"
         @mouseenter="${() => (this._focusedIndex = index)}"
       >
-        ${option.name}
+        ${this._getOptionLabel(option)}
       </li>
     `;
   }
@@ -545,10 +638,36 @@ export class SwimSelect extends LitElement {
     }
   }
 
+  private _emitFilterChange(query: string) {
+    this.dispatchEvent(
+      new CustomEvent('filter-change', {
+        detail: { query },
+        bubbles: true,
+        composed: true
+      })
+    );
+  }
+
   private _handleFilterInput(e: Event) {
     const target = e.target as HTMLInputElement;
     this._filterQuery = target.value;
     this._focusedIndex = 0;
+
+    if (this.asyncFilter) {
+      if (this._filterDebounceTimer !== undefined) {
+        clearTimeout(this._filterDebounceTimer);
+        this._filterDebounceTimer = undefined;
+      }
+      const q = this._filterQuery.trim();
+      if (q.length < this.filterMinLength) {
+        this._emitFilterChange('');
+        return;
+      }
+      this._filterDebounceTimer = window.setTimeout(() => {
+        this._filterDebounceTimer = undefined;
+        this._emitFilterChange(q);
+      }, this.filterDebounceMs);
+    }
   }
 
   private _handleFilterKeyDown(e: KeyboardEvent) {
@@ -642,12 +761,19 @@ export class SwimSelect extends LitElement {
   }
 
   private _getFilteredOptions(): SelectOption[] {
-    if (!this._filterQuery) {
+    if (this.asyncFilter) {
+      return this._allOptions;
+    }
+    if (!this._filterQuery.trim()) {
       return this._allOptions;
     }
 
     const query = this._filterQuery.toLowerCase();
-    return this._allOptions.filter(option => option.name.toLowerCase().includes(query));
+    return this._allOptions.filter(option => {
+      const label = this._getOptionLabel(option).toLowerCase();
+      const desc = (option.description ?? '').toLowerCase();
+      return option.name.toLowerCase().includes(query) || label.includes(query) || desc.includes(query);
+    });
   }
 
   private _getOptionValue(option: SelectOption): any {

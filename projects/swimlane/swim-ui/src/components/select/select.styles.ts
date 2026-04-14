@@ -259,6 +259,20 @@ export const selectStyles = css`
     color: var(--grey-350);
   }
 
+  .select-filter-input:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  .select-filter--loading .select-filter-input {
+    opacity: 0.85;
+    cursor: wait;
+  }
+
+  .select-filter--loading {
+    position: relative;
+  }
+
   .select-options {
     list-style: none;
     padding: 0;

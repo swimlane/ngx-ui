@@ -3,7 +3,7 @@ import { property, state } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { buttonStyles } from './button.styles';
 import { ButtonState } from './button-state.enum';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 import '../icon/icon.component';
 
 const BUTTON_TAG = 'swim-button';
@@ -38,7 +38,7 @@ export class SwimButton extends LitElement {
   /**
    * Whether the button is disabled
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }

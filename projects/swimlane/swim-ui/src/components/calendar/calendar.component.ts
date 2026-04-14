@@ -15,6 +15,7 @@ import {
 } from './calendar-utils';
 import type { CalendarMonth } from './calendar-utils';
 import { parseDate, isValidDate } from '../date-time/date-format';
+import { litBooleanAttrDefaultFalse } from '../../utils/coerce';
 
 /**
  * Calendar view modes.
@@ -67,7 +68,7 @@ export class SwimCalendar extends LitElement {
   maxDate?: string | Date;
 
   /** Whether the calendar is disabled. */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   disabled = false;
 
   /** IANA timezone name. */

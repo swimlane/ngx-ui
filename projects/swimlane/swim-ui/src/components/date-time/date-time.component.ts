@@ -9,7 +9,7 @@ import { baseStyles } from '../../styles/base';
 import { dateTimeStyles } from './date-time.styles';
 import { DateTimeType } from './date-time-type.enum';
 import { DateDisplayType } from './date-time-display.enum';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 import {
   formatDate,
   parseDate,
@@ -83,7 +83,7 @@ export class SwimDateTime extends LitElement {
   appearance: 'legacy' | 'fill' = 'legacy';
 
   /** Whether the component is disabled. */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }
@@ -95,7 +95,7 @@ export class SwimDateTime extends LitElement {
   private _disabled = false;
 
   /** Whether a value is required. */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get required(): boolean {
     return this._required;
   }
@@ -111,7 +111,7 @@ export class SwimDateTime extends LitElement {
   requiredIndicator: string | boolean = '*';
 
   /** Auto-focus on mount. */
-  @property({ type: Boolean })
+  @property({ type: Boolean, converter: litBooleanAttrDefaultFalse })
   get autofocus(): boolean {
     return this._autofocus;
   }
@@ -121,7 +121,7 @@ export class SwimDateTime extends LitElement {
   private _autofocus = false;
 
   /** Auto-size the component width to content. */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get autosize(): boolean {
     return this._autosize;
   }
@@ -183,7 +183,7 @@ export class SwimDateTime extends LitElement {
   format?: string;
 
   /** Remove default margins. */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get marginless(): boolean {
     return this._marginless;
   }

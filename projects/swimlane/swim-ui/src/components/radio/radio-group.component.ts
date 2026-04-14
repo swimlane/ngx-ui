@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { radioGroupStyles } from './radio.styles';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 import type { SwimRadio } from './radio.component';
 
 let nextId = 0;
@@ -37,7 +37,7 @@ export class SwimRadioGroup extends LitElement {
   @property({ type: String })
   id = `swim-radio-group-${++nextId}`;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }

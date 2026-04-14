@@ -1,5 +1,6 @@
 import { LitElement, html, nothing } from 'lit';
 import { property } from 'lit/decorators.js';
+import { litBooleanAttrDefaultFalse } from '../../../utils/coerce';
 import { largeFormatDialogContentStyles } from './large-format-dialog-content.styles';
 import { scrollbarStyles } from '../../../styles/scrollbars';
 import '../../icon/icon.component';
@@ -38,7 +39,7 @@ export class SwimLargeFormatDialogContent extends LitElement {
   dialogDirtyActionTitle = 'Cancel';
 
   /** When true, shows cancel label and emits dirty flag on close */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   dirty = false;
 
   private _onCloseOrCancel(): void {

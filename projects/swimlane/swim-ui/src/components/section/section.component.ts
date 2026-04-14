@@ -3,19 +3,8 @@ import { property, state, query } from 'lit/decorators.js';
 import { sectionComponentStyles } from './section.styles';
 import { SectionAppearance } from './section-appearance.enum';
 import { TogglePosition } from './section-toggle-position.enum';
-import { coerceBooleanProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, litBooleanAttrDefaultFalse, litBooleanAttrDefaultTrue } from '../../utils/coerce';
 import '../icon/icon.component';
-
-/** Converter so attribute "false" is respected (Lit's default Boolean ignores attribute value). */
-const booleanAttrConverter = {
-  fromAttribute: (value: string | null): boolean => value !== 'false' && value !== '',
-  toAttribute: (value: boolean): string => (value ? 'true' : 'false')
-};
-/** Same but default false when attribute is absent (for section-collapsed, header-toggle). */
-const booleanAttrConverterDefaultFalse = {
-  fromAttribute: (value: string | null): boolean => value !== null && value !== 'false',
-  toAttribute: (value: boolean): string => (value ? 'true' : 'false')
-};
 
 let nextId = 0;
 
@@ -46,7 +35,7 @@ export class SwimSection extends LitElement {
   @property({
     reflect: true,
     attribute: 'section-collapsed',
-    converter: booleanAttrConverterDefaultFalse
+    converter: litBooleanAttrDefaultFalse
   })
   get sectionCollapsed(): boolean {
     return this._sectionCollapsed;
@@ -63,7 +52,7 @@ export class SwimSection extends LitElement {
   @property({
     reflect: true,
     attribute: 'section-collapsible',
-    converter: booleanAttrConverter
+    converter: litBooleanAttrDefaultTrue
   })
   get sectionCollapsible(): boolean {
     return this._sectionCollapsible;
@@ -80,7 +69,7 @@ export class SwimSection extends LitElement {
   @property({
     reflect: true,
     attribute: 'header-toggle',
-    converter: booleanAttrConverterDefaultFalse
+    converter: litBooleanAttrDefaultFalse
   })
   get headerToggle(): boolean {
     return this._headerToggle;

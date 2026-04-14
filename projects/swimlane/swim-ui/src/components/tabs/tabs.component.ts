@@ -4,7 +4,7 @@ import { baseStyles } from '../../styles/base';
 import { tabsStyles } from './tabs.styles';
 import { SwimTab } from './tab.component';
 import { TabsAppearance } from './tabs-appearance.enum';
-import { coerceBooleanProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 
 /**
  * SwimTabs - Tabs container matching @swimlane/ngx-ui design system
@@ -27,7 +27,7 @@ export class SwimTabs extends LitElement {
   /**
    * Layout direction: vertical shows tabs on the left
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get vertical(): boolean {
     return this._vertical;
   }

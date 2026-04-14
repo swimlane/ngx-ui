@@ -8,7 +8,12 @@ import { StyleType } from './style-type.enum';
 import { ShowType } from './show-type.enum';
 import { positionContent, positionCaret, determinePlacement } from './position';
 import type { Dimensions } from './position';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import {
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  litBooleanAttrDefaultFalse,
+  litBooleanAttrDefaultTrue
+} from '../../utils/coerce';
 
 /**
  * SwimTooltip – tooltip and popover wrapper matching @swimlane/ngx-ui.
@@ -61,10 +66,7 @@ export class SwimTooltip extends LitElement {
   @property({
     type: Boolean,
     attribute: 'show-caret',
-    converter: {
-      fromAttribute: (value: string | null) => value !== 'false',
-      toAttribute: (value: boolean) => (value ? '' : 'false')
-    }
+    converter: litBooleanAttrDefaultTrue
   })
   get showCaret(): boolean {
     return this._showCaret;
@@ -75,7 +77,7 @@ export class SwimTooltip extends LitElement {
   private _showCaret = true;
 
   /** Whether tooltip is disabled. */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }
@@ -85,7 +87,7 @@ export class SwimTooltip extends LitElement {
   private _disabled = false;
 
   /** Close when clicking outside. */
-  @property({ type: Boolean, attribute: 'close-on-click-outside' })
+  @property({ type: Boolean, attribute: 'close-on-click-outside', converter: litBooleanAttrDefaultTrue })
   get closeOnClickOutside(): boolean {
     return this._closeOnClickOutside;
   }
@@ -95,7 +97,7 @@ export class SwimTooltip extends LitElement {
   private _closeOnClickOutside = true;
 
   /** Close when mouse leaves trigger (and panel if applicable). */
-  @property({ type: Boolean, attribute: 'close-on-mouse-leave' })
+  @property({ type: Boolean, attribute: 'close-on-mouse-leave', converter: litBooleanAttrDefaultTrue })
   get closeOnMouseLeave(): boolean {
     return this._closeOnMouseLeave;
   }

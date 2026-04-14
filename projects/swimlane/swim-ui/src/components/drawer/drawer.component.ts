@@ -2,7 +2,7 @@ import { LitElement, html, nothing } from 'lit';
 import { property, state, query } from 'lit/decorators.js';
 import { drawerStyles } from './drawer.styles';
 import { DrawerDirection } from './drawer-direction.enum';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 
 /**
  * SwimDrawer - Slide-in panel matching @swimlane/ngx-ui design system.
@@ -84,7 +84,7 @@ export class SwimDrawer extends LitElement {
   private _isRoot = true;
 
   /** Whether the drawer is visible/open */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get open(): boolean {
     return this._open;
   }
