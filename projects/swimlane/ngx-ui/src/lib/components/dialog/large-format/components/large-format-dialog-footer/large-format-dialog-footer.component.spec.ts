@@ -32,4 +32,20 @@ describe(LargeFormatDialogFooterComponent.name, () => {
   it('should have host class', () => {
     expect(nativeElement.classList.contains('ngx-large-format-dialog-footer')).toEqual(true);
   });
+
+  it('should map align start to flex-start on host', () => {
+    component.align = 'start';
+    fixture.detectChanges();
+    expect(nativeElement.style.justifyContent).toBe('flex-start');
+  });
+
+  it('should map align end to flex-end on host', () => {
+    component.align = 'end';
+    fixture.detectChanges();
+    expect(nativeElement.style.justifyContent).toBe('flex-end');
+  });
+
+  it('should use center as default justify-content', () => {
+    expect(nativeElement.style.justifyContent).toBe('center');
+  });
 });
