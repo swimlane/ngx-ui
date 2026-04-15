@@ -1,0 +1,32 @@
+@if (showUndoRedo) {
+	<div class="ngx-large-format-dialog-header-action__undo-redo-container">
+		<button
+			type="button"
+			class="undo-button btn btn-link"
+			ngx-tooltip
+			tooltipTitle="Undo"
+			[disabled]="!undoRedoState.canUndo"
+			(click)="undo.emit()"
+		>
+			<i class="ngx-icon ngx-undo"></i>
+		</button>
+		<button
+			type="button"
+			class="redo-button btn btn-link"
+			ngx-tooltip
+			tooltipTitle="Redo"
+			[disabled]="!undoRedoState.canRedo"
+			(click)="redo.emit()"
+		>
+			<i class="ngx-icon ngx-redo"></i>
+		</button>
+	</div>
+}
+<button
+	type="button"
+	class="ngx-large-format-dialog-header-action__button btn btn-link"
+	(click)="closeOrCancel.emit(dirty)"
+>
+	<i class="ngx-icon ngx-x"></i>
+	{{ dirty ? dirtyActionTitle : actionTitle }}
+</button>

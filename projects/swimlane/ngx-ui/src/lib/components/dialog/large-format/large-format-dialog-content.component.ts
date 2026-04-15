@@ -41,6 +41,8 @@ export class LargeFormatDialogContentComponent implements OnInit {
   @Input() dialogActionTitle = 'Close';
   @Input() dirty = false;
   @Input() dialogDirtyActionTitle = 'Cancel';
+  @Input() showUndoRedo = false;
+  @Input() undoRedoState: { canUndo: boolean; canRedo: boolean } = { canUndo: false, canRedo: false };
 
   // dirty alert options
   @Input() dirtyAlertOptions?: DialogOptions;
@@ -48,6 +50,8 @@ export class LargeFormatDialogContentComponent implements OnInit {
 
   // header-action outputs
   @Output() closeOrCancel = new EventEmitter<boolean>();
+  @Output() undo = new EventEmitter<void>();
+  @Output() redo = new EventEmitter<void>();
 
   @HostBinding('class.ngx-large-format-dialog-content')
   get isLargeFormat() {

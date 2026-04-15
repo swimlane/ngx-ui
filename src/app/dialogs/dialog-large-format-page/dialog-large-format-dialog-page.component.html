@@ -1113,6 +1113,38 @@
         </ngx-tab>
       </ngx-tabs>
     </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="With Undo Redo Buttons">
+      <ng-template #largeFormatWithUndoRedo let-context="context">
+        <ngx-large-format-dialog-content 
+          dialogTitle="Title"
+          dialogSubtitle="Optional Subtitle" 
+          [showUndoRedo]="true"
+          [undoRedoState]="{canUndo: true, canRedo: true}"
+          (undo)="onUndo()"
+          (redo)="onRedo()"
+          (closeOrCancel)="onCloseOrCancel()"
+        >
+          <p>Content</p>
+        </ngx-large-format-dialog-content>
+      </ng-template>
+    
+      <button type="button" class="btn" (click)="openDialog({ template: largeFormatWithUndoRedo, format: 'large', closeOnEscape: true })">
+        Open Large Dialog with Undo Redo Buttons
+      </button>
+    
+      <app-prism>
+    <![CDATA[<ng-template #largeFormatWithUndoRedo>
+      <ngx-large-format-dialog-content dialogTitle="Dialog Title" dialogSubtitle="Optional Subtitle" [showUndoRedo]="true" [undoRedoState]="{canUndo: true, canRedo: true}" (undo)="onUndo()" (redo)="onRedo()" (closeOrCancel)="onCloseOrCancel()">
+        <p>Content</p>
+      </ngx-large-format-dialog-content>
+    </ng-template>
+    
+    <button type="button" class="btn" (click)="openDialog({ template: largeFormatWithUndoRedo, format: 'large' })">
+      Open Large Dialog
+    </button>]]>
+      </app-prism>
+    </ngx-section>
     
     <ng-template #dialogDrawerTemplate let-close="close" let-context="context">
       <app-parent-drawer (dismiss)="close.emit()"></app-parent-drawer>

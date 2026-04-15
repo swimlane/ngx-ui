@@ -7,11 +7,18 @@
   align-items: center;
   justify-content: flex-end;
 
+  &__undo-redo-container {
+    display: flex;
+    gap: var(--spacing-8);
+    align-items: center;
+  }
+
   &__button {
     color: colors.$color-blue-grey-400;
     font-size: 0.8125rem;
     line-height: 1rem;
     padding-right: 0;
+    margin-left: var(--spacing-24);
 
     & i.ngx-icon {
       font-size: 0.625rem;

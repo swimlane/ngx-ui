@@ -6,6 +6,7 @@ import { InjectionService } from '../../services/injection/injection.service';
 import { InputModule } from '../input/input.module';
 import { LongPressButtonModule } from '../long-press/long-press-button.module';
 import { OverlayModule } from '../overlay/overlay.module';
+import { TooltipModule } from '../tooltip/tooltip.module';
 
 import { AlertComponent } from './alert/alert.component';
 import { DialogComponent } from './dialog.component';
@@ -42,6 +43,6 @@ import { LargeFormatDialogContentComponent } from './large-format/large-format-d
     LargeFormatDialogSubTabsDirective
   ],
   providers: [InjectionService],
-  imports: [CommonModule, OverlayModule, InputModule, FormsModule, LongPressButtonModule]
+  imports: [CommonModule, OverlayModule, InputModule, FormsModule, LongPressButtonModule, TooltipModule]
 })
 export class DialogModule {}

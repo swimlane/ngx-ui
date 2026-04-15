@@ -54,6 +54,14 @@ export class DialogLargeFormatDialogPageComponent {
     this.dialogRef?.destroy();
   }
 
+  onUndo() {
+    return;
+  }
+
+  onRedo() {
+    return;
+  }
+
   onCloseOrCancel2(isDirty: boolean) {
     alert('isDirty: ' + isDirty);
     this.dialogRef?.destroy();

@@ -62,6 +62,10 @@
     [dirty]="dirty"
     [actionTitle]="dialogActionTitle"
     [dirtyActionTitle]="dialogDirtyActionTitle"
-    (closeOrCancel)="onCloseOrCancel($event)"
+    [showUndoRedo]="showUndoRedo"
+    [undoRedoState]="undoRedoState"
+    (undo)="undo.emit()"
+    (redo)="redo.emit()"
+    (closeOrCancel)="closeOrCancel.emit($event)"
   ></ngx-large-format-dialog-header-action>
 </ng-template>

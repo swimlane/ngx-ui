@@ -10,16 +10,7 @@ import {
 
 @Component({
   selector: 'ngx-large-format-dialog-header-action',
-  template: `
-    <button
-      type="button"
-      class="ngx-large-format-dialog-header-action__button btn btn-link"
-      (click)="closeOrCancel.emit(dirty)"
-    >
-      <i class="ngx-icon ngx-x"></i>
-      {{ dirty ? dirtyActionTitle : actionTitle }}
-    </button>
-  `,
+  templateUrl: './large-format-dialog-header-action.component.html',
   styleUrls: ['./large-format-dialog-header-action.component.scss'],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -29,6 +20,10 @@ export class LargeFormatDialogHeaderActionComponent {
   @Input() actionTitle = 'Close';
   @Input() dirty = false;
   @Input() dirtyActionTitle = 'Cancel';
+  @Input() showUndoRedo = false;
+  @Input() undoRedoState: { canUndo: boolean; canRedo: boolean } = { canUndo: false, canRedo: false };
+  @Output() undo = new EventEmitter<void>();
+  @Output() redo = new EventEmitter<void>();
 
   @Output() closeOrCancel = new EventEmitter<boolean>();
 
