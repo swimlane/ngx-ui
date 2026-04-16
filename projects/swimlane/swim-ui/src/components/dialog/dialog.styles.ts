@@ -46,6 +46,18 @@ export const dialogStyles = [
       cursor: default;
     }
 
+    /* ngx-dialog visibilityTransition void=>*: 0.2s ease-out, opacity 0→1, scale3d(1.2)→(1) */
+    @keyframes swim-dialog-content-enter {
+      from {
+        opacity: 0;
+        transform: scale3d(1.2, 1.2, 1.2);
+      }
+      to {
+        opacity: 1;
+        transform: scale3d(1, 1, 1);
+      }
+    }
+
     .swim-dialog__content {
       pointer-events: auto;
       position: relative;
@@ -57,16 +69,19 @@ export const dialogStyles = [
       min-width: 250px;
       font-size: var(--font-size-m);
       color: var(--swim-dialog-body-color, var(--grey-200));
-      animation-fill-mode: forwards;
-      opacity: 0;
-      transform: scale3d(1.2, 1.2, 1);
-      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
       z-index: calc(var(--swim-dialog-z, 991) + 1);
     }
 
     .swim-dialog.swim-dialog--open .swim-dialog__content {
-      opacity: 1;
-      transform: scale3d(1, 1, 1);
+      animation: swim-dialog-content-enter 0.2s ease-out forwards;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .swim-dialog.swim-dialog--open .swim-dialog__content {
+        animation: none;
+        opacity: 1;
+        transform: none;
+      }
     }
 
     .swim-dialog__content--large,

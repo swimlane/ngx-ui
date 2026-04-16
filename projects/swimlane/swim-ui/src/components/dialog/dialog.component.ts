@@ -213,12 +213,6 @@ export class SwimDialog extends LitElement {
     super.disconnectedCallback();
   }
 
-  protected firstUpdated(): void {
-    if (this.visible && this._contentEl) {
-      this._contentEl.focus({ preventScroll: true });
-    }
-  }
-
   protected updated(changedProperties: Map<string, unknown>): void {
     if (changedProperties.has('closeButton')) {
       this._syncCloseButtonCustomProperty();
