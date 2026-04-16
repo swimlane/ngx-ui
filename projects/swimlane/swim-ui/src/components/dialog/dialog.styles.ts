@@ -6,17 +6,14 @@ import { scrollbarStyles } from '../../styles/scrollbars';
  * Dialog component styles matching @swimlane/ngx-ui design system.
  * Uses CSS variables from base; BEM: swim-dialog, swim-dialog__content, etc.
  * Includes scrollbar styles so .swim-scroll on the body works inside shadow DOM.
+ *
+ * Optional theme overrides (set on a parent or this host; inherit into shadow):
+ * --swim-dialog-bg, --swim-dialog-header-color, --swim-dialog-body-color, --swim-dialog-box-shadow
  */
 export const dialogStyles = [
   baseStyles,
   scrollbarStyles,
   css`
-    :host {
-      --swim-dialog-bg: var(--grey-800);
-      --swim-dialog-header-color: var(--grey-100);
-      --swim-dialog-body-color: var(--grey-200);
-    }
-
     .swim-dialog {
       position: fixed;
       display: flex;
@@ -53,12 +50,13 @@ export const dialogStyles = [
       pointer-events: auto;
       position: relative;
       border-radius: var(--radius-8);
-      box-shadow: var(--shadow-3);
-      background: var(--swim-dialog-bg);
+      /* ngx-dialog .ngx-dialog-content: box-shadow: $shadow-3 */
+      box-shadow: var(--swim-dialog-box-shadow, var(--shadow-3));
+      background: var(--swim-dialog-bg, var(--grey-800));
       padding: 1.4rem;
       min-width: 250px;
       font-size: var(--font-size-m);
-      color: var(--swim-dialog-body-color);
+      color: var(--swim-dialog-body-color, var(--grey-200));
       animation-fill-mode: forwards;
       opacity: 0;
       transform: scale3d(1.2, 1.2, 1);
@@ -142,7 +140,7 @@ export const dialogStyles = [
       font-size: var(--font-size-3xl);
       font-weight: 400;
       margin: 0 0 1.4rem 0;
-      color: var(--swim-dialog-header-color);
+      color: var(--swim-dialog-header-color, var(--grey-100));
     }
 
     .swim-dialog__content--medium .swim-dialog__header,

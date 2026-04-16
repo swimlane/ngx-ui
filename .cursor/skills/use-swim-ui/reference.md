@@ -40,7 +40,7 @@ Use this when you need exact property names, attribute names, events, and slots 
 
 **Properties:** `label`, `placeholder`, `hint`, `empty-placeholder`, `filter-placeholder`, `options` (array of {name, value, …}), `value` (single or array if multiple), `name`, `id`, `disabled`, `required`, `appearance`, `size`, `marginless`, `withHint`, `filterable`, `multiple`.  
 **Slots:** default (swim-option children), `hint`.  
-**Events:** `change`, `open`, `close`.  
+**Events:** `change`, `dropdown-open`, `dropdown-close`.  
 **Parts:** `select`, `dropdown`.  
 **Options:** Use `<swim-option name="Label" value="val">` or `options` property.
 
@@ -113,7 +113,7 @@ Use this when you need exact property names, attribute names, events, and slots 
 
 ## swim-dialog
 
-**Properties:** `dialog-title`, `content`, `class`, `css-class`, `format` (regular|medium|large), `show-backdrop`, `close-button`, `visible`, `zIndex`.  
+**Properties:** `dialog-title`, `content`, `class`, `css-class`, `format` (regular|medium|large), `show-backdrop`, `close-button`, `close-on-blur`, `close-on-escape`, `visible`, `zIndex`.  
 **Slots:** default (body).  
 **Events:** `open`, `close` (detail optional).  
 **Parts:** `content`, `close-button`.  

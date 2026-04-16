@@ -18,6 +18,27 @@
 </section>
 
 <section class="section">
+  <swim-section section-title="Backdrop and Escape">
+    <p class="section-desc" style="margin-top: 0; max-width: 42rem; margin-left: auto; margin-right: auto; text-align: center">
+      Match ngx <code>closeOnBlur</code> / <code>closeOnEscape</code> with <code>close-on-blur</code> and
+      <code>close-on-escape</code> on <code>swim-dialog</code>. This dialog keeps the dimmed backdrop but does
+      <strong>not</strong> close when you click it; use Escape, the close button, or programmatic <code>hide()</code>.
+    </p>
+    <swim-dialog id="dialogDismissBackdropDemo" dialog-title="No backdrop dismiss" close-on-blur="false">
+      <p>Try clicking outside this panel on the dimmed area — the dialog stays open.</p>
+      <p>Press <kbd>Escape</kbd> or the X control to close.</p>
+    </swim-dialog>
+    <swim-button type="button" id="dialogDismissBackdropOpen">Open dialog (close-on-blur false)</swim-button>
+    <br /><br />
+    <pre class="demo-pre"><code>&lt;swim-dialog dialog-title="..." close-on-blur="false"&gt;
+  ...
+&lt;/swim-dialog&gt;
+
+&lt;!-- Also: close-on-escape="false" to ignore Escape --&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
   <swim-section section-title="Component">
     <swim-dialog id="dialogComponentDemo" dialog-title="Attack Alert" show-backdrop="false">
       <p>Attack Found!</p>
@@ -71,7 +92,7 @@
 
 <section class="section">
   <swim-section section-title="Large Format">
-    <swim-dialog id="dialogLargeFormatDemo" format="large" close-button="false">
+    <swim-dialog id="dialogLargeFormatDemo" format="large">
       <swim-large-format-dialog-content
         id="dialogLargeFormatContent"
         format="large"
@@ -88,7 +109,7 @@
     </swim-dialog>
     <swim-button type="button" id="dialogLargeFormatOpen">Open Large Format Dialog</swim-button>
     <br /><br />
-    <pre class="demo-pre"><code>&lt;swim-dialog format="large" close-button="false"&gt;
+    <pre class="demo-pre"><code>&lt;swim-dialog format="large"&gt;
   &lt;swim-large-format-dialog-content format="large" dialog-title="Title" dialog-subtitle="Subtitle"&gt;
     &lt;p&gt;Body...&lt;/p&gt;
     &lt;swim-large-format-dialog-footer slot="footer"&gt;
@@ -96,6 +117,120 @@
     &lt;/swim-large-format-dialog-footer&gt;
   &lt;/swim-large-format-dialog-content&gt;
 &lt;/swim-dialog&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Theming (CSS variables)">
+    <p class="section-desc" style="margin-top: 0; max-width: 46rem; margin-left: auto; margin-right: auto; text-align: center">
+      Set <code>--swim-format-*</code> on <code>swim-dialog</code> or an ancestor; they inherit into
+      <code>swim-large-format-dialog-content</code> (padding, radius, dividers, footer gap, background). Regular dialogs
+      respect <code>--swim-dialog-bg</code>, <code>--swim-dialog-header-color</code>, and
+      <code>--swim-dialog-body-color</code>. Layout tokens such as <code>--spacing-40</code> from ngx-ui
+      <code>layouts/_vars.scss</code> work as values when your app defines them on <code>:root</code>.
+    </p>
+    <swim-dialog
+      id="dialogThemeVarsLargeDemo"
+      format="large"
+      style="
+        --swim-format-dialog-bg: var(--grey-900);
+        --swim-format-body-padding: var(--spacing-40, 2.5rem);
+        --swim-format-header-padding-x: var(--spacing-40, 2.5rem);
+        --swim-format-header-padding-end: var(--spacing-48, 3rem);
+        --swim-format-border-radius: var(--radius-24, 24px);
+        --swim-format-divider: 2px solid var(--blue-500);
+        --swim-format-footer-gap: var(--spacing-16, 1rem);
+      "
+    >
+      <swim-large-format-dialog-content
+        format="large"
+        dialog-title="Themed large dialog"
+        dialog-subtitle="Variables set on swim-dialog"
+      >
+        <p style="margin-top: 0">
+          This panel uses wider body padding, a larger corner radius, blue dividers, and a darker shell background via
+          inherited custom properties.
+        </p>
+        <swim-large-format-dialog-footer slot="footer" align="end">
+          <swim-button variant="bordered">Dismiss</swim-button>
+          <swim-button variant="primary">OK</swim-button>
+        </swim-large-format-dialog-footer>
+      </swim-large-format-dialog-content>
+    </swim-dialog>
+    <div class="demo-row" style="flex-wrap: wrap; justify-content: center; gap: 0.75rem">
+      <swim-button type="button" id="dialogThemeVarsLargeOpen">Open themed large dialog</swim-button>
+    </div>
+    <p class="section-desc" style="margin-top: 1.5rem; max-width: 46rem; margin-left: auto; margin-right: auto; text-align: center">
+      Regular format: panel colors from <code>--swim-dialog-*</code> on the host.
+    </p>
+    <swim-dialog
+      id="dialogThemeVarsRegularDemo"
+      dialog-title="Themed regular dialog"
+      style="
+        --swim-dialog-bg: var(--grey-725);
+        --swim-dialog-header-color: var(--lightblue-300);
+        --swim-dialog-body-color: var(--grey-100);
+      "
+    >
+      <p style="margin: 0">Header and body colors follow the variables above.</p>
+    </swim-dialog>
+    <div class="demo-row" style="flex-wrap: wrap; justify-content: center; gap: 0.75rem; margin-top: 0.5rem">
+      <swim-button type="button" id="dialogThemeVarsRegularOpen">Open themed regular dialog</swim-button>
+    </div>
+    <br /><br />
+    <pre class="demo-pre"><code>&lt;!-- Large / medium: set --swim-format-* on swim-dialog --&gt;
+&lt;swim-dialog format="large" style="
+  --swim-format-dialog-bg: var(--grey-900);
+  --swim-format-body-padding: var(--spacing-40, 2.5rem);
+  --swim-format-border-radius: var(--radius-24, 24px);
+  --swim-format-divider: 2px solid var(--blue-500);
+  --swim-format-footer-gap: var(--spacing-16, 1rem);
+"&gt;
+  &lt;swim-large-format-dialog-content format="large" dialog-title="..."&gt;...&lt;/swim-large-format-dialog-content&gt;
+&lt;/swim-dialog&gt;
+
+&lt;!-- Regular: --swim-dialog-bg, --swim-dialog-header-color, --swim-dialog-body-color --&gt;
+&lt;swim-dialog dialog-title="..." style="
+  --swim-dialog-bg: var(--grey-725);
+  --swim-dialog-header-color: var(--lightblue-300);
+  --swim-dialog-body-color: var(--grey-100);
+"&gt;...&lt;/swim-dialog&gt;</code></pre>
+  </swim-section>
+</section>
+
+<section class="section">
+  <swim-section section-title="Large format footer alignment">
+    <p class="section-desc" style="margin-top: 0; max-width: 42rem; margin-left: auto; margin-right: auto; text-align: center">
+      <code>swim-large-format-dialog-footer</code> uses the <code>align</code> attribute for horizontal layout
+      (<code>start</code> | <code>center</code> | <code>end</code> | <code>space-between</code> | <code>space-around</code> |
+      <code>space-evenly</code>). Open the same dialog with different values to compare the footer row.
+    </p>
+    <swim-dialog id="dialogFooterAlignDemo" format="medium">
+      <swim-large-format-dialog-content
+        format="medium"
+        dialog-title="Footer alignment"
+        dialog-subtitle="align maps to flex justify-content"
+      >
+        <p style="color: var(--grey-300); margin: 0">
+          Current <code>align</code> is set before the dialog opens. Default is <code>center</code>.
+        </p>
+        <swim-large-format-dialog-footer id="dialogFooterAlignFooter" slot="footer" format="medium" align="center">
+          <swim-button variant="bordered">Cancel</swim-button>
+          <swim-button variant="primary">Save</swim-button>
+        </swim-large-format-dialog-footer>
+      </swim-large-format-dialog-content>
+    </swim-dialog>
+    <div class="demo-row" style="flex-wrap: wrap; justify-content: center">
+      <swim-button type="button" id="dialogFooterAlignOpenStart">Open (align start)</swim-button>
+      <swim-button type="button" id="dialogFooterAlignOpenCenter">Open (align center)</swim-button>
+      <swim-button type="button" id="dialogFooterAlignOpenEnd">Open (align end)</swim-button>
+      <swim-button type="button" id="dialogFooterAlignOpenBetween">Open (align space-between)</swim-button>
+    </div>
+    <br /><br />
+    <pre class="demo-pre"><code>&lt;swim-large-format-dialog-footer slot="footer" format="medium" align="end"&gt;
+  &lt;swim-button variant="bordered"&gt;Cancel&lt;/swim-button&gt;
+  &lt;swim-button variant="primary"&gt;Save&lt;/swim-button&gt;
+&lt;/swim-large-format-dialog-footer&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -109,7 +244,7 @@
       >
       API inside a medium-format dialog body.
     </p>
-    <swim-dialog id="dialogMediumFormatDemo" format="medium" close-button="false">
+    <swim-dialog id="dialogMediumFormatDemo" format="medium">
       <swim-large-format-dialog-content
         id="dialogMediumFormatContent"
         format="medium"
@@ -150,7 +285,7 @@
       <swim-button type="button" id="dialogMediumFormatOpen">Open Medium Format Dialog</swim-button>
     </div>
     <br /><br />
-    <pre class="demo-pre"><code>&lt;swim-dialog format="medium" close-button="false"&gt;
+    <pre class="demo-pre"><code>&lt;swim-dialog format="medium"&gt;
   &lt;swim-large-format-dialog-content format="medium" dialog-title="..." dialog-subtitle="..."&gt;
     &lt;div style="display:flex; flex-direction:column; align-items:center; width:100%"&gt;
       &lt;!-- intro + max-width column for swim-select --&gt;
@@ -170,12 +305,12 @@
       <swim-button type="button" id="dialogMediumFooterOpen">Open Medium Dialog w/ Footer</swim-button>
       <swim-button type="button" id="dialogMediumFooterContentOpen">Open Medium Dialog w/ Footer and Content</swim-button>
     </div>
-    <swim-dialog id="dialogMediumContentDemo" format="medium" close-button="false">
+    <swim-dialog id="dialogMediumContentDemo" format="medium">
       <swim-large-format-dialog-content format="medium" dialog-title="Medium Dialog" dialog-subtitle="Content only">
         <p>This medium dialog has body content only (no footer).</p>
       </swim-large-format-dialog-content>
     </swim-dialog>
-    <swim-dialog id="dialogMediumFooterDemo" format="medium" close-button="false">
+    <swim-dialog id="dialogMediumFooterDemo" format="medium">
       <swim-large-format-dialog-content format="medium" dialog-title="Medium Dialog" dialog-subtitle="Footer only">
         <swim-large-format-dialog-footer slot="footer">
           <swim-button variant="bordered">Cancel</swim-button>
@@ -183,7 +318,7 @@
         </swim-large-format-dialog-footer>
       </swim-large-format-dialog-content>
     </swim-dialog>
-    <swim-dialog id="dialogMediumFooterContentDemo" format="medium" close-button="false">
+    <swim-dialog id="dialogMediumFooterContentDemo" format="medium">
       <swim-large-format-dialog-content format="medium" dialog-title="Title">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <swim-large-format-dialog-footer slot="footer">
@@ -242,7 +377,9 @@
 // Show: document.getElementById('myDialog').show();
 // Hide: document.getElementById('myDialog').hide();
 // Listen: myDialog.addEventListener('close', () => { ... });
-// Optional: myDialog.beforeClose = () => confirm('Discard?');</code></pre>
+// Optional: myDialog.beforeClose = () => confirm('Discard?');
+// Optional: myDialog.closeOnBlur = false; // or attribute close-on-blur="false"
+// Optional: myDialog.closeOnEscape = false;</code></pre>
   </swim-section>
 </section>
 
@@ -258,7 +395,9 @@
           <tbody>
             <tr><td><code>dialog-title</code></td><td><code>string</code></td><td><code>''</code></td><td>Title text in the dialog header</td></tr>
             <tr><td><code>format</code></td><td><code>'regular' | 'medium' | 'large'</code></td><td><code>'regular'</code></td><td>Dialog size format</td></tr>
-            <tr><td><code>close-button</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Shows a close (X) button</td></tr>
+            <tr><td><code>close-button</code></td><td><code>boolean</code></td><td><code>true</code></td><td>When false, hides the regular-format X and the large/medium header close/cancel (dismiss via backdrop, Escape, or <code>hide()</code> unless disabled)</td></tr>
+            <tr><td><code>close-on-blur</code></td><td><code>boolean</code></td><td><code>true</code></td><td>When false, backdrop click does not close (ngx <code>closeOnBlur</code>)</td></tr>
+            <tr><td><code>close-on-escape</code></td><td><code>boolean</code></td><td><code>true</code></td><td>When false, Escape does not close (ngx <code>closeOnEscape</code>)</td></tr>
             <tr><td><code>visible</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Controls visibility (or call show()/hide())</td></tr>
             <tr><td><code>z-index</code></td><td><code>number</code></td><td><code>991</code></td><td>CSS z-index stacking order</td></tr>
           </tbody>

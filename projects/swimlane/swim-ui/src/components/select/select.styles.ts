@@ -199,10 +199,6 @@ export const selectStyles = css`
     transition: color 0.2s ease-in-out;
   }
 
-  .select-hint.hidden {
-    display: none;
-  }
-
   /* Dropdown */
   .select-dropdown {
     position: absolute;

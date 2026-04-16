@@ -18,8 +18,17 @@ import '../icon/icon.component';
  * @fires open - Fired when the dialog is shown
  * @fires close - Fired when the dialog is closed (detail: boolean | void)
  *
+ * @attr close-button - When false, hides all header dismiss controls: the regular-format X and the large/medium
+ *   header action on `swim-large-format-dialog-content` (via inherited `--swim-dialog-header-action-display`). Default: true.
+ * @attr close-on-blur - When false, clicking the backdrop does not close (ngx closeOnBlur parity). Default: true.
+ * @attr close-on-escape - When false, Escape does not close (ngx closeOnEscape parity). Default: true.
+ *
  * @csspart content - The dialog content panel
  * @csspart close-button - The close button
+ *
+ * @cssprop [--swim-dialog-box-shadow] - Panel elevation; defaults to ngx `shadow-3` via `--shadow-3`.
+ * @cssprop [--swim-dialog-header-action-display] - Set on this host when `close-button` is false (`none`). Slotted
+ *   `swim-large-format-dialog-content` uses it to hide the header Close/Cancel. Override on a child host with `flex` if needed.
  */
 const DIALOG_TAG = 'swim-dialog';
 export class SwimDialog extends LitElement {
@@ -66,7 +75,9 @@ export class SwimDialog extends LitElement {
   })
   showBackdrop = true;
 
-  /** Whether to show the close button */
+  /**
+   * When false, hides the regular-format X and the large/medium format header close/cancel (see `--swim-dialog-header-action-display`).
+   */
   @property({ type: Boolean, attribute: 'close-button', converter: litBooleanAttrDefaultTrue })
   get closeButton(): boolean {
     return this._closeButton;
@@ -75,6 +86,26 @@ export class SwimDialog extends LitElement {
     this._closeButton = coerceBooleanProperty(value);
   }
   private _closeButton = true;
+
+  /** When false, clicking the dimmed backdrop does not dismiss the dialog (ngx `closeOnBlur`). */
+  @property({ type: Boolean, attribute: 'close-on-blur', converter: litBooleanAttrDefaultTrue })
+  get closeOnBlur(): boolean {
+    return this._closeOnBlur;
+  }
+  set closeOnBlur(value: boolean) {
+    this._closeOnBlur = coerceBooleanProperty(value);
+  }
+  private _closeOnBlur = true;
+
+  /** When false, the Escape key does not dismiss the dialog (ngx `closeOnEscape`). */
+  @property({ type: Boolean, attribute: 'close-on-escape', converter: litBooleanAttrDefaultTrue })
+  get closeOnEscape(): boolean {
+    return this._closeOnEscape;
+  }
+  set closeOnEscape(value: boolean) {
+    this._closeOnEscape = coerceBooleanProperty(value);
+  }
+  private _closeOnEscape = true;
 
   /** Whether the dialog is visible */
   @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
@@ -151,14 +182,35 @@ export class SwimDialog extends LitElement {
   }
 
   private _onBackdropClick(): void {
+    if (!this.closeOnBlur) return;
     this.hide();
   }
 
   private _onKeydown(e: KeyboardEvent): void {
     if (e.key === 'Escape') {
       e.stopPropagation();
+      if (!this.closeOnEscape) return;
       this.hide();
     }
+  }
+
+  /** Large/medium slotted content reads `--swim-dialog-header-action-display` (inherited). */
+  private _syncCloseButtonCustomProperty(): void {
+    if (!this.closeButton) {
+      this.style.setProperty('--swim-dialog-header-action-display', 'none');
+    } else {
+      this.style.removeProperty('--swim-dialog-header-action-display');
+    }
+  }
+
+  override connectedCallback(): void {
+    super.connectedCallback();
+    this._syncCloseButtonCustomProperty();
+  }
+
+  override disconnectedCallback(): void {
+    this.style.removeProperty('--swim-dialog-header-action-display');
+    super.disconnectedCallback();
   }
 
   protected firstUpdated(): void {
@@ -168,6 +220,9 @@ export class SwimDialog extends LitElement {
   }
 
   protected updated(changedProperties: Map<string, unknown>): void {
+    if (changedProperties.has('closeButton')) {
+      this._syncCloseButtonCustomProperty();
+    }
     if (changedProperties.has('visible') && this.visible && this._contentEl) {
       requestAnimationFrame(() => {
         this._contentEl?.focus({ preventScroll: true });

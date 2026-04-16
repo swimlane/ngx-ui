@@ -28,8 +28,8 @@ import './select-option.component';
  * @slot hint - Custom hint content
  *
  * @fires change - Fired when selection changes
- * @fires open - Fired when dropdown opens
- * @fires close - Fired when dropdown closes
+ * @fires dropdown-open - Fired when the options panel opens
+ * @fires dropdown-close - Fired when the options panel closes
  * @fires filter-change - With `async-filter`: debounced `detail.query` for remote search (empty string below min length)
  *
  * @csspart select - The select input element
@@ -216,7 +216,8 @@ export class SwimSelect extends LitElement {
   private _withMargin = true;
 
   /**
-   * Whether to show hint
+   * When true, the hint row is rendered only if `hint` is non-empty or a direct child uses `slot="hint"`.
+   * When false, the hint row is never rendered.
    */
   @property({ type: Boolean, converter: litBooleanAttrDefaultTrue })
   get withHint(): boolean {
@@ -284,6 +285,10 @@ export class SwimSelect extends LitElement {
   @state()
   private _slottedOptions: SelectOption[] = [];
 
+  /** Direct child assigned to `slot="hint"` (kept in sync via `_setupChildObserver`). */
+  @state()
+  private _hasSlottedHint = false;
+
   @state()
   private _open = false;
 
@@ -327,6 +332,7 @@ export class SwimSelect extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this._collectSlottedOptions();
+    this._syncSlottedHintPresence();
     this._setupChildObserver();
     this._updateActiveState();
   }
@@ -369,11 +375,24 @@ export class SwimSelect extends LitElement {
       });
   }
 
+  private _syncSlottedHintPresence() {
+    const next = Array.from(this.children).some(el => el.slot === 'hint');
+    if (next !== this._hasSlottedHint) {
+      this._hasSlottedHint = next;
+    }
+  }
+
   private _setupChildObserver() {
     this._childObserver = new MutationObserver(() => {
       this._collectSlottedOptions();
+      this._syncSlottedHintPresence();
     });
-    this._childObserver.observe(this, { childList: true, subtree: false });
+    this._childObserver.observe(this, {
+      childList: true,
+      subtree: false,
+      attributes: true,
+      attributeFilter: ['slot']
+    });
   }
 
   updated(changedProperties: PropertyValues) {
@@ -432,6 +451,7 @@ export class SwimSelect extends LitElement {
     const filteredOptions = this._getFilteredOptions();
     const showClear = this.allowClear && hasValue && !this.disabled;
     const showList = filteredOptions.length > 0 && !this.loading;
+    const showHint = this.withHint && (this.hint.trim() !== '' || this._hasSlottedHint);
 
     return html`
       <div class="select-wrap">
@@ -484,10 +504,13 @@ export class SwimSelect extends LitElement {
         <div class="select-underline">
           <div class="underline-fill"></div>
         </div>
-        <div class="select-hint ${!this.withHint ? 'hidden' : ''}">
-          <slot name="hint">${this.hint}</slot>
-        </div>
-
+        ${showHint
+          ? html`
+              <div class="select-hint">
+                <slot name="hint">${this.hint}</slot>
+              </div>
+            `
+          : nothing}
         ${this._open
           ? html`
               <div
@@ -825,7 +848,7 @@ export class SwimSelect extends LitElement {
     if (this.disabled) return;
     this._open = true;
     this._focusedIndex = 0;
-    this.dispatchEvent(new Event('open', { bubbles: true, composed: true }));
+    this.dispatchEvent(new Event('dropdown-open', { bubbles: false, composed: false }));
   }
 
   private _closeDropdown() {
@@ -834,7 +857,7 @@ export class SwimSelect extends LitElement {
       | null;
     this._teardownDropdownTopLayer(dd);
     this._open = false;
-    this.dispatchEvent(new Event('close', { bubbles: true, composed: true }));
+    this.dispatchEvent(new Event('dropdown-close', { bubbles: false, composed: false }));
   }
 
   private _moveFocus(direction: number) {

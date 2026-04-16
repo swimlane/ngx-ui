@@ -372,11 +372,11 @@ interface SelectOption {
 
 #### Events
 
-| Event    | Description                                    |
-| -------- | ---------------------------------------------- |
-| `change` | Fired when selection changes (detail: {value}) |
-| `open`   | Fired when dropdown opens                      |
-| `close`  | Fired when dropdown closes                     |
+| Event            | Description                                    |
+| ---------------- | ---------------------------------------------- |
+| `change`         | Fired when selection changes (detail: {value}) |
+| `dropdown-open`  | Fired when the options panel opens             |
+| `dropdown-close` | Fired when the options panel closes            |
 
 #### Slots
 

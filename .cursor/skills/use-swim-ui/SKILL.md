@@ -34,7 +34,8 @@ Listen with `@event-name` (Lit) or `addEventListener('event-name', ...)`. Events
 | Element | Event | Detail |
 |--------|---------|--------|
 | swim-button | click | native |
-| swim-input, swim-select | change | value / selection |
+| swim-input | change | value / selection |
+| swim-select | change, dropdown-open, dropdown-close | value / selection; panel events do not bubble |
 | swim-checkbox, swim-toggle | change, checked-change | checked state |
 | swim-radio-group | change | selected value |
 | swim-button-toggle-group | value-change | selected value |
@@ -95,7 +96,7 @@ When using the CDN bundle, the drawer may be created with `document.createElemen
 | swim-section | Collapsible section; section-title, section-collapsed, section-collapsible, header slot |
 | swim-card | Card; orientation, status, selectable, selected, outline-text |
 | swim-card-header, swim-card-body, swim-card-footer, swim-card-avatar, swim-card-placeholder | Card structure |
-| swim-dialog | Modal; dialog-title, format (regular/medium/large), visible, show-backdrop, close-button |
+| swim-dialog | Modal; dialog-title, format (regular/medium/large), visible, show-backdrop, close-button, close-on-blur, close-on-escape |
 | swim-large-format-dialog-content, swim-large-format-dialog-footer | Large/medium dialog layout slots |
 | swim-drawer | Slide panel; direction (left/right/bottom), size, open, closeOnOutsideClick, isRoot; show()/hide() |
 | swim-tooltip | Tooltip/popover; content, placement, alignment, type, show-event |

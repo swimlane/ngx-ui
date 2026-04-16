@@ -1,5 +1,5 @@
 import { LitElement, html, nothing } from 'lit';
-import { property } from 'lit/decorators.js';
+import { property, state } from 'lit/decorators.js';
 import { litBooleanAttrDefaultFalse } from '../../../utils/coerce';
 import { largeFormatDialogContentStyles } from './large-format-dialog-content.styles';
 import { scrollbarStyles } from '../../../styles/scrollbars';
@@ -8,6 +8,7 @@ import '../../icon/icon.component';
 /**
  * Content layout for Large or Medium format dialogs. Use inside swim-dialog when format="large" or format="medium".
  * Provides container, header (title + subtitle + close/cancel), scrollable body, and optional footer.
+ * When the parent `swim-dialog` uses `close-button="false"`, the header close/cancel is hidden (inherited `--swim-dialog-header-action-display`).
  *
  * @slot - Body content
  * @slot footer - Footer content (e.g. buttons)
@@ -42,8 +43,32 @@ export class SwimLargeFormatDialogContent extends LitElement {
   @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   dirty = false;
 
+  @state()
+  private _hasFooterSlot = false;
+
   private _onCloseOrCancel(): void {
     this.dispatchEvent(new CustomEvent('close-or-cancel', { detail: this.dirty, bubbles: true, composed: true }));
+  }
+
+  override firstUpdated(): void {
+    this._syncFooterSlotVisibility();
+  }
+
+  private _onFooterSlotChange = (): void => {
+    this._syncFooterSlotVisibility();
+  };
+
+  private _syncFooterSlotVisibility(): void {
+    const slot = this.renderRoot?.querySelector?.('slot[name="footer"]') as HTMLSlotElement | undefined;
+    if (!slot) return;
+    const nodes = slot.assignedNodes({ flatten: true });
+    const hasContent = nodes.some(
+      n =>
+        n.nodeType === Node.ELEMENT_NODE || (n.nodeType === Node.TEXT_NODE && (n.textContent?.trim() ?? '').length > 0)
+    );
+    if (this._hasFooterSlot !== hasContent) {
+      this._hasFooterSlot = hasContent;
+    }
   }
 
   render() {
@@ -51,6 +76,13 @@ export class SwimLargeFormatDialogContent extends LitElement {
       'format-dialog-container__header-title',
       'format-dialog-container__header-title--with-subtitle'
     ].join(' ');
+
+    const footerClasses = [
+      'format-dialog-container__footer',
+      this._hasFooterSlot ? '' : 'format-dialog-container__footer--hidden'
+    ]
+      .filter(Boolean)
+      .join(' ');
 
     return html`
       <main class="format-dialog-container">
@@ -74,8 +106,8 @@ export class SwimLargeFormatDialogContent extends LitElement {
         <section class="format-dialog-container__body swim-scroll">
           <slot></slot>
         </section>
-        <footer class="format-dialog-container__footer">
-          <slot name="footer"></slot>
+        <footer class="${footerClasses}">
+          <slot name="footer" @slotchange="${this._onFooterSlotChange}"></slot>
         </footer>
       </main>
     `;

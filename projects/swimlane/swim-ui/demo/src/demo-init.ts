@@ -946,6 +946,17 @@ function setupDemos(): void {
     });
   }
 
+  const dialogDismissBackdropOpen = document.getElementById('dialogDismissBackdropOpen');
+  const dialogDismissBackdropDemo = document.getElementById('dialogDismissBackdropDemo') as any;
+  if (dialogDismissBackdropOpen && dialogDismissBackdropDemo) {
+    dialogDismissBackdropOpen.addEventListener('click', () => {
+      dialogDismissBackdropDemo.visible = true;
+    });
+    dialogDismissBackdropDemo.addEventListener('close', () => {
+      dialogDismissBackdropDemo.visible = false;
+    });
+  }
+
   const dialogComponentToggle = document.getElementById('dialogComponentToggle');
   const dialogComponentDemo = document.getElementById('dialogComponentDemo') as any;
   if (dialogComponentToggle && dialogComponentDemo) {
@@ -999,6 +1010,56 @@ function setupDemos(): void {
     });
     dialogLargeFormatDemo.addEventListener('close-or-cancel', () => {
       dialogLargeFormatDemo.visible = false;
+    });
+  }
+
+  const dialogThemeVarsLargeOpen = document.getElementById('dialogThemeVarsLargeOpen');
+  const dialogThemeVarsLargeDemo = document.getElementById('dialogThemeVarsLargeDemo') as { visible?: boolean } | null;
+  if (dialogThemeVarsLargeOpen && dialogThemeVarsLargeDemo) {
+    const hideThemedLarge = () => {
+      dialogThemeVarsLargeDemo.visible = false;
+    };
+    dialogThemeVarsLargeOpen.addEventListener('click', () => {
+      dialogThemeVarsLargeDemo.visible = true;
+    });
+    dialogThemeVarsLargeDemo.addEventListener('close-or-cancel', hideThemedLarge);
+    dialogThemeVarsLargeDemo.addEventListener('close', hideThemedLarge);
+  }
+
+  const dialogThemeVarsRegularOpen = document.getElementById('dialogThemeVarsRegularOpen');
+  const dialogThemeVarsRegularDemo = document.getElementById('dialogThemeVarsRegularDemo') as {
+    visible?: boolean;
+  } | null;
+  if (dialogThemeVarsRegularOpen && dialogThemeVarsRegularDemo) {
+    dialogThemeVarsRegularOpen.addEventListener('click', () => {
+      dialogThemeVarsRegularDemo.visible = true;
+    });
+    dialogThemeVarsRegularDemo.addEventListener('close', () => {
+      dialogThemeVarsRegularDemo.visible = false;
+    });
+  }
+
+  const dialogFooterAlignDemo = document.getElementById('dialogFooterAlignDemo') as { visible?: boolean } | null;
+  const dialogFooterAlignFooter = document.getElementById('dialogFooterAlignFooter') as {
+    align?: string;
+    setAttribute(name: string, value: string): void;
+  } | null;
+  const wireDialogFooterAlignOpen = (buttonId: string, align: string) => {
+    const btn = document.getElementById(buttonId);
+    if (!btn || !dialogFooterAlignDemo || !dialogFooterAlignFooter) return;
+    btn.addEventListener('click', () => {
+      dialogFooterAlignFooter.setAttribute('align', align);
+      dialogFooterAlignFooter.align = align;
+      dialogFooterAlignDemo.visible = true;
+    });
+  };
+  wireDialogFooterAlignOpen('dialogFooterAlignOpenStart', 'start');
+  wireDialogFooterAlignOpen('dialogFooterAlignOpenCenter', 'center');
+  wireDialogFooterAlignOpen('dialogFooterAlignOpenEnd', 'end');
+  wireDialogFooterAlignOpen('dialogFooterAlignOpenBetween', 'space-between');
+  if (dialogFooterAlignDemo) {
+    dialogFooterAlignDemo.addEventListener('close-or-cancel', () => {
+      dialogFooterAlignDemo.visible = false;
     });
   }
 

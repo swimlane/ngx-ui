@@ -5,14 +5,16 @@ export const largeFormatDialogFooterStyles = [
   baseStyles,
   css`
     :host {
-      --swim-format-footer-gap: 0.5rem;
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
     }
 
     .format-dialog-footer {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: var(--swim-format-footer-gap);
+      gap: var(--swim-format-footer-gap, var(--spacing-8, 0.5rem));
       width: 100%;
       height: 100%;
     }
