@@ -58,6 +58,11 @@
     [imageTemplate]="imageTemplate"
     [dialogSubtitleTemplate]="dialogSubtitleTemplate"
   ></ngx-large-format-dialog-header-title>
+  <ng-container *ngIf="!stepperTemplate && !tabsTemplate">
+    <div *ngIf="largeFormatDialogHeaderContent" class="ngx-large-format-dialog-header-content">
+      <ng-container *ngTemplateOutlet="largeFormatDialogHeaderContent"></ng-container>
+    </div>
+  </ng-container>
   <ngx-large-format-dialog-header-action
     [dirty]="dirty"
     [actionTitle]="dialogActionTitle"
