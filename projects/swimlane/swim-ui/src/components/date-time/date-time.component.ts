@@ -674,8 +674,10 @@ export class SwimDateTime extends LitElement {
     if (this._dialogModel) {
       this.value = this._dialogModel;
       this._update();
-      this.dispatchEvent(new CustomEvent('date-time-selected', { detail: this.value, bubbles: true, composed: true }));
-      this.dispatchEvent(new CustomEvent('change', { detail: this.value, bubbles: true, composed: true }));
+      this.dispatchEvent(
+        new CustomEvent('date-time-selected', { detail: this.value, bubbles: false, composed: false })
+      );
+      this.dispatchEvent(new CustomEvent('change', { detail: this.value, bubbles: false, composed: false }));
     }
     this._close();
   };
@@ -683,8 +685,8 @@ export class SwimDateTime extends LitElement {
   private _clear = (): void => {
     this.value = undefined;
     this._update();
-    this.dispatchEvent(new CustomEvent('date-time-selected', { detail: undefined, bubbles: true, composed: true }));
-    this.dispatchEvent(new CustomEvent('change', { detail: undefined, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('date-time-selected', { detail: undefined, bubbles: false, composed: false }));
+    this.dispatchEvent(new CustomEvent('change', { detail: undefined, bubbles: false, composed: false }));
     this._close();
   };
 
@@ -808,23 +810,23 @@ export class SwimDateTime extends LitElement {
 
     this._updateFormValue();
 
-    this.dispatchEvent(new CustomEvent('input-change', { detail: this._value, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('input-change', { detail: this._value, bubbles: false, composed: false }));
 
     // Fire value-change on any value mutation
     if (this._value !== oldValue) {
-      this.dispatchEvent(new CustomEvent('value-change', { detail: this._value, bubbles: true, composed: true }));
+      this.dispatchEvent(new CustomEvent('value-change', { detail: this._value, bubbles: false, composed: false }));
     }
 
     // Fire change only when value is valid or cleared
     if (!this._dateInvalid && this._value !== oldValue) {
-      this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: true, composed: true }));
+      this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: false, composed: false }));
     }
   }
 
   private _handleFocus(e: Event): void {
     e.stopPropagation();
     this._focused = true;
-    this.dispatchEvent(new FocusEvent('focus', { bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('focus', { bubbles: false, composed: false }));
   }
 
   private _handleBlur(e: Event): void {
@@ -837,7 +839,7 @@ export class SwimDateTime extends LitElement {
       this._swimInput.value = this._displayValue;
     }
 
-    this.dispatchEvent(new FocusEvent('blur', { bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('blur', { bubbles: false, composed: false }));
   }
 
   private _handleKeyDown(e: KeyboardEvent): void {

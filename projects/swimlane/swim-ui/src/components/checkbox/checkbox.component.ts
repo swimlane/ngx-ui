@@ -60,7 +60,7 @@ export class SwimCheckbox extends LitElement {
     if (this._checked === next) return;
     this._checked = next;
     this._syncFormValue();
-    this.dispatchEvent(new CustomEvent('checked-change', { detail: this._checked, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('checked-change', { detail: this._checked, bubbles: false, composed: false }));
   }
   private _checked = false;
 
@@ -78,8 +78,8 @@ export class SwimCheckbox extends LitElement {
     this.dispatchEvent(
       new CustomEvent('indeterminate-change', {
         detail: this._indeterminate,
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }
@@ -173,18 +173,18 @@ export class SwimCheckbox extends LitElement {
           timeStamp: Date.now(),
           target: { checked: this._checked }
         },
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }
 
   private _onFocus(ev: FocusEvent) {
-    this.dispatchEvent(new FocusEvent('focus', { ...ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('focus', { ...ev, bubbles: false, composed: false }));
   }
 
   private _onBlur(ev: FocusEvent) {
-    this.dispatchEvent(new FocusEvent('blur', { ...ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('blur', { ...ev, bubbles: false, composed: false }));
   }
 
   render() {

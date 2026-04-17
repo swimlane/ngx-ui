@@ -161,8 +161,8 @@ export class SwimRadioGroup extends LitElement {
     this.dispatchEvent(
       new CustomEvent('change', {
         detail: this._value,
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }
@@ -179,7 +179,7 @@ export class SwimRadioGroup extends LitElement {
   };
 
   private _onGroupBlur = () => {
-    this.dispatchEvent(new FocusEvent('blur', { bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('blur', { bubbles: false, composed: false }));
   };
 
   private _focusFirst() {

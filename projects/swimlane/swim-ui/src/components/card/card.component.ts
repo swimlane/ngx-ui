@@ -12,8 +12,8 @@ import '../checkbox/checkbox.component';
  *
  * @slot - Default slot for card content (header, sections, body, footer).
  *
- * @fires select - Fired when the selectable checkbox is toggled (detail: boolean selected).
- * @fires outline-click - Fired when the outline text label is clicked.
+ * @fires select - Fired when the selectable checkbox is toggled (detail: boolean selected). Does not bubble.
+ * @fires outline-click - Fired when the outline text label is clicked. Does not bubble.
  *
  * @csspart outline-text - The clickable outline text inner element (when outlineText is set).
  */
@@ -93,7 +93,7 @@ export class SwimCard extends LitElement {
 
   private _onOutlineClick(e: Event) {
     e.stopPropagation();
-    this.dispatchEvent(new CustomEvent('outline-click', { bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('outline-click', { bubbles: false, composed: false }));
   }
 
   private _onSelectChange(e: CustomEvent) {
@@ -103,8 +103,8 @@ export class SwimCard extends LitElement {
     this.dispatchEvent(
       new CustomEvent('select', {
         detail: this.selected,
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }

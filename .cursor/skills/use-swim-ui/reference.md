@@ -2,6 +2,8 @@
 
 Use this when you need exact property names, attribute names, events, and slots for `swim-*` elements. Source of truth: `projects/swimlane/swim-ui/src/components/<name>/*.component.ts`.
 
+**Custom events:** Dispatched **only on the `swim-*` element host** (`bubbles: false`, `composed: false`). Listen on that element—do not use `document` / parent delegation. Conventional event names are used because events do not leave the host. Full table: [SKILL.md](SKILL.md#per-event-reference) (Events section).
+
 ---
 
 ## swim-button
@@ -10,6 +12,38 @@ Use this when you need exact property names, attribute names, events, and slots 
 **Slots:** default (button content).  
 **Events:** `click` (native, when not disabled/in-progress).  
 **Parts:** `button`.
+
+**Icon-only:** put `<swim-icon font-icon="…">` in the default slot; set `aria-label` (or `title`) because there is no visible text. Slotted icons inherit `color` from `<swim-button>` (same `--swim-button-color` / variant defaults as labels).
+
+```html
+<script type="module">
+  import '@swimlane/swim-ui/button';
+  import '@swimlane/swim-ui/icon';
+</script>
+
+<swim-button variant="primary" aria-label="Save">
+  <swim-icon font-icon="check"></swim-icon>
+</swim-button>
+```
+
+**Host styling (CSS on `swim-button` or an ancestor):** `--swim-button-padding`, `--swim-button-background`, `--swim-button-hover-background`, `--swim-button-border-width`, `--swim-button-border-style`, `--swim-button-border-color`, `--swim-button-hover-border-color`, `--swim-button-color`, `--swim-button-hover-color`, `--swim-button-shadow`, `--swim-button-outline-color`, `--swim-button-hover-outline-color`. These override every `variant` (including hover).
+
+```html
+<swim-button
+  variant="primary"
+  style="
+    --swim-button-padding: 0.65em 1.1em;
+    --swim-button-background: linear-gradient(120deg, var(--purple-500), var(--blue-500));
+    --swim-button-hover-background: linear-gradient(120deg, var(--purple-600), var(--blue-600));
+    --swim-button-border-width: 2px;
+    --swim-button-border-color: rgba(255, 255, 255, 0.35);
+  "
+>
+  Gradient
+</swim-button>
+```
+
+(Full row + more examples: `projects/swimlane/swim-ui/demo/public/sections/buttons.html`.)
 
 ---
 
@@ -173,9 +207,9 @@ Use this when you need exact property names, attribute names, events, and slots 
 
 ## swim-split / swim-split-area / swim-split-handle
 
-**Split:** slot: swim-split-area, swim-split-handle. Event: `resize`.  
+**Split:** slot: swim-split-area, swim-split-handle. (The parent `swim-split` does not currently dispatch a `resize` custom event; panes update when the handle fires `drag` / `dblclick`.)  
 **Area:** `basis` (flex), slot: default.  
-**Handle:** events: `drag`, `dragstart`, `dragend`, `dblclick`.
+**Handle:** `drag`, `dragstart`, `dragend`, `dblclick` (bubble only, not composed).
 
 ---
 

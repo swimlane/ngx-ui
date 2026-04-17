@@ -267,8 +267,8 @@ export class SwimSlider extends LitElement {
     this.dispatchEvent(
       new CustomEvent<SliderChangeDetail>('change', {
         detail: { value: this.multiple ? value : Number(value), percent },
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }

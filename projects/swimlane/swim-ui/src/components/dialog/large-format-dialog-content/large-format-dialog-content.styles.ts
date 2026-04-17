@@ -6,7 +6,7 @@ import { baseStyles } from '../../../styles/base';
  * Solid background, fixed header/footer heights, scrollable body.
  *
  * Optional overrides (set on a parent or this host; inherit into shadow):
- * --swim-format-dialog-bg, --swim-format-max-height, --swim-format-border-radius,
+ * --swim-format-dialog-bg, --swim-format-dialog-shadow, --swim-format-max-height, --swim-format-border-radius,
  * --swim-format-header-height, --swim-format-header-height-large, --swim-format-header-height-medium,
  * --swim-format-divider, --swim-format-header-padding-x, --swim-format-header-padding-end,
  * --swim-format-header-gap, --swim-format-header-title-stack-gap,
@@ -33,8 +33,8 @@ export const largeFormatDialogContentStyles = [
       flex-direction: column;
       height: 100%;
       max-height: var(--swim-format-max-height, 75vh);
-      background: var(--swim-format-dialog-bg, var(--grey-800));
-      box-shadow: 0 0 100px rgba(0, 0, 0, 0.25);
+      background: var(--swim-format-dialog-bg, var(--grey-725));
+      box-shadow: var(--swim-format-dialog-shadow, var(--shadow-dialog-panel));
       border-radius: var(--swim-format-border-radius, var(--radius-16, 16px));
       overflow: hidden;
     }

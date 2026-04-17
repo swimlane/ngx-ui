@@ -11,10 +11,10 @@ const DEFAULT_BASIS = '0 0 15px';
  * SwimSplitHandle - Draggable divider between split areas. Used as a direct child of swim-split.
  * Direction is set by the parent swim-split.
  *
- * @fires drag - Fired during drag with movement (detail: MouseEvent)
- * @fires dragstart - Fired on mousedown when drag starts
- * @fires dragend - Fired on mouseup when drag ends
- * @fires dblclick - Fired on double-click (used by parent to snap to extremes)
+ * @fires drag - Fired during drag (detail: MouseEvent). Does not bubble.
+ * @fires dragstart - Fired on mousedown when drag starts. Does not bubble.
+ * @fires dragend - Fired on mouseup when drag ends. Does not bubble.
+ * @fires dblclick - Fired on double-click (parent snaps). Does not bubble.
  */
 const SPLIT_HANDLE_TAG = 'swim-split-handle';
 export class SwimSplitHandle extends LitElement {
@@ -65,21 +65,21 @@ export class SwimSplitHandle extends LitElement {
     ev.preventDefault();
     document.addEventListener('mouseup', this._boundMouseUp, true);
     document.addEventListener('mousemove', this._boundMouseMove, true);
-    this.dispatchEvent(new CustomEvent('dragstart', { detail: ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('dragstart', { detail: ev, bubbles: false, composed: false }));
   }
 
   private _onMouseMove(ev: MouseEvent): void {
-    this.dispatchEvent(new CustomEvent('drag', { detail: ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('drag', { detail: ev, bubbles: false, composed: false }));
   }
 
   private _onMouseUp(ev: MouseEvent): void {
     document.removeEventListener('mouseup', this._boundMouseUp, true);
     document.removeEventListener('mousemove', this._boundMouseMove, true);
-    this.dispatchEvent(new CustomEvent('dragend', { detail: ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('dragend', { detail: ev, bubbles: false, composed: false }));
   }
 
   private _onDblClick(ev: MouseEvent): void {
-    this.dispatchEvent(new CustomEvent('dblclick', { detail: ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('dblclick', { detail: ev, bubbles: false, composed: false }));
   }
 
   render() {

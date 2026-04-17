@@ -57,6 +57,82 @@ const LIST_LARGE_DATA = [
   ...LIST_DATA
 ];
 
+/** Demo: log swim-checkbox propagation (light DOM vs nested shadow) for bubbles/composed. */
+function setupEventBubblingMatrixDemo(): void {
+  const root = document.getElementById('eventBubblingMatrixRoot');
+  if (!root) return;
+
+  const logEl = document.getElementById('eventBubblingMatrixLog');
+  const lines: string[] = [];
+  const maxLines = 100;
+
+  const log = (msg: string) => {
+    lines.push(`${new Date().toISOString().slice(11, 23)} ${msg}`);
+    if (lines.length > maxLines) lines.splice(0, lines.length - maxLines);
+    if (logEl) logEl.textContent = lines.join('\n');
+  };
+
+  document.getElementById('matrixClearLog')?.addEventListener('click', () => {
+    lines.length = 0;
+    if (logEl) logEl.textContent = '';
+    log('(log cleared)');
+  });
+
+  const types = ['change', 'checked-change'] as const;
+
+  const wire = (caseLabel: string, target: EventTarget, listenerLabel: string) => {
+    for (const t of types) {
+      target.addEventListener(
+        t,
+        (e: Event) => {
+          const tgt = e.target as HTMLElement | null;
+          const tag = tgt?.tagName?.toLowerCase() ?? '?';
+          log(
+            `${caseLabel} | ${listenerLabel} | type=${e.type} bubbles=${e.bubbles} composed=${e.composed} target=${tag}`
+          );
+        },
+        false
+      );
+    }
+  };
+
+  const cbLight = document.getElementById('matrixCbLight');
+  const wrapLight = root.querySelector('.matrix-wrap-light');
+  if (cbLight && wrapLight) {
+    wire('light', cbLight, 'onCheckbox');
+    wire('light', wrapLight, 'onWrapper(parent)');
+    wire('light', document, 'onDocument');
+  }
+
+  const mount = document.getElementById('matrixShadowMount');
+  if (mount && !mount.querySelector('[data-matrix-shadow-demo]')) {
+    const host = document.createElement('div');
+    host.dataset.matrixShadowDemo = '';
+    host.setAttribute(
+      'style',
+      'padding:1rem;background:var(--grey-800);border-radius:4px;border:1px solid var(--grey-600)'
+    );
+    const title = document.createElement('div');
+    title.style.cssText = 'font-size:0.875rem;color:var(--grey-300);margin-bottom:0.5rem';
+    title.textContent = 'Shadow host (open shadow contains swim-checkbox below)';
+    host.appendChild(title);
+    const shadow = host.attachShadow({ mode: 'open' });
+    const cb = document.createElement('swim-checkbox');
+    cb.id = 'matrixCbShadow';
+    cb.setAttribute('label', 'Toggle (inside shadow)');
+    shadow.appendChild(cb);
+    mount.appendChild(host);
+
+    wire('shadow', cb, 'onCheckbox');
+    wire('shadow', host, 'onShadowHost(light parent)');
+    wire('shadow', document, 'onDocument');
+  }
+
+  log(
+    'Toggle a checkbox above. Expect: events on the checkbox and wrapper; document only sees the light-DOM case (events do not bubble from the host). Shadow case: document does not receive events from inside the nested shadow root.'
+  );
+}
+
 const SECTION_FILES = [
   'home',
   'buttons',
@@ -80,7 +156,8 @@ const SECTION_FILES = [
   'dialog',
   'drawer',
   'scrollbars',
-  'icons'
+  'icons',
+  'event-bubbling-matrix'
 ];
 
 const SECTION_SET = new Set([...SECTION_FILES, 'datetime', 'drawer']);
@@ -372,6 +449,12 @@ function setupSelectDemos(): void {
 
   const requiredSelect = document.getElementById('requiredSelect') as any;
   if (requiredSelect) requiredSelect.options = attackTypeOptions;
+
+  const singleSelectDisabled = document.getElementById('singleSelectDisabled') as any;
+  if (singleSelectDisabled) {
+    singleSelectDisabled.options = attackTypeOptions;
+    singleSelectDisabled.value = 'breach';
+  }
 
   const legacySelect = document.getElementById('legacySelect') as any;
   if (legacySelect) legacySelect.options = fruits;
@@ -671,6 +754,8 @@ function setupListDemos(): void {
  * Called after each section is injected into #page-sections.
  */
 function setupDemos(): void {
+  setupEventBubblingMatrixDemo();
+
   // Button demos (promise handling)
   const successBtn = document.getElementById('successBtn');
   if (successBtn) {

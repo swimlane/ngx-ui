@@ -8,7 +8,8 @@ import { scrollbarStyles } from '../../styles/scrollbars';
  * Includes scrollbar styles so .swim-scroll on the body works inside shadow DOM.
  *
  * Optional theme overrides (set on a parent or this host; inherit into shadow):
- * --swim-dialog-bg, --swim-dialog-header-color, --swim-dialog-body-color, --swim-dialog-box-shadow
+ * --swim-dialog-bg, --swim-dialog-border, --swim-dialog-header-color, --swim-dialog-body-color,
+ * --swim-dialog-box-shadow
  */
 export const dialogStyles = [
   baseStyles,
@@ -62,9 +63,9 @@ export const dialogStyles = [
       pointer-events: auto;
       position: relative;
       border-radius: var(--radius-8);
-      /* ngx-dialog .ngx-dialog-content: box-shadow: $shadow-3 */
-      box-shadow: var(--swim-dialog-box-shadow, var(--shadow-3));
-      background: var(--swim-dialog-bg, var(--grey-800));
+      border: var(--swim-dialog-border, none);
+      box-shadow: var(--swim-dialog-box-shadow, var(--shadow-dialog-panel));
+      background: var(--swim-dialog-bg, var(--grey-725));
       padding: 1.4rem;
       min-width: 250px;
       font-size: var(--font-size-m);
@@ -88,7 +89,9 @@ export const dialogStyles = [
     .swim-dialog__content--medium {
       padding: var(--spacing-0);
       width: calc(100vw - 120px);
-      background-color: transparent;
+      background: transparent;
+      border: none;
+      box-shadow: none;
     }
 
     .swim-dialog__content--large {
@@ -155,7 +158,7 @@ export const dialogStyles = [
       font-size: var(--font-size-3xl);
       font-weight: 400;
       margin: 0 0 1.4rem 0;
-      color: var(--swim-dialog-header-color, var(--grey-100));
+      color: var(--swim-dialog-header-color, var(--grey-050));
     }
 
     .swim-dialog__content--medium .swim-dialog__header,
@@ -195,6 +198,7 @@ export const dialogStyles = [
     :host(.swim-dialog--full-screen) .swim-dialog__content,
     .swim-dialog.swim-dialog--full-screen .swim-dialog__content {
       box-shadow: none;
+      border: none;
       box-sizing: border-box;
       width: 100%;
       min-height: 100%;
@@ -231,6 +235,14 @@ export const dialogStyles = [
       padding: 1.4rem;
       margin-top: 0;
       display: block;
+    }
+
+    /* Parity with swim-dialog.run-all-swim-dialog::part(content) from light DOM */
+    :host(.run-all-swim-dialog) .swim-dialog__content,
+    :host(.run-all-swim-dialog) .swim-dialog__content:focus-visible,
+    .swim-dialog.run-all-swim-dialog .swim-dialog__content,
+    .swim-dialog.run-all-swim-dialog .swim-dialog__content:focus-visible {
+      outline: none;
     }
   `
 ];

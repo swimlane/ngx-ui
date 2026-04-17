@@ -2,11 +2,94 @@ import { css } from 'lit';
 
 /**
  * Button styles matching @swimlane/ngx-ui design system
+ *
+ * Variant appearance is driven by `--_swim-fallback-*` on :host (private).
+ * Host-facing `--swim-button-*` always take precedence in the inner `button` rules.
  */
 export const buttonStyles = css`
   :host {
     display: inline-block;
     cursor: pointer;
+
+    /* Private fallbacks — overridden per [variant] with higher specificity */
+    --_swim-fallback-bg: var(--grey-600);
+    --_swim-fallback-hover-bg: var(--grey-700);
+    --_swim-fallback-border-color: transparent;
+    --_swim-fallback-hover-border-color: transparent;
+    --_swim-fallback-color: var(--white);
+    --_swim-fallback-hover-color: var(--white);
+    --_swim-fallback-shadow: var(--shadow-1);
+    --_swim-fallback-outline: var(--grey-600);
+
+    /* Slotted nodes (e.g. swim-icon) inherit color from this host, not from the shadow button. */
+    color: var(--swim-button-color, var(--_swim-fallback-color));
+  }
+
+  :host([variant='primary']:not([bordered])) {
+    --_swim-fallback-bg: var(--blue-400);
+    --_swim-fallback-hover-bg: var(--blue-500);
+    --_swim-fallback-border-color: var(--blue-400);
+    --_swim-fallback-hover-border-color: var(--blue-500);
+    --_swim-fallback-color: var(--white);
+    --_swim-fallback-hover-color: var(--white);
+    --_swim-fallback-outline: var(--blue-500);
+  }
+
+  :host([variant='primary'][bordered]) {
+    --_swim-fallback-bg: transparent;
+    --_swim-fallback-hover-bg: var(--blue-500);
+    --_swim-fallback-border-color: var(--blue-400);
+    --_swim-fallback-hover-border-color: var(--blue-200);
+    --_swim-fallback-color: var(--blue-400);
+    --_swim-fallback-hover-color: var(--blue-200);
+    --_swim-fallback-shadow: none;
+    --_swim-fallback-outline: var(--blue-400);
+  }
+
+  :host([variant='bordered']) {
+    --_swim-fallback-bg: transparent;
+    --_swim-fallback-hover-bg: transparent;
+    --_swim-fallback-border-color: var(--blue-400);
+    --_swim-fallback-hover-border-color: var(--blue-200);
+    --_swim-fallback-color: var(--blue-400);
+    --_swim-fallback-hover-color: var(--blue-200);
+    --_swim-fallback-shadow: none;
+    --_swim-fallback-outline: var(--blue-400);
+  }
+
+  :host([variant='warning']) {
+    --_swim-fallback-bg: var(--orange-400);
+    --_swim-fallback-hover-bg: var(--orange-500);
+    --_swim-fallback-border-color: transparent;
+    --_swim-fallback-hover-border-color: transparent;
+    --_swim-fallback-color: var(--grey-900);
+    --_swim-fallback-hover-color: var(--grey-900);
+    --_swim-fallback-outline: var(--orange-500);
+  }
+
+  :host([variant='danger']) {
+    --_swim-fallback-bg: var(--red-400);
+    --_swim-fallback-hover-bg: var(--red-500);
+    --_swim-fallback-border-color: transparent;
+    --_swim-fallback-hover-border-color: transparent;
+    --_swim-fallback-color: var(--white);
+    --_swim-fallback-hover-color: var(--white);
+    --_swim-fallback-outline: var(--red-400);
+  }
+
+  :host([variant='link']) {
+    --_swim-fallback-bg: transparent;
+    --_swim-fallback-hover-bg: transparent;
+    --_swim-fallback-border-color: transparent;
+    --_swim-fallback-hover-border-color: transparent;
+    --_swim-fallback-color: var(--white);
+    --_swim-fallback-hover-color: var(--white);
+    --_swim-fallback-shadow: none;
+    --_swim-fallback-outline: var(--grey-600);
+  }
+
+  :host(:not([disabled]):hover) {
+    color: var(--swim-button-hover-color, var(--_swim-fallback-hover-color));
   }
 
   :host([disabled]) {
@@ -21,9 +104,13 @@ export const buttonStyles = css`
 
   button {
     box-sizing: border-box;
-    color: var(--button-text, var(--white));
-    display: inline-block;
-    padding: 0.35em 0.55em;
+    color: var(--swim-button-color, var(--_swim-fallback-color));
+    display: inline-grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    justify-items: stretch;
+    align-items: center;
+    padding: var(--swim-button-padding, 0.35em 0.55em);
     position: relative;
     text-align: center;
     text-decoration: none;
@@ -37,11 +124,12 @@ export const buttonStyles = css`
     cursor: inherit;
     width: 100%;
 
-    background: var(--button-bg, var(--grey-600));
-    border: solid 1px transparent;
-    border-color: var(--button-border, transparent);
+    background: var(--swim-button-background, var(--_swim-fallback-bg));
+    border-width: var(--swim-button-border-width, 1px);
+    border-style: var(--swim-button-border-style, solid);
+    border-color: var(--swim-button-border-color, var(--_swim-fallback-border-color));
     border-radius: var(--radius-4);
-    box-shadow: var(--button-shadow, var(--shadow-1));
+    box-shadow: var(--swim-button-shadow, var(--_swim-fallback-shadow));
     transition: background-color 200ms, box-shadow 200ms;
     text-shadow: 1px 1px rgba(0, 0, 0, 0.07);
   }
@@ -52,14 +140,19 @@ export const buttonStyles = css`
   }
 
   button:focus-visible {
-    outline: 2px solid var(--grey-600);
+    outline: 2px solid var(--swim-button-outline-color, var(--_swim-fallback-outline));
   }
 
-  /* Hover states (--button-hover set by swim-button-group when used inside a group) */
+  /* One hover layer so generic grey hover never leaks into bordered / link / etc. */
   :host(:not([disabled])) button:hover {
     cursor: pointer;
-    background: var(--button-hover, var(--grey-700));
-    outline-color: var(--button-hover, var(--grey-700));
+    background: var(--swim-button-hover-background, var(--_swim-fallback-hover-bg));
+    border-color: var(--swim-button-hover-border-color, var(--_swim-fallback-hover-border-color));
+    color: var(--swim-button-hover-color, var(--_swim-fallback-hover-color));
+    outline-color: var(
+      --swim-button-hover-outline-color,
+      var(--swim-button-hover-background, var(--_swim-fallback-hover-bg))
+    );
   }
 
   /* Size variants */
@@ -71,85 +164,14 @@ export const buttonStyles = css`
     font-size: 1.3em;
   }
 
-  /* Variant: Primary (--button-* overrides when inside swim-button-group) */
-  :host([variant='primary']) button {
-    background-color: var(--button-bg, var(--blue-400));
-    border-color: var(--button-border, var(--blue-400));
-    color: var(--button-text, var(--white));
-    outline-color: var(--button-border, var(--blue-500));
+  /* Icon-only: slotted swim-icon uses 1em — inherit the button font-size for small/large parity */
+  slot::slotted(swim-icon) {
+    font-size: inherit;
   }
 
-  :host([variant='primary']) button:focus-visible {
-    outline-color: var(--button-border, var(--blue-500));
-  }
-
-  :host([variant='primary']:not([disabled])) button:hover {
-    background-color: var(--button-hover, var(--blue-500));
-    border-color: var(--button-hover, var(--blue-500));
-  }
-
-  /* Variant: Warning */
-  :host([variant='warning']) button {
-    background-color: var(--orange-400);
-    color: var(--grey-900);
-    outline-color: var(--orange-500);
-  }
-
-  :host([variant='warning']) button:focus-visible {
-    outline-color: var(--orange-500);
-  }
-
-  :host([variant='warning']:not([disabled])) button:hover {
-    background-color: var(--orange-500);
-  }
-
-  /* Variant: Danger */
-  :host([variant='danger']) button {
-    background-color: var(--red-400);
-    outline-color: var(--red-400);
-  }
-
-  :host([variant='danger']) button:focus-visible {
-    outline-color: var(--red-400);
-  }
-
-  :host([variant='danger']:not([disabled])) button:hover {
-    background-color: var(--red-500);
-  }
-
-  /* Variant: Link */
-  :host([variant='link']) button {
-    background-color: transparent;
-    box-shadow: none;
-  }
-
-  :host([variant='link']:not([disabled])) button:hover {
-    background-color: transparent;
-  }
-
-  /* Variant: Bordered */
-  :host([variant='bordered']) button,
-  :host([variant='primary'][bordered]) button {
-    border: 1px solid var(--blue-400);
-    color: var(--blue-400);
-    background-color: transparent;
-    box-shadow: none;
-    outline-color: var(--blue-400);
-  }
-
-  :host([variant='bordered']) button:focus-visible,
-  :host([variant='primary'][bordered]) button:focus-visible {
-    outline-color: var(--blue-400);
-  }
-
-  :host([variant='bordered']:not([disabled])) button:hover,
-  :host([variant='primary'][bordered]:not([disabled])) button:hover {
-    border-color: var(--blue-200);
-    color: var(--blue-200);
-  }
-
-  /* Button content and state icon container */
+  /* Button content and state icon: same grid cell so intrinsic width is max(label, state) */
   .content {
+    grid-area: 1 / 1;
     text-overflow: ellipsis;
     overflow-x: clip;
     overflow-y: visible;
@@ -160,13 +182,28 @@ export const buttonStyles = css`
   }
 
   .state-icon {
-    position: absolute;
-    inset: 0;
+    grid-area: 1 / 1;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    justify-self: center;
+    width: max-content;
+    box-sizing: border-box;
     opacity: 0;
     pointer-events: none;
+  }
+
+  .state-icon-group {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35em;
+    box-sizing: border-box;
+    padding: 0 0.35em;
+  }
+
+  .state-loading-text {
+    white-space: nowrap;
   }
 
   /* State: In Progress */

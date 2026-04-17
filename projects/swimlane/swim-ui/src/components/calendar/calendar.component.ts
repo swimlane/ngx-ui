@@ -472,7 +472,7 @@ export class SwimCalendar extends LitElement {
     }
 
     this.requestUpdate();
-    this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: false, composed: false }));
   }
 
   private _onMonthClick(month: number): void {
@@ -487,7 +487,7 @@ export class SwimCalendar extends LitElement {
     }
 
     this.requestUpdate();
-    this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: false, composed: false }));
   }
 
   private _onYearClick(year: number): void {
@@ -502,7 +502,7 @@ export class SwimCalendar extends LitElement {
     }
 
     this.requestUpdate();
-    this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('change', { detail: this._value, bubbles: false, composed: false }));
   }
 
   // ---------------------------------------------------------------------------
@@ -595,7 +595,7 @@ export class SwimCalendar extends LitElement {
       }
       case 'Enter':
         setTimeout(() => {
-          this.dispatchEvent(new CustomEvent('day-key-enter', { bubbles: true, composed: true }));
+          this.dispatchEvent(new CustomEvent('day-key-enter', { bubbles: false, composed: false }));
         }, 200);
         break;
     }
@@ -635,7 +635,7 @@ export class SwimCalendar extends LitElement {
         break;
       case 'Enter':
         setTimeout(() => {
-          this.dispatchEvent(new CustomEvent('day-key-enter', { bubbles: true, composed: true }));
+          this.dispatchEvent(new CustomEvent('day-key-enter', { bubbles: false, composed: false }));
         }, 200);
         break;
     }
@@ -674,7 +674,7 @@ export class SwimCalendar extends LitElement {
         break;
       case 'Enter':
         setTimeout(() => {
-          this.dispatchEvent(new CustomEvent('day-key-enter', { bubbles: true, composed: true }));
+          this.dispatchEvent(new CustomEvent('day-key-enter', { bubbles: false, composed: false }));
         }, 200);
         break;
     }

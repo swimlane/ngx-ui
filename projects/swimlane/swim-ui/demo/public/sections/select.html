@@ -14,12 +14,25 @@
     <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
       <swim-select id="requiredSelect" label="Attack Type" required placeholder="Please select..."></swim-select>
     </div>
+    <h4 style="font-size: 1rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: var(--grey-300)">Disabled</h4>
+    <div style="display: flex; flex-direction: column; gap: 1rem; max-width: 500px">
+      <swim-select
+        id="singleSelectDisabled"
+        label="Attack Type"
+        disabled
+        placeholder="Select..."
+        value="breach"
+      ></swim-select>
+    </div>
     <pre class="demo-pre"
     ><code>&lt;!-- Basic --&gt;
 &lt;swim-select label="Attack Type" placeholder="Select..."&gt;&lt;/swim-select&gt;
 
 &lt;!-- Required --&gt;
 &lt;swim-select label="Attack Type" required placeholder="Please select..."&gt;&lt;/swim-select&gt;
+
+&lt;!-- Disabled (with pre-selected value) --&gt;
+&lt;swim-select label="Attack Type" disabled placeholder="Select..." value="breach"&gt;&lt;/swim-select&gt;
 
 &lt;script&gt;
   const options = [

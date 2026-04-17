@@ -33,21 +33,57 @@ export const selectStyles = css`
     font-size: var(--font-size-xl) !important;
   }
 
-  :host([focused]:not([invalid])) .select-label {
+  :host([focused]:not([invalid]):not([disabled])) .select-label {
     color: var(--blue-500) !important;
   }
 
-  :host([invalid][touched]) .select-underline {
+  :host([invalid][touched]:not([disabled])) .select-underline {
     background-color: var(--red-500) !important;
   }
 
-  :host([invalid][touched]) .underline-fill {
+  :host([invalid][touched]:not([disabled])) .underline-fill {
     background-color: var(--red-500) !important;
   }
 
-  :host([invalid][touched]) .select-label,
-  :host([invalid][touched]) .select-hint {
+  :host([invalid][touched]:not([disabled])) .select-label,
+  :host([invalid][touched]:not([disabled])) .select-hint {
     color: var(--red-500);
+  }
+
+  :host([disabled]) .select-input {
+    cursor: not-allowed;
+    color: var(--grey-400);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  :host([disabled]) .select-label {
+    color: var(--grey-450);
+  }
+
+  :host([disabled]) .select-placeholder {
+    color: var(--grey-450);
+  }
+
+  :host([disabled]) .select-controls {
+    color: var(--grey-500);
+  }
+
+  :host([disabled]) .select-underline {
+    background-color: var(--grey-700);
+  }
+
+  :host([disabled]) .underline-fill {
+    width: 0 !important;
+  }
+
+  :host([disabled]) .select-hint {
+    color: var(--grey-450);
+  }
+
+  :host([disabled]) .select-chip {
+    background: var(--grey-650);
+    color: var(--grey-300);
   }
 
   .select-wrap {
@@ -96,11 +132,6 @@ export const selectStyles = css`
     outline: none;
   }
 
-  .select-input[disabled] {
-    cursor: not-allowed;
-    color: var(--grey-400);
-  }
-
   .select-value {
     flex: 1;
     padding: 3px 0;
@@ -146,7 +177,7 @@ export const selectStyles = css`
     margin-right: var(--spacing-8);
   }
 
-  :host([open]) .select-caret {
+  :host([open]:not([disabled])) .select-caret {
     transform: rotate(180deg);
   }
 
@@ -185,8 +216,8 @@ export const selectStyles = css`
     margin: 0 auto;
   }
 
-  :host([focused]) .underline-fill,
-  :host([open]) .underline-fill {
+  :host([focused]:not([disabled])) .underline-fill,
+  :host([open]:not([disabled])) .underline-fill {
     width: 100%;
   }
 

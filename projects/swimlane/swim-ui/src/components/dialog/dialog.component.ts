@@ -15,8 +15,8 @@ import '../icon/icon.component';
  *
  * @slot - Default content (body). Use with dialog-title and optional header/footer.
  *
- * @fires open - Fired when the dialog is shown
- * @fires close - Fired when the dialog is closed (detail: boolean | void)
+ * @fires open - Fired when the dialog is shown (does not bubble; listen on this element).
+ * @fires close - Fired when the dialog is closed (detail: boolean | void). Does not bubble.
  *
  * @attr close-button - When false, hides all header dismiss controls: the regular-format X and the large/medium
  *   header action on `swim-large-format-dialog-content` (via inherited `--swim-dialog-header-action-display`). Default: true.
@@ -26,7 +26,8 @@ import '../icon/icon.component';
  * @csspart content - The dialog content panel
  * @csspart close-button - The close button
  *
- * @cssprop [--swim-dialog-box-shadow] - Panel elevation; defaults to ngx `shadow-3` via `--shadow-3`.
+ * @cssprop [--swim-dialog-border] - Panel outline; default none (Figma modal has no stroke on the panel).
+ * @cssprop [--swim-dialog-box-shadow] - Panel elevation; defaults to `--shadow-dialog-panel` (Figma drop shadow).
  * @cssprop [--swim-dialog-header-action-display] - Set on this host when `close-button` is false (`none`). Slotted
  *   `swim-large-format-dialog-content` uses it to hide the header Close/Cancel. Override on a child host with `flex` if needed.
  */
@@ -119,10 +120,10 @@ export class SwimDialog extends LitElement {
     if (next) {
       this._previousActiveElement =
         typeof document !== 'undefined' ? (document.activeElement as HTMLElement | null) : null;
-      this.dispatchEvent(new CustomEvent('open', { bubbles: true }));
+      this.dispatchEvent(new CustomEvent('open', { bubbles: false, composed: false }));
     } else {
       this._restoreFocus();
-      this.dispatchEvent(new CustomEvent('close', { detail: undefined, bubbles: true }));
+      this.dispatchEvent(new CustomEvent('close', { detail: undefined, bubbles: false, composed: false }));
     }
   }
   private _visible = false;

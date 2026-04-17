@@ -11,23 +11,23 @@ export const buttonGroupStyles = css`
     position: relative;
     box-sizing: border-box;
 
-    /* Default colors - slotted buttons inherit via --button-* (swim-button uses these with fallbacks) */
-    --button-bg: var(--grey-600);
-    --button-border: var(--grey-600);
-    --button-text: var(--white);
-    --button-hover: var(--grey-700);
+    /* Default colors - slotted swim-button inherits via --swim-button-* */
+    --swim-button-background: var(--grey-600);
+    --swim-button-border-color: var(--grey-600);
+    --swim-button-color: var(--white);
+    --swim-button-hover-background: var(--grey-700);
   }
 
   :host([button-group-style='primary']) {
-    --button-bg: var(--blue-400);
-    --button-border: var(--blue-400);
-    --button-text: var(--white);
-    --button-hover: var(--blue-500);
+    --swim-button-background: var(--blue-400);
+    --swim-button-border-color: var(--blue-400);
+    --swim-button-color: var(--white);
+    --swim-button-hover-background: var(--blue-500);
   }
 
   /* Contained group: slotted buttons use group colors and no individual shadow */
   :host([variant='contained']) {
-    --button-shadow: none;
+    --swim-button-shadow: none;
   }
 
   /* Horizontal: align items */

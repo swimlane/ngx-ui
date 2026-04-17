@@ -11,8 +11,8 @@ import { coerceBooleanProperty, litBooleanAttrDefaultFalse } from '../../utils/c
  *
  * @slot - Default slot for swim-tab children (tab panels)
  *
- * @fires select-tab - Fired when the active tab changes (detail: { tab: SwimTab })
- * @fires select - Alias for select-tab (backwards compatibility)
+ * @fires select-tab - Fired when the active tab changes (detail: { tab: SwimTab }). Does not bubble.
+ * @fires select - Same detail as select-tab (legacy alias). Does not bubble.
  *
  * @csspart tablist - The tab list container (role=tablist)
  * @csspart tab-content - The container for tab panels
@@ -97,15 +97,15 @@ export class SwimTabs extends LitElement {
     this.dispatchEvent(
       new CustomEvent('select-tab', {
         detail: { tab },
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
     this.dispatchEvent(
       new CustomEvent('select', {
         detail: { tab },
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }

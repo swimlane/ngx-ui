@@ -213,7 +213,7 @@ export class SwimTooltip extends LitElement {
           this._addHideListeners();
         });
       });
-      this.dispatchEvent(new CustomEvent('show', { detail: true, bubbles: true }));
+      this.dispatchEvent(new CustomEvent('show', { detail: true, bubbles: false, composed: false }));
     };
     if (immediate) {
       run();
@@ -234,7 +234,7 @@ export class SwimTooltip extends LitElement {
       this._openFromClick = false;
       this._removeDocumentClick();
       this._removePanelHideListeners();
-      this.dispatchEvent(new CustomEvent('hide', { detail: true, bubbles: true }));
+      this.dispatchEvent(new CustomEvent('hide', { detail: true, bubbles: false, composed: false }));
     };
     if (immediate) {
       destroy();

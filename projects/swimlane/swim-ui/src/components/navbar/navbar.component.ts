@@ -12,7 +12,7 @@ const BAR_SIZE = 40;
  *
  * @slot - Default slot for swim-navbar-item children
  *
- * @fires active-change - Fired when the active item changes (detail: number index)
+ * @fires active-change - Fired when the active item changes (detail: number index). Does not bubble.
  *
  * @csspart nav-items - Container for nav items
  * @csspart bar-track - Track for the active bar
@@ -52,8 +52,8 @@ export class SwimNavbar extends LitElement {
       this.dispatchEvent(
         new CustomEvent('active-change', {
           detail: this._active,
-          bubbles: true,
-          composed: true
+          bubbles: false,
+          composed: false
         })
       );
     }
@@ -140,8 +140,8 @@ export class SwimNavbar extends LitElement {
       this.dispatchEvent(
         new CustomEvent('active-change', {
           detail: this._active,
-          bubbles: true,
-          composed: true
+          bubbles: false,
+          composed: false
         })
       );
     }

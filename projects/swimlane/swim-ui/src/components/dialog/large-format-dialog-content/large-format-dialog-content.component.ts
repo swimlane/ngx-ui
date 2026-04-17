@@ -13,7 +13,7 @@ import '../../icon/icon.component';
  * @slot - Body content
  * @slot footer - Footer content (e.g. buttons)
  *
- * @fires close-or-cancel - Fired when the header close/cancel button is clicked (detail: boolean – true if dirty)
+ * @fires close-or-cancel - Fired when the header close/cancel is clicked (detail: boolean dirty). Does not bubble.
  */
 const LARGE_FORMAT_DIALOG_CONTENT_TAG = 'swim-large-format-dialog-content';
 export class SwimLargeFormatDialogContent extends LitElement {
@@ -47,7 +47,7 @@ export class SwimLargeFormatDialogContent extends LitElement {
   private _hasFooterSlot = false;
 
   private _onCloseOrCancel(): void {
-    this.dispatchEvent(new CustomEvent('close-or-cancel', { detail: this.dirty, bubbles: true, composed: true }));
+    this.dispatchEvent(new CustomEvent('close-or-cancel', { detail: this.dirty, bubbles: false, composed: false }));
   }
 
   override firstUpdated(): void {

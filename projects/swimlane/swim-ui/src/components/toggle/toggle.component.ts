@@ -177,18 +177,18 @@ export class SwimToggle extends LitElement {
           timeStamp: Date.now(),
           target: { checked: this._checked }
         },
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }
 
   private _onFocus(ev: FocusEvent) {
-    this.dispatchEvent(new FocusEvent('focus', { ...ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('focus', { ...ev, bubbles: false, composed: false }));
   }
 
   private _onBlur(ev: FocusEvent) {
-    this.dispatchEvent(new FocusEvent('blur', { ...ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('blur', { ...ev, bubbles: false, composed: false }));
   }
 
   private _onInputChange(ev: Event) {

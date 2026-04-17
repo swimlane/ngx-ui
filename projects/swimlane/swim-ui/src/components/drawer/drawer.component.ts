@@ -150,7 +150,7 @@ export class SwimDrawer extends LitElement {
   }
 
   private _emitClose(): void {
-    this.dispatchEvent(new CustomEvent('close', { detail: true, bubbles: true }));
+    this.dispatchEvent(new CustomEvent('close', { detail: true, bubbles: false, composed: false }));
   }
 
   private _onBackdropClick(): void {

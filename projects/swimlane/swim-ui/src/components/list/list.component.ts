@@ -116,14 +116,14 @@ export class SwimList extends LitElement {
   private _emitScrollChanges(event: Event): void {
     const target = event.target as HTMLDivElement;
     const scrollY = target.scrollTop;
-    this.dispatchEvent(new CustomEvent('scroll', { detail: scrollY, bubbles: true }));
+    this.dispatchEvent(new CustomEvent('scroll', { detail: scrollY, bubbles: false, composed: false }));
     const pageSize = this.paginationConfig?.pageSize;
     if (pageSize) {
       const currentRow = Math.floor(scrollY / ROW_HEIGHT);
       const page = Math.floor(currentRow / pageSize) + 1;
       if (page !== this._page) {
         this._page = page;
-        this.dispatchEvent(new CustomEvent('page-change', { detail: page, bubbles: true }));
+        this.dispatchEvent(new CustomEvent('page-change', { detail: page, bubbles: false, composed: false }));
       }
     }
   }

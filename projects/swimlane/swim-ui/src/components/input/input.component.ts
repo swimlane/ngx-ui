@@ -18,10 +18,10 @@ import { coerceBooleanProperty, litBooleanAttrDefaultFalse, litBooleanAttrDefaul
  * @slot suffix - Content to show after the input
  * @slot hint - Hint text below the input
  *
- * @fires change - Fired when the value changes
- * @fires input - Fired on input events
- * @fires focus - Fired when the input gains focus
- * @fires blur - Fired when the input loses focus
+ * @fires change - Fired when the value changes (does not bubble; listen on this element).
+ * @fires input - Fired on input events (does not bubble).
+ * @fires focus - Fired when the input gains focus (does not bubble).
+ * @fires blur - Fired when the input loses focus (does not bubble).
  *
  * @csspart input - The native input/textarea element
  * @csspart label - The label element
@@ -411,18 +411,18 @@ export class SwimInput extends LitElement {
       this.setAttribute('dirty', '');
     }
 
-    this.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
+    this.dispatchEvent(new Event('input', { bubbles: false, composed: false }));
   }
 
   private _handleChange(_e: Event) {
     this._validate();
-    this.dispatchEvent(new Event('change', { bubbles: true, composed: true }));
+    this.dispatchEvent(new Event('change', { bubbles: false, composed: false }));
   }
 
   private _handleFocus(_e: FocusEvent) {
     this._focused = true;
     this.setAttribute('focused', '');
-    this.dispatchEvent(new FocusEvent('focus', { bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('focus', { bubbles: false, composed: false }));
   }
 
   private _handleBlur(_e: FocusEvent) {
@@ -435,7 +435,7 @@ export class SwimInput extends LitElement {
     }
 
     this._validate();
-    this.dispatchEvent(new FocusEvent('blur', { bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('blur', { bubbles: false, composed: false }));
   }
 
   private _togglePassword() {
@@ -492,7 +492,7 @@ export class SwimInput extends LitElement {
 
       const newValue = currentValue + 1;
       this.value = newValue.toString();
-      this.dispatchEvent(new Event('change', { bubbles: true, composed: true }));
+      this.dispatchEvent(new Event('change', { bubbles: false, composed: false }));
     }
   }
 
@@ -505,7 +505,7 @@ export class SwimInput extends LitElement {
 
       const newValue = currentValue - 1;
       this.value = newValue.toString();
-      this.dispatchEvent(new Event('change', { bubbles: true, composed: true }));
+      this.dispatchEvent(new Event('change', { bubbles: false, composed: false }));
     }
   }
 

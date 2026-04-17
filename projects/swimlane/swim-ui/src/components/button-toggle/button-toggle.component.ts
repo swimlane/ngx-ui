@@ -100,8 +100,8 @@ export class SwimButtonToggle extends LitElement {
     this.dispatchEvent(
       new CustomEvent('value-change', {
         detail: this.value,
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }

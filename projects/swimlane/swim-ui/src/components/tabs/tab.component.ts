@@ -11,6 +11,8 @@ let nextId = 0;
  *
  * @slot label - Custom label content (optional; if not used, the `label` property is shown in the tab list)
  * @slot - Tab panel content (shown when this tab is active)
+ *
+ * @fires swim-tab-active-change - Fired when `active` changes. Does not bubble.
  */
 const TAB_TAG = 'swim-tab';
 export class SwimTab extends LitElement {
@@ -68,7 +70,7 @@ export class SwimTab extends LitElement {
       const prev = this._active;
       this._active = next;
       this.requestUpdate('active', prev);
-      this.dispatchEvent(new CustomEvent('swim-tab-active-change', { bubbles: true, composed: true }));
+      this.dispatchEvent(new CustomEvent('swim-tab-active-change', { bubbles: false, composed: false }));
     }
   }
   private _active = false;

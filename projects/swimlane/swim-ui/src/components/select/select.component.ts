@@ -27,10 +27,10 @@ import './select-option.component';
  * @slot - swim-option children for declarative options
  * @slot hint - Custom hint content
  *
- * @fires change - Fired when selection changes
- * @fires dropdown-open - Fired when the options panel opens
- * @fires dropdown-close - Fired when the options panel closes
- * @fires filter-change - With `async-filter`: debounced `detail.query` for remote search (empty string below min length)
+ * @fires change - Fired when selection changes (does not bubble; listen on this element).
+ * @fires dropdown-open - Options panel opened (does not bubble).
+ * @fires dropdown-close - Options panel closed (does not bubble).
+ * @fires filter-change - With `async-filter`: debounced `detail.query` for remote search (does not bubble).
  *
  * @csspart select - The select input element
  * @csspart dropdown - The dropdown container
@@ -398,6 +398,17 @@ export class SwimSelect extends LitElement {
   updated(changedProperties: PropertyValues) {
     super.updated(changedProperties);
 
+    if (changedProperties.has('disabled')) {
+      if (this.disabled) {
+        this._focused = false;
+        this.removeAttribute('focused');
+        if (this._open) {
+          this._closeDropdown();
+        }
+      }
+      this._updateActiveState();
+    }
+
     if (changedProperties.has('value')) {
       this._updateActiveState();
       this._validate();
@@ -462,6 +473,7 @@ export class SwimSelect extends LitElement {
                 class="select-input"
                 part="select"
                 role="combobox"
+                aria-disabled="${this.disabled ? 'true' : nothing}"
                 aria-expanded="${this._open}"
                 aria-haspopup="listbox"
                 aria-controls="${this.id}-listbox"
@@ -489,6 +501,7 @@ export class SwimSelect extends LitElement {
                     type="button"
                     class="select-caret"
                     aria-label="Toggle dropdown"
+                    ?disabled="${this.disabled}"
                     @click="${this._handleToggle}"
                   >
                     <swim-icon font-icon="chevron-bold-down"></swim-icon>
@@ -701,6 +714,9 @@ export class SwimSelect extends LitElement {
   }
 
   private _handleFocus() {
+    if (this.disabled) {
+      return;
+    }
     this._focused = true;
     this.setAttribute('focused', '');
   }
@@ -718,6 +734,9 @@ export class SwimSelect extends LitElement {
   }
 
   private _handleKeyDown(e: KeyboardEvent) {
+    if (this.disabled) {
+      return;
+    }
     switch (e.key) {
       case 'Enter':
       case ' ':
@@ -753,8 +772,8 @@ export class SwimSelect extends LitElement {
     this.dispatchEvent(
       new CustomEvent('filter-change', {
         detail: { query },
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }
@@ -909,8 +928,8 @@ export class SwimSelect extends LitElement {
     this.dispatchEvent(
       new CustomEvent('change', {
         detail: { value: this.value },
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }

@@ -15,7 +15,7 @@ let nextId = 0;
  * @slot header - Custom header content (replaces or supplements sectionTitle).
  * @slot - Default slot for section body content.
  *
- * @fires toggle - Fired when the section is expanded or collapsed (detail: boolean collapsed).
+ * @fires toggle - Fired when the section is expanded or collapsed (detail: boolean collapsed). Does not bubble.
  */
 const SECTION_TAG = 'swim-section';
 export class SwimSection extends LitElement {
@@ -159,8 +159,8 @@ export class SwimSection extends LitElement {
     this.dispatchEvent(
       new CustomEvent('toggle', {
         detail: nextCollapsed,
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }

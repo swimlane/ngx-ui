@@ -114,8 +114,8 @@ export class SwimRadio extends LitElement {
       this.dispatchEvent(
         new CustomEvent('change', {
           detail: this.value,
-          bubbles: true,
-          composed: true
+          bubbles: false,
+          composed: false
         })
       );
     }
@@ -126,18 +126,18 @@ export class SwimRadio extends LitElement {
     this.dispatchEvent(
       new CustomEvent('change', {
         detail: this.value,
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }
 
   private _onFocus(ev: FocusEvent) {
-    this.dispatchEvent(new FocusEvent('focus', { ...ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('focus', { ...ev, bubbles: false, composed: false }));
   }
 
   private _onBlur(ev: FocusEvent) {
-    this.dispatchEvent(new FocusEvent('blur', { ...ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('blur', { ...ev, bubbles: false, composed: false }));
   }
 
   render() {
