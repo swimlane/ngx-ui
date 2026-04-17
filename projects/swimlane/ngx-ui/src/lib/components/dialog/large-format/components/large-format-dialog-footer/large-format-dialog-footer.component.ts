@@ -1,14 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, HostBinding, Input, ViewEncapsulation } from '@angular/core';
 
-/** Horizontal alignment of footer content (flex `justify-content`). */
-export type NgxLargeFormatDialogFooterAlign =
-  | 'start'
-  | 'center'
-  | 'end'
-  | 'space-between'
-  | 'space-around'
-  | 'space-evenly';
-
 @Component({
   selector: 'ngx-large-format-dialog-footer, ngx-medium-format-dialog-footer',
   template: ' <ng-content></ng-content> ',
@@ -20,21 +11,6 @@ export type NgxLargeFormatDialogFooterAlign =
 export class LargeFormatDialogFooterComponent {
   @Input() styleClass?: string;
   @Input() format: 'large' | 'medium' = 'large';
-
-  /** Maps to flex `justify-content` on the footer host. */
-  @Input() align: NgxLargeFormatDialogFooterAlign = 'center';
-
-  @HostBinding('style.justify-content')
-  get hostJustifyContent(): string {
-    switch (this.align) {
-      case 'start':
-        return 'flex-start';
-      case 'end':
-        return 'flex-end';
-      default:
-        return this.align;
-    }
-  }
 
   @HostBinding('class') get footerStyle() {
     if (this.styleClass) {

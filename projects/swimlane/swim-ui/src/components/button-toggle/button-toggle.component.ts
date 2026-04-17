@@ -100,8 +100,9 @@ export class SwimButtonToggle extends LitElement {
     this.dispatchEvent(
       new CustomEvent('value-change', {
         detail: this.value,
-        bubbles: false,
-        composed: false
+        // Must bubble so swim-button-toggle-group (light-DOM parent) receives selection.
+        bubbles: true,
+        composed: true
       })
     );
   }

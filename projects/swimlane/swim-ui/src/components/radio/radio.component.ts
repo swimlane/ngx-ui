@@ -114,8 +114,9 @@ export class SwimRadio extends LitElement {
       this.dispatchEvent(
         new CustomEvent('change', {
           detail: this.value,
-          bubbles: false,
-          composed: false
+          // Must bubble so swim-radio-group (light-DOM parent) receives selection.
+          bubbles: true,
+          composed: true
         })
       );
     }
@@ -126,8 +127,8 @@ export class SwimRadio extends LitElement {
     this.dispatchEvent(
       new CustomEvent('change', {
         detail: this.value,
-        bubbles: false,
-        composed: false
+        bubbles: true,
+        composed: true
       })
     );
   }

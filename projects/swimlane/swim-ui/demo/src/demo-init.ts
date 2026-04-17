@@ -423,18 +423,25 @@ function setupSelectDemos(): void {
   const basicSelect = document.getElementById('basicSelect') as any;
   if (basicSelect) basicSelect.options = attackTypeOptions;
 
+  const groupedOptionsDemo = [
+    { name: 'Apples', value: 'apples', group: 'Produce' },
+    { name: 'Carrots', value: 'carrots', group: 'Produce' },
+    { name: 'Spinach', value: 'spinach', group: 'Produce' },
+    { name: 'Milk', value: 'milk', group: 'Dairy' },
+    { name: 'Cheddar', value: 'cheddar', group: 'Dairy' },
+    { name: 'Yogurt', value: 'yogurt', group: 'Dairy' },
+    { name: 'Chips', value: 'chips', category: 'Pantry' },
+    { name: 'Rice', value: 'rice', category: 'Pantry' }
+  ];
+
   const groupedSelectProgrammatic = document.getElementById('groupedSelectProgrammatic') as any;
   if (groupedSelectProgrammatic) {
-    groupedSelectProgrammatic.options = [
-      { name: 'Apples', value: 'apples', group: 'Produce' },
-      { name: 'Carrots', value: 'carrots', group: 'Produce' },
-      { name: 'Spinach', value: 'spinach', group: 'Produce' },
-      { name: 'Milk', value: 'milk', group: 'Dairy' },
-      { name: 'Cheddar', value: 'cheddar', group: 'Dairy' },
-      { name: 'Yogurt', value: 'yogurt', group: 'Dairy' },
-      { name: 'Chips', value: 'chips', category: 'Pantry' },
-      { name: 'Rice', value: 'rice', category: 'Pantry' }
-    ];
+    groupedSelectProgrammatic.options = groupedOptionsDemo;
+  }
+
+  const groupedSelectFlat = document.getElementById('groupedSelectFlat') as any;
+  if (groupedSelectFlat) {
+    groupedSelectFlat.options = groupedOptionsDemo;
   }
 
   const groupedSelectMulti = document.getElementById('groupedSelectMulti') as any;

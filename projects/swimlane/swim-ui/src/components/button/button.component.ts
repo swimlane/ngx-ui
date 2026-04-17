@@ -3,7 +3,12 @@ import { property, state } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { buttonStyles } from './button.styles';
 import { ButtonState } from './button-state.enum';
-import { coerceBooleanProperty, coerceNumberProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
+import {
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  litBooleanAttrDefaultFalse,
+  litBooleanAttrDefaultTrue
+} from '../../utils/coerce';
 import '../icon/icon.component';
 
 const BUTTON_TAG = 'swim-button';
@@ -25,9 +30,16 @@ const BUTTON_TAG = 'swim-button';
  *   `--swim-button-hover-border-color`
  * - `--swim-button-color`, `--swim-button-hover-color` — label color; slotted children (e.g. swim-icon)
  *   inherit from the host, so these variables keep icons aligned with text
+ * - `--swim-button-in-progress-color` — foreground for `state='in-progress'` (loading text and button
+ *   `color`); defaults to `--swim-button-color` then the variant fallback
+ * - `--swim-button-loading-icon-color` — optional override for the in-progress spinner only; defaults
+ *   to `--swim-button-in-progress-color` then the same chain as label color
  * - `--swim-button-shadow` — box shadow (omitted on link / bordered unless set)
  * - `--swim-button-outline-color` — focus-visible ring color
  * - `--swim-button-hover-outline-color` — hover ring color (falls back to `--swim-button-hover-background` then variant default)
+ *
+ * Long labels wrap to multiple lines by default (`wrap-text` defaults to on). Set `wrap-text="false"`
+ * on the host for single-line truncation with an ellipsis in constrained widths.
  */
 export class SwimButton extends LitElement {
   static styles = [baseStyles, buttonStyles];
@@ -98,6 +110,13 @@ export class SwimButton extends LitElement {
    */
   @property({ type: String, attribute: 'loading-text' })
   loadingText = '';
+
+  /**
+   * When true (default), the default slot label may wrap to multiple lines. When false, overflow
+   * is truncated with an ellipsis in constrained widths (`wrap-text="false"` in HTML).
+   */
+  @property({ type: Boolean, reflect: true, attribute: 'wrap-text', converter: litBooleanAttrDefaultTrue })
+  wrapText = true;
 
   /**
    * Promise to track - automatically updates state based on promise resolution

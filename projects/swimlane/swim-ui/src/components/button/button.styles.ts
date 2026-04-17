@@ -10,6 +10,8 @@ export const buttonStyles = css`
   :host {
     display: inline-block;
     cursor: pointer;
+    /* Allow constrained layouts (flex/grid) to shrink below label intrinsic width so ellipsis can apply */
+    min-width: 0;
 
     /* Private fallbacks — overridden per [variant] with higher specificity */
     --_swim-fallback-bg: var(--grey-600);
@@ -123,6 +125,7 @@ export const buttonStyles = css`
     outline-offset: 2px;
     cursor: inherit;
     width: 100%;
+    min-width: 0;
 
     background: var(--swim-button-background, var(--_swim-fallback-bg));
     border-width: var(--swim-button-border-width, 1px);
@@ -172,13 +175,25 @@ export const buttonStyles = css`
   /* Button content and state icon: same grid cell so intrinsic width is max(label, state) */
   .content {
     grid-area: 1 / 1;
-    text-overflow: ellipsis;
-    overflow-x: clip;
-    overflow-y: visible;
+    min-width: 0;
+    max-width: 100%;
     width: 100%;
     display: block;
-    white-space: nowrap;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
     transition: opacity 0.25s ease-out;
+  }
+
+  /* Single-line + ellipsis: wrap-text="false" (wrap-text attribute omitted when wrapping is on) */
+  :host([wrap-text='false']) .content {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    overflow-wrap: normal;
   }
 
   .state-icon {
@@ -216,6 +231,10 @@ export const buttonStyles = css`
   :host([state='in-progress']) button {
     opacity: 1;
     pointer-events: none;
+    /* Loading + host disabled: UA button:disabled grays out inherited color (hurts loading-text).
+ Re-apply variant foreground; !important aligns with ngx-ui .in-progress vs. UA.
+ Override with --swim-button-in-progress-color on :host. */
+    color: var(--swim-button-in-progress-color, var(--swim-button-color, var(--_swim-fallback-color))) !important;
   }
 
   :host([state='in-progress']) .content {
@@ -224,6 +243,14 @@ export const buttonStyles = css`
 
   :host([state='in-progress']) .state-icon {
     opacity: 1;
+  }
+
+  /* Loading glyph: same var chain as in-progress button color (explicit so it does not rely on currentColor / stale builds). */
+  :host([state='in-progress']) swim-icon.icon {
+    color: var(
+      --swim-button-loading-icon-color,
+      var(--swim-button-in-progress-color, var(--swim-button-color, var(--_swim-fallback-color)))
+    );
   }
 
   /* State: Success */
@@ -270,12 +297,11 @@ export const buttonStyles = css`
     color: var(--white);
   }
 
-  /* Icon styles */
+  /* Loading swim-icon sizing (color set on :host([state='in-progress']) swim-icon.icon) */
   .icon {
     height: 1em;
     width: 1em;
     font-weight: var(--font-weight-bold);
-    color: var(--white);
     overflow: hidden;
     font-size: var(--font-size-m);
     display: inline-block;
