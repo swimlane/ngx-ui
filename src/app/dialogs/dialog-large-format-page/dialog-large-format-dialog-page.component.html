@@ -1113,6 +1113,106 @@
         </ngx-tab>
       </ngx-tabs>
     </ngx-section>
+
+    <ngx-section class="shadow" sectionTitle="With Custom Header Content">
+      <p>
+        Use <code>[largeFormatDialogHeaderContent]</code> on <code>ngx-large-format-dialog-content</code> to pass an <code>ng-template</code> with extra header UI (for example actions or controls) rendered between the title block and the close area.
+      </p>
+      
+      <p>
+        <code>largeFormatDialogHeaderContent</code> is only applied in the default header layout. It is not rendered when the dialog uses the stepper or tabs variants (<code>LargeFormatDialogStepperDirective</code> or <code>LargeFormatDialogTabsDirective</code> on an <code>ng-template</code>), so custom header content cannot be combined with those modes.
+      </p>
+      
+      <p>
+        If you need tabs/stepper with custom content, use a custom template that contains the tab/stepper and custom content you need.
+      </p>
+
+      <ng-template #largeFormatWithCustomHeaderContent let-context="context">
+        <ngx-large-format-dialog-content 
+          dialogTitle="Title"
+          dialogSubtitle="Optional Subtitle" 
+          [largeFormatDialogHeaderContent]="largeFormatDialogHeaderContent"
+          (closeOrCancel)="onCloseOrCancel()"
+        >
+          <p>Content</p>
+          <button type="button" class="btn" (click)="headerContentPosition$.next('left')">Position Left</button>
+          <button type="button" class="btn" (click)="headerContentPosition$.next('center')">Position Center</button>
+          <button type="button" class="btn" (click)="headerContentPosition$.next('right')">Position Right</button>
+        </ngx-large-format-dialog-content>
+      </ng-template>
+    
+      <button type="button" class="btn" (click)="openDialog({ template: largeFormatWithCustomHeaderContent, format: 'large' })">
+        Open Large Dialog with Custom Header Content
+      </button>
+
+      <ng-template #largeFormatDialogHeaderContent let-context="context">
+        <div class="header-content" [ngClass]="{ 'position-left': (headerContentPosition$ | async) === 'left', 'position-center': (headerContentPosition$ | async) === 'center', 'position-right': (headerContentPosition$ | async) === 'right' }">
+          Custom Header Content
+          <button type="button" class="btn btn-link">
+            <i class="ngx-icon ngx-star"></i>
+          </button>
+          <button type="button" class="btn btn-link">
+            <i class="ngx-icon ngx-swap"></i>
+          </button>
+        </div>
+      </ng-template>
+    
+      <ngx-tabs>
+        <ngx-tab title="Markup">
+      <app-prism>
+    <![CDATA[<ng-template #largeFormatWithCustomHeaderContent let-context="context">
+        <ngx-large-format-dialog-content 
+          dialogTitle="Title"
+          dialogSubtitle="Optional Subtitle" 
+          [largeFormatDialogHeaderContent]="largeFormatDialogHeaderContent"
+          (closeOrCancel)="onCloseOrCancel()"
+        >
+          <p>Content</p>
+          <button type="button" class="btn" (click)="headerContentPosition$.next('left')">Position Left</button>
+          <button type="button" class="btn" (click)="headerContentPosition$.next('center')">Position Center</button>
+          <button type="button" class="btn" (click)="headerContentPosition$.next('right')">Position Right</button>
+        </ngx-large-format-dialog-content>
+      </ng-template>
+    
+      <button type="button" class="btn" (click)="openDialog({ template: largeFormatWithCustomHeaderContent, format: 'large' })">
+        Open Large Dialog with Custom Header Content
+      </button>
+
+      <ng-template #largeFormatDialogHeaderContent let-context="context">
+        <div class="header-content" [ngClass]="{ 'position-left': (headerContentPosition$ | async) === 'left', 'position-center': (headerContentPosition$ | async) === 'center', 'position-right': (headerContentPosition$ | async) === 'right' }">
+          Custom Header Content
+          <button type="button" class="btn btn-link">
+            <i class="ngx-icon ngx-star"></i>
+          </button>
+          <button type="button" class="btn btn-link">
+            <i class="ngx-icon ngx-swap"></i>
+          </button>
+        </div>
+      </ng-template>]]>
+      </app-prism>
+      </ngx-tab>
+      <ngx-tab title="SCSS">
+        <app-prism language="css">
+    <![CDATA[.header-content {
+        display: flex;
+        flex: 1;
+        gap: 12px;
+        align-items: center;
+
+        &.position-left {
+          justify-content: flex-start;
+        }
+        &.position-right {
+          justify-content: flex-end;
+        }
+        &.position-center {
+          justify-content: center;
+        }
+      }]]>
+        </app-prism>
+      </ngx-tab>
+    </ngx-tabs>
+    </ngx-section>
     
     <ng-template #dialogDrawerTemplate let-close="close" let-context="context">
       <app-parent-drawer (dismiss)="close.emit()"></app-parent-drawer>
@@ -1217,6 +1317,13 @@
             <code class="input-name">skipDirtyAlert: boolean</code>
           </th>
           <td>Whether the component should skip alerting the user when the component is closed in a dirty state.</td>
+        </tr>
+        <tr>
+          <th>
+            <code class="component-type">&#64;Input()</code>
+            <code class="input-name">largeFormatDialogHeaderContent: TemplateRef&lt;unknown&gt;</code>
+          </th>
+          <td>Custom template to display additional actions/controls in the header action area, between the title and the close button. This cannot be used with the stepper or tabs variants.</td>
         </tr>
       </tbody>
     </table>
