@@ -399,7 +399,7 @@ export const selectStyles = css`
   .select-chip-remove {
     background: none;
     border: none;
-    padding: 0;
+    padding: 4px 0 0 0;
     cursor: pointer;
     color: var(--grey-350);
     font-size: 0.5em;
