@@ -81,12 +81,12 @@
   </swim-section>
 </section>
 
-<!-- Grouped options: group / category -->
+<!-- Grouped options: group -->
 <section class="section">
   <swim-section section-title="Grouped options">
     <p style="color: var(--grey-300); margin-bottom: 1.25rem">
       Set <code>grouped</code> on <code>&lt;swim-select&gt;</code> to show section headers from each option’s
-      <code>group</code> or <code>category</code>. Omit <code>grouped</code> and the same data renders as a flat list
+      <code>group</code>. Omit <code>grouped</code> and the same data renders as a flat list
       (metadata is still on each option). With <code>grouped</code> and filtering on, typing a section name (e.g.
       “Pantry”) matches options in that section.
     </p>
@@ -113,8 +113,8 @@
     { name: 'Milk', value: 'milk', group: 'Dairy' },
     { name: 'Cheddar', value: 'cheddar', group: 'Dairy' },
     { name: 'Yogurt', value: 'yogurt', group: 'Dairy' },
-    { name: 'Chips', value: 'chips', category: 'Pantry' },
-    { name: 'Rice', value: 'rice', category: 'Pantry' },
+    { name: 'Chips', value: 'chips', group: 'Pantry' },
+    { name: 'Rice', value: 'rice', group: 'Pantry' },
   ];
 &lt;/script&gt;</code></pre>
 
@@ -126,7 +126,7 @@
         id="groupedSelectFlat"
         label="Food (flat)"
         placeholder="Same data, no section headers…"
-        hint="Identical .options as above; group/category are ignored for layout"
+        hint="Identical .options as above; group is ignored for layout"
       ></swim-select>
     </div>
     <pre class="demo-pre"
@@ -140,8 +140,8 @@
     { name: 'Milk', value: 'milk', group: 'Dairy' },
     { name: 'Cheddar', value: 'cheddar', group: 'Dairy' },
     { name: 'Yogurt', value: 'yogurt', group: 'Dairy' },
-    { name: 'Chips', value: 'chips', category: 'Pantry' },
-    { name: 'Rice', value: 'rice', category: 'Pantry' },
+    { name: 'Chips', value: 'chips', group: 'Pantry' },
+    { name: 'Rice', value: 'rice', group: 'Pantry' },
   ];
 &lt;/script&gt;</code></pre>
 
@@ -472,11 +472,11 @@
             <tr><td><code>label</code></td><td><code>string</code></td><td><code>''</code></td><td>Label text</td></tr>
             <tr><td><code>placeholder</code></td><td><code>string</code></td><td><code>'Select...'</code></td><td>Placeholder when no value selected</td></tr>
             <tr><td><code>hint</code></td><td><code>string</code></td><td><code>''</code></td><td>Hint text below the select</td></tr>
-            <tr><td><code>.options</code></td><td><code>Array&lt;SelectOption&gt;</code></td><td><code>[]</code></td><td>Options; may include <code>group</code> / <code>category</code> when <code>grouped</code> is set</td></tr>
+            <tr><td><code>.options</code></td><td><code>Array&lt;SelectOption&gt;</code></td><td><code>[]</code></td><td>Options; may include <code>group</code> when <code>grouped</code> is set</td></tr>
             <tr><td><code>multiple</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Enable multi-select mode</td></tr>
             <tr><td><code>filterable</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Enable type-to-filter</td></tr>
             <tr><td><code>dropdown-align</code></td><td><code>'start' | 'center'</code></td><td><code>'start'</code></td><td>With popover layer: <code>center</code> sizes and anchors the panel to the host (centered columns / dialogs)</td></tr>
-            <tr><td><code>grouped</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Show section headers from each option’s <code>group</code> or <code>category</code></td></tr>
+            <tr><td><code>grouped</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Show section headers from each option’s <code>group</code></td></tr>
             <tr><td><code>allow-clear</code></td><td><code>boolean</code></td><td><code>true</code></td><td>Show clear button when value selected</td></tr>
             <tr><td><code>appearance</code></td><td><code>'legacy' | 'fill'</code></td><td><code>'legacy'</code></td><td>Visual appearance style</td></tr>
             <tr><td><code>size</code></td><td><code>'sm' | 'md' | 'lg'</code></td><td><code>'sm'</code></td><td>Select size</td></tr>
@@ -496,7 +496,6 @@
             <tr><td><code>disabled</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the option is disabled</td></tr>
             <tr><td><code>hidden</code></td><td><code>boolean</code></td><td><code>false</code></td><td>Whether the option is hidden from the list</td></tr>
             <tr><td><code>group</code></td><td><code>string</code></td><td><code>''</code></td><td>Section label (with parent <code>grouped</code> on <code>swim-select</code>)</td></tr>
-            <tr><td><code>category</code></td><td><code>string</code></td><td><code>''</code></td><td>Alias for section label if <code>group</code> is not set</td></tr>
           </tbody>
         </table>
       </div>

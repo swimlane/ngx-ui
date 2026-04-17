@@ -1,6 +1,6 @@
 import type { SelectOption } from './select-option.interface';
 
-const KNOWN_KEYS = new Set(['name', 'value', 'title', 'label', 'description', 'disabled', 'group', 'category']);
+const KNOWN_KEYS = new Set(['name', 'value', 'title', 'label', 'description', 'disabled', 'group']);
 
 function containsInString(value: string, keyword: string, caseSensitive: boolean): boolean {
   if (!keyword) {
@@ -31,7 +31,7 @@ function scanValue(value: unknown, keyword: string, caseSensitive: boolean, dept
 }
 
 /**
- * Client-side filter: matches name, title, label, description, stringified value,
+ * Client-side filter: matches name, title, label, description, group, stringified value,
  * and shallow nested fields on the option object (depth-capped).
  */
 export function optionMatchesFilter(
@@ -44,15 +44,7 @@ export function optionMatchesFilter(
     return true;
   }
   const q = options.filterCaseSensitive ? trimmed : trimmed.toLowerCase();
-  const directFields = [
-    option.name,
-    option.title,
-    option.label,
-    option.description,
-    option.value,
-    option.group,
-    option.category
-  ]
+  const directFields = [option.name, option.title, option.label, option.description, option.value, option.group]
     .filter(v => v !== undefined && v !== null)
     .map(v => (typeof v === 'string' ? v : String(v)));
 

@@ -33,14 +33,9 @@ export interface SelectOption {
   disabled?: boolean;
 
   /**
-   * Group / section header (normalized with `category`)
+   * Group / section header when `grouped` is enabled on the select
    */
   group?: string;
-
-  /**
-   * Same as `group` — datasource may use either
-   */
-  category?: string;
 
   /**
    * Custom data

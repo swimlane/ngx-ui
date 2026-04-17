@@ -16,8 +16,8 @@ import './select-option.component';
  * SwimSelect - A select/dropdown component matching @swimlane/ngx-ui design system
  *
  * Options can be provided via the `options` property or declaratively with `<swim-option>` children.
- * Set the `grouped` attribute to show section headers from each option’s `group` or `category`
- * (`SelectOption` fields or `<swim-option>` attributes). Without `grouped`, those fields are ignored for layout.
+ * Set the `grouped` attribute to show section headers from each option’s `group`
+ * (`SelectOption` field or `<swim-option group="...">`). Without `grouped`, `group` is ignored for layout.
  * ```html
  * <swim-select label="Attack Type">
  *   <swim-option name="Breach" value="breach"></swim-option>
@@ -242,7 +242,7 @@ export class SwimSelect extends LitElement {
   private _filterable = true;
 
   /**
-   * When true, show `group` / `category` as section headers in the dropdown (and indent options).
+   * When true, show `group` as section headers in the dropdown (and indent options).
    */
   @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get grouped(): boolean {
@@ -365,13 +365,11 @@ export class SwimSelect extends LitElement {
         const name = el.getAttribute('name') || '';
         const value = el.getAttribute('value');
         const groupAttr = el.getAttribute('group');
-        const categoryAttr = el.getAttribute('category');
         return {
           name,
           value: value !== null ? value : name,
           disabled: el.hasAttribute('disabled'),
-          ...(groupAttr != null && groupAttr.trim() !== '' ? { group: groupAttr.trim() } : {}),
-          ...(categoryAttr != null && categoryAttr.trim() !== '' ? { category: categoryAttr.trim() } : {})
+          ...(groupAttr != null && groupAttr.trim() !== '' ? { group: groupAttr.trim() } : {})
         };
       });
   }
@@ -604,9 +602,9 @@ export class SwimSelect extends LitElement {
     return option.name;
   }
 
-  /** Non-empty section title from `group` (preferred) or `category`. */
+  /** Non-empty section title from `group`. */
   private _groupHeading(option: SelectOption): string {
-    const raw = option.group ?? option.category;
+    const raw = option.group;
     return raw != null && String(raw).trim() !== '' ? String(raw).trim() : '';
   }
 

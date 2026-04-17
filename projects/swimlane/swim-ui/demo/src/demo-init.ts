@@ -430,8 +430,8 @@ function setupSelectDemos(): void {
     { name: 'Milk', value: 'milk', group: 'Dairy' },
     { name: 'Cheddar', value: 'cheddar', group: 'Dairy' },
     { name: 'Yogurt', value: 'yogurt', group: 'Dairy' },
-    { name: 'Chips', value: 'chips', category: 'Pantry' },
-    { name: 'Rice', value: 'rice', category: 'Pantry' }
+    { name: 'Chips', value: 'chips', group: 'Pantry' },
+    { name: 'Rice', value: 'rice', group: 'Pantry' }
   ];
 
   const groupedSelectProgrammatic = document.getElementById('groupedSelectProgrammatic') as any;

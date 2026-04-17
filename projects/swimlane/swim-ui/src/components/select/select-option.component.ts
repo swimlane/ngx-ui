@@ -36,9 +36,6 @@ export class SwimOption extends LitElement {
   @property({ type: String })
   group = '';
 
-  @property({ type: String })
-  category = '';
-
   @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
