@@ -39,11 +39,20 @@ export function optionMatchesFilter(
   keyword: string,
   options: { filterCaseSensitive: boolean }
 ): boolean {
-  if (!keyword.trim()) {
+  const trimmed = keyword.trim();
+  if (!trimmed) {
     return true;
   }
-  const q = options.filterCaseSensitive ? keyword : keyword;
-  const directFields = [option.name, option.title, option.label, option.description, option.value]
+  const q = options.filterCaseSensitive ? trimmed : trimmed.toLowerCase();
+  const directFields = [
+    option.name,
+    option.title,
+    option.label,
+    option.description,
+    option.value,
+    option.group,
+    option.category
+  ]
     .filter(v => v !== undefined && v !== null)
     .map(v => (typeof v === 'string' ? v : String(v)));
 

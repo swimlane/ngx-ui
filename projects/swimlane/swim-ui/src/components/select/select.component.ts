@@ -5,6 +5,7 @@ import { baseStyles } from '../../styles/base';
 import { scrollbarStyles } from '../../styles/scrollbars';
 import { selectStyles } from './select.styles';
 import { SelectOption } from './select-option.interface';
+import { optionMatchesFilter } from './select-filter.util';
 import { InputAppearance } from '../input/input-appearance.enum';
 import { InputSize } from '../input/input-size.enum';
 import { coerceBooleanProperty, litBooleanAttrDefaultFalse, litBooleanAttrDefaultTrue } from '../../utils/coerce';
@@ -902,18 +903,9 @@ export class SwimSelect extends LitElement {
       return this._allOptions;
     }
 
-    const query = this._filterQuery.toLowerCase();
-    return this._allOptions.filter(option => {
-      const label = this._getOptionLabel(option).toLowerCase();
-      const desc = (option.description ?? '').toLowerCase();
-      const group = this.grouped ? this._groupHeading(option).toLowerCase() : '';
-      return (
-        option.name.toLowerCase().includes(query) ||
-        label.includes(query) ||
-        desc.includes(query) ||
-        (group && group.includes(query))
-      );
-    });
+    return this._allOptions.filter(option =>
+      optionMatchesFilter(option, this._filterQuery, { filterCaseSensitive: false })
+    );
   }
 
   private _getOptionValue(option: SelectOption): any {

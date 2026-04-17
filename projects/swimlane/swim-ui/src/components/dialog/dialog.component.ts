@@ -191,8 +191,8 @@ export class SwimDialog extends LitElement {
 
   private _onKeydown(e: KeyboardEvent): void {
     if (e.key === 'Escape') {
-      e.stopPropagation();
       if (!this.closeOnEscape) return;
+      e.stopPropagation();
       this.hide();
     }
   }
