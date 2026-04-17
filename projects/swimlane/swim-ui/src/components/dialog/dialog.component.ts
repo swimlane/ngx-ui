@@ -25,9 +25,11 @@ import '../icon/icon.component';
  *
  * @csspart content - The dialog content panel
  * @csspart close-button - The close button
+ * @csspart header - The regular-format title wrapper (use with `::part(header)` for layout overrides)
  *
  * @cssprop [--swim-dialog-border] - Panel outline; default none (Figma modal has no stroke on the panel).
  * @cssprop [--swim-dialog-box-shadow] - Panel elevation; defaults to `--shadow-dialog-panel` (Figma drop shadow).
+ * @cssprop [--swim-dialog-header-text-align] - Title block alignment in regular format (`start` default). Set `center` to center the header.
  * @cssprop [--swim-dialog-header-action-display] - Set on this host when `close-button` is false (`none`). Slotted
  *   `swim-large-format-dialog-content` uses it to hide the header Close/Cancel. Override on a child host with `flex` if needed.
  */
@@ -279,7 +281,7 @@ export class SwimDialog extends LitElement {
                   : nothing}
                 ${this.dialogTitle
                   ? html`
-                      <div class="swim-dialog__header">
+                      <div class="swim-dialog__header" part="header">
                         <h2 id="${this._titleId}" class="swim-dialog__title">${this.dialogTitle}</h2>
                       </div>
                     `

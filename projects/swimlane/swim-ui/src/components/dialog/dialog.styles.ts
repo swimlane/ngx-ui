@@ -9,12 +9,16 @@ import { scrollbarStyles } from '../../styles/scrollbars';
  *
  * Optional theme overrides (set on a parent or this host; inherit into shadow):
  * --swim-dialog-bg, --swim-dialog-border, --swim-dialog-header-color, --swim-dialog-body-color,
- * --swim-dialog-box-shadow
+ * --swim-dialog-box-shadow, --swim-dialog-header-text-align (e.g. center)
  */
 export const dialogStyles = [
   baseStyles,
   scrollbarStyles,
   css`
+    :host {
+      outline: none;
+    }
+
     .swim-dialog {
       position: fixed;
       display: flex;
@@ -60,6 +64,7 @@ export const dialogStyles = [
     }
 
     .swim-dialog__content {
+      outline: none;
       pointer-events: auto;
       position: relative;
       border-radius: var(--radius-8);
@@ -150,6 +155,7 @@ export const dialogStyles = [
 
     .swim-dialog__header {
       margin: 0 0 1.4rem 0;
+      text-align: var(--swim-dialog-header-text-align, start);
     }
 
     .swim-dialog__title,
@@ -159,6 +165,7 @@ export const dialogStyles = [
       font-weight: 400;
       margin: 0 0 1.4rem 0;
       color: var(--swim-dialog-header-color, var(--grey-050));
+      text-align: inherit;
     }
 
     .swim-dialog__content--medium .swim-dialog__header,
@@ -235,14 +242,6 @@ export const dialogStyles = [
       padding: 1.4rem;
       margin-top: 0;
       display: block;
-    }
-
-    /* Parity with swim-dialog.run-all-swim-dialog::part(content) from light DOM */
-    :host(.run-all-swim-dialog) .swim-dialog__content,
-    :host(.run-all-swim-dialog) .swim-dialog__content:focus-visible,
-    .swim-dialog.run-all-swim-dialog .swim-dialog__content,
-    .swim-dialog.run-all-swim-dialog .swim-dialog__content:focus-visible {
-      outline: none;
     }
   `
 ];
