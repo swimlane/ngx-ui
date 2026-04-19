@@ -16,6 +16,7 @@ export * from './components/calendar';
 export * from './components/card';
 export * from './components/checkbox';
 export * from './components/date-time';
+export * from './components/date-display';
 export * from './components/dialog';
 export * from './components/drawer';
 export * from './components/icon';

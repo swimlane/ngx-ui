@@ -6,6 +6,7 @@
 
 import { ICON_NAMES } from './icon-names';
 import { openDrawer } from '../../src/components/drawer/drawer-controller';
+import { formatDate, parseDate } from '../../src/components/date-time/date-format';
 
 function delay(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -139,6 +140,7 @@ const SECTION_FILES = [
   'input',
   'select',
   'datetime',
+  'date-display',
   'checkbox',
   'radio',
   'toggle',
@@ -563,6 +565,33 @@ function setupSelectDemos(): void {
   if (formSelect2) formSelect2.options = tags;
 }
 
+function setupDateDisplayDemo(): void {
+  type DdEl = HTMLElement & {
+    timezones?: Record<string, string>;
+  };
+
+  const customTz = document.getElementById('dateDisplayTimezonesCustom') as DdEl | null;
+  if (customTz) {
+    customTz.timezones = { Local: '', GMT: 'Etc/UTC', Tokyo: 'Asia/Tokyo' };
+  }
+
+  const localOut = document.getElementById('dateDisplayLocalString');
+  const quake = parseDate('2011-03-11T05:46:24Z');
+  if (localOut && quake) {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    localOut.textContent = JSON.stringify(formatDate(quake, 'MMMM D, YYYY h:mm:ss A', tz));
+  }
+
+  const log = document.getElementById('dateDisplayCopyLog');
+  const root = document.getElementById('dateDisplayDemoRoot');
+  if (log && root) {
+    root.addEventListener('date-copied', (e: Event) => {
+      const d = (e as CustomEvent<{ message?: string }>).detail;
+      log.textContent = d?.message ?? '—';
+    });
+  }
+}
+
 function setupDateTimeDemos(): void {
   type DtEl = HTMLElement & { value: Date | string | null };
   const TOHOKU_EARTHQUAKE = '2011-03-11T05:46:24Z';
@@ -831,6 +860,7 @@ function setupDemos(): void {
 
   setupSelectDemos();
   setupDateTimeDemos();
+  setupDateDisplayDemo();
 
   // Card demos
   const selectableCardDemo = document.getElementById('selectableCardDemo') as any;
