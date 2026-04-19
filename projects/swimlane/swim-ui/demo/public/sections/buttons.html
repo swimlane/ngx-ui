@@ -1,9 +1,9 @@
 <hr class="section-divider" />
 <h1 id="buttons" class="page-title">Buttons</h1>
 <p class="subtitle">
-  Button component with variants (default, primary, warning, danger, link, bordered), sizes, icon-only usage, host
-  styling via <code>--swim-button-*</code> CSS variables, and states (active, in-progress, success, fail, disabled).
-  Supports promise-based loading state.
+  Button component with variants (default, primary, warning, danger, link, bordered), sizes, labels with
+  <code>&lt;swim-icon&gt;</code> (leading, trailing, stacked, icon-only), host styling via <code>--swim-button-*</code> CSS
+  variables, and states (active, in-progress, success, fail, disabled). Supports promise-based loading state.
 </p>
 <p class="section-desc" style="margin-top: 0; margin-bottom: 1.5rem;"><strong>CDN:</strong> <code>import 'https://widgets.swimlane.app/swim-ui/button.js';</code></p>
 
@@ -58,6 +58,126 @@
     ><code>&lt;swim-button size="small" variant="primary"&gt;Small&lt;/swim-button&gt;
 &lt;swim-button size="medium" variant="primary"&gt;Medium&lt;/swim-button&gt;
 &lt;swim-button size="large" variant="primary"&gt;Large&lt;/swim-button&gt;</code></pre>
+  </swim-section>
+</section>
+
+<!-- Buttons with text + swim-icons (mirrors ngx-ui "Buttons with Icons") -->
+<section class="section">
+  <swim-section section-title="Buttons with swim-icons">
+    <p style="color: var(--grey-300); margin-bottom: 1rem">
+      Combine label text with <code>&lt;swim-icon font-icon="…"&gt;</code> in the default slot. A short
+      <code>inline-flex</code> wrapper with <code>gap</code> matches ngx-ui spacing (<code>has-text</code> /
+      <code>has-text-left</code> on <code>ngx-icon</code>). Stacked icons use a JSON array on
+      <code>font-icon</code> (same as the Icons demo).
+    </p>
+    <div class="demo-row" style="align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem">
+      <swim-button variant="primary">
+        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+          <swim-icon font-icon="plus"></swim-icon>
+          <span>Add</span>
+        </span>
+      </swim-button>
+      <swim-button variant="primary">
+        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+          <span>Next</span>
+          <swim-icon font-icon="chevron-bold-right"></swim-icon>
+        </span>
+      </swim-button>
+      <swim-button variant="primary" aria-label="Expand">
+        <swim-icon font-icon="arrow-bold-down"></swim-icon>
+      </swim-button>
+    </div>
+    <div class="demo-row" style="align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem">
+      <swim-button variant="bordered">
+        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+          <swim-icon font-icon="plus"></swim-icon>
+          <span>Add</span>
+        </span>
+      </swim-button>
+      <swim-button variant="bordered">
+        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+          <span>Next</span>
+          <swim-icon font-icon="chevron-bold-right"></swim-icon>
+        </span>
+      </swim-button>
+      <swim-button variant="bordered" aria-label="Expand">
+        <swim-icon font-icon="arrow-bold-down"></swim-icon>
+      </swim-button>
+    </div>
+    <div class="demo-row" style="align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.75rem">
+      <swim-button variant="link">
+        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+          <swim-icon font-icon="plus"></swim-icon>
+          <span>Link</span>
+        </span>
+      </swim-button>
+      <swim-button variant="link">
+        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+          <span>Link</span>
+          <swim-icon font-icon="chevron-bold-right"></swim-icon>
+        </span>
+      </swim-button>
+      <swim-button variant="link" aria-label="Expand">
+        <swim-icon font-icon="arrow-bold-down"></swim-icon>
+      </swim-button>
+    </div>
+    <div class="demo-row" style="align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem">
+      <swim-button variant="primary" disabled>
+        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+          <swim-icon font-icon="plus"></swim-icon>
+          <span>Add</span>
+        </span>
+      </swim-button>
+      <swim-button variant="bordered" disabled>
+        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+          <span>Next</span>
+          <swim-icon font-icon="chevron-bold-right"></swim-icon>
+        </span>
+      </swim-button>
+      <swim-button variant="link" disabled aria-label="Expand">
+        <swim-icon font-icon="arrow-bold-down"></swim-icon>
+      </swim-button>
+    </div>
+    <p style="color: var(--grey-400); margin-bottom: 0.5rem; font-size: 0.875rem">
+      <strong>Stacked font icons</strong> — badge-style overlay (see Icons page for more stacks):
+    </p>
+    <div class="demo-row" style="align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem">
+      <swim-button variant="primary">
+        <span style="display: inline-flex; align-items: center; gap: 0.35em">
+          <swim-icon font-icon='["field-users", "circle-filled :text-red :icon-fx-badge"]'></swim-icon>
+          <span>Assignees</span>
+        </span>
+      </swim-button>
+      <swim-button variant="bordered" aria-label="Notifications">
+        <swim-icon font-icon='["bell", "circle-filled :text-red :icon-fx-badge"]'></swim-icon>
+      </swim-button>
+    </div>
+    <pre class="demo-pre"
+    ><code>&lt;script type="module"&gt;
+  import '@swimlane/swim-ui/button';
+  import '@swimlane/swim-ui/icon';
+&lt;/script&gt;
+
+&lt;!-- Leading icon + text --&gt;
+&lt;swim-button variant="primary"&gt;
+  &lt;span style="display: inline-flex; align-items: center; gap: 0.35em"&gt;
+    &lt;swim-icon font-icon="plus"&gt;&lt;/swim-icon&gt;
+    &lt;span&gt;Add&lt;/span&gt;
+  &lt;/span&gt;
+&lt;/swim-button&gt;
+
+&lt;!-- Text + trailing icon --&gt;
+&lt;swim-button variant="primary"&gt;
+  &lt;span style="display: inline-flex; align-items: center; gap: 0.35em"&gt;
+    &lt;span&gt;Next&lt;/span&gt;
+    &lt;swim-icon font-icon="chevron-bold-right"&gt;&lt;/swim-icon&gt;
+  &lt;/span&gt;
+&lt;/swim-button&gt;
+
+&lt;!-- Stacked swim-icons (JSON array on font-icon) --&gt;
+&lt;swim-button variant="bordered" aria-label="Notifications"&gt;
+  &lt;swim-icon font-icon='["bell", "circle-filled :text-red :icon-fx-badge"]'&gt;&lt;/swim-icon&gt;
+&lt;/swim-button&gt;</code></pre>
   </swim-section>
 </section>
 
@@ -158,20 +278,6 @@
         </swim-button>
       </div>
       <div class="demo-item">
-        <div class="demo-label">Warning variant, custom surface</div>
-        <swim-button
-          variant="warning"
-          style="
-            --swim-button-background: var(--grey-700);
-            --swim-button-hover-background: var(--grey-650);
-            --swim-button-color: var(--white);
-            --swim-button-hover-color: var(--white);
-          "
-        >
-          Neutral on warning
-        </swim-button>
-      </div>
-      <div class="demo-item">
         <div class="demo-label">Dense icon-only (padding, border, surface)</div>
         <swim-button
           variant="bordered"
@@ -222,17 +328,6 @@
     --swim-button-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
   "
 &gt;Gradient&lt;/swim-button&gt;</code></pre>
-    <p style="color: var(--grey-400); margin: 0.75rem 0 0.25rem; font-size: 0.8125rem">Warning variant, custom surface</p>
-    <pre class="demo-pre"
-    ><code>&lt;swim-button
-  variant="warning"
-  style="
-    --swim-button-background: var(--grey-700);
-    --swim-button-hover-background: var(--grey-650);
-    --swim-button-color: var(--white);
-    --swim-button-hover-color: var(--white);
-  "
-&gt;Neutral on warning&lt;/swim-button&gt;</code></pre>
     <p style="color: var(--grey-400); margin: 0.75rem 0 0.25rem; font-size: 0.8125rem">Dense icon-only (padding, border, surface)</p>
     <pre class="demo-pre"
     ><code>&lt;swim-button

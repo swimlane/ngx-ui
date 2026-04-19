@@ -167,9 +167,12 @@ export const buttonStyles = css`
     font-size: 1.3em;
   }
 
-  /* Icon-only: slotted swim-icon uses 1em — inherit the button font-size for small/large parity */
+  /* Slotted swim-icon: 1em sizing + vertical center with label text (flex on .content). */
   slot::slotted(swim-icon) {
     font-size: inherit;
+    flex-shrink: 0;
+    align-self: center;
+    line-height: 1;
   }
 
   /* Button content and state icon: same grid cell so intrinsic width is max(label, state) */
@@ -178,7 +181,10 @@ export const buttonStyles = css`
     min-width: 0;
     max-width: 100%;
     width: 100%;
-    display: block;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     white-space: normal;
     overflow: visible;
     text-overflow: clip;
@@ -189,6 +195,7 @@ export const buttonStyles = css`
 
   /* Single-line + ellipsis: wrap-text="false" (wrap-text attribute omitted when wrapping is on) */
   :host([wrap-text='false']) .content {
+    flex-wrap: nowrap;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
