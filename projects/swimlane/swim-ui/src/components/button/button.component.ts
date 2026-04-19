@@ -25,6 +25,7 @@ const BUTTON_TAG = 'swim-button';
  * Hosts can tune the inner button via CSS custom properties on `swim-button` (or an ancestor).
  * These apply for every `variant` (they override the variant’s built-in defaults):
  * - `--swim-button-padding` — padding (default `0.35em 0.55em`)
+ * - `--swim-button-font-weight` — label font weight (default `--font-weight-bold`)
  * - `--swim-button-background`, `--swim-button-hover-background`
  * - `--swim-button-border-width`, `--swim-button-border-style`, `--swim-button-border-color`,
  *   `--swim-button-hover-border-color`

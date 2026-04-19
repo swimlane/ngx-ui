@@ -23,6 +23,9 @@ import { coerceBooleanProperty, litBooleanAttrDefaultFalse, litBooleanAttrDefaul
  * @fires focus - Fired when the input gains focus (does not bubble).
  * @fires blur - Fired when the input loses focus (does not bubble).
  *
+ * Imperative API: call `focus()` / `blur()` on the host element; they delegate to the inner
+ * native control (same as form validation focusing invalid fields).
+ *
  * @csspart input - The native input/textarea element
  * @csspart label - The label element
  */
@@ -267,7 +270,22 @@ export class SwimInput extends LitElement {
 
   /** Delegate focus to the internal input so form validation can focus invalid controls. */
   override focus(options?: FocusOptions): void {
-    this.inputElement?.focus(options);
+    const target = this.inputElement;
+    if (target) {
+      target.focus(options);
+      return;
+    }
+    void this.updateComplete.then(() => this.inputElement?.focus(options));
+  }
+
+  /** Delegate blur to the internal input. */
+  override blur(): void {
+    const target = this.inputElement;
+    if (target) {
+      target.blur();
+      return;
+    }
+    void this.updateComplete.then(() => this.inputElement?.blur());
   }
 
   updated(changedProperties: PropertyValues) {

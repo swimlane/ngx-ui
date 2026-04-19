@@ -119,7 +119,7 @@ export const buttonStyles = css`
     user-select: none;
     font: inherit;
     font-size: var(--font-size-m);
-    font-weight: var(--font-weight-bold);
+    font-weight: var(--swim-button-font-weight, var(--font-weight-bold));
     outline: none;
     line-height: var(--font-line-height-100);
     outline-offset: 2px;

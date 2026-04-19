@@ -1027,6 +1027,58 @@ function setupDemos(): void {
   setupListDemos();
 
   // Dialog demos
+  /** `close-or-cancel` is emitted from `swim-large-format-dialog-content`, not from `swim-dialog`. */
+  const wireLargeFormatHeaderClose = (dialogEl: HTMLElement & { visible?: boolean }) => {
+    dialogEl.querySelector('swim-large-format-dialog-content')?.addEventListener('close-or-cancel', () => {
+      dialogEl.visible = false;
+    });
+  };
+
+  const dialogEventsDemo = document.getElementById('dialogEventsDemo') as
+    | (HTMLElement & {
+        visible: boolean;
+      })
+    | null;
+  const dialogEventsLog = document.getElementById('dialogEventsLog');
+  const dialogEventsLargeContent = document.getElementById('dialogEventsLargeContent');
+  const dialogEventsLines: string[] = [];
+  const maxDialogEventLines = 50;
+  const appendDialogEventLine = (line: string) => {
+    const stamp = new Date().toISOString().slice(11, 23);
+    dialogEventsLines.push(`${stamp} ${line}`);
+    if (dialogEventsLines.length > maxDialogEventLines) {
+      dialogEventsLines.splice(0, dialogEventsLines.length - maxDialogEventLines);
+    }
+    if (dialogEventsLog) dialogEventsLog.textContent = dialogEventsLines.join('\n');
+  };
+
+  if (dialogEventsDemo && dialogEventsLog) {
+    dialogEventsDemo.addEventListener('open', e => {
+      appendDialogEventLine(`swim-dialog open (bubbles=${e.bubbles}, composed=${e.composed})`);
+    });
+    dialogEventsDemo.addEventListener('close', e => {
+      appendDialogEventLine(`swim-dialog close (bubbles=${e.bubbles}, composed=${e.composed})`);
+      dialogEventsDemo.visible = false;
+    });
+  }
+  if (dialogEventsLargeContent) {
+    dialogEventsLargeContent.addEventListener('close-or-cancel', e => {
+      const dirty = (e as CustomEvent<boolean>).detail;
+      appendDialogEventLine(`swim-large-format-dialog-content close-or-cancel (detail dirty=${dirty})`);
+      if (dialogEventsDemo) dialogEventsDemo.visible = false;
+    });
+  }
+  document.getElementById('dialogEventsOpen')?.addEventListener('click', () => {
+    if (dialogEventsDemo) dialogEventsDemo.visible = true;
+  });
+  document.getElementById('dialogEventsClearLog')?.addEventListener('click', () => {
+    dialogEventsLines.length = 0;
+    if (dialogEventsLog) dialogEventsLog.textContent = '(log cleared)';
+  });
+  document.getElementById('dialogEventsFooterClose')?.addEventListener('click', () => {
+    if (dialogEventsDemo) dialogEventsDemo.visible = false;
+  });
+
   const dialogContentOpen = document.getElementById('dialogContentOpen');
   const dialogContentDemo = document.getElementById('dialogContentDemo') as any;
   if (dialogContentOpen && dialogContentDemo) {
@@ -1100,13 +1152,15 @@ function setupDemos(): void {
     dialogLargeFormatOpen.addEventListener('click', () => {
       dialogLargeFormatDemo.visible = true;
     });
-    dialogLargeFormatDemo.addEventListener('close-or-cancel', () => {
-      dialogLargeFormatDemo.visible = false;
-    });
+    wireLargeFormatHeaderClose(dialogLargeFormatDemo);
   }
 
   const dialogThemeVarsLargeOpen = document.getElementById('dialogThemeVarsLargeOpen');
-  const dialogThemeVarsLargeDemo = document.getElementById('dialogThemeVarsLargeDemo') as { visible?: boolean } | null;
+  const dialogThemeVarsLargeDemo = document.getElementById('dialogThemeVarsLargeDemo') as
+    | (HTMLElement & {
+        visible?: boolean;
+      })
+    | null;
   if (dialogThemeVarsLargeOpen && dialogThemeVarsLargeDemo) {
     const hideThemedLarge = () => {
       dialogThemeVarsLargeDemo.visible = false;
@@ -1114,14 +1168,18 @@ function setupDemos(): void {
     dialogThemeVarsLargeOpen.addEventListener('click', () => {
       dialogThemeVarsLargeDemo.visible = true;
     });
-    dialogThemeVarsLargeDemo.addEventListener('close-or-cancel', hideThemedLarge);
+    dialogThemeVarsLargeDemo
+      .querySelector('swim-large-format-dialog-content')
+      ?.addEventListener('close-or-cancel', hideThemedLarge);
     dialogThemeVarsLargeDemo.addEventListener('close', hideThemedLarge);
   }
 
   const dialogThemeVarsRegularOpen = document.getElementById('dialogThemeVarsRegularOpen');
-  const dialogThemeVarsRegularDemo = document.getElementById('dialogThemeVarsRegularDemo') as {
-    visible?: boolean;
-  } | null;
+  const dialogThemeVarsRegularDemo = document.getElementById('dialogThemeVarsRegularDemo') as
+    | (HTMLElement & {
+        visible?: boolean;
+      })
+    | null;
   if (dialogThemeVarsRegularOpen && dialogThemeVarsRegularDemo) {
     dialogThemeVarsRegularOpen.addEventListener('click', () => {
       dialogThemeVarsRegularDemo.visible = true;
@@ -1131,7 +1189,11 @@ function setupDemos(): void {
     });
   }
 
-  const dialogFooterAlignDemo = document.getElementById('dialogFooterAlignDemo') as { visible?: boolean } | null;
+  const dialogFooterAlignDemo = document.getElementById('dialogFooterAlignDemo') as
+    | (HTMLElement & {
+        visible?: boolean;
+      })
+    | null;
   const dialogFooterAlignFooter = document.getElementById('dialogFooterAlignFooter') as {
     align?: string;
     setAttribute(name: string, value: string): void;
@@ -1150,9 +1212,7 @@ function setupDemos(): void {
   wireDialogFooterAlignOpen('dialogFooterAlignOpenEnd', 'end');
   wireDialogFooterAlignOpen('dialogFooterAlignOpenBetween', 'space-between');
   if (dialogFooterAlignDemo) {
-    dialogFooterAlignDemo.addEventListener('close-or-cancel', () => {
-      dialogFooterAlignDemo.visible = false;
-    });
+    wireLargeFormatHeaderClose(dialogFooterAlignDemo);
   }
 
   const dialogMediumFormatOpen = document.getElementById('dialogMediumFormatOpen');
@@ -1161,9 +1221,7 @@ function setupDemos(): void {
     dialogMediumFormatOpen.addEventListener('click', () => {
       dialogMediumFormatDemo.visible = true;
     });
-    dialogMediumFormatDemo.addEventListener('close-or-cancel', () => {
-      dialogMediumFormatDemo.visible = false;
-    });
+    wireLargeFormatHeaderClose(dialogMediumFormatDemo);
   }
 
   const dialogMediumContentOpen = document.getElementById('dialogMediumContentOpen');
@@ -1172,9 +1230,7 @@ function setupDemos(): void {
     dialogMediumContentOpen.addEventListener('click', () => {
       dialogMediumContentDemo.visible = true;
     });
-    dialogMediumContentDemo.addEventListener('close-or-cancel', () => {
-      dialogMediumContentDemo.visible = false;
-    });
+    wireLargeFormatHeaderClose(dialogMediumContentDemo);
   }
 
   const dialogMediumFooterOpen = document.getElementById('dialogMediumFooterOpen');
@@ -1183,9 +1239,7 @@ function setupDemos(): void {
     dialogMediumFooterOpen.addEventListener('click', () => {
       dialogMediumFooterDemo.visible = true;
     });
-    dialogMediumFooterDemo.addEventListener('close-or-cancel', () => {
-      dialogMediumFooterDemo.visible = false;
-    });
+    wireLargeFormatHeaderClose(dialogMediumFooterDemo);
   }
 
   const dialogMediumFooterContentOpen = document.getElementById('dialogMediumFooterContentOpen');
@@ -1194,9 +1248,7 @@ function setupDemos(): void {
     dialogMediumFooterContentOpen.addEventListener('click', () => {
       dialogMediumFooterContentDemo.visible = true;
     });
-    dialogMediumFooterContentDemo.addEventListener('close-or-cancel', () => {
-      dialogMediumFooterContentDemo.visible = false;
-    });
+    wireLargeFormatHeaderClose(dialogMediumFooterContentDemo);
   }
 
   // Drawer demos
