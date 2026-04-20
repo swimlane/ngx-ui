@@ -1,20 +1,23 @@
-import { LitElement, html, nothing, PropertyValues } from 'lit';
+import { LitElement, html, nothing, PropertyValues, TemplateResult } from 'lit';
 import { property, state, query } from 'lit/decorators.js';
 import { repeat } from 'lit/directives/repeat.js';
 import { baseStyles } from '../../styles/base';
 import { scrollbarStyles } from '../../styles/scrollbars';
 import { selectStyles } from './select.styles';
 import { SelectOption } from './select-option.interface';
+import { optionMatchesFilter } from './select-filter.util';
 import { InputAppearance } from '../input/input-appearance.enum';
 import { InputSize } from '../input/input-size.enum';
-import { coerceBooleanProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, litBooleanAttrDefaultFalse, litBooleanAttrDefaultTrue } from '../../utils/coerce';
 import '../icon/icon.component';
 import './select-option.component';
 
 /**
  * SwimSelect - A select/dropdown component matching @swimlane/ngx-ui design system
  *
- * Options can be provided via the `options` property or declaratively with `<swim-option>` children:
+ * Options can be provided via the `options` property or declaratively with `<swim-option>` children.
+ * Set the `grouped` attribute to show section headers from each option’s `group`
+ * (`SelectOption` field or `<swim-option group="...">`). Without `grouped`, `group` is ignored for layout.
  * ```html
  * <swim-select label="Attack Type">
  *   <swim-option name="Breach" value="breach"></swim-option>
@@ -25,14 +28,20 @@ import './select-option.component';
  * @slot - swim-option children for declarative options
  * @slot hint - Custom hint content
  *
- * @fires change - Fired when selection changes
- * @fires open - Fired when dropdown opens
- * @fires close - Fired when dropdown closes
+ * @fires change - Fired when selection changes (does not bubble; listen on this element).
+ * @fires dropdown-open - Options panel opened (does not bubble).
+ * @fires dropdown-close - Options panel closed (does not bubble).
+ * @fires filter-change - With `async-filter`: debounced `detail.query` for remote search (does not bubble).
  *
  * @csspart select - The select input element
  * @csspart dropdown - The dropdown container
  */
 const SELECT_TAG = 'swim-select';
+
+/** Top-layer popover avoids clipping inside transformed / overflow:hidden ancestors (e.g. dialogs). */
+const SELECT_POPOVER_TOP_LAYER =
+  typeof HTMLElement !== 'undefined' && typeof HTMLElement.prototype.showPopover === 'function';
+
 export class SwimSelect extends LitElement {
   static styles = [baseStyles, scrollbarStyles, selectStyles];
   static formAssociated = true;
@@ -76,6 +85,52 @@ export class SwimSelect extends LitElement {
   filterPlaceholder = 'Filter options...';
 
   /**
+   * When the filter matches nothing (sync) or async search returned no users
+   */
+  @property({ type: String, attribute: 'filter-empty-placeholder' })
+  filterEmptyPlaceholder = 'No matches';
+
+  /**
+   * Shown while `loading` is true during async search
+   */
+  @property({ type: String, attribute: 'filter-searching-placeholder' })
+  filterSearchingPlaceholder = 'Searching…';
+
+  /**
+   * Remote search: skip local filtering; parent updates `options` after `filter-change`
+   */
+  @property({ type: Boolean, attribute: 'async-filter', converter: litBooleanAttrDefaultFalse })
+  get asyncFilter(): boolean {
+    return this._asyncFilter;
+  }
+  set asyncFilter(value: boolean) {
+    this._asyncFilter = coerceBooleanProperty(value);
+  }
+  private _asyncFilter = false;
+
+  @property({ type: Number, attribute: 'filter-debounce-ms' })
+  filterDebounceMs = 500;
+
+  @property({ type: Number, attribute: 'filter-min-length' })
+  filterMinLength = 2;
+
+  /**
+   * With the popover top layer, `start` anchors the panel to the combobox; `center` uses the
+   * full host width and horizontal bounds so the menu lines up with centered columns (e.g. dialogs).
+   */
+  @property({ type: String, attribute: 'dropdown-align' })
+  dropdownAlign: 'start' | 'center' = 'start';
+
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
+  get loading(): boolean {
+    return this._loading;
+  }
+  set loading(value: boolean) {
+    this._loading = coerceBooleanProperty(value);
+  }
+  private _loading = false;
+
+  /**
    * Select options
    */
   @property({ type: Array })
@@ -116,7 +171,7 @@ export class SwimSelect extends LitElement {
   /**
    * Whether the select is disabled
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }
@@ -128,7 +183,7 @@ export class SwimSelect extends LitElement {
   /**
    * Whether the select is required
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get required(): boolean {
     return this._required;
   }
@@ -152,7 +207,7 @@ export class SwimSelect extends LitElement {
   /**
    * Whether to show margin
    */
-  @property({ type: Boolean, reflect: true, attribute: 'marginless' })
+  @property({ type: Boolean, reflect: true, attribute: 'marginless', converter: litBooleanAttrDefaultFalse })
   get marginless(): boolean {
     return !this._withMargin;
   }
@@ -162,9 +217,10 @@ export class SwimSelect extends LitElement {
   private _withMargin = true;
 
   /**
-   * Whether to show hint
+   * When true, the hint row is rendered only if `hint` is non-empty or a direct child uses `slot="hint"`.
+   * When false, the hint row is never rendered.
    */
-  @property({ type: Boolean })
+  @property({ type: Boolean, converter: litBooleanAttrDefaultTrue })
   get withHint(): boolean {
     return this._withHint;
   }
@@ -176,7 +232,7 @@ export class SwimSelect extends LitElement {
   /**
    * Enable filtering
    */
-  @property({ type: Boolean })
+  @property({ type: Boolean, converter: litBooleanAttrDefaultTrue })
   get filterable(): boolean {
     return this._filterable;
   }
@@ -186,9 +242,21 @@ export class SwimSelect extends LitElement {
   private _filterable = true;
 
   /**
+   * When true, show `group` as section headers in the dropdown (and indent options).
+   */
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
+  get grouped(): boolean {
+    return this._grouped;
+  }
+  set grouped(value: boolean) {
+    this._grouped = coerceBooleanProperty(value);
+  }
+  private _grouped = false;
+
+  /**
    * Allow multiple selection
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get multiple(): boolean {
     return this._multiple;
   }
@@ -200,7 +268,7 @@ export class SwimSelect extends LitElement {
   /**
    * Allow clearing selection
    */
-  @property({ type: Boolean, attribute: 'allow-clear' })
+  @property({ type: Boolean, attribute: 'allow-clear', converter: litBooleanAttrDefaultTrue })
   get allowClear(): boolean {
     return this._allowClear;
   }
@@ -217,6 +285,10 @@ export class SwimSelect extends LitElement {
 
   @state()
   private _slottedOptions: SelectOption[] = [];
+
+  /** Direct child assigned to `slot="hint"` (kept in sync via `_setupChildObserver`). */
+  @state()
+  private _hasSlottedHint = false;
 
   @state()
   private _open = false;
@@ -236,7 +308,10 @@ export class SwimSelect extends LitElement {
   @state()
   private _focusedIndex = -1;
 
+  /** Debounce id from `window.setTimeout` (DOM lib uses `number`). */
+  private _filterDebounceTimer: number | undefined;
   private _clickOutsideListener?: (e: MouseEvent) => void;
+  private _dropdownScrollOrResizeListener?: () => void;
   private _childObserver?: MutationObserver;
 
   /**
@@ -258,14 +333,23 @@ export class SwimSelect extends LitElement {
   connectedCallback() {
     super.connectedCallback();
     this._collectSlottedOptions();
+    this._syncSlottedHintPresence();
     this._setupChildObserver();
     this._updateActiveState();
   }
 
   disconnectedCallback() {
+    const dd = this.shadowRoot?.querySelector('.select-dropdown') as
+      | (HTMLElement & { hidePopover?: () => void })
+      | null;
+    this._teardownDropdownTopLayer(dd);
     super.disconnectedCallback();
     this._removeClickOutsideListener();
     this._childObserver?.disconnect();
+    if (this._filterDebounceTimer !== undefined) {
+      clearTimeout(this._filterDebounceTimer);
+      this._filterDebounceTimer = undefined;
+    }
   }
 
   /** Called by swim-option children when they connect/disconnect/update */
@@ -280,36 +364,74 @@ export class SwimSelect extends LitElement {
       .map(el => {
         const name = el.getAttribute('name') || '';
         const value = el.getAttribute('value');
+        const groupAttr = el.getAttribute('group');
         return {
           name,
           value: value !== null ? value : name,
-          disabled: el.hasAttribute('disabled')
+          disabled: el.hasAttribute('disabled'),
+          ...(groupAttr != null && groupAttr.trim() !== '' ? { group: groupAttr.trim() } : {})
         };
       });
+  }
+
+  private _syncSlottedHintPresence() {
+    const next = Array.from(this.children).some(el => el.slot === 'hint');
+    if (next !== this._hasSlottedHint) {
+      this._hasSlottedHint = next;
+    }
   }
 
   private _setupChildObserver() {
     this._childObserver = new MutationObserver(() => {
       this._collectSlottedOptions();
+      this._syncSlottedHintPresence();
     });
-    this._childObserver.observe(this, { childList: true, subtree: false });
+    this._childObserver.observe(this, {
+      childList: true,
+      subtree: false,
+      attributes: true,
+      attributeFilter: ['slot']
+    });
   }
 
   updated(changedProperties: PropertyValues) {
     super.updated(changedProperties);
+
+    if (changedProperties.has('disabled')) {
+      if (this.disabled) {
+        this._focused = false;
+        this.removeAttribute('focused');
+        if (this._open) {
+          this._closeDropdown();
+        }
+      }
+      this._updateActiveState();
+    }
 
     if (changedProperties.has('value')) {
       this._updateActiveState();
       this._validate();
     }
 
+    if (changedProperties.has('loading')) {
+      const wasLoading = changedProperties.get('loading');
+      if (wasLoading === true && !this.loading && this._open && this.filterable && !this.disabled) {
+        this.updateComplete.then(() => {
+          if (this.filterInput && document.activeElement !== this.filterInput) {
+            this.filterInput.focus({ preventScroll: true });
+          }
+        });
+      }
+    }
+
     if (changedProperties.has('_open')) {
       if (this._open) {
         this.setAttribute('open', '');
         this._addClickOutsideListener();
+        this.updateComplete.then(() => this._layoutOpenDropdownPanel());
         // Focus filter input if available
         setTimeout(() => {
-          if (this.filterable && this.filterInput) {
+          if (this.filterable && this.filterInput && !this.disabled) {
             this.filterInput.focus();
           }
         }, 100);
@@ -318,7 +440,19 @@ export class SwimSelect extends LitElement {
         this._removeClickOutsideListener();
         this._filterQuery = '';
         this._focusedIndex = -1;
+        if (this._filterDebounceTimer !== undefined) {
+          clearTimeout(this._filterDebounceTimer);
+          this._filterDebounceTimer = undefined;
+        }
       }
+    }
+
+    if (
+      this._open &&
+      (changedProperties.has('options') || changedProperties.has('loading')) &&
+      !changedProperties.has('_open')
+    ) {
+      this.updateComplete.then(() => this._layoutOpenDropdownPanel());
     }
   }
 
@@ -326,6 +460,8 @@ export class SwimSelect extends LitElement {
     const hasValue = this._value.length > 0;
     const filteredOptions = this._getFilteredOptions();
     const showClear = this.allowClear && hasValue && !this.disabled;
+    const showList = filteredOptions.length > 0 && !this.loading;
+    const showHint = this.withHint && (this.hint.trim() !== '' || this._hasSlottedHint);
 
     return html`
       <div class="select-wrap">
@@ -336,6 +472,7 @@ export class SwimSelect extends LitElement {
                 class="select-input"
                 part="select"
                 role="combobox"
+                aria-disabled="${this.disabled ? 'true' : nothing}"
                 aria-expanded="${this._open}"
                 aria-haspopup="listbox"
                 aria-controls="${this.id}-listbox"
@@ -363,6 +500,7 @@ export class SwimSelect extends LitElement {
                     type="button"
                     class="select-caret"
                     aria-label="Toggle dropdown"
+                    ?disabled="${this.disabled}"
                     @click="${this._handleToggle}"
                   >
                     <swim-icon font-icon="chevron-bold-down"></swim-icon>
@@ -378,20 +516,34 @@ export class SwimSelect extends LitElement {
         <div class="select-underline">
           <div class="underline-fill"></div>
         </div>
-        <div class="select-hint ${!this.withHint ? 'hidden' : ''}">
-          <slot name="hint">${this.hint}</slot>
-        </div>
-
+        ${showHint
+          ? html`
+              <div class="select-hint">
+                <slot name="hint">${this.hint}</slot>
+              </div>
+            `
+          : nothing}
         ${this._open
           ? html`
-              <div class="select-dropdown swim-scroll" part="dropdown" role="listbox" id="${this.id}-listbox">
+              <div
+                class="select-dropdown swim-scroll"
+                part="dropdown"
+                role="listbox"
+                id="${this.id}-listbox"
+                popover="${SELECT_POPOVER_TOP_LAYER ? 'manual' : nothing}"
+              >
                 ${this.filterable
                   ? html`
-                      <div class="select-filter">
+                      <div
+                        class="select-filter ${this.loading ? 'select-filter--loading' : ''}"
+                        aria-busy="${this.loading}"
+                      >
                         <input
                           type="text"
                           class="select-filter-input"
                           placeholder="${this.filterPlaceholder}"
+                          ?disabled="${this.disabled}"
+                          ?readonly="${this.loading}"
                           .value="${this._filterQuery}"
                           @input="${this._handleFilterInput}"
                           @keydown="${this._handleFilterKeyDown}"
@@ -399,17 +551,23 @@ export class SwimSelect extends LitElement {
                       </div>
                     `
                   : nothing}
-                ${filteredOptions.length > 0
+                ${showList
                   ? html`
-                      <ul class="select-options">
-                        ${repeat(
-                          filteredOptions,
-                          option => this._getOptionValue(option),
-                          (option, index) => this._renderOption(option, index)
-                        )}
+                      <ul
+                        class="select-options ${this.grouped && this._listHasGroupHeadings(filteredOptions)
+                          ? 'select-options--grouped'
+                          : ''}"
+                      >
+                        ${this.grouped
+                          ? this._renderGroupedOptionRows(filteredOptions)
+                          : repeat(
+                              filteredOptions,
+                              option => this._getOptionValue(option),
+                              (option, index) => this._renderOption(option, index)
+                            )}
                       </ul>
                     `
-                  : html` <div class="select-empty">${this.emptyPlaceholder}</div> `}
+                  : html`<div class="select-empty">${this._emptyDropdownMessage()}</div>`}
               </div>
             `
           : nothing}
@@ -431,20 +589,78 @@ export class SwimSelect extends LitElement {
       `;
     } else {
       const option = this._allOptions.find(opt => this._getOptionValue(opt) === this._value[0]);
-      return html`${option?.name || this._value[0]}`;
+      const label = option ? this._getOptionLabel(option) : String(this._value[0]);
+      return html`${label}`;
     }
   }
 
+  private _getOptionLabel(option: SelectOption): string {
+    const t = option.title ?? option.label;
+    if (t !== undefined && t !== null && String(t).length > 0) {
+      return String(t);
+    }
+    return option.name;
+  }
+
+  /** Non-empty section title from `group`. */
+  private _groupHeading(option: SelectOption): string {
+    const raw = option.group;
+    return raw != null && String(raw).trim() !== '' ? String(raw).trim() : '';
+  }
+
+  private _listHasGroupHeadings(options: SelectOption[]): boolean {
+    return options.some(o => this._groupHeading(o).length > 0);
+  }
+
+  private _renderGroupedOptionRows(filteredOptions: SelectOption[]): TemplateResult[] {
+    let previousHeading = '';
+    const rows: TemplateResult[] = [];
+    for (let index = 0; index < filteredOptions.length; index++) {
+      const option = filteredOptions[index];
+      const heading = this._groupHeading(option);
+      if (heading) {
+        if (heading !== previousHeading) {
+          rows.push(html`
+            <li class="select-option-group" role="presentation">
+              <span class="select-option-group-label">${heading}</span>
+            </li>
+          `);
+          previousHeading = heading;
+        }
+      } else {
+        previousHeading = '';
+      }
+      rows.push(this._renderOption(option, index));
+    }
+    return rows;
+  }
+
+  private _emptyDropdownMessage(): string {
+    if (this.loading) {
+      return this.filterSearchingPlaceholder;
+    }
+    if (this.asyncFilter && this._filterQuery.trim().length < this.filterMinLength) {
+      return this.emptyPlaceholder;
+    }
+    if (this._allOptions.length === 0) {
+      return this.asyncFilter && this._filterQuery.trim().length > 0
+        ? this.filterEmptyPlaceholder
+        : this.emptyPlaceholder;
+    }
+    return this.filterEmptyPlaceholder;
+  }
+
   private _renderChip(option: SelectOption) {
+    const label = this._getOptionLabel(option);
     return html`
       <div class="select-chip">
-        <span class="select-chip-label">${option.name}</span>
+        <span class="select-chip-label">${label}</span>
         ${!this.disabled
           ? html`
               <button
                 type="button"
                 class="select-chip-remove"
-                aria-label="Remove ${option.name}"
+                aria-label="Remove ${label}"
                 @click="${(e: Event) => this._removeChip(e, option)}"
               >
                 <swim-icon font-icon="x"></swim-icon>
@@ -471,7 +687,7 @@ export class SwimSelect extends LitElement {
         @click="${() => this._handleOptionClick(option)}"
         @mouseenter="${() => (this._focusedIndex = index)}"
       >
-        ${option.name}
+        ${this._getOptionLabel(option)}
       </li>
     `;
   }
@@ -497,6 +713,9 @@ export class SwimSelect extends LitElement {
   }
 
   private _handleFocus() {
+    if (this.disabled) {
+      return;
+    }
     this._focused = true;
     this.setAttribute('focused', '');
   }
@@ -514,6 +733,9 @@ export class SwimSelect extends LitElement {
   }
 
   private _handleKeyDown(e: KeyboardEvent) {
+    if (this.disabled) {
+      return;
+    }
     switch (e.key) {
       case 'Enter':
       case ' ':
@@ -545,10 +767,36 @@ export class SwimSelect extends LitElement {
     }
   }
 
+  private _emitFilterChange(query: string) {
+    this.dispatchEvent(
+      new CustomEvent('filter-change', {
+        detail: { query },
+        bubbles: false,
+        composed: false
+      })
+    );
+  }
+
   private _handleFilterInput(e: Event) {
     const target = e.target as HTMLInputElement;
     this._filterQuery = target.value;
     this._focusedIndex = 0;
+
+    if (this.asyncFilter) {
+      if (this._filterDebounceTimer !== undefined) {
+        clearTimeout(this._filterDebounceTimer);
+        this._filterDebounceTimer = undefined;
+      }
+      const q = this._filterQuery.trim();
+      if (q.length < this.filterMinLength) {
+        this._emitFilterChange('');
+        return;
+      }
+      this._filterDebounceTimer = window.setTimeout(() => {
+        this._filterDebounceTimer = undefined;
+        this._emitFilterChange(q);
+      }, this.filterDebounceMs);
+    }
   }
 
   private _handleFilterKeyDown(e: KeyboardEvent) {
@@ -618,12 +866,16 @@ export class SwimSelect extends LitElement {
     if (this.disabled) return;
     this._open = true;
     this._focusedIndex = 0;
-    this.dispatchEvent(new Event('open', { bubbles: true, composed: true }));
+    this.dispatchEvent(new Event('dropdown-open', { bubbles: false, composed: false }));
   }
 
   private _closeDropdown() {
+    const dd = this.shadowRoot?.querySelector('.select-dropdown') as
+      | (HTMLElement & { hidePopover?: () => void })
+      | null;
+    this._teardownDropdownTopLayer(dd);
     this._open = false;
-    this.dispatchEvent(new Event('close', { bubbles: true, composed: true }));
+    this.dispatchEvent(new Event('dropdown-close', { bubbles: false, composed: false }));
   }
 
   private _moveFocus(direction: number) {
@@ -642,12 +894,16 @@ export class SwimSelect extends LitElement {
   }
 
   private _getFilteredOptions(): SelectOption[] {
-    if (!this._filterQuery) {
+    if (this.asyncFilter) {
+      return this._allOptions;
+    }
+    if (!this._filterQuery.trim()) {
       return this._allOptions;
     }
 
-    const query = this._filterQuery.toLowerCase();
-    return this._allOptions.filter(option => option.name.toLowerCase().includes(query));
+    return this._allOptions.filter(option =>
+      optionMatchesFilter(option, this._filterQuery, { filterCaseSensitive: false })
+    );
   }
 
   private _getOptionValue(option: SelectOption): any {
@@ -662,8 +918,8 @@ export class SwimSelect extends LitElement {
     this.dispatchEvent(
       new CustomEvent('change', {
         detail: { value: this.value },
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }
@@ -713,7 +969,7 @@ export class SwimSelect extends LitElement {
 
   private _addClickOutsideListener() {
     this._clickOutsideListener = (e: MouseEvent) => {
-      if (!this.contains(e.target as Node)) {
+      if (!e.composedPath().includes(this)) {
         this._closeDropdown();
       }
     };
@@ -727,6 +983,97 @@ export class SwimSelect extends LitElement {
       document.removeEventListener('click', this._clickOutsideListener);
       this._clickOutsideListener = undefined;
     }
+  }
+
+  /** Manual popover + fixed geometry so the list escapes overflow/transform (e.g. medium dialog). */
+  private _layoutOpenDropdownPanel(): void {
+    if (!this._open || !SELECT_POPOVER_TOP_LAYER) return;
+    const dd = this.shadowRoot?.querySelector('.select-dropdown') as
+      | (HTMLElement & { showPopover?: () => void })
+      | null;
+    if (!dd || !this.selectInput || typeof dd.showPopover !== 'function') {
+      return;
+    }
+    this._applyDropdownPanelGeometry(dd, this.selectInput);
+    try {
+      dd.showPopover();
+    } catch {
+      /* already open or popover not available at runtime */
+    }
+    this._addDropdownScrollListener();
+  }
+
+  private _applyDropdownPanelGeometry(dd: HTMLElement, trigger: HTMLElement): void {
+    const tr = trigger.getBoundingClientRect();
+    const host = this.getBoundingClientRect();
+    const gap = 8;
+    const maxH = Math.min(300, Math.max(0, window.innerHeight - tr.bottom - gap - 8));
+    const useHost = this.dropdownAlign === 'center';
+    const panelW = useHost ? host.width : tr.width;
+    let leftPx = useHost ? host.left : tr.left;
+    if (useHost) {
+      const edge = 8;
+      leftPx = Math.min(Math.max(leftPx, edge), window.innerWidth - panelW - edge);
+    }
+    // UA `[popover]` uses `inset: 0; margin: auto` which centers the panel and fights our anchors.
+    dd.style.setProperty('inset', 'auto');
+    dd.style.setProperty('margin', '0');
+    dd.style.setProperty('height', 'auto');
+    dd.style.setProperty('position', 'fixed');
+    dd.style.setProperty('left', `${leftPx}px`);
+    dd.style.setProperty('top', `${tr.bottom + gap}px`);
+    dd.style.setProperty('width', `${panelW}px`);
+    dd.style.setProperty('max-height', `${maxH}px`);
+    dd.style.setProperty('z-index', '2147483646');
+    dd.style.setProperty('animation', 'none');
+    dd.style.setProperty('transform', 'none');
+  }
+
+  private _clearDropdownPanelGeometry(dd: HTMLElement): void {
+    [
+      'inset',
+      'margin',
+      'height',
+      'position',
+      'left',
+      'top',
+      'width',
+      'max-height',
+      'z-index',
+      'animation',
+      'transform'
+    ].forEach(p => dd.style.removeProperty(p));
+  }
+
+  private _teardownDropdownTopLayer(dd: (HTMLElement & { hidePopover?: () => void }) | null): void {
+    this._removeDropdownScrollListener();
+    if (!dd || !SELECT_POPOVER_TOP_LAYER) return;
+    try {
+      dd.hidePopover?.();
+    } catch {
+      /* not shown */
+    }
+    this._clearDropdownPanelGeometry(dd);
+  }
+
+  private _addDropdownScrollListener(): void {
+    if (!SELECT_POPOVER_TOP_LAYER || this._dropdownScrollOrResizeListener) return;
+    this._dropdownScrollOrResizeListener = () => {
+      if (!this._open) return;
+      const panel = this.shadowRoot?.querySelector('.select-dropdown') as HTMLElement | null;
+      if (panel && this.selectInput) {
+        this._applyDropdownPanelGeometry(panel, this.selectInput);
+      }
+    };
+    window.addEventListener('scroll', this._dropdownScrollOrResizeListener, true);
+    window.addEventListener('resize', this._dropdownScrollOrResizeListener);
+  }
+
+  private _removeDropdownScrollListener(): void {
+    if (!this._dropdownScrollOrResizeListener) return;
+    window.removeEventListener('scroll', this._dropdownScrollOrResizeListener, true);
+    window.removeEventListener('resize', this._dropdownScrollOrResizeListener);
+    this._dropdownScrollOrResizeListener = undefined;
   }
 
   // Form API

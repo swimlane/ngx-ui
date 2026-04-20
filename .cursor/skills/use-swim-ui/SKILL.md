@@ -29,27 +29,57 @@ Ensure the `lit` specifier is available (e.g. via import map) so the swim-ui bun
 
 ## Events
 
-Listen with `@event-name` (Lit) or `addEventListener('event-name', ...)`. Events bubble unless noted. Use `event.detail` for payloads.
+### Host-only custom events (confirmed contract)
 
-| Element | Event | Detail |
-|--------|---------|--------|
-| swim-button | click | native |
-| swim-input, swim-select | change | value / selection |
-| swim-checkbox, swim-toggle | change, checked-change | checked state |
-| swim-radio-group | change | selected value |
-| swim-button-toggle-group | value-change | selected value |
-| swim-tabs | select-tab, select | `{ tab }` |
-| swim-section | toggle | `boolean` (collapsed) |
-| swim-dialog | open, close | close: optional detail |
-| swim-drawer | close | optional detail |
-| swim-list | page-change, scroll | page number; scrollTop |
-| swim-card | select, outline-click | selected; — |
-| swim-tooltip | show, hide | — |
-| swim-navbar | active-change | index |
-| swim-slider | change | `{ value, percent }` |
-| swim-split | resize | — |
-| swim-calendar | change, day-key-enter | — |
-| swim-date-time | change, value-change, blur, focus | — |
+Swim-ui **custom events** are dispatched **only on the `swim-*` element host** (the custom element node: `event.target` is that element). They use **`bubbles: false`** and **`composed: false`**, so they **do not** propagate to ancestors, `document`, or past shadow boundaries.
+
+**How to listen**
+
+- **Lit:** use `@event` on the `swim-*` node that emits it (for example `@change` on `swim-input`, `@close` on `swim-dialog`), not on a wrapping `div` expecting the event to bubble up.
+- **Vanilla:** `element.addEventListener('change', ...)` where `element` is the `swim-*` reference from `querySelector`, `ref`, or `createElement`.
+
+**Do not** rely on **event delegation** on a parent, `document`, or `window` for these custom events—they will not fire there. (Native `click` on `swim-button` is separate: it behaves like a normal control.)
+
+**Naming:** Because custom events stay on the host, conventional names (`change`, `close`, `open`, `select`, etc.) are safe. If a future API ever required **`bubbles: true`**, prefer a **non-generic, swim-specific** event name to avoid clashes.
+
+Use `event.detail` for payloads where the component defines it.
+
+### Propagation summary (`bubbles` / `composed`)
+
+| | Value | Meaning |
+|--|-------|--------|
+| Custom events | `bubbles: false`, `composed: false` | Host-only; listen on that `swim-*` element. |
+
+**Repro:** The swim-ui demo **Event propagation** (`#event-bubbling-matrix`) shows `swim-checkbox` in light DOM vs inside another shadow root.
+
+### Per-event reference
+
+| Element | Event | Bubbles | Composed | Detail |
+|---------|-------|---------|----------|--------|
+| swim-button | `click` | native | native | — |
+| swim-input | `input`, `change`, `focus`, `blur` | no | no | value / validation |
+| swim-select | `change`, `filter-change` | no | no | value / `{ query }` |
+| swim-select | `dropdown-open`, `dropdown-close` | no | no | panel open state |
+| swim-checkbox | `change`, `checked-change`, `indeterminate-change`, `focus`, `blur` | no | no | checked / indeterminate |
+| swim-toggle | `change`, `focus`, `blur` | no | no | checked |
+| swim-radio | `change`, `focus`, `blur` | no | no | value |
+| swim-radio-group | `change`, `blur` | no | no | selected value |
+| swim-button-toggle | `value-change` | no | no | value |
+| swim-button-toggle-group | `value-change` | no | no | selected value |
+| swim-slider | `change` | no | no | `{ value, percent }` |
+| swim-calendar | `change`, `day-key-enter` | no | no | value / keyboard |
+| swim-date-time | `change`, `value-change`, `input-change`, `date-time-selected`, `focus`, `blur` | no | no | value / segments |
+| swim-tabs | `select-tab`, `select` | no | no | `{ tab }` |
+| swim-tab | `swim-tab-active-change` | no | no | — |
+| swim-section | `toggle` | no | no | collapsed boolean |
+| swim-dialog | `open`, `close` | no | no | optional detail on close |
+| swim-large-format-dialog-content | `close-or-cancel` | no | no | dirty boolean |
+| swim-drawer | `close` | no | no | optional detail |
+| swim-list | `page-change`, `scroll` | no | no | page / scrollTop |
+| swim-card | `select`, `outline-click` | no | no | selected / — |
+| swim-tooltip | `show`, `hide` | no | no | `true` |
+| swim-navbar, swim-navbar-item | `active-change` | no | no | index |
+| swim-split-handle | `dragstart`, `drag`, `dragend`, `dblclick` | no | no | `MouseEvent` detail |
 
 ## Slots
 
@@ -95,7 +125,7 @@ When using the CDN bundle, the drawer may be created with `document.createElemen
 | swim-section | Collapsible section; section-title, section-collapsed, section-collapsible, header slot |
 | swim-card | Card; orientation, status, selectable, selected, outline-text |
 | swim-card-header, swim-card-body, swim-card-footer, swim-card-avatar, swim-card-placeholder | Card structure |
-| swim-dialog | Modal; dialog-title, format (regular/medium/large), visible, show-backdrop, close-button |
+| swim-dialog | Modal; dialog-title, format (regular/medium/large), visible, show-backdrop, close-button, close-on-blur, close-on-escape |
 | swim-large-format-dialog-content, swim-large-format-dialog-footer | Large/medium dialog layout slots |
 | swim-drawer | Slide panel; direction (left/right/bottom), size, open, closeOnOutsideClick, isRoot; show()/hide() |
 | swim-tooltip | Tooltip/popover; content, placement, alignment, type, show-event |
@@ -103,7 +133,7 @@ When using the CDN bundle, the drawer may be created with `document.createElemen
 | swim-navbar | Navbar; swim-navbar-item children; active-change |
 | swim-list | List/table; columns, headerLabels, dataSource, column-layout, height, default-row-status; page-change, scroll |
 | swim-progress-spinner | Spinner; mode, appearance; in-progress-icon, complete-icon, fail-icon slots |
-| swim-split | Resizable split; swim-split-area, swim-split-handle children; resize event |
+| swim-split | Resizable split; swim-split-area, swim-split-handle children; handle fires drag / dblclick |
 | swim-calendar | Calendar; change, day-key-enter |
 | swim-date-time | Date/time input + picker; change, value-change, blur, focus |
 

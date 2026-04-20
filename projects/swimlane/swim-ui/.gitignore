@@ -5,6 +5,7 @@ node_modules/
 dist/
 dist-demo/
 dist-cdn/
+.cdn-local-serve/
 demo/src/*.js
 demo/src/*.d.ts
 demo/src/*.d.ts.map

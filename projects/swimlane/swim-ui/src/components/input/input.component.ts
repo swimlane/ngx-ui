@@ -9,7 +9,7 @@ import { inputStyles } from './input.styles';
 import { InputTypes } from './input-types.enum';
 import { InputAppearance } from './input-appearance.enum';
 import { InputSize } from './input-size.enum';
-import { coerceBooleanProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, litBooleanAttrDefaultFalse, litBooleanAttrDefaultTrue } from '../../utils/coerce';
 
 /**
  * SwimInput - An input component matching @swimlane/ngx-ui design system
@@ -18,10 +18,13 @@ import { coerceBooleanProperty } from '../../utils/coerce';
  * @slot suffix - Content to show after the input
  * @slot hint - Hint text below the input
  *
- * @fires change - Fired when the value changes
- * @fires input - Fired on input events
- * @fires focus - Fired when the input gains focus
- * @fires blur - Fired when the input loses focus
+ * @fires change - Fired when the value changes (does not bubble; listen on this element).
+ * @fires input - Fired on input events (does not bubble).
+ * @fires focus - Fired when the input gains focus (does not bubble).
+ * @fires blur - Fired when the input loses focus (does not bubble).
+ *
+ * Imperative API: call `focus()` / `blur()` on the host element; they delegate to the inner
+ * native control (same as form validation focusing invalid fields).
  *
  * @csspart input - The native input/textarea element
  * @csspart label - The label element
@@ -91,7 +94,7 @@ export class SwimInput extends LitElement {
   /**
    * Whether the input is disabled
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }
@@ -103,7 +106,7 @@ export class SwimInput extends LitElement {
   /**
    * Whether the input is readonly
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get readonly(): boolean {
     return this._readonly;
   }
@@ -115,7 +118,7 @@ export class SwimInput extends LitElement {
   /**
    * Whether the input is required
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get required(): boolean {
     return this._required;
   }
@@ -127,7 +130,7 @@ export class SwimInput extends LitElement {
   /**
    * Whether to autofocus
    */
-  @property({ type: Boolean })
+  @property({ type: Boolean, converter: litBooleanAttrDefaultFalse })
   get autofocus(): boolean {
     return this._autofocus;
   }
@@ -157,7 +160,7 @@ export class SwimInput extends LitElement {
   /**
    * Whether to show margin
    */
-  @property({ type: Boolean, reflect: true, attribute: 'marginless' })
+  @property({ type: Boolean, reflect: true, attribute: 'marginless', converter: litBooleanAttrDefaultFalse })
   get marginless(): boolean {
     return !this._withMargin;
   }
@@ -169,7 +172,7 @@ export class SwimInput extends LitElement {
   /**
    * Whether to show hint
    */
-  @property({ type: Boolean })
+  @property({ type: Boolean, converter: litBooleanAttrDefaultTrue })
   get withHint(): boolean {
     return this._withHint;
   }
@@ -181,7 +184,7 @@ export class SwimInput extends LitElement {
   /**
    * Enable password toggle
    */
-  @property({ type: Boolean, attribute: 'password-toggle-enabled' })
+  @property({ type: Boolean, attribute: 'password-toggle-enabled', converter: litBooleanAttrDefaultFalse })
   get passwordToggleEnabled(): boolean {
     return this._passwordToggleEnabled;
   }
@@ -267,7 +270,22 @@ export class SwimInput extends LitElement {
 
   /** Delegate focus to the internal input so form validation can focus invalid controls. */
   override focus(options?: FocusOptions): void {
-    this.inputElement?.focus(options);
+    const target = this.inputElement;
+    if (target) {
+      target.focus(options);
+      return;
+    }
+    void this.updateComplete.then(() => this.inputElement?.focus(options));
+  }
+
+  /** Delegate blur to the internal input. */
+  override blur(): void {
+    const target = this.inputElement;
+    if (target) {
+      target.blur();
+      return;
+    }
+    void this.updateComplete.then(() => this.inputElement?.blur());
   }
 
   updated(changedProperties: PropertyValues) {
@@ -411,18 +429,18 @@ export class SwimInput extends LitElement {
       this.setAttribute('dirty', '');
     }
 
-    this.dispatchEvent(new Event('input', { bubbles: true, composed: true }));
+    this.dispatchEvent(new Event('input', { bubbles: false, composed: false }));
   }
 
   private _handleChange(_e: Event) {
     this._validate();
-    this.dispatchEvent(new Event('change', { bubbles: true, composed: true }));
+    this.dispatchEvent(new Event('change', { bubbles: false, composed: false }));
   }
 
   private _handleFocus(_e: FocusEvent) {
     this._focused = true;
     this.setAttribute('focused', '');
-    this.dispatchEvent(new FocusEvent('focus', { bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('focus', { bubbles: false, composed: false }));
   }
 
   private _handleBlur(_e: FocusEvent) {
@@ -435,7 +453,7 @@ export class SwimInput extends LitElement {
     }
 
     this._validate();
-    this.dispatchEvent(new FocusEvent('blur', { bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('blur', { bubbles: false, composed: false }));
   }
 
   private _togglePassword() {
@@ -492,7 +510,7 @@ export class SwimInput extends LitElement {
 
       const newValue = currentValue + 1;
       this.value = newValue.toString();
-      this.dispatchEvent(new Event('change', { bubbles: true, composed: true }));
+      this.dispatchEvent(new Event('change', { bubbles: false, composed: false }));
     }
   }
 
@@ -505,7 +523,7 @@ export class SwimInput extends LitElement {
 
       const newValue = currentValue - 1;
       this.value = newValue.toString();
-      this.dispatchEvent(new Event('change', { bubbles: true, composed: true }));
+      this.dispatchEvent(new Event('change', { bubbles: false, composed: false }));
     }
   }
 

@@ -4,6 +4,18 @@ import { baseStyles } from '../../../styles/base';
 /**
  * Large/Medium format dialog content styles matching ngx-large-format-dialog-content.
  * Solid background, fixed header/footer heights, scrollable body.
+ *
+ * Optional overrides (set on a parent or this host; inherit into shadow):
+ * --swim-format-dialog-bg, --swim-format-dialog-shadow, --swim-format-max-height, --swim-format-border-radius,
+ * --swim-format-header-height, --swim-format-header-height-large, --swim-format-header-height-medium,
+ * --swim-format-divider, --swim-format-header-padding-x, --swim-format-header-padding-end,
+ * --swim-format-header-gap, --swim-format-header-title-stack-gap,
+ * --swim-format-header-close-gap, --swim-format-header-close-outline-width,
+ * --swim-format-body-padding, --swim-format-body-min-height, --swim-format-body-max-height,
+ * --swim-format-footer-height, --swim-format-footer-padding-y, --swim-format-footer-padding-x,
+ * --swim-format-footer-gap, --swim-format-title-size, --swim-format-title-line
+ * Inherited from parent swim-dialog when close-button is false:
+ * --swim-dialog-header-action-display (e.g. none)
  */
 export const largeFormatDialogContentStyles = [
   baseStyles,
@@ -14,12 +26,6 @@ export const largeFormatDialogContentStyles = [
       height: 100%;
       position: relative;
       overflow: hidden;
-      --swim-format-dialog-bg: var(--grey-800);
-      --swim-format-header-height-large: 90px;
-      --swim-format-header-height-medium: 60px;
-      --swim-format-footer-height: 4rem;
-      --swim-format-body-padding: 2rem;
-      --swim-format-border: 2px solid var(--grey-700);
     }
 
     .format-dialog-container {
@@ -27,42 +33,52 @@ export const largeFormatDialogContentStyles = [
       flex-direction: column;
       height: 100%;
       max-height: var(--swim-format-max-height, 75vh);
-      background: var(--swim-format-dialog-bg);
-      box-shadow: 0 0 100px rgba(0, 0, 0, 0.25);
-      border-radius: var(--radius-16);
+      background: var(--swim-format-dialog-bg, var(--grey-725));
+      box-shadow: var(--swim-format-dialog-shadow, var(--shadow-dialog-panel));
+      border-radius: var(--swim-format-border-radius, var(--radius-16, 16px));
       overflow: hidden;
     }
 
     :host([format='large']) .format-dialog-container {
-      --swim-format-max-height: calc(100vh - 7.25rem);
-      --swim-format-header-height: var(--swim-format-header-height-large);
+      max-height: var(--swim-format-max-height, calc(100vh - 7.25rem));
     }
 
     :host([format='medium']) .format-dialog-container {
-      --swim-format-max-height: 75vh;
-      --swim-format-header-height: var(--swim-format-header-height-medium);
-      --swim-format-body-max-height: calc(var(--swim-format-max-height) - var(--swim-format-header-height));
+      max-height: var(--swim-format-max-height, 75vh);
+      --swim-format-body-max-height-internal: calc(
+        var(--swim-format-max-height, 75vh) -
+          var(--swim-format-header-height, var(--swim-format-header-height-medium, 60px))
+      );
     }
 
     .format-dialog-container__header {
-      flex: 0 0 var(--swim-format-header-height, 90px);
-      height: var(--swim-format-header-height, 90px);
-      min-height: var(--swim-format-header-height, 90px);
-      border-bottom: var(--swim-format-border);
+      border-bottom: var(--swim-format-divider, var(--spacing-2, 2px) solid var(--grey-700));
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0 var(--swim-format-body-padding);
-      padding-right: 2.5rem;
-      gap: 1.5rem;
+      padding: 0 var(--swim-format-header-padding-x, var(--spacing-32, 2rem));
+      padding-right: var(--swim-format-header-padding-end, var(--spacing-40, 2.5rem));
+      gap: var(--swim-format-header-gap, var(--spacing-24, 1.5rem));
       overflow: visible;
+    }
+
+    :host([format='large']) .format-dialog-container__header {
+      flex: 0 0 var(--swim-format-header-height, var(--swim-format-header-height-large, 90px));
+      height: var(--swim-format-header-height, var(--swim-format-header-height-large, 90px));
+      min-height: var(--swim-format-header-height, var(--swim-format-header-height-large, 90px));
+    }
+
+    :host([format='medium']) .format-dialog-container__header {
+      flex: 0 0 var(--swim-format-header-height, var(--swim-format-header-height-medium, 60px));
+      height: var(--swim-format-header-height, var(--swim-format-header-height-medium, 60px));
+      min-height: var(--swim-format-header-height, var(--swim-format-header-height-medium, 60px));
     }
 
     /* Match ngx-large-format-dialog-header-title__wrapper: flex 0 0 20%, height 100%, justify-content center */
     .format-dialog-container__header-title {
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: var(--swim-format-header-title-stack-gap, var(--spacing-2, 2px));
       flex: 0 0 20%;
       height: 100%;
       min-width: 0;
@@ -96,14 +112,14 @@ export const largeFormatDialogContentStyles = [
     }
 
     :host([format='medium']) .format-dialog-container__header-title h1 {
-      --swim-format-title-size: 1.375rem;
-      --swim-format-title-line: 1.625rem;
+      font-size: var(--swim-format-title-size, 1.375rem);
+      line-height: var(--swim-format-title-line, 1.625rem);
     }
 
     .format-dialog-container__header-action {
       flex: 0 0 auto;
       max-width: 50%;
-      display: flex;
+      display: var(--swim-dialog-header-action-display, flex);
       align-items: center;
       justify-content: flex-end;
     }
@@ -118,7 +134,7 @@ export const largeFormatDialogContentStyles = [
       cursor: pointer;
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: var(--swim-format-header-close-gap, var(--spacing-8, 0.5rem));
     }
 
     .format-dialog-container__header-action__button swim-icon {
@@ -132,32 +148,50 @@ export const largeFormatDialogContentStyles = [
     }
 
     .format-dialog-container__header-action__button:focus-visible {
-      outline: 2px solid var(--blue-500);
-      outline-offset: 2px;
+      outline: var(--swim-format-header-close-outline-width, var(--spacing-2, 2px)) solid var(--blue-500);
+      outline-offset: var(--swim-format-header-close-outline-width, var(--spacing-2, 2px));
     }
 
     .format-dialog-container__body {
       flex: 1 1 auto;
-      min-height: 215px;
-      padding: 0 var(--swim-format-body-padding);
+      min-height: var(--swim-format-body-min-height, 215px);
+      padding: var(--swim-format-body-padding, var(--spacing-32, 2rem));
       color: var(--grey-200);
     }
 
     :host([format='medium']) .format-dialog-container__body {
-      max-height: var(--swim-format-body-max-height, auto);
+      max-height: var(--swim-format-body-max-height, var(--swim-format-body-max-height-internal, auto));
     }
 
     .format-dialog-container__footer {
-      flex: 0 0 var(--swim-format-footer-height);
-      height: var(--swim-format-footer-height);
-      min-height: var(--swim-format-footer-height);
-      border-top: var(--swim-format-border);
+      flex: 0 0 var(--swim-format-footer-height, calc(var(--spacing-48, 48px) + var(--spacing-16, 16px)));
+      height: var(--swim-format-footer-height, calc(var(--spacing-48, 48px) + var(--spacing-16, 16px)));
+      min-height: var(--swim-format-footer-height, calc(var(--spacing-48, 48px) + var(--spacing-16, 16px)));
+      border-top: var(--swim-format-divider, var(--spacing-2, 2px) solid var(--grey-700));
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: var(--swim-format-footer-gap, 0.5rem);
-      padding: 0.75rem 2rem;
+      gap: var(--swim-format-footer-gap, var(--spacing-8, 0.5rem));
+      padding: var(--swim-format-footer-padding-y, var(--spacing-12, 0.75rem))
+        var(--swim-format-footer-padding-x, var(--spacing-32, 2rem));
       box-sizing: border-box;
+    }
+
+    .format-dialog-container__footer--hidden {
+      display: none;
+      flex: 0 0 0;
+      height: 0;
+      min-height: 0;
+      padding: 0;
+      border-top: none;
+      overflow: hidden;
+    }
+
+    /* Slotted footer host must span the row so inner justify-content (align) can take effect (ngx parity). */
+    .format-dialog-container__footer ::slotted(*) {
+      flex: 1 1 auto;
+      min-width: 0;
+      align-self: stretch;
     }
   `
 ];

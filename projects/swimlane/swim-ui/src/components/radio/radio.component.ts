@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 import { property, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { radioStyles } from './radio.styles';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, coerceNumberProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 
 let nextId = 0;
 
@@ -46,7 +46,7 @@ export class SwimRadio extends LitElement {
   }
   private _tabindex = 0;
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get checked(): boolean {
     return this._checked;
   }
@@ -60,7 +60,7 @@ export class SwimRadio extends LitElement {
   @property({ type: String })
   value = '';
 
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled || this.groupDisabled;
   }
@@ -114,6 +114,7 @@ export class SwimRadio extends LitElement {
       this.dispatchEvent(
         new CustomEvent('change', {
           detail: this.value,
+          // Must bubble so swim-radio-group (light-DOM parent) receives selection.
           bubbles: true,
           composed: true
         })
@@ -133,11 +134,11 @@ export class SwimRadio extends LitElement {
   }
 
   private _onFocus(ev: FocusEvent) {
-    this.dispatchEvent(new FocusEvent('focus', { ...ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('focus', { ...ev, bubbles: false, composed: false }));
   }
 
   private _onBlur(ev: FocusEvent) {
-    this.dispatchEvent(new FocusEvent('blur', { ...ev, bubbles: true, composed: true }));
+    this.dispatchEvent(new FocusEvent('blur', { ...ev, bubbles: false, composed: false }));
   }
 
   render() {

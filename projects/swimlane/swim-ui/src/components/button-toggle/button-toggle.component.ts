@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 import { property, state } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { buttonToggleStyles } from './button-toggle.styles';
-import { coerceBooleanProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 
 let nextId = 0;
 
@@ -48,7 +48,7 @@ export class SwimButtonToggle extends LitElement {
   /**
    * Whether this toggle is currently selected
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get checked(): boolean {
     return this._checked;
   }
@@ -65,7 +65,7 @@ export class SwimButtonToggle extends LitElement {
   /**
    * Whether the toggle is disabled
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }
@@ -100,6 +100,7 @@ export class SwimButtonToggle extends LitElement {
     this.dispatchEvent(
       new CustomEvent('value-change', {
         detail: this.value,
+        // Must bubble so swim-button-toggle-group (light-DOM parent) receives selection.
         bubbles: true,
         composed: true
       })

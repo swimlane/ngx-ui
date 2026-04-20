@@ -848,8 +848,13 @@ export default class ComponentShowcaseSolution extends SwimlaneElement {
               </div>
               <div class="demo-item">
                 <span class="demo-label">In Progress</span>
-                <swim-button state="in-progress" timeout="0" variant="primary" aria-label="Loading state"
-                  >Loading</swim-button
+                <swim-button
+                  state="in-progress"
+                  timeout="0"
+                  variant="primary"
+                  loading-text="Loading…"
+                  aria-label="Operation in progress"
+                  >Submit</swim-button
                 >
               </div>
               <div class="demo-item">

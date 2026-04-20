@@ -50,6 +50,10 @@
       "types": "./dist/components/date-time/index.d.ts",
       "default": "./dist/components/date-time/index.js"
     },
+    "./date-display": {
+      "types": "./dist/components/date-display/index.d.ts",
+      "default": "./dist/components/date-display/index.js"
+    },
     "./dialog": {
       "types": "./dist/components/dialog/index.d.ts",
       "default": "./dist/components/dialog/index.js"
@@ -114,6 +118,7 @@
     "build": "yarn copy:icon-font && tsc && vite build",
     "build:lib": "tsc --project tsconfig.lib.json",
     "build:cdn": "node scripts/build-cdn.mjs",
+    "serve:cdn-local": "yarn copy:icon-font && yarn build:cdn && rm -rf .cdn-local-serve && mkdir -p .cdn-local-serve/swim-ui && cp -r dist-cdn/. .cdn-local-serve/swim-ui/ && npx --yes serve .cdn-local-serve -l 8765 --cors",
     "deploy:gh-pages": "yarn build && yarn build:cdn && cp -r dist-cdn/* dist-demo/ && yarn exec gh-pages -d dist-demo -r https://github.com/surya-pabbineedi/swim-ui.git",
     "preview": "vite preview",
     "format": "prettier --write \"src/**/*.ts\"",

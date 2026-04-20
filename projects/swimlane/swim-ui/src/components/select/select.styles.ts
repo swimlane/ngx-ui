@@ -33,21 +33,57 @@ export const selectStyles = css`
     font-size: var(--font-size-xl) !important;
   }
 
-  :host([focused]:not([invalid])) .select-label {
+  :host([focused]:not([invalid]):not([disabled])) .select-label {
     color: var(--blue-500) !important;
   }
 
-  :host([invalid][touched]) .select-underline {
+  :host([invalid][touched]:not([disabled])) .select-underline {
     background-color: var(--red-500) !important;
   }
 
-  :host([invalid][touched]) .underline-fill {
+  :host([invalid][touched]:not([disabled])) .underline-fill {
     background-color: var(--red-500) !important;
   }
 
-  :host([invalid][touched]) .select-label,
-  :host([invalid][touched]) .select-hint {
+  :host([invalid][touched]:not([disabled])) .select-label,
+  :host([invalid][touched]:not([disabled])) .select-hint {
     color: var(--red-500);
+  }
+
+  :host([disabled]) .select-input {
+    cursor: not-allowed;
+    color: var(--grey-400);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  :host([disabled]) .select-label {
+    color: var(--grey-450);
+  }
+
+  :host([disabled]) .select-placeholder {
+    color: var(--grey-450);
+  }
+
+  :host([disabled]) .select-controls {
+    color: var(--grey-500);
+  }
+
+  :host([disabled]) .select-underline {
+    background-color: var(--grey-700);
+  }
+
+  :host([disabled]) .underline-fill {
+    width: 0 !important;
+  }
+
+  :host([disabled]) .select-hint {
+    color: var(--grey-450);
+  }
+
+  :host([disabled]) .select-chip {
+    background: var(--grey-650);
+    color: var(--grey-300);
   }
 
   .select-wrap {
@@ -96,11 +132,6 @@ export const selectStyles = css`
     outline: none;
   }
 
-  .select-input[disabled] {
-    cursor: not-allowed;
-    color: var(--grey-400);
-  }
-
   .select-value {
     flex: 1;
     padding: 3px 0;
@@ -146,7 +177,7 @@ export const selectStyles = css`
     margin-right: var(--spacing-8);
   }
 
-  :host([open]) .select-caret {
+  :host([open]:not([disabled])) .select-caret {
     transform: rotate(180deg);
   }
 
@@ -185,8 +216,8 @@ export const selectStyles = css`
     margin: 0 auto;
   }
 
-  :host([focused]) .underline-fill,
-  :host([open]) .underline-fill {
+  :host([focused]:not([disabled])) .underline-fill,
+  :host([open]:not([disabled])) .underline-fill {
     width: 100%;
   }
 
@@ -197,10 +228,6 @@ export const selectStyles = css`
     min-height: 1em;
     line-height: 14px;
     transition: color 0.2s ease-in-out;
-  }
-
-  .select-hint.hidden {
-    display: none;
   }
 
   /* Dropdown */
@@ -259,10 +286,47 @@ export const selectStyles = css`
     color: var(--grey-350);
   }
 
+  .select-filter-input:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  .select-filter--loading .select-filter-input {
+    opacity: 0.85;
+    cursor: wait;
+  }
+
+  .select-filter--loading {
+    position: relative;
+  }
+
   .select-options {
     list-style: none;
     padding: 0;
     margin: 0;
+  }
+
+  .select-options--grouped .select-option {
+    padding-left: 25px;
+  }
+
+  .select-option-group {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+  }
+
+  .select-option-group-label {
+    display: block;
+    padding: 7px 15px;
+    font-size: var(--font-size-m);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--font-line-height-100);
+    color: var(--grey-300);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .select-option {
@@ -335,7 +399,7 @@ export const selectStyles = css`
   .select-chip-remove {
     background: none;
     border: none;
-    padding: 0;
+    padding: 4px 0 0 0;
     cursor: pointer;
     color: var(--grey-350);
     font-size: 0.5em;

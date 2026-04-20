@@ -2,7 +2,7 @@ import { LitElement, html, PropertyValues } from 'lit';
 import { property, state, query } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { buttonToggleGroupStyles } from './button-toggle-group.styles';
-import { coerceBooleanProperty } from '../../utils/coerce';
+import { coerceBooleanProperty, litBooleanAttrDefaultFalse } from '../../utils/coerce';
 import type { SwimButtonToggle } from './button-toggle.component';
 
 let nextId = 0;
@@ -67,7 +67,7 @@ export class SwimButtonToggleGroup extends LitElement {
   /**
    * Whether the entire group is disabled
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }
@@ -190,8 +190,8 @@ export class SwimButtonToggleGroup extends LitElement {
     this.dispatchEvent(
       new CustomEvent('value-change', {
         detail: newValue,
-        bubbles: true,
-        composed: true
+        bubbles: false,
+        composed: false
       })
     );
   }

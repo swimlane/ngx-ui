@@ -3,7 +3,12 @@ import { property, state } from 'lit/decorators.js';
 import { baseStyles } from '../../styles/base';
 import { buttonStyles } from './button.styles';
 import { ButtonState } from './button-state.enum';
-import { coerceBooleanProperty, coerceNumberProperty } from '../../utils/coerce';
+import {
+  coerceBooleanProperty,
+  coerceNumberProperty,
+  litBooleanAttrDefaultFalse,
+  litBooleanAttrDefaultTrue
+} from '../../utils/coerce';
 import '../icon/icon.component';
 
 const BUTTON_TAG = 'swim-button';
@@ -11,11 +16,31 @@ const BUTTON_TAG = 'swim-button';
 /**
  * SwimButton - A button component matching @swimlane/ngx-ui design system
  *
- * @slot - Button content
+ * @slot - Button content (hidden visually while `state` is in-progress, success, or fail; use `loading-text` for an in-progress label)
  *
  * @fires click - Native click event (when not disabled or in progress)
  *
  * @csspart button - The native button element
+ *
+ * Hosts can tune the inner button via CSS custom properties on `swim-button` (or an ancestor).
+ * These apply for every `variant` (they override the variant’s built-in defaults):
+ * - `--swim-button-padding` — padding (default `0.35em 0.55em`)
+ * - `--swim-button-font-weight` — label font weight (default `--font-weight-bold`)
+ * - `--swim-button-background`, `--swim-button-hover-background`
+ * - `--swim-button-border-width`, `--swim-button-border-style`, `--swim-button-border-color`,
+ *   `--swim-button-hover-border-color`
+ * - `--swim-button-color`, `--swim-button-hover-color` — label color; slotted children (e.g. swim-icon)
+ *   inherit from the host, so these variables keep icons aligned with text
+ * - `--swim-button-in-progress-color` — foreground for `state='in-progress'` (loading text and button
+ *   `color`); defaults to `--swim-button-color` then the variant fallback
+ * - `--swim-button-loading-icon-color` — optional override for the in-progress spinner only; defaults
+ *   to `--swim-button-in-progress-color` then the same chain as label color
+ * - `--swim-button-shadow` — box shadow (omitted on link / bordered unless set)
+ * - `--swim-button-outline-color` — focus-visible ring color
+ * - `--swim-button-hover-outline-color` — hover ring color (falls back to `--swim-button-hover-background` then variant default)
+ *
+ * Long labels wrap to multiple lines by default (`wrap-text` defaults to on). Set `wrap-text="false"`
+ * on the host for single-line truncation with an ellipsis in constrained widths.
  */
 export class SwimButton extends LitElement {
   static styles = [baseStyles, buttonStyles];
@@ -38,7 +63,7 @@ export class SwimButton extends LitElement {
   /**
    * Whether the button is disabled
    */
-  @property({ type: Boolean, reflect: true })
+  @property({ type: Boolean, reflect: true, converter: litBooleanAttrDefaultFalse })
   get disabled(): boolean {
     return this._disabled;
   }
@@ -81,6 +106,20 @@ export class SwimButton extends LitElement {
   private _timeout: number | undefined;
 
   /**
+   * Text shown while `state` is in-progress. Default slot content stays hidden during
+   * loading (same as ngx-ui); set this to surface a visible loading label next to the spinner.
+   */
+  @property({ type: String, attribute: 'loading-text' })
+  loadingText = '';
+
+  /**
+   * When true (default), the default slot label may wrap to multiple lines. When false, overflow
+   * is truncated with an ellipsis in constrained widths (`wrap-text="false"` in HTML).
+   */
+  @property({ type: Boolean, reflect: true, attribute: 'wrap-text', converter: litBooleanAttrDefaultTrue })
+  wrapText = true;
+
+  /**
    * Promise to track - automatically updates state based on promise resolution
    */
   @property({ attribute: false })
@@ -121,8 +160,14 @@ export class SwimButton extends LitElement {
 
   render() {
     return html`
-      <button part="button" type="button" ?disabled="${this.disabled}" @click="${this._handleClick}">
-        <span class="content">
+      <button
+        part="button"
+        type="button"
+        ?disabled="${this.disabled}"
+        ?aria-busy="${this._inProgress}"
+        @click="${this._handleClick}"
+      >
+        <span class="content" ?aria-hidden="${this._inProgress || this._success || this._fail}">
           <slot></slot>
         </span>
         <span class="state-icon">${this._renderStateIcon()}</span>
@@ -132,7 +177,12 @@ export class SwimButton extends LitElement {
 
   private _renderStateIcon() {
     if (this._inProgress) {
-      return html`<swim-icon class="state-icon" font-icon="loading"></swim-icon>`;
+      return html`
+        <span class="state-icon-group">
+          <swim-icon class="icon" font-icon="loading"></swim-icon>
+          ${this.loadingText ? html`<span class="state-loading-text">${this.loadingText}</span>` : nothing}
+        </span>
+      `;
     }
     if (this._success) {
       return html`<swim-icon class="state-icon" font-icon="check"></swim-icon>`;
