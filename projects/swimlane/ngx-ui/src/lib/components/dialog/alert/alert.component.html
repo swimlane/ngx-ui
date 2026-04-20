@@ -9,33 +9,49 @@
     (keydown.enter)="onKeydown()"
     tabindex="-1"
     role="dialog"
-  >
-    <div class="ngx-dialog-header" *ngIf="title || closeButton">
-      <button *ngIf="closeButton" type="button" class="close" (click)="hide()">
-        <span class="ngx-icon ngx-x"></span>
-      </button>
-      <button *ngIf="type === AlertTypes.Alert" type="button" class="btn close-button" (click)="onOkClick()">
-        <ng-container *ngTemplateOutlet="okBtnContentTmpl"></ng-container>
-      </button>
-      <h1 *ngIf="title" [innerHTML]="title"></h1>
-    </div>
-    <div *ngIf="content" class="ngx-dialog-body" [innerHTML]="content"></div>
+    >
+    @if (title || closeButton) {
+      <div class="ngx-dialog-header">
+        @if (closeButton) {
+          <button type="button" class="close" (click)="hide()">
+            <span class="ngx-icon ngx-x"></span>
+          </button>
+        }
+        @if (type === AlertTypes.Alert) {
+          <button type="button" class="btn close-button" (click)="onOkClick()">
+            <ng-container *ngTemplateOutlet="okBtnContentTmpl"></ng-container>
+          </button>
+        }
+        @if (title) {
+          <h1 [innerHTML]="title"></h1>
+        }
+      </div>
+    }
+    @if (content) {
+      <div class="ngx-dialog-body" [innerHTML]="content"></div>
+    }
 
-    <div class="ngx-dialog-body" *ngIf="type === AlertTypes.Prompt">
-      <ngx-input type="text" autofocus="true" name="confirm_input" [(ngModel)]="data"></ngx-input>
-    </div>
+    @if (type === AlertTypes.Prompt) {
+      <div class="ngx-dialog-body">
+        <ngx-input type="text" autofocus="true" name="confirm_input" [(ngModel)]="data"></ngx-input>
+      </div>
+    }
 
-    <div class="ngx-dialog-footer" *ngIf="type !== AlertTypes.Alert">
-      <ng-container *ngIf="!longPress">
-        <button type="button" class="btn" [ngClass]="confirmButtonClass" (click)="onOkClick()">
-          <ng-container *ngTemplateOutlet="okBtnContentTmpl"></ng-container>
-        </button>
-        <button type="button" class="btn" [ngClass]="cancelButtonClass" (click)="onCancelClick()">
-          <ng-container *ngTemplateOutlet="cancelBtnContentTmpl"></ng-container>
-        </button>
-      </ng-container>
-      <ngx-long-press-button *ngIf="longPress" (longPress)="onOkClick()" duration="1000"></ngx-long-press-button>
-    </div>
+    @if (type !== AlertTypes.Alert) {
+      <div class="ngx-dialog-footer">
+        @if (!longPress) {
+          <button type="button" class="btn" [ngClass]="confirmButtonClass" (click)="onOkClick()">
+            <ng-container *ngTemplateOutlet="okBtnContentTmpl"></ng-container>
+          </button>
+          <button type="button" class="btn" [ngClass]="cancelButtonClass" (click)="onCancelClick()">
+            <ng-container *ngTemplateOutlet="cancelBtnContentTmpl"></ng-container>
+          </button>
+        }
+        @if (longPress) {
+          <ngx-long-press-button (longPress)="onOkClick()" duration="1000"></ngx-long-press-button>
+        }
+      </div>
+    }
   </div>
 </div>
 

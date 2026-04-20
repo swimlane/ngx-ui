@@ -3,176 +3,188 @@
     <ng-content select="ngx-input-prefix"></ng-content>
     <div class="ngx-input-flex-wrap-inner">
       <div class="ngx-input-box-wrap">
-        <textarea
-          *ngIf="type === inputTypes.textarea && autosize"
-          class="ngx-input-textarea"
-          [rows]="textareaRows"
-          autosize
-          [(ngModel)]="value"
-          [id]="id"
-          [name]="name"
-          [placeholder]="placeholder"
-          [disabled]="disabled"
-          [readonly]="readonly"
-          [attr.tabindex]="tabindex"
-          [attr.autocomplete]="autocomplete"
-          [attr.autocorrect]="autocorrect"
-          [attr.spellcheck]="spellcheck"
-          [minlength]="minlength"
-          [maxlength]="maxlength"
-          [required]="required"
-          (change)="onChange($event)"
-          (keyup)="onKeyUp($event)"
-          (focus)="onFocus($event)"
-          (blur)="onBlur($event)"
-          (click)="click.emit($event)"
-          #inputModel="ngModel"
-          #textareaControl
-        >
-        </textarea>
-        <textarea
-          *ngIf="type === inputTypes.textarea && !autosize"
-          class="ngx-input-textarea"
-          [rows]="textareaRows"
-          [(ngModel)]="value"
-          [id]="id"
-          [name]="name"
-          [placeholder]="placeholder"
-          [disabled]="disabled"
-          [readonly]="readonly"
-          [attr.tabindex]="tabindex"
-          [attr.autocomplete]="autocomplete"
-          [attr.autocorrect]="autocorrect"
-          [attr.spellcheck]="spellcheck"
-          [minlength]="minlength"
-          [maxlength]="maxlength"
-          [required]="required"
-          (change)="onChange($event)"
-          (keyup)="onKeyUp($event)"
-          (focus)="onFocus($event)"
-          (blur)="onBlur($event)"
-          (click)="click.emit($event)"
-          #inputModel="ngModel"
-          #textareaControl
-        >
-        </textarea>
+        @if (type === inputTypes.textarea && autosize) {
+          <textarea
+            class="ngx-input-textarea"
+            [rows]="textareaRows"
+            autosize
+            [(ngModel)]="value"
+            [id]="id"
+            [name]="name"
+            [placeholder]="placeholder"
+            [disabled]="disabled"
+            [readonly]="readonly"
+            [attr.tabindex]="tabindex"
+            [attr.autocomplete]="autocomplete"
+            [attr.autocorrect]="autocorrect"
+            [attr.spellcheck]="spellcheck"
+            [minlength]="minlength"
+            [maxlength]="maxlength"
+            [required]="required"
+            (change)="onChange($event)"
+            (keyup)="onKeyUp($event)"
+            (focus)="onFocus($event)"
+            (blur)="onBlur($event)"
+            (click)="click.emit($event)"
+            #inputModel="ngModel"
+            #textareaControl
+            >
+          </textarea>
+        }
+        @if (type === inputTypes.textarea && !autosize) {
+          <textarea
+            class="ngx-input-textarea"
+            [rows]="textareaRows"
+            [(ngModel)]="value"
+            [id]="id"
+            [name]="name"
+            [placeholder]="placeholder"
+            [disabled]="disabled"
+            [readonly]="readonly"
+            [attr.tabindex]="tabindex"
+            [attr.autocomplete]="autocomplete"
+            [attr.autocorrect]="autocorrect"
+            [attr.spellcheck]="spellcheck"
+            [minlength]="minlength"
+            [maxlength]="maxlength"
+            [required]="required"
+            (change)="onChange($event)"
+            (keyup)="onKeyUp($event)"
+            (focus)="onFocus($event)"
+            (blur)="onBlur($event)"
+            (click)="click.emit($event)"
+            #inputModel="ngModel"
+            #textareaControl
+            >
+          </textarea>
+        }
         <ng-container *ngTemplateOutlet="inputTpl"></ng-container>
 
-        <div class="numeric-spinner" *ngIf="!disabled && (type$ | async) === inputTypes.number">
-          <i
-            class="ngx-icon ngx-chevron-bold-up numeric-spinner__up"
-            (mousedown)="incrementValue($event)"
-            (mouseup)="clearSpinnerInterval()"
-            (mouseleave)="clearSpinnerInterval()"
-          ></i>
-          <i
-            class="ngx-icon ngx-chevron-bold-down numeric-spinner__down"
-            (mousedown)="decrementValue($event)"
-            (mouseup)="clearSpinnerInterval()"
-            (mouseleave)="clearSpinnerInterval()"
-          ></i>
-        </div>
-        <button
-          *ngIf="type === inputTypes.password && passwordToggleEnabled && (!unlockable || !disabled)"
-          type="button"
-          class="btn btn-link ngx-input__password-toggle"
-          aria-label="Toggle Text Visibility"
-          title="Toggle Text Visibility"
-          (click)="togglePassword()"
-          ngx-tooltip
-          tooltipTitle="Toggle Text Visibility"
-        >
-          <i class="ngx-icon" [ngClass]="(type$ | async) === inputTypes.password ? 'ngx-eye' : 'ngx-eye-disabled'"></i>
-        </button>
-        <button
-          *ngIf="(type === inputTypes.text || type === inputTypes.password) && unlockable && disabled"
-          type="button"
-          class="btn btn-link ngx-input__lock-toggle"
-          [attr.aria-label]="unlockableTooltip"
-          (click)="unlock()"
-          ngx-tooltip
-          [tooltipTitle]="unlockableTooltip"
-          [attr.aria-label]="unlockableTooltip"
-        >
-          <i class="ngx-icon ngx-lock"></i>
-        </button>
+        @if (!disabled && (type$ | async) === inputTypes.number) {
+          <div class="numeric-spinner">
+            <i
+              class="ngx-icon ngx-chevron-bold-up numeric-spinner__up"
+              (mousedown)="incrementValue($event)"
+              (mouseup)="clearSpinnerInterval()"
+              (mouseleave)="clearSpinnerInterval()"
+            ></i>
+            <i
+              class="ngx-icon ngx-chevron-bold-down numeric-spinner__down"
+              (mousedown)="decrementValue($event)"
+              (mouseup)="clearSpinnerInterval()"
+              (mouseleave)="clearSpinnerInterval()"
+            ></i>
+          </div>
+        }
+        @if (type === inputTypes.password && passwordToggleEnabled && (!unlockable || !disabled)) {
+          <button
+            type="button"
+            class="btn btn-link ngx-input__password-toggle"
+            aria-label="Toggle Text Visibility"
+            title="Toggle Text Visibility"
+            (click)="togglePassword()"
+            ngx-tooltip
+            tooltipTitle="Toggle Text Visibility"
+            >
+            <i class="ngx-icon" [ngClass]="(type$ | async) === inputTypes.password ? 'ngx-eye' : 'ngx-eye-disabled'"></i>
+          </button>
+        }
+        @if ((type === inputTypes.text || type === inputTypes.password) && unlockable && disabled) {
+          <button
+            type="button"
+            class="btn btn-link ngx-input__lock-toggle"
+            [attr.aria-label]="unlockableTooltip"
+            (click)="unlock()"
+            ngx-tooltip
+            [tooltipTitle]="unlockableTooltip"
+            [attr.aria-label]="unlockableTooltip"
+            >
+            <i class="ngx-icon ngx-lock"></i>
+          </button>
+        }
       </div>
       <label class="ngx-input-label" [attr.for]="id">
         <span>{{ label }}</span
-        >&nbsp;
-        <span *ngIf="required && requiredIndicator" [innerHTML]="requiredIndicator"></span>
-      </label>
+          >&nbsp;
+          @if (required && requiredIndicator) {
+            <span [innerHTML]="requiredIndicator"></span>
+          }
+        </label>
+      </div>
+      <ng-content select="ngx-input-suffix"></ng-content>
     </div>
-    <ng-content select="ngx-input-suffix"></ng-content>
+    <div class="ngx-input-underline" [ngClass]="{ 'ngx-input-underline__visibility-hidden': readonly }">
+      <div class="underline-fill" [@underlineState]="underlineState"></div>
+    </div>
+    <div class="ngx-input-hint" [ngClass]="{ hidden: !withHint }">
+      <ng-content select="ngx-input-hint"></ng-content>
+      @if (hint) {
+        <span [innerHTML]="hint"></span>
+      }
+    </div>
   </div>
-  <div class="ngx-input-underline" [ngClass]="{ 'ngx-input-underline__visibility-hidden': readonly }">
-    <div class="underline-fill" [@underlineState]="underlineState"></div>
-  </div>
-  <div class="ngx-input-hint" [ngClass]="{ hidden: !withHint }">
-    <ng-content select="ngx-input-hint"></ng-content>
-    <span *ngIf="hint" [innerHTML]="hint"></span>
-  </div>
-</div>
 
-<ng-template #inputTpl>
-  <input
-    *ngIf="type !== inputTypes.textarea && autosize"
-    class="ngx-input-box"
-    autoSizeInput
-    [extraWidth]="type === inputTypes.number ? 20 : 0"
-    [minWidth]="minWidth"
-    [includePadding]="true"
-    [ngModel]="valueAsString"
-    (ngModelChange)="value = $event"
-    [id]="id"
-    [name]="name"
-    [placeholder]="placeholder"
-    [disabled]="disabled"
-    [readonly]="readonly"
-    [type]="type$ | async"
-    [min]="min"
-    [max]="max"
-    [minlength]="minlength"
-    [maxlength]="maxlength"
-    [attr.tabindex]="tabindex"
-    [attr.autocomplete]="autocomplete"
-    [attr.autocorrect]="autocorrect"
-    [attr.spellcheck]="spellcheck"
-    (change)="onChange($event)"
-    (keyup)="onKeyUp($event)"
-    (focus)="onFocus($event)"
-    (blur)="onBlur($event)"
-    (click)="click.emit($event)"
-    [required]="required"
-    #inputModel="ngModel"
-    #inputControl
-  />
-  <input
-    *ngIf="type !== inputTypes.textarea && !autosize"
-    class="ngx-input-box"
-    [ngModel]="valueAsString"
-    (ngModelChange)="value = $event"
-    [id]="id"
-    [name]="name"
-    [placeholder]="placeholder"
-    [disabled]="disabled"
-    [readonly]="readonly"
-    [type]="type$ | async"
-    [min]="min"
-    [max]="max"
-    [minlength]="minlength"
-    [maxlength]="maxlength"
-    [attr.tabindex]="tabindex"
-    [attr.autocomplete]="autocomplete"
-    [attr.autocorrect]="autocorrect"
-    [attr.spellcheck]="spellcheck"
-    (change)="onChange($event)"
-    (keyup)="onKeyUp($event)"
-    (focus)="onFocus($event)"
-    (blur)="onBlur($event)"
-    (click)="click.emit($event)"
-    [required]="required"
-    #inputModel="ngModel"
-    #inputControl
-  />
-</ng-template>
+  <ng-template #inputTpl>
+    @if (type !== inputTypes.textarea && autosize) {
+      <input
+        class="ngx-input-box"
+        autoSizeInput
+        [extraWidth]="type === inputTypes.number ? 20 : 0"
+        [minWidth]="minWidth"
+        [includePadding]="true"
+        [ngModel]="valueAsString"
+        (ngModelChange)="value = $event"
+        [id]="id"
+        [name]="name"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [type]="type$ | async"
+        [min]="min"
+        [max]="max"
+        [minlength]="minlength"
+        [maxlength]="maxlength"
+        [attr.tabindex]="tabindex"
+        [attr.autocomplete]="autocomplete"
+        [attr.autocorrect]="autocorrect"
+        [attr.spellcheck]="spellcheck"
+        (change)="onChange($event)"
+        (keyup)="onKeyUp($event)"
+        (focus)="onFocus($event)"
+        (blur)="onBlur($event)"
+        (click)="click.emit($event)"
+        [required]="required"
+        #inputModel="ngModel"
+        #inputControl
+        />
+    }
+    @if (type !== inputTypes.textarea && !autosize) {
+      <input
+        class="ngx-input-box"
+        [ngModel]="valueAsString"
+        (ngModelChange)="value = $event"
+        [id]="id"
+        [name]="name"
+        [placeholder]="placeholder"
+        [disabled]="disabled"
+        [readonly]="readonly"
+        [type]="type$ | async"
+        [min]="min"
+        [max]="max"
+        [minlength]="minlength"
+        [maxlength]="maxlength"
+        [attr.tabindex]="tabindex"
+        [attr.autocomplete]="autocomplete"
+        [attr.autocorrect]="autocorrect"
+        [attr.spellcheck]="spellcheck"
+        (change)="onChange($event)"
+        (keyup)="onKeyUp($event)"
+        (focus)="onFocus($event)"
+        (blur)="onBlur($event)"
+        (click)="click.emit($event)"
+        [required]="required"
+        #inputModel="ngModel"
+        #inputControl
+        />
+    }
+  </ng-template>

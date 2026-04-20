@@ -1,57 +1,71 @@
 <!-- Property name/title -->
-<div class="info-name" *ngIf="!nameEditable && title">
-  <span
-    class="name"
-    ngx-tooltip
-    tooltipType="tooltip"
-    [tooltipTitle]="title"
-    [tooltipShowCaret]="false"
-    tooltipCssClass="narrow"
-    [tooltipShowTimeout]="750"
-  >
-    {{ title }}
-  </span>
-
-  <ngx-icon
-    *ngIf="description || examples?.length"
-    class="info-btn"
-    fontIcon="info-filled"
-    ngx-tooltip
-    tooltipType="popover"
-    tooltipPlacement="top"
-    [tooltipTemplate]="popoverTemplate"
-  ></ngx-icon>
-
-  <ng-template #popoverTemplate>
-    <div class="json-editor--popover-template">
-      <div *ngIf="description">
-        <div class="label">Description</div>
-        <div>{{ description }}</div>
+@if (!nameEditable && title) {
+  <div class="info-name">
+    <span
+      class="name"
+      ngx-tooltip
+      tooltipType="tooltip"
+      [tooltipTitle]="title"
+      [tooltipShowCaret]="false"
+      tooltipCssClass="narrow"
+      [tooltipShowTimeout]="750"
+      >
+      {{ title }}
+    </span>
+    @if (description || examples?.length) {
+      <ngx-icon
+        class="info-btn"
+        fontIcon="info-filled"
+        ngx-tooltip
+        tooltipType="popover"
+        tooltipPlacement="top"
+        [tooltipTemplate]="popoverTemplate"
+      ></ngx-icon>
+    }
+    <ng-template #popoverTemplate>
+      <div class="json-editor--popover-template">
+        @if (description) {
+          <div>
+            <div class="label">Description</div>
+            <div>{{ description }}</div>
+          </div>
+        }
+        @if (description && examples?.length) {
+          <div class="separator"></div>
+        }
+        @if (examples?.length) {
+          <div class="label">Examples</div>
+          @for (example of examples; track example) {
+            <div>{{ example }}</div>
+          }
+        }
       </div>
-      <div *ngIf="description && examples?.length" class="separator"></div>
-      <ng-container *ngIf="examples?.length">
-        <div class="label">Examples</div>
-        <div *ngFor="let example of examples">{{ example }}</div>
-      </ng-container>
-    </div>
-  </ng-template>
-</div>
+    </ng-template>
+  </div>
+}
 
 <!-- Inline text editing-->
-<ngx-input
-  class="editable-name"
-  type="text"
-  *ngIf="nameEditable"
-  [ngModel]="propertyName"
-  (ngModelChange)="propertyNameChange.emit($event)"
-></ngx-input>
+@if (nameEditable) {
+  <ngx-input
+    class="editable-name"
+    type="text"
+    [ngModel]="propertyName"
+    (ngModelChange)="propertyNameChange.emit($event)"
+  ></ngx-input>
+}
 
 <!-- Type info -->
 <div class="info-type">
   <span class="type">{{ type }}</span>
-  <ngx-icon *ngIf="propertyName && required" class="dot-separator" fontIcon="circle-filled"></ngx-icon>
-  <span class="required" *ngIf="required">required</span>
-  <ngx-icon *ngIf="propertyName" class="dot-separator" fontIcon="circle-filled"></ngx-icon>
+  @if (propertyName && required) {
+    <ngx-icon class="dot-separator" fontIcon="circle-filled"></ngx-icon>
+  }
+  @if (required) {
+    <span class="required">required</span>
+  }
+  @if (propertyName) {
+    <ngx-icon class="dot-separator" fontIcon="circle-filled"></ngx-icon>
+  }
   <span
     class="property-name"
     ngx-tooltip
@@ -60,7 +74,7 @@
     [tooltipShowCaret]="false"
     [tooltipShowTimeout]="750"
     tooltipCssClass="narrow"
-  >
+    >
     {{ propertyName }}
   </span>
 </div>
@@ -74,6 +88,6 @@
   [tooltipShowCaret]="false"
   [tooltipShowTimeout]="750"
   tooltipCssClass="narrow"
->
+  >
   {{ description }}
 </span>

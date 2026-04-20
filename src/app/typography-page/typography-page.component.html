@@ -19,9 +19,11 @@
   </div>
 
   <ul class="list-unstyled" style="font-size: 2em;">
-    <li *ngFor="let key of fontKeys" [style]="fontStyles[key]">
-      {{ key }}
-    </li>
+    @for (key of fontKeys; track key) {
+      <li [style]="fontStyles[key]">
+        {{ key }}
+      </li>
+    }
   </ul>
 </ngx-section>
 
@@ -48,11 +50,11 @@
   </h5>
   <br />
   <app-prism>
-<![CDATA[<h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>
-<h2>h2. Improve yourSecurity Operations <small>Insight and Automation</small></h2>
-<h3>h3. Improve your Security Operations<small>Insight and Automation</small></h3>
-<h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>
-<h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>]]>
+    <![CDATA[<h1>h1. Improve your Security Operations <small>Insight and Automation</small></h1>
+    <h2>h2. Improve yourSecurity Operations <small>Insight and Automation</small></h2>
+    <h3>h3. Improve your Security Operations<small>Insight and Automation</small></h3>
+    <h4>h4. Improve your Security Operations <small>Insight and Automation</small></h4>
+    <h5>h5. Improve your Security Operations <small>Insight and Automation</small></h5>]]>
   </app-prism>
 </ngx-section>
 
@@ -63,7 +65,7 @@
   <br />
   <br />
   <app-prism>
-<![CDATA[<a href="/">Default</a> <a href="/" class="disabled">Disabled</a>]]>
+    <![CDATA[<a href="/">Default</a> <a href="/" class="disabled">Disabled</a>]]>
   </app-prism>
 </ngx-section>
 
@@ -85,32 +87,32 @@
   <p class="ultra-thin">Paragraphs with the 'ultra-thin' class are extra light font weight.</p>
   <br />
   <app-prism>
-<![CDATA[<p>
-  As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat
-  intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often
-  unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for
-  security automation and orchestration
-</p>
+    <![CDATA[<p>
+    As cyber attacks continue to rise, organizations are investing heavily in attack identification, threat
+    intelligence and the staff required to protect the enterprise. However, alerts are still going unresolved, and often
+    unseen. Realizing that simply adding people does not solve the problem, organizations are choosing Swimlane for
+    security automation and orchestration
+  </p>
 
-<p>
-  Swimlane consolidates security alerts from multiple sources and
-  automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution
-  of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved
-  utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.
-</p>
+  <p>
+    Swimlane consolidates security alerts from multiple sources and
+    automatically assists organizations with the activities required to resolve alerts and stop attacks. The resolution
+    of the alert can occur either automatically or manually by analyst intervention. Either way, the alert is resolved
+    utilizing expert-defined processes, enabling the organization to cost-effectively close alerts.
+  </p>
 
-<p class="hint">
+  <p class="hint">
   Paragraphs with the 'hint' class are styled smaller with italics.</p> <p class="thin">Paragraphs with
-  the 'thin' class are light font weight.</p> <p class="ultra-thin">Paragraphs with the 'ultra-thin' class are extra
-  light font weight.
+the 'thin' class are light font weight.</p> <p class="ultra-thin">Paragraphs with the 'ultra-thin' class are extra
+light font weight.
 </p>]]>
-  </app-prism>
+</app-prism>
 </ngx-section>
 
 <ngx-section class="shadow" sectionTitle="Code">
   <pre>var foo</pre>
   <br />
   <app-prism>
-<![CDATA[<pre>var foo</pre>]]>
+    <![CDATA[<pre>var foo</pre>]]>
   </app-prism>
 </ngx-section>
