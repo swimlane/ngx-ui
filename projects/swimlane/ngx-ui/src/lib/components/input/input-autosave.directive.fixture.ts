@@ -7,19 +7,11 @@ import { InputTypes } from './input-types.enum';
 @Component({
   selector: 'ngx-input-autosize-fixture',
   template: `
-    <input
-      #input
-      [style.max-width.px]="maxWidth$ | async"
-      *ngIf="(type$ | async) === 'text'"
-      [(ngModel)]="value"
-      [autosize]="enabled$ | async"
-    />
-    <textarea
-      #textarea
-      *ngIf="(type$ | async) === 'textarea'"
-      [(ngModel)]="value"
-      [autosize]="enabled$ | async"
-    ></textarea>
+    @if ((type$ | async) === 'text') {
+    <input #input [style.max-width.px]="maxWidth$ | async" [(ngModel)]="value" [autosize]="enabled$ | async" />
+    } @if ((type$ | async) === 'textarea') {
+    <textarea #textarea [(ngModel)]="value" [autosize]="enabled$ | async"></textarea>
+    }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: false

@@ -25,35 +25,36 @@
         (activate)="onFocus()"
         (activateLast)="onFocusLast()"
         (selection)="onInputSelection($event)"
-      >
+        >
       </ngx-select-input>
     </div>
   </div>
-  <ngx-select-dropdown
-    *ngIf="dropdownVisible"
-    [focusIndex]="focusIndex"
-    [filterQuery]="filterQuery"
-    [filterPlaceholder]="filterPlaceholder"
-    [filterCaseSensitive]="filterCaseSensitive"
-    [allowAdditions]="allowAdditions"
-    [allowAdditionsText]="allowAdditionsText"
-    [selected]="value"
-    [groupBy]="groupBy"
-    [groupByTemplate]="groupByTemplate"
-    [emptyPlaceholder]="emptyPlaceholder"
-    [tagging]="tagging"
-    [filterEmptyPlaceholder]="filterEmptyPlaceholder"
-    [filterable]="filterable"
-    [identifier]="identifier"
-    [options]="options"
-    [multiple]="multiple"
-    (keyup)="keyup.emit($event)"
-    (close)="onClose(true)"
-    (clearQueryFilter)="clearQueryFilter.emit()"
-    (selection)="onDropdownSelection($event)"
-    (deselection)="onDropdownDeselection($event)"
-    (keyboardSelection)="onDropdownSelection($event, false)"
-    (keyboardDeselection)="onDropdownDeselection($event, false)"
-  >
-  </ngx-select-dropdown>
+  @if (dropdownVisible) {
+    <ngx-select-dropdown
+      [focusIndex]="focusIndex"
+      [filterQuery]="filterQuery"
+      [filterPlaceholder]="filterPlaceholder"
+      [filterCaseSensitive]="filterCaseSensitive"
+      [allowAdditions]="allowAdditions"
+      [allowAdditionsText]="allowAdditionsText"
+      [selected]="value"
+      [groupBy]="groupBy"
+      [groupByTemplate]="groupByTemplate"
+      [emptyPlaceholder]="emptyPlaceholder"
+      [tagging]="tagging"
+      [filterEmptyPlaceholder]="filterEmptyPlaceholder"
+      [filterable]="filterable"
+      [identifier]="identifier"
+      [options]="options"
+      [multiple]="multiple"
+      (keyup)="keyup.emit($event)"
+      (close)="onClose(true)"
+      (clearQueryFilter)="clearQueryFilter.emit()"
+      (selection)="onDropdownSelection($event)"
+      (deselection)="onDropdownDeselection($event)"
+      (keyboardSelection)="onDropdownSelection($event, false)"
+      (keyboardDeselection)="onDropdownDeselection($event, false)"
+      >
+    </ngx-select-dropdown>
+  }
 </div>

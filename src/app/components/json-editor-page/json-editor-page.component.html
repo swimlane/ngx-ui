@@ -8,7 +8,7 @@
         [schema]="jsonEditorSchema"
         label="Model"
         [typeCheckOverrides]="typeOverrides"
-      >
+        >
       </ngx-json-editor>
 
       <hr />
@@ -29,16 +29,16 @@
     <ngx-tab label="Markup">
       <app-prism language="html">
         <![CDATA[<ngx-json-editor [(model)]="jsonEditorModel" [schema]="jsonEditorSchema" label="Model"
-        [typeCheckOverrides]="typeOverrides" > </ngx-json-editor>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="Typescript">
-      <app-prism language="js">
-        <![CDATA[typeOverrides: any = { 'string=code': (value: any) => { if (typeof value !== 'string') { return false;
-        } const regex = new RegExp(/^<<(.*)>>$/, 's'); return regex.test(value); } };]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
+      [typeCheckOverrides]="typeOverrides" > </ngx-json-editor>]]>
+    </app-prism>
+  </ngx-tab>
+  <ngx-tab label="Typescript">
+    <app-prism language="js">
+      <![CDATA[typeOverrides: any = { 'string=code': (value: any) => { if (typeof value !== 'string') { return false;
+      } const regex = new RegExp(/^<<(.*)>>$/, 's'); return regex.test(value); } };]]>
+    </app-prism>
+  </ngx-tab>
+</ngx-tabs>
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat'">
@@ -57,7 +57,7 @@
     [showKnownProperties]="showKnownProperties"
     [passwordToggleEnabled]="passwordToggleEnabled"
     (schemaUpdate)="modelschemaUpdate($event)"
-  >
+    >
   </ngx-json-editor-flat>
 
   <hr />
@@ -72,16 +72,16 @@
         <![CDATA[<ngx-json-editor-flat [(model)]="jsonEditorModelFlat" [schema]="jsonEditorSchema" label="Model"
         [typeCheckOverrides]="typeOverrides" [hideRoot]="hideRoot" [showKnownProperties]="showKnownProperties"
         [passwordToggleEnabled]="showKnownProperties" (schemaUpdate)="modelschemaUpdate($event)">
-        </ngx-json-editor-flat>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="Typescript">
-      <app-prism language="js">
-        <![CDATA[typeOverrides: any = { 'string=code': (value: any) => { if (typeof value !== 'string') { return false;
-        } const regex = new RegExp(/^<<(.*)>>$/, 's'); return regex.test(value); } };]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
+      </ngx-json-editor-flat>]]>
+    </app-prism>
+  </ngx-tab>
+  <ngx-tab label="Typescript">
+    <app-prism language="js">
+      <![CDATA[typeOverrides: any = { 'string=code': (value: any) => { if (typeof value !== 'string') { return false;
+      } const regex = new RegExp(/^<<(.*)>>$/, 's'); return regex.test(value); } };]]>
+    </app-prism>
+  </ngx-tab>
+</ngx-tabs>
 </ngx-section>
 
 <ngx-section class="shadow" [sectionTitle]="'ngx-json-editor-flat with custom template for input control'">
@@ -109,7 +109,7 @@
     [inputControlTemplate]="myInputControl"
     [enableSchemaValidation]="false"
     (schemaUpdate)="schemaWithTemplate = $event"
-  >
+    >
   </ngx-json-editor-flat>
 
   <ng-template
@@ -120,69 +120,72 @@
     let-nodeExpandTrigger$="nodeExpandTrigger$"
     let-nodeChangeValue$="nodeChangeValue$"
     let-nodeContext="nodeContext"
-  >
+    >
     <div class="myInputControlNodeContainer">
       <ngx-tabs>
         <ngx-tab label="Value">
-          <ng-container [ngSwitch]="nodeContext.keyFieldType">
-            <input
-              type="number"
-              *ngSwitchCase="'integer'"
-              [ngModel]="nodeModel"
-              (ngModelChange)="nodeChangeValue$.next($event)"
-            />
-            <input
-              type="text"
-              *ngSwitchCase="'string'"
-              [ngModel]="nodeModel"
-              (ngModelChange)="nodeChangeValue$.next($event)"
-            />
-            <ngx-button
-              *ngSwitchCase="'object'"
-              class="btn btn-primary"
-              (click)="expanded = !expanded; nodeExpandTrigger$.next(expanded)"
-              >{{ expanded ? 'Collapse' : 'Expand' }} me!</ngx-button
-            >
-          </ng-container>
-        </ngx-tab>
-        <ngx-tab label="NodeModel">
-          <div class="myInputControlNodeContainer__scrollable">
-            {{ nodeModel | json }}
-          </div>
-        </ngx-tab>
-        <ngx-tab label="NodeSchema">
-          <div class="myInputControlNodeContainer__scrollable">
-            {{ nodeSchema | json }}
-          </div>
-        </ngx-tab>
-        <ngx-tab label="NodeContext">
-          {{ nodeContext | json }}
-        </ngx-tab>
-        <ngx-tab label="NodePath">
-          {{ nodePath }}
-        </ngx-tab>
-      </ngx-tabs>
-    </div>
-  </ng-template>
+          @switch (nodeContext.keyFieldType) {
+            @case ('integer') {
+              <input
+                type="number"
+                [ngModel]="nodeModel"
+                (ngModelChange)="nodeChangeValue$.next($event)"
+                />
+            }
+            @case ('string') {
+              <input
+                type="text"
+                [ngModel]="nodeModel"
+                (ngModelChange)="nodeChangeValue$.next($event)"
+                />
+            }
+            @case ('object') {
+              <ngx-button
+                class="btn btn-primary"
+                (click)="expanded = !expanded; nodeExpandTrigger$.next(expanded)"
+                >{{ expanded ? 'Collapse' : 'Expand' }} me!</ngx-button
+                >
+              }
+            }
+          </ngx-tab>
+          <ngx-tab label="NodeModel">
+            <div class="myInputControlNodeContainer__scrollable">
+              {{ nodeModel | json }}
+            </div>
+          </ngx-tab>
+          <ngx-tab label="NodeSchema">
+            <div class="myInputControlNodeContainer__scrollable">
+              {{ nodeSchema | json }}
+            </div>
+          </ngx-tab>
+          <ngx-tab label="NodeContext">
+            {{ nodeContext | json }}
+          </ngx-tab>
+          <ngx-tab label="NodePath">
+            {{ nodePath }}
+          </ngx-tab>
+        </ngx-tabs>
+      </div>
+    </ng-template>
 
-  <hr />
-  <h3>Model</h3>
-  <pre>{{ jsonEditorFlatWithTemplateModel | json }}</pre>
-  <h3>Schema</h3>
-  <pre>{{ schemaWithTemplate | json }}</pre>
+    <hr />
+    <h3>Model</h3>
+    <pre>{{ jsonEditorFlatWithTemplateModel | json }}</pre>
+    <h3>Schema</h3>
+    <pre>{{ schemaWithTemplate | json }}</pre>
 
-  <ngx-tabs>
-    <ngx-tab label="Markup">
-      <app-prism language="html">
-        <![CDATA[<ngx-json-editor-flat [(model)]="jsonEditorFlatWithTemplateModel" [schema]="schemaWithTemplate"
-        label="Model" [hideRoot]="hideRoot" [showKnownProperties]="showKnownProperties" [passwordToggleEnabled]="true"
+    <ngx-tabs>
+      <ngx-tab label="Markup">
+        <app-prism language="html">
+          <![CDATA[<ngx-json-editor-flat [(model)]="jsonEditorFlatWithTemplateModel" [schema]="schemaWithTemplate"
+          label="Model" [hideRoot]="hideRoot" [showKnownProperties]="showKnownProperties" [passwordToggleEnabled]="true"
         [inputControlTemplate]="myInputControl" [enableSchemaValidation]="false" (schemaUpdate)="schemaWithTemplate =
         $event" > </ngx-json-editor-flat> <ng-template #myInputControl let-nodeModel="nodeModel"
         let-nodeSchema="nodeSchema" let-nodePath="nodePath" let-nodeExpandTrigger$="nodeExpandTrigger$"
         let-nodeChangeValue$="nodeChangeValue$" let-nodeContext="nodeContext"> <div class="myInputControlNodeContainer">
         <ngx-tabs> <ngx-tab label="Value"> <ng-container [ngSwitch]="nodeContext.keyFieldType"> <input type="number"
-        *ngSwitchCase="'integer'" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/> <input
-        type="text" *ngSwitchCase="'string'" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/>
+          *ngSwitchCase="'integer'" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/> <input
+          type="text" *ngSwitchCase="'string'" [ngModel]="nodeModel" (ngModelChange)="nodeChangeValue$.next($event)"/>
         <ngx-button *ngSwitchCase="'object'" class="btn btn-primary" (click)="expanded = !expanded;
         nodeExpandTrigger$.next(expanded)">{{ expanded ? 'Collapse' : 'Expand' }} me!</ngx-button> </ng-container>
         </ngx-tab> <ngx-tab label="NodeModel"> <div class="myInputControlNodeContainer__scrollable"> </div> </ngx-tab>
@@ -203,7 +206,7 @@
     [schemaBuilderMode]="true"
     [formats]="customFormats"
     (schemaUpdate)="schemaUpdate($event)"
-  >
+    >
   </ngx-json-editor-flat>
   <hr />
   <h3>Schema</h3>
@@ -214,14 +217,14 @@
       <app-prism language="html">
         <![CDATA[<ngx-json-editor-flat [(model)]="jsonEditorSchemaBuilderModel" [schema]="{}" label="Schema"
         [typeCheckOverrides]="typeOverrides" [schemaBuilderMode]="true" [formats]="customFormats"
-        (schemaUpdate)="schemaUpdate($event)"> </ngx-json-editor-flat>]]>
-      </app-prism>
-    </ngx-tab>
-    <ngx-tab label="Typescript">
-      <app-prism language="js">
-        <![CDATA[typeOverrides: any = { 'string=code': (value: any) => { if (typeof value !== 'string') { return false;
-        } const regex = new RegExp(/^<<(.*)>>$/, 's'); return regex.test(value); } };]]>
-      </app-prism>
-    </ngx-tab>
-  </ngx-tabs>
+      (schemaUpdate)="schemaUpdate($event)"> </ngx-json-editor-flat>]]>
+    </app-prism>
+  </ngx-tab>
+  <ngx-tab label="Typescript">
+    <app-prism language="js">
+      <![CDATA[typeOverrides: any = { 'string=code': (value: any) => { if (typeof value !== 'string') { return false;
+      } const regex = new RegExp(/^<<(.*)>>$/, 's'); return regex.test(value); } };]]>
+    </app-prism>
+  </ngx-tab>
+</ngx-tabs>
 </ngx-section>
